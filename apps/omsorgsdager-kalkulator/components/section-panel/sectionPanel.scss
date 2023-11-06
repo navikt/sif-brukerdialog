@@ -59,6 +59,9 @@
                 @media (min-width: $tablet-breakpoint) {
                     margin-bottom: 4.5rem;
                 }
+                @media (max-width: $mobile-breakpoint) {
+                    padding: 0rem 1rem 3.5rem 1rem;
+                }
             }
 
             &__illustration {

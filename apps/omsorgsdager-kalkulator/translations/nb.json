@@ -52,14 +52,14 @@
     },
     "resultat-area": {
         "title": "Resultat",
-        "orange.1": "Beregningen baserer seg på svarene du har lagt inn i kalkulatoren. Det betyr at resultatet er avhengig av at du har gitt riktige opplysninger. Ut fra opplysningene du har gitt har du",
-        "orange.2.1.a": "0 omsorgsdager",
-        "orange.2.1.b": "i {year}.",
         "orange.3": "Opplysningene du har gitt om din situasjon gir ikke rett til omsorgsdager.",
 
-        "green.1": "Ut fra opplysningene du har gitt har du",
+        "green.1": "Ut fra opplysningene du har gitt har du rett til:",
+        "green.expansionCard.title": "Slik er det regnet ut",
+        "green.grunnrett.title": "Grunnrett",
         "green.grunnrett": "Grunnrett for {antallBarn} barn",
-        "green.aleneomsorg": "Tilleg pga. aleneomsorg",
+        "green.aleneomsorg": "Ekstra pga. aleneomsorg",
+        "green.barnKroniskSyk.title": "Barn med kronisk sykdom",
         "green.barnKroniskSyk": "Barn {navn} med kronisk sykdom",
         "green.2.1.1": "{result} dager for {antall} barn i egen husstand.",
         "green.2.1.2": "{result} ekstra dager på grunn av aleneomsorg for {antall} barn.",
@@ -68,6 +68,7 @@
         "green.2.1.a": "{result} omsorgsdager",
         "green.2.1.b": "i {year}",
         "green.dager": "{antallDager} dager",
+        "green.dager.totalt": "= {antallDager} dager",
         "green.totalt": "Totalt antall omsorgsdager",
         "green.3.1": "Du må selv trekke fra dager som du allerede har brukt eller delt med en annen omsorgsperson.",
 

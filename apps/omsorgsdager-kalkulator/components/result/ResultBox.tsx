@@ -3,6 +3,8 @@ import { PropsWithChildren, useEffect } from 'react';
 import SvgChild from '../svgs/SvgChild';
 import SvgChildSad from '../svgs/SvgChildSad';
 import bemUtils from '../../utils/bemUtils';
+import { BodyLong, Heading } from '@navikt/ds-react';
+import { FormattedMessage } from 'react-intl';
 export const bem = bemUtils('OmsCalcResultBox');
 
 const resultWrapperClassName = (type: ResultBoxType): string => {
@@ -51,6 +53,15 @@ const ResultBox: React.FC<Props> = ({ type, children }: PropsWithChildren<Props>
                         <div className={bem.element('result-child-wrapper')}>
                             {type === 'SUCCESS' && <SvgChild />}
                             {type === 'WARNING' && <SvgChildSad />}
+
+                            <div className="pt-3 pl-9">
+                                <Heading level="2" size="medium">
+                                    <FormattedMessage id={'resultat-area.title'} />
+                                </Heading>
+                                <BodyLong className="pb-3 text-justify" size="medium">
+                                    <FormattedMessage id={'resultat-area.green.1'} />
+                                </BodyLong>
+                            </div>
                         </div>
                         <div className={bem.element('result-content-wrapper')}>
                             <div>{children}</div>

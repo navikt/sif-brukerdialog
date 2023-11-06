@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { getYear } from '../../utils/utils';
 import { lenker } from '../../utils/lenker';
 import { Result } from '../kalkulator/Kalkulator';
+import bemUtils from '@/utils/bemUtils';
 
 interface Props {
     resultView: ResultView<Result>;
@@ -13,26 +14,18 @@ interface Props {
 
 const ResultatArea: React.FC<Props> = ({ resultView }: Props) => {
     const year = getYear();
+    const bem = bemUtils('OmsCalcResultBox');
     return caseResultViewOf(
         () => null,
         () => (
             <ResultBox type={'WARNING'}>
-                <Heading level="2" size="medium" className="pb-3">
-                    <FormattedMessage id={'resultat-area.title'} />
-                </Heading>
-                <BodyLong className="pb-3 text-justify" size="small">
-                    <FormattedMessage id={'resultat-area.orange.1'} />
-                </BodyLong>
-
-                <BodyLong size="large" weight="semibold">
-                    <FormattedMessage id={'resultat-area.orange.2.1.a'} />
-                </BodyLong>
-
-                <BodyLong className="pb-3 text-justify" size="small">
-                    <FormattedMessage id={'resultat-area.orange.2.1.b'} values={{ year }} />
-                </BodyLong>
-
-                <BodyLong className="pb-3 text-justify" size="small">
+                <Box borderRadius="large" padding={'5'} background="surface-warning-moderate" className="mb-3">
+                    <Heading level="3" size="medium">
+                        <FormattedMessage id={'resultat-area.green.2.1.a'} values={{ result: 0 }} />{' '}
+                        <FormattedMessage id={'resultat-area.green.2.1.b'} values={{ year }} />
+                    </Heading>
+                </Box>
+                <BodyLong className="pt-4 pb-9 text-justify" size="small">
                     <FormattedMessage id={'resultat-area.orange.3'} />
                 </BodyLong>
                 <BodyLong size="small">
@@ -49,15 +42,9 @@ const ResultatArea: React.FC<Props> = ({ resultView }: Props) => {
             return (
                 <>
                     <ResultBox type={'SUCCESS'}>
-                        <Heading level="2" size="medium" className="pb-3">
-                            <FormattedMessage id={'resultat-area.title'} />
-                        </Heading>
-                        <BodyLong className="pb-3 text-justify" size="small">
-                            <FormattedMessage id={'resultat-area.green.1'} />
-                        </BodyLong>
                         <VStack gap="4">
                             <Box borderRadius="large" padding={'5'} background="surface-success-moderate">
-                                <Heading level="2" size="medium">
+                                <Heading level="3" size="medium">
                                     <FormattedMessage
                                         id={'resultat-area.green.2.1.a'}
                                         values={{ result: result.sumDager }}
@@ -69,17 +56,27 @@ const ResultatArea: React.FC<Props> = ({ resultView }: Props) => {
                             <div className="subtle-card">
                                 <ExpansionCard aria-label="default-demo" className="mb-8">
                                     <ExpansionCard.Header className="bg-indigo-500">
-                                        <ExpansionCard.Title size="small">Slik er det regnet ut</ExpansionCard.Title>
+                                        <ExpansionCard.Title size="small">
+                                            <FormattedMessage id={'resultat-area.green.expansionCard.title'} />
+                                        </ExpansionCard.Title>
                                     </ExpansionCard.Header>
                                     <ExpansionCard.Content>
-                                        <div className="flex justify-between">
-                                            <FormattedMessage
-                                                id={'resultat-area.green.grunnrett'}
-                                                values={{
-                                                    antallBarn,
-                                                }}
-                                            />
-                                            <span className="font-extrabold text-right">
+                                        <BodyLong weight="semibold" className="mb-2">
+                                            <FormattedMessage id={'resultat-area.green.grunnrett.title'} />
+                                        </BodyLong>
+
+                                        <hr className="mb-3 mt-3" />
+                                        <div className={bem.element('result-utregning')}>
+                                            <span className={bem.element('result-utregning-beskrivelse')}>
+                                                <FormattedMessage
+                                                    id={'resultat-area.green.grunnrett'}
+                                                    values={{
+                                                        antallBarn,
+                                                    }}
+                                                />
+                                            </span>
+
+                                            <span className={bem.element('result-utregning-dager')}>
                                                 <FormattedMessage
                                                     id={'resultat-area.green.dager'}
                                                     values={{
@@ -88,35 +85,54 @@ const ResultatArea: React.FC<Props> = ({ resultView }: Props) => {
                                                 />
                                             </span>
                                         </div>
-                                        <div className="flex justify-between pb-3">
-                                            <FormattedMessage
-                                                id={'resultat-area.green.aleneomsorg'}
-                                                values={{
-                                                    antallBarn,
-                                                }}
-                                            />
-                                            <span className="font-extrabold text-right">
-                                                <FormattedMessage
-                                                    id={'resultat-area.green.dager'}
-                                                    values={{
-                                                        antallDager: aleneomsorg,
-                                                    }}
-                                                />
-                                            </span>
-                                        </div>
+                                        {aleneomsorg > 0 && (
+                                            <div className={bem.element('result-utregning')}>
+                                                <span className={bem.element('result-utregning-beskrivelse')}>
+                                                    <FormattedMessage
+                                                        id={'resultat-area.green.aleneomsorg'}
+                                                        values={{
+                                                            antallBarn,
+                                                        }}
+                                                    />
+                                                </span>
+
+                                                <span className={bem.element('result-utregning-dager')}>
+                                                    <FormattedMessage
+                                                        id={'resultat-area.green.dager'}
+                                                        values={{
+                                                            antallDager: aleneomsorg,
+                                                        }}
+                                                    />
+                                                </span>
+                                            </div>
+                                        )}
 
                                         {kroniskSykt.length > 0 && (
                                             <>
-                                                <hr />
-                                                <div className="pt-3 pb-3">
+                                                <hr className="mt-3 mb-6" />
+                                                <BodyLong weight="semibold">
+                                                    <FormattedMessage id={'resultat-area.green.barnKroniskSyk.title'} />
+                                                </BodyLong>
+                                                <hr className="mt-3 mb-3" />
+                                                <div>
                                                     {kroniskSykt.map((b) => {
                                                         return (
-                                                            <div className="flex justify-between" key={b.barnIndex}>
-                                                                <FormattedMessage
-                                                                    id={'resultat-area.green.barnKroniskSyk'}
-                                                                    values={{ navn: antallBarn > 1 ? b.barnIndex : '' }}
-                                                                />
-                                                                <span className="font-extrabold text-right">
+                                                            <div
+                                                                className={bem.element('result-utregning')}
+                                                                key={b.barnIndex}>
+                                                                <span
+                                                                    className={bem.element(
+                                                                        'result-utregning-beskrivelse',
+                                                                    )}>
+                                                                    <FormattedMessage
+                                                                        id={'resultat-area.green.barnKroniskSyk'}
+                                                                        values={{
+                                                                            navn: antallBarn > 1 ? b.barnIndex : '',
+                                                                        }}
+                                                                    />
+                                                                </span>
+
+                                                                <span className={bem.element('result-utregning-dager')}>
                                                                     <FormattedMessage
                                                                         id={'resultat-area.green.dager'}
                                                                         values={{
@@ -129,9 +145,15 @@ const ResultatArea: React.FC<Props> = ({ resultView }: Props) => {
                                                     })}
 
                                                     {aleneomsorgKroniskSykeSumm > 0 && (
-                                                        <div className="flex justify-between">
-                                                            <FormattedMessage id={'resultat-area.green.aleneomsorg'} />
-                                                            <span className="font-extrabold text-right">
+                                                        <div className={bem.element('result-utregning')}>
+                                                            <span
+                                                                className={bem.element('result-utregning-beskrivelse')}>
+                                                                <FormattedMessage
+                                                                    id={'resultat-area.green.aleneomsorg'}
+                                                                />
+                                                            </span>
+
+                                                            <span className={bem.element('result-utregning-dager')}>
                                                                 <FormattedMessage
                                                                     id={'resultat-area.green.dager'}
                                                                     values={{
@@ -145,27 +167,29 @@ const ResultatArea: React.FC<Props> = ({ resultView }: Props) => {
                                             </>
                                         )}
 
-                                        <hr />
-                                        <div className="flex justify-between pt-3 pb-3">
-                                            <FormattedMessage id={'resultat-area.green.totalt'} />
-                                            <span className="font-extrabold text-right">
+                                        <hr className="mt-3 mb-7" />
+                                        <div className={bem.element('result-utregning')}>
+                                            <span className={bem.element('result-utregning-beskrivelse')}>
+                                                <FormattedMessage id={'resultat-area.green.totalt'} />
+                                            </span>
+
+                                            <span className={bem.element('result-utregning-dager')}>
                                                 <FormattedMessage
-                                                    id={'resultat-area.green.dager'}
+                                                    id={'resultat-area.green.dager.totalt'}
                                                     values={{
                                                         antallDager: result.sumDager,
                                                     }}
                                                 />
                                             </span>
                                         </div>
-                                        <hr />
                                     </ExpansionCard.Content>
                                 </ExpansionCard>
                             </div>
                         </VStack>
-                        <BodyLong className="pb-9 text-justify" size="small">
+                        <BodyLong className="pb-9 text-justify">
                             <FormattedMessage id={'resultat-area.green.3.1'} values={{ year }} />
                         </BodyLong>
-                        <BodyLong size="small">
+                        <BodyLong>
                             <Link href={lenker.omsorgspengerNavno}>
                                 <FormattedMessage id={'resultat-area.tilbake-til-omsorgspenger'} />
                             </Link>

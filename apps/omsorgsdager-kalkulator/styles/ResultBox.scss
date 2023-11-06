@@ -38,10 +38,6 @@ $OmsKalkResultTopLineOrange: #ffdeb4;
     &__result-content {
         background: white;
         overflow: hidden;
-        display: flex;
-        justify-content: flex-start;
-        padding-right: 1rem;
-        padding-top: 1rem;
         padding-bottom: 1rem;
         @media (max-width: 768px) {
             flex-flow: column;
@@ -49,19 +45,38 @@ $OmsKalkResultTopLineOrange: #ffdeb4;
         }
     }
     &__result-child-wrapper {
+        display: flex;
         margin-left: 1rem;
-        padding: 1rem;
-        justify-content: center;
+        padding: 0rem 1rem 0.5rem 1rem;
+
         @media (max-width: 768px) {
-            order: 2;
-            text-align: center;
+            margin-left: 0rem;
+            padding: 0rem 1rem 1rem 1rem;
         }
     }
     &__result-content-wrapper {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
         @media (min-width: 768px) {
+            padding: 0rem 7rem 0rem 8rem;
             margin-bottom: 1.5rem;
         }
+    }
+
+    &__result-utregning {
+        display: flex;
+        justify-content: space-between;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    &__result-utregning-beskrivelse {
+        @media (max-width: 400px) {
+            width: 8rem;
+        }
+    }
+    &__result-utregning-dager {
+        font-weight: 800;
+        align-self: flex-end;
     }
 }
