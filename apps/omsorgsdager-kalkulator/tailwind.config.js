@@ -1,15 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: [
-        "./pages/**/*.{js,ts,jsx,tsx}",
-        "./components/**/*.{js,ts,jsx,tsx}",
-    ],
+    content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
     theme: {
         extend: {},
         minHeight: {
-            container: "80vh",
+            container: '80vh',
         },
     },
     plugins: [],
-    presets: [require("@navikt/ds-tailwind")],
-}
+    presets: [require('@navikt/ds-tailwind')],
+};
