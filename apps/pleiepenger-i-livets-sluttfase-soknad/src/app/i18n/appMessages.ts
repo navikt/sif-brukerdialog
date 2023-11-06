@@ -212,8 +212,7 @@ export const appMessages: MessageFileFormat = {
 
         'validation.harUtenlandskNæring.yesOrNoIsUnanswered':
             'Du må svare på på om du har jobbet som selvstendig næringsdrivende i et annet EØS-land i løpet av de 3 siste årene før perioden du søker om.',
-        'validation.utenlandskNæring.listIsEmpty':
-            'Du må legge til jobb som selvstendig næringsdrivende i et annet EØS-land.',
+        'validation.utenlandskNæring.listIsEmpty': 'Du må legge til næringsvirksomhet i et annet EØS-land.',
 
         'validation.arbeidsforhold.sluttetFørSøknadsperiode.yesOrNoIsUnanswered':
             'Du må svare på om du sluttet hos {navn} før {fraDato}.',
