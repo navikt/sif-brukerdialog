@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 8.11.0
+
+### Minor Changes
+
+-   ce769b8e: Endre UtenlandskNæringListAndDialog til å eksponere ModalFormAndListLabels, ikke ModalFormAndInfoLabels (som var feil)
+
 ## 8.10.0
 
 ### Minor Changes
