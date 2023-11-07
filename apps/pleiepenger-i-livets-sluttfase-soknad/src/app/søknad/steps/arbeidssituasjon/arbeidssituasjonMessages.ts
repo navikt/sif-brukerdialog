@@ -37,6 +37,10 @@ export const arbeidssituasjonMessages: MessageFileFormat = {
         'steg.arbeidssituasjon.opptjeningUtland.spm':
             'Har du jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før perioden du søker om?',
 
+        'steg.arbeidssituasjon.opptjeningUtland.addLabel': 'Legg til jobb i et annet EØS-land',
+        'steg.arbeidssituasjon.opptjeningUtland.listTitle': 'Registrert jobb i et annet EØS-land',
+        'steg.arbeidssituasjon.opptjeningUtland.modalTitle': 'Jobb i EØS-land',
+
         'steg.arbeidssituasjon.utenlandskNæring.spm':
             'Har du jobbet som selvstendig næringsdrivende i et annet EØS-land i løpet av de 3 siste årene før perioden du søker om?',
 

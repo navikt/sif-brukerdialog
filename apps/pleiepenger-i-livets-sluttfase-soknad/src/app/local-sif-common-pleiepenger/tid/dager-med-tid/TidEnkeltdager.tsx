@@ -1,4 +1,4 @@
-import { Accordion } from '@navikt/ds-react';
+import { Accordion, Heading } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { ISODate, ISODateToDate, ISODuration, ISODurationToDuration } from '@navikt/sif-common-utils';
@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 import { groupBy } from 'lodash';
 import DagerMedTidListe from '../../common/dager-med-tid-liste/DagerMedTidListe';
 import { DagMedTid } from '../../types';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 
 interface ISODagMedTid {
     dato: ISODate;
@@ -14,9 +15,17 @@ interface ISODagMedTid {
 
 interface Props {
     dager: ISODagMedTid[];
+    renderAsAccordion?: boolean;
+    visUke?: boolean;
+    headingLevel?: number;
 }
 
-const TidEnkeltdager: React.FunctionComponent<Props> = ({ dager }) => {
+const TidEnkeltdager: React.FunctionComponent<Props> = ({
+    dager,
+    renderAsAccordion = false,
+    visUke = false,
+    headingLevel = 5,
+}) => {
     const days: DagMedTid[] = [];
     dager.forEach((dag) => {
         const dato = ISODateToDate(dag.dato);
@@ -32,6 +41,32 @@ const TidEnkeltdager: React.FunctionComponent<Props> = ({ dager }) => {
     }
 
     const months = groupBy(days, ({ dato }) => `${dato.getFullYear()}.${dato.getMonth()}`);
+    if (!renderAsAccordion) {
+        return (
+            <div>
+                {Object.keys(months).map((key, index) => {
+                    const dagerMedTid = months[key];
+                    if (dagerMedTid.length === 0) {
+                        return ingenDagerRegistrertMelding;
+                    }
+                    return (
+                        <div key={key} style={{ paddingTop: index > 0 ? '2rem' : '.5rem' }}>
+                            <Heading level="5" size="xsmall" className="capitalize">
+                                {dayjs(dagerMedTid[0].dato).format('MMMM YYYY')}
+                            </Heading>
+                            <Block margin="l">
+                                <DagerMedTidListe
+                                    dagerMedTid={dagerMedTid}
+                                    viseUke={visUke}
+                                    headingLevel={headingLevel}
+                                />
+                            </Block>
+                        </div>
+                    );
+                })}
+            </div>
+        );
+    }
     return (
         <Accordion>
             {Object.keys(months).map((key) => {
@@ -45,7 +80,7 @@ const TidEnkeltdager: React.FunctionComponent<Props> = ({ dager }) => {
                             <div className="capitalize">{dayjs(dagerMedTid[0].dato).format('MMMM YYYY')}</div>
                         </Accordion.Header>
                         <Accordion.Content>
-                            <DagerMedTidListe dagerMedTid={dagerMedTid} viseUke={true} />
+                            <DagerMedTidListe dagerMedTid={dagerMedTid} viseUke={visUke} headingLevel={headingLevel} />
                         </Accordion.Content>
                     </Accordion.Item>
                 );
