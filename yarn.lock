@@ -4107,6 +4107,7 @@ __metadata:
     "@navikt/ds-react": ^5.2.1
     "@navikt/ds-tailwind": ^5.2.1
     "@navikt/nav-dekoratoren-moduler": 1.6.9
+    "@playwright/test": ^1.39.0
     "@types/node": 20.6.5
     "@types/react": 18.2.24
     "@types/react-dom": 18.2.7
@@ -5119,6 +5120,17 @@ __metadata:
     picocolors: ^1.0.0
     tslib: ^2.6.0
   checksum: 24e04c121269317d259614cd32beea3af38277151c4002df5883c4be920b8e3490bb897748e844f9d46bf68230f86dabd4e8f093773130e7e60529a769a132fc
+  languageName: node
+  linkType: hard
+
+"@playwright/test@npm:^1.39.0":
+  version: 1.39.0
+  resolution: "@playwright/test@npm:1.39.0"
+  dependencies:
+    playwright: 1.39.0
+  bin:
+    playwright: cli.js
+  checksum: e93e58fc1af4239f239b890374f066c9a758e2492d25e2c1a532f3f00782ab8e7706956a07540fd14882c74e75f5de36273621adce9b79afb8e36e6c15f1d539
   languageName: node
   linkType: hard
 
@@ -24199,6 +24211,30 @@ __metadata:
   bin:
     playwright-core: cli.js
   checksum: 66e83fe040f309b13ad94ba39dea40ac207bfcbbc22de13141af88dbdedd64e1c4e3ce1d0cb070d4efd8050d7e579953ec3681dd8a0acf2c1cc738d9c50e545e
+  languageName: node
+  linkType: hard
+
+"playwright-core@npm:1.39.0":
+  version: 1.39.0
+  resolution: "playwright-core@npm:1.39.0"
+  bin:
+    playwright-core: cli.js
+  checksum: 556e78dee4f9890facf2af8249972e0d6e01a5ae98737b0f6b0166c660a95ffee4cb79350335b1ef96430a0ef01d3669daae9099fa46c8d403d11c623988238b
+  languageName: node
+  linkType: hard
+
+"playwright@npm:1.39.0":
+  version: 1.39.0
+  resolution: "playwright@npm:1.39.0"
+  dependencies:
+    fsevents: 2.3.2
+    playwright-core: 1.39.0
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  bin:
+    playwright: cli.js
+  checksum: 96d8ca5aa25465c1c5d554d0d6071981d55e22477800ff8f5d47a53ca75193d60ece2df538a01b7165b3277dd5493c67603a5acda713029df7fbd95ce2417bc9
   languageName: node
   linkType: hard
 

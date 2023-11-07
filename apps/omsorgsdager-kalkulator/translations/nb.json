@@ -79,7 +79,7 @@
         "antallBarn.noValue": "Du må velge hvor mange barn som bor hos deg.",
         "barn.årFødt.noValue": "Du må svare på hvilket årstall {barnName} er født.",
         "barn.kroniskSykt.yesOrNoIsUnanswered": "Du må svare på om du har vedtak om ekstra omsorgsdager fordi {barnName} har en kronisk/langvarig sykdom eller funksjonshemning som gir risiko for høyere fravær fra jobb.",
-        "barn.borSammen.yesOrNoIsUnanswered": "Då må svare på om {barnName} bor fast hos deg.",
+        "barn.borSammen.yesOrNoIsUnanswered": "Du må svare på om {barnName} bor fast hos deg.",
         "barn.aleneOmOmsorgen.yesOrNoIsUnanswered": "Du må svare på om du har vedtak om ekstra omsorgsdager på grunn av aleneomsorg for {barnName}."
     }
 }
