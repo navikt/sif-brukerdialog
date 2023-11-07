@@ -198,7 +198,9 @@ const BarnFormPart: React.FC<Props> = ({ barn, index, antallBarn, valideringsFei
                                                             <FormattedMessage
                                                                 id={'barn.aleneOmOmsorgen.readMore.avsnitt.4'}
                                                             />{' '}
-                                                            <Link href={lenker.fastBosted} target="_blank">
+                                                            <Link
+                                                                href={lenker.omsorgspengerEkstraDager}
+                                                                target="_blank">
                                                                 <FormattedMessage id="barn.aleneOmOmsorgen.readMore.avsnitt.4.lenke" />
                                                             </Link>
                                                         </BodyLong>

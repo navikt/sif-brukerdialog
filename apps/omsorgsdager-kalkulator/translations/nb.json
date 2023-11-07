@@ -30,7 +30,7 @@
         "årFødt.readMore.avsnitt2": "Hvis du har fått vedtak om ekstra omsorgsdager fordi barnet har en kronisk/langvarig sykdom eller funksjonshemning, kan du bruke omsorgsdager ut kalenderåret barnet fyller 18 år.",
         "årFødt.alert": "Du har ikke rett på omsorgsdager for barn som er 19 år eller eldre. Omsorgsdager gjelder i utgangspunktet ut kalenderåret barnet er 12 år. I noen tilfeller kan du få omsorgsdager ut kalenderåret barnet er 18 år.",
 
-        "kroniskSykt": "Har du fått vedtak fra NAV om ekstra omsorgsdager, fordi barnet har en sykdom eller funksjonshemning som gjør at du oftere må være borte fra jobb?",
+        "kroniskSykt": "Har du fått ekstra omsorgsdager fordi barnet har en sykdom eller funksjonshemning som gjør at du oftere må være borte fra jobb?",
         "kroniskSykt.readMore.title": "Hva betyr dette?",
         "kroniskSykt.readMore.avsnitt1": "Hvis barnet har en kronisk/langvarig sykdom eller funksjonshemning som gir høyere risiko for at du må være borte fra jobb, kan du ha rett til ekstra omsorgsdager. Du skal svare ja hvis du har søkt og fått innvilget ekstra omsorgsdager fra NAV. ",
         "kroniskSykt.readMore.avsnitt2": "Du finner informasjon og søknad på ",
@@ -42,10 +42,10 @@
         "borSammen.readMore": "Du skal svare ja på dette spørsmålet hvis barnet bor fast hos deg, eller hvis du har avtale om delt fast bosted med den andre forelderen.",
         "borSammen.alert": "For å ha rett på omsorgsdager for dette barnet, må barnet bo fast hos deg.",
 
-        "aleneOmOmsorgen": "Har du fått vedtak om ekstra omsorgsdager for du er alene om omsorgen for barnet?",
+        "aleneOmOmsorgen": "Har du fått vedtak om ekstra omsorgsdager fordi du er alene om omsorgen for barnet?",
         "aleneOmOmsorgen.readMore.title": "Hva betyr det å være alene om omsorgen?",
         "aleneOmOmsorgen.readMore.avsnitt.1": "Du er alene om omsorgen hvis barnet bor fast hos deg, og du ikke bor sammen med den andre forelderen. Hvis du og den andre forelderen har en avtale om delt fast bosted, er du ikke alene om omsorgen for barnet.",
-        "aleneOmOmsorgen.readMore.avsnitt.2": "Du kan også regnes som alene om omsorgen hvis den andre forelderen ikke kan ha tilsyn med barnet i mins t 6 måneder, for eksempel på grunn av egen sykdom eller fengselsopphold.",
+        "aleneOmOmsorgen.readMore.avsnitt.2": "Du kan også regnes som alene om omsorgen hvis den andre forelderen ikke kan ha tilsyn med barnet i minst 6 måneder, for eksempel på grunn av egen sykdom eller fengselsopphold.",
         "aleneOmOmsorgen.readMore.avsnitt.3": "Du kan svare ja på dette spørsmålet hvis du har søkt og fått godkjent ekstra omsorgsdager fra NAV.",
         "aleneOmOmsorgen.readMore.avsnitt.4": "Du finner informasjon og søknad på  ",
         "aleneOmOmsorgen.readMore.avsnitt.4.lenke": "nav.no/omsorgspenger#situasjon"
@@ -54,7 +54,7 @@
         "title": "Resultat",
         "orange.3": "Opplysningene du har gitt om din situasjon gir ikke rett til omsorgsdager.",
 
-        "green.1": "Ut fra opplysningene du har gitt har du rett til:",
+        "green.1": "Ut fra opplysningene dine, har du rett til:",
         "green.expansionCard.title": "Slik er det regnet ut",
         "green.grunnrett.title": "Grunnrett",
         "green.grunnrett": "Grunnrett for {antallBarn} barn",
@@ -78,7 +78,7 @@
     "validation": {
         "antallBarn.noValue": "Du må velge hvor mange barn som bor hos deg.",
         "barn.årFødt.noValue": "Du må svare på hvilket årstall {barnName} er født.",
-        "barn.kroniskSykt.yesOrNoIsUnanswered": "Du må svare på om du har vedtak om ekstra omsorgsdager fordi {barnName} har en kronisk/langvarig sykdom eller funksjonshemning som gir risiko for høyere fravær fra jobb.",
+        "barn.kroniskSykt.yesOrNoIsUnanswered": "Du må svare på om du har fått ekstra omsorgsdager fordi {barnName} har en sykdom eller funksjonshemning som gjør at du oftere må være borte fra jobb.",
         "barn.borSammen.yesOrNoIsUnanswered": "Du må svare på om {barnName} bor fast hos deg.",
         "barn.aleneOmOmsorgen.yesOrNoIsUnanswered": "Du må svare på om du har vedtak om ekstra omsorgsdager på grunn av aleneomsorg for {barnName}."
     }
