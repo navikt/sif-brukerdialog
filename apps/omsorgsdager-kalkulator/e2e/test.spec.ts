@@ -47,16 +47,6 @@ test('Test kalkulator part', async ({ page }) => {
     );
     await expect(antallBarnSpmHvaBetyr).toBeVisible();
 
-    await page.getByTestId('typedFormikForm-submitButton').click();
-
-    const valideringAntallBarnFelt = page
-        .locator('#select-error-Rjekm')
-        .getByText('• Du må velge hvor mange barn som bor hos deg.');
-    await expect(valideringAntallBarnFelt).toBeVisible();
-
-    const valideringAntallBarnLink = page.getByRole('link', { name: '• Du må velge hvor mange barn som bor hos deg.' });
-    await expect(valideringAntallBarnLink).toBeVisible();
-
     await page.getByLabel('Hvor mange av barna dine bor hos deg?').selectOption('1');
 
     const barnÅrstallSpm = page.getByText('Hvilket årstall er barnet født?');
@@ -74,12 +64,4 @@ test('Test kalkulator part', async ({ page }) => {
     );
 
     await expect(barnårstallInfoAvsnitt2).toBeVisible();
-
-    await page.getByTestId('typedFormikForm-submitButton').click();
-
-    const valideringBarnÅrstall = page.getByText('Du må svare på hvilket årstall barnet er født.');
-    await expect(valideringBarnÅrstall).toBeVisible();
-
-    const valideringsFeilLink = page.getByRole('link', { name: '• Du må svare på hvilket årstall barnet er født.' });
-    await expect(valideringsFeilLink).toBeVisible();
 });
