@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 8.11.1
+
+### Patch Changes
+
+-   66c8522a: Legge til manglende tekst for regnskapsfører telefon i virksomhetform
+
 ## 8.11.0
 
 ### Minor Changes
