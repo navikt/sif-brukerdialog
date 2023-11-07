@@ -1,5 +1,16 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.20.14
+
+### Patch Changes
+
+-   Updated dependencies [ce769b8e]
+-   Updated dependencies [afe04538]
+    -   @navikt/sif-common-forms-ds@8.11.0
+    -   @navikt/sif-common-formik-ds@1.1.6
+    -   @navikt/sif-common-core-ds@9.8.8
+    -   @navikt/sif-common-soknad-ds@10.7.8
+
 ## 2.20.13
 
 ### Patch Changes

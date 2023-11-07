@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.1.6
+
+### Patch Changes
+
+-   afe04538: Fjerne default verdi for disableWeekends i FormikDatepicker. Var satt til true, blir nå undefined.
+
 ## 1.1.5
 
 ### Patch Changes

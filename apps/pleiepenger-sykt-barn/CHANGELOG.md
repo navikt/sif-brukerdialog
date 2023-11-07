@@ -1,5 +1,20 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.2.0
+
+### Minor Changes
+
+-   ce769b8e: Endre UtenlandskNæringListAndDialog til å eksponere ModalFormAndListLabels, ikke ModalFormAndInfoLabels (som var feil)
+
+### Patch Changes
+
+-   Updated dependencies [ce769b8e]
+-   Updated dependencies [afe04538]
+    -   @navikt/sif-common-forms-ds@8.11.0
+    -   @navikt/sif-common-formik-ds@1.1.6
+    -   @navikt/sif-common-core-ds@9.8.8
+    -   @navikt/sif-common-soknad-ds@10.7.8
+
 ## 3.1.2
 
 ### Patch Changes
