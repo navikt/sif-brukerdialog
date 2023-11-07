@@ -15,6 +15,10 @@ For å kjøre enhetstester:
 
 1.  `yarn test`.
 
+For å kjøre Playwright tester:
+
+1.  `yarn e2e` i root omsorgsdager-aleneomsorg-dialog i egen terminal.
+
 ## Henvendelser
 
 Spørsmål knyttet til koden eller prosjektet kan stilles som issues her på GitHub.
