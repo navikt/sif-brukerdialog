@@ -25,7 +25,7 @@ const KvitteringPage = ({ onUnmount }: Props) => {
 
     return (
         <Page title={intlHelper(intl, 'page.kvittering.sidetittel')}>
-            <div data-testid="kvittering-page">
+            <div>
                 <div role="presentation" aria-hidden="true" style={{ textAlign: 'center', marginBottom: '2rem' }}>
                     <CheckmarkIcon />
                 </div>

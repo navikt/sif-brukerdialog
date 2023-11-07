@@ -79,7 +79,6 @@ const AnnetBarnpart = () => {
                     description={intlHelper(intl, 'step.omBarnet.fødselsdato.info', {
                         minFødselsdato: dateFormatter.full(minDatoForBarnetsFødselsdato),
                     })}
-                    data-testid="barnetsFødselsdato"
                 />
             </FormBlock>
             <FormBlock>

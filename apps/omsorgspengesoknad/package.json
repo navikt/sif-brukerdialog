@@ -49,10 +49,12 @@
         "vite-plugin-checker": "0.6.2"
     },
     "devDependencies": {
+        "@axe-core/playwright": "4.8.1",
         "@babel/core": "7.23.2",
         "@babel/preset-env": "7.23.2",
         "@babel/preset-react": "7.22.15",
         "@babel/preset-typescript": "7.23.2",
+        "@playwright/test": "^1.39.0",
         "@storybook/addon-actions": "7.5.3",
         "@storybook/addon-essentials": "7.5.3",
         "@storybook/addon-interactions": "7.5.3",
@@ -71,10 +73,8 @@
         "axe-core": "4.8.2",
         "babel-polyfill": "6.26.0",
         "case-sensitive-paths-webpack-plugin": "2.4.0",
+        "cross-env": "7.0.3",
         "css-loader": "6.8.1",
-        "cypress": "13.4.0",
-        "cypress-axe": "1.5.0",
-        "cypress-file-upload": "5.0.8",
         "express-rate-limit": "7.1.4",
         "html-webpack-harddisk-plugin": "2.0.0",
         "html-webpack-plugin": "5.5.3",
@@ -103,16 +103,18 @@
         "build-app": "vite build --base=/familie/sykdom-i-familien/soknad/omsorgspenger",
         "build-storybook": "storybook build",
         "clean": "rm -rf node_modules .dist",
-        "cypress-open": "cypress open --project $PWD/e2e",
-        "cypress-run": "cypress run --project $PWD/e2e",
+        "codegen": "playwright codegen",
         "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",
+        "e2e-ui": "playwright test --ui",
+        "e2e": "playwright test",
+        "lint": "eslint ./src --ext ts,tsx",
+        "playwright-test": "playwright test",
         "snd": "cross-env NODE_ENV=development node ./server.cjs",
-        "start-express": "node ./server.cjs",
         "start-e2e-server": "node ./server-e2e.cjs",
+        "start-express": "node ./server.cjs",
         "storybook": "storybook dev -p 6006 -s public",
-        "test": "react-scripts test --watchAll=false --env=jsdom",
         "test-watch": "react-scripts test --watchAll=true --env=jsdom",
-        "lint": "eslint ./src --ext ts,tsx"
+        "test": "react-scripts test --watchAll=false --env=jsdom"
     },
     "eslintConfig": {
         "overrides": [
