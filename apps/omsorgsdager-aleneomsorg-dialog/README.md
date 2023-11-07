@@ -15,14 +15,6 @@ For å kjøre enhetstester:
 
 1.  `yarn test`.
 
-For å kjøre Cypress tester:
-
-1.  `yarn dev-api` i root omsorgsdager-aleneomsorg-dialog i egen terminal.
-2.  `yarn snd` i root omsorgsdager-aleneomsorg-dialog i egen terminal.
-3.  `yarn cypress-run` i root omsorgsdager-aleneomsorg-dialog i egen terminal.
-    eller
-    `yarn cypress-open` i root omsorgsdager-aleneomsorg-dialog i egen terminal.
-
 ## Henvendelser
 
 Spørsmål knyttet til koden eller prosjektet kan stilles som issues her på GitHub.
