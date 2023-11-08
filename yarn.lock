@@ -91,6 +91,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@axe-core/playwright@npm:^4.7.3":
+  version: 4.8.1
+  resolution: "@axe-core/playwright@npm:4.8.1"
+  dependencies:
+    axe-core: ~4.8.2
+  peerDependencies:
+    playwright-core: ">= 1.0.0"
+  checksum: 08f34f6a6f106aafafab4d6bda8f7c273c9785811410cc42c0713bc469bb302d137b8b7a8ce09645525b2f18b6b59eddf80cbbb2cffc364b2b141779958cfffe
+  languageName: node
+  linkType: hard
+
 "@babel/code-frame@npm:^7.0.0, @babel/code-frame@npm:^7.10.4, @babel/code-frame@npm:^7.12.13, @babel/code-frame@npm:^7.16.0, @babel/code-frame@npm:^7.16.7, @babel/code-frame@npm:^7.22.13, @babel/code-frame@npm:^7.8.3":
   version: 7.22.13
   resolution: "@babel/code-frame@npm:7.22.13"
@@ -4102,6 +4113,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/omsorgsdager-kalkulator@workspace:apps/omsorgsdager-kalkulator"
   dependencies:
+    "@axe-core/playwright": ^4.7.3
     "@navikt/ds-css": ^5.2.1
     "@navikt/ds-icons": ^3.4.3
     "@navikt/ds-react": ^5.2.1
@@ -11054,7 +11066,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axe-core@npm:4.8.2, axe-core@npm:^4.2.0, axe-core@npm:^4.6.2":
+"axe-core@npm:4.8.2, axe-core@npm:^4.2.0, axe-core@npm:^4.6.2, axe-core@npm:~4.8.2":
   version: 4.8.2
   resolution: "axe-core@npm:4.8.2"
   checksum: 8c19f507dabfcb8514e4280c7fc66e85143be303ddb57ec9f119338021228dc9b80560993938003837bda415fde7c07bba3a96560008ffa5f4145a248ed8f5fe

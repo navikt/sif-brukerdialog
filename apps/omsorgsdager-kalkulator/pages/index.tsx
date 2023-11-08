@@ -7,7 +7,7 @@ import { CalculatorIcon } from '@navikt/aksel-icons';
 
 const Home: NextPage = () => {
     return (
-        <>
+        <div id="__kalkulator-kontainer">
             <Panel className="max-w-[800px] mt-8 mb-10">
                 <Info />
             </Panel>
@@ -18,7 +18,7 @@ const Home: NextPage = () => {
                     <Kalkulator />
                 </div>
             </SectionPanel>
-        </>
+        </div>
     );
 };
 

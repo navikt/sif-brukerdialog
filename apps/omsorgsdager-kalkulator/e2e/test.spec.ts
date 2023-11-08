@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test';
 
+const year = new Date().getFullYear();
+
 test('Test text info part', async ({ page }) => {
     await page.goto('http://localhost:8080/');
 
@@ -35,33 +37,138 @@ test('Test text info part', async ({ page }) => {
     await expect(samværsforelderInfoAvsnitt2).toBeVisible();
 });
 
-test('Test kalkulator part', async ({ page }) => {
+test('Test kalkulator 1 barn', async ({ page }) => {
     await page.goto('http://localhost:8080/');
-
-    const antallBarnSpm = page.getByText('Hvor mange av barna dine bor hos deg?');
-    await expect(antallBarnSpm).toBeVisible();
-
-    await page.getByRole('button', { name: 'Hva betyr dette?' }).click();
-    const antallBarnSpmHvaBetyr = page.getByText(
-        'Vi må vite hvor mange av barna dine som bor hos deg, det vil si barn som du er j',
-    );
-    await expect(antallBarnSpmHvaBetyr).toBeVisible();
 
     await page.getByLabel('Hvor mange av barna dine bor hos deg?').selectOption('1');
 
-    const barnÅrstallSpm = page.getByText('Hvilket årstall er barnet født?');
-    await expect(barnÅrstallSpm).toBeVisible();
+    await page.getByLabel('Hvilket årstall er barnet født?').selectOption(year.toString());
 
-    await page.getByRole('button', { name: 'Hvorfor spør vi om det?' }).click();
+    await page.getByRole('group', { name: 'Bor barnet fast hos deg?' }).getByLabel('Ja').check();
 
-    const barnårstallInfoAvsnitt1 = page.getByText(
-        'Omsorgsdager gjelder i utgangspunktet ut kalenderåret barnet er 12 år.',
-    );
-    await expect(barnårstallInfoAvsnitt1).toBeVisible();
+    await page
+        .getByRole('group', {
+            name: 'Har du fått ekstra omsorgsdager fordi barnet har en sykdom eller funksjonshemning som gjør at du oftere må være borte fra jobb?',
+        })
+        .getByLabel('Ja')
+        .check();
 
-    const barnårstallInfoAvsnitt2 = page.getByText(
-        'Hvis du har fått vedtak om ekstra omsorgsdager fordi barnet har en kronisk/langv',
-    );
+    await page
+        .getByRole('group', {
+            name: 'Har du fått vedtak om ekstra omsorgsdager fordi du er alene om omsorgen for barnet?',
+        })
+        .getByLabel('Ja')
+        .check();
 
-    await expect(barnårstallInfoAvsnitt2).toBeVisible();
+    await page.getByRole('button').getByText('Beregn').click();
+    await page.getByRole('button').getByText('Beregn').click();
+
+    await page.getByRole('heading', { name: 'Nyheter og presse' }).click();
+    await page.getByRole('heading', { name: '40 omsorgsdager' }).isVisible();
+
+    await page.getByRole('button', { name: 'Vis mer' }).click();
+
+    await page.getByText('Grunnrett for 1 barn10 dager').isVisible();
+    await page.getByText('Ekstra pga. aleneomsorg10 dager').first().isVisible();
+    await page.getByText('Barn med kronisk sykdom10 dager').isVisible();
+    await page.getByText('Ekstra pga. aleneomsorg10 dager').nth(1).isVisible();
+    await page.getByText('Totalt antall omsorgsdager= 40 dager').isVisible();
+});
+
+test('Test kalkulator Barn bor ikke fast med', async ({ page }) => {
+    await page.goto('http://localhost:8080/');
+
+    await page.getByLabel('Hvor mange av barna dine bor hos deg?').selectOption('1');
+
+    await page.getByLabel('Hvilket årstall er barnet født?').selectOption(year.toString());
+
+    await page.getByRole('group', { name: 'Bor barnet fast hos deg?' }).getByLabel('Nei').check();
+
+    await page.getByText('For å ha rett på omsorgsdager for dette barnet, må barnet bo fast hos deg.').isVisible();
+
+    await page.getByRole('button').getByText('Beregn').click();
+    await page.getByRole('button').getByText('Beregn').click();
+
+    await page.getByRole('heading', { name: 'Nyheter og presse' }).click();
+    await page.getByRole('heading', { name: '0 omsorgsdager' }).isVisible();
+});
+
+test('Test kalkulator Barn 18 år', async ({ page }) => {
+    await page.goto('http://localhost:8080/');
+
+    await page.getByLabel('Hvor mange av barna dine bor hos deg?').selectOption('1');
+
+    await page.getByLabel('Hvilket årstall er barnet født?').selectOption((year - 19).toString());
+
+    await page
+        .getByText('Du har ikke rett på omsorgsdager for barn som er 19 år eller eldre. Omsorgsdager')
+        .isVisible();
+
+    await page.getByRole('button').getByText('Beregn').click();
+    await page.getByRole('button').getByText('Beregn').click();
+
+    await page.getByRole('heading', { name: 'Resultat' }).isVisible();
+    await page.getByRole('heading', { name: '0 omsorgsdager' }).isVisible();
+});
+
+test('Test kalkulator Barn 13 år', async ({ page }) => {
+    await page.goto('http://localhost:8080/');
+
+    await page.getByLabel('Hvor mange av barna dine bor hos deg?').selectOption('1');
+
+    await page.getByLabel('Hvilket årstall er barnet født?').selectOption((year - 13).toString());
+
+    await page.getByRole('group', { name: 'Bor barnet fast hos deg?' }).getByLabel('Ja').check();
+
+    await page
+        .getByRole('group', {
+            name: 'Har du fått ekstra omsorgsdager fordi barnet har en sykdom eller funksjonshemning som gjør at du oftere må være borte fra jobb?',
+        })
+        .getByLabel('Nei')
+        .check();
+
+    await page
+        .getByText('For å få omsorgsdager for barn som er 13 år eller eldre, må du ha søkt og fått i')
+        .isVisible();
+
+    await page
+        .getByRole('group', {
+            name: 'Har du fått ekstra omsorgsdager fordi barnet har en sykdom eller funksjonshemning som gjør at du oftere må være borte fra jobb?',
+        })
+        .getByLabel('Ja')
+        .check();
+
+    await page
+        .getByRole('group', {
+            name: 'Har du fått vedtak om ekstra omsorgsdager fordi du er alene om omsorgen for barnet?',
+        })
+        .getByLabel('Nei')
+        .check();
+
+    await page.getByRole('button').getByText('Beregn').click();
+    await page.getByRole('button').getByText('Beregn').click();
+
+    await page.getByRole('heading', { name: 'Resultat' }).isVisible();
+    await page.getByRole('heading', { name: '20 omsorgsdager' }).isVisible();
+
+    await page.getByRole('button', { name: 'Vis mer' }).click();
+    await page.getByText('Grunnrett for 1 barn10 dager').isVisible();
+    await page.getByText('Barn med kronisk sykdom10 dager').isVisible();
+    await page.getByText('Totalt antall omsorgsdager= 20 dager').isVisible();
+});
+
+test('Test kalkulator 2 barn test paneler', async ({ page }) => {
+    await page.goto('http://localhost:8080/');
+
+    await page.getByLabel('Hvor mange av barna dine bor hos deg?').selectOption('2');
+    await page
+        .locator('div')
+        .filter({ hasText: /^Barn 1Vis mer$/ })
+        .getByRole('button')
+        .click();
+    await page
+        .locator('div')
+        .filter({ hasText: /^Barn 2Vis mer$/ })
+        .getByRole('button')
+        .click();
 });
