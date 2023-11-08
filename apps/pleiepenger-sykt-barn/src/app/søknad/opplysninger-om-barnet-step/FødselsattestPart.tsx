@@ -95,7 +95,7 @@ const FødselsattestPart: React.FC<Props> = ({ attachments }) => {
                     <FormikFileUploader
                         legend={intlHelper(intl, 'steg.omBarnet.fødselsattest.vedlegg.legend')}
                         name={SøknadFormField.fødselsattest}
-                        label={intlHelper(intl, 'steg.omBarnet.fødselsattest.vedlegg')}
+                        buttonLabel={intlHelper(intl, 'steg.omBarnet.fødselsattest.vedlegg')}
                         onErrorUploadingAttachments={vedleggOpplastingFeilet}
                         onFileInputClick={() => {
                             setFilesThatDidntGetUploaded([]);
