@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.2.0
+
+### Minor Changes
+
+-   e815a9a8: Endre rolle til button for FileDropInput div.
+
 ## 1.1.6
 
 ### Patch Changes
