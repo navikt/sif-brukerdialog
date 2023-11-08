@@ -5,7 +5,7 @@ import { checkA11y } from '../utils';
 
 const barnetsNavn = 'NOTORISK LURING';
 const barnetsFødselsnummer = '08861999573';
-const barnetsFødselsdato = '08.06.2019';
+const barnetsFødselsdato = '08.12.2019';
 const relasjonAnnetBeskrivelse = 'Annet relasjon beskrivelse';
 
 test.beforeEach(async ({ page }) => {
@@ -31,10 +31,10 @@ const gåTilOppsummering = async (page: Page) => {
 };
 
 test('Fyll ut steg med registrert barn', async ({ page }) => {
-    await page.getByLabel('ALFABETISK FAGGOTTFødt 08.06.2019').check();
+    await page.getByLabel('ALFABETISK FAGGOTTFødt 08.12.2019').check();
     await checkA11y(page);
     await gåTilOppsummering(page);
-    await expect(await page.getByText('Navn: ALFABETISK FAGGOTTFødselsdato: 08.06.2019').isVisible()).toBeTruthy();
+    await expect(await page.getByText('Navn: ALFABETISK FAGGOTTFødselsdato: 08.12.2019').isVisible()).toBeTruthy();
     await checkA11y(page);
 });
 
@@ -77,10 +77,10 @@ test('Fyll ut steg med annet barn uten fnr - utlandet', async ({ page }) => {
     await checkA11y(page);
     await gåTilOppsummering(page);
 
-    await expect(await page.getByText('Fødselsdato: 08.06.2019Navn: NOTORISK LURING').isVisible()).toBeTruthy();
+    await expect(await page.getByText('Fødselsdato: 08.12.2019Navn: NOTORISK LURING').isVisible()).toBeTruthy();
     await expect(
         await page
-            .getByText('Om barnetFødselsdato: 08.06.2019Navn: NOTORISK LURINGUten fødselsnummer/D-nummer')
+            .getByText('Om barnetFødselsdato: 08.12.2019Navn: NOTORISK LURINGUten fødselsnummer/D-nummer')
             .isVisible(),
     ).toBeTruthy();
     await expect(await page.getByText('FødselsattestFilikonfødselsattest.png').isVisible()).toBeTruthy();

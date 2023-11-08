@@ -63,7 +63,7 @@ const barnMock = {
             fornavn: 'ALFABETISK',
             etternavn: 'FAGGOTT',
             aktørId: '2811762539343',
-            fødselsdato: '2019-06-08',
+            fødselsdato: '2019-12-08',
             fødselsnummer: '08861999573',
         },
         { fødselsdato: '2020-04-20', fornavn: 'Barn', mellomnavn: 'Barne', etternavn: 'Barnesen', aktørId: '123' },

@@ -17,9 +17,6 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     await page.goto(startUrl);
 
     /** Velkommen side */
-    await page.waitForResponse('**/soker');
-    await page.waitForResponse('**/barn');
-
     await expect(page.getByRole('heading', { name: 'Hei Test' })).toBeVisible();
     await page.getByLabel('Jeg bekrefter at jeg har forstått mitt ansvar som søker').check();
     await checkA11y(page);
@@ -27,7 +24,7 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
 
     /** Barn */
     await expect(page.getByRole('heading', { level: 1, name: 'Barn' })).toBeVisible();
-    await page.getByLabel('ALFABETISK FAGGOTTFødt 08.06.2019').check();
+    await page.getByLabel('ALFABETISK FAGGOTTFødt 08.12.2019').check();
     await checkA11y(page);
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 

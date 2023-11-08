@@ -7,10 +7,10 @@ dayjs.extend(isoWeek);
 dayjs.locale(locale);
 
 const barnetsNavnRegistrert = 'ALFABETISK FAGGOTT'; //Fra mock
-const barnetsFødselsdatoOppsummering = '08.06.2019';
+const barnetsFødselsdatoOppsummering = '08.12.2019';
 const barnetsNavn = 'ALFABETISK FAGGOTT';
 const barnetsFødselsnummer = '08861999573';
-const barnetsFødselsdato = '08.06.2019';
+const barnetsFødselsdato = '08.12.2019';
 const expectedRelasjonTilBarn = 'mor';
 const relasjonAnnetBeskrivelse = 'Annet relasjon beskrivelse';
 const årsakManglerIdentitetsnummer = 'Barnet bor i utlandet';
