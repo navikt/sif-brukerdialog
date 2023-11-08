@@ -15,7 +15,7 @@ const gåTilOppsummering = async (page: Page) => {
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
-    await expect(await page.getByRole('heading', { name: 'Oppsummering' }).isVisible()).toBeTruthy();
+    await expect(page.getByRole('heading', { level: 1, name: 'Oppsummering' })).toBeVisible();
 };
 
 test.beforeEach(async ({ page }) => {
