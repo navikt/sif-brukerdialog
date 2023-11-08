@@ -16,16 +16,17 @@ const TidsromOppsummering = ({ apiData, dagerMedPleie }: Props) => {
 
     return (
         <SummarySection header={intlHelper(intl, 'steg.oppsummering.tidsrom.header')}>
-            <SummaryBlock header={`${dagerMedPleie.length} dager med pleiepenger`}>
+            <SummaryBlock
+                header={`${dagerMedPleie.length} ${dagerMedPleie.length === 1 ? 'dag' : 'dager'} med pleiepenger`}>
                 <ValgteDagerMedPleie dagerMedPleie={dagerMedPleie} />
-            </SummaryBlock>
-
-            <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.skalJobbeOgPleieSammeDag.header')}>
-                <FormattedMessage id={apiData.skalJobbeOgPleieSammeDag ? 'Ja' : 'Nei'} />
             </SummaryBlock>
 
             <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.pleierDuDenSykeHjemme.header')}>
                 <FormattedMessage id={apiData.pleierDuDenSykeHjemme ? 'Ja' : 'Nei'} />
+            </SummaryBlock>
+
+            <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.skalJobbeOgPleieSammeDag.header')}>
+                <FormattedMessage id={apiData.skalJobbeOgPleieSammeDag ? 'Ja' : 'Nei'} />
             </SummaryBlock>
 
             {apiData.utenlandsoppholdIPerioden && (
