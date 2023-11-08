@@ -35,8 +35,14 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     await page.getByLabel('11. september (mandag)').click();
     await page.getByLabel('18. september (mandag)').click();
     await page.getByLabel('25. september (mandag)').click();
-    await page.getByRole('group', { name: 'Skal du pleie personen hjemme?' }).getByLabel('Ja').check();
-    await page.getByRole('group', { name: 'Skal du gi pleie og jobbe på samme dag?' }).getByLabel('Ja').check();
+    await page
+        .getByRole('group', { name: 'Skal du pleie personen hjemme i de dagene du søker for?' })
+        .getByLabel('Ja')
+        .check();
+    await page
+        .getByRole('group', { name: 'Skal du jobbe delvis i noen av dagene du søker for?' })
+        .getByLabel('Ja')
+        .check();
     await page
         .getByRole('group', { name: 'Oppholder du deg i utlandet i noen av dagene du søker for?' })
         .getByLabel('Nei')

@@ -20,12 +20,12 @@ export const oppsummeringMessages: MessageFileFormat = {
         'steg.oppsummering.pleietrengende.id': 'ID for personen du pleier',
         'step.oppsummering.pleietrengende.id.ingenId': 'Ingen ID er lastet opp',
 
-        'steg.oppsummering.tidsrom.header': 'Perioden du søker pleiepenger for',
+        'steg.oppsummering.tidsrom.header': 'Dagene du søker pleiepenger for',
         'steg.oppsummering.søknadsperiode.header': 'Periode',
         'steg.oppsummering.tidsrom.fomtom': '{fom} - {tom}',
 
-        'steg.oppsummering.pleierDuDenSykeHjemme.header': 'Skal du pleie personen hjemme?',
-        'steg.oppsummering.skalJobbeOgPleieSammeDag.header': 'Skal du gi pleie og jobbe på samme dag?',
+        'steg.oppsummering.pleierDuDenSykeHjemme.header': 'Skal du pleie personen hjemme i de dagene du søker for?',
+        'steg.oppsummering.skalJobbeOgPleieSammeDag.header': 'Skal du jobbe delvis i noen av dagene du søker for?',
 
         'steg.oppsummering.flereSokere.header': 'Er dere flere som skal dele på pleiepengene?',
 
