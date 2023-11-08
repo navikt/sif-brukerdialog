@@ -22,7 +22,7 @@ export const fyllUtPleietrengendeUtenFnr = async (page: Page) => {
     await page.getByRole('button', { name: 'Last opp ID' }).click();
 
     await expect(await page.locator('.attachmentListElement')).toHaveCount(0);
-    await page.getByLabel('OpplastingsikonLast opp ID').setInputFiles('./e2e/playwright/files/navlogopng.png');
+    await page.locator('input[name="pleietrengendeId"]').setInputFiles('./e2e/playwright/files/navlogopng.png');
     await expect(await page.locator('.attachmentListElement')).toHaveCount(1);
     await expect(await page.getByText('navlogopng.png').isVisible()).toBeTruthy();
 };
