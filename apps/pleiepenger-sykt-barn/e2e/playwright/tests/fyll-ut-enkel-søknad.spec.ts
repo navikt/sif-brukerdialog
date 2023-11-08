@@ -101,10 +101,7 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
     /** Legeerklæring */
-    await page.getByRole('button', { name: 'Last opp dokumentasjonen' }).click();
-    await page
-        .getByLabel('OpplastingsikonLast opp dokumentasjonen')
-        .setInputFiles('e2e/playwright/files/navlogopng.png');
+    await page.locator('input[name="legeerklæring"]').setInputFiles('e2e/playwright/files/navlogopng.png');
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
     /** Oppsummering */

@@ -73,10 +73,7 @@ test('Fyll ut steg med annet barn uten fnr - utlandet', async ({ page }) => {
     await page
         .getByLabel('Beskriv hvem du er i forhold til barnet, og hvilken tilsynsrolle du har i perioden du søker for')
         .fill(relasjonAnnetBeskrivelse);
-    await page.getByRole('button', { name: 'Last opp fødselsattest' }).click();
-    await page
-        .getByLabel('OpplastingsikonLast opp fødselsattest')
-        .setInputFiles('e2e/playwright/files/fødselsattest.png');
+    await page.locator('input[name="fødselsattest"]').setInputFiles('e2e/playwright/files/fødselsattest.png');
     await checkA11y(page);
     await gåTilOppsummering(page);
 
