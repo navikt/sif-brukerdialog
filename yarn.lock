@@ -4068,6 +4068,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/pleiepenger-sykt-barn@workspace:apps/pleiepenger-sykt-barn"
   dependencies:
+    "@axe-core/playwright": 4.8.1
     "@babel/plugin-proposal-object-rest-spread": 7.20.7
     "@babel/plugin-transform-modules-commonjs": 7.23.0
     "@babel/preset-env": 7.23.2
@@ -4087,6 +4088,7 @@ __metadata:
     "@navikt/sif-common-sentry": "workspace:*"
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
+    "@playwright/test": ^1.39.0
     "@sentry/vite-plugin": 2.9.0
     "@storybook/react-vite": 7.5.3
     "@testing-library/jest-dom": 6.1.4
@@ -4604,6 +4606,7 @@ __metadata:
     cookie-parser: 1.4.6
     cross-env: 7.0.3
     css-loader: 6.8.1
+    data-fns: 1.1.0
     date-fns: 2.30.0
     dayjs: 1.11.10
     dotenv: 16.3.1
@@ -13150,6 +13153,15 @@ __metadata:
   dependencies:
     assert-plus: ^1.0.0
   checksum: 3634c249570f7f34e3d34f866c93f866c5b417f0dd616275decae08147dcdf8fccfaa5947380ccfb0473998ea3a8057c0b4cd90c875740ee685d0624b2983598
+  languageName: node
+  linkType: hard
+
+"data-fns@npm:1.1.0":
+  version: 1.1.0
+  resolution: "data-fns@npm:1.1.0"
+  dependencies:
+    unit-fns: ^0.1.6
+  checksum: 5b5d7eeb7653789064259b21209d19fbfa611655bec933e08ed1399716e562d68019862adab711b65f9c8b4389b75dfbf657cef6de8134be3a26fc2855dd2b53
   languageName: node
   linkType: hard
 
@@ -28817,6 +28829,13 @@ __metadata:
     unist-util-is: ^4.0.0
     unist-util-visit-parents: ^3.0.0
   checksum: 1fe19d500e212128f96d8c3cfa3312846e586b797748a1fd195fe6479f06bc90a6f6904deb08eefc00dd58e83a1c8a32fb8677252d2273ad7a5e624525b69b8f
+  languageName: node
+  linkType: hard
+
+"unit-fns@npm:^0.1.6":
+  version: 0.1.9
+  resolution: "unit-fns@npm:0.1.9"
+  checksum: 71cc495d954e256eadd310db72d70f4864934d0da276c6a44ac32804e81bdcd7afb98e5ee5f4babe947e37bbc378f43450b412eccf70572b009a909d21e5082d
   languageName: node
   linkType: hard
 

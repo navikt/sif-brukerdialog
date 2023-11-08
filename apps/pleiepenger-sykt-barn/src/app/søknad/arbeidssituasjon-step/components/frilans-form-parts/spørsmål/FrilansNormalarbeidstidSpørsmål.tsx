@@ -17,7 +17,6 @@ interface Props {
     frilanstype: Frilanstype;
     misterHonorar?: YesOrNo;
     mottarStønadGodtgjørelse?: boolean;
-    inputTestId?: string;
 }
 
 const FormComponents = getTypedFormComponents<FrilansFormField, ArbeidsforholdFrilanserFormValues, ValidationError>();
@@ -28,7 +27,6 @@ const FrilansNormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({
     frilanstype,
     arbeidsforhold,
     mottarStønadGodtgjørelse,
-    inputTestId,
 }) => {
     const intl = useIntl();
     const intlValues = getArbeidsforholdIntlValues(intl, {
@@ -49,7 +47,6 @@ const FrilansNormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({
                 jobber: erAktivtArbeidsforhold ? 'jobber' : 'jobbet',
                 bruker: erAktivtArbeidsforhold ? 'bruker' : 'brukte',
             })}
-            data-testid={inputTestId}
             name={fieldName}
             description={
                 <InfoArbeiderNormaltTimerFrilanser

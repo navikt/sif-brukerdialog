@@ -108,7 +108,6 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
                                                 minDate={søknadsperiode.from}
                                                 maxDate={søknadsperiode.to}
                                                 defaultMonth={søknadsperiode.to}
-                                                data-testid="stønadGodtgjørelse-startdato"
                                                 validate={getstønadGodtgjørelseStartdatoValidator(
                                                     stønadGodtgjørelse,
                                                     søknadsperiode,
@@ -159,7 +158,6 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
                                                 minDate={søknadsperiode.from}
                                                 maxDate={søknadsperiode.to}
                                                 defaultMonth={søknadsperiode.to}
-                                                data-testid="stønadGodtgjørelse-sluttdato"
                                                 validate={getstønadGodtgjørelseSluttdatoValidator(
                                                     stønadGodtgjørelse,
                                                     søknadsperiode,

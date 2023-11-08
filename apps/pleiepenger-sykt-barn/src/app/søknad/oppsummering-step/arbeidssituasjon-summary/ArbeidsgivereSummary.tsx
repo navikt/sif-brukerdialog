@@ -30,54 +30,52 @@ const ArbeidsgivereSummary: React.FunctionComponent<Props> = ({ arbeidsgivere, s
     }
 
     return (
-        <div data-testid="arbeidssituasjon-arbeidsgivere">
+        <>
             {arbeidsgivere.map((arbeidsgiver) => {
                 const { navn, organisasjonsnummer, erAnsatt } = arbeidsgiver;
 
                 return (
-                    <div data-testid={`arbeidssituasjon-ansatt-${organisasjonsnummer}`} key={organisasjonsnummer}>
-                        <SummaryBlock
-                            key={organisasjonsnummer}
-                            header={intlHelper(intl, 'arbeidsgiver.tittel', { navn, organisasjonsnummer })}>
-                            <ul>
+                    <SummaryBlock
+                        key={organisasjonsnummer}
+                        header={intlHelper(intl, 'arbeidsgiver.tittel', { navn, organisasjonsnummer })}>
+                        <ul>
+                            <li>
+                                <FormattedMessage
+                                    id={
+                                        erAnsatt
+                                            ? `oppsummering.arbeidssituasjon.arbeidsgiver.ansatt`
+                                            : 'oppsummering.arbeidssituasjon.avsluttet.arbeidsgiver.ansatt'
+                                    }
+                                />
+                            </li>
+                            {arbeidsgiver.arbeidsforhold && (
+                                <li>
+                                    <NormalarbeidstidSummary
+                                        erAnsatt={erAnsatt}
+                                        normalarbeidstidApiData={arbeidsgiver.arbeidsforhold.normalarbeidstid}
+                                    />
+                                </li>
+                            )}
+                            {erAnsatt === false && (
                                 <li>
                                     <FormattedMessage
                                         id={
-                                            erAnsatt
-                                                ? `oppsummering.arbeidssituasjon.arbeidsgiver.ansatt`
-                                                : 'oppsummering.arbeidssituasjon.avsluttet.arbeidsgiver.ansatt'
+                                            arbeidsgiver.sluttetFørSøknadsperiode
+                                                ? 'oppsummering.arbeidssituasjon.avsluttet.sluttetFørSøknadsperiode'
+                                                : 'oppsummering.arbeidssituasjon.avsluttet.sluttetISøknadsperiode'
                                         }
+                                        values={{
+                                            periodeFra: dateFormatter.full(søknadsperiode.from),
+                                            periodeTil: dateFormatter.full(søknadsperiode.to),
+                                        }}
                                     />
                                 </li>
-                                {arbeidsgiver.arbeidsforhold && (
-                                    <li>
-                                        <NormalarbeidstidSummary
-                                            erAnsatt={erAnsatt}
-                                            normalarbeidstidApiData={arbeidsgiver.arbeidsforhold.normalarbeidstid}
-                                        />
-                                    </li>
-                                )}
-                                {erAnsatt === false && (
-                                    <li>
-                                        <FormattedMessage
-                                            id={
-                                                arbeidsgiver.sluttetFørSøknadsperiode
-                                                    ? 'oppsummering.arbeidssituasjon.avsluttet.sluttetFørSøknadsperiode'
-                                                    : 'oppsummering.arbeidssituasjon.avsluttet.sluttetISøknadsperiode'
-                                            }
-                                            values={{
-                                                periodeFra: dateFormatter.full(søknadsperiode.from),
-                                                periodeTil: dateFormatter.full(søknadsperiode.to),
-                                            }}
-                                        />
-                                    </li>
-                                )}
-                            </ul>
-                        </SummaryBlock>
-                    </div>
+                            )}
+                        </ul>
+                    </SummaryBlock>
                 );
             })}
-        </div>
+        </>
     );
 };
 

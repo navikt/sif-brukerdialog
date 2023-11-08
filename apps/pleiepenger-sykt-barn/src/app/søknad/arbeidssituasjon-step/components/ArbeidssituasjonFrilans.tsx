@@ -24,7 +24,7 @@ const ArbeidssituasjonFrilans = ({ søknadsperiode, søknadsdato }: Props) => {
     const søkerHarFrilansoppdrag = harFrilansoppdrag(frilansoppdrag);
 
     return (
-        <div data-testid="arbeidssituasjonFrilanser">
+        <>
             <p>
                 I tillegg til å jobbe som frilanser, er det andre oppdrag som regnes som frilansoppdrag. Les mer om
                 hvilke frilansoppdrag som må oppgis i denne søknaden:
@@ -68,7 +68,7 @@ const ArbeidssituasjonFrilans = ({ søknadsperiode, søknadsdato }: Props) => {
                         </Alert>
                     </Block>
                 )}
-        </div>
+        </>
     );
 };
 

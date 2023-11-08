@@ -52,19 +52,17 @@ const MedlemsskapStep = ({ onValidSubmit, søknadsdato }: StepCommonProps & Prop
             {values.harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES && (
                 <FormBlock margin="l">
                     <ResponsivePanel border={true}>
-                        <div data-testid="bostedUtlandList-annetLandSiste12">
-                            <BostedUtlandListAndDialog<SøknadFormField>
-                                name={SøknadFormField.utenlandsoppholdSiste12Mnd}
-                                minDate={siste12Måneder.from}
-                                maxDate={siste12Måneder.to}
-                                labels={{
-                                    addLabel: intlHelper(intl, 'step.medlemskap.leggTilKnapp'),
-                                    listTitle: intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.listeTittel'),
-                                    modalTitle: intlHelper(intl, 'step.medlemskap.utenlandsoppholdSiste12'),
-                                }}
-                                validate={validateUtenlandsoppholdSiste12Mnd}
-                            />
-                        </div>
+                        <BostedUtlandListAndDialog<SøknadFormField>
+                            name={SøknadFormField.utenlandsoppholdSiste12Mnd}
+                            minDate={siste12Måneder.from}
+                            maxDate={siste12Måneder.to}
+                            labels={{
+                                addLabel: intlHelper(intl, 'step.medlemskap.leggTilKnapp'),
+                                listTitle: intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.listeTittel'),
+                                modalTitle: intlHelper(intl, 'step.medlemskap.utenlandsoppholdSiste12'),
+                            }}
+                            validate={validateUtenlandsoppholdSiste12Mnd}
+                        />
                     </ResponsivePanel>
                 </FormBlock>
             )}
@@ -83,19 +81,17 @@ const MedlemsskapStep = ({ onValidSubmit, søknadsdato }: StepCommonProps & Prop
             {values.skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES && (
                 <FormBlock margin="l">
                     <ResponsivePanel border={true}>
-                        <div data-testid="bostedUtlandList-annetLandNeste12">
-                            <BostedUtlandListAndDialog<SøknadFormField>
-                                name={SøknadFormField.utenlandsoppholdNeste12Mnd}
-                                minDate={neste12Måneder.from}
-                                maxDate={neste12Måneder.to}
-                                labels={{
-                                    addLabel: intlHelper(intl, 'step.medlemskap.leggTilKnapp'),
-                                    listTitle: intlHelper(intl, 'steg.medlemsskap.annetLandNeste12.listeTittel'),
-                                    modalTitle: intlHelper(intl, 'step.medlemskap.utenlandsoppholdNeste12'),
-                                }}
-                                validate={validateUtenlandsoppholdNeste12Mnd}
-                            />
-                        </div>
+                        <BostedUtlandListAndDialog<SøknadFormField>
+                            name={SøknadFormField.utenlandsoppholdNeste12Mnd}
+                            minDate={neste12Måneder.from}
+                            maxDate={neste12Måneder.to}
+                            labels={{
+                                addLabel: intlHelper(intl, 'step.medlemskap.leggTilKnapp'),
+                                listTitle: intlHelper(intl, 'steg.medlemsskap.annetLandNeste12.listeTittel'),
+                                modalTitle: intlHelper(intl, 'step.medlemskap.utenlandsoppholdNeste12'),
+                            }}
+                            validate={validateUtenlandsoppholdNeste12Mnd}
+                        />
                     </ResponsivePanel>
                 </FormBlock>
             )}

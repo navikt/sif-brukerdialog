@@ -27,35 +27,31 @@ const SamtykkeForm = ({ onConfirm }: Props) => {
             includeButtons={false}
             formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}>
             <FormBlock>
-                <div data-testid={'welcomingPage-harForståttRettigheterOgPlikter'}>
-                    <AppForm.ConfirmationCheckbox
-                        label={intlHelper(intl, 'page.velkommen.form.bekreftLabel')}
-                        name={SøknadFormField.harForståttRettigheterOgPlikter}
-                        validate={getCheckedValidator()}>
-                        <Heading level="2" size="small" spacing={true}>
-                            <FormattedMessage id="page.velkommen.form.ansvar.tittel" />
-                        </Heading>
+                <AppForm.ConfirmationCheckbox
+                    label={intlHelper(intl, 'page.velkommen.form.bekreftLabel')}
+                    name={SøknadFormField.harForståttRettigheterOgPlikter}
+                    validate={getCheckedValidator()}>
+                    <Heading level="2" size="small" spacing={true}>
+                        <FormattedMessage id="page.velkommen.form.ansvar.tittel" />
+                    </Heading>
 
-                        <InfoList>
-                            <li>
-                                <FormattedMessage id="page.velkommen.form.ansvar.list.1" />
-                            </li>
-                            <li>
-                                <FormattedMessage id="page.velkommen.form.ansvar.list.2.1" />{' '}
-                                <Link href={getLenker(intl.locale).rettOgPlikt} target="_blank">
-                                    <FormattedMessage id="page.velkommen.form.ansvar.list.2.2" />
-                                </Link>
-                            </li>
-                        </InfoList>
-                    </AppForm.ConfirmationCheckbox>
-                </div>
+                    <InfoList>
+                        <li>
+                            <FormattedMessage id="page.velkommen.form.ansvar.list.1" />
+                        </li>
+                        <li>
+                            <FormattedMessage id="page.velkommen.form.ansvar.list.2.1" />{' '}
+                            <Link href={getLenker(intl.locale).rettOgPlikt} target="_blank">
+                                <FormattedMessage id="page.velkommen.form.ansvar.list.2.2" />
+                            </Link>
+                        </li>
+                    </InfoList>
+                </AppForm.ConfirmationCheckbox>
             </FormBlock>
             <FormBlock>
-                <div data-testid={'welcomingPage-begynnsøknad'}>
-                    <Button variant="primary" type="submit" className={bem.element('startApplicationButton')}>
-                        {intlHelper(intl, 'welcomingPage.begynnsøknad')}
-                    </Button>
-                </div>
+                <Button variant="primary" type="submit" className={bem.element('startApplicationButton')}>
+                    {intlHelper(intl, 'welcomingPage.begynnsøknad')}
+                </Button>
             </FormBlock>
         </AppForm.Form>
     );

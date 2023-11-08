@@ -31,12 +31,10 @@ const ErAnsattIArbeidsforholdSpørsmål: React.FunctionComponent<Props> = ({ arb
                 {
                     label: 'Ja',
                     value: YesOrNo.YES,
-                    'data-testid': 'er-ansatt_yes',
                 },
                 {
                     label: 'Nei',
                     value: YesOrNo.NO,
-                    'data-testid': 'er-ansatt_no',
                 },
             ]}
             value={arbeidsforhold.erAnsatt}

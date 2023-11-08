@@ -35,9 +35,7 @@ const OmsorgstilbudSummary: React.FC<Props> = ({
                     <>
                         {(søkerKunFortid(søknadsperiode) || søkerFortidOgFremtid(søknadsperiode)) && (
                             <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.omsorgstilbud.fortid.spm')}>
-                                <div data-testid="oppsummering-omsorgstilbud-svarFortid">
-                                    <FormattedMessage id={`steg.oppsummering.omsorgstilbud.fortid.svar.NEI`} />
-                                </div>
+                                <FormattedMessage id={`steg.oppsummering.omsorgstilbud.fortid.svar.NEI`} />
                             </SummaryBlock>
                         )}
                         {(søkerKunFremtid(søknadsperiode) || søkerFortidOgFremtid(søknadsperiode)) && (
@@ -48,20 +46,16 @@ const OmsorgstilbudSummary: React.FC<Props> = ({
                                         ? 'steg.oppsummering.omsorgstilbud.fremtid.spm'
                                         : 'steg.oppsummering.omsorgstilbud.fremtid.spm.kunFremtid',
                                 )}>
-                                <div data-testid="oppsummering-omsorgstilbud-svarFremtid">
-                                    <FormattedMessage id={`steg.oppsummering.omsorgstilbud.fremtid.svar.NEI`} />
-                                </div>
+                                <FormattedMessage id={`steg.oppsummering.omsorgstilbud.fremtid.svar.NEI`} />
                             </SummaryBlock>
                         )}
                     </>
                 )}
                 {omsorgstilbud !== undefined && omsorgstilbud.svarFortid && (
                     <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.omsorgstilbud.fortid.spm')}>
-                        <div data-testid="oppsummering-omsorgstilbud-svarFortid">
-                            <FormattedMessage
-                                id={`steg.oppsummering.omsorgstilbud.fortid.svar.${omsorgstilbud.svarFortid}`}
-                            />
-                        </div>
+                        <FormattedMessage
+                            id={`steg.oppsummering.omsorgstilbud.fortid.svar.${omsorgstilbud.svarFortid}`}
+                        />
                     </SummaryBlock>
                 )}
                 {omsorgstilbud !== undefined && omsorgstilbud.svarFremtid && (
@@ -72,11 +66,9 @@ const OmsorgstilbudSummary: React.FC<Props> = ({
                                 ? 'steg.oppsummering.omsorgstilbud.fremtid.spm'
                                 : 'steg.oppsummering.omsorgstilbud.fremtid.spm.kunFremtid',
                         )}>
-                        <div data-testid="oppsummering-omsorgstilbud-svarFremtid">
-                            <FormattedMessage
-                                id={`steg.oppsummering.omsorgstilbud.fremtid.svar.${omsorgstilbud.svarFremtid}`}
-                            />
-                        </div>
+                        <FormattedMessage
+                            id={`steg.oppsummering.omsorgstilbud.fremtid.svar.${omsorgstilbud.svarFremtid}`}
+                        />
                     </SummaryBlock>
                 )}
                 {omsorgstilbud !== undefined && omsorgstilbud.ukedager && (
@@ -101,15 +93,13 @@ const OmsorgstilbudSummary: React.FC<Props> = ({
                     {nattevåk && (
                         <Block margin="xl">
                             <ContentWithHeader header={intlHelper(intl, 'steg.nattevåkOgBeredskap.nattevåk.spm')}>
-                                <div data-testid="oppsummering-nattevåk">
+                                <div>
                                     <FormattedMessage id={nattevåk.harNattevåk === true ? 'Ja' : 'Nei'} />
                                 </div>
 
                                 {nattevåk.harNattevåk === true && nattevåk.tilleggsinformasjon && (
                                     <Sitat>
-                                        <div data-testid="oppsummering-nattevåk-tilleggsinformasjon">
-                                            <TextareaSummary text={nattevåk.tilleggsinformasjon} />
-                                        </div>
+                                        <TextareaSummary text={nattevåk.tilleggsinformasjon} />
                                     </Sitat>
                                 )}
                             </ContentWithHeader>
@@ -118,14 +108,12 @@ const OmsorgstilbudSummary: React.FC<Props> = ({
                     {beredskap && (
                         <Block margin="xl">
                             <ContentWithHeader header={intlHelper(intl, 'steg.nattevåkOgBeredskap.beredskap.spm')}>
-                                <div data-testid="oppsummering-beredskap">
+                                <div>
                                     <FormattedMessage id={beredskap.beredskap === true ? 'Ja' : 'Nei'} />
                                 </div>
                                 {beredskap.tilleggsinformasjon && (
                                     <Sitat>
-                                        <div data-testid="oppsummering-beredskap-tilleggsinformasjon">
-                                            <TextareaSummary text={beredskap.tilleggsinformasjon} />
-                                        </div>
+                                        <TextareaSummary text={beredskap.tilleggsinformasjon} />
                                     </Sitat>
                                 )}
                             </ContentWithHeader>

@@ -15,20 +15,14 @@ const OpptjeningIUtlandetSummary: React.FC<Props> = (props) => {
     const intl = useIntl();
 
     return (
-        <div data-testid="arbeidssituasjon-opptjeningUtland">
-            <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.optjeningIUtlandet.listetittel')}>
-                {opptjeningUtland.length === 0 && (
-                    <div data-testid="oppsummering-opptjeningUtland-nei">
-                        <FormattedMessage id="oppsummering.arbeidssituasjon.optjeningIUtlandet.nei" />
-                    </div>
-                )}
-                {opptjeningUtland.length > 0 && (
-                    <div data-testid="oppsummering-opptjeningUtland">
-                        <SummaryList items={opptjeningUtland} itemRenderer={renderOpptjeningIUtlandetSummary} />
-                    </div>
-                )}
-            </SummaryBlock>
-        </div>
+        <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.optjeningIUtlandet.listetittel')}>
+            {opptjeningUtland.length === 0 && (
+                <FormattedMessage id="oppsummering.arbeidssituasjon.optjeningIUtlandet.nei" />
+            )}
+            {opptjeningUtland.length > 0 && (
+                <SummaryList items={opptjeningUtland} itemRenderer={renderOpptjeningIUtlandetSummary} />
+            )}
+        </SummaryBlock>
     );
 };
 

@@ -28,16 +28,16 @@ function UtenlandskNæringSummary({ utenlandskNæring }: Props) {
         return (
             <Block margin="m" padBottom="l" key={næring.navnPåVirksomheten}>
                 <li>
-                    <div data-testid="oppsummering-utenlandskNæring-navn">
+                    <div>
                         {`${intlHelper(intl, 'sifForms.utenlandskNæringForm.summary.navn')}: ${
                             næring.navnPåVirksomheten
                         }.`}
                     </div>
-                    <div data-testid="oppsummering-utenlandskNæring-næringstype">
+                    <div>
                         {`${intlHelper(intl, 'sifForms.utenlandskNæringForm.summary.næringstype')}: ${næringstype}.`}
                     </div>
 
-                    <div data-testid="oppsummering-utenlandskNæring-registrertILand">
+                    <div>
                         <FormattedMessage
                             id="sifForms.utenlandskNæringForm.summary.registrertILand"
                             values={{ land }}
@@ -50,19 +50,16 @@ function UtenlandskNæringSummary({ utenlandskNæring }: Props) {
                         )}
                         .
                     </div>
-                    <div data-testid="oppsummering-utenlandskNæring-tidsinfo">{tidsinfo}</div>
+                    <div>{tidsinfo}</div>
                 </li>
             </Block>
         );
     };
     return (
-        <div data-testid="arbeidssituasjon-utenlandskNæring">
+        <div>
             <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.utenlandskNæring.listetittel')}>
-                {utenlandskNæring.length === 0 && (
-                    <p data-testid={'arbeidssituasjon-harUtenlandskNæringSvar'}>
-                        {intlHelper(intl, 'oppsummering.arbeidssituasjon.utenlandskNæring.nei')}
-                    </p>
-                )}
+                {utenlandskNæring.length === 0 &&
+                    intlHelper(intl, 'oppsummering.arbeidssituasjon.utenlandskNæring.nei')}
                 {utenlandskNæring.length > 0 && (
                     <ul>{utenlandskNæring.map((næring) => renderUtenlandskNæring(næring))}</ul>
                 )}

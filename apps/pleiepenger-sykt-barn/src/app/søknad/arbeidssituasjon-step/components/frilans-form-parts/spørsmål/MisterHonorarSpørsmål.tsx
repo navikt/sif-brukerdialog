@@ -17,19 +17,16 @@ const MisterHonorarSpørsmål: React.FunctionComponent<Props> = ({ misterHonorar
         <>
             <ArbFriFormComponents.RadioGroup
                 name={FrilansFormField.misterHonorar}
-                data-testid="misterHonorar"
                 legend={intlHelper(intl, 'frilanser.misterHonorar.tittle')}
                 validate={getYesOrNoValidator()}
                 radios={[
                     {
                         label: 'Ja',
                         value: YesOrNo.YES,
-                        'data-testid': 'mister-honorar_yes',
                     },
                     {
                         label: 'Nei',
                         value: YesOrNo.NO,
-                        'data-testid': 'mister-honorar_no',
                     },
                 ]}
                 value={misterHonorar}

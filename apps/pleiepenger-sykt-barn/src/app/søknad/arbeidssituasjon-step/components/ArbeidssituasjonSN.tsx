@@ -41,7 +41,7 @@ const ArbeidssituasjonSN = ({ søknadsperiode }: Props) => {
     });
 
     return (
-        <div data-testid="arbeidssituasjonSelvstendig">
+        <>
             <Block margin="l">
                 <ArbSNFormComponents.YesOrNoQuestion
                     name={SelvstendigFormField.harHattInntektSomSN}
@@ -64,19 +64,16 @@ const ArbeidssituasjonSN = ({ søknadsperiode }: Props) => {
                     <ResponsivePanel border={true}>
                         <ArbSNFormComponents.RadioGroup
                             name={SelvstendigFormField.harFlereVirksomheter}
-                            data-testid="har-flere-virksomheter"
                             legend={intlHelper(intl, 'selvstendig.harFlereVirksomheter.spm')}
                             validate={getYesOrNoValidator()}
                             radios={[
                                 {
                                     label: 'Ja',
                                     value: YesOrNo.YES,
-                                    'data-testid': 'har-flere-virksomheter_yes',
                                 },
                                 {
                                     label: 'Nei',
                                     value: YesOrNo.NO,
-                                    'data-testid': 'har-flere-virksomheter_no',
                                 },
                             ]}
                             value={harFlereVirksomheter}
@@ -144,7 +141,7 @@ const ArbeidssituasjonSN = ({ søknadsperiode }: Props) => {
                     </ResponsivePanel>
                 </FormBlock>
             )}
-        </div>
+        </>
     );
 };
 

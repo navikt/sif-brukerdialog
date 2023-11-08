@@ -31,7 +31,7 @@ const ArbeidssituasjonAnsatt: React.FC<Props> = ({ arbeidsforhold, parentFieldNa
         (arbeidsforhold.erAnsatt === YesOrNo.NO && arbeidsforhold.sluttetFørSøknadsperiode === YesOrNo.NO);
 
     return (
-        <div data-testid="arbeidssituasjonAnsatt">
+        <>
             <ArbeidssituasjonPanel
                 title={arbeidsforhold.arbeidsgiver.navn}
                 titleIcon={<OfficeIconSvg />}
@@ -75,7 +75,7 @@ const ArbeidssituasjonAnsatt: React.FC<Props> = ({ arbeidsforhold, parentFieldNa
                     </FormBlock>
                 )}
             </ArbeidssituasjonPanel>
-        </div>
+        </>
     );
 };
 

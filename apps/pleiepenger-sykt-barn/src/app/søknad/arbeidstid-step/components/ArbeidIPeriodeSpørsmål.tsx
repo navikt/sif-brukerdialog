@@ -113,12 +113,10 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
                                             {
                                                 label: intlHelper(intl, `arbeidIPeriode.timerEllerProsent.prosent`),
                                                 value: TimerEllerProsent.PROSENT,
-                                                'data-testid': TimerEllerProsent.PROSENT,
                                             },
                                             {
                                                 label: intlHelper(intl, `arbeidIPeriode.timerEllerProsent.timer`),
                                                 value: TimerEllerProsent.TIMER,
-                                                'data-testid': TimerEllerProsent.TIMER,
                                             },
                                         ]}
                                         validate={getArbeidIPeriodeTimerEllerProsentValidator(intlValues)}
@@ -130,7 +128,6 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
                                             className="arbeidstidUkeInput"
                                             name={getFieldName(ArbeidIPeriodeFormField.prosentAvNormalt)}
                                             label={spørsmål.prosentAvNormalt}
-                                            data-testid="prosent-verdi"
                                             validate={getArbeidIPeriodeProsentAvNormaltValidator(intlValues)}
                                             width="xs"
                                             maxLength={4}
@@ -148,7 +145,6 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
                                                 intlValues,
                                                 normalarbeidstid,
                                             )}
-                                            data-testid="timer-verdi"
                                             width="xs"
                                             maxLength={4}
                                         />

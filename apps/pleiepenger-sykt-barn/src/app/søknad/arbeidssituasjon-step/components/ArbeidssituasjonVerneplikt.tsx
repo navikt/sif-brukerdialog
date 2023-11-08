@@ -19,7 +19,6 @@ const ArbeidssituasjonVerneplikt = () => {
                         <FormattedMessage id="steg.arbeidssituasjon.verneplikt.info.tekst" />
                     </ExpandableInfo>
                 }
-                data-testid="verneplikt"
             />
         </FormBlock>
     );

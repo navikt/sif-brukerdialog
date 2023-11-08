@@ -42,7 +42,6 @@ const FrilansSluttdatoSpørsmål: React.FunctionComponent<Props> = ({
                       }
                     : undefined;
             }}
-            data-testid="er-frilanser-sluttdato"
         />
     );
 };

@@ -19,7 +19,7 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag, søknadsperio
     if (frilans.harInntektSomFrilanser === false) {
         return (
             <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.frilanser.header')}>
-                <ul data-testid="arbeidssituasjon-frilanser">
+                <ul>
                     <li>
                         <FormattedMessage id={'oppsummering.arbeidssituasjon.frilans.erIkkeFrilanser'} tagName="p" />
                     </li>
@@ -31,7 +31,7 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag, søknadsperio
     if (frilans.type === Frilanstype.HONORAR && frilans._misterInntektSomFrilanser === false) {
         return (
             <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.frilanser.header')}>
-                <ul data-testid="arbeidssituasjon-frilanser">
+                <ul>
                     <li>
                         <FormattedMessage id={`oppsummering.arbeidssituasjon.frilans.HONORAR`} />
                     </li>
@@ -45,7 +45,7 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag, søknadsperio
 
     return (
         <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.frilanser.header')}>
-            <ul data-testid="arbeidssituasjon-frilanser">
+            <ul>
                 <li>
                     <FormattedMessage id={`oppsummering.arbeidssituasjon.frilans.${frilans.type}`} />
                 </li>

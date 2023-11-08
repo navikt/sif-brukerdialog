@@ -14,47 +14,45 @@ interface Props {
 function ArbeidssituasjonSelvstendigSummary({ selvstendig }: Props) {
     const intl = useIntl();
     return (
-        <div data-testid="arbeidssituasjon-sn">
-            <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.selvstendig.header')}>
-                {selvstendig.harInntektSomSelvstendig === false && (
+        <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.selvstendig.header')}>
+            {selvstendig.harInntektSomSelvstendig === false && (
+                <ul>
+                    <li>
+                        <FormattedMessage id={'oppsummering.arbeidssituasjon.selvstendig.erIkkeSN'} tagName="p" />
+                    </li>
+                </ul>
+            )}
+            {selvstendig.harInntektSomSelvstendig && (
+                <>
                     <ul>
                         <li>
-                            <FormattedMessage id={'oppsummering.arbeidssituasjon.selvstendig.erIkkeSN'} tagName="p" />
+                            <FormattedMessage id="oppsummering.arbeidssituasjon.selvstendig.erSn" />
+                        </li>
+                        <li>
+                            {selvstendig.virksomhet.harFlereAktiveVirksomheter ? (
+                                <FormattedMessage id="oppsummering.arbeidssituasjon.selvstendig.flereVirksomheter" />
+                            ) : (
+                                <FormattedMessage id="oppsummering.arbeidssituasjon.selvstendig.enVirksomhet" />
+                            )}
+                        </li>
+                        <li>
+                            <NormalarbeidstidSummary
+                                normalarbeidstidApiData={selvstendig.arbeidsforhold.normalarbeidstid}
+                                erAnsatt={true}
+                            />
                         </li>
                     </ul>
-                )}
-                {selvstendig.harInntektSomSelvstendig && (
-                    <>
-                        <ul>
-                            <li>
-                                <FormattedMessage id="oppsummering.arbeidssituasjon.selvstendig.erSn" />
-                            </li>
-                            <li>
-                                {selvstendig.virksomhet.harFlereAktiveVirksomheter ? (
-                                    <FormattedMessage id="oppsummering.arbeidssituasjon.selvstendig.flereVirksomheter" />
-                                ) : (
-                                    <FormattedMessage id="oppsummering.arbeidssituasjon.selvstendig.enVirksomhet" />
-                                )}
-                            </li>
-                            <li>
-                                <NormalarbeidstidSummary
-                                    normalarbeidstidApiData={selvstendig.arbeidsforhold.normalarbeidstid}
-                                    erAnsatt={true}
-                                />
-                            </li>
-                        </ul>
-                        <Heading level="4" size="xsmall">
-                            {intlHelper(intl, 'summary.virksomhet.virksomhetInfo.tittel')}
-                        </Heading>
-                        <Block margin="m">
-                            <div style={{ paddingLeft: '1rem' }}>
-                                <VirksomhetSummary virksomhet={selvstendig.virksomhet} />
-                            </div>
-                        </Block>
-                    </>
-                )}
-            </SummaryBlock>
-        </div>
+                    <Heading level="4" size="xsmall">
+                        {intlHelper(intl, 'summary.virksomhet.virksomhetInfo.tittel')}
+                    </Heading>
+                    <Block margin="m">
+                        <div style={{ paddingLeft: '1rem' }}>
+                            <VirksomhetSummary virksomhet={selvstendig.virksomhet} />
+                        </div>
+                    </Block>
+                </>
+            )}
+        </SummaryBlock>
     );
 }
 

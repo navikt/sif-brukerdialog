@@ -40,7 +40,6 @@ const FrilansStartdatoSpørsmål: React.FunctionComponent<Props> = ({ startdatoV
                       }
                     : undefined;
             }}
-            data-testid="er-frilanser-startdato"
         />
     );
 };

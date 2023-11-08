@@ -73,7 +73,6 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
                         legend={intlHelper(intl, 'steg.nattevåkOgBeredskap.nattevåk.spm')}
                         name={SøknadFormField.harNattevåk}
                         validate={getYesOrNoValidator()}
-                        data-testid="nattevåk"
                     />
                 </FormBlock>
 
@@ -103,7 +102,6 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
                                 }
                                 validate={getStringValidator({ required: true, maxLength: 1000 })}
                                 maxLength={1000}
-                                data-testid="nattevåk-tilleggsinfo"
                             />
                         </ResponsivePanel>
                     </FormBlock>
@@ -118,7 +116,6 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
                         legend={intlHelper(intl, 'steg.nattevåkOgBeredskap.beredskap.spm')}
                         name={SøknadFormField.harBeredskap}
                         validate={getYesOrNoValidator()}
-                        data-testid="beredskap"
                     />
                 </FormBlock>
                 {harBeredskap === YesOrNo.YES && (
@@ -147,7 +144,6 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
                                         </BodyLong>
                                     </Block>
                                 }
-                                data-testid="beredskap-tilleggsinfo"
                             />
                         </ResponsivePanel>
                     </FormBlock>

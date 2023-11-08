@@ -67,10 +67,7 @@ const ArbeidstidEnkeltuker: React.FunctionComponent<Props> = ({
         `${getArbeidsukeFieldName(parentFieldName, arbeidsuke)}.${ArbeidIPeriodeFormField.snittTimerPerUke}`;
 
     return (
-        <SøknadFormComponents.InputGroup
-            name={`${parentFieldName}_ukerGroup` as any}
-            data-testid="arbeidsuker"
-            legend={spørsmål}>
+        <SøknadFormComponents.InputGroup name={`${parentFieldName}_ukerGroup` as any} legend={spørsmål}>
             {arbeidsuker.map((arbeidsuke) => {
                 return (
                     <div key={dateRangeToISODateRange(arbeidsuke.periode)}>
@@ -97,7 +94,6 @@ const ArbeidstidEnkeltuker: React.FunctionComponent<Props> = ({
                                 </>
                             }
                             validate={timerPerUkeValidator ? timerPerUkeValidator(arbeidsuke) : undefined}
-                            data-testid="timer-verdi"
                             width="xs"
                             maxLength={4}
                         />

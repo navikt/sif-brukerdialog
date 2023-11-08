@@ -189,10 +189,8 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                 {/* Om deg */}
                                 <SummarySection header={intlHelper(intl, 'steg.oppsummering.søker.header')}>
                                     <Block margin="m">
-                                        <div data-testid="oppsummering-søker-navn">
-                                            {formatName(fornavn, etternavn, mellomnavn)}
-                                        </div>
-                                        <div data-testid="oppsummering-søker-fødselsnummer">
+                                        <div>{formatName(fornavn, etternavn, mellomnavn)}</div>
+                                        <div>
                                             <FormattedMessage
                                                 id={'steg.oppsummering.søker.fnr'}
                                                 values={{
@@ -209,15 +207,13 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                 {/* Perioden du søker pleiepenger for */}
                                 <SummarySection header={intlHelper(intl, 'steg.oppsummering.tidsrom.header')}>
                                     <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.søknadsperiode.header')}>
-                                        <div data-testid="oppsummering-tidsrom-fomtom">
-                                            <FormattedMessage
-                                                id="steg.oppsummering.tidsrom.fomtom"
-                                                values={{
-                                                    fom: `${dayjs(søknadsperiode.from).format('D. MMMM YYYY')}`,
-                                                    tom: `${dayjs(søknadsperiode.to).format('D. MMMM YYYY')}`,
-                                                }}
-                                            />
-                                        </div>
+                                        <FormattedMessage
+                                            id="steg.oppsummering.tidsrom.fomtom"
+                                            values={{
+                                                fom: `${dayjs(søknadsperiode.from).format('D. MMMM YYYY')}`,
+                                                tom: `${dayjs(søknadsperiode.to).format('D. MMMM YYYY')}`,
+                                            }}
+                                        />
                                     </SummaryBlock>
 
                                     {/* Utenlandsopphold i perioden */}
@@ -228,25 +224,21 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                                     intl,
                                                     'steg.oppsummering.utenlandsoppholdIPerioden.header',
                                                 )}>
-                                                <div data-testid="oppsummering-utenlandsoppholdIPerioden">
-                                                    <FormattedMessage
-                                                        id={
-                                                            utenlandsoppholdIPerioden.skalOppholdeSegIUtlandetIPerioden
-                                                                ? 'Ja'
-                                                                : 'Nei'
-                                                        }
-                                                    />
-                                                </div>
+                                                <FormattedMessage
+                                                    id={
+                                                        utenlandsoppholdIPerioden.skalOppholdeSegIUtlandetIPerioden
+                                                            ? 'Ja'
+                                                            : 'Nei'
+                                                    }
+                                                />
                                             </SummaryBlock>
 
                                             {utenlandsoppholdIPerioden.opphold.length > 0 && (
                                                 <Block>
-                                                    <div data-testid="oppsummering-utenlandsoppholdIPerioden-list">
-                                                        <SummaryList
-                                                            items={utenlandsoppholdIPerioden.opphold}
-                                                            itemRenderer={renderUtenlandsoppholdIPeriodenSummary}
-                                                        />
-                                                    </div>
+                                                    <SummaryList
+                                                        items={utenlandsoppholdIPerioden.opphold}
+                                                        itemRenderer={renderUtenlandsoppholdIPeriodenSummary}
+                                                    />
                                                 </Block>
                                             )}
                                         </>
@@ -260,20 +252,16 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                                     intl,
                                                     'steg.oppsummering.ferieuttakIPerioden.header',
                                                 )}>
-                                                <div data-testid="oppsummering-ferieuttakIPerioden">
-                                                    <FormattedMessage
-                                                        id={ferieuttakIPerioden.skalTaUtFerieIPerioden ? 'Ja' : 'Nei'}
-                                                    />
-                                                </div>
+                                                <FormattedMessage
+                                                    id={ferieuttakIPerioden.skalTaUtFerieIPerioden ? 'Ja' : 'Nei'}
+                                                />
                                             </SummaryBlock>
                                             {ferieuttakIPerioden.ferieuttak.length > 0 && (
                                                 <Block margin="l">
-                                                    <div data-testid="oppsummering-ferieuttakIPerioden-list">
-                                                        <SummaryList
-                                                            items={ferieuttakIPerioden.ferieuttak}
-                                                            itemRenderer={renderFerieuttakIPeriodenSummary}
-                                                        />
-                                                    </div>
+                                                    <SummaryList
+                                                        items={ferieuttakIPerioden.ferieuttak}
+                                                        itemRenderer={renderFerieuttakIPeriodenSummary}
+                                                    />
                                                 </Block>
                                             )}
                                         </>
@@ -300,47 +288,31 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                 {/* Medlemskap i folketrygden */}
                                 <SummarySection header={intlHelper(intl, 'medlemskap.summary.header')}>
                                     <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.utlandetSiste12.header')}>
-                                        <div data-testid="oppsummering-medlemskap-utlandetSiste12">
-                                            <FormattedMessage
-                                                id={
-                                                    apiValues.medlemskap.harBoddIUtlandetSiste12Mnd === true
-                                                        ? 'Ja'
-                                                        : 'Nei'
-                                                }
-                                            />
-                                        </div>
+                                        <FormattedMessage
+                                            id={apiValues.medlemskap.harBoddIUtlandetSiste12Mnd === true ? 'Ja' : 'Nei'}
+                                        />
                                     </SummaryBlock>
                                     {apiValues.medlemskap.harBoddIUtlandetSiste12Mnd === true &&
                                         medlemskap.utenlandsoppholdSiste12Mnd.length > 0 && (
                                             <Block margin="l">
-                                                <div data-testid="oppsummering-medlemskap-utlandetSiste12-list">
-                                                    <SummaryList
-                                                        items={medlemskap.utenlandsoppholdSiste12Mnd}
-                                                        itemRenderer={renderUtenlandsoppholdSummary}
-                                                    />
-                                                </div>
+                                                <SummaryList
+                                                    items={medlemskap.utenlandsoppholdSiste12Mnd}
+                                                    itemRenderer={renderUtenlandsoppholdSummary}
+                                                />
                                             </Block>
                                         )}
                                     <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.utlandetNeste12.header')}>
-                                        <div data-testid="oppsummering-medlemskap-utlandetNeste12">
-                                            <FormattedMessage
-                                                id={
-                                                    apiValues.medlemskap.skalBoIUtlandetNeste12Mnd === true
-                                                        ? 'Ja'
-                                                        : 'Nei'
-                                                }
-                                            />
-                                        </div>
+                                        <FormattedMessage
+                                            id={apiValues.medlemskap.skalBoIUtlandetNeste12Mnd === true ? 'Ja' : 'Nei'}
+                                        />
                                     </SummaryBlock>
                                     {apiValues.medlemskap.skalBoIUtlandetNeste12Mnd === true &&
                                         medlemskap.utenlandsoppholdNeste12Mnd.length > 0 && (
                                             <Block margin="l">
-                                                <div data-testid="oppsummering-medlemskap-utlandetNeste12-list">
-                                                    <SummaryList
-                                                        items={medlemskap.utenlandsoppholdNeste12Mnd}
-                                                        itemRenderer={renderUtenlandsoppholdSummary}
-                                                    />
-                                                </div>
+                                                <SummaryList
+                                                    items={medlemskap.utenlandsoppholdNeste12Mnd}
+                                                    itemRenderer={renderUtenlandsoppholdSummary}
+                                                />
                                             </Block>
                                         )}
                                 </SummarySection>
@@ -348,9 +320,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                 {/* Vedlegg */}
                                 <SummarySection header={intlHelper(intl, 'steg.oppsummering.vedlegg.header')}>
                                     <Block margin="m">
-                                        <div data-testid={'oppsummering-vedleggList'}>
-                                            <LegeerklæringAttachmentList includeDeletionFunctionality={false} />
-                                        </div>
+                                        <LegeerklæringAttachmentList includeDeletionFunctionality={false} />
                                     </Block>
                                 </SummarySection>
                             </ResponsivePanel>

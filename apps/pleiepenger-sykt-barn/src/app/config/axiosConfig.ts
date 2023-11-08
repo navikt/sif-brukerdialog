@@ -8,5 +8,5 @@ const axiosConfigCommon: AxiosRequestConfig = {
 
 export const axiosConfigPsb: AxiosRequestConfig = {
     ...axiosConfigCommon,
-    baseURL: getEnvVariableOrDefault('FRONTEND_API_PATH', 'http://localhost:8082'),
+    baseURL: getEnvVariableOrDefault('FRONTEND_API_PATH', 'http://localhost:8089'),
 };

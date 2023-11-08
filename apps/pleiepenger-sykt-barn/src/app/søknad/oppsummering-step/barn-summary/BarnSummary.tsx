@@ -20,7 +20,7 @@ interface Props {
 
 const apiBarnSummary = (apiBarn: RegistrerteBarn) => (
     <>
-        <div data-testid="oppsummering-barnets-navn-registert">
+        <div>
             <FormattedMessage
                 id="steg.oppsummering.barnet.navn"
                 values={{
@@ -29,7 +29,7 @@ const apiBarnSummary = (apiBarn: RegistrerteBarn) => (
             />
         </div>
 
-        <div data-testid="oppsummering-barnets-fødselsdato-registrert">
+        <div>
             <FormattedMessage
                 id="steg.oppsummering.barnet.fødselsdato"
                 values={{
@@ -43,7 +43,7 @@ const apiBarnSummary = (apiBarn: RegistrerteBarn) => (
 const annetBarnSummary = (intl: IntlShape, apiValues: SøknadApiData) => (
     <>
         {apiValues.barn.fødselsdato ? (
-            <div data-testid="oppsummering-barnets-fødselsdato">
+            <div>
                 <FormattedMessage
                     id="steg.oppsummering.barnet.fødselsdato"
                     values={{
@@ -53,23 +53,21 @@ const annetBarnSummary = (intl: IntlShape, apiValues: SøknadApiData) => (
             </div>
         ) : null}
         {!apiValues.barn.fødselsdato ? (
-            <div data-testid="oppsummering-barnets-fødselsnummer">
+            <div>
                 <FormattedMessage id="steg.oppsummering.barnet.fnr" values={{ fnr: apiValues.barn.fødselsnummer }} />
             </div>
         ) : null}
         {apiValues.barn.navn ? (
-            <div data-testid="oppsummering-barnets-navn">
+            <div>
                 <FormattedMessage id="steg.oppsummering.barnet.navn" values={{ navn: apiValues.barn.navn }} />
             </div>
         ) : null}
         {apiValues._barnetHarIkkeFnr && apiValues.barn.årsakManglerIdentitetsnummer && (
             <Block margin="l">
                 <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.barnet.barnetHarIkkeFnr')}>
-                    <div data-testid="oppsummering-årsakManglerIdentitetsnummer">
-                        <FormattedMessage
-                            id={`steg.oppsummering.barnet.årsakManglerIdentitetsnummer.${apiValues.barn.årsakManglerIdentitetsnummer}`}
-                        />
-                    </div>
+                    <FormattedMessage
+                        id={`steg.oppsummering.barnet.årsakManglerIdentitetsnummer.${apiValues.barn.årsakManglerIdentitetsnummer}`}
+                    />
                 </SummaryBlock>
             </Block>
         )}
@@ -77,9 +75,8 @@ const annetBarnSummary = (intl: IntlShape, apiValues: SøknadApiData) => (
             apiValues.barn.årsakManglerIdentitetsnummer === ÅrsakManglerIdentitetsnummer.BARNET_BOR_I_UTLANDET && (
                 <Block margin="m">
                     <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.omBarn.fødselsattest.tittel')}>
-                        <div data-testid={'oppsummering-omBarn-fødselsattest'}>
-                            <UploadedDocumentsList includeDeletionFunctionality={false} />
-                        </div>
+                        <UploadedDocumentsList includeDeletionFunctionality={false} />
+
                         {apiValues.fødselsattestVedleggUrls.length === 0 && (
                             <FormattedMessage id="step.oppsummering.omBarn.ingenFødselsattest" />
                         )}
@@ -93,17 +90,13 @@ const RelasjonTilBarnet = (intl: IntlShape, apiValues: SøknadApiData) => (
     <SummarySection header={intlHelper(intl, 'steg.oppsummering.relasjonTilBarnet.header')}>
         <Block margin="m">
             {apiValues.barnRelasjon !== BarnRelasjon.ANNET && (
-                <div data-testid="oppsummering-barn-relasjon">
-                    <FormattedMessage id={`steg.oppsummering.barnRelasjon.${apiValues.barnRelasjon}`} />
-                </div>
+                <FormattedMessage id={`steg.oppsummering.barnRelasjon.${apiValues.barnRelasjon}`} />
             )}
             {apiValues.barnRelasjon === BarnRelasjon.ANNET && (
                 <>
                     <FormattedMessage id="steg.oppsummering.relasjonTilBarnetBeskrivelse" />
                     <Sitat>
-                        <div data-testid="oppsummering-barn-relasjon-annet-beskrivelse">
-                            <TextareaSummary text={apiValues.barnRelasjonBeskrivelse} />
-                        </div>
+                        <TextareaSummary text={apiValues.barnRelasjonBeskrivelse} />
                     </Sitat>
                 </>
             )}

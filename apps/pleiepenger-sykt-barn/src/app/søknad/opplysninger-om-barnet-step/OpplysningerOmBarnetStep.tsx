@@ -37,7 +37,7 @@ const OpplysningerOmBarnetStep = ({ onValidSubmit }: StepCommonProps) => {
             onValidFormSubmit={onValidSubmit}
             buttonDisabled={hasPendingUploads || attachmentsSizeOver24Mb}>
             {søkerdata && (
-                <div data-testid="opplysninger-om-barnet">
+                <>
                     {harRegistrerteBarn(søkerdata) && <RegistrertBarnPart søkersBarn={søkerdata.barn} />}
                     {(søknadenGjelderEtAnnetBarn || !harRegistrerteBarn(søkerdata)) && (
                         <AnnetBarnPart
@@ -47,7 +47,7 @@ const OpplysningerOmBarnetStep = ({ onValidSubmit }: StepCommonProps) => {
                             harRegistrerteBarn={harRegistrerteBarn(søkerdata)}
                         />
                     )}
-                </div>
+                </>
             )}
         </SøknadFormStep>
     );

@@ -2,13 +2,7 @@ import React, { useRef } from 'react';
 import { FormattedMessage } from 'react-intl';
 import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
-import {
-    dateFormatter,
-    dateToISODate,
-    getDatesInDateRange,
-    getDatesInMonth,
-    isDateInDates,
-} from '@navikt/sif-common-utils/';
+import { dateFormatter, getDatesInDateRange, getDatesInMonth, isDateInDates } from '@navikt/sif-common-utils/';
 import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import utc from 'dayjs/plugin/utc';
@@ -120,7 +114,6 @@ const CalendarGrid: React.FunctionComponent<Props> = ({
                           type: 'button',
                       }
                     : {})}
-                data-testid={`calendar-grid-date-${dateToISODate(date)}`}
                 title={dateIsDisabled ? disabledDateInfo : undefined}
                 aria-hidden={dateIsDisabled}
                 className={bem.classNames(
@@ -153,7 +146,6 @@ const CalendarGrid: React.FunctionComponent<Props> = ({
         return [
             <div
                 key={week.weekNumber}
-                data-testid={`calendar-grid-week-number-${week.weekNumber}`}
                 aria-hidden={true}
                 className={bem.element('weekNum', areAllDaysInWeekDisabledOrOutsideMonth ? 'empty' : undefined)}>
                 <span className={bem.element('weekNum_label')} role="presentation" aria-hidden={true}>

@@ -45,7 +45,6 @@ const SluttetIArbeidsforholdFørSøknadsperiodeSpørsmål: React.FunctionCompone
                 },
             ]}
             value={arbeidsforhold.sluttetFørSøknadsperiode}
-            data-testid="sluttet-før-søknadsperiode"
             validate={(value) => {
                 const error = getRequiredFieldValidator()(value);
                 return error
