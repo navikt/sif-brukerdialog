@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { format } from 'date-fns';
 import { setupMockApi } from '../utils/setupMockApi';
-import { getSøknadsperiode } from '../utils';
+import { checkA11y, getSøknadsperiode } from '../utils';
 
 const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger/soknad/velkommen';
 
@@ -17,16 +17,22 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     await page.goto(startUrl);
 
     /** Velkommen side */
-    await page.getByRole('heading', { level: 1, name: 'Hei PRESENTABEL' });
+    await page.waitForResponse('**/soker');
+    await page.waitForResponse('**/barn');
+
+    await expect(page.getByRole('heading', { name: 'Hei Test' })).toBeVisible();
     await page.getByLabel('Jeg bekrefter at jeg har forstått mitt ansvar som søker').check();
+    await checkA11y(page);
     await page.getByRole('button', { name: 'Start søknad' }).click();
 
-    /** Perioden med pleiepenger */
-    await expect(page.getByRole('heading', { level: 1, name: 'Barnasdasdasdsdsdf' }).isVisible()).toBeTruthy();
-
+    /** Barn */
+    await expect(page.getByRole('heading', { level: 1, name: 'Barn' })).toBeVisible();
     await page.getByLabel('ALFABETISK FAGGOTTFødt 08.06.2019').check();
+    await checkA11y(page);
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
+    /** Perioden med pleiepenger */
+    await expect(page.getByRole('heading', { level: 1, name: 'Perioden med pleiepenger' })).toBeVisible();
     await page.getByLabel('Fra og med').fill(fraDatoString);
     await page.getByLabel('Til og med').fill(tilDatoString);
     await page
@@ -37,6 +43,7 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
     /** Arbeidssituasjon */
+    await expect(page.getByRole('heading', { level: 1, name: 'Arbeidssituasjonen din' })).toBeVisible();
     await page.getByLabel('Arbeidsgivere').getByLabel('Ja').check();
     await page
         .getByLabel('Hvor mange timer jobber du vanligvis hos SJOKKERENDE ELEKTRIKER? Oppgi tiden i et snitt per uke:')
@@ -71,10 +78,12 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
     /** Arbeid i perioden */
+    await expect(page.getByRole('heading', { level: 1, name: 'Jobb i søknadsperioden' })).toBeVisible();
     await page.getByLabel('Jeg jobber ikke').check();
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
     /** Omsorgstilbud */
+    await expect(page.getByRole('heading', { level: 1, name: 'Omsorgstilbud i søknadsperioden' })).toBeVisible();
     await page
         .getByRole('group', {
             name: 'Har barnet vært fast og regelmessig i skole/barnehage, eller andre omsorgstilbud, fra datoen du søker om og frem til nå?',
@@ -90,6 +99,7 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
     /** Medlemsskap */
+    await expect(page.getByRole('heading', { level: 1, name: 'Medlemskap' })).toBeVisible();
     await page
         .getByRole('group', { name: 'Har du bodd i utlandet i hele eller deler av de siste 12 månedene?' })
         .getByLabel('Nei')
@@ -101,11 +111,12 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
     /** Legeerklæring */
+    await expect(page.getByRole('heading', { level: 1, name: 'Legeerklæring' })).toBeVisible();
     await page.locator('input[name="legeerklæring"]').setInputFiles('e2e/playwright/files/navlogopng.png');
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
     /** Oppsummering */
-    await page.getByRole('heading', { level: 1, name: 'Oppsummering' });
+    await expect(page.getByRole('heading', { level: 1, name: 'Oppsummering' })).toBeVisible();
     await page
         .getByLabel(
             'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til pleiepenger.',

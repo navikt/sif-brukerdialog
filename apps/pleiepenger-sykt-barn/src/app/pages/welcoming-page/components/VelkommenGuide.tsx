@@ -10,7 +10,7 @@ interface Props {
 
 const VelkommenGuide: React.FunctionComponent<Props> = ({ navn }) => (
     <SifGuidePanel>
-        <Heading level="1" size="medium">
+        <Heading level="2" size="medium">
             <FormattedMessage id="page.velkommen.guide.tittel" values={{ navn }} />
         </Heading>
         <Block margin="l">
