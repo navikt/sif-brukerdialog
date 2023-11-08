@@ -22,9 +22,11 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     await page.getByRole('button', { name: 'Start søknad' }).click();
 
     /** Perioden med pleiepenger */
-    await page.getByRole('heading', { level: 1, name: 'Perioden med pleiepenger' });
+    await expect(page.getByRole('heading', { level: 1, name: 'Barnasdasdasdsdsdf' }).isVisible()).toBeTruthy();
+
     await page.getByLabel('ALFABETISK FAGGOTTFødt 08.06.2019').check();
-    await page.getByTestId('typedFormikForm-submitButton').click();
+    await page.getByRole('button', { name: 'Neste', exact: true }).click();
+
     await page.getByLabel('Fra og med').fill(fraDatoString);
     await page.getByLabel('Til og med').fill(tilDatoString);
     await page
