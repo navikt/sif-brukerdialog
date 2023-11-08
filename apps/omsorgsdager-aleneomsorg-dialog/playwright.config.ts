@@ -10,7 +10,7 @@ export default defineConfig({
     use: {
         trace: 'on-first-retry',
         launchOptions: {
-            slowMo: 100,
+            slowMo: 50,
         },
     },
     projects: [
@@ -25,7 +25,7 @@ export default defineConfig({
         reuseExistingServer: true,
         env: {
             DEKORATOR_URL: 'https://www.nav.no/dekoratoren/?simple=true&chatbot=false',
-            PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/ettersending',
+            PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg',
             API_URL: 'http://localhost:8089',
             FRONTEND_API_PATH: 'http://localhost:8089',
             FRONTEND_VEDLEGG_URL: 'http://localhost:8089',

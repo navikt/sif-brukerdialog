@@ -102,7 +102,6 @@ export const getBarnOptions = (registrertBarn: RegistrertBarn[] = [], andreBarn:
                 />
             ),
             value: barnet.aktørId,
-            'data-testid': `harAleneomsorgFor-${barnet.aktørId}`,
         })),
         ...andreBarn.map((barnet) => ({
             label: (
@@ -115,7 +114,6 @@ export const getBarnOptions = (registrertBarn: RegistrertBarn[] = [], andreBarn:
                 />
             ),
             value: barnet.fnr,
-            'data-testid': `harAleneomsorgFor-${barnet.fnr}`,
         })),
     ];
 };
