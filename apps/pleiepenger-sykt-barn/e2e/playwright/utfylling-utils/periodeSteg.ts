@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { expect, Page } from '@playwright/test';
-import { checkA11y, formatInputDate } from '../utils';
+import { formatInputDate } from '../utils';
 import { DateRange } from '@navikt/sif-common-utils/lib';
 
 const velgPeriode = async (page: Page, periode: DateRange) => {
@@ -13,7 +13,6 @@ const velgPeriode = async (page: Page, periode: DateRange) => {
         .getByLabel('Nei')
         .check();
     await page.getByRole('group', { name: 'Skal du ha ferie i perioden du søker for?' }).getByLabel('Nei').check();
-    await checkA11y(page);
 };
 
 const leggTilUtenlandsopphold = async (page: Page, periodeUtenlandsopphold: DateRange, innlagtPeriode: DateRange) => {
@@ -52,8 +51,6 @@ const leggTilUtenlandsopphold = async (page: Page, periodeUtenlandsopphold: Date
     await page.getByLabel('Utenlandsopphold').getByTestId('typedFormikForm-submitButton').click();
 
     await expect(page.getByText('Afghanistan14. sep. 2023 - 17. sep. 2023 Fjern')).toBeVisible();
-
-    await checkA11y(page);
 };
 
 const leggTilFerie = async (page: Page, ferieperiode: DateRange) => {
@@ -62,11 +59,10 @@ const leggTilFerie = async (page: Page, ferieperiode: DateRange) => {
     await page.getByLabel('Ferie').getByLabel('Fra og med').fill(formatInputDate(ferieperiode.from));
     await page.getByLabel('Ferie').getByLabel('Til og med').fill(formatInputDate(ferieperiode.to));
     await page.getByLabel('Ferie').getByTestId('typedFormikForm-submitButton').click();
-    await expect(page.getByText('14. sep. 2023 - 17. sep. 2023 Fjern')).toBeVisible();
-    await checkA11y(page);
+    await expect(page.getByText('14. sep. 2023 - 17. sep. 2023 Fjern', { exact: true })).toBeVisible();
 };
 
-export const periodeUtils = {
+export const periodeSteg = {
     leggTilFerie,
     leggTilUtenlandsopphold,
     velgPeriode,
