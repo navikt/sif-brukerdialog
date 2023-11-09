@@ -15,7 +15,7 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     await page.goto(startUrl);
 
     /** Velkommen side */
-    await page.getByRole('heading', { level: 1, name: 'Hei PRESENTABEL' });
+    await expect(page.getByRole('heading', { level: 1, name: 'Hei PRESENTABEL' })).toBeVisible();
     await page.getByLabel('Jeg bekrefter at jeg har forstått mitt ansvar som søker').click();
     await page.getByRole('button', { name: 'Start søknad' }).click();
 
@@ -24,7 +24,9 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
     /** Tidsrom side */
-    await page.getByRole('heading', { level: 1, name: 'Dager du må være hjemme fra jobb for å gi pleie' });
+    await expect(
+        page.getByRole('heading', { level: 1, name: 'Dager du må være hjemme fra jobb for å gi pleie' }),
+    ).toBeVisible();
     await page.getByRole('button', { name: 'Gå til forrige måned' }).click({ clickCount: 2 });
     await page
         .getByRole('group', { name: 'Hvilke dager skal du være hjemme fra jobb for å gi pleie?' })
@@ -35,16 +37,22 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     await page.getByLabel('11. september (mandag)').click();
     await page.getByLabel('18. september (mandag)').click();
     await page.getByLabel('25. september (mandag)').click();
-    await page.getByRole('group', { name: 'Skal du pleie personen hjemme?' }).getByLabel('Ja').check();
-    await page.getByRole('group', { name: 'Skal du gi pleie og jobbe på samme dag?' }).getByLabel('Ja').check();
+    await page
+        .getByRole('group', { name: 'Skal du pleie personen hjemme i de dagene du søker for?' })
+        .getByLabel('Ja')
+        .check();
+    await page
+        .getByRole('group', { name: 'Skal du jobbe delvis i noen av dagene du søker for?' })
+        .getByLabel('Ja')
+        .check();
     await page
         .getByRole('group', { name: 'Oppholder du deg i utlandet i noen av dagene du søker for?' })
         .getByLabel('Nei')
         .check();
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
-    /** Jobb i søknadsperioden */
-    await page.getByRole('heading', { level: 1, name: 'Arbeidssituasjon' });
+    /** Arbeidssituasjon */
+    await expect(page.getByRole('heading', { level: 1, name: 'Arbeidssituasjon' })).toBeVisible();
     await page
         .getByRole('group', {
             name: 'Stemmer det at du er ansatt hos Arbeids- og velferdsetaten i perioden du søker for?',
@@ -77,7 +85,7 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
     /** Jobb i søknadsperioden */
-    await page.getByRole('heading', { level: 1, name: 'Jobb i søknadsperioden' });
+    await expect(page.getByRole('heading', { level: 1, name: 'Jobb i søknadsperioden' })).toBeVisible();
     await page.getByRole('group', { name: 'mandag 14. august' }).getByLabel('TimerTimer').fill('3');
     await page.getByRole('group', { name: 'mandag 14. august' }).getByLabel('MinutterMin.').fill('30');
     await page.getByRole('group', { name: 'onsdag 16. august' }).getByLabel('TimerTimer').fill('3');
@@ -92,7 +100,7 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
     /** Medlemsskap */
-    await page.getByRole('heading', { level: 1, name: 'Medlemsskap' });
+    await expect(page.getByRole('heading', { level: 1, name: 'Medlemskap i folketrygden' })).toBeVisible();
     await page
         .getByRole('group', { name: 'Har du bodd i utlandet i hele eller deler av de siste 12 månedene?' })
         .getByLabel('Nei')
@@ -104,15 +112,12 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
     /** Legeerklæring */
-    await page.getByRole('heading', { level: 1, name: 'Legeerklæring' });
-    await page.getByRole('button', { name: 'Last opp legeerklæringen' }).click();
-    await page
-        .getByLabel('OpplastingsikonLast opp legeerklæringen')
-        .setInputFiles('./e2e/playwright/files/navlogopng.png');
+    await expect(page.getByRole('heading', { level: 1, name: 'Legeerklæring' })).toBeVisible();
+    await page.locator('input[name="vedlegg"]').setInputFiles('./e2e/playwright/files/navlogopng.png');
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
     /** Oppsummering */
-    await page.getByRole('heading', { level: 1, name: 'Oppsummering' });
+    await expect(page.getByRole('heading', { level: 1, name: 'Oppsummering' })).toBeVisible();
     await page
         .getByLabel(
             'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til pleiepenger.',
@@ -121,9 +126,7 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     await page.getByRole('button', { name: 'Send søknad', exact: true }).click();
 
     /** Kvittering */
-    const heading = await page.getByRole('heading', {
-        level: 1,
-        name: 'Vi har mottatt søknad om pleiepenger i livets sluttfase',
-    });
-    await expect(heading).toBeVisible();
+    await expect(
+        page.getByRole('heading', { level: 1, name: 'Vi har mottatt søknad om pleiepenger i livets sluttfase' }),
+    ).toBeVisible();
 });

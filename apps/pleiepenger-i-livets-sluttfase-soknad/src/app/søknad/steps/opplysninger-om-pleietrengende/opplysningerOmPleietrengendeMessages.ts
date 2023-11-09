@@ -9,9 +9,10 @@ export const opplysningerOmPleietrengendeMessages: MessageFileFormat = {
         'step.opplysningerOmPleietrengende.counsellorPanel.info':
             'Her gir du opplysninger om personen du skal gi pleie til. I tillegg trenger vi å vite om du skal pleie personen hjemme, og om det er flere som skal dele på å gi pleie.',
 
-        'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.spm': 'Skal du pleie personen hjemme?',
+        'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.spm':
+            'Skal du pleie personen hjemme i de dagene du søker for?',
         'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.alert':
-            'For å ha rett på pleiepenger må du pleie personen i et privat hjem.',
+            'Du kan bare søke for dager du pleier personen hjemme.',
         'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.info.tittel': 'Hva betyr dette?',
         'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.info.1':
             'For å ha rett til pleiepenger må du pleie den som trenger pleie hjemme i et privat hjem. Som oftest skjer det hjemme hos deg, eller hjemme hos den du pleier.',
