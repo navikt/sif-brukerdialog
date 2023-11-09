@@ -73,7 +73,7 @@
         "@sentry/vite-plugin": "2.9.0",
         "@storybook/react-vite": "7.5.3",
         "@testing-library/jest-dom": "6.1.4",
-        "@testing-library/react": "14.0.0",
+        "@testing-library/react": "14.1.0",
         "@testing-library/user-event": "14.5.1",
         "@types/lodash.debounce": "4.0.9",
         "@types/lodash.groupby": "4.6.9",
