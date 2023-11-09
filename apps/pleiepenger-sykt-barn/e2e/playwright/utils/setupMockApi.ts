@@ -5,6 +5,9 @@ export const setupMockApi = async (page: Page, props?: { mellomlagring: any }) =
     await page.route('**hotjar**', async (route) => {
         await route.fulfill({ status: 200 });
     });
+    await page.route('**sentry**', async (route) => {
+        await route.fulfill({ status: 200 });
+    });
     await page.route('https://login.nav.no/**', async (route) => {
         await route.fulfill({ status: 200 });
     });
