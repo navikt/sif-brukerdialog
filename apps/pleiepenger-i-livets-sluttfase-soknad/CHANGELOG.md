@@ -1,5 +1,39 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 1.1.2
+
+### Patch Changes
+
+-   Updated dependencies [e815a9a8]
+    -   @navikt/sif-common-formik-ds@1.2.0
+    -   @navikt/sif-common-core-ds@9.8.8
+    -   @navikt/sif-common-forms-ds@8.11.1
+    -   @navikt/sif-common-soknad-ds@10.7.8
+    -   @navikt/sif-common-ui@0.0.15
+
+## 1.1.1
+
+### Patch Changes
+
+-   Updated dependencies [66c8522a]
+    -   @navikt/sif-common-forms-ds@8.11.1
+
+## 1.1.0
+
+### Minor Changes
+
+-   ce769b8e: Endre UtenlandskNæringListAndDialog til å eksponere ModalFormAndListLabels, ikke ModalFormAndInfoLabels (som var feil)
+
+### Patch Changes
+
+-   Updated dependencies [ce769b8e]
+-   Updated dependencies [afe04538]
+    -   @navikt/sif-common-forms-ds@8.11.0
+    -   @navikt/sif-common-formik-ds@1.1.6
+    -   @navikt/sif-common-core-ds@9.8.8
+    -   @navikt/sif-common-soknad-ds@10.7.8
+    -   @navikt/sif-common-ui@0.0.14
+
 ## 1.0.13
 
 ### Patch Changes

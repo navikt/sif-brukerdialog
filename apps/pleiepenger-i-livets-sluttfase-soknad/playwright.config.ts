@@ -22,6 +22,7 @@ export default defineConfig({
     webServer: {
         command: 'yarn start-e2e-server',
         url: 'http://localhost:8080',
+        reuseExistingServer: true,
         env: {
             DEKORATOR_URL: 'https://www.nav.no/dekoratoren/?simple=true&chatbot=false',
             PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase',

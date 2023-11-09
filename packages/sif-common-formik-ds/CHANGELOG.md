@@ -1,5 +1,17 @@
 # @navikt/sif-common-formik-ds
 
+## 1.2.0
+
+### Minor Changes
+
+-   e815a9a8: Endre rolle til button for FileDropInput div.
+
+## 1.1.6
+
+### Patch Changes
+
+-   afe04538: Fjerne default verdi for disableWeekends i FormikDatepicker. Var satt til true, blir nå undefined.
+
 ## 1.1.5
 
 ### Patch Changes

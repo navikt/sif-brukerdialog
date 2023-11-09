@@ -98,9 +98,7 @@ const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN, søknadsperiode }: 
                                     editLabel: intlHelper(intl, 'selvstendig.infoDialog.endreKnapp'),
                                     deleteLabel: intlHelper(intl, 'selvstendig.infoDialog.fjernKnapp'),
                                     addLabel: intlHelper(intl, 'selvstendig.infoDialog.registrerKnapp'),
-                                    modalTitle: harFlereVirksomheter
-                                        ? intlHelper(intl, 'selvstendig.infoDialog.tittel.flere')
-                                        : intlHelper(intl, 'selvstendig.infoDialog.tittel.en'),
+                                    modalTitle: intlHelper(intl, 'selvstendig.infoDialog.tittel'),
                                 }}
                                 validate={(value) => {
                                     if (getRequiredFieldValidator()(value) !== undefined) {

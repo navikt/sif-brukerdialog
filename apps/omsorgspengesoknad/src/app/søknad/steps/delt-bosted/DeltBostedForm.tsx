@@ -126,9 +126,8 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
             <Block margin={'l'}>
                 <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
             </Block>
-            <div data-testid="samværsavtale-liste">
-                <DeltBostedAvtaleAttachmentList wrapNoAttachmentsInBlock={true} includeDeletionFunctionality={true} />
-            </div>
+
+            <DeltBostedAvtaleAttachmentList wrapNoAttachmentsInBlock={true} includeDeletionFunctionality={true} />
         </Form>
     );
 };

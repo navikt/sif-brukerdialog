@@ -216,9 +216,18 @@ const ArbeidssituasjonStep = () => {
                                                 name={ArbeidssituasjonFormFields.opptjeningUtland}
                                                 validate={getListValidator({ required: true })}
                                                 labels={{
-                                                    addLabel: 'Legg til jobb i et annet EØS-land',
-                                                    listTitle: 'Registrert jobb i et annet EØS-land',
-                                                    modalTitle: 'Jobbet i et annet EØS-land',
+                                                    addLabel: intlHelper(
+                                                        intl,
+                                                        'steg.arbeidssituasjon.opptjeningUtland.addLabel',
+                                                    ),
+                                                    listTitle: intlHelper(
+                                                        intl,
+                                                        'steg.arbeidssituasjon.opptjeningUtland.listTitle',
+                                                    ),
+                                                    modalTitle: intlHelper(
+                                                        intl,
+                                                        'steg.arbeidssituasjon.opptjeningUtland.modalTitle',
+                                                    ),
                                                 }}
                                             />
                                         </FormBlock>

@@ -45,8 +45,11 @@ const DagerMedPleieFormPart: React.FunctionComponent<Props> = () => {
                 description={
                     <Block margin="m">
                         <BodyLong>
-                            Velg dagene du skal gi pleie i kalenderen. Hvis du skal gi pleie gjennom en hel uke, er det
-                            lettest å klikke på ukenummeret du ser til venstre.
+                            I kalenderen velger du hvilke dager du skal gi pleie. Husk at det ikke er rett til
+                            pleiepenger på dager hvor personen er innlagt på sykehus eller annen institusjon.
+                        </BodyLong>
+                        <BodyLong>
+                            Hvis du skal gi pleie gjennom en hel uke, er det lettest å klikke på ukenummeret.
                         </BodyLong>
                     </Block>
                 }>
