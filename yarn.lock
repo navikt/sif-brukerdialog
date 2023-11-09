@@ -3688,7 +3688,7 @@ __metadata:
     cookie-parser: 1.4.6
     cross-env: 7.0.3
     css-loader: 6.8.1
-    cypress: 13.4.0
+    cypress: 13.5.0
     cypress-axe: 1.5.0
     cypress-file-upload: 5.0.8
     dayjs: 1.11.10
@@ -4112,7 +4112,7 @@ __metadata:
     cookie-parser: 1.4.6
     cross-env: 7.0.3
     css-loader: 6.8.1
-    cypress: 13.4.0
+    cypress: 13.5.0
     cypress-axe: 1.5.0
     cypress-file-upload: 5.0.8
     dayjs: 1.11.10
@@ -13084,9 +13084,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress@npm:13.4.0":
-  version: 13.4.0
-  resolution: "cypress@npm:13.4.0"
+"cypress@npm:13.5.0":
+  version: 13.5.0
+  resolution: "cypress@npm:13.5.0"
   dependencies:
     "@cypress/request": ^3.0.0
     "@cypress/xvfb": ^1.2.4
@@ -13133,7 +13133,7 @@ __metadata:
     yauzl: ^2.10.0
   bin:
     cypress: bin/cypress
-  checksum: d64495105a61ed1fb41a5189d5015cfa80314c84d1004595e9c4019eedd394f83509409b6f8489a18e92ea96c6b66ffbb918f41ab97c3eaed34abe107c0846aa
+  checksum: e8692e94a9c43aa954bfdf9b96556edc5aeb20e91a303263488d8f515a1095c9dd4585205e797e081da0e3e61709e28416a9cf7cfe9bdee68eea656823a9d107
   languageName: node
   linkType: hard
 
