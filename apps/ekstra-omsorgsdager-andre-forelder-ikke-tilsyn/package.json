@@ -24,9 +24,9 @@
         "test": "react-scripts test --watchAll=false --env=jsdom"
     },
     "dependencies": {
-        "@navikt/ds-css": "5.9.2",
-        "@navikt/ds-react": "5.9.2",
-        "@navikt/ds-tailwind": "5.9.2",
+        "@navikt/ds-css": "5.10.0",
+        "@navikt/ds-react": "5.10.0",
+        "@navikt/ds-tailwind": "5.10.0",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
