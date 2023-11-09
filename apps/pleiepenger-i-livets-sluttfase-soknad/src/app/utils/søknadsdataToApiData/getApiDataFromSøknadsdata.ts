@@ -33,6 +33,10 @@ export const getFlereSokereApiData = (flereSokereSvar: YesOrNoDontKnow): FlereSo
     }
 };
 
+export const getDagerMedPleieApiData = (søknadsdata: Søknadsdata): string[] => {
+    return (søknadsdata.tidsrom?.dagerMedPleie || []).map(dateToISODate);
+};
+
 export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadApiData | undefined => {
     const { id, opplysningerOmPleietrengende, legeerklæring, tidsrom, arbeidssituasjon, arbeidstid, medlemskap } =
         søknadsdata;
@@ -79,6 +83,7 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadA
                 : [],
         vedleggUrls: getVedleggApiData(legeerklæring.vedlegg),
         pleierDuDenSykeHjemme: true,
+        dagerMedPleie: getDagerMedPleieApiData(søknadsdata),
         flereSokere: getFlereSokereApiData(opplysningerOmPleietrengende.flereSokere),
         fraOgMed: dateToISODate(periodeFra),
         tilOgMed: dateToISODate(periodeTil),

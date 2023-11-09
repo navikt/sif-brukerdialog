@@ -268,7 +268,7 @@ export const appMessagesNb = {
     'steg.omBarnet.fødselsattest.info':
         'Når barnet bor i utlandet og ikke har fødselsnummer eller D-nummer, må du legge ved en kopi av fødselsattest for barnet.',
     'steg.omBarnet.fødselsattest.vedlegg': 'Last opp fødselsattest',
-    'steg.omBarnet.fødselsattest.vedlegg.legend': 'Dokumenter lastet opp',
+    'steg.omBarnet.fødselsattest.vedlegg.legend': 'Dokumenter',
     'steg.omBarnet.fødselsdato': 'Barnets fødselsdato',
     'steg.omBarnet.navn': 'Barnets navn',
     'steg.omBarnet.relasjon.spm': 'Hvilken relasjon har du til barnet?',
@@ -526,7 +526,7 @@ export const appMessagesNb = {
         'Du svarer ja bare hvis du planlegger å oppholde deg fast i et annet land enn Norge. Korte utlandsturer i forbindelse med for eksempel ferie regnes ikke med.',
     'steg.medlemsskap.annetLandNeste12.listeTittel': 'Utenlandsopphold neste 12 måneder',
 
-    'steg.lege.vedlegg.legend': 'Dokumenter lastet opp',
+    'steg.lege.vedlegg.legend': 'Dokumenter',
     'steg.lege.vedlegg': 'Last opp dokumentasjonen',
     'steg.legeerklaering.counsellorpanel.1':
         'Her skal du laste opp legeerklæringen. Det gjør du enten ved å ta bilde av leggerklæringen, eller ved å skanne den. Vennligst sjekk at bildet du laster opp er av god kvalitet slik at all tekst er leselig.',

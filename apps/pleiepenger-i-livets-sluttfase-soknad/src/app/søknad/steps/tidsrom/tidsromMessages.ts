@@ -26,7 +26,7 @@ export const tidsromMessages: MessageFileFormat = {
         'step.tidsrom.flereSokere.nei': 'Nei',
         'step.tidsrom.flereSokere.usikker': 'Usikker',
 
-        'steg.tidsrom.skalJobbeIPerioden.spm': 'Skal du gi pleie og jobbe på samme dag?',
+        'steg.tidsrom.skalJobbeIPerioden.spm': 'Skal du jobbe delvis i noen av dagene du søker for?',
         'steg.tidsrom.skalJobbeIPerioden.info.tittel': 'Hva betyr dette?',
         'steg.tidsrom.skalJobbeIPerioden.info.tekst.1':
             'Du skal svare ja på dette spørsmålet bare hvis du skal jobbe og gi pleie på samme dag.',
