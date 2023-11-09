@@ -2,10 +2,12 @@ import { test, expect } from '@playwright/test';
 import { format } from 'date-fns';
 import { setupMockApi } from '../utils/setupMockApi';
 import { checkA11y, getSøknadsperiode } from '../utils';
+import { setNow } from '../utils/setNow';
 
 const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger/soknad/velkommen';
 
 test.beforeEach(async ({ page }) => {
+    await setNow(page);
     await setupMockApi(page);
 });
 

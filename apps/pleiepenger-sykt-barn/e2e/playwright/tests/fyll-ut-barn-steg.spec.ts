@@ -2,6 +2,7 @@ import { Page, test, expect } from '@playwright/test';
 import { StepID } from '../../../src/app/types/StepID';
 import { routeUtils } from '../utils/routeUtils';
 import { checkA11y } from '../utils';
+import { setNow } from '../utils/setNow';
 
 const barnetsNavn = 'NOTORISK LURING';
 const barnetsFødselsnummer = '08861999573';
@@ -9,6 +10,7 @@ const barnetsFødselsdato = '08.12.2019';
 const relasjonAnnetBeskrivelse = 'Annet relasjon beskrivelse';
 
 test.beforeEach(async ({ page }) => {
+    await setNow(page);
     await routeUtils.startOnStep(page, StepID.OPPLYSNINGER_OM_BARNET);
 });
 
