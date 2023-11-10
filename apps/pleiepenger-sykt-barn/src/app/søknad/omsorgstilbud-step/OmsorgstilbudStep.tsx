@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { useEffect, useState } from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
@@ -20,6 +21,8 @@ const OmsorgstilbudStep = ({ onValidSubmit, søknadsperiode }: StepCommonProps &
     const { omsorgstilbud } = values;
     const { persistSoknad } = usePersistSoknad();
 
+    console.log(values);
+    debugger;
     const [omsorgstilbudChanged, setOmsorgstilbudChanged] = useState(false);
     useEffect(() => {
         if (omsorgstilbudChanged === true) {

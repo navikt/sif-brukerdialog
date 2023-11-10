@@ -1,15 +1,11 @@
-import { DateRange } from '@navikt/sif-common-utils/lib';
 import { Page, expect, test } from '@playwright/test';
-import { addDays } from 'date-fns';
 import { StepID } from '../../../src/app/types/StepID';
 import { periodeSteg } from '../utfylling-utils/periodeSteg';
-import { checkA11y, getSøknadsperiode } from '../utils';
-import { routeUtils } from '../utils/routeUtils';
-import { setNow } from '../utils/setNow';
+import { checkA11y, getSøknadsperiode } from '../setup';
+import { routeUtils } from '../setup/routeUtils';
+import { setNow } from '../setup/setNow';
 
-const søknadsperiode = getSøknadsperiode();
-
-const { leggTilFerie, leggTilUtenlandsopphold, velgPeriode } = periodeSteg;
+const { fyllUtPeriodeStegKomplett } = periodeSteg;
 
 const gåTilOppsummering = async (page: Page) => {
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
@@ -29,56 +25,13 @@ const gåTilOppsummering = async (page: Page) => {
 
 test.beforeEach(async ({ page }) => {
     await setNow(page);
-    await routeUtils.startOnStep(page, StepID.TIDSROM);
+    await routeUtils.startOnStep(page, StepID.TIDSROM, getSøknadsperiode());
     await expect(page.getByRole('heading', { name: 'Perioden med pleiepenger' })).toBeVisible();
 });
 
-test('Velg periode', async ({ page }) => {
-    await velgPeriode(page, søknadsperiode);
-    await checkA11y(page);
-});
-
-test('Legg til reise til utlandet', async ({ page }) => {
-    const periodeUtenlandsopphold: DateRange = {
-        from: addDays(søknadsperiode.from, 3),
-        to: addDays(søknadsperiode.from, 6),
-    };
-    const innlagtPeriode: DateRange = {
-        from: addDays(søknadsperiode.from, 4),
-        to: addDays(søknadsperiode.from, 5),
-    };
-    await velgPeriode(page, søknadsperiode);
-    await leggTilUtenlandsopphold(page, periodeUtenlandsopphold, innlagtPeriode);
-    await checkA11y(page);
-});
-
-test('Legg til ferie', async ({ page }) => {
-    const ferieperiode: DateRange = {
-        from: addDays(søknadsperiode.from, 3),
-        to: addDays(søknadsperiode.from, 6),
-    };
-    await velgPeriode(page, søknadsperiode);
-    await leggTilFerie(page, ferieperiode);
-    await checkA11y(page);
-    await gåTilOppsummering(page);
-});
-
 test('Legg til ferie og utenlandsopphold', async ({ page }) => {
-    const periodeUtenlandsopphold: DateRange = {
-        from: addDays(søknadsperiode.from, 3),
-        to: addDays(søknadsperiode.from, 6),
-    };
-    const innlagtPeriode: DateRange = {
-        from: addDays(søknadsperiode.from, 4),
-        to: addDays(søknadsperiode.from, 5),
-    };
-    const ferieperiode: DateRange = {
-        from: addDays(søknadsperiode.from, 3),
-        to: addDays(søknadsperiode.from, 6),
-    };
-    await velgPeriode(page, søknadsperiode);
-    await leggTilUtenlandsopphold(page, periodeUtenlandsopphold, innlagtPeriode);
-    await leggTilFerie(page, ferieperiode);
+    await fyllUtPeriodeStegKomplett(page, getSøknadsperiode());
+
     await checkA11y(page);
     await gåTilOppsummering(page);
 

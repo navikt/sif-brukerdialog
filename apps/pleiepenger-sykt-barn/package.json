@@ -12,6 +12,7 @@
         "build-storybook": "storybook build",
         "clean": "rm -rf node_modules .dist",
         "codegen": "playwright codegen",
+        "dev": "yarn dev-api & yarn snd",
         "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",
         "e2e-ui": "playwright test --ui",
         "e2e": "playwright test",

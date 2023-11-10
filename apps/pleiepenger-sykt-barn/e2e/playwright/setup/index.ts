@@ -3,6 +3,7 @@ import AxeBuilder from '@axe-core/playwright'; // 1
 import { Page, expect } from '@playwright/test';
 
 const INPUT_DATE_FORMAT = 'dd.MM.yyyy';
+
 export const formatInputDate = (date: Date): string => format(date, INPUT_DATE_FORMAT);
 
 export const getSøknadsdato = () => new Date('2023-10-04');

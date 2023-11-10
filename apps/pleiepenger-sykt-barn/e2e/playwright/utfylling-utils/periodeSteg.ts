@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { expect, Page } from '@playwright/test';
-import { formatInputDate } from '../utils';
+import { formatInputDate } from '../setup';
 import { DateRange } from '@navikt/sif-common-utils/lib';
+import { addDays } from 'date-fns';
 
 const velgPeriode = async (page: Page, periode: DateRange) => {
     const periodeFraString = formatInputDate(periode.from);
@@ -62,8 +63,27 @@ const leggTilFerie = async (page: Page, ferieperiode: DateRange) => {
     await expect(page.getByText('14. sep. 2023 - 17. sep. 2023 Fjern', { exact: true })).toBeVisible();
 };
 
+const fyllUtPeriodeStegKomplett = async (page: Page, søknadsperiode: DateRange) => {
+    const periodeUtenlandsopphold: DateRange = {
+        from: addDays(søknadsperiode.from, 3),
+        to: addDays(søknadsperiode.from, 6),
+    };
+    const innlagtPeriode: DateRange = {
+        from: addDays(søknadsperiode.from, 4),
+        to: addDays(søknadsperiode.from, 5),
+    };
+    const ferieperiode: DateRange = {
+        from: addDays(søknadsperiode.from, 3),
+        to: addDays(søknadsperiode.from, 6),
+    };
+    await velgPeriode(page, søknadsperiode);
+    await leggTilUtenlandsopphold(page, periodeUtenlandsopphold, innlagtPeriode);
+    await leggTilFerie(page, ferieperiode);
+};
+
 export const periodeSteg = {
+    fyllUtPeriodeStegKomplett,
+    velgPeriode,
     leggTilFerie,
     leggTilUtenlandsopphold,
-    velgPeriode,
 };

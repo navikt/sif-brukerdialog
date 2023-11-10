@@ -1,7 +1,7 @@
 export const mellomlagring = {
     formValues: {
-        periodeFra: '2023-10-16',
-        periodeTil: '2023-11-13',
+        periodeFra: '2023-09-10',
+        periodeTil: '2023-10-08',
         barnetsNavn: '',
         barnetsFødselsnummer: '',
         barnetSøknadenGjelder: '2811762539343',

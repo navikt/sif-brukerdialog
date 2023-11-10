@@ -1,8 +1,8 @@
 import { Page, test, expect } from '@playwright/test';
 import { StepID } from '../../../src/app/types/StepID';
-import { routeUtils } from '../utils/routeUtils';
-import { checkA11y } from '../utils';
-import { setNow } from '../utils/setNow';
+import { routeUtils } from '../setup/routeUtils';
+import { checkA11y, getSøknadsperiode } from '../setup';
+import { setNow } from '../setup/setNow';
 import { barnSteg } from '../utfylling-utils/barnSteg';
 
 const barnetsNavn = 'NOTORISK LURING';
@@ -12,7 +12,7 @@ const relasjonAnnetBeskrivelse = 'Annet relasjon beskrivelse';
 
 test.beforeEach(async ({ page }) => {
     await setNow(page);
-    await routeUtils.startOnStep(page, StepID.OPPLYSNINGER_OM_BARNET);
+    await routeUtils.startOnStep(page, StepID.OPPLYSNINGER_OM_BARNET, getSøknadsperiode());
 });
 
 const gåTilOppsummering = async (page: Page) => {
@@ -34,7 +34,7 @@ const gåTilOppsummering = async (page: Page) => {
 };
 
 test('Fyll ut steg med registrert barn', async ({ page }) => {
-    await barnSteg.velgRegistrertBarn(page, 'ALFABETISK FAGGOTTFødt 08.12.2019');
+    await barnSteg.fyllUtMedRegistrertBarn(page, 'ALFABETISK FAGGOTTFødt 08.12.2019');
     await checkA11y(page);
     await gåTilOppsummering(page);
     await expect(await page.getByText('Navn: ALFABETISK FAGGOTTFødselsdato: 08.12.2019').isVisible()).toBeTruthy();

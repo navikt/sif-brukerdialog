@@ -1,6 +1,6 @@
 import { Page } from '@playwright/test';
 
-const velgRegistrertBarn = async (page: Page, navnOgFdato: string) => {
+const fyllUtMedRegistrertBarn = async (page: Page, navnOgFdato: string) => {
     await page.getByLabel(navnOgFdato).check();
 };
 
@@ -36,7 +36,7 @@ const fyllUtAnnetBarnUtenFnr = async (
 };
 
 export const barnSteg = {
-    velgRegistrertBarn,
+    fyllUtMedRegistrertBarn,
     fyllUtAnnetBarnMedFnr,
     fyllUtAnnetBarnUtenFnr,
 };

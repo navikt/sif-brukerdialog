@@ -1,8 +1,14 @@
 import { test, expect } from '@playwright/test';
-import { format } from 'date-fns';
-import { setupMockApi } from '../utils/setupMockApi';
-import { checkA11y, getSøknadsperiode } from '../utils';
-import { setNow } from '../utils/setNow';
+import { setupMockApi } from '../setup/setupMockApi';
+import { checkA11y, getSøknadsperiode } from '../setup';
+import { setNow } from '../setup/setNow';
+import { fyllUtArbeidssituasjonSteg } from '../utfylling-utils/arbeidssituasjonSteg';
+import { fyllUtArbeidstidSteg } from '../utfylling-utils/arbeidstidSteg';
+import { omsorgstilbudSteg } from '../utfylling-utils/omsorgstilbudSteg';
+import { nattevåkOgBeredskapSteg } from '../utfylling-utils/nattevågOgBeredskapSteg';
+import { medlemskapSteg } from '../utfylling-utils/medlemskapSteg';
+import { barnSteg } from '../utfylling-utils/barnSteg';
+import { periodeSteg } from '../utfylling-utils/periodeSteg';
 
 const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger/soknad/velkommen';
 
@@ -13,8 +19,6 @@ test.beforeEach(async ({ page }) => {
 
 test('Fyll ut komplett søknad', async ({ page }) => {
     const søknadsperiode = getSøknadsperiode();
-    const fraDatoString = format(søknadsperiode.from, 'dd.MM.yyyy');
-    const tilDatoString = format(søknadsperiode.to, 'dd.MM.yyyy');
 
     await page.goto(startUrl);
 
@@ -26,87 +30,37 @@ test('Fyll ut komplett søknad', async ({ page }) => {
 
     /** Barn */
     await expect(page.getByRole('heading', { level: 1, name: 'Barn' })).toBeVisible();
-    await page.getByLabel('ALFABETISK FAGGOTTFødt 08.12.2019').check();
+    await barnSteg.fyllUtMedRegistrertBarn(page, 'ALFABETISK FAGGOTTFødt 08.12.2019');
     await checkA11y(page);
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
     /** Perioden med pleiepenger */
     await expect(page.getByRole('heading', { level: 1, name: 'Perioden med pleiepenger' })).toBeVisible();
-    await page.getByLabel('Fra og med').fill(fraDatoString);
-    await page.getByLabel('Til og med').fill(tilDatoString);
-    await page
-        .getByRole('group', { name: 'Skal du reise til utlandet i perioden du søker for?' })
-        .getByLabel('Nei')
-        .check();
-    await page.getByRole('group', { name: 'Skal du ha ferie i perioden du søker for?' }).getByLabel('Nei').check();
+    await periodeSteg.fyllUtPeriodeStegKomplett(page, søknadsperiode);
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
     /** Arbeidssituasjon */
     await expect(page.getByRole('heading', { level: 1, name: 'Arbeidssituasjonen din' })).toBeVisible();
-    await page.getByLabel('Arbeidsgivere').getByLabel('Ja').check();
-    await page
-        .getByLabel('Hvor mange timer jobber du vanligvis hos SJOKKERENDE ELEKTRIKER? Oppgi tiden i et snitt per uke:')
-        .click();
-    await page
-        .getByLabel('Hvor mange timer jobber du vanligvis hos SJOKKERENDE ELEKTRIKER? Oppgi tiden i et snitt per uke:')
-        .fill('37,5');
-    await page
-        .getByLabel('Hvor mange timer jobber du vanligvis hos SJOKKERENDE ELEKTRIKER? Oppgi tiden i et snitt per uke:')
-        .press('Tab');
-    await page
-        .getByRole('group', { name: 'Mottar du fosterhjemsgodtgjørelse eller omsorgsstønad fra kommunen?' })
-        .getByLabel('Nei')
-        .check();
-    await page
-        .getByRole('group', { name: 'Jobber du som frilanser eller mottar du honorar?' })
-        .getByLabel('Nei')
-        .check();
-    await page.getByLabel('Selvstendig næringsdrivende').getByLabel('Nei').check();
-    await page
-        .getByRole('group', {
-            name: 'Har du jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før perioden du søker om?',
-        })
-        .getByLabel('Nei')
-        .check();
-    await page
-        .getByRole('group', {
-            name: 'Har du jobbet som selvstendig næringsdrivende i et annet EØS-land i løpet av de 3 siste årene før perioden du søker om?',
-        })
-        .getByLabel('Nei')
-        .check();
+    await fyllUtArbeidssituasjonSteg(page, søknadsperiode);
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
-    /** Arbeid i perioden */
+    /** Arbeidstid */
     await expect(page.getByRole('heading', { level: 1, name: 'Jobb i søknadsperioden' })).toBeVisible();
-    await page.getByLabel('Jeg jobber ikke').check();
+    await fyllUtArbeidstidSteg(page);
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
     /** Omsorgstilbud */
-    await expect(page.getByRole('heading', { level: 1, name: 'Omsorgstilbud i søknadsperioden' })).toBeVisible();
-    await page
-        .getByRole('group', {
-            name: 'Har barnet vært fast og regelmessig i skole/barnehage, eller andre omsorgstilbud, fra datoen du søker om og frem til nå?',
-        })
-        .getByLabel('Nei')
-        .check();
-    await page
-        .getByRole('group', {
-            name: 'Skal barnet være fast og regelmessig på skolen, i barnehagen eller i andre omsorgstilbud fremover i tid?',
-        })
-        .getByLabel('Nei')
-        .check();
+    await expect(page.getByRole('heading', { level: 1, name: 'Omsorgstilbud' })).toBeVisible();
+    await omsorgstilbudSteg.fyllUtOmsorgstilbudSteg(page);
+    await page.getByRole('button', { name: 'Neste', exact: true }).click();
+
+    await expect(page.getByRole('heading', { level: 1, name: 'Nattevåk og beredskap' })).toBeVisible();
+    await nattevåkOgBeredskapSteg.fyllUtNattevåkOgBeredskapSteg(page);
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
     /** Medlemsskap */
     await expect(page.getByRole('heading', { level: 1, name: 'Medlemskap' })).toBeVisible();
-    await page
-        .getByRole('group', { name: 'Har du bodd i utlandet i hele eller deler av de siste 12 månedene?' })
-        .getByLabel('Nei')
-        .check();
-    await page
-        .getByRole('group', { name: 'Planlegger du å bo i utlandet i hele eller deler av de neste 12 månedene?' })
-        .getByLabel('Nei')
-        .check();
+    await medlemskapSteg.fyllUtMedlemskapSteg(page);
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
     /** Legeerklæring */

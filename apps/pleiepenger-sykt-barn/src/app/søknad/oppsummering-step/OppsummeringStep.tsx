@@ -139,6 +139,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                     getDataBruktTilUtledning(søknadsdata),
                     intl.locale as Locale,
                 );
+                debugger;
                 if (apiValues === undefined) {
                     return <div>Det oppstod en feil - api-data mangler</div>;
                 }
