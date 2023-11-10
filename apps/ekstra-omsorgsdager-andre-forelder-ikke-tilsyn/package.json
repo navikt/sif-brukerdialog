@@ -65,7 +65,7 @@
         "@babel/plugin-proposal-object-rest-spread": "7.20.7",
         "@babel/plugin-transform-modules-commonjs": "7.23.0",
         "@babel/preset-env": "7.23.2",
-        "@babel/preset-react": "7.22.15",
+        "@babel/preset-react": "7.23.3",
         "@playwright/test": "^1.39.0",
         "@storybook/react-vite": "7.5.3",
         "@testing-library/react": "14.1.0",

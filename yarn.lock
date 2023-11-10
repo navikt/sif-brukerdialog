@@ -1369,6 +1369,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/plugin-transform-react-display-name@npm:^7.23.3":
+  version: 7.23.3
+  resolution: "@babel/plugin-transform-react-display-name@npm:7.23.3"
+  dependencies:
+    "@babel/helper-plugin-utils": ^7.22.5
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: 7f86964e8434d3ddbd3c81d2690c9b66dbf1cd8bd9512e2e24500e9fa8cf378bc52c0853270b3b82143aba5965aec04721df7abdb768f952b44f5c6e0b198779
+  languageName: node
+  linkType: hard
+
 "@babel/plugin-transform-react-jsx-development@npm:^7.22.5":
   version: 7.22.5
   resolution: "@babel/plugin-transform-react-jsx-development@npm:7.22.5"
@@ -1426,6 +1437,18 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.0.0-0
   checksum: 092021c4f404e267002099ec20b3f12dd730cb90b0d83c5feed3dc00dbe43b9c42c795a18e7c6c7d7bddea20c7dd56221b146aec81b37f2e7eb5137331c61120
+  languageName: node
+  linkType: hard
+
+"@babel/plugin-transform-react-pure-annotations@npm:^7.23.3":
+  version: 7.23.3
+  resolution: "@babel/plugin-transform-react-pure-annotations@npm:7.23.3"
+  dependencies:
+    "@babel/helper-annotate-as-pure": ^7.22.5
+    "@babel/helper-plugin-utils": ^7.22.5
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: 9ea3698b1d422561d93c0187ac1ed8f2367e4250b10e259785ead5aa643c265830fd0f4cf5087a5bedbc4007444c06da2f2006686613220acf0949895f453666
   languageName: node
   linkType: hard
 
@@ -1701,7 +1724,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/preset-react@npm:7.22.15, @babel/preset-react@npm:^7.12.10, @babel/preset-react@npm:^7.12.5, @babel/preset-react@npm:^7.16.0, @babel/preset-react@npm:^7.22.5":
+"@babel/preset-react@npm:7.23.3":
+  version: 7.23.3
+  resolution: "@babel/preset-react@npm:7.23.3"
+  dependencies:
+    "@babel/helper-plugin-utils": ^7.22.5
+    "@babel/helper-validator-option": ^7.22.15
+    "@babel/plugin-transform-react-display-name": ^7.23.3
+    "@babel/plugin-transform-react-jsx": ^7.22.15
+    "@babel/plugin-transform-react-jsx-development": ^7.22.5
+    "@babel/plugin-transform-react-pure-annotations": ^7.23.3
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: 2d90961e7e627a74b44551e88ad36a440579e283e8dc27972bf2f50682152bbc77228673a3ea22c0e0d005b70cbc487eccd64897c5e5e0384e5ce18f300b21eb
+  languageName: node
+  linkType: hard
+
+"@babel/preset-react@npm:^7.12.10, @babel/preset-react@npm:^7.12.5, @babel/preset-react@npm:^7.16.0, @babel/preset-react@npm:^7.22.5":
   version: 7.22.15
   resolution: "@babel/preset-react@npm:7.22.15"
   dependencies:
@@ -3549,7 +3588,7 @@ __metadata:
     "@babel/plugin-proposal-object-rest-spread": 7.20.7
     "@babel/plugin-transform-modules-commonjs": 7.23.0
     "@babel/preset-env": 7.23.2
-    "@babel/preset-react": 7.22.15
+    "@babel/preset-react": 7.23.3
     "@navikt/ds-css": 5.10.0
     "@navikt/ds-react": 5.10.0
     "@navikt/ds-tailwind": 5.10.0
@@ -3619,7 +3658,7 @@ __metadata:
     "@babel/plugin-proposal-object-rest-spread": 7.20.7
     "@babel/plugin-transform-modules-commonjs": 7.23.0
     "@babel/preset-env": 7.23.2
-    "@babel/preset-react": 7.22.15
+    "@babel/preset-react": 7.23.3
     "@babel/preset-typescript": 7.23.2
     "@formatjs/intl-pluralrules": 5.2.8
     "@mswjs/data": 0.15.0
@@ -3740,7 +3779,7 @@ __metadata:
     "@babel/plugin-proposal-object-rest-spread": 7.20.7
     "@babel/plugin-transform-modules-commonjs": 7.23.0
     "@babel/preset-env": 7.23.2
-    "@babel/preset-react": 7.22.15
+    "@babel/preset-react": 7.23.3
     "@navikt/ds-css": 5.10.0
     "@navikt/ds-react": 5.10.0
     "@navikt/ds-tailwind": 5.10.0
@@ -3807,7 +3846,7 @@ __metadata:
   dependencies:
     "@babel/core": 7.23.2
     "@babel/preset-env": 7.23.2
-    "@babel/preset-react": 7.22.15
+    "@babel/preset-react": 7.23.3
     "@babel/preset-typescript": 7.23.2
     "@navikt/ds-css": 5.10.0
     "@navikt/ds-icons": 3.4.3
@@ -3883,7 +3922,7 @@ __metadata:
     "@axe-core/playwright": 4.8.1
     "@babel/core": 7.23.2
     "@babel/preset-env": 7.23.2
-    "@babel/preset-react": 7.22.15
+    "@babel/preset-react": 7.23.3
     "@babel/preset-typescript": 7.23.2
     "@navikt/ds-css": 5.10.0
     "@navikt/ds-icons": 3.4.3
@@ -3973,7 +4012,7 @@ __metadata:
     "@axe-core/playwright": 4.8.1
     "@babel/core": 7.23.2
     "@babel/preset-env": 7.23.2
-    "@babel/preset-react": 7.22.15
+    "@babel/preset-react": 7.23.3
     "@babel/preset-typescript": 7.23.2
     "@navikt/ds-css": 5.10.0
     "@navikt/ds-icons": 3.4.3
@@ -4049,7 +4088,7 @@ __metadata:
     "@babel/plugin-proposal-object-rest-spread": 7.20.7
     "@babel/plugin-transform-modules-commonjs": 7.23.0
     "@babel/preset-env": 7.23.2
-    "@babel/preset-react": 7.22.15
+    "@babel/preset-react": 7.23.3
     "@formatjs/intl-pluralrules": 5.2.8
     "@navikt/appstatus-react-ds": "workspace:*"
     "@navikt/ds-css": 5.10.0
@@ -4192,7 +4231,7 @@ __metadata:
   dependencies:
     "@babel/core": 7.23.2
     "@babel/preset-env": 7.23.2
-    "@babel/preset-react": 7.22.15
+    "@babel/preset-react": 7.23.3
     "@babel/preset-typescript": 7.23.2
     "@formatjs/intl-pluralrules": 5.2.8
     "@navikt/appstatus-react-ds": "workspace:*"
@@ -4261,7 +4300,7 @@ __metadata:
   dependencies:
     "@babel/core": 7.23.2
     "@babel/preset-env": 7.23.2
-    "@babel/preset-react": 7.22.15
+    "@babel/preset-react": 7.23.3
     "@babel/preset-typescript": 7.23.2
     "@formatjs/intl-pluralrules": 5.2.8
     "@navikt/ds-css": 5.10.0
@@ -4329,7 +4368,7 @@ __metadata:
   dependencies:
     "@babel/core": 7.23.2
     "@babel/preset-env": 7.23.2
-    "@babel/preset-react": 7.22.15
+    "@babel/preset-react": 7.23.3
     "@babel/preset-typescript": 7.23.2
     "@formatjs/intl-pluralrules": 5.2.8
     "@navikt/ds-css": 5.10.0
@@ -4423,7 +4462,7 @@ __metadata:
   dependencies:
     "@babel/core": 7.23.2
     "@babel/preset-env": 7.23.2
-    "@babel/preset-react": 7.22.15
+    "@babel/preset-react": 7.23.3
     "@babel/preset-typescript": 7.23.2
     "@devexperts/remote-data-ts": 2.1.1
     "@formatjs/intl-pluralrules": 5.2.8
@@ -4523,7 +4562,7 @@ __metadata:
   dependencies:
     "@babel/core": 7.23.2
     "@babel/preset-env": 7.23.2
-    "@babel/preset-react": 7.22.15
+    "@babel/preset-react": 7.23.3
     "@types/jest": 29.5.8
     "@types/node": 20.9.0
     "@types/react": 18.2.37
@@ -4548,7 +4587,7 @@ __metadata:
     "@axe-core/playwright": 4.8.1
     "@babel/core": 7.23.2
     "@babel/preset-env": 7.23.2
-    "@babel/preset-react": 7.22.15
+    "@babel/preset-react": 7.23.3
     "@formatjs/intl-pluralrules": 5.2.8
     "@navikt/ds-css": 5.10.0
     "@navikt/ds-icons": 3.4.3
