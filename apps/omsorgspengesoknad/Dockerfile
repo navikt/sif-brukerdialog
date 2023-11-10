@@ -18,7 +18,6 @@ FROM pruner AS server
 WORKDIR /apps/omsorgspengesoknad
 COPY --from=pruner /app/node_modules ./node_modules/
 COPY --from=pruner /app/apps/omsorgspengesoknad/server.cjs .
-COPY --from=pruner /app/apps/omsorgspengesoknad/tokenx.cjs .
 COPY --from=pruner /app/apps/omsorgspengesoknad/package.json .
 COPY --from=pruner /app/apps/omsorgspengesoknad/src/build/decorator.cjs ./src/build/decorator.cjs
 COPY --from=pruner /app/apps/omsorgspengesoknad/src/build/AppSettings.cjs ./src/build/AppSettings.cjs
