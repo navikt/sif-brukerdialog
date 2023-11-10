@@ -53,7 +53,7 @@
         "@babel/plugin-proposal-object-rest-spread": "7.20.7",
         "@babel/plugin-transform-modules-commonjs": "7.23.0",
         "@babel/preset-env": "7.23.2",
-        "@babel/preset-react": "7.22.15",
+        "@babel/preset-react": "7.23.3",
         "@babel/preset-typescript": "7.23.2",
         "@mswjs/data": "0.15.0",
         "@navikt/ds-tailwind": "5.10.0",
