@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.40.11
+
+### Patch Changes
+
+-   09ae5814: Patch-oppdateringer
+
 ## 3.40.10
 
 ### Patch Changes

@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/omsorgsdager-aleneomsorg-dialog",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "2.10.17",
+    "version": "2.10.18",
     "private": true,
     "type": "module",
     "scripts": {
@@ -25,9 +25,9 @@
         "test": "react-scripts test --watchAll=false --env=jsdom"
     },
     "dependencies": {
-        "@navikt/ds-css": "5.10.0",
-        "@navikt/ds-react": "5.10.0",
-        "@navikt/ds-tailwind": "5.10.0",
+        "@navikt/ds-css": "5.10.1",
+        "@navikt/ds-react": "5.10.1",
+        "@navikt/ds-tailwind": "5.10.1",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
@@ -55,7 +55,7 @@
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "react-fast-compare": "3.2.2",
-        "react-intl": "6.5.2",
+        "react-intl": "6.5.4",
         "react-router-dom": "6.18.0",
         "ulid": "2.3.0",
         "uuid": "9.0.1"
@@ -63,8 +63,8 @@
     "devDependencies": {
         "@axe-core/playwright": "4.8.1",
         "@babel/plugin-proposal-object-rest-spread": "7.20.7",
-        "@babel/plugin-transform-modules-commonjs": "7.23.0",
-        "@babel/preset-env": "7.23.2",
+        "@babel/plugin-transform-modules-commonjs": "7.23.3",
+        "@babel/preset-env": "7.23.3",
         "@babel/preset-react": "7.23.3",
         "@playwright/test": "^1.39.0",
         "@types/object-hash": "3.0.6",
