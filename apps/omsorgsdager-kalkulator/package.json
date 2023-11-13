@@ -14,10 +14,10 @@
         "test:e2e": "playwright test"
     },
     "dependencies": {
-        "@navikt/ds-css": "^5.2.1",
-        "@navikt/ds-icons": "^3.4.3",
-        "@navikt/ds-react": "^5.2.1",
-        "@navikt/ds-tailwind": "^5.2.1",
+        "@navikt/ds-css": "5.10.1",
+        "@navikt/ds-icons": "3.4.3",
+        "@navikt/ds-react": "5.10.1",
+        "@navikt/ds-tailwind": "5.10.1",
         "@navikt/nav-dekoratoren-moduler": "1.6.9",
         "classnames": "^2.3.2",
         "dayjs": "1.11.10",
@@ -29,22 +29,21 @@
         "react": "18.2.0",
         "react-day-picker": "^8.8.2",
         "react-dom": "18.2.0",
-        "react-intl": "^6.4.7",
+        "react-intl": "6.5.4",
         "sass": "^1.68.0",
         "uuid": "^9.0.1"
     },
     "devDependencies": {
-        "@axe-core/playwright": "^4.7.3",
+        "@axe-core/playwright": "4.8.1",
         "@playwright/test": "^1.39.0",
         "@types/node": "20.6.5",
-        "@types/react": "18.2.24",
-        "@types/react-dom": "18.2.7",
-        "@types/uuid": "9.0.4",
-        "config": "workspace:*",
+        "@types/react": "18.2.37",
+        "@types/react-dom": "18.2.15",
+        "@types/uuid": "9.0.7",
         "eslint": "8.51.0",
         "eslint-config-next": "13.5.4",
         "postcss": "8.4.31",
-        "tailwindcss": "3.3.3",
+        "tailwindcss": "3.3.5",
         "typescript": "5.2.2"
     }
 }
