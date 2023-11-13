@@ -11,6 +11,6 @@
         "NEXT_PUBLIC_DEKORATOR_ENV": "dev",
         "NEXT_PUBLIC_ENVIRONMENT": "dev",
         "NPM_CONFIG_CACHE": "/tmp",
-        "NEXT_PUBLIC_BASE_PATH": ""
+        "NEXT_PUBLIC_BASE_PATH": "/omsorgspenger/kalkulator-antall-omsorgsdager"
     }
 }

@@ -7,6 +7,15 @@ const nextConfig = {
         locales: ['nb'],
         defaultLocale: 'nb',
     },
+    async redirects() {
+        return [
+            {
+                source: '/beregne',
+                destination: '/',
+                permanent: true,
+            },
+        ];
+    },
 };
 
 module.exports = nextConfig;
