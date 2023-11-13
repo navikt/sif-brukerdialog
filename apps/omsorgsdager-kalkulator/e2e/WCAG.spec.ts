@@ -6,8 +6,8 @@ const year = new Date().getFullYear();
 test('Gå igjennom kalkulatoren og sjekk WCAG', async ({ page }) => {
     await page.goto('http://localhost:8080/');
 
-    await page.getByRole('button', { name: 'Hva betyr dette?' }).click();
-    await page.getByLabel('Hvor mange av barna dine bor hos deg?').selectOption('1');
+    await page.getByRole('button', { name: 'Hva betyr egne barn?' }).click();
+    await page.getByLabel('Hvor mange egne barn bor med deg?').selectOption('1');
     await page.getByRole('button', { name: 'Hvorfor spør vi om det?' }).click();
     await page.getByLabel('Hvilket årstall er barnet født?').selectOption(year.toString());
     await page.getByLabel('Ja').check();

@@ -40,7 +40,7 @@ test('Test text info part', async ({ page }) => {
 test('Test kalkulator 1 barn', async ({ page }) => {
     await page.goto('http://localhost:8080/');
 
-    await page.getByLabel('Hvor mange av barna dine bor hos deg?').selectOption('1');
+    await page.getByLabel('Hvor mange egne barn bor med deg?').selectOption('1');
 
     await page.getByLabel('Hvilket årstall er barnet født?').selectOption(year.toString());
 
@@ -78,7 +78,7 @@ test('Test kalkulator 1 barn', async ({ page }) => {
 test('Test kalkulator Barn bor ikke fast med', async ({ page }) => {
     await page.goto('http://localhost:8080/');
 
-    await page.getByLabel('Hvor mange av barna dine bor hos deg?').selectOption('1');
+    await page.getByLabel('Hvor mange egne barn bor med deg?').selectOption('1');
 
     await page.getByLabel('Hvilket årstall er barnet født?').selectOption(year.toString());
 
@@ -96,7 +96,7 @@ test('Test kalkulator Barn bor ikke fast med', async ({ page }) => {
 test('Test kalkulator Barn 18 år', async ({ page }) => {
     await page.goto('http://localhost:8080/');
 
-    await page.getByLabel('Hvor mange av barna dine bor hos deg?').selectOption('1');
+    await page.getByLabel('Hvor mange egne barn bor med deg?').selectOption('1');
 
     await page.getByLabel('Hvilket årstall er barnet født?').selectOption((year - 19).toString());
 
@@ -114,7 +114,7 @@ test('Test kalkulator Barn 18 år', async ({ page }) => {
 test('Test kalkulator Barn 13 år', async ({ page }) => {
     await page.goto('http://localhost:8080/');
 
-    await page.getByLabel('Hvor mange av barna dine bor hos deg?').selectOption('1');
+    await page.getByLabel('Hvor mange egne barn bor med deg?').selectOption('1');
 
     await page.getByLabel('Hvilket årstall er barnet født?').selectOption((year - 13).toString());
 
@@ -160,7 +160,7 @@ test('Test kalkulator Barn 13 år', async ({ page }) => {
 test('Test kalkulator 2 barn test paneler', async ({ page }) => {
     await page.goto('http://localhost:8080/');
 
-    await page.getByLabel('Hvor mange av barna dine bor hos deg?').selectOption('2');
+    await page.getByLabel('Hvor mange egne barn bor med deg?').selectOption('2');
     await page
         .locator('div')
         .filter({ hasText: /^Barn 1Vis mer$/ })

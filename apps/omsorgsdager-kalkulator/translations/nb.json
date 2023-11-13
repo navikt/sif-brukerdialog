@@ -16,9 +16,9 @@
     },
 
     "kalkulator": {
-        "antallBarn": "Hvor mange av barna dine bor hos deg?",
-        "antallBarn.readMore.title": "Hva betyr dette?",
-        "antallBarn.readMore": "Vi må vite hvor mange av barna dine som bor hos deg, det vil si barn som du er juridisk forelder til og eventuelle fosterbarn som bor fast hos deg."
+        "antallBarn": "Hvor mange egne barn bor med deg?",
+        "antallBarn.readMore.title": "Hva betyr egne barn?",
+        "antallBarn.readMore": "Med egne barn mener vi biologiske barn, adoptivbarn og fosterbarn."
     },
 
     "barn": {
@@ -59,12 +59,8 @@
         "green.grunnrett.title": "Grunnrett",
         "green.grunnrett": "Grunnrett for {antallBarn} barn",
         "green.aleneomsorg": "Ekstra pga. aleneomsorg",
-        "green.barnKroniskSyk.title": "Barn med kronisk sykdom",
-        "green.barnKroniskSyk": "Barn {navn} med kronisk sykdom",
-        "green.2.1.1": "{result} dager for {antall} barn i egen husstand.",
-        "green.2.1.2": "{result} ekstra dager på grunn av aleneomsorg for {antall} barn.",
-        "green.2.1.3": "{result} ekstra dager på grunn av aleneomsorg og kronisk/langvarig sykdom eller funksjonshemning for {antall} barn.",
-        "green.2.1.4": "{result} ekstra dager på grunn av kronisk/langvarig sykdom eller funksjonshemning for {antall} barn.",
+        "green.barnKroniskSyk.title": "Barn med langvarig sykdom",
+        "green.barnKroniskSyk": "Barn {navn} med langvarig sykdom",
         "green.2.1.a": "{result} omsorgsdager",
         "green.2.1.b": "i {year}",
         "green.dager": "{antallDager} dager",

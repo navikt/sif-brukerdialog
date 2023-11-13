@@ -190,8 +190,8 @@ const ResultatArea: React.FC<Props> = ({ resultView }: Props) => {
                                 </ExpansionCard>
                             </div>
                         </VStack>
-                        <BodyLong className="pb-9 text-justify">
-                            <FormattedMessage id={'resultat-area.green.3.1'} values={{ year }} />
+                        <BodyLong className="pb-9">
+                            <FormattedMessage id={'resultat-area.green.3.1'} />
                         </BodyLong>
                         <BodyLong>
                             <Link href={lenker.omsorgspengerNavno}>
