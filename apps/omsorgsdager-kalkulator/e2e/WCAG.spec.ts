@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 
 const year = new Date().getFullYear();
 
-test('Gå igjennom kalkulatoren og sjekk WCAG', async ({ page }) => {
+test('Gå gjennom kalkulatoren og sjekk WCAG', async ({ page }) => {
     await page.goto('http://localhost:8080/');
 
     await page.getByRole('button', { name: 'Hva betyr egne barn?' }).click();
