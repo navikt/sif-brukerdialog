@@ -19,6 +19,17 @@ server/dist
 public/dist
 out
 
+# next.js
+/.next/
+/out/
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
 packages/**/*/coverage
 packages/**/*/lib
 **/cypress/videos/**/*

@@ -16,6 +16,7 @@ on:
                     - pleiepenger-i-livets-sluttfase-soknad
                     - pleiepenger-sykt-barn
                     - sif-ettersending
+                    - omsorgsdager-kalkulator
                 required: true
 
 jobs:

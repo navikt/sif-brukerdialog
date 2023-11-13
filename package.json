@@ -47,6 +47,7 @@
         "build-omsorgspengerutbetaling-soknad": "turbo run build-app --filter=@navikt/omsorgspengerutbetaling-soknad",
         "e2e-omsorgspengerutbetaling-soknad": "turbo run ci --filter=@navikt/omsorgspengerutbetaling-soknad",
         "build-pleiepenger-i-livets-sluttfase-soknad": "turbo run build-app --filter=@navikt/pleiepenger-i-livets-sluttfase-soknad",
+        "build-omsorgsdager-kalkulator": "turbo run build --filter=@navikt/omsorgsdager-kalkulator",
         "ba": "turbo run build-app",
         "clean": "turbo run clean",
         "clean-all": "turbo run clean && rm -rf node_modules",
