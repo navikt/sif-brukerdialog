@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 2.14.10
+
+### Patch Changes
+
+-   09ae5814: Patch-oppdateringer
+
 ## 2.14.9
 
 ### Patch Changes
