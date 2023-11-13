@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 const year = new Date().getFullYear();
 
 test('Test text info part', async ({ page }) => {
-    await page.goto('http://localhost:8080/');
+    await page.goto('http://localhost:8080/omsorgspenger/kalkulator-antall-omsorgsdager');
 
     const appTitle = page.getByRole('heading', {
         name: 'Kalkulator for omsorgsdager',
@@ -38,7 +38,7 @@ test('Test text info part', async ({ page }) => {
 });
 
 test('Test kalkulator 1 barn', async ({ page }) => {
-    await page.goto('http://localhost:8080/');
+    await page.goto('http://localhost:8080/omsorgspenger/kalkulator-antall-omsorgsdager');
 
     await page.getByLabel('Hvor mange egne barn bor med deg?').selectOption('1');
 
@@ -76,7 +76,7 @@ test('Test kalkulator 1 barn', async ({ page }) => {
 });
 
 test('Test kalkulator Barn bor ikke fast med', async ({ page }) => {
-    await page.goto('http://localhost:8080/');
+    await page.goto('http://localhost:8080/omsorgspenger/kalkulator-antall-omsorgsdager');
 
     await page.getByLabel('Hvor mange egne barn bor med deg?').selectOption('1');
 
@@ -94,7 +94,7 @@ test('Test kalkulator Barn bor ikke fast med', async ({ page }) => {
 });
 
 test('Test kalkulator Barn 18 år', async ({ page }) => {
-    await page.goto('http://localhost:8080/');
+    await page.goto('http://localhost:8080/omsorgspenger/kalkulator-antall-omsorgsdager');
 
     await page.getByLabel('Hvor mange egne barn bor med deg?').selectOption('1');
 
@@ -112,7 +112,7 @@ test('Test kalkulator Barn 18 år', async ({ page }) => {
 });
 
 test('Test kalkulator Barn 13 år', async ({ page }) => {
-    await page.goto('http://localhost:8080/');
+    await page.goto('http://localhost:8080/omsorgspenger/kalkulator-antall-omsorgsdager');
 
     await page.getByLabel('Hvor mange egne barn bor med deg?').selectOption('1');
 
@@ -158,7 +158,7 @@ test('Test kalkulator Barn 13 år', async ({ page }) => {
 });
 
 test('Test kalkulator 2 barn test paneler', async ({ page }) => {
-    await page.goto('http://localhost:8080/');
+    await page.goto('http://localhost:8080/omsorgspenger/kalkulator-antall-omsorgsdager');
 
     await page.getByLabel('Hvor mange egne barn bor med deg?').selectOption('2');
     await page

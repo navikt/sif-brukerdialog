@@ -4,7 +4,7 @@ import { expect, test } from '@playwright/test';
 const year = new Date().getFullYear();
 
 test('Gå gjennom kalkulatoren og sjekk WCAG', async ({ page }) => {
-    await page.goto('http://localhost:8080/');
+    await page.goto('http://localhost:8080/omsorgspenger/kalkulator-antall-omsorgsdager');
 
     await page.getByRole('button', { name: 'Hva betyr egne barn?' }).click();
     await page.getByLabel('Hvor mange egne barn bor med deg?').selectOption('1');
