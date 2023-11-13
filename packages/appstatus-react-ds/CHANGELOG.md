@@ -1,5 +1,47 @@
 # @navikt/appstatus-react-ds
 
+## 2.14.10
+
+### Patch Changes
+
+-   09ae5814: Patch-oppdateringer
+
+## 2.14.9
+
+### Patch Changes
+
+-   b4d45cf9: Diverse mindre pakkeoppdateringer
+
+## 2.14.8
+
+### Patch Changes
+
+-   cb7e6653: Oppdatere ds pakker etter at versjon 5.9.1 hadde feil. Fikset i v. 5.9.2
+
+## 2.14.7
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
+## 2.14.6
+
+### Patch Changes
+
+-   Pakkeoppdatering som fikser datepicker + modal bug
+
+## 2.14.5
+
+### Patch Changes
+
+-   71381778: Patch pakkeoppdateringer
+
+## 2.14.4
+
+### Patch Changes
+
+-   60eb7ee9: Pakkeoppdateringer. Endret import av DatePickerProps i sif-common-formik-ds
+
 ## 2.14.3
 
 ### Patch Changes

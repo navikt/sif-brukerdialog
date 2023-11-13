@@ -1,5 +1,66 @@
 # @navikt/sif-common-formik-ds
 
+## 1.2.2
+
+### Patch Changes
+
+-   09ae5814: Patch-oppdateringer
+
+## 1.2.1
+
+### Patch Changes
+
+-   b4d45cf9: Diverse mindre pakkeoppdateringer
+
+## 1.2.0
+
+### Minor Changes
+
+-   e815a9a8: Endre rolle til button for FileDropInput div.
+
+## 1.1.6
+
+### Patch Changes
+
+-   afe04538: Fjerne default verdi for disableWeekends i FormikDatepicker. Var satt til true, blir nå undefined.
+
+## 1.1.5
+
+### Patch Changes
+
+-   1d7c508f: Feilfiks når maks og min dato er på samme dag. Da ble undefined returnert, noe som igjen førte til at dropdownCaption ikke virket som forventet. Nå returneres alltid en min eller maks dato dersom dette er satt.
+
+## 1.1.4
+
+### Patch Changes
+
+-   5c44f78b: Legge til manglende default valideringstekst når tekst har ugyldig format
+-   cb7e6653: Oppdatere ds pakker etter at versjon 5.9.1 hadde feil. Fikset i v. 5.9.2
+
+## 1.1.3
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
+## 1.1.2
+
+### Patch Changes
+
+-   Pakkeoppdatering som fikser datepicker + modal bug
+
+## 1.1.1
+
+### Patch Changes
+
+-   71381778: Patch pakkeoppdateringer
+
+## 1.1.0
+
+### Minor Changes
+
+-   60eb7ee9: Pakkeoppdateringer. Endret import av DatePickerProps i sif-common-formik-ds
+
 ## 1.0.5
 
 ### Patch Changes

@@ -1,16 +1,16 @@
+import { Heading } from '@navikt/ds-react';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
+import { ISODurationToDecimalDuration, dateToISODate } from '@navikt/sif-common-utils/lib';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import { TidEnkeltdager } from '../../../../local-sif-common-pleiepenger';
 import {
     ArbeidIPeriodeApiData,
     ArbeidsforholdApiData,
     TidEnkeltdagApiData,
 } from '../../../../types/søknadApiData/SøknadApiData';
 import { JobberIPeriodeSvar } from '../../arbeidstid/ArbeidstidTypes';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import { TidEnkeltdager } from '../../../../local-sif-common-pleiepenger';
-import { ISODurationToDecimalDuration, dateToISODate } from '@navikt/sif-common-utils/lib';
-import { Heading } from '@navikt/ds-react';
 
 interface Props {
     periode: DateRange;
@@ -50,13 +50,15 @@ const ArbeidIPeriodeSummaryItem: React.FC<Props> = ({ arbeidIPeriode, dagerMedPl
                 </p>
             )}
 
-            {arbeidIPeriode.enkeltdager && (
+            {arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.redusert && arbeidIPeriode.enkeltdager && (
                 <Block margin="xl">
                     <Heading size="xsmall" level="4" spacing={true}>
-                        Dager hvor jeg skal jobbe
+                        Dager med pleiepenger hvor jeg skal jobbe
                     </Heading>
                     <TidEnkeltdager
                         dager={fjernDagerIkkeSøktForOgUtenArbeidstid(arbeidIPeriode.enkeltdager, dagerMedPleie)}
+                        renderAsAccordion={false}
+                        visUke={false}
                     />
                 </Block>
             )}

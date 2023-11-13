@@ -207,7 +207,6 @@ const ArbeidssituasjonStep = () => {
                                         legend={intlHelper(intl, 'steg.arbeidssituasjon.opptjeningUtland.spm')}
                                         name={ArbeidssituasjonFormFields.harOpptjeningUtland}
                                         validate={getYesOrNoValidator()}
-                                        data-testid="opptjeningUtland.spm"
                                     />
                                     {harOpptjeningUtland === YesOrNo.YES && (
                                         <FormBlock>
@@ -217,9 +216,18 @@ const ArbeidssituasjonStep = () => {
                                                 name={ArbeidssituasjonFormFields.opptjeningUtland}
                                                 validate={getListValidator({ required: true })}
                                                 labels={{
-                                                    addLabel: 'Legg til jobb i et annet EØS-land',
-                                                    listTitle: 'Registrert jobb i et annet EØS-land',
-                                                    modalTitle: 'Jobbet i et annet EØS-land',
+                                                    addLabel: intlHelper(
+                                                        intl,
+                                                        'steg.arbeidssituasjon.opptjeningUtland.addLabel',
+                                                    ),
+                                                    listTitle: intlHelper(
+                                                        intl,
+                                                        'steg.arbeidssituasjon.opptjeningUtland.listTitle',
+                                                    ),
+                                                    modalTitle: intlHelper(
+                                                        intl,
+                                                        'steg.arbeidssituasjon.opptjeningUtland.modalTitle',
+                                                    ),
                                                 }}
                                             />
                                         </FormBlock>
@@ -229,7 +237,6 @@ const ArbeidssituasjonStep = () => {
                                             legend={intlHelper(intl, 'steg.arbeidssituasjon.utenlandskNæring.spm')}
                                             name={ArbeidssituasjonFormFields.harUtenlandskNæring}
                                             validate={getYesOrNoValidator()}
-                                            data-testid="utenlandskNæring.spm"
                                         />
                                         {harUtenlandskNæring === YesOrNo.YES && (
                                             <FormBlock>
@@ -239,23 +246,15 @@ const ArbeidssituasjonStep = () => {
                                                     labels={{
                                                         addLabel: intlHelper(
                                                             intl,
-                                                            'steg.arbeidssituasjon.utenlandskNæring.infoDialog.registrerKnapp',
+                                                            'steg.arbeidssituasjon.utenlandskNæring.addLabel',
                                                         ),
-                                                        deleteLabel: intlHelper(
+                                                        listTitle: intlHelper(
                                                             intl,
-                                                            'steg.arbeidssituasjon.utenlandskNæring.infoDialog.fjernKnapp',
-                                                        ),
-                                                        editLabel: intlHelper(
-                                                            intl,
-                                                            'steg.arbeidssituasjon.utenlandskNæring.infoDialog.endreKnapp',
-                                                        ),
-                                                        infoTitle: intlHelper(
-                                                            intl,
-                                                            'steg.arbeidssituasjon.utenlandskNæring.infoDialog.infoTittel',
+                                                            'steg.arbeidssituasjon.utenlandskNæring.listTitle',
                                                         ),
                                                         modalTitle: intlHelper(
                                                             intl,
-                                                            'steg.arbeidssituasjon.utenlandskNæring.infoDialog.modal.tittel',
+                                                            'steg.arbeidssituasjon.utenlandskNæring.modalTitle',
                                                         ),
                                                     }}
                                                 />
@@ -288,7 +287,6 @@ const ArbeidssituasjonStep = () => {
                                                         <FormattedMessage id="steg.arbeidssituasjon.verneplikt.info.tekst" />
                                                     </ExpandableInfo>
                                                 }
-                                                data-testid="harVærtEllerErVernepliktig"
                                             />
                                         </Block>
                                     </FormBlock>

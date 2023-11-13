@@ -1,5 +1,47 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.7.10
+
+### Patch Changes
+
+-   09ae5814: Patch-oppdateringer
+
+## 10.7.9
+
+### Patch Changes
+
+-   b4d45cf9: Diverse mindre pakkeoppdateringer
+
+## 10.7.8
+
+### Patch Changes
+
+-   cb7e6653: Oppdatere ds pakker etter at versjon 5.9.1 hadde feil. Fikset i v. 5.9.2
+
+## 10.7.7
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
+## 10.7.6
+
+### Patch Changes
+
+-   Pakkeoppdatering som fikser datepicker + modal bug
+
+## 10.7.5
+
+### Patch Changes
+
+-   71381778: Patch pakkeoppdateringer
+
+## 10.7.4
+
+### Patch Changes
+
+-   60eb7ee9: Pakkeoppdateringer. Endret import av DatePickerProps i sif-common-formik-ds
+
 ## 10.7.3
 
 ### Patch Changes

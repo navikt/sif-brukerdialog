@@ -1,5 +1,152 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 1.1.4
+
+### Patch Changes
+
+-   09ae5814: Patch-oppdateringer
+-   Updated dependencies [09ae5814]
+    -   @navikt/sif-common-formik-ds@1.2.2
+    -   @navikt/sif-common-soknad-ds@10.7.10
+    -   @navikt/sif-common-forms-ds@8.11.3
+    -   @navikt/sif-common-core-ds@9.8.10
+    -   @navikt/sif-common-utils@3.40.11
+    -   @navikt/sif-common-ui@0.0.17
+
+## 1.1.3
+
+### Patch Changes
+
+-   b4d45cf9: Diverse mindre pakkeoppdateringer
+-   Updated dependencies [b4d45cf9]
+    -   @navikt/sif-common-amplitude@2.21.9
+    -   @navikt/sif-common-formik-ds@1.2.1
+    -   @navikt/sif-common-soknad-ds@10.7.9
+    -   @navikt/sif-common-forms-ds@8.11.2
+    -   @navikt/sif-common-core-ds@9.8.9
+    -   @navikt/sif-common-sentry@0.22.6
+    -   @navikt/sif-common-utils@3.40.10
+    -   @navikt/sif-common-ui@0.0.16
+
+## 1.1.2
+
+### Patch Changes
+
+-   Updated dependencies [e815a9a8]
+    -   @navikt/sif-common-formik-ds@1.2.0
+    -   @navikt/sif-common-core-ds@9.8.8
+    -   @navikt/sif-common-forms-ds@8.11.1
+    -   @navikt/sif-common-soknad-ds@10.7.8
+    -   @navikt/sif-common-ui@0.0.15
+
+## 1.1.1
+
+### Patch Changes
+
+-   Updated dependencies [66c8522a]
+    -   @navikt/sif-common-forms-ds@8.11.1
+
+## 1.1.0
+
+### Minor Changes
+
+-   ce769b8e: Endre UtenlandskNæringListAndDialog til å eksponere ModalFormAndListLabels, ikke ModalFormAndInfoLabels (som var feil)
+
+### Patch Changes
+
+-   Updated dependencies [ce769b8e]
+-   Updated dependencies [afe04538]
+    -   @navikt/sif-common-forms-ds@8.11.0
+    -   @navikt/sif-common-formik-ds@1.1.6
+    -   @navikt/sif-common-core-ds@9.8.8
+    -   @navikt/sif-common-soknad-ds@10.7.8
+    -   @navikt/sif-common-ui@0.0.14
+
+## 1.0.13
+
+### Patch Changes
+
+-   Updated dependencies [1d7c508f]
+    -   @navikt/sif-common-formik-ds@1.1.5
+    -   @navikt/sif-common-core-ds@9.8.8
+    -   @navikt/sif-common-forms-ds@8.10.0
+    -   @navikt/sif-common-soknad-ds@10.7.8
+    -   @navikt/sif-common-ui@0.0.13
+
+## 1.0.12
+
+### Patch Changes
+
+-   cb7e6653: Oppdatere ds pakker etter at versjon 5.9.1 hadde feil. Fikset i v. 5.9.2
+-   Updated dependencies [5c44f78b]
+-   Updated dependencies [5c44f78b]
+-   Updated dependencies [cb7e6653]
+    -   @navikt/sif-common-forms-ds@8.10.0
+    -   @navikt/sif-common-formik-ds@1.1.4
+    -   @navikt/sif-common-amplitude@2.21.8
+    -   @navikt/sif-common-soknad-ds@10.7.8
+    -   @navikt/sif-common-core-ds@9.8.8
+    -   @navikt/sif-common-utils@3.40.9
+    -   @navikt/sif-common-ui@0.0.12
+
+## 1.0.10
+
+### Patch Changes
+
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.21.7
+    -   @navikt/sif-common-formik-ds@1.1.3
+    -   @navikt/sif-common-soknad-ds@10.7.7
+    -   @navikt/sif-common-forms-ds@8.9.7
+    -   @navikt/sif-common-core-ds@9.8.7
+    -   @navikt/sif-common-sentry@0.22.5
+    -   @navikt/sif-common-utils@3.40.8
+    -   @navikt/sif-common-ui@0.0.11
+
+## 1.0.9
+
+### Patch Changes
+
+-   Pakkeoppdatering som fikser datepicker + modal bug
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.21.6
+    -   @navikt/sif-common-formik-ds@1.1.2
+    -   @navikt/sif-common-soknad-ds@10.7.6
+    -   @navikt/sif-common-forms-ds@8.9.6
+    -   @navikt/sif-common-core-ds@9.8.6
+    -   @navikt/sif-common-utils@3.40.7
+    -   @navikt/sif-common-ui@0.0.10
+
+## 1.0.8
+
+### Patch Changes
+
+-   71381778: Patch pakkeoppdateringer
+-   Updated dependencies [71381778]
+    -   @navikt/sif-common-amplitude@2.21.5
+    -   @navikt/sif-common-formik-ds@1.1.1
+    -   @navikt/sif-common-soknad-ds@10.7.5
+    -   @navikt/sif-common-forms-ds@8.9.5
+    -   @navikt/sif-common-core-ds@9.8.5
+    -   @navikt/sif-common-sentry@0.22.4
+    -   @navikt/sif-common-utils@3.40.6
+    -   @navikt/sif-common-ui@0.0.9
+
+## 1.0.7
+
+### Patch Changes
+
+-   60eb7ee9: Pakkeoppdateringer. Endret import av DatePickerProps i sif-common-formik-ds
+-   Updated dependencies [60eb7ee9]
+    -   @navikt/sif-common-formik-ds@1.1.0
+    -   @navikt/sif-common-amplitude@2.21.4
+    -   @navikt/sif-common-soknad-ds@10.7.4
+    -   @navikt/sif-common-forms-ds@8.9.4
+    -   @navikt/sif-common-core-ds@9.8.4
+    -   @navikt/sif-common-sentry@0.22.3
+    -   @navikt/sif-common-utils@3.40.5
+    -   @navikt/sif-common-ui@0.0.8
+
 ## 1.0.6
 
 ### Patch Changes

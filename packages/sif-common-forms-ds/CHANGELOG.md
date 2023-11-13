@@ -1,5 +1,63 @@
 # @navikt/sif-common-forms-ds
 
+## 8.11.3
+
+### Patch Changes
+
+-   09ae5814: Patch-oppdateringer
+
+## 8.11.2
+
+### Patch Changes
+
+-   b4d45cf9: Diverse mindre pakkeoppdateringer
+
+## 8.11.1
+
+### Patch Changes
+
+-   66c8522a: Legge til manglende tekst for regnskapsfører telefon i virksomhetform
+
+## 8.11.0
+
+### Minor Changes
+
+-   ce769b8e: Endre UtenlandskNæringListAndDialog til å eksponere ModalFormAndListLabels, ikke ModalFormAndInfoLabels (som var feil)
+
+## 8.10.0
+
+### Minor Changes
+
+-   5c44f78b: Bytte regexp på telefonnummer til regnskapsfører, som nå tillater kun + space og tall. Noen tekstendringer.
+
+### Patch Changes
+
+-   cb7e6653: Oppdatere ds pakker etter at versjon 5.9.1 hadde feil. Fikset i v. 5.9.2
+
+## 8.9.7
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
+## 8.9.6
+
+### Patch Changes
+
+-   Pakkeoppdatering som fikser datepicker + modal bug
+
+## 8.9.5
+
+### Patch Changes
+
+-   71381778: Patch pakkeoppdateringer
+
+## 8.9.4
+
+### Patch Changes
+
+-   60eb7ee9: Pakkeoppdateringer. Endret import av DatePickerProps i sif-common-formik-ds
+
 ## 8.9.3
 
 ### Patch Changes

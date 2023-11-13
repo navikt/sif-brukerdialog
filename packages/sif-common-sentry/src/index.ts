@@ -2,8 +2,6 @@ import * as Sentry from '@sentry/browser';
 import { SeverityLevel } from '@sentry/types';
 import { AxiosError } from 'axios';
 
-const window = global as any;
-
 export enum SentryEnvironment {
     LOCALHOST = 'LOCALHOST',
     q = 'q',
@@ -40,6 +38,10 @@ const logApiCallErrorToSentryOrConsole = (error: AxiosError, application: string
     const headers = error?.response?.headers;
     const maybeXRequestId: string | undefined = headers ? headers['x-request-id'] : undefined;
     const errorMsg: string | undefined = error?.message;
+
+    if (['0', '401'].includes(`${error.response?.status || ''}`)) {
+        return;
+    }
 
     logToSentryOrConsole('Api call error', 'fatal', application, {
         XRequestId: maybeXRequestId || undefined,

@@ -26,7 +26,7 @@ export interface TidFasteDagerApiData {
 
 export interface ArbeidIPeriodeApiData {
     jobberIPerioden: JobberIPeriodeSvar;
-    enkeltdager?: TidEnkeltdagApiData[];
+    enkeltdager: TidEnkeltdagApiData[];
 }
 
 export interface ArbeidsforholdApiData {
@@ -95,11 +95,6 @@ export interface OpptjeningIUtlandetApi {
     tilOgMed: ISODate;
 }
 
-export interface FerieuttakIPeriodenApiData {
-    skalTaUtFerieIPerioden: boolean;
-    ferieuttak: PeriodeApiData[];
-}
-
 export interface UtenlandsoppholdIPeriodenApi {
     skalOppholdeSegIUtlandetIPerioden: boolean;
     opphold: UtenlandsoppholdIPeriodenApiData[];
@@ -129,10 +124,11 @@ export interface SøknadApiData {
     pleietrengende: PleietrengendeApi;
     fraOgMed: ISODate;
     tilOgMed: ISODate;
+    dagerMedPleie: ISODate[];
     pleierDuDenSykeHjemme: boolean;
+    skalJobbeOgPleieSammeDag: boolean;
     flereSokere: FlereSokereApiData;
     utenlandsoppholdIPerioden?: UtenlandsoppholdIPeriodenApi;
-    ferieuttakIPerioden?: FerieuttakIPeriodenApiData;
     arbeidsgivere?: ArbeidsgiverApiData[];
     frilans?: FrilansApiData;
     selvstendigNæringsdrivende?: SelvstendigNæringsdrivendeApiData;

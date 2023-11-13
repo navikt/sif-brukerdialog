@@ -18,7 +18,7 @@ jobs:
               uses: actions/checkout@v4
 
             - name: Setup Node.js environment
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
                   node-version: 18
                   cache: 'yarn'
@@ -30,7 +30,7 @@ jobs:
               run: yarn test --filter=pleiepenger-sykt-barn
 
             - name: Build and start e2e server
-              uses: cypress-io/github-action@v6.5.0
+              uses: cypress-io/github-action@v6.6.0
               env:
                   DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
                   PUBLIC_PATH: /familie/sykdom-i-familien/soknad/pleiepenger
@@ -51,10 +51,12 @@ jobs:
         name: Deploy pleiepenger-sykt-barn to prod
         needs: [run-tests]
         uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-prod.yml@main
+        secrets: inherit
         permissions:
-          packages: write
-        secrets:
-            NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          contents: write
+          security-events: write
+          id-token: write
+          actions: read
         with:
             app-name: 'pleiepenger-sykt-barn'
             working-directory: 'apps/pleiepenger-sykt-barn'

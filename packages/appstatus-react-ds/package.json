@@ -5,19 +5,19 @@
     "main": "lib/index.js",
     "name": "@navikt/appstatus-react-ds",
     "types": "lib/index.d.js",
-    "version": "2.14.3",
+    "version": "2.14.10",
     "private": true,
     "dependencies": {
         "@navikt/sif-common-hooks": "workspace:*",
-        "@portabletext/react": "3.0.9",
-        "@sanity/client": "6.4.12"
+        "@portabletext/react": "3.0.11",
+        "@sanity/client": "6.8.0"
     },
     "devDependencies": {
-        "@navikt/ds-css": "5.6.3",
-        "@navikt/ds-react": "5.6.3",
-        "@types/node": "20.8.3",
-        "@types/react": "18.2.25",
-        "@types/react-dom": "18.2.11",
+        "@navikt/ds-css": "5.10.1",
+        "@navikt/ds-react": "5.10.1",
+        "@types/node": "20.9.0",
+        "@types/react": "18.2.37",
+        "@types/react-dom": "18.2.15",
         "config": "workspace:*",
         "copyfiles": "2.4.1",
         "postcss": "8.4.31",
@@ -25,7 +25,7 @@
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "rimraf": "5.0.5",
-        "sass": "1.69.0"
+        "sass": "1.69.5"
     },
     "scripts": {
         "build-package": "npm-run-all compile-lib-script copy-files",

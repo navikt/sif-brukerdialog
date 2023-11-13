@@ -68,7 +68,6 @@ const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN, søknadsperiode }: 
                             </>
                         </ExpandableInfo>
                     }
-                    data-testid="harHattInntektSomSN"
                 />
             </Block>
             {harHattInntektSomSN === YesOrNo.YES && (
@@ -77,7 +76,6 @@ const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN, søknadsperiode }: 
                         name={SelvstendigFormFields.harFlereVirksomheter}
                         legend={intlHelper(intl, 'selvstendig.harFlereVirksomheter.spm')}
                         validate={getYesOrNoValidator()}
-                        data-testid="selvstendig.harFlereVirksomheter"
                     />
 
                     {søkerHarFlereVirksomheter && (
@@ -100,9 +98,7 @@ const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN, søknadsperiode }: 
                                     editLabel: intlHelper(intl, 'selvstendig.infoDialog.endreKnapp'),
                                     deleteLabel: intlHelper(intl, 'selvstendig.infoDialog.fjernKnapp'),
                                     addLabel: intlHelper(intl, 'selvstendig.infoDialog.registrerKnapp'),
-                                    modalTitle: harFlereVirksomheter
-                                        ? intlHelper(intl, 'selvstendig.infoDialog.tittel.flere')
-                                        : intlHelper(intl, 'selvstendig.infoDialog.tittel.en'),
+                                    modalTitle: intlHelper(intl, 'selvstendig.infoDialog.tittel'),
                                 }}
                                 validate={(value) => {
                                     if (getRequiredFieldValidator()(value) !== undefined) {
@@ -122,7 +118,6 @@ const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN, søknadsperiode }: 
                                     description={<InfoJobberNormaltTimerSN />}
                                     validate={getJobberNormaltTimerValidator(intlValues)}
                                     value={jobberNormaltTimer ? jobberNormaltTimer || '' : ''}
-                                    data-testid="Selvstendig.jobberNormaltTimer"
                                 />
                             </FormBlock>
                         </FormBlock>

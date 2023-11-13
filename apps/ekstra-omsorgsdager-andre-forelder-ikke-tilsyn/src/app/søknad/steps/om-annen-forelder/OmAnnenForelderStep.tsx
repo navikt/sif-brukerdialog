@@ -102,7 +102,6 @@ const OmAnnenForelderStep = () => {
                                         maxLength={11}
                                         minLength={11}
                                         style={{ maxWidth: '20rem' }}
-                                        data-testid="annenForelderFnr"
                                     />
                                 </FormBlock>
                                 <FormBlock>
@@ -126,7 +125,6 @@ const OmAnnenForelderStep = () => {
                                                 : undefined;
                                         }}
                                         style={{ maxWidth: '20rem' }}
-                                        data-testid="annenForelderNavn"
                                     />
                                 </FormBlock>
                             </Form>

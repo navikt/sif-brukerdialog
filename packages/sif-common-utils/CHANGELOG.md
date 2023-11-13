@@ -1,5 +1,47 @@
 # @navikt/sif-common-utils
 
+## 3.40.11
+
+### Patch Changes
+
+-   09ae5814: Patch-oppdateringer
+
+## 3.40.10
+
+### Patch Changes
+
+-   b4d45cf9: Diverse mindre pakkeoppdateringer
+
+## 3.40.9
+
+### Patch Changes
+
+-   cb7e6653: Oppdatere ds pakker etter at versjon 5.9.1 hadde feil. Fikset i v. 5.9.2
+
+## 3.40.8
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
+## 3.40.7
+
+### Patch Changes
+
+-   Pakkeoppdatering som fikser datepicker + modal bug
+
+## 3.40.6
+
+### Patch Changes
+
+-   71381778: Patch pakkeoppdateringer
+
+## 3.40.5
+
+### Patch Changes
+
+-   60eb7ee9: Pakkeoppdateringer. Endret import av DatePickerProps i sif-common-formik-ds
+
 ## 3.40.4
 
 ### Patch Changes

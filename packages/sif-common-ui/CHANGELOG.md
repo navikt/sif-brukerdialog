@@ -1,5 +1,99 @@
 # @navikt/sif-common-ui
 
+## 0.0.17
+
+### Patch Changes
+
+-   09ae5814: Patch-oppdateringer
+-   Updated dependencies [09ae5814]
+    -   @navikt/sif-common-formik-ds@1.2.2
+    -   @navikt/sif-common-core-ds@9.8.10
+    -   @navikt/sif-common-utils@3.40.11
+
+## 0.0.16
+
+### Patch Changes
+
+-   b4d45cf9: Diverse mindre pakkeoppdateringer
+-   Updated dependencies [b4d45cf9]
+    -   @navikt/sif-common-formik-ds@1.2.1
+    -   @navikt/sif-common-core-ds@9.8.9
+    -   @navikt/sif-common-utils@3.40.10
+
+## 0.0.15
+
+### Patch Changes
+
+-   Updated dependencies [e815a9a8]
+    -   @navikt/sif-common-formik-ds@1.2.0
+    -   @navikt/sif-common-core-ds@9.8.8
+
+## 0.0.14
+
+### Patch Changes
+
+-   Updated dependencies [afe04538]
+    -   @navikt/sif-common-formik-ds@1.1.6
+    -   @navikt/sif-common-core-ds@9.8.8
+
+## 0.0.13
+
+### Patch Changes
+
+-   Updated dependencies [1d7c508f]
+    -   @navikt/sif-common-formik-ds@1.1.5
+    -   @navikt/sif-common-core-ds@9.8.8
+
+## 0.0.12
+
+### Patch Changes
+
+-   cb7e6653: Oppdatere ds pakker etter at versjon 5.9.1 hadde feil. Fikset i v. 5.9.2
+-   Updated dependencies [5c44f78b]
+-   Updated dependencies [cb7e6653]
+    -   @navikt/sif-common-formik-ds@1.1.4
+    -   @navikt/sif-common-core-ds@9.8.8
+    -   @navikt/sif-common-utils@3.40.9
+
+## 0.0.11
+
+### Patch Changes
+
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.1.3
+    -   @navikt/sif-common-core-ds@9.8.7
+    -   @navikt/sif-common-utils@3.40.8
+
+## 0.0.10
+
+### Patch Changes
+
+-   Pakkeoppdatering som fikser datepicker + modal bug
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.1.2
+    -   @navikt/sif-common-core-ds@9.8.6
+    -   @navikt/sif-common-utils@3.40.7
+
+## 0.0.9
+
+### Patch Changes
+
+-   71381778: Patch pakkeoppdateringer
+-   Updated dependencies [71381778]
+    -   @navikt/sif-common-formik-ds@1.1.1
+    -   @navikt/sif-common-core-ds@9.8.5
+    -   @navikt/sif-common-utils@3.40.6
+
+## 0.0.8
+
+### Patch Changes
+
+-   60eb7ee9: Pakkeoppdateringer. Endret import av DatePickerProps i sif-common-formik-ds
+-   Updated dependencies [60eb7ee9]
+    -   @navikt/sif-common-formik-ds@1.1.0
+    -   @navikt/sif-common-core-ds@9.8.4
+    -   @navikt/sif-common-utils@3.40.5
+
 ## 0.0.7
 
 ### Patch Changes
