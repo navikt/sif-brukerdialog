@@ -3,8 +3,9 @@ import { DateRange } from '@navikt/sif-common-utils/lib';
 import { expect, Page } from '@playwright/test';
 import { format } from 'date-fns';
 import { StepID } from '../../../src/app/types/StepID';
-import { mellomlagring } from '../mock-data/mellomlagring-enkel';
+import { mellomlagringEnkel } from '../mock-data/mellomlagring-enkel';
 import { setupMockApi } from './setupMockApi';
+import { mellomlagringKomplett } from '../mock-data/mellomlagring-komplett';
 
 const rootUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger/soknad/';
 
@@ -16,9 +17,17 @@ const gotoStep = async (page: Page, route: StepID) => {
     await page.goto(getStepUrl(route));
 };
 
-const startOnStep = async (page: Page, step: StepID, søknadsperiode: DateRange, formValues: any = {}) => {
+const startOnStep = async (
+    page: Page,
+    step: StepID,
+    søknadsperiode: DateRange,
+    brukKomplettMellomlagring: boolean = false,
+    formValues?: any,
+) => {
     const periodeFra = format(søknadsperiode.from, 'yyyy-MM-dd');
     const periodeTil = format(søknadsperiode.to, 'yyyy-MM-dd');
+    const mellomlagring = brukKomplettMellomlagring ? mellomlagringKomplett : mellomlagringEnkel;
+
     const mellomlagringToUse = {
         ...mellomlagring,
         formValues: {

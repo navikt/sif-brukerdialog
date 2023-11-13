@@ -16,7 +16,7 @@ const gåTilOppsummering = async (page: Page) => {
     await page.waitForURL('**/oppsummering');
     await expect(await page.getByRole('heading', { name: 'Oppsummering' }).isVisible()).toBeTruthy();
 };
-const fyllUtArbeidsgiver = async (page: Page) => {
+const fyllUtAnsatt = async (page: Page) => {
     await page
         .getByRole('group', { name: 'Stemmer det at du er ansatt hos SJOKKERENDE ELEKTRIKER i perioden du søker for?' })
         .getByLabel('Ja')
@@ -24,6 +24,25 @@ const fyllUtArbeidsgiver = async (page: Page) => {
     await page
         .getByLabel('Hvor mange timer jobber du vanligvis hos SJOKKERENDE ELEKTRIKER? Oppgi tiden i et snitt per uke:')
         .fill('37,5');
+};
+
+const fyllUtAnsattSlutterIPerioden = async (page: Page) => {
+    await page
+        .getByRole('group', { name: 'Stemmer det at du er ansatt hos SJOKKERENDE ELEKTRIKER i perioden du søker for?' })
+        .getByLabel('Nei')
+        .check();
+    await page.getByRole('group', { name: 'Sluttet du hos SJOKKERENDE ELEKTRIKER før' }).getByLabel('Nei').check();
+    await page
+        .getByLabel('Hvor mange timer jobber du vanligvis hos SJOKKERENDE ELEKTRIKER? Oppgi tiden i et snitt per uke:')
+        .fill('37,5');
+};
+
+const fyllUtAnsattSluttetFørPeriode = async (page: Page) => {
+    await page
+        .getByRole('group', { name: 'Stemmer det at du er ansatt hos SJOKKERENDE ELEKTRIKER i perioden du søker for?' })
+        .getByLabel('Nei')
+        .check();
+    await page.getByRole('group', { name: 'Sluttet du hos SJOKKERENDE ELEKTRIKER før' }).getByLabel('Ja').check();
 };
 
 const fyllUtOmsorgsstønad = async (page: Page, søknadsperiode: DateRange) => {
@@ -71,7 +90,7 @@ const fyllUtFrilanser = async (page: Page, søknadsperiode: DateRange) => {
 };
 
 const fyllUtSelvstendigNæringsdrivende = async (page: Page, søknadsperiode: DateRange) => {
-    await page.getByLabel('Selvstendig næringsdrivende').getByLabel('Ja').check();
+    await page.getByLabel('Selvstendig næringsdrivende').getByLabel('Ja').first().check();
     await page
         .getByRole('group', { name: 'Har du flere enn én næringsvirksomhet som er aktiv?' })
         .getByLabel('Ja')
@@ -167,7 +186,7 @@ const fyllUtEøsSnDialog = async (page: Page, søknadsperiode: DateRange) => {
 };
 
 export const fyllUtArbeidssituasjonSteg = async (page: Page, søknadsperiode: DateRange) => {
-    await fyllUtArbeidsgiver(page);
+    await fyllUtAnsatt(page);
     await fyllUtOmsorgsstønad(page, søknadsperiode);
     await fyllUtFrilanser(page, søknadsperiode);
     await fyllUtSelvstendigNæringsdrivende(page, søknadsperiode);
@@ -177,7 +196,9 @@ export const fyllUtArbeidssituasjonSteg = async (page: Page, søknadsperiode: Da
 export const arbeidssituasjonSteg = {
     fyllUtArbeidssituasjonSteg,
     gåTilOppsummering,
-    fyllUtArbeidsgiver,
+    fyllUtAnsatt,
+    fyllUtAnsattSlutterIPerioden,
+    fyllUtAnsattSluttetFørPeriode,
     fyllUtOmsorgsstønad,
     fyllUtFrilanser,
     fyllUtSelvstendigNæringsdrivende,

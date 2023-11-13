@@ -1,4 +1,4 @@
-export const mellomlagring = {
+export const mellomlagringEnkel = {
     formValues: {
         periodeFra: '2023-09-10',
         periodeTil: '2023-10-08',

@@ -20,9 +20,6 @@ const OmsorgstilbudStep = ({ onValidSubmit, søknadsperiode }: StepCommonProps &
     const { values } = useFormikContext<SøknadFormValues>();
     const { omsorgstilbud } = values;
     const { persistSoknad } = usePersistSoknad();
-
-    console.log(values);
-    debugger;
     const [omsorgstilbudChanged, setOmsorgstilbudChanged] = useState(false);
     useEffect(() => {
         if (omsorgstilbudChanged === true) {
