@@ -5,8 +5,8 @@
     "team": "dusseldorf",
     "ingresses": ["https://www.nav.no/omsorgspenger/kalkulator-antall-omsorgsdager"],
     "externalHosts": ["www.nav.no"],
-    "livenessPath": "/api/internal/isAlive",
-    "readinessPath": "/api/internal/isReady",
+    "livenessPath": "/omsorgspenger/kalkulator-antall-omsorgsdager/api/internal/isAlive",
+    "readinessPath": "/omsorgspenger/kalkulator-antall-omsorgsdager/api/internal/isReady",
     "env": {
         "NEXT_PUBLIC_DEKORATOR_ENV": "prod",
         "NEXT_PUBLIC_ENVIRONMENT": "prod",
