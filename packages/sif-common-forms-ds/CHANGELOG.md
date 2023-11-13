@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 8.11.3
+
+### Patch Changes
+
+-   09ae5814: Patch-oppdateringer
+
 ## 8.11.2
 
 ### Patch Changes
