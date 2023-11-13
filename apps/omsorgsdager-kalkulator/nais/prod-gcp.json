@@ -10,7 +10,6 @@
     "env": {
         "NEXT_PUBLIC_DEKORATOR_ENV": "prod",
         "NEXT_PUBLIC_ENVIRONMENT": "prod",
-        "NPM_CONFIG_CACHE": "/tmp",
-        "NEXT_PUBLIC_BASE_PATH": "/omsorgspenger/kalkulator-antall-omsorgsdager"
+        "NPM_CONFIG_CACHE": "/tmp"
     }
 }
