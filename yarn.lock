@@ -3508,7 +3508,7 @@ __metadata:
     "@navikt/ds-react": 5.10.0
     "@navikt/sif-common-hooks": "workspace:*"
     "@portabletext/react": 3.0.11
-    "@sanity/client": 6.7.1
+    "@sanity/client": 6.8.0
     "@types/node": 20.9.0
     "@types/react": 18.2.37
     "@types/react-dom": 18.2.15
@@ -5741,14 +5741,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/client@npm:6.7.1":
-  version: 6.7.1
-  resolution: "@sanity/client@npm:6.7.1"
+"@sanity/client@npm:6.8.0":
+  version: 6.8.0
+  resolution: "@sanity/client@npm:6.8.0"
   dependencies:
     "@sanity/eventsource": ^5.0.0
+    "@vercel/stega": 0.1.0
     get-it: ^8.4.4
     rxjs: ^7.0.0
-  checksum: a216ddaa999dbcfcf6eb50b33a20bb4ef4638c29a75d7d03afbce43e1bcb636e9c18097d05a722e7381546a1bc1ecd22608919a469970380148440124c74036a
+  checksum: 0b4a6207728acb64dbaa48f92c0ea44854781fb6c1c81ab0de2cecde260132213e7031ae1db7796828e40fbdf97eec249c8112fccd9b1f111bdf9369aed4e637
   languageName: node
   linkType: hard
 
@@ -9275,6 +9276,13 @@ __metadata:
   version: 1.2.0
   resolution: "@ungap/structured-clone@npm:1.2.0"
   checksum: 4f656b7b4672f2ce6e272f2427d8b0824ed11546a601d8d5412b9d7704e83db38a8d9f402ecdf2b9063fc164af842ad0ec4a55819f621ed7e7ea4d1efcc74524
+  languageName: node
+  linkType: hard
+
+"@vercel/stega@npm:0.1.0":
+  version: 0.1.0
+  resolution: "@vercel/stega@npm:0.1.0"
+  checksum: 3752c444f222b069bcae7180e7c6d6f7a9da85ccc32173e6eadcc7d9a1f66f1f42215bd2ba12e8f133643a19932fd3d0dfd989cd31c42420c2342fed1a1cc1c5
   languageName: node
   linkType: hard
 
