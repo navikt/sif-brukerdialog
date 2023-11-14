@@ -4,7 +4,7 @@ import { apiVedleggIsInvalid, isOmsorgstilbudApiDataValid } from '../apiValuesVa
 
 jest.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => {
     return {
-        getEnvironmentVariable: () => 'http://localhost:8082',
+        getEnvironmentVariable: () => 'http://localhost:8089',
     };
 });
 

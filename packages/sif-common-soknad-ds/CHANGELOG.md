@@ -1,5 +1,17 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.7.10
+
+### Patch Changes
+
+-   09ae5814: Patch-oppdateringer
+
+## 10.7.9
+
+### Patch Changes
+
+-   b4d45cf9: Diverse mindre pakkeoppdateringer
+
 ## 10.7.8
 
 ### Patch Changes

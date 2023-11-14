@@ -4,7 +4,7 @@ import { UtenlandskNæringApi } from '../../../../types/søknadApiData/SøknadAp
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { prettifyApiDate } from '@navikt/sif-common-soknad-ds/lib/components/summary-answers/DatoSvar';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import { SummaryBlock } from '@navikt/sif-common-soknad-ds';
+import { SummaryBlock, SummaryList } from '@navikt/sif-common-soknad-ds';
 
 interface Props {
     utenlandskNæring: UtenlandskNæringApi[];
@@ -27,44 +27,34 @@ function UtenlandskNæringSummary({ utenlandskNæring }: Props) {
               });
         return (
             <Block margin="m" padBottom="l" key={næring.navnPåVirksomheten}>
-                <li>
-                    <div>
-                        {`${intlHelper(intl, 'sifForms.utenlandskNæringForm.summary.navn')}: ${
-                            næring.navnPåVirksomheten
-                        }.`}
-                    </div>
-                    <div>
-                        {`${intlHelper(intl, 'sifForms.utenlandskNæringForm.summary.næringstype')}: ${næringstype}.`}
-                    </div>
+                <div>
+                    {`${intlHelper(intl, 'sifForms.utenlandskNæringForm.summary.navn')}: ${næring.navnPåVirksomheten}.`}
+                </div>
+                <div>{`${intlHelper(intl, 'sifForms.utenlandskNæringForm.summary.næringstype')}: ${næringstype}.`}</div>
 
-                    <div>
-                        <FormattedMessage
-                            id="sifForms.utenlandskNæringForm.summary.registrertILand"
-                            values={{ land }}
-                        />
-                        {næring.organisasjonsnummer !== undefined && (
-                            <>
-                                <FormattedMessage
-                                    id="sifForms.utenlandskNæringForm.summary.registrertILand.orgnr"
-                                    values={{ orgnr: næring.organisasjonsnummer }}
-                                />
-                            </>
-                        )}
-                        .
-                    </div>
-                    <div>{tidsinfo}</div>
-                </li>
+                <div>
+                    <FormattedMessage id="sifForms.utenlandskNæringForm.summary.registrertILand" values={{ land }} />
+                    {næring.organisasjonsnummer !== undefined && (
+                        <>
+                            <FormattedMessage
+                                id="sifForms.utenlandskNæringForm.summary.registrertILand.orgnr"
+                                values={{ orgnr: næring.organisasjonsnummer }}
+                            />
+                        </>
+                    )}
+                    .
+                </div>
+                <div>{tidsinfo}</div>
             </Block>
         );
     };
     return (
         <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.utenlandskNæring.listetittel')}>
-            {utenlandskNæring.length === 0 && (
-                <>
-                    <FormattedMessage id={'oppsummering.arbeidssituasjon.utenlandskNæring.nei'} tagName="p" />
-                </>
+            {utenlandskNæring.length === 0 ? (
+                <FormattedMessage id={'oppsummering.arbeidssituasjon.utenlandskNæring.nei'} />
+            ) : (
+                <SummaryList items={utenlandskNæring} itemRenderer={renderUtenlandskNæring} />
             )}
-            {utenlandskNæring.length > 0 && <ul>{utenlandskNæring.map((næring) => renderUtenlandskNæring(næring))}</ul>}
         </SummaryBlock>
     );
 }

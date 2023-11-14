@@ -213,7 +213,6 @@ const OmOmsorgenForBarnStep = () => {
                                                     name={OmOmsorgenForBarnFormFields.harAleneomsorgFor}
                                                     checkboxes={getBarnOptions(registrertBarn, annetBarn)}
                                                     validate={getListValidator({ required: true })}
-                                                    data-testid="harAleneomsorgFor"
                                                 />
                                             </Block>
                                         </Block>
@@ -243,7 +242,6 @@ const OmOmsorgenForBarnStep = () => {
                                                             <FormattedMessage id="step.omOmsorgenForBarn.deltBosted.description" />
                                                         </ExpandableInfo>
                                                     }
-                                                    data-testid="avtaleOmDeltBosted"
                                                 />
                                             </Block>
 

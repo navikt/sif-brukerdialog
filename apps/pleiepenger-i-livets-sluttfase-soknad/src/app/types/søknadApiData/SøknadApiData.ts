@@ -124,6 +124,7 @@ export interface SøknadApiData {
     pleietrengende: PleietrengendeApi;
     fraOgMed: ISODate;
     tilOgMed: ISODate;
+    dagerMedPleie: ISODate[];
     pleierDuDenSykeHjemme: boolean;
     skalJobbeOgPleieSammeDag: boolean;
     flereSokere: FlereSokereApiData;

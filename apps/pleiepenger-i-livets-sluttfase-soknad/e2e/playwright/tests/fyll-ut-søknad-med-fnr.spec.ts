@@ -1,83 +1,32 @@
 import { test, expect } from '@playwright/test';
-import { playwrightApiMockData } from '../mock-data/playwrightApiMockData';
-import sinon from 'sinon';
-
-declare global {
-    interface Window {
-        __clock: sinon.SinonFakeTimers;
-    }
-}
+import { setNow } from '../utils/setNow';
+import { setupMockRoutes } from '../utils/setupMockRoutes';
+import { fyllUtPleietrengendeMedFnr } from '../utfylling-utils/pleietrengendeUtfyllingUtils';
 
 const startUrl =
     'http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/soknad/velkommen';
 
-// Pick the new/fake "now" for you test pages.
-const fakeNow = new Date('2023-10-04').valueOf();
-
-const initScript = `
-{
-    // Extend Date constructor to default to fakeNow
-    Date = class extends Date {
-      constructor(...args) {
-        if (args.length === 0) {
-          super(${fakeNow});
-        } else {
-          super(...args);
-        }
-      }
-    }
-    // Override Date.now() to start from fakeNow
-    const __DateNowOffset = ${fakeNow} - Date.now();
-    const __DateNow = Date.now;
-    Date.now = () => __DateNow() + __DateNowOffset;
-
-    console.log(new Date());
-  }
-`;
-
 test.beforeEach(async ({ page }) => {
-    // Update the Date accordingly in your test pages
-    await page.addInitScript(initScript);
-
-    await page.route('https://login.nav.no/**', async (route) => {
-        await route.fulfill({ status: 200 });
-    });
-    await page.route('https://www.nav.no/person/nav-dekoratoren-api/auth', async (route) => {
-        await route.fulfill({ status: 200 });
-    });
-    await page.route('**/mellomlagring/PLEIEPENGER_LIVETS_SLUTTFASE', async (route) => {
-        await route.fulfill({ status: 200, body: '{}' });
-    });
-    await page.route('**/oppslag/soker', async (route) => {
-        await route.fulfill({ status: 200, body: JSON.stringify(playwrightApiMockData.søkerMock) });
-    });
-    await page.route('**/oppslag/arbeidsgiver**', async (route) => {
-        await route.fulfill({ status: 200, body: JSON.stringify(playwrightApiMockData.arbeidsgiverMock) });
-    });
-    await page.route('**/innsending', async (route) => {
-        await route.fulfill({ status: 200 });
-    });
+    await setNow(page);
+    await setupMockRoutes(page);
 });
 
-test('Søknad med fnr', async ({ page }) => {
-    // await page.addInitScript(initScript);
-
+test('Fyll ut søknad med fnr', async ({ page }) => {
     await page.goto(startUrl);
 
     /** Velkommen side */
-    await page.getByRole('heading', { level: 1, name: 'Hei PRESENTABEL' });
+    await expect(page.getByRole('heading', { level: 1, name: 'Hei PRESENTABEL' })).toBeVisible();
     await page.getByLabel('Jeg bekrefter at jeg har forstått mitt ansvar som søker').click();
     await page.getByRole('button', { name: 'Start søknad' }).click();
 
     /** Pleietrengende side */
-    await page.getByRole('heading', { level: 1, name: 'Om personen du pleier' });
-    await page.getByLabel('Navn på den du skal pleie').fill('Test Testesen');
-    await page.getByRole('textbox', { name: 'Fødselsnummer/D-nummer' }).fill('27857798800');
-    await page.getByRole('group', { name: 'Er dere flere som skal dele på pleiepengene?' }).getByLabel('Ja').check();
+    await fyllUtPleietrengendeMedFnr(page);
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
     /** Tidsrom side */
-    await page.getByRole('heading', { level: 1, name: 'Dager du må være hjemme fra jobb for å gi pleie' });
+    await expect(
+        page.getByRole('heading', { level: 1, name: 'Dager du må være hjemme fra jobb for å gi pleie' }),
+    ).toBeVisible();
     await page.getByRole('button', { name: 'Gå til forrige måned' }).click({ clickCount: 2 });
     await page
         .getByRole('group', { name: 'Hvilke dager skal du være hjemme fra jobb for å gi pleie?' })
@@ -88,16 +37,22 @@ test('Søknad med fnr', async ({ page }) => {
     await page.getByLabel('11. september (mandag)').click();
     await page.getByLabel('18. september (mandag)').click();
     await page.getByLabel('25. september (mandag)').click();
-    await page.getByRole('group', { name: 'Skal du pleie personen hjemme?' }).getByLabel('Ja').check();
-    await page.getByRole('group', { name: 'Skal du gi pleie og jobbe på samme dag?' }).getByLabel('Ja').check();
+    await page
+        .getByRole('group', { name: 'Skal du pleie personen hjemme i de dagene du søker for?' })
+        .getByLabel('Ja')
+        .check();
+    await page
+        .getByRole('group', { name: 'Skal du jobbe delvis i noen av dagene du søker for?' })
+        .getByLabel('Ja')
+        .check();
     await page
         .getByRole('group', { name: 'Oppholder du deg i utlandet i noen av dagene du søker for?' })
         .getByLabel('Nei')
         .check();
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
-    /** Jobb i søknadsperioden */
-    await page.getByRole('heading', { level: 1, name: 'Arbeidssituasjon' });
+    /** Arbeidssituasjon */
+    await expect(page.getByRole('heading', { level: 1, name: 'Arbeidssituasjon' })).toBeVisible();
     await page
         .getByRole('group', {
             name: 'Stemmer det at du er ansatt hos Arbeids- og velferdsetaten i perioden du søker for?',
@@ -130,7 +85,7 @@ test('Søknad med fnr', async ({ page }) => {
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
     /** Jobb i søknadsperioden */
-    await page.getByRole('heading', { level: 1, name: 'Jobb i søknadsperioden' });
+    await expect(page.getByRole('heading', { level: 1, name: 'Jobb i søknadsperioden' })).toBeVisible();
     await page.getByRole('group', { name: 'mandag 14. august' }).getByLabel('TimerTimer').fill('3');
     await page.getByRole('group', { name: 'mandag 14. august' }).getByLabel('MinutterMin.').fill('30');
     await page.getByRole('group', { name: 'onsdag 16. august' }).getByLabel('TimerTimer').fill('3');
@@ -145,7 +100,7 @@ test('Søknad med fnr', async ({ page }) => {
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
     /** Medlemsskap */
-    await page.getByRole('heading', { level: 1, name: 'Medlemsskap' });
+    await expect(page.getByRole('heading', { level: 1, name: 'Medlemskap i folketrygden' })).toBeVisible();
     await page
         .getByRole('group', { name: 'Har du bodd i utlandet i hele eller deler av de siste 12 månedene?' })
         .getByLabel('Nei')
@@ -157,15 +112,12 @@ test('Søknad med fnr', async ({ page }) => {
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
     /** Legeerklæring */
-    await page.getByRole('heading', { level: 1, name: 'Legeerklæring' });
-    await page.getByRole('button', { name: 'Last opp legeerklæringen' }).click();
-    await page
-        .getByLabel('OpplastingsikonLast opp legeerklæringen')
-        .setInputFiles('./e2e/playwright/files/navlogopng.png');
+    await expect(page.getByRole('heading', { level: 1, name: 'Legeerklæring' })).toBeVisible();
+    await page.locator('input[name="vedlegg"]').setInputFiles('./e2e/playwright/files/navlogopng.png');
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
     /** Oppsummering */
-    await page.getByRole('heading', { level: 1, name: 'Oppsummering' });
+    await expect(page.getByRole('heading', { level: 1, name: 'Oppsummering' })).toBeVisible();
     await page
         .getByLabel(
             'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til pleiepenger.',
@@ -174,9 +126,7 @@ test('Søknad med fnr', async ({ page }) => {
     await page.getByRole('button', { name: 'Send søknad', exact: true }).click();
 
     /** Kvittering */
-    const heading = await page.getByRole('heading', {
-        level: 1,
-        name: 'Vi har mottatt søknad om pleiepenger i livets sluttfase',
-    });
-    await expect(heading).toBeVisible();
+    await expect(
+        page.getByRole('heading', { level: 1, name: 'Vi har mottatt søknad om pleiepenger i livets sluttfase' }),
+    ).toBeVisible();
 });

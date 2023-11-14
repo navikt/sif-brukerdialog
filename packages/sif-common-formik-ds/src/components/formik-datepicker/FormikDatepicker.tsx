@@ -69,7 +69,6 @@ function FormikDatepicker<FieldName, ErrorType>({
                     <DateInputAndPicker
                         inputId={inputId}
                         name={name as any}
-                        disableWeekends={true}
                         onChange={handleOnChange}
                         value={field.value}
                         error={getErrorPropForFormikInput({ field, form, context, error })}

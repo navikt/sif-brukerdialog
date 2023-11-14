@@ -114,7 +114,7 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
                     <FormikFileUploader
                         legend={intlHelper(intl, 'steg.lege.vedlegg.legend')}
                         name={SøknadFormField.legeerklæring}
-                        label={intlHelper(intl, 'steg.lege.vedlegg')}
+                        buttonLabel={intlHelper(intl, 'steg.lege.vedlegg')}
                         onErrorUploadingAttachments={vedleggOpplastingFeilet}
                         onFileInputClick={() => {
                             setFilesThatDidntGetUploaded([]);

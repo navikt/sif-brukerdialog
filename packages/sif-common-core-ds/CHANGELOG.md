@@ -1,5 +1,21 @@
 # @navikt/sif-common-core-ds
 
+## 9.8.10
+
+### Patch Changes
+
+-   09ae5814: Patch-oppdateringer
+-   Updated dependencies [09ae5814]
+    -   @navikt/sif-common-utils@3.40.11
+
+## 9.8.9
+
+### Patch Changes
+
+-   b4d45cf9: Diverse mindre pakkeoppdateringer
+-   Updated dependencies [b4d45cf9]
+    -   @navikt/sif-common-utils@3.40.10
+
 ## 9.8.8
 
 ### Patch Changes

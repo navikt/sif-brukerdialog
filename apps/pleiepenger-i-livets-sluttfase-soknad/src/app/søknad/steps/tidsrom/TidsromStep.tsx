@@ -188,9 +188,6 @@ const TidsromStep = () => {
                                                                     </strong>{' '}
                                                                     <FormattedMessage id="steg.tidsrom.skalJobbeIPerioden.info.tekst.2.2" />
                                                                 </p>
-                                                                <p>
-                                                                    <FormattedMessage id="steg.tidsrom.skalJobbeIPerioden.info.tekst.3" />
-                                                                </p>
                                                             </ExpandableInfo>
                                                         }
                                                     />

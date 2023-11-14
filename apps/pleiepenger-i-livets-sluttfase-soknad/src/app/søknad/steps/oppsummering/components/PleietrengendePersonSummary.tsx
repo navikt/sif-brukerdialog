@@ -20,7 +20,7 @@ const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId, flereSÃ
         <SummarySection header={intlHelper(intl, 'step.oppsummering.pleietrengende.header')}>
             <SummaryBlock header={pleietrengende.navn}>
                 {pleietrengende.fÃ¸dselsdato ? (
-                    <BodyLong size="large">
+                    <BodyLong>
                         <FormattedMessage
                             id="steg.oppsummering.pleietrengende.fÃ¸dselsdato"
                             values={{
@@ -38,7 +38,7 @@ const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId, flereSÃ
                 {pleietrengende.Ã¥rsakManglerIdentitetsnummer && !pleietrengende.norskIdentitetsnummer && (
                     <>
                         <Block margin="l">
-                            <BodyLong size="large">
+                            <BodyLong>
                                 <FormattedMessage
                                     id="steg.oppsummering.pleietrengende.harIkkeFnr"
                                     values={{

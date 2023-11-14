@@ -1,5 +1,29 @@
 # @navikt/sif-common-forms-ds
 
+## 8.11.3
+
+### Patch Changes
+
+-   09ae5814: Patch-oppdateringer
+
+## 8.11.2
+
+### Patch Changes
+
+-   b4d45cf9: Diverse mindre pakkeoppdateringer
+
+## 8.11.1
+
+### Patch Changes
+
+-   66c8522a: Legge til manglende tekst for regnskapsfører telefon i virksomhetform
+
+## 8.11.0
+
+### Minor Changes
+
+-   ce769b8e: Endre UtenlandskNæringListAndDialog til å eksponere ModalFormAndListLabels, ikke ModalFormAndInfoLabels (som var feil)
+
 ## 8.10.0
 
 ### Minor Changes

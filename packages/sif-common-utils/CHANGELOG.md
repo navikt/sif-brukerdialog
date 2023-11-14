@@ -1,5 +1,17 @@
 # @navikt/sif-common-utils
 
+## 3.40.11
+
+### Patch Changes
+
+-   09ae5814: Patch-oppdateringer
+
+## 3.40.10
+
+### Patch Changes
+
+-   b4d45cf9: Diverse mindre pakkeoppdateringer
+
 ## 3.40.9
 
 ### Patch Changes

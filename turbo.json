@@ -77,6 +77,10 @@
         "build-pleiepenger-i-livets-sluttfase-soknad": {
             "outputs": [],
             "dependsOn": ["^build-package"]
+        },
+        "build-omsorgsdager-kalkulator": {
+            "outputs": [".next/**", "!.next/cache/**"],
+            "dependsOn": ["^build-package"]
         }
 
     }

@@ -1,4 +1,4 @@
-import { Alert, BodyLong } from '@navikt/ds-react';
+import { BodyLong } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { FormikInputGroup } from '@navikt/sif-common-formik-ds';
 import DaySelector from '@navikt/sif-common-ui/src/day-selector/DaySelector';
@@ -45,8 +45,11 @@ const DagerMedPleieFormPart: React.FunctionComponent<Props> = () => {
                 description={
                     <Block margin="m">
                         <BodyLong>
-                            Velg dagene du skal gi pleie i kalenderen. Hvis du skal gi pleie gjennom en hel uke, er det
-                            lettest å klikke på ukenummeret du ser til venstre.
+                            I kalenderen velger du hvilke dager du skal gi pleie. Husk at det ikke er rett til
+                            pleiepenger på dager hvor personen er innlagt på sykehus eller annen institusjon.
+                        </BodyLong>
+                        <BodyLong>
+                            Hvis du skal gi pleie gjennom en hel uke, er det lettest å klikke på ukenummeret.
                         </BodyLong>
                     </Block>
                 }>
@@ -60,14 +63,6 @@ const DagerMedPleieFormPart: React.FunctionComponent<Props> = () => {
                         />
                     </Block>
                 </div>
-
-                {selectedDates.length > 60 && (
-                    <div>
-                        <Block margin="l">
-                            <Alert variant="info">Skal vi si noe om at bruker har valgt over 60 dager?</Alert>
-                        </Block>
-                    </div>
-                )}
             </FormikInputGroup>
         </>
     );
