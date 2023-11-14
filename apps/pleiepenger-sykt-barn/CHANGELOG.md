@@ -1,5 +1,12 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.2.5
+
+### Patch Changes
+
+-   Updated dependencies [19c424d7]
+    -   @navikt/sif-app-register@0.0.2
+
 ## 3.2.4
 
 ### Patch Changes

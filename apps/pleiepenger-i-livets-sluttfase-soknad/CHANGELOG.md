@@ -1,5 +1,12 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.0.1
+
+### Patch Changes
+
+-   Updated dependencies [19c424d7]
+    -   @navikt/sif-app-register@0.0.2
+
 ## 2.0.0
 
 ### Major Changes

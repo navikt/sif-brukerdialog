@@ -1,5 +1,12 @@
 # @navikt/omsorgspengesoknad
 
+## 1.19.19
+
+### Patch Changes
+
+-   Updated dependencies [19c424d7]
+    -   @navikt/sif-app-register@0.0.2
+
 ## 1.19.18
 
 ### Patch Changes

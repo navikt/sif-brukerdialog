@@ -1,5 +1,12 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.10.19
+
+### Patch Changes
+
+-   Updated dependencies [19c424d7]
+    -   @navikt/sif-app-register@0.0.2
+
 ## 2.10.18
 
 ### Patch Changes
