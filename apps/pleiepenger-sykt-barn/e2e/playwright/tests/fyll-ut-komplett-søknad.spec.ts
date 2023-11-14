@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { setupMockApi } from '../setup/setupMockApi';
 import { checkA11y, getSøknadsperiode } from '../setup';
 import { setNow } from '../setup/setNow';
-import { fyllUtArbeidssituasjonSteg } from '../utfylling-utils/arbeidssituasjonSteg';
+import { fyllUtArbeidssituasjonSteg } from '../utfylling-utils/arbeidssituasjon-steg/arbeidssituasjonSteg';
 import { fyllUtArbeidstidSteg } from '../utfylling-utils/arbeidstidSteg';
 import { omsorgstilbudSteg } from '../utfylling-utils/omsorgstilbudSteg';
 import { nattevåkOgBeredskapSteg } from '../utfylling-utils/nattevågOgBeredskapSteg';

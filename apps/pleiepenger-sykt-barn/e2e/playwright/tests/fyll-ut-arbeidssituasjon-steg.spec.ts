@@ -3,7 +3,9 @@ import { StepID } from '../../../src/app/types/StepID';
 import { routeUtils } from '../setup/routeUtils';
 import { setNow } from '../setup/setNow';
 import { getSøknadsperiode } from '../setup';
-import { arbeidssituasjonSteg } from '../utfylling-utils/arbeidssituasjonSteg';
+import { arbeidssituasjonSteg } from '../utfylling-utils/arbeidssituasjon-steg/arbeidssituasjonSteg';
+import { fyllUtAnsattArbeidssituasjon } from '../utfylling-utils/arbeidssituasjon-steg/ansatt';
+import { frilansSvar } from '../utfylling-utils/arbeidssituasjon-steg/frilanser';
 
 const gåTilOppsummering = async (page: Page) => {
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
@@ -32,9 +34,9 @@ test('Fyll ut komplett steg', async ({ page }) => {
     await arbeidssituasjonSteg.fyllUtArbeidssituasjonSteg(page, søknadsperiode);
 });
 
-test.describe('Arbeidssituasjon ansatt', async () => {
+test.describe('Arbeidssituasjon ansatt', () => {
     test('Ansatt hele perioden', async ({ page }) => {
-        await arbeidssituasjonSteg.fyllUtAnsatt(page);
+        await fyllUtAnsattArbeidssituasjon.ansattHelePerioden(page);
         await gåTilOppsummering(page);
         const content = await page.locator('div.summarySection', { hasText: 'Arbeidssituasjonen din' });
         await expect(await content.isVisible()).toBeTruthy();
@@ -43,7 +45,7 @@ test.describe('Arbeidssituasjon ansatt', async () => {
     });
 
     test('Slutter i søknadsperioden', async ({ page }) => {
-        await arbeidssituasjonSteg.fyllUtAnsattSlutterIPerioden(page);
+        await fyllUtAnsattArbeidssituasjon.slutterIPerioden(page);
         await gåTilOppsummering(page);
         const content = await page.locator('div.summarySection', { hasText: 'Arbeidssituasjonen din' });
         await expect(await content.isVisible()).toBeTruthy();
@@ -53,11 +55,30 @@ test.describe('Arbeidssituasjon ansatt', async () => {
     });
 
     test('Sluttet før søknadsperioden', async ({ page }) => {
-        await arbeidssituasjonSteg.fyllUtAnsattSluttetFørPeriode(page);
+        await fyllUtAnsattArbeidssituasjon.sluttetFørPeriode(page);
         await gåTilOppsummering(page);
         const content = await page.locator('div.summarySection', { hasText: 'Arbeidssituasjonen din' });
         await expect(await content.isVisible()).toBeTruthy();
         await expect(await content.getByText('Er ikke lenger ansatt').isVisible()).toBeTruthy();
         await expect(await content.getByText('Sluttet før').isVisible()).toBeTruthy();
     });
+});
+
+test.describe('Arbeidssituasjon frilanser', async () => {
+    test('Er ikke frilanser', async ({ page }) => {
+        await frilansSvar.erFrilanser(page, false);
+        await gåTilOppsummering(page);
+        expect(
+            await page.getByText('Er ikke frilanser og får ikke honorar i søknadsperioden').isVisible(),
+        ).toBeTruthy();
+    });
+
+    // export const testArbeidssituasjonFrilanser = async (page: Page) => {
+    //     await erIkkeFrilanser(page);
+    //     // erFrilanserUtenOppdrag();
+    //     // erFrilanserMedOppdrag();
+    //     // erFrilanserKunHonorarMisterIkkeHonorar();
+    //     // erFrilanserFrilansarbeidOgMottarHonorar();
+    //     // erFrilanserFrilansarbeidOgMottarHonorarStartetInnenforSisteTreHeleMåneder();
+    // };
 });
