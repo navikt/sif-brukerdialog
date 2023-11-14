@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.0.0
+
+### Major Changes
+
+-   e24b09d2: Lansere pleiepengesøknad 2.0
+
 ## 1.1.4
 
 ### Patch Changes
