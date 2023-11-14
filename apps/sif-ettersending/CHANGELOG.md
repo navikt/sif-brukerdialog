@@ -1,5 +1,12 @@
 # @navikt/sif-ettersending
 
+## 3.23.16
+
+### Patch Changes
+
+-   Updated dependencies [19c424d7]
+    -   @navikt/sif-app-register@0.0.2
+
 ## 3.23.15
 
 ### Patch Changes
