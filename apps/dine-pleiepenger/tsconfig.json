@@ -1,0 +1,32 @@
+{
+    "extends": "../../packages/config/tsconfig-apps.json",
+    "compilerOptions": {
+        "outDir": "build/dist",
+        "typeRoots": ["../../node_modules/@types", "./node_modules/@types"],
+        "plugins": [
+            {
+                "name": "next"
+            }
+        ],
+        "paths": {
+            "@/*": ["./*"]
+        },
+        "allowJs": true,
+        "strict": false,
+        "incremental": true,
+        "isolatedModules": true,
+        "resolveJsonModule": true,
+        "jsx": "preserve"
+    },
+    "exclude": ["node_modules", "pages/build", "**.js", "dist"],
+    "include": [
+        "components/**/*",
+        "pages/**/*",
+        "pages/**/*",
+        ".next/types/**/*.ts",
+        "app/**/*",
+        "translations/**/*",
+        "utils/**/*",
+        "types/**/*"
+    ]
+}

@@ -1,0 +1,1572 @@
+[
+    {
+        "søknadId": "30929549-324a-4df1-bb4a-1d1d714a2b9a",
+        "søknadstype": "PP_SYKT_BARN",
+        "status": "MOTTATT",
+        "søknad": {
+            "barn": {
+                "navn": "PRESENTABEL LUNSJ",
+                "aktørId": "2957732263446",
+                "fødselsdato": "2018-04-23",
+                "fødselsnummer": "23841898745"
+            },
+            "språk": "nb",
+            "søker": {
+                "fornavn": "SUNN",
+                "aktørId": "2534326051524",
+                "etternavn": "KORRIDOR",
+                "fødselsdato": "1981-02-06",
+                "fødselsnummer": "06828199151"
+            },
+            "frilans": {
+                "type": "HONORAR",
+                "startdato": "2023-06-01",
+                "misterHonorar": true,
+                "arbeidsforhold": {
+                    "arbeidIPeriode": {
+                        "type": "ARBEIDER_REDUSERT",
+                        "redusertArbeid": {
+                            "type": "ULIKE_UKER_TIMER",
+                            "arbeidsuker": [
+                                {
+                                    "timer": "PT4H",
+                                    "periode": {
+                                        "fraOgMed": "2023-08-01",
+                                        "tilOgMed": "2023-08-06"
+                                    }
+                                },
+                                {
+                                    "timer": "PT0S",
+                                    "periode": {
+                                        "fraOgMed": "2023-08-07",
+                                        "tilOgMed": "2023-08-13"
+                                    }
+                                },
+                                {
+                                    "timer": "PT4H",
+                                    "periode": {
+                                        "fraOgMed": "2023-08-14",
+                                        "tilOgMed": "2023-08-20"
+                                    }
+                                },
+                                {
+                                    "timer": "PT0S",
+                                    "periode": {
+                                        "fraOgMed": "2023-08-21",
+                                        "tilOgMed": "2023-08-27"
+                                    }
+                                },
+                                {
+                                    "timer": "PT4H",
+                                    "periode": {
+                                        "fraOgMed": "2023-08-28",
+                                        "tilOgMed": "2023-08-31"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "normalarbeidstid": {
+                        "timerPerUkeISnitt": "PT20H"
+                    }
+                },
+                "harInntektSomFrilanser": true,
+                "jobberFortsattSomFrilans": true
+            },
+            "mottatt": "2023-08-11T07:58:39.608Z",
+            "fraOgMed": "2023-08-01",
+            "tilOgMed": "2023-08-31",
+            "søknadId": "30929549-324a-4df1-bb4a-1d1d714a2b9a",
+            "dokumentId": [
+                [
+                    "eyJraWQiOiIxIiwiYWxnIjoibm9uZSIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJjYWQ5ZWZiZi1iZjI1LTQwZTQtYjgwOS1iOGI1MjM4ODg3OWIifQ",
+                    "eyJraWQiOiIxIiwiYWxnIjoibm9uZSIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmMjRlNjlhYS03ODdhLTQxMzYtOWU4YS0xN2FjMTQzNjg4OGYifQ"
+                ]
+            ],
+            "medlemskap": {
+                "skalBoIUtlandetNeste12Mnd": false,
+                "harBoddIUtlandetSiste12Mnd": false,
+                "utenlandsoppholdNeste12Mnd": [],
+                "utenlandsoppholdSiste12Mnd": []
+            },
+            "arbeidsgivere": [
+                {
+                    "navn": "SAUEFABRIKK",
+                    "erAnsatt": true,
+                    "arbeidsforhold": {
+                        "arbeidIPeriode": {
+                            "type": "ARBEIDER_IKKE"
+                        },
+                        "normalarbeidstid": {
+                            "timerPerUkeISnitt": "PT20H"
+                        }
+                    },
+                    "organisasjonsnummer": "896929119",
+                    "sluttetFørSøknadsperiode": false
+                }
+            ],
+            "k9FormatSøknad": {
+                "språk": "nb",
+                "søker": {
+                    "norskIdentitetsnummer": "06828199151"
+                },
+                "ytelse": {
+                    "barn": {
+                        "norskIdentitetsnummer": "23841898745"
+                    },
+                    "type": "PLEIEPENGER_SYKT_BARN",
+                    "uttak": {
+                        "perioder": {
+                            "2023-08-01/2023-08-31": {
+                                "timerPleieAvBarnetPerDag": "PT7H30M"
+                            }
+                        }
+                    },
+                    "omsorg": {},
+                    "bosteder": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "beredskap": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "nattevåk": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "arbeidstid": {
+                        "arbeidstakerList": [
+                            {
+                                "arbeidstidInfo": {
+                                    "perioder": {
+                                        "2023-08-01/2023-08-31": {
+                                            "faktiskArbeidTimerPerDag": "PT0S",
+                                            "jobberNormaltTimerPerDag": "PT4H"
+                                        }
+                                    }
+                                },
+                                "organisasjonsnavn": "SAUEFABRIKK",
+                                "organisasjonsnummer": "896929119"
+                            }
+                        ],
+                        "frilanserArbeidstidInfo": {
+                            "perioder": {
+                                "2023-08-01/2023-08-04": {
+                                    "faktiskArbeidTimerPerDag": "PT1H",
+                                    "jobberNormaltTimerPerDag": "PT4H"
+                                },
+                                "2023-08-07/2023-08-11": {
+                                    "faktiskArbeidTimerPerDag": "PT0S",
+                                    "jobberNormaltTimerPerDag": "PT4H"
+                                },
+                                "2023-08-14/2023-08-18": {
+                                    "faktiskArbeidTimerPerDag": "PT48M",
+                                    "jobberNormaltTimerPerDag": "PT4H"
+                                },
+                                "2023-08-21/2023-08-25": {
+                                    "faktiskArbeidTimerPerDag": "PT0S",
+                                    "jobberNormaltTimerPerDag": "PT4H"
+                                },
+                                "2023-08-28/2023-08-31": {
+                                    "faktiskArbeidTimerPerDag": "PT1H",
+                                    "jobberNormaltTimerPerDag": "PT4H"
+                                }
+                            }
+                        }
+                    },
+                    "tilsynsordning": {
+                        "perioder": {
+                            "2023-08-01/2023-08-31": {
+                                "etablertTilsynTimerPerDag": "PT0S"
+                            }
+                        }
+                    },
+                    "endringsperiode": [],
+                    "lovbestemtFerie": {
+                        "perioder": {}
+                    },
+                    "søknadsperiode": ["2023-08-01/2023-08-31"],
+                    "utenlandsopphold": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "trekkKravPerioder": [],
+                    "opptjeningAktivitet": {},
+                    "annetDataBruktTilUtledning": {
+                        "harBekreftetOpplysninger": true,
+                        "harForståttRettigheterOgPlikter": true
+                    }
+                },
+                "versjon": "1.0.0",
+                "søknadId": "30929549-324a-4df1-bb4a-1d1d714a2b9a",
+                "kildesystem": "søknadsdialog",
+                "mottattDato": "2023-08-11T07:58:39.608Z",
+                "journalposter": [],
+                "begrunnelseForInnsending": {}
+            },
+            "utenlandskNæring": [],
+            "ferieuttakIPerioden": {
+                "ferieuttak": [],
+                "skalTaUtFerieIPerioden": false
+            },
+            "opptjeningIUtlandet": [],
+            "stønadGodtgjørelse": {
+                "mottarStønadGodtgjørelse": false
+            },
+            "harBekreftetOpplysninger": true,
+            "utenlandsoppholdIPerioden": {
+                "opphold": [],
+                "skalOppholdeSegIUtlandetIPerioden": false
+            },
+            "selvstendigNæringsdrivende": {
+                "harInntektSomSelvstendig": false
+            },
+            "harForstattRettigheterOgPlikter": true
+        },
+        "saksId": "1DPFC6i",
+        "journalpostId": "620042761",
+        "dokumenter": [
+            {
+                "journalpostId": "620042761",
+                "dokumentInfoId": "647921527",
+                "sakId": "1DPFC6i",
+                "tittel": "Søknad om pleiepenger",
+                "filtype": "PDF",
+                "harTilgang": true,
+                "url": "http://sif-innsyn-api/dokument/620042761/647921527/ARKIV",
+                "relevanteDatoer": [
+                    {
+                        "dato": "2023-08-11T09:58:55",
+                        "datotype": "DATO_OPPRETTET"
+                    },
+                    {
+                        "dato": "2023-08-11T09:58:55",
+                        "datotype": "DATO_DOKUMENT"
+                    },
+                    {
+                        "dato": "2023-08-11T09:59",
+                        "datotype": "DATO_JOURNALFOERT"
+                    },
+                    {
+                        "dato": "2023-08-11T09:58:39",
+                        "datotype": "DATO_REGISTRERT"
+                    }
+                ]
+            }
+        ],
+        "opprettet": "2023-08-11T07:58:39.608Z",
+        "endret": "2023-08-11T07:59:05",
+        "behandlingsdato": null
+    },
+    {
+        "søknadId": "b88bd83d-92c3-4447-969f-d6a5e7ee108d",
+        "søknadstype": "PP_SYKT_BARN",
+        "status": "MOTTATT",
+        "søknad": {
+            "barn": {
+                "navn": "PRESENTABEL LUNSJ",
+                "aktørId": "2957732263446",
+                "fødselsdato": "2018-04-23",
+                "fødselsnummer": "23841898745"
+            },
+            "språk": "nb",
+            "søker": {
+                "fornavn": "SUNN",
+                "aktørId": "2534326051524",
+                "etternavn": "KORRIDOR",
+                "fødselsdato": "1981-02-06",
+                "fødselsnummer": "06828199151"
+            },
+            "frilans": {
+                "harInntektSomFrilanser": false
+            },
+            "mottatt": "2023-08-11T09:21:47.471Z",
+            "fraOgMed": "2023-08-01",
+            "tilOgMed": "2023-08-03",
+            "søknadId": "b88bd83d-92c3-4447-969f-d6a5e7ee108d",
+            "dokumentId": [
+                [
+                    "eyJraWQiOiIxIiwiYWxnIjoibm9uZSIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI0MTcwNmI1Zi0wNTU2LTQ2OTctYWUyYy0yOWY0OGIxMjFhNTAifQ",
+                    "eyJraWQiOiIxIiwiYWxnIjoibm9uZSIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyYjEzNmRkNS1hNmQyLTRhNGYtOGNmZi0zZmI4NjUzNjk4OTEifQ"
+                ]
+            ],
+            "medlemskap": {
+                "skalBoIUtlandetNeste12Mnd": false,
+                "harBoddIUtlandetSiste12Mnd": false,
+                "utenlandsoppholdNeste12Mnd": [],
+                "utenlandsoppholdSiste12Mnd": []
+            },
+            "arbeidsgivere": [
+                {
+                    "navn": "SAUEFABRIKK",
+                    "erAnsatt": true,
+                    "arbeidsforhold": {
+                        "arbeidIPeriode": {
+                            "type": "ARBEIDER_IKKE"
+                        },
+                        "normalarbeidstid": {
+                            "timerPerUkeISnitt": "PT20H"
+                        }
+                    },
+                    "organisasjonsnummer": "896929119",
+                    "sluttetFørSøknadsperiode": false
+                }
+            ],
+            "k9FormatSøknad": {
+                "språk": "nb",
+                "søker": {
+                    "norskIdentitetsnummer": "06828199151"
+                },
+                "ytelse": {
+                    "barn": {
+                        "norskIdentitetsnummer": "23841898745"
+                    },
+                    "type": "PLEIEPENGER_SYKT_BARN",
+                    "uttak": {
+                        "perioder": {
+                            "2023-08-01/2023-08-03": {
+                                "timerPleieAvBarnetPerDag": "PT7H30M"
+                            }
+                        }
+                    },
+                    "omsorg": {},
+                    "bosteder": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "beredskap": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "nattevåk": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "arbeidstid": {
+                        "arbeidstakerList": [
+                            {
+                                "arbeidstidInfo": {
+                                    "perioder": {
+                                        "2023-08-01/2023-08-03": {
+                                            "faktiskArbeidTimerPerDag": "PT0S",
+                                            "jobberNormaltTimerPerDag": "PT4H"
+                                        }
+                                    }
+                                },
+                                "organisasjonsnavn": "SAUEFABRIKK",
+                                "organisasjonsnummer": "896929119"
+                            }
+                        ],
+                        "frilanserArbeidstidInfo": {
+                            "perioder": {
+                                "2023-08-01/2023-08-03": {
+                                    "faktiskArbeidTimerPerDag": "PT0S",
+                                    "jobberNormaltTimerPerDag": "PT0S"
+                                }
+                            }
+                        }
+                    },
+                    "tilsynsordning": {
+                        "perioder": {
+                            "2023-08-01/2023-08-03": {
+                                "etablertTilsynTimerPerDag": "PT0S"
+                            }
+                        }
+                    },
+                    "endringsperiode": [],
+                    "lovbestemtFerie": {
+                        "perioder": {}
+                    },
+                    "søknadsperiode": ["2023-08-01/2023-08-03"],
+                    "utenlandsopphold": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "trekkKravPerioder": [],
+                    "opptjeningAktivitet": {},
+                    "annetDataBruktTilUtledning": {
+                        "harBekreftetOpplysninger": true,
+                        "harForståttRettigheterOgPlikter": true
+                    }
+                },
+                "versjon": "1.0.0",
+                "søknadId": "b88bd83d-92c3-4447-969f-d6a5e7ee108d",
+                "kildesystem": "søknadsdialog",
+                "mottattDato": "2023-08-11T09:21:47.471Z",
+                "journalposter": [],
+                "begrunnelseForInnsending": {}
+            },
+            "utenlandskNæring": [],
+            "ferieuttakIPerioden": {
+                "ferieuttak": [],
+                "skalTaUtFerieIPerioden": false
+            },
+            "opptjeningIUtlandet": [],
+            "stønadGodtgjørelse": {
+                "mottarStønadGodtgjørelse": false
+            },
+            "harBekreftetOpplysninger": true,
+            "utenlandsoppholdIPerioden": {
+                "opphold": [],
+                "skalOppholdeSegIUtlandetIPerioden": false
+            },
+            "selvstendigNæringsdrivende": {
+                "harInntektSomSelvstendig": false
+            },
+            "harForstattRettigheterOgPlikter": true
+        },
+        "saksId": "1DPFC6i",
+        "journalpostId": "620042786",
+        "dokumenter": [
+            {
+                "journalpostId": "620042786",
+                "dokumentInfoId": "647921552",
+                "sakId": "1DPFC6i",
+                "tittel": "Søknad om pleiepenger",
+                "filtype": "PDF",
+                "harTilgang": true,
+                "url": "http://sif-innsyn-api/dokument/620042786/647921552/ARKIV",
+                "relevanteDatoer": [
+                    {
+                        "dato": "2023-08-11T11:21:51",
+                        "datotype": "DATO_OPPRETTET"
+                    },
+                    {
+                        "dato": "2023-08-11T11:21:51",
+                        "datotype": "DATO_DOKUMENT"
+                    },
+                    {
+                        "dato": "2023-08-11T11:21:58",
+                        "datotype": "DATO_JOURNALFOERT"
+                    },
+                    {
+                        "dato": "2023-08-11T11:21:47",
+                        "datotype": "DATO_REGISTRERT"
+                    }
+                ]
+            }
+        ],
+        "opprettet": "2023-08-11T09:21:47.471Z",
+        "endret": "2023-08-11T09:22:04",
+        "behandlingsdato": null
+    },
+    {
+        "søknadId": "0a00c648-c92f-49ac-ba4d-fed611b3e695",
+        "søknadstype": "PP_SYKT_BARN",
+        "status": "MOTTATT",
+        "søknad": {
+            "barn": {
+                "navn": "PRESENTABEL LUNSJ",
+                "aktørId": "2957732263446",
+                "fødselsdato": "2018-04-23",
+                "fødselsnummer": "23841898745"
+            },
+            "språk": "nb",
+            "søker": {
+                "fornavn": "SUNN",
+                "aktørId": "2534326051524",
+                "etternavn": "KORRIDOR",
+                "fødselsdato": "1981-02-06",
+                "fødselsnummer": "06828199151"
+            },
+            "frilans": {
+                "type": "FRILANS_HONORAR",
+                "startdato": "2023-08-13",
+                "arbeidsforhold": {
+                    "arbeidIPeriode": {
+                        "type": "ARBEIDER_IKKE"
+                    },
+                    "normalarbeidstid": {
+                        "timerPerUkeISnitt": "PT20H"
+                    }
+                },
+                "harInntektSomFrilanser": true,
+                "jobberFortsattSomFrilans": true
+            },
+            "mottatt": "2023-09-04T11:48:04.659Z",
+            "fraOgMed": "2023-09-11",
+            "tilOgMed": "2023-09-30",
+            "søknadId": "0a00c648-c92f-49ac-ba4d-fed611b3e695",
+            "dokumentId": [
+                [
+                    "eyJraWQiOiIxIiwiYWxnIjoibm9uZSIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5N2JjYmIzMS1lYmJkLTQ3ZGItYTFhZi1kN2U0MTlhMWM1YjMifQ",
+                    "eyJraWQiOiIxIiwiYWxnIjoibm9uZSIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2YjRjNWZjZC05YmY5LTQ2N2MtOTcyNy0wMGE2NzEwZjU5YTMifQ"
+                ]
+            ],
+            "medlemskap": {
+                "skalBoIUtlandetNeste12Mnd": false,
+                "harBoddIUtlandetSiste12Mnd": false,
+                "utenlandsoppholdNeste12Mnd": [],
+                "utenlandsoppholdSiste12Mnd": []
+            },
+            "arbeidsgivere": [
+                {
+                    "navn": "SAUEFABRIKK",
+                    "erAnsatt": true,
+                    "arbeidsforhold": {
+                        "arbeidIPeriode": {
+                            "type": "ARBEIDER_IKKE"
+                        },
+                        "normalarbeidstid": {
+                            "timerPerUkeISnitt": "PT50H"
+                        }
+                    },
+                    "organisasjonsnummer": "896929119",
+                    "sluttetFørSøknadsperiode": false
+                }
+            ],
+            "k9FormatSøknad": {
+                "språk": "nb",
+                "søker": {
+                    "norskIdentitetsnummer": "06828199151"
+                },
+                "ytelse": {
+                    "barn": {
+                        "norskIdentitetsnummer": "23841898745"
+                    },
+                    "type": "PLEIEPENGER_SYKT_BARN",
+                    "uttak": {
+                        "perioder": {
+                            "2023-09-11/2023-09-30": {
+                                "timerPleieAvBarnetPerDag": "PT7H30M"
+                            }
+                        }
+                    },
+                    "omsorg": {},
+                    "bosteder": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "beredskap": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "nattevåk": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "arbeidstid": {
+                        "arbeidstakerList": [
+                            {
+                                "arbeidstidInfo": {
+                                    "perioder": {
+                                        "2023-09-11/2023-09-30": {
+                                            "faktiskArbeidTimerPerDag": "PT0S",
+                                            "jobberNormaltTimerPerDag": "PT10H"
+                                        }
+                                    }
+                                },
+                                "organisasjonsnavn": "SAUEFABRIKK",
+                                "organisasjonsnummer": "896929119"
+                            }
+                        ],
+                        "frilanserArbeidstidInfo": {
+                            "perioder": {
+                                "2023-09-11/2023-09-30": {
+                                    "faktiskArbeidTimerPerDag": "PT0S",
+                                    "jobberNormaltTimerPerDag": "PT4H"
+                                }
+                            }
+                        }
+                    },
+                    "tilsynsordning": {
+                        "perioder": {
+                            "2023-09-11/2023-09-30": {
+                                "etablertTilsynTimerPerDag": "PT0S"
+                            }
+                        }
+                    },
+                    "endringsperiode": [],
+                    "lovbestemtFerie": {
+                        "perioder": {}
+                    },
+                    "søknadsperiode": ["2023-09-11/2023-09-30"],
+                    "utenlandsopphold": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "trekkKravPerioder": [],
+                    "opptjeningAktivitet": {},
+                    "annetDataBruktTilUtledning": {
+                        "harBekreftetOpplysninger": true,
+                        "harForståttRettigheterOgPlikter": true
+                    }
+                },
+                "versjon": "1.0.0",
+                "søknadId": "0a00c648-c92f-49ac-ba4d-fed611b3e695",
+                "kildesystem": "søknadsdialog",
+                "mottattDato": "2023-09-04T11:48:04.659Z",
+                "journalposter": [],
+                "begrunnelseForInnsending": {}
+            },
+            "utenlandskNæring": [],
+            "ferieuttakIPerioden": {
+                "ferieuttak": [],
+                "skalTaUtFerieIPerioden": false
+            },
+            "opptjeningIUtlandet": [],
+            "stønadGodtgjørelse": {
+                "mottarStønadGodtgjørelse": false
+            },
+            "harBekreftetOpplysninger": true,
+            "utenlandsoppholdIPerioden": {
+                "opphold": [],
+                "skalOppholdeSegIUtlandetIPerioden": false
+            },
+            "selvstendigNæringsdrivende": {
+                "harInntektSomSelvstendig": false
+            },
+            "harForstattRettigheterOgPlikter": true
+        },
+        "saksId": "1DPFC6i",
+        "journalpostId": "620045974",
+        "dokumenter": [
+            {
+                "journalpostId": "620045974",
+                "dokumentInfoId": "647925533",
+                "sakId": "1DPFC6i",
+                "tittel": "Søknad om pleiepenger",
+                "filtype": "PDF",
+                "harTilgang": true,
+                "url": "http://sif-innsyn-api/dokument/620045974/647925533/ARKIV",
+                "relevanteDatoer": [
+                    {
+                        "dato": "2023-09-04T13:48:07",
+                        "datotype": "DATO_OPPRETTET"
+                    },
+                    {
+                        "dato": "2023-09-04T13:48:07",
+                        "datotype": "DATO_DOKUMENT"
+                    },
+                    {
+                        "dato": "2023-09-04T13:48:13",
+                        "datotype": "DATO_JOURNALFOERT"
+                    },
+                    {
+                        "dato": "2023-09-04T13:48:04",
+                        "datotype": "DATO_REGISTRERT"
+                    }
+                ]
+            }
+        ],
+        "opprettet": "2023-09-04T11:48:04.659Z",
+        "endret": "2023-09-04T11:48:19",
+        "behandlingsdato": null
+    },
+    {
+        "søknadId": "6ee878a0-e09d-446a-b97e-9494e8acce45",
+        "søknadstype": "PP_SYKT_BARN",
+        "status": "MOTTATT",
+        "søknad": {
+            "barn": {
+                "navn": "PRESENTABEL LUNSJ",
+                "aktørId": "2957732263446",
+                "fødselsdato": "2018-04-23",
+                "fødselsnummer": "23841898745"
+            },
+            "språk": "nb",
+            "søker": {
+                "fornavn": "SUNN",
+                "aktørId": "2534326051524",
+                "etternavn": "KORRIDOR",
+                "fødselsdato": "1981-02-06",
+                "fødselsnummer": "06828199151"
+            },
+            "frilans": {
+                "type": "FRILANS",
+                "startdato": "2023-05-31",
+                "arbeidsforhold": {
+                    "arbeidIPeriode": {
+                        "type": "ARBEIDER_IKKE"
+                    },
+                    "normalarbeidstid": {
+                        "timerPerUkeISnitt": "PT5H"
+                    }
+                },
+                "harInntektSomFrilanser": true,
+                "jobberFortsattSomFrilans": true,
+                "startetFørSisteTreHeleMåneder": true
+            },
+            "mottatt": "2023-09-04T13:17:49.792Z",
+            "fraOgMed": "2023-09-05",
+            "tilOgMed": "2023-09-23",
+            "søknadId": "6ee878a0-e09d-446a-b97e-9494e8acce45",
+            "dokumentId": [
+                [
+                    "eyJraWQiOiIxIiwiYWxnIjoibm9uZSIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkOTgyZjUzMi0zNzU3LTQ2NjYtYjAwZS03NjI3OTlhNDA2YzgifQ",
+                    "eyJraWQiOiIxIiwiYWxnIjoibm9uZSIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4OGIxZjZiMS1lM2Q4LTQzMmMtYWJkNy0zMWMwYWZkZDYwOWIifQ"
+                ]
+            ],
+            "medlemskap": {
+                "skalBoIUtlandetNeste12Mnd": false,
+                "harBoddIUtlandetSiste12Mnd": false,
+                "utenlandsoppholdNeste12Mnd": [],
+                "utenlandsoppholdSiste12Mnd": []
+            },
+            "arbeidsgivere": [
+                {
+                    "navn": "SAUEFABRIKK",
+                    "erAnsatt": true,
+                    "arbeidsforhold": {
+                        "arbeidIPeriode": {
+                            "type": "ARBEIDER_IKKE"
+                        },
+                        "normalarbeidstid": {
+                            "timerPerUkeISnitt": "PT10H"
+                        }
+                    },
+                    "organisasjonsnummer": "896929119",
+                    "sluttetFørSøknadsperiode": false
+                }
+            ],
+            "k9FormatSøknad": {
+                "språk": "nb",
+                "søker": {
+                    "norskIdentitetsnummer": "06828199151"
+                },
+                "ytelse": {
+                    "barn": {
+                        "norskIdentitetsnummer": "23841898745"
+                    },
+                    "type": "PLEIEPENGER_SYKT_BARN",
+                    "uttak": {
+                        "perioder": {
+                            "2023-09-05/2023-09-23": {
+                                "timerPleieAvBarnetPerDag": "PT7H30M"
+                            }
+                        }
+                    },
+                    "omsorg": {},
+                    "bosteder": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "beredskap": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "nattevåk": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "arbeidstid": {
+                        "arbeidstakerList": [
+                            {
+                                "arbeidstidInfo": {
+                                    "perioder": {
+                                        "2023-09-05/2023-09-23": {
+                                            "faktiskArbeidTimerPerDag": "PT0S",
+                                            "jobberNormaltTimerPerDag": "PT2H"
+                                        }
+                                    }
+                                },
+                                "organisasjonsnavn": "SAUEFABRIKK",
+                                "organisasjonsnummer": "896929119"
+                            }
+                        ],
+                        "frilanserArbeidstidInfo": {
+                            "perioder": {
+                                "2023-09-05/2023-09-23": {
+                                    "faktiskArbeidTimerPerDag": "PT0S",
+                                    "jobberNormaltTimerPerDag": "PT1H"
+                                }
+                            }
+                        }
+                    },
+                    "tilsynsordning": {
+                        "perioder": {
+                            "2023-09-05/2023-09-23": {
+                                "etablertTilsynTimerPerDag": "PT0S"
+                            }
+                        }
+                    },
+                    "endringsperiode": [],
+                    "lovbestemtFerie": {
+                        "perioder": {}
+                    },
+                    "søknadsperiode": ["2023-09-05/2023-09-23"],
+                    "utenlandsopphold": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "trekkKravPerioder": [],
+                    "opptjeningAktivitet": {
+                        "frilanser": {
+                            "startdato": "2023-05-31"
+                        }
+                    },
+                    "annetDataBruktTilUtledning": {
+                        "harBekreftetOpplysninger": true,
+                        "harForståttRettigheterOgPlikter": true
+                    }
+                },
+                "versjon": "1.0.0",
+                "søknadId": "6ee878a0-e09d-446a-b97e-9494e8acce45",
+                "kildesystem": "søknadsdialog",
+                "mottattDato": "2023-09-04T13:17:49.792Z",
+                "journalposter": [],
+                "begrunnelseForInnsending": {}
+            },
+            "utenlandskNæring": [],
+            "ferieuttakIPerioden": {
+                "ferieuttak": [],
+                "skalTaUtFerieIPerioden": false
+            },
+            "opptjeningIUtlandet": [],
+            "stønadGodtgjørelse": {
+                "mottarStønadGodtgjørelse": false
+            },
+            "harBekreftetOpplysninger": true,
+            "utenlandsoppholdIPerioden": {
+                "opphold": [],
+                "skalOppholdeSegIUtlandetIPerioden": false
+            },
+            "selvstendigNæringsdrivende": {
+                "harInntektSomSelvstendig": false
+            },
+            "harForstattRettigheterOgPlikter": true
+        },
+        "saksId": "1DPFC6i",
+        "journalpostId": "620046006",
+        "dokumenter": [
+            {
+                "journalpostId": "620046006",
+                "dokumentInfoId": "647925574",
+                "sakId": "1DPFC6i",
+                "tittel": "Søknad om pleiepenger",
+                "filtype": "PDF",
+                "harTilgang": true,
+                "url": "http://sif-innsyn-api/dokument/620046006/647925574/ARKIV",
+                "relevanteDatoer": [
+                    {
+                        "dato": "2023-09-04T15:17:54",
+                        "datotype": "DATO_OPPRETTET"
+                    },
+                    {
+                        "dato": "2023-09-04T15:17:54",
+                        "datotype": "DATO_DOKUMENT"
+                    },
+                    {
+                        "dato": "2023-09-04T15:17:59",
+                        "datotype": "DATO_JOURNALFOERT"
+                    },
+                    {
+                        "dato": "2023-09-04T15:17:49",
+                        "datotype": "DATO_REGISTRERT"
+                    }
+                ]
+            }
+        ],
+        "opprettet": "2023-09-04T13:17:49.792Z",
+        "endret": "2023-09-04T13:18:04",
+        "behandlingsdato": null
+    },
+    {
+        "søknadId": "6ce476df-f612-42d0-ad52-1d76fcd1ff3a",
+        "søknadstype": "PP_SYKT_BARN_ENDRINGSMELDING",
+        "status": "MOTTATT",
+        "søknad": {
+            "søker": {
+                "fornavn": "SUNN",
+                "aktørId": "2534326051524",
+                "etternavn": "KORRIDOR",
+                "fødselsdato": "1981-02-06",
+                "fødselsnummer": "06828199151"
+            },
+            "dokumentId": [
+                [
+                    "eyJraWQiOiIxIiwiYWxnIjoibm9uZSIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhMmIxMjQ4Ny0xZWI5LTQ1OTktYWE3NC1iYjI4YTI5N2NkYWUifQ",
+                    "eyJraWQiOiIxIiwiYWxnIjoibm9uZSIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4MjJiNmRlMC01MzY1LTRjZDYtYWJkZS00NmQxOWIzMDI3YzEifQ"
+                ]
+            ],
+            "k9FormatSøknad": {
+                "søker": {
+                    "norskIdentitetsnummer": "06828199151"
+                },
+                "ytelse": {
+                    "barn": {
+                        "fødselsdato": "2018-04-23",
+                        "norskIdentitetsnummer": "23841898745"
+                    },
+                    "type": "PLEIEPENGER_SYKT_BARN",
+                    "uttak": {
+                        "perioder": {}
+                    },
+                    "omsorg": {},
+                    "bosteder": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "beredskap": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "nattevåk": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "arbeidstid": {
+                        "arbeidstakerList": [],
+                        "frilanserArbeidstidInfo": {
+                            "perioder": {
+                                "2023-08-07/2023-08-11": {
+                                    "faktiskArbeidTimerPerDag": "PT2H",
+                                    "jobberNormaltTimerPerDag": "PT4H"
+                                }
+                            }
+                        }
+                    },
+                    "tilsynsordning": {
+                        "perioder": {}
+                    },
+                    "endringsperiode": [],
+                    "lovbestemtFerie": {
+                        "perioder": {}
+                    },
+                    "søknadsperiode": [],
+                    "utenlandsopphold": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "trekkKravPerioder": [],
+                    "opptjeningAktivitet": {},
+                    "dataBruktTilUtledning": {
+                        "ukjenteArbeidsforhold": []
+                    },
+                    "annetDataBruktTilUtledning": {
+                        "annetData": "{\"valgteEndringer\":{\"arbeidstid\":true,\"lovbestemtFerie\":false}}"
+                    }
+                },
+                "versjon": "1.0.0",
+                "søknadId": "6ce476df-f612-42d0-ad52-1d76fcd1ff3a",
+                "kildesystem": "endringsdialog",
+                "mottattDato": "2023-08-11T08:04:40.051Z",
+                "journalposter": [],
+                "begrunnelseForInnsending": {}
+            },
+            "pleietrengendeNavn": "PRESENTABEL LUNSJ"
+        },
+        "saksId": "1DPFC6i",
+        "journalpostId": "620042763",
+        "dokumenter": [
+            {
+                "journalpostId": "620042763",
+                "dokumentInfoId": "647921529",
+                "sakId": "1DPFC6i",
+                "tittel": "Endringsmelding om pleiepenger",
+                "filtype": "PDF",
+                "harTilgang": true,
+                "url": "http://sif-innsyn-api/dokument/620042763/647921529/ARKIV",
+                "relevanteDatoer": [
+                    {
+                        "dato": "2023-08-11T10:04:49",
+                        "datotype": "DATO_OPPRETTET"
+                    },
+                    {
+                        "dato": "2023-08-11T10:04:49",
+                        "datotype": "DATO_DOKUMENT"
+                    },
+                    {
+                        "dato": "2023-08-11T10:04:55",
+                        "datotype": "DATO_JOURNALFOERT"
+                    },
+                    {
+                        "dato": "2023-08-11T10:04:40",
+                        "datotype": "DATO_REGISTRERT"
+                    }
+                ]
+            }
+        ],
+        "opprettet": "2023-08-11T08:04:40.051Z",
+        "endret": "2023-08-11T08:05:00",
+        "behandlingsdato": null
+    },
+    {
+        "søknadId": "6ece2dc4-b985-4abc-82ea-d3fe25287f68",
+        "søknadstype": "PP_SYKT_BARN_ENDRINGSMELDING",
+        "status": "MOTTATT",
+        "søknad": {
+            "søker": {
+                "fornavn": "SUNN",
+                "aktørId": "2534326051524",
+                "etternavn": "KORRIDOR",
+                "fødselsdato": "1981-02-06",
+                "fødselsnummer": "06828199151"
+            },
+            "dokumentId": [
+                [
+                    "eyJraWQiOiIxIiwiYWxnIjoibm9uZSIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhZTk0OThjYi0zNWE3LTQ2NWEtOTk0Zi1hNWZhZGFiNTU2M2QifQ",
+                    "eyJraWQiOiIxIiwiYWxnIjoibm9uZSIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2NTQ4NjY1NC04ODNkLTRiYzUtODU1Ni1hYWNkMzNjMDYyNjMifQ"
+                ]
+            ],
+            "k9FormatSøknad": {
+                "søker": {
+                    "norskIdentitetsnummer": "06828199151"
+                },
+                "ytelse": {
+                    "barn": {
+                        "fødselsdato": "2018-04-23",
+                        "norskIdentitetsnummer": "23841898745"
+                    },
+                    "type": "PLEIEPENGER_SYKT_BARN",
+                    "uttak": {
+                        "perioder": {}
+                    },
+                    "omsorg": {},
+                    "bosteder": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "beredskap": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "nattevåk": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "arbeidstid": {
+                        "arbeidstakerList": []
+                    },
+                    "tilsynsordning": {
+                        "perioder": {}
+                    },
+                    "endringsperiode": [],
+                    "lovbestemtFerie": {
+                        "perioder": {
+                            "2023-08-07/2023-08-16": {
+                                "skalHaFerie": true
+                            },
+                            "2023-08-22/2023-08-24": {
+                                "skalHaFerie": true
+                            }
+                        }
+                    },
+                    "søknadsperiode": [],
+                    "utenlandsopphold": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "trekkKravPerioder": [],
+                    "opptjeningAktivitet": {},
+                    "dataBruktTilUtledning": {
+                        "ukjenteArbeidsforhold": []
+                    },
+                    "annetDataBruktTilUtledning": {
+                        "annetData": "{\"valgteEndringer\":{\"arbeidstid\":false,\"lovbestemtFerie\":true}}"
+                    }
+                },
+                "versjon": "1.0.0",
+                "søknadId": "6ece2dc4-b985-4abc-82ea-d3fe25287f68",
+                "kildesystem": "endringsdialog",
+                "mottattDato": "2023-09-26T08:46:45.764Z",
+                "journalposter": [],
+                "begrunnelseForInnsending": {}
+            },
+            "pleietrengendeNavn": "PRESENTABEL LUNSJ"
+        },
+        "saksId": "1DPFC6i",
+        "journalpostId": "620051817",
+        "dokumenter": [
+            {
+                "journalpostId": "620051817",
+                "dokumentInfoId": "647936239",
+                "sakId": "1DPFC6i",
+                "tittel": "Endringsmelding om pleiepenger",
+                "filtype": "PDF",
+                "harTilgang": true,
+                "url": "http://sif-innsyn-api/dokument/620051817/647936239/ARKIV",
+                "relevanteDatoer": [
+                    {
+                        "dato": "2023-09-26T10:46:56",
+                        "datotype": "DATO_OPPRETTET"
+                    },
+                    {
+                        "dato": "2023-09-26T10:46:56",
+                        "datotype": "DATO_DOKUMENT"
+                    },
+                    {
+                        "dato": "2023-09-26T10:47:02",
+                        "datotype": "DATO_JOURNALFOERT"
+                    },
+                    {
+                        "dato": "2023-09-26T10:46:45",
+                        "datotype": "DATO_REGISTRERT"
+                    }
+                ]
+            }
+        ],
+        "opprettet": "2023-09-26T08:46:45.764Z",
+        "endret": "2023-09-26T08:47:07",
+        "behandlingsdato": null
+    },
+    {
+        "søknadId": "c3e55f1a-9911-464d-942e-e59cd5dd9e94",
+        "søknadstype": "PP_SYKT_BARN_ENDRINGSMELDING",
+        "status": "MOTTATT",
+        "søknad": {
+            "søker": {
+                "fornavn": "SUNN",
+                "aktørId": "2534326051524",
+                "etternavn": "KORRIDOR",
+                "fødselsdato": "1981-02-06",
+                "fødselsnummer": "06828199151"
+            },
+            "dokumentId": [
+                [
+                    "eyJraWQiOiIxIiwiYWxnIjoibm9uZSIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5NTBhNTEyNS1iNDgyLTRjNDYtYWNlZS1lODM4N2I2YmYyMDkifQ",
+                    "eyJraWQiOiIxIiwiYWxnIjoibm9uZSIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5ZjI1NmFiOC1jOWIwLTQxMWYtOTM0OC1jNDY5MTgwYTczYzAifQ"
+                ]
+            ],
+            "k9FormatSøknad": {
+                "søker": {
+                    "norskIdentitetsnummer": "06828199151"
+                },
+                "ytelse": {
+                    "barn": {
+                        "fødselsdato": "2018-04-23",
+                        "norskIdentitetsnummer": "23841898745"
+                    },
+                    "type": "PLEIEPENGER_SYKT_BARN",
+                    "uttak": {
+                        "perioder": {}
+                    },
+                    "omsorg": {},
+                    "bosteder": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "beredskap": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "nattevåk": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "arbeidstid": {
+                        "arbeidstakerList": [
+                            {
+                                "arbeidstidInfo": {
+                                    "perioder": {
+                                        "2023-09-11/2023-09-15": {
+                                            "faktiskArbeidTimerPerDag": "PT6M",
+                                            "jobberNormaltTimerPerDag": "PT2H"
+                                        }
+                                    }
+                                },
+                                "organisasjonsnavn": "SAUEFABRIKK",
+                                "organisasjonsnummer": "896929119"
+                            }
+                        ]
+                    },
+                    "tilsynsordning": {
+                        "perioder": {}
+                    },
+                    "endringsperiode": [],
+                    "lovbestemtFerie": {
+                        "perioder": {}
+                    },
+                    "søknadsperiode": [],
+                    "utenlandsopphold": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "trekkKravPerioder": [],
+                    "opptjeningAktivitet": {},
+                    "dataBruktTilUtledning": {
+                        "ukjenteArbeidsforhold": []
+                    },
+                    "annetDataBruktTilUtledning": {
+                        "annetData": "{\"valgteEndringer\":{\"arbeidstid\":true,\"lovbestemtFerie\":false}}"
+                    }
+                },
+                "versjon": "1.0.0",
+                "søknadId": "c3e55f1a-9911-464d-942e-e59cd5dd9e94",
+                "kildesystem": "endringsdialog",
+                "mottattDato": "2023-10-06T07:39:40.483Z",
+                "journalposter": [],
+                "begrunnelseForInnsending": {}
+            },
+            "pleietrengendeNavn": "PRESENTABEL LUNSJ"
+        },
+        "saksId": "1DPFC6i",
+        "journalpostId": "620060736",
+        "dokumenter": [
+            {
+                "journalpostId": "620060736",
+                "dokumentInfoId": "647945454",
+                "sakId": "1DPFC6i",
+                "tittel": "Endringsmelding for pleiepenger sykt barn",
+                "filtype": "PDF",
+                "harTilgang": true,
+                "url": "http://sif-innsyn-api/dokument/620060736/647945454/ARKIV",
+                "relevanteDatoer": [
+                    {
+                        "dato": "2023-10-06T09:39:49",
+                        "datotype": "DATO_OPPRETTET"
+                    },
+                    {
+                        "dato": "2023-10-06T09:39:49",
+                        "datotype": "DATO_DOKUMENT"
+                    },
+                    {
+                        "dato": "2023-10-06T09:39:58",
+                        "datotype": "DATO_JOURNALFOERT"
+                    },
+                    {
+                        "dato": "2023-10-06T09:39:40",
+                        "datotype": "DATO_REGISTRERT"
+                    }
+                ]
+            }
+        ],
+        "opprettet": "2023-10-06T07:39:40.483Z",
+        "endret": "2023-10-06T07:40:03",
+        "behandlingsdato": null
+    },
+    {
+        "søknadId": "76bd7972-bcae-451e-aa95-8084170d1efe",
+        "søknadstype": "PP_SYKT_BARN_ENDRINGSMELDING",
+        "status": "MOTTATT",
+        "søknad": {
+            "søker": {
+                "fornavn": "SUNN",
+                "aktørId": "2534326051524",
+                "etternavn": "KORRIDOR",
+                "fødselsdato": "1981-02-06",
+                "fødselsnummer": "06828199151"
+            },
+            "dokumentId": [
+                [
+                    "eyJraWQiOiIxIiwiYWxnIjoibm9uZSIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1OTk2NWE0NC03YWM5LTQ3YTAtYjg3OS00OTQwYjc1MjExYjAifQ",
+                    "eyJraWQiOiIxIiwiYWxnIjoibm9uZSIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4NmIyNTdhZS05ZjY5LTRmOTgtYjgzNy04YjMyYTgzMjViYjcifQ"
+                ]
+            ],
+            "k9FormatSøknad": {
+                "søker": {
+                    "norskIdentitetsnummer": "06828199151"
+                },
+                "ytelse": {
+                    "barn": {
+                        "fødselsdato": "2018-04-23",
+                        "norskIdentitetsnummer": "23841898745"
+                    },
+                    "type": "PLEIEPENGER_SYKT_BARN",
+                    "uttak": {
+                        "perioder": {}
+                    },
+                    "omsorg": {},
+                    "bosteder": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "beredskap": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "nattevåk": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "arbeidstid": {
+                        "arbeidstakerList": [
+                            {
+                                "arbeidstidInfo": {
+                                    "perioder": {
+                                        "2023-09-05/2023-09-08": {
+                                            "faktiskArbeidTimerPerDag": "PT2H",
+                                            "jobberNormaltTimerPerDag": "PT2H"
+                                        }
+                                    }
+                                },
+                                "organisasjonsnavn": "SAUEFABRIKK",
+                                "organisasjonsnummer": "896929119"
+                            }
+                        ]
+                    },
+                    "tilsynsordning": {
+                        "perioder": {}
+                    },
+                    "endringsperiode": [],
+                    "lovbestemtFerie": {
+                        "perioder": {}
+                    },
+                    "søknadsperiode": [],
+                    "utenlandsopphold": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "trekkKravPerioder": [],
+                    "opptjeningAktivitet": {},
+                    "dataBruktTilUtledning": {
+                        "ukjenteArbeidsforhold": []
+                    },
+                    "annetDataBruktTilUtledning": {
+                        "annetData": "{\"valgteEndringer\":{\"arbeidstid\":true,\"lovbestemtFerie\":false}}"
+                    }
+                },
+                "versjon": "1.0.0",
+                "søknadId": "76bd7972-bcae-451e-aa95-8084170d1efe",
+                "kildesystem": "endringsdialog",
+                "mottattDato": "2023-10-19T06:52:47.632Z",
+                "journalposter": [],
+                "begrunnelseForInnsending": {}
+            },
+            "pleietrengendeNavn": "PRESENTABEL LUNSJ"
+        },
+        "saksId": "1DPFC6i",
+        "journalpostId": "620067760",
+        "dokumenter": [
+            {
+                "journalpostId": "620067760",
+                "dokumentInfoId": "647952882",
+                "sakId": "1DPFC6i",
+                "tittel": "Endringsmelding for pleiepenger sykt barn",
+                "filtype": "PDF",
+                "harTilgang": true,
+                "url": "http://sif-innsyn-api/dokument/620067760/647952882/ARKIV",
+                "relevanteDatoer": [
+                    {
+                        "dato": "2023-10-19T08:52:52",
+                        "datotype": "DATO_OPPRETTET"
+                    },
+                    {
+                        "dato": "2023-10-19T08:52:52",
+                        "datotype": "DATO_DOKUMENT"
+                    },
+                    {
+                        "dato": "2023-10-19T08:53:01",
+                        "datotype": "DATO_JOURNALFOERT"
+                    },
+                    {
+                        "dato": "2023-10-19T08:52:47",
+                        "datotype": "DATO_REGISTRERT"
+                    }
+                ]
+            }
+        ],
+        "opprettet": "2023-10-19T06:52:47.632Z",
+        "endret": "2023-10-19T06:53:10",
+        "behandlingsdato": null
+    },
+    {
+        "søknadId": "cd89ef8d-2aee-4af6-85ba-cfef54d28bfa",
+        "søknadstype": "PP_ETTERSENDELSE",
+        "status": "MOTTATT",
+        "søknad": {
+            "sprak": "nb",
+            "søker": {
+                "fornavn": "SUNN",
+                "aktørId": "2534326051524",
+                "etternavn": "KORRIDOR",
+                "fødselsdato": "1981-02-06",
+                "fødselsnummer": "06828199151"
+            },
+            "titler": ["IMG_5093.jpg"],
+            "mottatt": "2023-10-20T06:30:16.751Z",
+            "k9Format": {
+                "søker": {
+                    "norskIdentitetsnummer": "06828199151"
+                },
+                "ytelse": "PLEIEPENGER_SYKT_BARN",
+                "versjon": "0.0.1",
+                "søknadId": "cd89ef8d-2aee-4af6-85ba-cfef54d28bfa",
+                "mottattDato": "2023-10-20T06:30:16.751Z"
+            },
+            "soknadId": "cd89ef8d-2aee-4af6-85ba-cfef54d28bfa",
+            "vedleggId": [
+                [
+                    "eyJraWQiOiIxIiwiYWxnIjoibm9uZSIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhNjY4NzQyNC1iMDlhLTQxY2QtYTg5YS1hYWFmYjhmNGU5Y2IifQ",
+                    "eyJraWQiOiIxIiwiYWxnIjoibm9uZSIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxMzVkNmMzMy1kMjBlLTRiNzMtOTlmZS1kZDQ2Yjg0MDQ5MDIifQ"
+                ],
+                [
+                    "eyJraWQiOiIxIiwiYWxnIjoibm9uZSIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmMzQ5NzIwZS1lZmZmLTRiMzktODI5ZS0xNDcyNWIzOWU5YjIifQ"
+                ]
+            ],
+            "beskrivelse": "sdafasdfasdf",
+            "søknadstype": "PLEIEPENGER_SYKT_BARN",
+            "harBekreftetOpplysninger": true,
+            "harForstattRettigheterOgPlikter": true
+        },
+        "saksId": null,
+        "journalpostId": "620077480",
+        "dokumenter": [
+            {
+                "journalpostId": "620077480",
+                "dokumentInfoId": "647962647",
+                "sakId": null,
+                "tittel": "Ettersendelse av dokumentasjon til søknad om pleiepenger",
+                "filtype": "PDF",
+                "harTilgang": true,
+                "url": "http://sif-innsyn-api/dokument/620077480/647962647/ARKIV",
+                "relevanteDatoer": [
+                    {
+                        "dato": "2023-10-20T08:30:26",
+                        "datotype": "DATO_OPPRETTET"
+                    },
+                    {
+                        "dato": "2023-10-20T08:30:26",
+                        "datotype": "DATO_DOKUMENT"
+                    },
+                    {
+                        "dato": "2023-10-20T08:30:16",
+                        "datotype": "DATO_REGISTRERT"
+                    }
+                ]
+            },
+            {
+                "journalpostId": "620077480",
+                "dokumentInfoId": "647962648",
+                "sakId": null,
+                "tittel": "IMG_5093.jpg",
+                "filtype": "PDF",
+                "harTilgang": true,
+                "url": "http://sif-innsyn-api/dokument/620077480/647962648/ARKIV",
+                "relevanteDatoer": [
+                    {
+                        "dato": "2023-10-20T08:30:26",
+                        "datotype": "DATO_OPPRETTET"
+                    },
+                    {
+                        "dato": "2023-10-20T08:30:26",
+                        "datotype": "DATO_DOKUMENT"
+                    },
+                    {
+                        "dato": "2023-10-20T08:30:16",
+                        "datotype": "DATO_REGISTRERT"
+                    }
+                ]
+            }
+        ],
+        "opprettet": "2023-10-20T06:30:16.751Z",
+        "endret": "2023-10-20T06:30:31",
+        "behandlingsdato": null
+    },
+    {
+        "søknadId": "2d9474fc-4993-4db4-95f9-0d0c50327954",
+        "søknadstype": "PP_SYKT_BARN_ENDRINGSMELDING",
+        "status": "MOTTATT",
+        "søknad": {
+            "søker": {
+                "fornavn": "SUNN",
+                "aktørId": "2534326051524",
+                "etternavn": "KORRIDOR",
+                "fødselsdato": "1981-02-06",
+                "fødselsnummer": "06828199151"
+            },
+            "dokumentId": [
+                [
+                    "eyJraWQiOiIxIiwiYWxnIjoibm9uZSIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1ZGVjYWU2OC01OTFhLTQ1N2YtYjgzNC05YjI5Yjg3YTBiNzUifQ",
+                    "eyJraWQiOiIxIiwiYWxnIjoibm9uZSIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1NGNhNWZkMC1jYjcyLTRhYWItYTJiOC01MzFiM2MxZTJhNGUifQ"
+                ]
+            ],
+            "k9FormatSøknad": {
+                "søker": {
+                    "norskIdentitetsnummer": "06828199151"
+                },
+                "ytelse": {
+                    "barn": {
+                        "fødselsdato": "2018-04-23",
+                        "norskIdentitetsnummer": "23841898745"
+                    },
+                    "type": "PLEIEPENGER_SYKT_BARN",
+                    "uttak": {
+                        "perioder": {}
+                    },
+                    "omsorg": {},
+                    "bosteder": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "beredskap": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "nattevåk": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "arbeidstid": {
+                        "arbeidstakerList": [
+                            {
+                                "arbeidstidInfo": {
+                                    "perioder": {
+                                        "2023-08-01/2023-08-04": {
+                                            "faktiskArbeidTimerPerDag": "PT5M",
+                                            "jobberNormaltTimerPerDag": "PT4H"
+                                        }
+                                    }
+                                },
+                                "organisasjonsnavn": "SAUEFABRIKK",
+                                "organisasjonsnummer": "896929119"
+                            }
+                        ]
+                    },
+                    "tilsynsordning": {
+                        "perioder": {}
+                    },
+                    "endringsperiode": [],
+                    "lovbestemtFerie": {
+                        "perioder": {}
+                    },
+                    "søknadsperiode": [],
+                    "utenlandsopphold": {
+                        "perioder": {},
+                        "perioderSomSkalSlettes": {}
+                    },
+                    "trekkKravPerioder": [],
+                    "opptjeningAktivitet": {},
+                    "dataBruktTilUtledning": {
+                        "ukjenteArbeidsforhold": []
+                    },
+                    "annetDataBruktTilUtledning": {
+                        "annetData": "{\"valgteEndringer\":{\"arbeidstid\":true,\"lovbestemtFerie\":false}}"
+                    }
+                },
+                "versjon": "1.0.0",
+                "søknadId": "2d9474fc-4993-4db4-95f9-0d0c50327954",
+                "kildesystem": "endringsdialog",
+                "mottattDato": "2023-10-26T08:14:49.612Z",
+                "journalposter": [],
+                "begrunnelseForInnsending": {}
+            },
+            "pleietrengendeNavn": "PRESENTABEL LUNSJ"
+        },
+        "saksId": "1DPFC6i",
+        "journalpostId": "620100623",
+        "dokumenter": [
+            {
+                "journalpostId": "620100623",
+                "dokumentInfoId": "647985912",
+                "sakId": "1DPFC6i",
+                "tittel": "Endringsmelding for pleiepenger sykt barn",
+                "filtype": "PDF",
+                "harTilgang": true,
+                "url": "http://sif-innsyn-api/dokument/620100623/647985912/ARKIV",
+                "relevanteDatoer": [
+                    {
+                        "dato": "2023-10-26T10:14:58",
+                        "datotype": "DATO_OPPRETTET"
+                    },
+                    {
+                        "dato": "2023-10-26T10:14:58",
+                        "datotype": "DATO_DOKUMENT"
+                    },
+                    {
+                        "dato": "2023-10-26T10:15:03",
+                        "datotype": "DATO_JOURNALFOERT"
+                    },
+                    {
+                        "dato": "2023-10-26T10:14:49",
+                        "datotype": "DATO_REGISTRERT"
+                    }
+                ]
+            }
+        ],
+        "opprettet": "2023-10-26T08:14:49.612Z",
+        "endret": "2023-10-26T08:15:11",
+        "behandlingsdato": null
+    }
+]
