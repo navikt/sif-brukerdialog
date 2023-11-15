@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 8.11.4
+
+### Patch Changes
+
+-   6d3b3cbe: Minor og patch oppdateringer + nextjs major -> 14
+
 ## 8.11.3
 
 ### Patch Changes

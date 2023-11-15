@@ -1,5 +1,18 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.17.19
+
+### Patch Changes
+
+-   6d3b3cbe: Minor og patch oppdateringer + nextjs major -> 14
+-   Updated dependencies [6d3b3cbe]
+    -   @navikt/sif-common-formik-ds@1.2.3
+    -   @navikt/sif-common-soknad-ds@10.7.11
+    -   @navikt/sif-common-core-ds@9.8.11
+    -   @navikt/sif-common-sentry@0.22.7
+    -   @navikt/sif-common-amplitude@2.21.9
+    -   @navikt/sif-common-utils@3.40.11
+
 ## 1.17.18
 
 ### Patch Changes

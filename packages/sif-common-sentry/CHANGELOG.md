@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.22.7
+
+### Patch Changes
+
+-   6d3b3cbe: Minor og patch oppdateringer + nextjs major -> 14
+
 ## 0.22.6
 
 ### Patch Changes

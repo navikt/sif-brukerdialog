@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.2.3
+
+### Patch Changes
+
+-   6d3b3cbe: Minor og patch oppdateringer + nextjs major -> 14
+
 ## 1.2.2
 
 ### Patch Changes
