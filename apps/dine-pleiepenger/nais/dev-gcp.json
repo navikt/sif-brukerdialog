@@ -1,5 +1,5 @@
 {
-    "app": "omsorgsdager-kalkulator",
+    "app": "dine-pleiepenger",
     "cluster": "dev-gcp",
     "namespace": "dusseldorf",
     "team": "dusseldorf",
