@@ -4,7 +4,6 @@ import 'node-fetch';
 
 const decoratorEnv = (process.env.NEXT_PUBLIC_DEKORATOR_ENV ?? 'prod') as Exclude<Env, 'localhost'>;
 
-// The 'head'-field of the document initialProps contains data from <head> (meta-tags etc)
 const getDocumentParameter = (initialProps: DocumentInitialProps, name: string) => {
     return initialProps.head?.find((element) => element?.props?.name === name)?.props?.content;
 };
@@ -14,7 +13,7 @@ interface Props {
     language: string;
 }
 
-class MyDocument extends Document<Props> {
+class Doc extends Document<Props> {
     static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps & Props> {
         const initialProps = await Document.getInitialProps(ctx);
 
@@ -59,4 +58,4 @@ class MyDocument extends Document<Props> {
     }
 }
 
-export default MyDocument;
+export default Doc;

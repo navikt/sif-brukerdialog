@@ -1,14 +1,16 @@
 import type { NextPage } from 'next';
+import { Alert } from '@navikt/ds-react';
 import DineSøknader from '../components/dine-søknader/DineSøknader';
-import SvarFrist from '../components/svarfrist/SvarFrist';
-import { isForbidden, isUnauthorized } from '../utils/apiUtils';
 import DefaultPage from '../components/layout/default-page/DefaultPage';
 import EmptyPage from '../components/layout/empty-page/EmptyPage';
-import { Alert } from '@navikt/ds-react';
+import SvarFrist from '../components/svarfrist/SvarFrist';
+import { endpoints, isForbidden, isUnauthorized } from '../utils/apiUtils';
+
 export async function getServerSideProps() {
     let bruker = null;
     let errorMessage: string | null = null;
-    await fetch(`http://localhost:1234/bruker`)
+
+    await fetch(endpoints.bruker)
         .then(async (response) => {
             bruker = await response.json();
         })

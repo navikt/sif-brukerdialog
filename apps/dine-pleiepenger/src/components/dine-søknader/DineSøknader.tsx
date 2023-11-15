@@ -1,7 +1,7 @@
 import { Alert, Heading, Loader } from '@navikt/ds-react';
-import axios from 'axios';
 import useSWR from 'swr';
 import SøknaderListe from '../søknader-liste/SøknaderListe';
+import axios from 'axios';
 import { Søknad } from '../../types/Søknad';
 
 const fetcher = (url: string) => axios.get<Søknad[]>(url).then((res) => res.data);
