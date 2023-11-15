@@ -1,5 +1,5 @@
 {
-    "name": "dine-pleiepenger",
+    "name": "@navikt/dine-pleiepenger",
     "version": "0.1.0",
     "private": true,
     "scripts": {
