@@ -8,6 +8,8 @@ import PageWrapper from '../components/layout/page-wrapper/PageWrapper';
 import { messages } from '../utils/message';
 import '@navikt/ds-css';
 import './globals.css';
+import '../components/process/process.css';
+import HvaSkjerFooter from '../components/hva-skjer-footer/HvaSkjerFooter';
 
 const getLocaleOrFallback = (locale?: string) => {
     if (locale && ['nb', 'nn'].includes(locale)) {
@@ -30,6 +32,11 @@ export default function App({ Component, pageProps }: AppProps) {
                 <PageWrapper>
                     <Component {...pageProps} />
                 </PageWrapper>
+                <div className="bg-white p-5">
+                    <div className="max-w-[1128px] mx-auto">
+                        <HvaSkjerFooter />
+                    </div>
+                </div>
             </>
         </IntlProvider>
     );
