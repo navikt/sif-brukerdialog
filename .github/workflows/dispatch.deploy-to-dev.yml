@@ -17,6 +17,7 @@ on:
                     - pleiepenger-sykt-barn
                     - sif-ettersending
                     - omsorgsdager-kalkulator
+                    - dine-pleiepenger
                 required: true
 
 jobs:
