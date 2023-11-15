@@ -22,7 +22,7 @@ const DineSøknader = () => {
             {isLoading ? (
                 <Loader title="Henter informasjon" size="2xlarge" />
             ) : (
-                <SøknaderListe søknader={(data || []).slice(0, 5)} />
+                <SøknaderListe søknader={(Array.isArray(data) ? data : []).slice(0, 5)} />
             )}
         </>
     );

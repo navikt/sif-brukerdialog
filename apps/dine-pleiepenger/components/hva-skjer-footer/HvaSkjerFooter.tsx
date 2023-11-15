@@ -5,7 +5,7 @@ import ProcessStep from '../process/ProcessStep';
 
 const HvaSkjerFooter = () => {
     return (
-        <>
+        <div className="max-w-xl ">
             <Heading size="medium" level="2" spacing={true}>
                 <FormattedMessage id="hvaSkjerInfo.tittel" />
             </Heading>
@@ -54,7 +54,7 @@ const HvaSkjerFooter = () => {
                     </p>
                 </ProcessStep>
             </Process>
-        </>
+        </div>
     );
 };
 

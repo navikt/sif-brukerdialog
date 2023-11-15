@@ -8,9 +8,11 @@
         "start": "next start -p 8080",
         "lint": "next lint",
         "test": "jest",
+        "dev-api": "node ./server/api-mock.js",
         "playwright-test": "playwright test"
     },
     "dependencies": {
+        "@navikt/sif-common-core-ds": "workspace: *",
         "@navikt/sif-common-utils": "workspace: *",
         "axios": "1.6.1",
         "next": "14.0.2",

@@ -1,6 +1,6 @@
 {
     "sakstype.PP_SYKT_BARN": "Søknad om pleiepenger sykt barn",
-    "sakstype.pp.PP_ETTERSENDELSE": "Ettersendelse av dokumenter - Pleiepenger sykt barn",
+    "sakstype.PP_ETTERSENDELSE": "Ettersendelse av dokumenter - Pleiepenger sykt barn",
     "sakstype.PP_SYKT_BARN_ENDRINGSMELDING": "Endringsmelding pleiepenger",
 
     "hvaSkjerInfo.tittel": "Hva skjer etter at du har sendt søknad til oss?",
@@ -20,5 +20,8 @@
     "hvaSkjerInfo.ferdigBehandlet": "Når vi har behandlet søknaden din, sender vi deg et svar som du finner under saksoversikten på «Min side».",
 
     "hvaSkjerInfo.utbetaling.tittel": "Utbetaling",
-    "hvaSkjerInfo.utbetaling": "Informasjon om utbetaling finner du under utbetalingsoversikten på «Min side»."
+    "hvaSkjerInfo.utbetaling": "Informasjon om utbetaling finner du under utbetalingsoversikten på «Min side».",
+
+    "page.ikkeTilgang.title": "Ingen tilgang",
+    "page.ikkeTilgang.content": "Du har ikke tilgang til denne siden."
 }

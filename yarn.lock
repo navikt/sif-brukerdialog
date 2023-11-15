@@ -4222,7 +4222,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-common-core-ds@workspace:*, @navikt/sif-common-core-ds@workspace:packages/sif-common-core-ds":
+"@navikt/sif-common-core-ds@workspace: *, @navikt/sif-common-core-ds@workspace:*, @navikt/sif-common-core-ds@workspace:packages/sif-common-core-ds":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-core-ds@workspace:packages/sif-common-core-ds"
   dependencies:
@@ -13948,6 +13948,7 @@ __metadata:
     "@navikt/ds-react": 5.10.1
     "@navikt/ds-tailwind": 5.10.1
     "@navikt/nav-dekoratoren-moduler": 1.6.9
+    "@navikt/sif-common-core-ds": "workspace: *"
     "@navikt/sif-common-utils": "workspace: *"
     axios: 1.6.1
     classnames: 2.3.2
