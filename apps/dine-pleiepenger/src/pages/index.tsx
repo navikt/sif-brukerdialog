@@ -10,7 +10,7 @@ export async function getServerSideProps() {
     let bruker = null;
     let errorMessage: string | null = null;
 
-    await fetch(endpoints.bruker)
+    await fetch(endpoints.soker)
         .then(async (response) => {
             bruker = await response.json();
         })
