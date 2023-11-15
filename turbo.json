@@ -81,6 +81,10 @@
         "build-omsorgsdager-kalkulator": {
             "outputs": [".next/**", "!.next/cache/**"],
             "dependsOn": ["^build-package"]
+        },
+        "build-dine-pleiepenger": {
+            "outputs": [".next/**", "!.next/cache/**"],
+            "dependsOn": ["^build-package"]
         }
 
     }

@@ -28,7 +28,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <>
                 <Head>
                     {process.env.NEXT_PUBLIC_ENVIRONMENT != 'prod' ? <meta name="robots" content="noindex" /> : ''}
-                    <title>Omsorgdager kalkulator - www.nav.no</title>
+                    <title>Dine pleiepenger - www.nav.no</title>
                 </Head>
                 {getLayout(<Component {...pageProps} />)}
             </>
