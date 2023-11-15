@@ -1,8 +1,9 @@
 import { Alert, Heading, Loader } from '@navikt/ds-react';
 import useSWR from 'swr';
-import SøknaderListe from '../søknader-liste/SøknaderListe';
+
 import axios from 'axios';
 import { Søknad } from '../../types/Søknad';
+import SøknadListe from '../søknad-liste/SøknadListe';
 
 const fetcher = (url: string) => axios.get<Søknad[]>(url).then((res) => res.data);
 
@@ -22,7 +23,7 @@ const DineSøknader = () => {
             {isLoading ? (
                 <Loader title="Henter informasjon" size="2xlarge" />
             ) : (
-                <SøknaderListe søknader={(Array.isArray(data) ? data : []).slice(0, 5)} />
+                <SøknadListe søknader={(Array.isArray(data) ? data : []).slice(0, 5)} />
             )}
         </>
     );

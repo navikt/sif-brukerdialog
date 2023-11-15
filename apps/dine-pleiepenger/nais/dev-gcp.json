@@ -5,8 +5,8 @@
     "team": "dusseldorf",
     "ingresses": ["https://dine-pleiepenger.intern.dev.nav.no"],
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
-    "livenessPath": "/dine-pleiepenger/api/internal/isAlive",
-    "readinessPath": "/dine-pleiepenger/api/internal/isReady",
+    "livenessPath": "/dine-pleiepenger/api/isAlive",
+    "readinessPath": "/dine-pleiepenger/api/isReady",
     "env": {
         "NEXT_PUBLIC_API_URL_INNSYN": "http://sif-innsyn-api",
         "NEXT_PUBLIC_API_URL": "http://k9-brukerdialog-api",

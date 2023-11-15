@@ -8,13 +8,13 @@ const axiosConfigCommon: AxiosRequestConfig = {
 
 const axiosConfigPsb: AxiosRequestConfig = {
     ...axiosConfigCommon,
-    baseURL: process.env.NEXT_PUBLIC_API_PATH,
+    baseURL: process.env.NEXT_PUBLIC_API_URL,
 };
 
 const axiosConfigInnsyn: AxiosRequestConfig = {
     ...axiosConfigCommon,
     transformResponse: storageParser,
-    baseURL: process.env.NEXT_PUBLIC_INNSYN_API_PATH,
+    baseURL: process.env.NEXT_PUBLIC_API_URL_INNSYN,
 };
 
 axios.interceptors.request.use((config) => {

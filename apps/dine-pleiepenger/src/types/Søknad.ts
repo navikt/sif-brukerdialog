@@ -1,3 +1,7 @@
+import { Arbeidsgiver } from './Arbeidsgiver';
+import { Arbeidsgivere } from './Arbeidsgivere';
+import { Dokument } from './Document';
+
 export enum Søknadsstatus {
     MOTTATT = 'MOTTATT',
     UNDER_BEHANDLING = 'UNDER_BEHANDLING',
@@ -13,33 +17,6 @@ export enum Søknadstype {
 export enum SupportedSøknadstype {
     PP_SYKT_BARN = 'PP_SYKT_BARN',
     PP_SYKT_BARN_ENDRINGSMELDING = 'PP_SYKT_BARN_ENDRINGSMELDING',
-}
-
-export interface Organisasjon {
-    navn: string;
-    skalJobbe: string;
-    skalJobbeProsent: number;
-    vetIkkeEkstrainfo?: string | null;
-    jobberNormaltTimer: number;
-    organisasjonsnummer: string;
-}
-
-export interface Arbeidsgivere {
-    organisasjoner: Organisasjon[];
-}
-
-export interface Arbeidsgiver {
-    erAnsatt: boolean;
-    navn: string;
-    organisasjonsnummer: string;
-    sluttetFørSøknadsperiode: boolean;
-}
-
-export interface Dokument {
-    tittel: string;
-    url: string;
-    filtype: string;
-    dokumentInfoId: string;
 }
 
 export interface PleiepengerSøknadInfo {
