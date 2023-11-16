@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.7.11
+
+### Patch Changes
+
+-   6d3b3cbe: Minor og patch oppdateringer + nextjs major -> 14
+
 ## 10.7.10
 
 ### Patch Changes

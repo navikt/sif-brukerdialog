@@ -1,5 +1,12 @@
 # @navikt/sif-common-core-ds
 
+## 9.8.11
+
+### Patch Changes
+
+-   6d3b3cbe: Minor og patch oppdateringer + nextjs major -> 14
+    -   @navikt/sif-common-utils@3.40.11
+
 ## 9.8.10
 
 ### Patch Changes

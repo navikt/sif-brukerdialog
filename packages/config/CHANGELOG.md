@@ -1,5 +1,11 @@
 # config
 
+## 0.6.5
+
+### Patch Changes
+
+-   6d3b3cbe: Minor og patch oppdateringer + nextjs major -> 14
+
 ## 0.6.4
 
 ### Patch Changes

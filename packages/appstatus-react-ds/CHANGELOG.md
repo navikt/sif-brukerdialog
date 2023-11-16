@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 2.14.11
+
+### Patch Changes
+
+-   6d3b3cbe: Minor og patch oppdateringer + nextjs major -> 14
+
 ## 2.14.10
 
 ### Patch Changes
