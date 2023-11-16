@@ -10,7 +10,15 @@ export async function getServerSideProps() {
     let bruker = null;
     let errorMessage: string | null = null;
 
-    await fetch(endpoints.soker)
+    // api.psb.get(ApiEndpointPsb.soker).then(
+    //     (response) => {
+    //         console.log(response.data);
+    //     },
+    //     (error) => {
+    //         console.log(error);
+    //     },
+    // );
+    await fetch('http://k9-brukerdialog-api/oppslag/soker')
         .then(async (response) => {
             bruker = await response.json();
         })
@@ -40,7 +48,7 @@ export async function getServerSideProps() {
 const DinePleiepenger: NextPage = (props) => {
     const { error } = props as any;
     // eslint-disable-next-line no-console
-    console.log(error);
+    console.log({ error, url: process.env.NEXT_PUBLIC_API_URL });
     return error ? (
         <EmptyPage>
             <Alert variant="error">Det oppstod en feil da vi hentet informasjon din</Alert>

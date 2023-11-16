@@ -18,14 +18,14 @@ server.use(
 const startServer = () => {
     const port = 1234;
 
-    server.get('/bruker', (req, res) => {
+    server.get('/oppslag/soker', (req, res) => {
         res.send({
             fornavn: 'Ola',
             etternavn: 'Nordmann',
         });
     });
 
-    server.get('/bruker-ikke-tilgang', (req, res) => {
+    server.get('/oppslag/soker-ikke-tilgang', (req, res) => {
         res.sendStatus(403);
     });
 
