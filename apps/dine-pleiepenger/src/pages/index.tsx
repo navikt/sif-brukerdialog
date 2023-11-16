@@ -39,9 +39,12 @@ export async function getServerSideProps() {
 
 const DinePleiepenger: NextPage = (props) => {
     const { error } = props as any;
+    // eslint-disable-next-line no-console
+    console.log(error);
     return error ? (
         <EmptyPage>
             <Alert variant="error">Det oppstod en feil da vi hentet informasjon din</Alert>
+            {endpoints.soker}
         </EmptyPage>
     ) : (
         <DefaultPage>
