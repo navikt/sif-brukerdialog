@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.0.3
+
+### Patch Changes
+
+-   fdb3b1a6: Tekstendring - valgte dager
+
 ## 2.0.2
 
 ### Patch Changes
