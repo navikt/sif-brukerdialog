@@ -46,6 +46,7 @@ export const api = {
     psb: {
         get: <ResponseType>(endpoint: ApiEndpointPsb, paramString?: string, config?: AxiosRequestConfig) => {
             const url = `${process.env.NEXT_PUBLIC_API_URL}/${endpoint}${paramString ? `?${paramString}` : ''}`;
+
             return axios.get<ResponseType>(url, config || axiosConfigPsb);
         },
         post: <DataType = any, ResponseType = any>(
