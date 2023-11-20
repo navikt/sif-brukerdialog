@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.22.0
+
+### Minor Changes
+
+-   d31f28ec: Minor og patch oppdateringer på ds, react-router-dom, vite, msw
+
 ## 2.21.9
 
 ### Patch Changes

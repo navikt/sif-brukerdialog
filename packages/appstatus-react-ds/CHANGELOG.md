@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 2.15.0
+
+### Minor Changes
+
+-   d31f28ec: Minor og patch oppdateringer på ds, react-router-dom, vite, msw
+
 ## 2.14.11
 
 ### Patch Changes

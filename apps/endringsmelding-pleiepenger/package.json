@@ -5,7 +5,7 @@
     "license": "MIT",
     "name": "@navikt/endringsmelding-pleiepenger",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "2.20.19",
+    "version": "2.21.0",
     "private": true,
     "dependencies": {
         "@formatjs/intl-pluralrules": "5.2.10",
