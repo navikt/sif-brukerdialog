@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.8.0
+
+### Minor Changes
+
+-   d31f28ec: Minor og patch oppdateringer på ds, react-router-dom, vite, msw
+
 ## 10.7.11
 
 ### Patch Changes

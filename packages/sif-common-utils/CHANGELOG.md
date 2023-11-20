@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.41.0
+
+### Minor Changes
+
+-   d31f28ec: Minor og patch oppdateringer på ds, react-router-dom, vite, msw
+
 ## 3.40.11
 
 ### Patch Changes
