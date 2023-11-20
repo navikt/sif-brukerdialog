@@ -55,7 +55,7 @@
         "@babel/preset-env": "7.23.3",
         "@babel/preset-react": "7.23.3",
         "@babel/preset-typescript": "7.23.3",
-        "@mswjs/data": "0.15.0",
+        "@mswjs/data": "0.16.0",
         "@navikt/ds-tailwind": "5.10.1",
         "@sentry/vite-plugin": "2.10.0",
         "@storybook/addon-actions": "7.5.3",
