@@ -19,18 +19,18 @@ const appDirectives = {
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
-    // output: !isE2E ? 'standalone' : undefined,
-    // reactStrictMode: true,
+    output: !isE2E ? 'standalone' : undefined,
+    reactStrictMode: true,
     basePath: process.env.NEXT_PUBLIC_BASE_PATH,
     pageExtensions: ['page.tsx', 'api.ts'],
     transpilePackages: ['tailwind-merge'],
     assetPrefix: '/dine-pleiepenger',
-    // experimental: {
-    //     optimizePackageImports: ['@navikt/aksel-icons', '@navikt/ds-react'],
-    // },
-    // typescript: {
-    //     ignoreBuildErrors: isE2E,
-    // },
+    experimental: {
+        optimizePackageImports: ['@navikt/aksel-icons', '@navikt/ds-react'],
+    },
+    typescript: {
+        ignoreBuildErrors: isE2E,
+    },
     eslint: {
         dirs: ['src'],
         ignoreDuringBuilds: true,

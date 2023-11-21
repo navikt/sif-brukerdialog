@@ -8,7 +8,7 @@ const axiosConfigCommon: AxiosRequestConfig = {
 
 const axiosConfigPsb: AxiosRequestConfig = {
     ...axiosConfigCommon,
-    baseURL: process.env.NEXT_PUBLIC_API_URL,
+    baseURL: process.env.NEXT_PUBLIC_API_URL_BRUKERDIALOG,
 };
 
 const axiosConfigInnsyn: AxiosRequestConfig = {
@@ -45,7 +45,9 @@ export const api = {
     },
     brukerdialog: {
         get: <ResponseType>(endpoint: ApiEndpointBrukerdialog, paramString?: string, config?: AxiosRequestConfig) => {
-            const url = `${process.env.NEXT_PUBLIC_API_URL}/${endpoint}${paramString ? `?${paramString}` : ''}`;
+            const url = `${process.env.NEXT_PUBLIC_API_URL_BRUKERDIALOG}/${endpoint}${
+                paramString ? `?${paramString}` : ''
+            }`;
             return axios.get<ResponseType>(url, config || axiosConfigPsb);
         },
     },

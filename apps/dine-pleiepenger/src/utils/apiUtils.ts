@@ -1,6 +1,6 @@
 import { AxiosError, HttpStatusCode } from 'axios';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = process.env.NEXT_PUBLIC_API_URL_BRUKERDIALOG;
 const API_URL_INNSYN = process.env.NEXT_PUBLIC_API_URL_INNSYN;
 
 export const endpoints = {
