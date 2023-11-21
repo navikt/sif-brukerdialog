@@ -35,7 +35,7 @@ jobs:
                   cache: 'yarn'
 
             - name: Install dependencies (yarn)
-              run: yarn install --immutable
+              run: yarn install
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
