@@ -2,9 +2,6 @@ name: .Deploy application to dev
 
 on:
     workflow_call:
-        secrets:
-          READER_TOKEN:
-            required: true
         inputs:
             working-directory:
                 type: string
@@ -28,9 +25,15 @@ jobs:
               with:
                   node-version: 18
                   cache: 'yarn'
-                  scope: '@navikt'
                   registry-url: "https://npm.pkg.github.com"
 
+            - name: Setup .yarnrc.yml
+              run: |
+                  yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
+                  yarn config set npmScopes.navikt.npmAlwaysAuth true
+                  yarn config set npmScopes.navikt.npmAuthToken $NPM_AUTH_TOKEN
+              env:
+                NPM_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
             - name: Install dependencies (yarn)
               run: yarn
