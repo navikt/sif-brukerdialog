@@ -2,6 +2,9 @@ name: .Deploy application to dev
 
 on:
     workflow_call:
+        secrets:
+          READER_TOKEN:
+            required: true
         inputs:
             working-directory:
                 type: string
@@ -25,6 +28,7 @@ jobs:
               with:
                   node-version: 18
                   cache: 'yarn'
+                  scope: '@navikt'
                   registry-url: "https://npm.pkg.github.com"
 
 
