@@ -1,5 +1,43 @@
 # @navikt/omsorgspengesoknad
 
+## 1.20.0
+
+### Minor Changes
+
+-   d31f28ec: Minor og patch oppdateringer på ds, react-router-dom, vite, msw
+
+### Patch Changes
+
+-   Updated dependencies [d31f28ec]
+    -   @navikt/sif-common-amplitude@2.22.0
+    -   @navikt/sif-common-formik-ds@1.3.0
+    -   @navikt/sif-common-soknad-ds@10.8.0
+    -   @navikt/sif-common-forms-ds@8.12.0
+    -   @navikt/sif-common-core-ds@9.9.0
+    -   @navikt/sif-common-sentry@0.23.0
+    -   @navikt/sif-common-utils@3.41.0
+
+## 1.19.20
+
+### Patch Changes
+
+-   6d3b3cbe: Minor og patch oppdateringer + nextjs major -> 14
+-   Updated dependencies [6d3b3cbe]
+    -   @navikt/sif-common-formik-ds@1.2.3
+    -   @navikt/sif-common-soknad-ds@10.7.11
+    -   @navikt/sif-common-forms-ds@8.11.4
+    -   @navikt/sif-common-core-ds@9.8.11
+    -   @navikt/sif-common-sentry@0.22.7
+    -   @navikt/sif-common-amplitude@2.21.9
+    -   @navikt/sif-common-utils@3.40.11
+
+## 1.19.19
+
+### Patch Changes
+
+-   Updated dependencies [19c424d7]
+    -   @navikt/sif-app-register@0.0.2
+
 ## 1.19.18
 
 ### Patch Changes

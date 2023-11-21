@@ -1,5 +1,17 @@
 # @navikt/sif-common-forms-ds
 
+## 8.12.0
+
+### Minor Changes
+
+-   d31f28ec: Minor og patch oppdateringer på ds, react-router-dom, vite, msw
+
+## 8.11.4
+
+### Patch Changes
+
+-   6d3b3cbe: Minor og patch oppdateringer + nextjs major -> 14
+
 ## 8.11.3
 
 ### Patch Changes

@@ -106,7 +106,7 @@ const DaySelector: React.FunctionComponent<Props> = ({
                     <div className="daySelector__tags">
                         <VStack gap="2">
                             <BodyShort as="div" spacing={false} size="small">
-                                Valgte dager:
+                                Antall valgte dager:
                             </BodyShort>
 
                             <HStack gap={'2'} align={'center'} wrap={true}>

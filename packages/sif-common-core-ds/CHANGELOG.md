@@ -1,5 +1,23 @@
 # @navikt/sif-common-core-ds
 
+## 9.9.0
+
+### Minor Changes
+
+-   d31f28ec: Minor og patch oppdateringer på ds, react-router-dom, vite, msw
+
+### Patch Changes
+
+-   Updated dependencies [d31f28ec]
+    -   @navikt/sif-common-utils@3.41.0
+
+## 9.8.11
+
+### Patch Changes
+
+-   6d3b3cbe: Minor og patch oppdateringer + nextjs major -> 14
+    -   @navikt/sif-common-utils@3.40.11
+
 ## 9.8.10
 
 ### Patch Changes

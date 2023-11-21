@@ -1,5 +1,17 @@
 # @navikt/sif-common-formik-ds
 
+## 1.3.0
+
+### Minor Changes
+
+-   d31f28ec: Minor og patch oppdateringer på ds, react-router-dom, vite, msw
+
+## 1.2.3
+
+### Patch Changes
+
+-   6d3b3cbe: Minor og patch oppdateringer + nextjs major -> 14
+
 ## 1.2.2
 
 ### Patch Changes

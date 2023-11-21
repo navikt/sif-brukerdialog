@@ -1,5 +1,17 @@
 # config
 
+## 0.7.0
+
+### Minor Changes
+
+-   d31f28ec: Minor og patch oppdateringer på ds, react-router-dom, vite, msw
+
+## 0.6.5
+
+### Patch Changes
+
+-   6d3b3cbe: Minor og patch oppdateringer + nextjs major -> 14
+
 ## 0.6.4
 
 ### Patch Changes
