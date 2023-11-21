@@ -11,7 +11,6 @@
         "NEXT_PUBLIC_BASE_PATH": "/dine-pleiepenger",
         "NEXT_PUBLIC_API_URL_INNSYN": "http://sif-innsyn-api",
         "NEXT_PUBLIC_API_URL": "http://k9-brukerdialog-api",
-        "NEXT_PUBLIC_DEKORATOR_ENV": "dev",
         "NEXT_PUBLIC_RUNTIME_ENVIRONMENT": "dev",
         "NPM_CONFIG_CACHE": "/tmp",
         "NODE_ENV": "development",
