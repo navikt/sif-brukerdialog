@@ -30,7 +30,7 @@ function createDecoratorEnv(ctx: DocumentContext): 'dev' | 'prod' {
             throw new Error(
                 `Unknown runtime environment: ${browserEnv.NEXT_PUBLIC_RUNTIME_ENVIRONMENT} - ${JSON.stringify(
                     browserEnv,
-                )}`,
+                )} - ${process.env.NEXT_PUBLIC_RUNTIME_ENVIRONMENT}`,
             );
     }
 }
