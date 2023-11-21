@@ -1,11 +1,11 @@
-export enum ApiEndpointPsb {
-    'soker' = 'oppslag/soker',
+export enum ApiEndpointBrukerdialog {
+    'søker' = 'oppslag/soker',
     'arbeidsgiver' = 'oppslag/arbeidsgiver',
     'organisasjoner' = 'oppslag/organisasjoner', // Brukes ikke
-    'sendEndringsmelding' = 'pleiepenger-sykt-barn/endringsmelding/innsending',
-    'mellomlagring' = 'mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN',
+    'mellomlagringSøknad' = 'mellomlagring/PLEIEPENGER_SYKT_BARN',
+    'mellomlagringEndring' = 'mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN',
 }
 
 export enum ApiEndpointInnsyn {
-    'sak' = 'innsyn/sak',
+    'søknad' = 'soknad',
 }

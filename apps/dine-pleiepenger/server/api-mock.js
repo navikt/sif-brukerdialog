@@ -15,6 +15,10 @@ server.use(
     }),
 );
 
+server.use(function (req, res, next) {
+    setTimeout(next, 2500);
+});
+
 const startServer = () => {
     const port = 1234;
 
@@ -58,7 +62,7 @@ const startServer = () => {
         res.download('./server/mockdata/BekreftelseTilKLONELABBEN.pdf', 'BekreftelseTilKLONELABBEN.pdf');
     });
 
-    server.get('/mellomlagring', (req, res) => {
+    server.get('/mellomlagring/PLEIEPENGER_SYKT_BARN', (req, res) => {
         res.send({
             formData: {},
             metadata: { lastStepID: 'tidsrom', version: '6.1', updatedTimestemp: '2021-09-20T14:18:01.060Z' },

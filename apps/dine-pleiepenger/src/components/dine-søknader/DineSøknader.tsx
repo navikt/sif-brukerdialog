@@ -1,14 +1,11 @@
-import { Alert, Heading, Loader } from '@navikt/ds-react';
+import { Alert, Heading } from '@navikt/ds-react';
 import useSWR from 'swr';
-
-import axios from 'axios';
-import { Søknad } from '../../types/Søknad';
-import SøknadListe from '../søknad-liste/SøknadListe';
-
-const fetcher = (url: string) => axios.get<Søknad[]>(url).then((res) => res.data);
+import { søknaderFecther } from '../../pages/api/soknader.api';
+import SøknadListe, { SøknadListeSkeleton } from '../søknad-liste/SøknadListe';
+import ComponentLoader from '../component-loader/ComponentLoader';
 
 const DineSøknader = () => {
-    const { data, error, isLoading } = useSWR('/dine-pleiepenger/api/soknader', fetcher);
+    const { data, error, isLoading } = useSWR('/dine-pleiepenger/api/soknader', søknaderFecther);
 
     if (error) {
         return <Alert variant="error">Henting av data feilet</Alert>;
@@ -21,7 +18,10 @@ const DineSøknader = () => {
             </Heading>
 
             {isLoading ? (
-                <Loader title="Henter informasjon" size="2xlarge" />
+                <ComponentLoader
+                    title="Vent litt mens vi finner dine søknader ..."
+                    fallback={<SøknadListeSkeleton rows={3} />}
+                />
             ) : (
                 <SøknadListe søknader={(Array.isArray(data) ? data : []).slice(0, 5)} />
             )}

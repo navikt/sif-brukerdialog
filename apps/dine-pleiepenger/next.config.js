@@ -12,7 +12,7 @@ const appDirectives = {
     'script-src': ["'self'", "'unsafe-eval'", "'unsafe-inline'", 'https://uxsignals-frontend.uxsignals.app.iterate.no'],
     'script-src-elem': ["'self'", "'unsafe-inline'", 'https://uxsignals-frontend.uxsignals.app.iterate.no'],
     'worker-src': ["'self'"],
-    'connect-src': ["'self'", 'https://*.nav.no', 'https://*.uxsignals.com'],
+    'connect-src': ["'self'", 'https://*.nav.no', 'https://*.uxsignals.com', 'http://localhost:1234'],
 };
 
 /**
@@ -22,7 +22,7 @@ const nextConfig = {
     output: !isE2E ? 'standalone' : undefined,
     reactStrictMode: true,
     basePath: process.env.NEXT_PUBLIC_BASE_PATH,
-    pageExtensions: ['page.tsx', 'page.ts', 'api.ts'],
+    pageExtensions: ['page.tsx', 'api.ts'],
     transpilePackages: ['tailwind-merge'],
     assetPrefix: '/dine-pleiepenger',
     experimental: {

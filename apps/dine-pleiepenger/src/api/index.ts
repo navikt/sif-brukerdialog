@@ -1,5 +1,5 @@
 import { storageParser } from '@navikt/sif-common-core-ds/lib/utils/persistence/storageParser';
-import axios, { AxiosError, AxiosRequestConfig, RawAxiosRequestHeaders } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import { ApiEndpointInnsyn, ApiEndpointPsb } from './endpoints';
 
 const axiosConfigCommon: AxiosRequestConfig = {
@@ -43,21 +43,10 @@ export const api = {
             return axios.get<ResponseType>(url, axiosConfigInnsyn);
         },
     },
-    psb: {
+    brukerdialog: {
         get: <ResponseType>(endpoint: ApiEndpointPsb, paramString?: string, config?: AxiosRequestConfig) => {
             const url = `${process.env.NEXT_PUBLIC_API_URL}/${endpoint}${paramString ? `?${paramString}` : ''}`;
-
             return axios.get<ResponseType>(url, config || axiosConfigPsb);
-        },
-        post: <DataType = any, ResponseType = any>(
-            endpoint: ApiEndpointPsb,
-            data: DataType,
-            headers?: RawAxiosRequestHeaders,
-        ) => {
-            return axios.post<ResponseType>(endpoint, data, {
-                ...axiosConfigPsb,
-                headers: { ...axiosConfigPsb.headers, ...headers },
-            });
         },
     },
 };

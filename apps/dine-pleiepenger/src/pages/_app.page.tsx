@@ -4,8 +4,9 @@ import { AppProps } from 'next/app';
 import { ServerSidePropsResult } from '../auth/withAuthentication';
 import ErrorBoundary from '../components/error-boundary/ErrorBoundary';
 import { messages } from '../utils/message';
-import '../style/global.css';
+import 'react-loading-skeleton/dist/skeleton.css';
 import '../components/process/process.css';
+import '../style/global.css';
 
 function MyApp({ Component, pageProps }: AppProps<ServerSidePropsResult>): ReactElement {
     return (

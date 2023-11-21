@@ -2,6 +2,7 @@ import { ExpansionCard, VStack } from '@navikt/ds-react';
 import { Søknad } from '../../types/Søknad';
 import SøknadTitle from './SøknadTitle';
 import SøknadContent from './SøknadContent';
+import Skeleton from 'react-loading-skeleton';
 
 interface Props {
     søknader: Søknad[];
@@ -30,6 +31,24 @@ const SøknadListe: React.FunctionComponent<Props> = ({ søknader = [] }) => {
             })}
         </VStack>
     );
+};
+
+export const SøknadListeSkeleton = ({ rows = 3 }: { rows: number }) => {
+    const skeleton: any[] = [];
+    for (let i = 0; i < rows; i++) {
+        const card = (
+            <Skeleton
+                height={'5.9rem'}
+                baseColor="#ffffff"
+                highlightColor="#99C4DD"
+                style={{ borderRadius: '.5rem' }}
+                containerClassName="flex"
+                className="border border-gray-500"
+            />
+        );
+        skeleton.push(card);
+    }
+    return <VStack gap="2">{skeleton}</VStack>;
 };
 
 export default SøknadListe;
