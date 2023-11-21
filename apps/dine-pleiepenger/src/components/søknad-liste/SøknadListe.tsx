@@ -38,6 +38,7 @@ export const SøknadListeSkeleton = ({ rows = 3 }: { rows: number }) => {
     for (let i = 0; i < rows; i++) {
         const card = (
             <Skeleton
+                key={i}
                 height={'5.9rem'}
                 baseColor="#ffffff"
                 highlightColor="#99C4DD"
