@@ -25,6 +25,8 @@ jobs:
               with:
                   node-version: 18
                   cache: 'yarn'
+                  registry-url: "https://npm.pkg.github.com"
+
 
             - name: Install dependencies (yarn)
               run: yarn
