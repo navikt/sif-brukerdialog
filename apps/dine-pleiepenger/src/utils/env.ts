@@ -8,6 +8,7 @@ export const publicEnvSchema = z.object({
     NEXT_PUBLIC_API_URL_INNSYN: z.union([z.string(), z.undefined()]),
     NEXT_PUBLIC_API_URL: z.union([z.string(), z.undefined()]),
     NEXT_PUBLIC_IS_E2E: z.union([z.string(), z.undefined()]),
+    ANALYZE: z.union([z.string(), z.undefined()]),
 });
 
 export type ServerEnv = z.infer<typeof serverEnvSchema>;
@@ -31,6 +32,7 @@ export const browserEnv = publicEnvSchema.parse({
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
     NEXT_PUBLIC_API_URL_INNSYN: process.env.NEXT_PUBLIC_API_URL_INNSYN,
     NEXT_PUBLIC_IS_E2E: process.env.NEXT_PUBLIC_IS_E2E,
+    ANALYZE: process.env.ANALYZE,
 } satisfies Record<keyof PublicEnv, string | undefined>);
 
 const getRawServerConfig = (): Partial<unknown> =>
