@@ -9,7 +9,7 @@
     "readinessPath": "/dine-pleiepenger/api/internal/isReady",
     "env": {
         "NEXT_PUBLIC_DEKORATOR_ENV": "prod",
-        "NEXT_PUBLIC_ENVIRONMENT": "prod",
+        "NEXT_PUBLIC_RUNTIME_ENVIRONMENT": "prod",
         "NPM_CONFIG_CACHE": "/tmp"
     }
 }
