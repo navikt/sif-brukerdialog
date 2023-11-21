@@ -5,6 +5,9 @@ export const publicEnvSchema = z.object({
     NEXT_PUBLIC_BASE_PATH: z.union([z.string(), z.undefined()]),
     NEXT_PUBLIC_MIN_SIDE_PATH: z.union([z.string(), z.undefined()]),
     NEXT_PUBLIC_RUNTIME_ENVIRONMENT: z.union([z.string(), z.undefined()]),
+    NEXT_PUBLIC_API_URL_INNSYN: z.union([z.string(), z.undefined()]),
+    NEXT_PUBLIC_API_URL: z.union([z.string(), z.undefined()]),
+    NEXT_PUBLIC_IS_E2E: z.union([z.string(), z.undefined()]),
 });
 
 export type ServerEnv = z.infer<typeof serverEnvSchema>;
@@ -25,6 +28,9 @@ export const browserEnv = publicEnvSchema.parse({
     NEXT_PUBLIC_BASE_PATH: process.env.NEXT_PUBLIC_BASE_PATH,
     NEXT_PUBLIC_MIN_SIDE_PATH: process.env.NEXT_PUBLIC_MIN_SIDE_PATH,
     NEXT_PUBLIC_RUNTIME_ENVIRONMENT: process.env.NEXT_PUBLIC_RUNTIME_ENVIRONMENT,
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+    NEXT_PUBLIC_API_URL_INNSYN: process.env.NEXT_PUBLIC_API_URL_INNSYN,
+    NEXT_PUBLIC_IS_E2E: process.env.NEXT_PUBLIC_IS_E2E,
 } satisfies Record<keyof PublicEnv, string | undefined>);
 
 const getRawServerConfig = (): Partial<unknown> =>
