@@ -1,6 +1,6 @@
 import { storageParser } from '@navikt/sif-common-core-ds/lib/utils/persistence/storageParser';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
-import { ApiEndpointInnsyn, ApiEndpointPsb } from './endpoints';
+import { ApiEndpointInnsyn, ApiEndpointBrukerdialog } from './endpoints';
 
 const axiosConfigCommon: AxiosRequestConfig = {
     withCredentials: true,
@@ -44,7 +44,7 @@ export const api = {
         },
     },
     brukerdialog: {
-        get: <ResponseType>(endpoint: ApiEndpointPsb, paramString?: string, config?: AxiosRequestConfig) => {
+        get: <ResponseType>(endpoint: ApiEndpointBrukerdialog, paramString?: string, config?: AxiosRequestConfig) => {
             const url = `${process.env.NEXT_PUBLIC_API_URL}/${endpoint}${paramString ? `?${paramString}` : ''}`;
             return axios.get<ResponseType>(url, config || axiosConfigPsb);
         },
