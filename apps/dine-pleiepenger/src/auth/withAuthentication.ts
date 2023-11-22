@@ -54,7 +54,7 @@ export function withAuthenticatedPage(handler: PageHandler = defaultPageHandler)
         context: GetServerSidePropsContext,
     ): Promise<ReturnType<NonNullable<typeof handler>>> {
         if (isLocalOrDemo) {
-            return handler(context); //handleMockContext(context, handler);
+            return handler(context);
         }
 
         const request = context.req;
