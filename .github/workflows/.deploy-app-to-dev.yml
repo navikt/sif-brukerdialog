@@ -31,13 +31,6 @@ jobs:
               env:
                 NPM_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
-            - name: Copy dev envs for next.js apps to root
-              if: ${{ inputs.is-next-app == true }}
-              shell: bash
-              run: |
-                  echo "Copying nais/envs/.env.dev..."
-                  cp nais/envs/.env.dev .env.production
-
             - name: Setup Node.js environment
               uses: actions/setup-node@v4
               with:
@@ -46,6 +39,13 @@ jobs:
 
             - name: Install dependencies (yarn)
               run: yarn
+
+            - name: Copy dev envs for next.js apps to root
+              if: ${{ inputs.is-next-app == true }}
+              shell: bash
+              run: |
+                  echo "Copying nais/envs/.env.dev..."
+                  cp nais/envs/.env.dev .env.production
 
             - name: Build application
               run: yarn build-${{ inputs.app-name }}
