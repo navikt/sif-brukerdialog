@@ -46,8 +46,10 @@ jobs:
               if: ${{ inputs.is-next-app == true }}
               shell: bash
               run: |
-                  echo "Copying .env.dev to app root"
+                  echo "Copying .env.dev to app root (all)"
                   cp apps/${{inputs.app-name}}/nais/envs/.env.dev apps/${{inputs.app-name}}/nais/envs/.env.local
+                  cp apps/${{inputs.app-name}}/nais/envs/.env.dev apps/${{inputs.app-name}}/nais/envs/.env.production
+                  cp apps/${{inputs.app-name}}/nais/envs/.env.dev apps/${{inputs.app-name}}/nais/envs/.env.development
 
             - name: Build application
               run: yarn build-${{ inputs.app-name }}
