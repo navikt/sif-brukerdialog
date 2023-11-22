@@ -62,7 +62,11 @@ export function withAuthenticatedPage(handler: PageHandler = defaultPageHandler)
         const bearerToken: string | null | undefined = request.headers['authorization'];
         if (!bearerToken) {
             return {
-                redirect: { destination: `/oauth2/login?redirect=${getRedirectPath(context)}`, permanent: false },
+                redirect: {
+                    destination: `/oauth2/login?redirect=${getRedirectPath(context)}`,
+                    permanent: false,
+                    basePath: false,
+                },
             };
         }
 
