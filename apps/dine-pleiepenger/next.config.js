@@ -43,7 +43,6 @@ const nextConfig = {
         NEXT_PUBLIC_API_URL_INNSYN: 'http://sif-innsyn-api',
         NEXT_PUBLIC_API_URL_BRUKERDIALOG: 'http://k9-brukerdialog-api',
         NEXT_PUBLIC_IS_E2E: 'false',
-        NODE_ENV: 'development',
         ANALYZE: 'false',
         NPM_CONFIG_CACHE: '/tmp',
     },
