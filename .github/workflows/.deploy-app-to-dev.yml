@@ -9,6 +9,9 @@ on:
             app-name:
                 type: string
                 required: true
+            is-next-app:
+                type: boolean
+                required: false
 
 jobs:
     deploy-to-dev:
@@ -27,6 +30,13 @@ jobs:
                   yarn config set npmScopes.navikt.npmAuthToken $NPM_AUTH_TOKEN
               env:
                 NPM_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+
+            - name: Copy dev envs for next.js apps to root
+              if: ${{ inputs.is-next-app == true }}
+              shell: bash
+              run: |
+                  echo "Copying nais/envs/.env.dev..."
+                  cp nais/envs/.env.dev .env.production
 
             - name: Setup Node.js environment
               uses: actions/setup-node@v4
