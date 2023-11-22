@@ -22,7 +22,7 @@ USER nextjs
 FROM pruner AS server
 COPY --from=pruner /app/apps/dine-pleiepenger/next.config.js .
 COPY --from=pruner /app/apps/dine-pleiepenger/package.json .
-
+COPY --from=pruner /app/apps/dine-pleiepenger/env.production .
 COPY --from=pruner --chown=nextjs:nodejs /app/apps/dine-pleiepenger/.next/standalone ./
 COPY --from=pruner --chown=nextjs:nodejs /app/apps/dine-pleiepenger/.next/static ./.next/static
 COPY --from=pruner --chown=nextjs:nodejs /app/apps/dine-pleiepenger/public ./public
