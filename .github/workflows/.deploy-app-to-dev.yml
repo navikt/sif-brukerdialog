@@ -47,7 +47,7 @@ jobs:
               shell: bash
               run: |
                   echo "Copying .env.dev to app root"
-                  cp apps/${{inputs.app-name}}/nais/envs/.env.dev apps/${{inputs.app-name}}/nais/envs/.env.production
+                  cp apps/${{inputs.app-name}}/nais/envs/.env.dev apps/${{inputs.app-name}}/nais/envs/.env.local
 
             - name: Build application
               run: yarn build-${{ inputs.app-name }}
