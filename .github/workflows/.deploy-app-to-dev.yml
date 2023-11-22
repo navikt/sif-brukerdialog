@@ -42,12 +42,13 @@ jobs:
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
-            - name: Copy dev envs for next.js apps to root
+            - name: Copy .env.dev for next.js build
               if: ${{ inputs.is-next-app == true }}
               shell: bash
               run: |
-                  echo "Copying nais/envs/.env.dev..."
+                  echo "Copying nais/envs/.env.dev to root"
                   cp apps/${{inputs.app-name}}/nais/envs/.env.dev .env.production
+                  cp apps/${{inputs.app-name}}/nais/envs/.env.dev .env
 
             - name: Build application
               run: yarn build-${{ inputs.app-name }}
