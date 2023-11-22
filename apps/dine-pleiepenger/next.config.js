@@ -36,16 +36,16 @@ const nextConfig = {
         ignoreDuringBuilds: true,
     },
 
-    env: {
-        NEXT_PUBLIC_BASE_PATH: '/dine-pleiepenger',
-        NEXT_PUBLIC_MIN_SIDE_PATH: '/minside',
-        NEXT_PUBLIC_RUNTIME_ENVIRONMENT: 'dev',
-        NEXT_PUBLIC_API_URL_INNSYN: 'http://sif-innsyn-api',
-        NEXT_PUBLIC_API_URL_BRUKERDIALOG: 'http://k9-brukerdialog-api',
-        NEXT_PUBLIC_IS_E2E: 'false',
-        ANALYZE: 'false',
-        NPM_CONFIG_CACHE: '/tmp',
-    },
+    // env: {
+    //     NEXT_PUBLIC_BASE_PATH: '/dine-pleiepenger',
+    //     NEXT_PUBLIC_MIN_SIDE_PATH: '/minside',
+    //     NEXT_PUBLIC_RUNTIME_ENVIRONMENT: 'dev',
+    //     NEXT_PUBLIC_API_URL_INNSYN: 'http://sif-innsyn-api',
+    //     NEXT_PUBLIC_API_URL_BRUKERDIALOG: 'http://k9-brukerdialog-api',
+    //     NEXT_PUBLIC_IS_E2E: 'false',
+    //     ANALYZE: 'false',
+    //     NPM_CONFIG_CACHE: '/tmp',
+    // },
 
     async headers() {
         if (isE2E) return [];
