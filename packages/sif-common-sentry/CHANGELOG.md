@@ -1,5 +1,17 @@
 # @navikt/sif-common-sentry
 
+## 0.23.0
+
+### Minor Changes
+
+-   d31f28ec: Minor og patch oppdateringer på ds, react-router-dom, vite, msw
+
+## 0.22.7
+
+### Patch Changes
+
+-   6d3b3cbe: Minor og patch oppdateringer + nextjs major -> 14
+
 ## 0.22.6
 
 ### Patch Changes
