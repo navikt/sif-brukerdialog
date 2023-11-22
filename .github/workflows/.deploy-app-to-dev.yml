@@ -37,18 +37,10 @@ jobs:
                   node-version: 18
                   cache: 'yarn'
 
-            - name: Copy dev envs for next.js apps to root
-              if: ${{ inputs.is-next-app == true }}
-              shell: bash
-              run: |
-                  echo "Copying nais/envs/.env.dev..."
-                  cp nais/envs/.env.dev .env.production
-
             - name: Install dependencies (yarn)
               run: yarn install
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
-
 
             - name: Copy dev envs for next.js apps to root
               if: ${{ inputs.is-next-app == true }}
