@@ -55,7 +55,7 @@ jobs:
               shell: bash
               run: |
                   echo "Copying nais/envs/.env.dev..."
-                  cp nais/envs/.env.dev .env.production
+                  cp apps/${{inputs.app-name}}/nais/envs/.env.dev .env.production
 
             - name: Build application
               run: yarn build-${{ inputs.app-name }}
