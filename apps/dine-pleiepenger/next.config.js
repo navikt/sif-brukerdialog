@@ -36,7 +36,7 @@ const nextConfig = {
         ignoreDuringBuilds: true,
     },
 
-    envs: {
+    env: {
         NEXT_PUBLIC_BASE_PATH: '/dine-pleiepenger',
         NEXT_PUBLIC_MIN_SIDE_PATH: '/minside',
         NEXT_PUBLIC_RUNTIME_ENVIRONMENT: 'dev',
