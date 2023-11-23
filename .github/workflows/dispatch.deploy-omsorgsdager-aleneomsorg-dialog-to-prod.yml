@@ -12,6 +12,7 @@ on:
 jobs:
     run-tests:
         uses: ./.github/workflows/test.omsorgsdager-aleneomsorg-dialog.yml
+        secrets: inherit
 
     deploy-to-prod:
         name: Deploy omsorgsdager-aleneomsorg-dialog to prod
