@@ -1,0 +1,36 @@
+{
+    "sakstype.PP_SYKT_BARN": "Søknad om pleiepenger sykt barn",
+    "sakstype.PP_ETTERSENDELSE": "Ettersendelse av dokumenter - Pleiepenger sykt barn",
+    "sakstype.PP_SYKT_BARN_ENDRINGSMELDING": "Endringsmelding pleiepenger",
+
+    "hvaSkjerInfo.tittel": "Hva skjer etter at du har sendt søknad til oss?",
+    "hvaSkjerInfo.innsent.endringsmelding.tittel": "Saksgang etter innsendt endringsmelding",
+
+    "hvaSkjerInfo.legeerklæring.tittel": "Legeerklæring",
+    "hvaSkjerInfo.legeerklæring": "Vi sjekker om vi har fått legeerklæring fra deg. Hvis du ikke sendte den sammen med søknaden din, må du ettersende den til oss så snart du kan.",
+
+    "hvaSkjerInfo.inntektsmelding.tittel": "Inntektsmelding fra arbeidsgiver",
+    "hvaSkjerInfo.inntektsmelding.avsnitt.1": "Hvis du er arbeidstaker, sjekker vi om vi har fått inntektsmelding fra arbeidsgiveren din. Den trenger vi hvis du søker for første gang, eller det er 4 uker eller mer siden sist du hadde pleiepenger. Kontakt arbeidsgiver for å sikre at de sender inntektsmeldingen til oss.",
+    "hvaSkjerInfo.inntektsmelding.avsnitt.2": "Hvis du ikke er arbeidstaker, trenger du ikke sende informasjon om inntekten din.",
+
+    "hvaSkjerInfo.behandling.tittel": "Vi behandler søknaden din",
+    "hvaSkjerInfo.behandling": "Når vi har fått legeerklæring og inntektsmelding kan vi behandle søknaden din. Vi kontakter deg hvis vi trenger flere opplysninger fra deg.",
+
+    "hvaSkjerInfo.ferdigBehandlet.tittel": "Når søknaden er ferdig behandlet",
+    "hvaSkjerInfo.ferdigBehandlet": "Når vi har behandlet søknaden din, sender vi deg et svar som du finner under saksoversikten på «Min side».",
+
+    "hvaSkjerInfo.utbetaling.tittel": "Utbetaling",
+    "hvaSkjerInfo.utbetaling": "Informasjon om utbetaling finner du under utbetalingsoversikten på «Min side».",
+
+    "page.ikkeTilgang.title": "Ingen tilgang",
+    "page.ikkeTilgang.content": "Du har ikke tilgang til denne siden.",
+
+    "dokumenterTittel.PP_SYKT_BARN": "Søknad og eventuelle vedlegg i søknad",
+    "dokumenterTittel.PP_ETTERSENDELSE": "Ettersendelse og dokumenter",
+    "dokumenterTittel.PP_SYKT_BARN_ENDRINGSMELDING": "Endringsmelding",
+    "dokumenter.ingenDokumenter": "Dokumenter ikke tilgjengelig.",
+    "bekreftelseTilArbeidsgiver.title": "Bekreftelse til arbeidsgiver(e)",
+    "bekreftelseTilArbeidsgiver.info": "Dette er en bekreftelse du kan gi til arbeidsgiver ved behov. Denne bekrefter at søknaden din er mottatt, hvilken periode du har søkt for, samt informasjon om at arbeidsgiver må sende inntektsmelding til oss.",
+    "dokumenterSomKanLastesNed.tittel": "Dokumenter som kan lastes ned",
+    "dokumenterSomKanLastesNed.bekreftelse": "Bekreftelse til {organisasjonsnavn} (PDF)"
+}

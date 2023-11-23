@@ -1,0 +1,14 @@
+{
+    "app": "dine-pleiepenger",
+    "cluster": "dev-gcp",
+    "namespace": "dusseldorf",
+    "team": "dusseldorf",
+    "ingresses": ["https://www.nav.no/dine-pleiepenger"],
+    "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
+    "livenessPath": "/dine-pleiepenger/api/internal/isAlive",
+    "readinessPath": "/dine-pleiepenger/api/internal/isReady",
+    "env": {
+        "NEXT_PUBLIC_RUNTIME_ENVIRONMENT": "prod",
+        "NPM_CONFIG_CACHE": "/tmp"
+    }
+}

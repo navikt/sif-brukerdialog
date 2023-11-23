@@ -38,14 +38,16 @@ jobs:
                   cache: 'yarn'
 
             - name: Install dependencies (yarn)
-              run: yarn
+              run: yarn install
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
-            - name: Copy dev envs for next.js apps to root
+            - name: Copy .env.dev for next.js build
               if: ${{ inputs.is-next-app == true }}
               shell: bash
               run: |
-                  echo "Copying nais/envs/.env.dev..."
-                  cp nais/envs/.env.dev .env.production
+                  echo "Copying .env.dev to app root"
+                  cp apps/${{inputs.app-name}}/nais/envs/.env.dev apps/${{inputs.app-name}}/.env.production
 
             - name: Build application
               run: yarn build-${{ inputs.app-name }}
@@ -72,3 +74,4 @@ jobs:
                   VAR: GITHUB_REF_NAME=${{ github.ref_name }} # brukes i applikasjonerna
                   APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
                   IMAGE: ${{ steps.docker-push.outputs.image }}
+                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
