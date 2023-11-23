@@ -12,6 +12,7 @@ on:
 jobs:
     run-tests:
         uses: ./.github/workflows/test.pleiepenger-i-livets-sluttfase-soknad.yml
+        secrets: inherit
 
     deploy-to-prod:
         name: Deploy pleiepenger-i-livets-sluttfase-soknad to prod
