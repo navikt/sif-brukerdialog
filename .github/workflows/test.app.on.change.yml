@@ -51,8 +51,10 @@ jobs:
         needs: is-shared-code-change
         runs-on: ubuntu-latest
         steps:
-            - name: tell-me
+            - name: tell-me-isShared
               run: echo "isShared=${{needs.is-shared-code-change.outputs.isShared}}"
+            - name: tell-me-event-path
+              run: echo "paths${{github.event_path}}"
 
     # test-endringsmelding-pleiepenger:
     #   uses: ./.github/workflows/test.app.yml
