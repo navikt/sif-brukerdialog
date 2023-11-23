@@ -35,6 +35,13 @@ const nextConfig = {
         dirs: ['src'],
         ignoreDuringBuilds: true,
     },
+    env: {
+        IDPORTEN_CLIENT_ID: 'dummy-value',
+        IDPORTEN_WELL_KNOWN_URL: 'dummy-value',
+        TOKEN_X_WELL_KNOWN_URL: 'dummy-value',
+        TOKEN_X_PRIVATE_JWK: 'dummy-value',
+        TOKEN_X_CLIENT_ID: 'dummy-value',
+    },
 
     redirects: async () => [{ source: '/', destination: '/dine-pleiepenger', permanent: false, basePath: false }],
 
