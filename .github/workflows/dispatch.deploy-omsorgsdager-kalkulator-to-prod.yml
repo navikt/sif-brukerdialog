@@ -12,6 +12,7 @@ on:
 jobs:
     run-tests:
         uses: ./.github/workflows/test.omsorgsdager-kalkulator.yml
+        secrets: inherit
 
     deploy-to-prod:
         name: Deploy omsorgsdager kalkulator to prod

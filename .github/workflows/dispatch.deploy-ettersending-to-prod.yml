@@ -12,6 +12,7 @@ on:
 jobs:
     run-tests:
         uses: ./.github/workflows/test.sif-ettersending.yml
+        secrets: inherit
 
     deploy-to-prod:
         name: Deploy sif-ettersending to prod

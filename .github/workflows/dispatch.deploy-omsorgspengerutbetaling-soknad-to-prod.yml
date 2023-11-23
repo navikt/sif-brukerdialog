@@ -12,6 +12,7 @@ on:
 jobs:
     run-tests:
         uses: ./.github/workflows/test.omsorgspengerutbetaling-soknad.yml
+        secrets: inherit
 
     deploy-to-prod:
         name: Deploy omsorgspengerutbetaling-soknad to prod
