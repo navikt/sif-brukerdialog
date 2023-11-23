@@ -15,17 +15,18 @@ env:
     IS_SHARED_CODE_CHANGE: false
 
 jobs:
+
     is-shared-code-change:
         runs-on: ubuntu-latest
         outputs:
-            IS_SHARED_CODE_CHANGE: ${{ steps.is-shared-code-change.outputs.IS_SHARED_CODE_CHANGE }}
+            IS_SHARED_CODE_CHANGE: ${{ steps.is-shared-code-change-flag.outputs.IS_SHARED_CODE_CHANGE }}
         steps:
-            - id: is-shared-code-change
+            - id: is-shared-code-change-flag
               if:
                 contains(github.event_path, 'nais-config') ||
                 contains(github.event_path, 'packages') ||
                 contains(github.event_path, 'workflows')
-              run: echo "::set-output name=IS_SHARED_CODE_CHANGE::true
+              run: echo "IS_SHARED_CODE_CHANGE=true" >> "$GITHUB_OUTPUT"
             #   run: |
             #     if (contains(github.event_path, 'nais-config') |
             #         contains(github.event_path, 'packages') ||
