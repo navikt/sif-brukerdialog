@@ -17,7 +17,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: tell-me-event-path
-              run: echo "paths=${{github.event_path}}"
+              run:
+                echo "paths=${{github.event}}"
+                echo "paths=${{github.event_path}}"
+                echo "paths=${{github.event_name}}"
 
 
     # is-shared-code-change:
