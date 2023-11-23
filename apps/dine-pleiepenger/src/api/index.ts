@@ -1,5 +1,4 @@
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
-import { isUnauthorized } from '../utils/apiUtils';
 import { ApiEndpointBrukerdialog, ApiEndpointInnsyn } from './endpoints';
 
 const axiosConfigCommon: AxiosRequestConfig = {
@@ -27,10 +26,11 @@ axios.interceptors.response.use(
         return response;
     },
     (error: AxiosError) => {
-        if (isUnauthorized(error)) {
-            // Reload for redirecting to login page
-            window.location.reload();
-        }
+        // if (isUnauthorized(error)) {
+        //     // Reload for redirecting to login page
+        //     console.log('abc');
+        //     window.location.reload();
+        // }
         return Promise.reject(error);
     },
 );
@@ -47,6 +47,7 @@ export const api = {
             const url = `${process.env.NEXT_PUBLIC_API_URL_BRUKERDIALOG}/${endpoint}${
                 paramString ? `?${paramString}` : ''
             }`;
+
             return axios.get<ResponseType>(url, config || axiosConfigPsb);
         },
     },

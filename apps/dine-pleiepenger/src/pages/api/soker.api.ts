@@ -1,15 +1,23 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
-import { api } from '../../api';
-import { ApiEndpointBrukerdialog } from '../../api/endpoints';
-import { withAuthenticatedApi } from '../../auth/withAuthentication';
+import { createDemoRequestContext, createRequestContext, withAuthenticatedApi } from '../../auth/withAuthentication';
 import { Søker } from '../../types/Søker';
 import { isForbidden } from '../../utils/apiUtils';
+import { getSøker } from '../../server/innsynService';
+import { isLocal } from '../../utils/env';
 
-async function handler(_req: NextApiRequest, res: NextApiResponse) {
+async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
-        const response = await api.brukerdialog.get(ApiEndpointBrukerdialog.søker);
-        res.status(200).json(response.data);
+        const context = !isLocal
+            ? createRequestContext(req.headers['x-request-id'] as string | undefined, req.headers['authorization'])
+            : createDemoRequestContext(req);
+
+        if (!context || context === null) {
+            res.status(401).json({ error: 'Access denied - context is undefined' });
+            return;
+        }
+        const response = await getSøker(context);
+        res.send(response);
     } catch (err) {
         if (isForbidden(err)) {
             res.status(403).json({ error: 'Bruker har ikke tilgang' });

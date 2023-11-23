@@ -19,14 +19,21 @@ server.use(function (req, res, next) {
     setTimeout(next, 300);
 });
 
+const søker = {
+    fornavn: 'Ola',
+    etternavn: 'Nordmann',
+    mellomnavn: 'Thomasen',
+    kjønn: 'M',
+    fødselsnummer: '06828199151',
+};
+
 const startServer = () => {
     const port = 1234;
 
     server.get('/oppslag/soker', (req, res) => {
-        res.send({
-            fornavn: 'Ola',
-            etternavn: 'Nordmann',
-        });
+        console.log('Returning søker');
+        res.setHeader('Content-Type', 'application/json');
+        res.send(søker);
     });
 
     server.get('/oppslag/soker-ikke-tilgang', (req, res) => {

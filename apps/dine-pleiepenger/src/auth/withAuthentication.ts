@@ -7,6 +7,7 @@ import { validateIdportenToken } from '@navikt/next-auth-wonderwall';
 import { RequestContext } from '../types/RequestContext';
 import { browserEnv, isLocal } from '../utils/env';
 import { Søker } from '../types/Søker';
+import { getSessionId } from '../utils/userSessionId';
 
 export interface ServerSidePropsResult {
     søker: Søker | null;
@@ -152,4 +153,19 @@ export function parseAuthHeader(headers: IncomingHttpHeaders): TokenPayload | nu
     const jwtPayload = accessToken.split('.')[1];
 
     return JSON.parse(Buffer.from(jwtPayload, 'base64').toString());
+}
+
+/**
+ * Used locally or in demo environments to create a fake request context.
+ */
+export function createDemoRequestContext(req: GetServerSidePropsContext['req'] | NextApiRequest): RequestContext {
+    if (!isLocal) {
+        throw new Error('createDemoRequestContext should only be used in local development or demo environments');
+    }
+
+    return {
+        ...require('./fakeLocalAuthTokenSet.json'),
+        requestId: 'not set',
+        sessionId: getSessionId(req),
+    };
 }
