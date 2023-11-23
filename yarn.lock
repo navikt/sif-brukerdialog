@@ -3429,7 +3429,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aksel-icons@npm:^5.10.1, @navikt/aksel-icons@npm:^5.10.3":
+"@navikt/aksel-icons@npm:^5.10.1, @navikt/aksel-icons@npm:^5.10.4":
   version: 5.10.4
   resolution: "@navikt/aksel-icons@npm:5.10.4::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faksel-icons%2F5.10.4%2Fd8843356f6ab6acddd194f4aebfda47455ab904c"
   checksum: dee6e6a33a7a018e1dfc85bf6017ed58c21493800cadaec9d607993aa1dbe18770c736f67a40a05425acba081eb52e4d4c85a43d6b5aea238f315a59e3f5fb62
@@ -3440,14 +3440,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/appstatus-react-ds@workspace:packages/appstatus-react-ds"
   dependencies:
-    "@navikt/ds-css": 5.10.3
-    "@navikt/ds-react": 5.10.3
+    "@navikt/ds-css": 5.10.4
+    "@navikt/ds-react": 5.10.4
     "@navikt/sif-common-hooks": "workspace:*"
     "@portabletext/react": 3.0.11
     "@sanity/client": 6.8.6
-    "@types/node": 20.9.2
-    "@types/react": 18.2.37
-    "@types/react-dom": 18.2.15
+    "@types/node": 20.9.4
+    "@types/react": 18.2.38
+    "@types/react-dom": 18.2.17
     config: "workspace:*"
     copyfiles: 2.4.1
     postcss: 8.4.31
@@ -3463,11 +3463,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/dine-pleiepenger@workspace:apps/dine-pleiepenger"
   dependencies:
-    "@navikt/ds-css": 5.10.1
+    "@navikt/ds-css": 5.10.4
     "@navikt/ds-icons": 3.4.3
     "@navikt/ds-react": 5.10.1
-    "@navikt/ds-tailwind": 5.10.1
-    "@navikt/nav-dekoratoren-moduler": 2.1.3
+    "@navikt/ds-tailwind": 5.10.4
+    "@navikt/nav-dekoratoren-moduler": 2.1.4
     "@navikt/next-auth-wonderwall": 1.5.0
     "@navikt/next-logger": 1.21.0
     "@navikt/sif-common-core-ds": "workspace: *"
@@ -3480,7 +3480,7 @@ __metadata:
     jest: 29.7.0
     jest-environment-jsdom: 29.7.0
     jsonwebtoken: 9.0.2
-    next: 14.0.2
+    next: 14.0.3
     next-logger: 3.0.2
     node-fetch: 3.3.2
     node-jose: 2.2.0
@@ -3498,17 +3498,10 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/ds-css@npm:5.10.1":
-  version: 5.10.1
-  resolution: "@navikt/ds-css@npm:5.10.1::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-css%2F5.10.1%2Ffb0dc63ae42c7ba17aa47992829952d4598d5def"
-  checksum: 90d94a26ce12f4f947270e40b07a4084004b0f2f5e7af5784c7bdf7c8dfb4a23c420c8b274fea84423bbc7da4c16501aaefba4cc7397cf4892329f1eb542a610
-  languageName: node
-  linkType: hard
-
-"@navikt/ds-css@npm:5.10.3":
-  version: 5.10.3
-  resolution: "@navikt/ds-css@npm:5.10.3::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-css%2F5.10.3%2Fa056d338403f8a93ee3b849cfde8d449d0c655bc"
-  checksum: 3ee18f96d7f7f5e4569ef81877fd580b908ada3877202c7c64de389a0c5f429ef7dac6b6b4433aa2c93c21fcb83cba24734a985ffb3a44585a0719816063dbd7
+"@navikt/ds-css@npm:5.10.4":
+  version: 5.10.4
+  resolution: "@navikt/ds-css@npm:5.10.4::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-css%2F5.10.4%2F4d5063bde80a8eba8c09f66b7f9905341a382412"
+  checksum: 3664436df28dd9da3833233fad8533330b3723d03ec7f9b3d8a0b689c22f41c5cb9d6b9f29888c500b4bed9df7cb55a8d77507405352f947ebf2fb90b875b23d
   languageName: node
   linkType: hard
 
@@ -3541,13 +3534,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/ds-react@npm:5.10.3":
-  version: 5.10.3
-  resolution: "@navikt/ds-react@npm:5.10.3::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-react%2F5.10.3%2F51e4b70b2efa3c0075a094d8d771cb0fe03f01d4"
+"@navikt/ds-react@npm:5.10.4":
+  version: 5.10.4
+  resolution: "@navikt/ds-react@npm:5.10.4::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-react%2F5.10.4%2F70389583bd8d07b3adfe3a7a74213364a0cafd7f"
   dependencies:
     "@floating-ui/react": 0.25.4
-    "@navikt/aksel-icons": ^5.10.3
-    "@navikt/ds-tokens": ^5.10.3
+    "@navikt/aksel-icons": ^5.10.4
+    "@navikt/ds-tokens": ^5.10.4
     "@radix-ui/react-tabs": 1.0.0
     "@radix-ui/react-toggle-group": 1.0.0
     clsx: ^1.2.1
@@ -3556,25 +3549,18 @@ __metadata:
   peerDependencies:
     "@types/react": ^17.0.30 || ^18.0.0
     react: ^17.0.0 || ^18.0.0
-  checksum: ca2370622727c51ec164c1e3f5921616892b181605cae20cd0ef807e6dffc4513df60ce567a5c1c982ac553199e83f1960c56c7d01a38c37ce216227c3e69203
+  checksum: f251627a81067fae31f5d9af645e4a63ec7524fd35fe0a52414ab6cc22442c74d282107d2cbf2711f333e22a0e895a44e691cdf857a494a1795cf358666fdcfa
   languageName: node
   linkType: hard
 
-"@navikt/ds-tailwind@npm:5.10.1":
-  version: 5.10.1
-  resolution: "@navikt/ds-tailwind@npm:5.10.1::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-tailwind%2F5.10.1%2Fe42cab3c9f1e220159a353597600fcbfd292e276"
-  checksum: 91f1e450eb14af4afb7bb94202eae7a14b1e237d8f93711a5aacfd6f8567263af4c122271997056cb77ed7f3438716238218f4c1aae7f914ee658a597cb2d767
+"@navikt/ds-tailwind@npm:5.10.4":
+  version: 5.10.4
+  resolution: "@navikt/ds-tailwind@npm:5.10.4::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-tailwind%2F5.10.4%2F2085ebff318bfbb77cbcc441789534ac036209a0"
+  checksum: a5047331312428281a87cbb4a8c8de366bfc54ba7314e283dd74a2339ae885ea18b4b5c438475af13eb81f2edd9164598fc3c80fa1b3b01b6fd9d1c6ee050e58
   languageName: node
   linkType: hard
 
-"@navikt/ds-tailwind@npm:5.10.3":
-  version: 5.10.3
-  resolution: "@navikt/ds-tailwind@npm:5.10.3::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-tailwind%2F5.10.3%2F14b4f991d765b35c7cdd72f7ac00caedca50edd8"
-  checksum: d49dcc2516f282330a60d909cdfe4bdc2ed58822cfa94479fe96e7c56b6979ad271871a6709ddbd54d58ab4e40335688fbb46d5166c39b5c245ec1427feb3a12
-  languageName: node
-  linkType: hard
-
-"@navikt/ds-tokens@npm:^5.10.1, @navikt/ds-tokens@npm:^5.10.3":
+"@navikt/ds-tokens@npm:^5.10.1, @navikt/ds-tokens@npm:^5.10.4":
   version: 5.10.4
   resolution: "@navikt/ds-tokens@npm:5.10.4::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-tokens%2F5.10.4%2F0bb84c7cbbcf1d775ad2733cccef3a45a8c51a09"
   checksum: fe5ef7085920a85a2ad7f3f1c15a4664967547664731978526337956d76ecaebc6da169690255df8a49cf0facf6d394e135bfbb1c1a6bdb54952fd8410367fc7
@@ -3591,9 +3577,9 @@ __metadata:
     "@babel/plugin-transform-modules-commonjs": 7.23.3
     "@babel/preset-env": 7.23.3
     "@babel/preset-react": 7.23.3
-    "@navikt/ds-css": 5.10.3
-    "@navikt/ds-react": 5.10.3
-    "@navikt/ds-tailwind": 5.10.3
+    "@navikt/ds-css": 5.10.4
+    "@navikt/ds-react": 5.10.4
+    "@navikt/ds-tailwind": 5.10.4
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
@@ -3605,10 +3591,10 @@ __metadata:
     "@playwright/test": ^1.40.0
     "@storybook/react-vite": 7.5.3
     "@testing-library/react": 14.1.2
-    "@types/jest": 29.5.8
+    "@types/jest": 29.5.10
     "@types/object-hash": 3.0.6
-    "@types/react": 18.2.37
-    "@types/react-dom": 18.2.15
+    "@types/react": 18.2.38
+    "@types/react-dom": 18.2.17
     "@types/react-router-dom": 5.3.3
     axios: 1.6.2
     babel-polyfill: 6.26.0
@@ -3637,7 +3623,7 @@ __metadata:
     react-dom: 18.2.0
     react-fast-compare: 3.2.2
     react-intl: 6.5.5
-    react-router-dom: 6.19.0
+    react-router-dom: 6.20.0
     react-scripts: 5.0.1
     rimraf: 5.0.5
     sass: 1.69.5
@@ -3646,7 +3632,7 @@ __metadata:
     start-server-and-test: 2.0.3
     style-loader: 3.3.3
     ts-loader: 9.5.1
-    typescript: 5.2.2
+    typescript: 5.3.2
     vite: 4.5.0
     vite-plugin-checker: 0.6.2
   languageName: unknown
@@ -3664,11 +3650,11 @@ __metadata:
     "@babel/preset-typescript": 7.23.3
     "@formatjs/intl-pluralrules": 5.2.10
     "@mswjs/data": 0.16.0
-    "@navikt/ds-css": 5.10.3
+    "@navikt/ds-css": 5.10.4
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 5.10.3
-    "@navikt/ds-tailwind": 5.10.3
-    "@navikt/fnrvalidator": 1.3.0
+    "@navikt/ds-react": 5.10.4
+    "@navikt/ds-tailwind": 5.10.4
+    "@navikt/fnrvalidator": 1.3.3
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-formik-ds": "workspace:*"
@@ -3690,13 +3676,13 @@ __metadata:
     "@testing-library/react": 14.1.2
     "@types/flat": 5.0.5
     "@types/intl": 1.2.2
-    "@types/jest": 29.5.8
+    "@types/jest": 29.5.10
     "@types/js-cookie": 3.0.6
     "@types/object-hash": 3.0.6
-    "@types/react": 18.2.37
+    "@types/react": 18.2.38
     "@types/react-collapse": 5.0.4
     "@types/react-document-title": 2.0.8
-    "@types/react-dom": 18.2.15
+    "@types/react-dom": 18.2.17
     "@types/react-modal": 3.16.3
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.2.0
@@ -3707,7 +3693,7 @@ __metadata:
     cookie-parser: 1.4.6
     cross-env: 7.0.3
     css-loader: 6.8.1
-    cypress: 13.5.1
+    cypress: 13.6.0
     cypress-axe: 1.5.0
     cypress-file-upload: 5.0.8
     dayjs: 1.11.10
@@ -3736,7 +3722,7 @@ __metadata:
     react-dom: 18.2.0
     react-intl: 6.5.5
     react-modal: 3.16.1
-    react-router-dom: 6.19.0
+    react-router-dom: 6.20.0
     react-scripts: 5.0.1
     regenerator-runtime: 0.14.0
     rimraf: 5.0.5
@@ -3746,36 +3732,37 @@ __metadata:
     storybook: 7.5.3
     style-loader: 3.3.3
     tailwindcss: 3.3.5
-    typescript: 5.2.2
+    typescript: 5.3.2
     vite: 4.5.0
     vite-plugin-checker: 0.6.2
   languageName: unknown
   linkType: soft
 
-"@navikt/fnrvalidator@npm:1.3.0":
-  version: 1.3.0
-  resolution: "@navikt/fnrvalidator@npm:1.3.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Ffnrvalidator%2F1.3.0%2F8cea6bae592f772d07efebe9a5ab7179552e1d6f"
-  checksum: 4102d74978a66b2a6183f9f639a5f81e2658799d51b1aeb6e35e3e9316b1afcbee1b1e765e79b8866974e3e43b802876893ae8cd440c3ae785912219f6e24d52
+"@navikt/fnrvalidator@npm:1.3.3":
+  version: 1.3.3
+  resolution: "@navikt/fnrvalidator@npm:1.3.3::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Ffnrvalidator%2F1.3.3%2F8414963a30e59e3056c9befea7bb022498a2a742"
+  checksum: 49b2f481e1d5fdd107ba3cfd13a7a6fdb32371da2a634b97d5142d3940b73fe6cc90201c23381484def2859aecbd51b7e897ff3d69be483dafb13f1e2dd3060e
   languageName: node
   linkType: hard
 
-"@navikt/nav-dekoratoren-moduler@npm:1.6.9":
-  version: 1.6.9
-  resolution: "@navikt/nav-dekoratoren-moduler@npm:1.6.9::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fnav-dekoratoren-moduler%2F1.6.9%2F316404109bee6725b93db941b0b6c8fc7d8da055"
+"@navikt/nav-dekoratoren-moduler@npm:1.9.0":
+  version: 1.9.0
+  resolution: "@navikt/nav-dekoratoren-moduler@npm:1.9.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fnav-dekoratoren-moduler%2F1.9.0%2F846eb07e61407c96215bfff3070933d7a858b55a"
   dependencies:
+    csp-header: ^5.1.0
     html-react-parser: ^1.2.7
     jsdom: ^16.6.0
     node-cache: ^5.1.2
     node-fetch: ^2.6.1
     prop-types: ^15.7.2
     react: ^17.0.2
-  checksum: 8614101a01ef7067ef2a043ba92ec2bc8dfecdb89678ef994d66d48dbe8f8895492ceec77040116a7f0c826a3cdb2ffcb6923c80eb0ade947e71c75b4c27012a
+  checksum: 6728a69c2221f81f1afa2a52bb700d6155efac4a3e15c0597385e486c10d967ea7090f2ee26e9cce1cb6f70ba258578fc4db28ce7f4cb71e6bbe34ff8608bc7a
   languageName: node
   linkType: hard
 
-"@navikt/nav-dekoratoren-moduler@npm:2.1.3":
-  version: 2.1.3
-  resolution: "@navikt/nav-dekoratoren-moduler@npm:2.1.3::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fnav-dekoratoren-moduler%2F2.1.3%2Fe2081da2da26254fa4eeaf564286e19452ec790f"
+"@navikt/nav-dekoratoren-moduler@npm:2.1.4":
+  version: 2.1.4
+  resolution: "@navikt/nav-dekoratoren-moduler@npm:2.1.4::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fnav-dekoratoren-moduler%2F2.1.4%2Fb829b5edf992da222fc85a79089106a08571f0e9"
   dependencies:
     csp-header: ^5.1.0
     html-react-parser: ^3.0.16
@@ -3783,7 +3770,7 @@ __metadata:
   peerDependencies:
     jsdom: ">=16.x"
     react: 17.x || 18.x
-  checksum: 24a909f31b24c26fe209b09f52b83be5ada4b201ec211641cfa77921063fb3271cda2471728a2b35517695fe41256cc5b9a9e78899db400e10277739c6cb28ea
+  checksum: 9705eb218d36502a00bcbb0bb4995e4411f42cfaa660d5f5202e794e69c1627bbe61c2501a585f43c371db94f04b5f8521c27310d0f4efc2fbbdcffa58773c88
   languageName: node
   linkType: hard
 
@@ -3818,9 +3805,9 @@ __metadata:
     "@babel/plugin-transform-modules-commonjs": 7.23.3
     "@babel/preset-env": 7.23.3
     "@babel/preset-react": 7.23.3
-    "@navikt/ds-css": 5.10.3
-    "@navikt/ds-react": 5.10.3
-    "@navikt/ds-tailwind": 5.10.3
+    "@navikt/ds-css": 5.10.4
+    "@navikt/ds-react": 5.10.4
+    "@navikt/ds-tailwind": 5.10.4
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
@@ -3833,8 +3820,8 @@ __metadata:
     "@playwright/test": ^1.40.0
     "@testing-library/react": 14.1.2
     "@types/object-hash": 3.0.6
-    "@types/react": 18.2.37
-    "@types/react-dom": 18.2.15
+    "@types/react": 18.2.38
+    "@types/react-dom": 18.2.17
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.2.0
     axios: 1.6.2
@@ -3864,7 +3851,7 @@ __metadata:
     react-dom: 18.2.0
     react-fast-compare: 3.2.2
     react-intl: 6.5.5
-    react-router-dom: 6.19.0
+    react-router-dom: 6.20.0
     react-scripts: 5.0.1
     rimraf: 5.0.5
     source-map-loader: 4.0.1
@@ -3883,15 +3870,15 @@ __metadata:
   resolution: "@navikt/omsorgsdager-kalkulator@workspace:apps/omsorgsdager-kalkulator"
   dependencies:
     "@axe-core/playwright": 4.8.1
-    "@navikt/ds-css": 5.10.3
+    "@navikt/ds-css": 5.10.4
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 5.10.3
-    "@navikt/ds-tailwind": 5.10.3
-    "@navikt/nav-dekoratoren-moduler": 1.6.9
+    "@navikt/ds-react": 5.10.4
+    "@navikt/ds-tailwind": 5.10.4
+    "@navikt/nav-dekoratoren-moduler": 1.9.0
     "@playwright/test": 1.40.0
-    "@types/node": 20.9.2
-    "@types/react": 18.2.37
-    "@types/react-dom": 18.2.15
+    "@types/node": 20.9.4
+    "@types/react": 18.2.38
+    "@types/react-dom": 18.2.17
     "@types/uuid": 9.0.7
     classnames: 2.3.2
     dayjs: 1.11.10
@@ -3909,7 +3896,7 @@ __metadata:
     react-intl: 6.5.5
     sass: 1.69.5
     tailwindcss: 3.3.5
-    typescript: 5.2.2
+    typescript: 5.3.2
     uuid: 9.0.1
   languageName: unknown
   linkType: soft
@@ -3922,10 +3909,10 @@ __metadata:
     "@babel/preset-env": 7.23.3
     "@babel/preset-react": 7.23.3
     "@babel/preset-typescript": 7.23.3
-    "@navikt/ds-css": 5.10.3
+    "@navikt/ds-css": 5.10.4
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 5.10.3
-    "@navikt/ds-tailwind": 5.10.3
+    "@navikt/ds-react": 5.10.4
+    "@navikt/ds-tailwind": 5.10.4
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
@@ -3938,11 +3925,11 @@ __metadata:
     "@playwright/test": 1.40.0
     "@storybook/react-vite": 7.5.3
     "@testing-library/react": 14.1.2
-    "@types/jest": 29.5.8
-    "@types/node": 20.9.2
+    "@types/jest": 29.5.10
+    "@types/node": 20.9.4
     "@types/object-hash": 3.0.6
-    "@types/react": 18.2.37
-    "@types/react-dom": 18.2.15
+    "@types/react": 18.2.38
+    "@types/react-dom": 18.2.17
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.2.0
     axios: 1.6.2
@@ -3973,7 +3960,7 @@ __metadata:
     react-dom: 18.2.0
     react-fast-compare: 3.2.2
     react-intl: 6.5.5
-    react-router-dom: 6.19.0
+    react-router-dom: 6.20.0
     react-scripts: 5.0.1
     sass: 1.69.5
     sass-loader: 13.3.2
@@ -3981,7 +3968,7 @@ __metadata:
     start-server-and-test: 2.0.3
     style-loader: 3.3.3
     tailwindcss: 3.3.5
-    typescript: 5.2.2
+    typescript: 5.3.2
     ulid: 2.3.0
     uuid: 9.0.1
     vite: 4.5.0
@@ -3998,10 +3985,10 @@ __metadata:
     "@babel/preset-env": 7.23.3
     "@babel/preset-react": 7.23.3
     "@babel/preset-typescript": 7.23.3
-    "@navikt/ds-css": 5.10.3
+    "@navikt/ds-css": 5.10.4
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 5.10.3
-    "@navikt/ds-tailwind": 5.10.3
+    "@navikt/ds-react": 5.10.4
+    "@navikt/ds-tailwind": 5.10.4
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
@@ -4023,10 +4010,10 @@ __metadata:
     "@storybook/react": 7.5.3
     "@storybook/testing-library": 0.2.2
     "@testing-library/react": 14.1.2
-    "@types/jest": 29.5.8
+    "@types/jest": 29.5.10
     "@types/object-hash": 3.0.6
-    "@types/react": 18.2.37
-    "@types/react-dom": 18.2.15
+    "@types/react": 18.2.38
+    "@types/react-dom": 18.2.17
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.2.0
     axe-core: 4.8.2
@@ -4062,7 +4049,7 @@ __metadata:
     react-dom: 18.2.0
     react-fast-compare: 3.2.2
     react-intl: 6.5.5
-    react-router-dom: 6.19.0
+    react-router-dom: 6.20.0
     react-scripts: 5.0.1
     sass: 1.69.5
     sass-loader: 13.3.2
@@ -4071,7 +4058,7 @@ __metadata:
     storybook: 7.5.3
     style-loader: 3.3.3
     ts-loader: 9.5.1
-    typescript: 5.2.2
+    typescript: 5.3.2
     vite: 4.5.0
     vite-plugin-checker: 0.6.2
     webpack: 5.89.0
@@ -4088,10 +4075,10 @@ __metadata:
     "@babel/preset-env": 7.23.3
     "@babel/preset-react": 7.23.3
     "@babel/preset-typescript": 7.23.3
-    "@navikt/ds-css": 5.10.3
+    "@navikt/ds-css": 5.10.4
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 5.10.3
-    "@navikt/ds-tailwind": 5.10.3
+    "@navikt/ds-react": 5.10.4
+    "@navikt/ds-tailwind": 5.10.4
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
@@ -4105,10 +4092,10 @@ __metadata:
     "@playwright/test": ^1.40.0
     "@storybook/react-vite": 7.5.3
     "@testing-library/react": 14.1.2
-    "@types/jest": 29.5.8
+    "@types/jest": 29.5.10
     "@types/object-hash": 3.0.6
-    "@types/react": 18.2.37
-    "@types/react-dom": 18.2.15
+    "@types/react": 18.2.38
+    "@types/react-dom": 18.2.17
     "@types/react-router-dom": 5.3.3
     axios: 1.6.2
     babel-polyfill: 6.26.0
@@ -4138,7 +4125,7 @@ __metadata:
     react-dom: 18.2.0
     react-fast-compare: 3.2.2
     react-intl: 6.5.5
-    react-router-dom: 6.19.0
+    react-router-dom: 6.20.0
     react-scripts: 5.0.1
     sass: 1.69.5
     sass-loader: 13.3.2
@@ -4147,7 +4134,7 @@ __metadata:
     start-server-and-test: 2.0.3
     style-loader: 3.3.3
     ts-loader: 9.5.1
-    typescript: 5.2.2
+    typescript: 5.3.2
     uuid: ^9.0.1
     vite: 4.5.0
     vite-plugin-checker: 0.6.2
@@ -4164,10 +4151,10 @@ __metadata:
     "@babel/preset-react": 7.23.3
     "@formatjs/intl-pluralrules": 5.2.10
     "@navikt/appstatus-react-ds": "workspace:*"
-    "@navikt/ds-css": 5.10.3
+    "@navikt/ds-css": 5.10.4
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 5.10.3
-    "@navikt/fnrvalidator": 1.3.0
+    "@navikt/ds-react": 5.10.4
+    "@navikt/fnrvalidator": 1.3.3
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
@@ -4184,11 +4171,11 @@ __metadata:
     "@testing-library/user-event": 14.5.1
     "@types/lodash.debounce": 4.0.9
     "@types/lodash.groupby": 4.6.9
-    "@types/react": 18.2.37
-    "@types/react-dom": 18.2.15
+    "@types/react": 18.2.38
+    "@types/react-dom": 18.2.17
     "@types/react-router-dom": 5.3.3
-    "@typescript-eslint/eslint-plugin": 6.11.0
-    "@typescript-eslint/parser": 6.11.0
+    "@typescript-eslint/eslint-plugin": 6.12.0
+    "@typescript-eslint/parser": 6.12.0
     "@vitejs/plugin-react": 4.2.0
     ajv: 8.12.0
     amplitude-js: 8.21.9
@@ -4202,7 +4189,7 @@ __metadata:
     cookie-parser: 1.4.6
     cross-env: 7.0.3
     css-loader: 6.8.1
-    cypress: 13.5.1
+    cypress: 13.6.0
     cypress-axe: 1.5.0
     cypress-file-upload: 5.0.8
     dayjs: 1.11.10
@@ -4236,7 +4223,7 @@ __metadata:
     react-dom: 18.2.0
     react-intl: 6.5.5
     react-responsive: 9.0.2
-    react-router-dom: 6.19.0
+    react-router-dom: 6.20.0
     react-scripts: 5.0.1
     sass: 1.69.5
     sass-loader: 13.3.2
@@ -4244,7 +4231,7 @@ __metadata:
     start-server-and-test: 2.0.3
     style-loader: 3.3.3
     ts-loader: 9.5.1
-    typescript: 5.2.2
+    typescript: 5.3.2
     uuid: 9.0.1
     vite: 4.5.0
     vite-plugin-checker: 0.6.2
@@ -4272,7 +4259,7 @@ __metadata:
     npm-watch: 0.11.0
     prettier: 3.1.0
     turbo: 1.10.16
-    typescript: 5.2.2
+    typescript: 5.3.2
     webpack: 5.89.0
   languageName: unknown
   linkType: soft
@@ -4282,8 +4269,8 @@ __metadata:
   resolution: "@navikt/sif-common-amplitude@workspace:packages/sif-common-amplitude"
   dependencies:
     "@types/amplitude-js": 8.16.5
-    "@types/node": 20.9.2
-    "@types/react": 18.2.37
+    "@types/node": 20.9.4
+    "@types/react": 18.2.38
     amplitude-js: 8.21.9
     config: "workspace:*"
     constate: 3.3.2
@@ -4308,11 +4295,11 @@ __metadata:
     "@babel/preset-typescript": 7.23.3
     "@formatjs/intl-pluralrules": 5.2.10
     "@navikt/appstatus-react-ds": "workspace:*"
-    "@navikt/ds-css": 5.10.3
+    "@navikt/ds-css": 5.10.4
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 5.10.3
-    "@navikt/ds-tailwind": 5.10.3
-    "@navikt/fnrvalidator": 1.3.0
+    "@navikt/ds-react": 5.10.4
+    "@navikt/ds-tailwind": 5.10.4
+    "@navikt/fnrvalidator": 1.3.3
     "@navikt/sif-common-formik-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@originjs/vite-plugin-commonjs": 1.0.3
@@ -4327,11 +4314,11 @@ __metadata:
     "@storybook/react": 7.5.3
     "@storybook/react-vite": 7.5.3
     "@storybook/testing-library": 0.2.2
-    "@types/jest": 29.5.8
-    "@types/node": 20.9.2
-    "@types/react": 18.2.37
+    "@types/jest": 29.5.10
+    "@types/node": 20.9.4
+    "@types/react": 18.2.38
     "@types/react-collapse": 5.0.4
-    "@types/react-dom": 18.2.15
+    "@types/react-dom": 18.2.17
     "@vitejs/plugin-react": 4.2.0
     axios: 1.6.2
     browser-image-compression: 2.0.2
@@ -4376,10 +4363,10 @@ __metadata:
     "@babel/preset-react": 7.23.3
     "@babel/preset-typescript": 7.23.3
     "@formatjs/intl-pluralrules": 5.2.10
-    "@navikt/ds-css": 5.10.3
+    "@navikt/ds-css": 5.10.4
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 5.10.3
-    "@navikt/fnrvalidator": 1.3.0
+    "@navikt/ds-react": 5.10.4
+    "@navikt/fnrvalidator": 1.3.3
     "@originjs/vite-plugin-commonjs": 1.0.3
     "@storybook/addon-a11y": 7.5.3
     "@storybook/addon-actions": 7.5.3
@@ -4392,12 +4379,12 @@ __metadata:
     "@storybook/preset-create-react-app": 7.5.3
     "@storybook/react": 7.5.3
     "@storybook/react-vite": 7.5.3
-    "@storybook/test-runner": 0.15.1
+    "@storybook/test-runner": 0.15.2
     "@storybook/testing-library": 0.2.2
-    "@types/jest": 29.5.8
-    "@types/node": 20.9.2
-    "@types/react": 18.2.37
-    "@types/react-dom": 18.2.15
+    "@types/jest": 29.5.10
+    "@types/node": 20.9.4
+    "@types/react": 18.2.38
+    "@types/react-dom": 18.2.17
     "@types/uuid": 9.0.7
     "@vitejs/plugin-react": 4.2.0
     classnames: 2.3.2
@@ -4444,8 +4431,8 @@ __metadata:
     "@babel/preset-react": 7.23.3
     "@babel/preset-typescript": 7.23.3
     "@formatjs/intl-pluralrules": 5.2.10
-    "@navikt/ds-css": 5.10.3
-    "@navikt/ds-react": 5.10.3
+    "@navikt/ds-css": 5.10.4
+    "@navikt/ds-react": 5.10.4
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-formik-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
@@ -4463,10 +4450,10 @@ __metadata:
     "@testing-library/dom": 9.3.3
     "@testing-library/react": 14.1.2
     "@testing-library/user-event": 14.5.1
-    "@types/jest": 29.5.8
-    "@types/node": 20.9.2
-    "@types/react": 18.2.37
-    "@types/react-dom": 18.2.15
+    "@types/jest": 29.5.10
+    "@types/node": 20.9.4
+    "@types/react": 18.2.38
+    "@types/react-dom": 18.2.17
     "@types/react-responsive": 8.0.8
     "@vitejs/plugin-react": 4.2.0
     axios: 1.6.2
@@ -4487,7 +4474,7 @@ __metadata:
     react-intl: 6.5.5
     react-modal: 3.16.1
     react-responsive: 9.0.2
-    react-router-dom: 6.19.0
+    react-router-dom: 6.20.0
     react-scripts: 5.0.1
     rimraf: 5.0.5
     storybook: 7.5.3
@@ -4504,7 +4491,7 @@ __metadata:
     npm-run-all: 4.1.5
     react: 18.2.0
     react-scripts: 5.0.1
-    typescript: 5.2.2
+    typescript: 5.3.2
   languageName: unknown
   linkType: soft
 
@@ -4512,10 +4499,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-sentry@workspace:packages/sif-common-sentry"
   dependencies:
-    "@sentry/browser": 7.80.1
-    "@sentry/react": 7.80.1
-    "@sentry/types": 7.80.1
-    "@types/node": 20.9.2
+    "@sentry/browser": 7.81.1
+    "@sentry/react": 7.81.1
+    "@sentry/types": 7.81.1
+    "@types/node": 20.9.4
     axios: 1.6.2
     config: "*"
     copyfiles: 2.4.1
@@ -4540,9 +4527,9 @@ __metadata:
     "@devexperts/remote-data-ts": 2.1.1
     "@formatjs/intl-pluralrules": 5.2.10
     "@navikt/appstatus-react-ds": "workspace:*"
-    "@navikt/ds-css": 5.10.3
-    "@navikt/ds-react": 5.10.3
-    "@navikt/nav-dekoratoren-moduler": 1.6.9
+    "@navikt/ds-css": 5.10.4
+    "@navikt/ds-react": 5.10.4
+    "@navikt/nav-dekoratoren-moduler": 1.9.0
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-formik-ds": "workspace:*"
     "@navikt/sif-common-hooks": "workspace:*"
@@ -4563,10 +4550,10 @@ __metadata:
     "@testing-library/jest-dom": 6.1.4
     "@testing-library/react": 14.1.2
     "@testing-library/user-event": 14.5.1
-    "@types/jest": 29.5.8
-    "@types/node": 20.9.2
-    "@types/react": 18.2.37
-    "@types/react-dom": 18.2.15
+    "@types/jest": 29.5.10
+    "@types/node": 20.9.4
+    "@types/react": 18.2.38
+    "@types/react-dom": 18.2.17
     "@types/react-modal": 3.16.3
     "@vitejs/plugin-react": 4.2.0
     axios: 1.6.2
@@ -4585,7 +4572,7 @@ __metadata:
     react-day-picker: 8.9.1
     react-dom: 18.2.0
     react-intl: 6.5.5
-    react-router-dom: 6.19.0
+    react-router-dom: 6.20.0
     react-scripts: 5.0.1
     rimraf: 5.0.5
     sass: 1.69.5
@@ -4601,9 +4588,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-ui@workspace:packages/sif-common-ui"
   dependencies:
-    "@navikt/ds-css": 5.10.3
+    "@navikt/ds-css": 5.10.4
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 5.10.3
+    "@navikt/ds-react": 5.10.4
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-formik-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
@@ -4636,10 +4623,10 @@ __metadata:
     "@babel/core": 7.23.3
     "@babel/preset-env": 7.23.3
     "@babel/preset-react": 7.23.3
-    "@types/jest": 29.5.8
-    "@types/node": 20.9.2
-    "@types/react": 18.2.37
-    "@types/react-dom": 18.2.15
+    "@types/jest": 29.5.10
+    "@types/node": 20.9.4
+    "@types/react": 18.2.38
+    "@types/react-dom": 18.2.17
     "@types/uuid": 9.0.7
     config: "workspace:*"
     dayjs: 1.11.10
@@ -4662,11 +4649,11 @@ __metadata:
     "@babel/preset-env": 7.23.3
     "@babel/preset-react": 7.23.3
     "@formatjs/intl-pluralrules": 5.2.10
-    "@navikt/ds-css": 5.10.3
+    "@navikt/ds-css": 5.10.4
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 5.10.3
-    "@navikt/ds-tailwind": 5.10.3
-    "@navikt/nav-dekoratoren-moduler": 1.6.9
+    "@navikt/ds-react": 5.10.4
+    "@navikt/ds-tailwind": 5.10.4
+    "@navikt/nav-dekoratoren-moduler": 1.9.0
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
@@ -4678,10 +4665,10 @@ __metadata:
     "@playwright/test": ^1.40.0
     "@storybook/react-vite": 7.5.3
     "@testing-library/react": 14.1.2
-    "@types/jest": 29.5.8
-    "@types/react": 18.2.37
+    "@types/jest": 29.5.10
+    "@types/react": 18.2.38
     "@types/react-collapse": 5.0.4
-    "@types/react-dom": 18.2.15
+    "@types/react-dom": 18.2.17
     "@types/react-router-dom": 5.3.3
     "@types/uuid": 9.0.7
     "@vitejs/plugin-react": 4.2.0
@@ -4716,7 +4703,7 @@ __metadata:
     react-day-picker: 8.9.1
     react-dom: 18.2.0
     react-intl: 6.5.5
-    react-router-dom: 6.19.0
+    react-router-dom: 6.20.0
     react-scripts: 5.0.1
     sass: 1.69.5
     sass-loader: 13.3.2
@@ -4725,7 +4712,7 @@ __metadata:
     style-loader: 3.3.3
     tailwindcss: 3.3.5
     ts-loader: 9.5.1
-    typescript: 5.2.2
+    typescript: 5.3.2
     uuid: 9.0.1
     vite: 4.5.0
     vite-plugin-checker: 0.6.2
@@ -4752,13 +4739,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/env@npm:14.0.2":
-  version: 14.0.2
-  resolution: "@next/env@npm:14.0.2"
-  checksum: 5a43177f3cb19ad61b60d0b30d0c0cc2b8d0f6089c8b820f51536280ee00a20c3d38969e3c309cf9dfa35acafe0bb4bc452167a7fea25baaa7036156191e2f1e
-  languageName: node
-  linkType: hard
-
 "@next/env@npm:14.0.3":
   version: 14.0.3
   resolution: "@next/env@npm:14.0.3"
@@ -4775,24 +4755,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/swc-darwin-arm64@npm:14.0.2":
-  version: 14.0.2
-  resolution: "@next/swc-darwin-arm64@npm:14.0.2"
-  conditions: os=darwin & cpu=arm64
-  languageName: node
-  linkType: hard
-
 "@next/swc-darwin-arm64@npm:14.0.3":
   version: 14.0.3
   resolution: "@next/swc-darwin-arm64@npm:14.0.3"
   conditions: os=darwin & cpu=arm64
-  languageName: node
-  linkType: hard
-
-"@next/swc-darwin-x64@npm:14.0.2":
-  version: 14.0.2
-  resolution: "@next/swc-darwin-x64@npm:14.0.2"
-  conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
@@ -4803,24 +4769,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/swc-linux-arm64-gnu@npm:14.0.2":
-  version: 14.0.2
-  resolution: "@next/swc-linux-arm64-gnu@npm:14.0.2"
-  conditions: os=linux & cpu=arm64 & libc=glibc
-  languageName: node
-  linkType: hard
-
 "@next/swc-linux-arm64-gnu@npm:14.0.3":
   version: 14.0.3
   resolution: "@next/swc-linux-arm64-gnu@npm:14.0.3"
   conditions: os=linux & cpu=arm64 & libc=glibc
-  languageName: node
-  linkType: hard
-
-"@next/swc-linux-arm64-musl@npm:14.0.2":
-  version: 14.0.2
-  resolution: "@next/swc-linux-arm64-musl@npm:14.0.2"
-  conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
@@ -4831,24 +4783,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/swc-linux-x64-gnu@npm:14.0.2":
-  version: 14.0.2
-  resolution: "@next/swc-linux-x64-gnu@npm:14.0.2"
-  conditions: os=linux & cpu=x64 & libc=glibc
-  languageName: node
-  linkType: hard
-
 "@next/swc-linux-x64-gnu@npm:14.0.3":
   version: 14.0.3
   resolution: "@next/swc-linux-x64-gnu@npm:14.0.3"
   conditions: os=linux & cpu=x64 & libc=glibc
-  languageName: node
-  linkType: hard
-
-"@next/swc-linux-x64-musl@npm:14.0.2":
-  version: 14.0.2
-  resolution: "@next/swc-linux-x64-musl@npm:14.0.2"
-  conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
@@ -4859,13 +4797,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/swc-win32-arm64-msvc@npm:14.0.2":
-  version: 14.0.2
-  resolution: "@next/swc-win32-arm64-msvc@npm:14.0.2"
-  conditions: os=win32 & cpu=arm64
-  languageName: node
-  linkType: hard
-
 "@next/swc-win32-arm64-msvc@npm:14.0.3":
   version: 14.0.3
   resolution: "@next/swc-win32-arm64-msvc@npm:14.0.3"
@@ -4873,24 +4804,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/swc-win32-ia32-msvc@npm:14.0.2":
-  version: 14.0.2
-  resolution: "@next/swc-win32-ia32-msvc@npm:14.0.2"
-  conditions: os=win32 & cpu=ia32
-  languageName: node
-  linkType: hard
-
 "@next/swc-win32-ia32-msvc@npm:14.0.3":
   version: 14.0.3
   resolution: "@next/swc-win32-ia32-msvc@npm:14.0.3"
   conditions: os=win32 & cpu=ia32
-  languageName: node
-  linkType: hard
-
-"@next/swc-win32-x64-msvc@npm:14.0.2":
-  version: 14.0.2
-  resolution: "@next/swc-win32-x64-msvc@npm:14.0.2"
-  conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
@@ -5884,10 +5801,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remix-run/router@npm:1.12.0":
-  version: 1.12.0
-  resolution: "@remix-run/router@npm:1.12.0"
-  checksum: 0528a5c9dac443f90aef30b65fed39c6654b5c2db1d01d700b212d783958935b4d800250530430d78eacf03f3baa104edeae75a29cfb13b3180cbfca3352e645
+"@remix-run/router@npm:1.13.0":
+  version: 1.13.0
+  resolution: "@remix-run/router@npm:1.13.0"
+  checksum: 076f42f691f526e01d62504a2270ed0ea865a83a965574fa583898f758b51dd4a9fb3336c78884efb9746700f9239e25eafca2e27a5efa2595f02aac69c6c855
   languageName: node
   linkType: hard
 
@@ -5996,17 +5913,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry-internal/tracing@npm:7.80.1":
-  version: 7.80.1
-  resolution: "@sentry-internal/tracing@npm:7.80.1"
-  dependencies:
-    "@sentry/core": 7.80.1
-    "@sentry/types": 7.80.1
-    "@sentry/utils": 7.80.1
-  checksum: 32745bc81e780bdd0001b113b8eabc72f28d3a70257acc4184edef03c2d57cbf9dd44126c6cb307d9ff23e1030c484dafb12b6a325e4b9abf4684bfdf64ed31a
-  languageName: node
-  linkType: hard
-
 "@sentry-internal/tracing@npm:7.81.1":
   version: 7.81.1
   resolution: "@sentry-internal/tracing@npm:7.81.1"
@@ -6018,16 +5924,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/browser@npm:7.80.1":
-  version: 7.80.1
-  resolution: "@sentry/browser@npm:7.80.1"
+"@sentry/browser@npm:7.81.1":
+  version: 7.81.1
+  resolution: "@sentry/browser@npm:7.81.1"
   dependencies:
-    "@sentry-internal/tracing": 7.80.1
-    "@sentry/core": 7.80.1
-    "@sentry/replay": 7.80.1
-    "@sentry/types": 7.80.1
-    "@sentry/utils": 7.80.1
-  checksum: 75fdcad4fbdd5b6bf82db27ef8d44dbfa6923e99184c45f9eb8ec95eaaad1f7b6901b0cb0155613d50c81bfeee229955b873c478560e7810d21e1c9e102728ed
+    "@sentry-internal/tracing": 7.81.1
+    "@sentry/core": 7.81.1
+    "@sentry/replay": 7.81.1
+    "@sentry/types": 7.81.1
+    "@sentry/utils": 7.81.1
+  checksum: 5f7ae47f35c9e5cc7e8e6cd97f96adb40612f146024b83465930ce1f31c9a27f63d0735a014b73d4febfb4215736cb98583d5caa440d80754c5701634d905eee
   languageName: node
   linkType: hard
 
@@ -6062,16 +5968,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/core@npm:7.80.1":
-  version: 7.80.1
-  resolution: "@sentry/core@npm:7.80.1"
-  dependencies:
-    "@sentry/types": 7.80.1
-    "@sentry/utils": 7.80.1
-  checksum: 5b37656613f2a396d2ae71ef3d2e5e50d4f0c43ee747a1c2640036ceb3ff5dedbefec64d1477197cb88ed1205c9fc106b0042ef63b5baf2e739572bea7e114f8
-  languageName: node
-  linkType: hard
-
 "@sentry/core@npm:7.81.1":
   version: 7.81.1
   resolution: "@sentry/core@npm:7.81.1"
@@ -6095,36 +5991,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/react@npm:7.80.1":
-  version: 7.80.1
-  resolution: "@sentry/react@npm:7.80.1"
+"@sentry/react@npm:7.81.1":
+  version: 7.81.1
+  resolution: "@sentry/react@npm:7.81.1"
   dependencies:
-    "@sentry/browser": 7.80.1
-    "@sentry/types": 7.80.1
-    "@sentry/utils": 7.80.1
+    "@sentry/browser": 7.81.1
+    "@sentry/types": 7.81.1
+    "@sentry/utils": 7.81.1
     hoist-non-react-statics: ^3.3.2
   peerDependencies:
     react: 15.x || 16.x || 17.x || 18.x
-  checksum: e73d43dc6b6403c1ce49f0d55df0d26083dd30b3f450b9d7b0482906a65423178e940e01101e780adb8cdc15cc51c6f8d3fc5e25ca79bb8fb11613177218a190
+  checksum: a24b33975f6531c1f9eef7b4e32097c1a0e40dc41cc1e8b97f3ca3d485d9d7f7b4e95cf3156ed03490d059d75ca79091fadc904a0b867361abb0e39eca3df531
   languageName: node
   linkType: hard
 
-"@sentry/replay@npm:7.80.1":
-  version: 7.80.1
-  resolution: "@sentry/replay@npm:7.80.1"
+"@sentry/replay@npm:7.81.1":
+  version: 7.81.1
+  resolution: "@sentry/replay@npm:7.81.1"
   dependencies:
-    "@sentry-internal/tracing": 7.80.1
-    "@sentry/core": 7.80.1
-    "@sentry/types": 7.80.1
-    "@sentry/utils": 7.80.1
-  checksum: 606532190d29631a550b8e1e1a9892b6d981bd1951fd9810a762bb868726362cb9f8929f8b4863ad4e0bfedc437626fbeda5b07042a790a819c4b37601634c4b
-  languageName: node
-  linkType: hard
-
-"@sentry/types@npm:7.80.1":
-  version: 7.80.1
-  resolution: "@sentry/types@npm:7.80.1"
-  checksum: f24c34fb1216361f1dbf0937101151db07a372346ca8258b6bd7d5c9cae528010378b84928fab8a7487ff29fb2fea124ef1d92e7ab8b93825ade7dd7f546190f
+    "@sentry-internal/tracing": 7.81.1
+    "@sentry/core": 7.81.1
+    "@sentry/types": 7.81.1
+    "@sentry/utils": 7.81.1
+  checksum: ae8eb01844d0fb636cb614eb66ffcb738624f67f661c4f23efcec1af47f9627bf4a84c26d74c978a447002b2fd57bd8a56f8d0e8c2d70bd08179b12dbfab6fdd
   languageName: node
   linkType: hard
 
@@ -6132,15 +6021,6 @@ __metadata:
   version: 7.81.1
   resolution: "@sentry/types@npm:7.81.1"
   checksum: a3e07ee66a6e75b24837d540a7ec46ac0207f0b948f008d950d5f2619821623ddf1a904d2c2bc59a458b117183ab82e51702fab2ae79f7edb96b6c490f89a731
-  languageName: node
-  linkType: hard
-
-"@sentry/utils@npm:7.80.1":
-  version: 7.80.1
-  resolution: "@sentry/utils@npm:7.80.1"
-  dependencies:
-    "@sentry/types": 7.80.1
-  checksum: ed28be55e1348811725e611d39928d3802fc1637118adec5e6d359af0c1bb0d20dce49b3e7c013a06687d0b35db5ca63b2280b028776b2fced672fb1d429a969
   languageName: node
   linkType: hard
 
@@ -7818,9 +7698,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/test-runner@npm:0.15.1":
-  version: 0.15.1
-  resolution: "@storybook/test-runner@npm:0.15.1"
+"@storybook/test-runner@npm:0.15.2":
+  version: 0.15.2
+  resolution: "@storybook/test-runner@npm:0.15.2"
   dependencies:
     "@babel/core": ^7.22.5
     "@babel/generator": ^7.22.5
@@ -7851,7 +7731,7 @@ __metadata:
     ts-dedent: ^2.0.0
   bin:
     test-storybook: dist/test-storybook.js
-  checksum: bc4e6c32859c33e899e2e5b62f25f1799ddb6a86e34fdbb5f8e0d1a4b5d7f2b81889b60798863c910c99bbdcf43c3db7b9bccde2b56563bf9ec14fd56cd5ca20
+  checksum: e070a41d6e76b0c233c3d8304372f9be9d930b95af6ebefa0ffcd225de26ee012b623496b699c23b09a0076c0ce236bb5de2288c273115a56864b1a957e66a63
   languageName: node
   linkType: hard
 
@@ -8684,13 +8564,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:29.5.8":
-  version: 29.5.8
-  resolution: "@types/jest@npm:29.5.8"
+"@types/jest@npm:29.5.10":
+  version: 29.5.10
+  resolution: "@types/jest@npm:29.5.10"
   dependencies:
     expect: ^29.0.0
     pretty-format: ^29.0.0
-  checksum: ca8438a5b4c098c8c023e9d5b279ea306494a1d0b5291cfb498100fa780377145f068b2a021d545b0398bbe0328dcc37044dd3aaf3c6c0fe9b0bef7b46a63453
+  checksum: ef385905787db528de9b6beb2688865c0bb276e64256ed60b9a1a6ffc0b75737456cb5e27e952a3241c5845b6a1da487470010dd30f3ca59c8581624c564a823
   languageName: node
   linkType: hard
 
@@ -8826,21 +8706,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
+"@types/node@npm:*, @types/node@npm:20.9.4":
   version: 20.9.4
   resolution: "@types/node@npm:20.9.4"
   dependencies:
     undici-types: ~5.26.4
   checksum: 619144cfee8235f692009e4268a8b80ef4ec496670273ab1cef04e4a053b471f391af6701e65f2f91a107256933d902b6caec079d551b109e981b0b706624815
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:20.9.2":
-  version: 20.9.2
-  resolution: "@types/node@npm:20.9.2"
-  dependencies:
-    undici-types: ~5.26.4
-  checksum: 5bbb8fb2248fc5c5c4071d9809fb9af85997677c07124d65665202b53283a3b7bdff26fb844e9ee407e3847dfce6399c2b01e3329ea44a4b720647b1b987c678
   languageName: node
   linkType: hard
 
@@ -8964,16 +8835,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:18.2.15":
-  version: 18.2.15
-  resolution: "@types/react-dom@npm:18.2.15"
-  dependencies:
-    "@types/react": "*"
-  checksum: 8e9631600c21ff561328e38a951d1991b3b3b20f538af4c0efbd1327c883a5573a63f50e1b945c34fa51b114b30e1ca5e62317bd54f21e063d6697b4be843a03
-  languageName: node
-  linkType: hard
-
-"@types/react-dom@npm:^18.0.0":
+"@types/react-dom@npm:18.2.17, @types/react-dom@npm:^18.0.0":
   version: 18.2.17
   resolution: "@types/react-dom@npm:18.2.17"
   dependencies:
@@ -9021,7 +8883,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:16 || 17 || 18, @types/react@npm:>=16":
+"@types/react@npm:*, @types/react@npm:16 || 17 || 18, @types/react@npm:18.2.38, @types/react@npm:>=16":
   version: 18.2.38
   resolution: "@types/react@npm:18.2.38"
   dependencies:
@@ -9029,17 +8891,6 @@ __metadata:
     "@types/scheduler": "*"
     csstype: ^3.0.2
   checksum: 71f8c167173d32252be8b2d3c1c76b3570b94d2fbbd139da86d146be453626f5777e12c2781559119637520dbef9f91cffe968f67b5901618f29226d49fad326
-  languageName: node
-  linkType: hard
-
-"@types/react@npm:18.2.37":
-  version: 18.2.37
-  resolution: "@types/react@npm:18.2.37"
-  dependencies:
-    "@types/prop-types": "*"
-    "@types/scheduler": "*"
-    csstype: ^3.0.2
-  checksum: 2d2599f1a09e4f678509161fea8baeaf76d21deee460f4f3ccc1ca431ebe85f896d7d0b906127de17e97ed57240cec61955eb97d0b5d9cbf4e97fd6620b1acdb
   languageName: node
   linkType: hard
 
@@ -9241,15 +9092,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:6.11.0":
-  version: 6.11.0
-  resolution: "@typescript-eslint/eslint-plugin@npm:6.11.0"
+"@typescript-eslint/eslint-plugin@npm:6.12.0":
+  version: 6.12.0
+  resolution: "@typescript-eslint/eslint-plugin@npm:6.12.0"
   dependencies:
     "@eslint-community/regexpp": ^4.5.1
-    "@typescript-eslint/scope-manager": 6.11.0
-    "@typescript-eslint/type-utils": 6.11.0
-    "@typescript-eslint/utils": 6.11.0
-    "@typescript-eslint/visitor-keys": 6.11.0
+    "@typescript-eslint/scope-manager": 6.12.0
+    "@typescript-eslint/type-utils": 6.12.0
+    "@typescript-eslint/utils": 6.12.0
+    "@typescript-eslint/visitor-keys": 6.12.0
     debug: ^4.3.4
     graphemer: ^1.4.0
     ignore: ^5.2.4
@@ -9262,7 +9113,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 8ba9ce7ce8609a044e405baf57cc84d6973d7676950c870288d7eae2dba44b36664e3f4d90b94a4de08e17259fe8baa7790750cd4e5391dbe2a2743497d7fae2
+  checksum: a791ebe432a6cac50a15c9e98502b62e874de0c7e35fd320b9bdca21afd4ae88c88cff45ee50a95362da14e98965d946e57b15965f5522f1153568a3fe45db8a
   languageName: node
   linkType: hard
 
@@ -9301,25 +9152,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:6.11.0":
-  version: 6.11.0
-  resolution: "@typescript-eslint/parser@npm:6.11.0"
-  dependencies:
-    "@typescript-eslint/scope-manager": 6.11.0
-    "@typescript-eslint/types": 6.11.0
-    "@typescript-eslint/typescript-estree": 6.11.0
-    "@typescript-eslint/visitor-keys": 6.11.0
-    debug: ^4.3.4
-  peerDependencies:
-    eslint: ^7.0.0 || ^8.0.0
-  peerDependenciesMeta:
-    typescript:
-      optional: true
-  checksum: e9cb175e3537b82aa8cd39641ecb4e656586f89f8365cf05400b5aa8794dac0c8c10c6aa2fd7c13a684f62c1493f5e41c5534df49d377abe9dc89d861a51195c
-  languageName: node
-  linkType: hard
-
-"@typescript-eslint/parser@npm:^5.4.2 || ^6.0.0":
+"@typescript-eslint/parser@npm:6.12.0, @typescript-eslint/parser@npm:^5.4.2 || ^6.0.0":
   version: 6.12.0
   resolution: "@typescript-eslint/parser@npm:6.12.0"
   dependencies:
@@ -9364,16 +9197,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/scope-manager@npm:6.11.0":
-  version: 6.11.0
-  resolution: "@typescript-eslint/scope-manager@npm:6.11.0"
-  dependencies:
-    "@typescript-eslint/types": 6.11.0
-    "@typescript-eslint/visitor-keys": 6.11.0
-  checksum: d219a96fd80fb14176cdcc47b070e870c73ccc0dfb32a8657f6ceaefb613dc0ea240a77250dcfc437d9c9360ca165c2765d4cf8fe689dae7e9eee2c0d6a98a50
-  languageName: node
-  linkType: hard
-
 "@typescript-eslint/scope-manager@npm:6.12.0":
   version: 6.12.0
   resolution: "@typescript-eslint/scope-manager@npm:6.12.0"
@@ -9401,12 +9224,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/type-utils@npm:6.11.0":
-  version: 6.11.0
-  resolution: "@typescript-eslint/type-utils@npm:6.11.0"
+"@typescript-eslint/type-utils@npm:6.12.0":
+  version: 6.12.0
+  resolution: "@typescript-eslint/type-utils@npm:6.12.0"
   dependencies:
-    "@typescript-eslint/typescript-estree": 6.11.0
-    "@typescript-eslint/utils": 6.11.0
+    "@typescript-eslint/typescript-estree": 6.12.0
+    "@typescript-eslint/utils": 6.12.0
     debug: ^4.3.4
     ts-api-utils: ^1.0.1
   peerDependencies:
@@ -9414,7 +9237,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 2effbe62ae3b12f8a88663072f68a5dcb1135d9ee3c09a0d9fcf49b943837c0a5966e907d4a1a15c27ddf82af2fcf7f6e004655d3e1f7a17c21596469771ff7d
+  checksum: c345c45f1262eee4b9f6960a59b3aba960643d0004094a3d8fb9682ab79af2fae864695029246dc9e0d4fdb2f3d017a56b7dc034e551d263deba75c2ef048d39
   languageName: node
   linkType: hard
 
@@ -9422,13 +9245,6 @@ __metadata:
   version: 5.62.0
   resolution: "@typescript-eslint/types@npm:5.62.0"
   checksum: 48c87117383d1864766486f24de34086155532b070f6264e09d0e6139449270f8a9559cfef3c56d16e3bcfb52d83d42105d61b36743626399c7c2b5e0ac3b670
-  languageName: node
-  linkType: hard
-
-"@typescript-eslint/types@npm:6.11.0":
-  version: 6.11.0
-  resolution: "@typescript-eslint/types@npm:6.11.0"
-  checksum: ca8a11320286c9b0759a70ec83b9fd99937c9686fafdd41d8ea09ed7b2fa12e6b342bf65547efe5495926cd04cfc6488315920e3caffd27f12d42cb9a8cf88c8
   languageName: node
   linkType: hard
 
@@ -9454,24 +9270,6 @@ __metadata:
     typescript:
       optional: true
   checksum: 3624520abb5807ed8f57b1197e61c7b1ed770c56dfcaca66372d584ff50175225798bccb701f7ef129d62c5989070e1ee3a0aa2d84e56d9524dcf011a2bb1a52
-  languageName: node
-  linkType: hard
-
-"@typescript-eslint/typescript-estree@npm:6.11.0":
-  version: 6.11.0
-  resolution: "@typescript-eslint/typescript-estree@npm:6.11.0"
-  dependencies:
-    "@typescript-eslint/types": 6.11.0
-    "@typescript-eslint/visitor-keys": 6.11.0
-    debug: ^4.3.4
-    globby: ^11.1.0
-    is-glob: ^4.0.3
-    semver: ^7.5.4
-    ts-api-utils: ^1.0.1
-  peerDependenciesMeta:
-    typescript:
-      optional: true
-  checksum: e137ba7c4cad08853a44d9c40072496ca5f2d440828be9fd2d207a59db56b05a6dcb4756f3ba341ee2ae714de45df80114477946d30801c5a46eed67314fd9c6
   languageName: node
   linkType: hard
 
@@ -9511,20 +9309,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/utils@npm:6.11.0":
-  version: 6.11.0
-  resolution: "@typescript-eslint/utils@npm:6.11.0"
+"@typescript-eslint/utils@npm:6.12.0":
+  version: 6.12.0
+  resolution: "@typescript-eslint/utils@npm:6.12.0"
   dependencies:
     "@eslint-community/eslint-utils": ^4.4.0
     "@types/json-schema": ^7.0.12
     "@types/semver": ^7.5.0
-    "@typescript-eslint/scope-manager": 6.11.0
-    "@typescript-eslint/types": 6.11.0
-    "@typescript-eslint/typescript-estree": 6.11.0
+    "@typescript-eslint/scope-manager": 6.12.0
+    "@typescript-eslint/types": 6.12.0
+    "@typescript-eslint/typescript-estree": 6.12.0
     semver: ^7.5.4
   peerDependencies:
     eslint: ^7.0.0 || ^8.0.0
-  checksum: e90aa2c8c56038a48de65a5303f9e4a4a70bb0d4d0a05cfcd28157fc0f06b2fc186c2e76a495f4540a903ea37577daa1403bab923d940114ec27a6326153d60f
+  checksum: dad05bd0e4db7a88c2716f9ee83c7c28c30d71e57392e58dc0db66b5f5c4c86b9db14142c6a1a82cf1650da294d31980c56a118015d3a2a645acb8b8a5ebc315
   languageName: node
   linkType: hard
 
@@ -9535,16 +9333,6 @@ __metadata:
     "@typescript-eslint/types": 5.62.0
     eslint-visitor-keys: ^3.3.0
   checksum: 976b05d103fe8335bef5c93ad3f76d781e3ce50329c0243ee0f00c0fcfb186c81df50e64bfdd34970148113f8ade90887f53e3c4938183afba830b4ba8e30a35
-  languageName: node
-  linkType: hard
-
-"@typescript-eslint/visitor-keys@npm:6.11.0":
-  version: 6.11.0
-  resolution: "@typescript-eslint/visitor-keys@npm:6.11.0"
-  dependencies:
-    "@typescript-eslint/types": 6.11.0
-    eslint-visitor-keys: ^3.4.1
-  checksum: 6aae9dd79963bbefbf2e310015b909627da541a13ab4d8359eea3c86c34fdbb91e583f65b5a99dee1959f7c5d67b21b45e5a05c63ddb4b82dacd60c890ce8b25
   languageName: node
   linkType: hard
 
@@ -12601,8 +12389,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "config@workspace:packages/config"
   dependencies:
-    "@typescript-eslint/eslint-plugin": 6.11.0
-    "@typescript-eslint/parser": 6.11.0
+    "@typescript-eslint/eslint-plugin": 6.12.0
+    "@typescript-eslint/parser": 6.12.0
     autoprefixer: 10.4.16
     eslint: 8.54.0
     eslint-config-prettier: 9.0.0
@@ -13516,9 +13304,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress@npm:13.5.1":
-  version: 13.5.1
-  resolution: "cypress@npm:13.5.1"
+"cypress@npm:13.6.0":
+  version: 13.6.0
+  resolution: "cypress@npm:13.6.0"
   dependencies:
     "@cypress/request": ^3.0.0
     "@cypress/xvfb": ^1.2.4
@@ -13565,7 +13353,7 @@ __metadata:
     yauzl: ^2.10.0
   bin:
     cypress: bin/cypress
-  checksum: 9fdf97f6eaee747f5fa290e16d9164ea4926c65c6af7cc21d4ed6c442d8d98533ceff7dafe4e7b6917899bda03505abfb5042f18acda2c66811b0733393bbba3
+  checksum: 2f80649e271075fd069567c4e53b89924e451021e003a9f1e1002f22ef26d844d59868ab2a9add106baf5b5ae7789c8d2c99dbd579423801185d8e0b9ebd09be
   languageName: node
   linkType: hard
 
@@ -22399,61 +22187,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next@npm:14.0.2":
-  version: 14.0.2
-  resolution: "next@npm:14.0.2"
-  dependencies:
-    "@next/env": 14.0.2
-    "@next/swc-darwin-arm64": 14.0.2
-    "@next/swc-darwin-x64": 14.0.2
-    "@next/swc-linux-arm64-gnu": 14.0.2
-    "@next/swc-linux-arm64-musl": 14.0.2
-    "@next/swc-linux-x64-gnu": 14.0.2
-    "@next/swc-linux-x64-musl": 14.0.2
-    "@next/swc-win32-arm64-msvc": 14.0.2
-    "@next/swc-win32-ia32-msvc": 14.0.2
-    "@next/swc-win32-x64-msvc": 14.0.2
-    "@swc/helpers": 0.5.2
-    busboy: 1.6.0
-    caniuse-lite: ^1.0.30001406
-    postcss: 8.4.31
-    styled-jsx: 5.1.1
-    watchpack: 2.4.0
-  peerDependencies:
-    "@opentelemetry/api": ^1.1.0
-    react: ^18.2.0
-    react-dom: ^18.2.0
-    sass: ^1.3.0
-  dependenciesMeta:
-    "@next/swc-darwin-arm64":
-      optional: true
-    "@next/swc-darwin-x64":
-      optional: true
-    "@next/swc-linux-arm64-gnu":
-      optional: true
-    "@next/swc-linux-arm64-musl":
-      optional: true
-    "@next/swc-linux-x64-gnu":
-      optional: true
-    "@next/swc-linux-x64-musl":
-      optional: true
-    "@next/swc-win32-arm64-msvc":
-      optional: true
-    "@next/swc-win32-ia32-msvc":
-      optional: true
-    "@next/swc-win32-x64-msvc":
-      optional: true
-  peerDependenciesMeta:
-    "@opentelemetry/api":
-      optional: true
-    sass:
-      optional: true
-  bin:
-    next: dist/bin/next
-  checksum: b133fcd8035191dd7469bcb8c0b0c6325dac890020298d2ac4dce1dfb388ede0824532a5aaff778c6871c015de89adca25108ffb35634f3f38397279bad43175
-  languageName: node
-  linkType: hard
-
 "next@npm:14.0.3":
   version: 14.0.3
   resolution: "next@npm:14.0.3"
@@ -26101,27 +25834,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router-dom@npm:6.19.0":
-  version: 6.19.0
-  resolution: "react-router-dom@npm:6.19.0"
+"react-router-dom@npm:6.20.0":
+  version: 6.20.0
+  resolution: "react-router-dom@npm:6.20.0"
   dependencies:
-    "@remix-run/router": 1.12.0
-    react-router: 6.19.0
+    "@remix-run/router": 1.13.0
+    react-router: 6.20.0
   peerDependencies:
     react: ">=16.8"
     react-dom: ">=16.8"
-  checksum: 04453ca48eb900a4a6aa8b8e48368fa78d4ce8a9b69df108d9f53071a904349b18672a66c94252eb847ae4369e30bbe4ec7244bb6529b10fd474774e48f03669
+  checksum: ee7c0c4ca82abe21cf2739d238533056fba389fd57641b9b7da5a89eaa6280ad819afe62b66168ab8b8ec4118fd58d49486c8d99651e46c467894e54cd0988f2
   languageName: node
   linkType: hard
 
-"react-router@npm:6.19.0":
-  version: 6.19.0
-  resolution: "react-router@npm:6.19.0"
+"react-router@npm:6.20.0":
+  version: 6.20.0
+  resolution: "react-router@npm:6.20.0"
   dependencies:
-    "@remix-run/router": 1.12.0
+    "@remix-run/router": 1.13.0
   peerDependencies:
     react: ">=16.8"
-  checksum: f7e3396b8f4299638029dc726cb02d9c05c8906dc5277e5f9d899ef113d8cec49dfab7d34cd496826f8c1a95666141f3eede446c4438ef56720fdb72c66473fb
+  checksum: 38bd986cb14355d5dc648e704190aa4d29935eee44423d93f13245472cf857a71a59b330c1f57395c9dffe8f243c846ebc8cc4149a44d520c96e99af90d6382b
   languageName: node
   linkType: hard
 
@@ -29689,23 +29422,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:5.2.2":
-  version: 5.2.2
-  resolution: "typescript@npm:5.2.2"
+"typescript@npm:5.3.2":
+  version: 5.3.2
+  resolution: "typescript@npm:5.3.2"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 7912821dac4d962d315c36800fe387cdc0a6298dba7ec171b350b4a6e988b51d7b8f051317786db1094bd7431d526b648aba7da8236607febb26cf5b871d2d3c
+  checksum: d92534dda639eb825db013203404c1fabca8ac630564283c9e7dc9e64fd9c9346c2de95ecebdf3e6e8c1c32941bca1cfe0da37877611feb9daf8feeaea58d230
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@5.2.2#~builtin<compat/typescript>":
-  version: 5.2.2
-  resolution: "typescript@patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=85af82"
+"typescript@patch:typescript@5.3.2#~builtin<compat/typescript>":
+  version: 5.3.2
+  resolution: "typescript@patch:typescript@npm%3A5.3.2#~builtin<compat/typescript>::version=5.3.2&hash=85af82"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 07106822b4305de3f22835cbba949a2b35451cad50888759b6818421290ff95d522b38ef7919e70fb381c5fe9c1c643d7dea22c8b31652a717ddbd57b7f4d554
+  checksum: c034461079fbfde3cb584ddee52afccb15b6e32a0ce186d0b2719968786f7ca73e1b07f71fac4163088790b16811c6ccf79680de190664ef66ff0ba9c1fe4a23
   languageName: node
   linkType: hard
 
