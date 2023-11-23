@@ -3,8 +3,9 @@ import axios from 'axios';
 import { api } from '../../api';
 import { ApiEndpointBrukerdialog } from '../../api/endpoints';
 import { Mellomlagring } from '../../types/Mellomlagring';
+import { withAuthenticatedApi } from '../../auth/withAuthentication';
 
-export default async function handler(_req: NextApiRequest, res: NextApiResponse) {
+async function handler(_req: NextApiRequest, res: NextApiResponse) {
     try {
         const [mellomlagringSøknad, mellomlagringEndring] = await Promise.all([
             api.brukerdialog.get(ApiEndpointBrukerdialog.mellomlagringSøknad).then((res) => res.data),
@@ -18,5 +19,7 @@ export default async function handler(_req: NextApiRequest, res: NextApiResponse
         res.status(500).json({ error: 'failed to load data for mellomlagring', err });
     }
 }
+
+export default withAuthenticatedApi(handler);
 
 export const mellomlagringFecther = async (url: string) => axios.get<Mellomlagring>(url).then((res) => res.data);

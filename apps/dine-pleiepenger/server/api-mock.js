@@ -16,7 +16,7 @@ server.use(
 );
 
 server.use(function (req, res, next) {
-    setTimeout(next, 2500);
+    setTimeout(next, 300);
 });
 
 const startServer = () => {

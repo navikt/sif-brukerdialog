@@ -4,9 +4,8 @@ import { GetServerSidePropsContext, NextApiRequest, NextApiResponse, GetServerSi
 import { logger } from '@navikt/next-logger';
 import { validateIdportenToken } from '@navikt/next-auth-wonderwall';
 
-import { getSessionId } from '../utils/userSessionId';
 import { RequestContext } from '../types/RequestContext';
-import { browserEnv, isLocalOrDemo } from '../utils/env';
+import { browserEnv, isLocal } from '../utils/env';
 import { Søker } from '../types/Søker';
 
 export interface ServerSidePropsResult {
@@ -53,7 +52,7 @@ export function withAuthenticatedPage(handler: PageHandler = defaultPageHandler)
     return async function withBearerTokenHandler(
         context: GetServerSidePropsContext,
     ): Promise<ReturnType<NonNullable<typeof handler>>> {
-        if (isLocalOrDemo) {
+        if (isLocal) {
             return handler(context);
         }
 
@@ -95,7 +94,7 @@ export function withAuthenticatedPage(handler: PageHandler = defaultPageHandler)
  */
 export function withAuthenticatedApi(handler: ApiHandler): ApiHandler {
     return async function withBearerTokenHandler(req, res, ...rest) {
-        if (isLocalOrDemo) {
+        if (isLocal) {
             return handler(req, res, ...rest);
         }
 
@@ -153,19 +152,4 @@ export function parseAuthHeader(headers: IncomingHttpHeaders): TokenPayload | nu
     const jwtPayload = accessToken.split('.')[1];
 
     return JSON.parse(Buffer.from(jwtPayload, 'base64').toString());
-}
-
-/**
- * Used locally or in demo environments to create a fake request context.
- */
-export function createDemoRequestContext(req: GetServerSidePropsContext['req'] | NextApiRequest): RequestContext {
-    if (!isLocalOrDemo) {
-        throw new Error('createDemoRequestContext should only be used in local development or demo environments');
-    }
-
-    return {
-        ...require('./fakeLocalAuthTokenSet.json'),
-        requestId: 'not set',
-        sessionId: getSessionId(req),
-    };
 }

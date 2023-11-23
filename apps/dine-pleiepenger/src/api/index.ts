@@ -1,6 +1,6 @@
-import { storageParser } from '@navikt/sif-common-core-ds/lib/utils/persistence/storageParser';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
-import { ApiEndpointInnsyn, ApiEndpointBrukerdialog } from './endpoints';
+import { isUnauthorized } from '../utils/apiUtils';
+import { ApiEndpointBrukerdialog, ApiEndpointInnsyn } from './endpoints';
 
 const axiosConfigCommon: AxiosRequestConfig = {
     withCredentials: true,
@@ -8,12 +8,13 @@ const axiosConfigCommon: AxiosRequestConfig = {
 
 const axiosConfigPsb: AxiosRequestConfig = {
     ...axiosConfigCommon,
+    // transformResponse: storageParser,
     baseURL: process.env.NEXT_PUBLIC_API_URL_BRUKERDIALOG,
 };
 
 const axiosConfigInnsyn: AxiosRequestConfig = {
     ...axiosConfigCommon,
-    transformResponse: storageParser,
+    // transformResponse: storageParser,
     baseURL: process.env.NEXT_PUBLIC_API_URL_INNSYN,
 };
 
@@ -26,12 +27,10 @@ axios.interceptors.response.use(
         return response;
     },
     (error: AxiosError) => {
-        // if (isUnauthorized(error)) {
-        //     relocateToLoginPage();
-        //     return Promise.reject({
-        //         status: RequestStatus.redirectingToLogin,
-        //     });
-        // }
+        if (isUnauthorized(error)) {
+            // Reload for redirecting to login page
+            window.location.reload();
+        }
         return Promise.reject(error);
     },
 );

@@ -68,6 +68,6 @@ export function getServerEnv(): ServerEnv & PublicEnv {
     }
 }
 
-export const isLocalOrDemo = process.env.NODE_ENV !== 'production';
+export const isLocal = process.env.NODE_ENV !== 'production';
 
 export const isE2E = process.env.NEXT_PUBLIC_IS_E2E === 'true';
