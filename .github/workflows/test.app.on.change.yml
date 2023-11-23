@@ -11,25 +11,30 @@ on:
             - .github/workflows/**/*
     workflow_call:
 
+env:
+    IS_SHARED_CODE_CHANGE: false
+
 jobs:
-    shared-code-env:
+    is-shared-code-change:
         runs-on: ubuntu-latest
+        outputs:
+            IS_SHARED_CODE_CHANGE: ${{ steps.set-shared-code-change-env.outputs.IS_SHARED_CODE_CHANGE }}
         steps:
-            - name: set shared-code-change env
+            - id: set-shared-code-change-env
               run: |
                 if (contains(github.event_path, 'nais-config') ||
                     contains(github.event_path, 'packages') ||
                     contains(github.event_path, 'workflows')) {
-                        echo "{IS_SHARED_CODE_CHANGE}={true}" >> "$GITHUB_ENV"
+                        echo "::set-output name=IS_SHARED_CODE_CHANGE::true
                     } else {
-                        echo "{IS_SHARED_CODE_CHANGE}={false}" >> "$GITHUB_ENV"
+                        echo "::set-output name=IS_SHARED_CODE_CHANGE::true
                     }
 
 
     test-ekstra-omsorgsdager-annen-forelder-ikke-tilsyn:
-        needs: shared-code-env
+        needs: is-shared-code-change
         runs-on: ubuntu-latest
-        if: env.IS_SHARED_CODE_CHANGE == 'true' || contains(github.event_path, 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn')
+        if: ${{needs.is-shared-code-change.outputs.IS_SHARED_CODE_CHANGE == 'true'}} || contains(github.event_path, 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn')
         steps:
             - name: test-ekstra-omsorgsdager-annen-forelder-ikke-tilsyn
               uses: ./.github/workflows/test.app.yml
