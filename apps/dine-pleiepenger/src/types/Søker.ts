@@ -1,7 +1,8 @@
 export interface Søker {
+    aktørId: string;
     fornavn: string;
     mellomnavn?: string;
     etternavn: string;
-    kjønn: string;
+    fødselsdato: string;
     fødselsnummer: string;
 }
