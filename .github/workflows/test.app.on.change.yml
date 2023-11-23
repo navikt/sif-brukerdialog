@@ -19,14 +19,14 @@ jobs:
     is-shared-code-change:
         runs-on: ubuntu-latest
         outputs:
-            IS_SHARED_CODE_CHANGE: ${{ steps.is-shared-code-change-flag.outputs.IS_SHARED_CODE_CHANGE }}
+            isShared: ${{ steps.setIsSharedChange.outputs.isShared }}
         steps:
-            - id: is-shared-code-change-flag
+            - id: setIsSharedChange
               if:
                 contains(github.event_path, 'nais-config') ||
                 contains(github.event_path, 'packages') ||
                 contains(github.event_path, 'workflows')
-              run: echo "IS_SHARED_CODE_CHANGE=true" >> "$GITHUB_OUTPUT"
+              run: echo "isShared=true" >> "$GITHUB_OUTPUT"
             #   run: |
             #     if (contains(github.event_path, 'nais-config') |
             #         contains(github.event_path, 'packages') ||
@@ -40,12 +40,19 @@ jobs:
     test-ekstra-omsorgsdager-annen-forelder-ikke-tilsyn:
         needs: is-shared-code-change
         runs-on: ubuntu-latest
-        if: ${{needs.is-shared-code-change.outputs.IS_SHARED_CODE_CHANGE == 'true'}} || contains(github.event_path, 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn')
+        if: ${{needs.is-shared-code-change.outputs.isShared == 'true'}} || contains(github.event_path, 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn')
         steps:
             - name: test-ekstra-omsorgsdager-annen-forelder-ikke-tilsyn
               uses: ./.github/workflows/test.app.yml
               with:
                  app-name: 'test.ekstra-omsorgsdager-andre-forelder-ikke-tilsyn'
+
+    debug:
+        needs: is-shared-code-change
+        runs-on: ubuntu-latest
+        steps:
+            - name: tell-me
+              run: echo "isShared=${{needs.is-shared-code-change.outputs.isShared}}"
 
     # test-endringsmelding-pleiepenger:
     #   uses: ./.github/workflows/test.app.yml
