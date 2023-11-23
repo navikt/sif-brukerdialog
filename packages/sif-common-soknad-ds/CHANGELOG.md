@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.9.0
+
+### Minor Changes
+
+-   Oppdaterte pakker. Minor og patch
+
 ## 10.8.0
 
 ### Minor Changes

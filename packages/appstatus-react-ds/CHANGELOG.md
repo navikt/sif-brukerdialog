@@ -1,5 +1,16 @@
 # @navikt/appstatus-react-ds
 
+## 2.16.0
+
+### Minor Changes
+
+-   Oppdaterte pakker. Minor og patch
+
+### Patch Changes
+
+-   Updated dependencies
+    -   @navikt/sif-common-hooks@0.1.0
+
 ## 2.15.0
 
 ### Minor Changes

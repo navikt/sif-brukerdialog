@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 8.13.0
+
+### Minor Changes
+
+-   Oppdaterte pakker. Minor og patch
+
 ## 8.12.0
 
 ### Minor Changes
