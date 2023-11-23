@@ -1,4 +1,4 @@
-name: Deploy Next.js app to dev (with copy envs)
+name: Deploy app to dev (next.js)
 run-name: Deploy ${{ inputs.app-name }} to dev (${{github.ref_name}})
 
 on:
