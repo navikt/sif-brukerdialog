@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.3.0
+
+### Minor Changes
+
+-   Oppdaterte pakker. Minor og patch
+
 ## 3.2.0
 
 ### Minor Changes

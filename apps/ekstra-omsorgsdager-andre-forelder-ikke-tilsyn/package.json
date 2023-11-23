@@ -3,7 +3,7 @@
     "description": "Søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn",
     "license": "MIT",
     "name": "@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",
-    "version": "1.18.0",
+    "version": "1.19.0",
     "repository": "https://github.com/navikt/sif-brukerdialog",
     "private": true,
     "type": "module",
@@ -24,9 +24,9 @@
         "test": "react-scripts test --watchAll=false --env=jsdom"
     },
     "dependencies": {
-        "@navikt/ds-css": "5.10.3",
-        "@navikt/ds-react": "5.10.3",
-        "@navikt/ds-tailwind": "5.10.3",
+        "@navikt/ds-css": "5.10.4",
+        "@navikt/ds-react": "5.10.4",
+        "@navikt/ds-tailwind": "5.10.4",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
@@ -69,10 +69,10 @@
         "@playwright/test": "^1.40.0",
         "@storybook/react-vite": "7.5.3",
         "@testing-library/react": "14.1.2",
-        "@types/jest": "29.5.8",
+        "@types/jest": "29.5.10",
         "@types/object-hash": "3.0.6",
-        "@types/react": "18.2.37",
-        "@types/react-dom": "18.2.15",
+        "@types/react": "18.2.38",
+        "@types/react-dom": "18.2.17",
         "@types/react-router-dom": "5.3.3",
         "babel-polyfill": "6.26.0",
         "cross-env": "7.0.3",
@@ -90,7 +90,7 @@
         "start-server-and-test": "2.0.3",
         "style-loader": "3.3.3",
         "ts-loader": "9.5.1",
-        "typescript": "5.2.2"
+        "typescript": "5.3.2"
     },
     "jest": {
         "transformIgnorePatterns": [

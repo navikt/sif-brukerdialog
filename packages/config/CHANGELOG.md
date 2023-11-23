@@ -1,5 +1,11 @@
 # config
 
+## 0.8.0
+
+### Minor Changes
+
+-   Oppdaterte pakker. Minor og patch
+
 ## 0.7.0
 
 ### Minor Changes
