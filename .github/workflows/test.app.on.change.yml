@@ -1,0 +1,54 @@
+name: Test app on change
+
+on:
+    push:
+        branches-ignore:
+            - 'main'
+        paths:
+            - 'apps/**/*'
+            - 'nais-config/**/*'
+            - 'packages/**/*'
+            - .github/workflows/**/*
+    workflow_call:
+
+jobs:
+    - name: get is-shared-code-change variable from paths
+      id: is-shared-code-change
+      run: |
+        if (contains(github.event_path, 'nais-config') ||
+            contains(github.event_path, 'packages') ||
+            contains(github.event_path, 'workflows')) {
+                echo "export IS_SHARED_CODE_CHANGE=true" >> $GITHUB_ENV
+            } else {
+                echo "export IS_SHARED_CODE_CHANGE=false" >> $GITHUB_ENV
+            }
+
+    # - name: Extract app name
+    #   if: env.IS_SHARED_CODE_CHANGE == false
+    #   run: |
+    #       # Use grep with a regular expression to extract the desired string
+    #       APP_NAME=$(echo "${{ steps.set_env.outputs.PATH_VARIABLE }}" | grep -oE 'apps/([^/]*)/' | cut -d'/' -f2 || true)
+
+    #       # Set APP_NAME as an environment variable
+    #       echo "APP_NAME=${APP_NAME}" >> $GITHUB_ENV
+
+    test-ekstra-omsorgsdager-annen-forelder-ikke-tilsyn:
+      uses: ./.github/workflows/test.app.yml
+      if: env.IS_SHARED_CODE_CHANGE == true || contains(github.event_path, 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn')
+      secrets: inherit
+      with:
+        app-name: 'test.ekstra-omsorgsdager-andre-forelder-ikke-tilsyn'
+
+    test-endringsmelding-pleiepenger:
+      uses: ./.github/workflows/test.app.yml
+      if: env.IS_SHARED_CODE_CHANGE == true || contains(github.event_path, 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/')
+      secrets: inherit
+      with:
+        app-name: 'endringsmelding-pleiepenger'
+
+    test-omsorgsdager-aleneomsorg:
+      uses: ./.github/workflows/test.app.yml
+      if: env.IS_SHARED_CODE_CHANGE == true || contains(github.event_path, 'omsorgsdager-aleneomsorg')
+      secrets: inherit
+      with:
+        app-name: 'omsorgsdager-aleneomsorg'
