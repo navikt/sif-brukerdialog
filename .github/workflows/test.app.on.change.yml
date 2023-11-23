@@ -18,17 +18,22 @@ jobs:
     is-shared-code-change:
         runs-on: ubuntu-latest
         outputs:
-            IS_SHARED_CODE_CHANGE: ${{ steps.set-shared-code-change-env.outputs.IS_SHARED_CODE_CHANGE }}
+            IS_SHARED_CODE_CHANGE: ${{ steps.is-shared-code-change.outputs.IS_SHARED_CODE_CHANGE }}
         steps:
-            - id: set-shared-code-change-env
-              run: |
-                if (contains(github.event_path, 'nais-config') ||
-                    contains(github.event_path, 'packages') ||
-                    contains(github.event_path, 'workflows')) {
-                        echo "::set-output name=IS_SHARED_CODE_CHANGE::true
-                    } else {
-                        echo "::set-output name=IS_SHARED_CODE_CHANGE::true
-                    }
+            - id: is-shared-code-change
+              if:
+                contains(github.event_path, 'nais-config') ||
+                contains(github.event_path, 'packages') ||
+                contains(github.event_path, 'workflows')
+              run: echo "::set-output name=IS_SHARED_CODE_CHANGE::true
+            #   run: |
+            #     if (contains(github.event_path, 'nais-config') |
+            #         contains(github.event_path, 'packages') ||
+            #         contains(github.event_path, 'workflows')) {
+            #             echo "::set-output name=IS_SHARED_CODE_CHANGE::true
+            #         } else {
+            #             echo "::set-output name=IS_SHARED_CODE_CHANGE::true
+            #         }
 
 
     test-ekstra-omsorgsdager-annen-forelder-ikke-tilsyn:
