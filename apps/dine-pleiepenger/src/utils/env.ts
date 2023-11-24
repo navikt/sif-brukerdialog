@@ -20,6 +20,7 @@ export const serverEnvSchema = z.object({
     TOKEN_X_WELL_KNOWN_URL: z.union([z.string(), z.undefined()]),
     TOKEN_X_PRIVATE_JWK: z.union([z.string(), z.undefined()]),
     TOKEN_X_CLIENT_ID: z.union([z.string(), z.undefined()]),
+    NAIS_CLIENT_ID: z.union([z.string(), z.undefined()]),
 });
 
 /**
@@ -49,6 +50,7 @@ const getRawServerConfig = (): Partial<unknown> =>
         TOKEN_X_WELL_KNOWN_URL: process.env.TOKEN_X_WELL_KNOWN_URL,
         TOKEN_X_PRIVATE_JWK: process.env.TOKEN_X_PRIVATE_JWK,
         TOKEN_X_CLIENT_ID: process.env.TOKEN_X_CLIENT_ID,
+        NAIS_CLIENT_ID: process.env.NAIS_CLIENT_ID,
     }) satisfies Record<keyof ServerEnv, string | undefined>;
 
 /**

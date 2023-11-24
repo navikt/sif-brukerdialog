@@ -35,13 +35,18 @@ export async function fetchApi<ResponseObject>(
             ? browserEnv.NEXT_PUBLIC_API_URL_BRUKERDIALOG!
             : browserEnv.NEXT_PUBLIC_API_URL_INNSYN;
 
-    const response = await fetch(`${serverUrl}/${path}`, {
+    const fetchUrl = `${serverUrl}/${path}`;
+
+    childLogger.info(`Fetching ${fetchUrl}`);
+
+    const response = await fetch(fetchUrl, {
         method: method.type,
         body: method.type === 'POST' ? method.body : undefined,
         headers: {
             Authorization: `Bearer ${tokenX}`,
             'Content-Type': 'application/json',
             'x-request-id': context.requestId,
+            'X-K9-Brukerdialog': serverEnv.NAIS_CLIENT_ID!,
         },
     });
 
