@@ -15,11 +15,11 @@ export type ServerEnv = z.infer<typeof serverEnvSchema>;
 export const serverEnvSchema = z.object({
     INNSYN_BACKEND_SCOPE: z.string(),
     BRUKERDIALOG_BACKEND_SCOPE: z.string(),
-    IDPORTEN_CLIENT_ID: z.string(),
-    IDPORTEN_WELL_KNOWN_URL: z.string(),
-    TOKEN_X_WELL_KNOWN_URL: z.string(),
-    TOKEN_X_PRIVATE_JWK: z.string(),
-    TOKEN_X_CLIENT_ID: z.string(),
+    IDPORTEN_CLIENT_ID: z.union([z.string(), z.undefined()]),
+    IDPORTEN_WELL_KNOWN_URL: z.union([z.string(), z.undefined()]),
+    TOKEN_X_WELL_KNOWN_URL: z.union([z.string(), z.undefined()]),
+    TOKEN_X_PRIVATE_JWK: z.union([z.string(), z.undefined()]),
+    TOKEN_X_CLIENT_ID: z.union([z.string(), z.undefined()]),
 });
 
 /**
