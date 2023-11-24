@@ -14,16 +14,14 @@ export async function fetchApi<ResponseObject>(
 ): Promise<ResponseObject> {
     const childLogger = createChildLogger(context.requestId);
 
-    const serverUrl =
-        service === 'k9-brukerdialog-api'
-            ? serverEnv.NEXT_PUBLIC_API_URL_INNSYN!
-            : serverEnv.NEXT_PUBLIC_API_URL_BRUKERDIALOG!;
+    const audience =
+        service === 'k9-brukerdialog-api' ? serverEnv.INNSYN_BACKEND_SCOPE! : serverEnv.BRUKERDIALOG_BACKEND_SCOPE!;
 
     let tokenX;
 
     if (!isLocal) {
-        childLogger.info(`Exchanging token for ${serverUrl}`);
-        tokenX = await grantTokenXOboToken(context.accessToken, serverUrl);
+        childLogger.info(`Exchanging token for ${audience}`);
+        tokenX = await grantTokenXOboToken(context.accessToken, audience);
         if (isInvalidTokenSet(tokenX)) {
             throw new Error(
                 `Unable to exchange token for dine-pleiepenger-backend token, requestId: ${context.requestId}, reason: ${tokenX.message}`,
@@ -31,7 +29,7 @@ export async function fetchApi<ResponseObject>(
         }
     }
 
-    const response = await fetch(`${serverUrl}/${path}`, {
+    const response = await fetch(`${audience}/${path}`, {
         method: method.type,
         body: method.type === 'POST' ? method.body : undefined,
         headers: {

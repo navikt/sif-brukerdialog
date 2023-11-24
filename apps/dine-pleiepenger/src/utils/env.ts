@@ -13,6 +13,8 @@ export const publicEnvSchema = z.object({
 
 export type ServerEnv = z.infer<typeof serverEnvSchema>;
 export const serverEnvSchema = z.object({
+    INNSYN_BACKEND_SCOPE: z.string(),
+    BRUKERDIALOG_BACKEND_SCOPE: z.string(),
     IDPORTEN_CLIENT_ID: z.string(),
     IDPORTEN_WELL_KNOWN_URL: z.string(),
     TOKEN_X_WELL_KNOWN_URL: z.string(),
@@ -37,6 +39,10 @@ export const browserEnv = publicEnvSchema.parse({
 
 const getRawServerConfig = (): Partial<unknown> =>
     ({
+        // Provided by nais-*.yml
+        INNSYN_BACKEND_SCOPE: process.env.INNSYN_BACKEND_SCOPE,
+        BRUKERDIALOG_BACKEND_SCOPE: process.env.BRUKERDIALOG_BACKEND_SCOPE,
+
         // Provided by nais
         IDPORTEN_CLIENT_ID: process.env.IDPORTEN_CLIENT_ID,
         IDPORTEN_WELL_KNOWN_URL: process.env.IDPORTEN_WELL_KNOWN_URL,
