@@ -6,6 +6,7 @@ import useSWR from 'swr';
 import { ServerSidePropsResult } from '../auth/withAuthentication';
 import ComponentLoader from '../components/component-loader/ComponentLoader';
 import ErrorBoundary from '../components/error-boundary/ErrorBoundary';
+import HentBrukerFeilet from '../components/hent-bruker-feilet/HentBrukerFeilet';
 import EmptyPage from '../components/layout/empty-page/EmptyPage';
 import { Søker } from '../types/Søker';
 import { messages } from '../utils/message';
@@ -13,7 +14,6 @@ import { søkerFecther } from './api/soker.api';
 import 'react-loading-skeleton/dist/skeleton.css';
 import '../components/process/process.css';
 import '../style/global.css';
-import HentBrukerFeilet from '../components/hent-bruker-feilet/HentBrukerFeilet';
 
 function MyApp({ Component, pageProps }: AppProps<ServerSidePropsResult>): ReactElement {
     const { error, isLoading } = useSWR<Søker, AxiosError>('/dine-pleiepenger/api/soker', søkerFecther);
@@ -38,5 +38,10 @@ function MyApp({ Component, pageProps }: AppProps<ServerSidePropsResult>): React
         </ErrorBoundary>
     );
 }
+
+// export const getServerSideProps = async (context) => {
+//     const søker = await getSøker(context);
+//     return { props: { søker } };
+// };
 
 export default MyApp;

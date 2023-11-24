@@ -1,7 +1,7 @@
 import { grantTokenXOboToken, isInvalidTokenSet } from '@navikt/next-auth-wonderwall';
 import { createChildLogger } from '@navikt/next-logger';
 import { RequestContext } from '../types/RequestContext';
-import { getServerEnv, isLocal } from '../utils/env';
+import { browserEnv, getServerEnv, isLocal } from '../utils/env';
 
 const serverEnv = getServerEnv();
 
@@ -14,8 +14,6 @@ export async function fetchApi<ResponseObject>(
 ): Promise<ResponseObject> {
     const childLogger = createChildLogger(context.requestId);
 
-    childLogger.info(`env check: NEXT_PUBLIC_BASE_PATH1: ${serverEnv.NEXT_PUBLIC_BASE_PATH}`);
-    childLogger.info(`env check: NEXT_PUBLIC_BASE_PATH2: ${getServerEnv().NEXT_PUBLIC_BASE_PATH}`);
     const audience =
         service === 'k9-brukerdialog-api' ? serverEnv.INNSYN_BACKEND_SCOPE! : serverEnv.BRUKERDIALOG_BACKEND_SCOPE!;
 
@@ -31,7 +29,12 @@ export async function fetchApi<ResponseObject>(
         }
     }
 
-    const response = await fetch(`${audience}/${path}`, {
+    const serverUrl =
+        service === 'k9-brukerdialog-api'
+            ? browserEnv.NEXT_PUBLIC_API_URL_BRUKERDIALOG!
+            : browserEnv.NEXT_PUBLIC_API_URL_INNSYN;
+
+    const response = await fetch(`${serverUrl}/${path}`, {
         method: method.type,
         body: method.type === 'POST' ? method.body : undefined,
         headers: {
