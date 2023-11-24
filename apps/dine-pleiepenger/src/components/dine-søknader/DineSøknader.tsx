@@ -1,8 +1,9 @@
 import { Alert, Heading } from '@navikt/ds-react';
 import useSWR from 'swr';
-import { søknaderFecther } from '../../pages/api/soknader.api';
+
 import SøknadListe, { SøknadListeSkeleton } from '../søknad-liste/SøknadListe';
 import ComponentLoader from '../component-loader/ComponentLoader';
+import { søknaderFecther } from '../../pages/api/soknader.api';
 
 const DineSøknader = () => {
     const { data, error, isLoading } = useSWR('/dine-pleiepenger/api/soknader', søknaderFecther);
