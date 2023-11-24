@@ -40,6 +40,12 @@ export async function fetchDocumentStream(
 
     const response = await axios.get(fetchUrl, {
         responseType: 'stream',
+        headers: {
+            Authorization: `Bearer ${tokenX}`,
+            'Content-Type': 'application/pdf',
+            'x-request-id': context.requestId,
+            'X-K9-Brukerdialog': serverEnv.NAIS_CLIENT_ID!,
+        },
     });
 
     return response.data;
