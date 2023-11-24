@@ -15,7 +15,9 @@ export async function fetchApi<ResponseObject>(
     const childLogger = createChildLogger(context.requestId);
 
     const audience =
-        service === 'k9-brukerdialog-api' ? serverEnv.INNSYN_BACKEND_SCOPE! : serverEnv.BRUKERDIALOG_BACKEND_SCOPE!;
+        service === 'k9-brukerdialog-api'
+            ? serverEnv.NEXT_PUBLIC_INNSYN_BACKEND_SCOPE!
+            : serverEnv.NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE!;
 
     let tokenX;
 
