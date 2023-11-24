@@ -36,6 +36,8 @@ const nextConfig = {
         ignoreDuringBuilds: true,
     },
     env: {
+        INNSYN_BACKEND_SCOPE: 'dummy-value',
+        BRUKERDIALOG_BACKEND_SCOPE: 'dummy-value',
         IDPORTEN_CLIENT_ID: 'dummy-value',
         IDPORTEN_WELL_KNOWN_URL: 'dummy-value',
         TOKEN_X_WELL_KNOWN_URL: 'dummy-value',
