@@ -9,18 +9,6 @@ import '../components/process/process.css';
 import '../style/global.css';
 
 function MyApp({ Component, pageProps }: AppProps<ServerSidePropsResult>): ReactElement {
-    // const { error, isLoading } = useSWR<Søker, AxiosError>('/dine-pleiepenger/api/soker', søkerFecther);
-
-    // if (isLoading) {
-    //     return (
-    //         <EmptyPage>
-    //             <ComponentLoader />
-    //         </EmptyPage>
-    //     );
-    // }
-    // if (error) {
-    //     return <HentBrukerFeilet error={error} />;
-    // }
     return (
         <ErrorBoundary>
             <main id="maincontent" role="main" tabIndex={-1}>
@@ -31,11 +19,5 @@ function MyApp({ Component, pageProps }: AppProps<ServerSidePropsResult>): React
         </ErrorBoundary>
     );
 }
-
-// export const getServerSideProps = async (context) => {
-//     console.log('getServerSideProps');
-//     const søker = await getSøker(context);
-//     return { props: { søker } };
-// };
 
 export default MyApp;

@@ -1,8 +1,10 @@
-import { ExpansionCard, VStack } from '@navikt/ds-react';
+import { BodyShort, ExpansionCard, VStack } from '@navikt/ds-react';
 import { Søknad } from '../../types/Søknad';
 import SøknadTitle from './SøknadTitle';
 import SøknadContent from './SøknadContent';
 import Skeleton from 'react-loading-skeleton';
+import PrettyDate from '../pretty-date/PrettyDate';
+import { getSøknadMottattDato } from '../../utils/søknadUtils';
 
 interface Props {
     søknader: Søknad[];
@@ -22,6 +24,16 @@ const SøknadListe: React.FunctionComponent<Props> = ({ søknader = [] }) => {
                             <ExpansionCard.Title id={labelId}>
                                 <SøknadTitle søknad={søknad} />
                             </ExpansionCard.Title>
+                            <ExpansionCard.Description>
+                                <BodyShort size="small">
+                                    Mottatt{' '}
+                                    <PrettyDate
+                                        date={getSøknadMottattDato(søknad)}
+                                        format="dayDateAndTime"
+                                        useNorwegianTime={true}
+                                    />
+                                </BodyShort>
+                            </ExpansionCard.Description>
                         </ExpansionCard.Header>
                         <ExpansionCard.Content>
                             <SøknadContent søknad={søknad} />
