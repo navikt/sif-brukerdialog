@@ -3,8 +3,6 @@ import { createChildLogger } from '@navikt/next-logger';
 import { RequestContext } from '../types/RequestContext';
 import { browserEnv, getServerEnv, isLocal } from '../utils/env';
 
-const serverEnv = getServerEnv();
-
 export async function fetchApi<ResponseObject>(
     method: { type: 'GET' } | { type: 'POST'; body: string | undefined },
     path: string,
@@ -12,12 +10,13 @@ export async function fetchApi<ResponseObject>(
     context: RequestContext,
     service: 'k9-brukerdialog-api' | 'sif-innsyn-api',
 ): Promise<ResponseObject> {
+    const serverEnv = getServerEnv();
     const childLogger = createChildLogger(context.requestId);
 
     const audience =
         service === 'k9-brukerdialog-api'
-            ? serverEnv.NEXT_PUBLIC_INNSYN_BACKEND_SCOPE!
-            : serverEnv.NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE!;
+            ? serverEnv.NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE!
+            : serverEnv.NEXT_PUBLIC_INNSYN_BACKEND_SCOPE!;
 
     let tokenX;
 

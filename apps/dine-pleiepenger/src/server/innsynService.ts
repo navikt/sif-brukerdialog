@@ -1,10 +1,10 @@
 import { createChildLogger } from '@navikt/next-logger';
 import { RequestContext } from '../types/RequestContext';
 import { Søker } from '../types/Søker';
-import { fetchApi } from './fetchApi';
-import { ApiEndpointBrukerdialog, ApiEndpointInnsyn } from './endpoints';
 import { Søknad } from '../types/Søknad';
 import { SøkerSchema } from './api-models/SøkerSchema';
+import { ApiEndpointBrukerdialog, ApiEndpointInnsyn } from './endpoints';
+import { fetchApi } from './fetchApi';
 
 export async function getSøker(context: RequestContext): Promise<Søker> {
     const childLogger = createChildLogger(context.requestId);

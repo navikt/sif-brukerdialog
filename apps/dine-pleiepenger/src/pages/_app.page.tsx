@@ -40,6 +40,7 @@ function MyApp({ Component, pageProps }: AppProps<ServerSidePropsResult>): React
 }
 
 // export const getServerSideProps = async (context) => {
+//     console.log('getServerSideProps');
 //     const søker = await getSøker(context);
 //     return { props: { søker } };
 // };
