@@ -19,12 +19,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             res.status(401).json({ error: 'Access denied - context is undefined' });
             return;
         }
-        childLogger.debug(context);
         const response = await getSøker(context);
         res.send(response);
     } catch (err) {
         childLogger.error(`Fetching søker failed: ${err}`);
-        childLogger.debug(err);
         if (isForbidden(err)) {
             res.status(403).json({ error: 'Bruker har ikke tilgang' });
         }

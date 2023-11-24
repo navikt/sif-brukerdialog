@@ -22,10 +22,11 @@ export async function fetchApi<ResponseObject>(
     let tokenX;
 
     if (!isLocal) {
+        childLogger.info(`Exchanging token for ${serverUrl}`);
         tokenX = await grantTokenXOboToken(context.accessToken, serverUrl);
         if (isInvalidTokenSet(tokenX)) {
             throw new Error(
-                `Unable to exchange token for sykmeldinger-backend token, requestId: ${context.requestId}, reason: ${tokenX.message}`,
+                `Unable to exchange token for dine-pleiepenger-backend token, requestId: ${context.requestId}, reason: ${tokenX.message}`,
             );
         }
     }
