@@ -23,6 +23,15 @@ const getArbeidsgivermeldingApiUrlBySoknadIdOgOrgnummer = (soknadID: string, org
     return `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/soknad/${soknadID}/arbeidsgivermelding?organisasjonsnummer=${organisasjonsnummer}`;
 };
 
+const getDokumentFrontendUrl = (url: string): string => {
+    // Split the URL into an array of segments using ‘/’ as the separator
+    const segments = url.split('/');
+    // Extract the desired paths from the array and join them together using ‘/’
+    const paths = segments.slice(4, 7).join('/');
+
+    return `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/dokument/${paths}`;
+};
+
 const SøknadContent: React.FunctionComponent<Props> = ({ søknad }) => {
     const intl = useIntl();
 
@@ -56,15 +65,6 @@ const SøknadContent: React.FunctionComponent<Props> = ({ søknad }) => {
                 </Link>
             </li>
         );
-    };
-
-    const getDokumentFrontendUrl = (url: string): string => {
-        // Split the URL into an array of segments using ‘/’ as the separator
-        const segments = url.split('/');
-        // Extract the desired paths from the array and join them together using ‘/’
-        const paths = segments.slice(3, 7).join('/');
-
-        return `${browserEnv.NEXT_PUBLIC_API_URL_INNSYN}/${paths}`;
     };
 
     const mapDokumenter = (dokument: Dokument) => {
