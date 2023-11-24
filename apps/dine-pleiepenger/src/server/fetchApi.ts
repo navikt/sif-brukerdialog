@@ -14,6 +14,8 @@ export async function fetchApi<ResponseObject>(
 ): Promise<ResponseObject> {
     const childLogger = createChildLogger(context.requestId);
 
+    childLogger.info(`env check: NEXT_PUBLIC_BASE_PATH1: ${serverEnv.NEXT_PUBLIC_BASE_PATH}`);
+    childLogger.info(`env check: NEXT_PUBLIC_BASE_PATH2: ${getServerEnv().NEXT_PUBLIC_BASE_PATH}`);
     const audience =
         service === 'k9-brukerdialog-api' ? serverEnv.INNSYN_BACKEND_SCOPE! : serverEnv.BRUKERDIALOG_BACKEND_SCOPE!;
 
