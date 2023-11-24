@@ -6,10 +6,14 @@ import SvarFrist from '../components/svarfrist/SvarFrist';
 
 import { withAuthenticatedPage } from '../auth/withAuthentication';
 import { ReactElement } from 'react';
+import Head from 'next/head';
 
 function DinePleiepengerPage(): ReactElement {
     return (
         <DefaultPage>
+            <Head>
+                <title>Dine pleiepenger</title>
+            </Head>
             <div style={{ display: 'flex', gap: '1rem' }}>
                 <div className="flex-grow a-left">
                     <DineSøknader />

@@ -46,28 +46,32 @@ const startServer = () => {
     });
 
     server.get('/soknad/:soknadId/dokument', (req, res) => {
-        res.download('./server/mockdata/eksempel-søknad.pdf', 'søknad.pdf');
+        res.download('./api-mock-server/mockdata/eksempel-søknad.pdf', 'søknad.pdf');
     });
 
     server.get('/dokument/:journalpostId/:dokumentInfoId/:variantFormat', (req, res) => {
         switch (req.params.dokumentInfoId) {
             case '533438765':
                 res.download(
-                    './server/mockdata/Ettersending av vedlegg - Pleiepenger sykt barn.pdf',
+                    './api-mock-server/mockdata/Ettersending av vedlegg - Pleiepenger sykt barn.pdf',
                     'Ettersending av vedlegg - Pleiepenger sykt barn.pdf',
                 );
                 break;
             case '533438766':
-                res.download('./server/mockdata/BekreftelseTilKLONELABBEN.pdf', 'BekreftelseTilKLONELABBEN.pdf');
+                res.download(
+                    './api-mock-server/mockdata/BekreftelseTilKLONELABBEN.pdf',
+                    'BekreftelseTilKLONELABBEN.pdf',
+                );
                 break;
             default:
-                res.download('./server/mockdata/Søknad om pleiepenger.pdf', 'Søknad om pleiepenger.pdf');
+                res.download('./api-mock-server/mockdata/Søknad om pleiepenger.pdf', 'Søknad om pleiepenger.pdf');
                 break;
         }
     });
 
     server.get('/soknad/:soknadId/arbeidsgivermelding', (req, res) => {
-        res.download('./server/mockdata/BekreftelseTilKLONELABBEN.pdf', 'BekreftelseTilKLONELABBEN.pdf');
+        console.log('Returning arbeidsgivermelding');
+        res.download('./api-mock-server/mockdata/BekreftelseTilKLONELABBEN.pdf', 'BekreftelseTilKLONELABBEN.pdf');
     });
 
     server.get('/mellomlagring/PLEIEPENGER_SYKT_BARN', (req, res) => {

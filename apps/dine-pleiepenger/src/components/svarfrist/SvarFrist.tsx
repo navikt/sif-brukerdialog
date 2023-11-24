@@ -14,7 +14,9 @@ const SvarFrist: React.FunctionComponent<Props> = ({}) => {
                     <span className="font-bold">TODO</span>
                 </p>
                 <div>
-                    <Link href="https://www.nav.no/saksbehandlingstider">Se saksbehandlingstider</Link>
+                    <Link href="https://www.nav.no/saksbehandlingstider" className="text-deepblue-800">
+                        Se saksbehandlingstider
+                    </Link>
                 </div>
             </BodyLong>
         </>

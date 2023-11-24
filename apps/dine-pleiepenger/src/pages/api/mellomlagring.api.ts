@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
-import { api } from '../../api';
-import { ApiEndpointBrukerdialog } from '../../api/endpoints';
-import { Mellomlagring } from '../../types/Mellomlagring';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
+import { api } from '../../server';
+import { ApiEndpointBrukerdialog } from '../../server/endpoints';
+import { Mellomlagring } from '../../types/Mellomlagring';
 
 async function handler(_req: NextApiRequest, res: NextApiResponse) {
     try {
