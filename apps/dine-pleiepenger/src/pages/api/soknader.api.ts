@@ -6,6 +6,7 @@ import { getSøknader } from '../../server/innsynService';
 import { Søknad } from '../../types/Søknad';
 import { isForbidden } from '../../utils/apiUtils';
 import { isLocal } from '../../utils/env';
+import { sortSøknadEtterOpprettetDato } from '../../utils/søknadUtils';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const childLogger = createChildLogger(req.headers['x-request-id'] as string);
@@ -16,15 +17,15 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             : createDemoRequestContext(req);
 
         if (!context || context === null) {
-            res.status(401).json({ error: 'Access denied - context is undefined' });
+            res.status(401);
             return;
         }
-        const response = await getSøknader(context);
+        const response = (await getSøknader(context)).sort(sortSøknadEtterOpprettetDato);
         res.send(response);
     } catch (err) {
         childLogger.error(`Fetching søknader failed: ${err}`);
         if (isForbidden(err)) {
-            res.status(403).json({ error: 'Bruker har ikke tilgang' });
+            res.status(403);
         }
         res.status(500).json({ error: 'Kunne ikke hente søknader', err });
     }

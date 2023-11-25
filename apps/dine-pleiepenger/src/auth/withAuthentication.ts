@@ -1,13 +1,11 @@
-import { IncomingHttpHeaders } from 'http';
-
-import { GetServerSidePropsContext, NextApiRequest, NextApiResponse, GetServerSidePropsResult } from 'next';
-import { logger } from '@navikt/next-logger';
 import { validateIdportenToken } from '@navikt/next-auth-wonderwall';
-
+import { logger } from '@navikt/next-logger';
+import { IncomingHttpHeaders } from 'http';
+import { GetServerSidePropsContext, GetServerSidePropsResult, NextApiRequest, NextApiResponse } from 'next';
 import { RequestContext } from '../types/RequestContext';
 import { browserEnv, isLocal } from '../utils/env';
-import { Søker } from '../types/Søker';
 import { getSessionId } from '../utils/userSessionId';
+import { Søker } from '../server/api-models/SøkerSchema';
 
 export interface ServerSidePropsResult {
     søker: Søker | null;
@@ -35,7 +33,7 @@ export interface TokenPayload {
     };
 }
 
-export const defaultPageHandler: PageHandler = async () => {
+export const defaultPageHandler: PageHandler = async (): Promise<{ props: ServerSidePropsResult }> => {
     return {
         props: {
             søker: null,
@@ -74,7 +72,7 @@ export function withAuthenticatedPage(handler: PageHandler = defaultPageHandler)
         if (validationResult !== 'valid') {
             const error = new Error(
                 `Invalid JWT token found (cause: ${validationResult.errorType} ${validationResult.message}, redirecting to login.`,
-                // { cause: validationResult.error },
+                { cause: validationResult.error },
             );
             if (validationResult.errorType === 'NOT_ACR_LEVEL4') {
                 logger.warn(error);
@@ -105,7 +103,6 @@ export function withAuthenticatedApi(handler: ApiHandler): ApiHandler {
             if (validatedToken && validatedToken !== 'valid') {
                 logger.error(`Invalid JWT token found (cause: ${validatedToken.message} for API ${req.url}`);
             }
-
             res.status(401).json({ message: 'Access denied' });
             return;
         }

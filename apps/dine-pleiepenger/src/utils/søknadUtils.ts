@@ -9,3 +9,8 @@ export const getSøknadMottattDato = (søknad: Søknad): Date | string => {
             return søknad.opprettet;
     }
 };
+
+export const sortSøknadEtterOpprettetDato = (a: Søknad, b: Søknad, desc: boolean = true): number => {
+    const direction = desc ? 1 : -1;
+    return new Date(a.opprettet) < new Date(b.opprettet) ? direction : direction * -1;
+};

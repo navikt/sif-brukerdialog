@@ -1,11 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { createChildLogger } from '@navikt/next-logger';
 import axios from 'axios';
 import { createDemoRequestContext, createRequestContext, withAuthenticatedApi } from '../../auth/withAuthentication';
-import { Søker } from '../../types/Søker';
-import { isForbidden } from '../../utils/apiUtils';
+import { Søker } from '../../server/api-models/SøkerSchema';
 import { getSøker } from '../../server/innsynService';
+import { isForbidden } from '../../utils/apiUtils';
 import { isLocal } from '../../utils/env';
-import { createChildLogger } from '@navikt/next-logger';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const childLogger = createChildLogger(req.headers['x-request-id'] as string);
@@ -16,15 +16,14 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             : createDemoRequestContext(req);
 
         if (!context || context === null) {
-            res.status(401).json({ error: 'Access denied - context is undefined' });
+            res.status(401);
             return;
         }
-        const response = await getSøker(context);
-        res.send(response);
+        res.send(await getSøker(context));
     } catch (err) {
         childLogger.error(`Fetching søker failed: ${err}`);
         if (isForbidden(err)) {
-            res.status(403).json({ error: 'Bruker har ikke tilgang' });
+            res.status(403);
         }
         res.status(500).json({ error: 'Kunne ikke hente bruker', err });
     }

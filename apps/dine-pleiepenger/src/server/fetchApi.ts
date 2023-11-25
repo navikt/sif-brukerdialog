@@ -64,6 +64,10 @@ export async function fetchApi<ResponseObject>(
         throw new Error(`User has been logged out, requestId: ${context.requestId}`);
     }
 
+    if (response.status === 403) {
+        throw new Error(`User has no access, requestId: ${context.requestId}`);
+    }
+
     throw new Error(
         `API (${path}) responded with status ${response.status} ${response.statusText}, requestId: ${context.requestId}`,
     );

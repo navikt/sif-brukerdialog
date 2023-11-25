@@ -45,6 +45,10 @@ const startServer = () => {
         res.send(søknader);
     });
 
+    server.get('/soknad-ikke-tilgang', (req, res) => {
+        res.sendStatus(403);
+    });
+
     server.get('/soknad/:soknadId/dokument', (req, res) => {
         res.download('./api-mock-server/mockdata/eksempel-søknad.pdf', 'søknad.pdf');
     });

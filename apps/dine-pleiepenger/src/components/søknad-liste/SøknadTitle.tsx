@@ -3,6 +3,8 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Task } from '@navikt/ds-icons';
 import { Søknad } from '../../types/Søknad';
+import PrettyDate from '../pretty-date/PrettyDate';
+import { getSøknadMottattDato } from '../../utils/søknadUtils';
 
 interface Props {
     søknad: Søknad;
@@ -10,12 +12,24 @@ interface Props {
 
 const SøknadTitle: React.FunctionComponent<Props> = ({ søknad }) => {
     return (
-        <BodyShort as="div" size="large" className="font-bold mb-2">
-            <HStack gap="2" align={'center'}>
-                <Task role="presentation" aria-hidden={true} width="1.25rem" height="1.25rem" />
-                <FormattedMessage id={`sakstype.${søknad.søknadstype}`} />
+        <div>
+            <HStack gap="2" align={'start'} wrap={false}>
+                <Task role="presentation" aria-hidden={true} width="1.5rem" height="1.5rem" />
+                <div>
+                    <BodyShort as="div" size="large" className="font-bold mb-2">
+                        <FormattedMessage id={`sakstype.${søknad.søknadstype}`} />
+                    </BodyShort>
+                    <BodyShort size="small">
+                        Mottatt{' '}
+                        <PrettyDate
+                            date={getSøknadMottattDato(søknad)}
+                            format="dayDateAndTime"
+                            useNorwegianTime={true}
+                        />
+                    </BodyShort>
+                </div>
             </HStack>
-        </BodyShort>
+        </div>
     );
 };
 
