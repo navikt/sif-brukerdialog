@@ -68,7 +68,7 @@ export function getServerEnv(): ServerEnv & PublicEnv {
                         .map((it) => it.path.join('.'))
                         .join(', ') || 'None are missing, but zod is not happy. Look at cause'
                 }`,
-                // { cause: e },
+                { cause: e },
             );
         } else {
             throw e;
