@@ -2,8 +2,19 @@ import { createChildLogger } from '@navikt/next-logger';
 import { RequestContext } from '../types/RequestContext';
 import { Søknad } from '../types/Søknad';
 import { Søker, SøkerSchema } from './api-models/SøkerSchema';
-import { ApiEndpointBrukerdialog, ApiEndpointInnsyn } from './endpoints';
 import { fetchApi } from './fetchApi';
+
+export enum SifApiService {
+    k9Brukerdialog = 'k9-brukerdialog-api',
+    sifInnsyn = 'sif-innsyn-api',
+}
+
+enum ApiEndpointBrukerdialog {
+    'søker' = 'oppslag/soker',
+}
+enum ApiEndpointInnsyn {
+    'søknad' = 'soknad',
+}
 
 export async function getSøker(context: RequestContext): Promise<Søker> {
     const childLogger = createChildLogger(context.requestId);
@@ -15,7 +26,7 @@ export async function getSøker(context: RequestContext): Promise<Søker> {
         ApiEndpointBrukerdialog.søker,
         (it) => SøkerSchema.parse(it),
         context,
-        'k9-brukerdialog-api',
+        SifApiService.k9Brukerdialog,
     );
 }
 
@@ -24,5 +35,11 @@ export async function getSøknader(context: RequestContext): Promise<Søknad[]> 
 
     childLogger.info(`Fetching søknader from backend, requestId: ${context.requestId}`);
 
-    return fetchApi({ type: 'GET' }, ApiEndpointInnsyn.søknad, (it) => it as Søknad[], context, 'sif-innsyn-api');
+    return fetchApi(
+        { type: 'GET' },
+        ApiEndpointInnsyn.søknad,
+        (it) => it as Søknad[],
+        context,
+        SifApiService.sifInnsyn,
+    );
 }

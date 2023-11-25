@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { ReactElement } from 'react';
 import { IntlProvider } from 'react-intl';
 import { AxiosError } from 'axios';
@@ -10,15 +9,14 @@ import ErrorBoundary from '../components/error-boundary/ErrorBoundary';
 import HentBrukerFeilet from '../components/hent-bruker-feilet/HentBrukerFeilet';
 import EmptyPage from '../components/layout/empty-page/EmptyPage';
 import { Søker } from '../server/api-models/SøkerSchema';
-import { getSøker } from '../server/innsynService';
 import { messages } from '../utils/message';
-import { søkerFecther } from './api/soker.api';
+import { søkerFetcher } from './api/soker.api';
 import 'react-loading-skeleton/dist/skeleton.css';
 import '../components/process/process.css';
 import '../style/global.css';
 
 function MyApp({ Component, pageProps }: AppProps<ServerSidePropsResult>): ReactElement {
-    const { error, isLoading } = useSWR<Søker, AxiosError>('/dine-pleiepenger/api/soker', søkerFecther);
+    const { error, isLoading } = useSWR<Søker, AxiosError>('/dine-pleiepenger/api/soker', søkerFetcher);
 
     if (isLoading) {
         return (
@@ -40,11 +38,5 @@ function MyApp({ Component, pageProps }: AppProps<ServerSidePropsResult>): React
         </ErrorBoundary>
     );
 }
-
-export const getServerSideProps = async (context) => {
-    console.log('getServerSideProps');
-    const søker = await getSøker(context);
-    return { props: { søker } };
-};
 
 export default MyApp;

@@ -1,11 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import {
-    createDemoRequestContext,
-    createRequestContext,
-    withAuthenticatedApi,
-} from '../../../../auth/withAuthentication';
-import { isLocal } from '../../../../utils/env';
+import { withAuthenticatedApi } from '../../../../auth/withAuthentication';
 import { fetchDocumentStream } from '../../../../server/fetchDocumentStream';
+import { getContextForApiHandler } from '../../../../utils/apiUtils';
 
 export async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
     const { query } = req;
@@ -20,25 +16,11 @@ export async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
     }
 
     try {
-        const context = !isLocal
-            ? createRequestContext(req.headers['x-request-id'] as string | undefined, req.headers['authorization'])
-            : createDemoRequestContext(req);
-
-        if (!context || context === null) {
-            res.status(401).json({ error: 'Access denied - context is undefined' });
-            return;
-        }
-
         const data = await fetchDocumentStream(
             `soknad/${søknadId}/arbeidsgivermelding?organisasjonsnummer=${organisasjonsnummer}`,
-            context,
+            getContextForApiHandler(req),
             'sif-innsyn-api',
         );
-        // const date = dateFormatter.compact(new Date());
-        // res.setHeader(
-        //     'content-disposition',
-        //     `attachment; filename="Informasjonsbrev til arbeidsgiver ${organisasjonsnummer} (${date}).pdf"`,
-        // );
         data.pipe(res);
     } catch (err) {
         res.status(500).json({ error: 'Kunne ikke hente arbeidsgivermelding', err });

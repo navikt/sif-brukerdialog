@@ -1,28 +1,19 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { createChildLogger } from '@navikt/next-logger';
-import axios from 'axios';
-import { createDemoRequestContext, createRequestContext, withAuthenticatedApi } from '../../auth/withAuthentication';
+import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { getSøknader } from '../../server/innsynService';
 import { Søknad } from '../../types/Søknad';
-import { isForbidden } from '../../utils/apiUtils';
-import { isLocal } from '../../utils/env';
+import { getContextForApiHandler, getXRequestId, isForbidden } from '../../utils/apiUtils';
 import { sortSøknadEtterOpprettetDato } from '../../utils/søknadUtils';
 
+export const søknaderFecther = async (url: string): Promise<Søknad[]> => fetch(url).then((res) => res.json());
+
 async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const childLogger = createChildLogger(req.headers['x-request-id'] as string);
-
     try {
-        const context = !isLocal
-            ? createRequestContext(req.headers['x-request-id'] as string | undefined, req.headers['authorization'])
-            : createDemoRequestContext(req);
-
-        if (!context || context === null) {
-            res.status(401);
-            return;
-        }
-        const response = (await getSøknader(context)).sort(sortSøknadEtterOpprettetDato);
-        res.send(response);
+        const response = await getSøknader(getContextForApiHandler(req));
+        res.send(response.sort(sortSøknadEtterOpprettetDato));
     } catch (err) {
+        const childLogger = createChildLogger(getXRequestId(req));
         childLogger.error(`Fetching søknader failed: ${err}`);
         if (isForbidden(err)) {
             res.status(403);
@@ -32,5 +23,3 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 }
 
 export default withAuthenticatedApi(handler);
-
-export const søknaderFecther = async (url: string) => axios.get<Søknad[]>(url).then((res) => res.data);

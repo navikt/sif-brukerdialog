@@ -1,12 +1,7 @@
 import { AxiosError, HttpStatusCode } from 'axios';
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL_BRUKERDIALOG;
-const API_URL_INNSYN = process.env.NEXT_PUBLIC_API_URL_INNSYN;
-
-export const endpoints = {
-    søknader: `${API_URL_INNSYN}/soknad`,
-    soker: `${API_URL}/oppslag/soker`,
-};
+import { NextApiRequest } from 'next';
+import { createDemoRequestContext, createRequestContext } from '../auth/withAuthentication';
+import { isLocal } from './env';
 
 export const isForbidden = (error: AxiosError): boolean => {
     return (
@@ -16,5 +11,18 @@ export const isForbidden = (error: AxiosError): boolean => {
     );
 };
 
-export const isUnauthorized = (error: AxiosError): boolean =>
-    error !== undefined && error.response !== undefined && error.response.status === HttpStatusCode.Unauthorized;
+export const getXRequestId = (req: NextApiRequest): string => {
+    return (req.headers['x-request-id'] as string) || 'undefined-x-request-id';
+};
+
+export const getContextForApiHandler = (req: NextApiRequest) => {
+    const context = !isLocal
+        ? createRequestContext(getXRequestId(req), req.headers['authorization'])
+        : createDemoRequestContext(req);
+
+    if (!context || context === null) {
+        throw new Error('Access denied - context is undefined', { cause: 'context is undefined' });
+    }
+
+    return context;
+};
