@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { createChildLogger } from '@navikt/next-logger';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
-import { Søker } from '../../server/api-models/SøkerSchema';
+import { Søker } from '../../server/api-models/Søker';
 import { getSøker } from '../../server/innsynService';
 import { getContextForApiHandler, getXRequestId, isForbidden } from '../../utils/apiUtils';
 

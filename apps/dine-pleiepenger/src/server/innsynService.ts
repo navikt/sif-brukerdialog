@@ -1,7 +1,7 @@
 import { createChildLogger } from '@navikt/next-logger';
 import { RequestContext } from '../types/RequestContext';
 import { Søknad } from '../types/Søknad';
-import { Søker, SøkerSchema } from './api-models/SøkerSchema';
+import { Søker, SøkerSchema } from './api-models/Søker';
 import { fetchApi } from './fetchApi';
 
 export enum SifApiService {

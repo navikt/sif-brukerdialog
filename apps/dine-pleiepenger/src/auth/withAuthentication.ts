@@ -5,7 +5,7 @@ import { GetServerSidePropsContext, GetServerSidePropsResult, NextApiRequest, Ne
 import { RequestContext } from '../types/RequestContext';
 import { browserEnv, isLocal } from '../utils/env';
 import { getSessionId } from '../utils/userSessionId';
-import { Søker } from '../server/api-models/SøkerSchema';
+import { Søker } from '../server/api-models/Søker';
 
 export interface ServerSidePropsResult {
     søker: Søker | null;
