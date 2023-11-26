@@ -14,7 +14,7 @@ COPY . .
 RUN yarn
 RUN yarn turbo run build-app --filter=${SCOPE}
 
-FROM pruner AS server
+FROM gcr.io/distroless/nodejs18-debian11:nonroot
 WORKDIR /apps/omsorgsdager-aleneomsorg-dialog
 COPY --from=pruner /app/node_modules ./node_modules/
 COPY --from=pruner /app/apps/omsorgsdager-aleneomsorg-dialog/server.cjs .
@@ -25,4 +25,4 @@ COPY --from=pruner /app/apps/omsorgsdager-aleneomsorg-dialog/src/build/AppSettin
 COPY --from=pruner /app/apps/omsorgsdager-aleneomsorg-dialog/dist ./dist
 
 EXPOSE 8080
-CMD ["yarn","--cwd", "apps/omsorgsdager-aleneomsorg-dialog", "start-express"]
+CMD ["server.cjs"]
