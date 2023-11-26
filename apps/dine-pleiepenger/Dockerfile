@@ -20,8 +20,10 @@ RUN adduser --system --uid 1069 nextjs
 USER nextjs
 
 FROM gcr.io/distroless/nodejs18-debian11:nonroot
+WORKDIR /apps/dine-pleiepenger
 COPY --from=pruner /app/apps/dine-pleiepenger/next.config.js .
 COPY --from=pruner /app/apps/dine-pleiepenger/package.json .
+
 COPY --from=pruner --chown=nextjs:nodejs /app/apps/dine-pleiepenger/.next/standalone ./
 COPY --from=pruner --chown=nextjs:nodejs /app/apps/dine-pleiepenger/.next/static ./.next/static
 COPY --from=pruner --chown=nextjs:nodejs /app/apps/dine-pleiepenger/public ./public
@@ -30,5 +32,4 @@ EXPOSE 8080
 
 ENV PORT 8080g
 
-CMD ["apps/dine-pleiepenger/server.js"]
-
+CMD ["server.js"]

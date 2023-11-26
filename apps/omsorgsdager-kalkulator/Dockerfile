@@ -20,6 +20,7 @@ RUN adduser --system --uid 1069 nextjs
 USER nextjs
 
 FROM gcr.io/distroless/nodejs18-debian11:nonroot
+WORKDIR /apps/omsorgsdager-kalkulator
 COPY --from=pruner /app/apps/omsorgsdager-kalkulator/next.config.js .
 COPY --from=pruner /app/apps/omsorgsdager-kalkulator/package.json .
 
@@ -27,10 +28,8 @@ COPY --from=pruner --chown=nextjs:nodejs /app/apps/omsorgsdager-kalkulator/.next
 COPY --from=pruner --chown=nextjs:nodejs /app/apps/omsorgsdager-kalkulator/.next/static ./.next/static
 COPY --from=pruner --chown=nextjs:nodejs /app/apps/omsorgsdager-kalkulator/public ./public
 
-
 EXPOSE 8080
 
 ENV PORT 8080g
 
-CMD ["apps/omsorgsdager-kalkulator/server.js"]
-
+CMD ["server.js"]
