@@ -1,11 +1,11 @@
-import { getContextForApiHandler } from '../utils/apiUtils';
-import { exchangeTokenAndPrepRequest } from './utils/exchangeTokenPrepRequest';
-import { Søknad } from '../types/Søknad';
 import axios from 'axios';
 import { NextApiRequest } from 'next';
-import { Søker } from './api-models/Søker';
 import { Mellomlagringer } from '../types/Mellomlagring';
+import { Søknad } from '../types/Søknad';
+import { getContextForApiHandler } from '../utils/apiUtils';
 import { MellomlagringModel } from './api-models/Mellomlagring';
+import { Søker } from './api-models/Søker';
+import { exchangeTokenAndPrepRequest } from './utils/exchangeTokenPrepRequest';
 import { isValidMellomlagring } from './utils/isValidMellomlagring';
 
 export enum ApiService {
