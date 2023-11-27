@@ -31,10 +31,8 @@ export enum SifApiErrorType {
 export const fetchSøknader = async (req: NextApiRequest): Promise<Søknad[]> => {
     const context = getContextForApiHandler(req);
     const { url, headers } = await exchangeTokenAndPrepRequest(ApiService.sifInnsyn, context, ApiEndpointInnsyn.søknad);
-    const childLogger = createChildLogger(getXRequestId(req));
-    childLogger.info(`Fetching søknader from url: ${url}`);
+    createChildLogger(getXRequestId(req)).info(`Fetching søknader from url: ${url}`);
     const response = await axios.get(url, { headers });
-    childLogger.info(`Fetching søknader from url: ${url}`);
     const parse = (it) => it as Søknad[];
     return await parse(response.data);
 };
@@ -46,6 +44,7 @@ export const fetchSøker = async (req: NextApiRequest): Promise<Søker> => {
         context,
         ApiEndpointBrukerdialog.søker,
     );
+    createChildLogger(getXRequestId(req)).info(`Fetching søker from url: ${url}`);
     const response = await axios.get(url, { headers });
     const parse = (it) => it as Søker;
     return await parse(response.data);
