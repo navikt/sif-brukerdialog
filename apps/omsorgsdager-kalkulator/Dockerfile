@@ -8,4 +8,4 @@ COPY /apps/omsorgsdager-kalkulator/public ./public
 EXPOSE 8080
 ENV NODE_ENV=production
 
-CMD ["server.js"]
+CMD ["./apps/omsorgsdager-kalkulator/server.js"]
