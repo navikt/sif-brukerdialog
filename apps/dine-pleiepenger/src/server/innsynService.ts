@@ -2,11 +2,12 @@ import axios from 'axios';
 import { NextApiRequest } from 'next';
 import { Mellomlagringer } from '../types/Mellomlagring';
 import { Søknad } from '../types/Søknad';
-import { getContextForApiHandler } from '../utils/apiUtils';
+import { getContextForApiHandler, getXRequestId } from '../utils/apiUtils';
 import { MellomlagringModel } from './api-models/Mellomlagring';
 import { Søker } from './api-models/Søker';
 import { exchangeTokenAndPrepRequest } from './utils/exchangeTokenPrepRequest';
 import { isValidMellomlagring } from './utils/isValidMellomlagring';
+import { createChildLogger } from '@navikt/next-logger';
 
 export enum ApiService {
     k9Brukerdialog = 'k9-brukerdialog-api',
@@ -27,16 +28,18 @@ export enum SifApiErrorType {
     NO_ACCESS = 'NO_ACCESS',
 }
 
-export const fetchSøknader = async (request: NextApiRequest): Promise<Søknad[]> => {
-    const context = getContextForApiHandler(request);
+export const fetchSøknader = async (req: NextApiRequest): Promise<Søknad[]> => {
+    const context = getContextForApiHandler(req);
     const { url, headers } = await exchangeTokenAndPrepRequest(ApiService.sifInnsyn, context, ApiEndpointInnsyn.søknad);
+    const childLogger = createChildLogger(getXRequestId(req));
+    childLogger.info('Fetching søknader from url:', url);
     const response = await axios.get(url, { headers });
     const parse = (it) => it as Søknad[];
     return await parse(response.data);
 };
 
-export const fetchSøker = async (request: NextApiRequest): Promise<Søker> => {
-    const context = getContextForApiHandler(request);
+export const fetchSøker = async (req: NextApiRequest): Promise<Søker> => {
+    const context = getContextForApiHandler(req);
     const { url, headers } = await exchangeTokenAndPrepRequest(
         ApiService.k9Brukerdialog,
         context,
@@ -49,11 +52,11 @@ export const fetchSøker = async (request: NextApiRequest): Promise<Søker> => {
 
 /**
  * Henter ut mellomlagringer fra søknadsdialog og endringsdialog
- * @param request
+ * @param req
  * @returns
  */
-export const fetchMellomlagringer = async (request: NextApiRequest): Promise<Mellomlagringer> => {
-    const context = getContextForApiHandler(request);
+export const fetchMellomlagringer = async (req: NextApiRequest): Promise<Mellomlagringer> => {
+    const context = getContextForApiHandler(req);
 
     /** Påbegynt søknad */
     const påbegyntSøknadReq = await exchangeTokenAndPrepRequest(
