@@ -50,7 +50,6 @@
     gap: var(--a-spacing-2);
     justify-content: flex-start;
     text-decoration: none;
-    cursor: pointer;
     padding: var(--process-border-width);
     margin: calc(var(--process-border-width) * -1) calc(var(--process-border-width) * -1) 1.75rem;
 }
