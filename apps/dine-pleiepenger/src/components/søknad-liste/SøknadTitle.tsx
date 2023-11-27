@@ -14,21 +14,17 @@ const SøknadTitle: React.FunctionComponent<Props> = ({ søknad }) => {
     return (
         <div>
             <HStack gap="2" align={'start'} wrap={false}>
-                <Task role="presentation" aria-hidden={true} width="1.5rem" height="1.5rem" />
+                <Task role="presentation" aria-hidden={true} width="1.25rem" height="1.25rem" />
                 <div>
                     <BodyShort as="div" size="large" className="font-bold mb-2">
                         <FormattedMessage id={`sakstype.${søknad.søknadstype}`} />
                     </BodyShort>
-                    <BodyShort size="small">
-                        Mottatt{' '}
-                        <PrettyDate
-                            date={getSøknadMottattDato(søknad)}
-                            format="dayDateAndTime"
-                            useNorwegianTime={true}
-                        />
-                    </BodyShort>
                 </div>
             </HStack>
+            <BodyShort size="small">
+                Mottatt{' '}
+                <PrettyDate date={getSøknadMottattDato(søknad)} format="dayDateAndTime" useNorwegianTime={true} />
+            </BodyShort>
         </div>
     );
 };

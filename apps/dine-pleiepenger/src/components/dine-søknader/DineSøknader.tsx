@@ -1,4 +1,4 @@
-import { Alert, Heading } from '@navikt/ds-react';
+import { Alert, Box, Heading } from '@navikt/ds-react';
 import useSWR from 'swr';
 
 import SøknadListe, { SøknadListeSkeleton } from '../søknad-liste/SøknadListe';
@@ -13,7 +13,7 @@ const DineSøknader = () => {
     }
 
     return (
-        <>
+        <Box>
             <Heading level="2" size="medium" className="text-deepblue-800" spacing={true}>
                 Dine søknader
             </Heading>
@@ -26,7 +26,7 @@ const DineSøknader = () => {
             ) : (
                 <SøknadListe søknader={(Array.isArray(data) ? data : []).slice(0, 5)} />
             )}
-        </>
+        </Box>
     );
 };
 

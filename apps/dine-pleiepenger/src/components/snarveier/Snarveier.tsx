@@ -3,7 +3,7 @@ import React from 'react';
 import { browserEnv } from '../../utils/env';
 import { Dialog, File, Task } from '@navikt/ds-icons';
 import { PencilWritingIcon } from '@navikt/aksel-icons';
-import SnarveiLinkPanel from './SnarveiLinkPanel';
+import SnarveiLinkPanel from '../snarvei-link-panel/SnarveiLinkPanel';
 
 interface Props {}
 
@@ -13,12 +13,12 @@ const Snarveier: React.FunctionComponent<Props> = ({}) => {
             <Heading level="2" size="medium">
                 Trenger du å oppdatere noe i saken din?
             </Heading>
-            <HGrid gap="5" columns={2}>
+            <HGrid gap="4" columns={{ sm: 1, md: 2 }}>
                 <SnarveiLinkPanel
                     href={browserEnv.NEXT_PUBLIC_ENDRINGSDIALOG_URL}
                     icon={<PencilWritingIcon role="presentation" aria-hidden={true} width="1.5rem" height="1.5rem" />}
                     title={'Meld fra om endringer'}
-                    description={'For endringer i arbeidstid og ferie i din søknad/pleiepengeperiode.'}
+                    description={<>For endringer i arbeidstid og ferie i din søknad/&shy;pleiepengeperiode.</>}
                 />
                 <SnarveiLinkPanel
                     href={browserEnv.NEXT_PUBLIC_ETTERSENDING_PLEIEPENGER_URL}
@@ -27,7 +27,7 @@ const Snarveier: React.FunctionComponent<Props> = ({}) => {
                     description={'Ettersendt legeerklæring eller andre dokumenter til din sak.'}
                 />
             </HGrid>
-            <HGrid gap="5" columns={2}>
+            <HGrid gap="4" columns={{ sm: 1, md: 2 }}>
                 <SnarveiLinkPanel
                     href={browserEnv.NEXT_PUBLIC_SKRIV_TIL_OSS}
                     icon={<Dialog role="presentation" aria-hidden={true} width="1.5rem" height="1.5rem" />}

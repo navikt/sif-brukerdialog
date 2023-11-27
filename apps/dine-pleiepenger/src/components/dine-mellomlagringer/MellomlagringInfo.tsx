@@ -1,8 +1,11 @@
-import { BodyShort, HGrid, Heading, LinkPanel } from '@navikt/ds-react';
+import { HGrid } from '@navikt/ds-react';
 import dayjs from 'dayjs';
-import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { browserEnv } from '../../utils/env';
 import { MellomlagringEndring, MellomlagringPSB } from '../../types/Mellomlagring';
+import SnarveiLinkPanel from '../snarvei-link-panel/SnarveiLinkPanel';
+import intlHelper from '../../utils/intlUtils';
+import { Edit } from '@navikt/ds-icons';
 
 interface Props {
     søknad?: MellomlagringPSB;
@@ -14,11 +17,12 @@ const getDatoOgTidTilSlettSøknadString = (date: Date): string => {
 };
 
 const MellomlagringInfo = ({ endring, søknad }: Props) => {
+    const intl = useIntl();
+
     if (!endring && !søknad) {
         return null;
     }
 
-    // const intl = useIntl();
     const datoNårSøknadSlettes = søknad?.metadata?.updatedTimestamp
         ? getDatoOgTidTilSlettSøknadString(søknad?.metadata?.updatedTimestamp)
         : undefined;
@@ -27,46 +31,27 @@ const MellomlagringInfo = ({ endring, søknad }: Props) => {
         : undefined;
 
     return (
-        <HGrid gap="5" columns={2}>
+        <HGrid gap="4" columns={{ sm: 1, md: 2 }}>
             {datoNårSøknadSlettes && (
-                <LinkPanel href={browserEnv.NEXT_PUBLIC_PLEIEPENGER_URL} border={false}>
-                    <Heading level="3" size="small">
-                        <FormattedMessage id="påbegyntSøknad.info.title" />
-                    </Heading>
-                    <BodyShort>
-                        <FormattedMessage id="påbegyntSøknad.info" values={{ datoNårSlettes: datoNårSøknadSlettes }} />
-                    </BodyShort>
-                </LinkPanel>
+                <SnarveiLinkPanel
+                    icon={<Edit role="presentation" aria-hidden={true} width="1.25rem" height="1.25rem" />}
+                    href={browserEnv.NEXT_PUBLIC_PLEIEPENGER_URL}
+                    title={intlHelper(intl, 'påbegyntSøknad.info.title')}
+                    description={intlHelper(intl, 'påbegyntSøknad.info', {
+                        datoNårSlettes: datoNårSøknadSlettes,
+                    })}
+                />
             )}
             {datoNårEndringSlettes && (
-                <LinkPanel href={browserEnv.NEXT_PUBLIC_ENDRINGSDIALOG_URL} border={false}>
-                    <Heading level="3" size="small">
-                        <FormattedMessage id="påbegyntEndring.info.title" />
-                    </Heading>
-                    <BodyShort>
-                        <FormattedMessage
-                            id="påbegyntEndring.info"
-                            values={{ datoNårSlettes: datoNårEndringSlettes }}
-                        />
-                    </BodyShort>
-                </LinkPanel>
+                <SnarveiLinkPanel
+                    icon={<Edit role="presentation" aria-hidden={true} width="1.25rem" height="1.25rem" />}
+                    href={browserEnv.NEXT_PUBLIC_ENDRINGSDIALOG_URL}
+                    title={intlHelper(intl, 'påbegyntEndring.info.title')}
+                    description={intlHelper(intl, 'påbegyntEndring.info', {
+                        datoNårSlettes: datoNårSøknadSlettes,
+                    })}
+                />
             )}
-            {/* {datoNårEndringSlettes && (
-                <div className={bem.block}>
-                    <LenkepanelBase href={getLenker().endringsdialogPleiepenger} border={true}>
-                        <div className={bem.element('content')}>
-                            <div className={bem.element('title')}>
-                                {intlHelper(intl, 'page.dinOversikt.påbegyntEndringsmelding.info.title')}
-                            </div>
-
-                            {intlHelper(intl, `page.dinOversikt.påbegyntEndringsmelding.info`, {
-                                datoNårSlettes: datoNårEndringSlettes,
-                            })}
-                        </div>
-                    </LenkepanelBase>
-                </div>
-            )}
-            {!datoNårSøknadSlettes && !datoNårEndringSlettes && <Box>{ingenEndringTekst}</Box>} */}
         </HGrid>
     );
 };

@@ -1,10 +1,10 @@
-import { BodyLong, Heading, Link } from '@navikt/ds-react';
+import { BodyLong, Box, Heading, Link } from '@navikt/ds-react';
 
 interface Props {}
 
 const SvarFrist: React.FunctionComponent<Props> = ({}) => {
     return (
-        <>
+        <Box>
             <Heading size="medium" level="2" className="text-deepblue-800" spacing={true}>
                 Saksbehandlingstid
             </Heading>
@@ -19,7 +19,7 @@ const SvarFrist: React.FunctionComponent<Props> = ({}) => {
                     </Link>
                 </div>
             </BodyLong>
-        </>
+        </Box>
     );
 };
 
