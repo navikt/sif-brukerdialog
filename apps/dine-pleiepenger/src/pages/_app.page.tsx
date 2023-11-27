@@ -8,17 +8,22 @@ import ComponentLoader from '../components/component-loader/ComponentLoader';
 import ErrorBoundary from '../components/error-boundary/ErrorBoundary';
 import HentBrukerFeilet from '../components/hent-bruker-feilet/HentBrukerFeilet';
 import EmptyPage from '../components/layout/empty-page/EmptyPage';
-import { Søker } from '../server/api-models/Søker';
+import { Innsynsdata } from '../types/InnsynData';
 import { messages } from '../utils/message';
-import { søkerFetcher } from './api/soker.api';
+import { innsynsdataFetcher } from './api/innsynsdata.api';
 import 'react-loading-skeleton/dist/skeleton.css';
 import '../components/process/process.css';
 import '../style/global.css';
+import { InnsynsdataContextProvider } from '../context/InnsynsdataContextProvider';
 
 function MyApp({ Component, pageProps }: AppProps<ServerSidePropsResult>): ReactElement {
-    const { error, isLoading } = useSWR<Søker, AxiosError>('/dine-pleiepenger/api/soker', søkerFetcher, {
-        errorRetryCount: 0,
-    });
+    const { data, error, isLoading } = useSWR<Innsynsdata, AxiosError>(
+        '/dine-pleiepenger/api/innsynsdata',
+        innsynsdataFetcher,
+        {
+            errorRetryCount: 0,
+        },
+    );
 
     if (isLoading) {
         return (
@@ -27,15 +32,16 @@ function MyApp({ Component, pageProps }: AppProps<ServerSidePropsResult>): React
             </EmptyPage>
         );
     }
-    // if (error) {
-    //     return <HentBrukerFeilet error={error} />;
-    // }
     return (
         <ErrorBoundary>
             <main id="maincontent" role="main" tabIndex={-1}>
                 <IntlProvider locale="nb" messages={messages.nb}>
                     {error ? <HentBrukerFeilet error={error} /> : null}
-                    <Component {...pageProps} />
+                    {data ? (
+                        <InnsynsdataContextProvider innsynsdata={data}>
+                            <Component {...pageProps} />
+                        </InnsynsdataContextProvider>
+                    ) : null}
                 </IntlProvider>
             </main>
         </ErrorBoundary>

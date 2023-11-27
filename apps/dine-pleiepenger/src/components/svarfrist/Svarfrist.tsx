@@ -1,24 +1,19 @@
-import { BodyLong, Box, Heading, Link } from '@navikt/ds-react';
-import useSWR from 'swr';
-import { svarfristFetcher } from '../../pages/api/svarfrist.api';
-import ComponentLoader from '../component-loader/ComponentLoader';
+import { BodyLong, Box, Heading } from '@navikt/ds-react';
+import React from 'react';
 import { dateFormatter } from '@navikt/sif-common-utils/lib';
+import Link from 'next/link';
 
-interface Props {}
+interface Props {
+    frist?: Date;
+}
 
-const Svarfrist: React.FunctionComponent<Props> = ({}) => {
-    const { data, isLoading } = useSWR('/dine-pleiepenger/api/svarfrist', svarfristFetcher, {
-        errorRetryCount: 0,
-    });
-
-    const renderContent = () => {
-        if (isLoading) {
-            return <ComponentLoader />;
-        }
-
-        const frist = data?.frist;
-        return (
-            <>
+const Svarfrist: React.FunctionComponent<Props> = ({ frist }) => {
+    return (
+        <Box>
+            <Heading size="medium" level="2" className="text-deepblue-800" spacing={true}>
+                Saksbehandlingstid
+            </Heading>
+            <BodyLong as="div" className="bg-deepblue-100 pt-4 pl-6 pr-6 pb-6 rounded">
                 {frist ? (
                     <p className="mb-2">
                         Du kan forvente svar innen: <br />
@@ -34,16 +29,6 @@ const Svarfrist: React.FunctionComponent<Props> = ({}) => {
                         Se saksbehandlingstider
                     </Link>
                 </div>{' '}
-            </>
-        );
-    };
-    return (
-        <Box>
-            <Heading size="medium" level="2" className="text-deepblue-800" spacing={true}>
-                Saksbehandlingstid
-            </Heading>
-            <BodyLong as="div" className="bg-deepblue-100 pt-4 pl-6 pr-6 pb-6 rounded">
-                {renderContent()}
             </BodyLong>
         </Box>
     );

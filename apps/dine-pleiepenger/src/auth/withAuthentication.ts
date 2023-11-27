@@ -2,13 +2,13 @@ import { validateIdportenToken } from '@navikt/next-auth-wonderwall';
 import { logger } from '@navikt/next-logger';
 import { IncomingHttpHeaders } from 'http';
 import { GetServerSidePropsContext, GetServerSidePropsResult, NextApiRequest, NextApiResponse } from 'next';
+import { Innsynsdata } from '../types/InnsynData';
 import { RequestContext } from '../types/RequestContext';
 import { browserEnv, isLocal } from '../utils/env';
 import { getSessionId } from '../utils/userSessionId';
-import { Søker } from '../server/api-models/Søker';
 
 export interface ServerSidePropsResult {
-    søker: Søker | null;
+    innsynsdata: Innsynsdata | null;
 }
 
 type ApiHandler = (req: NextApiRequest, res: NextApiResponse) => Promise<unknown> | unknown;
@@ -36,7 +36,7 @@ export interface TokenPayload {
 export const defaultPageHandler: PageHandler = async (): Promise<{ props: ServerSidePropsResult }> => {
     return {
         props: {
-            søker: null,
+            innsynsdata: null,
         },
     };
 };

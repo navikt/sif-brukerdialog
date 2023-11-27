@@ -7,22 +7,29 @@ import DineSøknader from '../components/dine-søknader/DineSøknader';
 import DefaultPage from '../components/layout/default-page/DefaultPage';
 import Snarveier from '../components/snarveier/Snarveier';
 import Svarfrist from '../components/svarfrist/Svarfrist';
+import { useInnsynsdataContext } from '../hooks/useInnsynsdataContext';
 
 function DinePleiepengerPage(): ReactElement {
+    const {
+        innsynsdata: { mellomlagring, søknader, svarfrist },
+    } = useInnsynsdataContext();
+
     return (
         <DefaultPage>
             <Head>
                 <title>Dine pleiepenger</title>
             </Head>
             <VStack gap="10">
-                <DineMellomlagringer />
+                <DineMellomlagringer mellomlagringer={mellomlagring} />
+
                 <Snarveier />
+
                 <Box className="md:flex md:gap-4">
                     <div className="md:grow mb-10 md:mb-0">
-                        <DineSøknader />
+                        <DineSøknader søknader={søknader.slice(0, 5)} />
                     </div>
                     <div className="md:mb-none shrink-0 md:w-72">
-                        <Svarfrist />
+                        <Svarfrist frist={svarfrist} />
                     </div>
                 </Box>
             </VStack>
