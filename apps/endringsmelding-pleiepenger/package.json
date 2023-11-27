@@ -86,7 +86,7 @@
         "cypress": "13.6.0",
         "cypress-axe": "1.5.0",
         "cypress-file-upload": "5.0.8",
-        "jsdom": "22.1.0",
+        "jsdom": "23.0.0",
         "mini-css-extract-plugin": "2.7.6",
         "msw": "2.0.8",
         "postcss": "8.4.31",
