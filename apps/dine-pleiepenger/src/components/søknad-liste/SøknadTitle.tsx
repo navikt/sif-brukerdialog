@@ -21,7 +21,7 @@ const SøknadTitle: React.FunctionComponent<Props> = ({ søknad }) => {
                     </BodyShort>
                 </div>
             </HStack>
-            <BodyShort size="small">
+            <BodyShort size="small" className="text-grayalpha-700">
                 Mottatt{' '}
                 <PrettyDate date={getSøknadMottattDato(søknad)} format="dayDateAndTime" useNorwegianTime={true} />
             </BodyShort>

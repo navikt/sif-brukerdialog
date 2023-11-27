@@ -16,7 +16,9 @@ const SnarveiLinkPanel: React.FunctionComponent<Props> = ({ icon, title, descrip
                     <Heading level="3" size="xsmall" className="mb-1">
                         {title}
                     </Heading>
-                    <BodyShort as="div">{description}</BodyShort>
+                    <BodyShort as="div" className="text-grayalpha-700">
+                        {description}
+                    </BodyShort>
                 </Box>
             </HStack>
         </LinkPanel>
