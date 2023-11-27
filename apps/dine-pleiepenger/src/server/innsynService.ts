@@ -16,11 +16,11 @@ export enum ApiService {
 
 export enum ApiEndpointBrukerdialog {
     'søker' = 'oppslag/soker',
+    'påbegyntSøknad' = 'mellomlagring/PLEIEPENGER_SYKT_BARN',
+    'påbegyntEndring' = 'mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN',
 }
 export enum ApiEndpointInnsyn {
     'søknad' = 'soknad',
-    'påbegyntSøknad' = 'mellomlagring/PLEIEPENGER_SYKT_BARN',
-    'påbegyntEndring' = 'mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN',
 }
 
 export enum SifApiErrorType {
@@ -60,18 +60,20 @@ export const fetchMellomlagringer = async (req: NextApiRequest): Promise<Melloml
 
     /** Påbegynt søknad */
     const påbegyntSøknadReq = await exchangeTokenAndPrepRequest(
-        ApiService.sifInnsyn,
+        ApiService.k9Brukerdialog,
         context,
-        ApiEndpointInnsyn.påbegyntSøknad,
+        ApiEndpointBrukerdialog.påbegyntSøknad,
     );
+    createChildLogger(getXRequestId(req)).info(`Fetching påbegynt søknad from url: ${påbegyntSøknadReq.url}`);
     const påbegyntSøknad = await axios.get(påbegyntSøknadReq.url, { headers: påbegyntSøknadReq.headers });
 
     /** Påbegynt endring */
     const påbegyntEndringReq = await exchangeTokenAndPrepRequest(
-        ApiService.sifInnsyn,
+        ApiService.k9Brukerdialog,
         context,
-        ApiEndpointInnsyn.påbegyntEndring,
+        ApiEndpointBrukerdialog.påbegyntEndring,
     );
+    createChildLogger(getXRequestId(req)).info(`Fetching påbegynt endring from url: ${påbegyntEndringReq.url}`);
     const påbegyntEndring = await axios.get(påbegyntEndringReq.url, { headers: påbegyntEndringReq.headers });
 
     const parseMellomlagring = (it) => it as MellomlagringModel;
