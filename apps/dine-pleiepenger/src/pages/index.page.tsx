@@ -6,7 +6,7 @@ import DineMellomlagringer from '../components/dine-mellomlagringer/DineMellomla
 import DineSøknader from '../components/dine-søknader/DineSøknader';
 import DefaultPage from '../components/layout/default-page/DefaultPage';
 import Snarveier from '../components/snarveier/Snarveier';
-import Svarfrist from '../components/svarfrist/Svar-Frist';
+import Svarfrist from '../components/svarfrist/Svarfrist';
 
 function DinePleiepengerPage(): ReactElement {
     return (
