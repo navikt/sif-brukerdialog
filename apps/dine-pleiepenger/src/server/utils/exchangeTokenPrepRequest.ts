@@ -33,7 +33,7 @@ export const exchangeTokenAndPrepRequest = async (
 
     const serverUrl =
         service === ApiService.k9Brukerdialog
-            ? browserEnv.NEXT_PUBLIC_API_URL_BRUKERDIALOG!
+            ? browserEnv.NEXT_PUBLIC_API_URL_BRUKERDIALOG
             : browserEnv.NEXT_PUBLIC_API_URL_INNSYN;
 
     return {

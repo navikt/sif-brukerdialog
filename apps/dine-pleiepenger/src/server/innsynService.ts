@@ -32,8 +32,9 @@ export const fetchSøknader = async (req: NextApiRequest): Promise<Søknad[]> =>
     const context = getContextForApiHandler(req);
     const { url, headers } = await exchangeTokenAndPrepRequest(ApiService.sifInnsyn, context, ApiEndpointInnsyn.søknad);
     const childLogger = createChildLogger(getXRequestId(req));
-    childLogger.info('Fetching søknader from url:', url);
+    childLogger.info(`Fetching søknader from url: ${url}`);
     const response = await axios.get(url, { headers });
+    childLogger.info(`Fetching søknader from url: ${url}`);
     const parse = (it) => it as Søknad[];
     return await parse(response.data);
 };
