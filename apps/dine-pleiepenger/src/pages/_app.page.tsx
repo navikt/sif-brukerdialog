@@ -16,7 +16,9 @@ import '../components/process/process.css';
 import '../style/global.css';
 
 function MyApp({ Component, pageProps }: AppProps<ServerSidePropsResult>): ReactElement {
-    const { error, isLoading } = useSWR<Søker, AxiosError>('/dine-pleiepenger/api/soker', søkerFetcher);
+    const { error, isLoading } = useSWR<Søker, AxiosError>('/dine-pleiepenger/api/soker', søkerFetcher, {
+        errorRetryCount: 0,
+    });
 
     if (isLoading) {
         return (

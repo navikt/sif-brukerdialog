@@ -8,6 +8,7 @@ import { Søker, SøkerSchema } from './api-models/Søker';
 import { exchangeTokenAndPrepRequest } from './utils/exchangeTokenPrepRequest';
 import { isValidMellomlagring } from './utils/isValidMellomlagring';
 import { createChildLogger } from '@navikt/next-logger';
+import { Svarfrist, SvarfristSchema } from './api-models/Svarfrist';
 
 export enum ApiService {
     k9Brukerdialog = 'k9-brukerdialog-api',
@@ -21,6 +22,7 @@ export enum ApiEndpointBrukerdialog {
 }
 export enum ApiEndpointInnsyn {
     'søknad' = 'soknad',
+    'svarfrist' = 'svarfrist',
 }
 
 export enum SifApiErrorType {
@@ -28,12 +30,24 @@ export enum SifApiErrorType {
     NO_ACCESS = 'NO_ACCESS',
 }
 
+export const fetchSvarfrist = async (req: NextApiRequest): Promise<Svarfrist> => {
+    const context = getContextForApiHandler(req);
+    const { url, headers } = await exchangeTokenAndPrepRequest(
+        ApiService.sifInnsyn,
+        context,
+        ApiEndpointInnsyn.svarfrist,
+    );
+    createChildLogger(getXRequestId(req)).info(`Fetching svarfrist from url: ${url}`);
+    const response = await axios.get(url, { headers });
+    return await SvarfristSchema.parse(response.data);
+};
+
 export const fetchSøknader = async (req: NextApiRequest): Promise<Søknad[]> => {
     const context = getContextForApiHandler(req);
     const { url, headers } = await exchangeTokenAndPrepRequest(ApiService.sifInnsyn, context, ApiEndpointInnsyn.søknad);
     createChildLogger(getXRequestId(req)).info(`Fetching søknader from url: ${url}`);
     const response = await axios.get(url, { headers });
-    const parse = (it) => it as Søknad[];
+    const parse = (it) => it as Søknad[]; // TODO vurdere å lage eget schema for søknad
     return await parse(response.data);
 };
 

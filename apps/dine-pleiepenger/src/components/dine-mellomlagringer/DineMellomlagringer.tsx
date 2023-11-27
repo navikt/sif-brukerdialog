@@ -1,4 +1,4 @@
-import { Alert, Heading } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 import useSWR from 'swr';
 import ComponentLoader from '../component-loader/ComponentLoader';
 import { SøknadListeSkeleton } from '../søknad-liste/SøknadListe';
@@ -6,13 +6,15 @@ import { mellomlagringFetcher } from '../../pages/api/mellomlagring.api';
 import MellomlagringInfo from './MellomlagringInfo';
 
 const DineMellomlagringer = () => {
-    const { data, error, isLoading } = useSWR('/dine-pleiepenger/api/mellomlagring', mellomlagringFetcher);
+    const { data, error, isLoading } = useSWR('/dine-pleiepenger/api/mellomlagring', mellomlagringFetcher, {
+        errorRetryCount: 0,
+    });
 
-    if (error) {
-        return <Alert variant="error">Henting av data feilet</Alert>;
+    if (isLoading) {
+        return <ComponentLoader title="Henter påbegynte søknader" />;
     }
 
-    if (!data?.endring && !data?.søknad) {
+    if (error || (!data?.endring && !data?.søknad)) {
         return null;
     }
 

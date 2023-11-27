@@ -5,7 +5,7 @@ import { Søknad } from '../../types/Søknad';
 import { getXRequestId } from '../../utils/apiUtils';
 import { sortSøknadEtterOpprettetDato } from '../../utils/søknadUtils';
 import axios from 'axios';
-import { fetchSøknader } from '../../server/innsynService';
+import { fetchSøknader } from '../../server/apiService';
 
 export const søknaderFetcher = async (url: string): Promise<Søknad[]> => axios.get(url).then((res) => res.data);
 

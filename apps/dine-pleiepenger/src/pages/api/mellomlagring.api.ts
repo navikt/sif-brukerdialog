@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { createChildLogger } from '@navikt/next-logger';
 import axios from 'axios';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
-import { fetchMellomlagringer } from '../../server/innsynService';
+import { fetchMellomlagringer } from '../../server/apiService';
 import { Mellomlagringer } from '../../types/Mellomlagring';
 import { getXRequestId } from '../../utils/apiUtils';
 

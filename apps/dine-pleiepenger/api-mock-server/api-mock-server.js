@@ -32,7 +32,6 @@ const startServer = () => {
     const port = 1234;
 
     server.get('/oppslag/soker', (req, res) => {
-        console.log('Returning søker');
         res.setHeader('Content-Type', 'application/json');
         res.send(søker);
     });
@@ -51,6 +50,12 @@ const startServer = () => {
 
     server.get('/soknad/:soknadId/dokument', (req, res) => {
         res.download('./api-mock-server/mockdata/eksempel-søknad.pdf', 'søknad.pdf');
+    });
+
+    server.get('/svarfrist', (req, res) => {
+        res.send({
+            frist: '2021-09-20',
+        });
     });
 
     server.get('/dokument/:journalpostId/:dokumentInfoId/:variantFormat', (req, res) => {

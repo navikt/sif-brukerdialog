@@ -6,7 +6,7 @@ import DineMellomlagringer from '../components/dine-mellomlagringer/DineMellomla
 import DineSøknader from '../components/dine-søknader/DineSøknader';
 import DefaultPage from '../components/layout/default-page/DefaultPage';
 import Snarveier from '../components/snarveier/Snarveier';
-import SvarFrist from '../components/svarfrist/SvarFrist';
+import Svarfrist from '../components/svarfrist/Svar-Frist';
 
 function DinePleiepengerPage(): ReactElement {
     return (
@@ -17,12 +17,12 @@ function DinePleiepengerPage(): ReactElement {
             <VStack gap="10">
                 <DineMellomlagringer />
                 <Snarveier />
-                <Box className="md:flex md:gap-4 md:flex-row-reverse">
-                    <div className="mb-10 md:mb-none shrink-0 md:w-72">
-                        <SvarFrist />
-                    </div>
-                    <div className="md:grow">
+                <Box className="md:flex md:gap-4">
+                    <div className="md:grow mb-10 md:mb-0">
                         <DineSøknader />
+                    </div>
+                    <div className="md:mb-none shrink-0 md:w-72">
+                        <Svarfrist />
                     </div>
                 </Box>
             </VStack>

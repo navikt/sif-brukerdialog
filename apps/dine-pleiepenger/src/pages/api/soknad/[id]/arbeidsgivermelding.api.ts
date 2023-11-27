@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { withAuthenticatedApi } from '../../../../auth/withAuthentication';
 import { fetchDocumentStream } from '../../../../server/fetchDocumentStream';
 import { getContextForApiHandler } from '../../../../utils/apiUtils';
-import { ApiService } from '../../../../server/innsynService';
+import { ApiService } from '../../../../server/apiService';
 
 export async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
     const { query } = req;
