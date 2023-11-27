@@ -1,10 +1,10 @@
 import { createChildLogger } from '@navikt/next-logger';
 import axios from 'axios';
 import { RequestContext } from '../types/RequestContext';
-import { SifApiService } from './innsynService';
+import { ApiService } from './types';
 import { exchangeTokenAndPrepRequest } from './utils/exchangeTokenPrepRequest';
 
-export async function fetchDocumentStream(path: string, context: RequestContext, service: SifApiService): Promise<any> {
+export async function fetchDocumentStream(path: string, context: RequestContext, service: ApiService): Promise<any> {
     const childLogger = createChildLogger(context.requestId);
 
     const { url, headers } = await exchangeTokenAndPrepRequest(service, context, path);

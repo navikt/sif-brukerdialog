@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { withAuthenticatedApi } from '../../../auth/withAuthentication';
 import { fetchDocumentStream } from '../../../server/fetchDocumentStream';
 import { getContextForApiHandler } from '../../../utils/apiUtils';
-import { SifApiService } from '../../../server/innsynService';
+import { ApiService } from '../../../server/types';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const {
@@ -15,7 +15,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
     try {
         const path = `dokument/${info.join('/')}?dokumentTittel=${dokumentTittel}`;
-        const data = await fetchDocumentStream(path, getContextForApiHandler(req), SifApiService.sifInnsyn);
+        const data = await fetchDocumentStream(path, getContextForApiHandler(req), ApiService.sifInnsyn);
         data.pipe(res);
     } catch (err) {
         res.status(500).json({ error: 'Kunne ikke hente dokument', err });

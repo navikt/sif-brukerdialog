@@ -1,14 +1,14 @@
 import { createChildLogger } from '@navikt/next-logger';
 import { RequestContext } from '../types/RequestContext';
 import { exchangeTokenAndPrepRequest } from './utils/exchangeTokenPrepRequest';
-import { SifApiService } from './innsynService';
+import { ApiService } from './types';
 
 export async function fetchApi<ResponseObject>(
     method: { type: 'GET' } | { type: 'POST'; body: string | undefined },
     path: string,
     parse: (json?: unknown) => ResponseObject,
     context: RequestContext,
-    service: SifApiService,
+    service: ApiService,
 ): Promise<ResponseObject> {
     const childLogger = createChildLogger(context.requestId);
     const { url, headers } = await exchangeTokenAndPrepRequest(service, context, path);

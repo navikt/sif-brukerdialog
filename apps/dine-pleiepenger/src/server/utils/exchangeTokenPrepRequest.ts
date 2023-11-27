@@ -1,10 +1,10 @@
 import { grantTokenXOboToken, isInvalidTokenSet } from '@navikt/next-auth-wonderwall';
 import { createChildLogger } from '@navikt/next-logger';
 import { browserEnv, getServerEnv, isLocal } from '../../utils/env';
-import { SifApiService } from '../innsynService';
+import { ApiService } from '../types';
 
 export const exchangeTokenAndPrepRequest = async (
-    service: SifApiService,
+    service: ApiService,
     context,
     path,
 ): Promise<{
@@ -15,7 +15,7 @@ export const exchangeTokenAndPrepRequest = async (
     const serverEnv = getServerEnv();
 
     const audience =
-        service === SifApiService.k9Brukerdialog
+        service === ApiService.k9Brukerdialog
             ? serverEnv.NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE!
             : serverEnv.NEXT_PUBLIC_INNSYN_BACKEND_SCOPE!;
 
@@ -32,7 +32,7 @@ export const exchangeTokenAndPrepRequest = async (
     }
 
     const serverUrl =
-        service === SifApiService.k9Brukerdialog
+        service === ApiService.k9Brukerdialog
             ? browserEnv.NEXT_PUBLIC_API_URL_BRUKERDIALOG!
             : browserEnv.NEXT_PUBLIC_API_URL_INNSYN;
 

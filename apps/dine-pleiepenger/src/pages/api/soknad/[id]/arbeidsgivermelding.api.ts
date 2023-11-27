@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { withAuthenticatedApi } from '../../../../auth/withAuthentication';
 import { fetchDocumentStream } from '../../../../server/fetchDocumentStream';
 import { getContextForApiHandler } from '../../../../utils/apiUtils';
-import { SifApiService } from '../../../../server/innsynService';
+import { ApiService } from '../../../../server/types';
 
 export async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
     const { query } = req;
@@ -20,7 +20,7 @@ export async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
         const data = await fetchDocumentStream(
             `soknad/${søknadId}/arbeidsgivermelding?organisasjonsnummer=${organisasjonsnummer}`,
             getContextForApiHandler(req),
-            SifApiService.sifInnsyn,
+            ApiService.sifInnsyn,
         );
         data.pipe(res);
     } catch (err) {

@@ -1,15 +1,6 @@
-import { AxiosError, HttpStatusCode } from 'axios';
 import { NextApiRequest } from 'next';
 import { createDemoRequestContext, createRequestContext } from '../auth/withAuthentication';
 import { isLocal } from './env';
-
-export const isForbidden = (error: AxiosError): boolean => {
-    return (
-        error.response !== undefined &&
-        (error.response.status === HttpStatusCode.Forbidden ||
-            error.response.status === HttpStatusCode.UnavailableForLegalReasons)
-    );
-};
 
 export const getXRequestId = (req: NextApiRequest): string => {
     return (req.headers['x-request-id'] as string) || 'undefined-x-request-id';
