@@ -7,6 +7,8 @@ import SvarFrist from '../components/svarfrist/SvarFrist';
 import { withAuthenticatedPage } from '../auth/withAuthentication';
 import { ReactElement } from 'react';
 import Head from 'next/head';
+import DineMellomlagringer from '../components/dine-mellomlagringer/DineMellomlagringer';
+import { VStack } from '@navikt/ds-react';
 
 function DinePleiepengerPage(): ReactElement {
     return (
@@ -14,14 +16,17 @@ function DinePleiepengerPage(): ReactElement {
             <Head>
                 <title>Dine pleiepenger</title>
             </Head>
-            <div style={{ display: 'flex', gap: '1rem' }}>
-                <div className="flex-grow a-left">
-                    <DineSøknader />
+            <VStack gap="10">
+                <DineMellomlagringer />
+                <div style={{ display: 'flex', gap: '1rem' }}>
+                    <div className="flex-grow a-left">
+                        <DineSøknader />
+                    </div>
+                    <div className="flex-none">
+                        <SvarFrist />
+                    </div>
                 </div>
-                <div className="flex-none">
-                    <SvarFrist />
-                </div>
-            </div>
+            </VStack>
         </DefaultPage>
     );
 }
