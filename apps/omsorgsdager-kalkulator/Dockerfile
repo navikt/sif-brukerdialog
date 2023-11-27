@@ -2,6 +2,7 @@ FROM gcr.io/distroless/nodejs18-debian11:nonroot
 WORKDIR /app
 
 COPY /apps/omsorgsdager-kalkulator/.next/standalone ./
+COPY /apps/omsorgsdager-kalkulator/.next/static ./.next/static
 COPY /apps/omsorgsdager-kalkulator/public ./public
 
 ENV NODE_ENV=production
