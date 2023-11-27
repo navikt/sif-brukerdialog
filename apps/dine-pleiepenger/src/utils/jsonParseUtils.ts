@@ -15,5 +15,8 @@ const isDateStringToBeParse = (value: string): boolean => {
 };
 
 export const parseMaybeDateStringToDate = (value: any): Date | undefined => {
-    return isISODateString(value) || isDateStringToBeParse(value) ? new Date(value) : undefined;
+    if (isISODateString(value) || isDateStringToBeParse(value)) {
+        return new Date(value);
+    }
+    return undefined;
 };

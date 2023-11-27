@@ -9,7 +9,10 @@ export enum MellomlagringType {
 export type MellomlagringModel = z.infer<typeof MellomlagringSchema>;
 
 export const MellomlagringSchema = z.object({
-    metadata: z.object({
-        updatedTimestamp: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
-    }),
+    metadata: z.union([
+        z.object({
+            updatedTimestamp: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
+        }),
+        z.undefined(),
+    ]),
 });

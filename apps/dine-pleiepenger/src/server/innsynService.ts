@@ -3,8 +3,8 @@ import { NextApiRequest } from 'next';
 import { Mellomlagringer } from '../types/Mellomlagring';
 import { Søknad } from '../types/Søknad';
 import { getContextForApiHandler, getXRequestId } from '../utils/apiUtils';
-import { MellomlagringModel } from './api-models/Mellomlagring';
-import { Søker } from './api-models/Søker';
+import { MellomlagringModel, MellomlagringSchema } from './api-models/Mellomlagring';
+import { Søker, SøkerSchema } from './api-models/Søker';
 import { exchangeTokenAndPrepRequest } from './utils/exchangeTokenPrepRequest';
 import { isValidMellomlagring } from './utils/isValidMellomlagring';
 import { createChildLogger } from '@navikt/next-logger';
@@ -46,8 +46,7 @@ export const fetchSøker = async (req: NextApiRequest): Promise<Søker> => {
     );
     createChildLogger(getXRequestId(req)).info(`Fetching søker from url: ${url}`);
     const response = await axios.get(url, { headers });
-    const parse = (it) => it as Søker;
-    return await parse(response.data);
+    return await SøkerSchema.parse(response.data);
 };
 
 /**
@@ -65,7 +64,9 @@ export const fetchMellomlagringer = async (req: NextApiRequest): Promise<Melloml
         ApiEndpointBrukerdialog.påbegyntSøknad,
     );
     createChildLogger(getXRequestId(req)).info(`Fetching påbegynt søknad from url: ${påbegyntSøknadReq.url}`);
-    const påbegyntSøknad = await axios.get(påbegyntSøknadReq.url, { headers: påbegyntSøknadReq.headers });
+    const påbegyntSøknad = await axios
+        .get(påbegyntSøknadReq.url, { headers: påbegyntSøknadReq.headers })
+        .then((response) => Promise.resolve(fixSøknadMetadata(response.data)));
 
     /** Påbegynt endring */
     const påbegyntEndringReq = await exchangeTokenAndPrepRequest(
@@ -74,15 +75,23 @@ export const fetchMellomlagringer = async (req: NextApiRequest): Promise<Melloml
         ApiEndpointBrukerdialog.påbegyntEndring,
     );
     createChildLogger(getXRequestId(req)).info(`Fetching påbegynt endring from url: ${påbegyntEndringReq.url}`);
-    const påbegyntEndring = await axios.get(påbegyntEndringReq.url, { headers: påbegyntEndringReq.headers });
+    const påbegyntEndring = await axios
+        .get(påbegyntEndringReq.url, { headers: påbegyntEndringReq.headers })
+        .then((response) => Promise.resolve(fixSøknadMetadata(response.data)));
 
-    const parseMellomlagring = (it) => it as MellomlagringModel;
-
-    const søknad = await parseMellomlagring(påbegyntSøknad.data);
-    const endring = await parseMellomlagring(påbegyntEndring.data);
+    const søknad = await MellomlagringSchema.parse(påbegyntSøknad);
+    const endring = await MellomlagringSchema.parse(påbegyntEndring);
 
     return {
-        endring: isValidMellomlagring(endring) ? endring : undefined,
         søknad: isValidMellomlagring(søknad) ? søknad : undefined,
+        endring: isValidMellomlagring(endring) ? endring : undefined,
     };
+};
+
+const fixSøknadMetadata = (data: MellomlagringModel): MellomlagringModel => {
+    if (data.metadata && (data.metadata as any).updatedTimestemp) {
+        data.metadata.updatedTimestamp = (data.metadata as any).updatedTimestemp;
+        delete (data.metadata as any).updatedTimestemp;
+    }
+    return data;
 };

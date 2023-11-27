@@ -3,12 +3,17 @@ import useSWR from 'swr';
 import ComponentLoader from '../component-loader/ComponentLoader';
 import { SøknadListeSkeleton } from '../søknad-liste/SøknadListe';
 import { mellomlagringFetcher } from '../../pages/api/mellomlagring.api';
+import MellomlagringInfo from './MellomlagringInfo';
 
 const DineMellomlagringer = () => {
     const { data, error, isLoading } = useSWR('/dine-pleiepenger/api/mellomlagring', mellomlagringFetcher);
 
     if (error) {
         return <Alert variant="error">Henting av data feilet</Alert>;
+    }
+
+    if (!data?.endring && !data?.søknad) {
+        return null;
     }
 
     return (
@@ -23,10 +28,7 @@ const DineMellomlagringer = () => {
                     fallback={<SøknadListeSkeleton rows={1} />}
                 />
             ) : (
-                <>
-                    {data?.endring ? 'Endring' : null}
-                    {data?.søknad ? 'Søknad' : null}
-                </>
+                <MellomlagringInfo søknad={data.søknad} endring={data.endring} />
             )}
         </div>
     );

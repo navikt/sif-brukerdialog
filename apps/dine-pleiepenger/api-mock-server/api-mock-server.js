@@ -80,14 +80,16 @@ const startServer = () => {
 
     server.get('/mellomlagring/PLEIEPENGER_SYKT_BARN', (req, res) => {
         res.send({
-            formData: {},
-            metadata: { lastStepID: 'tidsrom', version: '6.1', updatedTimestemp: '2021-09-20T14:18:01.060Z' },
+            metadata: {
+                lastStepID: 'tidsrom',
+                version: '6.1',
+                updatedTimestemp: '2021-09-20T14:18:01.060Z',
+            },
         });
     });
 
     server.get('/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN', (req, res) => {
         res.send({
-            // formData: {},
             // metadata: { lastStepID: 'tidsrom', version: '6.1', updatedTimestamp: '2021-09-20T14:18:01.060Z' },
         });
     });

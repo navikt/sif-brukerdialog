@@ -25,6 +25,15 @@
     "page.ikkeTilgang.title": "Ingen tilgang",
     "page.ikkeTilgang.content": "Du har ikke tilgang til denne siden.",
 
+    "påbegyntSøknad.title": "Vil du fortsette på en påbegynt søknad?",
+    "påbegyntSøknad.ingenPåbegynt": "Du har ikke påbegynt søknad.",
+    "påbegyntEndringEllerSøknad.title": "Vil du fortsette der du slapp?",
+    "påbegyntEndringEllerSøknad.ingenPåbegynt": "Du har ikke påbegynt endringsmelding eller søknad.",
+    "påbegyntSøknad.info.title": "Gå til påbegynt søknad om pleiepenger sykt barn",
+    "påbegyntSøknad.info": "Lagres til og med {datoNårSlettes}",
+    "påbegyntEndring.info.title": "Gå til påbegynt endring av pleiepenger sykt barn",
+    "påbegyntEndring.info": "Lagres til og med {datoNårSlettes}",
+
     "dokumenterTittel.PP_SYKT_BARN": "Søknad og eventuelle vedlegg i søknad",
     "dokumenterTittel.PP_ETTERSENDELSE": "Ettersendelse og dokumenter",
     "dokumenterTittel.PP_SYKT_BARN_ENDRINGSMELDING": "Endringsmelding",
