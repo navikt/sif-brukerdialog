@@ -32,6 +32,7 @@ function MyApp({ Component, pageProps }: AppProps<ServerSidePropsResult>): React
             </EmptyPage>
         );
     }
+
     return (
         <ErrorBoundary>
             <main id="maincontent" role="main" tabIndex={-1}>

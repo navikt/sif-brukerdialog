@@ -10,18 +10,17 @@ export const innsynsdataFetcher = async (url: string): Promise<Innsynsdata> => a
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
-        const [søker, søknader, mellomlagring, svarfrist] = await Promise.all([
+        const [søker, søknader, mellomlagring, svarfrist] = await Promise.allSettled([
             fetchSøker(req),
             fetchSøknader(req),
             fetchMellomlagringer(req),
             fetchSvarfrist(req),
         ]);
-
         res.send({
-            søker,
-            søknader,
-            mellomlagring,
-            svarfrist: svarfrist?.frist,
+            søker: søker.status === 'fulfilled' ? søker.value : undefined,
+            søknader: søknader.status === 'fulfilled' ? søknader.value : undefined,
+            mellomlagring: mellomlagring.status === 'fulfilled' ? mellomlagring.value : undefined,
+            svarfrist: svarfrist.status === 'fulfilled' ? svarfrist.value.frist : undefined,
         });
     } catch (err) {
         const childLogger = createChildLogger(getXRequestId(req));

@@ -1,3 +1,4 @@
+'use client';
 import { BodyLong, Box, Heading } from '@navikt/ds-react';
 import React from 'react';
 import { dateFormatter } from '@navikt/sif-common-utils/lib';

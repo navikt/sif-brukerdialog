@@ -1,14 +1,14 @@
+import { createChildLogger } from '@navikt/next-logger';
 import axios from 'axios';
 import { NextApiRequest } from 'next';
 import { Mellomlagringer } from '../types/Mellomlagring';
 import { Søknad } from '../types/Søknad';
 import { getContextForApiHandler, getXRequestId } from '../utils/apiUtils';
 import { MellomlagringModel, MellomlagringSchema } from './api-models/Mellomlagring';
+import { Svarfrist, SvarfristSchema } from './api-models/Svarfrist';
 import { Søker, SøkerSchema } from './api-models/Søker';
 import { exchangeTokenAndPrepRequest } from './utils/exchangeTokenPrepRequest';
 import { isValidMellomlagring } from './utils/isValidMellomlagring';
-import { createChildLogger } from '@navikt/next-logger';
-import { Svarfrist, SvarfristSchema } from './api-models/Svarfrist';
 
 export enum ApiService {
     k9Brukerdialog = 'k9-brukerdialog-api',
