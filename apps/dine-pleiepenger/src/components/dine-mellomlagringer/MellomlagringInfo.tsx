@@ -1,4 +1,4 @@
-import { BodyShort, Heading, LinkPanel, VStack } from '@navikt/ds-react';
+import { BodyShort, HGrid, Heading, LinkPanel } from '@navikt/ds-react';
 import dayjs from 'dayjs';
 import { FormattedMessage } from 'react-intl';
 import { browserEnv } from '../../utils/env';
@@ -25,22 +25,11 @@ const MellomlagringInfo = ({ endring, søknad }: Props) => {
     const datoNårEndringSlettes = søknad?.metadata?.updatedTimestamp
         ? getDatoOgTidTilSlettSøknadString(søknad?.metadata?.updatedTimestamp)
         : undefined;
-    // const datoNårEndringSlettes = endringUpdatedTimestamp
-    //     ? getDatoOgTidTilSlettSøknadString(endringUpdatedTimestamp)
-    //     : undefined;
-
-    // const title = isFeatureEnabled(Feature.ENDRINGSDIALOG)
-    //     ? intlHelper(intl, 'page.dinOversikt.påbegyntEndringEllerSøknad.title')
-    //     : intlHelper(intl, 'page.dinOversikt.påbegyntSøknad.title');
-
-    // const ingenEndringTekst = isFeatureEnabled(Feature.ENDRINGSDIALOG)
-    //     ? intlHelper(intl, 'page.dinOversikt.påbegyntEndringEllerSøknad.ingenPåbegynt')
-    //     : intlHelper(intl, 'page.dinOversikt.påbegyntSøknad.ingenPåbegynt');
 
     return (
-        <VStack gap="2">
+        <HGrid gap="5" columns={2}>
             {datoNårSøknadSlettes && (
-                <LinkPanel href={browserEnv.NEXT_PUBLIC_PLEIEPENGER_URL} border={true}>
+                <LinkPanel href={browserEnv.NEXT_PUBLIC_PLEIEPENGER_URL} border={false}>
                     <Heading level="3" size="small">
                         <FormattedMessage id="påbegyntSøknad.info.title" />
                     </Heading>
@@ -50,7 +39,7 @@ const MellomlagringInfo = ({ endring, søknad }: Props) => {
                 </LinkPanel>
             )}
             {datoNårEndringSlettes && (
-                <LinkPanel href={browserEnv.NEXT_PUBLIC_ENDRINGSDIALOG_URL} border={true}>
+                <LinkPanel href={browserEnv.NEXT_PUBLIC_ENDRINGSDIALOG_URL} border={false}>
                     <Heading level="3" size="small">
                         <FormattedMessage id="påbegyntEndring.info.title" />
                     </Heading>
@@ -78,7 +67,7 @@ const MellomlagringInfo = ({ endring, søknad }: Props) => {
                 </div>
             )}
             {!datoNårSøknadSlettes && !datoNårEndringSlettes && <Box>{ingenEndringTekst}</Box>} */}
-        </VStack>
+        </HGrid>
     );
 };
 

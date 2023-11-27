@@ -9,6 +9,7 @@ import { ReactElement } from 'react';
 import Head from 'next/head';
 import DineMellomlagringer from '../components/dine-mellomlagringer/DineMellomlagringer';
 import { VStack } from '@navikt/ds-react';
+import Snarveier from '../components/snarveier/Snarveier';
 
 function DinePleiepengerPage(): ReactElement {
     return (
@@ -18,6 +19,7 @@ function DinePleiepengerPage(): ReactElement {
             </Head>
             <VStack gap="10">
                 <DineMellomlagringer />
+                <Snarveier />
                 <div style={{ display: 'flex', gap: '1rem' }}>
                     <div className="flex-grow a-left">
                         <DineSøknader />
