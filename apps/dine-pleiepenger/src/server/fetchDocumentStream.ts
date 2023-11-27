@@ -1,7 +1,7 @@
 import { createChildLogger } from '@navikt/next-logger';
 import axios from 'axios';
 import { RequestContext } from '../types/RequestContext';
-import { ApiService } from './types';
+import { ApiService } from './innsynService';
 import { exchangeTokenAndPrepRequest } from './utils/exchangeTokenPrepRequest';
 
 export async function fetchDocumentStream(path: string, context: RequestContext, service: ApiService): Promise<any> {

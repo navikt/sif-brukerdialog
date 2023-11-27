@@ -1,23 +1,17 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { createChildLogger } from '@navikt/next-logger';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
-import { fetchApi } from '../../server/fetchApi';
-import { ApiEndpointInnsyn, ApiService } from '../../server/types';
 import { Søknad } from '../../types/Søknad';
-import { getContextForApiHandler, getXRequestId } from '../../utils/apiUtils';
+import { getXRequestId } from '../../utils/apiUtils';
 import { sortSøknadEtterOpprettetDato } from '../../utils/søknadUtils';
+import axios from 'axios';
+import { fetchSøknader } from '../../server/innsynService';
 
-export const søknaderFecther = async (url: string): Promise<Søknad[]> => fetch(url).then((res) => res.json());
+export const søknaderFetcher = async (url: string): Promise<Søknad[]> => axios.get(url).then((res) => res.data);
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
-        const response = await fetchApi(
-            { type: 'GET' },
-            ApiEndpointInnsyn.søknad,
-            (it) => it as Søknad[],
-            getContextForApiHandler(req),
-            ApiService.sifInnsyn,
-        );
+        const response = await fetchSøknader(req);
         res.send(response.sort(sortSøknadEtterOpprettetDato));
     } catch (err) {
         const childLogger = createChildLogger(getXRequestId(req));

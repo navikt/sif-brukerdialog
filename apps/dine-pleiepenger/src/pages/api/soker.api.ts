@@ -1,23 +1,16 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { createChildLogger } from '@navikt/next-logger';
+import axios from 'axios';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
-import { Søker, SøkerSchema } from '../../server/api-models/Søker';
-import { fetchApi } from '../../server/fetchApi';
-import { ApiEndpointBrukerdialog, ApiService } from '../../server/types';
-import { getContextForApiHandler, getXRequestId } from '../../utils/apiUtils';
+import { Søker } from '../../server/api-models/Søker';
+import { fetchSøker } from '../../server/innsynService';
+import { getXRequestId } from '../../utils/apiUtils';
 
-export const søkerFetcher = async (url: string): Promise<Søker> => fetch(url).then((res) => res.json());
+export const søkerFetcher = async (url: string): Promise<Søker> => axios.get(url).then((res) => res.data);
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
-        const response = await fetchApi(
-            { type: 'GET' },
-            ApiEndpointBrukerdialog.søker,
-            (it) => SøkerSchema.parse(it),
-            getContextForApiHandler(req),
-            ApiService.k9Brukerdialog,
-        );
-        res.send(response);
+        res.send(await fetchSøker(req));
     } catch (err) {
         const childLogger = createChildLogger(getXRequestId(req));
         childLogger.error(`Fetching søker failed: ${err}`);

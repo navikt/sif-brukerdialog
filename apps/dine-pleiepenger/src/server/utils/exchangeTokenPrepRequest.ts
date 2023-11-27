@@ -1,7 +1,7 @@
 import { grantTokenXOboToken, isInvalidTokenSet } from '@navikt/next-auth-wonderwall';
 import { createChildLogger } from '@navikt/next-logger';
 import { browserEnv, getServerEnv, isLocal } from '../../utils/env';
-import { ApiService } from '../types';
+import { ApiService } from '../innsynService';
 
 export const exchangeTokenAndPrepRequest = async (
     service: ApiService,

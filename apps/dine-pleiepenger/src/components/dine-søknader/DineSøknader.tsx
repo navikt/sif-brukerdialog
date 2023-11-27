@@ -3,10 +3,10 @@ import useSWR from 'swr';
 
 import SøknadListe, { SøknadListeSkeleton } from '../søknad-liste/SøknadListe';
 import ComponentLoader from '../component-loader/ComponentLoader';
-import { søknaderFecther } from '../../pages/api/soknader.api';
+import { søknaderFetcher } from '../../pages/api/soknader.api';
 
 const DineSøknader = () => {
-    const { data, error, isLoading } = useSWR('/dine-pleiepenger/api/soknader', søknaderFecther);
+    const { data, error, isLoading } = useSWR('/dine-pleiepenger/api/soknader', søknaderFetcher);
 
     if (error) {
         return <Alert variant="error">Henting av data feilet</Alert>;
