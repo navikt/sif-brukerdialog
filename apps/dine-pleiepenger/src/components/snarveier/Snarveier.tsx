@@ -10,7 +10,7 @@ interface Props {}
 const Snarveier: React.FunctionComponent<Props> = ({}) => {
     return (
         <VStack gap="4">
-            <Heading level="2" size="medium">
+            <Heading level="2" size="medium" className="text-deepblue-800">
                 Trenger du å oppdatere noe i saken din?
             </Heading>
             <HGrid gap="4" columns={{ sm: 1, md: 2 }}>

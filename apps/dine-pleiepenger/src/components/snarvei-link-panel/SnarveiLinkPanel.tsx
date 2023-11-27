@@ -13,7 +13,7 @@ const SnarveiLinkPanel: React.FunctionComponent<Props> = ({ icon, title, descrip
             <HStack gap="4" align={'center'} wrap={false}>
                 <Hide below="sm">{icon ? <Box className="rounded-full bg-bg-subtle p-4">{icon}</Box> : undefined}</Hide>
                 <Box>
-                    <Heading level="3" size="small" className="mb-1">
+                    <Heading level="3" size="xsmall" className="mb-1">
                         {title}
                     </Heading>
                     <BodyShort as="div">{description}</BodyShort>
