@@ -1,26 +1,12 @@
-import { DecoratorComponents, fetchDecoratorReact } from '@navikt/nav-dekoratoren-moduler/ssr';
+import { DecoratorComponents, fetchDecoratorReact, DecoratorEnvProps } from '@navikt/nav-dekoratoren-moduler/ssr';
 import Document, { DocumentContext, DocumentInitialProps, Head, Html, Main, NextScript } from 'next/document';
 import 'node-fetch';
 
-function createDecoratorEnv(ctx: DocumentContext): 'dev' | 'prod' {
-    if (ctx.pathname === '/500' || ctx.pathname === '/404' || process.env.NODE_ENV === 'development') {
-        // Blir statisk kompilert i GHA så må hentes defra
-        return 'prod';
-    }
+const decoratorEnv = (process.env.NEXT_PUBLIC_DEKORATOR_ENV ?? 'prod') as Exclude<
+    DecoratorEnvProps['env'],
+    'localhost'
+>;
 
-    switch (process.env.NEXT_PUBLIC_DEKORATOR_ENV) {
-        case 'local':
-        case 'test':
-        case 'dev':
-            return 'dev';
-        case 'production':
-            return 'prod';
-        default:
-            throw new Error(
-                `Unknown runtime environment: ${process.env.NEXT_PUBLIC_DEKORATOR_ENV} - ${process.env.NEXT_PUBLIC_DEKORATOR_ENV}`,
-            );
-    }
-}
 // The 'head'-field of the document initialProps contains data from <head> (meta-tags etc)
 const getDocumentParameter = (initialProps: DocumentInitialProps, name: string) => {
     return initialProps.head?.find((element) => element?.props?.name === name)?.props?.content;
@@ -35,7 +21,7 @@ class MyDocument extends Document<Props> {
     static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps & Props> {
         const initialProps = await Document.getInitialProps(ctx);
         const Decorator = await fetchDecoratorReact({
-            env: createDecoratorEnv(ctx),
+            env: decoratorEnv,
             params: {
                 chatbot: true,
                 context: 'privatperson',
