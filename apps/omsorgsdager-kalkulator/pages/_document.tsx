@@ -23,32 +23,17 @@ class MyDocument extends Document<Props> {
         const Decorator = await fetchDecoratorReact({
             env: decoratorEnv,
             params: {
-                chatbot: true,
+                simple: false,
+                chatbot: false,
+                feedback: false,
+                urlLookupTable: false,
                 context: 'privatperson',
-                breadcrumbs: [
-                    { url: '/minside', title: 'Min side' },
-                    { url: '/dine-pleiepenger', title: 'Dine pleiepenger' },
-                ],
             },
         });
 
         const language = getDocumentParameter(initialProps, 'lang');
 
         return { ...initialProps, Decorator, language };
-
-        // const initialProps = await Document.getInitialProps(ctx);
-
-        // const Decorator = await fetchDecoratorReact({
-        //     env: decoratorEnv,
-        //     simple: false,
-        //     chatbot: false,
-        //     feedback: false,
-        //     urlLookupTable: false,
-        // });
-
-        // const language = getDocumentParameter(initialProps, 'lang');
-
-        // return { ...initialProps, Decorator, language };
     }
 
     render(): JSX.Element {
