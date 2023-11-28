@@ -12,7 +12,7 @@ const DefaultPage: React.FunctionComponent<Props> = ({ children }) => (
     <>
         <VStack gap="10" className="p-5 max-w-[1128px] mx-auto">
             <PageHeader />
-            <Box className="mt-10">{children}</Box>
+            <Box>{children}</Box>
             <HvaSkjer />
         </VStack>
 

@@ -95,7 +95,7 @@ const startServer = () => {
 
     server.get('/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN', (req, res) => {
         res.send({
-            // metadata: { lastStepID: 'tidsrom', version: '6.1', updatedTimestamp: '2021-09-20T14:18:01.060Z' },
+            metadata: { lastStepID: 'tidsrom', version: '6.1', updatedTimestamp: '2023-07-01T20:54:12.060Z' },
         });
     });
 

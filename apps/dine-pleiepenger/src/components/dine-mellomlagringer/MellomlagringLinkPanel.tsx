@@ -14,6 +14,7 @@ const MellomlagringLinkPanel: React.FunctionComponent<Props> = ({ title, descrip
             {...rest}
             border={false}
             className="
+                group
                 rounded-lg
                 bg-transparent
                 text-white
@@ -24,7 +25,11 @@ const MellomlagringLinkPanel: React.FunctionComponent<Props> = ({ title, descrip
                 focus-within:bg-deepblue-700
                 focus-within:shadow-border-on-inverted">
             <HStack gap="4" align={'center'} wrap={false}>
-                <Hide below="sm">{icon ? <Box className="rounded-md bg-text-action p-4">{icon}</Box> : undefined}</Hide>
+                <Hide below="sm">
+                    {icon ? (
+                        <Box className="rounded-md bg-blue-600 group-hover:bg-blue-500 p-4">{icon}</Box>
+                    ) : undefined}
+                </Hide>
                 <Box>
                     <Heading level="3" size="small" className="mb-1">
                         {title}
