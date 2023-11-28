@@ -1,8 +1,7 @@
 'use client';
-import { BodyLong, Box, Heading } from '@navikt/ds-react';
+import { BodyLong, Box, Heading, Link } from '@navikt/ds-react';
 import React from 'react';
 import { dateFormatter } from '@navikt/sif-common-utils/lib';
-import Link from 'next/link';
 
 interface Props {
     frist?: Date;
@@ -25,13 +24,12 @@ const Svarfrist: React.FunctionComponent<Props> = ({ frist }) => {
                 ) : (
                     <p className="mb-2">TODO: Skrive tekst for når vi ikke får noen dato fra backend</p>
                 )}
-                <>
-                    <Link
-                        href="https://www.nav.no/saksbehandlingstider"
-                        className="text-deepblue-80 decoration-1 underline hover:no-underline">
-                        Se saksbehandlingstider
-                    </Link>
-                </>
+
+                <Link
+                    href="https://www.nav.no/saksbehandlingstider"
+                    className="text-deepblue-80 decoration-1 underline hover:no-underline">
+                    Se saksbehandlingstider
+                </Link>
             </BodyLong>
         </Box>
     );
