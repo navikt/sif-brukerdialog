@@ -1,18 +1,56 @@
-import { Heading } from '@navikt/ds-react';
-import { Mellomlagringer } from '../../types/Mellomlagring';
-import MellomlagringInfo from './MellomlagringInfo';
+import { HGrid } from '@navikt/ds-react';
+import dayjs from 'dayjs';
+import { useIntl } from 'react-intl';
+import { browserEnv } from '../../utils/env';
+import { MellomlagringEndring, MellomlagringPSB } from '../../types/Mellomlagring';
+import intlHelper from '../../utils/intlUtils';
+import MellomlagringLinkPanel from './MellomlagringLinkPanel';
 
 interface Props {
-    mellomlagringer: Mellomlagringer;
+    søknad?: MellomlagringPSB;
+    endring?: MellomlagringEndring;
 }
-const DineMellomlagringer: React.FunctionComponent<Props> = ({ mellomlagringer: { endring, søknad } }) => {
-    return (
-        <div>
-            <Heading level="2" size="medium" className="text-deepblue-800" spacing={true}>
-                Vil du fortsette der du slapp?
-            </Heading>
 
-            <MellomlagringInfo søknad={søknad} endring={endring} />
+const getDatoOgTidTilSlettSøknadString = (date: Date): string => {
+    return dayjs(date).add(72, 'hours').format('D. MMMM [kl.] HH:mm.');
+};
+
+const DineMellomlagringer = ({ endring, søknad }: Props) => {
+    const intl = useIntl();
+
+    if (!endring && !søknad) {
+        return null;
+    }
+
+    const datoNårSøknadSlettes = søknad?.metadata?.updatedTimestamp
+        ? getDatoOgTidTilSlettSøknadString(søknad?.metadata?.updatedTimestamp)
+        : undefined;
+    const datoNårEndringSlettes = endring?.metadata?.updatedTimestamp
+        ? getDatoOgTidTilSlettSøknadString(endring?.metadata?.updatedTimestamp)
+        : undefined;
+
+    return (
+        <div className="p-2 bg-deepblue-800 rounded-lg">
+            <HGrid gap="1" columns={{ sm: 1, md: 2 }}>
+                {datoNårSøknadSlettes && (
+                    <MellomlagringLinkPanel
+                        href={browserEnv.NEXT_PUBLIC_PLEIEPENGER_URL}
+                        title={intlHelper(intl, 'påbegyntSøknad.info.title')}
+                        description={intlHelper(intl, 'påbegyntSøknad.info', {
+                            datoNårSlettes: datoNårSøknadSlettes,
+                        })}
+                    />
+                )}
+                {datoNårEndringSlettes && (
+                    <MellomlagringLinkPanel
+                        href={browserEnv.NEXT_PUBLIC_ENDRINGSDIALOG_URL}
+                        title={intlHelper(intl, 'påbegyntEndring.info.title')}
+                        description={intlHelper(intl, 'påbegyntEndring.info', {
+                            datoNårSlettes: datoNårSøknadSlettes,
+                        })}
+                    />
+                )}
+            </HGrid>
         </div>
     );
 };

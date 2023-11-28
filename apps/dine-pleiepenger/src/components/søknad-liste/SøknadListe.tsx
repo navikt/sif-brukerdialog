@@ -1,20 +1,30 @@
-import { ExpansionCard, VStack } from '@navikt/ds-react';
+import { Box, Button, ExpansionCard, VStack } from '@navikt/ds-react';
 import { Søknad } from '../../types/Søknad';
 import SøknadTitle from './SøknadTitle';
 import SøknadContent from './SøknadContent';
 import Skeleton from 'react-loading-skeleton';
+import { useMemo, useState } from 'react';
 
 interface Props {
     søknader: Søknad[];
 }
 
 const SøknadListe: React.FunctionComponent<Props> = ({ søknader = [] }) => {
+    const [antall, setAntall] = useState(3);
+
+    const totalt = useMemo(() => søknader.length, [søknader]);
+
     if (søknader.length === 0) {
         return <>Ingen søknader funnet</>;
     }
+
+    const visFlereSøknader = () => {
+        setAntall(Math.min(søknader.length, antall + 5));
+    };
+
     return (
         <VStack gap="2">
-            {søknader.map((søknad) => {
+            {søknader.slice(0, antall).map((søknad) => {
                 const labelId = `søknad-${søknad.journalpostId}`;
                 return (
                     <ExpansionCard key={søknad.journalpostId} aria-labelledby={labelId}>
@@ -29,6 +39,13 @@ const SøknadListe: React.FunctionComponent<Props> = ({ søknader = [] }) => {
                     </ExpansionCard>
                 );
             })}
+            {antall < totalt ? (
+                <Box className="flex justify-start">
+                    <Button variant="tertiary-neutral" size="small" type="button" onClick={visFlereSøknader}>
+                        Vis flere innsendinger ...
+                    </Button>
+                </Box>
+            ) : null}
         </VStack>
     );
 };

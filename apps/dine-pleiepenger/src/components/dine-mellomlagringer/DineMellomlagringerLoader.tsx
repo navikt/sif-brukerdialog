@@ -3,7 +3,7 @@ import useSWR from 'swr';
 import ComponentLoader from '../component-loader/ComponentLoader';
 import { SøknadListeSkeleton } from '../søknad-liste/SøknadListe';
 import { mellomlagringFetcher } from '../../pages/api/mellomlagring.api';
-import MellomlagringInfo from './MellomlagringInfo';
+import DineMellomlagringer from './DineMellomlagringer';
 
 const DineMellomlagringerLoader = () => {
     const { data, error, isLoading } = useSWR('/dine-pleiepenger/api/mellomlagring', mellomlagringFetcher, {
@@ -30,7 +30,7 @@ const DineMellomlagringerLoader = () => {
                     fallback={<SøknadListeSkeleton rows={1} />}
                 />
             ) : (
-                <MellomlagringInfo søknad={data.søknad} endring={data.endring} />
+                <DineMellomlagringer søknad={data.søknad} endring={data.endring} />
             )}
         </div>
     );

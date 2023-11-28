@@ -19,18 +19,20 @@ function DinePleiepengerPage(): ReactElement {
             <Head>
                 <title>Dine pleiepenger</title>
             </Head>
-            <VStack gap="10">
-                <DineMellomlagringer mellomlagringer={mellomlagring} />
+            <VStack gap="12">
+                <DineMellomlagringer søknad={mellomlagring.søknad} endring={mellomlagring.endring} />
 
-                <Snarveier />
-
-                <Box className="md:flex md:gap-4">
+                <Box className="md:flex md:gap-6">
                     <div className="md:grow mb-10 md:mb-0">
-                        <DineSøknader søknader={søknader.slice(0, 5)} />
+                        <DineSøknader søknader={søknader} />
                     </div>
                     <div className="md:mb-none shrink-0 md:w-72">
                         <Svarfrist frist={svarfrist} />
                     </div>
+                </Box>
+
+                <Box className="mb-5">
+                    <Snarveier />
                 </Box>
             </VStack>
         </DefaultPage>

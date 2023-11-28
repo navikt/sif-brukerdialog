@@ -10,7 +10,7 @@ const DineSøknader: React.FunctionComponent<Props> = ({ søknader }) => {
     return (
         <Box>
             <Heading level="2" size="medium" className="text-deepblue-800" spacing={true}>
-                Dine søknader
+                Dine søknader, endringer og ettersendelser
             </Heading>
             <SøknadListe søknader={søknader} />
         </Box>

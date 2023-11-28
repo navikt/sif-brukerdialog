@@ -16,7 +16,7 @@ const DineSøknaderLoader = () => {
         return <Alert variant="error">Henting av data feilet</Alert>;
     }
 
-    return <DineSøknader søknader={(Array.isArray(data) ? data : []).slice(0, 5)} />;
+    return <DineSøknader søknader={Array.isArray(data) ? data : []} />;
 };
 
 export default DineSøknaderLoader;

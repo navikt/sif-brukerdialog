@@ -10,6 +10,7 @@
     background-color: green;
 }
 
-.navds-expansioncard__header {
+.navds-expansioncard__header,
+.navds-expansioncard__content {
     border: none;
 }
