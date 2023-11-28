@@ -21,6 +21,8 @@ function MyApp({ Component, pageProps }: AppProps<ServerSidePropsResult>): React
         '/dine-pleiepenger/api/innsynsdata',
         innsynsdataFetcher,
         {
+            revalidateOnFocus: false,
+            shouldRetryOnError: false,
             errorRetryCount: 0,
         },
     );
@@ -29,6 +31,13 @@ function MyApp({ Component, pageProps }: AppProps<ServerSidePropsResult>): React
         return (
             <EmptyPage>
                 <ComponentLoader />
+            </EmptyPage>
+        );
+    }
+    if (error && error.status === 403) {
+        return (
+            <EmptyPage>
+                <HentBrukerFeilet error={error} />
             </EmptyPage>
         );
     }

@@ -10,7 +10,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     } = req;
 
     if (info?.length !== 3 || !Array.isArray(info)) {
-        throw new Error('Invalid document path info');
+        throw new Error('Ugyldig path i url');
     }
 
     try {

@@ -10,10 +10,10 @@ export async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
     const organisasjonsnummer = query.organisasjonsnummer as string;
 
     if (!søknadId) {
-        throw Error('SøknadId mangler');
+        throw Error('SøknadId mangler i query');
     }
     if (!organisasjonsnummer) {
-        throw Error('Organisasjonsnummer mangler');
+        throw Error('Organisasjonsnummer mangler i query');
     }
 
     try {

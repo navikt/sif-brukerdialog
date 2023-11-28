@@ -11,13 +11,11 @@ export const søknaderFetcher = async (url: string): Promise<Søknad[]> => axios
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
-        const childLogger = createChildLogger(getXRequestId(req));
         const response = await fetchSøknader(req);
-        childLogger.debug(`Søknader fetched:`, response);
         res.send(response.sort(sortSøknadEtterOpprettetDato));
     } catch (err) {
         const childLogger = createChildLogger(getXRequestId(req));
-        childLogger.error(`Fetching søknader failed: ${err}`);
+        childLogger.error(`Hent søknader feilet: ${err}`);
         res.status(500).json({ error: 'Kunne ikke hente søknader', err });
     }
 }

@@ -16,7 +16,7 @@ export enum ApiService {
 }
 
 export enum ApiEndpointBrukerdialog {
-    'søker' = 'oppslag/soker',
+    'søker' = 'oppslag/soker-ikke-tilgang',
     'påbegyntSøknad' = 'mellomlagring/PLEIEPENGER_SYKT_BARN',
     'påbegyntEndring' = 'mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN',
 }
@@ -29,6 +29,18 @@ export enum SifApiErrorType {
     UNAUTHORIZED = 'UNAUTHORIZED',
     NO_ACCESS = 'NO_ACCESS',
 }
+
+export const fetchSøker = async (req: NextApiRequest): Promise<Søker> => {
+    const context = getContextForApiHandler(req);
+    const { url, headers } = await exchangeTokenAndPrepRequest(
+        ApiService.k9Brukerdialog,
+        context,
+        ApiEndpointBrukerdialog.søker,
+    );
+    createChildLogger(getXRequestId(req)).info(`Fetching søker from url: ${url}`);
+    const response = await axios.get(url, { headers });
+    return await SøkerSchema.parse(response.data);
+};
 
 export const fetchSvarfrist = async (req: NextApiRequest): Promise<Svarfrist> => {
     const context = getContextForApiHandler(req);
@@ -49,18 +61,6 @@ export const fetchSøknader = async (req: NextApiRequest): Promise<Søknad[]> =>
     const response = await axios.get(url, { headers });
     const parse = (it) => it as Søknad[]; // TODO vurdere å lage eget schema for søknad
     return await parse(response.data);
-};
-
-export const fetchSøker = async (req: NextApiRequest): Promise<Søker> => {
-    const context = getContextForApiHandler(req);
-    const { url, headers } = await exchangeTokenAndPrepRequest(
-        ApiService.k9Brukerdialog,
-        context,
-        ApiEndpointBrukerdialog.søker,
-    );
-    createChildLogger(getXRequestId(req)).info(`Fetching søker from url: ${url}`);
-    const response = await axios.get(url, { headers });
-    return await SøkerSchema.parse(response.data);
 };
 
 /**

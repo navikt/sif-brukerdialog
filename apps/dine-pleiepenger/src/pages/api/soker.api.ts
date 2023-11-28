@@ -13,8 +13,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         res.send(await fetchSøker(req));
     } catch (err) {
         const childLogger = createChildLogger(getXRequestId(req));
-        childLogger.error(`Fetching søker failed: ${err}`);
-        res.status(500).json({ error: 'Kunne ikke hente bruker', err });
+        childLogger.error(`Hent søker feilet: ${err}`);
+        res.status(500).json({ error: 'Kunne ikke hente søker', err });
     }
 }
 

@@ -9,7 +9,7 @@ interface Props {
 
 const HentBrukerFeilet: React.FunctionComponent<Props> = ({ error }) => (
     <EmptyPage>
-        <GuidePanel poster={true}>
+        <GuidePanel poster={true} className="w-3/6 m-auto">
             {error.response?.status === 403 ? (
                 <>
                     <Heading level="1" size="large" spacing={true}>

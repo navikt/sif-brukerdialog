@@ -6,7 +6,6 @@ import { Svarfrist } from '../../server/api-models/Svarfrist';
 import { fetchSvarfrist } from '../../server/apiService';
 import { getXRequestId } from '../../utils/apiUtils';
 
-/** Fetcher som kaller denne handleren */
 export const svarfristFetcher = async (url: string): Promise<Svarfrist> => axios.get(url).then((res) => res.data);
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -15,8 +14,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         res.send(data);
     } catch (err) {
         const childLogger = createChildLogger(getXRequestId(req));
-        childLogger.error(`Fetching saksbehandlingstid failed: ${err}`);
-        res.status(500).json({ error: 'Kunne ikke hente saksbehandlingstid', err });
+        childLogger.error(`Hent svarfrist feilet: ${err}`);
+        res.status(500).json({ error: 'Kunne ikke hente svarfrist', err });
     }
 }
 
