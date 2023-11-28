@@ -24,8 +24,8 @@ class MyDocument extends Document<Props> {
             env: decoratorEnv,
             params: {
                 simple: false,
-                chatbot: false,
-                feedback: false,
+                chatbot: true,
+                feedback: true,
                 urlLookupTable: false,
                 context: 'privatperson',
             },
