@@ -4379,7 +4379,7 @@ __metadata:
     "@storybook/preset-create-react-app": 7.5.3
     "@storybook/react": 7.5.3
     "@storybook/react-vite": 7.5.3
-    "@storybook/test-runner": 0.15.2
+    "@storybook/test-runner": 0.16.0
     "@storybook/testing-library": 0.2.2
     "@types/jest": 29.5.10
     "@types/node": 20.9.4
@@ -7698,14 +7698,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/test-runner@npm:0.15.2":
-  version: 0.15.2
-  resolution: "@storybook/test-runner@npm:0.15.2"
+"@storybook/test-runner@npm:0.16.0":
+  version: 0.16.0
+  resolution: "@storybook/test-runner@npm:0.16.0"
   dependencies:
     "@babel/core": ^7.22.5
     "@babel/generator": ^7.22.5
     "@babel/template": ^7.22.5
     "@babel/types": ^7.22.5
+    "@jest/types": ^29.6.3
     "@storybook/core-common": ^7.0.0-beta.0 || ^7.0.0-rc.0 || ^7.0.0
     "@storybook/csf": ^0.1.1
     "@storybook/csf-tools": ^7.0.0-beta.0 || ^7.0.0-rc.0 || ^7.0.0
@@ -7720,7 +7721,7 @@ __metadata:
     jest-circus: ^29.6.4
     jest-environment-node: ^29.6.4
     jest-junit: ^16.0.0
-    jest-playwright-preset: ^3.0.1
+    jest-playwright-preset: ^4.0.0
     jest-runner: ^29.6.4
     jest-serializer-html: ^7.1.0
     jest-watch-typeahead: ^2.0.0
@@ -7731,7 +7732,7 @@ __metadata:
     ts-dedent: ^2.0.0
   bin:
     test-storybook: dist/test-storybook.js
-  checksum: e070a41d6e76b0c233c3d8304372f9be9d930b95af6ebefa0ffcd225de26ee012b623496b699c23b09a0076c0ce236bb5de2288c273115a56864b1a957e66a63
+  checksum: 65c6cf83dc02e86557d7ecd94620d3353079cd2f54e2f2e45bc547dccddb19eb2d95c211832f5cf5abd9c0f23535a3e05357edf73091a91bc4ed31fd6776ff2f
   languageName: node
   linkType: hard
 
@@ -10707,15 +10708,6 @@ __metadata:
     form-data: ^4.0.0
     proxy-from-env: ^1.1.0
   checksum: 4a7429e2b784be0f2902ca2680964391eae7236faa3967715f30ea45464b98ae3f1c6f631303b13dfe721b17126b01f486c7644b9ef276bfc63112db9fd379f8
-  languageName: node
-  linkType: hard
-
-"axios@npm:^0.21.1":
-  version: 0.21.4
-  resolution: "axios@npm:0.21.4"
-  dependencies:
-    follow-redirects: ^1.14.0
-  checksum: 44245f24ac971e7458f3120c92f9d66d1fc695e8b97019139de5b0cc65d9b8104647db01e5f46917728edfc0cfd88eb30fc4c55e6053eef4ace76768ce95ff3c
   languageName: node
   linkType: hard
 
@@ -16255,7 +16247,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.0.0, follow-redirects@npm:^1.14.0, follow-redirects@npm:^1.15.0, follow-redirects@npm:^1.15.2":
+"follow-redirects@npm:^1.0.0, follow-redirects@npm:^1.15.0, follow-redirects@npm:^1.15.2":
   version: 1.15.3
   resolution: "follow-redirects@npm:1.15.3"
   peerDependenciesMeta:
@@ -19647,12 +19639,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-playwright-preset@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "jest-playwright-preset@npm:3.0.1"
+"jest-playwright-preset@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "jest-playwright-preset@npm:4.0.0"
   dependencies:
     expect-playwright: ^0.8.0
-    jest-process-manager: ^0.3.1
+    jest-process-manager: ^0.4.0
     nyc: ^15.1.0
     playwright-core: ">=1.2.0"
     rimraf: ^3.0.2
@@ -19662,7 +19654,7 @@ __metadata:
     jest-circus: ^29.3.1
     jest-environment-node: ^29.3.1
     jest-runner: ^29.3.1
-  checksum: 2ee504fce5b72fef847c3bbfc74627c602fa07257828cc2572c19a172409d2d1ef6a2a02f08f107f5ac298e420f689371b0b0d939629ca9ee34ccb45557befd1
+  checksum: bd59c166114c243c1e1506d5a6a11b583e280d0b6a8004022951b816919cd0aff45702ad802c966ea9dac722ddf6ad94e4c7d17cfbeb1fb657ac14053a24d47d
   languageName: node
   linkType: hard
 
@@ -19678,9 +19670,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-process-manager@npm:^0.3.1":
-  version: 0.3.1
-  resolution: "jest-process-manager@npm:0.3.1"
+"jest-process-manager@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "jest-process-manager@npm:0.4.0"
   dependencies:
     "@types/wait-on": ^5.2.0
     chalk: ^4.1.0
@@ -19691,8 +19683,8 @@ __metadata:
     signal-exit: ^3.0.3
     spawnd: ^5.0.0
     tree-kill: ^1.2.2
-    wait-on: ^5.3.0
-  checksum: b71a0412c747d75341672a3ac42bb529232011039562b839cc73704debccf5aaf0e8a4db3a91ad05a819247f3191de905d2e7a1df7299eb895a28733a041f9d7
+    wait-on: ^7.0.0
+  checksum: 7c31a2d08eeb801c8a9a29c4b129a173527472f167d2c7d4cda104bc9d711fb08919de0a96ba37a1564172bcec2219c41d9fc748900b1e1eb5f9e1736c23850b
   languageName: node
   linkType: hard
 
@@ -20210,7 +20202,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"joi@npm:^17.11.0, joi@npm:^17.3.0":
+"joi@npm:^17.11.0":
   version: 17.11.0
   resolution: "joi@npm:17.11.0"
   dependencies:
@@ -26741,15 +26733,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rxjs@npm:^6.6.3":
-  version: 6.6.7
-  resolution: "rxjs@npm:6.6.7"
-  dependencies:
-    tslib: ^1.9.0
-  checksum: bc334edef1bb8bbf56590b0b25734ba0deaf8825b703256a93714308ea36dff8a11d25533671adf8e104e5e8f256aa6fdfe39b2e248cdbd7a5f90c260acbbd1b
-  languageName: node
-  linkType: hard
-
 "rxjs@npm:^7.0.0, rxjs@npm:^7.5.1, rxjs@npm:^7.5.5, rxjs@npm:^7.8.1":
   version: 7.8.1
   resolution: "rxjs@npm:7.8.1"
@@ -29125,7 +29108,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^1.13.0, tslib@npm:^1.8.1, tslib@npm:^1.9.0":
+"tslib@npm:^1.13.0, tslib@npm:^1.8.1":
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
   checksum: dbe628ef87f66691d5d2959b3e41b9ca0045c3ee3c7c7b906cc1e328b39f199bb1ad9e671c39025bd56122ac57dfbf7385a94843b1cc07c60a4db74795829acd
@@ -30133,7 +30116,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wait-on@npm:7.2.0":
+"wait-on@npm:7.2.0, wait-on@npm:^7.0.0":
   version: 7.2.0
   resolution: "wait-on@npm:7.2.0"
   dependencies:
@@ -30145,21 +30128,6 @@ __metadata:
   bin:
     wait-on: bin/wait-on
   checksum: 69ec1432bb4479363fdd71f2f3f501a98aa356a562781108a4a89ef8fdf1e3d5fd0c2fd56c4cc5902abbb662065f1f22d4e436a1e6fc9331ce8b575eb023325e
-  languageName: node
-  linkType: hard
-
-"wait-on@npm:^5.3.0":
-  version: 5.3.0
-  resolution: "wait-on@npm:5.3.0"
-  dependencies:
-    axios: ^0.21.1
-    joi: ^17.3.0
-    lodash: ^4.17.21
-    minimist: ^1.2.5
-    rxjs: ^6.6.3
-  bin:
-    wait-on: bin/wait-on
-  checksum: b7099104b7900ff6349f1196edff759076ab557a2053c017a587819f7a59f146ec9e35c99579acd31dcda371bfa72241ef28b8ccda902f0bf3fbf2d780a00ebf
   languageName: node
   linkType: hard
 
