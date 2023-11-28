@@ -1,35 +1,16 @@
-FROM node:18-alpine AS base
-RUN apk update && apk add git
-RUN apk add --no-cache libc6-compat
-
-RUN yarn global add turbo
-
+FROM gcr.io/distroless/nodejs18-debian11:nonroot
 WORKDIR /app
 
-ENV SCOPE=@navikt/dine-pleiepenger
+COPY /apps/dine-pleiepenger/next.config.js .
 
-FROM base AS pruner
-COPY . .
-RUN yarn
-RUN yarn turbo run build-app --filter=${SCOPE}
+COPY /apps/dine-pleiepenger/.next/standalone ./
+COPY /apps/dine-pleiepenger/.next/static ./apps/dine-pleiepenger/.next/static
 
-ENV NODE_ENV production
+COPY /apps/dine-pleiepenger/public ./public
 
-RUN addgroup --system --gid 1069 nodejs
-RUN adduser --system --uid 1069 nextjs
-USER nextjs
-
-FROM gcr.io/distroless/nodejs18-debian11:nonroot
-WORKDIR /apps/dine-pleiepenger
-COPY --from=pruner /app/apps/dine-pleiepenger/next.config.js .
-COPY --from=pruner /app/apps/dine-pleiepenger/package.json .
-
-COPY --from=pruner --chown=nextjs:nodejs /app/apps/dine-pleiepenger/.next/standalone ./
-COPY --from=pruner --chown=nextjs:nodejs /app/apps/dine-pleiepenger/.next/static ./.next/static
-COPY --from=pruner --chown=nextjs:nodejs /app/apps/dine-pleiepenger/public ./public
+ENV NODE_ENV=production
+ENV PORT 8080
 
 EXPOSE 8080
 
-ENV PORT 8080g
-
-CMD ["server.js"]
+CMD ["apps/dine-pleiepenger/server.js"]

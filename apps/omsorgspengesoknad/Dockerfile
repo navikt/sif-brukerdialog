@@ -1,19 +1,3 @@
-
-FROM node:18-alpine AS base
-RUN apk update && apk add git
-RUN apk add --no-cache libc6-compat
-
-RUN yarn global add turbo
-
-WORKDIR /app
-
-ENV SCOPE=@navikt/omsorgspengesoknad
-
-FROM base AS pruner
-COPY . .
-RUN yarn
-RUN yarn turbo run build-app --filter=${SCOPE}
-
 FROM gcr.io/distroless/nodejs18-debian11:nonroot
 WORKDIR /apps/omsorgspengesoknad
 COPY --from=pruner /app/node_modules ./node_modules/
