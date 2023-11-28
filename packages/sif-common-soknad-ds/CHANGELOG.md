@@ -1,5 +1,14 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.10.0
+
+### Minor Changes
+
+-   53b47be: Nav Dekoratøren 2 i alle apper
+    Vite 5
+    patch og noen minor
+    Beholder react-router-dom 6.19.0 pga navigasjon knekker i noen apper
+
 ## 10.9.0
 
 ### Minor Changes

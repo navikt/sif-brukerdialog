@@ -1,5 +1,14 @@
 # @navikt/sif-common-formik-ds
 
+## 1.5.0
+
+### Minor Changes
+
+-   53b47be: Nav Dekoratøren 2 i alle apper
+    Vite 5
+    patch og noen minor
+    Beholder react-router-dom 6.19.0 pga navigasjon knekker i noen apper
+
 ## 1.4.0
 
 ### Minor Changes
