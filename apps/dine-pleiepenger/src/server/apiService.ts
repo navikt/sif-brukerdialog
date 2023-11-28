@@ -16,7 +16,7 @@ export enum ApiService {
 }
 
 export enum ApiEndpointBrukerdialog {
-    'søker' = 'oppslag/soker-ikke-tilgang',
+    'søker' = 'oppslag/soker',
     'påbegyntSøknad' = 'mellomlagring/PLEIEPENGER_SYKT_BARN',
     'påbegyntEndring' = 'mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN',
 }

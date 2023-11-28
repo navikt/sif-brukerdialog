@@ -9,7 +9,7 @@ interface Props {
 
 const DefaultPage: React.FunctionComponent<Props> = ({ children }) => (
     <>
-        <div style={{ padding: '2rem' }}>
+        <div className="p-5">
             <div className="max-w-[1128px] mx-auto">
                 <PageHeader />
                 <Box className="mt-10">{children}</Box>

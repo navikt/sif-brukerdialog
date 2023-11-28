@@ -34,7 +34,7 @@ function MyApp({ Component, pageProps }: AppProps<ServerSidePropsResult>): React
             </EmptyPage>
         );
     }
-    if (error && error.status === 403) {
+    if (error) {
         return (
             <EmptyPage>
                 <HentBrukerFeilet error={error} />
