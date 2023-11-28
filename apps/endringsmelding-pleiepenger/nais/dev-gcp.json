@@ -23,6 +23,7 @@
         "USE_AMPLITUDE": "true"
     },
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
+    "accessPolicyOutApps": ["k9-brukerdialog-api", "sif-innsyn-api"],
     "ingresses": ["https://endringsmelding-pleiepenger.intern.dev.nav.no"],
     "livenessPath": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/health/isAlive",
     "namespace": "dusseldorf",

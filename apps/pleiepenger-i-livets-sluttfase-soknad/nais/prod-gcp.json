@@ -5,8 +5,11 @@
     "team": "dusseldorf",
     "ingresses": ["https://www.nav.no/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase"],
     "externalHosts": ["www.nav.no"],
+    "accessPolicyOutApps": ["k9-brukerdialog-api"],
     "livenessPath": "/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/health/isAlive",
     "readinessPath": "/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/health/isReady",
+    "minReplicas": 2,
+    "maxReplicas": 2,
     "env": {
         "DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=true&chatbot=false&logoutUrl=https://www.nav.no/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/oauth2/logout",
         "API_URL": "http://k9-brukerdialog-api",
