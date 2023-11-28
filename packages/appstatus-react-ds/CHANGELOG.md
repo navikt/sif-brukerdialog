@@ -1,5 +1,14 @@
 # @navikt/appstatus-react-ds
 
+## 2.17.0
+
+### Minor Changes
+
+-   53b47be: Nav Dekoratøren 2 i alle apper
+    Vite 5
+    patch og noen minor
+    Beholder react-router-dom 6.19.0 pga navigasjon knekker i noen apper
+
 ## 2.16.0
 
 ### Minor Changes

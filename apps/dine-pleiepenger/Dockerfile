@@ -14,4 +14,3 @@ ENV PORT 8080
 EXPOSE 8080
 
 CMD ["apps/dine-pleiepenger/server.js"]
-
