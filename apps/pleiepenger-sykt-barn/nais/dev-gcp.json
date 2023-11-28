@@ -5,8 +5,11 @@
     "team": "dusseldorf",
     "ingresses": ["https://pleiepengesoknad.intern.dev.nav.no"],
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
+    "accessPolicyOutApps": ["k9-brukerdialog-api"],
     "livenessPath": "/familie/sykdom-i-familien/soknad/pleiepenger/health/isAlive",
     "readinessPath": "/familie/sykdom-i-familien/soknad/pleiepenger/health/isReady",
+    "minReplicas": 1,
+    "maxReplicas": 1,
     "env": {
         "API_TOKENX_AUDIENCE": "dev-gcp:dusseldorf:k9-brukerdialog-api",
         "API_URL_INNSYN": "http://sif-innsyn-api",

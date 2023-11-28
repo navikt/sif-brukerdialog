@@ -29,9 +29,10 @@ spec:
             memory: 128Mi
     accessPolicy:
         outbound:
-            rules: 
-             - application: k9-brukerdialog-api
-             - application: sif-innsyn-api
+            rules:
+            {{#each accessPolicyOutApps as |application|}}
+             - application: {{application}}
+            {{/each}} 
              - application: nav-dekoratoren
                namespace: personbruker
             external:
@@ -43,8 +44,8 @@ spec:
        - {{url}}
           {{/each}}
     replicas:
-        min: 2
-        max: 2
+        min: {{ minReplicas }}
+        max: {{ maxReplicas }}
         cpuThresholdPercentage: 90
     prometheus:
         enabled: true
