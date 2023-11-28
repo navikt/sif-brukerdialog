@@ -5,7 +5,6 @@ import { browserEnv } from '../../utils/env';
 import { MellomlagringEndring, MellomlagringPSB } from '../../types/Mellomlagring';
 import intlHelper from '../../utils/intlUtils';
 import MellomlagringLinkPanel from './MellomlagringLinkPanel';
-import Link from 'next/link';
 
 interface Props {
     søknad?: MellomlagringPSB;
@@ -32,7 +31,6 @@ const DineMellomlagringer = ({ endring, søknad }: Props) => {
 
     return (
         <div className="p-2 bg-deepblue-800 rounded-lg">
-            <Link href="abc">sdfsdf</Link>
             <HGrid gap="1" columns={{ sm: 1, md: 2 }}>
                 {datoNårSøknadSlettes && (
                     <MellomlagringLinkPanel
@@ -48,7 +46,7 @@ const DineMellomlagringer = ({ endring, søknad }: Props) => {
                         href={browserEnv.NEXT_PUBLIC_ENDRINGSDIALOG_URL}
                         title={intlHelper(intl, 'påbegyntEndring.info.title')}
                         description={intlHelper(intl, 'påbegyntEndring.info', {
-                            datoNårSlettes: datoNårSøknadSlettes,
+                            datoNårSlettes: datoNårEndringSlettes,
                         })}
                     />
                 )}
