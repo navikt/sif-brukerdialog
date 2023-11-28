@@ -1,9 +1,10 @@
-import { Box, Button, ExpansionCard, VStack } from '@navikt/ds-react';
+import { Box, Button, ExpansionCard, HStack, VStack } from '@navikt/ds-react';
 import { Søknad } from '../../types/Søknad';
 import SøknadTitle from './SøknadTitle';
 import SøknadContent from './SøknadContent';
 import Skeleton from 'react-loading-skeleton';
 import { useMemo, useState } from 'react';
+import { Add } from '@navikt/ds-icons';
 
 interface Props {
     søknader: Søknad[];
@@ -41,8 +42,11 @@ const SøknadListe: React.FunctionComponent<Props> = ({ søknader = [] }) => {
             })}
             {antall < totalt ? (
                 <Box className="flex justify-start">
-                    <Button variant="tertiary-neutral" size="small" type="button" onClick={visFlereSøknader}>
-                        Vis flere innsendinger ...
+                    <Button variant="tertiary-neutral" type="button" onClick={visFlereSøknader}>
+                        <HStack gap="2" align="center" wrap={false}>
+                            <Add />
+                            Vis flere innsendinger
+                        </HStack>
                     </Button>
                 </Box>
             ) : null}

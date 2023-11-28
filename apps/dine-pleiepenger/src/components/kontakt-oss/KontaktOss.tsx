@@ -1,4 +1,4 @@
-import { Dialog, Send, Telephone } from '@navikt/ds-icons';
+import { Dialog, DialogFilled, Send, SendFilled, Telephone, TelephoneFilled } from '@navikt/ds-icons';
 import { BodyLong, Box, HGrid, HStack, Heading, Link, VStack } from '@navikt/ds-react';
 
 import React from 'react';
@@ -7,16 +7,19 @@ interface Props {}
 
 const KontaktOssFooter: React.FunctionComponent<Props> = ({}) => {
     return (
-        <VStack gap="10">
+        <VStack gap="8" className="mb-10">
             <Heading level="2" size="medium">
                 Finner du ikke svaret her? Ta kontakt med oss
             </Heading>
-            <HGrid columns={{ md: 3 }} gap="10">
+            <HGrid columns={{ md: 3 }} gap="8">
                 <Box>
                     <Heading level="3" size="small" spacing={true}>
-                        <Link href="https://www.nav.no/pleiepenger-barn#">
-                            <HStack gap="2" align={'center'}>
-                                <Dialog />
+                        <Link href="https://www.nav.no/kontaktoss#chat-med-oss" className="group">
+                            <HStack gap="2" align={'center'} wrap={false}>
+                                <div role="presentation">
+                                    <Dialog className="group-hover:hidden" />
+                                    <DialogFilled className="hidden group-hover:block" />
+                                </div>
                                 Chat med oss
                             </HStack>
                         </Link>
@@ -28,9 +31,12 @@ const KontaktOssFooter: React.FunctionComponent<Props> = ({}) => {
                 </Box>
                 <Box>
                     <Heading level="3" size="small" spacing={true}>
-                        <Link href="https://www.nav.no/kontaktoss#skriv-til-oss">
-                            <HStack gap="2" align={'center'}>
-                                <Send />
+                        <Link href="https://www.nav.no/kontaktoss#skriv-til-oss" className="group">
+                            <HStack gap="2" align={'center'} wrap={false}>
+                                <div role="presentation">
+                                    <Send className="group-hover:hidden" />
+                                    <SendFilled className="hidden group-hover:block" />
+                                </div>
                                 Skriv til oss
                             </HStack>
                         </Link>
@@ -40,15 +46,20 @@ const KontaktOssFooter: React.FunctionComponent<Props> = ({}) => {
                 </Box>
                 <Box>
                     <Heading level="3" size="small" spacing={true}>
-                        <Link href="tel:55553333">
-                            <HStack gap="2" align={'center'}>
-                                <Telephone />
+                        <Link href="tel:55553333" className="group">
+                            <HStack gap="2" align={'center'} wrap={false}>
+                                <div role="presentation">
+                                    <Telephone className="group-hover:hidden" />
+                                    <TelephoneFilled className="hidden group-hover:block" />
+                                </div>
                                 Ring oss på 55 55 33 33
                             </HStack>
                         </Link>
                     </Heading>
                     <BodyLong as="div">
-                        <p>Åpent hverdager kl. 9–15. Vi kan ringe deg tilbake hvis ventetiden er over 5 min.</p>
+                        <p className="mb-2">
+                            Åpent hverdager kl. 9–15. Vi kan ringe deg tilbake hvis ventetiden er over 5 min.
+                        </p>
                         <p>
                             <Link href="https://www.nav.no/kontaktoss#ring-oss" className="nav-ds-link">
                                 Se flere telefonnummer og tastevalg
