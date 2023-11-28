@@ -44,7 +44,7 @@
         "react-dom": "18.2.0",
         "react-fast-compare": "3.2.2",
         "react-intl": "6.5.5",
-        "react-router-dom": "6.20.0",
+        "react-router-dom": "6.19.0",
         "vite": "4.5.0",
         "vite-plugin-checker": "0.6.2"
     },
@@ -78,7 +78,7 @@
         "express-rate-limit": "7.1.5",
         "html-webpack-harddisk-plugin": "2.0.0",
         "html-webpack-plugin": "5.5.3",
-        "jsdom": "22.1.0",
+        "jsdom": "23.0.0",
         "mini-css-extract-plugin": "2.7.6",
         "postcss": "8.4.31",
         "postcss-loader": "7.3.3",

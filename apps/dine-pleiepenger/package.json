@@ -7,7 +7,6 @@
         "build": "next build",
         "start": "next start -p 8080",
         "lint": "next lint",
-        "test": "jest",
         "dev-api": "node ./server/api-mock.js",
         "playwright-test": "playwright test"
     },

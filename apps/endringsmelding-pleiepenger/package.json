@@ -46,7 +46,7 @@
         "react-dom": "18.2.0",
         "react-intl": "6.5.5",
         "react-modal": "3.16.1",
-        "react-router-dom": "6.20.0"
+        "react-router-dom": "6.19.0"
     },
     "devDependencies": {
         "@babel/core": "7.23.3",
@@ -86,7 +86,7 @@
         "cypress": "13.6.0",
         "cypress-axe": "1.5.0",
         "cypress-file-upload": "5.0.8",
-        "jsdom": "22.1.0",
+        "jsdom": "23.0.0",
         "mini-css-extract-plugin": "2.7.6",
         "msw": "2.0.9",
         "postcss": "8.4.31",
