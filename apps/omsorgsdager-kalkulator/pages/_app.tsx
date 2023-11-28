@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app';
 import { IntlProvider } from 'react-intl';
-import { Locale } from '@navikt/nav-dekoratoren-moduler';
+import { DecoratorLocale } from '@navikt/nav-dekoratoren-moduler';
 import Container from '../components/container/Container';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
@@ -27,7 +27,7 @@ export default function App({ Component, pageProps }: AppProps) {
     const router = useRouter();
     const locale = getLocaleOrFallback(router.locale);
     return (
-        <IntlProvider locale={locale} messages={messages[locale as Locale]}>
+        <IntlProvider locale={locale} messages={messages[locale as DecoratorLocale]}>
             <>
                 <Head>
                     {process.env.NEXT_PUBLIC_ENVIRONMENT != 'prod' ? <meta name="robots" content="noindex" /> : ''}
