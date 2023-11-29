@@ -1,5 +1,11 @@
 # config
 
+## 0.9.1
+
+### Patch Changes
+
+-   295d3ad: Diverse mindre pakkeoppdateringer - versjonstrigger
+
 ## 0.9.0
 
 ### Minor Changes

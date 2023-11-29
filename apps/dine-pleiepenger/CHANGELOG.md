@@ -1,5 +1,14 @@
 # @navikt/dine-pleiepenger
 
+## 0.3.1
+
+### Patch Changes
+
+-   295d3ad: Diverse mindre pakkeoppdateringer - versjonstrigger
+-   Updated dependencies [295d3ad]
+    -   @navikt/sif-common-core-ds@9.11.1
+    -   @navikt/sif-common-utils@3.43.1
+
 ## 0.3.0
 
 ### Minor Changes
