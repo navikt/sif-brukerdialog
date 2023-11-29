@@ -15,6 +15,7 @@ import { innsynsdataFetcher } from './api/innsynsdata.api';
 import 'react-loading-skeleton/dist/skeleton.css';
 import '../components/process/process.css';
 import '../style/global.css';
+import Head from 'next/head';
 
 function MyApp({ Component, pageProps }: AppProps<ServerSidePropsResult>): ReactElement {
     const { data, error, isLoading } = useSWR<Innsynsdata, AxiosError>(
@@ -30,6 +31,7 @@ function MyApp({ Component, pageProps }: AppProps<ServerSidePropsResult>): React
     if (isLoading) {
         return (
             <EmptyPage>
+                <Head>Henter informasjon - Dine pleiepenger</Head>
                 <ComponentLoader />
             </EmptyPage>
         );

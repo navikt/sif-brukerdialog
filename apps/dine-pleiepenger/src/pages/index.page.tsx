@@ -28,7 +28,7 @@ function DinePleiepengerPage(): ReactElement {
                         <DineSøknader søknader={søknader} />
                     </div>
                     <div className="md:mb-none shrink-0 md:w-72">
-                        <Svarfrist frist={svarfrist} />
+                        <Svarfrist frist={søknader.length > 0 ? svarfrist : undefined} />
                     </div>
                 </Box>
                 <Box>
