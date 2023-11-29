@@ -1,23 +1,21 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { createChildLogger } from '@navikt/next-logger';
 import axios from 'axios';
-import { api } from '../../api';
-import { ApiEndpointBrukerdialog } from '../../api/endpoints';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
-import { Søker } from '../../types/Søker';
-import { isForbidden } from '../../utils/apiUtils';
+import { Søker } from '../../server/api-models/Søker';
+import { fetchSøker } from '../../server/apiService';
+import { getXRequestId } from '../../utils/apiUtils';
 
-async function handler(_req: NextApiRequest, res: NextApiResponse) {
+export const søkerFetcher = async (url: string): Promise<Søker> => axios.get(url).then((res) => res.data);
+
+async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
-        const response = await api.brukerdialog.get(ApiEndpointBrukerdialog.søker);
-        res.status(200).json(response.data);
+        res.send(await fetchSøker(req));
     } catch (err) {
-        if (isForbidden(err)) {
-            res.status(403).json({ error: 'Bruker har ikke tilgang' });
-        }
-        res.status(500).json({ error: 'Kunne ikke hente bruker', err });
+        const childLogger = createChildLogger(getXRequestId(req));
+        childLogger.error(`Hent søker feilet: ${err}`);
+        res.status(500).json({ error: 'Kunne ikke hente søker', err });
     }
 }
 
 export default withAuthenticatedApi(handler);
-
-export const søkerFecther = async (url: string) => axios.get<Søker>(url).then((res) => res.data);

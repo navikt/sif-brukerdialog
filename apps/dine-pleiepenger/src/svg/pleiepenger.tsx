@@ -1,6 +1,13 @@
 const PleiepengerSVG = () => {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" fill="none" viewBox="0 0 96 96">
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="72"
+            height="72"
+            fill="none"
+            viewBox="0 0 96 96"
+            role="presentation"
+            aria-hidden="true">
             <g clipPath="url(#clip0_1_984)">
                 <rect width="52" height="52" x="22" y="23" fill="#fff" rx="26"></rect>
                 <path

@@ -7,7 +7,7 @@
         "build": "next build",
         "start": "next start -p 8080",
         "lint": "next lint",
-        "dev-api": "node ./server/api-mock.js",
+        "dev-api": "node ./api-mock-server/api-mock-server.js",
         "playwright-test": "playwright test"
     },
     "dependencies": {

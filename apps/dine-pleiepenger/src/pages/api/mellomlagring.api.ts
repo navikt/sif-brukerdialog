@@ -1,25 +1,22 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { createChildLogger } from '@navikt/next-logger';
 import axios from 'axios';
-import { api } from '../../api';
-import { ApiEndpointBrukerdialog } from '../../api/endpoints';
-import { Mellomlagring } from '../../types/Mellomlagring';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
+import { fetchMellomlagringer } from '../../server/apiService';
+import { Mellomlagringer } from '../../types/Mellomlagring';
+import { getXRequestId } from '../../utils/apiUtils';
 
-async function handler(_req: NextApiRequest, res: NextApiResponse) {
+export const mellomlagringFetcher = async (url: string): Promise<Mellomlagringer> =>
+    axios.get(url).then((res) => res.data);
+
+async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
-        const [mellomlagringSøknad, mellomlagringEndring] = await Promise.all([
-            api.brukerdialog.get(ApiEndpointBrukerdialog.mellomlagringSøknad).then((res) => res.data),
-            api.brukerdialog.get(ApiEndpointBrukerdialog.mellomlagringEndring).then((res) => res.data),
-        ]);
-        res.status(200).json({
-            mellomlagringSøknad,
-            mellomlagringEndring,
-        });
+        res.send(await fetchMellomlagringer(req));
     } catch (err) {
-        res.status(500).json({ error: 'failed to load data for mellomlagring', err });
+        const childLogger = createChildLogger(getXRequestId(req));
+        childLogger.error(`Hent mellomlagring feilet: ${err}`);
+        res.status(500).json({ error: 'Kunne ikke hente mellomlagring', err });
     }
 }
 
 export default withAuthenticatedApi(handler);
-
-export const mellomlagringFecther = async (url: string) => axios.get<Mellomlagring>(url).then((res) => res.data);

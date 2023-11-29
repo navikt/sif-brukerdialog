@@ -1,19 +1,23 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import axios from 'axios';
-import { api } from '../../api';
-import { ApiEndpointInnsyn } from '../../api/endpoints';
+import { createChildLogger } from '@navikt/next-logger';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { Søknad } from '../../types/Søknad';
+import { getXRequestId } from '../../utils/apiUtils';
+import { sortSøknadEtterOpprettetDato } from '../../utils/søknadUtils';
+import axios from 'axios';
+import { fetchSøknader } from '../../server/apiService';
 
-async function handler(_req: NextApiRequest, res: NextApiResponse) {
+export const søknaderFetcher = async (url: string): Promise<Søknad[]> => axios.get(url).then((res) => res.data);
+
+async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
-        const response = await api.innsyn.get(ApiEndpointInnsyn.søknad).then((res) => res.data);
-        res.status(200).json(response);
+        const response = await fetchSøknader(req);
+        res.send(response.sort(sortSøknadEtterOpprettetDato));
     } catch (err) {
-        res.status(500).json({ error: 'failed to load data for søknad', err });
+        const childLogger = createChildLogger(getXRequestId(req));
+        childLogger.error(`Hent søknader feilet: ${err}`);
+        res.status(500).json({ error: 'Kunne ikke hente søknader', err });
     }
 }
 
 export default withAuthenticatedApi(handler);
-
-export const søknaderFecther = async (url: string) => axios.get<Søknad[]>(url).then((res) => res.data);

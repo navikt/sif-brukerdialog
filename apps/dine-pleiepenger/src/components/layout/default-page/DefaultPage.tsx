@@ -1,6 +1,6 @@
-import { Box } from '@navikt/ds-react';
+import { VStack } from '@navikt/ds-react';
 import React from 'react';
-import HvaSkjerFooter from '../../hva-skjer-footer/HvaSkjerFooter';
+import KontaktOss from '../../kontakt-oss/KontaktOss';
 import PageHeader from '../page-header/PageHeader';
 
 interface Props {
@@ -9,16 +9,14 @@ interface Props {
 
 const DefaultPage: React.FunctionComponent<Props> = ({ children }) => (
     <>
-        <div style={{ padding: '2rem' }}>
-            <div className="max-w-[1128px] mx-auto">
-                <PageHeader />
-                <Box className="mt-10">{children}</Box>
-            </div>
-        </div>
+        <VStack gap="10" className="p-5 max-w-[1128px] mx-auto">
+            <PageHeader />
+            {children}
+        </VStack>
 
         <div className="bg-white p-5 pt-10">
             <div className="max-w-[1128px] mx-auto">
-                <HvaSkjerFooter />
+                <KontaktOss />
             </div>
         </div>
     </>

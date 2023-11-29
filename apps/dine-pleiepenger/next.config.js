@@ -35,6 +35,10 @@ const nextConfig = {
         dirs: ['src'],
         ignoreDuringBuilds: true,
     },
+    // env: {
+    //     INNSYN_BACKEND_SCOPE: 'dev-gcp:dusseldorf:sif-innsyn-api',
+    //     BRUKERDIALOG_BACKEND_SCOPE: 'dev-gcp:dusseldorf:k9-brukerdialog-api',
+    // },
 
     redirects: async () => [{ source: '/', destination: '/dine-pleiepenger', permanent: false, basePath: false }],
 

@@ -5,7 +5,7 @@ import React, { ReactElement } from 'react';
 import Document, { DocumentContext, DocumentInitialProps, Head, Html, Main, NextScript } from 'next/document';
 import { DecoratorComponents, fetchDecoratorReact } from '@navikt/nav-dekoratoren-moduler/ssr';
 
-import { browserEnv, isE2E } from '../utils/env';
+import { browserEnv, getServerEnv, isE2E } from '../utils/env';
 
 // The 'head'-field of the document initialProps contains data from <head> (meta-tags etc)
 const getDocumentParameter = (initialProps: DocumentInitialProps, name: string): string => {
@@ -42,14 +42,15 @@ interface Props {
 class MyDocument extends Document<Props> {
     static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps & Props> {
         const initialProps = await Document.getInitialProps(ctx);
+        const serverEnv = getServerEnv();
         const Decorator = await fetchDecoratorReact({
             env: createDecoratorEnv(ctx),
             params: {
                 chatbot: true,
                 context: 'privatperson',
                 breadcrumbs: [
-                    { url: '/minside', title: 'Min side' },
-                    { url: '/dine-pleiepenger', title: 'Dine pleiepenger' },
+                    { url: serverEnv.NEXT_PUBLIC_MIN_SIDE_URL, title: 'Min side' },
+                    { url: serverEnv.NEXT_PUBLIC_BASE_PATH, title: 'Dine pleiepenger' },
                 ],
             },
         });

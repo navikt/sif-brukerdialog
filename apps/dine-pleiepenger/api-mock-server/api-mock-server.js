@@ -19,14 +19,21 @@ server.use(function (req, res, next) {
     setTimeout(next, 300);
 });
 
+const søker = {
+    aktørId: '2534326051524',
+    fødselsdato: '1981-02-06',
+    fødselsnummer: '06828199151',
+    fornavn: 'SUNN',
+    mellomnavn: null,
+    etternavn: 'KORRIDOR',
+};
+
 const startServer = () => {
     const port = 1234;
 
     server.get('/oppslag/soker', (req, res) => {
-        res.send({
-            fornavn: 'Ola',
-            etternavn: 'Nordmann',
-        });
+        res.setHeader('Content-Type', 'application/json');
+        res.send(søker);
     });
 
     server.get('/oppslag/soker-ikke-tilgang', (req, res) => {
@@ -37,42 +44,58 @@ const startServer = () => {
         res.send(søknader);
     });
 
+    server.get('/soknad-ikke-tilgang', (req, res) => {
+        res.sendStatus(403);
+    });
+
     server.get('/soknad/:soknadId/dokument', (req, res) => {
-        res.download('./server/mockdata/eksempel-søknad.pdf', 'søknad.pdf');
+        res.download('./api-mock-server/mockdata/eksempel-søknad.pdf', 'søknad.pdf');
+    });
+
+    server.get('/svarfrist', (req, res) => {
+        res.send({
+            frist: '2021-09-20',
+        });
     });
 
     server.get('/dokument/:journalpostId/:dokumentInfoId/:variantFormat', (req, res) => {
         switch (req.params.dokumentInfoId) {
             case '533438765':
                 res.download(
-                    './server/mockdata/Ettersending av vedlegg - Pleiepenger sykt barn.pdf',
+                    './api-mock-server/mockdata/Ettersending av vedlegg - Pleiepenger sykt barn.pdf',
                     'Ettersending av vedlegg - Pleiepenger sykt barn.pdf',
                 );
                 break;
             case '533438766':
-                res.download('./server/mockdata/BekreftelseTilKLONELABBEN.pdf', 'BekreftelseTilKLONELABBEN.pdf');
+                res.download(
+                    './api-mock-server/mockdata/BekreftelseTilKLONELABBEN.pdf',
+                    'BekreftelseTilKLONELABBEN.pdf',
+                );
                 break;
             default:
-                res.download('./server/mockdata/Søknad om pleiepenger.pdf', 'Søknad om pleiepenger.pdf');
+                res.download('./api-mock-server/mockdata/Søknad om pleiepenger.pdf', 'Søknad om pleiepenger.pdf');
                 break;
         }
     });
 
     server.get('/soknad/:soknadId/arbeidsgivermelding', (req, res) => {
-        res.download('./server/mockdata/BekreftelseTilKLONELABBEN.pdf', 'BekreftelseTilKLONELABBEN.pdf');
+        console.log('Returning arbeidsgivermelding');
+        res.download('./api-mock-server/mockdata/BekreftelseTilKLONELABBEN.pdf', 'BekreftelseTilKLONELABBEN.pdf');
     });
 
     server.get('/mellomlagring/PLEIEPENGER_SYKT_BARN', (req, res) => {
         res.send({
-            formData: {},
-            metadata: { lastStepID: 'tidsrom', version: '6.1', updatedTimestemp: '2021-09-20T14:18:01.060Z' },
+            metadata: {
+                lastStepID: 'tidsrom',
+                version: '6.1',
+                updatedTimestemp: '2022-12-20T14:18:01.060Z',
+            },
         });
     });
 
     server.get('/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN', (req, res) => {
         res.send({
-            formData: {},
-            metadata: { lastStepID: 'tidsrom', version: '6.1', updatedTimestamp: '2021-09-20T14:18:01.060Z' },
+            metadata: { lastStepID: 'tidsrom', version: '6.1', updatedTimestamp: '2023-07-01T20:54:12.060Z' },
         });
     });
 

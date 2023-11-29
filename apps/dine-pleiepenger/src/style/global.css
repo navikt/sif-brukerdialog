@@ -9,3 +9,8 @@
     padding: 2rem calc((100vw - 100%) / 2);
     background-color: green;
 }
+
+.navds-expansioncard__header,
+.navds-expansioncard__content {
+    border: none;
+}

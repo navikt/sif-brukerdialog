@@ -26,7 +26,7 @@ class ErrorBoundary extends Component<PropsWithChildren, State> {
                 `Caught error in ErrorBoundary's componentDidCatch hasError: ${error != null}, hasErrorInfo:${
                     errorInfo != null
                 }`,
-                // { cause: error },
+                { cause: error },
             ),
         );
         this.childLogger.error(JSON.stringify({ error, errorInfo, requestId: getUserRequestId() }));

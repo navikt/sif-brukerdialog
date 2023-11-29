@@ -1,16 +1,12 @@
-import { IncomingHttpHeaders } from 'http';
-
-import { GetServerSidePropsContext, NextApiRequest, NextApiResponse, GetServerSidePropsResult } from 'next';
-import { logger } from '@navikt/next-logger';
 import { validateIdportenToken } from '@navikt/next-auth-wonderwall';
-
+import { logger } from '@navikt/next-logger';
+import { IncomingHttpHeaders } from 'http';
+import { GetServerSidePropsContext, GetServerSidePropsResult, NextApiRequest, NextApiResponse } from 'next';
 import { RequestContext } from '../types/RequestContext';
 import { browserEnv, isLocal } from '../utils/env';
-import { Søker } from '../types/Søker';
+import { getSessionId } from '../utils/userSessionId';
 
-export interface ServerSidePropsResult {
-    søker: Søker | null;
-}
+export interface ServerSidePropsResult {}
 
 type ApiHandler = (req: NextApiRequest, res: NextApiResponse) => Promise<unknown> | unknown;
 type PageHandler = (context: GetServerSidePropsContext) => Promise<GetServerSidePropsResult<ServerSidePropsResult>>;
@@ -34,11 +30,9 @@ export interface TokenPayload {
     };
 }
 
-export const defaultPageHandler: PageHandler = async () => {
+export const defaultPageHandler: PageHandler = async (): Promise<{ props: ServerSidePropsResult }> => {
     return {
-        props: {
-            søker: null,
-        },
+        props: {},
     };
 };
 
@@ -73,7 +67,7 @@ export function withAuthenticatedPage(handler: PageHandler = defaultPageHandler)
         if (validationResult !== 'valid') {
             const error = new Error(
                 `Invalid JWT token found (cause: ${validationResult.errorType} ${validationResult.message}, redirecting to login.`,
-                // { cause: validationResult.error },
+                { cause: validationResult.error },
             );
             if (validationResult.errorType === 'NOT_ACR_LEVEL4') {
                 logger.warn(error);
@@ -104,7 +98,6 @@ export function withAuthenticatedApi(handler: ApiHandler): ApiHandler {
             if (validatedToken && validatedToken !== 'valid') {
                 logger.error(`Invalid JWT token found (cause: ${validatedToken.message} for API ${req.url}`);
             }
-
             res.status(401).json({ message: 'Access denied' });
             return;
         }
@@ -152,4 +145,19 @@ export function parseAuthHeader(headers: IncomingHttpHeaders): TokenPayload | nu
     const jwtPayload = accessToken.split('.')[1];
 
     return JSON.parse(Buffer.from(jwtPayload, 'base64').toString());
+}
+
+/**
+ * Used locally or in demo environments to create a fake request context.
+ */
+export function createDemoRequestContext(req: GetServerSidePropsContext['req'] | NextApiRequest): RequestContext {
+    if (!isLocal) {
+        throw new Error('createDemoRequestContext should only be used in local development or demo environments');
+    }
+
+    return {
+        ...require('./fakeLocalAuthTokenSet.json'),
+        requestId: 'not set',
+        sessionId: getSessionId(req),
+    };
 }

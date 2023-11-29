@@ -8,6 +8,7 @@ import { Dokument } from '../../types/Document';
 import { Organisasjon } from '../../types/Organisasjon';
 import { Søknad, Søknadstype } from '../../types/Søknad';
 import intlHelper from '../../utils/intlUtils';
+import { browserEnv } from '../../utils/env';
 
 interface Props {
     søknad: Søknad;
@@ -19,7 +20,16 @@ export const getSøknadDokumentFilnavn = (dokument: Dokument): string => {
 };
 
 const getArbeidsgivermeldingApiUrlBySoknadIdOgOrgnummer = (soknadID: string, organisasjonsnummer: string): string => {
-    return `${process.env.NEXT_PUBLIC_INNSYN_API_URL}/soknad/${soknadID}/arbeidsgivermelding?organisasjonsnummer=${organisasjonsnummer}`;
+    return `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/soknad/${soknadID}/arbeidsgivermelding?organisasjonsnummer=${organisasjonsnummer}`;
+};
+
+const getDokumentFrontendUrl = (url: string): string => {
+    // Split the URL into an array of segments using ‘/’ as the separator
+    const segments = url.split('/');
+    // Extract the desired paths from the array and join them together using ‘/’
+    const paths = segments.slice(4, 7).join('/');
+
+    return `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/dokument/${paths}`;
 };
 
 const SøknadContent: React.FunctionComponent<Props> = ({ søknad }) => {
@@ -45,7 +55,7 @@ const SøknadContent: React.FunctionComponent<Props> = ({ søknad }) => {
                         søknad.søknadId,
                         organisasjon.organisasjonsnummer,
                     )}>
-                    <File />
+                    <File title="Dokumentikon" />
                     <FormattedMessage
                         id="dokumenterSomKanLastesNed.bekreftelse"
                         values={{
@@ -57,20 +67,15 @@ const SøknadContent: React.FunctionComponent<Props> = ({ søknad }) => {
         );
     };
 
-    // const getDokumentFrontendUrl = (url: string): string => {
-    //     // Split the URL into an array of segments using ‘/’ as the separator
-    //     const segments = url.split('/');
-    //     // Extract the desired paths from the array and join them together using ‘/’
-    //     const paths = segments.slice(3, 7).join('/');
-
-    //     return `${getEnvironmentVariable('API_PATH')}/${paths}`;
-    // };
-
     const mapDokumenter = (dokument: Dokument) => {
         return (
             <li key={dokument.dokumentInfoId}>
-                <Link target="_blank" href={`${dokument.url}?dokumentTittel=${getSøknadDokumentFilnavn(dokument)}`}>
-                    <File />
+                <Link
+                    target="_blank"
+                    href={`${getDokumentFrontendUrl(dokument.url)}?dokumentTittel=${getSøknadDokumentFilnavn(
+                        dokument,
+                    )}`}>
+                    <File title="Dokumentikon" />
                     <span>{`${dokument.tittel} (PDF)`}</span>
                 </Link>
             </li>
