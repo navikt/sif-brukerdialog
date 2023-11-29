@@ -25,7 +25,6 @@ export const ProcessStep: React.FunctionComponent<ProcessStepProps> = ({ classNa
             <span className="process__circle" aria-hidden="true">
                 {index}
             </span>
-
             <BodyShort as="div" className="process__content">
                 {children}
             </BodyShort>

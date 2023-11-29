@@ -7,7 +7,7 @@ import { ServerSidePropsResult } from '../auth/withAuthentication';
 import ComponentLoader from '../components/component-loader/ComponentLoader';
 import ErrorBoundary from '../components/error-boundary/ErrorBoundary';
 import HentInnsynsdataFeilet from '../components/hent-innsynsdata-feilet/HentInnsynsdataFeilet';
-import EmptyPage from '../components/layout/empty-page/EmptyPage';
+import EmptyPage from '../components/page-layout/empty-page/EmptyPage';
 import { InnsynsdataContextProvider } from '../context/InnsynsdataContextProvider';
 import { Innsynsdata } from '../types/InnsynData';
 import { messages } from '../utils/message';

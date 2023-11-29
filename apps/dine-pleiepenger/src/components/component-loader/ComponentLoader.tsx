@@ -7,7 +7,7 @@ interface Props {
     fallback?: React.ReactNode;
 }
 
-const ComponentLoader: React.FunctionComponent<Props> = ({ title = 'Henter informasjon', fallback }) =>
+const ComponentLoader: React.FunctionComponent<Props> = ({ title, fallback }) =>
     fallback ? (
         <SkeletonTheme baseColor="#202020" highlightColor="#444">
             <div className="opacity-60">{fallback}</div>
