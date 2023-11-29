@@ -44,3 +44,8 @@ test-results
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+build-storybook.log
+chromatic.log
+chromatic-build-*.xml
+chromatic-diagnostics.json

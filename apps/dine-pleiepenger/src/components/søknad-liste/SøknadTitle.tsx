@@ -3,14 +3,14 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Task } from '@navikt/ds-icons';
 import { Søknad } from '../../types/Søknad';
-import PrettyDate from '../pretty-date/PrettyDate';
-import { getSøknadMottattDato } from '../../utils/søknadUtils';
+import { formatSøknadMottattDato, getSøknadMottattDato } from '../../utils/søknadUtils';
 
 interface Props {
     søknad: Søknad;
 }
 
 const SøknadTitle: React.FunctionComponent<Props> = ({ søknad }) => {
+    const søknadMottattDato = getSøknadMottattDato(søknad);
     return (
         <div>
             <HStack gap="2" align={'start'} wrap={false}>
@@ -21,10 +21,11 @@ const SøknadTitle: React.FunctionComponent<Props> = ({ søknad }) => {
                     </BodyShort>
                 </div>
             </HStack>
-            <BodyShort size="small" className="text-grayalpha-700">
-                Mottatt{' '}
-                <PrettyDate date={getSøknadMottattDato(søknad)} format="dayDateAndTime" useNorwegianTime={true} />
-            </BodyShort>
+            {søknadMottattDato ? (
+                <BodyShort size="small" className="text-grayalpha-700">
+                    Mottatt {formatSøknadMottattDato(søknadMottattDato)}
+                </BodyShort>
+            ) : null}
         </div>
     );
 };

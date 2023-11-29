@@ -7,7 +7,7 @@ import { ServerSidePropsResult } from '../auth/withAuthentication';
 import ComponentLoader from '../components/component-loader/ComponentLoader';
 import ErrorBoundary from '../components/error-boundary/ErrorBoundary';
 import HentInnsynsdataFeilet from '../components/hent-innsynsdata-feilet/HentInnsynsdataFeilet';
-import EmptyPage from '../components/layout/empty-page/EmptyPage';
+import EmptyPage from '../components/page-layout/empty-page/EmptyPage';
 import { InnsynsdataContextProvider } from '../context/InnsynsdataContextProvider';
 import { Innsynsdata } from '../types/InnsynData';
 import { messages } from '../utils/message';
@@ -15,6 +15,7 @@ import { innsynsdataFetcher } from './api/innsynsdata.api';
 import 'react-loading-skeleton/dist/skeleton.css';
 import '../components/process/process.css';
 import '../style/global.css';
+import Head from 'next/head';
 
 function MyApp({ Component, pageProps }: AppProps<ServerSidePropsResult>): ReactElement {
     const { data, error, isLoading } = useSWR<Innsynsdata, AxiosError>(
@@ -30,6 +31,7 @@ function MyApp({ Component, pageProps }: AppProps<ServerSidePropsResult>): React
     if (isLoading) {
         return (
             <EmptyPage>
+                <Head>Henter informasjon - Dine pleiepenger</Head>
                 <ComponentLoader />
             </EmptyPage>
         );

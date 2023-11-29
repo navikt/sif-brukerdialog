@@ -1,4 +1,4 @@
-import { Box, Button, ExpansionCard, HStack, VStack } from '@navikt/ds-react';
+import { Alert, Box, Button, ExpansionCard, HStack, VStack } from '@navikt/ds-react';
 import { Søknad } from '../../types/Søknad';
 import SøknadTitle from './SøknadTitle';
 import SøknadContent from './SøknadContent';
@@ -16,7 +16,7 @@ const SøknadListe: React.FunctionComponent<Props> = ({ søknader = [] }) => {
     const totalt = useMemo(() => søknader.length, [søknader]);
 
     if (søknader.length === 0) {
-        return <>Ingen søknader funnet</>;
+        return <Alert variant="info">Ingen søknader funnet</Alert>;
     }
 
     const visFlereSøknader = () => {

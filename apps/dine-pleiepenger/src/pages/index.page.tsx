@@ -3,7 +3,7 @@ import { ReactElement } from 'react';
 import Head from 'next/head';
 import { withAuthenticatedPage } from '../auth/withAuthentication';
 import DineSøknader from '../components/dine-søknader/DineSøknader';
-import DefaultPage from '../components/layout/default-page/DefaultPage';
+import DefaultPage from '../components/page-layout/default-page/DefaultPage';
 import Snarveier from '../components/snarveier/Snarveier';
 import Svarfrist from '../components/svarfrist/Svarfrist';
 import { useInnsynsdataContext } from '../hooks/useInnsynsdataContext';
@@ -28,7 +28,7 @@ function DinePleiepengerPage(): ReactElement {
                         <DineSøknader søknader={søknader} />
                     </div>
                     <div className="md:mb-none shrink-0 md:w-72">
-                        <Svarfrist frist={svarfrist} />
+                        <Svarfrist frist={søknader.length > 0 ? svarfrist : undefined} />
                     </div>
                 </Box>
                 <Box>
