@@ -86,7 +86,7 @@
         "sass": "1.69.5",
         "sass-loader": "13.3.2",
         "source-map-loader": "4.0.1",
-        "storybook": "7.5.3",
+        "storybook": "7.6.0",
         "style-loader": "3.3.3",
         "ts-loader": "9.5.1",
         "typescript": "5.3.2",
