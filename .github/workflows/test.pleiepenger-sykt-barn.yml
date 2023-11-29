@@ -9,6 +9,7 @@ on:
             - 'nais-config/**/*'
             - 'packages/**/*'
             - '.github/workflows/test.pleiepenger-sykt-barn.yml'
+    workflow_call:
 
 env:
     APP_NAME: 'pleiepenger-sykt-barn'
