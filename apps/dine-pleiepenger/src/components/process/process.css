@@ -61,7 +61,6 @@
     flex-shrink: 0;
     width: var(--process-circle-size);
     height: var(--process-circle-size);
-    border: var(--process-border-width) solid currentColor;
     border-radius: var(--a-border-radius-full);
     background-color: var(--process-line-color);
     color: white;

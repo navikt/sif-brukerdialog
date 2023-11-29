@@ -1,6 +1,5 @@
-import { Box, VStack } from '@navikt/ds-react';
+import { VStack } from '@navikt/ds-react';
 import React from 'react';
-import HvaSkjer from '../../hva-skjer/HvaSkjer';
 import KontaktOss from '../../kontakt-oss/KontaktOss';
 import PageHeader from '../page-header/PageHeader';
 
@@ -12,8 +11,7 @@ const DefaultPage: React.FunctionComponent<Props> = ({ children }) => (
     <>
         <VStack gap="10" className="p-5 max-w-[1128px] mx-auto">
             <PageHeader />
-            <Box>{children}</Box>
-            <HvaSkjer />
+            {children}
         </VStack>
 
         <div className="bg-white p-5 pt-10">

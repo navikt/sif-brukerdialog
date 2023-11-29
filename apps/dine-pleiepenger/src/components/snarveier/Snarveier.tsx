@@ -5,14 +5,19 @@ import { Dialog, File, Task } from '@navikt/ds-icons';
 import { PencilWritingIcon } from '@navikt/aksel-icons';
 import SnarveiLinkPanel from '../snarvei-link-panel/SnarveiLinkPanel';
 
-interface Props {}
+interface Props {
+    title?: string;
+}
 
-const Snarveier: React.FunctionComponent<Props> = ({}) => {
+const Snarveier: React.FunctionComponent<Props> = ({ title }) => {
     return (
         <VStack gap="4">
-            <Heading level="2" size="medium" className="text-deepblue-800">
-                Trenger du å oppdatere noe i saken din?
-            </Heading>
+            {title ? (
+                <Heading level="2" size="medium" className="text-deepblue-800">
+                    {title}
+                </Heading>
+            ) : null}
+
             <HGrid gap="4" columns={{ sm: 1, md: 2 }}>
                 <SnarveiLinkPanel
                     href={browserEnv.NEXT_PUBLIC_ENDRINGSDIALOG_URL}
