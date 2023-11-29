@@ -16,7 +16,7 @@ const ComponentLoader: React.FunctionComponent<Props> = ({ title = 'Henter infor
         <div className="p-5 text-center">
             <VStack gap="4" align="center">
                 <Loader size="xlarge" title={title} />
-                <BodyShort size="large">{title}</BodyShort>
+                {title ? <BodyShort size="large">{title}</BodyShort> : null}
             </VStack>
         </div>
     );

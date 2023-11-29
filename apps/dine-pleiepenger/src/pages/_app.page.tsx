@@ -6,15 +6,15 @@ import useSWR from 'swr';
 import { ServerSidePropsResult } from '../auth/withAuthentication';
 import ComponentLoader from '../components/component-loader/ComponentLoader';
 import ErrorBoundary from '../components/error-boundary/ErrorBoundary';
-import HentBrukerFeilet from '../components/hent-bruker-feilet/HentBrukerFeilet';
+import HentInnsynsdataFeilet from '../components/hent-innsynsdata-feilet/HentInnsynsdataFeilet';
 import EmptyPage from '../components/layout/empty-page/EmptyPage';
+import { InnsynsdataContextProvider } from '../context/InnsynsdataContextProvider';
 import { Innsynsdata } from '../types/InnsynData';
 import { messages } from '../utils/message';
 import { innsynsdataFetcher } from './api/innsynsdata.api';
 import 'react-loading-skeleton/dist/skeleton.css';
 import '../components/process/process.css';
 import '../style/global.css';
-import { InnsynsdataContextProvider } from '../context/InnsynsdataContextProvider';
 
 function MyApp({ Component, pageProps }: AppProps<ServerSidePropsResult>): ReactElement {
     const { data, error, isLoading } = useSWR<Innsynsdata, AxiosError>(
@@ -37,16 +37,15 @@ function MyApp({ Component, pageProps }: AppProps<ServerSidePropsResult>): React
     if (error) {
         return (
             <EmptyPage>
-                <HentBrukerFeilet error={error} />
+                <HentInnsynsdataFeilet error={error} />
             </EmptyPage>
         );
     }
 
     return (
         <ErrorBoundary>
-            <main id="maincontent" role="main" tabIndex={-1}>
+            <main>
                 <IntlProvider locale="nb" messages={messages.nb}>
-                    {error ? <HentBrukerFeilet error={error} /> : null}
                     {data ? (
                         <InnsynsdataContextProvider innsynsdata={data}>
                             <Component {...pageProps} />

@@ -7,7 +7,7 @@ interface Props {
     error: AxiosError<unknown, any>;
 }
 
-const HentBrukerFeilet: React.FunctionComponent<Props> = ({ error }) => (
+const HentInnsynsdataFeilet: React.FunctionComponent<Props> = ({ error }) => (
     <GuidePanel poster={true} className="sm:max-w-lg m-auto">
         {error.response?.status === 403 ? (
             <>
@@ -35,4 +35,4 @@ const HentBrukerFeilet: React.FunctionComponent<Props> = ({ error }) => (
     </GuidePanel>
 );
 
-export default HentBrukerFeilet;
+export default HentInnsynsdataFeilet;
