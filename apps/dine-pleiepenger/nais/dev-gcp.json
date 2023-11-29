@@ -9,7 +9,6 @@
     "readinessPath": "/dine-pleiepenger/api/internal/isReady",
     "env": {
         "NEXT_PUBLIC_BASE_PATH": "/dine-pleiepenger",
-        "NEXT_PUBLIC_MIN_SIDE_PATH": "/minside",
         "NEXT_PUBLIC_RUNTIME_ENVIRONMENT": "dev",
         "NEXT_PUBLIC_API_URL_INNSYN": "http://sif-innsyn-api",
         "NEXT_PUBLIC_API_URL_BRUKERDIALOG": "http://k9-brukerdialog-api",
