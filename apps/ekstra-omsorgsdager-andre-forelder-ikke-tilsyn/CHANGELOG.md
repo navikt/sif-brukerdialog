@@ -1,5 +1,20 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.20.1
+
+### Patch Changes
+
+-   295d3ad: Diverse mindre pakkeoppdateringer - versjonstrigger
+-   Updated dependencies [295d3ad]
+    -   @navikt/sif-app-register@0.0.3
+    -   @navikt/sif-common-amplitude@2.24.1
+    -   @navikt/sif-common-core-ds@9.11.1
+    -   @navikt/sif-common-formik-ds@1.5.1
+    -   @navikt/sif-common-hooks@0.1.1
+    -   @navikt/sif-common-sentry@0.25.1
+    -   @navikt/sif-common-soknad-ds@10.10.1
+    -   @navikt/sif-common-utils@3.43.1
+
 ## 1.20.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.10.1
+
+### Patch Changes
+
+-   295d3ad: Diverse mindre pakkeoppdateringer - versjonstrigger
+
 ## 10.10.0
 
 ### Minor Changes

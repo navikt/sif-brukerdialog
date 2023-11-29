@@ -5,8 +5,11 @@
     "team": "dusseldorf",
     "ingresses": ["https://www.nav.no/dine-pleiepenger"],
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
+    "accessPolicyOutApps": ["k9-brukerdialog-api", "sif-innsyn-api"],
     "livenessPath": "/dine-pleiepenger/api/internal/isAlive",
     "readinessPath": "/dine-pleiepenger/api/internal/isReady",
+    "minReplicas": 2,
+    "maxReplicas": 2,
     "env": {
         "NEXT_PUBLIC_RUNTIME_ENVIRONMENT": "prod",
         "NPM_CONFIG_CACHE": "/tmp"

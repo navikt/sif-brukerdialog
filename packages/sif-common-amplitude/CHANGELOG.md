@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.24.1
+
+### Patch Changes
+
+-   295d3ad: Diverse mindre pakkeoppdateringer - versjonstrigger
+
 ## 2.24.0
 
 ### Minor Changes

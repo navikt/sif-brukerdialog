@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.5.1
+
+### Patch Changes
+
+-   295d3ad: Diverse mindre pakkeoppdateringer - versjonstrigger
+
 ## 1.5.0
 
 ### Minor Changes

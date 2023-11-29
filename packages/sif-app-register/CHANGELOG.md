@@ -1,5 +1,11 @@
 # @navikt/sif-app-register
 
+## 0.0.3
+
+### Patch Changes
+
+-   295d3ad: Diverse mindre pakkeoppdateringer - versjonstrigger
+
 ## 0.0.2
 
 ### Patch Changes

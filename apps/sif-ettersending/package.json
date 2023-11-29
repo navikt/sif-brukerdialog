@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/sif-ettersending",
     "repository": "https://github.com/navikt/sif-ettersending",
-    "version": "3.26.0",
+    "version": "3.26.1",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -54,7 +54,7 @@
         "@babel/preset-env": "7.23.3",
         "@babel/preset-react": "7.23.3",
         "@playwright/test": "^1.40.0",
-        "@storybook/react-vite": "7.5.3",
+        "@storybook/react-vite": "7.6.0",
         "@types/jest": "29.5.10",
         "@types/react": "18.2.39",
         "@types/react-collapse": "5.0.4",
