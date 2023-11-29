@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.43.1
+
+### Patch Changes
+
+-   295d3ad: Diverse mindre pakkeoppdateringer - versjonstrigger
+
 ## 3.43.0
 
 ### Minor Changes

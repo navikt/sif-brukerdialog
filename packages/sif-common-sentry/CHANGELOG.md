@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.25.1
+
+### Patch Changes
+
+-   295d3ad: Diverse mindre pakkeoppdateringer - versjonstrigger
+
 ## 0.25.0
 
 ### Minor Changes

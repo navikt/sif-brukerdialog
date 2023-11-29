@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 8.14.1
+
+### Patch Changes
+
+-   295d3ad: Diverse mindre pakkeoppdateringer - versjonstrigger
+
 ## 8.14.0
 
 ### Minor Changes
