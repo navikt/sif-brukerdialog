@@ -40,6 +40,7 @@ jobs:
 
             - name: Run code tests
               run: yarn test --filter=pleiepenger-sykt-barn
+
     run-cypress-test:
         runs-on: ubuntu-latest
         steps:
