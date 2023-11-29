@@ -6,5 +6,5 @@ module.exports = {
         tsconfigRootDir: __dirname,
     },
 
-    extends: ['plugin:storybook/recommended']
+    extends: ['plugin:storybook/recommended'],
 };

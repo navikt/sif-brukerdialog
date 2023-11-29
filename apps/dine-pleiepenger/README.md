@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Innsynsløsning på nav.no for dem som har søkt om Pleiepenger for sykt barn.
 
-## Getting Started
-
-First, run the development server:
+#### Komme i gang
 
 ```bash
-npm run dev
-# or
+# Installer prosjekt
+yarn install
+
+# Start next server på http://localhost:8080
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Start mock server på http://localhost:1234.
+# Denne simulerer sin-innsyn-api og k9-brukerdialog-api
+yarn dev-api
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### Storybook
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Komponenter og sider er lagt inn i storybook. Start lokalt ved å kjøre:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+yarn storybook
+```
 
-## Learn More
+Storybook ligger også deployet på [Chromatic](https://www.chromatic.com/library?appId=65675d8dbb43385e5aaaa45c&inviteToken=chpi_1d3a6eab65174ab3ae3775296636362e)
 
-To learn more about Next.js, take a look at the following resources:
+#### Henvendelser
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Spørsmål knyttet til koden eller prosjektet kan stilles som issues her på GitHub.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Interne henvendelser kan sendes via Slack i kanalen #sykdom-i-familien.
