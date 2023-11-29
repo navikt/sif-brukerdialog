@@ -1,11 +1,7 @@
+import { BodyLong, Box, Heading, HGrid, HStack, Link, VStack } from '@navikt/ds-react';
 import { Dialog, DialogFilled, Send, SendFilled, Telephone, TelephoneFilled } from '@navikt/ds-icons';
-import { BodyLong, Box, HGrid, HStack, Heading, Link, VStack } from '@navikt/ds-react';
 
-import React from 'react';
-
-interface Props {}
-
-const KontaktOssFooter: React.FunctionComponent<Props> = ({}) => {
+const KontaktOssFooter = () => {
     return (
         <VStack gap="8" className="mb-10">
             <Heading level="2" size="medium">
@@ -17,8 +13,8 @@ const KontaktOssFooter: React.FunctionComponent<Props> = ({}) => {
                         <Link href="https://www.nav.no/kontaktoss#chat-med-oss" className="group">
                             <HStack gap="2" align={'center'} wrap={false}>
                                 <div role="presentation">
-                                    <Dialog className="group-hover:hidden" />
-                                    <DialogFilled className="hidden group-hover:block" />
+                                    <Dialog role="presentation" className="group-hover:hidden" />
+                                    <DialogFilled role="presentation" className="hidden group-hover:block" />
                                 </div>
                                 Chat med oss
                             </HStack>
@@ -34,8 +30,8 @@ const KontaktOssFooter: React.FunctionComponent<Props> = ({}) => {
                         <Link href="https://www.nav.no/kontaktoss#skriv-til-oss" className="group">
                             <HStack gap="2" align={'center'} wrap={false}>
                                 <div role="presentation">
-                                    <Send className="group-hover:hidden" />
-                                    <SendFilled className="hidden group-hover:block" />
+                                    <Send role="presentation" className="group-hover:hidden" />
+                                    <SendFilled role="presentation" className="hidden group-hover:block" />
                                 </div>
                                 Skriv til oss
                             </HStack>
@@ -49,8 +45,8 @@ const KontaktOssFooter: React.FunctionComponent<Props> = ({}) => {
                         <Link href="tel:55553333" className="group">
                             <HStack gap="2" align={'center'} wrap={false}>
                                 <div role="presentation">
-                                    <Telephone className="group-hover:hidden" />
-                                    <TelephoneFilled className="hidden group-hover:block" />
+                                    <Telephone role="presentation" className="group-hover:hidden" />
+                                    <TelephoneFilled role="presentation" className="hidden group-hover:block" />
                                 </div>
                                 Ring oss på 55 55 33 33
                             </HStack>

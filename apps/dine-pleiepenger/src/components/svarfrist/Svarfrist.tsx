@@ -25,9 +25,7 @@ const Svarfrist: React.FunctionComponent<Props> = ({ frist }) => {
                     <p className="mb-2">TODO: Skrive tekst for når vi ikke får noen dato fra backend</p>
                 )}
 
-                <Link
-                    href="https://www.nav.no/saksbehandlingstider"
-                    className="text-deepblue-80 decoration-1 underline hover:no-underline">
+                <Link variant="neutral" href="https://www.nav.no/saksbehandlingstider">
                     Se saksbehandlingstider
                 </Link>
             </BodyLong>

@@ -44,7 +44,7 @@ const SøknadListe: React.FunctionComponent<Props> = ({ søknader = [] }) => {
                 <Box className="flex justify-start">
                     <Button variant="tertiary-neutral" type="button" onClick={visFlereSøknader}>
                         <HStack gap="2" align="center" wrap={false}>
-                            <Add />
+                            <Add role="presentation" />
                             Vis flere innsendinger
                         </HStack>
                     </Button>
