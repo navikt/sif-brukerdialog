@@ -26,6 +26,7 @@
         "INNSYN_URL": "https://sif-innsyn.intern.dev.nav.no/familie/sykdom-i-familien/soknad/innsyn/",
         "INNSYN": "on",
         "LOGIN_URL": "https://pleiepengesoknad.intern.dev.nav.no/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/pleiepenger/soknad",
+        "MIN_SIDE_URL": "https://www.intern.dev.nav.no/minside",
         "NPM_CONFIG_CACHE": "/tmp",
         "NYNORSK": "on",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/pleiepenger",
