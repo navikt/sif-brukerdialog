@@ -88,11 +88,10 @@
         "compile-lib-script": "tsc -p tsconfig.json",
         "copy-files": "copyfiles -u 1 \"src/**/*.scss\" lib/ && copyfiles -u 1 \"src/**/*.css\" lib/ && copyfiles -u 1 \"src/**/assets/**/*\" lib/ && copyfiles -u 1 \"src/**/*.json\" lib/",
         "deploy": "gh-pages -d build",
-        "dev": "yarn watch-styles & yarn compile-lib-script-watch",
+        "dev": "yarn compile-lib-script-watch",
         "lint": "eslint ./src --ext ts,tsx",
         "storybook": "storybook dev -p 6006 -s public",
         "test-watch": "react-scripts test",
-        "test": "react-scripts test --watchAll=false --env=jsdom",
-        "watch-styles": "npm-watch copy-files "
+        "test": "react-scripts test --watchAll=false --env=jsdom"
     }
 }

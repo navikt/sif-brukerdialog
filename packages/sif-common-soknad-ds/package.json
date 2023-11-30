@@ -89,7 +89,6 @@
         "compile-lib-script": "tsc -p tsconfig.json",
         "copy-asset-files": "copyfiles -u 1 \"src/**/assets/**/*\" lib/",
         "copy-css-files": "copyfiles -u 1 \"src/**/*.css\" lib/",
-        "copy-files-watch": "npm-watch copy-files",
         "copy-files": "npm-run-all copy-sass-files copy-css-files copy-asset-files copy-json-files",
         "copy-json-files": "copyfiles -u 1 \"src/**/*.json\" lib/",
         "copy-sass-files": "copyfiles -u 1 \"src/**/*.scss\" lib/",
