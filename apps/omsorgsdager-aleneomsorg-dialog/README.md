@@ -9,7 +9,7 @@ For å kjøre opp app-en i dev:
 3.  `yarn bp` i root sif-brukerdialog.
 
 4.  `yarn dev-api` i root omsorgsdager-aleneomsorg-dialog.
-5.  `yarn snd` i root omsorgsdager-aleneomsorg-dialog.
+5.  `yarn dev` i root omsorgsdager-aleneomsorg-dialog.
 
 For å kjøre enhetstester:
 
