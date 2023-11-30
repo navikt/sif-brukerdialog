@@ -14,7 +14,6 @@ import { initialSoknadFormData, SoknadFormData } from '../types/SoknadFormData';
 import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import { Søknadstype } from '../types/Søknadstype';
 import {
-    navigateTo,
     navigateToErrorPage,
     navigateToKvitteringPage,
     navigateToLoginPage,
@@ -80,7 +79,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
             const lastStepRoute = getApplicationPageRoute(søknadstype, tempStorage.metadata.lastStepID);
 
             if (currentRoute !== lastStepRoute) {
-                navigateTo(lastStepRoute, navigate);
+                navigate(lastStepRoute);
                 setInitializing(false);
             } else {
                 setInitializing(false);
@@ -231,7 +230,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
                                 const step = soknadStepsConfig[stepID];
                                 setTimeout(() => {
                                     if (step.nextStep) {
-                                        navigateTo(step.nextStep, navigate);
+                                        navigate(step.nextStepRoute || step.nextStep);
                                     }
                                 });
                             };

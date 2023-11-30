@@ -1,7 +1,7 @@
 import { NavigateFunction } from 'react-router-dom';
 import { getRouteConfig } from '../../config/routeConfig';
 import { Søknadstype } from '../../types/Søknadstype';
-import { navigateTo, navigateToErrorPage, userIsCurrentlyOnErrorPage } from '../navigationUtils';
+import { navigateToErrorPage, userIsCurrentlyOnErrorPage } from '../navigationUtils';
 
 const navigate: NavigateFunction = jest.fn();
 
@@ -25,14 +25,6 @@ const setWindowLocationPathname = (pathname: string | undefined) => {
 };
 
 describe('navigationUtils', () => {
-    describe('navigateTo', () => {
-        it('should navigate user to the provided route', () => {
-            const route = '/someRoute';
-            navigateTo(route, navigate);
-            expect(navigate).toHaveBeenCalledWith(route);
-        });
-    });
-
     describe('navigateToErrorPage', () => {
         it('should navigate user to the path specified by routeConfig.ERROR_PAGE_ROUTE', () => {
             navigateToErrorPage(søknadstype, navigate);
