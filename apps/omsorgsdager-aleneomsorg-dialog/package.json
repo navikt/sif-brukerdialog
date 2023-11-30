@@ -20,8 +20,7 @@
         "snd": "cross-env NODE_ENV=development node ./server.cjs",
         "start-e2e-server": "node ./server-e2e.cjs",
         "start-express": "node ./server.cjs",
-        "storybook": "storybook dev -p 6006 -s public",
-        "test": "vitest"
+        "storybook": "storybook dev -p 6006 -s public"
     },
     "dependencies": {
         "@navikt/ds-css": "5.11.2",
@@ -85,8 +84,7 @@
         "style-loader": "3.3.3",
         "ts-loader": "9.5.1",
         "vite": "5.0.2",
-        "vite-plugin-checker": "0.6.2",
-        "vitest": "0.34.6"
+        "vite-plugin-checker": "0.6.2"
     },
     "resolutions": {
         "babel-core": "7.0.0-bridge.0"
