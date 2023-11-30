@@ -93,7 +93,7 @@
         "copy-json-files": "copyfiles -u 1 \"src/**/*.json\" lib/",
         "copy-sass-files": "copyfiles -u 1 \"src/**/*.scss\" lib/",
         "deploy": "gh-pages -d build",
-        "dev": "yarn compile-lib-script-watch & yarn copy-files-watch",
+        "dev-lib": "yarn compile-lib-script-watch & yarn copy-files-watch",
         "lint": "eslint ./src --ext ts,tsx",
         "storybook": "storybook dev -p 6006 -s public"
     }

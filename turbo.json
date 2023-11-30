@@ -20,7 +20,7 @@
             "dependsOn": ["^lint"],
             "outputs": []
         },
-        "dev": {
+        "dev-lib": {
             "cache": false
         },
         "clean": {

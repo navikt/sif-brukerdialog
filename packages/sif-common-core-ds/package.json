@@ -87,7 +87,7 @@
         "build-package": "npm-run-all compile-lib-script copy-files",
         "build-storybook": "storybook build -s public",
         "clean": "rm -rf node_modules lib",
-        "dev": "yarn compile-lib-script-watch",
+        "dev-lib": "yarn compile-lib-script-watch",
         "clean-lib": "rimraf ./lib",
         "compile-lib-script": "tsc -p tsconfig.json",
         "compile-lib-script-watch": "tsc -p tsconfig.json --watch ",

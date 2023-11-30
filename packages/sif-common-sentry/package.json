@@ -47,7 +47,7 @@
         "clean": "rm -rf node_modules lib",
         "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
         "compile-lib-script": "tsc -p tsconfig.json",
-        "dev": "yarn compile-lib-script-watch",
+        "dev-lib": "yarn compile-lib-script-watch",
         "lint": "eslint ./src --ext ts,tsx"
     }
 }
