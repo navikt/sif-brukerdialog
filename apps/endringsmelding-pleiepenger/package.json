@@ -69,7 +69,6 @@
         "@storybook/testing-library": "0.2.2",
         "@types/flat": "5.0.5",
         "@types/intl": "1.2.2",
-        "@types/jest": "29.5.10",
         "@types/js-cookie": "3.0.6",
         "@types/object-hash": "3.0.6",
         "@types/react": "18.2.39",
@@ -92,7 +91,6 @@
         "postcss": "8.4.31",
         "postcss-import": "15.1.0",
         "postcss-loader": "7.3.3",
-        "react-scripts": "5.0.1",
         "regenerator-runtime": "0.14.0",
         "rimraf": "5.0.5",
         "sass": "1.69.5",
@@ -102,19 +100,8 @@
         "tailwindcss": "3.3.5",
         "typescript": "5.3.2",
         "vite": "5.0.2",
-        "vite-plugin-checker": "0.6.2"
-    },
-    "jest": {
-        "transformIgnorePatterns": [
-            "node_modules/(?!(@navikt)).*\\.js$",
-            "node_modules/(?!(axios)).*\\.js$"
-        ],
-        "moduleNameMapper": {
-            "@hooks$": "<rootDir>/src/app/hooks/index.ts",
-            "@types$": "<rootDir>/src/app/types/index.ts",
-            "@utils$": "<rootDir>/src/app/utils/index.ts",
-            "axios": "axios/dist/node/axios.cjs"
-        }
+        "vite-plugin-checker": "0.6.2",
+        "vitest": "0.34.6"
     },
     "scripts": {
         "build-app": "vite build --base=/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
@@ -128,8 +115,7 @@
         "start-e2e-server": "cross-env NODE_ENV=development node ./server-e2e.cjs",
         "start-express": "node ./server.cjs",
         "storybook": "storybook dev -p 6006 -s public",
-        "test-watch": "react-scripts test --watchAll=true --env=jsdom",
-        "test": "react-scripts test --watchAll=false --env=jsdom"
+        "test": "vitest"
     },
     "eslintConfig": {
         "overrides": [

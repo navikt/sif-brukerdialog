@@ -5,14 +5,14 @@ import {
     ISOStringToDate as ISOStringToDateOrUndefined,
 } from '../../formik-datepicker/datepickerUtils';
 import {
-    getRangesStartingAfterDate,
     findClosestDateAfterDate,
-    getMaxDateForRangeStart,
     findClosestDateBeforeDate,
-    getRangesEndingBeforeDate,
-    getMinDateForRangeStart,
-    getMinDateForRangeEnd,
     getMaxDateForRangeEnd,
+    getMaxDateForRangeStart,
+    getMinDateForRangeEnd,
+    getMinDateForRangeStart,
+    getRangesEndingBeforeDate,
+    getRangesStartingAfterDate,
 } from '../dateRangePickerUtils';
 
 const ISOStringToDate = (value: string): Date => ISOStringToDateOrUndefined(value)!;

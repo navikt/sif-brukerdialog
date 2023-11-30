@@ -20,8 +20,7 @@
         "start-api-mock": "PORT=8089 node ./server/api-mock.js",
         "start-e2e-server": "node ./server-e2e.cjs",
         "start-express": "node ./server.cjs",
-        "test-watch": "react-scripts test --watchAll=true --env=jsdom",
-        "test": "react-scripts test --watchAll=false --env=jsdom"
+        "test": "vitest"
     },
     "dependencies": {
         "@navikt/ds-css": "5.11.2",
@@ -69,7 +68,6 @@
         "@playwright/test": "^1.40.0",
         "@storybook/react-vite": "7.6.0",
         "@testing-library/react": "14.1.2",
-        "@types/jest": "29.5.10",
         "@types/object-hash": "3.0.6",
         "@types/react": "18.2.39",
         "@types/react-dom": "18.2.17",
@@ -82,19 +80,14 @@
         "npm-run-all": "4.1.5",
         "postcss": "8.4.31",
         "postcss-loader": "7.3.3",
-        "react-scripts": "5.0.1",
         "rimraf": "5.0.5",
         "sass": "1.69.5",
         "sass-loader": "13.3.2",
         "source-map-loader": "4.0.1",
         "style-loader": "3.3.3",
         "ts-loader": "9.5.1",
-        "typescript": "5.3.2"
-    },
-    "jest": {
-        "transformIgnorePatterns": [
-            "node_modules/(?!(@navikt)).*\\.js$"
-        ]
+        "typescript": "5.3.2",
+        "vitest": "0.34.6"
     },
     "eslintConfig": {
         "overrides": [

@@ -2,15 +2,16 @@ import { SøknadFormValues } from '../../types/søknad-form-values/SøknadFormVa
 import * as stepValidations from '../../validation/stepValidations';
 import * as stepUtils from '../stepUtils';
 import { YesOrNoOrDoNotKnow } from '../../types/YesOrNoOrDoNotKnow';
+import { vi } from 'vitest';
 
-jest.mock('./../../validation/stepValidations', () => {
+vi.mock('./../../validation/stepValidations', () => {
     return {
-        welcomingPageIsValid: jest.fn(() => true),
-        opplysningerOmBarnetStepIsValid: jest.fn(() => true),
-        opplysningerOmTidsromStepIsValid: jest.fn(() => true),
-        arbeidssituasjonStepIsValid: jest.fn(() => true),
-        medlemskapStepIsValid: jest.fn(() => true),
-        legeerklæringStepIsValid: jest.fn(() => true),
+        welcomingPageIsValid: vi.fn(() => true),
+        opplysningerOmBarnetStepIsValid: vi.fn(() => true),
+        opplysningerOmTidsromStepIsValid: vi.fn(() => true),
+        arbeidssituasjonStepIsValid: vi.fn(() => true),
+        medlemskapStepIsValid: vi.fn(() => true),
+        legeerklæringStepIsValid: vi.fn(() => true),
     };
 });
 

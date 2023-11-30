@@ -11,10 +11,11 @@ import {
     getUkjentArbeidsforholdApiDataFromSøknadsdata,
     mapArbeidsforholdToArbeidsforholdApiData,
 } from '../getDataBruktTilUtledning';
+import { vi } from 'vitest';
 
 const commitSha = 'abc';
 
-jest.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => ({
+vi.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => ({
     getCommitShaFromEnv: () => {
         return commitSha;
     },
