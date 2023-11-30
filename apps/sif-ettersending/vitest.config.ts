@@ -3,6 +3,8 @@
 
 import { defineConfig } from 'vitest/config';
 
+/** Basic oppsett */
+
 export default defineConfig({
     test: {
         exclude: ['./e2e/**/*'],
