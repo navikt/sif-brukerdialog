@@ -55,8 +55,7 @@
         "format": "prettier --write \"**/*.{ts,tsx,md}\"",
         "prepare": "husky install",
         "lint": "turbo run lint",
-        "test": "turbo run test",
-        "test-coverage": "turbo run test-coverage"
+        "test": "turbo run test"
     },
     "workspaces": [
         "apps/*",

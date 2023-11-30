@@ -10,6 +10,7 @@ on:
             - 'packages/**/*'
             - .github/workflows/app.endringsmelding-pleiepenger.yml
             - .github/workflows/test.endringsmelding-pleiepenger.yml
+            - yarn.lock
     workflow_call:
 
 env:

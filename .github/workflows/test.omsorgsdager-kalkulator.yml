@@ -10,6 +10,7 @@ on:
             - 'packages/**/*'
             - .github/workflows/app.omsorgsdager-kalkulator.yml
             - .github/workflows/test.omsorgsdager-kalkulator.yml
+            - yarn.lock
     workflow_call:
 
 env:

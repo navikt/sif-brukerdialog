@@ -10,6 +10,7 @@ on:
             - 'packages/**/*'
             - .github/workflows/app.pleiepenger-i-livets-sluttfase-soknad.yml
             - .github/workflows/test.pleiepenger-i-livets-sluttfase-soknad.yml
+            - yarn.lock
     workflow_call:
 
 env:
