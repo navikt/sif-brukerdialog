@@ -11,7 +11,7 @@ import { purge } from '../api/api';
 import usePersistSoknad from '../hooks/usePersistSoknad';
 import { StepID } from '../types/StepID';
 import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
-import { relocateToDinePleiepenger, relocateToSoknad } from '../utils/navigationUtils';
+import { relocateToMinSide, relocateToSoknad } from '../utils/navigationUtils';
 import SøknadFormComponents from './SøknadFormComponents';
 import { getSøknadStepConfig } from './søknadStepConfig';
 import InvalidStepPage from '../pages/invalid-step-page/InvalidStepPage';
@@ -64,7 +64,7 @@ const SøknadFormStep = (props: Props) => {
         /** Mellomlagring lagrer forrige steg, derfor må dette hentes ut her **/
         await persistSoknad({ stepID: currentStepConfig.previousStep });
         await logHendelse(ApplikasjonHendelse.fortsettSenere);
-        relocateToDinePleiepenger();
+        relocateToMinSide();
     };
 
     const { previousStepRoute } = currentStepConfig;
