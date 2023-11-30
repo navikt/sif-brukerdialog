@@ -55,18 +55,13 @@
         "format": "prettier --write \"**/*.{ts,tsx,md}\"",
         "prepare": "husky install",
         "lint": "turbo run lint",
-        "test": "turbo run test",
-        "test-watch": "turbo run test-watch",
-        "test-coverage": "turbo run test-coverage"
+        "test": "turbo run test"
     },
     "workspaces": [
         "apps/*",
         "packages/*"
     ],
     "overrides": {
-        "react-scripts": {
-            "nth-check": ">=2.0.1"
-        },
         "glob-parent": ">=5.1.2"
     },
     "private": true,

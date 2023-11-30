@@ -56,7 +56,6 @@
         "@playwright/test": "^1.40.0",
         "@storybook/react-vite": "7.6.0",
         "@testing-library/react": "14.1.2",
-        "@types/jest": "29.5.10",
         "@types/object-hash": "3.0.6",
         "@types/react": "18.2.39",
         "@types/react-dom": "18.2.17",
@@ -68,7 +67,6 @@
         "express-rate-limit": "7.1.5",
         "postcss": "8.4.31",
         "postcss-loader": "7.3.3",
-        "react-scripts": "5.0.1",
         "sass": "1.69.5",
         "sass-loader": "13.3.2",
         "sinon": "17.0.1",
@@ -77,12 +75,8 @@
         "ts-loader": "9.5.1",
         "typescript": "5.3.2",
         "vite": "5.0.2",
-        "vite-plugin-checker": "0.6.2"
-    },
-    "jest": {
-        "transformIgnorePatterns": [
-            "node_modules/(?!(@navikt)).*\\.js$"
-        ]
+        "vite-plugin-checker": "0.6.2",
+        "vitest": "0.34.6"
     },
     "scripts": {
         "build-app": "vite build --base=/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase",
@@ -97,8 +91,7 @@
         "start-e2e-server": "node ./server-e2e.cjs",
         "start-express": "node ./server.cjs",
         "storybook": "storybook dev -p 6006 -s public",
-        "test-watch": "react-scripts test --watchAll=true --env=jsdom",
-        "test": "react-scripts test --watchAll=false --env=jsdom"
+        "test": "vitest"
     },
     "eslintConfig": {
         "overrides": [

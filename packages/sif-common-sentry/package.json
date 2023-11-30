@@ -23,7 +23,6 @@
         "gh-pages": "6.1.0",
         "react": "18.2.0",
         "react-dom": "18.2.0",
-        "react-scripts": "5.0.1",
         "rimraf": "5.0.5"
     },
     "directories": {
@@ -49,8 +48,6 @@
         "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
         "compile-lib-script": "tsc -p tsconfig.json",
         "dev": "yarn compile-lib-script-watch",
-        "lint": "eslint ./src --ext ts,tsx",
-        "test-watch": "react-scripts test",
-        "test": "react-scripts test --watchAll=false --env=jsdom"
+        "lint": "eslint ./src --ext ts,tsx"
     }
 }

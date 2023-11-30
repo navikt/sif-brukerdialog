@@ -324,7 +324,7 @@ describe('getSakFromK9Sak', () => {
             });
         });
         describe('med ansattTom', () => {
-            describe('returnerer true når ansattFom er før søknadsperiode og ansattTom er etter søknadsperioder', () => {
+            it('returnerer true når ansattFom er før søknadsperiode og ansattTom er etter søknadsperioder', () => {
                 expect(
                     erArbeidsgiverInnenforSøknadsperioder(
                         {
@@ -335,7 +335,7 @@ describe('getSakFromK9Sak', () => {
                     ),
                 ).toBeTruthy();
             });
-            describe('returnerer true når ansattTom er i mellom søknadsperioder', () => {
+            it('returnerer true når ansattTom er i mellom søknadsperioder', () => {
                 expect(
                     erArbeidsgiverInnenforSøknadsperioder(
                         {
@@ -346,7 +346,7 @@ describe('getSakFromK9Sak', () => {
                     ),
                 ).toBeTruthy();
             });
-            describe('returnerer false når ansattTom er før søknadsperioder', () => {
+            it('returnerer false når ansattTom er før søknadsperioder', () => {
                 expect(
                     erArbeidsgiverInnenforSøknadsperioder(
                         {
@@ -357,7 +357,7 @@ describe('getSakFromK9Sak', () => {
                     ),
                 ).toBeFalsy();
             });
-            describe('returnerer false når ansattFom og ansattTom er mellom to søknadsperioder', () => {
+            it('returnerer false når ansattFom og ansattTom er mellom to søknadsperioder', () => {
                 expect(
                     erArbeidsgiverInnenforSøknadsperioder(
                         {

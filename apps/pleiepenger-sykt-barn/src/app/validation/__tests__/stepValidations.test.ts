@@ -1,6 +1,7 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import dayjs from 'dayjs';
-import { SøknadFormValues, SøknadFormField } from '../../types/søknad-form-values/SøknadFormValues';
+import { Mock, vi } from 'vitest';
+import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import * as fieldValidations from '../fieldValidations';
 import {
     arbeidssituasjonStepIsValid,
@@ -11,23 +12,23 @@ import {
     welcomingPageIsValid,
 } from '../stepValidations';
 
-import Mock = jest.Mock;
+// import Mock = vi.Mock;
 
-jest.mock('./../fieldValidations', () => {
+vi.mock('./../fieldValidations', () => {
     return {
-        validateNavn: jest.fn(() => undefined),
-        validateFødselsnummer: jest.fn(() => undefined),
-        validateValgtBarn: jest.fn(() => undefined),
+        validateNavn: vi.fn(() => undefined),
+        validateFødselsnummer: vi.fn(() => undefined),
+        validateValgtBarn: vi.fn(() => undefined),
     };
 });
 
-jest.mock('@navikt/sif-common-formik-ds/lib/validation', () => ({
+vi.mock('@navikt/sif-common-formik-ds/lib/validation', () => ({
     getDateValidator: () => () => undefined,
     getFødselsnummerValidator: () => () => undefined,
     getStringValidator: () => () => undefined,
 }));
 
-jest.mock('./../../utils/featureToggleUtils', () => {
+vi.mock('./../../utils/featureToggleUtils', () => {
     return { isFeatureEnabled: () => false, Feature: {} };
 });
 
@@ -51,7 +52,7 @@ describe('stepValidation tests', () => {
     describe('opplysningerOmBarnetStepIsValid', () => {
         describe(`opplysningerOmBarnetStep test`, () => {
             beforeEach(() => {
-                jest.resetAllMocks();
+                vi.resetAllMocks();
             });
 
             it('should be valid if barnetsNavn, barnetsFødselsnummer and are all valid', () => {

@@ -16,14 +16,6 @@
             "outputs": [],
             "dependsOn": ["^build-package"]
         },
-        "test-watch": {
-            "outputs": [],
-            "dependsOn": ["^build-package"]
-        },
-        "test-coverage": {
-            "outputs": ["coverage/**"],
-            "dependsOn": ["^build-package"]
-        },
         "lint": {
             "dependsOn": ["^lint"],
             "outputs": []

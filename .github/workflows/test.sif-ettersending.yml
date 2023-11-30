@@ -10,6 +10,7 @@ on:
             - 'packages/**/*'
             - .github/workflows/app.sif-ettersending.yml
             - .github/workflows/test.sif-ettersending.yml
+            - yarn.lock
     workflow_call:
 
 env:

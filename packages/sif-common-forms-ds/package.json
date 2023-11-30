@@ -34,7 +34,6 @@
         "@testing-library/dom": "9.3.3",
         "@testing-library/react": "14.1.2",
         "@testing-library/user-event": "14.5.1",
-        "@types/jest": "29.5.10",
         "@types/node": "20.10.0",
         "@types/react": "18.2.39",
         "@types/react-dom": "18.2.17",
@@ -58,16 +57,11 @@
         "react-modal": "3.16.1",
         "react-responsive": "9.0.2",
         "react-router-dom": "6.20.0",
-        "react-scripts": "5.0.1",
         "rimraf": "5.0.5",
         "storybook": "7.6.0",
         "vite": "5.0.2",
-        "vite-plugin-checker": "0.6.2"
-    },
-    "jest": {
-        "transformIgnorePatterns": [
-            "node_modules/(?!(@navikt)).*\\.js$"
-        ]
+        "vite-plugin-checker": "0.6.2",
+        "vitest": "0.34.6"
     },
     "watch": {
         "copy-files": {
@@ -91,7 +85,6 @@
         "dev": "yarn compile-lib-script-watch",
         "lint": "eslint ./src --ext ts,tsx",
         "storybook": "storybook dev -p 6006 -s public",
-        "test-watch": "react-scripts test",
-        "test": "react-scripts test --watchAll=false --env=jsdom"
+        "test": "vitest"
     }
 }

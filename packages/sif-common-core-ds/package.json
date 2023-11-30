@@ -42,7 +42,6 @@
         "@storybook/react": "7.6.0",
         "@storybook/react-vite": "7.6.0",
         "@storybook/testing-library": "0.2.2",
-        "@types/jest": "29.5.10",
         "@types/node": "20.10.0",
         "@types/react": "18.2.39",
         "@types/react-collapse": "5.0.4",
@@ -61,7 +60,6 @@
         "react-dom": "18.2.0",
         "react-intl": "6.5.5",
         "react-responsive": "9.0.2",
-        "react-scripts": "5.0.1",
         "react-syntax-highlighter": "15.5.0",
         "rimraf": "5.0.5",
         "sass": "1.69.5",
@@ -69,7 +67,8 @@
         "storybook": "7.6.0",
         "uuid": "9.0.1",
         "vite": "5.0.2",
-        "vite-plugin-checker": "0.6.2"
+        "vite-plugin-checker": "0.6.2",
+        "vitest": "0.34.6"
     },
     "overrides": {
         "react-refresh": "0.11.0"
@@ -99,14 +98,6 @@
         "copy-json-files-to-lib": "copyfiles -u 1 \"src/**/*.json\" lib",
         "lint": "eslint ./src --ext ts,tsx",
         "storybook": "storybook dev -p 6006 -s public",
-        "test": "react-scripts test --watchAll=false --env=jsdom",
-        "test-watch": "react-scripts test",
-        "test-coverage": "react-scripts test a --coverage --watchAll=false",
-        "test-coverage-watch": "react-scripts test a --coverage --watchAll=true"
-    },
-    "jest": {
-        "transformIgnorePatterns": [
-            "node_modules/node_modules/(?!axios)"
-        ]
+        "test": "vitest"
     }
 }

@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { vi } from 'vitest';
 import { axiosConfigPsb } from '../../config/axiosConfig';
 import { ResourceType } from '../../types/ResourceType';
-import { axiosJsonConfig, sendMultipartPostRequest } from '../utils/apiUtils';
+import { StepID } from '../../types/StepID';
 import {
     deleteFile,
     getArbeidsgiver,
@@ -12,30 +13,35 @@ import {
     sendApplication,
     uploadFile,
 } from '../api';
-import { StepID } from '../../types/StepID';
+import { axiosJsonConfig, sendMultipartPostRequest } from '../utils/apiUtils';
 
-jest.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => {
-    return { getEnvironmentVariable: () => 'mockedApiUrl', getEnvVariableOrDefault: () => 'mockedApiUrl' };
+vi.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => {
+    return {
+        getEnvironmentVariable: () => 'mockedApiUrl',
+        getEnvVariableOrDefault: () => 'mockedApiUrl',
+        getCommitShaFromEnv: () => 'mockedCommitSha',
+    };
 });
 
 const mockedApiUrl = 'nav.no/api';
 
-jest.mock('../utils/apiUtils', () => {
+vi.mock('../utils/apiUtils', () => {
     return {
-        getApiUrlByResourceType: jest.fn(() => mockedApiUrl),
-        getInnsynApiUrlByResourceType: jest.fn(() => mockedApiUrl),
-        sendMultipartPostRequest: jest.fn(),
+        getApiUrlByResourceType: vi.fn(() => mockedApiUrl),
+        getInnsynApiUrlByResourceType: vi.fn(() => mockedApiUrl),
+        sendMultipartPostRequest: vi.fn(),
+        axiosJsonConfig: {},
     };
 });
 
-jest.mock('../../utils/featureToggleUtils', () => {
+vi.mock('../../utils/featureToggleUtils', () => {
     return {
-        isFeatureEnabled: jest.fn(() => false),
+        isFeatureEnabled: vi.fn(() => false),
         Feature: {},
     };
 });
 
-jest.mock('axios');
+vi.mock('axios');
 
 describe('api', () => {
     describe('getBarn', () => {
