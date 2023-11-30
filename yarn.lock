@@ -3648,7 +3648,6 @@ __metadata:
     uuid: 9.0.1
     vite: 5.0.2
     vite-plugin-checker: 0.6.2
-    vitest: 0.34.6
   languageName: unknown
   linkType: soft
 
