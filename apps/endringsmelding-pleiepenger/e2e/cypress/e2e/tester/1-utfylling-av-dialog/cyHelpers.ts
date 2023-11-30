@@ -8,12 +8,12 @@ const enkeltuke = 45;
 const flereUker = [46, 47];
 
 const getAktivitet = () => {
-    getTestElement('aktivitet_a_947064649').should('be.visible').wait(200);
+    getTestElement('aktivitet_a_947064649').should('be.visible').wait(500);
     return getTestElement('aktivitet_a_947064649');
 };
 
 const getPeriode = () => {
-    getTestElement('dateRangeAccordion_0').should('be.visible').wait(200);
+    getTestElement('dateRangeAccordion_0').should('be.visible').wait(500);
     return getTestElement('dateRangeAccordion_0');
 };
 
@@ -213,7 +213,7 @@ const endreArbeidFlereUker = (uker: number[] = flereUker) => {
     it('velger uker for endring', () => {
         getAktivitet().within(() => {
             getPeriode().within(() => {
-                getTestElement('endre-flere-uker-cb').click();
+                getTestElement('endre-flere-uker-cb').wait(500).click();
                 const rows = uker.map((uke) => getUkeRow(uke));
                 rows.forEach((row) => {
                     row.within(() => {
