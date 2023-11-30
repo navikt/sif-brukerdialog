@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.5.2
+
+### Patch Changes
+
+-   6084e23: Diverse mindre pakkeoppdateringer - versjonstrigger
+
 ## 1.5.1
 
 ### Patch Changes

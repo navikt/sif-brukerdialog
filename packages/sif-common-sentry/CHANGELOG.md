@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.25.2
+
+### Patch Changes
+
+-   6084e23: Diverse mindre pakkeoppdateringer - versjonstrigger
+
 ## 0.25.1
 
 ### Patch Changes

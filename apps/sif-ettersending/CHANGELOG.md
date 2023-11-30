@@ -1,5 +1,25 @@
 # @navikt/sif-ettersending
 
+## 3.27.0
+
+### Minor Changes
+
+-   2331115: Oppdatert react-router-dom. Endringer i ettersending og pleiepenger på grunn av feil bruk av navigate i ny versjon.
+
+### Patch Changes
+
+-   6084e23: Diverse mindre pakkeoppdateringer - versjonstrigger
+-   Updated dependencies [2331115]
+-   Updated dependencies [6084e23]
+    -   @navikt/sif-common-soknad-ds@10.11.0
+    -   @navikt/sif-app-register@0.0.4
+    -   @navikt/sif-common-amplitude@2.24.2
+    -   @navikt/sif-common-core-ds@9.11.2
+    -   @navikt/sif-common-formik-ds@1.5.2
+    -   @navikt/sif-common-hooks@0.1.2
+    -   @navikt/sif-common-sentry@0.25.2
+    -   @navikt/sif-common-utils@3.43.2
+
 ## 3.26.1
 
 ### Patch Changes

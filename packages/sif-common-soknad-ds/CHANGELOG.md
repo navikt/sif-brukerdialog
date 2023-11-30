@@ -1,5 +1,15 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.11.0
+
+### Minor Changes
+
+-   2331115: Oppdatert react-router-dom. Endringer i ettersending og pleiepenger på grunn av feil bruk av navigate i ny versjon.
+
+### Patch Changes
+
+-   6084e23: Diverse mindre pakkeoppdateringer - versjonstrigger
+
 ## 10.10.1
 
 ### Patch Changes

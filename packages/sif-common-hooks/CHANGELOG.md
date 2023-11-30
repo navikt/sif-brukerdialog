@@ -1,5 +1,11 @@
 # @navikt/sif-common-hooks
 
+## 0.1.2
+
+### Patch Changes
+
+-   6084e23: Diverse mindre pakkeoppdateringer - versjonstrigger
+
 ## 0.1.1
 
 ### Patch Changes

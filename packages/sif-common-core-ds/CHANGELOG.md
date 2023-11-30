@@ -1,5 +1,13 @@
 # @navikt/sif-common-core-ds
 
+## 9.11.2
+
+### Patch Changes
+
+-   6084e23: Diverse mindre pakkeoppdateringer - versjonstrigger
+-   Updated dependencies [6084e23]
+    -   @navikt/sif-common-utils@3.43.2
+
 ## 9.11.1
 
 ### Patch Changes

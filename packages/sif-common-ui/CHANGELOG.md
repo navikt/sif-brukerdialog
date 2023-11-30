@@ -1,5 +1,15 @@
 # @navikt/sif-common-ui
 
+## 0.3.2
+
+### Patch Changes
+
+-   6084e23: Diverse mindre pakkeoppdateringer - versjonstrigger
+-   Updated dependencies [6084e23]
+    -   @navikt/sif-common-core-ds@9.11.2
+    -   @navikt/sif-common-formik-ds@1.5.2
+    -   @navikt/sif-common-utils@3.43.2
+
 ## 0.3.1
 
 ### Patch Changes

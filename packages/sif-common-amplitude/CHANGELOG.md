@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.24.2
+
+### Patch Changes
+
+-   6084e23: Diverse mindre pakkeoppdateringer - versjonstrigger
+
 ## 2.24.1
 
 ### Patch Changes

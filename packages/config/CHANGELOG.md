@@ -1,5 +1,11 @@
 # config
 
+## 0.9.2
+
+### Patch Changes
+
+-   6084e23: Diverse mindre pakkeoppdateringer - versjonstrigger
+
 ## 0.9.1
 
 ### Patch Changes
