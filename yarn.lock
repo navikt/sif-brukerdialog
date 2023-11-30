@@ -4900,7 +4900,6 @@ __metadata:
     "@playwright/test": ^1.40.0
     "@storybook/react-vite": 7.6.0
     "@testing-library/react": 14.1.2
-    "@types/jest": 29.5.10
     "@types/react": 18.2.39
     "@types/react-collapse": 5.0.4
     "@types/react-dom": 18.2.17
