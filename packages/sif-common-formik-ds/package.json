@@ -101,15 +101,14 @@
         "copy-css-files-to-lib": "copyfiles -u 1 \"src/**/*.css\" lib",
         "copy-files": "npm-run-all copy-css-files-to-lib copy-sass-files-to-lib",
         "copy-sass-files-to-lib": "copyfiles -u 1 \"src/**/*.scss\" lib",
-        "dev": "yarn watch-styles & yarn compile-lib-script-watch",
+        "dev": "yarn compile-lib-script-watch",
         "lint": "eslint ./src --ext ts,tsx",
         "storybook": "storybook dev -p 6006 -s public",
         "test": "react-scripts test --watchAll=false --env=jsdom",
         "test-coverage": "react-scripts test a --coverage --watchAll=false",
         "test-coverage-watch": "react-scripts test a --coverage --watchAll=true",
         "test-storybook": "test-storybook",
-        "test-watch": "react-scripts test",
-        "watch-styles": "npm-watch copy-files"
+        "test-watch": "react-scripts test"
     },
     "watch": {
         "copy-files": {
