@@ -5,6 +5,7 @@ import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { fetchMellomlagringer, fetchSvarfrist, fetchSøker, fetchSøknader } from '../../server/apiService';
 import { Innsynsdata } from '../../types/InnsynData';
 import { getXRequestId } from '../../utils/apiUtils';
+import { sortSøknadEtterOpprettetDato } from '../../utils/søknadUtils';
 
 export const innsynsdataFetcher = async (url: string): Promise<Innsynsdata> => axios.get(url).then((res) => res.data);
 
@@ -21,7 +22,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         ]);
         res.send({
             søker,
-            søknader: søknader.status === 'fulfilled' ? søknader.value : [],
+            søknader: søknader.status === 'fulfilled' ? søknader.value.sort(sortSøknadEtterOpprettetDato) : [],
             mellomlagring: mellomlagring.status === 'fulfilled' ? mellomlagring.value : {},
             svarfrist: svarfrist.status === 'fulfilled' ? svarfrist.value.frist : undefined,
         });
