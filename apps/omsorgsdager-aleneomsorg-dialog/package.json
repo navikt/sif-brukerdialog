@@ -43,19 +43,16 @@
         "express": "4.18.2",
         "formik": "2.4.5",
         "helmet": "7.1.0",
-        "history": "5.3.0",
         "http-proxy-middleware": "2.0.6",
         "jose": "5.1.2",
         "mustache-express": "1.3.2",
         "object-hash": "3.0.0",
         "openid-client": "5.6.1",
-        "promise": "8.3.0",
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "react-fast-compare": "3.2.2",
         "react-intl": "6.5.5",
         "react-router-dom": "6.20.0",
-        "ulid": "2.3.0",
         "uuid": "9.0.1"
     },
     "devDependencies": {
@@ -72,22 +69,12 @@
         "@vitejs/plugin-react": "4.2.0",
         "babel-polyfill": "6.26.0",
         "cross-env": "7.0.3",
-        "css-loader": "6.8.1",
         "dotenv": "16.3.1",
         "jsdom": "23.0.0",
         "less": "4.2.0",
-        "less-loader": "11.1.3",
         "mini-css-extract-plugin": "2.7.6",
-        "npm-run-all": "4.1.5",
-        "rimraf": "5.0.5",
-        "source-map-loader": "4.0.1",
-        "style-loader": "3.3.3",
-        "ts-loader": "9.5.1",
         "vite": "5.0.2",
         "vite-plugin-checker": "0.6.2"
-    },
-    "resolutions": {
-        "babel-core": "7.0.0-bridge.0"
     },
     "eslintConfig": {
         "overrides": [
