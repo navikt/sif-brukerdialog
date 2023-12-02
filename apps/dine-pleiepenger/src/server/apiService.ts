@@ -9,6 +9,7 @@ import { Svarfrist, SvarfristSchema } from './api-models/Svarfrist';
 import { Søker, SøkerSchema } from './api-models/Søker';
 import { exchangeTokenAndPrepRequest } from './utils/exchangeTokenPrepRequest';
 import { isValidMellomlagring } from './utils/isValidMellomlagring';
+import { SøknaderSchema } from './api-models/SøknadSchema';
 
 export enum ApiService {
     k9Brukerdialog = 'k9-brukerdialog-api',
@@ -59,8 +60,7 @@ export const fetchSøknader = async (req: NextApiRequest): Promise<Søknad[]> =>
     const { url, headers } = await exchangeTokenAndPrepRequest(ApiService.sifInnsyn, context, ApiEndpointInnsyn.søknad);
     createChildLogger(getXRequestId(req)).info(`Fetching søknader from url: ${url}`);
     const response = await axios.get(url, { headers });
-    const parse = (it) => it as Søknad[]; // TODO vurdere å lage eget schema for søknad
-    return await parse(response.data);
+    return await SøknaderSchema.parse(response.data);
 };
 
 /**

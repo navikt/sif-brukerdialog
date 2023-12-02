@@ -10,6 +10,7 @@ import { sortSøknadEtterOpprettetDato } from '../../utils/søknadUtils';
 export const innsynsdataFetcher = async (url: string): Promise<Innsynsdata> => axios.get(url).then((res) => res.data);
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
+    const childLogger = createChildLogger(getXRequestId(req));
     try {
         /** Hent søker først for å se om bruker har tilgang */
         const søker = await fetchSøker(req);
@@ -20,6 +21,11 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             fetchMellomlagringer(req),
             fetchSvarfrist(req),
         ]);
+
+        if (søknader.status === 'rejected') {
+            childLogger.error(`Hent søknader feilet: ${søknader.reason.message}`, { cause: søknader.reason });
+        }
+
         res.send({
             søker,
             søknader: søknader.status === 'fulfilled' ? søknader.value.sort(sortSøknadEtterOpprettetDato) : [],
@@ -27,7 +33,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             svarfrist: svarfrist.status === 'fulfilled' ? svarfrist.value.frist : undefined,
         });
     } catch (err) {
-        const childLogger = createChildLogger(getXRequestId(req));
         childLogger.error(`Hent innsynsdata feilet: ${err}`);
         if (err.response.status === HttpStatusCode.Forbidden) {
             res.status(403).json({ error: 'Ikke tilgang' });

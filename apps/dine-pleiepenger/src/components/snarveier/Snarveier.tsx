@@ -26,7 +26,7 @@ const Snarveier: React.FunctionComponent<Props> = ({ title }) => {
                     description={<>For endringer i arbeidstid og ferie i din søknad/&shy;pleiepengeperiode.</>}
                 />
                 <SnarveiLinkPanel
-                    href={browserEnv.NEXT_PUBLIC_ETTERSENDING_PLEIEPENGER_URL}
+                    href={browserEnv.NEXT_PUBLIC_ETTERSENDELSE_PLEIEPENGER_URL}
                     icon={<File role="presentation" aria-hidden={true} width="1.5rem" height="1.5rem" />}
                     title={'Ettersend dokumenter'}
                     description={'Ettersendt legeerklæring eller andre dokumenter til din sak.'}
