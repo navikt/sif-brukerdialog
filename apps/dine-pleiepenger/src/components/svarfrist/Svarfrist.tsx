@@ -2,6 +2,7 @@
 import { BodyLong, Box, Heading, Link } from '@navikt/ds-react';
 import React from 'react';
 import { dateFormatter } from '@navikt/sif-common-utils/lib';
+import { browserEnv } from '../../utils/env';
 
 interface Props {
     frist?: Date;
@@ -25,7 +26,7 @@ const Svarfrist: React.FunctionComponent<Props> = ({ frist }) => {
                     <p className="mb-2">TODO: Skrive tekst for når vi ikke får noen dato fra backend</p>
                 )}
 
-                <Link variant="neutral" href="https://www.nav.no/saksbehandlingstider">
+                <Link variant="neutral" href={browserEnv.NEXT_PUBLIC_SAKBEHANDLINGSTID_INFO_URL}>
                     Se saksbehandlingstider
                 </Link>
             </BodyLong>
