@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { parseMaybeDateStringToDate } from '../../utils/jsonParseUtils';
-import { ArbeidsgiverSchema } from '../../types/Arbeidsgiver';
+import { ArbeidsgivereSchema } from '../../types/Arbeidsgiver';
 
 export enum Søknadsstatus {
     MOTTATT = 'MOTTATT',
@@ -32,7 +32,7 @@ const PleiepengerSøknadInfoSchema = z.object({
     fraOgMed: z.string(), //z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
     tilOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
     mottatt: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
-    arbeidsgivere: z.array(ArbeidsgiverSchema),
+    arbeidsgivere: ArbeidsgivereSchema,
 });
 
 const PleiepengerEndringsmeldingInfoSchema = z.object({

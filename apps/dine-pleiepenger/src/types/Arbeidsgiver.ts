@@ -16,11 +16,11 @@ const OrganisasjonSchema = z.object({
     organisasjonsnummer: z.string(),
 });
 
-export const Organisasjoner = z.object({
+export const OrganisasjonerSchema = z.object({
     organisasjoner: z.array(OrganisasjonSchema),
 });
 
-export const ArbeidsgivereSchema = z.union([z.array(ArbeidsgiverSchema), Organisasjoner]);
+export const ArbeidsgivereSchema = z.union([z.array(ArbeidsgiverSchema), OrganisasjonerSchema]);
 
 export type Arbeidsgiver = z.infer<typeof ArbeidsgiverSchema>;
 export type Arbeidsgivere = z.infer<typeof ArbeidsgivereSchema>;
