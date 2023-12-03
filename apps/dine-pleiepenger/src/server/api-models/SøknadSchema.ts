@@ -35,9 +35,7 @@ const PleiepengerSøknadInfoSchema = z.object({
     arbeidsgivere: ArbeidsgivereSchema,
 });
 
-const PleiepengerEndringsmeldingInfoSchema = z.object({
-    // opprettet: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
-});
+const PleiepengerEndringsmeldingInfoSchema = z.object({});
 
 const PleiepengerEttersendelseInfo = z.object({
     mottatt: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
@@ -49,7 +47,7 @@ const SøknadBaseSchema = z.object({
     journalpostId: z.string(),
     dokumenter: z.array(z.union([SøknadDokumentSchema, z.any()])),
     opprettet: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
-    endret: z.union([z.null(), z.string(), z.preprocess((val) => parseMaybeDateStringToDate(val), z.date())]),
+    endret: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()).or(z.undefined()),
     behandlingsdato: z.union([z.null(), z.preprocess((val) => parseMaybeDateStringToDate(val), z.date())]),
 });
 

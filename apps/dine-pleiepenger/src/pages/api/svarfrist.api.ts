@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { createChildLogger } from '@navikt/next-logger';
 import axios from 'axios';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
-import { Svarfrist } from '../../server/api-models/Svarfrist';
+import { Svarfrist } from '../../server/api-models/SvarfristSchema';
 import { fetchSvarfrist } from '../../server/apiService';
 import { getXRequestId } from '../../utils/apiUtils';
 

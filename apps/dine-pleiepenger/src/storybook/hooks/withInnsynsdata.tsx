@@ -1,7 +1,7 @@
 import { InnsynsdataContextProvider } from '../../context/InnsynsdataContextProvider';
 import mockSøknader from '../../../api-mock-server/mockdata/soknader.json';
 import mockSøker from '../../../api-mock-server/mockdata/soknader.json';
-import { Søker } from '../../server/api-models/Søker';
+import { Søker } from '../../server/api-models/SøkerSchema';
 import { Søknad } from '../../types/Søknad';
 import dayjs from 'dayjs';
 

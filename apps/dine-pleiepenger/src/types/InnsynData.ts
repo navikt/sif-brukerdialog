@@ -1,4 +1,4 @@
-import { Søker } from '../server/api-models/Søker';
+import { Søker } from '../server/api-models/SøkerSchema';
 import { Mellomlagringer } from './Mellomlagring';
 import { Søknad } from './Søknad';
 
