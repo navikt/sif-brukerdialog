@@ -89,12 +89,9 @@ const fyllUtFraværSteg = async (page: Page) => {
 
 const lastOppLegeerklæring = async (page: Page) => {
     await page.getByRole('heading', { name: 'Last opp legeerklæring' });
-    await page.getByRole('button', { name: 'Last opp legeerklæringen' }).click();
-    await page
-        .getByLabel('OpplastingsikonLast opp legeerklæringen')
-        .setInputFiles('./e2e/playwright/files/navlogopng.png');
-    const list = await page.getByTestId('legeerklæring-liste');
-    expect(list.locator('.attachmentListElement')).toHaveCount(1);
+    await page.locator('input[name="vedlegg"]').setInputFiles('./e2e/playwright/files/navlogopng.png');
+    const listItems = await page.locator('.attachmentListElement');
+    await expect(listItems).toHaveCount(1);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
