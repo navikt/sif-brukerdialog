@@ -22,7 +22,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         const [søknader, mellomlagring, svarfrist] = await Promise.allSettled([
             fetchSøknader(req),
             fetchMellomlagringer(req),
-            hentSvarfrist ? fetchSvarfrist(req) : Promise.resolve({}),
+            hentSvarfrist ? fetchSvarfrist(req) : Promise.resolve({ frist: undefined }),
         ]);
 
         if (søknader.status === 'rejected') {
