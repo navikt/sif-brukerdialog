@@ -13,11 +13,11 @@
         "uuid": "9.0.1"
     },
     "devDependencies": {
-        "@babel/core": "7.23.3",
-        "@babel/preset-env": "7.23.3",
+        "@babel/core": "7.23.5",
+        "@babel/preset-env": "7.23.5",
         "@babel/preset-react": "7.23.3",
-        "@types/node": "20.10.0",
-        "@types/react": "18.2.39",
+        "@types/node": "20.10.3",
+        "@types/react": "18.2.41",
         "@types/react-dom": "18.2.17",
         "@types/uuid": "9.0.7",
         "config": "workspace:*",
