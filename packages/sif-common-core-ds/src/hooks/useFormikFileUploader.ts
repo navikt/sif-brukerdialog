@@ -23,7 +23,7 @@ export const useFormikFileUploader = ({
     onFilesUploaded,
     onErrorUploadingAttachments,
     onUnauthorizedOrForbiddenUpload,
-    getAttachmentURLFrontend: modifyAttachmentUrl,
+    getAttachmentURLFrontend,
 }: {
     value: Attachment[];
     uploadFile: (file: File) => Promise<AxiosResponse<any, any>>;
@@ -38,7 +38,7 @@ export const useFormikFileUploader = ({
             try {
                 const response = await uploadFile(file);
                 attachment = setAttachmentPendingToFalse(attachment);
-                attachment.url = modifyAttachmentUrl(response.headers.location);
+                attachment.url = getAttachmentURLFrontend(response.headers.location);
                 attachment.uploaded = true;
             } catch (error) {
                 if (isForbidden(error) || isUnauthorized(error)) {

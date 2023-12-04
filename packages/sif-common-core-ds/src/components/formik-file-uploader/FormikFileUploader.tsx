@@ -1,20 +1,20 @@
-import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
 import {
     FileDropAcceptImagesAndPdf,
     TypedFormInputValidationProps,
     ValidationError,
 } from '@navikt/sif-common-formik-ds/lib';
+import { AxiosResponse } from 'axios';
+import { useFormikFileUploader } from '../../hooks/useFormikFileUploader';
+import { Attachment } from '../../types/Attachment';
 import FormikFileDropInput from '@navikt/sif-common-formik-ds/lib/components/formik-file-drop-input/FormikFileDropInput';
-import api, { ApiEndpoint } from '../../api/api';
-import { getAttachmentURLFrontend } from '../../utils/attachmentUtilsAuthToken';
-import { useFormikFileUploader } from './useFormikFileUploader';
 
 interface Props extends TypedFormInputValidationProps<any, ValidationError> {
     attachments: Attachment[];
     name: string;
     legend?: string;
     buttonLabel: string;
-    apiEndpoint: ApiEndpoint;
+    getAttachmentURLFrontend: (url: string) => string;
+    uploadFile: (file: File) => Promise<AxiosResponse<any, any>>;
     onFilesUploaded?: (antall: number, antallFeilet: number) => void;
     onFileInputClick?: () => void;
     onErrorUploadingAttachments: (files: File[]) => void;
@@ -25,18 +25,18 @@ function FormikFileUploader({
     attachments,
     name,
     legend,
-    apiEndpoint,
+    getAttachmentURLFrontend,
+    uploadFile,
     onFileInputClick,
     onFilesUploaded,
     onErrorUploadingAttachments,
     onUnauthorizedOrForbiddenUpload,
-
     ...otherProps
 }: Props) {
     const { onFilesSelect } = useFormikFileUploader({
         value: attachments,
         getAttachmentURLFrontend,
-        uploadFile: (file: File) => api.uploadFile(apiEndpoint, file),
+        uploadFile,
         onUnauthorizedOrForbiddenUpload,
         onErrorUploadingAttachments,
         onFilesUploaded,

@@ -1,21 +1,22 @@
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import FileUploadErrors from '@navikt/sif-common-core-ds/lib/components/file-upload-errors/FileUploadErrors';
+import FormikFileUploader from '@navikt/sif-common-core-ds/lib/components/formik-file-uploader/FormikFileUploader';
 import PictureScanningGuide from '@navikt/sif-common-core-ds/lib/components/picture-scanning-guide/PictureScanningGuide';
 import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { ValidationError } from '@navikt/sif-common-formik-ds/lib';
+import { validateAll } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
+import { useFormikContext } from 'formik';
+import api, { ApiEndpoint } from '../../../../api/api';
+import { getAttachmentURLFrontend } from '../../../../utils/attachmentUtilsAuthToken';
+import { relocateToLoginPage } from '../../../../utils/navigationUtils';
+import { validateAttachments, ValidateAttachmentsErrors } from '../../../../utils/validateAttachments';
 import {
     OpplysningerOmPleietrengendeFormFields,
     OpplysningerOmPleietrengendeFormValues,
 } from '../OpplysningerOmPleietrengendeStep';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { useFormikContext } from 'formik';
-import FormikFileUploader from '../../../../components/formik-file-uploader/FormikFileUploader';
-import { ApiEndpoint } from '../../../../api/api';
-import { ValidateAttachmentsErrors, validateAttachments } from '../../../../utils/validateAttachments';
-import { relocateToLoginPage } from '../../../../utils/navigationUtils';
-import FileUploadErrors from '@navikt/sif-common-core-ds/lib/components/file-upload-errors/FileUploadErrors';
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { validateAll } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib';
 import IdPartAttachmentList from './IdPartAttachmentList';
 
 //TODO VALIDATE  alleDokumenterISøknaden: Attachment[];
@@ -54,8 +55,9 @@ const IdPart = () => {
                 attachments={values.pleietrengendeId}
                 name={OpplysningerOmPleietrengendeFormFields.pleietrengendeId}
                 buttonLabel={intlHelper(intl, 'step.opplysningerOmPleietrengende.id.uploadButtonLabel')}
-                apiEndpoint={ApiEndpoint.vedlegg}
                 onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
+                uploadFile={(file: File) => api.uploadFile(ApiEndpoint.vedlegg, file)}
+                getAttachmentURLFrontend={getAttachmentURLFrontend}
                 onFileInputClick={() => {
                     setFilesThatDidntGetUploaded([]);
                 }}
