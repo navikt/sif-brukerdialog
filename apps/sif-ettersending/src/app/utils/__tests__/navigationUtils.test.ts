@@ -1,11 +1,12 @@
 import { NavigateFunction } from 'react-router-dom';
+import { describe, expect, it, vi } from 'vitest';
 import { getRouteConfig } from '../../config/routeConfig';
 import { Søknadstype } from '../../types/Søknadstype';
-import { navigateTo, navigateToErrorPage, userIsCurrentlyOnErrorPage } from '../navigationUtils';
+import { navigateToErrorPage, userIsCurrentlyOnErrorPage } from '../navigationUtils';
 
-const navigate: NavigateFunction = jest.fn();
+const navigate: NavigateFunction = vi.fn().mockImplementation(() => {});
 
-jest.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => {
+vi.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => {
     return { getEnvironmentVariable: () => '' };
 });
 
@@ -13,8 +14,6 @@ const søknadstype = Søknadstype.omsorgspenger;
 const routeConfig = getRouteConfig(søknadstype);
 
 // hacky workaround for this issue, which actually seems to be an issue
-// with jsdom (not jest):
-// https://github.com/facebook/jest/issues/5124
 const setWindowLocationPathname = (pathname: string | undefined) => {
     const windowLocation = JSON.stringify(window.location);
     delete (window as any).location;
@@ -25,14 +24,6 @@ const setWindowLocationPathname = (pathname: string | undefined) => {
 };
 
 describe('navigationUtils', () => {
-    describe('navigateTo', () => {
-        it('should navigate user to the provided route', () => {
-            const route = '/someRoute';
-            navigateTo(route, navigate);
-            expect(navigate).toHaveBeenCalledWith(route);
-        });
-    });
-
     describe('navigateToErrorPage', () => {
         it('should navigate user to the path specified by routeConfig.ERROR_PAGE_ROUTE', () => {
             navigateToErrorPage(søknadstype, navigate);

@@ -31,7 +31,7 @@ import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-va
 import appSentryLogger from '../../utils/appSentryLogger';
 import { harArbeidIPerioden, harFraværFraJobb } from '../../utils/arbeidUtils';
 import { getDataBruktTilUtledning } from '../../utils/getDataBruktTilUtledning';
-import { navigateTo, relocateToLoginPage } from '../../utils/navigationUtils';
+import { relocateToLoginPage } from '../../utils/navigationUtils';
 import { getApiDataFromSøknadsdata } from '../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import { validateApiValues } from '../../validation/apiValuesValidation';
 import SøknadFormComponents from '../SøknadFormComponents';
@@ -102,7 +102,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
             } else {
                 await logSoknadFailed(PleiepengerSyktBarnApp.navn);
                 appSentryLogger.logApiError(error);
-                navigateTo(routeConfig.ERROR_PAGE_ROUTE, navigate);
+                navigate(routeConfig.ERROR_PAGE_ROUTE);
             }
         }
     };

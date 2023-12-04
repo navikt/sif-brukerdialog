@@ -9,14 +9,13 @@
         "url": "https://github.com/navikt/sif-brukerdialog/issues"
     },
     "devDependencies": {
-        "@changesets/cli": "2.26.2",
+        "@changesets/cli": "2.27.1",
         "husky": "8.0.3",
-        "lint-staged": "15.0.2",
+        "lint-staged": "15.2.0",
         "npm-run-all": "4.1.5",
-        "npm-watch": "0.11.0",
-        "prettier": "3.0.3",
+        "prettier": "3.1.0",
         "turbo": "1.10.16",
-        "typescript": "5.2.2",
+        "typescript": "5.3.2",
         "webpack": "5.89.0"
     },
     "lint-staged": {
@@ -47,25 +46,22 @@
         "build-omsorgspengerutbetaling-soknad": "turbo run build-app --filter=@navikt/omsorgspengerutbetaling-soknad",
         "e2e-omsorgspengerutbetaling-soknad": "turbo run ci --filter=@navikt/omsorgspengerutbetaling-soknad",
         "build-pleiepenger-i-livets-sluttfase-soknad": "turbo run build-app --filter=@navikt/pleiepenger-i-livets-sluttfase-soknad",
+        "build-omsorgsdager-kalkulator": "turbo run build --filter=@navikt/omsorgsdager-kalkulator",
+        "build-dine-pleiepenger": "turbo run build --filter=@navikt/dine-pleiepenger",
         "ba": "turbo run build-app",
         "clean": "turbo run clean",
         "clean-all": "turbo run clean && rm -rf node_modules",
-        "dev": "turbo run dev --no-cache --parallel --continue",
+        "dev-lib": "turbo run dev-lib --no-cache --parallel --continue",
         "format": "prettier --write \"**/*.{ts,tsx,md}\"",
         "prepare": "husky install",
         "lint": "turbo run lint",
-        "test": "turbo run test",
-        "test-watch": "turbo run test-watch",
-        "test-coverage": "turbo run test-coverage"
+        "test": "turbo run test"
     },
     "workspaces": [
         "apps/*",
         "packages/*"
     ],
     "overrides": {
-        "react-scripts": {
-            "nth-check": ">=2.0.1"
-        },
         "glob-parent": ">=5.1.2"
     },
     "private": true,

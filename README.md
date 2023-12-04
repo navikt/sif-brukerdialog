@@ -21,7 +21,7 @@ Samling av kode for søknadsdialoger under Sykdom i familien
 
 -   Vi bruker @changesets/cli for å holde orden på versjoner. Se https://www.npmjs.com/package/@changesets/cli for mer informasjon om hvordan det brukes.
 
-## Produksjonsseting av applikasjoner
+## Produksjonssetting av applikasjoner
 -   Alle applikasjoner skal prodsettes automatisk dersom det er endringer på main-branchen som berører applikasjonen. Dette gjøres ved å sette opp workflows som fanger opp push til main med endringer under path til applikasjonen.
 
 

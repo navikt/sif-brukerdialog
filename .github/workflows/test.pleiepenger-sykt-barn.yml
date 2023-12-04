@@ -9,6 +9,8 @@ on:
             - 'nais-config/**/*'
             - 'packages/**/*'
             - '.github/workflows/test.pleiepenger-sykt-barn.yml'
+            - yarn.lock
+    workflow_call:
 
 env:
     APP_NAME: 'pleiepenger-sykt-barn'
@@ -19,6 +21,15 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v4
+
+            - name: Setup .yarnrc.yml
+              run: |
+                  yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
+                  yarn config set npmScopes.navikt.npmAlwaysAuth true
+                  yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
+              env:
+                NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+
 
             - name: Setup Node.js environment
               uses: actions/setup-node@v4
@@ -31,11 +42,20 @@ jobs:
 
             - name: Run code tests
               run: yarn test --filter=pleiepenger-sykt-barn
+
     run-cypress-test:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
               uses: actions/checkout@v4
+
+            - name: Setup .yarnrc.yml
+              run: |
+                  yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
+                  yarn config set npmScopes.navikt.npmAlwaysAuth true
+                  yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
+              env:
+                NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
             - name: Setup Node.js environment
               uses: actions/setup-node@v4

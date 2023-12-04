@@ -15,6 +15,7 @@ const getAppSettings = () => ({
     INNSYN_URL: `${process.env.INNSYN_URL}`,
     INNSYN: `${process.env.INNSYN}`,
     LOGIN_URL: `${process.env.LOGIN_URL}`,
+    MIN_SIDE_URL: `${process.env.MIN_SIDE_URL}`,
     NYNORSK: `${process.env.NYNORSK}`,
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
     USE_AMPLITUDE: `${process.env.USE_AMPLITUDE}`,

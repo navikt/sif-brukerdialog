@@ -14,7 +14,7 @@ COPY . .
 RUN yarn
 RUN yarn turbo run build-app --filter=${SCOPE}
 
-FROM pruner AS server
+FROM gcr.io/distroless/nodejs18-debian11:nonroot
 WORKDIR /apps/omsorgspengerutbetaling-soknad
 COPY --from=pruner /app/node_modules ./node_modules/
 COPY --from=pruner /app/apps/omsorgspengerutbetaling-soknad/server.cjs .
@@ -25,4 +25,4 @@ COPY --from=pruner /app/apps/omsorgspengerutbetaling-soknad/src/build/AppSetting
 COPY --from=pruner /app/apps/omsorgspengerutbetaling-soknad/dist ./dist
 
 EXPOSE 8080
-CMD ["yarn","--cwd", "apps/omsorgspengerutbetaling-soknad", "start-express"]
+CMD ["server.cjs"]

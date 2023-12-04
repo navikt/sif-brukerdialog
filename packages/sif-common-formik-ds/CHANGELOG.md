@@ -1,5 +1,62 @@
 # @navikt/sif-common-formik-ds
 
+## 1.5.3
+
+### Patch Changes
+
+-   406b044: Patch pakkeoppdateringer
+
+## 1.5.2
+
+### Patch Changes
+
+-   6084e23: Diverse mindre pakkeoppdateringer - versjonstrigger
+
+## 1.5.1
+
+### Patch Changes
+
+-   295d3ad: Diverse mindre pakkeoppdateringer - versjonstrigger
+
+## 1.5.0
+
+### Minor Changes
+
+-   53b47be: Nav Dekoratøren 2 i alle apper
+    Vite 5
+    patch og noen minor
+    Beholder react-router-dom 6.19.0 pga navigasjon knekker i noen apper
+
+## 1.4.0
+
+### Minor Changes
+
+-   Oppdaterte pakker. Minor og patch
+
+## 1.3.0
+
+### Minor Changes
+
+-   d31f28ec: Minor og patch oppdateringer på ds, react-router-dom, vite, msw
+
+## 1.2.3
+
+### Patch Changes
+
+-   6d3b3cbe: Minor og patch oppdateringer + nextjs major -> 14
+
+## 1.2.2
+
+### Patch Changes
+
+-   09ae5814: Patch-oppdateringer
+
+## 1.2.1
+
+### Patch Changes
+
+-   b4d45cf9: Diverse mindre pakkeoppdateringer
+
 ## 1.2.0
 
 ### Minor Changes

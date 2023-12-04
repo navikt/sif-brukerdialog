@@ -14,7 +14,7 @@ COPY . .
 RUN yarn
 RUN yarn turbo run build-app --filter=${SCOPE}
 
-FROM pruner AS server
+FROM gcr.io/distroless/nodejs18-debian11:nonroot
 WORKDIR /apps/pleiepenger-sykt-barn
 COPY --from=pruner /app/node_modules ./node_modules/
 COPY --from=pruner /app/apps/pleiepenger-sykt-barn/server.cjs .
@@ -25,4 +25,4 @@ COPY --from=pruner /app/apps/pleiepenger-sykt-barn/src/build/AppSettings.cjs ./s
 COPY --from=pruner /app/apps/pleiepenger-sykt-barn/dist ./dist
 
 EXPOSE 8080
-CMD ["yarn","--cwd", "apps/pleiepenger-sykt-barn", "start-express"]
+CMD ["server.cjs"]

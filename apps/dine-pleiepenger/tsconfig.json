@@ -1,0 +1,25 @@
+{
+    "extends": "../../packages/config/tsconfig-apps.json",
+    "compilerOptions": {
+        "target": "es5",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "outDir": "build/dist",
+        "typeRoots": ["../../node_modules/@types", "./node_modules/@types"],
+        "plugins": [
+            {
+                "name": "next"
+            }
+        ],
+        "paths": {
+            "@/*": ["./src/*"]
+        },
+        "allowJs": true,
+        "strict": false,
+        "incremental": true,
+        "isolatedModules": true,
+        "resolveJsonModule": true,
+        "jsx": "preserve"
+    },
+    "exclude": ["node_modules", "pages/build", "**.js", "dist"],
+    "include": ["src/**/*", "public"]
+}

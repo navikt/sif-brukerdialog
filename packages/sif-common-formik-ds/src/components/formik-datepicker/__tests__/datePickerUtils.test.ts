@@ -1,3 +1,4 @@
+import { describe } from 'vitest';
 import datepickerUtils from '../datepickerUtils';
 
 describe('datePickerUtils', () => {

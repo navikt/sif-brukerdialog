@@ -12,6 +12,7 @@ on:
 jobs:
     run-tests:
         uses: ./.github/workflows/test.ekstra-omsorgsdager-andre-forelder-ikke-tilsyn.yml
+        secrets: inherit
 
     deploy-to-prod:
         name: Deploy ekstra-omsorgsdager-andre-forelder-ikke-tilsyn to prod

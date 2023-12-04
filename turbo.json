@@ -16,19 +16,11 @@
             "outputs": [],
             "dependsOn": ["^build-package"]
         },
-        "test-watch": {
-            "outputs": [],
-            "dependsOn": ["^build-package"]
-        },
-        "test-coverage": {
-            "outputs": ["coverage/**"],
-            "dependsOn": ["^build-package"]
-        },
         "lint": {
             "dependsOn": ["^lint"],
             "outputs": []
         },
-        "dev": {
+        "dev-lib": {
             "cache": false
         },
         "clean": {
@@ -76,6 +68,14 @@
         },
         "build-pleiepenger-i-livets-sluttfase-soknad": {
             "outputs": [],
+            "dependsOn": ["^build-package"]
+        },
+        "build-omsorgsdager-kalkulator": {
+            "outputs": [".next/**", "!.next/cache/**"],
+            "dependsOn": ["^build-package"]
+        },
+        "build-dine-pleiepenger": {
+            "outputs": [".next/**", "!.next/cache/**"],
             "dependsOn": ["^build-package"]
         }
 

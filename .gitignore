@@ -19,6 +19,17 @@ server/dist
 public/dist
 out
 
+# next.js
+/.next/
+/out/
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
 packages/**/*/coverage
 packages/**/*/lib
 **/cypress/videos/**/*
@@ -33,3 +44,8 @@ test-results
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+build-storybook.log
+chromatic.log
+chromatic-build-*.xml
+chromatic-diagnostics.json

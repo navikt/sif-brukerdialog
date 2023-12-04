@@ -1,26 +1,27 @@
+import { vi } from 'vitest';
 import RouteConfig from '../../config/routeConfig';
 import { StepID } from '../../types/StepID';
 import { SøknadFormField } from '../../types/søknad-form-values/SøknadFormValues';
 import { isAvailable } from '../routeUtils';
 import * as stepUtils from '../stepUtils';
 
-jest.mock('../featureToggleUtils', () => {
+vi.mock('../featureToggleUtils', () => {
     return {
         isFeatureEnabled: () => false,
         Feature: {},
     };
 });
 
-jest.mock('./../stepUtils', () => {
+vi.mock('./../stepUtils', () => {
     return {
-        opplysningerOmBarnetStepAvailable: jest.fn(() => 'barn step available'),
-        opplysningerOmTidsromStepAvailable: jest.fn(() => 'tidsrom step available'),
-        arbeidssituasjonStepAvailable: jest.fn(() => 'arbeidsforhold step available'),
-        legeerklæringStepAvailable: jest.fn(() => 'legeerklæring step available'),
-        medlemskapStepAvailable: jest.fn(() => 'medlemskap step available'),
-        oppsummeringStepAvailable: jest.fn(() => 'oppsummering step available'),
-        skalBrukerSvarePåBeredskapOgNattevåk: jest.fn(() => false),
-        skalBrukerSvarePåarbeidIPeriode: jest.fn(() => true),
+        opplysningerOmBarnetStepAvailable: vi.fn(() => 'barn step available'),
+        opplysningerOmTidsromStepAvailable: vi.fn(() => 'tidsrom step available'),
+        arbeidssituasjonStepAvailable: vi.fn(() => 'arbeidsforhold step available'),
+        legeerklæringStepAvailable: vi.fn(() => 'legeerklæring step available'),
+        medlemskapStepAvailable: vi.fn(() => 'medlemskap step available'),
+        oppsummeringStepAvailable: vi.fn(() => 'oppsummering step available'),
+        skalBrukerSvarePåBeredskapOgNattevåk: vi.fn(() => false),
+        skalBrukerSvarePåarbeidIPeriode: vi.fn(() => true),
     };
 });
 

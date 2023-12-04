@@ -1,5 +1,50 @@
 # @navikt/sif-common-amplitude
 
+## 2.24.3
+
+### Patch Changes
+
+-   406b044: Patch pakkeoppdateringer
+
+## 2.24.2
+
+### Patch Changes
+
+-   6084e23: Diverse mindre pakkeoppdateringer - versjonstrigger
+
+## 2.24.1
+
+### Patch Changes
+
+-   295d3ad: Diverse mindre pakkeoppdateringer - versjonstrigger
+
+## 2.24.0
+
+### Minor Changes
+
+-   53b47be: Nav Dekoratøren 2 i alle apper
+    Vite 5
+    patch og noen minor
+    Beholder react-router-dom 6.19.0 pga navigasjon knekker i noen apper
+
+## 2.23.0
+
+### Minor Changes
+
+-   Oppdaterte pakker. Minor og patch
+
+## 2.22.0
+
+### Minor Changes
+
+-   d31f28ec: Minor og patch oppdateringer på ds, react-router-dom, vite, msw
+
+## 2.21.9
+
+### Patch Changes
+
+-   b4d45cf9: Diverse mindre pakkeoppdateringer
+
 ## 2.21.8
 
 ### Patch Changes
