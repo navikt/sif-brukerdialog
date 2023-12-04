@@ -23,13 +23,13 @@ const Snarveier: React.FunctionComponent<Props> = ({ title }) => {
                     href={browserEnv.NEXT_PUBLIC_ENDRINGSDIALOG_URL}
                     icon={<PencilWritingIcon role="presentation" aria-hidden={true} width="1.5rem" height="1.5rem" />}
                     title={'Meld fra om endringer'}
-                    description={<>For endringer i arbeidstid og ferie i din søknad/&shy;pleiepengeperiode.</>}
+                    description={'For endringer i arbeidstid og ferie i perioden du har søkt om pleiepenger.'}
                 />
                 <SnarveiLinkPanel
                     href={browserEnv.NEXT_PUBLIC_ETTERSENDELSE_PLEIEPENGER_URL}
                     icon={<File role="presentation" aria-hidden={true} width="1.5rem" height="1.5rem" />}
                     title={'Ettersend dokumenter'}
-                    description={'Ettersendt legeerklæring eller andre dokumenter til din sak.'}
+                    description={'Send inn legeerklæring eller andre dokumenter til saken din om pleiepenger.'}
                 />
             </HGrid>
             <HGrid gap="4" columns={{ sm: 1, md: 2 }}>
@@ -37,13 +37,15 @@ const Snarveier: React.FunctionComponent<Props> = ({ title }) => {
                     href={browserEnv.NEXT_PUBLIC_SKRIV_TIL_OSS}
                     icon={<Dialog role="presentation" aria-hidden={true} width="1.5rem" height="1.5rem" />}
                     title="Skriv til oss"
-                    description={'Har du spørsmål til saken din eller vil melde fra om annet enn jobb og ferie?'}
+                    description={'Her kan du stille spørsmål eller gi beskjed om endringer i saken din om pleiepenger.'}
                 />
                 <SnarveiLinkPanel
                     href={browserEnv.NEXT_PUBLIC_PLEIEPENGER_URL}
                     icon={<Task role="presentation" aria-hidden={true} width="1.5rem" height="1.5rem" />}
                     title="Ny pleiepengesøknad"
-                    description={'Ved forlengelser, nye arbeidsforhold eller større endringer i perioden.'}
+                    description={
+                        'Her kan du søke om forlenget periode med pleiepenger og sende oss oppdatert informasjon om arbeidsforhold og omsorgstilbud.'
+                    }
                 />
             </HGrid>
         </VStack>

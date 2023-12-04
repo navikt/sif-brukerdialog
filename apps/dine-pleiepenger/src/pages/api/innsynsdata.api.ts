@@ -6,6 +6,7 @@ import { fetchMellomlagringer, fetchSvarfrist, fetchSøker, fetchSøknader } fro
 import { Innsynsdata } from '../../types/InnsynData';
 import { getXRequestId } from '../../utils/apiUtils';
 import { sortSøknadEtterOpprettetDato } from '../../utils/søknadUtils';
+import { Feature } from '../../utils/fatures';
 
 export const innsynsdataFetcher = async (url: string): Promise<Innsynsdata> => axios.get(url).then((res) => res.data);
 
@@ -15,11 +16,13 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         /** Hent søker først for å se om bruker har tilgang */
         const søker = await fetchSøker(req);
 
+        const hentSvarfrist = Feature.HENT_SVARFRIST;
+
         /** Bruker har tilgang, hent resten av informasjonen */
         const [søknader, mellomlagring, svarfrist] = await Promise.allSettled([
             fetchSøknader(req),
             fetchMellomlagringer(req),
-            fetchSvarfrist(req),
+            hentSvarfrist ? fetchSvarfrist(req) : Promise.resolve({}),
         ]);
 
         if (søknader.status === 'rejected') {
