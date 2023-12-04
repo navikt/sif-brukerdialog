@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.24.3
+
+### Patch Changes
+
+-   406b044: Patch pakkeoppdateringer
+
 ## 2.24.2
 
 ### Patch Changes

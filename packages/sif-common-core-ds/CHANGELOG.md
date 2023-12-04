@@ -1,5 +1,13 @@
 # @navikt/sif-common-core-ds
 
+## 9.11.3
+
+### Patch Changes
+
+-   406b044: Patch pakkeoppdateringer
+-   Updated dependencies [406b044]
+    -   @navikt/sif-common-utils@3.43.3
+
 ## 9.11.2
 
 ### Patch Changes
