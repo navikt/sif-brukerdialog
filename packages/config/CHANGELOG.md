@@ -1,5 +1,11 @@
 # config
 
+## 0.9.3
+
+### Patch Changes
+
+-   406b044: Patch pakkeoppdateringer
+
 ## 0.9.2
 
 ### Patch Changes
