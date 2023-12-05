@@ -8,7 +8,7 @@ const Banner = () => {
     const intl = useIntl();
     const dato = '13. november 2023';
     return (
-        <header className="bg-[#ffffff] border-b-deepblue-400 border-b-4 text-center px-4 md:px-12 py-6">
+        <div className="bg-[#ffffff] border-b-deepblue-400 border-b-4 text-center px-4 md:px-12 py-6">
             <div className="max-w-[1128px] mx-auto flex gap-8">
                 <CalculatorSquareIcon />
                 <div className="text-left">
@@ -28,7 +28,7 @@ const Banner = () => {
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
     );
 };
 
