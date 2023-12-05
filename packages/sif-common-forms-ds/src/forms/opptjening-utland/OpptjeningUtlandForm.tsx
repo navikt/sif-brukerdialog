@@ -1,5 +1,4 @@
-import { Heading } from '@navikt/ds-react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { ISOStringToDate } from '@navikt/sif-common-formik-ds';
@@ -105,43 +104,38 @@ const OpptjeningUtlandForm = ({ maxDate, minDate, opptjening, onSubmit, onCancel
                         submitButtonLabel="Ok"
                         showButtonArrows={false}
                         formErrorHandler={getFormErrorHandler(intl, 'opptjeningUtlandForm')}>
-                        <Heading level="1" size="large">
-                            <FormattedMessage id="opptjeningUtland.form.tittel" />
-                        </Heading>
+                        <Form.DateRangePicker
+                            legend={intlHelper(intl, 'opptjeningUtland.form.tidsperiode.spm')}
+                            minDate={minDate}
+                            maxDate={maxDate}
+                            fromInputProps={{
+                                name: OpptjeningUtlandFormFields.fom,
+                                label: intlHelper(intl, 'opptjeningUtland.form.tidsperiode.fraDato'),
+                                validate: (value) => {
+                                    const error = getDateRangeValidator({
+                                        required: true,
+                                        min: minDate,
+                                        max: maxDate,
+                                        toDate: ISOStringToDate(tom),
+                                    }).validateFromDate(value);
+                                    return handleDateRangeValidationError(error, minDate, maxDate);
+                                },
+                            }}
+                            toInputProps={{
+                                name: OpptjeningUtlandFormFields.tom,
+                                label: intlHelper(intl, 'opptjeningUtland.form.tidsperiode.tilDato'),
+                                validate: (value) => {
+                                    const error = getDateRangeValidator({
+                                        required: true,
+                                        min: minDate,
+                                        max: maxDate,
+                                        fromDate: ISOStringToDate(fom),
+                                    }).validateToDate(value);
+                                    return handleDateRangeValidationError(error, minDate, maxDate);
+                                },
+                            }}
+                        />
 
-                        <FormBlock>
-                            <Form.DateRangePicker
-                                legend={intlHelper(intl, 'opptjeningUtland.form.tidsperiode.spm')}
-                                minDate={minDate}
-                                maxDate={maxDate}
-                                fromInputProps={{
-                                    name: OpptjeningUtlandFormFields.fom,
-                                    label: intlHelper(intl, 'opptjeningUtland.form.tidsperiode.fraDato'),
-                                    validate: (value) => {
-                                        const error = getDateRangeValidator({
-                                            required: true,
-                                            min: minDate,
-                                            max: maxDate,
-                                            toDate: ISOStringToDate(tom),
-                                        }).validateFromDate(value);
-                                        return handleDateRangeValidationError(error, minDate, maxDate);
-                                    },
-                                }}
-                                toInputProps={{
-                                    name: OpptjeningUtlandFormFields.tom,
-                                    label: intlHelper(intl, 'opptjeningUtland.form.tidsperiode.tilDato'),
-                                    validate: (value) => {
-                                        const error = getDateRangeValidator({
-                                            required: true,
-                                            min: minDate,
-                                            max: maxDate,
-                                            fromDate: ISOStringToDate(fom),
-                                        }).validateToDate(value);
-                                        return handleDateRangeValidationError(error, minDate, maxDate);
-                                    },
-                                }}
-                            />
-                        </FormBlock>
                         {hasDateStringValues && (
                             <>
                                 <FormBlock>
