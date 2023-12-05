@@ -4,10 +4,9 @@ export const CalculatorSquareIcon = () => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            role="img"
+            role="presentation"
             width="80px"
             height="80px"
-            aria-label="kalkulator icon"
             fill="none"
             viewBox="0 0 96 96">
             <g clipPath="url(#clip0_1_4889)">
