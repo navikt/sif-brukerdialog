@@ -643,7 +643,7 @@ export const appMessagesNb = {
     'page.confirmation.dinePP.list.item.2': 'Ettersende dokumentasjon',
     'page.confirmation.dinePP.list.item.3': 'Melde fra om endring',
     'page.confirmation.dinePP.list.item.4': 'Få informasjon om saksgang',
-    'page.confirmation.dinePP.lenke': 'GÅ TIL DINE PLEIEPENGER',
+    'page.confirmation.dinePP.lenke': 'Gå til Dine pleiepenger',
 
     'page.generalErrorPage.sidetittel': 'Feil',
     'page.generalErrorPage.tittel': 'Noe gikk galt...',
