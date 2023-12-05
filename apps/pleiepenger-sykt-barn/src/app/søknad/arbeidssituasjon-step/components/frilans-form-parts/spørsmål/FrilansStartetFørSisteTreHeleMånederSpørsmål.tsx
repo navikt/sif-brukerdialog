@@ -13,12 +13,13 @@ interface Props {
 
 const FrilansStartetFørSisteTreHeleMånederSpørsmål: React.FunctionComponent<Props> = ({ søknadsperiode }) => {
     const intl = useIntl();
+    const dato = dateFormatter.dateShortMonthYear(getStartdatoForNySomFrilanser(søknadsperiode));
 
     return (
         <ArbFriFormComponents.YesOrNoQuestion
             name={FrilansFormField.startetFørSisteTreHeleMåneder}
             legend={intlHelper(intl, `frilanser.startetFørSisteTreHeleMåneder.spm`, {
-                dato: dateFormatter.dateShortMonthYear(getStartdatoForNySomFrilanser(søknadsperiode)),
+                dato,
             })}
             validate={(value) => {
                 const error = getYesOrNoValidator()(value);
@@ -26,7 +27,7 @@ const FrilansStartetFørSisteTreHeleMånederSpørsmål: React.FunctionComponent<
                     ? {
                           key: `${error}`,
                           values: {
-                              frilanstype: intlHelper(intl, `validation.frilans.startetFørSisteTreHeleMåneder`),
+                              dato,
                           },
                       }
                     : undefined;

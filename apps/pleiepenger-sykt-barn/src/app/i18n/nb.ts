@@ -1078,6 +1078,9 @@ export const appMessagesNb = {
     'validation.frilans.sluttdato.dateIsBeforeMin':
         'Datoen for når du sluttet å jobbe som frilanser kan ikke være før datoen du startet.',
 
+    'validation.frilans.startetFørSisteTreHeleMåneder.yesOrNoIsUnanswered':
+        'Du må svare ja eller nei på om du startet som frilanser før {dato}.',
+
     'validation.frilans.erFortsattFrilanser.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om du fortsatt jobber som frilanser.',
 
