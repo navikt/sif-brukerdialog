@@ -149,6 +149,7 @@ const ProgressStepper: React.FunctionComponent<Props> = ({
                                 onStepChange={onStepSelect ? handleStepChange : undefined}>
                                 {steps.map((s) => (
                                     <Step
+                                        href="#"
                                         key={s.id}
                                         completed={s.completed}
                                         interactive={onStepSelect !== undefined && s.completed === true}>
