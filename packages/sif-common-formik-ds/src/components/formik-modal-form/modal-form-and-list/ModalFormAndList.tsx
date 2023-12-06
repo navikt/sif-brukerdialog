@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { Alert, Button, Modal } from '@navikt/ds-react';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import bemUtils from '../../../utils/bemUtils';
 import ConfirmationDialog from '../../helpers/confirmation-dialog/ConfirmationDialog';
@@ -29,12 +29,14 @@ export type ModalFormAndListConfirmDeleteProps<ItemType> = {
 };
 
 export interface ModalFormAndListProps<ItemType extends ModalFormAndListListItemBase> {
+    id?: string;
     labels: ModalFormAndListLabels;
     maxItems?: number;
     listRenderer: ListRenderer<ItemType>;
     formRenderer: ModalFormRenderer<ItemType>;
     confirmDelete?: ModalFormAndListConfirmDeleteProps<ItemType>;
     dialogWidth?: FormikModalFormWidths;
+    onAfterModalClose?: () => void;
 }
 interface PrivateProps<ItemType> {
     onChange: (data: ItemType[]) => void;
@@ -45,6 +47,12 @@ interface PrivateProps<ItemType> {
 type Props<ItemType extends {}> = ModalFormAndListProps<ItemType> & PrivateProps<ItemType>;
 
 const bem = bemUtils('formikModalForm').child('modal');
+
+interface ModalState<ItemType> {
+    isVisible: boolean;
+    selectedItem?: ItemType;
+    focusOnButton?: boolean;
+}
 
 function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
     items = [],
@@ -57,10 +65,11 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
     confirmDelete,
     onChange,
 }: Props<ItemType>) {
-    const [modalState, setModalState] = React.useState<{ isVisible: boolean; selectedItem?: ItemType }>({
+    const [modalState, setModalState] = React.useState<ModalState<ItemType>>({
         isVisible: false,
     });
     const [itemToDelete, setItemToDelete] = useState<ItemType | undefined>();
+    const addButtonRef = useRef<HTMLButtonElement>(null);
 
     const handleOnSubmit = (values: ItemType) => {
         if (values.id) {
@@ -68,8 +77,16 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
         } else {
             onChange([...items, { id: uuid(), ...values }]);
         }
-        setModalState({ isVisible: false });
+        setModalState({ ...modalState, isVisible: false, focusOnButton: modalState.selectedItem === undefined });
     };
+
+    useEffect(() => {
+        if (modalState.focusOnButton) {
+            /** Item lagt til - rerender ødelegger for automatisk fokus på knappen, så vi setter den manuelt */
+            addButtonRef.current?.focus();
+            setModalState({ ...modalState, focusOnButton: false });
+        }
+    }, [addButtonRef, modalState.focusOnButton, modalState]);
 
     const handleEdit = (item: ItemType) => {
         setModalState({ isVisible: true, selectedItem: item });
@@ -91,7 +108,7 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
     };
 
     const resetModal = () => {
-        setModalState({ isVisible: false, selectedItem: undefined });
+        setModalState({ isVisible: false });
     };
 
     return (
@@ -130,8 +147,9 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
                 {(maxItems === undefined || maxItems > items.length) && (
                     <div style={{ marginTop: '1rem' }} className={'modalFormAndList__addButton'}>
                         <Button
+                            ref={addButtonRef}
                             type="button"
-                            onClick={() => setModalState({ isVisible: true })}
+                            onClick={() => setModalState({ ...modalState, isVisible: true })}
                             size="small"
                             variant="secondary">
                             {labels.addLabel}
