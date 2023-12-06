@@ -100,6 +100,7 @@ const TimeInput: React.FunctionComponent<TimeInputProps> = ({
                         <DisabledInput className={bem.element('hours')} />
                     ) : (
                         <TextField
+                            label={labels.hours}
                             ref={refs?.hours}
                             className={bem.element('hours')}
                             type="text"
@@ -117,12 +118,6 @@ const TimeInput: React.FunctionComponent<TimeInputProps> = ({
                                 setStateTime(newTime);
                                 handleTimeChange(newTime, onChange);
                             }}
-                            aria-label={labels.hours}
-                            label={
-                                <span role="presentation" aria-hidden="true">
-                                    {labels.hours}
-                                </span>
-                            }
                             hideLabel={true}
                             data-testid={testKey ? `${testKey}_hours` : undefined}
                         />
@@ -136,12 +131,7 @@ const TimeInput: React.FunctionComponent<TimeInputProps> = ({
                         <DisabledInput className={bem.element('minutes')} />
                     ) : (
                         <TextField
-                            aria-label={labels.minutes}
-                            label={
-                                <span role="presentation" aria-hidden="true">
-                                    {labels.minutes}
-                                </span>
-                            }
+                            label={labels.minutes}
                             hideLabel={true}
                             className={bem.element('minutes')}
                             ref={refs?.minutes}
