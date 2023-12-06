@@ -93,8 +93,8 @@ const DurationWeekdaysWeek: React.FunctionComponent<Props> = ({
                                             compact: true,
                                         }}
                                         timeInputLabels={{
-                                            minutes: <AriaAlternative visibleText="Min." ariaText="Minutter" />,
-                                            hours: <AriaAlternative visibleText="Timer" ariaText="Timer" />,
+                                            minutes: 'Minutter',
+                                            hours: 'Timer',
                                         }}
                                         validate={
                                             validateDate

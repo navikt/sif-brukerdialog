@@ -12,8 +12,8 @@ const MAX_MINUTES = 59;
 type TimeInputChangeFunc = (time: Partial<InputTime> | undefined, isValidTime: boolean) => void;
 
 export type TimeInputLabels = {
-    hours?: React.ReactNode;
-    minutes?: React.ReactNode;
+    hours?: string;
+    minutes?: string;
 };
 
 export type TimeInputLayout = 'vertical' | 'horizontal';
@@ -93,7 +93,9 @@ const TimeInput: React.FunctionComponent<TimeInputProps> = ({
             )}>
             <div className={bem.element('contentWrapper')}>
                 <div className={bem.element('inputWrapper')}>
-                    <span className={bem.element('label')}>{labels.hours}</span>
+                    <span role="presentation" aria-hidden="true" className={bem.element('label')}>
+                        {labels.hours}
+                    </span>
                     {disabled ? (
                         <DisabledInput className={bem.element('hours')} />
                     ) : (
@@ -115,19 +117,31 @@ const TimeInput: React.FunctionComponent<TimeInputProps> = ({
                                 setStateTime(newTime);
                                 handleTimeChange(newTime, onChange);
                             }}
-                            label={labels.hours}
+                            aria-label={labels.hours}
+                            label={
+                                <span role="presentation" aria-hidden="true">
+                                    {labels.hours}
+                                </span>
+                            }
                             hideLabel={true}
                             data-testid={testKey ? `${testKey}_hours` : undefined}
                         />
                     )}
                 </div>
                 <div className={bem.element('inputWrapper')}>
-                    <span className={bem.element('label')}>{labels.minutes}</span>
+                    <span className={bem.element('label')} role="presentation" aria-hidden={true}>
+                        {labels.minutes}
+                    </span>
                     {disabled ? (
                         <DisabledInput className={bem.element('minutes')} />
                     ) : (
                         <TextField
-                            label={labels.minutes}
+                            aria-label={labels.minutes}
+                            label={
+                                <span role="presentation" aria-hidden="true">
+                                    {labels.minutes}
+                                </span>
+                            }
                             hideLabel={true}
                             className={bem.element('minutes')}
                             ref={refs?.minutes}
