@@ -1,6 +1,5 @@
 import { VStack } from '@navikt/ds-react';
 import React from 'react';
-import KontaktOss from '../../kontakt-oss/KontaktOss';
 import PageHeader from '../page-header/PageHeader';
 
 interface Props {
@@ -14,11 +13,11 @@ const DefaultPage: React.FunctionComponent<Props> = ({ children }) => (
             {children}
         </VStack>
 
-        <div className="bg-white p-5 pt-10">
+        {/* <div className="bg-white p-5 pt-10">
             <div className="max-w-[1128px] mx-auto">
                 <KontaktOss />
             </div>
-        </div>
+        </div> */}
     </>
 );
 

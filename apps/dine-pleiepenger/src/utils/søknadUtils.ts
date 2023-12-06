@@ -12,7 +12,7 @@ dayjs.locale('nb');
 export const getSøknadMottattDatoValue = (søknad: Søknad): Date | string => {
     switch (søknad.søknadstype) {
         case Søknadstype.PP_SYKT_BARN:
-        case Søknadstype.PP_ETTERSENDING:
+        case Søknadstype.PP_ETTERSENDELSE:
             return søknad.søknad.mottatt;
         case Søknadstype.PP_SYKT_BARN_ENDRINGSMELDING:
             return søknad.opprettet;

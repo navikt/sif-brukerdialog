@@ -1,7 +1,8 @@
-import { Heading } from '@navikt/ds-react';
+import { Heading, Link } from '@navikt/ds-react';
 import { FormattedMessage } from 'react-intl';
 import { Process } from '../process';
 import ProcessStep from '../process/ProcessStep';
+import { browserEnv } from '../../utils/env';
 
 const HvaSkjer = () => {
     return (
@@ -27,7 +28,12 @@ const HvaSkjer = () => {
                             <FormattedMessage id="hvaSkjerInfo.inntektsmelding.avsnitt.1" />
                         </p>
                         <p>
-                            <FormattedMessage id="hvaSkjerInfo.inntektsmelding.avsnitt.2" />
+                            <FormattedMessage id="hvaSkjerInfo.inntektsmelding.avsnitt.2.1" />
+                            <Link href={browserEnv.NEXT_PUBLIC_ARBEIDSGIVER_PLEIEPENGER_URL}>
+                                <FormattedMessage id="hvaSkjerInfo.inntektsmelding.avsnitt.2.2" />
+                            </Link>
+
+                            <FormattedMessage id="hvaSkjerInfo.inntektsmelding.avsnitt.2.3" />
                         </p>
                     </ProcessStep>
                     <ProcessStep>
@@ -43,7 +49,11 @@ const HvaSkjer = () => {
                             <FormattedMessage id="hvaSkjerInfo.ferdigBehandlet.tittel" />
                         </Heading>
                         <p>
-                            <FormattedMessage id="hvaSkjerInfo.ferdigBehandlet" />
+                            <FormattedMessage id="hvaSkjerInfo.ferdigBehandlet.1" />
+                            <Link href={browserEnv.NEXT_PUBLIC_MIN_SIDE_URL}>
+                                <FormattedMessage id="hvaSkjerInfo.ferdigBehandlet.2" />
+                            </Link>
+                            <FormattedMessage id="hvaSkjerInfo.ferdigBehandlet.3" />
                         </p>
                     </ProcessStep>
                     <ProcessStep>
@@ -51,7 +61,11 @@ const HvaSkjer = () => {
                             <FormattedMessage id="hvaSkjerInfo.utbetaling.tittel" />
                         </Heading>
                         <p>
-                            <FormattedMessage id="hvaSkjerInfo.utbetaling" />
+                            <FormattedMessage id="hvaSkjerInfo.utbetaling.1" />
+                            <Link href={browserEnv.NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL}>
+                                <FormattedMessage id="hvaSkjerInfo.utbetaling.2" />
+                            </Link>
+                            <FormattedMessage id="hvaSkjerInfo.utbetaling.3" />
                         </p>
                     </ProcessStep>
                 </Process>
