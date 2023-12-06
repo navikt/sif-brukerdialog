@@ -29,7 +29,6 @@ export type ModalFormAndListConfirmDeleteProps<ItemType> = {
 };
 
 export interface ModalFormAndListProps<ItemType extends ModalFormAndListListItemBase> {
-    id?: string;
     labels: ModalFormAndListLabels;
     maxItems?: number;
     listRenderer: ListRenderer<ItemType>;
@@ -51,7 +50,7 @@ const bem = bemUtils('formikModalForm').child('modal');
 interface ModalState<ItemType> {
     isVisible: boolean;
     selectedItem?: ItemType;
-    focusOnButton?: boolean;
+    ensureFocusOn?: 'addButton' | 'fieldset' | undefined;
 }
 
 function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
@@ -69,7 +68,9 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
         isVisible: false,
     });
     const [itemToDelete, setItemToDelete] = useState<ItemType | undefined>();
+
     const addButtonRef = useRef<HTMLButtonElement>(null);
+    const fieldsetRef = useRef<HTMLFieldSetElement>(null);
 
     const handleOnSubmit = (values: ItemType) => {
         if (values.id) {
@@ -77,16 +78,24 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
         } else {
             onChange([...items, { id: uuid(), ...values }]);
         }
-        setModalState({ ...modalState, isVisible: false, focusOnButton: modalState.selectedItem === undefined });
+        setModalState({
+            ...modalState,
+            isVisible: false,
+            ensureFocusOn: modalState.selectedItem === undefined ? 'addButton' : 'fieldset',
+        });
     };
 
     useEffect(() => {
-        if (modalState.focusOnButton) {
+        if (modalState.ensureFocusOn) {
             /** Item lagt til - rerender ødelegger for automatisk fokus på knappen, så vi setter den manuelt */
-            addButtonRef.current?.focus();
-            setModalState({ ...modalState, focusOnButton: false });
+            if (modalState.ensureFocusOn === 'addButton') {
+                addButtonRef.current?.focus();
+            } else {
+                fieldsetRef.current?.focus();
+            }
+            setModalState({ ...modalState, ensureFocusOn: undefined });
         }
-    }, [addButtonRef, modalState.focusOnButton, modalState]);
+    }, [addButtonRef, modalState.ensureFocusOn, modalState]);
 
     const handleEdit = (item: ItemType) => {
         setModalState({ isVisible: true, selectedItem: item });
@@ -133,7 +142,12 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
                     </Modal.Body>
                 </Modal>
             ) : null}
-            <SkjemagruppeQuestion legend={labels.listTitle} error={error}>
+            <SkjemagruppeQuestion
+                ref={fieldsetRef}
+                legend={labels.listTitle}
+                error={error}
+                tabIndex={-1}
+                className="modalFormAndListFieldset">
                 {items.length > 0 && (
                     <div className="modalFormAndList__listWrapper">
                         {listRenderer({ items, onEdit: handleEdit, onDelete: handleDelete })}
