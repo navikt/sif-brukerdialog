@@ -65,7 +65,7 @@
         "rimraf": "5.0.5",
         "storybook": "7.6.3",
         "uuid": "9.0.1",
-        "vite": "5.0.4",
+        "vite": "5.0.5",
         "vite-plugin-checker": "0.6.2"
     },
     "watch": {

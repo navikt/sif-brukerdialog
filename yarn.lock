@@ -3312,7 +3312,7 @@ __metadata:
     react-router-dom: 6.20.1
     rimraf: 5.0.5
     typescript: 5.3.2
-    vite: 5.0.4
+    vite: 5.0.5
     vite-plugin-checker: 0.6.2
     vitest: 1.0.1
   languageName: unknown
@@ -3397,7 +3397,7 @@ __metadata:
     storybook: 7.6.3
     tailwindcss: 3.3.5
     typescript: 5.3.2
-    vite: 5.0.4
+    vite: 5.0.5
     vite-plugin-checker: 0.6.2
     vitest: 1.0.1
   languageName: unknown
@@ -3498,7 +3498,7 @@ __metadata:
     react-intl: 6.5.5
     react-router-dom: 6.20.1
     uuid: 9.0.1
-    vite: 5.0.4
+    vite: 5.0.5
     vite-plugin-checker: 0.6.2
   languageName: unknown
   linkType: soft
@@ -3594,7 +3594,7 @@ __metadata:
     tailwindcss: 3.3.5
     typescript: 5.3.2
     uuid: 9.0.1
-    vite: 5.0.4
+    vite: 5.0.5
     vite-plugin-checker: 0.6.2
     vitest: 1.0.1
   languageName: unknown
@@ -3667,7 +3667,7 @@ __metadata:
     react-router-dom: 6.20.1
     storybook: 7.6.3
     typescript: 5.3.2
-    vite: 5.0.4
+    vite: 5.0.5
     vite-plugin-checker: 0.6.2
     vitest: 1.0.1
     webpack: 5.89.0
@@ -3731,7 +3731,7 @@ __metadata:
     react-router-dom: 6.20.1
     typescript: 5.3.2
     uuid: 9.0.1
-    vite: 5.0.4
+    vite: 5.0.5
     vite-plugin-checker: 0.6.2
     vitest: 1.0.1
   languageName: unknown
@@ -3808,7 +3808,7 @@ __metadata:
     react-router-dom: 6.20.1
     typescript: 5.3.2
     uuid: 9.0.1
-    vite: 5.0.4
+    vite: 5.0.5
     vite-plugin-checker: 0.6.2
     vitest: 1.0.1
   languageName: unknown
@@ -3917,7 +3917,7 @@ __metadata:
     storybook: 7.6.3
     tailwindcss: 3.3.5
     uuid: 9.0.1
-    vite: 5.0.4
+    vite: 5.0.5
     vite-plugin-checker: 0.6.2
     vitest: 1.0.1
   languageName: unknown
@@ -3979,7 +3979,7 @@ __metadata:
     storybook: 7.6.3
     storybook-formik: 2.4.2
     uuid: 9.0.1
-    vite: 5.0.4
+    vite: 5.0.5
     vite-plugin-checker: 0.6.2
     vitest: 1.0.1
   peerDependencies:
@@ -4043,7 +4043,7 @@ __metadata:
     react-router-dom: 6.20.1
     rimraf: 5.0.5
     storybook: 7.6.3
-    vite: 5.0.4
+    vite: 5.0.5
     vite-plugin-checker: 0.6.2
     vitest: 1.0.1
   languageName: unknown
@@ -4141,7 +4141,7 @@ __metadata:
     rimraf: 5.0.5
     storybook: 7.6.3
     uuid: 9.0.1
-    vite: 5.0.4
+    vite: 5.0.5
     vite-plugin-checker: 0.6.2
   languageName: unknown
   linkType: soft
@@ -4258,7 +4258,7 @@ __metadata:
     tailwindcss: 3.3.5
     typescript: 5.3.2
     uuid: 9.0.1
-    vite: 5.0.4
+    vite: 5.0.5
     vite-plugin-checker: 0.6.2
     vitest: 1.0.1
   languageName: unknown
@@ -21738,7 +21738,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:8.4.32, postcss@npm:^8.2.14, postcss@npm:^8.2.15, postcss@npm:^8.4.21, postcss@npm:^8.4.23, postcss@npm:^8.4.31, postcss@npm:^8.4.32":
+"postcss@npm:8.4.32, postcss@npm:^8.2.14, postcss@npm:^8.2.15, postcss@npm:^8.4.21, postcss@npm:^8.4.23, postcss@npm:^8.4.32":
   version: 8.4.32
   resolution: "postcss@npm:8.4.32"
   dependencies:
@@ -26439,47 +26439,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:5.0.4":
-  version: 5.0.4
-  resolution: "vite@npm:5.0.4"
-  dependencies:
-    esbuild: ^0.19.3
-    fsevents: ~2.3.3
-    postcss: ^8.4.31
-    rollup: ^4.2.0
-  peerDependencies:
-    "@types/node": ^18.0.0 || >=20.0.0
-    less: "*"
-    lightningcss: ^1.21.0
-    sass: "*"
-    stylus: "*"
-    sugarss: "*"
-    terser: ^5.4.0
-  dependenciesMeta:
-    fsevents:
-      optional: true
-  peerDependenciesMeta:
-    "@types/node":
-      optional: true
-    less:
-      optional: true
-    lightningcss:
-      optional: true
-    sass:
-      optional: true
-    stylus:
-      optional: true
-    sugarss:
-      optional: true
-    terser:
-      optional: true
-  bin:
-    vite: bin/vite.js
-  checksum: baa088f02f610bf0c7e48931e693781dae7367c1836ed19c202aace0e90fa5f6156669f562ba466585f3fdc50d9d75e82697456e1529cc8c2880af420a010ef3
-  languageName: node
-  linkType: hard
-
-"vite@npm:^5.0.0-beta.15 || ^5.0.0, vite@npm:^5.0.0-beta.19 || ^5.0.0":
+"vite@npm:5.0.5, vite@npm:^5.0.0-beta.15 || ^5.0.0, vite@npm:^5.0.0-beta.19 || ^5.0.0":
   version: 5.0.5
   resolution: "vite@npm:5.0.5"
   dependencies:

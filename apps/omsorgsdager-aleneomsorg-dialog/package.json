@@ -73,7 +73,7 @@
         "jsdom": "23.0.1",
         "less": "4.2.0",
         "mini-css-extract-plugin": "2.7.6",
-        "vite": "5.0.4",
+        "vite": "5.0.5",
         "vite-plugin-checker": "0.6.2"
     },
     "eslintConfig": {
