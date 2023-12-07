@@ -23,14 +23,11 @@ const Svarfrist: React.FunctionComponent<Props> = ({ frist }) => {
                         </span>
                     </p>
                 ) : (
-                    <p className="mb-2">
-                        Saksbehandlingstiden for pleiepenger er for tiden 5 uker fra vi fikk søknaden din. Denne kan
-                        endres på kort varsel, for eksempel ved ferieavvikling.
-                    </p>
+                    <p className="mb-2">Forventet saksbehandlingstid er 6 uker fra vi fikk søknaden din.</p>
                 )}
 
                 <Link variant="neutral" href={browserEnv.NEXT_PUBLIC_SAKBEHANDLINGSTID_INFO_URL}>
-                    Se saksbehandlingstider
+                    Les mer om saksbehandlingstid
                 </Link>
             </BodyShort>
         </Box>

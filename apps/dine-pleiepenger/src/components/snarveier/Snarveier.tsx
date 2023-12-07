@@ -54,9 +54,7 @@ const Snarveier: React.FunctionComponent<Props> = ({ title }) => {
                         href={browserEnv.NEXT_PUBLIC_PLEIEPENGER_URL}
                         icon={<Task role="presentation" aria-hidden={true} width="1.5rem" height="1.5rem" />}
                         title="Ny pleiepengesøknad"
-                        description={
-                            'Her kan du søke om forlenget periode med pleiepenger og sende oss oppdatert informasjon om arbeidsforhold og omsorgstilbud.'
-                        }
+                        description={'Her kan du søke om forlenget periode med pleiepenger.'}
                     />
                 </HGrid>
             </VStack>
