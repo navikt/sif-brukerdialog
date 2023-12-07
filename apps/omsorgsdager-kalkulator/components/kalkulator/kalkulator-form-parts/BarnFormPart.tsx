@@ -107,11 +107,13 @@ const BarnFormPart: React.FC<Props> = ({ barn, index, antallBarn, valideringsFei
                                     }
                                 />
                             </div>
-                            {barn.borSammen === YesOrNo.NO && (
-                                <Alert variant="warning" className="mt-4">
-                                    <FormattedMessage id={'barn.borSammen.alert'} />
-                                </Alert>
-                            )}
+                            <div aria-live="polite">
+                                {barn.borSammen === YesOrNo.NO && (
+                                    <Alert variant="warning" className="mt-4">
+                                        <FormattedMessage id={'barn.borSammen.alert'} />
+                                    </Alert>
+                                )}
+                            </div>
                             {barn.borSammen === YesOrNo.YES && (
                                 <>
                                     <div className="mt-7">
