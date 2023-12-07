@@ -79,7 +79,6 @@ const startServer = () => {
     });
 
     server.get('/soknad/:soknadId/arbeidsgivermelding', (req, res) => {
-        console.log('Returning arbeidsgivermelding');
         res.download('./api-mock-server/mockdata/BekreftelseTilKLONELABBEN.pdf', 'BekreftelseTilKLONELABBEN.pdf');
     });
 

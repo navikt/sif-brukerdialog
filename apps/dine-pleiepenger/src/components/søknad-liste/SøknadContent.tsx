@@ -36,11 +36,15 @@ const SøknadContent: React.FunctionComponent<Props> = ({ søknad }) => {
 
     const harArbeidsgiver = () => {
         if ('arbeidsgivere' in søknad.søknad) {
-            return 'organisasjoner' in søknad.søknad.arbeidsgivere
-                ? søknad.søknad.arbeidsgivere.organisasjoner && søknad.søknad.arbeidsgivere.organisasjoner.length > 0
-                : søknad.søknad.arbeidsgivere &&
-                      søknad.søknad.arbeidsgivere.length > 0 &&
-                      søknad.søknad.arbeidsgivere.some((arbeidsgiver) => !arbeidsgiver.sluttetFørSøknadsperiode);
+            const arbeidsgivere = søknad.søknad.arbeidsgivere;
+            if (!Array.isArray(arbeidsgivere)) {
+                return arbeidsgivere.organisasjoner && arbeidsgivere.organisasjoner.length > 0;
+            } else {
+                return (
+                    arbeidsgivere.length > 0 &&
+                    arbeidsgivere.some((arbeidsgiver) => !arbeidsgiver.sluttetFørSøknadsperiode)
+                );
+            }
         }
         return false;
     };
