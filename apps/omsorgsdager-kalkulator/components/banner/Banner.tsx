@@ -1,5 +1,4 @@
 import { Heading } from '@navikt/ds-react';
-import React from 'react';
 import { CalculatorSquareIcon } from '../icons/CalculatorSquareIcon';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { intlHelper } from '@/utils/intlHelper';
@@ -16,13 +15,13 @@ const Banner = () => {
                         {intlHelper(intl, 'banner.title')}
                     </Heading>
                     <div className="flex gap-4 py-3 items-baseline">
-                        <p className="text-sm">
+                        <p>
                             <FormattedMessage id={'banner.description'} />
                         </p>
                         <p aria-hidden="true" className="text-gray-600">
                             |
                         </p>
-                        <p className="text-gray-600 text-sm">
+                        <p className="text-gray-600">
                             <FormattedMessage id={'banner.updated'} values={{ dato }} />
                         </p>
                     </div>

@@ -1,4 +1,4 @@
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { caseResultViewOf, ResultView } from './ResultView';
 import ResultBox from './ResultBox';
 import { BodyLong, Box, ExpansionCard, Heading, VStack } from '@navikt/ds-react';
@@ -7,6 +7,7 @@ import { getYear } from '../../utils/utils';
 import { lenker } from '../../utils/lenker';
 import { Result } from '../kalkulator/Kalkulator';
 import bemUtils from '@/utils/bemUtils';
+import { intlHelper } from '../../utils/intlHelper';
 
 interface Props {
     resultView: ResultView<Result>;
@@ -14,6 +15,7 @@ interface Props {
 
 const ResultatArea: React.FC<Props> = ({ resultView }: Props) => {
     const year = getYear();
+    const intl = useIntl();
     const bem = bemUtils('OmsCalcResultBox');
     return caseResultViewOf(
         () => null,
@@ -58,7 +60,9 @@ const ResultatArea: React.FC<Props> = ({ resultView }: Props) => {
                             </Box>
 
                             <div className="subtle-card">
-                                <ExpansionCard aria-label="default-demo" className="mb-8">
+                                <ExpansionCard
+                                    aria-label={intlHelper(intl, 'resultat-area.green.expansionCard.title')}
+                                    className="mb-8">
                                     <ExpansionCard.Header className="bg-indigo-500">
                                         <ExpansionCard.Title size="small">
                                             <FormattedMessage id={'resultat-area.green.expansionCard.title'} />
