@@ -86,17 +86,17 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
 
     /** Jobb i søknadsperioden */
     await expect(page.getByRole('heading', { level: 1, name: 'Jobb i søknadsperioden' })).toBeVisible();
-    await page.getByRole('group', { name: 'mandag 14. august' }).getByLabel('TimerTimer').fill('3');
-    await page.getByRole('group', { name: 'mandag 14. august' }).getByLabel('MinutterMin.').fill('30');
-    await page.getByRole('group', { name: 'onsdag 16. august' }).getByLabel('TimerTimer').fill('3');
-    await page.getByRole('group', { name: 'onsdag 16. august' }).getByLabel('MinutterMin.').fill('30');
-    await page.getByRole('group', { name: 'Uke 36' }).getByLabel('TimerTimer').click();
-    await page.getByRole('group', { name: 'Uke 36' }).getByLabel('TimerTimer').fill('3');
-    await page.getByRole('group', { name: 'Uke 36' }).getByLabel('MinutterMin.').fill('30');
+    await page.getByRole('group', { name: 'mandag 14. august' }).getByLabel('Timer').fill('3');
+    await page.getByRole('group', { name: 'mandag 14. august' }).getByLabel('Minutter').fill('30');
+    await page.getByRole('group', { name: 'onsdag 16. august' }).getByLabel('Timer').fill('3');
+    await page.getByRole('group', { name: 'onsdag 16. august' }).getByLabel('Minutter').fill('30');
+    await page.getByRole('group', { name: 'Uke 36' }).getByLabel('Timer').click();
+    await page.getByRole('group', { name: 'Uke 36' }).getByLabel('Timer').fill('3');
+    await page.getByRole('group', { name: 'Uke 36' }).getByLabel('Minutter').fill('30');
     await page.getByRole('group', { name: 'mandag 18. september' }).click();
-    await page.getByRole('group', { name: 'Uke 38' }).getByLabel('TimerTimer').click();
-    await page.getByRole('group', { name: 'Uke 38' }).getByLabel('TimerTimer').fill('3');
-    await page.getByRole('group', { name: 'Uke 38' }).getByLabel('MinutterMin.').fill('30');
+    await page.getByRole('group', { name: 'Uke 38' }).getByLabel('Timer').click();
+    await page.getByRole('group', { name: 'Uke 38' }).getByLabel('Timer').fill('3');
+    await page.getByRole('group', { name: 'Uke 38' }).getByLabel('Minutter').fill('30');
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
     /** Medlemsskap */

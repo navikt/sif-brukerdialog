@@ -150,6 +150,8 @@ const UtenlandsoppholdForm = ({
                     <Form.Form
                         includeButtons={true}
                         onCancel={onCancel}
+                        submitButtonLabel="Ok"
+                        showButtonArrows={false}
                         formErrorHandler={getFormErrorHandler(intl, 'utenlandsoppholdForm')}>
                         <Form.DateRangePicker
                             legend={intlHelper(intl, 'utenlandsopphold.form.tidsperiode.spm')}

@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.6.0
+
+### Minor Changes
+
+-   573c55d: Diverse oppdateringer i forbindelse med uu-gjennomgang.
+
 ## 1.5.3
 
 ### Patch Changes

@@ -25,8 +25,9 @@ const BarnPanelView: React.FC<Props> = ({
         return <>{children}</>;
     }
 
+    const barnNavn = `Barn ${index + 1}`;
     return (
-        <ExpansionCard aria-label="default-demo" id={id} open={open} onToggle={() => setOpen(!open)}>
+        <ExpansionCard aria-label={barnNavn} id={id} open={open} onToggle={() => setOpen(!open)}>
             <ExpansionCard.Header>
                 <ExpansionCard.Title>Barn {index + 1}</ExpansionCard.Title>
             </ExpansionCard.Header>

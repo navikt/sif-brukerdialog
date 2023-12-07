@@ -1,15 +1,21 @@
-import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
-import { VALID_EXTENSIONS } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
-import { FormikFileInput, TypedFormInputValidationProps, ValidationError } from '@navikt/sif-common-formik-ds/lib';
-import { ApiEndpoint } from '../../api/api';
-import { useFormikFileUploader } from './useFormikFileUploader';
+import {
+    FileDropAcceptImagesAndPdf,
+    TypedFormInputValidationProps,
+    ValidationError,
+} from '@navikt/sif-common-formik-ds/lib';
+import { AxiosResponse } from 'axios';
+import { useFormikFileUploader } from '../../hooks/useFormikFileUploader';
+import { Attachment } from '../../types/Attachment';
+import FormikFileDropInput from '@navikt/sif-common-formik-ds/lib/components/formik-file-drop-input/FormikFileDropInput';
 
 interface Props extends TypedFormInputValidationProps<any, ValidationError> {
     attachments: Attachment[];
     name: string;
     legend?: string;
     buttonLabel: string;
-    apiEndpoint: ApiEndpoint;
+    getAttachmentURLFrontend: (url: string) => string;
+    uploadFile: (file: File) => Promise<AxiosResponse<any, any>>;
+    onFilesUploaded?: (antall: number, antallFeilet: number) => void;
     onFileInputClick?: () => void;
     onErrorUploadingAttachments: (files: File[]) => void;
     onUnauthorizedOrForbiddenUpload: () => void;
@@ -19,25 +25,28 @@ function FormikFileUploader({
     attachments,
     name,
     legend,
-    apiEndpoint,
+    getAttachmentURLFrontend,
+    uploadFile,
     onFileInputClick,
+    onFilesUploaded,
     onErrorUploadingAttachments,
     onUnauthorizedOrForbiddenUpload,
-
     ...otherProps
 }: Props) {
     const { onFilesSelect } = useFormikFileUploader({
-        apiEndpoint,
+        value: attachments,
+        getAttachmentURLFrontend,
+        uploadFile,
         onUnauthorizedOrForbiddenUpload,
         onErrorUploadingAttachments,
-        value: attachments,
+        onFilesUploaded,
     });
 
     return (
-        <FormikFileInput
+        <FormikFileDropInput
             name={name}
             legend={legend || 'Dokumenter'}
-            accept={VALID_EXTENSIONS.join(', ')}
+            accept={FileDropAcceptImagesAndPdf}
             onFilesSelect={onFilesSelect}
             onClick={onFileInputClick}
             {...otherProps}

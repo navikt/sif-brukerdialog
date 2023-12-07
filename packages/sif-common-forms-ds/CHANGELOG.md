@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 8.16.0
+
+### Minor Changes
+
+-   573c55d: Diverse oppdateringer i forbindelse med uu-gjennomgang.
+
 ## 8.15.1
 
 ### Patch Changes

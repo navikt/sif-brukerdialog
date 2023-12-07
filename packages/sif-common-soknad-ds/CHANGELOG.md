@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.12.0
+
+### Minor Changes
+
+-   573c55d: Diverse oppdateringer i forbindelse med uu-gjennomgang.
+
 ## 10.11.1
 
 ### Patch Changes

@@ -1,5 +1,19 @@
 # @navikt/omsorgspengesoknad
 
+## 1.24.0
+
+### Minor Changes
+
+-   573c55d: Diverse oppdateringer i forbindelse med uu-gjennomgang.
+
+### Patch Changes
+
+-   Updated dependencies [573c55d]
+    -   @navikt/sif-common-formik-ds@1.6.0
+    -   @navikt/sif-common-soknad-ds@10.12.0
+    -   @navikt/sif-common-forms-ds@8.16.0
+    -   @navikt/sif-common-core-ds@9.12.0
+
 ## 1.23.1
 
 ### Patch Changes

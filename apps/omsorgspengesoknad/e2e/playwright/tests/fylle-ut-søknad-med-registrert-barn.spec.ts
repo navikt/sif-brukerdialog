@@ -33,12 +33,8 @@ test('Fyll ut søknad med registrert barn', async ({ page }) => {
 
     /** Legeerklæring */
     await page.getByRole('heading', { level: 1, name: 'Legeerklæring' });
-    await page.getByRole('button', { name: 'Last opp legeerklæringen' }).click();
-    await page
-        .getByLabel('OpplastingsikonLast opp legeerklæringen')
-        .setInputFiles('./e2e/playwright/files/navlogopng.png');
+    await page.locator('input[name="vedlegg"]').setInputFiles('./e2e/playwright/files/navlogopng.png');
     await expect(await page.getByText('Fjern vedlegg').count()).toEqual(1);
-
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
     /** Oppsummering */

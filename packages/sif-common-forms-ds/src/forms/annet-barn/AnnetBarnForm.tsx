@@ -107,7 +107,11 @@ const AnnetBarnForm = ({
             initialValues={annetBarnUtils.mapAnnetBarnToFormValues(annetBarn)}
             onSubmit={onFormikSubmit}
             renderForm={() => (
-                <Form.Form onCancel={onCancel} formErrorHandler={getFormErrorHandler(intl, 'annetBarnForm')}>
+                <Form.Form
+                    onCancel={onCancel}
+                    formErrorHandler={getFormErrorHandler(intl, 'annetBarnForm')}
+                    submitButtonLabel="Ok"
+                    showButtonArrows={false}>
                     <Form.TextField
                         name={AnnetBarnFormFields.navn}
                         label={formLabels.navn}

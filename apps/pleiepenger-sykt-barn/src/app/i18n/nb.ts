@@ -643,7 +643,7 @@ export const appMessagesNb = {
     'page.confirmation.dinePP.list.item.2': 'Ettersende dokumentasjon',
     'page.confirmation.dinePP.list.item.3': 'Melde fra om endring',
     'page.confirmation.dinePP.list.item.4': 'Få informasjon om saksgang',
-    'page.confirmation.dinePP.lenke': 'GÅ TIL DINE PLEIEPENGER',
+    'page.confirmation.dinePP.lenke': 'Gå til Dine pleiepenger',
 
     'page.generalErrorPage.sidetittel': 'Feil',
     'page.generalErrorPage.tittel': 'Noe gikk galt...',
@@ -1077,6 +1077,9 @@ export const appMessagesNb = {
         'Datoen for når du sluttet å jobbe som frilanser kan ikke være etter dagens dato.',
     'validation.frilans.sluttdato.dateIsBeforeMin':
         'Datoen for når du sluttet å jobbe som frilanser kan ikke være før datoen du startet.',
+
+    'validation.frilans.startetFørSisteTreHeleMåneder.yesOrNoIsUnanswered':
+        'Du må svare ja eller nei på om du startet som frilanser før {dato}.',
 
     'validation.frilans.erFortsattFrilanser.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om du fortsatt jobber som frilanser.',

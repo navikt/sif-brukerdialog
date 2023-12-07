@@ -81,12 +81,7 @@ const defaultProps: FormikDatepickerProps<any, any> = {
     label: 'Velg en dato',
     description: 'Some description',
     dropdownCaption: true,
-    // fromDate: new Date(2020, 1, 1),
-    // toDate: new Date(2030, 1, 10),
-    openOnFocus: false,
-    // disabledDaysOfWeek: {
-    //     dayOfWeek: [2],
-    // },
-    // disabledDateRanges: [{ from: new Date(2021, 1, 1), to: new Date(2021, 1, 10) }],
+    minDate: new Date(2020, 1, 1),
+    maxDate: new Date(2030, 1, 10),
     validate: validator,
 };
