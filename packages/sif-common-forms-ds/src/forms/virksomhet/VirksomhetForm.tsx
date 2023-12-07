@@ -198,6 +198,8 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                         includeValidationSummary={true}
                         onCancel={onCancel}
                         formErrorHandler={getFormErrorHandler(intl, 'virksomhetForm')}
+                        submitButtonLabel="Ok"
+                        showButtonArrows={false}
                         cleanup={cleanupVirksomhetFormValues}>
                         <Form.RadioGroup
                             name={VirksomhetFormField.næringstype}

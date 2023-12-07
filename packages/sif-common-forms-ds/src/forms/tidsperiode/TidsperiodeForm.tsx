@@ -96,7 +96,11 @@ const TidsperiodeForm = ({
                             : alleTidsperioder.filter((t) => t.id !== tidsperiode.id).map(mapFomTomToDateRange);
 
                     return (
-                        <Form.Form onCancel={onCancel} formErrorHandler={getFormErrorHandler(intl, 'tidsperiodeForm')}>
+                        <Form.Form
+                            onCancel={onCancel}
+                            formErrorHandler={getFormErrorHandler(intl, 'tidsperiodeForm')}
+                            submitButtonLabel="Ok"
+                            showButtonArrows={false}>
                             <Form.DateRangePicker
                                 legend={inlineLabels.intervalTitle}
                                 minDate={minDate}

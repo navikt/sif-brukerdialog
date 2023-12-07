@@ -94,7 +94,11 @@ const BostedUtlandForm = ({ maxDate, minDate, bosted, alleBosteder = [], onSubmi
                         : alleBosteder.filter((b) => b.id !== bosted.id).map(mapFomTomToDateRange);
 
                 return (
-                    <Form.Form onCancel={onCancel} formErrorHandler={getFormErrorHandler(intl, 'bostedUtlandForm')}>
+                    <Form.Form
+                        onCancel={onCancel}
+                        formErrorHandler={getFormErrorHandler(intl, 'bostedUtlandForm')}
+                        submitButtonLabel="Ok"
+                        showButtonArrows={false}>
                         <Form.DateRangePicker
                             legend={intlHelper(intl, 'bostedUtland.form.tidsperiode.spm')}
                             minDate={minDate}
