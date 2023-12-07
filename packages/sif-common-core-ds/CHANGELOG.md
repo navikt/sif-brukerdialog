@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 9.12.0
+
+### Minor Changes
+
+-   573c55d: Diverse oppdateringer i forbindelse med uu-gjennomgang.
+
 ## 9.11.3
 
 ### Patch Changes
