@@ -44,8 +44,8 @@
     "dokumenterTittel.PP_ETTERSENDELSE": "Ettersendelse og dokumenter",
     "dokumenterTittel.PP_SYKT_BARN_ENDRINGSMELDING": "Endringsmelding",
     "dokumenter.ingenDokumenter": "Dokumenter ikke tilgjengelig.",
-    "bekreftelseTilArbeidsgiver.title": "Bekreftelse til arbeidsgiver(e)",
-    "bekreftelseTilArbeidsgiver.info": "Dette er en bekreftelse du kan gi til arbeidsgiver ved behov. Denne bekrefter at søknaden din er mottatt, hvilken periode du har søkt for, samt informasjon om at arbeidsgiver må sende inntektsmelding til oss.",
+    "bekreftelseTilArbeidsgiver.title": "Bekreftelse til arbeidsgiver",
+    "bekreftelseTilArbeidsgiver.info": "Dette er en bekreftelse som du kan gi til arbeidsgiver. Den bekrefter at vi har fått søknad om pleiepenger fra deg, hvilken periode du har søkt pleiepenger og informasjon om når arbeidsgiver må sende inntektsmelding.",
     "dokumenterSomKanLastesNed.tittel": "Dokumenter som kan lastes ned",
     "dokumenterSomKanLastesNed.bekreftelse": "Bekreftelse til {organisasjonsnavn} (PDF)"
 }
