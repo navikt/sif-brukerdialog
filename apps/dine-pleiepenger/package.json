@@ -32,11 +32,13 @@
         "zod": "3.22.4"
     },
     "devDependencies": {
+        "@axe-core/playwright": "4.8.2",
         "@navikt/ds-css": "5.11.3",
         "@navikt/ds-icons": "3.4.3",
         "@navikt/ds-react": "5.11.3",
         "@navikt/ds-tailwind": "5.11.3",
         "@next/bundle-analyzer": "14.0.3",
+        "@playwright/test": "^1.40.1",
         "@storybook/addon-essentials": "7.6.4",
         "@storybook/addon-interactions": "7.6.4",
         "@storybook/addon-links": "7.6.4",
