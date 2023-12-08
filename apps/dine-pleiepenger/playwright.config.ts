@@ -21,7 +21,7 @@ export default defineConfig({
     ],
     webServer: {
         command: 'yarn dev',
-        url: 'http://localhost:8080/dine-pleiepenger',
+        // url: 'http://localhost:8080/dine-pleiepenger',
         reuseExistingServer: true,
         port: 8080,
         env: {
