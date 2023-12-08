@@ -21,7 +21,7 @@ export default defineConfig({
     ],
     webServer: {
         command: 'yarn dev',
-        url: 'http://localhost:8080',
+        url: 'http://localhost:8080/dine-pleiepenger',
         reuseExistingServer: true,
         env: {
             PUBLIC_PATH: '/dine-pleiepenger',
