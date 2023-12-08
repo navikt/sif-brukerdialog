@@ -23,7 +23,6 @@ export default defineConfig({
         command: 'yarn dev',
         url: 'http://localhost:8080/dine-pleiepenger',
         reuseExistingServer: true,
-        timeout: 120000,
         env: {
             PUBLIC_PATH: '/dine-pleiepenger',
             API_URL: 'http://localhost:8089',
