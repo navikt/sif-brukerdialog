@@ -1,5 +1,11 @@
 # config
 
+## 0.9.4
+
+### Patch Changes
+
+-   e7bf8d1: Patch oppdateringer av pakker
+
 ## 0.9.3
 
 ### Patch Changes

@@ -6,7 +6,7 @@
     "main": "lib/index.js",
     "name": "@navikt/sif-common-sentry",
     "types": "lib/index.d.js",
-    "version": "0.25.3",
+    "version": "0.25.4",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-sentry/issues"
     },
@@ -16,7 +16,7 @@
         "@sentry/types": "7.86.0"
     },
     "devDependencies": {
-        "@types/node": "20.10.3",
+        "@types/node": "20.10.4",
         "axios": "1.6.2",
         "config": "*",
         "copyfiles": "2.4.1",

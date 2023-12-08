@@ -3,7 +3,7 @@
     "description": "Søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn",
     "license": "MIT",
     "name": "@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",
-    "version": "1.21.2",
+    "version": "1.21.3",
     "repository": "https://github.com/navikt/sif-brukerdialog",
     "private": true,
     "type": "module",
@@ -53,21 +53,21 @@
         "react-fast-compare": "3.2.2",
         "react-intl": "6.5.5",
         "react-router-dom": "6.20.1",
-        "vite": "5.0.5",
+        "vite": "5.0.6",
         "vite-plugin-checker": "0.6.2"
     },
     "devDependencies": {
-        "@axe-core/playwright": "4.8.1",
+        "@axe-core/playwright": "4.8.2",
         "@babel/core": "7.23.5",
         "@babel/plugin-proposal-object-rest-spread": "7.20.7",
         "@babel/plugin-transform-modules-commonjs": "7.23.3",
         "@babel/preset-env": "7.23.5",
         "@babel/preset-react": "7.23.3",
         "@playwright/test": "1.40.1",
-        "@storybook/react-vite": "7.6.3",
+        "@storybook/react-vite": "7.6.4",
         "@testing-library/react": "14.1.2",
         "@types/object-hash": "3.0.6",
-        "@types/react": "18.2.41",
+        "@types/react": "18.2.42",
         "@types/react-dom": "18.2.17",
         "@types/react-router-dom": "5.3.3",
         "babel-polyfill": "6.26.0",
@@ -75,8 +75,8 @@
         "express-rate-limit": "7.1.5",
         "jsdom": "23.0.1",
         "rimraf": "5.0.5",
-        "typescript": "5.3.2",
-        "vitest": "1.0.1"
+        "typescript": "5.3.3",
+        "vitest": "1.0.2"
     },
     "eslintConfig": {
         "overrides": [
