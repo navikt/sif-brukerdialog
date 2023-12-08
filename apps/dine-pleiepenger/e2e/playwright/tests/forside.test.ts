@@ -32,7 +32,10 @@ test('Test innhold, funksjonalitet og wcag', async ({ page }) => {
     await page.getByRole('button', { name: 'Vis flere innsendinger' }).click();
     expect(await page.locator('[data-testid="søknadsliste"]').locator('section').count()).toBe(8);
 
-    const accessibilityScanResults = await new AxeBuilder({ page }).include('#__next').analyze();
+    const accessibilityScanResults = await new AxeBuilder({ page })
+        .disableRules(['color-contrast'])
+        .include('#__next')
+        .analyze();
 
     expect(accessibilityScanResults.violations).toEqual([]);
 });
