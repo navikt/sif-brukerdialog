@@ -20,7 +20,7 @@ export default defineConfig({
         },
     ],
     webServer: {
-        command: 'yarn start',
+        command: 'yarn dev',
         url: 'http://localhost:8080',
         reuseExistingServer: true,
         env: {
