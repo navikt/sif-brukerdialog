@@ -77,7 +77,7 @@ jobs:
                   cp apps/dine-pleiepenger/nais/envs/.env.dev apps/dine-pleiepenger/.env.production
 
             - name: Build application
-              run: yarn build-app --filter=dine-pleiepenger
+              run: yarn turbo build-app --filter=dine-pleiepenger
 
             - name: Run tests
               run: yarn turbo playwright-test --filter=dine-pleiepenger
