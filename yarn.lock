@@ -3165,6 +3165,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/dine-pleiepenger@workspace:apps/dine-pleiepenger"
   dependencies:
+    "@axe-core/playwright": 4.8.2
     "@navikt/ds-css": 5.11.3
     "@navikt/ds-icons": 3.4.3
     "@navikt/ds-react": 5.11.3
@@ -3175,6 +3176,7 @@ __metadata:
     "@navikt/sif-common-core-ds": "workspace: *"
     "@navikt/sif-common-utils": "workspace: *"
     "@next/bundle-analyzer": 14.0.3
+    "@playwright/test": ^1.40.1
     "@storybook/addon-essentials": 7.6.4
     "@storybook/addon-interactions": 7.6.4
     "@storybook/addon-links": 7.6.4

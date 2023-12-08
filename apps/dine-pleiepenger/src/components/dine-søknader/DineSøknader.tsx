@@ -8,7 +8,7 @@ interface Props {
 
 const DineSøknader: React.FunctionComponent<Props> = ({ søknader }) => {
     return (
-        <Box>
+        <Box data-testid="søknadsliste">
             <Heading level="2" size="medium" className="text-deepblue-800" spacing={true}>
                 Dine søknader, endringer og ettersendelser
             </Heading>

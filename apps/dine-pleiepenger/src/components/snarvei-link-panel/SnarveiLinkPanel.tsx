@@ -9,7 +9,7 @@ interface Props extends LinkPanelProps {
 
 const SnarveiLinkPanel: React.FunctionComponent<Props> = ({ icon, title, description, ...rest }) => {
     return (
-        <LinkPanel border={false} {...rest} className={`rounded-lg ${rest.className}`}>
+        <LinkPanel border={false} {...rest} className={`rounded-lg shadow ${rest.className}`}>
             <HStack gap="4" align={'center'} wrap={false}>
                 <Hide below="sm">{icon ? <Box className="rounded-full bg-bg-subtle p-4">{icon}</Box> : undefined}</Hide>
                 <Box>

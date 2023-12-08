@@ -40,6 +40,7 @@ const SøknadListe: React.FunctionComponent<Props> = ({ søknader = [] }) => {
                 const labelId = `søknad-${søknad.journalpostId}`;
                 return (
                     <ExpansionCard
+                        className="shadow"
                         tabIndex={-1}
                         ref={index === focusIndex ? ref : undefined}
                         key={søknad.journalpostId}

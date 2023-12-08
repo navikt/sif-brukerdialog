@@ -4,11 +4,11 @@ import { messages } from '../../utils/message';
 
 export interface IntlProviderProps {
     locale: string;
-    children: React.ReactNode;
+    children: any;
     onError?: (error: any) => void;
 }
 
-const StoryIntlProvider: React.FunctionComponent<IntlProviderProps> = ({ children }) => {
+const StoryIntlProvider: React.FC<IntlProviderProps> = ({ children }: IntlProviderProps) => {
     return (
         <IntlProvider locale="nb" messages={messages.nb}>
             {children}
