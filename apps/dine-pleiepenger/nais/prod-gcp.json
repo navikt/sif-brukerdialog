@@ -8,8 +8,8 @@
     "accessPolicyOutApps": ["k9-brukerdialog-api", "sif-innsyn-api"],
     "livenessPath": "/familie/sykdom-i-familien/soknad/innsyn/api/internal/isAlive",
     "readinessPath": "/familie/sykdom-i-familien/soknad/innsyn/api/internal/isReady",
-    "minReplicas": 1,
-    "maxReplicas": 1,
+    "minReplicas": 2,
+    "maxReplicas": 2,
     "env": {
         "NEXT_PUBLIC_BASE_PATH": "/familie/sykdom-i-familien/soknad/innsyn",
         "NEXT_PUBLIC_RUNTIME_ENVIRONMENT": "prod",
