@@ -20,10 +20,8 @@ jobs:
     #     uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-prod.yml@main
     #     secrets: inherit
     #     permissions:
-    #         contents: write
-    #         security-events: write
     #         id-token: write
-    #         actions: read
     #     with:
     #         app-name: 'dine-pleiepenger'
     #         working-directory: 'apps/dine-pleiepenger'
+    #         is-next-app: true
