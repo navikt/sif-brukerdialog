@@ -6,7 +6,7 @@
     "main": "lib/index.js",
     "name": "@navikt/sif-common-amplitude",
     "types": "lib/index.d.js",
-    "version": "2.24.3",
+    "version": "2.24.4",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-amplitude/issues"
     },

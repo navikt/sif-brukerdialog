@@ -1,5 +1,14 @@
 # @navikt/dine-pleiepenger
 
+## 0.3.4
+
+### Patch Changes
+
+-   e7bf8d1: Patch oppdateringer av pakker
+-   Updated dependencies [e7bf8d1]
+    -   @navikt/sif-common-core-ds@9.12.1
+    -   @navikt/sif-common-utils@3.43.4
+
 ## 0.3.3
 
 ### Patch Changes
