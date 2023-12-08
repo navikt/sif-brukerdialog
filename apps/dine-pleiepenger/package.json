@@ -45,7 +45,7 @@
         "@storybook/nextjs": "7.6.3",
         "@storybook/react": "7.6.3",
         "@storybook/test": "7.6.3",
-        "chromatic": "10.0.0",
+        "chromatic": "10.1.0",
         "classnames": "2.3.2",
         "dayjs": "1.11.10",
         "eslint-plugin-storybook": "0.6.15",
