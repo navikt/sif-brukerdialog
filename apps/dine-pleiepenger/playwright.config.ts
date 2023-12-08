@@ -23,5 +23,11 @@ export default defineConfig({
         command: 'yarn dev',
         url: 'http://localhost:8080/dine-pleiepenger',
         reuseExistingServer: true,
+        env: {
+            PUBLIC_PATH: '/dine-pleiepenger',
+            API_URL: 'http://localhost:8089',
+            APPSTATUS_PROJECT_ID: 'ryujtq87',
+            APPSTATUS_DATASET: 'staging',
+        },
     },
 });
