@@ -9,6 +9,9 @@ on:
             app-name:
                 type: string
                 required: true
+            is-next-app:
+                type: boolean
+                required: false
 
 jobs:
     deploy-to-prod:
@@ -38,6 +41,13 @@ jobs:
 
             - name: Install dependencies (yarn)
               run: yarn
+
+            - name: Copy .env.dev for next.js build
+              if: ${{ inputs.is-next-app == true }}
+              shell: bash
+              run: |
+                  echo "Copying .env.dev to app root"
+                  cp apps/${{inputs.app-name}}/nais/envs/.env.dev apps/${{inputs.app-name}}/.env.production
 
             - name: Build application
               run: yarn build-${{ inputs.app-name }}
