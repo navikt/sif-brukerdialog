@@ -56,7 +56,7 @@ export function withAuthenticatedPage(handler: PageHandler = defaultPageHandler)
         if (!bearerToken) {
             return {
                 redirect: {
-                    destination: `/oauth2/login?redirect=${getRedirectPath(context)}`,
+                    destination: browserEnv.NEXT_PUBLIC_LOGIN_URL,
                     permanent: false,
                     basePath: false,
                 },
@@ -75,7 +75,7 @@ export function withAuthenticatedPage(handler: PageHandler = defaultPageHandler)
                 logger.error(error);
             }
             return {
-                redirect: { destination: `/oauth2/login?redirect=${getRedirectPath(context)}`, permanent: false },
+                redirect: { destination: browserEnv.NEXT_PUBLIC_LOGIN_URL, permanent: false },
             };
         }
 

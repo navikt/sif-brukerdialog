@@ -12,12 +12,12 @@
     "maxReplicas": 2,
     "env": {
         "NEXT_PUBLIC_BASE_PATH": "/familie/sykdom-i-familien/soknad/dine-pleiepenger",
+        "NEXT_PUBLIC_LOGIN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/dine-pleiepenger/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/dine-pleiepenger",
         "NEXT_PUBLIC_RUNTIME_ENVIRONMENT": "production",
         "NEXT_PUBLIC_API_URL_INNSYN": "http://sif-innsyn-api",
         "NEXT_PUBLIC_API_URL_BRUKERDIALOG": "http://k9-brukerdialog-api",
         "NEXT_PUBLIC_INNSYN_BACKEND_SCOPE": "prod-gcp:dusseldorf:sif-innsyn-api",
         "NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE": "prod-gcp:dusseldorf:k9-brukerdialog-api",
-        "NEXT_PUBLIC_IS_E2E": "false",
         "NPM_CONFIG_CACHE": "/tmp",
 
         "NEXT_PUBLIC_DINE_UTBETALINGER": "https://tjenester.nav.no/utbetalingsoversikt/",

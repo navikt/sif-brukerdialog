@@ -3,10 +3,10 @@ import { z, ZodError } from 'zod';
 export type PublicEnv = z.infer<typeof publicEnvSchema>;
 export const publicEnvSchema = z.object({
     NEXT_PUBLIC_BASE_PATH: z.string(),
+    NEXT_PUBLIC_LOGIN_URL: z.string(),
     NEXT_PUBLIC_RUNTIME_ENVIRONMENT: z.union([z.string(), z.undefined()]),
     NEXT_PUBLIC_API_URL_INNSYN: z.union([z.string(), z.undefined()]),
     NEXT_PUBLIC_API_URL_BRUKERDIALOG: z.union([z.string(), z.undefined()]),
-    NEXT_PUBLIC_IS_E2E: z.union([z.string(), z.undefined()]),
 
     /** Lenker */
     NEXT_PUBLIC_DINE_UTBETALINGER: z.string(),
@@ -48,10 +48,10 @@ export const serverEnvSchema = z.object({
  */
 export const browserEnv = publicEnvSchema.parse({
     NEXT_PUBLIC_BASE_PATH: process.env.NEXT_PUBLIC_BASE_PATH,
+    NEXT_PUBLIC_LOGIN_URL: process.env.NEXT_PUBLIC_LOGIN_URL,
     NEXT_PUBLIC_RUNTIME_ENVIRONMENT: process.env.NEXT_PUBLIC_RUNTIME_ENVIRONMENT,
     NEXT_PUBLIC_API_URL_BRUKERDIALOG: process.env.NEXT_PUBLIC_API_URL_BRUKERDIALOG,
     NEXT_PUBLIC_API_URL_INNSYN: process.env.NEXT_PUBLIC_API_URL_INNSYN,
-    NEXT_PUBLIC_IS_E2E: process.env.NEXT_PUBLIC_IS_E2E,
     NEXT_PUBLIC_SAKBEHANDLINGSTID_INFO_URL: process.env.NEXT_PUBLIC_SAKBEHANDLINGSTID_INFO_URL,
     NEXT_PUBLIC_SYKDOM_I_FAMILIEN_INFO_URL: process.env.NEXT_PUBLIC_SYKDOM_I_FAMILIEN_INFO_URL,
     NEXT_PUBLIC_ETTERSENDELSE_PLEIEPENGER_URL: process.env.NEXT_PUBLIC_ETTERSENDELSE_PLEIEPENGER_URL,
@@ -109,5 +109,3 @@ export function getServerEnv(): ServerEnv & PublicEnv {
 }
 
 export const isLocal = process.env.NODE_ENV !== 'production';
-
-export const isE2E = process.env.NEXT_PUBLIC_IS_E2E === 'true';
