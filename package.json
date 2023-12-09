@@ -31,6 +31,7 @@
         "build-app": "turbo run build-app",
         "build-package": "turbo run build-package",
         "build": "turbo run build",
+        "build-dine-pleiepenger": "turbo run build-app --filter=@navikt/dine-pleiepenger",
         "clean-all": "turbo run clean && rm -rf node_modules",
         "clean": "turbo run clean",
         "dev-lib": "turbo run dev-lib --no-cache --parallel --continue",
