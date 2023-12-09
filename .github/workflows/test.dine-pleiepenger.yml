@@ -76,8 +76,5 @@ jobs:
                   echo "Copying .env.dev to app root"
                   cp apps/dine-pleiepenger/nais/envs/.env.dev apps/dine-pleiepenger/.env.production
 
-            - name: Build application
-              run: yarn turbo build-app --filter=dine-pleiepenger
-
             - name: Run tests
               run: yarn turbo playwright-test --filter=dine-pleiepenger
