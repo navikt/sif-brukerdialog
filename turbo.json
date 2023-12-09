@@ -9,7 +9,7 @@
             "dependsOn": ["^build-package"]
         },
         "build-app": {
-            "outputs": ["dist/**"],
+            "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
             "dependsOn": ["^build-package"]
         },
         "test": {
@@ -17,8 +17,8 @@
             "dependsOn": ["^build-package"]
         },
         "lint": {
-            "dependsOn": ["^lint"],
-            "outputs": []
+            "outputs": [],
+            "dependsOn": ["^lint"]
         },
         "dev-lib": {
             "cache": false
@@ -36,48 +36,7 @@
         },
         "playwright-test": {
             "outputs": [],
-            "dependsOn": ["^build-app"]
-        },
-        "build-omsorgspengesoknad": {
-            "outputs": [],
-            "dependsOn": ["^build-package"]
-        },
-        "build-pleiepenger-sykt-barn": {
-            "outputs": [],
-            "dependsOn": ["^build-package"]
-        },
-        "build-sif-ettersending": {
-            "outputs": [],
-            "dependsOn": ["^build-package"]
-        },
-        "build-endringsmelding-pleiepenger": {
-            "outputs": [],
-            "dependsOn": ["^build-package"]
-        },
-        "build-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn": {
-            "outputs": [],
-            "dependsOn": ["^build-package"]
-        },
-        "build-omsorgsdager-aleneomsorg-dialog": {
-            "outputs": [],
-            "dependsOn": ["^build-package"]
-        },
-        "build-omsorgspengerutbetaling-soknad": {
-            "outputs": [],
-            "dependsOn": ["^build-package"]
-        },
-        "build-pleiepenger-i-livets-sluttfase-soknad": {
-            "outputs": [],
-            "dependsOn": ["^build-package"]
-        },
-        "build-omsorgsdager-kalkulator": {
-            "outputs": [".next/**", "!.next/cache/**"],
-            "dependsOn": ["^build-package"]
-        },
-        "build-dine-pleiepenger": {
-            "outputs": [".next/**", "!.next/cache/**"],
-            "dependsOn": ["^build-package"]
+            "dependsOn": ["build-app"]
         }
-
     }
 }
