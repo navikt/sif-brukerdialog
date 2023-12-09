@@ -56,7 +56,7 @@ export function withAuthenticatedPage(handler: PageHandler = defaultPageHandler)
         if (!bearerToken) {
             return {
                 redirect: {
-                    destination: browserEnv.NEXT_PUBLIC_LOGIN_URL,
+                    destination: getLoginUrl(context),
                     permanent: false,
                     basePath: false,
                 },
@@ -75,7 +75,7 @@ export function withAuthenticatedPage(handler: PageHandler = defaultPageHandler)
                 logger.error(error);
             }
             return {
-                redirect: { destination: browserEnv.NEXT_PUBLIC_LOGIN_URL, permanent: false },
+                redirect: { destination: getLoginUrl(context), permanent: false },
             };
         }
 
@@ -117,6 +117,10 @@ function getRedirectPath(context: GetServerSidePropsContext): string {
     return cleanUrl.startsWith('/null')
         ? `${browserEnv.NEXT_PUBLIC_BASE_PATH}/`
         : `${browserEnv.NEXT_PUBLIC_BASE_PATH}${cleanUrl}`;
+}
+
+function getLoginUrl(context: GetServerSidePropsContext): string {
+    return `${browserEnv.NEXT_PUBLIC_BASE_PATH}/oauth2/login?redirect=${getRedirectPath(context)}`;
 }
 
 /**
