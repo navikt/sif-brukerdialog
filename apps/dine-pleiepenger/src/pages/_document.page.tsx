@@ -23,6 +23,7 @@ function createDecoratorEnv(ctx: DocumentContext): 'dev' | 'prod' {
         case 'test':
         case 'dev':
             return 'dev';
+        case 'prod':
         case 'production':
             return 'prod';
         default:
