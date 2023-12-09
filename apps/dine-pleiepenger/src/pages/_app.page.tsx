@@ -16,10 +16,11 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import '../components/process/process.css';
 import '../style/global.css';
 import Head from 'next/head';
+import { browserEnv } from '../utils/env';
 
 function MyApp({ Component, pageProps }: AppProps<ServerSidePropsResult>): ReactElement {
     const { data, error, isLoading } = useSWR<Innsynsdata, AxiosError>(
-        '/dine-pleiepenger/api/innsynsdata',
+        `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/innsynsdata`,
         innsynsdataFetcher,
         {
             revalidateOnFocus: false,

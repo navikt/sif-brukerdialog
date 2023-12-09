@@ -24,7 +24,6 @@ const nextConfig = {
     basePath: process.env.NEXT_PUBLIC_BASE_PATH,
     pageExtensions: ['page.tsx', 'api.ts'],
     transpilePackages: ['tailwind-merge'],
-    assetPrefix: '/dine-pleiepenger',
     experimental: {
         optimizePackageImports: ['@navikt/aksel-icons', '@navikt/ds-react'],
     },
@@ -36,7 +35,9 @@ const nextConfig = {
         ignoreDuringBuilds: true,
     },
 
-    redirects: async () => [{ source: '/', destination: '/dine-pleiepenger', permanent: false, basePath: false }],
+    redirects: async () => [
+        { source: '/', destination: process.env.NEXT_PUBLIC_BASE_PATH, permanent: false, basePath: false },
+    ],
 
     async headers() {
         if (isE2E) return [];
