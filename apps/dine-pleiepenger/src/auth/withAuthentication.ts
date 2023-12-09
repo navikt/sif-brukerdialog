@@ -56,7 +56,7 @@ export function withAuthenticatedPage(handler: PageHandler = defaultPageHandler)
         if (!bearerToken) {
             return {
                 redirect: {
-                    destination: getLoginUrl(context),
+                    destination: browserEnv.NEXT_PUBLIC_LOGIN_URL,
                     permanent: false,
                     basePath: false,
                 },
@@ -75,7 +75,7 @@ export function withAuthenticatedPage(handler: PageHandler = defaultPageHandler)
                 logger.error(error);
             }
             return {
-                redirect: { destination: getLoginUrl(context), permanent: false },
+                redirect: { destination: browserEnv.NEXT_PUBLIC_LOGIN_URL, permanent: false },
             };
         }
 
@@ -110,18 +110,14 @@ export function withAuthenticatedApi(handler: ApiHandler): ApiHandler {
  * When using rewrites, nextjs sometimes prepend the basepath for some reason. When redirecting to auth
  * we need a clean URL to redirect the user back to the same page we are on.
  */
-function getRedirectPath(context: GetServerSidePropsContext): string {
-    const basePath = browserEnv.NEXT_PUBLIC_BASE_PATH ?? '';
-    const cleanUrl = context.resolvedUrl.replace(basePath, '');
+// function getRedirectPath(context: GetServerSidePropsContext): string {
+//     const basePath = browserEnv.NEXT_PUBLIC_BASE_PATH ?? '';
+//     const cleanUrl = context.resolvedUrl.replace(basePath, '');
 
-    return cleanUrl.startsWith('/null')
-        ? `${browserEnv.NEXT_PUBLIC_BASE_PATH}/`
-        : `${browserEnv.NEXT_PUBLIC_BASE_PATH}${cleanUrl}`;
-}
-
-function getLoginUrl(context: GetServerSidePropsContext): string {
-    return `${browserEnv.NEXT_PUBLIC_BASE_PATH}/oauth2/login?redirect=${getRedirectPath(context)}`;
-}
+//     return cleanUrl.startsWith('/null')
+//         ? `${browserEnv.NEXT_PUBLIC_BASE_PATH}/`
+//         : `${browserEnv.NEXT_PUBLIC_BASE_PATH}${cleanUrl}`;
+// }
 
 /**
  * Creates the HTTP context that is passed through the resolvers and services, both for prefetching and HTTP-fetching.

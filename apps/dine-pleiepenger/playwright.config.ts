@@ -29,6 +29,7 @@ export default defineConfig({
             APPSTATUS_PROJECT_ID: 'ryujtq87',
             APPSTATUS_DATASET: 'staging',
             NEXT_PUBLIC_BASE_PATH: '/dine-pleiepenger',
+            NEXT_PUBLIC_LOGIN_URL: '/dummy',
             NEXT_PUBLIC_RUNTIME_ENVIRONMENT: 'dev',
             NEXT_PUBLIC_API_URL_INNSYN: 'http://sif-innsyn-api',
             NEXT_PUBLIC_API_URL_BRUKERDIALOG: 'http://k9-brukerdialog-api',
