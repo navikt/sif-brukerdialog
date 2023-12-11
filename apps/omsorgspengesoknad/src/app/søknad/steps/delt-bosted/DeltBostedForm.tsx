@@ -4,6 +4,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import FileUploadErrors from '@navikt/sif-common-core-ds/lib/components/file-upload-errors/FileUploadErrors';
+import FormikFileUploader from '@navikt/sif-common-core-ds/lib/components/formik-file-uploader/FormikFileUploader';
 import PictureScanningGuide from '@navikt/sif-common-core-ds/lib/components/picture-scanning-guide/PictureScanningGuide';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
@@ -17,9 +18,8 @@ import { getTypedFormComponents, ValidationError, ValidationResult } from '@navi
 import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { validateAll } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
-import { ApiEndpoint } from '../../../api/api';
-import FormikFileUploader from '../../../components/formik-file-uploader/FormikFileUploader';
-import { getUploadedAttachments } from '../../../utils/attachmentUtils';
+import api, { ApiEndpoint } from '../../../api/api';
+import { getAttachmentURLFrontend, getUploadedAttachments } from '../../../utils/attachmentUtils';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
 import { validateAttachments, ValidateAttachmentsErrors } from '../../../utils/validateAttachments';
 import DeltBostedAvtaleAttachmentList from './DeltBostedAvtaleAttachmentList';
@@ -75,7 +75,7 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
             onBack={goBack}>
             <Block padBottom="xl">
                 <SifGuidePanel>
-                    <p style={{ marginTop: 0 }}>
+                    <p>
                         <FormattedMessage id={'steg.deltBosted.helperTextPanel.1'} />
                     </p>
                 </SifGuidePanel>
@@ -89,7 +89,8 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
                         attachments={samværsavtaleAttachments}
                         name={DeltBostedFormFields.samværsavtale}
                         buttonLabel={intlHelper(intl, 'steg.deltBosted.vedlegg.knappLabel')}
-                        apiEndpoint={ApiEndpoint.vedlegg}
+                        getAttachmentURLFrontend={getAttachmentURLFrontend}
+                        uploadFile={(file) => api.uploadFile(ApiEndpoint.vedlegg, file)}
                         onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
                         onFileInputClick={() => {
                             setFilesThatDidntGetUploaded([]);
@@ -123,9 +124,8 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
             <Block margin={'l'}>
                 <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
             </Block>
-            <div data-testid="samværsavtale-liste">
-                <DeltBostedAvtaleAttachmentList wrapNoAttachmentsInBlock={true} includeDeletionFunctionality={true} />
-            </div>
+
+            <DeltBostedAvtaleAttachmentList wrapNoAttachmentsInBlock={true} includeDeletionFunctionality={true} />
         </Form>
     );
 };

@@ -12,15 +12,18 @@ on:
 jobs:
     run-tests:
         uses: ./.github/workflows/test.omsorgsdager-aleneomsorg-dialog.yml
+        secrets: inherit
 
     deploy-to-prod:
         name: Deploy omsorgsdager-aleneomsorg-dialog to prod
         needs: [run-tests]
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-prod.yml@main
+        uses: ./.github/workflows/.deploy-app-to-prod.yml
+        secrets: inherit
         permissions:
-            packages: write
-        secrets:
-            NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
         with:
             app-name: 'omsorgsdager-aleneomsorg-dialog'
             working-directory: 'apps/omsorgsdager-aleneomsorg-dialog'

@@ -120,7 +120,6 @@ export const mapBarnTilRadioProps = (barn: RegistrertBarn, disabled?: boolean): 
     const barnetsNavn = formatName(fornavn, etternavn, mellomnavn);
     return {
         value: aktørId,
-        'data-testid': `barn-${aktørId}`,
         label: (
             <>
                 <div>{barnetsNavn}</div>

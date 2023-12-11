@@ -1,4 +1,3 @@
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { OpplysningerOmPleietrengendeSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { OpplysningerOmPleietrengendeFormValues } from './OpplysningerOmPleietrengendeStep';
 
@@ -21,21 +20,20 @@ export const getOpplysningerOmPleietrengendeStepInitialValues = (
     const { opplysningerOmPleietrengende } = søknadsdata;
 
     if (opplysningerOmPleietrengende) {
-        const pleierDuDenSykeHjemme = opplysningerOmPleietrengende.pleierDuDenSykeHjemme ? YesOrNo.YES : YesOrNo.NO;
         switch (opplysningerOmPleietrengende.type) {
             case 'pleietrengendeMedFnr':
                 return {
-                    pleierDuDenSykeHjemme,
                     navn: opplysningerOmPleietrengende.navn,
                     norskIdentitetsnummer: opplysningerOmPleietrengende.norskIdentitetsnummer,
+                    flereSokere: opplysningerOmPleietrengende.flereSokere,
                     harIkkeFnr: false,
                     pleietrengendeId: [],
                 };
             case 'pleietrengendeUtenFnr':
                 return {
-                    pleierDuDenSykeHjemme,
                     navn: opplysningerOmPleietrengende.navn,
                     harIkkeFnr: true,
+                    flereSokere: opplysningerOmPleietrengende.flereSokere,
                     fødselsdato: opplysningerOmPleietrengende.fødselsdato,
                     årsakManglerIdentitetsnummer: opplysningerOmPleietrengende.årsakManglerIdentitetsnummer,
                     pleietrengendeId: opplysningerOmPleietrengende.pleietrengendeId,
@@ -53,27 +51,29 @@ export const getOpplysningerOmPleietrengendeSøknadsdataFromFormValues = (
         navn,
         norskIdentitetsnummer,
         harIkkeFnr,
+        flereSokere,
         fødselsdato,
         årsakManglerIdentitetsnummer,
         pleietrengendeId,
-        pleierDuDenSykeHjemme,
     } = formValues;
 
-    if (harIkkeFnr && fødselsdato && årsakManglerIdentitetsnummer) {
+    if (harIkkeFnr && fødselsdato && årsakManglerIdentitetsnummer && flereSokere) {
         return {
             type: 'pleietrengendeUtenFnr',
             navn,
             fødselsdato,
-            pleierDuDenSykeHjemme: pleierDuDenSykeHjemme === YesOrNo.YES,
+            flereSokere,
             årsakManglerIdentitetsnummer,
             pleietrengendeId,
         };
-    } else if (norskIdentitetsnummer) {
+    } else if (norskIdentitetsnummer && flereSokere) {
         return {
             type: 'pleietrengendeMedFnr',
             navn,
-            pleierDuDenSykeHjemme: pleierDuDenSykeHjemme === YesOrNo.YES,
+            flereSokere,
             norskIdentitetsnummer,
         };
-    } else undefined;
+    } else {
+        return undefined;
+    }
 };

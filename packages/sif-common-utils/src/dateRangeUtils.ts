@@ -223,6 +223,23 @@ export const getMonthsInDateRange = (dateRange: DateRange, returnFullMonths = fa
 };
 
 /**
+ * Returns array of dates representing the months in @dates.
+ * @param dates
+ * @returns array of Date
+ */
+export const getMonthsInDates = (dates: Date[]): Date[] => {
+    // filter unique months in dates
+    const months: Date[] = [];
+    dates.forEach((date) => {
+        const month = dayjs(date).startOf('month').toDate();
+        if (!months.find((m) => dayjs(m).isSame(month, 'day'))) {
+            months.push(month);
+        }
+    });
+    return months;
+};
+
+/**
  * Returns a DateRange for the month which date is a part of.
  * @param date
  * @param onlyWeekDays Exclude saturday and sunday from dateRange

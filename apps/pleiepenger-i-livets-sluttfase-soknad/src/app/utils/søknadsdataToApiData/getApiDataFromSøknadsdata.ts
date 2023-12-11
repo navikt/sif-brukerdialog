@@ -1,13 +1,12 @@
+import { Attachment } from '@navikt/sif-common-core-ds/lib/types';
 import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import { dateToISODate } from '@navikt/sif-common-utils/lib';
-import { Attachment } from '../../components/formik-file-uploader/useFormikFileUploader';
 import { FlereSokereApiData, SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { YesOrNoDontKnow } from '../../types/YesOrNoDontKnow';
 import { getAttachmentURLBackend } from '../attachmentUtilsAuthToken';
 import { getDataBruktTilUtledning } from '../getDataBruktTilUtledning';
 import { getArbeidsgivereApiDataFromSøknadsdata } from './getArbeidsgivereApiDataFromSøknadsdata';
-import { getFerieuttakIPeriodenApiDataFromSøknadsdata } from './getFerieuttakIPeriodenApiDataFromSøknadsdata';
 import { getFrilansApiDataFromSøknadsdata } from './getFrilansApiDataFromSøknadsdata';
 import { getMedlemskapApiDataFromSøknadsdata } from './getMedlemskapApiDataFromSøknadsdata';
 import { getOpptjeningUtlandApiDataFromSøknadsdata } from './getOpptjeningUtlandApiDataFromSøknadsdata';
@@ -32,6 +31,10 @@ export const getFlereSokereApiData = (flereSokereSvar: YesOrNoDontKnow): FlereSo
         default:
             return FlereSokereApiData.USIKKER;
     }
+};
+
+export const getDagerMedPleieApiData = (søknadsdata: Søknadsdata): string[] => {
+    return (søknadsdata.tidsrom?.dagerMedPleie || []).map(dateToISODate);
 };
 
 export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadApiData | undefined => {
@@ -80,21 +83,30 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadA
                 : [],
         vedleggUrls: getVedleggApiData(legeerklæring.vedlegg),
         pleierDuDenSykeHjemme: true,
-        flereSokere: getFlereSokereApiData(tidsrom.flereSokere),
+        dagerMedPleie: getDagerMedPleieApiData(søknadsdata),
+        flereSokere: getFlereSokereApiData(opplysningerOmPleietrengende.flereSokere),
         fraOgMed: dateToISODate(periodeFra),
         tilOgMed: dateToISODate(periodeTil),
-        ferieuttakIPerioden: getFerieuttakIPeriodenApiDataFromSøknadsdata(tidsrom),
+        skalJobbeOgPleieSammeDag: tidsrom.skalJobbeOgPleieSammeDag,
         utenlandsoppholdIPerioden: getUtenlansoppholdApiDataFromSøknadsdata(språk, tidsrom),
         arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(
             søknadsperiode,
             dagerMedPleie,
+            tidsrom.skalJobbeOgPleieSammeDag,
             arbeidsgivere,
             arbeidstid?.arbeidsgivere,
         ),
-        frilans: getFrilansApiDataFromSøknadsdata(søknadsperiode, dagerMedPleie, frilans, arbeidstid?.frilans),
+        frilans: getFrilansApiDataFromSøknadsdata(
+            søknadsperiode,
+            dagerMedPleie,
+            tidsrom.skalJobbeOgPleieSammeDag,
+            frilans,
+            arbeidstid?.frilans,
+        ),
         selvstendigNæringsdrivende: getSelvstendigApiDataFromSøknadsdata(
             søknadsperiode,
             dagerMedPleie,
+            tidsrom.skalJobbeOgPleieSammeDag,
             selvstendig,
             arbeidstid?.selvstendig,
         ),

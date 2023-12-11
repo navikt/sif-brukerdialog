@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
-import isEqual from 'react-fast-compare';
 import { useFormikContext } from 'formik';
 import debounce from 'lodash.debounce';
+import { useEffect, useRef, useState } from 'react';
+import isEqual from 'react-fast-compare';
 
 interface Props<FormValues> {
     onChange: (values: FormValues) => void;

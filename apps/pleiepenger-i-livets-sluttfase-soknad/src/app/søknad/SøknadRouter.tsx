@@ -38,7 +38,7 @@ const SøknadRouter = () => {
             navigateTo(stateSøknadRoute);
         }
         if (pathname === SøknadRoutes.VELKOMMEN && stateSøknadRoute) {
-            navigateTo(stateSøknadRoute); // Send til sider dersom bruker kommer til velkommen via annen navigasjon
+            navigateTo(stateSøknadRoute); // Send til sider hvis bruker kommer til velkommen via annen navigasjon
         }
     }, [navigateTo, pathname, stateSøknadRoute, isFirstTimeLoadingApp]);
 

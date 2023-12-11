@@ -1,24 +1,24 @@
-import { Alert, BodyLong, Heading } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
 import { useOnValidSubmit, useSøknadContext } from '@hooks';
+import { Alert, Heading } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/lists/info-list/InfoList';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { dateFormatter, ISODate } from '@navikt/sif-common-utils';
+import { ISODate, dateFormatter } from '@navikt/sif-common-utils';
 import { SøknadContextState } from '@types';
 import { erFeriedagerEndretIPeriode } from '@utils';
+import { useIntl } from 'react-intl';
 import DateRangeAccordion from '../../../components/date-range-accordion/DateRangeAccordion';
 import EndretTag from '../../../components/tags/EndretTag';
 import { useStepConfig } from '../../../hooks/useStepConfig';
 import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import { StepId } from '../../config/StepId';
-import actionsCreator from '../../context/action/actionCreator';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
+import { StepId } from '../../config/StepId';
+import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
+import actionsCreator from '../../context/action/actionCreator';
 import FeriedagerISøknadsperiode from './FeriedagerISøknadperiode';
 import {
     getLovbestemtFerieStepInitialValues,
@@ -86,17 +86,13 @@ const LovbestemtFerieStep = () => {
     return (
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>
             <SifGuidePanel>
-                <>
-                    <BodyLong as="div">
-                        <Heading level="2" size="xsmall" spacing={true}>
-                            Slik endrer du ferie
-                        </Heading>
-                        <InfoList>
-                            <li>Du kan endre, legge til, eller fjerne ferie i pleiepengeperioden din.</li>
-                            <li>Du skal kun registrere ferie for ukedager (mandag til fredag).</li>
-                        </InfoList>
-                    </BodyLong>
-                </>
+                <Heading level="2" size="xsmall" spacing={true}>
+                    Slik endrer du ferie
+                </Heading>
+                <InfoList>
+                    <li>Du kan endre, legge til, eller fjerne ferie i pleiepengeperioden din.</li>
+                    <li>Du skal kun registrere ferie for ukedager (mandag til fredag).</li>
+                </InfoList>
             </SifGuidePanel>
 
             <FormikWrapper

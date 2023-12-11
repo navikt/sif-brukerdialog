@@ -76,5 +76,7 @@ export const validationMessages = {
         `${hva} må inneholde minst ${minLengde} tegn.`,
     [ValidateStringError.stringIsTooLong]: ({ hva, maksLengde }: { hva: string; maksLengde: number }) =>
         `${hva} kan ikke inneholde flere enn ${maksLengde} tegn.`,
+    [ValidateStringError.stringHasInvalidFormat]: () =>
+        `Du har oppgitt en ugyldig tekst. Hvis du har limt inn tekst kan det være at du har fått med tegn som ikke vises. Prøv derfor å skrive det inn selv, i stedet for å lime det inn.`,
     [ValidateYesOrNoError.yesOrNoIsUnanswered]: ({ hva }: { hva: string }) => `Du må svare ja eller nei på ${hva}.`,
 };

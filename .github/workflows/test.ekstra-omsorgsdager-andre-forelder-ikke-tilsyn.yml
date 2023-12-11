@@ -10,6 +10,7 @@ on:
             - 'packages/**/*'
             - .github/workflows/app.ekstra-omsorgsdager-andre-forelder-ikke-tilsyn.yml
             - .github/workflows/test.ekstra-omsorgsdager-andre-forelder-ikke-tilsyn.yml
+            - yarn.lock
     workflow_call:
 
 env:
@@ -22,8 +23,16 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
 
+            - name: Setup .yarnrc.yml
+              run: |
+                  yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
+                  yarn config set npmScopes.navikt.npmAlwaysAuth true
+                  yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+
             - name: Setup Node.js environment
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
                   node-version: 18
                   cache: 'yarn'
@@ -34,37 +43,36 @@ jobs:
             - name: Run code tests
               run: yarn test --filter=ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
-    run-cypress-test:
+
+    run-playwright-test:
+        timeout-minutes: 60
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
               uses: actions/checkout@v4
 
+            - name: Setup .yarnrc.yml
+              run: |
+                  yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
+                  yarn config set npmScopes.navikt.npmAlwaysAuth true
+                  yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
+              env:
+                NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+
             - name: Setup Node.js environment
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
                   node-version: 18
                   cache: 'yarn'
 
-            - name: Build and start e2e server
-              uses: cypress-io/github-action@v6.5.0
-              env:
-                  DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
-                  PUBLIC_PATH: /familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
-                  FRONTEND_API_PATH: http://localhost:8089/
-                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  APPSTATUS_PROJECT_ID: ryujtq87
-                  APPSTATUS_DATASET: staging
-              with:
-                  project: ./apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/e2e
-                  build: yarn build-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
-                  start: yarn turbo start-e2e-server --filter=ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
-                  wait-on: 'http://localhost:8080/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/alive'
-                  wait-on-timeout: 60
-                  runTests: false
+            - name: Install dependencies
+              run: yarn
 
-            - name: Run cypress tests
-              run: yarn turbo cypress-run --filter=ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
-              env:
-                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+            - name: Install Playwright Browsers
+              run: npx playwright install chromium
+
+            - name: Build application
+              run: yarn build-app --filter=ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
+
+            - name: Run tests
+              run: yarn turbo playwright-test --filter=ekstra-omsorgsdager-andre-forelder-ikke-tilsyn

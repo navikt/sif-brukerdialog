@@ -6,7 +6,10 @@
     "livenessPath": "/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/health/isAlive",
     "readinessPath": "/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/health/isReady",
     "externalHosts": ["www.nav.no"],
+    "accessPolicyOutApps": ["k9-brukerdialog-api"],
     "cluster": "prod-gcp",
+    "minReplicas": 2,
+    "maxReplicas": 2,
     "env": {
         "API_TOKENX_AUDIENCE": "prod-gcp:dusseldorf:k9-brukerdialog-api",
         "API_URL": "http://k9-brukerdialog-api",

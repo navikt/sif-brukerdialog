@@ -12,7 +12,7 @@ export const appMessages: MessageFileFormat = {
         'initialLoadError.pageTitle': 'Det oppstod en feil',
         'initialLoadError.text.1': 'Det oppstod en feil under oppstarten av søknaden. Vennligst prøv igjen senere.',
 
-        'resetMellomlagring.text.1': 'Dersom feilen vedvarer, kan du prøve å starte på nytt med et tom skjema.',
+        'resetMellomlagring.text.1': 'Hvis feilen vedvarer, kan du prøve å starte på nytt med et tom skjema.',
         'resetMellomlagring.startPåNytt': 'Start på nytt',
 
         hvaBetyrDette: 'Hva betyr dette?',
@@ -36,7 +36,7 @@ export const appMessages: MessageFileFormat = {
 
         'page.ikkeTilgang.sidetittel': 'Søknad om pleiepenger i livets sluttfase',
         'page.ikkeTilgang.tekst':
-            'Du har ikke tilgang til denne siden. Dersom du er under 18 år, må en av foreldrene dine eller en foresatt skrive under på søknaden sammen med deg. Du må derfor fylle ut søknaden på papir og sende den i posten.',
+            'Du har ikke tilgang til denne siden. Hvis du er under 18 år, må en av foreldrene dine eller en foresatt skrive under på søknaden sammen med deg. Du må derfor fylle ut søknaden på papir og sende den i posten.',
         'page.ikkeTilgang.lastNed': 'Søknad om pleiepenger i livets sluttfase',
 
         'avbrytSøknadDialog.avbrytSøknadLabel': 'Ja, avbryt søknad',
@@ -60,22 +60,6 @@ export const appMessages: MessageFileFormat = {
         'step.nextButtonAriaLabel': 'Gå til neste steg',
         'step.sendButtonLabel': 'Send inn søknaden',
         'step.sendButtonAriaLabel': 'Send inn søknaden',
-
-        'arbeidstidPeriodeForm.tidFasteDagerEllerProsent.label': 'Hvordan vil du oppgi hvor mye du jobbet i perioden?',
-        'arbeidstidPeriodeForm.tidFasteDager.label': 'Fyll ut hvor mye du jobbet i uken i perioden:',
-        'arbeidstidPeriodeForm.prosent.label': 'Hvor mange prosent av din normale arbeidstid jobbet du i perioden?',
-        'arbeidstidPeriodeForm.validation.tidFasteDagerEllerProsent.noValue':
-            'Du må velge hvordan du ønsker å oppgi hvor mye du jobbet.',
-        'arbeidstidPeriodeForm.validation.prosent.numberHasNoValue':
-            'Du må oppgi hvor mange prosent du jobbet i perioden.',
-        'arbeidstidPeriodeForm.validation.prosent.numberHasInvalidFormat':
-            'Antall prosent du jobbet kan kun bestå av tall.',
-        'arbeidstidPeriodeForm.validation.prosent.numberIsTooSmall':
-            'Antall prosent du jobbet kan ikke være mindre enn {min}.',
-        'arbeidstidPeriodeForm.validation.prosent.numberIsTooLarge':
-            'Antall prosent du jobbet kan ikke være mer enn {max}.',
-        'arbeidstidPeriodeForm.validation.fasteDager.gruppe.ingenTidRegistrert':
-            'Du må oppgi hvor mange timer du jobbet i uken.',
 
         'arbeidsforhold.turnus.info.tittel': 'Hvordan regner jeg ut et snitt av turnusen min?',
         'arbeidsforhold.turnus.info.tekst.1':
@@ -130,8 +114,7 @@ export const appMessages: MessageFileFormat = {
         'selvstendig.infoDialog.registrerKnapp': 'Registrer virksomhet',
         'selvstendig.infoDialog.endreKnapp': 'Endre opplysninger',
         'selvstendig.infoDialog.fjernKnapp': 'Fjern virksomhet',
-        'selvstendig.infoDialog.tittel.en': 'Opplysninger om virksomheten din',
-        'selvstendig.infoDialog.tittel.flere': 'Opplysninger om den eldste virksomheten din',
+        'selvstendig.infoDialog.tittel': 'Virksomhet',
 
         'sn.arbeidsforhold.spm':
             'Hvor mange timer jobber du normalt per uke som selvstendig næringsdrivende når du ikke har fravær?',
@@ -150,28 +133,6 @@ export const appMessages: MessageFileFormat = {
         'step.arbeidstid.stepIndicatorLabel': 'Jobb i søknadsperioden',
         'step.arbeidstid.nextButtonLabel': 'Fortsett',
 
-        'arbeidIPeriode.søkerKunHelgedager.alert.avsnitt.1':
-            'Du kan kun få utbetalt pleiepenger for hverdager. Det utbetales ikke pleiepenger for lørdag eller søndag selv om du har hatt fravær fra jobb for å pleie personen.',
-        'arbeidIPeriode.søkerKunHelgedager.alert.avsnitt.2':
-            'Du kan derfor ikke registrere arbeid kun for lørdag og/eller søndag.',
-        'arbeidIPeriode.søkerKunHelgedager.alert.avsnitt.3':
-            'Vennligst gå tilbake til steg "Perioden med pleiepenger" og sjekk informasjonen du har fylt ut. Når du har gjort det, trykker du på "Fortsett"-knappen for å gå videre.',
-
-        'arbeidIPeriode.StepInfo.1': 'Nå trenger vi å vite om du jobber noe i perioden du søker om å få pleiepenger.',
-        'arbeidIPeriode.StepInfo.2':
-            'Hvis du for eksempel pleier den som er syk en halv dag og jobber resten av dagen, bruker du også bare en halv dag med pleiepenger. De dagene du jobber fullt bruker du ikke av pleiepengedagene.',
-        'arbeidIPeriode.FrilansLabel': 'Frilans',
-        'arbeidIPeriode.SNLabel': 'Selvstendig næringsdrivende',
-        'arbeidIPeriode.jobberIPerioden.spm': 'I perioden du søker for, hvilken situasjon gjelder for deg {hvor}?',
-        'arbeidIPeriode.enkeltdager_gruppe.legend':
-            'Oppgi hvor mye du arbeider {hvor} i de dagene du søker pleiepenger for.',
-        'arbeidIPeriode.ukedager.tittel': 'Fyll ut hvor mye du jobbet i uken {hvor} i perioden:',
-        'arbeidIPeriode.jobberIPerioden.jobberIkke': 'Jeg jobber ikke',
-        'arbeidIPeriode.jobberIPerioden.jobberVanlig': 'Jeg jobber som normalt, og har ikke fravær',
-        'arbeidIPeriode.jobberIPerioden.jobberRedusert': 'Jeg kombinerer delvis jobb med pleiepenger',
-        'arbeidIPeriode.iDag.utledet': 'timer i uka',
-        'arbeidIPeriode.prosent.utledet.medTimer': 'prosent av {timerNormalt} ({timerRedusert} per dag)',
-
         'step.medlemskap.pageTitle': 'Medlemskap i folketrygden',
         'step.medlemskap.stepTitle': 'Medlemskap i folketrygden',
         'step.medlemskap.stepIndicatorLabel': 'Om medlemskap i folketrygden',
@@ -182,38 +143,21 @@ export const appMessages: MessageFileFormat = {
         'validation.harForståttRettigheterOgPlikter.notChecked':
             'Du må bekrefte at du har lest og forstått dine plikter.',
 
-        'validation.periodeFra.dateHasNoValue': 'Du må fylle ut periodens fra-dato.',
-        'validation.periodeFra.dateHasInvalidFormat':
-            'Du må oppgi periodens fra-dato i et gyldig datoformat. Gyldig format er dd.mm.åååå.',
-        'validation.periodeFra.fromDateIsAfterToDate':
-            'Fra-datoen kan ikke være etter til-datoen. Skriv inn eller velg dato fra kalenderen.',
-        'validation.periodeFra.dateIsBeforeMin':
-            'Du kan ikke søke om pleiepenger for en periode som er lenger enn 3 år tilbake i tid.',
-        'validation.periodeFra.dateIsNotWeekday':
-            'Periodens fra-dato må være en ukedag, det kan ikke være en lørdag eller søndag. Skriv inn eller velg dato fra kalenderen.',
-        'validation.periodeTil.dateHasNoValue': 'Du må fylle ut periodens til-dato.',
-        'validation.periodeTil.dateHasInvalidFormat':
-            'Du må oppgi periodens til-dato i et gyldig datoformat. Gyldig format er dd.mm.åååå.',
-        'validation.periodeTil.dateIsBeforeMin':
-            'Du kan ikke søke om pleiepenger for en periode som er lenger enn 3 år tilbake i tid.',
-        'validation.periodeTil.dateIsNotWeekday':
-            'Periodens til-dato må være en ukedag, det kan ikke være en lørdag eller søndag. Skriv inn eller velg dato fra kalenderen.',
-        'validation.periodeTil.dateIsAfterMax': 'Du kan kun søke pleiepenger for opptil ett år av gangen.',
-        'validation.periodeTil.toDateIsBeforeFromDate':
-            'Til-datoen kan ikke være før fra-datoen. Skriv inn eller velg dato fra kalenderen.',
-
-        'validation.pleierDuDenSykeHjemme.yesOrNoIsUnanswered':
-            'Du må svare ja eller nei på om du pleier personen i et privat hjem i perioden du søker for.',
+        'validation.pleierDuDenSykeHjemme.yesOrNoIsUnanswered': 'Du må svare på om du pleier personen hjemme.',
 
         'validation.flereSokere.noValue':
             'Du må svare ja, nei eller usikker på om dere er flere som skal dele på pleiepengene.',
 
-        'validation.dagerMedPleie.ingenDagerValgt': 'Du må velge minst én dag med pleiepenger.',
+        'validation.skalJobbeIPerioden.yesOrNoIsUnanswered':
+            'Du må svare på på om du skal gi pleie og jobbe på samme dag, noen av dagene du skal gi pleie.',
 
+        'validation.dagerMedPleie.ingenDagerValgt': 'Du må velge minst én dag med pleiepenger.',
+        'validation.skalJobbeOgPleieSammeDag.yesOrNoIsUnanswered':
+            'Du må svare på om du skal gi pleie og jobbe på samme dag.',
         'validation.skalOppholdeSegIUtlandetIPerioden.yesOrNoIsUnanswered':
-            'Du må svare ja eller nei på om du oppholder deg i utlandet i perioden du søker for',
+            'Du må svare på på om du oppholder deg i utlandet i noen av dagene du søker for.',
         'validation.utenlandsoppholdIPerioden.utenlandsopphold_ikke_registrert':
-            'Du har svart ja til at du oppholder deg i utlandet i perioden du søker for. Legg til minst ett utenlandsopphold.',
+            'Du har svart ja til at du oppholder deg i utlandet i noen av dagene du søker for. Legg til minst ett utenlandsopphold.',
         'validation.utenlandsoppholdIPerioden.utenlandsopphold_overlapper':
             'Du har lagt inn utenlandsopphold med datoer som overlapper hverandre.',
         'validation.utenlandsoppholdIPerioden.utenlandsopphold_utenfor_periode':
@@ -221,19 +165,11 @@ export const appMessages: MessageFileFormat = {
         'validation.utenlandsoppholdIPerioden.utenlandsopphold_overlapper_samme_start_slutt':
             'Et utenlandsopphold kan ikke starte samme dag som et annet avsluttes.',
 
-        'validation.ferieuttakIPerioden.ferieuttak_ikke_registrert':
-            'Du har svart ja til at du skal ha ferie i perioden med pleiepenger. Legg til minst ett ferieuttak.',
-        'validation.ferieuttakIPerioden.ferieuttak_utenfor_periode':
-            'Du har lagt inn ferie som er utenfor søknadsperioden.',
-        'validation.ferieuttakIPerioden.ferieuttak_overlapper': 'Du har lagt inn ferier som overlapper hverandre.',
-        'validation.skalTaUtFerieIPerioden.yesOrNoIsUnanswered':
-            'Du må svare ja eller nei på om du skal ha ferie i perioden du søker for.',
-
         'validation.arbeidsforhold.erAnsatt.yesOrNoIsUnanswered':
-            'Du må svare ja eller nei på om du er ansatt hos {navn} i perioden du søker pleiepenger.',
+            'Du må svare på på om du er ansatt hos {navn} i perioden du søker pleiepenger.',
 
         'validation.frilans.harHattInntektSomFrilanser.yesOrNoIsUnanswered':
-            'Du må svare ja eller nei på om du er frilanser i perioden du søker for.',
+            'Du må svare på på om du er frilanser i perioden du søker for.',
         'validation.frilans.startdato.dateHasNoValue':
             'Du må oppgi hvilken dato du startet som frilanser. Skriv inn eller velg dato fra kalenderen.',
         'validation.frilans.startdato.dateHasInvalidFormat':
@@ -241,11 +177,11 @@ export const appMessages: MessageFileFormat = {
         'validation.frilans.startdato.dateIsAfterMax':
             'Datoen for når du startet som frilanser kan ikke være etter dagens dato.',
         'validation.frilans.startdato.startetEtterSøknadsperiode':
-            'Du har oppgitt at du startet som frilanser etter perioden du søker for. Dersom dette stemmer, kan du svare "Nei" på spørsmålet om du var frilanser i perioden du søker for.',
+            'Du har oppgitt at du startet som frilanser etter perioden du søker for. Hvis dette stemmer, kan du svare "Nei" på spørsmålet om du var frilanser i perioden du søker for.',
         'validation.frilans.sluttdato.sluttetFørSøknadsperiode':
-            'Du har oppgitt at du sluttet som frilanser før perioden du søker for. Dersom dette stemmer, kan du svare "Nei" på spørsmålet om du var frilanser i perioden du søker for.',
+            'Du har oppgitt at du sluttet som frilanser før perioden du søker for. Hvis dette stemmer, kan du svare "Nei" på spørsmålet om du var frilanser i perioden du søker for.',
         'validation.frilans.sluttdato.dateHasNoValue':
-            'Oppgi når du sluttet som frilanser. Skriv inn eller velg dato fra kalenderen.',
+            'Du må oppgi når du sluttet som frilanser. Skriv inn eller velg dato fra kalenderen.',
         'validation.frilans.sluttdato.dateHasInvalidFormat':
             'Du må oppgi datoen for når du sluttet som frilanser i et gyldig format. Gyldig format er dd.mm.åååå.',
         'validation.frilans.sluttdato.dateIsAfterMax':
@@ -253,31 +189,30 @@ export const appMessages: MessageFileFormat = {
         'validation.frilans.sluttdato.dateIsBeforeMin':
             'Datoen for når du sluttet som frilanser kan ikke være før datoen du startet.',
         'validation.frilans.jobberFortsattSomFrilans.yesOrNoIsUnanswered':
-            'Du må svare ja eller nei på om du fortsatt jobber som frilanser.',
+            'Du må svare på på om du fortsatt jobber som frilanser.',
 
         'validation.selvstendig.harHattInntektSomSN.yesOrNoIsUnanswered':
-            'Du må svare ja eller nei på om du er selvstendig næringsdrivende i perioden du søker for.',
+            'Du må svare på på om du er selvstendig næringsdrivende i perioden du søker for.',
         'validation.selvstendig.harFlereVirksomheter.yesOrNoIsUnanswered':
-            'Du må svare ja eller nei på om du har flere enn én virksomhet som er aktiv.',
+            'Du må svare på på om du har flere enn én virksomhet som er aktiv.',
         'validation.selvstendig.virksomhet.noValue':
             'Du må oppgi informasjon om virksomheten din som selvstendig næringsdrivende.',
         'validation.selvstendig.virksomhet.startetEtterSøknadsperiode':
-            'Du har oppgitt at du startet som selvstendig næringsdrivende etter perioden du søker for. Dersom dette stemmer,  svarer du "Nei" på spørsmålet om du var selvstendig næringsdrivende i perioden du søker for.',
+            'Du har oppgitt at du startet som selvstendig næringsdrivende etter perioden du søker for. Hvis dette stemmer,  svarer du "Nei" på spørsmålet om du var selvstendig næringsdrivende i perioden du søker for.',
         'validation.selvstendig.virksomhet.sluttetFørSøknadsperiode':
-            'Du har oppgitt at du sluttet som selvstendig næringsdrivende før perioden du søker for. Dersom dette stemmer,  svarer du "Nei" på spørsmålet om du var selvstendig næringsdrivende i perioden du søker for.',
+            'Du har oppgitt at du sluttet som selvstendig næringsdrivende før perioden du søker for. Hvis dette stemmer,  svarer du "Nei" på spørsmålet om du var selvstendig næringsdrivende i perioden du søker for.',
 
         'validation.harVærtEllerErVernepliktig.yesOrNoIsUnanswered':
-            'Du må svare ja eller nei på om du utøvde verneplikt på tidspunktet du søker pleiepenger fra.',
+            'Du må svare på på om du utøvde verneplikt på tidspunktet du søker pleiepenger fra.',
         'virksomhetForm.næringstype.noValue': 'Du må velge hvilken type virksomhet du har.',
 
         'validation.opptjeningUtland.listIsEmpty': 'Du må legge til jobb i et annet EØS-land.',
         'validation.harOpptjeningUtland.yesOrNoIsUnanswered':
-            'Du må svare ja eller nei på om du har jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før første dag med pleiepenger.',
+            'Du må svare på på om du har jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før første dag med pleiepenger.',
 
         'validation.harUtenlandskNæring.yesOrNoIsUnanswered':
-            'Du må svare ja eller nei på om du har jobbet som selvstendig næringsdrivende i et annet EØS-land i løpet av de 3 siste årene før perioden du søker om.',
-        'validation.utenlandskNæring.listIsEmpty':
-            'Du må legge til jobb som selvstendig næringsdrivende i et annet EØS-land.',
+            'Du må svare på på om du har jobbet som selvstendig næringsdrivende i et annet EØS-land i løpet av de 3 siste årene før perioden du søker om.',
+        'validation.utenlandskNæring.listIsEmpty': 'Du må legge til næringsvirksomhet i et annet EØS-land.',
 
         'validation.arbeidsforhold.sluttetFørSøknadsperiode.yesOrNoIsUnanswered':
             'Du må svare på om du sluttet hos {navn} før {fraDato}.',
@@ -291,57 +226,14 @@ export const appMessages: MessageFileFormat = {
         'validation.arbeidsforhold.jobberNormaltTimer.numberIsTooLarge':
             'Antall timer du {jobber} per uke {hvor} kan ikke være mer enn {max}.',
 
-        'validation.arbeidIPeriode.fast.prosent.måSvareNeiPåJobbIPerioden':
-            'Dersom du ikke skal jobbe {hvor}, må du svare Nei på spørsmålet ovenfor om jobb i perioden.',
-        'validation.arbeidIPeriode.fast.prosent.numberHasNoValue':
-            'Du må oppgi hvor mange prosent av din normale arbeidstid du jobber {hvor}.',
-        'validation.arbeidIPeriode.fast.prosent.numberHasInvalidFormat':
-            'Antall prosent du jobber {hvor} kan kun bestå av tall.',
-        'validation.arbeidIPeriode.fast.prosent.numberIsTooSmall':
-            'Antall prosent du jobber {hvor} kan ikke være mindre enn {min}.',
-        'validation.arbeidIPeriode.fast.prosent.numberIsTooLarge':
-            'Antall prosent du jobber {hvor} kan ikke være mer enn {max}.',
-        'validation.arbeidIPeriode.fast.prosent.ingenTidRegistrert':
-            'Du må oppgi hvor mange timer du jobber i uken {hvor} i perioden.',
-        'validation.arbeidIPeriode.fast.tid.timeHasNoValue': 'Du må fylle ut timer og minutter for {dag} {hvor}.',
-        'validation.arbeidIPeriode.fast.tid.hoursAreInvalid': 'Antall timer {dag} {hvor} er ikke et gyldig tall.',
-        'validation.arbeidIPeriode.fast.tid.minutesAreInvalid':
-            'Antall minutter på {dag} {hvor} er ikke et gyldig tall.',
-        'validation.arbeidIPeriode.fast.tid.tooManyHours': 'Antall timer {dag}  {hvor} kan ikke overstige 24 timer.',
-        'validation.arbeidIPeriode.fast.tid.tooManyMinutes':
-            'Antall minutter på {dag}  {hvor} kan ikke overstige 59 minutter.',
-        'validation.arbeidIPeriode.fast.tid.durationIsTooLong':
-            'Antall timer og minutter registrert {dag} {hvor} er for høyt. Tiden kan ikke overstige 24 timer hver ukedag.',
-        'validation.arbeidIPeriode.fast.tid.durationIsTooShort':
-            'Antall timer og minutter {dag} {hvor} kan ikke være mindre enn 0 timer og 0 minutter.',
-        'validation.arbeidIPeriode.fast.tid.hoursAreNegative':
-            'Antall timer og minutter {dag} {hvor} kan ikke være mindre enn 0 timer og 0 minutter.',
-        'validation.arbeidIPeriode.fast.tid.minutesAreNegative':
-            'Antall timer og minutter {dag} {hvor} kan ikke være mindre enn 0 timer og 0 minutter.',
-        'validation.arbeidIPeriode.timer.ingenTidRegistrert':
-            'Du må fylle ut hvor mye du jobber i uken {hvor} i perioden.',
-        'validation.arbeidIPeriode.timer.forMangeTimer':
-            'Du har oppgitt for mange timer du jobber i uken {hvor} i perioden.',
-        'validation.arbeidIPeriode.jobber':
-            'Du må svare på om hvilken situasjon gjelder for deg {hvor} i perioden du søker for.',
-        'validation.arbeidIPeriode.timerEllerProsent.noValue':
-            'Du må svare på hvordan du ønsker å oppgi hvor mye du jobber {hvor} i perioden.',
-        'validation.arbeidIPeriode_prosentUgyldig':
-            'Prosenten du kan oppgi er fra 1 til 100 prosent for hvor mye du jobber {hvor} i perioden.',
-        'validation.arbeidIPeriode.fasteDager.ingenTidRegistrert':
-            'Du må fylle ut hvor mye du jobber i uken {hvor} i perioden.',
-        'validation.arbeidIPeriode.fasteDager.forMangeTimer':
-            'Du har oppgitt for mange timer du jobber i uken {hvor} i perioden.',
-        'validation.arbeidIPeriode.enkeltdager.ingenTidRegistrert': 'Du må oppgi hvor mye du jobber {hvor} i perioden.',
-
         'validation.harBoddUtenforNorgeSiste12Mnd.yesOrNoIsUnanswered':
-            'Du må svare ja eller nei på om du har bodd i utlandet i hele eller deler av de siste 12 månedene.',
+            'Du må svare på på om du har bodd i utlandet i hele eller deler av de siste 12 månedene.',
         'validation.utenlandsoppholdSiste12Mnd.utenlandsopphold_ikke_registrert':
             'Du har oppgitt at du har vært i utlandet de siste 12 månedene. Du må registrere dette utenlandsoppholdet.',
         'validation.utenlandsoppholdSiste12Mnd.utenlandsopphold_overlapper':
             'Ett eller flere av utenlandsoppholdene du har lagt inn for de siste 12 månedene, har datoer som overlapper hverandre.',
         'validation.skalBoUtenforNorgeNeste12Mnd.yesOrNoIsUnanswered':
-            'Du må svare ja eller nei på om du planlegger å bo i utlandet i hele eller deler av de neste 12 månedene.',
+            'Du må svare på på om du planlegger å bo i utlandet i hele eller deler av de neste 12 månedene.',
         'validation.utenlandsoppholdNeste12Mnd.utenlandsopphold_ikke_registrert':
             'Du har oppgitt at du skal oppholde deg i utlandet de neste 12 månedene. Du må registrere dette utenlandsoppholdet.',
         'validation.utenlandsoppholdNeste12Mnd.utenlandsopphold_overlapper':
@@ -360,6 +252,6 @@ export const appMessages: MessageFileFormat = {
         'frilansoppdragListe.tidsrom.pågående': 'fra {fra} - pågående',
         'frilansoppdragInfo.tittel': 'Registrerte frilansoppdrag i perioden:',
         'frilansoppdragInfo.tekst':
-            'Dette er frilansoppdrag registrert i AA-registeret i perioden du søker om pleiepenger. Dersom informasjonen ikke stemmer, må du ta kontakt med oppdragsgiver og be de oppdatere informasjonen i AA-registeret.',
+            'Dette er frilansoppdrag registrert i AA-registeret i perioden du søker om pleiepenger. Hvis informasjonen ikke stemmer, må du ta kontakt med oppdragsgiver og be de oppdatere informasjonen i AA-registeret.',
     },
 };

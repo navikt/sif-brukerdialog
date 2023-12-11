@@ -4,7 +4,7 @@
     "main": "lib/index.js",
     "name": "@navikt/sif-common-utils",
     "types": "lib/index.d.js",
-    "version": "3.40.1",
+    "version": "3.43.5",
     "private": true,
     "dependencies": {
         "dayjs": "1.11.10",
@@ -13,19 +13,18 @@
         "uuid": "9.0.1"
     },
     "devDependencies": {
-        "@babel/core": "7.23.0",
-        "@babel/preset-env": "7.22.20",
-        "@babel/preset-react": "7.22.15",
-        "@types/jest": "29.5.5",
-        "@types/node": "20.8.2",
-        "@types/react": "18.2.24",
-        "@types/react-dom": "18.2.8",
-        "@types/uuid": "9.0.4",
+        "@babel/core": "7.23.5",
+        "@babel/preset-env": "7.23.5",
+        "@babel/preset-react": "7.23.3",
+        "@types/node": "20.10.4",
+        "@types/react": "18.2.43",
+        "@types/react-dom": "18.2.17",
+        "@types/uuid": "9.0.7",
         "config": "workspace:*",
         "npm-run-all": "4.1.5",
         "react": "18.2.0",
         "react-dom": "18.2.0",
-        "react-scripts": "5.0.1"
+        "vitest": "1.0.4"
     },
     "scripts": {
         "build-package": "npm-run-all compile-lib-script",
@@ -34,11 +33,8 @@
         "clean": "rm -rf node_modules lib",
         "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
         "compile-lib-script": "tsc -p tsconfig.json",
-        "dev": "yarn compile-lib-script-watch",
+        "dev-lib": "yarn compile-lib-script-watch",
         "lint": "eslint ./src --ext ts,tsx",
-        "test-coverage-watch": "react-scripts test a --coverage --watchAll=true",
-        "test-coverage": "react-scripts test a --coverage --watchAll=false",
-        "test-watch": "react-scripts test",
-        "test": "react-scripts test --watchAll=false --env=jsdom"
+        "test": "vitest"
     }
 }

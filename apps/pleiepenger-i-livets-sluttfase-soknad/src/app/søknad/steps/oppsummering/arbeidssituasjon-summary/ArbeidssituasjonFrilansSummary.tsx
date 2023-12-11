@@ -62,7 +62,7 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag }: Props) => {
                         </li>
                     </>
                 )}
-                {/* Dersom bruker fortsatt er frilanser i perioden (arbeidsforhold finnes), og har frilansoppdrag */}
+                {/* Hvis bruker fortsatt er frilanser i perioden (arbeidsforhold finnes), og har frilansoppdrag */}
                 {frilans.arbeidsforhold && frilansoppdrag && frilansoppdrag.length > 0 && (
                     <li>
                         <FormattedMessage id="oppsummering.arbeidssituasjon.frilans.frilansoppdrag" />

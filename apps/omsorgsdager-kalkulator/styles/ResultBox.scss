@@ -1,0 +1,82 @@
+$OmsKalkResultBoxBorderGreen: #06893a;
+$OmsKalkResultTopLineGreen: #cde7d8;
+
+$OmsKalkResultBoxBorderOrange: #d97b00;
+$OmsKalkResultTopLineOrange: #ffdeb4;
+
+.OmsCalcResultBox {
+    &__result-wrapper-green {
+        border: 1px solid $OmsKalkResultBoxBorderGreen;
+        border-radius: 4px;
+        background-color: $OmsKalkResultTopLineGreen;
+        overflow: hidden;
+    }
+    &__result-wrapper-orange {
+        border: 1px solid $OmsKalkResultBoxBorderOrange;
+        border-radius: 4px;
+        background-color: $OmsKalkResultTopLineOrange;
+        overflow: hidden;
+    }
+    &__result-top-arrow-wrapper {
+        display: flex;
+        justify-content: center;
+        background-color: white;
+        margin-top: 11px;
+    }
+    &__result-top-arrow-green {
+        background: $OmsKalkResultTopLineGreen;
+        width: 40px;
+        height: 40px;
+        transform: rotate(45deg) translate(-20px, -20px);
+    }
+    &__result-top-arrow-orange {
+        background: $OmsKalkResultTopLineOrange;
+        width: 40px;
+        height: 40px;
+        transform: rotate(45deg) translate(-20px, -20px);
+    }
+    &__result-content {
+        background: white;
+        overflow: hidden;
+        padding-bottom: 1rem;
+        @media (max-width: 768px) {
+            flex-flow: column;
+            padding-right: 0;
+        }
+    }
+    &__result-child-wrapper {
+        display: flex;
+        margin-left: 1rem;
+        padding: 0rem 1rem 0.5rem 1rem;
+
+        @media (max-width: 768px) {
+            margin-left: 0rem;
+            padding: 0rem 1rem 1rem 1rem;
+        }
+    }
+    &__result-content-wrapper {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        @media (min-width: 768px) {
+            padding: 0rem 7rem 0rem 8rem;
+            margin-bottom: 1.5rem;
+        }
+    }
+
+    &__result-utregning {
+        display: flex;
+        justify-content: space-between;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    &__result-utregning-beskrivelse {
+        @media (max-width: 430px) {
+            width: 8rem;
+        }
+    }
+    &__result-utregning-dager {
+        font-weight: 800;
+        align-self: flex-end;
+    }
+}

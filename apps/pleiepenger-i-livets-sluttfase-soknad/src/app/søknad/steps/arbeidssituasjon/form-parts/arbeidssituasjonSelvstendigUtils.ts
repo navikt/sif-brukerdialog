@@ -11,7 +11,7 @@ import { ArbeidSelvstendigSøknadsdata } from '../../../../types/søknadsdata/Ar
  * @returns DateRange
  *
  * Avkort periode med startdato for virksomhet
- * Returnerer undefined dersom start er etter periodes start
+ * Returnerer undefined hvis start er etter periodes start
  */
 
 export const getPeriodeSomSelvstendigInnenforPeriode = (

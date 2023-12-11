@@ -1,9 +1,9 @@
-import { BodyLong } from '@navikt/ds-react';
-import { FormattedMessage } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { useFormikContext } from 'formik';
+import { FormattedMessage } from 'react-intl';
 import GeneralErrorPage from '../../pages/general-error-page/GeneralErrorPage';
 import { StepCommonProps } from '../../types/StepCommonProps';
 import { StepID } from '../../types/StepID';
@@ -13,9 +13,8 @@ import { søkerNoeFremtid } from '../../utils/søknadsperiodeUtils';
 import SøknadFormStep from '../SøknadFormStep';
 import { useSøknadsdataContext } from '../SøknadsdataContext';
 import ArbeidstidAnsatt from './components/ArbeidstidAnsatt';
-import ArbeidstidSelvstendig from './components/ArbeidstidSelvstendig';
 import ArbeidstidFrilans from './components/ArbeidstidFrilans';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
+import ArbeidstidSelvstendig from './components/ArbeidstidSelvstendig';
 
 const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
     const { values } = useFormikContext<SøknadFormValues>();
@@ -38,14 +37,12 @@ const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
         <SøknadFormStep stepId={StepID.ARBEIDSTID} onValidFormSubmit={onValidSubmit}>
             <Block padBottom="m">
                 <SifGuidePanel>
-                    <BodyLong as="div">
-                        <p>
-                            <FormattedMessage id={'arbeidIPeriode.StepInfo.1'} />
-                        </p>
-                        <p>
-                            <FormattedMessage id={'arbeidIPeriode.StepInfo.2'} />
-                        </p>
-                    </BodyLong>
+                    <p>
+                        <FormattedMessage id={'arbeidIPeriode.StepInfo.1'} />
+                    </p>
+                    <p>
+                        <FormattedMessage id={'arbeidIPeriode.StepInfo.2'} />
+                    </p>
                 </SifGuidePanel>
             </Block>
 

@@ -3,8 +3,11 @@ import { StepId } from '../types/StepId';
 import { ArbeidssituasjonSøknadsdata, Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 import { getSøknadStepRoute } from '../utils/søknadRoutesUtils';
 
-export const includeArbeidstidStep = (arbeidssituasjon?: ArbeidssituasjonSøknadsdata): boolean => {
-    if (!arbeidssituasjon) {
+export const includeArbeidstidStep = (
+    arbeidssituasjon: ArbeidssituasjonSøknadsdata | undefined,
+    skalJobbeIPerioden: boolean | undefined,
+): boolean => {
+    if (!arbeidssituasjon || !skalJobbeIPerioden) {
         return false;
     }
 
@@ -24,11 +27,13 @@ export const includeArbeidstidStep = (arbeidssituasjon?: ArbeidssituasjonSøknad
 const getSøknadSteps = (søknadsdata: Søknadsdata): StepId[] => {
     return [
         StepId.OPPLYSNINGER_OM_PLEIETRENGENDE,
-        StepId.LEGEERKLÆRING,
         StepId.TIDSROM,
         StepId.ARBEIDSSITUASJON,
-        ...(includeArbeidstidStep(søknadsdata?.arbeidssituasjon) ? [StepId.ARBEIDSTID] : []),
+        ...(includeArbeidstidStep(søknadsdata?.arbeidssituasjon, søknadsdata?.tidsrom?.skalJobbeOgPleieSammeDag)
+            ? [StepId.ARBEIDSTID]
+            : []),
         StepId.MEDLEMSKAP,
+        StepId.LEGEERKLÆRING,
         StepId.OPPSUMMERING,
     ];
 };

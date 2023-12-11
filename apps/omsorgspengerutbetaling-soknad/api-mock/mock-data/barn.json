@@ -7,6 +7,6 @@
             "etternavn": "Barnesen",
             "aktørId": "1"
         },
-        { "fødselsdato": "1990-01-02", "fornavn": "Mock", "etternavn": "Mocknes", "aktørId": "2" }
+        { "fødselsdato": "2020-01-02", "fornavn": "Mock", "etternavn": "Mocknes", "aktørId": "2" }
     ]
 }

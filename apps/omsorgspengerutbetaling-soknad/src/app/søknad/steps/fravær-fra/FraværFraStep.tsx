@@ -1,29 +1,29 @@
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import { Aktivitet, AktivitetFravær } from '../../../types/AktivitetFravær';
-import useIntl from 'react-intl/src/components/useIntl';
-import { useSøknadContext } from '../../context/hooks/useSøknadContext';
+import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { dateToISOString, getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
+import getRequiredFieldValidator from '@navikt/sif-common-formik-ds/lib/validation/getRequiredFieldValidator';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+import dayjs from 'dayjs';
+import { FormattedMessage } from 'react-intl';
+import useIntl from 'react-intl/src/components/useIntl';
+import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
+import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
+import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import { Aktivitet, AktivitetFravær } from '../../../types/AktivitetFravær';
+import { StepId } from '../../../types/StepId';
+import { SøknadContextState } from '../../../types/SøknadContextState';
+import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import SøknadStep from '../../SøknadStep';
+import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
+import actionsCreator from '../../context/action/actionCreator';
+import { useSøknadContext } from '../../context/hooks/useSøknadContext';
+import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import {
     getFraværFraStepInitialValues,
     getFraværFraSøknadsdataFromFormValues,
     getUtbetalingsdatoerFraFravær,
 } from './FraværFraUtils';
-import { StepId } from '../../../types/StepId';
-import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
-import actionsCreator from '../../context/action/actionCreator';
-import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
-import { SøknadContextState } from '../../../types/SøknadContextState';
-import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import SøknadStep from '../../SøknadStep';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-import { FormattedMessage } from 'react-intl';
-import getRequiredFieldValidator from '@navikt/sif-common-formik-ds/lib/validation/getRequiredFieldValidator';
-import dayjs from 'dayjs';
-import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 
 export enum AktivitetFraværField {
     aktivitet = 'aktivitet',
@@ -112,7 +112,9 @@ const FraværFraStep = () => {
                                 runDelayedFormValidation={true}>
                                 <FormBlock>
                                     <SifGuidePanel>
-                                        <FormattedMessage id="step.fravaerFra.info" />
+                                        <p>
+                                            <FormattedMessage id="step.fravaerFra.info" />
+                                        </p>
                                     </SifGuidePanel>
                                 </FormBlock>
 

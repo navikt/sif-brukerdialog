@@ -1,5 +1,9 @@
-export const getEnvironmentVariable = (variableName: string): string => (window as any).appSettings[variableName];
+const settingsNode = document.getElementById('nav:appSettings') as HTMLScriptElement;
+const appSettingsInline = settingsNode ? JSON.parse(settingsNode.text) : undefined;
 
+export const getEnvironmentVariable = (variableName: string): string => {
+    return (appSettingsInline || (window as any).appSettings || {})[variableName];
+};
 export const getEnvVariableOrDefault = (key: string, defaultValue: string): string => {
     const value = getEnvironmentVariable(key);
     return value === undefined || value === 'undefined' ? defaultValue : value;

@@ -3,6 +3,7 @@ import { SøknadContextState } from '../../../types/SøknadContextState';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
+import { syncArbeidstidMedDagerMedPleie } from '../../steps/arbeidstid/arbeidstidStepUtils';
 
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {
     switch (action.type) {
@@ -152,6 +153,19 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     søknadsdata: {},
                     søknadSendt: false,
                     søknadRoute: SøknadRoutes.VELKOMMEN,
+                };
+            case SøknadContextActionKeys.SYNC_ARBEIDSTID_MED_TIDSROM:
+                return {
+                    ...state,
+                    søknadsdata: {
+                        ...state.søknadsdata,
+                        arbeidstid: state.søknadsdata.arbeidstid
+                            ? syncArbeidstidMedDagerMedPleie(
+                                  state.søknadsdata.arbeidstid,
+                                  state.søknadsdata.tidsrom?.dagerMedPleie,
+                              )
+                            : undefined,
+                    },
                 };
             default:
                 // eslint-disable-next-line no-console

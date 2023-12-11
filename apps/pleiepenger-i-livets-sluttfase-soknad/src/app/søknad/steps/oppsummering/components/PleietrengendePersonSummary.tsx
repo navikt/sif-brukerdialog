@@ -6,21 +6,21 @@ import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { FødselsnummerSvar, SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
 import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils/lib';
-import { PleietrengendeApi } from '../../../../types/søknadApiData/SøknadApiData';
+import { FlereSokereApiData, PleietrengendeApi } from '../../../../types/søknadApiData/SøknadApiData';
 
 interface Props {
-    pleierDuDenSykeHjemme: boolean;
     pleietrengende: PleietrengendeApi;
     pleietrengendeId: Attachment[];
+    flereSøkere: FlereSokereApiData;
 }
 
-const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId, pleierDuDenSykeHjemme }: Props) => {
+const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId, flereSøkere }: Props) => {
     const intl = useIntl();
     return (
         <SummarySection header={intlHelper(intl, 'step.oppsummering.pleietrengende.header')}>
             <SummaryBlock header={pleietrengende.navn}>
                 {pleietrengende.fødselsdato ? (
-                    <BodyLong size="large">
+                    <BodyLong>
                         <FormattedMessage
                             id="steg.oppsummering.pleietrengende.fødselsdato"
                             values={{
@@ -38,7 +38,7 @@ const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId, pleierD
                 {pleietrengende.årsakManglerIdentitetsnummer && !pleietrengende.norskIdentitetsnummer && (
                     <>
                         <Block margin="l">
-                            <BodyLong size="large">
+                            <BodyLong>
                                 <FormattedMessage
                                     id="steg.oppsummering.pleietrengende.harIkkeFnr"
                                     values={{
@@ -63,8 +63,8 @@ const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId, pleierD
                     </>
                 )}
             </SummaryBlock>
-            <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.pleierDuDenSykeHjemme.header')}>
-                <FormattedMessage id={pleierDuDenSykeHjemme ? 'Ja' : 'Nei'} />
+            <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.flereSokere.header')}>
+                <FormattedMessage id={`steg.oppsummering.${flereSøkere}`} />
             </SummaryBlock>
         </SummarySection>
     );

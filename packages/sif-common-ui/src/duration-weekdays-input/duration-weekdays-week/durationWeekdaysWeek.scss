@@ -6,11 +6,10 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     &__weekNumber {
         width: 5rem;
         flex-grow: 0;
-        padding-top: 2.25rem;
     }
     &__daysWrapper {
         flex-grow: 2;

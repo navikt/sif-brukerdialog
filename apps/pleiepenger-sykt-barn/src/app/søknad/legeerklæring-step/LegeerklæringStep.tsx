@@ -1,29 +1,31 @@
-import { Alert, BodyLong, Link } from '@navikt/ds-react';
-import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
-import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { Alert, Link } from '@navikt/ds-react';
+import { ApplikasjonHendelse, SIFCommonGeneralEvents, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FileUploadErrors from '@navikt/sif-common-core-ds/lib/components/file-upload-errors/FileUploadErrors';
 import PictureScanningGuide from '@navikt/sif-common-core-ds/lib/components/picture-scanning-guide/PictureScanningGuide';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
 import {
+    MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
     getTotalSizeOfAttachments,
     mapFileToPersistedFile,
-    MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { useFormikContext } from 'formik';
-import FormikFileUploader from '../../components/formik-file-uploader/FormikFileUploader';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
+import FormikFileUploader from '@navikt/sif-common-core-ds/lib/components/formik-file-uploader/FormikFileUploader';
 import LegeerklæringFileList from '../../components/legeerklæring-file-list/LegeerklæringFileList';
 import usePersistSoknad from '../../hooks/usePersistSoknad';
 import getLenker from '../../lenker';
+import { StepCommonProps } from '../../types/StepCommonProps';
 import { StepID } from '../../types/StepID';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { relocateToLoginPage } from '../../utils/navigationUtils';
 import { validateLegeerklæring } from '../../validation/fieldValidations';
 import SøknadFormStep from '../SøknadFormStep';
-import { StepCommonProps } from '../../types/StepCommonProps';
+import { uploadFile } from '../../api/api';
+import { getAttachmentURLFrontend } from '../../utils/attachmentUtilsAuthToken';
 
 const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
@@ -39,7 +41,7 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
 
     const ref = React.useRef({ attachments });
 
-    const { logHendelse, logUserLoggedOut } = useAmplitudeInstance();
+    const { logHendelse, logUserLoggedOut, logEvent } = useAmplitudeInstance();
 
     const vedleggOpplastingFeilet = async (files?: File[]) => {
         if (files) {
@@ -97,14 +99,12 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
             buttonDisabled={hasPendingUploads || attachmentsSizeOver24Mb}>
             <Block padBottom="xl">
                 <SifGuidePanel compact={true}>
-                    <BodyLong as="div">
-                        <p>
-                            <FormattedMessage id={'steg.legeerklaering.counsellorpanel.1'} />
-                        </p>
-                        <p>
-                            <FormattedMessage id={'steg.legeerklaering.counsellorpanel.2'} />{' '}
-                        </p>
-                    </BodyLong>
+                    <p>
+                        <FormattedMessage id={'steg.legeerklaering.counsellorpanel.1'} />
+                    </p>
+                    <p>
+                        <FormattedMessage id={'steg.legeerklaering.counsellorpanel.2'} />{' '}
+                    </p>
                 </SifGuidePanel>
             </Block>
 
@@ -114,15 +114,21 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
             {totalSize <= MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
                 <Block margin="l">
                     <FormikFileUploader
+                        uploadFile={(file) => uploadFile(file)}
+                        getAttachmentURLFrontend={getAttachmentURLFrontend}
                         legend={intlHelper(intl, 'steg.lege.vedlegg.legend')}
                         name={SøknadFormField.legeerklæring}
-                        label={intlHelper(intl, 'steg.lege.vedlegg')}
+                        attachments={attachments}
+                        buttonLabel={intlHelper(intl, 'steg.lege.vedlegg')}
                         onErrorUploadingAttachments={vedleggOpplastingFeilet}
                         onFileInputClick={() => {
                             setFilesThatDidntGetUploaded([]);
                         }}
                         validate={validateLegeerklæring}
                         onUnauthorizedOrForbiddenUpload={userNotLoggedIn}
+                        onFilesUploaded={(antall, antallFeilet) => {
+                            logEvent(SIFCommonGeneralEvents.vedleggLastetOpp, { antall, antallFeilet });
+                        }}
                     />
                 </Block>
             )}

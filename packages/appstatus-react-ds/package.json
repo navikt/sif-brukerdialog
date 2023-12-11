@@ -5,27 +5,27 @@
     "main": "lib/index.js",
     "name": "@navikt/appstatus-react-ds",
     "types": "lib/index.d.js",
-    "version": "2.14.1",
+    "version": "2.17.5",
     "private": true,
     "dependencies": {
         "@navikt/sif-common-hooks": "workspace:*",
-        "@portabletext/react": "3.0.9",
-        "@sanity/client": "6.4.12"
+        "@portabletext/react": "3.0.11",
+        "@sanity/client": "6.9.3"
     },
     "devDependencies": {
-        "@navikt/ds-css": "5.6.1",
-        "@navikt/ds-react": "5.6.1",
-        "@types/node": "20.8.2",
-        "@types/react": "18.2.24",
-        "@types/react-dom": "18.2.8",
+        "@navikt/ds-css": "5.11.4",
+        "@navikt/ds-react": "5.11.4",
+        "@types/node": "20.10.4",
+        "@types/react": "18.2.43",
+        "@types/react-dom": "18.2.17",
         "config": "workspace:*",
         "copyfiles": "2.4.1",
-        "postcss": "8.4.31",
+        "postcss": "8.4.32",
         "prop-types": "15.8.1",
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "rimraf": "5.0.5",
-        "sass": "1.68.0"
+        "sass": "1.69.5"
     },
     "scripts": {
         "build-package": "npm-run-all compile-lib-script copy-files",
@@ -35,7 +35,7 @@
         "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
         "compile-lib-script": "tsc -p tsconfig.json",
         "copy-files": "copyfiles -u 1 \"src/**/*.css\" lib",
-        "dev": "yarn compile-lib-script-watch",
+        "dev-lib": "yarn compile-lib-script-watch",
         "lint": "eslint ./src --ext ts,tsx"
     }
 }

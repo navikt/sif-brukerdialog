@@ -1,9 +1,9 @@
+import { BodyLong } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Arbeidsgiver } from '../../../../../types/Arbeidsgiver';
-import { prettifyDateExtended } from '@navikt/sif-common-utils/lib';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import { Ingress } from '@navikt/ds-react';
+import { prettifyDateExtended } from '@navikt/sif-common-utils/lib';
+import { Arbeidsgiver } from '../../../../../types/Arbeidsgiver';
 
 interface Props {
     frilansoppdrag: Arbeidsgiver[];
@@ -41,7 +41,7 @@ const FrilansoppdragListe: React.FC<Props> = ({ frilansoppdrag, kompakt }) =>
         <ul style={{ margin: 0, padding: '1rem 0 0 1rem' }}>
             {frilansoppdrag.map((oppdrag) => (
                 <li key={oppdrag.id}>
-                    <Ingress>{oppdrag.navn}</Ingress>
+                    <BodyLong size="large">{oppdrag.navn}</BodyLong>
                     <Block padBottom="l">
                         <FormattedMessage
                             id="frilansoppdragListe.oppdrag"

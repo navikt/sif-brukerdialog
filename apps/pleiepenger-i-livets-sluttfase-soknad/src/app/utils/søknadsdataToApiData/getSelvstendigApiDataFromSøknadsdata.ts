@@ -8,10 +8,11 @@ import { DateRange } from '@navikt/sif-common-formik-ds/lib';
 export const getSelvstendigApiDataFromSøknadsdata = (
     søknadsperiode: DateRange,
     dagerMedPleie: Date[],
+    skalJobbeIPerioden: boolean,
     selvstendig?: ArbeidSelvstendigSøknadsdata,
     arbeidIperiode?: ArbeidIPeriodeSøknadsdata,
 ): SelvstendigNæringsdrivendeApiData | undefined => {
-    if (!selvstendig || !arbeidIperiode) {
+    if (!selvstendig) {
         return undefined;
     }
 
@@ -25,6 +26,7 @@ export const getSelvstendigApiDataFromSøknadsdata = (
             const arbeidsforhold: ArbeidsforholdApiData = {
                 jobberNormaltTimer,
                 arbeidIPeriode: getArbeidIPeriodeApiDataFromSøknadsdata(
+                    skalJobbeIPerioden,
                     arbeidIperiode,
                     søknadsperiode,
                     jobberNormaltTimer,

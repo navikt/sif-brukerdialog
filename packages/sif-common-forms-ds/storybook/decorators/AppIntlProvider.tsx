@@ -10,8 +10,8 @@ import { appMessages } from './messages';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
 
-require('dayjs/locale/nb');
-require('dayjs/locale/nn');
+import 'dayjs/locale/nb';
+import 'dayjs/locale/nn';
 export interface IntlProviderProps {
     locale: Locale;
     children: React.ReactNode;

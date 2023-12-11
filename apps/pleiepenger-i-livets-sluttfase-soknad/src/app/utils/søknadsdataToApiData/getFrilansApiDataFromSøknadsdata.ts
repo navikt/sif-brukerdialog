@@ -7,8 +7,9 @@ import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidIPeriodeApi
 export const getFrilansApiDataFromSøknadsdata = (
     søknadsperiode: DateRange,
     dagerMedPleie: Date[],
+    skalJobbeIPerioden: boolean,
     frilans?: ArbeidFrilansSøknadsdata,
-    arbeidIperiode?: ArbeidIPeriodeSøknadsdata,
+    arbeidIPeriode?: ArbeidIPeriodeSøknadsdata,
 ): FrilansApiData | undefined => {
     if (!frilans) {
         return undefined;
@@ -18,7 +19,7 @@ export const getFrilansApiDataFromSøknadsdata = (
             return undefined;
 
         case 'sluttetISøknadsperiode':
-            if (arbeidIperiode) {
+            if (arbeidIPeriode) {
                 return {
                     harHattInntektSomFrilanser: true,
                     startdato: frilans.startdato,
@@ -27,7 +28,8 @@ export const getFrilansApiDataFromSøknadsdata = (
                     arbeidsforhold: {
                         jobberNormaltTimer: frilans.jobberNormaltTimer,
                         arbeidIPeriode: getArbeidIPeriodeApiDataFromSøknadsdata(
-                            arbeidIperiode,
+                            skalJobbeIPerioden,
+                            arbeidIPeriode,
                             søknadsperiode,
                             frilans.jobberNormaltTimer,
                             dagerMedPleie,
@@ -37,21 +39,20 @@ export const getFrilansApiDataFromSøknadsdata = (
             } else return undefined;
 
         case 'pågående':
-            if (arbeidIperiode) {
-                return {
-                    harHattInntektSomFrilanser: true,
-                    startdato: frilans.startdato,
-                    jobberFortsattSomFrilans: true,
-                    arbeidsforhold: {
-                        jobberNormaltTimer: frilans.jobberNormaltTimer,
-                        arbeidIPeriode: getArbeidIPeriodeApiDataFromSøknadsdata(
-                            arbeidIperiode,
-                            søknadsperiode,
-                            frilans.jobberNormaltTimer,
-                            dagerMedPleie,
-                        ),
-                    },
-                };
-            } else return undefined;
+            return {
+                harHattInntektSomFrilanser: true,
+                startdato: frilans.startdato,
+                jobberFortsattSomFrilans: true,
+                arbeidsforhold: {
+                    jobberNormaltTimer: frilans.jobberNormaltTimer,
+                    arbeidIPeriode: getArbeidIPeriodeApiDataFromSøknadsdata(
+                        skalJobbeIPerioden,
+                        arbeidIPeriode,
+                        søknadsperiode,
+                        frilans.jobberNormaltTimer,
+                        dagerMedPleie,
+                    ),
+                },
+            };
     }
 };

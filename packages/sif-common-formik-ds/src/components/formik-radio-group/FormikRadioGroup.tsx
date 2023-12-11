@@ -1,6 +1,6 @@
 import { BodyShort, Radio, RadioGroup, RadioGroupProps, RadioProps } from '@navikt/ds-react';
-import React, { useContext } from 'react';
 import { FastField, Field, FieldProps } from 'formik';
+import React, { useContext } from 'react';
 import { TestProps, TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';

@@ -32,6 +32,7 @@ export enum SøknadContextActionKeys {
     SET_SØKNAD_SENDT = 'setSøknadSendt',
     SET_SØKNAD_KVITTERING_INFO = '',
     SET_UNSUBMITTED_STEP_FORM_VALUES = 'setUnsubmittedStepFormValues',
+    SYNC_ARBEIDSTID_MED_TIDSROM = 'syncArbeidstidMedTidsrom',
 }
 
 interface ResetSøknad {
@@ -107,6 +108,10 @@ interface SetSøknadHarBekreftetOpplysninger {
 interface SetSøknadKvitteringInfo {
     type: SøknadContextActionKeys.SET_SØKNAD_KVITTERING_INFO;
     payload?: KvitteringInfo;
+}
+interface SyncArbeidstidMedTidsrom {
+    type: SøknadContextActionKeys.SYNC_ARBEIDSTID_MED_TIDSROM;
+    payload?: TidsromSøknadsdata;
 }
 
 const resetSøknad = (): ResetSøknad => ({
@@ -191,6 +196,11 @@ const setSøknadRoute = (payload: SøknadRoutes): SetSøknadRoute => ({
     payload,
 });
 
+const syncArbeidstidMedTidsrom = (payload: TidsromSøknadsdata): SyncArbeidstidMedTidsrom => ({
+    type: SøknadContextActionKeys.SYNC_ARBEIDSTID_MED_TIDSROM,
+    payload,
+});
+
 export type SøknadContextAction =
     | StartSøknad
     | AvbrytSøknad
@@ -209,7 +219,8 @@ export type SøknadContextAction =
     | SetSøknadMedlemskap
     | SetSøknadHarBekreftetOpplysninger
     | SetSøknadKvitteringInfo
-    | SetSøknadRoute;
+    | SetSøknadRoute
+    | SyncArbeidstidMedTidsrom;
 
 const actionsCreator = {
     resetSøknad,
@@ -230,6 +241,7 @@ const actionsCreator = {
     setSøknadKvitteringInfo,
     setSøknadLagret,
     setSøknadSendt,
+    syncArbeidstidMedTidsrom,
 };
 
 export default actionsCreator;

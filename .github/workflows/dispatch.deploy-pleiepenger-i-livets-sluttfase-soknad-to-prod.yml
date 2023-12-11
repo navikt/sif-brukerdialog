@@ -12,15 +12,18 @@ on:
 jobs:
     run-tests:
         uses: ./.github/workflows/test.pleiepenger-i-livets-sluttfase-soknad.yml
+        secrets: inherit
 
-    # deploy-to-prod:
-    #    name: Deploy pleiepenger-i-livets-sluttfase-soknad to prod
-    #    needs: [run-tests]
-    #    uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-prod.yml@main
-    #    permissions:
-    #        packages: write
-    #    secrets:
-    #        NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-    #    with:
-    #        app-name: 'pleiepenger-i-livets-sluttfase-soknad'
-    #        working-directory: 'apps/pleiepenger-i-livets-sluttfase-soknad'
+    deploy-to-prod:
+        name: Deploy pleiepenger-i-livets-sluttfase-soknad to prod
+        needs: [run-tests]
+        uses: ./.github/workflows/.deploy-app-to-prod.yml
+        secrets: inherit
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
+        with:
+            app-name: 'pleiepenger-i-livets-sluttfase-soknad'
+            working-directory: 'apps/pleiepenger-i-livets-sluttfase-soknad'

@@ -1,15 +1,15 @@
-import { Alert, BodyLong, Panel } from '@navikt/ds-react';
-import { FormattedMessage, useIntl } from 'react-intl';
 import { isFailure, isPending } from '@devexperts/remote-data-ts';
+import { Alert, Panel } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import TextareaSummary from '@navikt/sif-common-core-ds/lib/atoms/textarea-summary/TextareaSummary';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { useFormikContext } from 'formik';
+import { FormattedMessage, useIntl } from 'react-intl';
 import UploadedDocumentsList from '../../components/uploaded-documents-list/UploadedDocumentsList';
 import { Person } from '../../types/Person';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
@@ -49,9 +49,7 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
             buttonDisabled={isPending(sendSoknadStatus.status) || apiValues === undefined}
             onSendSoknad={apiValues ? () => sendSoknad(apiValues) : undefined}>
             <SifGuidePanel>
-                <BodyLong>
-                    <FormattedMessage id="steg.oppsummering.info" />
-                </BodyLong>
+                <FormattedMessage id="steg.oppsummering.info" />
             </SifGuidePanel>
             <Block margin="xl">
                 <div data-testid="oppsummering">

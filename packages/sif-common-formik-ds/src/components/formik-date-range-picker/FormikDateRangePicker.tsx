@@ -1,5 +1,5 @@
-import { DatePickerDefaultProps } from '@navikt/ds-react/esm/date/datepicker/DatePicker';
 /* eslint-disable no-console */
+import { DatePickerProps } from '@navikt/ds-react/esm/date/datepicker/DatePicker';
 import React from 'react';
 import { useFormikContext } from 'formik';
 import { TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
@@ -22,7 +22,7 @@ export type FormikDateRangePickerProps<FieldName, ErrorType> = OwnProps<FieldNam
     TypedFormInputValidationProps<FieldName, ErrorType> &
     DatepickerLimitations &
     UseFastFieldProps &
-    Pick<DatePickerDefaultProps, 'dropdownCaption'>;
+    Pick<DatePickerProps, 'dropdownCaption'>;
 
 function FormikDateRangePicker<FieldName, ErrorType>({
     legend,

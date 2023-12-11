@@ -65,9 +65,7 @@ const ArbeidssituasjonOpptjeningUtland = () => {
                                     validate={getListValidator({ required: true })}
                                     labels={{
                                         addLabel: 'Legg til næringsvirksomhet i et annet EØS-land',
-                                        deleteLabel: 'Fjern',
-                                        editLabel: 'Endre',
-                                        infoTitle: 'Virksomhet',
+                                        listTitle: 'Næringsvirksomhet i et annet EØS-land',
                                         modalTitle: 'Virksomhet',
                                     }}
                                 />

@@ -181,7 +181,6 @@ const OmBarnetStep = () => {
                                                     intl,
                                                     'steg.omBarnet.spm.kroniskEllerFunksjonshemmende',
                                                 )}
-                                                data-testid="kroniskEllerFunksjonshemming"
                                                 validate={getYesOrNoValidator()}
                                             />
                                         </FormBlock>

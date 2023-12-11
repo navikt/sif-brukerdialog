@@ -2,10 +2,11 @@
 import axios from 'axios';
 import { ResourceType } from '../../types/ResourceType';
 import { getApiUrlByResourceType, multipartConfig, sendMultipartPostRequest } from '../utils/apiUtils';
+import { vi } from 'vitest';
 
 const mockedApiUrl = 'mockedApiUrl';
 
-jest.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => {
+vi.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => {
     return {
         getEnvironmentVariable: () => 'mockedApiUrl',
         getEnvVariableOrDefault: () => 'mockedApiUrl',
@@ -13,7 +14,7 @@ jest.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => {
     };
 });
 
-jest.mock('axios');
+vi.mock('axios');
 
 describe('apiUtils', () => {
     describe('sendMultipartPostRequest', () => {

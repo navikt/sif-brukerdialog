@@ -1,4 +1,5 @@
 import { cyApiMockData } from './data/cyApiMockData';
+import { setDate } from './utils';
 const PUBLIC_PATH = '/soknad';
 const API = 'http://localhost:8089';
 
@@ -15,7 +16,11 @@ interface ConfigProps {
 export const contextConfig = (props?: ConfigProps) => {
     const { mellomlagring, step } = props || {};
 
+    before(() => {
+        setDate();
+    });
     beforeEach('intercept mellomlagring og levere tomt objekt', () => {
+        setDate();
         cy.intercept(`GET`, `${API}/mellomlagring/PLEIEPENGER_LIVETS_SLUTTFASE`, mellomlagring || { noData: 1 });
         cy.intercept(`DELETE`, `${API}/mellomlagring/PLEIEPENGER_LIVETS_SLUTTFASE`, mellomlagring || {});
         cy.intercept(`PUT`, `${API}/mellomlagring/PLEIEPENGER_LIVETS_SLUTTFASE`, {}).as('putMellomlagring');

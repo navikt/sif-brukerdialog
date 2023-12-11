@@ -97,7 +97,7 @@ const OppsummeringStep = () => {
                 }}
                 renderForm={() => {
                     return (
-                        <div data-testid="oppsummering">
+                        <>
                             <Form
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
                                 submitDisabled={isSubmitting || hasInvalidSteps}
@@ -122,11 +122,7 @@ const OppsummeringStep = () => {
 
                                 <ConfirmationCheckbox
                                     disabled={isSubmitting}
-                                    label={
-                                        <span data-testid="bekreft-label">
-                                            <FormattedMessage id="step.oppsummering.bekrefterOpplysninger" />
-                                        </span>
-                                    }
+                                    label={<FormattedMessage id="step.oppsummering.bekrefterOpplysninger" />}
                                     validate={getCheckedValidator()}
                                     name={OppsummeringFormFields.harBekreftetOpplysninger}
                                 />
@@ -136,7 +132,7 @@ const OppsummeringStep = () => {
                                     <ErrorSummary ref={sendSøknadErrorSummary}>{sendSøknadError.message}</ErrorSummary>
                                 </FormBlock>
                             )}
-                        </div>
+                        </>
                     );
                 }}></FormikWrapper>
         </SøknadStep>

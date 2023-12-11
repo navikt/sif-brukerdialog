@@ -24,7 +24,7 @@ import { cleanupAndSetFormikValues } from '../utils/cleanupAndSetFormikValues';
 import { extractSøknadsdataFromFormValues } from '../utils/formValuesToSøknadsdata/extractSøknadsdataFromFormValues';
 import { getSøknadsperiodeFromFormValues } from '../utils/formValuesUtils';
 import { getKvitteringInfoFromApiData } from '../utils/kvitteringUtils';
-import { navigateTo, relocateToSoknad } from '../utils/navigationUtils';
+import { relocateToSoknad } from '../utils/navigationUtils';
 import { getNextStepRoute, isAvailable } from '../utils/routeUtils';
 import { getGyldigRedirectStepForMellomlagretSøknad } from '../utils/stepUtils';
 import ArbeidssituasjonStep from './arbeidssituasjon-step/ArbeidssituasjonStep';
@@ -38,6 +38,7 @@ import OpplysningerOmBarnetStep from './opplysninger-om-barnet-step/Opplysninger
 import OppsummeringStep from './oppsummering-step/OppsummeringStep';
 import { useSøknadsdataContext } from './SøknadsdataContext';
 import TidsromStep from './tidsrom-step/TidsromStep';
+import { getSøknadStepConfig } from './søknadStepConfig';
 
 interface PleiepengesøknadContentProps {
     /** Sist steg som bruker submittet skjema */
@@ -63,9 +64,10 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
     const sendUserToStep = useCallback(
         async (step: StepID) => {
             await logHendelse(ApplikasjonHendelse.starterMedMellomlagring, { step });
-            navigateTo(step, navigate);
+            const stepConfig = getSøknadStepConfig(values);
+            navigate(stepConfig[step].route);
         },
-        [logHendelse, navigate],
+        [logHendelse, navigate, values],
     );
 
     const isOnWelcomPage = location.pathname === RouteConfig.WELCOMING_PAGE_ROUTE;
@@ -73,8 +75,8 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
     const nextStepRoute = søknadHasBeenSent
         ? undefined
         : mellomlagringMetadata?.lastStepID
-        ? getNextStepRoute(mellomlagringMetadata.lastStepID, values)
-        : undefined;
+          ? getNextStepRoute(mellomlagringMetadata.lastStepID, values)
+          : undefined;
 
     /** Redirect til riktig side */
     useEffect(() => {
@@ -102,7 +104,7 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
             const nextStepRoute = getNextStepRoute(stepId, formValues);
             if (nextStepRoute) {
                 persistSoknad({ formValues, stepID: stepId }).then(() => {
-                    navigateTo(nextStepRoute, navigate);
+                    navigate(nextStepRoute);
                 });
             }
         });
@@ -118,7 +120,7 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
 
         setTimeout(() => {
             setSøknadsdata(extractSøknadsdataFromFormValues(initialFormValues || values));
-            navigateTo(`${RouteConfig.SØKNAD_ROUTE_PREFIX}/${StepID.OPPLYSNINGER_OM_BARNET}`, navigate);
+            navigate(`${RouteConfig.SØKNAD_ROUTE_PREFIX}/${StepID.OPPLYSNINGER_OM_BARNET}`);
         });
     };
 
@@ -322,7 +324,7 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
                                 onApplicationSent={(apiData: SøknadApiData, søkerdata: Søkerdata) => {
                                     setKvitteringInfo(getKvitteringInfoFromApiData(apiData, søkerdata));
                                     setSøknadHasBeenSent(true);
-                                    navigateTo(RouteConfig.SØKNAD_SENDT_ROUTE, navigate);
+                                    navigate(RouteConfig.SØKNAD_SENDT_ROUTE);
                                 }}
                             />
                         }

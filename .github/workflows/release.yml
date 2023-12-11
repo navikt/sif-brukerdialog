@@ -16,8 +16,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup .yarnrc.yml
+        run: |
+            yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
+            yarn config set npmScopes.navikt.npmAlwaysAuth true
+            yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+
       - name: Setup Node.js 18.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18.x
 

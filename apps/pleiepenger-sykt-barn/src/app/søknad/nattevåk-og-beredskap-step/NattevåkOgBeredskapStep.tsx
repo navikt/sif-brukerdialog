@@ -1,6 +1,4 @@
 import { BodyLong } from '@navikt/ds-react';
-import { useState } from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
@@ -10,6 +8,8 @@ import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { useFormikContext } from 'formik';
+import { useState } from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 import FormSection from '../../components/form-section/FormSection';
 import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 import usePersistOnChange from '../../hooks/usePersistOnChange';
@@ -49,9 +49,9 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
         <SøknadFormStep stepId={StepID.NATTEVÅK_OG_BEREDSKAP} onValidFormSubmit={onValidSubmit}>
             <Block padBottom="xl">
                 <SifGuidePanel compact={true}>
-                    <BodyLong>
+                    <p>
                         <FormattedMessage id={'steg.nattevåkOgBeredskap.veileder'} />
-                    </BodyLong>
+                    </p>
                     <Block>
                         <ExpandableInfo
                             title={intlHelper(

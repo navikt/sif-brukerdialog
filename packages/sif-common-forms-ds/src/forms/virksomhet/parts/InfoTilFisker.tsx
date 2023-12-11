@@ -1,5 +1,5 @@
-import { FormattedMessage } from 'react-intl';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import { FormattedMessage } from 'react-intl';
 
 interface Props {
     navnPåVirksomheten: string;
@@ -8,7 +8,9 @@ interface Props {
 const InfoTilFisker = ({ navnPåVirksomheten }: Props) => {
     return (
         <SifGuidePanel compact={true}>
-            <FormattedMessage id="sifForms.virksomhet.veileder_fisker" values={{ navnPåVirksomheten }} />
+            <p>
+                <FormattedMessage id="sifForms.virksomhet.veileder_fisker" values={{ navnPåVirksomheten }} />
+            </p>
         </SifGuidePanel>
     );
 };

@@ -60,7 +60,7 @@ const FileDropInput: React.FunctionComponent<Props> = (props) => {
     };
     return (
         <SkjemagruppeQuestion error={error} legend={legend} description={description}>
-            <div {...getRootProps({ className })}>
+            <div {...getRootProps({ className })} role="button">
                 <div className={bem.element('icon')}>
                     <UploadIcon role="presentation" />
                 </div>

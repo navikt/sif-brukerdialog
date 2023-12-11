@@ -1,9 +1,10 @@
 import { Alert, Heading, Link } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
+import { ApplikasjonHendelse, SIFCommonGeneralEvents, useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FileUploadErrors from '@navikt/sif-common-core-ds/lib/components/file-upload-errors/FileUploadErrors';
+import FormikFileUploader from '@navikt/sif-common-core-ds/lib/components/formik-file-uploader/FormikFileUploader';
 import PictureScanningGuide from '@navikt/sif-common-core-ds/lib/components/picture-scanning-guide/PictureScanningGuide';
 import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
 import {
@@ -13,12 +14,12 @@ import {
 } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { useFormikContext } from 'formik';
-import { persist } from '../../api/api';
-import FormikFileUploader from '../../components/formik-file-uploader/FormikFileUploader';
+import { persist, uploadFile } from '../../api/api';
 import UploadedDocumentsList from '../../components/fødselsattest-file-list/UploadedDocumentsList';
 import getLenker from '../../lenker';
 import { StepID } from '../../types/StepID';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
+import { getAttachmentURLFrontend } from '../../utils/attachmentUtilsAuthToken';
 import { relocateToLoginPage } from '../../utils/navigationUtils';
 
 interface Props {
@@ -32,7 +33,7 @@ const FødselsattestPart: React.FC<Props> = ({ attachments }) => {
     const totalSize = getTotalSizeOfAttachments(attachments);
     const ref = React.useRef({ attachments });
 
-    const { logHendelse, logUserLoggedOut } = useAmplitudeInstance();
+    const { logHendelse, logUserLoggedOut, logEvent } = useAmplitudeInstance();
 
     const vedleggOpplastingFeilet = async (files?: File[]) => {
         if (files) {
@@ -95,10 +96,16 @@ const FødselsattestPart: React.FC<Props> = ({ attachments }) => {
                     <FormikFileUploader
                         legend={intlHelper(intl, 'steg.omBarnet.fødselsattest.vedlegg.legend')}
                         name={SøknadFormField.fødselsattest}
-                        label={intlHelper(intl, 'steg.omBarnet.fødselsattest.vedlegg')}
+                        attachments={attachments}
+                        uploadFile={uploadFile}
+                        getAttachmentURLFrontend={getAttachmentURLFrontend}
+                        buttonLabel={intlHelper(intl, 'steg.omBarnet.fødselsattest.vedlegg')}
                         onErrorUploadingAttachments={vedleggOpplastingFeilet}
                         onFileInputClick={() => {
                             setFilesThatDidntGetUploaded([]);
+                        }}
+                        onFilesUploaded={(antall, antallFeilet) => {
+                            logEvent(SIFCommonGeneralEvents.vedleggLastetOpp, { antall, antallFeilet });
                         }}
                         onUnauthorizedOrForbiddenUpload={userNotLoggedIn}
                     />

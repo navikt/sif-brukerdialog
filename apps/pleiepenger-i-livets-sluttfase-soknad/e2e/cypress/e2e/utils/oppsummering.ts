@@ -1,4 +1,4 @@
-import { getTestElement } from '.';
+import { getTestElement } from './cyHelpers';
 import { cyApiMockData } from '../data/cyApiMockData';
 import { oppsummeringTestLegeerklæringSteg } from './legeerklæring';
 import { oppsummeringTestMedlemskapSteg } from './medlemskap';
@@ -9,7 +9,7 @@ export const kontrollerOppsummering = (type: string) => {
         oppsummering.should('contain', cyApiMockData.søkerMock.fornavn);
         oppsummering.should('contain', cyApiMockData.søkerMock.fødselsnummer);
 
-        oppsummeringTestMedlemskapSteg(type);
+        oppsummeringTestMedlemskapSteg();
         oppsummeringTestLegeerklæringSteg(type);
     });
 };

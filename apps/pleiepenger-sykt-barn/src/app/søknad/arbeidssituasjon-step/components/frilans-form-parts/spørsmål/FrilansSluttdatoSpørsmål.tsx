@@ -6,6 +6,7 @@ import { FrilansFormField } from '../../../../../types/søknad-form-values/Frila
 import { ArbFriFormComponents } from '../FrilanserFormPart';
 import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
 import { getFrilanserSluttdatoValidator } from '../../../validation/frilansSluttdatoValidator';
+import dayjs from 'dayjs';
 
 interface Props {
     startdatoValue?: ISODate;
@@ -26,7 +27,7 @@ const FrilansSluttdatoSpørsmål: React.FunctionComponent<Props> = ({
             name={FrilansFormField.sluttdato}
             label={intlHelper(intl, `frilanser.sluttdato.spm`)}
             dropdownCaption={true}
-            minDate={datepickerUtils.getDateFromDateString(startdatoValue)}
+            minDate={datepickerUtils.getDateFromDateString(startdatoValue) || dayjs().subtract(80, 'years').toDate()}
             maxDate={søknadsdato}
             validate={(value) => {
                 const error = getFrilanserSluttdatoValidator(

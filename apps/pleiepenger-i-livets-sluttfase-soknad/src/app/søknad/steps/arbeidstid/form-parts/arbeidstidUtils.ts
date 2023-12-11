@@ -1,22 +1,32 @@
 import { AnsattArbeidstid, FrilansSNArbeidstid } from '../ArbeidstidStep';
-import { JobberIPeriodeSvar } from '../ArbeidstidTypes';
+import { ArbeidIPeriode, JobberIPeriodeSvar } from '../ArbeidstidTypes';
 
 export const harFraværIPerioden = (
     frilansArbeidstid?: FrilansSNArbeidstid,
     selvstendigArbeidstid?: FrilansSNArbeidstid,
     ansattArbeidstid?: AnsattArbeidstid[],
 ): boolean => {
-    const ansattArbeidIPeriode = ansattArbeidstid?.some(
+    const harFraværSomAnsatt = ansattArbeidstid?.some(
         (forhold) =>
-            forhold.arbeidIPeriode !== undefined &&
-            forhold.arbeidIPeriode.jobberIPerioden !== JobberIPeriodeSvar.somVanlig,
+            forhold.arbeidIPeriode !== undefined && harHeltFraværEllerEnkeltdagerMedFravær(forhold.arbeidIPeriode),
     );
-    const frilansArbeidIPeriode = frilansArbeidstid?.arbeidIPeriode?.jobberIPerioden;
-    const selvstendigArbeidIPeriode = selvstendigArbeidstid?.arbeidIPeriode?.jobberIPerioden;
+    const harFraværSomFrilanser = frilansArbeidstid?.arbeidIPeriode
+        ? harHeltFraværEllerEnkeltdagerMedFravær(frilansArbeidstid?.arbeidIPeriode)
+        : false;
 
-    return (
-        (frilansArbeidIPeriode !== undefined && frilansArbeidIPeriode !== JobberIPeriodeSvar.somVanlig) ||
-        (selvstendigArbeidIPeriode !== undefined && selvstendigArbeidIPeriode !== JobberIPeriodeSvar.somVanlig) ||
-        (ansattArbeidIPeriode !== undefined && ansattArbeidIPeriode === true)
-    );
+    const harFraværSomSelvstendig = selvstendigArbeidstid?.arbeidIPeriode
+        ? harHeltFraværEllerEnkeltdagerMedFravær(selvstendigArbeidstid?.arbeidIPeriode)
+        : false;
+
+    return harFraværSomAnsatt || harFraværSomFrilanser || harFraværSomSelvstendig;
+};
+
+export const harHeltFraværEllerEnkeltdagerMedFravær = (arbeidIPeriode: ArbeidIPeriode) => {
+    switch (arbeidIPeriode.jobberIPerioden) {
+        case JobberIPeriodeSvar.somVanlig:
+            return false;
+        case JobberIPeriodeSvar.heltFravær:
+        case JobberIPeriodeSvar.redusert:
+            return true;
+    }
 };

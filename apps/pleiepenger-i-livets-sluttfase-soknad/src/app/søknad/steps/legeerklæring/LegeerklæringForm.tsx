@@ -2,8 +2,9 @@ import { Alert, Link } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import FileUploadErrors from '@navikt/sif-common-core-ds/lib/components/file-upload-errors/FileUploadErrors';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import FileUploadErrors from '@navikt/sif-common-core-ds/lib/components/file-upload-errors/FileUploadErrors';
+import FormikFileUploader from '@navikt/sif-common-core-ds/lib/components/formik-file-uploader/FormikFileUploader';
 import PictureScanningGuide from '@navikt/sif-common-core-ds/lib/components/picture-scanning-guide/PictureScanningGuide';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
@@ -16,11 +17,11 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getTypedFormComponents, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/lib';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { validateAll } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
-import { ApiEndpoint } from '../../../api/api';
-import FormikFileUploader from '../../../components/formik-file-uploader/FormikFileUploader';
-import LegeerklæringAvtaleAttachmentList from './LegeerklæringAttachmentList';
+import api, { ApiEndpoint } from '../../../api/api';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
 import { validateAttachments, ValidateAttachmentsErrors } from '../../../utils/validateAttachments';
+import LegeerklæringAvtaleAttachmentList from './LegeerklæringAttachmentList';
+import { getAttachmentURLFrontend } from '../../../utils/attachmentUtilsAuthToken';
 
 interface Props {
     values: Partial<LegeerklæringFormValues>;
@@ -72,7 +73,9 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
             runDelayedFormValidation={true}
             onBack={goBack}>
             <SifGuidePanel>
-                <FormattedMessage id={'step.legeerklæring.counsellorPanel.info'} />
+                <p>
+                    <FormattedMessage id={'step.legeerklæring.counsellorPanel.info'} />
+                </p>
             </SifGuidePanel>
 
             <FormBlock>
@@ -85,8 +88,9 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                         attachments={legeerklæringAttachments}
                         name={LegeerklæringFormFields.vedlegg}
                         buttonLabel={intlHelper(intl, 'step.legeerklæring.vedlegg.knappLabel')}
-                        apiEndpoint={ApiEndpoint.vedlegg}
                         onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
+                        uploadFile={(file: File) => api.uploadFile(ApiEndpoint.vedlegg, file)}
+                        getAttachmentURLFrontend={getAttachmentURLFrontend}
                         onFileInputClick={() => {
                             setFilesThatDidntGetUploaded([]);
                         }}

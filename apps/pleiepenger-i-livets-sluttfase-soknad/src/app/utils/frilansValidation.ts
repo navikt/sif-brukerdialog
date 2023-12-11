@@ -15,7 +15,7 @@ export const getFrilanserSluttdatoValidator =
         if (dateError) {
             return dateError;
         }
-        /** Sjekk kun på om sluttdato er før søknadsperiode dersom bruker ikke har frilansoppdrag. */
+        /** Sjekk kun på om sluttdato er før søknadsperiode hvis bruker ikke har frilansoppdrag. */
         if (harFrilansoppdrag === false) {
             const frilansSluttdato = datepickerUtils.getDateFromDateString(formData.sluttdato);
             if (frilansSluttdato && dayjs(frilansSluttdato).isBefore(søknadsperiode.from, 'day')) {

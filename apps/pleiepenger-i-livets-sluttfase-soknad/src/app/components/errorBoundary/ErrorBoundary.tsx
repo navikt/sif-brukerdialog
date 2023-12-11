@@ -37,7 +37,7 @@ class ErrorBoundary extends React.Component<any, State> {
                             <Heading level="2" size="medium">
                                 Det oppstod en feil
                             </Heading>
-                            <p>Dersom feilen vedvarer, kan du prøve å starte på nytt.</p>
+                            <p>Hvis feilen vedvarer, kan du prøve å starte på nytt.</p>
                             <ResetMellomagringButton label="Start på nytt" />
                         </SifGuidePanel>
                     </Block>

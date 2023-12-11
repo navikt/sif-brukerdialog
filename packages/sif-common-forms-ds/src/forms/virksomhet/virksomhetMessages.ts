@@ -162,6 +162,8 @@ const virksomhetMessages = {
             'Navnet på regnskapsfører må inneholde minst {min} tegn.',
         'virksomhetForm.regnskapsfører_navn.stringContainsUnicodeChacters':
             'Navnet til regnskapsføreren du har lagt inn inneholder ugyldige tegn. Hvis du har limt inn navnet kan det være at du har fått med tegn som ikke vises. Prøv derfor å skrive det inn selv, i stedet for å lime det inn.',
+        'sifForms.virksomhet.regnskapsfører_telefon_info':
+            'Skriv inn telefonnummeret i stedet for å kopiere og lime det inn fra et annet sted.',
         'virksomhetForm.regnskapsfører_telefon.stringHasNoValue': 'Skriv inn telefonnummeret til regnskapsføreren din.',
         'virksomhetForm.regnskapsfører_telefon.stringIsTooLong':
             'Telefonnummeret til regnskapsfører kan ikke inneholde flere enn {maks} tegn.',
@@ -227,6 +229,8 @@ const virksomhetMessages = {
         'sifForms.virksomhet.regnskapsfører_spm': 'Har du rekneskapsførar?',
         'sifForms.virksomhet.regnskapsfører_navn': 'Gi opp namnet til rekneskapsføraren',
         'sifForms.virksomhet.regnskapsfører_telefon': 'Gi opp telefonnummeret til rekneskapsføraren',
+        'sifForms.virksomhet.regnskapsfører_telefon_info':
+            'Skriv inn telefonnummeret i stedet for å kopiere og lime det inn fra et annet sted.',
         'sifForms.virksomhet.veileder_innhenter_info.1':
             'Vi hentar inn opplysningar om verksemda og inntekta di frå offentlege register.',
         'sifForms.virksomhet.veileder_innhenter_info.2': 'Vi tek kontakt med deg dersom vi treng fleire opplysningar',
