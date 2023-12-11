@@ -14,6 +14,7 @@
         "storybook": "storybook dev -p 6006"
     },
     "dependencies": {
+        "@navikt/appstatus-react-ds": "workspace: *",
         "@navikt/nav-dekoratoren-moduler": "2.1.5",
         "@navikt/next-auth-wonderwall": "1.5.0",
         "@navikt/next-logger": "1.21.0",

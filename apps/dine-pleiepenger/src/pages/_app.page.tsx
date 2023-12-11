@@ -11,6 +11,7 @@ import HentInnsynsdataFeilet from '../components/hent-innsynsdata-feilet/HentInn
 import EmptyPage from '../components/page-layout/empty-page/EmptyPage';
 import { InnsynsdataContextProvider } from '../context/InnsynsdataContextProvider';
 import { Innsynsdata } from '../types/InnsynData';
+import appSentryLogger from '../utils/appSentryLogger';
 import { browserEnv } from '../utils/env';
 import { messages } from '../utils/message';
 import { innsynsdataFetcher } from './api/innsynsdata.api';
@@ -18,7 +19,6 @@ import UnavailablePage from './unavailable.page';
 import 'react-loading-skeleton/dist/skeleton.css';
 import '../components/process/process.css';
 import '../style/global.css';
-import appSentryLogger from '../utils/appSentryLogger';
 
 export const APPLICATION_KEY = 'sif-innsyn';
 
