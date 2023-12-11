@@ -1,3 +1,4 @@
+import { Status, StatusMessage, useAppStatus } from '@navikt/appstatus-react-ds/lib';
 import { ReactElement } from 'react';
 import { IntlProvider } from 'react-intl';
 import { AxiosError } from 'axios';
@@ -13,11 +14,11 @@ import { Innsynsdata } from '../types/InnsynData';
 import { browserEnv } from '../utils/env';
 import { messages } from '../utils/message';
 import { innsynsdataFetcher } from './api/innsynsdata.api';
+import UnavailablePage from './unavailable.page';
 import 'react-loading-skeleton/dist/skeleton.css';
 import '../components/process/process.css';
 import '../style/global.css';
-import { Status, StatusMessage, useAppStatus } from '@navikt/appstatus-react-ds/lib';
-import UnavailablePage from './unavailable.page';
+import appSentryLogger from '../utils/appSentryLogger';
 
 export const APPLICATION_KEY = 'sif-innsyn';
 
@@ -48,7 +49,8 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
         return <UnavailablePage />;
     }
 
-    if (error) {
+    if (error || !data) {
+        appSentryLogger.logError('fetchInnsynsdata-failed', JSON.stringify({ error }));
         return (
             <EmptyPage>
                 <HentInnsynsdataFeilet error={error} />
@@ -65,12 +67,9 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
                     </div>
                 )}
                 <IntlProvider locale="nb" messages={messages.nb}>
-                    {}
-                    {data ? (
-                        <InnsynsdataContextProvider innsynsdata={data}>
-                            <Component {...pageProps} />
-                        </InnsynsdataContextProvider>
-                    ) : null}
+                    <InnsynsdataContextProvider innsynsdata={data}>
+                        <Component {...pageProps} />
+                    </InnsynsdataContextProvider>
                 </IntlProvider>
             </main>
         </ErrorBoundary>
