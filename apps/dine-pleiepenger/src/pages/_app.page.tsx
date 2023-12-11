@@ -1,7 +1,9 @@
 import { ReactElement } from 'react';
 import { IntlProvider } from 'react-intl';
+import AppStatusWrapper from '@navikt/sif-common-core-ds/lib/components/app-status-wrapper/AppStatusWrapper';
 import { AxiosError } from 'axios';
 import { AppProps } from 'next/app';
+import Head from 'next/head';
 import useSWR from 'swr';
 import { ServerSidePropsResult } from '../auth/withAuthentication';
 import ComponentLoader from '../components/component-loader/ComponentLoader';
@@ -10,13 +12,15 @@ import HentInnsynsdataFeilet from '../components/hent-innsynsdata-feilet/HentInn
 import EmptyPage from '../components/page-layout/empty-page/EmptyPage';
 import { InnsynsdataContextProvider } from '../context/InnsynsdataContextProvider';
 import { Innsynsdata } from '../types/InnsynData';
+import { browserEnv } from '../utils/env';
 import { messages } from '../utils/message';
 import { innsynsdataFetcher } from './api/innsynsdata.api';
+import UnavailablePage from './unavailable.page';
 import 'react-loading-skeleton/dist/skeleton.css';
 import '../components/process/process.css';
 import '../style/global.css';
-import Head from 'next/head';
-import { browserEnv } from '../utils/env';
+
+export const APPLICATION_KEY = 'sif-innsyn';
 
 function MyApp({ Component, pageProps }: AppProps<ServerSidePropsResult>): ReactElement {
     const { data, error, isLoading } = useSWR<Innsynsdata, AxiosError>(
@@ -48,13 +52,23 @@ function MyApp({ Component, pageProps }: AppProps<ServerSidePropsResult>): React
     return (
         <ErrorBoundary>
             <main>
-                <IntlProvider locale="nb" messages={messages.nb}>
-                    {data ? (
-                        <InnsynsdataContextProvider innsynsdata={data}>
-                            <Component {...pageProps} />
-                        </InnsynsdataContextProvider>
-                    ) : null}
-                </IntlProvider>
+                <AppStatusWrapper
+                    applicationKey={APPLICATION_KEY}
+                    sanityConfig={{
+                        projectId: browserEnv.NEXT_PUBLIC_APPSTATUS_PROJECT_ID,
+                        dataset: browserEnv.NEXT_PUBLIC_APPSTATUS_DATASET,
+                    }}
+                    contentRenderer={() => (
+                        <IntlProvider locale="nb" messages={messages.nb}>
+                            {data ? (
+                                <InnsynsdataContextProvider innsynsdata={data}>
+                                    <Component {...pageProps} />
+                                </InnsynsdataContextProvider>
+                            ) : null}
+                        </IntlProvider>
+                    )}
+                    unavailableContentRenderer={() => <UnavailablePage />}
+                />
             </main>
         </ErrorBoundary>
     );

@@ -19,6 +19,8 @@
         "NEXT_PUBLIC_INNSYN_BACKEND_SCOPE": "prod-gcp:dusseldorf:sif-innsyn-api",
         "NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE": "prod-gcp:dusseldorf:k9-brukerdialog-api",
         "NPM_CONFIG_CACHE": "/tmp",
+        "NEXT_PUBLIC_APPSTATUS_DATASET": "production",
+        "NEXT_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
 
         "NEXT_PUBLIC_DINE_UTBETALINGER": "https://tjenester.nav.no/utbetalingsoversikt/",
         "NEXT_PUBLIC_ENDRINGSDIALOG_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
