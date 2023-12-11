@@ -4,12 +4,12 @@ import { AxiosError } from 'axios';
 import Head from 'next/head';
 
 interface Props {
-    error: AxiosError<unknown, any>;
+    error?: AxiosError<unknown, any>;
 }
 
 const HentInnsynsdataFeilet: React.FunctionComponent<Props> = ({ error }) => (
     <GuidePanel poster={true} className="sm:max-w-lg m-auto">
-        {error.response?.status === 403 ? (
+        {error?.response?.status === 403 ? (
             <>
                 <Head>
                     <title>Ingen tilgang - Dine pleiepenger</title>

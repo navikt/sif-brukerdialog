@@ -28,13 +28,6 @@
     "hvaSkjerInfo.utbetaling.2": "oversikt over utbetalingene dine her",
     "hvaSkjerInfo.utbetaling.3": ".",
 
-    "page.ikkeTilgang.title": "Ingen tilgang",
-    "page.ikkeTilgang.content": "Du har ikke tilgang til denne siden.",
-
-    "påbegyntSøknad.title": "Vil du fortsette på en påbegynt søknad?",
-    "påbegyntSøknad.ingenPåbegynt": "Du har ikke påbegynt søknad.",
-    "påbegyntEndringEllerSøknad.title": "Vil du fortsette der du slapp?",
-    "påbegyntEndringEllerSøknad.ingenPåbegynt": "Du har ikke påbegynt endringsmelding eller søknad.",
     "påbegyntSøknad.info.title": "Gå til påbegynt søknad",
     "påbegyntSøknad.info": "Lagres til og med {datoNårSlettes}",
     "påbegyntEndring.info.title": "Gå til påbegynt endringsmelding",

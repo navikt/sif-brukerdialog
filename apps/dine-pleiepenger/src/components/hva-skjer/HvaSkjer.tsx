@@ -50,7 +50,7 @@ const HvaSkjer = () => {
                         </Heading>
                         <p>
                             <FormattedMessage id="hvaSkjerInfo.ferdigBehandlet.1" />
-                            <Link href={browserEnv.NEXT_PUBLIC_MIN_SIDE_URL}>
+                            <Link href={browserEnv.NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL}>
                                 <FormattedMessage id="hvaSkjerInfo.ferdigBehandlet.2" />
                             </Link>
                             <FormattedMessage id="hvaSkjerInfo.ferdigBehandlet.3" />

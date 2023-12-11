@@ -1,11 +1,9 @@
+import { ReactElement } from 'react';
+import { DecoratorComponents, fetchDecoratorReact } from '@navikt/nav-dekoratoren-moduler/ssr';
 // This is imported to allow the Output File Tracing feature of Next.js to work correctly with the log patcher
 import 'next-logger';
-
-import React, { ReactElement } from 'react';
 import Document, { DocumentContext, DocumentInitialProps, Head, Html, Main, NextScript } from 'next/document';
-import { DecoratorComponents, fetchDecoratorReact } from '@navikt/nav-dekoratoren-moduler/ssr';
-
-import { browserEnv, getServerEnv, isE2E } from '../utils/env';
+import { browserEnv, getServerEnv } from '../utils/env';
 
 // The 'head'-field of the document initialProps contains data from <head> (meta-tags etc)
 const getDocumentParameter = (initialProps: DocumentInitialProps, name: string): string => {
@@ -87,18 +85,4 @@ class MyDocument extends Document<Props> {
     }
 }
 
-class E2EDocument extends Document<Props> {
-    render(): React.JSX.Element {
-        return (
-            <Html lang="no">
-                <Head />
-                <body>
-                    <Main />
-                    <NextScript />
-                </body>
-            </Html>
-        );
-    }
-}
-
-export default isE2E ? E2EDocument : MyDocument;
+export default MyDocument;
