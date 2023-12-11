@@ -13,7 +13,7 @@ const appDirectives = {
         'https://*.nav.no',
         'https://*.uxsignals.com',
         'http://localhost:1234',
-        '*.api.sanity.io',
+        'http://*.api.sanity.io',
     ],
 };
 
