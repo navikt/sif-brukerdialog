@@ -1,11 +1,9 @@
 import { ReactElement } from 'react';
 import { IntlProvider } from 'react-intl';
-import AppStatusWrapper from '@navikt/sif-common-core-ds/lib/components/app-status-wrapper/AppStatusWrapper';
 import { AxiosError } from 'axios';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import useSWR from 'swr';
-import { ServerSidePropsResult } from '../auth/withAuthentication';
 import ComponentLoader from '../components/component-loader/ComponentLoader';
 import ErrorBoundary from '../components/error-boundary/ErrorBoundary';
 import HentInnsynsdataFeilet from '../components/hent-innsynsdata-feilet/HentInnsynsdataFeilet';
@@ -15,14 +13,15 @@ import { Innsynsdata } from '../types/InnsynData';
 import { browserEnv } from '../utils/env';
 import { messages } from '../utils/message';
 import { innsynsdataFetcher } from './api/innsynsdata.api';
-import UnavailablePage from './unavailable.page';
 import 'react-loading-skeleton/dist/skeleton.css';
 import '../components/process/process.css';
 import '../style/global.css';
+import { Status, StatusMessage, useAppStatus } from '@navikt/appstatus-react-ds/lib';
+import UnavailablePage from './unavailable.page';
 
 export const APPLICATION_KEY = 'sif-innsyn';
 
-function MyApp({ Component, pageProps }: AppProps<ServerSidePropsResult>): ReactElement {
+function MyApp({ Component, pageProps }: AppProps): ReactElement {
     const { data, error, isLoading } = useSWR<Innsynsdata, AxiosError>(
         `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/innsynsdata`,
         innsynsdataFetcher,
@@ -32,8 +31,12 @@ function MyApp({ Component, pageProps }: AppProps<ServerSidePropsResult>): React
             errorRetryCount: 0,
         },
     );
+    const appStatus = useAppStatus(APPLICATION_KEY, {
+        projectId: browserEnv.NEXT_PUBLIC_APPSTATUS_PROJECT_ID,
+        dataset: browserEnv.NEXT_PUBLIC_APPSTATUS_DATASET,
+    });
 
-    if (isLoading) {
+    if (isLoading || appStatus.isLoading) {
         return (
             <EmptyPage>
                 <Head>Henter informasjon - Dine pleiepenger</Head>
@@ -41,6 +44,10 @@ function MyApp({ Component, pageProps }: AppProps<ServerSidePropsResult>): React
             </EmptyPage>
         );
     }
+    if (appStatus.status === Status.unavailable) {
+        return <UnavailablePage />;
+    }
+
     if (error) {
         return (
             <EmptyPage>
@@ -52,23 +59,19 @@ function MyApp({ Component, pageProps }: AppProps<ServerSidePropsResult>): React
     return (
         <ErrorBoundary>
             <main>
-                <AppStatusWrapper
-                    applicationKey={APPLICATION_KEY}
-                    sanityConfig={{
-                        projectId: browserEnv.NEXT_PUBLIC_APPSTATUS_PROJECT_ID,
-                        dataset: browserEnv.NEXT_PUBLIC_APPSTATUS_DATASET,
-                    }}
-                    contentRenderer={() => (
-                        <IntlProvider locale="nb" messages={messages.nb}>
-                            {data ? (
-                                <InnsynsdataContextProvider innsynsdata={data}>
-                                    <Component {...pageProps} />
-                                </InnsynsdataContextProvider>
-                            ) : null}
-                        </IntlProvider>
-                    )}
-                    unavailableContentRenderer={() => <UnavailablePage />}
-                />
+                {appStatus.message && (
+                    <div className="max-w-[1128px] mx-auto p-5 mb-5">
+                        <StatusMessage message={appStatus.message} />
+                    </div>
+                )}
+                <IntlProvider locale="nb" messages={messages.nb}>
+                    {}
+                    {data ? (
+                        <InnsynsdataContextProvider innsynsdata={data}>
+                            <Component {...pageProps} />
+                        </InnsynsdataContextProvider>
+                    ) : null}
+                </IntlProvider>
             </main>
         </ErrorBoundary>
     );
