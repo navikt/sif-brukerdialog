@@ -2,8 +2,7 @@ import { test, expect } from '@playwright/test';
 import { setNow } from '../utils/setNow';
 import { setupMockRoutes } from '../utils/setupMockApi';
 
-const startUrl =
-    'http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/soknad/velkommen';
+const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspenger/soknad/velkommen';
 
 test.beforeEach(async ({ page }) => {
     await setNow(page);
@@ -22,15 +21,9 @@ test('Fyll ut søknad med ikke delt bosted', async ({ page }) => {
     await page.getByRole('heading', { level: 1, name: 'Barn' });
     await page.getByLabel('ALFABETISK FAGGOTTFødt 08.06.2019').check();
     await page.getByRole('group', { name: 'Bor du sammen med barnet?' }).getByLabel('Nei').check();
-    await page
-        .getByRole('group', { name: 'Har barnet kronisk/langvarig sykdom eller funksjonshemning?' })
-        .getByLabel('Ja')
-        .check();
-    await expect(
-        await page
-            .getByText('Har du høyere risiko for fravær på jobb på grunn av barnets sykdom eller funksjonshemning?Nei')
-            .isVisible(),
-    ).toBeTruthy();
+    await page.getByTestId('sammeAdresse').getByLabel('Ja', { exact: true }).check();
+    await page.getByRole('group', { name: 'Har barnet kronisk/langvarig' }).getByLabel('Ja').check();
+    await page.getByTestId('høyereRisikoForFravær_no').check();
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
     /** Legeerklæring */

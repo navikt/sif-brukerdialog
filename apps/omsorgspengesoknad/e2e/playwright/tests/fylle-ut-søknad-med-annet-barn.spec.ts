@@ -3,8 +3,7 @@ import { setNow } from '../utils/setNow';
 import { setupMockRoutes } from '../utils/setupMockApi';
 import { barnMock } from '../mock-data/barnMock';
 
-const startUrl =
-    'http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/soknad/velkommen';
+const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspenger/soknad/velkommen';
 
 test.beforeEach(async ({ page }) => {
     await setNow(page);
@@ -30,17 +29,9 @@ test('Fyll ut søknad med annet barn', async ({ page }) => {
     await page.getByLabel('Måned', { exact: true }).selectOption('5');
     await page.getByLabel('8. juni (lørdag)').click();
     await page.getByLabel('Min relasjon til barnet').selectOption('mor');
-    await page.getByRole('group', { name: 'Bor du sammen med barnet?' }).getByLabel('Ja').check();
-    await page
-        .getByRole('group', { name: 'Har barnet kronisk/langvarig sykdom eller funksjonshemning?' })
-        .getByLabel('Ja')
-        .check();
-    await page
-        .getByRole('group', {
-            name: 'Har du høyere risiko for fravær på jobb på grunn av barnets sykdom eller funksjonshemning?',
-        })
-        .getByLabel('Nei')
-        .check();
+    await page.getByTestId('sammeAdresse').getByLabel('Ja', { exact: true }).check();
+    await page.getByRole('group', { name: 'Har barnet kronisk/langvarig' }).getByLabel('Ja').check();
+    await page.getByTestId('høyereRisikoForFravær_no').check();
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
     /** Legeerklæring */
