@@ -1,5 +1,56 @@
 # config
 
+## 0.9.4
+
+### Patch Changes
+
+-   e7bf8d1: Patch oppdateringer av pakker
+
+## 0.9.3
+
+### Patch Changes
+
+-   406b044: Patch pakkeoppdateringer
+
+## 0.9.2
+
+### Patch Changes
+
+-   6084e23: Diverse mindre pakkeoppdateringer - versjonstrigger
+
+## 0.9.1
+
+### Patch Changes
+
+-   295d3ad: Diverse mindre pakkeoppdateringer - versjonstrigger
+
+## 0.9.0
+
+### Minor Changes
+
+-   53b47be: Nav Dekoratøren 2 i alle apper
+    Vite 5
+    patch og noen minor
+    Beholder react-router-dom 6.19.0 pga navigasjon knekker i noen apper
+
+## 0.8.0
+
+### Minor Changes
+
+-   Oppdaterte pakker. Minor og patch
+
+## 0.7.0
+
+### Minor Changes
+
+-   d31f28ec: Minor og patch oppdateringer på ds, react-router-dom, vite, msw
+
+## 0.6.5
+
+### Patch Changes
+
+-   6d3b3cbe: Minor og patch oppdateringer + nextjs major -> 14
+
 ## 0.6.4
 
 ### Patch Changes

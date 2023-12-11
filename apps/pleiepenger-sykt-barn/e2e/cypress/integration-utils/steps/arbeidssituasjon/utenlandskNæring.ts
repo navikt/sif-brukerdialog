@@ -30,7 +30,7 @@ const fyllUtArbeidssituasjonMedUtenlandskNæring = () => {
     cy.get('[aria-label="Virksomhet"]').within(() => {
         getTestElementByType('radio').eq(0).check({ force: true });
         getInputByName('navnPåVirksomheten').click().type(navnPåVirksomheten).blur();
-        cy.get('select').select(1);
+        cy.get('select[name="land"]').select(1);
         getInputByName('identifikasjonsnummer').click().type(virksomhetensOrganisasjonsnummer).blur();
         getInputByName('fraOgMed').click().type(fraDatoTilDato).blur();
         getTestElementByType('checkbox').check({ force: true });

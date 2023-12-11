@@ -1,4 +1,3 @@
-import { Heading } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 // import { handleDateRangeValidationError } from '../utils';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
@@ -115,12 +114,6 @@ const UtenlandskNæringForm = ({ utenlandskNæring, onSubmit, onCancel }: Props)
                         submitButtonLabel="Ok"
                         showButtonArrows={false}
                         formErrorHandler={getFormErrorHandler(intl, 'utenlandskNæringForm')}>
-                        <Block padBottom="l">
-                            <Heading level="1" size="large">
-                                {getText('sifForms.utenlandskNæringForm.form_title')}
-                            </Heading>
-                        </Block>
-
                         <Form.RadioGroup
                             name={UtenlandskNæringFormField.næringstype}
                             legend={getText('sifForms.utenlandskNæringForm.hvilken_type_virksomhet')}

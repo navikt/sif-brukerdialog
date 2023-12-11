@@ -1,0 +1,27 @@
+name: Deploy dine-pleiepenger to prod
+run-name: Deploy dine-pleiepenger to prod
+
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - 'apps/dine-pleiepenger/**/*'
+    workflow_dispatch:
+
+jobs:
+    run-tests:
+        uses: ./.github/workflows/test.dine-pleiepenger.yml
+        secrets: inherit
+
+    deploy-to-prod:
+        name: Deploy dine-pleiepenger to prod
+        needs: [run-tests]
+        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-prod.yml@main
+        secrets: inherit
+        permissions:
+            id-token: write
+        with:
+            app-name: 'dine-pleiepenger'
+            working-directory: 'apps/dine-pleiepenger'
+            is-next-app: true

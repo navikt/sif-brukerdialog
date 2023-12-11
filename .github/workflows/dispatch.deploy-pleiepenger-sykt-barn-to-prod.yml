@@ -10,51 +10,20 @@ on:
     workflow_dispatch:
 
 jobs:
-    run-tests:
-        name: Run tests
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
+  run-tests:
+    uses: ./.github/workflows/test.pleiepenger-sykt-barn.yml
+    secrets: inherit
 
-            - name: Setup Node.js environment
-              uses: actions/setup-node@v3
-              with:
-                  node-version: 18
-                  cache: 'yarn'
-
-            - name: Install dependencies (yarn)
-              run: yarn
-
-            - name: Run code tests
-              run: yarn test --filter=pleiepenger-sykt-barn
-
-            - name: Build and start e2e server
-              uses: cypress-io/github-action@v6.5.0
-              env:
-                  DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
-                  PUBLIC_PATH: /familie/sykdom-i-familien/soknad/pleiepenger
-                  FRONTEND_API_PATH: http://localhost:8082/
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              with:
-                  project: ./apps/pleiepenger-sykt-barn/e2e
-                  build: yarn build-pleiepenger-sykt-barn
-                  start: yarn turbo start-e2e-server --filter=pleiepenger-sykt-barn
-                  wait-on: 'http://localhost:8080'
-                  wait-on-timeout: 60
-                  runTests: false
-
-            - name: Run cypress tests
-              run: yarn turbo cypress-run --filter=pleiepenger-sykt-barn
-
-    deploy-to-prod:
-        name: Deploy pleiepenger-sykt-barn to prod
-        needs: [run-tests]
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-prod.yml@main
-        permissions:
-          packages: write
-        secrets:
-            NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-        with:
-            app-name: 'pleiepenger-sykt-barn'
-            working-directory: 'apps/pleiepenger-sykt-barn'
+  deploy-to-prod:
+    name: Deploy pleiepenger-sykt-barn to prod
+    needs: [run-tests]
+    uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-prod.yml@main
+    secrets: inherit
+    permissions:
+      contents: write
+      security-events: write
+      id-token: write
+      actions: read
+    with:
+        app-name: 'pleiepenger-sykt-barn'
+        working-directory: 'apps/pleiepenger-sykt-barn'

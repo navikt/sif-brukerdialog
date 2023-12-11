@@ -1,5 +1,5 @@
 // src/__test__/mock-endpoint.ts
-import { rest, setupWorker } from 'msw';
+import { setupWorker } from 'msw/browser';
 
 const mockWorker = setupWorker();
 mockWorker.start();

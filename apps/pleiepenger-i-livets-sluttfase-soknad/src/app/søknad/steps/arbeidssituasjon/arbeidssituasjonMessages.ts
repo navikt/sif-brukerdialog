@@ -18,7 +18,7 @@ export const arbeidssituasjonMessages: MessageFileFormat = {
         'steg.arbeidssituasjon.veileder.ingenArbeidsgiverFunnet':
             'Vi har ikke funnet noen arbeidsgivere registrert på deg i AA-registeret.',
         'steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver':
-            'Hvis du i perioden du søker for er, eller var, ansatt hos en arbeidsgiver som ikke vises her, må du be arbeidsgiveren om å sende en ny A-melding. Det gjør de enten via eget lønns- og personalsystem, eller via Altinn.',
+            'Hvis du i noen av dagene du søker for er, eller var, ansatt hos en arbeidsgiver som ikke vises her, må du be arbeidsgiveren om å sende en ny A-melding. Det gjør de enten via eget lønns- og personalsystem, eller via Altinn.',
         'steg.arbeidssituasjon.info.tekst':
             'Hvis det mangler en arbeidsgiver her, må du be arbeidsgiveren din sende ny A-melding, enten via lønns- og personalsystemet eller gjennom Altinn.',
         'steg.arbeidssituasjon.ingenOpplysninger': 'Vi har ikke funnet noen arbeidsgiver registrert på deg.',
@@ -37,14 +37,16 @@ export const arbeidssituasjonMessages: MessageFileFormat = {
         'steg.arbeidssituasjon.opptjeningUtland.spm':
             'Har du jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før perioden du søker om?',
 
+        'steg.arbeidssituasjon.opptjeningUtland.addLabel': 'Legg til jobb i et annet EØS-land',
+        'steg.arbeidssituasjon.opptjeningUtland.listTitle': 'Registrert jobb i et annet EØS-land',
+        'steg.arbeidssituasjon.opptjeningUtland.modalTitle': 'Jobb i EØS-land',
+
         'steg.arbeidssituasjon.utenlandskNæring.spm':
             'Har du jobbet som selvstendig næringsdrivende i et annet EØS-land i løpet av de 3 siste årene før perioden du søker om?',
-        'steg.arbeidssituasjon.utenlandskNæring.infoDialog.infoTittel': 'Virksomhet',
-        'steg.arbeidssituasjon.utenlandskNæring.infoDialog.endreKnapp': 'Endre',
-        'steg.arbeidssituasjon.utenlandskNæring.infoDialog.fjernKnapp': 'Fjern',
-        'steg.arbeidssituasjon.utenlandskNæring.infoDialog.registrerKnapp':
-            'Legg til næringsvirksomhet i et annet EØS-land',
-        'steg.arbeidssituasjon.utenlandskNæring.infoDialog.modal.tittel': 'Virksomhet',
+
+        'steg.arbeidssituasjon.utenlandskNæring.addLabel': 'Legg til næringsvirksomhet i et annet EØS-land',
+        'steg.arbeidssituasjon.utenlandskNæring.modalTitle': 'Virksomhet',
+        'steg.arbeidssituasjon.utenlandskNæring.listTitle': 'Næringsvirksomhet i et annet EØS-land',
 
         'arbeidsforhold.part.jobber': 'jobber',
         'arbeidsforhold.part.jobbet': 'jobbet',

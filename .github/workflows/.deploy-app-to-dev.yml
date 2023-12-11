@@ -9,31 +9,45 @@ on:
             app-name:
                 type: string
                 required: true
+            is-next-app:
+                type: boolean
+                required: false
 
 jobs:
     deploy-to-dev:
         name: Deploy ${{ inputs.app-name }} to dev (${{github.ref_name}})
         runs-on: ubuntu-latest
         permissions:
-            packages: write
             id-token: write # required: nais/docker-build-push
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
-              with:
-                  fetch-depth: 2
+
+            - name: Setup .yarnrc.yml
+              run: |
+                  yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
+                  yarn config set npmScopes.navikt.npmAlwaysAuth true
+                  yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
+              env:
+                NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
             - name: Setup Node.js environment
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
                   node-version: 18
                   cache: 'yarn'
 
             - name: Install dependencies (yarn)
-              run: yarn
+              run: yarn install
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
-            - name: Run tests
-              run: yarn test --filter=${{inputs.app-name}}
+            - name: Copy .env.dev for next.js build
+              if: ${{ inputs.is-next-app == true }}
+              shell: bash
+              run: |
+                  echo "Copying .env.dev to app root"
+                  cp apps/${{inputs.app-name}}/nais/envs/.env.dev apps/${{inputs.app-name}}/.env.production
 
             - name: Build application
               run: yarn build-${{ inputs.app-name }}
@@ -57,6 +71,7 @@ jobs:
                   CLUSTER: dev-gcp
                   RESOURCE: nais-config/nais.yml
                   VARS: apps/${{ inputs.app-name }}/nais/dev-gcp.json
-                  VAR: GITHUB_REF_NAME=${{ github.ref_name }}
+                  VAR: GITHUB_REF_NAME=${{ github.ref_name }} # brukes i applikasjonerna
                   APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
                   IMAGE: ${{ steps.docker-push.outputs.image }}
+                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}

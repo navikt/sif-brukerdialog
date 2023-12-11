@@ -1,5 +1,96 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.12.1
+
+### Patch Changes
+
+-   e7bf8d1: Patch oppdateringer av pakker
+
+## 10.12.0
+
+### Minor Changes
+
+-   573c55d: Diverse oppdateringer i forbindelse med uu-gjennomgang.
+
+## 10.11.1
+
+### Patch Changes
+
+-   406b044: Patch pakkeoppdateringer
+
+## 10.11.0
+
+### Minor Changes
+
+-   2331115: Oppdatert react-router-dom. Endringer i ettersending og pleiepenger på grunn av feil bruk av navigate i ny versjon.
+
+### Patch Changes
+
+-   6084e23: Diverse mindre pakkeoppdateringer - versjonstrigger
+
+## 10.10.1
+
+### Patch Changes
+
+-   295d3ad: Diverse mindre pakkeoppdateringer - versjonstrigger
+
+## 10.10.0
+
+### Minor Changes
+
+-   53b47be: Nav Dekoratøren 2 i alle apper
+    Vite 5
+    patch og noen minor
+    Beholder react-router-dom 6.19.0 pga navigasjon knekker i noen apper
+
+## 10.9.0
+
+### Minor Changes
+
+-   Oppdaterte pakker. Minor og patch
+
+## 10.8.0
+
+### Minor Changes
+
+-   d31f28ec: Minor og patch oppdateringer på ds, react-router-dom, vite, msw
+
+## 10.7.11
+
+### Patch Changes
+
+-   6d3b3cbe: Minor og patch oppdateringer + nextjs major -> 14
+
+## 10.7.10
+
+### Patch Changes
+
+-   09ae5814: Patch-oppdateringer
+
+## 10.7.9
+
+### Patch Changes
+
+-   b4d45cf9: Diverse mindre pakkeoppdateringer
+
+## 10.7.8
+
+### Patch Changes
+
+-   cb7e6653: Oppdatere ds pakker etter at versjon 5.9.1 hadde feil. Fikset i v. 5.9.2
+
+## 10.7.7
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
+## 10.7.6
+
+### Patch Changes
+
+-   Pakkeoppdatering som fikser datepicker + modal bug
+
 ## 10.7.5
 
 ### Patch Changes

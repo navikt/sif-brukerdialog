@@ -16,30 +16,27 @@
             "outputs": [],
             "dependsOn": ["^build-package"]
         },
-        "test-watch": {
-            "outputs": [],
-            "dependsOn": ["^build-package"]
-        },
-        "test-coverage": {
-            "outputs": ["coverage/**"],
-            "dependsOn": ["^build-package"]
-        },
         "lint": {
             "dependsOn": ["^lint"],
             "outputs": []
         },
-        "dev": {
+        "dev-lib": {
             "cache": false
         },
         "clean": {
             "cache": false
         },
         "start-e2e-server": {
-            "outputs": []
+            "outputs": [],
+            "dependsOn": ["^build-app"]
         },
         "cypress-run": {
             "outputs": [],
-            "dependsOn": ["^start-e2e-server", "^build-app"]
+            "dependsOn": ["^build-app"]
+        },
+        "playwright-test": {
+            "outputs": [],
+            "dependsOn": ["^build-app"]
         },
         "build-omsorgspengesoknad": {
             "outputs": [],
@@ -75,6 +72,14 @@
         },
         "build-omsorgspengerutbetaling-arbeidstaker-soknad": {
             "outputs": [],
+            "dependsOn": ["^build-package"]
+        },
+        "build-omsorgsdager-kalkulator": {
+            "outputs": [".next/**", "!.next/cache/**"],
+            "dependsOn": ["^build-package"]
+        },
+        "build-dine-pleiepenger": {
+            "outputs": [".next/**", "!.next/cache/**"],
             "dependsOn": ["^build-package"]
         }
     }

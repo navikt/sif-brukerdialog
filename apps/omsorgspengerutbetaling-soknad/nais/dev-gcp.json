@@ -5,8 +5,11 @@
     "livenessPath": "/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling/health/isAlive",
     "readinessPath": "/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling/health/isReady",
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
+    "accessPolicyOutApps": ["k9-brukerdialog-api"],
     "ingresses": ["https://omsorgspengerutbetaling-soknad.intern.dev.nav.no"],
     "cluster": "dev-gcp",
+    "minReplicas": 1,
+    "maxReplicas": 1,
     "env": {
         "API_TOKENX_AUDIENCE": "dev-gcp:dusseldorf:k9-brukerdialog-api",
         "API_URL": "http://k9-brukerdialog-api",
@@ -18,11 +21,11 @@
         "FRONTEND_VEDLEGG_URL": "https://omsorgspengerutbetaling-soknad.intern.dev.nav.no/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling/api",
         "LOGIN_URL": "https://omsorgspengerutbetaling-soknad.intern.dev.nav.no/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling/soknad",
         "MINSIDE_URL": "https://www.intern.dev.nav.no/minside",
-        "NODE_ENV": "q",
         "NPM_CONFIG_CACHE": "/tmp",
         "NYNORSK": "off",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling",
         "SKIP_ORGNUM_VALIDATION": "true",
+        "USE_AMPLITUDE": "true",
         "VEDLEGG_API_URL": "https://k9-brukerdialog-api"
     }
 }

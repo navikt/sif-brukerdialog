@@ -164,9 +164,7 @@ const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
                                     <FormikTimeInput
                                         aria-describedby="iPerioden"
                                         name={getFieldName(dag)}
-                                        label={
-                                            <span className={'sr-only'}>{tekst.ariaLabelTidInput(dayDateString)}</span>
-                                        }
+                                        label={tekst.ariaLabelTidInput(dayDateString)}
                                         timeInputLayout={{
                                             direction: 'horizontal',
                                         }}

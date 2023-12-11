@@ -19,10 +19,10 @@ export interface Søknadsdata {
         harForståttRettigheterOgPlikter?: boolean;
     };
     [StepId.OPPLYSNINGER_OM_PLEIETRENGENDE]?: OpplysningerOmPleietrengendeSøknadsdata;
-    [StepId.LEGEERKLÆRING]?: LegeerklæringSøknadsdata;
     [StepId.TIDSROM]?: TidsromSøknadsdata;
     [StepId.ARBEIDSSITUASJON]?: ArbeidssituasjonSøknadsdata;
     [StepId.ARBEIDSTID]?: ArbeidstidSøknadsdata;
+    [StepId.LEGEERKLÆRING]?: LegeerklæringSøknadsdata;
     [StepId.MEDLEMSKAP]?: MedlemskapSøknadsdata;
     [StepId.OPPSUMMERING]?: {
         harBekreftetOpplysninger?: boolean;

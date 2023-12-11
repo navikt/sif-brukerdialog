@@ -150,6 +150,7 @@ export const VirksomhetFormErrors = {
         [ValidateStringError.stringIsTooShort]: 'virksomhetForm.regnskapsfører_telefon.stringIsTooShort',
         [ValidateStringError.stringContainsUnicodeChacters]:
             'virksomhetForm.regnskapsfører_telefon.stringContainsUnicodeChacters',
+        [ValidateStringError.stringHasInvalidFormat]: 'virksomhetForm.regnskapsfører_telefon.stringHasInvalidFormat',
     },
 };
 
@@ -197,15 +198,9 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                         includeValidationSummary={true}
                         onCancel={onCancel}
                         formErrorHandler={getFormErrorHandler(intl, 'virksomhetForm')}
+                        submitButtonLabel="Ok"
+                        showButtonArrows={false}
                         cleanup={cleanupVirksomhetFormValues}>
-                        <Block padBottom="l">
-                            <Heading level="1" size="medium">
-                                {harFlereVirksomheter
-                                    ? getText('sifForms.virksomhet.form_title.flere')
-                                    : getText('sifForms.virksomhet.form_title')}
-                            </Heading>
-                        </Block>
-
                         <Form.RadioGroup
                             name={VirksomhetFormField.næringstype}
                             legend={getText('sifForms.virksomhet.hvilken_type_virksomhet')}
@@ -587,6 +582,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                 name={VirksomhetFormField.harRegnskapsfører}
                                                 legend={getText('sifForms.virksomhet.regnskapsfører_spm')}
                                                 validate={getYesOrNoValidator()}
+                                                description={getText('sifForms.virksomhet.regnskapsfører_telefon_info')}
                                             />
                                         </Block>
                                         {values.harRegnskapsfører === YesOrNo.YES && (
@@ -627,7 +623,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                                     required: true,
                                                                     minLength: 5,
                                                                     maxLength: 15,
-                                                                    formatRegExp: /^[0-9\s\+]+$/,
+                                                                    formatRegExp: /^[0-9+ ]+$/,
                                                                     disallowUnicodeCharacters: true,
                                                                 })(value);
 

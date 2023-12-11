@@ -7,17 +7,19 @@ export const opplysningerOmPleietrengendeMessages: MessageFileFormat = {
         'step.opplysningerOmPleietrengende.stepIndicatorLabel': 'Om personen du pleier',
         'step.opplysningerOmPleietrengende.nextButtonLabel': 'Fortsett',
         'step.opplysningerOmPleietrengende.counsellorPanel.info':
-            'Her gir du opplysninger om personen som du pleier i livets sluttfase.',
+            'Her gir du opplysninger om personen du skal gi pleie til. I tillegg trenger vi å vite om du skal pleie personen hjemme, og om det er flere som skal dele på å gi pleie.',
 
         'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.spm':
-            'Pleier du personen i et privat hjem i perioden du søker for?',
+            'Skal du pleie personen hjemme i de dagene du søker for?',
         'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.alert':
-            'For å ha rett på pleiepenger må du pleie personen i et privat hjem. Hvis det er noen dager personen har vært innlagt må du sende en søknad for hver av periodene med pleie i hjemmet.',
-        'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.info.tittel': 'Hva menes med privat hjem?',
-        'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.info':
-            'Med privat hjem menes hjemme hos noen, for eksempel hjemme hos deg eller hjemme hos den som er syk. For at du skal ha rett til pleiepenger må altså den som er syk pleies hjemme hos noen, og ikke på sykehus eller en annen institusjon.',
+            'Du kan bare søke for dager du pleier personen hjemme.',
+        'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.info.tittel': 'Hva betyr dette?',
+        'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.info.1':
+            'For å ha rett til pleiepenger må du pleie den som trenger pleie hjemme i et privat hjem. Som oftest skjer det hjemme hos deg, eller hjemme hos den du pleier.',
+        'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.info.2':
+            'Det er ikke rett til pleiepenger i denne situasjonen hvis den pleietrengende er på sykehus eller en annen institusjon.',
 
-        'step.opplysningerOmPleietrengende.spm.navn': 'Navn',
+        'step.opplysningerOmPleietrengende.spm.navn': 'Navn på den du skal pleie',
         'step.opplysningerOmPleietrengende.spm.fnr': 'Fødselsnummer/D-nummer',
         'step.opplysningerOmPleietrengende.årsakManglerIdentitetsnummer.spm':
             'Hvorfor har ikke personen fødselsnummer eller D-nummer?',
@@ -27,11 +29,12 @@ export const opplysningerOmPleietrengendeMessages: MessageFileFormat = {
         'step.opplysningerOmPleietrengende.id.info':
             'Når personen du pleier ikke har fødselsnummer eller D-nummer, må du legge ved en kopi av ID for personen. Godkjent ID kan være fødselsattest, dødsattest, førerkort, id-kort eller pass.',
         'step.opplysningerOmPleietrengende.id.uploadButtonLabel': 'Last opp ID',
+        'vedleggsliste.ingenDokumenter': 'Ingen dokumenter er lastet opp',
 
         'step.opplysningerOmPleietrengende.fnr.harIkkeFnr': 'Personen har ikke fødselsnummer/D-nummer',
         'step.opplysningerOmPleietrengende.fødselsdato': 'Fødselsdato',
 
-        'validation.navn.stringHasNoValue': 'Du må skrive inn navnet til personen du  pleier.',
+        'validation.navn.stringHasNoValue': 'Du må skrive inn navnet til den du  pleier.',
         'validation.norskIdentitetsnummer.fødselsnummerHasNoValue':
             'Du må skrive inn fødselsnummeret til personen du  pleier. Et fødselsnummer består av 11 siffer.',
         'validation.norskIdentitetsnummer.fødselsnummerIsInvalid':

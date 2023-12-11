@@ -20,12 +20,12 @@ export const oppsummeringMessages: MessageFileFormat = {
         'steg.oppsummering.pleietrengende.id': 'ID for personen du pleier',
         'step.oppsummering.pleietrengende.id.ingenId': 'Ingen ID er lastet opp',
 
-        'steg.oppsummering.tidsrom.header': 'Perioden du søker pleiepenger for',
+        'steg.oppsummering.tidsrom.header': 'Dagene du søker pleiepenger for',
         'steg.oppsummering.søknadsperiode.header': 'Periode',
         'steg.oppsummering.tidsrom.fomtom': '{fom} - {tom}',
 
-        'steg.oppsummering.pleierDuDenSykeHjemme.header':
-            'Pleier du personen i et privat hjem i perioden du søker for?',
+        'steg.oppsummering.pleierDuDenSykeHjemme.header': 'Skal du pleie personen hjemme i de dagene du søker for?',
+        'steg.oppsummering.skalJobbeOgPleieSammeDag.header': 'Skal du jobbe delvis i noen av dagene du søker for?',
 
         'steg.oppsummering.flereSokere.header': 'Er dere flere som skal dele på pleiepengene?',
 
@@ -33,11 +33,9 @@ export const oppsummeringMessages: MessageFileFormat = {
         'steg.oppsummering.NEI': 'Nei',
         'steg.oppsummering.USIKKER': 'Usikker',
 
-        'steg.oppsummering.utenlandsoppholdIPerioden.header': 'Utenlandsopphold i perioden du søker for?',
+        'steg.oppsummering.utenlandsoppholdIPerioden.header':
+            'Oppholder du deg i utlandet i noen av dagene du søker for?',
         'steg.oppsummering.utenlandsoppholdIPerioden.listetittel': 'Utenlandsopphold i perioden',
-
-        'steg.oppsummering.ferieuttakIPerioden.header': 'Skal du ta ut ferie i perioden?',
-        'steg.oppsummering.ferieuttakIPerioden.listetittel': 'Ferieuttak i perioden',
 
         'steg.oppsummering.arbeidssituasjon.header': 'Din arbeidssituasjon',
         'steg.oppsummering.vedlegg.header': 'Vedlegg',
@@ -80,17 +78,18 @@ export const oppsummeringMessages: MessageFileFormat = {
         'oppsummering.arbeidssituasjon.verneplikt.harIkkeVærtVernepliktig':
             'Utøvde ikke verneplikt på tidspunktet det søkes pleiepenger fra',
 
-        'oppsummering.arbeidssituasjon.optjeningIUtlandet.listetittel': 'Jobbet i annet EØS-land',
+        'oppsummering.arbeidssituasjon.optjeningIUtlandet.listetittel':
+            'Har jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før perioden en søker om',
         'oppsummering.arbeidssituasjon.optjeningIUtlandet.nei': 'Nei',
 
         'oppsummering.arbeidssituasjon.utenlandskNæring.listetittel':
-            'Jobbet som selvstendig næringsdrivende i et annet EØS-land',
+            'Har jobbet som selvstendig næringsdrivende i et annet EØS-land i løpet av de 3 siste årene før perioden en søker om',
         'oppsummering.arbeidssituasjon.utenlandskNæring.nei': 'Nei',
 
         'oppsummering.arbeidIPeriode.jobbIPerioden.header': 'Jobb i søknadsperioden',
         'oppsummering.arbeidIPeriode.jobbIPerioden': 'Jobb i søknadsperioden',
         'oppsummering.arbeidIPeriode.jobberIPerioden.ja': 'jobber',
-        'oppsummering.arbeidIPeriode.jobberIPerioden.HELT_FRAVÆR': 'Jeg jobber ikke',
+        'oppsummering.arbeidIPeriode.jobberIPerioden.HELT_FRAVÆR': 'Jeg jobber ikke her de dagene jeg pleier',
         'oppsummering.arbeidIPeriode.jobberIPerioden.REDUSERT': 'Jeg kombinerer delvis jobb med pleiepenger',
         'oppsummering.arbeidIPeriode.jobberIPerioden.SOM_VANLIG': 'Jeg jobber som normalt, og har ikke fravær',
         'oppsummering.arbeidIPeriode.jobberIPerioden.liktHverUke': 'Jobber likt hver uke',

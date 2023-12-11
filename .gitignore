@@ -13,15 +13,30 @@ dist-ssr
 storybook-static
 coverage
 index-decorated.html
+.idea
 
 server/dist
 public/dist
 out
 
+# next.js
+/.next/
+/out/
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
 packages/**/*/coverage
 packages/**/*/lib
 **/cypress/videos/**/*
 **/cypress/screenshots/**/*
+
+playwright-report
+test-results
 
 .yarn/*
 !.yarn/patches
@@ -29,3 +44,8 @@ packages/**/*/lib
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+build-storybook.log
+chromatic.log
+chromatic-build-*.xml
+chromatic-diagnostics.json

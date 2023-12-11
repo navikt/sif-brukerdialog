@@ -1,9 +1,10 @@
-import { Alert } from '@navikt/ds-react';
+import { useState } from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { useNavigate } from 'react-router-dom';
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
 import { isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
@@ -16,12 +17,7 @@ import SummaryBlock from '@navikt/sif-common-soknad-ds/lib/components/summary-bl
 import SummaryList from '@navikt/sif-common-soknad-ds/lib/components/summary-list/SummaryList';
 import SummarySection from '@navikt/sif-common-soknad-ds/lib/components/summary-section/SummarySection';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { AxiosError } from 'axios';
 import dayjs from 'dayjs';
-import HttpStatus from 'http-status-codes';
-import { useState } from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
-import { useNavigate } from 'react-router-dom';
 import { purge, sendApplication } from '../../api/api';
 import LegeerklæringAttachmentList from '../../components/legeerklæring-file-list/LegeerklæringFileList';
 import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
@@ -35,7 +31,7 @@ import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-va
 import appSentryLogger from '../../utils/appSentryLogger';
 import { harArbeidIPerioden, harFraværFraJobb } from '../../utils/arbeidUtils';
 import { getDataBruktTilUtledning } from '../../utils/getDataBruktTilUtledning';
-import { navigateTo, relocateToLoginPage } from '../../utils/navigationUtils';
+import { relocateToLoginPage } from '../../utils/navigationUtils';
 import { getApiDataFromSøknadsdata } from '../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import { validateApiValues } from '../../validation/apiValuesValidation';
 import SøknadFormComponents from '../SøknadFormComponents';
@@ -46,13 +42,15 @@ import ApiValidationSummary from './api-validation-summary/ApiValidationSummary'
 import ArbeidIPeriodenSummary from './arbeid-i-perioden-summary/ArbeidIPeriodenSummary';
 import ArbeidssituasjonSummary from './arbeidssituasjon-summary/ArbeidssituasjonSummary';
 import BarnSummary from './barn-summary/BarnSummary';
+import InnsendingFeiletInformasjon from './InnsendingFeiletInformasjon';
 import OmsorgstilbudSummary from './omsorgstilbud-summary/OmsorgstilbudSummary';
-import './oppsummeringStep.less';
 import {
     renderFerieuttakIPeriodenSummary,
     renderUtenlandsoppholdIPeriodenSummary,
     renderUtenlandsoppholdSummary,
 } from './summaryItemRenderers';
+import './oppsummeringStep.less';
+import { InvalidParameter, isInvalidParameterErrorResponse } from './invalidParameter';
 
 interface Props {
     values: SøknadFormValues;
@@ -60,35 +58,10 @@ interface Props {
     onApplicationSent: (apiValues: SøknadApiData, søkerdata: Søkerdata) => void;
 }
 
-export const isBadRequest = (error: AxiosError): error is AxiosError =>
-    error !== undefined && error.response !== undefined && error.response.status === HttpStatus.BAD_REQUEST;
-
-interface SIFBadRequestErrorResponse {
-    response: {
-        data: {
-            type: string;
-            title: string;
-            status: number;
-            detail: string;
-            invalid_parameters: Array<string>;
-        };
-    };
-}
-
-export const isSifBadRequestErrorResponse = (error: any): error is SIFBadRequestErrorResponse => {
-    return (
-        isBadRequest(error) &&
-        (error as any).response &&
-        (error as any).response.data &&
-        (error as any).response.data.invalid_parameters &&
-        (error as any).response.data.invalid_parameters.length > 0
-    );
-};
-
 const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) => {
     const [sendingInProgress, setSendingInProgress] = useState<boolean>(false);
     const [soknadSent, setSoknadSent] = useState<boolean>(false);
-    const [innsendingFeiletInfo, setInnsendingFeiletInfo] = useState<string | undefined>();
+    const [invalidParameters, setInvalidParameters] = useState<InvalidParameter[] | undefined>();
 
     const intl = useIntl();
     const navigate = useNavigate();
@@ -107,7 +80,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
         if (sendingInProgress) {
             return;
         }
-        setInnsendingFeiletInfo(undefined);
+        setInvalidParameters(undefined);
         setSendingInProgress(true);
         try {
             await sendApplication(apiValues);
@@ -119,9 +92,9 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
             setSoknadSent(true);
             onApplicationSent(apiValues, søkerdata);
         } catch (error: any) {
-            if (isSifBadRequestErrorResponse(error)) {
+            if (isInvalidParameterErrorResponse(error)) {
                 setSendingInProgress(false);
-                setInnsendingFeiletInfo(error.response.data.invalid_parameters[0]);
+                setInvalidParameters(error.response.data.invalid_parameters);
                 appSentryLogger.logApiError(error as any);
             } else if (isUnauthorized(error)) {
                 logUserLoggedOut('Ved innsending av søknad');
@@ -129,7 +102,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
             } else {
                 await logSoknadFailed(PleiepengerSyktBarnApp.navn);
                 appSentryLogger.logApiError(error);
-                navigateTo(routeConfig.ERROR_PAGE_ROUTE, navigate);
+                navigate(routeConfig.ERROR_PAGE_ROUTE);
             }
         }
     };
@@ -392,23 +365,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                         </Block>
 
                         <div aria-live="polite">
-                            {innsendingFeiletInfo && (
-                                <FormBlock>
-                                    <Alert variant="error">
-                                        <p style={{ marginTop: '.2em' }}>Oops, der oppstod det en feil.</p>
-                                        <p>
-                                            Du kan se om du får opp en feilmelding dersom du klikker gjennom søknaden
-                                            fra første til siste steg ved å bruke Neste-knappen nederst på hver side,
-                                            ikke bruk frem og tilbake i nettleseren.
-                                        </p>
-                                        <Block>
-                                            <ExpandableInfo title="Vis mer informasjon om feilen (teknisk)">
-                                                <p>{innsendingFeiletInfo}</p>
-                                            </ExpandableInfo>
-                                        </Block>
-                                    </Alert>
-                                </FormBlock>
-                            )}
+                            {invalidParameters && <InnsendingFeiletInformasjon invalidParameter={invalidParameters} />}
                         </div>
                     </SøknadFormStep>
                 );

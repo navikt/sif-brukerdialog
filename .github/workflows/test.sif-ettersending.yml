@@ -10,6 +10,7 @@ on:
             - 'packages/**/*'
             - .github/workflows/app.sif-ettersending.yml
             - .github/workflows/test.sif-ettersending.yml
+            - yarn.lock
     workflow_call:
 
 env:
@@ -22,8 +23,16 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
 
+            - name: Setup .yarnrc.yml
+              run: |
+                  yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
+                  yarn config set npmScopes.navikt.npmAlwaysAuth true
+                  yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
+              env:
+                NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+
             - name: Setup Node.js environment
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
                   node-version: 18
                   cache: 'yarn'
@@ -34,38 +43,35 @@ jobs:
             - name: Run code tests
               run: yarn test --filter=sif-ettersending
 
-    run-cypress-test:
+    run-playwright-test:
+        timeout-minutes: 60
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
               uses: actions/checkout@v4
 
+            - name: Setup .yarnrc.yml
+              run: |
+                  yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
+                  yarn config set npmScopes.navikt.npmAlwaysAuth true
+                  yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
+              env:
+                NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+
             - name: Setup Node.js environment
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
                   node-version: 18
                   cache: 'yarn'
 
-            - name: Build and start e2e server
-              uses: cypress-io/github-action@v6.5.0
-              env:
-                  API_URL: http://localhost:8089/
-                  FRONTEND_API_PATH: http://localhost:8089/
-                  FRONTEND_VEDLEGG_URL: https://k9-ettersending-soknad.intern.dev.nav.no/api
-                  LIVETS_SLUTTFASE: on
-                  NPM_CONFIG_CACHE: /tmp
-                  PUBLIC_PATH: /familie/sykdom-i-familien/soknad/ettersending
-                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-                  APPSTATUS_PROJECT_ID: ryujtq87
-                  APPSTATUS_DATASET: staging
-              with:
-                  project: ./apps/sif-ettersending/e2e
-                  build: yarn build-sif-ettersending
-                  start: yarn turbo start-e2e-server --filter=sif-ettersending
-                  wait-on: 'http://localhost:8080/familie/sykdom-i-familien/soknad/ettersending/health/isAlive'
-                  wait-on-timeout: 60
-                  runTests: false
-            - name: Run cypress tests
-              run: yarn turbo cypress-run --filter=sif-ettersending
-              env:
-                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+            - name: Install dependencies
+              run: yarn
+
+            - name: Install Playwright Browsers
+              run: npx playwright install chromium
+
+            - name: Build application
+              run: yarn build-app --filter=sif-ettersending
+
+            - name: Run tests
+              run: yarn turbo playwright-test --filter=sif-ettersending

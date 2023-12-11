@@ -6,24 +6,23 @@
     "main": "lib/index.js",
     "name": "@navikt/sif-common-sentry",
     "types": "lib/index.d.js",
-    "version": "0.22.4",
+    "version": "0.25.4",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-sentry/issues"
     },
     "dependencies": {
-        "@sentry/browser": "7.74.1",
-        "@sentry/react": "7.74.1",
-        "@sentry/types": "7.74.1"
+        "@sentry/browser": "7.86.0",
+        "@sentry/react": "7.86.0",
+        "@sentry/types": "7.86.0"
     },
     "devDependencies": {
-        "@types/node": "20.8.7",
-        "axios": "1.5.1",
+        "@types/node": "20.10.4",
+        "axios": "1.6.2",
         "config": "*",
         "copyfiles": "2.4.1",
-        "gh-pages": "6.0.0",
+        "gh-pages": "6.1.0",
         "react": "18.2.0",
         "react-dom": "18.2.0",
-        "react-scripts": "5.0.1",
         "rimraf": "5.0.5"
     },
     "directories": {
@@ -48,9 +47,7 @@
         "clean": "rm -rf node_modules lib",
         "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
         "compile-lib-script": "tsc -p tsconfig.json",
-        "dev": "yarn compile-lib-script-watch",
-        "lint": "eslint ./src --ext ts,tsx",
-        "test-watch": "react-scripts test",
-        "test": "react-scripts test --watchAll=false --env=jsdom"
+        "dev-lib": "yarn compile-lib-script-watch",
+        "lint": "eslint ./src --ext ts,tsx"
     }
 }

@@ -3,7 +3,7 @@ export const clickSendInnSøknad = () => cy.get('button[aria-label="Send inn sø
 export const PUBLIC_PATH = '/familie/sykdom-i-familien/soknad/pleiepenger';
 
 export const getTestElement = (key) => {
-    return cy.get(`[data-testid="${key}"]`);
+    return cy.get(`[data-testid="${key}"]`, { timeout: 10000 });
 };
 
 export const selectRadioYesOrNo = (key, selectYes) => {

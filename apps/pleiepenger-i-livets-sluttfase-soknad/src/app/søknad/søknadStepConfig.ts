@@ -29,7 +29,7 @@ const getSøknadSteps = (søknadsdata: Søknadsdata): StepId[] => {
         StepId.OPPLYSNINGER_OM_PLEIETRENGENDE,
         StepId.TIDSROM,
         StepId.ARBEIDSSITUASJON,
-        ...(includeArbeidstidStep(søknadsdata?.arbeidssituasjon, søknadsdata?.tidsrom?.skalJobbeIPerioden)
+        ...(includeArbeidstidStep(søknadsdata?.arbeidssituasjon, søknadsdata?.tidsrom?.skalJobbeOgPleieSammeDag)
             ? [StepId.ARBEIDSTID]
             : []),
         StepId.MEDLEMSKAP,

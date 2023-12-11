@@ -1,5 +1,68 @@
 # @navikt/sif-common-sentry
 
+## 0.25.4
+
+### Patch Changes
+
+-   e7bf8d1: Patch oppdateringer av pakker
+
+## 0.25.3
+
+### Patch Changes
+
+-   406b044: Patch pakkeoppdateringer
+
+## 0.25.2
+
+### Patch Changes
+
+-   6084e23: Diverse mindre pakkeoppdateringer - versjonstrigger
+
+## 0.25.1
+
+### Patch Changes
+
+-   295d3ad: Diverse mindre pakkeoppdateringer - versjonstrigger
+
+## 0.25.0
+
+### Minor Changes
+
+-   53b47be: Nav Dekoratøren 2 i alle apper
+    Vite 5
+    patch og noen minor
+    Beholder react-router-dom 6.19.0 pga navigasjon knekker i noen apper
+
+## 0.24.0
+
+### Minor Changes
+
+-   Oppdaterte pakker. Minor og patch
+
+## 0.23.0
+
+### Minor Changes
+
+-   d31f28ec: Minor og patch oppdateringer på ds, react-router-dom, vite, msw
+
+## 0.22.7
+
+### Patch Changes
+
+-   6d3b3cbe: Minor og patch oppdateringer + nextjs major -> 14
+
+## 0.22.6
+
+### Patch Changes
+
+-   b4d45cf9: Diverse mindre pakkeoppdateringer
+
+## 0.22.5
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
 ## 0.22.4
 
 ### Patch Changes

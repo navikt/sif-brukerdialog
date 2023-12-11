@@ -1,5 +1,112 @@
 # @navikt/sif-common-forms-ds
 
+## 8.16.1
+
+### Patch Changes
+
+-   e7bf8d1: Patch oppdateringer av pakker
+
+## 8.16.0
+
+### Minor Changes
+
+-   573c55d: Diverse oppdateringer i forbindelse med uu-gjennomgang.
+
+## 8.15.1
+
+### Patch Changes
+
+-   406b044: Patch pakkeoppdateringer
+
+## 8.15.0
+
+### Minor Changes
+
+-   2331115: Oppdatert react-router-dom. Endringer i ettersending og pleiepenger på grunn av feil bruk av navigate i ny versjon.
+
+### Patch Changes
+
+-   6084e23: Diverse mindre pakkeoppdateringer - versjonstrigger
+
+## 8.14.1
+
+### Patch Changes
+
+-   295d3ad: Diverse mindre pakkeoppdateringer - versjonstrigger
+
+## 8.14.0
+
+### Minor Changes
+
+-   53b47be: Nav Dekoratøren 2 i alle apper
+    Vite 5
+    patch og noen minor
+    Beholder react-router-dom 6.19.0 pga navigasjon knekker i noen apper
+
+## 8.13.0
+
+### Minor Changes
+
+-   Oppdaterte pakker. Minor og patch
+
+## 8.12.0
+
+### Minor Changes
+
+-   d31f28ec: Minor og patch oppdateringer på ds, react-router-dom, vite, msw
+
+## 8.11.4
+
+### Patch Changes
+
+-   6d3b3cbe: Minor og patch oppdateringer + nextjs major -> 14
+
+## 8.11.3
+
+### Patch Changes
+
+-   09ae5814: Patch-oppdateringer
+
+## 8.11.2
+
+### Patch Changes
+
+-   b4d45cf9: Diverse mindre pakkeoppdateringer
+
+## 8.11.1
+
+### Patch Changes
+
+-   66c8522a: Legge til manglende tekst for regnskapsfører telefon i virksomhetform
+
+## 8.11.0
+
+### Minor Changes
+
+-   ce769b8e: Endre UtenlandskNæringListAndDialog til å eksponere ModalFormAndListLabels, ikke ModalFormAndInfoLabels (som var feil)
+
+## 8.10.0
+
+### Minor Changes
+
+-   5c44f78b: Bytte regexp på telefonnummer til regnskapsfører, som nå tillater kun + space og tall. Noen tekstendringer.
+
+### Patch Changes
+
+-   cb7e6653: Oppdatere ds pakker etter at versjon 5.9.1 hadde feil. Fikset i v. 5.9.2
+
+## 8.9.7
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
+## 8.9.6
+
+### Patch Changes
+
+-   Pakkeoppdatering som fikser datepicker + modal bug
+
 ## 8.9.5
 
 ### Patch Changes

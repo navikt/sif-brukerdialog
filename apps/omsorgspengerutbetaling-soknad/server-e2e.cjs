@@ -3,7 +3,8 @@ const express = require('express');
 const server = express();
 const path = require('path');
 const mustacheExpress = require('mustache-express');
-const getDecorator = require('./src/build/scripts/decorator.cjs');
+const getAppSettings = require('./src/build/AppSettings.cjs');
+const getDecorator = require('./src/build/decorator.cjs');
 const compression = require('compression');
 
 require('dotenv').config();
@@ -39,6 +40,7 @@ const renderApp = (decoratorFragments) =>
     });
 
 const startServer = async (html) => {
+    console.log(process.env.PUBLIC_PATH);
     server.get(`${process.env.PUBLIC_PATH}/health/isAlive`, (_req, res) => res.sendStatus(200));
     server.get(`${process.env.PUBLIC_PATH}/health/isReady`, (_req, res) => res.sendStatus(200));
     server.use(`${process.env.PUBLIC_PATH}/assets`, express.static(path.resolve(__dirname, 'dist/assets')));
@@ -55,7 +57,7 @@ const startServer = async (html) => {
 
 const logError = (errorMessage, details) => console.log(errorMessage, details);
 
-getDecorator()
+getDecorator(getAppSettings())
     .then(renderApp, (error) => {
         logError('Failed to get decorator', error);
         process.exit(1);

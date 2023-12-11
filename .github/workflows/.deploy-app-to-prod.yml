@@ -9,30 +9,32 @@ on:
             app-name:
                 type: string
                 required: true
-        secrets:
-            NAIS_DEPLOY_APIKEY:
-                description: Nais deploy APIKEY
+            is-next-app:
+                type: boolean
                 required: false
-
-env:
-    IMAGE: ghcr.io/${{ github.repository }}/${{ inputs.app-name }}-mono:${{ github.sha }}
-    GITHUB_USERNAME: x-access-token
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
     deploy-to-prod:
         name: Deploy ${{ inputs.app-name }} to prod
         runs-on: ubuntu-latest
         permissions:
-            packages: write
+            id-token: write # required: nais/docker-build-push
+        outputs:
+            image: ${{ steps.docker-push.outputs.image }}
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
-              with:
-                  fetch-depth: 2
+
+            - name: Setup .yarnrc.yml
+              run: |
+                  yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
+                  yarn config set npmScopes.navikt.npmAlwaysAuth true
+                  yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
+              env:
+                NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
             - name: Setup Node.js environment
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
                   node-version: 18
                   cache: 'yarn'
@@ -40,18 +42,28 @@ jobs:
             - name: Install dependencies (yarn)
               run: yarn
 
-            - name: Run tests
-              run: yarn test --filter=${{inputs.app-name}}
+            - name: Copy .env.prod for next.js build
+              if: ${{ inputs.is-next-app == true }}
+              shell: bash
+              run: |
+                  echo "Copying .env.prod to app root"
+                  cp apps/${{inputs.app-name}}/nais/envs/.env.prod apps/${{inputs.app-name}}/.env.production
 
             - name: Build application
-              run: |
-                  yarn build-${{ inputs.app-name }}
+              run: yarn build-${{ inputs.app-name }}
 
-            - name: Build and publish Docker image
-              run: |
-                  docker build -t ${IMAGE} -f apps/${{inputs.app-name}}/Dockerfile .
-                  docker login ghcr.io -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
-                  docker push ${IMAGE}
+            - name: Build and publish docker image
+              uses: nais/docker-build-push@v0
+              id: docker-push
+              with:
+                  team: dusseldorf
+                  push_image: true
+                  pull: true
+                  dockerfile: apps/${{inputs.app-name}}/Dockerfile
+                  docker_context: .
+                  image_suffix: ${{inputs.app-name}}-mono
+                  project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+                  identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
 
             - name: Deploy to prod
               uses: nais/deploy/actions/deploy@v1
@@ -59,4 +71,19 @@ jobs:
                   CLUSTER: prod-gcp
                   RESOURCE: nais-config/nais.yml
                   VARS: apps/${{ inputs.app-name }}/nais/prod-gcp.json
+                  VAR: GITHUB_REF_NAME=${{ github.ref_name }} # brukes i applikasjonerna
                   APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+                  IMAGE: ${{ steps.docker-push.outputs.image }}
+
+    trivy:
+        needs: [ deploy-to-prod ]
+        uses: navikt/sif-gha-workflows/.github/workflows/trivy.yml@main
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
+        secrets: inherit
+        with:
+            image: ${{ needs.deploy-to-prod.outputs.image }}
+            team: dusseldorf

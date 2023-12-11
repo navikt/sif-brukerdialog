@@ -10,10 +10,20 @@ on:
             - 'packages/**/*'
             - .github/workflows/app.omsorgspengerutbetaling-soknad.yml
             - .github/workflows/test.omsorgspengerutbetaling-soknad.yml
+            - yarn.lock
     workflow_call:
 
 env:
     APP_NAME: 'omsorgspengerutbetaling-soknad'
+    DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
+    PUBLIC_PATH: /familie/sykdom-i-familien/soknad/omsorgspengerutbetaling
+    API_URL: http://localhost:8089
+    FRONTEND_API_PATH: http://localhost:8089
+    FRONTEND_VEDLEGG_URL: http://localhost:8089
+    VEDLEGG_API_URL: http://localhost:8089
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    APPSTATUS_PROJECT_ID: ryujtq87
+    APPSTATUS_DATASET: staging
 
 jobs:
     run-script-tests:
@@ -22,8 +32,16 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
 
+            - name: Setup .yarnrc.yml
+              run: |
+                  yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
+                  yarn config set npmScopes.navikt.npmAlwaysAuth true
+                  yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
+              env:
+                NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+
             - name: Setup Node.js environment
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
                   node-version: 18
                   cache: 'yarn'
@@ -34,39 +52,35 @@ jobs:
             - name: Run code tests
               run: yarn test --filter=omsorgspengerutbetaling-soknad
 
-    run-cypress-test:
+    run-playwright-test:
+        timeout-minutes: 60
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
               uses: actions/checkout@v4
 
+            - name: Setup .yarnrc.yml
+              run: |
+                  yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
+                  yarn config set npmScopes.navikt.npmAlwaysAuth true
+                  yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
+              env:
+                NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+
             - name: Setup Node.js environment
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
                   node-version: 18
                   cache: 'yarn'
 
-            - name: Build and start e2e server
-              uses: cypress-io/github-action@v6.5.0
-              env:
-                  DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
-                  PUBLIC_PATH: /familie/sykdom-i-familien/soknad/omsorgspengerutbetaling
-                  API_URL: http://localhost:8089
-                  FRONTEND_API_PATH: http://localhost:8089
-                  FRONTEND_VEDLEGG_URL: http://localhost:8089
-                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  APPSTATUS_PROJECT_ID: ryujtq87
-                  APPSTATUS_DATASET: staging
-              with:
-                  project: ./apps/omsorgspengerutbetaling-soknad/e2e
-                  build: yarn build-omsorgspengerutbetaling-soknad
-                  start: yarn turbo start-e2e-server --filter=omsorgspengerutbetaling-soknad
-                  wait-on: 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling/alive'
-                  wait-on-timeout: 60
-                  runTests: false
+            - name: Install dependencies
+              run: yarn
 
-            - name: Run cypress tests
-              run: yarn turbo cypress-run --filter=omsorgspengerutbetaling-soknad
-              env:
-                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+            - name: Install Playwright Browsers
+              run: npx playwright install chromium
+
+            - name: Build application
+              run: yarn build-app --filter=omsorgspengerutbetaling-soknad
+
+            - name: Run tests
+              run: yarn turbo playwright-test --filter=omsorgspengerutbetaling-soknad

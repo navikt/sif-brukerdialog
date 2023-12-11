@@ -1,14 +1,12 @@
-const { defineConfig } = require('cypress');
+import { defineConfig } from 'cypress';
 
-module.exports = defineConfig({
+export default defineConfig({
+    projectId: 'fnodxc',
     e2e: {
-        // projectId: 'fnodxc',
         baseUrl: 'http://localhost:8080',
-        testIsolation: false,
         requestTimeout: 15000,
-        setupNodeEvents(on, config) {
-            return require('./cypress/plugins/index.js')(on, config);
-        },
+        testIsolation: false,
+        setupNodeEvents() {},
         video: false,
     },
 });

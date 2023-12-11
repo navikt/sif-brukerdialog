@@ -1,5 +1,126 @@
 # @navikt/sif-common-core-ds
 
+## 9.12.1
+
+### Patch Changes
+
+-   e7bf8d1: Patch oppdateringer av pakker
+-   Updated dependencies [e7bf8d1]
+    -   @navikt/sif-common-utils@3.43.4
+
+## 9.12.0
+
+### Minor Changes
+
+-   573c55d: Diverse oppdateringer i forbindelse med uu-gjennomgang.
+
+## 9.11.3
+
+### Patch Changes
+
+-   406b044: Patch pakkeoppdateringer
+-   Updated dependencies [406b044]
+    -   @navikt/sif-common-utils@3.43.3
+
+## 9.11.2
+
+### Patch Changes
+
+-   6084e23: Diverse mindre pakkeoppdateringer - versjonstrigger
+-   Updated dependencies [6084e23]
+    -   @navikt/sif-common-utils@3.43.2
+
+## 9.11.1
+
+### Patch Changes
+
+-   295d3ad: Diverse mindre pakkeoppdateringer - versjonstrigger
+-   Updated dependencies [295d3ad]
+    -   @navikt/sif-common-utils@3.43.1
+
+## 9.11.0
+
+### Minor Changes
+
+-   53b47be: Nav Dekoratøren 2 i alle apper
+    Vite 5
+    patch og noen minor
+    Beholder react-router-dom 6.19.0 pga navigasjon knekker i noen apper
+
+### Patch Changes
+
+-   Updated dependencies [53b47be]
+    -   @navikt/sif-common-utils@3.43.0
+
+## 9.10.0
+
+### Minor Changes
+
+-   Oppdaterte pakker. Minor og patch
+
+### Patch Changes
+
+-   Updated dependencies
+    -   @navikt/sif-common-utils@3.42.0
+
+## 9.9.0
+
+### Minor Changes
+
+-   d31f28ec: Minor og patch oppdateringer på ds, react-router-dom, vite, msw
+
+### Patch Changes
+
+-   Updated dependencies [d31f28ec]
+    -   @navikt/sif-common-utils@3.41.0
+
+## 9.8.11
+
+### Patch Changes
+
+-   6d3b3cbe: Minor og patch oppdateringer + nextjs major -> 14
+    -   @navikt/sif-common-utils@3.40.11
+
+## 9.8.10
+
+### Patch Changes
+
+-   09ae5814: Patch-oppdateringer
+-   Updated dependencies [09ae5814]
+    -   @navikt/sif-common-utils@3.40.11
+
+## 9.8.9
+
+### Patch Changes
+
+-   b4d45cf9: Diverse mindre pakkeoppdateringer
+-   Updated dependencies [b4d45cf9]
+    -   @navikt/sif-common-utils@3.40.10
+
+## 9.8.8
+
+### Patch Changes
+
+-   cb7e6653: Oppdatere ds pakker etter at versjon 5.9.1 hadde feil. Fikset i v. 5.9.2
+-   Updated dependencies [cb7e6653]
+    -   @navikt/sif-common-utils@3.40.9
+
+## 9.8.7
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+-   Updated dependencies
+    -   @navikt/sif-common-utils@3.40.8
+
+## 9.8.6
+
+### Patch Changes
+
+-   Pakkeoppdatering som fikser datepicker + modal bug
+-   Updated dependencies
+    -   @navikt/sif-common-utils@3.40.7
+
 ## 9.8.5
 
 ### Patch Changes

@@ -13,6 +13,7 @@ import { SøknadRoutes } from './config/SøknadRoutes';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import { SøknadContextProvider } from './context/SøknadContext';
 import SøknadRouter from './SøknadRouter';
+import { isAxiosError } from 'axios';
 
 const Søknad = () => {
     const location = useLocation();
@@ -36,7 +37,11 @@ const Søknad = () => {
     }
 
     if (status === RequestStatus.error) {
-        appSentryLogger.logError('Søknad.requestStatus', initialData.error);
+        if (isAxiosError(initialData.error)) {
+            appSentryLogger.logApiError(initialData.error);
+        } else {
+            appSentryLogger.logError('Søknad.requestStatus', initialData.error);
+        }
         return (
             <ErrorPage
                 pageTitle="Det oppstod en feil"

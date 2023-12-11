@@ -2,6 +2,7 @@ import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { ArbeidsforholdFormValues } from '../../../../types/søknad-form-values/ArbeidsforholdFormValues';
 import { Arbeidsgiver, ArbeidsgiverType } from '../../../../types/Arbeidsgiver';
 import { syncAnsattArbeidsforhold } from '../arbeidsgivereUtils';
+import { vi } from 'vitest';
 
 const organisasjoner: Arbeidsgiver[] = [
     { type: ArbeidsgiverType.ORGANISASJON, navn: 'Org1', id: '1' },
@@ -53,7 +54,7 @@ const arbeidsforholdUbesvart: ArbeidsforholdFormValues = {
 
 const arbeidsforhold: ArbeidsforholdFormValues[] = [arbeidsforholdErAnsatt, arbeidsforholdUbesvart];
 
-jest.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => {
+vi.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => {
     return {
         getEnvironmentVariable: () => 'someEnvVar',
     };

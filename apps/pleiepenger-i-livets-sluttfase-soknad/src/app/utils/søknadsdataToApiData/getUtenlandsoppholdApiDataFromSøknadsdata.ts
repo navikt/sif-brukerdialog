@@ -1,17 +1,17 @@
+import { getCountryName } from '@navikt/sif-common-formik-ds/lib';
 import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib';
+import { dateToISODate } from '@navikt/sif-common-utils/lib';
 import {
     UtenlandsoppholdIPeriodenApi,
     UtenlandsoppholdIPeriodenApiData,
 } from '../../types/søknadApiData/SøknadApiData';
 import { TidsromSøknadsdata } from '../../types/søknadsdata/TidsromSøknadsdata';
-import { dateToISODate } from '@navikt/sif-common-utils/lib';
-import { getCountryName } from '@navikt/sif-common-formik-ds/lib';
 
 export const getUtenlansoppholdApiDataFromSøknadsdata = (
     locale: string,
     tidsrom: TidsromSøknadsdata,
 ): UtenlandsoppholdIPeriodenApi => {
-    if (tidsrom.type === 'tidsromKunMedUtenlandsopphold' || tidsrom.type === 'tidsromMedUtenlandsoppholdMedFerie') {
+    if (tidsrom.type === 'tidsromMedUtenlandsopphold') {
         const { skalOppholdeSegIUtlandetIPerioden, utenlandsoppholdIPerioden } = tidsrom;
 
         return {

@@ -42,24 +42,20 @@ const VedleggOppsummering: React.FunctionComponent<Props> = ({
                     {legeerklæringSøknadsdata?.vedlegg.length === 0 ? (
                         <FormattedMessage id="vedleggsliste.ingenLegeerklæringLastetOpp" />
                     ) : (
-                        <div data-testid="legeerklæring-liste">
-                            <AttachmentList attachments={legeerklæringer} />
-                        </div>
+                        <AttachmentList attachments={legeerklæringer} />
                     )}
                 </ContentWithHeader>
             </Block>
             {samværsavtaler && (
                 <Block margin="xl">
                     <ContentWithHeader header={intlHelper(intl, 'steg.oppsummering.samværsavtale.header')}>
-                        <div data-testid="samværsavtale-liste">
-                            {samværsavtaler.length > 0 ? (
-                                <AttachmentList attachments={samværsavtaler} />
-                            ) : (
-                                <Alert inline={true} variant="warning">
-                                    Ingen avtale er lastet opp
-                                </Alert>
-                            )}
-                        </div>
+                        {samværsavtaler.length > 0 ? (
+                            <AttachmentList attachments={samværsavtaler} />
+                        ) : (
+                            <Alert inline={true} variant="warning">
+                                Ingen avtale er lastet opp
+                            </Alert>
+                        )}
                     </ContentWithHeader>
                 </Block>
             )}

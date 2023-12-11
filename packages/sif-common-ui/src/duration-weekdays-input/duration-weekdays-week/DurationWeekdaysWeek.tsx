@@ -3,7 +3,7 @@ import { Fieldset, Heading } from '@navikt/ds-react';
 import React from 'react';
 import AriaAlternative from '@navikt/sif-common-core-ds/lib/atoms/aria-alternative/AriaAlternative';
 import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
-import { FormikTimeInput, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/lib';
+import { FormikTimeInput } from '@navikt/sif-common-formik-ds/lib';
 import {
     dateFormatter,
     DateRange,
@@ -13,6 +13,7 @@ import {
     getWeekDateRange,
 } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
+import { DurationWeekdaysDateValidator } from '../DurationWeekdaysInput';
 import './durationWeekdaysWeek.scss';
 
 interface Props {
@@ -25,7 +26,7 @@ interface Props {
     /** Heading level */
     headingLevel: '1' | '2' | '3' | '4' | '5' | '6';
     /** Date validation */
-    validate?: (date: Date, value?: string) => ValidationResult<ValidationError>;
+    validateDate?: DurationWeekdaysDateValidator;
 }
 
 const bem = bemUtils('durationWeekdaysWeek');
@@ -35,7 +36,7 @@ const DurationWeekdaysWeek: React.FunctionComponent<Props> = ({
     disabledDates = [],
     formikFieldName,
     headingLevel = '3',
-    validate,
+    validateDate,
 }) => {
     const fullWeek = getWeekDateRange(week.from, true);
     const dates = getDatesInDateRange(fullWeek);
@@ -63,6 +64,7 @@ const DurationWeekdaysWeek: React.FunctionComponent<Props> = ({
                     <div className={bem.element('days')}>
                         {datesInWeekAndMonth.map((date, index) => {
                             const dayName = dateFormatter.day(date).substring(0, 3);
+                            const fieldName = `${formikFieldName}.${dateToISODate(date)}`;
                             const dateIsDisabled = allDisabledDates.some((disabledDate) =>
                                 dayjs(disabledDate).isSame(date, 'day'),
                             );
@@ -84,17 +86,23 @@ const DurationWeekdaysWeek: React.FunctionComponent<Props> = ({
                                                 />
                                             </span>
                                         }
-                                        name={`${formikFieldName}.${dateToISODate(date)}`}
+                                        name={fieldName}
                                         disabled={dateIsDisabled}
                                         timeInputLayout={{
                                             direction: 'vertical',
                                             compact: true,
                                         }}
                                         timeInputLabels={{
-                                            minutes: <AriaAlternative visibleText="Min." ariaText="Minutter" />,
-                                            hours: <AriaAlternative visibleText="Timer" ariaText="Timer" />,
+                                            minutes: 'Minutter',
+                                            hours: 'Timer',
                                         }}
-                                        validate={validate}
+                                        validate={
+                                            validateDate
+                                                ? (value) => {
+                                                      return validateDate(value, date);
+                                                  }
+                                                : undefined
+                                        }
                                     />
                                 </div>
                             );

@@ -1,5 +1,111 @@
 # @navikt/sif-common-formik-ds
 
+## 1.6.1
+
+### Patch Changes
+
+-   e7bf8d1: Patch oppdateringer av pakker
+
+## 1.6.0
+
+### Minor Changes
+
+-   573c55d: Diverse oppdateringer i forbindelse med uu-gjennomgang.
+
+## 1.5.3
+
+### Patch Changes
+
+-   406b044: Patch pakkeoppdateringer
+
+## 1.5.2
+
+### Patch Changes
+
+-   6084e23: Diverse mindre pakkeoppdateringer - versjonstrigger
+
+## 1.5.1
+
+### Patch Changes
+
+-   295d3ad: Diverse mindre pakkeoppdateringer - versjonstrigger
+
+## 1.5.0
+
+### Minor Changes
+
+-   53b47be: Nav Dekoratøren 2 i alle apper
+    Vite 5
+    patch og noen minor
+    Beholder react-router-dom 6.19.0 pga navigasjon knekker i noen apper
+
+## 1.4.0
+
+### Minor Changes
+
+-   Oppdaterte pakker. Minor og patch
+
+## 1.3.0
+
+### Minor Changes
+
+-   d31f28ec: Minor og patch oppdateringer på ds, react-router-dom, vite, msw
+
+## 1.2.3
+
+### Patch Changes
+
+-   6d3b3cbe: Minor og patch oppdateringer + nextjs major -> 14
+
+## 1.2.2
+
+### Patch Changes
+
+-   09ae5814: Patch-oppdateringer
+
+## 1.2.1
+
+### Patch Changes
+
+-   b4d45cf9: Diverse mindre pakkeoppdateringer
+
+## 1.2.0
+
+### Minor Changes
+
+-   e815a9a8: Endre rolle til button for FileDropInput div.
+
+## 1.1.6
+
+### Patch Changes
+
+-   afe04538: Fjerne default verdi for disableWeekends i FormikDatepicker. Var satt til true, blir nå undefined.
+
+## 1.1.5
+
+### Patch Changes
+
+-   1d7c508f: Feilfiks når maks og min dato er på samme dag. Da ble undefined returnert, noe som igjen førte til at dropdownCaption ikke virket som forventet. Nå returneres alltid en min eller maks dato dersom dette er satt.
+
+## 1.1.4
+
+### Patch Changes
+
+-   5c44f78b: Legge til manglende default valideringstekst når tekst har ugyldig format
+-   cb7e6653: Oppdatere ds pakker etter at versjon 5.9.1 hadde feil. Fikset i v. 5.9.2
+
+## 1.1.3
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
+## 1.1.2
+
+### Patch Changes
+
+-   Pakkeoppdatering som fikser datepicker + modal bug
+
 ## 1.1.1
 
 ### Patch Changes

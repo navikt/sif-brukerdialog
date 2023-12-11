@@ -1,4 +1,3 @@
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { OpplysningerOmPleietrengendeSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { OpplysningerOmPleietrengendeFormValues } from './OpplysningerOmPleietrengendeStep';
 
@@ -21,11 +20,9 @@ export const getOpplysningerOmPleietrengendeStepInitialValues = (
     const { opplysningerOmPleietrengende } = søknadsdata;
 
     if (opplysningerOmPleietrengende) {
-        const pleierDuDenSykeHjemme = opplysningerOmPleietrengende.pleierDuDenSykeHjemme ? YesOrNo.YES : YesOrNo.NO;
         switch (opplysningerOmPleietrengende.type) {
             case 'pleietrengendeMedFnr':
                 return {
-                    pleierDuDenSykeHjemme,
                     navn: opplysningerOmPleietrengende.navn,
                     norskIdentitetsnummer: opplysningerOmPleietrengende.norskIdentitetsnummer,
                     flereSokere: opplysningerOmPleietrengende.flereSokere,
@@ -34,7 +31,6 @@ export const getOpplysningerOmPleietrengendeStepInitialValues = (
                 };
             case 'pleietrengendeUtenFnr':
                 return {
-                    pleierDuDenSykeHjemme,
                     navn: opplysningerOmPleietrengende.navn,
                     harIkkeFnr: true,
                     flereSokere: opplysningerOmPleietrengende.flereSokere,
@@ -59,7 +55,6 @@ export const getOpplysningerOmPleietrengendeSøknadsdataFromFormValues = (
         fødselsdato,
         årsakManglerIdentitetsnummer,
         pleietrengendeId,
-        pleierDuDenSykeHjemme,
     } = formValues;
 
     if (harIkkeFnr && fødselsdato && årsakManglerIdentitetsnummer && flereSokere) {
@@ -68,7 +63,6 @@ export const getOpplysningerOmPleietrengendeSøknadsdataFromFormValues = (
             navn,
             fødselsdato,
             flereSokere,
-            pleierDuDenSykeHjemme: pleierDuDenSykeHjemme === YesOrNo.YES,
             årsakManglerIdentitetsnummer,
             pleietrengendeId,
         };
@@ -76,7 +70,6 @@ export const getOpplysningerOmPleietrengendeSøknadsdataFromFormValues = (
         return {
             type: 'pleietrengendeMedFnr',
             navn,
-            pleierDuDenSykeHjemme: pleierDuDenSykeHjemme === YesOrNo.YES,
             flereSokere,
             norskIdentitetsnummer,
         };

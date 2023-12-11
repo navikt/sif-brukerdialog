@@ -18,6 +18,10 @@ describe('Fylle ut søknad pleietrengende med fnr', () => {
         before(() => {
             cy.visit(startUrl);
         });
+        it('Starter applikasjonen', () => {
+            cy.get('h1').contains('Hei PRESENTABEL', { timeout: 10000 }).should('be.visible');
+        });
+
         startSøknad();
         fyllUtOpplysningerOmPleietrengende();
         fyllUtPeriodenEnkeltKalender();

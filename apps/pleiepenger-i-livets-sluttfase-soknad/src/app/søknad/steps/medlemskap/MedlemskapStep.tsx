@@ -113,33 +113,30 @@ const MedlemskapStep = () => {
                                                 {intlHelper(intl, 'step.medlemskap.annetLandSiste12.hjelp')}
                                             </ExpandableInfo>
                                         }
-                                        data-testid="medlemskap-annetLandSiste12"
                                     />
                                 </FormBlock>
                                 {harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES && (
                                     <FormBlock margin="l">
-                                        <div data-testid="bostedUtlandList-annetLandSiste12">
-                                            <BostedUtlandListAndDialog<MedlemskapFormFields>
-                                                name={MedlemskapFormFields.utenlandsoppholdSiste12Mnd}
-                                                minDate={siste12Måneder.from}
-                                                maxDate={siste12Måneder.to}
-                                                labels={{
-                                                    addLabel: intlHelper(
-                                                        intl,
-                                                        'step.medlemskap.utenlandsopphold.leggTilLabel',
-                                                    ),
-                                                    listTitle: intlHelper(
-                                                        intl,
-                                                        'step.medlemskap.annetLandSiste12.listeTittel',
-                                                    ),
-                                                    modalTitle: intlHelper(
-                                                        intl,
-                                                        'step.medlemskap.annetLandSiste12.listeTittel',
-                                                    ),
-                                                }}
-                                                validate={validateUtenlandsoppholdSiste12Mnd}
-                                            />
-                                        </div>
+                                        <BostedUtlandListAndDialog<MedlemskapFormFields>
+                                            name={MedlemskapFormFields.utenlandsoppholdSiste12Mnd}
+                                            minDate={siste12Måneder.from}
+                                            maxDate={siste12Måneder.to}
+                                            labels={{
+                                                addLabel: intlHelper(
+                                                    intl,
+                                                    'step.medlemskap.utenlandsopphold.leggTilLabel',
+                                                ),
+                                                listTitle: intlHelper(
+                                                    intl,
+                                                    'step.medlemskap.annetLandSiste12.listeTittel',
+                                                ),
+                                                modalTitle: intlHelper(
+                                                    intl,
+                                                    'step.medlemskap.annetLandSiste12.listeTittel',
+                                                ),
+                                            }}
+                                            validate={validateUtenlandsoppholdSiste12Mnd}
+                                        />
                                     </FormBlock>
                                 )}
                                 <FormBlock>
@@ -152,33 +149,30 @@ const MedlemskapStep = () => {
                                                 {intlHelper(intl, 'step.medlemskap.annetLandNeste12.hjelp')}
                                             </ExpandableInfo>
                                         }
-                                        data-testid="medlemskap-annetLandNeste12"
                                     />
                                 </FormBlock>
                                 {skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES && (
                                     <FormBlock margin="l">
-                                        <div data-testid="bostedUtlandList-annetLandNeste12">
-                                            <BostedUtlandListAndDialog<MedlemskapFormFields>
-                                                name={MedlemskapFormFields.utenlandsoppholdNeste12Mnd}
-                                                minDate={neste12Måneder.from}
-                                                maxDate={neste12Måneder.to}
-                                                labels={{
-                                                    addLabel: intlHelper(
-                                                        intl,
-                                                        'step.medlemskap.utenlandsopphold.leggTilLabel',
-                                                    ),
-                                                    listTitle: intlHelper(
-                                                        intl,
-                                                        'step.medlemskap.annetLandNeste12.listeTittel',
-                                                    ),
-                                                    modalTitle: intlHelper(
-                                                        intl,
-                                                        'step.medlemskap.annetLandNeste12.listeTittel',
-                                                    ),
-                                                }}
-                                                validate={validateUtenlandsoppholdNeste12Mnd}
-                                            />
-                                        </div>
+                                        <BostedUtlandListAndDialog<MedlemskapFormFields>
+                                            name={MedlemskapFormFields.utenlandsoppholdNeste12Mnd}
+                                            minDate={neste12Måneder.from}
+                                            maxDate={neste12Måneder.to}
+                                            labels={{
+                                                addLabel: intlHelper(
+                                                    intl,
+                                                    'step.medlemskap.utenlandsopphold.leggTilLabel',
+                                                ),
+                                                listTitle: intlHelper(
+                                                    intl,
+                                                    'step.medlemskap.annetLandNeste12.listeTittel',
+                                                ),
+                                                modalTitle: intlHelper(
+                                                    intl,
+                                                    'step.medlemskap.annetLandNeste12.listeTittel',
+                                                ),
+                                            }}
+                                            validate={validateUtenlandsoppholdNeste12Mnd}
+                                        />
                                     </FormBlock>
                                 )}
                             </Form>

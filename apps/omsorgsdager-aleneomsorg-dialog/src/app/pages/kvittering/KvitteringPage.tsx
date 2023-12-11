@@ -24,7 +24,7 @@ const KvitteringPage = ({ onUnmount }: Props) => {
 
     return (
         <Page title={intlHelper(intl, 'application.title')}>
-            <div data-testid="kvittering-page">
+            <>
                 <Kvittering
                     tittel={intlHelper(intl, 'kvittering.tittel')}
                     liste={{
@@ -40,7 +40,7 @@ const KvitteringPage = ({ onUnmount }: Props) => {
                             </span>,
                         ],
                     }}></Kvittering>
-            </div>
+            </>
         </Page>
     );
 };

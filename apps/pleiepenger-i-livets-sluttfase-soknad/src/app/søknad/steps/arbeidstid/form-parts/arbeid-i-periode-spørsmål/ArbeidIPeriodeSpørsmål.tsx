@@ -44,7 +44,6 @@ interface Props extends ArbeidstidRegistrertLogProps {
     arbeidsstedNavn: string;
     periode: DateRange;
     dagerMedPleie: Date[];
-    søkerKunHelgedager: boolean;
     skjulJobberNormaltValg: boolean;
     onArbeidstidVariertChange: () => void;
 }
@@ -118,7 +117,7 @@ const ArbeidIPeriodeSpørsmål = ({
         return (
             <HStack gap="4" align="center">
                 <div style={{ minWidth: '10rem' }} className="capitalize">
-                    {dayjs(month).format('MMMM YYYY')}
+                    Timer med jobb {dayjs(month).format('MMMM YYYY')}
                 </div>
                 {numDatesInMonthWithDuration > 0 && (
                     <Tag variant="info" size="small">
@@ -135,8 +134,8 @@ const ArbeidIPeriodeSpørsmål = ({
 
         return (
             <>
-                <Heading size="small" level="4" className="capitalize" spacing={true}>
-                    {dayjs(month).format('MMMM YYYY')}
+                <Heading size="small" level="4" spacing={true}>
+                    Timer med jobb {dayjs(month).format('MMMM YYYY')}
                 </Heading>
                 {1 + 1 === 3 && (
                     <>
@@ -174,10 +173,10 @@ const ArbeidIPeriodeSpørsmål = ({
                         legend={intlHelper(intl, 'arbeidIPeriode.enkeltdager_gruppe.legend', intlValues)}
                         validate={() => {
                             const { jobberIPerioden, enkeltdager = {} } = arbeidIPeriode || {};
-                            if (jobberIPerioden === JobberIPeriodeSvar.redusert) {
+                            if (jobberIPerioden === JobberIPeriodeSvar.redusert && skjulJobberNormaltValg === false) {
                                 if (durationToDecimalDuration(summarizeDateDurationMap(enkeltdager)) === 0) {
                                     return {
-                                        key: 'validation.arbeidIPeriode.ingenTidRegistrert',
+                                        key: 'arbeidIPeriode.validation.ingenTidRegistrert',
                                         values: intlValues,
                                         keepKeyUnaltered: true,
                                     };
@@ -186,13 +185,11 @@ const ArbeidIPeriodeSpørsmål = ({
                             return undefined;
                         }}
                         description={
-                            skjulJobberNormaltValg ? undefined : (
-                                <Block margin="l">
-                                    <Alert variant="info" inline={true}>
-                                        Dager hvor du ikke skal jobbe noe, trenger du ikke fylle ut.
-                                    </Alert>
-                                </Block>
-                            )
+                            <Block margin="l">
+                                <Alert variant="info" inline={true}>
+                                    Du trenger ikke fylle ut noe for dager du ikke skal jobbe.
+                                </Alert>
+                            </Block>
                         }>
                         <div style={{ marginTop: '1.5rem' }}>
                             <DurationWeekdaysInput
@@ -202,7 +199,7 @@ const ArbeidIPeriodeSpørsmål = ({
                                 useAccordion={useAccordion}
                                 renderMonthHeader={useAccordion ? renderMonthHeader : renderMonthHeaderNoAccordion}
                                 accordionOpen={hasEnkeltdagerMedFeil}
-                                validateDate={(date: Date, value?: any) => {
+                                validateDate={(value: any, date: Date) => {
                                     const error = getTimeValidator()(value);
                                     if (error) {
                                         return {

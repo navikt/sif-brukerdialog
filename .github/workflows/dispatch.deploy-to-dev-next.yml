@@ -1,0 +1,24 @@
+name: Deploy app to dev (next.js)
+run-name: Deploy ${{ inputs.app-name }} to dev (${{github.ref_name}})
+
+on:
+    workflow_dispatch:
+        inputs:
+            app-name:
+                description: Choose application
+                type: choice
+                options:
+                    - dine-pleiepenger
+                required: true
+
+jobs:
+    deploy-to-dev:
+        name: Deploy ${{ inputs.app-name }} to dev
+        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        secrets: inherit
+        permissions:
+            id-token: write
+        with:
+            app-name: '${{ inputs.app-name }}'
+            working-directory: 'apps/${{ inputs.app-name }}'
+            is-next-app: true

@@ -1,4 +1,4 @@
-// export * from './lagreSøknadState'; // Tatt ut pga jest feil: encountered an unexpected token. Kan nok fikses med config endringer
+export * from './lagreSøknadState';
 export * from './apiDataUtils';
 export * from './appSentryLogger';
 export * from './arbeidsukeUtils';

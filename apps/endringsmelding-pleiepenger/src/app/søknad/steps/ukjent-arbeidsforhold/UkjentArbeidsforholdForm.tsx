@@ -47,8 +47,8 @@ export interface UkjentArbeidsforholdFormValues {
 
 enum UkjentArbeidsforholdFormFields {
     arbeidsforhold = 'arbeidsforhold',
-    ['arbeidsforhold.erAnsatt'] = 'erAnsatt',
-    ['arbeidsforhold.timerPerUke'] = 'timerPerUke',
+    'arbeidsforhold.erAnsatt' = 'erAnsatt',
+    'arbeidsforhold.timerPerUke' = 'timerPerUke',
 }
 
 const { FormikWrapper, Form } = getTypedFormComponents<

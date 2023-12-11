@@ -27,8 +27,8 @@ export const fyllUtPeriodenEnkeltAccordion = () => {
                 cy.get('button').contains(25).click();
             });
         });
+        selectRadioYesOrNo('pleierDuDenSykeHjemme.spm', true);
         selectRadioYesOrNo('iUtlandetIPerioden.spm', false);
-        selectRadioYesOrNo('ferieuttakIPerioden.spm', false);
 
         submitSkjema();
         cy.wait('@putMellomlagring');
@@ -56,9 +56,9 @@ export const fyllUtPeriodenEnkeltKalender = () => {
             });
         });
 
+        selectRadioYesOrNo('pleierDuDenSykeHjemme.spm', true);
         selectRadioYesOrNo('skalJobbeIPerioden.spm', true);
         selectRadioYesOrNo('iUtlandetIPerioden.spm', false);
-        selectRadioYesOrNo('ferieuttakIPerioden.spm', false);
 
         submitSkjema();
         cy.wait('@putMellomlagring');

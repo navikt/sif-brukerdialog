@@ -1,6 +1,7 @@
 import { cyApiMockData } from './cyApiMockData';
 import { mellomlagring } from './mocks/mellomlagring';
 
+const INTERCEPT_PATH = '*/**';
 const PUBLIC_PATH = '/familie/sykdom-i-familien/soknad/pleiepenger';
 
 const getUrlForStep = (step?) => {
@@ -26,14 +27,26 @@ export const contextConfig = (props?: ConfigProps) => {
     const { mellomlagring, innsendingResponse = {} } = props || {};
 
     beforeEach('intercept api-kall', () => {
-        cy.intercept(`DELETE`, `/mellomlagring/PLEIEPENGER_SYKT_BARN*`, mellomlagring || {}).as('deleteMellomlagring');
-        cy.intercept(`PUT`, `/mellomlagring/PLEIEPENGER_SYKT_BARN*`, mellomlagring || {}).as('putMellomlagring');
-        cy.intercept(`POST`, `/mellomlagring/PLEIEPENGER_SYKT_BARN*`, mellomlagring || {}).as('postMellomlagring');
-        cy.intercept(`GET`, `/mellomlagring/PLEIEPENGER_SYKT_BARN*`, mellomlagring || {}).as('getMellomlagring');
-        cy.intercept('GET', `/oppslag/soker*`, cyApiMockData.søkerMock).as('getSøker');
-        cy.intercept('GET', `/oppslag/barn*`, cyApiMockData.barnMock).as('getBarn');
-        cy.intercept(`GET`, `/oppslag/arbeidsgiver*`, cyApiMockData.arbeidsgivereMock).as('getArbeidsgivere');
-        cy.intercept('POST', `/pleiepenger-sykt-barn/innsending`, innsendingResponse).as('postInnsending');
+        cy.intercept(`DELETE`, `${INTERCEPT_PATH}/mellomlagring/PLEIEPENGER_SYKT_BARN*`, mellomlagring || {}).as(
+            'deleteMellomlagring',
+        );
+        cy.intercept(`PUT`, `${INTERCEPT_PATH}/mellomlagring/PLEIEPENGER_SYKT_BARN*`, mellomlagring || {}).as(
+            'putMellomlagring',
+        );
+        cy.intercept(`POST`, `${INTERCEPT_PATH}/mellomlagring/PLEIEPENGER_SYKT_BARN*`, mellomlagring || {}).as(
+            'postMellomlagring',
+        );
+        cy.intercept(`GET`, `${INTERCEPT_PATH}/mellomlagring/PLEIEPENGER_SYKT_BARN*`, mellomlagring || {}).as(
+            'getMellomlagring',
+        );
+        cy.intercept('GET', `${INTERCEPT_PATH}/oppslag/soker*`, cyApiMockData.søkerMock).as('getSøker');
+        cy.intercept('GET', `${INTERCEPT_PATH}/oppslag/barn*`, cyApiMockData.barnMock).as('getBarn');
+        cy.intercept(`GET`, `${INTERCEPT_PATH}/oppslag/arbeidsgiver*`, cyApiMockData.arbeidsgivereMock).as(
+            'getArbeidsgivere',
+        );
+        cy.intercept('POST', `${INTERCEPT_PATH}/pleiepenger-sykt-barn/innsending`, innsendingResponse).as(
+            'postInnsending',
+        );
         cy.intercept('*.api.sanity.io', {});
     });
 };

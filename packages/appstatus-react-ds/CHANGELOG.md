@@ -1,5 +1,95 @@
 # @navikt/appstatus-react-ds
 
+## 2.17.4
+
+### Patch Changes
+
+-   e7bf8d1: Patch oppdateringer av pakker
+
+## 2.17.3
+
+### Patch Changes
+
+-   406b044: Patch pakkeoppdateringer
+
+## 2.17.2
+
+### Patch Changes
+
+-   6084e23: Diverse mindre pakkeoppdateringer - versjonstrigger
+-   Updated dependencies [6084e23]
+    -   @navikt/sif-common-hooks@0.1.2
+
+## 2.17.1
+
+### Patch Changes
+
+-   295d3ad: Diverse mindre pakkeoppdateringer - versjonstrigger
+-   Updated dependencies [295d3ad]
+    -   @navikt/sif-common-hooks@0.1.1
+
+## 2.17.0
+
+### Minor Changes
+
+-   53b47be: Nav Dekoratøren 2 i alle apper
+    Vite 5
+    patch og noen minor
+    Beholder react-router-dom 6.19.0 pga navigasjon knekker i noen apper
+
+## 2.16.0
+
+### Minor Changes
+
+-   Oppdaterte pakker. Minor og patch
+
+### Patch Changes
+
+-   Updated dependencies
+    -   @navikt/sif-common-hooks@0.1.0
+
+## 2.15.0
+
+### Minor Changes
+
+-   d31f28ec: Minor og patch oppdateringer på ds, react-router-dom, vite, msw
+
+## 2.14.11
+
+### Patch Changes
+
+-   6d3b3cbe: Minor og patch oppdateringer + nextjs major -> 14
+
+## 2.14.10
+
+### Patch Changes
+
+-   09ae5814: Patch-oppdateringer
+
+## 2.14.9
+
+### Patch Changes
+
+-   b4d45cf9: Diverse mindre pakkeoppdateringer
+
+## 2.14.8
+
+### Patch Changes
+
+-   cb7e6653: Oppdatere ds pakker etter at versjon 5.9.1 hadde feil. Fikset i v. 5.9.2
+
+## 2.14.7
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
+## 2.14.6
+
+### Patch Changes
+
+-   Pakkeoppdatering som fikser datepicker + modal bug
+
 ## 2.14.5
 
 ### Patch Changes

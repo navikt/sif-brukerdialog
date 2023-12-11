@@ -1,5 +1,5 @@
 import { Alert, Link } from '@navikt/ds-react';
-import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { ApplikasjonHendelse, SIFCommonGeneralEvents, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FileUploadErrors from '@navikt/sif-common-core-ds/lib/components/file-upload-errors/FileUploadErrors';
 import PictureScanningGuide from '@navikt/sif-common-core-ds/lib/components/picture-scanning-guide/PictureScanningGuide';
@@ -14,7 +14,7 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { useFormikContext } from 'formik';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import FormikFileUploader from '../../components/formik-file-uploader/FormikFileUploader';
+import FormikFileUploader from '@navikt/sif-common-core-ds/lib/components/formik-file-uploader/FormikFileUploader';
 import LegeerklæringFileList from '../../components/legeerklæring-file-list/LegeerklæringFileList';
 import usePersistSoknad from '../../hooks/usePersistSoknad';
 import getLenker from '../../lenker';
@@ -24,6 +24,8 @@ import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-va
 import { relocateToLoginPage } from '../../utils/navigationUtils';
 import { validateLegeerklæring } from '../../validation/fieldValidations';
 import SøknadFormStep from '../SøknadFormStep';
+import { uploadFile } from '../../api/api';
+import { getAttachmentURLFrontend } from '../../utils/attachmentUtilsAuthToken';
 
 const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
@@ -39,7 +41,7 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
 
     const ref = React.useRef({ attachments });
 
-    const { logHendelse, logUserLoggedOut } = useAmplitudeInstance();
+    const { logHendelse, logUserLoggedOut, logEvent } = useAmplitudeInstance();
 
     const vedleggOpplastingFeilet = async (files?: File[]) => {
         if (files) {
@@ -112,15 +114,21 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
             {totalSize <= MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
                 <Block margin="l">
                     <FormikFileUploader
+                        uploadFile={(file) => uploadFile(file)}
+                        getAttachmentURLFrontend={getAttachmentURLFrontend}
                         legend={intlHelper(intl, 'steg.lege.vedlegg.legend')}
                         name={SøknadFormField.legeerklæring}
-                        label={intlHelper(intl, 'steg.lege.vedlegg')}
+                        attachments={attachments}
+                        buttonLabel={intlHelper(intl, 'steg.lege.vedlegg')}
                         onErrorUploadingAttachments={vedleggOpplastingFeilet}
                         onFileInputClick={() => {
                             setFilesThatDidntGetUploaded([]);
                         }}
                         validate={validateLegeerklæring}
                         onUnauthorizedOrForbiddenUpload={userNotLoggedIn}
+                        onFilesUploaded={(antall, antallFeilet) => {
+                            logEvent(SIFCommonGeneralEvents.vedleggLastetOpp, { antall, antallFeilet });
+                        }}
                     />
                 </Block>
             )}

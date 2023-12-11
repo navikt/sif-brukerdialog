@@ -1,42 +1,41 @@
 /* eslint-disable no-console */
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
-import { ArbeidIPeriode } from './ArbeidstidTypes';
-import { DateRange, ValidationError } from '@navikt/sif-common-formik-ds/lib';
-import { FormattedMessage, useIntl } from 'react-intl';
-import { useSøknadContext } from '../../context/hooks/useSøknadContext';
-import { StepId } from '../../../types/StepId';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
-import actionsCreator from '../../context/action/actionCreator';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
-import SøknadStep from '../../SøknadStep';
-import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import { Heading } from '@navikt/ds-react';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import ConfirmationDialog from '@navikt/sif-common-core-ds/lib/components/dialogs/confirmation-dialog/ConfirmationDialog';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-import { prettifyDateExtended } from '@navikt/sif-common-utils/lib';
+import { DateRange, ValidationError } from '@navikt/sif-common-formik-ds/lib';
+import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import { useState } from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
+import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
+import useLogSøknadInfo from '../../../hooks/useLogSøknadInfo';
+import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
+import { usePersistTempFormValues } from '../../../hooks/usePersistTempFormValues';
+import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import { ConfirmationDialogType } from '../../../types/ConfirmationDialog';
+import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
+import SøknadStep from '../../SøknadStep';
+import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
+import actionsCreator from '../../context/action/actionCreator';
+import { useSøknadContext } from '../../context/hooks/useSøknadContext';
+import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
+import { getPeriodeSomFrilanserInnenforPeriode } from '../arbeidssituasjon/form-parts/arbeidssituasjonFrilansUtils';
+import { getPeriodeSomSelvstendigInnenforPeriode } from '../arbeidssituasjon/form-parts/arbeidssituasjonSelvstendigUtils';
+import { getIngenFraværConfirmationDialog } from '../confirmation-dialogs/ingenFraværConfirmation';
+import { ArbeidIPeriode } from './ArbeidstidTypes';
 import {
     getAntallArbeidsforhold,
     getArbeidstidStepInitialValues,
     getArbeidstidSøknadsdataFromFormValues,
 } from './arbeidstidStepUtils';
 import ArbeidIPeriodeSpørsmål from './form-parts/arbeid-i-periode-spørsmål/ArbeidIPeriodeSpørsmål';
-import { ArbeidsforholdType } from './form-parts/types';
-import { søkerKunHelgedager } from '../tidsrom/tidsromStepUtils';
-import { Heading } from '@navikt/ds-react';
-import { getPeriodeSomFrilanserInnenforPeriode } from '../arbeidssituasjon/form-parts/arbeidssituasjonFrilansUtils';
-import { getPeriodeSomSelvstendigInnenforPeriode } from '../arbeidssituasjon/form-parts/arbeidssituasjonSelvstendigUtils';
-import useLogSøknadInfo from '../../../hooks/useLogSøknadInfo';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import { useState } from 'react';
-import { ConfirmationDialogType } from '../../../types/ConfirmationDialog';
 import { harFraværIPerioden } from './form-parts/arbeidstidUtils';
-import { getIngenFraværConfirmationDialog } from '../confirmation-dialogs/ingenFraværConfirmation';
-import ConfirmationDialog from '@navikt/sif-common-core-ds/lib/components/dialogs/confirmation-dialog/ConfirmationDialog';
-import { usePersistTempFormValues } from '../../../hooks/usePersistTempFormValues';
+import { ArbeidsforholdType } from './form-parts/types';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 
 export enum ArbeidsaktivitetType {
     arbeidstaker = 'arbeidstaker',
@@ -221,20 +220,7 @@ const ArbeidstidStep = () => {
                                 <FormBlock>
                                     <SifGuidePanel>
                                         <p>
-                                            <FormattedMessage
-                                                id={'arbeidIPeriode.StepInfo.1'}
-                                                values={
-                                                    periode
-                                                        ? {
-                                                              fra: prettifyDateExtended(periode.from),
-                                                              til: prettifyDateExtended(periode.to),
-                                                          }
-                                                        : undefined
-                                                }
-                                            />
-                                        </p>
-                                        <p>
-                                            <FormattedMessage id={'arbeidIPeriode.StepInfo.2'} />
+                                            <FormattedMessage id={'arbeidIPeriode.StepInfo.1'} />
                                         </p>
                                     </SifGuidePanel>
 
@@ -255,10 +241,6 @@ const ArbeidstidStep = () => {
                                                                 dagerMedPleie={dagerMedPleie}
                                                                 periode={periode}
                                                                 parentFieldName={`${ArbeidstidFormFields.ansattArbeidstid}.${index}`}
-                                                                søkerKunHelgedager={søkerKunHelgedager(
-                                                                    periode.from,
-                                                                    periode.to,
-                                                                )}
                                                                 onArbeidstidVariertChange={oppdatereArbeidstid}
                                                                 onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
                                                                 onArbeidstidEnkeltdagRegistrert={
@@ -280,14 +262,16 @@ const ArbeidstidStep = () => {
                                             </Heading>
                                             <Block>
                                                 <ArbeidIPeriodeSpørsmål
-                                                    arbeidsstedNavn="Frilansoppdrag"
+                                                    arbeidsstedNavn={intlHelper(
+                                                        intl,
+                                                        'arbeidIPeriode.arbeidstidSted.frilansoppdrag',
+                                                    )}
                                                     arbeidsforholdType={ArbeidsforholdType.FRILANSER}
                                                     arbeidIPeriode={frilansArbeidstid.arbeidIPeriode}
                                                     jobberNormaltTimer={frilansArbeidstid.jobberNormaltTimer}
                                                     periode={periodeSomFrilanserISøknadsperiode}
                                                     dagerMedPleie={dagerMedPleie}
                                                     parentFieldName={ArbeidstidFormFields.frilansArbeidstid}
-                                                    søkerKunHelgedager={søkerKunHelgedager(periode.from, periode.to)}
                                                     onArbeidstidVariertChange={oppdatereArbeidstid}
                                                     onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
                                                     onArbeidstidEnkeltdagRegistrert={logArbeidEnkeltdagRegistrert}
@@ -304,14 +288,16 @@ const ArbeidstidStep = () => {
                                             </Heading>
                                             <Block>
                                                 <ArbeidIPeriodeSpørsmål
-                                                    arbeidsstedNavn="Selvstendig næringsdrivende"
+                                                    arbeidsstedNavn={intlHelper(
+                                                        intl,
+                                                        'arbeidIPeriode.arbeidstidSted.sn',
+                                                    )}
                                                     arbeidsforholdType={ArbeidsforholdType.SELVSTENDIG}
                                                     jobberNormaltTimer={selvstendigArbeidstid.jobberNormaltTimer}
                                                     arbeidIPeriode={selvstendigArbeidstid.arbeidIPeriode}
                                                     periode={periodeSomSelvstendigISøknadsperiode}
                                                     dagerMedPleie={dagerMedPleie}
                                                     parentFieldName={ArbeidstidFormFields.selvstendigArbeidstid}
-                                                    søkerKunHelgedager={søkerKunHelgedager(periode.from, periode.to)}
                                                     onArbeidstidVariertChange={oppdatereArbeidstid}
                                                     onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
                                                     onArbeidstidEnkeltdagRegistrert={logArbeidEnkeltdagRegistrert}

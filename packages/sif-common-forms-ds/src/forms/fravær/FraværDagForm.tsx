@@ -159,6 +159,8 @@ const FraværDagFormView = ({
 
                     return (
                         <FraværDagForm.Form
+                            submitButtonLabel="Ok"
+                            showButtonArrows={false}
                             onCancel={onCancel}
                             formErrorHandler={getFormErrorHandler(intl, 'fraværDagForm')}>
                             {headerContent && <Block>{headerContent}</Block>}

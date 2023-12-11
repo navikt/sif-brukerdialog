@@ -1,7 +1,7 @@
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { setAvailableLanguages, onLanguageSelect, Locale } from '@navikt/nav-dekoratoren-moduler';
+import { setAvailableLanguages, onLanguageSelect, DecoratorLocale } from '@navikt/nav-dekoratoren-moduler';
 
-function useDecoratorLanguageSelector(languages: Locale[], onChangeLocale: (locale: Locale) => void) {
+function useDecoratorLanguageSelector(languages: DecoratorLocale[], onChangeLocale: (locale: DecoratorLocale) => void) {
     useEffectOnce(() => {
         if (languages.length > 1) {
             setAvailableLanguages(
@@ -12,7 +12,7 @@ function useDecoratorLanguageSelector(languages: Locale[], onChangeLocale: (loca
             );
         }
         onLanguageSelect((language) => {
-            onChangeLocale(language.locale as Locale);
+            onChangeLocale(language.locale as DecoratorLocale);
         });
     });
 }

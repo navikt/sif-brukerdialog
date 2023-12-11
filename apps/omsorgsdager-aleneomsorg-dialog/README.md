@@ -9,19 +9,15 @@ For å kjøre opp app-en i dev:
 3.  `yarn bp` i root sif-brukerdialog.
 
 4.  `yarn dev-api` i root omsorgsdager-aleneomsorg-dialog.
-5.  `yarn snd` i root omsorgsdager-aleneomsorg-dialog.
+5.  `yarn dev` i root omsorgsdager-aleneomsorg-dialog.
 
 For å kjøre enhetstester:
 
 1.  `yarn test`.
 
-For å kjøre Cypress tester:
+For å kjøre Playwright tester:
 
-1.  `yarn dev-api` i root omsorgsdager-aleneomsorg-dialog i egen terminal.
-2.  `yarn snd` i root omsorgsdager-aleneomsorg-dialog i egen terminal.
-3.  `yarn cypress-run` i root omsorgsdager-aleneomsorg-dialog i egen terminal.
-    eller
-    `yarn cypress-open` i root omsorgsdager-aleneomsorg-dialog i egen terminal.
+1.  `yarn e2e` i root omsorgsdager-aleneomsorg-dialog i egen terminal.
 
 ## Henvendelser
 
@@ -31,4 +27,4 @@ Interne henvendelser kan sendes via Slack i kanalen #sif-brukerdialog
 
 ## Icon License
 
-This project uses [Streamline Icons](http://www.streamlineicons.com/). If you use them in your project please adhere to the [Streamline Icons license agreement](http://www.streamlineicons.com/license.html).
+This project uses [Streamline Icons](http://www.streamlineicons.com/). If you use them in your project please adhere to the [Streamline Icons license agreement](http://www.streamlineicons.com/license.html)

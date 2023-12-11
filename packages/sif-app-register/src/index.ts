@@ -39,7 +39,7 @@ export const EndringsmeldingPsbApp: AppInfo = {
 };
 
 export const PleiepengerLivetsSluttApp: AppInfo = {
-    key: 'pleiepengesoknad-livets-slutt',
+    key: 'pleiepenger-i-livets-sluttfase-soknad',
     navn: 'Pleiepenger i livets sluttfase',
     tittel: {
         nb: 'Søknad om pleiepenger i livets sluttfase',
