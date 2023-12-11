@@ -24,8 +24,7 @@ const KvitteringPage = ({ søker, kvitteringInfo, onUnmount }: Props) => {
             onUnmount();
         };
     });
-    // eslint-disable-next-line no-console
-    console.log('kvitteringInfo: ', kvitteringInfo);
+
     useLogSidevisning(SIFCommonPageKey.kvittering);
 
     return (
