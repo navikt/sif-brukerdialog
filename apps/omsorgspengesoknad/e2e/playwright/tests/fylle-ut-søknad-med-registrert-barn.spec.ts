@@ -38,10 +38,10 @@ test('Fyll ut søknad med registrert barn', async ({ page }) => {
     await expect(await page.getByText('Fødselsnummer: 02869599258').isVisible()).toBeTruthy();
     await expect(await page.getByText('Navn: ALFABETISK FAGGOTT').isVisible()).toBeTruthy();
     await expect(await page.getByText('Fødselsdato: 8. juni 2019').isVisible()).toBeTruthy();
+    await expect(await page.getByText('Bor du sammen med barnet?Ja').isVisible()).toBeTruthy();
     await expect(
         await page.getByText('Har barnet kronisk/langvarig sykdom eller funksjonshemning?Ja').isVisible(),
     ).toBeTruthy();
-    await expect(await page.getByText('Bor du sammen med barnet?Ja').isVisible()).toBeTruthy();
     await expect(await page.getByText('navlogopng.png').isVisible()).toBeTruthy();
 
     await page

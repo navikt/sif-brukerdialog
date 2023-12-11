@@ -20,8 +20,7 @@ test('Fyll ut søknad med ikke delt bosted', async ({ page }) => {
     /** Barn */
     await page.getByRole('heading', { level: 1, name: 'Barn' });
     await page.getByLabel('ALFABETISK FAGGOTTFødt 08.06.2019').check();
-    await page.getByRole('group', { name: 'Bor du sammen med barnet?' }).getByLabel('Nei').check();
-    await page.getByTestId('sammeAdresse').getByLabel('Ja', { exact: true }).check();
+    await page.getByText('Ja, barnet har delt fast').click();
     await page.getByRole('group', { name: 'Har barnet kronisk/langvarig' }).getByLabel('Ja').check();
     await page.getByTestId('høyereRisikoForFravær_no').check();
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
@@ -45,10 +44,10 @@ test('Fyll ut søknad med ikke delt bosted', async ({ page }) => {
     await expect(await page.getByText('Fødselsnummer: 02869599258').isVisible()).toBeTruthy();
     await expect(await page.getByText('Navn: ALFABETISK FAGGOTT').isVisible()).toBeTruthy();
     await expect(await page.getByText('Fødselsdato: 8. juni 2019').isVisible()).toBeTruthy();
+    await expect(await page.getByText('Bor du sammen med barnet?').isVisible()).toBeTruthy();
     await expect(
         await page.getByText('Har barnet kronisk/langvarig sykdom eller funksjonshemning?Ja').isVisible(),
     ).toBeTruthy();
-    await expect(await page.getByText('Bor du sammen med barnet?').isVisible()).toBeTruthy();
     await expect(await page.getByText('navlogopng.png').isVisible()).toBeTruthy();
     await expect(await page.getByText('avtale.png').isVisible()).toBeTruthy();
 
