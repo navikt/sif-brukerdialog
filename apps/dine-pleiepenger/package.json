@@ -18,6 +18,7 @@
         "@navikt/next-auth-wonderwall": "1.5.0",
         "@navikt/next-logger": "1.21.0",
         "@navikt/sif-common-core-ds": "workspace: *",
+        "@navikt/sif-common-sentry": "workspace: *",
         "@navikt/sif-common-utils": "workspace: *",
         "axios": "1.6.2",
         "jsonwebtoken": "9.0.2",

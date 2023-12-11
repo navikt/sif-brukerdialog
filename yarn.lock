@@ -3174,6 +3174,7 @@ __metadata:
     "@navikt/next-auth-wonderwall": 1.5.0
     "@navikt/next-logger": 1.21.0
     "@navikt/sif-common-core-ds": "workspace: *"
+    "@navikt/sif-common-sentry": "workspace: *"
     "@navikt/sif-common-utils": "workspace: *"
     "@next/bundle-analyzer": 14.0.3
     "@playwright/test": ^1.40.1
@@ -4062,7 +4063,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-common-sentry@workspace:*, @navikt/sif-common-sentry@workspace:packages/sif-common-sentry":
+"@navikt/sif-common-sentry@workspace: *, @navikt/sif-common-sentry@workspace:*, @navikt/sif-common-sentry@workspace:packages/sif-common-sentry":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-sentry@workspace:packages/sif-common-sentry"
   dependencies:
