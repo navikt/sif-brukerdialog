@@ -21,14 +21,16 @@ test('Fyll ut søknad med ikke delt bosted', async ({ page }) => {
     /** Barn */
     await page.getByRole('heading', { level: 1, name: 'Barn' });
     await page.getByLabel('ALFABETISK FAGGOTTFødt 08.06.2019').check();
+    await page.getByRole('group', { name: 'Bor du sammen med barnet?' }).getByLabel('Nei').check();
     await page
-        .getByRole('group', { name: 'Er du folkeregistrert på samme adresse som barnet?' })
-        .getByLabel('Nei')
-        .check();
-    await page
-        .getByRole('group', { name: 'Har barnet kronisk sykdom, funksjonshemning eller langvarig sykdom?' })
+        .getByRole('group', { name: 'Har barnet kronisk/langvarig sykdom eller funksjonshemning?' })
         .getByLabel('Ja')
         .check();
+    await expect(
+        await page
+            .getByText('Har du høyere risiko for fravær på jobb på grunn av barnets sykdom eller funksjonshemning?Nei')
+            .isVisible(),
+    ).toBeTruthy();
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
     /** Legeerklæring */
@@ -51,11 +53,9 @@ test('Fyll ut søknad med ikke delt bosted', async ({ page }) => {
     await expect(await page.getByText('Navn: ALFABETISK FAGGOTT').isVisible()).toBeTruthy();
     await expect(await page.getByText('Fødselsdato: 8. juni 2019').isVisible()).toBeTruthy();
     await expect(
-        await page.getByText('Har barnet kronisk sykdom, funksjonshemning eller langvarig sykdom?Ja').isVisible(),
+        await page.getByText('Har barnet kronisk/langvarig sykdom eller funksjonshemning?Ja').isVisible(),
     ).toBeTruthy();
-    await expect(
-        await page.getByText('Er du folkeregistrert på samme adresse som barnet?Nei').isVisible(),
-    ).toBeTruthy();
+    await expect(await page.getByText('Bor du sammen med barnet?').isVisible()).toBeTruthy();
     await expect(await page.getByText('navlogopng.png').isVisible()).toBeTruthy();
     await expect(await page.getByText('avtale.png').isVisible()).toBeTruthy();
 
