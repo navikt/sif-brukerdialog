@@ -8,7 +8,13 @@ const appDirectives = {
     'script-src': ["'self'", "'unsafe-eval'", "'unsafe-inline'", 'https://uxsignals-frontend.uxsignals.app.iterate.no'],
     'script-src-elem': ["'self'", "'unsafe-inline'", 'https://uxsignals-frontend.uxsignals.app.iterate.no'],
     'worker-src': ["'self'"],
-    'connect-src': ["'self'", 'https://*.nav.no', 'https://*.uxsignals.com', 'http://localhost:1234'],
+    'connect-src': [
+        "'self'",
+        'https://*.nav.no',
+        'https://*.uxsignals.com',
+        'http://localhost:1234',
+        '*.api.sanity.io',
+    ],
 };
 
 /**
