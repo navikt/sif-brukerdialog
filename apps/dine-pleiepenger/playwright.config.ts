@@ -26,8 +26,8 @@ export default defineConfig({
         env: {
             PUBLIC_PATH: '/dine-pleiepenger',
             API_URL: 'http://localhost:8089',
-            APPSTATUS_PROJECT_ID: 'ryujtq87',
-            APPSTATUS_DATASET: 'staging',
+            NEXT_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
+            NEXT_PUBLIC_APPSTATUS_DATASET: 'staging',
             NEXT_PUBLIC_BASE_PATH: '/dine-pleiepenger',
             NEXT_PUBLIC_LOGIN_URL: '/dummy',
             NEXT_PUBLIC_RUNTIME_ENVIRONMENT: 'dev',
