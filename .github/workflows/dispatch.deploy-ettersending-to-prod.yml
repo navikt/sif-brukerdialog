@@ -17,7 +17,7 @@ jobs:
     deploy-to-prod:
         name: Deploy sif-ettersending to prod
         needs: [run-tests]
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-prod.yml@main
+        uses: ./.github/workflows/.deploy-app-to-prod.yml
         secrets: inherit
         permissions:
             contents: write
