@@ -15,7 +15,7 @@ import {
 } from './stepUtils';
 
 export const getNextStepRoute = (stepId: StepID, formValues?: SøknadFormValues): string | undefined => {
-    return getSøknadStepConfig(formValues)[stepId].nextStep || undefined;
+    return getSøknadStepConfig(formValues)[stepId].nextStepRoute || undefined;
 };
 
 export const isAvailable = (path: StepID | RouteConfig, values: SøknadFormValues, søknadHasBeenSent?: boolean) => {

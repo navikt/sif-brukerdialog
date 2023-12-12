@@ -26,9 +26,9 @@ function UtenlandskNæringSummary({ utenlandskNæring }: Props) {
                   fraOgMed: prettifyDate(ISODateToDate(næring.fraOgMed)),
               });
         return (
-            <Block margin="m" padBottom="l" key={næring.navnPåVirksomheten}>
-                <li>
-                    <div>
+            <li key={næring.navnPåVirksomheten}>
+                <Block margin="m" padBottom="l">
+                    <div data-testid="oppsummering-utenlandskNæring-navn">
                         {`${intlHelper(intl, 'sifForms.utenlandskNæringForm.summary.navn')}: ${
                             næring.navnPåVirksomheten
                         }.`}
@@ -36,7 +36,6 @@ function UtenlandskNæringSummary({ utenlandskNæring }: Props) {
                     <div>
                         {`${intlHelper(intl, 'sifForms.utenlandskNæringForm.summary.næringstype')}: ${næringstype}.`}
                     </div>
-
                     <div>
                         <FormattedMessage
                             id="sifForms.utenlandskNæringForm.summary.registrertILand"
@@ -50,9 +49,9 @@ function UtenlandskNæringSummary({ utenlandskNæring }: Props) {
                         )}
                         .
                     </div>
-                    <div>{tidsinfo}</div>
-                </li>
-            </Block>
+                    <div data-testid="oppsummering-utenlandskNæring-tidsinfo">{tidsinfo}</div>
+                </Block>
+            </li>
         );
     };
     return (

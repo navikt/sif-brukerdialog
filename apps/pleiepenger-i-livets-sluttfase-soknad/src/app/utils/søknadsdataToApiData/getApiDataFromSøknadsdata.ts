@@ -1,9 +1,9 @@
+import { Attachment } from '@navikt/sif-common-core-ds/lib/types';
 import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import { dateToISODate } from '@navikt/sif-common-utils/lib';
-import { Attachment } from '../../components/formik-file-uploader/useFormikFileUploader';
-import { YesOrNoDontKnow } from '../../types/YesOrNoDontKnow';
 import { FlereSokereApiData, SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
+import { YesOrNoDontKnow } from '../../types/YesOrNoDontKnow';
 import { getAttachmentURLBackend } from '../attachmentUtilsAuthToken';
 import { getDataBruktTilUtledning } from '../getDataBruktTilUtledning';
 import { getArbeidsgivereApiDataFromSøknadsdata } from './getArbeidsgivereApiDataFromSøknadsdata';

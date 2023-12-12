@@ -198,15 +198,9 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                         includeValidationSummary={true}
                         onCancel={onCancel}
                         formErrorHandler={getFormErrorHandler(intl, 'virksomhetForm')}
+                        submitButtonLabel="Ok"
+                        showButtonArrows={false}
                         cleanup={cleanupVirksomhetFormValues}>
-                        <Block padBottom="l">
-                            <Heading level="1" size="medium">
-                                {harFlereVirksomheter
-                                    ? getText('sifForms.virksomhet.form_title.flere')
-                                    : getText('sifForms.virksomhet.form_title')}
-                            </Heading>
-                        </Block>
-
                         <Form.RadioGroup
                             name={VirksomhetFormField.næringstype}
                             legend={getText('sifForms.virksomhet.hvilken_type_virksomhet')}

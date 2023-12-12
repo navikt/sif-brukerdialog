@@ -12,8 +12,8 @@ const MAX_MINUTES = 59;
 type TimeInputChangeFunc = (time: Partial<InputTime> | undefined, isValidTime: boolean) => void;
 
 export type TimeInputLabels = {
-    hours?: React.ReactNode;
-    minutes?: React.ReactNode;
+    hours?: string;
+    minutes?: string;
 };
 
 export type TimeInputLayout = 'vertical' | 'horizontal';
@@ -93,11 +93,14 @@ const TimeInput: React.FunctionComponent<TimeInputProps> = ({
             )}>
             <div className={bem.element('contentWrapper')}>
                 <div className={bem.element('inputWrapper')}>
-                    <span className={bem.element('label')}>{labels.hours}</span>
+                    <span role="presentation" aria-hidden="true" className={bem.element('label')}>
+                        {labels.hours}
+                    </span>
                     {disabled ? (
                         <DisabledInput className={bem.element('hours')} />
                     ) : (
                         <TextField
+                            label={labels.hours}
                             ref={refs?.hours}
                             className={bem.element('hours')}
                             type="text"
@@ -115,14 +118,15 @@ const TimeInput: React.FunctionComponent<TimeInputProps> = ({
                                 setStateTime(newTime);
                                 handleTimeChange(newTime, onChange);
                             }}
-                            label={labels.hours}
                             hideLabel={true}
                             data-testid={testKey ? `${testKey}_hours` : undefined}
                         />
                     )}
                 </div>
                 <div className={bem.element('inputWrapper')}>
-                    <span className={bem.element('label')}>{labels.minutes}</span>
+                    <span className={bem.element('label')} role="presentation" aria-hidden={true}>
+                        {labels.minutes}
+                    </span>
                     {disabled ? (
                         <DisabledInput className={bem.element('minutes')} />
                     ) : (

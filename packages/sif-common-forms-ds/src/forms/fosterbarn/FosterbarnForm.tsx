@@ -87,7 +87,11 @@ const FosterbarnForm = ({
                 initialValues={initialValues}
                 onSubmit={onFormikSubmit}
                 renderForm={() => (
-                    <Form.Form onCancel={onCancel} formErrorHandler={getFormErrorHandler(intl, 'fosterbarnForm')}>
+                    <Form.Form
+                        onCancel={onCancel}
+                        formErrorHandler={getFormErrorHandler(intl, 'fosterbarnForm')}
+                        submitButtonLabel="Ok"
+                        showButtonArrows={false}>
                         <Form.TextField
                             name={FosterbarnFormField.fødselsnummer}
                             label={txt.form_fødselsnummer_label}

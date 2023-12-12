@@ -1,6 +1,7 @@
 import { DateRange, ISODateRangeToDateRange, ISODurationToDuration } from '@navikt/sif-common-utils';
 import { Arbeidsgiver, K9SakArbeidstaker, K9SakArbeidstidPeriodeMap } from '@types';
 import { tilgangskontroll, tilgangskontrollUtils } from '../tilgangskontroll';
+import { vi } from 'vitest';
 
 const arbeidsgiver1: Arbeidsgiver = { key: 'a_1', organisasjonsnummer: '1' } as Arbeidsgiver;
 const arbeidsgiver2: Arbeidsgiver = { key: 'a_2', organisasjonsnummer: '2' } as Arbeidsgiver;
@@ -9,13 +10,13 @@ const arbeidsgiver3: Arbeidsgiver = { key: 'a_3', organisasjonsnummer: '3' } as 
 const arbeidstaker1: K9SakArbeidstaker = { organisasjonsnummer: '1' } as K9SakArbeidstaker;
 const arbeidstaker2: K9SakArbeidstaker = { organisasjonsnummer: '2' } as K9SakArbeidstaker;
 
-jest.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => ({
+vi.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => ({
     getEnvironmentVariable: () => {
         return false;
     },
 }));
 
-jest.mock('../featureToggleUtils', () => ({
+vi.mock('../featureToggleUtils', () => ({
     Feature: {
         UKJENT_ARBEIDSFOHOLD: 'on',
     },

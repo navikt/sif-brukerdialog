@@ -1,0 +1,92 @@
+.sectionPanel {
+    $mobile-breakpoint: 576px;
+    $tablet-breakpoint: 800px;
+    max-width: 800px;
+    margin-top: 3.5rem;
+    margin-bottom: 1rem;
+
+    @media (min-width: $tablet-breakpoint) {
+        margin-bottom: 2rem;
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &__headerAndTitle {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__illustration {
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    &__header {
+        order: 1;
+    }
+
+    &__title {
+        margin-bottom: 0.5rem;
+
+        @media (min-width: $tablet-breakpoint) {
+            margin-bottom: 1rem;
+        }
+
+        order: 2;
+    }
+
+    &__panel {
+        width: 100%;
+        padding: 1rem 1rem 1.5rem 1rem;
+
+        @media (min-width: $tablet-breakpoint) {
+            padding: 2rem 2rem 2.5rem 2rem;
+        }
+
+        @media (max-width: $mobile-breakpoint) {
+            padding: 1rem 1rem 1.5rem 1rem;
+        }
+    }
+
+    &--illustrationOutside {
+        .sectionPanel {
+            &__panel {
+                margin-bottom: 2.5rem;
+                padding: 0rem 2rem 3.5rem 2rem;
+
+                @media (min-width: $tablet-breakpoint) {
+                    margin-bottom: 4.5rem;
+                }
+                @media (max-width: $mobile-breakpoint) {
+                    padding: 0rem 1rem 3.5rem 1rem;
+                }
+            }
+
+            &__illustration {
+                margin-bottom: -2.5rem;
+                transform: translateY(calc(-50%)) scale(0.8);
+
+                @media (min-width: $tablet-breakpoint) {
+                    margin-bottom: -2rem;
+                    transform: translateY(calc(-50%)) scale(1);
+                }
+            }
+        }
+    }
+
+    @media print {
+        &__panel {
+            padding: 0 1rem;
+        }
+
+        &__illustration {
+            display: none;
+        }
+
+        h3 {
+            margin-bottom: 0.5rem;
+        }
+    }
+}

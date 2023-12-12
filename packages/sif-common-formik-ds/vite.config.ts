@@ -1,8 +1,18 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/// <reference types="vitest" />
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
-import Checker from 'vite-plugin-checker';
+import checker from 'vite-plugin-checker';
 
-// https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [react(), Checker({ typescript: true })],
+    plugins: [
+        react({
+            include: '**/*.{tsx}',
+        }),
+        checker({ typescript: true }),
+    ],
+    resolve: {},
+    build: {
+        sourcemap: true,
+    },
 });

@@ -4,14 +4,14 @@
     "license": "MIT",
     "name": "@navikt/pleiepenger-i-livets-sluttfase-soknad",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "1.1.4",
+    "version": "2.5.3",
     "private": true,
     "type": "module",
     "dependencies": {
-        "@navikt/ds-css": "5.10.1",
+        "@navikt/ds-css": "5.11.4",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "5.10.1",
-        "@navikt/ds-tailwind": "5.10.1",
+        "@navikt/ds-react": "5.11.4",
+        "@navikt/ds-tailwind": "5.11.4",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
@@ -22,8 +22,8 @@
         "@navikt/sif-common-soknad-ds": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
-        "@testing-library/react": "14.1.0",
-        "axios": "1.6.1",
+        "@testing-library/react": "14.1.2",
+        "axios": "1.6.2",
         "busboy": "1.6.0",
         "compression": "1.7.4",
         "cookie-parser": "1.4.6",
@@ -32,58 +32,40 @@
         "express": "4.18.2",
         "formik": "2.4.5",
         "helmet": "7.1.0",
-        "history": "5.3.0",
         "http-proxy-middleware": "2.0.6",
-        "jose": "5.1.0",
+        "jose": "5.1.3",
         "lodash": "4.17.21",
         "mustache-express": "1.3.2",
         "object-hash": "3.0.0",
         "openid-client": "5.6.1",
-        "promise": "8.3.0",
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "react-fast-compare": "3.2.2",
-        "react-intl": "6.5.4",
-        "react-router-dom": "6.18.0",
-        "uuid": "^9.0.1"
+        "react-intl": "6.5.5",
+        "react-router-dom": "6.20.1",
+        "uuid": "9.0.1"
     },
     "devDependencies": {
-        "@axe-core/playwright": "4.8.1",
-        "@babel/core": "7.23.3",
-        "@babel/preset-env": "7.23.3",
+        "@axe-core/playwright": "4.8.2",
+        "@babel/core": "7.23.5",
+        "@babel/preset-env": "7.23.5",
         "@babel/preset-react": "7.23.3",
         "@babel/preset-typescript": "7.23.3",
-        "@playwright/test": "^1.39.0",
-        "@storybook/react-vite": "7.5.3",
-        "@testing-library/react": "14.1.0",
-        "@types/jest": "29.5.8",
+        "@playwright/test": "1.40.1",
+        "@storybook/react-vite": "7.6.4",
+        "@testing-library/react": "14.1.2",
         "@types/object-hash": "3.0.6",
-        "@types/react": "18.2.37",
-        "@types/react-dom": "18.2.15",
+        "@types/react": "18.2.43",
+        "@types/react-dom": "18.2.17",
         "@types/react-router-dom": "5.3.3",
         "babel-polyfill": "6.26.0",
         "cross-env": "7.0.3",
-        "css-loader": "6.8.1",
-        "css-minimizer-webpack-plugin": "5.0.1",
-        "express-rate-limit": "7.1.4",
-        "postcss": "8.4.31",
-        "postcss-loader": "7.3.3",
-        "react-scripts": "5.0.1",
-        "sass": "1.69.5",
-        "sass-loader": "13.3.2",
-        "sinon": "17.0.1",
-        "source-map-loader": "4.0.1",
-        "start-server-and-test": "2.0.2",
-        "style-loader": "3.3.3",
-        "ts-loader": "9.5.0",
-        "typescript": "5.2.2",
-        "vite": "4.5.0",
-        "vite-plugin-checker": "0.6.2"
-    },
-    "jest": {
-        "transformIgnorePatterns": [
-            "node_modules/(?!(@navikt)).*\\.js$"
-        ]
+        "express-rate-limit": "7.1.5",
+        "postcss": "8.4.32",
+        "typescript": "5.3.3",
+        "vite": "5.0.7",
+        "vite-plugin-checker": "0.6.2",
+        "vitest": "1.0.4"
     },
     "scripts": {
         "build-app": "vite build --base=/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase",
@@ -92,14 +74,11 @@
         "codegen": "playwright codegen",
         "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",
         "e2e-ui": "playwright test --ui",
-        "e2e": "playwright test",
-        "playwright-test": "playwright test",
-        "snd": "cross-env NODE_ENV=development node ./server.cjs",
+        "dev": "cross-env NODE_ENV=development node ./server.cjs",
         "start-e2e-server": "node ./server-e2e.cjs",
         "start-express": "node ./server.cjs",
         "storybook": "storybook dev -p 6006 -s public",
-        "test-watch": "react-scripts test --watchAll=true --env=jsdom",
-        "test": "react-scripts test --watchAll=false --env=jsdom"
+        "test": "vitest"
     },
     "eslintConfig": {
         "overrides": [
@@ -112,8 +91,5 @@
                 }
             }
         ]
-    },
-    "resolutions": {
-        "babel-core": "7.0.0-bridge.0"
     }
 }

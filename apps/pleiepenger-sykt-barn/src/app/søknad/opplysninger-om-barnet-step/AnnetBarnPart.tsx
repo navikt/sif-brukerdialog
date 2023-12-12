@@ -135,6 +135,7 @@ const AnnetBarnPart: React.FC<Props> = ({ formValues, søkersFødselsnummer, att
                                     }
                                     return dateError;
                                 }}
+                                minDate={nYearsAgo(18)}
                                 maxDate={dateToday}
                                 dropdownCaption={true}
                             />
@@ -191,6 +192,7 @@ const AnnetBarnPart: React.FC<Props> = ({ formValues, søkersFødselsnummer, att
                                         : undefined;
                                 }}
                                 value={formValues.relasjonTilBarnet || ''}
+                                data-testid="opplysninger-om-barnet-relasjonAnnetBeskrivelse"
                             />
                         </FormBlock>
                     )}

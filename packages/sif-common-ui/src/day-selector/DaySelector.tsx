@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { Accordion, BodyShort, DatePicker, HStack, Link, Tag, VStack } from '@navikt/ds-react';
+import { Accordion, BodyShort, DatePicker, HStack, Tag, VStack } from '@navikt/ds-react';
 import React, { useMemo, useState } from 'react';
 import {
     DateRange,
@@ -106,24 +106,18 @@ const DaySelector: React.FunctionComponent<Props> = ({
                     <div className="daySelector__tags">
                         <VStack gap="2">
                             <BodyShort as="div" spacing={false} size="small">
-                                Valgte dager:
+                                Antall valgte dager:
                             </BodyShort>
 
                             <HStack gap={'2'} align={'center'} wrap={true}>
                                 {monthsWithSelectedDates.map((m, index) => {
                                     const antallValgteDager = selectedDaysInMonths[getMonthKey(m.from)].length;
+                                    const månedNavn = dayjs(m.from).format('MMMM');
                                     return (
-                                        <Link
-                                            key={index}
-                                            variant="action"
-                                            onClick={() => setCurrentMonth(m.from)}
-                                            underline={false}
-                                            style={{ cursor: 'pointer' }}>
-                                            <Tag variant="info" key={index} size="small">
-                                                <div className="capitalize">{dayjs(m.from).format('MMMM')}</div>:{' '}
-                                                {antallValgteDager} {antallValgteDager === 1 ? 'dag' : 'dager'}
-                                            </Tag>
-                                        </Link>
+                                        <Tag variant="info" key={index} size="small">
+                                            <div className="capitalize">{månedNavn}</div>: {antallValgteDager}{' '}
+                                            {antallValgteDager === 1 ? 'dag' : 'dager'}
+                                        </Tag>
                                     );
                                 })}
                             </HStack>

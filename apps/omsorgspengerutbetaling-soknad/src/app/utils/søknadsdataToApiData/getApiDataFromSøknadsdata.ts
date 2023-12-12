@@ -1,17 +1,17 @@
+import { IntlShape } from 'react-intl';
+import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
 import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
-import { Attachment } from '../../components/formik-file-uploader/useFormikFileUploader';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { RegistrertBarn } from '../../types/RegistrertBarn';
 import { SøknadApiData, YesNoSpørsmålOgSvar } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { getAttachmentURLBackend } from '../attachmentUtilsAuthToken';
-import { getUtenlansoppholdApiDataFromSøknadsdata } from './getUtenlandsoppholdApiDataFromSøknadsdata';
 import { getDineBarnApiDataFromSøknadsdata } from './getDineBarnApiDataFromSøknadsdata';
-import { getMedlemskapApiDataFromSøknadsdata } from './getMedlemskapApiDataFromSøknadsdata';
-import { getUtbetalingsperioderApiDataFromSøknadsdata } from './getUtbetalingsperioderApiDataFromSøknadsdata';
-import { RegistrertBarn } from '../../types/RegistrertBarn';
 import { getFrilansApiDataFromSøknadsdata } from './getFrilansApiDataFromSøknadsdata';
+import { getMedlemskapApiDataFromSøknadsdata } from './getMedlemskapApiDataFromSøknadsdata';
 import { getSelvstendigApiDataFromSøknadsdata } from './getSelvstendigApiDataFromSøknadsdata';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { IntlShape } from 'react-intl';
+import { getUtbetalingsperioderApiDataFromSøknadsdata } from './getUtbetalingsperioderApiDataFromSøknadsdata';
+import { getUtenlansoppholdApiDataFromSøknadsdata } from './getUtenlandsoppholdApiDataFromSøknadsdata';
 
 const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
     if (!vedlegg || vedlegg.length === 0) {

@@ -6,7 +6,6 @@ import { Søknadstype } from '../types/Søknadstype';
 const getLoginUrl = (søknadstype: Søknadstype) => `${getEnvironmentVariable('LOGIN_URL')}/${søknadstype}`;
 
 export const redirectTo = (route: string) => window.location.assign(route);
-export const navigateTo = (route: string, navigate: NavigateFunction) => navigate(route);
 export const navigateToErrorPage = (søknadstype: Søknadstype, navigate?: NavigateFunction) => {
     const routeConfig = getRouteConfig(søknadstype);
     if (navigate) {

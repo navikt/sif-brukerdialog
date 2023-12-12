@@ -10,6 +10,7 @@ on:
             - 'packages/**/*'
             - .github/workflows/app.omsorgsdager-aleneomsorg-dialog.yml
             - .github/workflows/test.omsorgsdager-aleneomsorg-dialog.yml
+            - yarn.lock
     workflow_call:
 
 env:
@@ -21,6 +22,14 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v4
+
+            - name: Setup .yarnrc.yml
+              run: |
+                  yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
+                  yarn config set npmScopes.navikt.npmAlwaysAuth true
+                  yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
+              env:
+                NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
             - name: Setup Node.js environment
               uses: actions/setup-node@v4
@@ -41,6 +50,14 @@ jobs:
               - name: Checkout
                 uses: actions/checkout@v4
 
+              - name: Setup .yarnrc.yml
+                run: |
+                    yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
+                    yarn config set npmScopes.navikt.npmAlwaysAuth true
+                    yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
+                env:
+                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+
               - name: Setup Node.js environment
                 uses: actions/setup-node@v4
                 with:
@@ -54,8 +71,8 @@ jobs:
                 run: npx playwright install chromium
 
               - name: Build application
-                run: yarn build-app --filter=omsorgspengesoknad
+                run: yarn build-app --filter=omsorgsdager-aleneomsorg-dialog
 
               - name: Run tests
-                run: yarn turbo playwright-test --filter=omsorgspengesoknad
+                run: yarn turbo playwright-test --filter=omsorgsdager-aleneomsorg-dialog
           

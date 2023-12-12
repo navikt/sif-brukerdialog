@@ -9,6 +9,9 @@ on:
             app-name:
                 type: string
                 required: true
+            is-next-app:
+                type: boolean
+                required: false
 
 jobs:
     deploy-to-prod:
@@ -22,6 +25,14 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v4
 
+            - name: Setup .yarnrc.yml
+              run: |
+                  yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
+                  yarn config set npmScopes.navikt.npmAlwaysAuth true
+                  yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
+              env:
+                NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+
             - name: Setup Node.js environment
               uses: actions/setup-node@v4
               with:
@@ -31,8 +42,15 @@ jobs:
             - name: Install dependencies (yarn)
               run: yarn
 
+            - name: Copy .env.prod for next.js build
+              if: ${{ inputs.is-next-app == true }}
+              shell: bash
+              run: |
+                  echo "Copying .env.prod to app root"
+                  cp apps/${{inputs.app-name}}/nais/envs/.env.prod apps/${{inputs.app-name}}/.env.production
+
             - name: Build application
-              run: yarn build-${{ inputs.app-name }}
+              run: yarn turbo run build-app --filter=@navikt/${{ inputs.app-name }}
 
             - name: Build and publish docker image
               uses: nais/docker-build-push@v0

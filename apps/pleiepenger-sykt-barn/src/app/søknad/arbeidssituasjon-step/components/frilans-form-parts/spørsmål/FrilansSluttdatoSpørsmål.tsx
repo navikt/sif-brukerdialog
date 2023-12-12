@@ -27,7 +27,7 @@ const FrilansSluttdatoSpørsmål: React.FunctionComponent<Props> = ({
             name={FrilansFormField.sluttdato}
             label={intlHelper(intl, `frilanser.sluttdato.spm`)}
             dropdownCaption={true}
-            minDate={datepickerUtils.getDateFromDateString(startdatoValue) || dayjs().subtract(90, 'years').toDate()}
+            minDate={datepickerUtils.getDateFromDateString(startdatoValue) || dayjs().subtract(80, 'years').toDate()}
             maxDate={søknadsdato}
             validate={(value) => {
                 const error = getFrilanserSluttdatoValidator(

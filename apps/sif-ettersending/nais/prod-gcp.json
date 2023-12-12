@@ -21,6 +21,9 @@
         "VEDLEGG_API_URL": "https://k9-brukerdialog-api"
     },
     "externalHosts": ["www.nav.no"],
+    "accessPolicyOutApps": ["k9-brukerdialog-api"],
+    "minReplicas": 2,
+    "maxReplicas": 2,
     "ingresses": ["https://www.nav.no/familie/sykdom-i-familien/soknad/ettersending"],
     "livenessPath": "/familie/sykdom-i-familien/soknad/ettersending/health/isAlive",
     "namespace": "dusseldorf",

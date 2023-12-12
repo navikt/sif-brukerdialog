@@ -5,8 +5,11 @@
     "livenessPath": "/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling/health/isAlive",
     "readinessPath": "/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling/health/isReady",
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
+    "accessPolicyOutApps": ["k9-brukerdialog-api"],
     "ingresses": ["https://omsorgspengerutbetaling-soknad.intern.dev.nav.no"],
     "cluster": "dev-gcp",
+    "minReplicas": 1,
+    "maxReplicas": 1,
     "env": {
         "API_TOKENX_AUDIENCE": "dev-gcp:dusseldorf:k9-brukerdialog-api",
         "API_URL": "http://k9-brukerdialog-api",

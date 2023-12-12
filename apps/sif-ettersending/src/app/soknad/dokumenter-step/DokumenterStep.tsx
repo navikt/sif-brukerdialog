@@ -1,20 +1,20 @@
 import { Alert } from '@navikt/ds-react';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { SIFCommonGeneralEvents, useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import FileDropUploadErrors from '@navikt/sif-common-core-ds/lib/components/file-upload-errors/FileDropUploadErrors';
+import FormikFileUploader from '@navikt/sif-common-core-ds/lib/components/formik-file-uploader/FormikFileUploader';
 import PictureScanningGuide from '@navikt/sif-common-core-ds/lib/components/picture-scanning-guide/PictureScanningGuide';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
 import {
-    MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
     getTotalSizeOfAttachments,
+    MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { useFormikContext } from 'formik';
-import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
-import FormikFileUploader from '../../components/formik-file-uploader/FormikFileUploader';
 import UploadedDocumentsList from '../../components/uploaded-documents-list/UploadedDocumentsList';
 import { Person } from '../../types/Person';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
@@ -24,6 +24,9 @@ import { validateDocuments } from '../../validation/fieldValidations';
 import SoknadFormStep from '../SoknadFormStep';
 import { StepID } from '../soknadStepsConfig';
 import SøknadTempStorage from '../soknadTempStorage';
+import { getAttachmentURLFrontend } from '../../utils/attachmentUtilsAuthToken';
+import api from '../../api/api';
+import { ApiEndpoint } from '../../types/ApiEndpoint';
 
 interface Props {
     søknadstype: Søknadstype;
@@ -104,6 +107,9 @@ const DokumenterStep: React.FC<Props> = ({ søknadstype, søker, soknadId }: Pro
                         onFileInputClick={() => {
                             setFilesThatDidntGetUploaded([]);
                         }}
+                        attachments={dokumenter}
+                        uploadFile={(file) => api.uploadFile(ApiEndpoint.VEDLEGG, file)}
+                        getAttachmentURLFrontend={getAttachmentURLFrontend}
                         onUnauthorizedOrForbiddenUpload={userLoggedOut}
                         validate={validateDocuments}
                         onFilesUploaded={(antall, antallFeilet) => {

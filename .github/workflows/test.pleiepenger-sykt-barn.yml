@@ -9,6 +9,8 @@ on:
             - 'nais-config/**/*'
             - 'packages/**/*'
             - '.github/workflows/test.pleiepenger-sykt-barn.yml'
+            - yarn.lock
+    workflow_call:
 
 env:
     APP_NAME: 'pleiepenger-sykt-barn'
@@ -19,6 +21,15 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v4
+
+            - name: Setup .yarnrc.yml
+              run: |
+                  yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
+                  yarn config set npmScopes.navikt.npmAlwaysAuth true
+                  yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
+              env:
+                NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+
 
             - name: Setup Node.js environment
               uses: actions/setup-node@v4
@@ -32,12 +43,19 @@ jobs:
             - name: Run code tests
               run: yarn test --filter=pleiepenger-sykt-barn
 
-    run-playwright-test:
-        timeout-minutes: 60
+    run-cypress-test:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
               uses: actions/checkout@v4
+
+            - name: Setup .yarnrc.yml
+              run: |
+                  yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
+                  yarn config set npmScopes.navikt.npmAlwaysAuth true
+                  yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
+              env:
+                NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
             - name: Setup Node.js environment
               uses: actions/setup-node@v4
@@ -45,14 +63,21 @@ jobs:
                   node-version: 18
                   cache: 'yarn'
 
-            - name: Install dependencies
-              run: yarn
-
-            - name: Install Playwright Browsers
-              run: npx playwright install chromium
-
-            - name: Build application
-              run: yarn build-app --filter=pleiepenger-sykt-barn
+            - name: Build and start e2e server
+              uses: cypress-io/github-action@v6.6.0
+              env:
+                  DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
+                  PUBLIC_PATH: /familie/sykdom-i-familien/soknad/pleiepenger
+                  FRONTEND_API_PATH: http://localhost:8082/
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+              with:
+                  project: ./apps/pleiepenger-sykt-barn/e2e
+                  build: yarn turbo run build-app --filter=@navikt/pleiepenger-sykt-barn
+                  start: yarn turbo start-e2e-server --filter=pleiepenger-sykt-barn
+                  wait-on: 'http://localhost:8080'
+                  wait-on-timeout: 60
+                  runTests: false
 
             - name: Run tests
               run: yarn turbo playwright-test --filter=pleiepenger-sykt-barn

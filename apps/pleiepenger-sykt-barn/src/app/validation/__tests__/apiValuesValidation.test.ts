@@ -1,8 +1,9 @@
 import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
+import { vi } from 'vitest';
 import { OmsorgstilbudApiData, OmsorgstilbudSvarApi } from '../../types/søknad-api-data/SøknadApiData';
 import { apiVedleggIsInvalid, isOmsorgstilbudApiDataValid } from '../apiValuesValidation';
 
-jest.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => {
+vi.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => {
     return {
         getEnvironmentVariable: () => 'http://localhost:8089',
     };

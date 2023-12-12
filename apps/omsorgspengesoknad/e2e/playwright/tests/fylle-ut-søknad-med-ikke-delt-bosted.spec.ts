@@ -33,17 +33,13 @@ test('Fyll ut søknad med ikke delt bosted', async ({ page }) => {
 
     /** Legeerklæring */
     await page.getByRole('heading', { level: 1, name: 'Legeerklæring' });
-    await page.getByRole('button', { name: 'Last opp legeerklæringen' }).click();
-    await page
-        .getByLabel('OpplastingsikonLast opp legeerklæringen')
-        .setInputFiles('./e2e/playwright/files/navlogopng.png');
+    await page.locator('input[name="vedlegg"]').setInputFiles('./e2e/playwright/files/navlogopng.png');
     await expect(await page.getByText('Fjern vedlegg').count()).toEqual(1);
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
-    /** Legeerklæring */
+    /** Delt bosted */
     await page.getByRole('heading', { level: 1, name: 'Delt bosted' });
-    await page.getByRole('button', { name: 'Last opp avtalen' }).click();
-    await page.getByLabel('OpplastingsikonLast opp avtalen').setInputFiles('./e2e/playwright/files/avtale.png');
+    await page.locator('input[name="samværsavtale"]').setInputFiles('./e2e/playwright/files/avtale.png');
     await expect(await page.getByText('Fjern vedlegg').count()).toEqual(1);
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 

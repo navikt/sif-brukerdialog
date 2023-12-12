@@ -8,7 +8,7 @@ søknad om utbetaling av omsorgsdager for selvstendige og frilansere.
 For å kjøre opp app'en i dev:
 
 1. `yarn dev-api` i en terminal.
-2. `yarn snd` i en annen terminal.
+2. `yarn dev` i en annen terminal.
 
 For å kjøre enhetstester:
 

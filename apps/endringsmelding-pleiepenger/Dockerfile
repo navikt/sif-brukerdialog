@@ -14,7 +14,7 @@ COPY . .
 RUN yarn
 RUN yarn turbo run build-app --filter=${SCOPE}
 
-FROM pruner AS server
+FROM gcr.io/distroless/nodejs18-debian11:nonroot
 WORKDIR /apps/endringsmelding-pleiepenger
 COPY --from=pruner /app/node_modules ./node_modules/
 COPY --from=pruner /app/apps/endringsmelding-pleiepenger/server.cjs .
@@ -25,4 +25,4 @@ COPY --from=pruner /app/apps/endringsmelding-pleiepenger/src/build/AppSettings.c
 COPY --from=pruner /app/apps/endringsmelding-pleiepenger/dist ./dist
 
 EXPOSE 8080
-CMD ["yarn","--cwd", "apps/endringsmelding-pleiepenger", "start-express"]
+CMD ["server.cjs"]

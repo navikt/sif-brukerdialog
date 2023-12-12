@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { Alert, Button, Modal } from '@navikt/ds-react';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import bemUtils from '../../../utils/bemUtils';
 import ConfirmationDialog from '../../helpers/confirmation-dialog/ConfirmationDialog';
@@ -35,6 +35,7 @@ export interface ModalFormAndListProps<ItemType extends ModalFormAndListListItem
     formRenderer: ModalFormRenderer<ItemType>;
     confirmDelete?: ModalFormAndListConfirmDeleteProps<ItemType>;
     dialogWidth?: FormikModalFormWidths;
+    onAfterModalClose?: () => void;
 }
 interface PrivateProps<ItemType> {
     onChange: (data: ItemType[]) => void;
@@ -45,6 +46,12 @@ interface PrivateProps<ItemType> {
 type Props<ItemType extends {}> = ModalFormAndListProps<ItemType> & PrivateProps<ItemType>;
 
 const bem = bemUtils('formikModalForm').child('modal');
+
+interface ModalState<ItemType> {
+    isVisible: boolean;
+    selectedItem?: ItemType;
+    ensureFocusOn?: 'addButton' | 'fieldset' | undefined;
+}
 
 function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
     items = [],
@@ -57,10 +64,13 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
     confirmDelete,
     onChange,
 }: Props<ItemType>) {
-    const [modalState, setModalState] = React.useState<{ isVisible: boolean; selectedItem?: ItemType }>({
+    const [modalState, setModalState] = React.useState<ModalState<ItemType>>({
         isVisible: false,
     });
     const [itemToDelete, setItemToDelete] = useState<ItemType | undefined>();
+
+    const addButtonRef = useRef<HTMLButtonElement>(null);
+    const fieldsetRef = useRef<HTMLFieldSetElement>(null);
 
     const handleOnSubmit = (values: ItemType) => {
         if (values.id) {
@@ -68,8 +78,24 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
         } else {
             onChange([...items, { id: uuid(), ...values }]);
         }
-        setModalState({ isVisible: false });
+        setModalState({
+            ...modalState,
+            isVisible: false,
+            ensureFocusOn: modalState.selectedItem === undefined ? 'addButton' : 'fieldset',
+        });
     };
+
+    useEffect(() => {
+        if (modalState.ensureFocusOn) {
+            /** Item lagt til - rerender ødelegger for automatisk fokus på knappen, så vi setter den manuelt */
+            if (modalState.ensureFocusOn === 'addButton') {
+                addButtonRef.current?.focus();
+            } else {
+                fieldsetRef.current?.focus();
+            }
+            setModalState({ ...modalState, ensureFocusOn: undefined });
+        }
+    }, [addButtonRef, modalState.ensureFocusOn, modalState]);
 
     const handleEdit = (item: ItemType) => {
         setModalState({ isVisible: true, selectedItem: item });
@@ -91,7 +117,7 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
     };
 
     const resetModal = () => {
-        setModalState({ isVisible: false, selectedItem: undefined });
+        setModalState({ isVisible: false });
     };
 
     return (
@@ -116,7 +142,12 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
                     </Modal.Body>
                 </Modal>
             ) : null}
-            <SkjemagruppeQuestion legend={labels.listTitle} error={error}>
+            <SkjemagruppeQuestion
+                ref={fieldsetRef}
+                legend={labels.listTitle}
+                error={error}
+                tabIndex={-1}
+                className="modalFormAndListFieldset">
                 {items.length > 0 && (
                     <div className="modalFormAndList__listWrapper">
                         {listRenderer({ items, onEdit: handleEdit, onDelete: handleDelete })}
@@ -130,8 +161,9 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
                 {(maxItems === undefined || maxItems > items.length) && (
                     <div style={{ marginTop: '1rem' }} className={'modalFormAndList__addButton'}>
                         <Button
+                            ref={addButtonRef}
                             type="button"
-                            onClick={() => setModalState({ isVisible: true })}
+                            onClick={() => setModalState({ ...modalState, isVisible: true })}
                             size="small"
                             variant="secondary">
                             {labels.addLabel}

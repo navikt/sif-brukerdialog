@@ -140,7 +140,11 @@ const FraværPeriodeForm = ({
                 const toDate: Date | undefined = ISOStringToDate(tilOgMed);
 
                 return (
-                    <Form.Form onCancel={onCancel} formErrorHandler={getFormErrorHandler(intl, 'fraværPeriodeForm')}>
+                    <Form.Form
+                        onCancel={onCancel}
+                        formErrorHandler={getFormErrorHandler(intl, 'fraværPeriodeForm')}
+                        submitButtonLabel="Ok"
+                        showButtonArrows={false}>
                         {headerContent && <Block margin="l">{headerContent}</Block>}
                         <Form.DateRangePicker
                             legend={formLabels.tidsrom}

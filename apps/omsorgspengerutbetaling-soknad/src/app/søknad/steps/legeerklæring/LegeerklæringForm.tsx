@@ -1,25 +1,26 @@
 import { Alert, Link } from '@navikt/ds-react';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import FileUploadErrors from '@navikt/sif-common-core-ds/lib/components/file-upload-errors/FileUploadErrors';
+import FormikFileUploader from '@navikt/sif-common-core-ds/lib/components/formik-file-uploader/FormikFileUploader';
 import PictureScanningGuide from '@navikt/sif-common-core-ds/lib/components/picture-scanning-guide/PictureScanningGuide';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
 import {
-    MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
     attachmentHasBeenUploaded,
     getTotalSizeOfAttachments,
+    MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { ValidationError, ValidationResult, getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
+import { getTypedFormComponents, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/lib';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { validateAll } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
-import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
-import { ApiEndpoint } from '../../../api/api';
-import FormikFileUploader from '../../../components/formik-file-uploader/FormikFileUploader';
+import api, { ApiEndpoint } from '../../../api/api';
+import { getAttachmentURLFrontend } from '../../../utils/attachmentUtilsAuthToken';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
-import { ValidateAttachmentsErrors, validateAttachments } from '../../../utils/validateAttachments';
+import { validateAttachments, ValidateAttachmentsErrors } from '../../../utils/validateAttachments';
 import LegeerklæringAvtaleAttachmentList from './LegeerklæringAttachmentList';
 
 interface Props {
@@ -90,7 +91,8 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                         attachments={legeerklæringAttachments}
                         name={LegeerklæringFormFields.vedlegg}
                         buttonLabel={intlHelper(intl, 'steg.legeerklæring.vedlegg.knappLabel')}
-                        apiEndpoint={ApiEndpoint.vedlegg}
+                        getAttachmentURLFrontend={getAttachmentURLFrontend}
+                        uploadFile={(file) => api.uploadFile(ApiEndpoint.vedlegg, file)}
                         onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
                         onFileInputClick={() => {
                             setFilesThatDidntGetUploaded([]);

@@ -14,7 +14,7 @@ COPY . .
 RUN yarn
 RUN yarn turbo run build-app --filter=${SCOPE}
 
-FROM pruner AS server
+FROM gcr.io/distroless/nodejs18-debian11:nonroot
 WORKDIR /apps/sif-ettersending
 COPY --from=pruner /app/node_modules ./node_modules/
 COPY --from=pruner /app/apps/sif-ettersending/server.cjs .
@@ -25,4 +25,4 @@ COPY --from=pruner /app/apps/sif-ettersending/src/build/AppSettings.cjs ./src/bu
 COPY --from=pruner /app/apps/sif-ettersending/dist ./dist
 
 EXPOSE 8080
-CMD ["yarn","--cwd", "apps/sif-ettersending", "start-express"]
+CMD ["server.cjs"]
