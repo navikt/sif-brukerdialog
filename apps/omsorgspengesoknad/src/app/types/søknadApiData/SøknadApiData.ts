@@ -18,6 +18,15 @@ export interface BarnToSendToApi {
     fødselsdato?: ISODate;
 }
 
+export interface DataBruktTilUtledningAnnetData {
+    sammeAdresse?: BarnSammeAdresse;
+    relasjonTilBarnet?: SøkersRelasjonTilBarnet;
+    høyereRisikoForFravær?: boolean;
+    høyereRisikoForFraværBeskrivelse?: string;
+}
+
+export type DataBruktTilUtledningAnnetDataJsonString = string;
+
 export interface SøknadApiData extends OmBarnetApiData {
     språk: Locale;
     kroniskEllerFunksjonshemming: boolean;
@@ -25,4 +34,5 @@ export interface SøknadApiData extends OmBarnetApiData {
     samværsavtale?: string[];
     harForståttRettigheterOgPlikter: boolean;
     harBekreftetOpplysninger: boolean;
+    dataBruktTilUtledningAnnetData?: DataBruktTilUtledningAnnetDataJsonString;
 }
