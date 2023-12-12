@@ -1,5 +1,12 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.5.3
+
+### Patch Changes
+
+- Updated dependencies
+  - @navikt/sif-common-ui@0.4.3
+
 ## 2.5.2
 
 ### Patch Changes

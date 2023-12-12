@@ -2,7 +2,7 @@
     "name": "@navikt/sif-common-ui",
     "main": "src/index.ts",
     "types": "src/index.ts",
-    "version": "0.4.2",
+    "version": "0.4.3",
     "private": true,
     "dependencies": {
         "@navikt/ds-css": "5.11.4",
@@ -23,7 +23,6 @@
         "@storybook/node-logger": "7.6.4",
         "@storybook/preset-create-react-app": "7.6.4",
         "@storybook/react": "7.6.4",
-        "@storybook/react-webpack5": "7.6.4",
         "@storybook/testing-library": "0.2.2",
         "chromatic": "10.1.0",
         "copyfiles": "2.4.1",

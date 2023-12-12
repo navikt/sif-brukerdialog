@@ -1,5 +1,11 @@
 # @navikt/sif-common-ui
 
+## 0.4.3
+
+### Patch Changes
+
+- Fjerne webpack
+
 ## 0.4.2
 
 ### Patch Changes
