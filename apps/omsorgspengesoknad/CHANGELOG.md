@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.24.3
+
+### Patch Changes
+
+- Fjerne webpack
+
 ## 1.24.2
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.24.5
+
+### Patch Changes
+
+- Fjerne webpack
+
 ## 2.24.4
 
 ### Patch Changes
