@@ -13,14 +13,20 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         throw new Error('Ugyldig path i url');
     }
 
+    if (typeof dokumentTittel !== 'string') {
+        throw new Error('Ugyldig dokumentTittel - typeof !== string');
+    }
+
     try {
         const path = `dokument/${info.join('/')}?dokumentTittel=${dokumentTittel}`;
         const blob = await fetchDocument(path, getContextForApiHandler(req), ApiService.sifInnsyn);
         const resBufferArray = await blob.arrayBuffer();
         const resBuffer = Buffer.from(resBufferArray);
-        res.setHeader('Content-Type', 'application/PDF');
+
+        res.setHeader('Content-Type', 'application/PDF; charset=utf-8');
         res.setHeader('Content-Length', (blob as Blob).size.toString());
-        res.setHeader('Content-Disposition', `filename="${dokumentTittel}"`);
+        res.setHeader('Content-Disposition', `filename="${encodeURI(dokumentTittel)}"`);
+        res.setHeader;
         res.write(resBuffer, 'binary');
         res.end();
     } catch (err) {
