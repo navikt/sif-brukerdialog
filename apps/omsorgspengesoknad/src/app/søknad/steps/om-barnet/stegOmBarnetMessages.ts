@@ -25,7 +25,7 @@ export const omBarnetMessages: MessageFileFormat = {
         'steg.omBarnet.spm.sammeAdresse.nei': 'Nei',
         'steg.omBarnet.spm.sammeAdresse.hvaBetyrDette': 'Hva er delt fast bosted?',
         'steg.omBarnet.spm.sammeAdresse.hvaBetyrDette.info':
-            'Hvis foreldrene til barnet ikke bor sammen, kan de inngå en avtale om delt fast bosted etter barneloven §36. Barnet bor da fast med begge foreldrene sine.',
+            'Hvis foreldrene til barnet ikke bor sammen, kan de inngå en avtale om delt fast bosted etter barneloven §36. Barnet bor da fast med begge sine foreldre.',
         'steg.omBarnet.spm.sammeAdresse.neiAlert':
             'Det er kun foreldre som bor sammen med barnet som kan få ekstra omsorgsdager fra NAV. Forelderen som bor sammen med barnet kan i noen tilfeller dele sine omsorgsdager.',
         'steg.omBarnet.spm.kroniskEllerFunksjonshemmende':
@@ -35,10 +35,10 @@ export const omBarnetMessages: MessageFileFormat = {
         'steg.omBarnet.spm.høyereRisikoForFraværBeskrivelse.tittel':
             'Nå trenger vi en beskrivelse fra deg på hvordan barnets sykdom eller funksjonshemning gir høyere risiko for fravær fra jobb:',
         'steg.omBarnet.spm.høyereRisikoForFravær.alert':
-            'For å ha rett til ekstra omsorgsdager på grunn av kronisk/langvarig sykdom eller funksjonshemning, må det være en sammenheng mellom barnets sykdom/funksjonshemning og risikoen for markant høyere fravær fra jobb enn det som er vanlig.',
+            'For å ha rett til ekstra omsorgsdager på grunn av sykdom eller funksjonshemning, må det være en sammenheng mellom barnets sykdom/funksjonshemning og risikoen for høyere fravær fra jobb.',
         'steg.omBarnet.alert.barnet18ÅrKanIkkeFortsette': 'Det gis ikke omsorgsdager til barn over 18 år.',
         'steg.omBarnet.alert.ikkeKroniskSykdom':
-            'Søknad om ekstra omsorgsdager gjelder kun for de som har barn med kronisk/langvarig sykdom eller funksjonshemning.',
+            'Denne søknaden om ekstra omsorgsdager gjelder kun for de som har barn med kronisk/langvarig sykdom eller funksjonshemning.',
         'steg.omBarnet.annetBarn.tittel': 'Annet barn',
 
         'validation.barnetSøknadenGjelder.noValue':

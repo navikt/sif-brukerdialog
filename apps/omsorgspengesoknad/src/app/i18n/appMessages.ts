@@ -15,8 +15,8 @@ export const appMessages: MessageFileFormat = {
         'steg.footer.fortsettSenere': 'Avslutt og fortsett senere',
 
         'vedleggsliste.fjernKnapp': 'Fjern vedlegg',
-        'vedleggsliste.ingenLegeerklæringLastetOpp': 'Ingen vedlegg er lastet opp',
-        'vedleggsliste.ingenBostedsavtaleLastetOpp': 'Ingen vedlegg er lastet opp',
+        'vedleggsliste.ingenLegeerklæringLastetOpp': 'Ingen legeerklæring er lastet opp',
+        'vedleggsliste.ingenBostedsavtaleLastetOpp': 'Ingen avtale er lastet opp',
 
         'dokumenter.advarsel.totalstørrelse.1':
             'Du har totalt lastet opp mer enn grensen på 24 Mb. Det betyr at du må fjerne noe av det du har lastet opp. Hvis det betyr at du ikke får plass til alt du ønsker å sende nå, kan du ',
