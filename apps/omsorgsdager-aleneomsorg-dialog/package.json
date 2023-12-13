@@ -23,9 +23,9 @@
         "storybook": "storybook dev -p 6006 -s public"
     },
     "dependencies": {
-        "@navikt/ds-css": "5.11.4",
-        "@navikt/ds-react": "5.11.4",
-        "@navikt/ds-tailwind": "5.11.4",
+        "@navikt/ds-css": "5.11.5",
+        "@navikt/ds-react": "5.11.5",
+        "@navikt/ds-tailwind": "5.11.5",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",

@@ -5,9 +5,9 @@
     "version": "0.4.4",
     "private": true,
     "dependencies": {
-        "@navikt/ds-css": "5.11.4",
+        "@navikt/ds-css": "5.11.5",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "5.11.4",
+        "@navikt/ds-react": "5.11.5",
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
