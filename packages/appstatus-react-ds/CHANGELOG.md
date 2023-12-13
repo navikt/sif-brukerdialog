@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 2.17.6
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch
+
 ## 2.17.5
 
 ### Patch Changes
