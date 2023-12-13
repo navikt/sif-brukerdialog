@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.43.7
+
+### Patch Changes
+
+- Oppdatert ds pakker
+
 ## 3.43.6
 
 ### Patch Changes
