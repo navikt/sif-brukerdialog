@@ -20,7 +20,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         const resBuffer = Buffer.from(resBufferArray);
         res.setHeader('Content-Type', 'application/PDF');
         res.setHeader('Content-Length', (blob as Blob).size.toString());
-        res.setHeader('Content-Disposition', `filename=${dokumentTittel}`);
+        res.setHeader('Content-Disposition', `filename="${dokumentTittel}"`);
         res.write(resBuffer, 'binary');
         res.end();
     } catch (err) {
