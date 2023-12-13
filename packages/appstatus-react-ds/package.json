@@ -5,7 +5,7 @@
     "main": "lib/index.js",
     "name": "@navikt/appstatus-react-ds",
     "types": "lib/index.d.js",
-    "version": "2.17.5",
+    "version": "2.17.6",
     "private": true,
     "dependencies": {
         "@navikt/sif-common-hooks": "workspace:*",
@@ -16,7 +16,7 @@
         "@navikt/ds-css": "5.11.4",
         "@navikt/ds-react": "5.11.4",
         "@types/node": "20.10.4",
-        "@types/react": "18.2.43",
+        "@types/react": "18.2.45",
         "@types/react-dom": "18.2.17",
         "config": "workspace:*",
         "copyfiles": "2.4.1",
