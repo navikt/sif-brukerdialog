@@ -3,7 +3,7 @@
     "main": "lib/index.js",
     "name": "@navikt/sif-common-core-ds",
     "types": "lib/index.d.js",
-    "version": "9.12.2",
+    "version": "9.12.3",
     "private": true,
     "dependencies": {
         "@navikt/sif-common-utils": "workspace:*",
@@ -18,8 +18,8 @@
         "tailwindcss": "3.3.6"
     },
     "devDependencies": {
-        "@babel/core": "7.23.5",
-        "@babel/preset-env": "7.23.5",
+        "@babel/core": "7.23.6",
+        "@babel/preset-env": "7.23.6",
         "@babel/preset-react": "7.23.3",
         "@babel/preset-typescript": "7.23.3",
         "@navikt/appstatus-react-ds": "workspace:*",
@@ -42,7 +42,7 @@
         "@storybook/react-vite": "7.6.4",
         "@storybook/testing-library": "0.2.2",
         "@types/node": "20.10.4",
-        "@types/react": "18.2.43",
+        "@types/react": "18.2.45",
         "@types/react-collapse": "5.0.4",
         "@types/react-dom": "18.2.17",
         "@vitejs/plugin-react": "4.2.1",
@@ -63,7 +63,7 @@
         "rimraf": "5.0.5",
         "storybook": "7.6.4",
         "uuid": "9.0.1",
-        "vite": "5.0.7",
+        "vite": "5.0.8",
         "vite-plugin-checker": "0.6.2",
         "vitest": "1.0.4"
     },

@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.43.6
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch
+
 ## 3.43.5
 
 ### Patch Changes
