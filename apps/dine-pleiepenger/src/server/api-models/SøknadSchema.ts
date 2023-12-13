@@ -29,7 +29,7 @@ const SøknadDokumentSchema = z.object({
 });
 
 const PleiepengerSøknadInfoSchema = z.object({
-    fraOgMed: z.string(), //z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
+    fraOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
     tilOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
     mottatt: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
     arbeidsgivere: ArbeidsgivereSchema,
