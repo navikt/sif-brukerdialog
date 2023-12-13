@@ -1,16 +1,16 @@
 import { Heading, Ingress } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import { useSakUtledet as useSakInfo, useStartSøknad } from '@hooks';
-import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
+import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
-import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { SamtykkeFormPart } from '@navikt/sif-common-soknad-ds/lib/modules/samtykke-form/SamtykkeForm';
+import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { SamtykkeFormPart } from '@navikt/sif-common-soknad-ds/src/modules/samtykke-form/SamtykkeForm';
 import { EndringType } from '@types';
 import OmSøknaden from './OmSøknaden';
 

@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { AnnetBarn, BarnType } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn';
+import { AnnetBarn, BarnType } from '@navikt/sif-common-forms-ds/src/forms/annet-barn';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';

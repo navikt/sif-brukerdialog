@@ -5,7 +5,7 @@ import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { FødselsnummerSvar, SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
-import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils/lib';
+import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils';
 import { FlereSokereApiData, PleietrengendeApi } from '../../../../types/søknadApiData/SøknadApiData';
 
 interface Props {

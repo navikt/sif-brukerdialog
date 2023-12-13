@@ -6,7 +6,7 @@ import TextareaSummary from '@navikt/sif-common-core-ds/src/atoms/textarea-summa
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
-import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { useFormikContext } from 'formik';
 import { FormattedMessage, useIntl } from 'react-intl';

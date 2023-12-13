@@ -7,10 +7,10 @@ import {
     ArbeidsgiverApiData,
     SøknadApiData,
 } from '../../../../types/søknadApiData/SøknadApiData';
-import { DateRange } from '@navikt/sif-common-formik-ds/lib';
+import { DateRange } from '@navikt/sif-common-formik-ds';
 import { ArbeidsgiverType } from '../../../../types/Arbeidsgiver';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils/lib';
+import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 import { SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
 
 interface Props {

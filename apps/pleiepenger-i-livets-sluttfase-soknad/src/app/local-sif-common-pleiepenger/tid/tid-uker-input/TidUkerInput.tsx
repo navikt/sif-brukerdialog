@@ -2,7 +2,7 @@ import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds';
-import { DateDurationMap, isDateInDates } from '@navikt/sif-common-utils/lib';
+import { DateDurationMap, isDateInDates } from '@navikt/sif-common-utils';
 import { Daginfo, TidPerDagValidator, Ukeinfo } from '../../types';
 import TidUkeInput from '../tid-uke-input/TidUkeInput';
 import { tidUkerInputUtils } from './tidUkerUtils';

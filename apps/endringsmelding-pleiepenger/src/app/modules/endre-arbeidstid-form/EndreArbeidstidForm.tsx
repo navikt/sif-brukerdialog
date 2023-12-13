@@ -7,13 +7,9 @@ import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock
 import { getDurationString } from '@navikt/sif-common-core-ds/src/components/duration-text/DurationText';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import {
-    getNumberFromNumberInputValue,
-    getTypedFormComponents,
-    ValidationError,
-} from '@navikt/sif-common-formik-ds/lib';
-import { getNumberValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import { getNumberFromNumberInputValue, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import { getNumberValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { DateRange } from '@navikt/sif-common-utils';
 import { ArbeidstidEndring, Arbeidsuke, LovbestemtFerieSøknadsdata, TimerEllerProsent } from '@types';
 import {

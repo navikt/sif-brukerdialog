@@ -1,5 +1,5 @@
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { InputTime } from '@navikt/sif-common-formik-ds/lib';
+import { InputTime } from '@navikt/sif-common-formik-ds';
 import React from 'react';
 import { IntlShape, useIntl } from 'react-intl';
 

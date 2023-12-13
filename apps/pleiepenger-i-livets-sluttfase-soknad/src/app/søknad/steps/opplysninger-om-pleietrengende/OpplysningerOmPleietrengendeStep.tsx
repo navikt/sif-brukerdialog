@@ -10,15 +10,15 @@ import {
     getTypedFormComponents,
     resetFieldValue,
     resetFieldValues,
-} from '@navikt/sif-common-formik-ds/lib';
+} from '@navikt/sif-common-formik-ds';
 import {
     getDateValidator,
     getFødselsnummerValidator,
     getRequiredFieldValidator,
     getStringValidator,
-} from '@navikt/sif-common-formik-ds/lib/validation';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { dateToday } from '@navikt/sif-common-utils/lib';
+} from '@navikt/sif-common-formik-ds/src/validation';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { dateToday } from '@navikt/sif-common-utils';
 import { FormattedMessage, useIntl } from 'react-intl';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';

@@ -1,11 +1,11 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import SummaryList from '@navikt/sif-common-soknad-ds/lib/components/summary-list/SummaryList';
+import SummaryList from '@navikt/sif-common-soknad-ds/src/components/summary-list/SummaryList';
 import { renderUtenlandsoppholdIPeriodenSummary } from './renderUtenlandsoppholdSummary';
-import JaNeiSvar from '@navikt/sif-common-soknad-ds/lib/components/summary-answers/JaNeiSvar';
+import JaNeiSvar from '@navikt/sif-common-soknad-ds/src/components/summary-answers/JaNeiSvar';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import SummaryBlock from '@navikt/sif-common-soknad-ds/lib/components/summary-block/SummaryBlock';
+import SummaryBlock from '@navikt/sif-common-soknad-ds/src/components/summary-block/SummaryBlock';
 import { SummarySection } from '@navikt/sif-common-soknad-ds';
 import { MedlemskapApiData } from '../../../../types/søknadApiData/SøknadApiData';
 

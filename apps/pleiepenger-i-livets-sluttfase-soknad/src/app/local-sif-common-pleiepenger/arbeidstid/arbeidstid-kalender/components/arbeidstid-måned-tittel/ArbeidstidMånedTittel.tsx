@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { DateRange } from '@navikt/sif-common-utils/lib';
+import { DateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { Heading, BodyShort } from '@navikt/ds-react';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';

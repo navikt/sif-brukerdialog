@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
-import { ErrorPage, SummarySection } from '@navikt/sif-common-soknad-ds/lib';
+import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
+import { ErrorPage, SummarySection } from '@navikt/sif-common-soknad-ds/src';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
@@ -16,10 +16,10 @@ import SøknadStep from '../../../søknad/SøknadStep';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { ErrorSummary } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import OmBarnaSummary from './OmBarnaSummary';
 import BarnSummaryList from './BarnSummaryList';
-import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 

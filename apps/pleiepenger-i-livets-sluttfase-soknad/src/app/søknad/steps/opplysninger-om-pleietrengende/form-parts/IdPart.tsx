@@ -6,8 +6,8 @@ import FormikFileUploader from '@navikt/sif-common-core-ds/src/components/formik
 import PictureScanningGuide from '@navikt/sif-common-core-ds/src/components/picture-scanning-guide/PictureScanningGuide';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib';
-import { validateAll } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
+import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
 import { useFormikContext } from 'formik';
 import api, { ApiEndpoint } from '../../../../api/api';
 import { getAttachmentURLFrontend } from '../../../../utils/attachmentUtilsAuthToken';

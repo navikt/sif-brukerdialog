@@ -7,7 +7,7 @@ import uniq from 'lodash/uniq';
 import { ApiAktivitet } from '../../../../types/AktivitetFravær';
 import { UtbetalingsperiodeApi } from '../../../../types/søknadApiData/SøknadApiData';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { timeText } from '@navikt/sif-common-forms-ds/lib';
+import { timeText } from '@navikt/sif-common-forms-ds';
 import { SummaryBlock, SummaryList } from '@navikt/sif-common-soknad-ds';
 
 export interface Props {

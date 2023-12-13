@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds/src';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { dateFormatter, DateRange } from '@navikt/sif-common-utils/lib';
+import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
 import {
     ArbeidsforholdFormField,
     ArbeidsforholdFormValues,

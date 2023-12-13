@@ -1,14 +1,14 @@
 import { Button } from '@navikt/ds-react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
+import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import {
     EnsureCorrectSøknadRouteErrorType,
     useEnsureCorrectSøknadRoute,
-} from '@navikt/sif-common-soknad-ds/lib/hooks/useEnsureCorrectSøknadRoute';
-import StartPåNyttDialog from '@navikt/sif-common-soknad-ds/lib/modules/start-på-nytt-dialog/StartPåNyttDialog';
+} from '@navikt/sif-common-soknad-ds/src/hooks/useEnsureCorrectSøknadRoute';
+import StartPåNyttDialog from '@navikt/sif-common-soknad-ds/src/modules/start-på-nytt-dialog/StartPåNyttDialog';
 import { appSentryLogger } from '@utils';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';

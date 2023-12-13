@@ -8,8 +8,8 @@ import ArbeidstidUkeInput, {
     getUkeTittel,
 } from '../arbeidstid-uke-input/ArbeidstidUkeInput';
 import './arbeidstidUkerInput.less';
-import { DateRange, TestProps } from '@navikt/sif-common-formik-ds/lib';
-import { DurationWeekdays, InputDateDurationMap, Weekday, isDateInDates } from '@navikt/sif-common-utils/lib';
+import { DateRange, TestProps } from '@navikt/sif-common-formik-ds';
+import { DurationWeekdays, InputDateDurationMap, Weekday, isDateInDates } from '@navikt/sif-common-utils';
 import { Accordion } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 

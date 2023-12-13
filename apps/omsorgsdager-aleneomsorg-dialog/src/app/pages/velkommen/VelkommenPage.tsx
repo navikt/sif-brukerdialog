@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl';
-import { SIFCommonPageKey, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
+import { SIFCommonPageKey, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import OmSøknaden from './OmSøknaden';
@@ -7,7 +7,7 @@ import VelkommenGuide from './VelkommenGuide';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { SøknadRoutes } from '../../types/SøknadRoutes';
-import SamtykkeForm from '@navikt/sif-common-soknad-ds/lib/modules/samtykke-form/SamtykkeForm';
+import SamtykkeForm from '@navikt/sif-common-soknad-ds/src/modules/samtykke-form/SamtykkeForm';
 import { OmsorgsdagerAleneomsorgApp } from '@navikt/sif-app-register';
 
 const VelkommenPage = () => {

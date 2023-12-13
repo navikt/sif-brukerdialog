@@ -4,14 +4,14 @@ import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
-import SummaryList from '@navikt/sif-common-soknad-ds/lib/components/summary-list/SummaryList';
+import SummaryList from '@navikt/sif-common-soknad-ds/src/components/summary-list/SummaryList';
 import { UtenlandsoppholdApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { renderUtenlandsoppholdIPeriodenSummary } from './renderUtenlandsoppholdSummary';
-import JaNeiSvar from '@navikt/sif-common-soknad-ds/lib/components/summary-answers/JaNeiSvar';
+import JaNeiSvar from '@navikt/sif-common-soknad-ds/src/components/summary-answers/JaNeiSvar';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import SummaryBlock from '@navikt/sif-common-soknad-ds/lib/components/summary-block/SummaryBlock';
+import SummaryBlock from '@navikt/sif-common-soknad-ds/src/components/summary-block/SummaryBlock';
 import { SummarySection } from '@navikt/sif-common-soknad-ds';
-import { ISODateToDate, dateToday } from '@navikt/sif-common-utils/lib';
+import { ISODateToDate, dateToday } from '@navikt/sif-common-utils';
 
 dayjs.extend(isSameOrBefore);
 dayjs.extend(isSameOrAfter);

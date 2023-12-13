@@ -1,5 +1,5 @@
-import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib';
-import { date1YearAgo, date1YearFromNow } from '@navikt/sif-common-utils/lib';
+import { Utenlandsopphold } from '@navikt/sif-common-forms-ds';
+import { date1YearAgo, date1YearFromNow } from '@navikt/sif-common-utils';
 import { dateRangesCollide, dateRangesExceedsRange } from '@navikt/sif-common-utils/lib/dateRangeUtils';
 import dayjs from 'dayjs';
 

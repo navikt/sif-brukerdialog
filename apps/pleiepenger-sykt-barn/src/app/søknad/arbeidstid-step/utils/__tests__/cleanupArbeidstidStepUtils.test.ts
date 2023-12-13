@@ -1,4 +1,4 @@
-import { DateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
+import { DateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 import {
     ArbeidIPeriodeFormValues,
     ArbeidsukerFormValues,

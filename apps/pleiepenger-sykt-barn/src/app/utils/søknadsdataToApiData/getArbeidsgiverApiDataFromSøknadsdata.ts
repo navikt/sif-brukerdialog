@@ -1,4 +1,4 @@
-import { dateToISODate, ISODate } from '@navikt/sif-common-utils/lib';
+import { dateToISODate, ISODate } from '@navikt/sif-common-utils';
 import { ArbeidsgiverAnsattApiData } from '../../types/søknad-api-data/SøknadApiData';
 import {
     ArbeidssituasjonAnsattSøknadsdata,

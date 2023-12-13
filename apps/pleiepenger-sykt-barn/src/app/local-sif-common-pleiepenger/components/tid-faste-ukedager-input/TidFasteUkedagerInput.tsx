@@ -3,7 +3,7 @@ import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { FormikTimeInput, TestProps } from '@navikt/sif-common-formik-ds/src';
 import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { Weekday } from '@navikt/sif-common-utils/lib';
+import { Weekday } from '@navikt/sif-common-utils';
 import { getTidFasteUkerdagerInputMessages } from './tidFasteUkerdagerInputMessages';
 import './tidFasteUkedagerInput.less';
 

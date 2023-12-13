@@ -1,15 +1,15 @@
 import { FormattedMessage, useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ContentWithHeader from '@navikt/sif-common-core-ds/src/components/content-with-header/ContentWithHeader';
-import AnnetBarnListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/AnnetBarnListAndDialog';
+import AnnetBarnListAndDialog from '@navikt/sif-common-forms-ds/src/forms/annet-barn/AnnetBarnListAndDialog';
 import { nYearsAgo } from '../../../utils/aldersUtils';
-import { AnnetBarn } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
+import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn';
+import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
+import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { StepId } from '../../../types/StepId';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
@@ -21,7 +21,7 @@ import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import SøknadStep from '../../SøknadStep';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { Alert, Heading } from '@navikt/ds-react';
@@ -31,7 +31,7 @@ import {
     getOmOmsorgenForBarnStepInitialValues,
     getOmOmsorgenForBarnSøknadsdataFromFormValues,
 } from './omOmsorgenForBarnStepUtils';
-import { dateToday } from '@navikt/sif-common-utils/lib';
+import { dateToday } from '@navikt/sif-common-utils';
 import './omOmsorgenForBarn.css';
 
 export enum OmOmsorgenForBarnFormFields {

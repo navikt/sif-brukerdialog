@@ -1,8 +1,8 @@
 import { IntlShape } from 'react-intl';
-import { DateRange, prettifyDate, prettifyDateExtended } from '@navikt/sif-common-utils/lib';
+import { DateRange, prettifyDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 import { getArbeidstidPeriodeIntl } from '../i18n/arbeidstidPeriodeMessages';
 import { ArbeidIPeriodeIntlValues, ArbeidsforholdType } from '../../../types';
-import { getNumberFromNumberInputValue } from '@navikt/sif-common-formik-ds/lib';
+import { getNumberFromNumberInputValue } from '@navikt/sif-common-formik-ds';
 
 export const getArbeidstidIPeriodeIntlValues = (
     intl: IntlShape,

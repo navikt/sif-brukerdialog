@@ -4,7 +4,7 @@ import { TimerEllerProsent } from '../../../types';
 import { ArbeidIPeriodeType } from '../../../types/ArbeidIPeriodeType';
 import { RedusertArbeidstidType } from '../../../types/RedusertArbeidstidType';
 import { extractArbeidIPeriodeSøknadsdata } from '../extractArbeidIPeriodeSøknadsdata';
-import { ISODateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
+import { ISODateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 
 describe('extractArbeidIPeriodeSøknadsdata', () => {
     it('returnerer riktig når en ikke jobber i perioden', () => {

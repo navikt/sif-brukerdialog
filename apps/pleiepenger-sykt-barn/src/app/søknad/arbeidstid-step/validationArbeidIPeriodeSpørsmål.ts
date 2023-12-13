@@ -5,7 +5,7 @@ import {
     getRequiredFieldValidator,
     ValidateNumberError,
 } from '@navikt/sif-common-formik-ds/src/validation';
-import { dateRangeUtils, decimalDurationToDuration } from '@navikt/sif-common-utils/lib';
+import { dateRangeUtils, decimalDurationToDuration } from '@navikt/sif-common-utils';
 import { ArbeidIPeriodeIntlValues } from '../../local-sif-common-pleiepenger';
 import { formatTimerOgMinutter } from '../../local-sif-common-pleiepenger/components/timer-og-minutter/TimerOgMinutter';
 import { getArbeidstidFastProsentValidator } from '../../local-sif-common-pleiepenger/utils/arbeidstidValidation';

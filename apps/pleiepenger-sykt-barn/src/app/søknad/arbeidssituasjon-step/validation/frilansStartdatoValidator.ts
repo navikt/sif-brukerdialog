@@ -2,7 +2,7 @@ import { DateRange } from '@navikt/sif-common-formik-ds/src';
 import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
 import { getDateValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { ISODate } from '@navikt/sif-common-utils/lib';
+import { ISODate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 
 /** TODO: avklare hvilket tidsrom en faktisk kan oppgi her og i sluttdato - innenfor dagens dato, eller periode? */

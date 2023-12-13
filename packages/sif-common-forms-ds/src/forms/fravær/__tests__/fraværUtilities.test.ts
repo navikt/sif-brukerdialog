@@ -1,5 +1,5 @@
 import { DateRange } from '@navikt/sif-common-utils';
-import { dateToISOString } from '@navikt/sif-common-formik-ds/lib';
+import { dateToISOString } from '@navikt/sif-common-formik-ds';
 import {
     dateCollideWithRanges,
     mapFormValuesToFraværDag,

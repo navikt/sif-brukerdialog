@@ -1,6 +1,6 @@
 import React from 'react';
-import { DateRange, dateToISOString } from '@navikt/sif-common-formik-ds/lib';
-import { Weekday } from '@navikt/sif-common-utils/lib';
+import { DateRange, dateToISOString } from '@navikt/sif-common-formik-ds';
+import { Weekday } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { groupBy } from 'lodash';
 import { Daginfo, Ukeinfo } from '../../types';

@@ -14,9 +14,9 @@ import {
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { getTypedFormComponents, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/lib';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { validateAll } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
+import { getTypedFormComponents, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
 import api, { ApiEndpoint } from '../../../api/api';
 import { getAttachmentURLFrontend } from '../../../utils/attachmentUtils';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';

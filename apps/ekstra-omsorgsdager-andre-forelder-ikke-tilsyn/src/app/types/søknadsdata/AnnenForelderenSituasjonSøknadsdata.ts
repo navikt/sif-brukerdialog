@@ -1,4 +1,4 @@
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib/types';
+import { YesOrNo } from '@navikt/sif-common-formik-ds/src/types';
 import { AnnenForeldrenSituasjon } from '../AnnenForeldrenSituasjon';
 
 interface AnnenForelderenSituasjonSøknadsdataBase {

@@ -1,4 +1,4 @@
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
+import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -14,7 +14,7 @@ import { getDeltBostedStepInitialValues, getDeltBostedSøknadsdataFromFormValues
 import DeltBostedForm, { DeltBostedFormFields, DeltBostedFormValues } from './DeltBostedForm';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { getUploadedAttachments } from '../../../utils/attachmentUtils';
-import { FormikValuesObserver } from '@navikt/sif-common-formik-ds/lib';
+import { FormikValuesObserver } from '@navikt/sif-common-formik-ds';
 
 const { FormikWrapper } = getTypedFormComponents<DeltBostedFormFields, DeltBostedFormValues>();
 

@@ -1,7 +1,7 @@
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import dayjs from 'dayjs';
 import dayOfYear from 'dayjs/plugin/dayOfYear';
-import { AnnetBarn } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/types';
+import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
 import { Søknadsdata, TidspunktForAleneomsorgSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import {

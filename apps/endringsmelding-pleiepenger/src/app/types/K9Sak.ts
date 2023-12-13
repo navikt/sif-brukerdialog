@@ -1,4 +1,4 @@
-import { UtenlandsoppholdÅrsak } from '@navikt/sif-common-forms-ds/lib/forms/utenlandsopphold/types';
+import { UtenlandsoppholdÅrsak } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
 import { DateRange, Duration, ISODateRange, ISODateRangeMap } from '@navikt/sif-common-utils';
 
 export interface K9SakArbeidstidPeriode {

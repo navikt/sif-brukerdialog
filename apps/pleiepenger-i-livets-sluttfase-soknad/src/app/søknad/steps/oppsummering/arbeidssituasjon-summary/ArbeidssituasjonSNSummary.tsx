@@ -3,7 +3,7 @@ import { SelvstendigNæringsdrivendeApiData } from '../../../../types/søknadApi
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SummaryBlock } from '@navikt/sif-common-soknad-ds';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import VirksomhetSummary from '@navikt/sif-common-forms-ds/lib/forms/virksomhet/VirksomhetSummary';
+import VirksomhetSummary from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetSummary';
 import { Label } from '@navikt/ds-react';
 
 interface Props {

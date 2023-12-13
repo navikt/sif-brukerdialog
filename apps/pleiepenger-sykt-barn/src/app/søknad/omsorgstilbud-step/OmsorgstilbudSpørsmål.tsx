@@ -6,7 +6,7 @@ import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds/src';
 import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { dateFormatter } from '@navikt/sif-common-utils/lib';
+import { dateFormatter } from '@navikt/sif-common-utils';
 import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 import { getOmsorgstilbudFastDagValidator } from '../../local-sif-common-pleiepenger/components/omsorgstilbud-periode/components/omsorgstilbud-periode-form/omsorgstilbudFormValidation';
 import TidFasteUkedagerInput from '../../local-sif-common-pleiepenger/components/tid-faste-ukedager-input/TidFasteUkedagerInput';

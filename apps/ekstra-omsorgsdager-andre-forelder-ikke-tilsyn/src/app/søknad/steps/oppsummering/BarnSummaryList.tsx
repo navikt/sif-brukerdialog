@@ -1,4 +1,4 @@
-import SummaryList from '@navikt/sif-common-soknad-ds/lib/components/summary-list/SummaryList';
+import SummaryList from '@navikt/sif-common-soknad-ds/src/components/summary-list/SummaryList';
 import { ApiBarn } from '../../../types/søknadApiData/SøknadApiData';
 import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';

@@ -9,8 +9,8 @@ import annetBarnMessages from '../../src/forms/annet-barn/annetBarnMessages';
 import utenlandskNæringMessages from '../../src/forms/utenlandsk-næring/utenlandskNæringMessages';
 import opptjeningUtlandMessages from '../../src/forms/opptjening-utland/opptjeningUtlandMessages';
 
-import { commonMessagesNb } from '@navikt/sif-common-core-ds/lib/i18n/common.nb';
-import { validationErrorsNb } from '@navikt/sif-common-core-ds/lib/i18n/validationErrors.nb';
+import { commonMessagesNb } from '@navikt/sif-common-core-ds/src/i18n/common.nb';
+import { validationErrorsNb } from '@navikt/sif-common-core-ds/src/i18n/validationErrors.nb';
 const bokmålstekster = {
     ...commonMessagesNb,
     ...validationErrorsNb,

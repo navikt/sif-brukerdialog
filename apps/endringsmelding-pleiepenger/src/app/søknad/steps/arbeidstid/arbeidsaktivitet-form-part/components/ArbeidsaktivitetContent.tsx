@@ -1,7 +1,7 @@
 import { Heading } from '@navikt/ds-react';
 import React, { useState } from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { FormikInputGroup } from '@navikt/sif-common-formik-ds/lib';
+import { FormikInputGroup } from '@navikt/sif-common-formik-ds';
 import {
     dateFormatter,
     dateRangeToISODateRange,

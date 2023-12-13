@@ -3,7 +3,7 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
-import { FormikInputGroup, FormikTimeInput, TestProps, ValidationError } from '@navikt/sif-common-formik-ds/lib';
+import { FormikInputGroup, FormikTimeInput, TestProps, ValidationError } from '@navikt/sif-common-formik-ds';
 import {
     dateFormatter,
     decimalDurationToDuration,

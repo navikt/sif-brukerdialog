@@ -1,4 +1,4 @@
-import { DateRange } from '@navikt/sif-common-formik-ds/lib';
+import { DateRange } from '@navikt/sif-common-formik-ds';
 import dayjs from 'dayjs';
 import { ArbeidSelvstendigSøknadsdata } from '../../../../types/søknadsdata/ArbeidSelvstendigSøknadsdata';
 

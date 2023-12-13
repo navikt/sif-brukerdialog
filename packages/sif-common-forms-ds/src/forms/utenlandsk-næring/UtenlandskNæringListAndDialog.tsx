@@ -3,7 +3,7 @@ import {
     ModalFormAndListLabels,
     TypedFormInputValidationProps,
 } from '@navikt/sif-common-formik-ds';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { UtenlandskNæring } from './types';
 import UtenlandskNæringForm from './UtenlandskNæringForm';
 import UtenlandskNæringList from './UtenlandskNæringList';

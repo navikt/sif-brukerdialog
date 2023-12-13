@@ -1,12 +1,12 @@
 import { Accordion, Heading } from '@navikt/ds-react';
-import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/lib';
+import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import {
     DateRange,
     dateToISODate,
     getDatesInDateRange,
     getMonthsInDateRange,
     getWeeksInDateRange,
-} from '@navikt/sif-common-utils/lib';
+} from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import React from 'react';
 import DurationWeekdaysWeek from './duration-weekdays-week/DurationWeekdaysWeek';

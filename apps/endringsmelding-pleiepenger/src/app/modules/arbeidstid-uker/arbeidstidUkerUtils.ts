@@ -1,4 +1,4 @@
-import { durationToDecimalDuration } from '@navikt/sif-common-utils/lib';
+import { durationToDecimalDuration } from '@navikt/sif-common-utils';
 import { ArbeidstidUkerItem } from './ArbeidstidUkerItem';
 
 export const erArbeidstidUkeItemEndret = (uke: ArbeidstidUkerItem): boolean => {

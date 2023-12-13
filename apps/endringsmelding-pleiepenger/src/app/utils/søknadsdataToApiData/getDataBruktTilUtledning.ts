@@ -1,4 +1,4 @@
-import { durationToISODuration } from '@navikt/sif-common-utils/lib';
+import { durationToISODuration } from '@navikt/sif-common-utils';
 import {
     ArbeiderIPeriodenSvar,
     Arbeidsforhold,

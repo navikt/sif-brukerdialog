@@ -5,7 +5,7 @@ import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import OpptjeningUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/opptjening-utland/OpptjeningUtlandListAndDialog';
 import UtenlandskNæringListAndDialog from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring/UtenlandskNæringListAndDialog';
-import { date1YearAgo, date1YearFromNow } from '@navikt/sif-common-utils/lib';
+import { date1YearAgo, date1YearFromNow } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 import ResponsivePanel from '../../../components/responsive-panel/ResponsivePanel';
 import { SøknadFormField, SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';

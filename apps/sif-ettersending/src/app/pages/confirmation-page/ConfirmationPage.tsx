@@ -1,7 +1,7 @@
 import { BodyLong, Heading, Ingress, Link } from '@navikt/ds-react';
 import { useEffect } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
+import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import CheckmarkIcon from '@navikt/sif-common-core-ds/src/atoms/checkmark-icon/CheckmarkIcon';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';

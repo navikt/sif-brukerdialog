@@ -1,4 +1,4 @@
-import ActionLink from '@navikt/sif-common-core-ds/lib/atoms/action-link/ActionLink';
+import ActionLink from '@navikt/sif-common-core-ds/src/atoms/action-link/ActionLink';
 import React from 'react';
 
 interface Props {

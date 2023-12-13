@@ -4,7 +4,7 @@ import AccordionHeader from '@navikt/ds-react/esm/accordion/AccordionHeader';
 import AccordionItem from '@navikt/ds-react/esm/accordion/AccordionItem';
 import React from 'react';
 import { useIntl } from 'react-intl';
-import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
+import { useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';

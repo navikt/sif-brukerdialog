@@ -5,11 +5,11 @@ import isoWeek from 'dayjs/plugin/isoWeek';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
 import { TidPerDagValidator } from '../../types';
 import TidUkerInput from '../tid-uker-input/TidUkerInput';
-import { InputTime, ValidationError, getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
+import { InputTime, ValidationError, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { Button, Heading } from '@navikt/ds-react';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 
 dayjs.extend(isoWeek);
 dayjs.extend(weekOfYear);

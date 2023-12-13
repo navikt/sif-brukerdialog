@@ -11,7 +11,7 @@ import {
     TestProps,
     ValidationError,
     ValidationResult,
-} from '@navikt/sif-common-formik-ds/lib';
+} from '@navikt/sif-common-formik-ds';
 
 export interface ArbeidstidUkeTekster {
     dag: React.ReactNode;

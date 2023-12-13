@@ -1,6 +1,6 @@
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import { SøkersRelasjonTilBarnet } from '../SøkersRelasjonTilBarnet';
-import { ISODate } from '@navikt/sif-common-utils/lib';
+import { ISODate } from '@navikt/sif-common-utils';
 
 export interface OmBarnetApiData {
     barn: BarnToSendToApi;

@@ -8,8 +8,8 @@ import {
     ValidationError,
     getErrorForField,
     getTypedFormComponents,
-} from '@navikt/sif-common-formik-ds/lib';
-import getTimeValidator from '@navikt/sif-common-formik-ds/lib/validation/getTimeValidator';
+} from '@navikt/sif-common-formik-ds';
+import getTimeValidator from '@navikt/sif-common-formik-ds/src/validation/getTimeValidator';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import DurationWeekdaysInput from '@navikt/sif-common-ui/src/duration-weekdays-input/DurationWeekdaysInput';
 import {
@@ -19,7 +19,7 @@ import {
     getMonthsInDateRange,
     isDateInDates,
     summarizeDateDurationMap,
-} from '@navikt/sif-common-utils/lib';
+} from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { useFormikContext } from 'formik';
 import { useContext, useEffect, useState } from 'react';

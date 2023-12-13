@@ -7,12 +7,12 @@ import {
     ValidationError,
     YesOrNo,
     getTypedFormComponents,
-} from '@navikt/sif-common-formik-ds/lib';
-import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib';
-import UtenlandsoppholdListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/utenlandsopphold/UtenlandsoppholdListAndDialog';
-import { getDateRangeFromDates } from '@navikt/sif-common-utils/lib';
+} from '@navikt/sif-common-formik-ds';
+import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { Utenlandsopphold } from '@navikt/sif-common-forms-ds';
+import UtenlandsoppholdListAndDialog from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/UtenlandsoppholdListAndDialog';
+import { getDateRangeFromDates } from '@navikt/sif-common-utils';
 import { FormattedMessage, useIntl } from 'react-intl';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';

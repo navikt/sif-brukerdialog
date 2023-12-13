@@ -1,6 +1,6 @@
 import { date1YearAgo, dateToday } from '@navikt/sif-common-utils';
-import { DateRange } from '@navikt/sif-common-formik-ds/lib';
-import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds/lib';
+import { DateRange } from '@navikt/sif-common-formik-ds';
+import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds';
 import dayjs, { Dayjs } from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
 import { FraværSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';

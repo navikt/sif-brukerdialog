@@ -7,7 +7,7 @@ import {
     ISODateToDate,
     ISODurationToDecimalDuration,
     ISODurationToDuration,
-} from '@navikt/sif-common-utils/lib';
+} from '@navikt/sif-common-utils';
 import { formatTimerOgMinutter } from '../../../local-sif-common-pleiepenger/components/timer-og-minutter/TimerOgMinutter';
 import { ArbeidIPeriodeType } from '../../../types/ArbeidIPeriodeType';
 import { RedusertArbeidstidType } from '../../../types/RedusertArbeidstidType';

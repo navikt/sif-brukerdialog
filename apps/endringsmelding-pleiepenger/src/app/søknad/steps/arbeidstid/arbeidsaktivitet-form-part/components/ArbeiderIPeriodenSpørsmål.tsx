@@ -1,6 +1,6 @@
 import React from 'react';
-import { FormikRadioGroup, IntlErrorObject } from '@navikt/sif-common-formik-ds/lib';
-import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import { FormikRadioGroup, IntlErrorObject } from '@navikt/sif-common-formik-ds';
+import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { ArbeidsaktivitetArbeidstaker, ArbeiderIPeriodenSvar } from '@types';
 
 interface Props {

@@ -5,18 +5,18 @@ import ContentWithHeader from '@navikt/sif-common-core-ds/src/components/content
 import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib/types';
+import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
+import { YesOrNo } from '@navikt/sif-common-formik-ds/src/types';
 import {
     getCheckedValidator,
     getListValidator,
     getYesOrNoValidator,
-} from '@navikt/sif-common-formik-ds/lib/validation';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import AnnetBarnListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/AnnetBarnListAndDialog';
-import { AnnetBarn } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/types';
-import { dateToday } from '@navikt/sif-common-utils/lib/dateUtils';
+} from '@navikt/sif-common-formik-ds/src/validation';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import AnnetBarnListAndDialog from '@navikt/sif-common-forms-ds/src/forms/annet-barn/AnnetBarnListAndDialog';
+import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
+import { dateToday } from '@navikt/sif-common-utils';
 import { FormattedMessage, useIntl } from 'react-intl';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
@@ -40,7 +40,7 @@ import {
     minstEtBarn12årIårellerYngre,
     nYearsAgo,
 } from './dineBarnStepUtils';
-// import { FormikValuesObserver } from '@navikt/sif-common-formik-ds/lib';
+// import { FormikValuesObserver } from '@navikt/sif-common-formik-ds';
 
 export enum DineBarnFormFields {
     andreBarn = 'andreBarn',

@@ -2,7 +2,7 @@ import { IntlShape } from 'react-intl';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { VirksomhetApiData } from '@navikt/sif-common-forms-ds/src/forms/virksomhet/types';
-import { durationToDecimalDuration, ISODurationToDuration, summarizeDurations } from '@navikt/sif-common-utils/lib';
+import { durationToDecimalDuration, ISODurationToDuration, summarizeDurations } from '@navikt/sif-common-utils';
 import { isEqual } from 'lodash';
 import { StepID } from '../types/StepID';
 import { OmsorgstilbudApiData, SøknadApiData, TimerFasteDagerApiData } from '../types/søknad-api-data/SøknadApiData';

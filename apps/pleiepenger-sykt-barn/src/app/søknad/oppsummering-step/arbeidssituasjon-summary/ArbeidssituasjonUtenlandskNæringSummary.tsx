@@ -3,7 +3,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import SummaryBlock from '@navikt/sif-common-soknad-ds/src/components/summary-block/SummaryBlock';
-import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils/lib';
+import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils';
 import { UtenlandskNæringApiData } from '../../../types/søknad-api-data/SøknadApiData';
 
 interface Props {

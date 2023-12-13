@@ -7,12 +7,12 @@ import {
     getFødselsnummerValidator,
     getRequiredFieldValidator,
     getStringValidator,
-} from '@navikt/sif-common-formik-ds/lib/validation';
+} from '@navikt/sif-common-formik-ds/src/validation';
 import { useSøknadContext } from '../../../context/hooks/useSøknadContext';
 import { OmBarnetFormFields, OmBarnetFormValues } from '../OmBarnetStep';
 import { SøkersRelasjonTilBarnet, SøkersRelasjonTilBarnetKeys } from '../../../../types/SøkersRelasjonTilBarnet';
-import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
-import { dateFormatter, dateToday } from '@navikt/sif-common-utils/lib';
+import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import { dateFormatter, dateToday } from '@navikt/sif-common-utils';
 import { getMinDatoForBarnetsFødselsdato, isBarnOver18år } from '../omBarnetStepUtils';
 
 const { TextField, DatePicker, Select } = getTypedFormComponents<

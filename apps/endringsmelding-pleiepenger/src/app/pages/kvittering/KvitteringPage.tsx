@@ -1,9 +1,9 @@
 import { Link } from '@navikt/ds-react';
-import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
+import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
-import Kvittering from '@navikt/sif-common-soknad-ds/lib/components/kvittering/Kvittering';
+import Kvittering from '@navikt/sif-common-soknad-ds/src/components/kvittering/Kvittering';
 import { useEffect } from 'react';
 
 interface Props {

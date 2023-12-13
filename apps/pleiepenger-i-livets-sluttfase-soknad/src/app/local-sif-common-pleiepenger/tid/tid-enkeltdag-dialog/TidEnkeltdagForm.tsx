@@ -26,12 +26,12 @@ import {
 } from './utils/tidEnkeltdagUtils';
 import { getTidEnkeltdagFormTidValidator } from './utils/tidEnkeltdagValidation';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { getTypedFormComponents, InputTime, ValidationError } from '@navikt/sif-common-formik-ds/lib';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import { getTypedFormComponents, InputTime, ValidationError } from '@navikt/sif-common-formik-ds';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { Heading } from '@navikt/ds-react';
-import { InputDateString } from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/dateFormatUtils';
+import { InputDateString } from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/dateFormatUtils';
 
 dayjs.extend(minMax);
 

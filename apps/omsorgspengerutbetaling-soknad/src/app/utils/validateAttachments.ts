@@ -4,7 +4,7 @@ import {
     getTotalSizeOfAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
-import { ValidationResult } from '@navikt/sif-common-formik-ds/lib';
+import { ValidationResult } from '@navikt/sif-common-formik-ds';
 
 export enum ValidateAttachmentsErrors {
     'samletStørrelseForHøy' = 'samletStørrelseForHøy',

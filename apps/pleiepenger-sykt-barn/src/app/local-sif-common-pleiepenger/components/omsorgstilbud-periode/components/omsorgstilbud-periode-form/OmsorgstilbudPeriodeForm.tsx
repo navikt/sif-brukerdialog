@@ -11,7 +11,7 @@ import {
 } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { DurationWeekdays } from '@navikt/sif-common-utils/lib';
+import { DurationWeekdays } from '@navikt/sif-common-utils';
 import TidFasteUkedagerInput from '../../../tid-faste-ukedager-input/TidFasteUkedagerInput';
 import { getOmsorgstilbudPeriodeIntl } from '../../i18n/omsorgstilbudPeriodeMessages';
 import { getOmsorgstilbudFastDagValidator, validateOmsorgstilbudFasteDager } from './omsorgstilbudFormValidation';

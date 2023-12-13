@@ -1,10 +1,10 @@
 import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { FormikModalFormAndList, TypedFormInputValidationProps } from '@navikt/sif-common-formik-ds';
 import FosterbarnForm from './FosterbarnForm';
 import FosterbarnList from './FosterbarnList';
 import { Fosterbarn } from './types';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 
 export interface FosterbarnListAndDialogText {
     liste_legg_til_knapp: string;

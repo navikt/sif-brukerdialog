@@ -3,8 +3,8 @@ import {
     getNumberFromNumberInputValue,
     getStringForNumberInputValue,
     YesOrNo,
-} from '@navikt/sif-common-formik-ds/lib';
-import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
+} from '@navikt/sif-common-formik-ds';
+import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
 import dayjs from 'dayjs';
 import { Arbeidsgiver, ArbeidsgiverType } from '../../../types/Arbeidsgiver';
 import { ArbeidFrilansSøknadsdata } from '../../../types/søknadsdata/ArbeidFrilansSøknadsdata';
@@ -225,8 +225,8 @@ export const getVernepliktigFormData = (vernepliktigSøknadsdata?: VernepliktigS
     return vernepliktigSøknadsdata?.type === 'harVærtEllerErVernepliktigYes'
         ? YesOrNo.YES
         : vernepliktigSøknadsdata?.type === 'harVærtEllerErVernepliktigNo'
-        ? YesOrNo.NO
-        : YesOrNo.UNANSWERED;
+          ? YesOrNo.NO
+          : YesOrNo.UNANSWERED;
 };
 
 const getOpptjeningUtlandFormData = (opptjeningUtland?: OpptjeningUtlandSøknadsdata) => {

@@ -1,5 +1,5 @@
 import persistence, { PersistenceInterface } from '@navikt/sif-common-core-ds/src/utils/persistence/persistence';
-import { jsonSort } from '@navikt/sif-common-utils/lib';
+import { jsonSort } from '@navikt/sif-common-utils';
 import { AxiosResponse } from 'axios';
 import hash from 'object-hash';
 import { SØKNAD_VERSJON } from '../../constants/SØKNAD_VERSJON';

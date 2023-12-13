@@ -1,4 +1,4 @@
-import { dateToday } from '@navikt/sif-common-utils/lib';
+import { dateToday } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 
 export const aldersBegrensingOver = (fødselsdato: Date, maxGrenseYears: number): boolean => {
