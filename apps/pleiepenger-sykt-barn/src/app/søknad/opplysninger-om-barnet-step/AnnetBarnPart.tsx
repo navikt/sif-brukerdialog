@@ -7,14 +7,14 @@ import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { resetFieldValue, resetFieldValues } from '@navikt/sif-common-formik-ds';
-import { SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds/lib';
+import { SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds/src';
 import {
     getDateValidator,
     getFødselsnummerValidator,
     getRequiredFieldValidator,
     getStringValidator,
     ValidateDateError,
-} from '@navikt/sif-common-formik-ds/lib/validation';
+} from '@navikt/sif-common-formik-ds/src/validation';
 import { dateToday, prettifyDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { useFormikContext } from 'formik';

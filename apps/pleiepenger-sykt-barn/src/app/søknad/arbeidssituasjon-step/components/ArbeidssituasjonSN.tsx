@@ -5,10 +5,10 @@ import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { DateRange, getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
-import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import VirksomhetInfoAndDialog from '@navikt/sif-common-forms-ds/lib/forms/virksomhet/VirksomhetInfoAndDialog';
+import { DateRange, getTypedFormComponents } from '@navikt/sif-common-formik-ds/src';
+import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import VirksomhetInfoAndDialog from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetInfoAndDialog';
 import { useFormikContext } from 'formik';
 import ResponsivePanel from '../../../components/responsive-panel/ResponsivePanel';
 import getLenker from '../../../lenker';

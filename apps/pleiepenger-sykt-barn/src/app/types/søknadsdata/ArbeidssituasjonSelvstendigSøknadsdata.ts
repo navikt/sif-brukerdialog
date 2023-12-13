@@ -1,4 +1,4 @@
-import { Virksomhet } from '@navikt/sif-common-forms-ds/lib';
+import { Virksomhet } from '@navikt/sif-common-forms-ds/src';
 import { DateRange } from '@navikt/sif-common-utils/lib';
 import { NormalarbeidstidSøknadsdata } from './NormalarbeidstidSøknadsdata';
 

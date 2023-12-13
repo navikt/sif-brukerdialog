@@ -4,8 +4,8 @@ import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
+import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { useFormikContext } from 'formik';
 import { useState } from 'react';

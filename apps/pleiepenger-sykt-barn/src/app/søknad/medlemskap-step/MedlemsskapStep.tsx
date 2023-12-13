@@ -4,9 +4,9 @@ import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/bosted-utland/BostedUtlandListAndDialog';
+import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
+import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/BostedUtlandListAndDialog';
 import { useFormikContext } from 'formik';
 import { useIntl } from 'react-intl';
 import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';

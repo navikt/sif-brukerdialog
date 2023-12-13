@@ -1,4 +1,4 @@
-import { hasValue } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
+import { hasValue } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
 import { vi } from 'vitest';
 
 vi.mock('@navikt/sif-common-core-ds/src/utils/envUtils', () => {

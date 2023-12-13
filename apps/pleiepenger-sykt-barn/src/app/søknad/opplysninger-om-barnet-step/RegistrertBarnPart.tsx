@@ -7,7 +7,7 @@ import { resetFieldValue, resetFieldValues, SkjemagruppeQuestion } from '@navikt
 import { useFormikContext } from 'formik';
 import { SøknadFormField, initialValues, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import SøknadFormComponents from '../SøknadFormComponents';
-import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { RegistrerteBarn } from '../../types';
 import { BodyShort } from '@navikt/ds-react';

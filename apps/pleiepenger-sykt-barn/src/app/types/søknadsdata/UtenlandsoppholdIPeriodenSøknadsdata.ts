@@ -1,4 +1,4 @@
-import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib';
+import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src';
 
 export interface SkalOppholdeSegIUtlandetSøknadsdata {
     type: 'skalOppholdeSegIUtlandet';

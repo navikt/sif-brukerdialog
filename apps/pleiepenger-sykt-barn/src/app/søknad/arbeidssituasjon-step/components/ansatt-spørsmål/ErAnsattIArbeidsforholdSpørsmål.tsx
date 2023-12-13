@@ -1,8 +1,8 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds/src';
+import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import {
     ArbeidsforholdFormField,
     ArbeidsforholdFormValues,

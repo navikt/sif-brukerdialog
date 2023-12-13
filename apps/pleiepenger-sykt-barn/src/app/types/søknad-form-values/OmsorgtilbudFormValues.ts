@@ -1,4 +1,4 @@
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
+import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
 import { DateDurationMap, DurationWeekdays } from '@navikt/sif-common-utils/lib';
 import { YesOrNoOrDoNotKnow } from '../YesOrNoOrDoNotKnow';
 

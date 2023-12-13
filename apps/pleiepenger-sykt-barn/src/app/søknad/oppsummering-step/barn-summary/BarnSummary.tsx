@@ -7,9 +7,9 @@ import { BarnRelasjon, RegistrerteBarn, ÅrsakManglerIdentitetsnummer } from '..
 import { SøknadApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import UploadedDocumentsList from '../../../components/fødselsattest-file-list/UploadedDocumentsList';
-import SummaryBlock from '@navikt/sif-common-soknad-ds/lib/components/summary-block/SummaryBlock';
-import SummarySection from '@navikt/sif-common-soknad-ds/lib/components/summary-section/SummarySection';
-import TextareaSummary from '@navikt/sif-common-soknad-ds/lib/components/summary-answers/TextareaSvar';
+import SummaryBlock from '@navikt/sif-common-soknad-ds/src/components/summary-block/SummaryBlock';
+import SummarySection from '@navikt/sif-common-soknad-ds/src/components/summary-section/SummarySection';
+import TextareaSummary from '@navikt/sif-common-soknad-ds/src/components/summary-answers/TextareaSvar';
 import Sitat from '../../../components/sitat/Sitat';
 
 interface Props {

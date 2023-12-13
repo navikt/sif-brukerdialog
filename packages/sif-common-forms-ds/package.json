@@ -1,6 +1,7 @@
 {
     "author": "@navikt",
     "description": "Fellesskjema for sykdom i familien",
+    "main": "src",
     "name": "@navikt/sif-common-forms-ds",
     "version": "8.16.3",
     "private": true,

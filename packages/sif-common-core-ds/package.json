@@ -1,5 +1,6 @@
 {
     "author": "navikt",
+    "main": "src",
     "name": "@navikt/sif-common-core-ds",
     "version": "9.12.3",
     "private": true,

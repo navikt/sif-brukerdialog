@@ -1,4 +1,4 @@
-import { DateRange } from '@navikt/sif-common-formik-ds/lib';
+import { DateRange } from '@navikt/sif-common-formik-ds/src';
 import { dateRangeUtils } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import { ArbeidsukeInfo } from '../types/ArbeidsukeInfo';

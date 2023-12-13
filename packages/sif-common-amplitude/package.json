@@ -3,7 +3,7 @@
     "description": "Amplitude log util used in SIF",
     "homepage": "https://github.com/navikt/sif-common-amplitude",
     "license": "MIT",
-    "main": "main/index.ts",
+    "main": "src/index.ts",
     "name": "@navikt/sif-common-amplitude",
     "version": "2.24.6",
     "bugs": {

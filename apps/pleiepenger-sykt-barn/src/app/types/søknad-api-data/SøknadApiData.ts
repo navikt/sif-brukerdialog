@@ -1,14 +1,14 @@
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
-import { OpptjeningAktivitet } from '@navikt/sif-common-forms-ds/lib/forms/opptjening-utland';
-import { UtenlandskNæringstype } from '@navikt/sif-common-forms-ds/lib/forms/utenlandsk-næring';
-import { UtenlandsoppholdÅrsak } from '@navikt/sif-common-forms-ds/lib/forms/utenlandsopphold/types';
+import { OpptjeningAktivitet } from '@navikt/sif-common-forms-ds/src/forms/opptjening-utland';
+import { UtenlandskNæringstype } from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring';
+import { UtenlandsoppholdÅrsak } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
 import { ISODate, ISODuration } from '@navikt/sif-common-utils';
 import { BarnRelasjon, ÅrsakManglerIdentitetsnummer } from '..';
 import { ArbeidsgiverAnsattApiData } from './ArbeidsgiverAnsattApiData';
 import { FrilansApiData } from './FrilansApiData';
 import { SelvstendigApiData } from './SelvstendigApiData';
 import { StønadGodtgjørelseApiData } from './StønadGodtgjørelseApiData';
-import { ISODateString } from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/dateFormatUtils';
+import { ISODateString } from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/dateFormatUtils';
 
 export * from './ArbeidIPeriodeApiData';
 export * from './ArbeidsgiverAnsattApiData';

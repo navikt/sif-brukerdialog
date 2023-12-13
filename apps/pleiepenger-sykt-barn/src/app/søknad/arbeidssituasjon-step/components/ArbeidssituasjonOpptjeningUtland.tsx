@@ -1,10 +1,10 @@
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import OpptjeningUtlandListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/opptjening-utland/OpptjeningUtlandListAndDialog';
-import UtenlandskNæringListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/utenlandsk-næring/UtenlandskNæringListAndDialog';
+import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
+import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import OpptjeningUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/opptjening-utland/OpptjeningUtlandListAndDialog';
+import UtenlandskNæringListAndDialog from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring/UtenlandskNæringListAndDialog';
 import { date1YearAgo, date1YearFromNow } from '@navikt/sif-common-utils/lib';
 import { useFormikContext } from 'formik';
 import ResponsivePanel from '../../../components/responsive-panel/ResponsivePanel';

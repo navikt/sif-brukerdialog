@@ -1,4 +1,4 @@
-import { dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds/lib';
+import { dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds/src';
 import {
     DateDurationMap,
     DateRange,

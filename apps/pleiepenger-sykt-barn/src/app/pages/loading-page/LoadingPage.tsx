@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import SoknadHeader from '@navikt/sif-common-soknad-ds/lib/components/soknad-header/SoknadHeader';
+import SoknadHeader from '@navikt/sif-common-soknad-ds/src/components/soknad-header/SoknadHeader';
 
 const LoadingPage = () => {
     const intl = useIntl();

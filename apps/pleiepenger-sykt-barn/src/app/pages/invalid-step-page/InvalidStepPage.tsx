@@ -7,7 +7,7 @@ import FormattedHtmlMessage from '@navikt/sif-common-core-ds/src/atoms/formatted
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import SoknadHeader from '@navikt/sif-common-soknad-ds/lib/components/soknad-header/SoknadHeader';
+import SoknadHeader from '@navikt/sif-common-soknad-ds/src/components/soknad-header/SoknadHeader';
 import RouteConfig from '../../config/routeConfig';
 import { StepID } from '../../types/StepID';
 
