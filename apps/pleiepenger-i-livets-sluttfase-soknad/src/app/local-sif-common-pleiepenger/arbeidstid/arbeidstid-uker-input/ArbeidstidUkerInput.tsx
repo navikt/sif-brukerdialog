@@ -1,5 +1,5 @@
 import React from 'react';
-import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
+import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { tidUkerInputUtils } from '../../tid/tid-uker-input/tidUkerUtils';
 import { Daginfo, Ukeinfo } from '../../types';
 import ArbeidstidUkeInput, {
@@ -11,7 +11,7 @@ import './arbeidstidUkerInput.less';
 import { DateRange, TestProps } from '@navikt/sif-common-formik-ds/lib';
 import { DurationWeekdays, InputDateDurationMap, Weekday, isDateInDates } from '@navikt/sif-common-utils/lib';
 import { Accordion } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 
 const getTidKalenderFieldName = (fieldName: string, dag: Daginfo): string => `${fieldName}.${dag.isoDate}`;
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { GuidePanel, Heading, Ingress } from '@navikt/ds-react';
 import { FormattedMessage } from 'react-intl';
-import InfoList from '@navikt/sif-common-core-ds/lib/components/lists/info-list/InfoList';
+import InfoList from '@navikt/sif-common-core-ds/src/components/lists/info-list/InfoList';
 
 interface Props {
     navn: string;

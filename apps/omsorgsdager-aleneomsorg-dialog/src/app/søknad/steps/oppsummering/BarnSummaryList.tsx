@@ -1,6 +1,6 @@
 import SummaryList from '@navikt/sif-common-soknad-ds/lib/components/summary-list/SummaryList';
 import { IntlShape, useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { ApiBarn } from '../../../types/søknadApiData/SøknadApiData';
 import { TidspunktForAleneomsorg } from '../tidspunkt-for-aleneomsorg/TidspunktForAleneomsorgStep';
 import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils/lib';

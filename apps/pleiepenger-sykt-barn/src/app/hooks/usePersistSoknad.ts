@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { ApiError, useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
-import apiUtils from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
+import apiUtils from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { AxiosError } from 'axios';
 import { useFormikContext } from 'formik';
 import { persist } from '../api/api';

@@ -6,7 +6,7 @@ import { vi } from 'vitest';
 
 const mockedApiUrl = 'mockedApiUrl';
 
-vi.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => {
+vi.mock('@navikt/sif-common-core-ds/src/utils/envUtils', () => {
     return {
         getEnvironmentVariable: () => 'mockedApiUrl',
         getEnvVariableOrDefault: () => 'mockedApiUrl',

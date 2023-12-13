@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import SummaryBlock from '@navikt/sif-common-soknad-ds/lib/components/summary-block/SummaryBlock';
 import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils/lib';
 import { UtenlandskNæringApiData } from '../../../types/søknad-api-data/SøknadApiData';

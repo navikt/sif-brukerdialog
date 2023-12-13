@@ -1,5 +1,5 @@
 import { ExpansionCard, Panel } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { ArbeidsaktivitetType, Arbeidsgiver } from '@types';
 import ArbeidsaktivitetBlockHeader from './ArbeidsaktivitetBlockHeader';
 

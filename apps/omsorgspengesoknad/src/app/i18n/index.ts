@@ -1,5 +1,5 @@
-import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageFileFormat';
-import { allCommonMessages } from '@navikt/sif-common-core-ds/lib/i18n/allCommonMessages';
+import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
+import { allCommonMessages } from '@navikt/sif-common-core-ds/src/i18n/allCommonMessages';
 import soknadIntlMessages from '@navikt/sif-common-soknad-ds/lib/i18n/soknadIntlMessages';
 import { omBarnetMessages } from '../søknad/steps/om-barnet/stegOmBarnetMessages';
 import { personalOpplysningerMessages } from '../pages/velkommen/personalopplysninger/personalopplysninger.messages';

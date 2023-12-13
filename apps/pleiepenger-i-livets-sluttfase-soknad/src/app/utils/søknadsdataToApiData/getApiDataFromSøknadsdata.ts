@@ -1,5 +1,5 @@
-import { Attachment } from '@navikt/sif-common-core-ds/lib/types';
-import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types';
+import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { dateToISODate } from '@navikt/sif-common-utils/lib';
 import { FlereSokereApiData, SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';

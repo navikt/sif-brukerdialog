@@ -1,4 +1,4 @@
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import axios, { AxiosRequestConfig, RawAxiosRequestHeaders } from 'axios';
 import { ApiEndpoint } from '../types/ApiEndpoint';
 

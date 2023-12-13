@@ -8,7 +8,7 @@ import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData'
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
 import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
 import { SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import OpptjeningIUtlandetSummaryView from './OpptjeningIUtlandetSummaryView';
 
 interface Props {

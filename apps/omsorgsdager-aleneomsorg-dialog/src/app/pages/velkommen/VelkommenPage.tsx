@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl';
 import { SIFCommonPageKey, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
-import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import OmSøknaden from './OmSøknaden';
 import VelkommenGuide from './VelkommenGuide';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';

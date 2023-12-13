@@ -2,7 +2,7 @@ import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
 import { OmOmsorgenForBarnSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { OmOmsorgenForBarnFormValues } from './OmOmsorgenForBarnStep';
-import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { dateFormatter } from '@navikt/sif-common-utils/lib/dateFormatter';
 import { FormattedMessage } from 'react-intl';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn';

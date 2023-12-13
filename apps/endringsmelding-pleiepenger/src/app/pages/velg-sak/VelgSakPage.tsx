@@ -1,10 +1,10 @@
 import { useSøknadContext } from '@hooks';
 import { BodyShort, Heading } from '@navikt/ds-react';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { ValidationError, getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';

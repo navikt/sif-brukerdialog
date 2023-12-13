@@ -1,14 +1,14 @@
 import { FormattedMessage, useIntl } from 'react-intl';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { prettifyDate } from '@navikt/sif-common-utils';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { resetFieldValue, resetFieldValues, SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds';
 import { useFormikContext } from 'formik';
 import { SøknadFormField, initialValues, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import SøknadFormComponents from '../SøknadFormComponents';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { RegistrerteBarn } from '../../types';
 import { BodyShort } from '@navikt/ds-react';
 

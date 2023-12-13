@@ -1,9 +1,9 @@
 import { createRoot } from 'react-dom/client';
 import { Navigate, Route } from 'react-router-dom';
-import { AmplitudeProvider } from '@navikt/sif-common-amplitude/lib';
-import SifAppWrapper from '@navikt/sif-common-core-ds/lib/components/sif-app-wrapper/SifAppWrapper';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
+import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
+import SifAppWrapper from '@navikt/sif-common-core-ds/src/components/sif-app-wrapper/SifAppWrapper';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { SoknadApplication, SoknadApplicationCommonRoutes } from '@navikt/sif-common-soknad-ds';
 import DevBranchInfo from '@navikt/sif-common-soknad-ds/lib/components/dev-branch-info/DevBranchInfo';
 import RouteConfig from './config/routeConfig';
@@ -13,7 +13,7 @@ import Søknad from './søknad/Søknad';
 import appSentryLogger from './utils/appSentryLogger';
 import { relocateToSoknad } from './utils/navigationUtils';
 import '@navikt/ds-css';
-import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
+import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.less';
 
 const publicPath = getEnvironmentVariable('PUBLIC_PATH');

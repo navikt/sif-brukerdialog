@@ -1,5 +1,5 @@
-import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
-import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { BostedUtland } from '@navikt/sif-common-forms-ds/lib';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/lib/forms/ferieuttak/types';
 import { OpptjeningUtland } from '@navikt/sif-common-forms-ds/lib/forms/opptjening-utland';

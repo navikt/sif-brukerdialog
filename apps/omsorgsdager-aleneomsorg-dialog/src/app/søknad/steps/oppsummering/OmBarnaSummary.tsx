@@ -1,9 +1,9 @@
 import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { AnnetBarn, BarnType } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
-import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { SummarySection, SummaryList } from '@navikt/sif-common-soknad-ds';
 export interface AlleBarnSummary {
     navn: string;

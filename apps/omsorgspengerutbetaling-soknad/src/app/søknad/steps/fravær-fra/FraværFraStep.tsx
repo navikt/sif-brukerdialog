@@ -1,5 +1,5 @@
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { dateToISOString, getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
 import getRequiredFieldValidator from '@navikt/sif-common-formik-ds/lib/validation/getRequiredFieldValidator';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';

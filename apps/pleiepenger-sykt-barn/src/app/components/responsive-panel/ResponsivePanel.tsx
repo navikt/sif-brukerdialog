@@ -1,5 +1,5 @@
 import { Panel, PanelProps } from '@navikt/ds-react';
-import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
+import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import './responsivePanel.less';
 
 const bem = bemUtils('responsivePanel');

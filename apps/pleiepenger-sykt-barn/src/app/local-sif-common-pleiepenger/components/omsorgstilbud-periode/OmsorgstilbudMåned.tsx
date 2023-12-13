@@ -3,7 +3,7 @@ import ExpansionCardContent from '@navikt/ds-react/esm/expansion-card/ExpansionC
 import ExpansionCardHeader from '@navikt/ds-react/esm/expansion-card/ExpansionCardHeader';
 import React, { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { DateRange, dateToISOString, InputTime } from '@navikt/sif-common-formik-ds/lib';
 import { DateDurationMap, durationIsZero, getDurationsInDateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';

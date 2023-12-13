@@ -1,6 +1,6 @@
 import { NavigateFunction } from 'react-router';
 import RouteConfig, { getRouteUrl } from '../config/routeConfig';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 
 export const userIsCurrentlyOnErrorPage = () => {
     return window.location.pathname === getRouteUrl(RouteConfig.ERROR_PAGE_ROUTE);

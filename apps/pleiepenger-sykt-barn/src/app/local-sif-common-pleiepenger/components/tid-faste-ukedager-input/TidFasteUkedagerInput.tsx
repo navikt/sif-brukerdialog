@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { FormikTimeInput, TestProps } from '@navikt/sif-common-formik-ds/lib';
 import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import { Weekday } from '@navikt/sif-common-utils/lib';

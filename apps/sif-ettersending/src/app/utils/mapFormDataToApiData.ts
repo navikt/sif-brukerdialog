@@ -1,7 +1,7 @@
 import { IntlShape } from 'react-intl';
-import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
-import { YtelseKey, Ytelser } from '@navikt/sif-common-core-ds/lib/types/Ytelser';
-import { getLocaleForApi } from '@navikt/sif-common-core-ds/lib/utils/localeUtils';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import { YtelseKey, Ytelser } from '@navikt/sif-common-core-ds/src/types/Ytelser';
+import { getLocaleForApi } from '@navikt/sif-common-core-ds/src/utils/localeUtils';
 import { SoknadApiData, YtelseTypeApi } from '../types/SoknadApiData';
 import { SoknadFormData } from '../types/SoknadFormData';
 import { getAttachmentURLBackend } from './attachmentUtilsAuthToken';

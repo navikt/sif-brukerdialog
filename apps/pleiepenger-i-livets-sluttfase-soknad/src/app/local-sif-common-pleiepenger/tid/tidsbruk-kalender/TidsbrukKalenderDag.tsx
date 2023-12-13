@@ -3,7 +3,7 @@ import { Duration, durationsAreEqual, ensureDuration } from '@navikt/sif-common-
 import DurationText from '../../common/duration-text/DurationText';
 import { TidRenderer } from './TidsbrukKalender';
 import { Detail } from '@navikt/ds-react';
-import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
+import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import './tidsbrukKalenderDag.less';
 
 export type TidsbrukKalenderDagFooterRenderer = (dato: Date) => JSX.Element | undefined;

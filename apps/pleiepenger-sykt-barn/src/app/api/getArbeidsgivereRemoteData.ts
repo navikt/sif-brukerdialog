@@ -1,4 +1,4 @@
-import apiUtils from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
+import apiUtils from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { ISODate, ISODateToDate } from '@navikt/sif-common-utils/lib';
 import { getArbeidsgiver } from './api';

@@ -3,7 +3,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { DateRange } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import { Heading, BodyShort } from '@navikt/ds-react';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 
 interface Props {
     måned: DateRange;

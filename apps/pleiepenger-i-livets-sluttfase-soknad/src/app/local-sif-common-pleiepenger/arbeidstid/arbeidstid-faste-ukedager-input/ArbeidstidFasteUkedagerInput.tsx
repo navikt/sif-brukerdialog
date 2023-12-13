@@ -1,6 +1,6 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
+import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { Weekday } from '@navikt/sif-common-utils';
 import { LabelInputInfoLayout } from '../../common';
 import { getTidFasteUkerdagerInputMessages } from '../../tid/tid-faste-ukedager-input/tidFasteUkerdagerInputMessages';

@@ -1,4 +1,4 @@
-import { storageParser } from '@navikt/sif-common-core-ds/lib/utils/persistence/storageParser';
+import { storageParser } from '@navikt/sif-common-core-ds/src/utils/persistence/storageParser';
 import axios, { AxiosResponse } from 'axios';
 import { axiosConfigPsb } from '../config/axiosConfig';
 import { ResourceType } from '../types/ResourceType';

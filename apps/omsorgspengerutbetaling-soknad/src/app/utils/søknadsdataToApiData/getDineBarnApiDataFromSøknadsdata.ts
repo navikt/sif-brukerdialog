@@ -2,7 +2,7 @@ import { AnnetBarn, BarnType } from '@navikt/sif-common-forms-ds/lib/forms/annet
 import { RegistrertBarn } from '../../types/RegistrertBarn';
 import { ApiBarn, RegistrertBarnTypeApi } from '../../types/søknadApiData/SøknadApiData';
 import { DineBarnSøknadsdata } from '../../types/søknadsdata/DineBarnSøknadsdata';
-import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { dateToISODate } from '@navikt/sif-common-utils/lib/dateUtils';
 
 const mapRegistrertBarnToApiBarn = (

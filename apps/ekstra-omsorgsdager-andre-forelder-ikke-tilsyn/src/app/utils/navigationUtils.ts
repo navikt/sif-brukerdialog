@@ -1,4 +1,4 @@
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 
 const relocateTo = (url: string): void => {

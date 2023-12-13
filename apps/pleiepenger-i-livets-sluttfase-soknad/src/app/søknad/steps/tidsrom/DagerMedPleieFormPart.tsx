@@ -1,5 +1,5 @@
 import { BodyLong } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { FormikInputGroup } from '@navikt/sif-common-formik-ds';
 import DaySelector from '@navikt/sif-common-ui/src/day-selector/DaySelector';
 import { getMonthsInDates, sortDates } from '@navikt/sif-common-utils/lib';

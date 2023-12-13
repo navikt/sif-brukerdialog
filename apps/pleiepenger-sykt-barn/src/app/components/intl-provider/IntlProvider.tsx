@@ -1,7 +1,7 @@
 import React from 'react';
 import { IntlProvider as Provider } from 'react-intl';
-import { allCommonMessages } from '@navikt/sif-common-core-ds/lib/i18n/allCommonMessages';
-import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
+import { allCommonMessages } from '@navikt/sif-common-core-ds/src/i18n/allCommonMessages';
+import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import bostedMessages from '@navikt/sif-common-forms-ds/lib/forms/bosted-utland/bostedUtlandMessages';
 import ferieuttakMessages from '@navikt/sif-common-forms-ds/lib/forms/ferieuttak/ferieuttakMessages';
 import opptjeningUtlandMessages from '@navikt/sif-common-forms-ds/lib/forms/opptjening-utland/opptjeningUtlandMessages';

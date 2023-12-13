@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
 import { useFormikContext } from 'formik';
 import usePersistSoknad from '../../hooks/usePersistSoknad';

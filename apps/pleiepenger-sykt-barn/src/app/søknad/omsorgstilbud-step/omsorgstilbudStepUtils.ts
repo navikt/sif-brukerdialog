@@ -1,4 +1,4 @@
-import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
+import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
 import { getDurationsInDateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';

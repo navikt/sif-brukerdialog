@@ -1,5 +1,5 @@
-import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageFileFormat';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { IntlShape } from 'react-intl';
 import { includeDeltBostedStep } from '../../søknad/søknadStepConfig';
 import { StepId } from '../../types/StepId';

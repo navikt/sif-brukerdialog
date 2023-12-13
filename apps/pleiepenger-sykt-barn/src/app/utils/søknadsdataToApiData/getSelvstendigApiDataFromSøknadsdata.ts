@@ -1,4 +1,4 @@
-import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
+import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import { mapVirksomhetToVirksomhetApiData } from '@navikt/sif-common-forms-ds/lib';
 import { SelvstendigApiData } from '../../types/søknad-api-data/SøknadApiData';
 import { ArbeidssituasjonSelvstendigSøknadsdata } from '../../types/søknadsdata/ArbeidssituasjonSelvstendigSøknadsdata';

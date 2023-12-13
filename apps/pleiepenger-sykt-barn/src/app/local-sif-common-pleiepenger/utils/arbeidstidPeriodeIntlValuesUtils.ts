@@ -1,5 +1,5 @@
 import { IntlShape } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { DateRange } from '@navikt/sif-common-utils/lib';
 import { ArbeidIPeriodeIntlValues, ArbeidsforholdType } from '../types';

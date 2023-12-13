@@ -3,7 +3,7 @@ import { getCountryName } from '@navikt/sif-common-formik-ds/lib';
 import { BostedUtland } from '@navikt/sif-common-forms-ds/lib';
 import { BostedUtlandApiData, MedlemskapApiData } from '../../types/søknad-api-data/SøknadApiData';
 import { MedlemskapSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
-import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
+import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 
 const mapBostedUtlandToApi = (opphold: BostedUtland, locale: string): BostedUtlandApiData => ({
     landnavn: getCountryName(opphold.landkode, locale),

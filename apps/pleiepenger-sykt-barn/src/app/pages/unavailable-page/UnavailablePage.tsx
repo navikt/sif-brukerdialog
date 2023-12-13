@@ -1,10 +1,10 @@
 import { Alert, Link } from '@navikt/ds-react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
-import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
+import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import './unavailablePage.less';
 import SoknadHeader from '@navikt/sif-common-soknad-ds/lib/components/soknad-header/SoknadHeader';
 

@@ -1,9 +1,9 @@
 import { useIntl } from 'react-intl';
 import { Weekday } from '@navikt/sif-common-utils/lib';
 import { getTidFasteUkerdagerInputMessages } from './tidFasteUkerdagerInputMessages';
-import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
+import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import './tidFasteUkedagerInput.less';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { FormikTimeInput, TestProps, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/lib';
 
 interface OwnProps {

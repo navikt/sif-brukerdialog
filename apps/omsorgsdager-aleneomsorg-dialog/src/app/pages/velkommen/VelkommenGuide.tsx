@@ -1,8 +1,8 @@
 import { GuidePanel, Heading, Ingress, Link } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import InfoList from '@navikt/sif-common-core-ds/lib/components/lists/info-list/InfoList';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import InfoList from '@navikt/sif-common-core-ds/src/components/lists/info-list/InfoList';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 
 interface Props {
     navn: string;

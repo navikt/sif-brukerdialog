@@ -1,5 +1,5 @@
-import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
-import { attachmentUploadHasFailed } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import { attachmentUploadHasFailed } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { getAttachmentURLBackend } from '../attachmentUtilsAuthToken';
 
 export const getAttachmentsApiDataFromSøknadsdata = (attachments: Attachment[]): string[] => {

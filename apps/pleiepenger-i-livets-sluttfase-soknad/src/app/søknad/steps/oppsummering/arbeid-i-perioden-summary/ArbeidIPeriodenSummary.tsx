@@ -9,7 +9,7 @@ import {
 } from '../../../../types/søknadApiData/SøknadApiData';
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
 import { ArbeidsgiverType } from '../../../../types/Arbeidsgiver';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils/lib';
 import { SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
 

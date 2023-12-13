@@ -1,6 +1,6 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
-import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
+import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import ResponsivePanel from '../../../../components/responsive-panel/ResponsivePanel';
 import './arbeidssituasjonPanel.less';
 

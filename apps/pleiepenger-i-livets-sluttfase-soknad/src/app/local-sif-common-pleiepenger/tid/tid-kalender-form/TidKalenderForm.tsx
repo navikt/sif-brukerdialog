@@ -6,8 +6,8 @@ import weekOfYear from 'dayjs/plugin/weekOfYear';
 import { TidPerDagValidator } from '../../types';
 import TidUkerInput from '../tid-uker-input/TidUkerInput';
 import { InputTime, ValidationError, getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { Button, Heading } from '@navikt/ds-react';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 

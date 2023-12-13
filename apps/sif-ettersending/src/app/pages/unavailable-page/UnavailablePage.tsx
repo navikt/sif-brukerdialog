@@ -1,11 +1,11 @@
 import { Alert, BodyLong } from '@navikt/ds-react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SoknadHeader from '@navikt/sif-common-soknad-ds/lib/components/soknad-header/SoknadHeader';
-import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 
 const bem = bemUtils('introPage');
 

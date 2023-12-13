@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import CalendarGrid from '../../common/calendar-grid/CalendarGrid';
 import TidsbrukKalenderDag, { TidsbrukKalenderDagFooterRenderer } from './TidsbrukKalenderDag';
 import { InputTime } from '@navikt/sif-common-formik-ds/lib';
-import AriaAlternative from '@navikt/sif-common-core-ds/lib/atoms/aria-alternative/AriaAlternative';
+import AriaAlternative from '@navikt/sif-common-core-ds/src/atoms/aria-alternative/AriaAlternative';
 
 export type TidRenderer = (tid: { tid: InputTime; dato: Date; prosent?: number }) => React.ReactNode;
 

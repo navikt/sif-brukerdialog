@@ -1,6 +1,6 @@
 import { Checkbox } from '@navikt/ds-react';
 import React from 'react';
-import AriaText from '@navikt/sif-common-core-ds/lib/atoms/aria-text/AriaText';
+import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
 import dayjs from 'dayjs';
 import { ArbeidstidUkerItem } from '../ArbeidstidUkerItem';
 

@@ -5,8 +5,8 @@ import dayjs, { Dayjs } from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
 import { FraværSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { FraværFormValues } from './FraværStep';
-import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/lib/utils/yesOrNoUtils';
+import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
+import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 
 dayjs.extend(minMax);
 

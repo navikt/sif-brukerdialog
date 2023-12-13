@@ -1,7 +1,7 @@
 import { BodyShort } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, IntlShape } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { DateRange, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/lib';
 import { dateFormatter, dateRangeToISODateRange } from '@navikt/sif-common-utils/lib';
 import {

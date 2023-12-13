@@ -1,6 +1,6 @@
 import { BodyShort } from '@navikt/ds-react';
 import React from 'react';
-import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
+import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { Duration, durationsAreEqual, ensureDuration } from '@navikt/sif-common-utils';
 import DurationText from '../duration-text/DurationText';
 import { TidRenderer } from './TidsbrukKalender';

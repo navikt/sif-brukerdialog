@@ -2,7 +2,7 @@ import { DateRange } from '@navikt/sif-common-formik-ds/lib';
 import dayjs from 'dayjs';
 import { MedlemskapSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { MedlemskapFormValues } from './MedlemskapStep';
-import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
+import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 
 interface MedlemskapDateRanges {
     siste12Måneder: DateRange;

@@ -3,9 +3,8 @@
     "description": "Amplitude log util used in SIF",
     "homepage": "https://github.com/navikt/sif-common-amplitude",
     "license": "MIT",
-    "main": "lib/index.js",
+    "main": "main/index.ts",
     "name": "@navikt/sif-common-amplitude",
-    "types": "lib/index.d.js",
     "version": "2.24.6",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-amplitude/issues"

@@ -1,6 +1,6 @@
-import { isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
-import { getEnvVariableOrDefault } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
-import { storageParser } from '@navikt/sif-common-core-ds/lib/utils/persistence/storageParser';
+import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
+import { getEnvVariableOrDefault } from '@navikt/sif-common-core-ds/src/utils/envUtils';
+import { storageParser } from '@navikt/sif-common-core-ds/src/utils/persistence/storageParser';
 import { RequestStatus } from '@types';
 import axios, { AxiosError, AxiosRequestConfig, RawAxiosRequestHeaders } from 'axios';
 import { relocateToLoginPage } from '../utils/navigationUtils';
