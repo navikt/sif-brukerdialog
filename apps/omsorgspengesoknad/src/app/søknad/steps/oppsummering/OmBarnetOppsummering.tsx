@@ -36,19 +36,27 @@ const OmBarnetOppsummering: React.FC<Props> = ({ apiData: apiData }) => {
                     {apiData.kroniskEllerFunksjonshemming === false && intlHelper(intl, 'Nei')}
                 </ContentWithHeader>
             </Block>
-            <Block margin="l">
-                <ContentWithHeader header={intlHelper(intl, 'steg.oppsummering.barnet.høyereRisikoForFravær.header')}>
-                    {apiData.høyereRisikoForFravær === true && intlHelper(intl, 'Ja')}
-                    {apiData.høyereRisikoForFravær === false && intlHelper(intl, 'Nei')}
-                </ContentWithHeader>
-            </Block>
-            {apiData.høyereRisikoForFravær && (
-                <Block margin={'s'}>
-                    <SummaryBlock
-                        header={intlHelper(intl, 'steg.oppsummering.barnet.høyereRisikoForFraværBeskrivelse.header')}>
-                        <p>{apiData.høyereRisikoForFraværBeskrivelse}</p>
-                    </SummaryBlock>
-                </Block>
+            {apiData.kroniskEllerFunksjonshemming === true && (
+                <>
+                    <Block margin="l">
+                        <ContentWithHeader
+                            header={intlHelper(intl, 'steg.oppsummering.barnet.høyereRisikoForFravær.header')}>
+                            {apiData.høyereRisikoForFravær === true && intlHelper(intl, 'Ja')}
+                            {apiData.høyereRisikoForFravær === false && intlHelper(intl, 'Nei')}
+                        </ContentWithHeader>
+                    </Block>
+                    {apiData.høyereRisikoForFravær && (
+                        <Block margin={'s'}>
+                            <SummaryBlock
+                                header={intlHelper(
+                                    intl,
+                                    'steg.oppsummering.barnet.høyereRisikoForFraværBeskrivelse.header',
+                                )}>
+                                <p>{apiData.høyereRisikoForFraværBeskrivelse}</p>
+                            </SummaryBlock>
+                        </Block>
+                    )}
+                </>
             )}
         </SummarySection>
     );
