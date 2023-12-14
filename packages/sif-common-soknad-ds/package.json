@@ -68,30 +68,8 @@
         "vite": "5.0.8",
         "vite-plugin-checker": "0.6.2"
     },
-    "watch": {
-        "copy-files": {
-            "patterns": [
-                "src"
-            ],
-            "extensions": "css,scss",
-            "runOnChangeOnly": true
-        }
-    },
     "scripts": {
-        "build-package": "npm-run-all clean-lib compile-lib-script copy-files",
         "build-storybook": "build-storybook -s public",
-        "build": "npm-run-all build-package",
-        "clean-lib": "rimraf ./lib",
-        "clean": "rm -rf node_modules lib",
-        "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
-        "compile-lib-script": "tsc -p tsconfig.json",
-        "copy-asset-files": "copyfiles -u 1 \"src/**/assets/**/*\" lib/",
-        "copy-css-files": "copyfiles -u 1 \"src/**/*.css\" lib/",
-        "copy-files": "npm-run-all copy-sass-files copy-css-files copy-asset-files copy-json-files",
-        "copy-json-files": "copyfiles -u 1 \"src/**/*.json\" lib/",
-        "copy-sass-files": "copyfiles -u 1 \"src/**/*.scss\" lib/",
-        "deploy": "gh-pages -d build",
-        "dev-lib": "yarn compile-lib-script-watch",
         "lint": "eslint ./src --ext ts,tsx",
         "storybook": "storybook dev -p 6006 -s public"
     }

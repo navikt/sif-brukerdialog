@@ -30,12 +30,8 @@
         "storybook": "7.6.4"
     },
     "scripts": {
-        "build-package": "npm-run-all compile-lib-script copy-files",
         "build-storybook": "storybook build ",
         "chromatic": "npx chromatic --project-token=chpt_eb5b80c88cc7e7f",
-        "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
-        "compile-lib-script": "tsc -p tsconfig.json",
-        "copy-files": "copyfiles -u 1 \"src/**/*.css\" lib",
         "lint": "eslint ./src --ext ts,tsx",
         "storybook": "storybook dev -p 6006 -s storybook-public"
     },

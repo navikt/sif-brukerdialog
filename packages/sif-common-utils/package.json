@@ -26,14 +26,7 @@
         "vitest": "1.0.4"
     },
     "scripts": {
-        "build-package": "npm-run-all compile-lib-script",
-        "build": "npm-run-all build-package",
-        "clean-lib": "rimraf ./lib",
-        "clean": "rm -rf node_modules lib",
-        "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
-        "compile-lib-script": "tsc -p tsconfig.json",
-        "dev-lib": "yarn compile-lib-script-watch",
         "lint": "eslint ./src --ext ts,tsx",
-        "test": "vitest"
+        "test": "vitest run"
     }
 }

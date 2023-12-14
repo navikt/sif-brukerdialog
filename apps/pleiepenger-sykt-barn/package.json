@@ -18,7 +18,7 @@
         "start-express": "node ./server.cjs",
         "start-e2e-server": "node ./server-e2e.cjs",
         "storybook": "storybook dev -p 6006 -s public",
-        "test": "vitest",
+        "test": "vitest run",
         "lint": "eslint ./src --ext ts,tsx"
     },
     "dependencies": {

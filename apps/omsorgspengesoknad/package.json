@@ -89,7 +89,7 @@
         "start-e2e-server": "node ./server-e2e.cjs",
         "start-express": "node ./server.cjs",
         "storybook": "storybook dev -p 6006 -s public",
-        "test": "vitest"
+        "test": "vitest run"
     },
     "eslintConfig": {
         "overrides": [

@@ -1,27 +1,17 @@
 {
     "$schema": "https://turborepo.org/schema.json",
     "pipeline": {
-        "build": {
-            "dependsOn": ["^build"]
-        },
-        "build-package": {
-            "outputs": ["lib/**"],
-            "dependsOn": ["^build-package"]
-        },
         "build-app": {
             "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
             "dependsOn": ["^build-app"]
         },
         "test": {
             "outputs": [],
-            "dependsOn": ["^build-package"]
+            "dependsOn": ["^test"]
         },
         "lint": {
             "outputs": [],
             "dependsOn": ["^lint"]
-        },
-        "dev-lib": {
-            "cache": false
         },
         "clean": {
             "cache": false
