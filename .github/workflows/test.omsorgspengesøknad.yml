@@ -71,7 +71,7 @@ jobs:
               run: npx playwright install chromium
 
             - name: Build application
-              run: yarn build-app --filter=omsorgspengesoknad
+              run: yarn build --filter=omsorgspengesoknad
 
             - name: Run tests
               run: yarn turbo playwright-test --filter=omsorgspengesoknad

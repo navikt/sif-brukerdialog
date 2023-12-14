@@ -70,7 +70,7 @@
         "vitest": "1.0.4"
     },
     "scripts": {
-        "build-app": "vite build --base=/familie/sykdom-i-familien/soknad/ettersending",
+        "build": "vite build --base=/familie/sykdom-i-familien/soknad/ettersending",
         "build-storybook": "storybook build",
         "clean": "rm -rf node_modules .dist",
         "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",

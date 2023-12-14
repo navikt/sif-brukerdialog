@@ -67,7 +67,7 @@
         "vitest": "1.0.4"
     },
     "scripts": {
-        "build-app": "vite build --base=/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling",
+        "build": "vite build --base=/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling",
         "build-storybook": "storybook build",
         "clean": "rm -rf node_modules .dist",
         "playwright-test": "playwright test",

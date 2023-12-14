@@ -76,7 +76,7 @@
         "vitest": "1.0.4"
     },
     "scripts": {
-        "build-app": "vite build --base=/familie/sykdom-i-familien/soknad/omsorgspenger",
+        "build": "vite build --base=/familie/sykdom-i-familien/soknad/omsorgspenger",
         "build-storybook": "storybook build",
         "clean": "rm -rf node_modules .dist",
         "codegen": "playwright codegen",

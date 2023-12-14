@@ -1,9 +1,9 @@
 {
     "$schema": "https://turborepo.org/schema.json",
     "pipeline": {
-        "build-app": {
+        "build": {
             "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
-            "dependsOn": ["^build-app"]
+            "dependsOn": ["^build"]
         },
         "test": {
             "outputs": [],
@@ -18,15 +18,15 @@
         },
         "start-e2e-server": {
             "outputs": [],
-            "dependsOn": ["^build-app"]
+            "dependsOn": ["^build"]
         },
         "cypress-run": {
             "outputs": [],
-            "dependsOn": ["^build-app"]
+            "dependsOn": ["^build"]
         },
         "playwright-test": {
             "outputs": [],
-            "dependsOn": ["build-app"]
+            "dependsOn": ["build"]
         }
     }
 }

@@ -26,7 +26,7 @@
         ]
     },
     "scripts": {
-        "build-app": "turbo run build-app",
+        "build": "turbo run build",
         "clean-all": "turbo run clean && rm -rf node_modules",
         "clean": "turbo run clean",
         "dev-lib": "turbo run dev-lib --no-cache --parallel --continue",

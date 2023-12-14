@@ -8,7 +8,7 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build-app": "vite build --base=/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",
+        "build": "vite build --base=/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",
         "clean": "rm -rf node_modules .dist",
         "codegen": "playwright codegen",
         "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",

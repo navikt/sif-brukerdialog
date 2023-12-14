@@ -6,7 +6,7 @@ Samling av kode for søknadsdialoger under Sykdom i familien
 
 -   `yarn clean` - Sletter node_modules og lib foldere.
 -   `yarn` - Installerer alle moduler
--   `yarn build-app` - Bygger alle applikasjoner under apps med produksjonsinnstillinger (se script i app).
+-   `yarn build` - Bygger alle applikasjoner under apps med produksjonsinnstillinger (se script i app).
 -   `yarn test` - Kjører alle tester i apps og packages
 
 ## Utvikle på én applikasjon

@@ -72,7 +72,7 @@ jobs:
               run: npx playwright install chromium
 
             - name: Build application
-              run: yarn build-app --filter=ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
+              run: yarn build --filter=ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
             - name: Run tests
               run: yarn turbo playwright-test --filter=ekstra-omsorgsdager-andre-forelder-ikke-tilsyn

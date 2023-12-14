@@ -8,7 +8,7 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build-app": "vite build --base=/familie/sykdom-i-familien/soknad/pleiepenger",
+        "build": "vite build --base=/familie/sykdom-i-familien/soknad/pleiepenger",
         "build-storybook": "storybook build",
         "clean": "rm -rf node_modules .dist",
         "cypress-open": "cypress open --project $PWD/e2e",
