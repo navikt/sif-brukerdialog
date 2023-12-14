@@ -136,7 +136,7 @@ export const søknaderMockData = [
             arbeidsgivere: {
                 organisasjoner: [
                     {
-                        navn: 'abc',
+                        navn: 'SJOKKERENDE ELEKTRIKER',
                         skalJobbe: true,
                         skalJobbeProsent: 10,
                         vetIkkeEkstrainfo: undefined,
