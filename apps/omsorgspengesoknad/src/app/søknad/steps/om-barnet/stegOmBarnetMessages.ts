@@ -14,7 +14,7 @@ export const omBarnetMessages: MessageFileFormat = {
         'steg.omBarnet.gjelderAnnetBarn': 'Søknaden gjelder et annet barn',
         'steg.omBarnet.fnr.spm': 'Barnets fødselsnummer/D-nummer',
         'step.omBarnet.fødselsdato': 'Barnets fødselsdato',
-        'step.omBarnet.fødselsdato.info': 'Barn må være født etter {minFødselsdato}',
+        'step.omBarnet.fødselsdato.info': 'Barnet må være født etter {minFødselsdato}',
         'steg.omBarnet.navn': 'Barnets navn',
         'steg.omBarnet.relasjon': 'Min relasjon til barnet',
         'steg.omBarnet.veileder.samværsavtale':
@@ -54,9 +54,9 @@ export const omBarnetMessages: MessageFileFormat = {
             'Du har oppgitt et fødselsnummer som ikke er tillatt.',
         'validation.barnetsFødselsdato.dateHasNoValue': 'Skriv inn barnets fødselsdato.',
         'validation.barnetsFødselsdato.dateHasInvalidFormat':
-            'Barnets fødselsdatoen er ugyldig. Gyldig format er dd.mm.åååå.',
+            'Barnets fødselsdato er ugyldig. Gyldig format er dd.mm.åååå.',
         'validation.barnetsFødselsdato.dateIsAfterMax':
-            'Fødselsdatoen kan ikke være etter dagens dato. Skriv inn eller velg dato fra datovelgeren.',
+            'Fødselsdato kan ikke være etter dagens dato. Skriv inn eller velg dato fra datovelgeren.',
         'validation.barnetsFødselsdato.barnOver18år': 'Det gis ikke omsorgsdager til barn over 18 år.',
         'validation.barnetsNavn.stringHasNoValue': 'Skriv inn barnets navn.',
         'validation.barnetsNavn.stringIsTooLong': 'Navnet på barnet kan ikke inneholde flere enn {maks} tegn.',
