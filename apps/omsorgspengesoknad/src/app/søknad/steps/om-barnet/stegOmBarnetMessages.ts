@@ -63,7 +63,7 @@ export const omBarnetMessages: MessageFileFormat = {
         'validation.søkersRelasjonTilBarnet.noValue': 'Du må velge din relasjon til barnet.',
         'validation.sammeAdresse.noValue': 'Du må svare ja eller nei på om du bor sammen med barnet.',
         'validation.kroniskEllerFunksjonshemming.yesOrNoIsUnanswered':
-            'Du må svare ja eller nei på om barnet har en kronisk sykdom eller funksjonshemning.',
+            'Du må svare ja eller nei på om barnet har en kronisk/langvarig sykdom eller funksjonshemning.',
         'validation.høyereRisikoForFravær.yesOrNoIsUnanswered':
             'Du må svare ja eller nei på om du har høyere risiko for fravær på jobb på grunn av barnets sykdom eller funksjonshemning.',
         'validation.høyereRisikoForFraværBeskrivelse.stringHasNoValue':
