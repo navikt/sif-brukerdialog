@@ -1,5 +1,11 @@
 # @navikt/sif-common-hooks
 
+## 0.1.4
+
+### Patch Changes
+
+- Oppdatert ds pakker
+
 ## 0.1.3
 
 ### Patch Changes
