@@ -61,7 +61,7 @@
         "react-day-picker": "8.9.1",
         "react-dom": "18.2.0",
         "react-intl": "6.5.5",
-        "react-router-dom": "6.20.1",
+        "react-router-dom": "6.21.0",
         "rimraf": "5.0.5",
         "storybook": "7.6.4",
         "uuid": "9.0.1",
