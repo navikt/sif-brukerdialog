@@ -1,5 +1,5 @@
 import React from 'react';
-import { dateFormatter } from '@navikt/sif-common-utils/lib/dateFormatter';
+import { dateFormatter } from '@navikt/sif-common-utils/src/dateFormatter';
 import TidEnkeltdagForm, { TidEnkeltdagFormProps } from './TidEnkeltdagForm';
 import { Modal } from '@navikt/ds-react';
 import './styles/tidEnkeltdagDialog.css';
