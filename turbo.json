@@ -9,8 +9,8 @@
             "dependsOn": ["^build-package"]
         },
         "build-app": {
-            "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
-            
+            "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
+            "dependsOn": ["^build-app"]
         },
         "test": {
             "outputs": [],
