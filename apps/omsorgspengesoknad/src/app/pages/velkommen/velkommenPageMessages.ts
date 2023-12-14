@@ -10,7 +10,7 @@ export const velkommenPageMessages: MessageFileFormat = {
         'page.velkommen.guide.tekst.1':
             'Denne søknaden bruker du for å søke om ekstra omsorgsdager, hvis barnet ditt har en sykdom eller funksjonshemning som gjør at du må bruke flere omsorgsdager enn det som er vanlig. Det er kun foreldre/fosterforeldre som bor med barnet som kan få ekstra omsorgsdager.',
         'page.velkommen.guide.tekst.2':
-            'Dere foreldre må sende hver deres søknad til NAV. Hvis du har flere barn med kronisk/langvarig sykdom eller funksjonshemning, må du sende en søknad for hvert barn.',
+            'Hvis flere skal ha ekstra omsorgsdager for samme barn, må dere sende hver deres søknad til NAV.',
 
         'page.velkommen.omSøknaden.tittel': 'Om søknaden',
         'page.velkommen.omSøknaden.1': 'Du får veiledning underveis i søknaden om hva du skal fylle ut, og hvordan.',
