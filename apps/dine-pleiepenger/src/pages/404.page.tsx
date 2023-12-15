@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
-import { BodyShort, Box, HGrid, Heading, List } from '@navikt/ds-react';
+import { BodyShort, Box, HGrid, Heading, Link, List } from '@navikt/ds-react';
+import { browserEnv } from '../utils/env';
 
 const NotFoundPage: NextPage = () => {
     return (
@@ -17,9 +18,9 @@ const NotFoundPage: NextPage = () => {
                         <List>
                             <List.Item>Bruk gjerne søket eller menyen</List.Item>
                             <List.Item>
-                                <a href="/dine-pleiepenger" className="navds-link navds-link--action">
+                                <Link href={browserEnv.NEXT_PUBLIC_BASE_PATH} className="navds-link navds-link--action">
                                     Gå til forsiden for Dine pleiepenger
-                                </a>
+                                </Link>
                             </List.Item>
                         </List>
                     </div>
