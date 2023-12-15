@@ -21,14 +21,14 @@ export default defineConfig({
     ],
     webServer: {
         command: 'yarn dev',
-        url: 'http://localhost:8080/dine-pleiepenger',
+        url: 'http://localhost:8080/innsyn',
         reuseExistingServer: true,
         env: {
-            PUBLIC_PATH: '/dine-pleiepenger',
+            PUBLIC_PATH: '/innsyn',
             API_URL: 'http://localhost:8089',
             NEXT_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
             NEXT_PUBLIC_APPSTATUS_DATASET: 'staging',
-            NEXT_PUBLIC_BASE_PATH: '/dine-pleiepenger',
+            NEXT_PUBLIC_BASE_PATH: '/innsyn',
             NEXT_PUBLIC_LOGIN_URL: '/dummy',
             NEXT_PUBLIC_RUNTIME_ENVIRONMENT: 'dev',
             NEXT_PUBLIC_API_URL_INNSYN: 'http://sif-innsyn-api',

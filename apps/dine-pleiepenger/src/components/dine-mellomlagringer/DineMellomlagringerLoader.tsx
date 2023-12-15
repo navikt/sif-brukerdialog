@@ -1,14 +1,19 @@
 import { Heading } from '@navikt/ds-react';
 import useSWR from 'swr';
+import { mellomlagringFetcher } from '../../pages/api/mellomlagring.api';
+import { browserEnv } from '../../utils/env';
 import ComponentLoader from '../component-loader/ComponentLoader';
 import { SøknadListeSkeleton } from '../søknad-liste/SøknadListe';
-import { mellomlagringFetcher } from '../../pages/api/mellomlagring.api';
 import DineMellomlagringer from './DineMellomlagringer';
 
 const DineMellomlagringerLoader = () => {
-    const { data, error, isLoading } = useSWR('/dine-pleiepenger/api/mellomlagring', mellomlagringFetcher, {
-        errorRetryCount: 0,
-    });
+    const { data, error, isLoading } = useSWR(
+        `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/mellomlagring`,
+        mellomlagringFetcher,
+        {
+            errorRetryCount: 0,
+        },
+    );
 
     if (isLoading) {
         return <ComponentLoader title="Henter påbegynte søknader" />;
