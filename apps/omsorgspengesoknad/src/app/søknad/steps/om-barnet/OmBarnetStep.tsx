@@ -2,7 +2,7 @@ import { Alert } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
+import { ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
 import {
     getRequiredFieldValidator,
