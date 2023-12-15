@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 0.4.0
+
+### Minor Changes
+
+- d356f0b: Justere ZOD validering og henting av søknadsinformasjon. Gå over til å bruke opprettetDato for visning av mottatt dato.
+
 ## 0.3.7
 
 ### Patch Changes
