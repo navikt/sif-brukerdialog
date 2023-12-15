@@ -7,7 +7,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('Test innhold, funksjonalitet og wcag', async ({ page }) => {
-    await page.goto('http://localhost:8080/dine-pleiepenger');
+    await page.goto('http://localhost:8080/innsyn');
     await expect(page.getByRole('heading', { level: 1, name: 'Dine Pleiepenger' })).toBeVisible();
 
     const søknader = await page.locator('[data-testid="søknadsliste"]').locator('section');
