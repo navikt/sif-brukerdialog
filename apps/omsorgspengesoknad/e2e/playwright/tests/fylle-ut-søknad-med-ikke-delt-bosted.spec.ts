@@ -2,8 +2,7 @@ import { test, expect } from '@playwright/test';
 import { setNow } from '../utils/setNow';
 import { setupMockRoutes } from '../utils/setupMockApi';
 
-const startUrl =
-    'http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/soknad/velkommen';
+const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspenger/soknad/velkommen';
 
 test.beforeEach(async ({ page }) => {
     await setNow(page);
@@ -21,14 +20,9 @@ test('Fyll ut søknad med ikke delt bosted', async ({ page }) => {
     /** Barn */
     await page.getByRole('heading', { level: 1, name: 'Barn' });
     await page.getByLabel('ALFABETISK FAGGOTTFødt 08.06.2019').check();
-    await page
-        .getByRole('group', { name: 'Er du folkeregistrert på samme adresse som barnet?' })
-        .getByLabel('Nei')
-        .check();
-    await page
-        .getByRole('group', { name: 'Har barnet kronisk sykdom, funksjonshemning eller langvarig sykdom?' })
-        .getByLabel('Ja')
-        .check();
+    await page.getByText('Ja, barnet har delt fast').click();
+    await page.getByRole('group', { name: 'Har barnet kronisk/langvarig' }).getByLabel('Ja').check();
+    await page.getByTestId('høyereRisikoForFravær_no').check();
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
     /** Legeerklæring */
@@ -50,11 +44,9 @@ test('Fyll ut søknad med ikke delt bosted', async ({ page }) => {
     await expect(await page.getByText('Fødselsnummer: 02869599258').isVisible()).toBeTruthy();
     await expect(await page.getByText('Navn: ALFABETISK FAGGOTT').isVisible()).toBeTruthy();
     await expect(await page.getByText('Fødselsdato: 8. juni 2019').isVisible()).toBeTruthy();
+    await expect(await page.getByText('Bor du sammen med barnet?').isVisible()).toBeTruthy();
     await expect(
-        await page.getByText('Har barnet kronisk sykdom, funksjonshemning eller langvarig sykdom?Ja').isVisible(),
-    ).toBeTruthy();
-    await expect(
-        await page.getByText('Er du folkeregistrert på samme adresse som barnet?Nei').isVisible(),
+        await page.getByText('Har barnet kronisk/langvarig sykdom eller funksjonshemning?Ja').isVisible(),
     ).toBeTruthy();
     await expect(await page.getByText('navlogopng.png').isVisible()).toBeTruthy();
     await expect(await page.getByText('avtale.png').isVisible()).toBeTruthy();

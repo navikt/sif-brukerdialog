@@ -126,8 +126,8 @@ export const getTidsromStepInitialValues = (
             tidsrom.skalJobbeOgPleieSammeDag === undefined
                 ? undefined
                 : tidsrom.skalJobbeOgPleieSammeDag === true
-                ? YesOrNo.YES
-                : YesOrNo.NO;
+                  ? YesOrNo.YES
+                  : YesOrNo.NO;
         const pleierDuDenSykeHjemme = tidsrom.pleierDuDenSykeHjemme ? YesOrNo.YES : YesOrNo.NO;
         switch (tidsrom.type) {
             case 'tidsromUtenUtenlandsopphold':

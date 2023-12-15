@@ -1,12 +1,15 @@
 import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
 import { SøkersRelasjonTilBarnet } from '../SøkersRelasjonTilBarnet';
 import { ISODate } from '@navikt/sif-common-utils/lib';
+import { BarnSammeAdresse } from '../BarnSammeAdresse';
 
 export interface OmBarnetApiData {
     barn: BarnToSendToApi;
     relasjonTilBarnet?: SøkersRelasjonTilBarnet;
     kroniskEllerFunksjonshemming: boolean;
-    sammeAdresse?: boolean;
+    sammeAdresse?: BarnSammeAdresse;
+    høyereRisikoForFravær?: boolean;
+    høyereRisikoForFraværBeskrivelse?: string;
 }
 export interface BarnToSendToApi {
     navn: string;
@@ -15,6 +18,15 @@ export interface BarnToSendToApi {
     fødselsdato?: ISODate;
 }
 
+export interface DataBruktTilUtledningAnnetData {
+    sammeAdresse?: BarnSammeAdresse;
+    relasjonTilBarnet?: SøkersRelasjonTilBarnet;
+    høyereRisikoForFravær?: boolean;
+    høyereRisikoForFraværBeskrivelse?: string;
+}
+
+export type DataBruktTilUtledningAnnetDataJsonString = string;
+
 export interface SøknadApiData extends OmBarnetApiData {
     språk: Locale;
     kroniskEllerFunksjonshemming: boolean;
@@ -22,4 +34,5 @@ export interface SøknadApiData extends OmBarnetApiData {
     samværsavtale?: string[];
     harForståttRettigheterOgPlikter: boolean;
     harBekreftetOpplysninger: boolean;
+    dataBruktTilUtledningAnnetData?: DataBruktTilUtledningAnnetDataJsonString;
 }
