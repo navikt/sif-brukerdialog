@@ -280,7 +280,7 @@ const error = getDateValidator(options)(value);
                                         [ValidateDateError.dateIsBeforeMin]: {
                                             info: 'dato er for tidlig',
                                             example: `Datoen for når du begynte i arbeidslivet kan ikke være før ${prettifyDate(
-                                                new Date(2015, 0, 1)
+                                                new Date(2015, 0, 1),
                                             )}. Skriv inn eller velg dato fra datovelgeren.`,
                                         },
                                         [ValidateDateError.dateIsAfterMax]: {
@@ -358,7 +358,7 @@ const errorToDate = getDateRangeValidator(options).validateToDate(value);
                                         [ValidateDateError.dateIsBeforeMin]: {
                                             info: 'dato er for tidlig',
                                             example: `Startdatoen for når du startet virksomheten kan ikke være før ${prettifyDate(
-                                                new Date(2000, 0, 1)
+                                                new Date(2000, 0, 1),
                                             )}. Skriv inn eller velg startdato fra datovelgeren.`,
                                         },
                                         [ValidateDateError.dateIsAfterMax]: {
@@ -390,7 +390,7 @@ const errorToDate = getDateRangeValidator(options).validateToDate(value);
                                             [ValidateDateError.dateIsBeforeMin]: {
                                                 info: 'dato er for tidlig',
                                                 example: `Sluttdatoen for når du avsluttet virksomheten kan ikke være før ${prettifyDate(
-                                                    new Date(2000, 0, 1)
+                                                    new Date(2000, 0, 1),
                                                 )}. Skriv inn eller velg sluttdato fra datovelgeren.`,
                                             },
                                             [ValidateDateError.dateIsAfterMax]: {

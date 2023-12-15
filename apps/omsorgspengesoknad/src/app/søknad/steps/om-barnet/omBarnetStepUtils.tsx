@@ -25,14 +25,16 @@ export const getOmBarnetStepInitialValues = (
         barnetsNavn: '',
         barnetsFødselsdato: '',
         søkersRelasjonTilBarnet: undefined,
-        sammeAdresse: YesOrNo.UNANSWERED,
+        sammeAdresse: undefined,
         kroniskEllerFunksjonshemming: YesOrNo.UNANSWERED,
+        høyereRisikoForFravær: YesOrNo.UNANSWERED,
+        høyereRisikoForFraværBeskrivelse: undefined,
     };
 
     const { omBarnet } = søknadsdata;
     if (omBarnet) {
-        const sammeAdresse = getYesOrNoFromBoolean(omBarnet.sammeAdresse);
         const kroniskEllerFunksjonshemming = getYesOrNoFromBoolean(omBarnet.kroniskEllerFunksjonshemming);
+        const høyereRisikoForFravær = getYesOrNoFromBoolean(omBarnet.høyereRisikoForFravær);
 
         switch (omBarnet.type) {
             case 'registrertBarn':
@@ -40,8 +42,10 @@ export const getOmBarnetStepInitialValues = (
                     ...defaultValues,
                     søknadenGjelderEtAnnetBarn: false,
                     barnetSøknadenGjelder: omBarnet.registrertBarn.aktørId,
-                    sammeAdresse,
+                    sammeAdresse: omBarnet.sammeAdresse,
                     kroniskEllerFunksjonshemming,
+                    høyereRisikoForFravær,
+                    høyereRisikoForFraværBeskrivelse: omBarnet.høyereRisikoForFraværBeskrivelse,
                 };
             case 'annetBarn':
                 return {
@@ -51,8 +55,10 @@ export const getOmBarnetStepInitialValues = (
                     barnetsNavn: omBarnet.barnetsNavn,
                     barnetsFødselsdato: omBarnet.barnetsFødselsdato,
                     søkersRelasjonTilBarnet: omBarnet.søkersRelasjonTilBarnet,
-                    sammeAdresse,
+                    sammeAdresse: omBarnet.sammeAdresse,
                     kroniskEllerFunksjonshemming,
+                    høyereRisikoForFravær,
+                    høyereRisikoForFraværBeskrivelse: omBarnet.høyereRisikoForFraværBeskrivelse,
                 };
         }
     }
@@ -63,11 +69,13 @@ export const getOmBarnetSøknadsdataFromFormValues = (
     values: OmBarnetFormValues,
     { registrerteBarn = [] }: Partial<SøknadContextState>,
 ): OmBarnetSøknadsdata | undefined => {
-    const sammeAdresse = values.sammeAdresse === YesOrNo.YES;
     const kroniskEllerFunksjonshemming = values.kroniskEllerFunksjonshemming === YesOrNo.YES;
+    const høyereRisikoForFravær = kroniskEllerFunksjonshemming
+        ? values.høyereRisikoForFravær === YesOrNo.YES
+        : undefined;
 
     if (values.søknadenGjelderEtAnnetBarn || registrerteBarn.length === 0) {
-        if (values.søkersRelasjonTilBarnet === undefined) {
+        if (values.søkersRelasjonTilBarnet === undefined || values.sammeAdresse === undefined) {
             return undefined;
         }
         return {
@@ -77,8 +85,12 @@ export const getOmBarnetSøknadsdataFromFormValues = (
             barnetsFødselsdato: values.barnetsFødselsdato,
             barnetsNavn: values.barnetsNavn,
             søkersRelasjonTilBarnet: values.søkersRelasjonTilBarnet,
-            sammeAdresse,
+            sammeAdresse: values.sammeAdresse,
             kroniskEllerFunksjonshemming,
+            høyereRisikoForFravær,
+            høyereRisikoForFraværBeskrivelse: høyereRisikoForFravær
+                ? values.høyereRisikoForFraværBeskrivelse
+                : undefined,
         };
     }
     const barn = values.barnetSøknadenGjelder
@@ -89,11 +101,17 @@ export const getOmBarnetSøknadsdataFromFormValues = (
         return undefined;
     }
 
+    if (!values.sammeAdresse) {
+        return undefined;
+    }
+
     return {
         type: 'registrertBarn',
         registrertBarn: barn,
-        sammeAdresse,
+        sammeAdresse: values.sammeAdresse,
         kroniskEllerFunksjonshemming,
+        høyereRisikoForFravær,
+        høyereRisikoForFraværBeskrivelse: høyereRisikoForFravær ? values.høyereRisikoForFraværBeskrivelse : undefined,
     };
 };
 
