@@ -3,14 +3,13 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Task } from '@navikt/ds-icons';
 import { Søknad } from '../../types/Søknad';
-import { formatSøknadMottattDato, getSøknadMottattDato } from '../../utils/søknadUtils';
+import { formatSøknadOpprettetDato } from '../../utils/søknadUtils';
 
 interface Props {
     søknad: Søknad;
 }
 
 const SøknadTitle: React.FunctionComponent<Props> = ({ søknad }) => {
-    const søknadMottattDato = getSøknadMottattDato(søknad);
     return (
         <div>
             <HStack gap="2" align={'start'} wrap={false}>
@@ -21,9 +20,9 @@ const SøknadTitle: React.FunctionComponent<Props> = ({ søknad }) => {
                     </BodyShort>
                 </div>
             </HStack>
-            {søknadMottattDato ? (
+            {søknad.opprettet ? (
                 <BodyShort size="small" className="text-grayalpha-700">
-                    Mottatt {formatSøknadMottattDato(søknadMottattDato)}
+                    Mottatt {formatSøknadOpprettetDato(søknad.opprettet)}
                 </BodyShort>
             ) : null}
         </div>
