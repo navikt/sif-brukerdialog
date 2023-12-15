@@ -18,6 +18,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
         const hentSvarfrist = Feature.HENT_SVARFRIST;
 
+        childLogger.info(`Henter innsynsdata for ${søker.aktørId}`);
+
         /** Bruker har tilgang, hent resten av informasjonen */
         const [søknader, mellomlagring, svarfrist] = await Promise.allSettled([
             fetchSøknader(req),
