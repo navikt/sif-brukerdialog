@@ -1,5 +1,14 @@
 # @navikt/sif-common-core-ds
 
+## 9.12.5
+
+### Patch Changes
+
+- 306a348: Pakkeoppdateringer.
+  - @navikt/ds-\*: minor
+  - sentry: minor
+  - vite: patch
+
 ## 9.12.4
 
 ### Patch Changes

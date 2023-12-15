@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/omsorgsdager-aleneomsorg-dialog",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "2.14.6",
+    "version": "2.14.7",
     "private": true,
     "type": "module",
     "scripts": {
@@ -23,9 +23,9 @@
         "storybook": "storybook dev -p 6006 -s public"
     },
     "dependencies": {
-        "@navikt/ds-css": "5.11.5",
-        "@navikt/ds-react": "5.11.5",
-        "@navikt/ds-tailwind": "5.11.5",
+        "@navikt/ds-css": "5.12.0",
+        "@navikt/ds-react": "5.12.0",
+        "@navikt/ds-tailwind": "5.12.0",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
@@ -73,7 +73,7 @@
         "jsdom": "23.0.1",
         "less": "4.2.0",
         "mini-css-extract-plugin": "2.7.6",
-        "vite": "5.0.8",
+        "vite": "5.0.9",
         "vite-plugin-checker": "0.6.2"
     },
     "eslintConfig": {

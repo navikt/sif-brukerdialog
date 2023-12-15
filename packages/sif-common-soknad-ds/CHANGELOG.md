@@ -1,5 +1,14 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.12.5
+
+### Patch Changes
+
+- 306a348: Pakkeoppdateringer.
+  - @navikt/ds-\*: minor
+  - sentry: minor
+  - vite: patch
+
 ## 10.12.4
 
 ### Patch Changes
