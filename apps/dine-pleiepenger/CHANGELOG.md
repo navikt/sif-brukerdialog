@@ -1,5 +1,22 @@
 # @navikt/dine-pleiepenger
 
+## 0.4.0
+
+### Minor Changes
+
+- d356f0b: Justere ZOD validering og henting av søknadsinformasjon. Gå over til å bruke opprettetDato for visning av mottatt dato.
+
+### Patch Changes
+
+- 306a348: Pakkeoppdateringer.
+  - @navikt/ds-\*: minor
+  - sentry: minor
+  - vite: patch
+- Updated dependencies [306a348]
+  - @navikt/appstatus-react-ds@2.17.8
+  - @navikt/sif-common-core-ds@9.12.5
+  - @navikt/sif-common-sentry@0.25.6
+
 ## 0.3.7
 
 ### Patch Changes

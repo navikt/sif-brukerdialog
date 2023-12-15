@@ -6,7 +6,7 @@
     "main": "lib/index.js",
     "name": "@navikt/sif-common-sentry",
     "types": "lib/index.d.js",
-    "version": "0.25.5",
+    "version": "0.25.6",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-sentry/issues"
     },
