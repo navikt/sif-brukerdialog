@@ -1,3 +1,4 @@
+import { BarnSammeAdresse } from '../../types/BarnSammeAdresse';
 import { RegistrertBarn } from '../../types/RegistrertBarn';
 import { SøkersRelasjonTilBarnet } from '../../types/SøkersRelasjonTilBarnet';
 import { OmBarnetSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
@@ -16,15 +17,15 @@ describe('søknadStepConfig', () =>
             const omBarnet: OmBarnetSøknadsdata = {
                 type: 'registrertBarn',
                 registrertBarn,
-                sammeAdresse: true,
+                sammeAdresse: BarnSammeAdresse.JA,
                 kroniskEllerFunksjonshemming: true,
             };
-            it('inkluderer delt bosted når bruker bor på en annen andresse', () => {
-                const result = includeDeltBostedStep({ ...omBarnet, sammeAdresse: false });
+            it('inkluderer delt fast bosted når bruker bor på en annen andresse', () => {
+                const result = includeDeltBostedStep({ ...omBarnet, sammeAdresse: BarnSammeAdresse.JA_DELT_BOSTED });
                 expect(result).toBeTruthy();
             });
-            it('inkluderer IKKE delt bosted når bruker bor på samme andresse', () => {
-                const result = includeDeltBostedStep({ ...omBarnet, sammeAdresse: true });
+            it('inkluderer IKKE delt fast bosted når bruker bor på samme andresse', () => {
+                const result = includeDeltBostedStep({ ...omBarnet, sammeAdresse: BarnSammeAdresse.JA });
                 expect(result).toBeFalsy();
             });
         });
@@ -36,34 +37,34 @@ describe('søknadStepConfig', () =>
                 barnetsNavn: 'A',
                 søkersRelasjonTilBarnet: SøkersRelasjonTilBarnet.ADOPTIVFORELDER,
                 søknadenGjelderEtAnnetBarn: true,
-                sammeAdresse: true,
+                sammeAdresse: BarnSammeAdresse.JA,
                 kroniskEllerFunksjonshemming: true,
             };
-            it('inkluderer delt bosted når bruker ikke bor på en annen andresse', () => {
-                const result = includeDeltBostedStep({ ...omBarnet, sammeAdresse: false });
+            it('inkluderer delt fast bosted når bruker ikke bor på en annen andresse', () => {
+                const result = includeDeltBostedStep({ ...omBarnet, sammeAdresse: BarnSammeAdresse.JA_DELT_BOSTED });
                 expect(result).toBeTruthy();
             });
-            it('inkluderer IKKE delt bosted dersom brukers relasjon er fosterforelder, uavhengig av samme adresse', () => {
+            it('inkluderer IKKE delt fast bosted dersom brukers relasjon er fosterforelder, uavhengig av samme adresse', () => {
                 expect(
                     includeDeltBostedStep({
                         ...omBarnet,
-                        sammeAdresse: true,
+                        sammeAdresse: BarnSammeAdresse.JA,
                         søkersRelasjonTilBarnet: SøkersRelasjonTilBarnet.FOSTERFORELDER,
                     }),
                 ).toBeFalsy();
                 expect(
                     includeDeltBostedStep({
                         ...omBarnet,
-                        sammeAdresse: false,
+                        sammeAdresse: BarnSammeAdresse.JA_DELT_BOSTED,
                         søkersRelasjonTilBarnet: SøkersRelasjonTilBarnet.FOSTERFORELDER,
                     }),
                 ).toBeFalsy();
             });
-            it('inkluderer IKKE delt bosted når bruker bor på samme andresse', () => {
+            it('inkluderer IKKE delt fast bosted når bruker bor på samme andresse', () => {
                 const result = includeDeltBostedStep({ ...omBarnet });
                 expect(result).toBeFalsy();
             });
-            it('inkluderer IKKE delt bosted når bruker bor på samme andresse - og er ikke fosterforelder', () => {
+            it('inkluderer IKKE delt fast bosted når bruker bor på samme andresse - og er ikke fosterforelder', () => {
                 expect(
                     includeDeltBostedStep({
                         ...omBarnet,

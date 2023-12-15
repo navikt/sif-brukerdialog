@@ -26,7 +26,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         ]);
 
         if (søknader.status === 'rejected') {
-            childLogger.error(`Hent søknader feilet: ${søknader.reason.message}`, { cause: søknader.reason });
+            childLogger.error(
+                new Error(`Hent søknader feilet: ${søknader.reason.message}`, { cause: søknader.reason }),
+            );
         }
 
         res.send({

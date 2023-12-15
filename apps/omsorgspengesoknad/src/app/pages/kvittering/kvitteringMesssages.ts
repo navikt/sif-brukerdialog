@@ -7,8 +7,10 @@ export const kvitteringMessages: MessageFileFormat = {
             'Vi har mottatt søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
         'page.kvittering.info.tittel': 'Hva skjer videre nå?',
         'page.kvittering.info.1': 'Vi behandler søknaden din.',
-        'page.kvittering.info.2': 'Vi kontakter deg hvis vi trenger flere opplysninger.',
-        'page.kvittering.info.3.1': 'Når søknaden er ferdigbehandlet, får du et svar fra oss på «Min side».',
-        'page.kvittering.info.3.2': 'Du kan sjekke saksbehandlingstiden her.',
+        'page.kvittering.info.2':
+            'Hvis du ikke har lastet opp legeerklæring, må du ettersende den så snart som mulig. ',
+        'page.kvittering.info.3': 'Vi kontakter deg hvis vi trenger flere opplysninger.',
+        'page.kvittering.info.4.1': 'Når søknaden er ferdigbehandlet, får du et svar fra oss på «Min side».',
+        'page.kvittering.info.4.2': 'Du kan sjekke saksbehandlingstiden her.',
     },
 };

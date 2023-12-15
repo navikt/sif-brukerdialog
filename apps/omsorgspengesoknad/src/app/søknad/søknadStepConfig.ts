@@ -3,6 +3,7 @@ import { StepId } from '../types/StepId';
 import { SøkersRelasjonTilBarnet } from '../types/SøkersRelasjonTilBarnet';
 import { OmBarnetSøknadsdata, Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 import { getSøknadStepRoute } from '../utils/søknadRoutesUtils';
+import { BarnSammeAdresse } from '../types/BarnSammeAdresse';
 
 export const includeDeltBostedStep = (omBarnet?: OmBarnetSøknadsdata): boolean => {
     if (!omBarnet) {
@@ -10,10 +11,10 @@ export const includeDeltBostedStep = (omBarnet?: OmBarnetSøknadsdata): boolean 
     }
     switch (omBarnet.type) {
         case 'registrertBarn':
-            return omBarnet.sammeAdresse === false;
+            return omBarnet.sammeAdresse === BarnSammeAdresse.JA_DELT_BOSTED;
         case 'annetBarn':
             return (
-                omBarnet.sammeAdresse === false &&
+                omBarnet.sammeAdresse === BarnSammeAdresse.JA_DELT_BOSTED &&
                 omBarnet.søkersRelasjonTilBarnet !== SøkersRelasjonTilBarnet.FOSTERFORELDER
             );
     }

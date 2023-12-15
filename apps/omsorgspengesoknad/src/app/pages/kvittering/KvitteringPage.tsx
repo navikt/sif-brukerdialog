@@ -45,12 +45,15 @@ const KvitteringPage = ({ onUnmount }: Props) => {
                             <FormattedMessage id="page.kvittering.info.2" />
                         </li>
                         <li>
+                            <FormattedMessage id="page.kvittering.info.3" />
+                        </li>
+                        <li>
                             <p>
-                                <FormattedMessage id="page.kvittering.info.3.1" />
+                                <FormattedMessage id="page.kvittering.info.4.1" />
                             </p>
                             <p>
                                 <Link href={getLenker(intl.locale).saksbehandlingstider} target="_blank">
-                                    <FormattedMessage id="page.kvittering.info.3.2" />
+                                    <FormattedMessage id="page.kvittering.info.4.2" />
                                 </Link>
                             </p>
                         </li>
