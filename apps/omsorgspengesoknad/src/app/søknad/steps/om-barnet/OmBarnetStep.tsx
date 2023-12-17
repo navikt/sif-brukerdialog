@@ -204,13 +204,13 @@ const OmBarnetStep = () => {
                                                             validate={(value) => {
                                                                 const error = getStringValidator({
                                                                     minLength: 5,
-                                                                    maxLength: 2000,
+                                                                    maxLength: 1000,
                                                                     required: true,
                                                                 })(value);
 
                                                                 return error;
                                                             }}
-                                                            maxLength={2000}
+                                                            maxLength={1000}
                                                             label={intlHelper(
                                                                 intl,
                                                                 'steg.omBarnet.spm.høyereRisikoForFraværBeskrivelse.tittel',
