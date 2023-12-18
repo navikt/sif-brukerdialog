@@ -1,5 +1,14 @@
 # @navikt/sif-common-sentry
 
+## 0.25.6
+
+### Patch Changes
+
+- 306a348: Pakkeoppdateringer.
+  - @navikt/ds-\*: minor
+  - sentry: minor
+  - vite: patch
+
 ## 0.25.5
 
 ### Patch Changes

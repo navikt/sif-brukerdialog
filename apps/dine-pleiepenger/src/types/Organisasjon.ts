@@ -1,8 +1,4 @@
-export interface Organisasjon {
-    navn: string;
-    skalJobbe: string;
-    skalJobbeProsent: number;
-    vetIkkeEkstrainfo?: string | null;
-    jobberNormaltTimer: number;
-    organisasjonsnummer: string;
-}
+import { z } from 'zod';
+import { OrganisasjonSchema } from '../server/api-models/OrganisasjonSchema';
+
+export type Organisasjon = z.infer<typeof OrganisasjonSchema>;

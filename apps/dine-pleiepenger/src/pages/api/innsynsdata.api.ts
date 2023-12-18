@@ -12,17 +12,16 @@ export const innsynsdataFetcher = async (url: string): Promise<Innsynsdata> => a
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const childLogger = createChildLogger(getXRequestId(req));
+    childLogger.info(`Henter innsynsdata`);
     try {
         /** Hent søker først for å se om bruker har tilgang */
         const søker = await fetchSøker(req);
-
-        const hentSvarfrist = Feature.HENT_SVARFRIST;
 
         /** Bruker har tilgang, hent resten av informasjonen */
         const [søknader, mellomlagring, svarfrist] = await Promise.allSettled([
             fetchSøknader(req),
             fetchMellomlagringer(req),
-            hentSvarfrist ? fetchSvarfrist(req) : Promise.resolve({ frist: undefined }),
+            Feature.HENT_SVARFRIST ? fetchSvarfrist(req) : Promise.resolve({ frist: undefined }),
         ]);
 
         if (søknader.status === 'rejected') {
@@ -31,12 +30,13 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             );
         }
 
-        res.send({
+        const innsynsdata: Innsynsdata = {
             søker,
             søknader: søknader.status === 'fulfilled' ? søknader.value.sort(sortSøknadEtterOpprettetDato) : [],
             mellomlagring: mellomlagring.status === 'fulfilled' ? mellomlagring.value : {},
             svarfrist: svarfrist.status === 'fulfilled' ? svarfrist.value.frist : undefined,
-        });
+        };
+        res.send(innsynsdata);
     } catch (err) {
         childLogger.error(`Hent innsynsdata feilet: ${err}`);
         if (err.response.status === HttpStatusCode.Forbidden) {

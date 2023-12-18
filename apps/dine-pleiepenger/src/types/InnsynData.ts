@@ -6,5 +6,5 @@ export interface Innsynsdata {
     søker: Søker;
     søknader: Søknad[];
     mellomlagring: Mellomlagringer;
-    svarfrist: Date;
+    svarfrist?: Date;
 }

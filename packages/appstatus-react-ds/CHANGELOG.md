@@ -1,5 +1,14 @@
 # @navikt/appstatus-react-ds
 
+## 2.17.8
+
+### Patch Changes
+
+- 306a348: Pakkeoppdateringer.
+  - @navikt/ds-\*: minor
+  - sentry: minor
+  - vite: patch
+
 ## 2.17.7
 
 ### Patch Changes

@@ -3,7 +3,7 @@
     "description": "Fellesskjema for sykdom i familien",
     "main": "src",
     "name": "@navikt/sif-common-forms-ds",
-    "version": "8.16.4",
+    "version": "8.16.5",
     "private": true,
     "dependencies": {
         "date-fns": "2.30.0"
@@ -14,8 +14,8 @@
         "@babel/preset-react": "7.23.3",
         "@babel/preset-typescript": "7.23.3",
         "@formatjs/intl-pluralrules": "5.2.10",
-        "@navikt/ds-css": "5.11.5",
-        "@navikt/ds-react": "5.11.5",
+        "@navikt/ds-css": "5.12.0",
+        "@navikt/ds-react": "5.12.0",
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
@@ -57,7 +57,7 @@
         "react-router-dom": "6.21.0",
         "rimraf": "5.0.5",
         "storybook": "7.6.4",
-        "vite": "5.0.8",
+        "vite": "5.0.9",
         "vite-plugin-checker": "0.6.2",
         "vitest": "1.0.4"
     },

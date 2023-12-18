@@ -1,5 +1,14 @@
 # @navikt/sif-common-formik-ds
 
+## 1.6.5
+
+### Patch Changes
+
+- 306a348: Pakkeoppdateringer.
+  - @navikt/ds-\*: minor
+  - sentry: minor
+  - vite: patch
+
 ## 1.6.4
 
 ### Patch Changes

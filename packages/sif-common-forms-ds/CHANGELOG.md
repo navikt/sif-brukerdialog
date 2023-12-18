@@ -1,5 +1,14 @@
 # @navikt/sif-common-forms-ds
 
+## 8.16.5
+
+### Patch Changes
+
+- 306a348: Pakkeoppdateringer.
+  - @navikt/ds-\*: minor
+  - sentry: minor
+  - vite: patch
+
 ## 8.16.4
 
 ### Patch Changes
