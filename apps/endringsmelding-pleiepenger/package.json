@@ -90,7 +90,7 @@
         "vitest": "1.0.4"
     },
     "scripts": {
-        "build-app": "vite build --base=/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
+        "build": "vite build --base=/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
         "build-storybook": "storybook build",
         "clean": "rm -rf node_modules .dist",
         "cypress-open": "cypress open --project $PWD/e2e",
@@ -101,7 +101,7 @@
         "start-e2e-server": "cross-env NODE_ENV=development node ./server-e2e.cjs",
         "start-express": "node ./server.cjs",
         "storybook": "storybook dev -p 6006 -s public",
-        "test": "vitest"
+        "test": "vitest run"
     },
     "eslintConfig": {
         "overrides": [

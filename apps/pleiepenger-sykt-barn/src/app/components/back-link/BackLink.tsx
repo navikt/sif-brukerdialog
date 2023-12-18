@@ -1,7 +1,7 @@
 import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import { Back } from '@navikt/ds-icons';
-import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
+import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import './backLink.less';
 import { Link } from '@navikt/ds-react';
 

@@ -1,5 +1,5 @@
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import { Duration, ISODate, ISODuration } from '@navikt/sif-common-utils/lib';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { Duration, ISODate, ISODuration } from '@navikt/sif-common-utils';
 
 export * from './Daginfo';
 export * from './Ukeinfo';

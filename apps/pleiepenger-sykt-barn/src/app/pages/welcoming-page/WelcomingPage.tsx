@@ -1,9 +1,9 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
-import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import SoknadHeader from '@navikt/sif-common-soknad-ds/lib/components/soknad-header/SoknadHeader';
+import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import SoknadHeader from '@navikt/sif-common-soknad-ds/src/components/soknad-header/SoknadHeader';
 import { Søker } from '../../types';
 import { StepCommonProps } from '../../types/StepCommonProps';
 import OmSøknaden from './components/OmSøknaden';

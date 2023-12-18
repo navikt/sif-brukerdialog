@@ -1,10 +1,10 @@
-import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
-import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import { BostedUtland } from '@navikt/sif-common-forms-ds/lib';
-import { Ferieuttak } from '@navikt/sif-common-forms-ds/lib/forms/ferieuttak/types';
-import { OpptjeningUtland } from '@navikt/sif-common-forms-ds/lib/forms/opptjening-utland';
-import { UtenlandskNæring } from '@navikt/sif-common-forms-ds/lib/forms/utenlandsk-næring';
-import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib/forms/utenlandsopphold/types';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
+import { BostedUtland } from '@navikt/sif-common-forms-ds/src';
+import { Ferieuttak } from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/types';
+import { OpptjeningUtland } from '@navikt/sif-common-forms-ds/src/forms/opptjening-utland';
+import { UtenlandskNæring } from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring';
+import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
 import { BarnRelasjon, ÅrsakManglerIdentitetsnummer } from '../';
 import { Arbeidsgiver } from '../Arbeidsgiver';
 import { ArbeidsforholdFormValues } from './ArbeidsforholdFormValues';

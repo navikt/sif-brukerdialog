@@ -1,14 +1,14 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { DateRange, getTypedFormComponents, InputTime } from '@navikt/sif-common-formik-ds/lib';
-import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { DateRange, getTypedFormComponents, InputTime } from '@navikt/sif-common-formik-ds/src';
+import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import {
     DateDurationMap,
     dateFormatter,

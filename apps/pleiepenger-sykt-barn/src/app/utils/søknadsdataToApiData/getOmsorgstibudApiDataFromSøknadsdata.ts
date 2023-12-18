@@ -1,4 +1,4 @@
-import { DateRange } from '@navikt/sif-common-formik-ds/lib';
+import { DateRange } from '@navikt/sif-common-formik-ds/src';
 import { OmsorgstilbudSvarApi, SøknadApiData } from '../../types/søknad-api-data/SøknadApiData';
 import { OmsorgstilbudSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { YesOrNoOrDoNotKnow } from '../../types/YesOrNoOrDoNotKnow';

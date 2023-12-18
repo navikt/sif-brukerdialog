@@ -4,7 +4,7 @@ import { browserEnv } from '../../utils/env';
 import { Dialog, File, Task } from '@navikt/ds-icons';
 import { PencilWritingIcon } from '@navikt/aksel-icons';
 import SnarveiLinkPanel from '../snarvei-link-panel/SnarveiLinkPanel';
-import AriaText from '@navikt/sif-common-core-ds/lib/atoms/aria-text/AriaText';
+import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
 interface Props {
     title?: string;
 }

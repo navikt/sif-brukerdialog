@@ -1,4 +1,4 @@
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
+import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { AnnenForeldrenSituasjon } from '../../../types/AnnenForeldrenSituasjon';
 import { AnnenForelderenSituasjonSøknadsdata } from '../../../types/søknadsdata/AnnenForelderenSituasjonSøknadsdata';

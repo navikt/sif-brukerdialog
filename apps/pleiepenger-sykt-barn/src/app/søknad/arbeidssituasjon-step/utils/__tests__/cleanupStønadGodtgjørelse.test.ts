@@ -1,4 +1,4 @@
-import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
+import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { StønadGodtgjørelseFormValues } from '../../../../types/søknad-form-values/StønadGodtgjørelseFormValues';
 import { cleanupStønadGodtgjørelse } from '../cleanupArbeidssituasjonStep';
 

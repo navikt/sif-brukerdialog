@@ -1,4 +1,4 @@
-import { DateDurationMap } from '@navikt/sif-common-utils/lib';
+import { DateDurationMap } from '@navikt/sif-common-utils';
 
 export enum JobberIPeriodeSvar {
     'somVanlig' = 'SOM_VANLIG',

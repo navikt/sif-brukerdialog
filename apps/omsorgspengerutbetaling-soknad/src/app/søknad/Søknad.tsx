@@ -1,6 +1,6 @@
 import { FormattedMessage, useIntl } from 'react-intl';
-import LoadingSpinner from '@navikt/sif-common-core-ds/lib/atoms/loading-spinner/LoadingSpinner';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import useSøknadInitialData from '../api/useSøknadInitialData';
 import ResetMellomagringButton from '../components/reset-mellomlagring-button/ResetMellomlagringButton';

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
+import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { AxiosError } from 'axios';
 import { PleiepengerLivetsSluttApp } from '@navikt/sif-app-register';
 import { useMellomlagring } from '../hooks/useMellomlagring';

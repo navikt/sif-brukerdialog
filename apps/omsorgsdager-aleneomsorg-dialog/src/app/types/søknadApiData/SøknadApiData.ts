@@ -1,6 +1,6 @@
-import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
-import { BarnType } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/types';
-import { ISODate } from '@navikt/sif-common-utils/lib/types';
+import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
+import { BarnType } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
+import { ISODate } from '@navikt/sif-common-utils';
 import { TidspunktForAleneomsorg } from '../../søknad/steps/tidspunkt-for-aleneomsorg/TidspunktForAleneomsorgStep';
 
 export enum RegisterteBarnTypeApi {

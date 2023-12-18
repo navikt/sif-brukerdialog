@@ -1,4 +1,4 @@
-import { Duration } from '@navikt/sif-common-utils/lib';
+import { Duration } from '@navikt/sif-common-utils';
 import { submitSkjema } from './cyHelpers';
 
 type Ukedag = 'mandag' | 'tirsdag' | 'onsdag' | 'torsdag' | 'fredag';

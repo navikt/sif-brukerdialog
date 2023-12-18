@@ -1,7 +1,7 @@
 import { dateFormatter, prettifyDate } from '@navikt/sif-common-utils';
-import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import { AnnetBarn } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/types';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
+import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
 import dayjs from 'dayjs';
 import { SøknadContextState, TempFormValues } from '../../../types/SøknadContextState';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';

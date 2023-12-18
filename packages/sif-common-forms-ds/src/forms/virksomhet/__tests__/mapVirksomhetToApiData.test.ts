@@ -1,5 +1,5 @@
-import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import { dateToISODate, jsonSort } from '@navikt/sif-common-utils/lib';
+import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
+import { dateToISODate, jsonSort } from '@navikt/sif-common-utils';
 import { mapVirksomhetToVirksomhetApiData } from '../mapVirksomhetToApiData';
 import { Næringstype, Virksomhet, VirksomhetApiData } from '../types';
 import { erVirksomhetRegnetSomNyoppstartet } from '../virksomhetUtils';

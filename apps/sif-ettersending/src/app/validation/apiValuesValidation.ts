@@ -1,6 +1,6 @@
 import { IntlShape } from 'react-intl';
-import { ValidationSummaryError } from '@navikt/sif-common-core-ds/lib/components/validation-error-summary-base/ValidationErrorSummaryBase';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { ValidationSummaryError } from '@navikt/sif-common-core-ds/src/components/validation-error-summary-base/ValidationErrorSummaryBase';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SoknadApiData } from '../types/SoknadApiData';
 
 export const apiVedleggIsInvalid = (vedlegg: string[]): boolean => {

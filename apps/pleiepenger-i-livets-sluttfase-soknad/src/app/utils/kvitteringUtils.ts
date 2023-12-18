@@ -1,8 +1,8 @@
-import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { KvitteringInfo } from '../types/KvitteringInfo';
 import { Søker } from '../types/Søker';
 import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
-import { ISODateToDate } from '@navikt/sif-common-utils/lib';
+import { ISODateToDate } from '@navikt/sif-common-utils';
 
 export type KvitteringApiData = Pick<SøknadApiData, 'arbeidsgivere' | 'fraOgMed' | 'tilOgMed'>;
 

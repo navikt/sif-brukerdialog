@@ -6,7 +6,7 @@ import {
 import AnnetBarnForm from './AnnetBarnForm';
 import AnnetBarnList from './AnnetBarnList';
 import { AnnetBarn } from './types';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 
 interface Props<FieldNames> extends TypedFormInputValidationProps<FieldNames, ValidationError> {
     name: FieldNames;

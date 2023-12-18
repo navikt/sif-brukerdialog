@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { FormattedMessage } from 'react-intl';
-import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
-import { DateRange } from '@navikt/sif-common-formik-ds/lib';
+import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
+import { DateRange } from '@navikt/sif-common-formik-ds';
 import {
     dateFormatter,
     dateToISODate,

@@ -26,9 +26,6 @@
         ]
     },
     "scripts": {
-        "bp": "turbo run build-package",
-        "build-app": "turbo run build-app",
-        "build-package": "turbo run build-package",
         "build": "turbo run build",
         "clean-all": "turbo run clean && rm -rf node_modules",
         "clean": "turbo run clean",

@@ -1,4 +1,4 @@
-import { Status, StatusMessage, useAppStatus } from '@navikt/appstatus-react-ds/lib';
+import { Status, StatusMessage, useAppStatus } from '@navikt/appstatus-react-ds';
 import { ReactElement } from 'react';
 import { IntlProvider } from 'react-intl';
 import { AxiosError } from 'axios';

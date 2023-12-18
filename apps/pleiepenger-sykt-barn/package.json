@@ -8,7 +8,7 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build-app": "vite build --base=/familie/sykdom-i-familien/soknad/pleiepenger",
+        "build": "vite build --base=/familie/sykdom-i-familien/soknad/pleiepenger",
         "build-storybook": "storybook build",
         "clean": "rm -rf node_modules .dist",
         "cypress-open": "cypress open --project $PWD/e2e",
@@ -18,7 +18,7 @@
         "start-express": "node ./server.cjs",
         "start-e2e-server": "node ./server-e2e.cjs",
         "storybook": "storybook dev -p 6006 -s public",
-        "test": "vitest",
+        "test": "vitest run",
         "lint": "eslint ./src --ext ts,tsx"
     },
     "dependencies": {

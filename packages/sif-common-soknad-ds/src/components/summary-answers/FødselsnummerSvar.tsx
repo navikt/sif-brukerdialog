@@ -1,4 +1,4 @@
-import SpacedCharString from '@navikt/sif-common-core-ds/lib/atoms/spaced-char-string/SpacedCharString';
+import SpacedCharString from '@navikt/sif-common-core-ds/src/atoms/spaced-char-string/SpacedCharString';
 
 interface Props {
     fødselsnummer: string;

@@ -1,6 +1,6 @@
 import { FormattedNumber, useIntl } from 'react-intl';
 import { Duration, durationToDecimalDuration, ensureDuration } from '@navikt/sif-common-utils';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 
 const DurationText = ({
     duration,

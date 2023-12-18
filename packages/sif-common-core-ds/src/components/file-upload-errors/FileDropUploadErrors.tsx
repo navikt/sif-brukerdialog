@@ -1,6 +1,6 @@
 import { Alert, BodyShort } from '@navikt/ds-react';
 import { FormattedMessage } from 'react-intl';
-import { FileDropAcceptImagesAndPdf } from '@navikt/sif-common-formik-ds/lib';
+import { FileDropAcceptImagesAndPdf } from '@navikt/sif-common-formik-ds';
 import prettyBytes from 'pretty-bytes';
 import { fileSizeIsValid } from '../../utils/attachmentUtils';
 

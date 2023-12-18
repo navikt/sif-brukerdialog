@@ -6,8 +6,8 @@ import {
     minstEtBarn12årIårellerYngre,
 } from '../dineBarnStepUtils';
 import { DineBarnSøknadsdata, Søknadsdata } from '../../../../types/søknadsdata/Søknadsdata';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import { AnnetBarn, BarnType } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/types';
+import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import { AnnetBarn, BarnType } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
 import { RegistrertBarn } from '../../../../types/RegistrertBarn';
 import dayjs from 'dayjs';
 import { TempFormValues } from '../../../../types/SøknadContextState';

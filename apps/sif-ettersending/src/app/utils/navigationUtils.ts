@@ -1,5 +1,5 @@
 import { NavigateFunction } from 'react-router-dom';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { getAbsoluteUrlForRoute, getRouteConfig } from '../config/routeConfig';
 import { Søknadstype } from '../types/Søknadstype';
 

@@ -1,4 +1,4 @@
-import { DateRange } from '@navikt/sif-common-utils/lib';
+import { DateRange } from '@navikt/sif-common-utils';
 import { SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { søkerKunFortid, søkerKunFremtid } from '../../utils/søknadsperiodeUtils';
 

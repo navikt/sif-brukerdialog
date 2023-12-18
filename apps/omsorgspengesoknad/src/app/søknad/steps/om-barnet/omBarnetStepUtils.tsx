@@ -1,12 +1,12 @@
-import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
-import { FormikRadioProp } from '@navikt/sif-common-formik-ds/lib/components/formik-radio-group/FormikRadioGroup';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
+import { FormikRadioProp } from '@navikt/sif-common-formik-ds/src/components/formik-radio-group/FormikRadioGroup';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
 import { Søknadsdata, OmBarnetSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { OmBarnetFormValues } from './OmBarnetStep';
 import { FormattedMessage } from 'react-intl';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/lib/utils/yesOrNoUtils';
+import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import dayjs from 'dayjs';
 

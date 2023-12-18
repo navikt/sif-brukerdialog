@@ -50,7 +50,7 @@ jobs:
                   cp apps/${{inputs.app-name}}/nais/envs/.env.prod apps/${{inputs.app-name}}/.env.production
 
             - name: Build application
-              run: yarn turbo run build-app --filter=@navikt/${{ inputs.app-name }}
+              run: yarn turbo run build --filter=@navikt/${{ inputs.app-name }}
 
             - name: Build and publish docker image
               uses: nais/docker-build-push@v0

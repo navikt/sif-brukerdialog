@@ -1,8 +1,7 @@
 {
     "author": "navikt",
-    "main": "lib/index.js",
+    "main": "src",
     "name": "@navikt/sif-common-core-ds",
-    "types": "lib/index.d.js",
     "version": "9.12.5",
     "private": true,
     "dependencies": {
@@ -70,31 +69,10 @@
     "overrides": {
         "react-refresh": "0.11.0"
     },
-    "watch": {
-        "copy-files": {
-            "patterns": [
-                "src"
-            ],
-            "extensions": "css,scss",
-            "runOnChangeOnly": true
-        }
-    },
     "scripts": {
-        "build": "npm-run-all build-package",
-        "build-package": "npm-run-all compile-lib-script copy-files",
         "build-storybook": "storybook build -s public",
-        "clean": "rm -rf node_modules lib",
-        "dev-lib": "yarn compile-lib-script-watch",
-        "clean-lib": "rimraf ./lib",
-        "compile-lib-script": "tsc -p tsconfig.json",
-        "compile-lib-script-watch": "tsc -p tsconfig.json --watch ",
-        "copy-files": "npm-run-all copy-sass-files-to-lib copy-css-files-to-lib copy-asset-files-to-lib copy-json-files-to-lib",
-        "copy-css-files-to-lib": "copyfiles -u 1 \"src/**/*.css\" lib",
-        "copy-sass-files-to-lib": "copyfiles -u 1 \"src/**/*.scss\" lib",
-        "copy-asset-files-to-lib": "copyfiles -u 1 \"src/**/assets/**/*\" lib",
-        "copy-json-files-to-lib": "copyfiles -u 1 \"src/**/*.json\" lib",
         "lint": "eslint ./src --ext ts,tsx",
         "storybook": "storybook dev -p 6006 -s public",
-        "test": "vitest"
+        "test": "vitest run"
     }
 }

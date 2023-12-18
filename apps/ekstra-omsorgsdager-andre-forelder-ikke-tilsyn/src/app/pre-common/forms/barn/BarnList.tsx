@@ -1,9 +1,9 @@
 import { useIntl } from 'react-intl';
-import ActionLink from '@navikt/sif-common-core-ds/lib/atoms/action-link/ActionLink';
-import ItemList from '@navikt/sif-common-core-ds/lib/components/lists/item-list/ItemList';
-import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
+import ActionLink from '@navikt/sif-common-core-ds/src/atoms/action-link/ActionLink';
+import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
+import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { AndreBarn } from './types';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import './barnList.scss';
 
 interface Props {

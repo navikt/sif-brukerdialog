@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import ActionLink from '@navikt/sif-common-core-ds/lib/atoms/action-link/ActionLink';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import { guid } from '@navikt/sif-common-utils/lib';
+import ActionLink from '@navikt/sif-common-core-ds/src/atoms/action-link/ActionLink';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { guid } from '@navikt/sif-common-utils';
 import { usePrevious } from '@navikt/sif-common-hooks';
 
 interface Props {

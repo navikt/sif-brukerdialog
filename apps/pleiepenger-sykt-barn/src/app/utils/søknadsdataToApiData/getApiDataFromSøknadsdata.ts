@@ -1,4 +1,4 @@
-import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
+import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { RegistrerteBarn, ÅrsakManglerIdentitetsnummer } from '../../types';
 import {

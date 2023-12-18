@@ -1,4 +1,4 @@
-import { DateRange } from '@navikt/sif-common-utils/lib';
+import { DateRange } from '@navikt/sif-common-utils';
 import { cleanupArbeidssituasjonStep } from '../søknad/arbeidssituasjon-step/utils/cleanupArbeidssituasjonStep';
 import { cleanupArbeidstidStep } from '../søknad/arbeidstid-step/utils/cleanupArbeidstidStep';
 import { cleanupNattevåkOgBeredskapStep } from '../søknad/nattevåk-og-beredskap-step/NattevåkOgBeredskapStep';

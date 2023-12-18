@@ -1,8 +1,8 @@
 import { FormattedMessage, useIntl } from 'react-intl';
-import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/bosted-utland/BostedUtlandListAndDialog';
+import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/BostedUtlandListAndDialog';
 import { Link } from '@navikt/ds-react';
 import getLenker from '../../../lenker';
 import {
@@ -11,10 +11,10 @@ import {
     getMedlemskapSøknadsdataFromFormValues,
 } from './medlemskapStepUtils';
 import { validateUtenlandsoppholdNeste12Mnd, validateUtenlandsoppholdSiste12Mnd } from './medlemskapFieldValidations';
-import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib';
-import { dateToday } from '@navikt/sif-common-utils/lib/dateUtils';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib';
+import { Utenlandsopphold } from '@navikt/sif-common-forms-ds';
+import { dateToday } from '@navikt/sif-common-utils';
+import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { StepId } from '../../../types/StepId';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
@@ -25,12 +25,12 @@ import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import SøknadStep from '../../SøknadStep';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 
 export enum MedlemskapFormFields {
     harBoddUtenforNorgeSiste12Mnd = 'harBoddUtenforNorgeSiste12Mnd',

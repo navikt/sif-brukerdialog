@@ -1,8 +1,8 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import { DateRange } from '@navikt/sif-common-utils/lib';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { DateRange } from '@navikt/sif-common-utils';
 import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
 import { getArbeidstidIPeriodeIntlValues } from '../../../local-sif-common-pleiepenger/utils';
 import { ArbeidIPeriodeFormValues } from '../../../types/søknad-form-values/ArbeidIPeriodeFormValues';

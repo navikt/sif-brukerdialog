@@ -1,5 +1,5 @@
 import React from 'react';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { ArbeidsforholdType } from '../../../../local-sif-common-pleiepenger';
 
 interface Props {

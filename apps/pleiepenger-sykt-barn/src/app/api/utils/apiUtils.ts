@@ -1,5 +1,5 @@
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
-import { getGitShaRequestHeader } from '@navikt/sif-common-core-ds/lib/utils/gitShaHeaderUtils';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
+import { getGitShaRequestHeader } from '@navikt/sif-common-core-ds/src/utils/gitShaHeaderUtils';
 import axios from 'axios';
 import { axiosConfigPsb } from '../../config/axiosConfig';
 import { ResourceType } from '../../types/ResourceType';

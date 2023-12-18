@@ -6,7 +6,7 @@ import {
 import FraværPeriodeForm from './FraværPeriodeForm';
 import FraværPerioderList from './FraværPerioderList';
 import { FraværPeriode } from './types';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { sortMaybeDateRange, DateRange } from '@navikt/sif-common-utils';
 
 interface Props<FieldNames> extends TypedFormInputValidationProps<FieldNames, ValidationError> {

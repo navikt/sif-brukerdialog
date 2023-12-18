@@ -2,18 +2,14 @@ import { Alert, BodyShort, Heading, Ingress, ToggleGroup } from '@navikt/ds-reac
 import React from 'react';
 import { IntlShape, useIntl } from 'react-intl';
 import { useSøknadContext } from '@hooks';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import { getDurationString } from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import {
-    getNumberFromNumberInputValue,
-    getTypedFormComponents,
-    ValidationError,
-} from '@navikt/sif-common-formik-ds/lib';
-import { getNumberValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import { getDurationString } from '@navikt/sif-common-core-ds/src/components/duration-text/DurationText';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { getNumberFromNumberInputValue, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import { getNumberValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { DateRange } from '@navikt/sif-common-utils';
 import { ArbeidstidEndring, Arbeidsuke, LovbestemtFerieSøknadsdata, TimerEllerProsent } from '@types';
 import {

@@ -1,4 +1,4 @@
-import { DateRange } from '@navikt/sif-common-utils/lib';
+import { DateRange } from '@navikt/sif-common-utils';
 import { SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { ArbeidssituasjonSøknadsdata } from '../../types/søknadsdata/ArbeidssituasjonSøknadsdata';
 import { extractArbeidssituasjonAnsattSøknadsdata } from './extractArbeidssituasjonAnsattSøknadsdata';

@@ -1,5 +1,5 @@
-import { OpptjeningAktivitet, UtenlandskNæringstype, VirksomhetApiData } from '@navikt/sif-common-forms-ds/lib';
-import { ISODate, ISODuration } from '@navikt/sif-common-utils/lib';
+import { OpptjeningAktivitet, UtenlandskNæringstype, VirksomhetApiData } from '@navikt/sif-common-forms-ds';
+import { ISODate, ISODuration } from '@navikt/sif-common-utils';
 import { JobberIPeriodeSvar } from '../../søknad/steps/arbeidstid/ArbeidstidTypes';
 import { ArbeidsgiverType } from '../Arbeidsgiver';
 import { ÅrsakManglerIdentitetsnummer } from '../ÅrsakManglerIdentitetsnummer';

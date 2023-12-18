@@ -2,11 +2,11 @@ import { Heading, Panel } from '@navikt/ds-react';
 /* eslint-disable no-console */
 import * as React from 'react';
 import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds/lib';
-import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
+import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { date1YearAgo, date1YearFromNow, dateToday } from '@navikt/sif-common-utils';
 import { flatten } from 'flat';
 import { DateTidsperiode } from '../../../src/forms/tidsperiode';

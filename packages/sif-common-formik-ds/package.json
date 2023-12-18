@@ -2,9 +2,8 @@
     "author": "navikt",
     "homepage": "https://navikt.github.io/sif-common-formik-ds",
     "license": "MIT",
-    "main": "lib/index.js",
+    "main": "src/index.ts",
     "name": "@navikt/sif-common-formik-ds",
-    "types": "lib/index.d.js",
     "version": "1.6.5",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-formik-ds/issues"
@@ -90,30 +89,11 @@
         "url": "git+https://github.com/navikt/sif-common-formik-ds.git"
     },
     "scripts": {
-        "build": "npm-run-all build-package",
-        "build-package": "npm-run-all compile-lib-script copy-files",
         "build-storybook": "build-storybook -s public",
-        "clean": "rm -rf node_modules lib",
-        "clean-lib": "rimraf ./lib",
-        "compile-lib-script": "tsc -p tsconfig.json",
-        "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
-        "copy-css-files-to-lib": "copyfiles -u 1 \"src/**/*.css\" lib",
-        "copy-files": "npm-run-all copy-css-files-to-lib copy-sass-files-to-lib",
-        "copy-sass-files-to-lib": "copyfiles -u 1 \"src/**/*.scss\" lib",
-        "dev-lib": "yarn compile-lib-script-watch",
         "lint": "eslint ./src --ext ts,tsx",
         "storybook": "storybook dev -p 6006 -s public",
-        "test": "vitest",
+        "test": "vitest run",
         "test-storybook": "test-storybook"
-    },
-    "watch": {
-        "copy-files": {
-            "extensions": "css,scss",
-            "patterns": [
-                "src"
-            ],
-            "runOnChangeOnly": true
-        }
     },
     "files": [
         "package.json",

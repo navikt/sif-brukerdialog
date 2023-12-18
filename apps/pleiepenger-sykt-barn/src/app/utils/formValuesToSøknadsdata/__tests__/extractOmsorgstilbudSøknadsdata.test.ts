@@ -1,4 +1,4 @@
-import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
+import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { OmsorgstilbudFormValues } from '../../../types/søknad-form-values/OmsorgtilbudFormValues';
 import { YesOrNoOrDoNotKnow } from '../../../types/YesOrNoOrDoNotKnow';
 import { extractOmsorgstibudSøknadsdata } from '../extractOmsorgstibudSøknadsdata';

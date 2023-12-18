@@ -1,6 +1,6 @@
 import React from 'react';
-import { FormikRadioProp } from '@navikt/sif-common-formik-ds/lib/components/formik-radio-group/FormikRadioGroup';
-import { DateRange } from '@navikt/sif-common-utils/lib';
+import { FormikRadioProp } from '@navikt/sif-common-formik-ds/src/components/formik-radio-group/FormikRadioGroup';
+import { DateRange } from '@navikt/sif-common-utils';
 import FormSection from '../../../components/form-section/FormSection';
 import { ArbeidIPeriodeIntlValues, ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
 import { ArbeidIPeriodeFormValues } from '../../../types/søknad-form-values/ArbeidIPeriodeFormValues';

@@ -1,6 +1,6 @@
-import { ISOStringToDate, dateToISOString } from '@navikt/sif-common-formik-ds/lib';
+import { ISOStringToDate, dateToISOString } from '@navikt/sif-common-formik-ds';
 import { UtenlandskNæring, UtenlandskNæringFormValues } from './types';
-import { guid } from '@navikt/sif-common-utils/lib';
+import { guid } from '@navikt/sif-common-utils';
 
 export const cleanupUtenlandskNæringFormValues = (
     formValues: UtenlandskNæringFormValues,

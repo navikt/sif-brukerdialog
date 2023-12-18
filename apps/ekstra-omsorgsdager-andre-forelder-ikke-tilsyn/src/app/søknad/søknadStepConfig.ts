@@ -3,7 +3,7 @@ import {
     SoknadApplicationType,
     SoknadStepsConfig,
     StepConfig,
-} from '@navikt/sif-common-soknad-ds/lib/modules/soknad-step/soknadStepTypes';
+} from '@navikt/sif-common-soknad-ds/src/modules/soknad-step/soknadStepTypes';
 import { StepId } from '../types/StepId';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 import { getSøknadStepRoute } from '../utils/søknadRoutesUtils';

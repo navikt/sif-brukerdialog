@@ -7,7 +7,7 @@ import {
     getDatesInDateRange,
     getWeeksInDateRange,
 } from '@navikt/sif-common-utils';
-import { getDateRangeFromDateRanges } from '@navikt/sif-common-utils/lib';
+import { getDateRangeFromDateRanges } from '@navikt/sif-common-utils';
 import {
     Arbeidsaktivitet,
     ArbeidsaktivitetType,

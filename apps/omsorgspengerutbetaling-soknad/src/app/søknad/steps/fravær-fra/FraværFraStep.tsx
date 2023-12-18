@@ -1,9 +1,9 @@
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-import { dateToISOString, getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
-import getRequiredFieldValidator from '@navikt/sif-common-formik-ds/lib/validation/getRequiredFieldValidator';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import { dateToISOString, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
+import getRequiredFieldValidator from '@navikt/sif-common-formik-ds/src/validation/getRequiredFieldValidator';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import dayjs from 'dayjs';
 import { FormattedMessage } from 'react-intl';
 import useIntl from 'react-intl/src/components/useIntl';

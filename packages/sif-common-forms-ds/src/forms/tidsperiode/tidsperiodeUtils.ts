@@ -1,4 +1,4 @@
-import { dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds/lib';
+import { dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import { guid } from '@navikt/sif-common-utils';
 import { DateTidsperiode, DateTidsperiodeFormValues } from './types';
 

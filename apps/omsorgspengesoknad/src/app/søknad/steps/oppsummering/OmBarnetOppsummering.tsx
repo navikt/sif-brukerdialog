@@ -1,8 +1,8 @@
 import React from 'react';
 import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import ContentWithHeader from '@navikt/sif-common-core-ds/lib/components/content-with-header/ContentWithHeader';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import ContentWithHeader from '@navikt/sif-common-core-ds/src/components/content-with-header/ContentWithHeader';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
 import { ISODateToDate, dateFormatter } from '@navikt/sif-common-utils';
 import { OmBarnetApiData } from '../../../types/søknadApiData/SøknadApiData';

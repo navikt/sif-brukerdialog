@@ -1,15 +1,15 @@
 import { Alert, Heading, Panel } from '@navikt/ds-react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import {
     getNumberFromNumberInputValue,
     getTypedFormComponents,
     ISOStringToDate,
     YesOrNo,
-} from '@navikt/sif-common-formik-ds/lib';
+} from '@navikt/sif-common-formik-ds';
 import {
     getDateRangeValidator,
     getDateValidator,
@@ -25,16 +25,10 @@ import {
     ValidateRequiredFieldError,
     ValidateStringError,
     ValidateYesOrNoError,
-} from '@navikt/sif-common-formik-ds/lib/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import {
-    date3YearsAgo,
-    date4YearsAgo,
-    date99YearsFromNow,
-    dateToday,
-    prettifyDate,
-} from '@navikt/sif-common-utils/lib';
+} from '@navikt/sif-common-formik-ds/src/validation';
+import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { date3YearsAgo, date4YearsAgo, date99YearsFromNow, dateToday, prettifyDate } from '@navikt/sif-common-utils';
 import { FormikProps } from 'formik';
 import { handleDateRangeValidationError } from '../../utils';
 import { isVirksomhet, Næringstype, Virksomhet, VirksomhetFormField, VirksomhetFormValues } from './types';

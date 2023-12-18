@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 import { groupBy } from 'lodash';
 import DagerMedTidListe from '../../common/dager-med-tid-liste/DagerMedTidListe';
 import { DagMedTid } from '../../types';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 
 interface ISODagMedTid {
     dato: ISODate;

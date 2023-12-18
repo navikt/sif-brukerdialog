@@ -7,15 +7,15 @@ import {
     isDateRange,
     prettifyDate,
 } from '@navikt/sif-common-utils';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds/lib';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import {
     getDateRangeValidator,
     ValidateDateError,
     ValidateDateRangeError,
-} from '@navikt/sif-common-formik-ds/lib/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+} from '@navikt/sif-common-formik-ds/src/validation';
+import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { handleDateRangeValidationError } from '../../utils';
 import ferieuttakUtils from './ferieuttakUtils';
 import { Ferieuttak, FerieuttakFormValues } from './types';

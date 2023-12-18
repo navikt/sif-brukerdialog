@@ -1,4 +1,4 @@
-import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { ÅrsakManglerIdentitetsnummer } from '../ÅrsakManglerIdentitetsnummer';
 import { YesOrNoDontKnow } from '../YesOrNoDontKnow';
 

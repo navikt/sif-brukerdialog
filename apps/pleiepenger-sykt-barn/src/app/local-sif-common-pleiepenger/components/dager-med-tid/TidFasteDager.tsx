@@ -1,6 +1,6 @@
 import React from 'react';
 import { IntlShape, useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { ISODuration, ISODurationToDuration } from '@navikt/sif-common-utils';
 import { Time } from '../../../types/Time';
 

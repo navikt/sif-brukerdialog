@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react';
 import * as React from 'react';
-import { ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
+import { ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 import DaySelector from './DaySelector';
 
 import { withStoryWrapper } from '../../storybook/decorators';

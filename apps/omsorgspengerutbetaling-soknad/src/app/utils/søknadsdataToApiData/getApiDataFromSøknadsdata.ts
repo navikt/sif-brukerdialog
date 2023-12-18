@@ -1,7 +1,7 @@
 import { IntlShape } from 'react-intl';
-import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
-import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { RegistrertBarn } from '../../types/RegistrertBarn';
 import { SøknadApiData, YesNoSpørsmålOgSvar } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';

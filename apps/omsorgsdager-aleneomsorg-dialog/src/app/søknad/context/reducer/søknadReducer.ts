@@ -1,4 +1,4 @@
-import { guid } from '@navikt/sif-common-utils/lib';
+import { guid } from '@navikt/sif-common-utils';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';

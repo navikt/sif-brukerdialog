@@ -1,9 +1,8 @@
 {
     "author": "@navikt",
     "description": "Fellesskjema for sykdom i familien",
-    "main": "lib/index.js",
+    "main": "src",
     "name": "@navikt/sif-common-forms-ds",
-    "types": "lib/index.d.js",
     "version": "8.16.5",
     "private": true,
     "dependencies": {
@@ -62,28 +61,10 @@
         "vite-plugin-checker": "0.6.2",
         "vitest": "1.0.4"
     },
-    "watch": {
-        "copy-files": {
-            "patterns": [
-                "src"
-            ],
-            "extensions": "css,scss",
-            "runOnChangeOnly": true
-        }
-    },
     "scripts": {
-        "build-package": "npm-run-all clean-lib compile-lib-script copy-files",
         "build-storybook": "storybook build",
-        "build": "npm-run-all build-package",
-        "clean-lib": "rm -rf lib",
-        "clean": "rm -rf node_modules lib",
-        "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
-        "compile-lib-script": "tsc -p tsconfig.json",
-        "copy-files": "copyfiles -u 1 \"src/**/*.scss\" lib/ && copyfiles -u 1 \"src/**/*.css\" lib/ && copyfiles -u 1 \"src/**/assets/**/*\" lib/ && copyfiles -u 1 \"src/**/*.json\" lib/",
-        "deploy": "gh-pages -d build",
-        "dev-lib": "yarn compile-lib-script-watch",
         "lint": "eslint ./src --ext ts,tsx",
         "storybook": "storybook dev -p 6006 -s public",
-        "test": "vitest"
+        "test": "vitest run"
     }
 }

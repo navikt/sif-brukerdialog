@@ -1,8 +1,8 @@
 import { Heading, Link } from '@navikt/ds-react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import getLenker from '../../../lenker';
 import BehandlingAvPersonopplysningerContent from './BehandlingAvPersonopplysningerContent';
 

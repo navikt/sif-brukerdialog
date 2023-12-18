@@ -1,9 +1,9 @@
 import { Meta, StoryFn } from '@storybook/react';
 import * as React from 'react';
-import { getDatesInDateRange, ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
+import { getDatesInDateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { withFormikWrapper, withStoryWrapper } from '../../storybook/decorators';
-import DurationWeekdaysInput, { DurationWeekdaysInputProps } from './DurationWeekdaysInput';
+import DurationWeekdaysInput from './DurationWeekdaysInput';
 
 export default {
     title: 'Component/form-element/DurationWeekdaysInput',

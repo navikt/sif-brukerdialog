@@ -1,7 +1,7 @@
 'use client';
 import { BodyShort, Box, Heading, Link } from '@navikt/ds-react';
 import React from 'react';
-import { dateFormatter } from '@navikt/sif-common-utils/lib';
+import { dateFormatter } from '@navikt/sif-common-utils';
 import { browserEnv } from '../../utils/env';
 
 interface Props {

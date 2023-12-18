@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { DateRange } from '@navikt/sif-common-utils';
 import {
     Arbeidsgiver,

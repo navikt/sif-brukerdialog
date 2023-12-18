@@ -1,10 +1,10 @@
 import { Alert } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import AttachmentList from '@navikt/sif-common-core-ds/lib/components/attachment-list/AttachmentList';
-import ContentWithHeader from '@navikt/sif-common-core-ds/lib/components/content-with-header/ContentWithHeader';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
+import ContentWithHeader from '@navikt/sif-common-core-ds/src/components/content-with-header/ContentWithHeader';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SummarySection } from '@navikt/sif-common-soknad-ds';
 import { SøknadApiData } from '../../../types/søknadApiData/SøknadApiData';
 import { DeltBostedSøknadsdata } from '../../../types/søknadsdata/DeltBostedSøknadsdata';

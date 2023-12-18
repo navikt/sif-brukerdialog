@@ -2,7 +2,7 @@
 import { Panel } from '@navikt/ds-react';
 import * as React from 'react';
 import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { prettifyDate } from '@navikt/sif-common-utils';
 import { getTypedFormComponents } from '../../../lib';
 import datepickerUtils from '../../../src/components/formik-datepicker/datepickerUtils';

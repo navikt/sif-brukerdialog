@@ -1,6 +1,6 @@
 import { Heading } from '@navikt/ds-react';
 import { FormattedMessage } from 'react-intl';
-import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
+import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import dayjs from 'dayjs';
 import { groupBy } from 'lodash';
 import { DagMedTid } from '../../types/DagMedTid';

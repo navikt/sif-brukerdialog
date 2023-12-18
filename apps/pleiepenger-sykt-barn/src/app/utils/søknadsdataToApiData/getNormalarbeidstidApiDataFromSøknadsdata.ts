@@ -1,4 +1,4 @@
-import { decimalDurationToISODuration } from '@navikt/sif-common-utils/lib';
+import { decimalDurationToISODuration } from '@navikt/sif-common-utils';
 import { NormalarbeidstidApiData } from '../../types/søknad-api-data/SøknadApiData';
 import { NormalarbeidstidSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
 

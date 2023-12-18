@@ -8,7 +8,7 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build-app": "vite build --base=/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg",
+        "build": "vite build --base=/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg",
         "build-storybook": "storybook build",
         "clean": "rm -rf node_modules .dist",
         "codegen": "playwright codegen",

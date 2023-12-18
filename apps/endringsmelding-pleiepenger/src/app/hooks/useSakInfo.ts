@@ -1,6 +1,6 @@
 import { useSøknadContext } from '@hooks';
-import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
-import { getDateRangeText } from '@navikt/sif-common-utils/lib';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
+import { getDateRangeText } from '@navikt/sif-common-utils';
 
 export const useSakUtledet = () => {
     const {

@@ -1,4 +1,4 @@
-import { ISODate } from '@navikt/sif-common-utils/lib/types';
+import { ISODate } from '@navikt/sif-common-utils';
 
 export interface HarInntektJobberFortsattFrilans {
     startdato: ISODate;

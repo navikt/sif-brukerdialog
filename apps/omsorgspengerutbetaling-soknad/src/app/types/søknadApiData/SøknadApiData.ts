@@ -1,9 +1,9 @@
-import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
+import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import { ApiAktivitet } from '../AktivitetFravær';
-import { BarnType } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/types';
-import { ISODate } from '@navikt/sif-common-utils/lib/types';
+import { BarnType } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
+import { ISODate } from '@navikt/sif-common-utils/src/types';
 import { FrilansApiData } from './FrilansApiData';
-import { VirksomhetApiData } from '@navikt/sif-common-forms-ds/lib';
+import { VirksomhetApiData } from '@navikt/sif-common-forms-ds';
 
 export type ISO8601Duration = string;
 

@@ -1,4 +1,4 @@
-import { ISODate } from '@navikt/sif-common-utils/lib';
+import { ISODate } from '@navikt/sif-common-utils';
 
 export interface StønadGodtgjørelseApiData {
     mottarStønadGodtgjørelse: boolean;

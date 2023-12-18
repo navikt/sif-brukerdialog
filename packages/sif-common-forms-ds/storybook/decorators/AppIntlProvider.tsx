@@ -4,11 +4,11 @@ import '@formatjs/intl-pluralrules//locale-data/en';
 import '@formatjs/intl-pluralrules//locale-data/nb';
 import '@formatjs/intl-pluralrules//locale-data/nn';
 import '@formatjs/intl-pluralrules/polyfill';
-import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
+import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import dayjs from 'dayjs';
 import { appMessages } from './messages';
 import '@navikt/ds-css';
-import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
+import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 
 import 'dayjs/locale/nb';
 import 'dayjs/locale/nn';

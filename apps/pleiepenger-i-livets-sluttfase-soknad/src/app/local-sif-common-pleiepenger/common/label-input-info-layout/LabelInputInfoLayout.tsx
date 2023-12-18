@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
+import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import './labelInputInfoLayout.less';
 
 interface Props {

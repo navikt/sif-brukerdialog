@@ -1,17 +1,17 @@
 import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 
 import { IntlShape } from 'react-intl';
-import { getRequiredFieldValidator, getDateValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
+import { getRequiredFieldValidator, getDateValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import {
     AleneomsorgTidspunktField,
     TidspunktForAleneomsorg,
     TidspunktForAleneomsorgFormFields,
     TidspunktForAleneomsorgFormValues,
 } from './TidspunktForAleneomsorgStep';
-import { dateToday } from '@navikt/sif-common-utils/lib';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import { dateToday } from '@navikt/sif-common-utils';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { BarnMedAleneomsorg, getMinDateYearAgo, getYear } from './tidspunktForAleneomsorgStepUtils';
 
 interface Props {

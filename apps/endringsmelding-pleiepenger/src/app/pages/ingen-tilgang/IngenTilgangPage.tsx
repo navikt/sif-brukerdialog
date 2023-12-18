@@ -1,10 +1,10 @@
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { IngenTilgangMeta } from '@hooks';
-import { SIFCommonPageKey, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
-import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import { SIFCommonPageKey, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude';
+import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { IngenTilgangÅrsak, Søker } from '@types';
 import DevFooter from '../../dev/DevFooter';
 import { SkrivTilOssLink } from '../../lenker';

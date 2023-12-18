@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import FrilansoppdragListe from '../frilansoppdrag-liste/FrilansoppdragListe';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { Arbeidsgiver } from '../../../../../types/Arbeidsgiver';
 import { Heading } from '@navikt/ds-react';
 

@@ -1,7 +1,7 @@
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
+import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
 import { FrilansFormValues, Frilanstype } from '../../../../types/søknad-form-values/FrilansFormValues';
 import { cleanupFrilansArbeidssituasjon } from '../cleanupArbeidssituasjonStep';
-import { ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
+import { ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 
 const søknadsperiode = ISODateRangeToDateRange('2021-01-02/2022-01-01');
 

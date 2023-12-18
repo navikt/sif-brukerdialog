@@ -1,9 +1,9 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { UtenlandskNæringApi } from '../../../../types/søknadApiData/SøknadApiData';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { prettifyApiDate } from '@navikt/sif-common-soknad-ds/lib/components/summary-answers/DatoSvar';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { prettifyApiDate } from '@navikt/sif-common-soknad-ds/src/components/summary-answers/DatoSvar';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { SummaryBlock, SummaryList } from '@navikt/sif-common-soknad-ds';
 
 interface Props {

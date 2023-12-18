@@ -1,15 +1,15 @@
 import { Alert } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
+import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
 import {
     getRequiredFieldValidator,
     getStringValidator,
     getYesOrNoValidator,
-} from '@navikt/sif-common-formik-ds/lib/validation';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+} from '@navikt/sif-common-formik-ds/src/validation';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -25,7 +25,7 @@ import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import AnnetBarnpart from './form-parts/AnnetBarnPart';
 import VelgRegistrertBarn from './form-parts/VelgRegistrertBarn';
 import { getOmBarnetStepInitialValues, getOmBarnetSøknadsdataFromFormValues } from './omBarnetStepUtils';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { BarnSammeAdresse } from '../../../types/BarnSammeAdresse';
 
 export enum OmBarnetFormFields {

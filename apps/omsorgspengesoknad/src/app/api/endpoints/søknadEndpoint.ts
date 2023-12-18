@@ -1,4 +1,4 @@
-import { getGitShaRequestHeader } from '@navikt/sif-common-core-ds/lib/utils/gitShaHeaderUtils';
+import { getGitShaRequestHeader } from '@navikt/sif-common-core-ds/src/utils/gitShaHeaderUtils';
 import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import api, { ApiEndpoint } from '../api';
 

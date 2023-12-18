@@ -1,4 +1,4 @@
-import { getNumberFromNumberInputValue } from '@navikt/sif-common-formik-ds/lib';
+import { getNumberFromNumberInputValue } from '@navikt/sif-common-formik-ds/src';
 import { NormalarbeidstidFormValues } from '../../types/søknad-form-values/ArbeidsforholdFormValues';
 import { NormalarbeidstidSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
 

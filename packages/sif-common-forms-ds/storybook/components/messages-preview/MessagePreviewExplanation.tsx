@@ -1,6 +1,6 @@
 import { Alert, Heading, Ingress } from '@navikt/ds-react';
 import * as React from 'react';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 
 const MessagesPreviewExplanation = () => (
     <Alert variant="info">

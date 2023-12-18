@@ -1,4 +1,4 @@
-import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { FrilansFormField, Frilanstype } from '../../../../../types/søknad-form-values/FrilansFormValues';
 import { ArbFriFormComponents } from '../FrilanserFormPart';
 

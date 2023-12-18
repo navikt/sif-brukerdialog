@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { useFormikContext } from 'formik';
-import AttachmentListWithDeletion from '@navikt/sif-common-core-ds/lib/components/attachment-list-with-deletion/AttachmentListWithDeletion';
-import AttachmentList from '@navikt/sif-common-core-ds/lib/components/attachment-list/AttachmentList';
-import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
+import AttachmentListWithDeletion from '@navikt/sif-common-core-ds/src/components/attachment-list-with-deletion/AttachmentListWithDeletion';
+import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import {
     containsAnyUploadedAttachments,
     fileExtensionIsValid,
-} from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
-import { removeElementFromArray } from '@navikt/sif-common-core-ds/lib/utils/listUtils';
+} from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import { removeElementFromArray } from '@navikt/sif-common-core-ds/src/utils/listUtils';
 import { deleteFile } from '../../api/api';
 import { SøknadFormValues, SøknadFormField } from '../../types/søknad-form-values/SøknadFormValues';
 

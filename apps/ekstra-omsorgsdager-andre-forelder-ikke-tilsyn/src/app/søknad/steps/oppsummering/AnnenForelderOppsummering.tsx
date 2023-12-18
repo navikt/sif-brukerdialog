@@ -1,5 +1,5 @@
 import { FormattedMessage, useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
 import { AnnenForelderApiData } from '../../../types/søknadApiData/SøknadApiData';
 

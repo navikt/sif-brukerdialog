@@ -1,7 +1,7 @@
 import { useSøknadContext } from '@hooks';
 import { Heading } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import AAregisteret from '../../../components/aa-registeret/AARegisteret';
 import { useStepConfig } from '../../../hooks/useStepConfig';
 import SøknadStep from '../../SøknadStep';
