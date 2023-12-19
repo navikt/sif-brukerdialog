@@ -3757,7 +3757,7 @@ __metadata:
     classnames: 2.3.2
     config: "workspace:*"
     copyfiles: 2.4.1
-    date-fns: 2.30.0
+    date-fns: 3.0.0
     dayjs: 1.11.10
     formik: 2.4.5
     http-status-codes: 2.3.0
@@ -3819,7 +3819,7 @@ __metadata:
     classnames: 2.3.2
     config: "workspace:*"
     copyfiles: 2.4.1
-    date-fns: 2.30.0
+    date-fns: 3.0.0
     dayjs: 1.11.10
     formik: 2.4.5
     i18n-iso-countries: 7.7.0
@@ -3887,7 +3887,7 @@ __metadata:
     axios: 1.6.2
     config: "workspace:*"
     copyfiles: 2.4.1
-    date-fns: 2.30.0
+    date-fns: 3.0.0
     dayjs: 1.11.10
     flat: 6.0.1
     formik: 2.4.5
@@ -3983,7 +3983,7 @@ __metadata:
     "@vitejs/plugin-react": 4.2.1
     axios: 1.6.2
     copyfiles: 2.4.1
-    date-fns: 2.30.0
+    date-fns: 3.0.0
     dayjs: 1.11.10
     formik: 2.4.5
     fp-ts: 2.16.1
@@ -4096,7 +4096,7 @@ __metadata:
     compression: 1.7.4
     cookie-parser: 1.4.6
     cross-env: 7.0.3
-    date-fns: 2.30.0
+    date-fns: 3.0.0
     dayjs: 1.11.10
     dotenv: 16.3.1
     express: 4.18.2
@@ -10882,7 +10882,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"date-fns@npm:2.30.0, date-fns@npm:^2.21.1, date-fns@npm:^2.30.0":
+"date-fns@npm:3.0.0":
+  version: 3.0.0
+  resolution: "date-fns@npm:3.0.0"
+  checksum: 679e07eb4625afa25ced624f471e90663131f053b35f9b73cb5b863829f717f887305801f05cfd1dd53c029e598289b52792f053b8a1c7082885c7e1bdb309df
+  languageName: node
+  linkType: hard
+
+"date-fns@npm:^2.21.1, date-fns@npm:^2.30.0":
   version: 2.30.0
   resolution: "date-fns@npm:2.30.0"
   dependencies:
