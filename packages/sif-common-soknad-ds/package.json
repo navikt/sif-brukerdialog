@@ -7,7 +7,7 @@
     "private": true,
     "dependencies": {
         "@navikt/nav-dekoratoren-moduler": "2.1.5",
-        "date-fns": "2.30.0",
+        "date-fns": "3.0.1",
         "fp-ts": "2.16.1",
         "io-ts": "2.2.21"
     },
