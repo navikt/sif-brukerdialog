@@ -7,7 +7,7 @@
     "dependencies": {
         "@navikt/sif-common-utils": "workspace:*",
         "browser-image-compression": "2.0.2",
-        "classnames": "2.3.2",
+        "classnames": "2.4.0",
         "date-fns": "2.30.0",
         "dayjs": "1.11.10",
         "http-status-codes": "2.3.0",
