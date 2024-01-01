@@ -3053,7 +3053,7 @@ __metadata:
     "@storybook/test": 7.6.4
     axios: 1.6.2
     chromatic: 10.1.0
-    classnames: 2.3.2
+    classnames: 2.5.1
     dayjs: 1.11.10
     eslint-plugin-storybook: 0.6.15
     formik: 2.4.5
@@ -3384,7 +3384,7 @@ __metadata:
     "@types/react": 18.2.45
     "@types/react-dom": 18.2.17
     "@types/uuid": 9.0.7
-    classnames: 2.3.2
+    classnames: 2.5.1
     dayjs: 1.11.10
     eslint: 8.55.0
     eslint-config-next: 14.0.4
@@ -3754,7 +3754,7 @@ __metadata:
     "@vitejs/plugin-react": 4.2.1
     axios: 1.6.2
     browser-image-compression: 2.0.2
-    classnames: 2.3.2
+    classnames: 2.5.1
     config: "workspace:*"
     copyfiles: 2.4.1
     date-fns: 2.30.0
@@ -3816,7 +3816,7 @@ __metadata:
     "@types/react-dom": 18.2.17
     "@types/uuid": 9.0.7
     "@vitejs/plugin-react": 4.2.1
-    classnames: 2.3.2
+    classnames: 2.5.1
     config: "workspace:*"
     copyfiles: 2.4.1
     date-fns: 2.30.0
@@ -4092,7 +4092,7 @@ __metadata:
     axios: 1.6.2
     babel-polyfill: 6.26.0
     busboy: 1.6.0
-    classnames: 2.3.2
+    classnames: 2.5.1
     compression: 1.7.4
     cookie-parser: 1.4.6
     cross-env: 7.0.3
@@ -9901,10 +9901,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"classnames@npm:2.3.2":
-  version: 2.3.2
-  resolution: "classnames@npm:2.3.2"
-  checksum: 2c62199789618d95545c872787137262e741f9db13328e216b093eea91c85ef2bfb152c1f9e63027204e2559a006a92eb74147d46c800a9f96297ae1d9f96f4e
+"classnames@npm:2.5.1":
+  version: 2.5.1
+  resolution: "classnames@npm:2.5.1"
+  checksum: da424a8a6f3a96a2e87d01a432ba19315503294ac7e025f9fece656db6b6a0f7b5003bb1fbb51cbb0d9624d964f1b9bb35a51c73af9b2434c7b292c42231c1e5
   languageName: node
   linkType: hard
 
