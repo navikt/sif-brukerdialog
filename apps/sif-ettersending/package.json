@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/sif-ettersending",
     "repository": "https://github.com/navikt/sif-ettersending",
-    "version": "3.28.6",
+    "version": "3.29.0",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -27,7 +27,7 @@
         "classnames": "2.5.1",
         "compression": "1.7.4",
         "cookie-parser": "1.4.6",
-        "date-fns": "2.30.0",
+        "date-fns": "3.0.6",
         "dayjs": "1.11.10",
         "dotenv": "16.3.1",
         "express": "4.18.2",
