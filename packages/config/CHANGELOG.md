@@ -1,5 +1,11 @@
 # config
 
+## 0.9.6
+
+### Patch Changes
+
+- 23f75ff: Generelle pakkeoppdateringer - patch og minor
+
 ## 0.9.5
 
 ### Patch Changes

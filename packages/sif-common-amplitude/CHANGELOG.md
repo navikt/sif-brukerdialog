@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.24.8
+
+### Patch Changes
+
+- 23f75ff: Generelle pakkeoppdateringer - patch og minor
+
 ## 2.24.7
 
 ### Patch Changes
