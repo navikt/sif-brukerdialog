@@ -1,5 +1,18 @@
 # @navikt/sif-ettersending
 
+## 3.29.0
+
+### Minor Changes
+
+- c12a07f: Oppdatere date-fns til 3.0.6 (fra 2.30.0) og chromatic til 10.2.0 (minor)
+
+### Patch Changes
+
+- Updated dependencies [c12a07f]
+  - @navikt/sif-common-formik-ds@1.7.0
+  - @navikt/sif-common-soknad-ds@10.13.0
+  - @navikt/sif-common-core-ds@9.13.0
+
 ## 3.28.6
 
 ### Patch Changes
