@@ -1,5 +1,17 @@
 # @navikt/dine-pleiepenger
 
+## 0.4.1
+
+### Patch Changes
+
+- 5b106ca: Forenkle zod-schema for organisasjon. Unngå feil typing i data som ikke brukes
+- 23f75ff: Generelle pakkeoppdateringer - patch og minor
+- Updated dependencies [23f75ff]
+  - @navikt/appstatus-react-ds@2.17.9
+  - @navikt/sif-common-core-ds@9.12.6
+  - @navikt/sif-common-sentry@0.25.7
+  - @navikt/sif-common-utils@3.43.8
+
 ## 0.4.0
 
 ### Minor Changes
