@@ -10,15 +10,16 @@
         "url": "https://github.com/navikt/sif-common-amplitude/issues"
     },
     "devDependencies": {
-        "@types/amplitude-js": "8.16.5",
         "@types/node": "20.10.6",
         "@types/react": "18.2.46",
-        "amplitude-js": "8.21.9",
         "config": "workspace:*",
         "constate": "3.3.2",
         "gh-pages": "6.1.1",
         "react": "18.2.0",
         "rimraf": "5.0.5"
+    },
+    "dependencies": {
+        "@amplitude/analytics-browser": "2.3.8"
     },
     "directories": {
         "lib": "lib"
@@ -28,7 +29,6 @@
         "/lib"
     ],
     "peerDependencies": {
-        "amplitude-js": "8.x",
         "constate": "3.3.x",
         "react": "18.x"
     },

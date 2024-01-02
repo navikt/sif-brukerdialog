@@ -26,34 +26,76 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@amplitude/analytics-connector@npm:^1.4.6":
+"@amplitude/analytics-browser@npm:2.3.8":
+  version: 2.3.8
+  resolution: "@amplitude/analytics-browser@npm:2.3.8"
+  dependencies:
+    "@amplitude/analytics-client-common": ^2.0.10
+    "@amplitude/analytics-core": ^2.1.3
+    "@amplitude/analytics-types": ^2.3.1
+    "@amplitude/plugin-page-view-tracking-browser": ^2.0.18
+    "@amplitude/plugin-web-attribution-browser": ^2.0.18
+    tslib: ^2.4.1
+  checksum: 8ed044605141838eef85205a30750eeb5523a2acf5a4be67522945efd3a1169ed51f27755192184d20050c96d9529525892dc3afa1e60eba076cf0cd6e7a3daa
+  languageName: node
+  linkType: hard
+
+"@amplitude/analytics-client-common@npm:^2.0.10":
+  version: 2.0.10
+  resolution: "@amplitude/analytics-client-common@npm:2.0.10"
+  dependencies:
+    "@amplitude/analytics-connector": ^1.4.8
+    "@amplitude/analytics-core": ^2.1.3
+    "@amplitude/analytics-types": ^2.3.1
+    tslib: ^2.4.1
+  checksum: 17cfe953ff2e51fc5f0bf1d318f32e29ab15ce5a04c152e58bbb48e458ac70e06971226d46c65b6f14bf8092fa41142cda6b5be34eefb1cb2fd2a0706b6f4738
+  languageName: node
+  linkType: hard
+
+"@amplitude/analytics-connector@npm:^1.4.8":
   version: 1.5.0
   resolution: "@amplitude/analytics-connector@npm:1.5.0"
   checksum: 157115b642e8b254a88184fe3294150321fdd482388f262bdc08f9ab0c68b01b5f10d2e35a924edb8a8380f0944f8b1363133c2a3f42b59e33da319bfe21c8fa
   languageName: node
   linkType: hard
 
-"@amplitude/types@npm:^1.10.2":
-  version: 1.10.2
-  resolution: "@amplitude/types@npm:1.10.2"
-  checksum: 206ef520979c76a69baa145679a60c96249c165ff8354c0b58d183b917ae3abb35569cb0e9587ecf6c7b8636b2cc69d05ea9ecbd1cc9cade503256860bd80afe
-  languageName: node
-  linkType: hard
-
-"@amplitude/ua-parser-js@npm:0.7.33":
-  version: 0.7.33
-  resolution: "@amplitude/ua-parser-js@npm:0.7.33"
-  checksum: b08ce4cd4e96fed9eebffadb4060d24751cea80caf4265e6b829b7cfdb6561431386015674b3ac330a8987b990e2ca70725d4298eb1438beccb85264848b0b34
-  languageName: node
-  linkType: hard
-
-"@amplitude/utils@npm:^1.10.2":
-  version: 1.10.2
-  resolution: "@amplitude/utils@npm:1.10.2"
+"@amplitude/analytics-core@npm:^2.1.3":
+  version: 2.1.3
+  resolution: "@amplitude/analytics-core@npm:2.1.3"
   dependencies:
-    "@amplitude/types": ^1.10.2
-    tslib: ^2.0.0
-  checksum: 9b5d3652725e30add1e42a1f221a3954c844d9aeb9d73b197c5ea2a0b91a86ccdedd4878e829cdae0eca287e68d37016347b97860069fa233d8d9ec78821d1c9
+    "@amplitude/analytics-types": ^2.3.1
+    tslib: ^2.4.1
+  checksum: 00d21dfedd5df24c28ea2ff1c1774c5d99370b0e6ec4d91ff494e7c38648ab25cb22750c008577df61934a5f111e509a260d82e1bd4cc3e0bd9e1ba186c10988
+  languageName: node
+  linkType: hard
+
+"@amplitude/analytics-types@npm:^2.3.1":
+  version: 2.3.1
+  resolution: "@amplitude/analytics-types@npm:2.3.1"
+  checksum: 0f7e4fe9ca9005afdb79a448691cc547c3b04683fb8376015a7c1bc3c5cdb877267a2cd0b8f89c590f2863e8e4be7498e636d4c1ff25a566166abc827516779d
+  languageName: node
+  linkType: hard
+
+"@amplitude/plugin-page-view-tracking-browser@npm:^2.0.18":
+  version: 2.0.18
+  resolution: "@amplitude/plugin-page-view-tracking-browser@npm:2.0.18"
+  dependencies:
+    "@amplitude/analytics-client-common": ^2.0.10
+    "@amplitude/analytics-types": ^2.3.1
+    tslib: ^2.4.1
+  checksum: a21302665b5fdef50531d825786c941d9b08c2e7fe63d8d7dc8a780245ed708a57146955b01d2c33854f2193654da98805e0b535960892d1aa2fc15f5db3abb1
+  languageName: node
+  linkType: hard
+
+"@amplitude/plugin-web-attribution-browser@npm:^2.0.18":
+  version: 2.0.18
+  resolution: "@amplitude/plugin-web-attribution-browser@npm:2.0.18"
+  dependencies:
+    "@amplitude/analytics-client-common": ^2.0.10
+    "@amplitude/analytics-core": ^2.1.3
+    "@amplitude/analytics-types": ^2.3.1
+    tslib: ^2.4.1
+  checksum: 86ddbf2096455b2b00f66ccfce989fd06a4d3ae62beb1a67ceaddfbf53750acb9e9018e747dba9e1b1bf84e00f228d2d04127e39f8b2bbcfd6a6dc0dba655bfa
   languageName: node
   linkType: hard
 
@@ -3800,7 +3842,6 @@ __metadata:
     "@typescript-eslint/eslint-plugin": 6.17.0
     "@typescript-eslint/parser": 6.17.0
     "@vitejs/plugin-react": 4.2.1
-    amplitude-js: 8.21.9
     axe-core: 4.8.3
     axios: 1.6.3
     busboy: 1.6.0
@@ -3871,17 +3912,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-amplitude@workspace:packages/sif-common-amplitude"
   dependencies:
-    "@types/amplitude-js": 8.16.5
+    "@amplitude/analytics-browser": 2.3.8
     "@types/node": 20.10.6
     "@types/react": 18.2.46
-    amplitude-js: 8.21.9
     config: "workspace:*"
     constate: 3.3.2
     gh-pages: 6.1.1
     react: 18.2.0
     rimraf: 5.0.5
   peerDependencies:
-    amplitude-js: 8.x
     constate: 3.3.x
     react: 18.x
   languageName: unknown
@@ -7404,13 +7443,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/amplitude-js@npm:8.16.5":
-  version: 8.16.5
-  resolution: "@types/amplitude-js@npm:8.16.5"
-  checksum: e90aa54001baa166dde799924a0e8f5d318476099922a4bdad7fec50413f0e3fd30cec151bf18162e8b699fabbb692d330055ab891fd23bd846d8ada158f5fc9
-  languageName: node
-  linkType: hard
-
 "@types/aria-query@npm:^5.0.1":
   version: 5.0.4
   resolution: "@types/aria-query@npm:5.0.4"
@@ -8983,20 +9015,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"amplitude-js@npm:8.21.9":
-  version: 8.21.9
-  resolution: "amplitude-js@npm:8.21.9"
-  dependencies:
-    "@amplitude/analytics-connector": ^1.4.6
-    "@amplitude/ua-parser-js": 0.7.33
-    "@amplitude/utils": ^1.10.2
-    "@babel/runtime": ^7.21.0
-    blueimp-md5: ^2.19.0
-    query-string: 8.1.0
-  checksum: 01409772abf904fecac26e81c453c884a8d3f1dd6b8a01a75288c8f1c8dccb022fdf2257fa66641d480241c3f4c0adbc643c9cfa89673642d9587180bb679c48
-  languageName: node
-  linkType: hard
-
 "ansi-colors@npm:^4.1.1, ansi-colors@npm:^4.1.3":
   version: 4.1.3
   resolution: "ansi-colors@npm:4.1.3"
@@ -9779,13 +9797,6 @@ __metadata:
   version: 3.7.2
   resolution: "bluebird@npm:3.7.2"
   checksum: 869417503c722e7dc54ca46715f70e15f4d9c602a423a02c825570862d12935be59ed9c7ba34a9b31f186c017c23cac6b54e35446f8353059c101da73eac22ef
-  languageName: node
-  linkType: hard
-
-"blueimp-md5@npm:^2.19.0":
-  version: 2.19.0
-  resolution: "blueimp-md5@npm:2.19.0"
-  checksum: 28095dcbd2c67152a2938006e8d7c74c3406ba6556071298f872505432feb2c13241b0476644160ee0a5220383ba94cb8ccdac0053b51f68d168728f9c382530
   languageName: node
   linkType: hard
 
@@ -11466,13 +11477,6 @@ __metadata:
   version: 10.4.3
   resolution: "decimal.js@npm:10.4.3"
   checksum: 796404dcfa9d1dbfdc48870229d57f788b48c21c603c3f6554a1c17c10195fc1024de338b0cf9e1efe0c7c167eeb18f04548979bcc5fdfabebb7cc0ae3287bae
-  languageName: node
-  linkType: hard
-
-"decode-uri-component@npm:^0.4.1":
-  version: 0.4.1
-  resolution: "decode-uri-component@npm:0.4.1"
-  checksum: 0473924860986fb6ca19ee65a2af13e08801b4f3660475b058500ea8479ed715c919884a026b6bf4296dbb640d3cea74fadf45490b2439152fc548271d0201ec
   languageName: node
   linkType: hard
 
@@ -13669,13 +13673,6 @@ __metadata:
   version: 2.0.2
   resolution: "filter-obj@npm:2.0.2"
   checksum: e0d71ebc89515a4305db5158aeb78c9f9a4bfef4bacf272e7de8cadf0d3b694191f6fdbd3b507ee330c266c4287f21804defa8c80693d8c6ad60f1cbfad4f477
-  languageName: node
-  linkType: hard
-
-"filter-obj@npm:^5.1.0":
-  version: 5.1.0
-  resolution: "filter-obj@npm:5.1.0"
-  checksum: ba7c24d9b2c0552ee87d268e07eca74483af61fb740545ffa809f7e9e5294de38cf163ecc55af0e8a40020af9a49512c32f4022de2a858b110420fc8bffa7c9c
   languageName: node
   linkType: hard
 
@@ -20214,17 +20211,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"query-string@npm:8.1.0":
-  version: 8.1.0
-  resolution: "query-string@npm:8.1.0"
-  dependencies:
-    decode-uri-component: ^0.4.1
-    filter-obj: ^5.1.0
-    split-on-first: ^3.0.0
-  checksum: 16fe49ab714f2b802bd31bc417876a38a82cd49bea01c0d6c37ca3439604c774752c8c66f9eda5ee33c268de2fc2a65e0e0e27aa97d8d98159af5c1fc838a017
-  languageName: node
-  linkType: hard
-
 "querystring-es3@npm:^0.2.1":
   version: 0.2.1
   resolution: "querystring-es3@npm:0.2.1"
@@ -22046,13 +22032,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"split-on-first@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "split-on-first@npm:3.0.0"
-  checksum: 75dc27ecbac65cfbeab9a3b90cf046307220192d3d7a30e46aa0f19571cc9b4802aac813f3de2cc9b16f2e46aae72f275659b5d2614bb5369c77724d739e5f73
-  languageName: node
-  linkType: hard
-
 "split2@npm:^4.0.0":
   version: 4.2.0
   resolution: "split2@npm:4.2.0"
@@ -23120,7 +23099,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.0.0, tslib@npm:^2.0.1, tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.3.0, tslib@npm:^2.4.0, tslib@npm:^2.6.2":
+"tslib@npm:^2.0.0, tslib@npm:^2.0.1, tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.3.0, tslib@npm:^2.4.0, tslib@npm:^2.4.1, tslib@npm:^2.6.2":
   version: 2.6.2
   resolution: "tslib@npm:2.6.2"
   checksum: 329ea56123005922f39642318e3d1f0f8265d1e7fcb92c633e0809521da75eeaca28d2cf96d7248229deb40e5c19adf408259f4b9640afd20d13aecc1430f3ad
