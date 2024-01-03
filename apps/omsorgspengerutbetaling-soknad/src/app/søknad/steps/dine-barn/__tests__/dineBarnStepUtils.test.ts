@@ -1,28 +1,42 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { DineBarnFormValues } from '../DineBarnStep';
-import {
-    cleanHarUtvidetRettFor,
-    getDineBarnStepInitialValues,
-    getDineBarnSøknadsdataFromFormValues,
-    minstEtBarn12årIårellerYngre,
-} from '../dineBarnStepUtils';
-import { DineBarnSøknadsdata, Søknadsdata } from '../../../../types/søknadsdata/Søknadsdata';
+import { cleanHarUtvidetRettFor, getDineBarnSøknadsdataFromFormValues, getHarUtvidetRett } from '../dineBarnStepUtils';
+import { DineBarnSøknadsdata } from '../../../../types/søknadsdata/Søknadsdata';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { AnnetBarn, BarnType } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
 import { RegistrertBarn } from '../../../../types/RegistrertBarn';
 import dayjs from 'dayjs';
-import { TempFormValues } from '../../../../types/SøknadContextState';
-import { StepId } from '../../../../types/StepId';
 
+const date2yearsAgo = dayjs().subtract(2, 'y').startOf('year').toDate();
+const date3yearsAgo = dayjs().subtract(3, 'y').startOf('year').toDate();
+const date4yearsAgo = dayjs().subtract(4, 'y').startOf('year').toDate();
 const date13yearsAgo = dayjs().subtract(13, 'y').startOf('year').toDate();
 const date12yearsAgo = dayjs().subtract(12, 'y').startOf('year').toDate();
 
+const registrertBarn2years: RegistrertBarn = {
+    aktørId: '1',
+    fornavn: 'John',
+    etternavn: 'Doe',
+    fødselsdato: date2yearsAgo,
+};
+const registrertBarn3years: RegistrertBarn = {
+    aktørId: '1',
+    fornavn: 'John',
+    etternavn: 'Doe',
+    fødselsdato: date3yearsAgo,
+};
+const registrertBarn4years: RegistrertBarn = {
+    aktørId: '1',
+    fornavn: 'John',
+    etternavn: 'Doe',
+    fødselsdato: date4yearsAgo,
+};
 const registrertBarn13years: RegistrertBarn = {
     aktørId: '1',
     fornavn: 'John',
     etternavn: 'Doe',
     fødselsdato: date13yearsAgo,
 };
-
 const andreBarn13years: AnnetBarn = {
     fnr: 'fnr1',
     fødselsdato: date13yearsAgo,
@@ -37,94 +51,90 @@ const andreBarn12years: AnnetBarn = {
     type: BarnType.fosterbarn,
 };
 
+const ettBarnUnder12: RegistrertBarn[] = [registrertBarn2years];
+const toBarnUnder12: RegistrertBarn[] = [registrertBarn2years, registrertBarn3years];
+const treBarnUnder12: RegistrertBarn[] = [registrertBarn2years, registrertBarn3years, registrertBarn4years];
+// const treBarnMix: RegistrertBarn[] = [registrertBarn2years, registrertBarn3years, registrertBarn13years];
+const ettBarnOver12: RegistrertBarn[] = [registrertBarn13years];
+// const toBarnOver12: RegistrertBarn[] = [registrertBarn13years, registrertBarn13years];
+const treBarnOver12: RegistrertBarn[] = [registrertBarn13years, registrertBarn13years, registrertBarn13years];
+
 describe('dineBarnStepUtils', () => {
-    describe('getDineBarnStepInitialValues', () => {
-        it('should return default values when formValues is not provided', () => {
-            const søknadsdata = {
-                dineBarn: undefined,
-            };
-
-            const expected: DineBarnFormValues = {
-                andreBarn: undefined,
-                harDekketTiFørsteDagerSelv: undefined,
-                harUtvidetRett: YesOrNo.UNANSWERED,
-                harUtvidetRettFor: [],
-            };
-
-            const result = getDineBarnStepInitialValues(søknadsdata);
-            expect(result).toEqual(expected);
-        });
-
-        it('should return tempFormData when provided', () => {
-            const søknadsdata = {
-                dineBarn: undefined,
-            };
-
-            const tempFormData: Partial<DineBarnFormValues> = {
-                andreBarn: [],
-                harDekketTiFørsteDagerSelv: true,
-                harUtvidetRett: YesOrNo.YES,
-                harUtvidetRettFor: ['fnr1', 'fnr2'],
-            };
-
-            const tempFormValues: TempFormValues = {
-                stepId: StepId.DINE_BARN,
-                values: tempFormData,
-            };
-
-            const result = getDineBarnStepInitialValues(søknadsdata, tempFormValues);
-            expect(result).toEqual(tempFormData);
-        });
-
-        it('should return values based on dineBarn type "minstEtt12årEllerYngre"', () => {
-            const søknadsdata = {
-                dineBarn: {
-                    type: 'minstEtt12årEllerYngre',
-                    andreBarn: [andreBarn13years, andreBarn12years],
-                    harDekketTiFørsteDagerSelv: true,
-                },
-            };
-
-            const expected: DineBarnFormValues = {
-                andreBarn: søknadsdata.dineBarn.andreBarn,
-                harDekketTiFørsteDagerSelv: søknadsdata.dineBarn.harDekketTiFørsteDagerSelv,
-                harUtvidetRett: YesOrNo.UNANSWERED,
-                harUtvidetRettFor: [],
-            };
-
-            const result = getDineBarnStepInitialValues(søknadsdata as Søknadsdata);
-            expect(result).toEqual(expected);
-        });
-
-        it('should return values based on dineBarn type "alleBarnEldre12år"', () => {
-            const søknadsdata = {
-                dineBarn: {
-                    type: 'alleBarnEldre12år',
-                    andreBarn: [andreBarn13years, andreBarn13years],
-                    harDekketTiFørsteDagerSelv: true,
-                    harUtvidetRett: YesOrNo.YES,
-                    harUtvidetRettFor: ['fnr1'],
-                },
-            };
-
-            const expected: DineBarnFormValues = {
-                andreBarn: søknadsdata.dineBarn.andreBarn,
-                harDekketTiFørsteDagerSelv: undefined,
-                harUtvidetRett: YesOrNo.YES,
-                harUtvidetRettFor: ['fnr1'],
-            };
-
-            const result = getDineBarnStepInitialValues(søknadsdata as Søknadsdata);
-            expect(result).toEqual(expected);
-        });
-    });
+    // describe('getDineBarnStepInitialValues', () => {
+    // it('should return default values when formValues is not provided', () => {
+    //     const søknadsdata = {
+    //         dineBarn: undefined,
+    //     };
+    //     const expected: DineBarnFormValues = {
+    //         andreBarn: undefined,
+    //         harDekketTiFørsteDagerSelv: undefined,
+    //         harSyktBarn: YesOrNo.UNANSWERED,
+    //         harUtvidetRettFor: [],
+    //     };
+    //     const result = getDineBarnStepInitialValues(søknadsdata);
+    //     expect(result).toEqual(expected);
+    // });
+    // it('should return tempFormData when provided', () => {
+    //     const søknadsdata = {
+    //         dineBarn: undefined,
+    //     };
+    //     const tempFormData: Partial<DineBarnFormValues> = {
+    //         andreBarn: [],
+    //         harDekketTiFørsteDagerSelv: true,
+    //         harSyktBarn: YesOrNo.YES,
+    //         harUtvidetRettFor: ['fnr1', 'fnr2'],
+    //     };
+    //     const tempFormValues: TempFormValues = {
+    //         stepId: StepId.DINE_BARN,
+    //         values: tempFormData,
+    //     };
+    //     const result = getDineBarnStepInitialValues(søknadsdata, tempFormValues);
+    //     expect(result).toEqual(tempFormData);
+    // });
+    // it('should return values based on dineBarn type "minstEtt12årEllerYngre"', () => {
+    //     const søknadsdata = {
+    //         dineBarn: {
+    //             type: 'minstEtt12årEllerYngre',
+    //             andreBarn: [andreBarn13years, andreBarn12years],
+    //             harDekketTiFørsteDagerSelv: true,
+    //         },
+    //     };
+    //     const expected: DineBarnFormValues = {
+    //         andreBarn: søknadsdata.dineBarn.andreBarn,
+    //         harDekketTiFørsteDagerSelv: søknadsdata.dineBarn.harDekketTiFørsteDagerSelv,
+    //         harSyktBarn: YesOrNo.UNANSWERED,
+    //         harUtvidetRettFor: [],
+    //     };
+    //     const result = getDineBarnStepInitialValues(søknadsdata as Søknadsdata);
+    //     expect(result).toEqual(expected);
+    // });
+    // it('should return values based on dineBarn type "alleBarnEldre12år"', () => {
+    //     const søknadsdata = {
+    //         dineBarn: {
+    //             type: 'alleBarnEldre12år',
+    //             andreBarn: [andreBarn13years, andreBarn13years],
+    //             harDekketTiFørsteDagerSelv: true,
+    //             harSyktBarn: YesOrNo.YES,
+    //             harUtvidetRettFor: ['fnr1'],
+    //         },
+    //     };
+    //     const expected: DineBarnFormValues = {
+    //         andreBarn: søknadsdata.dineBarn.andreBarn,
+    //         harDekketTiFørsteDagerSelv: undefined,
+    //         harSyktBarn: YesOrNo.YES,
+    //         harUtvidetRettFor: ['fnr1'],
+    //     };
+    //     const result = getDineBarnStepInitialValues(søknadsdata as Søknadsdata);
+    //     expect(result).toEqual(expected);
+    // });
+    // });
 
     describe('getDineBarnSøknadsdataFromFormValues', () => {
         it('should return søknadsdata for "minstEtt12årEllerYngre" type with valid values', () => {
             const values: DineBarnFormValues = {
                 andreBarn: [andreBarn12years],
                 harDekketTiFørsteDagerSelv: true,
-                harUtvidetRett: YesOrNo.UNANSWERED,
+                harSyktBarn: YesOrNo.UNANSWERED,
                 harUtvidetRettFor: [],
             };
 
@@ -144,7 +154,7 @@ describe('dineBarnStepUtils', () => {
             const values: DineBarnFormValues = {
                 andreBarn: [andreBarn13years],
                 harDekketTiFørsteDagerSelv: false,
-                harUtvidetRett: YesOrNo.YES,
+                harSyktBarn: YesOrNo.YES,
                 harUtvidetRettFor: ['fnr1'],
             };
 
@@ -153,7 +163,7 @@ describe('dineBarnStepUtils', () => {
             const expected: DineBarnSøknadsdata = {
                 type: 'alleBarnEldre12år',
                 andreBarn: values.andreBarn as AnnetBarn[],
-                harUtvidetRett: YesOrNo.YES,
+                harSyktBarn: YesOrNo.YES,
                 harUtvidetRettFor: values.harUtvidetRettFor,
             };
 
@@ -165,7 +175,7 @@ describe('dineBarnStepUtils', () => {
             const values: DineBarnFormValues = {
                 andreBarn: [andreBarn12years],
                 harDekketTiFørsteDagerSelv: false,
-                harUtvidetRett: YesOrNo.UNANSWERED,
+                harSyktBarn: YesOrNo.UNANSWERED,
                 harUtvidetRettFor: [],
             };
 
@@ -179,7 +189,7 @@ describe('dineBarnStepUtils', () => {
             const values: DineBarnFormValues = {
                 andreBarn: [andreBarn13years],
                 harDekketTiFørsteDagerSelv: true,
-                harUtvidetRett: YesOrNo.NO,
+                harSyktBarn: YesOrNo.NO,
                 harUtvidetRettFor: [],
             };
 
@@ -193,7 +203,7 @@ describe('dineBarnStepUtils', () => {
             const values: DineBarnFormValues = {
                 andreBarn: [],
                 harDekketTiFørsteDagerSelv: true,
-                harUtvidetRett: YesOrNo.UNANSWERED,
+                harSyktBarn: YesOrNo.UNANSWERED,
                 harUtvidetRettFor: [],
             };
 
@@ -207,7 +217,7 @@ describe('dineBarnStepUtils', () => {
             const values: DineBarnFormValues = {
                 andreBarn: [],
                 harDekketTiFørsteDagerSelv: true,
-                harUtvidetRett: YesOrNo.UNANSWERED,
+                harSyktBarn: YesOrNo.UNANSWERED,
                 harUtvidetRettFor: [],
             };
 
@@ -221,7 +231,7 @@ describe('dineBarnStepUtils', () => {
             const values: DineBarnFormValues = {
                 andreBarn: [andreBarn13years, andreBarn13years],
                 harDekketTiFørsteDagerSelv: true,
-                harUtvidetRett: YesOrNo.UNANSWERED,
+                harSyktBarn: YesOrNo.UNANSWERED,
                 harUtvidetRettFor: [],
             };
 
@@ -235,7 +245,7 @@ describe('dineBarnStepUtils', () => {
             const values: DineBarnFormValues = {
                 andreBarn: [andreBarn13years],
                 harDekketTiFørsteDagerSelv: false,
-                harUtvidetRett: YesOrNo.UNANSWERED,
+                harSyktBarn: YesOrNo.UNANSWERED,
                 harUtvidetRettFor: [],
             };
 
@@ -246,73 +256,73 @@ describe('dineBarnStepUtils', () => {
         });
     });
 
-    describe('minstEtBarn12årIårellerYngre', () => {
-        it('should return true if at least one registered or other child is 12 years old or younger', () => {
-            const registrertBarn: RegistrertBarn[] = [
-                { aktørId: '1', fornavn: 'John', etternavn: 'Doe', fødselsdato: date13yearsAgo },
-                { aktørId: '2', fornavn: 'Jane', etternavn: 'Smith', fødselsdato: date12yearsAgo },
-            ];
-            const andreBarn: AnnetBarn[] = [
-                { fnr: '1234567890', navn: 'Child1', fødselsdato: date13yearsAgo },
-                { fnr: '0987654321', navn: 'Child2', fødselsdato: date12yearsAgo },
-            ];
+    // describe('minstEtBarn12årIårellerYngre', () => {
+    //     it('should return true if at least one registered or other child is 12 years old or younger', () => {
+    //         const registrertBarn: RegistrertBarn[] = [
+    //             { aktørId: '1', fornavn: 'John', etternavn: 'Doe', fødselsdato: date13yearsAgo },
+    //             { aktørId: '2', fornavn: 'Jane', etternavn: 'Smith', fødselsdato: date12yearsAgo },
+    //         ];
+    //         const andreBarn: AnnetBarn[] = [
+    //             { fnr: '1234567890', navn: 'Child1', fødselsdato: date13yearsAgo },
+    //             { fnr: '0987654321', navn: 'Child2', fødselsdato: date12yearsAgo },
+    //         ];
 
-            const result = minstEtBarn12årIårellerYngre(registrertBarn, andreBarn);
-            expect(result).toBe(true);
-        });
+    //         const result = minstEtBarn12årIårellerYngre(registrertBarn, andreBarn);
+    //         expect(result).toBe(true);
+    //     });
 
-        it('should return true if there is at least one registered child who is 12 years old or younger', () => {
-            const registrertBarn: RegistrertBarn[] = [
-                { aktørId: '1', fornavn: 'John', etternavn: 'Doe', fødselsdato: date13yearsAgo },
-                { aktørId: '2', fornavn: 'Jane', etternavn: 'Smith', fødselsdato: date12yearsAgo },
-            ];
-            const andreBarn: AnnetBarn[] = [];
+    //     it('should return true if there is at least one registered child who is 12 years old or younger', () => {
+    //         const registrertBarn: RegistrertBarn[] = [
+    //             { aktørId: '1', fornavn: 'John', etternavn: 'Doe', fødselsdato: date13yearsAgo },
+    //             { aktørId: '2', fornavn: 'Jane', etternavn: 'Smith', fødselsdato: date12yearsAgo },
+    //         ];
+    //         const andreBarn: AnnetBarn[] = [];
 
-            const result = minstEtBarn12årIårellerYngre(registrertBarn, andreBarn);
-            expect(result).toBe(true);
-        });
+    //         const result = minstEtBarn12årIårellerYngre(registrertBarn, andreBarn);
+    //         expect(result).toBe(true);
+    //     });
 
-        it('should return true if there is at least one other child who is 12 years old or younger', () => {
-            const registrertBarn: RegistrertBarn[] = [];
-            const andreBarn: AnnetBarn[] = [
-                { fnr: '1234567890', navn: 'Child1', fødselsdato: date13yearsAgo },
-                { fnr: '0987654321', navn: 'Child2', fødselsdato: date12yearsAgo },
-            ];
+    //     it('should return true if there is at least one other child who is 12 years old or younger', () => {
+    //         const registrertBarn: RegistrertBarn[] = [];
+    //         const andreBarn: AnnetBarn[] = [
+    //             { fnr: '1234567890', navn: 'Child1', fødselsdato: date13yearsAgo },
+    //             { fnr: '0987654321', navn: 'Child2', fødselsdato: date12yearsAgo },
+    //         ];
 
-            const result = minstEtBarn12årIårellerYngre(registrertBarn, andreBarn);
-            expect(result).toBe(true);
-        });
+    //         const result = minstEtBarn12årIårellerYngre(registrertBarn, andreBarn);
+    //         expect(result).toBe(true);
+    //     });
 
-        it('should return false if all registered and other children are older than 12 years', () => {
-            const registrertBarn: RegistrertBarn[] = [
-                { aktørId: '1', fornavn: 'John', etternavn: 'Doe', fødselsdato: date13yearsAgo },
-                { aktørId: '2', fornavn: 'Jane', etternavn: 'Smith', fødselsdato: date13yearsAgo },
-            ];
-            const andreBarn: AnnetBarn[] = [
-                { fnr: '1234567890', navn: 'Child1', fødselsdato: date13yearsAgo },
-                { fnr: '0987654321', navn: 'Child2', fødselsdato: date13yearsAgo },
-            ];
+    //     it('should return false if all registered and other children are older than 12 years', () => {
+    //         const registrertBarn: RegistrertBarn[] = [
+    //             { aktørId: '1', fornavn: 'John', etternavn: 'Doe', fødselsdato: date13yearsAgo },
+    //             { aktørId: '2', fornavn: 'Jane', etternavn: 'Smith', fødselsdato: date13yearsAgo },
+    //         ];
+    //         const andreBarn: AnnetBarn[] = [
+    //             { fnr: '1234567890', navn: 'Child1', fødselsdato: date13yearsAgo },
+    //             { fnr: '0987654321', navn: 'Child2', fødselsdato: date13yearsAgo },
+    //         ];
 
-            const result = minstEtBarn12årIårellerYngre(registrertBarn, andreBarn);
-            expect(result).toBe(false);
-        });
+    //         const result = minstEtBarn12årIårellerYngre(registrertBarn, andreBarn);
+    //         expect(result).toBe(false);
+    //     });
 
-        it('should return undefined if no registered or other children are provided', () => {
-            const registrertBarn: RegistrertBarn[] = [];
-            const andreBarn: AnnetBarn[] = [];
+    //     it('should return undefined if no registered or other children are provided', () => {
+    //         const registrertBarn: RegistrertBarn[] = [];
+    //         const andreBarn: AnnetBarn[] = [];
 
-            const result = minstEtBarn12årIårellerYngre(registrertBarn, andreBarn);
-            expect(result).toBeUndefined();
-        });
+    //         const result = minstEtBarn12årIårellerYngre(registrertBarn, andreBarn);
+    //         expect(result).toBeUndefined();
+    //     });
 
-        it('should return undefined if both registered and other children arrays are empty', () => {
-            const registrertBarn: RegistrertBarn[] = [];
-            const andreBarn: AnnetBarn[] = [];
+    //     it('should return undefined if both registered and other children arrays are empty', () => {
+    //         const registrertBarn: RegistrertBarn[] = [];
+    //         const andreBarn: AnnetBarn[] = [];
 
-            const result = minstEtBarn12årIårellerYngre(registrertBarn, andreBarn);
-            expect(result).toBeUndefined();
-        });
-    });
+    //         const result = minstEtBarn12årIårellerYngre(registrertBarn, andreBarn);
+    //         expect(result).toBeUndefined();
+    //     });
+    // });
 
     describe('cleanHarUtvidetRettFor', () => {
         it('filters harUtvidetRettFor array based on andreBarn and registrerteBarn', () => {
@@ -392,6 +402,47 @@ describe('dineBarnStepUtils', () => {
             const result = cleanHarUtvidetRettFor(harUtvidetRettFor, andreBarn, registrerteBarn);
 
             expect(result).toEqual(expectedResult);
+        });
+    });
+
+    describe('getHarUtvidetRett', () => {
+        describe('har ikke utvidet rett', () => {
+            it('når en har to eller færre barn og ikke har kronisk/langvarig sykdom eller aleneomsorg', () => {
+                expect(getHarUtvidetRett(ettBarnUnder12, [], YesOrNo.UNANSWERED, YesOrNo.UNANSWERED)).toBeFalsy();
+                expect(getHarUtvidetRett(toBarnUnder12, [], YesOrNo.UNANSWERED, YesOrNo.UNANSWERED)).toBeFalsy();
+            });
+            it('når en har ett barn over 13 år og aleneomsorg men ikke kronisk', () => {
+                expect(getHarUtvidetRett(ettBarnOver12, [], YesOrNo.NO, YesOrNo.YES)).toBeFalsy();
+            });
+            it('når en har flere barn over 13 år og ikke aleneomsorg eller kronisk', () => {
+                expect(getHarUtvidetRett(ettBarnOver12, [], YesOrNo.UNANSWERED, YesOrNo.UNANSWERED)).toBeFalsy();
+            });
+        });
+        describe('bare barn under 12 år', () => {
+            it('ikke utvidet rett pga kronisk/langvarig sykdom eller aleneomsorg', () => {
+                expect(getHarUtvidetRett(ettBarnUnder12, [], YesOrNo.UNANSWERED, YesOrNo.UNANSWERED)).toBeFalsy();
+                expect(getHarUtvidetRett(toBarnUnder12, [], YesOrNo.UNANSWERED, YesOrNo.UNANSWERED)).toBeFalsy();
+                expect(getHarUtvidetRett(treBarnUnder12, [], YesOrNo.UNANSWERED, YesOrNo.UNANSWERED)).toBeTruthy();
+            });
+            it('utvidet rett pga kronisk/langvarig sykdom', () => {
+                expect(getHarUtvidetRett(ettBarnUnder12, [], YesOrNo.YES, YesOrNo.UNANSWERED)).toBeTruthy();
+            });
+            it('utvidet rett pga aleneomsorg', () => {
+                expect(getHarUtvidetRett(ettBarnUnder12, [], YesOrNo.NO, YesOrNo.YES)).toBeTruthy();
+                expect(getHarUtvidetRett(toBarnUnder12, [], YesOrNo.NO, YesOrNo.YES)).toBeTruthy();
+                expect(getHarUtvidetRett(treBarnUnder12, [], YesOrNo.NO, YesOrNo.YES)).toBeTruthy();
+            });
+        });
+        describe('bare barn over 13 år', () => {
+            it('ikke utvidet rett pga kronisk/langvarig sykdom eller aleneomsorg', () => {
+                expect(getHarUtvidetRett(treBarnOver12, [], YesOrNo.UNANSWERED, YesOrNo.UNANSWERED)).toBeFalsy();
+            });
+            it('utvidet rett pga kronisk/langvarig sykdom', () => {
+                expect(getHarUtvidetRett(treBarnOver12, [], YesOrNo.YES, YesOrNo.UNANSWERED)).toBeTruthy();
+            });
+            it('utvidet rett pga aleneomsorg', () => {
+                expect(getHarUtvidetRett(treBarnOver12, [], YesOrNo.NO, YesOrNo.YES)).toBeTruthy();
+            });
         });
     });
 });

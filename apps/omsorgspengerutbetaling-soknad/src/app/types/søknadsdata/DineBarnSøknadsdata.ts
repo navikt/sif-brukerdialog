@@ -10,7 +10,7 @@ interface DineBarnMinstEtt12årEllerYngre {
 interface DineBarnAlleBarnEldre12år {
     type: 'alleBarnEldre12år';
     andreBarn: AnnetBarn[];
-    harUtvidetRett: YesOrNo.YES;
+    harSyktBarn: YesOrNo.YES;
     harUtvidetRettFor: string[];
 }
 
