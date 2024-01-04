@@ -116,6 +116,8 @@ const OppsummeringStep = () => {
                                 <OmSøkerOppsummering søker={søker} />
                                 <DineBarnOppsummering
                                     barn={apiData.barn}
+                                    harSyktBarn={apiData.harSyktBarn}
+                                    harAleneomsorg={apiData.harAleneomsorg}
                                     harDekketTiFørsteDagerSelv={apiData.harDekketTiFørsteDagerSelv}
                                 />
                                 <SummarySection header={intlHelper(intl, 'step.oppsummering.utbetalinger.header')}>

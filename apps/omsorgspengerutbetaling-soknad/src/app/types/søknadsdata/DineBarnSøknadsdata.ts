@@ -6,14 +6,14 @@ interface DineBarnSøknadsdataBase {
 }
 
 export enum DineBarnSøknadsdataType {
-    'HAR_IKKE_RETT' = 'HAR_IKKE_RETT',
+    'HAR_IKKE_RETT_STOPPES' = 'HAR_IKKE_RETT_STOPPES',
     'UTVIDET_RETT_PGA_SYKT_BARN_OVER_13' = 'UTVIDET_RETT_PGA_SYKT_BARN_OVER_13',
     'UTVIDET_RETT_PGA_SYKDOM_ELLER_ALENEOMSORG' = 'UTVIDET_RETT_PGA_SYKDOM_ELLER_ALENEOMSORG',
     'UTVIDET_RETT_PGA_ANTALL_BARN' = 'UTVIDET_RETT_PGA_ANTALL_BARN',
 }
 
 interface HarIkkeRettPåOmsorgsdager extends DineBarnSøknadsdataBase {
-    type: DineBarnSøknadsdataType.HAR_IKKE_RETT;
+    type: DineBarnSøknadsdataType.HAR_IKKE_RETT_STOPPES;
 }
 interface UtvidetRettSyktBarnOver13 extends DineBarnSøknadsdataBase {
     type: DineBarnSøknadsdataType.UTVIDET_RETT_PGA_SYKT_BARN_OVER_13;

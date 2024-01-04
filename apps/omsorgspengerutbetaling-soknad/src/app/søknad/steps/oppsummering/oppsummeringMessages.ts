@@ -9,7 +9,6 @@ export const oppsummeringMessages: MessageFileFormat = {
         'step.oppsummering.søker.omDeg': 'Om deg',
 
         'step.oppsummering.dineBarn': 'Dine Barn',
-        'step.oppsummering.dineBarn.bekrefterDektTiDagerSelv': 'Har du dekket de 10 første omsorgsdagene selv?',
         'step.oppsummering.dineBarn.listItem': ' (fnr. {identitetsnummer})',
         'step.oppsummering.dineBarn.listItem.utvidetRett': 'Ekstra omsorgsdager.',
         'step.oppsummering.dineBarn.listItem.årsak.FOSTERBARN': '(Barnet er mitt fosterbarn).',

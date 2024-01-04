@@ -43,7 +43,7 @@ export const getDineBarnSøknadsdataFromFormValues = (
                       andreBarn,
                       harUtvidetRett,
                   }
-                : { type: DineBarnSøknadsdataType.HAR_IKKE_RETT, andreBarn, harUtvidetRett };
+                : { type: DineBarnSøknadsdataType.HAR_IKKE_RETT_STOPPES, andreBarn, harUtvidetRett };
         case DineBarnScenario.ETT_ELLER_TO_UNDER_13:
             return {
                 type: DineBarnSøknadsdataType.UTVIDET_RETT_PGA_SYKDOM_ELLER_ALENEOMSORG,
@@ -92,7 +92,7 @@ export const getDineBarnStepInitialValues = (
     const { dineBarn } = søknadsdata;
     if (dineBarn) {
         switch (dineBarn.type) {
-            case DineBarnSøknadsdataType.HAR_IKKE_RETT:
+            case DineBarnSøknadsdataType.HAR_IKKE_RETT_STOPPES:
                 return { andreBarn: dineBarn.andreBarn };
             case DineBarnSøknadsdataType.UTVIDET_RETT_PGA_SYKT_BARN_OVER_13:
                 return { andreBarn: dineBarn.andreBarn, harSyktBarn: YesOrNo.YES };
@@ -106,7 +106,8 @@ export const getDineBarnStepInitialValues = (
                 return {
                     andreBarn: dineBarn.andreBarn,
                     harSyktBarn,
-                    harAleneomsorg: harSyktBarn ? undefined : dineBarn.harAleneomsorg ? YesOrNo.YES : YesOrNo.NO,
+                    harAleneomsorg:
+                        harSyktBarn === YesOrNo.YES ? undefined : dineBarn.harAleneomsorg ? YesOrNo.YES : YesOrNo.NO,
                     harDekketTiFørsteDagerSelv: dineBarn.harDekketTiFørsteDagerSelv ? YesOrNo.YES : YesOrNo.NO,
                 };
         }

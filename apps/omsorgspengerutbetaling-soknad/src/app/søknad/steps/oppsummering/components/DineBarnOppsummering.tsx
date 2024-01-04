@@ -7,10 +7,12 @@ import { JaNeiSvar, SummaryBlock, SummarySection } from '@navikt/sif-common-sokn
 
 interface Props {
     barn: ApiBarn[];
+    harSyktBarn?: boolean;
+    harAleneomsorg?: boolean;
     harDekketTiFørsteDagerSelv?: boolean;
 }
 
-const DineBarnOppsummering = ({ barn, harDekketTiFørsteDagerSelv }: Props) => {
+const DineBarnOppsummering = ({ barn, harSyktBarn, harAleneomsorg, harDekketTiFørsteDagerSelv }: Props) => {
     const intl = useIntl();
     return (
         <SummarySection header={intlHelper(intl, 'step.oppsummering.dineBarn')}>
@@ -26,8 +28,24 @@ const DineBarnOppsummering = ({ barn, harDekketTiFørsteDagerSelv }: Props) => {
                     return <>{`${navn}${punktum} ${fnr} ${barnType}`}</>;
                 }}
             />
-            {harDekketTiFørsteDagerSelv && (
-                <SummaryBlock header={intlHelper(intl, 'step.oppsummering.dineBarn.bekrefterDektTiDagerSelv')}>
+            {harSyktBarn !== undefined && (
+                <SummaryBlock
+                    header={intlHelper(
+                        intl,
+                        barn.length === 1
+                            ? 'step.dineBarn.utvidetRettSykdom.spm.ettBarn'
+                            : 'step.dineBarn.utvidetRettSykdom.spm',
+                    )}>
+                    <JaNeiSvar harSvartJa={harSyktBarn} />
+                </SummaryBlock>
+            )}
+            {harAleneomsorg !== undefined && (
+                <SummaryBlock header={intlHelper(intl, 'step.dineBarn.utvidetRettAleneomsorg.spm')}>
+                    <JaNeiSvar harSvartJa={harAleneomsorg} />
+                </SummaryBlock>
+            )}
+            {harDekketTiFørsteDagerSelv !== undefined && (
+                <SummaryBlock header={intlHelper(intl, 'step.dineBarn.bekrefterDektTiDagerSelv.spm')}>
                     <JaNeiSvar harSvartJa={harDekketTiFørsteDagerSelv} />
                 </SummaryBlock>
             )}
