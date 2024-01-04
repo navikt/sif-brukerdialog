@@ -4,7 +4,7 @@ import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-cor
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { RegistrertBarn } from '../../types/RegistrertBarn';
 import { SøknadApiData, YesNoSpørsmålOgSvar } from '../../types/søknadApiData/SøknadApiData';
-import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
+import { DineBarnSøknadsdataType, Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { getAttachmentURLBackend } from '../attachmentUtilsAuthToken';
 import { getDineBarnApiDataFromSøknadsdata } from './getDineBarnApiDataFromSøknadsdata';
 import { getFrilansApiDataFromSøknadsdata } from './getFrilansApiDataFromSøknadsdata';
@@ -53,7 +53,11 @@ export const getApiDataFromSøknadsdata = (
         });
     }
 
-    const { harDekketTiFørsteDagerSelv } = dineBarn;
+    const harDekketTiFørsteDagerSelv =
+        dineBarn.type === DineBarnSøknadsdataType.UTVIDET_RETT_PGA_SYKDOM_ELLER_ALENEOMSORG ||
+        dineBarn.type === DineBarnSøknadsdataType.UTVIDET_RETT_PGA_ANTALL_BARN
+            ? dineBarn.harDekketTiFørsteDagerSelv
+            : undefined;
 
     return {
         id,

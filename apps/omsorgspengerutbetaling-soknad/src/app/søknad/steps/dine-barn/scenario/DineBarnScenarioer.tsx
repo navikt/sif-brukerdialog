@@ -1,11 +1,7 @@
+import { DineBarnScenario } from '../../../../types/DineBarnScenario';
 import { RegistrertBarn } from '../../../../types/RegistrertBarn';
 import { DineBarnFormValues } from '../DineBarnStep';
-import {
-    DineBarnScenario as DineBarnScenario,
-    getBarnAlderInfo,
-    getDineBarnScenario,
-    getHarUtvidetRett,
-} from '../dineBarnStepUtils';
+import { getBarnAlderInfo, getDineBarnScenario, getHarUtvidetRett } from '../dineBarnStepUtils';
 import EttEllerToBarnUnder13 from './EttEllerToBarnUnder13';
 import KunBarnOver13 from './KunBarnOver13';
 import TreEllerFlereBarnUnder13 from './TreEllerFlereBarnUnder13';
@@ -17,16 +13,10 @@ interface Props {
 
 const DineBarnScenarioer: React.FunctionComponent<Props> = ({ registrerteBarn, formValues }) => {
     const { andreBarn = [], harAleneomsorg, harSyktBarn } = formValues;
-
-    const barnAlderInfo = getBarnAlderInfo(registrerteBarn, andreBarn);
-    const scenario = getDineBarnScenario(registrerteBarn, andreBarn);
-
-    const harUtvidetRett = getHarUtvidetRett(
-        registrerteBarn,
-        andreBarn,
-        formValues.harSyktBarn,
-        formValues.harAleneomsorg,
-    );
+    const barn = [...registrerteBarn, ...andreBarn];
+    const barnAlderInfo = getBarnAlderInfo(barn);
+    const scenario = getDineBarnScenario(barn);
+    const harUtvidetRett = getHarUtvidetRett(barn, formValues.harSyktBarn, formValues.harAleneomsorg);
 
     switch (scenario) {
         case DineBarnScenario.ETT_ELLER_TO_UNDER_13:
@@ -48,8 +38,6 @@ const DineBarnScenarioer: React.FunctionComponent<Props> = ({ registrerteBarn, f
                     harUtvidetRett={harUtvidetRett}
                 />
             );
-        case DineBarnScenario.INGEN_BARN:
-            return null;
     }
 };
 

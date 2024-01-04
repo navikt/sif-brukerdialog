@@ -1,0 +1,5 @@
+export enum DineBarnScenario {
+    ETT_ELLER_TO_UNDER_13 = 'ETT_ELLER_TO_UNDER_13',
+    TRE_ELLER_FLERE_UNDER_13 = 'TRE_ELLER_FLERE_UNDER_13',
+    KUN_OVER_13 = 'KUN_OVER_13',
+}

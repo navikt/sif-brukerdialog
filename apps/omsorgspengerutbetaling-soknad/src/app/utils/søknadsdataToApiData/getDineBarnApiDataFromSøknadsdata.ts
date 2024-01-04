@@ -1,7 +1,7 @@
 import { AnnetBarn, BarnType } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
 import { RegistrertBarn } from '../../types/RegistrertBarn';
 import { ApiBarn, RegistrertBarnTypeApi } from '../../types/søknadApiData/SøknadApiData';
-import { DineBarnSøknadsdata } from '../../types/søknadsdata/DineBarnSøknadsdata';
+import { DineBarnSøknadsdata, DineBarnSøknadsdataType } from '../../types/søknadsdata/DineBarnSøknadsdata';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { dateToISODate } from '@navikt/sif-common-utils';
 
@@ -31,6 +31,9 @@ export const getDineBarnApiDataFromSøknadsdata = (
 ): ApiBarn[] => {
     if (dineBarnSøknadsdata === undefined) {
         throw Error('dineBarnSøknadsdata undefined');
+    }
+    if (dineBarnSøknadsdata.type === DineBarnSøknadsdataType.HAR_IKKE_RETT) {
+        throw Error('dineBarnSøknadsdata - har ikke rett');
     }
     const { andreBarn } = dineBarnSøknadsdata;
     return [...registrertBarn.map(mapRegistrertBarnToApiBarn), ...andreBarn.map(mapAndreBarnToApiBarn)];

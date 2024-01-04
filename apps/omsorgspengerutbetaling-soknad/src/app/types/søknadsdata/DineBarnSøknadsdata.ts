@@ -1,11 +1,38 @@
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
-import { DineBarnScenario } from '../../søknad/steps/dine-barn/dineBarnStepUtils';
 
-export type DineBarnSøknadsdata = {
-    scenario: DineBarnScenario;
+interface DineBarnSøknadsdataBase {
     andreBarn: AnnetBarn[];
     harUtvidetRett: boolean;
+}
+
+export enum DineBarnSøknadsdataType {
+    'HAR_IKKE_RETT' = 'HAR_IKKE_RETT',
+    'UTVIDET_RETT_PGA_SYKT_BARN_OVER_13' = 'UTVIDET_RETT_PGA_SYKT_BARN_OVER_13',
+    'UTVIDET_RETT_PGA_SYKDOM_ELLER_ALENEOMSORG' = 'UTVIDET_RETT_PGA_SYKDOM_ELLER_ALENEOMSORG',
+    'UTVIDET_RETT_PGA_ANTALL_BARN' = 'UTVIDET_RETT_PGA_ANTALL_BARN',
+}
+
+interface HarIkkeRettPåOmsorgsdager extends DineBarnSøknadsdataBase {
+    type: DineBarnSøknadsdataType.HAR_IKKE_RETT;
+}
+interface UtvidetRettSyktBarnOver13 extends DineBarnSøknadsdataBase {
+    type: DineBarnSøknadsdataType.UTVIDET_RETT_PGA_SYKT_BARN_OVER_13;
+}
+
+interface UtvidetRettPgaSykdomEllerAleneomsorg extends DineBarnSøknadsdataBase {
+    type: DineBarnSøknadsdataType.UTVIDET_RETT_PGA_SYKDOM_ELLER_ALENEOMSORG;
+    harSyktBarn: boolean;
     harAleneomsorg?: boolean;
-    harSyktBarn?: boolean;
-    harDekketTiFørsteDagerSelv?: boolean;
-};
+    harDekketTiFørsteDagerSelv: boolean;
+}
+
+interface UtvidetRettPgaAntallBarn extends DineBarnSøknadsdataBase {
+    type: DineBarnSøknadsdataType.UTVIDET_RETT_PGA_ANTALL_BARN;
+    harDekketTiFørsteDagerSelv: boolean;
+}
+
+export type DineBarnSøknadsdata =
+    | HarIkkeRettPåOmsorgsdager
+    | UtvidetRettSyktBarnOver13
+    | UtvidetRettPgaSykdomEllerAleneomsorg
+    | UtvidetRettPgaAntallBarn;

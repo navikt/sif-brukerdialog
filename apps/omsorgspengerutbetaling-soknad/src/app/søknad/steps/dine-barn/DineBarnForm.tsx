@@ -6,11 +6,11 @@ import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-form
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
+import { Søker } from '../../../types/Søker';
 import { DineBarnFormFields, DineBarnFormValues } from './DineBarnStep';
 import AndreBarnPart from './parts/AndreBarnPart';
 import DineBarnStepIntro from './parts/DineBarnStepIntro';
 import RegistrerteBarnPart from './parts/RegistrerteBarnPart';
-import { Søker } from '../../../types/Søker';
 import DineBarnScenarioer from './scenario/DineBarnScenarioer';
 
 const { Form } = getTypedFormComponents<DineBarnFormFields, DineBarnFormValues, ValidationError>();
