@@ -8,7 +8,6 @@ import {
 } from '../dineBarnStepUtils';
 import EttEllerToBarnUnder13 from './EttEllerToBarnUnder13';
 import KunBarnOver13 from './KunBarnOver13';
-import OverOgUnder13 from './OverOgUnder13';
 import TreEllerFlereBarnUnder13 from './TreEllerFlereBarnUnder13';
 
 interface Props {
@@ -49,16 +48,6 @@ const DineBarnScenarioer: React.FunctionComponent<Props> = ({ registrerteBarn, f
                     harUtvidetRett={harUtvidetRett}
                 />
             );
-        case DineBarnScenario.OVER_OG_UNDER_13: {
-            return (
-                <OverOgUnder13
-                    antallBarn={barnAlderInfo.under13}
-                    harAleneomsorg={harAleneomsorg}
-                    harSyktBarn={harSyktBarn}
-                    harUtvidetRett={harUtvidetRett}
-                />
-            );
-        }
         case DineBarnScenario.INGEN_BARN:
             return null;
     }

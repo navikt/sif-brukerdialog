@@ -133,7 +133,6 @@ export enum DineBarnScenario {
     ETT_ELLER_TO_UNDER_13 = 'ETT_ELLER_TO_UNDER_13',
     TRE_ELLER_FLERE_UNDER_13 = 'TRE_ELLER_FLERE_UNDER_13',
     KUN_OVER_13 = 'KUN_OVER_13',
-    OVER_OG_UNDER_13 = 'OVER_OG_UNDER_13',
 }
 
 export const getDineBarnScenario = (registrerteBarn: RegistrertBarn[], andreBarn: AnnetBarn[]): DineBarnScenario => {
@@ -143,20 +142,16 @@ export const getDineBarnScenario = (registrerteBarn: RegistrertBarn[], andreBarn
     if (over13 === 0 && under13 === 0) {
         return DineBarnScenario.INGEN_BARN;
     }
-    /** Kun barn under 13 */
-    if (over13 === 0 && under13 <= 2) {
+    /** Barn under 13 */
+    if (under13 <= 2) {
         return DineBarnScenario.ETT_ELLER_TO_UNDER_13;
     }
-    if (over13 === 0 && under13 >= 3) {
+    if (under13 > 2) {
         return DineBarnScenario.TRE_ELLER_FLERE_UNDER_13;
     }
     /** Kun barn over 13 */
-    if (over13 > 0 && under13 === 0) {
+    if (under13 === 0 && over13 > 0) {
         return DineBarnScenario.KUN_OVER_13;
-    }
-    /** Barn over og under 13 */
-    if (over13 >= 1 && under13 >= 1) {
-        return DineBarnScenario.OVER_OG_UNDER_13;
     }
     throw 'Ukjent barnScenario';
 };
