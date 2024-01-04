@@ -15,20 +15,22 @@ import DineBarnScenarioer from './scenario/DineBarnScenarioer';
 
 const { Form } = getTypedFormComponents<DineBarnFormFields, DineBarnFormValues, ValidationError>();
 
-interface Props {
+export interface DineBarnFormProps {
     søker: Søker;
     values: Partial<DineBarnFormValues>;
     registrerteBarn: RegistrertBarn[];
     isSubmitting: boolean;
+    kanFortsette: boolean;
     goBack?: () => void;
     onAndreBarnChanged: (values: Partial<DineBarnFormValues>) => void;
 }
 
-const DineBarnForm: React.FunctionComponent<Props> = ({
+const DineBarnForm: React.FunctionComponent<DineBarnFormProps> = ({
     søker,
     values,
     registrerteBarn,
     isSubmitting,
+    kanFortsette,
     goBack,
     onAndreBarnChanged,
 }) => {
@@ -49,7 +51,7 @@ const DineBarnForm: React.FunctionComponent<Props> = ({
             formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
             includeValidationSummary={true}
             submitPending={isSubmitting}
-            submitDisabled={isSubmitting}
+            submitDisabled={isSubmitting || kanFortsette === false}
             onBack={goBack}
             runDelayedFormValidation={true}>
             <DineBarnStepIntro />

@@ -3594,7 +3594,14 @@ __metadata:
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@playwright/test": 1.40.1
+    "@storybook/addon-essentials": ^7.6.7
+    "@storybook/addon-interactions": ^7.6.7
+    "@storybook/addon-links": ^7.6.7
+    "@storybook/addon-onboarding": ^1.0.10
+    "@storybook/blocks": ^7.6.7
+    "@storybook/react": ^7.6.7
     "@storybook/react-vite": 7.6.7
+    "@storybook/test": ^7.6.7
     "@testing-library/react": 14.1.2
     "@types/node": 20.10.6
     "@types/object-hash": 3.0.6
@@ -3609,6 +3616,7 @@ __metadata:
     cookie-parser: 1.4.6
     cross-env: 7.0.3
     dotenv: 16.3.1
+    eslint-plugin-storybook: ^0.6.15
     express: 4.18.2
     express-rate-limit: 7.1.5
     helmet: 7.1.0
@@ -3625,6 +3633,7 @@ __metadata:
     react-fast-compare: 3.2.2
     react-intl: 6.5.5
     react-router-dom: 6.21.1
+    storybook: ^7.6.7
     tailwindcss: 3.4.0
     typescript: 5.3.3
     uuid: 9.0.1
@@ -5884,7 +5893,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-essentials@npm:7.6.7":
+"@storybook/addon-essentials@npm:7.6.7, @storybook/addon-essentials@npm:^7.6.7":
   version: 7.6.7
   resolution: "@storybook/addon-essentials@npm:7.6.7"
   dependencies:
@@ -5918,7 +5927,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-interactions@npm:7.6.7":
+"@storybook/addon-interactions@npm:7.6.7, @storybook/addon-interactions@npm:^7.6.7":
   version: 7.6.7
   resolution: "@storybook/addon-interactions@npm:7.6.7"
   dependencies:
@@ -5931,7 +5940,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-links@npm:7.6.7":
+"@storybook/addon-links@npm:7.6.7, @storybook/addon-links@npm:^7.6.7":
   version: 7.6.7
   resolution: "@storybook/addon-links@npm:7.6.7"
   dependencies:
@@ -5957,7 +5966,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-onboarding@npm:1.0.10":
+"@storybook/addon-onboarding@npm:1.0.10, @storybook/addon-onboarding@npm:^1.0.10":
   version: 1.0.10
   resolution: "@storybook/addon-onboarding@npm:1.0.10"
   dependencies:
@@ -6051,7 +6060,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/blocks@npm:7.6.7":
+"@storybook/blocks@npm:7.6.7, @storybook/blocks@npm:^7.6.7":
   version: 7.6.7
   resolution: "@storybook/blocks@npm:7.6.7"
   dependencies:
@@ -6926,7 +6935,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/react@npm:7.6.7":
+"@storybook/react@npm:7.6.7, @storybook/react@npm:^7.6.7":
   version: 7.6.7
   resolution: "@storybook/react@npm:7.6.7"
   dependencies:
@@ -7054,7 +7063,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/test@npm:7.6.7":
+"@storybook/test@npm:7.6.7, @storybook/test@npm:^7.6.7":
   version: 7.6.7
   resolution: "@storybook/test@npm:7.6.7"
   dependencies:
@@ -13019,7 +13028,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-storybook@npm:0.6.15":
+"eslint-plugin-storybook@npm:0.6.15, eslint-plugin-storybook@npm:^0.6.15":
   version: 0.6.15
   resolution: "eslint-plugin-storybook@npm:0.6.15"
   dependencies:
@@ -22163,7 +22172,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"storybook@npm:7.6.7":
+"storybook@npm:7.6.7, storybook@npm:^7.6.7":
   version: 7.6.7
   resolution: "storybook@npm:7.6.7"
   dependencies:

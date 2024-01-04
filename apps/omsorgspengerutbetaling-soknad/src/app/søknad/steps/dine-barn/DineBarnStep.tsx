@@ -14,7 +14,11 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
-import { getDineBarnStepInitialValues, getDineBarnSøknadsdataFromFormValues } from './dineBarnStepUtils';
+import {
+    getDineBarnStepInitialValues,
+    getDineBarnSøknadsdataFromFormValues,
+    kanFortsetteFraDineBarnStep,
+} from './dineBarnStepUtils';
 import DineBarnForm from './DineBarnForm';
 
 export enum DineBarnFormFields {
@@ -87,6 +91,7 @@ const DineBarnStep = () => {
                             goBack={goBack}
                             søker={søker}
                             isSubmitting={isSubmitting}
+                            kanFortsette={kanFortsetteFraDineBarnStep(registrerteBarn, values.values)}
                             onAndreBarnChanged={persistAndreBarnChangedValues}
                         />
                     </>

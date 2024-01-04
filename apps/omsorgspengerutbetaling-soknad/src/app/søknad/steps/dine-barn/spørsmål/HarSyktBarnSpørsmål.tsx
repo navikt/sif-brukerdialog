@@ -5,6 +5,7 @@ import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { FormikYesOrNoQuestion } from '@navikt/sif-common-formik-ds';
 import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { DineBarnFormFields } from '../DineBarnStep';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 
 interface Props {
     antallBarn: number;
@@ -22,7 +23,7 @@ const HarSyktBarnSpørsmål: React.FunctionComponent<Props> = ({ antallBarn }) =
                         : intlHelper(intl, 'step.dineBarn.utvidetRettSykdom.spm')
                 }
                 validate={getYesOrNoValidator()}
-                data-testid="harUtvidetRett"
+                description={<ExpandableInfo title="Hva betyr dette?">TODO</ExpandableInfo>}
             />
         </FormBlock>
     );

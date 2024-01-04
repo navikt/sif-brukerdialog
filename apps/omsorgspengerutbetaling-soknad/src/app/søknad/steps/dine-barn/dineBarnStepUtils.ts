@@ -181,3 +181,11 @@ export const getBarnAlderInfo = (registrertebarn: RegistrertBarn[], andreBarn: A
         kunBarnOver13: over13 === barn.length,
     };
 };
+
+export const kanFortsetteFraDineBarnStep = (registrerteBarn: RegistrertBarn[], values: DineBarnFormValues) => {
+    const { kunBarnOver13 } = getBarnAlderInfo(registrerteBarn, values.andreBarn || []);
+    if (kunBarnOver13 && values.harSyktBarn === YesOrNo.NO) {
+        return false;
+    }
+    return true;
+};
