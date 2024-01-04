@@ -1,6 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { DineBarnFormValues } from '../DineBarnStep';
-import { cleanHarUtvidetRettFor, getDineBarnSøknadsdataFromFormValues, getHarUtvidetRett } from '../dineBarnStepUtils';
+import {
+    cleanHarUtvidetRettFor,
+    getDineBarnSøknadsdataFromFormValues,
+    getHarUtvidetRett,
+    getMåDekkeFørste10DagerSelv,
+} from '../dineBarnStepUtils';
 import { DineBarnSøknadsdata } from '../../../../types/søknadsdata/Søknadsdata';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { AnnetBarn, BarnType } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
@@ -443,6 +448,21 @@ describe('dineBarnStepUtils', () => {
             it('utvidet rett pga aleneomsorg', () => {
                 expect(getHarUtvidetRett(treBarnOver12, [], YesOrNo.NO, YesOrNo.YES)).toBeTruthy();
             });
+        });
+    });
+
+    describe('getMåDekkeFørste10DagerSelv', () => {
+        it('Må ikke dekke når alle barn er over 13 år og minst ett har kronisk/langvarig sykdom', () => {
+            expect(getMåDekkeFørste10DagerSelv(treBarnOver12, [], YesOrNo.YES)).toBeFalsy();
+        });
+        it('Må dekke når alle barn er over 13 år men ingen har kronisk/langvarig sykdom', () => {
+            expect(getMåDekkeFørste10DagerSelv(treBarnOver12, [], YesOrNo.NO)).toBeTruthy();
+        });
+        it('Må dekke når ett barn over 13 har kronisk, men har også ett barn under 12 ', () => {
+            expect(getMåDekkeFørste10DagerSelv([...ettBarnUnder12, ...ettBarnOver12], [], YesOrNo.YES)).toBeTruthy();
+        });
+        it('Må dekke når alle er under 12', () => {
+            expect(getMåDekkeFørste10DagerSelv(treBarnUnder12, [], YesOrNo.YES)).toBeTruthy();
         });
     });
 });

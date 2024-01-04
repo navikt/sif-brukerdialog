@@ -7,7 +7,7 @@ const busboyCons = require('busboy');
 
 require('dotenv').config();
 
-const barnMock = require('./mock-data/barn-1-tom-12-1-fom-13.json');
+const barnMock = require('./mock-data/over-og-under-13.json');
 const søkerMock = require('./mock-data/soker.json');
 
 const server = express();

@@ -135,33 +135,11 @@ export const cleanHarUtvidetRettFor = (
 
 /** Spørsmålslogikk */
 
-// export enum DineBarnScenarioType {
-//     BØR_STOPPES = 'BØR_STOPPES',
-//     TRENGER_IKKE_DEKKE_10_DAGER = 'TRENGER_IKKE_DEKKE_10_DAGER',
-//     MÅ_DEKKE_10_DAGER = 'MÅ_DEKKE_10_DAGER',
-//     INGEN_BARN = 'INGEN_BARN',
-// }
-
-// export const getDineBarnScenarioType = (barnKombinasjon: BarnKombinasjon): DineBarnScenarioType => {
-//     switch (barnKombinasjon) {
-//         case BarnKombinasjon.INGEN_BARN:
-//             return DineBarnScenarioType.INGEN_BARN;
-//         case BarnKombinasjon.ETT_ELLER_TO_UNDER_13:
-//         case BarnKombinasjon.KUN_OVER_13:
-//             return DineBarnScenarioType.BØR_STOPPES;
-//     }
-// };
-export type DineBarnScenario = {
-    harUtvidetRett: boolean;
-    måDekkeFørste10Dager: boolean;
-    barnKombinasjon: BarnKombinasjon;
-};
-
 export const getHarUtvidetRett = (
     registrerteBarn: RegistrertBarn[],
     andreBarn: AnnetBarn[],
-    harSyktBarn: YesOrNo,
-    harAleneomsorg: YesOrNo,
+    harSyktBarn?: YesOrNo,
+    harAleneomsorg?: YesOrNo,
 ): boolean => {
     const info = getBarnAlderInfo(registrerteBarn, andreBarn);
     const { under13, kunBarnUnder13, kunBarnOver13, over13 } = info;
@@ -180,46 +158,47 @@ export const getHarUtvidetRett = (
     return false;
 };
 
-// export const getDineBarnScenario = (
-//     registrerteBarn: RegistrertBarn[],
-//     andreBarn: AnnetBarn[],
-//     harSyktBarn: YesOrNo | undefined,
-//     harAleneomsorg: YesOrNo | undefined,
-//     harUtvidetRettFor: string[],
-// ): DineBarnScenario => {
-//     const barnAlderInfo = getBarnAlderInfo(registrerteBarn, andreBarn);
-//     const barnKombinasjon = getBarnKombinasjon(barnAlderInfo);
-//     return {
-//         // type: getDineBarnScenarioType(barnKombinasjon),
-//         barnKombinasjon,
-//     };
-// };
+export const getMåDekkeFørste10DagerSelv = (
+    registrerteBarn: RegistrertBarn[],
+    andreBarn: AnnetBarn[],
+    harSyktBarn?: YesOrNo,
+): boolean => {
+    const { kunBarnOver13 } = getBarnAlderInfo(registrerteBarn, andreBarn);
+    if (kunBarnOver13 && harSyktBarn === YesOrNo.YES) {
+        return false;
+    }
+    return true;
+};
 
-export enum BarnKombinasjon {
+export enum DineBarnScenario {
     INGEN_BARN = 'INGEN_BARN',
     ETT_ELLER_TO_UNDER_13 = 'ETT_ELLER_TO_UNDER_13',
     TRE_ELLER_FLERE_UNDER_13 = 'TRE_ELLER_FLERE_UNDER_13',
     KUN_OVER_13 = 'KUN_OVER_13',
-    ETT_UNDER_13_OG_ETT_OVER_13 = 'ETT_UNDER_13_OG_ETT_OVER_13',
+    OVER_OG_UNDER_13 = 'OVER_OG_UNDER_13',
 }
 
-export const getBarnKombinasjon = (barnAlderInfo: BarnAlderInfo): BarnKombinasjon => {
-    const { over13, under13 } = barnAlderInfo;
+export const getDineBarnScenario = (registrerteBarn: RegistrertBarn[], andreBarn: AnnetBarn[]): DineBarnScenario => {
+    const { over13, under13 } = getBarnAlderInfo(registrerteBarn, andreBarn);
 
+    /** Ingen barn */
     if (over13 === 0 && under13 === 0) {
-        return BarnKombinasjon.INGEN_BARN;
+        return DineBarnScenario.INGEN_BARN;
     }
+    /** Kun barn under 13 */
     if (over13 === 0 && under13 <= 2) {
-        return BarnKombinasjon.ETT_ELLER_TO_UNDER_13;
+        return DineBarnScenario.ETT_ELLER_TO_UNDER_13;
     }
     if (over13 === 0 && under13 >= 3) {
-        return BarnKombinasjon.TRE_ELLER_FLERE_UNDER_13;
+        return DineBarnScenario.TRE_ELLER_FLERE_UNDER_13;
     }
-    if (over13 === 1 && under13 === 1) {
-        return BarnKombinasjon.ETT_UNDER_13_OG_ETT_OVER_13;
-    }
+    /** Kun barn over 13 */
     if (over13 > 0 && under13 === 0) {
-        return BarnKombinasjon.KUN_OVER_13;
+        return DineBarnScenario.KUN_OVER_13;
+    }
+    /** Barn over og under 13 */
+    if (over13 >= 1 && under13 >= 1) {
+        return DineBarnScenario.OVER_OG_UNDER_13;
     }
     throw 'Ukjent barnScenario';
 };
@@ -230,7 +209,6 @@ export interface BarnAlderInfo {
     totalt: number;
     kunBarnUnder13: boolean;
     kunBarnOver13: boolean;
-    barnOverOgUnder13: boolean;
 }
 
 export const getBarnAlderInfo = (registrertebarn: RegistrertBarn[], andreBarn: AnnetBarn[]): BarnAlderInfo => {
@@ -243,7 +221,6 @@ export const getBarnAlderInfo = (registrertebarn: RegistrertBarn[], andreBarn: A
         totalt: barn.length,
         kunBarnUnder13: under13 === barn.length,
         kunBarnOver13: over13 === barn.length,
-        barnOverOgUnder13: under13 > 0 && over13 > 0,
     };
 };
 

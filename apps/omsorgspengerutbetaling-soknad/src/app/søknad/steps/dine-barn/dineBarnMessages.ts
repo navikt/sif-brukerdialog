@@ -32,11 +32,7 @@ export const dineBarnMessages: MessageFileFormat = {
             'Du kan ha rett til utbetaling fra NAV fra den første omsorgsdagen du brukte. Dette er fordi du kun har barn som er 13 år i år eller eldre, og som du har søkt om eller fått ekstra omsorgsdager for. Fortsett til neste steg for å legge inn dagene du søker om utbetaling for.',
 
         'step.dineBarn.bekrefterDektTiDagerSelv.info.titel': 'Omsorgsdager du må dekke selv',
-        'step.dineBarn.bekrefterDektTiDagerSelv.info':
-            'Når du har barn som har fylt 12 år i år, eller er yngre, må du dekke de 10 første omsorgsdagene du bruker hvert kalenderår. Du kan søke om utbetaling fra NAV fra den 11. dagen.',
-        'step.dineBarn.bekrefterDektTiDagerSelv.label':
-            'For å gå videre må du bekrefte at du har dekket 10 omsorgsdager i år:',
-        'step.dineBarn.bekrefterDektTiDagerSelv': 'Ja, jeg bekrefter at jeg har dekket 10 omsorgsdager i år.',
+        'step.dineBarn.bekrefterDektTiDagerSelv.spm': 'Har du dekket de 10 første omsorgsdagene i år?',
 
         'step.dineBarn.info.ingenbarn.1':
             'Vi fant ingen barn registrert på deg. Har du  barn som ikke er registrert her, kan du selv legge inn disse. Dette kan være fosterbarn, eller om du har barn som er fylt 18 år og som har ekstra omsorgsdager på grunn av kronisk sykdom eller funksjonshemning.',
