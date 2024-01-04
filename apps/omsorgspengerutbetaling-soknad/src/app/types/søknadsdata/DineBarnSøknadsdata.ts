@@ -1,17 +1,11 @@
-import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
+import { DineBarnScenario } from '../../søknad/steps/dine-barn/dineBarnStepUtils';
 
-interface DineBarnMinstEtt12årEllerYngre {
-    type: 'minstEtt12årEllerYngre';
+export type DineBarnSøknadsdata = {
+    scenario: DineBarnScenario;
     andreBarn: AnnetBarn[];
-    harDekketTiFørsteDagerSelv: true;
-}
-
-interface DineBarnAlleBarnEldre12år {
-    type: 'alleBarnEldre12år';
-    andreBarn: AnnetBarn[];
-    harSyktBarn: YesOrNo.YES;
-    harUtvidetRettFor: string[];
-}
-
-export type DineBarnSøknadsdata = DineBarnMinstEtt12årEllerYngre | DineBarnAlleBarnEldre12år;
+    harUtvidetRett: boolean;
+    harAleneomsorg?: boolean;
+    harSyktBarn?: boolean;
+    harDekketTiFørsteDagerSelv?: boolean;
+};

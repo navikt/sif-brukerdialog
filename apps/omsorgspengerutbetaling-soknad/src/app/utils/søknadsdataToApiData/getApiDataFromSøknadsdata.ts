@@ -53,8 +53,7 @@ export const getApiDataFromSøknadsdata = (
         });
     }
 
-    const harDekketTiFørsteDagerSelv =
-        dineBarn.type === 'minstEtt12årEllerYngre' && dineBarn.harDekketTiFørsteDagerSelv === true;
+    const { harDekketTiFørsteDagerSelv } = dineBarn;
 
     return {
         id,

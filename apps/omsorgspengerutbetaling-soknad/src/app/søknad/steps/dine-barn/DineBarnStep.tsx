@@ -21,16 +21,14 @@ export enum DineBarnFormFields {
     andreBarn = 'andreBarn',
     harSyktBarn = 'harSyktBarn',
     harAleneomsorg = 'harAleneomsorg',
-    harUtvidetRettFor = 'harUtvidetRettFor',
     harDekketTiFørsteDagerSelv = 'harDekketTiFørsteDagerSelv',
 }
 
 export interface DineBarnFormValues {
     [DineBarnFormFields.andreBarn]?: AnnetBarn[];
-    [DineBarnFormFields.harDekketTiFørsteDagerSelv]?: boolean;
     [DineBarnFormFields.harSyktBarn]?: YesOrNo;
     [DineBarnFormFields.harAleneomsorg]?: YesOrNo;
-    [DineBarnFormFields.harUtvidetRettFor]: string[];
+    [DineBarnFormFields.harDekketTiFørsteDagerSelv]?: YesOrNo;
 }
 
 const { FormikWrapper } = getTypedFormComponents<DineBarnFormFields, DineBarnFormValues, ValidationError>();

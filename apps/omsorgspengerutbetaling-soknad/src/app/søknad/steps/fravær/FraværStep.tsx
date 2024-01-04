@@ -73,6 +73,7 @@ const FraværStep = () => {
 
     const { invalidSteps } = useSøknadsdataStatus(stepId, getSøknadStepConfig(søknadsdata));
     const hasInvalidSteps = invalidSteps.length > 0;
+    const harUtvidetRett = søknadsdata.dineBarn?.harUtvidetRett;
 
     const onValidSubmitHandler = (values: FraværFormValues) => {
         const fraværSøknadsdata = getFraværSøknadsdataFromFormValues(values);
@@ -90,11 +91,6 @@ const FraværStep = () => {
             return lagreSøknadState(state);
         },
     );
-
-    const harUtvidetRettFor =
-        søknadsdata.dineBarn && søknadsdata.dineBarn.type === 'alleBarnEldre12år'
-            ? søknadsdata.dineBarn.harUtvidetRettFor
-            : [];
 
     const fraværDagerFromSøknadsdata =
         søknadsdata &&
@@ -151,7 +147,6 @@ const FraværStep = () => {
                     const kanIkkeFortsette =
                         harPerioderMedFravær === YesOrNo.NO && harDagerMedDelvisFravær === YesOrNo.NO;
                     const harRegistrertFravær = fraværDager.length + fraværPerioder.length > 0;
-                    const søkerHarBarnMedUtvidetRett = harUtvidetRettFor.length > 0;
                     const minDateForFravær = harRegistrertFravær ? gyldigTidsrom.from : date1YearAgo;
                     const maxDateForFravær = harRegistrertFravær ? gyldigTidsrom.to : dateToday;
                     return (
@@ -184,7 +179,7 @@ const FraværStep = () => {
                                             <FormattedMessage id="step.fravaer.dager.tittel" />
                                         </Heading>
                                         <p>
-                                            {søkerHarBarnMedUtvidetRett ? (
+                                            {harUtvidetRett ? (
                                                 <FormattedMessage id="step.fravaer.dager.info.harBarnMedUtvidetRett" />
                                             ) : (
                                                 <FormattedMessage id="step.fravaer.dager.info" />

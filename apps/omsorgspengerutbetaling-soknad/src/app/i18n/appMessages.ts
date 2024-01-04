@@ -103,10 +103,7 @@ export const appMessages: MessageFileFormat = {
 
         'validation.harUtvidetRett.yesOrNoIsUnanswered':
             'Du må svare at du har fått ekstra omsorgsdager for barn fordi barnet har kronisk sykdom eller funksjonshemning eller ikke.',
-        'validation.harUtvidetRettFor.listIsEmpty':
-            'Du må velge barn du har søkt om eller fått ekstra omsorgsdager for.',
-        'validation.harDekketTiFørsteDagerSelv.notChecked':
-            'Du må bekrefte at du allerede har dekt 10 dager selv i år.',
+        'validation.harDekketTiFørsteDagerSelv.notAnswered': 'Du må svare på om du har dekt  10 dager selv i år.',
         'validation.ingen_dokumenter': 'Ingen vedlegg er lastet opp.',
         'validation.for_mange_dokumenter': 'For mange dokumenter er lastet opp.',
         'validation.samlet_storrelse_for_hoy':

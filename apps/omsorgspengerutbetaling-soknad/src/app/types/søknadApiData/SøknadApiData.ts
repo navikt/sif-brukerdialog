@@ -33,7 +33,7 @@ export interface ApiBarn {
     aktørId?: string;
     fødselsdato: ISODate;
     navn: string;
-    utvidetRett?: boolean;
+    // utvidetRett?: boolean;
     type: RegistrertBarnTypeApi | BarnType;
 }
 
@@ -57,7 +57,10 @@ export interface SøknadApiData {
 
     spørsmål: YesNoSpørsmålOgSvar[];
 
-    barn: ApiBarn[]; // Dine barn
+    /** Dine barn */
+    barn: ApiBarn[];
+    harSyktBarn?: boolean;
+    harAleneomsorg?: boolean;
     harDekketTiFørsteDagerSelv?: boolean; // Dine barn
 
     utbetalingsperioder: UtbetalingsperiodeApi[]; // perioder

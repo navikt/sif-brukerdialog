@@ -10,7 +10,6 @@ import { DineBarnFormFields, DineBarnFormValues } from './DineBarnStep';
 import AndreBarnPart from './parts/AndreBarnPart';
 import DineBarnStepIntro from './parts/DineBarnStepIntro';
 import RegistrerteBarnPart from './parts/RegistrerteBarnPart';
-import { cleanHarUtvidetRettFor } from './dineBarnStepUtils';
 import { Søker } from '../../../types/Søker';
 import DineBarnScenarioer from './scenario/DineBarnScenarioer';
 
@@ -35,31 +34,15 @@ const DineBarnForm: React.FunctionComponent<Props> = ({
 }) => {
     const intl = useIntl();
 
-    const { andreBarn = [], harSyktBarn, harUtvidetRettFor, harDekketTiFørsteDagerSelv } = values;
+    const { andreBarn = [], harSyktBarn, harDekketTiFørsteDagerSelv } = values;
 
     const oppdatereAndreBarn = (values: AnnetBarn[]) => {
         onAndreBarnChanged({
             andreBarn: values,
             harSyktBarn,
-            harUtvidetRettFor: harUtvidetRettFor
-                ? cleanHarUtvidetRettFor(harUtvidetRettFor, values, registrerteBarn)
-                : harUtvidetRettFor,
             harDekketTiFørsteDagerSelv,
         });
     };
-
-    // const barnAlderInfo = getBarnAlderInfo(registrerteBarn, andreBarn);
-
-    // const visHarSyktBarnSpørsmål = getVisHarSyktBarnSpørsmål(barnAlderInfo);
-
-    // const visHarAleneomsorgSpørsmål = getVisHarAleneomsorgSpørsmål(barnAlderInfo, harSyktBarn);
-
-    // const visHarUtvidetRettForSpørsmål = getVisHarUtvidetRettForSpørsmål(barnAlderInfo, harSyktBarn);
-
-    // const harUtvidetRett = getHarUtvidetRett(registrerteBarn, andreBarn, harSyktBarn, harAleneomsorg);
-    // const måDekkeFørste10DagerSelv = getMåDekkeFørste10DagerSelv(registrerteBarn, andreBarn, harSyktBarn);
-
-    // const dineBarnScenario = getDineBarnScenarioType(barnAlderInfo);
 
     return (
         <Form

@@ -1,16 +1,14 @@
-import { prettifyDate } from '@navikt/sif-common-utils';
-import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
 import dayjs from 'dayjs';
-import { SøknadContextState, TempFormValues } from '../../../types/SøknadContextState';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
 import { DineBarnFormValues } from './DineBarnStep';
 import { DineBarnSøknadsdata } from '../../../types/søknadsdata/DineBarnSøknadsdata';
-import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { dateToday } from '@navikt/sif-common-utils';
-import { StepId } from '../../../types/StepId';
 import './dineBarn.css';
+import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { SøknadContextState, TempFormValues } from '../../../types/SøknadContextState';
+import { StepId } from '../../../types/StepId';
 
 export const nYearsAgo = (years: number): Date => {
     return dayjs(dateToday).subtract(years, 'y').startOf('year').toDate();
@@ -28,50 +26,30 @@ export const minstEtBarn12årIårellerYngre = (
     return undefined;
 };
 
-export const getBarnOptions = (registrertBarn: RegistrertBarn[] = [], andreBarn: AnnetBarn[] = []) => {
-    return [
-        ...registrertBarn.map((barnet) => ({
-            label: `${formatName(barnet.fornavn, barnet.etternavn)} ${prettifyDate(barnet.fødselsdato)}`,
-            value: barnet.aktørId,
-            'data-testid': `harUtvidetRettFor-${barnet.aktørId}`,
-        })),
-        ...andreBarn.map((barnet) => ({
-            label: `${barnet.navn} ${prettifyDate(barnet.fødselsdato)} `,
-            value: barnet.fnr,
-            'data-testid': `harUtvidetRettFor-${barnet.fnr}`,
-        })),
-    ];
-};
-
 export const getDineBarnSøknadsdataFromFormValues = (
     values: DineBarnFormValues,
     { registrerteBarn = [] }: Partial<SøknadContextState>,
 ): DineBarnSøknadsdata | undefined => {
-    const { andreBarn = [], harDekketTiFørsteDagerSelv, harSyktBarn, harUtvidetRettFor } = values;
+    const { andreBarn = [], harAleneomsorg, harDekketTiFørsteDagerSelv, harSyktBarn } = values;
+    const scenario = getDineBarnScenario(registrerteBarn, andreBarn);
+    const harUtvidetRett = getHarUtvidetRett(registrerteBarn, andreBarn, harSyktBarn, harAleneomsorg);
 
-    if (minstEtBarn12årIårellerYngre(registrerteBarn, andreBarn)) {
-        if (!harDekketTiFørsteDagerSelv) {
+    switch (scenario) {
+        case DineBarnScenario.ETT_ELLER_TO_UNDER_13:
+            return {
+                scenario,
+                andreBarn,
+                harUtvidetRett,
+                harSyktBarn: harSyktBarn === YesOrNo.YES,
+                harAleneomsorg: harAleneomsorg === YesOrNo.YES,
+                harDekketTiFørsteDagerSelv: harDekketTiFørsteDagerSelv === YesOrNo.YES,
+            };
+
+        case DineBarnScenario.INGEN_BARN:
             return undefined;
-        }
-        return {
-            type: 'minstEtt12årEllerYngre',
-            andreBarn,
-            harDekketTiFørsteDagerSelv,
-        };
     }
 
-    const cleanedharUtvidetRettFor = harUtvidetRettFor
-        ? cleanHarUtvidetRettFor(harUtvidetRettFor, andreBarn, registrerteBarn)
-        : harUtvidetRettFor;
-    if (harSyktBarn !== YesOrNo.YES || !cleanedharUtvidetRettFor || cleanedharUtvidetRettFor.length === 0) {
-        return undefined;
-    }
-    return {
-        type: 'alleBarnEldre12år',
-        andreBarn,
-        harSyktBarn: harSyktBarn,
-        harUtvidetRettFor: cleanedharUtvidetRettFor,
-    };
+    return undefined;
 };
 
 export const getDineBarnStepInitialValues = (
@@ -86,10 +64,9 @@ export const getDineBarnStepInitialValues = (
 
     const defaultValues: DineBarnFormValues = {
         andreBarn: undefined,
-        harDekketTiFørsteDagerSelv: undefined,
         harSyktBarn: YesOrNo.UNANSWERED,
         harAleneomsorg: YesOrNo.UNANSWERED,
-        harUtvidetRettFor: [],
+        harDekketTiFørsteDagerSelv: undefined,
     };
 
     if (tempFormValues && tempFormValues.stepId === StepId.DINE_BARN) {
@@ -99,38 +76,19 @@ export const getDineBarnStepInitialValues = (
             harDekketTiFørsteDagerSelv: values.harDekketTiFørsteDagerSelv,
             harSyktBarn: values.harSyktBarn ? values.harSyktBarn : YesOrNo.UNANSWERED,
             harAleneomsorg: values.harAleneomsorg ? values.harAleneomsorg : YesOrNo.UNANSWERED,
-            harUtvidetRettFor: values.harUtvidetRettFor ? values.harUtvidetRettFor : [],
         };
     }
 
     const { dineBarn } = søknadsdata;
     if (dineBarn) {
-        switch (dineBarn.type) {
-            case 'minstEtt12årEllerYngre':
-                return {
-                    ...defaultValues,
-                    andreBarn: dineBarn.andreBarn,
-                    harDekketTiFørsteDagerSelv: dineBarn.harDekketTiFørsteDagerSelv,
-                };
-            case 'alleBarnEldre12år':
-                return {
-                    ...defaultValues,
-                    andreBarn: dineBarn.andreBarn,
-                    harSyktBarn: dineBarn.harSyktBarn,
-                    harUtvidetRettFor: dineBarn.harUtvidetRettFor,
-                };
-        }
+        return {
+            andreBarn: dineBarn.andreBarn,
+            harSyktBarn: dineBarn.harSyktBarn ? YesOrNo.YES : YesOrNo.NO,
+            harAleneomsorg: dineBarn.harAleneomsorg ? YesOrNo.YES : YesOrNo.NO,
+            harDekketTiFørsteDagerSelv: dineBarn.harDekketTiFørsteDagerSelv ? YesOrNo.YES : YesOrNo.NO,
+        };
     }
     return defaultValues;
-};
-
-export const cleanHarUtvidetRettFor = (
-    harUtvidetRettFor: string[],
-    andreBarn: AnnetBarn[],
-    registrerteBarn: RegistrertBarn[],
-): string[] => {
-    const alleBarnFnr = [...andreBarn.map((b) => b.fnr), ...registrerteBarn.map((b) => b.aktørId)];
-    return harUtvidetRettFor.filter((fnr) => alleBarnFnr.includes(fnr));
 };
 
 /** Spørsmålslogikk */
@@ -223,44 +181,3 @@ export const getBarnAlderInfo = (registrertebarn: RegistrertBarn[], andreBarn: A
         kunBarnOver13: over13 === barn.length,
     };
 };
-
-export const getVisHarSyktBarnSpørsmål = (barnAlderInfo: BarnAlderInfo): boolean => {
-    const { over13, under13, totalt } = barnAlderInfo;
-    /**
-     * Skjules hvis:
-     * - Ingen barn
-     * - 3 eller flere barn som alle er under 13 år
-     */
-    if (totalt === 0 || (under13 >= 3 && over13 === 0)) {
-        return false;
-    }
-    return true;
-};
-
-export const getVisHarAleneomsorgSpørsmål = (barnAlderInfo: BarnAlderInfo, harSyktBarn?: YesOrNo): boolean => {
-    /**
-     * Vises dersom bruker har kun 1 eller 2 barn under 13 år og har svart nei på spørsmålet om utvidet rett ved sykdom
-     */
-    return (
-        barnAlderInfo.totalt > 0 &&
-        barnAlderInfo.under13 <= 2 &&
-        barnAlderInfo.over13 === 0 &&
-        harSyktBarn === YesOrNo.NO
-    );
-};
-
-export const getVisHarUtvidetRettForSpørsmål = (barnAlderInfo: BarnAlderInfo, harSyktBarn?: YesOrNo): boolean => {
-    const { under13, over13, totalt } = barnAlderInfo;
-    if (totalt === 0) {
-        return false;
-    }
-    if (under13 === 1 && over13 === 1 && harSyktBarn === YesOrNo.YES) {
-        return true;
-    }
-    return false;
-};
-
-/** Faktorer
- * 1. Har utvidet rett vs har ikke utvidet rett
- * 2. Må dekke 10 dager vs. må ikke dekke 10 dager
- */

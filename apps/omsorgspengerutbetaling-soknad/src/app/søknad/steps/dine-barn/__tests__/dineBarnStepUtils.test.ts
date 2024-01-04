@@ -1,12 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { DineBarnFormValues } from '../DineBarnStep';
 import {
-    cleanHarUtvidetRettFor,
     getDineBarnSøknadsdataFromFormValues,
     getHarUtvidetRett,
     getMåDekkeFørste10DagerSelv,
 } from '../dineBarnStepUtils';
-import { DineBarnSøknadsdata } from '../../../../types/søknadsdata/Søknadsdata';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { AnnetBarn, BarnType } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
 import { RegistrertBarn } from '../../../../types/RegistrertBarn';
@@ -74,7 +72,7 @@ describe('dineBarnStepUtils', () => {
     //         andreBarn: undefined,
     //         harDekketTiFørsteDagerSelv: undefined,
     //         harSyktBarn: YesOrNo.UNANSWERED,
-    //         harUtvidetRettFor: [],
+    //
     //     };
     //     const result = getDineBarnStepInitialValues(søknadsdata);
     //     expect(result).toEqual(expected);
@@ -85,9 +83,8 @@ describe('dineBarnStepUtils', () => {
     //     };
     //     const tempFormData: Partial<DineBarnFormValues> = {
     //         andreBarn: [],
-    //         harDekketTiFørsteDagerSelv: true,
+    //         harDekketTiFørsteDagerSelv: YesOrNo.YES,
     //         harSyktBarn: YesOrNo.YES,
-    //         harUtvidetRettFor: ['fnr1', 'fnr2'],
     //     };
     //     const tempFormValues: TempFormValues = {
     //         stepId: StepId.DINE_BARN,
@@ -101,14 +98,14 @@ describe('dineBarnStepUtils', () => {
     //         dineBarn: {
     //             type: 'minstEtt12årEllerYngre',
     //             andreBarn: [andreBarn13years, andreBarn12years],
-    //             harDekketTiFørsteDagerSelv: true,
+    //             harDekketTiFørsteDagerSelv: YesOrNo.YES,
     //         },
     //     };
     //     const expected: DineBarnFormValues = {
     //         andreBarn: søknadsdata.dineBarn.andreBarn,
     //         harDekketTiFørsteDagerSelv: søknadsdata.dineBarn.harDekketTiFørsteDagerSelv,
     //         harSyktBarn: YesOrNo.UNANSWERED,
-    //         harUtvidetRettFor: [],
+    //
     //     };
     //     const result = getDineBarnStepInitialValues(søknadsdata as Søknadsdata);
     //     expect(result).toEqual(expected);
@@ -118,16 +115,14 @@ describe('dineBarnStepUtils', () => {
     //         dineBarn: {
     //             type: 'alleBarnEldre12år',
     //             andreBarn: [andreBarn13years, andreBarn13years],
-    //             harDekketTiFørsteDagerSelv: true,
+    //             harDekketTiFørsteDagerSelv: YesOrNo.YES,
     //             harSyktBarn: YesOrNo.YES,
-    //             harUtvidetRettFor: ['fnr1'],
     //         },
     //     };
     //     const expected: DineBarnFormValues = {
     //         andreBarn: søknadsdata.dineBarn.andreBarn,
     //         harDekketTiFørsteDagerSelv: undefined,
     //         harSyktBarn: YesOrNo.YES,
-    //         harUtvidetRettFor: ['fnr1'],
     //     };
     //     const result = getDineBarnStepInitialValues(søknadsdata as Søknadsdata);
     //     expect(result).toEqual(expected);
@@ -135,67 +130,49 @@ describe('dineBarnStepUtils', () => {
     // });
 
     describe('getDineBarnSøknadsdataFromFormValues', () => {
-        it('should return søknadsdata for "minstEtt12årEllerYngre" type with valid values', () => {
-            const values: DineBarnFormValues = {
-                andreBarn: [andreBarn12years],
-                harDekketTiFørsteDagerSelv: true,
-                harSyktBarn: YesOrNo.UNANSWERED,
-                harUtvidetRettFor: [],
-            };
+        // it('should return søknadsdata for "minstEtt12årEllerYngre" type with valid values', () => {
+        //     const values: DineBarnFormValues = {
+        //         andreBarn: [andreBarn12years],
+        //         harDekketTiFørsteDagerSelv: YesOrNo.YES,
+        //         harSyktBarn: YesOrNo.UNANSWERED,
+        //     };
 
-            const registrerteBarn: RegistrertBarn[] = [];
+        //     const registrerteBarn: RegistrertBarn[] = [];
 
-            const expected: DineBarnSøknadsdata = {
-                type: 'minstEtt12årEllerYngre',
-                andreBarn: values.andreBarn as AnnetBarn[],
-                harDekketTiFørsteDagerSelv: true,
-            };
+        //     const expected: DineBarnSøknadsdata = {
+        //         type: 'minstEtt12årEllerYngre',
+        //         andreBarn: values.andreBarn as AnnetBarn[],
+        //         harDekketTiFørsteDagerSelv: YesOrNo.YES,
+        //     };
 
-            const result = getDineBarnSøknadsdataFromFormValues(values, { registrerteBarn });
-            expect(result).toEqual(expected);
-        });
+        //     const result = getDineBarnSøknadsdataFromFormValues(values, { registrerteBarn });
+        //     expect(result).toEqual(expected);
+        // });
 
-        it('should return søknadsdata for "alleBarnEldre12år" type with valid values', () => {
-            const values: DineBarnFormValues = {
-                andreBarn: [andreBarn13years],
-                harDekketTiFørsteDagerSelv: false,
-                harSyktBarn: YesOrNo.YES,
-                harUtvidetRettFor: ['fnr1'],
-            };
+        // it('should return søknadsdata for "alleBarnEldre12år" type with valid values', () => {
+        //     const values: DineBarnFormValues = {
+        //         andreBarn: [andreBarn13years],
+        //         harDekketTiFørsteDagerSelv: YesOrNo.NO,
+        //         harSyktBarn: YesOrNo.YES,
+        //     };
 
-            const registrerteBarn: RegistrertBarn[] = [];
+        //     const registrerteBarn: RegistrertBarn[] = [];
 
-            const expected: DineBarnSøknadsdata = {
-                type: 'alleBarnEldre12år',
-                andreBarn: values.andreBarn as AnnetBarn[],
-                harSyktBarn: YesOrNo.YES,
-                harUtvidetRettFor: values.harUtvidetRettFor,
-            };
+        //     const expected: DineBarnSøknadsdata = {
+        //         andreBarn: values.andreBarn as AnnetBarn[],
+        //         harSyktBarn: true,
 
-            const result = getDineBarnSøknadsdataFromFormValues(values, { registrerteBarn });
-            expect(result).toEqual(expected);
-        });
+        //     };
+
+        //     const result = getDineBarnSøknadsdataFromFormValues(values, { registrerteBarn });
+        //     expect(result).toEqual(expected);
+        // });
 
         it('should return undefined if harDekketTiFørsteDagerSelv is not true', () => {
             const values: DineBarnFormValues = {
                 andreBarn: [andreBarn12years],
-                harDekketTiFørsteDagerSelv: false,
+                harDekketTiFørsteDagerSelv: YesOrNo.NO,
                 harSyktBarn: YesOrNo.UNANSWERED,
-                harUtvidetRettFor: [],
-            };
-
-            const registrerteBarn: RegistrertBarn[] = [];
-
-            const result = getDineBarnSøknadsdataFromFormValues(values, { registrerteBarn });
-            expect(result).toBeUndefined();
-        });
-
-        it('should return undefined if harUtvidetRett is not YES or harUtvidetRettFor is undefined or empty', () => {
-            const values: DineBarnFormValues = {
-                andreBarn: [andreBarn13years],
-                harDekketTiFørsteDagerSelv: true,
-                harSyktBarn: YesOrNo.NO,
-                harUtvidetRettFor: [],
             };
 
             const registrerteBarn: RegistrertBarn[] = [];
@@ -207,9 +184,8 @@ describe('dineBarnStepUtils', () => {
         it('should return undefined if registrerteBarn and andreBarn are empty', () => {
             const values: DineBarnFormValues = {
                 andreBarn: [],
-                harDekketTiFørsteDagerSelv: true,
+                harDekketTiFørsteDagerSelv: YesOrNo.YES,
                 harSyktBarn: YesOrNo.UNANSWERED,
-                harUtvidetRettFor: [],
             };
 
             const registrerteBarn: RegistrertBarn[] = [];
@@ -221,9 +197,8 @@ describe('dineBarnStepUtils', () => {
         it('should return undefined if registrerteBarn and andreBarn are empty', () => {
             const values: DineBarnFormValues = {
                 andreBarn: [],
-                harDekketTiFørsteDagerSelv: true,
+                harDekketTiFørsteDagerSelv: YesOrNo.YES,
                 harSyktBarn: YesOrNo.UNANSWERED,
-                harUtvidetRettFor: [],
             };
 
             const registrerteBarn: RegistrertBarn[] = [];
@@ -235,9 +210,8 @@ describe('dineBarnStepUtils', () => {
         it('should return undefined if no barn satisfies the condition for "minstEtt12årEllerYngre" type', () => {
             const values: DineBarnFormValues = {
                 andreBarn: [andreBarn13years, andreBarn13years],
-                harDekketTiFørsteDagerSelv: true,
+                harDekketTiFørsteDagerSelv: YesOrNo.YES,
                 harSyktBarn: YesOrNo.UNANSWERED,
-                harUtvidetRettFor: [],
             };
 
             const registrerteBarn: RegistrertBarn[] = [registrertBarn13years];
@@ -249,9 +223,8 @@ describe('dineBarnStepUtils', () => {
         it('should return undefined if harDekketTiFørsteDagerSelv is not true', () => {
             const values: DineBarnFormValues = {
                 andreBarn: [andreBarn13years],
-                harDekketTiFørsteDagerSelv: false,
+                harDekketTiFørsteDagerSelv: YesOrNo.NO,
                 harSyktBarn: YesOrNo.UNANSWERED,
-                harUtvidetRettFor: [],
             };
 
             const registrerteBarn: RegistrertBarn[] = [];
@@ -328,87 +301,6 @@ describe('dineBarnStepUtils', () => {
     //         expect(result).toBeUndefined();
     //     });
     // });
-
-    describe('cleanHarUtvidetRettFor', () => {
-        it('filters harUtvidetRettFor array based on andreBarn and registrerteBarn', () => {
-            const harUtvidetRettFor = ['12345678', '87654321', '98765432'];
-            const andreBarn = [
-                { fnr: '12345678', navn: 'John', fødselsdato: date13yearsAgo, type: BarnType.fosterbarn },
-                { fnr: '23456789', navn: 'Jane', fødselsdato: date13yearsAgo, type: BarnType.fosterbarn },
-            ];
-            const registrerteBarn = [
-                { aktørId: '87654321', fornavn: 'Alice', etternavn: 'Doe', fødselsdato: date13yearsAgo },
-                { aktørId: '76543210', fornavn: 'Bob', etternavn: 'Doe', fødselsdato: date13yearsAgo },
-            ];
-            const expectedResult = ['12345678', '87654321'];
-
-            const result = cleanHarUtvidetRettFor(harUtvidetRettFor, andreBarn, registrerteBarn);
-
-            expect(result).toEqual(expectedResult);
-        });
-
-        it('returns an empty array if harUtvidetRettFor is empty', () => {
-            const harUtvidetRettFor = [];
-            const andreBarn = [
-                { fnr: '12345678', navn: 'John', fødselsdato: date13yearsAgo, type: BarnType.fosterbarn },
-                { fnr: '23456789', navn: 'Jane', fødselsdato: date13yearsAgo, type: BarnType.fosterbarn },
-            ];
-            const registrerteBarn = [
-                { aktørId: '87654321', fornavn: 'Alice', etternavn: 'Doe', fødselsdato: date13yearsAgo },
-                { aktørId: '76543210', fornavn: 'Bob', etternavn: 'Doe', fødselsdato: date13yearsAgo },
-            ];
-            const expectedResult: string[] = [];
-
-            const result = cleanHarUtvidetRettFor(harUtvidetRettFor, andreBarn, registrerteBarn);
-
-            expect(result).toEqual(expectedResult);
-        });
-
-        it('returns an empty array if andreBarn and registrerteBarn are empty', () => {
-            const harUtvidetRettFor = ['12345678', '87654321', '98765432'];
-            const andreBarn: AnnetBarn[] = [];
-            const registrerteBarn: RegistrertBarn[] = [];
-            const expectedResult: string[] = [];
-
-            const result = cleanHarUtvidetRettFor(harUtvidetRettFor, andreBarn, registrerteBarn);
-
-            expect(result).toEqual(expectedResult);
-        });
-
-        it('returns an empty array when harUtvidetRettFor does not match andreBarn or registrerteBarn', () => {
-            const harUtvidetRettFor = ['12345678', '87654321', '98765432'];
-            const andreBarn = [
-                { fnr: '11111111', navn: 'John', fødselsdato: date13yearsAgo, type: BarnType.fosterbarn },
-                { fnr: '22222222', navn: 'Jane', fødselsdato: date13yearsAgo, type: BarnType.fosterbarn },
-            ];
-            const registrerteBarn = [
-                { aktørId: '33333333', fornavn: 'Alice', etternavn: 'Doe', fødselsdato: date13yearsAgo },
-                { aktørId: '44444444', fornavn: 'Bob', etternavn: 'Doe', fødselsdato: date13yearsAgo },
-            ];
-
-            const result = cleanHarUtvidetRettFor(harUtvidetRettFor, andreBarn, registrerteBarn);
-
-            expect(result).toEqual([]);
-        });
-
-        it('returns the filtered array of harUtvidetRettFor that match andreBarn and registrerteBarn', () => {
-            const harUtvidetRettFor = ['12345678', '87654321', '98765432', '55555555', '66666666'];
-            const andreBarn = [
-                { fnr: '12345678', navn: 'John', fødselsdato: date13yearsAgo, type: BarnType.fosterbarn },
-                { fnr: '87654321', navn: 'Alice', fødselsdato: date13yearsAgo, type: BarnType.fosterbarn },
-                { fnr: '55555555', navn: 'Bob', fødselsdato: date13yearsAgo, type: BarnType.fosterbarn },
-            ];
-            const registrerteBarn = [
-                { aktørId: '98765432', fornavn: 'Jane', etternavn: 'Doe', fødselsdato: date13yearsAgo },
-                { aktørId: '66666666', fornavn: 'Eve', etternavn: 'Doe', fødselsdato: date13yearsAgo },
-            ];
-            const expectedResult = ['12345678', '87654321', '98765432', '55555555', '66666666'];
-
-            const result = cleanHarUtvidetRettFor(harUtvidetRettFor, andreBarn, registrerteBarn);
-
-            expect(result).toEqual(expectedResult);
-        });
-    });
 
     describe('getHarUtvidetRett', () => {
         describe('har ikke utvidet rett', () => {

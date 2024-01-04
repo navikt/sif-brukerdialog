@@ -16,17 +16,14 @@ const DineBarnOppsummering = ({ barn, harDekketTiFørsteDagerSelv }: Props) => {
         <SummarySection header={intlHelper(intl, 'step.oppsummering.dineBarn')}>
             <SummaryList
                 items={barn}
-                itemRenderer={({ identitetsnummer, navn, utvidetRett, type }: ApiBarn) => {
+                itemRenderer={({ identitetsnummer, navn, type }: ApiBarn) => {
                     const fnr = identitetsnummer ? identitetsnummer : '';
-                    const harUtvidetRett = utvidetRett
-                        ? intlHelper(intl, 'step.oppsummering.dineBarn.listItem.utvidetRett')
-                        : '';
                     const barnType =
                         type !== BarnType.annet && type !== RegistrertBarnTypeApi.fraOppslag
                             ? intlHelper(intl, `step.oppsummering.dineBarn.listItem.årsak.${type}`)
                             : '';
-                    const punktum = type === RegistrertBarnTypeApi.fraOppslag && utvidetRett ? '.' : '';
-                    return <>{`${navn}${punktum} ${fnr} ${barnType} ${harUtvidetRett}`}</>;
+                    const punktum = type === RegistrertBarnTypeApi.fraOppslag ? '.' : '';
+                    return <>{`${navn}${punktum} ${fnr} ${barnType}`}</>;
                 }}
             />
             {harDekketTiFørsteDagerSelv && (
