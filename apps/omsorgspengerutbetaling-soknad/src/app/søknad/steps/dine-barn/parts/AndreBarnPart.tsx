@@ -31,7 +31,8 @@ const AndreBarnPart: React.FunctionComponent<Props> = ({
                     addLabel: intlHelper(intl, 'step.dineBarn.annetBarnListAndDialog.addLabel'),
                     listTitle: harRegistrerteBarn
                         ? intlHelper(intl, 'step.dineBarn.annetBarnListAndDialog.listTitle')
-                        : undefined,
+                        : intlHelper(intl, 'step.dineBarn.annetBarnListAndDialog.listTitle.ingenRegistrerteBarn'),
+
                     modalTitle: intlHelper(intl, 'step.dineBarn.annetBarnListAndDialog.modalTitle'),
                 }}
                 maxDate={dateToday}

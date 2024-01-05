@@ -15,7 +15,7 @@ const RegistrerteBarnPart: React.FunctionComponent<Props> = ({ registrerteBarn }
     if (registrerteBarn.length === 0) {
         return (
             <div>
-                <Block>
+                <Block padBottom="l">
                     <Alert variant="info">Vi fant ikke noen barn registrert på deg.</Alert>
                 </Block>
             </div>
