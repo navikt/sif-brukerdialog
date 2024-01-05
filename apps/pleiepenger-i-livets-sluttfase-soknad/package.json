@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/pleiepenger-i-livets-sluttfase-soknad",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "2.5.8",
+    "version": "2.5.9",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -23,7 +23,7 @@
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
         "@testing-library/react": "14.1.2",
-        "axios": "1.6.3",
+        "axios": "1.6.4",
         "busboy": "1.6.0",
         "compression": "1.7.4",
         "cookie-parser": "1.4.6",
@@ -61,11 +61,11 @@
         "babel-polyfill": "6.26.0",
         "cross-env": "7.0.3",
         "express-rate-limit": "7.1.5",
-        "postcss": "8.4.32",
+        "postcss": "8.4.33",
         "typescript": "5.3.3",
         "vite": "5.0.10",
         "vite-plugin-checker": "0.6.2",
-        "vitest": "1.1.1"
+        "vitest": "1.1.2"
     },
     "scripts": {
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase",
