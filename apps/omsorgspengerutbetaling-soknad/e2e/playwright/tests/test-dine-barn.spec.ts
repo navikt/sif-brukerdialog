@@ -29,13 +29,13 @@ const startScenario = async (page: Page, barnMockData: any) => {
 const svarUtils = (page: Page) => ({
     harSøktOmEkstraDager: async (harSøkt: boolean) => {
         await page
-            .getByRole('group', { name: 'Har du søkt om eller fått ekstra' })
+            .getByRole('group', { name: 'kronisk sykt' })
             .getByLabel(harSøkt ? 'Ja' : 'Nei')
             .click();
     },
     harAleneomsorg: async (harSøkt: boolean) => {
         await page
-            .getByRole('group', { name: 'Har du aleneomsorg' })
+            .getByRole('group', { name: 'alene om omsorgen' })
             .getByLabel(harSøkt ? 'Ja' : 'Nei')
             .click();
     },
@@ -61,14 +61,21 @@ test.describe('Tester varianter av Dine barn steg', () => {
         const melding = await page.locator('.navds-alert', { hasText: 'må du dekke de 10 første omsorgsdagene' });
         await expect(melding).toBeVisible();
     });
-
-    test('Fyller ut søknad med tre barn under 13 år', async ({ page }) => {
+    test('Tre barn under 13 år', async ({ page }) => {
         await startScenario(page, playwrightApiMockData.barnMock.treBarnUnder13);
         await utfyllingUtils.startSøknad(page);
 
         await svarUtils(page).harDekketDeTiFørsteDagene(true);
     });
-    test('Fyller ut søknad med kun barn over 13 år', async ({ page }) => {
+    test('Ett barn over og ett under 13 år - ikke søkt men har aleneomsorg', async ({ page }) => {
+        await startScenario(page, playwrightApiMockData.barnMock.ettOverOgEttUnder13);
+        await utfyllingUtils.startSøknad(page);
+
+        await svarUtils(page).harSøktOmEkstraDager(false);
+        await svarUtils(page).harAleneomsorg(true);
+        await svarUtils(page).harDekketDeTiFørsteDagene(true);
+    });
+    test('Kun barn over 13 år', async ({ page }) => {
         await startScenario(page, playwrightApiMockData.barnMock.ettBarnOver13);
         await utfyllingUtils.startSøknad(page);
 
@@ -81,5 +88,12 @@ test.describe('Tester varianter av Dine barn steg', () => {
         await svarUtils(page).harSøktOmEkstraDager(false);
         expect(await page.getByText('For å ha rett på omsorgsdager for barn som er 13 år eller eldre')).toBeVisible();
         expect(await svarUtils(page).submitIsEnabled()).toBe(false);
+    });
+    test('Ingen barn', async ({ page }) => {
+        await startScenario(page, playwrightApiMockData.barnMock.ingenBarn);
+        await utfyllingUtils.startSøknad(page);
+
+        await page.getByRole('button', { name: 'Neste' }).click();
+        expect(await page.getByRole('link', { name: 'Du må legge til minst ett' })).toBeVisible();
     });
 });

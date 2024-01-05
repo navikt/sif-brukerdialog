@@ -59,6 +59,7 @@ const barnMock = {
     treBarnUnder13: { barn: [barn.toÅr, barn.treÅr, barn.fireÅr] },
     ettBarnOver13: { barn: [barn.trettenÅr] },
     ettOverOgEttUnder13: { barn: [barn.tolvÅr, barn.trettenÅr] },
+    ingenBarn: { barn: [] },
 };
 
 export const playwrightApiMockData = {
