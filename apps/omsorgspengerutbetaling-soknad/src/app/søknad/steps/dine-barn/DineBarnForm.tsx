@@ -2,7 +2,7 @@ import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import { FormikInputGroup, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
@@ -62,15 +62,29 @@ const DineBarnForm: React.FunctionComponent<DineBarnFormProps> = ({
                 </Heading>
             </FormBlock>
 
-            <RegistrerteBarnPart registrerteBarn={registrerteBarn} />
+            <FormikInputGroup
+                legend={'Barn'}
+                hideLegend={true}
+                name="barn"
+                validate={() => {
+                    const antallBarn = andreBarn.length + registrerteBarn.length;
+                    if (antallBarn === 0) {
+                        return 'ingenBarn';
+                    }
+                }}>
+                <RegistrerteBarnPart registrerteBarn={registrerteBarn} />
 
-            <AndreBarnPart
-                søkerFnr={søker.fødselsnummer}
-                andreBarn={andreBarn}
-                onAndreBarnChange={oppdatereAndreBarn}
-            />
+                <AndreBarnPart
+                    harRegistrerteBarn={registrerteBarn.length > 0}
+                    søkerFnr={søker.fødselsnummer}
+                    andreBarn={andreBarn}
+                    onAndreBarnChange={oppdatereAndreBarn}
+                />
+            </FormikInputGroup>
 
-            <DineBarnScenarioer registrerteBarn={registrerteBarn} formValues={values} />
+            {andreBarn.length + registrerteBarn.length > 0 ? (
+                <DineBarnScenarioer registrerteBarn={registrerteBarn} formValues={values} />
+            ) : null}
         </Form>
     );
 };

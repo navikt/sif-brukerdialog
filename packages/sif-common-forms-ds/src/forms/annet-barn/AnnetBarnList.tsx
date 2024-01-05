@@ -18,6 +18,11 @@ const bem = bemUtils('annetBarnList');
 
 const AnnetBarnList = ({ annetBarn = [], onDelete, onEdit }: Props) => {
     const intl = useIntl();
+
+    if (annetBarn.length === 0) {
+        return null;
+    }
+
     const renderAnnetBarnLabel = (annetBarn: AnnetBarn): React.ReactNode => {
         return (
             <div className={bem.element('label')}>

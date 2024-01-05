@@ -101,6 +101,7 @@ export const appMessages: MessageFileFormat = {
         'resetMellomlagring.text.1': 'Dersom feilen vedvarer, kan du prøve å starte på nytt med et tom skjema.',
         'resetMellomlagring.startPåNytt': 'Start på nytt',
 
+        'validation.barn.ingenBarn': 'Du må legge til minst ett barn for å kunne gå videre i søknaden.',
         'validation.harUtvidetRett.yesOrNoIsUnanswered':
             'Du må svare at du har fått ekstra omsorgsdager for barn fordi barnet har kronisk sykdom eller funksjonshemning eller ikke.',
         'validation.harDekketTiFørsteDagerSelv.notAnswered': 'Du må svare på om du har dekt  10 dager selv i år.',

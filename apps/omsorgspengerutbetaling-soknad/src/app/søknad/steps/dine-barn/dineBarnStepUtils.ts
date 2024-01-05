@@ -153,6 +153,10 @@ export const getMåDekkeFørsteTiDagerSelv = (
 export const getDineBarnScenario = (barn: Array<RegistrertBarn | AnnetBarn>): DineBarnScenario => {
     const { over13, under13 } = getBarnAlderInfo(barn);
 
+    /** Ingen barn */
+    if (under13 === 0 && over13 === 0) {
+        return DineBarnScenario.ETT_ELLER_TO_UNDER_13;
+    }
     /** Barn under 13 */
     if (under13 > 0 && under13 <= 2) {
         return DineBarnScenario.ETT_ELLER_TO_UNDER_13;
@@ -174,8 +178,8 @@ export const getBarnAlderInfo = (barn: Array<RegistrertBarn | AnnetBarn>): BarnA
         under13,
         over13,
         totalt: barn.length,
-        kunBarnUnder13: under13 === barn.length,
-        kunBarnOver13: over13 === barn.length,
+        kunBarnUnder13: barn.length > 0 && under13 === barn.length,
+        kunBarnOver13: barn.length > 0 && over13 === barn.length,
     };
 };
 

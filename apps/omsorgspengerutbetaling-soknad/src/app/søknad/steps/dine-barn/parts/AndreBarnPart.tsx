@@ -11,10 +11,16 @@ import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock
 interface Props {
     søkerFnr: string;
     andreBarn: AnnetBarn[];
+    harRegistrerteBarn: boolean;
     onAndreBarnChange: (values: AnnetBarn[]) => void;
 }
 
-const AndreBarnPart: React.FunctionComponent<Props> = ({ andreBarn, søkerFnr, onAndreBarnChange }) => {
+const AndreBarnPart: React.FunctionComponent<Props> = ({
+    andreBarn,
+    søkerFnr,
+    harRegistrerteBarn,
+    onAndreBarnChange,
+}) => {
     const intl = useIntl();
     const andreBarnFnr = andreBarn.map((barn) => barn.fnr);
     return (
@@ -23,7 +29,9 @@ const AndreBarnPart: React.FunctionComponent<Props> = ({ andreBarn, søkerFnr, o
                 name={DineBarnFormFields.andreBarn}
                 labels={{
                     addLabel: intlHelper(intl, 'step.dineBarn.annetBarnListAndDialog.addLabel'),
-                    listTitle: intlHelper(intl, 'step.dineBarn.annetBarnListAndDialog.listTitle'),
+                    listTitle: harRegistrerteBarn
+                        ? intlHelper(intl, 'step.dineBarn.annetBarnListAndDialog.listTitle')
+                        : undefined,
                     modalTitle: intlHelper(intl, 'step.dineBarn.annetBarnListAndDialog.modalTitle'),
                 }}
                 maxDate={dateToday}
