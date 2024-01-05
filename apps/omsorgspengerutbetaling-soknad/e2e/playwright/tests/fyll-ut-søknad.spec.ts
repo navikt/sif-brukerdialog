@@ -14,7 +14,7 @@ test.describe('Fyller ut søknad', () => {
             await route.fulfill({ status: 200, body: JSON.stringify(playwrightApiMockData.søkerMock) });
         });
         await page.route('**/oppslag/barn', async (route) => {
-            await route.fulfill({ status: 200, body: JSON.stringify(playwrightApiMockData.barnMock) });
+            await route.fulfill({ status: 200, body: JSON.stringify(playwrightApiMockData.barnMock.toBarnUnder13) });
         });
         await page.route('**/vedlegg', async (route) => {
             await route.fulfill({
@@ -27,15 +27,15 @@ test.describe('Fyller ut søknad', () => {
         });
     });
 
-    test('Fyller ut søknad med valgt barn', async ({ page }) => {
+    test('Fyller ut søknad med to barn under 13 år', async ({ page }) => {
         await utfyllingUtils.startSøknad(page);
-        // await utfyllingUtils.fyllUtOmBarnMinstEttYngre13år(page);
-        // await utfyllingUtils.fyllUtFraværSteg(page);
-        // await utfyllingUtils.lastOppLegeerklæring(page);
-        // await utfyllingUtils.fyllerUtArbeidssituasjonSteg(page);
-        // await utfyllingUtils.fyllerUtFraværFraSteg(page);
-        // await utfyllingUtils.fyllUtMedlemsskap(page);
-        // await utfyllingUtils.sendInnSøknad(page);
-        // await utfyllingUtils.kontrollerKvittering(page);
+        await utfyllingUtils.fyllUtOmBarnfyllUtOmBarnToUnder13år(page);
+        await utfyllingUtils.fyllUtFraværSteg(page);
+        await utfyllingUtils.lastOppLegeerklæring(page);
+        await utfyllingUtils.fyllerUtArbeidssituasjonSteg(page);
+        await utfyllingUtils.fyllerUtFraværFraSteg(page);
+        await utfyllingUtils.fyllUtMedlemsskap(page);
+        await utfyllingUtils.sendInnSøknad(page);
+        await utfyllingUtils.kontrollerKvittering(page);
     });
 });

@@ -142,8 +142,7 @@ const FraværStep = () => {
                         fraværPerioder = [],
                     },
                 }) => {
-                    const førsteOgSisteDagMedFravær = fraværStepUtils.getPeriodeBoundaries(fraværPerioder, fraværDager);
-
+                    const førsteOgSisteDagMedFravær = søknadsdata.fravaer?.førsteOgSisteDagMedFravær;
                     const kanIkkeFortsette =
                         harPerioderMedFravær === YesOrNo.NO && harDagerMedDelvisFravær === YesOrNo.NO;
                     const harRegistrertFravær = fraværDager.length + fraværPerioder.length > 0;
@@ -299,8 +298,8 @@ const FraværStep = () => {
                                                 <FormBlock margin="m">
                                                     <BostedUtlandListAndDialog<FraværFormFields>
                                                         name={FraværFormFields.perioder_utenlandsopphold}
-                                                        minDate={førsteOgSisteDagMedFravær.min || gyldigTidsrom.from}
-                                                        maxDate={førsteOgSisteDagMedFravær.max || gyldigTidsrom.to}
+                                                        minDate={førsteOgSisteDagMedFravær?.from || gyldigTidsrom.from}
+                                                        maxDate={førsteOgSisteDagMedFravær?.to || gyldigTidsrom.to}
                                                         labels={{
                                                             addLabel: intlHelper(
                                                                 intl,

@@ -15,42 +15,50 @@ const søkerMock = {
     mellomnavn: null,
     etternavn: 'HOFTE',
 };
+
+const barn = {
+    toÅr: {
+        fornavn: '2 år',
+        etternavn: 'FAGGOTT',
+        aktørId: '2',
+        fødselsdato: getDateNYearsAgo(2),
+        fødselsnummer: '2',
+    },
+    treÅr: {
+        fornavn: '3 år',
+        etternavn: 'FAGGOTT',
+        aktørId: '3',
+        fødselsdato: getDateNYearsAgo(3),
+        fødselsnummer: '3',
+    },
+    fireÅr: {
+        fornavn: '4 år',
+        etternavn: 'FAGGOTT',
+        aktørId: '4',
+        fødselsdato: getDateNYearsAgo(4),
+        fødselsnummer: '4',
+    },
+    tolvÅr: {
+        fornavn: '12 år',
+        etternavn: 'FAGGOTT',
+        aktørId: '12',
+        fødselsdato: getDateNYearsAgo(12),
+        fødselsnummer: '12',
+    },
+    trettenÅr: {
+        fornavn: '13 år',
+        etternavn: 'FAGGOTT',
+        aktørId: '13',
+        fødselsdato: getDateNYearsAgo(13),
+        fødselsnummer: '13',
+    },
+};
+
 const barnMock = {
-    barn: [
-        {
-            fornavn: 'ALFABETISK 19 år',
-            etternavn: 'FAGGOTT',
-            aktørId: '2811762539343',
-            fødselsdato: getDateNYearsAgo(19),
-            fødselsnummer: '08861999573',
-        },
-        {
-            aktørId: '98765',
-            fornavn: 'Liam 18 år',
-            etternavn: 'Brown',
-            fødselsdato: getDateNYearsAgo(18),
-        },
-        {
-            aktørId: '12345',
-            fornavn: 'Emma 16 år',
-            etternavn: 'Johnson',
-            mellomnavn: 'Marie',
-            fødselsdato: getDateNYearsAgo(16),
-        },
-        {
-            aktørId: '67890',
-            fornavn: 'Noah 13 år',
-            etternavn: 'Smith',
-            fødselsdato: getDateNYearsAgo(13),
-        },
-        {
-            aktørId: '54321',
-            fornavn: 'Olivia',
-            etternavn: 'Davis',
-            mellomnavn: 'Grace',
-            fødselsdato: getDateNYearsAgo(10),
-        },
-    ],
+    toBarnUnder13: { barn: [barn.toÅr, barn.treÅr] },
+    treBarnUnder13: { barn: [barn.toÅr, barn.treÅr, barn.fireÅr] },
+    ettBarnOver13: { barn: [barn.trettenÅr] },
+    ettOverOgEttUnder13: { barn: [barn.tolvÅr, barn.trettenÅr] },
 };
 
 export const playwrightApiMockData = {
