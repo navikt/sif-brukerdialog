@@ -39,7 +39,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         res.send(innsynsdata);
     } catch (err) {
         childLogger.error(`Hent innsynsdata feilet: ${err}`);
-        if (err.response.status === HttpStatusCode.Forbidden) {
+        if (
+            err.response.status === HttpStatusCode.Forbidden ||
+            err.response.status === HttpStatusCode.UnavailableForLegalReasons
+        ) {
             res.status(403).json({ error: 'Ikke tilgang' });
         } else {
             res.status(500).json({ error: 'Kunne ikke hente innsynsdata', err });
