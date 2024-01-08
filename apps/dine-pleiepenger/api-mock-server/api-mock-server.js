@@ -16,7 +16,7 @@ server.use(
 );
 
 server.use(function (req, res, next) {
-    setTimeout(next, 300);
+    setTimeout(next, 50);
 });
 
 const søker = {
@@ -37,15 +37,11 @@ const startServer = () => {
     });
 
     server.get('/oppslag/soker-ikke-tilgang', (req, res) => {
-        res.sendStatus(403);
+        res.sendStatus(451);
     });
 
     server.get('/soknad', (req, res) => {
         res.send(søknader);
-    });
-
-    server.get('/soknad-ikke-tilgang', (req, res) => {
-        res.sendStatus(403);
     });
 
     server.get('/soknad/:soknadId/dokument', (req, res) => {
