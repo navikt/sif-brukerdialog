@@ -1,9 +1,9 @@
-import React from 'react';
-import HarSyktBarnSpørsmål from '../spørsmål/HarSyktBarnSpørsmål';
-import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { yesOrNoIsAnswered } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 import { Alert } from '@navikt/ds-react';
+import React from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { yesOrNoIsAnswered } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
+import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import HarSyktBarnSpørsmål from '../spørsmål/HarSyktBarnSpørsmål';
 
 interface Props {
     antallBarn: number;

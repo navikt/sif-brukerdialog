@@ -1,10 +1,7 @@
-const getDateNYearsAgo = (years: number): Date => {
-    const currentDate = new Date();
-    const year = currentDate.getFullYear() - years;
-    const month = currentDate.getMonth();
-    const day = currentDate.getDate();
+import dayjs from 'dayjs';
 
-    return new Date(year, month, day);
+const getDateNYearsAgo = (years: number): Date => {
+    return dayjs().subtract(years, 'year').toDate();
 };
 
 const søkerMock = {

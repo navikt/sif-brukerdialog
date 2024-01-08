@@ -1,18 +1,19 @@
-import { Heading } from '@navikt/ds-react';
+import { Alert, Heading } from '@navikt/ds-react';
+import React from 'react';
+import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { FormikYesOrNoQuestion } from '@navikt/sif-common-formik-ds';
-import React from 'react';
-import { useIntl } from 'react-intl';
-import { DineBarnFormFields } from '../DineBarnStep';
+import { FormikYesOrNoQuestion, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { DineBarnFormFields } from '../DineBarnStep';
 
 interface Props {
     info?: React.ReactNode;
+    harDekketTiFørsteDagerSelv?: YesOrNo;
 }
 
-const HarDekketFørste10DagerSelvSpørsmål: React.FunctionComponent<Props> = ({ info }) => {
+const HarDekketTiFørsteDagerSelvSpørsmål: React.FunctionComponent<Props> = ({ info, harDekketTiFørsteDagerSelv }) => {
     const intl = useIntl();
     return (
         <FormBlock>
@@ -29,8 +30,13 @@ const HarDekketFørste10DagerSelvSpørsmål: React.FunctionComponent<Props> = ({
                     validate={getYesOrNoValidator()}
                 />
             </FormBlock>
+            {harDekketTiFørsteDagerSelv === YesOrNo.NO ? (
+                <FormBlock>
+                    <Alert variant="info">[TODO] - skrive noe om at en ikke får noe?</Alert>
+                </FormBlock>
+            ) : null}
         </FormBlock>
     );
 };
 
-export default HarDekketFørste10DagerSelvSpørsmål;
+export default HarDekketTiFørsteDagerSelvSpørsmål;

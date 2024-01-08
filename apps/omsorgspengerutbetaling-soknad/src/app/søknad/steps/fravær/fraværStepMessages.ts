@@ -5,9 +5,7 @@ export const fraværStepMessages: MessageFileFormat = {
         'step.fravaer.counsellorpanel.content':
             'I de fleste tilfeller må man som selvstendig næringsdrivende og frilanser betale de 10 første dager med omsorgspenger i året selv.',
         'step.fravaer.dager_med_fullt_fravært.label': 'Dager med fullt fravær',
-        'step.fravaer.dager_med_fullt_fravært.info': 'TODO',
         'step.fravaer.dager_med_delvis_fravært.label': 'Dager med delvis fravær',
-        'step.fravaer.dager_med_delvis_fravært.info': 'TODO',
         'step.fravaer.har_du_oppholdt_deg_i_utlandet_for_dager_du_soker_ok.spm':
             'Har du vært i utlandet noen av dagene du søker omsorgspenger for?',
 

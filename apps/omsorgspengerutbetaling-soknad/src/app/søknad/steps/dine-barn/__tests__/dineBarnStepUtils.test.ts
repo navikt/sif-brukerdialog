@@ -82,14 +82,14 @@ describe('dineBarnStepUtils', () => {
     //     const values: DineBarnFormValues = {
     //         andreBarn: [],
     //     };
-    //     it('returnerer undefined for harDekketFørsteTiDagerSelv dersom bruker ikke må dekke dette', () => {
+    //     it('returnerer undefined for harDekketTiFørsteDagerSelv dersom bruker ikke må dekke dette', () => {
     //         const result = getDineBarnSøknadsdataFromFormValues(
     //             { ...values, harSyktBarn: YesOrNo.YES, harDekketTiFørsteDagerSelv: YesOrNo.NO },
     //             { registrerteBarn: barnMockData.treBarnOver13 },
     //         );
     //         expect(result?.harDekketTiFørsteDagerSelv).toBeUndefined();
     //     });
-    //     it('returnerer defined for harDekketFørsteTiDagerSelv dersom bruker må dekke dette', () => {
+    //     it('returnerer defined for harDekketTiFørsteDagerSelv dersom bruker må dekke dette', () => {
     //         const result = getDineBarnSøknadsdataFromFormValues(
     //             { ...values, harSyktBarn: YesOrNo.YES, harDekketTiFørsteDagerSelv: YesOrNo.YES },
     //             { registrerteBarn: barnMockData.ettBarnUnder13 },
