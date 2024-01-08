@@ -1,6 +1,6 @@
 {
     "name": "@navikt/dine-pleiepenger",
-    "version": "0.5.1",
+    "version": "0.5.2",
     "private": true,
     "scripts": {
         "build-storybook": "storybook build",
@@ -20,7 +20,7 @@
         "@navikt/sif-common-core-ds": "workspace: *",
         "@navikt/sif-common-sentry": "workspace: *",
         "@navikt/sif-common-utils": "workspace: *",
-        "axios": "1.6.4",
+        "axios": "1.6.5",
         "jsonwebtoken": "9.0.2",
         "next": "14.0.4",
         "next-logger": "3.0.2",
@@ -34,10 +34,10 @@
     },
     "devDependencies": {
         "@axe-core/playwright": "4.8.2",
-        "@navikt/ds-css": "5.12.2",
+        "@navikt/ds-css": "5.12.4",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "5.12.2",
-        "@navikt/ds-tailwind": "5.12.2",
+        "@navikt/ds-react": "5.12.4",
+        "@navikt/ds-tailwind": "5.12.4",
         "@next/bundle-analyzer": "14.0.4",
         "@playwright/test": "^1.40.1",
         "@storybook/addon-essentials": "7.6.7",
@@ -62,7 +62,7 @@
         "react-dom": "18.2.0",
         "react-intl": "6.5.5",
         "storybook": "7.6.7",
-        "tailwindcss": "3.4.0",
+        "tailwindcss": "3.4.1",
         "uuid": "9.0.1"
     },
     "eslintConfig": {

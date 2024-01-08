@@ -3,7 +3,7 @@
     "description": "Søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn",
     "license": "MIT",
     "name": "@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",
-    "version": "1.21.10",
+    "version": "1.21.11",
     "repository": "https://github.com/navikt/sif-brukerdialog",
     "private": true,
     "type": "module",
@@ -23,9 +23,9 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "@navikt/ds-css": "5.12.2",
-        "@navikt/ds-react": "5.12.2",
-        "@navikt/ds-tailwind": "5.12.2",
+        "@navikt/ds-css": "5.12.4",
+        "@navikt/ds-react": "5.12.4",
+        "@navikt/ds-tailwind": "5.12.4",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
@@ -35,7 +35,7 @@
         "@navikt/sif-common-soknad-ds": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
         "@testing-library/react": "14.1.2",
-        "axios": "1.6.4",
+        "axios": "1.6.5",
         "compression": "1.7.4",
         "cookie-parser": "1.4.6",
         "dayjs": "1.11.10",
@@ -47,13 +47,13 @@
         "jose": "5.2.0",
         "mustache-express": "1.3.2",
         "object-hash": "3.0.0",
-        "openid-client": "5.6.2",
+        "openid-client": "5.6.4",
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "react-fast-compare": "3.2.2",
         "react-intl": "6.5.5",
         "react-router-dom": "6.21.1",
-        "vite": "5.0.10",
+        "vite": "5.0.11",
         "vite-plugin-checker": "0.6.2"
     },
     "devDependencies": {
@@ -67,16 +67,16 @@
         "@storybook/react-vite": "7.6.7",
         "@testing-library/react": "14.1.2",
         "@types/object-hash": "3.0.6",
-        "@types/react": "18.2.46",
+        "@types/react": "18.2.47",
         "@types/react-dom": "18.2.18",
         "@types/react-router-dom": "5.3.3",
         "babel-polyfill": "6.26.0",
         "cross-env": "7.0.3",
         "express-rate-limit": "7.1.5",
-        "jsdom": "23.0.1",
+        "jsdom": "23.2.0",
         "rimraf": "5.0.5",
         "typescript": "5.3.3",
-        "vitest": "1.1.2"
+        "vitest": "1.1.3"
     },
     "eslintConfig": {
         "overrides": [

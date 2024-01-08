@@ -1,5 +1,18 @@
 # @navikt/sif-ettersending
 
+## 3.29.2
+
+### Patch Changes
+
+- Pakkeoppdateringer patch og noe minor
+- Updated dependencies
+  - @navikt/sif-common-amplitude@2.24.9
+  - @navikt/sif-common-formik-ds@1.7.2
+  - @navikt/sif-common-soknad-ds@10.13.2
+  - @navikt/sif-common-core-ds@9.13.2
+  - @navikt/sif-common-sentry@0.25.9
+  - @navikt/sif-common-utils@3.43.10
+
 ## 3.29.1
 
 ### Patch Changes
