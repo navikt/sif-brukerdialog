@@ -166,7 +166,7 @@ const SituasjonStep = () => {
                                             {arbeidsforhold.map((forhold, index) => (
                                                 <Block
                                                     key={forhold.organisasjonsnummer}
-                                                    data-testid="arbeidsforhold-liste">
+                                                    data-testid={`arbeidsforhold-liste-${index}`}>
                                                     <FormSection
                                                         titleTag="h2"
                                                         title={forhold.navn || forhold.organisasjonsnummer}
