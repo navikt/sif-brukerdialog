@@ -129,7 +129,7 @@ export const appMessages: MessageFileFormat = {
         'validation.frilans_startdato.dateHasInvalidFormat':
             'Datoen for når du startet som frilanser er ugyldig. Gyldig format er dd.mm.åååå.',
         'validation.frilans_startdato.dateIsAfterMax':
-            'Datoen for når du startet som frilanser kan ikke være etter dagens dato.',
+            'Datoen for når du startet som frilanser kan ikke være etter dagens dato eller siste dag du søker for.',
         'validation.frilans_sluttdato.dateHasNoValue': 'Du må fylle ut når du sluttet som frilanser.',
         'validation.frilans_sluttdato.dateHasInvalidFormat':
             'Datoen for når du sluttet som frilanser er ugyldig. Gyldig format er dd.mm.åååå.',

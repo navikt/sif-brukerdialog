@@ -111,7 +111,10 @@ const ArbeidssituasjonStep = () => {
                                 </SifGuidePanel>
 
                                 <FormBlock>
-                                    <FrilansFormPart values={values} />
+                                    <FrilansFormPart
+                                        values={values}
+                                        fraværPeriode={søknadsdata.fravaer?.førsteOgSisteDagMedFravær}
+                                    />
                                 </FormBlock>
 
                                 <FormBlock>

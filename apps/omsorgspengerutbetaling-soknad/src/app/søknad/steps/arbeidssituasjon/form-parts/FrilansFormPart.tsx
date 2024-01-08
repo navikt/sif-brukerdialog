@@ -1,6 +1,6 @@
 import { FormattedMessage, useIntl } from 'react-intl';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import { dateToday } from '@navikt/sif-common-utils';
+import { DateRange, dateToday } from '@navikt/sif-common-utils';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getDateValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { ValidationError, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
@@ -10,6 +10,7 @@ import { Link } from '@navikt/ds-react';
 import getLenker from '../../../../lenker';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
+import { nYearsAgo } from '../../dine-barn/dineBarnStepUtils';
 
 const { YesOrNoQuestion, DatePicker } = getTypedFormComponents<
     ArbeidssituasjonFormFields,
@@ -18,10 +19,11 @@ const { YesOrNoQuestion, DatePicker } = getTypedFormComponents<
 >();
 
 interface Props {
+    fraværPeriode?: DateRange;
     values: Partial<ArbeidssituasjonFormValues>;
 }
 
-const FrilansFormPart: React.FC<Props> = ({ values }) => {
+const FrilansFormPart: React.FC<Props> = ({ values, fraværPeriode }) => {
     const intl = useIntl();
 
     const { frilans_erFrilanser, frilans_jobberFortsattSomFrilans, frilans_startdato } = values;
@@ -30,6 +32,15 @@ const FrilansFormPart: React.FC<Props> = ({ values }) => {
     const harSluttetSomFrilanser = frilans_jobberFortsattSomFrilans === YesOrNo.NO;
 
     // TODO Riktig validerig angående søknadsperiode?
+    const valgtStartdato = datepickerUtils.getDateFromDateString(frilans_startdato);
+    const startetDateRange: DateRange = {
+        from: nYearsAgo(80),
+        to: fraværPeriode?.to || dateToday,
+    };
+    const sluttetDateRange: DateRange = {
+        from: valgtStartdato || startetDateRange.from || nYearsAgo(80),
+        to: dateToday,
+    };
 
     return (
         <>
@@ -57,10 +68,12 @@ const FrilansFormPart: React.FC<Props> = ({ values }) => {
                                 name={ArbeidssituasjonFormFields.frilans_startdato}
                                 label={intlHelper(intl, 'frilanser.nårStartet.spm')}
                                 dropdownCaption={true}
-                                maxDate={dateToday}
+                                minDate={startetDateRange.from}
+                                maxDate={startetDateRange.to}
                                 validate={getDateValidator({
                                     required: true,
-                                    max: dateToday,
+                                    min: startetDateRange.from,
+                                    max: startetDateRange.to,
                                 })}
                                 data-testid="frilans_startdato"
                             />
@@ -79,12 +92,12 @@ const FrilansFormPart: React.FC<Props> = ({ values }) => {
                                     name={ArbeidssituasjonFormFields.frilans_sluttdato}
                                     label={intlHelper(intl, 'frilanser.nårSluttet.spm')}
                                     dropdownCaption={true}
-                                    minDate={datepickerUtils.getDateFromDateString(frilans_startdato)}
-                                    maxDate={dateToday}
+                                    minDate={sluttetDateRange.from}
+                                    maxDate={sluttetDateRange.to}
                                     validate={getDateValidator({
                                         required: true,
-                                        min: datepickerUtils.getDateFromDateString(frilans_startdato),
-                                        max: dateToday,
+                                        min: sluttetDateRange.from,
+                                        max: sluttetDateRange.to,
                                     })}
                                     data-testid="frilans_sluttdato"
                                 />
