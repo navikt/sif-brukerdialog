@@ -194,6 +194,23 @@ const getSelvstendigNæringsdrivendeFormValuesFromSøknadsdata = (selvstendig: A
     }
 };
 
+export const getFrilanserSnSituasjon = (
+    values: Partial<ArbeidssituasjonFormValues>,
+): 'frilanser' | 'sn' | 'frilanserOgSn' | undefined => {
+    const erFrilanser = values.frilans_erFrilanser === YesOrNo.YES;
+    const erSn = values.selvstendig_erSelvstendigNæringsdrivende === YesOrNo.YES;
+    if (erFrilanser && erSn) {
+        return 'frilanserOgSn';
+    }
+    if (erFrilanser) {
+        return 'frilanser';
+    }
+    if (erSn) {
+        return 'sn';
+    }
+    return;
+};
+
 export const validateArbeidssituasjonTidsrom = (
     values: Partial<ArbeidssituasjonFormValues>,
     fraværsperiode?: DateRange,
@@ -215,12 +232,12 @@ export const validateArbeidssituasjonTidsrom = (
 
     if (arbeidsperiode.from) {
         if (dayjs(arbeidsperiode.from).isAfter(fraværsperiode.from, 'day')) {
-            return 'arbeidsperiodeStarterEtterFraværsperiode';
+            return `arbeidsperiodeStarterEtterFraværsperiode`;
         }
     }
     if (arbeidsperiode.to) {
         if (dayjs(arbeidsperiode.to).isBefore(fraværsperiode.to, 'day')) {
-            return 'arbeidsperiodeSlutterFørEllerIFraværsperiode';
+            return `arbeidsperiodeSlutterFørEllerIFraværsperiode`;
         }
     }
 

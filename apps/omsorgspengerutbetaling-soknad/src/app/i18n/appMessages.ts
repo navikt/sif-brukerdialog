@@ -146,10 +146,15 @@ export const appMessages: MessageFileFormat = {
             'Du må svare ja eller nei på om du har flere enn én virksomhet som er aktiv.',
         'validation.selvstendig_virksomhet.noValue': 'Du har ikke registrert informasjon om virksomheten din.',
 
-        'validation.arbeidssituasjon.arbeidsperiodeStarterEtterFraværsperiode':
-            'Du har registrert fraværsdager utenfor perioden du har registrert arbeid.',
-        'validation.arbeidssituasjon.arbeidsperiodeSlutterFørEllerIFraværsperiode':
-            'Du har registrert fraværsdager utenfor perioden du har registrert arbeid.',
+        'validation.arbeidssituasjon.situasjon.frilanser': 'frilanser',
+        'validation.arbeidssituasjon.situasjon.sn': 'selvstendig næringsdrivende',
+        'validation.arbeidssituasjon.situasjon.frilanserOgSn': 'frilanser og selvstendig næringsdrivende',
+
+        'validation.arbeidssituasjon_tidsrom.arbeidsperiodeStarterEtterFraværsperiode':
+            'Du har registrert fraværsdager utenfor perioden du har oppgitt som {situasjon}. Du kan kun søke for dager du har vært frilanser eller selvstendig næringsdrivende.',
+        'validation.arbeidssituasjon_tidsrom.arbeidsperiodeSlutterFørEllerIFraværsperiode':
+            'Du har registrert fraværsdager utenfor perioden du har oppgitt som {situasjon}. Du kan kun søke for dager du har vært frilanser eller selvstendig næringsdrivende.',
+
         'validation.aktivitetFravær.noValue': 'Du må velge hvilket arbeid du hadde fravær fra {dato}.',
         'validation.harBoddUtenforNorgeSiste12Mnd.yesOrNoIsUnanswered':
             'Du må svare på om du har bodd i utlandet i hele eller deler av de siste 12 månedene.',
