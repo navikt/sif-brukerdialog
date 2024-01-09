@@ -91,8 +91,6 @@ const SelvstendigNæringsdrivendeFormPart: React.FC<Props> = ({ values }) => {
                         }}
                         skipOrgNumValidation={skipOrgNumValidation}
                         validate={getRequiredFieldValidator()}
-                        // TODO
-                        // onAfterChange={() => setVirksomhetChanged(true)}
                     />
                 </FormBlock>
             )}

@@ -101,8 +101,6 @@ const getArbeidSNSøknadsdataFromFormValues = (
             erSelvstendigNæringsdrivende: false,
         };
     }
-    //TODO
-    // if (selvstendig_virksomhet && dayjs(virksomhet.fom).isBefore(søknadsperiode.to, 'day')) {
     if (selvstendig_virksomhet) {
         return {
             type: 'erSN',
@@ -133,14 +131,10 @@ export const getArbeidssituasjonStepInitialValues = (
     const { frilans, selvstendig } = søknadsdata.arbeidssituasjon;
 
     if (frilans === undefined || selvstendig === undefined) {
-        // TODO
-        // Kanskje logge error
         return defaultValues;
     }
 
     if (frilans.type === 'erIkkeFrilanser' && selvstendig.type === 'erIkkeSN') {
-        // TODO
-        // Kanskje logge error
         return defaultValues;
     }
 

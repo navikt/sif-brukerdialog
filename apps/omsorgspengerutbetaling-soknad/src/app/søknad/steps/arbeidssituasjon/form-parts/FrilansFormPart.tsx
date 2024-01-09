@@ -31,7 +31,6 @@ const FrilansFormPart: React.FC<Props> = ({ values, fraværPeriode }) => {
     const erFrilanser = frilans_erFrilanser === YesOrNo.YES;
     const harSluttetSomFrilanser = frilans_jobberFortsattSomFrilans === YesOrNo.NO;
 
-    // TODO Riktig validerig angående søknadsperiode?
     const valgtStartdato = datepickerUtils.getDateFromDateString(frilans_startdato);
     const startetDateRange: DateRange = {
         from: nYearsAgo(80),
