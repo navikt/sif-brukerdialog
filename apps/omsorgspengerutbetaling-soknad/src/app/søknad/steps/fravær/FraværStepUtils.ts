@@ -134,11 +134,10 @@ export const getFraværSøknadsdataFromFormValues = (values: FraværFormValues):
 
     const førsteOgSisteDagMedFravær = getFørsteOgSisteDagMedFravær(fraværPerioder, fraværDager);
     if (førsteOgSisteDagMedFravær === undefined) {
-        throw new Error('Første og siste dag med fravær er undefined');
+        return undefined;
     }
 
     if (perioder_harVærtIUtlandet && perioder_utenlandsopphold.length === 0) {
-        //TODO throw error eller amplitude
         return undefined;
     }
 
