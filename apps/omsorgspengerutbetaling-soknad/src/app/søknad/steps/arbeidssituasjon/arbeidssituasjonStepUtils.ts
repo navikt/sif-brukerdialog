@@ -211,10 +211,14 @@ export const getFrilanserSnSituasjon = (
     return;
 };
 
+export enum ArbeidssituasjonTidsromValidationKeys {
+    arbeidsperiodeStarterEtterFraværsperiode = 'arbeidsperiodeStarterEtterFraværsperiode',
+    arbeidsperiodeSlutterFørEllerIFraværsperiode = 'arbeidsperiodeSlutterFørEllerIFraværsperiode',
+}
 export const validateArbeidssituasjonTidsrom = (
     values: Partial<ArbeidssituasjonFormValues>,
     fraværsperiode?: DateRange,
-): string | undefined => {
+): ArbeidssituasjonTidsromValidationKeys | undefined => {
     if (!fraværsperiode) {
         return undefined;
     }
@@ -232,12 +236,12 @@ export const validateArbeidssituasjonTidsrom = (
 
     if (arbeidsperiode.from) {
         if (dayjs(arbeidsperiode.from).isAfter(fraværsperiode.from, 'day')) {
-            return `arbeidsperiodeStarterEtterFraværsperiode`;
+            return ArbeidssituasjonTidsromValidationKeys.arbeidsperiodeStarterEtterFraværsperiode;
         }
     }
     if (arbeidsperiode.to) {
         if (dayjs(arbeidsperiode.to).isBefore(fraværsperiode.to, 'day')) {
-            return `arbeidsperiodeSlutterFørEllerIFraværsperiode`;
+            return ArbeidssituasjonTidsromValidationKeys.arbeidsperiodeSlutterFørEllerIFraværsperiode;
         }
     }
 
