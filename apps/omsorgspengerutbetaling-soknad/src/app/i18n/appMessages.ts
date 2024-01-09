@@ -145,6 +145,11 @@ export const appMessages: MessageFileFormat = {
         'validation.selvstendig_harFlereVirksomheter.yesOrNoIsUnanswered':
             'Du må svare ja eller nei på om du har flere enn én virksomhet som er aktiv.',
         'validation.selvstendig_virksomhet.noValue': 'Du har ikke registrert informasjon om virksomheten din.',
+
+        'validation.arbeidssituasjon.arbeidsperiodeStarterEtterFraværsperiode':
+            'Du har registrert fraværsdager utenfor perioden du har registrert arbeid.',
+        'validation.arbeidssituasjon.arbeidsperiodeSlutterFørEllerIFraværsperiode':
+            'Du har registrert fraværsdager utenfor perioden du har registrert arbeid.',
         'validation.aktivitetFravær.noValue': 'Du må velge hvilket arbeid du hadde fravær fra {dato}.',
         'validation.harBoddUtenforNorgeSiste12Mnd.yesOrNoIsUnanswered':
             'Du må svare på om du har bodd i utlandet i hele eller deler av de siste 12 månedene.',

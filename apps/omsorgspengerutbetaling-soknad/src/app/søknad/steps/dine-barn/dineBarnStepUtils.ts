@@ -140,7 +140,7 @@ export const getHarUtvidetRett = (
 };
 
 export const getMåDekkeFørsteTiDagerSelv = (
-    barn: Array<RegistrertBarn | AnnetBarn>,
+    barn: Array<RegistrertBarn | AnnetBarn> = [],
     harSyktBarn?: YesOrNo,
 ): boolean | undefined => {
     const { kunBarnOver13 } = getBarnAlderInfo(barn);

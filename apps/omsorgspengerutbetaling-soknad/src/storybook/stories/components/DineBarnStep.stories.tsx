@@ -8,7 +8,7 @@ import { withFormikWrapper } from '../../decorators/withFormikWrapper';
 import { Søker } from '../../../app/types/Søker';
 import { useFormikContext } from 'formik';
 import { DineBarnFormValues } from '../../../app/søknad/steps/dine-barn/DineBarnStep';
-import { barnMockData } from '../../data/barn';
+import { barnMockData } from '../../../test-mock-data/barn';
 import { kanFortsetteFraDineBarnStep } from '../../../app/søknad/steps/dine-barn/dineBarnStepUtils';
 
 const meta: Meta<typeof DineBarnForm> = {
@@ -51,4 +51,7 @@ export const TreBarnOver13 = Template.bind({});
 TreBarnOver13.args = { registrerteBarn: barnMockData.treBarnOver13 };
 
 export const OverUnder13 = Template.bind({});
-OverUnder13.args = { registrerteBarn: barnMockData.treBarnMix };
+OverUnder13.args = { registrerteBarn: barnMockData.toBarnUnderOgEttBarnOver };
+
+export const IngenBarn = Template.bind({});
+IngenBarn.args = { registrerteBarn: [] };

@@ -12,6 +12,7 @@ import AndreBarnPart from './parts/AndreBarnPart';
 import DineBarnStepIntro from './parts/DineBarnStepIntro';
 import RegistrerteBarnPart from './parts/RegistrerteBarnPart';
 import DineBarnScenarioer from './scenario/DineBarnScenarioer';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 
 const { Form } = getTypedFormComponents<DineBarnFormFields, DineBarnFormValues, ValidationError>();
 
@@ -72,7 +73,9 @@ const DineBarnForm: React.FunctionComponent<DineBarnFormProps> = ({
                         return 'ingenBarn';
                     }
                 }}>
-                <RegistrerteBarnPart registrerteBarn={registrerteBarn} />
+                <Block padBottom="xl">
+                    <RegistrerteBarnPart registrerteBarn={registrerteBarn} />
+                </Block>
 
                 <AndreBarnPart
                     harRegistrerteBarn={registrerteBarn.length > 0}

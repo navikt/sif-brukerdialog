@@ -23,7 +23,9 @@ import SelvstendigNæringsdrivendeFormPart from './form-parts/SelvstendigNæring
 import {
     getArbeidssituasjonStepInitialValues,
     getArbeidssituasjonSøknadsdataFromFormValues,
+    validateArbeidssituasjonTidsrom,
 } from './arbeidssituasjonStepUtils';
+import { FormikInputGroup } from '@navikt/sif-common-formik-ds';
 
 export enum ArbeidssituasjonFormFields {
     frilans_erFrilanser = 'frilans_erFrilanser',
@@ -110,16 +112,30 @@ const ArbeidssituasjonStep = () => {
                                     </p>
                                 </SifGuidePanel>
 
-                                <FormBlock>
-                                    <FrilansFormPart
-                                        values={values}
-                                        fraværPeriode={søknadsdata.fravaer?.førsteOgSisteDagMedFravær}
-                                    />
-                                </FormBlock>
+                                <FormikInputGroup
+                                    name={'arbeidssituasjon_tidsrom'}
+                                    hideLegend={true}
+                                    legend="Registrer frilans og/eller selvstendig næringsdrivende"
+                                    validate={() => {
+                                        return validateArbeidssituasjonTidsrom(
+                                            values,
+                                            søknadsdata.fravaer?.førsteOgSisteDagMedFravær,
+                                        );
+                                    }}>
+                                    <div>
+                                        <FormBlock>
+                                            <FrilansFormPart
+                                                values={values}
+                                                fraværPeriode={søknadsdata.fravaer?.førsteOgSisteDagMedFravær}
+                                            />
+                                        </FormBlock>
 
-                                <FormBlock>
-                                    <SelvstendigNæringsdrivendeFormPart values={values} />
-                                </FormBlock>
+                                        <FormBlock>
+                                            <SelvstendigNæringsdrivendeFormPart values={values} />
+                                        </FormBlock>
+                                    </div>
+                                </FormikInputGroup>
+
                                 {submitDisabled(values) && (
                                     <FormBlock margin="l">
                                         <Alert variant="warning">
