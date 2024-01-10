@@ -27,7 +27,7 @@ const getÅrstallFromFravær = (
     }
 };
 
-const getTidsromFromÅrstall = (årstall?: number): DateRange => {
+const getGyldigTidsromForFravær = (årstall?: number): DateRange => {
     if (årstall === undefined) {
         return { from: date1YearAgo, to: dayjs().endOf('day').toDate() };
     }
@@ -62,8 +62,22 @@ const getFørsteOgSisteDagMedFravær = (
     return from && to ? { from, to } : undefined;
 };
 
+const getFraværsdager = (fravær?: FraværSøknadsdata) => {
+    return fravær && fravær && (fravær.type === 'harKunDelvisFravær' || fravær.type === 'harFulltOgDelvisFravær')
+        ? fravær.fraværDager
+        : [];
+};
+
+const getFraværsperioder = (fravær?: FraværSøknadsdata) => {
+    return fravær && fravær && (fravær.type === 'harKunFulltFravær' || fravær.type === 'harFulltOgDelvisFravær')
+        ? fravær.fraværPerioder
+        : [];
+};
+
 const fraværStepUtils = {
-    getTidsromFromÅrstall,
+    getFraværsdager,
+    getFraværsperioder,
+    getGyldigTidsromForFravær,
     getÅrstallFromFravær,
 };
 

@@ -1,38 +1,39 @@
-import { useCallback, useEffect, useState } from 'react';
+import { Alert, Heading } from '@navikt/ds-react';
+import { useEffect } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import { date1YearAgo, DateRange, dateToday } from '@navikt/sif-common-utils';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { FormikValuesObserver } from '@navikt/sif-common-formik-ds';
+import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/BostedUtlandListAndDialog';
 import { fraværDagToFraværDateRange, fraværPeriodeToDateRange } from '@navikt/sif-common-forms-ds/src/forms/fravær';
 import FraværDagerListAndDialog from '@navikt/sif-common-forms-ds/src/forms/fravær/FraværDagerListAndDialog';
 import FraværPerioderListAndDialog from '@navikt/sif-common-forms-ds/src/forms/fravær/FraværPerioderListAndDialog';
-import { getFraværDagerValidator, getFraværPerioderValidator } from './fraværFieldValidations';
 import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds/src/forms/fravær/types';
 import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { useSøknadContext } from '../../context/hooks/useSøknadContext';
-import { StepId } from '../../../types/StepId';
-import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../søknadStepConfig';
+import { date1YearAgo, dateToday } from '@navikt/sif-common-utils';
+import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
+import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
+import { usePersistTempFormValues } from '../../../hooks/usePersistTempFormValues';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
-import actionsCreator from '../../context/action/actionCreator';
+import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
+import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
+import actionsCreator from '../../context/action/actionCreator';
+import { useSøknadContext } from '../../context/hooks/useSøknadContext';
+import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
-import fraværStepUtils, { getFraværStepInitialValues, getFraværSøknadsdataFromFormValues } from './FraværStepUtils';
-import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../søknadStepConfig';
+import { getFraværDagerValidator, getFraværPerioderValidator } from './fraværFieldValidations';
 import FraværStepInfo from './FraværStepInfo';
-import { Alert, Heading } from '@navikt/ds-react';
-import { FormikValuesObserver } from '@navikt/sif-common-formik-ds';
-import { usePersistTempFormValues } from '../../../hooks/usePersistTempFormValues';
-import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
+import fraværStepUtils, { getFraværStepInitialValues, getFraværSøknadsdataFromFormValues } from './FraværStepUtils';
+import { useFraværsperiodeDetaljer } from './useFraværsperiodeDetaljer';
 
 export enum FraværFormFields {
     harPerioderMedFravær = 'harPerioderMedFravær',
@@ -92,33 +93,7 @@ const FraværStep = () => {
         },
     );
 
-    const fraværDagerFromSøknadsdata =
-        søknadsdata &&
-        søknadsdata.fravaer &&
-        (søknadsdata.fravaer.type === 'harKunDelvisFravær' || søknadsdata.fravaer.type === 'harFulltOgDelvisFravær')
-            ? søknadsdata.fravaer.fraværDager
-            : [];
-
-    const fraværPerioderFromSøknadsdata =
-        søknadsdata &&
-        søknadsdata.fravaer &&
-        (søknadsdata.fravaer.type === 'harKunFulltFravær' || søknadsdata.fravaer.type === 'harFulltOgDelvisFravær')
-            ? søknadsdata.fravaer.fraværPerioder
-            : [];
-
-    const [årstall, setÅrstall] = useState<number | undefined>();
-    const [gyldigTidsrom, setGyldigTidsrom] = useState<DateRange>(
-        fraværStepUtils.getTidsromFromÅrstall(
-            fraværStepUtils.getÅrstallFromFravær(fraværDagerFromSøknadsdata, fraværPerioderFromSøknadsdata),
-        ),
-    );
-    const updateÅrstall = useCallback(
-        (årstall: number | undefined) => {
-            setÅrstall(årstall);
-            setGyldigTidsrom(fraværStepUtils.getTidsromFromÅrstall(årstall));
-        },
-        [setÅrstall],
-    );
+    const { årstall, gyldigTidsrom, setFraværsår } = useFraværsperiodeDetaljer(søknadsdata.fravaer);
 
     const { persistTempFormValues } = usePersistTempFormValues();
 
@@ -157,7 +132,7 @@ const FraværStep = () => {
                                         fraværPerioder,
                                     );
                                     if (nyttÅrstall !== årstall) {
-                                        updateÅrstall(nyttÅrstall);
+                                        setFraværsår(nyttÅrstall);
                                     }
                                 }}
                             />
