@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/omsorgsdager-aleneomsorg-dialog",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "2.14.11",
+    "version": "2.14.12",
     "private": true,
     "type": "module",
     "scripts": {
@@ -23,9 +23,9 @@
         "storybook": "storybook dev -p 6006 -s public"
     },
     "dependencies": {
-        "@navikt/ds-css": "5.12.4",
-        "@navikt/ds-react": "5.12.4",
-        "@navikt/ds-tailwind": "5.12.4",
+        "@navikt/ds-css": "5.12.5",
+        "@navikt/ds-react": "5.12.5",
+        "@navikt/ds-tailwind": "5.12.5",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
@@ -59,7 +59,7 @@
         "@axe-core/playwright": "4.8.2",
         "@babel/plugin-proposal-object-rest-spread": "7.20.7",
         "@babel/plugin-transform-modules-commonjs": "7.23.3",
-        "@babel/preset-env": "7.23.7",
+        "@babel/preset-env": "7.23.8",
         "@babel/preset-react": "7.23.3",
         "@playwright/test": "1.40.1",
         "@types/object-hash": "3.0.6",
