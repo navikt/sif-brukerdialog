@@ -18,7 +18,7 @@ const getPeriode = () => {
 };
 
 const getUkeRow = (ukenummer) => {
-    cy.get('.arbeidstidUkeTabell').get(`[data-testid=uke_${ukenummer}]`).should('be.visible').wait(200);
+    cy.get('.arbeidstidUkeTabell').get(`[data-testid=uke_${ukenummer}]`).should('be.visible').wait(400);
     return cy.get('.arbeidstidUkeTabell').get(`[data-testid=uke_${ukenummer}]`);
 };
 const getArbeidstimerModal = () => {
@@ -213,7 +213,7 @@ const endreArbeidFlereUker = (uker: number[] = flereUker) => {
     it('velger uker for endring', () => {
         getAktivitet().within(() => {
             getPeriode().within(() => {
-                getTestElement('endre-flere-uker-cb').wait(500).click();
+                getTestElement('endre-flere-uker-cb').wait(1000).click();
                 const rows = uker.map((uke) => getUkeRow(uke));
                 rows.forEach((row) => {
                     row.within(() => {

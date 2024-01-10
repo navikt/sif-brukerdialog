@@ -1,6 +1,6 @@
 import { BodyLong, Heading, Link } from '@navikt/ds-react';
 import { FormattedMessage } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import getLenker from '../../lenker';
 
 const OmSøknaden = () => {

@@ -1,7 +1,7 @@
 import { Button, Modal, ModalProps } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
-import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import classnames from 'classnames';
 import Knapperad from '../knapperad/Knapperad';
 import './bekreftDialog.less';

@@ -1,5 +1,5 @@
 import { DateRange } from '@navikt/sif-common-utils';
-import { dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds/lib';
+import { dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';

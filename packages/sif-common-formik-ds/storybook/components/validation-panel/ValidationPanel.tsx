@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { hasValue } from '../../../src/validation/validationUtils';
 import { Heading, Tabs } from '@navikt/ds-react';
 import Tab from '@navikt/ds-react/esm/tabs/Tab';

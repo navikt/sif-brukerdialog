@@ -1,5 +1,23 @@
 # @navikt/sif-common-amplitude
 
+## 2.24.9
+
+### Patch Changes
+
+- Pakkeoppdateringer patch og noe minor
+
+## 2.24.8
+
+### Patch Changes
+
+- 23f75ff: Generelle pakkeoppdateringer - patch og minor
+
+## 2.24.7
+
+### Patch Changes
+
+- Oppdatert ds pakker
+
 ## 2.24.6
 
 ### Patch Changes

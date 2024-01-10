@@ -1,5 +1,5 @@
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import { AnnetBarn } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/types';
+import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
 
 interface DineBarnMinstEtt12årEllerYngre {
     type: 'minstEtt12årEllerYngre';

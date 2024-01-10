@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { jsonSort } from '@navikt/sif-common-utils';
-import { dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds/lib';
+import { dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import { Utenlandsopphold, UtenlandsoppholdFormValues } from './types';
 import utils from './utenlandsoppholdUtils';
 

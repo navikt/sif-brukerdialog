@@ -1,4 +1,4 @@
-import { sortDateRange } from '@navikt/sif-common-utils/lib';
+import { sortDateRange } from '@navikt/sif-common-utils';
 
 export * from './arbeidstidPeriodeIntlValuesUtils';
 export * from './hasIncreasedFontSize';

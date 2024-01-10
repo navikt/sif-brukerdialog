@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { prettifyDateExtended } from '@navikt/sif-common-utils/lib';
+import { prettifyDateExtended } from '@navikt/sif-common-utils';
 
 interface Props {
     from: Date;

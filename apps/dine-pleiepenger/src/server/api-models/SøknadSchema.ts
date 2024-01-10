@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { parseMaybeDateStringToDate } from '../../utils/jsonParseUtils';
-import { ArbeidsgivereSchema } from '../../types/Arbeidsgiver';
+import { ArbeidsgivereSchema } from './ArbeidsgivereSchema';
 
 export enum Søknadsstatus {
     MOTTATT = 'MOTTATT',
@@ -29,16 +29,7 @@ const SøknadDokumentSchema = z.object({
 });
 
 const PleiepengerSøknadInfoSchema = z.object({
-    fraOgMed: z.string(), //z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
-    tilOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
-    mottatt: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
     arbeidsgivere: ArbeidsgivereSchema,
-});
-
-const PleiepengerEndringsmeldingInfoSchema = z.object({});
-
-const PleiepengerEttersendelseInfo = z.object({
-    mottatt: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
 });
 
 const SøknadBaseSchema = z.object({
@@ -58,12 +49,10 @@ const PleiepengerSøknadSchema = SøknadBaseSchema.extend({
 
 const EndringsmeldingSchema = SøknadBaseSchema.extend({
     søknadstype: z.literal(Søknadstype.PP_SYKT_BARN_ENDRINGSMELDING),
-    søknad: PleiepengerEndringsmeldingInfoSchema,
 });
 
 const EttersendelseSchema = SøknadBaseSchema.extend({
     søknadstype: z.literal(Søknadstype.PP_ETTERSENDELSE),
-    søknad: PleiepengerEttersendelseInfo,
 });
 
 const SøknadSchema = z.discriminatedUnion('søknadstype', [

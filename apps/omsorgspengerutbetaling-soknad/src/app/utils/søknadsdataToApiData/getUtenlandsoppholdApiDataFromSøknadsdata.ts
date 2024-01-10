@@ -1,4 +1,4 @@
-import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib/forms/utenlandsopphold/types';
+import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
 import { UtenlandsoppholdApiData } from '../../types/søknadApiData/SøknadApiData';
 import { FraværSøknadsdata } from '../../types/søknadsdata/FraværSøknadsdata';
 import { mapBostedUtlandToApiData } from './getMedlemskapApiDataFromSøknadsdata';

@@ -1,5 +1,5 @@
-import { Virksomhet } from '@navikt/sif-common-forms-ds/lib';
-import { DateRange } from '@navikt/sif-common-utils/lib';
+import { Virksomhet } from '@navikt/sif-common-forms-ds/src';
+import { DateRange } from '@navikt/sif-common-utils';
 import { NormalarbeidstidSøknadsdata } from './NormalarbeidstidSøknadsdata';
 
 interface ArbeidsituasjonSelvstendigSøknadsdataErIkkeSN {

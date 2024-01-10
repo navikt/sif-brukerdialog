@@ -1,4 +1,4 @@
-import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageFileFormat';
+import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
 
 export const velkommenPageMessages: MessageFileFormat = {
     nb: {
@@ -8,9 +8,9 @@ export const velkommenPageMessages: MessageFileFormat = {
         'page.velkommen.guide.ingress':
             'Velkommen til søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning.',
         'page.velkommen.guide.tekst.1':
-            'Denne søknaden bruker du for å søke om ekstra omsorgsdager når du har barn med kronisk sykdom, funksjonshemning eller langvarig sykdom. Det er bare foreldre/fosterforeldre som barnet bor fast hos, som kan få ekstra omsorgsdager.',
+            'Denne søknaden bruker du for å søke om ekstra omsorgsdager, hvis barnet ditt har en sykdom eller funksjonshemning som gjør at du må bruke flere omsorgsdager enn det som er vanlig. Det er kun foreldre/fosterforeldre som bor med barnet som kan få ekstra omsorgsdager.',
         'page.velkommen.guide.tekst.2':
-            'Foreldre må søke hver for seg. Hvis du har flere barn med kronisk sykdom, funksjonshemning eller langvarig sykdom, må du sende én søknad for hvert barn.',
+            'Hvis flere skal ha ekstra omsorgsdager for samme barn, må dere sende hver deres søknad til NAV.',
 
         'page.velkommen.omSøknaden.tittel': 'Om søknaden',
         'page.velkommen.omSøknaden.1': 'Du får veiledning underveis i søknaden om hva du skal fylle ut, og hvordan.',

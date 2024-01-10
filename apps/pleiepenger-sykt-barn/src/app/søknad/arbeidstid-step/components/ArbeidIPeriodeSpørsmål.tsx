@@ -1,10 +1,10 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import { FormikRadioProp } from '@navikt/sif-common-formik-ds/lib/components/formik-radio-group/FormikRadioGroup';
-import { DateRange } from '@navikt/sif-common-utils/lib';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
+import { FormikRadioProp } from '@navikt/sif-common-formik-ds/src/components/formik-radio-group/FormikRadioGroup';
+import { DateRange } from '@navikt/sif-common-utils';
 import ResponsivePanel from '../../../components/responsive-panel/ResponsivePanel';
 import {
     ArbeiderIPeriodenSvar,

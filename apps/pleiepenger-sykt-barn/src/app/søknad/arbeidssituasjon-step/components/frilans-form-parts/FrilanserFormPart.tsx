@@ -1,9 +1,9 @@
 import { Alert } from '@navikt/ds-react';
 /* eslint-disable no-console */
 import React from 'react';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import { DateRange } from '@navikt/sif-common-utils/lib';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds/src';
+import { DateRange } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 import ConditionalResponsivePanel from '../../../../components/conditional-responsive-panel/ConditionalResponsivePanel';
 import { ArbeidsforholdFormField } from '../../../../types/søknad-form-values/ArbeidsforholdFormValues';

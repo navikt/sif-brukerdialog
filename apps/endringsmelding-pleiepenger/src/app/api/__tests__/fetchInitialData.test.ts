@@ -1,4 +1,4 @@
-import { ISODateRangeToDateRange, dateToISODate } from '@navikt/sif-common-utils/lib';
+import { ISODateRangeToDateRange, dateToISODate } from '@navikt/sif-common-utils';
 import { getPeriodeForArbeidsgiverOppslag } from '../../utils/initialDataUtils';
 
 describe('getPeriodeForArbeidsgiverOppslag', () => {

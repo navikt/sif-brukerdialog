@@ -1,5 +1,68 @@
 # @navikt/sif-common-ui
 
+## 0.5.2
+
+### Patch Changes
+
+- Pakkeoppdateringer patch og noe minor
+- Updated dependencies
+  - @navikt/sif-common-formik-ds@1.7.2
+  - @navikt/sif-common-core-ds@9.13.2
+  - @navikt/sif-common-utils@3.43.10
+
+## 0.5.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @navikt/sif-common-formik-ds@1.7.1
+  - @navikt/sif-common-core-ds@9.13.1
+  - @navikt/sif-common-utils@3.43.9
+
+## 0.5.0
+
+### Minor Changes
+
+- c12a07f: Oppdatere date-fns til 3.0.6 (fra 2.30.0) og chromatic til 10.2.0 (minor)
+
+### Patch Changes
+
+- Updated dependencies [c12a07f]
+  - @navikt/sif-common-formik-ds@1.7.0
+  - @navikt/sif-common-core-ds@9.13.0
+
+## 0.4.7
+
+### Patch Changes
+
+- 23f75ff: Generelle pakkeoppdateringer - patch og minor
+- Updated dependencies [23f75ff]
+  - @navikt/sif-common-formik-ds@1.6.6
+  - @navikt/sif-common-core-ds@9.12.6
+  - @navikt/sif-common-utils@3.43.8
+
+## 0.4.6
+
+### Patch Changes
+
+- 306a348: Pakkeoppdateringer.
+  - @navikt/ds-\*: minor
+  - sentry: minor
+  - vite: patch
+- Updated dependencies [306a348]
+  - @navikt/sif-common-formik-ds@1.6.5
+  - @navikt/sif-common-core-ds@9.12.5
+
+## 0.4.5
+
+### Patch Changes
+
+- Oppdatert ds pakker
+- Updated dependencies
+  - @navikt/sif-common-core-ds@9.12.4
+  - @navikt/sif-common-formik-ds@1.6.4
+  - @navikt/sif-common-utils@3.43.7
+
 ## 0.4.4
 
 ### Patch Changes

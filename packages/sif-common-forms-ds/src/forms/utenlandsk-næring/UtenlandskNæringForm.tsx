@@ -1,8 +1,8 @@
 import { useIntl } from 'react-intl';
 // import { handleDateRangeValidationError } from '../utils';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-// import { dateToday, prettifyDate } from '@navikt/sif-common-core-ds/lib/utils/dateUtils';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+// import { dateToday, prettifyDate } from '@navikt/sif-common-core-ds/src/utils/dateUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import {
     getDateRangeValidator,
@@ -12,10 +12,10 @@ import {
     ValidateDateRangeError,
     ValidateRequiredFieldError,
     ValidateStringError,
-} from '@navikt/sif-common-formik-ds/lib/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import { date99YearsFromNow, dateToday, prettifyDate } from '@navikt/sif-common-utils/lib';
+} from '@navikt/sif-common-formik-ds/src/validation';
+import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { date99YearsFromNow, dateToday, prettifyDate } from '@navikt/sif-common-utils';
 import { handleDateRangeValidationError } from '../../utils';
 import { UtenlandskNæring, UtenlandskNæringFormValues, UtenlandskNæringstype } from './types';
 import {

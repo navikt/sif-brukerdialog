@@ -1,8 +1,8 @@
-import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import { validateAll } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
-import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds/lib';
-import { validateNoCollisions } from '@navikt/sif-common-forms-ds/lib/forms/fravær/fraværValidationUtils';
+import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
+import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds';
+import { validateNoCollisions } from '@navikt/sif-common-forms-ds/src/forms/fravær/fraværValidationUtils';
 
 enum FraværErrors {
     ulikeÅrstall = 'ulikeÅrstall',

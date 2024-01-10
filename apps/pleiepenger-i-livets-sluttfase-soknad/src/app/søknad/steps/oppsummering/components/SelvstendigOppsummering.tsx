@@ -1,9 +1,9 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { JaNeiSvar, SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import VirksomhetSummary from '@navikt/sif-common-forms-ds/lib/forms/virksomhet/VirksomhetSummary';
-import { VirksomhetApiData } from '@navikt/sif-common-forms-ds/lib';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import VirksomhetSummary from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetSummary';
+import { VirksomhetApiData } from '@navikt/sif-common-forms-ds';
 
 interface Props {
     virksomhet?: VirksomhetApiData;

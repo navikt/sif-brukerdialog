@@ -1,5 +1,44 @@
 # @navikt/sif-common-formik-ds
 
+## 1.7.2
+
+### Patch Changes
+
+- Pakkeoppdateringer patch og noe minor
+
+## 1.7.1
+
+### Patch Changes
+
+- Generelle pakkeoppdateringer - patch og minor
+
+## 1.7.0
+
+### Minor Changes
+
+- c12a07f: Oppdatere date-fns til 3.0.6 (fra 2.30.0) og chromatic til 10.2.0 (minor)
+
+## 1.6.6
+
+### Patch Changes
+
+- 23f75ff: Generelle pakkeoppdateringer - patch og minor
+
+## 1.6.5
+
+### Patch Changes
+
+- 306a348: Pakkeoppdateringer.
+  - @navikt/ds-\*: minor
+  - sentry: minor
+  - vite: patch
+
+## 1.6.4
+
+### Patch Changes
+
+- Oppdatert ds pakker
+
 ## 1.6.3
 
 ### Patch Changes

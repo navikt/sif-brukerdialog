@@ -1293,7 +1293,7 @@
                                         "registrertIUtlandet": true
                                     }
                                 },
-                                "virksomhetNavn": "ABC"
+                                "virksomhetNavn": "SJOKKERENDE ELEKTRIKER"
                             }
                         ]
                     },
@@ -1362,7 +1362,7 @@
                     "varigEndring": { "dato": "2022-09-01", "forklaring": "WhoaWhoa", "inntektEtterEndring": 123 },
                     "fiskerErPåBladB": false,
                     "registrertINorge": false,
-                    "navnPåVirksomheten": "ABC",
+                    "navnPåVirksomheten": "SJOKKERENDE ELEKTRIKER",
                     "registrertIUtlandet": { "landkode": "ASM", "landnavn": "Amerikansk Samoa" },
                     "harFlereAktiveVirksomheter": true
                 },

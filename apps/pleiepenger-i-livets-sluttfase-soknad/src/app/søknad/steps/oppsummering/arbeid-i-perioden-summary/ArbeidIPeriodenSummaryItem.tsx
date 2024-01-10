@@ -1,7 +1,7 @@
 import { Heading } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import { DateRange } from '@navikt/sif-common-formik-ds/lib';
-import { ISODurationToDecimalDuration, dateToISODate } from '@navikt/sif-common-utils/lib';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { DateRange } from '@navikt/sif-common-formik-ds';
+import { ISODurationToDecimalDuration, dateToISODate } from '@navikt/sif-common-utils';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { TidEnkeltdager } from '../../../../local-sif-common-pleiepenger';

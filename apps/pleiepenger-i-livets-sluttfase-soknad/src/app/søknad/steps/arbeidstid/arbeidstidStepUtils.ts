@@ -1,4 +1,4 @@
-import { DateDurationMap, dateToISODate } from '@navikt/sif-common-utils/lib';
+import { DateDurationMap, dateToISODate } from '@navikt/sif-common-utils';
 import { ArbeidIPeriodeType } from '../../../types/arbeidIPeriodeType';
 import { ArbeidFrilansSøknadsdata } from '../../../types/søknadsdata/ArbeidFrilansSøknadsdata';
 import { ArbeidSelvstendigSøknadsdata } from '../../../types/søknadsdata/ArbeidSelvstendigSøknadsdata';

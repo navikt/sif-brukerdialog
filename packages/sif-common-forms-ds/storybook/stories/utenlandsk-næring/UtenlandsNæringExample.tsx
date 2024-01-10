@@ -1,13 +1,13 @@
 import { Heading, Panel } from '@navikt/ds-react';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-// import MessagesPreview from '@navikt/sif-common-core-ds/lib/dev-utils/intl/messages-preview/MessagesPreview';
-import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds/lib';
-// import DialogFormWrapper from '@navikt/sif-common-formik-ds/lib/components/formik-modal-form-and-list/dialog-form-wrapper/DialogFormWrapper';
-import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+// import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
+import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
+// import DialogFormWrapper from '@navikt/sif-common-formik-ds/src/components/formik-modal-form-and-list/dialog-form-wrapper/DialogFormWrapper';
+import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { flatten } from 'flat';
 import { UtenlandskNæring } from '../../../src/forms/utenlandsk-næring';
 import UtenlandskNæringForm, {

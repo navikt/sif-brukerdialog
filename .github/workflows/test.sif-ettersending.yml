@@ -71,7 +71,7 @@ jobs:
               run: npx playwright install chromium
 
             - name: Build application
-              run: yarn build-app --filter=sif-ettersending
+              run: yarn build --filter=sif-ettersending
 
             - name: Run tests
               run: yarn turbo playwright-test --filter=sif-ettersending

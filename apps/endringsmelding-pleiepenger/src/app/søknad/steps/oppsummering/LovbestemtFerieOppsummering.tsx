@@ -1,7 +1,7 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import InfoList from '@navikt/sif-common-core-ds/lib/components/lists/info-list/InfoList';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import InfoList from '@navikt/sif-common-core-ds/src/components/lists/info-list/InfoList';
 import { dateRangeToISODateRange, getDateRangeText } from '@navikt/sif-common-utils';
 import { LovbestemtFerieApiData } from '@types';
 import { getLovbestemtFerieOppsummeringInfo } from '@utils';

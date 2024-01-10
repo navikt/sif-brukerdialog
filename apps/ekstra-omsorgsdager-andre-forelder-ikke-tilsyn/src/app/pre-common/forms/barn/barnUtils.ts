@@ -1,4 +1,4 @@
-import { hasValue } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
+import { hasValue } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
 import { AndreBarn, BarnFormValues } from './types';
 
 const isBarn = (barn: Partial<AndreBarn>): barn is AndreBarn => {

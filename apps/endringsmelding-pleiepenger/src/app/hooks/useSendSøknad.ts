@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSøknadContext } from '@hooks';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
+import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
 import { SøknadApiData } from '@types';
 import { appSentryLogger } from '@utils';

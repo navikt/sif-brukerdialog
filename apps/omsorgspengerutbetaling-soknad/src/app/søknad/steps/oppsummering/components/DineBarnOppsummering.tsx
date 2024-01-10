@@ -1,8 +1,8 @@
-import SummaryList from '@navikt/sif-common-soknad-ds/lib/components/summary-list/SummaryList';
+import SummaryList from '@navikt/sif-common-soknad-ds/src/components/summary-list/SummaryList';
 import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { ApiBarn, RegistrertBarnTypeApi } from '../../../../types/søknadApiData/SøknadApiData';
-import { BarnType } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/types';
+import { BarnType } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
 import { JaNeiSvar, SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
 
 interface Props {

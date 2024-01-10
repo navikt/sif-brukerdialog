@@ -1,4 +1,4 @@
-import { FraværDag, FraværPeriode, Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib';
+import { FraværDag, FraværPeriode, Utenlandsopphold } from '@navikt/sif-common-forms-ds';
 
 interface HarKunFulltFravær {
     type: 'harKunFulltFravær';

@@ -1,19 +1,19 @@
-import { SanityConfig } from '@navikt/appstatus-react-ds/lib/types';
+import { SanityConfig } from '@navikt/appstatus-react-ds/src/types';
 import React from 'react';
 import { IntlProvider } from 'react-intl';
 import { BrowserRouter } from 'react-router-dom';
 import '@formatjs/intl-pluralrules/locale-data/nb';
 import '@formatjs/intl-pluralrules/locale-data/nn';
 import '@formatjs/intl-pluralrules/polyfill';
-import AppStatusWrapper from '@navikt/sif-common-core-ds/lib/components/app-status-wrapper/AppStatusWrapper';
-import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
-import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageFileFormat';
+import AppStatusWrapper from '@navikt/sif-common-core-ds/src/components/app-status-wrapper/AppStatusWrapper';
+import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
+import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
 import {
     getBokmålLocale,
     getLocaleFromSessionStorage,
     getNynorskLocale,
     setLocaleInSessionStorage,
-} from '@navikt/sif-common-core-ds/lib/utils/localeUtils';
+} from '@navikt/sif-common-core-ds/src/utils/localeUtils';
 import getSentryLoggerForApp from '@navikt/sif-common-sentry';
 import dayjs from 'dayjs';
 import 'dayjs/locale/nb';

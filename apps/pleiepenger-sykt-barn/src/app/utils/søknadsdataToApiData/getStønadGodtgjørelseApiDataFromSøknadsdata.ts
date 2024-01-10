@@ -1,6 +1,6 @@
 import { SøknadApiData } from '../../types/søknad-api-data/SøknadApiData';
 import { StønadGodtgjørelseSøknadsdata } from '../../types/søknadsdata/StønadGodtgjørelseSøknadsdata';
-import { DateRange, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
+import { DateRange, YesOrNo } from '@navikt/sif-common-formik-ds/src';
 import { dateToISODate } from '@navikt/sif-common-utils';
 
 type StønadGodtgjørelseApiData = Pick<SøknadApiData, 'stønadGodtgjørelse'>;

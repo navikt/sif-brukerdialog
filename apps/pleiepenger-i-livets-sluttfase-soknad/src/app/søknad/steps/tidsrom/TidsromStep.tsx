@@ -1,18 +1,18 @@
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import {
     DateRange,
     FormikYesOrNoQuestion,
     ValidationError,
     YesOrNo,
     getTypedFormComponents,
-} from '@navikt/sif-common-formik-ds/lib';
-import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib';
-import UtenlandsoppholdListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/utenlandsopphold/UtenlandsoppholdListAndDialog';
-import { getDateRangeFromDates } from '@navikt/sif-common-utils/lib';
+} from '@navikt/sif-common-formik-ds';
+import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { Utenlandsopphold } from '@navikt/sif-common-forms-ds';
+import UtenlandsoppholdListAndDialog from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/UtenlandsoppholdListAndDialog';
+import { getDateRangeFromDates } from '@navikt/sif-common-utils';
 import { FormattedMessage, useIntl } from 'react-intl';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
@@ -31,7 +31,7 @@ import {
     getTidsromSøknadsdataFromFormValues,
     validateUtenlandsoppholdIPerioden,
 } from './tidsromStepUtils';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { Alert } from '@navikt/ds-react';
 
 export enum TidsromFormFields {

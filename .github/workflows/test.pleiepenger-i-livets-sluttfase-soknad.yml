@@ -71,7 +71,7 @@ jobs:
               run: npx playwright install chromium
 
             - name: Build application
-              run: yarn build-app --filter=pleiepenger-i-livets-sluttfase-soknad
+              run: yarn build --filter=pleiepenger-i-livets-sluttfase-soknad
 
             - name: Run tests
               run: yarn turbo playwright-test --filter=pleiepenger-i-livets-sluttfase-soknad

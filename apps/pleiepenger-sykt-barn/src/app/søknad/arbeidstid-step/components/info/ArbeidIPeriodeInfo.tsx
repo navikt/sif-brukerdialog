@@ -1,7 +1,7 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import InfoOmEndring from '../InfoOmEndring';
 import { ArbeidsforholdType } from '../../../../local-sif-common-pleiepenger';
 

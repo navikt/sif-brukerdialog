@@ -4,7 +4,7 @@ import {
     ModalFormAndInfoLabels,
     TypedFormInputValidationProps,
 } from '@navikt/sif-common-formik-ds';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { mapVirksomhetToVirksomhetApiData } from './mapVirksomhetToApiData';
 import { Virksomhet } from './types';
 import VirksomhetForm from './VirksomhetForm';

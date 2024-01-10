@@ -1,4 +1,4 @@
-import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
+import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import appSentryLogger from './appSentryLogger';
 
 export const getValidSpråk = (locale?: any): Locale => {

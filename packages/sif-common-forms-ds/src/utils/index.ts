@@ -3,8 +3,8 @@ import {
     ValidateDateError,
     ValidateDateRangeError,
     ValidateRequiredFieldError,
-} from '@navikt/sif-common-formik-ds/lib/validation';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+} from '@navikt/sif-common-formik-ds/src/validation';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { DateTidsperiode } from '../forms/tidsperiode';
 
 export const mapFomTomToDateRange = ({ fom, tom }: DateTidsperiode): DateRange => ({

@@ -1,5 +1,5 @@
-import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
-import { getEnvVariableOrDefault } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
+import { getEnvVariableOrDefault } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import axios, { AxiosError, AxiosRequestConfig, RawAxiosRequestHeaders } from 'axios';
 import { relocateToLoginPage, relocateToNoAccessPage } from '../utils/navigationUtils';
 

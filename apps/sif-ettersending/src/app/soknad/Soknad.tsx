@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { failure, pending, success } from '@devexperts/remote-data-ts';
 import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
-import LoadWrapper from '@navikt/sif-common-core-ds/lib/components/load-wrapper/LoadWrapper';
+import LoadWrapper from '@navikt/sif-common-core-ds/src/components/load-wrapper/LoadWrapper';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { isUserLoggedOut } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
+import { isUserLoggedOut } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { v4 as uuid } from 'uuid';
 import { sendSoknad } from '../api/sendSoknad';
 import { getRouteConfig } from '../config/routeConfig';
@@ -26,7 +26,7 @@ import SoknadFormComponents from './SoknadFormComponents';
 import SoknadRouter from './SoknadRouter';
 import { getFirstStep, getSoknadStepsConfig, StepID } from './soknadStepsConfig';
 import soknadTempStorage, { isStorageDataValid } from './soknadTempStorage';
-import { YtelseKey } from '@navikt/sif-common-core-ds/lib/types/Ytelser';
+import { YtelseKey } from '@navikt/sif-common-core-ds/src/types/Ytelser';
 
 interface Props {
     søker: Person;

@@ -36,6 +36,11 @@ const nextConfig = {
 
     redirects: async () => [
         { source: '/', destination: process.env.NEXT_PUBLIC_BASE_PATH, permanent: false, basePath: false },
+        {
+            source: '/dine-pleiepenger',
+            destination: '/',
+            permanent: false,
+        },
     ],
 
     async headers() {

@@ -1,6 +1,6 @@
 import { Heading, Link } from '@navikt/ds-react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import getLenker from '../../../lenker';
 import { Søknadstype } from '../../../types/Søknadstype';
 

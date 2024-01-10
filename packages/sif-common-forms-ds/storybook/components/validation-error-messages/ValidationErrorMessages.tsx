@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import MessagesPreview from '../../components/messages-preview/MessagesPreview';
 import { MessageFileFormat } from '../devIntlUtils';
 
@@ -37,7 +37,7 @@ const FormValidationErrorMessages: React.FunctionComponent<Props> = ({
                 const intlKey = createFieldErrorIntlKey(error, field, formName);
                 validationeMessages['nb'][intlKey] = intlMessages['nb'][intlKey];
                 validationeMessages['nn'][intlKey] = intlMessages['nn'][intlKey];
-            })
+            }),
         );
     }
 

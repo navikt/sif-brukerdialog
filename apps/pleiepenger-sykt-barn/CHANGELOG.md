@@ -1,5 +1,93 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.7.9
+
+### Patch Changes
+
+- Pakkeoppdateringer patch og noe minor
+- Updated dependencies
+  - @navikt/sif-common-amplitude@2.24.9
+  - @navikt/sif-common-formik-ds@1.7.2
+  - @navikt/sif-common-soknad-ds@10.13.2
+  - @navikt/sif-common-forms-ds@8.17.2
+  - @navikt/appstatus-react-ds@2.17.11
+  - @navikt/sif-common-core-ds@9.13.2
+  - @navikt/sif-common-sentry@0.25.9
+  - @navikt/sif-common-utils@3.43.10
+
+## 3.7.8
+
+### Patch Changes
+
+- Generelle pakkeoppdateringer - patch og minor
+- Updated dependencies
+  - @navikt/sif-common-formik-ds@1.7.1
+  - @navikt/sif-common-soknad-ds@10.13.1
+  - @navikt/sif-common-forms-ds@8.17.1
+  - @navikt/appstatus-react-ds@2.17.10
+  - @navikt/sif-common-core-ds@9.13.1
+  - @navikt/sif-common-sentry@0.25.8
+  - @navikt/sif-common-utils@3.43.9
+  - @navikt/sif-common-amplitude@2.24.8
+
+## 3.7.7
+
+### Patch Changes
+
+- Updated dependencies [c12a07f]
+  - @navikt/sif-common-formik-ds@1.7.0
+  - @navikt/sif-common-soknad-ds@10.13.0
+  - @navikt/sif-common-forms-ds@8.17.0
+  - @navikt/sif-common-core-ds@9.13.0
+
+## 3.7.6
+
+### Patch Changes
+
+- 23f75ff: Generelle pakkeoppdateringer - patch og minor
+- Updated dependencies [23f75ff]
+  - @navikt/sif-common-amplitude@2.24.8
+  - @navikt/sif-common-formik-ds@1.6.6
+  - @navikt/sif-common-soknad-ds@10.12.6
+  - @navikt/sif-common-forms-ds@8.16.6
+  - @navikt/appstatus-react-ds@2.17.9
+  - @navikt/sif-common-core-ds@9.12.6
+  - @navikt/sif-common-sentry@0.25.7
+  - @navikt/sif-common-utils@3.43.8
+
+## 3.7.5
+
+### Patch Changes
+
+- 306a348: Pakkeoppdateringer.
+  - @navikt/ds-\*: minor
+  - sentry: minor
+  - vite: patch
+- Updated dependencies [306a348]
+  - @navikt/sif-common-formik-ds@1.6.5
+  - @navikt/sif-common-soknad-ds@10.12.5
+  - @navikt/sif-common-forms-ds@8.16.5
+  - @navikt/appstatus-react-ds@2.17.8
+  - @navikt/sif-common-core-ds@9.12.5
+  - @navikt/sif-common-sentry@0.25.6
+
+## 3.7.4
+
+### Patch Changes
+
+- Oppdatert ds pakker
+- Updated dependencies
+  - @navikt/appstatus-react-ds@2.17.7
+  - @navikt/sif-app-register@0.0.5
+  - @navikt/sif-common-amplitude@2.24.7
+  - @navikt/sif-common-core-ds@9.12.4
+  - @navikt/sif-common-formik-ds@1.6.4
+  - @navikt/sif-common-forms-ds@8.16.4
+  - @navikt/sif-common-hooks@0.1.4
+  - @navikt/sif-common-sentry@0.25.5
+  - @navikt/sif-common-soknad-ds@10.12.4
+  - @navikt/sif-common-utils@3.43.7
+
 ## 3.7.3
 
 ### Patch Changes

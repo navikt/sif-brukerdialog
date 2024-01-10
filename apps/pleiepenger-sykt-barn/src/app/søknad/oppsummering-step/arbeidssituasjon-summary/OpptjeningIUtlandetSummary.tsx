@@ -1,10 +1,10 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import SummaryList from '@navikt/sif-common-soknad-ds/lib/components/summary-list/SummaryList';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import SummaryList from '@navikt/sif-common-soknad-ds/src/components/summary-list/SummaryList';
 import { renderOpptjeningIUtlandetSummary } from './renderOpptjeningIUtlandetSummary';
 import { OpptjeningIUtlandetApiData } from '../../../types/søknad-api-data/SøknadApiData';
-import SummaryBlock from '@navikt/sif-common-soknad-ds/lib/components/summary-block/SummaryBlock';
+import SummaryBlock from '@navikt/sif-common-soknad-ds/src/components/summary-block/SummaryBlock';
 
 export interface Props {
     opptjeningUtland: OpptjeningIUtlandetApiData[];

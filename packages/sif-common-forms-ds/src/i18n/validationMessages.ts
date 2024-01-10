@@ -1,13 +1,13 @@
-import { ValidateCheckedError } from '@navikt/sif-common-formik-ds/lib/validation';
-import { ValidateDateRangeError } from '@navikt/sif-common-formik-ds/lib/validation';
-import { ValidateDateError } from '@navikt/sif-common-formik-ds/lib/validation';
-import { ValidateFødselsnummerError } from '@navikt/sif-common-formik-ds/lib/validation';
-import { ValidateListError } from '@navikt/sif-common-formik-ds/lib/validation';
-import { ValidateNumberError } from '@navikt/sif-common-formik-ds/lib/validation';
-import { ValidateOrgNumberError } from '@navikt/sif-common-formik-ds/lib/validation';
-import { ValidateRequiredFieldError } from '@navikt/sif-common-formik-ds/lib/validation';
-import { ValidateStringError } from '@navikt/sif-common-formik-ds/lib/validation';
-import { ValidateYesOrNoError } from '@navikt/sif-common-formik-ds/lib/validation';
+import { ValidateCheckedError } from '@navikt/sif-common-formik-ds/src/validation';
+import { ValidateDateRangeError } from '@navikt/sif-common-formik-ds/src/validation';
+import { ValidateDateError } from '@navikt/sif-common-formik-ds/src/validation';
+import { ValidateFødselsnummerError } from '@navikt/sif-common-formik-ds/src/validation';
+import { ValidateListError } from '@navikt/sif-common-formik-ds/src/validation';
+import { ValidateNumberError } from '@navikt/sif-common-formik-ds/src/validation';
+import { ValidateOrgNumberError } from '@navikt/sif-common-formik-ds/src/validation';
+import { ValidateRequiredFieldError } from '@navikt/sif-common-formik-ds/src/validation';
+import { ValidateStringError } from '@navikt/sif-common-formik-ds/src/validation';
+import { ValidateYesOrNoError } from '@navikt/sif-common-formik-ds/src/validation';
 
 export const validationMessages = {
     [ValidateRequiredFieldError.noValue]: ({ hva }: { hva: string }) => `Du må svare på ${hva}.`,

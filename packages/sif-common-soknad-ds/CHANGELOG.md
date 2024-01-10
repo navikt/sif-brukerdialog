@@ -1,5 +1,44 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.13.2
+
+### Patch Changes
+
+- Pakkeoppdateringer patch og noe minor
+
+## 10.13.1
+
+### Patch Changes
+
+- Generelle pakkeoppdateringer - patch og minor
+
+## 10.13.0
+
+### Minor Changes
+
+- c12a07f: Oppdatere date-fns til 3.0.6 (fra 2.30.0) og chromatic til 10.2.0 (minor)
+
+## 10.12.6
+
+### Patch Changes
+
+- 23f75ff: Generelle pakkeoppdateringer - patch og minor
+
+## 10.12.5
+
+### Patch Changes
+
+- 306a348: Pakkeoppdateringer.
+  - @navikt/ds-\*: minor
+  - sentry: minor
+  - vite: patch
+
+## 10.12.4
+
+### Patch Changes
+
+- Oppdatert ds pakker
+
 ## 10.12.3
 
 ### Patch Changes

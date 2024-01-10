@@ -1,5 +1,78 @@
 # @navikt/dine-pleiepenger
 
+## 0.5.2
+
+### Patch Changes
+
+- Pakkeoppdateringer patch og noe minor
+- Updated dependencies
+  - @navikt/appstatus-react-ds@2.17.11
+  - @navikt/sif-common-core-ds@9.13.2
+  - @navikt/sif-common-sentry@0.25.9
+  - @navikt/sif-common-utils@3.43.10
+
+## 0.5.1
+
+### Patch Changes
+
+- Generelle pakkeoppdateringer - patch og minor
+- Updated dependencies
+  - @navikt/appstatus-react-ds@2.17.10
+  - @navikt/sif-common-core-ds@9.13.1
+  - @navikt/sif-common-sentry@0.25.8
+  - @navikt/sif-common-utils@3.43.9
+
+## 0.5.0
+
+### Minor Changes
+
+- c12a07f: Oppdatere date-fns til 3.0.6 (fra 2.30.0) og chromatic til 10.2.0 (minor)
+
+### Patch Changes
+
+- Updated dependencies [c12a07f]
+  - @navikt/sif-common-core-ds@9.13.0
+
+## 0.4.1
+
+### Patch Changes
+
+- 5b106ca: Forenkle zod-schema for organisasjon. Unngå feil typing i data som ikke brukes
+- 23f75ff: Generelle pakkeoppdateringer - patch og minor
+- Updated dependencies [23f75ff]
+  - @navikt/appstatus-react-ds@2.17.9
+  - @navikt/sif-common-core-ds@9.12.6
+  - @navikt/sif-common-sentry@0.25.7
+  - @navikt/sif-common-utils@3.43.8
+
+## 0.4.0
+
+### Minor Changes
+
+- d356f0b: Justere ZOD validering og henting av søknadsinformasjon. Gå over til å bruke opprettetDato for visning av mottatt dato.
+
+### Patch Changes
+
+- 306a348: Pakkeoppdateringer.
+  - @navikt/ds-\*: minor
+  - sentry: minor
+  - vite: patch
+- Updated dependencies [306a348]
+  - @navikt/appstatus-react-ds@2.17.8
+  - @navikt/sif-common-core-ds@9.12.5
+  - @navikt/sif-common-sentry@0.25.6
+
+## 0.3.7
+
+### Patch Changes
+
+- Oppdatert ds pakker
+- Updated dependencies
+  - @navikt/appstatus-react-ds@2.17.7
+  - @navikt/sif-common-core-ds@9.12.4
+  - @navikt/sif-common-sentry@0.25.5
+  - @navikt/sif-common-utils@3.43.7
+
 ## 0.3.6
 
 ### Patch Changes

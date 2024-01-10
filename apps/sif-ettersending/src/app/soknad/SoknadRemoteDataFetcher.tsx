@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl';
 import { useParams } from 'react-router-dom';
-import LoadingSpinner from '@navikt/sif-common-core-ds/lib/atoms/loading-spinner/LoadingSpinner';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { ErrorPage, LoadingPage, SoknadErrorMessages } from '@navikt/sif-common-soknad-ds';
 import useSoknadEssentials from '../hooks/useSoknadEssentials';
 import IkkeTilgangPage from '../pages/ikke-tilgang-page/ikkeTilgangPage';

@@ -1,7 +1,7 @@
 'use client';
 import { BodyShort, Box, Heading, Link } from '@navikt/ds-react';
 import React from 'react';
-import { dateFormatter } from '@navikt/sif-common-utils/lib';
+import { dateFormatter } from '@navikt/sif-common-utils';
 import { browserEnv } from '../../utils/env';
 
 interface Props {
@@ -23,7 +23,7 @@ const Svarfrist: React.FunctionComponent<Props> = ({ frist }) => {
                         </span>
                     </p>
                 ) : (
-                    <p className="mb-2">Forventet behandlingstid er 6 uker fra vi fikk søknaden din.</p>
+                    <p className="mb-2">Forventet behandlingstid er 8 uker fra vi fikk søknaden din.</p>
                 )}
 
                 <Link variant="neutral" href={browserEnv.NEXT_PUBLIC_SAKBEHANDLINGSTID_INFO_URL}>

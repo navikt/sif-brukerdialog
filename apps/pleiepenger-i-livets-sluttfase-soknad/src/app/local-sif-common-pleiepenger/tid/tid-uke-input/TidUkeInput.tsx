@@ -1,10 +1,10 @@
 import React from 'react';
-import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
+import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { DateDurationMap, isDateInDates } from '@navikt/sif-common-utils';
 import { TidPerDagValidator } from '../..';
 import { Daginfo, Ukeinfo } from '../../types';
 import { tidUkerInputUtils } from '../tid-uker-input/tidUkerUtils';
-import { FormikTimeInput } from '@navikt/sif-common-formik-ds/lib';
+import { FormikTimeInput } from '@navikt/sif-common-formik-ds';
 import { Heading } from '@navikt/ds-react';
 import { FormattedMessage } from 'react-intl';
 

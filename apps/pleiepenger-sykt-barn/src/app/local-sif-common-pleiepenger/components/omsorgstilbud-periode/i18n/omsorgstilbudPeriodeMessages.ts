@@ -1,5 +1,5 @@
 import { IntlShape } from 'react-intl';
-import { typedIntlHelper } from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 
 const omsorgstilbudPeriodeFormMessages = {
     nb: {

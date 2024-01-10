@@ -1,11 +1,11 @@
 import { BodyLong } from '@navikt/ds-react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import AttachmentList from '@navikt/sif-common-core-ds/lib/components/attachment-list/AttachmentList';
-import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { FødselsnummerSvar, SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
-import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils/lib';
+import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils';
 import { FlereSokereApiData, PleietrengendeApi } from '../../../../types/søknadApiData/SøknadApiData';
 
 interface Props {

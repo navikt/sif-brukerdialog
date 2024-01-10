@@ -1,23 +1,23 @@
 import { Alert, Link } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import FileUploadErrors from '@navikt/sif-common-core-ds/lib/components/file-upload-errors/FileUploadErrors';
-import FormikFileUploader from '@navikt/sif-common-core-ds/lib/components/formik-file-uploader/FormikFileUploader';
-import PictureScanningGuide from '@navikt/sif-common-core-ds/lib/components/picture-scanning-guide/PictureScanningGuide';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import FileUploadErrors from '@navikt/sif-common-core-ds/src/components/file-upload-errors/FileUploadErrors';
+import FormikFileUploader from '@navikt/sif-common-core-ds/src/components/formik-file-uploader/FormikFileUploader';
+import PictureScanningGuide from '@navikt/sif-common-core-ds/src/components/picture-scanning-guide/PictureScanningGuide';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import {
     attachmentHasBeenUploaded,
     getTotalSizeOfAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
-} from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { getTypedFormComponents, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/lib';
-import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { validateAll } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
+} from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { getTypedFormComponents, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
+import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
 import api, { ApiEndpoint } from '../../../api/api';
 import { getAttachmentURLFrontend, getUploadedAttachments } from '../../../utils/attachmentUtils';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
@@ -78,9 +78,6 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
                     <p>
                         <FormattedMessage id={'steg.deltBosted.helperTextPanel.1'} />
                     </p>
-                    <p>
-                        <FormattedMessage id={'steg.deltBosted.helperTextPanel.2'} />
-                    </p>
                 </SifGuidePanel>
             </Block>
             <Block margin={'l'}>
@@ -101,7 +98,7 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
                         validate={(attachments: Attachment[] = []) => {
                             return validateAll<ValidateAttachmentsErrors | ValidationError>([
                                 () => validateAttachments([...attachments, ...andreVedlegg]),
-                                () => getListValidator({ required: true })(getUploadedAttachments(attachments)),
+                                () => getListValidator({ required: false })(getUploadedAttachments(attachments)),
                             ]);
                         }}
                         onUnauthorizedOrForbiddenUpload={relocateToLoginPage}

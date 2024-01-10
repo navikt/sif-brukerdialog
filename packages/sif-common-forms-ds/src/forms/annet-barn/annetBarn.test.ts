@@ -2,7 +2,7 @@
 import { dateToISODate, jsonSort } from '@navikt/sif-common-utils';
 import { AnnetBarn, AnnetBarnFormValues } from './types';
 import annetBarnUtils from './annetBarnUtils';
-import { ISOStringToDate } from '@navikt/sif-common-formik-ds/lib';
+import { ISOStringToDate } from '@navikt/sif-common-formik-ds';
 
 const id = '123';
 const fnr = '234';

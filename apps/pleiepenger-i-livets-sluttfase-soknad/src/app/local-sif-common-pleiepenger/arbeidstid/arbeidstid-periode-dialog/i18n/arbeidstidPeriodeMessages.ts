@@ -1,4 +1,4 @@
-import { typedIntlHelper } from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { IntlShape } from 'react-intl';
 
 const arbeidIPeriodeIntlValuesMessages = {

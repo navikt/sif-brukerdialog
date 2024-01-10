@@ -19,15 +19,6 @@ const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConf
     return Object.keys(stepConfig).filter((_key, idx) => idx < currentStepIndex) as StepId[];
 };
 
-export const isSøknadsdataStepValid = (step: StepId, søknadsdata: Søknadsdata): boolean => {
-    switch (step) {
-        case StepId.DELT_BOSTED:
-            return (søknadsdata.deltBosted?.vedlegg || []).length > 0;
-        default:
-            return true;
-    }
-};
-
 const getStepSøknadsdataFromStepFormValues = (
     step: StepId,
     stepFormValues: StepFormValues,
@@ -77,10 +68,7 @@ export const useSøknadsdataStatus = (stepId: StepId, stepConfig: SoknadStepsCon
         const precedingSteps = getPrecedingSteps(currentStep.index, stepConfig);
 
         precedingSteps.forEach((step) => {
-            if (
-                isStepFormValuesAndStepSøknadsdataValid(step, stepFormValues, søknadsdata, state) === false ||
-                isSøknadsdataStepValid(step, søknadsdata) === false
-            ) {
+            if (isStepFormValuesAndStepSøknadsdataValid(step, stepFormValues, søknadsdata, state) === false) {
                 invalidSteps.push(step);
             }
         });

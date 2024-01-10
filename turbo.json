@@ -2,41 +2,31 @@
     "$schema": "https://turborepo.org/schema.json",
     "pipeline": {
         "build": {
-            "dependsOn": ["^build"]
-        },
-        "build-package": {
-            "outputs": ["lib/**"],
-            "dependsOn": ["^build-package"]
-        },
-        "build-app": {
             "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
-            "dependsOn": ["^build-package"]
+            "dependsOn": ["^build"]
         },
         "test": {
             "outputs": [],
-            "dependsOn": ["^build-package"]
+            "dependsOn": ["^test"]
         },
         "lint": {
             "outputs": [],
             "dependsOn": ["^lint"]
-        },
-        "dev-lib": {
-            "cache": false
         },
         "clean": {
             "cache": false
         },
         "start-e2e-server": {
             "outputs": [],
-            "dependsOn": ["^build-app"]
+            "dependsOn": ["^build"]
         },
         "cypress-run": {
             "outputs": [],
-            "dependsOn": ["^build-app"]
+            "dependsOn": ["^build"]
         },
         "playwright-test": {
             "outputs": [],
-            "dependsOn": ["build-app"]
+            "dependsOn": ["build"]
         }
     }
 }

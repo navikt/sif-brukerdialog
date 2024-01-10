@@ -1,8 +1,8 @@
 import { Alert } from '@navikt/ds-react';
 import { FormattedMessage } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
@@ -10,7 +10,7 @@ import { harFrilansoppdrag } from '../../../utils/frilanserUtils';
 import FrilanserFormPart from './frilans-form-parts/FrilanserFormPart';
 import StønadsgodtgjørelseFormPart from './frilans-form-parts/StønadsgodtgjørelseFormPart';
 import FrilansoppdragInfo from './info/FrilansoppdragInfo';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 
 interface Props {
     søknadsperiode: DateRange;

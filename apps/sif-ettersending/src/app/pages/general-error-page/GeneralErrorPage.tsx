@@ -1,9 +1,9 @@
 import { Heading, Ingress } from '@navikt/ds-react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import './generalErrorPage.css';
 
 const GeneralErrorPage = () => {

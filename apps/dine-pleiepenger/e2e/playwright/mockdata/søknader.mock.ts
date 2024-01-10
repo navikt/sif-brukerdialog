@@ -133,22 +133,19 @@ export const søknaderMockData = [
                 utenlandsoppholdSiste12Mnd: [],
             },
             harMedsøker: false,
-            arbeidsgivere: [
-                {
-                    navn: 'SJOKKERENDE ELEKTRIKER',
-                    erAnsatt: true,
-                    arbeidsforhold: {
-                        arbeidIPeriode: {
-                            type: 'ARBEIDER_PROSENT_AV_NORMALT',
-                            prosentAvNormalt: 50,
-                            arbeiderIPerioden: 'REDUSERT',
-                        },
-                        normalarbeidstid: { timerPerUkeISnitt: 'PT5H' },
+            arbeidsgivere: {
+                organisasjoner: [
+                    {
+                        navn: 'SJOKKERENDE ELEKTRIKER',
+                        skalJobbe: true,
+                        skalJobbeProsent: 10,
+                        vetIkkeEkstrainfo: undefined,
+                        jobberNormaltTimer: 10,
+                        organisasjonsnummer: '234',
                     },
-                    organisasjonsnummer: '947064649',
-                    sluttetFørSøknadsperiode: false,
-                },
-            ],
+                ],
+            },
+
             k9FormatSøknad: {
                 språk: 'nb',
                 søker: { norskIdentitetsnummer: '02869599258' },

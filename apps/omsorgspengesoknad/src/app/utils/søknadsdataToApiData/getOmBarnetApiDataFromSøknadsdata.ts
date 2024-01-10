@@ -1,12 +1,17 @@
-import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { OmBarnetApiData } from '../../types/søknadApiData/SøknadApiData';
 import { OmBarnetSøknadsdata } from '../../types/søknadsdata/OmBarnetSøknadsdata';
-import { dateToISODate } from '@navikt/sif-common-utils/lib';
+import { dateToISODate } from '@navikt/sif-common-utils';
 
 export const getOmBarnetApiDataFromSøknadsdata = (omBarnet: OmBarnetSøknadsdata): OmBarnetApiData => {
-    const fellesInfo: Pick<OmBarnetSøknadsdata, 'kroniskEllerFunksjonshemming' | 'sammeAdresse'> = {
+    const fellesInfo: Pick<
+        OmBarnetSøknadsdata,
+        'kroniskEllerFunksjonshemming' | 'sammeAdresse' | 'høyereRisikoForFravær' | 'høyereRisikoForFraværBeskrivelse'
+    > = {
         kroniskEllerFunksjonshemming: omBarnet.kroniskEllerFunksjonshemming,
         sammeAdresse: omBarnet.sammeAdresse,
+        høyereRisikoForFravær: omBarnet.høyereRisikoForFravær,
+        høyereRisikoForFraværBeskrivelse: omBarnet.høyereRisikoForFraværBeskrivelse,
     };
 
     switch (omBarnet.type) {

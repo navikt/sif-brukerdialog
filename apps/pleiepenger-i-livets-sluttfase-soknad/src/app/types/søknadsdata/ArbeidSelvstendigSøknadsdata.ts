@@ -1,4 +1,4 @@
-import { Virksomhet } from '@navikt/sif-common-forms-ds/lib/forms/virksomhet/types';
+import { Virksomhet } from '@navikt/sif-common-forms-ds/src/forms/virksomhet/types';
 
 export interface ArbeidSelvstendigSøknadsdataErIkkeSN {
     type: 'erIkkeSN';

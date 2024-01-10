@@ -4,7 +4,7 @@ export enum LogSøknadInfoType {
     'senderInnSøknadMedIngenFravær' = 'senderInnSøknadMedIngenFravær',
 }
 
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
+import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 
 function useLogSøknadInfo() {
     const { logInfo } = useAmplitudeInstance();

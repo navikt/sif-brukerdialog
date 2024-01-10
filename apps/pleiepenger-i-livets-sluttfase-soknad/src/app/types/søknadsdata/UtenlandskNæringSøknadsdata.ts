@@ -1,4 +1,4 @@
-import { UtenlandskNæring } from '@navikt/sif-common-forms-ds/lib/forms/utenlandsk-næring';
+import { UtenlandskNæring } from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring';
 
 export interface HarUtenlandskNæringSøknadsdata {
     type: 'harUtenlandskNæring';

@@ -1,11 +1,11 @@
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { IntlShape } from 'react-intl';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
 import { OmBarnaSøknadsdata } from '../../../types/søknadsdata/OmBarnaSøknadsdata';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { OmBarnaFormValues } from './OmBarnaStep';
 import { prettifyDate } from '@navikt/sif-common-utils';
-import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 
 export const getOmBarnaStepInitialValues = (
     søknadsdata: Søknadsdata,

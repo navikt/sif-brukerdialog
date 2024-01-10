@@ -1,7 +1,7 @@
 import { BodyLong, Heading } from '@navikt/ds-react';
 import React from 'react';
-import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
-import PageBoundary from '@navikt/sif-common-core-ds/lib/components/page-boundary/PageBoundary';
+import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
+import PageBoundary from '@navikt/sif-common-core-ds/src/components/page-boundary/PageBoundary';
 import './soknadHeader.scss';
 
 interface Props {

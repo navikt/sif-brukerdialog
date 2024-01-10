@@ -1,5 +1,52 @@
 # @navikt/sif-common-core-ds
 
+## 9.13.2
+
+### Patch Changes
+
+- Pakkeoppdateringer patch og noe minor
+- Updated dependencies
+  - @navikt/sif-common-utils@3.43.10
+
+## 9.13.1
+
+### Patch Changes
+
+- Generelle pakkeoppdateringer - patch og minor
+- Updated dependencies
+  - @navikt/sif-common-utils@3.43.9
+
+## 9.13.0
+
+### Minor Changes
+
+- c12a07f: Oppdatere date-fns til 3.0.6 (fra 2.30.0) og chromatic til 10.2.0 (minor)
+
+## 9.12.6
+
+### Patch Changes
+
+- 23f75ff: Generelle pakkeoppdateringer - patch og minor
+- Updated dependencies [23f75ff]
+  - @navikt/sif-common-utils@3.43.8
+
+## 9.12.5
+
+### Patch Changes
+
+- 306a348: Pakkeoppdateringer.
+  - @navikt/ds-\*: minor
+  - sentry: minor
+  - vite: patch
+
+## 9.12.4
+
+### Patch Changes
+
+- Oppdatert ds pakker
+- Updated dependencies
+  - @navikt/sif-common-utils@3.43.7
+
 ## 9.12.3
 
 ### Patch Changes

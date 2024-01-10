@@ -1,5 +1,38 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.5.8
+
+### Patch Changes
+
+- Pakkeoppdateringer patch og noe minor
+
+## 3.5.7
+
+### Patch Changes
+
+- Generelle pakkeoppdateringer - patch og minor
+
+## 3.5.6
+
+### Patch Changes
+
+- 23f75ff: Generelle pakkeoppdateringer - patch og minor
+
+## 3.5.5
+
+### Patch Changes
+
+- 306a348: Pakkeoppdateringer.
+  - @navikt/ds-\*: minor
+  - sentry: minor
+  - vite: patch
+
+## 3.5.4
+
+### Patch Changes
+
+- Oppdatert ds pakker
+
 ## 3.5.3
 
 ### Patch Changes

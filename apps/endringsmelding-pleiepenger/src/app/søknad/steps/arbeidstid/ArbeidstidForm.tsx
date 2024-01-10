@@ -1,9 +1,9 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { useOnValidSubmit, useSøknadContext } from '@hooks';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ArbeidsaktivitetType, ArbeiderIPeriodenSvar, ArbeidstidEndringMap, SøknadContextState } from '@types';
 import { getArbeidsaktiviteterForUkjenteArbeidsforhold } from '@utils';
 import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';

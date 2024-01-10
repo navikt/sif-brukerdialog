@@ -2,13 +2,13 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import MessagesPreview from '../../components/messages-preview/MessagesPreview';
 import { date1YearAgo, date1YearFromNow } from '@navikt/sif-common-utils';
-import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds/lib';
-import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
+import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { flatten } from 'flat';
 import { Utenlandsopphold } from '../../../src/forms/utenlandsopphold/types';
 import UtenlandsoppholdForm, {

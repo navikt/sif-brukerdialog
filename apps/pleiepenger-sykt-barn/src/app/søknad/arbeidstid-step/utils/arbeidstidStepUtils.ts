@@ -1,5 +1,5 @@
-import { DateRange } from '@navikt/sif-common-formik-ds/lib';
-import { dateFormatter, dateRangeUtils, getWeeksInDateRange } from '@navikt/sif-common-utils/lib';
+import { DateRange } from '@navikt/sif-common-formik-ds/src';
+import { dateFormatter, dateRangeUtils, getWeeksInDateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';

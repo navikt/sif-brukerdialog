@@ -1,6 +1,6 @@
-import { getCountryName } from '@navikt/sif-common-formik-ds/lib';
-import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib';
-import { dateToISODate } from '@navikt/sif-common-utils/lib';
+import { getCountryName } from '@navikt/sif-common-formik-ds';
+import { Utenlandsopphold } from '@navikt/sif-common-forms-ds';
+import { dateToISODate } from '@navikt/sif-common-utils';
 import {
     UtenlandsoppholdIPeriodenApi,
     UtenlandsoppholdIPeriodenApiData,

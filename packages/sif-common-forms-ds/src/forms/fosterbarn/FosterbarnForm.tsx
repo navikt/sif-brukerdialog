@@ -1,16 +1,16 @@
 import { useIntl } from 'react-intl';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import Tiles from '@navikt/sif-common-core-ds/lib/atoms/tiles/Tiles';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import Tiles from '@navikt/sif-common-core-ds/src/atoms/tiles/Tiles';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import {
     getFødselsnummerValidator,
     getRequiredFieldValidator,
     ValidateFødselsnummerError,
     ValidateStringError,
-} from '@navikt/sif-common-formik-ds/lib/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+} from '@navikt/sif-common-formik-ds/src/validation';
+import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { guid } from '@navikt/sif-common-utils';
 import { Fosterbarn, isFosterbarn } from './types';
 

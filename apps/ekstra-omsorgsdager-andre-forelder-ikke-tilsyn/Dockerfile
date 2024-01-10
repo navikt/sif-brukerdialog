@@ -12,7 +12,7 @@ ENV SCOPE=@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 FROM base AS pruner
 COPY . .
 RUN yarn
-RUN yarn turbo run build-app --filter=${SCOPE}
+RUN yarn turbo run build --filter=${SCOPE}
 
 FROM gcr.io/distroless/nodejs18-debian11:nonroot
 WORKDIR /apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn

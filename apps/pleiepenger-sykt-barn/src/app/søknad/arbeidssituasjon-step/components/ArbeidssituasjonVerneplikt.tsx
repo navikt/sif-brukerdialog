@@ -1,8 +1,8 @@
 import { FormattedMessage, useIntl } from 'react-intl';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { SøknadFormField } from '../../../types/søknad-form-values/SøknadFormValues';
 import SøknadFormComponents from '../../SøknadFormComponents';
 

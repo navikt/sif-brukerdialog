@@ -2,11 +2,11 @@ import { Heading, Panel, Checkbox } from '@navikt/ds-react';
 import * as React from 'react';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import { TypedFormikForm, TypedFormikWrapper, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { TypedFormikForm, TypedFormikWrapper, YesOrNo } from '@navikt/sif-common-formik-ds';
+import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { flatten } from 'flat';
 import { VirksomhetFormErrors } from '../../../src';
 import { mapVirksomhetToVirksomhetApiData } from '../../../src/forms/virksomhet/mapVirksomhetToApiData';
@@ -15,7 +15,7 @@ import VirksomhetInfoAndDialog from '../../../src/forms/virksomhet/VirksomhetInf
 import virksomhetMessages from '../../../src/forms/virksomhet/virksomhetMessages';
 import VirksomhetSummary from '../../../src/forms/virksomhet/VirksomhetSummary';
 import FormValidationErrorMessages from '../../components/validation-error-messages/ValidationErrorMessages';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 
 enum FormField {
     'virksomhet' = 'virksomhet',

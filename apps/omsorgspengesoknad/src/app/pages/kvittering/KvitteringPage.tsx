@@ -1,11 +1,11 @@
 import { Heading, Link } from '@navikt/ds-react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import CheckmarkIcon from '@navikt/sif-common-core-ds/lib/atoms/checkmark-icon/CheckmarkIcon';
-import Checklist from '@navikt/sif-common-core-ds/lib/components/lists/checklist/Checklist';
-import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import CheckmarkIcon from '@navikt/sif-common-core-ds/src/atoms/checkmark-icon/CheckmarkIcon';
+import Checklist from '@navikt/sif-common-core-ds/src/components/lists/checklist/Checklist';
+import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import getLenker from '../../lenker';
 import { useEffect } from 'react';
 
@@ -45,12 +45,15 @@ const KvitteringPage = ({ onUnmount }: Props) => {
                             <FormattedMessage id="page.kvittering.info.2" />
                         </li>
                         <li>
+                            <FormattedMessage id="page.kvittering.info.3" />
+                        </li>
+                        <li>
                             <p>
-                                <FormattedMessage id="page.kvittering.info.3.1" />
+                                <FormattedMessage id="page.kvittering.info.4.1" />
                             </p>
                             <p>
                                 <Link href={getLenker(intl.locale).saksbehandlingstider} target="_blank">
-                                    <FormattedMessage id="page.kvittering.info.3.2" />
+                                    <FormattedMessage id="page.kvittering.info.4.2" />
                                 </Link>
                             </p>
                         </li>

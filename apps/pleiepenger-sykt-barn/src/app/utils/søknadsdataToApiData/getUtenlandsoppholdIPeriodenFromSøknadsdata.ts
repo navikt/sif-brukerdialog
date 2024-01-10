@@ -1,11 +1,11 @@
-import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
+import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import { SøknadApiData } from '../../types/søknad-api-data/SøknadApiData';
 import { UtenlandsoppholdIPeriodenSøknadsdata } from '../../types/søknadsdata/UtenlandsoppholdIPeriodenSøknadsdata';
-import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
+import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { countryIsMemberOfEøsOrEfta, getCountryName } from '@navikt/sif-common-formik-ds';
-import { DateTidsperiode } from '@navikt/sif-common-forms-ds/lib/forms/tidsperiode';
-import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib/forms/utenlandsopphold/types';
+import { DateTidsperiode } from '@navikt/sif-common-forms-ds/src/forms/tidsperiode';
+import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
 import {
     PeriodeApiData,
     UtenlandsoppholdIPeriodenApiData,
