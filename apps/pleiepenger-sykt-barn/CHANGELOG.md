@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.7.11
+
+### Patch Changes
+
+- 598dd8c: Korrigere feil layout/tekst i modal for å legge til periode og enkeltdag med omsorgstilbud
+
 ## 3.7.10
 
 ### Patch Changes
