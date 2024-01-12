@@ -1,4 +1,3 @@
-import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
@@ -107,7 +106,7 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
     };
 
     const erEndret = durationsAreEqual(tid, tidOpprinnelig) === false;
-    const dagNavn = dayjs(dato).format('dddd');
+    // const dagNavn = dayjs(dato).format('dddd');
     const dagerNavn = `${dayjs(dato).format('dddd')}er`;
     const valgtDatoTxt = dateFormatter.dayDateMonthYear(dato);
 
@@ -139,156 +138,138 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
         periode?: { fra: string; til: string },
         values?: any,
     ): JSX.Element => (
-        <>
-            <FormattedMessage id={`tidEnkeltdagForm.gjentagelse.${key}`} values={{ ...values, ...periode }} />
-            {/* <div style={{ fontSize: '0.9rem' }}>
-                <FormattedMessage
-                    id="tidEnkeltdagForm.gjentagelse.periode"
-                    values={{
-                        ...values,
-                        ...periode,
-                    }}
-                />
-            </div> */}
-        </>
+        <FormattedMessage id={`tidEnkeltdagForm.gjentagelse.${key}`} values={{ ...values, ...periode }} />
     );
 
     return (
-        <div>
-            <Heading level="1" size="medium" className="dialogFormTitle">
-                <span className="m-caps">{dagNavn}</span> {dateFormatter.full(dato)}
-            </Heading>
-            <FormBlock margin="l">
-                <FormComponents.FormikWrapper
-                    enableReinitialize={true}
-                    initialValues={{
-                        tid: tid ? ensureDuration(tid) : undefined,
-                    }}
-                    onSubmit={onValidSubmit}
-                    renderForm={({ values: { skalGjentas, stoppGjentagelse, gjentagelse } }) => {
-                        return (
-                            <FormComponents.Form
-                                onCancel={onCancel}
-                                formErrorHandler={getIntlFormErrorHandler(intl, 'tidEnkeltdagForm.validation')}
-                                includeValidationSummary={false}
-                                includeButtons={true}
-                                submitButtonLabel="Lagre"
-                                showButtonArrows={false}
-                                cancelButtonLabel="Avbryt">
-                                <FormComponents.TimeInput
-                                    name={FormFields.tid}
-                                    label={hvorMyeSpørsmålRenderer(dato)}
-                                    validate={getTidEnkeltdagFormTidValidator(maksTid, minTid)}
-                                    timeInputLayout={{ justifyContent: 'left', compact: false, direction: 'vertical' }}
+        <FormComponents.FormikWrapper
+            enableReinitialize={true}
+            initialValues={{
+                tid: tid ? ensureDuration(tid) : undefined,
+            }}
+            onSubmit={onValidSubmit}
+            renderForm={({ values: { skalGjentas, stoppGjentagelse, gjentagelse } }) => {
+                return (
+                    <FormComponents.Form
+                        onCancel={onCancel}
+                        formErrorHandler={getIntlFormErrorHandler(intl, 'tidEnkeltdagForm.validation')}
+                        includeValidationSummary={false}
+                        includeButtons={true}
+                        submitButtonLabel="Lagre"
+                        showButtonArrows={false}
+                        cancelButtonLabel="Avbryt">
+                        <FormComponents.TimeInput
+                            name={FormFields.tid}
+                            label={hvorMyeSpørsmålRenderer(dato)}
+                            validate={getTidEnkeltdagFormTidValidator(maksTid, minTid)}
+                            timeInputLayout={{ justifyContent: 'left', compact: false, direction: 'vertical' }}
+                        />
+                        {tidOpprinnelig && erEndret && (
+                            <p>
+                                <FormattedMessage id="tidEnkeltdagForm.endretFra" />{' '}
+                                <DurationText duration={tidOpprinnelig} fullText={true} />
+                            </p>
+                        )}
+                        {skalViseValgetGjelderFlereDager && (
+                            <FormBlock margin="l">
+                                <FormComponents.Checkbox
+                                    label={intlHelper(intl, 'tidEnkeltdagForm.gjelderFlereDager.label')}
+                                    name={FormFields.skalGjentas}
                                 />
-                                {tidOpprinnelig && erEndret && (
-                                    <p>
-                                        <FormattedMessage id="tidEnkeltdagForm.endretFra" />{' '}
-                                        <DurationText duration={tidOpprinnelig} fullText={true} />
-                                    </p>
-                                )}
-                                {skalViseValgetGjelderFlereDager && (
-                                    <FormBlock margin="l">
-                                        <FormComponents.Checkbox
-                                            label={intlHelper(intl, 'tidEnkeltdagForm.gjelderFlereDager.label')}
-                                            name={FormFields.skalGjentas}
-                                        />
-                                    </FormBlock>
-                                )}
-                                {skalGjentas === true && (
-                                    <Block margin="l">
-                                        <ResponsivePanel>
-                                            {/* <div style={{ paddingLeft: '1.5rem' }}> */}
+                            </FormBlock>
+                        )}
+                        {skalGjentas === true && (
+                            <Block margin="l">
+                                <ResponsivePanel>
+                                    {/* <div style={{ paddingLeft: '1.5rem' }}> */}
 
-                                            <FormComponents.RadioGroup
-                                                legend={intlHelper(intl, 'tidEnkeltdagForm.gjelderFlereDager.info')}
-                                                className={bem.element('gjentagelseOptions')}
-                                                name={FormFields.gjentagelse}
-                                                validate={getRequiredFieldValidator()}
-                                                radios={[
+                                    <FormComponents.RadioGroup
+                                        legend={intlHelper(intl, 'tidEnkeltdagForm.gjelderFlereDager.info')}
+                                        className={bem.element('gjentagelseOptions')}
+                                        name={FormFields.gjentagelse}
+                                        validate={getRequiredFieldValidator()}
+                                        radios={[
+                                            {
+                                                label: renderGjentagelseRadioLabel(
+                                                    ukeErHel ? 'helUke' : 'delAvUke',
                                                     {
-                                                        label: renderGjentagelseRadioLabel(
-                                                            ukeErHel ? 'helUke' : 'delAvUke',
-                                                            {
-                                                                fra: ukePeriodeStartTxt,
-                                                                til: ukePeriodeSluttTxt,
-                                                            },
-                                                            { ukeNavn },
-                                                        ),
-                                                        value: GjentagelseType.heleUken,
+                                                        fra: ukePeriodeStartTxt,
+                                                        til: ukePeriodeSluttTxt,
                                                     },
+                                                    { ukeNavn },
+                                                ),
+                                                value: GjentagelseType.heleUken,
+                                            },
+                                            {
+                                                label: renderGjentagelseRadioLabel(
+                                                    månedErHel ? 'helMåned' : 'delAvMåned',
                                                     {
-                                                        label: renderGjentagelseRadioLabel(
-                                                            månedErHel ? 'helMåned' : 'delAvMåned',
-                                                            {
-                                                                fra: månedPeriodeStartTxt,
-                                                                til: månedPeriodeSluttTxt,
-                                                            },
-                                                            { månedNavn },
-                                                        ),
-                                                        value: GjentagelseType.heleMåneden,
+                                                        fra: månedPeriodeStartTxt,
+                                                        til: månedPeriodeSluttTxt,
                                                     },
+                                                    { månedNavn },
+                                                ),
+                                                value: GjentagelseType.heleMåneden,
+                                            },
+                                            {
+                                                label: renderGjentagelseRadioLabel(
+                                                    'dagerFremover',
                                                     {
-                                                        label: renderGjentagelseRadioLabel(
-                                                            'dagerFremover',
-                                                            {
-                                                                fra: valgtDatoTxt,
-                                                                til: sluttDatoTxt,
-                                                            },
-                                                            { dagerNavn },
-                                                        ),
+                                                        fra: valgtDatoTxt,
+                                                        til: sluttDatoTxt,
+                                                    },
+                                                    { dagerNavn },
+                                                ),
 
-                                                        value: GjentagelseType.hverUke,
-                                                    },
-                                                ]}
-                                            />
-                                            {visStoppGjentagelse && (
-                                                <>
-                                                    {(gjentagelse === GjentagelseType.hverUke ||
-                                                        gjentagelse === GjentagelseType.hverAndreUke) && (
-                                                        <div style={{ marginLeft: '1.5rem' }}>
-                                                            <FormBlock margin="m">
-                                                                <FormComponents.Checkbox
-                                                                    label={intlHelper(
-                                                                        intl,
-                                                                        'tidEnkeltdagForm.stoppGjentagelse.label',
-                                                                    )}
-                                                                    name={FormFields.stoppGjentagelse}
-                                                                />
-                                                            </FormBlock>
-                                                            {stoppGjentagelse && (
-                                                                <FormBlock margin="l">
-                                                                    <FormComponents.DatePicker
-                                                                        label={intlHelper(
-                                                                            intl,
-                                                                            'tidEnkeltdagForm.stopDato.label',
-                                                                        )}
-                                                                        minDate={dato}
-                                                                        maxDate={periode.to}
-                                                                        validate={getDateValidator({
-                                                                            min: dato,
-                                                                            max: periode.to,
-                                                                            required: true,
-                                                                        })}
-                                                                        disableWeekends={true}
-                                                                        defaultMonth={dato}
-                                                                        name={FormFields.stopDato}
-                                                                    />
-                                                                </FormBlock>
+                                                value: GjentagelseType.hverUke,
+                                            },
+                                        ]}
+                                    />
+                                    {visStoppGjentagelse && (
+                                        <>
+                                            {(gjentagelse === GjentagelseType.hverUke ||
+                                                gjentagelse === GjentagelseType.hverAndreUke) && (
+                                                <div style={{ marginLeft: '1.5rem' }}>
+                                                    <FormBlock margin="m">
+                                                        <FormComponents.Checkbox
+                                                            label={intlHelper(
+                                                                intl,
+                                                                'tidEnkeltdagForm.stoppGjentagelse.label',
                                                             )}
-                                                        </div>
+                                                            name={FormFields.stoppGjentagelse}
+                                                        />
+                                                    </FormBlock>
+                                                    {stoppGjentagelse && (
+                                                        <FormBlock margin="l">
+                                                            <FormComponents.DatePicker
+                                                                label={intlHelper(
+                                                                    intl,
+                                                                    'tidEnkeltdagForm.stopDato.label',
+                                                                )}
+                                                                minDate={dato}
+                                                                maxDate={periode.to}
+                                                                validate={getDateValidator({
+                                                                    min: dato,
+                                                                    max: periode.to,
+                                                                    required: true,
+                                                                })}
+                                                                disableWeekends={true}
+                                                                defaultMonth={dato}
+                                                                name={FormFields.stopDato}
+                                                            />
+                                                        </FormBlock>
                                                     )}
-                                                </>
+                                                </div>
                                             )}
-                                        </ResponsivePanel>
-                                    </Block>
-                                )}
-                            </FormComponents.Form>
-                        );
-                    }}
-                />
-            </FormBlock>
-        </div>
+                                        </>
+                                    )}
+                                </ResponsivePanel>
+                            </Block>
+                        )}
+                    </FormComponents.Form>
+                );
+            }}
+        />
     );
 };
 
