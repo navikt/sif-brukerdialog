@@ -19,7 +19,7 @@ const TidEnkeltdagDialog = ({ open = false, formProps, dialogTitle }: TidEnkeltd
             className="tidEnkeltdagDialog"
             portal={true}
             header={{
-                heading: `${dialogTitle}`,
+                heading: dialogTitle,
                 closeButton: true,
             }}>
             <Modal.Body>

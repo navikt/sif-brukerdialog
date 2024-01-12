@@ -106,7 +106,6 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
     };
 
     const erEndret = durationsAreEqual(tid, tidOpprinnelig) === false;
-    // const dagNavn = dayjs(dato).format('dddd');
     const dagerNavn = `${dayjs(dato).format('dddd')}er`;
     const valgtDatoTxt = dateFormatter.dayDateMonthYear(dato);
 
