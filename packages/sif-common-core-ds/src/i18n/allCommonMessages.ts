@@ -1,12 +1,12 @@
 import { durationTextMessages } from '../components/duration-text/durationText.messages';
-import { pictureScanningNb } from '../components/picture-scanning-guide/picturescanningguide.nb';
+import { pictureScanningGuideMessages } from '../components/picture-scanning-guide/i18n/pictureScanningGuideMessages';
 import { commonMessagesNb } from './common.nb';
 import { validationErrorsNb } from './validationErrors.nb';
 
 const bokmålstekster = {
     ...commonMessagesNb,
     ...validationErrorsNb,
-    ...pictureScanningNb,
+    ...pictureScanningGuideMessages.nb,
     ...durationTextMessages.nb,
 };
 

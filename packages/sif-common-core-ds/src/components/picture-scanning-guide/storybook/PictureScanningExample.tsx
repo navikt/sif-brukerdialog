@@ -1,6 +1,6 @@
 import { BodyLong, Heading } from '@navikt/ds-react';
 import React from 'react';
-import StatusIkon, { StatusIconStatusKey } from './status-icon/StatusIcon';
+import StatusIkon, { StatusIconStatusKey } from '../status-icon/StatusIcon';
 
 interface Props {
     image: React.ReactNode;
