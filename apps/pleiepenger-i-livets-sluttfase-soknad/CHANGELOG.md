@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.5.13
+
+### Patch Changes
+
+- 8687d57: Fjerne sif-common-pleiepenger-local, og flytte det som var brukt der til respektive foldere inne i app.
+
 ## 2.5.12
 
 ### Patch Changes
