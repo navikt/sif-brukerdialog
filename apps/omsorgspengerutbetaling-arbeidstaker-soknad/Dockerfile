@@ -12,11 +12,10 @@ ENV SCOPE=@navikt/omsorgspengerutbetaling-arbeidstaker-soknad
 FROM base AS pruner
 COPY . .
 RUN yarn
-RUN yarn turbo run build-app --filter=${SCOPE}
+RUN yarn turbo run build --filter=${SCOPE}
 
 FROM gcr.io/distroless/nodejs18-debian11:nonroot
 WORKDIR /apps/omsorgspengerutbetaling-arbeidstaker-soknad
-
 COPY --from=pruner /app/node_modules ./node_modules/
 COPY --from=pruner /app/apps/omsorgspengerutbetaling-arbeidstaker-soknad/server.cjs .
 COPY --from=pruner /app/apps/omsorgspengerutbetaling-arbeidstaker-soknad/tokenx.cjs .

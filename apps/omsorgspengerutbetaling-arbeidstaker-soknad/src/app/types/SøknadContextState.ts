@@ -1,6 +1,5 @@
 import { FosterbarnFormValues } from '../søknad/steps/fosterbarn/FosterbarnStep';
 import { SituasjonFormValues } from '../søknad/steps/situasjon/SituasjonStep';
-import { RegistrertBarn } from './RegistrertBarn';
 import { StepId } from './StepId';
 import { Søker } from './Søker';
 import { SøknadRoutes } from './SøknadRoutes';
@@ -22,7 +21,6 @@ export type TempFormValues = SituasjonStepTempFormValues | BarnStepTempFormValue
 export interface SøknadContextState {
     versjon: string;
     søker: Søker;
-    registrerteBarn: RegistrertBarn[];
     søknadsdata: Søknadsdata;
     kvitteringInfo?: ArbeidsgiverDetaljer[];
     tempFormValues?: TempFormValues;

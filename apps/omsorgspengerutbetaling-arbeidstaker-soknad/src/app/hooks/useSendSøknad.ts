@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
+import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { AxiosError } from 'axios';
 import søknadEndpoint from '../api/endpoints/søknadEndpoint';
-import { SKJEMANAVN } from '../App';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { ArbeidsgiverDetaljer, SøknadApiData } from '../types/søknadApiData/SøknadApiData';
 import { SøknadRoutes } from '../types/SøknadRoutes';
+import { OmsorgspengerutbetalingArbeidstakerApp } from '@navikt/sif-app-register';
 
 export const useSendSøknad = () => {
     const { dispatch } = useSøknadContext();
@@ -31,7 +31,7 @@ export const useSendSøknad = () => {
     };
 
     const onSøknadSendSuccess = async (arbeidsgivere: ArbeidsgiverDetaljer[]) => {
-        await logSoknadSent(SKJEMANAVN);
+        await logSoknadSent(OmsorgspengerutbetalingArbeidstakerApp.navn);
         slettMellomlagring();
         setIsSubmitting(false);
         dispatch(actionsCreator.setSøknadKvitteringInfo(arbeidsgivere));

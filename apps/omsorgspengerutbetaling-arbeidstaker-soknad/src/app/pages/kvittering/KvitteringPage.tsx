@@ -1,6 +1,6 @@
 import { Alert, Button, Heading, Panel } from '@navikt/ds-react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
+import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import CheckmarkIcon from '@navikt/sif-common-core-ds/lib/atoms/checkmark-icon/CheckmarkIcon';
 import Checklist from '@navikt/sif-common-core-ds/lib/components/lists/checklist/Checklist';
