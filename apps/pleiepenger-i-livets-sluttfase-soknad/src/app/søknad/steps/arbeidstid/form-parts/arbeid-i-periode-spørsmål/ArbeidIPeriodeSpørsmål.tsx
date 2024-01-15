@@ -24,7 +24,7 @@ import dayjs from 'dayjs';
 import { useFormikContext } from 'formik';
 import { useContext, useEffect, useState } from 'react';
 import { IntlShape, useIntl } from 'react-intl';
-import { getArbeidstidIPeriodeIntlValues } from '../../../../../local-sif-common-pleiepenger/arbeidstid/arbeidstid-periode-dialog/utils/arbeidstidPeriodeIntlValuesUtils';
+import { getArbeidstidIPeriodeIntlValues } from '../../arbeidstidPeriodeIntlValuesUtils';
 import { ArbeidstidFormFields, ArbeidstidFormValues } from '../../ArbeidstidStep';
 import { ArbeidIPeriode, ArbeidIPeriodeField, JobberIPeriodeSvar } from '../../ArbeidstidTypes';
 import { ArbeidsforholdType, ArbeidstidRegistrertLogProps } from '../types';
