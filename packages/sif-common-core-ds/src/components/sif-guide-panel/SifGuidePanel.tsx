@@ -1,6 +1,7 @@
 import { BodyLong, GuidePanel, GuidePanelProps, Heading } from '@navikt/ds-react';
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
+import classNames from 'classnames';
 import bemUtils from '../../utils/bemUtils';
 import { GuideMood } from './SifGuide';
 import VeilederSVG from './VeilederSVG';
@@ -29,7 +30,7 @@ const SifGuidePanel: React.FunctionComponent<Props> = ({
     const illustration = mood === 'uncertain' ? <VeilederSVG mood="uncertain" /> : undefined;
     return (
         <GuidePanel
-            className={bem.classNames(
+            className={classNames(
                 bem.block,
                 bem.modifierConditional('narrow', isNarrow),
                 bem.modifierConditional('compact', compact),

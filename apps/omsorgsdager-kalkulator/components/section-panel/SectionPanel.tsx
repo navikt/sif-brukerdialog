@@ -1,7 +1,8 @@
+import { Heading, HeadingProps, Panel } from '@navikt/ds-react';
 import React, { ReactNode } from 'react';
+import classNames from 'classnames';
 import bemUtils from '../../utils/bemUtils';
 import CircleIllustration from './circle-illustration/CircleIllustration';
-import { Heading, HeadingProps, Panel } from '@navikt/ds-react';
 
 const bem = bemUtils('sectionPanel');
 
@@ -45,7 +46,7 @@ const SectionPanel = ({
             tabIndex={-1}
             id={id}
             aria-label={ariaTitle}
-            className={bem.classNames(
+            className={classNames(
                 bem.block,
                 bem.modifierConditional(
                     'illustrationOutside',

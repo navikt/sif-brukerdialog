@@ -10,6 +10,7 @@
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
+        "classnames": "2.5.1",
         "react-day-picker": "8.10.0"
     },
     "devDependencies": {

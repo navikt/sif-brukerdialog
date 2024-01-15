@@ -1,5 +1,6 @@
 import React from 'react';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
+import classNames from 'classnames';
 import './knapperad.less';
 
 export interface Props {
@@ -10,7 +11,7 @@ export interface Props {
 const bem = bemUtils('knapperad');
 
 const Knapperad = ({ children, align = 'center', layout = 'normal' }: Props) => {
-    const cls = bem.classNames(bem.block, `${bem.modifier(align)}`, `${bem.modifier(layout)}`);
+    const cls = classNames(bem.block, `${bem.modifier(align)}`, `${bem.modifier(layout)}`);
     return (
         <div className={cls}>
             {React.Children.map(children, (knapp, index) => (

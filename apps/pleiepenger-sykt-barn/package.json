@@ -37,6 +37,7 @@
         "@navikt/sif-common-utils": "workspace:*",
         "amplitude-js": "8.21.9",
         "axios": "1.6.5",
+        "classnames": "2.5.1",
         "compression": "1.7.4",
         "cookie-parser": "1.4.6",
         "dotenv": "16.3.1",

@@ -1,5 +1,6 @@
 import { Button, Modal, Panel } from '@navikt/ds-react';
 import React from 'react';
+import classNames from 'classnames';
 import bemUtils from '../../../utils/bemUtils';
 import SkjemagruppeQuestion from '../../helpers/skjemagruppe-question/SkjemagruppeQuestion';
 import { FormikModalFormWidths, ModalFormAndInfoLabels } from '../types';
@@ -120,7 +121,7 @@ function ModalFormAndInfo<DataType>({
                 <Modal
                     portal={true}
                     open={modalState.isVisible}
-                    className={bem.classNames(bem.block, bem.modifier(dialogWidth), dialogClassName)}
+                    className={classNames(bem.block, bem.modifier(dialogWidth), dialogClassName)}
                     onClose={resetModal}
                     aria-label={labels.modalTitle}
                     header={{

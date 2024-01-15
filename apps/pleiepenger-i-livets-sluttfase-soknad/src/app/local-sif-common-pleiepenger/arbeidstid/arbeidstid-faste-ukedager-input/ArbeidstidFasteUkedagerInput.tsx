@@ -1,10 +1,6 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
-import { Weekday } from '@navikt/sif-common-utils';
-import { LabelInputInfoLayout } from '../../common';
-import { getTidFasteUkerdagerInputMessages } from '../../tid/tid-faste-ukedager-input/tidFasteUkerdagerInputMessages';
-import './arbeidstidFasteUkedagerInput.less';
 import {
     FormikInputGroup,
     FormikTimeInput,
@@ -12,6 +8,11 @@ import {
     ValidationError,
     ValidationResult,
 } from '@navikt/sif-common-formik-ds';
+import { Weekday } from '@navikt/sif-common-utils';
+import classNames from 'classnames';
+import { LabelInputInfoLayout } from '../../common';
+import { getTidFasteUkerdagerInputMessages } from '../../tid/tid-faste-ukedager-input/tidFasteUkerdagerInputMessages';
+import './arbeidstidFasteUkedagerInput.less';
 
 export interface ArbeidstidUkeTekster {
     dag: React.ReactNode;
@@ -73,7 +74,7 @@ const ArbeidstidFasteUkedagerInput: React.FunctionComponent<Props> = ({
         );
     };
     return (
-        <div className={bem.classNames(bem.block)}>
+        <div className={classNames(bem.block)}>
             {renderWeekdayTimeInput(Weekday.monday, txt.Mandager)}
             {renderWeekdayTimeInput(Weekday.tuesday, txt.Tirsdager)}
             {renderWeekdayTimeInput(Weekday.wednesday, txt.Onsdager)}
