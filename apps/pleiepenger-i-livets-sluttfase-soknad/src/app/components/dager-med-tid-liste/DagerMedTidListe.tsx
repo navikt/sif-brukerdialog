@@ -3,8 +3,8 @@ import { FormattedMessage } from 'react-intl';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import dayjs from 'dayjs';
 import { groupBy } from 'lodash';
-import { DagMedTid } from '../..';
 import DurationText from '../duration-text/DurationText';
+import { DagMedTid } from '../../types/DagMedTid';
 import './dagerMedTidListe.less';
 
 interface Props {

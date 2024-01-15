@@ -1,5 +1,5 @@
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { ArbeidIPeriodeIntlValues } from '../../../../../local-sif-common-pleiepenger';
+import { ArbeidIPeriodeIntlValues } from '../../../../../types/ArbeidIPeriodeIntlValues';
 
 export const getJobberIPeriodenValidator = (intlValues: ArbeidIPeriodeIntlValues) => (value: any) => {
     const error = getRequiredFieldValidator()(value);

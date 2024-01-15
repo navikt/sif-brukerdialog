@@ -1,10 +1,10 @@
 import { Heading } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { DateRange } from '@navikt/sif-common-formik-ds';
-import { ISODurationToDecimalDuration, dateToISODate } from '@navikt/sif-common-utils';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { TidEnkeltdager } from '../../../../local-sif-common-pleiepenger';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { DateRange } from '@navikt/sif-common-formik-ds';
+import { dateToISODate, ISODurationToDecimalDuration } from '@navikt/sif-common-utils';
+import TidEnkeltdager from '../../../../components/tid-enkeltdager/TidEnkeltdager';
 import {
     ArbeidIPeriodeApiData,
     ArbeidsforholdApiData,
