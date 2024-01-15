@@ -1,31 +1,33 @@
 import SummaryList from '@navikt/sif-common-soknad-ds/lib/components/summary-list/SummaryList';
 import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { ApiBarn, RegistrertBarnTypeApi } from '../../../../types/søknadApiData/SøknadApiData';
-import { BarnType } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/types';
-import { SummarySection } from '@navikt/sif-common-soknad-ds';
+import { ApiFosterbarn } from '../../../../types/søknadApiData/SøknadApiData';
+import { JaNeiSvar, SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 
 interface Props {
-    barn: ApiBarn[];
+    barn?: ApiFosterbarn[];
 }
 
 const DineBarnOppsummering = ({ barn }: Props) => {
     const intl = useIntl();
     return (
         <SummarySection header={intlHelper(intl, 'step.oppsummering.dineBarn')}>
-            <SummaryList
-                items={barn}
-                itemRenderer={({ identitetsnummer, navn, type }: ApiBarn) => {
-                    const fnr = identitetsnummer ? identitetsnummer : '';
+            <Block margin={'s'}>
+                <SummaryBlock header={intlHelper(intl, 'step.oppsummering.dineBarn.harFosterbarn')}>
+                    <JaNeiSvar harSvartJa={barn && barn.length > 0} />
+                </SummaryBlock>
+            </Block>
+            {barn && barn.length > 0 && (
+                <SummaryList
+                    items={barn}
+                    itemRenderer={({ identitetsnummer, navn }: ApiFosterbarn) => {
+                        const fnr = identitetsnummer ? identitetsnummer : '';
 
-                    const barnType =
-                        type !== BarnType.annet && type !== RegistrertBarnTypeApi.fraOppslag
-                            ? intlHelper(intl, `step.oppsummering.dineBarn.listItem.årsak.${type}`)
-                            : '';
-                    const punktum = type === RegistrertBarnTypeApi.fraOppslag ? '.' : '';
-                    return <>{`${navn}${punktum} ${fnr} ${barnType}`}</>;
-                }}
-            />
+                        return <>{`${navn} ${fnr} `}</>;
+                    }}
+                />
+            )}
         </SummarySection>
     );
 };

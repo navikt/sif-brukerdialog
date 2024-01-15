@@ -41,7 +41,7 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 const OppsummeringStep = () => {
     const intl = useIntl();
     const {
-        state: { søknadsdata, søker, registrerteBarn },
+        state: { søknadsdata, søker },
     } = useSøknadContext();
 
     const stepId = StepId.OPPSUMMERING;
@@ -62,7 +62,7 @@ const OppsummeringStep = () => {
         }
     }, [previousSøknadError, sendSøknadError]);
 
-    const apiData = getApiDataFromSøknadsdata(søknadsdata, registrerteBarn);
+    const apiData = getApiDataFromSøknadsdata(søknadsdata);
 
     if (!apiData) {
         return (
@@ -113,7 +113,7 @@ const OppsummeringStep = () => {
                                 onBack={goBack}>
                                 {/* Om deg */}
                                 <OmSøkerOppsummering søker={søker} />
-                                <DineBarnOppsummering barn={apiData.barn} />
+                                <DineBarnOppsummering barn={apiData.fosterbarn} />
                                 {/* Fravær fra arbeid */}
                                 <SummarySection header={intlHelper(intl, 'step.oppsummering.arbeidsforhold.titel')}>
                                     <ArbeidsforholdSummaryView

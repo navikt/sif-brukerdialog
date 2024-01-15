@@ -1,7 +1,6 @@
 import { ISODate } from '@navikt/sif-common-utils/lib';
 import { Utbetalingsårsak, ÅrsakNyoppstartet } from '../ArbeidsforholdTypes';
 import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
-import { BarnType } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/types';
 
 export type ISO8601Duration = string;
 
@@ -26,16 +25,15 @@ export interface ArbeidsgiverDetaljer {
     perioder: Utbetalingsperiode[];
 }
 
-export enum RegistrertBarnTypeApi {
-    'fraOppslag' = 'FRA_OPPSLAG',
-}
-
-export interface ApiBarn {
-    identitetsnummer?: string;
-    aktørId?: string;
+export interface ApiBarnFraOppslag {
+    aktørId: string;
     fødselsdato: ISODate;
     navn: string;
-    type: RegistrertBarnTypeApi | BarnType;
+}
+
+export interface ApiFosterbarn {
+    identitetsnummer: string;
+    navn: string;
 }
 
 export enum ApiAktivitet {
@@ -51,17 +49,23 @@ export interface Utbetalingsperiode {
     aktivitetFravær: ApiAktivitet[];
 }
 
+export interface DataBruktTilUtledningAnnetData {
+    harFosterbarn: boolean;
+}
+
+export type DataBruktTilUtledningAnnetDataJsonString = string;
+
 export interface SøknadApiData {
     id: string;
     språk: Locale;
-
     bekreftelser: {
         harBekreftetOpplysninger: boolean;
         harForståttRettigheterOgPlikter: boolean;
     };
-    barn: ApiBarn[]; // Dine barn
+    fosterbarn?: ApiFosterbarn[]; // Fosterbarn
     bosteder: UtenlandsoppholdApiData[]; // medlemskap-siden
     opphold: Opphold[]; // hvis ja på har oppholdt seg i utlandet
     arbeidsgivere: ArbeidsgiverDetaljer[];
     vedlegg: string[]; // legeerklæring
+    dataBruktTilUtledningAnnetData?: DataBruktTilUtledningAnnetDataJsonString;
 }

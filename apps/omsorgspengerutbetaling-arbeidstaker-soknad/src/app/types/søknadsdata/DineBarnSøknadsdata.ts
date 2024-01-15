@@ -1,11 +1,11 @@
-import { AnnetBarn } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/types';
+import { Fosterbarn } from '@navikt/sif-common-forms-ds/lib/forms/fosterbarn/types';
 
-interface DineBarnHarAnnetBarn {
-    type: 'dineBarnHarAnnetBarn';
-    andreBarn: AnnetBarn[];
+interface DineBarnHarFosterbarn {
+    type: 'dineBarnHarFosterbarn';
+    fosterbarn: Fosterbarn[];
 }
-interface DineBarnHarIkkeAnnetBarn {
-    type: 'dineBarnHarIkkeAnnetBarn';
+interface DineBarnHarIkkeFosterbarn {
+    type: 'dineBarnHarIkkeFosterbarn';
 }
 
-export type DineBarnSøknadsdata = DineBarnHarAnnetBarn | DineBarnHarIkkeAnnetBarn;
+export type DineBarnSøknadsdata = DineBarnHarFosterbarn | DineBarnHarIkkeFosterbarn;

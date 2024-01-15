@@ -14,7 +14,7 @@ import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 import { situasjonMessages } from '../søknad/steps/situasjon/situasjonStepMessages';
 import bostedUtlandMessages from '@navikt/sif-common-forms-ds/lib/forms/bosted-utland/bostedUtlandMessages';
 import { dineBarnMessages } from '../søknad/steps/dine-barn/dineBarnMessages';
-import annetBarnMessages from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/annetBarnMessages';
+import fosterbarnMessages from '@navikt/sif-common-forms-ds/lib/forms/fosterbarn/fosterbarnMessages';
 // import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
 
 const bokmålstekster = {
@@ -23,7 +23,7 @@ const bokmålstekster = {
     ...personalOpplysningerMessages.nb,
     ...velkommenPageMessages.nb,
     ...dineBarnMessages.nb,
-    ...annetBarnMessages.nb,
+    ...fosterbarnMessages.nb,
     ...situasjonMessages.nb,
     ...fraværStepMessages.nb,
     ...bostedUtlandMessages.nb,
