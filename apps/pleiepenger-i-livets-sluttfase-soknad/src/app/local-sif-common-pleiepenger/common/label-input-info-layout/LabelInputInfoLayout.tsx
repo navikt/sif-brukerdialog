@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
+import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
+import classNames from 'classnames';
 import './labelInputInfoLayout.less';
 
 interface Props {
@@ -17,7 +18,7 @@ const LabelInputInfoLayout: React.FunctionComponent<Props> = ({ narrowBreakpoint
         query: `(max-width: ${narrowBreakpoint}px)`,
     });
     return (
-        <div className={bem.classNames(bem.block, bem.modifierConditional('narrow', isNarrow))}>
+        <div className={classNames(bem.block, bem.modifierConditional('narrow', isNarrow))}>
             <div className={bem.element('labelWrapper')} role="presentation" aria-hidden={true}>
                 {label}
             </div>

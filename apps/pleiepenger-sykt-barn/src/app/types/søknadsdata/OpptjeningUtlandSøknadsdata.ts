@@ -1,4 +1,4 @@
-import { OpptjeningUtland } from '@navikt/sif-common-forms-ds/lib/forms/opptjening-utland';
+import { OpptjeningUtland } from '@navikt/sif-common-forms-ds/src/forms/opptjening-utland';
 
 export interface HarOpptjeningUtlandSøknadsdata {
     type: 'harOpptjeningUtland';

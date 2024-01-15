@@ -35,8 +35,8 @@ const SøknadContent: React.FunctionComponent<Props> = ({ søknad }) => {
     const intl = useIntl();
 
     const harArbeidsgiver = () => {
-        if ('arbeidsgivere' in søknad.søknad) {
-            const arbeidsgivere = søknad.søknad.arbeidsgivere;
+        if (søknad.søknadstype === Søknadstype.PP_SYKT_BARN) {
+            const { arbeidsgivere } = søknad.søknad;
             if (!Array.isArray(arbeidsgivere)) {
                 return arbeidsgivere.organisasjoner && arbeidsgivere.organisasjoner.length > 0;
             } else {

@@ -1,5 +1,5 @@
-import { DateRange } from '@navikt/sif-common-formik-ds/lib';
-import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib';
+import { DateRange } from '@navikt/sif-common-formik-ds';
+import { Utenlandsopphold } from '@navikt/sif-common-forms-ds';
 
 interface BaseTidsrom {
     søknadsperiode: DateRange;

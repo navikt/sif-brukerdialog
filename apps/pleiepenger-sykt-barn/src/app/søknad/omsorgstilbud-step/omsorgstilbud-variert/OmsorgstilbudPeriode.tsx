@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { DateRange } from '@navikt/sif-common-formik-ds/lib';
+import { DateRange } from '@navikt/sif-common-formik-ds/src';
 import {
     DateDurationMap,
     dateToISODate,
     getDatesInDateRange,
     getDurationForISOWeekdayNumber,
     ISODateToDate,
-} from '@navikt/sif-common-utils/lib';
+} from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { OmsorgstilbudPeriodeData } from '../../../local-sif-common-pleiepenger/components/omsorgstilbud-periode/components/omsorgstilbud-periode-form/OmsorgstilbudPeriodeForm';
 import OmsorgstilbudPeriodeDialog from '../../../local-sif-common-pleiepenger/components/omsorgstilbud-periode/components/omsorgstilbud-periode-dialog/OmsorgstilbudPeriodeDialog';

@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import { getEnvVariableOrDefault } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import { getEnvVariableOrDefault } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 
 const axiosConfigCommon: AxiosRequestConfig = {
     withCredentials: false,

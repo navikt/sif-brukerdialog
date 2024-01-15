@@ -3,21 +3,20 @@
     "description": "Amplitude log util used in SIF",
     "homepage": "https://github.com/navikt/sif-common-amplitude",
     "license": "MIT",
-    "main": "lib/index.js",
+    "main": "src/index.ts",
     "name": "@navikt/sif-common-amplitude",
-    "types": "lib/index.d.js",
-    "version": "2.24.4",
+    "version": "2.24.11",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-amplitude/issues"
     },
     "devDependencies": {
         "@types/amplitude-js": "8.16.5",
-        "@types/node": "20.10.4",
-        "@types/react": "18.2.42",
+        "@types/node": "20.11.1",
+        "@types/react": "18.2.48",
         "amplitude-js": "8.21.9",
         "config": "workspace:*",
         "constate": "3.3.2",
-        "gh-pages": "6.1.0",
+        "gh-pages": "6.1.1",
         "react": "18.2.0",
         "rimraf": "5.0.5"
     },
@@ -38,13 +37,6 @@
         "url": "git+https://github.com/navikt/sif-common-amplitude.git"
     },
     "scripts": {
-        "build-package": "npm-run-all compile-lib-script",
-        "build": "npm-run-all build-package",
-        "clean-lib": "rimraf ./lib",
-        "clean": "rm -rf node_modules lib",
-        "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
-        "compile-lib-script": "tsc -p tsconfig.json",
-        "dev-lib": "yarn compile-lib-script-watch",
         "lint": "eslint ./src --ext ts,tsx"
     }
 }

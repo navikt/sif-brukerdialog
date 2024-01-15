@@ -1,4 +1,4 @@
-import { DateRange } from '@navikt/sif-common-utils/lib';
+import { DateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 
 export const getTilgjengeligEndringsperiode = (): DateRange => {

@@ -1,6 +1,6 @@
 import React from 'react';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import ContentWithHeader from '@navikt/sif-common-core-ds/lib/components/content-with-header/ContentWithHeader';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import ContentWithHeader from '@navikt/sif-common-core-ds/src/components/content-with-header/ContentWithHeader';
 
 interface Props {
     header: string;

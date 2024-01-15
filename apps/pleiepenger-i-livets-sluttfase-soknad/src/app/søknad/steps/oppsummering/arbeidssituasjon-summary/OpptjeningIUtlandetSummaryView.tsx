@@ -3,7 +3,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { renderOpptjeningIUtlandetSummary } from './renderOpptjeningIUtlandetSummary';
 import { OpptjeningIUtlandetApi } from '../../../../types/søknadApiData/SøknadApiData';
 import { SummaryBlock } from '@navikt/sif-common-soknad-ds';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 
 export interface Props {
     opptjeningUtland: OpptjeningIUtlandetApi[];

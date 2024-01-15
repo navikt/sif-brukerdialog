@@ -1,14 +1,15 @@
 import { Meta, StoryFn } from '@storybook/react';
 import * as React from 'react';
-import StoryWrapper from '../../decorators/StoryWrapper';
-import PictureScanningGuide from '../../../src/components/picture-scanning-guide/PictureScanningGuide';
+import StoryWrapper from '../../../../storybook/decorators/StoryWrapper';
+import PictureScanningGuide from '../PictureScanningGuide';
+import { pictureScanningGuideMessages } from '../i18n/pictureScanningGuideMessages';
 
 export default {
     title: 'Component/PictureScanningGuide',
     component: PictureScanningGuide,
     decorators: [
         (Story) => (
-            <StoryWrapper>
+            <StoryWrapper messages={pictureScanningGuideMessages.nn}>
                 <Story />
             </StoryWrapper>
         ),

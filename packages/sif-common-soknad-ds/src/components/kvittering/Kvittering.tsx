@@ -1,7 +1,7 @@
 import { Heading, Ingress } from '@navikt/ds-react';
 import React from 'react';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import CheckmarkIcon from '@navikt/sif-common-core-ds/lib/atoms/checkmark-icon/CheckmarkIcon';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import CheckmarkIcon from '@navikt/sif-common-core-ds/src/atoms/checkmark-icon/CheckmarkIcon';
 import './kvittering.scss';
 
 interface Props {

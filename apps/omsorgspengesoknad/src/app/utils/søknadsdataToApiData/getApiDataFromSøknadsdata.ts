@@ -1,10 +1,11 @@
-import { Attachment } from '@navikt/sif-common-core-ds/lib/types';
-import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types';
+import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { includeDeltBostedStep } from '../../søknad/søknadStepConfig';
 import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { getAttachmentURLBackend } from '../attachmentUtilsAuthToken';
 import { getOmBarnetApiDataFromSøknadsdata } from './getOmBarnetApiDataFromSøknadsdata';
+import { getDataBruktTilUtledning } from './getDataBruktTilUtledning';
 
 const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
     if (!vedlegg || vedlegg.length === 0) {
@@ -28,5 +29,6 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadA
         ...getOmBarnetApiDataFromSøknadsdata(omBarnet),
         legeerklæring: getVedleggApiData(søknadsdata.legeerklaering?.vedlegg),
         samværsavtale: inkluderDeltBosted ? getVedleggApiData(søknadsdata.deltBosted?.vedlegg) : undefined,
+        dataBruktTilUtledningAnnetData: JSON.stringify(getDataBruktTilUtledning(søknadsdata)),
     };
 };

@@ -1,6 +1,6 @@
-import { DateRange } from '@navikt/sif-common-formik-ds/lib';
-import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import { Virksomhet } from '@navikt/sif-common-forms-ds/lib';
+import { DateRange } from '@navikt/sif-common-formik-ds/src';
+import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { Virksomhet } from '@navikt/sif-common-forms-ds/src';
 import dayjs from 'dayjs';
 
 export const getSelvstendigIPeriodeValidator = (

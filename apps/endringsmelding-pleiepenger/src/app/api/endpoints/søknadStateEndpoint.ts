@@ -1,4 +1,4 @@
-import persistence, { PersistenceInterface } from '@navikt/sif-common-core-ds/lib/utils/persistence/persistence';
+import persistence, { PersistenceInterface } from '@navikt/sif-common-core-ds/src/utils/persistence/persistence';
 import { jsonSort } from '@navikt/sif-common-utils';
 import { K9Sak, Søker, Søknadsdata, ValgteEndringer } from '@types';
 import { AxiosResponse } from 'axios';

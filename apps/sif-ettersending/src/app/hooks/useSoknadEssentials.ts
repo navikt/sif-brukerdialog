@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
+import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { isObjectLike } from 'lodash';
 import getSokerRemoteData from '../api/getSoker';
 import getSoknadTempStorage from '../api/getSoknadTempStorage';

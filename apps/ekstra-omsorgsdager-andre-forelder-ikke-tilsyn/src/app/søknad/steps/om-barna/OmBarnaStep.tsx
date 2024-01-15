@@ -1,12 +1,12 @@
 import { Alert } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
-import ContentWithHeader from '@navikt/sif-common-core-ds/lib/components/content-with-header/ContentWithHeader';
-import ItemList from '@navikt/sif-common-core-ds/lib/components/lists/item-list/ItemList';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import ContentWithHeader from '@navikt/sif-common-core-ds/src/components/content-with-header/ContentWithHeader';
+import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import BarnListAndDialog from '../../../pre-common/forms/barn/BarnListAndDialog';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
 import { AndreBarn } from '../../../pre-common/forms/barn';
-import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
+import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { StepId } from '../../../types/StepId';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
@@ -17,9 +17,9 @@ import PersistStepFormValues from '../../../components/persist-step-form-values/
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import {
     barnItemLabelRenderer,
     getOmBarnaStepInitialValues,

@@ -1,4 +1,5 @@
 import React, { CSSProperties } from 'react';
+import classNames from 'classnames';
 import bemUtils from '../../../utils/bemUtils';
 
 interface Props {
@@ -20,7 +21,7 @@ const CircleMask = ({ size, active = true, scaleSvg = true, valign, children }: 
     }
     return (
         <div
-            className={bem.classNames(
+            className={classNames(
                 bem.block,
                 bem.modifierConditional('inactive', active === false),
                 bem.modifierConditional(`valign-${valign}`, valign !== undefined),

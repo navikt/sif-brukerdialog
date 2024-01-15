@@ -1,20 +1,20 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
-import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { resetFieldValue, resetFieldValues } from '@navikt/sif-common-formik-ds';
-import { SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds/lib';
+import { SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds/src';
 import {
     getDateValidator,
     getFødselsnummerValidator,
     getRequiredFieldValidator,
     getStringValidator,
     ValidateDateError,
-} from '@navikt/sif-common-formik-ds/lib/validation';
+} from '@navikt/sif-common-formik-ds/src/validation';
 import { dateToday, prettifyDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { useFormikContext } from 'formik';

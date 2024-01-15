@@ -1,7 +1,7 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { dateFormatter, dateToday } from '@navikt/sif-common-utils/lib';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { dateFormatter, dateToday } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import TidEnkeltdagDialog, { TidEnkeltdagDialogProps } from '../tid-enkeltdag-dialog/TidEnkeltdagDialog';
 import { TidEnkeltdagFormProps } from '../tid-enkeltdag-dialog/TidEnkeltdagForm';

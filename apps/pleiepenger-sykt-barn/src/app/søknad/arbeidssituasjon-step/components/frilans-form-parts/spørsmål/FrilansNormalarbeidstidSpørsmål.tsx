@@ -1,8 +1,8 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { getTypedFormComponents, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { getTypedFormComponents, YesOrNo } from '@navikt/sif-common-formik-ds/src';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { ArbeidsforholdType } from '../../../../../local-sif-common-pleiepenger';
 import { ArbeidsforholdFrilanserFormValues } from '../../../../../types/søknad-form-values/ArbeidsforholdFormValues';
 import { FrilansFormField, Frilanstype } from '../../../../../types/søknad-form-values/FrilansFormValues';

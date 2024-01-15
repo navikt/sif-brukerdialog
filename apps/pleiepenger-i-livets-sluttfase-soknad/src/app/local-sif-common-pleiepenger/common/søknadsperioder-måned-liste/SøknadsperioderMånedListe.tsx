@@ -1,9 +1,9 @@
 import React from 'react';
 import { DateRange, getMonthsInDateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
-import { FormikInputGroup, ValidationError, ValidationFunction } from '@navikt/sif-common-formik-ds/lib';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import { FormikInputGroup, ValidationError, ValidationFunction } from '@navikt/sif-common-formik-ds';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { Heading } from '@navikt/ds-react';
 
 interface Props {

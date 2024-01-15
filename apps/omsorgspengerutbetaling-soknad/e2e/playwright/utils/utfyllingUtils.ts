@@ -8,13 +8,14 @@ dayjs.extend(isoWeek);
 dayjs.locale(locale);
 
 const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling';
+const date = dayjs('2023-10-04');
 
-const fraDato = dayjs().startOf('isoWeek').subtract(3, 'weeks').format('DD.MM.YYYY');
-const tilDato = dayjs().startOf('isoWeek').format('DD.MM.YYYY');
-const datoDelvisFravær = dayjs().startOf('isoWeek').subtract(4, 'weeks').format('DD.MM.YYYY');
-const fomDatoIUtlandet = dayjs().startOf('isoWeek').subtract(3, 'weeks').add(2, 'day').format('DD.MM.YYYY');
-const tomDatoIUtlandet = dayjs().startOf('isoWeek').subtract(3, 'weeks').add(4, 'day').format('DD.MM.YYYY');
-const frilansStartDato = dayjs().startOf('isoWeek').subtract(10, 'weeks').format('DD.MM.YYYY');
+const fraDato = date.startOf('isoWeek').subtract(3, 'weeks').format('DD.MM.YYYY');
+const tilDato = date.startOf('isoWeek').format('DD.MM.YYYY');
+const datoDelvisFravær = date.startOf('isoWeek').subtract(4, 'weeks').format('DD.MM.YYYY');
+const fomDatoIUtlandet = date.startOf('isoWeek').subtract(3, 'weeks').add(2, 'day').format('DD.MM.YYYY');
+const tomDatoIUtlandet = date.startOf('isoWeek').subtract(3, 'weeks').add(4, 'day').format('DD.MM.YYYY');
+const frilansStartDato = date.startOf('isoWeek').subtract(10, 'weeks').format('DD.MM.YYYY');
 
 const selectRadioByNameAndValue = async (page: Page) => {
     await page.locator('input[type="radio"][value="JORDBRUK_SKOGBRUK"]').check();
@@ -26,9 +27,9 @@ const virksomhet = {
     navn: 'Abc',
     organisasjonsnummer: '999263550' /** Navs orgnur */,
     fraOgMed: '01.01.2010',
-    tilOgMed: dayjs().subtract(1, 'day').format('DD.MM.YYYY'),
+    tilOgMed: date.subtract(1, 'day').format('DD.MM.YYYY'),
     hattVarigEndringAvNæringsinntektSiste4Kalenderår: 'yes',
-    varigEndringINæringsinntekt_dato: dayjs().subtract(1, 'year').format('DD.MM.YYYY'),
+    varigEndringINæringsinntekt_dato: date.subtract(1, 'year').format('DD.MM.YYYY'),
     varigEndringINæringsinntekt_inntektEtterEndring: '100',
     varigEndringINæringsinntekt_forklaring: 'Lorem ipsum',
     harRegnskapsfører: 'no',

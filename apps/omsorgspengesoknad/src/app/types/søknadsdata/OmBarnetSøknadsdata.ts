@@ -1,11 +1,14 @@
+import { BarnSammeAdresse } from '../BarnSammeAdresse';
 import { RegistrertBarn } from '../RegistrertBarn';
 import { SøkersRelasjonTilBarnet } from '../SøkersRelasjonTilBarnet';
 
 interface OmBarnetSøknadsdata_registrertBarn {
     type: 'registrertBarn';
     registrertBarn: RegistrertBarn;
-    sammeAdresse: boolean;
+    sammeAdresse: BarnSammeAdresse;
     kroniskEllerFunksjonshemming: boolean;
+    høyereRisikoForFravær?: boolean;
+    høyereRisikoForFraværBeskrivelse?: string;
 }
 
 interface OmBarnetSøknadsdata_annetBarn {
@@ -15,8 +18,10 @@ interface OmBarnetSøknadsdata_annetBarn {
     barnetsFødselsdato: string;
     barnetsNavn: string;
     søkersRelasjonTilBarnet: SøkersRelasjonTilBarnet;
-    sammeAdresse: boolean;
+    sammeAdresse: BarnSammeAdresse;
     kroniskEllerFunksjonshemming: boolean;
+    høyereRisikoForFravær?: boolean;
+    høyereRisikoForFraværBeskrivelse?: string;
 }
 
 export type OmBarnetSøknadsdata = OmBarnetSøknadsdata_annetBarn | OmBarnetSøknadsdata_registrertBarn;

@@ -1,4 +1,4 @@
-import { isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
+import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { initialSøknadsdata } from '../søknad/context/reducer/søknadReducer';
 import { useEffect, useState } from 'react';
 import { SØKNAD_VERSJON } from '../constants/SØKNAD_VERSJON';

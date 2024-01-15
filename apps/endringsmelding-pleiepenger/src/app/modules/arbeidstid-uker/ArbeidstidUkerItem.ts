@@ -1,4 +1,4 @@
-import { DateRange, ISODateRange, Duration } from '@navikt/sif-common-utils/lib';
+import { DateRange, ISODateRange, Duration } from '@navikt/sif-common-utils';
 
 export interface ArbeidstidUkerItem {
     id: string;

@@ -1,6 +1,6 @@
 import { Arbeidsgiver, ArbeidsgiverType } from '../../types/Arbeidsgiver';
 import api, { ApiEndpoint } from '../api';
-import { DateRange, ISODate, ISODateToDate, dateToISODate } from '@navikt/sif-common-utils/lib';
+import { DateRange, ISODate, ISODateToDate, dateToISODate } from '@navikt/sif-common-utils';
 
 export type AAregArbeidsgiver = {
     organisasjoner?: {

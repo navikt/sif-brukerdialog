@@ -1,4 +1,4 @@
-import { DateRange } from '@navikt/sif-common-formik-ds/lib';
+import { DateRange } from '@navikt/sif-common-formik-ds/src';
 import dayjs from 'dayjs';
 
 interface MedlemsskapDateRanges {

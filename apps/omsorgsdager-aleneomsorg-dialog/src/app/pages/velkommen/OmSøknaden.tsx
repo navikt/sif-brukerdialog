@@ -1,9 +1,9 @@
 import { FormattedMessage, useIntl } from 'react-intl';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { BodyLong, Heading } from '@navikt/ds-react';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import BehandlingAvPersonopplysningerContent from './personalopplysninger/BehandlingAvPersonopplysningerContent';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 
 const OmSøknaden = () => {
     const intl = useIntl();

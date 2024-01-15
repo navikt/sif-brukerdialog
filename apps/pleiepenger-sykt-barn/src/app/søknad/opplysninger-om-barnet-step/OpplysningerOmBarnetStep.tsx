@@ -1,9 +1,9 @@
 import React from 'react';
-import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import {
     getTotalSizeOfAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
-} from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
+} from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { useFormikContext } from 'formik';
 import { SøkerdataContext } from '../../context/SøkerdataContext';
 import { StepCommonProps } from '../../types/StepCommonProps';

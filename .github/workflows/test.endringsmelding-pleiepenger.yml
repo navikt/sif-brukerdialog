@@ -81,7 +81,7 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
                   project: ./apps/endringsmelding-pleiepenger/e2e
-                  build: yarn build-endringsmelding-pleiepenger
+                  build: yarn turbo run build --filter=@navikt/endringsmelding-pleiepenger
                   start: yarn turbo start-e2e-server --filter=endringsmelding-pleiepenger
                   wait-on: 'http://localhost:8080/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/alive'
                   wait-on-timeout: 60

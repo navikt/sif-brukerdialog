@@ -1,15 +1,15 @@
 import { Alert, BodyShort, HStack, Heading, Tag } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import {
     DateRange,
     TypedFormikFormContext,
     ValidationError,
     getErrorForField,
     getTypedFormComponents,
-} from '@navikt/sif-common-formik-ds/lib';
-import getTimeValidator from '@navikt/sif-common-formik-ds/lib/validation/getTimeValidator';
+} from '@navikt/sif-common-formik-ds';
+import getTimeValidator from '@navikt/sif-common-formik-ds/src/validation/getTimeValidator';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import DurationWeekdaysInput from '@navikt/sif-common-ui/src/duration-weekdays-input/DurationWeekdaysInput';
 import {
@@ -19,7 +19,7 @@ import {
     getMonthsInDateRange,
     isDateInDates,
     summarizeDateDurationMap,
-} from '@navikt/sif-common-utils/lib';
+} from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { useFormikContext } from 'formik';
 import { useContext, useEffect, useState } from 'react';

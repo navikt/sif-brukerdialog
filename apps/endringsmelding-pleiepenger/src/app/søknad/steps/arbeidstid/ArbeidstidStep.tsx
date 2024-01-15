@@ -1,7 +1,7 @@
 import { Alert, Heading } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import InfoList from '@navikt/sif-common-core-ds/lib/components/lists/info-list/InfoList';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import InfoList from '@navikt/sif-common-core-ds/src/components/lists/info-list/InfoList';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { useStepConfig } from '../../../hooks/useStepConfig';
 import { useSøknadsdataInfo } from '../../../hooks/useSøknadsdataInfo';
 import SøknadStep from '../../SøknadStep';

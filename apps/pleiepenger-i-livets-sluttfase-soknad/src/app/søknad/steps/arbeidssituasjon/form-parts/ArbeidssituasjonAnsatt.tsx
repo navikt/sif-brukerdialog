@@ -1,13 +1,13 @@
 import { FormattedMessage, useIntl } from 'react-intl';
 import InfoJobberNormaltTimerAnsatt from './info/InfoJobberNormaltTimerAnsatt';
 import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
-import { DateRange, ValidationError, YesOrNo, getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { prettifyDateExtended } from '@navikt/sif-common-utils/lib';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import { DateRange, ValidationError, YesOrNo, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { prettifyDateExtended } from '@navikt/sif-common-utils';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { Alert, Heading } from '@navikt/ds-react';
-import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { getJobberNormaltTimerValidator } from '../../../../utils/jobberNormaltTimerValidator';
 
 export enum AnsattFormFields {

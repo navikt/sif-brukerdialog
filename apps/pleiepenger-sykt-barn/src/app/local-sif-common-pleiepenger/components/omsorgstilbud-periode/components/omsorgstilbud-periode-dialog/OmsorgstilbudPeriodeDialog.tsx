@@ -1,6 +1,6 @@
 import { Modal } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import OmsorgstilbudPeriodeForm, {
     OmsorgstilbudPeriodeFormProps,
 } from '../omsorgstilbud-periode-form/OmsorgstilbudPeriodeForm';

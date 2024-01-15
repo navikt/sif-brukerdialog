@@ -3,8 +3,8 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import { useSøknadContext, useSøknadsdataStatus } from '@hooks';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds';
 import { StepId } from '../../søknad/config/StepId';
 

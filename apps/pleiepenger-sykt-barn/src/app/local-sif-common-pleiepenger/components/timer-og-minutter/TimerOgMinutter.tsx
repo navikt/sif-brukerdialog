@@ -1,7 +1,7 @@
 import React from 'react';
 import { IntlShape, useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { InputTime } from '@navikt/sif-common-formik-ds/lib';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { InputTime } from '@navikt/sif-common-formik-ds/src';
 
 export const formatTimerOgMinutter = (intl: IntlShape, time: Partial<InputTime>): string => {
     const timer = time.hours || '0';

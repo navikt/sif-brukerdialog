@@ -1,4 +1,4 @@
-import { UtenlandsoppholdÅrsak } from '@navikt/sif-common-forms-ds/lib/forms/utenlandsopphold/types';
+import { UtenlandsoppholdÅrsak } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
 import { ISODate, ISODateRange, ISODateRangeMap, ISODuration } from '@navikt/sif-common-utils';
 import { isObject } from 'formik';
 

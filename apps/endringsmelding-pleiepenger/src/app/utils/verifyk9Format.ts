@@ -1,10 +1,4 @@
-import {
-    isISODateOrNull,
-    isISODateRange,
-    isISODuration,
-    ISODateRange,
-    isStringOrNull,
-} from '@navikt/sif-common-utils/lib';
+import { isISODateOrNull, isISODateRange, isISODuration, ISODateRange, isStringOrNull } from '@navikt/sif-common-utils';
 import { isObject, isString } from 'formik';
 import { isArray } from 'lodash';
 import {

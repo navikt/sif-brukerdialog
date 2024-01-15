@@ -1,10 +1,10 @@
-import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import {
     attachmentHasBeenUploaded,
     getTotalSizeOfAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
-} from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
-import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/lib/validation/types';
+} from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/src/validation/types';
 
 export enum AppFieldValidationErrors {
     'ingen_dokumenter' = 'validation.ingen_dokumenter',

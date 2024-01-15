@@ -1,10 +1,10 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { DateRange, ISODate } from '@navikt/sif-common-utils/lib';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { DateRange, ISODate } from '@navikt/sif-common-utils';
 import { FrilansFormField } from '../../../../../types/søknad-form-values/FrilansFormValues';
 import { ArbFriFormComponents } from '../FrilanserFormPart';
-import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
+import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
 import { getFrilanserSluttdatoValidator } from '../../../validation/frilansSluttdatoValidator';
 import dayjs from 'dayjs';
 

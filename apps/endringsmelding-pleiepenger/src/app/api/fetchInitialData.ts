@@ -1,5 +1,5 @@
-import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
 import {
     Arbeidsgiver,

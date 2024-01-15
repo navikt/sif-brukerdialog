@@ -1,5 +1,6 @@
 import { TextField } from '@navikt/ds-react';
 import React, { RefObject, useState } from 'react';
+import classNames from 'classnames';
 import { InputTime, TestProps } from '../../types';
 import bemUtils from '../../utils/bemUtils';
 import { getNumberFromNumberInputValue } from '../../utils/numberInputUtils';
@@ -81,7 +82,7 @@ const TimeInput: React.FunctionComponent<TimeInputProps> = ({
     return (
         <div
             data-testid={testKey}
-            className={bem.classNames(
+            className={classNames(
                 bem.block,
                 bem.modifier(layout),
                 bem.modifier(`content-${justifyContent}`),

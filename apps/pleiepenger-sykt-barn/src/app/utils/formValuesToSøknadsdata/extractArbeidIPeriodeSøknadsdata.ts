@@ -1,5 +1,5 @@
-import { DateRange, getNumberFromNumberInputValue, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import { dateUtils, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
+import { DateRange, getNumberFromNumberInputValue, YesOrNo } from '@navikt/sif-common-formik-ds/src';
+import { dateUtils, ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 import { ArbeiderIPeriodenSvar } from '../../local-sif-common-pleiepenger';
 import { TimerEllerProsent } from '../../types';
 import {

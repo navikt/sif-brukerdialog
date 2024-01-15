@@ -1,8 +1,8 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import { dateFormatter, DateRange } from '@navikt/sif-common-utils/lib';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
 import { FrilansFormField } from '../../../../../types/søknad-form-values/FrilansFormValues';
 import { getStartdatoForNySomFrilanser } from '../../../../../utils/frilanserUtils';
 import { ArbFriFormComponents } from '../FrilanserFormPart';

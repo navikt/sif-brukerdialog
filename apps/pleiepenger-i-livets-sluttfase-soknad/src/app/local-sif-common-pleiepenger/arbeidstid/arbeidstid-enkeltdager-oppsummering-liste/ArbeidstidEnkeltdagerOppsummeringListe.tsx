@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import DagerMedTidListe from '../../common/dager-med-tid-liste/DagerMedTidListe';
 import { ArbeidstidEnkeltdagApiData, DagMedTid } from '../../types';
 import { groupBy } from 'lodash';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { Accordion } from '@navikt/ds-react';
 
 export interface ArbeidstidEnkeltdagerOppsummeringProps {

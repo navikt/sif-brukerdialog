@@ -1,13 +1,13 @@
 import React from 'react';
 import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { DateRange } from '@navikt/sif-common-formik-ds/lib';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { DateRange } from '@navikt/sif-common-formik-ds/src';
 import {
     decimalDurationToDuration,
     ISODateToDate,
     ISODurationToDecimalDuration,
     ISODurationToDuration,
-} from '@navikt/sif-common-utils/lib';
+} from '@navikt/sif-common-utils';
 import { formatTimerOgMinutter } from '../../../local-sif-common-pleiepenger/components/timer-og-minutter/TimerOgMinutter';
 import { ArbeidIPeriodeType } from '../../../types/ArbeidIPeriodeType';
 import { RedusertArbeidstidType } from '../../../types/RedusertArbeidstidType';

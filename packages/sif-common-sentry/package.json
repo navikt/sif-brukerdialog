@@ -1,26 +1,25 @@
 {
+    "name": "@navikt/sif-common-sentry",
     "author": "navikt",
     "description": "Sentry utils used in sif-common applications",
     "homepage": "https://navikt.github.io/sif-common-sentry",
     "license": "MIT",
-    "main": "lib/index.js",
-    "name": "@navikt/sif-common-sentry",
-    "types": "lib/index.d.js",
-    "version": "0.25.4",
+    "main": "src/index.ts",
+    "version": "0.25.11",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-sentry/issues"
     },
     "dependencies": {
-        "@sentry/browser": "7.86.0",
-        "@sentry/react": "7.86.0",
-        "@sentry/types": "7.86.0"
+        "@sentry/browser": "7.93.0",
+        "@sentry/react": "7.93.0",
+        "@sentry/types": "7.93.0"
     },
     "devDependencies": {
-        "@types/node": "20.10.4",
-        "axios": "1.6.2",
+        "@types/node": "20.11.1",
+        "axios": "1.6.5",
         "config": "*",
         "copyfiles": "2.4.1",
-        "gh-pages": "6.1.0",
+        "gh-pages": "6.1.1",
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "rimraf": "5.0.5"
@@ -41,13 +40,6 @@
         "url": "git+https://github.com/navikt/sif-common-sentry.git"
     },
     "scripts": {
-        "build-package": "npm-run-all compile-lib-script",
-        "build": "npm-run-all build-package",
-        "clean-lib": "rimraf ./lib",
-        "clean": "rm -rf node_modules lib",
-        "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
-        "compile-lib-script": "tsc -p tsconfig.json",
-        "dev-lib": "yarn compile-lib-script-watch",
         "lint": "eslint ./src --ext ts,tsx"
     }
 }

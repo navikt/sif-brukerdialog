@@ -1,8 +1,8 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { ErrorColored } from '@navikt/ds-icons';
-import AriaText from '@navikt/sif-common-core-ds/lib/atoms/aria-text/AriaText';
-import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
+import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
+import DurationText from '@navikt/sif-common-core-ds/src/components/duration-text/DurationText';
 import { erTimerGyldigInnenforAntallDager } from '@utils';
 import IconText from '../../../components/icon-text/IconText';
 import { ArbeidstidUkerItem } from '../ArbeidstidUkerItem';

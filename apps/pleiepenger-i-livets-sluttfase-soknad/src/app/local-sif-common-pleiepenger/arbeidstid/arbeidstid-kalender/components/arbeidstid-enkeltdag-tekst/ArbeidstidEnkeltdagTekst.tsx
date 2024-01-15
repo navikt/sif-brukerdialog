@@ -1,5 +1,5 @@
 import React from 'react';
-import { Duration, durationToDecimalDuration } from '@navikt/sif-common-utils/lib';
+import { Duration, durationToDecimalDuration } from '@navikt/sif-common-utils';
 import DurationText from '../../../../common/duration-text/DurationText';
 import './arbeidstidEnkeltdagTekst.less';
 

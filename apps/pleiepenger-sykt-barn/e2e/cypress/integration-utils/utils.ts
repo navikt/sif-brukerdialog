@@ -1,4 +1,4 @@
-import { DateRange } from '@navikt/sif-common-formik-ds/lib';
+import { DateRange } from '@navikt/sif-common-formik-ds/src';
 import dayjs = require('dayjs');
 
 export const PUBLIC_PATH = '/familie/sykdom-i-familien/soknad/pleiepenger';

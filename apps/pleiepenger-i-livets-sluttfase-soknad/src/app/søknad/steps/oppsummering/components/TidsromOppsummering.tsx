@@ -1,5 +1,5 @@
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SummaryBlock, SummaryList, SummarySection } from '@navikt/sif-common-soknad-ds';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';

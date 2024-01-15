@@ -1,5 +1,5 @@
-import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
-import { YtelseKey } from '@navikt/sif-common-core-ds/lib/types/Ytelser';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import { YtelseKey } from '@navikt/sif-common-core-ds/src/types/Ytelser';
 
 export enum SoknadFormField {
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',

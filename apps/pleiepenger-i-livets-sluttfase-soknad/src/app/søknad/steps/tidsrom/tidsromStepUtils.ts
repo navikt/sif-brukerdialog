@@ -1,14 +1,14 @@
-import { DateRange, ValidationError, ValidationResult, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
-import { getDateRangeValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib';
+import { DateRange, ValidationError, ValidationResult, YesOrNo } from '@navikt/sif-common-formik-ds';
+import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
+import { getDateRangeValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { Utenlandsopphold } from '@navikt/sif-common-forms-ds';
 import {
     date1YearFromNow,
     date3YearsAgo,
     dateRangesCollide,
     dateRangesExceedsRange,
     getDateRangeFromDates,
-} from '@navikt/sif-common-utils/lib';
+} from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';

@@ -1,6 +1,6 @@
-import apiUtils from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
+import apiUtils from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { dateToISODate } from '@navikt/sif-common-utils';
-import { ISODate, ISODateToDate } from '@navikt/sif-common-utils/lib';
+import { ISODate, ISODateToDate } from '@navikt/sif-common-utils';
 import { getArbeidsgiver } from './api';
 import { Arbeidsgiver, ArbeidsgiverType } from '../types/Arbeidsgiver';
 import appSentryLogger from '../utils/appSentryLogger';

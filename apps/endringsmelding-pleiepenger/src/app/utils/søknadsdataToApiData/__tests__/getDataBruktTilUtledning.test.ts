@@ -1,4 +1,4 @@
-import { ISODateToDate } from '@navikt/sif-common-utils/lib';
+import { ISODateToDate } from '@navikt/sif-common-utils';
 import {
     ArbeiderIPeriodenSvar,
     ArbeidsforholdAktivt,
@@ -15,7 +15,7 @@ import { vi } from 'vitest';
 
 const commitSha = 'abc';
 
-vi.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => ({
+vi.mock('@navikt/sif-common-core-ds/src/utils/envUtils', () => ({
     getCommitShaFromEnv: () => {
         return commitSha;
     },

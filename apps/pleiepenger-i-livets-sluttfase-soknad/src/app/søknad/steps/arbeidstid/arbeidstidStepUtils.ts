@@ -1,4 +1,4 @@
-import { DateDurationMap, dateToISODate } from '@navikt/sif-common-utils/lib';
+import { DateDurationMap, dateToISODate } from '@navikt/sif-common-utils';
 import { ArbeidIPeriodeType } from '../../../types/arbeidIPeriodeType';
 import { ArbeidFrilansSøknadsdata } from '../../../types/søknadsdata/ArbeidFrilansSøknadsdata';
 import { ArbeidSelvstendigSøknadsdata } from '../../../types/søknadsdata/ArbeidSelvstendigSøknadsdata';
@@ -77,8 +77,9 @@ export const getAnsattArbeidstidFormData = (
 
         Object.entries(arbeidsgivereArbeidssituasjonSøknadsdata).map(([key, value]) => {
             if (value.erAnsattISøknadsperiode) {
-                const tempArbeidIPeriode = tempAnsattArbeidstid?.find((an) => an.organisasjonsnummer === key)
-                    ?.arbeidIPeriode;
+                const tempArbeidIPeriode = tempAnsattArbeidstid?.find(
+                    (an) => an.organisasjonsnummer === key,
+                )?.arbeidIPeriode;
 
                 const arbeidIPeriode =
                     arbeidsgivereArbeidstidSøknadsdata && arbeidsgivereArbeidstidSøknadsdata.hasOwnProperty(key)

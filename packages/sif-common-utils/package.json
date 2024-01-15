@@ -1,40 +1,32 @@
 {
+    "name": "@navikt/sif-common-utils",
     "author": "navikt",
     "description": "Diverse utils for Sykdom i familien teamet",
-    "main": "lib/index.js",
-    "name": "@navikt/sif-common-utils",
-    "types": "lib/index.d.js",
-    "version": "3.43.4",
+    "main": "src/index.ts",
+    "version": "3.43.12",
     "private": true,
     "dependencies": {
         "dayjs": "1.11.10",
-        "iso8601-duration": "2.1.1",
+        "iso8601-duration": "2.1.2",
         "lodash": "4.17.21",
         "uuid": "9.0.1"
     },
     "devDependencies": {
-        "@babel/core": "7.23.5",
-        "@babel/preset-env": "7.23.5",
+        "@babel/core": "7.23.7",
+        "@babel/preset-env": "7.23.8",
         "@babel/preset-react": "7.23.3",
-        "@types/node": "20.10.4",
-        "@types/react": "18.2.42",
-        "@types/react-dom": "18.2.17",
+        "@types/node": "20.11.1",
+        "@types/react": "18.2.48",
+        "@types/react-dom": "18.2.18",
         "@types/uuid": "9.0.7",
         "config": "workspace:*",
         "npm-run-all": "4.1.5",
         "react": "18.2.0",
         "react-dom": "18.2.0",
-        "vitest": "1.0.2"
+        "vitest": "1.2.0"
     },
     "scripts": {
-        "build-package": "npm-run-all compile-lib-script",
-        "build": "npm-run-all build-package",
-        "clean-lib": "rimraf ./lib",
-        "clean": "rm -rf node_modules lib",
-        "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
-        "compile-lib-script": "tsc -p tsconfig.json",
-        "dev-lib": "yarn compile-lib-script-watch",
         "lint": "eslint ./src --ext ts,tsx",
-        "test": "vitest"
+        "test": "vitest run"
     }
 }

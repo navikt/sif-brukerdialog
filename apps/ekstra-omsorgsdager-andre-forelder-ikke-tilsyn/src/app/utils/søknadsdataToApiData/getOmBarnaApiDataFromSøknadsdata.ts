@@ -2,7 +2,7 @@ import { ApiBarn, SøknadApiData } from '../../types/søknadApiData/SøknadApiDa
 import { RegistrertBarn } from '../../types/RegistrertBarn';
 import { OmBarnaSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { AndreBarn } from '../../pre-common/forms/barn/types';
-import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 
 export type OmBarnaToApiData = Pick<SøknadApiData, 'barn'>;
 

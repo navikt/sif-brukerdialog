@@ -1,5 +1,5 @@
 import { IntlShape } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
 
 interface ArbeidsforholdIntlValues extends Record<string, string> {

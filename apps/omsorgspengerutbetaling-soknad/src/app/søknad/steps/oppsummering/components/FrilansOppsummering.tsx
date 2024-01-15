@@ -2,7 +2,7 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import { FrilansApiData } from '../../../../types/søknadApiData/FrilansApiData';
 import { DatoSvar, JaNeiSvar, SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 
 interface Props {
     frilans?: FrilansApiData;

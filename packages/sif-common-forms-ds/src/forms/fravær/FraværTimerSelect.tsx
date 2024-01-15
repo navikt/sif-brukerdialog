@@ -1,7 +1,7 @@
-import { TypedFormInputValidationProps } from '@navikt/sif-common-formik-ds/lib';
+import { TypedFormInputValidationProps } from '@navikt/sif-common-formik-ds';
 import { FraværDagForm, FraværDagFormFields } from './FraværDagForm';
 import { timeText } from './fraværUtilities';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 
 interface Props extends TypedFormInputValidationProps<any, ValidationError> {
     name: FraværDagFormFields;

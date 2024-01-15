@@ -1,4 +1,4 @@
-import { IntlErrorObject } from '@navikt/sif-common-formik-ds/lib';
+import { IntlErrorObject } from '@navikt/sif-common-formik-ds';
 import { durationsAreEqual, ISODateRange } from '@navikt/sif-common-utils';
 import {
     Arbeidsaktivitet,

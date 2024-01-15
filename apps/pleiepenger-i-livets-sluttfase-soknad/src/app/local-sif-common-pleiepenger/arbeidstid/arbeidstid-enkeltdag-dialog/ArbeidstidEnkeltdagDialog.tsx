@@ -1,11 +1,11 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import { dateFormatter, dateToday } from '@navikt/sif-common-utils/lib';
+import { dateFormatter, dateToday } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import TidEnkeltdagDialog, { TidEnkeltdagDialogProps } from '../../tid/tid-enkeltdag-dialog/TidEnkeltdagDialog';
 import { TidEnkeltdagFormProps } from '../../tid/tid-enkeltdag-dialog/TidEnkeltdagForm';
 import { ArbeidsforholdType } from '../../types';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 
 interface Props extends Omit<TidEnkeltdagDialogProps, 'dialogTitle' | 'formProps'> {
     arbeidsstedNavn: string;

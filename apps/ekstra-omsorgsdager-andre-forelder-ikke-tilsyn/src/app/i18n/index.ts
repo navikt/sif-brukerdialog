@@ -1,5 +1,5 @@
-import { allCommonMessages } from '@navikt/sif-common-core-ds/lib/i18n/allCommonMessages';
-import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageFileFormat';
+import { allCommonMessages } from '@navikt/sif-common-core-ds/src/i18n/allCommonMessages';
+import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
 import { soknadIntlMessages } from '@navikt/sif-common-soknad-ds';
 import barnMessages from '../pre-common/forms/barn/barnMessages';
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';

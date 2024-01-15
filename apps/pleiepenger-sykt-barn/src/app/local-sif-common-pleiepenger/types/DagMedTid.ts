@@ -1,4 +1,4 @@
-import { Duration } from '@navikt/sif-common-utils/lib';
+import { Duration } from '@navikt/sif-common-utils';
 
 export interface DagMedTid {
     dato: Date;

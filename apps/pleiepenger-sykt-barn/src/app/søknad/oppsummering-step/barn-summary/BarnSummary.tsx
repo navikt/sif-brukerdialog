@@ -1,15 +1,15 @@
 import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { BarnRelasjon, RegistrerteBarn, ÅrsakManglerIdentitetsnummer } from '../../../types';
 import { SøknadApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import UploadedDocumentsList from '../../../components/fødselsattest-file-list/UploadedDocumentsList';
-import SummaryBlock from '@navikt/sif-common-soknad-ds/lib/components/summary-block/SummaryBlock';
-import SummarySection from '@navikt/sif-common-soknad-ds/lib/components/summary-section/SummarySection';
-import TextareaSummary from '@navikt/sif-common-soknad-ds/lib/components/summary-answers/TextareaSvar';
+import SummaryBlock from '@navikt/sif-common-soknad-ds/src/components/summary-block/SummaryBlock';
+import SummarySection from '@navikt/sif-common-soknad-ds/src/components/summary-section/SummarySection';
+import TextareaSummary from '@navikt/sif-common-soknad-ds/src/components/summary-answers/TextareaSvar';
 import Sitat from '../../../components/sitat/Sitat';
 
 interface Props {

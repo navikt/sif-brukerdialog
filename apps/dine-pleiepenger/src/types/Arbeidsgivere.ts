@@ -1,5 +1,4 @@
-import { Organisasjon } from './Organisasjon';
+import { z } from 'zod';
+import { ArbeidsgivereSchema } from '../server/api-models/ArbeidsgivereSchema';
 
-export interface Arbeidsgivere {
-    organisasjoner: Organisasjon[];
-}
+export type Arbeidsgivere = z.infer<typeof ArbeidsgivereSchema>;

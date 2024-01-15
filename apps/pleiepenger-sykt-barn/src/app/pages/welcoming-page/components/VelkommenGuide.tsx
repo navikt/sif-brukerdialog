@@ -1,6 +1,6 @@
 import { Heading, Ingress } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 

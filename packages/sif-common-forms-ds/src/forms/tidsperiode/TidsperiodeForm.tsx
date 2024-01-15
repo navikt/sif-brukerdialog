@@ -1,13 +1,13 @@
 import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds/lib';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import {
     getDateRangeValidator,
     ValidateDateError,
     ValidateDateRangeError,
-} from '@navikt/sif-common-formik-ds/lib/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+} from '@navikt/sif-common-formik-ds/src/validation';
+import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { handleDateRangeValidationError, mapFomTomToDateRange } from '../../utils';
 import tidsperiodeUtils from './tidsperiodeUtils';
 import { DateTidsperiode, DateTidsperiodeFormValues } from './types';

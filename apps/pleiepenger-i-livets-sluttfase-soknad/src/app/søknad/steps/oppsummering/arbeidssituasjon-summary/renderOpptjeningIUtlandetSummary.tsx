@@ -1,6 +1,6 @@
 import React from 'react';
 import { OpptjeningIUtlandetApi } from '../../../../types/søknadApiData/SøknadApiData';
-import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils/lib';
+import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 import './opptjeningIUtlandetSummaryItem.css';
 
 export const renderOpptjeningIUtlandetSummary = (opptjening: OpptjeningIUtlandetApi): React.ReactNode => {

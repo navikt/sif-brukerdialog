@@ -1,5 +1,5 @@
-import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import { getStringValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
+import { getStringValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';

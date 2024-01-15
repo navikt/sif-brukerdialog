@@ -73,7 +73,7 @@ jobs:
                   CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
               with:
                   project: ./apps/pleiepenger-sykt-barn/e2e
-                  build: yarn build-pleiepenger-sykt-barn
+                  build: yarn turbo run build --filter=@navikt/pleiepenger-sykt-barn
                   start: yarn turbo start-e2e-server --filter=pleiepenger-sykt-barn
                   wait-on: 'http://localhost:8080'
                   wait-on-timeout: 60

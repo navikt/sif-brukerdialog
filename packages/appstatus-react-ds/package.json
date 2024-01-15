@@ -2,40 +2,31 @@
     "author": "navikt",
     "description": "Sanity utils for sykdom i familien",
     "license": "MIT",
-    "main": "lib/index.js",
+    "main": "src",
     "name": "@navikt/appstatus-react-ds",
-    "types": "lib/index.d.js",
-    "version": "2.17.4",
+    "version": "2.17.13",
     "private": true,
     "dependencies": {
         "@navikt/sif-common-hooks": "workspace:*",
         "@portabletext/react": "3.0.11",
-        "@sanity/client": "6.9.3"
+        "@sanity/client": "6.11.1"
     },
     "devDependencies": {
-        "@navikt/ds-css": "5.11.3",
-        "@navikt/ds-react": "5.11.3",
-        "@types/node": "20.10.4",
-        "@types/react": "18.2.42",
-        "@types/react-dom": "18.2.17",
+        "@navikt/ds-css": "5.13.0",
+        "@navikt/ds-react": "5.12.5",
+        "@types/node": "20.11.1",
+        "@types/react": "18.2.48",
+        "@types/react-dom": "18.2.18",
         "config": "workspace:*",
         "copyfiles": "2.4.1",
-        "postcss": "8.4.32",
+        "postcss": "8.4.33",
         "prop-types": "15.8.1",
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "rimraf": "5.0.5",
-        "sass": "1.69.5"
+        "sass": "1.69.7"
     },
     "scripts": {
-        "build-package": "npm-run-all compile-lib-script copy-files",
-        "build": "npm-run-all build-package",
-        "clean-lib": "rimraf ./lib",
-        "clean": "rm -rf node_modules lib",
-        "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
-        "compile-lib-script": "tsc -p tsconfig.json",
-        "copy-files": "copyfiles -u 1 \"src/**/*.css\" lib",
-        "dev-lib": "yarn compile-lib-script-watch",
         "lint": "eslint ./src --ext ts,tsx"
     }
 }

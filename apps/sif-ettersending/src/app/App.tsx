@@ -2,19 +2,19 @@ import { createRoot } from 'react-dom/client';
 import { Navigate, Route } from 'react-router-dom';
 import { EttersendelseApp } from '@navikt/sif-app-register';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
-import SifAppWrapper from '@navikt/sif-common-core-ds/lib/components/sif-app-wrapper/SifAppWrapper';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import SifAppWrapper from '@navikt/sif-common-core-ds/src/components/sif-app-wrapper/SifAppWrapper';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
-import { applicationIntlMessages } from './i18n/applicationMessages';
+import { applicationIntlMessages } from './i18n/messages';
 import GeneralErrorPage from './pages/general-error-page/GeneralErrorPage';
 import IntroPage from './pages/intro-page/IntroPage';
 import SoknadRemoteDataFetcher from './soknad/SoknadRemoteDataFetcher';
 import '@navikt/ds-css';
-import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
+import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.css';
 
 const publicPath = getEnvironmentVariable('PUBLIC_PATH');

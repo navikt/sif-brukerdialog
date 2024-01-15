@@ -1,5 +1,5 @@
 import React from 'react';
-import { dateFormatter, dateRangeToISODateRange, getDateRangesFromDates } from '@navikt/sif-common-utils/lib';
+import { dateFormatter, dateRangeToISODateRange, getDateRangesFromDates } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 
 interface Props {

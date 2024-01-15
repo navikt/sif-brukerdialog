@@ -1,4 +1,4 @@
-import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageFileFormat';
+import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
 import { samtykkeFormMessages } from '../modules/samtykke-form/samtykkeFormMessages';
 import soknadErrorIntlMessages from './error-messages/soknadErrorIntlMessages';
 import { avbrytSøknadDialogMessages } from '../components/avbrytSøknadDialog/avbrytSøknadDialogMessages';

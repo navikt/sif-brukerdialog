@@ -17,10 +17,13 @@ jobs:
     deploy-to-prod:
         name: Deploy dine-pleiepenger to prod
         needs: [run-tests]
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-prod.yml@main
+        uses: ./.github/workflows/.deploy-app-to-prod.yml
         secrets: inherit
         permissions:
+            contents: write
+            security-events: write
             id-token: write
+            actions: read
         with:
             app-name: 'dine-pleiepenger'
             working-directory: 'apps/dine-pleiepenger'

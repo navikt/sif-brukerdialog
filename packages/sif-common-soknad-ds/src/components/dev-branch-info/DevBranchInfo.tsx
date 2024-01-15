@@ -1,5 +1,5 @@
 import { Tag } from '@navikt/ds-react';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { useRef } from 'react';
 
 const DevBranchInfo = () => {

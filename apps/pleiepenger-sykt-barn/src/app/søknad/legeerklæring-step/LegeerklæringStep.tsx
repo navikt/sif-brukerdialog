@@ -1,20 +1,20 @@
 import { Alert, Link } from '@navikt/ds-react';
 import { ApplikasjonHendelse, SIFCommonGeneralEvents, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import FileUploadErrors from '@navikt/sif-common-core-ds/lib/components/file-upload-errors/FileUploadErrors';
-import PictureScanningGuide from '@navikt/sif-common-core-ds/lib/components/picture-scanning-guide/PictureScanningGuide';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import FileUploadErrors from '@navikt/sif-common-core-ds/src/components/file-upload-errors/FileUploadErrors';
+import PictureScanningGuide from '@navikt/sif-common-core-ds/src/components/picture-scanning-guide/PictureScanningGuide';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import {
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
     getTotalSizeOfAttachments,
     mapFileToPersistedFile,
-} from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+} from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { useFormikContext } from 'formik';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import FormikFileUploader from '@navikt/sif-common-core-ds/lib/components/formik-file-uploader/FormikFileUploader';
+import FormikFileUploader from '@navikt/sif-common-core-ds/src/components/formik-file-uploader/FormikFileUploader';
 import LegeerklæringFileList from '../../components/legeerklæring-file-list/LegeerklæringFileList';
 import usePersistSoknad from '../../hooks/usePersistSoknad';
 import getLenker from '../../lenker';

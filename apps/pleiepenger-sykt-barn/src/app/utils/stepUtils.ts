@@ -1,4 +1,4 @@
-import { DateRange } from '@navikt/sif-common-formik-ds/lib';
+import { DateRange } from '@navikt/sif-common-formik-ds/src';
 import { StepID } from '../types/StepID';
 import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import { YesOrNoOrDoNotKnow } from '../types/YesOrNoOrDoNotKnow';

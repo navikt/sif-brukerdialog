@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { withAuthenticatedApi } from '../../../auth/withAuthentication';
-import { fetchDocumentStream } from '../../../server/fetchDocumentStream';
 import { ApiService } from '../../../server/apiService';
+import { fetchDocument } from '../../../server/fetchDocument';
 import { getContextForApiHandler } from '../../../utils/apiUtils';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -13,10 +13,22 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         throw new Error('Ugyldig path i url');
     }
 
+    if (typeof dokumentTittel !== 'string') {
+        throw new Error('Ugyldig dokumentTittel - typeof !== string');
+    }
+
     try {
         const path = `dokument/${info.join('/')}?dokumentTittel=${dokumentTittel}`;
-        const data = await fetchDocumentStream(path, getContextForApiHandler(req), ApiService.sifInnsyn);
-        data.pipe(res);
+        const blob = await fetchDocument(path, getContextForApiHandler(req), ApiService.sifInnsyn);
+        const resBufferArray = await blob.arrayBuffer();
+        const resBuffer = Buffer.from(resBufferArray);
+
+        res.setHeader('Content-Type', 'application/PDF; charset=utf-8');
+        res.setHeader('Content-Length', (blob as Blob).size.toString());
+        res.setHeader('Content-Disposition', `filename="${encodeURI(dokumentTittel)}"`);
+        res.setHeader;
+        res.write(resBuffer, 'binary');
+        res.end();
     } catch (err) {
         res.status(500).json({ error: 'Kunne ikke hente dokument', err });
     }

@@ -1,6 +1,6 @@
-import { dateToISOString, ISOStringToDate, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import { getNumberFromStringInput } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
-import { date4YearsAgo, guid } from '@navikt/sif-common-utils/lib';
+import { dateToISOString, ISOStringToDate, YesOrNo } from '@navikt/sif-common-formik-ds';
+import { getNumberFromStringInput } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
+import { date4YearsAgo, guid } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { Næringstype, Virksomhet, VirksomhetFormValues } from './types';
 

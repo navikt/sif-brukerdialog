@@ -30,6 +30,7 @@ export * from './components/getTypedFormComponents';
 export * from './validation/types';
 export * from './components/formik-modal-form/types';
 export * from './utils/numberInputUtils';
+
 export { ISOStringToDate, dateToISOString } from './components/formik-datepicker/datepickerUtils';
 
-export { QuestionConfig, QuestionVisibility, Questions } from './question-config/index';
+export * from './question-config';

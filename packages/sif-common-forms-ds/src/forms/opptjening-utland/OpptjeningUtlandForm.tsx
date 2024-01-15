@@ -1,18 +1,18 @@
 import { useIntl } from 'react-intl';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { ISOStringToDate } from '@navikt/sif-common-formik-ds';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
+import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import {
     getDateRangeValidator,
     getRequiredFieldValidator,
     ValidateDateError,
     ValidateDateRangeError,
     ValidateRequiredFieldError,
-} from '@navikt/sif-common-formik-ds/lib/validation';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import { hasValue } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
+} from '@navikt/sif-common-formik-ds/src/validation';
+import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { hasValue } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
 import { handleDateRangeValidationError } from '../../utils';
 import utils from './opptjeningUtlandUtils';
 import { OpptjeningAktivitet, OpptjeningUtland, OpptjeningUtlandFormValues } from './types';

@@ -1,20 +1,20 @@
-import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import {
     attachmentHasBeenUploaded,
     getTotalSizeOfAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
-} from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
+} from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
+import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
 import {
     getDateRangeValidator,
     getDateValidator,
     getFødselsnummerValidator,
     getStringValidator,
-} from '@navikt/sif-common-formik-ds/lib/validation';
-import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib';
-import { Ferieuttak } from '@navikt/sif-common-forms-ds/lib/forms/ferieuttak/types';
+} from '@navikt/sif-common-formik-ds/src/validation';
+import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src';
+import { Ferieuttak } from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/types';
 import {
     date3YearsAgo,
     DateDurationMap,

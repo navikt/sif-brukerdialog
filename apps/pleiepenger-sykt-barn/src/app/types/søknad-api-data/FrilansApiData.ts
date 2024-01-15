@@ -1,4 +1,4 @@
-import { ISODate } from '@navikt/sif-common-utils/lib';
+import { ISODate } from '@navikt/sif-common-utils';
 import { Frilanstype } from '../søknad-form-values/FrilansFormValues';
 import { ArbeidsforholdApiData } from './ArbeidsforholdApiData';
 
