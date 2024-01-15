@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Page, expect } from '@playwright/test';
 import dayjs from 'dayjs';
 import locale from 'dayjs/locale/nb.js';
@@ -7,18 +6,7 @@ import isoWeek from 'dayjs/plugin/isoWeek.js';
 dayjs.extend(isoWeek);
 dayjs.locale(locale);
 
-const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling';
-
-const fraDato = dayjs().startOf('isoWeek').subtract(3, 'weeks').format('DD.MM.YYYY');
-const tilDato = dayjs().startOf('isoWeek').format('DD.MM.YYYY');
-const datoDelvisFravær = dayjs().startOf('isoWeek').subtract(4, 'weeks').format('DD.MM.YYYY');
-const fomDatoIUtlandet = dayjs().startOf('isoWeek').subtract(3, 'weeks').add(2, 'day').format('DD.MM.YYYY');
-const tomDatoIUtlandet = dayjs().startOf('isoWeek').subtract(3, 'weeks').add(4, 'day').format('DD.MM.YYYY');
-const frilansStartDato = dayjs().startOf('isoWeek').subtract(10, 'weeks').format('DD.MM.YYYY');
-
-const selectRadioByNameAndValue = async (page: Page) => {
-    await page.locator('input[type="radio"][value="JORDBRUK_SKOGBRUK"]').check();
-};
+const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker';
 
 const startSøknad = async (page: Page) => {
     await page.goto(startUrl);
@@ -35,20 +23,12 @@ const fyllUtFosterbarnSteg = async (page: Page) => {
 
 const fyllUtDinArbeidssituasjonSteg = async (page: Page) => {
     await page.getByRole('heading', { name: 'Din arbeidssituasjon' }).isVisible;
-    await page
-        .getByTestId('arbeidsforhold-liste-0')
-        .getByTestId('arbeidsforhold-harHattFravær')
-        .getByText('Ja')
-        .click();
+    await page.getByTestId('arbeidsforhold-liste-0').getByTestId('arbeidsforhold-harHattFravær_yes').check();
     await page.getByTestId('arbeidsforhold-harArbeidsgiverUtbetaltDegLønnForOmsorgsdagene_no').check();
-    await page.getByText('Jeg har jobbet mindre enn 4').click();
-    await page.getByText('Jeg jobbet for en annen').click();
+    await page.getByTestId('arbeidsforhold-utbetalingsårsak-nyoppstartetHosArbeidsgiver').check();
+    await page.getByTestId('nyoppstartetHosArbeidsgiver-jobbetHosAnnenArbeidsgiver').check();
 
-    await page
-        .getByTestId('arbeidsforhold-liste-1')
-        .getByTestId('arbeidsforhold-harHattFravær')
-        .getByText('Nei')
-        .click();
+    await page.getByTestId('arbeidsforhold-liste-1').getByTestId('arbeidsforhold-harHattFravær_no').check();
 
     await page.getByTestId('typedFormikForm-submitButton').click();
 };

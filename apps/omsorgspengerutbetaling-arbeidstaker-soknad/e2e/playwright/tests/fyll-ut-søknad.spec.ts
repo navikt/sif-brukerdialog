@@ -14,10 +14,7 @@ test.describe('Fyller ut søknad', () => {
             await route.fulfill({ status: 200, body: JSON.stringify(playwrightApiMockData.søkerMock) });
         });
 
-        await page.route('**/oppslag/barn', async (route) => {
-            await route.fulfill({ status: 200, body: JSON.stringify(playwrightApiMockData.barnMock) });
-        });
-        await page.route('**/oppslag/arbeidsgiver', async (route) => {
+        await page.route('**/oppslag/arbeidsgiver**', async (route) => {
             await route.fulfill({ status: 200, body: JSON.stringify(playwrightApiMockData.arbeidsgiver) });
         });
         await page.route('**/vedlegg', async (route) => {
