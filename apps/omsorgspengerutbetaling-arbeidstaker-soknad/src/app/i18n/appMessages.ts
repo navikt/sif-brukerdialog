@@ -82,8 +82,8 @@ export const appMessages: MessageFileFormat = {
         'page.generalErrorPage.tittel': 'Noe gikk galt...',
         'page.generalErrorPage.tekst': 'Beklager, her har det dessverre skjedd en feil.',
 
-        'step.dineBarn.stepTitle': 'Om barn',
-        'step.dineBarn.stepIndicatorLabel': 'Om barn',
+        'step.fosterbarn.stepTitle': 'Fosterbarn',
+        'step.fosterbarn.stepIndicatorLabel': 'Fosterbarn',
 
         'step.situasjon.pageTitle': 'Din arbeidssituasjon',
         'step.situasjon.stepTitle': 'Din arbeidssituasjon',

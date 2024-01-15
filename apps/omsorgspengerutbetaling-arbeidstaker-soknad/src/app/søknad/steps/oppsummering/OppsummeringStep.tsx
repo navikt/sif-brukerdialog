@@ -23,7 +23,7 @@ import LegeerklæringOppsummering from './components/LegeerklæringOppsummering'
 import MedlemskapOppsummering from './components/MedlemskapOppsummering';
 import ArbeidsforholdSummaryView from './components/ArbeidsforholdSummaryView';
 import UtenlandsoppholdISøkeperiodeOppsummering from './components/UtenlandsoppholdISøkeperiodeOppsummering';
-import DineBarnOppsummering from './components/DineBarnOppsummering';
+import FosterbarnOppsummering from './components/FosterbarnOppsummering';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -113,7 +113,7 @@ const OppsummeringStep = () => {
                                 onBack={goBack}>
                                 {/* Om deg */}
                                 <OmSøkerOppsummering søker={søker} />
-                                <DineBarnOppsummering barn={apiData.fosterbarn} />
+                                <FosterbarnOppsummering fosterbarn={apiData.fosterbarn} />
                                 {/* Fravær fra arbeid */}
                                 <SummarySection header={intlHelper(intl, 'step.oppsummering.arbeidsforhold.titel')}>
                                     <ArbeidsforholdSummaryView

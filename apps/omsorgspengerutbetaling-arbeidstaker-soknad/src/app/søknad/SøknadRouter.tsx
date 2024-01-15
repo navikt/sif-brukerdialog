@@ -16,7 +16,7 @@ import MedlemskapStep from './steps/medlemskap/MedlemskapStep';
 import FraværStep from './steps/fravær/FraværStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
 import KvitteringPage from '../pages/kvittering/KvitteringPage';
-import DineBarnStep from './steps/dine-barn/DineBarnStep';
+import FosterbarnStep from './steps/fosterbarn/FosterbarnStep';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
@@ -71,7 +71,7 @@ const SøknadRouter = () => {
         <Routes>
             <Route index element={<VelkommenPage />} />
             <Route path={SøknadStepRoutePath[StepId.VELKOMMEN]} element={<VelkommenPage />} />
-            <Route path={SøknadStepRoutePath[StepId.DINE_BARN]} element={<DineBarnStep />} />
+            <Route path={SøknadStepRoutePath[StepId.FOSTERBARN]} element={<FosterbarnStep />} />
             <Route path={SøknadStepRoutePath[StepId.SITUASJON]} element={<SituasjonStep />} />
             <Route path={SøknadStepRoutePath[StepId.FRAVÆR]} element={<FraværStep />} />
             <Route path={SøknadStepRoutePath[StepId.LEGEERKLÆRING]} element={<LegeerklæringStep />} />

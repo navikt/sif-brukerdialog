@@ -6,7 +6,7 @@ import { StepId } from '../../../types/StepId';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
-import { getDineBarnStepInitialValues, getDineBarnSøknadsdataFromFormValues } from './dineBarnStepUtils';
+import { getFosterbarnStepInitialValues, getFosterbarnSøknadsdataFromFormValues } from './fosterbarnStepUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
@@ -24,42 +24,42 @@ import { Fosterbarn } from '@navikt/sif-common-forms-ds/lib/forms/fosterbarn/typ
 import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import getYesOrNoValidator from '@navikt/sif-common-formik-ds/lib/validation/getYesOrNoValidator';
 
-export enum DineBarnFormFields {
+export enum FosterbarnFormFields {
     harFostrerbarn = 'harFostrerbarn',
     fosterbarn = 'fosterbarn',
 }
 
-export interface DineBarnFormValues {
-    [DineBarnFormFields.fosterbarn]?: Fosterbarn[];
-    [DineBarnFormFields.harFostrerbarn]?: YesOrNo;
+export interface FosterbarnFormValues {
+    [FosterbarnFormFields.fosterbarn]?: Fosterbarn[];
+    [FosterbarnFormFields.harFostrerbarn]?: YesOrNo;
 }
 
 const { FormikWrapper, Form, YesOrNoQuestion } = getTypedFormComponents<
-    DineBarnFormFields,
-    DineBarnFormValues,
+    FosterbarnFormFields,
+    FosterbarnFormValues,
     ValidationError
 >();
 
-const DineBarnStep = () => {
+const FosterbarnStep = () => {
     const intl = useIntl();
 
     const {
         state: { søknadsdata, søker },
     } = useSøknadContext();
 
-    const stepId = StepId.DINE_BARN;
+    const stepId = StepId.FOSTERBARN;
     const step = getSøknadStepConfigForStep(stepId);
 
     const { goBack } = useStepNavigation(step);
 
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
-    const onValidSubmitHandler = (values: DineBarnFormValues) => {
-        const DineBarnSøknadsdata = getDineBarnSøknadsdataFromFormValues(values);
-        if (DineBarnSøknadsdata) {
+    const onValidSubmitHandler = (values: FosterbarnFormValues) => {
+        const FosterbarnSøknadsdata = getFosterbarnSøknadsdataFromFormValues(values);
+        if (FosterbarnSøknadsdata) {
             clearStepFormValues(stepId);
             return [
-                actionsCreator.setSøknadDineBarn(DineBarnSøknadsdata),
+                actionsCreator.setSøknadFosterbarn(FosterbarnSøknadsdata),
                 actionsCreator.setSøknadTempFormValues(undefined),
             ];
         }
@@ -77,7 +77,7 @@ const DineBarnStep = () => {
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
-                initialValues={getDineBarnStepInitialValues(søknadsdata, stepFormValues[stepId])}
+                initialValues={getFosterbarnStepInitialValues(søknadsdata, stepFormValues[stepId])}
                 onSubmit={handleSubmit}
                 renderForm={({ values: { fosterbarn = [], harFostrerbarn } }) => {
                     const fosterbarnFnr = fosterbarn.map((barn) => barn.fødselsnummer);
@@ -94,16 +94,16 @@ const DineBarnStep = () => {
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
                                 <SifGuidePanel>
-                                    <FormattedMessage id="step.dineBarn.counsellorPanel.avsnitt.1" />
+                                    <FormattedMessage id="step.fosterbarn.counsellorPanel.avsnitt.1" />
                                     <Block margin="l">
-                                        <FormattedMessage id="step.dineBarn.counsellorPanel.avsnitt.2" />
+                                        <FormattedMessage id="step.fosterbarn.counsellorPanel.avsnitt.2" />
                                     </Block>
                                 </SifGuidePanel>
 
                                 <FormBlock>
                                     <YesOrNoQuestion
-                                        name={DineBarnFormFields.harFostrerbarn}
-                                        legend={intlHelper(intl, 'step.dineBarn.info.spm.fosterbarn')}
+                                        name={FosterbarnFormFields.harFostrerbarn}
+                                        legend={intlHelper(intl, 'step.fosterbarn.info.spm.fosterbarn')}
                                         validate={getYesOrNoValidator()}
                                         data-testid="harFostrerbarn"
                                     />
@@ -111,8 +111,8 @@ const DineBarnStep = () => {
 
                                 {harFostrerbarn === YesOrNo.YES && (
                                     <FormBlock>
-                                        <FosterbarnListAndDialog<DineBarnFormFields>
-                                            name={DineBarnFormFields.fosterbarn}
+                                        <FosterbarnListAndDialog<FosterbarnFormFields>
+                                            name={FosterbarnFormFields.fosterbarn}
                                             includeName={true}
                                             disallowedFødselsnumre={[...[søker.fødselsnummer], ...fosterbarnFnr]}
                                         />
@@ -122,7 +122,7 @@ const DineBarnStep = () => {
                                 {!kanFortsette && (
                                     <Block margin="l">
                                         <Alert variant="warning">
-                                            <FormattedMessage id="step.dineBarn.info.ingenbarn" />
+                                            <FormattedMessage id="step.fosterbarn.info.ingenbarn" />
                                         </Alert>
                                     </Block>
                                 )}
@@ -135,4 +135,4 @@ const DineBarnStep = () => {
     );
 };
 
-export default DineBarnStep;
+export default FosterbarnStep;

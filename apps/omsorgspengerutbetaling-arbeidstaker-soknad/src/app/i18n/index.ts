@@ -13,7 +13,7 @@ import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummering
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 import { situasjonMessages } from '../søknad/steps/situasjon/situasjonStepMessages';
 import bostedUtlandMessages from '@navikt/sif-common-forms-ds/lib/forms/bosted-utland/bostedUtlandMessages';
-import { dineBarnMessages } from '../søknad/steps/dine-barn/dineBarnMessages';
+import { fosterbarnFormMessages } from '../søknad/steps/fosterbarn/fosterbarnFormMessages';
 import fosterbarnMessages from '@navikt/sif-common-forms-ds/lib/forms/fosterbarn/fosterbarnMessages';
 // import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
 
@@ -22,7 +22,7 @@ const bokmålstekster = {
     ...soknadIntlMessages.nb,
     ...personalOpplysningerMessages.nb,
     ...velkommenPageMessages.nb,
-    ...dineBarnMessages.nb,
+    ...fosterbarnFormMessages.nb,
     ...fosterbarnMessages.nb,
     ...situasjonMessages.nb,
     ...fraværStepMessages.nb,

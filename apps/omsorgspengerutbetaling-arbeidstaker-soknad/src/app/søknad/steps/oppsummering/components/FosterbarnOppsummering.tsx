@@ -6,21 +6,21 @@ import { JaNeiSvar, SummaryBlock, SummarySection } from '@navikt/sif-common-sokn
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 
 interface Props {
-    barn?: ApiFosterbarn[];
+    fosterbarn?: ApiFosterbarn[];
 }
 
-const DineBarnOppsummering = ({ barn }: Props) => {
+const FosterbarnOppsummering = ({ fosterbarn }: Props) => {
     const intl = useIntl();
     return (
-        <SummarySection header={intlHelper(intl, 'step.oppsummering.dineBarn')}>
+        <SummarySection header={intlHelper(intl, 'step.oppsummering.fosterbarn')}>
             <Block margin={'s'}>
-                <SummaryBlock header={intlHelper(intl, 'step.oppsummering.dineBarn.harFosterbarn')}>
-                    <JaNeiSvar harSvartJa={barn && barn.length > 0} />
+                <SummaryBlock header={intlHelper(intl, 'step.oppsummering.fosterbarn.harFosterbarn')}>
+                    <JaNeiSvar harSvartJa={fosterbarn && fosterbarn.length > 0} />
                 </SummaryBlock>
             </Block>
-            {barn && barn.length > 0 && (
+            {fosterbarn && fosterbarn.length > 0 && (
                 <SummaryList
-                    items={barn}
+                    items={fosterbarn}
                     itemRenderer={({ identitetsnummer, navn }: ApiFosterbarn) => {
                         const fnr = identitetsnummer ? identitetsnummer : '';
 
@@ -32,4 +32,4 @@ const DineBarnOppsummering = ({ barn }: Props) => {
     );
 };
 
-export default DineBarnOppsummering;
+export default FosterbarnOppsummering;

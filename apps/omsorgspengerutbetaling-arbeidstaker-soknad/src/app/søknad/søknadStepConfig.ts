@@ -4,7 +4,7 @@ import { getSøknadStepRoute } from '../utils/søknadRoutesUtils';
 
 const getSøknadSteps = (): StepId[] => {
     return [
-        StepId.DINE_BARN,
+        StepId.FOSTERBARN,
         StepId.SITUASJON,
         StepId.FRAVÆR,
         StepId.LEGEERKLÆRING,

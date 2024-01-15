@@ -1,4 +1,4 @@
-import { DineBarnFormValues } from '../søknad/steps/dine-barn/DineBarnStep';
+import { FosterbarnFormValues } from '../søknad/steps/fosterbarn/FosterbarnStep';
 import { SituasjonFormValues } from '../søknad/steps/situasjon/SituasjonStep';
 import { RegistrertBarn } from './RegistrertBarn';
 import { StepId } from './StepId';
@@ -13,8 +13,8 @@ export type SituasjonStepTempFormValues = {
 };
 
 export type BarnStepTempFormValues = {
-    stepId: StepId.DINE_BARN;
-    values: Partial<DineBarnFormValues>;
+    stepId: StepId.FOSTERBARN;
+    values: Partial<FosterbarnFormValues>;
 };
 
 export type TempFormValues = SituasjonStepTempFormValues | BarnStepTempFormValues | undefined;

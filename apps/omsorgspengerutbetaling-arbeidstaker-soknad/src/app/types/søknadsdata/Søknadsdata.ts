@@ -3,9 +3,9 @@ import { SituasjonSøknadsdata } from './SituasjonSøknadsdata';
 import { FraværSøknadsdata } from './FraværSøknadsdata';
 import { LegeerklæringSøknadsdata } from './LegeerklæringSøknadsdata';
 import { MedlemskapSøknadsdata } from './MedlemskapSøknadsdata';
-import { DineBarnSøknadsdata } from './DineBarnSøknadsdata';
+import { FosterbarnSøknadsdata } from './FosterbarnSøknadsdata';
 
-export * from './DineBarnSøknadsdata';
+export * from './FosterbarnSøknadsdata';
 export * from './SituasjonSøknadsdata';
 export * from './FraværSøknadsdata';
 export * from './LegeerklæringSøknadsdata';
@@ -16,7 +16,7 @@ export interface Søknadsdata {
     [StepId.VELKOMMEN]?: {
         harForståttRettigheterOgPlikter?: boolean;
     };
-    [StepId.DINE_BARN]?: DineBarnSøknadsdata;
+    [StepId.FOSTERBARN]?: FosterbarnSøknadsdata;
     [StepId.SITUASJON]?: SituasjonSøknadsdata;
     [StepId.FRAVÆR]?: FraværSøknadsdata;
     [StepId.LEGEERKLÆRING]?: LegeerklæringSøknadsdata;

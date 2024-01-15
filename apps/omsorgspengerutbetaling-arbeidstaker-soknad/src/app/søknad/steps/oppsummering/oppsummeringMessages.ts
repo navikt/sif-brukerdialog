@@ -10,9 +10,9 @@ export const oppsummeringMessages: MessageFileFormat = {
         'step.oppsummering.søker.header': 'Om deg',
         'step.oppsummering.søker.fnr': 'Fødselsnummer: {fødselsnummer}',
 
-        'step.oppsummering.dineBarn': 'Fosterbarn',
-        'step.oppsummering.dineBarn.harFosterbarn': 'Har du fosterbarn?',
-        'step.oppsummering.dineBarn.listItem': ' (fnr. {identitetsnummer})',
+        'step.oppsummering.fosterbarn': 'Fosterbarn',
+        'step.oppsummering.fosterbarn.harFosterbarn': 'Har du fosterbarn?',
+        'step.oppsummering.fosterbarn.listItem': ' (fnr. {identitetsnummer})',
 
         'step.oppsummering.arbeidsforhold.titel': 'Fravær fra arbeid',
         'step.oppsummering.arbeidsforhold.forhold': '{navn} (organisasjonsnummer: {organisasjonsnummer})',

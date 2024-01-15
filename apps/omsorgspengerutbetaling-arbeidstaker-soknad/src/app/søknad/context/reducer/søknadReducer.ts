@@ -15,7 +15,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                         harForståttRettigheterOgPlikter: true,
                     },
                 },
-                søknadRoute: SøknadRoutes.DINE_BARN,
+                søknadRoute: SøknadRoutes.FOSTERBARN,
                 børMellomlagres: true,
             };
         case SøknadContextActionKeys.AVBRYT_SØKNAD:
@@ -43,10 +43,10 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     børMellomlagres: false,
                 };
-            case SøknadContextActionKeys.SET_SØKNAD_DINE_BARN:
+            case SøknadContextActionKeys.SET_SØKNAD_FOSTERBARN:
                 const søknadsdata: Søknadsdata = {
                     ...state.søknadsdata,
-                    dineBarn: {
+                    fosterbarn: {
                         ...action.payload,
                     },
                 };
