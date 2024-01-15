@@ -7,6 +7,7 @@ import { getMedlemskapApiDataFromSøknadsdata } from './getMedlemskapApiDataFrom
 import { getUtenlansoppholdApiDataFromSøknadsdata } from './getUtenlandsoppholdApiDataFromSøknadsdata';
 import { getArbeidsgivereApiDataFromSøknadsdata } from './getArbeidsgivereApiDataFromSøknadsdata';
 import { getFosterbarnApiDataFromSøknadsdata } from './getFosterbarnApiDataFromSøknadsdata';
+import { getDataBruktTilUtledning } from './getDataBruktTilUtledning';
 
 const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
     if (!vedlegg || vedlegg.length === 0) {
@@ -46,5 +47,6 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadA
         opphold: getUtenlansoppholdApiDataFromSøknadsdata(språk, fravær),
         bosteder: getMedlemskapApiDataFromSøknadsdata(språk, medlemskap),
         vedlegg: [...getVedleggApiData(legeerklæring?.vedlegg), ...getArbeidsforholdDokumenter(situasjon)],
+        dataBruktTilUtledningAnnetData: JSON.stringify(getDataBruktTilUtledning(søknadsdata)),
     };
 };
