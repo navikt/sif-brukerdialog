@@ -1,5 +1,5 @@
 module.exports = {
-    stories: ['../storybook/**/*.stories.@(js|jsx|ts|tsx)'],
+    stories: ['../storybook/**/*.stories.@(js|jsx|ts|tsx)', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
     addons: [
         '@storybook/addon-essentials',
         '@storybook/addon-interactions',
@@ -13,7 +13,6 @@ module.exports = {
                 },
             },
         },
-
     ],
     framework: {
         name: '@storybook/react-vite',

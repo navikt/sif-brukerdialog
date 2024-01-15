@@ -1,15 +1,15 @@
 import { allCommonMessages } from '@navikt/sif-common-core-ds/src/i18n/allCommonMessages';
 import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
-import { soknadErrorIntlMessages, soknadIntlMessages } from '@navikt/sif-common-soknad-ds';
+import { soknadIntlMessages } from '@navikt/sif-common-soknad-ds';
 import { velkommenPageMessages } from '../pages/velkommen-page/velkommenPageMessages';
-import { applicationMessagesNb } from './nb';
+import { applicationMessages } from './nb';
 
 const bokmålstekster = {
-    ...applicationMessagesNb,
     ...allCommonMessages.nb,
     ...velkommenPageMessages.nb,
-    ...soknadErrorIntlMessages.nb,
     ...soknadIntlMessages.nb,
+    ...velkommenPageMessages.nb,
+    ...applicationMessages.nb,
 };
 
 export const applicationIntlMessages: MessageFileFormat = {

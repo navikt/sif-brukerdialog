@@ -5,8 +5,8 @@ import Block from '../../atoms/block/Block';
 import ExpandableInfo from '../../components/expandable-info/ExpandableInfo';
 import bemUtils from '../../utils/bemUtils';
 import intlHelper from '../../utils/intlUtils';
-import PictureScanningExample from './PictureScanningExample';
 import ScanningIcon from './scanning-icon/ScanningIcon';
+import PictureScanningExample from './storybook/PictureScanningExample';
 import './pictureScanningGuide.scss';
 
 const bem = bemUtils('pictureScanningGuide');
@@ -43,7 +43,6 @@ const PictureScanningGuide = () => {
                     <Heading level="3" size="xsmall" spacing={true}>
                         <FormattedMessage id="psg.section2.tittel" />
                     </Heading>
-
                     <ul>
                         <li>
                             <FormattedMessage id="psg.section2.liste.1" />

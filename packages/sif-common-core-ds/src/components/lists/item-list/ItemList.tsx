@@ -1,8 +1,9 @@
 import React from 'react';
 import { guid } from '@navikt/sif-common-utils';
+import classNames from 'classnames';
 import ActionLink from '../../../atoms/action-link/ActionLink';
-import bemUtils from '../../../utils/bemUtils';
 import DeleteButton from '../../../atoms/delete-button/DeleteButton';
+import bemUtils from '../../../utils/bemUtils';
 import './itemList.scss';
 
 interface Props<T> {
@@ -33,7 +34,7 @@ function ItemList<T>({
     useTrashcan = false,
 }: Props<T>) {
     return (
-        <ol className={bem.classNames(bem.block)}>
+        <ol className={classNames(bem.block)}>
             {items.map((item) => {
                 const itemTitle = getItemTitle(item);
                 return (

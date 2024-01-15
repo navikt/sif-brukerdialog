@@ -3,6 +3,7 @@ import { useMediaQuery } from 'react-responsive';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { DateDurationMap, isDateInDates } from '@navikt/sif-common-utils';
+import classNames from 'classnames';
 import { Daginfo, TidPerDagValidator, Ukeinfo } from '../../types';
 import TidUkeInput from '../tid-uke-input/TidUkeInput';
 import { tidUkerInputUtils } from './tidUkerUtils';
@@ -41,7 +42,7 @@ export const TidUkerInput: React.FunctionComponent<Props> = ({
         );
 
     return (
-        <div className={bem.classNames(bem.block, bem.modifier('inlineForm'))}>
+        <div className={classNames(bem.block, bem.modifier('inlineForm'))}>
             {uker.map((uke) => {
                 const content = (
                     <TidUkeInput

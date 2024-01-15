@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import bemUtils from '../../utils/bemUtils';
 import LoadingPage from '../loading-page/LoadingPage';
 
@@ -10,7 +11,7 @@ interface Props {
 const bem = bemUtils('loadWrapper');
 
 const LoadWrapper = ({ isLoading, contentRenderer }: Props) => (
-    <div className={bem.classNames(bem.block, bem.modifierConditional('loading', isLoading))}>
+    <div className={classNames(bem.block, bem.modifierConditional('loading', isLoading))}>
         {isLoading && <LoadingPage />}
         {!isLoading && <>{contentRenderer()}</>}
     </div>

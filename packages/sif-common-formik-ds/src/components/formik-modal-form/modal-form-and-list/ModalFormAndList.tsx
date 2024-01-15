@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { Alert, Button, Modal } from '@navikt/ds-react';
 import React, { useEffect, useRef, useState } from 'react';
+import classNames from 'classnames';
 import { v4 as uuid } from 'uuid';
 import bemUtils from '../../../utils/bemUtils';
 import ConfirmationDialog from '../../helpers/confirmation-dialog/ConfirmationDialog';
@@ -127,7 +128,7 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
                     portal={true}
                     open={modalState.isVisible}
                     onClose={resetModal}
-                    className={bem.classNames(bem.block, bem.modifier(dialogWidth))}
+                    className={classNames(bem.block, bem.modifier(dialogWidth))}
                     aria-label={labels.modalTitle}
                     header={{
                         heading: labels.modalTitle,
