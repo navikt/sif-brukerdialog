@@ -1,9 +1,7 @@
 import { calendarGridMessages } from '../common/calendar-grid/calendarGridMessages';
 import { dagerMedTidMessages } from '../common/dager-med-tid-liste/dagerMedTidMessages';
 import { timerOgMinutterMessages } from '../common/timer-og-minutter/timerOgMinutterMessages';
-import arbeidstidEnkeltdagFormMessages from '../arbeidstid/arbeidstid-enkeltdag-dialog/arbeidstidEnkeltdagMessages';
-import arbeidstidMånedMessages from '../arbeidstid/arbeidstid-kalender/i18n/arbeidstidMånedMessages';
-import { arbeidstidPeriodeMessages } from '../arbeidstid/arbeidstid-periode-dialog/i18n/arbeidstidPeriodeMessages';
+import { arbeidstidPeriodeMessages } from '../../søknad/steps/arbeidstid/arbeidstidPeriodeMessages';
 import tidEnkeltdagFormMessages from '../tid/tid-enkeltdag-dialog/i18n/tidEnkeltdagMessages';
 
 export type ComponentMessages<Messages> = Record<string, Messages>;
@@ -13,9 +11,7 @@ export const sifCommonPleiepengerMessages = {
         ...arbeidstidPeriodeMessages.nb,
         ...timerOgMinutterMessages.nb,
         ...tidEnkeltdagFormMessages.nb,
-        ...arbeidstidEnkeltdagFormMessages.nb,
         ...calendarGridMessages.nb,
-        ...arbeidstidMånedMessages.nb,
         ...dagerMedTidMessages.nb,
     },
 };
