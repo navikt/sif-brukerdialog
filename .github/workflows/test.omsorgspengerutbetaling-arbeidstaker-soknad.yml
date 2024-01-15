@@ -80,7 +80,7 @@ jobs:
               run: npx playwright install chromium
 
             - name: Build application
-              run: yarn build-app --filter=omsorgspengerutbetaling-arbeidstaker-soknad
+              run: yarn build --filter=omsorgspengerutbetaling-arbeidstaker-soknad
 
             - name: Run tests
               run: yarn turbo playwright-test --filter=omsorgspengerutbetaling-arbeidstaker-soknad

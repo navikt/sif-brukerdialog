@@ -1,4 +1,4 @@
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
+import { YesOrNo } from '@navikt/sif-common-formik-ds/src/types';
 import { Arbeidsforhold, Utbetalingsårsak } from '../types/ArbeidsforholdTypes';
 import { Arbeidsgiver } from '../types/Arbeidsgiver';
 

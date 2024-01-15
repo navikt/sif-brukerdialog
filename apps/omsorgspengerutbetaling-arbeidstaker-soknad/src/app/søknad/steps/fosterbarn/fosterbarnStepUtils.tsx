@@ -1,7 +1,7 @@
 import { FosterbarnFormValues } from './FosterbarnStep';
 import { FosterbarnSøknadsdata } from '../../../types/søknadsdata/FosterbarnSøknadsdata';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
+import { YesOrNo } from '@navikt/sif-common-formik-ds/src/types';
 
 export const getFosterbarnSøknadsdataFromFormValues = (
     values: FosterbarnFormValues,

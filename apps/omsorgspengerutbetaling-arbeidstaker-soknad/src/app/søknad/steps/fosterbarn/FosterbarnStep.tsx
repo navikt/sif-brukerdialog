@@ -3,26 +3,26 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { StepId } from '../../../types/StepId';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { getFosterbarnStepInitialValues, getFosterbarnSøknadsdataFromFormValues } from './fosterbarnStepUtils';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
+import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import SøknadStep from '../../SøknadStep';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { Alert } from '@navikt/ds-react';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import FosterbarnListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/fosterbarn/FosterbarnListAndDialog';
-import { Fosterbarn } from '@navikt/sif-common-forms-ds/lib/forms/fosterbarn/types';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import getYesOrNoValidator from '@navikt/sif-common-formik-ds/lib/validation/getYesOrNoValidator';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import FosterbarnListAndDialog from '@navikt/sif-common-forms-ds/src/forms/fosterbarn/FosterbarnListAndDialog';
+import { Fosterbarn } from '@navikt/sif-common-forms-ds/src/forms/fosterbarn/types';
+import { YesOrNo } from '@navikt/sif-common-formik-ds/src/types';
+import getYesOrNoValidator from '@navikt/sif-common-formik-ds/src/validation/getYesOrNoValidator';
 
 export enum FosterbarnFormFields {
     harFostrerbarn = 'harFostrerbarn',

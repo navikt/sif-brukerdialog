@@ -1,7 +1,7 @@
 import { getNMonthsAgo } from '../../søknad/steps/situasjon/SituasjonStepUtils';
 import { Arbeidsgiver } from '../../types/Arbeidsgiver';
 import api, { ApiEndpoint } from '../api';
-import { dateToISODate, dateToday } from '@navikt/sif-common-utils/lib';
+import { dateToISODate, dateToday } from '@navikt/sif-common-utils/src/dateUtils';
 
 type AAregArbeidsgiver = {
     organisasjoner?: {

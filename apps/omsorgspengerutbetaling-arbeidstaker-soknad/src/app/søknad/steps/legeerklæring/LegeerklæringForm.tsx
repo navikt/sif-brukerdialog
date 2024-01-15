@@ -1,21 +1,21 @@
 import { Alert, Link } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import FileUploadErrors from '@navikt/sif-common-core-ds/lib/components/file-upload-errors/FileUploadErrors';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import PictureScanningGuide from '@navikt/sif-common-core-ds/lib/components/picture-scanning-guide/PictureScanningGuide';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import FileUploadErrors from '@navikt/sif-common-core-ds/src/components/file-upload-errors/FileUploadErrors';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import PictureScanningGuide from '@navikt/sif-common-core-ds/src/components/picture-scanning-guide/PictureScanningGuide';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import {
     attachmentHasBeenUploaded,
     getTotalSizeOfAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
-} from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { getTypedFormComponents, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/lib';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { validateAll } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
+} from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { getTypedFormComponents, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
 import { ApiEndpoint } from '../../../api/api';
 import FormikFileUploader from '../../../components/formik-file-uploader/FormikFileUploader';
 import LegeerklæringAvtaleAttachmentList from './LegeerklæringAttachmentList';

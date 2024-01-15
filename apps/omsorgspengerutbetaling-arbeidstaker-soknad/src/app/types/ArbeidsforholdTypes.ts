@@ -1,4 +1,4 @@
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
+import { YesOrNo } from '@navikt/sif-common-formik-ds/src/types';
 import { Attachment } from '../components/formik-file-uploader/useFormikFileUploader';
 
 export enum Utbetalingsårsak {

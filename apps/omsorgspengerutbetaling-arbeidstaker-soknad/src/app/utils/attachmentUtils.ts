@@ -1,6 +1,6 @@
-import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
-import { attachmentHasBeenUploaded } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import { attachmentHasBeenUploaded } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { Arbeidsforhold } from '../types/ArbeidsforholdTypes';
 
 export const getAttachmentURLFrontend = (url: string): string => {

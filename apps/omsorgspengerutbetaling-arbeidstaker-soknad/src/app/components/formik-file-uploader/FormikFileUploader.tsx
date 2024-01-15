@@ -1,6 +1,6 @@
-import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
-import { VALID_EXTENSIONS } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
-import { FormikFileInput, TypedFormInputValidationProps, ValidationError } from '@navikt/sif-common-formik-ds/lib';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import { VALID_EXTENSIONS } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import { FormikFileInput, TypedFormInputValidationProps, ValidationError } from '@navikt/sif-common-formik-ds/src';
 import { ApiEndpoint } from '../../api/api';
 import { useFormikFileUploader } from './useFormikFileUploader';
 

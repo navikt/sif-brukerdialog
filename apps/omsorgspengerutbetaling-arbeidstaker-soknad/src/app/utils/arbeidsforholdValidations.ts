@@ -1,5 +1,5 @@
 import { Arbeidsforhold, Utbetalingsårsak } from '../types/ArbeidsforholdTypes';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
+import { YesOrNo } from '@navikt/sif-common-formik-ds/src/types';
 
 export const evaluatePrevAndCurrent = (prev: boolean, curr: boolean): boolean => {
     if (prev === false) {
@@ -32,11 +32,11 @@ export const utbetalingsårsakIsValid = ({
         return utbetalingsårsak === Utbetalingsårsak.arbeidsgiverKonkurs
             ? true
             : utbetalingsårsak === Utbetalingsårsak.konfliktMedArbeidsgiver &&
-              validatekonfliktForklaring(konfliktForklaring)
-            ? true
-            : utbetalingsårsak === Utbetalingsårsak.nyoppstartetHosArbeidsgiver && årsakNyoppstartet
-            ? true
-            : false;
+                validatekonfliktForklaring(konfliktForklaring)
+              ? true
+              : utbetalingsårsak === Utbetalingsårsak.nyoppstartetHosArbeidsgiver && årsakNyoppstartet
+                ? true
+                : false;
     } else return false;
 };
 

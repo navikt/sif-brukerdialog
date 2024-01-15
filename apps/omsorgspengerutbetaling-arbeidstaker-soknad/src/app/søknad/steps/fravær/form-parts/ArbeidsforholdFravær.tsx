@@ -1,21 +1,21 @@
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { ValidationError, ValidationResult, YesOrNo, getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
+import { ValidationError, ValidationResult, YesOrNo, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import {
     AppFieldValidationErrors,
     getFraværDagerValidator,
     getFraværPerioderValidator,
 } from '../../../../utils/validations';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { FraværStepFormFields, FraværStepFormValues } from '../FraværStep';
 import { Fravær, FraværFormFields } from '../../../../types/FraværTypes';
-import FraværPerioderListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/fravær/FraværPerioderListAndDialog';
-import FraværDagerListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/fravær/FraværDagerListAndDialog';
-import { fraværDagToFraværDateRange, fraværPeriodeToDateRange } from '@navikt/sif-common-forms-ds/lib/forms/fravær';
-import { ValidateYesOrNoError, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import { validateAll } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
+import FraværPerioderListAndDialog from '@navikt/sif-common-forms-ds/src/forms/fravær/FraværPerioderListAndDialog';
+import FraværDagerListAndDialog from '@navikt/sif-common-forms-ds/src/forms/fravær/FraværDagerListAndDialog';
+import { fraværDagToFraværDateRange, fraværPeriodeToDateRange } from '@navikt/sif-common-forms-ds/src/forms/fravær';
+import { ValidateYesOrNoError, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
 
 const { YesOrNoQuestion } = getTypedFormComponents<FraværStepFormFields, FraværStepFormValues, ValidationError>();
 

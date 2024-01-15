@@ -1,5 +1,5 @@
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import { FraværDag, FraværPeriode, Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib';
+import { YesOrNo } from '@navikt/sif-common-formik-ds/src/types';
+import { FraværDag, FraværPeriode, Utenlandsopphold } from '@navikt/sif-common-forms-ds/src';
 
 interface HarKunFulltFravær {
     type: 'harKunFulltFravær';

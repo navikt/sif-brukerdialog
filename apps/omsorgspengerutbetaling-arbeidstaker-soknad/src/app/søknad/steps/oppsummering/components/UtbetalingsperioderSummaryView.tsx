@@ -1,13 +1,13 @@
-import { Time } from '@navikt/sif-common-utils/lib/types';
+import { Time } from '@navikt/sif-common-utils/src/types';
 import { ApiAktivitet, Utbetalingsperiode } from '../../../../types/søknadApiData/SøknadApiData';
 import { isString } from 'formik';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { iso8601DurationToTime, timeToDecimalTime } from '@navikt/sif-common-utils/lib/timeUtils';
-import { timeText } from '@navikt/sif-common-forms-ds/lib/forms/fravær/fraværUtilities';
-import { prettifyDate, prettifyDateExtended } from '@navikt/sif-common-utils/lib/dateFormatter';
-import { ISODateToDate } from '@navikt/sif-common-utils/lib';
-import { SummaryBlock, SummaryList } from '@navikt/sif-common-soknad-ds';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { iso8601DurationToTime, timeToDecimalTime } from '@navikt/sif-common-utils/src/timeUtils';
+import { timeText } from '@navikt/sif-common-forms-ds/src/forms/fravær/fraværUtilities';
+import { prettifyDate, prettifyDateExtended } from '@navikt/sif-common-utils/src/dateFormatter';
+import { ISODateToDate } from '@navikt/sif-common-utils/src';
+import { SummaryBlock, SummaryList } from '@navikt/sif-common-soknad-ds/src';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 
 export interface Props {
     utbetalingsperioder: Utbetalingsperiode[];

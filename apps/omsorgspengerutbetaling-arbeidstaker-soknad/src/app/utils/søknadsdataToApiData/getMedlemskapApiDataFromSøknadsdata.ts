@@ -1,7 +1,7 @@
-import { BostedUtland, Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib';
+import { BostedUtland, Utenlandsopphold } from '@navikt/sif-common-forms-ds/src';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { UtenlandsoppholdApiData } from '../../types/søknadApiData/SøknadApiData';
-import { countryIsMemberOfEøsOrEfta, getCountryName } from '@navikt/sif-common-formik-ds/lib/utils/countryUtils';
+import { countryIsMemberOfEøsOrEfta, getCountryName } from '@navikt/sif-common-formik-ds/src/utils/countryUtils';
 import { MedlemskapSøknadsdata } from '../../types/søknadsdata/MedlemskapSøknadsdata';
 
 export const mapBostedUtlandToApiData = (opphold: BostedUtland, locale: string): UtenlandsoppholdApiData => ({

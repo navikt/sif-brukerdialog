@@ -1,11 +1,11 @@
 import { FormattedMessage, useIntl } from 'react-intl';
-import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
+import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import {
     getTotalSizeOfAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
-} from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
+} from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { Arbeidsforhold } from '../../../types/ArbeidsforholdTypes';
-import { ValidationError, getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
+import { ValidationError, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { StepId } from '../../../types/StepId';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
@@ -16,10 +16,10 @@ import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import SøknadStep from '../../SøknadStep';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { Office1 } from '@navikt/ds-icons';
 import { Alert } from '@navikt/ds-react';
 import { getSituasjonStepInitialValues, getSituasjonSøknadsdataFromFormValues } from './SituasjonStepUtils';
@@ -28,8 +28,8 @@ import {
     checkHarKlikketNeiElleJajaBlanding,
     checkHarKlikketNeiPåAlle,
 } from '../../../utils/arbeidsforholdValidations';
-import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import ArbeidsforholdSituasjon from './form-parts/ArbeidsforholdSituasjon';
 import ArbeidsforholdUtbetalingsårsak from './form-parts/ArbeidsforholdUtbetalingsårsak';
 import { valuesToAlleDokumenterISøknaden } from '../../../utils/attachmentUtils';
@@ -38,7 +38,7 @@ import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
 import { useState } from 'react';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import arbeidsgivereEndpoint from '../../../api/endpoints/arbeidsgivereEndpoint';
-import LoadingSpinner from '@navikt/sif-common-core-ds/lib/atoms/loading-spinner/LoadingSpinner';
+import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 
 export enum ArbeidsforholdFormFields {
     navn = 'navn',

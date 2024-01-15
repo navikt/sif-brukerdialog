@@ -1,12 +1,12 @@
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Utbetalingsårsak } from '../../../../types/ArbeidsforholdTypes';
 import { ArbeidsgiverDetaljer } from '../../../../types/søknadApiData/SøknadApiData';
-import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
-import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { JaNeiSvar, SummaryBlock } from '@navikt/sif-common-soknad-ds';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import AttachmentList from '@navikt/sif-common-core-ds/lib/components/attachment-list/AttachmentList';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
 import UtbetalingsperioderSummaryView from './UtbetalingsperioderSummaryView';
 import { ArbeidforholdSøknadsdata, SituasjonSøknadsdata } from '../../../../types/søknadsdata/SituasjonSøknadsdata';
 
@@ -39,7 +39,7 @@ const ArbeidsforholdSummaryView: React.FC<Props> = ({
 
     const arbeidsgivereUtenFravær = søknadsdata.situasjon
         ? Object.values(søknadsdata.situasjon).filter(
-              (forhold) => forhold.type === 'harIkkeHattFravær' || forhold.type === 'harHattFraværMedLønn'
+              (forhold) => forhold.type === 'harIkkeHattFravær' || forhold.type === 'harHattFraværMedLønn',
           )
         : [];
 
@@ -53,7 +53,7 @@ const ArbeidsforholdSummaryView: React.FC<Props> = ({
 
                 const maybeListOfAttachments: Attachment[] | undefined = getArbeidsforholdAttachments(
                     arbeidsforhold.organisasjonsnummer,
-                    søknadsdata.situasjon
+                    søknadsdata.situasjon,
                 );
 
                 return (
@@ -76,7 +76,7 @@ const ArbeidsforholdSummaryView: React.FC<Props> = ({
                                     <SummaryBlock
                                         header={intlHelper(
                                             intl,
-                                            'step.oppsummering.arbeidsforhold.harArbeidsgiverUtbetaltDegLønnForOmsorgsdagene.spm'
+                                            'step.oppsummering.arbeidsforhold.harArbeidsgiverUtbetaltDegLønnForOmsorgsdagene.spm',
                                         )}>
                                         <JaNeiSvar harSvartJa={arbeidsforhold.arbeidsgiverHarUtbetaltLønn} />
                                     </SummaryBlock>
@@ -96,7 +96,7 @@ const ArbeidsforholdSummaryView: React.FC<Props> = ({
                                         <SummaryBlock
                                             header={intlHelper(
                                                 intl,
-                                                'step.oppsummering.arbeidsforhold.årsakMinde4Uker.spm'
+                                                'step.oppsummering.arbeidsforhold.årsakMinde4Uker.spm',
                                             )}>
                                             <FormattedMessage
                                                 id={`step.oppsummering.arbeidsforhold.årsakMinde4Uker.${arbeidsforhold.årsakNyoppstartet}`}
@@ -111,7 +111,7 @@ const ArbeidsforholdSummaryView: React.FC<Props> = ({
                                         <SummaryBlock
                                             header={intlHelper(
                                                 intl,
-                                                'step.oppsummering.arbeidsforhold.konflikt.forklaringTittel'
+                                                'step.oppsummering.arbeidsforhold.konflikt.forklaringTittel',
                                             )}>
                                             <p>{arbeidsforhold.konfliktForklaring}</p>
                                         </SummaryBlock>
@@ -119,7 +119,7 @@ const ArbeidsforholdSummaryView: React.FC<Props> = ({
                                     <SummaryBlock
                                         header={intlHelper(
                                             intl,
-                                            'step.oppsummering.arbeidsforhold.konflikt.dokumenter.header'
+                                            'step.oppsummering.arbeidsforhold.konflikt.dokumenter.header',
                                         )}>
                                         {maybeListOfAttachments && maybeListOfAttachments.length > 0 ? (
                                             <AttachmentList attachments={maybeListOfAttachments} />
@@ -127,7 +127,7 @@ const ArbeidsforholdSummaryView: React.FC<Props> = ({
                                             <i>
                                                 {intlHelper(
                                                     intl,
-                                                    'step.oppsummering.arbeidsforhold.konflikt.dokumenter.ikkelastetopp'
+                                                    'step.oppsummering.arbeidsforhold.konflikt.dokumenter.ikkelastetopp',
                                                 )}
                                             </i>
                                         )}
@@ -164,7 +164,7 @@ const ArbeidsforholdSummaryView: React.FC<Props> = ({
                                         <SummaryBlock
                                             header={intlHelper(
                                                 intl,
-                                                'step.oppsummering.arbeidsforhold.harArbeidsgiverUtbetaltDegLønnForOmsorgsdagene.spm'
+                                                'step.oppsummering.arbeidsforhold.harArbeidsgiverUtbetaltDegLønnForOmsorgsdagene.spm',
                                             )}>
                                             <JaNeiSvar
                                                 harSvartJa={

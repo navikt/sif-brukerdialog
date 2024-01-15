@@ -2,12 +2,12 @@ import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { ArbeidsforholdFormFields } from '../SituasjonStep';
 import { Arbeidsforhold } from '../../../../types/ArbeidsforholdTypes';
-import { ValidationError, YesOrNo, getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import { ValidationError, YesOrNo, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { Alert } from '@navikt/ds-react';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { AppFieldValidationErrors } from '../../../../utils/validations';
 
 const { YesOrNoQuestion } = getTypedFormComponents<ArbeidsforholdFormFields, Arbeidsforhold, ValidationError>();

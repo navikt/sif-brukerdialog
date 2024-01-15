@@ -13,7 +13,7 @@ import {
     ValidationError,
     YesOrNo,
     getTypedFormComponents,
-} from '@navikt/sif-common-formik-ds/lib';
+} from '@navikt/sif-common-formik-ds';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { StepId } from '../../../types/StepId';
 import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../søknadStepConfig';
@@ -24,20 +24,20 @@ import actionsCreator from '../../context/action/actionCreator';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import { date1YearAgo, dateToday } from '@navikt/sif-common-utils/lib/dateUtils';
-import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib';
+import { date1YearAgo, dateToday } from '@navikt/sif-common-utils';
+import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
 import { ArbeidforholdSøknadsdata } from '../../../types/søknadsdata/SituasjonSøknadsdata';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import FormSection from '../../../components/form-section/FormSection';
 import { Office1 } from '@navikt/ds-icons';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/bosted-utland/BostedUtlandListAndDialog';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/BostedUtlandListAndDialog';
 import SøknadStep from '../../SøknadStep';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import {
     getAlleFraværDager,
     getAlleFraværDagerFromSøknadsdata,

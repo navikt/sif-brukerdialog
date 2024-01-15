@@ -1,26 +1,26 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { useFormikContext } from 'formik';
-import PictureScanningGuide from '@navikt/sif-common-core-ds/lib/components/picture-scanning-guide/PictureScanningGuide';
+import PictureScanningGuide from '@navikt/sif-common-core-ds/src/components/picture-scanning-guide/PictureScanningGuide';
 import { Arbeidsforhold, Utbetalingsårsak, ÅrsakNyoppstartet } from '../../../../types/ArbeidsforholdTypes';
 import { ArbeidsforholdFormFields, SituasjonFormValues } from '../SituasjonStep';
-import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import { ValidationError, getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import { ValidationError, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import {
     ValidateStringError,
     getRequiredFieldValidator,
     getStringValidator,
-} from '@navikt/sif-common-formik-ds/lib/validation';
+} from '@navikt/sif-common-formik-ds/src/validation';
 import { AppFieldValidationErrors } from '../../../../utils/validations';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 // import { valuesToAlleDokumenterISøknaden } from '../../../../utils/attachmentUtils';
 import FormikFileUploader from '../../../../components/formik-file-uploader/FormikFileUploader';
 import { ApiEndpoint } from '../../../../api/api';
-import FileUploadErrors from '@navikt/sif-common-core-ds/lib/components/file-upload-errors/FileUploadErrors';
+import FileUploadErrors from '@navikt/sif-common-core-ds/src/components/file-upload-errors/FileUploadErrors';
 import { ValidateAttachmentsErrors, validateAttachments } from '../../../../utils/validateAttachments';
-import { validateAll } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
+import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
 import { relocateToLoginPage } from '../../../../utils/navigationUtils';
 import ArbeidsforholdAttachmentList from './ArbeidsforholdAttachmentList';
 

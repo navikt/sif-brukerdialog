@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import { ArbeidforholdSøknadsdata, SituasjonSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { SituasjonFormValues } from './SituasjonStep';
 import { Arbeidsforhold, Utbetalingsårsak } from '../../../types/ArbeidsforholdTypes';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
+import { YesOrNo } from '@navikt/sif-common-formik-ds/src/types';
 import appSentryLogger from '../../../utils/appSentryLogger';
 import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
 

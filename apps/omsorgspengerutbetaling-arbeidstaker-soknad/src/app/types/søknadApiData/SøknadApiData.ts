@@ -1,6 +1,6 @@
-import { ISODate } from '@navikt/sif-common-utils/lib';
+import { ISODate } from '@navikt/sif-common-utils/src';
 import { Utbetalingsårsak, ÅrsakNyoppstartet } from '../ArbeidsforholdTypes';
-import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
+import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 
 export type ISO8601Duration = string;
 

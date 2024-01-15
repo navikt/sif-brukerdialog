@@ -1,8 +1,8 @@
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib';
-import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import { validateAll } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
-import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds/lib';
-import { validateNoCollisions } from '@navikt/sif-common-forms-ds/lib/forms/fravær/fraværValidationUtils';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
+import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds/src/forms/fravær/types';
+import { validateNoCollisions } from '@navikt/sif-common-forms-ds/src/forms/fravær/fraværValidationUtils';
 
 export enum AppFieldValidationErrors {
     'arbeidsforhold_fraværPerioder_listIsEmpty' = 'validation.arbeidsforhold.fraværPerioder.listIsEmpty',

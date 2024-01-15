@@ -1,4 +1,4 @@
-import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
+import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { Attachment } from '../../components/formik-file-uploader/useFormikFileUploader';
 import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { SituasjonSøknadsdata, Søknadsdata } from '../../types/søknadsdata/Søknadsdata';

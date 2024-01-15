@@ -2,13 +2,13 @@ import { ApiAktivitet, ArbeidsgiverDetaljer, Utbetalingsperiode } from '../../ty
 import { FraværSøknadsdata } from '../../types/søknadsdata/FraværSøknadsdata';
 import { SituasjonSøknadsdata } from '../../types/søknadsdata/SituasjonSøknadsdata';
 import { Utbetalingsårsak } from '../../types/ArbeidsforholdTypes';
-import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds/lib/forms/fravær/types';
-import { dateToISODate, decimalTimeToTime, timeToIso8601Duration } from '@navikt/sif-common-utils/lib';
+import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds/src/forms/fravær/types';
+import { dateToISODate, decimalTimeToTime, timeToIso8601Duration } from '@navikt/sif-common-utils/src';
 import { getOrganisasjonsnummerFromKey } from '../../søknad/steps/fravær/fraværStepUtils';
 
 export const getArbeidsgivereApiDataFromSøknadsdata = (
     situasjon: SituasjonSøknadsdata,
-    fravær: FraværSøknadsdata
+    fravær: FraværSøknadsdata,
 ): ArbeidsgiverDetaljer[] => {
     const arbeidsgiverDetaljer: ArbeidsgiverDetaljer[] = [];
 
@@ -56,7 +56,7 @@ export const getArbeidsgivereApiDataFromSøknadsdata = (
 
 export const mapFraværTilUtbetalingsperiode = (
     fraværPerioder: FraværPeriode[],
-    fraværDager: FraværDag[]
+    fraværDager: FraværDag[],
 ): Utbetalingsperiode[] => {
     const periodeMappedTilUtbetalingsperiode: Utbetalingsperiode[] = fraværPerioder.map(
         (periode: FraværPeriode): Utbetalingsperiode => {
@@ -68,7 +68,7 @@ export const mapFraværTilUtbetalingsperiode = (
                 årsak: 'ORDINÆRT_FRAVÆR',
                 aktivitetFravær: [ApiAktivitet.ARBEIDSTAKER],
             };
-        }
+        },
     );
 
     const fraværDeleravDagMappedTilUtbetalingsperiode: Utbetalingsperiode[] = fraværDager.map(
@@ -82,7 +82,7 @@ export const mapFraværTilUtbetalingsperiode = (
                 aktivitetFravær: [ApiAktivitet.ARBEIDSTAKER],
             };
             return utbetalingsperiode;
-        }
+        },
     );
 
     return [...periodeMappedTilUtbetalingsperiode, ...fraværDeleravDagMappedTilUtbetalingsperiode];

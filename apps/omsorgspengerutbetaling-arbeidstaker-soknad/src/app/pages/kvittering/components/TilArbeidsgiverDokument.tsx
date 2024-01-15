@@ -6,11 +6,11 @@ import {
     isValidTime,
     iso8601DurationToTime,
     prettifyDateExtended,
-} from '@navikt/sif-common-utils/lib';
+} from '@navikt/sif-common-utils';
 import { Alert, Heading, Panel } from '@navikt/ds-react';
 import { FormattedMessage } from 'react-intl';
 import { utbetalingsperiodeDagToDagSummaryStringView } from '../../../søknad/steps/oppsummering/components/UtbetalingsperioderSummaryView';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 
 interface Props {
     arbeidsgiverDetaljer: ArbeidsgiverDetaljer;

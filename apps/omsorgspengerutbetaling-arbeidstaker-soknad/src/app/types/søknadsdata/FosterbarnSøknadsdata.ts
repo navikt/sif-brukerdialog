@@ -1,4 +1,4 @@
-import { Fosterbarn } from '@navikt/sif-common-forms-ds/lib/forms/fosterbarn/types';
+import { Fosterbarn } from '@navikt/sif-common-forms-ds/src/forms/fosterbarn/types';
 
 interface harFosterbarn {
     type: 'harFosterbarn';

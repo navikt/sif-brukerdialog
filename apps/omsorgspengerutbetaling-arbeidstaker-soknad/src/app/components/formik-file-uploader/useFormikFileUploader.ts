@@ -1,4 +1,4 @@
-import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
+import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import {
     attachmentShouldBeProcessed,
     attachmentShouldBeUploaded,
@@ -6,7 +6,7 @@ import {
     getPendingAttachmentFromFile,
     isFileObject,
     mapFileToPersistedFile,
-} from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
+} from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { ArrayHelpers } from 'formik';
 import api, { ApiEndpoint } from '../../api/api';
 import { getAttachmentURLFrontend } from '../../utils/attachmentUtils';
