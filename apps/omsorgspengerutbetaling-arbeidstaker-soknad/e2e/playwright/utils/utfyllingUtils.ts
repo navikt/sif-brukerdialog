@@ -28,7 +28,8 @@ const startSøknad = async (page: Page) => {
     await page.getByRole('button').getByText('Start søknad').click();
 };
 
-const fyllUtOmBarnSteg = async (page: Page) => {
+const fyllUtFosterbarnSteg = async (page: Page) => {
+    await page.getByTestId('harFostrerbarn').getByText('Nei').click();
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
@@ -96,7 +97,7 @@ const kontrollerKvittering = async (page: Page) => {
 
 export const utfyllingUtils = {
     startSøknad,
-    fyllUtOmBarnSteg,
+    fyllUtOmBarnSteg: fyllUtFosterbarnSteg,
     fyllUtDinArbeidssituasjonSteg,
     fyllUtFraværSteg,
     lastOppLegeerklæring,
