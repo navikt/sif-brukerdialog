@@ -16,17 +16,10 @@ export interface FosterbarnListAndDialogText {
 interface Props<FieldNames> extends TypedFormInputValidationProps<FieldNames, ValidationError> {
     name: FieldNames;
     texts?: FosterbarnListAndDialogText;
-    includeName?: boolean;
     disallowedFødselsnumre?: string[];
 }
 
-function FosterbarnListAndDialog<FieldNames>({
-    name,
-    validate,
-    texts,
-    includeName,
-    disallowedFødselsnumre,
-}: Props<FieldNames>) {
+function FosterbarnListAndDialog<FieldNames>({ name, validate, texts, disallowedFødselsnumre }: Props<FieldNames>) {
     const intl = useIntl();
 
     const defaultText: FosterbarnListAndDialogText = {
@@ -53,7 +46,6 @@ function FosterbarnListAndDialog<FieldNames>({
                         fosterbarn={item}
                         onSubmit={onSubmit}
                         onCancel={onCancel}
-                        includeName={includeName}
                         disallowedFødselsnumre={disallowedFødselsnumre}
                     />
                 )}

@@ -1,0 +1,17 @@
+.fosterbarnList {
+    &__navn {
+        display: block;
+    }
+    @media (min-width: 600px) {
+        &__label {
+            display: flex;
+        }
+        &__navn {
+            padding-left: 1rem;
+        }
+        &__type {
+            padding-left: 1rem;
+            padding-right: 0.5rem;
+        }
+    }
+}

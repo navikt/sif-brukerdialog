@@ -113,7 +113,6 @@ const FosterbarnStep = () => {
                                     <FormBlock>
                                         <FosterbarnListAndDialog<FosterbarnFormFields>
                                             name={FosterbarnFormFields.fosterbarn}
-                                            includeName={true}
                                             disallowedFødselsnumre={[...[søker.fødselsnummer], ...fosterbarnFnr]}
                                         />
                                     </FormBlock>
