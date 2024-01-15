@@ -6,7 +6,7 @@ const omsorgstilbudPeriodeFormMessages = {
         'omsorgstilbudPeriodeForm.tittel': 'Oppgi periode med omsorgstilbud',
         'omsorgstilbudPeriodeForm.submitButtonLabel': 'Ok',
         'omsorgstilbudPeriodeForm.cancelButtonLabel': 'Avbryt',
-        'omsorgstilbudPeriodeForm.periode.legend': 'Periode',
+        'omsorgstilbudPeriodeForm.periode.legend': 'Velg periode',
         'omsorgstilbudPeriodeForm.fraOgMed.label': 'Fra og med',
         'omsorgstilbudPeriodeForm.tilOgMed.label': 'Til og med',
         'omsorgstilbudPeriodeForm.tidFasteDager.label': 'Fyll ut tiden i omsorgstilbudet som er fast og regelmessig:',
