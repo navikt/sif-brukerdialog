@@ -9,15 +9,15 @@ import {
     getDatesInMonth,
     isDateInDates,
 } from '@navikt/sif-common-utils/';
+import classNames from 'classnames';
 import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import utc from 'dayjs/plugin/utc';
 import { groupBy } from 'lodash';
 import { useElementWidthIsWithinRange } from '../../hooks/useElementWidthIsWithinRange';
-import CalendarGridDate from './CalendarGridDate';
-import classNames from 'classnames';
-import './calendarGrid.less';
 import { hasIncreasedFontSize } from '../../utils/hasIncreasedFontSize';
+import CalendarGridDate from './CalendarGridDate';
+import './calendarGrid.less';
 
 dayjs.extend(isSameOrBefore);
 dayjs.extend(utc);
