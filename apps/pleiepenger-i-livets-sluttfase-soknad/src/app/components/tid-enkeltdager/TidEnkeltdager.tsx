@@ -1,12 +1,12 @@
 import { Accordion, Heading } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { ISODate, ISODateToDate, ISODuration, ISODurationToDuration } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { groupBy } from 'lodash';
-import DagerMedTidListe from '../../common/dager-med-tid-liste/DagerMedTidListe';
-import { DagMedTid } from '../../types';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { DagMedTid } from '../../types/DagMedTid';
+import DagerMedTidListe from '../dager-med-tid-liste/DagerMedTidListe';
 
 interface ISODagMedTid {
     dato: ISODate;
