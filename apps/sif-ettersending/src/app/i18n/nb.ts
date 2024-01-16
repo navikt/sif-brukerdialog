@@ -2,7 +2,6 @@ import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types';
 
 export const applicationMessages: MessageFileFormat = {
     nb: {
-        'page.loadingPage.tekst': 'Laster ...',
         'gotoApplicationLink.lenketekst': 'Gå til den digitale søknaden',
         'step.button.gåVidere': 'Gå videre',
         'step.button.startSøknad': 'Start ettersendelsen',
@@ -168,3 +167,5 @@ export const applicationMessages: MessageFileFormat = {
         'ekspanderbarPSG.title': 'Slik tar du et godt bilde av dokumentet',
     },
 };
+
+export type ApplicationMessageKeys = keyof typeof applicationMessages.nb;

@@ -6,7 +6,7 @@ export { default as SoknadApplicationCommonRoutes } from './setup/SoknadApplicat
 export { GlobalSoknadApplicationRoutes } from './setup/SoknadApplicationCommonRoutes';
 export { default as ErrorPage } from './pages/ErrorPage';
 export { default as LoadingPage } from './pages/LoadingPage';
-export { default as soknadErrorIntlMessages } from './i18n/error-messages/soknadErrorIntlMessages';
+export { default as soknadErrorIntlMessages } from './i18n/soknadErrorIntlMessages';
 export { default as SoknadErrorMessages } from './components/soknad-error-messages/SoknadErrorMessages';
 export { default as soknadIntlMessages } from './i18n/soknadIntlMessages';
 export type { LastAvailableStepInfo } from './components/soknad-error-messages/SoknadErrorMessages';

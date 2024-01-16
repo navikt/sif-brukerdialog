@@ -1,6 +1,5 @@
-import { FormattedMessage, useIntl } from 'react-intl';
 import ConfirmationDialog from '@navikt/sif-common-core-ds/src/components/dialogs/confirmation-dialog/ConfirmationDialog';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { useSoknadIntl } from '../../hooks/useSoknadIntl';
 
 export interface Props {
     synlig: boolean;
@@ -9,22 +8,18 @@ export interface Props {
 }
 
 const FortsettSøknadSenereDialog = (props: Props) => {
-    const intl = useIntl();
+    const { text } = useSoknadIntl();
     const { synlig, onFortsettSøknad, onFortsettSøknadSenere } = props;
     return (
         <ConfirmationDialog
             open={synlig}
-            okLabel={intlHelper(intl, 'fortsettSøknadSenereDialog.avbrytSøknadLabel')}
-            cancelLabel={intlHelper(intl, 'fortsettSøknadSenereDialog.fortsettSøknadLabel')}
-            title={intlHelper(intl, 'fortsettSøknadSenereDialog.tittel')}
+            okLabel={text('fortsettSøknadSenereDialog.avbrytSøknadLabel')}
+            cancelLabel={text('fortsettSøknadSenereDialog.fortsettSøknadLabel')}
+            title={text('fortsettSøknadSenereDialog.tittel')}
             onConfirm={onFortsettSøknadSenere}
             onCancel={onFortsettSøknad}>
-            <p>
-                <FormattedMessage id="fortsettSøknadSenereDialog.intro" />
-            </p>
-            <p>
-                <FormattedMessage id="fortsettSøknadSenereDialog.spørsmål" />
-            </p>
+            <p>{text('fortsettSøknadSenereDialog.intro')}</p>
+            <p>{text('fortsettSøknadSenereDialog.spørsmål')}</p>
         </ConfirmationDialog>
     );
 };

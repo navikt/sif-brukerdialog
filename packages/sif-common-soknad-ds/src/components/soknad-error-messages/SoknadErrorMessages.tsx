@@ -33,7 +33,7 @@ const SoknadErrorMessage = ({
             </p>
             {soknadFrontpageUrl && (
                 <DSLink href={soknadFrontpageUrl}>
-                    <FormattedMessage id="common.soknadErrorMessages.gotoSoknadFrontpage" />
+                    <FormattedMessage id="scs.soknadErrorMessages.gotoSoknadFrontpage" />
                 </DSLink>
             )}
             {children}
@@ -43,15 +43,15 @@ const SoknadErrorMessage = ({
 
 const GeneralApplicationError = () => (
     <SoknadErrorMessage
-        titleKey="common.soknadErrorMessages.defaultTitle"
-        contentKey="common.soknadErrorMessages.generalError.content"
+        titleKey="scs.soknadErrorMessages.defaultTitle"
+        contentKey="scs.soknadErrorMessages.generalError.content"
     />
 );
 
 const GeneralSoknadError = ({ soknadFrontpageUrl }: ErrorWithFrontpageUrlProps) => (
     <SoknadErrorMessage
-        titleKey="common.soknadErrorMessages.defaultTitle"
-        contentKey="common.soknadErrorMessages.generalSoknadError.content"
+        titleKey="scs.soknadErrorMessages.defaultTitle"
+        contentKey="scs.soknadErrorMessages.generalSoknadError.content"
         soknadFrontpageUrl={soknadFrontpageUrl}
     />
 );
@@ -64,17 +64,17 @@ const MissingSoknadDataError = ({
 }) =>
     lastAvailableStep === undefined ? (
         <SoknadErrorMessage
-            titleKey="common.soknadErrorMessages.missingSoknadData.title"
-            contentKey="common.soknadErrorMessages.missingSoknadData.content"
+            titleKey="scs.soknadErrorMessages.missingSoknadData.title"
+            contentKey="scs.soknadErrorMessages.missingSoknadData.content"
             soknadFrontpageUrl={soknadFrontpageUrl}
         />
     ) : (
         <SoknadErrorMessage
-            titleKey="common.soknadErrorMessages.unavailableSoknadStep.title"
-            contentKey="common.soknadErrorMessages.unavailableSoknadStep.content">
+            titleKey="scs.soknadErrorMessages.unavailableSoknadStep.title"
+            contentKey="scs.soknadErrorMessages.unavailableSoknadStep.content">
             <Link to={lastAvailableStep.route}>
                 <FormattedMessage
-                    id="common.soknadErrorMessages.unavailableSoknadStep.linkText"
+                    id="scs.soknadErrorMessages.unavailableSoknadStep.linkText"
                     values={{ steg: lastAvailableStep.title }}
                 />
             </Link>
@@ -83,29 +83,29 @@ const MissingSoknadDataError = ({
 
 const MissingApiDataError = ({ soknadFrontpageUrl }: ErrorWithFrontpageUrlProps) => (
     <SoknadErrorMessage
-        titleKey="common.soknadErrorMessages.missingApiData.title"
-        contentKey="common.soknadErrorMessages.missingApiData.content"
+        titleKey="scs.soknadErrorMessages.missingApiData.title"
+        contentKey="scs.soknadErrorMessages.missingApiData.content"
         soknadFrontpageUrl={soknadFrontpageUrl}
     />
 );
 
 const ApplicationUnavailable = () => (
     <SoknadErrorMessage
-        titleKey="common.soknadErrorMessages.applicationUnavailable.title"
-        contentKey="common.soknadErrorMessages.applicationUnavailable.content"
+        titleKey="scs.soknadErrorMessages.applicationUnavailable.title"
+        contentKey="scs.soknadErrorMessages.applicationUnavailable.content"
     />
 );
 
 const UnknownRoute = ({ onReset }: { onReset?: () => void }) => (
     <SoknadErrorMessage
-        titleKey="common.soknadErrorMessages.unknownRoute.title"
-        contentKey="common.soknadErrorMessages.unknownRoute.content">
+        titleKey="scs.soknadErrorMessages.unknownRoute.title"
+        contentKey="scs.soknadErrorMessages.unknownRoute.content">
         <p>
-            <FormattedMessage id="common.soknadErrorMessages.unknownRoute.reset" />
+            <FormattedMessage id="scs.soknadErrorMessages.unknownRoute.reset" />
         </p>
         {onReset && (
             <Button type="button" onClick={onReset} variant="secondary" size="small">
-                <FormattedMessage id="common.soknadErrorMessages.unknownRoute.reset.buttonLabel" />
+                <FormattedMessage id="scs.soknadErrorMessages.unknownRoute.reset.buttonLabel" />
             </Button>
         )}
     </SoknadErrorMessage>

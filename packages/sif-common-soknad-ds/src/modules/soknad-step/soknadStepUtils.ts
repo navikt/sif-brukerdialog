@@ -15,7 +15,7 @@ const getStepTexts = <Step>(intl: IntlShape, stepConfig: StepConfig<Step>): Step
         stepTitle: intlHelper(intl, stepConfig.stepTitleIntlKey),
         nextButtonLabel: intlHelper(intl, stepConfig.nextButtonLabelIntlKey),
         previousStepTitle: stepConfig.previousStepTitleIntlKey
-            ? intlHelper(intl, 'sif-common-soknad.tilbakeLenke', {
+            ? intlHelper(intl, 'scs.tilbakeLenke', {
                   title: intlHelper(intl, stepConfig.previousStepTitleIntlKey),
               })
             : undefined,
