@@ -27,9 +27,9 @@ const AttachmentListWithDeletion = ({ attachments, onRemoveAttachmentClick }: Pr
                             ) : (
                                 <DeleteButton
                                     useTrashcan={false}
-                                    ariaLabel={intlHelper(intl, 'vedleggsliste.fjernKnapp')}
+                                    ariaLabel={intlHelper(intl, 'common.vedleggsliste.fjernKnapp')}
                                     onClick={() => onRemoveAttachmentClick(attachment)}>
-                                    <FormattedMessage id="vedleggsliste.fjernKnapp" />
+                                    <FormattedMessage id="common.vedleggsliste.fjernKnapp" />
                                 </DeleteButton>
                             )
                         }

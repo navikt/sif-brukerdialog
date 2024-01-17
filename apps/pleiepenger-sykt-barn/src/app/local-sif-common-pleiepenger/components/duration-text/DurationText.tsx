@@ -40,7 +40,7 @@ const DurationText = ({
             {hideEmptyValues && timer === '0' && minutter !== '0' ? null : (
                 <span style={{ whiteSpace: 'nowrap' }}>
                     {fullText ? (
-                        intlHelper(intl, 'timer', { timer })
+                        intlHelper(intl, 'common.timer', { timer })
                     ) : (
                         <>
                             {timer} <span style={{ marginLeft: '-.125rem' }}>t. </span>
@@ -52,7 +52,7 @@ const DurationText = ({
             {hideEmptyValues && minutter === '0' && timer !== '0' ? null : (
                 <span style={{ whiteSpace: 'nowrap' }}>
                     {fullText ? (
-                        intlHelper(intl, 'minutter', { minutter })
+                        intlHelper(intl, 'common.minutter', { minutter })
                     ) : (
                         <>
                             {minutter} <span style={{ marginLeft: '-.125rem' }}>m.</span>

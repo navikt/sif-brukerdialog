@@ -1,4 +1,3 @@
-import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import { Back } from '@navikt/ds-icons';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
@@ -27,7 +26,7 @@ const BackLink = ({ className, href, ariaLabel }: Props) => {
                     navigate(href);
                 }}>
                 <Back className={bem.element('chevron')} type="venstre" />
-                <FormattedMessage id="backlink.label" />
+                Tilbake
             </Link>
         </div>
     );

@@ -162,7 +162,6 @@ export const applicationMessages: MessageFileFormat = {
         'validation.beskrivelse.stringIsTooShort': 'Beskrivelsen må inneholde minst {min} tegn',
         'validation.ytelse.noValue': 'Du må velge hva denne ettersendelsen gjelder',
         'validation.harBekreftetOpplysninger.notChecked': 'Du må bekrefte opplysningene',
-        'fileUploadErrors.part1': 'Det har dessverre skjedd en feil under opplasting av følgende vedlegg:',
 
         'ekspanderbarPSG.title': 'Slik tar du et godt bilde av dokumentet',
     },

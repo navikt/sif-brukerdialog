@@ -7,11 +7,11 @@ import {
 } from '@navikt/sif-common-formik-ds/src/validation';
 import { dateRangeUtils, decimalDurationToDuration } from '@navikt/sif-common-utils';
 import { ArbeidIPeriodeIntlValues } from '../../local-sif-common-pleiepenger';
-import { formatTimerOgMinutter } from '../../local-sif-common-pleiepenger/components/timer-og-minutter/TimerOgMinutter';
 import { getArbeidstidFastProsentValidator } from '../../local-sif-common-pleiepenger/utils/arbeidstidValidation';
 import { ArbeidsukeInfo } from '../../types/ArbeidsukeInfo';
 import { ArbeidIPeriodeFormField } from '../../types/søknad-form-values/ArbeidIPeriodeFormValues';
 import { getArbeidsdagerIUkeTekst } from './utils/arbeidstidStepUtils';
+import { formatTimerOgMinutter } from '../../utils/formatTimerOgMinutter';
 
 const getErrorIntlKey = (field: ArbeidIPeriodeFormField, errorKey: string) =>
     `arbeidIPeriode.validation.${field}.${errorKey}`;
