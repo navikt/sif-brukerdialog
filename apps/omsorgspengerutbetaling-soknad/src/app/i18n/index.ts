@@ -4,7 +4,7 @@ import annetBarnMessages from '@navikt/sif-common-forms-ds/src/forms/annet-barn/
 import bostedUtlandMessages from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/bostedUtlandMessages';
 import fraværMessages from '@navikt/sif-common-forms-ds/src/forms/fravær/fraværMessages';
 import virksomhetMessages from '@navikt/sif-common-forms-ds/src/forms/virksomhet/virksomhetMessages';
-import soknadIntlMessages from '@navikt/sif-common-soknad-ds/src/i18n/soknadIntlMessages';
+import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 import { personalOpplysningerMessages } from '../pages/velkommen/personalopplysninger/personalopplysninger.messages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
@@ -20,7 +20,7 @@ import { appMessages } from './appMessages';
 
 const bokmålstekster = {
     ...commonMessages.nb,
-    ...soknadIntlMessages.nb,
+    ...soknadMessages.nb,
     ...personalOpplysningerMessages.nb,
     ...velkommenPageMessages.nb,
     ...dineBarnMessages.nb,

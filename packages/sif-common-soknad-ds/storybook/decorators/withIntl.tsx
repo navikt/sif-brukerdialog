@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { IntlProvider } from 'react-intl';
-import soknadIntlMessages from '../../src/i18n/soknadIntlMessages';
+import { soknadMessages } from '../../src/i18n/soknad.messages';
 
 export const withIntl = (Story, context) => {
     const locale = context?.parameters?.locale || context?.globals.locale || 'nb';
-    const messages = locale === 'nb' ? soknadIntlMessages.nb : soknadIntlMessages.nn;
+    const messages = locale === 'nb' ? soknadMessages.nb : soknadMessages.nn;
     return (
         <IntlProvider locale={locale} messages={messages}>
             <Story />

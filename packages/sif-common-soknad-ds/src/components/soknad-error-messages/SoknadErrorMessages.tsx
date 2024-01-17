@@ -1,9 +1,9 @@
 import { Button, Link as DSLink } from '@navikt/ds-react';
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { useSoknadIntl } from '../../hooks/useSoknadIntl';
+import { SoknadMessageKeys } from '../../i18n/soknad.messages';
 
 interface ErrorWithFrontpageUrlProps {
     soknadFrontpageUrl?: string;
@@ -20,21 +20,17 @@ const SoknadErrorMessage = ({
     soknadFrontpageUrl,
     children,
 }: {
-    titleKey: string;
-    contentKey: string;
+    titleKey: SoknadMessageKeys;
+    contentKey: SoknadMessageKeys;
     soknadFrontpageUrl?: string;
     children?: React.ReactNode;
 }) => {
-    const intl = useIntl();
+    const { text } = useSoknadIntl();
     return (
-        <SifGuidePanel mood="uncertain" title={intlHelper(intl, titleKey)}>
-            <p>
-                <FormattedMessage id={contentKey} />
-            </p>
+        <SifGuidePanel mood="uncertain" title={text(titleKey)}>
+            <p>{text(contentKey)}</p>
             {soknadFrontpageUrl && (
-                <DSLink href={soknadFrontpageUrl}>
-                    <FormattedMessage id="scs.soknadErrorMessages.gotoSoknadFrontpage" />
-                </DSLink>
+                <DSLink href={soknadFrontpageUrl}>{text('scs.soknadErrorMessages.gotoSoknadFrontpage')}</DSLink>
             )}
             {children}
         </SifGuidePanel>
@@ -61,8 +57,9 @@ const MissingSoknadDataError = ({
     lastAvailableStep,
 }: ErrorWithFrontpageUrlProps & {
     lastAvailableStep?: { route: string; title: string };
-}) =>
-    lastAvailableStep === undefined ? (
+}) => {
+    const { text } = useSoknadIntl();
+    return lastAvailableStep === undefined ? (
         <SoknadErrorMessage
             titleKey="scs.soknadErrorMessages.missingSoknadData.title"
             contentKey="scs.soknadErrorMessages.missingSoknadData.content"
@@ -73,13 +70,11 @@ const MissingSoknadDataError = ({
             titleKey="scs.soknadErrorMessages.unavailableSoknadStep.title"
             contentKey="scs.soknadErrorMessages.unavailableSoknadStep.content">
             <Link to={lastAvailableStep.route}>
-                <FormattedMessage
-                    id="scs.soknadErrorMessages.unavailableSoknadStep.linkText"
-                    values={{ steg: lastAvailableStep.title }}
-                />
+                {text('scs.soknadErrorMessages.unavailableSoknadStep.linkText', { steg: lastAvailableStep.title })}
             </Link>
         </SoknadErrorMessage>
     );
+};
 
 const MissingApiDataError = ({ soknadFrontpageUrl }: ErrorWithFrontpageUrlProps) => (
     <SoknadErrorMessage
@@ -96,20 +91,21 @@ const ApplicationUnavailable = () => (
     />
 );
 
-const UnknownRoute = ({ onReset }: { onReset?: () => void }) => (
-    <SoknadErrorMessage
-        titleKey="scs.soknadErrorMessages.unknownRoute.title"
-        contentKey="scs.soknadErrorMessages.unknownRoute.content">
-        <p>
-            <FormattedMessage id="scs.soknadErrorMessages.unknownRoute.reset" />
-        </p>
-        {onReset && (
-            <Button type="button" onClick={onReset} variant="secondary" size="small">
-                <FormattedMessage id="scs.soknadErrorMessages.unknownRoute.reset.buttonLabel" />
-            </Button>
-        )}
-    </SoknadErrorMessage>
-);
+const UnknownRoute = ({ onReset }: { onReset?: () => void }) => {
+    const { text } = useSoknadIntl();
+    return (
+        <SoknadErrorMessage
+            titleKey="scs.soknadErrorMessages.unknownRoute.title"
+            contentKey="scs.soknadErrorMessages.unknownRoute.content">
+            <p>{text('scs.soknadErrorMessages.unknownRoute.reset')}</p>
+            {onReset && (
+                <Button type="button" onClick={onReset} variant="secondary" size="small">
+                    {text('scs.soknadErrorMessages.unknownRoute.reset.buttonLabel')}
+                </Button>
+            )}
+        </SoknadErrorMessage>
+    );
+};
 
 const SoknadErrorMessages = {
     ApplicationUnavailable,

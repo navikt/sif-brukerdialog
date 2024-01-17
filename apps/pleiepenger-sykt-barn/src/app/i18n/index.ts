@@ -7,7 +7,7 @@ import tidsperiodeMessages from '@navikt/sif-common-forms-ds/src/forms/tidsperio
 import utenlandskNæringMessages from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring/utenlandskNæringMessages';
 import utenlandsoppholdMessages from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/utenlandsoppholdMessages';
 import virksomhetMessages from '@navikt/sif-common-forms-ds/src/forms/virksomhet/virksomhetMessages';
-import soknadIntlMessages from '@navikt/sif-common-soknad-ds/src/i18n/soknadIntlMessages';
+import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { sifCommonPleiepengerMessages } from '../local-sif-common-pleiepenger/i18n';
 import { velkommenPageMessages } from '../pages/welcoming-page/velkommenPageMessages';
 import { arbeidIPeriodeMessages } from '../søknad/arbeidstid-step/i18n/arbeidIPeriodeMessages';
@@ -27,7 +27,7 @@ const bokmålstekster = {
     ...utenlandskNæringMessages.nb,
     ...appMessagesNb,
     ...velkommenPageMessages.nb,
-    ...soknadIntlMessages.nb,
+    ...soknadMessages.nb,
     ...arbeidIPeriodeMessages.nb,
 };
 
