@@ -1,6 +1,6 @@
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import { useSoknadIntl } from '../hooks/useSoknadIntl';
+import { useSoknadIntl } from '../../hooks/useSoknadIntl';
 
 const LoadingPage = () => {
     const { text } = useSoknadIntl();
@@ -13,7 +13,7 @@ const LoadingPage = () => {
                     minHeight: '15rem',
                     alignItems: 'center',
                 }}>
-                <LoadingSpinner type="XXL" />
+                <LoadingSpinner size="2xlarge" type="XXL" />
             </div>
         </Page>
     );

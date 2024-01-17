@@ -18,7 +18,7 @@ export type SoknadIntlMessageKeys = keyof typeof nb;
 export type SoknadIntlMessagesType = Record<SoknadIntlMessageKeys, string>;
 
 const nn: SoknadIntlMessagesType = {
-    'application.title': '',
+    'application.title': 'Applikasjonen',
     'scs.tilbakeLenke': 'Tilbake til {title}',
     'scs.loadingPage.henterInformasjon': 'Hentar informasjon',
     ...samtykkeFormMessages.nn,

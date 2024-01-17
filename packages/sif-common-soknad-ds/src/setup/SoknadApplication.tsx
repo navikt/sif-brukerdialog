@@ -19,7 +19,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/nb';
 import 'dayjs/locale/nn';
 import useDecoratorLanguageSelector from '../hooks/useDecoratorLanguageSelector';
-import ErrorPage from '../pages/ErrorPage';
+import ErrorPage from '../pages/error-page/ErrorPage';
 import SoknadErrorMessages from '../components/soknad-error-messages/SoknadErrorMessages';
 import DevBranchInfo from '../components/dev-branch-info/DevBranchInfo';
 
