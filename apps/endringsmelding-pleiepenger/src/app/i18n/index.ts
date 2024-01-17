@@ -1,4 +1,4 @@
-import { allCommonMessages } from '@navikt/sif-common-core-ds/src/i18n/allCommonMessages';
+import { commonMessages } from '@navikt/sif-common-core-ds/src/i18n/common.messages';
 import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
 import ferieuttakMessages from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/ferieuttakMessages';
 import soknadIntlMessages from '@navikt/sif-common-soknad-ds/src/i18n/soknadIntlMessages';
@@ -14,7 +14,7 @@ import { samtykkeFormOverrideMessages } from './samtykkeFormOverrideMessages';
 import { sifCommonSoknadOverrideMessages } from './sifCommonSoknadOverrideMessages';
 
 const bokmålstekster = {
-    ...allCommonMessages.nb,
+    ...commonMessages.nb,
     ...arbeidstidStepMessages.nb,
     ...endreArbeidstidMessages.nb,
     ...ferieuttakMessages.nb,

@@ -1,4 +1,4 @@
-import { allCommonMessages } from '@navikt/sif-common-core-ds/src/i18n/allCommonMessages';
+import { commonMessages } from '@navikt/sif-common-core-ds/src/i18n/common.messages';
 import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
 import bostedUtlandMessages from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/bostedUtlandMessages';
 import opptjeningUtlandMessages from '@navikt/sif-common-forms-ds/src/forms/opptjening-utland/opptjeningUtlandMessages';
@@ -23,7 +23,7 @@ import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validate
 import { appMessages } from './appMessages';
 
 const bokmålstekster = {
-    ...allCommonMessages.nb,
+    ...commonMessages.nb,
     ...soknadIntlMessages.nb,
     ...personalOpplysningerMessages.nb,
     ...velkommenPageMessages.nb,

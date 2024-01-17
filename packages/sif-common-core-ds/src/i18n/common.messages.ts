@@ -17,7 +17,7 @@ const nynorsktekster: Record<messageKeys, string> = {
     ...pictureScanningGuideMessages.nn,
 };
 
-export const allCommonMessages = {
+export const commonMessages = {
     nb: bokmålstekster,
     nn: nynorsktekster,
 };
