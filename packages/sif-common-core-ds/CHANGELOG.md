@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 9.13.6
+
+### Patch Changes
+
+- Feilretting i ds-pakker
+
 ## 9.13.5
 
 ### Patch Changes

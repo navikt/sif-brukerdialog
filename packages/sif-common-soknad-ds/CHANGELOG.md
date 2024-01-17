@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.13.6
+
+### Patch Changes
+
+- Feilretting i ds-pakker
+
 ## 10.13.5
 
 ### Patch Changes
