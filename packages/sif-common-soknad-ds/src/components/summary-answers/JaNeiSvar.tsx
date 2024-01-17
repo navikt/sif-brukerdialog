@@ -6,7 +6,7 @@ interface Props {
 
 const JaNeiSvar = ({ harSvartJa }: Props) => {
     const { text } = useSoknadIntl();
-    return harSvartJa ? text('scs.jaNeiSvar.ja') : text('scs.jaNeiSvar.nei');
+    return harSvartJa ? text('scs.jaNeiSvar.Ja') : text('scs.jaNeiSvar.Nei');
 };
 
 export default JaNeiSvar;
