@@ -1,11 +1,11 @@
 import React from 'react';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import * as apiUtils from '@navikt/sif-common-core-ds/src/utils/apiUtils';
+import LoadingPage from '@navikt/sif-common-soknad-ds/src/pages/loading-page/LoadingPage';
 import { AxiosError, AxiosResponse } from 'axios';
 import { getBarn, getSøker, purge, rehydrate } from '../api/api';
 import { SøkerdataContextProvider } from '../context/SøkerdataContext';
 import IkkeTilgangPage from '../pages/ikke-tilgang-page/IkkeTilgangPage';
-import LoadingPage from '../pages/loading-page/LoadingPage';
 import { Søkerdata } from '../types/Søkerdata';
 import { initialValues, SøknadFormField, SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import { MELLOMLAGRING_VERSION, MellomlagringMetadata, SøknadTempStorageData } from '../types/SøknadTempStorageData';

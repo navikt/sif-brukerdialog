@@ -1,11 +1,18 @@
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
+import SoknadHeader from '../../components/soknad-header/SoknadHeader';
 import { useSoknadIntl } from '../../hooks/useSoknadIntl';
 
-const LoadingPage = () => {
+interface Props {
+    headerTitle?: string;
+}
+
+const LoadingPage = ({ headerTitle }: Props) => {
     const { text } = useSoknadIntl();
     return (
-        <Page title={text('scs.loadingPage.henterInformasjon')}>
+        <Page
+            title={text('scs.loadingPage.henterInformasjon')}
+            topContentRenderer={headerTitle ? () => <SoknadHeader title={headerTitle} /> : undefined}>
             <div
                 style={{
                     display: 'flex',

@@ -15,3 +15,9 @@ export const Default: Story = {
     decorators: [withIntl],
     render: () => <LoadingPage />,
 };
+
+export const MedHeaderTitle: Story = {
+    name: 'Med headerTitle',
+    decorators: [withIntl],
+    render: () => <LoadingPage headerTitle="Navn på applikasjon" />,
+};
