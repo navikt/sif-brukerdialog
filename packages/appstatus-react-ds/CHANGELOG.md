@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 2.17.15
+
+### Patch Changes
+
+- Feilretting i ds-pakker
+
 ## 2.17.14
 
 ### Patch Changes

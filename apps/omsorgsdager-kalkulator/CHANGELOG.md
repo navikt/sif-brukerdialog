@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.5.12
+
+### Patch Changes
+
+- Feilretting i ds-pakker
+
 ## 3.5.11
 
 ### Patch Changes
