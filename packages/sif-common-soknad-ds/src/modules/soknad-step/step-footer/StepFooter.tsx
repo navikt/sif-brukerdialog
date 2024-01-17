@@ -28,12 +28,12 @@ function StepFooter({ onAvbrytOgFortsettSenere, onAvbrytOgSlett }: Props) {
                             variant="tertiary"
                             size="small"
                             onClick={() => setVisFortsettSenereDialog(true)}>
-                            <BodyShort as="span">{text('scs.steg.footer.fortsettSenere')}</BodyShort>
+                            <BodyShort as="span">{text('scs.stepFooter.fortsettSenere')}</BodyShort>
                         </Button>
                     )}
                     {onAvbrytOgSlett && (
                         <Button type="button" variant="tertiary" size="small" onClick={() => setVisAvbrytDialog(true)}>
-                            <BodyShort as="span">{text('scs.steg.footer.avbryt')}</BodyShort>
+                            <BodyShort as="span">{text('scs.stepFooter.avbryt')}</BodyShort>
                         </Button>
                     )}
                 </div>
