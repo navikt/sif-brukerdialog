@@ -1,11 +1,11 @@
 {
     "main": "index.js",
     "name": "config",
-    "version": "0.9.9",
+    "version": "0.9.10",
     "private": true,
     "dependencies": {
-        "@typescript-eslint/eslint-plugin": "6.18.1",
-        "@typescript-eslint/parser": "6.18.1",
+        "@typescript-eslint/eslint-plugin": "6.19.0",
+        "@typescript-eslint/parser": "6.19.0",
         "autoprefixer": "10.4.16",
         "eslint": "8.56.0",
         "eslint-config-prettier": "9.1.0",
