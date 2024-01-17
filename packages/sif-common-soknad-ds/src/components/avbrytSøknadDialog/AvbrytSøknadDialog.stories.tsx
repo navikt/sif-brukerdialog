@@ -13,6 +13,6 @@ export default meta;
 type Story = StoryObj<typeof AvbrytSøknadDialog>;
 
 export const Default: Story = {
-    storyName: 'Default',
+    name: 'Default',
     render: () => <AvbrytSøknadDialog synlig={true} onFortsettSøknad={() => null} onAvbrytSøknad={() => null} />,
 };

@@ -14,6 +14,6 @@ export default meta;
 type Story = StoryObj<typeof SamtykkeForm>;
 
 export const Default: Story = {
-    storyName: 'Default',
+    name: 'Default',
     render: () => <SamtykkeForm synlig={true} onFortsettSøknad={() => null} onFortsettSøknadSenere={() => null} />,
 };

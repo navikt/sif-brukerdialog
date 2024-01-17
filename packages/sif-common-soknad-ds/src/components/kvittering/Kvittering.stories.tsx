@@ -13,7 +13,7 @@ export default meta;
 type Story = StoryObj<typeof Kvittering>;
 
 export const Default: Story = {
-    storyName: 'Default',
+    name: 'Default',
     render: () => (
         <Kvittering tittel="Søknad mottatt" liste={{ tittel: 'ABC', punkter: ['Punkt 1', 'Punkt 2'] }}>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. In, molestias! Assumenda error porro cum culpa

@@ -1,11 +1,11 @@
 import { Meta, StoryObj } from '@storybook/react';
-import SoknadErrorMessages from './SoknadErrorMessages';
 import { withIntl } from '../../../storybook/decorators/withIntl';
-import { withLimitedWidth } from '../../../storybook/decorators/withLimitedWidth';
+import { withPageWidth } from '../../../storybook/decorators/withPageWidth';
+import SoknadErrorMessages from './SoknadErrorMessages';
 
 const meta: Meta<typeof SoknadErrorMessages> = {
     title: 'Component/SoknadErrorMessages',
-    decorators: [withIntl, withLimitedWidth],
+    decorators: [withIntl, withPageWidth],
 };
 
 export default meta;

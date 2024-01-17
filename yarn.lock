@@ -4029,7 +4029,6 @@ __metadata:
     react-router-dom: 6.21.2
     rimraf: 5.0.5
     storybook: 7.6.8
-    storybook-react-intl: 2.0.10
     uuid: 9.0.1
     vite: 5.0.11
     vite-plugin-checker: 0.6.2
@@ -21735,41 +21734,6 @@ __metadata:
     react: "*"
     react-dom: "*"
   checksum: 1fd82aaf4d012da1f56a5d7d705c98757ace589c673b169685e00168ca64d61e60f0e485befb5f965f502d5e0755a5c65b4ce370dee08b9d54dc25bc53f9a4ba
-  languageName: node
-  linkType: hard
-
-"storybook-i18n@npm:2.0.13":
-  version: 2.0.13
-  resolution: "storybook-i18n@npm:2.0.13"
-  peerDependencies:
-    "@storybook/components": ^7.0.0
-    "@storybook/manager-api": ^7.0.0
-    "@storybook/preview-api": ^7.0.0
-    "@storybook/types": ^7.0.0
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  peerDependenciesMeta:
-    react:
-      optional: true
-    react-dom:
-      optional: true
-  checksum: 024a6d2bf1c3c416e55c7242abc8caa5ecea7f03e59d581b88a73d603831a05ae68888ffb712f37fedd15dc50274275bbcf0c692824e0f491ceb0b2ac348a3d7
-  languageName: node
-  linkType: hard
-
-"storybook-react-intl@npm:2.0.10":
-  version: 2.0.10
-  resolution: "storybook-react-intl@npm:2.0.10"
-  dependencies:
-    storybook-i18n: 2.0.13
-  peerDependencies:
-    react-intl: ^5.24.0 || ^6.0.0
-  peerDependenciesMeta:
-    react:
-      optional: true
-    react-dom:
-      optional: true
-  checksum: 9668a9528d893ce1a18fde264f42ca389e74c2483b063522c96fbd319baa6a8c40149fb568ebfd68b617bd059ee8ee89131e023841168a59dbd78973aad2b6e9
   languageName: node
   linkType: hard
 

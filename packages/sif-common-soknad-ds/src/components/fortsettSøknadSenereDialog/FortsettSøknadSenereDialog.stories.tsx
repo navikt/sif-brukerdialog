@@ -13,7 +13,7 @@ export default meta;
 type Story = StoryObj<typeof FortsettSøknadSenereDialog>;
 
 export const Default: Story = {
-    storyName: 'Default',
+    name: 'Default',
     render: () => (
         <FortsettSøknadSenereDialog synlig={true} onFortsettSøknad={() => null} onFortsettSøknadSenere={() => null} />
     ),
