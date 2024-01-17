@@ -18,13 +18,3 @@ export const Default: Story = {
         <FortsettSøknadSenereDialog synlig={true} onFortsettSøknad={() => null} onFortsettSøknadSenere={() => null} />
     ),
 };
-
-export const Nynorsk: Story = {
-    storyName: 'Default',
-    render: () => (
-        <FortsettSøknadSenereDialog synlig={true} onFortsettSøknad={() => null} onFortsettSøknadSenere={() => null} />
-    ),
-    parameters: {
-        locale: 'nn',
-    },
-};

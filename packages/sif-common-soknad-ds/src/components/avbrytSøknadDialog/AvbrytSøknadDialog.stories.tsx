@@ -15,15 +15,4 @@ type Story = StoryObj<typeof AvbrytSøknadDialog>;
 export const Default: Story = {
     storyName: 'Default',
     render: () => <AvbrytSøknadDialog synlig={true} onFortsettSøknad={() => null} onAvbrytSøknad={() => null} />,
-    parameters: {
-        locale: 'nb',
-    },
-};
-
-export const Nynorsk: Story = {
-    storyName: 'Default',
-    render: () => <AvbrytSøknadDialog synlig={true} onFortsettSøknad={() => null} onAvbrytSøknad={() => null} />,
-    parameters: {
-        locale: 'nn',
-    },
 };

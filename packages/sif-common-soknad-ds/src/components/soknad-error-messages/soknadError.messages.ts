@@ -1,4 +1,4 @@
-const soknadErrorIntlMessages = {
+const soknadErrorMessages = {
     nb: {
         'scs.errorPage.defaultTitle': 'Det oppstod en feil',
 
@@ -71,4 +71,4 @@ const soknadErrorIntlMessages = {
     },
 };
 
-export default soknadErrorIntlMessages;
+export default soknadErrorMessages;

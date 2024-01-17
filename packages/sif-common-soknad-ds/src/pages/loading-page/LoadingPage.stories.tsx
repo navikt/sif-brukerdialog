@@ -14,17 +14,4 @@ type Story = StoryObj<typeof LoadingPage>;
 export const Default: Story = {
     decorators: [withIntl],
     render: () => <LoadingPage />,
-    parameters: {
-        locale: 'nb',
-    },
-};
-
-export const Nynorsk: Story = {
-    name: 'Nynorsk',
-
-    decorators: [withIntl],
-    render: () => <LoadingPage />,
-    parameters: {
-        locale: 'nn',
-    },
 };

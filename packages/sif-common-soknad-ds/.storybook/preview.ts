@@ -1,5 +1,4 @@
 import { Preview } from '@storybook/react';
-import { reactIntl } from './reactIntl';
 import '@navikt/ds-css';
 
 const preview: Preview = {
@@ -30,15 +29,7 @@ const preview: Preview = {
                 date: /Date$/,
             },
         },
-        reactIntl,
     },
-    // globals: {
-    //     locale: 'nb',
-    //     locales: {
-    //         nb: { title: 'Bokmål' },
-    //         nn: { title: 'Nynorsk' },
-    //     },
-    // },
 };
 
 export default preview;

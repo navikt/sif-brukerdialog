@@ -14,15 +14,4 @@ type Story = StoryObj<typeof ErrorPage>;
 export const Default: Story = {
     decorators: [withIntl],
     render: () => <ErrorPage />,
-    parameters: {
-        locale: 'nb',
-    },
-};
-
-export const Nynorsk: Story = {
-    decorators: [withIntl],
-    render: () => <ErrorPage />,
-    parameters: {
-        locale: 'nn',
-    },
 };
