@@ -3076,7 +3076,7 @@ __metadata:
     "@storybook/react": 7.6.8
     "@storybook/test": 7.6.8
     axios: 1.6.5
-    chromatic: 10.2.2
+    chromatic: 10.3.0
     classnames: 2.5.1
     dayjs: 1.11.10
     eslint-plugin-storybook: 0.6.15
@@ -4054,7 +4054,7 @@ __metadata:
     "@storybook/preset-create-react-app": 7.6.8
     "@storybook/react": 7.6.8
     "@storybook/testing-library": 0.2.2
-    chromatic: 10.2.2
+    chromatic: 10.3.0
     classnames: 2.5.1
     copyfiles: 2.4.1
     dayjs: 1.11.10
@@ -9873,14 +9873,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromatic@npm:10.2.2":
-  version: 10.2.2
-  resolution: "chromatic@npm:10.2.2"
+"chromatic@npm:10.3.0":
+  version: 10.3.0
+  resolution: "chromatic@npm:10.3.0"
   bin:
     chroma: dist/bin.js
     chromatic: dist/bin.js
     chromatic-cli: dist/bin.js
-  checksum: 1d4adb0ce1a68fd96e91ab6c524c1b27269f4b9fc1b0a1330c4eee721b66c0863250fee0b9af59e657cfc04f8453415c52c36ee74cdb9b53ca4edab097309ab9
+  checksum: 266715d57665bbf71cd0aa3cf4c9ae014edff952a973ef303c7a57c4bb686b062b5d27e8239832b8e68bd90eefa73fd5a2702bc4116761e6068e0f81885a96d2
   languageName: node
   linkType: hard
 
