@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.7.6
+
+### Patch Changes
+
+- Feilretting i ds-pakker
+
 ## 1.7.5
 
 ### Patch Changes
