@@ -14,10 +14,10 @@
         "playwright-test": "playwright test"
     },
     "dependencies": {
-        "@navikt/ds-css": "5.13.0",
+        "@navikt/ds-css": "5.15.0",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "5.12.5",
-        "@navikt/ds-tailwind": "5.12.5",
+        "@navikt/ds-react": "5.15.0",
+        "@navikt/ds-tailwind": "5.15.0",
         "@navikt/nav-dekoratoren-moduler": "2.1.5",
         "classnames": "2.5.1",
         "dayjs": "1.11.10",
@@ -29,13 +29,13 @@
         "react": "18.2.0",
         "react-day-picker": "8.10.0",
         "react-dom": "18.2.0",
-        "react-intl": "6.5.5",
+        "react-intl": "6.6.1",
         "uuid": "9.0.1"
     },
     "devDependencies": {
-        "@axe-core/playwright": "4.8.2",
-        "@playwright/test": "1.40.1",
-        "@types/node": "20.11.1",
+        "@axe-core/playwright": "4.8.3",
+        "@playwright/test": "1.41.0",
+        "@types/node": "20.11.5",
         "@types/react": "18.2.48",
         "@types/react-dom": "18.2.18",
         "@types/uuid": "9.0.7",
