@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import { Accordion, BodyShort, DatePicker, HStack, Tag, VStack } from '@navikt/ds-react';
 import React, { useMemo, useState } from 'react';
+import { useIntl } from 'react-intl';
 import {
     DateRange,
     dateRangeToISODateRange,
@@ -14,6 +15,7 @@ import {
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import isoWeeksInYear from 'dayjs/plugin/isoWeeksInYear';
+import { useUiIntl } from '../../i18n/ui.messages';
 import './daySelector.css';
 
 dayjs.extend(isoWeeksInYear);
@@ -41,6 +43,8 @@ const DaySelector: React.FunctionComponent<Props> = ({
     reverseOrder,
     mode = 'calendar',
 }) => {
+    const { locale } = useIntl();
+    const { text } = useUiIntl();
     const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
     const [selectedDaysInMonths, setSelectedDaysInMonths] = useState<SelectedDaysInMonths>(
         getSelectedDaysInMonthsFromDates(dateRange, selectedDates),
@@ -87,7 +91,7 @@ const DaySelector: React.FunctionComponent<Props> = ({
             <div className="daySelector__calendarWrapper">
                 <div className="daySelector__calendarContent">
                     <DatePicker.Standalone
-                        locale="nb"
+                        locale={locale as 'nb' | 'nn'}
                         onMonthChange={(month) => {
                             setCurrentMonth(month);
                         }}
@@ -106,17 +110,17 @@ const DaySelector: React.FunctionComponent<Props> = ({
                     <div className="daySelector__tags">
                         <VStack gap="2">
                             <BodyShort as="div" spacing={false} size="small">
-                                Antall valgte dager:
+                                {text('daySelector.antallValgteDager')}
                             </BodyShort>
 
                             <HStack gap={'2'} align={'center'} wrap={true}>
                                 {monthsWithSelectedDates.map((m, index) => {
                                     const antallValgteDager = selectedDaysInMonths[getMonthKey(m.from)].length;
-                                    const månedNavn = dayjs(m.from).format('MMMM');
                                     return (
                                         <Tag variant="info" key={index} size="small">
-                                            <div className="capitalize">{månedNavn}</div>: {antallValgteDager}{' '}
-                                            {antallValgteDager === 1 ? 'dag' : 'dager'}
+                                            <div className="capitalize">{dayjs(m.from).format('MMMM')}</div>:{' '}
+                                            {antallValgteDager}{' '}
+                                            {text('daySelector.plural.dag', { dager: antallValgteDager })}
                                         </Tag>
                                     );
                                 })}
@@ -134,7 +138,6 @@ const DaySelector: React.FunctionComponent<Props> = ({
                 {months.map((month) => {
                     const numSelectedDays = (selectedDaysInMonths[getMonthKey(month.from)] || []).length;
                     const title = dayjs(month.from).format('MMMM YYYY');
-                    const numDagerTekst = `${numSelectedDays} ${numSelectedDays === 1 ? 'dag' : 'dager'} valgt`;
                     return (
                         <Accordion.Item key={dateRangeToISODateRange(month)}>
                             <Accordion.Header style={{ width: '100%' }}>
@@ -144,11 +147,11 @@ const DaySelector: React.FunctionComponent<Props> = ({
                                     </div>
                                     {numSelectedDays === 0 ? (
                                         <BodyShort as="div" size="small">
-                                            Ingen dager valgt
+                                            {text('daySelector.ingenDagerValgt')}
                                         </BodyShort>
                                     ) : (
                                         <Tag variant="info" size="small">
-                                            {numDagerTekst}
+                                            {text('daySelector.valgteDager', { dager: numSelectedDays })}
                                         </Tag>
                                     )}
                                 </HStack>

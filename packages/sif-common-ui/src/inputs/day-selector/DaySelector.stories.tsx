@@ -3,12 +3,12 @@ import * as React from 'react';
 import { ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 import DaySelector from './DaySelector';
 
-import { withStoryWrapper } from '../../storybook/decorators';
+import { withIntlWrapper, withStoryWrapper } from '../../../storybook/decorators';
 
 export default {
-    title: 'Component/form-element/DaySelector',
+    title: 'Inputs/DaySelector',
     component: DaySelector,
-    decorators: [withStoryWrapper],
+    decorators: [withStoryWrapper, withIntlWrapper],
 } as Meta<typeof DaySelector>;
 
 const Template: StoryFn<typeof DaySelector> = (args) => {
@@ -17,6 +17,6 @@ const Template: StoryFn<typeof DaySelector> = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-    dateRange: ISODateRangeToDateRange('2023-07-01/2023-09-30'),
+    dateRange: ISODateRangeToDateRange('2023-07-01/2029-09-30'),
     onChange: () => {},
 };

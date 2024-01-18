@@ -1,7 +1,7 @@
 import { Heading } from '@navikt/ds-react';
 import { FormattedMessage } from 'react-intl';
-import DurationText from '@navikt/sif-common-core-ds/src/components/duration-text/DurationText';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
+import { DurationText } from '@navikt/sif-common-ui';
 import dayjs from 'dayjs';
 import { groupBy } from 'lodash';
 import { DagMedTid } from '../../types/DagMedTid';

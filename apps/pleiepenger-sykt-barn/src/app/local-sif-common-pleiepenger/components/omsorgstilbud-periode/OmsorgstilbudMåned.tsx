@@ -3,9 +3,9 @@ import ExpansionCardContent from '@navikt/ds-react/esm/expansion-card/ExpansionC
 import ExpansionCardHeader from '@navikt/ds-react/esm/expansion-card/ExpansionCardHeader';
 import React, { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import DurationText from '@navikt/sif-common-core-ds/src/components/duration-text/DurationText';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { DateRange, dateToISOString, InputTime } from '@navikt/sif-common-formik-ds/src';
+import { DurationText } from '@navikt/sif-common-ui';
 import { DateDurationMap, durationIsZero, getDurationsInDateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import OmsorgstilbudEnkeltdagDialog from '../omsorgstilbud-enkeltdag/OmsorgstilbudEnkeltdagDialog';

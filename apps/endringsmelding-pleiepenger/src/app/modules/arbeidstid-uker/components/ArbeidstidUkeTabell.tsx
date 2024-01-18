@@ -2,7 +2,7 @@ import { Checkbox, Table, Tooltip } from '@navikt/ds-react';
 import React from 'react';
 import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import DurationText from '@navikt/sif-common-core-ds/src/components/duration-text/DurationText';
+import { DurationText } from '@navikt/sif-common-ui';
 import { dateFormatter, getDateRangeText } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { SelectableListType } from '../../../hooks/useSelectableList';

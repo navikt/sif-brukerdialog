@@ -1,9 +1,14 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/nb';
+import 'dayjs/locale/nn';
 
 dayjs.locale('nb');
 
 const compactFormat = 'DD.MM.YYYY';
+
+type ValidLocale = 'nb' | 'nn';
+
+const getLocale = (locale?: ValidLocale) => locale || 'nb';
 
 /** Brukt i eldre apper */
 export const prettifyDate = (date: Date): string => {
@@ -21,7 +26,7 @@ export const dateFormatter = {
      * @param date: Date
      * @returns 01.01.2020
      */
-    compact: (date: Date) => dayjs(date).format(compactFormat),
+    compact: (date: Date, locale?: ValidLocale) => dayjs(date).locale(getLocale(locale)).format(compactFormat),
 
     /**
      *
@@ -42,7 +47,7 @@ export const dateFormatter = {
      * @param date: Date
      * @returns fredag
      */
-    day: (date: Date) => `${dayjs(date).format('dddd')}`,
+    day: (date: Date, locale?: ValidLocale) => `${dayjs(date).locale(getLocale(locale)).format('dddd')}`,
 
     /**
      *

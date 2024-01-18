@@ -1,18 +1,11 @@
-module.exports = {
-    stories: ['../**/*.stories.@(js|jsx|ts|tsx)'],
+export default {
+    stories: ['../src/**/*.stories.@(ts|tsx)'],
     addons: [
         '@storybook/addon-essentials',
         '@storybook/addon-interactions',
         '@storybook/addon-a11y',
         'storybook-formik/register',
-        {
-            name: '@storybook/addon-styling',
-            options: {
-                sass: {
-                    implementation: require('sass'),
-                },
-            },
-        },
+        '@storybook/addon-toolbars',
     ],
     framework: {
         name: '@storybook/react-vite',

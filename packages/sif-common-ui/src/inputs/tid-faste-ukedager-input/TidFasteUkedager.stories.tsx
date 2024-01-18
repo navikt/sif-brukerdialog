@@ -3,10 +3,10 @@ import * as React from 'react';
 import { ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 import TidFasteUkedagerInput from './TidFasteUkedagerInput';
 
-import { withStoryWrapper, withFormikWrapper, withIntlWrapper } from '../../storybook/decorators';
+import { withStoryWrapper, withFormikWrapper, withIntlWrapper } from '../../../storybook/decorators';
 
 export default {
-    title: 'Component/form-element/TidFasteUkedagerInput',
+    title: 'Inputs/TidFasteUkedagerInput',
     component: TidFasteUkedagerInput,
     decorators: [withStoryWrapper, withIntlWrapper, withFormikWrapper],
 } as Meta<typeof TidFasteUkedagerInput>;
