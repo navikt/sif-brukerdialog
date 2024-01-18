@@ -28,8 +28,8 @@ export const getArbeidstidIPeriodeIntlValues = (
                 ? info.arbeidsforhold.jobberNormaltTimer
                 : getNumberFromNumberInputValue(info.arbeidsforhold.jobberNormaltTimer);
         return timer !== undefined
-            ? arbIntl.intlText('arbeidstidPeriode.timer', { timer })
-            : arbIntl.intlText('arbeidstidPeriode.timer.ikkeTall', {
+            ? arbIntl.text('arbeidstidPeriode.timer', { timer })
+            : arbIntl.text('arbeidstidPeriode.timer.ikkeTall', {
                   timer: info.arbeidsforhold.jobberNormaltTimer || '-',
               });
     };
@@ -37,23 +37,23 @@ export const getArbeidstidIPeriodeIntlValues = (
     const getHvorTekst = () => {
         switch (info.arbeidsforhold.type) {
             case ArbeidsforholdType.ANSATT:
-                return arbIntl.intlText('arbeidstidPeriode.arbeidIPeriodeIntlValues.somAnsatt', {
+                return arbIntl.text('arbeidstidPeriode.arbeidIPeriodeIntlValues.somAnsatt', {
                     arbeidsstedNavn: info.arbeidsforhold.arbeidsstedNavn,
                 });
             case ArbeidsforholdType.FRILANSER:
-                return arbIntl.intlText('arbeidstidPeriode.arbeidIPeriodeIntlValues.somFrilanser');
+                return arbIntl.text('arbeidstidPeriode.arbeidIPeriodeIntlValues.somFrilanser');
             case ArbeidsforholdType.SELVSTENDIG:
-                return arbIntl.intlText('arbeidstidPeriode.arbeidIPeriodeIntlValues.somSN');
+                return arbIntl.text('arbeidstidPeriode.arbeidIPeriodeIntlValues.somSN');
         }
     };
 
     return {
-        skalEllerHarJobbet: arbIntl.intlText('arbeidstidPeriode.arbeidIPeriodeIntlValues.skalJobbe'),
+        skalEllerHarJobbet: arbIntl.text('arbeidstidPeriode.arbeidIPeriodeIntlValues.skalJobbe'),
         hvor: getHvorTekst(),
         timer: getTimerTekst(),
         fra: prettifyDateExtended(info.periode.from),
         til: prettifyDateExtended(info.periode.to),
-        iPerioden: arbIntl.intlText('arbeidstidPeriode.arbeidIPeriodeIntlValues.iPerioden', {
+        iPerioden: arbIntl.text('arbeidstidPeriode.arbeidIPeriodeIntlValues.iPerioden', {
             fra: prettifyDate(info.periode.from),
             til: prettifyDate(info.periode.to),
         }),

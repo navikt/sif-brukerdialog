@@ -14,7 +14,7 @@ const FileUploadErrors = ({ filesThatDidntGetUploaded }: Props) => {
 
     return (
         <Alert variant="warning">
-            <FormattedMessage id="fileUploadErrors.part1" />
+            <FormattedMessage id="common.fileUploadError" />
             <ul>
                 {filesThatDidntGetUploaded.map(({ name, size, type }) => {
                     return (
