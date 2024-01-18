@@ -29,6 +29,10 @@ const bokmålstekster = {
     ...velkommenPageMessages.nb,
     ...soknadMessages.nb,
     ...arbeidIPeriodeMessages.nb,
+    'psb.timer': '{timer, plural, one {# time} other {# timer}}',
+    'psb.minutter': '{minutter, plural, one {# minutt} other {# minutter}}',
+    'psb.timerOgMinutter':
+        '{timer, plural, one {# time} other {# timer}} og {minutter, plural, one {# minutt} other {# minutter}}',
 };
 
 export const applicationIntlMessages: MessageFileFormat = {

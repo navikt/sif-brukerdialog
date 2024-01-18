@@ -1,7 +1,4 @@
 {
-    "common.timer": "{timer, plural, one {# time} other {# timer}}",
-    "common.minutter": "{minutter, plural, one {# minutt} other {# minutter}}",
-    "common.timerOgMinutter": "{timer, plural, one {# time} other {# timer}} og {minutter, plural, one {# minutt} other {# minutter}}",
     "common.fileUploadError": "Det har dessverre skjedd en feil under opplasting av følgende vedlegg:",
     "common.vedleggsliste.fjernKnapp": "Fjern"
 }

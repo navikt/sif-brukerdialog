@@ -10,8 +10,8 @@ import { ArbeidIPeriodeIntlValues } from '../../local-sif-common-pleiepenger';
 import { getArbeidstidFastProsentValidator } from '../../local-sif-common-pleiepenger/utils/arbeidstidValidation';
 import { ArbeidsukeInfo } from '../../types/ArbeidsukeInfo';
 import { ArbeidIPeriodeFormField } from '../../types/søknad-form-values/ArbeidIPeriodeFormValues';
-import { getArbeidsdagerIUkeTekst } from './utils/arbeidstidStepUtils';
 import { formatTimerOgMinutter } from '../../utils/formatTimerOgMinutter';
+import { getArbeidsdagerIUkeTekst } from './utils/arbeidstidStepUtils';
 
 const getErrorIntlKey = (field: ArbeidIPeriodeFormField, errorKey: string) =>
     `arbeidIPeriode.validation.${field}.${errorKey}`;

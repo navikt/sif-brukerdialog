@@ -1,6 +1,7 @@
 import { IntlShape, useIntl } from 'react-intl';
 import { Duration, durationToDecimalDuration, ensureDuration } from '@navikt/sif-common-utils';
 import intlHelper from '../../utils/intlUtils';
+import { durationTextMessages } from './durationText.messages';
 
 interface DurationTextProps {
     duration: Partial<Duration>;
@@ -9,22 +10,25 @@ interface DurationTextProps {
     type?: 'digital' | 'decimal' | 'standard';
 }
 
+type durationTextKeys = keyof typeof durationTextMessages.nb;
+
 const getHoursString = (intl: IntlShape, hours: string, fullText?: boolean): string => {
-    return intlHelper(intl, `durationText${fullText ? '.full' : ''}.hours`, { hours });
+    const key: durationTextKeys = fullText ? 'durationText.full.hours' : 'durationText.hours';
+    return intlHelper(intl, key, { hours });
 };
 const getMinutesString = (intl: IntlShape, minutes: string, fullText?: boolean): string => {
-    return intlHelper(intl, `durationText${fullText ? '.full' : ''}.minutes`, { minutes });
+    const key: durationTextKeys = fullText ? 'durationText.full.minutes' : 'durationText.minutes';
+    return intlHelper(intl, key, { minutes });
 };
 
 export const getDurationString = (
     intl: IntlShape,
     { duration, fullText, hideEmptyValues, type = 'standard' }: DurationTextProps,
 ): string => {
-    const intlKeyPrefix = `durationText${fullText ? '.full' : ''}`;
-
     if (type === 'decimal') {
         const time = durationToDecimalDuration(ensureDuration(duration));
-        return intlHelper(intl, `${intlKeyPrefix}.decimal`, {
+        const key: durationTextKeys = fullText ? 'durationText.full.decimal' : 'durationText.decimal';
+        return intlHelper(intl, key, {
             time: intl.formatNumber(time, { maximumFractionDigits: 2 }),
         });
     }
@@ -33,7 +37,8 @@ export const getDurationString = (
     const minutes = duration.minutes || '0';
 
     if (type === 'digital') {
-        return intlHelper(intl, `${intlKeyPrefix}.digital`, {
+        const key: durationTextKeys = fullText ? 'durationText.full.digital' : 'durationText.digital';
+        return intlHelper(intl, key, {
             hours: hours.padStart(2, '0'),
             minutes: minutes.padStart(2, '0'),
         });
@@ -48,7 +53,9 @@ export const getDurationString = (
         }
     }
 
-    return intlHelper(intl, `${intlKeyPrefix}.hoursAndMinutes`, { hours, minutes });
+    /** Hours and minutes */
+    const key: durationTextKeys = fullText ? 'durationText.full.hoursAndMinutes' : 'durationText.hoursAndMinutes';
+    return intlHelper(intl, key, { hours, minutes });
 };
 
 const DurationText = (props: DurationTextProps): JSX.Element => {
