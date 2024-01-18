@@ -1,5 +1,19 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.7.15
+
+### Patch Changes
+
+- 75fe136: - Flytte DurationText-komponent til sif-common-ui.
+  - Flytte alt inline tekst til intol i sif-common-ui
+  - Lage støtte for nynorsk i sif-common-ui
+  - Oppdaterte berørte applikasjoner som brukte DurationText
+- Updated dependencies [75fe136]
+  - @navikt/sif-common-core-ds@9.14.0
+  - @navikt/sif-common-utils@3.43.14
+  - @navikt/sif-common-forms-ds@8.17.6
+  - @navikt/sif-common-soknad-ds@10.13.6
+
 ## 3.7.14
 
 ### Patch Changes
