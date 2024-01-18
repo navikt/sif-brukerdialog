@@ -11,13 +11,13 @@ type ValidLocale = 'nb' | 'nn';
 const getLocale = (locale?: ValidLocale) => locale || 'nb';
 
 /** Brukt i eldre apper */
-export const prettifyDate = (date: Date): string => {
-    return dateFormatter.compact(date);
+export const prettifyDate = (date: Date, locale?: ValidLocale): string => {
+    return dateFormatter.compact(date, locale);
 };
 
 /** Brukt i eldre apper */
-export const prettifyDateExtended = (date: Date): string => {
-    return dateFormatter.dateShortMonthYear(date);
+export const prettifyDateExtended = (date: Date, locale?: ValidLocale): string => {
+    return dateFormatter.dateShortMonthYear(date, locale);
 };
 
 export const dateFormatter = {
@@ -33,14 +33,15 @@ export const dateFormatter = {
      * @param date: Date
      * @returns 1. jan. 2021
      */
-    dateShortMonthYear: (date: Date) => dayjs(date).format('D. MMM YYYY'),
+    dateShortMonthYear: (date: Date, locale?: ValidLocale) =>
+        dayjs(date).locale(getLocale(locale)).format('D. MMM YYYY'),
 
     /**
      *
      * @param date: Date
      * @returns 1. januar 2021
      */
-    full: (date: Date) => dayjs(date).format('D. MMMM YYYY'),
+    full: (date: Date, locale?: ValidLocale) => dayjs(date).locale(getLocale(locale)).format('D. MMMM YYYY'),
 
     /**
      *
@@ -54,33 +55,37 @@ export const dateFormatter = {
      * @param date: Date
      * @returns fredag 01.01.2021
      */
-    dayCompactDate: (date: Date) => `${dateFormatter.day(date)} ${dateFormatter.compact(date)}`,
+    dayCompactDate: (date: Date, locale?: ValidLocale) =>
+        `${dateFormatter.day(date, locale)} ${dateFormatter.compact(date, locale)}`,
 
     /**
      *
      * @param date: Date
      * @returns fredag 1. jan. 2021
      */
-    dayDateShortMonthYear: (date: Date) => `${dateFormatter.day(date)} ${dateFormatter.dateShortMonthYear(date)}`,
+    dayDateShortMonthYear: (date: Date, locale?: ValidLocale) =>
+        `${dateFormatter.day(date)} ${dateFormatter.dateShortMonthYear(date, locale)}`,
 
     /**
      *
      * @param date: Date
      * @returnsfredag 1. januar 2021
      */
-    dayDateMonthYear: (date: Date) => `${dateFormatter.day(date)} ${dateFormatter.full(date)}`,
+    dayDateMonthYear: (date: Date, locale?: ValidLocale) =>
+        `${dateFormatter.day(date, locale)} ${dateFormatter.full(date, locale)}`,
 
     /**
      *
      * @param date: Date
      * @returns fredag 1. jan.
      */
-    dayDateMonth: (date: Date) => dayjs(date).format('dddd D. MMMM'),
+    dayDateMonth: (date: Date, locale?: ValidLocale) => dayjs(date).locale(getLocale(locale)).format('dddd D. MMMM'),
 
     /**
      *
      * @param date: Date
      * @returns fredag 1. januar
      */
-    dayDateShortMonth: (date: Date) => dayjs(date).format('dddd D. MMM'),
+    dayDateShortMonth: (date: Date, locale?: ValidLocale) =>
+        dayjs(date).locale(getLocale(locale)).format('dddd D. MMM'),
 };
