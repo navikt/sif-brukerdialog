@@ -1,10 +1,11 @@
 import { Button } from '@navikt/ds-react';
 import React, { useEffect } from 'react';
+import { useIntl } from 'react-intl';
 import { useMediaQuery } from 'react-responsive';
 import { AddCircle } from '@navikt/ds-icons';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { usePrevious } from '@navikt/sif-common-hooks';
-import { getDateRangeText } from '@navikt/sif-common-utils';
+import { getDateRangeText, getValidLocale } from '@navikt/sif-common-utils';
 import EditButton from '../../components/buttons/EditButton';
 import { usePagination } from '../../hooks/usePagination';
 import { useSelectableList } from '../../hooks/useSelectableList';
@@ -37,6 +38,7 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
 
     onEndreUker,
 }) => {
+    const { locale } = useIntl();
     const { visibleItems, hasMoreItems, showMoreItems, showAllItems } = usePagination<ArbeidstidUkerItem>(
         listItems,
         10,
@@ -75,7 +77,7 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
         const title =
             selectedItems.length > 1
                 ? 'Endre valgte uker'
-                : `Endre uke ${ukenummer} (${getDateRangeText(uke.periode)})`;
+                : `Endre uke ${ukenummer} (${getDateRangeText(uke.periode, getValidLocale(locale))})`;
 
         return (
             <EditButton

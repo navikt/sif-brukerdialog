@@ -1,8 +1,10 @@
 import { useSøknadContext } from '@hooks';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
-import { getDateRangeText } from '@navikt/sif-common-utils';
+import { getDateRangeText, getValidLocale } from '@navikt/sif-common-utils';
+import { useIntl } from 'react-intl';
 
 export const useSakUtledet = () => {
+    const { locale } = useIntl();
     const {
         state: { sak, søker },
     } = useSøknadContext();
@@ -14,7 +16,7 @@ export const useSakUtledet = () => {
         søkersNavn,
         søkersFornavn: søker.fornavn,
         barnetsNavn,
-        samletSøknadsperiodeTekst: getDateRangeText(sak.samletSøknadsperiode, {
+        samletSøknadsperiodeTekst: getDateRangeText(sak.samletSøknadsperiode, getValidLocale(locale), {
             compact: false,
             includeDayName: true,
         }),

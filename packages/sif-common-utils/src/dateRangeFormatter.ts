@@ -1,10 +1,13 @@
 import dayjs from 'dayjs';
+import 'dayjs/locale/nb';
+import 'dayjs/locale/nn';
+import { ValidLocale } from './';
 import { dateFormatter } from './dateFormatter';
 import { DateRange } from './types';
 
-const getDateText = (dato: Date, compact = true, inkluderDagNavn?: boolean): string => {
-    const tekst = compact ? dateFormatter.compact(dato) : dateFormatter.full(dato);
-    return inkluderDagNavn ? `${dateFormatter.day(dato)} ${tekst}` : tekst;
+const getDateText = (date: Date, locale: ValidLocale, compact = true, inkluderDagNavn?: boolean): string => {
+    const tekst = compact ? dateFormatter.compact(date, locale) : dateFormatter.full(date, locale);
+    return inkluderDagNavn ? `${dateFormatter.day(date, locale)} ${tekst}` : tekst;
 };
 
 type Options = {
@@ -14,11 +17,12 @@ type Options = {
 
 export const getDateRangeText = (
     { from, to }: DateRange,
+    locale: ValidLocale,
     options: Options = { compact: true, includeDayName: false },
 ): string => {
     const { includeDayName, compact } = options;
-    const fromString = getDateText(from, compact, includeDayName);
-    const toString = getDateText(to, compact, includeDayName);
+    const fromString = getDateText(from, locale, compact, includeDayName);
+    const toString = getDateText(to, locale, compact, includeDayName);
 
     if (dayjs(from).isSame(to, 'date')) {
         return fromString;

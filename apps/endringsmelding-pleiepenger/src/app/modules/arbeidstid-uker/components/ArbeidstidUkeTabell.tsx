@@ -3,7 +3,7 @@ import React from 'react';
 import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { DurationText } from '@navikt/sif-common-ui';
-import { dateFormatter, getDateRangeText } from '@navikt/sif-common-utils';
+import { dateFormatter, getDateRangeText, getValidLocale } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { SelectableListType } from '../../../hooks/useSelectableList';
 import { ArbeidstidUkerItem } from '../ArbeidstidUkerItem';
@@ -11,6 +11,7 @@ import ArbeidstidUkeInfo from './ArbeidstidUkeInfo';
 import UkeInfoIkon from './UkeInfo';
 import UkeTags from './UkeTags';
 import VelgArbeidsukeItem from './VelgArbeidsukeItem';
+import { useIntl } from 'react-intl';
 
 interface Props {
     uker: ArbeidstidUkerItem[];
@@ -30,6 +31,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
     renderCompactTable,
     renderEditButton,
 }) => {
+    const { locale } = useIntl();
     const {
         isItemSelected,
         setItemSelected,
@@ -144,7 +146,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                         <div>
                                             <div className="arbeidsukeTidsrom">
                                                 <span className="arbeidsukeTidsrom__tekst">
-                                                    {getDateRangeText(uke.periode)}
+                                                    {getDateRangeText(uke.periode, getValidLocale(locale))}
                                                     {(uke.harFeriedager || uke.harFjernetFeriedager) && (
                                                         <Block margin="s">
                                                             <UkeTags

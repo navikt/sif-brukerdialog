@@ -1,12 +1,11 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/nb';
 import 'dayjs/locale/nn';
+import { ValidLocale } from './localeUtils';
 
 dayjs.locale('nb');
 
 const compactFormat = 'DD.MM.YYYY';
-
-type ValidLocale = 'nb' | 'nn';
 
 const getLocale = (locale?: ValidLocale) => locale || 'nb';
 
