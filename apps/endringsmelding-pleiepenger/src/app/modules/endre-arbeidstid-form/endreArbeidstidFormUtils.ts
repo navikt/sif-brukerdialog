@@ -1,4 +1,4 @@
-import { getDateRangeText, getValidLocale } from '@navikt/sif-common-utils';
+import { getDateRangeText } from '@navikt/sif-common-utils';
 import { Arbeidsuke } from '@types';
 import dayjs from 'dayjs';
 import { erKortArbeidsuke, getDagerTekst, sorterArbeidsuker } from '../../utils/arbeidsukeUtils';
@@ -88,6 +88,6 @@ export const getUkerForEndring = (arbeidsuker: Arbeidsuke[]): UkerForEndringType
 
 export const getArbeidstidSpørsmålDescription = ({ periode }: Arbeidsuke, locale: string): string => {
     return erKortArbeidsuke(periode)
-        ? getDateRangeText(periode, getValidLocale(locale), { compact: false })
+        ? getDateRangeText(periode, locale, { compact: false })
         : getDagerTekst(periode, true);
 };

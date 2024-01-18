@@ -2,7 +2,7 @@ import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import InfoList from '@navikt/sif-common-core-ds/src/components/lists/info-list/InfoList';
-import { dateRangeToISODateRange, getDateRangeText, getValidLocale } from '@navikt/sif-common-utils';
+import { dateRangeToISODateRange, getDateRangeText } from '@navikt/sif-common-utils';
 import { LovbestemtFerieApiData } from '@types';
 import { getLovbestemtFerieOppsummeringInfo } from '@utils';
 import { useIntl } from 'react-intl';
@@ -25,7 +25,7 @@ const LovbestemtFerieOppsummering: React.FunctionComponent<Props> = ({ lovbestem
                         {perioderLagtTil.map((periode) => (
                             <li key={dateRangeToISODateRange(periode)}>
                                 <div className="capsFirstChar">
-                                    {getDateRangeText(periode, getValidLocale(locale), {
+                                    {getDateRangeText(periode, locale, {
                                         compact: true,
                                         includeDayName: true,
                                     })}
@@ -44,7 +44,7 @@ const LovbestemtFerieOppsummering: React.FunctionComponent<Props> = ({ lovbestem
                         {perioderFjernet.map((periode) => (
                             <li key={dateRangeToISODateRange(periode)}>
                                 <div className="capsFirstChar">
-                                    {getDateRangeText(periode, getValidLocale(locale), {
+                                    {getDateRangeText(periode, locale, {
                                         compact: true,
                                         includeDayName: true,
                                     })}

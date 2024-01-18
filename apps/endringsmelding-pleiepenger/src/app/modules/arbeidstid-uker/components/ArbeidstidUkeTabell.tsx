@@ -3,7 +3,7 @@ import React from 'react';
 import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { DurationText } from '@navikt/sif-common-ui';
-import { dateFormatter, getDateRangeText, getValidLocale } from '@navikt/sif-common-utils';
+import { dateFormatter, getDateRangeText } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { SelectableListType } from '../../../hooks/useSelectableList';
 import { ArbeidstidUkerItem } from '../ArbeidstidUkerItem';
@@ -146,7 +146,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                         <div>
                                             <div className="arbeidsukeTidsrom">
                                                 <span className="arbeidsukeTidsrom__tekst">
-                                                    {getDateRangeText(uke.periode, getValidLocale(locale))}
+                                                    {getDateRangeText(uke.periode, locale)}
                                                     {(uke.harFeriedager || uke.harFjernetFeriedager) && (
                                                         <Block margin="s">
                                                             <UkeTags

@@ -1,11 +1,11 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/nb';
 import 'dayjs/locale/nn';
-import { ValidLocale } from './';
+
 import { dateFormatter } from './dateFormatter';
 import { DateRange } from './types';
 
-const getDateText = (date: Date, locale: ValidLocale, compact = true, inkluderDagNavn?: boolean): string => {
+const getDateText = (date: Date, locale: string, compact = true, inkluderDagNavn?: boolean): string => {
     const tekst = compact ? dateFormatter.compact(date, locale) : dateFormatter.full(date, locale);
     return inkluderDagNavn ? `${dateFormatter.day(date, locale)} ${tekst}` : tekst;
 };
@@ -17,7 +17,7 @@ type Options = {
 
 export const getDateRangeText = (
     { from, to }: DateRange,
-    locale: ValidLocale,
+    locale: string,
     options: Options = { compact: true, includeDayName: false },
 ): string => {
     const { includeDayName, compact } = options;
