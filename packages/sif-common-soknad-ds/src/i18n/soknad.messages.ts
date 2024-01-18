@@ -33,7 +33,7 @@ const nn: SoknadMessagesType = {
     ...fortsettSøknadSenereDialogMessages.nn,
 };
 
-export type SoknadMessageKeys = keyof typeof nb;
+type SoknadMessageKeys = keyof typeof nb;
 
 export type SoknadMessagesType = Record<SoknadMessageKeys, string>;
 

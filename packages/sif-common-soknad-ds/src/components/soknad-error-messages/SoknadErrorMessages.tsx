@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { useSoknadIntl } from '../../hooks/useSoknadIntl';
-import { SoknadMessageKeys } from '../../i18n/soknad.messages';
+import { soknadErrorMessages } from './soknadError.messages';
 
 interface ErrorWithFrontpageUrlProps {
     soknadFrontpageUrl?: string;
@@ -14,14 +14,16 @@ export interface LastAvailableStepInfo {
     title: string;
 }
 
+type SoknadErrorMessageKeys = keyof typeof soknadErrorMessages.nb;
+
 const SoknadErrorMessage = ({
     titleKey,
     contentKey,
     soknadFrontpageUrl,
     children,
 }: {
-    titleKey: SoknadMessageKeys;
-    contentKey: SoknadMessageKeys;
+    titleKey: SoknadErrorMessageKeys;
+    contentKey: SoknadErrorMessageKeys;
     soknadFrontpageUrl?: string;
     children?: React.ReactNode;
 }) => {
