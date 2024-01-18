@@ -13,8 +13,10 @@ import {
     getWeekDateRange,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import { useUiIntl } from '../../../i18n/ui.messages';
 import { DurationWeekdaysDateValidator } from '../DurationWeekdaysInput';
 import './durationWeekdaysWeek.scss';
+import { useIntl } from 'react-intl';
 
 interface Props {
     /** Week DateRange */
@@ -38,6 +40,8 @@ const DurationWeekdaysWeek: React.FunctionComponent<Props> = ({
     headingLevel = '3',
     validateDate,
 }) => {
+    const { locale } = useIntl();
+    const { text } = useUiIntl();
     const fullWeek = getWeekDateRange(week.from, true);
     const dates = getDatesInDateRange(fullWeek);
     const isoWeek = dayjs(fullWeek.from).isoWeek();
@@ -57,13 +61,13 @@ const DurationWeekdaysWeek: React.FunctionComponent<Props> = ({
             <Fieldset
                 legend={
                     <Heading size="xsmall" level={headingLevel} className={bem.element('weekNumber')}>
-                        Uke {isoWeek}
+                        {text('durationWeekdaysInput.uke')} {isoWeek}
                     </Heading>
                 }>
                 <div className={bem.element('daysWrapper')}>
                     <div className={bem.element('days')}>
                         {datesInWeekAndMonth.map((date, index) => {
-                            const dayName = dateFormatter.day(date).substring(0, 3);
+                            const dayName = dateFormatter.day(date, locale as any).substring(0, 3);
                             const fieldName = `${formikFieldName}.${dateToISODate(date)}`;
                             const dateIsDisabled = allDisabledDates.some((disabledDate) =>
                                 dayjs(disabledDate).isSame(date, 'day'),
@@ -93,8 +97,8 @@ const DurationWeekdaysWeek: React.FunctionComponent<Props> = ({
                                             compact: true,
                                         }}
                                         timeInputLabels={{
-                                            minutes: 'Minutter',
-                                            hours: 'Timer',
+                                            minutes: text('durationWeekdaysInput.minutter'),
+                                            hours: text('durationWeekdaysInput.timer'),
                                         }}
                                         validate={
                                             validateDate

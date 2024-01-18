@@ -3,6 +3,7 @@ import Step, { StepperStepProps } from '@navikt/ds-react/esm/stepper/Step';
 import React, { useEffect, useRef, useState } from 'react';
 import { Back, Collapse, Expand } from '@navikt/ds-icons';
 import { guid } from '@navikt/sif-common-utils';
+import { useUiIntl } from '../../i18n/ui.messages';
 import './progressStepper.css';
 
 export interface ProgressStep extends Pick<StepperStepProps, 'completed'> {
@@ -19,14 +20,6 @@ interface Labels {
     navigasjonAriaLabel?: string;
     stepProgressLabelFunc: (currentStep: number, totalSteps: number) => string;
 }
-
-const defaultLabels: Labels = {
-    showAllStepsLabel: 'Vis alle steg',
-    goToPreviousStepLabel: 'Gå til forrige steg',
-    allStepsSectionAriaLabel: 'Alle steg',
-    navigasjonAriaLabel: 'Navigasjon i søknaden',
-    stepProgressLabelFunc: (currentStep, totalSteps) => `Steg ${currentStep} av ${totalSteps}`,
-};
 
 interface Props {
     steps: ProgressStep[];
@@ -45,13 +38,25 @@ const ProgressStepper: React.FunctionComponent<Props> = ({
     currentStepIndex,
     allStepsHeader,
     allStepsFooter,
-    labels = defaultLabels,
+    labels,
     titleHeadingLevel = '1',
     includeBackLink = false,
     setFocusOnHeadingOnMount = true,
     onStepSelect,
 }) => {
     const [allStepsVisible, setAllStepsVisible] = useState(false);
+    const { text } = useUiIntl();
+
+    const defaultLabels: Labels = {
+        showAllStepsLabel: text('progressStepper.showAllStepsLabel'),
+        goToPreviousStepLabel: text('progressStepper.goToPreviousStepLabel'),
+        allStepsSectionAriaLabel: text('progressStepper.allStepsSectionAriaLabel'),
+        navigasjonAriaLabel: text('progressStepper.navigasjonAriaLabel'),
+        stepProgressLabelFunc: (currentStep, totalSteps) =>
+            text('progressStepper.navigasjonAriaLabel', { currentStep, totalSteps }),
+    };
+
+    const labelsToUse: Labels = { ...defaultLabels, ...labels };
 
     const step = steps[currentStepIndex];
     const currentStepNumber = currentStepIndex + 1;
@@ -72,7 +77,7 @@ const ProgressStepper: React.FunctionComponent<Props> = ({
     };
 
     const currentStepInfo = (
-        <BodyShort as="div">{labels.stepProgressLabelFunc(currentStepNumber, totalSteps)}</BodyShort>
+        <BodyShort as="div">{labelsToUse.stepProgressLabelFunc(currentStepNumber, totalSteps)}</BodyShort>
     );
     const includeGotoPreviousStepLink = onStepSelect !== undefined && includeBackLink === true;
     const currentStepInfoInHeader = includeGotoPreviousStepLink ? (
@@ -104,7 +109,7 @@ const ProgressStepper: React.FunctionComponent<Props> = ({
                     <div className="progressStepper__progressBar__progress" style={{ width: `${progress}%` }} />
                 </div>
             </div>
-            <nav aria-label={labels.navigasjonAriaLabel}>
+            <nav aria-label={labelsToUse.navigasjonAriaLabel}>
                 <div className="progressStepper__stepsInfo">
                     {includeGotoPreviousStepLink ? (
                         <BodyShort>
@@ -114,7 +119,7 @@ const ProgressStepper: React.FunctionComponent<Props> = ({
                                     onClick={handleBackClick}
                                     className="navds-read-more__button navds-body-short progressStepper__backLink">
                                     <Back className="progressStepper__backLink__icon" aria-hidden />
-                                    {labels.goToPreviousStepLabel}
+                                    {labelsToUse.goToPreviousStepLabel}
                                 </button>
                             )}
                         </BodyShort>
@@ -133,12 +138,14 @@ const ProgressStepper: React.FunctionComponent<Props> = ({
                             <Expand className="progressStepper__toggleAllStepsIcon" aria-hidden />
                         )}
                         {allStepsVisible && <Collapse className="progressStepper__toggleAllStepsIcon" aria-hidden />}
-                        {labels.showAllStepsLabel}
+                        {labelsToUse.showAllStepsLabel}
                     </button>
                 </div>
                 <div id={contentContainerID} aria-hidden={allStepsVisible === false} aria-live="polite">
                     {allStepsVisible && (
-                        <section className="progressStepper__allSteps" aria-label={labels.allStepsSectionAriaLabel}>
+                        <section
+                            className="progressStepper__allSteps"
+                            aria-label={labelsToUse.allStepsSectionAriaLabel}>
                             {allStepsHeader && (
                                 <BodyShort as="div" className="progressStepper__allSteps__header">
                                     {allStepsHeader}

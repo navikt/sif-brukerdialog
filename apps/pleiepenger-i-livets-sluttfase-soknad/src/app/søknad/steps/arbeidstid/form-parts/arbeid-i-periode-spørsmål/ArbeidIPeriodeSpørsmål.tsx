@@ -11,7 +11,7 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import getTimeValidator from '@navikt/sif-common-formik-ds/src/validation/getTimeValidator';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import DurationWeekdaysInput from '@navikt/sif-common-ui/src/duration-weekdays-input/DurationWeekdaysInput';
+import { DurationWeekdaysInput } from '@navikt/sif-common-ui';
 import {
     dateFormatter,
     durationToDecimalDuration,

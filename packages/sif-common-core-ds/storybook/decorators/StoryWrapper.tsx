@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { IntlProvider } from 'react-intl';
 import { BrowserRouter as Router } from 'react-router-dom';
-
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 
@@ -17,7 +16,7 @@ const StoryWrapper = ({ children, messages }: IntlProviderProps) => {
 
     return (
         <Router>
-            <IntlProvider messages={messages || common.nb} locale="nb">
+            <IntlProvider messages={messages} locale="nb">
                 <div id="story-wrapper" style={{ maxWidth: '600px', fontSize: '1rem' }}>
                     <div style={{ fontSize: '1rem' }}>{children}</div>
                 </div>

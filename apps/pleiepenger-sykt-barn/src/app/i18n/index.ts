@@ -1,4 +1,5 @@
 import { commonMessages } from '@navikt/sif-common-core-ds/src/i18n/common.messages';
+import { uiMessages } from '@navikt/sif-common-ui';
 import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
 import bostedMessages from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/bostedUtlandMessages';
 import ferieuttakMessages from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/ferieuttakMessages';
@@ -16,6 +17,7 @@ import omsorgstilbudMessages from './omsorgstilbudMessages';
 
 const bokmålstekster = {
     ...commonMessages.nb,
+    ...uiMessages.nb,
     ...utenlandsoppholdMessages.nb,
     ...bostedMessages.nb,
     ...virksomhetMessages.nb,
@@ -29,6 +31,10 @@ const bokmålstekster = {
     ...velkommenPageMessages.nb,
     ...soknadMessages.nb,
     ...arbeidIPeriodeMessages.nb,
+    'psb.timer': '{timer, plural, one {# time} other {# timer}}',
+    'psb.minutter': '{minutter, plural, one {# minutt} other {# minutter}}',
+    'psb.timerOgMinutter':
+        '{timer, plural, one {# time} other {# timer}} og {minutter, plural, one {# minutt} other {# minutter}}',
 };
 
 export const applicationIntlMessages: MessageFileFormat = {

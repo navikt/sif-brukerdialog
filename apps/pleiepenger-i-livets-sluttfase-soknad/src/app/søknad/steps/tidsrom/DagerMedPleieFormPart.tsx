@@ -1,11 +1,11 @@
 import { BodyLong } from '@navikt/ds-react';
+import React from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { FormikInputGroup } from '@navikt/sif-common-formik-ds';
-import DaySelector from '@navikt/sif-common-ui/src/day-selector/DaySelector';
+import { DaySelector } from '@navikt/sif-common-ui';
 import { getMonthsInDates, sortDates } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { useFormikContext } from 'formik';
-import React from 'react';
 import { getTilgjengeligEndringsperiode } from '../../../utils/getTilgjengeligEndringsperiode';
 import { TidsromFormFields, TidsromFormValues } from './TidsromStep';
 

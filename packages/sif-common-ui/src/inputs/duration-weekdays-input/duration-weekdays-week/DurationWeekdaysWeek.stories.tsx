@@ -1,13 +1,13 @@
 import { Meta, StoryFn } from '@storybook/react';
 import * as React from 'react';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { withFormikWrapper, withStoryWrapper } from '../../../storybook/decorators';
+import { withFormikWrapper, withIntlWrapper, withStoryWrapper } from '../../../../storybook/decorators';
 import DurationWeekdaysWeek from './DurationWeekdaysWeek';
 
 export default {
-    title: 'Component/form-element/DurationWeekdaysWeek',
+    title: 'Inputs/DurationWeekdaysWeek',
     component: DurationWeekdaysWeek,
-    decorators: [withStoryWrapper, withFormikWrapper],
+    decorators: [withStoryWrapper, withFormikWrapper, withIntlWrapper],
 } as Meta<typeof DurationWeekdaysWeek>;
 
 const Template: StoryFn<typeof DurationWeekdaysWeek> = (args) => {

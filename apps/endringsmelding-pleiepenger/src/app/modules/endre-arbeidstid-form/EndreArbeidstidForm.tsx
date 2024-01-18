@@ -4,7 +4,7 @@ import { IntlShape, useIntl } from 'react-intl';
 import { useSøknadContext } from '@hooks';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { getDurationString } from '@navikt/sif-common-core-ds/src/components/duration-text/DurationText';
+import { getDurationString } from '@navikt/sif-common-ui';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getNumberFromNumberInputValue, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';

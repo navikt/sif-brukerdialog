@@ -1,5 +1,19 @@
 # @navikt/sif-common-core-ds
 
+## 9.14.0
+
+### Minor Changes
+
+- 75fe136: - Flytte DurationText-komponent til sif-common-ui.
+  - Flytte alt inline tekst til intol i sif-common-ui
+  - Lage støtte for nynorsk i sif-common-ui
+  - Oppdaterte berørte applikasjoner som brukte DurationText
+
+### Patch Changes
+
+- Updated dependencies [75fe136]
+  - @navikt/sif-common-utils@3.43.14
+
 ## 9.13.6
 
 ### Patch Changes

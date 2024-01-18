@@ -1,14 +1,14 @@
 import { Meta, StoryFn } from '@storybook/react';
 import * as React from 'react';
 import { getDatesInDateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils';
-import dayjs from 'dayjs';
-import { withFormikWrapper, withStoryWrapper } from '../../storybook/decorators';
+import * as dayjs from 'dayjs';
+import { withFormikWrapper, withIntlWrapper, withStoryWrapper } from '../../../storybook/decorators';
 import DurationWeekdaysInput from './DurationWeekdaysInput';
 
 export default {
-    title: 'Component/form-element/DurationWeekdaysInput',
+    title: 'Inputs/DurationWeekdaysInput',
     component: DurationWeekdaysInput,
-    decorators: [withStoryWrapper, withFormikWrapper],
+    decorators: [withStoryWrapper, withFormikWrapper, withIntlWrapper],
 } as Meta<typeof DurationWeekdaysInput>;
 
 const Template: StoryFn<typeof DurationWeekdaysInput> = (args) => {

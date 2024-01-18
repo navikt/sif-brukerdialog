@@ -2,6 +2,7 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import { DurationText } from '@navikt/sif-common-ui';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { DateRange, getTypedFormComponents, InputTime } from '@navikt/sif-common-formik-ds/src';
@@ -23,7 +24,6 @@ import {
 import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
 import ResponsivePanel from '../../../components/responsive-panel/ResponsivePanel';
-import DurationText from '../duration-text/DurationText';
 import {
     getDagerMedNyTid,
     getDateRangeWithinDateRange,

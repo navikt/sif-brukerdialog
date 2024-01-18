@@ -1,11 +1,12 @@
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
+import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { FormikTimeInput, TestProps } from '@navikt/sif-common-formik-ds';
 import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { Weekday } from '@navikt/sif-common-utils';
 import classNames from 'classnames';
-import { getTidFasteUkerdagerInputMessages } from './tidFasteUkerdagerInputMessages';
+import { tidFasteUkedagerInputMessages } from './tidFasteUkerdagerInput.messages';
 import './tidFasteUkedagerInput.css';
 
 interface OwnProps {
@@ -29,7 +30,8 @@ const TidFasteUkedagerInput = ({
     hideDisabledDays,
     'data-testid': testId,
 }: TidFasteUkedagerInputProps) => {
-    const txt = getTidFasteUkerdagerInputMessages(useIntl().locale);
+    const intl = useIntl();
+    const { text } = typedIntlHelper<keyof typeof tidFasteUkedagerInputMessages.nb>(intl);
 
     const renderWeekdayTimeInput = (weekday: Weekday, weekdayLabel: string, validationDayName: string) => {
         const disabled = isWeekdayDisabled(disabledDays, weekday);
@@ -42,6 +44,10 @@ const TidFasteUkedagerInput = ({
                     direction: 'vertical',
                     compact: true,
                 }}
+                timeInputLabels={{
+                    minutes: text('tidFasteUkedaterInput.minutter'),
+                    hours: text('tidFasteUkedaterInput.timer'),
+                }}
                 data-testid={testId ? `${testId}__${weekday}` : undefined}
                 validate={validateDag ? (value) => validateDag(validationDayName, value) : undefined}
             />
@@ -51,11 +57,31 @@ const TidFasteUkedagerInput = ({
     return (
         <Block margin="l">
             <div className={classNames(bem.block, bem.modifierConditional('withHiddenDays', hasHiddenDays))}>
-                {renderWeekdayTimeInput(Weekday.monday, txt.Mandager, txt.mandag)}
-                {renderWeekdayTimeInput(Weekday.tuesday, txt.Tirsdager, txt.tirsdag)}
-                {renderWeekdayTimeInput(Weekday.wednesday, txt.Onsdager, txt.onsdag)}
-                {renderWeekdayTimeInput(Weekday.thursday, txt.Torsdager, txt.torsdag)}
-                {renderWeekdayTimeInput(Weekday.friday, txt.Fredager, txt.fredag)}
+                {renderWeekdayTimeInput(
+                    Weekday.monday,
+                    text('tidFasteUkedaterInput.Mandager'),
+                    text('tidFasteUkedaterInput.mandag'),
+                )}
+                {renderWeekdayTimeInput(
+                    Weekday.tuesday,
+                    text('tidFasteUkedaterInput.Tirsdager'),
+                    text('tidFasteUkedaterInput.tirsdag'),
+                )}
+                {renderWeekdayTimeInput(
+                    Weekday.wednesday,
+                    text('tidFasteUkedaterInput.Onsdager'),
+                    text('tidFasteUkedaterInput.onsdag'),
+                )}
+                {renderWeekdayTimeInput(
+                    Weekday.thursday,
+                    text('tidFasteUkedaterInput.Torsdager'),
+                    text('tidFasteUkedaterInput.torsdag'),
+                )}
+                {renderWeekdayTimeInput(
+                    Weekday.friday,
+                    text('tidFasteUkedaterInput.Fredager'),
+                    text('tidFasteUkedaterInput.fredag'),
+                )}
             </div>
         </Block>
     );
