@@ -8,8 +8,8 @@ import {
     EnsureCorrectSøknadRouteErrorType,
     useEnsureCorrectSøknadRoute,
 } from '@navikt/sif-common-soknad-ds/src/hooks/useEnsureCorrectSøknadRoute';
-
 import { appSentryLogger } from '@utils';
+import StartPåNyttDialog from '../components/start-på-nytt-dialog/StartPåNyttDialog';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
 import { useResetSøknad } from '../hooks/useResetSøknad';
@@ -24,7 +24,6 @@ import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
 import LovbestemtFerieStep from './steps/lovbestemt-ferie/LovbestemtFerieStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
 import UkjentArbeidsforholdStep from './steps/ukjent-arbeidsforhold/UkjentArbeidsforholdStep';
-import StartPåNyttDialog from '../components/start-på-nytt-dialog/StartPåNyttDialog';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();

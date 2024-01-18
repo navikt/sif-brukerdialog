@@ -20,7 +20,7 @@ const ConfirmationDialog: React.FunctionComponent<Props> = (props: Props) => {
             onClose={onCancel}
             open={props.open}
             header={{
-                closeButton: true,
+                closeButton: false,
                 heading: title,
             }}>
             <Modal.Body className="confirmationDialog">
