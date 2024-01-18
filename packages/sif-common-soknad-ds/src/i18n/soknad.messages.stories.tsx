@@ -4,7 +4,7 @@ import { soknadMessages } from './soknad.messages';
 
 const meta: Meta<typeof MessagesPreview> = {
     component: MessagesPreview,
-    title: 'i18n/Alle tekster',
+    title: 'i18n/soknad.messages',
     decorators: [],
 };
 
@@ -14,5 +14,12 @@ type Story = StoryObj<typeof MessagesPreview>;
 
 export const Default: Story = {
     name: 'Default',
-    render: () => <MessagesPreview messages={soknadMessages} showMissingTextSummary={true} showExplanation={false} />,
+    render: () => (
+        <MessagesPreview
+            messages={soknadMessages}
+            showMissingTextSummary={true}
+            showExplanation={false}
+            title="soknadMessages"
+        />
+    ),
 };
