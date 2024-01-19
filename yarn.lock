@@ -3203,7 +3203,7 @@ __metadata:
     react-router-dom: 6.21.3
     rimraf: 5.0.5
     typescript: 5.3.3
-    vite: 5.0.11
+    vite: 5.0.12
     vite-plugin-checker: 0.6.2
     vitest: 1.2.1
   languageName: unknown
@@ -3287,7 +3287,7 @@ __metadata:
     storybook: 7.6.10
     tailwindcss: 3.4.1
     typescript: 5.3.3
-    vite: 5.0.11
+    vite: 5.0.12
     vite-plugin-checker: 0.6.2
     vitest: 1.2.1
   languageName: unknown
@@ -3388,7 +3388,7 @@ __metadata:
     react-intl: 6.6.1
     react-router-dom: 6.21.3
     uuid: 9.0.1
-    vite: 5.0.11
+    vite: 5.0.12
     vite-plugin-checker: 0.6.2
   languageName: unknown
   linkType: soft
@@ -3484,7 +3484,7 @@ __metadata:
     tailwindcss: 3.4.1
     typescript: 5.3.3
     uuid: 9.0.1
-    vite: 5.0.11
+    vite: 5.0.12
     vite-plugin-checker: 0.6.2
     vitest: 1.2.1
   languageName: unknown
@@ -3555,7 +3555,7 @@ __metadata:
     react-router-dom: 6.21.3
     storybook: 7.6.10
     typescript: 5.3.3
-    vite: 5.0.11
+    vite: 5.0.12
     vite-plugin-checker: 0.6.2
     vitest: 1.2.1
   languageName: unknown
@@ -3618,7 +3618,7 @@ __metadata:
     react-router-dom: 6.21.3
     typescript: 5.3.3
     uuid: 9.0.1
-    vite: 5.0.11
+    vite: 5.0.12
     vite-plugin-checker: 0.6.2
     vitest: 1.2.1
   languageName: unknown
@@ -3696,7 +3696,7 @@ __metadata:
     react-router-dom: 6.21.3
     typescript: 5.3.3
     uuid: 9.0.1
-    vite: 5.0.11
+    vite: 5.0.12
     vite-plugin-checker: 0.6.2
     vitest: 1.2.1
   languageName: unknown
@@ -3804,7 +3804,7 @@ __metadata:
     storybook: 7.6.10
     tailwindcss: 3.4.1
     uuid: 9.0.1
-    vite: 5.0.11
+    vite: 5.0.12
     vite-plugin-checker: 0.6.2
     vitest: 1.2.1
   languageName: unknown
@@ -3866,7 +3866,7 @@ __metadata:
     storybook: 7.6.10
     storybook-formik: 2.4.2
     uuid: 9.0.1
-    vite: 5.0.11
+    vite: 5.0.12
     vite-plugin-checker: 0.6.2
     vitest: 1.2.1
   peerDependencies:
@@ -3930,7 +3930,7 @@ __metadata:
     react-router-dom: 6.21.3
     rimraf: 5.0.5
     storybook: 7.6.10
-    vite: 5.0.11
+    vite: 5.0.12
     vite-plugin-checker: 0.6.2
     vitest: 1.2.1
   languageName: unknown
@@ -4029,7 +4029,7 @@ __metadata:
     rimraf: 5.0.5
     storybook: 7.6.10
     uuid: 9.0.1
-    vite: 5.0.11
+    vite: 5.0.12
     vite-plugin-checker: 0.6.2
   languageName: unknown
   linkType: soft
@@ -4149,7 +4149,7 @@ __metadata:
     tailwindcss: 3.4.1
     typescript: 5.3.3
     uuid: 9.0.1
-    vite: 5.0.11
+    vite: 5.0.12
     vite-plugin-checker: 0.6.2
     vitest: 1.2.1
   languageName: unknown
@@ -23676,7 +23676,47 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:5.0.11, vite@npm:^5.0.0":
+"vite@npm:5.0.12":
+  version: 5.0.12
+  resolution: "vite@npm:5.0.12"
+  dependencies:
+    esbuild: ^0.19.3
+    fsevents: ~2.3.3
+    postcss: ^8.4.32
+    rollup: ^4.2.0
+  peerDependencies:
+    "@types/node": ^18.0.0 || >=20.0.0
+    less: "*"
+    lightningcss: ^1.21.0
+    sass: "*"
+    stylus: "*"
+    sugarss: "*"
+    terser: ^5.4.0
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  peerDependenciesMeta:
+    "@types/node":
+      optional: true
+    less:
+      optional: true
+    lightningcss:
+      optional: true
+    sass:
+      optional: true
+    stylus:
+      optional: true
+    sugarss:
+      optional: true
+    terser:
+      optional: true
+  bin:
+    vite: bin/vite.js
+  checksum: b97b6f1c204d9091d0973626827a6e9d8e8b1959ebd0877b6f76e7068e1e7adf9ecd3b1cc382cbab9d421e3eeca5e1a95f27f9c1734439b229f5a58ef2052fa4
+  languageName: node
+  linkType: hard
+
+"vite@npm:^5.0.0":
   version: 5.0.11
   resolution: "vite@npm:5.0.11"
   dependencies:
