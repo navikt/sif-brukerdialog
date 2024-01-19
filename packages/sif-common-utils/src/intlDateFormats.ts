@@ -1,5 +1,7 @@
 import { FormatDateOptions } from 'react-intl';
 
+export type IntlDateFormat = keyof typeof intlDateFormats;
+
 /**
  *
  * @param date: Date
