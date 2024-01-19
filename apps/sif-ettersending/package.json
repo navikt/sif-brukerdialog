@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/sif-ettersending",
     "repository": "https://github.com/navikt/sif-ettersending",
-    "version": "3.29.7",
+    "version": "3.29.8",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -42,7 +42,7 @@
         "react": "18.2.0",
         "react-day-picker": "8.10.0",
         "react-intl": "6.6.1",
-        "react-router-dom": "6.21.2"
+        "react-router-dom": "6.21.3"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.8.3",
@@ -50,7 +50,7 @@
         "@babel/preset-env": "7.23.8",
         "@babel/preset-react": "7.23.3",
         "@playwright/test": "1.41.0",
-        "@storybook/react-vite": "7.6.9",
+        "@storybook/react-vite": "7.6.10",
         "@types/react": "18.2.48",
         "@types/react-dom": "18.2.18",
         "@types/react-router-dom": "5.3.3",
@@ -67,7 +67,7 @@
         "uuid": "9.0.1",
         "vite": "5.0.11",
         "vite-plugin-checker": "0.6.2",
-        "vitest": "1.2.0"
+        "vitest": "1.2.1"
     },
     "scripts": {
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/ettersending",
