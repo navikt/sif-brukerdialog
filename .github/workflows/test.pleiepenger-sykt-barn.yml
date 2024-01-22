@@ -64,7 +64,7 @@ jobs:
                   cache: 'yarn'
 
             - name: Build and start e2e server
-              uses: cypress-io/github-action@v6.6.0
+              uses: cypress-io/github-action@v6.6.1
               env:
                   DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
                   PUBLIC_PATH: /familie/sykdom-i-familien/soknad/pleiepenger

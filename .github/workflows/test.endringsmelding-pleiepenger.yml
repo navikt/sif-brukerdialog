@@ -64,7 +64,7 @@ jobs:
                   cache: 'yarn'
 
             - name: Build and start e2e server
-              uses: cypress-io/github-action@v6.6.0
+              uses: cypress-io/github-action@v6.6.1
               env:
                   API_URL_INNSYN: http://localhost:8099
                   API_URL: http://localhost:8099

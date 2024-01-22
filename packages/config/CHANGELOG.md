@@ -1,5 +1,11 @@
 # config
 
+## 0.9.11
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor og patch
+
 ## 0.9.10
 
 ### Patch Changes
