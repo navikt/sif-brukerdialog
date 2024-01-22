@@ -87,7 +87,7 @@
         "eslint-plugin-react-hooks": "4.6.0",
         "express-rate-limit": "7.1.5",
         "intl": "1.2.5",
-        "jsdom": "23.2.0",
+        "jsdom": "24.0.0",
         "less": "4.2.0",
         "react-dom": "18.2.0",
         "react-intl": "6.6.1",
