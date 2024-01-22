@@ -69,7 +69,7 @@
         "babel-polyfill": "6.26.0",
         "cross-env": "7.0.3",
         "express-rate-limit": "7.1.5",
-        "jsdom": "23.2.0",
+        "jsdom": "24.0.0",
         "postcss": "8.4.33",
         "storybook": "7.6.10",
         "typescript": "5.3.3",

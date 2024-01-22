@@ -46,7 +46,7 @@
         "formik": "2.4.5",
         "gh-pages": "6.1.1",
         "intl": "1.2.5",
-        "jsdom": "23.2.0",
+        "jsdom": "24.0.0",
         "react": "18.2.0",
         "react-collapse": "5.1.1",
         "react-day-picker": "8.10.0",

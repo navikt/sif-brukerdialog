@@ -67,17 +67,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@asamuzakjp/dom-selector@npm:^2.0.1":
-  version: 2.0.2
-  resolution: "@asamuzakjp/dom-selector@npm:2.0.2"
-  dependencies:
-    bidi-js: ^1.0.3
-    css-tree: ^2.3.1
-    is-potential-custom-element-name: ^1.0.1
-  checksum: a454537fcba4f241d3c1303f6068944462fc0ba9cd2c5e3ad639c0acb58ffb7809e5d4cbdac805c8c2525b2450d53a992ff98f07a323c5246044e8e3de3561fe
-  languageName: node
-  linkType: hard
-
 "@aw-web-design/x-default-browser@npm:1.4.126":
   version: 1.4.126
   resolution: "@aw-web-design/x-default-browser@npm:1.4.126"
@@ -3192,7 +3181,7 @@ __metadata:
     helmet: 7.1.0
     http-proxy-middleware: 2.0.6
     jose: 5.2.0
-    jsdom: 23.2.0
+    jsdom: 24.0.0
     mustache-express: 1.3.2
     object-hash: 3.0.0
     openid-client: 5.6.4
@@ -3270,7 +3259,7 @@ __metadata:
     http-proxy-middleware: 2.0.6
     intl: 1.2.5
     jose: 5.2.0
-    jsdom: 23.2.0
+    jsdom: 24.0.0
     lodash: 4.17.21
     msw: 2.1.3
     mustache-express: 1.3.2
@@ -3376,7 +3365,7 @@ __metadata:
     helmet: 7.1.0
     http-proxy-middleware: 2.0.6
     jose: 5.2.0
-    jsdom: 23.2.0
+    jsdom: 24.0.0
     less: 4.2.0
     mini-css-extract-plugin: 2.7.7
     mustache-express: 1.3.2
@@ -3470,7 +3459,7 @@ __metadata:
     helmet: 7.1.0
     http-proxy-middleware: 2.0.6
     jose: 5.2.0
-    jsdom: 23.2.0
+    jsdom: 24.0.0
     lodash: 4.17.21
     mustache-express: 1.3.2
     object-hash: 3.0.0
@@ -3542,7 +3531,7 @@ __metadata:
     helmet: 7.1.0
     http-proxy-middleware: 2.0.6
     jose: 5.2.0
-    jsdom: 23.2.0
+    jsdom: 24.0.0
     lodash: 4.17.21
     mustache-express: 1.3.2
     object-hash: 3.0.0
@@ -3683,7 +3672,7 @@ __metadata:
     http-status-codes: 2.3.0
     intl: 1.2.5
     jose: 5.2.0
-    jsdom: 23.2.0
+    jsdom: 24.0.0
     less: 4.2.0
     lodash.debounce: 4.0.8
     lodash.groupby: 4.6.0
@@ -3919,7 +3908,7 @@ __metadata:
     formik: 2.4.5
     gh-pages: 6.1.1
     intl: 1.2.5
-    jsdom: 23.2.0
+    jsdom: 24.0.0
     react: 18.2.0
     react-collapse: 5.1.1
     react-day-picker: 8.10.0
@@ -4136,7 +4125,7 @@ __metadata:
     helmet: 7.1.0
     http-proxy-middleware: 2.0.6
     jose: 5.2.0
-    jsdom: 23.2.0
+    jsdom: 24.0.0
     lodash: 4.17.21
     mustache-express: 1.3.2
     openid-client: 5.6.4
@@ -9473,15 +9462,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bidi-js@npm:^1.0.3":
-  version: 1.0.3
-  resolution: "bidi-js@npm:1.0.3"
-  dependencies:
-    require-from-string: ^2.0.2
-  checksum: 877c5dcfd69a35fd30fee9e49a03faf205a7a4cd04a38af7648974a659cab7b1cd51fa881d7957c07bd1fc5adf22b90a56da3617bb0885ee69d58ff41117658c
-  languageName: node
-  linkType: hard
-
 "big-integer@npm:^1.6.44":
   version: 1.6.52
   resolution: "big-integer@npm:1.6.52"
@@ -10937,16 +10917,6 @@ __metadata:
     domutils: ^2.8.0
     nth-check: ^2.0.1
   checksum: d6202736839194dd7f910320032e7cfc40372f025e4bf21ca5bf6eb0a33264f322f50ba9c0adc35dadd342d3d6fae5ca244779a4873afbfa76561e343f2058e0
-  languageName: node
-  linkType: hard
-
-"css-tree@npm:^2.3.1":
-  version: 2.3.1
-  resolution: "css-tree@npm:2.3.1"
-  dependencies:
-    mdn-data: 2.0.30
-    source-map-js: ^1.0.1
-  checksum: 493cc24b5c22b05ee5314b8a0d72d8a5869491c1458017ae5ed75aeb6c3596637dbe1b11dac2548974624adec9f7a1f3a6cf40593dc1f9185eb0e8279543fbc0
   languageName: node
   linkType: hard
 
@@ -16600,11 +16570,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsdom@npm:23.2.0":
-  version: 23.2.0
-  resolution: "jsdom@npm:23.2.0"
+"jsdom@npm:24.0.0":
+  version: 24.0.0
+  resolution: "jsdom@npm:24.0.0"
   dependencies:
-    "@asamuzakjp/dom-selector": ^2.0.1
     cssstyle: ^4.0.1
     data-urls: ^5.0.0
     decimal.js: ^10.4.3
@@ -16613,6 +16582,7 @@ __metadata:
     http-proxy-agent: ^7.0.0
     https-proxy-agent: ^7.0.2
     is-potential-custom-element-name: ^1.0.1
+    nwsapi: ^2.2.7
     parse5: ^7.1.2
     rrweb-cssom: ^0.6.0
     saxes: ^6.0.0
@@ -16630,7 +16600,7 @@ __metadata:
   peerDependenciesMeta:
     canvas:
       optional: true
-  checksum: 3ba97e6ac56c38d92d0ce2d0fac5de4042f7dec40d127872e1aa88dd379980f8ea2108a008319ceac54dc07a784078ed4b4401bf9109a76276ca2cace229c8df
+  checksum: 180cf672c1f5e4375fd831b6990c453b4c22b540619abe7a0a3ed0d18eca1171dea9f25739bc06dfea26d1c0d71c7ac26e62fc9a2d9b1657003fc8fd1bf6f9f4
   languageName: node
   linkType: hard
 
@@ -17552,13 +17522,6 @@ __metadata:
   version: 1.1.0
   resolution: "mdast-util-to-string@npm:1.1.0"
   checksum: eec1eb283f3341376c8398b67ce512a11ab3e3191e3dbd5644d32a26784eac8d5f6d0b0fb81193af00d75a2c545cde765c8b03e966bd890076efb5d357fb4fe2
-  languageName: node
-  linkType: hard
-
-"mdn-data@npm:2.0.30":
-  version: 2.0.30
-  resolution: "mdn-data@npm:2.0.30"
-  checksum: d6ac5ac7439a1607df44b22738ecf83f48e66a0874e4482d6424a61c52da5cde5750f1d1229b6f5fa1b80a492be89465390da685b11f97d62b8adcc6e88189aa
   languageName: node
   linkType: hard
 
@@ -18510,7 +18473,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nwsapi@npm:^2.2.2":
+"nwsapi@npm:^2.2.2, nwsapi@npm:^2.2.7":
   version: 2.2.7
   resolution: "nwsapi@npm:2.2.7"
   checksum: cab25f7983acec7e23490fec3ef7be608041b460504229770e3bfcf9977c41d6fe58f518994d3bd9aa3a101f501089a3d4a63536f4ff8ae4b8c4ca23bdbfda4e
@@ -21794,7 +21757,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"source-map-js@npm:>=0.6.2 <2.0.0, source-map-js@npm:^1.0.1, source-map-js@npm:^1.0.2":
+"source-map-js@npm:>=0.6.2 <2.0.0, source-map-js@npm:^1.0.2":
   version: 1.0.2
   resolution: "source-map-js@npm:1.0.2"
   checksum: c049a7fc4deb9a7e9b481ae3d424cc793cb4845daa690bc5a05d428bf41bf231ced49b4cf0c9e77f9d42fdb3d20d6187619fc586605f5eabe995a316da8d377c
