@@ -1,5 +1,13 @@
 # @navikt/appstatus-react-ds
 
+## 2.17.17
+
+### Patch Changes
+
+- 100f013: Dependabotfix - vite
+- Updated dependencies [100f013]
+  - @navikt/sif-common-hooks@0.1.5
+
 ## 2.17.16
 
 ### Patch Changes

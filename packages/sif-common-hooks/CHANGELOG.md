@@ -1,5 +1,11 @@
 # @navikt/sif-common-hooks
 
+## 0.1.5
+
+### Patch Changes
+
+- 100f013: Dependabotfix - vite
+
 ## 0.1.4
 
 ### Patch Changes

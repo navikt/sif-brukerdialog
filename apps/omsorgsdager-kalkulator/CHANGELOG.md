@@ -1,5 +1,14 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.5.14
+
+### Patch Changes
+
+- 7a66141: Pakkeoppdateringer
+  - jsdom major
+  - patch og minor
+- 100f013: Dependabotfix - vite
+
 ## 3.5.13
 
 ### Patch Changes

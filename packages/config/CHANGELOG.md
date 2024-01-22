@@ -1,5 +1,11 @@
 # config
 
+## 0.9.12
+
+### Patch Changes
+
+- 100f013: Dependabotfix - vite
+
 ## 0.9.11
 
 ### Patch Changes
