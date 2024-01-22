@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.7.18
+
+### Patch Changes
+
+- Bugfix - rekkefølge på import gjorde at applikasjon.navn ble overskrevet med generell verdi.
+
 ## 3.7.17
 
 ### Patch Changes

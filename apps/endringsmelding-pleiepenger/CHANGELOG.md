@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.24.20
+
+### Patch Changes
+
+- Bugfix - rekkefølge på import gjorde at applikasjon.navn ble overskrevet med generell verdi.
+
 ## 2.24.19
 
 ### Patch Changes
