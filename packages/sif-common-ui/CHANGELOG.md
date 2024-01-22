@@ -1,5 +1,16 @@
 # @navikt/sif-common-ui
 
+## 0.6.2
+
+### Patch Changes
+
+- 100f013: Dependabotfix - vite
+- Updated dependencies [7a66141]
+- Updated dependencies [100f013]
+  - @navikt/sif-common-formik-ds@1.7.8
+  - @navikt/sif-common-core-ds@9.14.2
+  - @navikt/sif-common-utils@3.43.16
+
 ## 0.6.1
 
 ### Patch Changes

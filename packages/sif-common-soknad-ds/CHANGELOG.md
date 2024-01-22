@@ -1,5 +1,14 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.13.8
+
+### Patch Changes
+
+- 7a66141: Pakkeoppdateringer
+  - jsdom major
+  - patch og minor
+- 100f013: Dependabotfix - vite
+
 ## 10.13.7
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.24.13
+
+### Patch Changes
+
+- 100f013: Dependabotfix - vite
+
 ## 2.24.12
 
 ### Patch Changes

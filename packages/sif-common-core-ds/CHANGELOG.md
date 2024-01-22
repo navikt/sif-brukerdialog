@@ -1,5 +1,16 @@
 # @navikt/sif-common-core-ds
 
+## 9.14.2
+
+### Patch Changes
+
+- 7a66141: Pakkeoppdateringer
+  - jsdom major
+  - patch og minor
+- 100f013: Dependabotfix - vite
+- Updated dependencies [100f013]
+  - @navikt/sif-common-utils@3.43.16
+
 ## 9.14.1
 
 ### Patch Changes

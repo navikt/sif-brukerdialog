@@ -1,5 +1,14 @@
 # @navikt/sif-common-formik-ds
 
+## 1.7.8
+
+### Patch Changes
+
+- 7a66141: Pakkeoppdateringer
+  - jsdom major
+  - patch og minor
+- 100f013: Dependabotfix - vite
+
 ## 1.7.7
 
 ### Patch Changes
