@@ -16,4 +16,7 @@
 "@navikt/sif-ettersending": patch
 ---
 
-Pakkeoppdateringer - patch og minor
+Pakkeoppdateringer
+* jsdom major
+* patch og minor
+
