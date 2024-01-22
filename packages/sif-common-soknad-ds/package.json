@@ -8,7 +8,7 @@
     "dependencies": {
         "@navikt/nav-dekoratoren-moduler": "2.1.5",
         "classnames": "2.5.1",
-        "date-fns": "3.2.0",
+        "date-fns": "3.3.0",
         "fp-ts": "2.16.2",
         "io-ts": "2.2.21"
     },

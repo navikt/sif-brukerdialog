@@ -6,7 +6,7 @@
     "version": "8.17.7",
     "private": true,
     "dependencies": {
-        "date-fns": "3.2.0"
+        "date-fns": "3.3.0"
     },
     "devDependencies": {
         "@babel/core": "7.23.7",
