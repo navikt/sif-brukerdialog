@@ -174,7 +174,9 @@ const FraværStep: React.FC = () => {
                                         <Block margin={'m'}>
                                             <FormattedMessage
                                                 id={'step.fravær.info.2'}
-                                                // values={{ strong: (msg: string): React.ReactNode => <strong>{msg}</strong> }}
+                                                values={{
+                                                    strong: (msg): React.ReactNode => <strong>{msg}</strong>,
+                                                }}
                                             />
                                         </Block>
                                     </SifGuidePanel>
