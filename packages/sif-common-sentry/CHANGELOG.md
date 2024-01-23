@@ -1,5 +1,14 @@
 # @navikt/sif-common-sentry
 
+## 0.25.13
+
+### Patch Changes
+
+- 7a66141: Pakkeoppdateringer
+  - jsdom major
+  - patch og minor
+- 100f013: Dependabotfix - vite
+
 ## 0.25.12
 
 ### Patch Changes

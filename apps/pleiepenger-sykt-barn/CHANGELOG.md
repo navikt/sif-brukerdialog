@@ -1,5 +1,32 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.7.18
+
+### Patch Changes
+
+- Bugfix - rekkefølge på import gjorde at applikasjon.navn ble overskrevet med generell verdi.
+
+## 3.7.17
+
+### Patch Changes
+
+- 7a66141: Pakkeoppdateringer
+  - jsdom major
+  - patch og minor
+- 100f013: Dependabotfix - vite
+- Updated dependencies [7a66141]
+- Updated dependencies [100f013]
+  - @navikt/sif-common-formik-ds@1.7.8
+  - @navikt/sif-common-soknad-ds@10.13.8
+  - @navikt/sif-common-forms-ds@8.17.8
+  - @navikt/sif-common-core-ds@9.14.2
+  - @navikt/sif-common-sentry@0.25.13
+  - @navikt/appstatus-react-ds@2.17.17
+  - @navikt/sif-app-register@0.0.6
+  - @navikt/sif-common-amplitude@2.24.13
+  - @navikt/sif-common-hooks@0.1.5
+  - @navikt/sif-common-utils@3.43.16
+
 ## 3.7.16
 
 ### Patch Changes

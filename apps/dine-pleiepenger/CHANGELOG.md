@@ -1,5 +1,20 @@
 # @navikt/dine-pleiepenger
 
+## 0.5.8
+
+### Patch Changes
+
+- 7a66141: Pakkeoppdateringer
+  - jsdom major
+  - patch og minor
+- 100f013: Dependabotfix - vite
+- Updated dependencies [7a66141]
+- Updated dependencies [100f013]
+  - @navikt/sif-common-core-ds@9.14.2
+  - @navikt/sif-common-sentry@0.25.13
+  - @navikt/appstatus-react-ds@2.17.17
+  - @navikt/sif-common-utils@3.43.16
+
 ## 0.5.7
 
 ### Patch Changes

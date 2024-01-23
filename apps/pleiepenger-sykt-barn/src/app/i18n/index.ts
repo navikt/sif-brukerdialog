@@ -18,6 +18,7 @@ import omsorgstilbudMessages from './omsorgstilbudMessages';
 const bokmålstekster = {
     ...commonMessages.nb,
     ...uiMessages.nb,
+    ...soknadMessages.nb,
     ...utenlandsoppholdMessages.nb,
     ...bostedMessages.nb,
     ...virksomhetMessages.nb,
@@ -27,10 +28,9 @@ const bokmålstekster = {
     ...sifCommonPleiepengerMessages.nb,
     ...opptjeningUtlandMessages.nb,
     ...utenlandskNæringMessages.nb,
-    ...appMessagesNb,
     ...velkommenPageMessages.nb,
-    ...soknadMessages.nb,
     ...arbeidIPeriodeMessages.nb,
+    ...appMessagesNb,
     'psb.timer': '{timer, plural, one {# time} other {# timer}}',
     'psb.minutter': '{minutter, plural, one {# minutt} other {# minutter}}',
     'psb.timerOgMinutter':

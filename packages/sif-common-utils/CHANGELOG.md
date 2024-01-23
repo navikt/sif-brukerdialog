@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.43.16
+
+### Patch Changes
+
+- 100f013: Dependabotfix - vite
+
 ## 3.43.15
 
 ### Patch Changes
