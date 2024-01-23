@@ -17,7 +17,6 @@ import SøknadStep from '../../SøknadStep';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { Alert } from '@navikt/ds-react';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import FosterbarnListAndDialog from '@navikt/sif-common-forms-ds/src/forms/fosterbarn/FosterbarnListAndDialog';
 import { Fosterbarn } from '@navikt/sif-common-forms-ds/src/forms/fosterbarn/types';
@@ -81,7 +80,6 @@ const FosterbarnStep = () => {
                 onSubmit={handleSubmit}
                 renderForm={({ values: { fosterbarn = [], harFostrerbarn } }) => {
                     const fosterbarnFnr = fosterbarn.map((barn) => barn.fødselsnummer);
-                    const kanFortsette = harFostrerbarn !== YesOrNo.YES ? true : fosterbarn.length > 0;
 
                     return (
                         <>
@@ -90,7 +88,7 @@ const FosterbarnStep = () => {
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
                                 includeValidationSummary={true}
                                 submitPending={isSubmitting}
-                                submitDisabled={!kanFortsette || isSubmitting}
+                                submitDisabled={isSubmitting}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
                                 <SifGuidePanel>
@@ -117,16 +115,17 @@ const FosterbarnStep = () => {
                                         <FosterbarnListAndDialog<FosterbarnFormFields>
                                             name={FosterbarnFormFields.fosterbarn}
                                             disallowedFødselsnumre={[...[søker.fødselsnummer], ...fosterbarnFnr]}
+                                            validate={(fosterbarn: Fosterbarn[]) => {
+                                                if (fosterbarn.length === 0) {
+                                                    return {
+                                                        key: 'validation.fosterbarn.required',
+                                                        keepKeyUnaltered: true,
+                                                    };
+                                                }
+                                                return undefined;
+                                            }}
                                         />
                                     </FormBlock>
-                                )}
-
-                                {!kanFortsette && (
-                                    <Block margin="l">
-                                        <Alert variant="warning">
-                                            <FormattedMessage id="step.fosterbarn.info.ingenbarn" />
-                                        </Alert>
-                                    </Block>
                                 )}
                             </Form>
                         </>

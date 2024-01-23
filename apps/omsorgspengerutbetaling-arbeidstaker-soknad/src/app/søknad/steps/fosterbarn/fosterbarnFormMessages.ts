@@ -13,5 +13,7 @@ export const fosterbarnFormMessages: MessageFileFormat = {
         'step.fosterbarn.info.ingenbarn':
             'Du må registrere minst ett fosterbarn eller svare nei på at du har fosterbarn for å kunne gå videre i søknaden.',
         'validation.harFostrerbarn.yesOrNoIsUnanswered': 'Du må svare på om du har fosterbarn eller ikke.',
+        'validation.fosterbarn.required':
+            'Du må registrere minst ett fosterbarn eller svare nei på at du har fosterbarn for å kunne gå videre i søknaden.',
     },
 };
