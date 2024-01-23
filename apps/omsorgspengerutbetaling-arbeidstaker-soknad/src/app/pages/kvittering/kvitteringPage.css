@@ -63,6 +63,9 @@ ul.checklist li {
     .pagebreak {
         page-break-before: always;
     }
+    .kvittering-print-button {
+        display: none;
+    }
 }
 
 .tilArbeidsgiverPanel {

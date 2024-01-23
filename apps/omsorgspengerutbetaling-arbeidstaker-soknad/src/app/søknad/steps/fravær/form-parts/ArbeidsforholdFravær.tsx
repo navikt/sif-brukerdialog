@@ -16,6 +16,7 @@ import FraværDagerListAndDialog from '@navikt/sif-common-forms-ds/src/forms/fra
 import { fraværDagToFraværDateRange, fraværPeriodeToDateRange } from '@navikt/sif-common-forms-ds/src/forms/fravær';
 import { ValidateYesOrNoError, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
+import { BodyLong } from '@navikt/ds-react';
 
 const { YesOrNoQuestion } = getTypedFormComponents<FraværStepFormFields, FraværStepFormValues, ValidationError>();
 
@@ -49,9 +50,14 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
     const getFieldName = (field: FraværFormFields) => `${parentFieldName}.${field}` as FraværStepFormFields;
 
     const tidsromBegrensningInfo = (
-        <ExpandableInfo title={intlHelper(intl, 'step.fravær.info.ikkeHelg.tittel')}>
-            <FormattedMessage id="step.fravær.info.ikkeHelg.tekst" />
-        </ExpandableInfo>
+        <>
+            <ExpandableInfo title={intlHelper(intl, 'step.fravær.info.ikkeHelg.tittel')}>
+                <FormattedMessage id="step.fravær.info.ikkeHelg.tekst" />
+            </ExpandableInfo>
+            <BodyLong style={{ marginTop: '.5rem', paddingBottom: '.5rem' }}>
+                <FormattedMessage id="step.fravær.heledager.perioderModal.begrensTilSammeÅrAlertStripeTekst" />
+            </BodyLong>
+        </>
     );
 
     const { harPerioderMedFravær, harDagerMedDelvisFravær, fraværDager, fraværPerioder } = fravær;
@@ -96,10 +102,6 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
                             ...fraværPerioder.map(fraværPeriodeToDateRange),
                             ...fraværDager.map(fraværDagToFraværDateRange),
                         ]}
-                        begrensTilSammeÅrAlertStripeTekst={intlHelper(
-                            intl,
-                            'step.fravær.heledager.perioderModal.begrensTilSammeÅrAlertStripeTekst',
-                        )}
                         helgedagerIkkeTillat={true}
                     />
                 </FormBlock>

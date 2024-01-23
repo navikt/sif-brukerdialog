@@ -34,7 +34,7 @@ const KvitteringPage = ({ søker, kvitteringInfo, onUnmount }: Props) => {
                     <CheckmarkIcon />
                 </div>
 
-                <div role="presentation" aria-hidden="true" style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
                     <Heading level="1" size="large">
                         <FormattedMessage id="page.confirmation.tittel" />
                     </Heading>
@@ -79,7 +79,7 @@ const KvitteringPage = ({ søker, kvitteringInfo, onUnmount }: Props) => {
                     </Checklist>
                 </Block>
 
-                <div role="presentation" aria-hidden="true" style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                <div className="kvittering-print-button" style={{ textAlign: 'center', marginBottom: '2rem' }}>
                     <Block margin="xl" padBottom={'xl'}>
                         <Button
                             type="button"
