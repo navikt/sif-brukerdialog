@@ -4,7 +4,7 @@
     "license": "MIT",
     "main": "src",
     "name": "@navikt/appstatus-react-ds",
-    "version": "2.17.13",
+    "version": "2.17.17",
     "private": true,
     "dependencies": {
         "@navikt/sif-common-hooks": "workspace:*",
@@ -12,9 +12,9 @@
         "@sanity/client": "6.11.1"
     },
     "devDependencies": {
-        "@navikt/ds-css": "5.13.0",
-        "@navikt/ds-react": "5.12.5",
-        "@types/node": "20.11.1",
+        "@navikt/ds-css": "5.15.1",
+        "@navikt/ds-react": "5.15.1",
+        "@types/node": "20.11.5",
         "@types/react": "18.2.48",
         "@types/react-dom": "18.2.18",
         "config": "workspace:*",
@@ -24,7 +24,7 @@
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "rimraf": "5.0.5",
-        "sass": "1.69.7"
+        "sass": "1.70.0"
     },
     "scripts": {
         "lint": "eslint ./src --ext ts,tsx"

@@ -1,6 +1,6 @@
 import React from 'react';
 import { IntlProvider as Provider } from 'react-intl';
-import { allCommonMessages } from '@navikt/sif-common-core-ds/src/i18n/allCommonMessages';
+import { commonMessages } from '@navikt/sif-common-core-ds/src/i18n/common.messages';
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import bostedMessages from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/bostedUtlandMessages';
 import ferieuttakMessages from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/ferieuttakMessages';
@@ -16,7 +16,7 @@ import { velkommenPageMessages } from '../../pages/welcoming-page/velkommenPageM
 export const appBokmålstekster = require('../../i18n/nb.json');
 
 const bokmålstekster = {
-    ...allCommonMessages.nb,
+    ...commonMessages.nb,
     ...utenlandsoppholdMessages.nb,
     ...bostedMessages.nb,
     ...virksomhetMessages.nb,

@@ -1,10 +1,10 @@
 import { BodyShort, Button } from '@navikt/ds-react';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import AvbrytSoknadDialog from '../../../components/avbrytSøknadDialog/AvbrytSøknadDialog';
 import FortsettSøknadSenereDialog from '../../../components/fortsettSøknadSenereDialog/FortsettSøknadSenereDialog';
 import './stepFooter.scss';
+import { useSoknadIntl } from '../../../hooks/useSoknadIntl';
 
 interface Props {
     onAvbrytOgFortsettSenere?: () => void;
@@ -12,6 +12,7 @@ interface Props {
 }
 
 function StepFooter({ onAvbrytOgFortsettSenere, onAvbrytOgSlett }: Props) {
+    const { text } = useSoknadIntl();
     const [visAvbrytDialog, setVisAvbrytDialog] = React.useState<boolean>(false);
     const [visFortsettSenereDialog, setVisFortsettSenereDialog] = React.useState<boolean>(false);
 
@@ -27,16 +28,12 @@ function StepFooter({ onAvbrytOgFortsettSenere, onAvbrytOgSlett }: Props) {
                             variant="tertiary"
                             size="small"
                             onClick={() => setVisFortsettSenereDialog(true)}>
-                            <BodyShort as="span">
-                                <FormattedMessage id="steg.footer.fortsettSenere" />
-                            </BodyShort>
+                            <BodyShort as="span">{text('scs.stepFooter.fortsettSenere')}</BodyShort>
                         </Button>
                     )}
                     {onAvbrytOgSlett && (
                         <Button type="button" variant="tertiary" size="small" onClick={() => setVisAvbrytDialog(true)}>
-                            <BodyShort as="span">
-                                <FormattedMessage id="steg.footer.avbryt" />
-                            </BodyShort>
+                            <BodyShort as="span">{text('scs.stepFooter.avbryt')}</BodyShort>
                         </Button>
                     )}
                 </div>

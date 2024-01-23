@@ -1,4 +1,5 @@
-import { allCommonMessages } from '@navikt/sif-common-core-ds/src/i18n/allCommonMessages';
+import { commonMessages } from '@navikt/sif-common-core-ds/src/i18n/common.messages';
+import { uiMessages } from '@navikt/sif-common-ui';
 import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
 import bostedMessages from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/bostedUtlandMessages';
 import ferieuttakMessages from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/ferieuttakMessages';
@@ -7,15 +8,17 @@ import tidsperiodeMessages from '@navikt/sif-common-forms-ds/src/forms/tidsperio
 import utenlandskNæringMessages from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring/utenlandskNæringMessages';
 import utenlandsoppholdMessages from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/utenlandsoppholdMessages';
 import virksomhetMessages from '@navikt/sif-common-forms-ds/src/forms/virksomhet/virksomhetMessages';
-import soknadIntlMessages from '@navikt/sif-common-soknad-ds/src/i18n/soknadIntlMessages';
+import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { sifCommonPleiepengerMessages } from '../local-sif-common-pleiepenger/i18n';
 import { velkommenPageMessages } from '../pages/welcoming-page/velkommenPageMessages';
-import omsorgstilbudMessages from './omsorgstilbudMessages';
 import { arbeidIPeriodeMessages } from '../søknad/arbeidstid-step/i18n/arbeidIPeriodeMessages';
 import { appMessagesNb } from './nb';
+import omsorgstilbudMessages from './omsorgstilbudMessages';
 
 const bokmålstekster = {
-    ...allCommonMessages.nb,
+    ...commonMessages.nb,
+    ...uiMessages.nb,
+    ...soknadMessages.nb,
     ...utenlandsoppholdMessages.nb,
     ...bostedMessages.nb,
     ...virksomhetMessages.nb,
@@ -25,10 +28,13 @@ const bokmålstekster = {
     ...sifCommonPleiepengerMessages.nb,
     ...opptjeningUtlandMessages.nb,
     ...utenlandskNæringMessages.nb,
-    ...appMessagesNb,
     ...velkommenPageMessages.nb,
-    ...soknadIntlMessages.nb,
     ...arbeidIPeriodeMessages.nb,
+    ...appMessagesNb,
+    'psb.timer': '{timer, plural, one {# time} other {# timer}}',
+    'psb.minutter': '{minutter, plural, one {# minutt} other {# minutter}}',
+    'psb.timerOgMinutter':
+        '{timer, plural, one {# time} other {# timer}} og {minutter, plural, one {# minutt} other {# minutter}}',
 };
 
 export const applicationIntlMessages: MessageFileFormat = {

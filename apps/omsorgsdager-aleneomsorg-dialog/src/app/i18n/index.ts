@@ -1,19 +1,19 @@
+import { commonMessages } from '@navikt/sif-common-core-ds/src/i18n/common.messages';
 import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
-import { allCommonMessages } from '@navikt/sif-common-core-ds/src/i18n/allCommonMessages';
-import { soknadIntlMessages } from '@navikt/sif-common-soknad-ds';
 import annetBarnMessages from '@navikt/sif-common-forms-ds/src/forms/annet-barn/annetBarnMessages';
+import { soknadMessages } from '@navikt/sif-common-soknad-ds';
+import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 import { personalOpplysningerMessages } from '../pages/velkommen/personalopplysninger/personalopplysninger.messages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
-import { appMessages } from './appMessages';
-import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
-import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
-import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
 import { omOmsorgenForBarnMessages } from '../søknad/steps/om-omsorgen-for-barn/omOmsorgenForBarnMessages';
+import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
 import { tidspunktForAleneomsorgMessages } from '../søknad/steps/tidspunkt-for-aleneomsorg/tidspunktForAleneomsorgMessages';
+import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
+import { appMessages } from './appMessages';
 
 const bokmålstekster = {
-    ...allCommonMessages.nb,
-    ...soknadIntlMessages.nb,
+    ...commonMessages.nb,
+    ...soknadMessages.nb,
     ...personalOpplysningerMessages.nb,
     ...velkommenPageMessages.nb,
     ...omOmsorgenForBarnMessages.nb,

@@ -1,5 +1,82 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.24.20
+
+### Patch Changes
+
+- Bugfix - rekkefølge på import gjorde at applikasjon.navn ble overskrevet med generell verdi.
+
+## 2.24.19
+
+### Patch Changes
+
+- 7a66141: Pakkeoppdateringer
+  - jsdom major
+  - patch og minor
+- 100f013: Dependabotfix - vite
+- Updated dependencies [7a66141]
+- Updated dependencies [100f013]
+  - @navikt/sif-common-formik-ds@1.7.8
+  - @navikt/sif-common-soknad-ds@10.13.8
+  - @navikt/sif-common-forms-ds@8.17.8
+  - @navikt/sif-common-core-ds@9.14.2
+  - @navikt/sif-common-sentry@0.25.13
+  - @navikt/sif-common-amplitude@2.24.13
+  - @navikt/sif-common-hooks@0.1.5
+  - @navikt/sif-common-utils@3.43.16
+
+## 2.24.18
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor og patch
+- Updated dependencies
+  - @navikt/sif-common-formik-ds@1.7.7
+  - @navikt/sif-common-soknad-ds@10.13.7
+  - @navikt/sif-common-forms-ds@8.17.7
+  - @navikt/sif-common-core-ds@9.14.1
+  - @navikt/sif-common-utils@3.43.15
+  - @navikt/sif-common-amplitude@2.24.12
+
+## 2.24.17
+
+### Patch Changes
+
+- 75fe136: - Flytte DurationText-komponent til sif-common-ui.
+  - Flytte alt inline tekst til intol i sif-common-ui
+  - Lage støtte for nynorsk i sif-common-ui
+  - Oppdaterte berørte applikasjoner som brukte DurationText
+- Updated dependencies [75fe136]
+  - @navikt/sif-common-core-ds@9.14.0
+  - @navikt/sif-common-utils@3.43.14
+  - @navikt/sif-common-forms-ds@8.17.6
+  - @navikt/sif-common-soknad-ds@10.13.6
+
+## 2.24.16
+
+### Patch Changes
+
+- Feilretting i ds-pakker
+- Updated dependencies
+  - @navikt/sif-common-formik-ds@1.7.6
+  - @navikt/sif-common-soknad-ds@10.13.6
+  - @navikt/sif-common-forms-ds@8.17.6
+  - @navikt/sif-common-core-ds@9.13.6
+
+## 2.24.15
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch og minor
+- Updated dependencies
+  - @navikt/sif-common-amplitude@2.24.12
+  - @navikt/sif-common-formik-ds@1.7.5
+  - @navikt/sif-common-soknad-ds@10.13.5
+  - @navikt/sif-common-forms-ds@8.17.5
+  - @navikt/sif-common-core-ds@9.13.5
+  - @navikt/sif-common-sentry@0.25.12
+  - @navikt/sif-common-utils@3.43.13
+
 ## 2.24.14
 
 ### Patch Changes

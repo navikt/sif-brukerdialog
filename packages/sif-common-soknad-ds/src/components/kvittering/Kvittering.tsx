@@ -1,5 +1,4 @@
-import { Heading, Ingress } from '@navikt/ds-react';
-import React from 'react';
+import { BodyShort, Heading } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import CheckmarkIcon from '@navikt/sif-common-core-ds/src/atoms/checkmark-icon/CheckmarkIcon';
 import './kvittering.scss';
@@ -26,7 +25,9 @@ const Kvittering = ({ tittel, liste, children }: Props) => {
             </Block>
             {liste && (
                 <Block margin="xl">
-                    <Ingress>{liste.tittel}</Ingress>
+                    <BodyShort size="large" tag="div">
+                        {liste.tittel}
+                    </BodyShort>
                     <ul className="checklist">
                         {liste.punkter.map((p, idx) => (
                             <li key={idx}>{p}</li>

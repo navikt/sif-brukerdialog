@@ -6,9 +6,6 @@ export const appMessages: MessageFileFormat = {
         'application.title': 'Søknad om pleiepenger i livets sluttfase',
         'page.form.ubesvarteSpørsmålInfo': 'For å komme videre, må du svare på alle spørsmålene ovenfor.',
 
-        'fileUploadErrors.part1': 'Det har dessverre skjedd en feil under opplasting av følgende vedlegg:',
-        'vedleggsliste.fjernKnapp': 'Fjern vedlegg',
-
         'initialLoadError.pageTitle': 'Det oppstod en feil',
         'initialLoadError.text.1': 'Det oppstod en feil under oppstarten av søknaden. Vennligst prøv igjen senere.',
 

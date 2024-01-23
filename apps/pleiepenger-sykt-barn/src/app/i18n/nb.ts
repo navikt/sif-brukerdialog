@@ -1,25 +1,6 @@
 export const appMessagesNb = {
-    'common.dag': 'dag',
-    'common.dager': 'dager',
-    'common.varighet.dager': '{dager, plural, one {# dag} other {# dager}}',
-    'common.varighet.uker': '{uker, plural, one {# uke} other {# uker}}',
-    'common.varighet.ukerogdager':
-        '{uker, plural, zero {} one {# uke} other {# uker}} {dager, plural, =0 {} one {og # dag} other {og # dager}}',
-    'common.varighet.og': 'og',
-    'common.varighet.separator--full': ' og ',
-    'common.varighet.separator--normal': ', ',
-
     'application.title': 'Søknad om pleiepenger for sykt barn',
-
-    Ja: 'Ja',
-    Nei: 'Nei',
-
-    VetIkke: 'Jeg er usikker',
     HvaBetyrDette: 'Hva betyr dette?',
-
-    'locale.nb': 'Bokmål - norsk',
-
-    'locale.nn': 'Nynorsk - norsk',
 
     uke: 'uke',
     Uke: 'Uke',
@@ -74,16 +55,6 @@ export const appMessagesNb = {
 
     'page.loadingPage.tekst': 'Laster ...',
     'gotoApplicationLink.lenketekst': 'Gå til den digitale søknaden',
-    'backlink.label': 'Tilbake',
-
-    'hjelpetekst.skjul': 'Lukk hjelpetekst',
-    'hjelpetekst.vis': 'Vis hjelpetekst',
-
-    timer: '{timer, plural, one {# time} other {# timer}}',
-    minutter: '{minutter, plural, one {# minutt} other {# minutter}}',
-    timerOgMinutter:
-        '{timer, plural, one {# time} other {# timer}} og {minutter, plural, one {# minutt} other {# minutter}}',
-    dager: '{dager, plural, one {# dag} other {# dager}}',
 
     'timer.ikkeTall': '{timer} timer',
 
@@ -93,8 +64,7 @@ export const appMessagesNb = {
     'arbeidsperiode.avsluttet': 'Periode: {fra} - {til}',
     'arbeidsperiode.pågående': 'Periode: {fra} - pågående',
 
-    'fileUploadErrors.part1': 'Det har dessverre skjedd en feil under opplasting av følgende vedlegg:',
-    'formikValidationErrorSummary.tittel': 'Her har det skjedd en feil',
+    'apiValidationError.tittel': 'Her har det skjedd en feil',
 
     'NAV_YTELSE.dagpenger': 'Dagpenger',
     'NAV_YTELSE.foreldrepenger': 'Foreldrepenger',
@@ -660,7 +630,6 @@ export const appMessagesNb = {
         'Du har ikke tilgang til denne siden. Dersom du er under 18 år, må en av foreldrene dine eller en foresatt skrive under på søknaden sammen med deg. Du må derfor fylle ut søknaden på papir og sende den i posten.',
     'page.ikkeTilgang.lastNed': 'Her kan du laste ned papirsøknaden',
 
-    'vedleggsliste.fjernKnapp': 'Fjern vedlegg',
     'vedleggsliste.ingenLegeerklæringLastetOpp': 'Ingen legeerklæring er lastet opp',
     'dokumenter.advarsel.totalstørrelse.1':
         'Du har totalt lastet opp mer enn grensen på 24 Mb. Det betyr at du må fjerne noe av det du har lastet opp. Hvis det betyr at du ikke får plass til alt du ønsker å sende nå, kan du ',

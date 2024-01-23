@@ -8,8 +8,8 @@ import {
     EnsureCorrectSøknadRouteErrorType,
     useEnsureCorrectSøknadRoute,
 } from '@navikt/sif-common-soknad-ds/src/hooks/useEnsureCorrectSøknadRoute';
-import StartPåNyttDialog from '@navikt/sif-common-soknad-ds/src/modules/start-på-nytt-dialog/StartPåNyttDialog';
 import { appSentryLogger } from '@utils';
+import StartPåNyttDialog from '../components/start-på-nytt-dialog/StartPåNyttDialog';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
 import { useResetSøknad } from '../hooks/useResetSøknad';

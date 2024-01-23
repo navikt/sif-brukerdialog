@@ -1,9 +1,9 @@
 import { HGrid } from '@navikt/ds-react';
-import dayjs from 'dayjs';
 import { useIntl } from 'react-intl';
-import { browserEnv } from '../../utils/env';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import dayjs from 'dayjs';
 import { MellomlagringEndring, MellomlagringPSB } from '../../types/Mellomlagring';
-import intlHelper from '../../utils/intlUtils';
+import { browserEnv } from '../../utils/env';
 import MellomlagringLinkPanel from './MellomlagringLinkPanel';
 
 interface Props {

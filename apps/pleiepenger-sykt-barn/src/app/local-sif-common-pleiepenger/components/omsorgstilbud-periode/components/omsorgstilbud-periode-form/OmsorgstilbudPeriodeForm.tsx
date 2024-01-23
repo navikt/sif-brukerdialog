@@ -46,7 +46,7 @@ const FormComponents = getTypedFormComponents<FormFields, FormValues, Validation
 
 const OmsorgstilbudPeriodeForm: React.FC<OmsorgstilbudPeriodeFormProps> = ({ periode, onSubmit, onCancel }) => {
     const intl = useIntl();
-    const { intlText } = getOmsorgstilbudPeriodeIntl(intl);
+    const { text } = getOmsorgstilbudPeriodeIntl(intl);
 
     const onValidSubmit = (values: Partial<FormValues>) => {
         const fom = datepickerUtils.getDateFromDateString(values.fom);
@@ -76,16 +76,16 @@ const OmsorgstilbudPeriodeForm: React.FC<OmsorgstilbudPeriodeFormProps> = ({ per
                         onCancel={onCancel}
                         formErrorHandler={getIntlFormErrorHandler(intl, 'omsorgstilbudPeriodeForm.validation')}
                         includeValidationSummary={true}
-                        submitButtonLabel={intlText('omsorgstilbudPeriodeForm.submitButtonLabel')}
-                        cancelButtonLabel={intlText('omsorgstilbudPeriodeForm.cancelButtonLabel')}>
+                        submitButtonLabel={text('omsorgstilbudPeriodeForm.submitButtonLabel')}
+                        cancelButtonLabel={text('omsorgstilbudPeriodeForm.cancelButtonLabel')}>
                         <div style={{ maxWidth: '24rem' }}>
                             <FormComponents.DateRangePicker
-                                legend={intlText('omsorgstilbudPeriodeForm.periode.legend')}
+                                legend={text('omsorgstilbudPeriodeForm.periode.legend')}
                                 disableWeekends={true}
                                 minDate={periode.from}
                                 maxDate={periode.to}
                                 fromInputProps={{
-                                    label: intlText('omsorgstilbudPeriodeForm.fraOgMed.label'),
+                                    label: text('omsorgstilbudPeriodeForm.fraOgMed.label'),
                                     name: FormFields.fom,
                                     defaultMonth: periode.from,
                                     validate: getDateRangeValidator({
@@ -98,7 +98,7 @@ const OmsorgstilbudPeriodeForm: React.FC<OmsorgstilbudPeriodeFormProps> = ({ per
                                     }).validateFromDate,
                                 }}
                                 toInputProps={{
-                                    label: intlText('omsorgstilbudPeriodeForm.tilOgMed.label'),
+                                    label: text('omsorgstilbudPeriodeForm.tilOgMed.label'),
                                     name: FormFields.tom,
                                     defaultMonth: from || periode.from,
                                     validate: getDateRangeValidator({
@@ -115,7 +115,7 @@ const OmsorgstilbudPeriodeForm: React.FC<OmsorgstilbudPeriodeFormProps> = ({ per
 
                         <FormBlock>
                             <FormComponents.InputGroup
-                                legend={intlText('omsorgstilbudPeriodeForm.tidFasteDager.label')}
+                                legend={text('omsorgstilbudPeriodeForm.tidFasteDager.label')}
                                 validate={() => {
                                     const error = validateOmsorgstilbudFasteDager(tidFasteDager);
                                     return error

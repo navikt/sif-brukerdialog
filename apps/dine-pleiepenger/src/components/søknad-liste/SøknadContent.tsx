@@ -2,11 +2,11 @@ import { Box, Heading, Link } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { File } from '@navikt/ds-icons';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { Arbeidsgiver } from '../../types/Arbeidsgiver';
 import { Dokument } from '../../types/Document';
 import { Organisasjon } from '../../types/Organisasjon';
 import { Søknad, Søknadstype } from '../../types/Søknad';
-import intlHelper from '../../utils/intlUtils';
 import { browserEnv } from '../../utils/env';
 
 interface Props {

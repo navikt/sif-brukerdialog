@@ -1,5 +1,11 @@
 # @navikt/sif-app-register
 
+## 0.0.6
+
+### Patch Changes
+
+- 100f013: Dependabotfix - vite
+
 ## 0.0.5
 
 ### Patch Changes

@@ -8,11 +8,11 @@ import {
     ISODurationToDecimalDuration,
     ISODurationToDuration,
 } from '@navikt/sif-common-utils';
-import { formatTimerOgMinutter } from '../../../local-sif-common-pleiepenger/components/timer-og-minutter/TimerOgMinutter';
 import { ArbeidIPeriodeType } from '../../../types/ArbeidIPeriodeType';
 import { RedusertArbeidstidType } from '../../../types/RedusertArbeidstidType';
 import { ArbeidsforholdApiData, ArbeidsukeTimerApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import { getArbeidsukeInfoIPeriode } from '../../../utils/arbeidsukeInfoUtils';
+import { formatTimerOgMinutter } from '../../../utils/formatTimerOgMinutter';
 
 interface Props {
     periode: DateRange;
