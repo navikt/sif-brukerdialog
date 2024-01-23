@@ -98,6 +98,9 @@ const FosterbarnStep = () => {
                                     <Block margin="l">
                                         <FormattedMessage id="step.fosterbarn.counsellorPanel.avsnitt.2" />
                                     </Block>
+                                    <Block margin="l">
+                                        <FormattedMessage id="step.fosterbarn.counsellorPanel.avsnitt.3" />
+                                    </Block>
                                 </SifGuidePanel>
 
                                 <FormBlock>
