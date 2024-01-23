@@ -209,6 +209,7 @@ const FraværStep: React.FC = () => {
                                                             minDateForFravær={minDateForFravær}
                                                             maxDateForFravær={maxDateForFravær}
                                                             årstall={årstall}
+                                                            arbeidsgiverNavn={forhold.navn}
                                                         />
                                                     </FormSection>
                                                 </FormBlock>

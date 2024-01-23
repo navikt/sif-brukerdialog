@@ -121,13 +121,13 @@ export const appMessages: MessageFileFormat = {
         'validation.arbeidsforhold.hvorLengeJobbet.noValue':
             'Du må svare på hvor lenge du vært i jobb hos {arbeidsgivernavn}.',
         'validation.arbeidsforhold.harPerioderMedFravær.yesOrNoIsUnanswered':
-            'Du må svare på om du har hatt hele dager med fravær fra jobb.',
+            'Du må svare på om du har hatt hele dager med fravær fra jobb hos {arbeidsgivernavn}.',
         'validation.arbeidsforhold.harDagerMedDelvisFravær.yesOrNoIsUnanswered':
-            'Du må svare på om du har hatt dager med delvis fravær fra jobb.',
+            'Du må svare på om du har hatt dager med delvis fravær fra jobb hos {arbeidsgivernavn}.',
         'validation.arbeidsforhold.fraværPerioder.listIsEmpty':
-            'Du har svart at du har hele dager med fravær, så du må legge inn hvilke dager det gjelder.',
+            'Du har svart at du har hele dager med fravær hos {arbeidsgivernavn}, så du må legge inn hvilke dager det gjelder.',
         'validation.arbeidsforhold.fraværDager.listIsEmpty':
-            'Du har svart du har dager med delvis fravær, så du må legge inn hvilke dager det gjelder.',
+            'Du har svart du har dager med delvis fravær hos {arbeidsgivernavn}, så du må legge inn hvilke dager det gjelder.',
         'validation.perioderHarVærtIUtlandet.yesOrNoIsUnanswered':
             'Du må svare på om du har vært i utlandet noen av dagene du søker omsorgspenger for.',
         'validation.perioderUtenlandsopphold.listIsEmpty':

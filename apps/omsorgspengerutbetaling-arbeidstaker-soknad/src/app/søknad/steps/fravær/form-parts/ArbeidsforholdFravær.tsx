@@ -32,6 +32,7 @@ export const minimumHarPeriodeEllerDelerAvDagYes = (
 
 interface Props {
     fravær: Fravær;
+    arbeidsgiverNavn: string;
     parentFieldName: string;
     minDateForFravær: Date;
     maxDateForFravær: Date;
@@ -40,6 +41,7 @@ interface Props {
 
 const ArbeidsforholdFravær: React.FC<Props> = ({
     fravær,
+    arbeidsgiverNavn,
     parentFieldName,
     maxDateForFravær,
     minDateForFravær,
@@ -77,6 +79,7 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
                             return {
                                 key: AppFieldValidationErrors.arbeidsforhold_harPerioderMedFravær_yesOrNoIsUnanswered,
                                 keepKeyUnaltered: true,
+                                values: { arbeidsgivernavn: arbeidsgiverNavn },
                             };
                         }
                         return error;
@@ -93,7 +96,7 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
                         periodeDescription={tidsromBegrensningInfo}
                         minDate={minDateForFravær}
                         maxDate={maxDateForFravær}
-                        validate={getFraværPerioderValidator({ fraværDager, årstall })}
+                        validate={getFraværPerioderValidator({ fraværDager, arbeidsgiverNavn, årstall })}
                         labels={{
                             addLabel: intlHelper(intl, 'step.fravær.heledager.perioderModal.label'),
                             modalTitle: intlHelper(intl, 'step.fravær.heledager.perioderModal.title'),
@@ -121,6 +124,7 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
                             return {
                                 key: AppFieldValidationErrors.arbeidsforhold_harDagerMedDelvisFravær_yesOrNoIsUnanswered,
                                 keepKeyUnaltered: true,
+                                values: { arbeidsgivernavn: arbeidsgiverNavn },
                             };
                         }
                         return error;
@@ -138,7 +142,7 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
                             dagDescription={tidsromBegrensningInfo}
                             minDate={minDateForFravær}
                             maxDate={maxDateForFravær}
-                            validate={getFraværDagerValidator({ fraværPerioder, årstall })}
+                            validate={getFraværDagerValidator({ fraværPerioder, arbeidsgiverNavn, årstall })}
                             labels={{
                                 addLabel: intlHelper(intl, 'step.fravær.delvisdag.dagModal.label'),
                                 modalTitle: intlHelper(intl, 'step.fravær.delvisdag.dagModal.title'),

@@ -25,7 +25,15 @@ export enum AppFieldValidationErrors {
 }
 
 export const getFraværPerioderValidator =
-    ({ fraværDager, årstall }: { fraværDager: FraværDag[]; årstall?: number }) =>
+    ({
+        fraværDager,
+        arbeidsgiverNavn,
+        årstall,
+    }: {
+        fraværDager: FraværDag[];
+        arbeidsgiverNavn: string;
+        årstall?: number;
+    }) =>
     (fraværPerioder: FraværPeriode[]) => {
         return validateAll<ValidationError>([
             () =>
@@ -33,6 +41,7 @@ export const getFraværPerioderValidator =
                     ? {
                           key: AppFieldValidationErrors.arbeidsforhold_fraværPerioder_listIsEmpty,
                           keepKeyUnaltered: true,
+                          values: { arbeidsgivernavn: arbeidsgiverNavn },
                       }
                     : undefined,
             () =>
@@ -47,7 +56,15 @@ export const getFraværPerioderValidator =
     };
 
 export const getFraværDagerValidator =
-    ({ fraværPerioder, årstall }: { fraværPerioder: FraværPeriode[]; årstall?: number }) =>
+    ({
+        fraværPerioder,
+        arbeidsgiverNavn,
+        årstall,
+    }: {
+        fraværPerioder: FraværPeriode[];
+        arbeidsgiverNavn: string;
+        årstall?: number;
+    }) =>
     (fraværDager: FraværDag[]) => {
         return validateAll<ValidationError>([
             () =>
@@ -55,6 +72,7 @@ export const getFraværDagerValidator =
                     ? {
                           key: AppFieldValidationErrors.arbeidsforhold_fraværDager_listIsEmpty,
                           keepKeyUnaltered: true,
+                          values: { arbeidsgivernavn: arbeidsgiverNavn },
                       }
                     : undefined,
 
