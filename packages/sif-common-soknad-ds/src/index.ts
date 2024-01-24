@@ -9,7 +9,7 @@ export { default as QuestionVisibilityBlock } from './modules/question-visibilit
 export { default as SoknadApplication } from './setup/SoknadApplication';
 export { default as SoknadApplicationCommonRoutes } from './setup/SoknadApplicationCommonRoutes';
 export { default as SoknadErrorMessages } from './components/soknad-error-messages/SoknadErrorMessages';
-export { soknadMessages, SoknadMessagesType } from './i18n/soknad.messages';
+export { soknadMessages, type SoknadMessagesType } from './i18n/soknad.messages';
 export { default as soknadStepUtils } from './modules/soknad-step/soknadStepUtils';
 export { default as Step } from './modules/soknad-step/step/Step';
 export { default as SummaryBlock } from './components/summary-block/SummaryBlock';
