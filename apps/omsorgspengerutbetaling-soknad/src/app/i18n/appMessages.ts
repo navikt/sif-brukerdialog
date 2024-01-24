@@ -2,13 +2,6 @@ import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageF
 
 export const appMessages: MessageFileFormat = {
     nb: {
-        Ja: 'Ja',
-        Nei: 'Nei',
-        VetIkke: 'Jeg er usikker',
-
-        'locale.nb': 'Bokmål - norsk',
-        'locale.nn': 'Nynorsk - norsk',
-
         mandag: 'mandag',
         tirsdag: 'tirsdag',
         onsdag: 'onsdag',
@@ -33,22 +26,9 @@ export const appMessages: MessageFileFormat = {
         'page.form.ubesvarteSpørsmålInfo': 'For å komme videre, må du svare på alle spørsmålene ovenfor',
 
         'gotoApplicationLink.lenketekst': 'Gå til den digitale søknaden',
-        'backlink.label': 'Tilbake',
-
-        'hjelpetekst.skjul': 'Lukk hjelpetekst',
-        'hjelpetekst.vis': 'Vis hjelpetekst',
-
-        timer: '{timer, plural, one {# time} other {# timer}}',
-        minutter: '{minutter, plural, one {# minutt} other {# minutter}}',
-        timerOgMinutter:
-            '{timer, plural, one {# time} other {# timer}} og {minutter, plural, one {# minutt} other {# minutter}}',
-        dager: '{dager, plural, one {# dag} other {# dager}}',
 
         'timeInput.hours': 'Timer',
         'timeInput.minutes': 'Minutter',
-
-        'fileUploadErrors.part1': 'Det har dessverre skjedd en feil under opplasting av følgende vedlegg:',
-        'formikValidationErrorSummary.tittel': 'Du må rette opp i følgende feil:',
 
         'welcomingPage.sidetittel': 'Søknad om utbetaling av omsorgspenger',
         'welcomingPage.begynnsøknad': 'Gå til søknaden',
@@ -79,7 +59,6 @@ export const appMessages: MessageFileFormat = {
         'step.legeerklæring.uploadBtn': 'Last opp legeerklæring',
         'step.legeerklæring.nextButtonLabel': 'Fortsett',
 
-        'vedleggsliste.fjernKnapp': 'Fjern vedlegg',
         'vedleggsliste.ingenLegeerklæringLastetOpp': 'Ingen vedlegg er lastet opp',
         'vedleggsliste.ingenSamværsavtaleLastetOpp': 'Ingen vedlegg er lastet opp',
 

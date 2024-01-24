@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { failure, pending, success } from '@devexperts/remote-data-ts';
 import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
-import LoadWrapper from '@navikt/sif-common-core-ds/src/components/load-wrapper/LoadWrapper';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { isUserLoggedOut } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { v4 as uuid } from 'uuid';
@@ -27,6 +26,7 @@ import SoknadRouter from './SoknadRouter';
 import { getFirstStep, getSoknadStepsConfig, StepID } from './soknadStepsConfig';
 import soknadTempStorage, { isStorageDataValid } from './soknadTempStorage';
 import { YtelseKey } from '@navikt/sif-common-core-ds/src/types/Ytelser';
+import { LoadingPage } from '@navikt/sif-common-soknad-ds';
 
 interface Props {
     søker: Person;
@@ -197,75 +197,71 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
         navigateToWelcomePage(søknadstype);
     };
 
+    if (initializing) {
+        return <LoadingPage />;
+    }
     return (
-        <LoadWrapper
-            isLoading={initializing}
-            contentRenderer={(): React.ReactNode => {
-                return (
-                    <SoknadFormComponents.FormikWrapper
-                        initialValues={initialFormData}
-                        onSubmit={() => null}
-                        renderForm={({ values, setValues }) => {
-                            const navigateToNextStepFromStep = async (stepID: StepID) => {
-                                const soknadStepsConfig = getSoknadStepsConfig(søknadstype);
-                                const stepToPersist = soknadStepsConfig[stepID].nextStep;
-                                if (stepToPersist && soknadId) {
-                                    try {
-                                        await soknadTempStorage.update(
-                                            soknadId,
-                                            values,
-                                            stepToPersist,
-                                            {
-                                                søker,
-                                            },
-                                            søknadstype,
-                                        );
-                                    } catch (error) {
-                                        if (isUserLoggedOut(error)) {
-                                            await logUserLoggedOut('ved mellomlagring');
-                                            navigateToLoginPage(søknadstype);
-                                        }
-                                    }
-                                }
-                                const step = soknadStepsConfig[stepID];
-                                setTimeout(() => {
-                                    if (step.nextStep) {
-                                        navigate(step.nextStepRoute || step.nextStep);
-                                    }
-                                });
-                            };
-                            return (
-                                <SoknadContextProvider
-                                    value={{
-                                        soknadId,
-                                        soknadStepsConfig: getSoknadStepsConfig(søknadstype),
-                                        sendSoknadStatus,
-                                        resetSendSøknadStatus: () => setSendSoknadStatus(initialSendSoknadState),
-                                        resetSoknad: abortSoknad,
-                                        continueSoknadLater: soknadId
-                                            ? (stepId) => continueSoknadLater(soknadId, stepId, values)
-                                            : undefined,
-                                        startSoknad: () => {
-                                            setValues({ ...values, harForståttRettigheterOgPlikter: true });
-                                            startSoknad();
-                                        },
-                                        sendSoknad: (values) => triggerSend(values),
-                                        gotoNextStepFromStep: (stepID: StepID) => {
-                                            navigateToNextStepFromStep(stepID);
-                                        },
-                                    }}>
-                                    <SoknadRouter
-                                        søker={søker}
-                                        søknadstype={søknadstype}
-                                        soknadId={soknadId}
-                                        onKvitteringUnmount={() => {
-                                            handleOnKvitteringUnmount();
-                                        }}
-                                    />
-                                </SoknadContextProvider>
+        <SoknadFormComponents.FormikWrapper
+            initialValues={initialFormData}
+            onSubmit={() => null}
+            renderForm={({ values, setValues }) => {
+                const navigateToNextStepFromStep = async (stepID: StepID) => {
+                    const soknadStepsConfig = getSoknadStepsConfig(søknadstype);
+                    const stepToPersist = soknadStepsConfig[stepID].nextStep;
+                    if (stepToPersist && soknadId) {
+                        try {
+                            await soknadTempStorage.update(
+                                soknadId,
+                                values,
+                                stepToPersist,
+                                {
+                                    søker,
+                                },
+                                søknadstype,
                             );
-                        }}
-                    />
+                        } catch (error) {
+                            if (isUserLoggedOut(error)) {
+                                await logUserLoggedOut('ved mellomlagring');
+                                navigateToLoginPage(søknadstype);
+                            }
+                        }
+                    }
+                    const step = soknadStepsConfig[stepID];
+                    setTimeout(() => {
+                        if (step.nextStep) {
+                            navigate(step.nextStepRoute || step.nextStep);
+                        }
+                    });
+                };
+                return (
+                    <SoknadContextProvider
+                        value={{
+                            soknadId,
+                            soknadStepsConfig: getSoknadStepsConfig(søknadstype),
+                            sendSoknadStatus,
+                            resetSendSøknadStatus: () => setSendSoknadStatus(initialSendSoknadState),
+                            resetSoknad: abortSoknad,
+                            continueSoknadLater: soknadId
+                                ? (stepId) => continueSoknadLater(soknadId, stepId, values)
+                                : undefined,
+                            startSoknad: () => {
+                                setValues({ ...values, harForståttRettigheterOgPlikter: true });
+                                startSoknad();
+                            },
+                            sendSoknad: (values) => triggerSend(values),
+                            gotoNextStepFromStep: (stepID: StepID) => {
+                                navigateToNextStepFromStep(stepID);
+                            },
+                        }}>
+                        <SoknadRouter
+                            søker={søker}
+                            søknadstype={søknadstype}
+                            soknadId={soknadId}
+                            onKvitteringUnmount={() => {
+                                handleOnKvitteringUnmount();
+                            }}
+                        />
+                    </SoknadContextProvider>
                 );
             }}
         />

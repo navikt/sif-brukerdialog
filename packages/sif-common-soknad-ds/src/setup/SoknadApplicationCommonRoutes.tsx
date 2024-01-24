@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import ErrorPage from '../pages/ErrorPage';
+import ErrorPage from '../pages/error-page/ErrorPage';
 import SoknadErrorMessages from '../components/soknad-error-messages/SoknadErrorMessages';
 
 export enum GlobalSoknadApplicationRoutes {

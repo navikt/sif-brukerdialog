@@ -1,6 +1,5 @@
 import { useIntl } from 'react-intl';
 import { useParams } from 'react-router-dom';
-import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { ErrorPage, LoadingPage, SoknadErrorMessages } from '@navikt/sif-common-soknad-ds';
 import useSoknadEssentials from '../hooks/useSoknadEssentials';
@@ -46,7 +45,7 @@ const SoknadRemoteDataFetcher = (): JSX.Element => {
     const { status } = initialData;
 
     if (status === 'loading') {
-        return <LoadingSpinner size="3xlarge" style="block" />;
+        return <LoadingPage />;
     }
 
     if (status === 'error') {

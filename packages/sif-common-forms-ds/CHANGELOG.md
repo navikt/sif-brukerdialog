@@ -1,5 +1,44 @@
 # @navikt/sif-common-forms-ds
 
+## 8.17.8
+
+### Patch Changes
+
+- 7a66141: Pakkeoppdateringer
+  - jsdom major
+  - patch og minor
+- 100f013: Dependabotfix - vite
+
+## 8.17.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor og patch
+
+## 8.17.6
+
+### Patch Changes
+
+- Feilretting i ds-pakker
+
+## 8.17.5
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch og minor
+
+## 8.17.4
+
+### Patch Changes
+
+- de82059: Minor/patch pakkeoppdateringer
+
+## 8.17.3
+
+### Patch Changes
+
+- Minor og patch pakkeoppdateringer
+
 ## 8.17.2
 
 ### Patch Changes

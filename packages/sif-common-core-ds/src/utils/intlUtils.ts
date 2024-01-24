@@ -8,10 +8,10 @@ const intlHelper = (
 
 export function typedIntlHelper<Keys extends string>(intl: IntlShape) {
     return {
-        intlText: (id: Keys, values?: any): string => {
+        text: (id: Keys, values?: any): string => {
             return intl.formatMessage({ id }, values);
         },
-        intlHtml: (id: Keys, values?: any): React.ReactNode => {
+        html: (id: Keys, values?: any): React.ReactNode => {
             return intl.formatMessage({ id }, values);
         },
     };

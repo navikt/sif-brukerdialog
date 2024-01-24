@@ -22,7 +22,7 @@ const ApiValidationSummary: React.FunctionComponent<Props> = ({ errors, søknadS
     }
     return (
         <FormBlock>
-            <ErrorSummary heading={intlHelper(intl, 'formikValidationErrorSummary.tittel')}>
+            <ErrorSummary heading={intlHelper(intl, 'apiValidationError.tittel')}>
                 {errors.map((error) => {
                     const stepTexts = soknadStepUtils.getStepTexts(intl, søknadStepConfig[error.stepId]);
                     return (

@@ -1,5 +1,123 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.7.18
+
+### Patch Changes
+
+- Bugfix - rekkefølge på import gjorde at applikasjon.navn ble overskrevet med generell verdi.
+
+## 3.7.17
+
+### Patch Changes
+
+- 7a66141: Pakkeoppdateringer
+  - jsdom major
+  - patch og minor
+- 100f013: Dependabotfix - vite
+- Updated dependencies [7a66141]
+- Updated dependencies [100f013]
+  - @navikt/sif-common-formik-ds@1.7.8
+  - @navikt/sif-common-soknad-ds@10.13.8
+  - @navikt/sif-common-forms-ds@8.17.8
+  - @navikt/sif-common-core-ds@9.14.2
+  - @navikt/sif-common-sentry@0.25.13
+  - @navikt/appstatus-react-ds@2.17.17
+  - @navikt/sif-app-register@0.0.6
+  - @navikt/sif-common-amplitude@2.24.13
+  - @navikt/sif-common-hooks@0.1.5
+  - @navikt/sif-common-utils@3.43.16
+
+## 3.7.16
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor og patch
+- Updated dependencies
+  - @navikt/sif-common-formik-ds@1.7.7
+  - @navikt/sif-common-soknad-ds@10.13.7
+  - @navikt/sif-common-forms-ds@8.17.7
+  - @navikt/appstatus-react-ds@2.17.16
+  - @navikt/sif-common-core-ds@9.14.1
+  - @navikt/sif-common-utils@3.43.15
+  - @navikt/sif-common-amplitude@2.24.12
+
+## 3.7.15
+
+### Patch Changes
+
+- 75fe136: - Flytte DurationText-komponent til sif-common-ui.
+  - Flytte alt inline tekst til intol i sif-common-ui
+  - Lage støtte for nynorsk i sif-common-ui
+  - Oppdaterte berørte applikasjoner som brukte DurationText
+- Updated dependencies [75fe136]
+  - @navikt/sif-common-core-ds@9.14.0
+  - @navikt/sif-common-utils@3.43.14
+  - @navikt/sif-common-forms-ds@8.17.6
+  - @navikt/sif-common-soknad-ds@10.13.6
+
+## 3.7.14
+
+### Patch Changes
+
+- Feilretting i ds-pakker
+- Updated dependencies
+  - @navikt/sif-common-formik-ds@1.7.6
+  - @navikt/sif-common-soknad-ds@10.13.6
+  - @navikt/sif-common-forms-ds@8.17.6
+  - @navikt/appstatus-react-ds@2.17.15
+  - @navikt/sif-common-core-ds@9.13.6
+
+## 3.7.13
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch og minor
+- Updated dependencies
+  - @navikt/sif-common-amplitude@2.24.12
+  - @navikt/sif-common-formik-ds@1.7.5
+  - @navikt/sif-common-soknad-ds@10.13.5
+  - @navikt/sif-common-forms-ds@8.17.5
+  - @navikt/appstatus-react-ds@2.17.14
+  - @navikt/sif-common-core-ds@9.13.5
+  - @navikt/sif-common-sentry@0.25.12
+  - @navikt/sif-common-utils@3.43.13
+
+## 3.7.12
+
+### Patch Changes
+
+- de82059: Minor/patch pakkeoppdateringer
+- Updated dependencies [de82059]
+  - @navikt/sif-common-amplitude@2.24.11
+  - @navikt/sif-common-formik-ds@1.7.4
+  - @navikt/sif-common-soknad-ds@10.13.4
+  - @navikt/sif-common-forms-ds@8.17.4
+  - @navikt/appstatus-react-ds@2.17.13
+  - @navikt/sif-common-core-ds@9.13.4
+  - @navikt/sif-common-sentry@0.25.11
+  - @navikt/sif-common-utils@3.43.12
+
+## 3.7.11
+
+### Patch Changes
+
+- 598dd8c: Korrigere feil layout/tekst i modal for å legge til periode og enkeltdag med omsorgstilbud
+
+## 3.7.10
+
+### Patch Changes
+
+- Minor og patch pakkeoppdateringer
+- Updated dependencies
+  - @navikt/sif-common-amplitude@2.24.10
+  - @navikt/sif-common-formik-ds@1.7.3
+  - @navikt/sif-common-soknad-ds@10.13.3
+  - @navikt/sif-common-forms-ds@8.17.3
+  - @navikt/appstatus-react-ds@2.17.12
+  - @navikt/sif-common-core-ds@9.13.3
+  - @navikt/sif-common-sentry@0.25.10
+  - @navikt/sif-common-utils@3.43.11
+
 ## 3.7.9
 
 ### Patch Changes

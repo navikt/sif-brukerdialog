@@ -1,17 +1,20 @@
-import { allCommonMessages } from '@navikt/sif-common-core-ds/src/i18n/allCommonMessages';
+import { commonMessages } from '@navikt/sif-common-core-ds/src/i18n/common.messages';
+import { uiMessages } from '@navikt/sif-common-ui';
 import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
 import bostedUtlandMessages from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/bostedUtlandMessages';
 import opptjeningUtlandMessages from '@navikt/sif-common-forms-ds/src/forms/opptjening-utland/opptjeningUtlandMessages';
 import utenlandskNæringMessages from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring/utenlandskNæringMessages';
 import utenlandsoppholdMessages from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/utenlandsoppholdMessages';
 import virksomhetMessages from '@navikt/sif-common-forms-ds/src/forms/virksomhet/virksomhetMessages';
-import soknadIntlMessages from '@navikt/sif-common-soknad-ds/src/i18n/soknadIntlMessages';
-import { sifCommonPleiepengerMessages } from '../local-sif-common-pleiepenger/i18n';
+import { soknadMessages } from '@navikt/sif-common-soknad-ds';
+import { calendarGridMessages } from '../components/calendar-grid/calendarGridMessages';
+import { dagerMedTidMessages } from '../components/dager-med-tid-liste/dagerMedTidMessages';
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 import { personalOpplysningerMessages } from '../pages/velkommen/personalopplysninger/personalopplysninger.messages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { arbeidssituasjonMessages } from '../søknad/steps/arbeidssituasjon/arbeidssituasjonMessages';
 import { arbeidstidMessages } from '../søknad/steps/arbeidstid/arbeidstidMessages';
+import { arbeidstidPeriodeMessages } from '../søknad/steps/arbeidstid/arbeidstidPeriodeMessages';
 import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerklæringMessages';
 import { medlemskapMessages } from '../søknad/steps/medlemskap/medlemskapMessages';
 import { opplysningerOmPleietrengendeMessages } from '../søknad/steps/opplysninger-om-pleietrengende/opplysningerOmPleietrengendeMessages';
@@ -21,8 +24,9 @@ import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validate
 import { appMessages } from './appMessages';
 
 const bokmålstekster = {
-    ...allCommonMessages.nb,
-    ...soknadIntlMessages.nb,
+    ...commonMessages.nb,
+    ...uiMessages.nb,
+    ...soknadMessages.nb,
     ...personalOpplysningerMessages.nb,
     ...velkommenPageMessages.nb,
     ...opplysningerOmPleietrengendeMessages.nb,
@@ -39,7 +43,9 @@ const bokmålstekster = {
     ...oppsummeringMessages.nb,
     ...kvitteringMessages.nb,
     ...validateApiDataMessages.nb,
-    ...sifCommonPleiepengerMessages.nb,
+    ...arbeidstidPeriodeMessages.nb,
+    ...calendarGridMessages.nb,
+    ...dagerMedTidMessages.nb,
     ...appMessages.nb,
 };
 

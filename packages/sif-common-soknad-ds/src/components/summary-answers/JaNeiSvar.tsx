@@ -1,11 +1,12 @@
-import { FormattedMessage } from 'react-intl';
+import { useSoknadIntl } from '../../hooks/useSoknadIntl';
 
 interface Props {
     harSvartJa?: boolean;
 }
 
 const JaNeiSvar = ({ harSvartJa }: Props) => {
-    return <FormattedMessage id={harSvartJa === true ? 'Ja' : 'Nei'} tagName="span" />;
+    const { text } = useSoknadIntl();
+    return harSvartJa ? text('scs.jaNeiSvar.Ja') : text('scs.jaNeiSvar.Nei');
 };
 
 export default JaNeiSvar;

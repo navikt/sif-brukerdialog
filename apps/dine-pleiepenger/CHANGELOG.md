@@ -1,5 +1,72 @@
 # @navikt/dine-pleiepenger
 
+## 0.5.8
+
+### Patch Changes
+
+- 7a66141: Pakkeoppdateringer
+  - jsdom major
+  - patch og minor
+- 100f013: Dependabotfix - vite
+- Updated dependencies [7a66141]
+- Updated dependencies [100f013]
+  - @navikt/sif-common-core-ds@9.14.2
+  - @navikt/sif-common-sentry@0.25.13
+  - @navikt/appstatus-react-ds@2.17.17
+  - @navikt/sif-common-utils@3.43.16
+
+## 0.5.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor og patch
+- Updated dependencies
+  - @navikt/appstatus-react-ds@2.17.16
+  - @navikt/sif-common-core-ds@9.14.1
+  - @navikt/sif-common-utils@3.43.15
+
+## 0.5.6
+
+### Patch Changes
+
+- Feilretting i ds-pakker
+- Updated dependencies
+  - @navikt/appstatus-react-ds@2.17.15
+  - @navikt/sif-common-core-ds@9.13.6
+
+## 0.5.5
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch og minor
+- Updated dependencies
+  - @navikt/appstatus-react-ds@2.17.14
+  - @navikt/sif-common-core-ds@9.13.5
+  - @navikt/sif-common-sentry@0.25.12
+  - @navikt/sif-common-utils@3.43.13
+
+## 0.5.4
+
+### Patch Changes
+
+- de82059: Minor/patch pakkeoppdateringer
+- Updated dependencies [de82059]
+  - @navikt/appstatus-react-ds@2.17.13
+  - @navikt/sif-common-core-ds@9.13.4
+  - @navikt/sif-common-sentry@0.25.11
+  - @navikt/sif-common-utils@3.43.12
+
+## 0.5.3
+
+### Patch Changes
+
+- Minor og patch pakkeoppdateringer
+- Updated dependencies
+  - @navikt/appstatus-react-ds@2.17.12
+  - @navikt/sif-common-core-ds@9.13.3
+  - @navikt/sif-common-sentry@0.25.10
+  - @navikt/sif-common-utils@3.43.11
+
 ## 0.5.2
 
 ### Patch Changes

@@ -1,21 +1,22 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import SummaryList from '@navikt/sif-common-soknad-ds/src/components/summary-list/SummaryList';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
-import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 import { UtenlandsoppholdÅrsak } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
+import SummaryList from '@navikt/sif-common-soknad-ds/src/components/summary-list/SummaryList';
+import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
+import classNames from 'classnames';
 import {
     BostedUtlandApiData,
-    PeriodeApiData,
     isUtenlandsoppholdUtenforEØSApiData,
+    PeriodeApiData,
     UtenlandsoppholdIPeriodenApiData,
 } from '../../types/søknad-api-data/SøknadApiData';
 
 const bem = bemUtils('utenlandsoppholdSummaryItem');
 
 export const renderFerieuttakIPeriodenSummary = (ferieuttak: PeriodeApiData): React.ReactNode => (
-    <div className={bem.classNames(bem.block, bem.modifier('no-details'))}>
+    <div className={classNames(bem.block, bem.modifier('no-details'))}>
         <span className={bem.element('dates')}>
             {prettifyDateExtended(ISODateToDate(ferieuttak.fraOgMed))} -{' '}
             {prettifyDateExtended(ISODateToDate(ferieuttak.tilOgMed))}

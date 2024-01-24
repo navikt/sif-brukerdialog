@@ -4,6 +4,7 @@ import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { FormikTimeInput, TestProps } from '@navikt/sif-common-formik-ds/src';
 import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { Weekday } from '@navikt/sif-common-utils';
+import classNames from 'classnames';
 import { getTidFasteUkerdagerInputMessages } from './tidFasteUkerdagerInputMessages';
 import './tidFasteUkedagerInput.less';
 
@@ -49,7 +50,7 @@ const TidFasteUkedagerInput = ({
     const hasHiddenDays = disabledDays !== undefined && disabledDays.length > 0 && hideDisabledDays;
     return (
         <Block margin="l">
-            <div className={bem.classNames(bem.block, bem.modifierConditional('withHiddenDays', hasHiddenDays))}>
+            <div className={classNames(bem.block, bem.modifierConditional('withHiddenDays', hasHiddenDays))}>
                 {renderWeekdayTimeInput(Weekday.monday, txt.Mandager, txt.mandag)}
                 {renderWeekdayTimeInput(Weekday.tuesday, txt.Tirsdager, txt.tirsdag)}
                 {renderWeekdayTimeInput(Weekday.wednesday, txt.Onsdager, txt.onsdag)}

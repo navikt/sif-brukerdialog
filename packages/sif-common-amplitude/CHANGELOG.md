@@ -1,5 +1,29 @@
 # @navikt/sif-common-amplitude
 
+## 2.24.13
+
+### Patch Changes
+
+- 100f013: Dependabotfix - vite
+
+## 2.24.12
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch og minor
+
+## 2.24.11
+
+### Patch Changes
+
+- de82059: Minor/patch pakkeoppdateringer
+
+## 2.24.10
+
+### Patch Changes
+
+- Minor og patch pakkeoppdateringer
+
 ## 2.24.9
 
 ### Patch Changes

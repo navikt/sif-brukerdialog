@@ -14,14 +14,12 @@ export const appMessages: MessageFileFormat = {
         'steg.footer.avbryt': 'Avbryt og slett søknad',
         'steg.footer.fortsettSenere': 'Avslutt og fortsett senere',
 
-        'vedleggsliste.fjernKnapp': 'Fjern vedlegg',
         'vedleggsliste.ingenLegeerklæringLastetOpp': 'Ingen legeerklæring er lastet opp',
         'vedleggsliste.ingenBostedsavtaleLastetOpp': 'Ingen avtale er lastet opp',
 
         'dokumenter.advarsel.totalstørrelse.1':
             'Du har totalt lastet opp mer enn grensen på 24 Mb. Det betyr at du må fjerne noe av det du har lastet opp. Hvis det betyr at du ikke får plass til alt du ønsker å sende nå, kan du ',
         'dokumenter.advarsel.totalstørrelse.2': 'ettersende flere dokumenter.',
-        'fileUploadErrors.part1': 'Det har dessverre skjedd en feil under opplasting av følgende vedlegg:',
 
         'initialLoadError.pageTitle': 'Det oppstod en feil',
         'initialLoadError.text.1': 'Det oppstod en feil under oppstarten av søknaden. Vennligst prøv igjen senere.',

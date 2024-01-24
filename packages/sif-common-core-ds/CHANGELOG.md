@@ -1,5 +1,68 @@
 # @navikt/sif-common-core-ds
 
+## 9.14.2
+
+### Patch Changes
+
+- 7a66141: Pakkeoppdateringer
+  - jsdom major
+  - patch og minor
+- 100f013: Dependabotfix - vite
+- Updated dependencies [100f013]
+  - @navikt/sif-common-utils@3.43.16
+
+## 9.14.1
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor og patch
+- Updated dependencies
+  - @navikt/sif-common-utils@3.43.15
+
+## 9.14.0
+
+### Minor Changes
+
+- 75fe136: - Flytte DurationText-komponent til sif-common-ui.
+  - Flytte alt inline tekst til intol i sif-common-ui
+  - Lage støtte for nynorsk i sif-common-ui
+  - Oppdaterte berørte applikasjoner som brukte DurationText
+
+### Patch Changes
+
+- Updated dependencies [75fe136]
+  - @navikt/sif-common-utils@3.43.14
+
+## 9.13.6
+
+### Patch Changes
+
+- Feilretting i ds-pakker
+
+## 9.13.5
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch og minor
+- Updated dependencies
+  - @navikt/sif-common-utils@3.43.13
+
+## 9.13.4
+
+### Patch Changes
+
+- de82059: Minor/patch pakkeoppdateringer
+- Updated dependencies [de82059]
+  - @navikt/sif-common-utils@3.43.12
+
+## 9.13.3
+
+### Patch Changes
+
+- Minor og patch pakkeoppdateringer
+- Updated dependencies
+  - @navikt/sif-common-utils@3.43.11
+
 ## 9.13.2
 
 ### Patch Changes

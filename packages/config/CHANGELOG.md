@@ -1,5 +1,29 @@
 # config
 
+## 0.9.12
+
+### Patch Changes
+
+- 100f013: Dependabotfix - vite
+
+## 0.9.11
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor og patch
+
+## 0.9.10
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch og minor
+
+## 0.9.9
+
+### Patch Changes
+
+- Minor og patch pakkeoppdateringer
+
 ## 0.9.8
 
 ### Patch Changes

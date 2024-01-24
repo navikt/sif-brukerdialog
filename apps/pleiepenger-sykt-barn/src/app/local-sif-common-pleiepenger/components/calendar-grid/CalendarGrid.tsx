@@ -9,14 +9,15 @@ import {
     getDatesInMonth,
     isDateInDates,
 } from '@navikt/sif-common-utils/';
+import classNames from 'classnames';
 import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import utc from 'dayjs/plugin/utc';
 import { groupBy } from 'lodash';
+import { useElementWidthIsWithinRange } from '../../hooks/useElementWidthIsWithinRange';
+import { hasIncreasedFontSize } from '../../utils';
 import CalendarGridDate from './CalendarGridDate';
 import './calendarGrid.less';
-import { hasIncreasedFontSize } from '../../utils';
-import { useElementWidthIsWithinRange } from '../../hooks/useElementWidthIsWithinRange';
 
 dayjs.extend(isSameOrBefore);
 dayjs.extend(utc);
@@ -106,7 +107,7 @@ const CalendarGrid: React.FunctionComponent<Props> = ({
 
         const ButtonOrDivComponent = renderAsButton ? 'button' : 'div';
         return dayjs(date).isSame(month.from, 'month') === false ? (
-            <div key={dateKey} aria-hidden={true} className={bem.classNames(bem.element('day', 'outsideMonth'))} />
+            <div key={dateKey} aria-hidden={true} className={classNames(bem.element('day', 'outsideMonth'))} />
         ) : (
             <ButtonOrDivComponent
                 key={dateKey}
@@ -123,7 +124,7 @@ const CalendarGrid: React.FunctionComponent<Props> = ({
                 data-testid={`calendar-grid-date-${dateToISODate(date)}`}
                 title={dateIsDisabled ? disabledDateInfo : undefined}
                 aria-hidden={dateIsDisabled}
-                className={bem.classNames(
+                className={classNames(
                     bem.child('day').block,
                     bem.child('day').modifierConditional('disabled', dateIsDisabled),
                     bem.child('day').modifierConditional('button', renderAsButton),
@@ -175,7 +176,7 @@ const CalendarGrid: React.FunctionComponent<Props> = ({
     return (
         <div
             ref={calendarGridRef}
-            className={bem.classNames(
+            className={classNames(
                 bem.block,
                 bem.modifierConditional('hideEmptyContentInListMode', hideEmptyContentInListMode),
                 bem.modifier(doRenderAsList ? 'list' : 'grid'),

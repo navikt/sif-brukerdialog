@@ -11,7 +11,7 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import getTimeValidator from '@navikt/sif-common-formik-ds/src/validation/getTimeValidator';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import DurationWeekdaysInput from '@navikt/sif-common-ui/src/duration-weekdays-input/DurationWeekdaysInput';
+import { DurationWeekdaysInput } from '@navikt/sif-common-ui';
 import {
     dateFormatter,
     durationToDecimalDuration,
@@ -24,7 +24,7 @@ import dayjs from 'dayjs';
 import { useFormikContext } from 'formik';
 import { useContext, useEffect, useState } from 'react';
 import { IntlShape, useIntl } from 'react-intl';
-import { getArbeidstidIPeriodeIntlValues } from '../../../../../local-sif-common-pleiepenger/arbeidstid/arbeidstid-periode-dialog/utils/arbeidstidPeriodeIntlValuesUtils';
+import { getArbeidstidIPeriodeIntlValues } from '../../arbeidstidPeriodeIntlValuesUtils';
 import { ArbeidstidFormFields, ArbeidstidFormValues } from '../../ArbeidstidStep';
 import { ArbeidIPeriode, ArbeidIPeriodeField, JobberIPeriodeSvar } from '../../ArbeidstidTypes';
 import { ArbeidsforholdType, ArbeidstidRegistrertLogProps } from '../types';

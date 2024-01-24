@@ -1,5 +1,44 @@
 # @navikt/sif-common-utils
 
+## 3.43.16
+
+### Patch Changes
+
+- 100f013: Dependabotfix - vite
+
+## 3.43.15
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor og patch
+
+## 3.43.14
+
+### Patch Changes
+
+- 75fe136: - Flytte DurationText-komponent til sif-common-ui.
+  - Flytte alt inline tekst til intol i sif-common-ui
+  - Lage støtte for nynorsk i sif-common-ui
+  - Oppdaterte berørte applikasjoner som brukte DurationText
+
+## 3.43.13
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch og minor
+
+## 3.43.12
+
+### Patch Changes
+
+- de82059: Minor/patch pakkeoppdateringer
+
+## 3.43.11
+
+### Patch Changes
+
+- Minor og patch pakkeoppdateringer
+
 ## 3.43.10
 
 ### Patch Changes

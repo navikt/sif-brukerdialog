@@ -1,17 +1,17 @@
 import React from 'react';
 import { IntlShape, useIntl } from 'react-intl';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { DateRange } from '@navikt/sif-common-formik-ds';
+import { SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
+import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
-import ArbeidIPeriodeSummaryItem from './ArbeidIPeriodenSummaryItem';
+import { ArbeidsgiverType } from '../../../../types/Arbeidsgiver';
 import {
     ArbeidsforholdApiData,
     ArbeidsgiverApiData,
     SøknadApiData,
 } from '../../../../types/søknadApiData/SøknadApiData';
-import { DateRange } from '@navikt/sif-common-formik-ds';
-import { ArbeidsgiverType } from '../../../../types/Arbeidsgiver';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
-import { SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
+import ArbeidIPeriodeSummaryItem from './ArbeidIPeriodenSummaryItem';
 
 interface Props {
     apiValues: SøknadApiData;

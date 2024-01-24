@@ -1,19 +1,19 @@
+import { commonMessages } from '@navikt/sif-common-core-ds/src/i18n/common.messages';
 import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
-import { allCommonMessages } from '@navikt/sif-common-core-ds/src/i18n/allCommonMessages';
-import soknadIntlMessages from '@navikt/sif-common-soknad-ds/src/i18n/soknadIntlMessages';
-import { omBarnetMessages } from '../søknad/steps/om-barnet/stegOmBarnetMessages';
+import { soknadMessages } from '@navikt/sif-common-soknad-ds';
+import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 import { personalOpplysningerMessages } from '../pages/velkommen/personalopplysninger/personalopplysninger.messages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
-import { appMessages } from './appMessages';
 import { deltBostedMessages } from '../søknad/steps/delt-bosted/deltBostedMessages';
 import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerklæringMessages';
+import { omBarnetMessages } from '../søknad/steps/om-barnet/stegOmBarnetMessages';
 import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
-import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
+import { appMessages } from './appMessages';
 
 const bokmålstekster = {
-    ...allCommonMessages.nb,
-    ...soknadIntlMessages.nb,
+    ...commonMessages.nb,
+    ...soknadMessages.nb,
     ...personalOpplysningerMessages.nb,
     ...velkommenPageMessages.nb,
     ...omBarnetMessages.nb,

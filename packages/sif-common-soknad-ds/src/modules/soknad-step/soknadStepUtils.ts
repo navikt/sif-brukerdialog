@@ -2,6 +2,7 @@ import { IntlShape } from 'react-intl';
 import { ProgressStep } from '@navikt/sif-common-core-ds/src/components/progress-stepper/ProgressStepper';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SoknadApplicationType, SoknadStepsConfig, StepConfig } from './soknadStepTypes';
+import { getSoknadIntl } from '../../i18n/soknad.messages';
 
 interface StepTexts {
     stepTitle: string;
@@ -11,11 +12,12 @@ interface StepTexts {
 }
 
 const getStepTexts = <Step>(intl: IntlShape, stepConfig: StepConfig<Step>): StepTexts => {
+    const { text } = getSoknadIntl(intl);
     return {
         stepTitle: intlHelper(intl, stepConfig.stepTitleIntlKey),
         nextButtonLabel: intlHelper(intl, stepConfig.nextButtonLabelIntlKey),
         previousStepTitle: stepConfig.previousStepTitleIntlKey
-            ? intlHelper(intl, 'sif-common-soknad.tilbakeLenke', {
+            ? text('scs.stepConfig.previousStepLinkText', {
                   title: intlHelper(intl, stepConfig.previousStepTitleIntlKey),
               })
             : undefined,

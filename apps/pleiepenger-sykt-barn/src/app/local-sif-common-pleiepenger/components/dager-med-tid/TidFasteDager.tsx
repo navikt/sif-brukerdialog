@@ -19,7 +19,7 @@ interface Props {
 const formatTime = (intl: IntlShape, time: Partial<Time>): string => {
     const timer = time.hours || '0';
     const minutter = time.minutes || '0';
-    return intlHelper(intl, 'timerOgMinutter', { timer, minutter });
+    return intlHelper(intl, 'psb.timerOgMinutter', { timer, minutter });
 };
 
 const TidFasteDager: React.FunctionComponent<Props> = ({ fasteDager }) => {

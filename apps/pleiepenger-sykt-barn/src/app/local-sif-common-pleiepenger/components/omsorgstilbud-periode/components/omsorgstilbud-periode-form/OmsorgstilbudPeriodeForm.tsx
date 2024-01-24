@@ -1,4 +1,3 @@
-import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
@@ -47,7 +46,7 @@ const FormComponents = getTypedFormComponents<FormFields, FormValues, Validation
 
 const OmsorgstilbudPeriodeForm: React.FC<OmsorgstilbudPeriodeFormProps> = ({ periode, onSubmit, onCancel }) => {
     const intl = useIntl();
-    const { intlText } = getOmsorgstilbudPeriodeIntl(intl);
+    const { text } = getOmsorgstilbudPeriodeIntl(intl);
 
     const onValidSubmit = (values: Partial<FormValues>) => {
         const fom = datepickerUtils.getDateFromDateString(values.fom);
@@ -65,95 +64,86 @@ const OmsorgstilbudPeriodeForm: React.FC<OmsorgstilbudPeriodeFormProps> = ({ per
     };
 
     return (
-        <div>
-            <Heading level="1" size="medium" className="dialogFormTitle">
-                {intlText('omsorgstilbudPeriodeForm.tittel')}
-            </Heading>
-            <FormBlock margin="xl">
-                <FormComponents.FormikWrapper
-                    initialValues={initialFormValues}
-                    onSubmit={onValidSubmit}
-                    renderForm={({ values: { fom, tom, tidFasteDager } }) => {
-                        const from = datepickerUtils.getDateFromDateString(fom);
-                        const to = datepickerUtils.getDateFromDateString(tom);
+        <FormComponents.FormikWrapper
+            initialValues={initialFormValues}
+            onSubmit={onValidSubmit}
+            renderForm={({ values: { fom, tom, tidFasteDager } }) => {
+                const from = datepickerUtils.getDateFromDateString(fom);
+                const to = datepickerUtils.getDateFromDateString(tom);
 
-                        return (
-                            <FormComponents.Form
-                                onCancel={onCancel}
-                                formErrorHandler={getIntlFormErrorHandler(intl, 'omsorgstilbudPeriodeForm.validation')}
-                                includeValidationSummary={true}
-                                submitButtonLabel={intlText('omsorgstilbudPeriodeForm.submitButtonLabel')}
-                                cancelButtonLabel={intlText('omsorgstilbudPeriodeForm.cancelButtonLabel')}>
-                                <div style={{ maxWidth: '20rem' }}>
-                                    <FormBlock>
-                                        <FormComponents.DateRangePicker
-                                            legend={intlText('omsorgstilbudPeriodeForm.periode.legend')}
-                                            disableWeekends={true}
-                                            minDate={periode.from}
-                                            maxDate={periode.to}
-                                            fromInputProps={{
-                                                label: intlText('omsorgstilbudPeriodeForm.fraOgMed.label'),
-                                                name: FormFields.fom,
-                                                defaultMonth: periode.from,
-                                                validate: getDateRangeValidator({
-                                                    required: true,
-                                                    onlyWeekdays: true,
-                                                    toDate: to,
-                                                    fromDate: from,
-                                                    min: periode.from,
-                                                    max: to || periode.to,
-                                                }).validateFromDate,
-                                            }}
-                                            toInputProps={{
-                                                label: intlText('omsorgstilbudPeriodeForm.tilOgMed.label'),
-                                                name: FormFields.tom,
-                                                defaultMonth: from || periode.from,
-                                                validate: getDateRangeValidator({
-                                                    required: true,
-                                                    onlyWeekdays: true,
-                                                    toDate: to,
-                                                    fromDate: from,
-                                                    min: from || periode.from,
-                                                    max: periode.to,
-                                                }).validateToDate,
-                                            }}
-                                        />
-                                    </FormBlock>
-                                </div>
+                return (
+                    <FormComponents.Form
+                        onCancel={onCancel}
+                        formErrorHandler={getIntlFormErrorHandler(intl, 'omsorgstilbudPeriodeForm.validation')}
+                        includeValidationSummary={true}
+                        submitButtonLabel={text('omsorgstilbudPeriodeForm.submitButtonLabel')}
+                        cancelButtonLabel={text('omsorgstilbudPeriodeForm.cancelButtonLabel')}>
+                        <div style={{ maxWidth: '24rem' }}>
+                            <FormComponents.DateRangePicker
+                                legend={text('omsorgstilbudPeriodeForm.periode.legend')}
+                                disableWeekends={true}
+                                minDate={periode.from}
+                                maxDate={periode.to}
+                                fromInputProps={{
+                                    label: text('omsorgstilbudPeriodeForm.fraOgMed.label'),
+                                    name: FormFields.fom,
+                                    defaultMonth: periode.from,
+                                    validate: getDateRangeValidator({
+                                        required: true,
+                                        onlyWeekdays: true,
+                                        toDate: to,
+                                        fromDate: from,
+                                        min: periode.from,
+                                        max: to || periode.to,
+                                    }).validateFromDate,
+                                }}
+                                toInputProps={{
+                                    label: text('omsorgstilbudPeriodeForm.tilOgMed.label'),
+                                    name: FormFields.tom,
+                                    defaultMonth: from || periode.from,
+                                    validate: getDateRangeValidator({
+                                        required: true,
+                                        onlyWeekdays: true,
+                                        toDate: to,
+                                        fromDate: from,
+                                        min: from || periode.from,
+                                        max: periode.to,
+                                    }).validateToDate,
+                                }}
+                            />
+                        </div>
 
-                                <FormBlock>
-                                    <FormComponents.InputGroup
-                                        legend={intlText('omsorgstilbudPeriodeForm.tidFasteDager.label')}
-                                        validate={() => {
-                                            const error = validateOmsorgstilbudFasteDager(tidFasteDager);
-                                            return error
-                                                ? {
-                                                      key: `${error}`,
-                                                  }
-                                                : undefined;
-                                        }}
-                                        name={FormFields['tidFasteDager.gruppe']}>
-                                        <TidFasteUkedagerInput
-                                            name={FormFields.tidFasteDager}
-                                            validateDag={(dag, value) => {
-                                                const error = getOmsorgstilbudFastDagValidator()(value);
-                                                return error
-                                                    ? {
-                                                          key: `omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.${error}`,
-                                                          keepKeyUnaltered: true,
-                                                          values: { dag },
-                                                      }
-                                                    : undefined;
-                                            }}
-                                        />
-                                    </FormComponents.InputGroup>
-                                </FormBlock>
-                            </FormComponents.Form>
-                        );
-                    }}
-                />
-            </FormBlock>
-        </div>
+                        <FormBlock>
+                            <FormComponents.InputGroup
+                                legend={text('omsorgstilbudPeriodeForm.tidFasteDager.label')}
+                                validate={() => {
+                                    const error = validateOmsorgstilbudFasteDager(tidFasteDager);
+                                    return error
+                                        ? {
+                                              key: `${error}`,
+                                          }
+                                        : undefined;
+                                }}
+                                name={FormFields['tidFasteDager.gruppe']}>
+                                <TidFasteUkedagerInput
+                                    name={FormFields.tidFasteDager}
+                                    validateDag={(dag, value) => {
+                                        const error = getOmsorgstilbudFastDagValidator()(value);
+                                        return error
+                                            ? {
+                                                  key: `omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.${error}`,
+                                                  keepKeyUnaltered: true,
+                                                  values: { dag },
+                                              }
+                                            : undefined;
+                                    }}
+                                />
+                            </FormComponents.InputGroup>
+                        </FormBlock>
+                    </FormComponents.Form>
+                );
+            }}
+        />
     );
 };
 
