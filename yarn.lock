@@ -3189,7 +3189,7 @@ __metadata:
     cookie-parser: 1.4.6
     cross-env: 7.0.3
     dayjs: 1.11.10
-    dotenv: 16.3.2
+    dotenv: 16.4.0
     express: 4.18.2
     express-rate-limit: 7.1.5
     formik: 2.4.5
@@ -3266,7 +3266,7 @@ __metadata:
     cypress-axe: 1.5.0
     cypress-file-upload: 5.0.8
     dayjs: 1.11.10
-    dotenv: 16.3.2
+    dotenv: 16.4.0
     express: 4.18.2
     express-rate-limit: 7.1.5
     flat: 6.0.1
@@ -3374,7 +3374,7 @@ __metadata:
     cookie-parser: 1.4.6
     cross-env: 7.0.3
     dayjs: 1.11.10
-    dotenv: 16.3.2
+    dotenv: 16.4.0
     express: 4.18.2
     formik: 2.4.5
     helmet: 7.1.0
@@ -3468,7 +3468,7 @@ __metadata:
     compression: 1.7.4
     cookie-parser: 1.4.6
     cross-env: 7.0.3
-    dotenv: 16.3.2
+    dotenv: 16.4.0
     express: 4.18.2
     express-rate-limit: 7.1.5
     helmet: 7.1.0
@@ -3539,7 +3539,7 @@ __metadata:
     cookie-parser: 1.4.6
     cross-env: 7.0.3
     dayjs: 1.11.10
-    dotenv: 16.3.2
+    dotenv: 16.4.0
     express: 4.18.2
     express-rate-limit: 7.1.5
     formik: 2.4.5
@@ -3603,7 +3603,7 @@ __metadata:
     cookie-parser: 1.4.6
     cross-env: 7.0.3
     dayjs: 1.11.10
-    dotenv: 16.3.2
+    dotenv: 16.4.0
     express: 4.18.2
     express-rate-limit: 7.1.5
     formik: 2.4.5
@@ -3673,7 +3673,7 @@ __metadata:
     cypress-axe: 1.5.0
     cypress-file-upload: 5.0.8
     dayjs: 1.11.10
-    dotenv: 16.3.2
+    dotenv: 16.4.0
     eslint-config-prettier: 9.1.0
     eslint-plugin-jsx-a11y: 6.8.0
     eslint-plugin-prettier: 5.1.3
@@ -4133,7 +4133,7 @@ __metadata:
     cross-env: 7.0.3
     date-fns: 3.3.0
     dayjs: 1.11.10
-    dotenv: 16.3.2
+    dotenv: 16.4.0
     express: 4.18.2
     express-rate-limit: 7.1.5
     formik: 2.4.5
@@ -11506,7 +11506,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:16.3.2, dotenv@npm:^16.0.0, dotenv@npm:^16.3.1":
+"dotenv@npm:16.4.0":
+  version: 16.4.0
+  resolution: "dotenv@npm:16.4.0"
+  checksum: f39dccc0eb25345675045d91762b8c92fc853402a8b25ba02723a7e27da58cefe0593771bbea97781df09300514eedb393b6c8f7bfa547fd9f7b69f0c965cbdb
+  languageName: node
+  linkType: hard
+
+"dotenv@npm:^16.0.0, dotenv@npm:^16.3.1":
   version: 16.3.2
   resolution: "dotenv@npm:16.3.2"
   checksum: 917b27eeb654b95846484009326b1c52af7a7c25f7b09e2939ed49de8f98cb9895dcc04f13a39cdb078d247985e21147311ccb5bfbf2fd151afb20fa8f96de15
