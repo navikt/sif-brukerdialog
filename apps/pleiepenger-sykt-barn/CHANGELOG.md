@@ -1,5 +1,12 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.7.19
+
+### Patch Changes
+
+- Updated dependencies [9dcabd8]
+  - @navikt/sif-common-forms-ds@8.18.0
+
 ## 3.7.18
 
 ### Patch Changes
