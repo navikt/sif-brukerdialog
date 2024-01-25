@@ -119,7 +119,6 @@ const SøknadRouter = () => {
                             pathname={pathname}
                             onReset={() => {
                                 slettMellomlagring().then(() => {
-                                    alert(2);
                                     relocateToWelcomePage();
                                 });
                             }}
