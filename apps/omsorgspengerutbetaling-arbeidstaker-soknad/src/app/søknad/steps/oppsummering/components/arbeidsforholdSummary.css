@@ -1,0 +1,11 @@
+.arbeidsforholdSummary {
+    margin-top: 0.75rem;
+}
+
+.arbeidsforholdSummary__org {
+    font-weight: bold;
+}
+
+.arbeidsforholdSummaryContent {
+    padding-left: 1rem;
+}

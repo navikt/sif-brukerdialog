@@ -101,6 +101,7 @@ const FraværFraStep = () => {
                             : [];
 
                     const utbetalingsdatoer = getUtbetalingsdatoerFraFravær(fraværPerioder, fraværDager);
+
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />

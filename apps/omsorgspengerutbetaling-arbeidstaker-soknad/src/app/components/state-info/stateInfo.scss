@@ -1,0 +1,12 @@
+.stateInfo {
+    display: flex;
+    justify-content: stretch;
+    font-size: 0.75rem;
+    background-color: white;
+    &__panel {
+        background-color: white;
+        max-width: 50%;
+        overflow: hidden;
+        margin: 1rem;
+    }
+}

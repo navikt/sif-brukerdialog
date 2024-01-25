@@ -1590,7 +1590,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.13.10, @babel/runtime@npm:^7.17.8, @babel/runtime@npm:^7.20.1, @babel/runtime@npm:^7.21.0, @babel/runtime@npm:^7.23.2, @babel/runtime@npm:^7.3.1, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.9.2":
+"@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.13.10, @babel/runtime@npm:^7.17.8, @babel/runtime@npm:^7.20.1, @babel/runtime@npm:^7.21.0, @babel/runtime@npm:^7.23.2, @babel/runtime@npm:^7.3.1, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.7.6, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.9.2":
   version: 7.23.8
   resolution: "@babel/runtime@npm:7.23.8"
   dependencies:
@@ -3429,6 +3429,70 @@ __metadata:
     tailwindcss: 3.4.1
     typescript: 5.3.3
     uuid: 9.0.1
+  languageName: unknown
+  linkType: soft
+
+"@navikt/omsorgspengerutbetaling-arbeidstaker-soknad@workspace:apps/omsorgspengerutbetaling-arbeidstaker-soknad":
+  version: 0.0.0-use.local
+  resolution: "@navikt/omsorgspengerutbetaling-arbeidstaker-soknad@workspace:apps/omsorgspengerutbetaling-arbeidstaker-soknad"
+  dependencies:
+    "@babel/core": 7.23.7
+    "@babel/preset-env": 7.23.8
+    "@babel/preset-react": 7.23.3
+    "@babel/preset-typescript": 7.23.3
+    "@navikt/ds-css": 5.15.1
+    "@navikt/ds-icons": 3.4.3
+    "@navikt/ds-react": 5.15.1
+    "@navikt/ds-tailwind": 5.15.1
+    "@navikt/sif-app-register": "workspace:*"
+    "@navikt/sif-common-amplitude": "workspace:*"
+    "@navikt/sif-common-core-ds": "workspace:*"
+    "@navikt/sif-common-formik-ds": "workspace:*"
+    "@navikt/sif-common-forms-ds": "workspace:*"
+    "@navikt/sif-common-hooks": "workspace:*"
+    "@navikt/sif-common-sentry": "workspace:*"
+    "@navikt/sif-common-soknad-ds": "workspace:*"
+    "@navikt/sif-common-utils": "workspace:*"
+    "@playwright/test": 1.41.1
+    "@testing-library/react": 14.1.2
+    "@types/node": 20.11.5
+    "@types/object-hash": 3.0.6
+    "@types/react": 18.2.48
+    "@types/react-dom": 18.2.18
+    "@types/react-router-dom": 5.3.3
+    "@vitejs/plugin-react": 4.2.1
+    axios: 1.6.5
+    babel-polyfill: 6.26.0
+    busboy: 1.6.0
+    compression: 1.7.4
+    cookie-parser: 1.4.6
+    cross-env: 7.0.3
+    dayjs: 1.11.10
+    dotenv: 16.3.2
+    express: 4.18.2
+    express-rate-limit: 7.1.5
+    helmet: 7.1.0
+    history: 5.3.0
+    http-proxy-middleware: 2.0.6
+    jose: 5.2.0
+    jsdom: 24.0.0
+    mustache-express: 1.3.2
+    object-hash: 3.0.0
+    openid-client: 5.6.4
+    postcss-nesting: 12.0.2
+    promise: 8.3.0
+    react: 18.2.0
+    react-dom: 18.2.0
+    react-fast-compare: 3.2.2
+    react-intl: 6.6.1
+    react-router-dom: 6.21.3
+    tailwindcss: 3.4.1
+    typescript: 5.3.3
+    ulid: ^2.3.0
+    uuid: ^9.0.1
+    vite: 5.0.12
+    vite-plugin-checker: 0.6.2
+    vitest: 1.2.1
   languageName: unknown
   linkType: soft
 
@@ -8811,6 +8875,13 @@ __metadata:
   version: 1.0.1
   resolution: "arrify@npm:1.0.1"
   checksum: 745075dd4a4624ff0225c331dacb99be501a515d39bcb7c84d24660314a6ec28e68131b137e6f7e16318170842ce97538cd298fc4cd6b2cc798e0b957f2747e7
+  languageName: node
+  linkType: hard
+
+"asap@npm:~2.0.6":
+  version: 2.0.6
+  resolution: "asap@npm:2.0.6"
+  checksum: b296c92c4b969e973260e47523207cd5769abd27c245a68c26dc7a0fe8053c55bb04360237cb51cab1df52be939da77150ace99ad331fb7fb13b3423ed73ff3d
   languageName: node
   linkType: hard
 
@@ -14312,6 +14383,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"history@npm:5.3.0":
+  version: 5.3.0
+  resolution: "history@npm:5.3.0"
+  dependencies:
+    "@babel/runtime": ^7.7.6
+  checksum: d73c35df49d19ac172f9547d30a21a26793e83f16a78386d99583b5bf1429cc980799fcf1827eb215d31816a6600684fba9686ce78104e23bd89ec239e7c726f
+  languageName: node
+  linkType: hard
+
 "hmac-drbg@npm:^1.0.1":
   version: 1.0.1
   resolution: "hmac-drbg@npm:1.0.1"
@@ -19559,6 +19639,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"promise@npm:8.3.0":
+  version: 8.3.0
+  resolution: "promise@npm:8.3.0"
+  dependencies:
+    asap: ~2.0.6
+  checksum: a69f0ddbddf78ffc529cffee7ad950d307347615970564b17988ce43fbe767af5c738a9439660b24a9a8cbea106c0dcbb6c2b20e23b7e96a8e89e5c2679e94d5
+  languageName: node
+  linkType: hard
+
 "prompts@npm:^2.0.1, prompts@npm:^2.4.0, prompts@npm:^2.4.1":
   version: 2.4.2
   resolution: "prompts@npm:2.4.2"
@@ -22968,6 +23057,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ulid@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "ulid@npm:2.3.0"
+  bin:
+    ulid: ./bin/cli.js
+  checksum: d6dbf253fdc189f60fe2829d934ee5447b3dab62d05449a2e0fe89670d77087dd6eba4f844a69f9ffdb01384ec6fd97bdd9be638fc67d593569a45e8969f1e69
+  languageName: node
+  linkType: hard
+
 "unbox-primitive@npm:^1.0.2":
   version: 1.0.2
   resolution: "unbox-primitive@npm:1.0.2"
@@ -23261,7 +23359,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uuid@npm:9.0.1, uuid@npm:^9.0.0":
+"uuid@npm:9.0.1, uuid@npm:^9.0.0, uuid@npm:^9.0.1":
   version: 9.0.1
   resolution: "uuid@npm:9.0.1"
   bin:
