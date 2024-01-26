@@ -1,8 +1,9 @@
 import React from 'react';
 import ActionLink from '@navikt/sif-common-core-ds/src/atoms/action-link/ActionLink';
 import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
-import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { Fosterbarn } from './types';
+import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
+import './fosterbarnList.scss';
 
 interface Props {
     fosterbarn: Fosterbarn[];
@@ -10,30 +11,25 @@ interface Props {
     onDelete?: (opphold: Fosterbarn) => void;
 }
 
+const bem = bemUtils('fosterbarnList');
+
 const FosterbarnList = ({ fosterbarn = [], onDelete, onEdit }: Props) => {
-    const getBarnTitleString = (barn: Fosterbarn) => {
-        return (
-            <>
-                <span style={{ paddingRight: '1rem' }}>{barn.fødselsnummer}</span>{' '}
-                {barn.fornavn && barn.etternavn && <span>{formatName(barn.fornavn, barn.etternavn)}</span>}
-            </>
-        );
-    };
     const renderFosterbarnLabel = (barn: Fosterbarn): React.ReactNode => {
         return (
-            <>
-                {onEdit && <ActionLink onClick={() => onEdit(barn)}>{getBarnTitleString(barn)}</ActionLink>}
-                {!onEdit && <span>{getBarnTitleString(barn)}</span>}
-            </>
+            <div className={bem.element('label')}>
+                <span>{barn.fødselsnummer}</span>
+                <span className={bem.element('navn')}>
+                    {onEdit && <ActionLink onClick={() => onEdit(barn)}>{barn.navn}</ActionLink>}
+                </span>
+                {!onEdit && <span>{barn.navn}</span>}
+            </div>
         );
     };
 
     return (
         <ItemList<Fosterbarn>
             getItemId={(barn) => barn.id}
-            getItemTitle={(barn) =>
-                barn.fornavn && barn.etternavn ? formatName(barn.fornavn, barn.etternavn) : barn.fødselsnummer
-            }
+            getItemTitle={(barn) => barn.navn}
             onDelete={onDelete}
             onEdit={onEdit}
             labelRenderer={renderFosterbarnLabel}

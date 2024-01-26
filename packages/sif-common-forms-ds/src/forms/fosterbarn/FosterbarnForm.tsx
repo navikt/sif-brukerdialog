@@ -1,11 +1,10 @@
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import Tiles from '@navikt/sif-common-core-ds/src/atoms/tiles/Tiles';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import {
     getFødselsnummerValidator,
-    getRequiredFieldValidator,
+    getStringValidator,
     ValidateFødselsnummerError,
     ValidateStringError,
 } from '@navikt/sif-common-formik-ds/src/validation';
@@ -16,8 +15,7 @@ import { Fosterbarn, isFosterbarn } from './types';
 
 interface FosterbarnFormText {
     form_fødselsnummer_label: string;
-    form_fornavn_label: string;
-    form_etternavn_label: string;
+    form_navn_label: string;
 }
 
 interface Props {
@@ -25,27 +23,22 @@ interface Props {
     onSubmit: (values: Fosterbarn) => void;
     onCancel: () => void;
     disallowedFødselsnumre?: string[];
-    includeName?: boolean;
     text?: FosterbarnFormText;
 }
 
 enum FosterbarnFormField {
     fødselsnummer = 'fødselsnummer',
-    fornavn = 'fornavn',
-    etternavn = 'etternavn',
+    navn = 'navn',
 }
 
 type FormValues = Partial<Fosterbarn>;
 
 export const FosterbarnFormErrors = {
-    [FosterbarnFormField.fornavn]: {
-        [ValidateStringError.stringHasNoValue]: 'fosterbarnForm.fornavn.stringHasNoValue',
-    },
-    [FosterbarnFormField.etternavn]: {
-        [ValidateStringError.stringHasNoValue]: 'fosterbarnForm.etternavn.stringHasNoValue',
+    [FosterbarnFormField.navn]: {
+        [ValidateStringError.stringHasNoValue]: 'fosterbarnForm.navn.stringHasNoValue',
     },
     [FosterbarnFormField.fødselsnummer]: {
-        [ValidateStringError.stringHasNoValue]: 'fosterbarnForm.fødselsnummer.stringHasNoValue',
+        [ValidateStringError.stringHasNoValue]: 'fosterbarnForm.fødselsnummer.fødselsnummerHasNoValue',
         [ValidateFødselsnummerError.fødselsnummerIsNotAllowed]:
             'fosterbarnForm.fødselsnummer.fødselsnummerIsNotAllowed',
         [ValidateFødselsnummerError.fødselsnummerIsNot11Chars]:
@@ -57,16 +50,15 @@ export const FosterbarnFormErrors = {
 const Form = getTypedFormComponents<FosterbarnFormField, FormValues, ValidationError>();
 
 const FosterbarnForm = ({
-    fosterbarn: initialValues = { fornavn: '', etternavn: '', fødselsnummer: '' },
+    fosterbarn: initialValues = { navn: '', fødselsnummer: '' },
     disallowedFødselsnumre,
     text,
-    includeName,
     onSubmit,
     onCancel,
 }: Props) => {
     const intl = useIntl();
     const onFormikSubmit = (formValues: FormValues) => {
-        if (isFosterbarn(formValues, includeName)) {
+        if (isFosterbarn(formValues)) {
             onSubmit({ ...formValues, id: initialValues.id || guid() });
         } else {
             throw new Error('Fosterbarn skjema: Formvalues is not a valid Fosterbarn on submit.');
@@ -74,8 +66,7 @@ const FosterbarnForm = ({
     };
 
     const defaultText: FosterbarnFormText = {
-        form_etternavn_label: intlHelper(intl, 'fosterbarn.form.etternavn_label'),
-        form_fornavn_label: intlHelper(intl, 'fosterbarn.form.fornavn_label'),
+        form_navn_label: intlHelper(intl, 'fosterbarn.form.navn_label'),
         form_fødselsnummer_label: intlHelper(intl, 'fosterbarn.form.fødselsnummer_label'),
     };
 
@@ -93,34 +84,23 @@ const FosterbarnForm = ({
                         submitButtonLabel="Ok"
                         showButtonArrows={false}>
                         <Form.TextField
-                            name={FosterbarnFormField.fødselsnummer}
-                            label={txt.form_fødselsnummer_label}
-                            validate={getFødselsnummerValidator({
-                                required: true,
-                                disallowedValues: disallowedFødselsnumre,
-                            })}
-                            inputMode="numeric"
-                            maxLength={11}
-                            style={{ width: '11rem' }}
+                            name={FosterbarnFormField.navn}
+                            label={txt.form_navn_label}
+                            validate={getStringValidator({ required: true })}
                         />
-                        {includeName && (
-                            <Tiles columns={2}>
-                                <FormBlock>
-                                    <Form.TextField
-                                        name={FosterbarnFormField.fornavn}
-                                        label={txt.form_fornavn_label}
-                                        validate={getRequiredFieldValidator()}
-                                    />
-                                </FormBlock>
-                                <FormBlock>
-                                    <Form.TextField
-                                        name={FosterbarnFormField.etternavn}
-                                        label={txt.form_etternavn_label}
-                                        validate={getRequiredFieldValidator()}
-                                    />
-                                </FormBlock>
-                            </Tiles>
-                        )}
+
+                        <FormBlock>
+                            <Form.TextField
+                                name={FosterbarnFormField.fødselsnummer}
+                                label={txt.form_fødselsnummer_label}
+                                validate={getFødselsnummerValidator({
+                                    required: true,
+                                    disallowedValues: disallowedFødselsnumre,
+                                })}
+                                inputMode="numeric"
+                                maxLength={11}
+                            />
+                        </FormBlock>
                     </Form.Form>
                 )}
             />

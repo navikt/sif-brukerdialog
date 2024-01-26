@@ -1,0 +1,29 @@
+{
+    "app": "omsorgspengerutbetaling-arbeidstaker-soknad",
+    "cluster": "dev-gcp",
+    "namespace": "dusseldorf",
+    "team": "dusseldorf",
+    "ingresses": ["https://omsorgspengerutbetaling-arbeidstaker-soknad.intern.dev.nav.no"],
+    "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
+    "livenessPath": "/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker/health/isAlive",
+    "readinessPath": "/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker/health/isReady",
+    "accessPolicyOutApps": ["k9-brukerdialog-api"],
+    "minReplicas": 1,
+    "maxReplicas": 1,
+    "env": {
+        "API_TOKENX_AUDIENCE": "dev-gcp:dusseldorf:k9-brukerdialog-api",
+        "API_URL": "http://k9-brukerdialog-api",
+        "APP_VERSION": "dev",
+        "APPSTATUS_PROJECT_ID": "ryujtq87",
+        "APPSTATUS_DATASET": "staging",
+        "DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://omsorgspengerutbetaling-arbeidstaker-soknad.intern.dev.nav.no/oauth2/logout&redirectToApp=true",
+        "FRONTEND_API_PATH": "/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker/api",
+        "FRONTEND_VEDLEGG_URL": "https://omsorgspengerutbetaling-arbeidstaker-soknad.intern.dev.nav.no/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker/api",
+        "LOGIN_URL": "https://omsorgspengerutbetaling-arbeidstaker-soknad.intern.dev.nav.no/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker/soknad",
+        "MINSIDE_URL": "https://www.intern.dev.nav.no/minside",
+        "NPM_CONFIG_CACHE": "/tmp",
+        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker",
+        "USE_AMPLITUDE": "true",
+        "VEDLEGG_API_URL": "https://k9-brukerdialog-api"
+    }
+}

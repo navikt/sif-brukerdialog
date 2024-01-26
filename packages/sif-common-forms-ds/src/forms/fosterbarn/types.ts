@@ -3,14 +3,13 @@ import { hasValue } from '@navikt/sif-common-formik-ds/src/validation/validation
 export interface Fosterbarn {
     id?: string;
     fødselsnummer: string;
-    fornavn?: string;
-    etternavn?: string;
+    navn: string;
 }
 
 export const isFosterbarn = (fosterbarn: Partial<Fosterbarn>, includeName?: boolean): fosterbarn is Fosterbarn => {
-    const { fornavn, etternavn, fødselsnummer } = fosterbarn;
+    const { navn, fødselsnummer } = fosterbarn;
     if (includeName) {
-        return hasValue(fornavn) && hasValue(etternavn) && hasValue(fødselsnummer);
+        return hasValue(navn) && hasValue(fødselsnummer);
     }
     return hasValue(fødselsnummer);
 };
