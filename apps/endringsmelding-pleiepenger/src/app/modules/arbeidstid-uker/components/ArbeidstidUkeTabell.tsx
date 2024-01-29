@@ -11,6 +11,7 @@ import ArbeidstidUkeInfo from './ArbeidstidUkeInfo';
 import UkeInfoIkon from './UkeInfo';
 import UkeTags from './UkeTags';
 import VelgArbeidsukeItem from './VelgArbeidsukeItem';
+import { useIntl } from 'react-intl';
 
 interface Props {
     uker: ArbeidstidUkerItem[];
@@ -30,6 +31,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
     renderCompactTable,
     renderEditButton,
 }) => {
+    const { locale } = useIntl();
     const {
         isItemSelected,
         setItemSelected,
@@ -144,7 +146,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                         <div>
                                             <div className="arbeidsukeTidsrom">
                                                 <span className="arbeidsukeTidsrom__tekst">
-                                                    {getDateRangeText(uke.periode)}
+                                                    {getDateRangeText(uke.periode, locale)}
                                                     {(uke.harFeriedager || uke.harFjernetFeriedager) && (
                                                         <Block margin="s">
                                                             <UkeTags

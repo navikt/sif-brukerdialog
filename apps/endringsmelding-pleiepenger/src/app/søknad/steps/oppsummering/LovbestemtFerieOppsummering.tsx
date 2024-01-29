@@ -5,12 +5,14 @@ import InfoList from '@navikt/sif-common-core-ds/src/components/lists/info-list/
 import { dateRangeToISODateRange, getDateRangeText } from '@navikt/sif-common-utils';
 import { LovbestemtFerieApiData } from '@types';
 import { getLovbestemtFerieOppsummeringInfo } from '@utils';
+import { useIntl } from 'react-intl';
 
 interface Props {
     lovbestemtFerie: LovbestemtFerieApiData;
 }
 
 const LovbestemtFerieOppsummering: React.FunctionComponent<Props> = ({ lovbestemtFerie }) => {
+    const { locale } = useIntl();
     const { perioderFjernet, perioderLagtTil } = getLovbestemtFerieOppsummeringInfo(lovbestemtFerie);
     return (
         <>
@@ -23,7 +25,10 @@ const LovbestemtFerieOppsummering: React.FunctionComponent<Props> = ({ lovbestem
                         {perioderLagtTil.map((periode) => (
                             <li key={dateRangeToISODateRange(periode)}>
                                 <div className="capsFirstChar">
-                                    {getDateRangeText(periode, { compact: true, includeDayName: true })}
+                                    {getDateRangeText(periode, locale, {
+                                        compact: true,
+                                        includeDayName: true,
+                                    })}
                                 </div>
                             </li>
                         ))}
@@ -39,7 +44,10 @@ const LovbestemtFerieOppsummering: React.FunctionComponent<Props> = ({ lovbestem
                         {perioderFjernet.map((periode) => (
                             <li key={dateRangeToISODateRange(periode)}>
                                 <div className="capsFirstChar">
-                                    {getDateRangeText(periode, { compact: true, includeDayName: true })}
+                                    {getDateRangeText(periode, locale, {
+                                        compact: true,
+                                        includeDayName: true,
+                                    })}
                                 </div>
                             </li>
                         ))}

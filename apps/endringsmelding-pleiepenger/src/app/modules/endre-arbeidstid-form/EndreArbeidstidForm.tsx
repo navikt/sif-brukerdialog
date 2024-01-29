@@ -148,7 +148,9 @@ const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = (
                                     : 'Endre jobb for flere uker'}
                             </Heading>
                             <Block margin="m">
-                                <Ingress as="div">{getUkerOgÅrBeskrivelse(arbeidsuker, lovbestemtFerie)}</Ingress>
+                                <Ingress as="div">
+                                    {getUkerOgÅrBeskrivelse(arbeidsuker, intl.locale, lovbestemtFerie)}
+                                </Ingress>
                             </Block>
                         </Block>
 
@@ -257,14 +259,18 @@ const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = (
 
 export default EndreArbeidstidForm;
 
-const getUkerOgÅrBeskrivelse = (arbeidsuker: Arbeidsuke[], lovbestemtFerie?: LovbestemtFerieSøknadsdata) => {
+const getUkerOgÅrBeskrivelse = (
+    arbeidsuker: Arbeidsuke[],
+    locale: string,
+    lovbestemtFerie?: LovbestemtFerieSøknadsdata,
+) => {
     if (arbeidsuker.length === 1) {
         const dagerMedFerie = lovbestemtFerie
             ? getFeriedagerIUke(lovbestemtFerie.feriedagerMeta.datoerMedFerie, arbeidsuker[0].periode, true)
             : [];
         return (
             <BodyShort as="div" className="capsFirstChar">
-                {getArbeidstidSpørsmålDescription(arbeidsuker[0])}
+                {getArbeidstidSpørsmålDescription(arbeidsuker[0], locale)}
                 {dagerMedFerie.length > 0 && (
                     <Block margin="m">
                         <UkeTags visDagNavn={true} dagerMedFerie={dagerMedFerie} />
