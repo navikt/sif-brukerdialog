@@ -4,8 +4,8 @@
     "version": "0.9.12",
     "private": true,
     "dependencies": {
-        "@typescript-eslint/eslint-plugin": "6.19.0",
-        "@typescript-eslint/parser": "6.19.0",
+        "@typescript-eslint/eslint-plugin": "6.19.1",
+        "@typescript-eslint/parser": "6.19.1",
         "autoprefixer": "10.4.17",
         "eslint": "8.56.0",
         "eslint-config-prettier": "9.1.0",
