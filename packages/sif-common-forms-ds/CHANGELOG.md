@@ -1,5 +1,17 @@
 # @navikt/sif-common-forms-ds
 
+## 8.18.1
+
+### Patch Changes
+
+- Mindre pakkeoppdateringer patch/minor + husky major
+
+## 8.18.0
+
+### Minor Changes
+
+- 9dcabd8: Endret fosterbarn form. Fornavn og Etternavn til navn
+
 ## 8.17.8
 
 ### Patch Changes

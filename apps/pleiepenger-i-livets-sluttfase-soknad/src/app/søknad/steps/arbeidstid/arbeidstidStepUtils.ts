@@ -77,8 +77,9 @@ export const getAnsattArbeidstidFormData = (
 
         Object.entries(arbeidsgivereArbeidssituasjonSøknadsdata).map(([key, value]) => {
             if (value.erAnsattISøknadsperiode) {
-                const tempArbeidIPeriode = tempAnsattArbeidstid?.find((an) => an.organisasjonsnummer === key)
-                    ?.arbeidIPeriode;
+                const tempArbeidIPeriode = tempAnsattArbeidstid?.find(
+                    (an) => an.organisasjonsnummer === key,
+                )?.arbeidIPeriode;
 
                 const arbeidIPeriode =
                     arbeidsgivereArbeidstidSøknadsdata && arbeidsgivereArbeidstidSøknadsdata.hasOwnProperty(key)
