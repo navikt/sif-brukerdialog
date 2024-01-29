@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.43.17
+
+### Patch Changes
+
+- Mindre pakkeoppdateringer patch/minor + husky major
+
 ## 3.43.16
 
 ### Patch Changes

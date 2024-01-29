@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.24.14
+
+### Patch Changes
+
+- Mindre pakkeoppdateringer patch/minor + husky major
+
 ## 2.24.13
 
 ### Patch Changes
