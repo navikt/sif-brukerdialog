@@ -25,7 +25,7 @@
         "@storybook/preset-create-react-app": "7.6.10",
         "@storybook/react": "7.6.10",
         "@storybook/testing-library": "0.2.2",
-        "chromatic": "10.3.1",
+        "chromatic": "10.6.1",
         "copyfiles": "2.4.1",
         "dayjs": "1.11.10",
         "intl": "1.2.5",
