@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 2.17.18
+
+### Patch Changes
+
+- Mindre pakkeoppdateringer patch/minor + husky major
+
 ## 2.17.17
 
 ### Patch Changes

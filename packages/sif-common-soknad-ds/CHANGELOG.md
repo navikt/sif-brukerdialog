@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.13.9
+
+### Patch Changes
+
+- Mindre pakkeoppdateringer patch/minor + husky major
+
 ## 10.13.8
 
 ### Patch Changes
