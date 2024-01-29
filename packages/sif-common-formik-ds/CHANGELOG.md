@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.7.9
+
+### Patch Changes
+
+- Mindre pakkeoppdateringer patch/minor + husky major
+
 ## 1.7.8
 
 ### Patch Changes

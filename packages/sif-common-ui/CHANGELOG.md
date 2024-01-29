@@ -1,5 +1,15 @@
 # @navikt/sif-common-ui
 
+## 0.6.3
+
+### Patch Changes
+
+- Mindre pakkeoppdateringer patch/minor + husky major
+- Updated dependencies
+  - @navikt/sif-common-formik-ds@1.7.9
+  - @navikt/sif-common-core-ds@9.14.3
+  - @navikt/sif-common-utils@3.43.17
+
 ## 0.6.2
 
 ### Patch Changes

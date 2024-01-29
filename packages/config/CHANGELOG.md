@@ -1,5 +1,11 @@
 # config
 
+## 0.9.13
+
+### Patch Changes
+
+- Mindre pakkeoppdateringer patch/minor + husky major
+
 ## 0.9.12
 
 ### Patch Changes

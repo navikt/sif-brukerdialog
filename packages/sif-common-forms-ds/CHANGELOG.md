@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 8.18.1
+
+### Patch Changes
+
+- Mindre pakkeoppdateringer patch/minor + husky major
+
 ## 8.18.0
 
 ### Minor Changes
