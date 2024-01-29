@@ -19,7 +19,15 @@ export const Default: Story = {
         frist: new Date(),
     },
 };
+
+export const UtenFristMedBehandlingstid: Story = {
+    name: 'Med 3 ukers behandlingstid',
+    args: {
+        ukerBehandlingstid: 3,
+    },
+};
+
 export const UtenFrist: Story = {
-    name: 'Uten frist',
+    name: 'Uten frist - default 8 uker behandlingstid',
     args: {},
 };

@@ -6,9 +6,10 @@ import { browserEnv } from '../../utils/env';
 
 interface Props {
     frist?: Date;
+    ukerBehandlingstid?: number;
 }
 
-const Svarfrist: React.FunctionComponent<Props> = ({ frist }) => {
+const Svarfrist: React.FunctionComponent<Props> = ({ frist, ukerBehandlingstid = 8 }) => {
     return (
         <Box>
             <Heading size="medium" level="2" className="text-deepblue-800" spacing={true}>
@@ -23,7 +24,9 @@ const Svarfrist: React.FunctionComponent<Props> = ({ frist }) => {
                         </span>
                     </p>
                 ) : (
-                    <p className="mb-2">Forventet behandlingstid er 8 uker fra vi fikk søknaden din.</p>
+                    <p className="mb-2">
+                        Forventet behandlingstid er {ukerBehandlingstid} uker fra vi fikk søknaden din.
+                    </p>
                 )}
 
                 <Link variant="neutral" href={browserEnv.NEXT_PUBLIC_SAKBEHANDLINGSTID_INFO_URL}>

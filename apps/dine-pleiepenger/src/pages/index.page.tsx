@@ -11,7 +11,7 @@ import HvaSkjer from '../components/hva-skjer/HvaSkjer';
 
 function DinePleiepengerPage(): ReactElement {
     const {
-        innsynsdata: { søknader, svarfrist },
+        innsynsdata: { søknader, svarfrist, behandlingstid },
     } = useInnsynsdataContext();
 
     return (
@@ -28,7 +28,10 @@ function DinePleiepengerPage(): ReactElement {
                         <DineSøknader søknader={søknader} />
                     </div>
                     <div className="md:mb-none shrink-0 md:w-72">
-                        <Svarfrist frist={søknader.length > 0 ? svarfrist : undefined} />
+                        <Svarfrist
+                            frist={søknader.length > 0 ? svarfrist : undefined}
+                            ukerBehandlingstid={behandlingstid ? behandlingstid.uker : undefined}
+                        />
                     </div>
                 </Box>
                 <Box>
