@@ -31,6 +31,7 @@ export const publicEnvSchema = z.object({
 
     /** Features */
     NEXT_PUBLIC_FEATURE_SVARFRIST: z.union([z.literal('on'), z.literal('off'), z.undefined()]),
+    NEXT_PUBLIC_FEATURE_BEHANDLINGSTID: z.union([z.literal('on'), z.literal('off'), z.undefined()]),
 });
 
 export type ServerEnv = z.infer<typeof serverEnvSchema>;
@@ -74,6 +75,7 @@ export const browserEnv = publicEnvSchema.parse({
     NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL: process.env.NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL,
     NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL: process.env.NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL,
     NEXT_PUBLIC_FEATURE_SVARFRIST: process.env.NEXT_PUBLIC_FEATURE_SVARFRIST,
+    NEXT_PUBLIC_FEATURE_BEHANDLINGSTID: process.env.NEXT_PUBLIC_FEATURE_BEHANDLINGSTID,
 } satisfies Record<keyof PublicEnv, string | undefined>);
 
 const getRawServerConfig = (): Partial<unknown> =>

@@ -38,6 +38,7 @@
         "NEXT_PUBLIC_ARBEIDSGIVER_PLEIEPENGER_URL": "https://www.nav.no/arbeidsgiver/pleiepenger-barn",
         "NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL": "https://person.dev.nav.no/mine-saker",
         "NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL": "https://tjenester.nav.no/utbetalingsoversikt",
-        "NEXT_PUBLIC_FEATURE_SVARFRIST": "off"
+        "NEXT_PUBLIC_FEATURE_SVARFRIST": "on",
+        "NEXT_PUBLIC_FEATURE_BEHANDLINGSTID": "on"
     }
 }

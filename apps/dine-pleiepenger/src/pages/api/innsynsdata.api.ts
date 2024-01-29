@@ -2,7 +2,13 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { createChildLogger } from '@navikt/next-logger';
 import axios, { HttpStatusCode } from 'axios';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
-import { fetchMellomlagringer, fetchSvarfrist, fetchSøker, fetchSøknader } from '../../server/apiService';
+import {
+    fetchBehandlingstid,
+    fetchMellomlagringer,
+    fetchSvarfrist,
+    fetchSøker,
+    fetchSøknader,
+} from '../../server/apiService';
 import { Innsynsdata } from '../../types/InnsynData';
 import { getXRequestId } from '../../utils/apiUtils';
 import { sortSøknadEtterOpprettetDato } from '../../utils/søknadUtils';
@@ -18,10 +24,11 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         const søker = await fetchSøker(req);
 
         /** Bruker har tilgang, hent resten av informasjonen */
-        const [søknader, mellomlagring, svarfrist] = await Promise.allSettled([
+        const [søknader, mellomlagring, svarfrist, behandlingstid] = await Promise.allSettled([
             fetchSøknader(req),
             fetchMellomlagringer(req),
-            Feature.HENT_SVARFRIST ? fetchSvarfrist(req) : Promise.resolve({ frist: undefined }),
+            Feature.HENT_SVARFRIST ? fetchSvarfrist(req) : Promise.resolve({ svarfrist: undefined }),
+            Feature.HENT_BEHANDLINGSTID ? fetchBehandlingstid(req) : Promise.resolve({ behandlingstid: undefined }),
         ]);
 
         if (søknader.status === 'rejected') {
@@ -34,7 +41,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             søker,
             søknader: søknader.status === 'fulfilled' ? søknader.value.sort(sortSøknadEtterOpprettetDato) : [],
             mellomlagring: mellomlagring.status === 'fulfilled' ? mellomlagring.value : {},
-            svarfrist: svarfrist.status === 'fulfilled' ? svarfrist.value.frist : undefined,
+            svarfrist: svarfrist.status === 'fulfilled' ? svarfrist.value.svarfrist : undefined,
+            behandlingstid: behandlingstid.status === 'fulfilled' ? behandlingstid.value.behandlingstid : undefined,
         };
         res.send(innsynsdata);
     } catch (err) {
