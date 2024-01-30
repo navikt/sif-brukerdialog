@@ -1,5 +1,12 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.14.22
+
+### Patch Changes
+
+- Updated dependencies [86d8f70]
+  - @navikt/sif-common-amplitude@2.24.15
+
 ## 2.14.21
 
 ### Patch Changes

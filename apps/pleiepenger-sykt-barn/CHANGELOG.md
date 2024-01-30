@@ -1,5 +1,13 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.7.22
+
+### Patch Changes
+
+- 86d8f70: Bytte til @amplitude/analytics-browser pakke. Tidligere brukt pakke; amplitude-js er ikke lenger i vedlikeholdt.
+- Updated dependencies [86d8f70]
+  - @navikt/sif-common-amplitude@2.24.15
+
 ## 3.7.21
 
 ### Patch Changes
