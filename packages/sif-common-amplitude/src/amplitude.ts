@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import amplitude from 'amplitude-js';
+import * as amplitude from '@amplitude/analytics-browser';
+
 import constate from 'constate';
 
 const MAX_AWAIT_TIME = 500;
@@ -9,8 +10,6 @@ export enum SIFCommonPageKey {
     'kvittering' = 'kvittering',
     'feilside' = 'feilside',
     'intro' = 'intro',
-    /** deprecated - erstattet av ikkeTilgang */
-    'ikkeMyndig' = 'ikkeMyndig',
     'ikkeTilgang' = 'ikkeTilgang',
     'ikkeTilgjengelig' = 'ikkeTilgjengelig',
 }
@@ -61,25 +60,28 @@ type EventProperties = {
     [key: string]: any;
 };
 
+export const initAmplitude = () => {
+    amplitude.init('default', undefined, {
+        serverUrl: 'https://amplitude.nav.no/collect-auto',
+        defaultTracking: false,
+        useBatch: false,
+        ingestionMetadata: {
+            sourceName: window.location.toString().split('?')[0].split('#')[0],
+        },
+    });
+};
+
 export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props) => {
     const { applicationKey, isActive = true, maxAwaitTime = MAX_AWAIT_TIME, logToConsoleOnly } = props;
 
     useEffect(() => {
-        const instance = amplitude.getInstance();
-        if (isActive && instance) {
-            instance.init('default', '', {
-                apiEndpoint: 'amplitude.nav.no/collect-auto',
-                saveEvents: false,
-                includeUtm: true,
-                includeReferrer: true,
-                platform: window.location.toString(),
-            });
+        if (isActive) {
+            initAmplitude();
         }
     }, [isActive]);
 
     async function logEvent(eventName: SIFCommonGeneralEvents | string, eventProperties?: EventProperties) {
-        const instance = amplitude.getInstance();
-        if (isActive && instance) {
+        if (isActive) {
             const timeoutPromise = new Promise((resolve) => setTimeout(() => resolve(null), maxAwaitTime));
             const logPromise = new Promise((resolve) => {
                 const eventProps = { ...eventProperties, app: applicationKey, applikasjon: applicationKey };
@@ -87,19 +89,12 @@ export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props)
                     // eslint-disable-next-line no-console
                     console.log({ eventName, eventProperties: eventProps });
                     resolve(true);
+                } else {
+                    amplitude.track(eventName, eventProps);
+                    amplitude.flush().promise.then((result) => resolve(result));
                 }
-                instance.logEvent(eventName, eventProps, (response: any) => {
-                    resolve(response);
-                });
             });
             return Promise.race([timeoutPromise, logPromise]);
-        }
-    }
-
-    function setUserProperties(properties: any) {
-        const instance = amplitude.getInstance();
-        if (isActive && instance) {
-            instance.setUserProperties(properties);
         }
     }
 
@@ -158,7 +153,6 @@ export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props)
     return {
         logEvent,
         logSidevisning,
-        setUserProperties,
         logSoknadStartet,
         logSoknadSent,
         logSoknadFailed,

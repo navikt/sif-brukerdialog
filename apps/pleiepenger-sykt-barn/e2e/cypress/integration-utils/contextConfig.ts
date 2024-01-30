@@ -48,5 +48,6 @@ export const contextConfig = (props?: ConfigProps) => {
             'postInnsending',
         );
         cy.intercept('*.api.sanity.io', {});
+        cy.intercept('*amplitude*', {});
     });
 };
