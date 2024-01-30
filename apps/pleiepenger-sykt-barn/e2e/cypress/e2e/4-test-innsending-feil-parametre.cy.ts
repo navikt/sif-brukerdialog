@@ -36,7 +36,7 @@ describe('Send inn søknad med feil parametre', () => {
 
     it('Vise feilmelding når det returneres 400 fra backend', () => {
         gotoStep('oppsummering');
-        cy.wait(3000);
+        cy.get('h1').contains('Oppsummering').should('exist');
         cy.injectAxe();
         cy.get('input[name="harBekreftetOpplysninger"]').click();
         cy.get('button').contains('Send inn søknaden').click();
