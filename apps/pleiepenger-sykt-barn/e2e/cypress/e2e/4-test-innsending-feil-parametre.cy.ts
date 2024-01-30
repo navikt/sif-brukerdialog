@@ -36,12 +36,14 @@ describe('Send inn søknad med feil parametre', () => {
 
     it('Vise feilmelding når det returneres 400 fra backend', () => {
         gotoStep('oppsummering');
+        cy.wait(500);
         cy.get('h1').contains('Oppsummering').should('exist');
         cy.injectAxe();
         cy.get('input[name="harBekreftetOpplysninger"]').click();
         cy.get('button').contains('Send inn søknaden').click();
-        expect(cy.contains('Oops, noe gikk galt')).exist;
+        cy.wait(500);
         cy.contains('frilans.misterHonorar kan ikke være null dersom frilans.type er HONORAR').should('exist');
+        expect(cy.contains('Oops, noe gikk galt')).exist;
         cy.checkA11y();
     });
 });
