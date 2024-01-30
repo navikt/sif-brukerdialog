@@ -3,7 +3,7 @@ import * as amplitude from '@amplitude/analytics-browser';
 
 import constate from 'constate';
 
-const MAX_AWAIT_TIME = 2000;
+const MAX_AWAIT_TIME = 500;
 
 export enum SIFCommonPageKey {
     'velkommen' = 'velkommen',
