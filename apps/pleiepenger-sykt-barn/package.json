@@ -12,7 +12,7 @@
         "build-storybook": "storybook build",
         "clean": "rm -rf node_modules .dist",
         "cypress-open": "cypress open --project $PWD/e2e",
-        "cypress-run": "cypress run --project $PWD/e2e --record",
+        "cypress-run": "cypress run --project $PWD/e2e",
         "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",
         "dev": "cross-env NODE_ENV=development node ./server.cjs",
         "start-express": "node ./server.cjs",
