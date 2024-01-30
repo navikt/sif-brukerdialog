@@ -89,9 +89,10 @@ export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props)
                     // eslint-disable-next-line no-console
                     console.log({ eventName, eventProperties: eventProps });
                     resolve(true);
+                } else {
+                    amplitude.track(eventName, eventProps);
+                    amplitude.flush().promise.then((result) => resolve(result));
                 }
-                amplitude.track(eventName, eventProps);
-                amplitude.flush().promise.then((result) => resolve(result));
             });
             return Promise.race([timeoutPromise, logPromise]);
         }
