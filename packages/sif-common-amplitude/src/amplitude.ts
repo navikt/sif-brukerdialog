@@ -79,16 +79,6 @@ export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props)
         if (isActive) {
             initAmplitude();
         }
-
-        // if (isActive && instance) {
-        //     instance.init('default', '', {
-        //         apiEndpoint: 'amplitude.nav.no/collect-auto',
-        //         saveEvents: false,
-        //         includeUtm: true,
-        //         includeReferrer: true,
-        //         platform: window.location.toString(),
-        //     });
-        // }
     }, [isActive, applicationKey]);
 
     async function logEvent(eventName: SIFCommonGeneralEvents | string, eventProperties?: EventProperties) {
