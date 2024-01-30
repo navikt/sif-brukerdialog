@@ -24,6 +24,7 @@ const envSettings = () => {
         USE_AMPLITUDE: '${process.env.USE_AMPLITUDE}',
         UTILGJENGELIG: '${process.env.UTILGJENGELIG}',
         VEDLEGG_API_URL: '${process.env.VEDLEGG_API_URL}',
+        CYPRESS_ENV: '${process.env.CYPRESS_ENV}',
     };`
         .trim()
         .replace(/ /g, '');
