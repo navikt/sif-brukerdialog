@@ -1,17 +1,15 @@
 import { useEffect } from 'react';
-import { init, track, flush } from '@amplitude/analytics-browser';
+import { init, logEvent as amplitudeLogEvent } from '@amplitude/analytics-browser';
 
 import constate from 'constate';
 
-const MAX_AWAIT_TIME = 500;
+const MAX_AWAIT_TIME = 1000;
 
 export enum SIFCommonPageKey {
     'velkommen' = 'velkommen',
     'kvittering' = 'kvittering',
     'feilside' = 'feilside',
     'intro' = 'intro',
-    /** deprecated - erstattet av ikkeTilgang */
-    'ikkeMyndig' = 'ikkeMyndig',
     'ikkeTilgang' = 'ikkeTilgang',
     'ikkeTilgjengelig' = 'ikkeTilgjengelig',
 }
@@ -92,8 +90,7 @@ export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props)
                     console.log({ eventName, eventProperties: eventProps });
                     resolve(true);
                 }
-                track(eventName, eventProps);
-                flush().promise.then(() => resolve(true));
+                amplitudeLogEvent(eventName, eventProps).promise.then(() => resolve(true));
             });
             return Promise.race([timeoutPromise, logPromise]);
         }
