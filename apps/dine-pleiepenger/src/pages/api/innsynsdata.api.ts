@@ -12,7 +12,7 @@ import {
 import { Innsynsdata } from '../../types/InnsynData';
 import { getXRequestId } from '../../utils/apiUtils';
 import { sortSøknadEtterOpprettetDato } from '../../utils/søknadUtils';
-import { Feature } from '../../utils/fatures';
+import { Feature } from '../../utils/features';
 
 export const innsynsdataFetcher = async (url: string): Promise<Innsynsdata> => axios.get(url).then((res) => res.data);
 

@@ -3281,6 +3281,8 @@ __metadata:
     "@navikt/nav-dekoratoren-moduler": 2.1.5
     "@navikt/next-auth-wonderwall": 1.5.0
     "@navikt/next-logger": 1.21.0
+    "@navikt/sif-app-register": "workspace: *"
+    "@navikt/sif-common-amplitude": "workspace: *"
     "@navikt/sif-common-core-ds": "workspace: *"
     "@navikt/sif-common-sentry": "workspace: *"
     "@navikt/sif-common-utils": "workspace: *"
@@ -3985,7 +3987,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-app-register@workspace:*, @navikt/sif-app-register@workspace:packages/sif-app-register":
+"@navikt/sif-app-register@workspace: *, @navikt/sif-app-register@workspace:*, @navikt/sif-app-register@workspace:packages/sif-app-register":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-app-register@workspace:packages/sif-app-register"
   dependencies:
@@ -4008,7 +4010,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-common-amplitude@workspace:*, @navikt/sif-common-amplitude@workspace:packages/sif-common-amplitude":
+"@navikt/sif-common-amplitude@workspace: *, @navikt/sif-common-amplitude@workspace:*, @navikt/sif-common-amplitude@workspace:packages/sif-common-amplitude":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-amplitude@workspace:packages/sif-common-amplitude"
   dependencies:
