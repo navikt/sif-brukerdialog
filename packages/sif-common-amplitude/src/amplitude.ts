@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { init, logEvent as amplitudeLogEvent } from '@amplitude/analytics-browser';
+import amplitude from '@amplitude/analytics-browser';
 
 import constate from 'constate';
 
-const MAX_AWAIT_TIME = 1000;
+const MAX_AWAIT_TIME = 2000;
 
 export enum SIFCommonPageKey {
     'velkommen' = 'velkommen',
@@ -61,7 +61,7 @@ type EventProperties = {
 };
 
 export const initAmplitude = () => {
-    init('default', undefined, {
+    amplitude.init('default', undefined, {
         serverUrl: 'https://amplitude.nav.no/collect-auto',
         defaultTracking: false,
         useBatch: false,
@@ -90,7 +90,8 @@ export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props)
                     console.log({ eventName, eventProperties: eventProps });
                     resolve(true);
                 }
-                amplitudeLogEvent(eventName, eventProps).promise.then(() => resolve(true));
+                amplitude.track(eventName, eventProps);
+                amplitude.flush().promise.then((result) => resolve(result));
             });
             return Promise.race([timeoutPromise, logPromise]);
         }
