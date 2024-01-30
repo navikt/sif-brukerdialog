@@ -32,7 +32,7 @@ const App = () => {
 
     return (
         <SifAppWrapper>
-            <AmplitudeProvider applicationKey={PleiepengerSyktBarnApp.key} logToConsoleOnly={isCypress}>
+            <AmplitudeProvider applicationKey={PleiepengerSyktBarnApp.key} isActive={!isCypress}>
                 <SoknadApplication
                     appName={PleiepengerSyktBarnApp.navn}
                     intlMessages={applicationIntlMessages}

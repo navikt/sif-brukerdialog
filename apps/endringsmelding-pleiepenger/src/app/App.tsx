@@ -42,10 +42,7 @@ function prepare() {
 const App = () => (
     <SifAppWrapper>
         <ErrorBoundary>
-            <AmplitudeProvider
-                applicationKey={EndringsmeldingPsbApp.key}
-                isActive={getEnvironmentVariable('USE_AMPLITUDE') === 'true'}
-                logToConsoleOnly={isCypress}>
+            <AmplitudeProvider applicationKey={EndringsmeldingPsbApp.key} isActive={!isCypress}>
                 <SoknadApplication
                     appName={EndringsmeldingPsbApp.navn}
                     intlMessages={applicationIntlMessages}
