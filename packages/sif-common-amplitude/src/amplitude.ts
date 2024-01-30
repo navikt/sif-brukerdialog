@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { init, track } from '@amplitude/analytics-browser';
+import { init, track, flush } from '@amplitude/analytics-browser';
 
 import constate from 'constate';
 
@@ -66,6 +66,7 @@ export const initAmplitude = () => {
     init('default', undefined, {
         serverUrl: 'https://amplitude.nav.no/collect-auto',
         defaultTracking: false,
+        useBatch: false,
         ingestionMetadata: {
             sourceName: window.location.toString().split('?')[0].split('#')[0],
         },
@@ -91,7 +92,8 @@ export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props)
                     console.log({ eventName, eventProperties: eventProps });
                     resolve(true);
                 }
-                track(eventName, eventProps).promise.then(() => resolve(true));
+                track(eventName, eventProps);
+                flush().promise.then(() => resolve(true));
             });
             return Promise.race([timeoutPromise, logPromise]);
         }
