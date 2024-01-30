@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import amplitude from 'amplitude-js';
+import { init, track } from '@amplitude/analytics-browser';
+
 import constate from 'constate';
 
 const MAX_AWAIT_TIME = 500;
@@ -61,25 +62,37 @@ type EventProperties = {
     [key: string]: any;
 };
 
+export const initAmplitude = () => {
+    init('default', undefined, {
+        serverUrl: 'https://amplitude.nav.no/collect-auto',
+        defaultTracking: false,
+        ingestionMetadata: {
+            sourceName: window.location.toString().split('?')[0].split('#')[0],
+        },
+    });
+};
+
 export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props) => {
     const { applicationKey, isActive = true, maxAwaitTime = MAX_AWAIT_TIME, logToConsoleOnly } = props;
 
     useEffect(() => {
-        const instance = amplitude.getInstance();
-        if (isActive && instance) {
-            instance.init('default', '', {
-                apiEndpoint: 'amplitude.nav.no/collect-auto',
-                saveEvents: false,
-                includeUtm: true,
-                includeReferrer: true,
-                platform: window.location.toString(),
-            });
+        if (isActive) {
+            initAmplitude();
         }
-    }, [isActive]);
+
+        // if (isActive && instance) {
+        //     instance.init('default', '', {
+        //         apiEndpoint: 'amplitude.nav.no/collect-auto',
+        //         saveEvents: false,
+        //         includeUtm: true,
+        //         includeReferrer: true,
+        //         platform: window.location.toString(),
+        //     });
+        // }
+    }, [isActive, applicationKey]);
 
     async function logEvent(eventName: SIFCommonGeneralEvents | string, eventProperties?: EventProperties) {
-        const instance = amplitude.getInstance();
-        if (isActive && instance) {
+        if (isActive) {
             const timeoutPromise = new Promise((resolve) => setTimeout(() => resolve(null), maxAwaitTime));
             const logPromise = new Promise((resolve) => {
                 const eventProps = { ...eventProperties, app: applicationKey, applikasjon: applicationKey };
@@ -88,18 +101,9 @@ export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props)
                     console.log({ eventName, eventProperties: eventProps });
                     resolve(true);
                 }
-                instance.logEvent(eventName, eventProps, (response: any) => {
-                    resolve(response);
-                });
+                track(eventName, eventProps).promise.then(() => resolve(true));
             });
             return Promise.race([timeoutPromise, logPromise]);
-        }
-    }
-
-    function setUserProperties(properties: any) {
-        const instance = amplitude.getInstance();
-        if (isActive && instance) {
-            instance.setUserProperties(properties);
         }
     }
 
@@ -158,7 +162,6 @@ export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props)
     return {
         logEvent,
         logSidevisning,
-        setUserProperties,
         logSoknadStartet,
         logSoknadSent,
         logSoknadFailed,
