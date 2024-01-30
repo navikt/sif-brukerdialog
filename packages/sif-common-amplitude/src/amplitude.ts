@@ -78,7 +78,7 @@ export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props)
         if (isActive) {
             initAmplitude();
         }
-    }, [isActive, applicationKey]);
+    }, [isActive]);
 
     async function logEvent(eventName: SIFCommonGeneralEvents | string, eventProperties?: EventProperties) {
         if (isActive) {
