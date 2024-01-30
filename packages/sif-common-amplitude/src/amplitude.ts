@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import amplitude from '@amplitude/analytics-browser';
+import * as amplitude from '@amplitude/analytics-browser';
 
 import constate from 'constate';
 
