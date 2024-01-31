@@ -1,16 +1,14 @@
 import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
+import { SummaryBlock, SummarySection, TextareaSvar } from '@navikt/sif-common-ui';
+import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils';
+import UploadedDocumentsList from '../../../components/fødselsattest-file-list/UploadedDocumentsList';
+import Sitat from '../../../components/sitat/Sitat';
 import { BarnRelasjon, RegistrerteBarn, ÅrsakManglerIdentitetsnummer } from '../../../types';
 import { SøknadApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
-import UploadedDocumentsList from '../../../components/fødselsattest-file-list/UploadedDocumentsList';
-import SummaryBlock from '@navikt/sif-common-soknad-ds/src/components/summary-block/SummaryBlock';
-import SummarySection from '@navikt/sif-common-soknad-ds/src/components/summary-section/SummarySection';
-import TextareaSummary from '@navikt/sif-common-soknad-ds/src/components/summary-answers/TextareaSvar';
-import Sitat from '../../../components/sitat/Sitat';
 
 interface Props {
     barn: RegistrerteBarn[];
@@ -102,7 +100,7 @@ const RelasjonTilBarnet = (intl: IntlShape, apiValues: SøknadApiData) => (
                     <FormattedMessage id="steg.oppsummering.relasjonTilBarnetBeskrivelse" />
                     <Sitat>
                         <div data-testid="oppsummering-barn-relasjon-annet-beskrivelse">
-                            <TextareaSummary text={apiValues.barnRelasjonBeskrivelse} />
+                            <TextareaSvar text={apiValues.barnRelasjonBeskrivelse} />
                         </div>
                     </Sitat>
                 </>

@@ -1,7 +1,7 @@
-import SummaryList from '@navikt/sif-common-soknad-ds/src/components/summary-list/SummaryList';
-import { ApiBarn } from '../../../types/søknadApiData/SøknadApiData';
 import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { SummaryList } from '@navikt/sif-common-ui';
+import { ApiBarn } from '../../../types/søknadApiData/SøknadApiData';
 
 interface Props {
     barn: ApiBarn[];

@@ -1,10 +1,10 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { UtenlandskNæringApi } from '../../../../types/søknadApiData/SøknadApiData';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { prettifyApiDate } from '@navikt/sif-common-soknad-ds/src/components/summary-answers/DatoSvar';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { SummaryBlock, SummaryList } from '@navikt/sif-common-soknad-ds';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { SummaryBlock, SummaryList } from '@navikt/sif-common-ui';
+import { prettifyApiDate } from '@navikt/sif-common-utils';
+import { UtenlandskNæringApi } from '../../../../types/søknadApiData/SøknadApiData';
 
 interface Props {
     utenlandskNæring: UtenlandskNæringApi[];

@@ -1,9 +1,5 @@
-export { default as DatoSvar } from './components/summary-answers/DatoSvar';
 export { default as ErrorPage } from './pages/error-page/ErrorPage';
 export { default as FormQuestion } from './components/form-question/FormQuestion';
-export { default as FødselsnummerSvar } from './components/summary-answers/FødselsnummerSvar';
-export { default as JaNeiSvar } from './components/summary-answers/JaNeiSvar';
-export { default as KronerSvar } from './components/summary-answers/KronerSvar';
 export { default as LoadingPage } from './pages/loading-page/LoadingPage';
 export { default as QuestionVisibilityBlock } from './modules/question-visibility/QuestionVisibilityBlock';
 export { default as SoknadApplication } from './setup/SoknadApplication';
@@ -12,11 +8,6 @@ export { default as SoknadErrorMessages } from './components/soknad-error-messag
 export { soknadMessages, type SoknadMessagesType } from './i18n/soknad.messages';
 export { default as soknadStepUtils } from './modules/soknad-step/soknadStepUtils';
 export { default as Step } from './modules/soknad-step/step/Step';
-export { default as SummaryBlock } from './components/summary-block/SummaryBlock';
-export { default as SummaryList } from './components/summary-list/SummaryList';
-export { default as SummarySection } from './components/summary-section/SummarySection';
-export { default as TallSvar } from './components/summary-answers/TallSvar';
-export { default as TextareaSvar } from './components/summary-answers/TextareaSvar';
 export { ensureBaseNameForReactRouter } from './utils/ensureBaseNameForReactRouter';
 export { GlobalSoknadApplicationRoutes } from './setup/SoknadApplicationCommonRoutes';
 export { QuestionVisibilityContext } from './modules/question-visibility/QuestionVisibilityContext';

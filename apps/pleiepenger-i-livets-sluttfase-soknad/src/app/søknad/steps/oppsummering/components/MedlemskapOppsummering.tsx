@@ -1,13 +1,10 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import SummaryList from '@navikt/sif-common-soknad-ds/src/components/summary-list/SummaryList';
-import { renderUtenlandsoppholdIPeriodenSummary } from './renderUtenlandsoppholdSummary';
-import JaNeiSvar from '@navikt/sif-common-soknad-ds/src/components/summary-answers/JaNeiSvar';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import SummaryBlock from '@navikt/sif-common-soknad-ds/src/components/summary-block/SummaryBlock';
-import { SummarySection } from '@navikt/sif-common-soknad-ds';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { JaNeiSvar, SummaryBlock, SummaryList, SummarySection } from '@navikt/sif-common-ui';
 import { MedlemskapApiData } from '../../../../types/søknadApiData/SøknadApiData';
+import { renderUtenlandsoppholdIPeriodenSummary } from './renderUtenlandsoppholdSummary';
 
 export interface Props {
     medlemskap: MedlemskapApiData;

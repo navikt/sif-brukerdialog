@@ -1,6 +1,6 @@
 import { FormattedMessage, useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
+import { SummaryBlock, SummarySection } from '@navikt/sif-common-ui';
 import { AnnenForelderApiData } from '../../../types/søknadApiData/SøknadApiData';
 
 interface Props {

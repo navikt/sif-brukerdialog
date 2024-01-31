@@ -1,10 +1,9 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-
-import { SummaryBlock, SummaryList } from '@navikt/sif-common-soknad-ds';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { renderUtenlandsoppholdIPeriodenSummary } from './renderUtenlandsoppholdSummary';
+import { SummaryBlock, SummaryList } from '@navikt/sif-common-ui';
 import { UtenlandsoppholdIPeriodenApiData } from '../../../../types/søknadApiData/SøknadApiData';
+import { renderUtenlandsoppholdIPeriodenSummary } from './renderUtenlandsoppholdSummary';
 
 export interface Props {
     utenlandsopphold: UtenlandsoppholdIPeriodenApiData[];

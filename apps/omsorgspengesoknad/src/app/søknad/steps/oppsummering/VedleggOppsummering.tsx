@@ -5,7 +5,7 @@ import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
 import ContentWithHeader from '@navikt/sif-common-core-ds/src/components/content-with-header/ContentWithHeader';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { SummarySection } from '@navikt/sif-common-soknad-ds';
+import { SummarySection } from '@navikt/sif-common-ui';
 import { SøknadApiData } from '../../../types/søknadApiData/SøknadApiData';
 import { DeltBostedSøknadsdata } from '../../../types/søknadsdata/DeltBostedSøknadsdata';
 import { LegeerklæringSøknadsdata } from '../../../types/søknadsdata/LegeerklæringSøknadsdata';

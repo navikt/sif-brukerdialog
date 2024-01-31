@@ -1,16 +1,11 @@
 import React from 'react';
 import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
-import TextareaSummary from '@navikt/sif-common-core-ds/src/atoms/textarea-summary/TextareaSummary';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { ISODateToDate } from '@navikt/sif-common-utils';
-import DatoSvar, { prettifyApiDate } from '../../components/summary/DatoSvar';
+import { ISODateToDate, prettifyApiDate } from '@navikt/sif-common-utils';
 import IntlLabelValue from '../../components/summary/IntlLabelValue';
-import JaNeiSvar from '../../components/summary/JaNeiSvar';
-import Sitat from '../../components/summary/Sitat';
-import SummaryBlock from '../../components/summary/SummaryBlock';
-import TallSvar from '../../components/summary/TallSvar';
 import { Næringstype, VirksomhetApiData } from './types';
 import { erVirksomhetRegnetSomNyoppstartet } from './virksomhetUtils';
+import { DatoSvar, JaNeiSvar, Sitat, SummaryBlock, TallSvar, TextareaSvar } from '@navikt/sif-common-ui';
 
 interface Props {
     virksomhet: VirksomhetApiData;
@@ -113,7 +108,7 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet, harFler
                     {virksomhet.varigEndring && (
                         <>
                             <SummaryBlock header={intlHelper(intl, 'sifForms.virksomhet.summary.varigEndring.dato')}>
-                                <DatoSvar isoDate={virksomhet.varigEndring.dato} />
+                                <DatoSvar isoDato={virksomhet.varigEndring.dato} />
                             </SummaryBlock>
                             <SummaryBlock
                                 header={intlHelper(intl, 'sifForms.virksomhet.summary.varigEndring.næringsinntekt')}>
@@ -122,7 +117,7 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet, harFler
                             <SummaryBlock
                                 header={intlHelper(intl, 'sifForms.virksomhet.summary.varigEndring.beskrivelse')}>
                                 <Sitat>
-                                    <TextareaSummary text={virksomhet.varigEndring.forklaring} />
+                                    <TextareaSvar text={virksomhet.varigEndring.forklaring} />
                                 </Sitat>
                             </SummaryBlock>
                         </>
