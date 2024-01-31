@@ -11,14 +11,16 @@ export const fraværStepMessages: MessageFileFormat = {
         'step.fravær.heledager.spm': 'Har du hatt hele dager med fravær fra jobb?',
         'step.fravær.heledager.perioderModal.label': 'Legg til ny periode med fullt fravær',
         'step.fravær.heledager.perioderModal.title': 'Fravær hele dager',
-        'step.fravær.heledager.perioderModal.begrensTilSammeÅrAlertStripeTekst':
+        'step.fravær.perioderDagModal.begrensTilSammeÅrInfo':
             'Du kan søke kun innenfor ett kalenderår om gangen. Hvis du skal søke for flere år, må du sende en søknad for hvert av årene.',
         'step.fravær.delvisdag.spm': 'Har du hatt dager med delvis fravær fra jobb?',
         'step.fravær.delvisdag.dagModal.label': 'Legg til ny dag med delvis fravær',
         'step.fravær.delvisdag.dagModal.title': 'Fravær deler av dag',
         'step.fravær.info.ikkeHelg.tittel': 'Hvorfor kan jeg ikke velge lørdag eller søndag?',
-        'step.fravær.info.ikkeHelg.tekst':
+        'step.fravær.delvisdag.info.ikkeHelg.tekst':
             'Du kan kun få utbetalt omsorgspenger for hverdager, selv om du jobber lørdag eller søndag. Derfor kan du ikke legge inn delvis fravær på lørdager eller søndager.',
+        'step.fravær.heledager.info.ikkeHelg.tekst':
+            'Du kan kun få utbetalt omsorgspenger for hverdager, selv om du jobber lørdag eller søndag. Derfor kan du ikke velge lørdag eller søndag som start- eller sluttdato i perioden du legger inn.',
         'step.fravær.utenlandsopphold.tittel': 'Utenlandsopphold i dagene med fravær',
         'step.fravær.værtIUtlandet.spm': 'Har du vært i utlandet noen av dagene du søker omsorgspenger for?',
         'step.fravær.værtIUtlandet.leggTilLabel': 'Legg til nytt utenlandsopphold',

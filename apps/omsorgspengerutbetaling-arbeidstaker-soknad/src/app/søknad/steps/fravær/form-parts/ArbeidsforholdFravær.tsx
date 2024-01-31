@@ -51,13 +51,14 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
 
     const getFieldName = (field: FraværFormFields) => `${parentFieldName}.${field}` as FraværStepFormFields;
 
-    const tidsromBegrensningInfo = (
+    const getTidsromBegrensningInfo = (delvisdag?: boolean) => (
         <>
             <ExpandableInfo title={intlHelper(intl, 'step.fravær.info.ikkeHelg.tittel')}>
-                <FormattedMessage id="step.fravær.info.ikkeHelg.tekst" />
+                {delvisdag && <FormattedMessage id="step.fravær.delvisdag.info.ikkeHelg.tekst" />}
+                {!delvisdag && <FormattedMessage id="step.fravær.heledager.info.ikkeHelg.tekst" />}
             </ExpandableInfo>
             <BodyLong style={{ marginTop: '.5rem', paddingBottom: '.5rem' }}>
-                <FormattedMessage id="step.fravær.heledager.perioderModal.begrensTilSammeÅrAlertStripeTekst" />
+                <FormattedMessage id="step.fravær.perioderDagModal.begrensTilSammeÅrInfo" />
             </BodyLong>
         </>
     );
@@ -93,7 +94,7 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
                 <FormBlock margin={'m'}>
                     <FraværPerioderListAndDialog
                         name={getFieldName(FraværFormFields.fraværPerioder)}
-                        periodeDescription={tidsromBegrensningInfo}
+                        periodeDescription={getTidsromBegrensningInfo()}
                         minDate={minDateForFravær}
                         maxDate={maxDateForFravær}
                         validate={getFraværPerioderValidator({ fraværDager, arbeidsgiverNavn, årstall })}
@@ -139,7 +140,7 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
                     <FormBlock margin={'m'}>
                         <FraværDagerListAndDialog
                             name={getFieldName(FraværFormFields.fraværDager)}
-                            dagDescription={tidsromBegrensningInfo}
+                            dagDescription={getTidsromBegrensningInfo(true)}
                             minDate={minDateForFravær}
                             maxDate={maxDateForFravær}
                             validate={getFraværDagerValidator({ fraværPerioder, arbeidsgiverNavn, årstall })}
