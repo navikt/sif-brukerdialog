@@ -17,6 +17,8 @@
         "@navikt/nav-dekoratoren-moduler": "2.1.5",
         "@navikt/next-auth-wonderwall": "1.5.0",
         "@navikt/next-logger": "1.21.0",
+        "@navikt/sif-app-register": "workspace: *",
+        "@navikt/sif-common-amplitude": "workspace: *",
         "@navikt/sif-common-core-ds": "workspace: *",
         "@navikt/sif-common-sentry": "workspace: *",
         "@navikt/sif-common-utils": "workspace: *",

@@ -13,7 +13,7 @@ const SvarfristLoader: React.FunctionComponent<Props> = () => {
     if (isLoading) {
         return <ComponentLoader />;
     }
-    return <Svarfrist frist={data?.frist} />;
+    return <Svarfrist frist={data?.svarfrist} />;
 };
 
 export default SvarfristLoader;
