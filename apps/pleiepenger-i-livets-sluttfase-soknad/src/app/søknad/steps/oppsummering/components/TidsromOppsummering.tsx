@@ -1,10 +1,10 @@
+import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { SummaryBlock, SummaryList, SummarySection } from '@navikt/sif-common-soknad-ds';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { SummaryBlock, SummaryList, SummarySection } from '@navikt/sif-common-ui';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
-import ValgteDagerMedPleie from './ValgteDagerMedPleie';
 import { renderUtenlandsoppholdIPeriodenSummary } from './renderUtenlandsoppholdSummary';
+import ValgteDagerMedPleie from './ValgteDagerMedPleie';
 
 interface Props {
     dagerMedPleie: Date[];

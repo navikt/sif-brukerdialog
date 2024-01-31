@@ -7,7 +7,7 @@ import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import SoknadHeader from '@navikt/sif-common-soknad-ds/src/components/soknad-header/SoknadHeader';
+import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
 import { Søknadstype } from '../../types/Søknadstype';
 import { navigateToWelcomePage } from '../../utils/navigationUtils';
 

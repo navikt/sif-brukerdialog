@@ -3,7 +3,7 @@ import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import ContentWithHeader from '@navikt/sif-common-core-ds/src/components/content-with-header/ContentWithHeader';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
+import { SummaryBlock, SummarySection } from '@navikt/sif-common-ui';
 import { ISODateToDate, dateFormatter } from '@navikt/sif-common-utils';
 import { OmBarnetApiData } from '../../../types/søknadApiData/SøknadApiData';
 import { BarnSammeAdresse } from '../../../types/BarnSammeAdresse';

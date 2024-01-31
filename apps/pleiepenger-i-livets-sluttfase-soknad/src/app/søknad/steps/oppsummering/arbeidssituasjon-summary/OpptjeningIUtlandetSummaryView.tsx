@@ -2,7 +2,7 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { renderOpptjeningIUtlandetSummary } from './renderOpptjeningIUtlandetSummary';
 import { OpptjeningIUtlandetApi } from '../../../../types/søknadApiData/SøknadApiData';
-import { SummaryBlock } from '@navikt/sif-common-soknad-ds';
+import { SummaryBlock } from '@navikt/sif-common-ui';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 
 export interface Props {

@@ -1,4 +1,4 @@
-import SummaryBlock from '@navikt/sif-common-soknad-ds/src/components/summary-block/SummaryBlock';
+import { SummaryBlock } from '@navikt/sif-common-ui';
 import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
 import { StønadGodtgjørelseApiData } from '../../../types/søknad-api-data/StønadGodtgjørelseApiData';
 

@@ -3,7 +3,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import SoknadHeader from '@navikt/sif-common-soknad-ds/src/components/soknad-header/SoknadHeader';
+import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 

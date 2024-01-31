@@ -2,7 +2,7 @@ import React from 'react';
 import { IntlShape, useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds';
-import { SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
+import { SummaryBlock, SummarySection } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { ArbeidsgiverType } from '../../../../types/Arbeidsgiver';

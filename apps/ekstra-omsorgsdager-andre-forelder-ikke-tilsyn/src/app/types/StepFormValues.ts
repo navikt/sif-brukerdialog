@@ -1,4 +1,4 @@
-import { SamtykkeFormValues } from '@navikt/sif-common-soknad-ds/src/modules/samtykke-form/SamtykkeForm';
+import { SamtykkeFormValues } from '@navikt/sif-common-soknad-ds';
 import { AnnenForelderenSituasjonFormValues } from '../søknad/steps/annen-forelderens-situasjon/AnnenForelderenSituasjonStep';
 import { OmAnnenForelderFormValues } from '../søknad/steps/om-annen-forelder/OmAnnenForelderStep';
 import { OmBarnaFormValues } from '../søknad/steps/om-barna/OmBarnaStep';

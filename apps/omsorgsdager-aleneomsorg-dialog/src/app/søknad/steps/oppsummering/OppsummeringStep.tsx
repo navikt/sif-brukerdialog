@@ -1,27 +1,28 @@
+import { ErrorSummary } from '@navikt/ds-react';
 import { useEffect, useRef } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import { ErrorPage, SummarySection } from '@navikt/sif-common-soknad-ds/src';
+import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { usePrevious } from '@navikt/sif-common-hooks';
+import { ErrorPage } from '@navikt/sif-common-soknad-ds';
+import { SummarySection } from '@navikt/sif-common-ui';
+import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
 import { useSøknadContext } from '../../../søknad/context/hooks/useSøknadContext';
+import SøknadStep from '../../../søknad/SøknadStep';
 import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../../søknad/søknadStepConfig';
 import { StepId } from '../../../types/StepId';
-import OmSøkerOppsummering from './OmSøkerOppsummering';
-import { usePrevious } from '@navikt/sif-common-hooks';
-import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import SøknadStep from '../../../søknad/SøknadStep';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { ErrorSummary } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import OmBarnaSummary from './OmBarnaSummary';
-import BarnSummaryList from './BarnSummaryList';
-import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
+import BarnSummaryList from './BarnSummaryList';
+import OmBarnaSummary from './OmBarnaSummary';
+import OmSøkerOppsummering from './OmSøkerOppsummering';
+import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',

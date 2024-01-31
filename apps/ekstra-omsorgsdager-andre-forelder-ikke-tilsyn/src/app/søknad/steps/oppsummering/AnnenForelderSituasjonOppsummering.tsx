@@ -1,7 +1,7 @@
 import { FormattedMessage, useIntl } from 'react-intl';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { JaNeiSvar, SummaryBlock, SummarySection, TextareaSvar } from '@navikt/sif-common-soknad-ds';
+import { JaNeiSvar, SummaryBlock, SummarySection, TextareaSvar } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 import { AnnenForelderApiData } from '../../../types/søknadApiData/SøknadApiData';
 

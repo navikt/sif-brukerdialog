@@ -2,7 +2,7 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { ArbeidsgiverApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { DateRange } from '@navikt/sif-common-formik-ds';
-import { SummaryBlock } from '@navikt/sif-common-soknad-ds';
+import { SummaryBlock } from '@navikt/sif-common-ui';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { prettifyDateExtended } from '@navikt/sif-common-utils';
 

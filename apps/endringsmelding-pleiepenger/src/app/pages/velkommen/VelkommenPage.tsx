@@ -10,7 +10,7 @@ import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { SamtykkeFormPart } from '@navikt/sif-common-soknad-ds/src/modules/samtykke-form/SamtykkeForm';
+import { SamtykkeFormPart } from '@navikt/sif-common-soknad-ds';
 import { EndringType } from '@types';
 import OmSøknaden from './OmSøknaden';
 

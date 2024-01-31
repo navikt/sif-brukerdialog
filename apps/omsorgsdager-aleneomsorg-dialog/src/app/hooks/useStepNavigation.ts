@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { StepConfig } from '@navikt/sif-common-soknad-ds/src/modules/soknad-step/soknadStepTypes';
+import { StepConfig } from '@navikt/sif-common-soknad-ds';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { StepId } from '../types/StepId';

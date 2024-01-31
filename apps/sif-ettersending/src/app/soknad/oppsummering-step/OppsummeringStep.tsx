@@ -1,15 +1,15 @@
-import { isFailure, isPending } from '@devexperts/remote-data-ts';
 import { Alert, Panel } from '@navikt/ds-react';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { isFailure, isPending } from '@devexperts/remote-data-ts';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import TextareaSummary from '@navikt/sif-common-core-ds/src/atoms/textarea-summary/TextareaSummary';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { TextareaSvar } from '@navikt/sif-common-ui';
 import { useFormikContext } from 'formik';
-import { FormattedMessage, useIntl } from 'react-intl';
 import UploadedDocumentsList from '../../components/uploaded-documents-list/UploadedDocumentsList';
 import { Person } from '../../types/Person';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
@@ -67,7 +67,7 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
 
                         {apiValues.beskrivelse && (
                             <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.hvaGjelder.header')}>
-                                <TextareaSummary text={apiValues.beskrivelse} />
+                                <TextareaSvar text={apiValues.beskrivelse} />
                             </SummaryBlock>
                         )}
                         <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.dokumenter.header')}>

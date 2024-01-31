@@ -2,7 +2,7 @@ interface Props {
     text?: string;
 }
 
-const TextareaSummary = ({ text }: Props) => {
+const TextareaSvar = ({ text }: Props) => {
     if (text && text.trim().length > 0) {
         return (
             <div
@@ -16,4 +16,4 @@ const TextareaSummary = ({ text }: Props) => {
     return null;
 };
 
-export default TextareaSummary;
+export default TextareaSvar;
