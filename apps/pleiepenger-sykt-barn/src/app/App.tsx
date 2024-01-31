@@ -28,10 +28,11 @@ appSentryLogger.init();
 
 const App = () => {
     const publicPath = getEnvironmentVariable('PUBLIC_PATH');
+    const isCypress = getEnvironmentVariable('CYPRESS_ENV') === 'true';
 
     return (
         <SifAppWrapper>
-            <AmplitudeProvider applicationKey={PleiepengerSyktBarnApp.key}>
+            <AmplitudeProvider applicationKey={PleiepengerSyktBarnApp.key} isActive={!isCypress}>
                 <SoknadApplication
                     appName={PleiepengerSyktBarnApp.navn}
                     intlMessages={applicationIntlMessages}

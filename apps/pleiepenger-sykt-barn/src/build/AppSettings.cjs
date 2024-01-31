@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const getAppSettings = () => ({
+const getAppSettings = (isCypress) => ({
     API_URL_INNSYN: `${process.env.API_URL_INNSYN}`,
     API_URL: `${process.env.API_URL}`,
     APP_VERSION: `${process.env.APP_VERSION}`,
@@ -21,6 +21,7 @@ const getAppSettings = () => ({
     USE_AMPLITUDE: `${process.env.USE_AMPLITUDE}`,
     UTILGJENGELIG: `${process.env.UTILGJENGELIG}`,
     VEDLEGG_API_URL: `${process.env.VEDLEGG_API_URL}`,
+    CYPRESS_ENV: isCypress ? 'true' : false,
 });
 
 module.exports = getAppSettings;

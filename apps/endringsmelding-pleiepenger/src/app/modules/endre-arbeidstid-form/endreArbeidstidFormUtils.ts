@@ -86,6 +86,8 @@ export const getUkerForEndring = (arbeidsuker: Arbeidsuke[]): UkerForEndringType
     };
 };
 
-export const getArbeidstidSpørsmålDescription = ({ periode }: Arbeidsuke): string => {
-    return erKortArbeidsuke(periode) ? getDateRangeText(periode, { compact: false }) : getDagerTekst(periode, true);
+export const getArbeidstidSpørsmålDescription = ({ periode }: Arbeidsuke, locale: string): string => {
+    return erKortArbeidsuke(periode)
+        ? getDateRangeText(periode, locale, { compact: false })
+        : getDagerTekst(periode, true);
 };
