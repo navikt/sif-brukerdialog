@@ -7,7 +7,7 @@ import VelkommenGuide from './VelkommenGuide';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { SøknadRoutes } from '../../types/SøknadRoutes';
-import SamtykkeForm from '@navikt/sif-common-soknad-ds/src/modules/samtykke-form/SamtykkeForm';
+import { SamtykkeForm } from '@navikt/sif-common-soknad-ds';
 import { OmsorgsdagerAleneomsorgApp } from '@navikt/sif-app-register';
 
 const VelkommenPage = () => {

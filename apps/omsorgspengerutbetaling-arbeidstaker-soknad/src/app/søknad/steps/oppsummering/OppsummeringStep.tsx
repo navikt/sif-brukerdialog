@@ -7,7 +7,7 @@ import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/compone
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { usePrevious } from '@navikt/sif-common-hooks';
-import { ErrorPage } from '@navikt/sif-common-soknad-ds/src';
+import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import { SummarySection } from '@navikt/sif-common-ui';
 import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
