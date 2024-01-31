@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.24.15
+
+### Patch Changes
+
+- 86d8f70: Bytte til @amplitude/analytics-browser pakke. Tidligere brukt pakke; amplitude-js er ikke lenger i vedlikeholdt.
+
 ## 2.24.14
 
 ### Patch Changes

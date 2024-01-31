@@ -929,7 +929,7 @@ describe('dateRangeUtils', () => {
             const from = ISODateToDate('2020-01-01');
             const to = ISODateToDate(toISODate);
             const result = getLastDateInDateRanges([{ from, to }]);
-            expect(dateToISODate(result)).toEqual(toISODate);
+            expect(dateToISODate(result!)).toEqual(toISODate);
         });
         it('returns the last of all the dateRanges, if more than one date range is passed in', () => {
             const lastISODate = '2022-02-01';
@@ -937,7 +937,7 @@ describe('dateRangeUtils', () => {
                 ISODateRangeToDateRange('2020-01-01/2020-02-01'),
                 ISODateRangeToDateRange(`2022-01-01/${lastISODate}`),
             ]);
-            expect(dateToISODate(result)).toEqual(lastISODate);
+            expect(dateToISODate(result!)).toEqual(lastISODate);
         });
     });
 });

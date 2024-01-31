@@ -1,5 +1,16 @@
 # @navikt/sif-common-core-ds
 
+## 9.15.0
+
+### Minor Changes
+
+- 06a4e60: Sende med locale slik at dateFormatter og dateRangeFormatter tar hensyn til flere målformer.
+
+### Patch Changes
+
+- Updated dependencies [06a4e60]
+  - @navikt/sif-common-utils@3.44.0
+
 ## 9.14.3
 
 ### Patch Changes

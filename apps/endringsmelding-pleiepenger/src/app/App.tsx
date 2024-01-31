@@ -21,6 +21,7 @@ const container = document.getElementById('app');
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const root = createRoot(container!);
 const publicPath = getEnvironmentVariable('PUBLIC_PATH');
+const isCypress = getEnvironmentVariable('CYPRESS_ENV') === 'true';
 
 ensureBaseNameForReactRouter(publicPath);
 
@@ -41,9 +42,7 @@ function prepare() {
 const App = () => (
     <SifAppWrapper>
         <ErrorBoundary>
-            <AmplitudeProvider
-                applicationKey={EndringsmeldingPsbApp.key}
-                isActive={getEnvironmentVariable('USE_AMPLITUDE') === 'true'}>
+            <AmplitudeProvider applicationKey={EndringsmeldingPsbApp.key} isActive={!isCypress}>
                 <SoknadApplication
                     appName={EndringsmeldingPsbApp.navn}
                     intlMessages={applicationIntlMessages}
