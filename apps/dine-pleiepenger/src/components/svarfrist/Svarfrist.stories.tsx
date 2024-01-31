@@ -28,6 +28,6 @@ export const UtenFristMedBehandlingstid: Story = {
 };
 
 export const UtenFrist: Story = {
-    name: 'Uten frist - default 8 uker behandlingstid',
+    name: 'Uten frist - default 7 uker behandlingstid',
     args: {},
 };

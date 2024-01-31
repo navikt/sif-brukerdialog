@@ -9,7 +9,7 @@ interface Props {
     ukerBehandlingstid?: number;
 }
 
-const Svarfrist: React.FunctionComponent<Props> = ({ frist, ukerBehandlingstid = 8 }) => {
+const Svarfrist: React.FunctionComponent<Props> = ({ frist, ukerBehandlingstid = 7 }) => {
     return (
         <Box>
             <Heading size="medium" level="2" className="text-deepblue-800" spacing={true}>

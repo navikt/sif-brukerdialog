@@ -45,5 +45,5 @@ test('Mottar hverken svarfrist eller behandlingstid fra api', async ({ page }) =
         await route.fulfill({ status: 200, body: JSON.stringify(defaultInnsynsdata) });
     });
     await page.goto('http://localhost:8080/innsyn');
-    await expect(page.getByText('Forventet behandlingstid er 8 uker fra vi fikk søknaden din.')).toBeVisible();
+    await expect(page.getByText('Forventet behandlingstid er 7 uker fra vi fikk søknaden din.')).toBeVisible();
 });
