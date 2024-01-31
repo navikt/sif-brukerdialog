@@ -92,6 +92,7 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet, harFler
                                 values={{
                                     dato: prettifyApiDate(
                                         virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene.oppstartsdato,
+                                        true,
                                     ),
                                 }}
                             />

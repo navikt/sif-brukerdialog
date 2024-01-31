@@ -17,7 +17,8 @@ export const prettifyDateExtended = (date: Date, locale?: string): string => {
     return dateFormatter.dateShortMonthYear(date, locale);
 };
 
-export const prettifyApiDate = (apiDate: ISODate): string => prettifyDateExtended(ISODateToDate(apiDate));
+export const prettifyApiDate = (apiDate: ISODate, extended = true): string =>
+    extended ? prettifyDate(ISODateToDate(apiDate)) : prettifyDateExtended(ISODateToDate(apiDate));
 
 export const dateFormatter = {
     /**
