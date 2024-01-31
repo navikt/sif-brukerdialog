@@ -1,6 +1,8 @@
 import { Status, StatusMessage, useAppStatus } from '@navikt/appstatus-react-ds';
 import { ReactElement } from 'react';
 import { IntlProvider } from 'react-intl';
+import { InnsynPsbApp } from '@navikt/sif-app-register';
+import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
 import { AxiosError } from 'axios';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -60,18 +62,20 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
 
     return (
         <ErrorBoundary>
-            <main>
-                {appStatus.message && (
-                    <div className="max-w-[1128px] mx-auto p-5 mb-5">
-                        <StatusMessage message={appStatus.message} />
-                    </div>
-                )}
-                <IntlProvider locale="nb" messages={messages.nb}>
-                    <InnsynsdataContextProvider innsynsdata={data}>
-                        <Component {...pageProps} />
-                    </InnsynsdataContextProvider>
-                </IntlProvider>
-            </main>
+            <AmplitudeProvider applicationKey={InnsynPsbApp.key}>
+                <main>
+                    {appStatus.message && (
+                        <div className="max-w-[1128px] mx-auto p-5 mb-5">
+                            <StatusMessage message={appStatus.message} />
+                        </div>
+                    )}
+                    <IntlProvider locale="nb" messages={messages.nb}>
+                        <InnsynsdataContextProvider innsynsdata={data}>
+                            <Component {...pageProps} />
+                        </InnsynsdataContextProvider>
+                    </IntlProvider>
+                </main>
+            </AmplitudeProvider>
         </ErrorBoundary>
     );
 }

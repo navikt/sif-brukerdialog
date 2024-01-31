@@ -7,4 +7,7 @@ export interface Innsynsdata {
     søknader: Søknad[];
     mellomlagring: Mellomlagringer;
     svarfrist?: Date;
+    behandlingstid?: {
+        uker: number;
+    };
 }

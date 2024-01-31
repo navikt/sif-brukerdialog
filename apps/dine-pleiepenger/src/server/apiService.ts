@@ -10,6 +10,7 @@ import { Søker, SøkerSchema } from './api-models/SøkerSchema';
 import { exchangeTokenAndPrepRequest } from './utils/exchangeTokenPrepRequest';
 import { isValidMellomlagring } from './utils/isValidMellomlagring';
 import { SøknaderSchema } from './api-models/SøknadSchema';
+import { Behandlingstid, BehandlingstidSchema } from './api-models/BehandlingstidSchema';
 
 export enum ApiService {
     k9Brukerdialog = 'k9-brukerdialog-api',
@@ -23,7 +24,10 @@ export enum ApiEndpointBrukerdialog {
 }
 export enum ApiEndpointInnsyn {
     'søknad' = 'soknad',
+    /** Svarfrist for evt. åpen søknad for bruker */
     'svarfrist' = 'svarfrist',
+    /** Gjeldende behandlingsstid  */
+    'behandlingstid' = 'behandlingstid',
 }
 
 export enum SifApiErrorType {
@@ -43,6 +47,11 @@ export const fetchSøker = async (req: NextApiRequest): Promise<Søker> => {
     return await SøkerSchema.parse(response.data);
 };
 
+/**
+ * Henter forventet svarfrist hvis bruker har en åpen søknad
+ * @param req
+ * @returns
+ */
 export const fetchSvarfrist = async (req: NextApiRequest): Promise<Svarfrist> => {
     const context = getContextForApiHandler(req);
     const { url, headers } = await exchangeTokenAndPrepRequest(
@@ -53,6 +62,23 @@ export const fetchSvarfrist = async (req: NextApiRequest): Promise<Svarfrist> =>
     createChildLogger(getXRequestId(req)).info(`Fetching svarfrist from url: ${url}`);
     const response = await axios.get(url, { headers });
     return await SvarfristSchema.parse(response.data);
+};
+
+/**
+ * Henter forventet behandlingstid for søknad på nåværende tidspunkt
+ * @param req
+ * @returns
+ */
+export const fetchBehandlingstid = async (req: NextApiRequest): Promise<Behandlingstid> => {
+    const context = getContextForApiHandler(req);
+    const { url, headers } = await exchangeTokenAndPrepRequest(
+        ApiService.sifInnsyn,
+        context,
+        ApiEndpointInnsyn.behandlingstid,
+    );
+    createChildLogger(getXRequestId(req)).info(`Fetching behandlingstid from url: ${url}`);
+    const response = await axios.get(url, { headers });
+    return await BehandlingstidSchema.parse(response.data);
 };
 
 export const fetchSøknader = async (req: NextApiRequest): Promise<Søknad[]> => {

@@ -50,7 +50,15 @@ const startServer = () => {
 
     server.get('/svarfrist', (req, res) => {
         res.send({
-            frist: '2021-09-20',
+            svarfrist: '2021-09-20',
+        });
+    });
+
+    server.get('/behandlingstid', (req, res) => {
+        res.send({
+            behandlingstid: {
+                uker: 5,
+            },
         });
     });
 
