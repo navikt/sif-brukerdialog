@@ -13,9 +13,7 @@ import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds/src';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds';
-import SummaryBlock from '@navikt/sif-common-soknad-ds/src/components/summary-block/SummaryBlock';
-import SummaryList from '@navikt/sif-common-soknad-ds/src/components/summary-list/SummaryList';
-import SummarySection from '@navikt/sif-common-soknad-ds/src/components/summary-section/SummarySection';
+import { SummaryBlock, SummaryList, SummarySection } from '@navikt/sif-common-ui';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { purge, sendApplication } from '../../api/api';
@@ -43,6 +41,7 @@ import ArbeidIPeriodenSummary from './arbeid-i-perioden-summary/ArbeidIPeriodenS
 import ArbeidssituasjonSummary from './arbeidssituasjon-summary/ArbeidssituasjonSummary';
 import BarnSummary from './barn-summary/BarnSummary';
 import InnsendingFeiletInformasjon from './InnsendingFeiletInformasjon';
+import { InvalidParameter, isInvalidParameterErrorResponse } from './invalidParameter';
 import OmsorgstilbudSummary from './omsorgstilbud-summary/OmsorgstilbudSummary';
 import {
     renderFerieuttakIPeriodenSummary,
@@ -50,7 +49,6 @@ import {
     renderUtenlandsoppholdSummary,
 } from './summaryItemRenderers';
 import './oppsummeringStep.less';
-import { InvalidParameter, isInvalidParameterErrorResponse } from './invalidParameter';
 
 interface Props {
     values: SøknadFormValues;

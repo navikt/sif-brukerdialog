@@ -5,7 +5,7 @@ import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import SoknadHeader from '@navikt/sif-common-soknad-ds/src/components/soknad-header/SoknadHeader';
+import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
 import getLenker from '../../lenker';
 
 const IkkeTilgangPage = () => {

@@ -1,9 +1,9 @@
 import { FormattedMessage, useIntl } from 'react-intl';
-import { FrilansApiData } from '../../../../types/søknadApiData/SøknadApiData';
-import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { SummaryBlock } from '@navikt/sif-common-soknad-ds';
-import { prettifyApiDate } from '@navikt/sif-common-soknad-ds/src/components/summary-answers/DatoSvar';
+import { SummaryBlock } from '@navikt/sif-common-ui';
+import { prettifyApiDate } from '@navikt/sif-common-utils';
+import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
+import { FrilansApiData } from '../../../../types/søknadApiData/SøknadApiData';
 
 interface Props {
     frilans?: FrilansApiData;

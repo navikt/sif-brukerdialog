@@ -2,7 +2,7 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
-import { SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
+import { SummaryBlock, SummarySection } from '@navikt/sif-common-ui';
 import { Søker } from '../../../types/Søker';
 
 interface Props {

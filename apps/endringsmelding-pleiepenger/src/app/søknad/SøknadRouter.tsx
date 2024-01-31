@@ -4,10 +4,7 @@ import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import {
-    EnsureCorrectSøknadRouteErrorType,
-    useEnsureCorrectSøknadRoute,
-} from '@navikt/sif-common-soknad-ds/src/hooks/useEnsureCorrectSøknadRoute';
+import { EnsureCorrectSøknadRouteErrorType, useEnsureCorrectSøknadRoute } from '@navikt/sif-common-soknad-ds';
 import { appSentryLogger } from '@utils';
 import StartPåNyttDialog from '../components/start-på-nytt-dialog/StartPåNyttDialog';
 import { useMellomlagring } from '../hooks/useMellomlagring';

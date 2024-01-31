@@ -7,7 +7,7 @@ import UtenlandskNæringSummary from './ArbeidssituasjonUtenlandskNæringSummary
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
-import { SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
+import { SummaryBlock, SummarySection } from '@navikt/sif-common-ui';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import OpptjeningIUtlandetSummaryView from './OpptjeningIUtlandetSummaryView';
 

@@ -1,17 +1,14 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { JaNeiSvar, SummaryBlock, SummaryList, SummarySection } from '@navikt/sif-common-ui';
+import { dateToday, ISODateToDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
-import SummaryList from '@navikt/sif-common-soknad-ds/src/components/summary-list/SummaryList';
 import { UtenlandsoppholdApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { renderUtenlandsoppholdIPeriodenSummary } from './renderUtenlandsoppholdSummary';
-import JaNeiSvar from '@navikt/sif-common-soknad-ds/src/components/summary-answers/JaNeiSvar';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import SummaryBlock from '@navikt/sif-common-soknad-ds/src/components/summary-block/SummaryBlock';
-import { SummarySection } from '@navikt/sif-common-soknad-ds';
-import { ISODateToDate, dateToday } from '@navikt/sif-common-utils';
 
 dayjs.extend(isSameOrBefore);
 dayjs.extend(isSameOrAfter);

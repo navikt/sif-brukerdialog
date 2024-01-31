@@ -1,16 +1,12 @@
 import React from 'react';
 import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import TextareaSummary from '@navikt/sif-common-core-ds/src/atoms/textarea-summary/TextareaSummary';
+import { DatoSvar, JaNeiSvar, Sitat, SummaryBlock, TallSvar, TextareaSvar } from '@navikt/sif-common-ui';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { ISODateToDate } from '@navikt/sif-common-utils';
-import DatoSvar, { prettifyApiDate } from '../../components/summary/DatoSvar';
+import { ISODateToDate, prettifyApiDate } from '@navikt/sif-common-utils';
+// import DatoSvar, { prettifyApiDate } from '../../components/summary/DatoSvar';
 import IntlLabelValue from '../../components/summary/IntlLabelValue';
-import JaNeiSvar from '../../components/summary/JaNeiSvar';
-import Sitat from '../../components/summary/Sitat';
-import SummaryBlock from '../../components/summary/SummaryBlock';
-import TallSvar from '../../components/summary/TallSvar';
 import { Næringstype, VirksomhetApiData } from './types';
 import { erVirksomhetRegnetSomNyoppstartet } from './virksomhetUtils';
 
@@ -114,7 +110,7 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet }) => {
                                 <>
                                     <SummaryBlock
                                         header={intlHelper(intl, 'sifForms.virksomhet.summary.varigEndring.dato')}>
-                                        <DatoSvar isoDate={virksomhet.varigEndring.dato} />
+                                        <DatoSvar isoDato={virksomhet.varigEndring.dato} />
                                     </SummaryBlock>
                                     <SummaryBlock
                                         header={intlHelper(
@@ -129,7 +125,7 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet }) => {
                                             'sifForms.virksomhet.summary.varigEndring.beskrivelse',
                                         )}>
                                         <Sitat>
-                                            <TextareaSummary text={virksomhet.varigEndring.forklaring} />
+                                            <TextareaSvar text={virksomhet.varigEndring.forklaring} />
                                         </Sitat>
                                     </SummaryBlock>
                                 </>

@@ -3,9 +3,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import ContentWithHeader from '@navikt/sif-common-core-ds/src/components/content-with-header/ContentWithHeader';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import TextareaSummary from '@navikt/sif-common-soknad-ds/src/components/summary-answers/TextareaSvar';
-import SummaryBlock from '@navikt/sif-common-soknad-ds/src/components/summary-block/SummaryBlock';
-import SummarySection from '@navikt/sif-common-soknad-ds/src/components/summary-section/SummarySection';
+import { SummaryBlock, SummarySection, TextareaSvar } from '@navikt/sif-common-ui';
 import { DateRange, prettifyDateExtended } from '@navikt/sif-common-utils';
 import Sitat from '../../../components/sitat/Sitat';
 import TidEnkeltdager from '../../../local-sif-common-pleiepenger/components/dager-med-tid/TidEnkeltdager';
@@ -108,7 +106,7 @@ const OmsorgstilbudSummary: React.FC<Props> = ({
                                 {nattevåk.harNattevåk === true && nattevåk.tilleggsinformasjon && (
                                     <Sitat>
                                         <div data-testid="oppsummering-nattevåk-tilleggsinformasjon">
-                                            <TextareaSummary text={nattevåk.tilleggsinformasjon} />
+                                            <TextareaSvar text={nattevåk.tilleggsinformasjon} />
                                         </div>
                                     </Sitat>
                                 )}
@@ -124,7 +122,7 @@ const OmsorgstilbudSummary: React.FC<Props> = ({
                                 {beredskap.tilleggsinformasjon && (
                                     <Sitat>
                                         <div data-testid="oppsummering-beredskap-tilleggsinformasjon">
-                                            <TextareaSummary text={beredskap.tilleggsinformasjon} />
+                                            <TextareaSvar text={beredskap.tilleggsinformasjon} />
                                         </div>
                                     </Sitat>
                                 )}

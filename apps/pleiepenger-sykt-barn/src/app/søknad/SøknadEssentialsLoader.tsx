@@ -1,7 +1,7 @@
 import React from 'react';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import * as apiUtils from '@navikt/sif-common-core-ds/src/utils/apiUtils';
-import LoadingPage from '@navikt/sif-common-soknad-ds/src/pages/loading-page/LoadingPage';
+import { LoadingPage } from '@navikt/sif-common-soknad-ds';
 import { AxiosError, AxiosResponse } from 'axios';
 import { getBarn, getSøker, purge, rehydrate } from '../api/api';
 import { SøkerdataContextProvider } from '../context/SøkerdataContext';
