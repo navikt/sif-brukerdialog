@@ -17,7 +17,6 @@ const DineBarnScenarioer: React.FunctionComponent<Props> = ({ registrerteBarn, f
     const barnAlderInfo = getBarnAlderInfo(barn);
     const scenario = getDineBarnScenario(barn);
     const harUtvidetRett = getHarUtvidetRett(barn, formValues.harSyktBarn, formValues.harAleneomsorg);
-    const { harDekketTiFørsteDagerSelv } = formValues;
 
     switch (scenario) {
         case DineBarnScenario.ETT_ELLER_TO_UNDER_13:
@@ -30,7 +29,7 @@ const DineBarnScenarioer: React.FunctionComponent<Props> = ({ registrerteBarn, f
                 />
             );
         case DineBarnScenario.TRE_ELLER_FLERE_UNDER_13:
-            return <TreEllerFlereBarnUnder13 harDekketTiFørsteDagerSelv={harDekketTiFørsteDagerSelv} />;
+            return <TreEllerFlereBarnUnder13 />;
         case DineBarnScenario.KUN_OVER_13:
             return (
                 <KunBarnOver13

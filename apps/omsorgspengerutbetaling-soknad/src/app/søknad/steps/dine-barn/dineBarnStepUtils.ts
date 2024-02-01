@@ -51,14 +51,14 @@ export const getDineBarnSøknadsdataFromFormValues = (
                 andreBarn,
                 harSyktBarn,
                 harAleneomsorg: harSyktBarn ? undefined : harAleneomsorg,
-                harDekketTiFørsteDagerSelv: values.harDekketTiFørsteDagerSelv === YesOrNo.YES,
+                harDekketTiFørsteDagerSelv: harUtvidetRett && values.harDekketTiFørsteDagerSelv === YesOrNo.YES,
             };
         case DineBarnScenario.TRE_ELLER_FLERE_UNDER_13:
             return {
                 type: DineBarnSøknadsdataType.UTVIDET_RETT_PGA_ANTALL_BARN,
                 harUtvidetRett,
                 andreBarn,
-                harDekketTiFørsteDagerSelv: values.harDekketTiFørsteDagerSelv === YesOrNo.YES,
+                harDekketTiFørsteDagerSelv: harUtvidetRett && values.harDekketTiFørsteDagerSelv === YesOrNo.YES,
             };
     }
 };
@@ -99,7 +99,9 @@ export const getDineBarnStepInitialValues = (
             case DineBarnSøknadsdataType.UTVIDET_RETT_PGA_ANTALL_BARN:
                 return {
                     andreBarn: dineBarn.andreBarn,
-                    harDekketTiFørsteDagerSelv: getYesOrNoFromBoolean(dineBarn.harDekketTiFørsteDagerSelv),
+                    harDekketTiFørsteDagerSelv: dineBarn.harUtvidetRett
+                        ? getYesOrNoFromBoolean(dineBarn.harDekketTiFørsteDagerSelv)
+                        : undefined,
                 };
             case DineBarnSøknadsdataType.UTVIDET_RETT_PGA_SYKDOM_ELLER_ALENEOMSORG:
                 const harSyktBarn = dineBarn.harSyktBarn ? YesOrNo.YES : YesOrNo.NO;
@@ -108,7 +110,11 @@ export const getDineBarnStepInitialValues = (
                     harSyktBarn,
                     harAleneomsorg:
                         harSyktBarn === YesOrNo.YES ? undefined : dineBarn.harAleneomsorg ? YesOrNo.YES : YesOrNo.NO,
-                    harDekketTiFørsteDagerSelv: dineBarn.harDekketTiFørsteDagerSelv ? YesOrNo.YES : YesOrNo.NO,
+                    harDekketTiFørsteDagerSelv: dineBarn.harUtvidetRett
+                        ? dineBarn.harDekketTiFørsteDagerSelv
+                            ? YesOrNo.YES
+                            : YesOrNo.NO
+                        : undefined,
                 };
         }
     }
