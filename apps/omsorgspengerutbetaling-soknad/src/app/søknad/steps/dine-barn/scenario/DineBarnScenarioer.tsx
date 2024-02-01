@@ -27,7 +27,6 @@ const DineBarnScenarioer: React.FunctionComponent<Props> = ({ registrerteBarn, f
                     harAleneomsorg={harAleneomsorg}
                     harSyktBarn={harSyktBarn}
                     harUtvidetRett={harUtvidetRett}
-                    harDekketTiFørsteDagerSelv={harDekketTiFørsteDagerSelv}
                 />
             );
         case DineBarnScenario.TRE_ELLER_FLERE_UNDER_13:
