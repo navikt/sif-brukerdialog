@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.29.14
+
+### Patch Changes
+
+- Legge til uiMessages i applikasjoner
+
 ## 3.29.13
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.8.22
+
+### Patch Changes
+
+- Legge til uiMessages i applikasjoner
+
 ## 1.8.21
 
 ### Patch Changes

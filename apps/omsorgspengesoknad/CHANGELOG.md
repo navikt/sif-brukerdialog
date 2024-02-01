@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.24.23
+
+### Patch Changes
+
+- Legge til uiMessages i applikasjoner
+
 ## 1.24.22
 
 ### Patch Changes
