@@ -33,10 +33,10 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
         .getByRole('button', { name: '33' })
         .click();
     await page.getByRole('button', { name: 'Gå til neste måned' }).click();
-    await page.getByLabel('4. september (mandag)').click();
-    await page.getByLabel('11. september (mandag)').click();
-    await page.getByLabel('18. september (mandag)').click();
-    await page.getByLabel('25. september (mandag)').click();
+    await page.getByLabel('Mandag 4').click();
+    await page.getByLabel('Mandag 11').click();
+    await page.getByLabel('Mandag 18').click();
+    await page.getByLabel('Mandag 25').click();
     await page
         .getByRole('group', { name: 'Skal du pleie personen hjemme i de dagene du søker for?' })
         .getByLabel('Ja')

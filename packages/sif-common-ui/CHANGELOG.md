@@ -1,5 +1,16 @@
 # @navikt/sif-common-ui
 
+## 0.6.5
+
+### Patch Changes
+
+- a7f80d2: Pakkeoppdateringer minor/patch
+  Oppdatere noen tester etter endringer i ds-pakker
+- Updated dependencies [a7f80d2]
+  - @navikt/sif-common-formik-ds@1.7.10
+  - @navikt/sif-common-core-ds@9.15.1
+  - @navikt/sif-common-utils@3.44.1
+
 ## 0.6.4
 
 ### Patch Changes

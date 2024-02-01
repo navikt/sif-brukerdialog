@@ -1,5 +1,12 @@
 # @navikt/sif-common-sentry
 
+## 0.25.15
+
+### Patch Changes
+
+- a7f80d2: Pakkeoppdateringer minor/patch
+  Oppdatere noen tester etter endringer i ds-pakker
+
 ## 0.25.14
 
 ### Patch Changes

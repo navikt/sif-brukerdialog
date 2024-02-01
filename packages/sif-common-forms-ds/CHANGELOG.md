@@ -1,5 +1,12 @@
 # @navikt/sif-common-forms-ds
 
+## 8.18.2
+
+### Patch Changes
+
+- a7f80d2: Pakkeoppdateringer minor/patch
+  Oppdatere noen tester etter endringer i ds-pakker
+
 ## 8.18.1
 
 ### Patch Changes

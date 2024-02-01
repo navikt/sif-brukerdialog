@@ -1,5 +1,18 @@
 # @navikt/dine-pleiepenger
 
+## 0.5.10
+
+### Patch Changes
+
+- a7f80d2: Pakkeoppdateringer minor/patch
+  Oppdatere noen tester etter endringer i ds-pakker
+- Updated dependencies [a7f80d2]
+  - @navikt/sif-common-amplitude@2.24.16
+  - @navikt/appstatus-react-ds@2.17.19
+  - @navikt/sif-common-core-ds@9.15.1
+  - @navikt/sif-common-sentry@0.25.15
+  - @navikt/sif-common-utils@3.44.1
+
 ## 0.5.9
 
 ### Patch Changes
