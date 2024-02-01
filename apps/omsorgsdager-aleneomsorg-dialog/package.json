@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/omsorgsdager-aleneomsorg-dialog",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "2.14.22",
+    "version": "2.14.23",
     "private": true,
     "type": "module",
     "scripts": {
@@ -23,9 +23,9 @@
         "storybook": "storybook dev -p 6006 -s public"
     },
     "dependencies": {
-        "@navikt/ds-css": "5.15.1",
-        "@navikt/ds-react": "5.15.1",
-        "@navikt/ds-tailwind": "5.15.1",
+        "@navikt/ds-css": "5.17.2",
+        "@navikt/ds-react": "5.17.2",
+        "@navikt/ds-tailwind": "5.17.2",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
@@ -35,7 +35,7 @@
         "@navikt/sif-common-sentry": "workspace:*",
         "@navikt/sif-common-soknad-ds": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
-        "@testing-library/react": "14.1.2",
+        "@testing-library/react": "14.2.0",
         "axios": "1.6.7",
         "compression": "1.7.4",
         "cookie-parser": "1.4.6",
@@ -63,7 +63,7 @@
         "@babel/preset-react": "7.23.3",
         "@playwright/test": "1.41.1",
         "@types/object-hash": "3.0.6",
-        "@types/react": "18.2.48",
+        "@types/react": "18.2.50",
         "@types/react-dom": "18.2.18",
         "@types/react-router-dom": "5.3.3",
         "@vitejs/plugin-react": "4.2.1",
@@ -74,7 +74,7 @@
         "less": "4.2.0",
         "mini-css-extract-plugin": "2.7.7",
         "vite": "5.0.12",
-        "vite-plugin-checker": "0.6.2"
+        "vite-plugin-checker": "0.6.4"
     },
     "eslintConfig": {
         "overrides": [

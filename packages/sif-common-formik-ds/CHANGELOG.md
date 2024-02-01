@@ -1,5 +1,12 @@
 # @navikt/sif-common-formik-ds
 
+## 1.7.10
+
+### Patch Changes
+
+- a7f80d2: Pakkeoppdateringer minor/patch
+  Oppdatere noen tester etter endringer i ds-pakker
+
 ## 1.7.9
 
 ### Patch Changes

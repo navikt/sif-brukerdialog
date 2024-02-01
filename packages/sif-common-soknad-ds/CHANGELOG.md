@@ -1,5 +1,12 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.13.10
+
+### Patch Changes
+
+- a7f80d2: Pakkeoppdateringer minor/patch
+  Oppdatere noen tester etter endringer i ds-pakker
+
 ## 10.13.9
 
 ### Patch Changes
