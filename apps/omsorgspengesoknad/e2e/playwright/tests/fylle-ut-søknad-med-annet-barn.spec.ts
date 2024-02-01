@@ -27,7 +27,7 @@ test('Fyll ut søknad med annet barn', async ({ page }) => {
     await page.getByRole('button', { name: 'Åpne datovelger' }).click();
     await page.getByLabel('År').selectOption('2019');
     await page.getByLabel('Måned', { exact: true }).selectOption('5');
-    await page.getByLabel('8. juni (lørdag)').click();
+    await page.getByLabel('Lørdag 8').click();
     await page.getByLabel('Min relasjon til barnet').selectOption('mor');
     await page.getByTestId('sammeAdresse').getByLabel('Ja', { exact: true }).check();
     await page.getByRole('group', { name: 'Har barnet kronisk/langvarig' }).getByLabel('Ja').check();
