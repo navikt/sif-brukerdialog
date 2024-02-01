@@ -1,5 +1,12 @@
 # @navikt/sif-common-utils
 
+## 3.44.1
+
+### Patch Changes
+
+- a7f80d2: Pakkeoppdateringer minor/patch
+  Oppdatere noen tester etter endringer i ds-pakker
+
 ## 3.44.0
 
 ### Minor Changes
