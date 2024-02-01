@@ -8,10 +8,10 @@
     "private": true,
     "type": "module",
     "dependencies": {
-        "@navikt/ds-css": "5.17.2",
+        "@navikt/ds-css": "5.15.1",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "5.17.2",
-        "@navikt/ds-tailwind": "5.17.2",
+        "@navikt/ds-react": "5.15.1",
+        "@navikt/ds-tailwind": "5.15.1",
         "@navikt/nav-dekoratoren-moduler": "2.1.5",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
