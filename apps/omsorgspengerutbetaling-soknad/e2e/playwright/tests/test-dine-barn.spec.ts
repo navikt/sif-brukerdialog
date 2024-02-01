@@ -56,7 +56,6 @@ test.describe('Tester varianter av Dine barn steg', () => {
         await utfyllingUtils.startSøknad(page);
 
         await svarUtils(page).harSøktOmEkstraDager(true);
-        await svarUtils(page).harDekketDeTiFørsteDagene(true);
 
         const melding = await page.locator('.navds-alert', { hasText: 'må du dekke de 10 første omsorgsdagene' });
         await expect(melding).toBeVisible();
@@ -73,7 +72,6 @@ test.describe('Tester varianter av Dine barn steg', () => {
 
         await svarUtils(page).harSøktOmEkstraDager(false);
         await svarUtils(page).harAleneomsorg(true);
-        await svarUtils(page).harDekketDeTiFørsteDagene(true);
     });
     test('Kun barn over 13 år', async ({ page }) => {
         await startScenario(page, playwrightApiMockData.barnMock.ettBarnOver13);
