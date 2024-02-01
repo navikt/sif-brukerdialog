@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.14.24
+
+### Patch Changes
+
+- Legge til uiMessages i applikasjoner
+
 ## 2.14.23
 
 ### Patch Changes

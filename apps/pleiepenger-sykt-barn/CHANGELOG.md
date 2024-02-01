@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.7.24
+
+### Patch Changes
+
+- Legge til uiMessages i applikasjoner
+
 ## 3.7.23
 
 ### Patch Changes
