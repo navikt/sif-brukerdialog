@@ -3198,7 +3198,7 @@ __metadata:
     "@navikt/sif-common-utils": "workspace:*"
     "@playwright/test": 1.41.1
     "@storybook/react-vite": 7.6.10
-    "@testing-library/react": 14.1.2
+    "@testing-library/react": 14.2.0
     "@types/object-hash": 3.0.6
     "@types/react": 18.2.48
     "@types/react-dom": 18.2.18
@@ -3265,7 +3265,7 @@ __metadata:
     "@storybook/preset-create-react-app": 7.6.10
     "@storybook/react": 7.6.10
     "@storybook/testing-library": 0.2.2
-    "@testing-library/react": 14.1.2
+    "@testing-library/react": 14.2.0
     "@types/flat": 5.0.5
     "@types/intl": 1.2.2
     "@types/js-cookie": 3.0.6
@@ -3382,7 +3382,7 @@ __metadata:
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@playwright/test": 1.41.1
-    "@testing-library/react": 14.1.2
+    "@testing-library/react": 14.2.0
     "@types/object-hash": 3.0.6
     "@types/react": 18.2.48
     "@types/react-dom": 18.2.18
@@ -3474,7 +3474,7 @@ __metadata:
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@playwright/test": 1.41.1
-    "@testing-library/react": 14.1.2
+    "@testing-library/react": 14.2.0
     "@types/node": 20.11.10
     "@types/object-hash": 3.0.6
     "@types/react": 18.2.48
@@ -3539,7 +3539,7 @@ __metadata:
     "@navikt/sif-common-utils": "workspace:*"
     "@playwright/test": 1.41.1
     "@storybook/react-vite": 7.6.10
-    "@testing-library/react": 14.1.2
+    "@testing-library/react": 14.2.0
     "@types/node": 20.11.10
     "@types/object-hash": 3.0.6
     "@types/react": 18.2.48
@@ -3609,7 +3609,7 @@ __metadata:
     "@storybook/preset-create-react-app": 7.6.10
     "@storybook/react": 7.6.10
     "@storybook/testing-library": 0.2.2
-    "@testing-library/react": 14.1.2
+    "@testing-library/react": 14.2.0
     "@types/object-hash": 3.0.6
     "@types/react": 18.2.48
     "@types/react-dom": 18.2.18
@@ -3674,7 +3674,7 @@ __metadata:
     "@navikt/sif-common-utils": "workspace:*"
     "@playwright/test": 1.41.1
     "@storybook/react-vite": 7.6.10
-    "@testing-library/react": 14.1.2
+    "@testing-library/react": 14.2.0
     "@types/object-hash": 3.0.6
     "@types/react": 18.2.48
     "@types/react-dom": 18.2.18
@@ -3735,7 +3735,7 @@ __metadata:
     "@navikt/sif-common-utils": "workspace:*"
     "@sentry/vite-plugin": 2.10.3
     "@storybook/react-vite": 7.6.10
-    "@testing-library/react": 14.1.2
+    "@testing-library/react": 14.2.0
     "@testing-library/user-event": 14.5.2
     "@types/lodash.debounce": 4.0.9
     "@types/lodash.groupby": 4.6.9
@@ -3989,7 +3989,7 @@ __metadata:
     "@storybook/react-vite": 7.6.10
     "@storybook/testing-library": 0.2.2
     "@testing-library/dom": 9.3.4
-    "@testing-library/react": 14.1.2
+    "@testing-library/react": 14.2.0
     "@testing-library/user-event": 14.5.2
     "@types/node": 20.11.10
     "@types/react": 18.2.48
@@ -4085,7 +4085,7 @@ __metadata:
     "@storybook/testing-library": 0.2.2
     "@testing-library/dom": 9.3.4
     "@testing-library/jest-dom": 6.4.0
-    "@testing-library/react": 14.1.2
+    "@testing-library/react": 14.2.0
     "@testing-library/user-event": 14.5.2
     "@types/jest": 29.5.11
     "@types/node": 20.11.10
@@ -4201,7 +4201,7 @@ __metadata:
     "@navikt/sif-common-utils": "workspace:*"
     "@playwright/test": 1.41.1
     "@storybook/react-vite": 7.6.10
-    "@testing-library/react": 14.1.2
+    "@testing-library/react": 14.2.0
     "@types/react": 18.2.48
     "@types/react-dom": 18.2.18
     "@types/react-router-dom": 5.3.3
@@ -7302,9 +7302,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/react@npm:14.1.2":
-  version: 14.1.2
-  resolution: "@testing-library/react@npm:14.1.2"
+"@testing-library/react@npm:14.2.0":
+  version: 14.2.0
+  resolution: "@testing-library/react@npm:14.2.0"
   dependencies:
     "@babel/runtime": ^7.12.5
     "@testing-library/dom": ^9.0.0
@@ -7312,7 +7312,7 @@ __metadata:
   peerDependencies:
     react: ^18.0.0
     react-dom: ^18.0.0
-  checksum: 0269903e53412cf96fddb55c8a97a9987a89c3308d71fa1418fe61c47d275445e7044c5387f57cf39b8cda319a41623dbad2cce7a17016aed3a9e85185aac75a
+  checksum: c7fa471dbb01c8bcf66abbdb210b24fb36c81afcc99db3ea4e22bd1556af1ccbd2a9dd2b14bd86870690f681c3e72080468728d63084e73bef071062d4174c1c
   languageName: node
   linkType: hard
 

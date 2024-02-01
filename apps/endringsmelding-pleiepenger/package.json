@@ -20,7 +20,7 @@
         "@navikt/sif-common-sentry": "workspace:*",
         "@navikt/sif-common-soknad-ds": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
-        "@testing-library/react": "14.1.2",
+        "@testing-library/react": "14.2.0",
         "axios": "1.6.7",
         "compression": "1.7.4",
         "cookie-parser": "1.4.6",
