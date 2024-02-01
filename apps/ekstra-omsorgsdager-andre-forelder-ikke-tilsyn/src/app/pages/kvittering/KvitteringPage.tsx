@@ -4,7 +4,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import Kvittering from '@navikt/sif-common-soknad-ds/src/components/kvittering/Kvittering';
+import { Kvittering } from '@navikt/sif-common-soknad-ds';
 import getLenker from '../../lenker';
 
 interface Props {

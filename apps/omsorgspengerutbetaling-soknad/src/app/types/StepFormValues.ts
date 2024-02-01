@@ -1,4 +1,4 @@
-import { SamtykkeFormValues } from '@navikt/sif-common-soknad-ds/src/modules/samtykke-form/SamtykkeForm';
+import { SamtykkeFormValues } from '@navikt/sif-common-soknad-ds';
 import { DineBarnFormValues } from '../søknad/steps/dine-barn/DineBarnStep';
 import { FraværFormValues } from '../søknad/steps/fravær/FraværStep';
 import { LegeerklæringFormValues } from '../søknad/steps/legeerklæring/LegeerklæringForm';

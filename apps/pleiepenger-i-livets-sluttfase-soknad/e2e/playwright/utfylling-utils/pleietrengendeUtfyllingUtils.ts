@@ -17,7 +17,7 @@ export const fyllUtPleietrengendeUtenFnr = async (page: Page) => {
     await page.getByRole('button', { name: 'Åpne datovelger' }).click();
     await page.getByLabel('År').selectOption('1994');
     await page.getByLabel('Måned', { exact: true }).selectOption('3');
-    await page.getByLabel('4. april (mandag)').click();
+    await page.getByLabel('Mandag 4').click();
     await page.getByText('Annet').click();
     await page.getByRole('button', { name: 'Last opp ID' }).click();
 

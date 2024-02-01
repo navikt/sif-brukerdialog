@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/nb';
 import 'dayjs/locale/nn';
-import { getValidLocale } from '.';
+import { ISODate, ISODateToDate, getValidLocale } from '.';
 
 dayjs.locale('nb');
 
@@ -16,6 +16,9 @@ export const prettifyDate = (date: Date, locale?: string): string => {
 export const prettifyDateExtended = (date: Date, locale?: string): string => {
     return dateFormatter.dateShortMonthYear(date, locale);
 };
+
+export const prettifyApiDate = (apiDate: ISODate, extended = true): string =>
+    extended ? prettifyDate(ISODateToDate(apiDate)) : prettifyDateExtended(ISODateToDate(apiDate));
 
 export const dateFormatter = {
     /**

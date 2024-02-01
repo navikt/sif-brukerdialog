@@ -1,5 +1,12 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.5.16
+
+### Patch Changes
+
+- a7f80d2: Pakkeoppdateringer minor/patch
+  Oppdatere noen tester etter endringer i ds-pakker
+
 ## 3.5.15
 
 ### Patch Changes

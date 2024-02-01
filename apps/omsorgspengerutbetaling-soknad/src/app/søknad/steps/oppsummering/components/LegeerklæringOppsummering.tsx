@@ -3,7 +3,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { SummarySection } from '@navikt/sif-common-soknad-ds';
+import { SummarySection } from '@navikt/sif-common-ui';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { LegeerklæringSøknadsdata } from '../../../../types/søknadsdata/LegeerklæringSøknadsdata';
 import { getAttachmentURLBackend } from '../../../../utils/attachmentUtilsAuthToken';

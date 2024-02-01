@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import { ErrorPage } from '@navikt/sif-common-soknad-ds/src';
+import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';

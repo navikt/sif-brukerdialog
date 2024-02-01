@@ -1,5 +1,14 @@
 # @navikt/sif-common-core-ds
 
+## 9.15.1
+
+### Patch Changes
+
+- a7f80d2: Pakkeoppdateringer minor/patch
+  Oppdatere noen tester etter endringer i ds-pakker
+- Updated dependencies [a7f80d2]
+  - @navikt/sif-common-utils@3.44.1
+
 ## 9.15.0
 
 ### Minor Changes

@@ -1,4 +1,4 @@
-import { useSoknadIntl } from '../../hooks/useSoknadIntl';
+import { useSoknadIntl } from '../../hooks/useUiIntl';
 
 interface Props {
     harSvartJa?: boolean;
@@ -6,7 +6,7 @@ interface Props {
 
 const JaNeiSvar = ({ harSvartJa }: Props) => {
     const { text } = useSoknadIntl();
-    return harSvartJa ? text('scs.jaNeiSvar.Ja') : text('scs.jaNeiSvar.Nei');
+    return harSvartJa ? text('ui.jaNeiSvar.Ja') : text('ui.jaNeiSvar.Nei');
 };
 
 export default JaNeiSvar;

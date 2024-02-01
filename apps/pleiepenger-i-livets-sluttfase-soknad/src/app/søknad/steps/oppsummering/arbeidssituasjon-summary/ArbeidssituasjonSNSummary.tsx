@@ -1,7 +1,7 @@
 import { FormattedMessage, useIntl } from 'react-intl';
 import { SelvstendigNæringsdrivendeApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { SummaryBlock } from '@navikt/sif-common-soknad-ds';
+import { SummaryBlock } from '@navikt/sif-common-ui';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import VirksomhetSummary from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetSummary';
 import { Label } from '@navikt/ds-react';

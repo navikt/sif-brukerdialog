@@ -1,6 +1,6 @@
 import { Heading } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { SummaryBlock } from '@navikt/sif-common-soknad-ds';
+import { SummaryBlock } from '@navikt/sif-common-ui';
 import { ArbeiderIPeriodenSvar, ArbeiderIPeriodenSvarTekst, Arbeidsgiver, ArbeidstakerApiData } from '@types';
 import ArbeidstidUker from '../../../modules/arbeidstid-uker/ArbeidstidUker';
 import { oppsummeringStepUtils } from './oppsummeringStepUtils';

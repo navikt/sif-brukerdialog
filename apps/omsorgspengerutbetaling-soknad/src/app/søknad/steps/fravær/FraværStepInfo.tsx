@@ -18,11 +18,12 @@ const IntroVeileder = () => {
     );
 };
 
-const Tidsbegrensning = () => {
+const Tidsbegrensning = (delvisdag?: boolean) => {
     const intl = useIntl();
     return (
         <ExpandableInfo title={intlHelper(intl, 'step.fravaer.info.ikkeHelg.tittel')}>
-            <FormattedMessage id="step.fravaer.info.ikkeHelg.tekst" />
+            {delvisdag && <FormattedMessage id="step.fravaer.delvisdag.info.ikkeHelg.tekst" />}
+            {!delvisdag && <FormattedMessage id="step.fravaer.heledager.info.ikkeHelg.tekst" />}
         </ExpandableInfo>
     );
 };

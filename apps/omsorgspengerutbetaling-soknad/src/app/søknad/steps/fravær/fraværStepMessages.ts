@@ -25,8 +25,10 @@ export const fraværStepMessages: MessageFileFormat = {
         'step.fravaer.harPerioderMedFravær.modalTitle': 'Dager med fullt fravær fra jobb',
         'fravær.form.periode.tittel': 'Dager du søker utbetaling for',
         'step.fravaer.info.ikkeHelg.tittel': 'Hvorfor kan jeg ikke velge lørdag eller søndag?',
-        'step.fravaer.info.ikkeHelg.tekst':
+        'step.fravaer.heledager.info.ikkeHelg.tekst':
             'Du kan kun få utbetalt omsorgspenger for hverdager, selv om du jobber lørdag eller søndag. Derfor kan du ikke velge lørdag eller søndag som start- eller sluttdato i perioden du legger inn.',
+        'step.fravaer.delvisdag.info.ikkeHelg.tekst':
+            'Du kan kun få utbetalt omsorgspenger for hverdager, selv om du jobber lørdag eller søndag. Derfor kan du ikke legge inn delvis fravær på lørdager eller søndager.',
         'step.fravaer.spm.harDagerMedDelvisFravær': 'Har du hatt dager med delvis fravær fra jobb?',
 
         'step.fravaer.harDagerMedDelvisFravær.listTitle': 'Dager med delvis fravær fra jobb',

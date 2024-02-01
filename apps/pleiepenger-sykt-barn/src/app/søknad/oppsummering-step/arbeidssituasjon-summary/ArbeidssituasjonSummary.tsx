@@ -1,8 +1,7 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import SummaryBlock from '@navikt/sif-common-soknad-ds/src/components/summary-block/SummaryBlock';
-import SummarySection from '@navikt/sif-common-soknad-ds/src/components/summary-section/SummarySection';
+import { SummaryBlock, SummarySection } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
 import { Arbeidsgiver } from '../../../types';
 import { SøknadApiData } from '../../../types/søknad-api-data/SøknadApiData';

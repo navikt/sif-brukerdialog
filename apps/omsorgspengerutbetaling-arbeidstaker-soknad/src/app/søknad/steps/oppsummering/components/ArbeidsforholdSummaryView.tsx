@@ -1,17 +1,16 @@
 import { FormattedMessage, useIntl } from 'react-intl';
-import { Utbetalingsårsak } from '../../../../types/ArbeidsforholdTypes';
-import { ArbeidsgiverDetaljer } from '../../../../types/søknadApiData/SøknadApiData';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import { JaNeiSvar, SummaryBlock } from '@navikt/sif-common-soknad-ds';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
-import UtbetalingsperioderSummaryView from './UtbetalingsperioderSummaryView';
+import { JaNeiSvar, SummaryBlock } from '@navikt/sif-common-ui';
+import { Utbetalingsårsak } from '../../../../types/ArbeidsforholdTypes';
+import { ArbeidsgiverDetaljer } from '../../../../types/søknadApiData/SøknadApiData';
 import { ArbeidforholdSøknadsdata, SituasjonSøknadsdata } from '../../../../types/søknadsdata/SituasjonSøknadsdata';
-
-import './arbeidsforholdSummary.css';
 import { Søknadsdata } from '../../../../types/søknadsdata/Søknadsdata';
+import UtbetalingsperioderSummaryView from './UtbetalingsperioderSummaryView';
+import './arbeidsforholdSummary.css';
 
 const getArbeidsforholdAttachments = (organisasjonsnummer: string, situasjon?: SituasjonSøknadsdata) => {
     if (!situasjon) {
