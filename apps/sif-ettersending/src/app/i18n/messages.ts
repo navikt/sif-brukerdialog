@@ -3,9 +3,11 @@ import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageF
 import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { velkommenPageMessages } from '../pages/velkommen-page/velkommenPageMessages';
 import { applicationMessages } from './nb';
+import { uiMessages } from '@navikt/sif-common-ui';
 
 const bokmålstekster = {
     ...commonMessages.nb,
+    ...uiMessages.nb,
     ...velkommenPageMessages.nb,
     ...soknadMessages.nb,
     ...velkommenPageMessages.nb,

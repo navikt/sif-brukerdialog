@@ -1,4 +1,5 @@
 import { commonMessages } from '@navikt/sif-common-core-ds/src/i18n/common.messages';
+import { uiMessages } from '@navikt/sif-common-ui';
 import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
 import fraværMessages from '@navikt/sif-common-forms-ds/src/forms/fravær/fraværMessages';
@@ -15,10 +16,10 @@ import { situasjonMessages } from '../søknad/steps/situasjon/situasjonStepMessa
 import bostedUtlandMessages from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/bostedUtlandMessages';
 import { fosterbarnFormMessages } from '../søknad/steps/fosterbarn/fosterbarnFormMessages';
 import fosterbarnMessages from '@navikt/sif-common-forms-ds/src/forms/fosterbarn/fosterbarnMessages';
-// import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
 
 const bokmålstekster = {
     ...commonMessages.nb,
+    ...uiMessages.nb,
     ...soknadMessages.nb,
     ...personalOpplysningerMessages.nb,
     ...velkommenPageMessages.nb,

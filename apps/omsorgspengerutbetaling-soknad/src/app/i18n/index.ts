@@ -5,6 +5,7 @@ import bostedUtlandMessages from '@navikt/sif-common-forms-ds/src/forms/bosted-u
 import fraværMessages from '@navikt/sif-common-forms-ds/src/forms/fravær/fraværMessages';
 import virksomhetMessages from '@navikt/sif-common-forms-ds/src/forms/virksomhet/virksomhetMessages';
 import { soknadMessages } from '@navikt/sif-common-soknad-ds';
+import { uiMessages } from '@navikt/sif-common-ui';
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 import { personalOpplysningerMessages } from '../pages/velkommen/personalopplysninger/personalopplysninger.messages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
@@ -20,6 +21,7 @@ import { appMessages } from './appMessages';
 
 const bokmålstekster = {
     ...commonMessages.nb,
+    ...uiMessages.nb,
     ...soknadMessages.nb,
     ...personalOpplysningerMessages.nb,
     ...velkommenPageMessages.nb,
