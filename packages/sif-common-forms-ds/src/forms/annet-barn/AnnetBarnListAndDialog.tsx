@@ -35,38 +35,36 @@ function AnnetBarnListAndDialog<FieldNames>({
     onAfterChange,
 }: Props<FieldNames>) {
     return (
-        <>
-            <FormikModalFormAndList<FieldNames, AnnetBarn, ValidationError>
-                name={name}
-                labels={labels}
-                dialogWidth="narrow"
-                validate={validate}
-                formRenderer={({ onSubmit, onCancel, item }) => (
-                    <AnnetBarnForm
-                        annetBarn={item}
-                        onSubmit={onSubmit}
-                        onCancel={onCancel}
-                        minDate={minDate}
-                        maxDate={maxDate}
-                        disallowedFødselsnumre={
-                            item && item.fnr
-                                ? disallowedFødselsnumre?.filter((fnr) => fnr !== item.fnr)
-                                : disallowedFødselsnumre
-                        }
-                        visBarnTypeValg={visBarnTypeValg}
-                        labels={{
-                            aldersGrenseText: aldersGrenseText,
-                            placeholderFnr: placeholderFnr,
-                            placeholderNavn: placeholderNavn,
-                        }}
-                    />
-                )}
-                listRenderer={({ items, onEdit, onDelete }) => (
-                    <AnnetBarnList annetBarn={items} onEdit={onEdit} onDelete={onDelete} />
-                )}
-                onAfterChange={onAfterChange}
-            />
-        </>
+        <FormikModalFormAndList<FieldNames, AnnetBarn, ValidationError>
+            name={name}
+            labels={labels}
+            dialogWidth="narrow"
+            validate={validate}
+            formRenderer={({ onSubmit, onCancel, item }) => (
+                <AnnetBarnForm
+                    annetBarn={item}
+                    onSubmit={onSubmit}
+                    onCancel={onCancel}
+                    minDate={minDate}
+                    maxDate={maxDate}
+                    disallowedFødselsnumre={
+                        item && item.fnr
+                            ? disallowedFødselsnumre?.filter((fnr) => fnr !== item.fnr)
+                            : disallowedFødselsnumre
+                    }
+                    visBarnTypeValg={visBarnTypeValg}
+                    labels={{
+                        aldersGrenseText: aldersGrenseText,
+                        placeholderFnr: placeholderFnr,
+                        placeholderNavn: placeholderNavn,
+                    }}
+                />
+            )}
+            listRenderer={({ items, onEdit, onDelete }) => (
+                <AnnetBarnList annetBarn={items} onEdit={onEdit} onDelete={onDelete} />
+            )}
+            onAfterChange={onAfterChange}
+        />
     );
 }
 
