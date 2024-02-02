@@ -9,11 +9,10 @@ import annetBarnMessages from '../../src/forms/annet-barn/annetBarnMessages';
 import utenlandskNæringMessages from '../../src/forms/utenlandsk-næring/utenlandskNæringMessages';
 import opptjeningUtlandMessages from '../../src/forms/opptjening-utland/opptjeningUtlandMessages';
 
-import { commonMessagesNb } from '@navikt/sif-common-core-ds/src/i18n/common.nb';
-import { validationErrorsNb } from '@navikt/sif-common-core-ds/src/i18n/validationErrors.nb';
+import { commonMessages } from '@navikt/sif-common-core-ds/src/i18n/common.messages';
+
 const bokmålstekster = {
-    ...commonMessagesNb,
-    ...validationErrorsNb,
+    ...commonMessages.nb,
     ...bostedUtlandMessages.nb,
     ...fraværMessages.nb,
     ...ferieuttakMessages.nb,

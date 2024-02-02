@@ -1,7 +1,5 @@
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { prettifyDate } from '@navikt/sif-common-utils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import {
     getDateValidator,
@@ -15,6 +13,8 @@ import {
 } from '@navikt/sif-common-formik-ds/src/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { prettifyDate } from '@navikt/sif-common-utils';
+import { AnnetBarnMessageKeys, useAnnetBarnIntl } from './';
 import annetBarnUtils from './annetBarnUtils';
 import { AnnetBarn, AnnetBarnFormValues, BarnType } from './types';
 
@@ -38,22 +38,24 @@ enum AnnetBarnFormFields {
     type = 'type',
 }
 
-export const AnnetBarnFormErrors = {
-    [AnnetBarnFormFields.navn]: { [ValidateStringError.stringHasNoValue]: 'annetBarnForm.navn.stringHasNoValue' },
+export const AnnetBarnFormErrors: Record<AnnetBarnFormFields, { [key: string]: AnnetBarnMessageKeys }> = {
+    [AnnetBarnFormFields.navn]: {
+        [ValidateStringError.stringHasNoValue]: '@forms.annetBarnForm.navn.stringHasNoValue',
+    },
     [AnnetBarnFormFields.fødselsdato]: {
-        [ValidateDateError.dateHasNoValue]: 'annetBarnForm.fødselsdato.dateHasNoValue',
-        [ValidateDateError.dateIsBeforeMin]: 'annetBarnForm.fødselsdato.dateIsBeforeMin',
-        [ValidateDateError.dateIsAfterMax]: 'annetBarnForm.fødselsdato.dateIsAfterMax',
-        [ValidateDateError.dateHasInvalidFormat]: 'annetBarnForm.fødselsdato.dateHasInvalidFormat',
+        [ValidateDateError.dateHasNoValue]: '@forms.annetBarnForm.fødselsdato.dateHasNoValue',
+        [ValidateDateError.dateIsBeforeMin]: '@forms.annetBarnForm.fødselsdato.dateIsBeforeMin',
+        [ValidateDateError.dateIsAfterMax]: '@forms.annetBarnForm.fødselsdato.dateIsAfterMax',
+        [ValidateDateError.dateHasInvalidFormat]: '@forms.annetBarnForm.fødselsdato.dateHasInvalidFormat',
     },
     [AnnetBarnFormFields.fnr]: {
-        [ValidateFødselsnummerError.fødselsnummerHasNoValue]: 'annetBarnForm.fnr.fødselsnummerHasNoValue',
-        [ValidateFødselsnummerError.fødselsnummerIsInvalid]: 'annetBarnForm.fnr.fødselsnummerIsInvalid',
-        [ValidateFødselsnummerError.fødselsnummerIsNot11Chars]: 'annetBarnForm.fnr.fødselsnummerIsNot11Chars',
-        [ValidateFødselsnummerError.fødselsnummerIsNotAllowed]: 'annetBarnForm.fnr.fødselsnummerIsNotAllowed',
+        [ValidateFødselsnummerError.fødselsnummerHasNoValue]: '@forms.annetBarnForm.fnr.fødselsnummerHasNoValue',
+        [ValidateFødselsnummerError.fødselsnummerIsInvalid]: '@forms.annetBarnForm.fnr.fødselsnummerIsInvalid',
+        [ValidateFødselsnummerError.fødselsnummerIsNot11Chars]: '@forms.annetBarnForm.fnr.fødselsnummerIsNot11Chars',
+        [ValidateFødselsnummerError.fødselsnummerIsNotAllowed]: '@forms.annetBarnForm.fnr.fødselsnummerIsNotAllowed',
     },
     [AnnetBarnFormFields.type]: {
-        [ValidateRequiredFieldError.noValue]: 'annetBarnForm.type.noValue',
+        [ValidateRequiredFieldError.noValue]: '@forms.annetBarnForm.type.noValue',
     },
 };
 
@@ -81,6 +83,7 @@ const AnnetBarnForm = ({
     onCancel,
 }: Props) => {
     const intl = useIntl();
+    const { text } = useAnnetBarnIntl();
 
     const onFormikSubmit = (formValues: AnnetBarnFormValues) => {
         const annetBarnToSubmit = annetBarnUtils.mapFormValuesToPartialAnnetBarn(formValues, annetBarn.id);
@@ -92,12 +95,12 @@ const AnnetBarnForm = ({
     };
 
     const defaultLabels: AnnetBarnFormLabels = {
-        title: intlHelper(intl, 'annetBarn.form.title'),
-        fnr: intlHelper(intl, 'annetBarn.form.fnr'),
-        fødselsdato: intlHelper(intl, 'annetBarn.form.fødselsdato'),
-        navn: intlHelper(intl, 'annetBarn.form.navn'),
-        okButton: intlHelper(intl, 'annetBarn.form.okButton'),
-        cancelButton: intlHelper(intl, 'annetBarn.form.cancelButton'),
+        title: text('@forms.annetBarn.form.title'),
+        fnr: text('@forms.annetBarn.form.fnr'),
+        fødselsdato: text('@forms.annetBarn.form.fødselsdato'),
+        navn: text('@forms.annetBarn.form.navn'),
+        okButton: text('@forms.annetBarn.form.okButton'),
+        cancelButton: text('@forms.annetBarn.form.cancelButton'),
     };
 
     const formLabels: AnnetBarnFormLabels = { ...defaultLabels, ...labels };
@@ -109,7 +112,7 @@ const AnnetBarnForm = ({
             renderForm={() => (
                 <Form.Form
                     onCancel={onCancel}
-                    formErrorHandler={getFormErrorHandler(intl, 'annetBarnForm')}
+                    formErrorHandler={getFormErrorHandler(intl, '@forms.annetBarnForm')}
                     submitButtonLabel="Ok"
                     showButtonArrows={false}>
                     <Form.TextField
@@ -161,14 +164,14 @@ const AnnetBarnForm = ({
                         <FormBlock>
                             <Form.RadioGroup
                                 name={AnnetBarnFormFields.type}
-                                legend={intlHelper(intl, 'annetBarn.form.årsak.spm')}
+                                legend={text('@forms.annetBarn.form.årsak.spm')}
                                 radios={[
                                     {
-                                        label: intlHelper(intl, 'annetBarn.form.årsak.FOSTERBARN'),
+                                        label: text('@forms.annetBarn.form.årsak.FOSTERBARN'),
                                         value: BarnType.fosterbarn,
                                     },
                                     {
-                                        label: intlHelper(intl, 'annetBarn.form.årsak.ANNET'),
+                                        label: text('@forms.annetBarn.form.årsak.ANNET'),
                                         value: BarnType.annet,
                                     },
                                 ]}

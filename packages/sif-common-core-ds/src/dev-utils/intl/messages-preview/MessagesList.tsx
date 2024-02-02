@@ -1,4 +1,4 @@
-import { Button, Tabs } from '@navikt/ds-react';
+import { Alert, Button, Tabs } from '@navikt/ds-react';
 import { createMultiLocaleObject, MessageFileFormat } from '../devIntlUtils';
 import { useTranslation } from './useTranslation';
 import './messagesList.scss';
@@ -12,6 +12,8 @@ interface Props {
 const MessagesList = ({ messages }: Props) => {
     const allMessages = createMultiLocaleObject(messages);
     const [translation, setTranslation] = useState<Record<string, string> | undefined>();
+
+    const numMessages = Object.keys(allMessages).length;
 
     const { translate } = useTranslation();
     const oversettAlle = async () => {
@@ -63,14 +65,22 @@ const MessagesList = ({ messages }: Props) => {
                     </Block>
                 </Tabs.Panel>
                 <Tabs.Panel value="translate" className="h-24 w-full bg-gray-50 p-4">
-                    <Block margin="xl">
-                        <Button onClick={oversettAlle}>Foreslå oversetting til nynorsk</Button>
-                    </Block>
-                    {translation !== undefined ? (
+                    {numMessages > 50 ? (
                         <Block margin="xl">
-                            <pre style={{ fontSize: '.8rem' }}>{JSON.stringify(translation, null, 2)}</pre>
+                            <Alert variant="info">Det er for mange tekster til at en kan foreslå oversettelse</Alert>
                         </Block>
-                    ) : null}
+                    ) : (
+                        <>
+                            <Block margin="xl">
+                                <Button onClick={oversettAlle}>Foreslå oversetting til nynorsk</Button>
+                            </Block>
+                            {translation !== undefined ? (
+                                <Block margin="xl">
+                                    <pre style={{ fontSize: '.8rem' }}>{JSON.stringify(translation, null, 2)}</pre>
+                                </Block>
+                            ) : null}
+                        </>
+                    )}
                 </Tabs.Panel>
             </Tabs>
         </>
