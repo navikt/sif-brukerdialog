@@ -48,17 +48,17 @@ const startServer = () => {
         res.download('./api-mock-server/mockdata/eksempel-søknad.pdf', 'søknad.pdf');
     });
 
-    server.get('/svarfrist', (req, res) => {
-        res.send({
-            svarfrist: '2021-09-20',
-        });
+    server.get('/saker', (req, res) => {
+        res.send([
+            {
+                sakbehandlingsFrist: '2024-02-02',
+            },
+        ]);
     });
 
-    server.get('/behandlingstid', (req, res) => {
+    server.get('/saker/saksbehandlingstid', (req, res) => {
         res.send({
-            behandlingstid: {
-                uker: 5,
-            },
+            saksbehandlingstidUker: 5,
         });
     });
 

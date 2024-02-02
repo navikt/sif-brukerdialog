@@ -30,8 +30,8 @@ export const publicEnvSchema = z.object({
     NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL: z.string(),
 
     /** Features */
-    NEXT_PUBLIC_FEATURE_SVARFRIST: z.union([z.literal('on'), z.literal('off'), z.undefined()]),
-    NEXT_PUBLIC_FEATURE_BEHANDLINGSTID: z.union([z.literal('on'), z.literal('off'), z.undefined()]),
+    NEXT_PUBLIC_FEATURE_HENT_SAKER: z.union([z.literal('on'), z.literal('off'), z.undefined()]),
+    NEXT_PUBLIC_FEATURE_HENT_BEHANDLINGSTID: z.union([z.literal('on'), z.literal('off'), z.undefined()]),
 });
 
 export type ServerEnv = z.infer<typeof serverEnvSchema>;
@@ -74,8 +74,8 @@ export const browserEnv = publicEnvSchema.parse({
     NEXT_PUBLIC_ARBEIDSGIVER_PLEIEPENGER_URL: process.env.NEXT_PUBLIC_ARBEIDSGIVER_PLEIEPENGER_URL,
     NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL: process.env.NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL,
     NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL: process.env.NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL,
-    NEXT_PUBLIC_FEATURE_SVARFRIST: process.env.NEXT_PUBLIC_FEATURE_SVARFRIST,
-    NEXT_PUBLIC_FEATURE_BEHANDLINGSTID: process.env.NEXT_PUBLIC_FEATURE_BEHANDLINGSTID,
+    NEXT_PUBLIC_FEATURE_HENT_SAKER: process.env.NEXT_PUBLIC_FEATURE_HENT_SAKER,
+    NEXT_PUBLIC_FEATURE_HENT_BEHANDLINGSTID: process.env.NEXT_PUBLIC_FEATURE_HENT_BEHANDLINGSTID,
 } satisfies Record<keyof PublicEnv, string | undefined>);
 
 const getRawServerConfig = (): Partial<unknown> =>

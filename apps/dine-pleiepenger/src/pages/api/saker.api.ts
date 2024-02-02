@@ -2,20 +2,20 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { createChildLogger } from '@navikt/next-logger';
 import axios from 'axios';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
-import { Svarfrist } from '../../server/api-models/SvarfristSchema';
-import { fetchSvarfrist } from '../../server/apiService';
+import { fetchSaker } from '../../server/apiService';
+import { Sak } from '../../types/Sak';
 import { getXRequestId } from '../../utils/apiUtils';
 
-export const svarfristFetcher = async (url: string): Promise<Svarfrist> => axios.get(url).then((res) => res.data);
+export const sakerFetcher = async (url: string): Promise<Sak[]> => axios.get(url).then((res) => res.data);
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
-        const data = await fetchSvarfrist(req);
+        const data = await fetchSaker(req);
         res.send(data);
     } catch (err) {
         const childLogger = createChildLogger(getXRequestId(req));
-        childLogger.error(`Hent svarfrist feilet: ${err}`);
-        res.status(500).json({ error: 'Kunne ikke hente svarfrist', err });
+        childLogger.error(`Hent saker feilet: ${err}`);
+        res.status(500).json({ error: 'Kunne ikke hente saker', err });
     }
 }
 

@@ -5,7 +5,7 @@
     "team": "dusseldorf",
     "ingresses": ["https://dine-pleiepenger.intern.dev.nav.no"],
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
-    "accessPolicyOutApps": ["k9-brukerdialog-api", "sif-innsyn-api"],
+    "accessPolicyOutApps": ["k9-brukerdialog-api", "sif-innsyn-api", "k9-sak-innsyn-api"],
     "livenessPath": "/innsyn/api/internal/isAlive",
     "readinessPath": "/innsyn/api/internal/isReady",
     "minReplicas": 1,
@@ -14,8 +14,10 @@
         "NEXT_PUBLIC_BASE_PATH": "/innsyn",
         "NEXT_PUBLIC_LOGIN_URL": "https://dine-pleiepenger.intern.dev.nav.no/oauth2/login?redirect=https://dine-pleiepenger.intern.dev.nav.no/innsyn",
         "NEXT_PUBLIC_RUNTIME_ENVIRONMENT": "dev",
+        "NEXT_PUBLIC_API_URL_K9_SAK_INNSYN": "http://k9-sak-innsyn-api",
         "NEXT_PUBLIC_API_URL_INNSYN": "http://sif-innsyn-api",
         "NEXT_PUBLIC_API_URL_BRUKERDIALOG": "http://k9-brukerdialog-api",
+        "NEXT_PUBLIC_K9_SAK_INNSYN_BACKEND_SCOPE": "dev-gcp:dusseldorf:k9-sak-innsyn-api",
         "NEXT_PUBLIC_INNSYN_BACKEND_SCOPE": "dev-gcp:dusseldorf:sif-innsyn-api",
         "NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE": "dev-gcp:dusseldorf:k9-brukerdialog-api",
         "NEXT_PUBLIC_APPSTATUS_DATASET": "staging",
@@ -38,7 +40,7 @@
         "NEXT_PUBLIC_ARBEIDSGIVER_PLEIEPENGER_URL": "https://www.nav.no/arbeidsgiver/pleiepenger-barn",
         "NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL": "https://person.dev.nav.no/mine-saker",
         "NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL": "https://tjenester.nav.no/utbetalingsoversikt",
-        "NEXT_PUBLIC_FEATURE_SVARFRIST": "on",
-        "NEXT_PUBLIC_FEATURE_BEHANDLINGSTID": "on"
+        "NEXT_PUBLIC_FEATURE_HENT_SAKER": "on",
+        "NEXT_PUBLIC_FEATURE_HENT_BEHANDLINGSTID": "on"
     }
 }
