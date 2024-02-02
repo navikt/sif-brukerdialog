@@ -1,5 +1,12 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.14.26
+
+### Patch Changes
+
+- Updated dependencies
+  - @navikt/sif-common-forms-ds@8.19.0
+
 ## 2.14.25
 
 ### Patch Changes

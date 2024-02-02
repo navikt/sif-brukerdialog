@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 8.19.0
+
+### Minor Changes
+
+- Legge til rette for nynorsk i annetBarn dialog
+
 ## 8.18.3
 
 ### Patch Changes
