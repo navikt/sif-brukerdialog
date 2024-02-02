@@ -38,6 +38,7 @@ export type ServerEnv = z.infer<typeof serverEnvSchema>;
 export const serverEnvSchema = z.object({
     NEXT_PUBLIC_INNSYN_BACKEND_SCOPE: z.string(),
     NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE: z.string(),
+    NEXT_PUBLIC_K9_SAK_INNSYN_BACKEND_SCOPE: z.string(),
     IDPORTEN_CLIENT_ID: z.union([z.string(), z.undefined()]),
     IDPORTEN_WELL_KNOWN_URL: z.union([z.string(), z.undefined()]),
     TOKEN_X_WELL_KNOWN_URL: z.union([z.string(), z.undefined()]),
@@ -81,6 +82,7 @@ export const browserEnv = publicEnvSchema.parse({
 const getRawServerConfig = (): Partial<unknown> =>
     ({
         // Provided by nais-*.yml
+        NEXT_PUBLIC_K9_SAK_INNSYN_BACKEND_SCOPE: process.env.NEXT_PUBLIC_K9_SAK_INNSYN_BACKEND_SCOPE,
         NEXT_PUBLIC_INNSYN_BACKEND_SCOPE: process.env.NEXT_PUBLIC_INNSYN_BACKEND_SCOPE,
         NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE: process.env.NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE,
 
