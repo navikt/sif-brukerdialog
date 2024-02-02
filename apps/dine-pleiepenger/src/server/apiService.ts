@@ -10,9 +10,9 @@ import { exchangeTokenAndPrepRequest } from './utils/exchangeTokenPrepRequest';
 import { isValidMellomlagring } from './utils/isValidMellomlagring';
 import { SøknaderSchema } from './api-models/SøknadSchema';
 import {
-    SaksbehandlingstidUker as Saksbehandlingstid,
-    SaksbehandlingstidUkerSchema,
-} from './api-models/SaksbehandlingstidUkerSchema';
+    Saksbehandlingstid as Saksbehandlingstid,
+    SaksbehandlingstidSchema,
+} from './api-models/SaksbehandlingstidSchema';
 import { Sak } from './api-models/SakSchema';
 import { SakerSchema } from './api-models/SakerSchema';
 
@@ -86,7 +86,7 @@ export const fetchSaksbehandlingstid = async (req: NextApiRequest): Promise<Saks
     );
     createChildLogger(getXRequestId(req)).info(`Fetching behandlingstid from url: ${url}`);
     const response = await axios.get(url, { headers });
-    return await SaksbehandlingstidUkerSchema.parse(response.data);
+    return await SaksbehandlingstidSchema.parse(response.data);
 };
 
 export const fetchSøknader = async (req: NextApiRequest): Promise<Søknad[]> => {
