@@ -14,17 +14,17 @@ import { Feature } from '../utils/features';
 
 function DinePleiepengerPage(): ReactElement {
     const {
-        innsynsdata: { søknader, svarfrist, behandlingstid },
+        innsynsdata: { søknader, saker, saksbehandlingstidUker },
     } = useInnsynsdataContext();
 
     const { logInfo } = useAmplitudeInstance();
 
     useEffectOnce(() => {
-        if (Feature.HENT_BEHANDLINGSTID && Feature.HENT_SVARFRIST) {
+        if (Feature.HENT_BEHANDLINGSTID && Feature.HENT_SAKER) {
             logInfo({
                 antallSøknader: søknader.length,
-                harSvarfrist: !!svarfrist,
-                harBehandlingstid: !!behandlingstid,
+                antallSaker: saker.length,
+                harSaksbehandlingstid: !!saksbehandlingstidUker,
             });
         }
     });
@@ -44,8 +44,8 @@ function DinePleiepengerPage(): ReactElement {
                     </div>
                     <div className="md:mb-none shrink-0 md:w-72">
                         <Svarfrist
-                            frist={søknader.length > 0 ? svarfrist : undefined}
-                            ukerBehandlingstid={behandlingstid ? behandlingstid.uker : undefined}
+                            frist={saker.length > 0 ? saker[0].saksbehandlingsFrist : undefined}
+                            saksbehandlingstidUker={saksbehandlingstidUker}
                         />
                     </div>
                 </Box>

@@ -4,9 +4,15 @@ import { søknaderMockData } from '../mockdata/søknader.mock';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import { test, expect } from '@playwright/test';
 import { setupMockRoutes } from '../utils/setup-mock-routes';
+import { Sak } from '../../../src/types/Sak';
+
+const sak: Sak = {
+    saksbehandlingsFrist: ISODateToDate('2021-01-01'),
+};
 
 const defaultInnsynsdata: Innsynsdata = {
-    svarfrist: undefined,
+    saker: [],
+    harSak: false,
     søker: søkerMockData as any,
     mellomlagring: {},
     søknader: søknaderMockData as any,
@@ -20,7 +26,8 @@ test('Mottar svarfrist fra api', async ({ page }) => {
     await page.route('**/innsynsdata', async (route) => {
         const response: Innsynsdata = {
             ...defaultInnsynsdata,
-            svarfrist: ISODateToDate('2021-01-01'),
+            saker: [sak],
+            harSak: true,
         };
         await route.fulfill({ status: 200, body: JSON.stringify(response) });
     });
@@ -32,7 +39,7 @@ test('Mottar ikke svarfrist men behandlingstid fra api', async ({ page }) => {
     await page.route('**/innsynsdata', async (route) => {
         const response: Innsynsdata = {
             ...defaultInnsynsdata,
-            behandlingstid: { uker: 3 },
+            saksbehandlingstidUker: 3,
         };
         await route.fulfill({ status: 200, body: JSON.stringify(response) });
     });

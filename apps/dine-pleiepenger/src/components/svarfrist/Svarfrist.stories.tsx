@@ -23,7 +23,7 @@ export const Default: Story = {
 export const UtenFristMedBehandlingstid: Story = {
     name: 'Med 3 ukers behandlingstid',
     args: {
-        ukerBehandlingstid: 3,
+        saksbehandlingstidUker: 3,
     },
 };
 

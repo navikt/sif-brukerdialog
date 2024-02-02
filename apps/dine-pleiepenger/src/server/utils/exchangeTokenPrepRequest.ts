@@ -1,7 +1,33 @@
 import { grantTokenXOboToken, isInvalidTokenSet } from '@navikt/next-auth-wonderwall';
 import { createChildLogger } from '@navikt/next-logger';
-import { browserEnv, getServerEnv, isLocal } from '../../utils/env';
+import { browserEnv, getServerEnv, isLocal, ServerEnv } from '../../utils/env';
 import { ApiService } from '../apiService';
+
+const getAudienceAndServerUrl = (
+    service: ApiService,
+    serverEnv: ServerEnv,
+): {
+    audience: string;
+    serverUrl: string;
+} => {
+    switch (service) {
+        case ApiService.k9Brukerdialog:
+            return {
+                audience: serverEnv.NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE!,
+                serverUrl: browserEnv.NEXT_PUBLIC_API_URL_BRUKERDIALOG!,
+            };
+        case ApiService.k9SakInnsyn:
+            return {
+                audience: serverEnv.NEXT_PUBLIC_K9_SAK_INNSYN_BACKEND_SCOPE!,
+                serverUrl: browserEnv.NEXT_PUBLIC_API_URL_K9_SAK_INNSYN!,
+            };
+        case ApiService.sifInnsyn:
+            return {
+                audience: serverEnv.NEXT_PUBLIC_INNSYN_BACKEND_SCOPE!,
+                serverUrl: browserEnv.NEXT_PUBLIC_API_URL_INNSYN!,
+            };
+    }
+};
 
 export const exchangeTokenAndPrepRequest = async (
     service: ApiService,
@@ -14,10 +40,7 @@ export const exchangeTokenAndPrepRequest = async (
     const childLogger = createChildLogger(context.requestId);
     const serverEnv = getServerEnv();
 
-    const audience =
-        service === ApiService.k9Brukerdialog
-            ? serverEnv.NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE!
-            : serverEnv.NEXT_PUBLIC_INNSYN_BACKEND_SCOPE!;
+    const { audience, serverUrl } = getAudienceAndServerUrl(service, serverEnv);
 
     let tokenX;
 
@@ -30,11 +53,6 @@ export const exchangeTokenAndPrepRequest = async (
             );
         }
     }
-
-    const serverUrl =
-        service === ApiService.k9Brukerdialog
-            ? browserEnv.NEXT_PUBLIC_API_URL_BRUKERDIALOG
-            : browserEnv.NEXT_PUBLIC_API_URL_INNSYN;
 
     return {
         url: `${serverUrl}/${path}`,
