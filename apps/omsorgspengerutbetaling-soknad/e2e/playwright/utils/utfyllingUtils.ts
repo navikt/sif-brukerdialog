@@ -42,15 +42,10 @@ const startSøknad = async (page: Page) => {
     await page.getByRole('button').getByText('Start søknad').click();
 };
 
-const fyllUtOmBarnfyllUtOmBarnTreUnder13år = async (page: Page) => {
-    await page.getByRole('heading', { name: 'Om barn' });
-    await page.getByText('Ja, jeg bekrefter at jeg har dekket 10 omsorgsdager i år.').click();
-    await page.getByTestId('typedFormikForm-submitButton').click();
-};
-
 const fyllUtOmBarnfyllUtOmBarnToUnder13år = async (page: Page) => {
     await page.getByRole('heading', { name: 'Om barn' });
     await page.getByRole('group', { name: 'Har du søkt om eller fått ekstra' }).getByLabel('Ja').click();
+    await page.getByRole('group', { name: 'Har du dekket de 10 første omsorgsdagene i år?' }).getByLabel('Ja').click();
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
