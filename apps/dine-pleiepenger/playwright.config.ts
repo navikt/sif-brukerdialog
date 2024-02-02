@@ -48,7 +48,7 @@ export default defineConfig({
             NEXT_PUBLIC_PLEIEPENGER_URL:
                 'https://pleiepengesoknad.intern.dev.nav.no/familie/sykdom-i-familien/soknad/pleiepenger/soknad/',
             NEXT_PUBLIC_REGELVERK_INFO_URL: 'https://lovdata.no/nav/folketrygdloven/kap9',
-            NEXT_PUBLIC_SAKBEHANDLINGSTID_INFO_URL:
+            NEXT_PUBLIC_SAKSBEHANDLINGSTID_INFO_URL:
                 'https://www.intern.dev.nav.no/saksbehandlingstider#pleiepenger-for-sykt-barn',
             NEXT_PUBLIC_SAKSOVERSIKT: 'https://person.nav.no/mine-saker',
             NEXT_PUBLIC_SKRIV_TIL_OSS: 'https://www.nav.no/skriv-til-oss',

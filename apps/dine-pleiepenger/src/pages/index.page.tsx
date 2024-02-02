@@ -44,7 +44,7 @@ function DinePleiepengerPage(): ReactElement {
                     </div>
                     <div className="md:mb-none shrink-0 md:w-72">
                         <Svarfrist
-                            frist={saker.length > 0 ? saker[0].sakbehandlingsFrist : undefined}
+                            frist={saker.length > 0 ? saker[0].saksbehandlingsFrist : undefined}
                             saksbehandlingstidUker={saksbehandlingstidUker}
                         />
                     </div>

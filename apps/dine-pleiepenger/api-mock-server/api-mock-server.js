@@ -51,7 +51,7 @@ const startServer = () => {
     server.get('/saker', (req, res) => {
         res.send([
             {
-                sakbehandlingsFrist: '2024-02-02',
+                saksbehandlingsFrist: '2024-02-02',
             },
         ]);
     });

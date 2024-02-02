@@ -29,7 +29,7 @@ const Svarfrist: React.FunctionComponent<Props> = ({ frist, saksbehandlingstidUk
                     </p>
                 )}
 
-                <Link variant="neutral" href={browserEnv.NEXT_PUBLIC_SAKBEHANDLINGSTID_INFO_URL}>
+                <Link variant="neutral" href={browserEnv.NEXT_PUBLIC_SAKSBEHANDLINGSTID_INFO_URL}>
                     Les mer om saksbehandlingstid
                 </Link>
             </BodyShort>
