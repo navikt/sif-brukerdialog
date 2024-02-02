@@ -3,24 +3,29 @@ import { createChildLogger } from '@navikt/next-logger';
 import { browserEnv, getServerEnv, isLocal, ServerEnv } from '../../utils/env';
 import { ApiService } from '../apiService';
 
-const getServerUrl = (service: ApiService): string => {
+const getAudienceAndServerUrl = (
+    service: ApiService,
+    serverEnv: ServerEnv,
+): {
+    audience: string;
+    serverUrl: string;
+} => {
     switch (service) {
         case ApiService.k9Brukerdialog:
-            return browserEnv.NEXT_PUBLIC_API_URL_BRUKERDIALOG!;
+            return {
+                audience: serverEnv.NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE!,
+                serverUrl: browserEnv.NEXT_PUBLIC_API_URL_BRUKERDIALOG!,
+            };
         case ApiService.k9SakInnsyn:
-            return browserEnv.NEXT_PUBLIC_API_URL_INNSYN!;
+            return {
+                audience: serverEnv.NEXT_PUBLIC_K9_SAK_INNSYN_BACKEND_SCOPE!,
+                serverUrl: browserEnv.NEXT_PUBLIC_API_URL_K9_SAK_INNSYN!,
+            };
         case ApiService.sifInnsyn:
-            return browserEnv.NEXT_PUBLIC_API_URL_K9_SAK_INNSYN!;
-    }
-};
-const getAudience = (service: ApiService, serverEnv: ServerEnv): string => {
-    switch (service) {
-        case ApiService.k9Brukerdialog:
-            return serverEnv.NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE!;
-        case ApiService.k9SakInnsyn:
-            return serverEnv.NEXT_PUBLIC_K9_SAK_INNSYN_BACKEND_SCOPE!;
-        case ApiService.sifInnsyn:
-            return serverEnv.NEXT_PUBLIC_INNSYN_BACKEND_SCOPE!;
+            return {
+                audience: serverEnv.NEXT_PUBLIC_INNSYN_BACKEND_SCOPE!,
+                serverUrl: browserEnv.NEXT_PUBLIC_API_URL_INNSYN!,
+            };
     }
 };
 
@@ -35,7 +40,7 @@ export const exchangeTokenAndPrepRequest = async (
     const childLogger = createChildLogger(context.requestId);
     const serverEnv = getServerEnv();
 
-    const audience = getAudience(service, serverEnv);
+    const { audience, serverUrl } = getAudienceAndServerUrl(service, serverEnv);
 
     let tokenX;
 
@@ -48,8 +53,6 @@ export const exchangeTokenAndPrepRequest = async (
             );
         }
     }
-
-    const serverUrl = getServerUrl(service);
 
     return {
         url: `${serverUrl}/${path}`,
