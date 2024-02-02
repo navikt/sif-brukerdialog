@@ -53,5 +53,8 @@ TreBarnOver13.args = { registrerteBarn: barnMockData.treBarnOver13 };
 export const OverUnder13 = Template.bind({});
 OverUnder13.args = { registrerteBarn: barnMockData.toBarnUnderOgEttBarnOver };
 
+export const TreUnderEnOver13 = Template.bind({});
+TreUnderEnOver13.args = { registrerteBarn: barnMockData.treBarnUnderOgEttBarnOver };
+
 export const IngenBarn = Template.bind({});
 IngenBarn.args = { registrerteBarn: [] };

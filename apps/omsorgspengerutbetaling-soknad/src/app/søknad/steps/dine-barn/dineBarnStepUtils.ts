@@ -129,7 +129,7 @@ export const getHarUtvidetRett = (
     harAleneomsorg?: YesOrNo,
 ): boolean => {
     const info = getBarnAlderInfo(barn);
-    const { under13, kunBarnUnder13, kunBarnOver13, over13 } = info;
+    const { under13, kunBarnOver13, over13 } = info;
     if (harSyktBarn === YesOrNo.YES) {
         return true;
     }
@@ -139,10 +139,7 @@ export const getHarUtvidetRett = (
         }
         return true;
     }
-    if (kunBarnUnder13) {
-        return under13 > 2;
-    }
-    return false;
+    return under13 > 2;
 };
 
 export const getMåDekkeFørsteTiDagerSelv = (

@@ -63,8 +63,14 @@ test.describe('Tester varianter av Dine barn steg', () => {
     test('Tre barn under 13 år', async ({ page }) => {
         await startScenario(page, playwrightApiMockData.barnMock.treBarnUnder13);
         await utfyllingUtils.startSøknad(page);
-
-        await svarUtils(page).harDekketDeTiFørsteDagene(true);
+        const melding = await page.locator('.navds-alert', { hasText: 'må du dekke de 10 første omsorgsdagene' });
+        await expect(melding).toBeVisible();
+    });
+    test('Tre barn under 13 år, ett over', async ({ page }) => {
+        await startScenario(page, playwrightApiMockData.barnMock.treBarnUnder13);
+        await utfyllingUtils.startSøknad(page);
+        const melding = await page.locator('.navds-alert', { hasText: 'må du dekke de 10 første omsorgsdagene' });
+        await expect(melding).toBeVisible();
     });
     test('Ett barn over og ett under 13 år - ikke søkt men har aleneomsorg', async ({ page }) => {
         await startScenario(page, playwrightApiMockData.barnMock.ettOverOgEttUnder13);

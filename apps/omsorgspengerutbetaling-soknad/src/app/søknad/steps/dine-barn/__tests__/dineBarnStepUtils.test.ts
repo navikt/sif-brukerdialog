@@ -11,8 +11,15 @@ import {
 } from '../dineBarnStepUtils';
 import { DineBarnScenario } from '../../../../types/DineBarnScenario';
 
-const { ettBarnOver13, ettBarnUnder13, toBarnUnder13, treBarnOver13, treBarnUnder13, toBarnUnderOgEttBarnOver } =
-    barnMockData;
+const {
+    ettBarnOver13,
+    ettBarnUnder13,
+    toBarnUnder13,
+    treBarnOver13,
+    treBarnUnder13,
+    toBarnUnderOgEttBarnOver,
+    treBarnUnderOgEttBarnOver,
+} = barnMockData;
 
 describe('dineBarnStepUtils', () => {
     describe('nYearsAgo', () => {
@@ -376,6 +383,19 @@ describe('dineBarnStepUtils', () => {
             });
             it('når en har utvidet rett pga aleneomsorg', () => {
                 expect(getHarUtvidetRett(treBarnOver13, YesOrNo.NO, YesOrNo.YES)).toBeTruthy();
+            });
+        });
+        describe('flere enn 2 barn under og noen over 13 år', () => {
+            it('når en ikke har utvidet rett pga kronisk/langvarig sykdom eller aleneomsorg', () => {
+                expect(
+                    getHarUtvidetRett(treBarnUnderOgEttBarnOver, YesOrNo.UNANSWERED, YesOrNo.UNANSWERED),
+                ).toBeTruthy();
+            });
+            it('når en har utvidet rett pga kronisk/langvarig sykdom', () => {
+                expect(getHarUtvidetRett(treBarnUnderOgEttBarnOver, YesOrNo.YES, YesOrNo.UNANSWERED)).toBeTruthy();
+            });
+            it('når en har utvidet rett pga aleneomsorg', () => {
+                expect(getHarUtvidetRett(treBarnUnderOgEttBarnOver, YesOrNo.NO, YesOrNo.YES)).toBeTruthy();
             });
         });
     });
