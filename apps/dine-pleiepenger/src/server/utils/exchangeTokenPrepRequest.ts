@@ -1,8 +1,18 @@
 import { grantTokenXOboToken, isInvalidTokenSet } from '@navikt/next-auth-wonderwall';
 import { createChildLogger } from '@navikt/next-logger';
-import { ServerEnv, browserEnv, getServerEnv, isLocal } from '../../utils/env';
+import { browserEnv, getServerEnv, isLocal, ServerEnv } from '../../utils/env';
 import { ApiService } from '../apiService';
 
+const getServerUrl = (service: ApiService): string => {
+    switch (service) {
+        case ApiService.k9Brukerdialog:
+            return browserEnv.NEXT_PUBLIC_API_URL_BRUKERDIALOG!;
+        case ApiService.k9SakInnsyn:
+            return browserEnv.NEXT_PUBLIC_API_URL_INNSYN!;
+        case ApiService.sifInnsyn:
+            return browserEnv.NEXT_PUBLIC_API_URL_K9_SAK_INNSYN!;
+    }
+};
 const getAudience = (service: ApiService, serverEnv: ServerEnv): string => {
     switch (service) {
         case ApiService.k9Brukerdialog:
@@ -39,10 +49,7 @@ export const exchangeTokenAndPrepRequest = async (
         }
     }
 
-    const serverUrl =
-        service === ApiService.k9Brukerdialog
-            ? browserEnv.NEXT_PUBLIC_API_URL_BRUKERDIALOG
-            : browserEnv.NEXT_PUBLIC_API_URL_INNSYN;
+    const serverUrl = getServerUrl(service);
 
     return {
         url: `${serverUrl}/${path}`,
