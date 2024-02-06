@@ -1,6 +1,5 @@
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import {
     getDateRangeValidator,
@@ -12,6 +11,7 @@ import {
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { handleDateRangeValidationError, mapFomTomToDateRange } from '../../utils';
+import { useBostedUtlandIntl } from './';
 import bostedUtlandUtils from './bostedUtlandUtils';
 import { BostedUtland, BostedUtlandFormValues } from './types';
 
@@ -63,6 +63,7 @@ const Form = getTypedFormComponents<BostedUtlandFormFields, BostedUtlandFormValu
 
 const BostedUtlandForm = ({ maxDate, minDate, bosted, alleBosteder = [], onSubmit, onCancel }: Props) => {
     const intl = useIntl();
+    const { text } = useBostedUtlandIntl();
 
     const onFormikSubmit = (formValues: BostedUtlandFormValues) => {
         const bostedToSubmit = bostedUtlandUtils.mapFormValuesToBostedUtland(formValues, bosted?.id);
@@ -100,14 +101,14 @@ const BostedUtlandForm = ({ maxDate, minDate, bosted, alleBosteder = [], onSubmi
                         submitButtonLabel="Ok"
                         showButtonArrows={false}>
                         <Form.DateRangePicker
-                            legend={intlHelper(intl, 'bostedUtland.form.tidsperiode.spm')}
+                            legend={text('bostedUtland.form.tidsperiode.spm')}
                             minDate={minDate}
                             maxDate={maxDate}
                             allowRangesToStartAndStopOnSameDate={false}
                             disabledDateRanges={andreBosteder}
                             fromInputProps={{
                                 name: BostedUtlandFormFields.fom,
-                                label: intlHelper(intl, 'bostedUtland.form.tidsperiode.fraDato'),
+                                label: text('bostedUtland.form.tidsperiode.fraDato'),
                                 validate: (value) => {
                                     const error = getDateRangeValidator({
                                         required: true,
@@ -124,7 +125,7 @@ const BostedUtlandForm = ({ maxDate, minDate, bosted, alleBosteder = [], onSubmi
                             }}
                             toInputProps={{
                                 name: BostedUtlandFormFields.tom,
-                                label: intlHelper(intl, 'bostedUtland.form.tidsperiode.tilDato'),
+                                label: text('bostedUtland.form.tidsperiode.tilDato'),
                                 validate: (value) => {
                                     const error = getDateRangeValidator({
                                         required: true,
@@ -144,7 +145,7 @@ const BostedUtlandForm = ({ maxDate, minDate, bosted, alleBosteder = [], onSubmi
                         <FormBlock>
                             <Form.CountrySelect
                                 name={BostedUtlandFormFields.landkode}
-                                label={intlHelper(intl, 'bostedUtland.form.land.spm')}
+                                label={text('bostedUtland.form.land.spm')}
                                 validate={getRequiredFieldValidator()}
                             />
                         </FormBlock>

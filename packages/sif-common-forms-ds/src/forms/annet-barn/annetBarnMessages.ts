@@ -67,11 +67,6 @@ const nn: Record<keyof typeof nb, string> = {
     '@forms.annetBarnForm.type.noValue': 'Du må kryssa av for årsaka til at du la til dette barnet sjølv.',
 };
 
-export const annetBarnMessages = {
-    nb,
-    nn,
-};
-
 export type AnnetBarnMessageKeys = keyof typeof nb;
 
 export const soknadMessages = {
@@ -84,4 +79,7 @@ export const useAnnetBarnIntl = () => {
     return typedIntlHelper<AnnetBarnMessageKeys>(intl);
 };
 
-export default annetBarnMessages;
+export default {
+    nb,
+    nn,
+};
