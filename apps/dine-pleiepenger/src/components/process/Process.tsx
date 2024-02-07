@@ -7,6 +7,7 @@ export interface ProcessProps extends React.HTMLAttributes<HTMLOListElement> {
      * <Process.Step /> elements
      */
     children: React.ReactNode;
+    useIndex?: boolean;
 }
 
 interface ProcessComponent
@@ -19,19 +20,22 @@ interface ProcessComponent
 }
 
 export const Process: ProcessComponent = forwardRef<HTMLOListElement, ProcessProps>(
-    ({ children, className, ...rest }, ref) => {
+    ({ children, className, useIndex, ...rest }, ref) => {
         return (
             <ol {...rest} ref={ref} className={cl('process', className)}>
                 <>
                     {React.Children.map(children, (step, index) => {
                         const stepIndex = index + 1;
+                        const variant = React.isValidElement<ProcessStepProps>(step) ? step.props.variant : undefined;
                         return (
-                            <li className={'process__item'} key={stepIndex + (children?.toString?.() ?? '')}>
+                            <li
+                                className={`process__item${variant ? ` process__item__variant process__item__variant--${variant}` : ''}`}
+                                key={stepIndex + (children?.toString?.() ?? '')}>
                                 <span className="process__line process__line--1" />
                                 {React.isValidElement<ProcessStepProps>(step)
                                     ? React.cloneElement(step, {
                                           ...step.props,
-                                          index: stepIndex,
+                                          index: useIndex ? stepIndex : undefined,
                                       })
                                     : step}
                                 <span className="process__line process__line--2" />

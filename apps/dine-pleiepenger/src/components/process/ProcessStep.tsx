@@ -17,13 +17,35 @@ export interface ProcessStepProps extends React.AnchorHTMLAttributes<HTMLAnchorE
      * @default true
      */
     interactive?: boolean;
+    /**
+     * If a step is completed or not
+     */
+    completed?: boolean;
+
+    variant?: 'CURRENT' | 'WARNING' | string;
+
+    useCircle?: boolean;
+
+    icon?: React.ReactNode;
 }
 
-export const ProcessStep: React.FunctionComponent<ProcessStepProps> = ({ className, children, index }) => {
+export const ProcessStep: React.FunctionComponent<ProcessStepProps> = ({
+    className,
+    completed,
+    icon,
+    children,
+    useCircle = true,
+    variant,
+    index,
+}) => {
+    const circleContent =
+        icon || index || (variant === 'CURRENT' ? <span className="process__circle__dot" /> : undefined);
     return (
-        <div className={cl('process__step', className)}>
-            <span className="process__circle" aria-hidden="true">
-                {index}
+        <div className={cl('process__step', completed ? 'process__step--completed' : '', className)}>
+            <span
+                className={`process__circle${useCircle === false ? ' process__circle--noCircle' : ''}`}
+                aria-hidden="true">
+                {circleContent}
             </span>
             <BodyShort as="div" className="process__content">
                 {children}
