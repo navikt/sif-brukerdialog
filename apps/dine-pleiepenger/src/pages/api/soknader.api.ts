@@ -1,13 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { createChildLogger } from '@navikt/next-logger';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
-import { Søknad } from '../../types/Søknad';
+import { InnsendtSøknad } from '../../types/Søknad';
 import { getXRequestId } from '../../utils/apiUtils';
 import { sortSøknadEtterOpprettetDato } from '../../utils/søknadUtils';
 import axios from 'axios';
 import { fetchSøknader } from '../../server/apiService';
 
-export const søknaderFetcher = async (url: string): Promise<Søknad[]> => axios.get(url).then((res) => res.data);
+export const søknaderFetcher = async (url: string): Promise<InnsendtSøknad[]> => axios.get(url).then((res) => res.data);
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {

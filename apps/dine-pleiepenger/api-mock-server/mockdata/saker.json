@@ -1,0 +1,126 @@
+[
+    {
+        "pleietrengende": {
+            "aktørId": "123123123",
+            "fødselsnummer": "12345678910",
+            "fornavn": "Barn",
+            "mellomnavn": null,
+            "etternavn": "Nordmann",
+            "fødselsdato": "2019-10-03"
+        },
+        "sak": {
+            "saksnummer": "ABC123",
+            "saksbehandlingsFrist": "2024-02-02",
+            "behandlinger": [
+                {
+                    "status": "UNDER_BEHANDLING",
+                    "søknader": [
+                        {
+                            "søknadId": "123",
+                            "søknadstype": "PP_SYKT_BARN",
+                            "status": "UNDER_BEHANDLING",
+                            "k9FormatSøknad": {
+                                "språk": "nb",
+                                "søker": { "norskIdentitetsnummer": "02869599258" },
+                                "ytelse": {
+                                    "barn": { "norskIdentitetsnummer": "08861999573" },
+                                    "type": "PLEIEPENGER_SYKT_BARN",
+                                    "uttak": {
+                                        "perioder": {
+                                            "2022-10-03/2022-10-13": { "timerPleieAvBarnetPerDag": "PT7H30M" }
+                                        }
+                                    },
+                                    "omsorg": {},
+                                    "bosteder": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "beredskap": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "nattevåk": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "arbeidstid": {
+                                        "arbeidstakerList": [
+                                            {
+                                                "arbeidstidInfo": {
+                                                    "perioder": {
+                                                        "2022-10-03/2022-10-13": {
+                                                            "faktiskArbeidTimerPerDag": "PT30M",
+                                                            "jobberNormaltTimerPerDag": "PT1H"
+                                                        }
+                                                    }
+                                                },
+                                                "organisasjonsnummer": "947064649"
+                                            }
+                                        ],
+                                        "frilanserArbeidstidInfo": {
+                                            "perioder": {
+                                                "2022-10-03/2022-10-09": {
+                                                    "faktiskArbeidTimerPerDag": "PT0S",
+                                                    "jobberNormaltTimerPerDag": "PT0S"
+                                                },
+                                                "2022-10-10/2022-10-13": {
+                                                    "faktiskArbeidTimerPerDag": "PT12M",
+                                                    "jobberNormaltTimerPerDag": "PT1H"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "tilsynsordning": {
+                                        "perioder": {
+                                            "2022-10-03/2022-10-13": { "etablertTilsynTimerPerDag": "PT0S" }
+                                        }
+                                    },
+                                    "endringsperiode": [],
+                                    "lovbestemtFerie": { "perioder": {} },
+                                    "søknadsperiode": ["2022-10-03/2022-10-13"],
+                                    "utenlandsopphold": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "trekkKravPerioder": [],
+                                    "opptjeningAktivitet": { "frilanser": { "startdato": "2022-10-10" } },
+                                    "dataBruktTilUtledning": {
+                                        "harMedsøker": false,
+                                        "harBekreftetOpplysninger": true,
+                                        "harForståttRettigheterOgPlikter": true
+                                    }
+                                },
+                                "versjon": "1.0.0",
+                                "søknadId": "9a562927-bd1c-4b4f-b901-07180ff67b66",
+                                "mottattDato": "2022-10-26T23:17:30.794Z",
+                                "journalposter": [],
+                                "begrunnelseForInnsending": {}
+                            },
+                            "dokumenter": [
+                                {
+                                    "journalpostId": "573788132",
+                                    "dokumentInfoId": "599051418",
+                                    "sakId": "1DNM1SM",
+                                    "tittel": "Søknad om pleiepenger",
+                                    "filtype": "PDF",
+                                    "harTilgang": true,
+                                    "url": "http://localhost:1234/dokument/573788132/599051418/ARKIV",
+                                    "relevanteDatoer": [
+                                        { "dato": "2022-10-27T01:17:36", "datotype": "DATO_OPPRETTET" },
+                                        { "dato": "2022-10-27T01:17:36", "datotype": "DATO_DOKUMENT" },
+                                        { "dato": "2022-10-27T01:17:42", "datotype": "DATO_JOURNALFOERT" },
+                                        { "dato": "2022-10-27T01:17:30", "datotype": "DATO_REGISTRERT" }
+                                    ]
+                                }
+                            ],
+                            "arbeidsgivere": {
+                                "organisasjoner": [
+                                    {
+                                        "organisasjonsnummer": "947064649",
+                                        "navn": "Gyllen Handel AS"
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "aksjonspunkter": [
+                        {
+                            "venteårsak": "INNTEKTSMELDING"
+                        },
+                        {
+                            "venteårsak": "MEDISINSK_DOKUMENTASJON"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+]

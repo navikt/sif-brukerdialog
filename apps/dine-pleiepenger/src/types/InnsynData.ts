@@ -1,13 +1,13 @@
+import { PleietrengendeMedSak } from '../server/api-models/PleietrengendeMedSakSchema';
 import { Søker } from '../server/api-models/SøkerSchema';
 import { Mellomlagringer } from './Mellomlagring';
-import { Sak } from './Sak';
-import { Søknad } from './Søknad';
+import { InnsendtSøknad } from './Søknad';
 
 export interface Innsynsdata {
     søker: Søker;
-    søknader: Søknad[];
+    innsendteSøknader: InnsendtSøknad[];
     mellomlagring: Mellomlagringer;
-    saker: Sak[];
+    saker: PleietrengendeMedSak[];
     saksbehandlingstidUker?: number;
     harSak: boolean;
 }

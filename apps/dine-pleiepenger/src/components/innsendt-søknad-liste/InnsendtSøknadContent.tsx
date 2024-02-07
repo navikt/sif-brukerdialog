@@ -6,11 +6,11 @@ import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { Arbeidsgiver } from '../../types/Arbeidsgiver';
 import { Dokument } from '../../types/Document';
 import { Organisasjon } from '../../types/Organisasjon';
-import { Søknad, Søknadstype } from '../../types/Søknad';
+import { InnsendtSøknad, InnsendtSøknadstype } from '../../types/Søknad';
 import { browserEnv } from '../../utils/env';
 
 interface Props {
-    søknad: Søknad;
+    søknad: InnsendtSøknad;
 }
 
 export const getSøknadDokumentFilnavn = (dokument: Dokument): string => {
@@ -31,11 +31,11 @@ const getDokumentFrontendUrl = (url: string): string => {
     return `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/dokument/${paths}`;
 };
 
-const SøknadContent: React.FunctionComponent<Props> = ({ søknad }) => {
+const InnsendtSøknadContent: React.FunctionComponent<Props> = ({ søknad }) => {
     const intl = useIntl();
 
     const harArbeidsgiver = () => {
-        if (søknad.søknadstype === Søknadstype.PP_SYKT_BARN) {
+        if (søknad.søknadstype === InnsendtSøknadstype.PP_SYKT_BARN) {
             const { arbeidsgivere } = søknad.søknad;
             if (!Array.isArray(arbeidsgivere)) {
                 return arbeidsgivere.organisasjoner && arbeidsgivere.organisasjoner.length > 0;
@@ -99,7 +99,7 @@ const SøknadContent: React.FunctionComponent<Props> = ({ søknad }) => {
                 )}
             </Box>
 
-            {søknad.søknadstype === Søknadstype.PP_SYKT_BARN && harArbeidsgiver() && (
+            {søknad.søknadstype === InnsendtSøknadstype.PP_SYKT_BARN && harArbeidsgiver() && (
                 <Box className="mt-8">
                     <Heading size="xsmall" level="4" spacing={true}>
                         <FormattedMessage id="bekreftelseTilArbeidsgiver.title" />
@@ -132,4 +132,4 @@ const SøknadContent: React.FunctionComponent<Props> = ({ søknad }) => {
     );
 };
 
-export default SøknadContent;
+export default InnsendtSøknadContent;

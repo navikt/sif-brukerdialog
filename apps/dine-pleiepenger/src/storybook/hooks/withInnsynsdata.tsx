@@ -2,17 +2,17 @@ import { InnsynsdataContextProvider } from '../../context/InnsynsdataContextProv
 import mockSøknader from '../../../api-mock-server/mockdata/soknader.json';
 import mockSøker from '../../../api-mock-server/mockdata/soknader.json';
 import { Søker } from '../../server/api-models/SøkerSchema';
-import { Søknad } from '../../types/Søknad';
+import { InnsendtSøknad } from '../../types/Søknad';
 import dayjs from 'dayjs';
 
 export const withInnsynsdata = (Story) => (
     <InnsynsdataContextProvider
         innsynsdata={{
-            saker: [{ saksbehandlingsFrist: dayjs().add(5, 'weeks').toDate() }],
+            saker: [{ saksbehandlingsFrist: dayjs().add(5, 'weeks').toDate() } as any],
             harSak: true,
             søker: mockSøker as any as Søker,
             mellomlagring: {},
-            søknader: mockSøknader as any as Søknad[],
+            innsendteSøknader: mockSøknader as any as InnsendtSøknad[],
         }}>
         <Story />
     </InnsynsdataContextProvider>

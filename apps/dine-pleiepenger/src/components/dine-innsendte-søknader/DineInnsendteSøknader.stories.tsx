@@ -2,12 +2,12 @@ import { Meta, StoryObj } from '@storybook/react';
 import mockSøknader from '../../../api-mock-server/mockdata/soknader.json';
 import { withEmptyPage } from '../../storybook/hooks/withEmptyPage';
 import { withIntl } from '../../storybook/hooks/withIntl';
-import { Søknad } from '../../types/Søknad';
-import DineSøknader from './DineSøknader';
+import { InnsendtSøknad } from '../../types/Søknad';
+import DineInnsendteSøknader from './DineInnsendteSøknader';
 
-const meta: Meta<typeof DineSøknader> = {
+const meta: Meta<typeof DineInnsendteSøknader> = {
     title: 'Components/DineSøknader',
-    component: DineSøknader,
+    component: DineInnsendteSøknader,
     parameters: {
         layout: 'centered',
     },
@@ -15,9 +15,9 @@ const meta: Meta<typeof DineSøknader> = {
 };
 export default meta;
 
-type Story = StoryObj<typeof DineSøknader>;
+type Story = StoryObj<typeof DineInnsendteSøknader>;
 
-const søknader = mockSøknader as any as Søknad[];
+const søknader = mockSøknader as any as InnsendtSøknad[];
 
 export const MedEnSøknader: Story = {
     name: 'Med én søknad',
@@ -29,7 +29,7 @@ export const MedEnSøknader: Story = {
 export const MedSøknader: Story = {
     name: 'Med flere søknader',
     args: {
-        søknader: søknader as Søknad[],
+        søknader: søknader as InnsendtSøknad[],
     },
 };
 

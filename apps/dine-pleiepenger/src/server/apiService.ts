@@ -2,19 +2,18 @@ import { createChildLogger } from '@navikt/next-logger';
 import axios from 'axios';
 import { NextApiRequest } from 'next';
 import { Mellomlagringer } from '../types/Mellomlagring';
-import { Søknad } from '../types/Søknad';
+import { InnsendtSøknad } from '../types/Søknad';
 import { getContextForApiHandler, getXRequestId } from '../utils/apiUtils';
 import { MellomlagringModel, MellomlagringSchema } from './api-models/MellomlagringSchema';
 import { Søker, SøkerSchema } from './api-models/SøkerSchema';
 import { exchangeTokenAndPrepRequest } from './utils/exchangeTokenPrepRequest';
 import { isValidMellomlagring } from './utils/isValidMellomlagring';
-import { SøknaderSchema } from './api-models/SøknadSchema';
+import { InnsendtSøknaderSchema } from './api-models/InnsendtSøknadSchema';
 import {
     Saksbehandlingstid as Saksbehandlingstid,
     SaksbehandlingstidSchema,
 } from './api-models/SaksbehandlingstidSchema';
-import { Sak } from './api-models/SakSchema';
-import { SakerSchema } from './api-models/SakerSchema';
+import { PleietrengendeMedSak, PleietrengendeMedSakResponseSchema } from './api-models/PleietrengendeMedSakSchema';
 
 export enum ApiService {
     k9Brukerdialog = 'k9-brukerdialog-api',
@@ -59,7 +58,7 @@ export const fetchSøker = async (req: NextApiRequest): Promise<Søker> => {
  * @param req
  * @returns
  */
-export const fetchSaker = async (req: NextApiRequest): Promise<Sak[]> => {
+export const fetchSaker = async (req: NextApiRequest): Promise<PleietrengendeMedSak[]> => {
     const context = getContextForApiHandler(req);
     const { url, headers } = await exchangeTokenAndPrepRequest(
         ApiService.k9SakInnsyn,
@@ -68,8 +67,7 @@ export const fetchSaker = async (req: NextApiRequest): Promise<Sak[]> => {
     );
     createChildLogger(getXRequestId(req)).info(`Fetching saker from url: ${url}`);
     const response = await axios.get(url, { headers });
-    const saker = await SakerSchema.parse(response.data);
-    return saker;
+    return await PleietrengendeMedSakResponseSchema.parse(response.data);
 };
 
 /**
@@ -89,12 +87,12 @@ export const fetchSaksbehandlingstid = async (req: NextApiRequest): Promise<Saks
     return await SaksbehandlingstidSchema.parse(response.data);
 };
 
-export const fetchSøknader = async (req: NextApiRequest): Promise<Søknad[]> => {
+export const fetchSøknader = async (req: NextApiRequest): Promise<InnsendtSøknad[]> => {
     const context = getContextForApiHandler(req);
     const { url, headers } = await exchangeTokenAndPrepRequest(ApiService.sifInnsyn, context, ApiEndpointInnsyn.søknad);
     createChildLogger(getXRequestId(req)).info(`Fetching søknader from url: ${url}`);
     const response = await axios.get(url, { headers });
-    return await SøknaderSchema.parse(response.data);
+    return await InnsendtSøknaderSchema.parse(response.data);
 };
 
 /**

@@ -2,14 +2,14 @@ import { BodyShort, HStack } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Task } from '@navikt/ds-icons';
-import { Søknad } from '../../types/Søknad';
+import { InnsendtSøknad } from '../../types/Søknad';
 import { formatSøknadOpprettetDato } from '../../utils/søknadUtils';
 
 interface Props {
-    søknad: Søknad;
+    søknad: InnsendtSøknad;
 }
 
-const SøknadTitle: React.FunctionComponent<Props> = ({ søknad }) => {
+const InnsendtSøknadTitle: React.FunctionComponent<Props> = ({ søknad }) => {
     return (
         <div>
             <HStack gap="2" align={'start'} wrap={false}>
@@ -29,4 +29,4 @@ const SøknadTitle: React.FunctionComponent<Props> = ({ søknad }) => {
     );
 };
 
-export default SøknadTitle;
+export default InnsendtSøknadTitle;

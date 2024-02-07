@@ -3,10 +3,11 @@ import { createChildLogger } from '@navikt/next-logger';
 import axios from 'axios';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { fetchSaker } from '../../server/apiService';
-import { Sak } from '../../types/Sak';
 import { getXRequestId } from '../../utils/apiUtils';
+import { PleietrengendeMedSak } from '../../server/api-models/PleietrengendeMedSakSchema';
 
-export const sakerFetcher = async (url: string): Promise<Sak[]> => axios.get(url).then((res) => res.data);
+export const sakerFetcher = async (url: string): Promise<PleietrengendeMedSak[]> =>
+    axios.get(url).then((res) => res.data);
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {

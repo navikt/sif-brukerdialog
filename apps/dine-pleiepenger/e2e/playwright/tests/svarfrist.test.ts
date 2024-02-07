@@ -4,18 +4,21 @@ import { søknaderMockData } from '../mockdata/søknader.mock';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import { test, expect } from '@playwright/test';
 import { setupMockRoutes } from '../utils/setup-mock-routes';
-import { Sak } from '../../../src/types/Sak';
+import { PleietrengendeMedSak } from '../../../src/server/api-models/PleietrengendeMedSakSchema';
 
-const sak: Sak = {
-    saksbehandlingsFrist: ISODateToDate('2021-01-01'),
-};
+const sak: PleietrengendeMedSak = {
+    pleietrengende: {},
+    sak: {
+        saksbehandlingsFrist: ISODateToDate('2021-01-01'),
+    },
+} as any;
 
 const defaultInnsynsdata: Innsynsdata = {
     saker: [],
     harSak: false,
     søker: søkerMockData as any,
     mellomlagring: {},
-    søknader: søknaderMockData as any,
+    innsendteSøknader: søknaderMockData as any,
 };
 
 test.beforeEach(async ({ page }) => {

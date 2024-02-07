@@ -1,16 +1,16 @@
 import { Alert, Box, Button, ExpansionCard, HStack, VStack } from '@navikt/ds-react';
-import { Søknad } from '../../types/Søknad';
-import SøknadTitle from './SøknadTitle';
-import SøknadContent from './SøknadContent';
+import { InnsendtSøknad } from '../../types/Søknad';
+import InnsendtSøknadTitle from './InnsendtSøknadTitle';
+import InnsendtSøknadContent from './InnsendtSøknadContent';
 import Skeleton from 'react-loading-skeleton';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Add } from '@navikt/ds-icons';
 
 interface Props {
-    søknader: Søknad[];
+    søknader: InnsendtSøknad[];
 }
 
-const SøknadListe: React.FunctionComponent<Props> = ({ søknader = [] }) => {
+const InnsendtSøknadListe: React.FunctionComponent<Props> = ({ søknader = [] }) => {
     const [antall, setAntall] = useState(3);
     const [focusIndex, setFocusIndex] = useState<number | undefined>();
 
@@ -47,11 +47,11 @@ const SøknadListe: React.FunctionComponent<Props> = ({ søknader = [] }) => {
                         aria-labelledby={labelId}>
                         <ExpansionCard.Header>
                             <ExpansionCard.Title id={labelId}>
-                                <SøknadTitle søknad={søknad} />
+                                <InnsendtSøknadTitle søknad={søknad} />
                             </ExpansionCard.Title>
                         </ExpansionCard.Header>
                         <ExpansionCard.Content>
-                            <SøknadContent søknad={søknad} />
+                            <InnsendtSøknadContent søknad={søknad} />
                         </ExpansionCard.Content>
                     </ExpansionCard>
                 );
@@ -89,4 +89,4 @@ export const SøknadListeSkeleton = ({ rows = 3 }: { rows: number }) => {
     return <VStack gap="2">{skeleton}</VStack>;
 };
 
-export default SøknadListe;
+export default InnsendtSøknadListe;

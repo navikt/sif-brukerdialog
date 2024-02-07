@@ -43,7 +43,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
         const innsynsdata: Innsynsdata = {
             søker,
-            søknader: søknaderReq.status === 'fulfilled' ? søknaderReq.value.sort(sortSøknadEtterOpprettetDato) : [],
+            innsendteSøknader:
+                søknaderReq.status === 'fulfilled' ? søknaderReq.value.sort(sortSøknadEtterOpprettetDato) : [],
             mellomlagring: mellomlagringReq.status === 'fulfilled' ? mellomlagringReq.value : {},
             saksbehandlingstidUker:
                 saksbehandlingstidReq.status === 'fulfilled'
