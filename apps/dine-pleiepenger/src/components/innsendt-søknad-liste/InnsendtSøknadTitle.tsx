@@ -3,7 +3,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Task } from '@navikt/ds-icons';
 import { InnsendtSøknad } from '../../types/Søknad';
-import { formatSøknadOpprettetDato } from '../../utils/søknadUtils';
+import { formatInnsendtSøknadOpprettetDato } from '../../utils/innsendtSøknadUtils';
 
 interface Props {
     søknad: InnsendtSøknad;
@@ -22,7 +22,7 @@ const InnsendtSøknadTitle: React.FunctionComponent<Props> = ({ søknad }) => {
             </HStack>
             {søknad.opprettet ? (
                 <BodyShort size="small" className="text-grayalpha-700">
-                    Mottatt {formatSøknadOpprettetDato(søknad.opprettet)}
+                    Mottatt {formatInnsendtSøknadOpprettetDato(søknad.opprettet)}
                 </BodyShort>
             ) : null}
         </div>

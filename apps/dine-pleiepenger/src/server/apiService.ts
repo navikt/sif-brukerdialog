@@ -67,7 +67,8 @@ export const fetchSaker = async (req: NextApiRequest): Promise<PleietrengendeMed
     );
     createChildLogger(getXRequestId(req)).info(`Fetching saker from url: ${url}`);
     const response = await axios.get(url, { headers });
-    return await PleietrengendeMedSakResponseSchema.parse(response.data);
+    const saker = await PleietrengendeMedSakResponseSchema.parse(response.data);
+    return saker;
 };
 
 /**

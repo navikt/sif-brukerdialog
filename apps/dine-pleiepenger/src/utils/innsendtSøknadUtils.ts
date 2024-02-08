@@ -9,11 +9,15 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.locale('nb');
 
-export const formatSøknadOpprettetDato = (date: Date) => {
+export const formatInnsendtSøknadOpprettetDato = (date: Date) => {
     return dayjs(date).tz('Europe/Oslo').format('dddd D. MMMM YYYY, [kl.] HH:mm');
 };
 
-export const sortSøknadEtterOpprettetDato = (a: InnsendtSøknad, b: InnsendtSøknad, desc: boolean = true): number => {
+export const sortInnsendtSøknadEtterOpprettetDato = (
+    a: InnsendtSøknad,
+    b: InnsendtSøknad,
+    desc: boolean = true,
+): number => {
     const direction = desc ? 1 : -1;
     return new Date(a.opprettet) < new Date(b.opprettet) ? direction : direction * -1;
 };

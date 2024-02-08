@@ -1,17 +1,6 @@
 import { z } from 'zod';
 import { K9FormatSøknadSchema } from './K9FormatSøknadSchema';
-
-export enum Søknadsstatus {
-    MOTTATT = 'MOTTATT',
-    UNDER_BEHANDLING = 'UNDER_BEHANDLING',
-    FERDIG_BEHANDLET = 'FERDIG_BEHANDLET',
-}
-
-export enum Søknadstype {
-    PP_ETTERSENDELSE = 'PP_ETTERSENDELSE',
-    PP_SYKT_BARN = 'PP_SYKT_BARN',
-    PP_SYKT_BARN_ENDRINGSMELDING = 'PP_SYKT_BARN_ENDRINGSMELDING',
-}
+import { InnsendtSøknadsstatus, InnsendtSøknadstype } from './InnsendtSøknadSchema';
 
 enum SøknadDokumentFiltype {
     PDF = 'PDF',
@@ -29,12 +18,12 @@ const SøknadDokumentSchema = z.object({
 
 const SøknadBaseSchema = z.object({
     søknadId: z.string(),
-    status: z.nativeEnum(Søknadsstatus),
+    status: z.nativeEnum(InnsendtSøknadsstatus),
     dokumenter: z.array(z.union([SøknadDokumentSchema, z.any()])),
 });
 
 const PleiepengerSøknadSchema = SøknadBaseSchema.extend({
-    søknadstype: z.literal(Søknadstype.PP_SYKT_BARN),
+    søknadstype: z.nativeEnum(InnsendtSøknadstype),
     k9FormatSøknad: K9FormatSøknadSchema,
     arbeidsgivere: z.object({
         organisasjoner: z.array(
@@ -47,7 +36,7 @@ const PleiepengerSøknadSchema = SøknadBaseSchema.extend({
 });
 
 const EndringsmeldingSchema = SøknadBaseSchema.extend({
-    søknadstype: z.literal(Søknadstype.PP_SYKT_BARN_ENDRINGSMELDING),
+    søknadstype: z.literal(InnsendtSøknadstype.PP_SYKT_BARN_ENDRINGSMELDING),
 });
 
 export const SøknadSchema = PleiepengerSøknadSchema;
@@ -55,6 +44,6 @@ export const SøknadSchema = PleiepengerSøknadSchema;
 export type Pleiepengesøknad = z.infer<typeof PleiepengerSøknadSchema>;
 export type PleiepengerEndringsmelding = z.infer<typeof EndringsmeldingSchema>;
 
-export type InnsendtSøknad = Pleiepengesøknad | PleiepengerEndringsmelding;
+export type Søknad = Pleiepengesøknad | PleiepengerEndringsmelding;
 
 export const SøknaderSchema = z.array(SøknadSchema);
