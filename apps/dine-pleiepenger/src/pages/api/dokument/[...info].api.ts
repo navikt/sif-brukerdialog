@@ -25,7 +25,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
         res.setHeader('Content-Type', 'application/PDF; charset=utf-8');
         res.setHeader('Content-Length', (blob as Blob).size.toString());
-        res.setHeader('Content-Disposition', `filename="${encodeURI(dokumentTittel)}.pdf"`);
+        res.setHeader('Content-Disposition', `filename="${encodeURI(dokumentTittel)}"`);
         res.setHeader;
         res.write(resBuffer, 'binary');
         res.end();
