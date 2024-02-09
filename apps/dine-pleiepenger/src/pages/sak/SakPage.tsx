@@ -9,6 +9,10 @@ import Svarfrist from '../../components/svarfrist/Svarfrist';
 import { Pleietrengende } from '../../server/api-models/PleietrengendeSchema';
 import { Sak } from '../../types/Sak';
 import { personaliaUtils } from '../../utils/personaliaUtils';
+import { setBreadcrumbs, onBreadcrumbClick } from '@navikt/nav-dekoratoren-moduler';
+import { getAllBreadcrumbs } from '../../utils/decoratorBreadcrumbs';
+import { browserEnv } from '../../utils/env';
+import { useRouter } from 'next/router';
 
 interface Props {
     pleietrengende: Pleietrengende;
@@ -18,6 +22,13 @@ interface Props {
 
 const SakPage: React.FunctionComponent<Props> = ({ sak, pleietrengende, saksbehandlingstidUker }) => {
     const navn = personaliaUtils.navn(pleietrengende);
+    const router = useRouter();
+
+    setBreadcrumbs(getAllBreadcrumbs([{ url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Din pleiepengesak' }]));
+
+    onBreadcrumbClick((breadcrumb) => {
+        router.push(breadcrumb.url);
+    });
 
     return (
         <DefaultPageLayout pageHeader={<SakPageHeader navn={navn} saksnr={sak.saksnummer} />}>

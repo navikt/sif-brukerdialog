@@ -3131,6 +3131,7 @@ __metadata:
     jest: 29.7.0
     jest-environment-jsdom: 29.7.0
     jsonwebtoken: 9.0.2
+    lodash.sortby: 4.7.0
     next: 14.1.0
     next-logger: 3.0.2
     node-fetch: 3.3.2
@@ -17151,6 +17152,13 @@ __metadata:
   version: 4.1.1
   resolution: "lodash.once@npm:4.1.1"
   checksum: d768fa9f9b4e1dc6453be99b753906f58990e0c45e7b2ca5a3b40a33111e5d17f6edf2f768786e2716af90a8e78f8f91431ab8435f761fef00f9b0c256f6d245
+  languageName: node
+  linkType: hard
+
+"lodash.sortby@npm:4.7.0":
+  version: 4.7.0
+  resolution: "lodash.sortby@npm:4.7.0"
+  checksum: db170c9396d29d11fe9a9f25668c4993e0c1331bcb941ddbd48fb76f492e732add7f2a47cfdf8e9d740fa59ac41bbfaf931d268bc72aab3ab49e9f89354d718c
   languageName: node
   linkType: hard
 

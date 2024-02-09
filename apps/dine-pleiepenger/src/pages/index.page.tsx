@@ -1,4 +1,4 @@
-import { Box, VStack } from '@navikt/ds-react';
+import { Box, Heading, LinkPanel, VStack } from '@navikt/ds-react';
 import { ReactElement } from 'react';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
@@ -12,6 +12,11 @@ import Svarfrist from '../components/svarfrist/Svarfrist';
 import { useInnsynsdataContext } from '../hooks/useInnsynsdataContext';
 import { Feature } from '../utils/features';
 import SakPage from './sak/SakPage';
+import { personaliaUtils } from '../utils/personaliaUtils';
+import { dateFormatter } from '@navikt/sif-common-utils';
+import Link from 'next/link';
+import { getAllBreadcrumbs } from '../utils/decoratorBreadcrumbs';
+import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 
 function DinePleiepengerPage(): ReactElement {
     const {
@@ -19,6 +24,7 @@ function DinePleiepengerPage(): ReactElement {
     } = useInnsynsdataContext();
 
     const { logInfo } = useAmplitudeInstance();
+    setBreadcrumbs(getAllBreadcrumbs([]));
 
     useEffectOnce(() => {
         if (Feature.HENT_BEHANDLINGSTID && Feature.HENT_SAKER && logInfo) {
@@ -37,6 +43,40 @@ function DinePleiepengerPage(): ReactElement {
                 pleietrengende={saker[0].pleietrengende}
                 saksbehandlingstidUker={saksbehandlingstidUker}
             />
+        );
+    }
+
+    if (saker.length > 1) {
+        return (
+            <DefaultPageLayout>
+                <Head>
+                    <title>Dine pleiepenger - velg sak</title>
+                </Head>
+                <Box>
+                    <Heading size="medium" level="1" spacing={true} className="text-deepblue-800">
+                        Dine pleiepengesaker
+                    </Heading>
+
+                    <VStack gap="5" className="max-w-2xl mb-10">
+                        {saker.map((sak) => (
+                            <LinkPanel
+                                as={Link}
+                                border={false}
+                                href={`/sak/${sak.sak.saksnummer}`}
+                                key={sak.sak.saksnummer}>
+                                <LinkPanel.Title className="w-full">
+                                    <Heading as="span" size="small">
+                                        {personaliaUtils.navn(sak.pleietrengende)}
+                                    </Heading>
+                                </LinkPanel.Title>
+                                <LinkPanel.Description>
+                                    <p>Født: {dateFormatter.full(sak.pleietrengende.fødselsdato)}</p>
+                                </LinkPanel.Description>
+                            </LinkPanel>
+                        ))}
+                    </VStack>
+                </Box>
+            </DefaultPageLayout>
         );
     }
     return (
