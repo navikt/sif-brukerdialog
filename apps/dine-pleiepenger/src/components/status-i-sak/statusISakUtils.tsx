@@ -1,15 +1,15 @@
+import { Heading, Link } from '@navikt/ds-react';
 import React from 'react';
-import ProcessStep from '../process/ProcessStep';
-import { Heading } from '@navikt/ds-react';
-import CompleteIcon from '../process/checks/Complete';
-import { Behandling } from '../../server/api-models/BehandlingSchema';
-import { formatInnsendtSøknadOpprettetDato } from '../../utils/innsendtSøknadUtils';
-import { BehandlingStatus } from '../../server/api-models/BehandlingStatus';
 import { WarningColored } from '@navikt/ds-icons';
-import { InnsendtSøknadstype } from '../../types/Søknad';
-import { Aksjonspunkt } from '../../server/api-models/AksjonspunktSchema';
-import Link from 'next/link';
 import { dateFormatter } from '@navikt/sif-common-utils';
+import { Aksjonspunkt } from '../../server/api-models/AksjonspunktSchema';
+import { Behandling } from '../../server/api-models/BehandlingSchema';
+import { BehandlingStatus } from '../../server/api-models/BehandlingStatus';
+import { InnsendtSøknadstype } from '../../types/Søknad';
+import { Venteårsak } from '../../types/Venteårsak';
+import { formatInnsendtSøknadOpprettetDato } from '../../utils/innsendtSøknadUtils';
+import CompleteIcon from '../process/checks/Complete';
+import ProcessStep from '../process/ProcessStep';
 
 export const getStepsInBehandling = (behandling: Behandling, saksbehandlingsFrist?: Date): React.ReactNode[] => {
     const { søknader, aksjonspunkter, avsluttetDato, status } = behandling;
@@ -41,7 +41,9 @@ export const getStepsInBehandling = (behandling: Behandling, saksbehandlingsFris
                 <Heading size="small" level="3" spacing={true}>
                     {getAksjonspunkterTekst(aksjonspunkter)}
                 </Heading>
-                <Link href="#">Se alle brev i Dokumentarkivet</Link>
+                <Link variant="action" href="#">
+                    Se alle brev i Dokumentarkivet
+                </Link>
             </ProcessStep>,
         );
     }
@@ -78,5 +80,12 @@ export const getStepsInBehandling = (behandling: Behandling, saksbehandlingsFris
 };
 
 export const getAksjonspunkterTekst = (aksjonspunkter: Aksjonspunkt[]): string => {
-    return `Vi har sendt deg brev fordi vi mangler ${aksjonspunkter.map((ap) => ap.venteårsak).join(', ')}`;
+    const årsaker = aksjonspunkter.map((a) => a.venteårsak).flat();
+    if (årsaker.includes(Venteårsak.MEDISINSK_DOKUMENTASJON)) {
+        return 'Vi har sendt deg brev fordi vi mangler legeerklæring.';
+    }
+    if (årsaker.includes(Venteårsak.INNTEKTSMELDING)) {
+        return 'Vi har sendt deg brev fordi vi mangler inntektsmelding.';
+    }
+    return `Vi har sendt deg brev fordi vi mangler noe informasjon.`;
 };
