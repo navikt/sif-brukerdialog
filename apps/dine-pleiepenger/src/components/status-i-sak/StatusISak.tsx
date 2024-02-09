@@ -11,7 +11,6 @@ interface Props {
 
 const StatusISak: React.FunctionComponent<Props> = ({ sak }) => {
     const [antall, setAntall] = useState(4);
-    // const [focusIndex, setFocusIndex] = useState<number | undefined>();
 
     const steps = sak.behandlinger
         .map((behandling) => getStepsInBehandling(behandling, sak.saksbehandlingsFrist))
@@ -22,7 +21,6 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak }) => {
     const visibleSteps = steps.slice(-1 * antall);
 
     const visFlereSteg = () => {
-        // setFocusIndex(antall);
         setAntall(Math.min(steps.length, antall + 5));
     };
 

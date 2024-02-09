@@ -30,7 +30,6 @@ export interface ProcessStepProps extends React.AnchorHTMLAttributes<HTMLAnchorE
 }
 
 export const ProcessStep: React.FunctionComponent<ProcessStepProps> = ({
-    className,
     completed,
     icon,
     children,
@@ -41,7 +40,7 @@ export const ProcessStep: React.FunctionComponent<ProcessStepProps> = ({
     const circleContent =
         icon || index || (variant === 'CURRENT' ? <span className="process__circle__dot" /> : undefined);
     return (
-        <div className={cl('process__step', completed ? 'process__step--completed' : '', className)}>
+        <div className={cl('process__step', completed ? 'process__step--completed' : '')}>
             <span
                 className={`process__circle${useCircle === false ? ' process__circle--noCircle' : ''}`}
                 aria-hidden="true">

@@ -4,7 +4,7 @@ import { Heading } from '@navikt/ds-react';
 import CompleteIcon from '../process/checks/Complete';
 import { Behandling } from '../../server/api-models/BehandlingSchema';
 import { formatInnsendtSøknadOpprettetDato } from '../../utils/innsendtSøknadUtils';
-import { BehandlingStatus } from '../../types/BehandlingStatus';
+import { BehandlingStatus } from '../../server/api-models/BehandlingStatus';
 import { WarningColored } from '@navikt/ds-icons';
 import { InnsendtSøknadstype } from '../../types/Søknad';
 import { Aksjonspunkt } from '../../server/api-models/AksjonspunktSchema';
@@ -12,7 +12,7 @@ import Link from 'next/link';
 import { dateFormatter } from '@navikt/sif-common-utils';
 
 export const getStepsInBehandling = (behandling: Behandling, saksbehandlingsFrist?: Date): React.ReactNode[] => {
-    const { søknader, aksjonspunkter, status } = behandling;
+    const { søknader, aksjonspunkter, avsluttetDato, status } = behandling;
     const steps: React.ReactNode[] = [];
 
     let key = 0;
@@ -51,7 +51,7 @@ export const getStepsInBehandling = (behandling: Behandling, saksbehandlingsFris
                 <Heading size="small" level="3">
                     Søknad er ferdig behandlet
                 </Heading>
-                <p>[Todo: Tidspunkt mangler]</p>
+                {avsluttetDato ? <p>{dateFormatter.dayDateMonthYear(avsluttetDato)} </p> : null}
             </ProcessStep>,
         );
     } else {

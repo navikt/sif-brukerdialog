@@ -15,6 +15,7 @@
                 {
                     "status": "AVSLUTTET",
                     "opprettetDato": "2022-10-26T23:17:30.794Z",
+                    "avsluttetDato": "2022-11-26T23:17:30.794Z",
                     "søknader": [
                         {
                             "søknadId": "123",
