@@ -37,9 +37,10 @@ const PleiepengerSøknadSchema = SøknadBaseSchema.extend({
 
 const EndringsmeldingSchema = SøknadBaseSchema.extend({
     søknadstype: z.literal(InnsendtSøknadstype.PP_SYKT_BARN_ENDRINGSMELDING),
+    k9FormatSøknad: K9FormatSøknadSchema,
 });
 
-export const SøknadSchema = PleiepengerSøknadSchema;
+export const SøknadSchema = z.union([PleiepengerSøknadSchema, EndringsmeldingSchema]);
 
 export type Pleiepengesøknad = z.infer<typeof PleiepengerSøknadSchema>;
 export type PleiepengerEndringsmelding = z.infer<typeof EndringsmeldingSchema>;

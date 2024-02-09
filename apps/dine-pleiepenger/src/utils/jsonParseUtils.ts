@@ -22,6 +22,8 @@ export const getDateFromString = (value?: string): Date | undefined => {
         }
         if (dayjs(value).isValid()) {
             return dayjs.utc(value).toDate();
+        } else {
+            throw new Error(`Could not parse date string: ${value}`);
         }
     }
     return undefined;

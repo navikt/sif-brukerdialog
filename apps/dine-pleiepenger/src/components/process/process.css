@@ -24,7 +24,7 @@
 }
 .process__item__variant {
     margin: 0.25rem -0.25rem 0.5rem -0.25rem;
-    padding: 0.25rem 0.5rem 1rem 0.5rem;
+    padding: 0.25rem 0.25rem 1rem 0.25rem;
     border-radius: 0.25rem;
 }
 .process__item__variant--CURRENT .process__circle {
@@ -88,7 +88,7 @@
     justify-content: flex-start;
     text-decoration: none;
     padding: var(--process-border-width);
-    margin: calc(var(--process-border-width) * -1) calc(var(--process-border-width) * -1) 0.75rem;
+    margin: calc(var(--process-border-width) * -1) calc(var(--process-border-width) * -1) 1.25rem;
 }
 
 .process__circle {

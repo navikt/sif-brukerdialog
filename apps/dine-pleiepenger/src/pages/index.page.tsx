@@ -82,6 +82,7 @@ function DinePleiepengerPage(): ReactElement {
             </DefaultPageLayout>
         );
     }
+
     return (
         <DefaultPageLayout>
             <Head>

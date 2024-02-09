@@ -1,20 +1,22 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { createChildLogger } from '@navikt/next-logger';
+import { storageParser } from '@navikt/sif-common-core-ds/src/utils/persistence/storageParser';
 import axios, { HttpStatusCode } from 'axios';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import {
-    fetchSaksbehandlingstid,
     fetchMellomlagringer,
+    fetchSaker,
+    fetchSaksbehandlingstid,
     fetchSøker,
     fetchSøknader,
-    fetchSaker,
 } from '../../server/apiService';
 import { Innsynsdata } from '../../types/InnsynData';
 import { getXRequestId } from '../../utils/apiUtils';
-import { sortInnsendtSøknadEtterOpprettetDato } from '../../utils/innsendtSøknadUtils';
 import { Feature } from '../../utils/features';
+import { sortInnsendtSøknadEtterOpprettetDato } from '../../utils/innsendtSøknadUtils';
 
-export const innsynsdataFetcher = async (url: string): Promise<Innsynsdata> => axios.get(url).then((res) => res.data);
+export const innsynsdataFetcher = async (url: string): Promise<Innsynsdata> =>
+    axios.get(url, { transformResponse: storageParser }).then((res) => res.data);
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const childLogger = createChildLogger(getXRequestId(req));
@@ -38,13 +40,14 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
                 new Error(`Hent søknader feilet: ${søknaderReq.reason.message}`, { cause: søknaderReq.reason }),
             );
         }
+        const innsendteSøknader =
+            søknaderReq.status === 'fulfilled' ? søknaderReq.value.sort(sortInnsendtSøknadEtterOpprettetDato) : [];
 
         const saker = sakerReq.status === 'fulfilled' ? sakerReq.value : [];
 
         const innsynsdata: Innsynsdata = {
             søker,
-            innsendteSøknader:
-                søknaderReq.status === 'fulfilled' ? søknaderReq.value.sort(sortInnsendtSøknadEtterOpprettetDato) : [],
+            innsendteSøknader,
             mellomlagring: mellomlagringReq.status === 'fulfilled' ? mellomlagringReq.value : {},
             saksbehandlingstidUker:
                 saksbehandlingstidReq.status === 'fulfilled'

@@ -4,16 +4,17 @@ import { NextApiRequest } from 'next';
 import { Mellomlagringer } from '../types/Mellomlagring';
 import { InnsendtSøknad } from '../types/Søknad';
 import { getContextForApiHandler, getXRequestId } from '../utils/apiUtils';
-import { MellomlagringModel, MellomlagringSchema } from './api-models/MellomlagringSchema';
-import { Søker, SøkerSchema } from './api-models/SøkerSchema';
-import { exchangeTokenAndPrepRequest } from './utils/exchangeTokenPrepRequest';
-import { isValidMellomlagring } from './utils/isValidMellomlagring';
+import { sortBehandlinger } from '../utils/sakUtils';
 import { InnsendtSøknaderSchema } from './api-models/InnsendtSøknadSchema';
+import { MellomlagringModel, MellomlagringSchema } from './api-models/MellomlagringSchema';
+import { PleietrengendeMedSak, PleietrengendeMedSakResponseSchema } from './api-models/PleietrengendeMedSakSchema';
 import {
     Saksbehandlingstid as Saksbehandlingstid,
     SaksbehandlingstidSchema,
 } from './api-models/SaksbehandlingstidSchema';
-import { PleietrengendeMedSak, PleietrengendeMedSakResponseSchema } from './api-models/PleietrengendeMedSakSchema';
+import { Søker, SøkerSchema } from './api-models/SøkerSchema';
+import { exchangeTokenAndPrepRequest } from './utils/exchangeTokenPrepRequest';
+import { isValidMellomlagring } from './utils/isValidMellomlagring';
 
 export enum ApiService {
     k9Brukerdialog = 'k9-brukerdialog-api',
@@ -68,7 +69,16 @@ export const fetchSaker = async (req: NextApiRequest): Promise<PleietrengendeMed
     createChildLogger(getXRequestId(req)).info(`Fetching saker from url: ${url}`);
     const response = await axios.get(url, { headers });
     const saker = await PleietrengendeMedSakResponseSchema.parse(response.data);
-    return saker;
+
+    return saker.map((ps): PleietrengendeMedSak => {
+        return {
+            pleietrengende: ps.pleietrengende,
+            sak: {
+                ...ps.sak,
+                behandlinger: sortBehandlinger(ps.sak.behandlinger),
+            },
+        };
+    });
 };
 
 /**

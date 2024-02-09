@@ -20,7 +20,7 @@ const StatusTag: React.FunctionComponent<Props> = ({ status, venteårsak }) => {
         case BehandlingStatus.PAA_VENT:
             return (
                 <Tag variant="warning" size="small">
-                    Vi venter på {venteårsak ? `${venteårsak}` : 'informasjon'}
+                    Vi venter på {venteårsak === Venteårsak.INNTEKTSMELDING ? `inntektsmelding` : 'legeerklæring'}
                 </Tag>
             );
         case BehandlingStatus.AVSLUTTET:

@@ -1,19 +1,18 @@
+import { Box, Button, Heading, HStack, Panel, VStack } from '@navikt/ds-react';
 import React, { useMemo, useState } from 'react';
+import { Add } from '@navikt/ds-icons';
 import { Sak } from '../../types/Sak';
-import { Box, Button, HStack, Heading, Panel, VStack } from '@navikt/ds-react';
 import { Process } from '../process';
 import { getStepsInBehandling } from './statusISakUtils';
-import { Add } from '@navikt/ds-icons';
-import { getBehandlingerISakSorted } from '../../utils/sakUtils';
 
 interface Props {
     sak: Sak;
 }
 
 const StatusISak: React.FunctionComponent<Props> = ({ sak }) => {
-    const [antall, setAntall] = useState(4);
+    const [antallTidligere, setAntall] = useState(4);
 
-    const behandlinger = getBehandlingerISakSorted(sak);
+    const { behandlinger } = sak;
     const steps = behandlinger
         .map((behandling) => getStepsInBehandling(behandling, sak.saksbehandlingsFrist))
         .flat()
@@ -29,12 +28,12 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak }) => {
         .flat()
         .reverse();
 
-    const totalt = useMemo(() => steps.length, [steps]);
+    const totaltTidligere = useMemo(() => tidligereSteps.length, [tidligereSteps]);
 
-    // const visibleSteps = steps.slice(-1 * antall);
+    const synligTidligereSteg = tidligereSteps.slice(-1 * antallTidligere);
 
     const visFlereSteg = () => {
-        setAntall(Math.min(steps.length, antall + 5));
+        setAntall(Math.min(steps.length, antallTidligere + 5));
     };
 
     return (
@@ -49,9 +48,9 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak }) => {
                 Tidligere hendelser
             </Heading>
             <Panel className="bg-white">
-                <Process>{...tidligereSteps}</Process>
+                <Process>{...synligTidligereSteg}</Process>
             </Panel>
-            {antall < totalt ? (
+            {antallTidligere < totaltTidligere ? (
                 <Box className="flex justify-start">
                     <Button variant="tertiary-neutral" type="button" onClick={visFlereSteg}>
                         <HStack gap="2" align="center" wrap={false}>

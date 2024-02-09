@@ -14,3 +14,7 @@
 .navds-expansioncard__content {
     border: none;
 }
+
+.navds-heading {
+    color: var(--a-deepblue-800);
+}
