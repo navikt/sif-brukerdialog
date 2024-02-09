@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 0.5.13
+
+### Patch Changes
+
+- 82d12d5: Legge til .pdf i filnavn for arbeidsgivermeldinger
+
 ## 0.5.12
 
 ### Patch Changes

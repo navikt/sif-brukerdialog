@@ -25,7 +25,7 @@ export async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
         res.setHeader('Content-Length', (blob as Blob).size.toString());
 
         const dokumentTittel = `Arbeidsgivermelding - org. ${organisasjonsnummer}`;
-        res.setHeader('Content-Disposition', `filename="${dokumentTittel}"`);
+        res.setHeader('Content-Disposition', `filename="${dokumentTittel}.pdf"`);
         res.write(resBuffer, 'binary');
         res.end();
     } catch (err) {
