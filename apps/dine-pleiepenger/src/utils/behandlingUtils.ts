@@ -1,6 +1,6 @@
 import { Aksjonspunkt } from '../server/api-models/AksjonspunktSchema';
 import { Behandling } from '../server/api-models/BehandlingSchema';
-import { BehandlingStatus } from '../server/api-models/BehandlingStatus';
+import { Behandlingsstatus } from '../server/api-models/Behandlingsstatus';
 import { Venteårsak } from '../types/Venteårsak';
 
 enum HendelseType {
@@ -50,7 +50,7 @@ export const getHendelserIBehandling = (behandling: Behandling, saksbehandlingFr
     }
 
     /** Avsluttet eller forventet svar på søknad */
-    if (status === BehandlingStatus.AVSLUTTET && avsluttetDato) {
+    if (status === Behandlingsstatus.AVSLUTTET && avsluttetDato) {
         hendelser.push({
             type: HendelseType.FERDIG_BEHANDLET,
             dato: avsluttetDato,

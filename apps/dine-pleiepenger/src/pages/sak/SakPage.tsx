@@ -13,6 +13,8 @@ import { setBreadcrumbs, onBreadcrumbClick } from '@navikt/nav-dekoratoren-modul
 import { getAllBreadcrumbs } from '../../utils/decoratorBreadcrumbs';
 import { browserEnv } from '../../utils/env';
 import { useRouter } from 'next/router';
+import { getBehandlingsstatusISak } from '../../utils/sakUtils';
+import VenteårsakMelding from '../../components/VenteårsakMelding';
 
 interface Props {
     pleietrengende: Pleietrengende;
@@ -30,6 +32,8 @@ const SakPage: React.FunctionComponent<Props> = ({ sak, pleietrengende, saksbeha
         router.push(breadcrumb.url);
     });
 
+    const statusISak = getBehandlingsstatusISak(sak);
+
     return (
         <DefaultPageLayout pageHeader={<SakPageHeader navn={navn} saksnr={sak.saksnummer} />}>
             <Head>
@@ -38,6 +42,7 @@ const SakPage: React.FunctionComponent<Props> = ({ sak, pleietrengende, saksbeha
                 </title>
             </Head>
             <VStack gap="12">
+                {statusISak.venteårsak ? <VenteårsakMelding venteårsak={statusISak.venteårsak} /> : null}
                 <Box className="md:flex md:gap-6">
                     <div className="md:grow mb-10 md:mb-0">{<StatusISak sak={sak} />}</div>
                     <div className="md:mb-none shrink-0 md:w-72">

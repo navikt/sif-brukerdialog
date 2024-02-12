@@ -18,7 +18,7 @@ import Link from 'next/link';
 import { getAllBreadcrumbs } from '../utils/decoratorBreadcrumbs';
 import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import StatusTag from '../components/status-tag/StatusTag';
-import { getGjeldendeStatusISak } from '../utils/sakUtils';
+import { getBehandlingsstatusISak } from '../utils/sakUtils';
 
 function DinePleiepengerPage(): ReactElement {
     const {
@@ -73,7 +73,7 @@ function DinePleiepengerPage(): ReactElement {
                                 </LinkPanel.Title>
                                 <LinkPanel.Description>
                                     <p>Født: {dateFormatter.full(sak.pleietrengende.fødselsdato)}</p>
-                                    <StatusTag {...getGjeldendeStatusISak(sak.sak)} />
+                                    <StatusTag {...getBehandlingsstatusISak(sak.sak)} />
                                 </LinkPanel.Description>
                             </LinkPanel>
                         ))}

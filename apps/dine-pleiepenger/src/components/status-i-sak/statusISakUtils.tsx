@@ -1,10 +1,9 @@
-import { Heading, Link } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 import React from 'react';
-import { WarningColored } from '@navikt/ds-icons';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { Aksjonspunkt } from '../../server/api-models/AksjonspunktSchema';
 import { Behandling } from '../../server/api-models/BehandlingSchema';
-import { BehandlingStatus } from '../../server/api-models/BehandlingStatus';
+import { Behandlingsstatus } from '../../server/api-models/Behandlingsstatus';
 import { InnsendtSøknadstype } from '../../types/Søknad';
 import { Venteårsak } from '../../types/Venteårsak';
 import { formatInnsendtSøknadOpprettetDato } from '../../utils/innsendtSøknadUtils';
@@ -31,23 +30,14 @@ export const getStepsInBehandling = (behandling: Behandling, saksbehandlingsFris
 
     if (aksjonspunkter.length > 0) {
         steps.push(
-            <ProcessStep
-                key={key++}
-                variant="WARNING"
-                useCircle={false}
-                icon={<WarningColored />}
-                completed={false}
-                className="whoa">
+            <ProcessStep key={key++} completed={false} variant="CURRENT">
                 <Heading size="small" level="3" spacing={true}>
                     {getAksjonspunkterTekst(aksjonspunkter)}
                 </Heading>
-                <Link variant="action" href="#">
-                    Se alle brev i Dokumentarkivet
-                </Link>
             </ProcessStep>,
         );
     }
-    if (status === BehandlingStatus.AVSLUTTET) {
+    if (status === Behandlingsstatus.AVSLUTTET) {
         steps.push(
             <ProcessStep key={key++} completed={true} icon={<CompleteIcon />}>
                 <Heading size="small" level="3">
@@ -82,10 +72,10 @@ export const getStepsInBehandling = (behandling: Behandling, saksbehandlingsFris
 export const getAksjonspunkterTekst = (aksjonspunkter: Aksjonspunkt[]): string => {
     const årsaker = aksjonspunkter.map((a) => a.venteårsak).flat();
     if (årsaker.includes(Venteårsak.MEDISINSK_DOKUMENTASJON)) {
-        return 'Vi har sendt deg brev fordi vi mangler legeerklæring.';
+        return 'Saken er satt på vent fordi vi mangler legeerklæring';
     }
     if (årsaker.includes(Venteårsak.INNTEKTSMELDING)) {
-        return 'Vi har sendt deg brev fordi vi mangler inntektsmelding.';
+        return 'Saken er satt på vent fordi vi mangler inntektsmelding';
     }
-    return `Vi har sendt deg brev fordi vi mangler noe informasjon.`;
+    return `Saken er satt på vent fordi vi mangler informajson`;
 };

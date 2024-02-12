@@ -211,7 +211,7 @@
                     "aksjonspunkter": []
                 },
                 {
-                    "status": "OPPRETTET",
+                    "status": "PAA_VENT",
                     "opprettetDato": "2023-01-15T23:17:30.794Z",
                     "søknader": [
                         {

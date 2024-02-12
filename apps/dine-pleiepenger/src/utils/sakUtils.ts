@@ -1,11 +1,12 @@
 import sortBy from 'lodash.sortby';
 import { Aksjonspunkt } from '../server/api-models/AksjonspunktSchema';
 import { Behandling } from '../server/api-models/BehandlingSchema';
-import { BehandlingStatus } from '../server/api-models/BehandlingStatus';
+import { Behandlingsstatus } from '../server/api-models/Behandlingsstatus';
 import { Sak } from '../types/Sak';
 import { Søknadshendelse, SøknadshendelseType } from '../types/Søknadshendelse';
 import { Venteårsak } from '../types/Venteårsak';
 import { Søknad } from '../server/api-models/SøknadSchema';
+import { BehandlingsstatusISak } from '../types/BehandlingsstatusISak';
 
 const getSisteBehandlingISak = (sak: Sak): Behandling => {
     return sortBy(sak.behandlinger, (b) => b.opprettetDato).reverse()[0];
@@ -32,7 +33,7 @@ export const getBehandlingerISakSorted = (sak: Sak): Behandling[] => {
     return sortBehandlinger(sak.behandlinger);
 };
 
-export const getGjeldendeStatusISak = (sak: Sak): { status: BehandlingStatus; venteårsak?: Venteårsak } => {
+export const getBehandlingsstatusISak = (sak: Sak): BehandlingsstatusISak => {
     const behandling = getSisteBehandlingISak(sak);
     return {
         status: behandling.status,
@@ -58,7 +59,7 @@ export const getHendelserIBehandling = (behandling: Behandling, saksbehandlingFr
     }
 
     /** Avsluttet eller forventet svar på søknad */
-    if (status === BehandlingStatus.AVSLUTTET && avsluttetDato) {
+    if (status === Behandlingsstatus.AVSLUTTET && avsluttetDato) {
         hendelser.push({
             type: SøknadshendelseType.FERDIG_BEHANDLET,
             avsluttetDato: avsluttetDato,
