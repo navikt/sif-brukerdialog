@@ -1,4 +1,4 @@
-import { Box, Button, Heading, HStack, Panel, VStack } from '@navikt/ds-react';
+import { Box, Button, Heading, HStack, VStack } from '@navikt/ds-react';
 import React, { useMemo, useState } from 'react';
 import { Add } from '@navikt/ds-icons';
 import { Sak } from '../../types/Sak';
@@ -41,15 +41,15 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak }) => {
             <Heading level="2" size="medium">
                 Hva skjer i saken din nå
             </Heading>
-            <Panel className="bg-white">
+            <Box padding="4" className="bg-white">
                 <Process>{...stepsSisteBehandling.reverse()}</Process>
-            </Panel>
+            </Box>
             <Heading level="2" size="medium" className="mt-10">
                 Tidligere hendelser
             </Heading>
-            <Panel className="bg-white">
+            <Box padding="4" className="bg-white">
                 <Process>{...synligTidligereSteg}</Process>
-            </Panel>
+            </Box>
             {antallTidligere < totaltTidligere ? (
                 <Box className="flex justify-start">
                     <Button variant="tertiary-neutral" type="button" onClick={visFlereSteg}>
