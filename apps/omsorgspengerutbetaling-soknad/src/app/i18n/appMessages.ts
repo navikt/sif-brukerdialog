@@ -83,13 +83,16 @@ export const appMessages: MessageFileFormat = {
         'validation.barn.ingenBarn': 'Du må legge til minst ett barn for å kunne gå videre i søknaden.',
         'validation.harUtvidetRett.yesOrNoIsUnanswered':
             'Du må svare at du har fått ekstra omsorgsdager for barn fordi barnet har kronisk sykdom eller funksjonshemning eller ikke.',
-        'validation.harDekketTiFørsteDagerSelv.notAnswered': 'Du må svare på om du har dekt  10 dager selv i år.',
+        'validation.harSyktBarn.yesOrNoIsUnanswered':
+            'Du må svare at du har fått ekstra omsorgsdager for et barn som har en sykdom eller funksjonshemning som gjør at du oftere må være borte fra jobb.',
+        'validation.harAleneomsorg.yesOrNoIsUnanswered':
+            'Du må svare på om du fått ekstra omsorgsdager fordi du er alene om omsorgen.',
+        'validation.harDekketTiFørsteDagerSelv.notAnswered':
+            'Du må svare på om du har dekket de 10 første dagene i år.',
         'validation.ingen_dokumenter': 'Ingen vedlegg er lastet opp.',
         'validation.for_mange_dokumenter': 'For mange dokumenter er lastet opp.',
         'validation.samlet_storrelse_for_hoy':
             'Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24Mb.',
-        'validation.harDekketTiFørsteDagerSelv.yesOrNoIsUnanswered':
-            'Du må svare ja eller nei på om du har dekket de 10 første dagene selv.',
         'validation.harPerioderMedFravær.yesOrNoIsUnanswered':
             'Du må svare ja eller nei på om du har hatt hele dager med fravær fra jobb.',
         'validation.fraværPerioder.listIsEmpty': 'Du har ikke lagt til dager med fullt fravær.',
