@@ -5,16 +5,21 @@ import { Mellomlagringer } from '../types/Mellomlagring';
 import { Søknad } from '../types/Søknad';
 import { getContextForApiHandler, getXRequestId } from '../utils/apiUtils';
 import { MellomlagringModel, MellomlagringSchema } from './api-models/MellomlagringSchema';
-import { Svarfrist, SvarfristSchema } from './api-models/SvarfristSchema';
 import { Søker, SøkerSchema } from './api-models/SøkerSchema';
 import { exchangeTokenAndPrepRequest } from './utils/exchangeTokenPrepRequest';
 import { isValidMellomlagring } from './utils/isValidMellomlagring';
 import { SøknaderSchema } from './api-models/SøknadSchema';
-import { Behandlingstid, BehandlingstidSchema } from './api-models/BehandlingstidSchema';
+import {
+    Saksbehandlingstid as Saksbehandlingstid,
+    SaksbehandlingstidSchema,
+} from './api-models/SaksbehandlingstidSchema';
+import { Sak } from './api-models/SakSchema';
+import { SakerSchema } from './api-models/SakerSchema';
 
 export enum ApiService {
     k9Brukerdialog = 'k9-brukerdialog-api',
     sifInnsyn = 'sif-innsyn-api',
+    k9SakInnsyn = 'k9-sak-innsyn-api',
 }
 
 export enum ApiEndpointBrukerdialog {
@@ -24,10 +29,12 @@ export enum ApiEndpointBrukerdialog {
 }
 export enum ApiEndpointInnsyn {
     'søknad' = 'soknad',
-    /** Svarfrist for evt. åpen søknad for bruker */
-    'svarfrist' = 'svarfrist',
-    /** Gjeldende behandlingsstid  */
-    'behandlingstid' = 'behandlingstid',
+}
+
+export enum ApiEndpointK9SakInnsyn {
+    'saker' = 'saker',
+    /** Gjeldende behandlingsstid i antall uker*/
+    'behandlingstid' = 'saker/saksbehandlingstid',
 }
 
 export enum SifApiErrorType {
@@ -48,20 +55,21 @@ export const fetchSøker = async (req: NextApiRequest): Promise<Søker> => {
 };
 
 /**
- * Henter forventet svarfrist hvis bruker har en åpen søknad
+ * Henter saker for bruker
  * @param req
  * @returns
  */
-export const fetchSvarfrist = async (req: NextApiRequest): Promise<Svarfrist> => {
+export const fetchSaker = async (req: NextApiRequest): Promise<Sak[]> => {
     const context = getContextForApiHandler(req);
     const { url, headers } = await exchangeTokenAndPrepRequest(
-        ApiService.sifInnsyn,
+        ApiService.k9SakInnsyn,
         context,
-        ApiEndpointInnsyn.svarfrist,
+        ApiEndpointK9SakInnsyn.saker,
     );
-    createChildLogger(getXRequestId(req)).info(`Fetching svarfrist from url: ${url}`);
+    createChildLogger(getXRequestId(req)).info(`Fetching saker from url: ${url}`);
     const response = await axios.get(url, { headers });
-    return await SvarfristSchema.parse(response.data);
+    const saker = await SakerSchema.parse(response.data);
+    return saker;
 };
 
 /**
@@ -69,16 +77,16 @@ export const fetchSvarfrist = async (req: NextApiRequest): Promise<Svarfrist> =>
  * @param req
  * @returns
  */
-export const fetchBehandlingstid = async (req: NextApiRequest): Promise<Behandlingstid> => {
+export const fetchSaksbehandlingstid = async (req: NextApiRequest): Promise<Saksbehandlingstid> => {
     const context = getContextForApiHandler(req);
     const { url, headers } = await exchangeTokenAndPrepRequest(
-        ApiService.sifInnsyn,
+        ApiService.k9SakInnsyn,
         context,
-        ApiEndpointInnsyn.behandlingstid,
+        ApiEndpointK9SakInnsyn.behandlingstid,
     );
     createChildLogger(getXRequestId(req)).info(`Fetching behandlingstid from url: ${url}`);
     const response = await axios.get(url, { headers });
-    return await BehandlingstidSchema.parse(response.data);
+    return await SaksbehandlingstidSchema.parse(response.data);
 };
 
 export const fetchSøknader = async (req: NextApiRequest): Promise<Søknad[]> => {

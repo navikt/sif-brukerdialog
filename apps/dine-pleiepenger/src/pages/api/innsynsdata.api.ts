@@ -3,11 +3,11 @@ import { createChildLogger } from '@navikt/next-logger';
 import axios, { HttpStatusCode } from 'axios';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import {
-    fetchBehandlingstid,
+    fetchSaksbehandlingstid,
     fetchMellomlagringer,
-    fetchSvarfrist,
     fetchSøker,
     fetchSøknader,
+    fetchSaker,
 } from '../../server/apiService';
 import { Innsynsdata } from '../../types/InnsynData';
 import { getXRequestId } from '../../utils/apiUtils';
@@ -24,25 +24,33 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         const søker = await fetchSøker(req);
 
         /** Bruker har tilgang, hent resten av informasjonen */
-        const [søknader, mellomlagring, svarfrist, behandlingstid] = await Promise.allSettled([
+        const [søknaderReq, mellomlagringReq, sakerReq, saksbehandlingstidReq] = await Promise.allSettled([
             fetchSøknader(req),
             fetchMellomlagringer(req),
-            Feature.HENT_SVARFRIST ? fetchSvarfrist(req) : Promise.resolve({ svarfrist: undefined }),
-            Feature.HENT_BEHANDLINGSTID ? fetchBehandlingstid(req) : Promise.resolve({ behandlingstid: undefined }),
+            Feature.HENT_SAKER ? fetchSaker(req) : Promise.resolve([]),
+            Feature.HENT_BEHANDLINGSTID
+                ? fetchSaksbehandlingstid(req)
+                : Promise.resolve({ saksbehandlingstidUker: undefined }),
         ]);
 
-        if (søknader.status === 'rejected') {
+        if (søknaderReq.status === 'rejected') {
             childLogger.error(
-                new Error(`Hent søknader feilet: ${søknader.reason.message}`, { cause: søknader.reason }),
+                new Error(`Hent søknader feilet: ${søknaderReq.reason.message}`, { cause: søknaderReq.reason }),
             );
         }
 
+        const saker = sakerReq.status === 'fulfilled' ? sakerReq.value : [];
+
         const innsynsdata: Innsynsdata = {
             søker,
-            søknader: søknader.status === 'fulfilled' ? søknader.value.sort(sortSøknadEtterOpprettetDato) : [],
-            mellomlagring: mellomlagring.status === 'fulfilled' ? mellomlagring.value : {},
-            svarfrist: svarfrist.status === 'fulfilled' ? svarfrist.value.svarfrist : undefined,
-            behandlingstid: behandlingstid.status === 'fulfilled' ? behandlingstid.value.behandlingstid : undefined,
+            søknader: søknaderReq.status === 'fulfilled' ? søknaderReq.value.sort(sortSøknadEtterOpprettetDato) : [],
+            mellomlagring: mellomlagringReq.status === 'fulfilled' ? mellomlagringReq.value : {},
+            saksbehandlingstidUker:
+                saksbehandlingstidReq.status === 'fulfilled'
+                    ? saksbehandlingstidReq.value.saksbehandlingstidUker
+                    : undefined,
+            saker,
+            harSak: saker.length > 0,
         };
         res.send(innsynsdata);
     } catch (err) {

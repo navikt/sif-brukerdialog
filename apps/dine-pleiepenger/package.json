@@ -1,6 +1,6 @@
 {
     "name": "@navikt/dine-pleiepenger",
-    "version": "0.5.10",
+    "version": "0.5.13",
     "private": true,
     "scripts": {
         "build-storybook": "storybook build",
@@ -36,12 +36,12 @@
     },
     "devDependencies": {
         "@axe-core/playwright": "4.8.4",
-        "@navikt/ds-css": "5.17.2",
+        "@navikt/ds-css": "5.17.4",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "5.17.2",
-        "@navikt/ds-tailwind": "5.17.2",
+        "@navikt/ds-react": "5.17.4",
+        "@navikt/ds-tailwind": "5.17.4",
         "@next/bundle-analyzer": "14.1.0",
-        "@playwright/test": "1.41.1",
+        "@playwright/test": "1.41.2",
         "@storybook/addon-essentials": "7.6.12",
         "@storybook/addon-interactions": "7.6.12",
         "@storybook/addon-links": "7.6.12",
@@ -50,7 +50,7 @@
         "@storybook/nextjs": "7.6.12",
         "@storybook/react": "7.6.12",
         "@storybook/test": "7.6.12",
-        "chromatic": "10.6.1",
+        "chromatic": "10.7.1",
         "classnames": "2.5.1",
         "dayjs": "1.11.10",
         "eslint-plugin-storybook": "0.6.15",

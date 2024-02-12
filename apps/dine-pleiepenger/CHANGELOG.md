@@ -1,5 +1,34 @@
 # @navikt/dine-pleiepenger
 
+## 0.5.13
+
+### Patch Changes
+
+- 82d12d5: Legge til .pdf i filnavn for arbeidsgivermeldinger
+
+## 0.5.12
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor og patch
+- Updated dependencies
+  - @navikt/sif-common-amplitude@2.24.18
+  - @navikt/appstatus-react-ds@2.17.21
+  - @navikt/sif-common-core-ds@9.15.3
+  - @navikt/sif-common-utils@3.44.3
+
+## 0.5.11
+
+### Patch Changes
+
+- Pakkeoppdateringer patch/minor
+- Updated dependencies
+  - @navikt/sif-common-amplitude@2.24.17
+  - @navikt/appstatus-react-ds@2.17.20
+  - @navikt/sif-common-core-ds@9.15.2
+  - @navikt/sif-common-sentry@0.25.16
+  - @navikt/sif-common-utils@3.44.2
+
 ## 0.5.10
 
 ### Patch Changes

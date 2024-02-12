@@ -1,11 +1,10 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
 import ActionLink from '@navikt/sif-common-core-ds/src/atoms/action-link/ActionLink';
 import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { prettifyDate } from '@navikt/sif-common-utils';
-import { AnnetBarn } from './types';
+import { AnnetBarnMessageKeys, useAnnetBarnIntl } from './';
+import { AnnetBarn, BarnType } from './types';
 import './annetBarnList.scss';
 
 interface Props {
@@ -16,8 +15,17 @@ interface Props {
 
 const bem = bemUtils('annetBarnList');
 
+const getAnnetBarnÅrsakIntlKey = (type: BarnType): AnnetBarnMessageKeys => {
+    switch (type) {
+        case BarnType.fosterbarn:
+            return '@forms.annetBarn.form.årsak.FOSTERBARN';
+        case BarnType.annet:
+            return '@forms.annetBarn.form.årsak.ANNET';
+    }
+};
+
 const AnnetBarnList = ({ annetBarn = [], onDelete, onEdit }: Props) => {
-    const intl = useIntl();
+    const { text } = useAnnetBarnIntl();
 
     if (annetBarn.length === 0) {
         return null;
@@ -31,7 +39,7 @@ const AnnetBarnList = ({ annetBarn = [], onDelete, onEdit }: Props) => {
                     {onEdit && <ActionLink onClick={() => onEdit(annetBarn)}>{annetBarn.navn}</ActionLink>}
                 </span>
                 <span className={bem.element('type')}>
-                    {annetBarn.type && <> ({intlHelper(intl, `annetBarn.form.årsak.${annetBarn.type}`)})</>}
+                    {annetBarn.type && <> ({text(getAnnetBarnÅrsakIntlKey(annetBarn.type))})</>}
                 </span>
                 {!onEdit && <span>{annetBarn.navn}</span>}
             </div>
