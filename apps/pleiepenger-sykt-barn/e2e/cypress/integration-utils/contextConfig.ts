@@ -49,5 +49,6 @@ export const contextConfig = (props?: ConfigProps) => {
         );
         cy.intercept('*.api.sanity.io', {});
         cy.intercept('*amplitude*', {});
+        cy.intercept('*hotjar*', {});
     });
 };
