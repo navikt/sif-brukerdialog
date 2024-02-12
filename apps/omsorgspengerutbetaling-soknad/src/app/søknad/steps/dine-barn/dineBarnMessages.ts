@@ -5,8 +5,15 @@ export const dineBarnMessages: MessageFileFormat = {
         'step.dineBarn.nextButtonLabel': 'Fortsett',
         'step.dineBarn.intro.1':
             'Når du ser selvstendig næringsdrivende eller frilanser, må du som hovedregel selv dekke de 10 første omsorgsdagene du bruker hvert kalenderår. Du kan altså ha rett til utbetaling av omsorgspenger fra den 11. dagen per kalenderår. ',
-        'step.dineBarn.intro.info.tittel': 'Hvem har rett på omsorgspenger fra 1. fraværsdag?',
-        'step.dineBarn.intro.info.tekst': '[TODO]',
+        'step.dineBarn.intro.info.tittel': 'Barn og rett til omsorgspenger fra NAV',
+        'step.dineBarn.intro.info.barnUnder13.tittel': 'Barn under 13',
+        'step.dineBarn.intro.info.barnUnder13.tekst':
+            'Selvstendig næringsdrivende og frilansere må som hovedregel selv dekke 10 omsorgsdager hvert kalenderår. Hvis du har rett til mer enn 10 omsorgsdager, kan du søke om utbetaling fra NAV fra den 11. dagen du er hjemme med sykt barn.',
+        'step.dineBarn.intro.info.barnOver13.tittel': 'Barn over 13',
+        'step.dineBarn.intro.info.barnOver13.tekst.1':
+            'Retten til omsorgsdager varer som hovedregel til og med det kalenderåret barnet fyller 12 år.',
+        'step.dineBarn.intro.info.barnOver13.tekst.2':
+            'I noen tilfeller kan du få omsorgspenger ut året barnet fyller 18 år. Dette gjelder når du har fått ekstra omsorgsdager, på grunn av sykdom hos barnet. Du kan da søke om utbetaling fra første dag du er hjemme med sykt barn.',
 
         'step.dineBarn.seksjonsTittel': 'Dine barn',
         'step.dineBarn.født': 'Født {dato}',
@@ -17,12 +24,21 @@ export const dineBarnMessages: MessageFileFormat = {
         'step.dineBarn.annetBarnListAndDialog.modalTitle': 'Legg til barn',
 
         'step.dineBarn.utvidetRettSykdom.spm':
-            'Har du søkt om eller fått ekstra omsorgsdager fordi du har barn som er kronisk sykt, funksjonshemmet eller langvarig sykt?',
-        'step.dineBarn.utvidetRettSykdom.spm.ettBarn':
-            'Har du søkt om eller fått ekstra omsorgsdager fordi barnet er kronisk sykt, funksjonshemmet eller langvarig sykt?',
+            'Har du fått ekstra omsorgsdager for et barn som har en sykdom eller funksjonshemning som gjør at du oftere må være borte fra jobb?',
+        'step.dineBarn.utvidetRettSykdom.info.tittel': 'Hva betyr dette?',
+        'step.dineBarn.utvidetRettSykdom.info.1':
+            'Hvis barnet har en kronisk/langvarig sykdom eller funksjonshemning som gir høyere risiko for at du må være borte fra jobb, kan du ha rett til ekstra omsorgsdager. Du vil da ha rett til omsorgsdager ut  året barnet fyller 18 år.',
+        'step.dineBarn.utvidetRettSykdom.info.2':
+            'Du svarer ja hvis du har fått vedtak fra NAV om ekstra omsorgsdager på grunn av sykdom. Hvis du har sendt inn søknad og venter på svar, skal du også svare ja på dette spørsmålet.  ',
 
-        'step.dineBarn.utvidetRettAleneomsorg.spm':
-            'Har du søkt om ekstra omsorgsdager fordi du er alene om omsorgen for ett eller flere barn?',
+        'step.dineBarn.utvidetRettAleneomsorg.spm': 'Har du fått ekstra omsorgsdager fordi du er alene om omsorgen?',
+        'step.dineBarn.utvidetRettAleneomsorg.info.tittel': 'Hva betyr dette?',
+        'step.dineBarn.utvidetRettAleneomsorg.info.tekst.1':
+            'Du er alene om omsorgen hvis barnet bor fast hos deg, og du ikke bor sammen med den andre forelderen. Hvis du og den andre forelderen har en avtale om delt fast bosted, er du ikke alene om omsorgen for barnet. ',
+        'step.dineBarn.utvidetRettAleneomsorg.info.tekst.2':
+            'Du kan også regnes som alene om omsorgen hvis den andre forelderen ikke kan ha tilsyn med barnet i minst 6 måneder, for eksempel på grunn av egen sykdom eller fengselsopphold. ',
+        'step.dineBarn.utvidetRettAleneomsorg.info.tekst.3':
+            'Du kan svare ja på dette spørsmålet hvis du har fått vedtak fra NAV om ekstra omsorgsdager på grunn av aleneomsorg. Hvis du har sendt inn søknad og venter på svar, skal du også svare ja på dette spørsmålet.',
 
         'step.dineBarn.utvidetRettSykdom.nei.alertStripe':
             'Når du kun har barn som er 13 år i år eller eldre, må du ha søkt om eller fått ekstra omsorgsdager for å kunne søke om utbetaling.',

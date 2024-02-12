@@ -29,7 +29,7 @@ const startScenario = async (page: Page, barnMockData: any) => {
 const svarUtils = (page: Page) => ({
     harSøktOmEkstraDager: async (harSøkt: boolean) => {
         await page
-            .getByRole('group', { name: 'kronisk sykt' })
+            .getByRole('group', { name: 'Har du fått ekstra omsorgsdager for et barn' })
             .getByLabel(harSøkt ? 'Ja' : 'Nei')
             .click();
     },
@@ -56,21 +56,14 @@ test.describe('Tester varianter av Dine barn steg', () => {
         await utfyllingUtils.startSøknad(page);
 
         await svarUtils(page).harSøktOmEkstraDager(true);
-
-        const melding = await page.locator('.navds-alert', { hasText: 'må du dekke de 10 første omsorgsdagene' });
-        await expect(melding).toBeVisible();
     });
     test('Tre barn under 13 år', async ({ page }) => {
         await startScenario(page, playwrightApiMockData.barnMock.treBarnUnder13);
         await utfyllingUtils.startSøknad(page);
-        const melding = await page.locator('.navds-alert', { hasText: 'må du dekke de 10 første omsorgsdagene' });
-        await expect(melding).toBeVisible();
     });
     test('Tre barn under 13 år, ett over', async ({ page }) => {
         await startScenario(page, playwrightApiMockData.barnMock.treBarnUnder13);
         await utfyllingUtils.startSøknad(page);
-        const melding = await page.locator('.navds-alert', { hasText: 'må du dekke de 10 første omsorgsdagene' });
-        await expect(melding).toBeVisible();
     });
     test('Ett barn over og ett under 13 år - ikke søkt men har aleneomsorg', async ({ page }) => {
         await startScenario(page, playwrightApiMockData.barnMock.ettOverOgEttUnder13);

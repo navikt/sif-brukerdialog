@@ -3579,6 +3579,7 @@ __metadata:
     axios: 1.6.7
     babel-polyfill: 6.26.0
     busboy: 1.6.0
+    chromatic: 10.7.1
     compression: 1.7.4
     cookie-parser: 1.4.6
     cross-env: 7.0.3

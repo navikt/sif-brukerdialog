@@ -1,53 +1,43 @@
-import { Alert } from '@navikt/ds-react';
+import { Alert, Heading } from '@navikt/ds-react';
 import React from 'react';
 import { yesOrNoIsAnswered } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import HarAleneomsorgSpørsmål from '../spørsmål/HarAleneomsorgSpørsmål';
 import HarSyktBarnSpørsmål from '../spørsmål/HarSyktBarnSpørsmål';
 import HarDekketTiFørsteDagerSelvSpørsmål from '../spørsmål/HarDekketTiFørsteDagerSelvSpørsmål';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 
 interface Props {
-    antallBarn: number;
     harSyktBarn?: YesOrNo;
     harAleneomsorg?: YesOrNo;
     harUtvidetRett: boolean;
 }
 
-const EttEllerToBarnUnder13: React.FunctionComponent<Props> = ({
-    antallBarn,
-    harSyktBarn,
-    harAleneomsorg,
-    harUtvidetRett,
-}) => {
+const EttEllerToBarnUnder13: React.FunctionComponent<Props> = ({ harSyktBarn, harAleneomsorg, harUtvidetRett }) => {
     const harBesvartAlleSpørsmål =
         harSyktBarn === YesOrNo.YES || (yesOrNoIsAnswered(harSyktBarn) && yesOrNoIsAnswered(harAleneomsorg));
 
     return (
         <>
-            <HarSyktBarnSpørsmål antallBarn={antallBarn} />
+            <HarSyktBarnSpørsmål />
             {harSyktBarn === YesOrNo.NO && <HarAleneomsorgSpørsmål />}
 
-            {harBesvartAlleSpørsmål && (
-                <HarDekketTiFørsteDagerSelvSpørsmål
-                    harUtvidetRett={harUtvidetRett}
-                    info={
-                        harUtvidetRett ? (
-                            <Alert variant="info">
-                                Når du har barn som har fylt 12 år i år, eller er yngre, må du dekke de 10 første
-                                omsorgsdagene du bruker hvert kalenderår. Du kan søke om utbetaling fra NAV fra den 11.
-                                dagen.
-                            </Alert>
-                        ) : (
-                            <Alert variant="warning">
-                                Basert på svarene dine har du rett på 10 omsorgsdager, som du som selvstendig
-                                næringsdrivende eller frilanser må dekke selv. For å få dekket omsorgsdager ut over 10
-                                dager, må du ha søkt om ekstra omsorgsdager fordi du er alene om omsorgen eller du har
-                                barn med en kronisk/langvarig sykdom eller en funksjonshemning.
-                            </Alert>
-                        )
-                    }
-                />
-            )}
+            {harBesvartAlleSpørsmål && harUtvidetRett === false ? (
+                <FormBlock>
+                    <Heading level="3" size="small" spacing={true}>
+                        Du må selv dekke omsorgsdagene dine
+                    </Heading>
+                    <Alert variant="warning">
+                        Ut fra svarene dine har du ikke omsorg for mer enn to barn, og du har ikke ekstra omsorgsdager
+                        fra NAV. Du har da rett til 10 omsorgsdager.{' '}
+                        <p>
+                            Fordi du er selvstendig næringsdrivende eller frilanser, må du selv dekke disse 10
+                            omsorgsdagene.
+                        </p>
+                    </Alert>
+                </FormBlock>
+            ) : null}
+            {harBesvartAlleSpørsmål && harUtvidetRett === true ? <HarDekketTiFørsteDagerSelvSpørsmål /> : null}
         </>
     );
 };

@@ -22,7 +22,6 @@ const DineBarnScenarioer: React.FunctionComponent<Props> = ({ registrerteBarn, f
         case DineBarnScenario.ETT_ELLER_TO_UNDER_13:
             return (
                 <EttEllerToBarnUnder13
-                    antallBarn={barnAlderInfo.under13}
                     harAleneomsorg={harAleneomsorg}
                     harSyktBarn={harSyktBarn}
                     harUtvidetRett={harUtvidetRett}

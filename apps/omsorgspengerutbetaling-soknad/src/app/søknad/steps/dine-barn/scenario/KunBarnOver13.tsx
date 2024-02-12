@@ -11,10 +11,10 @@ interface Props {
     harUtvidetRett: boolean;
 }
 
-const KunBarnOver13: React.FunctionComponent<Props> = ({ antallBarn, harSyktBarn, harUtvidetRett }) => {
+const KunBarnOver13: React.FunctionComponent<Props> = ({ harSyktBarn, harUtvidetRett }) => {
     return (
         <>
-            <HarSyktBarnSpørsmål antallBarn={antallBarn} />
+            <HarSyktBarnSpørsmål />
 
             {yesOrNoIsAnswered(harSyktBarn) && (
                 <Block>
