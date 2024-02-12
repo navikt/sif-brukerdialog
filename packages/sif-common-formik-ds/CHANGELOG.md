@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.7.13
+
+### Patch Changes
+
+- e770491: Pakkeoppdateringer minor/patch
+
 ## 1.7.12
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # config
 
+## 0.9.14
+
+### Patch Changes
+
+- e770491: Pakkeoppdateringer minor/patch
+
 ## 0.9.13
 
 ### Patch Changes
