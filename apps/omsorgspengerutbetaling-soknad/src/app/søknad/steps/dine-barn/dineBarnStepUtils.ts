@@ -51,7 +51,9 @@ export const getDineBarnSøknadsdataFromFormValues = (
                 andreBarn,
                 harSyktBarn,
                 harAleneomsorg: harSyktBarn ? undefined : harAleneomsorg,
-                harDekketTiFørsteDagerSelv: harUtvidetRett && values.harDekketTiFørsteDagerSelv === YesOrNo.YES,
+                harDekketTiFørsteDagerSelv: harUtvidetRett
+                    ? values.harDekketTiFørsteDagerSelv === YesOrNo.YES
+                    : undefined,
             };
         case DineBarnScenario.TRE_ELLER_FLERE_UNDER_13:
             return {

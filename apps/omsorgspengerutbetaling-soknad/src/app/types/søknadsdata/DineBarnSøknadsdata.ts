@@ -23,7 +23,7 @@ interface UtvidetRettPgaSykdomEllerAleneomsorg extends DineBarnSøknadsdataBase 
     type: DineBarnSøknadsdataType.UTVIDET_RETT_PGA_SYKDOM_ELLER_ALENEOMSORG;
     harSyktBarn: boolean;
     harAleneomsorg?: boolean;
-    harDekketTiFørsteDagerSelv: boolean;
+    harDekketTiFørsteDagerSelv?: boolean;
 }
 
 interface UtvidetRettPgaAntallBarn extends DineBarnSøknadsdataBase {
