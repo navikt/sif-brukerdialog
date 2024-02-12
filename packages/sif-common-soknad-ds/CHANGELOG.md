@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.13.13
+
+### Patch Changes
+
+- e770491: Pakkeoppdateringer minor/patch
+
 ## 10.13.12
 
 ### Patch Changes
