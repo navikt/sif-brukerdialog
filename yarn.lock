@@ -3250,7 +3250,7 @@ __metadata:
     react-router-dom: 6.22.0
     rimraf: 5.0.5
     typescript: 5.3.3
-    vite: 5.0.12
+    vite: 5.1.1
     vite-plugin-checker: 0.6.4
     vitest: 1.2.2
   languageName: unknown
@@ -3334,7 +3334,7 @@ __metadata:
     storybook: 7.6.12
     tailwindcss: 3.4.1
     typescript: 5.3.3
-    vite: 5.0.12
+    vite: 5.1.1
     vite-plugin-checker: 0.6.4
     vitest: 1.2.2
   languageName: unknown
@@ -3435,7 +3435,7 @@ __metadata:
     react-intl: 6.6.2
     react-router-dom: 6.22.0
     uuid: 9.0.1
-    vite: 5.0.12
+    vite: 5.1.1
     vite-plugin-checker: 0.6.4
   languageName: unknown
   linkType: soft
@@ -3533,7 +3533,7 @@ __metadata:
     typescript: 5.3.3
     ulid: ^2.3.0
     uuid: ^9.0.1
-    vite: 5.0.12
+    vite: 5.1.1
     vite-plugin-checker: 0.6.4
     vitest: 1.2.2
   languageName: unknown
@@ -3595,7 +3595,7 @@ __metadata:
     tailwindcss: 3.4.1
     typescript: 5.3.3
     uuid: 9.0.1
-    vite: 5.0.12
+    vite: 5.1.1
     vite-plugin-checker: 0.6.4
     vitest: 1.2.2
   languageName: unknown
@@ -3666,7 +3666,7 @@ __metadata:
     react-router-dom: 6.22.0
     storybook: 7.6.12
     typescript: 5.3.3
-    vite: 5.0.12
+    vite: 5.1.1
     vite-plugin-checker: 0.6.4
     vitest: 1.2.2
   languageName: unknown
@@ -3729,7 +3729,7 @@ __metadata:
     react-router-dom: 6.22.0
     typescript: 5.3.3
     uuid: 9.0.1
-    vite: 5.0.12
+    vite: 5.1.1
     vite-plugin-checker: 0.6.4
     vitest: 1.2.2
   languageName: unknown
@@ -3806,7 +3806,7 @@ __metadata:
     react-router-dom: 6.22.0
     typescript: 5.3.3
     uuid: 9.0.1
-    vite: 5.0.12
+    vite: 5.1.1
     vite-plugin-checker: 0.6.4
     vitest: 1.2.2
   languageName: unknown
@@ -3913,7 +3913,7 @@ __metadata:
     storybook: 7.6.12
     tailwindcss: 3.4.1
     uuid: 9.0.1
-    vite: 5.0.12
+    vite: 5.1.1
     vite-plugin-checker: 0.6.4
     vitest: 1.2.2
   languageName: unknown
@@ -3975,7 +3975,7 @@ __metadata:
     storybook: 7.6.12
     storybook-formik: 2.4.2
     uuid: 9.0.1
-    vite: 5.0.12
+    vite: 5.1.1
     vite-plugin-checker: 0.6.4
     vitest: 1.2.2
   peerDependencies:
@@ -4039,7 +4039,7 @@ __metadata:
     react-router-dom: 6.22.0
     rimraf: 5.0.5
     storybook: 7.6.12
-    vite: 5.0.12
+    vite: 5.1.1
     vite-plugin-checker: 0.6.4
     vitest: 1.2.2
   languageName: unknown
@@ -4138,7 +4138,7 @@ __metadata:
     rimraf: 5.0.5
     storybook: 7.6.12
     uuid: 9.0.1
-    vite: 5.0.12
+    vite: 5.1.1
     vite-plugin-checker: 0.6.4
   languageName: unknown
   linkType: soft
@@ -4260,7 +4260,7 @@ __metadata:
     tailwindcss: 3.4.1
     typescript: 5.3.3
     uuid: 9.0.1
-    vite: 5.0.12
+    vite: 5.1.1
     vite-plugin-checker: 0.6.4
     vitest: 1.2.2
   languageName: unknown
@@ -19508,6 +19508,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"postcss@npm:^8.4.35":
+  version: 8.4.35
+  resolution: "postcss@npm:8.4.35"
+  dependencies:
+    nanoid: ^3.3.7
+    picocolors: ^1.0.0
+    source-map-js: ^1.0.2
+  checksum: cf3c3124d3912a507603f6d9a49b3783f741075e9aa73eb592a6dd9194f9edab9d20a8875d16d137d4f779fe7b6fbd1f5727e39bfd1c3003724980ee4995e1da
+  languageName: node
+  linkType: hard
+
 "prebuild-install@npm:^7.1.1":
   version: 7.1.1
   resolution: "prebuild-install@npm:7.1.1"
@@ -23550,7 +23561,47 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:5.0.12, vite@npm:^5.0.0":
+"vite@npm:5.1.1":
+  version: 5.1.1
+  resolution: "vite@npm:5.1.1"
+  dependencies:
+    esbuild: ^0.19.3
+    fsevents: ~2.3.3
+    postcss: ^8.4.35
+    rollup: ^4.2.0
+  peerDependencies:
+    "@types/node": ^18.0.0 || >=20.0.0
+    less: "*"
+    lightningcss: ^1.21.0
+    sass: "*"
+    stylus: "*"
+    sugarss: "*"
+    terser: ^5.4.0
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  peerDependenciesMeta:
+    "@types/node":
+      optional: true
+    less:
+      optional: true
+    lightningcss:
+      optional: true
+    sass:
+      optional: true
+    stylus:
+      optional: true
+    sugarss:
+      optional: true
+    terser:
+      optional: true
+  bin:
+    vite: bin/vite.js
+  checksum: 6aa7133ed1b455c63a164ba29e6627f4178884e74ec79937bf28492d95a4b9b3a30ce85d3162bb1854217b3adeb1f74bca87d38f394d5696df44f482c4bd3591
+  languageName: node
+  linkType: hard
+
+"vite@npm:^5.0.0":
   version: 5.0.12
   resolution: "vite@npm:5.0.12"
   dependencies:
