@@ -13,8 +13,8 @@
         "@amplitude/analytics-browser": "2.4.0"
     },
     "devDependencies": {
-        "@types/node": "20.11.16",
-        "@types/react": "18.2.53",
+        "@types/node": "20.11.17",
+        "@types/react": "18.2.55",
         "config": "workspace:*",
         "constate": "3.3.2",
         "gh-pages": "6.1.1",
