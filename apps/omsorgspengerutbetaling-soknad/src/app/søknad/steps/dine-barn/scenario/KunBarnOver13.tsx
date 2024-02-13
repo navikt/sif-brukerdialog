@@ -16,22 +16,15 @@ const KunBarnOver13: React.FunctionComponent<Props> = ({ harSyktBarn, harUtvidet
         <>
             <HarSyktBarnSpørsmål />
 
-            {yesOrNoIsAnswered(harSyktBarn) && (
+            {yesOrNoIsAnswered(harSyktBarn) && !harUtvidetRett ? (
                 <Block>
-                    {harUtvidetRett ? (
-                        <Alert variant="info">
-                            Fordi du har kronisk sykt barn over 13 år trenger du ikke dekke de 10 første omsorgsdagene,
-                            og du kan søke om utbetaling fra 1. fraværsdag.
-                        </Alert>
-                    ) : (
-                        <Alert variant="warning">
-                            For å ha rett på omsorgsdager for barn som er 13 år eller eldre, må du ha søkt og fått
-                            innvilget ekstra omsorgsdager fra NAV fordi barnet har en kronisk/langvarig sykdom eller en
-                            funksjonshemning.
-                        </Alert>
-                    )}
+                    <Alert variant="warning">
+                        For å ha rett på omsorgsdager for barn som er 13 år eller eldre, må du ha søkt og fått innvilget
+                        ekstra omsorgsdager fra NAV fordi barnet har en kronisk/langvarig sykdom eller en
+                        funksjonshemning.
+                    </Alert>
                 </Block>
-            )}
+            ) : null}
         </>
     );
 };
