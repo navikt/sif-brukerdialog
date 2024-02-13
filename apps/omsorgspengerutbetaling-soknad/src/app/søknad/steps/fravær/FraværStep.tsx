@@ -35,6 +35,7 @@ import FraværStepInfo from './FraværStepInfo';
 import fraværStepUtils, { getFraværStepInitialValues, getFraværSøknadsdataFromFormValues } from './FraværStepUtils';
 import { useFraværsperiodeDetaljer } from './useFraværsperiodeDetaljer';
 import OmsorgsdagerInfo from './OmsorgsdagerInfo';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 
 export enum FraværFormFields {
     harPerioderMedFravær = 'harPerioderMedFravær',
@@ -144,16 +145,17 @@ const FraværStep = () => {
                                 onBack={goBack}
                                 runDelayedFormValidation={true}
                                 submitDisabled={isSubmitting || hasInvalidSteps || kanIkkeFortsette}>
-                                <FormBlock>
-                                    <FraværStepInfo.IntroVeileder />
-                                </FormBlock>
+                                <SifGuidePanel>
+                                    <OmsorgsdagerInfo dineBarn={søknadsdata.dineBarn} />
+                                </SifGuidePanel>
+
                                 <FormBlock>
                                     <FormBlock>
-                                        <Heading level="2" size="medium">
+                                        {/* <Heading level="2" size="medium">
                                             <FormattedMessage id="step.fravaer.dager.tittel" />
                                         </Heading>
 
-                                        <OmsorgsdagerInfo dineBarn={søknadsdata.dineBarn} />
+                                        <OmsorgsdagerInfo dineBarn={søknadsdata.dineBarn} /> */}
 
                                         <Block margin="m">
                                             <YesOrNoQuestion

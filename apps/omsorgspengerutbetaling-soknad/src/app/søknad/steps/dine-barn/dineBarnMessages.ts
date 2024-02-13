@@ -9,7 +9,7 @@ export const dineBarnMessages: MessageFileFormat = {
         'step.dineBarn.intro.info.tekst.1':
             'Retten til omsorgsdager varer som hovedregel til og med det kalenderåret barnet fyller 12 år.  ',
         'step.dineBarn.intro.info.tekst.2':
-            'I noen tilfeller kan du få omsorgspenger ut året barnet fyller 18 år. Dette gjelder når du har fått ekstra omsorgsdager, på grunn av sykdom hos barnet.',
+            'I noen tilfeller kan du få omsorgspenger ut året barnet fyller 18 år. Dette gjelder når du har fått ekstra omsorgsdager, på grunn av sykdom hos barnet. Hvis dette gjelder deg, trenger du ikke å dekke de 10 første dagene selv.',
         'step.dineBarn.intro.info.barnOver13.tittel': 'Barn over 13',
         'step.dineBarn.intro.info.barnOver13.tekst.1':
             'Retten til omsorgsdager varer som hovedregel til og med det kalenderåret barnet fyller 12 år.',

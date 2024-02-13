@@ -19,7 +19,7 @@ export const fraværStepMessages: MessageFileFormat = {
         'step.fravaer.dager.info':
             'Her skal du legge inn dagene du søker utbetaling for. Basert på svarene du har gitt i søknaden, kan du søke utbetaling fra den 11. omsorgsdagen du brukte.',
         'step.fravaer.dager.info.UTVIDET_RETT_PGA_SYKT_BARN_OVER_13':
-            'Her skal du legge inn dagene du søker utbetaling for. Fordi det yngste barnet ditt er fylt 12 år, kan du søke om utbetaling fra første dag du var hjemme med sykt barn.',
+            'Her skal du legge inn dagene du søker utbetaling for. Du kan søke om utbetaling fra første dag du var hjemme med sykt barn.',
         'step.fravaer.harPerioderMedFravær.listTitle': 'Dager med fullt fravær fra jobb',
         'step.fravaer.harPerioderMedFravær.addLabel': 'Legg til dager med fullt fravær fra jobb',
         'step.fravaer.harPerioderMedFravær.modalTitle': 'Dager med fullt fravær fra jobb',

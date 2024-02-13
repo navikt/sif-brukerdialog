@@ -1,6 +1,5 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { DineBarnSøknadsdata, DineBarnSøknadsdataType } from '../../../types/søknadsdata/DineBarnSøknadsdata';
 
 interface Props {
@@ -23,11 +22,7 @@ const getIntlMessageKey = (type?: DineBarnSøknadsdataType): string | undefined 
 const OmsorgsdagerInfo: React.FunctionComponent<Props> = ({ dineBarn }) => {
     const key = getIntlMessageKey(dineBarn?.type);
 
-    return key ? (
-        <Block margin="m" padBottom="l">
-            <FormattedMessage id={key} />
-        </Block>
-    ) : null;
+    return key ? <FormattedMessage id={key} /> : null;
 };
 
 export default OmsorgsdagerInfo;

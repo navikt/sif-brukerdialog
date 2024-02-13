@@ -17,8 +17,8 @@ const HarDekketTiFørsteDagerSelvSpørsmål: React.FunctionComponent = () => {
                 validate={getYesOrNoValidator()}
                 description={
                     <ExpandableInfo title="Hvorfor spør vi om dette?">
-                        Du skal dekke de første 10 omsorgsdagene til og med det kalenderåret det yngste barnet ditt
-                        fyller 12 år.
+                        Du skal dekke de 10 første omsorgsdagene selv, og kan søke om utbetaling fra NAV fra den 11.
+                        dagen du er hjemme med sykt barn.
                     </ExpandableInfo>
                 }
             />
