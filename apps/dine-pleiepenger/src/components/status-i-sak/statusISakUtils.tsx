@@ -31,13 +31,13 @@ export const getStepsInBehandling = (behandling: Behandling, saksbehandlingsFris
     const steps: React.ReactNode[] = [];
 
     let key = 0;
-    søknader.forEach((søknad) => {
+    søknader.forEach(({ søknadstype, k9FormatSøknad: { kildesystem, mottattDato } }) => {
         steps.push(
             <ProcessStep key={key++} completed={true} icon={<CompleteIcon />}>
                 <Heading size="small" level="3">
-                    {getSøknadstypeStatusmelding(søknad.søknadstype, søknad.k9FormatSøknad.kildesystem)}
+                    {getSøknadstypeStatusmelding(søknadstype, kildesystem)}
                 </Heading>
-                <p>{formatInnsendtSøknadOpprettetDato(søknad.k9FormatSøknad.mottattDato)}</p>
+                <p>{formatInnsendtSøknadOpprettetDato(mottattDato)}</p>
             </ProcessStep>,
         );
     });
