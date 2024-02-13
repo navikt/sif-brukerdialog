@@ -3,20 +3,30 @@ import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { BarnType } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
 import { JaNeiSvar, SummaryBlock, SummaryList, SummarySection } from '@navikt/sif-common-ui';
 import { ApiBarn, RegistrertBarnTypeApi } from '../../../../types/søknadApiData/SøknadApiData';
+import { RegistrertBarn } from '../../../../types/RegistrertBarn';
+import { mapRegistrertBarnToApiBarn } from '../../../../utils/søknadsdataToApiData/getDineBarnApiDataFromSøknadsdata';
 
 interface Props {
     barn: ApiBarn[];
+    registrerteBarn: RegistrertBarn[];
     harSyktBarn?: boolean;
     harAleneomsorg?: boolean;
     harDekketTiFørsteDagerSelv?: boolean;
 }
 
-const DineBarnOppsummering = ({ barn, harSyktBarn, harAleneomsorg, harDekketTiFørsteDagerSelv }: Props) => {
+const DineBarnOppsummering = ({
+    barn,
+    registrerteBarn,
+    harSyktBarn,
+    harAleneomsorg,
+    harDekketTiFørsteDagerSelv,
+}: Props) => {
     const intl = useIntl();
+    const registrerteBarnSomIkkeSkalSendesInnMenVises = registrerteBarn.map(mapRegistrertBarnToApiBarn);
     return (
         <SummarySection header={intlHelper(intl, 'step.oppsummering.dineBarn')}>
             <SummaryList
-                items={barn}
+                items={[...registrerteBarnSomIkkeSkalSendesInnMenVises, ...barn]}
                 itemRenderer={({ identitetsnummer, navn, type }: ApiBarn) => {
                     const fnr = identitetsnummer ? identitetsnummer : '';
                     const barnType =

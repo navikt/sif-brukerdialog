@@ -1,11 +1,11 @@
 import { AnnetBarn, BarnType } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
-import { RegistrertBarn } from '../../types/RegistrertBarn';
 import { ApiBarn, DineBarnApiData, RegistrertBarnTypeApi } from '../../types/søknadApiData/SøknadApiData';
 import { DineBarnSøknadsdata, DineBarnSøknadsdataType } from '../../types/søknadsdata/DineBarnSøknadsdata';
-import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { dateToISODate } from '@navikt/sif-common-utils';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
+import { RegistrertBarn } from '../../types/RegistrertBarn';
 
-const mapRegistrertBarnToApiBarn = (registrertBarn: RegistrertBarn): ApiBarn => {
+export const mapRegistrertBarnToApiBarn = (registrertBarn: RegistrertBarn): ApiBarn => {
     return {
         identitetsnummer: undefined,
         aktørId: registrertBarn.aktørId,
@@ -25,10 +25,7 @@ const mapAndreBarnToApiBarn = (annetBarn: AnnetBarn): ApiBarn => {
     };
 };
 
-export const getBarnApiDataFromSøknadsdata = (
-    dineBarnSøknadsdata: DineBarnSøknadsdata,
-    registrertBarn: RegistrertBarn[],
-): ApiBarn[] => {
+export const getBarnApiDataFromSøknadsdata = (dineBarnSøknadsdata: DineBarnSøknadsdata): ApiBarn[] => {
     if (dineBarnSøknadsdata === undefined) {
         throw Error('dineBarnSøknadsdata undefined');
     }
@@ -36,14 +33,11 @@ export const getBarnApiDataFromSøknadsdata = (
         throw Error('dineBarnSøknadsdata - har ikke rett');
     }
     const { andreBarn } = dineBarnSøknadsdata;
-    return [...registrertBarn.map(mapRegistrertBarnToApiBarn), ...andreBarn.map(mapAndreBarnToApiBarn)];
+    return [...andreBarn.map(mapAndreBarnToApiBarn)];
 };
 
-export const getDineBarnApiDataFromSøknadsdata = (
-    dineBarnSøknadsdata: DineBarnSøknadsdata,
-    registrertBarn: RegistrertBarn[],
-): DineBarnApiData => {
-    const barn: ApiBarn[] = getBarnApiDataFromSøknadsdata(dineBarnSøknadsdata, registrertBarn);
+export const getDineBarnApiDataFromSøknadsdata = (dineBarnSøknadsdata: DineBarnSøknadsdata): DineBarnApiData => {
+    const barn: ApiBarn[] = getBarnApiDataFromSøknadsdata(dineBarnSøknadsdata);
 
     switch (dineBarnSøknadsdata.type) {
         case DineBarnSøknadsdataType.HAR_IKKE_RETT_STOPPES:
