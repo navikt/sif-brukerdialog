@@ -9,18 +9,22 @@ import { Venteårsak } from '../../types/Venteårsak';
 import { formatInnsendtSøknadOpprettetDato } from '../../utils/innsendtSøknadUtils';
 import CompleteIcon from '../process/checks/Complete';
 import ProcessStep from '../process/ProcessStep';
+import { Kildesystem } from '../../server/api-models/K9FormatSøknadSchema';
 
-export const getSøknadstypeStatusmelding = (søknadstype?: InnsendtSøknadstype): string => {
-    switch (søknadstype) {
-        case InnsendtSøknadstype.PP_SYKT_BARN:
-            return 'Vi mottok søknad om pleiepenger for sykt barn';
-        case InnsendtSøknadstype.PP_SYKT_BARN_ENDRINGSMELDING:
-            return 'Vi mottok søknad om endring av pleiepenger for sykt barn';
-        case InnsendtSøknadstype.PP_ETTERSENDELSE:
-            return 'Vi mottok ettersendelse av dokument';
-        default:
-            return 'Vi mottok søknad/endringsmelding';
+export const getSøknadstypeStatusmelding = (søknadstype?: InnsendtSøknadstype, kildesystem?: Kildesystem): string => {
+    if (kildesystem === Kildesystem.søknadsdialog || søknadstype === InnsendtSøknadstype.PP_SYKT_BARN) {
+        return 'Vi mottok søknad om pleiepenger for sykt barn';
     }
+    if (
+        kildesystem === Kildesystem.endringsdialog ||
+        søknadstype === InnsendtSøknadstype.PP_SYKT_BARN_ENDRINGSMELDING
+    ) {
+        return 'Vi mottok søknad om endring av pleiepenger for sykt barn';
+    }
+    if (søknadstype === InnsendtSøknadstype.PP_ETTERSENDELSE) {
+        return 'Vi mottok ettersendelse av dokument';
+    }
+    return 'Vi mottok søknad/endringsmelding';
 };
 export const getStepsInBehandling = (behandling: Behandling, saksbehandlingsFrist?: Date): React.ReactNode[] => {
     const { søknader, aksjonspunkter, avsluttetDato, status } = behandling;
@@ -31,7 +35,7 @@ export const getStepsInBehandling = (behandling: Behandling, saksbehandlingsFris
         steps.push(
             <ProcessStep key={key++} completed={true} icon={<CompleteIcon />}>
                 <Heading size="small" level="3">
-                    {getSøknadstypeStatusmelding(søknad.søknadstype)}
+                    {getSøknadstypeStatusmelding(søknad.søknadstype, søknad.k9FormatSøknad.kildesystem)}
                 </Heading>
                 <p>{formatInnsendtSøknadOpprettetDato(søknad.k9FormatSøknad.mottattDato)}</p>
             </ProcessStep>,
