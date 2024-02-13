@@ -1,4 +1,4 @@
-import { Box, Heading, LinkPanel, VStack } from '@navikt/ds-react';
+import { Box, VStack } from '@navikt/ds-react';
 import React from 'react';
 import Head from 'next/head';
 import DefaultPageLayout from '../../components/page-layout/default-page-layout/DefaultPageLayout';
@@ -15,6 +15,7 @@ import { browserEnv } from '../../utils/env';
 import { useRouter } from 'next/router';
 import { getBehandlingsstatusISak } from '../../utils/sakUtils';
 import VenteårsakMelding from '../../components/VenteårsakMelding';
+import SnarveierSak from '../../components/snarveier-sak/SnarveierSak';
 
 interface Props {
     pleietrengende: Pleietrengende;
@@ -51,35 +52,14 @@ const SakPage: React.FunctionComponent<Props> = ({ sak, pleietrengende, saksbeha
                                 frist={sak.saksbehandlingsFrist}
                                 saksbehandlingstidUker={saksbehandlingstidUker}
                             />
-                            <Box>
-                                <Heading size="medium" level="2" className="text-deepblue-800" spacing={true}>
-                                    Snarveier
-                                </Heading>
-                                <VStack gap="2">
-                                    <LinkPanel href="/" border={false}>
-                                        <Heading as="div" level="3" size="small">
-                                            Dokumentarkiv
-                                        </Heading>
-                                    </LinkPanel>
-                                    <LinkPanel href="/" border={false}>
-                                        <Heading as="div" level="3" size="small">
-                                            Utbetalinger
-                                        </Heading>
-                                    </LinkPanel>
-                                    <LinkPanel href="/" border={false}>
-                                        <Heading as="div" level="3" size="small">
-                                            Om pleiepenger
-                                        </Heading>
-                                    </LinkPanel>
-                                </VStack>
-                            </Box>
                         </VStack>
                     </div>
                 </Box>
                 <Box>
-                    <Box className="mb-10">
-                        <Snarveier title="Trenger du å oppdatere saken din?" />
-                    </Box>
+                    <Snarveier title="Trenger du å oppdatere saken din?" />
+                </Box>
+                <Box className="mb-10">
+                    <SnarveierSak />
                 </Box>
             </VStack>
         </DefaultPageLayout>
