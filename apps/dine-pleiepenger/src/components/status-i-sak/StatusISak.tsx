@@ -44,22 +44,26 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak }) => {
             <Box padding="4" className="bg-white">
                 <Process>{...stepsSisteBehandling.reverse()}</Process>
             </Box>
-            <Heading level="2" size="medium" className="mt-10">
-                Tidligere hendelser
-            </Heading>
-            <Box padding="4" className="bg-white">
-                <Process>{...synligTidligereSteg}</Process>
-            </Box>
-            {antallTidligere < totaltTidligere ? (
-                <Box className="flex justify-start">
-                    <Button variant="tertiary-neutral" type="button" onClick={visFlereSteg}>
-                        <HStack gap="2" align="center" wrap={false}>
-                            <Add role="presentation" />
-                            Vis tidligere hendelser
-                        </HStack>
-                    </Button>
-                </Box>
-            ) : null}
+            {synligTidligereSteg.length === 0 ? null : (
+                <>
+                    <Heading level="2" size="medium" className="mt-10">
+                        Tidligere hendelser
+                    </Heading>
+                    <Box padding="4" className="bg-white">
+                        <Process>{...synligTidligereSteg}</Process>
+                    </Box>
+                    {antallTidligere < totaltTidligere ? (
+                        <Box className="flex justify-start">
+                            <Button variant="tertiary-neutral" type="button" onClick={visFlereSteg}>
+                                <HStack gap="2" align="center" wrap={false}>
+                                    <Add role="presentation" />
+                                    Vis tidligere hendelser
+                                </HStack>
+                            </Button>
+                        </Box>
+                    ) : null}
+                </>
+            )}
         </VStack>
     );
 };

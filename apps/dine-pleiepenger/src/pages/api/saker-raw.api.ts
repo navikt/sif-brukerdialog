@@ -10,7 +10,7 @@ import { getXRequestId } from '../../utils/apiUtils';
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
         const data = await fetchSaker(req, true);
-        res.send(data);
+        res.json(data);
     } catch (err) {
         const childLogger = createChildLogger(getXRequestId(req));
         childLogger.error(`Hent saker-raw feilet: ${err}`);
