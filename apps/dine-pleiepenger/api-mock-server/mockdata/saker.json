@@ -102,7 +102,62 @@
                                 },
                                 "kildesystem": "endringsdialog"
                             },
-                            "dokumenter": []
+                            "dokumenter": [
+                                {
+                                    "journalpostId": "637581439",
+                                    "dokumentInfoId": "667123743",
+                                    "saksnummer": "1DQAQRW",
+                                    "tittel": "Søknad om pleiepenger for sykt barn",
+                                    "filtype": "PDF",
+                                    "harTilgang": true,
+                                    "url": "http://sif-innsyn-api/dokument/637581439/667123743/ARKIV",
+                                    "relevanteDatoer": [
+                                        {
+                                            "dato": "2024-02-13T08:52:46",
+                                            "datotype": "DATO_OPPRETTET"
+                                        },
+                                        {
+                                            "dato": "2024-02-13T08:52:46",
+                                            "datotype": "DATO_DOKUMENT"
+                                        },
+                                        {
+                                            "dato": "2024-02-13T08:52:54",
+                                            "datotype": "DATO_JOURNALFOERT"
+                                        },
+                                        {
+                                            "dato": "2024-02-13T08:52:43",
+                                            "datotype": "DATO_REGISTRERT"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "journalpostId": "637581439",
+                                    "dokumentInfoId": "667123744",
+                                    "saksnummer": "1DQAQRW",
+                                    "tittel": "gray-tile.png",
+                                    "filtype": "PDF",
+                                    "harTilgang": true,
+                                    "url": "http://sif-innsyn-api/dokument/637581439/667123744/ARKIV",
+                                    "relevanteDatoer": [
+                                        {
+                                            "dato": "2024-02-13T08:52:46",
+                                            "datotype": "DATO_OPPRETTET"
+                                        },
+                                        {
+                                            "dato": "2024-02-13T08:52:46",
+                                            "datotype": "DATO_DOKUMENT"
+                                        },
+                                        {
+                                            "dato": "2024-02-13T08:52:54",
+                                            "datotype": "DATO_JOURNALFOERT"
+                                        },
+                                        {
+                                            "dato": "2024-02-13T08:52:43",
+                                            "datotype": "DATO_REGISTRERT"
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "aksjonspunkter": []

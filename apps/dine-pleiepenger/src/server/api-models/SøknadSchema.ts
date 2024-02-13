@@ -1,24 +1,10 @@
 import { z } from 'zod';
 import { K9FormatSøknadSchema } from './K9FormatSøknadSchema';
 import { InnsendtSøknadstype } from './InnsendtSøknadSchema';
-
-enum SøknadDokumentFiltype {
-    PDF = 'PDF',
-}
-
-const SøknadDokumentSchema = z.object({
-    journalpostId: z.string(),
-    dokumentInfoId: z.string(),
-    sakId: z.string(),
-    tittel: z.string(),
-    filtype: z.nativeEnum(SøknadDokumentFiltype),
-    harTilgang: z.boolean(),
-    url: z.string(),
-});
+import { DokumentSchema } from './DokumenetSchema';
 
 const SøknadBaseSchema = z.object({
-    // status: z.nativeEnum(InnsendtSøknadsstatus),
-    dokumenter: z.array(z.union([SøknadDokumentSchema, z.any()])),
+    dokumenter: z.array(DokumentSchema),
 });
 
 const PleiepengerSøknadSchema = SøknadBaseSchema.extend({
