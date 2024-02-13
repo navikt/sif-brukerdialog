@@ -79,7 +79,7 @@
         "cypress-axe": "1.5.0",
         "cypress-file-upload": "5.0.8",
         "jsdom": "24.0.0",
-        "msw": "2.1.7",
+        "msw": "2.2.0",
         "postcss": "8.4.35",
         "postcss-import": "16.0.0",
         "storybook": "7.6.14",
