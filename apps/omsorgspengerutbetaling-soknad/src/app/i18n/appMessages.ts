@@ -41,8 +41,8 @@ export const appMessages: MessageFileFormat = {
         'steg.footer.avbryt': 'Avbryt og slett søknad',
         'steg.footer.fortsettSenere': 'Avslutt og fortsett senere',
 
-        'step.dineBarn.stepTitle': 'Om barn og dager du må dekke selv',
-        'step.dineBarn.stepIndicatorLabel': 'Om barn og dager du må dekke selv',
+        'step.dineBarn.stepTitle': 'Barn og rett til omsorgspenger fra NAV',
+        'step.dineBarn.stepIndicatorLabel': 'Barn og rett til omsorgspenger fra NAV',
 
         'step.fravaer.stepTitle': 'Dager du søker om utbetaling for',
 

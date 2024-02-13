@@ -4,11 +4,12 @@ export const dineBarnMessages: MessageFileFormat = {
     nb: {
         'step.dineBarn.nextButtonLabel': 'Fortsett',
         'step.dineBarn.intro.1':
-            'Når du ser selvstendig næringsdrivende eller frilanser, må du som hovedregel selv dekke de 10 første omsorgsdagene du bruker hvert kalenderår. Du kan altså ha rett til utbetaling av omsorgspenger fra den 11. dagen per kalenderår. ',
-        'step.dineBarn.intro.info.tittel': 'Barn og rett til omsorgspenger fra NAV',
-        'step.dineBarn.intro.info.barnUnder13.tittel': 'Barn under 13',
-        'step.dineBarn.intro.info.barnUnder13.tekst':
             'Selvstendig næringsdrivende og frilansere må som hovedregel selv dekke 10 omsorgsdager hvert kalenderår. Hvis du har rett til mer enn 10 omsorgsdager, kan du søke om utbetaling fra NAV fra den 11. dagen du er hjemme med sykt barn.',
+        'step.dineBarn.intro.info.tittel': 'Er det yngste barnet ditt fylt 12 år?',
+        'step.dineBarn.intro.info.tekst.1':
+            'Retten til omsorgsdager varer som hovedregel til og med det kalenderåret barnet fyller 12 år.  ',
+        'step.dineBarn.intro.info.tekst.2':
+            'I noen tilfeller kan du få omsorgspenger ut året barnet fyller 18 år. Dette gjelder når du har fått ekstra omsorgsdager, på grunn av sykdom hos barnet.',
         'step.dineBarn.intro.info.barnOver13.tittel': 'Barn over 13',
         'step.dineBarn.intro.info.barnOver13.tekst.1':
             'Retten til omsorgsdager varer som hovedregel til og med det kalenderåret barnet fyller 12 år.',

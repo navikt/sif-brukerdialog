@@ -28,8 +28,8 @@ const EttEllerToBarnUnder13: React.FunctionComponent<Props> = ({ harSyktBarn, ha
                         Du må selv dekke omsorgsdagene dine
                     </Heading>
                     <Alert variant="warning">
-                        Ut fra svarene dine har du ikke omsorg for mer enn to barn, og du har ikke ekstra omsorgsdager
-                        fra NAV. Du har da rett til 10 omsorgsdager.{' '}
+                        Ut fra svarene dine har du ikke mer enn to barn som du kan bruke omsorgsdager for, og du har
+                        ikke ekstra omsorgsdager fra NAV. Du har da rett til 10 omsorgsdager.{' '}
                         <p>
                             Fordi du er selvstendig næringsdrivende eller frilanser, må du selv dekke disse 10
                             omsorgsdagene.
