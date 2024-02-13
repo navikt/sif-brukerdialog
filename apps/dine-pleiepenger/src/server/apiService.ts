@@ -59,7 +59,7 @@ export const fetchSøker = async (req: NextApiRequest): Promise<Søker> => {
  * @param req
  * @returns
  */
-export const fetchSaker = async (req: NextApiRequest): Promise<PleietrengendeMedSak[]> => {
+export const fetchSaker = async (req: NextApiRequest, raw?: boolean): Promise<PleietrengendeMedSak[]> => {
     const context = getContextForApiHandler(req);
     const { url, headers } = await exchangeTokenAndPrepRequest(
         ApiService.k9SakInnsyn,
@@ -68,6 +68,9 @@ export const fetchSaker = async (req: NextApiRequest): Promise<PleietrengendeMed
     );
     createChildLogger(getXRequestId(req)).info(`Fetching saker from url: ${url}`);
     const response = await axios.get(url, { headers });
+    if (raw) {
+        return response.data;
+    }
     const saker = await PleietrengendeMedSakResponseSchema.parse(response.data);
 
     return saker.map((ps): PleietrengendeMedSak => {
