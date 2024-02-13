@@ -34,6 +34,7 @@ import { getFraværDagerValidator, getFraværPerioderValidator } from './fravær
 import FraværStepInfo from './FraværStepInfo';
 import fraværStepUtils, { getFraværStepInitialValues, getFraværSøknadsdataFromFormValues } from './FraværStepUtils';
 import { useFraværsperiodeDetaljer } from './useFraværsperiodeDetaljer';
+import OmsorgsdagerInfo from './OmsorgsdagerInfo';
 
 export enum FraværFormFields {
     harPerioderMedFravær = 'harPerioderMedFravær',
@@ -74,7 +75,6 @@ const FraværStep = () => {
 
     const { invalidSteps } = useSøknadsdataStatus(stepId, getSøknadStepConfig(søknadsdata));
     const hasInvalidSteps = invalidSteps.length > 0;
-    const harUtvidetRett = søknadsdata.dineBarn?.harUtvidetRett;
 
     const onValidSubmitHandler = (values: FraværFormValues) => {
         const fraværSøknadsdata = getFraværSøknadsdataFromFormValues(values);
@@ -152,13 +152,9 @@ const FraværStep = () => {
                                         <Heading level="2" size="medium">
                                             <FormattedMessage id="step.fravaer.dager.tittel" />
                                         </Heading>
-                                        <p>
-                                            {harUtvidetRett ? (
-                                                <FormattedMessage id="step.fravaer.dager.info.harBarnMedUtvidetRett" />
-                                            ) : (
-                                                <FormattedMessage id="step.fravaer.dager.info" />
-                                            )}
-                                        </p>
+
+                                        <OmsorgsdagerInfo dineBarn={søknadsdata.dineBarn} />
+
                                         <Block margin="m">
                                             <YesOrNoQuestion
                                                 name={FraværFormFields.harPerioderMedFravær}

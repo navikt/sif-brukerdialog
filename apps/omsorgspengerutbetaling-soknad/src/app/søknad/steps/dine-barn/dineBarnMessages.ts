@@ -5,7 +5,7 @@ export const dineBarnMessages: MessageFileFormat = {
         'step.dineBarn.nextButtonLabel': 'Fortsett',
         'step.dineBarn.intro.1':
             'Selvstendig næringsdrivende og frilansere må som hovedregel selv dekke 10 omsorgsdager hvert kalenderår. Hvis du har rett til mer enn 10 omsorgsdager, kan du søke om utbetaling fra NAV fra den 11. dagen du er hjemme med sykt barn.',
-        'step.dineBarn.intro.info.tittel': 'Er det yngste barnet ditt fylt 12 år?',
+        'step.dineBarn.intro.info.tittel': 'Har det yngste barnet ditt fylt 12 år?',
         'step.dineBarn.intro.info.tekst.1':
             'Retten til omsorgsdager varer som hovedregel til og med det kalenderåret barnet fyller 12 år.  ',
         'step.dineBarn.intro.info.tekst.2':
