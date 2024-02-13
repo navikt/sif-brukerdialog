@@ -47,7 +47,7 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser }) =
                 Dette skjer i saken din
             </Heading>
             <Box padding="4" className="bg-white">
-                <Process>{...steps.reverse()}</Process>
+                <Process>{visAlleHendelser ? [...steps] : [...steps.reverse()]}</Process>
             </Box>
             {/* {synligeSteps.length === 0 ? null : (
                 <>
