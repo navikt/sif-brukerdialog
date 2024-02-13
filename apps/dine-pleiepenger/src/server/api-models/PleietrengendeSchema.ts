@@ -9,5 +9,5 @@ export const PleietrengendeSchema = z.object({
     mellomnavn: z.union([z.string(), z.null(), z.undefined()]),
     etternavn: z.string(),
     fødselsdato: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
-    fødselsnummer: z.string(),
+    identitetsnummer: z.string(),
 });

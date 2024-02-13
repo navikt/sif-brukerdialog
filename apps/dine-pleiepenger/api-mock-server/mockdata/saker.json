@@ -1,8 +1,119 @@
 [
     {
         "pleietrengende": {
+            "identitetsnummer": "06811698960",
+            "fødselsdato": "2016-01-06",
+            "fornavn": "AUTORISERT",
+            "mellomnavn": null,
+            "etternavn": "PÅPAKNING",
+            "aktørId": "2163405354555"
+        },
+        "sak": {
+            "saksnummer": "1DQAPB4",
+            "saksbehandlingsFrist": "2024-03-25",
+            "fagsakYtelseType": {
+                "kode": "PSB",
+                "kodeverk": "FAGSAK_YTELSE"
+            },
+            "behandlinger": [
+                {
+                    "status": "UNDER_BEHANDLING",
+                    "opprettetDato": "2022-10-26T23:17:30.794Z",
+                    "avsluttetDato": "2022-11-26T23:17:30.794Z",
+                    "søknader": [
+                        {
+                            "kildesystem": "endringsdialog",
+                            "k9FormatSøknad": {
+                                "søknadId": "7116d27d-8609-4b02-9ffa-fffcf6e67112",
+                                "versjon": "1.0.0",
+                                "mottattDato": "2024-02-12T11:48:53.550Z",
+                                "søker": {
+                                    "norskIdentitetsnummer": "04889597114"
+                                },
+                                "språk": null,
+                                "ytelse": {
+                                    "type": "PLEIEPENGER_SYKT_BARN",
+                                    "barn": {
+                                        "norskIdentitetsnummer": "06811698960",
+                                        "fødselsdato": "2016-01-06"
+                                    },
+                                    "søknadsperiode": [],
+                                    "endringsperiode": [],
+                                    "trekkKravPerioder": [],
+                                    "opptjeningAktivitet": {},
+                                    "dataBruktTilUtledning": {
+                                        "harForståttRettigheterOgPlikter": null,
+                                        "harBekreftetOpplysninger": null,
+                                        "samtidigHjemme": null,
+                                        "harMedsøker": null,
+                                        "soknadDialogCommitSha": null,
+                                        "bekrefterPeriodeOver8Uker": null,
+                                        "ukjenteArbeidsforhold": []
+                                    },
+                                    "annetDataBruktTilUtledning": {
+                                        "harForståttRettigheterOgPlikter": null,
+                                        "harBekreftetOpplysninger": null,
+                                        "soknadDialogCommitSha": null,
+                                        "annetData": "{\"valgteEndringer\":{\"arbeidstid\":false,\"lovbestemtFerie\":true}}"
+                                    },
+                                    "infoFraPunsj": null,
+                                    "bosteder": {
+                                        "perioder": {},
+                                        "perioderSomSkalSlettes": {}
+                                    },
+                                    "utenlandsopphold": {
+                                        "perioder": {},
+                                        "perioderSomSkalSlettes": {}
+                                    },
+                                    "beredskap": {
+                                        "perioder": {},
+                                        "perioderSomSkalSlettes": {}
+                                    },
+                                    "nattevåk": {
+                                        "perioder": {},
+                                        "perioderSomSkalSlettes": {}
+                                    },
+                                    "tilsynsordning": {
+                                        "perioder": {}
+                                    },
+                                    "lovbestemtFerie": {
+                                        "perioder": {
+                                            "2023-11-13/2023-11-17": {
+                                                "skalHaFerie": true
+                                            }
+                                        }
+                                    },
+                                    "arbeidstid": {
+                                        "arbeidstakerList": [],
+                                        "frilanserArbeidstidInfo": null,
+                                        "selvstendigNæringsdrivendeArbeidstidInfo": null
+                                    },
+                                    "uttak": {
+                                        "perioder": {}
+                                    },
+                                    "omsorg": {
+                                        "relasjonTilBarnet": null,
+                                        "beskrivelseAvOmsorgsrollen": null
+                                    }
+                                },
+                                "journalposter": [],
+                                "begrunnelseForInnsending": {
+                                    "tekst": null
+                                },
+                                "kildesystem": "endringsdialog"
+                            },
+                            "dokumenter": []
+                        }
+                    ],
+                    "aksjonspunkter": []
+                }
+            ]
+        }
+    },
+    {
+        "pleietrengende": {
             "aktørId": "123123123",
-            "fødselsnummer": "12345678910",
+            "identitetsnummer": "12345678910",
             "fornavn": "Barn",
             "mellomnavn": null,
             "etternavn": "Nordmann",
@@ -19,7 +130,6 @@
                     "søknader": [
                         {
                             "søknadId": "123",
-                            "søknadstype": "PP_SYKT_BARN",
                             "status": "FERDIG_BEHANDLET",
                             "k9FormatSøknad": {
                                 "språk": "nb",
@@ -114,7 +224,6 @@
                         },
                         {
                             "søknadId": "123",
-                            "søknadstype": "PP_SYKT_BARN_ENDRINGSMELDING",
                             "status": "FERDIG_BEHANDLET",
                             "k9FormatSøknad": {
                                 "språk": "nb",
@@ -216,7 +325,6 @@
                     "søknader": [
                         {
                             "søknadId": "123",
-                            "søknadstype": "PP_SYKT_BARN",
                             "status": "MOTTATT",
                             "k9FormatSøknad": {
                                 "språk": "nb",

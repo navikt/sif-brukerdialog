@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { K9FormatSøknadSchema } from './K9FormatSøknadSchema';
-import { InnsendtSøknadsstatus, InnsendtSøknadstype } from './InnsendtSøknadSchema';
+import { InnsendtSøknadstype } from './InnsendtSøknadSchema';
 
 enum SøknadDokumentFiltype {
     PDF = 'PDF',
@@ -17,22 +17,23 @@ const SøknadDokumentSchema = z.object({
 });
 
 const SøknadBaseSchema = z.object({
-    søknadId: z.string(),
-    status: z.nativeEnum(InnsendtSøknadsstatus),
+    // status: z.nativeEnum(InnsendtSøknadsstatus),
     dokumenter: z.array(z.union([SøknadDokumentSchema, z.any()])),
 });
 
 const PleiepengerSøknadSchema = SøknadBaseSchema.extend({
-    søknadstype: z.nativeEnum(InnsendtSøknadstype),
+    søknadstype: z.nativeEnum(InnsendtSøknadstype).or(z.undefined()),
     k9FormatSøknad: K9FormatSøknadSchema,
-    arbeidsgivere: z.object({
-        organisasjoner: z.array(
-            z.object({
-                organisasjonsnummer: z.string(),
-                navn: z.string(),
-            }),
-        ),
-    }),
+    arbeidsgivere: z
+        .object({
+            organisasjoner: z.array(
+                z.object({
+                    organisasjonsnummer: z.string(),
+                    navn: z.string(),
+                }),
+            ),
+        })
+        .optional(),
 });
 
 const EndringsmeldingSchema = SøknadBaseSchema.extend({

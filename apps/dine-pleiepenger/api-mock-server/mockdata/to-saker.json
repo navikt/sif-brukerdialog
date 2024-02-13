@@ -2,7 +2,7 @@
     {
         "pleietrengende": {
             "aktørId": "123123123",
-            "fødselsnummer": "12345678910",
+            "identitetsnummer": "12345678910",
             "fornavn": "Barn",
             "mellomnavn": null,
             "etternavn": "Nordmann",
@@ -319,7 +319,7 @@
     {
         "pleietrengende": {
             "aktørId": "321321321",
-            "fødselsnummer": "32132131212",
+            "identitetsnummer": "32132131212",
             "fornavn": "Tone",
             "mellomnavn": null,
             "etternavn": "Nordmann",
