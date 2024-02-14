@@ -4,31 +4,18 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { File } from '@navikt/ds-icons';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { Arbeidsgiver } from '../../types/Arbeidsgiver';
-import { Dokument } from '../../types/Document';
+import { InnsendtSøknadDokument } from '../../types/InnsendtSøknadDocument';
 import { Organisasjon } from '../../types/Organisasjon';
 import { InnsendtSøknad, InnsendtSøknadstype } from '../../types/Søknad';
+import { getDokumentFrontendUrl, getSøknadDokumentFilnavn } from '../../utils/dokumentUtils';
 import { browserEnv } from '../../utils/env';
 
 interface Props {
     søknad: InnsendtSøknad;
 }
 
-export const getSøknadDokumentFilnavn = (dokument: Dokument): string => {
-    const filnavn = `${encodeURIComponent(dokument.tittel.toLowerCase())}`;
-    return `${filnavn}.${dokument.filtype.toLowerCase()}`;
-};
-
 const getArbeidsgivermeldingApiUrlBySoknadIdOgOrgnummer = (soknadID: string, organisasjonsnummer: string): string => {
     return `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/soknad/${soknadID}/arbeidsgivermelding?organisasjonsnummer=${organisasjonsnummer}`;
-};
-
-const getDokumentFrontendUrl = (url: string): string => {
-    // Split the URL into an array of segments using ‘/’ as the separator
-    const segments = url.split('/');
-    // Extract the desired paths from the array and join them together using ‘/’
-    const paths = segments.slice(4, 7).join('/');
-
-    return `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/dokument/${paths}`;
 };
 
 const InnsendtSøknadContent: React.FunctionComponent<Props> = ({ søknad }) => {
@@ -70,7 +57,7 @@ const InnsendtSøknadContent: React.FunctionComponent<Props> = ({ søknad }) => 
         );
     };
 
-    const mapDokumenter = (dokument: Dokument) => {
+    const mapDokumenter = (dokument: InnsendtSøknadDokument) => {
         return (
             <li key={dokument.dokumentInfoId}>
                 <Link

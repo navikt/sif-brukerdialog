@@ -1,4 +1,4 @@
-export interface Dokument {
+export interface InnsendtSøknadDokument {
     tittel: string;
     url: string;
     filtype: string;

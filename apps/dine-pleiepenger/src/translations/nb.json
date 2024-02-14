@@ -34,8 +34,11 @@
     "påbegyntEndring.info": "Lagres til og med {datoNårSlettes}",
 
     "dokumenterTittel.PP_SYKT_BARN": "Søknad og eventuelle vedlegg i søknad",
+    "dokumenterTittel.SØKNAD": "Søknad og eventuelle vedlegg i søknad",
     "dokumenterTittel.PP_ETTERSENDELSE": "Ettersendelse og dokumenter",
+    "dokumenterTittel.ETTERSENDELSE": "Ettersendelse og dokumenter",
     "dokumenterTittel.PP_SYKT_BARN_ENDRINGSMELDING": "Endringsmelding",
+    "dokumenterTittel.ENDRINGSMELDING": "Endringsmelding",
     "dokumenter.ingenDokumenter": "Dokumenter ikke tilgjengelig.",
     "bekreftelseTilArbeidsgiver.title": "Bekreftelse til arbeidsgiver",
     "bekreftelseTilArbeidsgiver.info": "Dette er en bekreftelse som du kan gi til arbeidsgiver. Den bekrefter at vi har fått søknad om pleiepenger fra deg, hvilken periode du har søkt pleiepenger og informasjon om når arbeidsgiver må sende inntektsmelding.",

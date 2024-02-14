@@ -5,6 +5,7 @@ import { Søknadstype } from '../../server/api-models/Søknadstype';
 import { Søknadshendelse, SøknadshendelseType } from '../../types/Søknadshendelse';
 import { Søknad } from '../../server/api-models/SøknadSchema';
 import { formatSøknadshendelseTidspunkt } from '../../utils/sakUtils';
+import SøknadStatusContent from './parts/SøknadStatusContent';
 
 export const getSøknadstypeStatusmelding = (søknadstype: Søknadstype): string => {
     switch (søknadstype) {
@@ -31,7 +32,7 @@ export const getProcessStepFromMottattSøknad = (søknad: Søknad, current: bool
         case Søknadstype.SØKNAD:
             return {
                 title: 'Vi mottok søknad om pleiepenger for sykt barn',
-                content: <p>{formatSøknadshendelseTidspunkt(søknad.k9FormatSøknad.mottattDato)}</p>,
+                content: <SøknadStatusContent søknad={søknad} />,
                 completed: true,
                 current,
             };
@@ -54,11 +55,11 @@ export const getProcessStepsFraSøknadshendelser = (hendelser: Søknadshendelse[
 
     return hendelserSomSkalVises.map((hendelse, index): ProcessStepData => {
         /** Gjeldende hendelse er per må alltid siste hendelse før ferdig behandlet, eller ferdig behandlet */
-        const erSisteHendelseFørFerdigBehandlet = erFerdigBehandlet ? index === antall - 1 : index === antall - 2;
+        const erGjeldendeHendelse = erFerdigBehandlet ? index === antall - 1 : index === antall - 2;
 
         switch (hendelse.type) {
             case SøknadshendelseType.MOTTATT_SØKNAD:
-                return getProcessStepFromMottattSøknad(hendelse.søknad, erSisteHendelseFørFerdigBehandlet);
+                return getProcessStepFromMottattSøknad(hendelse.søknad, erGjeldendeHendelse);
 
             case SøknadshendelseType.AKSJONSPUNKT:
                 return {
