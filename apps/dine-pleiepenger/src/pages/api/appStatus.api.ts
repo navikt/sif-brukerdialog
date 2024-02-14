@@ -12,11 +12,13 @@ const sanityConfig: SanityConfig = {
     dataset: browserEnv.NEXT_PUBLIC_APPSTATUS_DATASET,
 };
 
-export const fetchAppStatus = async (): Promise<ApplicationState> => {
+export const fetchAppStatus = async (): Promise<ApplicationState | undefined> => {
     return await fetchStatus(APPLICATION_KEY, sanityConfig);
 };
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
+    const childLogger = createChildLogger(getXRequestId(req));
+    childLogger.info(`Henter appStatus`);
     try {
         res.send(await fetchAppStatus());
     } catch (err) {
