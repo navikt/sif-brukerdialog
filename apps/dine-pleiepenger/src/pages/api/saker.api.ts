@@ -3,10 +3,10 @@ import { createChildLogger } from '@navikt/next-logger';
 import axios from 'axios';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { fetchSaker } from '../../server/apiService';
-import { Sak } from '../../types/Sak';
+import { Saker } from '../../types/Saker';
 import { getXRequestId } from '../../utils/apiUtils';
 
-export const sakerFetcher = async (url: string): Promise<Sak[]> => axios.get(url).then((res) => res.data);
+export const sakerFetcher = async (url: string): Promise<Saker[]> => axios.get(url).then((res) => res.data);
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {

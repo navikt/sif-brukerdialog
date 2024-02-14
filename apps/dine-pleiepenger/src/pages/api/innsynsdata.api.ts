@@ -52,7 +52,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             saker,
             harSak: saker.length > 0,
         };
-        res.send(innsynsdata);
+        res.json(innsynsdata);
     } catch (err) {
         childLogger.error(`Hent innsynsdata feilet: ${err}`);
         if (

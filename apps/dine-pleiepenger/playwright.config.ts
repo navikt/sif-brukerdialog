@@ -57,7 +57,7 @@ export default defineConfig({
             NEXT_PUBLIC_ARBEIDSGIVER_PLEIEPENGER_URL: 'https://www.nav.no/arbeidsgiver/pleiepenger-barn',
             NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL: 'https://person.dev.nav.no/mine-saker',
             NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL: 'https://tjenester.nav.no/utbetalingsoversikt',
-            NEXT_PUBLIC_FEATURE_HENT_SAKER: 'off',
+            NEXT_PUBLIC_FEATURE_HENT_SAKER: 'on',
         },
     },
 });
