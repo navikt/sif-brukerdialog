@@ -49,7 +49,7 @@ describe('dineBarnStepUtils', () => {
             const result = getAlderILøpetAvÅr(2012, ISODateToDate('1999-12-31'));
             expect(result).toEqual(13);
         });
-        it.only('født år 31.12.1998, blir 14 i år 2012', () => {
+        it('født år 31.12.1998, blir 14 i år 2012', () => {
             const result = getAlderILøpetAvÅr(2012, ISODateToDate('1998-12-31'));
             expect(result).toEqual(14);
         });
