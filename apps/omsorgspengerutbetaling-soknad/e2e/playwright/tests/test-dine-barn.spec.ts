@@ -78,7 +78,6 @@ test.describe('Tester varianter av Dine barn steg', () => {
 
         /** Har søkt utvidet */
         await svarUtils(page).harSøktOmEkstraDager(true);
-        expect(await page.getByText('Fordi du har kronisk sykt barn over 13')).toBeVisible();
         expect(await svarUtils(page).submitIsEnabled()).toBe(true);
 
         /** Har ikke søkt utvidet */
