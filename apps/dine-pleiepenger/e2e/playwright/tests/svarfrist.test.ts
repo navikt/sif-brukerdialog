@@ -3,14 +3,7 @@ import { søkerMockData } from '../mockdata/søker.mock';
 import { søknaderMockData } from '../mockdata/søknader.mock';
 import { test, expect } from '@playwright/test';
 import { setupMockRoutes } from '../utils/setup-mock-routes';
-import { Saker } from '../../../src/types/Saker';
 import dayjs from 'dayjs';
-
-const sak: Saker = {
-    sak: {
-        saksbehandlingsFrist: new Date(),
-    },
-};
 
 const defaultInnsynsdata: Innsynsdata = {
     saker: [],
