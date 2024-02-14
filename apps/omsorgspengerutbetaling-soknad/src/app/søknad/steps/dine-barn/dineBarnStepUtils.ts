@@ -176,8 +176,17 @@ export const getDineBarnScenario = (barn: Array<RegistrertBarn | AnnetBarn>): Di
     throw 'Ukjent barnScenario';
 };
 
+/** Returnerer hvilken alder en har ved slutten av året  */
+export const getAlderILøpetAvÅr = (årstall: number, fødselsdato: Date) => {
+    return årstall - dayjs(fødselsdato).year();
+};
+
+export const barnErUnder13HeleInneværendeÅr = (fødselsdato: Date) => {
+    return getAlderILøpetAvÅr(new Date().getFullYear(), fødselsdato) < 13;
+};
+
 export const getBarnAlderInfo = (barn: Array<RegistrertBarn | AnnetBarn>): BarnAlderInfo => {
-    const under13 = barn.filter((barn) => dayjs().year() - dayjs(barn.fødselsdato).year() <= 12).length;
+    const under13 = barn.filter(({ fødselsdato }) => barnErUnder13HeleInneværendeÅr(fødselsdato)).length;
     const over13 = barn.length - under13;
     return {
         under13,

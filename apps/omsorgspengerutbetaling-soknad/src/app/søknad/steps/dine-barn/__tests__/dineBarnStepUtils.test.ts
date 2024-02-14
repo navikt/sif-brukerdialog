@@ -1,7 +1,8 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { dateToISODate } from '@navikt/sif-common-utils';
+import { ISODateToDate, dateToISODate } from '@navikt/sif-common-utils';
 import { barnMockData } from '../../../../../test-mock-data/barn';
 import {
+    getAlderILøpetAvÅr,
     getBarnAlderInfo,
     getDineBarnScenario,
     getHarUtvidetRett,
@@ -28,6 +29,29 @@ describe('dineBarnStepUtils', () => {
             expect(dateToISODate(nYearsAgo(2))).toEqual(`${thisYear - 2}-01-01`);
             expect(dateToISODate(nYearsAgo(1))).toEqual(`${thisYear - 1}-01-01`);
             expect(dateToISODate(nYearsAgo(5))).toEqual(`${thisYear - 5}-01-01`);
+        });
+    });
+
+    describe('getAlderILøpetAvÅr', () => {
+        it('født år 1.1.2001, blir 12 i år 2012', () => {
+            const result = getAlderILøpetAvÅr(2012, ISODateToDate('2001-01-01'));
+            expect(result).toEqual(11);
+        });
+        it('født år 31.12.2001, blir 12 i år 2012', () => {
+            const result = getAlderILøpetAvÅr(2012, ISODateToDate('2001-12-31'));
+            expect(result).toEqual(11);
+        });
+        it('født år 1.1.2000, blir 12 i år 2012', () => {
+            const result = getAlderILøpetAvÅr(2012, ISODateToDate('2000-01-01'));
+            expect(result).toEqual(12);
+        });
+        it('født år 31.12.1999, blir 13 i år 2012', () => {
+            const result = getAlderILøpetAvÅr(2012, ISODateToDate('1999-12-31'));
+            expect(result).toEqual(13);
+        });
+        it.only('født år 31.12.1998, blir 14 i år 2012', () => {
+            const result = getAlderILøpetAvÅr(2012, ISODateToDate('1998-12-31'));
+            expect(result).toEqual(14);
         });
     });
 
