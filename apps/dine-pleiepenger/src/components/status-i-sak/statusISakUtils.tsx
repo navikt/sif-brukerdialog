@@ -6,6 +6,7 @@ import { Søknadshendelse, SøknadshendelseType } from '../../types/Søknadshend
 import { Søknad } from '../../server/api-models/SøknadSchema';
 import { formatSøknadshendelseTidspunkt } from '../../utils/sakUtils';
 import SøknadStatusContent from './parts/SøknadStatusContent';
+import EndringsmeldingStatusContent from './parts/EndringsmeldingStatusContent';
 
 export const getSøknadstypeStatusmelding = (søknadstype: Søknadstype): string => {
     switch (søknadstype) {
@@ -39,7 +40,7 @@ export const getProcessStepFromMottattSøknad = (søknad: Søknad, current: bool
         case Søknadstype.ENDRINGSMELDING:
             return {
                 title: 'Vi mottok søknad om endring av pleiepenger for sykt barn',
-                content: <p>{formatSøknadshendelseTidspunkt(søknad.k9FormatSøknad.mottattDato)}</p>,
+                content: <EndringsmeldingStatusContent søknad={søknad} />,
                 completed: true,
                 current,
             };
