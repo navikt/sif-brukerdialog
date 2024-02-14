@@ -50,7 +50,7 @@ export const getBehandlingsstatusISak = (sak: Sak): BehandlingsstatusISak => {
     const behandling = getSisteBehandlingISak(sak);
     return {
         status: behandling.status,
-        venteårsak: behandling.aksjonspunkter[0]?.venteårsak,
+        venteårsak: behandling.aksjonspunkter?.length > 0 ? behandling.aksjonspunkter[0]?.venteårsak : undefined,
     };
 };
 

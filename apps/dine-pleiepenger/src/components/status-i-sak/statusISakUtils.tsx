@@ -67,7 +67,7 @@ export const getProcessStepsFraSøknadshendelser = (hendelser: Søknadshendelse[
             case SøknadshendelseType.FERDIG_BEHANDLET:
                 return {
                     title: 'Søknad er ferdig behandlet',
-                    content: <FerdigBehandletStatusContent avsluttetDato={hendelse.dato} />,
+                    content: <FerdigBehandletStatusContent />,
                     completed: true,
                     isLastStep: true,
                     current: erGjeldendeHendelse,
