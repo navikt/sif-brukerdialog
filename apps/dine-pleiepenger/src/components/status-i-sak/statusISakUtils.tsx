@@ -22,6 +22,7 @@ export const getProcessStepFromMottattSøknad = (søknad: Søknad, current: bool
         case Søknadstype.SØKNAD:
             return {
                 title: 'Vi har fått din søknad om pleiepenger for sykt barn',
+                timestamp: søknad.k9FormatSøknad.mottattDato,
                 content: <SøknadStatusContent søknad={søknad} />,
                 completed: true,
                 current,
@@ -30,6 +31,7 @@ export const getProcessStepFromMottattSøknad = (søknad: Søknad, current: bool
         case Søknadstype.ENDRINGSMELDING:
             return {
                 title: 'Vi har fått din endringsmelding',
+                timestamp: søknad.k9FormatSøknad.mottattDato,
                 content: <EndringsmeldingStatusContent søknad={søknad} />,
                 completed: true,
                 current,
@@ -67,9 +69,9 @@ export const getProcessStepsFraSøknadshendelser = (hendelser: Søknadshendelse[
                     title: 'Søknad er ferdig behandlet',
                     content: <FerdigBehandletStatusContent avsluttetDato={hendelse.dato} />,
                     completed: true,
-                    timestamp: hendelse.dato,
                     isLastStep: true,
                     current: erGjeldendeHendelse,
+                    timestamp: hendelse.dato,
                 };
 
             case SøknadshendelseType.FORVENTET_SVAR:
@@ -82,8 +84,8 @@ export const getProcessStepsFraSøknadshendelser = (hendelser: Søknadshendelse[
                         </>
                     ),
                     completed: false,
-                    timestamp: hendelse.dato,
                     isLastStep: true,
+                    timestamp: hendelse.dato,
                 };
         }
     });

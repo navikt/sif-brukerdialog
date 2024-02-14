@@ -21,3 +21,7 @@
 .navds-alert--warning .navds-heading {
     color: var(--a-gray-900);
 }
+
+.process__item--current .navds-link {
+    color: var(--a-gray-900);
+}

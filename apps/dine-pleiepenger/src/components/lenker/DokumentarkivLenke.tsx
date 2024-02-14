@@ -9,7 +9,7 @@ interface Props {
 
 const DokumentarkivLenke: React.FunctionComponent<Props> = ({ tekst }) => (
     <Link href={browserEnv.NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL}>
-        {tekst} <ExternalLink className="ml-1" />
+        {tekst} <ExternalLink className="ml-1" role="presentation" />
     </Link>
 );
 

@@ -4,7 +4,6 @@ import { browserEnv } from '../../utils/env';
 import { Dialog, File, Task } from '@navikt/ds-icons';
 import { PencilWritingIcon } from '@navikt/aksel-icons';
 import SnarveiLinkPanel from '../snarvei-link-panel/SnarveiLinkPanel';
-import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
 interface Props {
     title?: string;
 }
@@ -12,12 +11,6 @@ interface Props {
 const Snarveier: React.FunctionComponent<Props> = ({ title }) => {
     return (
         <section>
-            <AriaText>
-                <Heading level="2" size="medium" className="text-deepblue-800" spacing={true}>
-                    Trenger du å oppdatere saken din?
-                </Heading>
-            </AriaText>
-
             <VStack gap="4">
                 {title ? (
                     <Heading level="2" size="medium" className="text-deepblue-800">

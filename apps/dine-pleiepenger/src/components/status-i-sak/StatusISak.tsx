@@ -1,9 +1,9 @@
-import { Box, Heading, Link, Switch, VStack } from '@navikt/ds-react';
+import { BodyShort, Box, Heading, Link, Switch, VStack } from '@navikt/ds-react';
 import React, { useState } from 'react';
 import { ChevronRightIcon } from '@navikt/aksel-icons';
 import { default as NextLink } from 'next/link';
 import { Sak } from '../../server/api-models/SakSchema';
-import { getAlleHendelserISak } from '../../utils/sakUtils';
+import { formatSøknadshendelseTidspunkt, getAlleHendelserISak } from '../../utils/sakUtils';
 import { Process } from '../process';
 import ProcessStep from '../process/ProcessStep';
 import { getProcessStepsFraSøknadshendelser } from './statusISakUtils';
@@ -55,7 +55,12 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser, tit
                             isLastStep={step.isLastStep}
                             isContinuation={finnnesFlereHendelser && idx === 0}>
                             <Heading size="small" level="3">
-                                {step.title}
+                                {step.title}{' '}
+                                {step.timestamp ? (
+                                    <BodyShort className="mb-2">
+                                        {formatSøknadshendelseTidspunkt(step.timestamp)}
+                                    </BodyShort>
+                                ) : null}
                             </Heading>
                             {step.content}
                         </ProcessStep>
