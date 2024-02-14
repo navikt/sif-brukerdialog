@@ -24,7 +24,7 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser }) =
             <Heading level="2" size="medium">
                 Siste hendelser i saken
             </Heading>
-            <Box padding="4" className="bg-white">
+            <Box padding="4" className="bg-white pb-0">
                 <Process>
                     {visibleSteps.map((step, idx) => (
                         <ProcessStep
