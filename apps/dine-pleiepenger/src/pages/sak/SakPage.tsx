@@ -23,13 +23,16 @@ interface Props {
     pleietrengende: Pleietrengende;
     sak: Sak;
     saksbehandlingstidUker?: number;
+    harFlereSaker: boolean;
 }
 
-const SakPage: React.FunctionComponent<Props> = ({ sak, pleietrengende, saksbehandlingstidUker }) => {
+const SakPage: React.FunctionComponent<Props> = ({ sak, pleietrengende, saksbehandlingstidUker, harFlereSaker }) => {
     const navn = personaliaUtils.navn(pleietrengende);
     const router = useRouter();
 
-    setBreadcrumbs(getAllBreadcrumbs([{ url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Din pleiepengesak' }]));
+    setBreadcrumbs(
+        getAllBreadcrumbs([{ url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Din pleiepengesak' }], harFlereSaker),
+    );
 
     onBreadcrumbClick((breadcrumb) => {
         router.push(breadcrumb.url);

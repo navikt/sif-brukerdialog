@@ -58,6 +58,7 @@ export default function SakRoutePage() {
             sak={pleietrengendeMedSak.sak}
             pleietrengende={pleietrengendeMedSak.pleietrengende}
             saksbehandlingstidUker={saksbehandlingstidUker}
+            harFlereSaker={saker.length > 1}
         />
     );
 }

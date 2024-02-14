@@ -26,7 +26,7 @@ function DinePleiepengerPage(): ReactElement {
     } = useInnsynsdataContext();
 
     const { logInfo } = useAmplitudeInstance();
-    setBreadcrumbs(getAllBreadcrumbs([]));
+    setBreadcrumbs(getAllBreadcrumbs([], saker.length > 1));
 
     useEffectOnce(() => {
         if (Feature.HENT_BEHANDLINGSTID && Feature.HENT_SAKER && logInfo) {
@@ -42,6 +42,7 @@ function DinePleiepengerPage(): ReactElement {
         return (
             <SakPage
                 sak={saker[0].sak}
+                harFlereSaker={false}
                 pleietrengende={saker[0].pleietrengende}
                 saksbehandlingstidUker={saksbehandlingstidUker}
             />

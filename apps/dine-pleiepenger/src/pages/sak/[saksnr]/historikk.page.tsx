@@ -54,7 +54,13 @@ export default function HistorikkRoutePage() {
         );
     }
 
-    return <HistorikkPage sak={pleietrengendeMedSak.sak} pleietrengende={pleietrengendeMedSak.pleietrengende} />;
+    return (
+        <HistorikkPage
+            sak={pleietrengendeMedSak.sak}
+            pleietrengende={pleietrengendeMedSak.pleietrengende}
+            harFlereSaker={saker.length > 1}
+        />
+    );
 }
 
 export const getServerSideProps = withAuthenticatedPage();

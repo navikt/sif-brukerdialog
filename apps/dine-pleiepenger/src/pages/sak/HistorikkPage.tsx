@@ -17,21 +17,25 @@ import { personaliaUtils } from '../../utils/personaliaUtils';
 interface Props {
     pleietrengende: Pleietrengende;
     sak: Sak;
+    harFlereSaker: boolean;
 }
 
-const HistorikkPage: React.FunctionComponent<Props> = ({ sak, pleietrengende }) => {
+const HistorikkPage: React.FunctionComponent<Props> = ({ sak, harFlereSaker, pleietrengende }) => {
     const navn = personaliaUtils.navn(pleietrengende);
     const router = useRouter();
 
     setBreadcrumbs(
-        getAllBreadcrumbs([
-            {
-                url: `/sak/${sak.saksnummer}`,
-                title: 'Din pleiepengesak',
-                handleInApp: true,
-            },
-            { url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Historikk' },
-        ]),
+        getAllBreadcrumbs(
+            [
+                {
+                    url: `/sak/${sak.saksnummer}`,
+                    title: 'Din pleiepengesak',
+                    handleInApp: true,
+                },
+                { url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Historikk' },
+            ],
+            harFlereSaker,
+        ),
     );
 
     onBreadcrumbClick((breadcrumb) => {

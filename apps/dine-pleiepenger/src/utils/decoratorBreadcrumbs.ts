@@ -7,11 +7,10 @@ export type DecoratorBreadcrumb = {
     handleInApp?: boolean;
 };
 
-export const baseDecoratorBreadcrumbs: DecoratorBreadcrumb[] = [
-    { url: browserEnv.NEXT_PUBLIC_MIN_SIDE_URL, title: 'Min side' },
-    { url: '/', title: 'Dine pleiepenger', handleInApp: true },
-];
-
-export const getAllBreadcrumbs = (newCrumbs: DecoratorBreadcrumb[]) => {
-    return [...baseDecoratorBreadcrumbs, ...newCrumbs];
+export const getAllBreadcrumbs = (newCrumbs: DecoratorBreadcrumb[], harFlereSaker: boolean) => {
+    const crumbs: DecoratorBreadcrumb[] = [{ url: browserEnv.NEXT_PUBLIC_MIN_SIDE_URL, title: 'Min side' }];
+    if (harFlereSaker) {
+        crumbs.push({ url: '/', title: 'Dine pleiepenger', handleInApp: true });
+    }
+    return [...crumbs, ...newCrumbs];
 };
