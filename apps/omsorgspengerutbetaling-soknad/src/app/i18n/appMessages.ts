@@ -89,6 +89,8 @@ export const appMessages: MessageFileFormat = {
             'Du må svare på om du fått ekstra omsorgsdager fordi du er alene om omsorgen.',
         'validation.harDekketTiFørsteDagerSelv.notAnswered':
             'Du må svare på om du har dekket de 10 første dagene i år.',
+        'validation.harDekketTiFørsteDagerSelv.yesOrNoIsUnanswered':
+            'Du må svare på om du har dekket de 10 første dagene i år.',
         'validation.ingen_dokumenter': 'Ingen vedlegg er lastet opp.',
         'validation.for_mange_dokumenter': 'For mange dokumenter er lastet opp.',
         'validation.samlet_storrelse_for_hoy':

@@ -101,9 +101,7 @@ export const getDineBarnStepInitialValues = (
             case DineBarnSøknadsdataType.UTVIDET_RETT_PGA_ANTALL_BARN:
                 return {
                     andreBarn: dineBarn.andreBarn,
-                    harDekketTiFørsteDagerSelv: dineBarn.harUtvidetRett
-                        ? getYesOrNoFromBoolean(dineBarn.harDekketTiFørsteDagerSelv)
-                        : undefined,
+                    harDekketTiFørsteDagerSelv: getYesOrNoFromBoolean(dineBarn.harDekketTiFørsteDagerSelv),
                 };
             case DineBarnSøknadsdataType.UTVIDET_RETT_PGA_SYKDOM_ELLER_ALENEOMSORG:
                 const harSyktBarn = dineBarn.harSyktBarn ? YesOrNo.YES : YesOrNo.NO;
