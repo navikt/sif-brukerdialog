@@ -16,15 +16,19 @@ interface Props {
 const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser }) => {
     const hendelser = getAlleHendelserISak(sak);
     const processStep = getProcessStepsFraSøknadshendelser(hendelser);
-    const totalt = hendelser.length;
+    const visibleSteps = visAlleHendelser ? processStep : processStep.splice(-4);
+
+    const flereHendelserFinnes = visibleSteps.length < hendelser.length;
+
     return (
         <VStack gap="3">
             <Heading level="2" size="medium">
-                Dette skjer i saken din
+                Siste hendelser i saken
             </Heading>
             <Box padding="4" className="bg-white">
                 <Process>
-                    {processStep.map((step, idx) => (
+                    {/* {flereHendelserFinnes ? <>Flere hendelser</> : null} */}
+                    {visibleSteps.map((step, idx) => (
                         <ProcessStep key={idx} completed={step.completed} current={step.current}>
                             <Heading size="small" level="3">
                                 {step.title}
@@ -34,7 +38,7 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser }) =
                     ))}
                 </Process>
             </Box>
-            {(4 < totalt || 1 + 1 === 2) && visAlleHendelser === undefined ? (
+            {flereHendelserFinnes && visAlleHendelser === undefined ? (
                 <Box className="ml-4">
                     <Link as={NextLink} href={`/sak/${sak.saksnummer}/historikk`}>
                         Se alle hendelser
