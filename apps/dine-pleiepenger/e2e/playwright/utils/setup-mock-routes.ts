@@ -3,7 +3,6 @@ import { Innsynsdata } from '../../../src/types/InnsynData';
 import { søkerMockData } from '../mockdata/søker.mock';
 import { søknaderMockData } from '../mockdata/søknader.mock';
 import { PleietrengendeMedSak } from '../../../src/server/api-models/PleietrengendeMedSakSchema';
-import { defaultAppStatus } from '../../../src/pages/api/appStatus.api';
 
 const sak: PleietrengendeMedSak = {
     pleietrengende: {
@@ -31,7 +30,6 @@ export const setupMockRoutes = async (page: any) => {
     await page.route('**/innsynsdata', async (route) => {
         const response: Innsynsdata = {
             saker: [sak],
-            appStatus: defaultAppStatus,
             harSak: true,
             søker: søkerMockData as any,
             mellomlagring: {},

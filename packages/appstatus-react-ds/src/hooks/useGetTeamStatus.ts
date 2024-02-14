@@ -5,7 +5,7 @@ import { SanityStatusMessage } from '../types/sanityObjects';
 import { getMessage, sanityConfigIsValid } from '../utils';
 import { getAppSanityClient } from '../utils/sanityClient';
 
-const getTeamStatusQuery = (key: string): string => {
+export const getTeamStatusQuery = (key: string): string => {
     return `*[_type == 'team' && key == "${key}"]{
         key,
         teamApplicationStatus,

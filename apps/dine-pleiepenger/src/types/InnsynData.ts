@@ -1,4 +1,4 @@
-import { ApplicationState } from '../pages/api/appStatus.api';
+import { ApplicationState } from '@navikt/appstatus-react-ds/src/hooks/useGetApplicationStatus';
 import { PleietrengendeMedSak } from '../server/api-models/PleietrengendeMedSakSchema';
 import { Søker } from '../server/api-models/SøkerSchema';
 import { Mellomlagringer } from './Mellomlagring';
@@ -6,7 +6,7 @@ import { InnsendtSøknad } from './Søknad';
 
 export interface Innsynsdata {
     søker: Søker;
-    appStatus: ApplicationState;
+    appStatus?: ApplicationState;
     innsendteSøknader: InnsendtSøknad[];
     mellomlagring: Mellomlagringer;
     saker: PleietrengendeMedSak[];

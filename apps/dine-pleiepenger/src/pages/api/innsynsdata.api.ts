@@ -14,7 +14,7 @@ import { Innsynsdata } from '../../types/InnsynData';
 import { getXRequestId } from '../../utils/apiUtils';
 import { Feature } from '../../utils/features';
 import { sortInnsendtSøknadEtterOpprettetDato } from '../../utils/innsendtSøknadUtils';
-import { defaultAppStatus, fetchAppStatus } from './appStatus.api';
+import { fetchAppStatus } from './appStatus.api';
 
 export const innsynsdataFetcher = async (url: string): Promise<Innsynsdata> =>
     axios.get(url, { transformResponse: storageParser }).then((res) => res.data);
@@ -49,7 +49,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
         const innsynsdata: Innsynsdata = {
             søker,
-            appStatus: appStatus.status === 'fulfilled' ? appStatus.value : defaultAppStatus,
+            appStatus: appStatus.status === 'fulfilled' ? appStatus.value : undefined,
             innsendteSøknader,
             mellomlagring: mellomlagringReq.status === 'fulfilled' ? mellomlagringReq.value : {},
             saksbehandlingstidUker:

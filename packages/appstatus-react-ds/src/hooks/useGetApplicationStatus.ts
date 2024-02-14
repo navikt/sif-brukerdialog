@@ -5,7 +5,7 @@ import { getMessage, sanityConfigIsValid } from '../utils';
 import { getAppSanityClient } from '../utils/sanityClient';
 import { usePrevious } from '@navikt/sif-common-hooks';
 
-const getApplicationDocumentStatusQuery = (key: string, team?: string): string => {
+export const getApplicationDocumentStatusQuery = (key: string, team?: string): string => {
     const teamQuery = team ? `team->.key == "${team}"` : '';
     return `*[_type == 'application' && key == "${key}"${teamQuery}]{
         key,
@@ -31,7 +31,7 @@ export interface ApplicationSanityQueryResult {
     };
 }
 
-interface ApplicationState {
+export interface ApplicationState {
     status: ApplicationStatus;
     message?: SanityStatusMessage;
 }

@@ -67,7 +67,7 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
         <ErrorBoundary>
             <AmplitudeProvider applicationKey={InnsynPsbApp.key}>
                 <main>
-                    {appStatus.message && (
+                    {appStatus?.message && (
                         <div className="max-w-[1128px] mx-auto p-5 mb-5">
                             <StatusMessage message={appStatus.message} />
                         </div>
