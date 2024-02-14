@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { parseMaybeDateStringToDate } from '../../utils/jsonParseUtils';
-import { ArbeidsgivereSchema } from './ArbeidsgivereSchema';
+import { InnsendtSøknadArbeidsgivereSchema } from './ArbeidsgivereSchema';
 
 export enum InnsendtSøknadsstatus {
     MOTTATT = 'MOTTATT',
@@ -30,7 +30,7 @@ const InnsendtSøknadDokumentSchema = z.object({
 });
 
 const PleiepengerSøknadInfoSchema = z.object({
-    arbeidsgivere: ArbeidsgivereSchema,
+    arbeidsgivere: InnsendtSøknadArbeidsgivereSchema,
 });
 
 const InnsendtSøknadBaseSchema = z.object({

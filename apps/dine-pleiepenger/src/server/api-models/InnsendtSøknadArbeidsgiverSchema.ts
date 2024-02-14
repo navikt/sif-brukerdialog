@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const ArbeidsgiverSchema = z.object({
+export const InnsendtSøknadArbeidsgiverSchema = z.object({
     erAnsatt: z.boolean(),
     navn: z.string(),
     organisasjonsnummer: z.string(),

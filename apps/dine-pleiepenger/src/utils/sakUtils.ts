@@ -11,6 +11,7 @@ import { Søknadstype } from '../server/api-models/Søknadstype';
 import { BehandlingsstatusISak } from '../types/BehandlingsstatusISak';
 import { Søknadshendelse, SøknadshendelseType } from '../types/Søknadshendelse';
 import { Venteårsak } from '../types/Venteårsak';
+import { Organisasjon } from '../types/Organisasjon';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -112,4 +113,8 @@ export const getViktigsteVenteårsakForAksjonspunkter = (aksjonspunkter: Aksjons
 
 export const formatSøknadshendelseTidspunkt = (date: Date) => {
     return dayjs(date).tz('Europe/Oslo').format('DD.MM.YYYY, [kl.] HH:mm');
+};
+
+export const getArbeidsgiverOrgnrISøknad = (søknad: Søknad): Pick<Organisasjon, 'organisasjonsnummer'>[] => {
+    return søknad.k9FormatSøknad.ytelse.arbeidstid.arbeidstakerList.map((a) => ({ ...a }));
 };

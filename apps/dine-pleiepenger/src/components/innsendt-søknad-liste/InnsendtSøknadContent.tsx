@@ -3,12 +3,12 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { File } from '@navikt/ds-icons';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { Arbeidsgiver } from '../../types/Arbeidsgiver';
 import { InnsendtSøknadDokument } from '../../types/InnsendtSøknadDocument';
 import { Organisasjon } from '../../types/Organisasjon';
 import { InnsendtSøknad, InnsendtSøknadstype } from '../../types/Søknad';
 import { getDokumentFrontendUrl, getSøknadDokumentFilnavn } from '../../utils/dokumentUtils';
 import { browserEnv } from '../../utils/env';
+import { InnsendtSøknadArbeidsgiver } from '../../server/api-models/ArbeidsgivereSchema';
 
 interface Props {
     søknad: InnsendtSøknad;
@@ -36,7 +36,7 @@ const InnsendtSøknadContent: React.FunctionComponent<Props> = ({ søknad }) => 
         return false;
     };
 
-    const mapOrganisasjoner = (organisasjon: Organisasjon | Arbeidsgiver) => {
+    const mapOrganisasjoner = (organisasjon: Organisasjon | InnsendtSøknadArbeidsgiver) => {
         return (
             <li key={organisasjon.organisasjonsnummer}>
                 <Link

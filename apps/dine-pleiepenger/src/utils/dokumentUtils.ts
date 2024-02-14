@@ -15,3 +15,10 @@ export const getSøknadDokumentFilnavn = (dokument: Dokument | InnsendtSøknadDo
     const filnavn = `${encodeURIComponent(dokument.tittel.toLowerCase())}`;
     return `${filnavn}.${dokument.filtype.toLowerCase()}`;
 };
+
+export const getArbeidsgivermeldingApiUrlBySoknadIdOgOrgnummer = (
+    soknadID: string,
+    organisasjonsnummer: string,
+): string => {
+    return `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/soknad/${soknadID}/arbeidsgivermelding?organisasjonsnummer=${organisasjonsnummer}`;
+};
