@@ -3,6 +3,7 @@ import { BodyShort, Box, Heading, Link } from '@navikt/ds-react';
 import React from 'react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { browserEnv } from '../../utils/env';
+import dayjs from 'dayjs';
 
 interface Props {
     frist?: Date;
@@ -10,13 +11,14 @@ interface Props {
 }
 
 const Svarfrist: React.FunctionComponent<Props> = ({ frist, saksbehandlingstidUker = 7 }) => {
+    const fristErPassert = frist && dayjs(frist).isBefore(dayjs(), 'day');
     return (
         <Box>
             <Heading size="medium" level="2" className="text-deepblue-800" spacing={true}>
                 Saksbehandlingstid
             </Heading>
             <BodyShort as="div" className="bg-deepblue-100 pt-4 pl-6 pr-6 pb-6 rounded">
-                {frist ? (
+                {frist && fristErPassert === false ? (
                     <p className="mb-2">
                         Du kan forvente svar innen: <br />
                         <span className="block font-bold first-letter:uppercase">

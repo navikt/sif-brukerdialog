@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { withEmptyPage } from '../../storybook/hooks/withEmptyPage';
 import Svarfrist from './Svarfrist';
 
@@ -15,19 +16,28 @@ export default meta;
 type Story = StoryObj<typeof Svarfrist>;
 
 export const Default: Story = {
+    name: 'Med frist',
     args: {
-        frist: new Date(),
+        frist: dayjs().add(10, 'day').toDate(),
     },
 };
 
 export const UtenFristMedBehandlingstid: Story = {
-    name: 'Med 3 ukers behandlingstid',
+    name: 'Ingen frist',
     args: {
         saksbehandlingstidUker: 3,
     },
 };
 
-export const UtenFrist: Story = {
-    name: 'Uten frist - default 7 uker behandlingstid',
-    args: {},
+export const FristIGår: Story = {
+    name: 'Frist i går',
+    args: {
+        frist: dayjs().subtract(1, 'day').toDate(),
+    },
+};
+export const FristPassert: Story = {
+    name: 'Frist i dag',
+    args: {
+        frist: dayjs().toDate(),
+    },
 };
