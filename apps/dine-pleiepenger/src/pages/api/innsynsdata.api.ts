@@ -14,7 +14,6 @@ import { Innsynsdata } from '../../types/InnsynData';
 import { getXRequestId } from '../../utils/apiUtils';
 import { Feature } from '../../utils/features';
 import { sortInnsendtSøknadEtterOpprettetDato } from '../../utils/innsendtSøknadUtils';
-import { fetchAppStatus } from './appStatus.api';
 
 export const innsynsdataFetcher = async (url: string): Promise<Innsynsdata> =>
     axios.get(url, { transformResponse: storageParser }).then((res) => res.data);
@@ -27,14 +26,14 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         const søker = await fetchSøker(req);
 
         /** Bruker har tilgang, hent resten av informasjonen */
-        const [søknaderReq, mellomlagringReq, sakerReq, saksbehandlingstidReq, appStatus] = await Promise.allSettled([
+        const [søknaderReq, mellomlagringReq, sakerReq, saksbehandlingstidReq] = await Promise.allSettled([
             fetchSøknader(req),
             fetchMellomlagringer(req),
             Feature.HENT_SAKER ? fetchSaker(req) : Promise.resolve([]),
             Feature.HENT_BEHANDLINGSTID
                 ? fetchSaksbehandlingstid(req)
                 : Promise.resolve({ saksbehandlingstidUker: undefined }),
-            fetchAppStatus(),
+            // fetchAppStatus(),
         ]);
 
         if (søknaderReq.status === 'rejected') {
@@ -49,7 +48,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
         const innsynsdata: Innsynsdata = {
             søker,
-            appStatus: appStatus.status === 'fulfilled' ? appStatus.value : undefined,
+            // appStatus: appStatus.status === 'fulfilled' ? appStatus.value : undefined,
             innsendteSøknader,
             mellomlagring: mellomlagringReq.status === 'fulfilled' ? mellomlagringReq.value : {},
             saksbehandlingstidUker:
