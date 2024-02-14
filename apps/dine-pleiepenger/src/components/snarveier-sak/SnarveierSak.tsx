@@ -1,5 +1,6 @@
 import { HGrid, Heading, LinkPanel } from '@navikt/ds-react';
 import React from 'react';
+import { browserEnv } from '../../utils/env';
 
 interface Props {}
 
@@ -9,17 +10,17 @@ const SnarveierSak: React.FunctionComponent<Props> = ({}) => (
             Snarveier
         </Heading>
         <HGrid gap="2" columns={3}>
-            <LinkPanel href="/" border={false}>
+            <LinkPanel href={browserEnv.NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL} border={false}>
                 <Heading as="div" level="3" size="small">
                     Dokumentarkiv
                 </Heading>
             </LinkPanel>
-            <LinkPanel href="/" border={false}>
+            <LinkPanel href={browserEnv.NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL} border={false}>
                 <Heading as="div" level="3" size="small">
                     Utbetalinger
                 </Heading>
             </LinkPanel>
-            <LinkPanel href="/" border={false}>
+            <LinkPanel href={browserEnv.NEXT_PUBLIC_PLEIEPENGER_INFO_URL} border={false}>
                 <Heading as="div" level="3" size="small">
                     Om pleiepenger
                 </Heading>
