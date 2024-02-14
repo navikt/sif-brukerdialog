@@ -2,21 +2,21 @@ import { BodyShort, HStack } from '@navikt/ds-react';
 import PageHeader from '../page-header/PageHeader';
 
 interface Props {
-    title?: string;
+    tittel?: string;
     saksnr: string;
     navn: string;
     titleTag?: React.ReactNode;
 }
 
 const SakPageHeader: React.FunctionComponent<Props> = ({
-    title = 'Din pleiepengesak',
+    tittel = 'Din pleiepengesak',
     titleTag: tag,
     saksnr,
     navn,
 }) => {
     return (
         <PageHeader
-            title={title}
+            title={tittel}
             titleTag={tag}
             byline={
                 <BodyShort as="div">

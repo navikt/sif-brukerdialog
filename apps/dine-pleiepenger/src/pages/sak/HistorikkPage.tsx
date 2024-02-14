@@ -1,7 +1,9 @@
-import { Box, VStack } from '@navikt/ds-react';
+import { Box, Link, VStack } from '@navikt/ds-react';
 import React from 'react';
+import { ChevronLeftIcon } from '@navikt/aksel-icons';
 import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import Head from 'next/head';
+import { default as NextLink } from 'next/link';
 import { useRouter } from 'next/router';
 import DefaultPageLayout from '../../components/page-layout/default-page-layout/DefaultPageLayout';
 import SakPageHeader from '../../components/page-layout/sak-page-header/SakPageHeader';
@@ -23,7 +25,11 @@ const HistorikkPage: React.FunctionComponent<Props> = ({ sak, pleietrengende }) 
 
     setBreadcrumbs(
         getAllBreadcrumbs([
-            { url: `${browserEnv.NEXT_PUBLIC_BASE_PATH}/sak/${sak.saksnummer}`, title: 'Din pleiepengesak' },
+            {
+                url: `/sak/${sak.saksnummer}`,
+                title: 'Din pleiepengesak',
+                handleInApp: true,
+            },
             { url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Historikk' },
         ]),
     );
@@ -33,15 +39,23 @@ const HistorikkPage: React.FunctionComponent<Props> = ({ sak, pleietrengende }) 
     });
 
     return (
-        <DefaultPageLayout pageHeader={<SakPageHeader navn={navn} saksnr={sak.saksnummer} />}>
+        <DefaultPageLayout pageHeader={<SakPageHeader tittel="Historikk" navn={navn} saksnr={sak.saksnummer} />}>
             <Head>
                 <title>
-                    Din pleiepengesak - {sak.saksnummer} {navn}
+                    Historikk - Din pleiepengesak - {sak.saksnummer} {navn}
                 </title>
             </Head>
             <VStack gap="12">
                 <Box className="md:flex md:gap-6 mb-10">
-                    <div className="md:grow mb-10 md:mb-0">{<StatusISak sak={sak} visAlleHendelser={true} />}</div>
+                    <div className="md:grow mb-10 md:mb-0">
+                        <StatusISak sak={sak} visAlleHendelser={true} />
+                        <Box className="ml-4 mt-4">
+                            <Link as={NextLink} href={`/sak/${sak.saksnummer}`}>
+                                <ChevronLeftIcon role="presentation" />
+                                Tilbake til sak
+                            </Link>
+                        </Box>
+                    </div>
                     <div className="md:mb-none shrink-0 md:w-72"></div>
                 </Box>
             </VStack>

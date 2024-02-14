@@ -1,5 +1,5 @@
-import { Box, Heading, Link, VStack } from '@navikt/ds-react';
-import React from 'react';
+import { Box, Heading, Link, Switch, VStack } from '@navikt/ds-react';
+import React, { useState } from 'react';
 import { ChevronRightIcon } from '@navikt/aksel-icons';
 import { default as NextLink } from 'next/link';
 import { Sak } from '../../server/api-models/SakSchema';
@@ -10,20 +10,41 @@ import { getProcessStepsFraSøknadshendelser } from './statusISakUtils';
 
 interface Props {
     sak: Sak;
+    tittel?: string;
     visAlleHendelser?: boolean;
 }
 
-const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser }) => {
+const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser, tittel }) => {
+    const [reverseDirection, setReverseDirection] = useState(false);
+
     const hendelser = getAlleHendelserISak(sak);
     const processSteps = getProcessStepsFraSøknadshendelser(hendelser);
+
+    if (reverseDirection) {
+        processSteps.reverse();
+    }
     const visibleSteps = visAlleHendelser ? processSteps : [...processSteps].splice(-4);
     const finnnesFlereHendelser = visibleSteps.length < processSteps.length;
 
     return (
         <VStack gap="3">
-            <Heading level="2" size="medium">
-                Siste hendelser i saken
-            </Heading>
+            {tittel ? (
+                <Heading level="2" size="medium">
+                    {tittel}
+                </Heading>
+            ) : null}
+
+            {visAlleHendelser ? (
+                <Box>
+                    <Switch
+                        checked={reverseDirection}
+                        onChange={(e) => {
+                            setReverseDirection(e.target.checked);
+                        }}>
+                        Vis nyeste øverst
+                    </Switch>
+                </Box>
+            ) : null}
             <Box padding="4" className="bg-white pb-0">
                 <Process>
                     {visibleSteps.map((step, idx) => (
@@ -42,7 +63,7 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser }) =
                 </Process>
             </Box>
             {finnnesFlereHendelser && visAlleHendelser === undefined ? (
-                <Box className="ml-4">
+                <Box className="ml-4 mb-4">
                     <Link as={NextLink} href={`/sak/${sak.saksnummer}/historikk`}>
                         Se alle hendelser
                         <ChevronRightIcon role="presentation" />

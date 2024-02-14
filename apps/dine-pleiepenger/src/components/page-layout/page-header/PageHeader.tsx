@@ -15,10 +15,14 @@ const PageHeader: React.FunctionComponent<Props> = ({ title = 'Dine pleiepenger'
                     <HStack gap={'6'} align={'center'}>
                         <PleiepengerSVG />
                         <VStack gap="1">
-                            <HStack align={'center'} justify={'center'} gap="4">
+                            {titleTag ? (
+                                <HStack align={'center'} gap="4">
+                                    <Box className="text-deepblue-800">{title}</Box>
+                                    <BodyShort as="div">{titleTag}</BodyShort>
+                                </HStack>
+                            ) : (
                                 <Box className="text-deepblue-800">{title}</Box>
-                                <BodyShort as="div">{titleTag}</BodyShort>
-                            </HStack>
+                            )}
                             {byline}
                         </VStack>
                     </HStack>
