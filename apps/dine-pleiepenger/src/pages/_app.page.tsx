@@ -1,4 +1,4 @@
-import { Status, StatusMessage, useAppStatus } from '@navikt/appstatus-react-ds';
+import { Status, StatusMessage } from '@navikt/appstatus-react-ds';
 import { ReactElement } from 'react';
 import { IntlProvider } from 'react-intl';
 import { InnsynPsbApp } from '@navikt/sif-app-register';
@@ -34,21 +34,19 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
             errorRetryCount: 0,
         },
     );
-    const appStatus = useAppStatus(APPLICATION_KEY, {
-        projectId: browserEnv.NEXT_PUBLIC_APPSTATUS_PROJECT_ID,
-        dataset: browserEnv.NEXT_PUBLIC_APPSTATUS_DATASET,
-    });
 
-    if (isLoading || appStatus.isLoading) {
+    // const appStatus = useAppStatus('sif-innsyn', {
+    //     projectId: browserEnv.NEXT_PUBLIC_APPSTATUS_PROJECT_ID,
+    //     dataset: browserEnv.NEXT_PUBLIC_APPSTATUS_DATASET,
+    // });
+
+    if (isLoading) {
         return (
             <EmptyPage>
                 <Head>Henter informasjon - Dine pleiepenger</Head>
                 <ComponentLoader />
             </EmptyPage>
         );
-    }
-    if (appStatus.status === Status.unavailable) {
-        return <UnavailablePage />;
     }
 
     if (error || !data) {
@@ -58,6 +56,11 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
                 <HentInnsynsdataFeilet error={error} />
             </EmptyPage>
         );
+    }
+
+    const { appStatus } = data;
+    if (appStatus?.status === Status.unavailable) {
+        return <UnavailablePage />;
     }
 
     return (

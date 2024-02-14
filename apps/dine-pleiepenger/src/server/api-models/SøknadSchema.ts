@@ -1,14 +1,14 @@
 import { z } from 'zod';
 import { K9FormatSøknadSchema } from './K9FormatSøknadSchema';
-import { InnsendtSøknadstype } from './InnsendtSøknadSchema';
 import { DokumentSchema } from './DokumenetSchema';
+import { Søknadstype } from './Søknadstype';
 
 const SøknadBaseSchema = z.object({
     dokumenter: z.array(DokumentSchema),
+    søknadstype: z.nativeEnum(Søknadstype),
 });
 
 const PleiepengerSøknadSchema = SøknadBaseSchema.extend({
-    søknadstype: z.nativeEnum(InnsendtSøknadstype).or(z.undefined()),
     k9FormatSøknad: K9FormatSøknadSchema,
     arbeidsgivere: z
         .object({
@@ -23,7 +23,6 @@ const PleiepengerSøknadSchema = SøknadBaseSchema.extend({
 });
 
 const EndringsmeldingSchema = SøknadBaseSchema.extend({
-    søknadstype: z.literal(InnsendtSøknadstype.PP_SYKT_BARN_ENDRINGSMELDING),
     k9FormatSøknad: K9FormatSøknadSchema,
 });
 

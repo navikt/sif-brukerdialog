@@ -26,10 +26,10 @@ export const Process: ProcessComponent = forwardRef<HTMLOListElement, ProcessPro
                 <>
                     {React.Children.map(children, (step, index) => {
                         const stepIndex = index + 1;
-                        const variant = React.isValidElement<ProcessStepProps>(step) ? step.props.variant : undefined;
+                        const isCurrent = React.isValidElement<ProcessStepProps>(step) ? step.props.current : undefined;
                         return (
                             <li
-                                className={`process__item${variant ? ` process__item__variant process__item__variant--${variant}` : ''}`}
+                                className={`process__item${isCurrent ? ` process__item__variant process__item__variant--CURRENT` : ''}`}
                                 key={stepIndex + (children?.toString?.() ?? '')}>
                                 <span className="process__line process__line--1" />
                                 {React.isValidElement<ProcessStepProps>(step)

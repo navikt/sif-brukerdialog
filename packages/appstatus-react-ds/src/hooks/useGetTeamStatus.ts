@@ -14,7 +14,7 @@ const getTeamStatusQuery = (key: string): string => {
       }`;
 };
 
-interface TeamStatusResult {
+export interface TeamStatusResult {
     key: string;
     name: string;
     liveUpdate?: boolean;

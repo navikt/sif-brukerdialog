@@ -14,6 +14,7 @@ import { Innsynsdata } from '../../types/InnsynData';
 import { getXRequestId } from '../../utils/apiUtils';
 import { Feature } from '../../utils/features';
 import { sortInnsendtSøknadEtterOpprettetDato } from '../../utils/innsendtSøknadUtils';
+import { defaultAppStatus, fetchAppStatus } from './appStatus.api';
 
 export const innsynsdataFetcher = async (url: string): Promise<Innsynsdata> =>
     axios.get(url, { transformResponse: storageParser }).then((res) => res.data);
@@ -26,13 +27,14 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         const søker = await fetchSøker(req);
 
         /** Bruker har tilgang, hent resten av informasjonen */
-        const [søknaderReq, mellomlagringReq, sakerReq, saksbehandlingstidReq] = await Promise.allSettled([
+        const [søknaderReq, mellomlagringReq, sakerReq, saksbehandlingstidReq, appStatus] = await Promise.allSettled([
             fetchSøknader(req),
             fetchMellomlagringer(req),
             Feature.HENT_SAKER ? fetchSaker(req) : Promise.resolve([]),
             Feature.HENT_BEHANDLINGSTID
                 ? fetchSaksbehandlingstid(req)
                 : Promise.resolve({ saksbehandlingstidUker: undefined }),
+            fetchAppStatus(),
         ]);
 
         if (søknaderReq.status === 'rejected') {
@@ -47,6 +49,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
         const innsynsdata: Innsynsdata = {
             søker,
+            appStatus: appStatus.status === 'fulfilled' ? appStatus.value : defaultAppStatus,
             innsendteSøknader,
             mellomlagring: mellomlagringReq.status === 'fulfilled' ? mellomlagringReq.value : {},
             saksbehandlingstidUker:
@@ -56,7 +59,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             saker,
             harSak: saker.length > 0,
         };
-        res.send(innsynsdata);
+        res.json(innsynsdata);
     } catch (err) {
         childLogger.error(`Hent innsynsdata feilet: ${err}`);
         if (

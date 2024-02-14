@@ -12,6 +12,7 @@ export enum InnsendtSøknadstype {
     PP_ETTERSENDELSE = 'PP_ETTERSENDELSE',
     PP_SYKT_BARN = 'PP_SYKT_BARN',
     PP_SYKT_BARN_ENDRINGSMELDING = 'PP_SYKT_BARN_ENDRINGSMELDING',
+    UKJENT = 'UKJENT',
 }
 
 enum InnsendtSøknadDokumentFiltype {

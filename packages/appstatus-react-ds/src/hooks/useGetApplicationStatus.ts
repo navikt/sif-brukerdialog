@@ -17,7 +17,7 @@ const getApplicationDocumentStatusQuery = (key: string, team?: string): string =
       }`;
 };
 
-interface ApplicationSanityQueryResult {
+export interface ApplicationSanityQueryResult {
     key: string;
     name: string;
     applicationStatus: {

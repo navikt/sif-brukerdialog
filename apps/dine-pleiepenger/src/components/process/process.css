@@ -69,8 +69,8 @@
     grid-row: line-2;
 }
 
-.process__line:has(+ .process__step__completed),
-.process__step--completed + .process__line {
+.process__item:not(.process__item__variant--CURRENT) .process__line:has(+ .process__step__completed),
+.process__item:not(.process__item__variant--CURRENT) .process__step--completed + .process__line {
     border-style: solid;
     opacity: 1;
 }

@@ -16,7 +16,7 @@ const defaultState: State = {
     message: undefined,
 };
 
-const getStateForApplication = (
+export const getStateForApplication = (
     appStatus: ApplicationStatus,
     appMessage: SanityStatusMessage | undefined,
     teamStatus: Status | undefined,

@@ -25,7 +25,6 @@ export default function SakRoutePage() {
         innsynsdata: { innsendteSøknader, saker, saksbehandlingstidUker },
     } = useInnsynsdataContext();
     const router = useRouter();
-
     const { saksnr } = router.query;
     const pleietrengendeMedSak = getSakFromSaksnr(saker, saksnr);
 

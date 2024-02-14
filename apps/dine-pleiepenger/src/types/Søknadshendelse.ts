@@ -1,3 +1,4 @@
+import { Søknad } from '../server/api-models/SøknadSchema';
 import { Venteårsak } from './Venteårsak';
 
 export enum SøknadshendelseType {
@@ -11,25 +12,32 @@ interface SøknadshendelseBase {
     type: SøknadshendelseType;
 }
 
-interface SøknadshendelseMottatt extends SøknadshendelseBase {
+interface SøknadshendelseMottattSøknad extends SøknadshendelseBase {
     type: SøknadshendelseType.MOTTATT_SØKNAD;
-    mottattDato: Date;
+    søknad: Søknad;
+    /** Mottatt dato */
+    dato: Date;
 }
+
 interface SøknadshendelseAksjonspunkt extends SøknadshendelseBase {
     type: SøknadshendelseType.AKSJONSPUNKT;
     venteårsak: Venteårsak;
+    /** Tidspunkt satt på vent */
+    dato?: Date;
 }
 interface SøknadshendelseForventetSvar extends SøknadshendelseBase {
     type: SøknadshendelseType.FORVENTET_SVAR;
-    saksbehandlingFrist?: Date;
+    /** saksbehandlingFrist */
+    dato?: Date;
 }
 interface SøknadshendelseFerdigBehandlet extends SøknadshendelseBase {
     type: SøknadshendelseType.FERDIG_BEHANDLET;
-    avsluttetDato?: Date;
+    /** avsluttet dato */
+    dato: Date;
 }
 
 export type Søknadshendelse =
-    | SøknadshendelseMottatt
+    | SøknadshendelseMottattSøknad
     | SøknadshendelseAksjonspunkt
     | SøknadshendelseAksjonspunkt
     | SøknadshendelseForventetSvar
