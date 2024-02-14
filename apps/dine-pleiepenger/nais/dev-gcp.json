@@ -4,7 +4,7 @@
     "namespace": "dusseldorf",
     "team": "dusseldorf",
     "ingresses": ["https://dine-pleiepenger.intern.dev.nav.no"],
-    "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
+    "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no", "ryujtq87.api.sanity.io"],
     "accessPolicyOutApps": ["k9-brukerdialog-api", "sif-innsyn-api", "k9-sak-innsyn-api"],
     "livenessPath": "/innsyn/api/internal/isAlive",
     "readinessPath": "/innsyn/api/internal/isReady",
