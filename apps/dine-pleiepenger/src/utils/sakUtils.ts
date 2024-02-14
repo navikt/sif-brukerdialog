@@ -5,10 +5,10 @@ import sortBy from 'lodash.sortby';
 import { Aksjonspunkt } from '../server/api-models/AksjonspunktSchema';
 import { Behandling } from '../server/api-models/BehandlingSchema';
 import { Behandlingsstatus } from '../server/api-models/Behandlingsstatus';
+import { Sak } from '../server/api-models/SakSchema';
 import { Søknad } from '../server/api-models/SøknadSchema';
 import { Søknadstype } from '../server/api-models/Søknadstype';
 import { BehandlingsstatusISak } from '../types/BehandlingsstatusISak';
-import { Sak } from '../types/Sak';
 import { Søknadshendelse, SøknadshendelseType } from '../types/Søknadshendelse';
 import { Venteårsak } from '../types/Venteårsak';
 

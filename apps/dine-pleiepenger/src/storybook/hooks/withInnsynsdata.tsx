@@ -8,8 +8,7 @@ import { InnsendtSøknad } from '../../types/Søknad';
 export const withInnsynsdata = (Story) => (
     <InnsynsdataContextProvider
         innsynsdata={{
-            saker: [{ saksbehandlingsFrist: dayjs().add(5, 'weeks').toDate() } as any],
-
+            saker: [{ sak: { saksbehandlingsFrist: dayjs().add(5, 'weeks').toDate() } } as any],
             harSak: true,
             søker: mockSøker as any as Søker,
             mellomlagring: {},

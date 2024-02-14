@@ -2,11 +2,11 @@ import { Box, Heading, Link, VStack } from '@navikt/ds-react';
 import React from 'react';
 import { ChevronRightIcon } from '@navikt/aksel-icons';
 import { default as NextLink } from 'next/link';
-import { Sak } from '../../types/Sak';
-import { Process } from '../process';
-import { getProcessStepsFraSøknadshendelser } from './statusISakUtils';
+import { Sak } from '../../server/api-models/SakSchema';
 import { getAlleHendelserISak } from '../../utils/sakUtils';
+import { Process } from '../process';
 import ProcessStep from '../process/ProcessStep';
+import { getProcessStepsFraSøknadshendelser } from './statusISakUtils';
 
 interface Props {
     sak: Sak;

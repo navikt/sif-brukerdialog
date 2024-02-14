@@ -1,16 +1,16 @@
 import { Box, VStack } from '@navikt/ds-react';
 import React from 'react';
+import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import DefaultPageLayout from '../../components/page-layout/default-page-layout/DefaultPageLayout';
 import SakPageHeader from '../../components/page-layout/sak-page-header/SakPageHeader';
 import StatusISak from '../../components/status-i-sak/StatusISak';
 import { Pleietrengende } from '../../server/api-models/PleietrengendeSchema';
-import { Sak } from '../../types/Sak';
-import { personaliaUtils } from '../../utils/personaliaUtils';
-import { setBreadcrumbs, onBreadcrumbClick } from '@navikt/nav-dekoratoren-moduler';
+import { Sak } from '../../server/api-models/SakSchema';
 import { getAllBreadcrumbs } from '../../utils/decoratorBreadcrumbs';
 import { browserEnv } from '../../utils/env';
-import { useRouter } from 'next/router';
+import { personaliaUtils } from '../../utils/personaliaUtils';
 
 interface Props {
     pleietrengende: Pleietrengende;
