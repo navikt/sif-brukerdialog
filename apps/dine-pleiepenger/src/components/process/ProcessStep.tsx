@@ -23,8 +23,9 @@ export interface ProcessStepProps extends React.AnchorHTMLAttributes<HTMLAnchorE
      */
     completed?: boolean;
     current?: boolean;
-
     icon?: React.ReactNode;
+    isContinuation?: boolean;
+    isLastStep?: boolean;
 }
 
 export interface ProcessStepData {
@@ -33,6 +34,8 @@ export interface ProcessStepData {
     timestamp?: Date;
     completed?: boolean;
     current?: boolean;
+    isContinuation?: boolean;
+    isLastStep?: boolean;
 }
 
 export const ProcessStep: React.FunctionComponent<ProcessStepProps> = ({
@@ -40,6 +43,7 @@ export const ProcessStep: React.FunctionComponent<ProcessStepProps> = ({
     current,
     icon,
     children,
+    isLastStep,
     index,
 }) => {
     const getCircleContent = () => {
@@ -49,19 +53,20 @@ export const ProcessStep: React.FunctionComponent<ProcessStepProps> = ({
         if (index) {
             return index;
         }
+        if (current && !isLastStep) {
+            return <span className="process__circle__dot" />;
+        }
         if (completed) {
             return <CompleteIcon />;
-        }
-        if (current) {
-            return <span className="process__circle__dot" />;
         }
     };
     return (
         <div
             className={cl(
                 'process__step',
-                completed ? 'process__step--completed' : '',
-                current ? 'process__item--current' : '',
+                completed && !current ? 'process__step--completed' : '',
+                completed && current && isLastStep ? 'process__step--completed process__item--current' : '',
+                current && !isLastStep ? 'process__item--current' : '',
             )}>
             <span className={`process__circle`} aria-hidden="true">
                 {getCircleContent()}

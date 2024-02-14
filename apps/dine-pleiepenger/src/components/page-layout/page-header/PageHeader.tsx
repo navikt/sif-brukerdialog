@@ -1,12 +1,13 @@
-import { HStack, Heading, VStack } from '@navikt/ds-react';
+import { BodyShort, Box, HStack, Heading, VStack } from '@navikt/ds-react';
 import PleiepengerSVG from '../../../svg/pleiepenger';
 
 interface Props {
     title?: string;
+    titleTag?: React.ReactNode;
     byline?: React.ReactNode;
 }
 
-const PageHeader: React.FunctionComponent<Props> = ({ title = 'Dine pleiepenger', byline }) => {
+const PageHeader: React.FunctionComponent<Props> = ({ title = 'Dine pleiepenger', titleTag, byline }) => {
     return (
         <div className="bg-[--a-deepblue-50]">
             <div className="text-left">
@@ -14,7 +15,10 @@ const PageHeader: React.FunctionComponent<Props> = ({ title = 'Dine pleiepenger'
                     <HStack gap={'6'} align={'center'}>
                         <PleiepengerSVG />
                         <VStack gap="1">
-                            <span className="text-deepblue-800">{title}</span>
+                            <HStack align={'center'} justify={'center'} gap="4">
+                                <Box className="text-deepblue-800">{title}</Box>
+                                <BodyShort as="div">{titleTag}</BodyShort>
+                            </HStack>
                             {byline}
                         </VStack>
                     </HStack>

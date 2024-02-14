@@ -11,9 +11,9 @@ interface Props {
 
 const SøknadStatusContent: React.FunctionComponent<Props> = ({ søknad }) => {
     return (
-        <VStack gap="4">
+        <VStack gap="2">
             <p>{formatSøknadshendelseTidspunkt(søknad.k9FormatSøknad.mottattDato)}</p>
-            <DokumenterISøknad søknad={søknad} />
+            <DokumenterISøknad søknad={søknad} tittel="Søknad og eventuelle vedlegg i søknad" />
             <ArbeidsgivereISøknad søknad={søknad} />
         </VStack>
     );

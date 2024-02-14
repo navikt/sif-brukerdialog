@@ -16,6 +16,8 @@ import { getAllBreadcrumbs } from '../../utils/decoratorBreadcrumbs';
 import { browserEnv } from '../../utils/env';
 import { personaliaUtils } from '../../utils/personaliaUtils';
 import { getBehandlingsstatusISak } from '../../utils/sakUtils';
+import StatusTag from '../../components/status-tag/StatusTag';
+import { Behandlingsstatus } from '../../server/api-models/Behandlingsstatus';
 
 interface Props {
     pleietrengende: Pleietrengende;
@@ -36,14 +38,23 @@ const SakPage: React.FunctionComponent<Props> = ({ sak, pleietrengende, saksbeha
     const statusISak = getBehandlingsstatusISak(sak);
 
     return (
-        <DefaultPageLayout pageHeader={<SakPageHeader navn={navn} saksnr={sak.saksnummer} />}>
+        <DefaultPageLayout
+            pageHeader={
+                <SakPageHeader
+                    navn={navn}
+                    saksnr={sak.saksnummer}
+                    titleTag={<StatusTag {...getBehandlingsstatusISak(sak)} />}
+                />
+            }>
             <Head>
                 <title>
                     Din pleiepengesak - {sak.saksnummer} {navn}
                 </title>
             </Head>
             <VStack gap="12">
-                {statusISak.venteårsak ? <VenteårsakMelding venteårsak={statusISak.venteårsak} /> : null}
+                {statusISak.venteårsak && statusISak.status !== Behandlingsstatus.AVSLUTTET ? (
+                    <VenteårsakMelding venteårsak={statusISak.venteårsak} />
+                ) : null}
                 <Box className="md:flex md:gap-6">
                     <div className="md:grow mb-10 md:mb-0">{<StatusISak sak={sak} />}</div>
                     <div className="md:mb-none shrink-0 md:w-72">
@@ -51,6 +62,7 @@ const SakPage: React.FunctionComponent<Props> = ({ sak, pleietrengende, saksbeha
                             <Svarfrist
                                 frist={sak.saksbehandlingsFrist}
                                 saksbehandlingstidUker={saksbehandlingstidUker}
+                                venteårsak={statusISak.venteårsak}
                             />
                         </VStack>
                     </div>

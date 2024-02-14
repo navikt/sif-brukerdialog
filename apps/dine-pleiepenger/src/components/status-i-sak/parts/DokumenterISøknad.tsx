@@ -7,6 +7,7 @@ import { File } from '@navikt/ds-icons';
 import { getDokumentFrontendUrl, getSøknadDokumentFilnavn } from '../../../utils/dokumentUtils';
 
 interface Props {
+    tittel?: string;
     søknad: Søknad;
 }
 
@@ -23,7 +24,7 @@ const mapDokumenter = (dokument: Dokument) => {
     );
 };
 
-const DokumenterISøknad: React.FunctionComponent<Props> = ({ søknad }) => {
+const DokumenterISøknad: React.FunctionComponent<Props> = ({ søknad, tittel }) => {
     if (søknad.dokumenter.length === 0) {
         return (
             <p>
@@ -33,9 +34,11 @@ const DokumenterISøknad: React.FunctionComponent<Props> = ({ søknad }) => {
     }
     return (
         <Box>
-            <Heading size="xsmall" level="4" spacing={true}>
-                <FormattedMessage id={`dokumenterTittel.${søknad.søknadstype}`} />
-            </Heading>
+            {tittel ? (
+                <Heading size="xsmall" level="4" spacing={true}>
+                    {tittel}
+                </Heading>
+            ) : null}
             {søknad.dokumenter && søknad.dokumenter.length > 0 && (
                 <ul>{søknad.dokumenter.map((dokument) => mapDokumenter(dokument))}</ul>
             )}

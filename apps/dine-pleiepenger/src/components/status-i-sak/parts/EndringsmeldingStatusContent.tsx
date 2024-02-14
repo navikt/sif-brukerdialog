@@ -10,7 +10,7 @@ interface Props {
 
 const EndringsmeldingStatusContent: React.FunctionComponent<Props> = ({ søknad }) => {
     return (
-        <VStack gap="4">
+        <VStack gap="2">
             <p>{formatSøknadshendelseTidspunkt(søknad.k9FormatSøknad.mottattDato)}</p>
             <DokumenterISøknad søknad={søknad} />
         </VStack>

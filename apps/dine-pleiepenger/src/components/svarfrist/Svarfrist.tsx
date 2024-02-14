@@ -4,13 +4,15 @@ import React from 'react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { browserEnv } from '../../utils/env';
 import dayjs from 'dayjs';
+import { Venteårsak } from '../../types/Venteårsak';
 
 interface Props {
     frist?: Date;
     saksbehandlingstidUker?: number;
+    venteårsak?: Venteårsak;
 }
 
-const Svarfrist: React.FunctionComponent<Props> = ({ frist, saksbehandlingstidUker = 7 }) => {
+const Svarfrist: React.FunctionComponent<Props> = ({ frist, venteårsak, saksbehandlingstidUker = 7 }) => {
     const fristErPassert = frist && dayjs(frist).isBefore(dayjs(), 'day');
     return (
         <Box>
@@ -20,10 +22,19 @@ const Svarfrist: React.FunctionComponent<Props> = ({ frist, saksbehandlingstidUk
             <BodyShort as="div" className="bg-deepblue-100 pt-4 pl-6 pr-6 pb-6 rounded">
                 {frist && fristErPassert === false ? (
                     <p className="mb-2">
-                        Du kan forvente svar innen: <br />
-                        <span className="block font-bold first-letter:uppercase">
-                            {dateFormatter.dayDateMonthYear(frist)}
-                        </span>
+                        {venteårsak ? (
+                            <>
+                                Fordi vi mangler dokumenter kan saksbehandlingstiden bli lenger enn{' '}
+                                <span className="font-bold">{dateFormatter.full(frist)}</span>.
+                            </>
+                        ) : (
+                            <>
+                                Du kan forvente svar innen: <br />
+                                <span className="block font-bold first-letter:uppercase">
+                                    {dateFormatter.full(frist)}
+                                </span>
+                            </>
+                        )}
                     </p>
                 ) : (
                     <p className="mb-2">

@@ -14,9 +14,9 @@
             "fagsakYtelseType": { "kode": "PSB", "kodeverk": "FAGSAK_YTELSE" },
             "behandlinger": [
                 {
-                    "status": "PÅ_VENT",
-                    "opprettetDato": null,
-                    "avsluttetDato": null,
+                    "status": "AVSLUTTET",
+                    "opprettetDato": "2024-02-14T11:59:40.061Z",
+                    "avsluttetDato": "2024-02-14T11:59:40.061Z",
                     "søknader": [
                         {
                             "søknadId": "af5088f4-7739-4c47-8665-ee1397200e8f",

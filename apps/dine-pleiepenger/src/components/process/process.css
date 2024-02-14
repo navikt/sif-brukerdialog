@@ -23,8 +23,8 @@
     margin-top: -0.25rem;
 }
 .process__item__variant {
-    margin: 0.25rem -0.25rem 0.5rem -0.25rem;
-    padding: 0.25rem 0.25rem 1rem 0.25rem;
+    margin: 0.25rem -0.5rem 0.5rem -0.5rem;
+    padding: 0.25rem 0.5rem 0rem 0.5rem;
     border-radius: 0.25rem;
 }
 .process__item__variant--CURRENT .process__circle {
@@ -44,8 +44,8 @@
 .process__circle__dot {
     display: block;
     border-radius: 50%;
-    width: 1rem;
-    height: 1rem;
+    width: 0.9rem;
+    height: 0.9rem;
     background-color: var(--a-deepblue-800);
 }
 
@@ -63,6 +63,16 @@
 .process__line--1 {
     grid-row: line-1;
     display: none;
+}
+.process__item--CONTINUATION .process__line--1 {
+    border-style: solid;
+    display: block;
+    opacity: 1;
+    margin-top: -1rem;
+    min-height: 1.5rem;
+}
+process__line--1--continuation {
+    display: inherit;
 }
 
 .process__line--2 {

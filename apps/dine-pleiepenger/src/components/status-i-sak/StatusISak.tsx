@@ -15,10 +15,9 @@ interface Props {
 
 const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser }) => {
     const hendelser = getAlleHendelserISak(sak);
-    const processStep = getProcessStepsFraSøknadshendelser(hendelser);
-    const visibleSteps = visAlleHendelser ? processStep : processStep.splice(-4);
-
-    const flereHendelserFinnes = visibleSteps.length < hendelser.length;
+    const processSteps = getProcessStepsFraSøknadshendelser(hendelser);
+    const visibleSteps = visAlleHendelser ? processSteps : [...processSteps].splice(-4);
+    const finnnesFlereHendelser = visibleSteps.length < processSteps.length;
 
     return (
         <VStack gap="3">
@@ -27,9 +26,13 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser }) =
             </Heading>
             <Box padding="4" className="bg-white">
                 <Process>
-                    {/* {flereHendelserFinnes ? <>Flere hendelser</> : null} */}
                     {visibleSteps.map((step, idx) => (
-                        <ProcessStep key={idx} completed={step.completed} current={step.current}>
+                        <ProcessStep
+                            key={idx}
+                            completed={step.completed}
+                            current={step.current}
+                            isLastStep={step.isLastStep}
+                            isContinuation={finnnesFlereHendelser && idx === 0}>
                             <Heading size="small" level="3">
                                 {step.title}
                             </Heading>
@@ -38,7 +41,7 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser }) =
                     ))}
                 </Process>
             </Box>
-            {flereHendelserFinnes && visAlleHendelser === undefined ? (
+            {finnnesFlereHendelser && visAlleHendelser === undefined ? (
                 <Box className="ml-4">
                     <Link as={NextLink} href={`/sak/${sak.saksnummer}/historikk`}>
                         Se alle hendelser

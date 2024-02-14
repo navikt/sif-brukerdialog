@@ -1,48 +1,39 @@
-import { Aksjonspunkt } from '../../server/api-models/AksjonspunktSchema';
-import { Venteårsak } from '../../types/Venteårsak';
 import { ProcessStepData } from '../process/ProcessStep';
 import { Søknadstype } from '../../server/api-models/Søknadstype';
 import { Søknadshendelse, SøknadshendelseType } from '../../types/Søknadshendelse';
 import { Søknad } from '../../server/api-models/SøknadSchema';
-import { formatSøknadshendelseTidspunkt } from '../../utils/sakUtils';
 import SøknadStatusContent from './parts/SøknadStatusContent';
 import EndringsmeldingStatusContent from './parts/EndringsmeldingStatusContent';
+import FerdigBehandletStatusContent from './parts/FerdigBehandletStatusContent';
 
-export const getSøknadstypeStatusmelding = (søknadstype: Søknadstype): string => {
-    switch (søknadstype) {
-        case Søknadstype.SØKNAD:
-            return 'Vi mottok søknad om pleiepenger for sykt barn';
-        case Søknadstype.ENDRINGSMELDING:
-            return 'Vi mottok søknad om endring av pleiepenger for sykt barn';
-    }
-};
-
-export const getAksjonspunkterTekst = (aksjonspunkter: Aksjonspunkt[]): string => {
-    const årsaker = aksjonspunkter.map((a) => a.venteårsak).flat();
-    if (årsaker.includes(Venteårsak.MEDISINSK_DOKUMENTASJON)) {
-        return 'Saken er satt på vent fordi vi mangler legeerklæring';
-    }
-    if (årsaker.includes(Venteårsak.INNTEKTSMELDING)) {
-        return 'Saken er satt på vent fordi vi mangler inntektsmelding';
-    }
-    return `Saken er satt på vent fordi vi mangler informajson`;
-};
+// export const getAksjonspunkterTekst = (aksjonspunkter: Aksjonspunkt[]): string => {
+//     const årsaker = aksjonspunkter.map((a) => a.venteårsak).flat();
+//     if (årsaker.includes(Venteårsak.MEDISINSK_DOKUMENTASJON)) {
+//         return 'Saken er satt på vent fordi vi mangler legeerklæring';
+//     }
+//     if (årsaker.includes(Venteårsak.INNTEKTSMELDING)) {
+//         return 'Saken er satt på vent fordi vi mangler inntektsmelding';
+//     }
+//     return `Saken er satt på vent fordi vi mangler informajson`;
+// };
 
 export const getProcessStepFromMottattSøknad = (søknad: Søknad, current: boolean): ProcessStepData => {
     switch (søknad.søknadstype) {
         case Søknadstype.SØKNAD:
             return {
-                title: 'Vi mottok søknad om pleiepenger for sykt barn',
+                title: 'Vi har fått din søknad om pleiepenger for sykt barn',
                 content: <SøknadStatusContent søknad={søknad} />,
                 completed: true,
                 current,
+                isLastStep: false,
             };
         case Søknadstype.ENDRINGSMELDING:
             return {
-                title: 'Vi mottok søknad om endring av pleiepenger for sykt barn',
+                title: 'Vi har fått din endringsmelding',
                 content: <EndringsmeldingStatusContent søknad={søknad} />,
                 completed: true,
                 current,
+                isLastStep: false,
             };
     }
 };
@@ -74,9 +65,11 @@ export const getProcessStepsFraSøknadshendelser = (hendelser: Søknadshendelse[
             case SøknadshendelseType.FERDIG_BEHANDLET:
                 return {
                     title: 'Søknad er ferdig behandlet',
-                    content: <p>{formatSøknadshendelseTidspunkt(hendelse.dato)}</p>,
+                    content: <FerdigBehandletStatusContent avsluttetDato={hendelse.dato} />,
                     completed: true,
                     timestamp: hendelse.dato,
+                    isLastStep: true,
+                    current: erGjeldendeHendelse,
                 };
 
             case SøknadshendelseType.FORVENTET_SVAR:
@@ -90,6 +83,7 @@ export const getProcessStepsFraSøknadshendelser = (hendelser: Søknadshendelse[
                     ),
                     completed: false,
                     timestamp: hendelse.dato,
+                    isLastStep: true,
                 };
         }
     });

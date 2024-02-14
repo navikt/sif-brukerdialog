@@ -27,11 +27,18 @@ export const Process: ProcessComponent = forwardRef<HTMLOListElement, ProcessPro
                     {React.Children.map(children, (step, index) => {
                         const stepIndex = index + 1;
                         const isCurrent = React.isValidElement<ProcessStepProps>(step) ? step.props.current : undefined;
+                        const isContinuation = React.isValidElement<ProcessStepProps>(step)
+                            ? step.props.isContinuation
+                            : undefined;
                         return (
                             <li
-                                className={`process__item${isCurrent ? ` process__item__variant process__item__variant--CURRENT` : ''}`}
+                                className={cl(
+                                    'process__item',
+                                    isCurrent ? 'process__item__variant process__item__variant--CURRENT' : undefined,
+                                    isContinuation ? 'process__item--CONTINUATION' : undefined,
+                                )}
                                 key={stepIndex + (children?.toString?.() ?? '')}>
-                                <span className="process__line process__line--1" />
+                                <span className={cl('process__line process__line--1')} />
                                 {React.isValidElement<ProcessStepProps>(step)
                                     ? React.cloneElement(step, {
                                           ...step.props,
