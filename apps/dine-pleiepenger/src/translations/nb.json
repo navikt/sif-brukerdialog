@@ -43,5 +43,5 @@
     "bekreftelseTilArbeidsgiver.title": "Bekreftelse til arbeidsgiver",
     "bekreftelseTilArbeidsgiver.info": "Dette er en bekreftelse som du kan gi til arbeidsgiver. Den bekrefter at vi har fått søknad om pleiepenger fra deg, hvilken periode du har søkt pleiepenger og informasjon om når arbeidsgiver må sende inntektsmelding.",
     "dokumenterSomKanLastesNed.tittel": "Dokumenter som kan lastes ned",
-    "dokumenterSomKanLastesNed.bekreftelse": "Bekreftelse til {organisasjonsnavn} (PDF)"
+    "dokumenterSomKanLastesNed.bekreftelse": "Bekreftelse til {organisasjonsnavn}"
 }

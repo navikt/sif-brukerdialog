@@ -1,10 +1,10 @@
 import React from 'react';
 import { Søknad } from '../../../server/api-models/SøknadSchema';
-import { Box, Heading, Link } from '@navikt/ds-react';
+import { Box, Heading } from '@navikt/ds-react';
 import { FormattedMessage } from 'react-intl';
 import { Dokument } from '../../../server/api-models/DokumenetSchema';
-import { File } from '@navikt/ds-icons';
 import { getDokumentFrontendUrl, getSøknadDokumentFilnavn } from '../../../utils/dokumentUtils';
+import PdfLenke from '../../pdf-lenke/PdfLenke';
 
 interface Props {
     tittel?: string;
@@ -14,12 +14,10 @@ interface Props {
 const mapDokumenter = (dokument: Dokument) => {
     return (
         <li key={dokument.dokumentInfoId}>
-            <Link
-                target="_blank"
-                href={`${getDokumentFrontendUrl(dokument.url)}?dokumentTittel=${getSøknadDokumentFilnavn(dokument)}`}>
-                <File title="Dokumentikon" />
-                <span>{`${dokument.tittel} (PDF)`}</span>
-            </Link>
+            <PdfLenke
+                href={`${getDokumentFrontendUrl(dokument.url)}?dokumentTittel=${getSøknadDokumentFilnavn(dokument)}`}
+                tittel={dokument.tittel}
+            />
         </li>
     );
 };
