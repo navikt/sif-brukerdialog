@@ -1,71 +1,63 @@
 import { AnnetBarn, BarnType } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
-import { RegistrertBarn } from '../../types/RegistrertBarn';
-import { ApiBarn, RegistrertBarnTypeApi } from '../../types/søknadApiData/SøknadApiData';
-import { DineBarnSøknadsdata } from '../../types/søknadsdata/DineBarnSøknadsdata';
-import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
+import { ApiBarn, DineBarnApiData, RegistrertBarnTypeApi } from '../../types/søknadApiData/SøknadApiData';
+import { DineBarnSøknadsdata, DineBarnSøknadsdataType } from '../../types/søknadsdata/DineBarnSøknadsdata';
 import { dateToISODate } from '@navikt/sif-common-utils';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
+import { RegistrertBarn } from '../../types/RegistrertBarn';
 
-const mapRegistrertBarnToApiBarn = (
-    registrertBarn: RegistrertBarn,
-    harDekketTiFørsteDagerSelv?: boolean,
-    harUtvidetRettFor?: string[],
-): ApiBarn => {
+export const mapRegistrertBarnToApiBarn = (registrertBarn: RegistrertBarn): ApiBarn => {
     return {
         identitetsnummer: undefined,
         aktørId: registrertBarn.aktørId,
         navn: formatName(registrertBarn.fornavn, registrertBarn.etternavn, registrertBarn.mellomnavn),
         fødselsdato: dateToISODate(registrertBarn.fødselsdato),
-        utvidetRett:
-            !harDekketTiFørsteDagerSelv && harUtvidetRettFor
-                ? harUtvidetRettFor.filter((aktørId) => aktørId === registrertBarn.aktørId).length === 1
-                : undefined,
         type: RegistrertBarnTypeApi.fraOppslag,
     };
 };
 
-const mapAndreBarnToApiBarn = (
-    annetBarn: AnnetBarn,
-    harDekketTiFørsteDagerSelv?: boolean,
-    harUtvidetRettFor?: string[],
-): ApiBarn => {
+const mapAndreBarnToApiBarn = (annetBarn: AnnetBarn): ApiBarn => {
     return {
         aktørId: undefined,
         identitetsnummer: annetBarn.fnr,
         navn: annetBarn.navn,
         fødselsdato: dateToISODate(annetBarn.fødselsdato),
-        utvidetRett:
-            !harDekketTiFørsteDagerSelv && harUtvidetRettFor
-                ? harUtvidetRettFor.filter((fnr) => fnr === annetBarn.fnr).length === 1
-                : undefined,
         type: annetBarn.type ? annetBarn.type : BarnType.annet,
     };
 };
 
-export const getDineBarnApiDataFromSøknadsdata = (
-    dineBarnSøknadsdata: DineBarnSøknadsdata,
-    registrertBarn: RegistrertBarn[],
-): ApiBarn[] => {
+export const getBarnApiDataFromSøknadsdata = (dineBarnSøknadsdata: DineBarnSøknadsdata): ApiBarn[] => {
     if (dineBarnSøknadsdata === undefined) {
         throw Error('dineBarnSøknadsdata undefined');
     }
-    const { andreBarn, type } = dineBarnSøknadsdata;
+    if (dineBarnSøknadsdata.type === DineBarnSøknadsdataType.HAR_IKKE_RETT_STOPPES) {
+        throw Error('dineBarnSøknadsdata - har ikke rett');
+    }
+    const { andreBarn } = dineBarnSøknadsdata;
+    return [...andreBarn.map(mapAndreBarnToApiBarn)];
+};
 
-    switch (type) {
-        case 'minstEtt12årEllerYngre':
-            return [
-                ...andreBarn.map((barn) => mapAndreBarnToApiBarn(barn, dineBarnSøknadsdata.harDekketTiFørsteDagerSelv)),
-                ...registrertBarn.map((barn) =>
-                    mapRegistrertBarnToApiBarn(barn, dineBarnSøknadsdata.harDekketTiFørsteDagerSelv),
-                ),
-            ];
-        case 'alleBarnEldre12år':
-            return [
-                ...andreBarn.map((barn) =>
-                    mapAndreBarnToApiBarn(barn, undefined, dineBarnSøknadsdata.harUtvidetRettFor),
-                ),
-                ...registrertBarn.map((barn) =>
-                    mapRegistrertBarnToApiBarn(barn, undefined, dineBarnSøknadsdata.harUtvidetRettFor),
-                ),
-            ];
+export const getDineBarnApiDataFromSøknadsdata = (dineBarnSøknadsdata: DineBarnSøknadsdata): DineBarnApiData => {
+    const barn: ApiBarn[] = getBarnApiDataFromSøknadsdata(dineBarnSøknadsdata);
+
+    switch (dineBarnSøknadsdata.type) {
+        case DineBarnSøknadsdataType.HAR_IKKE_RETT_STOPPES:
+            throw new Error('DineBarnSøknadsdataType.HAR_IKKE_RETT_STOPPES:');
+        case DineBarnSøknadsdataType.UTVIDET_RETT_PGA_SYKDOM_ELLER_ALENEOMSORG:
+            return {
+                barn,
+                harAleneomsorg: dineBarnSøknadsdata.harAleneomsorg,
+                harDekketTiFørsteDagerSelv: dineBarnSøknadsdata.harDekketTiFørsteDagerSelv,
+                harSyktBarn: dineBarnSøknadsdata.harSyktBarn,
+            };
+        case DineBarnSøknadsdataType.UTVIDET_RETT_PGA_ANTALL_BARN:
+            return {
+                barn,
+                harDekketTiFørsteDagerSelv: dineBarnSøknadsdata.harDekketTiFørsteDagerSelv,
+            };
+        case DineBarnSøknadsdataType.UTVIDET_RETT_PGA_SYKT_BARN_OVER_13:
+            return {
+                barn,
+                harSyktBarn: true,
+            };
     }
 };

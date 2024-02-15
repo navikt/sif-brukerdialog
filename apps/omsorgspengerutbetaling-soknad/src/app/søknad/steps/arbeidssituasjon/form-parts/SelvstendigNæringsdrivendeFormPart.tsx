@@ -31,8 +31,6 @@ const SelvstendigNæringsdrivendeFormPart: React.FC<Props> = ({ values }) => {
     const erSelvstendigNæringsdrivende = selvstendig_erSelvstendigNæringsdrivende === YesOrNo.YES;
     const harFlereVirksomheter = erSelvstendigNæringsdrivende && selvstendig_harFlereVirksomheter === YesOrNo.YES;
 
-    //TODO  useEffect(() => { (virksomhetChanged
-
     return (
         <>
             <YesOrNoQuestion
@@ -91,8 +89,6 @@ const SelvstendigNæringsdrivendeFormPart: React.FC<Props> = ({ values }) => {
                         }}
                         skipOrgNumValidation={skipOrgNumValidation}
                         validate={getRequiredFieldValidator()}
-                        // TODO
-                        // onAfterChange={() => setVirksomhetChanged(true)}
                     />
                 </FormBlock>
             )}
