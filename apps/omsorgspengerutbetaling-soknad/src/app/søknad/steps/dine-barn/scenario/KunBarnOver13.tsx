@@ -20,8 +20,7 @@ const KunBarnOver13: React.FunctionComponent<Props> = ({ harSyktBarn, harUtvidet
                 <Block>
                     <Alert variant="warning">
                         For å ha rett til omsorgspenger fra det året barnet fyller 13 år, må du ha fått ekstra
-                        omsorgsdager fra NAV fordi barnet fordi barnet har en kronisk/langvarig sykdom eller en
-                        funksjonshemning.
+                        omsorgsdager fra NAV fordi barnet har en kronisk/langvarig sykdom eller en funksjonshemning.
                     </Alert>
                 </Block>
             ) : null}
