@@ -35,7 +35,33 @@ const VenteårsakMelding: React.FunctionComponent<Props> = ({ venteårsak }) => 
                     <DokumentarkivLenke tekst="Se brev i dokumentarkivet" />
                 </Alert>
             );
+        case Venteårsak.SØKT_FOR_TIDLIG:
+            return (
+                <Alert variant="info">
+                    <Heading level="2" size="medium" className="text-gray-900">
+                        Vi kan tidligst behandle søknaden din XX.XX.XXXX
+                    </Heading>
+                    <BodyLong className="mb-2 mt-2">
+                        For å beregne hvor mye pleiepenger du kan få, trenger vi ferske opplysninger om inntekten din.
+                        Arbeidsgiver kan derfor sende inntektsopplysninger tidligst 4 uker før pleiepengeperioden din
+                        starter. Saken er satt på vent frem til søknaden kan behandles.
+                    </BodyLong>
+                </Alert>
+            );
+
+        case Venteårsak.MELDEKORT:
+            return (
+                <Alert variant="info">
+                    <Heading level="2" size="medium" className="text-gray-900">
+                        Vi venter på at du sender meldekort
+                    </Heading>
+                    <BodyLong className="mb-2 mt-2">
+                        Vi kan først behandle søknaden din når siste meldekort er sendt inn i dagpengesaken eller
+                        arbeidsavklaringspengesaken din. Du må sende inn meldekort helt frem til du starter perioden med
+                        pleiepenger.
+                    </BodyLong>
+                </Alert>
+            );
     }
-    return null;
 };
 export default VenteårsakMelding;
