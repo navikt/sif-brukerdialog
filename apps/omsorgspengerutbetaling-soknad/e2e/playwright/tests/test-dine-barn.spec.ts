@@ -82,7 +82,7 @@ test.describe('Tester varianter av Dine barn steg', () => {
 
         /** Har ikke søkt utvidet */
         await svarUtils(page).harSøktOmEkstraDager(false);
-        expect(await page.getByText('For å ha rett på omsorgsdager for barn som er 13 år eller eldre')).toBeVisible();
+        expect(await page.getByText('For å ha rett til omsorgspenger fra det året barnet fyller 13 år')).toBeVisible();
         expect(await svarUtils(page).submitIsEnabled()).toBe(false);
     });
     test('Ingen barn', async ({ page }) => {
