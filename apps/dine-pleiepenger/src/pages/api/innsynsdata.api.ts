@@ -68,7 +68,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         ) {
             res.status(403).json({ error: 'Ikke tilgang' });
         } else {
-            res.status(500).json({ error: 'Kunne ikke hente innsynsdata', err });
+            res.status(500).json({ error: 'Kunne ikke hente innsynsdata' });
         }
     }
 }
