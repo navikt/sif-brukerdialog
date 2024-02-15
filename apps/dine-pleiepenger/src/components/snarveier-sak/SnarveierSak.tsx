@@ -9,7 +9,7 @@ const SnarveierSak: React.FunctionComponent<Props> = ({}) => (
         <Heading size="medium" level="2" className="text-deepblue-800" spacing={true}>
             Snarveier
         </Heading>
-        <HGrid gap="2" columns={3}>
+        <HGrid gap="2" columns={{ xs: 1, md: 3 }}>
             <LinkPanel href={browserEnv.NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL} border={false}>
                 <Heading as="div" level="3" size="small">
                     Dokumentarkiv
