@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.9.0
+
+### Minor Changes
+
+- Endret spørsmålsstilling om barn, utvidet rett og om en har dekket 10 dager selv.
+
 ## 1.8.26
 
 ### Patch Changes
