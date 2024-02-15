@@ -27,7 +27,7 @@ const getÅrstallFromFravær = (
     }
 };
 
-const getTidsromFromÅrstall = (årstall?: number): DateRange => {
+const getGyldigTidsromForFravær = (årstall?: number): DateRange => {
     if (årstall === undefined) {
         return { from: date1YearAgo, to: dayjs().endOf('day').toDate() };
     }
@@ -39,10 +39,10 @@ const getTidsromFromÅrstall = (årstall?: number): DateRange => {
     };
 };
 
-const getPeriodeBoundaries = (
+const getFørsteOgSisteDagMedFravær = (
     perioderMedFravær: FraværPeriode[],
     dagerMedFravær: FraværDag[],
-): { min?: Date; max?: Date } => {
+): DateRange | undefined => {
     let min: Dayjs | undefined;
     let max: Dayjs | undefined;
 
@@ -56,16 +56,29 @@ const getPeriodeBoundaries = (
         max = max ? dayjs.max(dayjs(d.dato), max)! : dayjs(d.dato);
     });
 
-    return {
-        min: min !== undefined ? min.toDate() : undefined,
-        max: max !== undefined ? max.toDate() : undefined,
-    };
+    const from = min !== undefined ? min.toDate() : undefined;
+    const to = max !== undefined ? max.toDate() : undefined;
+
+    return from && to ? { from, to } : undefined;
+};
+
+const getFraværsdager = (fravær?: FraværSøknadsdata) => {
+    return fravær && fravær && (fravær.type === 'harKunDelvisFravær' || fravær.type === 'harFulltOgDelvisFravær')
+        ? fravær.fraværDager
+        : [];
+};
+
+const getFraværsperioder = (fravær?: FraværSøknadsdata) => {
+    return fravær && fravær && (fravær.type === 'harKunFulltFravær' || fravær.type === 'harFulltOgDelvisFravær')
+        ? fravær.fraværPerioder
+        : [];
 };
 
 const fraværStepUtils = {
-    getTidsromFromÅrstall,
+    getFraværsdager,
+    getFraværsperioder,
+    getGyldigTidsromForFravær,
     getÅrstallFromFravær,
-    getPeriodeBoundaries,
 };
 
 export const getFraværStepInitialValues = (
@@ -133,8 +146,12 @@ export const getFraværSøknadsdataFromFormValues = (values: FraværFormValues):
     const harFulltFravær = harPerioderMedFravær === YesOrNo.YES && fraværPerioder.length > 0;
     const harDelvisFravær = harDagerMedDelvisFravær === YesOrNo.YES && fraværDager.length > 0;
 
+    const førsteOgSisteDagMedFravær = getFørsteOgSisteDagMedFravær(fraværPerioder, fraværDager);
+    if (førsteOgSisteDagMedFravær === undefined) {
+        return undefined;
+    }
+
     if (perioder_harVærtIUtlandet && perioder_utenlandsopphold.length === 0) {
-        //TODO throw error eller amplitude
         return undefined;
     }
 
@@ -146,6 +163,7 @@ export const getFraværSøknadsdataFromFormValues = (values: FraværFormValues):
             harDagerMedDelvisFravær: false,
             perioder_harVærtIUtlandet,
             perioder_utenlandsopphold,
+            førsteOgSisteDagMedFravær,
         };
     }
 
@@ -157,6 +175,7 @@ export const getFraværSøknadsdataFromFormValues = (values: FraværFormValues):
             fraværDager,
             perioder_harVærtIUtlandet,
             perioder_utenlandsopphold,
+            førsteOgSisteDagMedFravær,
         };
     }
 
@@ -169,6 +188,7 @@ export const getFraværSøknadsdataFromFormValues = (values: FraværFormValues):
             fraværDager,
             perioder_harVærtIUtlandet,
             perioder_utenlandsopphold,
+            førsteOgSisteDagMedFravær,
         };
     }
 

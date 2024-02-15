@@ -3575,7 +3575,14 @@ __metadata:
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@playwright/test": 1.41.2
+    "@storybook/addon-essentials": ^7.6.14
+    "@storybook/addon-interactions": ^7.6.14
+    "@storybook/addon-links": ^7.6.14
+    "@storybook/addon-onboarding": ^1.0.11
+    "@storybook/blocks": ^7.6.14
+    "@storybook/react": ^7.6.14
     "@storybook/react-vite": 7.6.14
+    "@storybook/test": ^7.6.14
     "@testing-library/react": 14.2.1
     "@types/node": 20.11.17
     "@types/object-hash": 3.0.6
@@ -3586,10 +3593,12 @@ __metadata:
     axios: 1.6.7
     babel-polyfill: 6.26.0
     busboy: 1.6.0
+    chromatic: 10.9.3
     compression: 1.7.4
     cookie-parser: 1.4.6
     cross-env: 7.0.3
     dotenv: 16.4.2
+    eslint-plugin-storybook: ^0.6.15
     express: 4.18.2
     express-rate-limit: 7.1.5
     helmet: 7.1.0
@@ -3606,6 +3615,7 @@ __metadata:
     react-fast-compare: 3.2.2
     react-intl: 6.6.2
     react-router-dom: 6.22.0
+    storybook: ^7.6.14
     tailwindcss: 3.4.1
     typescript: 5.3.3
     uuid: 9.0.1
@@ -5894,7 +5904,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-essentials@npm:7.6.14":
+"@storybook/addon-essentials@npm:7.6.14, @storybook/addon-essentials@npm:^7.6.14":
   version: 7.6.14
   resolution: "@storybook/addon-essentials@npm:7.6.14"
   dependencies:
@@ -5928,7 +5938,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-interactions@npm:7.6.14":
+"@storybook/addon-interactions@npm:7.6.14, @storybook/addon-interactions@npm:^7.6.14":
   version: 7.6.14
   resolution: "@storybook/addon-interactions@npm:7.6.14"
   dependencies:
@@ -5941,7 +5951,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-links@npm:7.6.14":
+"@storybook/addon-links@npm:7.6.14, @storybook/addon-links@npm:^7.6.14":
   version: 7.6.14
   resolution: "@storybook/addon-links@npm:7.6.14"
   dependencies:
@@ -5967,7 +5977,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-onboarding@npm:1.0.11":
+"@storybook/addon-onboarding@npm:1.0.11, @storybook/addon-onboarding@npm:^1.0.11":
   version: 1.0.11
   resolution: "@storybook/addon-onboarding@npm:1.0.11"
   dependencies:
@@ -6061,7 +6071,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/blocks@npm:7.6.14":
+"@storybook/blocks@npm:7.6.14, @storybook/blocks@npm:^7.6.14":
   version: 7.6.14
   resolution: "@storybook/blocks@npm:7.6.14"
   dependencies:
@@ -6935,7 +6945,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/react@npm:7.6.14":
+"@storybook/react@npm:7.6.14, @storybook/react@npm:^7.6.14":
   version: 7.6.14
   resolution: "@storybook/react@npm:7.6.14"
   dependencies:
@@ -7063,7 +7073,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/test@npm:7.6.14":
+"@storybook/test@npm:7.6.14, @storybook/test@npm:^7.6.14":
   version: 7.6.14
   resolution: "@storybook/test@npm:7.6.14"
   dependencies:
@@ -13044,7 +13054,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-storybook@npm:0.6.15":
+"eslint-plugin-storybook@npm:0.6.15, eslint-plugin-storybook@npm:^0.6.15":
   version: 0.6.15
   resolution: "eslint-plugin-storybook@npm:0.6.15"
   dependencies:
@@ -22204,7 +22214,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"storybook@npm:7.6.14":
+"storybook@npm:7.6.14, storybook@npm:^7.6.14":
   version: 7.6.14
   resolution: "storybook@npm:7.6.14"
   dependencies:

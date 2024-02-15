@@ -41,8 +41,8 @@ export const appMessages: MessageFileFormat = {
         'steg.footer.avbryt': 'Avbryt og slett søknad',
         'steg.footer.fortsettSenere': 'Avslutt og fortsett senere',
 
-        'step.dineBarn.stepTitle': 'Om barn',
-        'step.dineBarn.stepIndicatorLabel': 'Om barn',
+        'step.dineBarn.stepTitle': 'Barn og rett til omsorgspenger fra NAV',
+        'step.dineBarn.stepIndicatorLabel': 'Barn og rett til omsorgspenger fra NAV',
 
         'step.fravaer.stepTitle': 'Dager du søker om utbetaling for',
 
@@ -80,18 +80,21 @@ export const appMessages: MessageFileFormat = {
         'resetMellomlagring.text.1': 'Dersom feilen vedvarer, kan du prøve å starte på nytt med et tom skjema.',
         'resetMellomlagring.startPåNytt': 'Start på nytt',
 
+        'validation.barn.ingenBarn': 'Du må legge til minst ett barn for å kunne gå videre i søknaden.',
         'validation.harUtvidetRett.yesOrNoIsUnanswered':
             'Du må svare at du har fått ekstra omsorgsdager for barn fordi barnet har kronisk sykdom eller funksjonshemning eller ikke.',
-        'validation.harUtvidetRettFor.listIsEmpty':
-            'Du må velge barn du har søkt om eller fått ekstra omsorgsdager for.',
-        'validation.harDekketTiFørsteDagerSelv.notChecked':
-            'Du må bekrefte at du allerede har dekt 10 dager selv i år.',
+        'validation.harSyktBarn.yesOrNoIsUnanswered':
+            'Du må svare at du har fått ekstra omsorgsdager for et barn som har en sykdom eller funksjonshemning som gjør at du oftere må være borte fra jobb.',
+        'validation.harAleneomsorg.yesOrNoIsUnanswered':
+            'Du må svare på om du fått ekstra omsorgsdager fordi du er alene om omsorgen.',
+        'validation.harDekketTiFørsteDagerSelv.notAnswered':
+            'Du må svare på om du har dekket de 10 første dagene i år.',
+        'validation.harDekketTiFørsteDagerSelv.yesOrNoIsUnanswered':
+            'Du må svare på om du har dekket de 10 første dagene i år.',
         'validation.ingen_dokumenter': 'Ingen vedlegg er lastet opp.',
         'validation.for_mange_dokumenter': 'For mange dokumenter er lastet opp.',
         'validation.samlet_storrelse_for_hoy':
             'Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24Mb.',
-        'validation.harDekketTiFørsteDagerSelv.yesOrNoIsUnanswered':
-            'Du må svare ja eller nei på om du har dekket de 10 første dagene selv.',
         'validation.harPerioderMedFravær.yesOrNoIsUnanswered':
             'Du må svare ja eller nei på om du har hatt hele dager med fravær fra jobb.',
         'validation.fraværPerioder.listIsEmpty': 'Du har ikke lagt til dager med fullt fravær.',
@@ -110,7 +113,7 @@ export const appMessages: MessageFileFormat = {
         'validation.frilans_startdato.dateHasInvalidFormat':
             'Datoen for når du startet som frilanser er ugyldig. Gyldig format er dd.mm.åååå.',
         'validation.frilans_startdato.dateIsAfterMax':
-            'Datoen for når du startet som frilanser kan ikke være etter dagens dato.',
+            'Datoen for når du startet som frilanser kan ikke være etter dagens dato eller siste dag du søker for.',
         'validation.frilans_sluttdato.dateHasNoValue': 'Du må fylle ut når du sluttet som frilanser.',
         'validation.frilans_sluttdato.dateHasInvalidFormat':
             'Datoen for når du sluttet som frilanser er ugyldig. Gyldig format er dd.mm.åååå.',
@@ -126,6 +129,16 @@ export const appMessages: MessageFileFormat = {
         'validation.selvstendig_harFlereVirksomheter.yesOrNoIsUnanswered':
             'Du må svare ja eller nei på om du har flere enn én virksomhet som er aktiv.',
         'validation.selvstendig_virksomhet.noValue': 'Du har ikke registrert informasjon om virksomheten din.',
+
+        'validation.arbeidssituasjon.situasjon.frilanser': 'frilanser',
+        'validation.arbeidssituasjon.situasjon.sn': 'selvstendig næringsdrivende',
+        'validation.arbeidssituasjon.situasjon.frilanserOgSn': 'frilanser og selvstendig næringsdrivende',
+
+        'validation.arbeidssituasjon_tidsrom.arbeidsperiodeStarterEtterFraværsperiode':
+            'Du har registrert fraværsdager utenfor perioden du har oppgitt som {situasjon}. Du kan kun søke for dager du har vært frilanser eller selvstendig næringsdrivende.',
+        'validation.arbeidssituasjon_tidsrom.arbeidsperiodeSlutterFørEllerIFraværsperiode':
+            'Du har registrert fraværsdager utenfor perioden du har oppgitt som {situasjon}. Du kan kun søke for dager du har vært frilanser eller selvstendig næringsdrivende.',
+
         'validation.aktivitetFravær.noValue': 'Du må velge hvilket arbeid du hadde fravær fra {dato}.',
         'validation.harBoddUtenforNorgeSiste12Mnd.yesOrNoIsUnanswered':
             'Du må svare på om du har bodd i utlandet i hele eller deler av de siste 12 månedene.',

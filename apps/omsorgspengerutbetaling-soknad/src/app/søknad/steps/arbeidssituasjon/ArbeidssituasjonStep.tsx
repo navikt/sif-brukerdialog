@@ -23,7 +23,10 @@ import SelvstendigNæringsdrivendeFormPart from './form-parts/SelvstendigNæring
 import {
     getArbeidssituasjonStepInitialValues,
     getArbeidssituasjonSøknadsdataFromFormValues,
+    getFrilanserSnSituasjon,
+    validateArbeidssituasjonTidsrom,
 } from './arbeidssituasjonStepUtils';
+import { FormikInputGroup } from '@navikt/sif-common-formik-ds';
 
 export enum ArbeidssituasjonFormFields {
     frilans_erFrilanser = 'frilans_erFrilanser',
@@ -110,13 +113,41 @@ const ArbeidssituasjonStep = () => {
                                     </p>
                                 </SifGuidePanel>
 
-                                <FormBlock>
-                                    <FrilansFormPart values={values} />
-                                </FormBlock>
+                                <FormikInputGroup
+                                    name={'arbeidssituasjon_tidsrom'}
+                                    hideLegend={true}
+                                    errorPropagation={false}
+                                    legend="Registrer frilans og/eller selvstendig næringsdrivende"
+                                    validate={() => {
+                                        const error = validateArbeidssituasjonTidsrom(
+                                            values,
+                                            søknadsdata.fravaer?.førsteOgSisteDagMedFravær,
+                                        );
+                                        const situasjon = getFrilanserSnSituasjon(values);
+                                        if (error && situasjon) {
+                                            return {
+                                                key: error,
+                                                values: {
+                                                    situasjon,
+                                                },
+                                            };
+                                        }
+                                        return undefined;
+                                    }}>
+                                    <div>
+                                        <FormBlock>
+                                            <FrilansFormPart
+                                                values={values}
+                                                fraværPeriode={søknadsdata.fravaer?.førsteOgSisteDagMedFravær}
+                                            />
+                                        </FormBlock>
 
-                                <FormBlock>
-                                    <SelvstendigNæringsdrivendeFormPart values={values} />
-                                </FormBlock>
+                                        <FormBlock>
+                                            <SelvstendigNæringsdrivendeFormPart values={values} />
+                                        </FormBlock>
+                                    </div>
+                                </FormikInputGroup>
+
                                 {submitDisabled(values) && (
                                     <FormBlock margin="l">
                                         <Alert variant="warning">

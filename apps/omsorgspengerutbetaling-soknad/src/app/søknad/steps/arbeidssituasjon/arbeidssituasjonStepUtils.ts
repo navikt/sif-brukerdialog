@@ -5,30 +5,32 @@ import { ArbeidSøknadsdata } from '../../../types/søknadsdata/ArbeidSøknadsda
 import { ArbeidFrilansSøknadsdata } from '../../../types/søknadsdata/ArbeidFrilansSøknadsdata';
 import { ArbeidSelvstendigSøknadsdata } from '../../../types/søknadsdata/ArbeidSelvstendigSøknadsdata';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { DateRange } from '@navikt/sif-common-formik-ds';
+import dayjs from 'dayjs';
 
-export const frilansIsValid = (values: Partial<ArbeidssituasjonFormValues>) => {
-    const erFrilanser = values.frilans_erFrilanser;
-    const frilansStartdato = datepickerUtils.getDateFromDateString(values.frilans_startdato);
-    const frilansSluttdato = datepickerUtils.getDateFromDateString(values.frilans_sluttdato);
-    const frilansJobberFortsattSomFrilans = values.frilans_jobberFortsattSomFrilans;
+// export const frilansIsValid = (values: Partial<ArbeidssituasjonFormValues>) => {
+//     const erFrilanser = values.frilans_erFrilanser;
+//     const frilansStartdato = datepickerUtils.getDateFromDateString(values.frilans_startdato);
+//     const frilansSluttdato = datepickerUtils.getDateFromDateString(values.frilans_sluttdato);
+//     const frilansJobberFortsattSomFrilans = values.frilans_jobberFortsattSomFrilans;
 
-    return !!(
-        erFrilanser === YesOrNo.NO ||
-        (erFrilanser === YesOrNo.YES &&
-            frilansStartdato &&
-            (frilansJobberFortsattSomFrilans === YesOrNo.YES ||
-                (frilansJobberFortsattSomFrilans === YesOrNo.NO && frilansSluttdato !== undefined)))
-    );
-};
+//     return !!(
+//         erFrilanser === YesOrNo.NO ||
+//         (erFrilanser === YesOrNo.YES &&
+//             frilansStartdato &&
+//             (frilansJobberFortsattSomFrilans === YesOrNo.YES ||
+//                 (frilansJobberFortsattSomFrilans === YesOrNo.NO && frilansSluttdato !== undefined)))
+//     );
+// };
 
-export const selvstendigIsValid = (values: Partial<ArbeidssituasjonFormValues>) => {
-    const erSelvstendigNæringsdrivende = values.selvstendig_erSelvstendigNæringsdrivende;
-    const selvstendigVirksomhet = values.selvstendig_virksomhet;
-    return !!(
-        erSelvstendigNæringsdrivende === YesOrNo.NO ||
-        (erSelvstendigNæringsdrivende === YesOrNo.YES && selvstendigVirksomhet !== undefined)
-    );
-};
+// export const selvstendigIsValid = (values: Partial<ArbeidssituasjonFormValues>) => {
+//     const erSelvstendigNæringsdrivende = values.selvstendig_erSelvstendigNæringsdrivende;
+//     const selvstendigVirksomhet = values.selvstendig_virksomhet;
+//     return !!(
+//         erSelvstendigNæringsdrivende === YesOrNo.NO ||
+//         (erSelvstendigNæringsdrivende === YesOrNo.YES && selvstendigVirksomhet !== undefined)
+//     );
+// };
 
 export const getArbeidssituasjonSøknadsdataFromFormValues = (
     values: ArbeidssituasjonFormValues,
@@ -99,8 +101,6 @@ const getArbeidSNSøknadsdataFromFormValues = (
             erSelvstendigNæringsdrivende: false,
         };
     }
-    //TODO
-    // if (selvstendig_virksomhet && dayjs(virksomhet.fom).isBefore(søknadsperiode.to, 'day')) {
     if (selvstendig_virksomhet) {
         return {
             type: 'erSN',
@@ -131,14 +131,10 @@ export const getArbeidssituasjonStepInitialValues = (
     const { frilans, selvstendig } = søknadsdata.arbeidssituasjon;
 
     if (frilans === undefined || selvstendig === undefined) {
-        // TODO
-        // Kanskje logge error
         return defaultValues;
     }
 
     if (frilans.type === 'erIkkeFrilanser' && selvstendig.type === 'erIkkeSN') {
-        // TODO
-        // Kanskje logge error
         return defaultValues;
     }
 
@@ -190,4 +186,58 @@ const getSelvstendigNæringsdrivendeFormValuesFromSøknadsdata = (selvstendig: A
                 selvstendig_erSelvstendigNæringsdrivende: YesOrNo.NO,
             };
     }
+};
+
+export const getFrilanserSnSituasjon = (
+    values: Partial<ArbeidssituasjonFormValues>,
+): 'frilanser' | 'sn' | 'frilanserOgSn' | undefined => {
+    const erFrilanser = values.frilans_erFrilanser === YesOrNo.YES;
+    const erSn = values.selvstendig_erSelvstendigNæringsdrivende === YesOrNo.YES;
+    if (erFrilanser && erSn) {
+        return 'frilanserOgSn';
+    }
+    if (erFrilanser) {
+        return 'frilanser';
+    }
+    if (erSn) {
+        return 'sn';
+    }
+    return;
+};
+
+export enum ArbeidssituasjonTidsromValidationKeys {
+    arbeidsperiodeStarterEtterFraværsperiode = 'arbeidsperiodeStarterEtterFraværsperiode',
+    arbeidsperiodeSlutterFørEllerIFraværsperiode = 'arbeidsperiodeSlutterFørEllerIFraværsperiode',
+}
+export const validateArbeidssituasjonTidsrom = (
+    values: Partial<ArbeidssituasjonFormValues>,
+    fraværsperiode?: DateRange,
+): ArbeidssituasjonTidsromValidationKeys | undefined => {
+    if (!fraværsperiode) {
+        return undefined;
+    }
+
+    const frilansStartdato = datepickerUtils.getDateFromDateString(values.frilans_startdato);
+    const frilansSluttdato = datepickerUtils.getDateFromDateString(values.frilans_sluttdato);
+
+    const snStartdato = values.selvstendig_virksomhet?.fom;
+    const snSluttdato = values.selvstendig_virksomhet?.tom;
+
+    const arbeidsperiode: Partial<DateRange> = {
+        from: frilansStartdato || snStartdato,
+        to: frilansSluttdato || snSluttdato,
+    };
+
+    if (arbeidsperiode.from) {
+        if (dayjs(arbeidsperiode.from).isAfter(fraværsperiode.from, 'day')) {
+            return ArbeidssituasjonTidsromValidationKeys.arbeidsperiodeStarterEtterFraværsperiode;
+        }
+    }
+    if (arbeidsperiode.to) {
+        if (dayjs(arbeidsperiode.to).isBefore(fraværsperiode.to, 'day')) {
+            return ArbeidssituasjonTidsromValidationKeys.arbeidsperiodeSlutterFørEllerIFraværsperiode;
+        }
+    }
+
+    return undefined;
 };
