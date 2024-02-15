@@ -18,7 +18,7 @@
 .navds-heading {
     color: var(--a-deepblue-800);
 }
-.navds-alert--warning .navds-heading {
+.navds-alert .navds-heading {
     color: var(--a-gray-900);
 }
 
