@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.7.15
+
+### Patch Changes
+
+- Patch oppdatering av sentry
+
 ## 1.7.14
 
 ### Patch Changes

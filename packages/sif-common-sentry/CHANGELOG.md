@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.25.19
+
+### Patch Changes
+
+- Patch oppdatering av sentry
+
 ## 0.25.18
 
 ### Patch Changes
