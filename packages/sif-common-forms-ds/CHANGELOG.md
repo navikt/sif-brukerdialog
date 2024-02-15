@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 8.19.5
+
+### Patch Changes
+
+- Pakkeoppdatering patch
+
 ## 8.19.4
 
 ### Patch Changes
