@@ -19,8 +19,8 @@ const KunBarnOver13: React.FunctionComponent<Props> = ({ harSyktBarn, harUtvidet
             {yesOrNoIsAnswered(harSyktBarn) && !harUtvidetRett ? (
                 <Block>
                     <Alert variant="warning">
-                        For å ha rett på omsorgsdager for barn som er 13 år eller eldre, må du ha søkt og fått innvilget
-                        ekstra omsorgsdager fra NAV fordi barnet har en kronisk/langvarig sykdom eller en
+                        For å ha rett til omsorgspenger fra det året barnet fyller 13 år, må du ha fått ekstra
+                        omsorgsdager fra NAV fordi barnet fordi barnet har en kronisk/langvarig sykdom eller en
                         funksjonshemning.
                     </Alert>
                 </Block>

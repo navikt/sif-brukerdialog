@@ -179,6 +179,7 @@ export const getAlderILøpetAvÅr = (årstall: number, fødselsdato: Date) => {
     return årstall - dayjs(fødselsdato).year();
 };
 
+/** Sjekker om barn er under 13 år hele kalenderåret */
 export const barnErUnder13HeleInneværendeÅr = (fødselsdato: Date) => {
     return getAlderILøpetAvÅr(new Date().getFullYear(), fødselsdato) < 13;
 };
