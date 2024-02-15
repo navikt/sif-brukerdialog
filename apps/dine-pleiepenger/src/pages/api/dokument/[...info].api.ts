@@ -30,7 +30,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         res.write(resBuffer, 'binary');
         res.end();
     } catch (err) {
-        res.status(500).json({ error: 'Kunne ikke hente dokument', err });
+        res.status(500).json({ error: 'Kunne ikke hente dokument' });
     }
 }
 

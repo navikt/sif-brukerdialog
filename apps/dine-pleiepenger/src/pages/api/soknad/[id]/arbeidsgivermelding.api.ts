@@ -29,7 +29,7 @@ export async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
         res.write(resBuffer, 'binary');
         res.end();
     } catch (err) {
-        res.status(500).json({ error: 'Kunne ikke hente arbeidsgivermelding', err });
+        res.status(500).json({ error: 'Kunne ikke hente arbeidsgivermelding' });
     }
 }
 
