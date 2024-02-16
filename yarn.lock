@@ -3119,7 +3119,7 @@ __metadata:
     "@navikt/sif-common-hooks": "workspace:*"
     "@portabletext/react": 3.0.11
     "@sanity/client": 6.13.3
-    "@types/node": 20.11.18
+    "@types/node": 20.11.19
     "@types/react": 18.2.55
     "@types/react-dom": 18.2.19
     config: "workspace:*"
@@ -3129,7 +3129,7 @@ __metadata:
     react: 18.2.0
     react-dom: 18.2.0
     rimraf: 5.0.5
-    sass: 1.70.0
+    sass: 1.71.0
   languageName: unknown
   linkType: soft
 
@@ -3180,7 +3180,7 @@ __metadata:
     react-intl: 6.6.2
     react-loading-skeleton: 3.4.0
     storybook: 7.6.16
-    swr: 2.2.4
+    swr: 2.2.5
     tailwindcss: 3.4.1
     uuid: 9.0.1
     zod: 3.22.4
@@ -3490,7 +3490,7 @@ __metadata:
     "@navikt/ds-tailwind": 5.18.1
     "@navikt/nav-dekoratoren-moduler": 2.1.5
     "@playwright/test": 1.41.2
-    "@types/node": 20.11.18
+    "@types/node": 20.11.19
     "@types/react": 18.2.55
     "@types/react-dom": 18.2.19
     "@types/uuid": 9.0.8
@@ -3537,7 +3537,7 @@ __metadata:
     "@navikt/sif-common-utils": "workspace:*"
     "@playwright/test": 1.41.2
     "@testing-library/react": 14.2.1
-    "@types/node": 20.11.18
+    "@types/node": 20.11.19
     "@types/object-hash": 3.0.6
     "@types/react": 18.2.55
     "@types/react-dom": 18.2.19
@@ -3609,7 +3609,7 @@ __metadata:
     "@storybook/react-vite": 7.6.16
     "@storybook/test": 7.6.16
     "@testing-library/react": 14.2.1
-    "@types/node": 20.11.18
+    "@types/node": 20.11.19
     "@types/object-hash": 3.0.6
     "@types/react": 18.2.55
     "@types/react-dom": 18.2.19
@@ -3889,7 +3889,7 @@ __metadata:
   resolution: "@navikt/sif-common-amplitude@workspace:packages/sif-common-amplitude"
   dependencies:
     "@amplitude/analytics-browser": 2.4.1
-    "@types/node": 20.11.18
+    "@types/node": 20.11.19
     "@types/react": 18.2.55
     config: "workspace:*"
     constate: 3.3.2
@@ -3931,7 +3931,7 @@ __metadata:
     "@storybook/react": 7.6.16
     "@storybook/react-vite": 7.6.16
     "@storybook/testing-library": 0.2.2
-    "@types/node": 20.11.18
+    "@types/node": 20.11.19
     "@types/react": 18.2.55
     "@types/react-collapse": 5.0.4
     "@types/react-dom": 18.2.19
@@ -3995,7 +3995,7 @@ __metadata:
     "@storybook/test-runner": 0.16.0
     "@storybook/testing-library": 0.2.2
     "@types/jest": 29.5.12
-    "@types/node": 20.11.18
+    "@types/node": 20.11.19
     "@types/react": 18.2.55
     "@types/react-dom": 18.2.19
     "@types/uuid": 9.0.8
@@ -4063,7 +4063,7 @@ __metadata:
     "@testing-library/dom": 9.3.4
     "@testing-library/react": 14.2.1
     "@testing-library/user-event": 14.5.2
-    "@types/node": 20.11.18
+    "@types/node": 20.11.19
     "@types/react": 18.2.55
     "@types/react-dom": 18.2.19
     "@types/react-responsive": 8.0.8
@@ -4112,7 +4112,7 @@ __metadata:
     "@sentry/browser": 7.101.1
     "@sentry/react": 7.101.1
     "@sentry/types": 7.101.1
-    "@types/node": 20.11.18
+    "@types/node": 20.11.19
     axios: 1.6.7
     config: "*"
     copyfiles: 2.4.1
@@ -4160,7 +4160,7 @@ __metadata:
     "@testing-library/react": 14.2.1
     "@testing-library/user-event": 14.5.2
     "@types/jest": 29.5.12
-    "@types/node": 20.11.18
+    "@types/node": 20.11.19
     "@types/react": 18.2.55
     "@types/react-dom": 18.2.19
     "@types/react-modal": 3.16.3
@@ -4232,7 +4232,7 @@ __metadata:
     "@babel/core": 7.23.9
     "@babel/preset-env": 7.23.9
     "@babel/preset-react": 7.23.3
-    "@types/node": 20.11.18
+    "@types/node": 20.11.19
     "@types/react": 18.2.55
     "@types/react-dom": 18.2.19
     "@types/uuid": 9.0.8
@@ -7856,12 +7856,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:20.11.18, @types/node@npm:^20.11.16":
+"@types/node@npm:*, @types/node@npm:^20.11.16":
   version: 20.11.18
   resolution: "@types/node@npm:20.11.18"
   dependencies:
     undici-types: ~5.26.4
   checksum: b34fb342152b5a5b486e9d54d62003f6ca18e2f0f1682c8c4a3d6388e9456dab310775cbdc8302a7945fb72a42ff283b770f8fb6ca5120f77b9b3b7de40c9760
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:20.11.19":
+  version: 20.11.19
+  resolution: "@types/node@npm:20.11.19"
+  dependencies:
+    undici-types: ~5.26.4
+  checksum: 259d16643ba611ade617a8212e594a3ac014727457507389bbf7213971346ab052d870f1e6e2df0afd0876ecd7874f578bccb130be01e069263cfc7136ddc0c1
   languageName: node
   linkType: hard
 
@@ -21498,16 +21507,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:1.70.0":
-  version: 1.70.0
-  resolution: "sass@npm:1.70.0"
+"sass@npm:1.71.0":
+  version: 1.71.0
+  resolution: "sass@npm:1.71.0"
   dependencies:
     chokidar: ">=3.0.0 <4.0.0"
     immutable: ^4.0.0
     source-map-js: ">=0.6.2 <2.0.0"
   bin:
     sass: sass.js
-  checksum: fd1b622cf9b7fa699a03ec634611997552ece45eb98ac365fef22f42bdcb8ed63b326b64173379c966830c8551ae801e44e4a00d2de16fdadda2dc8f35400bbb
+  checksum: 5ba6b4b994c7ae94286919d8be8a3692038c27175b4ad3a3ac43f51a91188590d3ddd3a0ef1022135503b9d70d0732efdbedfd56f3ee1a4651549f5b13f8942f
   languageName: node
   linkType: hard
 
@@ -22616,15 +22625,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"swr@npm:2.2.4":
-  version: 2.2.4
-  resolution: "swr@npm:2.2.4"
+"swr@npm:2.2.5":
+  version: 2.2.5
+  resolution: "swr@npm:2.2.5"
   dependencies:
     client-only: ^0.0.1
     use-sync-external-store: ^1.2.0
   peerDependencies:
     react: ^16.11.0 || ^17.0.0 || ^18.0.0
-  checksum: d1398f89fd68af0e0cb6100a5769b1e17c0dbe8a778898643ad28456acda64add43344754c7d919e3f2ca82854adf86ff7d465aba25a2d555bcb669e457138f8
+  checksum: c6e6a5bd254951b22e5fd0930a95c7f79b5d0657f803c41ba1542cd6376623fb70b1895049d54ddde26da63b91951ae9d62a06772f82be28c1014d421e5b7aa9
   languageName: node
   linkType: hard
 
