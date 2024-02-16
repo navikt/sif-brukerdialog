@@ -52,7 +52,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             saker,
             harSak: saker.length > 0,
         };
-        res.send(innsynsdata);
+        res.json(innsynsdata);
     } catch (err) {
         childLogger.error(`Hent innsynsdata feilet: ${err}`);
         if (
@@ -61,7 +61,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         ) {
             res.status(403).json({ error: 'Ikke tilgang' });
         } else {
-            res.status(500).json({ error: 'Kunne ikke hente innsynsdata', err });
+            res.status(500).json({ error: 'Kunne ikke hente innsynsdata' });
         }
     }
 }
