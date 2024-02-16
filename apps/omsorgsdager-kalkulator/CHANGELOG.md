@@ -1,5 +1,17 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.5.21
+
+### Patch Changes
+
+- Patch oppdatering av sentry
+
+## 3.5.20
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch
+
 ## 3.5.19
 
 ### Patch Changes

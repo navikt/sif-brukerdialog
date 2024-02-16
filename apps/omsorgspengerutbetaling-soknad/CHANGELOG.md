@@ -1,5 +1,49 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.9.3
+
+### Patch Changes
+
+- Pakkeoppdatering patch
+- Updated dependencies
+  - @navikt/sif-common-formik-ds@1.7.16
+  - @navikt/sif-common-soknad-ds@10.13.16
+  - @navikt/sif-common-forms-ds@8.19.5
+  - @navikt/sif-common-core-ds@9.15.7
+
+## 1.9.2
+
+### Patch Changes
+
+- Patch oppdatering av sentry
+- Updated dependencies
+  - @navikt/sif-common-amplitude@2.24.21
+  - @navikt/sif-common-formik-ds@1.7.15
+  - @navikt/sif-common-soknad-ds@10.13.15
+  - @navikt/sif-common-forms-ds@8.19.4
+  - @navikt/sif-common-core-ds@9.15.6
+  - @navikt/sif-common-sentry@0.25.19
+  - @navikt/sif-common-utils@3.44.5
+
+## 1.9.1
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch
+- Updated dependencies
+  - @navikt/sif-common-amplitude@2.24.20
+  - @navikt/sif-common-formik-ds@1.7.14
+  - @navikt/sif-common-soknad-ds@10.13.14
+  - @navikt/sif-common-forms-ds@8.19.3
+  - @navikt/sif-common-core-ds@9.15.5
+  - @navikt/sif-common-sentry@0.25.18
+
+## 1.9.0
+
+### Minor Changes
+
+- Endret spørsmålsstilling om barn, utvidet rett og om en har dekket 10 dager selv.
+
 ## 1.8.26
 
 ### Patch Changes

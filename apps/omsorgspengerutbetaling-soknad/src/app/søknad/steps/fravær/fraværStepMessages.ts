@@ -5,9 +5,7 @@ export const fraværStepMessages: MessageFileFormat = {
         'step.fravaer.counsellorpanel.content':
             'I de fleste tilfeller må man som selvstendig næringsdrivende og frilanser betale de 10 første dager med omsorgspenger i året selv.',
         'step.fravaer.dager_med_fullt_fravært.label': 'Dager med fullt fravær',
-        'step.fravaer.dager_med_fullt_fravært.info': 'TODO',
         'step.fravaer.dager_med_delvis_fravært.label': 'Dager med delvis fravær',
-        'step.fravaer.dager_med_delvis_fravært.info': 'TODO',
         'step.fravaer.har_du_oppholdt_deg_i_utlandet_for_dager_du_soker_ok.spm':
             'Har du vært i utlandet noen av dagene du søker omsorgspenger for?',
 
@@ -19,9 +17,9 @@ export const fraværStepMessages: MessageFileFormat = {
         'step.fravaer.spm.harPerioderMedFravær': 'Har du hatt hele dager med fravær fra jobb?',
         'step.fravaer.dager.tittel': 'Omsorgsdager du søker utbetaling for',
         'step.fravaer.dager.info':
-            'Her skal du legge inn dagene du søker utbetaling for. Basert på svarene du har gitt i søknaden, kan du søke utbetaling fra den 11. omsorgsdagen du brukte.',
-        'step.fravaer.dager.info.harBarnMedUtvidetRett':
-            'Her skal du legge inn dagene du søker utbetaling for. Basert på svarene du har gitt i søknaden, kan du søke utbetaling fra den første omsorgsdagen du brukte.',
+            'Her skal du legge inn dagene du søker utbetaling for. Det er kun mulig å søke fra den 11. omsorgsdagen du brukte.',
+        'step.fravaer.dager.info.UTVIDET_RETT_PGA_SYKT_BARN_OVER_13':
+            'Her skal du legge inn dagene du søker utbetaling for. Du kan søke om utbetaling fra første dag du var hjemme med sykt barn.',
         'step.fravaer.harPerioderMedFravær.listTitle': 'Dager med fullt fravær fra jobb',
         'step.fravaer.harPerioderMedFravær.addLabel': 'Legg til dager med fullt fravær fra jobb',
         'step.fravaer.harPerioderMedFravær.modalTitle': 'Dager med fullt fravær fra jobb',

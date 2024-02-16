@@ -1,4 +1,5 @@
 import { FraværDag, FraværPeriode, Utenlandsopphold } from '@navikt/sif-common-forms-ds';
+import { DateRange } from '@navikt/sif-common-utils';
 
 interface HarKunFulltFravær {
     type: 'harKunFulltFravær';
@@ -7,6 +8,7 @@ interface HarKunFulltFravær {
     harDagerMedDelvisFravær: false;
     perioder_harVærtIUtlandet: boolean;
     perioder_utenlandsopphold: Utenlandsopphold[];
+    førsteOgSisteDagMedFravær: DateRange;
 }
 
 interface HarKunDelvisFravær {
@@ -16,6 +18,7 @@ interface HarKunDelvisFravær {
     fraværDager: FraværDag[];
     perioder_harVærtIUtlandet: boolean;
     perioder_utenlandsopphold: Utenlandsopphold[];
+    førsteOgSisteDagMedFravær: DateRange;
 }
 
 interface HarFulltOgDelvisFravær {
@@ -26,6 +29,7 @@ interface HarFulltOgDelvisFravær {
     fraværDager: FraværDag[];
     perioder_harVærtIUtlandet: boolean;
     perioder_utenlandsopphold: Utenlandsopphold[];
+    førsteOgSisteDagMedFravær: DateRange;
 }
 
 export type FraværSøknadsdata = HarKunFulltFravær | HarKunDelvisFravær | HarFulltOgDelvisFravær;
