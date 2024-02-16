@@ -11,6 +11,23 @@ import Snarveier from '../components/snarveier/Snarveier';
 import Svarfrist from '../components/svarfrist/Svarfrist';
 import { useInnsynsdataContext } from '../hooks/useInnsynsdataContext';
 import { Feature } from '../utils/features';
+import { Søknad, Søknadstype } from '../types/Søknad';
+import { Sak } from '../server/api-models/SakSchema';
+
+const harSendtInnSøknadEllerEndringsmelding = (søknader: Søknad[]): boolean => {
+    return søknader.some(
+        (søknad) =>
+            søknad.søknadstype === Søknadstype.PP_SYKT_BARN ||
+            søknad.søknadstype === Søknadstype.PP_SYKT_BARN_ENDRINGSMELDING,
+    );
+};
+
+const getSaksbehandlingsfrist = (søknader: Søknad[], saker: Sak[]): Date | undefined => {
+    if (saker.length === 1 && harSendtInnSøknadEllerEndringsmelding(søknader)) {
+        return saker[0].sak.saksbehandlingsFrist;
+    }
+    return undefined;
+};
 
 function DinePleiepengerPage(): ReactElement {
     const {
@@ -44,11 +61,7 @@ function DinePleiepengerPage(): ReactElement {
                     </div>
                     <div className="md:mb-none shrink-0 md:w-72">
                         <Svarfrist
-                            frist={
-                                søknader.length > 0 && saker.length === 1
-                                    ? saker[0].sak.saksbehandlingsFrist
-                                    : undefined
-                            }
+                            frist={getSaksbehandlingsfrist(søknader, saker)}
                             saksbehandlingstidUker={saksbehandlingstidUker}
                         />
                     </div>
