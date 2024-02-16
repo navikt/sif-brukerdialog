@@ -19,9 +19,7 @@ const PageHeader: React.FunctionComponent<Props> = ({ title = 'Dine pleiepenger'
                         <VStack gap="2">
                             {titleTag ? (
                                 <HStack align={'center'}>
-                                    <Box className="text-deepblue-800" className="mr-4">
-                                        {title}
-                                    </Box>
+                                    <Box className="text-deepblue-800 mr-4">{title}</Box>
                                     <BodyShort as="div">{titleTag}</BodyShort>
                                 </HStack>
                             ) : (
