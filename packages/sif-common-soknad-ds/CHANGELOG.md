@@ -1,5 +1,17 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.13.16
+
+### Patch Changes
+
+- Pakkeoppdatering patch
+
+## 10.13.15
+
+### Patch Changes
+
+- Patch oppdatering av sentry
+
 ## 10.13.14
 
 ### Patch Changes

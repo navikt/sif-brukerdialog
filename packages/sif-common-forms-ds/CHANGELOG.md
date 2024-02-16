@@ -1,5 +1,17 @@
 # @navikt/sif-common-forms-ds
 
+## 8.19.5
+
+### Patch Changes
+
+- Pakkeoppdatering patch
+
+## 8.19.4
+
+### Patch Changes
+
+- Patch oppdatering av sentry
+
 ## 8.19.3
 
 ### Patch Changes

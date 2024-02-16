@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 2.17.24
+
+### Patch Changes
+
+- Patch oppdatering av sentry
+
 ## 2.17.23
 
 ### Patch Changes

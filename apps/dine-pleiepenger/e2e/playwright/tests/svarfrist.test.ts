@@ -64,14 +64,13 @@ test('Ingen svarfrist, men behandlingstid', async ({ page }) => {
     await page.route('**/innsynsdata', async (route) => {
         const response: Innsynsdata = {
             ...defaultInnsynsdata,
-            saker: [{ pleietrengende, sak: { ...sak, saksbehandlingsFrist: undefined } }],
-            saksbehandlingstidUker: 3,
+            saker: [{ pleietrengende, sak: { ...sak, saksbehandlingsFrist: dayjs().toDate() } }],
             harSak: true,
         };
         await route.fulfill({ status: 200, body: JSON.stringify(response) });
     });
     await page.goto('http://localhost:8080/innsyn');
-    await expect(page.getByText('Forventet behandlingstid er 3 uker fra vi fikk søknaden din.')).toBeVisible();
+    await expect(page.getByText('Du kan forvente svar innen:')).toBeVisible();
 });
 
 test('Hverken svarfrist eller behandlingstid', async ({ page }) => {

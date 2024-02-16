@@ -2,9 +2,9 @@
 import { BodyShort, Box, Heading, Link } from '@navikt/ds-react';
 import React from 'react';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { browserEnv } from '../../utils/env';
 import dayjs from 'dayjs';
 import { Venteårsak } from '../../types/Venteårsak';
+import { browserEnv } from '../../utils/env';
 
 interface Props {
     frist?: Date;

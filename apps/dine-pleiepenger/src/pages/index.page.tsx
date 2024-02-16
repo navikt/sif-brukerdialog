@@ -1,24 +1,41 @@
 import { Box, Heading, LinkPanel, VStack } from '@navikt/ds-react';
 import { ReactElement } from 'react';
+import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { dateFormatter } from '@navikt/sif-common-utils';
 import Head from 'next/head';
+import Link from 'next/link';
 import { withAuthenticatedPage } from '../auth/withAuthentication';
 import DineInnsendteSøknader from '../components/dine-innsendte-søknader/DineInnsendteSøknader';
 import HvaSkjer from '../components/hva-skjer/HvaSkjer';
 import DefaultPageLayout from '../components/page-layout/default-page-layout/DefaultPageLayout';
 import Snarveier from '../components/snarveier/Snarveier';
+import StatusTag from '../components/status-tag/StatusTag';
 import Svarfrist from '../components/svarfrist/Svarfrist';
 import { useInnsynsdataContext } from '../hooks/useInnsynsdataContext';
-import { Feature } from '../utils/features';
-import SakPage from './sak/SakPage';
-import { personaliaUtils } from '../utils/personaliaUtils';
-import { dateFormatter } from '@navikt/sif-common-utils';
-import Link from 'next/link';
+import { PleietrengendeMedSak } from '../server/api-models/PleietrengendeMedSakSchema';
+import { InnsendtSøknad, InnsendtSøknadstype } from '../types/Søknad';
 import { getAllBreadcrumbs } from '../utils/decoratorBreadcrumbs';
-import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
-import StatusTag from '../components/status-tag/StatusTag';
+import { Feature } from '../utils/features';
+import { personaliaUtils } from '../utils/personaliaUtils';
 import { getBehandlingsstatusISak } from '../utils/sakUtils';
+import SakPage from './sak/SakPage';
+
+const harSendtInnSøknadEllerEndringsmelding = (søknader: InnsendtSøknad[]): boolean => {
+    return søknader.some(
+        (søknad) =>
+            søknad.søknadstype === InnsendtSøknadstype.PP_SYKT_BARN ||
+            søknad.søknadstype === InnsendtSøknadstype.PP_SYKT_BARN_ENDRINGSMELDING,
+    );
+};
+
+const getSaksbehandlingsfrist = (søknader: InnsendtSøknad[], saker: PleietrengendeMedSak[]): Date | undefined => {
+    if (saker.length === 1 && harSendtInnSøknadEllerEndringsmelding(søknader)) {
+        return saker[0].sak.saksbehandlingsFrist;
+    }
+    return undefined;
+};
 
 function DinePleiepengerPage(): ReactElement {
     const {
@@ -99,7 +116,7 @@ function DinePleiepengerPage(): ReactElement {
                     </div>
                     <div className="md:mb-none shrink-0 md:w-72">
                         <Svarfrist
-                            frist={saker.length === 1 ? saker[0].sak.saksbehandlingsFrist : undefined}
+                            frist={getSaksbehandlingsfrist(innsendteSøknader, saker)}
                             saksbehandlingstidUker={saksbehandlingstidUker}
                         />
                     </div>
