@@ -13,11 +13,15 @@ const PageHeader: React.FunctionComponent<Props> = ({ title = 'Dine pleiepenger'
             <div className="text-left">
                 <Heading size="large" level="1">
                     <HStack gap={'6'} align={'center'}>
-                        <PleiepengerSVG />
-                        <VStack gap="1">
+                        <div className="hidden md:block">
+                            <PleiepengerSVG />
+                        </div>
+                        <VStack gap="2">
                             {titleTag ? (
-                                <HStack align={'center'} gap="4">
-                                    <Box className="text-deepblue-800">{title}</Box>
+                                <HStack align={'center'}>
+                                    <Box className="text-deepblue-800" className="mr-4">
+                                        {title}
+                                    </Box>
                                     <BodyShort as="div">{titleTag}</BodyShort>
                                 </HStack>
                             ) : (

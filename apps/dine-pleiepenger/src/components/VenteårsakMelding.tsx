@@ -57,8 +57,8 @@ const VenteårsakMelding: React.FunctionComponent<Props> = ({ venteårsak }) => 
                     </Heading>
                     <BodyLong className="mb-2 mt-2">
                         Vi kan først behandle søknaden din når siste meldekort er sendt inn i dagpengesaken eller
-                        arbeidsavklaringspengesaken din. Du må sende inn meldekort helt frem til du starter perioden med
-                        pleiepenger.
+                        arbeidsavklarings&shy;pengesaken din. Du må sende inn meldekort helt frem til du starter
+                        perioden med pleiepenger.
                     </BodyLong>
                 </Alert>
             );
