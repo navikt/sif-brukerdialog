@@ -61,7 +61,7 @@
         "@babel/plugin-transform-modules-commonjs": "7.23.3",
         "@babel/preset-env": "7.23.9",
         "@babel/preset-react": "7.23.3",
-        "@playwright/test": "1.41.2",
+        "@playwright/test": "1.42.0",
         "@types/object-hash": "3.0.6",
         "@types/react": "18.2.55",
         "@types/react-dom": "18.2.19",
