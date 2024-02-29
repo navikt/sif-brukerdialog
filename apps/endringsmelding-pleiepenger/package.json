@@ -45,10 +45,10 @@
         "react-router-dom": "6.22.0"
     },
     "devDependencies": {
-        "@babel/core": "7.23.9",
+        "@babel/core": "7.24.0",
         "@babel/plugin-proposal-object-rest-spread": "7.20.7",
         "@babel/plugin-transform-modules-commonjs": "7.23.3",
-        "@babel/preset-env": "7.23.9",
+        "@babel/preset-env": "7.24.0",
         "@babel/preset-react": "7.23.3",
         "@babel/preset-typescript": "7.23.3",
         "@mswjs/data": "0.16.1",
