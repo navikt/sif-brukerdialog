@@ -3273,7 +3273,7 @@ __metadata:
     dayjs: 1.11.10
     dotenv: 16.4.4
     express: 4.18.2
-    express-rate-limit: 7.1.5
+    express-rate-limit: 7.2.0
     formik: 2.4.5
     helmet: 7.1.0
     http-proxy-middleware: 2.0.6
@@ -3350,7 +3350,7 @@ __metadata:
     dayjs: 1.11.10
     dotenv: 16.4.4
     express: 4.18.2
-    express-rate-limit: 7.1.5
+    express-rate-limit: 7.2.0
     flat: 6.0.1
     formik: 2.4.5
     http-proxy-middleware: 2.0.6
@@ -3552,7 +3552,7 @@ __metadata:
     dayjs: 1.11.10
     dotenv: 16.4.4
     express: 4.18.2
-    express-rate-limit: 7.1.5
+    express-rate-limit: 7.2.0
     helmet: 7.1.0
     history: 5.3.0
     http-proxy-middleware: 2.0.6
@@ -3625,7 +3625,7 @@ __metadata:
     dotenv: 16.4.4
     eslint-plugin-storybook: 0.6.15
     express: 4.18.2
-    express-rate-limit: 7.1.5
+    express-rate-limit: 7.2.0
     helmet: 7.1.0
     http-proxy-middleware: 2.0.6
     jose: 5.2.2
@@ -3697,7 +3697,7 @@ __metadata:
     dayjs: 1.11.10
     dotenv: 16.4.4
     express: 4.18.2
-    express-rate-limit: 7.1.5
+    express-rate-limit: 7.2.0
     formik: 2.4.5
     helmet: 7.1.0
     http-proxy-middleware: 2.0.6
@@ -3761,7 +3761,7 @@ __metadata:
     dayjs: 1.11.10
     dotenv: 16.4.4
     express: 4.18.2
-    express-rate-limit: 7.1.5
+    express-rate-limit: 7.2.0
     formik: 2.4.5
     helmet: 7.1.0
     http-proxy-middleware: 2.0.6
@@ -3835,7 +3835,7 @@ __metadata:
     eslint-plugin-react: 7.33.2
     eslint-plugin-react-hooks: 4.6.0
     express: 4.18.2
-    express-rate-limit: 7.1.5
+    express-rate-limit: 7.2.0
     formik: 2.4.5
     helmet: 7.1.0
     http-proxy-middleware: 2.0.6
@@ -4291,7 +4291,7 @@ __metadata:
     dayjs: 1.11.10
     dotenv: 16.4.4
     express: 4.18.2
-    express-rate-limit: 7.1.5
+    express-rate-limit: 7.2.0
     formik: 2.4.5
     helmet: 7.1.0
     http-proxy-middleware: 2.0.6
@@ -13418,12 +13418,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"express-rate-limit@npm:7.1.5":
-  version: 7.1.5
-  resolution: "express-rate-limit@npm:7.1.5"
+"express-rate-limit@npm:7.2.0":
+  version: 7.2.0
+  resolution: "express-rate-limit@npm:7.2.0"
   peerDependencies:
     express: 4 || 5 || ^5.0.0-beta.1
-  checksum: bdf6ddf4f8c8659d31de6ec1f088b473b2cb4180eb09ae234a279c88744832276e5c1482d530875110c90e314b51a7720bcfb2b3139c1b9e6bf652ba4b59f192
+  checksum: 6adc3e06d430e91cf8ef8da23107466ffd9193b5680b03bc12702894cab0adcbb980634602b839b3a1444620f2379707098af3a4dcc38c909e89214abaf6c1bf
   languageName: node
   linkType: hard
 
