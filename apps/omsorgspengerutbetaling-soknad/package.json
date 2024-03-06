@@ -65,7 +65,7 @@
         "@types/react-dom": "18.2.19",
         "@types/react-router-dom": "5.3.3",
         "babel-polyfill": "6.26.0",
-        "chromatic": "10.9.5",
+        "chromatic": "11.0.2",
         "cross-env": "7.0.3",
         "eslint-plugin-storybook": "0.6.15",
         "express-rate-limit": "7.1.5",
