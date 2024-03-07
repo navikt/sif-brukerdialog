@@ -3288,7 +3288,7 @@ __metadata:
     react-intl: 6.6.2
     react-router-dom: 6.22.0
     rimraf: 5.0.5
-    typescript: 5.3.3
+    typescript: 5.4.2
     vite: 5.1.3
     vite-plugin-checker: 0.6.4
     vitest: 1.2.2
@@ -3372,7 +3372,7 @@ __metadata:
     react-router-dom: 6.22.0
     storybook: 7.6.16
     tailwindcss: 3.4.1
-    typescript: 5.3.3
+    typescript: 5.4.2
     vite: 5.1.3
     vite-plugin-checker: 0.6.4
     vitest: 1.2.2
@@ -3509,7 +3509,7 @@ __metadata:
     react-dom: 18.2.0
     react-intl: 6.6.2
     tailwindcss: 3.4.1
-    typescript: 5.3.3
+    typescript: 5.4.2
     uuid: 9.0.1
   languageName: unknown
   linkType: soft
@@ -3569,7 +3569,7 @@ __metadata:
     react-intl: 6.6.2
     react-router-dom: 6.22.0
     tailwindcss: 3.4.1
-    typescript: 5.3.3
+    typescript: 5.4.2
     ulid: ^2.3.0
     uuid: ^9.0.1
     vite: 5.1.3
@@ -3642,7 +3642,7 @@ __metadata:
     react-router-dom: 6.22.0
     storybook: 7.6.16
     tailwindcss: 3.4.1
-    typescript: 5.3.3
+    typescript: 5.4.2
     uuid: 9.0.1
     vite: 5.1.3
     vite-plugin-checker: 0.6.4
@@ -3714,7 +3714,7 @@ __metadata:
     react-intl: 6.6.2
     react-router-dom: 6.22.0
     storybook: 7.6.16
-    typescript: 5.3.3
+    typescript: 5.4.2
     vite: 5.1.3
     vite-plugin-checker: 0.6.4
     vitest: 1.2.2
@@ -3776,7 +3776,7 @@ __metadata:
     react-fast-compare: 3.2.2
     react-intl: 6.6.2
     react-router-dom: 6.22.0
-    typescript: 5.3.3
+    typescript: 5.4.2
     uuid: 9.0.1
     vite: 5.1.3
     vite-plugin-checker: 0.6.4
@@ -3853,7 +3853,7 @@ __metadata:
     react-dom: 18.2.0
     react-intl: 6.6.2
     react-router-dom: 6.22.0
-    typescript: 5.3.3
+    typescript: 5.4.2
     uuid: 9.0.1
     vite: 5.1.3
     vite-plugin-checker: 0.6.4
@@ -3880,7 +3880,7 @@ __metadata:
     npm-run-all: 4.1.5
     prettier: 3.2.5
     turbo: 1.12.4
-    typescript: 5.3.3
+    typescript: 5.4.2
   languageName: unknown
   linkType: soft
 
@@ -4101,7 +4101,7 @@ __metadata:
     copyfiles: 2.4.1
     npm-run-all: 4.1.5
     react: 18.2.0
-    typescript: 5.3.3
+    typescript: 5.4.2
   languageName: unknown
   linkType: soft
 
@@ -4307,7 +4307,7 @@ __metadata:
     react-intl: 6.6.2
     react-router-dom: 6.22.0
     tailwindcss: 3.4.1
-    typescript: 5.3.3
+    typescript: 5.4.2
     uuid: 9.0.1
     vite: 5.1.3
     vite-plugin-checker: 0.6.4
@@ -23455,23 +23455,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:5.3.3":
-  version: 5.3.3
-  resolution: "typescript@npm:5.3.3"
+"typescript@npm:5.4.2":
+  version: 5.4.2
+  resolution: "typescript@npm:5.4.2"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 2007ccb6e51bbbf6fde0a78099efe04dc1c3dfbdff04ca3b6a8bc717991862b39fd6126c0c3ebf2d2d98ac5e960bcaa873826bb2bb241f14277034148f41f6a2
+  checksum: 96d80fde25a09bcb04d399082fb27a808a9e17c2111e43849d2aafbd642d835e4f4ef0de09b0ba795ec2a700be6c4c2c3f62bf4660c05404c948727b5bbfb32a
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@5.3.3#~builtin<compat/typescript>":
-  version: 5.3.3
-  resolution: "typescript@patch:typescript@npm%3A5.3.3#~builtin<compat/typescript>::version=5.3.3&hash=85af82"
+"typescript@patch:typescript@5.4.2#~builtin<compat/typescript>":
+  version: 5.4.2
+  resolution: "typescript@patch:typescript@npm%3A5.4.2#~builtin<compat/typescript>::version=5.4.2&hash=85af82"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: f61375590b3162599f0f0d5b8737877ac0a7bc52761dbb585d67e7b8753a3a4c42d9a554c4cc929f591ffcf3a2b0602f65ae3ce74714fd5652623a816862b610
+  checksum: c1b669146bca5529873aae60870e243fa8140c85f57ca32c42f898f586d73ce4a6b4f6bb02ae312729e214d7f5859a0c70da3e527a116fdf5ad00c9fc733ecc6
   languageName: node
   linkType: hard
 
