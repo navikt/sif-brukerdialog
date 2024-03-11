@@ -1,5 +1,11 @@
 # config
 
+## 0.9.15
+
+### Patch Changes
+
+- 77509a2: Generelle pakkeoppdatering
+
 ## 0.9.14
 
 ### Patch Changes
