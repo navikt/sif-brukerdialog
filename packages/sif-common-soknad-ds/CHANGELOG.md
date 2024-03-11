@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.13.18
+
+### Patch Changes
+
+- Oppdatering til navikt/ds-6 versjoner
+
 ## 10.13.17
 
 ### Patch Changes

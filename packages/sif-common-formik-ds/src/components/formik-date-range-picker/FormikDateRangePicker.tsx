@@ -1,5 +1,5 @@
+import { DatePickerProps } from '@navikt/ds-react';
 /* eslint-disable no-console */
-import { DatePickerProps } from '@navikt/ds-react/esm/date/datepicker/DatePicker';
 import React from 'react';
 import { useFormikContext } from 'formik';
 import { TypedFormInputValidationProps, UseFastFieldProps } from '../../types';

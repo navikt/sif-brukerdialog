@@ -25,7 +25,7 @@ const Kvittering = ({ tittel, liste, children }: Props) => {
             </Block>
             {liste && (
                 <Block margin="xl">
-                    <BodyShort size="large" tag="div">
+                    <BodyShort size="large" as="div">
                         {liste.tittel}
                     </BodyShort>
                     <ul className="checklist">

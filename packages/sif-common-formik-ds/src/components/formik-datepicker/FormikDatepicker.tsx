@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { DatePickerProps } from '@navikt/ds-react/esm/date/datepicker/DatePicker';
+import { DatePickerProps } from '@navikt/ds-react';
 import React from 'react';
 import { DayOfWeek } from 'react-day-picker';
 import { FastField, Field, FieldProps } from 'formik';

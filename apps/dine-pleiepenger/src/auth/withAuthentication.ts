@@ -1,4 +1,4 @@
-import { validateIdportenToken } from '@navikt/next-auth-wonderwall';
+import { getToken, validateToken } from '@navikt/oasis';
 import { logger } from '@navikt/next-logger';
 import { IncomingHttpHeaders } from 'http';
 import { GetServerSidePropsContext, GetServerSidePropsResult, NextApiRequest, NextApiResponse } from 'next';
@@ -50,10 +50,8 @@ export function withAuthenticatedPage(handler: PageHandler = defaultPageHandler)
             return handler(context);
         }
 
-        const request = context.req;
-
-        const bearerToken: string | null | undefined = request.headers['authorization'];
-        if (!bearerToken) {
+        const token = getToken(context.req);
+        if (token === null) {
             return {
                 redirect: {
                     destination: browserEnv.NEXT_PUBLIC_LOGIN_URL,
@@ -62,14 +60,13 @@ export function withAuthenticatedPage(handler: PageHandler = defaultPageHandler)
                 },
             };
         }
-
-        const validationResult = await validateIdportenToken(bearerToken);
-        if (validationResult !== 'valid') {
+        const validationResult = await validateToken(token);
+        if (!validationResult.ok) {
             const error = new Error(
-                `Invalid JWT token found (cause: ${validationResult.errorType} ${validationResult.message}, redirecting to login.`,
+                `Invalid JWT token found (cause: ${validationResult.errorType} ${validationResult.error.message}, redirecting to login.`,
                 { cause: validationResult.error },
             );
-            if (validationResult.errorType === 'NOT_ACR_LEVEL4') {
+            if (validationResult.errorType === 'token expired') {
                 logger.warn(error);
             } else {
                 logger.error(error);
@@ -92,12 +89,17 @@ export function withAuthenticatedApi(handler: ApiHandler): ApiHandler {
             return handler(req, res, ...rest);
         }
 
-        const bearerToken: string | null | undefined = req.headers['authorization'];
-        const validatedToken = bearerToken ? await validateIdportenToken(bearerToken) : null;
-        if (!bearerToken || validatedToken !== 'valid') {
-            if (validatedToken && validatedToken !== 'valid') {
-                logger.error(`Invalid JWT token found (cause: ${validatedToken.message} for API ${req.url}`);
-            }
+        const token = getToken(req);
+        if (token == null) {
+            logger.error(`JWT-less request for API ${req.url}`);
+            res.status(401).json({ message: 'Access denied' });
+            return;
+        }
+
+        const validatedToken = await validateToken(token);
+
+        if (!validatedToken.ok) {
+            logger.error(`Invalid JWT token found (cause: ${validatedToken.error.message} for API ${req.url}`);
             res.status(401).json({ message: 'Access denied' });
             return;
         }

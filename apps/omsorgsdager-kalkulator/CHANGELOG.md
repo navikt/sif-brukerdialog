@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.5.23
+
+### Patch Changes
+
+- Oppdatering til navikt/ds-6 versjoner
+
 ## 3.5.22
 
 ### Patch Changes

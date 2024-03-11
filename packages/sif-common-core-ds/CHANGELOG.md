@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 9.15.9
+
+### Patch Changes
+
+- Oppdatering til navikt/ds-6 versjoner
+
 ## 9.15.8
 
 ### Patch Changes

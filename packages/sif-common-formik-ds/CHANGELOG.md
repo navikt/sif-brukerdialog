@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.7.18
+
+### Patch Changes
+
+- Oppdatering til navikt/ds-6 versjoner
+
 ## 1.7.17
 
 ### Patch Changes
