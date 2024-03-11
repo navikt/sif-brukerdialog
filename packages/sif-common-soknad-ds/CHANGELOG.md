@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.13.17
+
+### Patch Changes
+
+- 77509a2: Generelle pakkeoppdatering
+
 ## 10.13.16
 
 ### Patch Changes
