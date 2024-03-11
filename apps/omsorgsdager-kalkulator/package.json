@@ -3,7 +3,7 @@
     "description": "En kalkulator for beregning av omsorgsdager.",
     "license": "MIT",
     "name": "@navikt/omsorgsdager-kalkulator",
-    "version": "3.5.22",
+    "version": "3.5.23",
     "private": true,
     "scripts": {
         "dev": "next dev -p 8080",
@@ -14,10 +14,10 @@
         "playwright-test": "playwright test"
     },
     "dependencies": {
-        "@navikt/ds-css": "5.18.1",
+        "@navikt/ds-css": "6.1.1",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "5.18.1",
-        "@navikt/ds-tailwind": "5.18.1",
+        "@navikt/ds-react": "6.1.1",
+        "@navikt/ds-tailwind": "6.1.1",
         "@navikt/nav-dekoratoren-moduler": "2.1.6",
         "classnames": "2.5.1",
         "dayjs": "1.11.10",

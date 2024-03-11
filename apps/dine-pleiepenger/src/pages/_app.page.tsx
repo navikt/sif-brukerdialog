@@ -3,7 +3,8 @@ import { ReactElement } from 'react';
 import { IntlProvider } from 'react-intl';
 import { InnsynPsbApp } from '@navikt/sif-app-register';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
-import { AxiosError } from 'axios';
+import { storageParser } from '@navikt/sif-common-core-ds/src/utils/persistence/storageParser';
+import axios, { AxiosError } from 'axios';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import useSWR from 'swr';
@@ -16,13 +17,15 @@ import { Innsynsdata } from '../types/InnsynData';
 import appSentryLogger from '../utils/appSentryLogger';
 import { browserEnv } from '../utils/env';
 import { messages } from '../utils/message';
-import { innsynsdataFetcher } from './api/innsynsdata.api';
 import UnavailablePage from './unavailable.page';
 import 'react-loading-skeleton/dist/skeleton.css';
 import '../components/process/process.css';
 import '../style/global.css';
 
 export const APPLICATION_KEY = 'sif-innsyn';
+
+const innsynsdataFetcher = async (url: string): Promise<Innsynsdata> =>
+    axios.get(url, { transformResponse: storageParser }).then((res) => res.data);
 
 function MyApp({ Component, pageProps }: AppProps): ReactElement {
     const { data, error, isLoading } = useSWR<Innsynsdata, AxiosError>(

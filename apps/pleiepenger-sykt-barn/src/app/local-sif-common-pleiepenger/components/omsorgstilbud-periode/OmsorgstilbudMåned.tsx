@@ -1,6 +1,4 @@
 import { BodyShort, ExpansionCard, Heading } from '@navikt/ds-react';
-import ExpansionCardContent from '@navikt/ds-react/esm/expansion-card/ExpansionCardContent';
-import ExpansionCardHeader from '@navikt/ds-react/esm/expansion-card/ExpansionCardHeader';
 import React, { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
@@ -11,6 +9,7 @@ import dayjs from 'dayjs';
 import OmsorgstilbudEnkeltdagDialog from '../omsorgstilbud-enkeltdag/OmsorgstilbudEnkeltdagDialog';
 import { TidEnkeltdagEndring } from '../tid-enkeltdag-dialog/TidEnkeltdagForm';
 import TidsbrukKalender from '../tidsbruk-kalender/TidsbrukKalender';
+import { ExpansionCardContent, ExpansionCardHeader } from '@navikt/ds-react/ExpansionCard';
 
 interface Props {
     måned: DateRange;

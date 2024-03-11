@@ -4,7 +4,7 @@
     "license": "MIT",
     "main": "src",
     "name": "@navikt/appstatus-react-ds",
-    "version": "2.17.25",
+    "version": "2.17.26",
     "private": true,
     "dependencies": {
         "@navikt/sif-common-hooks": "workspace:*",
@@ -12,8 +12,8 @@
         "@sanity/client": "6.15.3"
     },
     "devDependencies": {
-        "@navikt/ds-css": "5.18.1",
-        "@navikt/ds-react": "5.18.1",
+        "@navikt/ds-css": "6.1.1",
+        "@navikt/ds-react": "6.1.1",
         "@types/node": "20.11.25",
         "@types/react": "18.2.64",
         "@types/react-dom": "18.2.21",

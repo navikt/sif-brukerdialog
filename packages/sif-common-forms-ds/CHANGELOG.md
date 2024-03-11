@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 8.19.7
+
+### Patch Changes
+
+- Oppdatering til navikt/ds-6 versjoner
+
 ## 8.19.6
 
 ### Patch Changes

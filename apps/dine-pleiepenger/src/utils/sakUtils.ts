@@ -9,9 +9,9 @@ import { Sak } from '../server/api-models/SakSchema';
 import { Søknad } from '../server/api-models/SøknadSchema';
 import { Søknadstype } from '../server/api-models/Søknadstype';
 import { BehandlingsstatusISak } from '../types/BehandlingsstatusISak';
+import { Organisasjon } from '../types/Organisasjon';
 import { Søknadshendelse, SøknadshendelseType } from '../types/Søknadshendelse';
 import { Venteårsak } from '../types/Venteårsak';
-import { Organisasjon } from '../types/Organisasjon';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);

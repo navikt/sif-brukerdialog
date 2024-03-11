@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { createChildLogger } from '@navikt/next-logger';
-import { storageParser } from '@navikt/sif-common-core-ds/src/utils/persistence/storageParser';
-import axios, { HttpStatusCode } from 'axios';
+import { HttpStatusCode } from 'axios';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import {
     fetchMellomlagringer,
@@ -15,9 +14,6 @@ import { getXRequestId } from '../../utils/apiUtils';
 import { Feature } from '../../utils/features';
 import { sortInnsendtSøknadEtterOpprettetDato } from '../../utils/innsendtSøknadUtils';
 import { fetchAppStatus } from './appStatus.api';
-
-export const innsynsdataFetcher = async (url: string): Promise<Innsynsdata> =>
-    axios.get(url, { transformResponse: storageParser }).then((res) => res.data);
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const childLogger = createChildLogger(getXRequestId(req));
