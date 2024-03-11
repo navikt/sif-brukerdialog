@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 2.17.26
+
+### Patch Changes
+
+- Oppdatering til navikt/ds-6 versjoner
+
 ## 2.17.25
 
 ### Patch Changes
