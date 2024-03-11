@@ -14,8 +14,8 @@
     },
     "dependencies": {
         "@navikt/appstatus-react-ds": "workspace: *",
-        "@navikt/nav-dekoratoren-moduler": "2.1.5",
-        "@navikt/next-auth-wonderwall": "1.5.0",
+        "@navikt/nav-dekoratoren-moduler": "2.1.6",
+        "@navikt/next-auth-wonderwall": "1.6.0",
         "@navikt/next-logger": "1.21.0",
         "@navikt/sif-app-register": "workspace: *",
         "@navikt/sif-common-amplitude": "workspace: *",
