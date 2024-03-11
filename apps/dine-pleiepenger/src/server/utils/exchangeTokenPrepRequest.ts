@@ -63,7 +63,6 @@ export const exchangeTokenAndPrepRequest = async (
     return {
         url: `${serverUrl}/${path}`,
         headers: {
-            Authorization: `Bearer LOCALHOST`,
             'Content-Type': 'application/pdf',
             'x-request-id': context.requestId,
             'X-K9-Brukerdialog': serverEnv.NAIS_CLIENT_ID!,
