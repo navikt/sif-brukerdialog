@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import Knapperad from '../knapperad/Knapperad';
 import './bekreftDialog.less';
 
-export interface Props extends ModalProps {
+export interface Props extends Omit<ModalProps, 'onClose'> {
     tittel: string;
     /** Kalles når bruker klikker bekreft-knapp  */
     onBekreft: () => void;
@@ -18,6 +18,7 @@ export interface Props extends ModalProps {
     avbrytLabel?: string;
     /** Maks bredde */
     størrelse?: '30';
+    onClose: React.ReactEventHandler<HTMLDialogElement>;
 }
 const bem = bemUtils('bekreftDialog');
 const BekreftDialog = (props: Props) => {
@@ -26,6 +27,7 @@ const BekreftDialog = (props: Props) => {
     return props.open ? (
         <Modal
             {...modalProps}
+            aria-label={undefined}
             header={{
                 heading: tittel,
                 closeButton: true,

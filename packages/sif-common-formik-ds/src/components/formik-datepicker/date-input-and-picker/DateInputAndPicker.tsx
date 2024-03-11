@@ -1,17 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { DatePicker, useDatepicker } from '@navikt/ds-react';
-import { DatePickerProps } from '@navikt/ds-react/esm/date/datepicker/DatePicker';
+import { DatePicker, DatePickerProps, useDatepicker } from '@navikt/ds-react';
 import React, { useEffect } from 'react';
 import { FormError } from '../../../types';
-import { DatepickerLimitations } from '../FormikDatepicker';
 import {
+    dateToISODateString,
+    InputDateStringToISODateString,
     INVALID_DATE_VALUE,
     ISODateString,
     ISODateStringToUTCDate,
-    InputDateStringToISODateString,
-    dateToISODateString,
 } from '../dateFormatUtils';
 import datepickerUtils, { isISODateString } from '../datepickerUtils';
+import { DatepickerLimitations } from '../FormikDatepicker';
 
 type Props = Omit<DatePickerProps, 'onChange' | 'fromDate' | 'toDate'> &
     DatepickerLimitations & {
@@ -99,7 +98,6 @@ const DateInputAndPicker: React.FunctionComponent<Props> = ({
         disabled: disabledDates,
         fromDate: restProps.minDate,
         toDate: restProps.maxDate,
-        openOnFocus: false,
         onDateChange: onDateChange,
         ...restProps,
         defaultSelected: ISODateStringToUTCDate(value),

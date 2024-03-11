@@ -1,4 +1,4 @@
-import { grantTokenXOboToken, isInvalidTokenSet } from '@navikt/next-auth-wonderwall';
+import { requestOboToken } from '@navikt/oasis';
 import { createChildLogger } from '@navikt/next-logger';
 import { browserEnv, getServerEnv, isLocal, ServerEnv } from '../../utils/env';
 import { ApiService } from '../apiService';
@@ -42,22 +42,28 @@ export const exchangeTokenAndPrepRequest = async (
 
     const { audience, serverUrl } = getAudienceAndServerUrl(service, serverEnv);
 
-    let tokenX;
-
     if (!isLocal) {
         childLogger.info(`Exchanging token for ${audience}`);
-        tokenX = await grantTokenXOboToken(context.accessToken, audience);
-        if (isInvalidTokenSet(tokenX)) {
+        const tokenX = await requestOboToken(context.accessToken, audience);
+        if (!tokenX.ok) {
             throw new Error(
-                `Unable to exchange token for dine-pleiepenger-backend token, requestId: ${context.requestId}, reason: ${tokenX.message}`,
+                `Unable to exchange token for dine-pleiepenger-backend token, requestId: ${context.requestId}, reason: ${tokenX.error.message}`,
             );
         }
+        return {
+            url: `${serverUrl}/${path}`,
+            headers: {
+                Authorization: `Bearer ${tokenX.token}`,
+                'Content-Type': 'application/pdf',
+                'x-request-id': context.requestId,
+                'X-K9-Brukerdialog': serverEnv.NAIS_CLIENT_ID!,
+            },
+        };
     }
-
     return {
         url: `${serverUrl}/${path}`,
         headers: {
-            Authorization: `Bearer ${tokenX}`,
+            Authorization: `Bearer LOCALHOST`,
             'Content-Type': 'application/pdf',
             'x-request-id': context.requestId,
             'X-K9-Brukerdialog': serverEnv.NAIS_CLIENT_ID!,
