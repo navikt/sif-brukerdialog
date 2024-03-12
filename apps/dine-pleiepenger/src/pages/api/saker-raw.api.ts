@@ -11,7 +11,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     } catch (err) {
         const childLogger = createChildLogger(getXRequestId(req));
         childLogger.error(`Hent saker-raw feilet: ${err}`);
-        res.status(500).json({ error: 'Kunne ikke hente saker-raw' });
+        res.status(500).json({ error: 'Kunne ikke hente saker-raw', err });
     }
 }
 
