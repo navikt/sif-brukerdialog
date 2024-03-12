@@ -65,13 +65,13 @@ export const setInputTime = (key, hours = '', minutes = '') => {
 export const gåTilOppsummeringFraArbeidssituasjon = () => {
     /** cy.visit reloads, og da må en blir mellomlagring feil - fake click fortsett */
     clickFortsett();
-    cy.wait(100);
+    cy.wait(200);
     clickFortsett();
-    cy.wait(100);
+    cy.wait(200);
     clickFortsett();
-    cy.wait(100);
+    cy.wait(200);
     clickFortsett();
-    cy.wait(100);
+    cy.wait(200);
     clickFortsett(false);
 };
 

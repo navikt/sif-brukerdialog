@@ -8,7 +8,7 @@ import dayjs from 'dayjs';
 export const withInnsynsdata = (Story) => (
     <InnsynsdataContextProvider
         innsynsdata={{
-            saker: [{ saksbehandlingsFrist: dayjs().add(5, 'weeks').toDate() }],
+            saker: [{ sak: { saksbehandlingsFrist: dayjs().add(5, 'weeks').toDate() } }],
             harSak: true,
             søker: mockSøker as any as Søker,
             mellomlagring: {},

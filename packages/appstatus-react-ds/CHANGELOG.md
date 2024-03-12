@@ -1,5 +1,37 @@
 # @navikt/appstatus-react-ds
 
+## 2.17.26
+
+### Patch Changes
+
+- Oppdatering til navikt/ds-6 versjoner
+
+## 2.17.25
+
+### Patch Changes
+
+- 77509a2: Generelle pakkeoppdatering
+- Updated dependencies [77509a2]
+  - @navikt/sif-common-hooks@0.1.6
+
+## 2.17.24
+
+### Patch Changes
+
+- Patch oppdatering av sentry
+
+## 2.17.23
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch
+
+## 2.17.22
+
+### Patch Changes
+
+- e770491: Pakkeoppdateringer minor/patch
+
 ## 2.17.21
 
 ### Patch Changes

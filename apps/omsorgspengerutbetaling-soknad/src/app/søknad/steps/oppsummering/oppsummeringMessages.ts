@@ -8,15 +8,13 @@ export const oppsummeringMessages: MessageFileFormat = {
         'step.oppsummering.søker.fnr': 'Fødselsnummer: {fødselsnummer}',
         'step.oppsummering.søker.omDeg': 'Om deg',
 
-        'step.oppsummering.dineBarn': 'Dine Barn',
-        'step.oppsummering.dineBarn.bekrefterDektTiDagerSelv': 'Har du dekket de 10 første omsorgsdagene selv?',
+        'step.oppsummering.dineBarn': 'Om barn og dager du må dekke selv',
         'step.oppsummering.dineBarn.listItem': ' (fnr. {identitetsnummer})',
         'step.oppsummering.dineBarn.listItem.utvidetRett': 'Ekstra omsorgsdager.',
         'step.oppsummering.dineBarn.listItem.årsak.FOSTERBARN': '(Barnet er mitt fosterbarn).',
 
         'step.oppsummering.arbeidssituasjon.header': 'Din arbeidssituasjon',
-        'step.oppsummering.utbetalinger.header': 'Omsorgsdager du søker utbetaling for',
-
+        'step.oppsummering.utbetalinger.header': 'Dager du søker om utbetaling for',
         'step.oppsummering.medlemskap.header': 'Medlemskap i folketrygden',
 
         'step.oppsummering.utlandetSiste12.header': 'Har du bodd i utlandet i de siste 12 månedene?',

@@ -16,6 +16,7 @@ const ConfirmationDialog: React.FunctionComponent<Props> = (props: Props) => {
     return props.open ? (
         <Modal
             {...modalProps}
+            aria-label={undefined} // Overstyre evt verdi som kommer fra modalProps pga den kan ikke brukes sammen med header
             portal={true}
             onClose={onCancel}
             open={props.open}

@@ -1,5 +1,88 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.5.32
+
+### Patch Changes
+
+- Oppdatering til navikt/ds-6 versjoner
+- Updated dependencies
+  - @navikt/sif-common-formik-ds@1.7.18
+  - @navikt/sif-common-soknad-ds@10.13.18
+  - @navikt/sif-common-forms-ds@8.19.7
+  - @navikt/sif-common-core-ds@9.15.9
+  - @navikt/sif-common-ui@0.6.13
+
+## 2.5.31
+
+### Patch Changes
+
+- 77509a2: Generelle pakkeoppdatering
+- Updated dependencies [77509a2]
+  - @navikt/sif-common-amplitude@2.24.22
+  - @navikt/sif-common-formik-ds@1.7.17
+  - @navikt/sif-common-soknad-ds@10.13.17
+  - @navikt/sif-common-forms-ds@8.19.6
+  - @navikt/sif-common-core-ds@9.15.8
+  - @navikt/sif-common-sentry@0.25.20
+  - @navikt/sif-common-hooks@0.1.6
+  - @navikt/sif-common-utils@3.44.6
+  - @navikt/sif-common-ui@0.6.12
+
+## 2.5.30
+
+### Patch Changes
+
+- Pakkeoppdatering patch
+- Updated dependencies
+  - @navikt/sif-common-formik-ds@1.7.16
+  - @navikt/sif-common-soknad-ds@10.13.16
+  - @navikt/sif-common-forms-ds@8.19.5
+  - @navikt/sif-common-core-ds@9.15.7
+  - @navikt/sif-common-ui@0.6.11
+
+## 2.5.29
+
+### Patch Changes
+
+- Updated dependencies
+  - @navikt/sif-common-amplitude@2.24.21
+  - @navikt/sif-common-formik-ds@1.7.15
+  - @navikt/sif-common-soknad-ds@10.13.15
+  - @navikt/sif-common-forms-ds@8.19.4
+  - @navikt/sif-common-core-ds@9.15.6
+  - @navikt/sif-common-sentry@0.25.19
+  - @navikt/sif-common-utils@3.44.5
+  - @navikt/sif-common-ui@0.6.10
+
+## 2.5.28
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch
+- Updated dependencies
+  - @navikt/sif-common-amplitude@2.24.20
+  - @navikt/sif-common-formik-ds@1.7.14
+  - @navikt/sif-common-soknad-ds@10.13.14
+  - @navikt/sif-common-forms-ds@8.19.3
+  - @navikt/sif-common-core-ds@9.15.5
+  - @navikt/sif-common-sentry@0.25.18
+  - @navikt/sif-common-ui@0.6.9
+
+## 2.5.27
+
+### Patch Changes
+
+- e770491: Pakkeoppdateringer minor/patch
+- Updated dependencies [e770491]
+  - @navikt/sif-common-amplitude@2.24.19
+  - @navikt/sif-common-formik-ds@1.7.13
+  - @navikt/sif-common-soknad-ds@10.13.13
+  - @navikt/sif-common-forms-ds@8.19.2
+  - @navikt/sif-common-core-ds@9.15.4
+  - @navikt/sif-common-sentry@0.25.17
+  - @navikt/sif-common-utils@3.44.4
+  - @navikt/sif-common-ui@0.6.8
+
 ## 2.5.26
 
 ### Patch Changes

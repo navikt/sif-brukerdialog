@@ -2,7 +2,6 @@ import { IntlShape } from 'react-intl';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { RegistrertBarn } from '../../types/RegistrertBarn';
 import { SøknadApiData, YesNoSpørsmålOgSvar } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { getAttachmentURLBackend } from '../attachmentUtilsAuthToken';
@@ -20,11 +19,7 @@ const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
     return vedlegg.filter(attachmentIsUploadedAndIsValidFileFormat).map(({ url }) => getAttachmentURLBackend(url));
 };
 
-export const getApiDataFromSøknadsdata = (
-    søknadsdata: Søknadsdata,
-    registrerteBarn: RegistrertBarn[],
-    intl: IntlShape,
-): SøknadApiData | undefined => {
+export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata, intl: IntlShape): SøknadApiData | undefined => {
     const { id, dineBarn, fravaer, arbeidssituasjon, medlemskap, legeerklæring } = søknadsdata;
 
     if (!id || !dineBarn || !medlemskap || !legeerklæring || !arbeidssituasjon) {
@@ -53,9 +48,6 @@ export const getApiDataFromSøknadsdata = (
         });
     }
 
-    const harDekketTiFørsteDagerSelv =
-        dineBarn.type === 'minstEtt12årEllerYngre' && dineBarn.harDekketTiFørsteDagerSelv === true;
-
     return {
         id,
         språk,
@@ -64,8 +56,7 @@ export const getApiDataFromSøknadsdata = (
             harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true,
         },
         spørsmål: yesOrNoQuestions,
-        barn: getDineBarnApiDataFromSøknadsdata(dineBarn, registrerteBarn),
-        harDekketTiFørsteDagerSelv,
+        ...getDineBarnApiDataFromSøknadsdata(dineBarn),
         opphold: getUtenlansoppholdApiDataFromSøknadsdata(språk, fravaer),
         frilans: getFrilansApiDataFromSøknadsdata(frilans),
         selvstendigNæringsdrivende: getSelvstendigApiDataFromSøknadsdata(selvstendig),

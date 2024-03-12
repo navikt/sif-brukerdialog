@@ -1,5 +1,29 @@
 # @navikt/sif-common-amplitude
 
+## 2.24.22
+
+### Patch Changes
+
+- 77509a2: Generelle pakkeoppdatering
+
+## 2.24.21
+
+### Patch Changes
+
+- Patch oppdatering av sentry
+
+## 2.24.20
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch
+
+## 2.24.19
+
+### Patch Changes
+
+- e770491: Pakkeoppdateringer minor/patch
+
 ## 2.24.18
 
 ### Patch Changes

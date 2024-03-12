@@ -1,5 +1,41 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.13.18
+
+### Patch Changes
+
+- Oppdatering til navikt/ds-6 versjoner
+
+## 10.13.17
+
+### Patch Changes
+
+- 77509a2: Generelle pakkeoppdatering
+
+## 10.13.16
+
+### Patch Changes
+
+- Pakkeoppdatering patch
+
+## 10.13.15
+
+### Patch Changes
+
+- Patch oppdatering av sentry
+
+## 10.13.14
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch
+
+## 10.13.13
+
+### Patch Changes
+
+- e770491: Pakkeoppdateringer minor/patch
+
 ## 10.13.12
 
 ### Patch Changes

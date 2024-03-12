@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { createChildLogger } from '@navikt/next-logger';
-import axios, { HttpStatusCode } from 'axios';
+import { HttpStatusCode } from 'axios';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import {
     fetchSaksbehandlingstid,
@@ -13,8 +13,6 @@ import { Innsynsdata } from '../../types/InnsynData';
 import { getXRequestId } from '../../utils/apiUtils';
 import { sortSøknadEtterOpprettetDato } from '../../utils/søknadUtils';
 import { Feature } from '../../utils/features';
-
-export const innsynsdataFetcher = async (url: string): Promise<Innsynsdata> => axios.get(url).then((res) => res.data);
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const childLogger = createChildLogger(getXRequestId(req));
@@ -52,7 +50,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             saker,
             harSak: saker.length > 0,
         };
-        res.send(innsynsdata);
+        res.json(innsynsdata);
     } catch (err) {
         childLogger.error(`Hent innsynsdata feilet: ${err}`);
         if (
@@ -61,7 +59,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         ) {
             res.status(403).json({ error: 'Ikke tilgang' });
         } else {
-            res.status(500).json({ error: 'Kunne ikke hente innsynsdata', err });
+            res.status(500).json({ error: 'Kunne ikke hente innsynsdata' });
         }
     }
 }

@@ -1,5 +1,76 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.21.30
+
+### Patch Changes
+
+- Oppdatering til navikt/ds-6 versjoner
+- Updated dependencies
+  - @navikt/sif-common-formik-ds@1.7.18
+  - @navikt/sif-common-soknad-ds@10.13.18
+  - @navikt/sif-common-core-ds@9.15.9
+
+## 1.21.29
+
+### Patch Changes
+
+- 77509a2: Generelle pakkeoppdatering
+- Updated dependencies [77509a2]
+  - @navikt/sif-common-amplitude@2.24.22
+  - @navikt/sif-common-formik-ds@1.7.17
+  - @navikt/sif-common-soknad-ds@10.13.17
+  - @navikt/sif-common-core-ds@9.15.8
+  - @navikt/sif-common-sentry@0.25.20
+  - @navikt/sif-common-hooks@0.1.6
+  - @navikt/sif-common-utils@3.44.6
+
+## 1.21.28
+
+### Patch Changes
+
+- Pakkeoppdatering patch
+- Updated dependencies
+  - @navikt/sif-common-formik-ds@1.7.16
+  - @navikt/sif-common-soknad-ds@10.13.16
+  - @navikt/sif-common-core-ds@9.15.7
+
+## 1.21.27
+
+### Patch Changes
+
+- Updated dependencies
+  - @navikt/sif-common-amplitude@2.24.21
+  - @navikt/sif-common-formik-ds@1.7.15
+  - @navikt/sif-common-soknad-ds@10.13.15
+  - @navikt/sif-common-core-ds@9.15.6
+  - @navikt/sif-common-sentry@0.25.19
+  - @navikt/sif-common-utils@3.44.5
+
+## 1.21.26
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch
+- Updated dependencies
+  - @navikt/sif-common-amplitude@2.24.20
+  - @navikt/sif-common-formik-ds@1.7.14
+  - @navikt/sif-common-soknad-ds@10.13.14
+  - @navikt/sif-common-core-ds@9.15.5
+  - @navikt/sif-common-sentry@0.25.18
+
+## 1.21.25
+
+### Patch Changes
+
+- e770491: Pakkeoppdateringer minor/patch
+- Updated dependencies [e770491]
+  - @navikt/sif-common-amplitude@2.24.19
+  - @navikt/sif-common-formik-ds@1.7.13
+  - @navikt/sif-common-soknad-ds@10.13.13
+  - @navikt/sif-common-core-ds@9.15.4
+  - @navikt/sif-common-sentry@0.25.17
+  - @navikt/sif-common-utils@3.44.4
+
 ## 1.21.24
 
 ### Patch Changes

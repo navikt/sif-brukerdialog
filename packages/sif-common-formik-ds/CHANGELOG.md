@@ -1,5 +1,41 @@
 # @navikt/sif-common-formik-ds
 
+## 1.7.18
+
+### Patch Changes
+
+- Oppdatering til navikt/ds-6 versjoner
+
+## 1.7.17
+
+### Patch Changes
+
+- 77509a2: Generelle pakkeoppdatering
+
+## 1.7.16
+
+### Patch Changes
+
+- Pakkeoppdatering patch
+
+## 1.7.15
+
+### Patch Changes
+
+- Patch oppdatering av sentry
+
+## 1.7.14
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch
+
+## 1.7.13
+
+### Patch Changes
+
+- e770491: Pakkeoppdateringer minor/patch
+
 ## 1.7.12
 
 ### Patch Changes

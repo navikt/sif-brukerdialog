@@ -1,5 +1,29 @@
 # @navikt/sif-common-sentry
 
+## 0.25.20
+
+### Patch Changes
+
+- 77509a2: Generelle pakkeoppdatering
+
+## 0.25.19
+
+### Patch Changes
+
+- Patch oppdatering av sentry
+
+## 0.25.18
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch
+
+## 0.25.17
+
+### Patch Changes
+
+- e770491: Pakkeoppdateringer minor/patch
+
 ## 0.25.16
 
 ### Patch Changes

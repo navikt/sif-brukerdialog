@@ -1,5 +1,35 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.5.23
+
+### Patch Changes
+
+- Oppdatering til navikt/ds-6 versjoner
+
+## 3.5.22
+
+### Patch Changes
+
+- 77509a2: Generelle pakkeoppdatering
+
+## 3.5.21
+
+### Patch Changes
+
+- Patch oppdatering av sentry
+
+## 3.5.20
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch
+
+## 3.5.19
+
+### Patch Changes
+
+- e770491: Pakkeoppdateringer minor/patch
+
 ## 3.5.18
 
 ### Patch Changes

@@ -1,5 +1,63 @@
 # @navikt/dine-pleiepenger
 
+## 0.5.18
+
+### Patch Changes
+
+- Oppdatering til navikt/ds-6 versjoner
+- Updated dependencies
+  - @navikt/appstatus-react-ds@2.17.26
+  - @navikt/sif-common-core-ds@9.15.9
+
+## 0.5.17
+
+### Patch Changes
+
+- 77509a2: Generelle pakkeoppdatering
+- Updated dependencies [77509a2]
+  - @navikt/sif-common-amplitude@2.24.22
+  - @navikt/appstatus-react-ds@2.17.25
+  - @navikt/sif-common-core-ds@9.15.8
+  - @navikt/sif-common-sentry@0.25.20
+  - @navikt/sif-common-utils@3.44.6
+
+## 0.5.16
+
+### Patch Changes
+
+- Pakkeoppdatering patch
+- Updated dependencies
+  - @navikt/sif-common-core-ds@9.15.7
+
+## 0.5.15
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch
+- Updated dependencies
+  - @navikt/sif-common-amplitude@2.24.20
+  - @navikt/appstatus-react-ds@2.17.23
+  - @navikt/sif-common-core-ds@9.15.5
+  - @navikt/sif-common-sentry@0.25.18
+
+## 0.5.14
+
+### Patch Changes
+
+- e770491: Pakkeoppdateringer minor/patch
+- Updated dependencies [e770491]
+  - @navikt/sif-common-amplitude@2.24.19
+  - @navikt/appstatus-react-ds@2.17.22
+  - @navikt/sif-common-core-ds@9.15.4
+  - @navikt/sif-common-sentry@0.25.17
+  - @navikt/sif-common-utils@3.44.4
+
+## 0.5.13
+
+### Patch Changes
+
+- 82d12d5: Legge til .pdf i filnavn for arbeidsgivermeldinger
+
 ## 0.5.12
 
 ### Patch Changes

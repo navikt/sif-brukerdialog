@@ -1,7 +1,5 @@
 import { Accordion } from '@navikt/ds-react';
-import AccordionContent from '@navikt/ds-react/esm/accordion/AccordionContent';
-import AccordionHeader from '@navikt/ds-react/esm/accordion/AccordionHeader';
-import AccordionItem from '@navikt/ds-react/esm/accordion/AccordionItem';
+import { AccordionContent, AccordionHeader, AccordionItem } from '@navikt/ds-react/Accordion';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude';

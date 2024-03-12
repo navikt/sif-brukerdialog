@@ -1,5 +1,47 @@
 # @navikt/sif-common-core-ds
 
+## 9.15.9
+
+### Patch Changes
+
+- Oppdatering til navikt/ds-6 versjoner
+
+## 9.15.8
+
+### Patch Changes
+
+- 77509a2: Generelle pakkeoppdatering
+- Updated dependencies [77509a2]
+  - @navikt/sif-common-utils@3.44.6
+
+## 9.15.7
+
+### Patch Changes
+
+- Pakkeoppdatering patch
+
+## 9.15.6
+
+### Patch Changes
+
+- Patch oppdatering av sentry
+- Updated dependencies
+  - @navikt/sif-common-utils@3.44.5
+
+## 9.15.5
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch
+
+## 9.15.4
+
+### Patch Changes
+
+- e770491: Pakkeoppdateringer minor/patch
+- Updated dependencies [e770491]
+  - @navikt/sif-common-utils@3.44.4
+
 ## 9.15.3
 
 ### Patch Changes

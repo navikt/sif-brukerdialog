@@ -1,5 +1,41 @@
 # @navikt/sif-common-forms-ds
 
+## 8.19.7
+
+### Patch Changes
+
+- Oppdatering til navikt/ds-6 versjoner
+
+## 8.19.6
+
+### Patch Changes
+
+- 77509a2: Generelle pakkeoppdatering
+
+## 8.19.5
+
+### Patch Changes
+
+- Pakkeoppdatering patch
+
+## 8.19.4
+
+### Patch Changes
+
+- Patch oppdatering av sentry
+
+## 8.19.3
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch
+
+## 8.19.2
+
+### Patch Changes
+
+- e770491: Pakkeoppdateringer minor/patch
+
 ## 8.19.1
 
 ### Patch Changes

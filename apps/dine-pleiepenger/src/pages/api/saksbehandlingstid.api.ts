@@ -16,7 +16,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     } catch (err) {
         const childLogger = createChildLogger(getXRequestId(req));
         childLogger.error(`Hent saksbehandlingstid feilet: ${err}`);
-        res.status(500).json({ error: 'Kunne ikke hente saksbehandlingstid', err });
+        res.status(500).json({ error: 'Kunne ikke hente saksbehandlingstid' });
     }
 }
 

@@ -26,6 +26,11 @@ const getAnnetBarnÅrsakIntlKey = (type: BarnType): AnnetBarnMessageKeys => {
 
 const AnnetBarnList = ({ annetBarn = [], onDelete, onEdit }: Props) => {
     const { text } = useAnnetBarnIntl();
+
+    if (annetBarn.length === 0) {
+        return null;
+    }
+
     const renderAnnetBarnLabel = (annetBarn: AnnetBarn): React.ReactNode => {
         return (
             <div className={bem.element('label')}>
