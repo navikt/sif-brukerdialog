@@ -32,7 +32,7 @@ const harSendtInnSøknadEllerEndringsmelding = (søknader: InnsendtSøknad[]): b
 
 const getSaksbehandlingsfrist = (søknader: InnsendtSøknad[], saker: PleietrengendeMedSak[]): Date | undefined => {
     if (saker.length === 1 && harSendtInnSøknadEllerEndringsmelding(søknader)) {
-        return saker[0].sak.saksbehandlingsFrist;
+        return saker[0].sak.saksbehandlingsFrist || undefined;
     }
     return undefined;
 };
