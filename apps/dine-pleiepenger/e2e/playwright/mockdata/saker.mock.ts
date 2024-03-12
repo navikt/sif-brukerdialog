@@ -19,8 +19,8 @@ export const sakerMock: PleietrengendeMedSak[] = [
             behandlinger: [
                 {
                     status: Behandlingsstatus.AVSLUTTET,
-                    opprettetDato: new Date('2024-02-14T11:59:40.061Z'),
-                    avsluttetDato: new Date('2024-02-14T11:59:40.061Z'),
+                    opprettetTidspunkt: new Date('2024-02-14T11:59:40.061Z'),
+                    avsluttetTidspunkt: new Date('2024-02-14T11:59:40.061Z'),
                     søknader: [
                         {
                             søknadstype: Søknadstype.ENDRINGSMELDING,

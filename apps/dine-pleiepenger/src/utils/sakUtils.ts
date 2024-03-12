@@ -67,7 +67,7 @@ const mapSøknadTilSøknadshendelse = (søknad: Søknad): Søknadshendelse => {
 };
 
 export const getHendelserIBehandling = (behandling: Behandling, saksbehandlingFrist?: Date): Søknadshendelse[] => {
-    const { søknader, aksjonspunkter, avsluttetDato, status } = behandling;
+    const { søknader, aksjonspunkter, avsluttetTidspunkt, status } = behandling;
     const hendelser: Søknadshendelse[] = [];
 
     søknader.forEach((søknad) => {
@@ -82,10 +82,10 @@ export const getHendelserIBehandling = (behandling: Behandling, saksbehandlingFr
     }
 
     /** Avsluttet eller forventet svar på søknad */
-    if (status === Behandlingsstatus.AVSLUTTET && avsluttetDato) {
+    if (status === Behandlingsstatus.AVSLUTTET && avsluttetTidspunkt) {
         hendelser.push({
             type: SøknadshendelseType.FERDIG_BEHANDLET,
-            dato: avsluttetDato,
+            dato: avsluttetTidspunkt,
         });
     } else {
         hendelser.push({
