@@ -6,7 +6,7 @@ import { exchangeTokenAndPrepRequest } from './utils/exchangeTokenPrepRequest';
 export async function fetchDocument(path: string, context: RequestContext, service: ApiService): Promise<Blob> {
     const childLogger = createChildLogger(context.requestId);
 
-    const { url, headers } = await exchangeTokenAndPrepRequest(service, context, path);
+    const { url, headers } = await exchangeTokenAndPrepRequest(service, context, path, 'application/pdf');
 
     childLogger.info(`Fetching document from ${url}`);
 

@@ -4,9 +4,6 @@ import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { fetchSaker } from '../../server/apiService';
 import { getXRequestId } from '../../utils/apiUtils';
 
-// export const sakerFetcher = async (url: string): Promise<PleietrengendeMedSak[]> =>
-//     axios.get(url).then((res) => res.data);
-
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
         const data = await fetchSaker(req, true);
@@ -14,7 +11,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     } catch (err) {
         const childLogger = createChildLogger(getXRequestId(req));
         childLogger.error(`Hent saker-raw feilet: ${err}`);
-        res.status(500).json({ error: 'Kunne ikke hente saker-raw', err });
+        res.status(500).json({ error: 'Kunne ikke hente saker-raw' });
     }
 }
 

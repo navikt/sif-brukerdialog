@@ -48,6 +48,7 @@ export const fetchSøker = async (req: NextApiRequest): Promise<Søker> => {
         ApiService.k9Brukerdialog,
         context,
         ApiEndpointBrukerdialog.søker,
+        'application/json',
     );
     createChildLogger(getXRequestId(req)).info(`Fetching søker from url: ${url}`);
     const response = await axios.get(url, { headers });
@@ -65,6 +66,7 @@ export const fetchSaker = async (req: NextApiRequest, raw?: boolean): Promise<Pl
         ApiService.k9SakInnsyn,
         context,
         ApiEndpointK9SakInnsyn.saker,
+        'application/json',
     );
     createChildLogger(getXRequestId(req)).info(`Fetching saker from url: ${url}`);
     const response = await axios.get(url, { headers });
@@ -95,6 +97,7 @@ export const fetchSaksbehandlingstid = async (req: NextApiRequest): Promise<Saks
         ApiService.k9SakInnsyn,
         context,
         ApiEndpointK9SakInnsyn.behandlingstid,
+        'application/json',
     );
     createChildLogger(getXRequestId(req)).info(`Fetching behandlingstid from url: ${url}`);
     const response = await axios.get(url, { headers });
@@ -103,7 +106,12 @@ export const fetchSaksbehandlingstid = async (req: NextApiRequest): Promise<Saks
 
 export const fetchSøknader = async (req: NextApiRequest): Promise<InnsendtSøknad[]> => {
     const context = getContextForApiHandler(req);
-    const { url, headers } = await exchangeTokenAndPrepRequest(ApiService.sifInnsyn, context, ApiEndpointInnsyn.søknad);
+    const { url, headers } = await exchangeTokenAndPrepRequest(
+        ApiService.sifInnsyn,
+        context,
+        ApiEndpointInnsyn.søknad,
+        'application/json',
+    );
     createChildLogger(getXRequestId(req)).info(`Fetching søknader from url: ${url}`);
     const response = await axios.get(url, { headers });
     return await InnsendtSøknaderSchema.parse(response.data);
@@ -122,6 +130,7 @@ export const fetchMellomlagringer = async (req: NextApiRequest): Promise<Melloml
         ApiService.k9Brukerdialog,
         context,
         ApiEndpointBrukerdialog.påbegyntSøknad,
+        'application/json',
     );
     createChildLogger(getXRequestId(req)).info(`Fetching påbegynt søknad from url: ${påbegyntSøknadReq.url}`);
     const påbegyntSøknad = await axios
@@ -133,6 +142,7 @@ export const fetchMellomlagringer = async (req: NextApiRequest): Promise<Melloml
         ApiService.k9Brukerdialog,
         context,
         ApiEndpointBrukerdialog.påbegyntEndring,
+        'application/json',
     );
     createChildLogger(getXRequestId(req)).info(`Fetching påbegynt endring from url: ${påbegyntEndringReq.url}`);
     const påbegyntEndring = await axios
