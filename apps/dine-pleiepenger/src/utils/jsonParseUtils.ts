@@ -30,6 +30,9 @@ export const getDateFromString = (value?: string): Date | undefined => {
 };
 
 export const parseMaybeDateStringToDate = (value: any): Date | undefined => {
+    if (value === null) {
+        return undefined;
+    }
     const date = getDateFromString(value);
     if (value && !date) {
         throw new Error(`Could not parse date string: ${value}`);
