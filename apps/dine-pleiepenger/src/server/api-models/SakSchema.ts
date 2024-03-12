@@ -6,6 +6,10 @@ export type Sak = z.infer<typeof SakSchema>;
 
 export const SakSchema = z.object({
     saksnummer: z.string(),
-    saksbehandlingsFrist: z.union([z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()), z.undefined()]),
+    saksbehandlingsFrist: z.union([
+        z.preprocess((val) => (val === null ? undefined : val), z.undefined() || z.string()),
+        z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
+        z.undefined(),
+    ]),
     behandlinger: z.array(BehandlingSchema),
 });

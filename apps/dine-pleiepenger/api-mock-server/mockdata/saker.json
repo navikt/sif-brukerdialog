@@ -1,156 +1,341 @@
 [
     {
         "pleietrengende": {
-            "aktørId": "2370577265773",
-            "fornavn": "FRYKTSOM",
+            "identitetsnummer": "22501758497",
+            "fødselsdato": "2017-10-22",
+            "fornavn": "OPPJAGET",
             "mellomnavn": null,
-            "etternavn": "SKÅL",
-            "fødselsdato": "2015-07-25T00:00:00.000Z",
-            "identitetsnummer": "25471584692"
+            "etternavn": "REGLE",
+            "aktørId": "2627529559887"
         },
         "sak": {
-            "saksnummer": "1DQASWA",
-            "saksbehandlingsFrist": "2024-03-28T00:00:00.000Z",
+            "saksnummer": "1DQB306",
+            "saksbehandlingsFrist": null,
+            "fagsakYtelseType": { "kode": "PSB", "kodeverk": "FAGSAK_YTELSE" },
             "behandlinger": [
                 {
                     "status": "UNDER_BEHANDLING",
+                    "opprettetTidspunkt": "2024-03-07T13:54:50.000Z",
+                    "avsluttetTidspunkt": null,
                     "søknader": [
                         {
-                            "dokumenter": [
-                                {
-                                    "journalpostId": "637581942",
-                                    "dokumentInfoId": "667124308",
-                                    "tittel": "Søknad om pleiepenger for sykt barn",
-                                    "filtype": "PDF",
-                                    "harTilgang": true,
-                                    "url": "http://sif-innsyn-api/dokument/637581942/667124308/ARKIV",
-                                    "relevanteDatoer": [
-                                        { "dato": "2024-02-15T13:44:55.000Z", "datotype": "DATO_OPPRETTET" },
-                                        { "dato": "2024-02-15T13:44:55.000Z", "datotype": "DATO_DOKUMENT" },
-                                        { "dato": "2024-02-15T13:44:59.000Z", "datotype": "DATO_JOURNALFOERT" },
-                                        { "dato": "2024-02-15T13:44:54.000Z", "datotype": "DATO_REGISTRERT" }
-                                    ]
-                                },
-                                {
-                                    "journalpostId": "637581942",
-                                    "dokumentInfoId": "667124309",
-                                    "tittel": "pc-robot.jpg",
-                                    "filtype": "PDF",
-                                    "harTilgang": true,
-                                    "url": "http://sif-innsyn-api/dokument/637581942/667124309/ARKIV",
-                                    "relevanteDatoer": [
-                                        { "dato": "2024-02-15T13:44:55.000Z", "datotype": "DATO_OPPRETTET" },
-                                        { "dato": "2024-02-15T13:44:55.000Z", "datotype": "DATO_DOKUMENT" },
-                                        { "dato": "2024-02-15T13:44:59.000Z", "datotype": "DATO_JOURNALFOERT" },
-                                        { "dato": "2024-02-15T13:44:54.000Z", "datotype": "DATO_REGISTRERT" }
-                                    ]
-                                }
-                            ],
+                            "søknadId": "46b77dab-485e-4529-bb63-d6026cebebad",
                             "søknadstype": "SØKNAD",
                             "k9FormatSøknad": {
-                                "søknadId": "42a6571a-0d52-402b-afb7-feae943d59d4",
-                                "mottattDato": "2024-02-15T12:44:54.074Z",
+                                "søknadId": "46b77dab-485e-4529-bb63-d6026cebebad",
+                                "versjon": "1.0.0",
+                                "mottattDato": "2024-03-07T13:58:00.000Z",
+                                "søker": { "norskIdentitetsnummer": "04439420648" },
+                                "språk": "nb",
                                 "ytelse": {
                                     "type": "PLEIEPENGER_SYKT_BARN",
-                                    "søknadsperiode": ["2024-02-01/2024-02-29"],
+                                    "barn": { "norskIdentitetsnummer": "22501758497", "fødselsdato": null },
+                                    "søknadsperiode": [],
+                                    "endringsperiode": [],
+                                    "trekkKravPerioder": [],
+                                    "opptjeningAktivitet": {},
+                                    "dataBruktTilUtledning": {
+                                        "harForståttRettigheterOgPlikter": null,
+                                        "harBekreftetOpplysninger": null,
+                                        "samtidigHjemme": null,
+                                        "harMedsøker": null,
+                                        "soknadDialogCommitSha": null,
+                                        "bekrefterPeriodeOver8Uker": null,
+                                        "ukjenteArbeidsforhold": null
+                                    },
+                                    "annetDataBruktTilUtledning": null,
+                                    "infoFraPunsj": null,
+                                    "bosteder": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "utenlandsopphold": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "beredskap": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "nattevåk": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "tilsynsordning": { "perioder": {} },
+                                    "lovbestemtFerie": { "perioder": {} },
                                     "arbeidstid": {
                                         "arbeidstakerList": [
                                             {
+                                                "norskIdentitetsnummer": null,
+                                                "organisasjonsnummer": "967170232",
+                                                "organisasjonsnavn": null,
+                                                "arbeidstidInfo": {
+                                                    "perioder": {
+                                                        "2024-01-01/2024-01-01": {
+                                                            "jobberNormaltTimerPerDag": "PT8H",
+                                                            "faktiskArbeidTimerPerDag": "PT4H"
+                                                        },
+                                                        "2024-01-02/2024-01-02": {
+                                                            "jobberNormaltTimerPerDag": "PT8H",
+                                                            "faktiskArbeidTimerPerDag": "PT4H"
+                                                        },
+                                                        "2024-01-03/2024-01-03": {
+                                                            "jobberNormaltTimerPerDag": "PT8H",
+                                                            "faktiskArbeidTimerPerDag": "PT4H"
+                                                        },
+                                                        "2024-01-04/2024-01-04": {
+                                                            "jobberNormaltTimerPerDag": "PT8H",
+                                                            "faktiskArbeidTimerPerDag": "PT4H"
+                                                        },
+                                                        "2024-01-05/2024-01-05": {
+                                                            "jobberNormaltTimerPerDag": "PT8H",
+                                                            "faktiskArbeidTimerPerDag": "PT4H"
+                                                        },
+                                                        "2024-01-08/2024-01-08": {
+                                                            "jobberNormaltTimerPerDag": "PT8H",
+                                                            "faktiskArbeidTimerPerDag": "PT4H"
+                                                        },
+                                                        "2024-01-09/2024-01-09": {
+                                                            "jobberNormaltTimerPerDag": "PT8H",
+                                                            "faktiskArbeidTimerPerDag": "PT4H"
+                                                        },
+                                                        "2024-01-10/2024-01-10": {
+                                                            "jobberNormaltTimerPerDag": "PT8H",
+                                                            "faktiskArbeidTimerPerDag": "PT4H"
+                                                        },
+                                                        "2024-01-11/2024-01-11": {
+                                                            "jobberNormaltTimerPerDag": "PT8H",
+                                                            "faktiskArbeidTimerPerDag": "PT4H"
+                                                        },
+                                                        "2024-01-12/2024-01-12": {
+                                                            "jobberNormaltTimerPerDag": "PT8H",
+                                                            "faktiskArbeidTimerPerDag": "PT4H"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        ],
+                                        "frilanserArbeidstidInfo": null,
+                                        "selvstendigNæringsdrivendeArbeidstidInfo": null
+                                    },
+                                    "uttak": { "perioder": {} },
+                                    "omsorg": { "relasjonTilBarnet": null, "beskrivelseAvOmsorgsrollen": null }
+                                },
+                                "journalposter": [
+                                    {
+                                        "inneholderInfomasjonSomIkkeKanPunsjes": null,
+                                        "inneholderInformasjonSomIkkeKanPunsjes": false,
+                                        "inneholderMedisinskeOpplysninger": false,
+                                        "journalpostId": "637590097"
+                                    }
+                                ],
+                                "begrunnelseForInnsending": { "tekst": "" },
+                                "kildesystem": "punsj"
+                            },
+                            "dokumenter": [],
+                            "arbeidsgivere": [{ "organisasjonsnummer": "967170232", "navn": null }]
+                        },
+                        {
+                            "søknadId": "97841568-5a81-410f-b7f7-c56281ebc382",
+                            "søknadstype": "SØKNAD",
+                            "k9FormatSøknad": {
+                                "søknadId": "97841568-5a81-410f-b7f7-c56281ebc382",
+                                "versjon": "1.0.0",
+                                "mottattDato": "2024-03-07T13:53:37.918Z",
+                                "søker": { "norskIdentitetsnummer": "04439420648" },
+                                "språk": "nb",
+                                "ytelse": {
+                                    "type": "PLEIEPENGER_SYKT_BARN",
+                                    "barn": { "norskIdentitetsnummer": "22501758497", "fødselsdato": null },
+                                    "søknadsperiode": ["2024-01-01/2024-01-31"],
+                                    "endringsperiode": [],
+                                    "trekkKravPerioder": [],
+                                    "opptjeningAktivitet": {},
+                                    "dataBruktTilUtledning": null,
+                                    "annetDataBruktTilUtledning": {
+                                        "harForståttRettigheterOgPlikter": true,
+                                        "harBekreftetOpplysninger": true,
+                                        "soknadDialogCommitSha": null,
+                                        "annetData": null
+                                    },
+                                    "infoFraPunsj": null,
+                                    "bosteder": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "utenlandsopphold": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "beredskap": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "nattevåk": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "tilsynsordning": {
+                                        "perioder": { "2024-01-01/2024-01-31": { "etablertTilsynTimerPerDag": "PT0S" } }
+                                    },
+                                    "lovbestemtFerie": { "perioder": {} },
+                                    "arbeidstid": {
+                                        "arbeidstakerList": [
+                                            {
+                                                "norskIdentitetsnummer": null,
+                                                "organisasjonsnummer": "967170232",
+                                                "organisasjonsnavn": "SNILL TORPEDO",
+                                                "arbeidstidInfo": {
+                                                    "perioder": {
+                                                        "2024-01-01/2024-01-31": {
+                                                            "jobberNormaltTimerPerDag": "PT8H",
+                                                            "faktiskArbeidTimerPerDag": "PT0S"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        ],
+                                        "frilanserArbeidstidInfo": {
+                                            "perioder": {
+                                                "2024-01-01/2024-01-31": {
+                                                    "jobberNormaltTimerPerDag": "PT0S",
+                                                    "faktiskArbeidTimerPerDag": "PT0S"
+                                                }
+                                            }
+                                        },
+                                        "selvstendigNæringsdrivendeArbeidstidInfo": null
+                                    },
+                                    "uttak": {
+                                        "perioder": {
+                                            "2024-01-01/2024-01-31": { "timerPleieAvBarnetPerDag": "PT7H30M" }
+                                        }
+                                    },
+                                    "omsorg": { "relasjonTilBarnet": null, "beskrivelseAvOmsorgsrollen": null }
+                                },
+                                "journalposter": [],
+                                "begrunnelseForInnsending": { "tekst": null },
+                                "kildesystem": "søknadsdialog"
+                            },
+                            "dokumenter": [
+                                {
+                                    "journalpostId": "637590096",
+                                    "dokumentInfoId": "667132861",
+                                    "saksnummer": "1DQB306",
+                                    "tittel": "Søknad om pleiepenger for sykt barn",
+                                    "dokumentType": "PLEIEPENGER_SYKT_BARN_SOKNAD",
+                                    "filtype": "PDF",
+                                    "harTilgang": true,
+                                    "url": "http://sif-innsyn-api/dokument/637590096/667132861/ARKIV",
+                                    "relevanteDatoer": [
+                                        { "dato": "2024-03-07T14:53:41", "datotype": "DATO_OPPRETTET" },
+                                        { "dato": "2024-03-07T14:53:41", "datotype": "DATO_DOKUMENT" },
+                                        { "dato": "2024-03-07T14:53:50", "datotype": "DATO_JOURNALFOERT" },
+                                        { "dato": "2024-03-07T14:53:37", "datotype": "DATO_REGISTRERT" }
+                                    ]
+                                },
+                                {
+                                    "journalpostId": "637590096",
+                                    "dokumentInfoId": "667132862",
+                                    "saksnummer": "1DQB306",
+                                    "tittel": "70før18.pdf",
+                                    "dokumentType": "PLEIEPENGER_SYKT_BARN_SOKNAD",
+                                    "filtype": "PDF",
+                                    "harTilgang": true,
+                                    "url": "http://sif-innsyn-api/dokument/637590096/667132862/ARKIV",
+                                    "relevanteDatoer": [
+                                        { "dato": "2024-03-07T14:53:41", "datotype": "DATO_OPPRETTET" },
+                                        { "dato": "2024-03-07T14:53:41", "datotype": "DATO_DOKUMENT" },
+                                        { "dato": "2024-03-07T14:53:50", "datotype": "DATO_JOURNALFOERT" },
+                                        { "dato": "2024-03-07T14:53:37", "datotype": "DATO_REGISTRERT" }
+                                    ]
+                                }
+                            ],
+                            "arbeidsgivere": [{ "organisasjonsnummer": "967170232", "navn": "SNILL TORPEDO" }]
+                        },
+                        {
+                            "søknadId": "06c6496c-cf20-42ad-918f-5a629a00a991",
+                            "søknadstype": "SØKNAD",
+                            "k9FormatSøknad": {
+                                "søknadId": "06c6496c-cf20-42ad-918f-5a629a00a991",
+                                "versjon": "1.0.0",
+                                "mottattDato": "2024-03-07T14:06:18.449Z",
+                                "søker": { "norskIdentitetsnummer": "04439420648" },
+                                "språk": "nb",
+                                "ytelse": {
+                                    "type": "PLEIEPENGER_SYKT_BARN",
+                                    "barn": { "norskIdentitetsnummer": "22501758497", "fødselsdato": null },
+                                    "søknadsperiode": ["2024-02-01/2024-02-29"],
+                                    "endringsperiode": [],
+                                    "trekkKravPerioder": [],
+                                    "opptjeningAktivitet": {},
+                                    "dataBruktTilUtledning": null,
+                                    "annetDataBruktTilUtledning": {
+                                        "harForståttRettigheterOgPlikter": true,
+                                        "harBekreftetOpplysninger": true,
+                                        "soknadDialogCommitSha": null,
+                                        "annetData": null
+                                    },
+                                    "infoFraPunsj": null,
+                                    "bosteder": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "utenlandsopphold": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "beredskap": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "nattevåk": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "tilsynsordning": {
+                                        "perioder": { "2024-02-01/2024-02-29": { "etablertTilsynTimerPerDag": "PT0S" } }
+                                    },
+                                    "lovbestemtFerie": { "perioder": {} },
+                                    "arbeidstid": {
+                                        "arbeidstakerList": [
+                                            {
+                                                "norskIdentitetsnummer": null,
+                                                "organisasjonsnummer": "967170232",
+                                                "organisasjonsnavn": "SNILL TORPEDO",
                                                 "arbeidstidInfo": {
                                                     "perioder": {
                                                         "2024-02-01/2024-02-29": {
-                                                            "faktiskArbeidTimerPerDag": "PT0S",
-                                                            "jobberNormaltTimerPerDag": "PT6H"
+                                                            "jobberNormaltTimerPerDag": "PT8H",
+                                                            "faktiskArbeidTimerPerDag": "PT0S"
                                                         }
                                                     }
-                                                },
-                                                "organisasjonsnummer": "972674818"
+                                                }
                                             }
-                                        ]
-                                    }
-                                }
-                            }
-                        }
-                    ],
-                    "aksjonspunkter": []
-                }
-            ]
-        }
-    },
-    {
-        "pleietrengende": {
-            "aktørId": "2937225228474",
-            "fornavn": "LOGISK",
-            "mellomnavn": null,
-            "etternavn": "BOMULL",
-            "fødselsdato": "2012-06-27T00:00:00.000Z",
-            "identitetsnummer": "27461255928"
-        },
-        "sak": {
-            "saksnummer": "1DQASXo",
-            "saksbehandlingsFrist": "2024-03-28T00:00:00.000Z",
-            "behandlinger": [
-                {
-                    "status": "PÅ_VENT",
-                    "søknader": [
-                        {
+                                        ],
+                                        "frilanserArbeidstidInfo": {
+                                            "perioder": {
+                                                "2024-02-01/2024-02-29": {
+                                                    "jobberNormaltTimerPerDag": "PT0S",
+                                                    "faktiskArbeidTimerPerDag": "PT0S"
+                                                }
+                                            }
+                                        },
+                                        "selvstendigNæringsdrivendeArbeidstidInfo": null
+                                    },
+                                    "uttak": {
+                                        "perioder": {
+                                            "2024-02-01/2024-02-29": { "timerPleieAvBarnetPerDag": "PT7H30M" }
+                                        }
+                                    },
+                                    "omsorg": { "relasjonTilBarnet": null, "beskrivelseAvOmsorgsrollen": null }
+                                },
+                                "journalposter": [],
+                                "begrunnelseForInnsending": { "tekst": null },
+                                "kildesystem": "søknadsdialog"
+                            },
                             "dokumenter": [
                                 {
-                                    "journalpostId": "637581943",
-                                    "dokumentInfoId": "667124310",
+                                    "journalpostId": "637590099",
+                                    "dokumentInfoId": "667132865",
+                                    "saksnummer": "1DQB306",
                                     "tittel": "Søknad om pleiepenger for sykt barn",
+                                    "dokumentType": "PLEIEPENGER_SYKT_BARN_SOKNAD",
                                     "filtype": "PDF",
                                     "harTilgang": true,
-                                    "url": "http://sif-innsyn-api/dokument/637581943/667124310/ARKIV",
+                                    "url": "http://sif-innsyn-api/dokument/637590099/667132865/ARKIV",
                                     "relevanteDatoer": [
-                                        { "dato": "2024-02-15T13:45:47.000Z", "datotype": "DATO_OPPRETTET" },
-                                        { "dato": "2024-02-15T13:45:47.000Z", "datotype": "DATO_DOKUMENT" },
-                                        { "dato": "2024-02-15T13:45:51.000Z", "datotype": "DATO_JOURNALFOERT" },
-                                        { "dato": "2024-02-15T13:45:45.000Z", "datotype": "DATO_REGISTRERT" }
+                                        { "dato": "2024-03-07T15:06:20", "datotype": "DATO_OPPRETTET" },
+                                        { "dato": "2024-03-07T15:06:20", "datotype": "DATO_DOKUMENT" },
+                                        { "dato": "2024-03-07T15:06:25", "datotype": "DATO_JOURNALFOERT" },
+                                        { "dato": "2024-03-07T15:06:18", "datotype": "DATO_REGISTRERT" }
                                     ]
                                 },
                                 {
-                                    "journalpostId": "637581943",
-                                    "dokumentInfoId": "667124311",
-                                    "tittel": "pc-robot 2.png",
+                                    "journalpostId": "637590099",
+                                    "dokumentInfoId": "667132866",
+                                    "saksnummer": "1DQB306",
+                                    "tittel": "70før18.pdf",
+                                    "dokumentType": "PLEIEPENGER_SYKT_BARN_SOKNAD",
                                     "filtype": "PDF",
                                     "harTilgang": true,
-                                    "url": "http://sif-innsyn-api/dokument/637581943/667124311/ARKIV",
+                                    "url": "http://sif-innsyn-api/dokument/637590099/667132866/ARKIV",
                                     "relevanteDatoer": [
-                                        { "dato": "2024-02-15T13:45:47.000Z", "datotype": "DATO_OPPRETTET" },
-                                        { "dato": "2024-02-15T13:45:47.000Z", "datotype": "DATO_DOKUMENT" },
-                                        { "dato": "2024-02-15T13:45:51.000Z", "datotype": "DATO_JOURNALFOERT" },
-                                        { "dato": "2024-02-15T13:45:45.000Z", "datotype": "DATO_REGISTRERT" }
+                                        { "dato": "2024-03-07T15:06:20", "datotype": "DATO_OPPRETTET" },
+                                        { "dato": "2024-03-07T15:06:20", "datotype": "DATO_DOKUMENT" },
+                                        { "dato": "2024-03-07T15:06:25", "datotype": "DATO_JOURNALFOERT" },
+                                        { "dato": "2024-03-07T15:06:18", "datotype": "DATO_REGISTRERT" }
                                     ]
                                 }
                             ],
-                            "søknadstype": "SØKNAD",
-                            "k9FormatSøknad": {
-                                "søknadId": "8f86da31-8677-4667-98ab-8f182593ed62",
-                                "mottattDato": "2024-02-15T12:45:45.660Z",
-                                "ytelse": {
-                                    "type": "PLEIEPENGER_SYKT_BARN",
-                                    "søknadsperiode": ["2024-01-01/2024-01-25"],
-                                    "arbeidstid": {
-                                        "arbeidstakerList": [
-                                            {
-                                                "arbeidstidInfo": {
-                                                    "perioder": {
-                                                        "2024-01-01/2024-01-25": {
-                                                            "faktiskArbeidTimerPerDag": "PT0S",
-                                                            "jobberNormaltTimerPerDag": "PT6H"
-                                                        }
-                                                    }
-                                                },
-                                                "organisasjonsnummer": "972674818"
-                                            }
-                                        ]
-                                    }
-                                }
-                            }
+                            "arbeidsgivere": [{ "organisasjonsnummer": "967170232", "navn": "SNILL TORPEDO" }]
                         }
                     ],
-                    "aksjonspunkter": [{ "venteårsak": "INNTEKTSMELDING" }]
+                    "aksjonspunkter": [],
+                    "utgåendeDokumenter": []
                 }
             ]
         }
