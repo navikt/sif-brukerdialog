@@ -18,7 +18,7 @@ dayjs.extend(timezone);
 dayjs.locale('nb');
 
 const getSisteBehandlingISak = (sak: Sak): Behandling => {
-    return sortBy(sak.behandlinger, (b) => b.opprettetDato).reverse()[0];
+    return sortBy(sak.behandlinger, (b) => b.opprettetDato)[0];
 };
 
 export const sortBehandlinger = (behandlinger: Behandling[], doSortSøknader: boolean = true): Behandling[] => {
