@@ -70,10 +70,13 @@ export const fetchSaker = async (req: NextApiRequest, raw?: boolean): Promise<Pl
     );
     createChildLogger(getXRequestId(req)).info(`Fetching saker from url: ${url}`);
     const response = await axios.get(url, { headers });
+    createChildLogger(getXRequestId(req)).info(`Response-status from request: ${response.status}`);
     if (raw) {
         return response.data;
     }
+    createChildLogger(getXRequestId(req)).info(`Parsing response data`);
     const saker = await PleietrengendeMedSakResponseSchema.parse(response.data);
+    createChildLogger(getXRequestId(req)).info(`Response data parsed`);
 
     return saker.map((ps): PleietrengendeMedSak => {
         return {
