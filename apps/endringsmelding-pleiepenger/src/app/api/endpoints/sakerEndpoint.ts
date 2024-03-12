@@ -72,6 +72,7 @@ const sakerEndpoint = {
             });
             return Promise.resolve({ k9Saker, eldreSaker });
         } catch (error) {
+            appSentryLogger.logInfo('sakerEndpoint.fetch failed');
             return Promise.reject(error);
         }
     },
