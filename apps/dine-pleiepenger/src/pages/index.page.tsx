@@ -10,9 +10,9 @@ import DefaultPage from '../components/page-layout/default-page/DefaultPage';
 import Snarveier from '../components/snarveier/Snarveier';
 import Svarfrist from '../components/svarfrist/Svarfrist';
 import { useInnsynsdataContext } from '../hooks/useInnsynsdataContext';
-import { Feature } from '../utils/features';
-import { Søknad, Søknadstype } from '../types/Søknad';
 import { Sak } from '../server/api-models/SakSchema';
+import { Søknad, Søknadstype } from '../types/Søknad';
+import { Feature } from '../utils/features';
 import { getSøknaderMetaForLog } from '../utils/søknadUtils';
 
 const harSendtInnSøknadEllerEndringsmelding = (søknader: Søknad[]): boolean => {

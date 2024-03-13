@@ -30,6 +30,8 @@ const SøknadDokumentSchema = z.object({
 
 const PleiepengerSøknadInfoSchema = z.object({
     arbeidsgivere: ArbeidsgivereSchema,
+    fraOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
+    tilOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
 });
 
 const SøknadBaseSchema = z.object({
