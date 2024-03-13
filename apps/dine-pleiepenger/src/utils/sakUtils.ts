@@ -9,6 +9,7 @@ import { Sak } from '../server/api-models/SakSchema';
 import { Søknad } from '../server/api-models/SøknadSchema';
 import { Søknadstype } from '../server/api-models/Søknadstype';
 import { BehandlingsstatusISak } from '../types/BehandlingsstatusISak';
+import { Kildesystem } from '../types/Kildesystem';
 import { Organisasjon } from '../types/Organisasjon';
 import { Søknadshendelse, SøknadshendelseType } from '../types/Søknadshendelse';
 import { Venteårsak } from '../types/Venteårsak';
@@ -117,4 +118,11 @@ export const formatSøknadshendelseTidspunkt = (date: Date) => {
 
 export const getArbeidsgiverOrgnrISøknad = (søknad: Søknad): Pick<Organisasjon, 'organisasjonsnummer'>[] => {
     return søknad.k9FormatSøknad.ytelse.arbeidstid.arbeidstakerList.map((a) => ({ ...a }));
+};
+
+export const fjernPunsjSøknaderFraBehandling = (behandling: Behandling): Behandling => {
+    return {
+        ...behandling,
+        søknader: behandling.søknader.filter((s) => s.k9FormatSøknad.kildesystem !== Kildesystem.punsj),
+    };
 };
