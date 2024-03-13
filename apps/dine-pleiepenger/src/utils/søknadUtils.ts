@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
-import { Søknad } from '../types/Søknad';
+import { Pleiepengesøknad, Søknad, Søknadstype } from '../types/Søknad';
 
 require('dayjs/locale/nb');
 
@@ -16,4 +16,19 @@ export const formatSøknadOpprettetDato = (date: Date) => {
 export const sortSøknadEtterOpprettetDato = (a: Søknad, b: Søknad, desc: boolean = true): number => {
     const direction = desc ? 1 : -1;
     return new Date(a.opprettet) < new Date(b.opprettet) ? direction : direction * -1;
+};
+
+export const getPleiepengesøknader = (søknader: Søknad[]): Pleiepengesøknad[] => {
+    return søknader.filter((søknad) => søknad.søknadstype === Søknadstype.PP_SYKT_BARN) as Pleiepengesøknad[];
+};
+
+export const getSøknaderMetaForLog = (søknader: Søknad[]) => {
+    const typer = søknader.map((søknad) => søknad.søknadstype);
+    const perioder = getPleiepengesøknader(søknader).map((søknad) => {
+        return 'sdf';
+    });
+    return {
+        typer: typer.join(', '),
+        perioder: perioder.join(', '),
+    };
 };

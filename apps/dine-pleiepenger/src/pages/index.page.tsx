@@ -13,6 +13,7 @@ import { useInnsynsdataContext } from '../hooks/useInnsynsdataContext';
 import { Feature } from '../utils/features';
 import { Søknad, Søknadstype } from '../types/Søknad';
 import { Sak } from '../server/api-models/SakSchema';
+import { getSøknaderMetaForLog } from '../utils/søknadUtils';
 
 const harSendtInnSøknadEllerEndringsmelding = (søknader: Søknad[]): boolean => {
     return søknader.some(
@@ -42,6 +43,7 @@ function DinePleiepengerPage(): ReactElement {
                 antallSøknader: søknader.length,
                 antallSaker: saker.length,
                 harSaksbehandlingstid: !!saksbehandlingstidUker,
+                søknadsmeta: getSøknaderMetaForLog(søknader),
             });
         }
     });
