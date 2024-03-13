@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.7.19
+
+### Patch Changes
+
+- Gå tilbake til navikt/fnrvalidator 1.3.3
+
 ## 1.7.18
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 9.15.10
+
+### Patch Changes
+
+- Gå tilbake til navikt/fnrvalidator 1.3.3
+
 ## 9.15.9
 
 ### Patch Changes
