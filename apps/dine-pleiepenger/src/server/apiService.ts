@@ -66,8 +66,14 @@ export const fetchSaker = async (req: NextApiRequest): Promise<Sak[]> => {
         context,
         ApiEndpointK9SakInnsyn.saker,
     );
-    createChildLogger(getXRequestId(req)).info(`Fetching saker from url: ${url}`);
+    const childLogger = createChildLogger(getXRequestId(req));
+    childLogger.info(`Fetching saker from url: ${url}`);
     const response = await axios.get(url, { headers });
+    try {
+        childLogger.info(`Saker fetched from url. Antall: ${response.data.length}`);
+    } catch (e) {
+        childLogger.info(`Saker fetched from url - mangler length: ${response.statusText}`);
+    }
     const saker = await SakerSchema.parse(response.data);
     return saker;
 };
