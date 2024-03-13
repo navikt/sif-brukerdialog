@@ -37,6 +37,10 @@ export const fetchInitialData = async (
 }> => {
     const [søker, k9sakerResult] = await Promise.all([søkerEndpoint.fetch(), sakerEndpoint.fetch()]);
 
+    if (k9sakerResult.k9Saker.length === 0 && k9sakerResult.eldreSaker.length === 0) {
+        appSentryLogger.logInfo('fetchInitialData.ingenSaker');
+    }
+
     const handleInitialDataError = (error: any) => {
         if (isSøknadInitialDataErrorState(error)) {
             return Promise.reject({
@@ -162,8 +166,7 @@ const kontrollerTilgang = async (k9saker: K9Sak[], tillattEndringsperiode: DateR
                     sak: maskK9Sak(k9saker[0]),
                 }),
             );
-        }
-        if (k9saker.length > 1) {
+        } else {
             appSentryLogger.logInfo(
                 'IkkeTilgangSakInfo',
                 JSON.stringify({

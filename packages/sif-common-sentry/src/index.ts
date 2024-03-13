@@ -54,7 +54,7 @@ export const setSentryEnvironment = (maybeHost: string | undefined): SentryEnvir
         if (maybeHost.indexOf('localhost') > -1) {
             return SentryEnvironment.LOCALHOST;
         }
-        if (maybeHost.indexOf('www-q0.nav.no') > -1) {
+        if (maybeHost.indexOf('www-q0.nav.no') > -1 || maybeHost.indexOf('intern.dev.nav.no') > -1) {
             return SentryEnvironment.q;
         }
         if (maybeHost.indexOf('www.nav.no') > -1) {
