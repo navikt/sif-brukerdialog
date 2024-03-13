@@ -43,7 +43,7 @@ function DinePleiepengerPage(): ReactElement {
                 antallSøknader: søknader.length,
                 antallSaker: saker.length,
                 harSaksbehandlingstid: !!saksbehandlingstidUker,
-                søknadsmeta: getSøknaderMetaForLog(søknader),
+                ...getSøknaderMetaForLog(søknader),
             });
         }
     });
