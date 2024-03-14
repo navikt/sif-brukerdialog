@@ -40,6 +40,11 @@ const sakerEndpoint = {
         const endringsperiode = getTillattEndringsperiode(getEndringsdato());
         try {
             const { data } = await api.innsyn.get<K9Format[]>(ApiEndpointInnsyn.sak);
+            try {
+                appSentryLogger.logInfo(`fetchInitialData.length: ${data.length}`);
+            } catch (error) {
+                appSentryLogger.logInfo(`fetchInitialData.noLength, ${typeof data}`);
+            }
             const k9Saker: K9SakResult[] = [];
             const eldreSaker: K9SakResult[] = [];
             data.forEach((sak) => {
@@ -79,6 +84,7 @@ const sakerEndpoint = {
             } else {
                 appSentryLogger.logInfo('sakerEndpoint.fetch failed - unauthorized');
             }
+            appSentryLogger.logInfo('sakerEndpoint.fetch failed - something');
             return Promise.reject(error);
         }
     },
