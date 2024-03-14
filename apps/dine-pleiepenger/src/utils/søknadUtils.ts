@@ -1,7 +1,13 @@
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
-import { Pleiepengesøknad, Søknad, Søknadstype } from '../types/Søknad';
+import {
+    PleiepengerEndringsmelding,
+    PleiepengerEttersendelse,
+    Pleiepengesøknad,
+    Søknad,
+    Søknadstype,
+} from '../types/Søknad';
 
 require('dayjs/locale/nb');
 
@@ -20,4 +26,14 @@ export const sortSøknadEtterOpprettetDato = (a: Søknad, b: Søknad, desc: bool
 
 export const getPleiepengesøknader = (søknader: Søknad[]): Pleiepengesøknad[] => {
     return søknader.filter((søknad) => søknad.søknadstype === Søknadstype.PP_SYKT_BARN) as Pleiepengesøknad[];
+};
+export const getEndringsmeldinger = (søknader: Søknad[]): PleiepengerEndringsmelding[] => {
+    return søknader.filter(
+        (søknad) => søknad.søknadstype === Søknadstype.PP_SYKT_BARN_ENDRINGSMELDING,
+    ) as PleiepengerEndringsmelding[];
+};
+export const getEttersendelser = (søknader: Søknad[]): PleiepengerEttersendelse[] => {
+    return søknader.filter(
+        (søknad) => søknad.søknadstype === Søknadstype.PP_ETTERSENDELSE,
+    ) as PleiepengerEttersendelse[];
 };

@@ -13,7 +13,6 @@ import { Innsynsdata } from '../../types/InnsynData';
 import { getXRequestId } from '../../utils/apiUtils';
 import { sortSøknadEtterOpprettetDato } from '../../utils/søknadUtils';
 import { Feature } from '../../utils/features';
-import { getBrukerprofil } from '../../utils/brukerprofilUtils';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const childLogger = createChildLogger(getXRequestId(req));
@@ -46,7 +45,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
                 ? saksbehandlingstidReq.value.saksbehandlingstidUker
                 : undefined;
 
-        childLogger.info(getBrukerprofil(søknader, saker, saksbehandlingstidUker), `Hentet innsynsdata`);
+        // childLogger.info(getBrukerprofil(søknader, saker, saksbehandlingstidUker), `Hentet innsynsdata`);
 
         const innsynsdata: Innsynsdata = {
             søker,
