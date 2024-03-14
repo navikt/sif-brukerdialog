@@ -85,7 +85,6 @@ const sakerEndpoint = {
             } else {
                 appSentryLogger.logInfo('sakerEndpoint.fetch failed - unauthorized');
             }
-            appSentryLogger.logInfo('sakerEndpoint.fetch failed - something');
             return Promise.reject(error);
         }
     },

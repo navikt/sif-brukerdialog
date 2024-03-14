@@ -2,6 +2,7 @@ import { isStringOrNull } from '@navikt/sif-common-utils';
 import { Søker } from '@types';
 import { isObject, isString } from 'formik';
 import api, { ApiEndpointPsb } from '../api';
+import { appSentryLogger } from '../../utils';
 
 type SøkerDTO = {
     etternavn: string;
@@ -15,6 +16,7 @@ const søkerEndpoint = {
     fetch: async (): Promise<Søker> => {
         const { data } = await api.psb.get<SøkerDTO>(ApiEndpointPsb.soker, 'ytelse=endringsmelding-pleiepenger');
         if (!isValidSøkerResponse(data)) {
+            appSentryLogger.logInfo('søkerEndpoint.Invalid søkerdata');
             return Promise.reject('Invalid søkerdata');
         }
         return Promise.resolve(data);
