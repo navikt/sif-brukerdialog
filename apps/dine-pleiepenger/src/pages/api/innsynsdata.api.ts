@@ -13,6 +13,7 @@ import { Innsynsdata } from '../../types/InnsynData';
 import { getXRequestId } from '../../utils/apiUtils';
 import { sortSøknadEtterOpprettetDato } from '../../utils/søknadUtils';
 import { Feature } from '../../utils/features';
+import { getBrukerprofil } from '../../utils/brukerprofilUtils';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const childLogger = createChildLogger(getXRequestId(req));
@@ -39,14 +40,19 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
         const saker = sakerReq.status === 'fulfilled' ? sakerReq.value : [];
 
+        const søknader = søknaderReq.status === 'fulfilled' ? søknaderReq.value.sort(sortSøknadEtterOpprettetDato) : [];
+        const saksbehandlingstidUker =
+            saksbehandlingstidReq.status === 'fulfilled'
+                ? saksbehandlingstidReq.value.saksbehandlingstidUker
+                : undefined;
+
+        childLogger.info(`Hentet innsynsdata`, getBrukerprofil(søknader, saker, saksbehandlingstidUker));
+
         const innsynsdata: Innsynsdata = {
             søker,
-            søknader: søknaderReq.status === 'fulfilled' ? søknaderReq.value.sort(sortSøknadEtterOpprettetDato) : [],
+            søknader,
             mellomlagring: mellomlagringReq.status === 'fulfilled' ? mellomlagringReq.value : {},
-            saksbehandlingstidUker:
-                saksbehandlingstidReq.status === 'fulfilled'
-                    ? saksbehandlingstidReq.value.saksbehandlingstidUker
-                    : undefined,
+            saksbehandlingstidUker,
             saker,
             harSak: saker.length > 0,
         };
