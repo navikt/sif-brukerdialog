@@ -39,12 +39,12 @@ const sakerEndpoint = {
     fetch: async (): Promise<{ k9Saker: K9SakResult[]; eldreSaker: K9SakResult[] }> => {
         const endringsperiode = getTillattEndringsperiode(getEndringsdato());
         try {
-            appSentryLogger.logInfo(`fetchInitialData.henter saker`);
+            appSentryLogger.logInfo(`sakerEndpoint.fetch saker`);
             const { data } = await api.innsyn.get<K9Format[]>(ApiEndpointInnsyn.sak);
             try {
-                appSentryLogger.logInfo(`fetchInitialData.length: ${data.length}`);
+                appSentryLogger.logInfo(`sakerEndpoint.fetch length: ${data.length}`);
             } catch (error) {
-                appSentryLogger.logInfo(`fetchInitialData.noLength, ${typeof data}`);
+                appSentryLogger.logInfo(`sakerEndpoint.fetch noLength, ${typeof data}`);
             }
             const k9Saker: K9SakResult[] = [];
             const eldreSaker: K9SakResult[] = [];
