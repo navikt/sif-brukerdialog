@@ -39,6 +39,7 @@ const sakerEndpoint = {
     fetch: async (): Promise<{ k9Saker: K9SakResult[]; eldreSaker: K9SakResult[] }> => {
         const endringsperiode = getTillattEndringsperiode(getEndringsdato());
         try {
+            appSentryLogger.logInfo(`fetchInitialData.henter saker`);
             const { data } = await api.innsyn.get<K9Format[]>(ApiEndpointInnsyn.sak);
             try {
                 appSentryLogger.logInfo(`fetchInitialData.length: ${data.length}`);
