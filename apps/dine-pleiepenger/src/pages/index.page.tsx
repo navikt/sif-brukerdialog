@@ -1,7 +1,5 @@
 import { Box, VStack } from '@navikt/ds-react';
 import { ReactElement } from 'react';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
 import Head from 'next/head';
 import { withAuthenticatedPage } from '../auth/withAuthentication';
 import DineSøknader from '../components/dine-søknader/DineSøknader';
@@ -10,10 +8,9 @@ import DefaultPage from '../components/page-layout/default-page/DefaultPage';
 import Snarveier from '../components/snarveier/Snarveier';
 import Svarfrist from '../components/svarfrist/Svarfrist';
 import { useInnsynsdataContext } from '../hooks/useInnsynsdataContext';
+import { useLogBrukerprofil } from '../hooks/useLogBrukerprofil';
 import { Sak } from '../server/api-models/SakSchema';
 import { Søknad, Søknadstype } from '../types/Søknad';
-import { Feature } from '../utils/features';
-import { getSøknaderMetaForLog } from '../utils/søknadUtils';
 
 const harSendtInnSøknadEllerEndringsmelding = (søknader: Søknad[]): boolean => {
     return søknader.some(
@@ -35,18 +32,7 @@ function DinePleiepengerPage(): ReactElement {
         innsynsdata: { søknader, saker, saksbehandlingstidUker },
     } = useInnsynsdataContext();
 
-    const { logInfo } = useAmplitudeInstance();
-
-    useEffectOnce(() => {
-        if (Feature.HENT_BEHANDLINGSTID && Feature.HENT_SAKER) {
-            logInfo({
-                antallSøknader: søknader.length,
-                antallSaker: saker.length,
-                harSaksbehandlingstid: !!saksbehandlingstidUker,
-                ...getSøknaderMetaForLog(søknader),
-            });
-        }
-    });
+    useLogBrukerprofil(søknader, saker, saksbehandlingstidUker);
 
     return (
         <DefaultPage>
