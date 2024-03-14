@@ -46,7 +46,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
                 ? saksbehandlingstidReq.value.saksbehandlingstidUker
                 : undefined;
 
-        childLogger.info(`Hentet innsynsdata`, getBrukerprofil(søknader, saker, saksbehandlingstidUker));
+        childLogger.info(getBrukerprofil(søknader, saker, saksbehandlingstidUker), `Hentet innsynsdata`);
 
         const innsynsdata: Innsynsdata = {
             søker,
