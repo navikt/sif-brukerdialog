@@ -37,7 +37,7 @@
         "build-storybook": "storybook build ",
         "chromatic": "npx chromatic --project-token=chpt_eb5b80c88cc7e7f",
         "lint": "eslint ./src --ext ts,tsx",
-        "storybook": "storybook dev -p 6006 -s storybook-public"
+        "storybook": "storybook dev -p 6006"
     },
     "readme": "ERROR: No README data found!",
     "_id": "@navikt/sif-common-ui@0.0.1"

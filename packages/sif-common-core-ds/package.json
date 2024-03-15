@@ -73,7 +73,7 @@
     "scripts": {
         "build-storybook": "storybook build public",
         "lint": "eslint ./src --ext ts,tsx",
-        "storybook": "storybook dev -p 6006 public",
+        "storybook": "storybook dev -p 6006",
         "test": "vitest run",
         "chromatic": "npx chromatic --project-token=chpt_eb5b80c88cc7e7f"
     }

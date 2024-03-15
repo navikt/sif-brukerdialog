@@ -90,7 +90,7 @@
     "scripts": {
         "build-storybook": "storybook build",
         "lint": "eslint ./src --ext ts,tsx",
-        "storybook": "storybook dev -p 6006 public",
+        "storybook": "storybook dev -p 6006",
         "test": "vitest run",
         "test-storybook": "test-storybook"
     },
