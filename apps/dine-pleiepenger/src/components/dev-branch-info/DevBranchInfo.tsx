@@ -1,10 +1,11 @@
 import { Tag } from '@navikt/ds-react';
 import { useRef } from 'react';
-import { browserEnv } from '../../utils/env';
+import { browserEnv, getServerEnv } from '../../utils/env';
 
 const DevBranchInfo = () => {
     const tagRef = useRef<HTMLDivElement>(null);
-    const { NEXT_PUBLIC_GITHUB_REF_NAME, NEXT_PUBLIC_APPSTATUS_DATASET } = browserEnv;
+    const { NEXT_PUBLIC_APPSTATUS_DATASET } = browserEnv;
+    const { NEXT_PUBLIC_GITHUB_REF_NAME } = getServerEnv();
 
     if (
         !NEXT_PUBLIC_GITHUB_REF_NAME ||

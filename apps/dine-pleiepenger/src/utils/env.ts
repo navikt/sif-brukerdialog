@@ -8,7 +8,6 @@ export const publicEnvSchema = z.object({
     NEXT_PUBLIC_API_URL_K9_SAK_INNSYN: z.union([z.string(), z.undefined()]),
     NEXT_PUBLIC_API_URL_INNSYN: z.union([z.string(), z.undefined()]),
     NEXT_PUBLIC_API_URL_BRUKERDIALOG: z.union([z.string(), z.undefined()]),
-    NEXT_PUBLIC_GITHUB_REF_NAME: z.string(),
 
     /** Appstatus */
     NEXT_PUBLIC_APPSTATUS_PROJECT_ID: z.string(),
@@ -42,6 +41,7 @@ export const serverEnvSchema = z.object({
     NEXT_PUBLIC_INNSYN_BACKEND_SCOPE: z.string(),
     NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE: z.string(),
     NEXT_PUBLIC_K9_SAK_INNSYN_BACKEND_SCOPE: z.string(),
+    NEXT_PUBLIC_GITHUB_REF_NAME: z.string(),
 
     IDPORTEN_CLIENT_ID: z.union([z.string(), z.undefined()]),
     IDPORTEN_WELL_KNOWN_URL: z.union([z.string(), z.undefined()]),
@@ -83,7 +83,6 @@ export const browserEnv = publicEnvSchema.parse({
     NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL: process.env.NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL,
     NEXT_PUBLIC_FEATURE_HENT_SAKER: process.env.NEXT_PUBLIC_FEATURE_HENT_SAKER,
     NEXT_PUBLIC_FEATURE_HENT_BEHANDLINGSTID: process.env.NEXT_PUBLIC_FEATURE_HENT_BEHANDLINGSTID,
-    NEXT_PUBLIC_GITHUB_REF_NAME: `${process.env.NEXT_PUBLIC_GITHUB_REF_NAME}`,
 } satisfies Record<keyof PublicEnv, string | undefined>);
 
 const getRawServerConfig = (): Partial<unknown> =>
@@ -92,6 +91,7 @@ const getRawServerConfig = (): Partial<unknown> =>
         NEXT_PUBLIC_K9_SAK_INNSYN_BACKEND_SCOPE: process.env.NEXT_PUBLIC_K9_SAK_INNSYN_BACKEND_SCOPE,
         NEXT_PUBLIC_INNSYN_BACKEND_SCOPE: process.env.NEXT_PUBLIC_INNSYN_BACKEND_SCOPE,
         NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE: process.env.NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE,
+        NEXT_PUBLIC_GITHUB_REF_NAME: `${process.env.NEXT_PUBLIC_GITHUB_REF_NAME}`,
 
         // Provided by nais
         IDPORTEN_CLIENT_ID: process.env.IDPORTEN_CLIENT_ID,

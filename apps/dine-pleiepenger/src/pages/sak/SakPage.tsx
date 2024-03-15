@@ -3,22 +3,22 @@ import React from 'react';
 import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import DevBranchInfo from '../../components/dev-branch-info/DevBranchInfo';
 import DefaultPageLayout from '../../components/page-layout/default-page-layout/DefaultPageLayout';
 import SakPageHeader from '../../components/page-layout/sak-page-header/SakPageHeader';
 import SnarveierSak from '../../components/snarveier-sak/SnarveierSak';
 import Snarveier from '../../components/snarveier/Snarveier';
 import StatusISak from '../../components/status-i-sak/StatusISak';
+import StatusTag from '../../components/status-tag/StatusTag';
 import Svarfrist from '../../components/svarfrist/Svarfrist';
 import VenteårsakMelding from '../../components/VenteårsakMelding';
+import { Behandlingsstatus } from '../../server/api-models/Behandlingsstatus';
 import { Pleietrengende } from '../../server/api-models/PleietrengendeSchema';
 import { Sak } from '../../server/api-models/SakSchema';
 import { getAllBreadcrumbs } from '../../utils/decoratorBreadcrumbs';
 import { browserEnv } from '../../utils/env';
 import { personaliaUtils } from '../../utils/personaliaUtils';
 import { getBehandlingsstatusISak } from '../../utils/sakUtils';
-import StatusTag from '../../components/status-tag/StatusTag';
-import { Behandlingsstatus } from '../../server/api-models/Behandlingsstatus';
-import DevBranchInfo from '../../components/dev-branch-info/DevBranchInfo';
 
 interface Props {
     pleietrengende: Pleietrengende;
