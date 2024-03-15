@@ -22,7 +22,7 @@ const appDirectives = {
  */
 const nextConfig = {
     output: 'standalone',
-    reactStrictMode: true,
+    reactStrictMode: false,
     basePath: process.env.NEXT_PUBLIC_BASE_PATH,
     pageExtensions: ['page.tsx', 'api.ts'],
     transpilePackages: ['tailwind-merge'],

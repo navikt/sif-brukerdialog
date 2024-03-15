@@ -1,7 +1,13 @@
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
-import { InnsendtSøknad } from '../types/Søknad';
+import {
+    InnsendtPleiepengerEndringsmelding,
+    InnsendtPleiepengerEttersendelse,
+    InnsendtPleiepengesøknad,
+    InnsendtSøknad,
+    InnsendtSøknadstype,
+} from '../types/Søknad';
 
 require('dayjs/locale/nb');
 
@@ -20,4 +26,20 @@ export const sortInnsendtSøknadEtterOpprettetDato = (
 ): number => {
     const direction = desc ? 1 : -1;
     return new Date(a.opprettet) < new Date(b.opprettet) ? direction : direction * -1;
+};
+
+export const getPleiepengesøknader = (søknader: InnsendtSøknad[]): InnsendtPleiepengesøknad[] => {
+    return søknader.filter(
+        (søknad) => søknad.søknadstype === InnsendtSøknadstype.PP_SYKT_BARN,
+    ) as InnsendtPleiepengesøknad[];
+};
+export const getEndringsmeldinger = (søknader: InnsendtSøknad[]): InnsendtPleiepengerEndringsmelding[] => {
+    return søknader.filter(
+        (søknad) => søknad.søknadstype === InnsendtSøknadstype.PP_SYKT_BARN_ENDRINGSMELDING,
+    ) as InnsendtPleiepengerEndringsmelding[];
+};
+export const getEttersendelser = (søknader: InnsendtSøknad[]): InnsendtPleiepengerEttersendelse[] => {
+    return søknader.filter(
+        (søknad) => søknad.søknadstype === InnsendtSøknadstype.PP_ETTERSENDELSE,
+    ) as InnsendtPleiepengerEttersendelse[];
 };

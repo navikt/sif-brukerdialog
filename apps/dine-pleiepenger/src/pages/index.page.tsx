@@ -1,8 +1,5 @@
 import { Box, Heading, LinkPanel, VStack } from '@navikt/ds-react';
 import { ReactElement } from 'react';
-import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -14,10 +11,9 @@ import Snarveier from '../components/snarveier/Snarveier';
 import StatusTag from '../components/status-tag/StatusTag';
 import Svarfrist from '../components/svarfrist/Svarfrist';
 import { useInnsynsdataContext } from '../hooks/useInnsynsdataContext';
+import { useLogBrukerprofil } from '../hooks/useLogBrukerprofil';
 import { PleietrengendeMedSak } from '../server/api-models/PleietrengendeMedSakSchema';
 import { InnsendtSøknad, InnsendtSøknadstype } from '../types/Søknad';
-import { getAllBreadcrumbs } from '../utils/decoratorBreadcrumbs';
-import { Feature } from '../utils/features';
 import { personaliaUtils } from '../utils/personaliaUtils';
 import { getBehandlingsstatusISak } from '../utils/sakUtils';
 import SakPage from './sak/SakPage';
@@ -42,18 +38,7 @@ function DinePleiepengerPage(): ReactElement {
         innsynsdata: { innsendteSøknader, saker, saksbehandlingstidUker },
     } = useInnsynsdataContext();
 
-    const { logInfo } = useAmplitudeInstance();
-    setBreadcrumbs(getAllBreadcrumbs([], saker.length > 1));
-
-    useEffectOnce(() => {
-        if (Feature.HENT_BEHANDLINGSTID && Feature.HENT_SAKER && logInfo) {
-            logInfo({
-                antallSøknader: innsendteSøknader.length,
-                antallSaker: saker.length,
-                harSaksbehandlingstid: !!saksbehandlingstidUker,
-            });
-        }
-    });
+    useLogBrukerprofil(innsendteSøknader, saker, saksbehandlingstidUker);
 
     if (saker.length === 1) {
         return (

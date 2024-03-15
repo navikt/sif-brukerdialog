@@ -42,6 +42,7 @@ export const fetchInitialData = async (
     }
 
     const handleInitialDataError = (error: any) => {
+        appSentryLogger.logInfo(`handleInitialDataError: ${error?.message}`);
         if (isSøknadInitialDataErrorState(error)) {
             return Promise.reject({
                 ...error,
@@ -155,6 +156,7 @@ const kontrollerSaker = (
 const kontrollerTilgang = async (k9saker: K9Sak[], tillattEndringsperiode: DateRange): Promise<boolean> => {
     const resultat = tilgangskontroll(k9saker, tillattEndringsperiode);
     if (resultat.kanBrukeSøknad) {
+        appSentryLogger.logInfo(`kontrollerTilgang.kanBrukeSøknad`);
         return Promise.resolve(true);
     }
     if (getEnvironmentVariable('DEBUG') === 'true') {
@@ -175,6 +177,7 @@ const kontrollerTilgang = async (k9saker: K9Sak[], tillattEndringsperiode: DateR
             );
         }
     }
+    appSentryLogger.logInfo(`kontrollerTilgang.kanIkkeBrukeSøknad: ${resultat.årsak}`);
     return Promise.reject(getKanIkkeBrukeSøknadRejection(resultat.årsak, resultat.ingenTilgangMeta));
 };
 

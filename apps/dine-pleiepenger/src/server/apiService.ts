@@ -68,7 +68,8 @@ export const fetchSaker = async (req: NextApiRequest, raw?: boolean): Promise<Pl
         ApiEndpointK9SakInnsyn.saker,
         'application/json',
     );
-    createChildLogger(getXRequestId(req)).info(`Fetching saker from url: ${url}`);
+    const childLogger = createChildLogger(getXRequestId(req));
+    childLogger.info(`Fetching saker from url: ${url}`);
     const response = await axios.get(url, { headers });
     createChildLogger(getXRequestId(req)).info(`Response-status from request: ${response.status}`);
     if (raw) {

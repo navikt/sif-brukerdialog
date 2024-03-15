@@ -1,4 +1,4 @@
-import { Alert, BodyShort, HStack, Heading, Tag } from '@navikt/ds-react';
+import { Alert, HStack, Heading, Tag } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
@@ -127,27 +127,12 @@ const ArbeidIPeriodeSpørsmål = ({
             </HStack>
         );
     };
-    const renderMonthHeaderNoAccordion = (month: Date, enabledDatesInMonth: number) => {
-        const numDatesInMonthWithDuration = datesWithDuration.filter((d) =>
-            dayjs(d.date).isSame(month, 'month'),
-        ).length;
-
+    const renderMonthHeaderNoAccordion = (month: Date) => {
         return (
             <>
-                <Heading size="small" level="4" spacing={true}>
+                <Heading size="small" level="3" spacing={true}>
                     Timer med jobb {dayjs(month).format('MMMM YYYY')}
                 </Heading>
-                {1 + 1 === 3 && (
-                    <>
-                        {numDatesInMonthWithDuration === 0 ? (
-                            <BodyShort size="small">Arbeider ingen dager</BodyShort>
-                        ) : (
-                            <Tag variant="info" size="small">
-                                Arbeider {numDatesInMonthWithDuration} av {enabledDatesInMonth} dager
-                            </Tag>
-                        )}
-                    </>
-                )}
             </>
         );
     };
