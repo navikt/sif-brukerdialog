@@ -70,8 +70,8 @@
         "vite-plugin-checker": "0.6.4"
     },
     "scripts": {
-        "build-storybook": "build-storybook -s public",
+        "build-storybook": "storybook build",
         "lint": "eslint ./src --ext ts,tsx",
-        "storybook": "storybook dev -p 6006 -s public"
+        "storybook": "storybook dev -p 6006 public"
     }
 }
