@@ -2,6 +2,7 @@ import { Søknad } from '../server/api-models/SøknadSchema';
 import { Venteårsak } from './Venteårsak';
 
 export enum SøknadshendelseType {
+    'UKJENT' = 'UKJENT',
     'MOTTATT_SØKNAD' = 'MOTTATT_SØKNAD',
     'AKSJONSPUNKT' = 'AKSJONSPUNKT',
     'FERDIG_BEHANDLET' = 'FERDIG_BEHANDLET',
@@ -36,7 +37,13 @@ interface SøknadshendelseFerdigBehandlet extends SøknadshendelseBase {
     dato: Date;
 }
 
+interface SøknadshendelseUkjent extends SøknadshendelseBase {
+    type: SøknadshendelseType.UKJENT;
+    dato: undefined;
+}
+
 export type Søknadshendelse =
+    | SøknadshendelseUkjent
     | SøknadshendelseMottattSøknad
     | SøknadshendelseAksjonspunkt
     | SøknadshendelseAksjonspunkt

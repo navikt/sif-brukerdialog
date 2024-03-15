@@ -9,5 +9,5 @@ export const K9FormatSøknadSchema = z.object({
     søknadId: z.string(),
     mottattDato: z.preprocess(parseMaybeDateStringToDate, z.date()),
     ytelse: YtelseSchema,
-    kildesystem: z.nativeEnum(Kildesystem).optional(),
+    kildesystem: z.nativeEnum(Kildesystem).optional().nullable(),
 });

@@ -17,7 +17,7 @@ import FerdigBehandletStatusContent from './parts/FerdigBehandletStatusContent';
 //     return `Saken er satt på vent fordi vi mangler informajson`;
 // };
 
-export const getProcessStepFromMottattSøknad = (søknad: Søknad, current: boolean): ProcessStepData => {
+export const getProcessStepFromMottattSøknad = (søknad: Søknad, current: boolean): ProcessStepData | undefined => {
     switch (søknad.søknadstype) {
         case Søknadstype.SØKNAD:
             return {
@@ -37,6 +37,8 @@ export const getProcessStepFromMottattSøknad = (søknad: Søknad, current: bool
                 current,
                 isLastStep: false,
             };
+        case Søknadstype.UKJENT:
+            return undefined;
     }
 };
 
@@ -47,46 +49,50 @@ export const getProcessStepsFraSøknadshendelser = (hendelser: Søknadshendelse[
     const antall = hendelserSomSkalVises.length;
     const erFerdigBehandlet = hendelserSomSkalVises[antall - 1].type === SøknadshendelseType.FERDIG_BEHANDLET;
 
-    return hendelserSomSkalVises.map((hendelse, index): ProcessStepData => {
-        /** Gjeldende hendelse er per må alltid siste hendelse før ferdig behandlet, eller ferdig behandlet */
-        const erGjeldendeHendelse = erFerdigBehandlet ? index === antall - 1 : index === antall - 2;
+    return hendelserSomSkalVises
+        .map((hendelse, index): ProcessStepData | undefined => {
+            /** Gjeldende hendelse er per må alltid siste hendelse før ferdig behandlet, eller ferdig behandlet */
+            const erGjeldendeHendelse = erFerdigBehandlet ? index === antall - 1 : index === antall - 2;
 
-        switch (hendelse.type) {
-            case SøknadshendelseType.MOTTATT_SØKNAD:
-                return getProcessStepFromMottattSøknad(hendelse.søknad, erGjeldendeHendelse);
+            switch (hendelse.type) {
+                case SøknadshendelseType.MOTTATT_SØKNAD:
+                    return getProcessStepFromMottattSøknad(hendelse.søknad, erGjeldendeHendelse);
 
-            case SøknadshendelseType.AKSJONSPUNKT:
-                return {
-                    title: hendelse.venteårsak,
-                    completed: false,
-                    current: true,
-                    content: '',
-                    timestamp: hendelse.dato,
-                };
+                case SøknadshendelseType.AKSJONSPUNKT:
+                    return {
+                        title: hendelse.venteårsak,
+                        completed: false,
+                        current: true,
+                        content: '',
+                        timestamp: hendelse.dato,
+                    };
 
-            case SøknadshendelseType.FERDIG_BEHANDLET:
-                return {
-                    title: 'Søknad er ferdig behandlet',
-                    content: <FerdigBehandletStatusContent />,
-                    completed: true,
-                    isLastStep: true,
-                    current: erGjeldendeHendelse,
-                    timestamp: hendelse.dato,
-                };
+                case SøknadshendelseType.FERDIG_BEHANDLET:
+                    return {
+                        title: 'Søknad er ferdig behandlet',
+                        content: <FerdigBehandletStatusContent />,
+                        completed: true,
+                        isLastStep: true,
+                        current: erGjeldendeHendelse,
+                        timestamp: hendelse.dato,
+                    };
 
-            case SøknadshendelseType.FORVENTET_SVAR:
-                return {
-                    title: 'Søknaden er ferdig behandlet',
-                    content: (
-                        <>
-                            Inntektsmelding fra arbeidsgiver og legeerklæring må være sendt inn for at vi kan behandle
-                            saken.
-                        </>
-                    ),
-                    completed: false,
-                    isLastStep: true,
-                    timestamp: hendelse.dato,
-                };
-        }
-    });
+                case SøknadshendelseType.FORVENTET_SVAR:
+                    return {
+                        title: 'Søknaden er ferdig behandlet',
+                        content: (
+                            <>
+                                Inntektsmelding fra arbeidsgiver og legeerklæring må være sendt inn for at vi kan
+                                behandle saken.
+                            </>
+                        ),
+                        completed: false,
+                        isLastStep: true,
+                        timestamp: hendelse.dato,
+                    };
+                case SøknadshendelseType.UKJENT:
+                    return undefined;
+            }
+        })
+        .filter((h) => h !== undefined) as ProcessStepData[];
 };

@@ -57,6 +57,12 @@ export const getBehandlingsstatusISak = (sak: Sak): BehandlingsstatusISak => {
 
 const mapSøknadTilSøknadshendelse = (søknad: Søknad): Søknadshendelse => {
     switch (søknad.søknadstype) {
+        case Søknadstype.UKJENT:
+            return {
+                type: SøknadshendelseType.UKJENT,
+                dato: undefined,
+            };
+
         case Søknadstype.ENDRINGSMELDING:
         case Søknadstype.SØKNAD:
             return {
@@ -120,9 +126,11 @@ export const getArbeidsgiverOrgnrISøknad = (søknad: Søknad): Pick<Organisasjo
     return søknad.k9FormatSøknad.ytelse.arbeidstid.arbeidstakerList.map((a) => ({ ...a }));
 };
 
-export const fjernPunsjSøknaderFraBehandling = (behandling: Behandling): Behandling => {
+export const fjernPunsjOgUkjenteSøknaderFraBehandling = (behandling: Behandling): Behandling => {
     return {
         ...behandling,
-        søknader: behandling.søknader.filter((s) => s.k9FormatSøknad.kildesystem !== Kildesystem.punsj),
+        søknader: behandling.søknader.filter(
+            (s) => !!s.k9FormatSøknad.kildesystem && s.k9FormatSøknad.kildesystem !== Kildesystem.punsj,
+        ),
     };
 };

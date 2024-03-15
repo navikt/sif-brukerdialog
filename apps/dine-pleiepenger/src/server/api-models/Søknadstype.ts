@@ -1,5 +1,6 @@
 export enum Søknadstype {
     SØKNAD = 'SØKNAD',
-    // ETTERSENDELSE = 'ETTERSENDELSE',
     ENDRINGSMELDING = 'ENDRINGSMELDING',
+    UKJENT = 'UKJENT',
+    // ETTERSENDELSE = 'ETTERSENDELSE',
 }
