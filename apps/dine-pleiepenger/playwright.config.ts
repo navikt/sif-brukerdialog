@@ -28,6 +28,7 @@ export default defineConfig({
             API_URL: 'http://localhost:8089',
             NEXT_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
             NEXT_PUBLIC_APPSTATUS_DATASET: 'staging',
+            NEXT_PUBLIC_GITHUB_REF_NAME: 'dev-branch',
             NEXT_PUBLIC_BASE_PATH: '/innsyn',
             NEXT_PUBLIC_LOGIN_URL: '/dummy',
             NEXT_PUBLIC_RUNTIME_ENVIRONMENT: 'dev',

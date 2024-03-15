@@ -18,6 +18,7 @@ import { personaliaUtils } from '../../utils/personaliaUtils';
 import { getBehandlingsstatusISak } from '../../utils/sakUtils';
 import StatusTag from '../../components/status-tag/StatusTag';
 import { Behandlingsstatus } from '../../server/api-models/Behandlingsstatus';
+import DevBranchInfo from '../../components/dev-branch-info/DevBranchInfo';
 
 interface Props {
     pleietrengende: Pleietrengende;
@@ -77,6 +78,7 @@ const SakPage: React.FunctionComponent<Props> = ({ sak, pleietrengende, saksbeha
                     <SnarveierSak />
                 </Box>
             </VStack>
+            <DevBranchInfo />
         </DefaultPageLayout>
     );
 };
