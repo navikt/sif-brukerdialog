@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 9.15.12
+
+### Patch Changes
+
+- Fjerne unødvendig visning av filtype når filopplasting feiler.
+
 ## 9.15.11
 
 ### Patch Changes
