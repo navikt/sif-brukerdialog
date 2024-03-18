@@ -4,7 +4,6 @@ import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/env
 import { DateRange } from '@navikt/sif-common-utils';
 import {
     Arbeidsgiver,
-    IngenTilgangÅrsak,
     K9Sak,
     RequestStatus,
     Sak,
@@ -26,14 +25,6 @@ export type SøknadInitialData = Omit<SøknadContextState, 'sak'> & { sak: Sak |
 
 export type IngenTilgangMeta = { erArbeidstaker?: boolean; erSN?: boolean; erFrilanser?: boolean };
 
-export type SøknadInitialIkkeTilgang = {
-    status: RequestStatus.success;
-    kanBrukeSøknad: false;
-    årsak: IngenTilgangÅrsak[];
-    søker: Søker;
-    ingenTilgangMeta?: IngenTilgangMeta;
-};
-
 export const isSøknadInitialDataErrorState = (error: any): error is SøknadInitialDataState => {
     return error !== undefined && Object.keys(error).length > 0 && error.status !== undefined;
 };
@@ -42,7 +33,7 @@ const defaultSøknadState: Partial<SøknadContextState> = {
     søknadRoute: SøknadRoutes.VELKOMMEN,
 };
 
-const prepInitialData = (
+const getSøknadInitialDataFromLoadedData = (
     loadedData: {
         søker: Søker;
         k9saker: K9Sak[];
@@ -104,24 +95,23 @@ const prepInitialData = (
 };
 
 function useSøknadInitialData(): SøknadInitialDataState {
-    const [initialData, setInitialData] = useState<SøknadInitialDataState>({ status: RequestStatus.loading });
+    const [initialData, setInitialDataState] = useState<SøknadInitialDataState>({ status: RequestStatus.loading });
     const tillattEndringsperiode = getTillattEndringsperiode(getEndringsdato());
 
     const fetch = async () => {
         fetchInitialData(tillattEndringsperiode)
             .then((data) => {
-                setInitialData({
+                setInitialDataState({
                     status: RequestStatus.success,
                     kanBrukeSøknad: true,
-                    data: prepInitialData(data, tillattEndringsperiode),
+                    data: getSøknadInitialDataFromLoadedData(data, tillattEndringsperiode),
                 });
             })
             .catch((error) => {
-                appSentryLogger.logInfo('fetchInitialData.error catched');
                 if (isSøknadInitialDataErrorState(error)) {
-                    setInitialData(error);
+                    setInitialDataState(error);
                 } else {
-                    setInitialData({
+                    setInitialDataState({
                         status: RequestStatus.error,
                         error,
                     });
