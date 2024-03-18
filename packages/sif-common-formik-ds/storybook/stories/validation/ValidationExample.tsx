@@ -4,12 +4,10 @@ import * as React from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { prettifyDate } from '@navikt/sif-common-utils';
-import { getTypedFormComponents } from '../../../lib';
-import datepickerUtils from '../../../src/components/formik-datepicker/datepickerUtils';
+
 import TypedFormikWrapper from '../../../src/components/typed-formik-wrapper/TypedFormikWrapper';
 import {
     getCheckedValidator,
-    getDateRangeValidator,
     getDateValidator,
     getFødselsnummerValidator,
     getNumberValidator,
@@ -33,6 +31,7 @@ import { ValidationError } from '../../../src/validation/types';
 import ValidationErrorList from '../../components/validation-error-list/ValidationErrorList';
 import ValidationPanel from '../../components/validation-panel/ValidationPanel';
 import { FormFields, FormValues } from './types';
+import { getTypedFormComponents } from '../../../src';
 
 const initialValues: FormValues = {
     liste: [],
@@ -52,9 +51,7 @@ const ValidationExample = () => {
                 onSubmit={(values) => {
                     console.log('FormikWrapperSubmit', values);
                 }}
-                renderForm={(formik) => {
-                    const fromDate = datepickerUtils.getDateFromDateString(formik.values.tidsperiode_fra);
-                    const toDate = datepickerUtils.getDateFromDateString(formik.values.tidsperiode_til);
+                renderForm={() => {
                     return (
                         <Form.Form
                             submitButtonLabel="Ok"
@@ -313,35 +310,6 @@ interface Options extends DateValidationOptions {
 const errorFromDate = getDateRangeValidator(options).validateFromDate(value);
 const errorToDate = getDateRangeValidator(options).validateToDate(value);
                                 `}>
-                                <Panel>
-                                    <Form.DateRangePicker
-                                        legend="Når startet og avsluttet du virksomheten?"
-                                        fromInputProps={{
-                                            label: 'Startdato',
-                                            name: FormFields.tidsperiode_fra,
-                                            dayPickerProps: { defaultMonth: new Date(2021, 0, 1) },
-                                            validate: getDateRangeValidator({
-                                                min: new Date(2021, 0, 1),
-                                                max: new Date(2021, 11, 31),
-                                                toDate,
-                                                required: true,
-                                                onlyWeekdays: true,
-                                            }).validateFromDate,
-                                        }}
-                                        toInputProps={{
-                                            label: 'Sluttdato',
-                                            name: FormFields.tidsperiode_til,
-                                            dayPickerProps: { defaultMonth: new Date(2021, 11, 31) },
-                                            validate: getDateRangeValidator({
-                                                min: new Date(2000, 0, 1),
-                                                max: new Date(),
-                                                fromDate,
-                                                required: true,
-                                                onlyWeekdays: true,
-                                            }).validateToDate,
-                                        }}
-                                    />
-                                </Panel>
                                 <ValidationErrorList
                                     title="Feilmeldinger - Startdato"
                                     errors={{
