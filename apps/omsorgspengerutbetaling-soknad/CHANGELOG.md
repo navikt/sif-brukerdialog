@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.9.9
+
+### Patch Changes
+
+- Tekstoppdatering legeerklæring
+
 ## 1.9.8
 
 ### Patch Changes

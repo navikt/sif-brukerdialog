@@ -171,7 +171,7 @@ const FraværStep = () => {
                                                 <FormBlock margin="l">
                                                     <FraværPerioderListAndDialog<FraværFormFields>
                                                         name={FraværFormFields.fraværPerioder}
-                                                        periodeDescription={FraværStepInfo.Tidsbegrensning()}
+                                                        periodeDescription={FraværStepInfo.Tidsbegrensning(intl)}
                                                         minDate={minDateForFravær}
                                                         maxDate={maxDateForFravær}
                                                         validate={getFraværPerioderValidator({ fraværDager, årstall })}
@@ -212,7 +212,7 @@ const FraværStep = () => {
                                                 <FormBlock margin="l">
                                                     <FraværDagerListAndDialog<FraværFormFields>
                                                         name={FraværFormFields.fraværDager}
-                                                        dagDescription={FraværStepInfo.Tidsbegrensning(true)}
+                                                        dagDescription={FraværStepInfo.Tidsbegrensning(intl, true)}
                                                         minDate={minDateForFravær}
                                                         maxDate={maxDateForFravær}
                                                         validate={getFraværDagerValidator({ fraværPerioder, årstall })}
