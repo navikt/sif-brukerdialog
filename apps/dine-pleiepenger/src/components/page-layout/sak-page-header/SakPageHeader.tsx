@@ -8,16 +8,11 @@ interface Props {
     titleTag?: React.ReactNode;
 }
 
-const SakPageHeader: React.FunctionComponent<Props> = ({
-    tittel = 'Din pleiepengesak',
-    titleTag: tag,
-    saksnr,
-    navn,
-}) => {
+const SakPageHeader: React.FunctionComponent<Props> = ({ tittel = 'Din pleiepengesak', titleTag, saksnr, navn }) => {
     return (
         <PageHeader
             title={tittel}
-            titleTag={tag}
+            titleTag={titleTag}
             byline={
                 <BodyShort as="div">
                     <HStack gap="2">
