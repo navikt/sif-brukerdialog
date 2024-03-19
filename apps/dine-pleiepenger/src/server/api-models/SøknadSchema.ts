@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { K9FormatSøknadSchema } from './K9FormatSøknadSchema';
 import { DokumentSchema } from './DokumenetSchema';
 import { Søknadstype } from './Søknadstype';
+import { OrganisasjonSchema } from './OrganisasjonSchema';
 
 const SøknadBaseSchema = z.object({
     dokumenter: z.array(DokumentSchema),
@@ -10,16 +11,7 @@ const SøknadBaseSchema = z.object({
 
 const PleiepengerSøknadSchema = SøknadBaseSchema.extend({
     k9FormatSøknad: K9FormatSøknadSchema,
-    arbeidsgivere: z
-        .object({
-            organisasjoner: z.array(
-                z.object({
-                    organisasjonsnummer: z.string(),
-                    navn: z.string(),
-                }),
-            ),
-        })
-        .optional(),
+    arbeidsgivere: z.array(OrganisasjonSchema).optional(),
 });
 
 const EndringsmeldingSchema = SøknadBaseSchema.extend({

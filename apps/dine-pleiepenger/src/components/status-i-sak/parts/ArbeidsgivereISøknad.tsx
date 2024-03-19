@@ -1,27 +1,26 @@
-import { Box, Heading } from '@navikt/ds-react';
 import React from 'react';
-import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { Msg } from '../../../i18n';
+import { getArbeidsgiverinfoFraSøknad } from '../../../utils/sakUtils';
 import { Pleiepengesøknad } from '../../../server/api-models/SøknadSchema';
 import { getArbeidsgivermeldingApiUrlBySoknadIdOgOrgnummer } from '../../../utils/dokumentUtils';
-import { getArbeidsgiverOrgnrISøknad } from '../../../utils/sakUtils';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { Box, Heading } from '@navikt/ds-react';
 import PdfLenke from '../../pdf-lenke/PdfLenke';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 
 interface Props {
     søknad: Pleiepengesøknad;
 }
 
 const ArbeidsgivereISøknad: React.FunctionComponent<Props> = ({ søknad }) => {
-    const arbeidsgivere = getArbeidsgiverOrgnrISøknad(søknad);
+    const arbeidsgivere = getArbeidsgiverinfoFraSøknad(søknad);
     const intl = useIntl();
     return (
         <Box className="mt-4">
             <Heading size="xsmall" level="4" spacing={true}>
-                <Msg id="bekreftelseTilArbeidsgiver.title" />
+                <FormattedMessage id="bekreftelseTilArbeidsgiver.title" />
             </Heading>
             <p>
-                <Msg id="bekreftelseTilArbeidsgiver.info" />
+                <FormattedMessage id="bekreftelseTilArbeidsgiver.info" />
             </p>
 
             <ul className="mt-4">
@@ -33,7 +32,7 @@ const ArbeidsgivereISøknad: React.FunctionComponent<Props> = ({ søknad }) => {
                                 organisasjon.organisasjonsnummer,
                             )}
                             tittel={intlHelper(intl, 'dokumenterSomKanLastesNed.bekreftelse', {
-                                organisasjonsnavn: organisasjon.organisasjonsnummer,
+                                organisasjonsnavn: organisasjon.navn,
                             })}
                         />
                     </li>

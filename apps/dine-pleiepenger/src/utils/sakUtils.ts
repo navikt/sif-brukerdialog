@@ -6,7 +6,7 @@ import { Aksjonspunkt } from '../server/api-models/AksjonspunktSchema';
 import { Behandling } from '../server/api-models/BehandlingSchema';
 import { Behandlingsstatus } from '../server/api-models/Behandlingsstatus';
 import { Sak } from '../server/api-models/SakSchema';
-import { Søknad } from '../server/api-models/SøknadSchema';
+import { Pleiepengesøknad, Søknad } from '../server/api-models/SøknadSchema';
 import { Søknadstype } from '../server/api-models/Søknadstype';
 import { BehandlingsstatusISak } from '../types/BehandlingsstatusISak';
 import { Kildesystem } from '../types/Kildesystem';
@@ -122,8 +122,19 @@ export const formatSøknadshendelseTidspunkt = (date: Date) => {
     return dayjs(date).tz('Europe/Oslo').format('DD.MM.YYYY, [kl.] HH:mm');
 };
 
-export const getArbeidsgiverOrgnrISøknad = (søknad: Søknad): Pick<Organisasjon, 'organisasjonsnummer'>[] => {
-    return søknad.k9FormatSøknad.ytelse.arbeidstid.arbeidstakerList.map((a) => ({ ...a }));
+const getArbeidsgivernavn = (organisasjonsnummer: string, arbeidsgivere: Organisasjon[]): string => {
+    return arbeidsgivere.find((a) => a.organisasjonsnummer === organisasjonsnummer)?.navn || organisasjonsnummer;
+};
+
+export const getArbeidsgiverinfoFraSøknad = (søknad: Pleiepengesøknad): Organisasjon[] => {
+    const arbeidsgivere = søknad.arbeidsgivere || [];
+    return søknad.k9FormatSøknad.ytelse.arbeidstid.arbeidstakerList.map((a) => {
+        const organisasjon: Organisasjon = {
+            organisasjonsnummer: a.organisasjonsnummer,
+            navn: getArbeidsgivernavn(a.organisasjonsnummer, arbeidsgivere),
+        };
+        return organisasjon;
+    });
 };
 
 export const fjernPunsjOgUkjenteSøknaderFraBehandling = (behandling: Behandling): Behandling => {
