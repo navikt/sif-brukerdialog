@@ -1,8 +1,8 @@
-import React from 'react';
-import { Søknad } from '../../../server/api-models/SøknadSchema';
 import { Box, Heading } from '@navikt/ds-react';
-import { FormattedMessage } from 'react-intl';
+import React from 'react';
+import { Msg } from '../../../i18n';
 import { Dokument } from '../../../server/api-models/DokumenetSchema';
+import { Søknad } from '../../../server/api-models/SøknadSchema';
 import { getDokumentFrontendUrl, getSøknadDokumentFilnavn } from '../../../utils/dokumentUtils';
 import PdfLenke from '../../pdf-lenke/PdfLenke';
 
@@ -26,7 +26,7 @@ const DokumenterISøknad: React.FunctionComponent<Props> = ({ søknad, tittel })
     if (søknad.dokumenter.length === 0) {
         return (
             <p>
-                <FormattedMessage id="dokumenter.ingenDokumenter" />
+                <Msg id="dokumenter.ingenDokumenter" />
             </p>
         );
     }
@@ -42,7 +42,7 @@ const DokumenterISøknad: React.FunctionComponent<Props> = ({ søknad, tittel })
             )}
             {(søknad.dokumenter === undefined || søknad.dokumenter.length === 0) && (
                 <p>
-                    <FormattedMessage id="dokumenter.ingenDokumenter" />
+                    <Msg id="dokumenter.ingenDokumenter" />
                 </p>
             )}
         </Box>

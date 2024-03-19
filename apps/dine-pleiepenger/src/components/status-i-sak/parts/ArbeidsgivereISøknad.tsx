@@ -1,11 +1,12 @@
+import { Box, Heading } from '@navikt/ds-react';
 import React from 'react';
-import { getArbeidsgiverOrgnrISøknad } from '../../../utils/sakUtils';
+import { useIntl } from 'react-intl';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { Msg } from '../../../i18n';
 import { Pleiepengesøknad } from '../../../server/api-models/SøknadSchema';
 import { getArbeidsgivermeldingApiUrlBySoknadIdOgOrgnummer } from '../../../utils/dokumentUtils';
-import { FormattedMessage, useIntl } from 'react-intl';
-import { Box, Heading } from '@navikt/ds-react';
+import { getArbeidsgiverOrgnrISøknad } from '../../../utils/sakUtils';
 import PdfLenke from '../../pdf-lenke/PdfLenke';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 
 interface Props {
     søknad: Pleiepengesøknad;
@@ -17,10 +18,10 @@ const ArbeidsgivereISøknad: React.FunctionComponent<Props> = ({ søknad }) => {
     return (
         <Box className="mt-4">
             <Heading size="xsmall" level="4" spacing={true}>
-                <FormattedMessage id="bekreftelseTilArbeidsgiver.title" />
+                <Msg id="bekreftelseTilArbeidsgiver.title" />
             </Heading>
             <p>
-                <FormattedMessage id="bekreftelseTilArbeidsgiver.info" />
+                <Msg id="bekreftelseTilArbeidsgiver.info" />
             </p>
 
             <ul className="mt-4">

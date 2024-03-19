@@ -5,6 +5,7 @@ import InnsendtSøknadContent from './InnsendtSøknadContent';
 import Skeleton from 'react-loading-skeleton';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Add } from '@navikt/ds-icons';
+import { Msg } from '../../i18n';
 
 interface Props {
     søknader: InnsendtSøknad[];
@@ -26,7 +27,11 @@ const InnsendtSøknadListe: React.FunctionComponent<Props> = ({ søknader = [] }
     }, [antall, focusIndex]);
 
     if (søknader.length === 0) {
-        return <Alert variant="info">Ingen søknader funnet</Alert>;
+        return (
+            <Alert variant="info">
+                <Msg id="innsendtSøknadListe.ingenSøknader" />
+            </Alert>
+        );
     }
 
     const visFlereSøknader = () => {
@@ -61,7 +66,7 @@ const InnsendtSøknadListe: React.FunctionComponent<Props> = ({ søknader = [] }
                     <Button variant="tertiary-neutral" type="button" onClick={visFlereSøknader}>
                         <HStack gap="2" align="center" wrap={false}>
                             <Add role="presentation" />
-                            Vis flere innsendinger
+                            <Msg id="innsendtSøknadListe.visFlereInnsendinger" />
                         </HStack>
                     </Button>
                 </Box>

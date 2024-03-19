@@ -68,6 +68,9 @@ export const nb = {
     'påbegyntEndring.info': 'Lagres til og med {datoNårSlettes}',
 
     'dineInnsendteSøknader.tittel': 'Dine søknader, endringer og ettersendelser',
+    'innsendtSøknadListe.ingenSøknader': 'Ingen søknader funnet',
+    'innsendtSøknadListe.visFlereInnsendinger': 'Vis flere innsendinger',
+    'innsendtSøknadTitle.mottatt': 'Mottatt: {dato}',
 
     'dokumenterTittel.PP_SYKT_BARN': 'Søknad og eventuelle vedlegg i søknad',
     'dokumenterTittel.SØKNAD': 'Søknad og eventuelle vedlegg i søknad',

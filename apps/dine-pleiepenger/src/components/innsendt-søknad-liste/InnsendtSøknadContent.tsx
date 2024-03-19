@@ -1,14 +1,15 @@
 import { Box, Heading, Link } from '@navikt/ds-react';
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { File } from '@navikt/ds-icons';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { Msg } from '../../i18n';
+import { InnsendtSøknadArbeidsgiver } from '../../server/api-models/ArbeidsgivereSchema';
 import { InnsendtSøknadDokument } from '../../types/InnsendtSøknadDocument';
 import { Organisasjon } from '../../types/Organisasjon';
 import { InnsendtSøknad, InnsendtSøknadstype } from '../../types/Søknad';
 import { getDokumentFrontendUrl, getSøknadDokumentFilnavn } from '../../utils/dokumentUtils';
 import { browserEnv } from '../../utils/env';
-import { InnsendtSøknadArbeidsgiver } from '../../server/api-models/ArbeidsgivereSchema';
 
 interface Props {
     søknad: InnsendtSøknad;
@@ -46,7 +47,7 @@ const InnsendtSøknadContent: React.FunctionComponent<Props> = ({ søknad }) => 
                         organisasjon.organisasjonsnummer,
                     )}>
                     <File title="Dokumentikon" />
-                    <FormattedMessage
+                    <Msg
                         id="dokumenterSomKanLastesNed.bekreftelse"
                         values={{
                             organisasjonsnavn: organisasjon.navn,
@@ -76,7 +77,7 @@ const InnsendtSøknadContent: React.FunctionComponent<Props> = ({ søknad }) => 
         <>
             <Box>
                 <Heading size="xsmall" level="4" spacing={true}>
-                    <FormattedMessage id={`dokumenterTittel.${søknad.søknadstype}`} />
+                    <Msg id={`dokumenterTittel.${søknad.søknadstype}`} />
                 </Heading>
                 {søknad.dokumenter && søknad.dokumenter.length > 0 && (
                     <ul>{søknad.dokumenter.map((dokument) => mapDokumenter(dokument))}</ul>
@@ -89,10 +90,10 @@ const InnsendtSøknadContent: React.FunctionComponent<Props> = ({ søknad }) => 
             {søknad.søknadstype === InnsendtSøknadstype.PP_SYKT_BARN && harArbeidsgiver() && (
                 <Box className="mt-8">
                     <Heading size="xsmall" level="4" spacing={true}>
-                        <FormattedMessage id="bekreftelseTilArbeidsgiver.title" />
+                        <Msg id="bekreftelseTilArbeidsgiver.title" />
                     </Heading>
                     <p>
-                        <FormattedMessage id="bekreftelseTilArbeidsgiver.info" />
+                        <Msg id="bekreftelseTilArbeidsgiver.info" />
                     </p>
                     {'arbeidsgivere' in søknad.søknad &&
                         'organisasjoner' in søknad.søknad.arbeidsgivere &&
