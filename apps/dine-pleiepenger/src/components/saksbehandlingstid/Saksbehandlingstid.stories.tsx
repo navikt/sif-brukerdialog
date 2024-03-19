@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { withIntl } from '../../storybook/hooks/withIntl';
 const meta: Meta<typeof Saksbehandlingstid> = {
     component: Saksbehandlingstid,
-    title: 'Components/Saksbehandlingstid',
+    title: 'Content/Saksbehandlingstid',
     parameters: {
         layout: 'centered',
     },

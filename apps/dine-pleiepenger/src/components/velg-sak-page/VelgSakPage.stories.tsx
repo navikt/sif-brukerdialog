@@ -6,7 +6,7 @@ import VelgSakPage from './VelgSakPage';
 import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof VelgSakPage> = {
     component: VelgSakPage,
-    title: 'Components/VelgSakPage',
+    title: 'Content/VelgSakPage',
     parameters: {
         layout: 'centered',
     },

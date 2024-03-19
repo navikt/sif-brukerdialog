@@ -5,7 +5,7 @@ import { withIntl } from '../../storybook/hooks/withIntl';
 
 const meta: Meta<typeof Snarveier> = {
     component: Snarveier,
-    title: 'Components/Snarveier',
+    title: 'Content/Snarveier',
     parameters: {
         layout: 'centered',
     },

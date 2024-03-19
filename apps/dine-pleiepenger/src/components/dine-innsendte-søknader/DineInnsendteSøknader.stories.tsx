@@ -6,7 +6,7 @@ import { InnsendtSøknad } from '../../types/Søknad';
 import DineInnsendteSøknader from './DineInnsendteSøknader';
 
 const meta: Meta<typeof DineInnsendteSøknader> = {
-    title: 'Components/DineSøknader',
+    title: 'Content/DineSøknader',
     component: DineInnsendteSøknader,
     parameters: {
         layout: 'centered',

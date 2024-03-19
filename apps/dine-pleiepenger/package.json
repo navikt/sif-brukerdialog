@@ -5,6 +5,7 @@
     "scripts": {
         "build-storybook": "storybook build",
         "build": "next build",
+        "chromatic": "npx chromatic --project-token=chpt_de374d449612e0f",
         "dev-api": "node ./api-mock-server/api-mock-server.js",
         "dev": "next dev -p 8080",
         "lint": "next lint",

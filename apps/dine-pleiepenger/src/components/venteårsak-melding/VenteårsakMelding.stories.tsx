@@ -6,7 +6,7 @@ import { Venteårsak } from '../../types/Venteårsak';
 
 const meta: Meta<typeof VenteårsakMelding> = {
     component: VenteårsakMelding,
-    title: 'Components/VenteårsakMelding',
+    title: 'Content/VenteårsakMelding',
     parameters: {
         layout: 'centered',
     },
