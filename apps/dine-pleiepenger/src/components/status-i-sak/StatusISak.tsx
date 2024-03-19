@@ -46,7 +46,7 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser, tit
                     </Switch>
                 </Box>
             ) : null}
-            <Box padding="4" className="bg-white pb-0">
+            <Box className="bg-white p-6 pb-0">
                 <Process>
                     {visibleSteps.map((step, idx) => {
                         const headingId = `process-heading-${idx}`;

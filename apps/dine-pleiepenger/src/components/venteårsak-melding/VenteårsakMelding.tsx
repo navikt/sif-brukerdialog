@@ -16,7 +16,7 @@ const VenteårsakMelding: React.FunctionComponent<Props> = ({ venteårsak }) => 
             return (
                 <>
                     <Alert variant="warning">
-                        <Heading level="2" size="medium" className="text-gray-900">
+                        <Heading level="2" size="small" className="text-gray-900">
                             <Msg id="venteårsakMelding.legeerklæring.tittel" />
                         </Heading>
                         <BodyLong className="mb-2 mt-2">

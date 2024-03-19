@@ -31,10 +31,12 @@
     border-color: var(--a-deepblue-800);
 }
 .process__item__variant--CURRENT {
-    background-color: var(--a-deepblue-100);
+    background-color: var(--a-deepblue-50);
     z-index: 2;
     position: relative;
     opacity: 1;
+    padding-bottom: 0.75rem;
+    margin-top: 0.75rem;
 }
 .process__item__variant--WARNING {
     background-color: var(--a-orange-100);
@@ -68,7 +70,7 @@
     border-style: solid;
     display: block;
     opacity: 1;
-    margin-top: -1rem;
+    margin-top: -0.5rem;
     min-height: 1.5rem;
 }
 process__line--1--continuation {
@@ -98,7 +100,7 @@ process__line--1--continuation {
     justify-content: flex-start;
     text-decoration: none;
     padding: var(--process-border-width);
-    margin: calc(var(--process-border-width) * -1) calc(var(--process-border-width) * -1) 1.25rem;
+    margin: calc(var(--process-border-width) * -1) calc(var(--process-border-width) * -1) 1rem;
 }
 
 .process__circle {

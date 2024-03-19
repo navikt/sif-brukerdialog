@@ -21,10 +21,3 @@
 .navds-alert .navds-heading {
     color: var(--a-gray-900);
 }
-
-.process__item--current .navds-link {
-    color: var(--a-gray-900);
-}
-.process__item--current .navds-link:focus-visible {
-    color: white;
-}

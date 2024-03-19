@@ -26,11 +26,7 @@ const getFristTekst = (frist: Date, venteårsak?: Venteårsak): React.ReactNode 
                     id="svarfrist.generellFrist"
                     values={{
                         frist: dateFormatter.full(frist),
-                        dato: (chunk) => (
-                            <div>
-                                <strong>{chunk}</strong>
-                            </div>
-                        ),
+                        dato: (chunk) => <strong>{chunk}</strong>,
                     }}
                 />
             );
