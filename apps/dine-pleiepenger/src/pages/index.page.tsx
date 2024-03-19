@@ -1,23 +1,19 @@
-import { Box, Heading, LinkPanel, VStack } from '@navikt/ds-react';
+import { Box, VStack } from '@navikt/ds-react';
 import { ReactElement } from 'react';
-import { dateFormatter } from '@navikt/sif-common-utils';
 import Head from 'next/head';
-import Link from 'next/link';
 import { withAuthenticatedPage } from '../auth/withAuthentication';
 import DineInnsendteSøknader from '../components/dine-innsendte-søknader/DineInnsendteSøknader';
 import HvaSkjer from '../components/hva-skjer/HvaSkjer';
 import DefaultPageLayout from '../components/page-layout/default-page-layout/DefaultPageLayout';
 import Snarveier from '../components/snarveier/Snarveier';
-import StatusTag from '../components/status-tag/StatusTag';
-import Svarfrist from '../components/svarfrist/Svarfrist';
+import Saksbehandlingstid from '../components/saksbehandlingstid/Saksbehandlingstid';
 import { useInnsynsdataContext } from '../hooks/useInnsynsdataContext';
 import { useLogBrukerprofil } from '../hooks/useLogBrukerprofil';
 import { useMessages } from '../i18n';
 import { PleietrengendeMedSak } from '../server/api-models/PleietrengendeMedSakSchema';
 import { InnsendtSøknad, InnsendtSøknadstype } from '../types/Søknad';
-import { personaliaUtils } from '../utils/personaliaUtils';
-import { getBehandlingsstatusISak } from '../utils/sakUtils';
 import SakPage from './sak/SakPage';
+import VelgSakPage from '../components/velg-sak-page/VelgSakPage';
 
 const harSendtInnSøknadEllerEndringsmelding = (søknader: InnsendtSøknad[]): boolean => {
     return søknader.some(
@@ -55,42 +51,7 @@ function DinePleiepengerPage(): ReactElement {
     }
 
     if (saker.length > 1) {
-        return (
-            <DefaultPageLayout>
-                <Head>
-                    <title>{text('velgSak.dokumentTittel')}</title>
-                </Head>
-                <Box>
-                    <Heading size="medium" level="1" spacing={true} className="text-deepblue-800">
-                        {text('velgSak.tittel')}
-                    </Heading>
-
-                    <VStack gap="5" className="max-w-2xl mb-10">
-                        {saker.map((sak) => (
-                            <LinkPanel
-                                as={Link}
-                                border={false}
-                                href={`/sak/${sak.sak.saksnummer}`}
-                                key={sak.sak.saksnummer}>
-                                <LinkPanel.Title className="w-full">
-                                    <Heading as="span" size="small">
-                                        {personaliaUtils.navn(sak.pleietrengende)}
-                                    </Heading>
-                                </LinkPanel.Title>
-                                <LinkPanel.Description>
-                                    <p>
-                                        {text('velgSak.barn.fdato', {
-                                            dato: dateFormatter.full(sak.pleietrengende.fødselsdato),
-                                        })}
-                                    </p>
-                                    <StatusTag {...getBehandlingsstatusISak(sak.sak)} />
-                                </LinkPanel.Description>
-                            </LinkPanel>
-                        ))}
-                    </VStack>
-                </Box>
-            </DefaultPageLayout>
-        );
+        return <VelgSakPage saker={saker} />;
     }
 
     return (
@@ -107,7 +68,7 @@ function DinePleiepengerPage(): ReactElement {
                         <DineInnsendteSøknader søknader={innsendteSøknader} />
                     </div>
                     <div className="md:mb-none shrink-0 md:w-72">
-                        <Svarfrist
+                        <Saksbehandlingstid
                             frist={getSaksbehandlingsfrist(innsendteSøknader, saker)}
                             saksbehandlingstidUker={saksbehandlingstidUker}
                         />

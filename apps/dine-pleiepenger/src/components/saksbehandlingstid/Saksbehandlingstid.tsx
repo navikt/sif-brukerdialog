@@ -26,14 +26,18 @@ const getFristTekst = (frist: Date, venteårsak?: Venteårsak): React.ReactNode 
                     id="svarfrist.generellFrist"
                     values={{
                         frist: dateFormatter.full(frist),
-                        strong: (chunk) => <strong>{chunk}</strong>,
+                        dato: (chunk) => (
+                            <div>
+                                <strong>{chunk}</strong>
+                            </div>
+                        ),
                     }}
                 />
             );
     }
 };
 
-const Svarfrist: React.FunctionComponent<Props> = ({ frist, venteårsak, saksbehandlingstidUker = 7 }) => {
+const Saksbehandlingstid: React.FunctionComponent<Props> = ({ frist, venteårsak, saksbehandlingstidUker = 7 }) => {
     const fristErPassert = frist && dayjs(frist).isBefore(dayjs(), 'day');
     const { text } = useMessages();
     return (
@@ -56,4 +60,4 @@ const Svarfrist: React.FunctionComponent<Props> = ({ frist, venteårsak, saksbeh
     );
 };
 
-export default Svarfrist;
+export default Saksbehandlingstid;

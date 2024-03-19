@@ -17,48 +17,42 @@ export default meta;
 
 type Story = StoryObj<typeof StatusTag>;
 
-export const Avsluttet: Story = {
-    args: {
-        status: Behandlingsstatus.AVSLUTTET,
-    },
-};
 export const Opprettet: Story = {
     args: {
         status: Behandlingsstatus.OPPRETTET,
     },
 };
-export const PåVent: Story = {
+export const UnderBehandling: Story = {
     args: {
-        status: Behandlingsstatus.PÅ_VENT,
-        venteårsak: Venteårsak.INNTEKTSMELDING,
+        status: Behandlingsstatus.UNDER_BEHANDLING,
     },
 };
-export const PåVentInntektsmelding: Story = {
-    args: {
-        status: Behandlingsstatus.PÅ_VENT,
-        venteårsak: Venteårsak.INNTEKTSMELDING,
-    },
-};
-export const PåVentMedisinsk: Story = {
-    args: {
-        status: Behandlingsstatus.PÅ_VENT,
-        venteårsak: Venteårsak.MEDISINSK_DOKUMENTASJON,
-    },
-};
-export const PåVentMeldekort: Story = {
-    args: {
-        status: Behandlingsstatus.PÅ_VENT,
-        venteårsak: Venteårsak.MELDEKORT,
-    },
-};
-export const PåVentSøktForTidlig: Story = {
+export const SøktForTidlig: Story = {
     args: {
         status: Behandlingsstatus.PÅ_VENT,
         venteårsak: Venteårsak.SØKT_FOR_TIDLIG,
     },
 };
-export const UnderBehandling: Story = {
+export const VenterPåMeldekort: Story = {
     args: {
-        status: Behandlingsstatus.UNDER_BEHANDLING,
+        status: Behandlingsstatus.PÅ_VENT,
+        venteårsak: Venteårsak.MELDEKORT,
+    },
+};
+export const VenterPåLegeerklæring: Story = {
+    args: {
+        status: Behandlingsstatus.PÅ_VENT,
+        venteårsak: Venteårsak.MEDISINSK_DOKUMENTASJON,
+    },
+};
+export const VenterPåInntektsmelding: Story = {
+    args: {
+        status: Behandlingsstatus.PÅ_VENT,
+        venteårsak: Venteårsak.INNTEKTSMELDING,
+    },
+};
+export const FerdigBehandlet: Story = {
+    args: {
+        status: Behandlingsstatus.AVSLUTTET,
     },
 };

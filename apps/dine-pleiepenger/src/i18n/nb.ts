@@ -16,12 +16,12 @@ export const nb = {
     'snarveier.nySøknad.tittel': 'Ny pleiepengesøknad',
     'snarveier.nySøknad.tekst': 'Her kan du søke om forlenget periode med pleiepenger.',
 
-    'statusTag.status.underBehandling': 'Under behandling',
+    'statusTag.status.underBehandling': 'Til behandling',
     'statusTag.status.ferdigBehandlet': 'Ferdig behandlet',
     'statusTag.venteårsak.inntektsmelding': 'Venter på inntektsmelding',
     'statusTag.venteårsak.legeerklæring': 'Venter på legeerklæring',
-    'statusTag.venteårsak.meldekort': 'Venter på behandling (meldekort)',
-    'statusTag.venteårsak.søktForTidlig': 'Venter på behandling (søkt for tidlig)',
+    'statusTag.venteårsak.meldekort': 'Venter på meldekort',
+    'statusTag.venteårsak.søktForTidlig': 'Venter på behandling',
 
     'sakstype.PP_SYKT_BARN': 'Søknad om pleiepenger sykt barn',
     'sakstype.PP_ETTERSENDELSE': 'Ettersendelse av dokumenter - Pleiepenger sykt barn',
@@ -30,10 +30,10 @@ export const nb = {
     'svarfrist.tittel': 'Saksbehandlingstid',
     'svarfrist.forventetBehandlingstid':
         'Forventet behandlingstid er {saksbehandlingstidUker} uker fra vi fikk søknaden din.',
-    'svarfrist.lesMerLenke': 'Les mer om saksbehandlingstid',
+    'svarfrist.lesMerLenke': 'Se saksbehandlingstider',
     'svarfrist.dokumenterManglerFrist':
         'Fordi vi mangler dokumenter kan saksbehandlingstiden bli lenger enn <strong>{dateFormatter.full(frist)}</strong>.',
-    'svarfrist.generellFrist': 'Du kan forvente svar innen <strong>{dateFormatter.full(frist)}</strong>',
+    'svarfrist.generellFrist': 'Du kan forvente svar innen <dato>{frist}</dato>',
 
     'hvaSkjerInfo.tittel': 'Hva skjer etter at du har sendt søknad til oss?',
     'hvaSkjerInfo.innsent.endringsmelding.tittel': 'Saksgang etter innsendt endringsmelding',
@@ -84,4 +84,25 @@ export const nb = {
         'Dette er en bekreftelse som du kan gi til arbeidsgiver. Den bekrefter at vi har fått søknad om pleiepenger fra deg, hvilken periode du har søkt pleiepenger og informasjon om når arbeidsgiver må sende inntektsmelding.',
     'dokumenterSomKanLastesNed.tittel': 'Dokumenter som kan lastes ned',
     'dokumenterSomKanLastesNed.bekreftelse': 'Bekreftelse til {organisasjonsnavn}',
+
+    'kontaktOss.tittel': 'Finner du ikke svaret her? Ta kontakt med oss',
+    'kontaktOss.chatLenke': 'Finner du ikke svaret her? Ta kontakt med oss',
+    'kontaktOss.frida':
+        'Du møter først chatbot Frida som har døgnåpent. Mellom klokken 9 og 15 på hverdager kan du be Frida om å få chatte med en veileder.',
+    'kontaktOss.skrivTilOssLenke': 'Skriv til oss',
+    'kontaktOss.skrivTilOssInfo':
+        '<p>Send beskjed eller nye opplysninger i saken din. Du kan også sende spørsmål.</p><p>Svartid er 4 arbeidsdager. Hvis du vil ha svar raskere, kan du bruke chat.</p>',
+    'kontaktOss.ringOssLenke': 'Ring oss på 55 55 33 33',
+    'kontaktOss.ringOssInfo': 'Åpent hverdager kl. 9–15. Vi kan ringe deg tilbake hvis ventetiden er over 5 min.',
+    'kontaktOss.ringOssSeTelefonnummer': 'Se flere telefonnummer og tastevalg',
+
+    'sakPageHeader.saksnr': 'Saksnr {saksnr}',
+    'sakPageHeader.defaultTittel': 'Din pleiepengesak',
+
+    'pdfLenke.lenke': '{tittel} (PDF)',
+
+    'snarveierSak.tittel': 'Snarveier',
+    'snarveierSak.dokumentarkiv': 'Snarveier',
+    'snarveierSak.utbetalinger': 'Utbetalinger',
+    'snarveierSak.omPleiepenger': 'Om pleiepenger',
 };

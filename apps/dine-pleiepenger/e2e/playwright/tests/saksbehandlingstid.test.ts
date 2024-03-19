@@ -21,7 +21,7 @@ test.beforeEach(async ({ page }) => {
     await setupMockRoutes(page);
 });
 
-test('Svarfrist er i fremtid', async ({ page }) => {
+test('Saksbehandlingstid er i fremtid', async ({ page }) => {
     await page.route('**/innsynsdata', async (route) => {
         const response: Innsynsdata = {
             ...defaultInnsynsdata,
@@ -34,7 +34,7 @@ test('Svarfrist er i fremtid', async ({ page }) => {
     await expect(page.getByText('Du kan forvente svar innen:')).toBeVisible();
 });
 
-test('Svarfrist er i dag', async ({ page }) => {
+test('Saksbehandlingstid er i dag', async ({ page }) => {
     await page.route('**/innsynsdata', async (route) => {
         const response: Innsynsdata = {
             ...defaultInnsynsdata,
@@ -47,7 +47,7 @@ test('Svarfrist er i dag', async ({ page }) => {
     await expect(page.getByText('Du kan forvente svar innen:')).toBeVisible();
 });
 
-test('Svarfrist er i fortid', async ({ page }) => {
+test('Saksbehandlingstid er i fortid', async ({ page }) => {
     await page.route('**/innsynsdata', async (route) => {
         const response: Innsynsdata = {
             ...defaultInnsynsdata,
@@ -60,7 +60,7 @@ test('Svarfrist er i fortid', async ({ page }) => {
     await expect(page.getByText('Forventet behandlingstid er')).toBeVisible();
 });
 
-test('Ingen svarfrist, men behandlingstid', async ({ page }) => {
+test('Ingen Saksbehandlingstid, men behandlingstid', async ({ page }) => {
     await page.route('**/innsynsdata', async (route) => {
         const response: Innsynsdata = {
             ...defaultInnsynsdata,
@@ -73,7 +73,7 @@ test('Ingen svarfrist, men behandlingstid', async ({ page }) => {
     await expect(page.getByText('Du kan forvente svar innen:')).toBeVisible();
 });
 
-test('Hverken svarfrist eller behandlingstid', async ({ page }) => {
+test('Hverken Saksbehandlingstid eller behandlingstid', async ({ page }) => {
     await page.route('**/innsynsdata', async (route) => {
         const response: Innsynsdata = {
             ...defaultInnsynsdata,

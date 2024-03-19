@@ -1,6 +1,6 @@
-import { ExternalLink } from '@navikt/ds-icons';
 import { Link } from '@navikt/ds-react';
 import React from 'react';
+import { ExternalLink } from '@navikt/ds-icons';
 import { browserEnv } from '../../utils/env';
 
 interface Props {

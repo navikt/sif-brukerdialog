@@ -1,28 +1,26 @@
-import { HGrid, Heading, LinkPanel } from '@navikt/ds-react';
-import React from 'react';
+import { Heading, HGrid, LinkPanel } from '@navikt/ds-react';
+import { Msg } from '../../i18n';
 import { browserEnv } from '../../utils/env';
 
-interface Props {}
-
-const SnarveierSak: React.FunctionComponent<Props> = ({}) => (
+const SnarveierSak = () => (
     <>
         <Heading size="medium" level="2" className="text-deepblue-800" spacing={true}>
-            Snarveier
+            <Msg id="snarveierSak.tittel" />
         </Heading>
         <HGrid gap="2" columns={{ xs: 1, md: 3 }}>
             <LinkPanel href={browserEnv.NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL} border={false}>
                 <Heading as="div" level="3" size="small">
-                    Dokumentarkiv
+                    <Msg id="snarveierSak.dokumentarkiv" />
                 </Heading>
             </LinkPanel>
             <LinkPanel href={browserEnv.NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL} border={false}>
                 <Heading as="div" level="3" size="small">
-                    Utbetalinger
+                    <Msg id="snarveierSak.utbetalinger" />
                 </Heading>
             </LinkPanel>
             <LinkPanel href={browserEnv.NEXT_PUBLIC_PLEIEPENGER_INFO_URL} border={false}>
                 <Heading as="div" level="3" size="small">
-                    Om pleiepenger
+                    <Msg id="snarveierSak.omPleiepenger" />
                 </Heading>
             </LinkPanel>
         </HGrid>

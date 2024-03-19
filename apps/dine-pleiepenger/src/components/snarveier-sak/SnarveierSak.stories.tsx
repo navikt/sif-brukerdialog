@@ -1,11 +1,11 @@
-import Snarveier from './Snarveier';
+import SnarveierSak from './SnarveierSak';
 import type { Meta, StoryObj } from '@storybook/react';
 import { withEmptyPage } from '../../storybook/hooks/withEmptyPage';
 import { withIntl } from '../../storybook/hooks/withIntl';
 
-const meta: Meta<typeof Snarveier> = {
-    component: Snarveier,
-    title: 'Components/Snarveier',
+const meta: Meta<typeof SnarveierSak> = {
+    component: SnarveierSak,
+    title: 'Components/SnarveierSak',
     parameters: {
         layout: 'centered',
     },
@@ -13,7 +13,7 @@ const meta: Meta<typeof Snarveier> = {
 };
 export default meta;
 
-type Story = StoryObj<typeof Snarveier>;
+type Story = StoryObj<typeof SnarveierSak>;
 
 export const Default: Story = {
     args: {},

@@ -1,19 +1,20 @@
 import dayjs from 'dayjs';
 import { withEmptyPage } from '../../storybook/hooks/withEmptyPage';
-import Svarfrist from './Svarfrist';
+import Saksbehandlingstid from './Saksbehandlingstid';
 
 import type { Meta, StoryObj } from '@storybook/react';
-const meta: Meta<typeof Svarfrist> = {
-    component: Svarfrist,
-    title: 'Components/Svarfrist',
+import { withIntl } from '../../storybook/hooks/withIntl';
+const meta: Meta<typeof Saksbehandlingstid> = {
+    component: Saksbehandlingstid,
+    title: 'Components/Saksbehandlingstid',
     parameters: {
         layout: 'centered',
     },
-    decorators: [withEmptyPage],
+    decorators: [withEmptyPage, withIntl],
 };
 export default meta;
 
-type Story = StoryObj<typeof Svarfrist>;
+type Story = StoryObj<typeof Saksbehandlingstid>;
 
 export const Default: Story = {
     name: 'Med frist',

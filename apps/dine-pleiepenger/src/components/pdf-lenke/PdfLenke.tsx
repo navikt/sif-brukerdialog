@@ -1,6 +1,7 @@
 import { Link } from '@navikt/ds-react';
 import React from 'react';
 import { FilePdfIcon } from '@navikt/aksel-icons';
+import { Msg } from '../../i18n';
 
 interface Props {
     tittel: string;
@@ -11,7 +12,9 @@ interface Props {
 const PdfLenke: React.FunctionComponent<Props> = ({ href, tittel, target = 'blank' }) => (
     <Link target={target} href={href}>
         <FilePdfIcon title="Dokumentikon PDF" />
-        <span>{`${tittel} (PDF)`}</span>
+        <span>
+            <Msg id="pdfLenke.lenke" values={{ tittel }} />
+        </span>
     </Link>
 );
 

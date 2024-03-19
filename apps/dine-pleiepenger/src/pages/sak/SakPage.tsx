@@ -10,7 +10,7 @@ import SnarveierSak from '../../components/snarveier-sak/SnarveierSak';
 import Snarveier from '../../components/snarveier/Snarveier';
 import StatusISak from '../../components/status-i-sak/StatusISak';
 import StatusTag from '../../components/status-tag/StatusTag';
-import Svarfrist from '../../components/svarfrist/Svarfrist';
+import Saksbehandlingstid from '../../components/saksbehandlingstid/Saksbehandlingstid';
 import VenteårsakMelding from '../../components/VenteårsakMelding';
 import { Behandlingsstatus } from '../../server/api-models/Behandlingsstatus';
 import { Pleietrengende } from '../../server/api-models/PleietrengendeSchema';
@@ -61,7 +61,7 @@ const SakPage: React.FunctionComponent<Props> = ({ sak, pleietrengende, saksbeha
                     <div className="md:grow mb-10 md:mb-0">{<StatusISak sak={sak} tittel="Dette skjer i saken" />}</div>
                     <div className="md:mb-none shrink-0 md:w-72">
                         <VStack gap="5">
-                            <Svarfrist
+                            <Saksbehandlingstid
                                 frist={sak.saksbehandlingsFrist}
                                 saksbehandlingstidUker={saksbehandlingstidUker}
                                 venteårsak={statusISak.venteårsak}
