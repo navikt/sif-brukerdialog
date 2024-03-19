@@ -12,6 +12,7 @@ import StatusTag from '../components/status-tag/StatusTag';
 import Svarfrist from '../components/svarfrist/Svarfrist';
 import { useInnsynsdataContext } from '../hooks/useInnsynsdataContext';
 import { useLogBrukerprofil } from '../hooks/useLogBrukerprofil';
+import { useMessages } from '../i18n';
 import { PleietrengendeMedSak } from '../server/api-models/PleietrengendeMedSakSchema';
 import { InnsendtSøknad, InnsendtSøknadstype } from '../types/Søknad';
 import { personaliaUtils } from '../utils/personaliaUtils';
@@ -40,6 +41,8 @@ function DinePleiepengerPage(): ReactElement {
 
     useLogBrukerprofil(innsendteSøknader, saker, saksbehandlingstidUker);
 
+    const { text } = useMessages();
+
     if (saker.length === 1) {
         return (
             <SakPage
@@ -55,11 +58,11 @@ function DinePleiepengerPage(): ReactElement {
         return (
             <DefaultPageLayout>
                 <Head>
-                    <title>Dine pleiepenger - velg sak</title>
+                    <title>{text('velgSak.dokumentTittel')}</title>
                 </Head>
                 <Box>
                     <Heading size="medium" level="1" spacing={true} className="text-deepblue-800">
-                        Dine pleiepengesaker
+                        {text('velgSak.tittel')}
                     </Heading>
 
                     <VStack gap="5" className="max-w-2xl mb-10">
@@ -75,7 +78,11 @@ function DinePleiepengerPage(): ReactElement {
                                     </Heading>
                                 </LinkPanel.Title>
                                 <LinkPanel.Description>
-                                    <p>Født: {dateFormatter.full(sak.pleietrengende.fødselsdato)}</p>
+                                    <p>
+                                        {text('velgSak.barn.fdato', {
+                                            dato: dateFormatter.full(sak.pleietrengende.fødselsdato),
+                                        })}
+                                    </p>
                                     <StatusTag {...getBehandlingsstatusISak(sak.sak)} />
                                 </LinkPanel.Description>
                             </LinkPanel>
@@ -89,7 +96,7 @@ function DinePleiepengerPage(): ReactElement {
     return (
         <DefaultPageLayout>
             <Head>
-                <title>Dine pleiepenger</title>
+                <title>{text('forside.dokumentTittel')}</title>
             </Head>
             <VStack gap="12">
                 <Box>

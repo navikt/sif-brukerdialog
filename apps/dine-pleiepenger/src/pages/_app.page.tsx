@@ -16,11 +16,11 @@ import { InnsynsdataContextProvider } from '../context/InnsynsdataContextProvide
 import { Innsynsdata } from '../types/InnsynData';
 import appSentryLogger from '../utils/appSentryLogger';
 import { browserEnv } from '../utils/env';
-import { messages } from '../utils/message';
 import UnavailablePage from './unavailable.page';
 import 'react-loading-skeleton/dist/skeleton.css';
 import '../components/process/process.css';
 import '../style/global.css';
+import { messages } from '../i18n';
 
 export const APPLICATION_KEY = 'sif-innsyn';
 
