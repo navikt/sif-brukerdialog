@@ -11,7 +11,7 @@ import Snarveier from '../../components/snarveier/Snarveier';
 import StatusISak from '../../components/status-i-sak/StatusISak';
 import StatusTag from '../../components/status-tag/StatusTag';
 import Saksbehandlingstid from '../../components/saksbehandlingstid/Saksbehandlingstid';
-import VenteårsakMelding from '../../components/VenteårsakMelding';
+import VenteårsakMelding from '../../components/venteårsak-melding/VenteårsakMelding';
 import { Behandlingsstatus } from '../../server/api-models/Behandlingsstatus';
 import { Pleietrengende } from '../../server/api-models/PleietrengendeSchema';
 import { Sak } from '../../server/api-models/SakSchema';

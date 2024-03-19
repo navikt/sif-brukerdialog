@@ -14,7 +14,7 @@ export const getMessagesIntl = (intl: IntlShape) => {
     return typedIntlHelper<keyof typeof nb>(intl);
 };
 
-export type MessagesText = (key: MessageKeys, values?: any) => string;
+export type TextFn = (key: MessageKeys, values?: any) => string;
 
 export const useMessages = () => {
     const intl = useIntl();

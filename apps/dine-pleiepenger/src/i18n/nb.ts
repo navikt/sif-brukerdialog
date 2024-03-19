@@ -4,17 +4,14 @@ export const nb = {
     'velgSak.barn.fdato': 'Født: {dato}',
     'forside.dokumentTittel': 'Dine pleiepenger',
 
-    'snarveier.endring.tittel': 'Meld fra om endringer',
-    'snarveier.endring.tekst':
-        'Her kan du melde fra om endringer i arbeidstid og ferie i perioden du har søkt om pleiepenger.',
+    'snarveier.endring.tittel': 'Meld fra om endring',
+    'snarveier.endring.tekst': 'Ved endringer i arbeidstid og ferie i din pleiepengeperiode.',
     'snarveier.ettersend.tittel': 'Ettersend dokumenter',
-    'snarveier.ettersend.tekst':
-        'Her kan du sende inn legeerklæring eller andre dokumenter til saken din om pleiepenger.',
+    'snarveier.ettersend.tekst': 'Ettersendt legeerklæring eller andre dokumenter til din sak.',
     'snarveier.skrivTilOss.tittel': 'Skriv til oss',
-    'snarveier.skrivTilOss.tekst':
-        'Her kan du stille spørsmål eller gi beskjed om endringer i saken din om pleiepenger.',
+    'snarveier.skrivTilOss.tekst': 'Har du spørsmål til saken din eller vil melde fra om annet enn jobb og ferie?',
     'snarveier.nySøknad.tittel': 'Ny pleiepengesøknad',
-    'snarveier.nySøknad.tekst': 'Her kan du søke om forlenget periode med pleiepenger.',
+    'snarveier.nySøknad.tekst': 'Ved forlengelser, nye arbeidsforhold eller større endringer i perioden.',
 
     'statusTag.status.underBehandling': 'Til behandling',
     'statusTag.status.ferdigBehandlet': 'Ferdig behandlet',
@@ -102,7 +99,33 @@ export const nb = {
     'pdfLenke.lenke': '{tittel} (PDF)',
 
     'snarveierSak.tittel': 'Snarveier',
-    'snarveierSak.dokumentarkiv': 'Snarveier',
+    'snarveierSak.dokumentarkiv': 'Dokumentarkiv',
     'snarveierSak.utbetalinger': 'Utbetalinger',
     'snarveierSak.omPleiepenger': 'Om pleiepenger',
+
+    'statusISak.mottattSøknad.tittel': 'Vi har fått søknaden din om pleiepenger',
+    'statusISak.mottattEndringsmelding.tittel': 'Vi har fått din endringsmelding',
+    'statusISak.ferdigBehandlet.tittel': 'Du har fått vedtak om pleiepenger',
+    'statusISak.forventetSvar.tittel': 'Søknaden er ferdig behandlet',
+    'statusISak.forventetSvar.info':
+        'Inntektsmelding fra arbeidsgiver og legeerklæring må være sendt inn for at vi kan behandle saken.',
+
+    'venteårsakMelding.legeerklæring.tittel': 'Vi mangler legeerklæring',
+    'venteårsakMelding.legeerklæring.lastOppHer': 'Last opp legeerklæring her',
+    'venteårsakMelding.legeerklæring.info':
+        'Vi har sendt deg brev om at vi trenger flere medisinske opplysninger for å vurdere retten til pleiepenger. Du finner informasjon om hva vi mangler i brevet, <lenke>se brev i dokumentarkivet</lenke>.',
+
+    'venteårsakMelding.inntektsmelding.tittel': 'Vi mangler inntektsmelding fra en eller flere arbeidsgivere',
+    'venteårsakMelding.inntektsmelding.info':
+        'Vi har sendt brev til deg og arbeidsgiveren din, fordi vi mangler inntektsmelding. For å behandle søknaden og beregne hvor mye pleiepenger du kan få, må arbeidsgiver sende inntektsmelding.',
+    'venteårsakMelding.inntektsmelding.dokumentarkivLenke': '<lenke>Se brev i dokumentarkivet</lenke>',
+
+    // 'venteårsakMelding.søktForTidlig.tittel': 'Vi kan tidligst behandle søknaden din {dato}',
+    'venteårsakMelding.søktForTidlig.tittel': 'Vi kan ikke behandle søknaden din enda',
+    'venteårsakMelding.søktForTidlig.info':
+        'For å beregne hvor mye pleiepenger du kan få, trenger vi ferske opplysninger om inntekten din. Arbeidsgiver kan derfor sende inntektsopplysninger tidligst 4 uker før pleiepengeperioden din starter. Saken er satt på vent frem til søknaden kan behandles.',
+
+    'venteårsakMelding.meldekort.tittel': 'Vi venter på at du sender meldekort',
+    'venteårsakMelding.meldekort.info':
+        'Vi kan tidligst behandle søknaden din når du har sendt inn det siste meldekortet, før du starter perioden med pleiepenger.',
 };

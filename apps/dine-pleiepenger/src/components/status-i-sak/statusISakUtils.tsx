@@ -5,23 +5,17 @@ import { Søknad } from '../../server/api-models/SøknadSchema';
 import SøknadStatusContent from './parts/SøknadStatusContent';
 import EndringsmeldingStatusContent from './parts/EndringsmeldingStatusContent';
 import FerdigBehandletStatusContent from './parts/FerdigBehandletStatusContent';
+import { Msg, TextFn as TextFn } from '../../i18n';
 
-// export const getAksjonspunkterTekst = (aksjonspunkter: Aksjonspunkt[]): string => {
-//     const årsaker = aksjonspunkter.map((a) => a.venteårsak).flat();
-//     if (årsaker.includes(Venteårsak.MEDISINSK_DOKUMENTASJON)) {
-//         return 'Saken er satt på vent fordi vi mangler legeerklæring';
-//     }
-//     if (årsaker.includes(Venteårsak.INNTEKTSMELDING)) {
-//         return 'Saken er satt på vent fordi vi mangler inntektsmelding';
-//     }
-//     return `Saken er satt på vent fordi vi mangler informajson`;
-// };
-
-export const getProcessStepFromMottattSøknad = (søknad: Søknad, current: boolean): ProcessStepData | undefined => {
+export const getProcessStepFromMottattSøknad = (
+    text: TextFn,
+    søknad: Søknad,
+    current: boolean,
+): ProcessStepData | undefined => {
     switch (søknad.søknadstype) {
         case Søknadstype.SØKNAD:
             return {
-                title: 'Vi har fått din søknad om pleiepenger for sykt barn',
+                title: text('statusISak.mottattSøknad.tittel'),
                 timestamp: søknad.k9FormatSøknad.mottattDato,
                 content: <SøknadStatusContent søknad={søknad} />,
                 completed: true,
@@ -30,7 +24,7 @@ export const getProcessStepFromMottattSøknad = (søknad: Søknad, current: bool
             };
         case Søknadstype.ENDRINGSMELDING:
             return {
-                title: 'Vi har fått din endringsmelding',
+                title: text('statusISak.mottattEndringsmelding.tittel'),
                 timestamp: søknad.k9FormatSøknad.mottattDato,
                 content: <EndringsmeldingStatusContent søknad={søknad} />,
                 completed: true,
@@ -42,7 +36,7 @@ export const getProcessStepFromMottattSøknad = (søknad: Søknad, current: bool
     }
 };
 
-export const getProcessStepsFraSøknadshendelser = (hendelser: Søknadshendelse[]): ProcessStepData[] => {
+export const getProcessStepsFraSøknadshendelser = (text: TextFn, hendelser: Søknadshendelse[]): ProcessStepData[] => {
     /** Aksjonspunkt skal ikke vises enda */
     const hendelserSomSkalVises = hendelser.filter((h) => h.type !== SøknadshendelseType.AKSJONSPUNKT);
 
@@ -56,7 +50,7 @@ export const getProcessStepsFraSøknadshendelser = (hendelser: Søknadshendelse[
 
             switch (hendelse.type) {
                 case SøknadshendelseType.MOTTATT_SØKNAD:
-                    return getProcessStepFromMottattSøknad(hendelse.søknad, erGjeldendeHendelse);
+                    return getProcessStepFromMottattSøknad(text, hendelse.søknad, erGjeldendeHendelse);
 
                 case SøknadshendelseType.AKSJONSPUNKT:
                     return {
@@ -69,7 +63,7 @@ export const getProcessStepsFraSøknadshendelser = (hendelser: Søknadshendelse[
 
                 case SøknadshendelseType.FERDIG_BEHANDLET:
                     return {
-                        title: 'Søknad er ferdig behandlet',
+                        title: text('statusISak.ferdigBehandlet.tittel'),
                         content: <FerdigBehandletStatusContent />,
                         completed: true,
                         isLastStep: true,
@@ -79,13 +73,8 @@ export const getProcessStepsFraSøknadshendelser = (hendelser: Søknadshendelse[
 
                 case SøknadshendelseType.FORVENTET_SVAR:
                     return {
-                        title: 'Søknaden er ferdig behandlet',
-                        content: (
-                            <>
-                                Inntektsmelding fra arbeidsgiver og legeerklæring må være sendt inn for at vi kan
-                                behandle saken.
-                            </>
-                        ),
+                        title: text('statusISak.forventetSvar.tittel'),
+                        content: <Msg id="statusISak.forventetSvar.info" />,
                         completed: false,
                         isLastStep: true,
                         timestamp: hendelse.dato,

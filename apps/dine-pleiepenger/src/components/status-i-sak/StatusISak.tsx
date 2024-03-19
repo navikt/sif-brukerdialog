@@ -7,6 +7,7 @@ import { formatSøknadshendelseTidspunkt, getAlleHendelserISak } from '../../uti
 import { Process } from '../process';
 import ProcessStep from '../process/ProcessStep';
 import { getProcessStepsFraSøknadshendelser } from './statusISakUtils';
+import { useMessages } from '../../i18n';
 
 interface Props {
     sak: Sak;
@@ -16,9 +17,9 @@ interface Props {
 
 const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser, tittel }) => {
     const [reverseDirection, setReverseDirection] = useState(false);
-
+    const { text } = useMessages();
     const hendelser = getAlleHendelserISak(sak);
-    const processSteps = getProcessStepsFraSøknadshendelser(hendelser);
+    const processSteps = getProcessStepsFraSøknadshendelser(text, hendelser);
 
     if (reverseDirection) {
         processSteps.reverse();

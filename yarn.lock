@@ -3337,6 +3337,7 @@ __metadata:
     next-logger: 4.0.0
     node-fetch: 3.3.2
     node-jose: 2.2.0
+    postcss-import: 16.0.1
     react: 18.2.0
     react-day-picker: 8.10.0
     react-dom: 18.2.0

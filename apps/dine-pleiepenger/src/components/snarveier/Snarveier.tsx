@@ -33,8 +33,8 @@ const Snarveier: React.FunctionComponent<Props> = ({ title }) => {
                     <SnarveiLinkPanel
                         href={browserEnv.NEXT_PUBLIC_ETTERSENDELSE_PLEIEPENGER_URL}
                         icon={<File role="presentation" aria-hidden={true} width="1.5rem" height="1.5rem" />}
-                        title={text('snarveier.endring.tittel')}
-                        description={text('snarveier.endring.tekst')}
+                        title={text('snarveier.ettersend.tittel')}
+                        description={text('snarveier.ettersend.tekst')}
                     />
                 </HGrid>
                 <HGrid gap="4" columns={{ sm: 1, md: 2 }}>
