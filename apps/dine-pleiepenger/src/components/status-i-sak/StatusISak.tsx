@@ -48,24 +48,29 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser, tit
             ) : null}
             <Box padding="4" className="bg-white pb-0">
                 <Process>
-                    {visibleSteps.map((step, idx) => (
-                        <ProcessStep
-                            key={idx}
-                            completed={step.completed}
-                            current={step.current}
-                            isLastStep={step.isLastStep}
-                            isContinuation={finnnesFlereHendelser && idx === 0}>
-                            <Heading size="small" level="3">
-                                {step.title}{' '}
-                                {step.timestamp ? (
-                                    <BodyShort className="mb-2">
-                                        {formatSøknadshendelseTidspunkt(step.timestamp)}
-                                    </BodyShort>
-                                ) : null}
-                            </Heading>
-                            <Box className="mt-4">{step.content}</Box>
-                        </ProcessStep>
-                    ))}
+                    {visibleSteps.map((step, idx) => {
+                        const headingId = `process-heading-${idx}`;
+                        return (
+                            <ProcessStep
+                                key={idx}
+                                completed={step.completed}
+                                current={step.current}
+                                aria-labelledby={headingId}
+                                isLastStep={step.isLastStep}
+                                headingId={headingId}
+                                isContinuation={finnnesFlereHendelser && idx === 0}>
+                                <Heading size="small" level="3" id={`process-heading-${idx}`}>
+                                    {step.title}{' '}
+                                    {step.timestamp ? (
+                                        <BodyShort className="mb-2">
+                                            {formatSøknadshendelseTidspunkt(step.timestamp)}
+                                        </BodyShort>
+                                    ) : null}
+                                </Heading>
+                                <Box className="mt-4">{step.content}</Box>
+                            </ProcessStep>
+                        );
+                    })}
                 </Process>
             </Box>
             {finnnesFlereHendelser && visAlleHendelser === undefined ? (

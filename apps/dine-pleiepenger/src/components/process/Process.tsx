@@ -27,11 +27,19 @@ export const Process: ProcessComponent = forwardRef<HTMLOListElement, ProcessPro
                     {React.Children.map(children, (step, index) => {
                         const stepIndex = index + 1;
                         const isCurrent = React.isValidElement<ProcessStepProps>(step) ? step.props.current : undefined;
+                        const isCompleted = React.isValidElement<ProcessStepProps>(step)
+                            ? step.props.completed
+                            : undefined;
+                        const headingId = React.isValidElement<ProcessStepProps>(step)
+                            ? step.props.headingId
+                            : undefined;
                         const isContinuation = React.isValidElement<ProcessStepProps>(step)
                             ? step.props.isContinuation
                             : undefined;
                         return (
                             <li
+                                aria-checked={isCompleted}
+                                aria-labelledby={headingId}
                                 className={cl(
                                     'process__item',
                                     isCurrent ? 'process__item__variant process__item__variant--CURRENT' : undefined,

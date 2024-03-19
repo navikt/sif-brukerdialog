@@ -26,6 +26,7 @@ export interface ProcessStepProps extends React.AnchorHTMLAttributes<HTMLAnchorE
     icon?: React.ReactNode;
     isContinuation?: boolean;
     isLastStep?: boolean;
+    headingId: string;
 }
 
 export interface ProcessStepData {
