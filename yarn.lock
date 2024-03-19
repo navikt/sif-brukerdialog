@@ -3480,7 +3480,7 @@ __metadata:
     "@navikt/sif-common-sentry": "workspace:*"
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
-    "@sentry/vite-plugin": 2.15.0
+    "@sentry/vite-plugin": 2.16.0
     "@storybook/addon-actions": 8.0.0
     "@storybook/addon-essentials": 8.0.0
     "@storybook/addon-interactions": 8.0.0
@@ -3966,7 +3966,7 @@ __metadata:
     "@navikt/sif-common-sentry": "workspace:*"
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
-    "@sentry/vite-plugin": 2.15.0
+    "@sentry/vite-plugin": 2.16.0
     "@storybook/react-vite": 8.0.0
     "@testing-library/react": 14.2.1
     "@testing-library/user-event": 14.5.2
@@ -5728,10 +5728,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/babel-plugin-component-annotate@npm:2.15.0":
-  version: 2.15.0
-  resolution: "@sentry/babel-plugin-component-annotate@npm:2.15.0"
-  checksum: 6a8b497daefb49d8f2ffbb0a4cdd100efcb37ef59e7e7af709f98048eea7c6f2c2decdd3281561a821d0d26b982968aca8e4a4a6982977575572ebda68fe1afd
+"@sentry/babel-plugin-component-annotate@npm:2.16.0":
+  version: 2.16.0
+  resolution: "@sentry/babel-plugin-component-annotate@npm:2.16.0"
+  checksum: 4a1d5ee57a038f605bad297c2dc97df8b1035bcdeca71a5b1ddcd7a461ddb280e317122e835ea7538c7bf99cb1e3e9d28f42a7e606ba9611346d1c6ef42dae81
   languageName: node
   linkType: hard
 
@@ -5750,19 +5750,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/bundler-plugin-core@npm:2.15.0":
-  version: 2.15.0
-  resolution: "@sentry/bundler-plugin-core@npm:2.15.0"
+"@sentry/bundler-plugin-core@npm:2.16.0":
+  version: 2.16.0
+  resolution: "@sentry/bundler-plugin-core@npm:2.16.0"
   dependencies:
     "@babel/core": ^7.18.5
-    "@sentry/babel-plugin-component-annotate": 2.15.0
+    "@sentry/babel-plugin-component-annotate": 2.16.0
     "@sentry/cli": ^2.22.3
     dotenv: ^16.3.1
     find-up: ^5.0.0
     glob: ^9.3.2
     magic-string: 0.27.0
     unplugin: 1.0.1
-  checksum: 0d3b73c92b19d7cba2c4f22e4126461e367eeaa0e57f9e94d186c84bde2fc922dd8feb5278641a91925ae7ada0ddcf57eadeee9ffeef6aaa7975085a5eeebe76
+  checksum: 3b976a53eb00fd87e8cc0fca136d226cd0af6ea94f2b3b7bae8c6cf5651818728a174b645f10d35df6548483bc80dccb357539c62b784b655931614bd63467f1
   languageName: node
   linkType: hard
 
@@ -5905,13 +5905,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/vite-plugin@npm:2.15.0":
-  version: 2.15.0
-  resolution: "@sentry/vite-plugin@npm:2.15.0"
+"@sentry/vite-plugin@npm:2.16.0":
+  version: 2.16.0
+  resolution: "@sentry/vite-plugin@npm:2.16.0"
   dependencies:
-    "@sentry/bundler-plugin-core": 2.15.0
+    "@sentry/bundler-plugin-core": 2.16.0
     unplugin: 1.0.1
-  checksum: 34790bca8e1cce055e91921c923a10dcf89b57723ee97d894138fb34dc8601e0c466e77dba5ac0f814f921cf2087fa39cef461cb6d028e2756cb551ebf3626d6
+  checksum: 362d4a1749225a6fe9e2d2af9802a8bc7005b0034796e851c81d2293732669829132a6d62592fa2972080489be6178388b5559bbdb6823ca781fb784f6b89d60
   languageName: node
   linkType: hard
 
