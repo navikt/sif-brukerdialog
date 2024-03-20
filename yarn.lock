@@ -3324,7 +3324,7 @@ __metadata:
     "@storybook/react": 8.0.0
     "@storybook/test": 8.0.0
     axios: 1.6.8
-    chromatic: 11.0.8
+    chromatic: 11.1.1
     classnames: 2.5.1
     dayjs: 1.11.10
     eslint-plugin-storybook: 0.8.0
@@ -3779,7 +3779,7 @@ __metadata:
     axios: 1.6.8
     babel-polyfill: 6.26.0
     busboy: 1.6.0
-    chromatic: 11.0.8
+    chromatic: 11.1.1
     compression: 1.7.4
     cookie-parser: 1.4.6
     cross-env: 7.0.3
@@ -4099,7 +4099,7 @@ __metadata:
     "@vitejs/plugin-react": 4.2.1
     axios: 1.6.8
     browser-image-compression: 2.0.2
-    chromatic: 11.0.8
+    chromatic: 11.1.1
     classnames: 2.5.1
     config: "workspace:*"
     copyfiles: 2.4.1
@@ -4374,7 +4374,7 @@ __metadata:
     "@storybook/preset-create-react-app": 8.0.0
     "@storybook/react": 8.0.0
     "@storybook/testing-library": 0.2.2
-    chromatic: 11.0.8
+    chromatic: 11.1.1
     classnames: 2.5.1
     copyfiles: 2.4.1
     dayjs: 1.11.10
@@ -10456,9 +10456,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromatic@npm:11.0.8":
-  version: 11.0.8
-  resolution: "chromatic@npm:11.0.8"
+"chromatic@npm:11.1.1":
+  version: 11.1.1
+  resolution: "chromatic@npm:11.1.1"
   peerDependencies:
     "@chromatic-com/cypress": ^0.*.* || ^1.0.0
     "@chromatic-com/playwright": ^0.*.* || ^1.0.0
@@ -10471,7 +10471,7 @@ __metadata:
     chroma: dist/bin.js
     chromatic: dist/bin.js
     chromatic-cli: dist/bin.js
-  checksum: cef2a686a192b522ae8dda4ec5f93fbad567b9bbc7be7795f6db5231656279a2221cef426aa1a00b52ff3d5367b2e422a547d380c381cba15492846db4d5ad48
+  checksum: 347a3e3f2b6982ecb8459197a33d0a75c37e760e1d77bfbd861cb2fa959c112d4fe33b71ac0f20e1b9b79db5ea4792f16cbc0c719c489120b648f5226c89c210
   languageName: node
   linkType: hard
 
