@@ -31,7 +31,7 @@ test('Saksbehandlingstid er i fremtid', async ({ page }) => {
         await route.fulfill({ status: 200, body: JSON.stringify(response) });
     });
     await page.goto('http://localhost:8080/innsyn');
-    await expect(page.getByText('Du kan forvente svar innen:')).toBeVisible();
+    await expect(page.getByText('Du kan forvente svar innen')).toBeVisible();
 });
 
 test('Saksbehandlingstid er i dag', async ({ page }) => {
@@ -44,7 +44,7 @@ test('Saksbehandlingstid er i dag', async ({ page }) => {
         await route.fulfill({ status: 200, body: JSON.stringify(response) });
     });
     await page.goto('http://localhost:8080/innsyn');
-    await expect(page.getByText('Du kan forvente svar innen:')).toBeVisible();
+    await expect(page.getByText('Du kan forvente svar innen')).toBeVisible();
 });
 
 test('Saksbehandlingstid er i fortid', async ({ page }) => {
@@ -70,7 +70,7 @@ test('Ingen Saksbehandlingstid, men behandlingstid', async ({ page }) => {
         await route.fulfill({ status: 200, body: JSON.stringify(response) });
     });
     await page.goto('http://localhost:8080/innsyn');
-    await expect(page.getByText('Du kan forvente svar innen:')).toBeVisible();
+    await expect(page.getByText('Du kan forvente svar innen')).toBeVisible();
 });
 
 test('Hverken Saksbehandlingstid eller behandlingstid', async ({ page }) => {
