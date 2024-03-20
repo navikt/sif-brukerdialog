@@ -17,7 +17,12 @@ const getFristTekst = (frist: Date, venteårsak?: Venteårsak): React.ReactNode 
     switch (venteårsak) {
         case Venteårsak.INNTEKTSMELDING:
         case Venteårsak.MEDISINSK_DOKUMENTASJON:
-            return <Msg id="svarfrist.dokumenterManglerFrist" values={{ frist: dateFormatter.full(frist) }} />;
+            return (
+                <Msg
+                    id="svarfrist.dokumenterManglerFrist"
+                    values={{ frist: dateFormatter.full(frist), dato: (chunk) => <strong>{chunk}</strong> }}
+                />
+            );
         case Venteårsak.MELDEKORT:
         case Venteårsak.SØKT_FOR_TIDLIG:
         default:

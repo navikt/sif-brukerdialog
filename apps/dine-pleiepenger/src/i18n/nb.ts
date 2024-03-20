@@ -29,8 +29,8 @@ export const nb = {
         'Forventet behandlingstid er {saksbehandlingstidUker} uker fra vi fikk søknaden din.',
     'svarfrist.lesMerLenke': 'Se saksbehandlingstider',
     'svarfrist.dokumenterManglerFrist':
-        'Fordi vi mangler dokumenter kan saksbehandlingstiden bli lenger enn <strong>{dateFormatter.full(frist)}</strong>.',
-    'svarfrist.generellFrist': 'Du kan forvente svar innen <dato>{frist}</dato>',
+        'Fordi vi mangler dokumenter kan saksbehandlingstiden bli lenger enn <dato>{frist}</dato>.',
+    'svarfrist.generellFrist': 'Du kan forvente svar innen <dato>{frist}</dato>.',
 
     'hvaSkjerInfo.tittel': 'Hva skjer etter at du har sendt søknad til oss?',
     'hvaSkjerInfo.innsent.endringsmelding.tittel': 'Saksgang etter innsendt endringsmelding',
