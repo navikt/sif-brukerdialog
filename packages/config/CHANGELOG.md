@@ -1,5 +1,17 @@
 # config
 
+## 0.9.18
+
+### Patch Changes
+
+- react-responsive-10.0.0
+
+## 0.9.17
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch og minor
+
 ## 0.9.16
 
 ### Patch Changes

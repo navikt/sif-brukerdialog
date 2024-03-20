@@ -1,5 +1,17 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.5.26
+
+### Patch Changes
+
+- react-responsive-10.0.0
+
+## 3.5.25
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch og minor
+
 ## 3.5.24
 
 ### Patch Changes
