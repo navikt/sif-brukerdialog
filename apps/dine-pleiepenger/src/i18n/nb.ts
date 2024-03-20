@@ -107,7 +107,7 @@ export const nb = {
     'snarveierSak.omPleiepenger': 'Om pleiepenger',
 
     'statusISak.mottattSøknad.tittel': 'Vi har fått søknaden din om pleiepenger',
-    'statusISak.mottattEndringsmelding.tittel': 'Vi har fått din endringsmelding',
+    'statusISak.mottattEndringsmelding.tittel': 'Vi har fått endringsmelding fra deg',
     'statusISak.ferdigBehandlet.tittel': 'Du har fått vedtak om pleiepenger',
     'statusISak.forventetSvar.søknad.tittel': 'Søknaden er ferdig behandlet',
     'statusISak.forventetSvar.søknad.info':
