@@ -4640,6 +4640,7 @@ __metadata:
     react-dom: 18.2.0
     react-intl: 6.6.2
     react-modal: 3.16.1
+    react-responsive: 10.0.0
     react-router-dom: 6.22.3
     storybook: 8.0.2
     tailwindcss: 3.4.1
@@ -5227,7 +5228,7 @@ __metadata:
     react-day-picker: 8.10.0
     react-dom: 18.2.0
     react-intl: 6.6.2
-    react-responsive: 9.0.2
+    react-responsive: 10.0.0
     react-syntax-highlighter: 15.5.0
     rimraf: 5.0.5
     storybook: 8.0.2
@@ -5289,7 +5290,6 @@ __metadata:
     react-dropzone: 14.2.3
     react-fast-compare: 3.2.2
     react-intl: 6.6.2
-    react-responsive: 9.0.2
     react-syntax-highlighter: 15.5.0
     rimraf: 5.0.5
     storybook: 8.0.2
@@ -5336,7 +5336,6 @@ __metadata:
     "@types/node": 20.11.30
     "@types/react": 18.2.67
     "@types/react-dom": 18.2.22
-    "@types/react-responsive": 8.0.8
     "@vitejs/plugin-react": 4.2.1
     axios: 1.6.8
     config: "workspace:*"
@@ -5354,7 +5353,6 @@ __metadata:
     react-dom: 18.2.0
     react-intl: 6.6.2
     react-modal: 3.16.1
-    react-responsive: 9.0.2
     react-router-dom: 6.22.3
     rimraf: 5.0.5
     storybook: 8.0.2
@@ -9283,15 +9281,6 @@ __metadata:
   dependencies:
     "@types/react": "*"
   checksum: 53c92dfbe46aae6f4ca4d96a166fd69a4b8dc539c5e8f755086dd1471656924ca6dd0a179be746c634686a0073aef67bb9615ee8600d9536cc1521b738e48453
-  languageName: node
-  linkType: hard
-
-"@types/react-responsive@npm:8.0.8":
-  version: 8.0.8
-  resolution: "@types/react-responsive@npm:8.0.8"
-  dependencies:
-    "@types/react": "*"
-  checksum: 18c097f6fb55f1c53d22f83cf218dae64df9ea43c1311d29044a8101ebeb9df5a605522c5c02fe9b44b8e781a424e98111f6385861f70ff9612c9c78a236efb6
   languageName: node
   linkType: hard
 
@@ -19324,12 +19313,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"matchmediaquery@npm:^0.3.0":
-  version: 0.3.1
-  resolution: "matchmediaquery@npm:0.3.1"
+"matchmediaquery@npm:^0.4.2":
+  version: 0.4.2
+  resolution: "matchmediaquery@npm:0.4.2"
   dependencies:
     css-mediaquery: ^0.1.2
-  checksum: 154e1650f79d78858424d7086093756ad2fdb1cd9ad19230b99a47c363a1da9c6692d6ca56ea49447fb516f580c59fd60d8b9a06247e088d8e1a658e6e5604d7
+  checksum: 0d495dd20a4bdd4c6485c43fe9363d41de6c8cbe3bb4c259f39b885f1d2627f102ac21a759b6108a313d0dbd3445edb9847b734cff2f06b5b19fed62dbb7856f
   languageName: node
   linkType: hard
 
@@ -22201,17 +22190,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-responsive@npm:9.0.2":
-  version: 9.0.2
-  resolution: "react-responsive@npm:9.0.2"
+"react-responsive@npm:10.0.0":
+  version: 10.0.0
+  resolution: "react-responsive@npm:10.0.0"
   dependencies:
     hyphenate-style-name: ^1.0.0
-    matchmediaquery: ^0.3.0
+    matchmediaquery: ^0.4.2
     prop-types: ^15.6.1
-    shallow-equal: ^1.2.1
+    shallow-equal: ^3.1.0
   peerDependencies:
     react: ">=16.8.0"
-  checksum: 97c827db903125f256d7197161bf4c1d77044b12aa2fee05b7d0dc2317eab62897c006a68940c5399c209da2732e4901e92a93bf09c113ac9334232bb842ffd4
+  checksum: 49580f3fd333316704f774a241dc733506a27b23d1f397fc63e100df08a80ee4ae14cb2b2b1e2bf79e0ee2989d73761f10ec5f9e0caa208a907aee548d85818e
   languageName: node
   linkType: hard
 
@@ -23223,10 +23212,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"shallow-equal@npm:^1.2.1":
-  version: 1.2.1
-  resolution: "shallow-equal@npm:1.2.1"
-  checksum: 4f1645cc516e7754c4438db687e1da439a5f29a7dba2ba90c5f88e5708aeb17bc4355ba45cad805b0e95dc898e37d8bf6d77d854919c7512f89939986cff8cd1
+"shallow-equal@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "shallow-equal@npm:3.1.0"
+  checksum: 7eab4ae9fbd79c8913a88d6af873548b6ce619baab2e9e0a2f11696881cdaae289d51423837f6aca38de874581609c8e5e2fa052d8b79c10b55ac9fe7bd2f2f2
   languageName: node
   linkType: hard
 
