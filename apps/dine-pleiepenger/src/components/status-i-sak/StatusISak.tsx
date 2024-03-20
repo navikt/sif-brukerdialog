@@ -67,7 +67,7 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser, tit
                                         </BodyShort>
                                     ) : null}
                                 </Heading>
-                                <Box className="mt-4">{step.content}</Box>
+                                {step.content}
                             </ProcessStep>
                         );
                     })}

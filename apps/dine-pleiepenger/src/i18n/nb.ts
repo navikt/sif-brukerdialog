@@ -131,4 +131,7 @@ export const nb = {
     'venteårsakMelding.meldekort.tittel': 'Vi venter på at du sender meldekort',
     'venteårsakMelding.meldekort.info':
         'Vi kan tidligst behandle søknaden din når du har sendt inn det siste meldekortet, før du starter perioden med pleiepenger.',
+
+    'statusISak.søknadStatusContent.readMoreHeader': 'Se dokumenter og bekreftelse til arbeidsgiver',
+    'statusISak.søknadStatusContent.dokumenterISøknad': 'Søknad og eventuelle vedlegg i søknad',
 };
