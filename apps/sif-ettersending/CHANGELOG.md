@@ -1,5 +1,52 @@
 # @navikt/sif-ettersending
 
+## 3.29.27
+
+### Patch Changes
+
+- react-responsive-10.0.0
+- Updated dependencies
+  - @navikt/sif-common-amplitude@2.24.25
+  - @navikt/sif-common-formik-ds@1.7.22
+  - @navikt/sif-common-soknad-ds@10.13.21
+  - @navikt/sif-common-core-ds@9.15.14
+  - @navikt/sif-common-sentry@0.25.23
+  - @navikt/sif-common-utils@3.44.9
+
+## 3.29.26
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch og minor
+- Updated dependencies
+  - @navikt/sif-common-amplitude@2.24.24
+  - @navikt/sif-common-formik-ds@1.7.21
+  - @navikt/sif-common-soknad-ds@10.13.20
+  - @navikt/sif-common-core-ds@9.15.13
+  - @navikt/sif-common-sentry@0.25.22
+  - @navikt/sif-common-utils@3.44.8
+
+## 3.29.25
+
+### Patch Changes
+
+- Updated dependencies
+  - @navikt/sif-common-core-ds@9.15.12
+  - @navikt/sif-common-soknad-ds@10.13.19
+
+## 3.29.24
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+  - @navikt/sif-common-amplitude@2.24.23
+  - @navikt/sif-common-formik-ds@1.7.20
+  - @navikt/sif-common-soknad-ds@10.13.19
+  - @navikt/sif-common-core-ds@9.15.11
+  - @navikt/sif-common-sentry@0.25.21
+  - @navikt/sif-common-utils@3.44.7
+
 ## 3.29.23
 
 ### Patch Changes

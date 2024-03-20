@@ -1,5 +1,35 @@
 # @navikt/sif-common-core-ds
 
+## 9.15.14
+
+### Patch Changes
+
+- react-responsive-10.0.0
+- Updated dependencies
+  - @navikt/sif-common-utils@3.44.9
+
+## 9.15.13
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch og minor
+- Updated dependencies
+  - @navikt/sif-common-utils@3.44.8
+
+## 9.15.12
+
+### Patch Changes
+
+- Fjerne unødvendig visning av filtype når filopplasting feiler.
+
+## 9.15.11
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+  - @navikt/sif-common-utils@3.44.7
+
 ## 9.15.10
 
 ### Patch Changes

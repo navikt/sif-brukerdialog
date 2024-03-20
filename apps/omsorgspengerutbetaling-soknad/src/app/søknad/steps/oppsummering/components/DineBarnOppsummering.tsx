@@ -38,13 +38,7 @@ const DineBarnOppsummering = ({
                 }}
             />
             {harSyktBarn !== undefined && (
-                <SummaryBlock
-                    header={intlHelper(
-                        intl,
-                        barn.length === 1
-                            ? 'step.dineBarn.utvidetRettSykdom.spm.ettBarn'
-                            : 'step.dineBarn.utvidetRettSykdom.spm',
-                    )}>
+                <SummaryBlock header={intlHelper(intl, 'step.dineBarn.utvidetRettSykdom.spm')}>
                     <JaNeiSvar harSvartJa={harSyktBarn} />
                 </SummaryBlock>
             )}

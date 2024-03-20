@@ -1,5 +1,23 @@
 # @navikt/sif-common-sentry
 
+## 0.25.23
+
+### Patch Changes
+
+- react-responsive-10.0.0
+
+## 0.25.22
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch og minor
+
+## 0.25.21
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 0.25.20
 
 ### Patch Changes

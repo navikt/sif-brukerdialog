@@ -1,5 +1,23 @@
 # @navikt/sif-common-utils
 
+## 3.44.9
+
+### Patch Changes
+
+- react-responsive-10.0.0
+
+## 3.44.8
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch og minor
+
+## 3.44.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 3.44.6
 
 ### Patch Changes
