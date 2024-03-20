@@ -36,7 +36,7 @@ describe('Bruker har ikke tilgang til løsningen', () => {
         contextConfig({ saker: flereSakerMock, arbeidsgivere: enArbeidsgiverMock });
         it('Viser riktig melding når bruker har flere saker som er innenfor endringsperiode', () => {
             cy.visit(startUrl);
-            cy.wait(['@getSak', '@getArbeidsgiver', '@getSoker']).then(() => {
+            cy.wait(['@getSak', '@getSoker']).then(() => {
                 expect(getTestElement('ingen-tilgang-heading').first().contains('Hei STERK'));
                 expect(getTestElement('flereSaker')).to.exist;
             });
