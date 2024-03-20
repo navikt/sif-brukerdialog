@@ -16,11 +16,10 @@ const FileUploadErrors = ({ filesThatDidntGetUploaded }: Props) => {
         <Alert variant="warning">
             <FormattedMessage id="common.fileUploadError" />
             <ul>
-                {filesThatDidntGetUploaded.map(({ name, size, type }) => {
+                {filesThatDidntGetUploaded.map(({ name, size }) => {
                     return (
                         <li key={name}>
                             {name}
-                            {type}
                             {size && !fileSizeIsValid(size) && (
                                 <BodyShort size="small">
                                     Fila er for stor ({prettyBytes(size)}). Maks filstørrelse er {prettyBytes(10000000)}

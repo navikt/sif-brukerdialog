@@ -1,5 +1,60 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.5.37
+
+### Patch Changes
+
+- react-responsive-10.0.0
+- Updated dependencies
+  - @navikt/sif-common-amplitude@2.24.25
+  - @navikt/sif-common-formik-ds@1.7.22
+  - @navikt/sif-common-soknad-ds@10.13.21
+  - @navikt/sif-common-forms-ds@8.19.10
+  - @navikt/sif-common-core-ds@9.15.14
+  - @navikt/sif-common-sentry@0.25.23
+  - @navikt/sif-common-utils@3.44.9
+  - @navikt/sif-common-ui@0.6.18
+
+## 2.5.36
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch og minor
+- Updated dependencies
+  - @navikt/sif-common-amplitude@2.24.24
+  - @navikt/sif-common-formik-ds@1.7.21
+  - @navikt/sif-common-soknad-ds@10.13.20
+  - @navikt/sif-common-forms-ds@8.19.9
+  - @navikt/sif-common-core-ds@9.15.13
+  - @navikt/sif-common-sentry@0.25.22
+  - @navikt/sif-common-utils@3.44.8
+  - @navikt/sif-common-ui@0.6.17
+
+## 2.5.35
+
+### Patch Changes
+
+- Updated dependencies
+  - @navikt/sif-common-core-ds@9.15.12
+  - @navikt/sif-common-forms-ds@8.19.8
+  - @navikt/sif-common-soknad-ds@10.13.19
+  - @navikt/sif-common-ui@0.6.16
+
+## 2.5.34
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+  - @navikt/sif-common-amplitude@2.24.23
+  - @navikt/sif-common-formik-ds@1.7.20
+  - @navikt/sif-common-soknad-ds@10.13.19
+  - @navikt/sif-common-forms-ds@8.19.8
+  - @navikt/sif-common-core-ds@9.15.11
+  - @navikt/sif-common-sentry@0.25.21
+  - @navikt/sif-common-utils@3.44.7
+  - @navikt/sif-common-ui@0.6.15
+
 ## 2.5.33
 
 ### Patch Changes

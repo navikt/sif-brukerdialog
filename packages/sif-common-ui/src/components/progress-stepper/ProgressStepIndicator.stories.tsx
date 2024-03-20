@@ -26,31 +26,37 @@ const steps: ProgressStep[] = [
         index: 2,
         id: 'steg3',
         label: 'Arbeidssituasjon',
+        completed: false,
     },
     {
         index: 3,
         id: 'steg4',
         label: 'Arbeid i perioden',
+        completed: false,
     },
     {
         index: 4,
         id: 'steg5',
         label: 'Omsorgstilbud',
+        completed: false,
     },
     {
         index: 5,
         id: 'steg6',
         label: 'Nattevåk og beredskap',
+        completed: false,
     },
     {
         index: 6,
         id: 'steg7',
         label: 'Medlemsskap',
+        completed: false,
     },
     {
         index: 7,
         id: 'steg7',
         label: 'Oppsummering',
+        completed: false,
     },
 ];
 
