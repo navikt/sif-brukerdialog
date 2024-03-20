@@ -58,9 +58,9 @@
     "devDependencies": {
         "@axe-core/playwright": "4.8.5",
         "@babel/plugin-proposal-object-rest-spread": "7.20.7",
-        "@babel/plugin-transform-modules-commonjs": "7.23.3",
+        "@babel/plugin-transform-modules-commonjs": "7.24.1",
         "@babel/preset-env": "7.24.0",
-        "@babel/preset-react": "7.23.3",
+        "@babel/preset-react": "7.24.1",
         "@playwright/test": "1.42.1",
         "@types/object-hash": "3.0.6",
         "@types/react": "18.2.66",

@@ -15,8 +15,8 @@
     "devDependencies": {
         "@babel/core": "7.24.0",
         "@babel/preset-env": "7.24.0",
-        "@babel/preset-react": "7.23.3",
-        "@babel/preset-typescript": "7.23.3",
+        "@babel/preset-react": "7.24.1",
+        "@babel/preset-typescript": "7.24.1",
         "@devexperts/remote-data-ts": "2.1.1",
         "@formatjs/intl-pluralrules": "5.2.12",
         "@navikt/appstatus-react-ds": "workspace:*",

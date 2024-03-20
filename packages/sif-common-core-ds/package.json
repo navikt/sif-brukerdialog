@@ -19,8 +19,8 @@
     "devDependencies": {
         "@babel/core": "7.24.0",
         "@babel/preset-env": "7.24.0",
-        "@babel/preset-react": "7.23.3",
-        "@babel/preset-typescript": "7.23.3",
+        "@babel/preset-react": "7.24.1",
+        "@babel/preset-typescript": "7.24.1",
         "@navikt/appstatus-react-ds": "workspace:*",
         "@navikt/ds-css": "6.2.0",
         "@navikt/ds-icons": "3.4.3",
