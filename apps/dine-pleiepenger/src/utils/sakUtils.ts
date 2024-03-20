@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 import sortBy from 'lodash.sortby';
+import uniq from 'lodash.uniq';
 import { Aksjonspunkt } from '../server/api-models/AksjonspunktSchema';
 import { Behandling } from '../server/api-models/BehandlingSchema';
 import { Behandlingsstatus } from '../server/api-models/Behandlingsstatus';
@@ -98,10 +99,15 @@ export const getHendelserIBehandling = (behandling: Behandling, saksbehandlingFr
         hendelser.push({
             type: SøknadshendelseType.FORVENTET_SVAR,
             dato: saksbehandlingFrist,
+            søknadstyperIBehandling: getSøknadstyperIBehandling(søknader),
         });
     }
 
     return hendelser;
+};
+
+export const getSøknadstyperIBehandling = (søknader: Søknad[]): Array<Søknadstype> => {
+    return uniq(søknader.map((s) => s.søknadstype));
 };
 
 export const getAlleHendelserISak = (sak: Sak): Søknadshendelse[] => {

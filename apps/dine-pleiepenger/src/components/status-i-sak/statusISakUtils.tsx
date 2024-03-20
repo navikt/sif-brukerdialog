@@ -1,11 +1,12 @@
 import { ProcessStepData } from '../process/ProcessStep';
 import { Søknadstype } from '../../server/api-models/Søknadstype';
-import { Søknadshendelse, SøknadshendelseType } from '../../types/Søknadshendelse';
+import { Søknadshendelse, SøknadshendelseForventetSvar, SøknadshendelseType } from '../../types/Søknadshendelse';
 import { Søknad } from '../../server/api-models/SøknadSchema';
 import SøknadStatusContent from './parts/SøknadStatusContent';
 import EndringsmeldingStatusContent from './parts/EndringsmeldingStatusContent';
 import FerdigBehandletStatusContent from './parts/FerdigBehandletStatusContent';
 import { Msg, TextFn as TextFn } from '../../i18n';
+import { Box } from '@navikt/ds-react';
 
 export const getProcessStepFromMottattSøknad = (
     text: TextFn,
@@ -73,15 +74,40 @@ export const getProcessStepsFraSøknadshendelser = (text: TextFn, hendelser: Sø
 
                 case SøknadshendelseType.FORVENTET_SVAR:
                     return {
-                        title: text('statusISak.forventetSvar.tittel'),
-                        content: <Msg id="statusISak.forventetSvar.info" />,
+                        ...getForventetSvarTitleContent(hendelse, text),
                         completed: false,
                         isLastStep: true,
-                        timestamp: hendelse.dato,
                     };
                 case SøknadshendelseType.UKJENT:
                     return undefined;
             }
         })
         .filter((h) => h !== undefined) as ProcessStepData[];
+};
+
+const getForventetSvarTitleContent = (
+    hendelse: SøknadshendelseForventetSvar,
+    text: TextFn,
+): Pick<ProcessStepData, 'title' | 'content'> => {
+    const inneholderSøknad = hendelse.søknadstyperIBehandling.includes(Søknadstype.SØKNAD);
+    const inneholderEndring = hendelse.søknadstyperIBehandling.includes(Søknadstype.ENDRINGSMELDING);
+
+    if (!inneholderSøknad && inneholderEndring) {
+        return {
+            title: text('statusISak.forventetSvar.endring.tittel'),
+            content: (
+                <Box className="mt-2">
+                    <Msg id="statusISak.forventetSvar.endring.info" />
+                </Box>
+            ),
+        };
+    }
+    return {
+        title: text('statusISak.forventetSvar.søknad.tittel'),
+        content: (
+            <Box className="mt-2">
+                <Msg id="statusISak.forventetSvar.søknad.info" />
+            </Box>
+        ),
+    };
 };

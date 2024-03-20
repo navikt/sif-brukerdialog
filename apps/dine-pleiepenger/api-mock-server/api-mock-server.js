@@ -1,10 +1,11 @@
 /* eslint-disable no-console */
 const express = require('express');
 const helmet = require('helmet');
-
 const server = express();
 const søknader = require('./mockdata/soknader.json');
-const saker = require('./mockdata/saker.json');
+// const saker = require('./mockdata/saker-søknad-og-endring-ubehandlet.json');
+// const saker = require('./mockdata/saker-med-to-vedtak.json');
+const saker = require('./mockdata/saker-åpen-søknad.json');
 
 server.use(express.json());
 

@@ -100,7 +100,7 @@ process__line--1--continuation {
     justify-content: flex-start;
     text-decoration: none;
     padding: var(--process-border-width);
-    margin: calc(var(--process-border-width) * -1) calc(var(--process-border-width) * -1) 1rem;
+    margin: calc(var(--process-border-width) * -1) calc(var(--process-border-width) * -1) 0.5rem;
 }
 
 .process__circle {
