@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.24.25
+
+### Patch Changes
+
+- react-responsive-10.0.0
+
 ## 2.24.24
 
 ### Patch Changes

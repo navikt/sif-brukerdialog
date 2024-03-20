@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.13.21
+
+### Patch Changes
+
+- react-responsive-10.0.0
+
 ## 10.13.20
 
 ### Patch Changes

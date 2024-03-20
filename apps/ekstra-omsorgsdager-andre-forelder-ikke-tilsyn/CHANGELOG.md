@@ -1,5 +1,18 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.21.35
+
+### Patch Changes
+
+- react-responsive-10.0.0
+- Updated dependencies
+  - @navikt/sif-common-amplitude@2.24.25
+  - @navikt/sif-common-formik-ds@1.7.22
+  - @navikt/sif-common-soknad-ds@10.13.21
+  - @navikt/sif-common-core-ds@9.15.14
+  - @navikt/sif-common-sentry@0.25.23
+  - @navikt/sif-common-utils@3.44.9
+
 ## 1.21.34
 
 ### Patch Changes

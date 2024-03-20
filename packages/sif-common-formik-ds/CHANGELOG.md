@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.7.22
+
+### Patch Changes
+
+- react-responsive-10.0.0
+
 ## 1.7.21
 
 ### Patch Changes
