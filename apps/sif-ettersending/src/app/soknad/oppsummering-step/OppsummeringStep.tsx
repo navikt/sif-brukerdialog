@@ -61,9 +61,38 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
                             </div>
                         </SummaryBlock>
 
+                        {apiValues.isLegeerklæring && (
+                            <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.barn.header')}>
+                                {values.valgteRegistrertBarn && (
+                                    <div>
+                                        {intlHelper(intl, 'steg.oppsummering.barn.registretBarnInfo', {
+                                            navn: values.valgteRegistrertBarn?.barnetsNavn,
+                                            fødselsdato: values.valgteRegistrertBarn?.barnetsFødselsdato,
+                                        })}
+                                    </div>
+                                )}
+                                {apiValues.barn?.fødselsnummer && (
+                                    <div>
+                                        {intlHelper(intl, 'steg.oppsummering.barn.fnr', {
+                                            fnr: apiValues.barn?.fødselsnummer,
+                                        })}
+                                    </div>
+                                )}
+                                {!apiValues.barn?.fødselsnummer && !apiValues.barn?.aktørId && (
+                                    <div>{intlHelper(intl, 'steg.oppsummering.barn.harIkkefnr')}</div>
+                                )}
+                            </SummaryBlock>
+                        )}
+
                         <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.typeSøknad.tittel')}>
                             {apiValues.ytelseTittel}
                         </SummaryBlock>
+
+                        {apiValues.isLegeerklæring && (
+                            <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.dokumentType.header')}>
+                                {intlHelper(intl, 'steg.oppsummering.dokumentType.legeerklæring')}
+                            </SummaryBlock>
+                        )}
 
                         {apiValues.beskrivelse && (
                             <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.hvaGjelder.header')}>

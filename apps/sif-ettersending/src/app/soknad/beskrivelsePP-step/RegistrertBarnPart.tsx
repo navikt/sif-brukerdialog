@@ -54,7 +54,7 @@ const RegistrertBarnPart = ({ setHarRegistrerteBarn }: Props) => {
             {søkersBarn.length > 0 && (
                 <>
                     <SoknadFormComponents.RadioGroup
-                        name={SoknadFormField.barnetLegeerklæringGjelder}
+                        name={SoknadFormField.registrertBarnAktørId}
                         legend={intlHelper(intl, 'step.beskrivelse_pp.registrertBarnPart.spm')}
                         radios={søkersBarn.map((barn) => {
                             const { fornavn, mellomnavn, etternavn, fødselsdato, aktørId } = barn;
@@ -76,6 +76,20 @@ const RegistrertBarnPart = ({ setHarRegistrerteBarn }: Props) => {
                                 disabled: legeerklæringGjelderEtAnnetBarn,
                             };
                         })}
+                        afterOnChange={(value) => {
+                            const valgteBarn = søkersBarn.find((barn) => barn.aktørId === value);
+                            if (valgteBarn) {
+                                setFieldValue(SoknadFormField.valgteRegistrertBarn, {
+                                    aktørId: valgteBarn.aktørId,
+                                    barnetsNavn: formatName(
+                                        valgteBarn.fornavn,
+                                        valgteBarn.etternavn,
+                                        valgteBarn.mellomnavn,
+                                    ),
+                                    barnetsFødselsdato: prettifyDate(valgteBarn.fødselsdato),
+                                });
+                            }
+                        }}
                         validate={legeerklæringGjelderEtAnnetBarn ? undefined : getRequiredFieldValidator()}
                     />
 
@@ -85,7 +99,8 @@ const RegistrertBarnPart = ({ setHarRegistrerteBarn }: Props) => {
                             name={SoknadFormField.legeerklæringGjelderEtAnnetBarn}
                             afterOnChange={(newValue) => {
                                 if (newValue) {
-                                    setFieldValue(SoknadFormField.barnetLegeerklæringGjelder, undefined);
+                                    setFieldValue(SoknadFormField.registrertBarnAktørId, undefined);
+                                    setFieldValue(SoknadFormField.valgteRegistrertBarn, undefined);
                                 } else {
                                     setFieldValue(SoknadFormField.barnetsFødselsnummer, undefined);
                                     setFieldValue(SoknadFormField.barnetHarIkkeFnr, undefined);

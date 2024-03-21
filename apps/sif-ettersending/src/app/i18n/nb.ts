@@ -132,7 +132,13 @@ export const applicationMessages: MessageFileFormat = {
             'Les gjennom oppsummeringen før du sender inn dokumentene. Hvis du vil gjøre endringer, kan du gå tilbake.',
         'steg.oppsummering.søker.header': 'Navn på søker',
         'steg.oppsummering.søker.fnr': 'Fødselsnummer',
+        'steg.oppsummering.barn.header': 'Barn',
+        'steg.oppsummering.barn.registretBarnInfo': '{navn} (født {fødselsdato})',
+        'steg.oppsummering.barn.fnr': 'Fødselsnummer: {fnr}',
+        'steg.oppsummering.barn.harIkkefnr': 'Barnet har ikke fødselsnummer/D-nummer',
         'steg.oppsummering.hvaGjelder.header': 'Hva gjelder ettersendelsen?',
+        'steg.oppsummering.dokumentType.header': 'Hva skal du ettersende?',
+        'steg.oppsummering.dokumentType.legeerklæring': 'Legeerklæring',
         'steg.oppsummering.dokumenter.header': 'Dokumenter',
         'steg.oppsummering.bekrefterOpplysninger':
             'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min sak.',

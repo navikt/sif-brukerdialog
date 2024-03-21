@@ -2,11 +2,18 @@ import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { YtelseKey } from '@navikt/sif-common-core-ds/src/types/Ytelser';
 import { DokumentType } from './DokumentType';
 
+export interface RegistrertBarnFormData {
+    aktørId: string;
+    barnetsNavn: string;
+    barnetsFødselsdato: string;
+}
+
 export enum SoknadFormField {
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
     dokumentType = 'dokumentType',
-    barnetLegeerklæringGjelder = 'barnetLegeerklæringGjelder',
+    registrertBarnAktørId = 'registrertBarnAktørId',
+    valgteRegistrertBarn = 'valgteRegistrertBarn',
     legeerklæringGjelderEtAnnetBarn = 'legeerklæringGjelderEtAnnetBarn',
     barnetsFødselsnummer = 'barnetsFødselsnummer',
     barnetHarIkkeFnr = 'barnetHarIkkeFnr',
@@ -19,7 +26,8 @@ export interface SoknadFormData {
     [SoknadFormField.harForståttRettigheterOgPlikter]: boolean;
     [SoknadFormField.harBekreftetOpplysninger]: boolean;
     [SoknadFormField.dokumentType]?: DokumentType;
-    [SoknadFormField.barnetLegeerklæringGjelder]?: string;
+    [SoknadFormField.registrertBarnAktørId]?: string;
+    [SoknadFormField.valgteRegistrertBarn]?: RegistrertBarnFormData;
     [SoknadFormField.legeerklæringGjelderEtAnnetBarn]?: boolean;
     [SoknadFormField.barnetsFødselsnummer]?: string;
     [SoknadFormField.barnetHarIkkeFnr]?: boolean;

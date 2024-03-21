@@ -11,7 +11,7 @@ export const beskrivelseStepIsValid = (values: SoknadFormData) =>
 export const beskrivelsePPStepIsValid = (values: SoknadFormData) => {
     const {
         dokumentType,
-        barnetLegeerklæringGjelder,
+        registrertBarnAktørId,
         barnetsFødselsnummer,
         barnetHarIkkeFnr,
         legeerklæringGjelderEtAnnetBarn,
@@ -25,7 +25,7 @@ export const beskrivelsePPStepIsValid = (values: SoknadFormData) => {
     } else if (legeerklæringGjelderEtAnnetBarn) {
         isValid = hasValue(barnetsFødselsnummer);
     } else {
-        isValid = hasValue(barnetLegeerklæringGjelder);
+        isValid = hasValue(registrertBarnAktørId);
     }
 
     return isValid && welcomingPageIsValid(values);

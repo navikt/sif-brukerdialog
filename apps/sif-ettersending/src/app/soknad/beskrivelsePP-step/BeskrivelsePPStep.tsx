@@ -27,7 +27,7 @@ const BeskrivelsePPStep: React.FC<Props> = ({ søknadstype, søkersFødselsnumme
         values: {
             legeerklæringGjelderEtAnnetBarn,
             dokumentType,
-            barnetLegeerklæringGjelder,
+            registrertBarnAktørId,
             barnetsFødselsnummer,
             barnetHarIkkeFnr,
         },
@@ -52,10 +52,14 @@ const BeskrivelsePPStep: React.FC<Props> = ({ søknadstype, søkersFødselsnumme
                     value={dokumentType}
                     afterOnChange={(value) => {
                         if (value !== DokumentType.legeerklæring) {
-                            setFieldValue(SoknadFormField.barnetLegeerklæringGjelder, undefined);
+                            setFieldValue(SoknadFormField.registrertBarnAktørId, undefined);
                             setFieldValue(SoknadFormField.barnetsFødselsnummer, undefined);
                             setFieldValue(SoknadFormField.barnetHarIkkeFnr, undefined);
                             setFieldValue(SoknadFormField.legeerklæringGjelderEtAnnetBarn, undefined);
+                            setFieldValue(SoknadFormField.valgteRegistrertBarn, undefined);
+                        }
+                        if (value !== DokumentType.annet) {
+                            setFieldValue(SoknadFormField.beskrivelse, undefined);
                         }
                     }}
                 />
@@ -73,7 +77,7 @@ const BeskrivelsePPStep: React.FC<Props> = ({ søknadstype, søkersFødselsnumme
                             harRegistrerteBarn={harRegistrerteBarn}
                         />
                     )}
-                    {(barnetLegeerklæringGjelder ||
+                    {(!!registrertBarnAktørId ||
                         !harRegistrerteBarn ||
                         barnetsFødselsnummer?.length === 11 ||
                         barnetHarIkkeFnr) && (

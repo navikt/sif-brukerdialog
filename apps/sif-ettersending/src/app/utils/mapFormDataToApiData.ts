@@ -38,7 +38,7 @@ const mapBarnFormDataToApiData = (
     barnetHarIkkeFnr?: boolean,
     legeerklæringGjelderEtAnnetBarn?: boolean,
     barnetsFødselsnummer?: string,
-    barnetLegeerklæringGjelder?: string,
+    registrertBarnAktørId?: string,
 ): BarnetLegeerklæringGjelderApiData | undefined => {
     if (barnetHarIkkeFnr) {
         return undefined;
@@ -48,8 +48,8 @@ const mapBarnFormDataToApiData = (
             fødselsnummer: barnetsFødselsnummer,
         };
     }
-    if (barnetLegeerklæringGjelder) {
-        return { aktørId: barnetLegeerklæringGjelder };
+    if (registrertBarnAktørId) {
+        return { aktørId: registrertBarnAktørId };
     }
 
     return undefined;
@@ -67,7 +67,7 @@ export const mapFormDataToApiData = (
         barnetHarIkkeFnr,
         legeerklæringGjelderEtAnnetBarn,
         barnetsFødselsnummer,
-        barnetLegeerklæringGjelder,
+        registrertBarnAktørId,
     }: SoknadFormData,
     intl: IntlShape,
 ): SoknadApiData => {
@@ -89,7 +89,7 @@ export const mapFormDataToApiData = (
                   barnetHarIkkeFnr,
                   legeerklæringGjelderEtAnnetBarn,
                   barnetsFødselsnummer,
-                  barnetLegeerklæringGjelder,
+                  registrertBarnAktørId,
               )
             : undefined,
         beskrivelse,
