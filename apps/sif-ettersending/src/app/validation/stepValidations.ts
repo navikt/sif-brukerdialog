@@ -18,7 +18,6 @@ export const beskrivelsePPStepIsValid = (values: SoknadFormData) => {
     } = values;
     let isValid = false;
 
-    console.log('TEST: beskrivelsePPStepIsValid');
     if (dokumentType === DokumentType.annet) {
         isValid = hasValue(values.beskrivelse);
     } else if (barnetHarIkkeFnr) {
