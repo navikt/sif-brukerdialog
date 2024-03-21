@@ -2,9 +2,10 @@ import { IntlShape } from 'react-intl';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { YtelseKey, Ytelser } from '@navikt/sif-common-core-ds/src/types/Ytelser';
 import { getLocaleForApi } from '@navikt/sif-common-core-ds/src/utils/localeUtils';
-import { SoknadApiData, YtelseTypeApi } from '../types/SoknadApiData';
+import { BarnetLegeerklæringGjelderApiData, SoknadApiData, YtelseTypeApi } from '../types/SoknadApiData';
 import { SoknadFormData } from '../types/SoknadFormData';
 import { getAttachmentURLBackend } from './attachmentUtilsAuthToken';
+import { DokumentType } from '../types/DokumentType';
 
 const getYtelseTypeApiKey = (ytelse: YtelseKey): YtelseTypeApi => {
     switch (ytelse) {
@@ -33,20 +34,64 @@ const getVedleggUrlFromAttachments = (attachments: Attachment[]): string[] => {
     return vedleggUrl;
 };
 
+const mapBarnFormDataToApiData = (
+    barnetHarIkkeFnr?: boolean,
+    legeerklæringGjelderEtAnnetBarn?: boolean,
+    barnetsFødselsnummer?: string,
+    barnetLegeerklæringGjelder?: string,
+): BarnetLegeerklæringGjelderApiData | undefined => {
+    if (barnetHarIkkeFnr) {
+        return undefined;
+    }
+    if (legeerklæringGjelderEtAnnetBarn && barnetsFødselsnummer) {
+        return {
+            fødselsnummer: barnetsFødselsnummer,
+        };
+    }
+    if (barnetLegeerklæringGjelder) {
+        return { aktørId: barnetLegeerklæringGjelder };
+    }
+
+    return undefined;
+};
+
 export const mapFormDataToApiData = (
     soknadId: string,
-    { harBekreftetOpplysninger, harForståttRettigheterOgPlikter, beskrivelse, dokumenter, ytelse }: SoknadFormData,
+    {
+        harBekreftetOpplysninger,
+        harForståttRettigheterOgPlikter,
+        beskrivelse,
+        dokumenter,
+        ytelse,
+        dokumentType,
+        barnetHarIkkeFnr,
+        legeerklæringGjelderEtAnnetBarn,
+        barnetsFødselsnummer,
+        barnetLegeerklæringGjelder,
+    }: SoknadFormData,
     intl: IntlShape,
 ): SoknadApiData => {
     if (!ytelse) {
         throw new Error('ytelse mangler');
     }
+
+    const isLegeerklæring = ytelse === YtelseKey.pleiepengerSyktBarn && dokumentType === DokumentType.legeerklæring;
+
     const apiData: SoknadApiData = {
         id: soknadId,
         språk: getLocaleForApi(intl.locale),
         harBekreftetOpplysninger,
         harForståttRettigheterOgPlikter,
         søknadstype: getYtelseTypeApiKey(ytelse),
+        isLegeerklæring,
+        barn: isLegeerklæring
+            ? mapBarnFormDataToApiData(
+                  barnetHarIkkeFnr,
+                  legeerklæringGjelderEtAnnetBarn,
+                  barnetsFødselsnummer,
+                  barnetLegeerklæringGjelder,
+              )
+            : undefined,
         beskrivelse,
         vedlegg: getVedleggUrlFromAttachments(dokumenter),
         ytelseTittel: Ytelser[ytelse].søknadstittel.nb,
