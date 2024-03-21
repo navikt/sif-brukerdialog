@@ -24,7 +24,7 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser, tit
     if (reverseDirection) {
         processSteps.reverse();
     }
-    const visibleSteps = visAlleHendelser ? processSteps : [...processSteps].splice(-4);
+    const visibleSteps = visAlleHendelser ? processSteps : [...processSteps].splice(-3);
     const finnnesFlereHendelser = visibleSteps.length < processSteps.length;
 
     return (
