@@ -28,6 +28,8 @@ const nb = {
     '@forms.annetBarnForm.fnr.fødselsnummerHasNoValue': 'Skriv inn barnets fødselsnummer',
     '@forms.annetBarnForm.fnr.fødselsnummerIsInvalid':
         'Du har oppgitt et ugyldig fødselsnummer. Kontroller at du har tastet inn riktig.',
+    '@forms.annetBarnForm.fnr.fødselsnummerAsHnrIsNotAllowed':
+        'Du har oppgitt et fødselsnummer som du ikke kan bruke. Kontroller at du har tastet inn barnets fødselsnummer.',
     '@forms.annetBarnForm.fnr.fødselsnummerIsNot11Chars':
         'Du har oppgitt et ugyldig fødselsnummer. Et gyldig fødselsnummer består av 11 siffer.',
     '@forms.annetBarnForm.fnr.fødselsnummerIsNotAllowed':
