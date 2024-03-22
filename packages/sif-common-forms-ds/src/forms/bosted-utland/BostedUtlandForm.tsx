@@ -97,7 +97,7 @@ const BostedUtlandForm = ({ maxDate, minDate, bosted, alleBosteder = [], onSubmi
                 return (
                     <Form.Form
                         onCancel={onCancel}
-                        formErrorHandler={getFormErrorHandler(intl, 'bostedUtlandForm')}
+                        formErrorHandler={getFormErrorHandler(intl, '@forms.bostedUtlandForm')}
                         submitButtonLabel="Ok"
                         showButtonArrows={false}>
                         <Form.DateRangePicker

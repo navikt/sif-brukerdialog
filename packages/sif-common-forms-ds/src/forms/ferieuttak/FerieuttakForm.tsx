@@ -127,7 +127,7 @@ const FerieuttakForm = ({
                 renderForm={(formik) => (
                     <Form.Form
                         onCancel={onCancel}
-                        formErrorHandler={getFormErrorHandler(intl, 'ferieuttakForm')}
+                        formErrorHandler={getFormErrorHandler(intl, '@forms.ferieuttakForm')}
                         showButtonArrows={false}
                         submitButtonLabel={formLabels.okButton}
                         cancelButtonLabel={formLabels.cancelButton}>
