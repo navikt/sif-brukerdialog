@@ -4,7 +4,7 @@ import FerieuttakExample from './FerieuttakExample';
 import AppIntlProvider from '../../decorators/AppIntlProvider';
 
 export default {
-    title: 'Form/Ferieuttak',
+    title: 'FormDepr/Ferieuttak',
     component: FerieuttakExample,
     decorators: [
         (Story) => (

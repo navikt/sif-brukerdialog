@@ -1,13 +1,4 @@
 import { useIntl } from 'react-intl';
-import {
-    DateRange,
-    dateRangeToISODateRange,
-    dateToday,
-    isDateInMaybeDateRange,
-    isDateRange,
-    prettifyDate,
-} from '@navikt/sif-common-utils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import {
     getDateRangeValidator,
@@ -16,10 +7,19 @@ import {
 } from '@navikt/sif-common-formik-ds/src/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import {
+    DateRange,
+    dateRangeToISODateRange,
+    dateToday,
+    isDateInMaybeDateRange,
+    isDateRange,
+    prettifyDate,
+} from '@navikt/sif-common-utils';
+import dayjs from 'dayjs';
 import { handleDateRangeValidationError } from '../../utils';
+import { FerieuttakMessageKeys, useFerieuttakIntl } from './';
 import ferieuttakUtils from './ferieuttakUtils';
 import { Ferieuttak, FerieuttakFormValues } from './types';
-import dayjs from 'dayjs';
 
 export interface FerieuttakFormLabels {
     title: string;
@@ -47,20 +47,20 @@ enum FerieuttakFormFields {
     from = 'from',
 }
 
-export const FerieuttakFormErrors = {
+export const FerieuttakFormErrors: Record<FerieuttakFormFields, { [key: string]: FerieuttakMessageKeys }> = {
     [FerieuttakFormFields.from]: {
-        [ValidateDateError.dateHasNoValue]: 'ferieuttakForm.from.dateHasNoValue',
-        [ValidateDateRangeError.fromDateIsAfterToDate]: 'ferieuttakForm.from.fromDateIsAfterToDate',
-        [ValidateDateError.dateHasInvalidFormat]: 'ferieuttakForm.from.dateHasInvalidFormat',
-        [ValidateDateError.dateIsBeforeMin]: 'ferieuttakForm.from.dateIsBeforeMin',
-        [ValidateDateError.dateIsAfterMax]: 'ferieuttakForm.from.dateIsAfterMax',
+        [ValidateDateError.dateHasNoValue]: '@forms.ferieuttakForm.from.dateHasNoValue',
+        [ValidateDateRangeError.fromDateIsAfterToDate]: '@forms.ferieuttakForm.from.fromDateIsAfterToDate',
+        [ValidateDateError.dateHasInvalidFormat]: '@forms.ferieuttakForm.from.dateHasInvalidFormat',
+        [ValidateDateError.dateIsBeforeMin]: '@forms.ferieuttakForm.from.dateIsBeforeMin',
+        [ValidateDateError.dateIsAfterMax]: '@forms.ferieuttakForm.from.dateIsAfterMax',
     },
     [FerieuttakFormFields.to]: {
-        [ValidateDateError.dateHasNoValue]: 'ferieuttakForm.to.dateHasNoValue',
-        [ValidateDateRangeError.toDateIsBeforeFromDate]: 'ferieuttakForm.to.toDateIsBeforeFromDate',
-        [ValidateDateError.dateHasInvalidFormat]: 'ferieuttakForm.to.dateHasInvalidFormat',
-        [ValidateDateError.dateIsBeforeMin]: 'ferieuttakForm.to.dateIsBeforeMin',
-        [ValidateDateError.dateIsAfterMax]: 'ferieuttakForm.to.dateIsAfterMax',
+        [ValidateDateError.dateHasNoValue]: '@forms.ferieuttakForm.to.dateHasNoValue',
+        [ValidateDateRangeError.toDateIsBeforeFromDate]: '@forms.ferieuttakForm.to.toDateIsBeforeFromDate',
+        [ValidateDateError.dateHasInvalidFormat]: '@forms.ferieuttakForm.to.dateHasInvalidFormat',
+        [ValidateDateError.dateIsBeforeMin]: '@forms.ferieuttakForm.to.dateIsBeforeMin',
+        [ValidateDateError.dateIsAfterMax]: '@forms.ferieuttakForm.to.dateIsAfterMax',
     },
 };
 
@@ -78,6 +78,7 @@ const FerieuttakForm = ({
     onCancel,
 }: Props) => {
     const intl = useIntl();
+    const { text } = useFerieuttakIntl();
     const onFormikSubmit = (formValues: FerieuttakFormValues) => {
         const ferieuttakToSubmit = ferieuttakUtils.mapFormValuesToFerieuttak(formValues, ferieuttak?.id);
         if (ferieuttakUtils.isValidFerieuttak(ferieuttakToSubmit)) {
@@ -88,12 +89,12 @@ const FerieuttakForm = ({
     };
 
     const defaultLabels: FerieuttakFormLabels = {
-        title: intlHelper(intl, 'ferieuttak.list.title'),
-        fromDate: intlHelper(intl, 'ferieuttak.list.fromDate'),
-        toDate: intlHelper(intl, 'ferieuttak.list.toDate'),
-        intervalTitle: intlHelper(intl, 'ferieuttak.list.intervalTitle'),
-        okButton: intlHelper(intl, 'ferieuttak.list.okButton'),
-        cancelButton: intlHelper(intl, 'ferieuttak.list.cancelButton'),
+        title: text('@forms.ferieuttak.list.title'),
+        fromDate: text('@forms.ferieuttak.list.fromDate'),
+        toDate: text('@forms.ferieuttak.list.toDate'),
+        intervalTitle: text('@forms.ferieuttak.list.intervalTitle'),
+        okButton: text('@forms.ferieuttak.list.okButton'),
+        cancelButton: text('@forms.ferieuttak.list.cancelButton'),
     };
 
     const formLabels: FerieuttakFormLabels = { ...defaultLabels, ...labels };
