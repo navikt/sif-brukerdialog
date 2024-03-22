@@ -33,8 +33,8 @@ const FormikExample = () => {
         <Tabs defaultValue="list">
             <VStack gap="4">
                 <Tabs.List>
-                    <Tabs.Tab value="list" label="AnnetBarnListAndDialog" />
-                    <Tabs.Tab value="form" label="AnnetBarnForm" />
+                    <Tabs.Tab value="list" label="BostedUtlandListAndDialog" />
+                    <Tabs.Tab value="form" label="BostedUtlandForm" />
                     <Tabs.Tab value="messages" label="Tekster" />
                 </Tabs.List>
                 <Tabs.Panel value="list" style={{ maxWidth: '50rem' }}>
