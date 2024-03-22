@@ -1,5 +1,29 @@
 # @navikt/sif-common-formik-ds
 
+## 1.7.22
+
+### Patch Changes
+
+- react-responsive-10.0.0
+
+## 1.7.21
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch og minor
+
+## 1.7.20
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.7.19
+
+### Patch Changes
+
+- Gå tilbake til navikt/fnrvalidator 1.3.3
+
 ## 1.7.18
 
 ### Patch Changes

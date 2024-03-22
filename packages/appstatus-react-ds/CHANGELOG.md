@@ -1,5 +1,23 @@
 # @navikt/appstatus-react-ds
 
+## 2.17.29
+
+### Patch Changes
+
+- react-responsive-10.0.0
+
+## 2.17.28
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch og minor
+
+## 2.17.27
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 2.17.26
 
 ### Patch Changes

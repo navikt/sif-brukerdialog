@@ -2,10 +2,8 @@ import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import ProgressStepper, {
-    ProgressStep,
-} from '@navikt/sif-common-core-ds/src/components/progress-stepper/ProgressStepper';
 import bemHelper from '@navikt/sif-common-core-ds/src/utils/bemUtils';
+import { ProgressStep, ProgressStepper } from '@navikt/sif-common-ui';
 import SoknadHeader from '../../../components/soknad-header/SoknadHeader';
 import StepFooter from '../step-footer/StepFooter';
 import './step.scss';

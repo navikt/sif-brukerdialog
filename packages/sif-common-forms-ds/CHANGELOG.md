@@ -1,5 +1,23 @@
 # @navikt/sif-common-forms-ds
 
+## 8.19.10
+
+### Patch Changes
+
+- react-responsive-10.0.0
+
+## 8.19.9
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch og minor
+
+## 8.19.8
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 8.19.7
 
 ### Patch Changes

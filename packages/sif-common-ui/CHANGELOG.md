@@ -1,5 +1,50 @@
 # @navikt/sif-common-ui
 
+## 0.6.18
+
+### Patch Changes
+
+- react-responsive-10.0.0
+- Updated dependencies
+  - @navikt/sif-common-formik-ds@1.7.22
+  - @navikt/sif-common-core-ds@9.15.14
+  - @navikt/sif-common-utils@3.44.9
+
+## 0.6.17
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch og minor
+- Updated dependencies
+  - @navikt/sif-common-formik-ds@1.7.21
+  - @navikt/sif-common-core-ds@9.15.13
+  - @navikt/sif-common-utils@3.44.8
+
+## 0.6.16
+
+### Patch Changes
+
+- Updated dependencies
+  - @navikt/sif-common-core-ds@9.15.12
+
+## 0.6.15
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+  - @navikt/sif-common-formik-ds@1.7.20
+  - @navikt/sif-common-core-ds@9.15.11
+  - @navikt/sif-common-utils@3.44.7
+
+## 0.6.14
+
+### Patch Changes
+
+- Updated dependencies
+  - @navikt/sif-common-formik-ds@1.7.19
+  - @navikt/sif-common-core-ds@9.15.10
+
 ## 0.6.13
 
 ### Patch Changes

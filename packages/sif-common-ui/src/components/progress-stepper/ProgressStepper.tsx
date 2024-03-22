@@ -53,7 +53,7 @@ const ProgressStepper: React.FunctionComponent<Props> = ({
         allStepsSectionAriaLabel: text('progressStepper.allStepsSectionAriaLabel'),
         navigasjonAriaLabel: text('progressStepper.navigasjonAriaLabel'),
         stepProgressLabelFunc: (currentStep, totalSteps) =>
-            text('progressStepper.navigasjonAriaLabel', { currentStep, totalSteps }),
+            text('progressStepper.stegXavY', { currentStep, totalSteps }),
     };
 
     const labelsToUse: Labels = { ...defaultLabels, ...labels };
