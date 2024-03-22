@@ -39,17 +39,11 @@ const nn: Record<keyof typeof nb, string> = {
 
 export type BostedUtlandMessageKeys = keyof typeof nb;
 
-export const bostedUtlandMessages = {
-    nb,
-    nn,
-};
-
 export const useBostedUtlandIntl = () => {
     const intl = useIntl();
     return typedIntlHelper<BostedUtlandMessageKeys>(intl);
 };
-
-export default {
+export const bostedUtlandMessages = {
     nb,
     nn,
 };

@@ -38,17 +38,12 @@ const nn: Record<keyof typeof nb, string> = {
 
 export type FerieuttakMessageKeys = keyof typeof nb;
 
-export const ferieuttakMessages = {
-    nb,
-    nn,
-};
-
 export const useFerieuttakIntl = () => {
     const intl = useIntl();
     return typedIntlHelper<FerieuttakMessageKeys>(intl);
 };
 
-export default {
+export const ferieuttakMessages = {
     nb,
     nn,
 };

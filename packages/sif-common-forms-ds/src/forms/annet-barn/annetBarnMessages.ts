@@ -52,7 +52,7 @@ export const useAnnetBarnIntl = () => {
     return typedIntlHelper<AnnetBarnMessageKeys>(intl);
 };
 
-export default {
+export const annetBarnMessages = {
     nb,
     nn,
 };

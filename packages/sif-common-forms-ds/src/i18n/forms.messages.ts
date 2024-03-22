@@ -1,6 +1,6 @@
-import annetBarnMessages from '../forms/annet-barn/annetBarnMessages';
-import bostedUtlandMessages from '../forms/bosted-utland/bostedUtlandMessages';
-import ferieuttakMessages from '../forms/ferieuttak/ferieuttakMessages';
+import { annetBarnMessages } from '../forms/annet-barn/annetBarnMessages';
+import { bostedUtlandMessages } from '../forms/bosted-utland/bostedUtlandMessages';
+import { ferieuttakMessages } from '../forms/ferieuttak/ferieuttakMessages';
 import fosterbarnMessages from '../forms/fosterbarn/fosterbarnMessages';
 import fraværMessages from '../forms/fravær/fraværMessages';
 import opptjeningUtlandMessages from '../forms/opptjening-utland/opptjeningUtlandMessages';

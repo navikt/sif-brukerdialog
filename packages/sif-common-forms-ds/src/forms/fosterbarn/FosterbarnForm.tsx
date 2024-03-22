@@ -1,6 +1,4 @@
-import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import {
     getFødselsnummerValidator,
@@ -11,7 +9,9 @@ import {
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { guid } from '@navikt/sif-common-utils';
+import { FosterbarnMessageKeys, useFosterbarnIntl } from './fosterbarnMessages';
 import { Fosterbarn, isFosterbarn } from './types';
+import { useIntl } from 'react-intl';
 
 interface FosterbarnFormText {
     form_fødselsnummer_label: string;
@@ -33,17 +33,18 @@ enum FosterbarnFormField {
 
 type FormValues = Partial<Fosterbarn>;
 
-export const FosterbarnFormErrors = {
+export const FosterbarnFormErrors: Record<FosterbarnFormField, { [key: string]: FosterbarnMessageKeys }> = {
     [FosterbarnFormField.navn]: {
-        [ValidateStringError.stringHasNoValue]: 'fosterbarnForm.navn.stringHasNoValue',
+        [ValidateStringError.stringHasNoValue]: '@forms.fosterbarnForm.navn.stringHasNoValue',
     },
     [FosterbarnFormField.fødselsnummer]: {
-        [ValidateStringError.stringHasNoValue]: 'fosterbarnForm.fødselsnummer.fødselsnummerHasNoValue',
+        [ValidateStringError.stringHasNoValue]: '@forms.fosterbarnForm.fødselsnummer.fødselsnummerHasNoValue',
         [ValidateFødselsnummerError.fødselsnummerIsNotAllowed]:
-            'fosterbarnForm.fødselsnummer.fødselsnummerIsNotAllowed',
+            '@forms.fosterbarnForm.fødselsnummer.fødselsnummerIsNotAllowed',
         [ValidateFødselsnummerError.fødselsnummerIsNot11Chars]:
-            'fosterbarnForm.fødselsnummer.fødselsnummerIsNot11Chars',
-        [ValidateFødselsnummerError.fødselsnummerIsInvalid]: 'fosterbarnForm.fødselsnummer.fødselsnummerIsInvalid',
+            '@forms.fosterbarnForm.fødselsnummer.fødselsnummerIsNot11Chars',
+        [ValidateFødselsnummerError.fødselsnummerIsInvalid]:
+            '@forms.fosterbarnForm.fødselsnummer.fødselsnummerIsInvalid',
     },
 };
 
@@ -56,7 +57,9 @@ const FosterbarnForm = ({
     onSubmit,
     onCancel,
 }: Props) => {
+    const { text: typedText } = useFosterbarnIntl();
     const intl = useIntl();
+
     const onFormikSubmit = (formValues: FormValues) => {
         if (isFosterbarn(formValues)) {
             onSubmit({ ...formValues, id: initialValues.id || guid() });
@@ -66,8 +69,8 @@ const FosterbarnForm = ({
     };
 
     const defaultText: FosterbarnFormText = {
-        form_navn_label: intlHelper(intl, 'fosterbarn.form.navn_label'),
-        form_fødselsnummer_label: intlHelper(intl, 'fosterbarn.form.fødselsnummer_label'),
+        form_navn_label: typedText('@forms.fosterbarn.form.navn_label'),
+        form_fødselsnummer_label: typedText('@forms.fosterbarn.form.fødselsnummer_label'),
     };
 
     const txt = { ...defaultText, ...text };
@@ -80,7 +83,7 @@ const FosterbarnForm = ({
                 renderForm={() => (
                     <Form.Form
                         onCancel={onCancel}
-                        formErrorHandler={getFormErrorHandler(intl, 'fosterbarnForm')}
+                        formErrorHandler={getFormErrorHandler(intl, '@forms.fosterbarnForm')}
                         submitButtonLabel="Ok"
                         showButtonArrows={false}>
                         <Form.TextField

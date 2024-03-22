@@ -7,15 +7,15 @@ import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { date1YearAgo, date1YearFromNow } from '@navikt/sif-common-utils';
+import dayjs from 'dayjs';
 import { flatten } from 'flat';
+import { ferieuttakMessages } from '../';
 import MessagesPreview from '../../../../storybook/components/messages-preview/MessagesPreview';
 import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
 import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
 import FerieuttakForm, { FerieuttakFormErrors } from '../FerieuttakForm';
 import FerieuttakListAndDialog from '../FerieuttakListAndDialog';
-import FerieuttakMessages from '../ferieuttakMessages';
 import { Ferieuttak } from '../types';
-import dayjs from 'dayjs';
 
 enum FormField {
     'ferie' = 'ferie',
@@ -86,9 +86,9 @@ const FormikExample = () => {
                         <FormValidationErrorMessages
                             validationErrorIntlKeys={flatten(FerieuttakFormErrors)}
                             formName={'Ferieuttak'}
-                            intlMessages={FerieuttakMessages}
+                            intlMessages={ferieuttakMessages}
                         />
-                        <MessagesPreview messages={FerieuttakMessages} showExplanation={false} />
+                        <MessagesPreview messages={ferieuttakMessages} showExplanation={false} />
                     </Block>
                 </Tabs.Panel>
             </VStack>
