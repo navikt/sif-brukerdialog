@@ -1,8 +1,7 @@
 import { commonMessages } from '@navikt/sif-common-core-ds/src/i18n/common.messages';
 import { uiMessages } from '@navikt/sif-common-ui';
 import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
-import bostedMessages from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/bostedUtlandMessages';
-import ferieuttakMessages from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/ferieuttakMessages';
+import { ferieuttakMessages, bostedUtlandMessages } from '@navikt/sif-common-forms-ds';
 import opptjeningUtlandMessages from '@navikt/sif-common-forms-ds/src/forms/opptjening-utland/opptjeningUtlandMessages';
 import tidsperiodeMessages from '@navikt/sif-common-forms-ds/src/forms/tidsperiode/tidsperiodeMessages';
 import utenlandskNæringMessages from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring/utenlandskNæringMessages';
@@ -20,7 +19,7 @@ const bokmålstekster = {
     ...uiMessages.nb,
     ...soknadMessages.nb,
     ...utenlandsoppholdMessages.nb,
-    ...bostedMessages.nb,
+    ...bostedUtlandMessages.nb,
     ...virksomhetMessages.nb,
     ...tidsperiodeMessages.nb,
     ...ferieuttakMessages.nb,

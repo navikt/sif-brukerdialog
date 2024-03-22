@@ -31,8 +31,3 @@ export const useFosterbarnIntl = () => {
     const intl = useIntl();
     return typedIntlHelper<FosterbarnMessageKeys>(intl);
 };
-
-export default {
-    nb,
-    nn,
-};

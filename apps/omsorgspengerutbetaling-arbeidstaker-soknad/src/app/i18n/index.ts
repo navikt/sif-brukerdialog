@@ -13,9 +13,9 @@ import { appMessages } from './appMessages';
 import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 import { situasjonMessages } from '../søknad/steps/situasjon/situasjonStepMessages';
-import bostedUtlandMessages from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/bostedUtlandMessages';
+import { bostedUtlandMessages } from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/bostedUtlandMessages';
 import { fosterbarnFormMessages } from '../søknad/steps/fosterbarn/fosterbarnFormMessages';
-import fosterbarnMessages from '@navikt/sif-common-forms-ds/src/forms/fosterbarn/fosterbarnMessages';
+import { fosterbarnMessages } from '@navikt/sif-common-forms-ds/src/forms/fosterbarn/fosterbarnMessages';
 
 const bokmålstekster = {
     ...commonMessages.nb,
