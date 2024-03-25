@@ -3,7 +3,7 @@ import { PleietrengendeMedSak } from '../../../src/server/api-models/Pleietrenge
 import { Behandlingsstatus } from '../../../src/server/api-models/Behandlingsstatus';
 import { Søknadstype } from '../../../src/server/api-models/Søknadstype';
 
-export const sakerMock: PleietrengendeMedSak[] = [
+export const sakerAvsluttetMock: PleietrengendeMedSak[] = [
     {
         pleietrengende: {
             identitetsnummer: '27870899799',
@@ -18,7 +18,7 @@ export const sakerMock: PleietrengendeMedSak[] = [
             saksbehandlingsFrist: ISODateToDate('2024-03-26'),
             behandlinger: [
                 {
-                    status: Behandlingsstatus.UNDER_BEHANDLING,
+                    status: Behandlingsstatus.AVSLUTTET,
                     opprettetTidspunkt: new Date('2024-02-14T11:59:40.061Z'),
                     avsluttetTidspunkt: new Date('2024-02-14T11:59:40.061Z'),
                     søknader: [
