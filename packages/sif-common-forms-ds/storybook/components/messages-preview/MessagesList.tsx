@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { createMultiLocaleObject, MessageFileFormat } from '../devIntlUtils';
 import './messagesList.scss';
 

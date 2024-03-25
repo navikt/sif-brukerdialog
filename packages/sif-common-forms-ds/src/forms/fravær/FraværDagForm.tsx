@@ -99,7 +99,7 @@ const FraværDagFormView = ({
         if (isFraværDag(fraværDagToSubmit)) {
             onSubmit(fraværDagToSubmit);
         } else {
-            throw new Error('FraværDagFOrm: Formvalues is not a valid FraværDag on submit.');
+            throw new Error('FraværDagForm: Formvalues is not a valid FraværDag on submit.');
         }
     };
 
