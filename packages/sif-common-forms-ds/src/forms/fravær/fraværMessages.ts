@@ -20,6 +20,9 @@ const nb = {
     '@forms.fravær.form.dag.antallArbeidstimer': 'Antall timer du skulle ha jobbet denne dagen',
     '@forms.fravær.form.dag.timerFravær': 'Antall timer du var borte fra jobb denne dagen',
 
+    '@forms.fraværDagerList.itemTitle':
+        '{dato}: Skulle jobbet {timerArbeid} {arbeidFlertall, select, true {timer} other {timer}}. Borte fra jobb {timerFravær} {fraværFlertall, select, true {timer} other {time}}.',
+
     '@forms.fraværDagForm.dato.dateHasNoValue': 'Du må oppgi dato for når du hadde delvis fravær.',
     '@forms.fraværDagForm.dato.dateHasInvalidFormat':
         'Du må oppgi dato for når du hadde delvis fravær i et gyldig format. Gyldig format er dd.mm.åååå.',
@@ -35,6 +38,7 @@ const nb = {
     '@forms.fraværDagForm.timerFravær.noValue': 'Du må velge antall timer du var borte fra jobb denne dagen',
     '@forms.fraværDagForm.timerFravær.fravær_timer_mer_enn_arbeidstimer':
         'Fravær kan ikke være høyere enn arbeidstimer',
+    '@forms.fraværDagForm.timerOption': '{tid} {flertall, select, true {timer} other {time}}',
 
     '@forms.fraværPeriodeForm.fraOgMed.dateHasNoValue':
         'Du må oppgi når perioden startet. Skriv inn eller velg dato fra datovelgeren.',
