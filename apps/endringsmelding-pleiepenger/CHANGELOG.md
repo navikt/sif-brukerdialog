@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.25.18
+
+### Patch Changes
+
+- 8055943: Oppdatere tekst i melding som bruker får når vi ikke finner sak.
+
 ## 2.25.17
 
 ### Patch Changes
