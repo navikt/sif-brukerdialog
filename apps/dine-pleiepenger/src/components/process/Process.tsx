@@ -38,7 +38,6 @@ export const Process: ProcessComponent = forwardRef<HTMLOListElement, ProcessPro
                             : undefined;
                         return (
                             <li
-                                aria-checked={isCompleted}
                                 aria-labelledby={headingId}
                                 className={cl(
                                     'process__item',
