@@ -26,29 +26,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@amplitude/analytics-browser@npm:2.5.3":
-  version: 2.5.3
-  resolution: "@amplitude/analytics-browser@npm:2.5.3"
+"@amplitude/analytics-browser@npm:2.6.0":
+  version: 2.6.0
+  resolution: "@amplitude/analytics-browser@npm:2.6.0"
   dependencies:
-    "@amplitude/analytics-client-common": ^2.1.1
-    "@amplitude/analytics-core": ^2.2.2
+    "@amplitude/analytics-client-common": ^2.1.2
+    "@amplitude/analytics-core": ^2.2.3
     "@amplitude/analytics-types": ^2.5.0
-    "@amplitude/plugin-page-view-tracking-browser": ^2.2.3
-    "@amplitude/plugin-web-attribution-browser": ^2.1.4
+    "@amplitude/plugin-page-view-tracking-browser": ^2.2.4
+    "@amplitude/plugin-web-attribution-browser": ^2.1.5
     tslib: ^2.4.1
-  checksum: 9d67fa579bbe06d7b1f4c5df152f9dd669716c4ef79f97f3ee9ed5c74b27b3092752434eca0beb5b557473d8cbfcc1c93cbf336e87039ae31197df8f73f1bbf4
+  checksum: c679183d887a5683db917b7f9426ccdf17e6810a98e5100a1c229835dabe540f7e8b68e0ed559912e1c812c83da575cbcd98b562360faca265a3078d4ad5d103
   languageName: node
   linkType: hard
 
-"@amplitude/analytics-client-common@npm:^2.1.1":
-  version: 2.1.1
-  resolution: "@amplitude/analytics-client-common@npm:2.1.1"
+"@amplitude/analytics-client-common@npm:^2.1.2":
+  version: 2.1.2
+  resolution: "@amplitude/analytics-client-common@npm:2.1.2"
   dependencies:
     "@amplitude/analytics-connector": ^1.4.8
-    "@amplitude/analytics-core": ^2.2.2
+    "@amplitude/analytics-core": ^2.2.3
     "@amplitude/analytics-types": ^2.5.0
     tslib: ^2.4.1
-  checksum: 0c3f051fd2b9879846e66fa54ac357a4309fe20eebf44f1dd2c662913c3a75465455c374049e779a94f364e2afa3baa846dc67c04428440a300a2904e98963f1
+  checksum: 1f2551c0092f587febd9eabb0633c365618c5581a66ebdf9ebf98b389090d1d5a42484ee928c0e6f8ae4707101d26059d6df5479461511df5ec54cf84d27655c
   languageName: node
   linkType: hard
 
@@ -59,13 +59,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@amplitude/analytics-core@npm:^2.2.2":
-  version: 2.2.2
-  resolution: "@amplitude/analytics-core@npm:2.2.2"
+"@amplitude/analytics-core@npm:^2.2.3":
+  version: 2.2.3
+  resolution: "@amplitude/analytics-core@npm:2.2.3"
   dependencies:
     "@amplitude/analytics-types": ^2.5.0
     tslib: ^2.4.1
-  checksum: 762a2e6a0cc5790320947f901dda2cefa6d457410f3a6e31b5af764fb4fa17ad3f7e78cdb095b4ad6dacc30a990a9382e9bea671f96fe5823a244e1006ddeb8b
+  checksum: c112c4f12ddab324ff56c43e2786d354b1cfdf30a1dba42f214e55d1972fbb67c11e882976e5bd0146dbb9be2bbca1640959c57650f2fee76c595248dda83285
   languageName: node
   linkType: hard
 
@@ -76,26 +76,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@amplitude/plugin-page-view-tracking-browser@npm:^2.2.3":
-  version: 2.2.3
-  resolution: "@amplitude/plugin-page-view-tracking-browser@npm:2.2.3"
+"@amplitude/plugin-page-view-tracking-browser@npm:^2.2.4":
+  version: 2.2.4
+  resolution: "@amplitude/plugin-page-view-tracking-browser@npm:2.2.4"
   dependencies:
-    "@amplitude/analytics-client-common": ^2.1.1
+    "@amplitude/analytics-client-common": ^2.1.2
     "@amplitude/analytics-types": ^2.5.0
     tslib: ^2.4.1
-  checksum: f9a39969a9c17f8f827cc257f860d6d2360c7bdb48ac71052c838bde289eb07921a665625f98037669674ae56f6c593038fc8f593f3ed802d2a8b9a6542e14dc
+  checksum: 7f616e7502acb09796ee437b93cd7993f18cc74c9c609492f9845e75f578a1a58b27a0121111cf4f12cd1072d76dae09db197b574bee38f15b9e07a6f85743e8
   languageName: node
   linkType: hard
 
-"@amplitude/plugin-web-attribution-browser@npm:^2.1.4":
-  version: 2.1.4
-  resolution: "@amplitude/plugin-web-attribution-browser@npm:2.1.4"
+"@amplitude/plugin-web-attribution-browser@npm:^2.1.5":
+  version: 2.1.5
+  resolution: "@amplitude/plugin-web-attribution-browser@npm:2.1.5"
   dependencies:
-    "@amplitude/analytics-client-common": ^2.1.1
-    "@amplitude/analytics-core": ^2.2.2
+    "@amplitude/analytics-client-common": ^2.1.2
+    "@amplitude/analytics-core": ^2.2.3
     "@amplitude/analytics-types": ^2.5.0
     tslib: ^2.4.1
-  checksum: 55003bb18934e57fae70a5c66b680e1ffb501b245014a6bd7a80b1c48d493d913b63ec2f902053e01422b601ce3462346e22d2de36dbba8d967616dc495724b2
+  checksum: 58a0445b2a7280313fddb608fc810f60543834b0c189daf427a4fb9c436a63c84ecc31c11fe04d2b3b97c997015d5da87c65f4998f5a76ef2e65c6771508cccf
   languageName: node
   linkType: hard
 
@@ -3818,9 +3818,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/intl@npm:2.10.0":
-  version: 2.10.0
-  resolution: "@formatjs/intl@npm:2.10.0"
+"@formatjs/intl@npm:2.10.1":
+  version: 2.10.1
+  resolution: "@formatjs/intl@npm:2.10.1"
   dependencies:
     "@formatjs/ecma402-abstract": 1.18.2
     "@formatjs/fast-memoize": 2.2.0
@@ -3834,7 +3834,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 45ed03c7c4a378606b273477a1fd0323804caf2eee1d0ace17b8dfe15a9c71b4083ffc4592c02a1261bcbc2edfd09e81d3144b5b7599dcd51f3cae48c5c93d9a
+  checksum: 01ad0efb055c7ae6b3eb7910393e29f397c3acd29b7e05a121e6a3476b7c279daec95dc90bc6f06f80d9a3a4e723623126f75146a2c83567abb5aec76363b1b6
   languageName: node
   linkType: hard
 
@@ -4391,7 +4391,7 @@ __metadata:
     "@portabletext/react": 3.0.15
     "@sanity/client": 6.15.7
     "@types/node": 20.11.30
-    "@types/react": 18.2.67
+    "@types/react": 18.2.70
     "@types/react-dom": 18.2.22
     config: "workspace:*"
     copyfiles: 2.4.1
@@ -4448,7 +4448,7 @@ __metadata:
     react: 18.2.0
     react-day-picker: 8.10.0
     react-dom: 18.2.0
-    react-intl: 6.6.2
+    react-intl: 6.6.3
     react-loading-skeleton: 3.4.0
     storybook: 8.0.4
     swr: 2.2.5
@@ -4533,7 +4533,7 @@ __metadata:
     "@storybook/react-vite": 8.0.4
     "@testing-library/react": 14.2.2
     "@types/object-hash": 3.0.6
-    "@types/react": 18.2.67
+    "@types/react": 18.2.70
     "@types/react-dom": 18.2.22
     "@types/react-router-dom": 5.3.3
     axios: 1.6.8
@@ -4556,11 +4556,11 @@ __metadata:
     react: 18.2.0
     react-dom: 18.2.0
     react-fast-compare: 3.2.2
-    react-intl: 6.6.2
+    react-intl: 6.6.3
     react-router-dom: 6.22.3
     rimraf: 5.0.5
     typescript: 5.4.3
-    vite: 5.2.2
+    vite: 5.2.6
     vite-plugin-checker: 0.6.4
     vitest: 1.4.0
   languageName: unknown
@@ -4603,7 +4603,7 @@ __metadata:
     "@types/intl": 1.2.2
     "@types/js-cookie": 3.0.6
     "@types/object-hash": 3.0.6
-    "@types/react": 18.2.67
+    "@types/react": 18.2.70
     "@types/react-document-title": 2.0.9
     "@types/react-dom": 18.2.22
     "@types/react-modal": 3.16.3
@@ -4638,14 +4638,14 @@ __metadata:
     react: 18.2.0
     react-day-picker: 8.10.0
     react-dom: 18.2.0
-    react-intl: 6.6.2
+    react-intl: 6.6.3
     react-modal: 3.16.1
     react-responsive: 10.0.0
     react-router-dom: 6.22.3
     storybook: 8.0.4
     tailwindcss: 3.4.1
     typescript: 5.4.3
-    vite: 5.2.2
+    vite: 5.2.6
     vite-plugin-checker: 0.6.4
     vitest: 1.4.0
   languageName: unknown
@@ -4717,7 +4717,7 @@ __metadata:
     "@playwright/test": 1.42.1
     "@testing-library/react": 14.2.2
     "@types/object-hash": 3.0.6
-    "@types/react": 18.2.67
+    "@types/react": 18.2.70
     "@types/react-dom": 18.2.22
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.2.1
@@ -4742,10 +4742,10 @@ __metadata:
     react: 18.2.0
     react-dom: 18.2.0
     react-fast-compare: 3.2.2
-    react-intl: 6.6.2
+    react-intl: 6.6.3
     react-router-dom: 6.22.3
     uuid: 9.0.1
-    vite: 5.2.2
+    vite: 5.2.6
     vite-plugin-checker: 0.6.4
   languageName: unknown
   linkType: soft
@@ -4762,7 +4762,7 @@ __metadata:
     "@navikt/nav-dekoratoren-moduler": 2.1.6
     "@playwright/test": 1.42.1
     "@types/node": 20.11.30
-    "@types/react": 18.2.67
+    "@types/react": 18.2.70
     "@types/react-dom": 18.2.22
     "@types/uuid": 9.0.8
     classnames: 2.5.1
@@ -4778,7 +4778,7 @@ __metadata:
     react: 18.2.0
     react-day-picker: 8.10.0
     react-dom: 18.2.0
-    react-intl: 6.6.2
+    react-intl: 6.6.3
     tailwindcss: 3.4.1
     typescript: 5.4.3
     uuid: 9.0.1
@@ -4810,7 +4810,7 @@ __metadata:
     "@testing-library/react": 14.2.2
     "@types/node": 20.11.30
     "@types/object-hash": 3.0.6
-    "@types/react": 18.2.67
+    "@types/react": 18.2.70
     "@types/react-dom": 18.2.22
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.2.1
@@ -4837,13 +4837,13 @@ __metadata:
     react: 18.2.0
     react-dom: 18.2.0
     react-fast-compare: 3.2.2
-    react-intl: 6.6.2
+    react-intl: 6.6.3
     react-router-dom: 6.22.3
     tailwindcss: 3.4.1
     typescript: 5.4.3
     ulid: ^2.3.0
     uuid: ^9.0.1
-    vite: 5.2.2
+    vite: 5.2.6
     vite-plugin-checker: 0.6.4
     vitest: 1.4.0
   languageName: unknown
@@ -4882,7 +4882,7 @@ __metadata:
     "@testing-library/react": 14.2.2
     "@types/node": 20.11.30
     "@types/object-hash": 3.0.6
-    "@types/react": 18.2.67
+    "@types/react": 18.2.70
     "@types/react-dom": 18.2.22
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.2.1
@@ -4909,13 +4909,13 @@ __metadata:
     react: 18.2.0
     react-dom: 18.2.0
     react-fast-compare: 3.2.2
-    react-intl: 6.6.2
+    react-intl: 6.6.3
     react-router-dom: 6.22.3
     storybook: 8.0.4
     tailwindcss: 3.4.1
     typescript: 5.4.3
     uuid: 9.0.1
-    vite: 5.2.2
+    vite: 5.2.6
     vite-plugin-checker: 0.6.4
     vitest: 1.4.0
   languageName: unknown
@@ -4954,7 +4954,7 @@ __metadata:
     "@storybook/testing-library": 0.2.2
     "@testing-library/react": 14.2.2
     "@types/object-hash": 3.0.6
-    "@types/react": 18.2.67
+    "@types/react": 18.2.70
     "@types/react-dom": 18.2.22
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.2.1
@@ -4982,11 +4982,11 @@ __metadata:
     react: 18.2.0
     react-dom: 18.2.0
     react-fast-compare: 3.2.2
-    react-intl: 6.6.2
+    react-intl: 6.6.3
     react-router-dom: 6.22.3
     storybook: 8.0.4
     typescript: 5.4.3
-    vite: 5.2.2
+    vite: 5.2.6
     vite-plugin-checker: 0.6.4
     vitest: 1.4.0
   languageName: unknown
@@ -5019,7 +5019,7 @@ __metadata:
     "@storybook/react-vite": 8.0.4
     "@testing-library/react": 14.2.2
     "@types/object-hash": 3.0.6
-    "@types/react": 18.2.67
+    "@types/react": 18.2.70
     "@types/react-dom": 18.2.22
     "@types/react-router-dom": 5.3.3
     axios: 1.6.8
@@ -5045,11 +5045,11 @@ __metadata:
     react: 18.2.0
     react-dom: 18.2.0
     react-fast-compare: 3.2.2
-    react-intl: 6.6.2
+    react-intl: 6.6.3
     react-router-dom: 6.22.3
     typescript: 5.4.3
     uuid: 9.0.1
-    vite: 5.2.2
+    vite: 5.2.6
     vite-plugin-checker: 0.6.4
     vitest: 1.4.0
   languageName: unknown
@@ -5082,7 +5082,7 @@ __metadata:
     "@testing-library/user-event": 14.5.2
     "@types/lodash.debounce": 4.0.9
     "@types/lodash.groupby": 4.6.9
-    "@types/react": 18.2.67
+    "@types/react": 18.2.70
     "@types/react-dom": 18.2.22
     "@types/react-router-dom": 5.3.3
     "@typescript-eslint/eslint-plugin": 7.3.1
@@ -5122,11 +5122,11 @@ __metadata:
     react: 18.2.0
     react-day-picker: 8.10.0
     react-dom: 18.2.0
-    react-intl: 6.6.2
+    react-intl: 6.6.3
     react-router-dom: 6.22.3
     typescript: 5.4.3
     uuid: 9.0.1
-    vite: 5.2.2
+    vite: 5.2.6
     vite-plugin-checker: 0.6.4
     vitest: 1.4.0
   languageName: unknown
@@ -5159,9 +5159,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-amplitude@workspace:packages/sif-common-amplitude"
   dependencies:
-    "@amplitude/analytics-browser": 2.5.3
+    "@amplitude/analytics-browser": 2.6.0
     "@types/node": 20.11.30
-    "@types/react": 18.2.67
+    "@types/react": 18.2.70
     config: "workspace:*"
     constate: 3.3.2
     gh-pages: 6.1.1
@@ -5203,7 +5203,7 @@ __metadata:
     "@storybook/react-vite": 8.0.4
     "@storybook/testing-library": 0.2.2
     "@types/node": 20.11.30
-    "@types/react": 18.2.67
+    "@types/react": 18.2.70
     "@types/react-collapse": 5.0.4
     "@types/react-dom": 18.2.22
     "@vitejs/plugin-react": 4.2.1
@@ -5227,14 +5227,14 @@ __metadata:
     react-collapse: 5.1.1
     react-day-picker: 8.10.0
     react-dom: 18.2.0
-    react-intl: 6.6.2
+    react-intl: 6.6.3
     react-responsive: 10.0.0
     react-syntax-highlighter: 15.5.0
     rimraf: 5.0.5
     storybook: 8.0.4
     tailwindcss: 3.4.1
     uuid: 9.0.1
-    vite: 5.2.2
+    vite: 5.2.6
     vite-plugin-checker: 0.6.4
     vitest: 1.4.0
   languageName: unknown
@@ -5268,7 +5268,7 @@ __metadata:
     "@storybook/testing-library": 0.2.2
     "@types/jest": 29.5.12
     "@types/node": 20.11.30
-    "@types/react": 18.2.67
+    "@types/react": 18.2.70
     "@types/react-dom": 18.2.22
     "@types/uuid": 9.0.8
     "@vitejs/plugin-react": 4.2.1
@@ -5289,12 +5289,12 @@ __metadata:
     react-dom: 18.2.0
     react-dropzone: 14.2.3
     react-fast-compare: 3.2.2
-    react-intl: 6.6.2
+    react-intl: 6.6.3
     react-syntax-highlighter: 15.5.0
     rimraf: 5.0.5
     storybook: 8.0.4
     uuid: 9.0.1
-    vite: 5.2.2
+    vite: 5.2.6
     vite-plugin-checker: 0.6.4
     vitest: 1.4.0
   peerDependencies:
@@ -5334,7 +5334,7 @@ __metadata:
     "@testing-library/react": 14.2.2
     "@testing-library/user-event": 14.5.2
     "@types/node": 20.11.30
-    "@types/react": 18.2.67
+    "@types/react": 18.2.70
     "@types/react-dom": 18.2.22
     "@vitejs/plugin-react": 4.2.1
     axios: 1.6.8
@@ -5351,12 +5351,12 @@ __metadata:
     react-collapse: 5.1.1
     react-day-picker: 8.10.0
     react-dom: 18.2.0
-    react-intl: 6.6.2
+    react-intl: 6.6.3
     react-modal: 3.16.1
     react-router-dom: 6.22.3
     rimraf: 5.0.5
     storybook: 8.0.4
-    vite: 5.2.2
+    vite: 5.2.6
     vite-plugin-checker: 0.6.4
     vitest: 1.4.0
   languageName: unknown
@@ -5377,9 +5377,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-sentry@workspace:packages/sif-common-sentry"
   dependencies:
-    "@sentry/browser": 7.107.0
-    "@sentry/react": 7.107.0
-    "@sentry/types": 7.107.0
+    "@sentry/browser": 7.108.0
+    "@sentry/react": 7.108.0
+    "@sentry/types": 7.108.0
     "@types/node": 20.11.30
     axios: 1.6.8
     config: "*"
@@ -5429,7 +5429,7 @@ __metadata:
     "@testing-library/user-event": 14.5.2
     "@types/jest": 29.5.12
     "@types/node": 20.11.30
-    "@types/react": 18.2.67
+    "@types/react": 18.2.70
     "@types/react-dom": 18.2.22
     "@types/react-modal": 3.16.3
     "@vitejs/plugin-react": 4.2.1
@@ -5450,12 +5450,12 @@ __metadata:
     react: 18.2.0
     react-day-picker: 8.10.0
     react-dom: 18.2.0
-    react-intl: 6.6.2
+    react-intl: 6.6.3
     react-router-dom: 6.22.3
     rimraf: 5.0.5
     storybook: 8.0.4
     uuid: 9.0.1
-    vite: 5.2.2
+    vite: 5.2.6
     vite-plugin-checker: 0.6.4
   languageName: unknown
   linkType: soft
@@ -5488,7 +5488,7 @@ __metadata:
     intl: 1.2.5
     npm-run-all: 4.1.5
     react-day-picker: 8.10.0
-    react-intl: 6.6.2
+    react-intl: 6.6.3
     storybook: 8.0.4
   languageName: unknown
   linkType: soft
@@ -5501,7 +5501,7 @@ __metadata:
     "@babel/preset-env": 7.24.3
     "@babel/preset-react": 7.24.1
     "@types/node": 20.11.30
-    "@types/react": 18.2.67
+    "@types/react": 18.2.70
     "@types/react-dom": 18.2.22
     "@types/uuid": 9.0.8
     config: "workspace:*"
@@ -5512,7 +5512,7 @@ __metadata:
     npm-run-all: 4.1.5
     react: 18.2.0
     react-dom: 18.2.0
-    react-intl: 6.6.2
+    react-intl: 6.6.3
     uuid: 9.0.1
     vitest: 1.4.0
   languageName: unknown
@@ -5542,7 +5542,7 @@ __metadata:
     "@playwright/test": 1.42.1
     "@storybook/react-vite": 8.0.4
     "@testing-library/react": 14.2.2
-    "@types/react": 18.2.67
+    "@types/react": 18.2.70
     "@types/react-dom": 18.2.22
     "@types/react-router-dom": 5.3.3
     "@types/uuid": 9.0.8
@@ -5572,12 +5572,12 @@ __metadata:
     react: 18.2.0
     react-day-picker: 8.10.0
     react-dom: 18.2.0
-    react-intl: 6.6.2
+    react-intl: 6.6.3
     react-router-dom: 6.22.3
     tailwindcss: 3.4.1
     typescript: 5.4.3
     uuid: 9.0.1
-    vite: 5.2.2
+    vite: 5.2.6
     vite-plugin-checker: 0.6.4
     vitest: 1.4.0
   languageName: unknown
@@ -6801,37 +6801,37 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry-internal/feedback@npm:7.107.0":
-  version: 7.107.0
-  resolution: "@sentry-internal/feedback@npm:7.107.0"
+"@sentry-internal/feedback@npm:7.108.0":
+  version: 7.108.0
+  resolution: "@sentry-internal/feedback@npm:7.108.0"
   dependencies:
-    "@sentry/core": 7.107.0
-    "@sentry/types": 7.107.0
-    "@sentry/utils": 7.107.0
-  checksum: 4144b088713d25ac3fbc21ace9d3abf3b446cb6d9697eb5b746f6c9cb1d0b657bb886ac89072d790361ab4e0474dd95ab058b1e369fda626ec2fafa671fe23cb
+    "@sentry/core": 7.108.0
+    "@sentry/types": 7.108.0
+    "@sentry/utils": 7.108.0
+  checksum: 6461d1c02a04d77fc7f2be1d2d5dc107f340053c85737062b48a7055d609484f8ba680c0dbbfb6ac1b9d28c5399d839be7f59298a6a376edc1bd9bc69d3c4117
   languageName: node
   linkType: hard
 
-"@sentry-internal/replay-canvas@npm:7.107.0":
-  version: 7.107.0
-  resolution: "@sentry-internal/replay-canvas@npm:7.107.0"
+"@sentry-internal/replay-canvas@npm:7.108.0":
+  version: 7.108.0
+  resolution: "@sentry-internal/replay-canvas@npm:7.108.0"
   dependencies:
-    "@sentry/core": 7.107.0
-    "@sentry/replay": 7.107.0
-    "@sentry/types": 7.107.0
-    "@sentry/utils": 7.107.0
-  checksum: c12e57da3f4218f5852933dd2809ec04c4d7721a39fc60e2f9c1714b5eee0804a9a41294008452d8d93b22000623a9eb6a3a3409285167899536bfe67a4f0a3b
+    "@sentry/core": 7.108.0
+    "@sentry/replay": 7.108.0
+    "@sentry/types": 7.108.0
+    "@sentry/utils": 7.108.0
+  checksum: 99c60ced47620a2daefe3715839d1f7679935396cd5ebafc02e260184a6d2d647be9b235084ff278adbd43f21f4173d02d5f6bfdba90316c781203c65cac1364
   languageName: node
   linkType: hard
 
-"@sentry-internal/tracing@npm:7.107.0":
-  version: 7.107.0
-  resolution: "@sentry-internal/tracing@npm:7.107.0"
+"@sentry-internal/tracing@npm:7.108.0":
+  version: 7.108.0
+  resolution: "@sentry-internal/tracing@npm:7.108.0"
   dependencies:
-    "@sentry/core": 7.107.0
-    "@sentry/types": 7.107.0
-    "@sentry/utils": 7.107.0
-  checksum: 13d4127d6fd24425911c64dae5d4ce40683b5bda8e5f44bc8a6565bdd59a0993974c73f6a4248da2b32e168eff82538ecb8a42d589baebb72073671cef5062c0
+    "@sentry/core": 7.108.0
+    "@sentry/types": 7.108.0
+    "@sentry/utils": 7.108.0
+  checksum: ade1c2f6f0185edf5c42ad74a9d855e608aea9bd5df784783d892b5736010835e7e9c584aca5b281760058d958ae7605aa5acb012388d825ec40c88df3bead9e
   languageName: node
   linkType: hard
 
@@ -6842,18 +6842,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/browser@npm:7.107.0":
-  version: 7.107.0
-  resolution: "@sentry/browser@npm:7.107.0"
+"@sentry/browser@npm:7.108.0":
+  version: 7.108.0
+  resolution: "@sentry/browser@npm:7.108.0"
   dependencies:
-    "@sentry-internal/feedback": 7.107.0
-    "@sentry-internal/replay-canvas": 7.107.0
-    "@sentry-internal/tracing": 7.107.0
-    "@sentry/core": 7.107.0
-    "@sentry/replay": 7.107.0
-    "@sentry/types": 7.107.0
-    "@sentry/utils": 7.107.0
-  checksum: 9c2857f56d27a5d5f0257acfe6c294ce5e0875fd2e2ef8b4bebee044c6b759feea625498988e711cac79261f6c236b2d2e28ee6600bc4813f0359c4a452a5f48
+    "@sentry-internal/feedback": 7.108.0
+    "@sentry-internal/replay-canvas": 7.108.0
+    "@sentry-internal/tracing": 7.108.0
+    "@sentry/core": 7.108.0
+    "@sentry/replay": 7.108.0
+    "@sentry/types": 7.108.0
+    "@sentry/utils": 7.108.0
+  checksum: d936dd0bc08fee0afac2605b6d2290ca2b89181b0b6e3d4a1d295aaa91f8dfded9bf106390934c38d48fb436fb4b12361d44ef17293bc555c9bdf575341f45b0
   languageName: node
   linkType: hard
 
@@ -6959,56 +6959,56 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/core@npm:7.107.0":
-  version: 7.107.0
-  resolution: "@sentry/core@npm:7.107.0"
+"@sentry/core@npm:7.108.0":
+  version: 7.108.0
+  resolution: "@sentry/core@npm:7.108.0"
   dependencies:
-    "@sentry/types": 7.107.0
-    "@sentry/utils": 7.107.0
-  checksum: f0dd7d4f20abf15ceb07d8244bc5daf6dbd3940225ca10fb684111772e3bd35c52e7d95dfb6083c669cecfea75d73f6f34cbc7eb626fcb0858643dda4421ee86
+    "@sentry/types": 7.108.0
+    "@sentry/utils": 7.108.0
+  checksum: 0929ec9ba3378df1f92662cb7fef20a3d5c7865ed1927f9f75666655832cd4ad2e2e7df762a9ad5152da927121ce182a690f5e14947c225bcfbc047488341592
   languageName: node
   linkType: hard
 
-"@sentry/react@npm:7.107.0":
-  version: 7.107.0
-  resolution: "@sentry/react@npm:7.107.0"
+"@sentry/react@npm:7.108.0":
+  version: 7.108.0
+  resolution: "@sentry/react@npm:7.108.0"
   dependencies:
-    "@sentry/browser": 7.107.0
-    "@sentry/core": 7.107.0
-    "@sentry/types": 7.107.0
-    "@sentry/utils": 7.107.0
+    "@sentry/browser": 7.108.0
+    "@sentry/core": 7.108.0
+    "@sentry/types": 7.108.0
+    "@sentry/utils": 7.108.0
     hoist-non-react-statics: ^3.3.2
   peerDependencies:
     react: 15.x || 16.x || 17.x || 18.x
-  checksum: 09316a5199f2209c634e658bf11664a4149fd66dd4dffd542f7c102e82ac88ae0bbab23657d58a59d047af2e55c978867d61892f87361aee1f9ec84239170427
+  checksum: 7a6f0d4c7012348c9d31be5e09c206bc53c658c34f6781d820926f53ffaa105fdda0de55d87c2992b1e21c911ff2657451ebdec62aebff89d8eced611389af25
   languageName: node
   linkType: hard
 
-"@sentry/replay@npm:7.107.0":
-  version: 7.107.0
-  resolution: "@sentry/replay@npm:7.107.0"
+"@sentry/replay@npm:7.108.0":
+  version: 7.108.0
+  resolution: "@sentry/replay@npm:7.108.0"
   dependencies:
-    "@sentry-internal/tracing": 7.107.0
-    "@sentry/core": 7.107.0
-    "@sentry/types": 7.107.0
-    "@sentry/utils": 7.107.0
-  checksum: e238ccd0c0e07c6d8da771e1bc553142a262b0c3a8e6485c19db8434a774e8a7500461de769603e7e01ef5283d1e2572d8e60b39d12885182828e6cfdac45fd3
+    "@sentry-internal/tracing": 7.108.0
+    "@sentry/core": 7.108.0
+    "@sentry/types": 7.108.0
+    "@sentry/utils": 7.108.0
+  checksum: f1a76286ec4b900f4c3906c28576128462b7cf99ea1cfbf2d6815d8ac147f361d2969bb7be34972062661207a3443d03bd54d40f4ad94556e0dab3bb3ef3388a
   languageName: node
   linkType: hard
 
-"@sentry/types@npm:7.107.0":
-  version: 7.107.0
-  resolution: "@sentry/types@npm:7.107.0"
-  checksum: dbf6b5447016691268da0f29eb7261b98d5a8212d55e949027b4dd9050231cb44fcb3760797f04b017b6efa708468fe05ae734d6431197e1564a2af7e21c2691
+"@sentry/types@npm:7.108.0":
+  version: 7.108.0
+  resolution: "@sentry/types@npm:7.108.0"
+  checksum: ac9a4c16e6965f04d375cd9651b73fce9c19e013d5f36449ea23dd4d16eea674476c9706bbd26ecbd6cdb10ebf15f75cf81ad339229d43da28a86a011866b8d7
   languageName: node
   linkType: hard
 
-"@sentry/utils@npm:7.107.0":
-  version: 7.107.0
-  resolution: "@sentry/utils@npm:7.107.0"
+"@sentry/utils@npm:7.108.0":
+  version: 7.108.0
+  resolution: "@sentry/utils@npm:7.108.0"
   dependencies:
-    "@sentry/types": 7.107.0
-  checksum: c21d24f9444afcec79450d592a00793c42b7cd54a4ec0058c953a9778ad76551394ef2fdcb8c9d1fbc1d87580bcfa2a5f024abb3da35c58fcec4dc65b2550e07
+    "@sentry/types": 7.108.0
+  checksum: af77a9da8c6e878cca871be29d03890bf0f81a47a6cf2ef73276c67e238ea698e2ce797ea0c6f93bf8bbe6290d069075c8d912e35c47536cba4aac48ece8424f
   languageName: node
   linkType: hard
 
@@ -9317,14 +9317,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:18.2.67":
-  version: 18.2.67
-  resolution: "@types/react@npm:18.2.67"
+"@types/react@npm:18.2.70":
+  version: 18.2.70
+  resolution: "@types/react@npm:18.2.70"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: 9e48122b0e8d0ae20601f613aca32289eeb94d55c58ff03a7dc532d80ed289a1ba9715f14b773bd926ccdd63e503717f14264143ef531dc370063abe09dee0b2
+  checksum: 4d1160ad2449ce5e96aa795f24f9e3902975cd59e6ce3c79eb674acb1262a54cdb0bc9c9b0aeb858da24e20148a09ec1822c8ed12f70c1c87b779ac2baf72ebd
   languageName: node
   linkType: hard
 
@@ -22123,13 +22123,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-intl@npm:6.6.2":
-  version: 6.6.2
-  resolution: "react-intl@npm:6.6.2"
+"react-intl@npm:6.6.3":
+  version: 6.6.3
+  resolution: "react-intl@npm:6.6.3"
   dependencies:
     "@formatjs/ecma402-abstract": 1.18.2
     "@formatjs/icu-messageformat-parser": 2.7.6
-    "@formatjs/intl": 2.10.0
+    "@formatjs/intl": 2.10.1
     "@formatjs/intl-displaynames": 6.6.6
     "@formatjs/intl-listformat": 7.5.5
     "@types/hoist-non-react-statics": ^3.3.1
@@ -22143,7 +22143,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: a7a7cffa68089053f4d6e87bba8c84e23b2ed27200764bc115edd2455fa2b538c5890fd2f112056e66fceed2ab77e6abdf7c63d6e357ead5549f5eabbd666840
+  checksum: 9865d317734e10c907f482fed2b4473db23393bb896015c7d238305266a298ccf066ff59abc4e6ae0591e439f817e71e532d3f3180b380753972fe597b08ed43
   languageName: node
   linkType: hard
 
@@ -25482,9 +25482,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:5.2.2":
-  version: 5.2.2
-  resolution: "vite@npm:5.2.2"
+"vite@npm:5.2.6":
+  version: 5.2.6
+  resolution: "vite@npm:5.2.6"
   dependencies:
     esbuild: ^0.20.1
     fsevents: ~2.3.3
@@ -25518,7 +25518,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: ef20480a0d4145f05378d33d295917995679c75205c19872346f18ad847cca8ac90794b7cfb280f787c0db60a90afcc1ae2c2e5ccedfe4751fb4a3c0ff07be69
+  checksum: 7dc8f5a06601a0183b53a389469e7d898c1f187a567b5af2543a02e08fe5778f87da6e26b71b5096462c81e922f04c593b447307bcd38ee7fe250c0bb18fe88f
   languageName: node
   linkType: hard
 

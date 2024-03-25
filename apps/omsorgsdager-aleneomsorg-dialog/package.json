@@ -51,7 +51,7 @@
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "react-fast-compare": "3.2.2",
-        "react-intl": "6.6.2",
+        "react-intl": "6.6.3",
         "react-router-dom": "6.22.3",
         "uuid": "9.0.1"
     },
@@ -63,7 +63,7 @@
         "@babel/preset-react": "7.24.1",
         "@playwright/test": "1.42.1",
         "@types/object-hash": "3.0.6",
-        "@types/react": "18.2.67",
+        "@types/react": "18.2.70",
         "@types/react-dom": "18.2.22",
         "@types/react-router-dom": "5.3.3",
         "@vitejs/plugin-react": "4.2.1",
@@ -73,7 +73,7 @@
         "jsdom": "24.0.0",
         "less": "4.2.0",
         "mini-css-extract-plugin": "2.8.1",
-        "vite": "5.2.2",
+        "vite": "5.2.6",
         "vite-plugin-checker": "0.6.4"
     },
     "eslintConfig": {
