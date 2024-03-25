@@ -41,6 +41,7 @@ export const Process: ProcessComponent = forwardRef<HTMLOListElement, ProcessPro
                                     isCurrent ? 'process__item__variant process__item__variant--CURRENT' : undefined,
                                     isContinuation ? 'process__item--CONTINUATION' : undefined,
                                 )}
+                                aria-current={isCurrent}
                                 key={stepIndex + (children?.toString?.() ?? '')}>
                                 <span className={cl('process__line process__line--1')} />
                                 {React.isValidElement<ProcessStepProps>(step)

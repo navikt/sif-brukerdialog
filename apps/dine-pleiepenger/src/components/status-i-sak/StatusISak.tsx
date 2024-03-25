@@ -59,7 +59,7 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser, tit
                                 isLastStep={step.isLastStep}
                                 headingId={headingId}
                                 isContinuation={finnnesFlereHendelser && idx === 0}>
-                                <Heading size="small" level="3" id={`process-heading-${idx}`}>
+                                <Heading size="small" level="3" id={headingId} aria-hidden={true}>
                                     {step.title}{' '}
                                     {step.timestamp ? (
                                         <BodyShort className="mb-2">
