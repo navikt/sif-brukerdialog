@@ -5,7 +5,7 @@ import KontaktOss from './KontaktOss';
 import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof KontaktOss> = {
     component: KontaktOss,
-    title: 'Components/KontaktOss',
+    title: 'Content/KontaktOss',
     parameters: {
         layout: 'centered',
     },

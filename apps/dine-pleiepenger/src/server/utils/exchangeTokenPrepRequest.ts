@@ -33,6 +33,7 @@ export const exchangeTokenAndPrepRequest = async (
     service: ApiService,
     context,
     path,
+    contentType,
 ): Promise<{
     headers: any;
     url: string;
@@ -54,7 +55,7 @@ export const exchangeTokenAndPrepRequest = async (
             url: `${serverUrl}/${path}`,
             headers: {
                 Authorization: `Bearer ${tokenX.token}`,
-                'Content-Type': 'application/pdf',
+                'Content-Type': contentType,
                 'x-request-id': context.requestId,
                 'X-K9-Brukerdialog': serverEnv.NAIS_CLIENT_ID!,
             },
@@ -63,7 +64,7 @@ export const exchangeTokenAndPrepRequest = async (
     return {
         url: `${serverUrl}/${path}`,
         headers: {
-            'Content-Type': 'application/pdf',
+            'Content-Type': contentType,
             'x-request-id': context.requestId,
             'X-K9-Brukerdialog': serverEnv.NAIS_CLIENT_ID!,
         },

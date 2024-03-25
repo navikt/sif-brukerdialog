@@ -1,13 +1,15 @@
+import { ApplicationState } from '@navikt/appstatus-react-ds/src/hooks/useGetApplicationStatus';
+import { PleietrengendeMedSak } from '../server/api-models/PleietrengendeMedSakSchema';
 import { Søker } from '../server/api-models/SøkerSchema';
 import { Mellomlagringer } from './Mellomlagring';
-import { Saker } from './Saker';
-import { Søknad } from './Søknad';
+import { InnsendtSøknad } from './Søknad';
 
 export interface Innsynsdata {
     søker: Søker;
-    søknader: Søknad[];
+    appStatus?: ApplicationState;
+    innsendteSøknader: InnsendtSøknad[];
     mellomlagring: Mellomlagringer;
-    saker: Saker[];
+    saker: PleietrengendeMedSak[];
     saksbehandlingstidUker?: number;
     harSak: boolean;
 }

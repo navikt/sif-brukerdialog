@@ -11,12 +11,12 @@ interface State {
     error?: SanityError;
 }
 
-const defaultState: State = {
+export const defaultAppStatus: State = {
     status: Status.normal,
     message: undefined,
 };
 
-const getStateForApplication = (
+export const getStateForApplication = (
     appStatus: ApplicationStatus,
     appMessage: SanityStatusMessage | undefined,
     teamStatus: Status | undefined,
@@ -34,11 +34,11 @@ const getStateForApplication = (
             message: appMessage || teamMessage,
         };
     }
-    return defaultState;
+    return defaultAppStatus;
 };
 
 function useAppStatus(applicationKey: string, sanityConfig: SanityConfig): State & { isLoading: boolean } {
-    const [state, setState] = useState<State>(defaultState);
+    const [state, setState] = useState<State>(defaultAppStatus);
     const [config] = useState<SanityConfig>(sanityConfig);
 
     const {

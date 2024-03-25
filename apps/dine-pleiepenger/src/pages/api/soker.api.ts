@@ -1,12 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { createChildLogger } from '@navikt/next-logger';
-import axios from 'axios';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
-import { Søker } from '../../server/api-models/SøkerSchema';
 import { fetchSøker } from '../../server/apiService';
 import { getXRequestId } from '../../utils/apiUtils';
-
-export const søkerFetcher = async (url: string): Promise<Søker> => axios.get(url).then((res) => res.data);
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {

@@ -3,7 +3,7 @@ import useSWR from 'swr';
 import { mellomlagringFetcher } from '../../pages/api/mellomlagring.api';
 import { browserEnv } from '../../utils/env';
 import ComponentLoader from '../component-loader/ComponentLoader';
-import { SøknadListeSkeleton } from '../søknad-liste/SøknadListe';
+import { SøknadListeSkeleton } from '../innsendt-søknad-liste/InnsendtSøknadListe';
 import DineMellomlagringer from './DineMellomlagringer';
 
 const DineMellomlagringerLoader = () => {

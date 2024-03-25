@@ -1,12 +1,15 @@
 import { z } from 'zod';
-import { ArbeidsgiverSchema } from './ArbeidsgiverSchema';
+import { InnsendtSøknadArbeidsgiverSchema } from './InnsendtSøknadArbeidsgiverSchema';
 import { OrganisasjonSchema } from './OrganisasjonSchema';
 
 export const OrganisasjonerSchema = z.object({
     organisasjoner: z.array(OrganisasjonSchema),
 });
 
-export const ArbeidsgivereSchema = z.union([z.array(ArbeidsgiverSchema), OrganisasjonerSchema]);
+export const InnsendtSøknadArbeidsgivereSchema = z.union([
+    z.array(InnsendtSøknadArbeidsgiverSchema),
+    OrganisasjonerSchema,
+]);
 
-export type Arbeidsgiver = z.infer<typeof ArbeidsgiverSchema>;
-export type Arbeidsgivere = z.infer<typeof ArbeidsgivereSchema>;
+export type InnsendtSøknadArbeidsgiver = z.infer<typeof InnsendtSøknadArbeidsgiverSchema>;
+export type InnsendtSøknadArbeidsgivere = z.infer<typeof InnsendtSøknadArbeidsgivereSchema>;

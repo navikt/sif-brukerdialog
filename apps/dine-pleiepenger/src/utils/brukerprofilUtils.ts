@@ -1,9 +1,13 @@
 import { dateRangeToISODateRange } from '@navikt/sif-common-utils';
-import { Sak } from '../server/api-models/SakSchema';
-import { Søknad } from '../types/Søknad';
-import { getEndringsmeldinger, getEttersendelser, getPleiepengesøknader } from './søknadUtils';
+import { PleietrengendeMedSak } from '../server/api-models/PleietrengendeMedSakSchema';
+import { getEndringsmeldinger, getEttersendelser, getPleiepengesøknader } from './innsendtSøknadUtils';
+import { InnsendtSøknad } from '../types/Søknad';
 
-export const getBrukerprofil = (søknader: Søknad[], saker: Sak[], saksbehandlingstidUker: number | undefined) => {
+export const getBrukerprofil = (
+    søknader: InnsendtSøknad[],
+    saker: PleietrengendeMedSak[],
+    saksbehandlingstidUker: number | undefined,
+) => {
     const ppSøknader = getPleiepengesøknader(søknader);
     const ppEndringer = getEndringsmeldinger(søknader);
     const ppEttersendelser = getEttersendelser(søknader);

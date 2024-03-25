@@ -1,72 +1,28 @@
 import { z } from 'zod';
-import { parseMaybeDateStringToDate } from '../../utils/jsonParseUtils';
-import { ArbeidsgivereSchema } from './ArbeidsgivereSchema';
-
-export enum Søknadsstatus {
-    MOTTATT = 'MOTTATT',
-    UNDER_BEHANDLING = 'UNDER_BEHANDLING',
-    FERDIG_BEHANDLET = 'FERDIG_BEHANDLET',
-}
-
-export enum Søknadstype {
-    PP_ETTERSENDELSE = 'PP_ETTERSENDELSE',
-    PP_SYKT_BARN = 'PP_SYKT_BARN',
-    PP_SYKT_BARN_ENDRINGSMELDING = 'PP_SYKT_BARN_ENDRINGSMELDING',
-}
-
-enum SøknadDokumentFiltype {
-    PDF = 'PDF',
-}
-
-const SøknadDokumentSchema = z.object({
-    journalpostId: z.string(),
-    dokumentInfoId: z.string(),
-    sakId: z.string(),
-    tittel: z.string(),
-    filtype: z.nativeEnum(SøknadDokumentFiltype),
-    harTilgang: z.boolean(),
-    url: z.string(),
-});
-
-const PleiepengerSøknadInfoSchema = z.object({
-    arbeidsgivere: ArbeidsgivereSchema,
-    fraOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
-    tilOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
-});
+import { K9FormatSøknadSchema } from './K9FormatSøknadSchema';
+import { DokumentSchema } from './DokumenetSchema';
+import { Søknadstype } from './Søknadstype';
+import { OrganisasjonSchema } from './OrganisasjonSchema';
 
 const SøknadBaseSchema = z.object({
-    søknadId: z.string(),
-    status: z.nativeEnum(Søknadsstatus),
-    journalpostId: z.string(),
-    dokumenter: z.array(z.union([SøknadDokumentSchema, z.any()])),
-    opprettet: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
-    endret: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()).or(z.undefined()),
-    behandlingsdato: z.union([z.null(), z.preprocess((val) => parseMaybeDateStringToDate(val), z.date())]),
+    dokumenter: z.array(DokumentSchema),
+    søknadstype: z.nativeEnum(Søknadstype),
 });
 
 const PleiepengerSøknadSchema = SøknadBaseSchema.extend({
-    søknadstype: z.literal(Søknadstype.PP_SYKT_BARN),
-    søknad: PleiepengerSøknadInfoSchema,
+    k9FormatSøknad: K9FormatSøknadSchema,
+    arbeidsgivere: z.array(OrganisasjonSchema).optional(),
 });
 
 const EndringsmeldingSchema = SøknadBaseSchema.extend({
-    søknadstype: z.literal(Søknadstype.PP_SYKT_BARN_ENDRINGSMELDING),
+    k9FormatSøknad: K9FormatSøknadSchema,
 });
 
-const EttersendelseSchema = SøknadBaseSchema.extend({
-    søknadstype: z.literal(Søknadstype.PP_ETTERSENDELSE),
-});
-
-const SøknadSchema = z.discriminatedUnion('søknadstype', [
-    PleiepengerSøknadSchema,
-    EndringsmeldingSchema,
-    EttersendelseSchema,
-]);
+export const SøknadSchema = z.union([PleiepengerSøknadSchema, EndringsmeldingSchema]);
 
 export type Pleiepengesøknad = z.infer<typeof PleiepengerSøknadSchema>;
-export type PleiepengerEttersendelse = z.infer<typeof EttersendelseSchema>;
 export type PleiepengerEndringsmelding = z.infer<typeof EndringsmeldingSchema>;
 
-export type Søknad = Pleiepengesøknad | PleiepengerEttersendelse | PleiepengerEndringsmelding;
+export type Søknad = Pleiepengesøknad | PleiepengerEndringsmelding;
 
 export const SøknaderSchema = z.array(SøknadSchema);
