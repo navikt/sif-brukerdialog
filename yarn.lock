@@ -4609,7 +4609,7 @@ __metadata:
     "@types/react-modal": 3.16.3
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.2.1
-    axe-core: 4.8.4
+    axe-core: 4.9.0
     axios: 1.6.8
     babel-polyfill: 6.26.0
     compression: 1.7.4
@@ -4958,7 +4958,7 @@ __metadata:
     "@types/react-dom": 18.2.22
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.2.1
-    axe-core: 4.8.4
+    axe-core: 4.9.0
     axios: 1.6.8
     babel-polyfill: 6.26.0
     busboy: 1.6.0
@@ -5088,7 +5088,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": 7.3.1
     "@typescript-eslint/parser": 7.3.1
     "@vitejs/plugin-react": 4.2.1
-    axe-core: 4.8.4
+    axe-core: 4.9.0
     axios: 1.6.8
     busboy: 1.6.0
     classnames: 2.5.1
@@ -5547,7 +5547,7 @@ __metadata:
     "@types/react-router-dom": 5.3.3
     "@types/uuid": 9.0.8
     "@vitejs/plugin-react": 4.2.1
-    axe-core: 4.8.4
+    axe-core: 4.9.0
     axios: 1.6.8
     babel-polyfill: 6.26.0
     busboy: 1.6.0
@@ -10743,10 +10743,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axe-core@npm:4.8.4, axe-core@npm:^4.2.0, axe-core@npm:~4.8.4":
-  version: 4.8.4
-  resolution: "axe-core@npm:4.8.4"
-  checksum: 644da2fec17bcf6f834edaab1baa5a75a9a3ee370c323215c73da6d7e45fac11d01470d92d0a3d5f26695e15c1d9b781733dfbe1fe09d505076c58f09ed74e02
+"axe-core@npm:4.9.0":
+  version: 4.9.0
+  resolution: "axe-core@npm:4.9.0"
+  checksum: cabaa07586a92510f4befc742744b548c30033dfda99dd439c21d736f51913d52022c8836180084b13f2098f06a01c716dc42d8e91599c43c9db25905ba5403f
   languageName: node
   linkType: hard
 
@@ -10754,6 +10754,13 @@ __metadata:
   version: 4.7.0
   resolution: "axe-core@npm:4.7.0"
   checksum: f086bcab42be1761ba2b0b127dec350087f4c3a853bba8dd58f69d898cefaac31a1561da23146f6f3c07954c76171d1f2ce460e555e052d2b02cd79af628fa4a
+  languageName: node
+  linkType: hard
+
+"axe-core@npm:^4.2.0, axe-core@npm:~4.8.4":
+  version: 4.8.4
+  resolution: "axe-core@npm:4.8.4"
+  checksum: 644da2fec17bcf6f834edaab1baa5a75a9a3ee370c323215c73da6d7e45fac11d01470d92d0a3d5f26695e15c1d9b781733dfbe1fe09d505076c58f09ed74e02
   languageName: node
   linkType: hard
 
