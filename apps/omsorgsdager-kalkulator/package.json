@@ -3,7 +3,7 @@
     "description": "En kalkulator for beregning av omsorgsdager.",
     "license": "MIT",
     "name": "@navikt/omsorgsdager-kalkulator",
-    "version": "3.5.27",
+    "version": "3.5.28",
     "private": true,
     "scripts": {
         "dev": "next dev -p 8080",
@@ -29,14 +29,14 @@
         "react": "18.2.0",
         "react-day-picker": "8.10.0",
         "react-dom": "18.2.0",
-        "react-intl": "6.6.2",
+        "react-intl": "6.6.3",
         "uuid": "9.0.1"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.8.5",
         "@playwright/test": "1.42.1",
         "@types/node": "20.11.30",
-        "@types/react": "18.2.67",
+        "@types/react": "18.2.70",
         "@types/react-dom": "18.2.22",
         "@types/uuid": "9.0.8",
         "eslint": "8.57.0",

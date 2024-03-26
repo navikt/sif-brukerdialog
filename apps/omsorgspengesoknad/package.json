@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/omsorgspengesoknad",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "1.24.38",
+    "version": "1.24.39",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -41,9 +41,9 @@
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "react-fast-compare": "3.2.2",
-        "react-intl": "6.6.2",
+        "react-intl": "6.6.3",
         "react-router-dom": "6.22.3",
-        "vite": "5.2.2",
+        "vite": "5.2.6",
         "vite-plugin-checker": "0.6.4"
     },
     "devDependencies": {
@@ -62,7 +62,7 @@
         "@storybook/react": "8.0.4",
         "@storybook/testing-library": "0.2.2",
         "@types/object-hash": "3.0.6",
-        "@types/react": "18.2.67",
+        "@types/react": "18.2.70",
         "@types/react-dom": "18.2.22",
         "@types/react-router-dom": "5.3.3",
         "axe-core": "4.8.4",
