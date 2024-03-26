@@ -1,8 +1,8 @@
 import { commonMessages } from '@navikt/sif-common-core-ds/src/i18n/common.messages';
-import { uiMessages } from '@navikt/sif-common-ui';
 import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
-import ferieuttakMessages from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/ferieuttakMessages';
+import { ferieuttakMessages } from '@navikt/sif-common-forms-ds';
 import { soknadMessages } from '@navikt/sif-common-soknad-ds';
+import { uiMessages } from '@navikt/sif-common-ui';
 import { infoNormalarbeidstid } from '../components/info-normalarbeidstid/infoNormalarbeidstid.messages';
 import { endreArbeidstidMessages } from '../modules/endre-arbeidstid-form/endreArbeidstidMessages';
 import { personalOpplysningerMessages } from '../pages/velkommen/personalopplysninger/personalopplysninger.messages';

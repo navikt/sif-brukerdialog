@@ -2,8 +2,8 @@ import React from 'react';
 import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
 import { prettifyDateExtended } from '@navikt/sif-common-utils';
 import FraværListItem from './FraværListItem';
-import { timeText } from './fraværUtilities';
 import { FraværDag } from './types';
+import { useFraværIntl } from '.';
 
 interface Props {
     fraværDager: FraværDag[];
@@ -12,10 +12,15 @@ interface Props {
 }
 
 const FraværDagerList = ({ fraværDager = [], onDelete, onEdit }: Props) => {
+    const { text, number } = useFraværIntl();
     const getFraværDagListItemTitle = (fraværDag: FraværDag) =>
-        `${prettifyDateExtended(fraværDag.dato)}:
-        Skulle jobbet ${fraværDag.timerArbeidsdag} ${timeText(fraværDag.timerArbeidsdag)}.
-        Borte fra jobb ${fraværDag.timerFravær}  ${timeText(fraværDag.timerFravær)}.`;
+        text('@forms.fraværDagerList.itemTitle', {
+            dato: prettifyDateExtended(fraværDag.dato),
+            timerArbeid: number(parseFloat(fraværDag.timerArbeidsdag)),
+            arbeidFlertall: parseFloat(fraværDag.timerArbeidsdag) > 1,
+            timerFravær: number(parseFloat(fraværDag.timerFravær)),
+            fraværFlertall: parseFloat(fraværDag.timerFravær) > 1,
+        });
 
     const renderFraværDagLabel = (fraværDag: FraværDag): React.ReactNode => {
         const title = getFraværDagListItemTitle(fraværDag);

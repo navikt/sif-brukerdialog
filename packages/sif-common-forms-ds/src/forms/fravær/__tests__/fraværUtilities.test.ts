@@ -1,29 +1,15 @@
-import { DateRange } from '@navikt/sif-common-utils';
 import { dateToISOString } from '@navikt/sif-common-formik-ds';
+import { DateRange } from '@navikt/sif-common-utils';
 import {
     dateCollideWithRanges,
     mapFormValuesToFraværDag,
     mapFormValuesToFraværPeriode,
     rangeCollideWithRanges,
-    timeText,
 } from '../fraværUtilities';
 import { validateNoCollisions } from '../fraværValidationUtils';
-import { FraværPeriodeFormValues, FraværDagFormValues, FraværDag, FraværPeriode } from '../types';
+import { FraværDag, FraværDagFormValues, FraværPeriode, FraværPeriodeFormValues } from '../types';
 
-describe('timeText', () => {
-    it('gir entall', () => {
-        expect(timeText('0')).toEqual('time');
-        expect(timeText('0.5')).toEqual('time');
-        expect(timeText('1')).toEqual('time');
-    });
-    it('gir flertall', () => {
-        expect(timeText('1.5')).toEqual('timer');
-        expect(timeText('2')).toEqual('timer');
-        expect(timeText('2.5')).toEqual('timer');
-        expect(timeText('23.5')).toEqual('timer');
-        expect(timeText('24')).toEqual('timer');
-    });
-
+describe('fraværUtilities', () => {
     describe('mapFormValuesToFraværDag', () => {
         const formValues: FraværDagFormValues = {
             id: 'abc',

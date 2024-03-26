@@ -1,5 +1,4 @@
 import { Alert, Heading } from '@navikt/ds-react';
-import * as React from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { createMultiLocaleObject, getMissingMessageKeys, MessageFileFormat } from '../devIntlUtils';

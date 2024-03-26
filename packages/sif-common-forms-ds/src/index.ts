@@ -1,3 +1,4 @@
+export * from './forms/annet-barn';
 export * from './forms/bosted-utland';
 export * from './forms/ferieuttak';
 export * from './forms/fosterbarn';

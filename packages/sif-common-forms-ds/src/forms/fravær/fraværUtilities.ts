@@ -1,10 +1,9 @@
-import { DateRange } from '@navikt/sif-common-utils';
 import { dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds';
+import { DateRange, guid } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import { isString } from 'formik';
-import { guid } from '@navikt/sif-common-utils';
 import { FraværDag, FraværDagFormValues, FraværPeriode, FraværPeriodeFormValues } from './types';
 
 dayjs.extend(isSameOrAfter);
@@ -86,9 +85,6 @@ export const dateCollideWithRanges = (date: Date | undefined, ranges: DateRange[
         return dayjs(date).isSameOrAfter(range.from, 'day') && dayjs(date).isSameOrBefore(range.to, 'day');
     });
 };
-
-export const timeText = (timer: string): string =>
-    timer === '0' || timer === '0.5' || timer === '1' ? 'time' : 'timer';
 
 export const dateRangeToFomTom = (dateRange: DateRange): { fom: Date; tom: Date } => ({
     fom: dateRange.from,

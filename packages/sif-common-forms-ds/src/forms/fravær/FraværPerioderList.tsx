@@ -24,10 +24,10 @@ const FraværPerioderList = ({ fraværPerioder = [], onDelete, onEdit, useTrashc
         <ItemList<FraværPeriode>
             getItemId={(fraværPeriode) => fraværPeriode.id}
             getItemTitle={(fraværPeriode) => getDateTitleString(fraværPeriode)}
-            onDelete={onDelete}
-            onEdit={onEdit}
             labelRenderer={renderFraværPeriodeLabel}
             items={fraværPerioder.filter((fraværPeriode) => fraværPeriode.id !== undefined)}
+            onDelete={onDelete}
+            onEdit={onEdit}
             useTrashcan={useTrashcan || false}
         />
     );

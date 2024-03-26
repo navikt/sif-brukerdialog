@@ -2,8 +2,7 @@ import React from 'react';
 import { IntlProvider as Provider } from 'react-intl';
 import { commonMessages } from '@navikt/sif-common-core-ds/src/i18n/common.messages';
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
-import bostedMessages from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/bostedUtlandMessages';
-import ferieuttakMessages from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/ferieuttakMessages';
+import { bostedUtlandMessages, ferieuttakMessages } from '@navikt/sif-common-forms-ds';
 import opptjeningUtlandMessages from '@navikt/sif-common-forms-ds/src/forms/opptjening-utland/opptjeningUtlandMessages';
 import tidsperiodeMessages from '@navikt/sif-common-forms-ds/src/forms/tidsperiode/tidsperiodeMessages';
 import utenlandskNæringMessages from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring/utenlandskNæringMessages';
@@ -20,7 +19,7 @@ const bokmålstekster = {
     ...commonMessages.nb,
     ...uiMessages.nb,
     ...utenlandsoppholdMessages.nb,
-    ...bostedMessages.nb,
+    ...bostedUtlandMessages.nb,
     ...virksomhetMessages.nb,
     ...tidsperiodeMessages.nb,
     ...ferieuttakMessages.nb,

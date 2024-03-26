@@ -2,7 +2,7 @@ import { commonMessages } from '@navikt/sif-common-core-ds/src/i18n/common.messa
 import { uiMessages } from '@navikt/sif-common-ui';
 import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
-import fraværMessages from '@navikt/sif-common-forms-ds/src/forms/fravær/fraværMessages';
+import { fraværMessages } from '@navikt/sif-common-forms-ds/src/forms/fravær/fraværMessages';
 import { personalOpplysningerMessages } from '../pages/velkommen/personalopplysninger/personalopplysninger.messages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { fraværStepMessages } from '../søknad/steps/fravær/fraværStepMessages';
@@ -13,9 +13,9 @@ import { appMessages } from './appMessages';
 import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 import { situasjonMessages } from '../søknad/steps/situasjon/situasjonStepMessages';
-import bostedUtlandMessages from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/bostedUtlandMessages';
+import { bostedUtlandMessages } from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/bostedUtlandMessages';
 import { fosterbarnFormMessages } from '../søknad/steps/fosterbarn/fosterbarnFormMessages';
-import fosterbarnMessages from '@navikt/sif-common-forms-ds/src/forms/fosterbarn/fosterbarnMessages';
+import { fosterbarnMessages } from '@navikt/sif-common-forms-ds/src/forms/fosterbarn/fosterbarnMessages';
 
 const bokmålstekster = {
     ...commonMessages.nb,
