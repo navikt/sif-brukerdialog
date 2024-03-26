@@ -12,12 +12,19 @@ export enum YtelseTypeApi {
     // 'OMP_ALENEOMSORG' = 'OMP_ALENEOMSORG', ikke i bruk frem til backend støtter denne
 }
 
+export interface BarnetLegeerklæringGjelderApiData {
+    fødselsnummer?: string;
+    aktørId?: string;
+}
+
 export interface SoknadApiData {
     id: string;
     språk: Locale;
     harForståttRettigheterOgPlikter: boolean;
     harBekreftetOpplysninger: boolean;
     beskrivelse?: string;
+    isLegeerklæring?: boolean;
+    barn?: BarnetLegeerklæringGjelderApiData;
     vedlegg: string[];
     søknadstype: YtelseTypeApi;
     ytelseTittel: string;

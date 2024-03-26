@@ -17,9 +17,13 @@ export const getApplicationPageRoute = (søknadstype: Søknadstype, page: StepID
 export const getAvailableSteps = (values: SoknadFormData, søknadstype: Søknadstype): StepID[] => {
     const steps: StepID[] = [];
 
-    const visBeskrivelseStep =
-        søknadstype === Søknadstype.pleiepengerSyktBarn || søknadstype === Søknadstype.pleiepengerLivetsSluttfase;
+    const visBeskrivelseStep = søknadstype === Søknadstype.pleiepengerLivetsSluttfase;
+    const visBeskrivelsePPStep = søknadstype === Søknadstype.pleiepengerSyktBarn;
     const visOmsTypeStep = søknadstype === Søknadstype.omsorgspenger;
+
+    if (visBeskrivelsePPStep && beskrivelseStepIsAvailable(values)) {
+        steps.push(StepID.BESKRIVELSE_PP);
+    }
 
     if (visBeskrivelseStep && beskrivelseStepIsAvailable(values)) {
         steps.push(StepID.BESKRIVELSE);

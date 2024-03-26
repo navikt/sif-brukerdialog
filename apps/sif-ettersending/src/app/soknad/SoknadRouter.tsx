@@ -15,6 +15,7 @@ import OppsummeringStep from './oppsummering-step/OppsummeringStep';
 import { useSoknadContext } from './SoknadContext';
 import { StepID } from './soknadStepsConfig';
 import ValgOmsTypeStep from './valgOmsType-step/ValgOmsTypeStep';
+import BeskrivelsePPStep from './beskrivelsePP-step/BeskrivelsePPStep';
 
 interface Props {
     søker: Person;
@@ -35,6 +36,12 @@ const SoknadRouter = ({ søker, søknadstype, soknadId, onKvitteringUnmount }: P
             {soknadId && (
                 <>
                     <Route path={StepID.BESKRIVELSE} element={<BeskrivelseStep søknadstype={søknadstype} />} />
+                    <Route
+                        path={StepID.BESKRIVELSE_PP}
+                        element={
+                            <BeskrivelsePPStep søknadstype={søknadstype} søkersFødselsnummer={søker.fødselsnummer} />
+                        }
+                    />
                     <Route path={StepID.OMS_TYPE} element={<ValgOmsTypeStep søknadstype={søknadstype} />} />
                     <Route
                         path={StepID.DOKUMENTER}
