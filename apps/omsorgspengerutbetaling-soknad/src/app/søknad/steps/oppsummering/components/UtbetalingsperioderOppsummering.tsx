@@ -1,7 +1,6 @@
 import React from 'react';
 import { IntlShape, useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { timeText } from '@navikt/sif-common-forms-ds';
 import { SummaryBlock, SummaryList } from '@navikt/sif-common-ui';
 import { iso8601DurationToTime, ISODateToDate, prettifyDate, Time, timeToDecimalTime } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
@@ -9,6 +8,7 @@ import flatten from 'lodash/flatten';
 import uniq from 'lodash/uniq';
 import { ApiAktivitet } from '../../../../types/AktivitetFravær';
 import { UtbetalingsperiodeApi } from '../../../../types/søknadApiData/SøknadApiData';
+import { timeText } from '../oppsummeringStepUtils';
 
 export interface Props {
     utbetalingsperioder: UtbetalingsperiodeApi[];

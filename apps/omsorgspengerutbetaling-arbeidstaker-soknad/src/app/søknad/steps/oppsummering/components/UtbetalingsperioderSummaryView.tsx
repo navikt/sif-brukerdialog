@@ -1,6 +1,5 @@
 import { FormattedMessage, useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { timeText } from '@navikt/sif-common-forms-ds/src/forms/fravær/fraværUtilities';
 import { SummaryBlock, SummaryList } from '@navikt/sif-common-ui';
 import { ISODateToDate } from '@navikt/sif-common-utils/src';
 import { prettifyDate, prettifyDateExtended } from '@navikt/sif-common-utils/src/dateFormatter';
@@ -8,6 +7,7 @@ import { iso8601DurationToTime, timeToDecimalTime } from '@navikt/sif-common-uti
 import { Time } from '@navikt/sif-common-utils/src/types';
 import { isString } from 'formik';
 import { ApiAktivitet, Utbetalingsperiode } from '../../../../types/søknadApiData/SøknadApiData';
+import { timeText } from '../oppsummeringStepUtils';
 
 export interface Props {
     utbetalingsperioder: Utbetalingsperiode[];
