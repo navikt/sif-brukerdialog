@@ -46,7 +46,7 @@
         "@types/react-dom": "18.2.22",
         "@vitejs/plugin-react": "4.2.1",
         "axios": "1.6.8",
-        "chromatic": "11.2.0",
+        "chromatic": "11.3.0",
         "config": "workspace:*",
         "copyfiles": "2.4.1",
         "formik": "2.4.5",
