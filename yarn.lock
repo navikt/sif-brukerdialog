@@ -4390,7 +4390,7 @@ __metadata:
     "@navikt/sif-common-hooks": "workspace:*"
     "@portabletext/react": 3.0.15
     "@sanity/client": 6.15.7
-    "@types/node": 20.11.30
+    "@types/node": 20.12.2
     "@types/react": 18.2.70
     "@types/react-dom": 18.2.22
     config: "workspace:*"
@@ -4761,7 +4761,7 @@ __metadata:
     "@navikt/ds-tailwind": 6.3.3
     "@navikt/nav-dekoratoren-moduler": 2.1.6
     "@playwright/test": 1.42.1
-    "@types/node": 20.11.30
+    "@types/node": 20.12.2
     "@types/react": 18.2.70
     "@types/react-dom": 18.2.22
     "@types/uuid": 9.0.8
@@ -4808,7 +4808,7 @@ __metadata:
     "@navikt/sif-common-utils": "workspace:*"
     "@playwright/test": 1.42.1
     "@testing-library/react": 14.2.2
-    "@types/node": 20.11.30
+    "@types/node": 20.12.2
     "@types/object-hash": 3.0.6
     "@types/react": 18.2.70
     "@types/react-dom": 18.2.22
@@ -4880,7 +4880,7 @@ __metadata:
     "@storybook/react-vite": 8.0.4
     "@storybook/test": 8.0.4
     "@testing-library/react": 14.2.2
-    "@types/node": 20.11.30
+    "@types/node": 20.12.2
     "@types/object-hash": 3.0.6
     "@types/react": 18.2.70
     "@types/react-dom": 18.2.22
@@ -5160,7 +5160,7 @@ __metadata:
   resolution: "@navikt/sif-common-amplitude@workspace:packages/sif-common-amplitude"
   dependencies:
     "@amplitude/analytics-browser": 2.6.0
-    "@types/node": 20.11.30
+    "@types/node": 20.12.2
     "@types/react": 18.2.70
     config: "workspace:*"
     constate: 3.3.2
@@ -5202,7 +5202,7 @@ __metadata:
     "@storybook/react": 8.0.4
     "@storybook/react-vite": 8.0.4
     "@storybook/testing-library": 0.2.2
-    "@types/node": 20.11.30
+    "@types/node": 20.12.2
     "@types/react": 18.2.70
     "@types/react-collapse": 5.0.4
     "@types/react-dom": 18.2.22
@@ -5267,7 +5267,7 @@ __metadata:
     "@storybook/test-runner": 0.17.0
     "@storybook/testing-library": 0.2.2
     "@types/jest": 29.5.12
-    "@types/node": 20.11.30
+    "@types/node": 20.12.2
     "@types/react": 18.2.70
     "@types/react-dom": 18.2.22
     "@types/uuid": 9.0.8
@@ -5333,7 +5333,7 @@ __metadata:
     "@testing-library/dom": 9.3.4
     "@testing-library/react": 14.2.2
     "@testing-library/user-event": 14.5.2
-    "@types/node": 20.11.30
+    "@types/node": 20.12.2
     "@types/react": 18.2.70
     "@types/react-dom": 18.2.22
     "@vitejs/plugin-react": 4.2.1
@@ -5380,7 +5380,7 @@ __metadata:
     "@sentry/browser": 7.108.0
     "@sentry/react": 7.108.0
     "@sentry/types": 7.108.0
-    "@types/node": 20.11.30
+    "@types/node": 20.12.2
     axios: 1.6.8
     config: "*"
     copyfiles: 2.4.1
@@ -5428,7 +5428,7 @@ __metadata:
     "@testing-library/react": 14.2.2
     "@testing-library/user-event": 14.5.2
     "@types/jest": 29.5.12
-    "@types/node": 20.11.30
+    "@types/node": 20.12.2
     "@types/react": 18.2.70
     "@types/react-dom": 18.2.22
     "@types/react-modal": 3.16.3
@@ -5500,7 +5500,7 @@ __metadata:
     "@babel/core": 7.24.3
     "@babel/preset-env": 7.24.3
     "@babel/preset-react": 7.24.1
-    "@types/node": 20.11.30
+    "@types/node": 20.12.2
     "@types/react": 18.2.70
     "@types/react-dom": 18.2.22
     "@types/uuid": 9.0.8
@@ -9168,12 +9168,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:20.11.30":
-  version: 20.11.30
-  resolution: "@types/node@npm:20.11.30"
+"@types/node@npm:20.12.2":
+  version: 20.12.2
+  resolution: "@types/node@npm:20.12.2"
   dependencies:
     undici-types: ~5.26.4
-  checksum: 7597767aa3e44b0f1bf62efa522dd17741135f283c11de6a20ead8bb7016fb4999cc30adcd8f2bb29ebb216906c92894346ccd187de170927dc1e212d2c07c81
+  checksum: 3242ab04fe69ae32a2da29a7a2fce41fccb370bc1189de43d2dfbb491bd3253d3ee2070cbb5613061148e4862fdaa9cf62722c43128ce5c7d33fe83750956613
   languageName: node
   linkType: hard
 
