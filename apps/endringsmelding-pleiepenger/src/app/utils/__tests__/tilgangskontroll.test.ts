@@ -16,15 +16,6 @@ vi.mock('@navikt/sif-common-core-ds/src/utils/envUtils', () => ({
     },
 }));
 
-vi.mock('../featureToggleUtils', () => ({
-    Feature: {
-        UKJENT_ARBEIDSFOHOLD: 'on',
-    },
-    isFeatureEnabled: () => {
-        return true;
-    },
-}));
-
 describe('tilgangskontroll', () => {
     const tillattEndringsperiode = ISODateRangeToDateRange('2022-01-01/2023-03-01');
 

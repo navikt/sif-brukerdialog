@@ -11,6 +11,9 @@ import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import { IngenTilgangMeta } from '../hooks/useSøknadInitialData';
 import { finnesArbeidsgiverIK9Sak, getSamletDateRangeForK9Saker } from './k9SakUtils';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
+
+const tillatSN = getEnvironmentVariable('TILLAT_SN') === 'true';
 
 dayjs.extend(isSameOrAfter);
 
@@ -53,7 +56,7 @@ export const tilgangskontroll = (saker: K9Sak[], tillattEndringsperiode: DateRan
     }
 
     /** Bruker er SN */
-    if (harArbeidstidSomSelvstendigNæringsdrivende(sak)) {
+    if (tillatSN === false && harArbeidstidSomSelvstendigNæringsdrivende(sak) === false) {
         ingenTilgangÅrsak.push(IngenTilgangÅrsak.harArbeidstidSomSelvstendigNæringsdrivende);
     }
 

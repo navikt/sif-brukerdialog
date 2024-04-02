@@ -1,6 +1,5 @@
 import { contextConfig } from '../../contextConfig';
 import { enArbeidsgiverMock } from '../../data/enArbeidsgiverMock';
-import { enSakSN } from '../../data/enSakSN';
 import { flereSakerMock } from '../../data/flereSakerMock';
 import { ugyldigK9FormatSakMock } from '../../data/ugyldigK9FormatSakMock';
 import { getTestElement } from '../../utils';
@@ -39,16 +38,6 @@ describe('Bruker har ikke tilgang til løsningen', () => {
             cy.wait(['@getSak', '@getArbeidsgiver', '@getSoker']).then(() => {
                 expect(getTestElement('ingen-tilgang-heading').first().contains('Hei STERK'));
                 expect(getTestElement('flereSaker')).to.exist;
-            });
-        });
-    });
-    describe('Er SN', () => {
-        contextConfig({ saker: enSakSN, arbeidsgivere: enArbeidsgiverMock });
-        it('Viser riktig melding når bruker er selvstendig næringsdrivende', () => {
-            cy.visit(startUrl);
-            cy.wait(['@getSak', '@getArbeidsgiver', '@getSoker']).then(() => {
-                expect(getTestElement('ingen-tilgang-heading').first().contains('Hei STERK'));
-                expect(getTestElement('erSN')).to.exist;
             });
         });
     });

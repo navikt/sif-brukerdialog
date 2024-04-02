@@ -21,6 +21,7 @@ const getAppSettings = (isCypress) => ({
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
     USE_AMPLITUDE: `${process.env.USE_AMPLITUDE}`,
     CYPRESS_ENV: isCypress ? 'true' : false,
+    TILLAT_SN: `${process.env.TILLAT_SN}`,
 });
 
 module.exports = getAppSettings;

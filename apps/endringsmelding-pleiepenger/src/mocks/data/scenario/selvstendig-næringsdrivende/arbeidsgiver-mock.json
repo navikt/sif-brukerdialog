@@ -1,3 +1,5 @@
 {
-    "organisasjoner": []
+    "organisasjoner": [
+        { "navn": "Dykkert svømmeutstyr", "organisasjonsnummer": "896929119", "ansattFom": "2008-10-01" }
+    ]
 }

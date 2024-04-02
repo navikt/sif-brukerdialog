@@ -19,7 +19,8 @@
         "MINSIDE_URL": "https://www.nav.no/minside",
         "NPM_CONFIG_CACHE": "/tmp",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
-        "USE_AMPLITUDE": "true"
+        "USE_AMPLITUDE": "true",
+        "TILLAT_SN": "false"
     },
     "externalHosts": ["www.nav.no"],
     "accessPolicyOutApps": ["k9-brukerdialog-api", "sif-innsyn-api"],
