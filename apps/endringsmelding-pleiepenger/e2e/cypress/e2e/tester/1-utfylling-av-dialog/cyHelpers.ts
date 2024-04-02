@@ -39,7 +39,7 @@ const startSøknad = ({
 }) => {
     it('Starter søknad', () => {
         cy.visit(startUrl);
-        cy.wait(['@getSak', '@getArbeidsgiver', '@getSoker', '@getMellomlagring']).then(() => {
+        cy.wait(['@getSak', '@getArbeidsgiver', '@getSoker']).then(() => {
             if (endreArbeidstid) {
                 getTestElement('endreArbeidstid').parent().click();
             }
