@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 2.17.32
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor og patch
+
 ## 2.17.31
 
 ### Patch Changes
