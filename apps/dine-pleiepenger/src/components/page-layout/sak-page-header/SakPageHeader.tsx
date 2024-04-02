@@ -18,11 +18,13 @@ const SakPageHeader: React.FunctionComponent<Props> = ({ tittel, titleTag, saksn
             byline={
                 <BodyShort as="div">
                     <HStack gap="2">
-                        <span className="uppercase">
+                        <span>
                             <Msg id="sakPageHeader.saksnr" values={{ saksnr }} />
                         </span>
-                        <span aria-hidden={true}>|</span>
-                        <span className="text-text-subtle">{navn}</span>
+                        <span aria-hidden={true} className="sakPageHeaderPipe">
+                            |
+                        </span>
+                        <Msg id="sakPageHeader.pleietrengende" values={{ navn }} />
                     </HStack>
                 </BodyShort>
             }

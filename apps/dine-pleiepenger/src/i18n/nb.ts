@@ -96,7 +96,8 @@ export const nb = {
     'kontaktOss.ringOssInfo': 'Åpent hverdager kl. 9–15. Vi kan ringe deg tilbake hvis ventetiden er over 5 min.',
     'kontaktOss.ringOssSeTelefonnummer': 'Se flere telefonnummer og tastevalg',
 
-    'sakPageHeader.saksnr': 'Saksnr {saksnr}',
+    'sakPageHeader.saksnr': 'Saksnummer: {saksnr}',
+    'sakPageHeader.pleietrengende': 'Pleietrengende: {navn}',
     'sakPageHeader.defaultTittel': 'Din pleiepengesak',
 
     'pdfLenke.lenke': '{tittel} (PDF)',

@@ -2,6 +2,7 @@
 @import '@navikt/ds-css';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import '../components/page-layout/sak-page-header/sakPageHeader.css';
 
 .contentWrapper {
     margin-left: calc((100vw - 100%) / -2);
