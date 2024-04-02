@@ -1,4 +1,4 @@
-import { BodyShort, Box, Heading, Link, Switch, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, BodyShort, Box, Heading, Link, Switch, VStack } from '@navikt/ds-react';
 import React, { useState } from 'react';
 import { ChevronRightIcon } from '@navikt/aksel-icons';
 import { default as NextLink } from 'next/link';
@@ -7,7 +7,8 @@ import { formatSøknadshendelseTidspunkt, getAlleHendelserISak } from '../../uti
 import { Process } from '../process';
 import ProcessStep from '../process/ProcessStep';
 import { getProcessStepsFraSøknadshendelser } from './statusISakUtils';
-import { useMessages } from '../../i18n';
+import { Msg, useMessages } from '../../i18n';
+import SkrivTilOssLenke from '../lenker/SkrivTilOssLenke';
 
 interface Props {
     sak: Sak;
@@ -20,6 +21,20 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser, tit
     const { text } = useMessages();
     const hendelser = getAlleHendelserISak(sak);
     const processSteps = getProcessStepsFraSøknadshendelser(text, hendelser);
+
+    if (processSteps.length === 0) {
+        return (
+            <Alert variant="info">
+                <Msg
+                    id="statusISak.ingenHendelser"
+                    values={{
+                        p: (txt) => <BodyLong>{txt}</BodyLong>,
+                        lenke: <SkrivTilOssLenke tekst={text('statusISak.ingenHendelser.skrivTilOssLenkeTekst')} />,
+                    }}
+                />
+            </Alert>
+        );
+    }
 
     if (reverseDirection) {
         processSteps.reverse();

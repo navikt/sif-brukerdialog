@@ -116,6 +116,9 @@ export const nb = {
     'statusISak.forventetSvar.endring.tittel': 'Endringen er ferdig behandlet',
     'statusISak.forventetSvar.endring.info':
         'Endringsmeldingen vil oppdatere saken og du vil få ett nytt vedtaksbrev når endringene er ferdig behandlet.',
+    'statusISak.ingenHendelser':
+        '<p>Hei, vi kan enn så lenge ikke vise noen detaljert informasjon om saken din enda</p><p>Hvis du lurer på noe angående saken din, kan du ta kontakt via {lenke}.</p>',
+    'statusISak.ingenHendelser.skrivTilOssLenkeTekst': 'Skriv til oss',
 
     'venteårsakMelding.legeerklæring.tittel': 'Vi mangler legeerklæring',
     'venteårsakMelding.legeerklæring.lastOppHer': 'Last opp legeerklæring her',

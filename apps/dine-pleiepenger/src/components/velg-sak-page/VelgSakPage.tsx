@@ -28,28 +28,31 @@ const VelgSakPage: React.FunctionComponent<Props> = ({ saker }) => {
                 </Heading>
 
                 <VStack gap="5" className="max-w-2xl mb-10">
-                    {saker.map((sak) => (
-                        <LinkPanel
-                            as={Link}
-                            border={false}
-                            href={`/sak/${sak.sak.saksnummer}`}
-                            key={sak.sak.saksnummer}>
-                            <LinkPanel.Title className="w-full">
-                                <Heading as="span" size="small">
-                                    {personaliaUtils.navn(sak.pleietrengende)}
-                                </Heading>
-                            </LinkPanel.Title>
-                            <LinkPanel.Description>
-                                <p>
-                                    <Msg
-                                        id="velgSak.barn.fdato"
-                                        values={{ dato: dateFormatter.full(sak.pleietrengende.fødselsdato) }}
-                                    />
-                                </p>
-                                <StatusTag {...getBehandlingsstatusISak(sak.sak)} />
-                            </LinkPanel.Description>
-                        </LinkPanel>
-                    ))}
+                    {saker.map((sak) => {
+                        const status = getBehandlingsstatusISak(sak.sak);
+                        return (
+                            <LinkPanel
+                                as={Link}
+                                border={false}
+                                href={`/sak/${sak.sak.saksnummer}`}
+                                key={sak.sak.saksnummer}>
+                                <LinkPanel.Title className="w-full">
+                                    <Heading as="span" size="small">
+                                        {personaliaUtils.navn(sak.pleietrengende)}
+                                    </Heading>
+                                </LinkPanel.Title>
+                                <LinkPanel.Description>
+                                    <p>
+                                        <Msg
+                                            id="velgSak.barn.fdato"
+                                            values={{ dato: dateFormatter.full(sak.pleietrengende.fødselsdato) }}
+                                        />
+                                    </p>
+                                    {status ? <StatusTag {...status} /> : null}
+                                </LinkPanel.Description>
+                            </LinkPanel>
+                        );
+                    })}
                 </VStack>
             </Box>
         </DefaultPageLayout>

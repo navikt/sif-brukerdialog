@@ -41,6 +41,10 @@ export const getProcessStepsFraSøknadshendelser = (text: TextFn, hendelser: Sø
     /** Aksjonspunkt skal ikke vises enda */
     const hendelserSomSkalVises = hendelser.filter((h) => h.type !== SøknadshendelseType.AKSJONSPUNKT);
 
+    if (hendelserSomSkalVises.length === 0) {
+        return [];
+    }
+
     const antall = hendelserSomSkalVises.length;
     const erFerdigBehandlet = hendelserSomSkalVises[antall - 1].type === SøknadshendelseType.FERDIG_BEHANDLET;
 

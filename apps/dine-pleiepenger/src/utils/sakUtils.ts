@@ -19,7 +19,7 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.locale('nb');
 
-const getSisteBehandlingISak = (sak: Sak): Behandling => {
+const getSisteBehandlingISak = (sak: Sak): Behandling | undefined => {
     return sortBy(sak.behandlinger, (b) => b.opprettetDato)[0];
 };
 
@@ -48,12 +48,14 @@ export const getBehandlingerISakSorted = (sak: Sak): Behandling[] => {
     return sortBehandlinger(sak.behandlinger);
 };
 
-export const getBehandlingsstatusISak = (sak: Sak): BehandlingsstatusISak => {
+export const getBehandlingsstatusISak = (sak: Sak): BehandlingsstatusISak | undefined => {
     const behandling = getSisteBehandlingISak(sak);
-    return {
-        status: behandling.status,
-        venteårsak: behandling.aksjonspunkter?.length > 0 ? behandling.aksjonspunkter[0]?.venteårsak : undefined,
-    };
+    return behandling
+        ? {
+              status: behandling.status,
+              venteårsak: behandling.aksjonspunkter?.length > 0 ? behandling.aksjonspunkter[0]?.venteårsak : undefined,
+          }
+        : undefined;
 };
 
 const mapSøknadTilSøknadshendelse = (søknad: Søknad): Søknadshendelse => {

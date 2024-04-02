@@ -47,20 +47,20 @@ const SakPage: React.FunctionComponent<Props> = ({ sak, pleietrengende, saksbeha
                 <SakPageHeader
                     navn={navn}
                     saksnr={sak.saksnummer}
-                    titleTag={<StatusTag {...getBehandlingsstatusISak(sak)} />}
+                    titleTag={statusISak ? <StatusTag {...statusISak} /> : null}
                 />
             }>
             <Head>
                 <title>Din pleiepengesak - {navn}</title>
             </Head>
             <VStack gap="12">
-                {statusISak.venteårsak && statusISak.status !== Behandlingsstatus.AVSLUTTET ? (
+                {statusISak?.venteårsak && statusISak.status !== Behandlingsstatus.AVSLUTTET ? (
                     <VenteårsakMelding venteårsak={statusISak.venteårsak} />
                 ) : null}
                 <Box className="md:flex md:gap-6">
                     <div className="md:grow mb-10 md:mb-0">{<StatusISak sak={sak} tittel="Dette skjer i saken" />}</div>
                     <div className="md:mb-none shrink-0 md:w-72">
-                        {statusISak.status === Behandlingsstatus.AVSLUTTET ? null : (
+                        {statusISak === undefined || statusISak.status === Behandlingsstatus.AVSLUTTET ? null : (
                             <VStack gap="5">
                                 <Saksbehandlingstid
                                     frist={sak.saksbehandlingsFrist}
