@@ -30,7 +30,7 @@
         "express-rate-limit": "7.2.0",
         "flat": "6.0.1",
         "formik": "2.4.5",
-        "http-proxy-middleware": "2.0.6",
+        "http-proxy-middleware": "3.0.0",
         "intl": "1.2.5",
         "jose": "5.2.3",
         "lodash": "4.17.21",
