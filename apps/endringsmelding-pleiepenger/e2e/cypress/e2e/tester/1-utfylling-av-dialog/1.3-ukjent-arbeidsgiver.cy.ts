@@ -21,6 +21,7 @@ window.appSettings={
     PUBLIC_PATH:'/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger',
     USE_AMPLITUDE:'true',
     CYPRESS_ENV:'true',
+    TILLAT_SN: 'true',
     IMAGE:'ghcr.io/navikt/sif-brukerdialog/endringsmelding-pleiepenger-mono:825c85c3ef8c5a7ac4906dd4443620715a40a68a',
 };`;
 

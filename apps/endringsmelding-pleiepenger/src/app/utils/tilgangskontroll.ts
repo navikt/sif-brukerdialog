@@ -56,7 +56,7 @@ export const tilgangskontroll = (saker: K9Sak[], tillattEndringsperiode: DateRan
     }
 
     /** Bruker er SN */
-    if (tillatSN === false && harArbeidstidSomSelvstendigNæringsdrivende(sak) === false) {
+    if (tillatSN === false && harArbeidstidSomSelvstendigNæringsdrivende(sak)) {
         ingenTilgangÅrsak.push(IngenTilgangÅrsak.harArbeidstidSomSelvstendigNæringsdrivende);
     }
 

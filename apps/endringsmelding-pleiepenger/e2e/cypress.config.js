@@ -1,7 +1,7 @@
 import { defineConfig } from 'cypress';
 
 export default defineConfig({
-    projectId: 'fnodxc',
+    // projectId: 'fnodxc',
     e2e: {
         requestTimeout: 15000,
         testIsolation: false,
