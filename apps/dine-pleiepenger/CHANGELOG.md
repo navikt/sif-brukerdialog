@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 0.6.0
+
+### Minor Changes
+
+- 6d888d8: Major pakkeoppdatering - http-proxy-middleware
+
 ## 0.5.24
 
 ### Patch Changes

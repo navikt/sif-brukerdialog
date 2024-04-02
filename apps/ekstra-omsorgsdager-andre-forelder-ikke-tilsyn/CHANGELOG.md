@@ -1,5 +1,11 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.22.0
+
+### Minor Changes
+
+- 6d888d8: Major pakkeoppdatering - http-proxy-middleware
+
 ## 1.21.38
 
 ### Patch Changes

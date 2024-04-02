@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.30.0
+
+### Minor Changes
+
+- 6d888d8: Major pakkeoppdatering - http-proxy-middleware
+
 ## 3.29.30
 
 ### Patch Changes

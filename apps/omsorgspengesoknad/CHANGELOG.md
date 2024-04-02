@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.25.0
+
+### Minor Changes
+
+- 6d888d8: Major pakkeoppdatering - http-proxy-middleware
+
 ## 1.24.40
 
 ### Patch Changes
