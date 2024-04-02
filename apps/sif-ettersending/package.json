@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/sif-ettersending",
     "repository": "https://github.com/navikt/sif-ettersending",
-    "version": "3.29.30",
+    "version": "3.30.0",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -33,7 +33,7 @@
         "express": "4.19.2",
         "formik": "2.4.5",
         "helmet": "7.1.0",
-        "http-proxy-middleware": "2.0.6",
+        "http-proxy-middleware": "3.0.0",
         "jose": "5.2.3",
         "jsdom": "24.0.0",
         "lodash": "4.17.21",

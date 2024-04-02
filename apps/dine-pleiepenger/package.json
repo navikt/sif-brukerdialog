@@ -1,6 +1,6 @@
 {
     "name": "@navikt/dine-pleiepenger",
-    "version": "0.5.24",
+    "version": "0.6.0",
     "private": true,
     "scripts": {
         "build-storybook": "storybook build",
@@ -16,7 +16,7 @@
         "@navikt/appstatus-react-ds": "workspace: *",
         "@navikt/nav-dekoratoren-moduler": "2.1.6",
         "@navikt/next-logger": "1.23.0",
-        "@navikt/oasis": "3.2.2",
+        "@navikt/oasis": "3.2.3",
         "@navikt/sif-app-register": "workspace: *",
         "@navikt/sif-common-amplitude": "workspace: *",
         "@navikt/sif-common-core-ds": "workspace: *",

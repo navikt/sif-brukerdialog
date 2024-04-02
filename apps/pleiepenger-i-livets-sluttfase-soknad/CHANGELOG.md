@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.6.0
+
+### Minor Changes
+
+- 6d888d8: Major pakkeoppdatering - http-proxy-middleware
+
 ## 2.5.40
 
 ### Patch Changes
