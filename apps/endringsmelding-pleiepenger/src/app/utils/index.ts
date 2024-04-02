@@ -4,7 +4,6 @@ export * from './appSentryLogger';
 export * from './arbeidsukeUtils';
 export * from './beregnUtils';
 export * from './endringsperiode';
-// export * from './featureToggleUtils';
 export * from './ferieUtils';
 export * from './getSakFromK9Sak';
 export * from './getSakOgArbeidsgivereDebugInfo';
