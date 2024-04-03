@@ -1,18 +1,17 @@
 import React from 'react';
-import { getArbeidsgiverinfoFraSøknad } from '../../../utils/sakUtils';
-import { Pleiepengesøknad } from '../../../server/api-models/SøknadSchema';
 import { getArbeidsgivermeldingApiUrlBySoknadIdOgOrgnummer } from '../../../utils/dokumentUtils';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Box, Heading } from '@navikt/ds-react';
 import PdfLenke from '../../pdf-lenke/PdfLenke';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { Organisasjon } from '../../../types/Organisasjon';
 
 interface Props {
-    søknad: Pleiepengesøknad;
+    arbeidsgivere: Organisasjon[];
+    søknadId: string;
 }
 
-const ArbeidsgivereISøknad: React.FunctionComponent<Props> = ({ søknad }) => {
-    const arbeidsgivere = getArbeidsgiverinfoFraSøknad(søknad);
+const ArbeidsgivereISøknad: React.FunctionComponent<Props> = ({ søknadId, arbeidsgivere }) => {
     const intl = useIntl();
     return (
         <Box className="mt-4">
@@ -28,7 +27,7 @@ const ArbeidsgivereISøknad: React.FunctionComponent<Props> = ({ søknad }) => {
                     <li key={organisasjon.organisasjonsnummer}>
                         <PdfLenke
                             href={getArbeidsgivermeldingApiUrlBySoknadIdOgOrgnummer(
-                                søknad.k9FormatSøknad.søknadId,
+                                søknadId,
                                 organisasjon.organisasjonsnummer,
                             )}
                             tittel={intlHelper(intl, 'dokumenterSomKanLastesNed.bekreftelse', {

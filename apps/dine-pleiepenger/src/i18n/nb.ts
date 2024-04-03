@@ -140,5 +140,6 @@ export const nb = {
         'Vi kan tidligst behandle søknaden din når du har sendt inn det siste meldekortet, før du starter perioden med pleiepenger.',
 
     'statusISak.søknadStatusContent.readMoreHeader': 'Se dokumenter og bekreftelse til arbeidsgiver',
+    'statusISak.søknadStatusContent.readMoreHeader.ingenArbeidsgiver': 'Se dokumenter',
     'statusISak.søknadStatusContent.dokumenterISøknad': 'Søknad og eventuelle vedlegg i søknad',
 };
