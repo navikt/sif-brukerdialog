@@ -8,7 +8,7 @@ const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const jose = require('jose');
 const { v4: uuidv4 } = require('uuid');
-const { createProxyMiddleware } = require('http-proxy-middleware');
+const { createProxyMiddleware, responseInterceptor } = require('http-proxy-middleware');
 const { initTokenX, exchangeToken } = require('./tokenx.cjs');
 const RateLimit = require('express-rate-limit');
 
@@ -130,6 +130,39 @@ const startServer = async (html) => {
             secure: true,
             xfwd: true,
             logLevel: 'info',
+        }),
+    );
+
+    server.use(
+        process.env.FRONTEND_K9_SAK_INNSYN_API_PATH,
+        createProxyMiddleware({
+            target: process.env.API_URL_K9_SAK_INNSYN,
+            changeOrigin: true,
+            pathRewrite: (path) => {
+                return path.replace(process.env.FRONTEND_K9_SAK_INNSYN_API_PATH, '');
+            },
+            router: async (req) => getRouterConfig(req, true),
+            secure: true,
+            xfwd: true,
+            logLevel: 'info',
+            selfHandleResponse: true,
+            on: {
+                proxyRes: responseInterceptor(async (responseBuffer, proxyRes) => {
+                    // detect json responses
+                    if (proxyRes.headers['content-type'] === 'application/json') {
+                        let data = JSON.parse(responseBuffer.toString('utf8'));
+
+                        // manipulate JSON data here
+                        data = Object.assign({}, data, { extra: 'foo bar' });
+
+                        // return manipulated JSON
+                        return JSON.stringify(data);
+                    }
+
+                    // return other content-types as-is
+                    return responseBuffer;
+                }),
+            },
         }),
     );
 
