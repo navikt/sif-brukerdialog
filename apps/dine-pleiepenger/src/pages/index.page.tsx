@@ -8,7 +8,7 @@ import DefaultPageLayout from '../components/page-layout/default-page-layout/Def
 import Snarveier from '../components/snarveier/Snarveier';
 import Saksbehandlingstid from '../components/saksbehandlingstid/Saksbehandlingstid';
 import { useInnsynsdataContext } from '../hooks/useInnsynsdataContext';
-import { useLogBrukerprofil } from '../hooks/useLogBrukerprofil';
+import { useLogBrukerstatistikk } from '../hooks/useLogBrukerstatistikk';
 import { useMessages } from '../i18n';
 import { PleietrengendeMedSak } from '../server/api-models/PleietrengendeMedSakSchema';
 import { InnsendtSøknad, InnsendtSøknadstype } from '../types/Søknad';
@@ -35,7 +35,7 @@ function DinePleiepengerPage(): ReactElement {
         innsynsdata: { innsendteSøknader, saker, saksbehandlingstidUker },
     } = useInnsynsdataContext();
 
-    useLogBrukerprofil(innsendteSøknader, saker, saksbehandlingstidUker);
+    useLogBrukerstatistikk(innsendteSøknader, saker, saksbehandlingstidUker);
 
     const { text } = useMessages();
 

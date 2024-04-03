@@ -3,11 +3,23 @@ import { PleietrengendeMedSak } from '../server/api-models/PleietrengendeMedSakS
 import { getEndringsmeldinger, getEttersendelser, getPleiepengesøknader } from './innsendtSøknadUtils';
 import { InnsendtSøknad } from '../types/Søknad';
 
-export const getBrukerprofil = (
+type BrukerStatistikk = {
+    antallSøknader: number;
+    antallEttersendelser: number;
+    antallEndringsmeldinger: number;
+    sisteSøknad: Date | undefined;
+    sisteEndring: Date | undefined;
+    sisteEttersendelse: Date | undefined;
+    antallSaker: number;
+    harSaksbehandlingstid: boolean;
+    perioder: string[];
+};
+
+export const getBrukerStatistikk = (
     søknader: InnsendtSøknad[],
     saker: PleietrengendeMedSak[],
     saksbehandlingstidUker: number | undefined,
-) => {
+): BrukerStatistikk => {
     const ppSøknader = getPleiepengesøknader(søknader);
     const ppEndringer = getEndringsmeldinger(søknader);
     const ppEttersendelser = getEttersendelser(søknader);
