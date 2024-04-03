@@ -45,7 +45,7 @@ export const scenarioer: Scenario[] = [
     {
         name: 'Selvstendig næringsdrivende',
         value: 'selvstendig-næringsdrivende',
-        harTilgang: false,
+        harTilgang: true,
     },
     {
         name: 'Saker for flere barn',
