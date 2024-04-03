@@ -60,12 +60,12 @@ const SakPage: React.FunctionComponent<Props> = ({ sak, pleietrengende, saksbeha
                 <Box className="md:flex md:gap-6">
                     <div className="md:grow mb-10 md:mb-0">{<StatusISak sak={sak} tittel="Dette skjer i saken" />}</div>
                     <div className="md:mb-none shrink-0 md:w-72">
-                        {statusISak === undefined || statusISak.status === Behandlingsstatus.AVSLUTTET ? null : (
+                        {statusISak?.status === Behandlingsstatus.AVSLUTTET ? null : (
                             <VStack gap="5">
                                 <Saksbehandlingstid
                                     frist={sak.saksbehandlingsFrist}
                                     saksbehandlingstidUker={saksbehandlingstidUker}
-                                    venteårsak={statusISak.venteårsak}
+                                    venteårsak={statusISak?.venteårsak}
                                 />
                             </VStack>
                         )}

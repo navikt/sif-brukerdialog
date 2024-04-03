@@ -117,7 +117,7 @@ export const nb = {
     'statusISak.forventetSvar.endring.info':
         'Endringsmeldingen vil oppdatere saken og du vil få ett nytt vedtaksbrev når endringene er ferdig behandlet.',
     'statusISak.ingenHendelser':
-        '<p>Hei, vi kan enn så lenge ikke vise noen detaljert informasjon om saken din enda</p><p>Hvis du lurer på noe angående saken din, kan du ta kontakt via {lenke}.</p>',
+        '<p>Hei, vi kan dessverre ikke vise informasjon om saken din enda.</p><p>Hvis du har spørsmål, kan du ta kontakt via {lenke}.</p>',
     'statusISak.ingenHendelser.skrivTilOssLenkeTekst': 'Skriv til oss',
 
     'venteårsakMelding.legeerklæring.tittel': 'Vi mangler legeerklæring',
@@ -130,7 +130,6 @@ export const nb = {
         'Vi har sendt brev til deg og arbeidsgiveren din, fordi vi mangler inntektsmelding. For å behandle søknaden og beregne hvor mye pleiepenger du kan få, må arbeidsgiver sende inntektsmelding.',
     'venteårsakMelding.inntektsmelding.dokumentarkivLenke': '<lenke>Se brev i dokumentarkivet</lenke>',
 
-    // 'venteårsakMelding.søktForTidlig.tittel': 'Vi kan tidligst behandle søknaden din {dato}',
     'venteårsakMelding.søktForTidlig.tittel': 'Vi kan ikke behandle søknaden din enda',
     'venteårsakMelding.søktForTidlig.info':
         'For å beregne hvor mye pleiepenger du kan få, trenger vi ferske opplysninger om inntekten din. Arbeidsgiver kan derfor sende inntektsopplysninger tidligst 4 uker før pleiepengeperioden din starter. Saken er satt på vent frem til søknaden kan behandles.',

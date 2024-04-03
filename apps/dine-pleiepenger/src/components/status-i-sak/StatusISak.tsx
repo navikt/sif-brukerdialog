@@ -24,15 +24,22 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser, tit
 
     if (processSteps.length === 0) {
         return (
-            <Alert variant="info">
-                <Msg
-                    id="statusISak.ingenHendelser"
-                    values={{
-                        p: (txt) => <BodyLong>{txt}</BodyLong>,
-                        lenke: <SkrivTilOssLenke tekst={text('statusISak.ingenHendelser.skrivTilOssLenkeTekst')} />,
-                    }}
-                />
-            </Alert>
+            <VStack gap="3">
+                {tittel ? (
+                    <Heading level="2" size="medium">
+                        {tittel}
+                    </Heading>
+                ) : null}
+                <Alert variant="info">
+                    <Msg
+                        id="statusISak.ingenHendelser"
+                        values={{
+                            p: (txt) => <BodyLong>{txt}</BodyLong>,
+                            lenke: <SkrivTilOssLenke tekst={text('statusISak.ingenHendelser.skrivTilOssLenkeTekst')} />,
+                        }}
+                    />
+                </Alert>
+            </VStack>
         );
     }
 
