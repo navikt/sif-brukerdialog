@@ -3,7 +3,7 @@
     "description": "En kalkulator for beregning av omsorgsdager.",
     "license": "MIT",
     "name": "@navikt/omsorgsdager-kalkulator",
-    "version": "3.5.29",
+    "version": "3.5.30",
     "private": true,
     "scripts": {
         "dev": "next dev -p 8080",
@@ -14,10 +14,10 @@
         "playwright-test": "playwright test"
     },
     "dependencies": {
-        "@navikt/ds-css": "6.3.4",
+        "@navikt/ds-css": "6.3.6",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "6.3.4",
-        "@navikt/ds-tailwind": "6.3.4",
+        "@navikt/ds-react": "6.3.6",
+        "@navikt/ds-tailwind": "6.3.6",
         "@navikt/nav-dekoratoren-moduler": "2.1.6",
         "classnames": "2.5.1",
         "dayjs": "1.11.10",
@@ -33,11 +33,11 @@
         "uuid": "9.0.1"
     },
     "devDependencies": {
-        "@axe-core/playwright": "4.8.5",
+        "@axe-core/playwright": "4.9.0",
         "@playwright/test": "1.42.1",
-        "@types/node": "20.12.2",
-        "@types/react": "18.2.73",
-        "@types/react-dom": "18.2.23",
+        "@types/node": "20.12.4",
+        "@types/react": "18.2.74",
+        "@types/react-dom": "18.2.24",
         "@types/uuid": "9.0.8",
         "eslint": "8.57.0",
         "eslint-config-next": "14.1.4",

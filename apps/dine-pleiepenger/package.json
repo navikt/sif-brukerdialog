@@ -1,6 +1,6 @@
 {
     "name": "@navikt/dine-pleiepenger",
-    "version": "0.6.0",
+    "version": "0.6.1",
     "private": true,
     "scripts": {
         "build-storybook": "storybook build",
@@ -35,11 +35,11 @@
         "zod": "3.22.4"
     },
     "devDependencies": {
-        "@axe-core/playwright": "4.8.5",
-        "@navikt/ds-css": "6.3.4",
+        "@axe-core/playwright": "4.9.0",
+        "@navikt/ds-css": "6.3.6",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "6.3.4",
-        "@navikt/ds-tailwind": "6.3.4",
+        "@navikt/ds-react": "6.3.6",
+        "@navikt/ds-tailwind": "6.3.6",
         "@next/bundle-analyzer": "14.1.4",
         "@playwright/test": "1.42.1",
         "@storybook/addon-essentials": "8.0.5",

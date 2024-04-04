@@ -1,12 +1,12 @@
 {
     "name": "@navikt/sif-common-ui",
     "main": "src/index.ts",
-    "version": "0.6.21",
+    "version": "0.6.22",
     "private": true,
     "dependencies": {
-        "@navikt/ds-css": "6.3.4",
+        "@navikt/ds-css": "6.3.6",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "6.3.4",
+        "@navikt/ds-react": "6.3.6",
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",

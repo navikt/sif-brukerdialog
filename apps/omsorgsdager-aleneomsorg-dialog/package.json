@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/omsorgsdager-aleneomsorg-dialog",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "2.15.0",
+    "version": "2.15.1",
     "private": true,
     "type": "module",
     "scripts": {
@@ -23,9 +23,9 @@
         "storybook": "storybook dev -p 6006"
     },
     "dependencies": {
-        "@navikt/ds-css": "6.3.4",
-        "@navikt/ds-react": "6.3.4",
-        "@navikt/ds-tailwind": "6.3.4",
+        "@navikt/ds-css": "6.3.6",
+        "@navikt/ds-react": "6.3.6",
+        "@navikt/ds-tailwind": "6.3.6",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
@@ -56,15 +56,15 @@
         "uuid": "9.0.1"
     },
     "devDependencies": {
-        "@axe-core/playwright": "4.8.5",
+        "@axe-core/playwright": "4.9.0",
         "@babel/plugin-proposal-object-rest-spread": "7.20.7",
         "@babel/plugin-transform-modules-commonjs": "7.24.1",
-        "@babel/preset-env": "7.24.3",
+        "@babel/preset-env": "7.24.4",
         "@babel/preset-react": "7.24.1",
         "@playwright/test": "1.42.1",
         "@types/object-hash": "3.0.6",
-        "@types/react": "18.2.73",
-        "@types/react-dom": "18.2.23",
+        "@types/react": "18.2.74",
+        "@types/react-dom": "18.2.24",
         "@types/react-router-dom": "5.3.3",
         "@vitejs/plugin-react": "4.2.1",
         "babel-polyfill": "6.26.0",
@@ -73,7 +73,7 @@
         "jsdom": "24.0.0",
         "less": "4.2.0",
         "mini-css-extract-plugin": "2.8.1",
-        "vite": "5.2.7",
+        "vite": "5.2.8",
         "vite-plugin-checker": "0.6.4"
     },
     "eslintConfig": {
