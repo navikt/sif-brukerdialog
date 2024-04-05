@@ -52,7 +52,7 @@
         "@babel/preset-env": "7.24.4",
         "@babel/preset-react": "7.24.1",
         "@babel/preset-typescript": "7.24.1",
-        "@playwright/test": "1.42.1",
+        "@playwright/test": "1.43.0",
         "@types/node": "20.12.4",
         "@types/object-hash": "3.0.6",
         "@types/react": "18.2.74",
