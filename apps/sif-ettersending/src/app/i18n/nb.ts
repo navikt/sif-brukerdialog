@@ -87,7 +87,7 @@ export const applicationMessages: MessageFileFormat = {
         'step.beskrivelse_pp.info':
             'Her beskriver du hvilken dokumentasjon du skal sende oss. Hvis en annen søker har sendt inn samme dokumentasjon for barnet i perioden du søker, trenger du ikke sende inn disse på nytt.',
         'step.beskrivelse_pp.dokumentType.spm': 'Hva skal du ettersende?',
-        'step.beskrivelse_pp.dokumentType.legeerklæring': 'Legeerklæring',
+        'step.beskrivelse_pp.dokumentType.LEGEERKLÆRING': 'Legeerklæring',
         'step.beskrivelse_pp.registrertBarnPart.spm': 'Hvilket barn gjelder legeerklæringen?',
         'step.beskrivelse_pp.registrertBarnPart.hvilketBarn.født': 'Født {dato}',
         'step.beskrivelse_pp.barn.info.tittel': 'Husk søknad, også ved forlengelser',
@@ -98,7 +98,7 @@ export const applicationMessages: MessageFileFormat = {
         'step.beskrivelse_pp.annetBarn.tittel': 'Annet barn',
         'step.beskrivelse_pp.annetBarn.fnr.spm': 'Barnets fødselsnummer/D-nummer',
         'step.beskrivelse_pp.annetBarn.fnr.barnHarIkkeFnr': 'Barnet har ikke fødselsnummer/D-nummer',
-        'step.beskrivelse_pp.dokumentType.annet': 'Annet',
+        'step.beskrivelse_pp.dokumentType.ANNET': 'Annet',
         'step.beskrivelse_pp.hvaSendes.spm': 'Beskriv hva slags dokumentasjon du skal sende',
         'step.beskrivelse_pp.intro':
             'Her beskriver du hvilken dokumentasjon du skal sende oss. Hvis en annen søker har sendt inn samme dokumentasjon for barnet i perioden du søker, trenger du ikke sende inn disse på nytt.',

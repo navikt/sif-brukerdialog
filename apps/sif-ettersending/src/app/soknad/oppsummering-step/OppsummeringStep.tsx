@@ -21,6 +21,7 @@ import SoknadFormStep from '../SoknadFormStep';
 import { StepID } from '../soknadStepsConfig';
 import SummaryBlock from './SummaryBlock';
 import './oppsummeringStep.css';
+import { DokumentType } from '../../types/DokumentType';
 
 interface Props {
     soknadId: string;
@@ -61,7 +62,7 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
                             </div>
                         </SummaryBlock>
 
-                        {apiValues.isLegeerklæring && (
+                        {apiValues.ettersendelsesType === DokumentType.legeerklæring && (
                             <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.barn.header')}>
                                 {values.valgteRegistrertBarn && (
                                     <div>
@@ -71,16 +72,17 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
                                         })}
                                     </div>
                                 )}
-                                {apiValues.barn?.fødselsnummer && (
+                                {apiValues.pleietrengende?.norskIdentitetsnummer && (
                                     <div>
                                         {intlHelper(intl, 'steg.oppsummering.barn.fnr', {
-                                            fnr: apiValues.barn?.fødselsnummer,
+                                            fnr: apiValues.pleietrengende?.norskIdentitetsnummer,
                                         })}
                                     </div>
                                 )}
-                                {!apiValues.barn?.fødselsnummer && !apiValues.barn?.aktørId && (
-                                    <div>{intlHelper(intl, 'steg.oppsummering.barn.harIkkefnr')}</div>
-                                )}
+                                {!apiValues.pleietrengende?.norskIdentitetsnummer &&
+                                    !apiValues.pleietrengende?.aktørId && (
+                                        <div>{intlHelper(intl, 'steg.oppsummering.barn.harIkkefnr')}</div>
+                                    )}
                             </SummaryBlock>
                         )}
 
@@ -88,7 +90,7 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
                             {apiValues.ytelseTittel}
                         </SummaryBlock>
 
-                        {apiValues.isLegeerklæring && (
+                        {apiValues.ettersendelsesType === DokumentType.legeerklæring && (
                             <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.dokumentType.header')}>
                                 {intlHelper(intl, 'steg.oppsummering.dokumentType.legeerklæring')}
                             </SummaryBlock>

@@ -44,7 +44,7 @@ const BeskrivelsePPStep: React.FC<Props> = ({ søknadstype, søkersFødselsnumme
                 <SoknadFormComponents.RadioGroup
                     legend={intlHelper(intl, 'step.beskrivelse_pp.dokumentType.spm')}
                     name={SoknadFormField.dokumentType}
-                    radios={Object.keys(DokumentType).map((type) => ({
+                    radios={Object.values(DokumentType).map((type) => ({
                         label: intlHelper(intl, `step.beskrivelse_pp.dokumentType.${type}`),
                         value: type,
                     }))}

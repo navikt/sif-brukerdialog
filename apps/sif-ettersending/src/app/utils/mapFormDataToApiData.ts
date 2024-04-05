@@ -45,7 +45,7 @@ const mapBarnFormDataToApiData = (
     }
     if (legeerklæringGjelderEtAnnetBarn && barnetsFødselsnummer) {
         return {
-            fødselsnummer: barnetsFødselsnummer,
+            norskIdentitetsnummer: barnetsFødselsnummer,
         };
     }
     if (registrertBarnAktørId) {
@@ -75,7 +75,8 @@ export const mapFormDataToApiData = (
         throw new Error('ytelse mangler');
     }
 
-    const isLegeerklæring = ytelse === YtelseKey.pleiepengerSyktBarn && dokumentType === DokumentType.legeerklæring;
+    const ettersendelsesType =
+        ytelse === YtelseKey.pleiepengerSyktBarn && dokumentType ? dokumentType : DokumentType.annet;
 
     const apiData: SoknadApiData = {
         id: soknadId,
@@ -83,15 +84,16 @@ export const mapFormDataToApiData = (
         harBekreftetOpplysninger,
         harForståttRettigheterOgPlikter,
         søknadstype: getYtelseTypeApiKey(ytelse),
-        isLegeerklæring,
-        barn: isLegeerklæring
-            ? mapBarnFormDataToApiData(
-                  barnetHarIkkeFnr,
-                  legeerklæringGjelderEtAnnetBarn,
-                  barnetsFødselsnummer,
-                  registrertBarnAktørId,
-              )
-            : undefined,
+        ettersendelsesType,
+        pleietrengende:
+            dokumentType === DokumentType.legeerklæring
+                ? mapBarnFormDataToApiData(
+                      barnetHarIkkeFnr,
+                      legeerklæringGjelderEtAnnetBarn,
+                      barnetsFødselsnummer,
+                      registrertBarnAktørId,
+                  )
+                : undefined,
         beskrivelse,
         vedlegg: getVedleggUrlFromAttachments(dokumenter),
         ytelseTittel: Ytelser[ytelse].søknadstittel.nb,

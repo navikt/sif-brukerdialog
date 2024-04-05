@@ -1,4 +1,4 @@
 export enum DokumentType {
-    'legeerklæring' = 'legeerklæring',
-    'annet' = 'annet',
+    'legeerklæring' = 'LEGEERKLÆRING',
+    'annet' = 'ANNET',
 }

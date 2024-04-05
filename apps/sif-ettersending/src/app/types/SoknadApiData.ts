@@ -1,4 +1,5 @@
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
+import { DokumentType } from './DokumentType';
 
 export type ISO8601Duration = string;
 
@@ -13,8 +14,10 @@ export enum YtelseTypeApi {
 }
 
 export interface BarnetLegeerklæringGjelderApiData {
-    fødselsnummer?: string;
+    norskIdentitetsnummer?: string;
     aktørId?: string;
+    fødselsdato?: string;
+    navn?: string;
 }
 
 export interface SoknadApiData {
@@ -23,8 +26,8 @@ export interface SoknadApiData {
     harForståttRettigheterOgPlikter: boolean;
     harBekreftetOpplysninger: boolean;
     beskrivelse?: string;
-    isLegeerklæring?: boolean;
-    barn?: BarnetLegeerklæringGjelderApiData;
+    ettersendelsesType: DokumentType;
+    pleietrengende?: BarnetLegeerklæringGjelderApiData;
     vedlegg: string[];
     søknadstype: YtelseTypeApi;
     ytelseTittel: string;
