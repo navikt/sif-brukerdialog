@@ -153,3 +153,5 @@ export const fjernPunsjOgUkjenteSøknaderFraBehandling = (behandling: Behandling
         ),
     };
 };
+
+export const erSaksbehandlingsfristPassert = (frist: Date) => dayjs(frist).isBefore(dayjs(), 'day');

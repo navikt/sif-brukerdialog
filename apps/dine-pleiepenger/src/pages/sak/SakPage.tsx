@@ -6,12 +6,13 @@ import { useRouter } from 'next/router';
 import DevBranchInfo from '../../components/dev-branch-info/DevBranchInfo';
 import DefaultPageLayout from '../../components/page-layout/default-page-layout/DefaultPageLayout';
 import SakPageHeader from '../../components/page-layout/sak-page-header/SakPageHeader';
+import Saksbehandlingstid from '../../components/saksbehandlingstid/Saksbehandlingstid';
 import SnarveierSak from '../../components/snarveier-sak/SnarveierSak';
 import Snarveier from '../../components/snarveier/Snarveier';
 import StatusISak from '../../components/status-i-sak/StatusISak';
 import StatusTag from '../../components/status-tag/StatusTag';
-import Saksbehandlingstid from '../../components/saksbehandlingstid/Saksbehandlingstid';
 import VenteårsakMelding from '../../components/venteårsak-melding/VenteårsakMelding';
+import { useLogSaksprofil } from '../../hooks/useLogSaksprofil';
 import { Behandlingsstatus } from '../../server/api-models/Behandlingsstatus';
 import { Pleietrengende } from '../../server/api-models/PleietrengendeSchema';
 import { Sak } from '../../server/api-models/SakSchema';
@@ -24,15 +25,16 @@ interface Props {
     pleietrengende: Pleietrengende;
     sak: Sak;
     saksbehandlingstidUker?: number;
-    harFlereSaker: boolean;
+    antallSaker: number;
 }
 
-const SakPage: React.FunctionComponent<Props> = ({ sak, pleietrengende, saksbehandlingstidUker, harFlereSaker }) => {
+const SakPage: React.FunctionComponent<Props> = ({ sak, pleietrengende, saksbehandlingstidUker, antallSaker }) => {
     const navn = personaliaUtils.navn(pleietrengende);
     const router = useRouter();
+    useLogSaksprofil(sak, antallSaker);
 
     setBreadcrumbs(
-        getAllBreadcrumbs([{ url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Din pleiepengesak' }], harFlereSaker),
+        getAllBreadcrumbs([{ url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Din pleiepengesak' }], antallSaker > 1),
     );
 
     onBreadcrumbClick((breadcrumb) => {

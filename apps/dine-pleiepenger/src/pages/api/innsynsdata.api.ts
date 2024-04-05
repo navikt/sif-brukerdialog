@@ -14,7 +14,7 @@ import { getXRequestId } from '../../utils/apiUtils';
 import { Feature } from '../../utils/features';
 import { sortInnsendtSøknadEtterOpprettetDato } from '../../utils/innsendtSøknadUtils';
 import { fetchAppStatus } from './appStatus.api';
-import { getBrukerStatistikk } from '../../utils/brukerStatistikkUtils';
+import { getBrukerprofil } from '../../utils/amplitude/getBrukerprofil';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const childLogger = createChildLogger(getXRequestId(req));
@@ -51,7 +51,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
                 ? saksbehandlingstidReq.value.saksbehandlingstidUker
                 : undefined;
 
-        childLogger.info(getBrukerStatistikk(søknader, saker, saksbehandlingstidUker), `Hentet innsynsdata`);
+        childLogger.info(getBrukerprofil(søknader, saker, saksbehandlingstidUker), `Hentet innsynsdata`);
 
         const innsynsdata: Innsynsdata = {
             appStatus: appStatus.status === 'fulfilled' ? appStatus.value : undefined,

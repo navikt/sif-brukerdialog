@@ -1,10 +1,11 @@
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { PleietrengendeMedSak } from '../server/api-models/PleietrengendeMedSakSchema';
+import { AmplitudeInfoType } from '../types/AmplitudeInfoType';
 import { InnsendtSøknad } from '../types/Søknad';
-import { getBrukerStatistikk } from '../utils/brukerStatistikkUtils';
+import { getBrukerprofil } from '../utils/amplitude/getBrukerprofil';
 
-export const useLogBrukerstatistikk = (
+export const useLogBrukerprofil = (
     søknader: InnsendtSøknad[],
     saker: PleietrengendeMedSak[],
     saksbehandlingstidUker: number | undefined,
@@ -12,9 +13,9 @@ export const useLogBrukerstatistikk = (
     const { logInfo } = useAmplitudeInstance();
 
     useEffectOnce(() => {
-        const statistikk = getBrukerStatistikk(søknader, saker, saksbehandlingstidUker);
+        const statistikk = getBrukerprofil(søknader, saker, saksbehandlingstidUker);
         logInfo({
-            type: 'brukerprofil',
+            type: AmplitudeInfoType.brukerprofil,
             ...statistikk,
         });
     });

@@ -8,7 +8,7 @@ import DefaultPageLayout from '../components/page-layout/default-page-layout/Def
 import Snarveier from '../components/snarveier/Snarveier';
 import Saksbehandlingstid from '../components/saksbehandlingstid/Saksbehandlingstid';
 import { useInnsynsdataContext } from '../hooks/useInnsynsdataContext';
-import { useLogBrukerstatistikk } from '../hooks/useLogBrukerstatistikk';
+import { useLogBrukerprofil } from '../hooks/useLogBrukerprofil';
 import { useMessages } from '../i18n';
 import { PleietrengendeMedSak } from '../server/api-models/PleietrengendeMedSakSchema';
 import { InnsendtSøknad, InnsendtSøknadstype } from '../types/Søknad';
@@ -35,7 +35,7 @@ function DinePleiepengerPage(): ReactElement {
         innsynsdata: { innsendteSøknader, saker, saksbehandlingstidUker },
     } = useInnsynsdataContext();
 
-    useLogBrukerstatistikk(innsendteSøknader, saker, saksbehandlingstidUker);
+    useLogBrukerprofil(innsendteSøknader, saker, saksbehandlingstidUker);
 
     const { text } = useMessages();
 
@@ -43,7 +43,7 @@ function DinePleiepengerPage(): ReactElement {
         return (
             <SakPage
                 sak={saker[0].sak}
-                harFlereSaker={false}
+                antallSaker={1}
                 pleietrengende={saker[0].pleietrengende}
                 saksbehandlingstidUker={saksbehandlingstidUker}
             />

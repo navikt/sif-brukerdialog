@@ -1,14 +1,14 @@
+import { Alert, Box } from '@navikt/ds-react';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { withAuthenticatedPage } from '../../../auth/withAuthentication';
+import DefaultPageLayout from '../../../components/page-layout/default-page-layout/DefaultPageLayout';
 import { useInnsynsdataContext } from '../../../hooks/useInnsynsdataContext';
+import { PleietrengendeMedSak } from '../../../server/api-models/PleietrengendeMedSakSchema';
 import { Feature } from '../../../utils/features';
 import SakPage from '../SakPage';
-import { useRouter } from 'next/router';
-import { PleietrengendeMedSak } from '../../../server/api-models/PleietrengendeMedSakSchema';
-import { Alert, Box } from '@navikt/ds-react';
-import DefaultPageLayout from '../../../components/page-layout/default-page-layout/DefaultPageLayout';
-import Head from 'next/head';
 
 const getSakFromSaksnr = (
     saker: PleietrengendeMedSak[],
@@ -58,7 +58,7 @@ export default function SakRoutePage() {
             sak={pleietrengendeMedSak.sak}
             pleietrengende={pleietrengendeMedSak.pleietrengende}
             saksbehandlingstidUker={saksbehandlingstidUker}
-            harFlereSaker={saker.length > 1}
+            antallSaker={saker.length}
         />
     );
 }

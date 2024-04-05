@@ -1,9 +1,9 @@
 import { dateRangeToISODateRange } from '@navikt/sif-common-utils';
-import { PleietrengendeMedSak } from '../server/api-models/PleietrengendeMedSakSchema';
-import { getEndringsmeldinger, getEttersendelser, getPleiepengesøknader } from './innsendtSøknadUtils';
-import { InnsendtSøknad } from '../types/Søknad';
+import { PleietrengendeMedSak } from '../../server/api-models/PleietrengendeMedSakSchema';
+import { getEndringsmeldinger, getEttersendelser, getPleiepengesøknader } from '../innsendtSøknadUtils';
+import { InnsendtSøknad } from '../../types/Søknad';
 
-type BrukerStatistikk = {
+type Brukerprofil = {
     antallSøknader: number;
     antallEttersendelser: number;
     antallEndringsmeldinger: number;
@@ -15,11 +15,11 @@ type BrukerStatistikk = {
     perioder: string[];
 };
 
-export const getBrukerStatistikk = (
+export const getBrukerprofil = (
     søknader: InnsendtSøknad[],
     saker: PleietrengendeMedSak[],
     saksbehandlingstidUker: number | undefined,
-): BrukerStatistikk => {
+): Brukerprofil => {
     const ppSøknader = getPleiepengesøknader(søknader);
     const ppEndringer = getEndringsmeldinger(søknader);
     const ppEttersendelser = getEttersendelser(søknader);

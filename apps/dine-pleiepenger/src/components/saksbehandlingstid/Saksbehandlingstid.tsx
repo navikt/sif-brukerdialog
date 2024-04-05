@@ -5,7 +5,7 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import { Venteårsak } from '../../types/Venteårsak';
 import { browserEnv } from '../../utils/env';
 import { Msg, useMessages } from '../../i18n';
-import dayjs from 'dayjs';
+import { erSaksbehandlingsfristPassert } from '../../utils/sakUtils';
 
 interface Props {
     frist?: Date;
@@ -39,7 +39,7 @@ const getFristTekst = (frist: Date, venteårsak?: Venteårsak): React.ReactNode 
 };
 
 const Saksbehandlingstid: React.FunctionComponent<Props> = ({ frist, venteårsak, saksbehandlingstidUker = 7 }) => {
-    const fristErPassert = frist && dayjs(frist).isBefore(dayjs(), 'day');
+    const fristErPassert = frist ? erSaksbehandlingsfristPassert(frist) : false;
     const { text } = useMessages();
     return (
         <Box>
