@@ -3,7 +3,7 @@ import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { YtelseKey, Ytelser } from '@navikt/sif-common-core-ds/src/types/Ytelser';
 import { getLocaleForApi } from '@navikt/sif-common-core-ds/src/utils/localeUtils';
 import { BarnetLegeerklæringGjelderApiData, SoknadApiData, YtelseTypeApi } from '../types/SoknadApiData';
-import { SoknadFormData } from '../types/SoknadFormData';
+import { RegistrertBarnFormData, SoknadFormData } from '../types/SoknadFormData';
 import { getAttachmentURLBackend } from './attachmentUtilsAuthToken';
 import { DokumentType } from '../types/DokumentType';
 
@@ -38,7 +38,7 @@ const mapBarnFormDataToApiData = (
     barnetHarIkkeFnr?: boolean,
     legeerklæringGjelderEtAnnetBarn?: boolean,
     barnetsFødselsnummer?: string,
-    registrertBarnAktørId?: string,
+    valgteRegistrertBarn?: RegistrertBarnFormData,
 ): BarnetLegeerklæringGjelderApiData | undefined => {
     if (barnetHarIkkeFnr) {
         return undefined;
@@ -48,8 +48,12 @@ const mapBarnFormDataToApiData = (
             norskIdentitetsnummer: barnetsFødselsnummer,
         };
     }
-    if (registrertBarnAktørId) {
-        return { aktørId: registrertBarnAktørId };
+    if (valgteRegistrertBarn) {
+        return {
+            aktørId: valgteRegistrertBarn.aktørId,
+            navn: valgteRegistrertBarn.barnetsNavn,
+            fødselsdato: valgteRegistrertBarn.barnetsFødselsdato,
+        };
     }
 
     return undefined;
@@ -67,7 +71,7 @@ export const mapFormDataToApiData = (
         barnetHarIkkeFnr,
         legeerklæringGjelderEtAnnetBarn,
         barnetsFødselsnummer,
-        registrertBarnAktørId,
+        valgteRegistrertBarn,
     }: SoknadFormData,
     intl: IntlShape,
 ): SoknadApiData => {
@@ -91,7 +95,7 @@ export const mapFormDataToApiData = (
                       barnetHarIkkeFnr,
                       legeerklæringGjelderEtAnnetBarn,
                       barnetsFødselsnummer,
-                      registrertBarnAktørId,
+                      valgteRegistrertBarn,
                   )
                 : undefined,
         beskrivelse,
