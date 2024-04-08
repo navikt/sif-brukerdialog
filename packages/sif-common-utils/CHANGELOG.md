@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.44.14
+
+### Patch Changes
+
+- a478787: Pakkeoppdateringer - minor/patch. Eslint major -> 9
+
 ## 3.44.13
 
 ### Patch Changes

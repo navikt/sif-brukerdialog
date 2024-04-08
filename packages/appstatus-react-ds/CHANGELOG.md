@@ -1,5 +1,13 @@
 # @navikt/appstatus-react-ds
 
+## 2.17.34
+
+### Patch Changes
+
+- a478787: Pakkeoppdateringer - minor/patch. Eslint major -> 9
+- Updated dependencies [a478787]
+  - @navikt/sif-common-hooks@0.1.8
+
 ## 2.17.33
 
 ### Patch Changes

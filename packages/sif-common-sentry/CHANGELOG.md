@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.25.27
+
+### Patch Changes
+
+- a478787: Pakkeoppdateringer - minor/patch. Eslint major -> 9
+
 ## 0.25.26
 
 ### Patch Changes

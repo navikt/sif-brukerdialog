@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.24.29
+
+### Patch Changes
+
+- a478787: Pakkeoppdateringer - minor/patch. Eslint major -> 9
+
 ## 2.24.28
 
 ### Patch Changes

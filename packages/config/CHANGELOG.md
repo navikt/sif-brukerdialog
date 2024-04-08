@@ -1,5 +1,11 @@
 # config
 
+## 0.9.21
+
+### Patch Changes
+
+- a478787: Pakkeoppdateringer - minor/patch. Eslint major -> 9
+
 ## 0.9.20
 
 ### Patch Changes
