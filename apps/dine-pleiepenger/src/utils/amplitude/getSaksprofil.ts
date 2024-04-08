@@ -4,12 +4,12 @@ import { Venteårsak } from '../../types/Venteårsak';
 import { erSaksbehandlingsfristPassert, getBehandlingsstatusISak } from '../sakUtils';
 
 type Saksprofil = {
-    status?: Behandlingsstatus;
-    venteårsak: Venteårsak | undefined;
+    antallSaker: number;
+    antallBehandlinger: number;
     harSaksbehandlingsfrist: boolean;
     harPassertSaksbehandlingsfrist: boolean;
-    harBehandlinger: boolean;
-    antallSaker: number;
+    status?: Behandlingsstatus;
+    venteårsak: Venteårsak | undefined;
 };
 
 export const getSaksprofil = (sak: Sak, antallSaker: number): Saksprofil => {
@@ -20,7 +20,7 @@ export const getSaksprofil = (sak: Sak, antallSaker: number): Saksprofil => {
         harSaksbehandlingsfrist: !!sak.saksbehandlingsFrist,
         harPassertSaksbehandlingsfrist:
             !!sak.saksbehandlingsFrist && erSaksbehandlingsfristPassert(sak.saksbehandlingsFrist),
-        harBehandlinger: sak.behandlinger.length > 0,
         antallSaker,
+        antallBehandlinger: sak.behandlinger.length,
     };
 };

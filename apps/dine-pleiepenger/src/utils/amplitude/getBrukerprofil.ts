@@ -1,18 +1,16 @@
-import { dateRangeToISODateRange } from '@navikt/sif-common-utils';
 import { PleietrengendeMedSak } from '../../server/api-models/PleietrengendeMedSakSchema';
-import { getEndringsmeldinger, getEttersendelser, getPleiepengesøknader } from '../innsendtSøknadUtils';
 import { InnsendtSøknad } from '../../types/Søknad';
+import { getEndringsmeldinger, getEttersendelser, getPleiepengesøknader } from '../innsendtSøknadUtils';
 
 type Brukerprofil = {
     antallSøknader: number;
     antallEttersendelser: number;
     antallEndringsmeldinger: number;
+    antallSaker: number;
+    harSaksbehandlingstid: boolean;
     sisteSøknad: Date | undefined;
     sisteEndring: Date | undefined;
     sisteEttersendelse: Date | undefined;
-    antallSaker: number;
-    harSaksbehandlingstid: boolean;
-    perioder: string[];
 };
 
 export const getBrukerprofil = (
@@ -23,9 +21,6 @@ export const getBrukerprofil = (
     const ppSøknader = getPleiepengesøknader(søknader);
     const ppEndringer = getEndringsmeldinger(søknader);
     const ppEttersendelser = getEttersendelser(søknader);
-    const perioder = ppSøknader.map((søknad) => {
-        return dateRangeToISODateRange({ from: søknad.søknad.fraOgMed, to: søknad.søknad.tilOgMed });
-    });
 
     const sisteSøknad = ppSøknader.length > 0 ? ppSøknader[0].opprettet : undefined;
     const sisteEndring = ppEndringer.length > 0 ? ppEndringer[0].opprettet : undefined;
@@ -40,6 +35,5 @@ export const getBrukerprofil = (
         sisteEttersendelse,
         antallSaker: saker.length,
         harSaksbehandlingstid: !!saksbehandlingstidUker,
-        perioder,
     };
 };
