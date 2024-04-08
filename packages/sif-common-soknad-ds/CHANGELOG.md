@@ -1,5 +1,17 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.13.26
+
+### Patch Changes
+
+- a478787: Pakkeoppdateringer - minor/patch. Eslint major -> 9
+
+## 10.13.25
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor patch
+
 ## 10.13.24
 
 ### Patch Changes

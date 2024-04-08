@@ -1,5 +1,21 @@
 # @navikt/sif-common-core-ds
 
+## 9.15.19
+
+### Patch Changes
+
+- a478787: Pakkeoppdateringer - minor/patch. Eslint major -> 9
+- Updated dependencies [a478787]
+  - @navikt/sif-common-utils@3.44.14
+
+## 9.15.18
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor patch
+- Updated dependencies
+  - @navikt/sif-common-utils@3.44.13
+
 ## 9.15.17
 
 ### Patch Changes

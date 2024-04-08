@@ -1,5 +1,11 @@
 # @navikt/sif-common-hooks
 
+## 0.1.8
+
+### Patch Changes
+
+- a478787: Pakkeoppdateringer - minor/patch. Eslint major -> 9
+
 ## 0.1.7
 
 ### Patch Changes

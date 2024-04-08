@@ -1,5 +1,17 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.5.31
+
+### Patch Changes
+
+- a478787: Pakkeoppdateringer - minor/patch. Eslint major -> 9
+
+## 3.5.30
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor patch
+
 ## 3.5.29
 
 ### Patch Changes

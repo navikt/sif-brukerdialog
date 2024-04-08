@@ -1,5 +1,35 @@
 # @navikt/dine-pleiepenger
 
+## 0.6.2
+
+### Patch Changes
+
+- a478787: Pakkeoppdateringer - minor/patch. Eslint major -> 9
+- Updated dependencies [a478787]
+  - @navikt/sif-common-amplitude@2.24.29
+  - @navikt/appstatus-react-ds@2.17.34
+  - @navikt/sif-common-core-ds@9.15.19
+  - @navikt/sif-common-sentry@0.25.27
+  - @navikt/sif-common-utils@3.44.14
+
+## 0.6.1
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor patch
+- Updated dependencies
+  - @navikt/sif-common-amplitude@2.24.28
+  - @navikt/appstatus-react-ds@2.17.33
+  - @navikt/sif-common-core-ds@9.15.18
+  - @navikt/sif-common-sentry@0.25.26
+  - @navikt/sif-common-utils@3.44.13
+
+## 0.6.0
+
+### Minor Changes
+
+- 6d888d8: Major pakkeoppdatering - http-proxy-middleware
+
 ## 0.5.24
 
 ### Patch Changes
