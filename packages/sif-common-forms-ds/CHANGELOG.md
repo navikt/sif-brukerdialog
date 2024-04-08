@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 8.19.15
+
+### Patch Changes
+
+- a478787: Pakkeoppdateringer - minor/patch. Eslint major -> 9
+
 ## 8.19.14
 
 ### Patch Changes
