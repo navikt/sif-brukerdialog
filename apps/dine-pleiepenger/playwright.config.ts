@@ -26,6 +26,7 @@ export default defineConfig({
         env: {
             PUBLIC_PATH: '/innsyn',
             API_URL: 'http://localhost:8089',
+            NEXT_PUBLIC_FEATURE_APPSTATUS: 'off',
             NEXT_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
             NEXT_PUBLIC_APPSTATUS_DATASET: 'staging',
             NEXT_PUBLIC_GITHUB_REF_NAME: 'dev-branch',

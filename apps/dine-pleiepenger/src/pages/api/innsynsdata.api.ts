@@ -35,15 +35,18 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             Feature.HENT_BEHANDLINGSTID
                 ? fetchSaksbehandlingstid(req)
                 : Promise.resolve({ saksbehandlingstidUker: undefined }),
-            fetchAppStatus(),
+            Feature.HENT_BEHANDLINGSTID ? fetchAppStatus() : Promise.resolve(undefined),
         ]);
-        childLogger.info(`Hentet søknader, mellomlagring, saker og saksbehandlingstid`);
+        childLogger.info(`Hentet innsynsdata`);
 
         if (søknaderReq.status === 'rejected') {
             childLogger.error(
                 new Error(`Hent søknader feilet: ${søknaderReq.reason.message}`, { cause: søknaderReq.reason }),
             );
         }
+
+        childLogger.info(`Parser innsynsdata`);
+
         const innsendteSøknader =
             søknaderReq.status === 'fulfilled' ? søknaderReq.value.sort(sortInnsendtSøknadEtterOpprettetDato) : [];
 
@@ -56,7 +59,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
                 ? saksbehandlingstidReq.value.saksbehandlingstidUker
                 : undefined;
 
-        childLogger.info(getBrukerprofil(søknader, saker, saksbehandlingstidUker), `Hentet innsynsdata`);
+        childLogger.info(getBrukerprofil(søknader, saker, saksbehandlingstidUker), `Innsynsdata parset`);
 
         const innsynsdata: Innsynsdata = {
             appStatus: appStatus.status === 'fulfilled' ? appStatus.value : undefined,

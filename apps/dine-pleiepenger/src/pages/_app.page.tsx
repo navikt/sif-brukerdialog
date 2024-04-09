@@ -38,11 +38,6 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
         },
     );
 
-    // const appStatus = useAppStatus('sif-innsyn', {
-    //     projectId: browserEnv.NEXT_PUBLIC_APPSTATUS_PROJECT_ID,
-    //     dataset: browserEnv.NEXT_PUBLIC_APPSTATUS_DATASET,
-    // });
-
     if (isLoading) {
         return (
             <EmptyPage>
