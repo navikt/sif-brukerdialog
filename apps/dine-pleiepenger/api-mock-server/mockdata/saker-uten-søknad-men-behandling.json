@@ -1,0 +1,891 @@
+[
+    {
+        "pleietrengende": {
+            "identitetsnummer": "12851699153",
+            "fødselsdato": "2016-05-12",
+            "fornavn": "FORETAKSOM",
+            "mellomnavn": null,
+            "etternavn": "ALV",
+            "aktørId": "2860253289941"
+        },
+        "sak": {
+            "saksnummer": "1DQB1NK",
+            "saksbehandlingsFrist": null,
+            "fagsakYtelseType": { "kode": "PSB", "kodeverk": "FAGSAK_YTELSE" },
+            "behandlinger": [
+                {
+                    "status": "AVSLUTTET",
+                    "opprettetTidspunkt": "2024-03-06T07:12:23.000Z",
+                    "avsluttetTidspunkt": "2024-03-06T07:23:02.000Z",
+                    "søknader": [
+                        {
+                            "søknadId": "3772c90b-d6c5-4d62-87fd-4436e19bdf2a",
+                            "søknadstype": "SØKNAD",
+                            "k9FormatSøknad": {
+                                "søknadId": "3772c90b-d6c5-4d62-87fd-4436e19bdf2a",
+                                "versjon": "1.0.0",
+                                "mottattDato": "2024-03-06T07:11:05.468Z",
+                                "søker": { "norskIdentitetsnummer": "23898798933" },
+                                "ytelse": {
+                                    "type": "PLEIEPENGER_SYKT_BARN",
+                                    "barn": { "norskIdentitetsnummer": "12851699153", "fødselsdato": null },
+                                    "søknadsperiode": ["2024-01-08/2024-01-19"],
+                                    "endringsperiode": [],
+                                    "trekkKravPerioder": [],
+                                    "opptjeningAktivitet": {},
+                                    "dataBruktTilUtledning": null,
+                                    "annetDataBruktTilUtledning": {
+                                        "harForståttRettigheterOgPlikter": true,
+                                        "harBekreftetOpplysninger": true,
+                                        "soknadDialogCommitSha": null,
+                                        "annetData": null
+                                    },
+                                    "infoFraPunsj": null,
+                                    "bosteder": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "utenlandsopphold": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "beredskap": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "nattevåk": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "tilsynsordning": {
+                                        "perioder": { "2024-01-08/2024-01-19": { "etablertTilsynTimerPerDag": "PT0S" } }
+                                    },
+                                    "lovbestemtFerie": { "perioder": {} },
+                                    "arbeidstid": {
+                                        "arbeidstakerList": [
+                                            {
+                                                "norskIdentitetsnummer": null,
+                                                "organisasjonsnummer": "947064649",
+                                                "organisasjonsnavn": "SJOKKERENDE ELEKTRIKER",
+                                                "arbeidstidInfo": {
+                                                    "perioder": {
+                                                        "2024-01-08/2024-01-19": {
+                                                            "jobberNormaltTimerPerDag": "PT8H",
+                                                            "faktiskArbeidTimerPerDag": "PT0S"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        ],
+                                        "frilanserArbeidstidInfo": {
+                                            "perioder": {
+                                                "2024-01-08/2024-01-19": {
+                                                    "jobberNormaltTimerPerDag": "PT0S",
+                                                    "faktiskArbeidTimerPerDag": "PT0S"
+                                                }
+                                            }
+                                        },
+                                        "selvstendigNæringsdrivendeArbeidstidInfo": null
+                                    },
+                                    "uttak": {
+                                        "perioder": {
+                                            "2024-01-08/2024-01-19": { "timerPleieAvBarnetPerDag": "PT7H30M" }
+                                        }
+                                    },
+                                    "omsorg": { "relasjonTilBarnet": null, "beskrivelseAvOmsorgsrollen": null }
+                                },
+                                "språk": "nb",
+                                "journalposter": [],
+                                "begrunnelseForInnsending": { "tekst": null },
+                                "kildesystem": "søknadsdialog"
+                            },
+                            "dokumenter": [
+                                {
+                                    "journalpostId": "637584846",
+                                    "dokumentInfoId": "667127537",
+                                    "saksnummer": "1DQB1NK",
+                                    "tittel": "Søknad om pleiepenger for sykt barn",
+                                    "dokumentType": "PLEIEPENGER_SYKT_BARN_SOKNAD",
+                                    "filtype": "PDF",
+                                    "harTilgang": true,
+                                    "url": "http://sif-innsyn-api/dokument/637584846/667127537/ARKIV",
+                                    "relevanteDatoer": [
+                                        { "dato": "2024-03-06T08:11:09", "datotype": "DATO_OPPRETTET" },
+                                        { "dato": "2024-03-06T08:11:09", "datotype": "DATO_DOKUMENT" },
+                                        { "dato": "2024-03-06T08:11:18", "datotype": "DATO_JOURNALFOERT" },
+                                        { "dato": "2024-03-06T08:11:05", "datotype": "DATO_REGISTRERT" }
+                                    ]
+                                },
+                                {
+                                    "journalpostId": "637584846",
+                                    "dokumentInfoId": "667127538",
+                                    "saksnummer": "1DQB1NK",
+                                    "tittel": "Vedtak SN.pdf",
+                                    "dokumentType": "PLEIEPENGER_SYKT_BARN_SOKNAD",
+                                    "filtype": "PDF",
+                                    "harTilgang": true,
+                                    "url": "http://sif-innsyn-api/dokument/637584846/667127538/ARKIV",
+                                    "relevanteDatoer": [
+                                        { "dato": "2024-03-06T08:11:09", "datotype": "DATO_OPPRETTET" },
+                                        { "dato": "2024-03-06T08:11:09", "datotype": "DATO_DOKUMENT" },
+                                        { "dato": "2024-03-06T08:11:18", "datotype": "DATO_JOURNALFOERT" },
+                                        { "dato": "2024-03-06T08:11:05", "datotype": "DATO_REGISTRERT" }
+                                    ]
+                                }
+                            ],
+                            "arbeidsgivere": [{ "organisasjonsnummer": "947064649", "navn": "SJOKKERENDE ELEKTRIKER" }]
+                        }
+                    ],
+                    "aksjonspunkter": [],
+                    "utgåendeDokumenter": [
+                        {
+                            "journalpostId": "637584861",
+                            "dokumentInfoId": "667127554",
+                            "saksnummer": "1DQB1NK",
+                            "tittel": "Pleiepenger barn Innvilgelse",
+                            "dokumentType": "VEDTAK_INNVILGELSE",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/637584861/667127554/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2024-03-06T09:01:20", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2024-03-06T09:01:20", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2024-03-06T09:01:20", "datotype": "DATO_JOURNALFOERT" }
+                            ]
+                        },
+                        {
+                            "journalpostId": "637584857",
+                            "dokumentInfoId": "667127550",
+                            "saksnummer": "1DQB1NK",
+                            "tittel": "Pleiepenger barn Innvilgelse",
+                            "dokumentType": "VEDTAK_INNVILGELSE",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/637584857/667127550/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2024-03-06T08:51:02", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2024-03-06T08:51:02", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2024-03-06T08:51:02", "datotype": "DATO_JOURNALFOERT" }
+                            ]
+                        },
+                        {
+                            "journalpostId": "637584853",
+                            "dokumentInfoId": "667127545",
+                            "saksnummer": "1DQB1NK",
+                            "tittel": "Pleiepenger barn Innvilgelse",
+                            "dokumentType": "VEDTAK_INNVILGELSE",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/637584853/667127545/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2024-03-06T08:40:27", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2024-03-06T08:40:27", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2024-03-06T08:40:27", "datotype": "DATO_JOURNALFOERT" }
+                            ]
+                        },
+                        {
+                            "journalpostId": "637584850",
+                            "dokumentInfoId": "667127542",
+                            "saksnummer": "1DQB1NK",
+                            "tittel": "Pleiepenger barn Innvilgelse",
+                            "dokumentType": "VEDTAK_INNVILGELSE",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/637584850/667127542/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2024-03-06T08:31:56", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2024-03-06T08:31:56", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2024-03-06T08:31:56", "datotype": "DATO_JOURNALFOERT" }
+                            ]
+                        },
+                        {
+                            "journalpostId": "637584848",
+                            "dokumentInfoId": "667127540",
+                            "saksnummer": "1DQB1NK",
+                            "tittel": "Pleiepenger barn Innvilgelse",
+                            "dokumentType": "VEDTAK_INNVILGELSE",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/637584848/667127540/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2024-03-06T08:23:08", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2024-03-06T08:23:08", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2024-03-06T08:23:08", "datotype": "DATO_JOURNALFOERT" }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "status": "AVSLUTTET",
+                    "opprettetTidspunkt": "2024-03-06T07:26:01.000Z",
+                    "avsluttetTidspunkt": "2024-03-06T07:31:52.000Z",
+                    "søknader": [
+                        {
+                            "søknadId": "c03679cc-d93e-43d4-94d3-91c625947c06",
+                            "søknadstype": "SØKNAD",
+                            "k9FormatSøknad": {
+                                "søknadId": "c03679cc-d93e-43d4-94d3-91c625947c06",
+                                "versjon": "1.0.0",
+                                "mottattDato": "2024-03-06T07:24:51.835Z",
+                                "søker": { "norskIdentitetsnummer": "23898798933" },
+                                "ytelse": {
+                                    "type": "PLEIEPENGER_SYKT_BARN",
+                                    "barn": { "norskIdentitetsnummer": "12851699153", "fødselsdato": null },
+                                    "søknadsperiode": ["2024-01-22/2024-02-02"],
+                                    "endringsperiode": [],
+                                    "trekkKravPerioder": [],
+                                    "opptjeningAktivitet": {},
+                                    "dataBruktTilUtledning": null,
+                                    "annetDataBruktTilUtledning": {
+                                        "harForståttRettigheterOgPlikter": true,
+                                        "harBekreftetOpplysninger": true,
+                                        "soknadDialogCommitSha": null,
+                                        "annetData": null
+                                    },
+                                    "infoFraPunsj": null,
+                                    "bosteder": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "utenlandsopphold": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "beredskap": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "nattevåk": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "tilsynsordning": {
+                                        "perioder": { "2024-01-22/2024-02-02": { "etablertTilsynTimerPerDag": "PT0S" } }
+                                    },
+                                    "lovbestemtFerie": { "perioder": {} },
+                                    "arbeidstid": {
+                                        "arbeidstakerList": [
+                                            {
+                                                "norskIdentitetsnummer": null,
+                                                "organisasjonsnummer": "947064649",
+                                                "organisasjonsnavn": "SJOKKERENDE ELEKTRIKER",
+                                                "arbeidstidInfo": {
+                                                    "perioder": {
+                                                        "2024-01-22/2024-02-02": {
+                                                            "jobberNormaltTimerPerDag": "PT8H",
+                                                            "faktiskArbeidTimerPerDag": "PT0S"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        ],
+                                        "frilanserArbeidstidInfo": {
+                                            "perioder": {
+                                                "2024-01-22/2024-02-02": {
+                                                    "jobberNormaltTimerPerDag": "PT0S",
+                                                    "faktiskArbeidTimerPerDag": "PT0S"
+                                                }
+                                            }
+                                        },
+                                        "selvstendigNæringsdrivendeArbeidstidInfo": null
+                                    },
+                                    "uttak": {
+                                        "perioder": {
+                                            "2024-01-22/2024-02-02": { "timerPleieAvBarnetPerDag": "PT7H30M" }
+                                        }
+                                    },
+                                    "omsorg": { "relasjonTilBarnet": null, "beskrivelseAvOmsorgsrollen": null }
+                                },
+                                "språk": "nb",
+                                "journalposter": [],
+                                "begrunnelseForInnsending": { "tekst": null },
+                                "kildesystem": "søknadsdialog"
+                            },
+                            "dokumenter": [
+                                {
+                                    "journalpostId": "637584849",
+                                    "dokumentInfoId": "667127541",
+                                    "saksnummer": "1DQB1NK",
+                                    "tittel": "Søknad om pleiepenger for sykt barn",
+                                    "dokumentType": "PLEIEPENGER_SYKT_BARN_SOKNAD",
+                                    "filtype": "PDF",
+                                    "harTilgang": true,
+                                    "url": "http://sif-innsyn-api/dokument/637584849/667127541/ARKIV",
+                                    "relevanteDatoer": [
+                                        { "dato": "2024-03-06T08:24:53", "datotype": "DATO_OPPRETTET" },
+                                        { "dato": "2024-03-06T08:24:53", "datotype": "DATO_DOKUMENT" },
+                                        { "dato": "2024-03-06T08:24:59", "datotype": "DATO_JOURNALFOERT" },
+                                        { "dato": "2024-03-06T08:24:51", "datotype": "DATO_REGISTRERT" }
+                                    ]
+                                }
+                            ],
+                            "arbeidsgivere": [{ "organisasjonsnummer": "947064649", "navn": "SJOKKERENDE ELEKTRIKER" }]
+                        }
+                    ],
+                    "aksjonspunkter": [],
+                    "utgåendeDokumenter": [
+                        {
+                            "journalpostId": "637584861",
+                            "dokumentInfoId": "667127554",
+                            "saksnummer": "1DQB1NK",
+                            "tittel": "Pleiepenger barn Innvilgelse",
+                            "dokumentType": "VEDTAK_INNVILGELSE",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/637584861/667127554/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2024-03-06T09:01:20", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2024-03-06T09:01:20", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2024-03-06T09:01:20", "datotype": "DATO_JOURNALFOERT" }
+                            ]
+                        },
+                        {
+                            "journalpostId": "637584857",
+                            "dokumentInfoId": "667127550",
+                            "saksnummer": "1DQB1NK",
+                            "tittel": "Pleiepenger barn Innvilgelse",
+                            "dokumentType": "VEDTAK_INNVILGELSE",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/637584857/667127550/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2024-03-06T08:51:02", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2024-03-06T08:51:02", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2024-03-06T08:51:02", "datotype": "DATO_JOURNALFOERT" }
+                            ]
+                        },
+                        {
+                            "journalpostId": "637584853",
+                            "dokumentInfoId": "667127545",
+                            "saksnummer": "1DQB1NK",
+                            "tittel": "Pleiepenger barn Innvilgelse",
+                            "dokumentType": "VEDTAK_INNVILGELSE",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/637584853/667127545/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2024-03-06T08:40:27", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2024-03-06T08:40:27", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2024-03-06T08:40:27", "datotype": "DATO_JOURNALFOERT" }
+                            ]
+                        },
+                        {
+                            "journalpostId": "637584850",
+                            "dokumentInfoId": "667127542",
+                            "saksnummer": "1DQB1NK",
+                            "tittel": "Pleiepenger barn Innvilgelse",
+                            "dokumentType": "VEDTAK_INNVILGELSE",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/637584850/667127542/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2024-03-06T08:31:56", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2024-03-06T08:31:56", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2024-03-06T08:31:56", "datotype": "DATO_JOURNALFOERT" }
+                            ]
+                        },
+                        {
+                            "journalpostId": "637584848",
+                            "dokumentInfoId": "667127540",
+                            "saksnummer": "1DQB1NK",
+                            "tittel": "Pleiepenger barn Innvilgelse",
+                            "dokumentType": "VEDTAK_INNVILGELSE",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/637584848/667127540/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2024-03-06T08:23:08", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2024-03-06T08:23:08", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2024-03-06T08:23:08", "datotype": "DATO_JOURNALFOERT" }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "status": "AVSLUTTET",
+                    "opprettetTidspunkt": "2024-03-06T07:35:19.000Z",
+                    "avsluttetTidspunkt": "2024-03-06T07:40:20.000Z",
+                    "søknader": [
+                        {
+                            "søknadId": "a250dcee-f9f7-4ed3-bf13-b69cc5beb962",
+                            "søknadstype": "SØKNAD",
+                            "k9FormatSøknad": {
+                                "søknadId": "a250dcee-f9f7-4ed3-bf13-b69cc5beb962",
+                                "versjon": "1.0.0",
+                                "mottattDato": "2024-03-06T07:34:12.179Z",
+                                "søker": { "norskIdentitetsnummer": "23898798933" },
+                                "ytelse": {
+                                    "type": "PLEIEPENGER_SYKT_BARN",
+                                    "barn": { "norskIdentitetsnummer": "12851699153", "fødselsdato": null },
+                                    "søknadsperiode": ["2024-02-05/2024-02-09"],
+                                    "endringsperiode": [],
+                                    "trekkKravPerioder": [],
+                                    "opptjeningAktivitet": {},
+                                    "dataBruktTilUtledning": null,
+                                    "annetDataBruktTilUtledning": {
+                                        "harForståttRettigheterOgPlikter": true,
+                                        "harBekreftetOpplysninger": true,
+                                        "soknadDialogCommitSha": null,
+                                        "annetData": null
+                                    },
+                                    "infoFraPunsj": null,
+                                    "bosteder": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "utenlandsopphold": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "beredskap": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "nattevåk": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "tilsynsordning": {
+                                        "perioder": { "2024-02-05/2024-02-09": { "etablertTilsynTimerPerDag": "PT0S" } }
+                                    },
+                                    "lovbestemtFerie": { "perioder": {} },
+                                    "arbeidstid": {
+                                        "arbeidstakerList": [],
+                                        "frilanserArbeidstidInfo": {
+                                            "perioder": {
+                                                "2024-02-05/2024-02-09": {
+                                                    "jobberNormaltTimerPerDag": "PT0S",
+                                                    "faktiskArbeidTimerPerDag": "PT0S"
+                                                }
+                                            }
+                                        },
+                                        "selvstendigNæringsdrivendeArbeidstidInfo": null
+                                    },
+                                    "uttak": {
+                                        "perioder": {
+                                            "2024-02-05/2024-02-09": { "timerPleieAvBarnetPerDag": "PT7H30M" }
+                                        }
+                                    },
+                                    "omsorg": { "relasjonTilBarnet": null, "beskrivelseAvOmsorgsrollen": null }
+                                },
+                                "språk": "nb",
+                                "journalposter": [],
+                                "begrunnelseForInnsending": { "tekst": null },
+                                "kildesystem": "søknadsdialog"
+                            },
+                            "dokumenter": [
+                                {
+                                    "journalpostId": "637584851",
+                                    "dokumentInfoId": "667127543",
+                                    "saksnummer": "1DQB1NK",
+                                    "tittel": "Søknad om pleiepenger for sykt barn",
+                                    "dokumentType": "PLEIEPENGER_SYKT_BARN_SOKNAD",
+                                    "filtype": "PDF",
+                                    "harTilgang": true,
+                                    "url": "http://sif-innsyn-api/dokument/637584851/667127543/ARKIV",
+                                    "relevanteDatoer": [
+                                        { "dato": "2024-03-06T08:34:14", "datotype": "DATO_OPPRETTET" },
+                                        { "dato": "2024-03-06T08:34:14", "datotype": "DATO_DOKUMENT" },
+                                        { "dato": "2024-03-06T08:34:18", "datotype": "DATO_JOURNALFOERT" },
+                                        { "dato": "2024-03-06T08:34:12", "datotype": "DATO_REGISTRERT" }
+                                    ]
+                                }
+                            ],
+                            "arbeidsgivere": []
+                        }
+                    ],
+                    "aksjonspunkter": [],
+                    "utgåendeDokumenter": [
+                        {
+                            "journalpostId": "637584861",
+                            "dokumentInfoId": "667127554",
+                            "saksnummer": "1DQB1NK",
+                            "tittel": "Pleiepenger barn Innvilgelse",
+                            "dokumentType": "VEDTAK_INNVILGELSE",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/637584861/667127554/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2024-03-06T09:01:20", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2024-03-06T09:01:20", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2024-03-06T09:01:20", "datotype": "DATO_JOURNALFOERT" }
+                            ]
+                        },
+                        {
+                            "journalpostId": "637584857",
+                            "dokumentInfoId": "667127550",
+                            "saksnummer": "1DQB1NK",
+                            "tittel": "Pleiepenger barn Innvilgelse",
+                            "dokumentType": "VEDTAK_INNVILGELSE",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/637584857/667127550/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2024-03-06T08:51:02", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2024-03-06T08:51:02", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2024-03-06T08:51:02", "datotype": "DATO_JOURNALFOERT" }
+                            ]
+                        },
+                        {
+                            "journalpostId": "637584853",
+                            "dokumentInfoId": "667127545",
+                            "saksnummer": "1DQB1NK",
+                            "tittel": "Pleiepenger barn Innvilgelse",
+                            "dokumentType": "VEDTAK_INNVILGELSE",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/637584853/667127545/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2024-03-06T08:40:27", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2024-03-06T08:40:27", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2024-03-06T08:40:27", "datotype": "DATO_JOURNALFOERT" }
+                            ]
+                        },
+                        {
+                            "journalpostId": "637584850",
+                            "dokumentInfoId": "667127542",
+                            "saksnummer": "1DQB1NK",
+                            "tittel": "Pleiepenger barn Innvilgelse",
+                            "dokumentType": "VEDTAK_INNVILGELSE",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/637584850/667127542/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2024-03-06T08:31:56", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2024-03-06T08:31:56", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2024-03-06T08:31:56", "datotype": "DATO_JOURNALFOERT" }
+                            ]
+                        },
+                        {
+                            "journalpostId": "637584848",
+                            "dokumentInfoId": "667127540",
+                            "saksnummer": "1DQB1NK",
+                            "tittel": "Pleiepenger barn Innvilgelse",
+                            "dokumentType": "VEDTAK_INNVILGELSE",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/637584848/667127540/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2024-03-06T08:23:08", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2024-03-06T08:23:08", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2024-03-06T08:23:08", "datotype": "DATO_JOURNALFOERT" }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "status": "AVSLUTTET",
+                    "opprettetTidspunkt": "2024-03-06T07:44:14.000Z",
+                    "avsluttetTidspunkt": "2024-03-06T07:50:58.000Z",
+                    "søknader": [
+                        {
+                            "søknadId": "a91fdf78-443c-4b6c-a427-7042be7cb881",
+                            "søknadstype": "SØKNAD",
+                            "k9FormatSøknad": {
+                                "søknadId": "a91fdf78-443c-4b6c-a427-7042be7cb881",
+                                "versjon": "1.0.0",
+                                "mottattDato": "2024-03-06T07:43:07.014Z",
+                                "søker": { "norskIdentitetsnummer": "23898798933" },
+                                "ytelse": {
+                                    "type": "PLEIEPENGER_SYKT_BARN",
+                                    "barn": { "norskIdentitetsnummer": "12851699153", "fødselsdato": null },
+                                    "søknadsperiode": ["2024-02-12/2024-02-16"],
+                                    "endringsperiode": [],
+                                    "trekkKravPerioder": [],
+                                    "opptjeningAktivitet": {},
+                                    "dataBruktTilUtledning": null,
+                                    "annetDataBruktTilUtledning": {
+                                        "harForståttRettigheterOgPlikter": true,
+                                        "harBekreftetOpplysninger": true,
+                                        "soknadDialogCommitSha": null,
+                                        "annetData": null
+                                    },
+                                    "infoFraPunsj": null,
+                                    "bosteder": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "utenlandsopphold": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "beredskap": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "nattevåk": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "tilsynsordning": {
+                                        "perioder": { "2024-02-12/2024-02-16": { "etablertTilsynTimerPerDag": "PT0S" } }
+                                    },
+                                    "lovbestemtFerie": { "perioder": {} },
+                                    "arbeidstid": {
+                                        "arbeidstakerList": [
+                                            {
+                                                "norskIdentitetsnummer": null,
+                                                "organisasjonsnummer": "896929119",
+                                                "organisasjonsnavn": "SAUEFABRIKK",
+                                                "arbeidstidInfo": {
+                                                    "perioder": {
+                                                        "2024-02-12/2024-02-16": {
+                                                            "jobberNormaltTimerPerDag": "PT8H",
+                                                            "faktiskArbeidTimerPerDag": "PT0S"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        ],
+                                        "frilanserArbeidstidInfo": {
+                                            "perioder": {
+                                                "2024-02-12/2024-02-16": {
+                                                    "jobberNormaltTimerPerDag": "PT0S",
+                                                    "faktiskArbeidTimerPerDag": "PT0S"
+                                                }
+                                            }
+                                        },
+                                        "selvstendigNæringsdrivendeArbeidstidInfo": null
+                                    },
+                                    "uttak": {
+                                        "perioder": {
+                                            "2024-02-12/2024-02-16": { "timerPleieAvBarnetPerDag": "PT7H30M" }
+                                        }
+                                    },
+                                    "omsorg": { "relasjonTilBarnet": null, "beskrivelseAvOmsorgsrollen": null }
+                                },
+                                "språk": "nb",
+                                "journalposter": [],
+                                "begrunnelseForInnsending": { "tekst": null },
+                                "kildesystem": "søknadsdialog"
+                            },
+                            "dokumenter": [
+                                {
+                                    "journalpostId": "637584855",
+                                    "dokumentInfoId": "667127547",
+                                    "saksnummer": "1DQB1NK",
+                                    "tittel": "Søknad om pleiepenger for sykt barn",
+                                    "dokumentType": "PLEIEPENGER_SYKT_BARN_SOKNAD",
+                                    "filtype": "PDF",
+                                    "harTilgang": true,
+                                    "url": "http://sif-innsyn-api/dokument/637584855/667127547/ARKIV",
+                                    "relevanteDatoer": [
+                                        { "dato": "2024-03-06T08:43:08", "datotype": "DATO_OPPRETTET" },
+                                        { "dato": "2024-03-06T08:43:08", "datotype": "DATO_DOKUMENT" },
+                                        { "dato": "2024-03-06T08:43:13", "datotype": "DATO_JOURNALFOERT" },
+                                        { "dato": "2024-03-06T08:43:07", "datotype": "DATO_REGISTRERT" }
+                                    ]
+                                }
+                            ],
+                            "arbeidsgivere": [{ "organisasjonsnummer": "896929119", "navn": "SAUEFABRIKK" }]
+                        }
+                    ],
+                    "aksjonspunkter": [],
+                    "utgåendeDokumenter": [
+                        {
+                            "journalpostId": "637584861",
+                            "dokumentInfoId": "667127554",
+                            "saksnummer": "1DQB1NK",
+                            "tittel": "Pleiepenger barn Innvilgelse",
+                            "dokumentType": "VEDTAK_INNVILGELSE",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/637584861/667127554/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2024-03-06T09:01:20", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2024-03-06T09:01:20", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2024-03-06T09:01:20", "datotype": "DATO_JOURNALFOERT" }
+                            ]
+                        },
+                        {
+                            "journalpostId": "637584857",
+                            "dokumentInfoId": "667127550",
+                            "saksnummer": "1DQB1NK",
+                            "tittel": "Pleiepenger barn Innvilgelse",
+                            "dokumentType": "VEDTAK_INNVILGELSE",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/637584857/667127550/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2024-03-06T08:51:02", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2024-03-06T08:51:02", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2024-03-06T08:51:02", "datotype": "DATO_JOURNALFOERT" }
+                            ]
+                        },
+                        {
+                            "journalpostId": "637584853",
+                            "dokumentInfoId": "667127545",
+                            "saksnummer": "1DQB1NK",
+                            "tittel": "Pleiepenger barn Innvilgelse",
+                            "dokumentType": "VEDTAK_INNVILGELSE",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/637584853/667127545/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2024-03-06T08:40:27", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2024-03-06T08:40:27", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2024-03-06T08:40:27", "datotype": "DATO_JOURNALFOERT" }
+                            ]
+                        },
+                        {
+                            "journalpostId": "637584850",
+                            "dokumentInfoId": "667127542",
+                            "saksnummer": "1DQB1NK",
+                            "tittel": "Pleiepenger barn Innvilgelse",
+                            "dokumentType": "VEDTAK_INNVILGELSE",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/637584850/667127542/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2024-03-06T08:31:56", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2024-03-06T08:31:56", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2024-03-06T08:31:56", "datotype": "DATO_JOURNALFOERT" }
+                            ]
+                        },
+                        {
+                            "journalpostId": "637584848",
+                            "dokumentInfoId": "667127540",
+                            "saksnummer": "1DQB1NK",
+                            "tittel": "Pleiepenger barn Innvilgelse",
+                            "dokumentType": "VEDTAK_INNVILGELSE",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/637584848/667127540/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2024-03-06T08:23:08", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2024-03-06T08:23:08", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2024-03-06T08:23:08", "datotype": "DATO_JOURNALFOERT" }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "status": "AVSLUTTET",
+                    "opprettetTidspunkt": "2024-03-06T07:54:41.000Z",
+                    "avsluttetTidspunkt": "2024-03-06T08:01:15.000Z",
+                    "søknader": [
+                        {
+                            "søknadId": "4e2ac1a1-2de8-4d1a-8afe-8dd752e518b8",
+                            "søknadstype": "SØKNAD",
+                            "k9FormatSøknad": {
+                                "søknadId": "4e2ac1a1-2de8-4d1a-8afe-8dd752e518b8",
+                                "versjon": "1.0.0",
+                                "mottattDato": "2024-03-06T07:53:33.362Z",
+                                "søker": { "norskIdentitetsnummer": "23898798933" },
+                                "ytelse": {
+                                    "type": "PLEIEPENGER_SYKT_BARN",
+                                    "barn": { "norskIdentitetsnummer": "12851699153", "fødselsdato": null },
+                                    "søknadsperiode": ["2024-02-19/2024-02-23"],
+                                    "endringsperiode": [],
+                                    "trekkKravPerioder": [],
+                                    "opptjeningAktivitet": {},
+                                    "dataBruktTilUtledning": null,
+                                    "annetDataBruktTilUtledning": {
+                                        "harForståttRettigheterOgPlikter": true,
+                                        "harBekreftetOpplysninger": true,
+                                        "soknadDialogCommitSha": null,
+                                        "annetData": null
+                                    },
+                                    "infoFraPunsj": null,
+                                    "bosteder": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "utenlandsopphold": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "beredskap": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "nattevåk": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "tilsynsordning": {
+                                        "perioder": { "2024-02-19/2024-02-23": { "etablertTilsynTimerPerDag": "PT0S" } }
+                                    },
+                                    "lovbestemtFerie": { "perioder": {} },
+                                    "arbeidstid": {
+                                        "arbeidstakerList": [
+                                            {
+                                                "norskIdentitetsnummer": null,
+                                                "organisasjonsnummer": "896929119",
+                                                "organisasjonsnavn": "SAUEFABRIKK",
+                                                "arbeidstidInfo": {
+                                                    "perioder": {
+                                                        "2024-02-19/2024-02-23": {
+                                                            "jobberNormaltTimerPerDag": "PT8H",
+                                                            "faktiskArbeidTimerPerDag": "PT4H"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        ],
+                                        "frilanserArbeidstidInfo": {
+                                            "perioder": {
+                                                "2024-02-19/2024-02-23": {
+                                                    "jobberNormaltTimerPerDag": "PT0S",
+                                                    "faktiskArbeidTimerPerDag": "PT0S"
+                                                }
+                                            }
+                                        },
+                                        "selvstendigNæringsdrivendeArbeidstidInfo": null
+                                    },
+                                    "uttak": {
+                                        "perioder": {
+                                            "2024-02-19/2024-02-23": { "timerPleieAvBarnetPerDag": "PT7H30M" }
+                                        }
+                                    },
+                                    "omsorg": { "relasjonTilBarnet": null, "beskrivelseAvOmsorgsrollen": null }
+                                },
+                                "språk": "nb",
+                                "journalposter": [],
+                                "begrunnelseForInnsending": { "tekst": null },
+                                "kildesystem": "søknadsdialog"
+                            },
+                            "dokumenter": [
+                                {
+                                    "journalpostId": "637584858",
+                                    "dokumentInfoId": "667127551",
+                                    "saksnummer": "1DQB1NK",
+                                    "tittel": "Søknad om pleiepenger for sykt barn",
+                                    "dokumentType": "PLEIEPENGER_SYKT_BARN_SOKNAD",
+                                    "filtype": "PDF",
+                                    "harTilgang": true,
+                                    "url": "http://sif-innsyn-api/dokument/637584858/667127551/ARKIV",
+                                    "relevanteDatoer": [
+                                        { "dato": "2024-03-06T08:53:35", "datotype": "DATO_OPPRETTET" },
+                                        { "dato": "2024-03-06T08:53:35", "datotype": "DATO_DOKUMENT" },
+                                        { "dato": "2024-03-06T08:53:40", "datotype": "DATO_JOURNALFOERT" },
+                                        { "dato": "2024-03-06T08:53:33", "datotype": "DATO_REGISTRERT" }
+                                    ]
+                                }
+                            ],
+                            "arbeidsgivere": [{ "organisasjonsnummer": "896929119", "navn": "SAUEFABRIKK" }]
+                        }
+                    ],
+                    "aksjonspunkter": [],
+                    "utgåendeDokumenter": [
+                        {
+                            "journalpostId": "637584861",
+                            "dokumentInfoId": "667127554",
+                            "saksnummer": "1DQB1NK",
+                            "tittel": "Pleiepenger barn Innvilgelse",
+                            "dokumentType": "VEDTAK_INNVILGELSE",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/637584861/667127554/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2024-03-06T09:01:20", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2024-03-06T09:01:20", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2024-03-06T09:01:20", "datotype": "DATO_JOURNALFOERT" }
+                            ]
+                        },
+                        {
+                            "journalpostId": "637584857",
+                            "dokumentInfoId": "667127550",
+                            "saksnummer": "1DQB1NK",
+                            "tittel": "Pleiepenger barn Innvilgelse",
+                            "dokumentType": "VEDTAK_INNVILGELSE",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/637584857/667127550/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2024-03-06T08:51:02", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2024-03-06T08:51:02", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2024-03-06T08:51:02", "datotype": "DATO_JOURNALFOERT" }
+                            ]
+                        },
+                        {
+                            "journalpostId": "637584853",
+                            "dokumentInfoId": "667127545",
+                            "saksnummer": "1DQB1NK",
+                            "tittel": "Pleiepenger barn Innvilgelse",
+                            "dokumentType": "VEDTAK_INNVILGELSE",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/637584853/667127545/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2024-03-06T08:40:27", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2024-03-06T08:40:27", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2024-03-06T08:40:27", "datotype": "DATO_JOURNALFOERT" }
+                            ]
+                        },
+                        {
+                            "journalpostId": "637584850",
+                            "dokumentInfoId": "667127542",
+                            "saksnummer": "1DQB1NK",
+                            "tittel": "Pleiepenger barn Innvilgelse",
+                            "dokumentType": "VEDTAK_INNVILGELSE",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/637584850/667127542/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2024-03-06T08:31:56", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2024-03-06T08:31:56", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2024-03-06T08:31:56", "datotype": "DATO_JOURNALFOERT" }
+                            ]
+                        },
+                        {
+                            "journalpostId": "637584848",
+                            "dokumentInfoId": "667127540",
+                            "saksnummer": "1DQB1NK",
+                            "tittel": "Pleiepenger barn Innvilgelse",
+                            "dokumentType": "VEDTAK_INNVILGELSE",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/637584848/667127540/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2024-03-06T08:23:08", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2024-03-06T08:23:08", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2024-03-06T08:23:08", "datotype": "DATO_JOURNALFOERT" }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+]

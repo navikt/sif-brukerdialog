@@ -4,7 +4,7 @@
     "namespace": "dusseldorf",
     "team": "dusseldorf",
     "ingresses": ["https://dine-pleiepenger.intern.dev.nav.no"],
-    "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
+    "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no", "ryujtq87.api.sanity.io"],
     "accessPolicyOutApps": ["k9-brukerdialog-api", "sif-innsyn-api", "k9-sak-innsyn-api"],
     "livenessPath": "/innsyn/api/internal/isAlive",
     "readinessPath": "/innsyn/api/internal/isReady",
@@ -22,7 +22,6 @@
         "NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE": "dev-gcp:dusseldorf:k9-brukerdialog-api",
         "NEXT_PUBLIC_APPSTATUS_DATASET": "staging",
         "NEXT_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
-
         "NPM_CONFIG_CACHE": "/tmp",
 
         "NEXT_PUBLIC_DINE_UTBETALINGER": "https://tjenester.nav.no/utbetalingsoversikt/",
@@ -32,6 +31,7 @@
         "NEXT_PUBLIC_KLAGE_INFO_URL": "https://www.nav.no/person/kontakt-oss/nb/tilbakemeldinger",
         "NEXT_PUBLIC_MIN_SIDE_URL": "https://www.dev.nav.no/minside",
         "NEXT_PUBLIC_PLEIEPENGER_URL": "https://pleiepengesoknad.intern.dev.nav.no/familie/sykdom-i-familien/soknad/pleiepenger/soknad/",
+        "NEXT_PUBLIC_PLEIEPENGER_INFO_URL": "https://www.dev.nav.no/pleiepenger-barn",
         "NEXT_PUBLIC_REGELVERK_INFO_URL": "https://lovdata.no/nav/folketrygdloven/kap9",
         "NEXT_PUBLIC_SAKSBEHANDLINGSTID_INFO_URL": "https://www.intern.dev.nav.no/saksbehandlingstider#pleiepenger-for-sykt-barn",
         "NEXT_PUBLIC_SAKSOVERSIKT": "https://person.nav.no/mine-saker",
@@ -41,6 +41,7 @@
         "NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL": "https://person.dev.nav.no/mine-saker",
         "NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL": "https://tjenester.nav.no/utbetalingsoversikt",
         "NEXT_PUBLIC_FEATURE_HENT_SAKER": "on",
-        "NEXT_PUBLIC_FEATURE_HENT_BEHANDLINGSTID": "on"
+        "NEXT_PUBLIC_FEATURE_HENT_BEHANDLINGSTID": "on",
+        "NEXT_PUBLIC_FEATURE_HENT_MELLOMLAGRING": "off"
     }
 }

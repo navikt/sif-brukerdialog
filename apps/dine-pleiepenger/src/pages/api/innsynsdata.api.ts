@@ -3,17 +3,18 @@ import { createChildLogger } from '@navikt/next-logger';
 import { HttpStatusCode } from 'axios';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import {
-    fetchSaksbehandlingstid,
     fetchMellomlagringer,
+    fetchSaker,
+    fetchSaksbehandlingstid,
     fetchSøker,
     fetchSøknader,
-    fetchSaker,
 } from '../../server/apiService';
 import { Innsynsdata } from '../../types/InnsynData';
+import { getBrukerprofil } from '../../utils/amplitude/getBrukerprofil';
 import { getXRequestId } from '../../utils/apiUtils';
-import { sortSøknadEtterOpprettetDato } from '../../utils/søknadUtils';
 import { Feature } from '../../utils/features';
-import { getBrukerprofil } from '../../utils/brukerprofilUtils';
+import { sortInnsendtSøknadEtterOpprettetDato } from '../../utils/innsendtSøknadUtils';
+import { fetchAppStatus } from './appStatus.api';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const childLogger = createChildLogger(getXRequestId(req));
@@ -23,13 +24,14 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         const søker = await fetchSøker(req);
 
         /** Bruker har tilgang, hent resten av informasjonen */
-        const [søknaderReq, mellomlagringReq, sakerReq, saksbehandlingstidReq] = await Promise.allSettled([
+        const [søknaderReq, mellomlagringReq, sakerReq, saksbehandlingstidReq, appStatus] = await Promise.allSettled([
             fetchSøknader(req),
-            fetchMellomlagringer(req),
+            Feature.HENT_MELLOMLAGRING ? fetchMellomlagringer(req) : Promise.resolve({}),
             Feature.HENT_SAKER ? fetchSaker(req) : Promise.resolve([]),
             Feature.HENT_BEHANDLINGSTID
                 ? fetchSaksbehandlingstid(req)
                 : Promise.resolve({ saksbehandlingstidUker: undefined }),
+            fetchAppStatus(),
         ]);
 
         if (søknaderReq.status === 'rejected') {
@@ -37,10 +39,13 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
                 new Error(`Hent søknader feilet: ${søknaderReq.reason.message}`, { cause: søknaderReq.reason }),
             );
         }
+        const innsendteSøknader =
+            søknaderReq.status === 'fulfilled' ? søknaderReq.value.sort(sortInnsendtSøknadEtterOpprettetDato) : [];
 
         const saker = sakerReq.status === 'fulfilled' ? sakerReq.value : [];
 
-        const søknader = søknaderReq.status === 'fulfilled' ? søknaderReq.value.sort(sortSøknadEtterOpprettetDato) : [];
+        const søknader =
+            søknaderReq.status === 'fulfilled' ? søknaderReq.value.sort(sortInnsendtSøknadEtterOpprettetDato) : [];
         const saksbehandlingstidUker =
             saksbehandlingstidReq.status === 'fulfilled'
                 ? saksbehandlingstidReq.value.saksbehandlingstidUker
@@ -49,8 +54,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         childLogger.info(getBrukerprofil(søknader, saker, saksbehandlingstidUker), `Hentet innsynsdata`);
 
         const innsynsdata: Innsynsdata = {
+            appStatus: appStatus.status === 'fulfilled' ? appStatus.value : undefined,
             søker,
-            søknader,
+            innsendteSøknader,
             mellomlagring: mellomlagringReq.status === 'fulfilled' ? mellomlagringReq.value : {},
             saksbehandlingstidUker,
             saker,

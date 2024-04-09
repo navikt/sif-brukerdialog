@@ -6,7 +6,7 @@ import DineMellomlagringer from './DineMellomlagringer';
 import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof DineMellomlagringer> = {
     component: DineMellomlagringer,
-    title: 'Components/DineMellomlagringer',
+    title: 'Content/DineMellomlagringer',
     parameters: {
         layout: 'centered',
     },

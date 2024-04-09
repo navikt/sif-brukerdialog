@@ -1,8 +1,9 @@
-import { Status, StatusMessage, useAppStatus } from '@navikt/appstatus-react-ds';
+import { Status, StatusMessage } from '@navikt/appstatus-react-ds';
 import { ReactElement } from 'react';
 import { IntlProvider } from 'react-intl';
 import { InnsynPsbApp } from '@navikt/sif-app-register';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
+import { storageParser } from '@navikt/sif-common-core-ds/src/utils/persistence/storageParser';
 import axios, { AxiosError } from 'axios';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -15,15 +16,16 @@ import { InnsynsdataContextProvider } from '../context/InnsynsdataContextProvide
 import { Innsynsdata } from '../types/InnsynData';
 import appSentryLogger from '../utils/appSentryLogger';
 import { browserEnv } from '../utils/env';
-import { messages } from '../utils/message';
 import UnavailablePage from './unavailable.page';
 import 'react-loading-skeleton/dist/skeleton.css';
 import '../components/process/process.css';
 import '../style/global.css';
+import { messages } from '../i18n';
 
 export const APPLICATION_KEY = 'sif-innsyn';
 
-const innsynsdataFetcher = async (url: string): Promise<Innsynsdata> => axios.get(url).then((res) => res.data);
+const innsynsdataFetcher = async (url: string): Promise<Innsynsdata> =>
+    axios.get(url, { transformResponse: storageParser }).then((res) => res.data);
 
 function MyApp({ Component, pageProps }: AppProps): ReactElement {
     const { data, error, isLoading } = useSWR<Innsynsdata, AxiosError>(
@@ -35,21 +37,19 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
             errorRetryCount: 0,
         },
     );
-    const appStatus = useAppStatus(APPLICATION_KEY, {
-        projectId: browserEnv.NEXT_PUBLIC_APPSTATUS_PROJECT_ID,
-        dataset: browserEnv.NEXT_PUBLIC_APPSTATUS_DATASET,
-    });
 
-    if (isLoading || appStatus.isLoading) {
+    // const appStatus = useAppStatus('sif-innsyn', {
+    //     projectId: browserEnv.NEXT_PUBLIC_APPSTATUS_PROJECT_ID,
+    //     dataset: browserEnv.NEXT_PUBLIC_APPSTATUS_DATASET,
+    // });
+
+    if (isLoading) {
         return (
             <EmptyPage>
                 <Head>Henter informasjon - Dine pleiepenger</Head>
                 <ComponentLoader />
             </EmptyPage>
         );
-    }
-    if (appStatus.status === Status.unavailable) {
-        return <UnavailablePage />;
     }
 
     if (error || !data) {
@@ -61,11 +61,16 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
         );
     }
 
+    const { appStatus } = data;
+    if (appStatus?.status === Status.unavailable) {
+        return <UnavailablePage />;
+    }
+
     return (
         <ErrorBoundary>
             <AmplitudeProvider applicationKey={InnsynPsbApp.key}>
                 <main>
-                    {appStatus.message && (
+                    {appStatus?.message && (
                         <div className="max-w-[1128px] mx-auto p-5 mb-5">
                             <StatusMessage message={appStatus.message} />
                         </div>

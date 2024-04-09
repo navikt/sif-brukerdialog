@@ -61,6 +61,8 @@ spec:
        value: {{image}}
      - name: GITHUB_REF_NAME
        value: {{GITHUB_REF_NAME}}
+     - name: NEXT_PUBLIC_GITHUB_REF_NAME
+       value: {{GITHUB_REF_NAME}}
     tokenx:
          enabled: true
     idporten:

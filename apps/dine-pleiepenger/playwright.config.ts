@@ -28,6 +28,7 @@ export default defineConfig({
             API_URL: 'http://localhost:8089',
             NEXT_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
             NEXT_PUBLIC_APPSTATUS_DATASET: 'staging',
+            NEXT_PUBLIC_GITHUB_REF_NAME: 'dev-branch',
             NEXT_PUBLIC_BASE_PATH: '/innsyn',
             NEXT_PUBLIC_LOGIN_URL: '/dummy',
             NEXT_PUBLIC_RUNTIME_ENVIRONMENT: 'dev',
@@ -47,6 +48,7 @@ export default defineConfig({
             NEXT_PUBLIC_MIN_SIDE_URL: 'https://www.dev.nav.no/minside',
             NEXT_PUBLIC_PLEIEPENGER_URL:
                 'https://pleiepengesoknad.intern.dev.nav.no/familie/sykdom-i-familien/soknad/pleiepenger/soknad/',
+            NEXT_PUBLIC_PLEIEPENGER_INFO_URL: 'https://www.dev.nav.no/pleiepenger-barn',
             NEXT_PUBLIC_REGELVERK_INFO_URL: 'https://lovdata.no/nav/folketrygdloven/kap9',
             NEXT_PUBLIC_SAKSBEHANDLINGSTID_INFO_URL:
                 'https://www.intern.dev.nav.no/saksbehandlingstider#pleiepenger-for-sykt-barn',
@@ -58,6 +60,7 @@ export default defineConfig({
             NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL: 'https://person.dev.nav.no/mine-saker',
             NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL: 'https://tjenester.nav.no/utbetalingsoversikt',
             NEXT_PUBLIC_FEATURE_HENT_SAKER: 'on',
+            NEXT_PUBLIC_FEATURE_HENT_MELLOMLAGRING: 'off',
         },
     },
 });

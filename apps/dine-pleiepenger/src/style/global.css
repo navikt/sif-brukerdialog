@@ -2,6 +2,7 @@
 @import '@navikt/ds-css';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import '../components/page-layout/sak-page-header/sakPageHeader.css';
 
 .contentWrapper {
     margin-left: calc((100vw - 100%) / -2);
@@ -13,4 +14,11 @@
 .navds-expansioncard__header,
 .navds-expansioncard__content {
     border: none;
+}
+
+.navds-heading {
+    color: var(--a-deepblue-800);
+}
+.navds-alert .navds-heading {
+    color: var(--a-gray-900);
 }

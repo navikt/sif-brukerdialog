@@ -1,0 +1,19 @@
+[
+    {
+        "pleietrengende": {
+            "identitetsnummer": "11511767808",
+            "fødselsdato": "2017-11-11",
+            "fornavn": "INITIATIVRIK",
+            "mellomnavn": null,
+            "etternavn": "BRIS",
+            "aktørId": "2952714620922"
+        },
+        "sak": {
+            "saksnummer": "1DQB6Z8",
+            "saksbehandlingsFrist": null,
+            "fagsakYtelseType": { "kode": "PSB", "kodeverk": "FAGSAK_YTELSE" },
+            "ytelseType": "PSB",
+            "behandlinger": []
+        }
+    }
+]

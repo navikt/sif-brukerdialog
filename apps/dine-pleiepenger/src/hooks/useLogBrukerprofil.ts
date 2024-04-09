@@ -1,17 +1,22 @@
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { Sak } from '../server/api-models/SakSchema';
-import { Søknad } from '../types/Søknad';
-import { getBrukerprofil } from '../utils/brukerprofilUtils';
+import { PleietrengendeMedSak } from '../server/api-models/PleietrengendeMedSakSchema';
+import { AmplitudeInfoType } from '../types/AmplitudeInfoType';
+import { InnsendtSøknad } from '../types/Søknad';
+import { getBrukerprofil } from '../utils/amplitude/getBrukerprofil';
 
-export const useLogBrukerprofil = (søknader: Søknad[], saker: Sak[], saksbehandlingstidUker: number | undefined) => {
+export const useLogBrukerprofil = (
+    søknader: InnsendtSøknad[],
+    saker: PleietrengendeMedSak[],
+    saksbehandlingstidUker: number | undefined,
+) => {
     const { logInfo } = useAmplitudeInstance();
 
     useEffectOnce(() => {
-        const brukerprofil = getBrukerprofil(søknader, saker, saksbehandlingstidUker);
+        const statistikk = getBrukerprofil(søknader, saker, saksbehandlingstidUker);
         logInfo({
-            type: 'brukerprofil',
-            ...brukerprofil,
+            type: AmplitudeInfoType.brukerprofil,
+            ...statistikk,
         });
     });
 };
