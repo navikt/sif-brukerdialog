@@ -13,6 +13,8 @@
   - @navikt/sif-common-core-ds@9.15.20
   - @navikt/sif-common-sentry@0.25.28
   - @navikt/sif-common-utils@3.44.15
+- Fjerne info logging til sentry (rest av debug)
+
 
 ## 2.26.2
 
