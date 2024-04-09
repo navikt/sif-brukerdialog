@@ -18,7 +18,11 @@ import { fetchAppStatus } from './appStatus.api';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const childLogger = createChildLogger(getXRequestId(req));
-    childLogger.info(`Henter innsynsdata`);
+    childLogger.info(`Henter innsynsdata`, {
+        mellomlagring: Feature.HENT_MELLOMLAGRING,
+        saker: Feature.HENT_SAKER,
+        behandlingstid: Feature.HENT_BEHANDLINGSTID,
+    });
     try {
         /** Hent søker først for å se om bruker har tilgang */
         const søker = await fetchSøker(req);
@@ -33,6 +37,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
                 : Promise.resolve({ saksbehandlingstidUker: undefined }),
             fetchAppStatus(),
         ]);
+        childLogger.info(`Hentet søknader, mellomlagring, saker og saksbehandlingstid`);
 
         if (søknaderReq.status === 'rejected') {
             childLogger.error(
