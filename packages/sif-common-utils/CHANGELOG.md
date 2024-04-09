@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.44.15
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch + major fnrvalidator
+
 ## 3.44.14
 
 ### Patch Changes

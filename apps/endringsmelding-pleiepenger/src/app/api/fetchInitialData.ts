@@ -42,7 +42,6 @@ export const fetchInitialData = async (
     }
 
     const handleInitialDataError = (error: any) => {
-        appSentryLogger.logError(`handleInitialDataError: ${error?.message}`);
         if (isSøknadInitialDataErrorState(error)) {
             return Promise.reject({
                 ...error,

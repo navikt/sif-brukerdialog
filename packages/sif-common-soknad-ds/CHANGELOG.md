@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.13.27
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch + major fnrvalidator
+
 ## 10.13.26
 
 ### Patch Changes
