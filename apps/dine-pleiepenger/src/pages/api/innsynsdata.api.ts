@@ -18,7 +18,15 @@ import { fetchAppStatus } from './appStatus.api';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const childLogger = createChildLogger(getXRequestId(req));
-    childLogger.info(`Henter innsynsdata`);
+    childLogger.info(
+        {
+            mellomlagring: Feature.HENT_MELLOMLAGRING,
+            saker: Feature.HENT_SAKER,
+            behandlingstid: Feature.HENT_BEHANDLINGSTID,
+            appstatus: Feature.HENT_APPSTATUS,
+        },
+        `Henter innsynsdata`,
+    );
     try {
         /** Hent søker først for å se om bruker har tilgang */
         const søker = await fetchSøker(req);
@@ -31,14 +39,18 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             Feature.HENT_BEHANDLINGSTID
                 ? fetchSaksbehandlingstid(req)
                 : Promise.resolve({ saksbehandlingstidUker: undefined }),
-            fetchAppStatus(),
+            Feature.HENT_APPSTATUS ? fetchAppStatus() : Promise.resolve(undefined),
         ]);
+        childLogger.info(`Hentet innsynsdata`);
 
         if (søknaderReq.status === 'rejected') {
             childLogger.error(
                 new Error(`Hent søknader feilet: ${søknaderReq.reason.message}`, { cause: søknaderReq.reason }),
             );
         }
+
+        childLogger.info(`Parser innsynsdata`);
+
         const innsendteSøknader =
             søknaderReq.status === 'fulfilled' ? søknaderReq.value.sort(sortInnsendtSøknadEtterOpprettetDato) : [];
 
@@ -51,7 +63,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
                 ? saksbehandlingstidReq.value.saksbehandlingstidUker
                 : undefined;
 
-        childLogger.info(getBrukerprofil(søknader, saker, saksbehandlingstidUker), `Hentet innsynsdata`);
+        childLogger.info(getBrukerprofil(søknader, saker, saksbehandlingstidUker), `Innsynsdata parset`);
 
         const innsynsdata: Innsynsdata = {
             appStatus: appStatus.status === 'fulfilled' ? appStatus.value : undefined,

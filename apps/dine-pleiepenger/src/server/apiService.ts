@@ -52,6 +52,7 @@ export const fetchSøker = async (req: NextApiRequest): Promise<Søker> => {
     );
     createChildLogger(getXRequestId(req)).info(`Fetching søker from url: ${url}`);
     const response = await axios.get(url, { headers });
+    createChildLogger(getXRequestId(req)).info(`Søker fetched`);
     return await SøkerSchema.parse(response.data);
 };
 
@@ -71,13 +72,13 @@ export const fetchSaker = async (req: NextApiRequest, raw?: boolean): Promise<Pl
     const childLogger = createChildLogger(getXRequestId(req));
     childLogger.info(`Fetching saker from url: ${url}`);
     const response = await axios.get(url, { headers });
-    createChildLogger(getXRequestId(req)).info(`Response-status from request: ${response.status}`);
+    childLogger.info(`Response-status from request: ${response.status}`);
     if (raw) {
         return response.data;
     }
-    createChildLogger(getXRequestId(req)).info(`Parsing response data`);
+    childLogger.info(`Parsing saker response data`);
     const saker = await PleietrengendeMedSakResponseSchema.parse(response.data);
-    createChildLogger(getXRequestId(req)).info(`Response data parsed`);
+    childLogger.info(`Saker response data parsed`);
 
     return saker.map((ps): PleietrengendeMedSak => {
         return {
@@ -103,8 +104,10 @@ export const fetchSaksbehandlingstid = async (req: NextApiRequest): Promise<Saks
         ApiEndpointK9SakInnsyn.behandlingstid,
         'application/json',
     );
-    createChildLogger(getXRequestId(req)).info(`Fetching behandlingstid from url: ${url}`);
+    const childLogger = createChildLogger(getXRequestId(req));
+    childLogger.info(`Fetching behandlingstid from url: ${url}`);
     const response = await axios.get(url, { headers });
+    childLogger.info(`Behandlingstid fetched`);
     return await SaksbehandlingstidSchema.parse(response.data);
 };
 
@@ -116,8 +119,10 @@ export const fetchSøknader = async (req: NextApiRequest): Promise<InnsendtSøkn
         ApiEndpointInnsyn.søknad,
         'application/json',
     );
-    createChildLogger(getXRequestId(req)).info(`Fetching søknader from url: ${url}`);
+    const childLogger = createChildLogger(getXRequestId(req));
+    childLogger.info(`Fetching søknader from url: ${url}`);
     const response = await axios.get(url, { headers });
+    childLogger.info(`Søknader fetched`);
     return await InnsendtSøknaderSchema.parse(response.data);
 };
 

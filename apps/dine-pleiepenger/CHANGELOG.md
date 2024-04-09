@@ -1,5 +1,16 @@
 # @navikt/dine-pleiepenger
 
+## 0.7.0
+
+### Minor Changes
+
+- 38e1b1a: Innsyn - status i sak.
+  Utvide innsyn til å hente bruker saker, la bruker velge sak, og vise tidslinje på hendelser i saken.
+
+### Patch Changes
+
+- Legge på featuretoggle for kall til appstatus i sanity. Togglet av.
+
 ## 0.6.3
 
 ### Patch Changes
