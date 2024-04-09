@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.26.3
+
+### Patch Changes
+
+- Fjerne info logging til sentry (rest av debug)
+
 ## 2.26.2
 
 ### Patch Changes
