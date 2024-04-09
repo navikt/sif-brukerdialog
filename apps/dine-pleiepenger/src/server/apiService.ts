@@ -76,9 +76,9 @@ export const fetchSaker = async (req: NextApiRequest, raw?: boolean): Promise<Pl
     if (raw) {
         return response.data;
     }
-    childLogger.info(`Parsing response data`);
+    childLogger.info(`Parsing saker response data`);
     const saker = await PleietrengendeMedSakResponseSchema.parse(response.data);
-    childLogger.info(`Response data parsed`);
+    childLogger.info(`Saker response data parsed`);
 
     return saker.map((ps): PleietrengendeMedSak => {
         return {
