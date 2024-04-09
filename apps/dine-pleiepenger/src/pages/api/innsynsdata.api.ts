@@ -23,6 +23,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             mellomlagring: Feature.HENT_MELLOMLAGRING,
             saker: Feature.HENT_SAKER,
             behandlingstid: Feature.HENT_BEHANDLINGSTID,
+            appstatus: Feature.HENT_APPSTATUS,
         },
         `Henter innsynsdata`,
     );
@@ -38,7 +39,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             Feature.HENT_BEHANDLINGSTID
                 ? fetchSaksbehandlingstid(req)
                 : Promise.resolve({ saksbehandlingstidUker: undefined }),
-            Feature.HENT_BEHANDLINGSTID ? fetchAppStatus() : Promise.resolve(undefined),
+            Feature.HENT_APPSTATUS ? fetchAppStatus() : Promise.resolve(undefined),
         ]);
         childLogger.info(`Hentet innsynsdata`);
 
