@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.7.28
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch + major fnrvalidator
+
 ## 1.7.27
 
 ### Patch Changes
