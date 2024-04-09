@@ -10,11 +10,11 @@ import {
     fetchSøknader,
 } from '../../server/apiService';
 import { Innsynsdata } from '../../types/InnsynData';
+import { getBrukerprofil } from '../../utils/amplitude/getBrukerprofil';
 import { getXRequestId } from '../../utils/apiUtils';
 import { Feature } from '../../utils/features';
 import { sortInnsendtSøknadEtterOpprettetDato } from '../../utils/innsendtSøknadUtils';
 import { fetchAppStatus } from './appStatus.api';
-import { getBrukerprofil } from '../../utils/amplitude/getBrukerprofil';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const childLogger = createChildLogger(getXRequestId(req));
@@ -26,7 +26,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         /** Bruker har tilgang, hent resten av informasjonen */
         const [søknaderReq, mellomlagringReq, sakerReq, saksbehandlingstidReq, appStatus] = await Promise.allSettled([
             fetchSøknader(req),
-            fetchMellomlagringer(req),
+            Feature.HENT_MELLOMLAGRING ? fetchMellomlagringer(req) : Promise.resolve({}),
             Feature.HENT_SAKER ? fetchSaker(req) : Promise.resolve([]),
             Feature.HENT_BEHANDLINGSTID
                 ? fetchSaksbehandlingstid(req)
