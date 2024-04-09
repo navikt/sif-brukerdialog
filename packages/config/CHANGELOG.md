@@ -1,5 +1,11 @@
 # config
 
+## 0.9.22
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch + major fnrvalidator
+
 ## 0.9.21
 
 ### Patch Changes
