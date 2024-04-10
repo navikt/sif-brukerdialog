@@ -1,5 +1,5 @@
 import { Heading } from '@navikt/ds-react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
@@ -21,6 +21,12 @@ const AnnetBarnPart: React.FC<Props> = ({ søkersFødselsnummer, harRegistrerteB
         values: { barnetHarIkkeFnr },
         setFieldValue,
     } = useFormikContext<SoknadFormData>();
+
+    useEffect(() => {
+        if (!harRegistrerteBarn) {
+            setFieldValue(SoknadFormField.legeerklæringGjelderEtAnnetBarn, true);
+        }
+    }, [harRegistrerteBarn, setFieldValue]);
 
     return (
         <Block margin="xl">
