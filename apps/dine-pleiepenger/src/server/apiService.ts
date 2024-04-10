@@ -76,7 +76,17 @@ export const fetchSaker = async (req: NextApiRequest, raw?: boolean): Promise<Pl
     if (raw) {
         return response.data;
     }
-    childLogger.info(`Parsing saker response data`);
+    /** Logg antall pleietrengendeMedSak før parsing */
+    let sakerLength = undefined;
+    try {
+        sakerLength = response.data?.length;
+    } catch {}
+    childLogger.info(
+        {
+            sakerLength,
+        },
+        `Parsing saker response data`,
+    );
     const saker = await PleietrengendeMedSakResponseSchema.parse(response.data);
     childLogger.info(`Saker response data parsed`);
 
