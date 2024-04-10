@@ -1,5 +1,13 @@
 # @navikt/sif-common-core-ds
 
+## 9.15.21
+
+### Patch Changes
+
+- ad4123e: Pakkeoppdateringer minor/patch
+- Updated dependencies [ad4123e]
+  - @navikt/sif-common-utils@3.44.16
+
 ## 9.15.20
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.13.28
+
+### Patch Changes
+
+- ad4123e: Pakkeoppdateringer minor/patch
+
 ## 10.13.27
 
 ### Patch Changes

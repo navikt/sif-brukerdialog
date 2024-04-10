@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.7.29
+
+### Patch Changes
+
+- ad4123e: Pakkeoppdateringer minor/patch
+
 ## 1.7.28
 
 ### Patch Changes
