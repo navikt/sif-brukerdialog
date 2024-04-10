@@ -15,6 +15,7 @@ import { getXRequestId } from '../../utils/apiUtils';
 import { Feature } from '../../utils/features';
 import { sortInnsendtSøknadEtterOpprettetDato } from '../../utils/innsendtSøknadUtils';
 import { fetchAppStatus } from './appStatus.api';
+import dayjs from 'dayjs';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const childLogger = createChildLogger(getXRequestId(req));
@@ -51,19 +52,33 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
         childLogger.info(`Parser innsynsdata`);
 
+        const saker = sakerReq.status === 'fulfilled' ? sakerReq.value : [];
+
         const innsendteSøknader =
             søknaderReq.status === 'fulfilled' ? søknaderReq.value.sort(sortInnsendtSøknadEtterOpprettetDato) : [];
 
-        const saker = sakerReq.status === 'fulfilled' ? sakerReq.value : [];
-
-        const søknader =
-            søknaderReq.status === 'fulfilled' ? søknaderReq.value.sort(sortInnsendtSøknadEtterOpprettetDato) : [];
         const saksbehandlingstidUker =
             saksbehandlingstidReq.status === 'fulfilled'
                 ? saksbehandlingstidReq.value.saksbehandlingstidUker
                 : undefined;
 
-        childLogger.info(getBrukerprofil(søknader, saker, saksbehandlingstidUker), `Innsynsdata parset`);
+        const brukerprofil = getBrukerprofil(innsendteSøknader, saker, saksbehandlingstidUker);
+        childLogger.info(brukerprofil, `Innsynsdata parset`);
+
+        if (brukerprofil.antallSaker === 0 && brukerprofil.antallSøknader > 0) {
+            const søknadEldreEnnToDager = innsendteSøknader.find((søknad) =>
+                dayjs(søknad.opprettet).isBefore(dayjs().subtract(2, 'days')),
+            );
+            if (søknadEldreEnnToDager) {
+                childLogger.info(
+                    {
+                        ...brukerprofil,
+                        journalpostId: søknadEldreEnnToDager.journalpostId,
+                    },
+                    'Bruker har søknad, men ingen sak',
+                );
+            }
+        }
 
         const innsynsdata: Innsynsdata = {
             appStatus: appStatus.status === 'fulfilled' ? appStatus.value : undefined,
