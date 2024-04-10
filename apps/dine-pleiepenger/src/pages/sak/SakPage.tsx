@@ -20,6 +20,8 @@ import { getAllBreadcrumbs } from '../../utils/decoratorBreadcrumbs';
 import { browserEnv } from '../../utils/env';
 import { personaliaUtils } from '../../utils/personaliaUtils';
 import { getBehandlingsstatusISak } from '../../utils/sakUtils';
+import { useLogSidevisning } from '@navikt/sif-common-amplitude';
+import { PageKey } from '../../types/PageKey';
 
 interface Props {
     pleietrengende: Pleietrengende;
@@ -32,6 +34,7 @@ const SakPage: React.FunctionComponent<Props> = ({ sak, pleietrengende, saksbeha
     const navn = personaliaUtils.navn(pleietrengende);
     const router = useRouter();
     useLogSaksprofil(sak, antallSaker);
+    useLogSidevisning(PageKey.sak);
 
     setBreadcrumbs(
         getAllBreadcrumbs([{ url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Din pleiepengesak' }], antallSaker > 1),

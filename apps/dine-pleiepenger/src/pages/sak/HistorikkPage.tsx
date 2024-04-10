@@ -13,6 +13,8 @@ import { Sak } from '../../server/api-models/SakSchema';
 import { getAllBreadcrumbs } from '../../utils/decoratorBreadcrumbs';
 import { browserEnv } from '../../utils/env';
 import { personaliaUtils } from '../../utils/personaliaUtils';
+import { useLogSidevisning } from '@navikt/sif-common-amplitude';
+import { PageKey } from '../../types/PageKey';
 
 interface Props {
     pleietrengende: Pleietrengende;
@@ -23,6 +25,7 @@ interface Props {
 const HistorikkPage: React.FunctionComponent<Props> = ({ sak, harFlereSaker, pleietrengende }) => {
     const navn = personaliaUtils.navn(pleietrengende);
     const router = useRouter();
+    useLogSidevisning(PageKey.historikk);
 
     setBreadcrumbs(
         getAllBreadcrumbs(

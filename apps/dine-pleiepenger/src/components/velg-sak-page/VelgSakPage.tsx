@@ -9,12 +9,15 @@ import { personaliaUtils } from '../../utils/personaliaUtils';
 import { getBehandlingsstatusISak } from '../../utils/sakUtils';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
 import StatusTag from '../status-tag/StatusTag';
+import { useLogSidevisning } from '@navikt/sif-common-amplitude';
+import { PageKey } from '../../types/PageKey';
 
 interface Props {
     saker: PleietrengendeMedSak[];
 }
 
 const VelgSakPage: React.FunctionComponent<Props> = ({ saker }) => {
+    useLogSidevisning(PageKey.velgSak);
     return (
         <DefaultPageLayout>
             <Head>
