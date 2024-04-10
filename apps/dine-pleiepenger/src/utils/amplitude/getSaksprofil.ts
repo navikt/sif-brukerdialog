@@ -4,7 +4,7 @@ import { Venteårsak } from '../../types/Venteårsak';
 import { erSaksbehandlingsfristPassert, getBehandlingsstatusISak } from '../sakUtils';
 
 type Saksprofil = {
-    profilVerson: '1.0';
+    profilVersjon: '1.0';
     antallSaker: number;
     antallBehandlinger: number;
     harSaksbehandlingsfrist: boolean;
@@ -16,7 +16,7 @@ type Saksprofil = {
 export const getSaksprofil = (sak: Sak, antallSaker: number): Saksprofil => {
     const statusISak = getBehandlingsstatusISak(sak);
     return {
-        profilVerson: '1.0',
+        profilVersjon: '1.0',
         status: statusISak?.status,
         venteårsak: statusISak?.venteårsak,
         harSaksbehandlingsfrist: !!sak.saksbehandlingsFrist,
