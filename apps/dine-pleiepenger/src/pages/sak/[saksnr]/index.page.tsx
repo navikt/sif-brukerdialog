@@ -1,13 +1,10 @@
 import { Alert, Box } from '@navikt/ds-react';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { withAuthenticatedPage } from '../../../auth/withAuthentication';
 import DefaultPageLayout from '../../../components/page-layout/default-page-layout/DefaultPageLayout';
 import { useInnsynsdataContext } from '../../../hooks/useInnsynsdataContext';
 import { PleietrengendeMedSak } from '../../../server/api-models/PleietrengendeMedSakSchema';
-import { Feature } from '../../../utils/features';
 import SakPage from '../SakPage';
 
 const getSakFromSaksnr = (
@@ -22,23 +19,11 @@ const getSakFromSaksnr = (
 
 export default function SakRoutePage() {
     const {
-        innsynsdata: { innsendteSøknader, saker, saksbehandlingstidUker },
+        innsynsdata: { saker, saksbehandlingstidUker },
     } = useInnsynsdataContext();
     const router = useRouter();
     const { saksnr } = router.query;
     const pleietrengendeMedSak = getSakFromSaksnr(saker, saksnr);
-
-    const { logInfo } = useAmplitudeInstance();
-
-    useEffectOnce(() => {
-        if (Feature.HENT_BEHANDLINGSTID && Feature.HENT_SAKER && logInfo) {
-            logInfo({
-                antallSøknader: innsendteSøknader.length,
-                antallSaker: saker.length,
-                harSaksbehandlingstid: !!saksbehandlingstidUker,
-            });
-        }
-    });
 
     if (!pleietrengendeMedSak) {
         return (
