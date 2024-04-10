@@ -24,13 +24,7 @@ interface Props {
 const BeskrivelsePPStep: React.FC<Props> = ({ søknadstype, søkersFødselsnummer }) => {
     const intl = useIntl();
     const {
-        values: {
-            legeerklæringGjelderEtAnnetBarn,
-            dokumentType,
-            registrertBarnAktørId,
-            barnetsFødselsnummer,
-            barnetHarIkkeFnr,
-        },
+        values: { legeerklæringGjelderEtAnnetBarn, dokumentType, registrertBarnAktørId, barnetsFødselsnummer },
         setFieldValue,
     } = useFormikContext<SoknadFormData>();
     const [harRegistrerteBarn, setHarRegistrerteBarn] = useState(false);
@@ -54,7 +48,6 @@ const BeskrivelsePPStep: React.FC<Props> = ({ søknadstype, søkersFødselsnumme
                         if (value !== DokumentType.legeerklæring) {
                             setFieldValue(SoknadFormField.registrertBarnAktørId, undefined);
                             setFieldValue(SoknadFormField.barnetsFødselsnummer, undefined);
-                            setFieldValue(SoknadFormField.barnetHarIkkeFnr, undefined);
                             setFieldValue(SoknadFormField.legeerklæringGjelderEtAnnetBarn, undefined);
                             setFieldValue(SoknadFormField.valgteRegistrertBarn, undefined);
                         }
@@ -77,10 +70,7 @@ const BeskrivelsePPStep: React.FC<Props> = ({ søknadstype, søkersFødselsnumme
                             harRegistrerteBarn={harRegistrerteBarn}
                         />
                     )}
-                    {(!!registrertBarnAktørId ||
-                        !harRegistrerteBarn ||
-                        barnetsFødselsnummer?.length === 11 ||
-                        barnetHarIkkeFnr) && (
+                    {(!!registrertBarnAktørId || !harRegistrerteBarn || barnetsFødselsnummer?.length === 11) && (
                         <FormBlock>
                             <Alert variant="info" className="mb-10">
                                 <Heading level="3" size="small" className="mb-4">

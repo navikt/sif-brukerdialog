@@ -97,7 +97,6 @@ export const applicationMessages: MessageFileFormat = {
         'step.beskrivelse_pp.gjelderAnnetBarn': 'Legeerklæringen gjelder et annet barn',
         'step.beskrivelse_pp.annetBarn.tittel': 'Annet barn',
         'step.beskrivelse_pp.annetBarn.fnr.spm': 'Barnets fødselsnummer/D-nummer',
-        'step.beskrivelse_pp.annetBarn.fnr.barnHarIkkeFnr': 'Barnet har ikke fødselsnummer/D-nummer',
         'step.beskrivelse_pp.dokumentType.ANNET': 'Annet',
         'step.beskrivelse_pp.hvaSendes.spm': 'Beskriv hva slags dokumentasjon du skal sende',
         'step.beskrivelse_pp.intro':

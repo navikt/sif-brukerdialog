@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { prettifyDate } from '@navikt/sif-common-utils';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
@@ -48,6 +48,12 @@ const RegistrertBarnPart = ({ setHarRegistrerteBarn }: Props) => {
             fetchData();
         }
     });
+
+    useEffect(() => {
+        if (isLoaded && søkersBarn.length === 0 && !legeerklæringGjelderEtAnnetBarn) {
+            setFieldValue(SoknadFormField.legeerklæringGjelderEtAnnetBarn, true);
+        }
+    }, [isLoaded, legeerklæringGjelderEtAnnetBarn, setFieldValue, søkersBarn.length]);
 
     return (
         <>
@@ -103,7 +109,6 @@ const RegistrertBarnPart = ({ setHarRegistrerteBarn }: Props) => {
                                     setFieldValue(SoknadFormField.valgteRegistrertBarn, undefined);
                                 } else {
                                     setFieldValue(SoknadFormField.barnetsFødselsnummer, undefined);
-                                    setFieldValue(SoknadFormField.barnetHarIkkeFnr, undefined);
                                 }
                             }}
                         />

@@ -35,15 +35,11 @@ const getVedleggUrlFromAttachments = (attachments: Attachment[]): string[] => {
 };
 
 const mapBarnFormDataToApiData = (
-    barnetHarIkkeFnr?: boolean,
     legeerklæringGjelderEtAnnetBarn?: boolean,
     barnetsFødselsnummer?: string,
     valgteRegistrertBarn?: RegistrertBarnFormData,
 ): BarnetLegeerklæringGjelderApiData | undefined => {
-    if (barnetHarIkkeFnr) {
-        return undefined;
-    }
-    if (legeerklæringGjelderEtAnnetBarn && barnetsFødselsnummer) {
+    if (legeerklæringGjelderEtAnnetBarn !== false && barnetsFødselsnummer) {
         return {
             norskIdentitetsnummer: barnetsFødselsnummer,
         };
@@ -68,7 +64,6 @@ export const mapFormDataToApiData = (
         dokumenter,
         ytelse,
         dokumentType,
-        barnetHarIkkeFnr,
         legeerklæringGjelderEtAnnetBarn,
         barnetsFødselsnummer,
         valgteRegistrertBarn,
@@ -91,12 +86,7 @@ export const mapFormDataToApiData = (
         ettersendelsesType,
         pleietrengende:
             dokumentType === DokumentType.legeerklæring
-                ? mapBarnFormDataToApiData(
-                      barnetHarIkkeFnr,
-                      legeerklæringGjelderEtAnnetBarn,
-                      barnetsFødselsnummer,
-                      valgteRegistrertBarn,
-                  )
+                ? mapBarnFormDataToApiData(legeerklæringGjelderEtAnnetBarn, barnetsFødselsnummer, valgteRegistrertBarn)
                 : undefined,
         beskrivelse,
         vedlegg: getVedleggUrlFromAttachments(dokumenter),
