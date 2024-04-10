@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 1.0.3
+
+### Patch Changes
+
+- Logge spesifikt ved scenarioet innsendt søknad, men ingen sak
+
 ## 1.0.2
 
 ### Patch Changes
