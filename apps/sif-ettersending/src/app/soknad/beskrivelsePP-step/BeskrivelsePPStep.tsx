@@ -1,5 +1,5 @@
+import React, { useEffect } from 'react';
 import { Alert, Heading, Link } from '@navikt/ds-react';
-import React, { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
@@ -15,19 +15,28 @@ import { useFormikContext } from 'formik';
 import RegistrertBarnPart from './RegistrertBarnPart';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import AnnetBarnPart from './AnnetBarnPart';
+import { RegistrertBarn } from '../../types/RegistrertBarn';
 
 interface Props {
     søknadstype: Søknadstype;
     søkersFødselsnummer: string;
+    registrertBarn: RegistrertBarn[];
 }
 
-const BeskrivelsePPStep: React.FC<Props> = ({ søknadstype, søkersFødselsnummer }) => {
+const BeskrivelsePPStep: React.FC<Props> = ({ søknadstype, søkersFødselsnummer, registrertBarn }) => {
     const intl = useIntl();
     const {
         values: { legeerklæringGjelderEtAnnetBarn, dokumentType, registrertBarnAktørId, barnetsFødselsnummer },
         setFieldValue,
     } = useFormikContext<SoknadFormData>();
-    const [harRegistrerteBarn, setHarRegistrerteBarn] = useState(false);
+
+    const harRegistrerteBarn = registrertBarn.length > 0;
+
+    useEffect(() => {
+        if (!harRegistrerteBarn && legeerklæringGjelderEtAnnetBarn === undefined) {
+            setFieldValue(SoknadFormField.legeerklæringGjelderEtAnnetBarn, true);
+        }
+    }, [harRegistrerteBarn, legeerklæringGjelderEtAnnetBarn, setFieldValue]);
 
     return (
         <SoknadFormStep id={StepID.BESKRIVELSE_PP} søknadstype={søknadstype}>
@@ -61,7 +70,7 @@ const BeskrivelsePPStep: React.FC<Props> = ({ søknadstype, søkersFødselsnumme
             {dokumentType === DokumentType.legeerklæring && (
                 <>
                     <FormBlock>
-                        <RegistrertBarnPart setHarRegistrerteBarn={setHarRegistrerteBarn} />
+                        <RegistrertBarnPart registrertBarn={registrertBarn} />
                     </FormBlock>
 
                     {(legeerklæringGjelderEtAnnetBarn || !harRegistrerteBarn) && (

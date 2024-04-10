@@ -28,29 +28,27 @@ export const isValidRegistrertBarnResponse = (response: any): response is Regist
     }
 };
 
-const getBarn = {
-    fetch: async (): Promise<RegistrertBarn[]> => {
-        const { data } = await api.get<BarnDTO>(ApiEndpoint.BARN);
-        const registrertBarn: RegistrertBarn[] = [];
+const getBarnRemoteData = async (): Promise<RegistrertBarn[]> => {
+    const { data } = await api.get<BarnDTO>(ApiEndpoint.BARN);
+    const registrertBarn: RegistrertBarn[] = [];
 
-        let hasInvalidBarnRespons = false;
-        if (data?.barn && isArray(data.barn)) {
-            data.barn.forEach((barn) => {
-                if (isValidRegistrertBarnResponse(barn)) {
-                    registrertBarn.push({
-                        ...barn,
-                        fødselsdato: ISODateToDate(barn.fødselsdato),
-                    });
-                } else {
-                    hasInvalidBarnRespons = true;
-                }
-            });
-        }
-        if (hasInvalidBarnRespons) {
-            return Promise.reject('Invalid barn respons');
-        }
-        return Promise.resolve(registrertBarn);
-    },
+    let hasInvalidBarnRespons = false;
+    if (data?.barn && isArray(data.barn)) {
+        data.barn.forEach((barn) => {
+            if (isValidRegistrertBarnResponse(barn)) {
+                registrertBarn.push({
+                    ...barn,
+                    fødselsdato: ISODateToDate(barn.fødselsdato),
+                });
+            } else {
+                hasInvalidBarnRespons = true;
+            }
+        });
+    }
+    if (hasInvalidBarnRespons) {
+        return Promise.reject('Invalid barn respons');
+    }
+    return Promise.resolve(registrertBarn);
 };
 
-export default getBarn;
+export default getBarnRemoteData;
