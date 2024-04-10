@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 1.0.1
+
+### Patch Changes
+
+- a1e3777: Legge til versjonering av brukerprofil og saksprofil for å lettere kunne skille i amplitude
+
 ## 1.0.0
 
 ### Major Changes

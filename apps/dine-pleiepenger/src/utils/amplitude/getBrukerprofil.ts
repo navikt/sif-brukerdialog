@@ -3,6 +3,7 @@ import { InnsendtSøknad } from '../../types/Søknad';
 import { getEndringsmeldinger, getEttersendelser, getPleiepengesøknader } from '../innsendtSøknadUtils';
 
 type Brukerprofil = {
+    profilVerson: '1.0';
     antallSøknader: number;
     antallEttersendelser: number;
     antallEndringsmeldinger: number;
@@ -27,6 +28,7 @@ export const getBrukerprofil = (
     const sisteEttersendelse = ppEttersendelser.length > 0 ? ppEttersendelser[0].opprettet : undefined;
 
     return {
+        profilVerson: '1.0',
         antallSøknader: ppSøknader.length,
         antallEttersendelser: ppEttersendelser.length,
         antallEndringsmeldinger: ppEndringer.length,
