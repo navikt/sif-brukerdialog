@@ -22,6 +22,7 @@ import { StepID } from '../soknadStepsConfig';
 import SummaryBlock from './SummaryBlock';
 import './oppsummeringStep.css';
 import { DokumentType } from '../../types/DokumentType';
+import { prettifyDate } from '@navikt/sif-common-utils';
 
 interface Props {
     soknadId: string;
@@ -68,7 +69,7 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
                                     <div>
                                         {intlHelper(intl, 'steg.oppsummering.barn.registretBarnInfo', {
                                             navn: values.valgteRegistrertBarn?.barnetsNavn,
-                                            fødselsdato: values.valgteRegistrertBarn?.barnetsFødselsdato,
+                                            fødselsdato: prettifyDate(values.valgteRegistrertBarn?.barnetsFødselsdato),
                                         })}
                                     </div>
                                 )}

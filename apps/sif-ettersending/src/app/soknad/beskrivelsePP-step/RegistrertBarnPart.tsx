@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { prettifyDate } from '@navikt/sif-common-utils';
+import { dateToISODate, prettifyDate } from '@navikt/sif-common-utils';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 
@@ -92,7 +92,7 @@ const RegistrertBarnPart = ({ setHarRegistrerteBarn }: Props) => {
                                         valgteBarn.etternavn,
                                         valgteBarn.mellomnavn,
                                     ),
-                                    barnetsFødselsdato: prettifyDate(valgteBarn.fødselsdato),
+                                    barnetsFødselsdato: dateToISODate(valgteBarn.fødselsdato).toString(),
                                 });
                             }
                         }}

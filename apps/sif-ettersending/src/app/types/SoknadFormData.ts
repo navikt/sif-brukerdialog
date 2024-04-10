@@ -5,7 +5,7 @@ import { DokumentType } from './DokumentType';
 export interface RegistrertBarnFormData {
     aktørId: string;
     barnetsNavn: string;
-    barnetsFødselsdato: string;
+    barnetsFødselsdato: Date;
 }
 
 export enum SoknadFormField {
