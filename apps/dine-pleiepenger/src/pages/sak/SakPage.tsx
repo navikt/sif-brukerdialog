@@ -56,7 +56,7 @@ const SakPage: React.FunctionComponent<Props> = ({ sak, pleietrengende, saksbeha
                 />
             }>
             <Head>
-                <title>Din pleiepengesak - {navn}</title>
+                <title>Din pleiepengesak - {sak.saksnummer}</title>
             </Head>
             <VStack gap="12">
                 {statusISak?.venteårsak && statusISak.status !== Behandlingsstatus.AVSLUTTET ? (
