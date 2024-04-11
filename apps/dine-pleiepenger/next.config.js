@@ -14,7 +14,7 @@ const appDirectives = {
         'https://*.uxsignals.com',
         'http://localhost:1234',
         'http://localhost:12347',
-        'http://*.cloud.nais.io',
+        'http://telemetry.dev-gcp.nav.cloud.nais.io',
         'http://*.api.sanity.io',
     ],
 };

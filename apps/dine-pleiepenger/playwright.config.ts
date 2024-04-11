@@ -62,6 +62,7 @@ export default defineConfig({
             NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL: 'https://tjenester.nav.no/utbetalingsoversikt',
             NEXT_PUBLIC_FEATURE_HENT_SAKER: 'on',
             NEXT_PUBLIC_FEATURE_HENT_MELLOMLAGRING: 'off',
+            NEXT_PUBLIC_TELEMETRY_URL: 'http://localhost:12347/collect',
         },
     },
 });
