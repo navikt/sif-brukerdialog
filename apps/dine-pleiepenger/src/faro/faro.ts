@@ -1,7 +1,7 @@
-import { Faro, getWebInstrumentations, initializeFaro, LogLevel } from '@grafana/faro-web-sdk';
-import { TracingInstrumentation } from '@grafana/faro-web-tracing';
-import { browserEnv } from '../utils/env';
+import { Faro, initializeFaro, LogLevel } from '@grafana/faro-web-sdk';
 import nais from '../../nais.js';
+import { browserEnv } from '../utils/env';
+
 let faro: Faro | null = null;
 
 export function initInstrumentation(): void {
@@ -15,12 +15,6 @@ export function getFaro(): Faro {
     faro = initializeFaro({
         url: browserEnv.NEXT_PUBLIC_TELEMETRY_URL,
         app: nais.app,
-        instrumentations: [
-            ...getWebInstrumentations({
-                captureConsole: false,
-            }),
-            new TracingInstrumentation(),
-        ],
     });
     return faro;
 }
