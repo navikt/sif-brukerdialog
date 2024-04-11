@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Venteårsak } from '../../types/Venteårsak';
 import { Alert, BodyLong, Box, Button, Heading } from '@navikt/ds-react';
 import DokumentarkivLenke from '../lenker/DokumentarkivLenke';
@@ -10,15 +10,21 @@ interface Props {
     venteårsak: Venteårsak;
 }
 
+const MeldingHeading = ({ children }: { children: ReactNode }) => (
+    <Heading level="2" size="small" className="text-gray-900">
+        {children}
+    </Heading>
+);
+
 const VenteårsakMelding: React.FunctionComponent<Props> = ({ venteårsak }) => {
     switch (venteårsak) {
         case Venteårsak.MEDISINSK_DOKUMENTASJON:
             return (
                 <>
                     <Alert variant="warning">
-                        <Heading level="2" size="small" className="text-gray-900">
+                        <MeldingHeading>
                             <Msg id="venteårsakMelding.legeerklæring.tittel" />
-                        </Heading>
+                        </MeldingHeading>
                         <BodyLong className="mb-2 mt-2">
                             <Msg
                                 id="venteårsakMelding.legeerklæring.info"
@@ -41,9 +47,9 @@ const VenteårsakMelding: React.FunctionComponent<Props> = ({ venteårsak }) => 
         case Venteårsak.INNTEKTSMELDING:
             return (
                 <Alert variant="warning">
-                    <Heading level="2" size="medium" className="text-gray-900">
+                    <MeldingHeading>
                         <Msg id="venteårsakMelding.inntektsmelding.tittel" />
-                    </Heading>
+                    </MeldingHeading>
                     <BodyLong className="mb-2 mt-2">
                         <Msg id="venteårsakMelding.inntektsmelding.info" />
                     </BodyLong>
@@ -58,9 +64,9 @@ const VenteårsakMelding: React.FunctionComponent<Props> = ({ venteårsak }) => 
         case Venteårsak.SØKT_FOR_TIDLIG:
             return (
                 <Alert variant="info">
-                    <Heading level="2" size="medium" className="text-gray-900">
+                    <MeldingHeading>
                         <Msg id="venteårsakMelding.søktForTidlig.tittel" values={{ dato: <span>[todo]</span> }} />
-                    </Heading>
+                    </MeldingHeading>
                     <BodyLong className="mb-2 mt-2">
                         <Msg id="venteårsakMelding.søktForTidlig.info" />
                     </BodyLong>
@@ -70,9 +76,9 @@ const VenteårsakMelding: React.FunctionComponent<Props> = ({ venteårsak }) => 
         case Venteårsak.MELDEKORT:
             return (
                 <Alert variant="info">
-                    <Heading level="2" size="medium" className="text-gray-900">
+                    <MeldingHeading>
                         <Msg id="venteårsakMelding.meldekort.tittel" />
-                    </Heading>
+                    </MeldingHeading>
                     <BodyLong className="mb-2 mt-2">
                         <Msg id="venteårsakMelding.meldekort.info" />
                     </BodyLong>
