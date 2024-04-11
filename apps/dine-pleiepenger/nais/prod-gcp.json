@@ -24,7 +24,7 @@
         "NEXT_PUBLIC_FEATURE_APPSTATUS": "off",
         "NEXT_PUBLIC_APPSTATUS_DATASET": "production",
         "NEXT_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
-        "NEXT_PUBLIC_TELEMETRY_URL": "https://telemetry.prod-gcp.nav.cloud.nais.io/collect",
+        "NEXT_PUBLIC_TELEMETRY_URL": "https://telemetry.nav.no/collect",
 
         "NEXT_PUBLIC_DINE_UTBETALINGER": "https://tjenester.nav.no/utbetalingsoversikt/",
         "NEXT_PUBLIC_ENDRINGSDIALOG_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
