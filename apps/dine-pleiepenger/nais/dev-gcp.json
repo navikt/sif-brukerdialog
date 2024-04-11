@@ -24,6 +24,7 @@
         "NEXT_PUBLIC_APPSTATUS_DATASET": "staging",
         "NEXT_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
         "NPM_CONFIG_CACHE": "/tmp",
+        "NEXT_PUBLIC_TELEMETRY_URL": "https://telemetry.dev-gcp.nav.cloud.nais.io/collect",
 
         "NEXT_PUBLIC_DINE_UTBETALINGER": "https://tjenester.nav.no/utbetalingsoversikt/",
         "NEXT_PUBLIC_ENDRINGSDIALOG_URL": "https://endringsmelding-pleiepenger.intern.dev.nav.no/",

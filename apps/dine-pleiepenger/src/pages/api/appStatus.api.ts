@@ -4,7 +4,7 @@ import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { getXRequestId } from '../../utils/apiUtils';
 import { SanityConfig, fetchStatus } from '@navikt/appstatus-react-ds';
 import { browserEnv } from '../../utils/env';
-import { APPLICATION_KEY } from '../_app.page';
+import { AMPLITUDE_APPLICATION_KEY } from '../_app.page';
 import { ApplicationState } from '@navikt/appstatus-react-ds/src/hooks/useGetApplicationStatus';
 
 const sanityConfig: SanityConfig = {
@@ -13,7 +13,7 @@ const sanityConfig: SanityConfig = {
 };
 
 export const fetchAppStatus = async (): Promise<ApplicationState | undefined> => {
-    return await fetchStatus(APPLICATION_KEY, sanityConfig);
+    return await fetchStatus(AMPLITUDE_APPLICATION_KEY, sanityConfig);
 };
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {

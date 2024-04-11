@@ -9,6 +9,9 @@ export const publicEnvSchema = z.object({
     NEXT_PUBLIC_API_URL_INNSYN: z.union([z.string(), z.undefined()]),
     NEXT_PUBLIC_API_URL_BRUKERDIALOG: z.union([z.string(), z.undefined()]),
 
+    /** Faro telemetry */
+    NEXT_PUBLIC_TELEMETRY_URL: z.string(),
+
     /** Appstatus */
     NEXT_PUBLIC_FEATURE_APPSTATUS: z.string(),
     NEXT_PUBLIC_APPSTATUS_PROJECT_ID: z.string(),
@@ -59,6 +62,7 @@ export const serverEnvSchema = z.object({
  * They MUST be provided during the build step.
  */
 export const browserEnv = publicEnvSchema.parse({
+    NEXT_PUBLIC_TELEMETRY_URL: process.env.NEXT_PUBLIC_TELEMETRY_URL,
     NEXT_PUBLIC_BASE_PATH: process.env.NEXT_PUBLIC_BASE_PATH,
     NEXT_PUBLIC_LOGIN_URL: process.env.NEXT_PUBLIC_LOGIN_URL,
     NEXT_PUBLIC_RUNTIME_ENVIRONMENT: process.env.NEXT_PUBLIC_RUNTIME_ENVIRONMENT,

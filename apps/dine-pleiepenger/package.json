@@ -14,6 +14,8 @@
         "storybook": "storybook dev -p 6006"
     },
     "dependencies": {
+        "@grafana/faro-web-sdk": "1.5.1",
+        "@grafana/faro-web-tracing": "1.5.1",
         "@navikt/appstatus-react-ds": "workspace: *",
         "@navikt/nav-dekoratoren-moduler": "2.1.6",
         "@navikt/next-logger": "1.23.0",
