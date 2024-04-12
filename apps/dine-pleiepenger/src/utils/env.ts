@@ -13,7 +13,6 @@ export const publicEnvSchema = z.object({
     NEXT_PUBLIC_TELEMETRY_URL: z.string(),
 
     /** Appstatus */
-    NEXT_PUBLIC_FEATURE_APPSTATUS: z.string(),
     NEXT_PUBLIC_APPSTATUS_PROJECT_ID: z.string(),
     NEXT_PUBLIC_APPSTATUS_DATASET: z.string(),
 
@@ -36,6 +35,8 @@ export const publicEnvSchema = z.object({
     NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL: z.string(),
 
     /** Features */
+    NEXT_PUBLIC_FEATURE_APPSTATUS: z.union([z.literal('on'), z.literal('off'), z.undefined()]),
+    NEXT_PUBLIC_FEATURE_FARO: z.union([z.literal('on'), z.literal('off'), z.undefined()]),
     NEXT_PUBLIC_FEATURE_HENT_SAKER: z.union([z.literal('on'), z.literal('off'), z.undefined()]),
     NEXT_PUBLIC_FEATURE_HENT_BEHANDLINGSTID: z.union([z.literal('on'), z.literal('off'), z.undefined()]),
     NEXT_PUBLIC_FEATURE_HENT_MELLOMLAGRING: z.union([z.literal('on'), z.literal('off'), z.undefined()]),
@@ -66,7 +67,6 @@ export const browserEnv = publicEnvSchema.parse({
     NEXT_PUBLIC_BASE_PATH: process.env.NEXT_PUBLIC_BASE_PATH,
     NEXT_PUBLIC_LOGIN_URL: process.env.NEXT_PUBLIC_LOGIN_URL,
     NEXT_PUBLIC_RUNTIME_ENVIRONMENT: process.env.NEXT_PUBLIC_RUNTIME_ENVIRONMENT,
-    NEXT_PUBLIC_FEATURE_APPSTATUS: process.env.NEXT_PUBLIC_FEATURE_APPSTATUS,
     NEXT_PUBLIC_APPSTATUS_PROJECT_ID: process.env.NEXT_PUBLIC_APPSTATUS_PROJECT_ID,
     NEXT_PUBLIC_APPSTATUS_DATASET: process.env.NEXT_PUBLIC_APPSTATUS_DATASET,
     NEXT_PUBLIC_API_URL_BRUKERDIALOG: process.env.NEXT_PUBLIC_API_URL_BRUKERDIALOG,
@@ -88,6 +88,8 @@ export const browserEnv = publicEnvSchema.parse({
     NEXT_PUBLIC_ARBEIDSGIVER_PLEIEPENGER_URL: process.env.NEXT_PUBLIC_ARBEIDSGIVER_PLEIEPENGER_URL,
     NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL: process.env.NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL,
     NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL: process.env.NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL,
+    NEXT_PUBLIC_FEATURE_FARO: process.env.NEXT_PUBLIC_FEATURE_FARO,
+    NEXT_PUBLIC_FEATURE_APPSTATUS: process.env.NEXT_PUBLIC_FEATURE_APPSTATUS,
     NEXT_PUBLIC_FEATURE_HENT_SAKER: process.env.NEXT_PUBLIC_FEATURE_HENT_SAKER,
     NEXT_PUBLIC_FEATURE_HENT_MELLOMLAGRING: process.env.NEXT_PUBLIC_FEATURE_HENT_MELLOMLAGRING,
     NEXT_PUBLIC_FEATURE_HENT_BEHANDLINGSTID: process.env.NEXT_PUBLIC_FEATURE_HENT_BEHANDLINGSTID,
