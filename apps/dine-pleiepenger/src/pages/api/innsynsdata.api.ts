@@ -18,13 +18,15 @@ import { fetchAppStatus } from './appStatus.api';
 import dayjs from 'dayjs';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const childLogger = createChildLogger(getXRequestId(req));
+    const requestId = getXRequestId(req);
+    const childLogger = createChildLogger(requestId);
     childLogger.info(
         {
             mellomlagring: Feature.HENT_MELLOMLAGRING,
             saker: Feature.HENT_SAKER,
             behandlingstid: Feature.HENT_BEHANDLINGSTID,
             appstatus: Feature.HENT_APPSTATUS,
+            Correlation_ID: requestId,
         },
         `Henter innsynsdata`,
     );
