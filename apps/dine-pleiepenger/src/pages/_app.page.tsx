@@ -29,15 +29,16 @@ export const AMPLITUDE_APPLICATION_KEY = 'sif-innsyn';
 const innsynsdataFetcher = async (url: string): Promise<Innsynsdata> =>
     axios.get(url, { transformResponse: storageParser }).then((res) => res.data);
 
-initInstrumentation();
-
-configureLogger({
-    basePath: process.env.NEXT_PUBLIC_BASE_PATH,
-    onLog: (log) =>
-        getFaro().api.pushLog(log.messages, {
-            level: pinoLevelToFaroLevel(log.level.label),
-        }),
-});
+if (browserEnv.NEXT_PUBLIC_FEATURE_FARO === 'on') {
+    initInstrumentation();
+    configureLogger({
+        basePath: process.env.NEXT_PUBLIC_BASE_PATH,
+        onLog: (log) =>
+            getFaro().api.pushLog(log.messages, {
+                level: pinoLevelToFaroLevel(log.level.label),
+            }),
+    });
+}
 
 function MyApp({ Component, pageProps }: AppProps): ReactElement {
     const { data, error, isLoading } = useSWR<Innsynsdata, AxiosError>(
