@@ -26,7 +26,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             saker: Feature.HENT_SAKER,
             behandlingstid: Feature.HENT_BEHANDLINGSTID,
             appstatus: Feature.HENT_APPSTATUS,
-            Correlation_ID: requestId,
+            correlation_id: requestId,
         },
         `Henter innsynsdata`,
     );
