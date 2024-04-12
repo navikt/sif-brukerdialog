@@ -3149,7 +3149,7 @@ __metadata:
     "@navikt/sif-common-core-ds": "workspace: *"
     "@navikt/sif-common-sentry": "workspace: *"
     "@navikt/sif-common-utils": "workspace: *"
-    "@next/bundle-analyzer": 14.1.4
+    "@next/bundle-analyzer": 14.2.0
     "@playwright/test": 1.43.0
     "@storybook/addon-essentials": 8.0.6
     "@storybook/addon-interactions": 8.0.6
@@ -4326,12 +4326,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/bundle-analyzer@npm:14.1.4":
-  version: 14.1.4
-  resolution: "@next/bundle-analyzer@npm:14.1.4"
+"@next/bundle-analyzer@npm:14.2.0":
+  version: 14.2.0
+  resolution: "@next/bundle-analyzer@npm:14.2.0"
   dependencies:
     webpack-bundle-analyzer: 4.10.1
-  checksum: d439570209156f9cbac83e090871aa3ef528d48c8d1ca71137af65b24c19352e8c7a8136095ec94db5333d933a2326f341caae33b9337ff1c45cc064cea47b8b
+  checksum: b4655b98896697c69bc6be26834ec23794125ce90a7bc7d4609a5c0ce4f104bc70f3e469de57a2752639783e438bbd7b614dca2daf6a3672a8116ed81e96dbd7
   languageName: node
   linkType: hard
 
