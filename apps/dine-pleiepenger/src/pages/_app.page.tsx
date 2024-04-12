@@ -23,13 +23,14 @@ import UnavailablePage from './unavailable.page';
 import 'react-loading-skeleton/dist/skeleton.css';
 import '../components/process/process.css';
 import '../style/global.css';
+import { Feature } from '../utils/features';
 
 export const AMPLITUDE_APPLICATION_KEY = 'sif-innsyn';
 
 const innsynsdataFetcher = async (url: string): Promise<Innsynsdata> =>
     axios.get(url, { transformResponse: storageParser }).then((res) => res.data);
 
-if (browserEnv.NEXT_PUBLIC_FEATURE_FARO === 'on') {
+if (Feature.FARO) {
     initInstrumentation();
     configureLogger({
         basePath: process.env.NEXT_PUBLIC_BASE_PATH,
