@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IntlProvider } from 'react-intl';
-import { messages } from '../../utils/message';
+import { messages } from '../../i18n';
 
 export interface IntlProviderProps {
     locale: string;

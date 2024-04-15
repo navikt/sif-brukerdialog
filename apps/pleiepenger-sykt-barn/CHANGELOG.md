@@ -1,5 +1,122 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.8.5
+
+### Patch Changes
+
+- 399de32: Pakkeoppdateringer - minor/patch
+
+  @storybook/builder-vite (8.0.6 -> 8.0.8)
+  @storybook/nextjs (8.0.6 -> 8.0.8)
+  @storybook/node-logger (8.0.6 -> 8.0.8)
+  @storybook/preset-create-react-app (8.0.6 -> 8.0.8)
+  @storybook/react-vite (8.0.6 -> 8.0.8)
+  @storybook/react (8.0.6 -> 8.0.8)
+  @storybook/test (8.0.6 -> 8.0.8)
+  @testing-library/react (14.3.0 -> 14.3.1)
+  @types/react-dom (18.2.24 -> 18.2.25)
+  @types/react (18.2.75 -> 18.2.78)
+  cypress (13.7.2 -> 13.7.3)
+  eslint-config-next (14.1.4 -> 14.2.1)
+  next (14.1.4 -> 14.2.1)
+  sass (1.74.1 -> 1.75.0)
+  storybook (8.0.6 -> 8.0.8)
+  typescript (5.4.4 -> 5.4.5)
+  vitest (1.4.0 -> 1.5.0)
+
+- Updated dependencies [399de32]
+  - @navikt/sif-common-amplitude@2.24.32
+  - @navikt/sif-common-formik-ds@1.7.30
+  - @navikt/sif-common-soknad-ds@10.13.29
+  - @navikt/sif-common-forms-ds@8.19.18
+  - @navikt/appstatus-react-ds@2.17.37
+  - @navikt/sif-common-core-ds@9.15.22
+  - @navikt/sif-common-sentry@0.25.30
+  - @navikt/sif-common-hooks@0.1.9
+  - @navikt/sif-common-utils@3.44.17
+
+## 3.8.4
+
+### Patch Changes
+
+- ad4123e: Pakkeoppdateringer minor/patch
+- Updated dependencies [ad4123e]
+  - @navikt/sif-common-amplitude@2.24.31
+  - @navikt/sif-common-formik-ds@1.7.29
+  - @navikt/sif-common-soknad-ds@10.13.28
+  - @navikt/sif-common-forms-ds@8.19.17
+  - @navikt/appstatus-react-ds@2.17.36
+  - @navikt/sif-common-core-ds@9.15.21
+  - @navikt/sif-common-sentry@0.25.29
+  - @navikt/sif-common-utils@3.44.16
+
+## 3.8.3
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch + major fnrvalidator
+- Updated dependencies
+  - @navikt/sif-common-amplitude@2.24.30
+  - @navikt/sif-common-formik-ds@1.7.28
+  - @navikt/sif-common-soknad-ds@10.13.27
+  - @navikt/sif-common-forms-ds@8.19.16
+  - @navikt/appstatus-react-ds@2.17.35
+  - @navikt/sif-common-core-ds@9.15.20
+  - @navikt/sif-common-sentry@0.25.28
+  - @navikt/sif-common-utils@3.44.15
+
+## 3.8.2
+
+### Patch Changes
+
+- a478787: Pakkeoppdateringer - minor/patch. Eslint major -> 9
+- Updated dependencies [a478787]
+  - @navikt/sif-common-amplitude@2.24.29
+  - @navikt/sif-common-formik-ds@1.7.27
+  - @navikt/sif-common-soknad-ds@10.13.26
+  - @navikt/sif-common-forms-ds@8.19.15
+  - @navikt/appstatus-react-ds@2.17.34
+  - @navikt/sif-common-core-ds@9.15.19
+  - @navikt/sif-common-sentry@0.25.27
+  - @navikt/sif-common-hooks@0.1.8
+  - @navikt/sif-common-utils@3.44.14
+
+## 3.8.1
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor patch
+- Updated dependencies
+  - @navikt/sif-common-amplitude@2.24.28
+  - @navikt/sif-common-formik-ds@1.7.26
+  - @navikt/sif-common-soknad-ds@10.13.25
+  - @navikt/sif-common-forms-ds@8.19.14
+  - @navikt/appstatus-react-ds@2.17.33
+  - @navikt/sif-common-core-ds@9.15.18
+  - @navikt/sif-common-sentry@0.25.26
+  - @navikt/sif-common-utils@3.44.13
+
+## 3.8.0
+
+### Minor Changes
+
+- 6d888d8: Major pakkeoppdatering - http-proxy-middleware
+
+## 3.7.41
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor og patch
+- Updated dependencies
+  - @navikt/sif-common-amplitude@2.24.27
+  - @navikt/sif-common-formik-ds@1.7.25
+  - @navikt/sif-common-soknad-ds@10.13.24
+  - @navikt/sif-common-forms-ds@8.19.13
+  - @navikt/appstatus-react-ds@2.17.32
+  - @navikt/sif-common-core-ds@9.15.17
+  - @navikt/sif-common-sentry@0.25.25
+  - @navikt/sif-common-utils@3.44.12
+
 ## 3.7.40
 
 ### Patch Changes

@@ -2,19 +2,19 @@ import { createChildLogger } from '@navikt/next-logger';
 import axios from 'axios';
 import { NextApiRequest } from 'next';
 import { Mellomlagringer } from '../types/Mellomlagring';
-import { Søknad } from '../types/Søknad';
+import { InnsendtSøknad } from '../types/Søknad';
 import { getContextForApiHandler, getXRequestId } from '../utils/apiUtils';
+import { fjernPunsjOgUkjenteSøknaderFraBehandling, sortBehandlinger } from '../utils/sakUtils';
+import { InnsendtSøknaderSchema } from './api-models/InnsendtSøknadSchema';
 import { MellomlagringModel, MellomlagringSchema } from './api-models/MellomlagringSchema';
-import { Søker, SøkerSchema } from './api-models/SøkerSchema';
-import { exchangeTokenAndPrepRequest } from './utils/exchangeTokenPrepRequest';
-import { isValidMellomlagring } from './utils/isValidMellomlagring';
-import { SøknaderSchema } from './api-models/SøknadSchema';
+import { PleietrengendeMedSak, PleietrengendeMedSakResponseSchema } from './api-models/PleietrengendeMedSakSchema';
 import {
     Saksbehandlingstid as Saksbehandlingstid,
     SaksbehandlingstidSchema,
 } from './api-models/SaksbehandlingstidSchema';
-import { Sak } from './api-models/SakSchema';
-import { SakerSchema } from './api-models/SakerSchema';
+import { Søker, SøkerSchema } from './api-models/SøkerSchema';
+import { exchangeTokenAndPrepRequest } from './utils/exchangeTokenPrepRequest';
+import { isValidMellomlagring } from './utils/isValidMellomlagring';
 
 export enum ApiService {
     k9Brukerdialog = 'k9-brukerdialog-api',
@@ -48,9 +48,11 @@ export const fetchSøker = async (req: NextApiRequest): Promise<Søker> => {
         ApiService.k9Brukerdialog,
         context,
         ApiEndpointBrukerdialog.søker,
+        'application/json',
     );
     createChildLogger(getXRequestId(req)).info(`Fetching søker from url: ${url}`);
     const response = await axios.get(url, { headers });
+    createChildLogger(getXRequestId(req)).info(`Søker fetched`);
     return await SøkerSchema.parse(response.data);
 };
 
@@ -59,23 +61,44 @@ export const fetchSøker = async (req: NextApiRequest): Promise<Søker> => {
  * @param req
  * @returns
  */
-export const fetchSaker = async (req: NextApiRequest): Promise<Sak[]> => {
+export const fetchSaker = async (req: NextApiRequest, raw?: boolean): Promise<PleietrengendeMedSak[]> => {
     const context = getContextForApiHandler(req);
     const { url, headers } = await exchangeTokenAndPrepRequest(
         ApiService.k9SakInnsyn,
         context,
         ApiEndpointK9SakInnsyn.saker,
+        'application/json',
     );
     const childLogger = createChildLogger(getXRequestId(req));
     childLogger.info(`Fetching saker from url: ${url}`);
     const response = await axios.get(url, { headers });
-    try {
-        childLogger.info(`Saker fetched from url. Antall: ${response.data.length}`);
-    } catch (e) {
-        childLogger.info(`Saker fetched from url - mangler length: ${response.statusText}`);
+    childLogger.info(`Response-status from request: ${response.status}`);
+    if (raw) {
+        return response.data;
     }
-    const saker = await SakerSchema.parse(response.data);
-    return saker;
+    /** Logg antall pleietrengendeMedSak før parsing */
+    let sakerLength = undefined;
+    try {
+        sakerLength = response.data?.length;
+    } catch {}
+    childLogger.info(
+        {
+            sakerLength,
+        },
+        `Parsing saker response data`,
+    );
+    const saker = await PleietrengendeMedSakResponseSchema.parse(response.data);
+    childLogger.info(`Saker response data parsed`);
+
+    return saker.map((ps): PleietrengendeMedSak => {
+        return {
+            pleietrengende: ps.pleietrengende,
+            sak: {
+                ...ps.sak,
+                behandlinger: sortBehandlinger(ps.sak.behandlinger).map(fjernPunsjOgUkjenteSøknaderFraBehandling),
+            },
+        };
+    });
 };
 
 /**
@@ -89,18 +112,28 @@ export const fetchSaksbehandlingstid = async (req: NextApiRequest): Promise<Saks
         ApiService.k9SakInnsyn,
         context,
         ApiEndpointK9SakInnsyn.behandlingstid,
+        'application/json',
     );
-    createChildLogger(getXRequestId(req)).info(`Fetching behandlingstid from url: ${url}`);
+    const childLogger = createChildLogger(getXRequestId(req));
+    childLogger.info(`Fetching behandlingstid from url: ${url}`);
     const response = await axios.get(url, { headers });
+    childLogger.info(`Behandlingstid fetched`);
     return await SaksbehandlingstidSchema.parse(response.data);
 };
 
-export const fetchSøknader = async (req: NextApiRequest): Promise<Søknad[]> => {
+export const fetchSøknader = async (req: NextApiRequest): Promise<InnsendtSøknad[]> => {
     const context = getContextForApiHandler(req);
-    const { url, headers } = await exchangeTokenAndPrepRequest(ApiService.sifInnsyn, context, ApiEndpointInnsyn.søknad);
-    createChildLogger(getXRequestId(req)).info(`Fetching søknader from url: ${url}`);
+    const { url, headers } = await exchangeTokenAndPrepRequest(
+        ApiService.sifInnsyn,
+        context,
+        ApiEndpointInnsyn.søknad,
+        'application/json',
+    );
+    const childLogger = createChildLogger(getXRequestId(req));
+    childLogger.info(`Fetching søknader from url: ${url}`);
     const response = await axios.get(url, { headers });
-    return await SøknaderSchema.parse(response.data);
+    childLogger.info(`Søknader fetched`);
+    return await InnsendtSøknaderSchema.parse(response.data);
 };
 
 /**
@@ -116,6 +149,7 @@ export const fetchMellomlagringer = async (req: NextApiRequest): Promise<Melloml
         ApiService.k9Brukerdialog,
         context,
         ApiEndpointBrukerdialog.påbegyntSøknad,
+        'application/json',
     );
     createChildLogger(getXRequestId(req)).info(`Fetching påbegynt søknad from url: ${påbegyntSøknadReq.url}`);
     const påbegyntSøknad = await axios
@@ -127,6 +161,7 @@ export const fetchMellomlagringer = async (req: NextApiRequest): Promise<Melloml
         ApiService.k9Brukerdialog,
         context,
         ApiEndpointBrukerdialog.påbegyntEndring,
+        'application/json',
     );
     createChildLogger(getXRequestId(req)).info(`Fetching påbegynt endring from url: ${påbegyntEndringReq.url}`);
     const påbegyntEndring = await axios

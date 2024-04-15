@@ -31,8 +31,8 @@ const MellomlagringLinkPanel: React.FunctionComponent<Props> = ({ title, descrip
                     ) : undefined}
                 </Hide>
                 <Box>
-                    <Heading level="3" size="small" className="mb-1">
-                        {title}
+                    <Heading level="3" size="small" className="mb-1 ">
+                        <span className="text-white">{title}</span>
                     </Heading>
                     <BodyShort as="div" size="small" className="text-deepblue-100">
                         {description}

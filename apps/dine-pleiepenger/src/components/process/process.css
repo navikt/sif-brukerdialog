@@ -19,10 +19,43 @@
     justify-items: flex-start;
     gap: 0.5rem;
 }
+.process__item:first-child.process__item__variant {
+    margin-top: -0.25rem;
+}
+.process__item__variant {
+    margin: 0.25rem -0.5rem 0.5rem -0.5rem;
+    padding: 0.25rem 0.5rem 0rem 0.5rem;
+    border-radius: 0.25rem;
+}
+.process__item__variant--CURRENT .process__circle {
+    border-color: var(--a-deepblue-800);
+}
+.process__item__variant--CURRENT {
+    background-color: var(--a-deepblue-50);
+    z-index: 2;
+    position: relative;
+    opacity: 1;
+    padding-bottom: 0.75rem;
+    margin-top: 0.75rem;
+}
+.process__item__variant--WARNING {
+    background-color: var(--a-orange-100);
+    z-index: 2;
+    position: relative;
+}
+.process__circle__dot {
+    display: block;
+    border-radius: 50%;
+    width: 0.9rem;
+    height: 0.9rem;
+    background-color: var(--a-deepblue-800);
+}
 
 .process__line {
-    background-color: var(--process-line-color);
-    width: var(--process-border-width);
+    --process-border-width: 1px;
+    background: none;
+    border: var(--process-border-width) dashed var(--process-line-color);
+    opacity: 0.5;
     min-height: var(--process-line-length);
     height: 100%;
     justify-self: center;
@@ -33,9 +66,25 @@
     grid-row: line-1;
     display: none;
 }
+.process__item--CONTINUATION .process__line--1 {
+    border-style: solid;
+    display: block;
+    opacity: 1;
+    margin-top: -0.5rem;
+    min-height: 1.5rem;
+}
+process__line--1--continuation {
+    display: inherit;
+}
 
 .process__line--2 {
     grid-row: line-2;
+}
+
+.process__item:not(.process__item__variant--CURRENT) .process__line:has(+ .process__step__completed),
+.process__item:not(.process__item__variant--CURRENT) .process__step--completed + .process__line {
+    border-style: solid;
+    opacity: 1;
 }
 
 :where(.process__item:last-of-type) .process__line--2 {
@@ -51,7 +100,7 @@
     justify-content: flex-start;
     text-decoration: none;
     padding: var(--process-border-width);
-    margin: calc(var(--process-border-width) * -1) calc(var(--process-border-width) * -1) 1.75rem;
+    margin: calc(var(--process-border-width) * -1) calc(var(--process-border-width) * -1) 0.5rem;
 }
 
 .process__circle {
@@ -62,9 +111,18 @@
     width: var(--process-circle-size);
     height: var(--process-circle-size);
     border-radius: var(--a-border-radius-full);
-    background-color: var(--process-line-color);
-    color: white;
     line-height: 1;
+    border: 2px solid var(--a-gray-500);
+}
+
+.process__circle--noCircle {
+    border: none;
+}
+
+.process__step--completed .process__circle {
+    background-color: var(--a-deepblue-800);
+    border-color: var(--a-deepblue-800);
+    color: white;
 }
 
 .process__content {

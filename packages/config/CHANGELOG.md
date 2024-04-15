@@ -1,5 +1,23 @@
 # config
 
+## 0.9.22
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch + major fnrvalidator
+
+## 0.9.21
+
+### Patch Changes
+
+- a478787: Pakkeoppdateringer - minor/patch. Eslint major -> 9
+
+## 0.9.20
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor og patch
+
 ## 0.9.19
 
 ### Patch Changes

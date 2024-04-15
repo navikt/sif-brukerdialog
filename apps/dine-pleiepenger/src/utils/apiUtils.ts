@@ -17,3 +17,12 @@ export const getContextForApiHandler = (req: NextApiRequest) => {
 
     return context;
 };
+
+export const trimAxiosError = (error: any) => {
+    try {
+        const { config, ...rest } = error;
+        return rest;
+    } catch (e) {
+        return 'invalid error object';
+    }
+};

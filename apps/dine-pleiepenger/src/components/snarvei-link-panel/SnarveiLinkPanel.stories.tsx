@@ -2,6 +2,7 @@ import SnarveiLinkPanel from './SnarveiLinkPanel';
 import type { Meta, StoryObj } from '@storybook/react';
 import { withEmptyPage } from '../../storybook/hooks/withEmptyPage';
 import { Edit } from '@navikt/ds-icons';
+import { withIntl } from '../../storybook/hooks/withIntl';
 
 const meta: Meta<typeof SnarveiLinkPanel> = {
     component: SnarveiLinkPanel,
@@ -9,7 +10,7 @@ const meta: Meta<typeof SnarveiLinkPanel> = {
     parameters: {
         layout: 'centered',
     },
-    decorators: [withEmptyPage],
+    decorators: [withEmptyPage, withIntl],
 };
 export default meta;
 

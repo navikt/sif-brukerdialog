@@ -1,14 +1,9 @@
-import { ISODateToDate } from '@navikt/sif-common-utils';
 import { Innsynsdata } from '../../../src/types/InnsynData';
 import { søkerMockData } from '../mockdata/søker.mock';
 import { søknaderMockData } from '../mockdata/søknader.mock';
-import { Saker } from '../../../src/types/Saker';
 
-const saker: Saker = {
-    sak: {
-        saksbehandlingsFrist: ISODateToDate('2021-01-01'),
-    },
-};
+import { sakerMock } from '../mockdata/saker.mock';
+
 export const setupMockRoutes = async (page: any) => {
     await page.route('https://login.nav.no/**', async (route) => {
         await route.fulfill({ status: 200 });
@@ -22,11 +17,11 @@ export const setupMockRoutes = async (page: any) => {
 
     await page.route('**/innsynsdata', async (route) => {
         const response: Innsynsdata = {
-            saker: [saker],
+            saker: sakerMock,
             harSak: true,
             søker: søkerMockData as any,
             mellomlagring: {},
-            søknader: søknaderMockData as any,
+            innsendteSøknader: søknaderMockData as any,
         };
         await route.fulfill({ status: 200, body: JSON.stringify(response) });
     });

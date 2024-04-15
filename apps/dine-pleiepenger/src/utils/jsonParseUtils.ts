@@ -22,12 +22,17 @@ export const getDateFromString = (value?: string): Date | undefined => {
         }
         if (dayjs(value).isValid()) {
             return dayjs.utc(value).toDate();
+        } else {
+            throw new Error(`Could not parse date string: ${value}`);
         }
     }
     return undefined;
 };
 
 export const parseMaybeDateStringToDate = (value: any): Date | undefined => {
+    if (value === null) {
+        return undefined;
+    }
     const date = getDateFromString(value);
     if (value && !date) {
         throw new Error(`Could not parse date string: ${value}`);

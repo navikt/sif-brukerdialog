@@ -39,13 +39,7 @@ const sakerEndpoint = {
     fetch: async (): Promise<{ k9Saker: K9SakResult[]; eldreSaker: K9SakResult[] }> => {
         const endringsperiode = getTillattEndringsperiode(getEndringsdato());
         try {
-            appSentryLogger.logInfo(`sakerEndpoint.fetch saker`);
             const { data } = await api.innsyn.get<K9Format[]>(ApiEndpointInnsyn.sak);
-            try {
-                appSentryLogger.logInfo(`sakerEndpoint.fetch length: ${data.length}`);
-            } catch (error) {
-                appSentryLogger.logInfo(`sakerEndpoint.fetch noLength, ${typeof data}`);
-            }
             const k9Saker: K9SakResult[] = [];
             const eldreSaker: K9SakResult[] = [];
             data.forEach((sak) => {
@@ -80,12 +74,12 @@ const sakerEndpoint = {
             });
             return Promise.resolve({ k9Saker, eldreSaker });
         } catch (error) {
-            if (isAxiosError(error) && !isUnauthorized(error)) {
-                appSentryLogger.logInfo(`sakerEndpoint.fetch failed - ${error.message}`);
-            } else {
-                appSentryLogger.logInfo('sakerEndpoint.fetch failed - unauthorized');
+            if (isAxiosError(error)) {
+                if (!isUnauthorized(error)) {
+                    appSentryLogger.logError(`sakerEndpoint.fetch failed - ${error.message}`);
+                }
+                appSentryLogger.logError('sakerEndpoint.fetch failed - unauthorized');
             }
-            appSentryLogger.logInfo('sakerEndpoint.fetch failed - something');
             return Promise.reject(error);
         }
     },
