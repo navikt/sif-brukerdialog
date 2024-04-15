@@ -22,7 +22,7 @@
         "@navikt/sif-common-soknad-ds": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
         "@storybook/react-vite": "8.0.8",
-        "@testing-library/react": "14.3.1",
+        "@testing-library/react": "15.0.2",
         "@vitejs/plugin-react": "4.2.1",
         "axios": "1.6.8",
         "busboy": "1.6.0",
