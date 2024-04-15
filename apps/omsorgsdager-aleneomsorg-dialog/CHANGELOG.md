@@ -1,5 +1,39 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.15.5
+
+### Patch Changes
+
+- 399de32: Pakkeoppdateringer - minor/patch
+
+  @storybook/builder-vite (8.0.6 -> 8.0.8)
+  @storybook/nextjs (8.0.6 -> 8.0.8)
+  @storybook/node-logger (8.0.6 -> 8.0.8)
+  @storybook/preset-create-react-app (8.0.6 -> 8.0.8)
+  @storybook/react-vite (8.0.6 -> 8.0.8)
+  @storybook/react (8.0.6 -> 8.0.8)
+  @storybook/test (8.0.6 -> 8.0.8)
+  @testing-library/react (14.3.0 -> 14.3.1)
+  @types/react-dom (18.2.24 -> 18.2.25)
+  @types/react (18.2.75 -> 18.2.78)
+  cypress (13.7.2 -> 13.7.3)
+  eslint-config-next (14.1.4 -> 14.2.1)
+  next (14.1.4 -> 14.2.1)
+  sass (1.74.1 -> 1.75.0)
+  storybook (8.0.6 -> 8.0.8)
+  typescript (5.4.4 -> 5.4.5)
+  vitest (1.4.0 -> 1.5.0)
+
+- Updated dependencies [399de32]
+  - @navikt/sif-common-amplitude@2.24.32
+  - @navikt/sif-common-formik-ds@1.7.30
+  - @navikt/sif-common-soknad-ds@10.13.29
+  - @navikt/sif-common-forms-ds@8.19.18
+  - @navikt/sif-common-core-ds@9.15.22
+  - @navikt/sif-common-sentry@0.25.30
+  - @navikt/sif-common-hooks@0.1.9
+  - @navikt/sif-common-utils@3.44.17
+
 ## 2.15.4
 
 ### Patch Changes

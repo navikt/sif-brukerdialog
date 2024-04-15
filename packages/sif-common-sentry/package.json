@@ -5,7 +5,7 @@
     "homepage": "https://navikt.github.io/sif-common-sentry",
     "license": "MIT",
     "main": "src/index.ts",
-    "version": "0.25.29",
+    "version": "0.25.30",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-sentry/issues"
     },
