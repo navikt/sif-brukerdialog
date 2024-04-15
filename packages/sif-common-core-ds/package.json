@@ -2,7 +2,7 @@
     "author": "navikt",
     "main": "src",
     "name": "@navikt/sif-common-core-ds",
-    "version": "9.15.22",
+    "version": "9.15.23",
     "private": true,
     "dependencies": {
         "@navikt/sif-common-utils": "workspace:*",
@@ -26,7 +26,6 @@
         "@navikt/ds-icons": "3.4.3",
         "@navikt/ds-react": "6.5.0",
         "@navikt/ds-tailwind": "6.5.0",
-        "@navikt/fnrvalidator": "2.0.7",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@originjs/vite-plugin-commonjs": "1.0.3",
         "@storybook/addon-a11y": "8.0.8",

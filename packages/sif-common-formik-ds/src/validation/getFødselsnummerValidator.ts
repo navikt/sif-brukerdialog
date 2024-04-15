@@ -1,4 +1,4 @@
-import fnrvalidator from '@navikt/fnrvalidator';
+import { fnr } from '@navikt/fnrvalidator';
 import { ValidationFunction } from './types';
 import { hasValue } from './validationUtils';
 
@@ -35,7 +35,7 @@ const getFødselsnummerValidator =
             return ValidateFødselsnummerError.fødselsnummerHasNoValue;
         }
         if (hasValue(value)) {
-            const result = fnrvalidator.fnr(value);
+            const result = fnr(value);
             if (result.status === 'valid' && result.type === 'hnr' && allowHnr !== true) {
                 return ValidateFødselsnummerError.fødselsnummerAsHnrIsNotAllowed;
             }
