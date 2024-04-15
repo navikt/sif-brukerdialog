@@ -1,5 +1,90 @@
 # @navikt/appstatus-react-ds
 
+## 2.17.37
+
+### Patch Changes
+
+- 399de32: Pakkeoppdateringer - minor/patch
+
+  @storybook/builder-vite (8.0.6 -> 8.0.8)
+  @storybook/nextjs (8.0.6 -> 8.0.8)
+  @storybook/node-logger (8.0.6 -> 8.0.8)
+  @storybook/preset-create-react-app (8.0.6 -> 8.0.8)
+  @storybook/react-vite (8.0.6 -> 8.0.8)
+  @storybook/react (8.0.6 -> 8.0.8)
+  @storybook/test (8.0.6 -> 8.0.8)
+  @testing-library/react (14.3.0 -> 14.3.1)
+  @types/react-dom (18.2.24 -> 18.2.25)
+  @types/react (18.2.75 -> 18.2.78)
+  cypress (13.7.2 -> 13.7.3)
+  eslint-config-next (14.1.4 -> 14.2.1)
+  next (14.1.4 -> 14.2.1)
+  sass (1.74.1 -> 1.75.0)
+  storybook (8.0.6 -> 8.0.8)
+  typescript (5.4.4 -> 5.4.5)
+  vitest (1.4.0 -> 1.5.0)
+
+- Updated dependencies [399de32]
+  - @navikt/sif-common-hooks@0.1.9
+
+## 2.17.36
+
+### Patch Changes
+
+- ad4123e: Pakkeoppdateringer minor/patch
+
+## 2.17.35
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch + major fnrvalidator
+
+## 2.17.34
+
+### Patch Changes
+
+- a478787: Pakkeoppdateringer - minor/patch. Eslint major -> 9
+- Updated dependencies [a478787]
+  - @navikt/sif-common-hooks@0.1.8
+
+## 2.17.33
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor patch
+
+## 2.17.32
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor og patch
+
+## 2.17.31
+
+### Patch Changes
+
+- 6ff87ec: Pakkeroppdateringer - minor / patch
+
+## 2.17.30
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch og minor
+- Updated dependencies
+  - @navikt/sif-common-hooks@0.1.7
+
+## 2.17.29
+
+### Patch Changes
+
+- react-responsive-10.0.0
+
+## 2.17.28
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch og minor
+
 ## 2.17.27
 
 ### Patch Changes

@@ -1,5 +1,83 @@
 # @navikt/sif-common-utils
 
+## 3.44.17
+
+### Patch Changes
+
+- 399de32: Pakkeoppdateringer - minor/patch
+
+  @storybook/builder-vite (8.0.6 -> 8.0.8)
+  @storybook/nextjs (8.0.6 -> 8.0.8)
+  @storybook/node-logger (8.0.6 -> 8.0.8)
+  @storybook/preset-create-react-app (8.0.6 -> 8.0.8)
+  @storybook/react-vite (8.0.6 -> 8.0.8)
+  @storybook/react (8.0.6 -> 8.0.8)
+  @storybook/test (8.0.6 -> 8.0.8)
+  @testing-library/react (14.3.0 -> 14.3.1)
+  @types/react-dom (18.2.24 -> 18.2.25)
+  @types/react (18.2.75 -> 18.2.78)
+  cypress (13.7.2 -> 13.7.3)
+  eslint-config-next (14.1.4 -> 14.2.1)
+  next (14.1.4 -> 14.2.1)
+  sass (1.74.1 -> 1.75.0)
+  storybook (8.0.6 -> 8.0.8)
+  typescript (5.4.4 -> 5.4.5)
+  vitest (1.4.0 -> 1.5.0)
+
+## 3.44.16
+
+### Patch Changes
+
+- ad4123e: Pakkeoppdateringer minor/patch
+
+## 3.44.15
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch + major fnrvalidator
+
+## 3.44.14
+
+### Patch Changes
+
+- a478787: Pakkeoppdateringer - minor/patch. Eslint major -> 9
+
+## 3.44.13
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor patch
+
+## 3.44.12
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor og patch
+
+## 3.44.11
+
+### Patch Changes
+
+- 6ff87ec: Pakkeroppdateringer - minor / patch
+
+## 3.44.10
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch og minor
+
+## 3.44.9
+
+### Patch Changes
+
+- react-responsive-10.0.0
+
+## 3.44.8
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch og minor
+
 ## 3.44.7
 
 ### Patch Changes

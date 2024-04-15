@@ -1,5 +1,83 @@
 # @navikt/sif-common-forms-ds
 
+## 8.19.18
+
+### Patch Changes
+
+- 399de32: Pakkeoppdateringer - minor/patch
+
+  @storybook/builder-vite (8.0.6 -> 8.0.8)
+  @storybook/nextjs (8.0.6 -> 8.0.8)
+  @storybook/node-logger (8.0.6 -> 8.0.8)
+  @storybook/preset-create-react-app (8.0.6 -> 8.0.8)
+  @storybook/react-vite (8.0.6 -> 8.0.8)
+  @storybook/react (8.0.6 -> 8.0.8)
+  @storybook/test (8.0.6 -> 8.0.8)
+  @testing-library/react (14.3.0 -> 14.3.1)
+  @types/react-dom (18.2.24 -> 18.2.25)
+  @types/react (18.2.75 -> 18.2.78)
+  cypress (13.7.2 -> 13.7.3)
+  eslint-config-next (14.1.4 -> 14.2.1)
+  next (14.1.4 -> 14.2.1)
+  sass (1.74.1 -> 1.75.0)
+  storybook (8.0.6 -> 8.0.8)
+  typescript (5.4.4 -> 5.4.5)
+  vitest (1.4.0 -> 1.5.0)
+
+## 8.19.17
+
+### Patch Changes
+
+- ad4123e: Pakkeoppdateringer minor/patch
+
+## 8.19.16
+
+### Patch Changes
+
+- Pakkeoppdateringer minor/patch + major fnrvalidator
+
+## 8.19.15
+
+### Patch Changes
+
+- a478787: Pakkeoppdateringer - minor/patch. Eslint major -> 9
+
+## 8.19.14
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor patch
+
+## 8.19.13
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor og patch
+
+## 8.19.12
+
+### Patch Changes
+
+- 6ff87ec: Pakkeroppdateringer - minor / patch
+
+## 8.19.11
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch og minor
+
+## 8.19.10
+
+### Patch Changes
+
+- react-responsive-10.0.0
+
+## 8.19.9
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch og minor
+
 ## 8.19.8
 
 ### Patch Changes

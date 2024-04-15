@@ -5,7 +5,7 @@ import { withIntl } from '../../storybook/hooks/withIntl';
 
 const meta: Meta<typeof HvaSkjer> = {
     component: HvaSkjer,
-    title: 'Components/HvaSkjer',
+    title: 'Content/HvaSkjer',
     parameters: {
         layout: 'centered',
     },

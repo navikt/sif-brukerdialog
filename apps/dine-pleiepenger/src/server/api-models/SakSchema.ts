@@ -1,13 +1,15 @@
 import { z } from 'zod';
 import { parseMaybeDateStringToDate } from '../../utils/jsonParseUtils';
+import { BehandlingSchema } from './BehandlingSchema';
 
 export type Sak = z.infer<typeof SakSchema>;
 
 export const SakSchema = z.object({
-    sak: z.object({
-        saksbehandlingsFrist: z.union([
-            z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
-            z.undefined(),
-        ]),
-    }),
+    saksnummer: z.string(),
+    saksbehandlingsFrist: z.union([
+        z.preprocess((val) => (val === null ? undefined : val), z.undefined() || z.string()),
+        z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
+        z.undefined(),
+    ]),
+    behandlinger: z.array(BehandlingSchema),
 });

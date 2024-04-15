@@ -37,13 +37,18 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
             return (
                 <BodyLong as="div" data-testid="ingenSak">
                     <p>
-                        Vi finner ingen sak om pleiepenger registrert på deg, derfor kan du heller ikke bruke denne
-                        tjenesten. Hvis du akkurat har sendt inn en søknad, tar det noen minutter før saken din kommer
-                        opp her.
+                        Vi finner ingen sak om pleiepenger for sykt barn registrert på deg, derfor kan du heller ikke
+                        bruke denne tjenesten. Hvis du akkurat har sendt inn en søknad, tar det noen minutter før saken
+                        din kommer opp her.
                     </p>
                     <p>
-                        Hvis du mener at dette ikke stemmer, er det fint at du sender en melding til oss{' '}
-                        <SkrivTilOssLink />.
+                        Hvis du har søkt om pleiepenger for en periode frem i tid, eller for barn som ikke er
+                        folkeregistrert på deg, kan det ta tid før du kan bruke endringsmeldingen. Du kan foreløpig
+                        melde endringer i pleiepengesaken din via <SkrivTilOssLink />.
+                    </p>
+                    <p>
+                        Hvis du ønsker at en av våre veiledere skal undersøke hvorfor du ikke kan bruke
+                        endringsmeldingen, kan du kontakte oss på telefon 55 55 33 33.
                     </p>
                 </BodyLong>
             );
