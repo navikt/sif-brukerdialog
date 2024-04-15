@@ -161,6 +161,9 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, barn, søknadstype, so
             await sendSoknad(apiValues);
             await soknadTempStorage.purge(søknadstype);
             await logSoknadSent(søknadstype);
+            if (søknadstype === Søknadstype.pleiepengerSyktBarn) {
+                await logInfo({ 'Ettersendelses type': apiValues.ettersendelsesType });
+            }
             await logInfo({ 'Antall vedlegg sendt': apiValues.vedlegg.length });
             setSendSoknadStatus({ failures: 0, status: success(apiValues) });
             setTimeout(() => {
