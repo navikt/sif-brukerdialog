@@ -3259,7 +3259,7 @@ __metadata:
     "@navikt/sif-common-utils": "workspace:*"
     "@playwright/test": 1.43.1
     "@storybook/react-vite": 8.0.8
-    "@testing-library/react": 14.3.1
+    "@testing-library/react": 15.0.2
     "@types/object-hash": 3.0.6
     "@types/react": 18.2.78
     "@types/react-dom": 18.2.25
@@ -3326,7 +3326,7 @@ __metadata:
     "@storybook/preset-create-react-app": 8.0.8
     "@storybook/react": 8.0.8
     "@storybook/testing-library": 0.2.2
-    "@testing-library/react": 14.3.1
+    "@testing-library/react": 15.0.2
     "@types/flat": 5.0.5
     "@types/intl": 1.2.2
     "@types/js-cookie": 3.0.6
@@ -3445,7 +3445,7 @@ __metadata:
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@playwright/test": 1.43.1
-    "@testing-library/react": 14.3.1
+    "@testing-library/react": 15.0.2
     "@types/object-hash": 3.0.6
     "@types/react": 18.2.78
     "@types/react-dom": 18.2.25
@@ -3537,7 +3537,7 @@ __metadata:
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@playwright/test": 1.43.1
-    "@testing-library/react": 14.3.1
+    "@testing-library/react": 15.0.2
     "@types/node": 20.12.7
     "@types/object-hash": 3.0.6
     "@types/react": 18.2.78
@@ -3609,7 +3609,7 @@ __metadata:
     "@storybook/react": 8.0.8
     "@storybook/react-vite": 8.0.8
     "@storybook/test": 8.0.8
-    "@testing-library/react": 14.3.1
+    "@testing-library/react": 15.0.2
     "@types/node": 20.12.7
     "@types/object-hash": 3.0.6
     "@types/react": 18.2.78
@@ -3682,7 +3682,7 @@ __metadata:
     "@storybook/preset-create-react-app": 8.0.8
     "@storybook/react": 8.0.8
     "@storybook/testing-library": 0.2.2
-    "@testing-library/react": 14.3.1
+    "@testing-library/react": 15.0.2
     "@types/object-hash": 3.0.6
     "@types/react": 18.2.78
     "@types/react-dom": 18.2.25
@@ -3747,7 +3747,7 @@ __metadata:
     "@navikt/sif-common-utils": "workspace:*"
     "@playwright/test": 1.43.1
     "@storybook/react-vite": 8.0.8
-    "@testing-library/react": 14.3.1
+    "@testing-library/react": 15.0.2
     "@types/object-hash": 3.0.6
     "@types/react": 18.2.78
     "@types/react-dom": 18.2.25
@@ -3808,7 +3808,7 @@ __metadata:
     "@navikt/sif-common-utils": "workspace:*"
     "@sentry/vite-plugin": 2.16.1
     "@storybook/react-vite": 8.0.8
-    "@testing-library/react": 14.3.1
+    "@testing-library/react": 15.0.2
     "@testing-library/user-event": 14.5.2
     "@types/lodash.debounce": 4.0.9
     "@types/lodash.groupby": 4.6.9
@@ -4061,7 +4061,7 @@ __metadata:
     "@storybook/react-vite": 8.0.8
     "@storybook/testing-library": 0.2.2
     "@testing-library/dom": 10.0.0
-    "@testing-library/react": 14.3.1
+    "@testing-library/react": 15.0.2
     "@testing-library/user-event": 14.5.2
     "@types/node": 20.12.7
     "@types/react": 18.2.78
@@ -4155,7 +4155,7 @@ __metadata:
     "@storybook/testing-library": 0.2.2
     "@testing-library/dom": 10.0.0
     "@testing-library/jest-dom": 6.4.2
-    "@testing-library/react": 14.3.1
+    "@testing-library/react": 15.0.2
     "@testing-library/user-event": 14.5.2
     "@types/jest": 29.5.12
     "@types/node": 20.12.7
@@ -4271,7 +4271,7 @@ __metadata:
     "@navikt/sif-common-utils": "workspace:*"
     "@playwright/test": 1.43.1
     "@storybook/react-vite": 8.0.8
-    "@testing-library/react": 14.3.1
+    "@testing-library/react": 15.0.2
     "@types/react": 18.2.78
     "@types/react-dom": 18.2.25
     "@types/react-router-dom": 5.3.3
@@ -7151,7 +7151,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/dom@npm:10.0.0":
+"@testing-library/dom@npm:10.0.0, @testing-library/dom@npm:^10.0.0":
   version: 10.0.0
   resolution: "@testing-library/dom@npm:10.0.0"
   dependencies:
@@ -7216,17 +7216,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/react@npm:14.3.1":
-  version: 14.3.1
-  resolution: "@testing-library/react@npm:14.3.1"
+"@testing-library/react@npm:15.0.2":
+  version: 15.0.2
+  resolution: "@testing-library/react@npm:15.0.2"
   dependencies:
     "@babel/runtime": ^7.12.5
-    "@testing-library/dom": ^9.0.0
+    "@testing-library/dom": ^10.0.0
     "@types/react-dom": ^18.0.0
   peerDependencies:
     react: ^18.0.0
     react-dom: ^18.0.0
-  checksum: b057d4c9db5a523acfc24d7bc4665a924ab8d6f252c7f51eecf7dd30f1239413e1134925fd5cc9cbdef80496af64c04e6719b2081f89fe05ba87e8c6305bcc16
+  checksum: 32be030a5540164403f3cd8d6f46ad907119b2bc0a0df43ce6b925cdd520d5003298d06af1ee94d7bd764f294d74e802b6509caf2cf10afc77e67407baa9c1fb
   languageName: node
   linkType: hard
 
