@@ -14,7 +14,7 @@
     },
     "devDependencies": {
         "@types/node": "20.12.7",
-        "@types/react": "18.2.75",
+        "@types/react": "18.2.78",
         "config": "workspace:*",
         "constate": "3.3.2",
         "gh-pages": "6.1.1",
