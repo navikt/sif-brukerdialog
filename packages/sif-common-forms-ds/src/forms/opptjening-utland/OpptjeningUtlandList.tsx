@@ -23,7 +23,7 @@ const OpptjeningUtlandList = ({ utenlandsopphold, onDelete, onEdit }: Props) => 
         const landNavn = getCountryName(opptjening.landkode, intl.locale);
         const arbeidsgiverType = intlHelper(
             intl,
-            `opptjeningUtland.form.opptjeningAktivitet.${opptjening.opptjeningType}`,
+            `@forms.opptjeningUtland.form.opptjeningAktivitet.${opptjening.opptjeningType}`,
         ).toLocaleLowerCase();
         return (
             <div className={bem.element('label')}>
