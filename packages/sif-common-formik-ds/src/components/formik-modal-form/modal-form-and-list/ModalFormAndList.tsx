@@ -82,6 +82,7 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
         setModalState({
             ...modalState,
             isVisible: false,
+            selectedItem: undefined,
             ensureFocusOn: modalState.selectedItem === undefined ? 'addButton' : 'fieldset',
         });
     };
