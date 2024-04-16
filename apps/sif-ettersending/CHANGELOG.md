@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.31.0
+
+### Minor Changes
+
+- 99222b7: Digital ettersendelse PP sykt barn
+
 ## 3.30.6
 
 ### Patch Changes
