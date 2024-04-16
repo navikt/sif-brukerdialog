@@ -18,6 +18,7 @@ const Søknad = () => {
     if (status === RequestStatus.loading || status === RequestStatus.redirectingToLogin) {
         return <LoadingSpinner size="3xlarge" style="block" />;
     }
+
     /** Error */
     if (status === 'error') {
         return (

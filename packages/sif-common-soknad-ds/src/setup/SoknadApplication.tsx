@@ -14,7 +14,6 @@ import {
     getNynorskLocale,
     setLocaleInSessionStorage,
 } from '@navikt/sif-common-core-ds/src/utils/localeUtils';
-import getSentryLoggerForApp from '@navikt/sif-common-sentry';
 import dayjs from 'dayjs';
 import 'dayjs/locale/nb';
 import 'dayjs/locale/nn';
@@ -52,21 +51,10 @@ const isValidAppStatus = (appStatus: AppStatus | any): appStatus is AppStatus =>
     appStatus.sanityConfig?.dataset !== undefined &&
     appStatus.sanityConfig?.projectId !== undefined;
 
-const SoknadApplication = ({
-    intlMessages: messages,
-    sentryKey,
-    appStatus,
-    publicPath,
-    sentryIgnoreErrors,
-    children,
-}: Props) => {
+const SoknadApplication = ({ intlMessages: messages, appStatus, publicPath, children }: Props) => {
     const [locale, setLocale] = React.useState<Locale>(localeFromSessionStorage);
     const localeMessages = messages[locale] || messages['nb'];
     const locales = Object.keys(messages) as any;
-
-    if (sentryKey) {
-        getSentryLoggerForApp(sentryKey, [/sykdom-i-familien/], sentryIgnoreErrors).init();
-    }
 
     useDecoratorLanguageSelector([locales], (locale: any) => {
         setLocaleInSessionStorage(locale);

@@ -5,6 +5,7 @@ export { default as LoadingPage } from './pages/loading-page/LoadingPage';
 export { default as QuestionVisibilityBlock } from './modules/question-visibility/QuestionVisibilityBlock';
 export { default as SamtykkeForm, SamtykkeFormPart } from './modules/samtykke-form/SamtykkeForm';
 export { default as SoknadApplication } from './setup/SoknadApplication';
+export { default as SoknadApplicationEnkel } from './setup/SoknadApplicationEnkel';
 export { default as SoknadApplicationCommonRoutes } from './setup/SoknadApplicationCommonRoutes';
 export { default as SoknadErrorMessages } from './components/soknad-error-messages/SoknadErrorMessages';
 export { default as SoknadHeader } from './components/soknad-header/SoknadHeader';

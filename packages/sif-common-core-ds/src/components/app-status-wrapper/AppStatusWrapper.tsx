@@ -1,6 +1,7 @@
 import { SanityConfig, Status, StatusMessage, useAppStatus } from '@navikt/appstatus-react-ds';
 import React from 'react';
 import LoadingSpinner from '../../atoms/loading-spinner/LoadingSpinner';
+import { sanityConfigIsValid } from '@navikt/appstatus-react-ds/src/utils';
 
 interface Props {
     applicationKey: string;
@@ -18,6 +19,10 @@ const AppStatusWrapper = ({ applicationKey, contentRenderer, sanityConfig, unava
         }
         return contentRenderer();
     };
+
+    if (sanityConfigIsValid(sanityConfig) === false) {
+        return renderContent();
+    }
 
     return isLoading ? (
         <LoadingSpinner size="3xlarge" style="block" />
