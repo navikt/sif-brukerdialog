@@ -1,44 +1,41 @@
-import { Panel, Tabs, VStack } from '@navikt/ds-react';
-/* eslint-disable no-console */
+import { Box, Tabs, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
+import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { date4YearsAgo, dateToday } from '@navikt/sif-common-utils';
+import { date1YearAgo, date1YearFromNow } from '@navikt/sif-common-utils';
+import dayjs from 'dayjs';
 import { flatten } from 'flat';
+import { ferieuttakMessages } from '../';
 import MessagesPreview from '../../../../storybook/components/messages-preview/MessagesPreview';
 import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
 import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
-import AnnetBarnForm, { AnnetBarnFormErrors } from '../AnnetBarnForm';
-import AnnetBarnListAndDialog from '../AnnetBarnListAndDialog';
-import { annetBarnMessages, useAnnetBarnIntl } from '../annetBarnMessages';
-import { AnnetBarn } from '../types';
+import FerieuttakForm, { FerieuttakFormErrors } from '../FerieuttakForm';
+import FerieuttakListAndDialog from '../FerieuttakListAndDialog';
+import { Ferieuttak } from '../types';
 
 enum FormField {
-    'annetBarn' = 'annetBarn',
+    'ferie' = 'ferie',
 }
 
 interface FormValues {
-    [FormField.annetBarn]: AnnetBarn[];
+    [FormField.ferie]: Ferieuttak[];
 }
-const initialValues: FormValues = { annetBarn: [] };
+const initialValues: FormValues = { ferie: [] };
 
-const AnnetBarnExample = () => {
-    const [singleFormValues, setSingleFormValues] = useState<Partial<AnnetBarn> | undefined>(undefined);
+const FormikExample = () => {
+    const [singleFormValues, setSingleFormValues] = useState<Partial<Ferieuttak> | undefined>(undefined);
     const [listFormValues, setListFormValues] = useState<Partial<FormValues> | undefined>(undefined);
-    const visBarnTypeValg = true;
-    const annetBarn = listFormValues?.[FormField.annetBarn];
-    const disallowedFødselsnumre = annetBarn ? annetBarn.map((barn) => barn.fnr) : undefined;
-
-    const { text } = useAnnetBarnIntl();
-
+    const intl = useIntl();
     return (
         <Tabs defaultValue="list">
             <VStack gap="4">
                 <Tabs.List>
-                    <Tabs.Tab value="list" label="AnnetBarnListAndDialog" />
-                    <Tabs.Tab value="form" label="AnnetBarnForm" />
+                    <Tabs.Tab value="list" label="FerieuttakListAndDialog" />
+                    <Tabs.Tab value="form" label="FerieuttakForm" />
                     <Tabs.Tab value="messages" label="Tekster" />
                 </Tabs.List>
                 <Tabs.Panel value="list" style={{ maxWidth: '50rem' }}>
@@ -49,20 +46,19 @@ const AnnetBarnExample = () => {
                             return (
                                 <TypedFormikForm<FormValues, ValidationError>
                                     includeButtons={true}
-                                    submitButtonLabel="Valider skjema">
-                                    <AnnetBarnListAndDialog<FormField>
-                                        name={FormField.annetBarn}
+                                    submitButtonLabel="Valider skjema"
+                                    formErrorHandler={getFormErrorHandler(intl)}>
+                                    <FerieuttakListAndDialog<FormField>
+                                        name={FormField.ferie}
+                                        minDate={date1YearAgo}
+                                        maxDate={date1YearFromNow}
                                         validate={getListValidator({ required: true })}
                                         labels={{
-                                            addLabel: text('@forms.annetBarn.dialog.title'),
-                                            listTitle: text('@forms.annetBarn.list.title'),
-                                            emptyListText: text('@forms.annetBarn.list.ingenLagtTil'),
-                                            modalTitle: text('@forms.annetBarn.dialog.title'),
+                                            addLabel: 'Legg til ferie',
+                                            listTitle: 'Registrerte ferier',
+                                            modalTitle: 'Ferie',
+                                            emptyListText: 'Ingen ferier er lagt til',
                                         }}
-                                        minDate={date4YearsAgo}
-                                        maxDate={dateToday}
-                                        visBarnTypeValg={visBarnTypeValg}
-                                        disallowedFødselsnumre={disallowedFødselsnumre}
                                     />
                                 </TypedFormikForm>
                             );
@@ -71,28 +67,28 @@ const AnnetBarnExample = () => {
                     <SubmitPreview values={listFormValues} />
                 </Tabs.Panel>
                 <Tabs.Panel value="form" style={{ maxWidth: '30rem' }}>
-                    <Panel border={true}>
-                        <AnnetBarnForm
-                            annetBarn={{}}
+                    <Box padding="4" borderWidth="1" borderRadius="small">
+                        <FerieuttakForm
+                            minDate={date1YearAgo}
+                            maxDate={dayjs().subtract(1, 'month').toDate()}
+                            ferieuttak={{}}
                             onSubmit={setSingleFormValues}
                             onCancel={() => {
+                                // eslint-disable-next-line no-console
                                 console.log('cancel me');
                             }}
-                            minDate={date4YearsAgo}
-                            maxDate={dateToday}
                         />
-
                         <SubmitPreview values={singleFormValues} />
-                    </Panel>
+                    </Box>
                 </Tabs.Panel>
                 <Tabs.Panel value="messages">
                     <Block margin="xxl" padBottom="l">
                         <FormValidationErrorMessages
-                            validationErrorIntlKeys={flatten(AnnetBarnFormErrors)}
-                            formName={'annetBarn'}
-                            intlMessages={annetBarnMessages}
+                            validationErrorIntlKeys={flatten(FerieuttakFormErrors)}
+                            formName={'Ferieuttak'}
+                            intlMessages={ferieuttakMessages}
                         />
-                        <MessagesPreview messages={annetBarnMessages} showExplanation={false} />
+                        <MessagesPreview messages={ferieuttakMessages} showExplanation={false} />
                     </Block>
                 </Tabs.Panel>
             </VStack>
@@ -100,4 +96,4 @@ const AnnetBarnExample = () => {
     );
 };
 
-export default AnnetBarnExample;
+export default FormikExample;

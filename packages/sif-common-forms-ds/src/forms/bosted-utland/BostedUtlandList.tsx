@@ -17,9 +17,9 @@ interface Props {
 const bem = bemUtils('bostedUtlandList');
 
 const BostedUtlandList = ({ bosteder, onDelete, onEdit }: Props) => {
-    const intl = useIntl();
+    const { locale } = useIntl();
     const renderBostedUtlandLabel = (opphold: BostedUtland): React.ReactNode => {
-        const navn = getCountryName(opphold.landkode, intl.locale);
+        const navn = getCountryName(opphold.landkode, locale);
         return (
             <div className={bem.element('label')}>
                 <span className={bem.element('land')}>
@@ -36,7 +36,7 @@ const BostedUtlandList = ({ bosteder, onDelete, onEdit }: Props) => {
     return (
         <ItemList<BostedUtland>
             getItemId={(opphold) => opphold.id}
-            getItemTitle={(opphold) => getCountryName(opphold.landkode, intl.locale)}
+            getItemTitle={(opphold) => getCountryName(opphold.landkode, locale)}
             onDelete={onDelete}
             onEdit={onEdit}
             labelRenderer={renderBostedUtlandLabel}
