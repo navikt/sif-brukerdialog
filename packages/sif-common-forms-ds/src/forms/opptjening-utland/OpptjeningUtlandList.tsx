@@ -3,10 +3,10 @@ import { useIntl } from 'react-intl';
 import ActionLink from '@navikt/sif-common-core-ds/src/atoms/action-link/ActionLink';
 import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getCountryName } from '@navikt/sif-common-formik-ds';
 import { prettifyDateExtended } from '@navikt/sif-common-utils';
-import { OpptjeningUtland } from './types';
+import { OpptjeningUtlandMessageKeys, useOpptjeningUtlandIntl } from './opptjeningUtlandMessages';
+import { OpptjeningAktivitet, OpptjeningUtland } from './types';
 import './opptjeningUtlandList.scss';
 
 interface Props {
@@ -17,14 +17,21 @@ interface Props {
 
 const bem = bemUtils('opptjeningUtlandList');
 
+const getArbeidsgiverTypeMessageKey = (aktivitet: OpptjeningAktivitet): OpptjeningUtlandMessageKeys => {
+    switch (aktivitet) {
+        case OpptjeningAktivitet.ARBEIDSTAKER:
+            return '@forms.opptjeningUtland.form.opptjeningAktivitet.ARBEIDSTAKER';
+        case OpptjeningAktivitet.FRILANSER:
+            return '@forms.opptjeningUtland.form.opptjeningAktivitet.FRILANSER';
+    }
+};
+
 const OpptjeningUtlandList = ({ utenlandsopphold, onDelete, onEdit }: Props) => {
     const intl = useIntl();
+    const { text } = useOpptjeningUtlandIntl();
     const renderOpptjeningUtlandLabel = (opptjening: OpptjeningUtland): React.ReactNode => {
         const landNavn = getCountryName(opptjening.landkode, intl.locale);
-        const arbeidsgiverType = intlHelper(
-            intl,
-            `@forms.opptjeningUtland.form.opptjeningAktivitet.${opptjening.opptjeningType}`,
-        ).toLocaleLowerCase();
+        const arbeidsgiverType = text(getArbeidsgiverTypeMessageKey(opptjening.opptjeningType)).toLowerCase();
         return (
             <div className={bem.element('label')}>
                 <span className={bem.element('land')}>
