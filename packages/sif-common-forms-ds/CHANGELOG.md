@@ -1,5 +1,17 @@
 # @navikt/sif-common-forms-ds
 
+## 8.20.0
+
+### Minor Changes
+
+- 368badf: Legge til rette for flere språk i sif-common-forms:
+
+  - AnnetBarn
+  - BostedUtland
+  - Ferieuttak
+  - Fosterbarn
+  - Fraværform
+
 ## 8.19.18
 
 ### Patch Changes
