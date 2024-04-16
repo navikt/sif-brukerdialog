@@ -10,8 +10,10 @@ import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import { Søknadstype } from '../types/Søknadstype';
 import appSentryLogger from '../utils/appSentryLogger';
 import { navigateToLoginPage } from '../utils/navigationUtils';
+import getBarnRemoteData from '../api/getBarn';
+import { RegistrertBarn } from '../types/RegistrertBarn';
 
-export type SoknadEssentials = { søker: Person; mellomlagring?: SoknadTempStorageData };
+export type SoknadEssentials = { søker: Person; barn?: RegistrertBarn[]; mellomlagring?: SoknadTempStorageData };
 
 type SøknadInitialSuccess = {
     status: RequestStatus.success;
@@ -56,11 +58,27 @@ function useSoknadEssentials(søknadstype: Søknadstype): SøknadInitialDataStat
 
     const fetch = async () => {
         try {
-            const [søker, mellomlagring] = await Promise.all([getSokerRemoteData(), getSoknadTempStorage(søknadstype)]);
-            setInitialData({
-                status: RequestStatus.success,
-                data: { søker, mellomlagring },
-            });
+            if (søknadstype === Søknadstype.pleiepengerSyktBarn) {
+                const [søker, barn, mellomlagring] = await Promise.all([
+                    getSokerRemoteData(),
+                    getBarnRemoteData(),
+                    getSoknadTempStorage(søknadstype),
+                ]);
+                setInitialData({
+                    status: RequestStatus.success,
+                    data: { søker, barn, mellomlagring },
+                });
+            } else {
+                const [søker, mellomlagring] = await Promise.all([
+                    getSokerRemoteData(),
+                    getSoknadTempStorage(søknadstype),
+                ]);
+                setInitialData({
+                    status: RequestStatus.success,
+                    data: { søker, mellomlagring },
+                });
+            }
+
             return Promise.resolve();
         } catch (error) {
             if (isUnauthorized(error)) {

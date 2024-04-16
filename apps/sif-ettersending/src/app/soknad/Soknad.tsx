@@ -27,9 +27,11 @@ import { getFirstStep, getSoknadStepsConfig, StepID } from './soknadStepsConfig'
 import soknadTempStorage, { isStorageDataValid } from './soknadTempStorage';
 import { YtelseKey } from '@navikt/sif-common-core-ds/src/types/Ytelser';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds';
+import { RegistrertBarn } from '../types/RegistrertBarn';
 
 interface Props {
     søker: Person;
+    barn?: RegistrertBarn[];
     søknadstype: Søknadstype;
     soknadTempStorage?: SoknadTempStorageData;
     route?: string;
@@ -59,7 +61,7 @@ const getInitialYtelse = (søknadstype: Søknadstype): YtelseKey | undefined => 
     }
 };
 
-const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTempStorage: tempStorage }) => {
+const Soknad: React.FunctionComponent<Props> = ({ søker, barn, søknadstype, soknadTempStorage: tempStorage }) => {
     const navigate = useNavigate();
     const location = useLocation();
     const [initializing, setInitializing] = useState(true);
@@ -159,6 +161,9 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
             await sendSoknad(apiValues);
             await soknadTempStorage.purge(søknadstype);
             await logSoknadSent(søknadstype);
+            if (søknadstype === Søknadstype.pleiepengerSyktBarn) {
+                await logInfo({ 'Ettersendelses type': apiValues.ettersendelsesType });
+            }
             await logInfo({ 'Antall vedlegg sendt': apiValues.vedlegg.length });
             setSendSoknadStatus({ failures: 0, status: success(apiValues) });
             setTimeout(() => {
@@ -255,6 +260,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
                         }}>
                         <SoknadRouter
                             søker={søker}
+                            barn={barn}
                             søknadstype={søknadstype}
                             soknadId={soknadId}
                             onKvitteringUnmount={() => {

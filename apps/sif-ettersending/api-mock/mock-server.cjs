@@ -56,7 +56,27 @@ const søkerMock = {
     fornavn: 'Test',
     mellomnavn: undefined,
     etternavn: 'Testesen',
-    fødselsnummer: '12345123456',
+    fødselsnummer: '17458209871',
+};
+
+const barnMock = {
+    barn: [
+        {
+            fornavn: 'ALFABETISK',
+            etternavn: 'FAGGOTT',
+            aktørId: '2811762539343',
+            fødselsdato: '2019-06-08',
+            fødselsnummer: '08861999573',
+        },
+        {
+            fornavn: 'Barn',
+            mellomnavn: 'Barne',
+            etternavn: 'Barnesen',
+            fødselsdato: '2020-04-20',
+            aktørId: '123',
+        },
+        { fødselsdato: '2015-01-02', fornavn: 'Mock', etternavn: 'Mocknes', aktørId: '2' },
+    ],
 };
 
 const startServer = () => {
@@ -65,6 +85,12 @@ const startServer = () => {
     server.get('/oppslag/soker', (req, res) => {
         setTimeout(() => {
             res.send(søkerMock);
+        }, RESPONSE_DELAY);
+    });
+
+    server.get('/oppslag/barn', (req, res) => {
+        setTimeout(() => {
+            res.send(barnMock);
         }, RESPONSE_DELAY);
     });
 

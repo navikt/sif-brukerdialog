@@ -21,6 +21,8 @@ import SoknadFormStep from '../SoknadFormStep';
 import { StepID } from '../soknadStepsConfig';
 import SummaryBlock from './SummaryBlock';
 import './oppsummeringStep.css';
+import { DokumentType } from '../../types/DokumentType';
+import { prettifyDate } from '@navikt/sif-common-utils';
 
 interface Props {
     soknadId: string;
@@ -61,9 +63,39 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
                             </div>
                         </SummaryBlock>
 
+                        {apiValues.ettersendelsesType === DokumentType.legeerklæring && (
+                            <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.barn.header')}>
+                                {values.valgteRegistrertBarn && (
+                                    <div>
+                                        {intlHelper(intl, 'steg.oppsummering.barn.registretBarnInfo', {
+                                            navn: values.valgteRegistrertBarn?.barnetsNavn,
+                                            fødselsdato: prettifyDate(values.valgteRegistrertBarn?.barnetsFødselsdato),
+                                        })}
+                                    </div>
+                                )}
+                                {apiValues.pleietrengende?.norskIdentitetsnummer && (
+                                    <div>
+                                        {intlHelper(intl, 'steg.oppsummering.barn.fnr', {
+                                            fnr: apiValues.pleietrengende?.norskIdentitetsnummer,
+                                        })}
+                                    </div>
+                                )}
+                                {!apiValues.pleietrengende?.norskIdentitetsnummer &&
+                                    !apiValues.pleietrengende?.aktørId && (
+                                        <div>{intlHelper(intl, 'steg.oppsummering.barn.harIkkefnr')}</div>
+                                    )}
+                            </SummaryBlock>
+                        )}
+
                         <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.typeSøknad.tittel')}>
                             {apiValues.ytelseTittel}
                         </SummaryBlock>
+
+                        {apiValues.ettersendelsesType === DokumentType.legeerklæring && (
+                            <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.dokumentType.header')}>
+                                {intlHelper(intl, 'steg.oppsummering.dokumentType.legeerklæring')}
+                            </SummaryBlock>
+                        )}
 
                         {apiValues.beskrivelse && (
                             <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.hvaGjelder.header')}>

@@ -68,6 +68,7 @@ const SoknadRemoteDataFetcher = (): JSX.Element => {
     return (
         <Soknad
             søker={initialData.data.søker}
+            barn={initialData.data.barn}
             søknadstype={søknadstype}
             soknadTempStorage={initialData.data.mellomlagring}
         />

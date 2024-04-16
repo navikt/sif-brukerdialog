@@ -81,6 +81,30 @@ export const applicationMessages: MessageFileFormat = {
             'Du kan ikke skrive spørsmål til oss her. Se informasjon om hvordan du kommer i {kontaktMedOssLink}.',
         'step.beskrivelse.intro.2.1': 'kontakt med oss',
 
+        'step.beskrivelse_pp.stepTitle': 'Hva skal du ettersende?',
+        'step.beskrivelse_pp.stepIndicatorLabel': 'Hva skal du ettersende?',
+        'step.beskrivelse_pp.nextButtonLabel': 'Fortsett',
+        'step.beskrivelse_pp.info':
+            'Her beskriver du hvilken dokumentasjon du skal sende oss. Hvis en annen søker har sendt inn samme dokumentasjon for barnet i perioden du søker, trenger du ikke sende inn disse på nytt.',
+        'step.beskrivelse_pp.dokumentType.spm': 'Hva skal du ettersende?',
+        'step.beskrivelse_pp.dokumentType.LEGEERKLÆRING': 'Legeerklæring',
+        'step.beskrivelse_pp.registrertBarnPart.spm': 'Hvilket barn gjelder legeerklæringen?',
+        'step.beskrivelse_pp.registrertBarnPart.hvilketBarn.født': 'Født {dato}',
+        'step.beskrivelse_pp.barn.info.tittel': 'Husk søknad, også ved forlengelser',
+        'step.beskrivelse_pp.barn.info.1.1':
+            'For å behandle din pleiepengesak må vi ha både legeerklæring og {ppSyktBarnLenke}. Dette gjelder også ved forlengelser.',
+        'step.beskrivelse_pp.barn.info.lenke': 'søknad om pleiepenger for sykt barn',
+        'step.beskrivelse_pp.gjelderAnnetBarn': 'Legeerklæringen gjelder et annet barn',
+        'step.beskrivelse_pp.annetBarn.tittel': 'Annet barn',
+        'step.beskrivelse_pp.annetBarn.fnr.spm': 'Barnets fødselsnummer/D-nummer',
+        'step.beskrivelse_pp.dokumentType.ANNET': 'Annet',
+        'step.beskrivelse_pp.hvaSendes.spm': 'Beskriv hva slags dokumentasjon du skal sende',
+        'step.beskrivelse_pp.intro':
+            'Her beskriver du hvilken dokumentasjon du skal sende oss. Hvis en annen søker har sendt inn samme dokumentasjon for barnet i perioden du søker, trenger du ikke sende inn disse på nytt.',
+        'step.beskrivelse_pp.annet.info.1': 'Har vi etterspurt mer dokumentasjon fra deg?',
+        'step.beskrivelse_pp.annet.info.2':
+            'Ved siden av legeerklæring, er det kun nødvendig å ettersende mer dokumentasjon hvis en saksbehandler har spurt om noe konkret fra deg.',
+
         'step.omsorgspenger_type.stepTitle': 'Hva skal du ettersende til?',
         'step.omsorgspenger_type.stepIndicatorLabel': 'Omsorgspenger type',
         'step.omsorgspenger_type.nextButtonLabel': 'Fortsett',
@@ -107,7 +131,13 @@ export const applicationMessages: MessageFileFormat = {
             'Les gjennom oppsummeringen før du sender inn dokumentene. Hvis du vil gjøre endringer, kan du gå tilbake.',
         'steg.oppsummering.søker.header': 'Navn på søker',
         'steg.oppsummering.søker.fnr': 'Fødselsnummer',
+        'steg.oppsummering.barn.header': 'Barn',
+        'steg.oppsummering.barn.registretBarnInfo': '{navn} (født {fødselsdato})',
+        'steg.oppsummering.barn.fnr': 'Fødselsnummer: {fnr}',
+        'steg.oppsummering.barn.harIkkefnr': 'Barnet har ikke fødselsnummer/D-nummer',
         'steg.oppsummering.hvaGjelder.header': 'Hva gjelder ettersendelsen?',
+        'steg.oppsummering.dokumentType.header': 'Hva skal du ettersende?',
+        'steg.oppsummering.dokumentType.legeerklæring': 'Legeerklæring',
         'steg.oppsummering.dokumenter.header': 'Dokumenter',
         'steg.oppsummering.bekrefterOpplysninger':
             'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min sak.',
@@ -162,7 +192,17 @@ export const applicationMessages: MessageFileFormat = {
         'validation.beskrivelse.stringIsTooShort': 'Beskrivelsen må inneholde minst {min} tegn',
         'validation.ytelse.noValue': 'Du må velge hva denne ettersendelsen gjelder',
         'validation.harBekreftetOpplysninger.notChecked': 'Du må bekrefte opplysningene',
-
+        'validation.barnetsFødselsnummer.fødselsnummerIsNot11Chars':
+            'Du har oppgitt et ugyldig fødselsnummer. Et gyldig fødselsnummer består av 11 siffer.',
+        'validation.barnetsFødselsnummer.fødselsnummerHasNoValue': 'Du må oppgi fødselsnummeret til barnet',
+        'validation.barnetsFødselsnummer.fødselsnummerIsNotAllowed':
+            'Du har oppgitt et fødselsnummer som du ikke kan bruke. Kontroller at du har tastet inn barnets fødselsnummer.',
+        'validation.barnetsFødselsnummer.fødselsnummerAsHnrIsNotAllowed':
+            'Du har oppgitt et ugyldig fødselsnummer. Kontroller at du har tastet inn riktig.',
+        'validation.barnetsFødselsnummer.fødselsnummerIsInvalid':
+            'Du har oppgitt et ugyldig fødselsnummer. Kontroller at du har tastet inn riktig.',
+        'validation.barnetLegeerklæringGjelder.noValue': 'Du må velge hvilket barn legeerklæringen gjelder',
+        'validation.dokumentType.noValue': 'Du må velge hva du skal ettersende',
         'ekspanderbarPSG.title': 'Slik tar du et godt bilde av dokumentet',
     },
 };
