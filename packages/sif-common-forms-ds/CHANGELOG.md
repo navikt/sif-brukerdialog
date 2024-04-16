@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 8.20.1
+
+### Patch Changes
+
+- 09607be: Støtte flere språk i OpptjeningUtland
+
 ## 8.20.0
 
 ### Minor Changes

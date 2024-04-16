@@ -1,5 +1,12 @@
 # @navikt/omsorgspengesoknad
 
+## 1.25.8
+
+### Patch Changes
+
+- Updated dependencies [09607be]
+  - @navikt/sif-common-forms-ds@8.20.1
+
 ## 1.25.7
 
 ### Patch Changes

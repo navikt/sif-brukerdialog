@@ -1,5 +1,12 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.26.8
+
+### Patch Changes
+
+- Updated dependencies [09607be]
+  - @navikt/sif-common-forms-ds@8.20.1
+
 ## 2.26.7
 
 ### Patch Changes

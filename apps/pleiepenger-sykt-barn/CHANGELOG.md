@@ -1,5 +1,13 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.8.8
+
+### Patch Changes
+
+- 09607be: Støtte flere språk i OpptjeningUtland
+- Updated dependencies [09607be]
+  - @navikt/sif-common-forms-ds@8.20.1
+
 ## 3.8.7
 
 ### Patch Changes
