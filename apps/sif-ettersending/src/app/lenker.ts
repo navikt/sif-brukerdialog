@@ -9,6 +9,7 @@ interface Lenker {
     saksbehandlingstider: string;
     dittNAV: string;
     INNSYN_PP: string;
+    pleiepengerSyktBarn: string;
 }
 
 const LenkerBokmål: Lenker = {
@@ -22,6 +23,7 @@ const LenkerBokmål: Lenker = {
     saksbehandlingstider: 'https://www.nav.no/no/NAV+og+samfunn/Om+NAV/Saksbehandlingstider+i+NAV',
     dittNAV: getEnvironmentVariable('DITT_NAV_URL'),
     INNSYN_PP: getEnvironmentVariable('INNSYN_PP'),
+    pleiepengerSyktBarn: getEnvironmentVariable('PLEIEPENGER_SYKT_BARN_URL'),
 };
 
 const LenkerNynorsk: Partial<Lenker> = {
