@@ -161,7 +161,7 @@ const FraværPeriodeForm = ({
                                 }
                             }}
                             minDate={minDate}
-                            maxDate={toDate || maxDate}
+                            maxDate={maxDate}
                             disableWeekends={helgedagerIkkeTillat || false}
                             disabledDateRanges={disabledDateRanges}
                             fromInputProps={{
