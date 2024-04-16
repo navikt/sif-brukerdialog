@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 9.15.23
+
+### Patch Changes
+
+- ef7a531: Endre import av fnrvalidator
+
 ## 9.15.22
 
 ### Patch Changes
