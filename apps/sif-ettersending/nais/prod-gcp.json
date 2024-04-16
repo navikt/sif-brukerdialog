@@ -17,6 +17,7 @@
         "NPM_CONFIG_CACHE": "/tmp",
         "NYNORSK": "off",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/ettersending",
+        "PLEIEPENGER_SYKT_BARN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/pleiepenger",
         "USE_AMPLITUDE": "true",
         "VEDLEGG_API_URL": "https://k9-brukerdialog-api"
     },

@@ -16,6 +16,7 @@ import RegistrertBarnPart from './RegistrertBarnPart';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import AnnetBarnPart from './AnnetBarnPart';
 import { RegistrertBarn } from '../../types/RegistrertBarn';
+import getLenker from '../../lenker';
 
 interface Props {
     søknadstype: Søknadstype;
@@ -37,6 +38,8 @@ const BeskrivelsePPStep: React.FC<Props> = ({ søknadstype, søkersFødselsnumme
             setFieldValue(SoknadFormField.legeerklæringGjelderEtAnnetBarn, true);
         }
     }, [harRegistrerteBarn, legeerklæringGjelderEtAnnetBarn, setFieldValue]);
+
+    console.log('get lenker', getLenker().pleiepengerSyktBarn);
 
     return (
         <SoknadFormStep id={StepID.BESKRIVELSE_PP} søknadstype={søknadstype}>
@@ -89,7 +92,10 @@ const BeskrivelsePPStep: React.FC<Props> = ({ søknadstype, søkersFødselsnumme
                                     id="step.beskrivelse_pp.barn.info.1.1"
                                     values={{
                                         ppSyktBarnLenke: (
-                                            <Link target="_blank" rel="noopener noreferrer" href={'TODO'}>
+                                            <Link
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                href={getLenker().pleiepengerSyktBarn}>
                                                 <FormattedMessage id="step.beskrivelse_pp.barn.info.lenke" />
                                             </Link>
                                         ),
