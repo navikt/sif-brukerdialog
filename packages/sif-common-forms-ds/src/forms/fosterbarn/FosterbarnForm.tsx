@@ -98,7 +98,9 @@ const FosterbarnForm = ({
                                 label={txt.form_fødselsnummer_label}
                                 validate={getFødselsnummerValidator({
                                     required: true,
-                                    disallowedValues: disallowedFødselsnumre,
+                                    disallowedValues: disallowedFødselsnumre?.filter(
+                                        (f) => f !== initialValues.fødselsnummer,
+                                    ),
                                 })}
                                 inputMode="numeric"
                                 maxLength={11}
