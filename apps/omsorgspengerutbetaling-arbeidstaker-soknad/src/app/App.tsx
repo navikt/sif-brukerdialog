@@ -1,15 +1,12 @@
 import { createRoot } from 'react-dom/client';
 import { Navigate, Route } from 'react-router-dom';
-import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
-import SifAppWrapper from '@navikt/sif-common-core-ds/src/components/sif-app-wrapper/SifAppWrapper';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { OmsorgspengerutbetalingArbeidstakerApp } from '@navikt/sif-app-register';
 import {
     ensureBaseNameForReactRouter,
-    SoknadApplication,
     SoknadApplicationCommonRoutes,
+    SoknadApplicationEnkel,
 } from '@navikt/sif-common-soknad-ds';
-import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
 import { applicationIntlMessages } from './i18n';
 import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
@@ -25,35 +22,26 @@ const publicPath = getEnvironmentVariable('PUBLIC_PATH');
 ensureBaseNameForReactRouter(publicPath);
 
 const App = () => (
-    <SifAppWrapper>
-        <ErrorBoundary>
-            <AmplitudeProvider
-                applicationKey={OmsorgspengerutbetalingArbeidstakerApp.key}
-                isActive={getEnvironmentVariable('USE_AMPLITUDE') === 'true'}>
-                <SoknadApplication
-                    appName={OmsorgspengerutbetalingArbeidstakerApp.navn}
-                    intlMessages={applicationIntlMessages}
-                    sentryKey={OmsorgspengerutbetalingArbeidstakerApp.key}
-                    appStatus={{
-                        applicationKey: OmsorgspengerutbetalingArbeidstakerApp.key,
-                        sanityConfig: {
-                            projectId: getEnvironmentVariable('APPSTATUS_PROJECT_ID'),
-                            dataset: getEnvironmentVariable('APPSTATUS_DATASET'),
-                        },
-                    }}
-                    publicPath={publicPath}>
-                    <SoknadApplicationCommonRoutes
-                        contentRoutes={[
-                            <Route index key="redirect" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
-                            <Route path={SøknadRoutes.INNLOGGET_ROOT} key="soknad" element={<Søknad />} />,
-                            <Route path={SøknadRoutes.IKKE_TILGANG} key="ikke-tilgang" element={<>Ikke tilgang</>} />,
-                            <Route path="*" key="ukjent" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
-                        ]}
-                    />
-                </SoknadApplication>
-            </AmplitudeProvider>
-        </ErrorBoundary>
-    </SifAppWrapper>
+    <SoknadApplicationEnkel
+        appKey={OmsorgspengerutbetalingArbeidstakerApp.key}
+        appName={OmsorgspengerutbetalingArbeidstakerApp.navn}
+        intlMessages={applicationIntlMessages}
+        appStatus={{
+            sanityConfig: {
+                projectId: getEnvironmentVariable('APPSTATUS_PROJECT_ID'),
+                dataset: getEnvironmentVariable('APPSTATUS_DATASET'),
+            },
+        }}
+        publicPath={publicPath}>
+        <SoknadApplicationCommonRoutes
+            contentRoutes={[
+                <Route index key="redirect" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
+                <Route path={SøknadRoutes.INNLOGGET_ROOT} key="soknad" element={<Søknad />} />,
+                <Route path={SøknadRoutes.IKKE_TILGANG} key="ikke-tilgang" element={<>Ikke tilgang</>} />,
+                <Route path="*" key="ukjent" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
+            ]}
+        />
+    </SoknadApplicationEnkel>
 );
 
 root.render(<App />);
