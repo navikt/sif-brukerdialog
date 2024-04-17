@@ -10,20 +10,19 @@ interface State {
     eventId: string | null;
     hasError: boolean;
     error: Error | null;
-    appKey: string | undefined;
 }
 
 class ErrorBoundary extends React.Component<any, State> {
     constructor(props: unknown) {
         super(props);
-        this.state = { eventId: null, hasError: false, error: null, appKey: undefined };
+        this.state = { eventId: null, hasError: false, error: null };
     }
 
     componentDidCatch(error: Error | null, errorInfo: any): void {
         if (error && error.message !== 'window.hasFocus is not a function') {
             this.setState({ ...this.state, hasError: true, error });
-            if (this.state.appKey) {
-                getSentryLoggerForApp(this.state.appKey, []).logError(error.message, errorInfo);
+            if (this.props.appKey) {
+                getSentryLoggerForApp(this.props.appKey, []).logError(error.message, errorInfo);
             }
         }
     }

@@ -30,18 +30,16 @@ interface Props {
     appKey: string;
     /** App name - not visual to user */
     appName: string;
+    /** Public path used in BrowserRouter */
+    publicPath: string;
     /** Locale messages */
     intlMessages: MessageFileFormat;
-    /** Key used in sentry logging for identifying the app in the logs */
-    sentryIgnoreErrors?: Array<string | RegExp>;
     /** Config for connecting to the appStatus sanity project */
     appStatus: {
         sanityConfig: SanityConfig;
     };
     /** The content */
     children: React.ReactNode;
-    /** Public path used in BrowserRouter */
-    publicPath: string;
 }
 
 const localeFromSessionStorage = getLocaleFromSessionStorage();
