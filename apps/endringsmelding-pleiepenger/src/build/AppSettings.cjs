@@ -19,7 +19,6 @@ const getAppSettings = (isCypress) => ({
     MINSIDE_URL: `${process.env.MINSIDE_URL}`,
     MSW: `${process.env.MSW}`,
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
-    USE_AMPLITUDE: `${process.env.USE_AMPLITUDE}`,
     CYPRESS_ENV: isCypress ? 'true' : false,
 });
 

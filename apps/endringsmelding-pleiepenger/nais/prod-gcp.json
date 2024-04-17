@@ -18,8 +18,7 @@
         "LOGIN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/melding",
         "MINSIDE_URL": "https://www.nav.no/minside",
         "NPM_CONFIG_CACHE": "/tmp",
-        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
-        "USE_AMPLITUDE": "true"
+        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger"
     },
     "externalHosts": ["www.nav.no"],
     "accessPolicyOutApps": ["k9-brukerdialog-api", "sif-innsyn-api"],

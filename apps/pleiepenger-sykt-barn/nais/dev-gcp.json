@@ -30,7 +30,6 @@
         "NPM_CONFIG_CACHE": "/tmp",
         "NYNORSK": "on",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/pleiepenger",
-        "USE_AMPLITUDE": "true",
         "UTILGJENGELIG": "off",
         "VEDLEGG_API_URL": "https://k9-brukerdialog-api"
     }

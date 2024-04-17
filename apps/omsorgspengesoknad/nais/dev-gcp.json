@@ -24,7 +24,6 @@
         "NPM_CONFIG_CACHE": "/tmp",
         "NYNORSK": "off",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgspenger",
-        "USE_AMPLITUDE": "true",
         "VEDLEGG_API_URL": "https://k9-brukerdialog-api"
     }
 }

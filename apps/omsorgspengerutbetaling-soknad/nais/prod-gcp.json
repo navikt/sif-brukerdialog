@@ -25,7 +25,6 @@
         "NODE_ENV": "production",
         "NYNORSK": "off",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling",
-        "USE_AMPLITUDE": "true",
         "VEDLEGG_API_URL": "https://k9-brukerdialog-api"
     }
 }

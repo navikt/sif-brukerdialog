@@ -13,7 +13,6 @@ const getAppSettings = () => ({
     MINSIDE_URL: `${process.env.MINSIDE_URL}`,
     NYNORSK: `${process.env.NYNORSK}`,
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
-    USE_AMPLITUDE: `${process.env.USE_AMPLITUDE}`,
     VEDLEGG_API_URL: `${process.env.VEDLEGG_API_URL}`,
 });
 

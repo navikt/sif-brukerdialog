@@ -30,7 +30,6 @@
         "NYNORSK": "off",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/pleiepenger",
         "TOGGLE_BEKREFT_OMSORG": "off",
-        "USE_AMPLITUDE": "true",
         "VEDLEGG_API_URL": "https://k9-brukerdialog-api"
     }
 }
