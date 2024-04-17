@@ -34,6 +34,8 @@ interface Props {
     publicPath: string;
     /** Locale messages */
     intlMessages: MessageFileFormat;
+    /** If amplitude logging is active or not - default true*/
+    useAmplitude?: boolean;
     /** Config for connecting to the appStatus sanity project */
     appStatus: {
         sanityConfig: SanityConfig;
@@ -45,7 +47,14 @@ interface Props {
 const localeFromSessionStorage = getLocaleFromSessionStorage();
 dayjs.locale(localeFromSessionStorage);
 
-const SoknadApplicationEnkel = ({ intlMessages, appStatus, publicPath, appKey, children }: Props) => {
+const SoknadApplicationEnkel = ({
+    intlMessages,
+    appStatus,
+    publicPath,
+    appKey,
+    useAmplitude = true,
+    children,
+}: Props) => {
     const [locale, setLocale] = React.useState<Locale>(localeFromSessionStorage);
     const localeMessages = intlMessages[locale] || intlMessages['nb'];
     const locales = Object.keys(intlMessages) as any;
@@ -58,7 +67,7 @@ const SoknadApplicationEnkel = ({ intlMessages, appStatus, publicPath, appKey, c
     return (
         <SifAppWrapper>
             <ErrorBoundary appKey={appKey}>
-                <AmplitudeProvider applicationKey={appKey} isActive={true}>
+                <AmplitudeProvider applicationKey={appKey} isActive={useAmplitude}>
                     <IntlProvider
                         locale={locale === 'nb' ? getBokmålLocale() : getNynorskLocale()}
                         messages={localeMessages}>
