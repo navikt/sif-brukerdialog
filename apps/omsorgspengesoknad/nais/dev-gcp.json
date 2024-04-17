@@ -22,7 +22,6 @@
         "LOGIN_URL": "https://omsorgspengesoknad.intern.dev.nav.no/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/omsorgspenger/soknad",
         "MINSIDE_URL": "https://www.intern.dev.nav.no/minside",
         "NPM_CONFIG_CACHE": "/tmp",
-        "NYNORSK": "off",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgspenger",
         "VEDLEGG_API_URL": "https://k9-brukerdialog-api"
     }

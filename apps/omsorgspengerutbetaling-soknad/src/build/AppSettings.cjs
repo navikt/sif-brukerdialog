@@ -11,7 +11,6 @@ const getAppSettings = () => ({
     IMAGE: `${process.env.IMAGE}`,
     LOGIN_URL: `${process.env.LOGIN_URL}`,
     MINSIDE_URL: `${process.env.MINSIDE_URL}`,
-    NYNORSK: `${process.env.NYNORSK}`,
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
     SKIP_ORGNUM_VALIDATION: `${process.env.SKIP_ORGNUM_VALIDATION}`,
     VEDLEGG_API_URL: `${process.env.VEDLEGG_API_URL}`,

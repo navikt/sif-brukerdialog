@@ -13,6 +13,7 @@ Samling av kode for søknadsdialoger under Sykdom i familien
 
 -   Kjør `yarn dev` for å starte bygg og watch på alt under packages.
 -   Gå til aktuell app og start nødvendige dev-script der.
+-   Kopier .env.example til .env i app-folder
 -   Dersom det gjøres større endringer i en package, kan det være en må kjøre `yarn build-package` manuelt for at applikasjonen skal få det med seg. I VS Code kan det være en må kjøre "reload windows".
 
 ## Utvikling, endringer og publisering
