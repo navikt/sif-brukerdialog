@@ -126,6 +126,4 @@ const getSentryLoggerForApp = (application: string, allowUrls: AllowUrlsType, ig
         logToSentry(message, severity, application, payload ? { info: payload } : undefined),
 });
 
-export type AppSentryLogger = ReturnType<typeof getSentryLoggerForApp>;
-
 export default getSentryLoggerForApp;
