@@ -5,7 +5,7 @@ import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/env
 import {
     ensureBaseNameForReactRouter,
     SoknadApplicationCommonRoutes,
-    SoknadApplicationEnkel,
+    SoknadApplication,
 } from '@navikt/sif-common-soknad-ds';
 import { applicationIntlMessages } from './i18n/messages';
 import GeneralErrorPage from './pages/general-error-page/GeneralErrorPage';
@@ -24,7 +24,7 @@ ensureBaseNameForReactRouter(publicPath);
 
 const App = () => {
     return (
-        <SoknadApplicationEnkel
+        <SoknadApplication
             appKey={EttersendelseApp.navn}
             appName={EttersendelseApp.navn}
             intlMessages={applicationIntlMessages}
@@ -44,7 +44,7 @@ const App = () => {
                     <Route path={'/'} key="intro" element={<IntroPage />} />,
                 ]}
             />
-        </SoknadApplicationEnkel>
+        </SoknadApplication>
     );
 };
 

@@ -5,7 +5,7 @@ import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import {
     SoknadApplicationCommonRoutes,
-    SoknadApplicationEnkel,
+    SoknadApplication,
     ensureBaseNameForReactRouter,
 } from '@navikt/sif-common-soknad-ds';
 import RouteConfig from './config/routeConfig';
@@ -33,7 +33,7 @@ const App = () => {
     };
 
     return (
-        <SoknadApplicationEnkel
+        <SoknadApplication
             appKey={PleiepengerSyktBarnApp.key}
             appName={PleiepengerSyktBarnApp.navn}
             appStatus={{ sanityConfig: sanityConfig }}
@@ -54,7 +54,7 @@ const App = () => {
                     <Route key="errorpage" path={RouteConfig.ERROR_PAGE_ROUTE} element={<GeneralErrorPage />} />,
                 ]}
             />
-        </SoknadApplicationEnkel>
+        </SoknadApplication>
     );
 };
 

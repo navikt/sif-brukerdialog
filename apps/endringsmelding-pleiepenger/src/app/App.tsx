@@ -2,7 +2,7 @@ import { createRoot } from 'react-dom/client';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
-import { ensureBaseNameForReactRouter, SoknadApplicationEnkel } from '@navikt/sif-common-soknad-ds';
+import { ensureBaseNameForReactRouter, SoknadApplication } from '@navikt/sif-common-soknad-ds';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import DevPage from './dev/DevPage';
@@ -37,7 +37,7 @@ function prepare() {
 }
 
 const App = () => (
-    <SoknadApplicationEnkel
+    <SoknadApplication
         appKey={EndringsmeldingPsbApp.key}
         appName={EndringsmeldingPsbApp.navn}
         intlMessages={applicationIntlMessages}
@@ -59,7 +59,7 @@ const App = () => (
             />
             <Route path={SøknadRoutes.INNLOGGET_ROOT} key="soknad" element={<Søknad />} />,
         </Routes>
-    </SoknadApplicationEnkel>
+    </SoknadApplication>
 );
 
 prepare().then(() => {
