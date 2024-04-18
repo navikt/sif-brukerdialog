@@ -4,10 +4,10 @@ import {
     bostedUtlandMessages,
     ferieuttakMessages,
     fosterbarnMessages,
+    fraværMessages,
     opptjeningUtlandMessages,
+    tidsperiodeMessages,
 } from '../../src';
-import { fraværMessages } from '../../src/forms/fravær/fraværMessages';
-import tidsperiodeMessages from '../../src/forms/tidsperiode/tidsperiodeMessages';
 import utenlandskNæringMessages from '../../src/forms/utenlandsk-næring/utenlandskNæringMessages';
 import utenlandsoppholdMessages from '../../src/forms/utenlandsopphold/utenlandsoppholdMessages';
 import virksomhetMessages from '../../src/forms/virksomhet/virksomhetMessages';
