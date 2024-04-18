@@ -9,7 +9,7 @@ const InfoTilFisker = ({ navnPåVirksomheten }: Props) => {
     return (
         <SifGuidePanel compact={true}>
             <p>
-                <FormattedMessage id="sifForms.virksomhet.veileder_fisker" values={{ navnPåVirksomheten }} />
+                <FormattedMessage id="@forms.virksomhet.veileder_fisker" values={{ navnPåVirksomheten }} />
             </p>
         </SifGuidePanel>
     );

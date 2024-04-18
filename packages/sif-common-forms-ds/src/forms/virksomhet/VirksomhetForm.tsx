@@ -32,6 +32,7 @@ import { date3YearsAgo, date4YearsAgo, date99YearsFromNow, dateToday, prettifyDa
 import { FormikProps } from 'formik';
 import { handleDateRangeValidationError } from '../../utils';
 import { isVirksomhet, Næringstype, Virksomhet, VirksomhetFormField, VirksomhetFormValues } from './types';
+import { useVirksomhetIntl } from './virksomhetMessages';
 import {
     cleanupVirksomhetFormValues,
     erFiskerNæringstype,
@@ -52,99 +53,101 @@ const MAKS_INNTEKT = 10000000;
 
 export const VirksomhetFormErrors = {
     [VirksomhetFormField.næringstype]: {
-        [ValidateRequiredFieldError.noValue]: 'virksomhetForm.næringstype.noValue',
+        [ValidateRequiredFieldError.noValue]: '@forms.virksomhetForm.næringstype.noValue',
     },
     [VirksomhetFormField.fiskerErPåBladB]: {
-        [ValidateYesOrNoError.yesOrNoIsUnanswered]: 'virksomhetForm.fiskerErPåBladB.yesOrNoIsUnanswered',
+        [ValidateYesOrNoError.yesOrNoIsUnanswered]: '@forms.virksomhetForm.fiskerErPåBladB.yesOrNoIsUnanswered',
     },
     [VirksomhetFormField.navnPåVirksomheten]: {
-        [ValidateStringError.stringHasNoValue]: 'virksomhetForm.navnPåVirksomheten.stringHasNoValue',
+        [ValidateStringError.stringHasNoValue]: '@forms.virksomhetForm.navnPåVirksomheten.stringHasNoValue',
         [ValidateStringError.stringContainsUnicodeChacters]:
-            'virksomhetForm.navnPåVirksomheten.stringContainsUnicodeChacters',
+            '@forms.virksomhetForm.navnPåVirksomheten.stringContainsUnicodeChacters',
     },
     [VirksomhetFormField.registrertINorge]: {
-        [ValidateYesOrNoError.yesOrNoIsUnanswered]: 'virksomhetForm.registrertINorge.yesOrNoIsUnanswered',
+        [ValidateYesOrNoError.yesOrNoIsUnanswered]: '@forms.virksomhetForm.registrertINorge.yesOrNoIsUnanswered',
     },
     [VirksomhetFormField.registrertILand]: {
-        [ValidateRequiredFieldError.noValue]: 'virksomhetForm.registrertILand.noValue',
+        [ValidateRequiredFieldError.noValue]: '@forms.virksomhetForm.registrertILand.noValue',
     },
     [VirksomhetFormField.organisasjonsnummer]: {
         [ValidateOrgNumberError.orgNumberHasInvalidFormat]:
-            'virksomhetForm.organisasjonsnummer.orgNumberHasInvalidFormat',
+            '@forms.virksomhetForm.organisasjonsnummer.orgNumberHasInvalidFormat',
     },
     [VirksomhetFormField.fom]: {
-        [ValidateDateError.dateHasNoValue]: 'virksomhetForm.fom.dateHasNoValue',
-        [ValidateDateError.dateIsAfterMax]: 'virksomhetForm.fom.dateIsAfterMax',
-        [ValidateDateError.dateHasInvalidFormat]: 'virksomhetForm.fom.dateHasInvalidFormat',
-        [ValidateDateRangeError.fromDateIsAfterToDate]: 'virksomhetForm.fom.fromDateIsAfterToDate',
+        [ValidateDateError.dateHasNoValue]: '@forms.virksomhetForm.fom.dateHasNoValue',
+        [ValidateDateError.dateIsAfterMax]: '@forms.virksomhetForm.fom.dateIsAfterMax',
+        [ValidateDateError.dateHasInvalidFormat]: '@forms.virksomhetForm.fom.dateHasInvalidFormat',
+        [ValidateDateRangeError.fromDateIsAfterToDate]: '@forms.virksomhetForm.fom.fromDateIsAfterToDate',
     },
     [VirksomhetFormField.tom]: {
-        [ValidateDateError.dateHasNoValue]: 'virksomhetForm.tom.dateHasNoValue',
-        [ValidateDateError.dateIsBeforeMin]: 'virksomhetForm.tom.dateIsBeforeMin',
-        [ValidateDateError.dateIsAfterMax]: 'virksomhetForm.tom.dateIsAfterMax',
-        [ValidateDateError.dateHasInvalidFormat]: 'virksomhetForm.tom.dateHasInvalidFormat',
-        [ValidateDateRangeError.toDateIsBeforeFromDate]: 'virksomhetForm.tom.toDateIsBeforeFromDate',
+        [ValidateDateError.dateHasNoValue]: '@forms.virksomhetForm.tom.dateHasNoValue',
+        [ValidateDateError.dateIsBeforeMin]: '@forms.virksomhetForm.tom.dateIsBeforeMin',
+        [ValidateDateError.dateIsAfterMax]: '@forms.virksomhetForm.tom.dateIsAfterMax',
+        [ValidateDateError.dateHasInvalidFormat]: '@forms.virksomhetForm.tom.dateHasInvalidFormat',
+        [ValidateDateRangeError.toDateIsBeforeFromDate]: '@forms.virksomhetForm.tom.toDateIsBeforeFromDate',
     },
     [VirksomhetFormField.næringsinntekt]: {
-        [ValidateNumberError.numberHasInvalidFormat]: 'virksomhetForm.næringsinntekt.numberHasInvalidFormat',
-        [ValidateNumberError.numberIsTooSmall]: 'virksomhetForm.næringsinntekt.numberIsTooSmall',
-        [ValidateNumberError.numberIsTooLarge]: 'virksomhetForm.næringsinntekt.numberIsTooLarge',
+        [ValidateNumberError.numberHasInvalidFormat]: '@forms.virksomhetForm.næringsinntekt.numberHasInvalidFormat',
+        [ValidateNumberError.numberIsTooSmall]: '@forms.virksomhetForm.næringsinntekt.numberIsTooSmall',
+        [ValidateNumberError.numberIsTooLarge]: '@forms.virksomhetForm.næringsinntekt.numberIsTooLarge',
     },
     [VirksomhetFormField.harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene]: {
         [ValidateYesOrNoError.yesOrNoIsUnanswered]:
-            'virksomhetForm.harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene.yesOrNoIsUnanswered',
+            '@forms.virksomhetForm.harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene.yesOrNoIsUnanswered',
     },
     [VirksomhetFormField.blittYrkesaktivDato]: {
-        [ValidateDateError.dateHasNoValue]: 'virksomhetForm.blittYrkesaktivDato.dateHasNoValue',
-        [ValidateDateError.dateHasInvalidFormat]: 'virksomhetForm.blittYrkesaktivDato.dateHasInvalidFormat',
-        [ValidateDateError.dateIsAfterMax]: 'virksomhetForm.blittYrkesaktivDato.dateIsAfterMax',
-        [ValidateDateError.dateIsBeforeMin]: 'virksomhetForm.blittYrkesaktivDato.dateIsBeforeMin',
+        [ValidateDateError.dateHasNoValue]: '@forms.virksomhetForm.blittYrkesaktivDato.dateHasNoValue',
+        [ValidateDateError.dateHasInvalidFormat]: '@forms.virksomhetForm.blittYrkesaktivDato.dateHasInvalidFormat',
+        [ValidateDateError.dateIsAfterMax]: '@forms.virksomhetForm.blittYrkesaktivDato.dateIsAfterMax',
+        [ValidateDateError.dateIsBeforeMin]: '@forms.virksomhetForm.blittYrkesaktivDato.dateIsBeforeMin',
     },
     [VirksomhetFormField.hattVarigEndringAvNæringsinntektSiste4Kalenderår]: {
         [ValidateYesOrNoError.yesOrNoIsUnanswered]:
-            'virksomhetForm.hattVarigEndringAvNæringsinntektSiste4Kalenderår.yesOrNoIsUnanswered',
+            '@forms.virksomhetForm.hattVarigEndringAvNæringsinntektSiste4Kalenderår.yesOrNoIsUnanswered',
     },
     [VirksomhetFormField.varigEndringINæringsinntekt_dato]: {
-        [ValidateDateError.dateHasNoValue]: 'virksomhetForm.varigEndringINæringsinntekt_dato.dateHasNoValue',
+        [ValidateDateError.dateHasNoValue]: '@forms.virksomhetForm.varigEndringINæringsinntekt_dato.dateHasNoValue',
         [ValidateDateError.dateHasInvalidFormat]:
-            'virksomhetForm.varigEndringINæringsinntekt_dato.dateHasInvalidFormat',
-        [ValidateDateError.dateIsAfterMax]: 'virksomhetForm.varigEndringINæringsinntekt_dato.dateIsAfterMax',
-        [ValidateDateError.dateIsBeforeMin]: 'virksomhetForm.varigEndringINæringsinntekt_dato.dateIsBeforeMin',
+            '@forms.virksomhetForm.varigEndringINæringsinntekt_dato.dateHasInvalidFormat',
+        [ValidateDateError.dateIsAfterMax]: '@forms.virksomhetForm.varigEndringINæringsinntekt_dato.dateIsAfterMax',
+        [ValidateDateError.dateIsBeforeMin]: '@forms.virksomhetForm.varigEndringINæringsinntekt_dato.dateIsBeforeMin',
     },
     [VirksomhetFormField.varigEndringINæringsinntekt_inntektEtterEndring]: {
         [ValidateNumberError.numberHasNoValue]:
-            'virksomhetForm.varigEndringINæringsinntekt_inntektEtterEndring.numberHasNoValue',
+            '@forms.virksomhetForm.varigEndringINæringsinntekt_inntektEtterEndring.numberHasNoValue',
         [ValidateNumberError.numberHasInvalidFormat]:
-            'virksomhetForm.varigEndringINæringsinntekt_inntektEtterEndring.numberHasInvalidFormat',
+            '@forms.virksomhetForm.varigEndringINæringsinntekt_inntektEtterEndring.numberHasInvalidFormat',
         [ValidateNumberError.numberIsTooLarge]:
-            'virksomhetForm.varigEndringINæringsinntekt_inntektEtterEndring.numberIsTooLarge',
+            '@forms.virksomhetForm.varigEndringINæringsinntekt_inntektEtterEndring.numberIsTooLarge',
         [ValidateNumberError.numberIsTooSmall]:
-            'virksomhetForm.varigEndringINæringsinntekt_inntektEtterEndring.numberIsTooSmall',
+            '@forms.virksomhetForm.varigEndringINæringsinntekt_inntektEtterEndring.numberIsTooSmall',
     },
     [VirksomhetFormField.varigEndringINæringsinntekt_forklaring]: {
         [ValidateStringError.stringHasNoValue]:
-            'virksomhetForm.varigEndringINæringsinntekt_forklaring.stringHasNoValue',
-        [ValidateStringError.stringIsTooLong]: 'virksomhetForm.varigEndringINæringsinntekt_forklaring.stringIsTooLong',
+            '@forms.virksomhetForm.varigEndringINæringsinntekt_forklaring.stringHasNoValue',
+        [ValidateStringError.stringIsTooLong]:
+            '@forms.virksomhetForm.varigEndringINæringsinntekt_forklaring.stringIsTooLong',
         [ValidateStringError.stringIsTooShort]:
-            'virksomhetForm.varigEndringINæringsinntekt_forklaring.stringIsTooShort',
+            '@forms.virksomhetForm.varigEndringINæringsinntekt_forklaring.stringIsTooShort',
     },
     [VirksomhetFormField.harRegnskapsfører]: {
-        [ValidateYesOrNoError.yesOrNoIsUnanswered]: 'virksomhetForm.harRegnskapsfører.yesOrNoIsUnanswered',
+        [ValidateYesOrNoError.yesOrNoIsUnanswered]: '@forms.virksomhetForm.harRegnskapsfører.yesOrNoIsUnanswered',
     },
     [VirksomhetFormField.regnskapsfører_navn]: {
-        [ValidateStringError.stringHasNoValue]: 'virksomhetForm.regnskapsfører_navn.stringHasNoValue',
-        [ValidateStringError.stringIsTooLong]: 'virksomhetForm.regnskapsfører_navn.stringIsTooLong',
-        [ValidateStringError.stringIsTooShort]: 'virksomhetForm.regnskapsfører_navn.stringIsTooShort',
+        [ValidateStringError.stringHasNoValue]: '@forms.virksomhetForm.regnskapsfører_navn.stringHasNoValue',
+        [ValidateStringError.stringIsTooLong]: '@forms.virksomhetForm.regnskapsfører_navn.stringIsTooLong',
+        [ValidateStringError.stringIsTooShort]: '@forms.virksomhetForm.regnskapsfører_navn.stringIsTooShort',
         [ValidateStringError.stringContainsUnicodeChacters]:
-            'virksomhetForm.regnskapsfører_navn.stringContainsUnicodeChacters',
+            '@forms.virksomhetForm.regnskapsfører_navn.stringContainsUnicodeChacters',
     },
     [VirksomhetFormField.regnskapsfører_telefon]: {
-        [ValidateStringError.stringHasNoValue]: 'virksomhetForm.regnskapsfører_telefon.stringHasNoValue',
-        [ValidateStringError.stringIsTooLong]: 'virksomhetForm.regnskapsfører_telefon.stringIsTooLong',
-        [ValidateStringError.stringIsTooShort]: 'virksomhetForm.regnskapsfører_telefon.stringIsTooShort',
+        [ValidateStringError.stringHasNoValue]: '@forms.virksomhetForm.regnskapsfører_telefon.stringHasNoValue',
+        [ValidateStringError.stringIsTooLong]: '@forms.virksomhetForm.regnskapsfører_telefon.stringIsTooLong',
+        [ValidateStringError.stringIsTooShort]: '@forms.virksomhetForm.regnskapsfører_telefon.stringIsTooShort',
         [ValidateStringError.stringContainsUnicodeChacters]:
-            'virksomhetForm.regnskapsfører_telefon.stringContainsUnicodeChacters',
-        [ValidateStringError.stringHasInvalidFormat]: 'virksomhetForm.regnskapsfører_telefon.stringHasInvalidFormat',
+            '@forms.virksomhetForm.regnskapsfører_telefon.stringContainsUnicodeChacters',
+        [ValidateStringError.stringHasInvalidFormat]:
+            '@forms.virksomhetForm.regnskapsfører_telefon.stringHasInvalidFormat',
     },
 };
 
@@ -164,7 +167,7 @@ const ensureValidNæringsinntekt = (values: VirksomhetFormValues): number | unde
 
 const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, skipOrgNumValidation }: Props) => {
     const intl = useIntl();
-    const getText = (key: string, value?: any): string => intlHelper(intl, `${key}`, value);
+    const { text } = useVirksomhetIntl();
 
     const onFormikSubmit = (values: VirksomhetFormValues) => {
         const virksomhetToSubmit = mapFormValuesToVirksomhet(values, virksomhet?.id);
@@ -191,29 +194,29 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                     <Form.Form
                         includeValidationSummary={true}
                         onCancel={onCancel}
-                        formErrorHandler={getFormErrorHandler(intl, 'virksomhetForm')}
+                        formErrorHandler={getFormErrorHandler(intl, '@forms.virksomhetForm')}
                         submitButtonLabel="Ok"
                         showButtonArrows={false}
                         cleanup={cleanupVirksomhetFormValues}>
                         <Form.RadioGroup
                             name={VirksomhetFormField.næringstype}
-                            legend={getText('sifForms.virksomhet.hvilken_type_virksomhet')}
+                            legend={text('@forms.virksomhet.hvilken_type_virksomhet')}
                             radios={[
                                 {
                                     value: Næringstype.FISKE,
-                                    label: getText(`sifForms.virksomhet.næringstype_${Næringstype.FISKE}`),
+                                    label: text(`@forms.virksomhet.næringstype_${Næringstype.FISKE}`),
                                 },
                                 {
                                     value: Næringstype.JORDBRUK_SKOGBRUK,
-                                    label: getText(`sifForms.virksomhet.næringstype_${Næringstype.JORDBRUK_SKOGBRUK}`),
+                                    label: text(`@forms.virksomhet.næringstype_${Næringstype.JORDBRUK_SKOGBRUK}`),
                                 },
                                 {
                                     value: Næringstype.DAGMAMMA,
-                                    label: getText(`sifForms.virksomhet.næringstype_${Næringstype.DAGMAMMA}`),
+                                    label: text(`@forms.virksomhet.næringstype_${Næringstype.DAGMAMMA}`),
                                 },
                                 {
                                     value: Næringstype.ANNEN,
-                                    label: getText(`sifForms.virksomhet.næringstype_${Næringstype.ANNEN}`),
+                                    label: text(`@forms.virksomhet.næringstype_${Næringstype.ANNEN}`),
                                 },
                             ]}
                             validate={getRequiredFieldValidator()}
@@ -223,7 +226,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                             <Block margin="xl">
                                 <Form.YesOrNoQuestion
                                     name={VirksomhetFormField.fiskerErPåBladB}
-                                    legend={getText('sifForms.virksomhet.fisker_blad_b')}
+                                    legend={text('@forms.virksomhet.fisker_blad_b')}
                                     validate={getYesOrNoValidator()}
                                 />
                             </Block>
@@ -232,7 +235,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                         <Block margin="xl">
                             <Form.TextField
                                 name={VirksomhetFormField.navnPåVirksomheten}
-                                label={getText('sifForms.virksomhet.hva_heter_virksomheten')}
+                                label={text('@forms.virksomhet.hva_heter_virksomheten')}
                                 validate={getStringValidator({ required: true, disallowUnicodeCharacters: true })}
                                 maxLength={50}
                             />
@@ -241,14 +244,14 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                         <Block margin="xl">
                             <Form.YesOrNoQuestion
                                 name={VirksomhetFormField.registrertINorge}
-                                legend={getText('sifForms.virksomhet.registert_i_norge', { navnPåVirksomheten })}
+                                legend={text('@forms.virksomhet.registert_i_norge', { navnPåVirksomheten })}
                                 validate={getYesOrNoValidator()}
                                 description={
                                     erFiskerNæringstype(næringstype) ? (
                                         <ExpandableInfo
-                                            title={intlHelper(intl, 'sifForms.virksomhet.veileder_fisker.tittel')}>
+                                            title={intlHelper(intl, '@forms.virksomhet.veileder_fisker.tittel')}>
                                             <FormattedMessage
-                                                id="sifForms.virksomhet.veileder_fisker"
+                                                id="@forms.virksomhet.veileder_fisker"
                                                 values={{ navnPåVirksomheten }}
                                             />
                                         </ExpandableInfo>
@@ -261,7 +264,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                             <Block margin="xl">
                                 <Form.CountrySelect
                                     name={VirksomhetFormField.registrertILand}
-                                    label={getText('sifForms.virksomhet.registert_i_hvilket_land', {
+                                    label={text('@forms.virksomhet.registert_i_hvilket_land', {
                                         navnPåVirksomheten,
                                     })}
                                     validate={getRequiredFieldValidator()}
@@ -274,7 +277,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                             <Block margin="xl">
                                 <Form.TextField
                                     name={VirksomhetFormField.organisasjonsnummer}
-                                    label={getText('sifForms.virksomhet.organisasjonsnummer')}
+                                    label={text('@forms.virksomhet.organisasjonsnummer')}
                                     style={{ maxWidth: '10rem' }}
                                     maxLength={9}
                                     validate={
@@ -287,12 +290,12 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                         {(values.registrertINorge === YesOrNo.YES || values.registrertINorge === YesOrNo.NO) && (
                             <Block margin="xl">
                                 <Form.DateRangePicker
-                                    legend={getText('sifForms.virksomhet.startdato', { navnPåVirksomheten })}
+                                    legend={text('@forms.virksomhet.startdato', { navnPåVirksomheten })}
                                     dropdownCaption={true}
                                     maxDate={dateToday}
                                     minDate={date99YearsFromNow}
                                     fromInputProps={{
-                                        label: getText('sifForms.virksomhet.kalender_fom'),
+                                        label: text('@forms.virksomhet.kalender_fom'),
                                         name: VirksomhetFormField.fom,
                                         validate: (value) => {
                                             const error = getDateRangeValidator({
@@ -310,7 +313,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                         },
                                     }}
                                     toInputProps={{
-                                        label: getText('sifForms.virksomhet.kalender_tom'),
+                                        label: text('@forms.virksomhet.kalender_tom'),
                                         name: VirksomhetFormField.tom,
                                         // disabled: values.erPågående === true,
                                         validate:
@@ -331,7 +334,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                     }}
                                 />
                                 <Form.Checkbox
-                                    label={getText('sifForms.virksomhet.kalender_pågående')}
+                                    label={text('@forms.virksomhet.kalender_pågående')}
                                     name={VirksomhetFormField.erPågående}
                                     afterOnChange={(checked) => {
                                         if (checked) {
@@ -349,26 +352,20 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                         {erVirksomhetRegnetSomNyoppstartet(fomDate) ? (
                                             <>
                                                 <Heading level="3" size="small">
-                                                    {getText(
-                                                        'sifForms.virksomhet.nyoppstartet.næringsinntektFlere.header',
-                                                    )}
+                                                    {text('@forms.virksomhet.nyoppstartet.næringsinntektFlere.header')}
                                                 </Heading>
-                                                <p>
-                                                    {getText(
-                                                        'sifForms.virksomhet.nyoppstartet.næringsinntektFlere.info',
-                                                    )}
-                                                </p>
+                                                <p>{text('@forms.virksomhet.nyoppstartet.næringsinntektFlere.info')}</p>
                                             </>
                                         ) : (
                                             <>
                                                 <Heading level="3" size="small">
-                                                    {getText(
-                                                        'sifForms.virksomhet.ikkeNyoppstartet.næringsinntektFlere.header',
+                                                    {text(
+                                                        '@forms.virksomhet.ikkeNyoppstartet.næringsinntektFlere.header',
                                                     )}
                                                 </Heading>
                                                 <p>
-                                                    {getText(
-                                                        'sifForms.virksomhet.ikkeNyoppstartet.næringsinntektFlere.info',
+                                                    {text(
+                                                        '@forms.virksomhet.ikkeNyoppstartet.næringsinntektFlere.info',
                                                     )}
                                                 </p>
                                             </>
@@ -384,10 +381,8 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                 name={VirksomhetFormField.næringsinntekt}
                                                 label={
                                                     harFlereVirksomheter
-                                                        ? getText(
-                                                              'sifForms.virksomhet.næringsinntekt.flereVirksomheter.spm',
-                                                          )
-                                                        : getText('sifForms.virksomhet.næringsinntekt.enVirksomhet.spm')
+                                                        ? text('@forms.virksomhet.næringsinntekt.flereVirksomheter.spm')
+                                                        : text('@forms.virksomhet.næringsinntekt.enVirksomhet.spm')
                                                 }
                                                 maxLength={10}
                                                 style={{ maxWidth: '10rem' }}
@@ -412,22 +407,22 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                 description={
                                                     <>
                                                         {harFlereVirksomheter
-                                                            ? getText(
-                                                                  'sifForms.virksomhet.næringsinntekt.flereVirksomheter.spm.description',
+                                                            ? text(
+                                                                  '@forms.virksomhet.næringsinntekt.flereVirksomheter.spm.description',
                                                               )
-                                                            : getText(
-                                                                  'sifForms.virksomhet.næringsinntekt.enVirksomhet.spm.description',
+                                                            : text(
+                                                                  '@forms.virksomhet.næringsinntekt.enVirksomhet.spm.description',
                                                               )}
                                                         <ExpandableInfo
-                                                            title={getText(
-                                                                'sifForms.virksomhet.hvaErNæringsresultat.title',
+                                                            title={text(
+                                                                '@forms.virksomhet.hvaErNæringsresultat.title',
                                                             )}>
                                                             {harFlereVirksomheter
-                                                                ? getText(
-                                                                      'sifForms.virksomhet.hvaErNæringsresultat.flereVirksomheter.text',
+                                                                ? text(
+                                                                      '@forms.virksomhet.hvaErNæringsresultat.flereVirksomheter.text',
                                                                   )
-                                                                : getText(
-                                                                      'sifForms.virksomhet.hvaErNæringsresultat.enVirksomhet.text',
+                                                                : text(
+                                                                      '@forms.virksomhet.hvaErNæringsresultat.enVirksomhet.text',
                                                                   )}
                                                         </ExpandableInfo>
                                                     </>
@@ -439,14 +434,14 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                 name={
                                                     VirksomhetFormField.harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene
                                                 }
-                                                legend={getText('sifForms.virksomhet.har_blitt_yrkesaktiv')}
+                                                legend={text('@forms.virksomhet.har_blitt_yrkesaktiv')}
                                                 validate={getYesOrNoValidator()}
                                                 description={
                                                     <ExpandableInfo
-                                                        title={getText(
-                                                            'sifForms.virksomhet.har_blitt_yrkesaktiv_info_title',
+                                                        title={text(
+                                                            '@forms.virksomhet.har_blitt_yrkesaktiv_info_title',
                                                         )}>
-                                                        {getText('sifForms.virksomhet.har_blitt_yrkesaktiv_info')}
+                                                        {text('@forms.virksomhet.har_blitt_yrkesaktiv_info')}
                                                     </ExpandableInfo>
                                                 }
                                             />
@@ -456,7 +451,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                             <FormBlock margin="m">
                                                 <Form.DatePicker
                                                     name={VirksomhetFormField.blittYrkesaktivDato}
-                                                    label={getText('sifForms.virksomhet.har_blitt_yrkesaktiv_dato')}
+                                                    label={text('@forms.virksomhet.har_blitt_yrkesaktiv_dato')}
                                                     dropdownCaption={true}
                                                     minDate={date3YearsAgo}
                                                     maxDate={dateToday}
@@ -479,7 +474,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                 name={
                                                     VirksomhetFormField.hattVarigEndringAvNæringsinntektSiste4Kalenderår
                                                 }
-                                                legend={getText('sifForms.virksomhet.varig_endring_spm')}
+                                                legend={text('@forms.virksomhet.varig_endring_spm')}
                                                 validate={getYesOrNoValidator()}
                                             />
                                         </Block>
@@ -488,7 +483,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                 <Block margin="xl">
                                                     <Form.DatePicker
                                                         name={VirksomhetFormField.varigEndringINæringsinntekt_dato}
-                                                        label={getText('sifForms.virksomhet.varig_endring_dato')}
+                                                        label={text('@forms.virksomhet.varig_endring_dato')}
                                                         validate={(value) => {
                                                             const error = getDateValidator({
                                                                 required: true,
@@ -515,7 +510,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                         name={
                                                             VirksomhetFormField.varigEndringINæringsinntekt_inntektEtterEndring
                                                         }
-                                                        label={getText('sifForms.virksomhet.varig_endring_inntekt')}
+                                                        label={text('@forms.virksomhet.varig_endring_inntekt')}
                                                         maxLength={10}
                                                         style={{ maxWidth: '10rem' }}
                                                         validate={(value) => {
@@ -543,7 +538,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                         name={
                                                             VirksomhetFormField.varigEndringINæringsinntekt_forklaring
                                                         }
-                                                        label={getText('sifForms.virksomhet.varig_endring_tekst')}
+                                                        label={text('@forms.virksomhet.varig_endring_tekst')}
                                                         maxLength={1000}
                                                         validate={(value) => {
                                                             const error = getStringValidator({
@@ -574,9 +569,9 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                         <Block margin="xl">
                                             <Form.YesOrNoQuestion
                                                 name={VirksomhetFormField.harRegnskapsfører}
-                                                legend={getText('sifForms.virksomhet.regnskapsfører_spm')}
+                                                legend={text('@forms.virksomhet.regnskapsfører_spm')}
                                                 validate={getYesOrNoValidator()}
-                                                description={getText('sifForms.virksomhet.regnskapsfører_telefon_info')}
+                                                description={text('@forms.virksomhet.regnskapsfører_telefon_info')}
                                             />
                                         </Block>
                                         {values.harRegnskapsfører === YesOrNo.YES && (
@@ -584,7 +579,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                 <Panel border={true}>
                                                     <Form.TextField
                                                         name={VirksomhetFormField.regnskapsfører_navn}
-                                                        label={getText('sifForms.virksomhet.regnskapsfører_navn')}
+                                                        label={text('@forms.virksomhet.regnskapsfører_navn')}
                                                         validate={(value) => {
                                                             const error = getStringValidator({
                                                                 required: true,
@@ -609,9 +604,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                     <Block margin="xl">
                                                         <Form.TextField
                                                             name={VirksomhetFormField.regnskapsfører_telefon}
-                                                            label={getText(
-                                                                'sifForms.virksomhet.regnskapsfører_telefon',
-                                                            )}
+                                                            label={text('@forms.virksomhet.regnskapsfører_telefon')}
                                                             validate={(value) => {
                                                                 const error = getStringValidator({
                                                                     required: true,
@@ -643,9 +636,9 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                 {values.harRegnskapsfører === YesOrNo.YES && (
                                     <Block margin="xl">
                                         <Alert variant="info">
-                                            {getText('sifForms.virksomhet.veileder_innhenter_info.1')}
+                                            {text('@forms.virksomhet.veileder_innhenter_info.1')}
                                             <br />
-                                            {getText('sifForms.virksomhet.veileder_innhenter_info.2')}
+                                            {text('@forms.virksomhet.veileder_innhenter_info.2')}
                                         </Alert>
                                     </Block>
                                 )}

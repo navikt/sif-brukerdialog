@@ -1,10 +1,14 @@
 import { commonMessages } from '@navikt/sif-common-core-ds/src/i18n/common.messages';
 import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
-import { bostedUtlandMessages, ferieuttakMessages, opptjeningUtlandMessages } from '@navikt/sif-common-forms-ds';
+import {
+    bostedUtlandMessages,
+    ferieuttakMessages,
+    opptjeningUtlandMessages,
+    virksomhetMessages,
+} from '@navikt/sif-common-forms-ds';
 import tidsperiodeMessages from '@navikt/sif-common-forms-ds/src/forms/tidsperiode/tidsperiodeMessages';
 import utenlandskNæringMessages from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring/utenlandskNæringMessages';
 import utenlandsoppholdMessages from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/utenlandsoppholdMessages';
-import virksomhetMessages from '@navikt/sif-common-forms-ds/src/forms/virksomhet/virksomhetMessages';
 import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
 import { sifCommonPleiepengerMessages } from '../local-sif-common-pleiepenger/i18n';
