@@ -21,7 +21,7 @@
         "NPM_CONFIG_CACHE": "/tmp",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
         "USE_AMPLITUDE": "true",
-        "TILLAT_SN": "false"
+        "TILLAT_SN": "true"
     },
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
     "accessPolicyOutApps": ["k9-brukerdialog-api", "sif-innsyn-api"],
