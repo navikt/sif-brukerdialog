@@ -2,9 +2,12 @@ import React from 'react';
 import { IntlProvider as Provider } from 'react-intl';
 import { commonMessages } from '@navikt/sif-common-core-ds/src/i18n/common.messages';
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
-import { bostedUtlandMessages, ferieuttakMessages, opptjeningUtlandMessages } from '@navikt/sif-common-forms-ds';
-
-import tidsperiodeMessages from '@navikt/sif-common-forms-ds/src/forms/tidsperiode/tidsperiodeMessages';
+import {
+    bostedUtlandMessages,
+    ferieuttakMessages,
+    opptjeningUtlandMessages,
+    tidsperiodeMessages,
+} from '@navikt/sif-common-forms-ds';
 import utenlandskNæringMessages from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring/utenlandskNæringMessages';
 import utenlandsoppholdMessages from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/utenlandsoppholdMessages';
 import virksomhetMessages from '@navikt/sif-common-forms-ds/src/forms/virksomhet/virksomhetMessages';
