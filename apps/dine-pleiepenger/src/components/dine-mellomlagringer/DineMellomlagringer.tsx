@@ -34,7 +34,7 @@ const DineMellomlagringer = ({ endring, søknad }: Props) => {
             <HGrid gap="1" columns={{ sm: 1, md: 2 }}>
                 {datoNårSøknadSlettes && (
                     <MellomlagringLinkPanel
-                        href={browserEnv.NEXT_PUBLIC_PLEIEPENGER_URL}
+                        href={browserEnv.NEXT_PUBLIC_SKJEMA_PLEIEPENGER_URL}
                         title={intlHelper(intl, 'påbegyntSøknad.info.title')}
                         description={intlHelper(intl, 'påbegyntSøknad.info', {
                             datoNårSlettes: datoNårSøknadSlettes,
@@ -43,7 +43,7 @@ const DineMellomlagringer = ({ endring, søknad }: Props) => {
                 )}
                 {datoNårEndringSlettes && (
                     <MellomlagringLinkPanel
-                        href={browserEnv.NEXT_PUBLIC_ENDRINGSDIALOG_URL}
+                        href={browserEnv.NEXT_PUBLIC_SKJEMA_ENDRINGSMELDING_URL}
                         title={intlHelper(intl, 'påbegyntEndring.info.title')}
                         description={intlHelper(intl, 'påbegyntEndring.info', {
                             datoNårSlettes: datoNårEndringSlettes,
