@@ -1,5 +1,14 @@
 # @navikt/sif-ettersending
 
+## 3.31.1
+
+### Patch Changes
+
+- 5ecde5a: Flytte lik logikk inn i felleskomponent SoknadApplication. Dette gjelder ErrorBoundry, AmplitudeProvider etc.
+- Updated dependencies [5ecde5a]
+  - @navikt/sif-common-soknad-ds@10.13.30
+  - @navikt/sif-common-core-ds@9.15.24
+
 ## 3.31.0
 
 ### Minor Changes

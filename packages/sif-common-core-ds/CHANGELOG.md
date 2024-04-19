@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 9.15.24
+
+### Patch Changes
+
+- 5ecde5a: Flytte lik logikk inn i felleskomponent SoknadApplication. Dette gjelder ErrorBoundry, AmplitudeProvider etc.
+
 ## 9.15.23
 
 ### Patch Changes
