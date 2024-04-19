@@ -19,8 +19,7 @@
         "MINSIDE_URL": "https://www.intern.dev.nav.no/minside",
         "MSW_MODE": "dev",
         "NPM_CONFIG_CACHE": "/tmp",
-        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
-        "USE_AMPLITUDE": "true"
+        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger"
     },
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
     "accessPolicyOutApps": ["k9-brukerdialog-api", "sif-innsyn-api"],

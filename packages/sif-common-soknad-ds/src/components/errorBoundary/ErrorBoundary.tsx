@@ -3,9 +3,8 @@ import React from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import getSentryLoggerForApp from '@navikt/sif-common-sentry';
 import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
-import appSentryLogger from '../../utils/appSentryLogger';
-import ResetMellomagringButton from '../reset-mellomlagring-button/ResetMellomlagringButton';
 
 interface State {
     eventId: string | null;
@@ -22,7 +21,9 @@ class ErrorBoundary extends React.Component<any, State> {
     componentDidCatch(error: Error | null, errorInfo: any): void {
         if (error && error.message !== 'window.hasFocus is not a function') {
             this.setState({ ...this.state, hasError: true, error });
-            appSentryLogger.logError(error.message, errorInfo);
+            if (this.props.appKey) {
+                getSentryLoggerForApp(this.props.appKey, []).logError(error.message, errorInfo);
+            }
         }
     }
 
@@ -38,7 +39,6 @@ class ErrorBoundary extends React.Component<any, State> {
                                 Det oppstod en feil
                             </Heading>
                             <p>Dersom feilen vedvarer, kan du prøve å starte på nytt.</p>
-                            <ResetMellomagringButton label="Start på nytt" />
                         </SifGuidePanel>
                     </Block>
                 </Page>

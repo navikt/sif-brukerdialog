@@ -15,11 +15,9 @@ const getAppSettings = (isCypress) => ({
     IMAGE: `${process.env.IMAGE}`,
     INNSYN_URL: `${process.env.INNSYN_URL}`,
     LOGIN_URL: `${process.env.LOGIN_URL}`,
-    MELLOMLAGRING: `${process.env.MELLOMLAGRING}`,
     MINSIDE_URL: `${process.env.MINSIDE_URL}`,
     MSW: `${process.env.MSW}`,
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
-    USE_AMPLITUDE: `${process.env.USE_AMPLITUDE}`,
     CYPRESS_ENV: isCypress ? 'true' : false,
 });
 

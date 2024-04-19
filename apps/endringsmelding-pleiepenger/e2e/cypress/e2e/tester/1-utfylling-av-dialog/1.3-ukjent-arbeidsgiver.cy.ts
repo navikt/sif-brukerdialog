@@ -16,12 +16,9 @@ window.appSettings={
     INNSYN_URL:'http://localhost:8080',
     DOMAIN_URL:'http://localhost:8080',
     LOGIN_URL:'http://localhost:8099/login?redirect_location=http://localhost:8099',
-    MELLOMLAGRING:'off',
     MSW:'off',
     PUBLIC_PATH:'/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger',
-    USE_AMPLITUDE:'true',
     CYPRESS_ENV:'true',
-    IMAGE:'ghcr.io/navikt/sif-brukerdialog/endringsmelding-pleiepenger-mono:825c85c3ef8c5a7ac4906dd4443620715a40a68a',
 };`;
 
 describe('Ukjent arbeidsgiver - jobber ikke', () => {

@@ -12,12 +12,9 @@ const getAppSettings = () => ({
     GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
     IMAGE: `${process.env.IMAGE}`,
     INNSYN_PP: `${process.env.INNSYN_PP}`,
-    LIVETS_SLUTTFASE: `${process.env.LIVETS_SLUTTFASE}`,
     LOGIN_URL: `${process.env.LOGIN_URL}`,
     MIN_SIDE_URL: `${process.env.MIN_SIDE_URL}`,
-    NYNORSK: `${process.env.NYNORSK}`,
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
-    USE_AMPLITUDE: `${process.env.USE_AMPLITUDE}`,
     VEDLEGG_API_URL: `${process.env.VEDLEGG_API_URL}`,
     PLEIEPENGER_SYKT_BARN_URL: `${process.env.PLEIEPENGER_SYKT_BARN_URL}`,
 });
