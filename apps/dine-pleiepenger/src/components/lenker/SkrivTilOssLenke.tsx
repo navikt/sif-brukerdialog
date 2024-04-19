@@ -8,7 +8,7 @@ interface Props {
 }
 
 const SkrivTilOssLenke: React.FunctionComponent<Props> = ({ tekst }) => (
-    <Link href={browserEnv.NEXT_PUBLIC_SKRIV_TIL_OSS}>
+    <Link href={browserEnv.NEXT_PUBLIC_SKRIV_TIL_OSS_URL}>
         {tekst} <ExternalLink className="ml-1" role="presentation" />
     </Link>
 );

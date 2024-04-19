@@ -34,10 +34,7 @@ const VenteårsakMelding: React.FunctionComponent<Props> = ({ venteårsak }) => 
                             />
                         </BodyLong>
                         <Box className="mt-4">
-                            <Button
-                                as={Link}
-                                variant="primary"
-                                href={browserEnv.NEXT_PUBLIC_ETTERSENDELSE_PLEIEPENGER_URL}>
+                            <Button as={Link} variant="primary" href={browserEnv.NEXT_PUBLIC_SKJEMA_ETTERSENDELSE_URL}>
                                 <Msg id="venteårsakMelding.legeerklæring.lastOppHer" />
                             </Button>
                         </Box>
