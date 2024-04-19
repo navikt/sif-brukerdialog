@@ -5,9 +5,9 @@ import {
     ferieuttakMessages,
     opptjeningUtlandMessages,
     tidsperiodeMessages,
+    utenlandskNæringMessages,
     virksomhetMessages,
 } from '@navikt/sif-common-forms-ds';
-import utenlandskNæringMessages from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring/utenlandskNæringMessages';
 import utenlandsoppholdMessages from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/utenlandsoppholdMessages';
 import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
