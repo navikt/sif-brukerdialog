@@ -7,10 +7,10 @@ import {
     fraværMessages,
     opptjeningUtlandMessages,
     tidsperiodeMessages,
+    utenlandskNæringMessages,
+    utenlandsoppholdMessages,
     virksomhetMessages,
 } from '../../src';
-import utenlandskNæringMessages from '../../src/forms/utenlandsk-næring/utenlandskNæringMessages';
-import utenlandsoppholdMessages from '../../src/forms/utenlandsopphold/utenlandsoppholdMessages';
 
 const bokmålstekster = {
     ...commonMessages.nb,

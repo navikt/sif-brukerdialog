@@ -4,9 +4,9 @@ import {
     bostedUtlandMessages,
     opptjeningUtlandMessages,
     utenlandskNæringMessages,
+    utenlandsoppholdMessages,
     virksomhetMessages,
 } from '@navikt/sif-common-forms-ds';
-import utenlandsoppholdMessages from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/utenlandsoppholdMessages';
 import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
 import { calendarGridMessages } from '../components/calendar-grid/calendarGridMessages';

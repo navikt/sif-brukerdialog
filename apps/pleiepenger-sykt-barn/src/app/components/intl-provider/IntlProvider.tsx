@@ -8,9 +8,9 @@ import {
     opptjeningUtlandMessages,
     tidsperiodeMessages,
     utenlandskNæringMessages,
+    utenlandsoppholdMessages,
     virksomhetMessages,
 } from '@navikt/sif-common-forms-ds';
-import utenlandsoppholdMessages from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/utenlandsoppholdMessages';
 import { uiMessages } from '@navikt/sif-common-ui';
 import omsorgstilbudMessages from '../../i18n/omsorgstilbudMessages';
 import { sifCommonPleiepengerMessages } from '../../local-sif-common-pleiepenger/i18n';
