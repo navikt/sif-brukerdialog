@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 1.0.5
+
+### Patch Changes
+
+- 268c26e: Korrigere lenke til pleiepengesøknad. Bruke bedre navn på ENV variabler
+
 ## 1.0.4
 
 ### Patch Changes
