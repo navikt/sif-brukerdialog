@@ -1,22 +1,20 @@
 import React from 'react';
-import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { DatoSvar, JaNeiSvar, Sitat, SummaryBlock, TallSvar, TextareaSvar } from '@navikt/sif-common-ui';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { DatoSvar, JaNeiSvar, Sitat, SummaryBlock, TallSvar, TextareaSvar } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyApiDate } from '@navikt/sif-common-utils';
-// import DatoSvar, { prettifyApiDate } from '../../components/summary/DatoSvar';
-import IntlLabelValue from '../../components/summary/IntlLabelValue';
 import { Næringstype, VirksomhetApiData } from './types';
+import { useVirksomhetIntl, VirksomhetIntlShape } from './virksomhetMessages';
 import { erVirksomhetRegnetSomNyoppstartet } from './virksomhetUtils';
 
 interface Props {
     virksomhet: VirksomhetApiData;
 }
 
-const renderVirksomhetSummary = (virksomhet: VirksomhetApiData, intl: IntlShape) => {
+const renderVirksomhetSummary = (virksomhet: VirksomhetApiData, { text }: VirksomhetIntlShape) => {
     const land = virksomhet.registrertIUtlandet ? virksomhet.registrertIUtlandet.landnavn : 'Norge';
-    const næringstype = intlHelper(intl, `@forms.virksomhet.næringstype_${virksomhet.næringstype}`);
+    const næringstype = text(`@forms.virksomhet.næringstype_${virksomhet.næringstype}`);
 
     const fiskerinfo =
         virksomhet.næringstype === Næringstype.FISKE && virksomhet.fiskerErPåBladB !== undefined
@@ -26,17 +24,19 @@ const renderVirksomhetSummary = (virksomhet: VirksomhetApiData, intl: IntlShape)
             : undefined;
 
     const tidsinfo = virksomhet.tilOgMed
-        ? intlHelper(intl, '@forms.virksomhet.summary.tidsinfo.avsluttet', {
+        ? text('@forms.virksomhet.summary.tidsinfo.avsluttet', {
               fraOgMed: prettifyApiDate(virksomhet.fraOgMed),
               tilOgMed: prettifyApiDate(virksomhet.tilOgMed),
           })
-        : intlHelper(intl, '@forms.virksomhet.summary.tidsinfo.pågående', {
+        : text('@forms.virksomhet.summary.tidsinfo.pågående', {
               fraOgMed: prettifyApiDate(virksomhet.fraOgMed),
           });
 
     return (
         <SummaryBlock header={virksomhet.navnPåVirksomheten} margin="none">
-            <IntlLabelValue labelKey="@forms.virksomhet.summary.næringstype">{næringstype}. </IntlLabelValue>
+            <Block margin="m">
+                {text('@forms.virksomhet.summary.næringstype')}: {næringstype}.
+            </Block>
             {fiskerinfo && (
                 <div>
                     {fiskerinfo.erPåBladB === false ? (
@@ -63,16 +63,17 @@ const renderVirksomhetSummary = (virksomhet: VirksomhetApiData, intl: IntlShape)
 };
 
 const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet }) => {
-    const intl = useIntl();
+    const virksomhetIntl = useVirksomhetIntl();
+    const { text } = virksomhetIntl;
     const erRegnetSomNyoppstartet = erVirksomhetRegnetSomNyoppstartet(ISODateToDate(virksomhet.fraOgMed));
 
     return (
         <>
-            {renderVirksomhetSummary(virksomhet, intl)}
+            {renderVirksomhetSummary(virksomhet, virksomhetIntl)}
             <Block margin="m">
                 <ExpandableInfo title="Vis flere detaljer">
                     {virksomhet.næringsinntekt !== undefined && (
-                        <SummaryBlock header={intlHelper(intl, '@forms.virksomhet.næringsinntekt')}>
+                        <SummaryBlock header={text('@forms.virksomhet.næringsinntekt')}>
                             <FormattedMessage id="@forms.virksomhet.summary.næringsinntekst" />
                             {` `}
                             <TallSvar verdi={virksomhet.næringsinntekt} />
@@ -81,7 +82,7 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet }) => {
 
                     {erRegnetSomNyoppstartet === true && (
                         <>
-                            <SummaryBlock header={intlHelper(intl, '@forms.virksomhet.har_blitt_yrkesaktiv')}>
+                            <SummaryBlock header={text('@forms.virksomhet.har_blitt_yrkesaktiv')}>
                                 {virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene === undefined && (
                                     <JaNeiSvar
                                         harSvartJa={virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene !== undefined}
@@ -103,24 +104,19 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet }) => {
 
                     {erRegnetSomNyoppstartet === false && (
                         <>
-                            <SummaryBlock header={intlHelper(intl, '@forms.virksomhet.varig_endring_spm')}>
+                            <SummaryBlock header={text('@forms.virksomhet.varig_endring_spm')}>
                                 <JaNeiSvar harSvartJa={virksomhet.varigEndring !== undefined} />
                             </SummaryBlock>
                             {virksomhet.varigEndring && (
                                 <>
-                                    <SummaryBlock
-                                        header={intlHelper(intl, '@forms.virksomhet.summary.varigEndring.dato')}>
+                                    <SummaryBlock header={text('@forms.virksomhet.summary.varigEndring.dato')}>
                                         <DatoSvar isoDato={virksomhet.varigEndring.dato} />
                                     </SummaryBlock>
                                     <SummaryBlock
-                                        header={intlHelper(
-                                            intl,
-                                            '@forms.virksomhet.summary.varigEndring.næringsinntekt',
-                                        )}>
+                                        header={text('@forms.virksomhet.summary.varigEndring.næringsinntekt')}>
                                         <TallSvar verdi={virksomhet.varigEndring.inntektEtterEndring} />
                                     </SummaryBlock>
-                                    <SummaryBlock
-                                        header={intlHelper(intl, '@forms.virksomhet.summary.varigEndring.beskrivelse')}>
+                                    <SummaryBlock header={text('@forms.virksomhet.summary.varigEndring.beskrivelse')}>
                                         <Sitat>
                                             <TextareaSvar text={virksomhet.varigEndring.forklaring} />
                                         </Sitat>
@@ -132,7 +128,7 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet }) => {
 
                     {/* Regnskapsfører */}
                     {virksomhet.registrertINorge && (
-                        <SummaryBlock header={intlHelper(intl, '@forms.virksomhet.regnskapsfører_spm')}>
+                        <SummaryBlock header={text('@forms.virksomhet.regnskapsfører_spm')}>
                             {virksomhet.regnskapsfører === undefined && <JaNeiSvar harSvartJa={false} />}
                             {virksomhet.regnskapsfører !== undefined && (
                                 <FormattedMessage

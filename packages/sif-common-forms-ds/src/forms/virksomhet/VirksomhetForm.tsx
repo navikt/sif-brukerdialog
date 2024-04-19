@@ -3,7 +3,6 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import {
     getNumberFromNumberInputValue,
     getTypedFormComponents,
@@ -248,8 +247,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                 validate={getYesOrNoValidator()}
                                 description={
                                     erFiskerNæringstype(næringstype) ? (
-                                        <ExpandableInfo
-                                            title={intlHelper(intl, '@forms.virksomhet.veileder_fisker.tittel')}>
+                                        <ExpandableInfo title={text('@forms.virksomhet.veileder_fisker.tittel')}>
                                             <FormattedMessage
                                                 id="@forms.virksomhet.veileder_fisker"
                                                 values={{ navnPåVirksomheten }}

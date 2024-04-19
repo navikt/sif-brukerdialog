@@ -1,11 +1,11 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { ISODateToDate, prettifyApiDate } from '@navikt/sif-common-utils';
-import IntlLabelValue from '../../components/summary/IntlLabelValue';
-import { Næringstype, VirksomhetApiData } from './types';
-import { erVirksomhetRegnetSomNyoppstartet } from './virksomhetUtils';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { DatoSvar, JaNeiSvar, Sitat, SummaryBlock, TallSvar, TextareaSvar } from '@navikt/sif-common-ui';
-import { VirksomhetIntlShape, useVirksomhetIntl } from './virksomhetMessages';
+import { ISODateToDate, prettifyApiDate } from '@navikt/sif-common-utils';
+import { Næringstype, VirksomhetApiData } from './types';
+import { useVirksomhetIntl, VirksomhetIntlShape } from './virksomhetMessages';
+import { erVirksomhetRegnetSomNyoppstartet } from './virksomhetUtils';
 
 interface Props {
     virksomhet: VirksomhetApiData;
@@ -21,28 +21,33 @@ const getFiskerNæringTekst = ({ text }: VirksomhetIntlShape, erPåBladB: boolea
 };
 
 export const renderVirksomhetSummary = (virksomhet: VirksomhetApiData, intl: VirksomhetIntlShape) => {
+    const { text } = intl;
     const land = virksomhet.registrertIUtlandet ? virksomhet.registrertIUtlandet.landnavn : 'Norge';
 
     const næringstype =
         virksomhet.næringstype === Næringstype.FISKE && virksomhet.fiskerErPåBladB !== undefined
             ? getFiskerNæringTekst(intl, virksomhet.fiskerErPåBladB)
-            : intl.text(`@forms.virksomhet.næringstype_${virksomhet.næringstype}`);
+            : text(`@forms.virksomhet.næringstype_${virksomhet.næringstype}`);
 
     const tidsinfo = virksomhet.tilOgMed
-        ? intl.text('@forms.virksomhet.summary.tidsinfo.avsluttet', {
+        ? text('@forms.virksomhet.summary.tidsinfo.avsluttet', {
               fraOgMed: prettifyApiDate(virksomhet.fraOgMed),
               tilOgMed: prettifyApiDate(virksomhet.tilOgMed),
           })
-        : intl.text('@forms.virksomhet.summary.tidsinfo.pågående', {
+        : text('@forms.virksomhet.summary.tidsinfo.pågående', {
               fraOgMed: prettifyApiDate(virksomhet.fraOgMed),
           });
 
     return (
         <>
-            <IntlLabelValue labelKey="@forms.virksomhet.summary.navn">{virksomhet.navnPåVirksomheten}.</IntlLabelValue>
-            <IntlLabelValue labelKey="@forms.virksomhet.summary.næringstype">{næringstype}. </IntlLabelValue>
+            <Block margin="m">
+                {text('@forms.virksomhet.summary.navn')}: {virksomhet.navnPåVirksomheten}.
+            </Block>
+            <Block margin="m">
+                {text('@forms.virksomhet.summary.næringstype')}: {næringstype}.
+            </Block>
             <div>
-                {intl.text('@forms.virksomhet.summary.registrertILand', { land })}
+                {text('@forms.virksomhet.summary.registrertILand', { land })}
                 {virksomhet.registrertINorge && (
                     <FormattedMessage
                         id="@forms.virksomhet.summary.registrertILand.orgnr"

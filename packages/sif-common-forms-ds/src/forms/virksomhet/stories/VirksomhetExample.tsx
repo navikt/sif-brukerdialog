@@ -2,7 +2,6 @@ import { Checkbox, Heading, Panel, Tabs, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { TypedFormikForm, TypedFormikWrapper, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
@@ -14,7 +13,7 @@ import { mapVirksomhetToVirksomhetApiData } from '../mapVirksomhetToApiData';
 import { isVirksomhet, Næringstype, Virksomhet } from '../types';
 import { VirksomhetFormErrors } from '../VirksomhetForm';
 import VirksomhetInfoAndDialog from '../VirksomhetInfoAndDialog';
-import { virksomhetMessages } from '../virksomhetMessages';
+import { useVirksomhetIntl, virksomhetMessages } from '../virksomhetMessages';
 import VirksomhetSummary from '../VirksomhetSummary';
 
 enum FormField {
@@ -50,6 +49,7 @@ const initialValues: FormValues = {};
 
 const VirksomhetExample = () => {
     const intl = useIntl();
+    const { text } = useVirksomhetIntl();
     const [formValues, setFormValues] = useState<Partial<FormValues> | undefined>(undefined);
     const [harFlereVirksomheter, setHarFlereVirksomheter] = useState<boolean>(false);
 
@@ -58,8 +58,6 @@ const VirksomhetExample = () => {
     const apiVirksomhet =
         virksomhet && isVirksomhet(virksomhet) ? mapVirksomhetToVirksomhetApiData(intl.locale, virksomhet) : undefined;
 
-    // const [singleFormValues, setSingleFormValues] = useState<Partial<Virksomhet> | undefined>(undefined);
-    // const [listFormValues, setListFormValues] = useState<Partial<FormValues> | undefined>(undefined);
     return (
         <Tabs defaultValue="list">
             <VStack gap="4">
@@ -87,7 +85,7 @@ const VirksomhetExample = () => {
                                             deleteLabel: 'Fjern',
                                             editLabel: 'Endre',
                                             infoTitle: 'Virksomhet',
-                                            modalTitle: intlHelper(intl, '@forms.virksomhet.form_title'),
+                                            modalTitle: text('@forms.virksomhet.form_title'),
                                         }}
                                     />
                                 </TypedFormikForm>
