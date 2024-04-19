@@ -20,7 +20,7 @@ import {
     mapFormValuesToUtenlandskNæring,
     mapUtenlandskNæringToFormValues,
 } from './utenlandskNæringUtils';
-import { useUtenlandskNæringIntl } from './utenlandskNæringMessages';
+import { useUtenlandskNæringIntl, UtenlandskNæringMessageKeys } from './utenlandskNæringMessages';
 
 interface Props {
     utenlandskNæring?: UtenlandskNæring;
@@ -39,7 +39,7 @@ enum UtenlandskNæringFormField {
     erPågående = 'erPågående',
 }
 
-export const UtenlandskNæringFormErrors = {
+export const UtenlandskNæringFormErrors: Record<string, { [key: string]: UtenlandskNæringMessageKeys }> = {
     [UtenlandskNæringFormField.næringstype]: {
         [ValidateRequiredFieldError.noValue]: '@forms.utenlandskNæringForm.næringstype.noValue',
     },

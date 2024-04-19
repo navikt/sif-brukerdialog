@@ -10,7 +10,7 @@ import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/typ
 import { handleDateRangeValidationError, mapFomTomToDateRange } from '../../utils';
 import tidsperiodeUtils from './tidsperiodeUtils';
 import { DateTidsperiode, DateTidsperiodeFormValues } from './types';
-import { useTidsperiodeIntl } from './tidsperiodeMessages';
+import { TidsperiodeMessageKeys, useTidsperiodeIntl } from './tidsperiodeMessages';
 
 export interface TidsperiodeFormLabels {
     fromDate: string;
@@ -35,7 +35,7 @@ enum TidsperiodeFormFields {
     fom = 'fom',
 }
 
-export const TidsperiodeFormErrors = {
+export const TidsperiodeFormErrors: Record<TidsperiodeFormFields, { [key: string]: TidsperiodeMessageKeys }> = {
     [TidsperiodeFormFields.fom]: {
         [ValidateDateError.dateHasNoValue]: '@forms.tidsperiodeForm.fom.dateHasNoValue',
         [ValidateDateRangeError.fromDateIsAfterToDate]: '@forms.tidsperiodeForm.fom.fromDateIsAfterToDate',
