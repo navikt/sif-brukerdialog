@@ -7,7 +7,7 @@ import { opptjeningUtlandMessages } from '../forms/opptjening-utland/opptjeningU
 import { tidsperiodeMessages } from '../forms/tidsperiode/tidsperiodeMessages';
 import utenlandskNæringMessages from '../forms/utenlandsk-næring/utenlandskNæringMessages';
 import utenlandsoppholdMessages from '../forms/utenlandsopphold/utenlandsoppholdMessages';
-import virksomhetMessages from '../forms/virksomhet/virksomhetMessages';
+import { virksomhetMessages } from '../forms/virksomhet/virksomhetMessages';
 
 const nb = {
     ...annetBarnMessages.nb,

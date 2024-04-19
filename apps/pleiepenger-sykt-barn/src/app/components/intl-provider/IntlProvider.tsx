@@ -7,10 +7,10 @@ import {
     ferieuttakMessages,
     opptjeningUtlandMessages,
     tidsperiodeMessages,
+    virksomhetMessages,
 } from '@navikt/sif-common-forms-ds';
 import utenlandskNæringMessages from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring/utenlandskNæringMessages';
 import utenlandsoppholdMessages from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/utenlandsoppholdMessages';
-import virksomhetMessages from '@navikt/sif-common-forms-ds/src/forms/virksomhet/virksomhetMessages';
 import { uiMessages } from '@navikt/sif-common-ui';
 import omsorgstilbudMessages from '../../i18n/omsorgstilbudMessages';
 import { sifCommonPleiepengerMessages } from '../../local-sif-common-pleiepenger/i18n';

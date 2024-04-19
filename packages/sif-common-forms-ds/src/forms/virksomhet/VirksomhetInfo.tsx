@@ -16,7 +16,7 @@ interface Props {
 
 const renderVirksomhetSummary = (virksomhet: VirksomhetApiData, intl: IntlShape) => {
     const land = virksomhet.registrertIUtlandet ? virksomhet.registrertIUtlandet.landnavn : 'Norge';
-    const næringstype = intlHelper(intl, `sifForms.virksomhet.næringstype_${virksomhet.næringstype}`);
+    const næringstype = intlHelper(intl, `@forms.virksomhet.næringstype_${virksomhet.næringstype}`);
 
     const fiskerinfo =
         virksomhet.næringstype === Næringstype.FISKE && virksomhet.fiskerErPåBladB !== undefined
@@ -26,32 +26,32 @@ const renderVirksomhetSummary = (virksomhet: VirksomhetApiData, intl: IntlShape)
             : undefined;
 
     const tidsinfo = virksomhet.tilOgMed
-        ? intlHelper(intl, 'sifForms.virksomhet.summary.tidsinfo.avsluttet', {
+        ? intlHelper(intl, '@forms.virksomhet.summary.tidsinfo.avsluttet', {
               fraOgMed: prettifyApiDate(virksomhet.fraOgMed),
               tilOgMed: prettifyApiDate(virksomhet.tilOgMed),
           })
-        : intlHelper(intl, 'sifForms.virksomhet.summary.tidsinfo.pågående', {
+        : intlHelper(intl, '@forms.virksomhet.summary.tidsinfo.pågående', {
               fraOgMed: prettifyApiDate(virksomhet.fraOgMed),
           });
 
     return (
         <SummaryBlock header={virksomhet.navnPåVirksomheten} margin="none">
-            <IntlLabelValue labelKey="sifForms.virksomhet.summary.næringstype">{næringstype}. </IntlLabelValue>
+            <IntlLabelValue labelKey="@forms.virksomhet.summary.næringstype">{næringstype}. </IntlLabelValue>
             {fiskerinfo && (
                 <div>
                     {fiskerinfo.erPåBladB === false ? (
-                        <FormattedMessage id="sifForms.virksomhet.summary.fisker.ikkePåBladB" />
+                        <FormattedMessage id="@forms.virksomhet.summary.fisker.ikkePåBladB" />
                     ) : (
-                        <FormattedMessage id="sifForms.virksomhet.summary.fisker.påBladB" />
+                        <FormattedMessage id="@forms.virksomhet.summary.fisker.påBladB" />
                     )}
                 </div>
             )}
 
             <div>
-                <FormattedMessage id="sifForms.virksomhet.summary.registrertILand" values={{ land }} />
+                <FormattedMessage id="@forms.virksomhet.summary.registrertILand" values={{ land }} />
                 {virksomhet.registrertINorge && (
                     <FormattedMessage
-                        id="sifForms.virksomhet.summary.registrertILand.orgnr"
+                        id="@forms.virksomhet.summary.registrertILand.orgnr"
                         values={{ orgnr: virksomhet.organisasjonsnummer }}
                     />
                 )}
@@ -72,8 +72,8 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet }) => {
             <Block margin="m">
                 <ExpandableInfo title="Vis flere detaljer">
                     {virksomhet.næringsinntekt !== undefined && (
-                        <SummaryBlock header={intlHelper(intl, 'sifForms.virksomhet.næringsinntekt')}>
-                            <FormattedMessage id="sifForms.virksomhet.summary.næringsinntekst" />
+                        <SummaryBlock header={intlHelper(intl, '@forms.virksomhet.næringsinntekt')}>
+                            <FormattedMessage id="@forms.virksomhet.summary.næringsinntekst" />
                             {` `}
                             <TallSvar verdi={virksomhet.næringsinntekt} />
                         </SummaryBlock>
@@ -81,7 +81,7 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet }) => {
 
                     {erRegnetSomNyoppstartet === true && (
                         <>
-                            <SummaryBlock header={intlHelper(intl, 'sifForms.virksomhet.har_blitt_yrkesaktiv')}>
+                            <SummaryBlock header={intlHelper(intl, '@forms.virksomhet.har_blitt_yrkesaktiv')}>
                                 {virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene === undefined && (
                                     <JaNeiSvar
                                         harSvartJa={virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene !== undefined}
@@ -89,7 +89,7 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet }) => {
                                 )}
                                 {virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene !== undefined && (
                                     <FormattedMessage
-                                        id="sifForms.virksomhet.summary.yrkesaktiv.jaStartetDato"
+                                        id="@forms.virksomhet.summary.yrkesaktiv.jaStartetDato"
                                         values={{
                                             dato: prettifyApiDate(
                                                 virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene.oppstartsdato,
@@ -103,27 +103,24 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet }) => {
 
                     {erRegnetSomNyoppstartet === false && (
                         <>
-                            <SummaryBlock header={intlHelper(intl, 'sifForms.virksomhet.varig_endring_spm')}>
+                            <SummaryBlock header={intlHelper(intl, '@forms.virksomhet.varig_endring_spm')}>
                                 <JaNeiSvar harSvartJa={virksomhet.varigEndring !== undefined} />
                             </SummaryBlock>
                             {virksomhet.varigEndring && (
                                 <>
                                     <SummaryBlock
-                                        header={intlHelper(intl, 'sifForms.virksomhet.summary.varigEndring.dato')}>
+                                        header={intlHelper(intl, '@forms.virksomhet.summary.varigEndring.dato')}>
                                         <DatoSvar isoDato={virksomhet.varigEndring.dato} />
                                     </SummaryBlock>
                                     <SummaryBlock
                                         header={intlHelper(
                                             intl,
-                                            'sifForms.virksomhet.summary.varigEndring.næringsinntekt',
+                                            '@forms.virksomhet.summary.varigEndring.næringsinntekt',
                                         )}>
                                         <TallSvar verdi={virksomhet.varigEndring.inntektEtterEndring} />
                                     </SummaryBlock>
                                     <SummaryBlock
-                                        header={intlHelper(
-                                            intl,
-                                            'sifForms.virksomhet.summary.varigEndring.beskrivelse',
-                                        )}>
+                                        header={intlHelper(intl, '@forms.virksomhet.summary.varigEndring.beskrivelse')}>
                                         <Sitat>
                                             <TextareaSvar text={virksomhet.varigEndring.forklaring} />
                                         </Sitat>
@@ -135,11 +132,11 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet }) => {
 
                     {/* Regnskapsfører */}
                     {virksomhet.registrertINorge && (
-                        <SummaryBlock header={intlHelper(intl, 'sifForms.virksomhet.regnskapsfører_spm')}>
+                        <SummaryBlock header={intlHelper(intl, '@forms.virksomhet.regnskapsfører_spm')}>
                             {virksomhet.regnskapsfører === undefined && <JaNeiSvar harSvartJa={false} />}
                             {virksomhet.regnskapsfører !== undefined && (
                                 <FormattedMessage
-                                    id="sifForms.virksomhet.summary.regnskapsfører.info"
+                                    id="@forms.virksomhet.summary.regnskapsfører.info"
                                     values={{
                                         navn: virksomhet.regnskapsfører.navn,
                                         telefon: virksomhet.regnskapsfører.telefon,

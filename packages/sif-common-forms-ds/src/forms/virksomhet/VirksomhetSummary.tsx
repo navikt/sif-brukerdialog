@@ -1,53 +1,51 @@
 import React from 'react';
-import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { FormattedMessage } from 'react-intl';
 import { ISODateToDate, prettifyApiDate } from '@navikt/sif-common-utils';
 import IntlLabelValue from '../../components/summary/IntlLabelValue';
 import { Næringstype, VirksomhetApiData } from './types';
 import { erVirksomhetRegnetSomNyoppstartet } from './virksomhetUtils';
 import { DatoSvar, JaNeiSvar, Sitat, SummaryBlock, TallSvar, TextareaSvar } from '@navikt/sif-common-ui';
+import { VirksomhetIntlShape, useVirksomhetIntl } from './virksomhetMessages';
 
 interface Props {
     virksomhet: VirksomhetApiData;
     harFlereVirksomheter?: boolean;
 }
 
-const getFiskerNæringTekst = (intl: IntlShape, erPåBladB: boolean) => {
-    const næringstekst = intlHelper(intl, `sifForms.virksomhet.næringstype_${Næringstype.FISKE}`);
+const getFiskerNæringTekst = ({ text }: VirksomhetIntlShape, erPåBladB: boolean) => {
+    const næringstekst = text(`@forms.virksomhet.næringstype_${Næringstype.FISKE}`);
     const bladBTekst = erPåBladB
-        ? intlHelper(intl, 'sifForms.virksomhet.summary.fisker.påBladB')
-        : intlHelper(intl, 'sifForms.virksomhet.summary.fisker.ikkePåBladB');
+        ? text('@forms.virksomhet.summary.fisker.påBladB')
+        : text('@forms.virksomhet.summary.fisker.ikkePåBladB');
     return `${næringstekst} (${bladBTekst})`;
 };
 
-export const renderVirksomhetSummary = (virksomhet: VirksomhetApiData, intl: IntlShape) => {
+export const renderVirksomhetSummary = (virksomhet: VirksomhetApiData, intl: VirksomhetIntlShape) => {
     const land = virksomhet.registrertIUtlandet ? virksomhet.registrertIUtlandet.landnavn : 'Norge';
 
     const næringstype =
         virksomhet.næringstype === Næringstype.FISKE && virksomhet.fiskerErPåBladB !== undefined
             ? getFiskerNæringTekst(intl, virksomhet.fiskerErPåBladB)
-            : intlHelper(intl, `sifForms.virksomhet.næringstype_${virksomhet.næringstype}`);
+            : intl.text(`@forms.virksomhet.næringstype_${virksomhet.næringstype}`);
 
     const tidsinfo = virksomhet.tilOgMed
-        ? intlHelper(intl, 'sifForms.virksomhet.summary.tidsinfo.avsluttet', {
+        ? intl.text('@forms.virksomhet.summary.tidsinfo.avsluttet', {
               fraOgMed: prettifyApiDate(virksomhet.fraOgMed),
               tilOgMed: prettifyApiDate(virksomhet.tilOgMed),
           })
-        : intlHelper(intl, 'sifForms.virksomhet.summary.tidsinfo.pågående', {
+        : intl.text('@forms.virksomhet.summary.tidsinfo.pågående', {
               fraOgMed: prettifyApiDate(virksomhet.fraOgMed),
           });
 
     return (
         <>
-            <IntlLabelValue labelKey="sifForms.virksomhet.summary.navn">
-                {virksomhet.navnPåVirksomheten}.
-            </IntlLabelValue>
-            <IntlLabelValue labelKey="sifForms.virksomhet.summary.næringstype">{næringstype}. </IntlLabelValue>
+            <IntlLabelValue labelKey="@forms.virksomhet.summary.navn">{virksomhet.navnPåVirksomheten}.</IntlLabelValue>
+            <IntlLabelValue labelKey="@forms.virksomhet.summary.næringstype">{næringstype}. </IntlLabelValue>
             <div>
-                <FormattedMessage id="sifForms.virksomhet.summary.registrertILand" values={{ land }} />
+                {intl.text('@forms.virksomhet.summary.registrertILand', { land })}
                 {virksomhet.registrertINorge && (
                     <FormattedMessage
-                        id="sifForms.virksomhet.summary.registrertILand.orgnr"
+                        id="@forms.virksomhet.summary.registrertILand.orgnr"
                         values={{ orgnr: virksomhet.organisasjonsnummer }}
                     />
                 )}
@@ -59,22 +57,22 @@ export const renderVirksomhetSummary = (virksomhet: VirksomhetApiData, intl: Int
 };
 
 const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet, harFlereVirksomheter }) => {
-    const intl = useIntl();
+    const virksomhetIntl = useVirksomhetIntl();
+    const { text } = virksomhetIntl;
     const erRegnetSomNyoppstartet = erVirksomhetRegnetSomNyoppstartet(ISODateToDate(virksomhet.fraOgMed));
 
     return (
         <>
-            {renderVirksomhetSummary(virksomhet, intl)}
+            {renderVirksomhetSummary(virksomhet, virksomhetIntl)}
 
             {virksomhet.næringsinntekt !== undefined && (
                 <SummaryBlock
-                    header={intlHelper(
-                        intl,
+                    header={
                         harFlereVirksomheter
-                            ? 'sifForms.virksomhet.næringsinntekt.flereVirksomheter.spm'
-                            : 'sifForms.virksomhet.næringsinntekt.enVirksomhet.spm',
-                    )}>
-                    <FormattedMessage id="sifForms.virksomhet.summary.næringsinntekst" />
+                            ? text('@forms.virksomhet.næringsinntekt.flereVirksomheter.spm')
+                            : text('@forms.virksomhet.næringsinntekt.enVirksomhet.spm')
+                    }>
+                    {text('@forms.virksomhet.summary.næringsinntekst')}
                     {` `}
                     <TallSvar verdi={virksomhet.næringsinntekt} />
                 </SummaryBlock>
@@ -82,41 +80,35 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet, harFler
 
             {erRegnetSomNyoppstartet === true && (
                 <>
-                    <SummaryBlock header={intlHelper(intl, 'sifForms.virksomhet.har_blitt_yrkesaktiv')}>
+                    <SummaryBlock header={text('@forms.virksomhet.har_blitt_yrkesaktiv')}>
                         {virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene === undefined && (
                             <JaNeiSvar harSvartJa={virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene !== undefined} />
                         )}
-                        {virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene !== undefined && (
-                            <FormattedMessage
-                                id="sifForms.virksomhet.summary.yrkesaktiv.jaStartetDato"
-                                values={{
-                                    dato: prettifyApiDate(
-                                        virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene.oppstartsdato,
-                                        true,
-                                    ),
-                                }}
-                            />
-                        )}
+                        {virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene !== undefined &&
+                            text('@forms.virksomhet.summary.yrkesaktiv.jaStartetDato', {
+                                dato: prettifyApiDate(
+                                    virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene.oppstartsdato,
+                                    true,
+                                ),
+                            })}
                     </SummaryBlock>
                 </>
             )}
 
             {erRegnetSomNyoppstartet === false && (
                 <>
-                    <SummaryBlock header={intlHelper(intl, 'sifForms.virksomhet.varig_endring_spm')}>
+                    <SummaryBlock header={text('@forms.virksomhet.varig_endring_spm')}>
                         <JaNeiSvar harSvartJa={virksomhet.varigEndring !== undefined} />
                     </SummaryBlock>
                     {virksomhet.varigEndring && (
                         <>
-                            <SummaryBlock header={intlHelper(intl, 'sifForms.virksomhet.summary.varigEndring.dato')}>
+                            <SummaryBlock header={text('@forms.virksomhet.summary.varigEndring.dato')}>
                                 <DatoSvar isoDato={virksomhet.varigEndring.dato} />
                             </SummaryBlock>
-                            <SummaryBlock
-                                header={intlHelper(intl, 'sifForms.virksomhet.summary.varigEndring.næringsinntekt')}>
+                            <SummaryBlock header={text('@forms.virksomhet.summary.varigEndring.næringsinntekt')}>
                                 <TallSvar verdi={virksomhet.varigEndring.inntektEtterEndring} />
                             </SummaryBlock>
-                            <SummaryBlock
-                                header={intlHelper(intl, 'sifForms.virksomhet.summary.varigEndring.beskrivelse')}>
+                            <SummaryBlock header={text('@forms.virksomhet.summary.varigEndring.beskrivelse')}>
                                 <Sitat>
                                     <TextareaSvar text={virksomhet.varigEndring.forklaring} />
                                 </Sitat>
@@ -128,17 +120,13 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet, harFler
 
             {/* Regnskapsfører */}
             {virksomhet.registrertINorge && (
-                <SummaryBlock header={intlHelper(intl, 'sifForms.virksomhet.regnskapsfører_spm')}>
+                <SummaryBlock header={text('@forms.virksomhet.regnskapsfører_spm')}>
                     {virksomhet.regnskapsfører === undefined && <JaNeiSvar harSvartJa={false} />}
-                    {virksomhet.regnskapsfører !== undefined && (
-                        <FormattedMessage
-                            id="sifForms.virksomhet.summary.regnskapsfører.info"
-                            values={{
-                                navn: virksomhet.regnskapsfører.navn,
-                                telefon: virksomhet.regnskapsfører.telefon,
-                            }}
-                        />
-                    )}
+                    {virksomhet.regnskapsfører !== undefined &&
+                        text('@forms.virksomhet.summary.regnskapsfører.info', {
+                            navn: virksomhet.regnskapsfører.navn,
+                            telefon: virksomhet.regnskapsfører.telefon,
+                        })}
                 </SummaryBlock>
             )}
         </>
