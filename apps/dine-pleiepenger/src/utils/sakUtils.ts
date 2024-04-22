@@ -47,10 +47,6 @@ export const sortSøknadshendelser = (hendelser: Søknadshendelse[]): Søknadshe
     return sortBy(hendelser, ({ dato }: Søknadshendelse) => dato?.getTime());
 };
 
-export const getBehandlingerISakSorted = (sak: Sak): Behandling[] => {
-    return sortBehandlingerNyesteFørst(sak.behandlinger);
-};
-
 export const getBehandlingsstatusISak = (sak: Sak): BehandlingsstatusISak | undefined => {
     const behandling = getSisteBehandlingISak(sak);
     return behandling
