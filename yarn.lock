@@ -3191,6 +3191,7 @@ __metadata:
     swr: 2.2.5
     tailwindcss: 3.4.3
     uuid: 9.0.1
+    vitest: 1.5.0
     zod: 3.23.0
   languageName: unknown
   linkType: soft

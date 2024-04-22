@@ -4,7 +4,7 @@ import { NextApiRequest } from 'next';
 import { Mellomlagringer } from '../types/Mellomlagring';
 import { InnsendtSøknad } from '../types/Søknad';
 import { getContextForApiHandler, getXRequestId } from '../utils/apiUtils';
-import { fjernPunsjOgUkjenteSøknaderFraBehandling, sortBehandlinger } from '../utils/sakUtils';
+import { fjernPunsjOgUkjenteSøknaderFraBehandling, sortBehandlingerNyesteFørst } from '../utils/sakUtils';
 import { InnsendtSøknaderSchema } from './api-models/InnsendtSøknadSchema';
 import { MellomlagringModel, MellomlagringSchema } from './api-models/MellomlagringSchema';
 import { PleietrengendeMedSak, PleietrengendeMedSakResponseSchema } from './api-models/PleietrengendeMedSakSchema';
@@ -95,7 +95,9 @@ export const fetchSaker = async (req: NextApiRequest, raw?: boolean): Promise<Pl
             pleietrengende: ps.pleietrengende,
             sak: {
                 ...ps.sak,
-                behandlinger: sortBehandlinger(ps.sak.behandlinger).map(fjernPunsjOgUkjenteSøknaderFraBehandling),
+                behandlinger: sortBehandlingerNyesteFørst(ps.sak.behandlinger).map(
+                    fjernPunsjOgUkjenteSøknaderFraBehandling,
+                ),
             },
         };
     });
