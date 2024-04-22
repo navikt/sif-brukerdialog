@@ -1,6 +1,4 @@
-import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
-
-export const omBarnetMessages: MessageFileFormat = {
+export const omBarnetMessages = {
     nb: {
         'relasjonTilBarnet.mor': 'Mor',
         'relasjonTilBarnet.far': 'Far',

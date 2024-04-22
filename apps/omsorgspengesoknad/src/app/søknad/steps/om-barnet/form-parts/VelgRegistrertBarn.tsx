@@ -1,13 +1,12 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
-import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { RegistrertBarn } from '../../../../types/RegistrertBarn';
 import { OmBarnetFormFields, OmBarnetFormValues } from '../OmBarnetStep';
 import { mapBarnTilRadioProps } from '../omBarnetStepUtils';
+import { useAppIntl } from '../../../../i18n';
 
 interface Props {
     registrerteBarn: RegistrertBarn[];
@@ -17,16 +16,16 @@ interface Props {
 const { RadioGroup, Checkbox } = getTypedFormComponents<OmBarnetFormFields, OmBarnetFormValues>();
 
 const VelgRegistrertBarn: React.FunctionComponent<Props> = ({ registrerteBarn, søknadenGjelderEtAnnetBarn }) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     return (
         <>
             <Heading level="2" size="medium">
-                {intlHelper(intl, 'steg.omBarnet.hvilketBarn.spm')}
+                {text('steg.omBarnet.hvilketBarn.spm')}
             </Heading>
             <FormBlock margin="l">
                 <RadioGroup
-                    legend={intlHelper(intl, 'steg.omBarnet.hvilketBarn.registrerteBarn')}
-                    description={intlHelper(intl, 'steg.omBarnet.hvilketBarn.info')}
+                    legend={text('steg.omBarnet.hvilketBarn.registrerteBarn')}
+                    description={text('steg.omBarnet.hvilketBarn.info')}
                     name={OmBarnetFormFields.barnetSøknadenGjelder}
                     radios={registrerteBarn.map((barn) => mapBarnTilRadioProps(barn, søknadenGjelderEtAnnetBarn))}
                     validate={søknadenGjelderEtAnnetBarn ? undefined : getRequiredFieldValidator()}
@@ -34,7 +33,7 @@ const VelgRegistrertBarn: React.FunctionComponent<Props> = ({ registrerteBarn, s
             </FormBlock>
             <FormBlock margin="l">
                 <Checkbox
-                    label={intlHelper(intl, 'steg.omBarnet.gjelderAnnetBarn')}
+                    label={text('steg.omBarnet.gjelderAnnetBarn')}
                     name={OmBarnetFormFields.søknadenGjelderEtAnnetBarn}
                 />
             </FormBlock>

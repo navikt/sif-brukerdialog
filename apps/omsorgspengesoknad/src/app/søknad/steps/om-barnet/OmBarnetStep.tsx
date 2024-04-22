@@ -1,7 +1,7 @@
 import { Alert } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
 import {
@@ -13,6 +13,8 @@ import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import { useAppIntl } from '../../../i18n';
+import { BarnSammeAdresse } from '../../../types/BarnSammeAdresse';
 import { StepId } from '../../../types/StepId';
 import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
 import { SøknadContextState } from '../../../types/SøknadContextState';
@@ -25,8 +27,6 @@ import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import AnnetBarnpart from './form-parts/AnnetBarnPart';
 import VelgRegistrertBarn from './form-parts/VelgRegistrertBarn';
 import { getOmBarnetStepInitialValues, getOmBarnetSøknadsdataFromFormValues } from './omBarnetStepUtils';
-import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import { BarnSammeAdresse } from '../../../types/BarnSammeAdresse';
 
 export enum OmBarnetFormFields {
     barnetSøknadenGjelder = 'barnetSøknadenGjelder',
@@ -62,6 +62,7 @@ const { FormikWrapper, Form, YesOrNoQuestion, RadioGroup, Textarea } = getTypedF
 
 const OmBarnetStep = () => {
     const intl = useIntl();
+    const { text } = useAppIntl();
     const {
         state: { søknadsdata, registrerteBarn },
     } = useSøknadContext();
@@ -132,21 +133,18 @@ const OmBarnetStep = () => {
                                         <FormBlock>
                                             <RadioGroup
                                                 name={OmBarnetFormFields.sammeAdresse}
-                                                legend={intlHelper(intl, 'steg.omBarnet.spm.sammeAdresse')}
+                                                legend={text('steg.omBarnet.spm.sammeAdresse')}
                                                 radios={[
                                                     {
-                                                        label: intlHelper(intl, 'steg.omBarnet.spm.sammeAdresse.ja'),
+                                                        label: text('steg.omBarnet.spm.sammeAdresse.ja'),
                                                         value: BarnSammeAdresse.JA,
                                                     },
                                                     {
-                                                        label: intlHelper(
-                                                            intl,
-                                                            'steg.omBarnet.spm.sammeAdresse.jaDeltBosted',
-                                                        ),
+                                                        label: text('steg.omBarnet.spm.sammeAdresse.jaDeltBosted'),
                                                         value: BarnSammeAdresse.JA_DELT_BOSTED,
                                                     },
                                                     {
-                                                        label: intlHelper(intl, 'steg.omBarnet.spm.sammeAdresse.nei'),
+                                                        label: text('steg.omBarnet.spm.sammeAdresse.nei'),
                                                         value: BarnSammeAdresse.NEI,
                                                     },
                                                 ]}
@@ -154,14 +152,8 @@ const OmBarnetStep = () => {
                                                 data-testid="sammeAdresse"
                                                 description={
                                                     <ExpandableInfo
-                                                        title={intlHelper(
-                                                            intl,
-                                                            'steg.omBarnet.spm.sammeAdresse.hvaBetyrDette',
-                                                        )}>
-                                                        {intlHelper(
-                                                            intl,
-                                                            'steg.omBarnet.spm.sammeAdresse.hvaBetyrDette.info',
-                                                        )}
+                                                        title={text('steg.omBarnet.spm.sammeAdresse.hvaBetyrDette')}>
+                                                        {text('steg.omBarnet.spm.sammeAdresse.hvaBetyrDette.info')}
                                                     </ExpandableInfo>
                                                 }
                                             />
@@ -170,17 +162,14 @@ const OmBarnetStep = () => {
                                             søkersRelasjonTilBarnet !== SøkersRelasjonTilBarnet.FOSTERFORELDER && (
                                                 <FormBlock margin="l">
                                                     <Alert variant="info">
-                                                        {intlHelper(intl, 'steg.omBarnet.spm.sammeAdresse.neiAlert')}
+                                                        {text('steg.omBarnet.spm.sammeAdresse.neiAlert')}
                                                     </Alert>
                                                 </FormBlock>
                                             )}
                                         <FormBlock>
                                             <YesOrNoQuestion
                                                 name={OmBarnetFormFields.kroniskEllerFunksjonshemming}
-                                                legend={intlHelper(
-                                                    intl,
-                                                    'steg.omBarnet.spm.kroniskEllerFunksjonshemmende',
-                                                )}
+                                                legend={text('steg.omBarnet.spm.kroniskEllerFunksjonshemmende')}
                                                 validate={getYesOrNoValidator()}
                                             />
                                         </FormBlock>
@@ -189,10 +178,7 @@ const OmBarnetStep = () => {
                                                 <FormBlock>
                                                     <YesOrNoQuestion
                                                         name={OmBarnetFormFields.høyereRisikoForFravær}
-                                                        legend={intlHelper(
-                                                            intl,
-                                                            'steg.omBarnet.spm.høyereRisikoForFravær',
-                                                        )}
+                                                        legend={text('steg.omBarnet.spm.høyereRisikoForFravær')}
                                                         data-testid="høyereRisikoForFravær"
                                                         validate={getYesOrNoValidator()}
                                                     />
@@ -211,8 +197,7 @@ const OmBarnetStep = () => {
                                                                 return error;
                                                             }}
                                                             maxLength={1000}
-                                                            label={intlHelper(
-                                                                intl,
+                                                            label={text(
                                                                 'steg.omBarnet.spm.høyereRisikoForFraværBeskrivelse.tittel',
                                                             )}
                                                             data-testid="høyereRisikoForFraværBeskrivelse"
@@ -223,10 +208,7 @@ const OmBarnetStep = () => {
                                                     <FormBlock>
                                                         <FormBlock margin="l">
                                                             <Alert variant="info">
-                                                                {intlHelper(
-                                                                    intl,
-                                                                    'steg.omBarnet.spm.høyereRisikoForFravær.alert',
-                                                                )}
+                                                                {text('steg.omBarnet.spm.høyereRisikoForFravær.alert')}
                                                             </Alert>
                                                         </FormBlock>
                                                     </FormBlock>
@@ -236,7 +218,7 @@ const OmBarnetStep = () => {
                                         {kroniskEllerFunksjonshemming === YesOrNo.NO && (
                                             <FormBlock margin="l">
                                                 <Alert variant="info">
-                                                    {intlHelper(intl, 'steg.omBarnet.alert.ikkeKroniskSykdom')}
+                                                    {text('steg.omBarnet.alert.ikkeKroniskSykdom')}
                                                 </Alert>
                                             </FormBlock>
                                         )}
