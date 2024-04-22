@@ -1,5 +1,14 @@
 # @navikt/dine-pleiepenger
 
+## 1.0.7
+
+### Patch Changes
+
+- 8f80c29: Bugfix + tekstendring.
+
+  - Korrigere sortering på behandlinger som brukte feil verdi.
+  - Endre tekst som står i tidslinje på at saken vil bli ferdig behandlet
+
 ## 1.0.6
 
 ### Patch Changes
