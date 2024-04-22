@@ -23,9 +23,9 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "@navikt/ds-css": "6.5.0",
-        "@navikt/ds-react": "6.5.0",
-        "@navikt/ds-tailwind": "6.5.0",
+        "@navikt/ds-css": "6.6.0",
+        "@navikt/ds-react": "6.6.0",
+        "@navikt/ds-tailwind": "6.6.0",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
@@ -53,7 +53,7 @@
         "react-fast-compare": "3.2.2",
         "react-intl": "6.6.5",
         "react-router-dom": "6.22.3",
-        "vite": "5.2.8",
+        "vite": "5.2.10",
         "vite-plugin-checker": "0.6.4"
     },
     "devDependencies": {
@@ -67,7 +67,7 @@
         "@storybook/react-vite": "8.0.8",
         "@testing-library/react": "15.0.2",
         "@types/object-hash": "3.0.6",
-        "@types/react": "18.2.78",
+        "@types/react": "18.2.79",
         "@types/react-dom": "18.2.25",
         "@types/react-router-dom": "5.3.3",
         "babel-polyfill": "6.26.0",

@@ -23,9 +23,9 @@
     },
     "dependencies": {
         "@navikt/appstatus-react-ds": "workspace:*",
-        "@navikt/ds-css": "6.5.0",
+        "@navikt/ds-css": "6.6.0",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "6.5.0",
+        "@navikt/ds-react": "6.6.0",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
@@ -51,7 +51,7 @@
         "mustache-express": "1.3.2",
         "openid-client": "5.6.5",
         "react": "18.2.0",
-        "react-day-picker": "8.10.0",
+        "react-day-picker": "8.10.1",
         "react-router-dom": "6.22.3",
         "uuid": "9.0.1"
     },
@@ -66,7 +66,7 @@
         "@testing-library/user-event": "14.5.2",
         "@types/lodash.debounce": "4.0.9",
         "@types/lodash.groupby": "4.6.9",
-        "@types/react": "18.2.78",
+        "@types/react": "18.2.79",
         "@types/react-dom": "18.2.25",
         "@types/react-router-dom": "5.3.3",
         "@typescript-eslint/eslint-plugin": "7.7.0",
@@ -91,7 +91,7 @@
         "react-dom": "18.2.0",
         "react-intl": "6.6.5",
         "typescript": "5.4.5",
-        "vite": "5.2.8",
+        "vite": "5.2.10",
         "vite-plugin-checker": "0.6.4",
         "vitest": "1.5.0"
     }
