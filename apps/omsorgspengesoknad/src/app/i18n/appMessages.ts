@@ -1,18 +1,16 @@
-import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
-
-export const appMessages: MessageFileFormat = {
+export const appMessages = {
     nb: {
+        // Brukes av sif-common-soknad
         'application.title':
             'Søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
-        'page.form.ubesvarteSpørsmålInfo': 'For å komme videre, må du svare på alle spørsmålene ovenfor',
 
         'step.omBarnet.stepTitle': 'Barn',
         'step.deltBosted.stepTitle': 'Delt fast bosted',
         'step.legeerklaering.stepTitle': 'Legeerklæring',
         'step.oppsummering.stepTitle': 'Oppsummering',
 
-        'steg.footer.avbryt': 'Avbryt og slett søknad',
-        'steg.footer.fortsettSenere': 'Avslutt og fortsett senere',
+        // 'steg.footer.avbryt': 'Avbryt og slett søknad',
+        // 'steg.footer.fortsettSenere': 'Avslutt og fortsett senere',
 
         'vedleggsliste.ingenLegeerklæringLastetOpp': 'Ingen legeerklæring er lastet opp',
         'vedleggsliste.ingenBostedsavtaleLastetOpp': 'Ingen avtale er lastet opp',
@@ -26,5 +24,8 @@ export const appMessages: MessageFileFormat = {
 
         'resetMellomlagring.text.1': 'Dersom feilen vedvarer, kan du prøve å starte på nytt med et tom skjema.',
         'resetMellomlagring.startPåNytt': 'Start på nytt',
+
+        // Ubrukt?
+        'page.form.ubesvarteSpørsmålInfo': 'For å komme videre, må du svare på alle spørsmålene ovenfor',
     },
 };

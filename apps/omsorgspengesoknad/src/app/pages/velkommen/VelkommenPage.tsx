@@ -6,7 +6,7 @@ import { SamtykkeForm } from '@navikt/sif-common-soknad-ds';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 import { SøknadRoutes } from '../../types/SøknadRoutes';
-import OmSøknaden from './OmSøknaden';
+import OmSøknaden from './om-søknaden/OmSøknaden';
 import VelkommenGuide from './VelkommenGuide';
 import { OmsorgsdagerKroniskApp } from '@navikt/sif-app-register';
 
