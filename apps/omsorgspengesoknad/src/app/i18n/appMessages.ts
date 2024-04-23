@@ -37,9 +37,6 @@ const nb = {
 
     'apiDataValidation.undefined': 'Det oppstod en feil ved visningen av siden.',
     'apiDataValidation.omsorgsavtaleMangler': 'Det mangler avtale om delt fast bosted. ',
-
-    // Ubrukt?
-    'page.form.ubesvarteSpørsmålInfo': 'For å komme videre, må du svare på alle spørsmålene ovenfor',
 };
 
 const nn: Record<keyof typeof nb, string> = {

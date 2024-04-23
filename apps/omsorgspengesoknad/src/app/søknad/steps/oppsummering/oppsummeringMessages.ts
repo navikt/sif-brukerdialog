@@ -1,9 +1,6 @@
 const nb = {
-    'steg.oppsummering.info':
-        'Les gjennom oppsummeringen før du sender inn søknaden. Hvis du vil gjøre endringer, kan du gå tilbake.',
     'steg.oppsummering.søker.header': 'Om deg',
     'steg.oppsummering.søker.fnr': 'Fødselsnummer: {fødselsnummer}',
-
     'steg.oppsummering.barnet.header': 'Om barnet',
     'steg.oppsummering.barnet.navn': 'Navn: {navn}',
     'steg.oppsummering.barnet.fødselsdato': 'Fødselsdato: {dato}',

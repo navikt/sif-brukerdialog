@@ -76,7 +76,7 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
             <Block padBottom="xl">
                 <SifGuidePanel>
                     <p>
-                        <AppText id={'steg.deltBosted.helperTextPanel.1'} />
+                        <AppText id={'steg.deltBosted.intro'} />
                     </p>
                 </SifGuidePanel>
             </Block>

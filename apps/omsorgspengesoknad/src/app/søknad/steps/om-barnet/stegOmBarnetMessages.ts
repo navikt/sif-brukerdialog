@@ -10,7 +10,6 @@ const nb = {
     'steg.omBarnet.fødselsdato.info': 'Barnet må være født etter {minFødselsdato}',
     'steg.omBarnet.navn': 'Barnets navn',
     'steg.omBarnet.relasjon': 'Min relasjon til barnet',
-    'steg.omBarnet.veileder.samværsavtale': 'Senere i søknaden laster du opp avtale om delt fast bosted for barnet.',
     'steg.omBarnet.spm.sammeAdresse': 'Bor du sammen med barnet?',
     'steg.omBarnet.spm.sammeAdresse.ja': 'Ja',
     'steg.omBarnet.spm.sammeAdresse.jaDeltBosted': 'Ja, barnet har delt fast bosted',
@@ -27,7 +26,6 @@ const nb = {
         'Nå trenger vi en beskrivelse fra deg på hvordan barnets sykdom eller funksjonshemning gir høyere risiko for fravær fra jobb:',
     'steg.omBarnet.spm.høyereRisikoForFravær.alert':
         'For å ha rett til ekstra omsorgsdager på grunn av sykdom eller funksjonshemning, må det være en sammenheng mellom barnets sykdom/funksjonshemning og risikoen for høyere fravær fra jobb.',
-    'steg.omBarnet.alert.barnet18ÅrKanIkkeFortsette': 'Det gis ikke omsorgsdager til barn over 18 år.',
     'steg.omBarnet.alert.ikkeKroniskSykdom':
         'Denne søknaden om ekstra omsorgsdager gjelder kun for de som har barn med kronisk/langvarig sykdom eller funksjonshemning.',
     'steg.omBarnet.relasjonTilBarnet.mor': 'Mor',
