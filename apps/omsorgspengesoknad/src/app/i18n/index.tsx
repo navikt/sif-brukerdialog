@@ -5,17 +5,26 @@ import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
 import { appMessages } from './appMessages';
 
+export const libMessages = {
+    nb: {
+        ...commonMessages.nb,
+        ...uiMessages.nb,
+        ...soknadMessages.nb,
+    },
+    nn: {
+        ...commonMessages.nn,
+        ...uiMessages.nn,
+        ...soknadMessages.nn,
+    },
+};
+
 const nb = {
-    ...commonMessages.nb,
-    ...uiMessages.nb,
-    ...soknadMessages.nb,
+    ...libMessages.nb,
     ...appMessages.nb,
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    ...commonMessages.nn,
-    ...uiMessages.nn,
-    ...soknadMessages.nn,
+    ...libMessages.nn,
     ...appMessages.nn,
 };
 
