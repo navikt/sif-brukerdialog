@@ -1,57 +1,50 @@
 import React from 'react';
-import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import ContentWithHeader from '@navikt/sif-common-core-ds/src/components/content-with-header/ContentWithHeader';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SummaryBlock, SummarySection } from '@navikt/sif-common-ui';
-import { ISODateToDate, dateFormatter } from '@navikt/sif-common-utils';
-import { OmBarnetApiData } from '../../../types/søknadApiData/SøknadApiData';
+import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
+import { AppIntlShape, AppText, useAppIntl } from '../../../i18n';
 import { BarnSammeAdresse } from '../../../types/BarnSammeAdresse';
+import { OmBarnetApiData } from '../../../types/søknadApiData/SøknadApiData';
 
 interface Props {
     apiData: OmBarnetApiData;
 }
 
 const OmBarnetOppsummering: React.FC<Props> = ({ apiData: apiData }) => {
-    const intl = useIntl();
+    const appIntl = useAppIntl();
+    const { text } = appIntl;
     return (
-        <SummarySection header={intlHelper(intl, 'steg.oppsummering.barnet.header')}>
+        <SummarySection header={text('steg.oppsummering.barnet.header')}>
             <Block margin="l">
-                {apiData.barn.aktørId ? getRegistrertBarnInfo(apiData) : getAnnetBarnInfo(apiData, intl)}
+                {apiData.barn.aktørId ? getRegistrertBarnInfo(apiData) : getAnnetBarnInfo(apiData, appIntl)}
             </Block>
             <Block margin="l">
-                <ContentWithHeader header={intlHelper(intl, 'steg.oppsummering.barnet.sammeAdresse.header')}>
-                    {apiData.sammeAdresse === BarnSammeAdresse.JA &&
-                        intlHelper(intl, 'steg.oppsummering.barnet.sammeAdresse.ja')}
+                <ContentWithHeader header={text('steg.oppsummering.barnet.sammeAdresse.header')}>
+                    {apiData.sammeAdresse === BarnSammeAdresse.JA && text('steg.oppsummering.barnet.sammeAdresse.ja')}
                     {apiData.sammeAdresse === BarnSammeAdresse.JA_DELT_BOSTED &&
-                        intlHelper(intl, 'steg.oppsummering.barnet.sammeAdresse.jaDeltBosted')}
-                    {apiData.sammeAdresse === BarnSammeAdresse.NEI &&
-                        intlHelper(intl, 'steg.oppsummering.barnet.sammeAdresse.nei')}
+                        text('steg.oppsummering.barnet.sammeAdresse.jaDeltBosted')}
+                    {apiData.sammeAdresse === BarnSammeAdresse.NEI && text('steg.oppsummering.barnet.sammeAdresse.nei')}
                 </ContentWithHeader>
             </Block>
             <Block margin="l">
-                <ContentWithHeader
-                    header={intlHelper(intl, 'steg.oppsummering.barnet.kroniskEllerFunksjonshemmende.header')}>
-                    {apiData.kroniskEllerFunksjonshemming === true && intlHelper(intl, 'Ja')}
-                    {apiData.kroniskEllerFunksjonshemming === false && intlHelper(intl, 'Nei')}
+                <ContentWithHeader header={text('steg.oppsummering.barnet.kroniskEllerFunksjonshemmende.header')}>
+                    {apiData.kroniskEllerFunksjonshemming === true && text('Ja')}
+                    {apiData.kroniskEllerFunksjonshemming === false && text('Nei')}
                 </ContentWithHeader>
             </Block>
             {apiData.kroniskEllerFunksjonshemming === true && (
                 <>
                     <Block margin="l">
-                        <ContentWithHeader
-                            header={intlHelper(intl, 'steg.oppsummering.barnet.høyereRisikoForFravær.header')}>
-                            {apiData.høyereRisikoForFravær === true && intlHelper(intl, 'Ja')}
-                            {apiData.høyereRisikoForFravær === false && intlHelper(intl, 'Nei')}
+                        <ContentWithHeader header={text('steg.oppsummering.barnet.høyereRisikoForFravær.header')}>
+                            {apiData.høyereRisikoForFravær === true && text('Ja')}
+                            {apiData.høyereRisikoForFravær === false && text('Nei')}
                         </ContentWithHeader>
                     </Block>
                     {apiData.høyereRisikoForFravær && (
                         <Block margin={'s'}>
                             <SummaryBlock
-                                header={intlHelper(
-                                    intl,
-                                    'steg.oppsummering.barnet.høyereRisikoForFraværBeskrivelse.header',
-                                )}>
+                                header={text('steg.oppsummering.barnet.høyereRisikoForFraværBeskrivelse.header')}>
                                 <p>{apiData.høyereRisikoForFraværBeskrivelse}</p>
                             </SummaryBlock>
                         </Block>
@@ -68,7 +61,7 @@ const getRegistrertBarnInfo = (apiData: OmBarnetApiData) => {
     return (
         <>
             <div>
-                <FormattedMessage
+                <AppText
                     id="steg.oppsummering.barnet.navn"
                     values={{
                         navn: apiData.barn.navn,
@@ -77,7 +70,7 @@ const getRegistrertBarnInfo = (apiData: OmBarnetApiData) => {
             </div>
             {apiData.barn.fødselsdato && (
                 <div>
-                    <FormattedMessage
+                    <AppText
                         id="steg.oppsummering.barnet.fødselsdato"
                         values={{
                             dato: dateFormatter.full(ISODateToDate(apiData.barn.fødselsdato)),
@@ -88,12 +81,12 @@ const getRegistrertBarnInfo = (apiData: OmBarnetApiData) => {
         </>
     );
 };
-const getAnnetBarnInfo = (apiData: OmBarnetApiData, intl: IntlShape) => {
+const getAnnetBarnInfo = (apiData: OmBarnetApiData, { text }: AppIntlShape) => {
     return (
         <>
             {apiData.barn.norskIdentifikator ? (
                 <div>
-                    <FormattedMessage
+                    <AppText
                         id="steg.oppsummering.barnet.fnr"
                         values={{
                             fnr: apiData.barn.norskIdentifikator,
@@ -103,12 +96,12 @@ const getAnnetBarnInfo = (apiData: OmBarnetApiData, intl: IntlShape) => {
             ) : null}
             {apiData.barn.navn ? (
                 <div>
-                    <FormattedMessage id="steg.oppsummering.barnet.navn" values={{ navn: apiData.barn.navn }} />
+                    <AppText id="steg.oppsummering.barnet.navn" values={{ navn: apiData.barn.navn }} />
                 </div>
             ) : null}
             {apiData.barn.fødselsdato && (
                 <div>
-                    <FormattedMessage
+                    <AppText
                         id="steg.oppsummering.barnet.fødselsdato"
                         values={{
                             dato: dateFormatter.full(ISODateToDate(apiData.barn.fødselsdato)),
@@ -117,10 +110,10 @@ const getAnnetBarnInfo = (apiData: OmBarnetApiData, intl: IntlShape) => {
                 </div>
             )}
             <div>
-                <FormattedMessage
+                <AppText
                     id="steg.oppsummering.barnet.søkersRelasjonTilBarnet"
                     values={{
-                        relasjon: intlHelper(intl, `steg.omBarnet.relasjonTilBarnet.${apiData.relasjonTilBarnet}`),
+                        relasjon: text(`steg.omBarnet.relasjonTilBarnet.${apiData.relasjonTilBarnet}` as any),
                     }}
                 />
             </div>

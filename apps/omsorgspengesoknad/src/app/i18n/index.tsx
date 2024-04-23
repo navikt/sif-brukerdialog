@@ -23,6 +23,8 @@ export const useAppIntl = () => {
     return typedIntlHelper<AppMessageKeys>(intl);
 };
 
+export type AppIntlShape = ReturnType<typeof useAppIntl>;
+
 interface AppTextProps {
     id: AppMessageKeys;
     values?: any;
