@@ -44,11 +44,16 @@ const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
             </Block>
 
             <Block>
-                <AppText id="page.velkommen.personopplysninger.5.1" />
-                <Link href={getLenker().personvern} target="_blank">
-                    <AppText id="page.velkommen.personopplysninger.5.2" />
-                </Link>
-                <AppText id="page.velkommen.personopplysninger.5.3" />
+                <AppText
+                    id="page.velkommen.personopplysninger.5"
+                    values={{
+                        lenke: (
+                            <Link href={getLenker().personvern} target="_blank">
+                                <AppText id="page.velkommen.personopplysninger.5.lenketekst" />
+                            </Link>
+                        ),
+                    }}
+                />
             </Block>
         </Block>
     );

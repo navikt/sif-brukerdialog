@@ -38,9 +38,8 @@ export const velkommenPageMessages = {
         'page.velkommen.personopplysninger.4.5': 'tilknytningen din til Norge',
         'page.velkommen.personopplysninger.4.6':
             'trygdeordninger du kan ha rett til i andre land. Vi kan også sende opplysninger om deg til trygdemyndigheter i andre land',
-        'page.velkommen.personopplysninger.5.1':
-            'Du har rett til innsyn i saken din. Vil du vite mer om hvordan NAV behandler personopplysninger? Se ',
-        'page.velkommen.personopplysninger.5.2': 'nav.no/personvern',
-        'page.velkommen.personopplysninger.5.3': '.',
+        'page.velkommen.personopplysninger.5':
+            'Du har rett til innsyn i saken din. Vil du vite mer om hvordan NAV behandler personopplysninger? Se {lenke}.',
+        'page.velkommen.personopplysninger.5.lenketekst': 'nav.no/personvern',
     },
 };
