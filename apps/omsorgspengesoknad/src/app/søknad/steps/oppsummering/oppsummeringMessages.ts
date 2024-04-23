@@ -31,25 +31,24 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.oppsummering.barnet.navn': 'Namn: {navn}',
     'steg.oppsummering.barnet.fødselsdato': 'Fødselsdato: {dato}',
     'steg.oppsummering.barnet.fnr': 'Fødselsnummer: {fnr}',
-    'steg.oppsummering.barnet.søkersRelasjonTilBarnet': 'Relasjonen din til barnet: {relasjon}',
-    'steg.oppsummering.barnet.sammeAdresse.header': 'Bor du saman med barnet?',
+    'steg.oppsummering.barnet.søkersRelasjonTilBarnet': 'Din relasjon til barnet: {relasjon}',
+    'steg.oppsummering.barnet.sammeAdresse.header': 'Bur du saman med barnet?',
     'steg.oppsummering.barnet.sammeAdresse.ja': 'Ja',
     'steg.oppsummering.barnet.sammeAdresse.nei': 'Nei',
-    'steg.oppsummering.barnet.sammeAdresse.jaDeltBosted': 'Ja, barnet har delt fast bustad',
+    'steg.oppsummering.barnet.sammeAdresse.jaDeltBosted': 'Ja, barnet har delt fast bostad',
     'steg.oppsummering.barnet.kroniskEllerFunksjonshemmende.header':
-        'Har barnet kronisk/langvarig sjukdom eller funksjonshemning?',
+        'Har barnet kronisk/langvarig sjukdom eller funksjonshemming?',
     'steg.oppsummering.barnet.høyereRisikoForFravær.header':
-        'Har du høgare risiko for fråvær på jobb på grunn av sjukdommen eller funksjonshemninga til barnet? ',
+        'Har du høgare risiko for fråvær på jobb på grunn av barnet sin sjukdom eller funksjonshemming?',
     'steg.oppsummering.barnet.høyereRisikoForFraværBeskrivelse.header':
-        'Skildring på korleis sjukdommen eller funksjonshemninga til barnet gir høgare risiko for fråvær frå jobb',
+        'Skildring på korleis barnet sin sjukdom eller funksjonshemming gjev høgare risiko for fråvær frå jobb',
     'steg.oppsummering.vedlegg.header': 'Vedlegg',
     'steg.oppsummering.legeerklæring.header': 'Legeerklæring',
-    'steg.oppsummering.samværsavtale.header': 'Avtale om delt fast bustad',
+    'steg.oppsummering.samværsavtale.header': 'Avtale om delt fast bostad',
     'steg.oppsummering.bekrefterOpplysninger':
-        'Eg stadfestar at opplysningane eg har gitt er korrekte, og at eg ikkje har halde tilbake opplysningar som har noko å seia for retten min til omsorgspengar.',
-    'validation.harBekreftetOpplysninger.notChecked': 'Du må stadfesta opplysningane.',
+        'Eg stadfestar at opplysningane eg har gitt er rette, og at eg ikkje har halde tilbake opplysningar som har tyding for min rett til omsorgspengar.',
+    'validation.harBekreftetOpplysninger.notChecked': 'Du må stadfeste opplysningane.',
 };
-
 export const oppsummeringMessages = {
     nb,
     nn,

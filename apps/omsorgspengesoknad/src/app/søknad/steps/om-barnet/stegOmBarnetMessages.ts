@@ -68,73 +68,73 @@ const nb = {
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    'steg.omBarnet.hvilketBarn.spm': 'Kva for eit barn gjeld søknaden?',
+    'steg.omBarnet.hvilketBarn.spm': 'Kva barn gjeld søknaden?',
     'steg.omBarnet.hvilketBarn.registrerteBarn': 'Barn registrert på deg:',
-    'steg.omBarnet.hvilketBarn.info': 'Viss du skal søkja for fleire barn, må du senda éin søknad for kvart barn.',
+    'steg.omBarnet.hvilketBarn.info': 'Viss du skal søkje for fleire barn, må du sende éin søknad for kvart barn.',
     'steg.omBarnet.hvilketBarn.født': 'Fødd {dato}',
     'steg.omBarnet.gjelderAnnetBarn': 'Søknaden gjeld eit anna barn',
     'steg.omBarnet.annetBarn.tittel': 'Anna barn',
-    'steg.omBarnet.fnr.spm': 'Barnets fødselsnummer/D-nummer',
-    'steg.omBarnet.fødselsdato': 'Barnets fødselsdato',
-    'steg.omBarnet.fødselsdato.info': 'Barnet må vera fødd etter {minFødselsdato}',
-    'steg.omBarnet.navn': 'Barnets namn',
-    'steg.omBarnet.relasjon': 'Relasjonen min til barnet',
-    'steg.omBarnet.spm.sammeAdresse': 'Bor du saman med barnet?',
+    'steg.omBarnet.fnr.spm': 'Barnet sitt fødselsnummer/D-nummer',
+    'steg.omBarnet.fødselsdato': 'Barnet sin fødselsdato',
+    'steg.omBarnet.fødselsdato.info': 'Barnet må vere fødd etter {minFødselsdato}',
+    'steg.omBarnet.navn': 'Barnet sitt namn',
+    'steg.omBarnet.relasjon': 'Mi relasjon til barnet',
+    'steg.omBarnet.spm.sammeAdresse': 'Bur du saman med barnet?',
     'steg.omBarnet.spm.sammeAdresse.ja': 'Ja',
-    'steg.omBarnet.spm.sammeAdresse.jaDeltBosted': 'Ja, barnet har delt fast bustad',
+    'steg.omBarnet.spm.sammeAdresse.jaDeltBosted': 'Ja, barnet har delt fast bostad',
     'steg.omBarnet.spm.sammeAdresse.nei': 'Nei',
-    'steg.omBarnet.spm.sammeAdresse.hvaBetyrDette': 'Kva er delt fast bustad?',
+    'steg.omBarnet.spm.sammeAdresse.hvaBetyrDette': 'Kva er delt fast bostad?',
     'steg.omBarnet.spm.sammeAdresse.hvaBetyrDette.info':
-        'Viss foreldra til barnet ikkje bur saman, kan dei inngå ein avtale om delt fast bustad etter barneloven §36. Barnet bur då fast med begge foreldra sine.',
+        'Viss foreldra til barnet ikkje bur saman, kan dei inngå ei avtale om delt fast bostad etter barnelova §36. Barnet bur då fast med begge sine foreldre.',
     'steg.omBarnet.spm.sammeAdresse.neiAlert':
-        'Det er berre foreldre som bur saman med barnet som kan få ekstra omsorgsdagar frå NAV. Forelderen som bur saman med barnet kan i nokre tilfelle dela sine omsorgsdagar.',
-    'steg.omBarnet.spm.kroniskEllerFunksjonshemmende': 'Har barnet kronisk/langvarig sjukdom eller funksjonshemning?',
+        'Det er berre foreldre som bur saman med barnet som kan få ekstra omsorgsdagar frå NAV. Forelderen som bur saman med barnet kan i nokre tilfelle dele sine omsorgsdagar.',
+    'steg.omBarnet.spm.kroniskEllerFunksjonshemmende': 'Har barnet kronisk/langvarig sjukdom eller funksjonshemming?',
     'steg.omBarnet.spm.høyereRisikoForFravær':
-        'Har du høgare risiko for fråvær på jobb på grunn av sjukdommen eller funksjonshemninga til barnet? ',
+        'Har du høgare risiko for fråvær på jobb på grunn av barnet sin sjukdom eller funksjonshemming?',
     'steg.omBarnet.spm.høyereRisikoForFraværBeskrivelse.tittel':
-        'No treng me ei skildring frå deg på korleis sjukdommen eller funksjonshemninga til barnet gir høgare risiko for fråvær frå jobb:',
+        'No treng vi ei skildring frå deg om korleis barnet sin sjukdom eller funksjonshemming gjev høgare risiko for fråvær frå jobb:',
     'steg.omBarnet.spm.høyereRisikoForFravær.alert':
-        'For å ha rett til ekstra omsorgsdagar på grunn av sjukdom eller funksjonshemning, må det vera ein samanheng mellom sjukdommen til barnet/funksjonshemning og risikoen for høgare fråvær frå jobb.',
+        'For å ha rett til ekstra omsorgsdagar på grunn av sjukdom eller funksjonshemming, må det vere ein samanheng mellom barnet sin sjukdom/funksjonshemming og risikoen for høgare fråvær frå jobb.',
     'steg.omBarnet.alert.ikkeKroniskSykdom':
-        'Denne søknaden om ekstra omsorgsdagar gjeld berre for dei som har barn med kronisk/langvarig sjukdom eller funksjonshemning.',
+        'Denne søknaden om ekstra omsorgsdagar gjeld berre for dei som har barn med kronisk/langvarig sjukdom eller funksjonshemming.',
     'steg.omBarnet.relasjonTilBarnet.mor': 'Mor',
     'steg.omBarnet.relasjonTilBarnet.far': 'Far',
     'steg.omBarnet.relasjonTilBarnet.adoptivforelder': 'Adoptivforelder',
     'steg.omBarnet.relasjonTilBarnet.fosterforelder': 'Fosterforelder',
-    'steg.omBarnet.validation.barnetSøknadenGjelder.noValue':
-        'Du må velja kva for eit barn søknaden gjeld, eller velja at søknaden gjeld eit anna barn.',
-    'steg.omBarnet.validation.barnetsFødselsnummer.fødselsnummerHasNoValue': 'Skriv inn fødselsnummeret til barnet.',
-    'steg.omBarnet.validation.barnetsFødselsnummer.fødselsnummerIsInvalid':
-        'Du har oppgitt eit ugyldig fødselsnummer. Kontroller at du har tasta inn rett.',
-    'steg.omBarnet.validation.barnetsFødselsnummer.fødselsnummerIsNot11Chars':
-        'Du har oppgitt eit ugyldig fødselsnummer. Eit gyldig fødselsnummer består av 11 siffer.',
-    'steg.omBarnet.validation.barnetsFødselsnummer.fødselsnummerIsNotAllowed':
-        'Du har oppgitt ditt eige fødselsnummer som fødselsnummeret til barnet. Skriv inn fødselsnummeret til barnet.',
-    'steg.omBarnet.validation.barnetsFødselsnummer.fødselsnummerAsHnrIsNotAllowed':
-        'Du har oppgitt eit fødselsnummer som ikkje er tillate.',
-    'steg.omBarnet.validation.barnetsFødselsdato.dateHasNoValue': 'Skriv inn fødselsdatoen til barnet.',
-    'steg.omBarnet.validation.barnetsFødselsdato.dateHasInvalidFormat':
-        'Barnets fødselsdato er ugyldig. Gyldig format er dd.mm.åååå.',
-    'steg.omBarnet.validation.barnetsFødselsdato.dateIsAfterMax':
-        'Fødselsdato kan ikkje vera etter dagens dato. Skriv inn eller vel dato frå datoveljaren.',
-    'steg.omBarnet.validation.barnetsFødselsdato.barnOver18år': 'Det blir ikkje gitt omsorgsdagar til barn over 18 år.',
-    'steg.omBarnet.validation.barnetsNavn.stringHasNoValue': 'Skriv inn namnet til barnet.',
-    'steg.omBarnet.validation.barnetsNavn.stringIsTooLong':
-        'Namnet på barnet kan ikkje innehalda fleire enn {maks} teikn.',
-    'steg.omBarnet.validation.søkersRelasjonTilBarnet.noValue': 'Du må velja relasjonen din til barnet.',
-    'steg.omBarnet.validation.sammeAdresse.noValue': 'Du må svara ja eller nei på om du bur saman med barnet.',
-    'steg.omBarnet.validation.kroniskEllerFunksjonshemming.yesOrNoIsUnanswered':
-        'Du må svara ja eller nei på om barnet har ein kronisk/langvarig sjukdom eller funksjonshemning.',
-    'steg.omBarnet.validation.høyereRisikoForFravær.yesOrNoIsUnanswered':
-        'Du må svara ja eller nei på om du har høgare risiko for fråvær på jobb på grunn av sjukdommen eller funksjonshemninga til barnet.',
-    'steg.omBarnet.validation.høyereRisikoForFraværBeskrivelse.stringHasNoValue':
-        'Skriv inn ei skildring på korleis sjukdommen eller funksjonshemninga til barnet gir høgare risiko for fråvær frå jobb.',
-    'steg.omBarnet.validation.høyereRisikoForFraværBeskrivelse.stringIsTooLong':
-        'Skildring på korleis sjukdommen eller funksjonshemninga til barnet gir høgare risiko for fråvær frå jobb kan ikkje innehalda fleire enn 2000 teikn.',
-    'steg.omBarnet.validation.høyereRisikoForFraværBeskrivelse.stringIsTooShort':
-        'Skildring på korleis sjukdommen eller funksjonshemninga til barnet gir høgare risiko for fråvær frå jobb må vera på minst 5 teikn.',
-};
 
+    'steg.omBarnet.validation.barnetSøknadenGjelder.noValue':
+        'Du må velje kva barn søknaden gjeld, eller velje at søknaden gjeld eit anna barn.',
+    'steg.omBarnet.validation.barnetsFødselsnummer.fødselsnummerHasNoValue': 'Skriv inn barnet sitt fødselsnummer.',
+    'steg.omBarnet.validation.barnetsFødselsnummer.fødselsnummerIsInvalid':
+        'Du har oppgjeve eit ugyldig fødselsnummer. Kontroller at du har tastet inn rett.',
+    'steg.omBarnet.validation.barnetsFødselsnummer.fødselsnummerIsNot11Chars':
+        'Du har oppgjeve eit ugyldig fødselsnummer. Eit gyldig fødselsnummer består av 11 siffer.',
+    'steg.omBarnet.validation.barnetsFødselsnummer.fødselsnummerIsNotAllowed':
+        'Du har oppgjeve ditt eige fødselsnummer som barnet sitt fødselsnummer. Skriv inn barnet sitt fødselsnummer.',
+    'steg.omBarnet.validation.barnetsFødselsnummer.fødselsnummerAsHnrIsNotAllowed':
+        'Du har oppgjeve eit fødselsnummer som ikkje er tillate.',
+    'steg.omBarnet.validation.barnetsFødselsdato.dateHasNoValue': 'Skriv inn barnet sin fødselsdato.',
+    'steg.omBarnet.validation.barnetsFødselsdato.dateHasInvalidFormat':
+        'Barnet sin fødselsdato er ugyldig. Gyldig format er dd.mm.åååå.',
+    'steg.omBarnet.validation.barnetsFødselsdato.dateIsAfterMax':
+        'Fødselsdato kan ikkje vere etter dagens dato. Skriv inn eller vel dato frå datoveljaren.',
+    'steg.omBarnet.validation.barnetsFødselsdato.barnOver18år': 'Det gis ikkje omsorgsdagar til barn over 18 år.',
+    'steg.omBarnet.validation.barnetsNavn.stringHasNoValue': 'Skriv inn barnet sitt namn.',
+    'steg.omBarnet.validation.barnetsNavn.stringIsTooLong':
+        'Namnet på barnet kan ikkje innehalde fleire enn {maks} teikn.',
+    'steg.omBarnet.validation.søkersRelasjonTilBarnet.noValue': 'Du må velje din relasjon til barnet.',
+    'steg.omBarnet.validation.sammeAdresse.noValue': 'Du må svare ja eller nei på om du bur saman med barnet.',
+    'steg.omBarnet.validation.kroniskEllerFunksjonshemming.yesOrNoIsUnanswered':
+        'Du må svare ja eller nei på om barnet har ein kronisk/langvarig sjukdom eller funksjonshemming.',
+    'steg.omBarnet.validation.høyereRisikoForFravær.yesOrNoIsUnanswered':
+        'Du må svare ja eller nei på om du har høgare risiko for fråvær på jobb på grunn av barnet sin sjukdom eller funksjonshemming.',
+    'steg.omBarnet.validation.høyereRisikoForFraværBeskrivelse.stringHasNoValue':
+        'Skriv inn ei skildring på korleis barnet sin sjukdom eller funksjonshemming gjev høgare risiko for fråvær frå jobb.',
+    'steg.omBarnet.validation.høyereRisikoForFraværBeskrivelse.stringIsTooLong':
+        'Skildringa på korleis barnet sin sjukdom eller funksjonshemming gjev høgare risiko for fråvær frå jobb kan ikkje innehalde fleire enn 2000 teikn.',
+    'steg.omBarnet.validation.høyereRisikoForFraværBeskrivelse.stringIsTooShort':
+        'Skildringa på korleis barnet sin sjukdom eller funksjonshemming gjev høgare risiko for fråvær frå jobb må vere på minst 5 teikn.',
+};
 export const omBarnetMessages = {
     nb,
     nn,

@@ -6,7 +6,7 @@ const nb = {
 
 const nn: Record<keyof typeof nb, string> = {
     'steg.deltBosted.intro':
-        'For å få ekstra omsorgsdagar må du bu saman med barnet. Du har opplyst om at dykk har avtale om delt fast bustad. Viss barnet ikkje er folkeregistrert på adressa di, må du senda inn avtalen om delt fast bustad. Du lastar opp avtalen anten ved å ta bilete av han, eller ved å skanna han.',
+        'For å få ekstra omsorgsdagar må du bu saman med barnet. Du har opplyst om at de har avtale om delt fast bustad. Viss barnet ikkje er folkeregistrert på di adresse, må du sende inn avtalen om delt fast bustad. Du lastar opp avtalen anten ved å ta bilete av henne, eller ved å skanne henne.',
     'steg.deltBosted.vedlegg.knappLabel': 'Last opp avtalen',
 };
 
