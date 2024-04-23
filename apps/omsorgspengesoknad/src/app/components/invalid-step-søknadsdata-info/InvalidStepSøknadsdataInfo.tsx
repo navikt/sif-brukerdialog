@@ -20,7 +20,7 @@ const InvalidStepSøknadsdataInfo: React.FunctionComponent<Props> = ({ stepId, s
 
     if (invalidSteps.length > 0) {
         const step = invalidSteps[0];
-        const stepTitle = text(stepConfig[step].stepTitleIntlKey as any);
+        const stepTitle = text(stepConfig[step].stepTitleIntlKey as any); // har ikke noen god løsning på denne enda
         const stepRoute = getSøknadStepRoute(step);
         const getStepLink = () => (
             <Link

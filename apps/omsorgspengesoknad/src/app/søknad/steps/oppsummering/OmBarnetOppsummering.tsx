@@ -6,6 +6,7 @@ import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
 import { AppIntlShape, AppText, useAppIntl } from '../../../i18n';
 import { BarnSammeAdresse } from '../../../types/BarnSammeAdresse';
 import { OmBarnetApiData } from '../../../types/søknadApiData/SøknadApiData';
+import { getRelasjonTilBarnetIntlKey } from '../om-barnet/omBarnetStepUtils';
 
 interface Props {
     apiData: OmBarnetApiData;
@@ -109,14 +110,16 @@ const getAnnetBarnInfo = (apiData: OmBarnetApiData, { text }: AppIntlShape) => {
                     />
                 </div>
             )}
-            <div>
-                <AppText
-                    id="steg.oppsummering.barnet.søkersRelasjonTilBarnet"
-                    values={{
-                        relasjon: text(`steg.omBarnet.relasjonTilBarnet.${apiData.relasjonTilBarnet}` as any),
-                    }}
-                />
-            </div>
+            {apiData.relasjonTilBarnet && (
+                <div>
+                    <AppText
+                        id="steg.oppsummering.barnet.søkersRelasjonTilBarnet"
+                        values={{
+                            relasjon: text(getRelasjonTilBarnetIntlKey(apiData.relasjonTilBarnet)),
+                        }}
+                    />
+                </div>
+            )}
         </>
     );
 };
