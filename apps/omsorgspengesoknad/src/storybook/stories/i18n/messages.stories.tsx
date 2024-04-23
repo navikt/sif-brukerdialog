@@ -3,15 +3,15 @@ import * as React from 'react';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import KvitteringPage from '../../../app/pages/kvittering/KvitteringPage';
 import { withIntl } from '../../decorators/withIntl';
-import { appMessages } from '../../../app/i18n/appMessages';
+import { applicationIntlMessages } from '../../../app/i18n/index';
 
 export default {
-    title: 'i18N/Tekster',
+    title: 'i18N/Alle tekster',
     decorators: [withIntl],
 } as Meta<typeof KvitteringPage>;
 
 const Template: StoryFn = () => (
-    <MessagesPreview showExplanation={false} messages={appMessages} showMissingTextSummary={true} />
+    <MessagesPreview showExplanation={false} messages={applicationIntlMessages} showMissingTextSummary={true} />
 );
 export const Default = Template.bind({});
 

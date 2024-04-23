@@ -7,7 +7,11 @@ const nb = {
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    ...nb,
+    'steg.legeerklaering.counsellorpanel.1':
+        'Her skal du lasta opp legeerklæringa. Det gjer du anten ved å ta bilete av legeerklæringa, eller ved å skanna ho. Ver nøye med at all tekst er med, inkludert signaturen til legen.',
+    'steg.legeerklaering.counsellorpanel.2':
+        'Me kan ikkje behandla søknaden din før me får legeerklæringa. Viss du ikkje har legeerklæringa tilgjengeleg no, tilrår me at du ventar med å søkja til du har den tilgjengeleg. Viss du ikkje kan venta med å senda søknaden, kan du halda fram utan, men då må du ettersenda legeerklæringa så snart som mogleg.',
+    'steg.legeerklaering.vedlegg.knappLabel': 'Last opp legeerklæringa',
 };
 
 export const legeerklæringMessages = {

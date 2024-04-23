@@ -13,7 +13,10 @@ const nb = {
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    ...nb,
+    ...commonMessages.nn,
+    ...uiMessages.nn,
+    ...soknadMessages.nn,
+    ...appMessages.nn,
 };
 
 export type AppMessageKeys = keyof typeof nb;
