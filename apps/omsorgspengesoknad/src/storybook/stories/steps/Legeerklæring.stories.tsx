@@ -1,3 +1,4 @@
+import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import { Meta, StoryFn } from '@storybook/react';
 import * as React from 'react';
 import { SøknadContextProvider } from '../../../app/søknad/context/SøknadContext';
@@ -11,6 +12,9 @@ import { withStepFormValuesContext } from '../../decorators/withStepFormValuesCo
 import { mockInitialSøknadContextState } from '../../decorators/withSøknadContext';
 import { søknadsdataMocks } from '../../mock-data/søknadsdataMocks';
 import { withAmplitudeProvider } from '../../decorators/withAmplitudeProvider';
+import { Tabs } from '@navikt/ds-react';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { legeerklæringMessages } from '../../../app/søknad/steps/legeerklæring/legeerklæringMessages';
 
 export default {
     title: 'Steps/LegeerklæringStep',
@@ -24,7 +28,27 @@ interface Props {
 
 const Template: StoryFn<Props> = ({ context }: Props) => (
     <SøknadContextProvider initialData={context}>
-        <LegeerklæringStep />;
+        <Tabs defaultValue="steg">
+            <Tabs.List>
+                <Tabs.Tab value="steg" label="Steg" />
+                <Tabs.Tab value="tekster" label="Tekster" />
+            </Tabs.List>
+            <Tabs.Panel value="steg" style={{ maxWidth: '50rem' }}>
+                <Block margin="xl">
+                    <LegeerklæringStep />
+                </Block>
+            </Tabs.Panel>
+            <Tabs.Panel value="tekster" style={{ maxWidth: '50rem' }}>
+                <Block margin="xl">
+                    <MessagesPreview
+                        messages={legeerklæringMessages}
+                        showMissingTextSummary={true}
+                        showExplanation={false}
+                        title="Om barnet"
+                    />
+                </Block>
+            </Tabs.Panel>
+        </Tabs>
     </SøknadContextProvider>
 );
 
