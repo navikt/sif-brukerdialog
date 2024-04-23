@@ -120,7 +120,7 @@ const getAnnetBarnInfo = (apiData: OmBarnetApiData, intl: IntlShape) => {
                 <FormattedMessage
                     id="steg.oppsummering.barnet.søkersRelasjonTilBarnet"
                     values={{
-                        relasjon: intlHelper(intl, `relasjonTilBarnet.${apiData.relasjonTilBarnet}`),
+                        relasjon: intlHelper(intl, `steg.omBarnet.relasjonTilBarnet.${apiData.relasjonTilBarnet}`),
                     }}
                 />
             </div>
