@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 1.0.8
+
+### Patch Changes
+
+- b8daaa4: Korrigere sortering av søknadshendelser slik at FORVENTET_SVAR alltid kommer sist, selv om det er kommet inn endring eller søknad etter at svarfrist er passert.
+
 ## 1.0.7
 
 ### Patch Changes
