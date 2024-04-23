@@ -1,4 +1,3 @@
-import { Alert, Link } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
@@ -22,6 +21,7 @@ import { getAttachmentURLFrontend } from '../../../utils/attachmentUtils';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
 import { validateAttachments, ValidateAttachmentsErrors } from '../../../utils/validateAttachments';
 import DeltBostedAvtaleAttachmentList from './DeltBostedAvtaleAttachmentList';
+import AdvarselSamletDokumentstørrelse from '../../../components/advarsel-samlet-dokumentstørrelse/AdvarselSamletDokumentstørrelse';
 
 interface Props {
     values: Partial<DeltBostedFormValues>;
@@ -107,17 +107,7 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
 
             {totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
                 <Block margin={'l'}>
-                    <Alert variant="warning">
-                        <AppText id={'dokumenter.advarsel.totalstørrelse.1'} />
-                        <Link
-                            target={'_blank'}
-                            rel={'noopener noreferrer'}
-                            href={
-                                'https://www.nav.no/soknader/nb/person/familie/omsorgspenger/NAV%2009-35.01/ettersendelse'
-                            }>
-                            <AppText id={'dokumenter.advarsel.totalstørrelse.2'} />
-                        </Link>
-                    </Alert>
+                    <AdvarselSamletDokumentstørrelse />
                 </Block>
             )}
             <Block margin={'l'}>
