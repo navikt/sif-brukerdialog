@@ -14,12 +14,11 @@ import {
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { getTypedFormComponents, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
-import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
 import api, { ApiEndpoint } from '../../../api/api';
 import { AppText, useAppIntl } from '../../../i18n';
-import { getAttachmentURLFrontend, getUploadedAttachments } from '../../../utils/attachmentUtils';
+import { getAttachmentURLFrontend } from '../../../utils/attachmentUtils';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
 import { validateAttachments, ValidateAttachmentsErrors } from '../../../utils/validateAttachments';
 import DeltBostedAvtaleAttachmentList from './DeltBostedAvtaleAttachmentList';
@@ -99,7 +98,6 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
                         validate={(attachments: Attachment[] = []) => {
                             return validateAll<ValidateAttachmentsErrors | ValidationError>([
                                 () => validateAttachments([...attachments, ...andreVedlegg]),
-                                () => getListValidator({ required: false })(getUploadedAttachments(attachments)),
                             ]);
                         }}
                         onUnauthorizedOrForbiddenUpload={relocateToLoginPage}

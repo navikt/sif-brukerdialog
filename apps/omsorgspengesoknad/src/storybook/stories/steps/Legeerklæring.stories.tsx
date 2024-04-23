@@ -33,12 +33,12 @@ const Template: StoryFn<Props> = ({ context }: Props) => (
                 <Tabs.Tab value="steg" label="Steg" />
                 <Tabs.Tab value="tekster" label="Tekster" />
             </Tabs.List>
-            <Tabs.Panel value="steg" style={{ maxWidth: '50rem' }}>
+            <Tabs.Panel value="steg">
                 <Block margin="xl">
                     <LegeerklæringStep />
                 </Block>
             </Tabs.Panel>
-            <Tabs.Panel value="tekster" style={{ maxWidth: '50rem' }}>
+            <Tabs.Panel value="tekster">
                 <Block margin="xl">
                     <MessagesPreview
                         messages={legeerklæringMessages}

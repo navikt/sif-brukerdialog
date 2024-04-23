@@ -21,12 +21,12 @@ const Template: StoryFn = () => (
             <Tabs.Tab value="steg" label="Steg" />
             <Tabs.Tab value="tekster" label="Tekster" />
         </Tabs.List>
-        <Tabs.Panel value="steg" style={{ maxWidth: '50rem' }}>
+        <Tabs.Panel value="steg">
             <Block margin="xl">
                 <KvitteringPage onUnmount={() => null} />
             </Block>
         </Tabs.Panel>
-        <Tabs.Panel value="tekster" style={{ maxWidth: '50rem' }}>
+        <Tabs.Panel value="tekster">
             <Block margin="xl">
                 <MessagesPreview messages={kvitteringMessages} showMissingTextSummary={true} showExplanation={false} />
             </Block>
