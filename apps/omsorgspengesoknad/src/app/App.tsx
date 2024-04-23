@@ -25,6 +25,7 @@ const App = () => (
         appKey={OmsorgsdagerKroniskApp.key}
         appName={OmsorgsdagerKroniskApp.navn}
         intlMessages={applicationIntlMessages}
+        useLanguageSelector={getEnvironmentVariable('FEATURE_NYNORSK') === 'on'}
         appStatus={{
             sanityConfig: {
                 projectId: getEnvironmentVariable('APPSTATUS_PROJECT_ID'),
