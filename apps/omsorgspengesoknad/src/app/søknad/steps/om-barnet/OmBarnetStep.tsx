@@ -112,7 +112,7 @@ const OmBarnetStep = () => {
                         <>
                             <PersistStepFormValues stepId={stepId} />
                             <Form
-                                formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
+                                formErrorHandler={getIntlFormErrorHandler(intl, 'steg.omBarnet.validation')}
                                 includeValidationSummary={true}
                                 submitPending={isSubmitting}
                                 onBack={goBack}

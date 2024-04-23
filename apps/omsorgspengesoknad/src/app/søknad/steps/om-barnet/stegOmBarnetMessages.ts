@@ -1,18 +1,14 @@
 export const omBarnetMessages = {
     nb: {
-        'relasjonTilBarnet.mor': 'Mor',
-        'relasjonTilBarnet.far': 'Far',
-        'relasjonTilBarnet.adoptivforelder': 'Adoptivforelder',
-        'relasjonTilBarnet.fosterforelder': 'Fosterforelder',
-
         'steg.omBarnet.hvilketBarn.spm': 'Hvilket barn gjelder søknaden?',
         'steg.omBarnet.hvilketBarn.registrerteBarn': 'Barn registrert på deg:',
         'steg.omBarnet.hvilketBarn.info': 'Hvis du skal søke for flere barn, må du sende én søknad for hvert barn.',
         'steg.omBarnet.hvilketBarn.født': 'Født {dato}',
         'steg.omBarnet.gjelderAnnetBarn': 'Søknaden gjelder et annet barn',
+        'steg.omBarnet.annetBarn.tittel': 'Annet barn',
         'steg.omBarnet.fnr.spm': 'Barnets fødselsnummer/D-nummer',
-        'step.omBarnet.fødselsdato': 'Barnets fødselsdato',
-        'step.omBarnet.fødselsdato.info': 'Barnet må være født etter {minFødselsdato}',
+        'steg.omBarnet.fødselsdato': 'Barnets fødselsdato',
+        'steg.omBarnet.fødselsdato.info': 'Barnet må være født etter {minFødselsdato}',
         'steg.omBarnet.navn': 'Barnets navn',
         'steg.omBarnet.relasjon': 'Min relasjon til barnet',
         'steg.omBarnet.veileder.samværsavtale':
@@ -37,38 +33,42 @@ export const omBarnetMessages = {
         'steg.omBarnet.alert.barnet18ÅrKanIkkeFortsette': 'Det gis ikke omsorgsdager til barn over 18 år.',
         'steg.omBarnet.alert.ikkeKroniskSykdom':
             'Denne søknaden om ekstra omsorgsdager gjelder kun for de som har barn med kronisk/langvarig sykdom eller funksjonshemning.',
-        'steg.omBarnet.annetBarn.tittel': 'Annet barn',
+        'steg.omBarnet.relasjonTilBarnet.mor': 'Mor',
+        'steg.omBarnet.relasjonTilBarnet.far': 'Far',
+        'steg.omBarnet.relasjonTilBarnet.adoptivforelder': 'Adoptivforelder',
+        'steg.omBarnet.relasjonTilBarnet.fosterforelder': 'Fosterforelder',
 
-        'validation.barnetSøknadenGjelder.noValue':
+        'steg.omBarnet.validation.barnetSøknadenGjelder.noValue':
             'Du må velge hvilket barn søknaden gjelder, eller velge at søknaden gjelder et annet barn.',
-        'validation.barnetsFødselsnummer.fødselsnummerHasNoValue': 'Skriv inn barnets fødselsnummer.',
-        'validation.barnetsFødselsnummer.fødselsnummerIsInvalid':
+        'steg.omBarnet.validation.barnetsFødselsnummer.fødselsnummerHasNoValue': 'Skriv inn barnets fødselsnummer.',
+        'steg.omBarnet.validation.barnetsFødselsnummer.fødselsnummerIsInvalid':
             'Du har oppgitt et ugyldig fødselsnummer. Kontroller at du har tastet inn riktig.',
-        'validation.barnetsFødselsnummer.fødselsnummerIsNot11Chars':
+        'steg.omBarnet.validation.barnetsFødselsnummer.fødselsnummerIsNot11Chars':
             'Du har oppgitt et ugyldig fødselsnummer. Et gyldig fødselsnummer består av 11 siffer.',
-        'validation.barnetsFødselsnummer.fødselsnummerIsNotAllowed':
+        'steg.omBarnet.validation.barnetsFødselsnummer.fødselsnummerIsNotAllowed':
             'Du har oppgitt ditt eget fødselsnummer som barnets fødselsnummer. Skriv inn barnets fødselsnummer.',
-        'validation.barnetsFødselsnummer.fødselsnummerAsHnrIsNotAllowed':
+        'steg.omBarnet.validation.barnetsFødselsnummer.fødselsnummerAsHnrIsNotAllowed':
             'Du har oppgitt et fødselsnummer som ikke er tillatt.',
-        'validation.barnetsFødselsdato.dateHasNoValue': 'Skriv inn barnets fødselsdato.',
-        'validation.barnetsFødselsdato.dateHasInvalidFormat':
+        'steg.omBarnet.validation.barnetsFødselsdato.dateHasNoValue': 'Skriv inn barnets fødselsdato.',
+        'steg.omBarnet.validation.barnetsFødselsdato.dateHasInvalidFormat':
             'Barnets fødselsdato er ugyldig. Gyldig format er dd.mm.åååå.',
-        'validation.barnetsFødselsdato.dateIsAfterMax':
+        'steg.omBarnet.validation.barnetsFødselsdato.dateIsAfterMax':
             'Fødselsdato kan ikke være etter dagens dato. Skriv inn eller velg dato fra datovelgeren.',
-        'validation.barnetsFødselsdato.barnOver18år': 'Det gis ikke omsorgsdager til barn over 18 år.',
-        'validation.barnetsNavn.stringHasNoValue': 'Skriv inn barnets navn.',
-        'validation.barnetsNavn.stringIsTooLong': 'Navnet på barnet kan ikke inneholde flere enn {maks} tegn.',
-        'validation.søkersRelasjonTilBarnet.noValue': 'Du må velge din relasjon til barnet.',
-        'validation.sammeAdresse.noValue': 'Du må svare ja eller nei på om du bor sammen med barnet.',
-        'validation.kroniskEllerFunksjonshemming.yesOrNoIsUnanswered':
+        'steg.omBarnet.validation.barnetsFødselsdato.barnOver18år': 'Det gis ikke omsorgsdager til barn over 18 år.',
+        'steg.omBarnet.validation.barnetsNavn.stringHasNoValue': 'Skriv inn barnets navn.',
+        'steg.omBarnet.validation.barnetsNavn.stringIsTooLong':
+            'Navnet på barnet kan ikke inneholde flere enn {maks} tegn.',
+        'steg.omBarnet.validation.søkersRelasjonTilBarnet.noValue': 'Du må velge din relasjon til barnet.',
+        'steg.omBarnet.validation.sammeAdresse.noValue': 'Du må svare ja eller nei på om du bor sammen med barnet.',
+        'steg.omBarnet.validation.kroniskEllerFunksjonshemming.yesOrNoIsUnanswered':
             'Du må svare ja eller nei på om barnet har en kronisk/langvarig sykdom eller funksjonshemning.',
-        'validation.høyereRisikoForFravær.yesOrNoIsUnanswered':
+        'steg.omBarnet.validation.høyereRisikoForFravær.yesOrNoIsUnanswered':
             'Du må svare ja eller nei på om du har høyere risiko for fravær på jobb på grunn av barnets sykdom eller funksjonshemning.',
-        'validation.høyereRisikoForFraværBeskrivelse.stringHasNoValue':
+        'steg.omBarnet.validation.høyereRisikoForFraværBeskrivelse.stringHasNoValue':
             'Skriv inn en beskrivelse på hvordan barnets sykdom eller funksjonshemning gir høyere risiko for fravær fra jobb.',
-        'validation.høyereRisikoForFraværBeskrivelse.stringIsTooLong':
+        'steg.omBarnet.validation.høyereRisikoForFraværBeskrivelse.stringIsTooLong':
             'Beskrivelse på hvordan barnets sykdom eller funksjonshemning gir høyere risiko for fravær fra jobb kan ikke inneholde flere enn 2000 tegn.',
-        'validation.høyereRisikoForFraværBeskrivelse.stringIsTooShort':
+        'steg.omBarnet.validation.høyereRisikoForFraværBeskrivelse.stringIsTooShort':
             'Beskrivelse på hvordan barnets sykdom eller funksjonshemning gir høyere risiko for fravær fra jobb må være på minst 5 tegn.',
     },
 };

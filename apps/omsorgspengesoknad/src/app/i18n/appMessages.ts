@@ -1,5 +1,21 @@
+import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
+import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
+import { deltBostedMessages } from '../søknad/steps/delt-bosted/deltBostedMessages';
+import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerklæringMessages';
+import { omBarnetMessages } from '../søknad/steps/om-barnet/stegOmBarnetMessages';
+import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
+import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
+
 export const appMessages = {
     nb: {
+        ...kvitteringMessages.nb,
+        ...velkommenPageMessages.nb,
+        ...deltBostedMessages.nb,
+        ...legeerklæringMessages.nb,
+        ...omBarnetMessages.nb,
+        ...oppsummeringMessages.nb,
+        ...validateApiDataMessages.nb,
+
         // Brukes av sif-common-soknad
         'application.title':
             'Søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',

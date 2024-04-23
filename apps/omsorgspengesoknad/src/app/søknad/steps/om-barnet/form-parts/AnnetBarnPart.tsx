@@ -9,7 +9,7 @@ import {
 } from '@navikt/sif-common-formik-ds/src/validation';
 import { dateFormatter, dateToday } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '../../../../i18n';
-import { SøkersRelasjonTilBarnet, SøkersRelasjonTilBarnetKeys } from '../../../../types/SøkersRelasjonTilBarnet';
+import { SøkersRelasjonTilBarnet } from '../../../../types/SøkersRelasjonTilBarnet';
 import { useSøknadContext } from '../../../context/hooks/useSøknadContext';
 import { OmBarnetFormFields, OmBarnetFormValues } from '../OmBarnetStep';
 import { getMinDatoForBarnetsFødselsdato, isBarnOver18år } from '../omBarnetStepUtils';
@@ -27,6 +27,7 @@ const AnnetBarnpart = () => {
 
     const { text } = useAppIntl();
     const minDatoForBarnetsFødselsdato = getMinDatoForBarnetsFødselsdato();
+
     return (
         <>
             <Heading level="2" size="medium">
@@ -56,7 +57,7 @@ const AnnetBarnpart = () => {
             <FormBlock>
                 <DatePicker
                     name={OmBarnetFormFields.barnetsFødselsdato}
-                    label={text('step.omBarnet.fødselsdato')}
+                    label={text('steg.omBarnet.fødselsdato')}
                     validate={(value) => {
                         const dateError = getDateValidator({
                             required: true,
@@ -65,7 +66,6 @@ const AnnetBarnpart = () => {
                         if (dateError) {
                             return dateError;
                         }
-
                         if (isBarnOver18år(value)) {
                             return {
                                 key: 'barnOver18år',
@@ -76,7 +76,7 @@ const AnnetBarnpart = () => {
                     minDate={minDatoForBarnetsFødselsdato}
                     maxDate={dateToday}
                     dropdownCaption={true}
-                    description={text('step.omBarnet.fødselsdato.info', {
+                    description={text('steg.omBarnet.fødselsdato.info', {
                         minFødselsdato: dateFormatter.full(minDatoForBarnetsFødselsdato),
                     })}
                 />
@@ -88,11 +88,18 @@ const AnnetBarnpart = () => {
                     name={OmBarnetFormFields.søkersRelasjonTilBarnet}
                     validate={getRequiredFieldValidator()}>
                     <option />
-                    {Object.keys(SøkersRelasjonTilBarnet).map((key: SøkersRelasjonTilBarnetKeys) => (
-                        <option key={key} value={SøkersRelasjonTilBarnet[key]}>
-                            {text(`relasjonTilBarnet.${SøkersRelasjonTilBarnet[key]}`)}
-                        </option>
-                    ))}
+                    <option value={SøkersRelasjonTilBarnet.MOR}>
+                        <AppText id="steg.omBarnet.relasjonTilBarnet.mor" />
+                    </option>
+                    <option value={SøkersRelasjonTilBarnet.FAR}>
+                        <AppText id="steg.omBarnet.relasjonTilBarnet.far" />
+                    </option>
+                    <option value={SøkersRelasjonTilBarnet.ADOPTIVFORELDER}>
+                        <AppText id="steg.omBarnet.relasjonTilBarnet.adoptivforelder" />
+                    </option>
+                    <option value={SøkersRelasjonTilBarnet.FOSTERFORELDER}>
+                        <AppText id="steg.omBarnet.relasjonTilBarnet.fosterforelder" />
+                    </option>
                 </Select>
             </FormBlock>
         </>
