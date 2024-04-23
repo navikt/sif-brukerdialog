@@ -110,9 +110,9 @@ export const nb = {
     'statusISak.mottattSøknad.tittel': 'Vi har fått søknaden din om pleiepenger',
     'statusISak.mottattEndringsmelding.tittel': 'Vi har fått endringsmelding fra deg',
     'statusISak.ferdigBehandlet.tittel': 'Du har fått vedtak om pleiepenger',
-    'statusISak.forventetSvar.søknad.tittel': 'Søknaden er ferdig behandlet',
+    'statusISak.forventetSvar.søknad.tittel': 'Søknaden vil bli ferdig behandlet',
     'statusISak.forventetSvar.søknad.info':
-        'Inntektsmelding fra arbeidsgiver og legeerklæring må være sendt inn for at vi kan behandle saken.',
+        'Når søknaden er ferdig behandlet, vil du finne vedtaksbrevet i innboksen din på Min side.',
     'statusISak.forventetSvar.endring.tittel': 'Endringen er ferdig behandlet',
     'statusISak.forventetSvar.endring.info':
         'Endringsmeldingen vil oppdatere saken og du vil få ett nytt vedtaksbrev når endringene er ferdig behandlet.',

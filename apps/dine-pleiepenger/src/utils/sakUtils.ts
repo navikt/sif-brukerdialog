@@ -19,12 +19,15 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.locale('nb');
 
-const getSisteBehandlingISak = (sak: Sak): Behandling | undefined => {
-    return sortBy(sak.behandlinger, (b) => b.opprettetDato)[0];
+export const getSisteBehandlingISak = (sak: Sak): Behandling | undefined => {
+    return sortBehandlingerNyesteFørst(sak.behandlinger)[0];
 };
 
-export const sortBehandlinger = (behandlinger: Behandling[], doSortSøknader: boolean = true): Behandling[] => {
-    const sortedBehandlinger = sortBy(behandlinger, (b) => b.opprettetDato).reverse();
+export const sortBehandlingerNyesteFørst = (
+    behandlinger: Behandling[],
+    doSortSøknader: boolean = true,
+): Behandling[] => {
+    const sortedBehandlinger = sortBy(behandlinger, (b: Behandling) => b.opprettetTidspunkt).reverse();
     if (doSortSøknader) {
         return sortedBehandlinger.map((b): Behandling => {
             return {
@@ -42,10 +45,6 @@ export const sortSøknader = (søknader: Søknad[]): Søknad[] => {
 
 export const sortSøknadshendelser = (hendelser: Søknadshendelse[]): Søknadshendelse[] => {
     return sortBy(hendelser, ({ dato }: Søknadshendelse) => dato?.getTime());
-};
-
-export const getBehandlingerISakSorted = (sak: Sak): Behandling[] => {
-    return sortBehandlinger(sak.behandlinger);
 };
 
 export const getBehandlingsstatusISak = (sak: Sak): BehandlingsstatusISak | undefined => {
