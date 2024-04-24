@@ -1,5 +1,13 @@
 # @navikt/sif-common-forms-ds
 
+## 8.20.3
+
+### Patch Changes
+
+- a30118d: Støtte flere målformer i utenlandsopphold form
+- a30118d: Endre til å støtte flere målformer i virksomhetform
+- a30118d: Legge til rette for flere språk i Tidsperiode forms
+
 ## 8.20.2
 
 ### Patch Changes
