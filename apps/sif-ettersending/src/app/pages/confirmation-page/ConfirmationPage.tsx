@@ -1,16 +1,15 @@
-import { BodyLong, Heading, Ingress, Link } from '@navikt/ds-react';
+import { BodyLong, Heading, Link } from '@navikt/ds-react';
 import { useEffect } from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import CheckmarkIcon from '@navikt/sif-common-core-ds/src/atoms/checkmark-icon/CheckmarkIcon';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { YtelseKey } from '@navikt/sif-common-core-ds/src/types/Ytelser';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import getLenker from '../../lenker';
 import { Søknadstype } from '../../types/Søknadstype';
 import './confirmationPage.css';
+import { AppText, useAppIntl } from '../../i18n';
 
 interface Props {
     søknadstype: Søknadstype;
@@ -21,7 +20,7 @@ YtelseKey;
 const bem = bemUtils('confirmationPage');
 
 const ConfirmationPage = ({ søknadstype, onUnmount }: Props) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
 
     useLogSidevisning(SIFCommonPageKey.kvittering);
 
@@ -34,7 +33,7 @@ const ConfirmationPage = ({ søknadstype, onUnmount }: Props) => {
     }, [onUnmount]);
 
     return (
-        <Page title={intlHelper(intl, 'page.confirmation.sidetittel')} className={bem.block}>
+        <Page title={text('page.confirmation.sidetittel')} className={bem.block}>
             <div className={bem.element('centeredContent')}>
                 <div role="presentation" aria-hidden="true">
                     <CheckmarkIcon />
@@ -42,7 +41,7 @@ const ConfirmationPage = ({ søknadstype, onUnmount }: Props) => {
 
                 <Block margin="xl">
                     <Heading level="1" size="large" data-testid="søknad-mottatt">
-                        <FormattedMessage id="page.confirmation.tittel" />
+                        <AppText id="page.confirmation.tittel" />
                     </Heading>
                 </Block>
             </div>
@@ -51,9 +50,9 @@ const ConfirmationPage = ({ søknadstype, onUnmount }: Props) => {
                     {søknadstype === Søknadstype.pleiepengerSyktBarn && (
                         <ul className="checklist">
                             <li>
-                                <FormattedMessage id="page.confirmation.check.1.pp" />{' '}
+                                <AppText id="page.confirmation.check.1.pp" />{' '}
                                 <Link href={getLenker().INNSYN_PP} target="_blank">
-                                    <FormattedMessage id="page.confirmation.check.1.pp.lenke" />
+                                    <AppText id="page.confirmation.check.1.pp.lenke" />
                                 </Link>
                                 {'.'}
                             </li>
@@ -62,22 +61,27 @@ const ConfirmationPage = ({ søknadstype, onUnmount }: Props) => {
                     {søknadstype !== Søknadstype.pleiepengerSyktBarn && (
                         <>
                             <Block padBottom="m">
-                                <Ingress>
-                                    <FormattedMessage id="page.confirmation.undertittel" />
-                                </Ingress>
+                                <BodyLong size="large">
+                                    <AppText id="page.confirmation.undertittel" />
+                                </BodyLong>
                             </Block>
                             <ul className="checklist">
                                 <li>
-                                    <FormattedMessage id="page.confirmation.check.2" />
+                                    <AppText id="page.confirmation.check.2" />
                                 </li>
                                 <li>
-                                    <FormattedMessage id="page.confirmation.check.3.1" />{' '}
-                                    <Link
-                                        href="https://www.nav.no/no/NAV+og+samfunn/Om+NAV/Saksbehandlingstider+i+NAV"
-                                        target="_blank">
-                                        <FormattedMessage id="page.confirmation.check.3.2" />
-                                    </Link>
-                                    {'.'}
+                                    <AppText
+                                        id="page.confirmation.check.3"
+                                        values={{
+                                            Lenke: (children: React.ReactNode) => (
+                                                <Link
+                                                    href="https://www.nav.no/no/NAV+og+samfunn/Om+NAV/Saksbehandlingstider+i+NAV"
+                                                    target="_blank">
+                                                    {children}
+                                                </Link>
+                                            ),
+                                        }}
+                                    />
                                 </li>
                             </ul>
                         </>

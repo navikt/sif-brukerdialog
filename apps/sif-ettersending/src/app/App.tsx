@@ -7,7 +7,7 @@ import {
     SoknadApplicationCommonRoutes,
     SoknadApplication,
 } from '@navikt/sif-common-soknad-ds';
-import { applicationIntlMessages } from './i18n/messages';
+import { applicationIntlMessages } from './i18n';
 import GeneralErrorPage from './pages/general-error-page/GeneralErrorPage';
 import IntroPage from './pages/intro-page/IntroPage';
 import SoknadRemoteDataFetcher from './soknad/SoknadRemoteDataFetcher';
