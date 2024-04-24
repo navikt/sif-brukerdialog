@@ -180,6 +180,7 @@ const nb = {
         'Når søknaden er ferdigbehandlet, får du et svar fra oss på «Min side». <Lenke>Du kan sjekke saksbehandlingstiden her</Lenke>.',
 
     'validation.harForståttRettigheterOgPlikter.notChecked': 'Du må bekrefte at du har lest og forstått dine plikter',
+    'validation.registrertBarnAktørId.noValue': 'Du må velge hvilket barn legeerklæringen gjelder',
     'validation.ingen_dokumenter': 'Ingen dokumenter er lastet opp',
     'validation.for_mange_dokumenter': 'For mange dokumenter er lastet opp',
     'validation.samlet_storrelse_for_hoy':
