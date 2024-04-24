@@ -34,6 +34,8 @@ interface Props {
     publicPath: string;
     /** Locale messages */
     intlMessages: MessageFileFormat;
+    /** Toggle on/off languageselector in decorator */
+    useLanguageSelector?: boolean;
     /** If amplitude logging is active or not - default true*/
     useAmplitude?: boolean;
     /** Config for connecting to the appStatus sanity project */
@@ -47,12 +49,20 @@ interface Props {
 const localeFromSessionStorage = getLocaleFromSessionStorage();
 dayjs.locale(localeFromSessionStorage);
 
-const SoknadApplication = ({ intlMessages, appStatus, publicPath, appKey, useAmplitude = true, children }: Props) => {
+const SoknadApplication = ({
+    intlMessages,
+    appStatus,
+    publicPath,
+    appKey,
+    useAmplitude = true,
+    useLanguageSelector,
+    children,
+}: Props) => {
     const [locale, setLocale] = React.useState<Locale>(localeFromSessionStorage);
     const localeMessages = intlMessages[locale] || intlMessages['nb'];
-    const locales = Object.keys(intlMessages) as any;
+    const locales = useLanguageSelector ? (Object.keys(intlMessages) as any) : [];
 
-    useDecoratorLanguageSelector([locales], (locale: any) => {
+    useDecoratorLanguageSelector(locales, (locale: any) => {
         setLocaleInSessionStorage(locale);
         setLocale(locale);
     });
