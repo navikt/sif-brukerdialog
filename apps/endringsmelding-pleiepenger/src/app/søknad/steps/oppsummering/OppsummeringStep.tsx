@@ -23,6 +23,7 @@ import ArbeidstidOppsummering from './ArbeidstidOppsummering';
 import LovbestemtFerieOppsummering from './LovbestemtFerieOppsummering';
 import './oppsummering.css';
 import { getOppsummeringStepInitialValues, oppsummeringStepUtils } from './oppsummeringStepUtils';
+import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -216,7 +217,7 @@ const OppsummeringStep = () => {
                                     {sendSøknadError && (
                                         <FormBlock>
                                             <ErrorSummary ref={sendSøknadErrorSummary}>
-                                                {sendSøknadError.message}
+                                                <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
                                             </ErrorSummary>
                                         </FormBlock>
                                     )}

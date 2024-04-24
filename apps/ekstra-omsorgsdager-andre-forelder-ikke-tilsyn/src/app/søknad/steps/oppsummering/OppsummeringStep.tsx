@@ -22,6 +22,7 @@ import ResetMellomagringButton from '../../../components/reset-mellomlagring-but
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
+import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -120,7 +121,9 @@ const OppsummeringStep = () => {
                             </Form>
                             {sendSøknadError && (
                                 <FormBlock>
-                                    <ErrorSummary ref={sendSøknadErrorSummary}>{sendSøknadError.message}</ErrorSummary>
+                                    <ErrorSummary ref={sendSøknadErrorSummary}>
+                                        <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
+                                    </ErrorSummary>
                                 </FormBlock>
                             )}
                         </>
