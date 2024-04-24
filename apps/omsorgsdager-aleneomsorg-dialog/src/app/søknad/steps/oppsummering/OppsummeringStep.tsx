@@ -1,9 +1,8 @@
 import { ErrorSummary } from '@navikt/ds-react';
 import { useEffect, useRef } from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
@@ -23,6 +22,7 @@ import BarnSummaryList from './BarnSummaryList';
 import OmBarnaSummary from './OmBarnaSummary';
 import OmSøkerOppsummering from './OmSøkerOppsummering';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
+import { AppText, useAppIntl } from '../../../i18n';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -39,6 +39,7 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 
 const OppsummeringStep = () => {
     const intl = useIntl();
+    const { text } = useAppIntl();
     const {
         state: { søknadsdata, søker, registrertBarn },
     } = useSøknadContext();
@@ -70,12 +71,12 @@ const OppsummeringStep = () => {
                     return (
                         <>
                             <p>
-                                <FormattedMessage id="apiDataValidation.undefined" />
+                                <AppText id="apiDataValidation.undefined" />
                             </p>
                             <p>
-                                <FormattedMessage id="resetMellomlagring.text.1" />
+                                <AppText id="resetMellomlagring.text.1" />
                             </p>
-                            <ResetMellomagringButton label={intlHelper(intl, 'resetMellomlagring.startPåNytt')} />
+                            <ResetMellomagringButton label={text('resetMellomlagring.startPåNytt')} />
                         </>
                     );
                 }}
@@ -114,8 +115,7 @@ const OppsummeringStep = () => {
                                     annetBarn={søknadsdata.omOmsorgenForBarn?.annetBarn}
                                 />
 
-                                <SummarySection
-                                    header={intlHelper(intl, 'step.oppsummering.omOmsorgenForBarn.barnList.tittle')}>
+                                <SummarySection header={text('step.oppsummering.omOmsorgenForBarn.barnList.tittle')}>
                                     <Block margin="m">
                                         <BarnSummaryList barn={apiData.barn} />
                                     </Block>
@@ -123,7 +123,7 @@ const OppsummeringStep = () => {
 
                                 <ConfirmationCheckbox
                                     disabled={isSubmitting}
-                                    label={<FormattedMessage id="step.oppsummering.bekrefterOpplysninger" />}
+                                    label={<AppText id="step.oppsummering.bekrefterOpplysninger" />}
                                     validate={getCheckedValidator()}
                                     name={OppsummeringFormFields.harBekreftetOpplysninger}
                                 />
