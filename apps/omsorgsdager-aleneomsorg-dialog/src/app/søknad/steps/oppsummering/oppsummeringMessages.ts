@@ -1,8 +1,4 @@
 const nb = {
-    'step.oppsummering.nextButtonLabel': 'Send søknad',
-    'step.oppsummering.info':
-        'Les gjennom oppsummeringen og sjekk at alt er riktig før du sender inn søknaden. Hvis du vil gjøre endringer, kan du gå tilbake.',
-
     'step.oppsummering.søker.header': 'Om deg',
     'step.oppsummering.søker.fnr': 'Fødselsnummer: {fødselsnummer}',
     'step.oppsummering.deres-felles-barn.header': 'Barn',

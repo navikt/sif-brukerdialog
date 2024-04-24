@@ -1,4 +1,5 @@
 import { ErrorSummary } from '@navikt/ds-react';
+import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { useEffect, useRef } from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
@@ -13,6 +14,7 @@ import ResetMellomagringButton from '../../../components/reset-mellomlagring-but
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
+import { AppText, useAppIntl } from '../../../i18n';
 import { useSøknadContext } from '../../../søknad/context/hooks/useSøknadContext';
 import SøknadStep from '../../../søknad/SøknadStep';
 import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../../søknad/søknadStepConfig';
@@ -22,7 +24,6 @@ import BarnSummaryList from './BarnSummaryList';
 import OmBarnaSummary from './OmBarnaSummary';
 import OmSøkerOppsummering from './OmSøkerOppsummering';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
-import { AppText, useAppIntl } from '../../../i18n';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -130,7 +131,9 @@ const OppsummeringStep = () => {
                             </Form>
                             {sendSøknadError && (
                                 <FormBlock>
-                                    <ErrorSummary ref={sendSøknadErrorSummary}>{sendSøknadError.message}</ErrorSummary>
+                                    <ErrorSummary ref={sendSøknadErrorSummary}>
+                                        <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
+                                    </ErrorSummary>
                                 </FormBlock>
                             )}
                         </>
