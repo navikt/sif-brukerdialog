@@ -1,8 +1,5 @@
 import { useIntl } from 'react-intl';
-// import { handleDateRangeValidationError } from '../utils';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-// import { dateToday, prettifyDate } from '@navikt/sif-common-core-ds/src/utils/dateUtils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import {
     getDateRangeValidator,
@@ -23,6 +20,7 @@ import {
     mapFormValuesToUtenlandskNæring,
     mapUtenlandskNæringToFormValues,
 } from './utenlandskNæringUtils';
+import { useUtenlandskNæringIntl, UtenlandskNæringMessageKeys } from './utenlandskNæringMessages';
 
 interface Props {
     utenlandskNæring?: UtenlandskNæring;
@@ -41,31 +39,31 @@ enum UtenlandskNæringFormField {
     erPågående = 'erPågående',
 }
 
-export const UtenlandskNæringFormErrors = {
+export const UtenlandskNæringFormErrors: Record<string, { [key: string]: UtenlandskNæringMessageKeys }> = {
     [UtenlandskNæringFormField.næringstype]: {
-        [ValidateRequiredFieldError.noValue]: 'utenlandskNæringForm.næringstype.noValue',
+        [ValidateRequiredFieldError.noValue]: '@forms.utenlandskNæringForm.næringstype.noValue',
     },
 
     [UtenlandskNæringFormField.navnPåVirksomheten]: {
-        [ValidateStringError.stringHasNoValue]: 'utenlandskNæringForm.navnPåVirksomheten.stringHasNoValue',
+        [ValidateStringError.stringHasNoValue]: '@forms.utenlandskNæringForm.navnPåVirksomheten.stringHasNoValue',
     },
 
     [UtenlandskNæringFormField.land]: {
-        [ValidateRequiredFieldError.noValue]: 'utenlandskNæringForm.land.noValue',
+        [ValidateRequiredFieldError.noValue]: '@forms.utenlandskNæringForm.land.noValue',
     },
 
     [UtenlandskNæringFormField.fraOgMed]: {
-        [ValidateDateError.dateHasNoValue]: 'utenlandskNæringForm.fraOgMed.dateHasNoValue',
-        [ValidateDateError.dateIsAfterMax]: 'utenlandskNæringForm.fraOgMed.dateIsAfterMax',
-        [ValidateDateError.dateHasInvalidFormat]: 'utenlandskNæringForm.fraOgMed.dateHasInvalidFormat',
-        [ValidateDateRangeError.fromDateIsAfterToDate]: 'utenlandskNæringForm.fraOgMed.fromDateIsAfterToDate',
+        [ValidateDateError.dateHasNoValue]: '@forms.utenlandskNæringForm.fraOgMed.dateHasNoValue',
+        [ValidateDateError.dateIsAfterMax]: '@forms.utenlandskNæringForm.fraOgMed.dateIsAfterMax',
+        [ValidateDateError.dateHasInvalidFormat]: '@forms.utenlandskNæringForm.fraOgMed.dateHasInvalidFormat',
+        [ValidateDateRangeError.fromDateIsAfterToDate]: '@forms.utenlandskNæringForm.fraOgMed.fromDateIsAfterToDate',
     },
     [UtenlandskNæringFormField.tilOgMed]: {
-        [ValidateDateError.dateHasNoValue]: 'utenlandskNæringForm.tilOgMed.dateHasNoValue',
-        [ValidateDateError.dateIsBeforeMin]: 'utenlandskNæringForm.tilOgMed.dateIsBeforeMin',
-        [ValidateDateError.dateIsAfterMax]: 'utenlandskNæringForm.tilOgMed.dateIsAfterMax',
-        [ValidateDateError.dateHasInvalidFormat]: 'utenlandskNæringForm.tilOgMed.dateHasInvalidFormat',
-        [ValidateDateRangeError.toDateIsBeforeFromDate]: 'utenlandskNæringForm.tilOgMed.toDateIsBeforeFromDate',
+        [ValidateDateError.dateHasNoValue]: '@forms.utenlandskNæringForm.tilOgMed.dateHasNoValue',
+        [ValidateDateError.dateIsBeforeMin]: '@forms.utenlandskNæringForm.tilOgMed.dateIsBeforeMin',
+        [ValidateDateError.dateIsAfterMax]: '@forms.utenlandskNæringForm.tilOgMed.dateIsAfterMax',
+        [ValidateDateError.dateHasInvalidFormat]: '@forms.utenlandskNæringForm.tilOgMed.dateHasInvalidFormat',
+        [ValidateDateRangeError.toDateIsBeforeFromDate]: '@forms.utenlandskNæringForm.tilOgMed.toDateIsBeforeFromDate',
     },
 };
 
@@ -83,7 +81,7 @@ const Form = getTypedFormComponents<UtenlandskNæringFormField, UtenlandskNærin
 
 const UtenlandskNæringForm = ({ utenlandskNæring, onSubmit, onCancel }: Props) => {
     const intl = useIntl();
-    const getText = (key: string, value?: any): string => intlHelper(intl, `${key}`, value);
+    const { text } = useUtenlandskNæringIntl();
 
     const onFormikSubmit = (formValues: Partial<UtenlandskNæringFormValues>) => {
         const utenlandskNæringToSubmit = mapFormValuesToUtenlandskNæring(formValues, utenlandskNæring?.id);
@@ -113,33 +111,33 @@ const UtenlandskNæringForm = ({ utenlandskNæring, onSubmit, onCancel }: Props)
                         onCancel={onCancel}
                         submitButtonLabel="Ok"
                         showButtonArrows={false}
-                        formErrorHandler={getFormErrorHandler(intl, 'utenlandskNæringForm')}>
+                        formErrorHandler={getFormErrorHandler(intl, '@forms.utenlandskNæringForm')}>
                         <Form.RadioGroup
                             name={UtenlandskNæringFormField.næringstype}
-                            legend={getText('sifForms.utenlandskNæringForm.hvilken_type_virksomhet')}
+                            legend={text('@forms.utenlandskNæringForm.hvilken_type_virksomhet')}
                             radios={[
                                 {
                                     value: UtenlandskNæringstype.FISKE,
-                                    label: getText(
-                                        `sifForms.utenlandskNæringForm.næringstype_${UtenlandskNæringstype.FISKE}`,
+                                    label: text(
+                                        `@forms.utenlandskNæringForm.næringstype_${UtenlandskNæringstype.FISKE}`,
                                     ),
                                 },
                                 {
                                     value: UtenlandskNæringstype.JORDBRUK_SKOGBRUK,
-                                    label: getText(
-                                        `sifForms.utenlandskNæringForm.næringstype_${UtenlandskNæringstype.JORDBRUK_SKOGBRUK}`,
+                                    label: text(
+                                        `@forms.utenlandskNæringForm.næringstype_${UtenlandskNæringstype.JORDBRUK_SKOGBRUK}`,
                                     ),
                                 },
                                 {
                                     value: UtenlandskNæringstype.DAGMAMMA,
-                                    label: getText(
-                                        `sifForms.utenlandskNæringForm.næringstype_${UtenlandskNæringstype.DAGMAMMA}`,
+                                    label: text(
+                                        `@forms.utenlandskNæringForm.næringstype_${UtenlandskNæringstype.DAGMAMMA}`,
                                     ),
                                 },
                                 {
                                     value: UtenlandskNæringstype.ANNEN,
-                                    label: getText(
-                                        `sifForms.utenlandskNæringForm.næringstype_${UtenlandskNæringstype.ANNEN}`,
+                                    label: text(
+                                        `@forms.utenlandskNæringForm.næringstype_${UtenlandskNæringstype.ANNEN}`,
                                     ),
                                 },
                             ]}
@@ -149,7 +147,7 @@ const UtenlandskNæringForm = ({ utenlandskNæring, onSubmit, onCancel }: Props)
                         <Block margin="xl">
                             <Form.TextField
                                 name={UtenlandskNæringFormField.navnPåVirksomheten}
-                                label={getText('sifForms.utenlandskNæringForm.hva_heter_virksomheten')}
+                                label={text('@forms.utenlandskNæringForm.hva_heter_virksomheten')}
                                 validate={getStringValidator({ required: true })}
                                 maxLength={50}
                             />
@@ -158,7 +156,7 @@ const UtenlandskNæringForm = ({ utenlandskNæring, onSubmit, onCancel }: Props)
                         <Block margin="xl">
                             <Form.CountrySelect
                                 name={UtenlandskNæringFormField.land}
-                                label={getText('sifForms.utenlandskNæringForm.registert_i_hvilket_land', {
+                                label={text('@forms.utenlandskNæringForm.registert_i_hvilket_land', {
                                     navnPåVirksomheten,
                                 })}
                                 validate={getRequiredFieldValidator()}
@@ -170,19 +168,19 @@ const UtenlandskNæringForm = ({ utenlandskNæring, onSubmit, onCancel }: Props)
                         <Block margin="xl">
                             <Form.TextField
                                 name={UtenlandskNæringFormField.identifikasjonsnummer}
-                                label={getText('sifForms.utenlandskNæringForm.organisasjonsnummer')}
+                                label={text('@forms.utenlandskNæringForm.organisasjonsnummer')}
                                 style={{ maxWidth: '10rem' }}
                                 maxLength={30}
                             />
                         </Block>
                         <Block margin="xl">
                             <Form.DateRangePicker
-                                legend={getText('sifForms.utenlandskNæringForm.startdato', { navnPåVirksomheten })}
+                                legend={text('@forms.utenlandskNæringForm.startdato', { navnPåVirksomheten })}
                                 dropdownCaption={true}
                                 maxDate={dateToday}
                                 minDate={date99YearsFromNow}
                                 fromInputProps={{
-                                    label: getText('sifForms.utenlandskNæringForm.kalender_fom'),
+                                    label: text('@forms.utenlandskNæringForm.kalender_fom'),
                                     name: UtenlandskNæringFormField.fraOgMed,
                                     validate: (value) => {
                                         const error = getDateRangeValidator({
@@ -193,16 +191,15 @@ const UtenlandskNæringForm = ({ utenlandskNæring, onSubmit, onCancel }: Props)
                                         if (error === ValidateDateError.dateIsAfterMax) {
                                             return {
                                                 key: error,
-                                                values: { dato: prettifyDate(dateToday) },
+                                                values: { dato: prettifyDate(dateToday), navn: navnPåVirksomheten },
                                             };
                                         }
                                         return error;
                                     },
                                 }}
                                 toInputProps={{
-                                    label: getText('sifForms.utenlandskNæringForm.kalender_tom'),
+                                    label: text('@forms.utenlandskNæringForm.kalender_tom'),
                                     name: UtenlandskNæringFormField.tilOgMed,
-                                    // disabled: values.erPågående === true,
                                     validate:
                                         values.erPågående === true
                                             ? undefined
@@ -217,7 +214,7 @@ const UtenlandskNæringForm = ({ utenlandskNæring, onSubmit, onCancel }: Props)
                                 }}
                             />
                             <Form.Checkbox
-                                label={getText('sifForms.utenlandskNæringForm.kalender_pågående')}
+                                label={text('@forms.utenlandskNæringForm.kalender_pågående')}
                                 name={UtenlandskNæringFormField.erPågående}
                                 afterOnChange={(checked) => {
                                     if (checked) {

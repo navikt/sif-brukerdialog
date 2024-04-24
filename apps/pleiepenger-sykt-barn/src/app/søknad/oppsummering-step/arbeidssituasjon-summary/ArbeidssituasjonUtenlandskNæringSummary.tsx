@@ -15,36 +15,33 @@ function UtenlandskNæringSummary({ utenlandskNæring }: Props) {
     const renderUtenlandskNæring = (næring: UtenlandskNæringApiData): React.ReactNode => {
         const land = næring.land.landnavn;
 
-        const næringstype = intlHelper(intl, `sifForms.utenlandskNæringForm.næringstype_${næring.næringstype}`);
+        const næringstype = intlHelper(intl, `@forms.utenlandskNæringForm.næringstype_${næring.næringstype}`);
 
         const tidsinfo = næring.tilOgMed
-            ? intlHelper(intl, 'sifForms.utenlandskNæringForm.summary.tidsinfo.avsluttet', {
+            ? intlHelper(intl, '@forms.utenlandskNæringForm.summary.tidsinfo.avsluttet', {
                   fraOgMed: prettifyDate(ISODateToDate(næring.fraOgMed)),
                   tilOgMed: prettifyDate(ISODateToDate(næring.tilOgMed)),
               })
-            : intlHelper(intl, 'sifForms.utenlandskNæringForm.summary.tidsinfo.pågående', {
+            : intlHelper(intl, '@forms.utenlandskNæringForm.summary.tidsinfo.pågående', {
                   fraOgMed: prettifyDate(ISODateToDate(næring.fraOgMed)),
               });
         return (
             <li key={næring.navnPåVirksomheten}>
                 <Block margin="m" padBottom="l">
                     <div data-testid="oppsummering-utenlandskNæring-navn">
-                        {`${intlHelper(intl, 'sifForms.utenlandskNæringForm.summary.navn')}: ${
+                        {`${intlHelper(intl, '@forms.utenlandskNæringForm.summary.navn')}: ${
                             næring.navnPåVirksomheten
                         }.`}
                     </div>
                     <div data-testid="oppsummering-utenlandskNæring-næringstype">
-                        {`${intlHelper(intl, 'sifForms.utenlandskNæringForm.summary.næringstype')}: ${næringstype}.`}
+                        {`${intlHelper(intl, '@forms.utenlandskNæringForm.summary.næringstype')}: ${næringstype}.`}
                     </div>
 
                     <div data-testid="oppsummering-utenlandskNæring-registrertILand">
-                        <FormattedMessage
-                            id="sifForms.utenlandskNæringForm.summary.registrertILand"
-                            values={{ land }}
-                        />
+                        <FormattedMessage id="@forms.utenlandskNæringForm.summary.registrertILand" values={{ land }} />
                         {næring.organisasjonsnummer !== undefined && (
                             <FormattedMessage
-                                id="sifForms.utenlandskNæringForm.summary.registrertILand.orgnr"
+                                id="@forms.utenlandskNæringForm.summary.registrertILand.orgnr"
                                 values={{ orgnr: næring.organisasjonsnummer }}
                             />
                         )}

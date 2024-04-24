@@ -1,3 +1,4 @@
+import { Box, Tabs, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
@@ -5,30 +6,27 @@ import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-d
 import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { date1YearAgo, date1YearFromNow } from '@navikt/sif-common-utils';
+import { date1YearAgo, date1YearFromNow, dateToday } from '@navikt/sif-common-utils';
 import { flatten } from 'flat';
-import { OpptjeningUtland } from '../types';
-import OpptjeningUtlandListAndDialog from '../OpptjeningUtlandListAndDialog';
+import MessagesPreview from '../../../../storybook/components/messages-preview/MessagesPreview';
 import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
 import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
-import { opptjeningUtlandMessages } from '../opptjeningUtlandMessages';
-import OpptjeningUtlandForm, { OpptjeningUtlandFormErrors } from '../OpptjeningUtlandForm';
-import MessagesPreview from '../../../../storybook/components/messages-preview/MessagesPreview';
-import { Box, Tabs, VStack } from '@navikt/ds-react';
+import TidsperiodeForm, { TidsperiodeFormErrors } from '../TidsperiodeForm';
+import TidsperiodeListAndDialog from '../TidsperiodeListAndDialog';
+import { tidsperiodeMessages } from '../tidsperiodeMessages';
+import { DateTidsperiode } from '../types';
 
 enum FormField {
-    'opptjeningUtland' = 'opptjeningUtland',
+    'tidsperiode' = 'tidsperiode',
 }
 
 interface FormValues {
-    [FormField.opptjeningUtland]: OpptjeningUtland[];
+    [FormField.tidsperiode]: DateTidsperiode[];
 }
-const initialValues: FormValues = {
-    opptjeningUtland: [],
-};
+const initialValues: FormValues = { tidsperiode: [] };
 
-const OpptjeningUtlandExample = () => {
-    const [singleFormValues, setSingleFormValues] = useState<Partial<OpptjeningUtland> | undefined>(undefined);
+const TidsperiodeExample = () => {
+    const [singleFormValues, setSingleFormValues] = useState<Partial<DateTidsperiode> | undefined>(undefined);
     const [listFormValues, setListFormValues] = useState<Partial<FormValues> | undefined>(undefined);
     const intl = useIntl();
     return (
@@ -49,16 +47,15 @@ const OpptjeningUtlandExample = () => {
                                     includeButtons={true}
                                     submitButtonLabel="Valider skjema"
                                     formErrorHandler={getFormErrorHandler(intl)}>
-                                    <OpptjeningUtlandListAndDialog
+                                    <TidsperiodeListAndDialog<FormField>
+                                        name={FormField.tidsperiode}
                                         minDate={date1YearAgo}
-                                        maxDate={date1YearFromNow}
-                                        name={FormField.opptjeningUtland}
+                                        maxDate={dateToday}
                                         validate={getListValidator({ required: true })}
                                         labels={{
-                                            addLabel: 'Legg til jobb i annet EØS-land',
-                                            listTitle: 'Registrert jobb i annet EØS-land',
-                                            modalTitle: 'Jobb i annet EØS-land',
-                                            emptyListText: 'Ingen jobb i annet EØS-land er lagt til',
+                                            addLabel: 'Legg til periode',
+                                            listTitle: 'Registrerte periode',
+                                            modalTitle: 'Periode',
                                         }}
                                     />
                                 </TypedFormikForm>
@@ -69,10 +66,10 @@ const OpptjeningUtlandExample = () => {
                 </Tabs.Panel>
                 <Tabs.Panel value="form" style={{ maxWidth: '30rem' }}>
                     <Box padding="4" borderWidth="1" borderRadius="small">
-                        <OpptjeningUtlandForm
-                            opptjening={initialValues.opptjeningUtland[0]}
+                        <TidsperiodeForm
                             minDate={date1YearAgo}
                             maxDate={date1YearFromNow}
+                            tidsperiode={{}}
                             onSubmit={setSingleFormValues}
                             onCancel={() => null}
                         />
@@ -83,11 +80,11 @@ const OpptjeningUtlandExample = () => {
                 <Tabs.Panel value="messages">
                     <Block margin="xxl" padBottom="l">
                         <FormValidationErrorMessages
-                            validationErrorIntlKeys={flatten(OpptjeningUtlandFormErrors)}
-                            formName={'OpptjeningUtland'}
-                            intlMessages={opptjeningUtlandMessages}
+                            validationErrorIntlKeys={flatten(TidsperiodeFormErrors)}
+                            formName={'Tidsperiode'}
+                            intlMessages={tidsperiodeMessages}
                         />
-                        <MessagesPreview messages={opptjeningUtlandMessages} showExplanation={false} />
+                        <MessagesPreview messages={tidsperiodeMessages} showExplanation={false} />
                     </Block>
                 </Tabs.Panel>
             </VStack>
@@ -95,4 +92,4 @@ const OpptjeningUtlandExample = () => {
     );
 };
 
-export default OpptjeningUtlandExample;
+export default TidsperiodeExample;

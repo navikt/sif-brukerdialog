@@ -1,3 +1,4 @@
+import { Box, Tabs, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
@@ -7,28 +8,27 @@ import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/int
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { date1YearAgo, date1YearFromNow } from '@navikt/sif-common-utils';
 import { flatten } from 'flat';
-import { OpptjeningUtland } from '../types';
-import OpptjeningUtlandListAndDialog from '../OpptjeningUtlandListAndDialog';
+import MessagesPreview from '../../../../storybook/components/messages-preview/MessagesPreview';
 import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
 import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
-import { opptjeningUtlandMessages } from '../opptjeningUtlandMessages';
-import OpptjeningUtlandForm, { OpptjeningUtlandFormErrors } from '../OpptjeningUtlandForm';
-import MessagesPreview from '../../../../storybook/components/messages-preview/MessagesPreview';
-import { Box, Tabs, VStack } from '@navikt/ds-react';
+import { Utenlandsopphold } from '../types';
+import UtenlandsoppholdForm, { UtlandsoppholdFormErrors } from '../UtenlandsoppholdForm';
+import UtenlandsoppholdListAndDialog from '../UtenlandsoppholdListAndDialog';
+import { utenlandsoppholdMessages } from '../utenlandsoppholdMessages';
 
 enum FormField {
-    'opptjeningUtland' = 'opptjeningUtland',
+    'utenlandsopphold' = 'utenlandsopphold',
 }
 
 interface FormValues {
-    [FormField.opptjeningUtland]: OpptjeningUtland[];
+    [FormField.utenlandsopphold]: Utenlandsopphold[];
 }
 const initialValues: FormValues = {
-    opptjeningUtland: [],
+    utenlandsopphold: [],
 };
 
-const OpptjeningUtlandExample = () => {
-    const [singleFormValues, setSingleFormValues] = useState<Partial<OpptjeningUtland> | undefined>(undefined);
+const UtenlandsoppholdExample = () => {
+    const [singleFormValues, setSingleFormValues] = useState<Partial<Utenlandsopphold> | undefined>(undefined);
     const [listFormValues, setListFormValues] = useState<Partial<FormValues> | undefined>(undefined);
     const intl = useIntl();
     return (
@@ -49,16 +49,16 @@ const OpptjeningUtlandExample = () => {
                                     includeButtons={true}
                                     submitButtonLabel="Valider skjema"
                                     formErrorHandler={getFormErrorHandler(intl)}>
-                                    <OpptjeningUtlandListAndDialog
+                                    <UtenlandsoppholdListAndDialog
                                         minDate={date1YearAgo}
                                         maxDate={date1YearFromNow}
-                                        name={FormField.opptjeningUtland}
+                                        name={FormField.utenlandsopphold}
                                         validate={getListValidator({ required: true })}
                                         labels={{
-                                            addLabel: 'Legg til jobb i annet EØS-land',
-                                            listTitle: 'Registrert jobb i annet EØS-land',
-                                            modalTitle: 'Jobb i annet EØS-land',
-                                            emptyListText: 'Ingen jobb i annet EØS-land er lagt til',
+                                            addLabel: 'Legg til utenlandsopphold',
+                                            listTitle: 'Registrerte utenlandsopphold',
+                                            modalTitle: 'Utenlandsopphold',
+                                            emptyListText: 'Ingen utenlandsopphold er lagt til',
                                         }}
                                     />
                                 </TypedFormikForm>
@@ -69,10 +69,11 @@ const OpptjeningUtlandExample = () => {
                 </Tabs.Panel>
                 <Tabs.Panel value="form" style={{ maxWidth: '30rem' }}>
                     <Box padding="4" borderWidth="1" borderRadius="small">
-                        <OpptjeningUtlandForm
-                            opptjening={initialValues.opptjeningUtland[0]}
+                        <UtenlandsoppholdForm
+                            opphold={initialValues.utenlandsopphold[0]}
                             minDate={date1YearAgo}
                             maxDate={date1YearFromNow}
+                            excludeInnlagtQuestion={false}
                             onSubmit={setSingleFormValues}
                             onCancel={() => null}
                         />
@@ -83,11 +84,10 @@ const OpptjeningUtlandExample = () => {
                 <Tabs.Panel value="messages">
                     <Block margin="xxl" padBottom="l">
                         <FormValidationErrorMessages
-                            validationErrorIntlKeys={flatten(OpptjeningUtlandFormErrors)}
-                            formName={'OpptjeningUtland'}
-                            intlMessages={opptjeningUtlandMessages}
+                            validationErrorIntlKeys={flatten(UtlandsoppholdFormErrors)}
+                            intlMessages={utenlandsoppholdMessages}
                         />
-                        <MessagesPreview messages={opptjeningUtlandMessages} showExplanation={false} />
+                        <MessagesPreview messages={utenlandsoppholdMessages} showExplanation={false} />
                     </Block>
                 </Tabs.Panel>
             </VStack>
@@ -95,4 +95,4 @@ const OpptjeningUtlandExample = () => {
     );
 };
 
-export default OpptjeningUtlandExample;
+export default UtenlandsoppholdExample;
