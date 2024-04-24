@@ -14,15 +14,12 @@ const nb = {
     ...oppsummeringMessages.nb,
     ...kvitteringMessages.nb,
     ...validateApiDataMessages.nb,
+
     'application.title': 'Søknad om ekstra omsorgsdager ved aleneomsorg',
-    'page.form.ubesvarteSpørsmålInfo': 'For å komme videre, må du svare på alle spørsmålene ovenfor',
 
     'step.omOmsorgenForBarn.stepTitle': 'Om aleneomsorg for barn',
     'step.tidspunktForAleneomsorg.stepTitle': 'Tidspunkt for aleneomsorg',
     'step.oppsummering.stepTitle': 'Oppsummering',
-
-    'steg.footer.avbryt': 'Avbryt og slett søknad',
-    'steg.footer.fortsettSenere': 'Avslutt og fortsett senere',
 
     'initialLoadError.pageTitle': 'Det oppstod en feil',
     'initialLoadError.text.1': 'Det oppstod en feil under oppstarten av søknaden. Vennligst prøv igjen senere.',

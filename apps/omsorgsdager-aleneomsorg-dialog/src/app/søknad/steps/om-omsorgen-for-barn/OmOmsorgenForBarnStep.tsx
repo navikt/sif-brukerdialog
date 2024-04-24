@@ -143,7 +143,7 @@ const OmOmsorgenForBarnStep = () => {
                                 runDelayedFormValidation={true}>
                                 <Block margin="xxl">
                                     <Heading level="2" size="medium">
-                                        <FormattedMessage id="step.omOmsorgenForBarn.dineBarn.seksjonsTittel" />
+                                        <FormattedMessage id="steg.omOmsorgenForBarn.dineBarn.seksjonsTittel" />
                                     </Heading>
 
                                     {registrertBarn.length > 0 && (
@@ -162,10 +162,10 @@ const OmOmsorgenForBarnStep = () => {
                                         <ContentWithHeader
                                             header={
                                                 annetBarn.length === 0
-                                                    ? intlHelper(intl, 'step.omOmsorgenForBarn.info.spm.andreBarn')
-                                                    : intlHelper(intl, 'step.omOmsorgenForBarn.info.spm.flereBarn')
+                                                    ? intlHelper(intl, 'steg.omOmsorgenForBarn.info.spm.andreBarn')
+                                                    : intlHelper(intl, 'steg.omOmsorgenForBarn.info.spm.flereBarn')
                                             }>
-                                            {intlHelper(intl, 'step.omOmsorgenForBarn.info.spm.text')}
+                                            {intlHelper(intl, 'steg.omOmsorgenForBarn.info.spm.text')}
                                         </ContentWithHeader>
                                     </FormBlock>
                                     <Block margin="l">
@@ -174,15 +174,15 @@ const OmOmsorgenForBarnStep = () => {
                                             labels={{
                                                 addLabel: intlHelper(
                                                     intl,
-                                                    'step.omOmsorgenForBarn.annetBarnListAndDialog.addLabel',
+                                                    'steg.omOmsorgenForBarn.annetBarnListAndDialog.addLabel',
                                                 ),
                                                 listTitle: intlHelper(
                                                     intl,
-                                                    'step.omOmsorgenForBarn.annetBarnListAndDialog.listTitle',
+                                                    'steg.omOmsorgenForBarn.annetBarnListAndDialog.listTitle',
                                                 ),
                                                 modalTitle: intlHelper(
                                                     intl,
-                                                    'step.omOmsorgenForBarn.annetBarnListAndDialog.modalTitle',
+                                                    'steg.omOmsorgenForBarn.annetBarnListAndDialog.modalTitle',
                                                 ),
                                             }}
                                             maxDate={dateToday}
@@ -190,7 +190,7 @@ const OmOmsorgenForBarnStep = () => {
                                             disallowedFødselsnumre={[...[søker.fødselsnummer], ...annetBarnFnr]}
                                             aldersGrenseText={intlHelper(
                                                 intl,
-                                                'step.omOmsorgenForBarn.formLeggTilBarn.aldersGrenseInfo',
+                                                'steg.omOmsorgenForBarn.formLeggTilBarn.aldersGrenseInfo',
                                             )}
                                             visBarnTypeValg={true}
                                             // onAfterChange={() => setAnnetBarnChanged(true)}
@@ -201,14 +201,14 @@ const OmOmsorgenForBarnStep = () => {
                                     <>
                                         <Block margin="xxl">
                                             <Heading level="2" size="medium">
-                                                <FormattedMessage id="step.omOmsorgenForBarn.aleneomsorg.seksjonsTittel" />
+                                                <FormattedMessage id="steg.omOmsorgenForBarn.aleneomsorg.seksjonsTittel" />
                                             </Heading>
 
                                             <Block margin="l">
                                                 <CheckboxGroup
                                                     legend={intlHelper(
                                                         intl,
-                                                        'step.omOmsorgenForBarn.form.spm.hvilkeAvBarnaAleneomsorg',
+                                                        'steg.omOmsorgenForBarn.form.spm.hvilkeAvBarnaAleneomsorg',
                                                     )}
                                                     name={OmOmsorgenForBarnFormFields.harAleneomsorgFor}
                                                     checkboxes={getBarnOptions(registrertBarn, annetBarn)}
@@ -218,15 +218,15 @@ const OmOmsorgenForBarnStep = () => {
                                         </Block>
                                         <Block margin="xxl">
                                             <Heading level="2" size="medium">
-                                                <FormattedMessage id="step.omOmsorgenForBarn.deltBosted.seksjonsTittel" />
+                                                <FormattedMessage id="steg.omOmsorgenForBarn.deltBosted.seksjonsTittel" />
                                             </Heading>
                                             <Block margin="l">
                                                 <YesOrNoQuestion
                                                     legend={intlHelper(
                                                         intl,
                                                         flereBarn
-                                                            ? 'step.omOmsorgenForBarn.deltBosted.flereBarn.spm'
-                                                            : 'step.omOmsorgenForBarn.deltBosted.spm',
+                                                            ? 'steg.omOmsorgenForBarn.deltBosted.flereBarn.spm'
+                                                            : 'steg.omOmsorgenForBarn.deltBosted.spm',
                                                     )}
                                                     name={OmOmsorgenForBarnFormFields.avtaleOmDeltBosted}
                                                     validate={getYesOrNoValidator()}
@@ -237,9 +237,9 @@ const OmOmsorgenForBarnStep = () => {
                                                         <ExpandableInfo
                                                             title={intlHelper(
                                                                 intl,
-                                                                'step.omOmsorgenForBarn.deltBosted.description.tittel',
+                                                                'steg.omOmsorgenForBarn.deltBosted.description.tittel',
                                                             )}>
-                                                            <FormattedMessage id="step.omOmsorgenForBarn.deltBosted.description" />
+                                                            <FormattedMessage id="steg.omOmsorgenForBarn.deltBosted.description" />
                                                         </ExpandableInfo>
                                                     }
                                                 />
@@ -248,7 +248,7 @@ const OmOmsorgenForBarnStep = () => {
                                             {visDeltBostedBarnValg && (
                                                 <Block margin="xl">
                                                     <CheckboxGroup
-                                                        legend={intlHelper(intl, 'step.omOmsorgenForBarn.deltBosted')}
+                                                        legend={intlHelper(intl, 'steg.omOmsorgenForBarn.deltBosted')}
                                                         name={OmOmsorgenForBarnFormFields.harAvtaleOmDeltBostedFor}
                                                         checkboxes={getBarnOptions(registrertBarn, annetBarn)}
                                                         validate={getListValidator({ required: true })}
@@ -261,7 +261,7 @@ const OmOmsorgenForBarnStep = () => {
                                             barnMedDeltBostedHarAleneomsorg) && (
                                             <Block margin="l">
                                                 <Alert variant="warning">
-                                                    {intlHelper(intl, 'step.omOmsorgenForBarn.alleBarnMedDeltBosted')}
+                                                    {intlHelper(intl, 'steg.omOmsorgenForBarn.alleBarnMedDeltBosted')}
                                                 </Alert>
                                             </Block>
                                         )}
@@ -271,7 +271,7 @@ const OmOmsorgenForBarnStep = () => {
                                 {!harBarn && (
                                     <Block margin="l">
                                         <Alert variant="warning">
-                                            {intlHelper(intl, 'step.omOmsorgenForBarn.ingenbarn')}
+                                            {intlHelper(intl, 'steg.omOmsorgenForBarn.ingenbarn')}
                                         </Alert>
                                     </Block>
                                 )}

@@ -1,4 +1,3 @@
-import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { IntlShape } from 'react-intl';
 import { StepId } from '../../types/StepId';
@@ -9,9 +8,12 @@ export enum API_DATA_VALIDATION_ERROR {
     'undefined' = 'undefined',
 }
 
-export const validateApiDataMessages: MessageFileFormat = {
+export const validateApiDataMessages = {
     nb: {
         'apiDataValidation.undefined': 'Det oppstod en feil ved visningen av siden.',
+    },
+    nn: {
+        'apiDataValidation.undefined': 'Det oppstod ein feil ved visning av sida.',
     },
 };
 

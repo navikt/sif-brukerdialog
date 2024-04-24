@@ -77,7 +77,7 @@ export const barnItemLabelRenderer = (registrertBarn: RegistrertBarn): React.Rea
         <span className="dineBarn">
             <span>
                 <FormattedMessage
-                    id="step.omOmsorgenForBarn.form.født"
+                    id="steg.omOmsorgenForBarn.form.født"
                     values={{ dato: dateFormatter.compact(registrertBarn.fødselsdato) }}
                 />
             </span>
@@ -94,7 +94,7 @@ export const getBarnOptions = (registrertBarn: RegistrertBarn[] = [], andreBarn:
         ...registrertBarn.map((barnet) => ({
             label: (
                 <FormattedMessage
-                    id="step.omOmsorgenForBarn.form.fødtNavn"
+                    id="steg.omOmsorgenForBarn.form.fødtNavn"
                     values={{
                         dato: dateFormatter.compact(barnet.fødselsdato),
                         navn: formatName(barnet.fornavn, barnet.etternavn),
@@ -106,7 +106,7 @@ export const getBarnOptions = (registrertBarn: RegistrertBarn[] = [], andreBarn:
         ...andreBarn.map((barnet) => ({
             label: (
                 <FormattedMessage
-                    id="step.omOmsorgenForBarn.form.fødtNavn"
+                    id="steg.omOmsorgenForBarn.form.fødtNavn"
                     values={{
                         dato: dateFormatter.compact(barnet.fødselsdato),
                         navn: barnet.navn,
