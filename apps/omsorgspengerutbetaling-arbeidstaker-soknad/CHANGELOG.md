@@ -1,5 +1,12 @@
 # @navikt/omsorgspengerutbetaling-arbeidstaker-soknad
 
+## 1.1.12
+
+### Patch Changes
+
+- Updated dependencies [8410a5e]
+  - @navikt/sif-common-soknad-ds@10.13.32
+
 ## 1.1.11
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.13.32
+
+### Patch Changes
+
+- 8410a5e: Utvide med prop for om språkvelger skal brukes eller ikke.
+
 ## 10.13.31
 
 ### Patch Changes
