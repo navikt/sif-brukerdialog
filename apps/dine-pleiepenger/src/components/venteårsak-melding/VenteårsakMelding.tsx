@@ -4,7 +4,7 @@ import { Alert, BodyLong, Box, Button, Heading } from '@navikt/ds-react';
 import DokumentarkivLenke from '../lenker/DokumentarkivLenke';
 import Link from 'next/link';
 import { browserEnv } from '../../utils/env';
-import { Msg } from '../../i18n';
+import { AppText } from '../../i18n';
 
 interface Props {
     venteårsak: Venteårsak;
@@ -23,10 +23,10 @@ const VenteårsakMelding: React.FunctionComponent<Props> = ({ venteårsak }) => 
                 <>
                     <Alert variant="warning">
                         <MeldingHeading>
-                            <Msg id="venteårsakMelding.legeerklæring.tittel" />
+                            <AppText id="venteårsakMelding.legeerklæring.tittel" />
                         </MeldingHeading>
                         <BodyLong className="mb-2 mt-2">
-                            <Msg
+                            <AppText
                                 id="venteårsakMelding.legeerklæring.info"
                                 values={{
                                     lenke: (text) => <DokumentarkivLenke tekst={text} />,
@@ -35,7 +35,7 @@ const VenteårsakMelding: React.FunctionComponent<Props> = ({ venteårsak }) => 
                         </BodyLong>
                         <Box className="mt-4">
                             <Button as={Link} variant="primary" href={browserEnv.NEXT_PUBLIC_SKJEMA_ETTERSENDELSE_URL}>
-                                <Msg id="venteårsakMelding.legeerklæring.lastOppHer" />
+                                <AppText id="venteårsakMelding.legeerklæring.lastOppHer" />
                             </Button>
                         </Box>
                     </Alert>
@@ -45,12 +45,12 @@ const VenteårsakMelding: React.FunctionComponent<Props> = ({ venteårsak }) => 
             return (
                 <Alert variant="warning">
                     <MeldingHeading>
-                        <Msg id="venteårsakMelding.inntektsmelding.tittel" />
+                        <AppText id="venteårsakMelding.inntektsmelding.tittel" />
                     </MeldingHeading>
                     <BodyLong className="mb-2 mt-2">
-                        <Msg id="venteårsakMelding.inntektsmelding.info" />
+                        <AppText id="venteårsakMelding.inntektsmelding.info" />
                     </BodyLong>
-                    <Msg
+                    <AppText
                         id="venteårsakMelding.inntektsmelding.dokumentarkivLenke"
                         values={{
                             lenke: (txt) => <DokumentarkivLenke tekst={txt} />,
@@ -62,10 +62,10 @@ const VenteårsakMelding: React.FunctionComponent<Props> = ({ venteårsak }) => 
             return (
                 <Alert variant="info">
                     <MeldingHeading>
-                        <Msg id="venteårsakMelding.søktForTidlig.tittel" values={{ dato: <span>[todo]</span> }} />
+                        <AppText id="venteårsakMelding.søktForTidlig.tittel" values={{ dato: <span>[todo]</span> }} />
                     </MeldingHeading>
                     <BodyLong className="mb-2 mt-2">
-                        <Msg id="venteårsakMelding.søktForTidlig.info" />
+                        <AppText id="venteårsakMelding.søktForTidlig.info" />
                     </BodyLong>
                 </Alert>
             );
@@ -74,10 +74,10 @@ const VenteårsakMelding: React.FunctionComponent<Props> = ({ venteårsak }) => 
             return (
                 <Alert variant="info">
                     <MeldingHeading>
-                        <Msg id="venteårsakMelding.meldekort.tittel" />
+                        <AppText id="venteårsakMelding.meldekort.tittel" />
                     </MeldingHeading>
                     <BodyLong className="mb-2 mt-2">
-                        <Msg id="venteårsakMelding.meldekort.info" />
+                        <AppText id="venteårsakMelding.meldekort.info" />
                     </BodyLong>
                 </Alert>
             );

@@ -4,7 +4,7 @@ import React from 'react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { Venteårsak } from '../../types/Venteårsak';
 import { browserEnv } from '../../utils/env';
-import { Msg, useMessages } from '../../i18n';
+import { AppText, useAppIntl } from '../../i18n';
 import { erSaksbehandlingsfristPassert } from '../../utils/sakUtils';
 
 interface Props {
@@ -19,7 +19,7 @@ const getFristTekst = (frist: Date, venteårsak?: Venteårsak): React.ReactNode 
         case Venteårsak.MEDISINSK_DOKUMENTASJON:
         case Venteårsak.MELDEKORT:
             return (
-                <Msg
+                <AppText
                     id="svarfrist.dokumenterManglerFrist"
                     values={{ frist: dateFormatter.full(frist), dato: (chunk) => <strong>{chunk}</strong> }}
                 />
@@ -27,7 +27,7 @@ const getFristTekst = (frist: Date, venteårsak?: Venteårsak): React.ReactNode 
         case Venteårsak.SØKT_FOR_TIDLIG:
         default:
             return (
-                <Msg
+                <AppText
                     id="svarfrist.generellFrist"
                     values={{
                         frist: dateFormatter.full(frist),
@@ -40,7 +40,7 @@ const getFristTekst = (frist: Date, venteårsak?: Venteårsak): React.ReactNode 
 
 const Saksbehandlingstid: React.FunctionComponent<Props> = ({ frist, venteårsak, saksbehandlingstidUker = 7 }) => {
     const fristErPassert = frist ? erSaksbehandlingsfristPassert(frist) : false;
-    const { text } = useMessages();
+    const { text } = useAppIntl();
     return (
         <Box>
             <Heading size="medium" level="2" className="text-deepblue-800" spacing={true}>

@@ -1,8 +1,11 @@
 export const nb = {
     'velgSak.dokumentTittel': 'Dine pleiepenger - velg sak',
     'velgSak.tittel': 'Dine pleiepengesaker',
-    'velgSak.barn.fdato': 'Født: {dato}',
+    'velgSak.barn.fdato': 'Født {dato}',
+    'velgSak.barn.anonymisert': 'Pleietrengende født {dato}',
     'forside.dokumentTittel': 'Dine pleiepenger',
+
+    'barn.navn.anonymisert': 'Pleietrengende',
 
     'snarveier.endring.tittel': 'Meld fra om endring',
     'snarveier.endring.tekst': 'Ved endringer i arbeidstid og ferie i din pleiepengeperiode.',
@@ -68,6 +71,7 @@ export const nb = {
     'påbegyntEndring.info': 'Lagres til og med {datoNårSlettes}',
 
     'dineInnsendteSøknader.tittel': 'Dine søknader, endringer og ettersendelser',
+
     'innsendtSøknadListe.ingenSøknader': 'Ingen søknader funnet',
     'innsendtSøknadListe.visFlereInnsendinger': 'Vis flere innsendinger',
     'innsendtSøknadTitle.mottatt': 'Mottatt: {dato}',
@@ -98,6 +102,7 @@ export const nb = {
 
     'sakPageHeader.saksnr': 'Saksnummer: {saksnr}',
     'sakPageHeader.pleietrengende': 'Pleietrengende: {navn}',
+    'sakPageHeader.pleietrengende.anonymisert': 'Pleietrengende født {dato}',
     'sakPageHeader.defaultTittel': 'Din pleiepengesak',
 
     'pdfLenke.lenke': '{tittel} (PDF)',

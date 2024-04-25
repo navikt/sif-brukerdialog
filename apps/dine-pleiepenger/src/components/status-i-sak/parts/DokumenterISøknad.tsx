@@ -1,6 +1,6 @@
 import { Box, Heading } from '@navikt/ds-react';
 import React from 'react';
-import { Msg } from '../../../i18n';
+import { AppText } from '../../../i18n';
 import { Dokument } from '../../../server/api-models/DokumenetSchema';
 import { Søknad } from '../../../server/api-models/SøknadSchema';
 import { getDokumentFrontendUrl, getSøknadDokumentFilnavn } from '../../../utils/dokumentUtils';
@@ -26,7 +26,7 @@ const DokumenterISøknad: React.FunctionComponent<Props> = ({ søknad, tittel })
     if (søknad.dokumenter.length === 0) {
         return (
             <p>
-                <Msg id="dokumenter.ingenDokumenter" />
+                <AppText id="dokumenter.ingenDokumenter" />
             </p>
         );
     }
@@ -42,7 +42,7 @@ const DokumenterISøknad: React.FunctionComponent<Props> = ({ søknad, tittel })
             )}
             {(søknad.dokumenter === undefined || søknad.dokumenter.length === 0) && (
                 <p>
-                    <Msg id="dokumenter.ingenDokumenter" />
+                    <AppText id="dokumenter.ingenDokumenter" />
                 </p>
             )}
         </Box>

@@ -9,7 +9,7 @@ import Snarveier from '../components/snarveier/Snarveier';
 import Saksbehandlingstid from '../components/saksbehandlingstid/Saksbehandlingstid';
 import { useInnsynsdataContext } from '../hooks/useInnsynsdataContext';
 import { useLogBrukerprofil } from '../hooks/useLogBrukerprofil';
-import { useMessages } from '../i18n';
+import { useAppIntl } from '../i18n';
 import { PleietrengendeMedSak } from '../server/api-models/PleietrengendeMedSakSchema';
 import { InnsendtSøknad, InnsendtSøknadstype } from '../types/Søknad';
 import SakPage from './sak/SakPage';
@@ -37,7 +37,7 @@ function DinePleiepengerPage(): ReactElement {
 
     useLogBrukerprofil(innsendteSøknader, saker, saksbehandlingstidUker);
 
-    const { text } = useMessages();
+    const { text } = useAppIntl();
 
     if (saker.length === 1) {
         return (
