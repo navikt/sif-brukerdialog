@@ -48,7 +48,7 @@ const HistorikkPage: React.FunctionComponent<Props> = ({ sak, harFlereSaker, ple
     return (
         <DefaultPageLayout pageHeader={<SakPageHeader tittel="Historikk" navn={navn} saksnr={sak.saksnummer} />}>
             <Head>
-                <title>Historikk - Din pleiepengesak - {navn}</title>
+                <title>Historikk - Din pleiepengesak - {sak.saksnummer}</title>
             </Head>
             <VStack gap="12">
                 <Box className="md:flex md:gap-6 mb-10">
