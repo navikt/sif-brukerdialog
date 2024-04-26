@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 1.1.0
+
+### Minor Changes
+
+- 475dc4c: Endre til å hente ut brukerprofil på serversiden, og ikke returnere innsendinger til bruker dersom det finnes sak.
+
 ## 1.0.9
 
 ### Patch Changes
