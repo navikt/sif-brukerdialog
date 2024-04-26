@@ -21,6 +21,7 @@ export const setupMockRoutes = async (page: any) => {
             harSak: true,
             søker: søkerMockData as any,
             mellomlagring: {},
+            brukerprofil: {} as any,
             innsendteSøknader: søknaderMockData as any,
         };
         await route.fulfill({ status: 200, body: JSON.stringify(response) });

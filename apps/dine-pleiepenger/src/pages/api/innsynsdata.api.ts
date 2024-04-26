@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { createChildLogger } from '@navikt/next-logger';
 import { HttpStatusCode } from 'axios';
+import dayjs from 'dayjs';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import {
     fetchMellomlagringer,
@@ -15,7 +16,6 @@ import { getXRequestId } from '../../utils/apiUtils';
 import { Feature } from '../../utils/features';
 import { sortInnsendtSøknadEtterOpprettetDato } from '../../utils/innsendtSøknadUtils';
 import { fetchAppStatus } from './appStatus.api';
-import dayjs from 'dayjs';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const childLogger = createChildLogger(getXRequestId(req));
@@ -85,6 +85,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             appStatus: appStatus.status === 'fulfilled' ? appStatus.value : undefined,
             søker,
             innsendteSøknader: harSak ? [] : innsendteSøknader,
+            brukerprofil,
             mellomlagring: mellomlagringReq.status === 'fulfilled' ? mellomlagringReq.value : {},
             saksbehandlingstidUker,
             saker,
