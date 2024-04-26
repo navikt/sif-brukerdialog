@@ -1,5 +1,4 @@
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
-import { personalOpplysningerMessages } from '../pages/velkommen/personalopplysninger/personalopplysninger.messages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { arbeidssituasjonMessages } from '../søknad/steps/arbeidssituasjon/arbeidssituasjonMessages';
 import { dineBarnMessages } from '../søknad/steps/dine-barn/dineBarnMessages';
@@ -11,7 +10,6 @@ import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummering
 import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
 
 const nb = {
-    ...personalOpplysningerMessages.nb,
     ...velkommenPageMessages.nb,
     ...dineBarnMessages.nb,
     ...fraværStepMessages.nb,
