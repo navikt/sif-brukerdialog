@@ -11,7 +11,7 @@ interface Props {
 }
 
 const KvitteringPage = ({ onUnmount }: Props) => {
-    const { text, locale } = useAppIntl();
+    const { text, intl } = useAppIntl();
 
     useEffect(() => {
         return () => {
@@ -35,7 +35,7 @@ const KvitteringPage = ({ onUnmount }: Props) => {
                                 id="kvittering.info.3"
                                 values={{
                                     Lenke: (children) => (
-                                        <Link href={getLenker(locale).saksbehandlingstider} target="_blank">
+                                        <Link href={getLenker(intl.locale).saksbehandlingstider} target="_blank">
                                             {children}
                                         </Link>
                                     ),

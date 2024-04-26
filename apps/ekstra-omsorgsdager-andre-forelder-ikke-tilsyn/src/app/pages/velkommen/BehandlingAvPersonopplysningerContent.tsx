@@ -2,10 +2,11 @@ import { Heading, Link } from '@navikt/ds-react';
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import InfoList from '@navikt/sif-common-core-ds/src/components/lists/info-list/InfoList';
-import { AppText } from '../../i18n';
+import { AppText, useAppIntl } from '../../i18n';
 import getLenker from '../../lenker';
 
 const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
+    const { intl } = useAppIntl();
     return (
         <Block margin="l" style={{ paddingTop: '.5rem' }}>
             <Heading level="3" size="small">
@@ -47,7 +48,7 @@ const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
                     id="personopplysninger.5"
                     values={{
                         Lenke: (children: React.ReactNode) => (
-                            <Link href={getLenker().personvern} target="_blank">
+                            <Link href={getLenker(intl.locale).personvern} target="_blank">
                                 {children}
                             </Link>
                         ),
