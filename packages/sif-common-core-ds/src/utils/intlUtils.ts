@@ -16,6 +16,7 @@ export function typedIntlHelper<Keys extends string>(intl: IntlShape) {
         date: (date: Date, format: IntlDateFormat) => {
             return intl.formatDate(date, intlDateFormats[format]);
         },
+        locale: intl.locale,
     };
 }
 
