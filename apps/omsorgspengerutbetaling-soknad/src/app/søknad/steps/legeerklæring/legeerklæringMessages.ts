@@ -1,6 +1,4 @@
-import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
-
-export const legeerklæringMessages: MessageFileFormat = {
+export const legeerklæringMessages = {
     nb: {
         'steg.legeerklæring.stepIndicatorLabel': 'Last opp din legeerklæring',
         'steg.legeerklæring.nextButtonLabel': 'Fortsett',

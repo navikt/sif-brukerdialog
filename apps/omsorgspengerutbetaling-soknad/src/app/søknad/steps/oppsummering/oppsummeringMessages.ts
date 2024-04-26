@@ -1,6 +1,4 @@
-import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
-
-export const oppsummeringMessages: MessageFileFormat = {
+export const oppsummeringMessages = {
     nb: {
         'step.oppsummering.info':
             'Les gjennom oppsummeringen før du sender inn søknaden. Hvis du vil gjøre endringer, kan du gå tilbake.',

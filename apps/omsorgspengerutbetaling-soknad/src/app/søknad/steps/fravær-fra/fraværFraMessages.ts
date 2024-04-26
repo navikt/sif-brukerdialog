@@ -1,6 +1,4 @@
-import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
-
-export const fraværFraMessages: MessageFileFormat = {
+export const fraværFraMessages = {
     nb: {
         'step.fravaerFra.dag.spm': 'Hvilket arbeid hadde du fravær fra {dato}?',
         'step.fravaerFra.info':

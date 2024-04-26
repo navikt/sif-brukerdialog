@@ -1,6 +1,4 @@
-import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
-
-export const arbeidssituasjonMessages: MessageFileFormat = {
+export const arbeidssituasjonMessages = {
     nb: {
         'step.arbeidssituasjon.info.1':
             'Nå trenger vi å vite hva som var arbeidssituasjonen din i dagene du søker utbetaling for.',

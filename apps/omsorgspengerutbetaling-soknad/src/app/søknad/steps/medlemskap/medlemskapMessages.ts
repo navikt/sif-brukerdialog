@@ -1,6 +1,4 @@
-import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
-
-export const medlemskapMessages: MessageFileFormat = {
+export const medlemskapMessages = {
     nb: {
         'step.medlemskap.stepIndicatorLabel': 'Om medlemskap i folketrygden',
         'step.medlemskap.nextButtonLabel': 'Fortsett',

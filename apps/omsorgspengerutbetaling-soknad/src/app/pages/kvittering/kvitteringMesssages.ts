@@ -1,6 +1,4 @@
-import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
-
-export const kvitteringMessages: MessageFileFormat = {
+export const kvitteringMessages = {
     nb: {
         'page.kvittering.sidetittel': 'Vi har mottatt søknaden din',
         'page.kvittering.tittel': 'Vi har mottatt søknad om utbetaling av omsorgspenger',

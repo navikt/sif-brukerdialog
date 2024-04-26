@@ -1,6 +1,4 @@
-import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
-
-export const personalOpplysningerMessages: MessageFileFormat = {
+export const personalOpplysningerMessages = {
     nb: {
         'personopplysninger.dialogtittel': 'Om behandling av personopplysninger',
         'personopplysninger.1': 'Slik behandler NAV personopplysningene dine',

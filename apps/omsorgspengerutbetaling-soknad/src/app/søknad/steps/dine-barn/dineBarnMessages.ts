@@ -1,6 +1,4 @@
-import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
-
-export const dineBarnMessages: MessageFileFormat = {
+export const dineBarnMessages = {
     nb: {
         'step.dineBarn.nextButtonLabel': 'Fortsett',
         'step.dineBarn.intro.1':
