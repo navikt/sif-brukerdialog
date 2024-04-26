@@ -3125,14 +3125,14 @@ __metadata:
     "@portabletext/react": 3.0.18
     "@sanity/client": 6.15.19
     "@types/node": 20.12.7
-    "@types/react": 18.2.79
-    "@types/react-dom": 18.2.25
+    "@types/react": 18.3.0
+    "@types/react-dom": 18.3.0
     config: "workspace:*"
     copyfiles: 2.4.1
     postcss: 8.4.38
     prop-types: 15.8.1
-    react: 18.2.0
-    react-dom: 18.2.0
+    react: 18.3.0
+    react-dom: 18.3.0
     rimraf: 5.0.5
     sass: 1.75.0
   languageName: unknown
@@ -3182,9 +3182,9 @@ __metadata:
     node-fetch: 3.3.2
     node-jose: 2.2.0
     postcss-import: 16.1.0
-    react: 18.2.0
+    react: 18.3.0
     react-day-picker: 8.10.1
-    react-dom: 18.2.0
+    react-dom: 18.3.0
     react-intl: 6.6.5
     react-loading-skeleton: 3.4.0
     storybook: 8.0.8
@@ -3269,8 +3269,8 @@ __metadata:
     "@storybook/react-vite": 8.0.8
     "@testing-library/react": 15.0.2
     "@types/object-hash": 3.0.6
-    "@types/react": 18.2.79
-    "@types/react-dom": 18.2.25
+    "@types/react": 18.3.0
+    "@types/react-dom": 18.3.0
     "@types/react-router-dom": 5.3.3
     axios: 1.6.8
     babel-polyfill: 6.26.0
@@ -3289,8 +3289,8 @@ __metadata:
     mustache-express: 1.3.2
     object-hash: 3.0.0
     openid-client: 5.6.5
-    react: 18.2.0
-    react-dom: 18.2.0
+    react: 18.3.0
+    react-dom: 18.3.0
     react-fast-compare: 3.2.2
     react-intl: 6.6.5
     react-router-dom: 6.22.3
@@ -3339,9 +3339,9 @@ __metadata:
     "@types/intl": 1.2.2
     "@types/js-cookie": 3.0.6
     "@types/object-hash": 3.0.6
-    "@types/react": 18.2.79
+    "@types/react": 18.3.0
     "@types/react-document-title": 2.0.9
-    "@types/react-dom": 18.2.25
+    "@types/react-dom": 18.3.0
     "@types/react-modal": 3.16.3
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.2.1
@@ -3371,9 +3371,9 @@ __metadata:
     openid-client: 5.6.5
     postcss: 8.4.38
     postcss-import: 16.1.0
-    react: 18.2.0
+    react: 18.3.0
     react-day-picker: 8.10.1
-    react-dom: 18.2.0
+    react-dom: 18.3.0
     react-intl: 6.6.5
     react-modal: 3.16.1
     react-responsive: 10.0.0
@@ -3455,8 +3455,8 @@ __metadata:
     "@playwright/test": 1.43.1
     "@testing-library/react": 15.0.2
     "@types/object-hash": 3.0.6
-    "@types/react": 18.2.79
-    "@types/react-dom": 18.2.25
+    "@types/react": 18.3.0
+    "@types/react-dom": 18.3.0
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.2.1
     axios: 1.6.8
@@ -3477,8 +3477,8 @@ __metadata:
     mustache-express: 1.3.2
     object-hash: 3.0.0
     openid-client: 5.6.5
-    react: 18.2.0
-    react-dom: 18.2.0
+    react: 18.3.0
+    react-dom: 18.3.0
     react-fast-compare: 3.2.2
     react-intl: 6.6.5
     react-router-dom: 6.22.3
@@ -3500,8 +3500,8 @@ __metadata:
     "@navikt/nav-dekoratoren-moduler": 2.1.6
     "@playwright/test": 1.43.1
     "@types/node": 20.12.7
-    "@types/react": 18.2.79
-    "@types/react-dom": 18.2.25
+    "@types/react": 18.3.0
+    "@types/react-dom": 18.3.0
     "@types/uuid": 9.0.8
     classnames: 2.5.1
     dayjs: 1.11.10
@@ -3513,9 +3513,9 @@ __metadata:
     next: 14.2.2
     node-fetch: 3.3.2
     postcss: 8.4.38
-    react: 18.2.0
+    react: 18.3.0
     react-day-picker: 8.10.1
-    react-dom: 18.2.0
+    react-dom: 18.3.0
     react-intl: 6.6.5
     tailwindcss: 3.4.3
     typescript: 5.4.5
@@ -3548,8 +3548,8 @@ __metadata:
     "@testing-library/react": 15.0.2
     "@types/node": 20.12.7
     "@types/object-hash": 3.0.6
-    "@types/react": 18.2.79
-    "@types/react-dom": 18.2.25
+    "@types/react": 18.3.0
+    "@types/react-dom": 18.3.0
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.2.1
     axios: 1.6.8
@@ -3572,8 +3572,8 @@ __metadata:
     openid-client: 5.6.5
     postcss-nesting: 12.1.2
     promise: 8.3.0
-    react: 18.2.0
-    react-dom: 18.2.0
+    react: 18.3.0
+    react-dom: 18.3.0
     react-fast-compare: 3.2.2
     react-intl: 6.6.5
     react-router-dom: 6.22.3
@@ -3620,8 +3620,8 @@ __metadata:
     "@testing-library/react": 15.0.2
     "@types/node": 20.12.7
     "@types/object-hash": 3.0.6
-    "@types/react": 18.2.79
-    "@types/react-dom": 18.2.25
+    "@types/react": 18.3.0
+    "@types/react-dom": 18.3.0
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.2.1
     axios: 1.6.8
@@ -3644,8 +3644,8 @@ __metadata:
     object-hash: 3.0.0
     openid-client: 5.6.5
     postcss-nesting: 12.1.2
-    react: 18.2.0
-    react-dom: 18.2.0
+    react: 18.3.0
+    react-dom: 18.3.0
     react-fast-compare: 3.2.2
     react-intl: 6.6.5
     react-router-dom: 6.22.3
@@ -3692,8 +3692,8 @@ __metadata:
     "@storybook/testing-library": 0.2.2
     "@testing-library/react": 15.0.2
     "@types/object-hash": 3.0.6
-    "@types/react": 18.2.79
-    "@types/react-dom": 18.2.25
+    "@types/react": 18.3.0
+    "@types/react-dom": 18.3.0
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.2.1
     axe-core: 4.9.0
@@ -3717,8 +3717,8 @@ __metadata:
     object-hash: 3.0.0
     openid-client: 5.6.5
     postcss: 8.4.38
-    react: 18.2.0
-    react-dom: 18.2.0
+    react: 18.3.0
+    react-dom: 18.3.0
     react-fast-compare: 3.2.2
     react-intl: 6.6.5
     react-router-dom: 6.22.3
@@ -3757,8 +3757,8 @@ __metadata:
     "@storybook/react-vite": 8.0.8
     "@testing-library/react": 15.0.2
     "@types/object-hash": 3.0.6
-    "@types/react": 18.2.79
-    "@types/react-dom": 18.2.25
+    "@types/react": 18.3.0
+    "@types/react-dom": 18.3.0
     "@types/react-router-dom": 5.3.3
     axios: 1.6.8
     babel-polyfill: 6.26.0
@@ -3780,8 +3780,8 @@ __metadata:
     object-hash: 3.0.0
     openid-client: 5.6.5
     postcss: 8.4.38
-    react: 18.2.0
-    react-dom: 18.2.0
+    react: 18.3.0
+    react-dom: 18.3.0
     react-fast-compare: 3.2.2
     react-intl: 6.6.5
     react-router-dom: 6.22.3
@@ -3820,8 +3820,8 @@ __metadata:
     "@testing-library/user-event": 14.5.2
     "@types/lodash.debounce": 4.0.9
     "@types/lodash.groupby": 4.6.9
-    "@types/react": 18.2.79
-    "@types/react-dom": 18.2.25
+    "@types/react": 18.3.0
+    "@types/react-dom": 18.3.0
     "@types/react-router-dom": 5.3.3
     "@typescript-eslint/eslint-plugin": 7.7.0
     "@typescript-eslint/parser": 7.7.0
@@ -3857,9 +3857,9 @@ __metadata:
     lodash.groupby: 4.6.0
     mustache-express: 1.3.2
     openid-client: 5.6.5
-    react: 18.2.0
+    react: 18.3.0
     react-day-picker: 8.10.1
-    react-dom: 18.2.0
+    react-dom: 18.3.0
     react-intl: 6.6.5
     react-router-dom: 6.22.3
     typescript: 5.4.5
@@ -3899,11 +3899,11 @@ __metadata:
   dependencies:
     "@amplitude/analytics-browser": 2.6.2
     "@types/node": 20.12.7
-    "@types/react": 18.2.79
+    "@types/react": 18.3.0
     config: "workspace:*"
     constate: 3.3.2
     gh-pages: 6.1.1
-    react: 18.2.0
+    react: 18.3.0
     rimraf: 5.0.5
   peerDependencies:
     amplitude-js: 8.x
@@ -3940,9 +3940,9 @@ __metadata:
     "@storybook/react-vite": 8.0.8
     "@storybook/testing-library": 0.2.2
     "@types/node": 20.12.7
-    "@types/react": 18.2.79
+    "@types/react": 18.3.0
     "@types/react-collapse": 5.0.4
-    "@types/react-dom": 18.2.25
+    "@types/react-dom": 18.3.0
     "@vitejs/plugin-react": 4.2.1
     axios: 1.6.8
     browser-image-compression: 2.0.2
@@ -3960,10 +3960,10 @@ __metadata:
     postcss: 8.4.38
     pretty-bytes: 6.1.1
     prop-types: 15.8.1
-    react: 18.2.0
+    react: 18.3.0
     react-collapse: 5.1.1
     react-day-picker: 8.10.1
-    react-dom: 18.2.0
+    react-dom: 18.3.0
     react-intl: 6.6.5
     react-responsive: 10.0.0
     react-syntax-highlighter: 15.5.0
@@ -4005,8 +4005,8 @@ __metadata:
     "@storybook/testing-library": 0.2.2
     "@types/jest": 29.5.12
     "@types/node": 20.12.7
-    "@types/react": 18.2.79
-    "@types/react-dom": 18.2.25
+    "@types/react": 18.3.0
+    "@types/react-dom": 18.3.0
     "@types/uuid": 9.0.8
     "@vitejs/plugin-react": 4.2.1
     classnames: 2.5.1
@@ -4021,9 +4021,9 @@ __metadata:
     mini-css-extract-plugin: 2.9.0
     npm-run-all: 4.1.5
     prop-types: 15.8.1
-    react: 18.2.0
+    react: 18.3.0
     react-day-picker: 8.10.1
-    react-dom: 18.2.0
+    react-dom: 18.3.0
     react-dropzone: 14.2.3
     react-fast-compare: 3.2.2
     react-intl: 6.6.5
@@ -4071,8 +4071,8 @@ __metadata:
     "@testing-library/react": 15.0.2
     "@testing-library/user-event": 14.5.2
     "@types/node": 20.12.7
-    "@types/react": 18.2.79
-    "@types/react-dom": 18.2.25
+    "@types/react": 18.3.0
+    "@types/react-dom": 18.3.0
     "@vitejs/plugin-react": 4.2.1
     axios: 1.6.8
     config: "workspace:*"
@@ -4084,10 +4084,10 @@ __metadata:
     gh-pages: 6.1.1
     intl: 1.2.5
     jsdom: 24.0.0
-    react: 18.2.0
+    react: 18.3.0
     react-collapse: 5.1.1
     react-day-picker: 8.10.1
-    react-dom: 18.2.0
+    react-dom: 18.3.0
     react-intl: 6.6.5
     react-modal: 3.16.1
     react-router-dom: 6.22.3
@@ -4105,7 +4105,7 @@ __metadata:
   dependencies:
     copyfiles: 2.4.1
     npm-run-all: 4.1.5
-    react: 18.2.0
+    react: 18.3.0
     typescript: 5.4.5
   languageName: unknown
   linkType: soft
@@ -4122,8 +4122,8 @@ __metadata:
     config: "*"
     copyfiles: 2.4.1
     gh-pages: 6.1.1
-    react: 18.2.0
-    react-dom: 18.2.0
+    react: 18.3.0
+    react-dom: 18.3.0
     rimraf: 5.0.5
   peerDependencies:
     axios: ">=1.3.4"
@@ -4166,8 +4166,8 @@ __metadata:
     "@testing-library/user-event": 14.5.2
     "@types/jest": 29.5.12
     "@types/node": 20.12.7
-    "@types/react": 18.2.79
-    "@types/react-dom": 18.2.25
+    "@types/react": 18.3.0
+    "@types/react-dom": 18.3.0
     "@types/react-modal": 3.16.3
     "@vitejs/plugin-react": 4.2.1
     axios: 1.6.8
@@ -4184,9 +4184,9 @@ __metadata:
     jest: 29.7.0
     monocle-ts: 2.3.13
     newtype-ts: 0.3.5
-    react: 18.2.0
+    react: 18.3.0
     react-day-picker: 8.10.1
-    react-dom: 18.2.0
+    react-dom: 18.3.0
     react-intl: 6.6.5
     react-router-dom: 6.22.3
     rimraf: 5.0.5
@@ -4238,8 +4238,8 @@ __metadata:
     "@babel/preset-env": 7.24.4
     "@babel/preset-react": 7.24.1
     "@types/node": 20.12.7
-    "@types/react": 18.2.79
-    "@types/react-dom": 18.2.25
+    "@types/react": 18.3.0
+    "@types/react-dom": 18.3.0
     "@types/uuid": 9.0.8
     config: "workspace:*"
     dayjs: 1.11.10
@@ -4247,8 +4247,8 @@ __metadata:
     iso8601-duration: 2.1.2
     lodash: 4.17.21
     npm-run-all: 4.1.5
-    react: 18.2.0
-    react-dom: 18.2.0
+    react: 18.3.0
+    react-dom: 18.3.0
     react-intl: 6.6.5
     uuid: 9.0.1
     vitest: 1.5.0
@@ -4279,8 +4279,8 @@ __metadata:
     "@playwright/test": 1.43.1
     "@storybook/react-vite": 8.0.8
     "@testing-library/react": 15.0.2
-    "@types/react": 18.2.79
-    "@types/react-dom": 18.2.25
+    "@types/react": 18.3.0
+    "@types/react-dom": 18.3.0
     "@types/react-router-dom": 5.3.3
     "@types/uuid": 9.0.8
     "@vitejs/plugin-react": 4.2.1
@@ -4306,9 +4306,9 @@ __metadata:
     mustache-express: 1.3.2
     openid-client: 5.6.5
     postcss: 8.4.38
-    react: 18.2.0
+    react: 18.3.0
     react-day-picker: 8.10.1
-    react-dom: 18.2.0
+    react-dom: 18.3.0
     react-intl: 6.6.5
     react-router-dom: 6.22.3
     tailwindcss: 3.4.3
@@ -7685,7 +7685,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:18.2.25, @types/react-dom@npm:^18.0.0":
+"@types/react-dom@npm:18.3.0":
+  version: 18.3.0
+  resolution: "@types/react-dom@npm:18.3.0"
+  dependencies:
+    "@types/react": "*"
+  checksum: a0cd9b1b815a6abd2a367a9eabdd8df8dd8f13f95897b2f9e1359ea3ac6619f957c1432ece004af7d95e2a7caddbba19faa045f831f32d6263483fc5404a7596
+  languageName: node
+  linkType: hard
+
+"@types/react-dom@npm:^18.0.0":
   version: 18.2.25
   resolution: "@types/react-dom@npm:18.2.25"
   dependencies:
@@ -7734,13 +7743,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:18.2.79":
-  version: 18.2.79
-  resolution: "@types/react@npm:18.2.79"
+"@types/react@npm:18.3.0":
+  version: 18.3.0
+  resolution: "@types/react@npm:18.3.0"
   dependencies:
     "@types/prop-types": "*"
     csstype: ^3.0.2
-  checksum: 85aa96e0e88725c84d8fc5f04f10a4da6a1f507dde33557ac9cc211414756867721264bfefd9e02bae1288ce2905351d949b652b931e734ea24519ee5c625138
+  checksum: 6addfffcf6220157217fd1487d831b41e725e170887a83bd4379e00b67c553dbb7b283c5f4555102f56536539f1f712635d27e27f377d17c2c0f171b66bc2f2d
   languageName: node
   linkType: hard
 
@@ -20182,7 +20191,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:18.2.0, react-dom@npm:^16.8.0 || ^17.0.0 || ^18.0.0":
+"react-dom@npm:18.3.0":
+  version: 18.3.0
+  resolution: "react-dom@npm:18.3.0"
+  dependencies:
+    loose-envify: ^1.1.0
+    scheduler: ^0.23.1
+  peerDependencies:
+    react: ^18.3.0
+  checksum: 04dc715fdedee89754c9c2cd627cf8bc5914dbb678d053ceecaf6feb11566fc653763781aefd82c240f264c87b1643ab1328ca6565b8b449ce79fbb2912fd1c7
+  languageName: node
+  linkType: hard
+
+"react-dom@npm:^16.8.0 || ^17.0.0 || ^18.0.0":
   version: 18.2.0
   resolution: "react-dom@npm:18.2.0"
   dependencies:
@@ -20437,7 +20458,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:18.2.0, react@npm:^16.8.0 || ^17.0.0 || ^18.0.0":
+"react@npm:18.3.0":
+  version: 18.3.0
+  resolution: "react@npm:18.3.0"
+  dependencies:
+    loose-envify: ^1.1.0
+  checksum: f1389bf7f9cc9295fded895635e54c4bf73626a8ea51afaa2da4988f89e71b68f249c1782f832d5912ba7d437da9292fc44ecf7c3dff072879253df93d703a10
+  languageName: node
+  linkType: hard
+
+"react@npm:^16.8.0 || ^17.0.0 || ^18.0.0":
   version: 18.2.0
   resolution: "react@npm:18.2.0"
   dependencies:
@@ -21226,6 +21256,15 @@ __metadata:
   dependencies:
     loose-envify: ^1.1.0
   checksum: d79192eeaa12abef860c195ea45d37cbf2bbf5f66e3c4dcd16f54a7da53b17788a70d109ee3d3dde1a0fd50e6a8fc171f4300356c5aee4fc0171de526bf35f8a
+  languageName: node
+  linkType: hard
+
+"scheduler@npm:^0.23.1":
+  version: 0.23.1
+  resolution: "scheduler@npm:0.23.1"
+  dependencies:
+    loose-envify: ^1.1.0
+  checksum: 8a5d140ee7e1f0927b64883544794043ebcaf57fe3f3541040535d1cb841640c389674838d3a25050227c20f8606cdeb1172c83e711523c689d428146ed8efcb
   languageName: node
   linkType: hard
 
