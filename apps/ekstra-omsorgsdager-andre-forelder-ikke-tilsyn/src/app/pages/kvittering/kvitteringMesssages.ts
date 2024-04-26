@@ -5,8 +5,6 @@ const nb = {
     'kvittering.info.2': 'Vi kontakter deg hvis vi trenger flere opplysninger.',
     'kvittering.info.3':
         'Når søknaden er ferdigbehandlet, får du et svar fra oss på «Min side». <Lenke>Du kan sjekke saksbehandlingstiden her.</Lenke>',
-    'kvittering.info.3a': 'Når søknaden er ferdigbehandlet, får du et svar fra oss på «Min side».',
-    'kvittering.info.3b': 'Du kan sjekke saksbehandlingstiden her.',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };

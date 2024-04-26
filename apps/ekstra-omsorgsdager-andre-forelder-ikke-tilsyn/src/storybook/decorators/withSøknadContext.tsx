@@ -7,7 +7,9 @@ export const mockInitialSøknadContextState: SøknadContextState = {
     versjon: '1.0.0',
     søker: SøkerMock,
     registrerteBarn: RegistrerteBarnMock,
-    søknadsdata: {} as any,
+    søknadsdata: {
+        id: '1',
+    },
     søknadRoute: undefined,
     søknadSendt: false,
     børMellomlagres: false,

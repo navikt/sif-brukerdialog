@@ -1,10 +1,9 @@
 import { Link } from '@navikt/ds-react';
 import { useEffect } from 'react';
-import { FormattedMessage } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { Kvittering } from '@navikt/sif-common-soknad-ds';
-import { useAppIntl } from '../../i18n';
+import { AppText, useAppIntl } from '../../i18n';
 import getLenker from '../../lenker';
 
 interface Props {
@@ -32,7 +31,7 @@ const KvitteringPage = ({ onUnmount }: Props) => {
                         text('kvittering.info.1'),
                         text('kvittering.info.2'),
                         <span key="pkt3">
-                            <FormattedMessage
+                            <AppText
                                 id="kvittering.info.3"
                                 values={{
                                     Lenke: (children) => (

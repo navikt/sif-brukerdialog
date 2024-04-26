@@ -1,6 +1,5 @@
 import { barnMessages } from '../pre-common/forms/barn/barnMessages';
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
-import { personalOpplysningerMessages } from '../pages/velkommen/personalopplysninger/personalopplysninger.messages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { annenForelderenSituasjonMessages } from '../søknad/steps/annen-forelderens-situasjon/annenForelderenSituasjonMessages';
 import { omAnnenForelderMessages } from '../søknad/steps/om-annen-forelder/omAnnenForelderMessages';
@@ -9,7 +8,6 @@ import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummering
 import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
 
 const nb = {
-    ...personalOpplysningerMessages.nb,
     ...velkommenPageMessages.nb,
     ...omAnnenForelderMessages.nb,
     ...annenForelderenSituasjonMessages.nb,

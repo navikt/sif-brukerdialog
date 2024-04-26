@@ -17,29 +17,31 @@ const VelkommenGuide: React.FunctionComponent<Props> = ({ navn }) => (
             <AppText id="page.velkommen.guide.ingress" />
         </BodyLong>
 
-        <p>
-            <AppText id="page.velkommen.guide.tekst.1" />
-        </p>
-        <InfoList>
-            <li>
-                <AppText id="page.velkommen.guide.tekst.1.1" />
-            </li>
-            <li>
-                <AppText id="page.velkommen.guide.tekst.1.2" />
-            </li>
-            <li>
-                <AppText id="page.velkommen.guide.tekst.1.3" />
-            </li>
-            <li>
-                <AppText id="page.velkommen.guide.tekst.1.4" />
-            </li>
-            <li>
-                <AppText id="page.velkommen.guide.tekst.1.5" />
-            </li>
-        </InfoList>
-        <p>
-            <AppText id="page.velkommen.guide.tekst.2" />
-        </p>
+        <BodyLong as="div">
+            <p>
+                <AppText id="page.velkommen.guide.tekst.1" />
+            </p>
+            <InfoList>
+                <li>
+                    <AppText id="page.velkommen.guide.tekst.1.1" />
+                </li>
+                <li>
+                    <AppText id="page.velkommen.guide.tekst.1.2" />
+                </li>
+                <li>
+                    <AppText id="page.velkommen.guide.tekst.1.3" />
+                </li>
+                <li>
+                    <AppText id="page.velkommen.guide.tekst.1.4" />
+                </li>
+                <li>
+                    <AppText id="page.velkommen.guide.tekst.1.5" />
+                </li>
+            </InfoList>
+            <p>
+                <AppText id="page.velkommen.guide.tekst.2" />
+            </p>
+        </BodyLong>
     </GuidePanel>
 );
 
