@@ -9,6 +9,7 @@ const intlHelper = (
 
 export function typedIntlHelper<Keys extends string>(intl: IntlShape) {
     return {
+        intl,
         text: (id: Keys, values?: any): string => {
             return intl.formatMessage({ id }, values);
         },
@@ -16,6 +17,7 @@ export function typedIntlHelper<Keys extends string>(intl: IntlShape) {
         date: (date: Date, format: IntlDateFormat) => {
             return intl.formatDate(date, intlDateFormats[format]);
         },
+        locale: intl.locale,
     };
 }
 
