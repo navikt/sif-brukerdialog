@@ -1,5 +1,19 @@
 # @navikt/sif-ettersending
 
+## 3.31.4
+
+### Patch Changes
+
+- c418fc8: Pakkeoppdateringer minor/patch
+- Updated dependencies [c418fc8]
+  - @navikt/sif-common-amplitude@2.24.34
+  - @navikt/sif-common-formik-ds@1.7.32
+  - @navikt/sif-common-soknad-ds@10.13.33
+  - @navikt/sif-common-core-ds@9.15.26
+  - @navikt/sif-common-sentry@0.25.31
+  - @navikt/sif-common-hooks@0.1.10
+  - @navikt/sif-common-utils@3.44.19
+
 ## 3.31.3
 
 ### Patch Changes

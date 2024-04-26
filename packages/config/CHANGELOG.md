@@ -1,5 +1,11 @@
 # config
 
+## 0.9.23
+
+### Patch Changes
+
+- c418fc8: Pakkeoppdateringer minor/patch
+
 ## 0.9.22
 
 ### Patch Changes
