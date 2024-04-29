@@ -1,5 +1,14 @@
 # @navikt/dine-pleiepenger
 
+## 1.1.2
+
+### Patch Changes
+
+- 33f4b9c: To interne bugfix
+
+  - Legge "ryujtq87.api.sanity.io" til i externalHosts
+  - Endre path fra internal til health for isAlive og isHealthy
+
 ## 1.1.1
 
 ### Patch Changes
