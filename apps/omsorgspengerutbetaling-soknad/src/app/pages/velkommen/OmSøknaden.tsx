@@ -1,7 +1,7 @@
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { BodyLong, Heading } from '@navikt/ds-react';
-import BehandlingAvPersonopplysningerContent from './personalopplysninger/BehandlingAvPersonopplysningerContent';
+import BehandlingAvPersonopplysningerContent from './BehandlingAvPersonopplysningerContent';
 import { FormattedMessage, useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 

@@ -2,8 +2,8 @@ import { Heading, Link } from '@navikt/ds-react';
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import InfoList from '@navikt/sif-common-core-ds/src/components/lists/info-list/InfoList';
-import { AppText } from '../../../i18n';
-import getLenker from '../../../lenker';
+import { AppText } from '../../i18n';
+import getLenker from '../../lenker';
 
 const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
     return (
