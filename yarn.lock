@@ -3309,14 +3309,14 @@ __metadata:
     "@portabletext/react": 3.0.18
     "@sanity/client": 6.15.20
     "@types/node": 20.12.7
-    "@types/react": 18.3.0
+    "@types/react": 18.3.1
     "@types/react-dom": 18.3.0
     config: "workspace:*"
     copyfiles: 2.4.1
     postcss: 8.4.38
     prop-types: 15.8.1
-    react: 18.3.0
-    react-dom: 18.3.0
+    react: 18.3.1
+    react-dom: 18.3.1
     rimraf: 5.0.5
     sass: 1.75.0
   languageName: unknown
@@ -3353,7 +3353,7 @@ __metadata:
     axios: 1.6.8
     chromatic: 11.3.0
     classnames: 2.5.1
-    dayjs: 1.11.10
+    dayjs: 1.11.11
     eslint-plugin-storybook: 0.8.0
     formik: 2.4.6
     jest: 29.7.0
@@ -3366,9 +3366,9 @@ __metadata:
     node-fetch: 3.3.2
     node-jose: 2.2.0
     postcss-import: 16.1.0
-    react: 18.3.0
+    react: 18.3.1
     react-day-picker: 8.10.1
-    react-dom: 18.3.0
+    react-dom: 18.3.1
     react-intl: 6.6.5
     react-loading-skeleton: 3.4.0
     storybook: 8.0.9
@@ -3451,9 +3451,9 @@ __metadata:
     "@navikt/sif-common-utils": "workspace:*"
     "@playwright/test": 1.43.1
     "@storybook/react-vite": 8.0.9
-    "@testing-library/react": 15.0.4
+    "@testing-library/react": 15.0.5
     "@types/object-hash": 3.0.6
-    "@types/react": 18.3.0
+    "@types/react": 18.3.1
     "@types/react-dom": 18.3.0
     "@types/react-router-dom": 5.3.3
     axios: 1.6.8
@@ -3461,7 +3461,7 @@ __metadata:
     compression: 1.7.4
     cookie-parser: 1.4.6
     cross-env: 7.0.3
-    dayjs: 1.11.10
+    dayjs: 1.11.11
     dotenv: 16.4.5
     express: 4.19.2
     express-rate-limit: 7.2.0
@@ -3473,8 +3473,8 @@ __metadata:
     mustache-express: 1.3.2
     object-hash: 3.0.0
     openid-client: 5.6.5
-    react: 18.3.0
-    react-dom: 18.3.0
+    react: 18.3.1
+    react-dom: 18.3.1
     react-fast-compare: 3.2.2
     react-intl: 6.6.5
     react-router-dom: 6.23.0
@@ -3518,12 +3518,12 @@ __metadata:
     "@storybook/preset-create-react-app": 8.0.9
     "@storybook/react": 8.0.9
     "@storybook/testing-library": 0.2.2
-    "@testing-library/react": 15.0.4
+    "@testing-library/react": 15.0.5
     "@types/flat": 5.0.5
     "@types/intl": 1.2.2
     "@types/js-cookie": 3.0.6
     "@types/object-hash": 3.0.6
-    "@types/react": 18.3.0
+    "@types/react": 18.3.1
     "@types/react-document-title": 2.0.9
     "@types/react-dom": 18.3.0
     "@types/react-modal": 3.16.3
@@ -3538,7 +3538,7 @@ __metadata:
     cypress: 13.8.1
     cypress-axe: 1.5.0
     cypress-file-upload: 5.0.8
-    dayjs: 1.11.10
+    dayjs: 1.11.11
     dotenv: 16.4.5
     express: 4.19.2
     express-rate-limit: 7.2.0
@@ -3555,9 +3555,9 @@ __metadata:
     openid-client: 5.6.5
     postcss: 8.4.38
     postcss-import: 16.1.0
-    react: 18.3.0
+    react: 18.3.1
     react-day-picker: 8.10.1
-    react-dom: 18.3.0
+    react-dom: 18.3.1
     react-intl: 6.6.5
     react-modal: 3.16.1
     react-responsive: 10.0.0
@@ -3637,9 +3637,9 @@ __metadata:
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@playwright/test": 1.43.1
-    "@testing-library/react": 15.0.4
+    "@testing-library/react": 15.0.5
     "@types/object-hash": 3.0.6
-    "@types/react": 18.3.0
+    "@types/react": 18.3.1
     "@types/react-dom": 18.3.0
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.2.1
@@ -3648,7 +3648,7 @@ __metadata:
     compression: 1.7.4
     cookie-parser: 1.4.6
     cross-env: 7.0.3
-    dayjs: 1.11.10
+    dayjs: 1.11.11
     dotenv: 16.4.5
     express: 4.19.2
     formik: 2.4.6
@@ -3661,8 +3661,8 @@ __metadata:
     mustache-express: 1.3.2
     object-hash: 3.0.0
     openid-client: 5.6.5
-    react: 18.3.0
-    react-dom: 18.3.0
+    react: 18.3.1
+    react-dom: 18.3.1
     react-fast-compare: 3.2.2
     react-intl: 6.6.5
     react-router-dom: 6.23.0
@@ -3684,11 +3684,11 @@ __metadata:
     "@navikt/nav-dekoratoren-moduler": 2.1.6
     "@playwright/test": 1.43.1
     "@types/node": 20.12.7
-    "@types/react": 18.3.0
+    "@types/react": 18.3.1
     "@types/react-dom": 18.3.0
     "@types/uuid": 9.0.8
     classnames: 2.5.1
-    dayjs: 1.11.10
+    dayjs: 1.11.11
     eslint: 8.57.0
     eslint-config-next: 14.2.3
     formik: 2.4.6
@@ -3697,9 +3697,9 @@ __metadata:
     next: 14.2.3
     node-fetch: 3.3.2
     postcss: 8.4.38
-    react: 18.3.0
+    react: 18.3.1
     react-day-picker: 8.10.1
-    react-dom: 18.3.0
+    react-dom: 18.3.1
     react-intl: 6.6.5
     tailwindcss: 3.4.3
     typescript: 5.4.5
@@ -3729,10 +3729,10 @@ __metadata:
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@playwright/test": 1.43.1
-    "@testing-library/react": 15.0.4
+    "@testing-library/react": 15.0.5
     "@types/node": 20.12.7
     "@types/object-hash": 3.0.6
-    "@types/react": 18.3.0
+    "@types/react": 18.3.1
     "@types/react-dom": 18.3.0
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.2.1
@@ -3742,7 +3742,7 @@ __metadata:
     compression: 1.7.4
     cookie-parser: 1.4.6
     cross-env: 7.0.3
-    dayjs: 1.11.10
+    dayjs: 1.11.11
     dotenv: 16.4.5
     express: 4.19.2
     express-rate-limit: 7.2.0
@@ -3756,8 +3756,8 @@ __metadata:
     openid-client: 5.6.5
     postcss-nesting: 12.1.2
     promise: 8.3.0
-    react: 18.3.0
-    react-dom: 18.3.0
+    react: 18.3.1
+    react-dom: 18.3.1
     react-fast-compare: 3.2.2
     react-intl: 6.6.5
     react-router-dom: 6.23.0
@@ -3801,10 +3801,10 @@ __metadata:
     "@storybook/react": 8.0.9
     "@storybook/react-vite": 8.0.9
     "@storybook/test": 8.0.9
-    "@testing-library/react": 15.0.4
+    "@testing-library/react": 15.0.5
     "@types/node": 20.12.7
     "@types/object-hash": 3.0.6
-    "@types/react": 18.3.0
+    "@types/react": 18.3.1
     "@types/react-dom": 18.3.0
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.2.1
@@ -3828,8 +3828,8 @@ __metadata:
     object-hash: 3.0.0
     openid-client: 5.6.5
     postcss-nesting: 12.1.2
-    react: 18.3.0
-    react-dom: 18.3.0
+    react: 18.3.1
+    react-dom: 18.3.1
     react-fast-compare: 3.2.2
     react-intl: 6.6.5
     react-router-dom: 6.23.0
@@ -3874,9 +3874,9 @@ __metadata:
     "@storybook/preset-create-react-app": 8.0.9
     "@storybook/react": 8.0.9
     "@storybook/testing-library": 0.2.2
-    "@testing-library/react": 15.0.4
+    "@testing-library/react": 15.0.5
     "@types/object-hash": 3.0.6
-    "@types/react": 18.3.0
+    "@types/react": 18.3.1
     "@types/react-dom": 18.3.0
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.2.1
@@ -3887,7 +3887,7 @@ __metadata:
     compression: 1.7.4
     cookie-parser: 1.4.6
     cross-env: 7.0.3
-    dayjs: 1.11.10
+    dayjs: 1.11.11
     dotenv: 16.4.5
     express: 4.19.2
     express-rate-limit: 7.2.0
@@ -3901,8 +3901,8 @@ __metadata:
     object-hash: 3.0.0
     openid-client: 5.6.5
     postcss: 8.4.38
-    react: 18.3.0
-    react-dom: 18.3.0
+    react: 18.3.1
+    react-dom: 18.3.1
     react-fast-compare: 3.2.2
     react-intl: 6.6.5
     react-router-dom: 6.23.0
@@ -3939,9 +3939,9 @@ __metadata:
     "@navikt/sif-common-utils": "workspace:*"
     "@playwright/test": 1.43.1
     "@storybook/react-vite": 8.0.9
-    "@testing-library/react": 15.0.4
+    "@testing-library/react": 15.0.5
     "@types/object-hash": 3.0.6
-    "@types/react": 18.3.0
+    "@types/react": 18.3.1
     "@types/react-dom": 18.3.0
     "@types/react-router-dom": 5.3.3
     axios: 1.6.8
@@ -3951,7 +3951,7 @@ __metadata:
     compression: 1.7.4
     cookie-parser: 1.4.6
     cross-env: 7.0.3
-    dayjs: 1.11.10
+    dayjs: 1.11.11
     dotenv: 16.4.5
     express: 4.19.2
     express-rate-limit: 7.2.0
@@ -3964,8 +3964,8 @@ __metadata:
     object-hash: 3.0.0
     openid-client: 5.6.5
     postcss: 8.4.38
-    react: 18.3.0
-    react-dom: 18.3.0
+    react: 18.3.1
+    react-dom: 18.3.1
     react-fast-compare: 3.2.2
     react-intl: 6.6.5
     react-router-dom: 6.23.0
@@ -4000,11 +4000,11 @@ __metadata:
     "@navikt/sif-common-utils": "workspace:*"
     "@sentry/vite-plugin": 2.16.1
     "@storybook/react-vite": 8.0.9
-    "@testing-library/react": 15.0.4
+    "@testing-library/react": 15.0.5
     "@testing-library/user-event": 14.5.2
     "@types/lodash.debounce": 4.0.9
     "@types/lodash.groupby": 4.6.9
-    "@types/react": 18.3.0
+    "@types/react": 18.3.1
     "@types/react-dom": 18.3.0
     "@types/react-router-dom": 5.3.3
     "@typescript-eslint/eslint-plugin": 7.7.1
@@ -4020,13 +4020,13 @@ __metadata:
     cypress: 13.8.1
     cypress-axe: 1.5.0
     cypress-file-upload: 5.0.8
-    dayjs: 1.11.10
+    dayjs: 1.11.11
     dotenv: 16.4.5
     eslint-config-prettier: 9.1.0
     eslint-plugin-jsx-a11y: 6.8.0
     eslint-plugin-prettier: 5.1.3
     eslint-plugin-react: 7.34.1
-    eslint-plugin-react-hooks: 4.6.1
+    eslint-plugin-react-hooks: 4.6.2
     express: 4.19.2
     express-rate-limit: 7.2.0
     formik: 2.4.6
@@ -4041,9 +4041,9 @@ __metadata:
     lodash.groupby: 4.6.0
     mustache-express: 1.3.2
     openid-client: 5.6.5
-    react: 18.3.0
+    react: 18.3.1
     react-day-picker: 8.10.1
-    react-dom: 18.3.0
+    react-dom: 18.3.1
     react-intl: 6.6.5
     react-router-dom: 6.23.0
     typescript: 5.4.5
@@ -4083,11 +4083,11 @@ __metadata:
   dependencies:
     "@amplitude/analytics-browser": 2.6.2
     "@types/node": 20.12.7
-    "@types/react": 18.3.0
+    "@types/react": 18.3.1
     config: "workspace:*"
     constate: 3.3.2
     gh-pages: 6.1.1
-    react: 18.3.0
+    react: 18.3.1
     rimraf: 5.0.5
   peerDependencies:
     amplitude-js: 8.x
@@ -4124,7 +4124,7 @@ __metadata:
     "@storybook/react-vite": 8.0.9
     "@storybook/testing-library": 0.2.2
     "@types/node": 20.12.7
-    "@types/react": 18.3.0
+    "@types/react": 18.3.1
     "@types/react-collapse": 5.0.4
     "@types/react-dom": 18.3.0
     "@vitejs/plugin-react": 4.2.1
@@ -4135,7 +4135,7 @@ __metadata:
     config: "workspace:*"
     copyfiles: 2.4.1
     date-fns: 3.6.0
-    dayjs: 1.11.10
+    dayjs: 1.11.11
     formik: 2.4.6
     http-status-codes: 2.3.0
     i18n-iso-countries: 7.11.1
@@ -4144,10 +4144,10 @@ __metadata:
     postcss: 8.4.38
     pretty-bytes: 6.1.1
     prop-types: 15.8.1
-    react: 18.3.0
+    react: 18.3.1
     react-collapse: 5.1.1
     react-day-picker: 8.10.1
-    react-dom: 18.3.0
+    react-dom: 18.3.1
     react-intl: 6.6.5
     react-responsive: 10.0.0
     react-syntax-highlighter: 15.5.0
@@ -4189,7 +4189,7 @@ __metadata:
     "@storybook/testing-library": 0.2.2
     "@types/jest": 29.5.12
     "@types/node": 20.12.7
-    "@types/react": 18.3.0
+    "@types/react": 18.3.1
     "@types/react-dom": 18.3.0
     "@types/uuid": 9.0.8
     "@vitejs/plugin-react": 4.2.1
@@ -4197,7 +4197,7 @@ __metadata:
     config: "workspace:*"
     copyfiles: 2.4.1
     date-fns: 3.6.0
-    dayjs: 1.11.10
+    dayjs: 1.11.11
     formik: 2.4.6
     i18n-iso-countries: 7.11.1
     jest: 29.7.0
@@ -4205,9 +4205,9 @@ __metadata:
     mini-css-extract-plugin: 2.9.0
     npm-run-all: 4.1.5
     prop-types: 15.8.1
-    react: 18.3.0
+    react: 18.3.1
     react-day-picker: 8.10.1
-    react-dom: 18.3.0
+    react-dom: 18.3.1
     react-dropzone: 14.2.3
     react-fast-compare: 3.2.2
     react-intl: 6.6.5
@@ -4252,26 +4252,26 @@ __metadata:
     "@storybook/react-vite": 8.0.9
     "@storybook/testing-library": 0.2.2
     "@testing-library/dom": 10.0.0
-    "@testing-library/react": 15.0.4
+    "@testing-library/react": 15.0.5
     "@testing-library/user-event": 14.5.2
     "@types/node": 20.12.7
-    "@types/react": 18.3.0
+    "@types/react": 18.3.1
     "@types/react-dom": 18.3.0
     "@vitejs/plugin-react": 4.2.1
     axios: 1.6.8
     config: "workspace:*"
     copyfiles: 2.4.1
     date-fns: 3.6.0
-    dayjs: 1.11.10
+    dayjs: 1.11.11
     flat: 6.0.1
     formik: 2.4.6
     gh-pages: 6.1.1
     intl: 1.2.5
     jsdom: 24.0.0
-    react: 18.3.0
+    react: 18.3.1
     react-collapse: 5.1.1
     react-day-picker: 8.10.1
-    react-dom: 18.3.0
+    react-dom: 18.3.1
     react-intl: 6.6.5
     react-modal: 3.16.1
     react-router-dom: 6.23.0
@@ -4289,7 +4289,7 @@ __metadata:
   dependencies:
     copyfiles: 2.4.1
     npm-run-all: 4.1.5
-    react: 18.3.0
+    react: 18.3.1
     typescript: 5.4.5
   languageName: unknown
   linkType: soft
@@ -4306,8 +4306,8 @@ __metadata:
     config: "*"
     copyfiles: 2.4.1
     gh-pages: 6.1.1
-    react: 18.3.0
-    react-dom: 18.3.0
+    react: 18.3.1
+    react-dom: 18.3.1
     rimraf: 5.0.5
   peerDependencies:
     axios: ">=1.3.4"
@@ -4346,11 +4346,11 @@ __metadata:
     "@storybook/testing-library": 0.2.2
     "@testing-library/dom": 10.0.0
     "@testing-library/jest-dom": 6.4.2
-    "@testing-library/react": 15.0.4
+    "@testing-library/react": 15.0.5
     "@testing-library/user-event": 14.5.2
     "@types/jest": 29.5.12
     "@types/node": 20.12.7
-    "@types/react": 18.3.0
+    "@types/react": 18.3.1
     "@types/react-dom": 18.3.0
     "@types/react-modal": 3.16.3
     "@vitejs/plugin-react": 4.2.1
@@ -4358,7 +4358,7 @@ __metadata:
     classnames: 2.5.1
     copyfiles: 2.4.1
     date-fns: 3.6.0
-    dayjs: 1.11.10
+    dayjs: 1.11.11
     formik: 2.4.6
     fp-ts: 2.16.5
     gh-pages: 6.1.1
@@ -4368,9 +4368,9 @@ __metadata:
     jest: 29.7.0
     monocle-ts: 2.3.13
     newtype-ts: 0.3.5
-    react: 18.3.0
+    react: 18.3.1
     react-day-picker: 8.10.1
-    react-dom: 18.3.0
+    react-dom: 18.3.1
     react-intl: 6.6.5
     react-router-dom: 6.23.0
     rimraf: 5.0.5
@@ -4405,7 +4405,7 @@ __metadata:
     chromatic: 11.3.0
     classnames: 2.5.1
     copyfiles: 2.4.1
-    dayjs: 1.11.10
+    dayjs: 1.11.11
     intl: 1.2.5
     npm-run-all: 4.1.5
     react-day-picker: 8.10.1
@@ -4422,17 +4422,17 @@ __metadata:
     "@babel/preset-env": 7.24.4
     "@babel/preset-react": 7.24.1
     "@types/node": 20.12.7
-    "@types/react": 18.3.0
+    "@types/react": 18.3.1
     "@types/react-dom": 18.3.0
     "@types/uuid": 9.0.8
     config: "workspace:*"
-    dayjs: 1.11.10
+    dayjs: 1.11.11
     intl: 1.2.5
     iso8601-duration: 2.1.2
     lodash: 4.17.21
     npm-run-all: 4.1.5
-    react: 18.3.0
-    react-dom: 18.3.0
+    react: 18.3.1
+    react-dom: 18.3.1
     react-intl: 6.6.5
     uuid: 9.0.1
     vitest: 1.5.2
@@ -4462,8 +4462,8 @@ __metadata:
     "@navikt/sif-common-utils": "workspace:*"
     "@playwright/test": 1.43.1
     "@storybook/react-vite": 8.0.9
-    "@testing-library/react": 15.0.4
-    "@types/react": 18.3.0
+    "@testing-library/react": 15.0.5
+    "@types/react": 18.3.1
     "@types/react-dom": 18.3.0
     "@types/react-router-dom": 5.3.3
     "@types/uuid": 9.0.8
@@ -4477,7 +4477,7 @@ __metadata:
     cookie-parser: 1.4.6
     cross-env: 7.0.3
     date-fns: 3.6.0
-    dayjs: 1.11.10
+    dayjs: 1.11.11
     dotenv: 16.4.5
     express: 4.19.2
     express-rate-limit: 7.2.0
@@ -4490,9 +4490,9 @@ __metadata:
     mustache-express: 1.3.2
     openid-client: 5.6.5
     postcss: 8.4.38
-    react: 18.3.0
+    react: 18.3.1
     react-day-picker: 8.10.1
-    react-dom: 18.3.0
+    react-dom: 18.3.1
     react-intl: 6.6.5
     react-router-dom: 6.23.0
     tailwindcss: 3.4.3
@@ -7438,9 +7438,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/react@npm:15.0.4":
-  version: 15.0.4
-  resolution: "@testing-library/react@npm:15.0.4"
+"@testing-library/react@npm:15.0.5":
+  version: 15.0.5
+  resolution: "@testing-library/react@npm:15.0.5"
   dependencies:
     "@babel/runtime": ^7.12.5
     "@testing-library/dom": ^10.0.0
@@ -7448,7 +7448,7 @@ __metadata:
   peerDependencies:
     react: ^18.0.0
     react-dom: ^18.0.0
-  checksum: 37f30f0fc009429e5a54fef48c2c354840fbaf1c96f7f29c9c0ec71815fe25978e8bde881018d1122186f150902de45aa9706c9e7b77d3e7ac4649e3a82e0454
+  checksum: 7d57e332c58a25df0519d329db07548ad9a147a88912ab6472e294995c06c77445113c5cdae33218daa349f24973a7777426dc1216ce6ed9a36b16fc5ed78d65
   languageName: node
   linkType: hard
 
@@ -8076,13 +8076,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:18.3.0":
-  version: 18.3.0
-  resolution: "@types/react@npm:18.3.0"
+"@types/react@npm:18.3.1":
+  version: 18.3.1
+  resolution: "@types/react@npm:18.3.1"
   dependencies:
     "@types/prop-types": "*"
     csstype: ^3.0.2
-  checksum: 6addfffcf6220157217fd1487d831b41e725e170887a83bd4379e00b67c553dbb7b283c5f4555102f56536539f1f712635d27e27f377d17c2c0f171b66bc2f2d
+  checksum: 9224ef319a0c2b7f66e7e7f06012aa5eb638a6c76c9742843eab1a5d243f2bed5ff829ddbb41efd60d33a266420528adfcb84cb93f238b00e905f98c3a355768
   languageName: node
   linkType: hard
 
@@ -11430,7 +11430,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dayjs@npm:1.11.10, dayjs@npm:^1.10.4":
+"dayjs@npm:1.11.11":
+  version: 1.11.11
+  resolution: "dayjs@npm:1.11.11"
+  checksum: 84788275aad8a87fee4f1ce4be08861df29687aae6b7b43dd65350118a37dda56772a3902f802cb2dc651dfed447a5a8df62d88f0fb900dba8333e411190a5d5
+  languageName: node
+  linkType: hard
+
+"dayjs@npm:^1.10.4":
   version: 1.11.10
   resolution: "dayjs@npm:1.11.10"
   checksum: a6b5a3813b8884f5cd557e2e6b7fa569f4c5d0c97aca9558e38534af4f2d60daafd3ff8c2000fed3435cfcec9e805bcebd99f90130c6d1c5ef524084ced588c4
@@ -13023,12 +13030,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react-hooks@npm:4.6.1":
-  version: 4.6.1
-  resolution: "eslint-plugin-react-hooks@npm:4.6.1"
+"eslint-plugin-react-hooks@npm:4.6.2":
+  version: 4.6.2
+  resolution: "eslint-plugin-react-hooks@npm:4.6.2"
   peerDependencies:
     eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0
-  checksum: 77f3a53f6dd09968062f79e5f873b6a8b22346860bf5874acb08f36f6dff754f061c99e486f83b4946b89127d423f5498b1326f1f95997264e2b9817afce6272
+  checksum: 395c433610f59577cfcf3f2e42bcb130436c8a0b3777ac64f441d88c5275f4fcfc89094cedab270f2822daf29af1079151a7a6579a8e9ea8cee66540ba0384c4
   languageName: node
   linkType: hard
 
@@ -20424,15 +20431,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:18.3.0":
-  version: 18.3.0
-  resolution: "react-dom@npm:18.3.0"
+"react-dom@npm:18.3.1":
+  version: 18.3.1
+  resolution: "react-dom@npm:18.3.1"
   dependencies:
     loose-envify: ^1.1.0
-    scheduler: ^0.23.1
+    scheduler: ^0.23.2
   peerDependencies:
-    react: ^18.3.0
-  checksum: 04dc715fdedee89754c9c2cd627cf8bc5914dbb678d053ceecaf6feb11566fc653763781aefd82c240f264c87b1643ab1328ca6565b8b449ce79fbb2912fd1c7
+    react: ^18.3.1
+  checksum: 298954ecd8f78288dcaece05e88b570014d8f6dce5db6f66e6ee91448debeb59dcd31561dddb354eee47e6c1bb234669459060deb238ed0213497146e555a0b9
   languageName: node
   linkType: hard
 
@@ -20691,12 +20698,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:18.3.0":
-  version: 18.3.0
-  resolution: "react@npm:18.3.0"
+"react@npm:18.3.1":
+  version: 18.3.1
+  resolution: "react@npm:18.3.1"
   dependencies:
     loose-envify: ^1.1.0
-  checksum: f1389bf7f9cc9295fded895635e54c4bf73626a8ea51afaa2da4988f89e71b68f249c1782f832d5912ba7d437da9292fc44ecf7c3dff072879253df93d703a10
+  checksum: a27bcfa8ff7c15a1e50244ad0d0c1cb2ad4375eeffefd266a64889beea6f6b64c4966c9b37d14ee32d6c9fcd5aa6ba183b6988167ab4d127d13e7cb5b386a376
   languageName: node
   linkType: hard
 
@@ -21492,12 +21499,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scheduler@npm:^0.23.1":
-  version: 0.23.1
-  resolution: "scheduler@npm:0.23.1"
+"scheduler@npm:^0.23.2":
+  version: 0.23.2
+  resolution: "scheduler@npm:0.23.2"
   dependencies:
     loose-envify: ^1.1.0
-  checksum: 8a5d140ee7e1f0927b64883544794043ebcaf57fe3f3541040535d1cb841640c389674838d3a25050227c20f8606cdeb1172c83e711523c689d428146ed8efcb
+  checksum: 3e82d1f419e240ef6219d794ff29c7ee415fbdc19e038f680a10c067108e06284f1847450a210b29bbaf97b9d8a97ced5f624c31c681248ac84c80d56ad5a2c4
   languageName: node
   linkType: hard
 
