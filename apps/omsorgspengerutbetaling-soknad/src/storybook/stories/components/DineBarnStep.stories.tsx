@@ -42,10 +42,10 @@ const Template: StoryFn<typeof DineBarnForm> = (props) => {
 };
 
 export const ToBarnUnder13 = Template.bind({});
-ToBarnUnder13.args = { registrerteBarn: barnMockData.toBarnUnder13 };
+ToBarnUnder13.args = { registrerteBarn: barnMockData.toBarnRegistrertUnder13 };
 
 export const TreEllerFlereUnder13 = Template.bind({});
-TreEllerFlereUnder13.args = { registrerteBarn: barnMockData.treBarnUnder13 };
+TreEllerFlereUnder13.args = { registrerteBarn: barnMockData.treBarnRegistrertUnder13 };
 
 export const TreBarnOver13 = Template.bind({});
 TreBarnOver13.args = { registrerteBarn: barnMockData.treBarnOver13 };

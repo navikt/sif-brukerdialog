@@ -11,6 +11,7 @@ import ResetMellomagringButton from '../../../components/reset-mellomlagring-but
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
+import { AppText, useAppIntl } from '../../../i18n';
 import { useSøknadContext } from '../../../søknad/context/hooks/useSøknadContext';
 import SøknadStep from '../../../søknad/SøknadStep';
 import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../../søknad/søknadStepConfig';
@@ -25,7 +26,6 @@ import SelvstendigOppsummering from './components/SelvstendigOppsummering';
 import UtbetalingsperioderOppsummering from './components/UtbetalingsperioderOppsummering';
 import UtenlandsoppholdISøkeperiodeOppsummering from './components/UtenlandsoppholdISøkeperiodeOppsummering';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
-import { AppText, useAppIntl } from '../../../i18n';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -41,7 +41,8 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 >();
 
 const OppsummeringStep = () => {
-    const { intl, text } = useAppIntl();
+    const appIntl = useAppIntl();
+    const { intl, text } = appIntl;
     const {
         state: { søknadsdata, søker, registrerteBarn },
     } = useSøknadContext();
@@ -64,7 +65,7 @@ const OppsummeringStep = () => {
         }
     }, [previousSøknadError, sendSøknadError]);
 
-    const apiData = getApiDataFromSøknadsdata(søknadsdata, intl);
+    const apiData = getApiDataFromSøknadsdata(søknadsdata, appIntl);
 
     if (!apiData) {
         return (
