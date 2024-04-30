@@ -41,18 +41,32 @@ const getFristTekst = (frist: Date, venteårsak?: Venteårsak): React.ReactNode 
 const Saksbehandlingstid: React.FunctionComponent<Props> = ({ frist, venteårsak, saksbehandlingstidUker = 7 }) => {
     const fristErPassert = frist ? erSaksbehandlingsfristPassert(frist) : false;
     const { text } = useMessages();
+
+    const getMelding = () => {
+        if (frist) {
+            return fristErPassert ? (
+                <>
+                    <BodyShort spacing={true}>
+                        <Msg id="svarfrist.fristPassert.1" />
+                    </BodyShort>
+                    <BodyShort spacing={true}>
+                        <Msg id="svarfrist.fristPassert.2" />
+                    </BodyShort>
+                </>
+            ) : (
+                getFristTekst(frist, venteårsak)
+            );
+        }
+        return <Msg id="svarfrist.forventetBehandlingstid" values={{ saksbehandlingstidUker }} />;
+    };
+
     return (
         <Box>
             <Heading size="medium" level="2" className="text-deepblue-800" spacing={true}>
                 {text('svarfrist.tittel')}
             </Heading>
             <BodyShort as="div" className="bg-deepblue-100 pt-4 pl-6 pr-6 pb-6 rounded">
-                {frist && fristErPassert === false ? (
-                    <p className="mb-2">{getFristTekst(frist, venteårsak)}</p>
-                ) : (
-                    <p className="mb-2">{text('svarfrist.forventetBehandlingstid', { saksbehandlingstidUker })}</p>
-                )}
-
+                <Box className="mb-2">{getMelding()}</Box>
                 <Link variant="neutral" href={browserEnv.NEXT_PUBLIC_SAKSBEHANDLINGSTID_INFO_URL}>
                     {text('svarfrist.lesMerLenke')}
                 </Link>
