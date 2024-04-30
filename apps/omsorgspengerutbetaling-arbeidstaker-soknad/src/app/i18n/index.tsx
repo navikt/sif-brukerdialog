@@ -4,6 +4,7 @@ import { fosterbarnMessages } from '@navikt/sif-common-forms-ds/src/forms/foster
 import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
 import { appMessages } from './appMessages';
+import { fraværMessages } from '@navikt/sif-common-forms-ds/src/forms/fravær/fraværMessages';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 
@@ -12,6 +13,7 @@ const libMessages = {
         ...commonMessages.nb,
         ...uiMessages.nb,
         ...soknadMessages.nb,
+        ...fraværMessages.nb,
         ...fosterbarnMessages.nb,
         ...bostedUtlandMessages.nb,
         ...appMessages.nb,
@@ -20,6 +22,7 @@ const libMessages = {
         ...commonMessages.nn,
         ...uiMessages.nn,
         ...soknadMessages.nn,
+        ...fraværMessages.nn,
         ...fosterbarnMessages.nn,
         ...bostedUtlandMessages.nn,
         ...appMessages.nn,

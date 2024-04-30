@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { SøknadContextProvider } from '../../app/søknad/context/SøknadContext';
 import { SøknadContextState } from '../../app/types/SøknadContextState';
-import { SøkerMock } from '../mock-data';
+import { søkerStorybookMock } from '../mock-data';
 
 export const mockInitialSøknadContextState: SøknadContextState = {
     versjon: '1.0.0',
-    søker: SøkerMock,
+    søker: søkerStorybookMock,
     søknadsdata: {
         id: '1',
     },

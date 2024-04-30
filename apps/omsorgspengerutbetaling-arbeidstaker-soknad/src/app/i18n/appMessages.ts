@@ -1,4 +1,3 @@
-import { fraværMessages } from '@navikt/sif-common-forms-ds/src/forms/fravær/fraværMessages';
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { fosterbarnFormMessages } from '../søknad/steps/fosterbarn/fosterbarnFormMessages';
@@ -11,7 +10,6 @@ import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validate
 
 const nb = {
     ...situasjonMessages.nb,
-    ...fraværMessages.nb,
     ...velkommenPageMessages.nb,
     ...fraværStepMessages.nb,
     ...legeerklæringMessages.nb,

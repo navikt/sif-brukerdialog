@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Path to your messages.json and source directory
-const MESSAGES_PATH = './src/app/i18n/allMessages.json';
+const MESSAGES_PATH = './src/app/i18n/messages.json';
 const SOURCE_PATH = './src';
 
 // Read the messages file
