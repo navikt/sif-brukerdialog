@@ -7,7 +7,7 @@ import { appMessages } from './appMessages';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 
-export const libMessages = {
+const libMessages = {
     nb: {
         ...commonMessages.nb,
         ...uiMessages.nb,

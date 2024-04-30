@@ -4,6 +4,7 @@ import KvitteringPage from '../../../app/pages/kvittering/KvitteringPage';
 import { withIntl } from '../../decorators/withIntl';
 import { withRouterProvider } from '../../decorators/withRouter';
 import { withAmplitudeProvider } from '../../decorators/withAmplitudeProvider';
+import { kvitteringInfoStorybookMock, søkerStorybookMock } from '../../mock-data';
 
 export default {
     title: 'Pages/KvitteringPage',
@@ -11,7 +12,9 @@ export default {
     decorators: [withIntl, withRouterProvider, withAmplitudeProvider],
 } as Meta<typeof KvitteringPage>;
 
-const Template: StoryFn<typeof KvitteringPage> = () => <KvitteringPage søker={undefined} onUnmount={() => null} />;
+const Template: StoryFn<typeof KvitteringPage> = () => (
+    <KvitteringPage søker={søkerStorybookMock} kvitteringInfo={kvitteringInfoStorybookMock} onUnmount={() => null} />
+);
 
 export const Default = Template.bind({});
 
