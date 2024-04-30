@@ -1,23 +1,23 @@
 import { Alert, Button, Heading, Panel } from '@navikt/ds-react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useEffect } from 'react';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import CheckmarkIcon from '@navikt/sif-common-core-ds/src/atoms/checkmark-icon/CheckmarkIcon';
 import Checklist from '@navikt/sif-common-core-ds/src/components/lists/checklist/Checklist';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { useEffect } from 'react';
+import { AppText, useAppIntl } from '../../i18n';
 import { Søker } from '../../types/Søker';
 import { ArbeidsgiverDetaljer } from '../../types/søknadApiData/SøknadApiData';
 import TilArbeidsgiverDokumentListe from './components/TilArbeidsgiverDokumentListe';
 import './kvitteringPage.css';
+
 interface Props {
     søker: Søker | undefined;
     kvitteringInfo?: ArbeidsgiverDetaljer[];
     onUnmount: () => void;
 }
 const KvitteringPage = ({ søker, kvitteringInfo, onUnmount }: Props) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
 
     useEffect(() => {
         return () => {
@@ -28,7 +28,7 @@ const KvitteringPage = ({ søker, kvitteringInfo, onUnmount }: Props) => {
     useLogSidevisning(SIFCommonPageKey.kvittering);
 
     return (
-        <Page title={intlHelper(intl, 'page.confirmation.sidetittel')}>
+        <Page title={text('page.confirmation.sidetittel')}>
             <div data-testid="kvittering-page">
                 <div role="presentation" aria-hidden="true" style={{ textAlign: 'center', marginBottom: '2rem' }}>
                     <CheckmarkIcon />
@@ -36,7 +36,7 @@ const KvitteringPage = ({ søker, kvitteringInfo, onUnmount }: Props) => {
 
                 <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
                     <Heading level="1" size="large">
-                        <FormattedMessage id="page.confirmation.tittel" />
+                        <AppText id="page.confirmation.tittel" />
                     </Heading>
                 </div>
 
@@ -44,16 +44,16 @@ const KvitteringPage = ({ søker, kvitteringInfo, onUnmount }: Props) => {
                     <div className={'infopanelInfoForsvinner'}>
                         <Block padBottom="m">
                             <Heading level="2" size="medium">
-                                <FormattedMessage id="page.confirmation.undertittel" />
+                                <AppText id="page.confirmation.undertittel" />
                             </Heading>
                         </Block>
 
                         <Panel border={true} className={'luftOver'}>
                             <Alert variant="warning" inline={true}>
-                                <FormattedMessage id="page.conformation.alert.infoForsvinner" />
+                                <AppText id="page.conformation.alert.infoForsvinner" />
 
                                 <Block margin="l">
-                                    <FormattedMessage id="page.conformation.alert.infoPrint" />
+                                    <AppText id="page.conformation.alert.infoPrint" />
                                 </Block>
                             </Alert>
                         </Panel>
@@ -61,20 +61,20 @@ const KvitteringPage = ({ søker, kvitteringInfo, onUnmount }: Props) => {
                     <Checklist>
                         <li>
                             <strong>
-                                <FormattedMessage id="page.conformation.alert.info.1.1" />
+                                <AppText id="page.conformation.alert.info.1.1" />
                             </strong>
                             <p>
-                                <FormattedMessage id="page.conformation.alert.info.1.2" />
+                                <AppText id="page.conformation.alert.info.1.2" />
                             </p>
                         </li>
                         <li>
-                            <FormattedMessage id="page.conformation.alert.info.2" />
+                            <AppText id="page.conformation.alert.info.2" />
                         </li>
                         <li>
-                            <FormattedMessage id="page.conformation.alert.info.3" />
+                            <AppText id="page.conformation.alert.info.3" />
                         </li>
                         <li>
-                            <FormattedMessage id="page.conformation.alert.info.4" />
+                            <AppText id="page.conformation.alert.info.4" />
                         </li>
                     </Checklist>
                 </Block>
@@ -88,13 +88,13 @@ const KvitteringPage = ({ søker, kvitteringInfo, onUnmount }: Props) => {
                                 window.print();
                                 return false;
                             }}>
-                            <FormattedMessage id="page.conformation.skrivUtKnapp" />
+                            <AppText id="page.conformation.skrivUtKnapp" />
                         </Button>
                     </Block>
                 </div>
                 <Block padBottom={'xl'}>
                     <div className={'kviteringsBlokk'}>
-                        <FormattedMessage id="page.conformation.skrivUt.info" />
+                        <AppText id="page.conformation.skrivUt.info" />
                     </div>
                 </Block>
                 {søker && kvitteringInfo && (

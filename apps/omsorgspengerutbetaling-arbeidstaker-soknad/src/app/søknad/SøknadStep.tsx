@@ -1,12 +1,11 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { soknadStepUtils, Step } from '@navikt/sif-common-soknad-ds';
 import InvalidStepSøknadsdataInfo from '../components/invalid-step-søknadsdata-info/InvalidStepSøknadsdataInfo';
 import StateInfo from '../components/state-info/StateInfo';
 import useAvbrytEllerFortsettSenere from '../hooks/useAvbrytSøknad';
+import { useAppIntl } from '../i18n';
 import { StepId } from '../types/StepId';
 import { getSøknadStepConfig } from './søknadStepConfig';
 
@@ -16,7 +15,7 @@ interface Props {
 }
 
 const SøknadStep: React.FC<Props> = ({ stepId, children }) => {
-    const intl = useIntl();
+    const { text, intl } = useAppIntl();
 
     useLogSidevisning(stepId);
 
@@ -32,7 +31,7 @@ const SøknadStep: React.FC<Props> = ({ stepId, children }) => {
     return (
         <Step
             activeStepId={stepId}
-            applicationTitle={intlHelper(intl, 'application.title')}
+            applicationTitle={text('application.title')}
             steps={steps}
             onCancel={avbrytSøknad}
             onContinueLater={fortsettSøknadSenere}>

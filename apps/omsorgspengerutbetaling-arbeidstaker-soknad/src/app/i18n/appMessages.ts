@@ -1,6 +1,5 @@
 import { fraværMessages } from '@navikt/sif-common-forms-ds/src/forms/fravær/fraværMessages';
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
-import { personalOpplysningerMessages } from '../pages/velkommen/personalopplysninger/personalopplysninger.messages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { fosterbarnFormMessages } from '../søknad/steps/fosterbarn/fosterbarnFormMessages';
 import { fraværStepMessages } from '../søknad/steps/fravær/fraværStepMessages';
@@ -8,10 +7,10 @@ import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerkl
 import { medlemskapMessages } from '../søknad/steps/medlemskap/medlemskapMessages';
 import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
 import { situasjonMessages } from '../søknad/steps/situasjon/situasjonStepMessages';
+import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
 
 const nb = {
     ...situasjonMessages.nb,
-    ...personalOpplysningerMessages.nb,
     ...fraværMessages.nb,
     ...velkommenPageMessages.nb,
     ...fraværStepMessages.nb,
@@ -19,6 +18,7 @@ const nb = {
     ...medlemskapMessages.nb,
     ...oppsummeringMessages.nb,
     ...kvitteringMessages.nb,
+    ...validateApiDataMessages.nb,
     ...fosterbarnFormMessages.nb,
 
     Ja: 'Ja',
@@ -124,6 +124,9 @@ const nb = {
     'validation.for_mange_dokumenter': 'Du har lastet opp for mange dokumenter.',
     'validation.samlet_storrelse_for_hoy':
         'Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24Mb.',
+    'dokumenter.advarsel.totalstørrelse.1':
+        'Du har totalt lastet opp mer enn grensen på 24 Mb. Det betyr at du må fjerne noe av det du har lastet opp. Hvis det betyr at du ikke får plass til alt du ønsker å sende nå, kan du ',
+    'dokumenter.advarsel.totalstørrelse.2': 'ettersende flere dokumenter.',
     'validation.periode_ingenDagerEllerPerioder': 'Du må spesifisere minst én periode for arbeidsforholdet.',
     'validation.fraværDagIkkeSammeÅrstall':
         'Du har lagt inn fravær som går over flere år. Du kan kun legge inn fravær for ett år.',

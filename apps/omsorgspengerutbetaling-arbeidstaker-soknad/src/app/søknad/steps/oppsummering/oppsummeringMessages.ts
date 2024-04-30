@@ -20,9 +20,12 @@ const nb = {
         'Har arbeidsgiveren utbetalt deg lønn for de dagene du har brukt omsorgsdager?',
     'step.oppsummering.arbeidsforhold.utbetalingsårsak.spm':
         'Hva er grunnen til at du søker om utbetaling av omsorgspenger fra NAV?',
+    'step.oppsummering.arbeidsforhold.utbetalingsårsak.IKKE_BESVART': 'Ikke besvart',
     'step.oppsummering.arbeidsforhold.utbetalingsårsak.NYOPPSTARTET_HOS_ARBEIDSGIVER':
         'Jeg har jobbet mindre enn 4 uker hos denne arbeidsgiveren',
     'step.oppsummering.arbeidsforhold.utbetalingsårsak.ARBEIDSGIVER_KONKURS': 'Arbeidsgiver er konkurs',
+    'step.oppsummering.arbeidsforhold.utbetalingsårsak.KONFLIKT_MED_ARBEIDSGIVER':
+        'Det er uenighet mellom meg og arbeidsgiver',
     'step.oppsummering.arbeidsforhold.årsakMinde4Uker.spm':
         'Hva var situasjonen din rett før du startet hos denne arbeidsgiveren?',
     'step.oppsummering.arbeidsforhold.årsakMinde4Uker.JOBBET_HOS_ANNEN_ARBEIDSGIVER':
@@ -35,8 +38,6 @@ const nb = {
         'Jeg var i arbeid, hadde frilansoppdrag eller næringsvirksomhet i utlandet',
     'step.oppsummering.arbeidsforhold.årsakMinde4Uker.UTØVDE_VERNEPLIKT': 'Jeg utøvde verneplikt',
     'step.oppsummering.arbeidsforhold.årsakMinde4Uker.ANNET': 'Annet',
-    'step.oppsummering.arbeidsforhold.utbetalingsårsak.KONFLIKT_MED_ARBEIDSGIVER':
-        'Det er uenighet mellom meg og arbeidsgiver',
     'step.oppsummering.arbeidsforhold.konflikt.forklaringTittel':
         'Forklar situasjonen med arbeidsgiveren din. Få med hvorfor du mener at du har rett til å få omsorgspenger fra arbeidsgiver.',
     'step.oppsummering.arbeidsforhold.konflikt.dokumenter.header':
