@@ -21,7 +21,7 @@
         "@navikt/sif-common-sentry": "workspace:*",
         "@navikt/sif-common-soknad-ds": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
-        "@testing-library/react": "15.0.5",
+        "@testing-library/react": "15.0.6",
         "axios": "1.6.8",
         "busboy": "1.6.0",
         "classnames": "2.5.1",
@@ -46,8 +46,8 @@
     },
     "devDependencies": {
         "@axe-core/playwright": "4.9.0",
-        "@babel/core": "7.24.4",
-        "@babel/preset-env": "7.24.4",
+        "@babel/core": "7.24.5",
+        "@babel/preset-env": "7.24.5",
         "@babel/preset-react": "7.24.1",
         "@playwright/test": "1.43.1",
         "@storybook/react-vite": "8.0.9",
@@ -67,7 +67,7 @@
         "uuid": "9.0.1",
         "vite": "5.2.10",
         "vite-plugin-checker": "0.6.4",
-        "vitest": "1.5.2"
+        "vitest": "1.5.3"
     },
     "scripts": {
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/ettersending",
