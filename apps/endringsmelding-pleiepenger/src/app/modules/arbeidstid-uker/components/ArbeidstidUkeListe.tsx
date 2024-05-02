@@ -4,10 +4,11 @@ import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { SelectableListType } from '../../../hooks/useSelectableList';
-import { ArbeidstidUkerItem } from '../ArbeidstidUkerItem';
+import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
 import ArbeidstidUkeInfoListe from './ArbeidstidUkeInfoListe';
 import UkeTags from './UkeTags';
 import VelgArbeidsukeItem from './VelgArbeidsukeItem';
+import { AppText } from '../../../i18n';
 
 interface Props {
     uker: ArbeidstidUkerItem[];
@@ -47,7 +48,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                             )}
                             <div className="arbeidstidUke__info">
                                 <Heading level="3" size="xsmall">
-                                    Uke {ukenummer}{' '}
+                                    <AppText id="arbeidstidUkeListe.heading" values={{ ukenummer }} />
                                 </Heading>
 
                                 <BodyShort as="div">

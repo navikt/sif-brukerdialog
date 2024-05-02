@@ -23,7 +23,7 @@ import EndretTag from '../../../../../components/tags/EndretTag';
 import FerieTag from '../../../../../components/tags/FerieTag';
 import TagsContainer from '../../../../../components/tags/tags-container/TagsContainer';
 import ArbeidstidUker from '../../../../../modules/arbeidstid-uker/ArbeidstidUker';
-import { ArbeidstidUkerItem } from '../../../../../modules/arbeidstid-uker/ArbeidstidUkerItem';
+import { ArbeidstidUkerItem } from '../../../../../modules/arbeidstid-uker/types/ArbeidstidUkerItem';
 import EndreArbeidstidForm from '../../../../../modules/endre-arbeidstid-form/EndreArbeidstidForm';
 import EndreArbeidstidModal from '../../../../../modules/endre-arbeidstid-modal/EndreArbeidstidModal';
 import { ArbeidsaktivitetFormValues } from '../../ArbeidstidForm';

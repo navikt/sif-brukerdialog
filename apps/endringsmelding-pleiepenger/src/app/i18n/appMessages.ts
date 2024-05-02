@@ -1,4 +1,5 @@
 import { infoNormalarbeidstid } from '../components/info-normalarbeidstid/infoNormalarbeidstid.messages';
+import { arbeidstidUkerMessages } from '../modules/arbeidstid-uker/arbeidstidUkerMessages';
 import { endreArbeidstidMessages } from '../modules/endre-arbeidstid-form/endreArbeidstidMessages';
 import { personalOpplysningerMessages } from '../pages/velkommen/personalopplysninger/personalopplysninger.messages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
@@ -18,6 +19,8 @@ const nb = {
     ...velkommenPageMessages.nb,
     ...oppsummeringStepMessages.nb,
     ...sifCommonSoknadOverrideMessages.nb,
+
+    ...arbeidstidUkerMessages.nb,
 
     'application.title': 'Endringsmelding for pleiepenger sykt barn',
     'step.ukjentArbeidsforhold.pageTitle': 'Nytt arbeidsforhold',
@@ -55,6 +58,11 @@ const nb = {
         'Du kan ikke lenger endre arbeidstid for dette arbeidsforholdet.',
     'arbeidsaktiviteterMedUkjentArbeidsgiver.kanIkkeEndreAlle':
         'Du kan ikke lenger endre arbeidstid for {antallUkjente, plural, one {dette arbeidsforholdet} other {disse arbeidsforholdene}}, men du kan fortsatt melde inn endringer for andre arbeidsforhold under.',
+    'arbeidsaktiviteterMedUkjentArbeidsgiver.feil.tittel': 'Dette er feil, hva kan jeg gjøre?',
+    'arbeidsaktiviteterMedUkjentArbeidsgiver.feil.enUkjent':
+        'Jobber du fremdeles i arbeidsforholdet og det er feil at arbeidsforholdet er avsluttet, må du be arbeidsgiveren din om å rette dette i <AAregisteret></AAregisteret>. Dette gjør de enten via eget lønns- og personalsystem, eller via Altinn.',
+    'arbeidsaktiviteterMedUkjentArbeidsgiver.feil.flereUkjent':
+        'Jobber du fremdeles i noen av arbeidsforholdene og det er feil at arbeidsforholdene er avsluttet, må du be arbeidsgiverene dine om å rette dette i <AAregisteret />. Dette gjør de enten via eget lønns- og personalsystem, eller via Altinn.',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };
