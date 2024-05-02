@@ -30,7 +30,7 @@ export const nb = {
     'svarfrist.fristPassert.1':
         'Vi jobber fortsatt med å behandle søknaden din. Noen ganger kan det ta lengre tid, hvis saken er spesielt krevende eller hvis vi har ventet på dokumentasjon.',
     'svarfrist.fristPassert.2':
-        'Hvis du eller arbeidsgiver nylig har sendt inn dokumentasjon, tar det vanligvis noen dager før disse er vurdert.',
+        'Hvis du eller arbeidsgiver nylig har sendt inn dokumentasjon, tar det vanligvis noen dager før disse er vurdert av saksbehandler.',
     'svarfrist.lesMerLenke': 'Se saksbehandlingstider',
     'svarfrist.dokumenterManglerFrist':
         'Fordi vi mangler dokumenter kan saksbehandlingstiden bli lenger enn <dato>{frist}</dato>.',
