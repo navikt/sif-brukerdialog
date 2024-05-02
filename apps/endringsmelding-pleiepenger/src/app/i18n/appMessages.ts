@@ -28,6 +28,24 @@ const nb = {
     'step.oppsummering.stepTitle': 'Oppsummering',
     'steg.footer.avbryt': 'Avbryt og slett melding om endring',
     'steg.footer.fortsettSenere': 'Avslutt og fortsett senere',
+
+    'arbeidsaktivitetBlockHeader.nyttArbeidsforhold': 'Nytt arbeidsforhold',
+    'arbeidsaktivitetBlockHeader.arbeidsgiver.orgnummer': 'Organisasjonsnummer: {orgnr}',
+    'arbeidsaktivitetBlockHeader.arbeidsgiver.ansattFom': 'Ansatt: {dato}.',
+    'arbeidsaktivitetBlockHeader.arbeidsgiver.ansattTom': ' Sluttdato: {dato}.',
+
+    'ikkeAnsattMelding.tekst':
+        'Er du feilregistrert eller du har sluttet i dette arbeidsforholdet før perioden du søkte pleiepenger, må du be arbeidsgiveren om å sende en ny A-melding med sluttdato. Dette gjør de enten via eget lønns- og personalsystem, eller via Altinn.',
+
+    'startPåNyttDialog.tekst.1': 'Du har trykket deg tilbake til startsiden.',
+    'startPåNyttDialog.tekst.2': 'Vil du starte utfyllingen på nytt eller fortsette der du var?',
+
+    'tags.kortUke': 'Kort uke',
+    'tags.nytt': 'Nytt',
+    'tags.endret': 'Endret',
+
+    'aaRegisteret.kort': 'Aa-registeret',
+    'aaRegisteret.lang': 'Arbeidsgiver- og arbeidstakerregisteret',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };

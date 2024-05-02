@@ -1,4 +1,10 @@
 const nb = {
+    'info.normalarbeidstid.tittel': 'Hva menes med normalt?',
+    'info.normalarbeidstid.tekst.1':
+        'Med <q>normalt</q> mener vi hvor mye du jobber når du ikke har fravær på grunn av pleiepenger. Det er altså normalarbeidstiden din før du starter med pleiepenger som vi er ute etter.',
+    'info.normalarbeidstid.tekst.2':
+        'Hvis du mottar ytelse fra NAV (for eksempel foreldrepenger eller sykepenger) opplyser du om det som var din normale arbeidstid før du startet å motta ytelsen.',
+
     'arbeidsforhold.normalTimer.info.tittel': 'Hva om jeg jobber turnus eller varierende?',
     'arbeidsforhold.normalTimer.info.turnus':
         'Når du jobber turnus, eller har annen varierende arbeidstid, oppgir du et snitt per uke.',
