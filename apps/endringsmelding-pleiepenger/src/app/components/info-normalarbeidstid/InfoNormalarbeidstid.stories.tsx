@@ -1,20 +1,15 @@
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import { withIntl } from '../../../storybook/decorators/withIntl';
-import { InfoNormalarbeidstid } from './InfoNormalarbeidstid';
+import InfoNormalarbeidstid from './InfoNormalarbeidstid';
 
-export default {
+const meta: Meta<typeof InfoNormalarbeidstid> = {
     title: 'Components/InfoNormalarbeidstid',
     component: InfoNormalarbeidstid,
     decorators: [withIntl],
-} as Meta<typeof InfoNormalarbeidstid>;
+};
 
-const Template: StoryFn = () => (
-    <div style={{ maxWidth: '50rem' }}>
-        <InfoNormalarbeidstid />
-    </div>
-);
+export default meta;
 
-export const Default = Template.bind({});
+type Story = StoryObj<typeof InfoNormalarbeidstid>;
 
-Default.args = {};
-Default.parameters = {};
+export const Default: Story = {};

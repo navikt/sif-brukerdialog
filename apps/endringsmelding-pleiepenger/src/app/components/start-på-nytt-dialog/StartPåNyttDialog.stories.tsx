@@ -1,20 +1,15 @@
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import StartPåNyttDialog from './StartPåNyttDialog';
 
-export default {
+const meta: Meta<typeof StartPåNyttDialog> = {
     title: 'Components/StartPåNyttDialog',
     component: StartPåNyttDialog,
     decorators: [withIntl],
-} as Meta<typeof StartPåNyttDialog>;
+};
 
-const Template: StoryFn = () => (
-    <div style={{ maxWidth: '50rem' }}>
-        <StartPåNyttDialog open={true} onCancel={() => null} onConfirm={() => null} />
-    </div>
-);
+export default meta;
 
-export const Default = Template.bind({});
+type Story = StoryObj<typeof StartPåNyttDialog>;
 
-Default.args = {};
-Default.parameters = {};
+export const Default: Story = {};

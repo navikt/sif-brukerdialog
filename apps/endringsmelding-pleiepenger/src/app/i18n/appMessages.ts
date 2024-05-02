@@ -46,6 +46,15 @@ const nb = {
 
     'aaRegisteret.kort': 'Aa-registeret',
     'aaRegisteret.lang': 'Arbeidsgiver- og arbeidstakerregisteret',
+
+    'arbeidsaktiviteterMedUkjentArbeidsgiver.tittel': 'Avsluttet arbeidsforhold',
+    'arbeidsaktiviteterMedUkjentArbeidsgiver.orgnummer': 'Org.nr. {orgnr}',
+    'arbeidsaktiviteterMedUkjentArbeidsgiver.aaRegisteret':
+        'Du har arbeidsforhold i din pleiepengeperiode som er registrert som avsluttet av arbeidsgiver i <AAregisteret></AAregisteret>. Dette kan være hvis du har sluttet i en jobb, byttet avdeling eller lignende.',
+    'arbeidsaktiviteterMedUkjentArbeidsgiver.kanIkkeEndreNoe':
+        'Du kan ikke lenger endre arbeidstid for dette arbeidsforholdet.',
+    'arbeidsaktiviteterMedUkjentArbeidsgiver.kanIkkeEndreAlle':
+        'Du kan ikke lenger endre arbeidstid for {antallUkjente, plural, one {dette arbeidsforholdet} other {disse arbeidsforholdene}}, men du kan fortsatt melde inn endringer for andre arbeidsforhold under.',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };

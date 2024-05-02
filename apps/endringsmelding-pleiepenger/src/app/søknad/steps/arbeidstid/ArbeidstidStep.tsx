@@ -2,15 +2,22 @@ import { Alert, Heading } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import InfoList from '@navikt/sif-common-core-ds/src/components/lists/info-list/InfoList';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import ArbeidsaktiviteterMedUkjentArbeidsgiver from '../../../components/arbeidsaktiviteter-med-ukjent-arbeidsgiver/ArbeidsaktiviteterMedUkjentArbeidsgiver';
+import { useSøknadContext } from '../../../hooks';
 import { useStepConfig } from '../../../hooks/useStepConfig';
 import { useSøknadsdataInfo } from '../../../hooks/useSøknadsdataInfo';
-import SøknadStep from '../../SøknadStep';
 import { StepId } from '../../config/StepId';
-import ArbeidsaktiviteterMedUkjentArbeidsgiver from './ArbeidsaktiviteterMedUkjentArbeidsgiver';
+import SøknadStep from '../../SøknadStep';
 import ArbeidstidForm from './ArbeidstidForm';
 
 const ArbeidstidStep = () => {
     const stepId = StepId.ARBEIDSTID;
+
+    const {
+        state: {
+            sak: { arbeidsaktivitetMedUkjentArbeidsgiver, arbeidsaktiviteter },
+        },
+    } = useSøknadContext();
 
     const { goBack, stepConfig } = useStepConfig(stepId);
 
@@ -40,7 +47,14 @@ const ArbeidstidStep = () => {
                     </Alert>
                 </Block>
             )}
-            <ArbeidsaktiviteterMedUkjentArbeidsgiver />
+
+            {arbeidsaktivitetMedUkjentArbeidsgiver.length === 0 ? null : (
+                <ArbeidsaktiviteterMedUkjentArbeidsgiver
+                    arbeidsaktivitetMedUkjentArbeidsgiver={arbeidsaktivitetMedUkjentArbeidsgiver}
+                    arbeidsaktiviteter={arbeidsaktiviteter}
+                />
+            )}
+
             <ArbeidstidForm goBack={goBack} />
         </SøknadStep>
     );

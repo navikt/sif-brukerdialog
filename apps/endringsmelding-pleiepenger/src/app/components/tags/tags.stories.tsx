@@ -8,7 +8,6 @@ import KortUkeTag from './KortUkeTag';
 
 export default {
     title: 'Components/Tags',
-
     decorators: [withIntl],
 } as Meta;
 

@@ -1,48 +1,61 @@
-import React from 'react';
-import { useSøknadContext } from '../../../hooks';
 import { Alert, Heading } from '@navikt/ds-react';
+import React from 'react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { getAktiviteterSomSkalEndres } from './arbeidstidStepUtils';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import AAregisteret from '../../../components/aa-registeret/AARegisteret';
+import { AppText } from '../../i18n';
+import { getAktiviteterSomSkalEndres } from '../../søknad/steps/arbeidstid/arbeidstidStepUtils';
+import { Arbeidsaktiviteter, ArbeidsaktivitetUkjentArbeidsgiver } from '../../types';
+import AAregisteret from '../aa-registeret/AARegisteret';
 
-interface Props {}
+interface Props {
+    arbeidsaktivitetMedUkjentArbeidsgiver: ArbeidsaktivitetUkjentArbeidsgiver[];
+    arbeidsaktiviteter: Arbeidsaktiviteter;
+}
 
-const ArbeidsaktiviteterMedUkjentArbeidsgiver: React.FunctionComponent<Props> = ({}) => {
-    const {
-        state: { sak },
-    } = useSøknadContext();
-
-    const antallUkjente = sak.arbeidsaktivitetMedUkjentArbeidsgiver.length;
+const ArbeidsaktiviteterMedUkjentArbeidsgiver: React.FunctionComponent<Props> = ({
+    arbeidsaktivitetMedUkjentArbeidsgiver,
+    arbeidsaktiviteter,
+}) => {
+    const antallUkjente = arbeidsaktivitetMedUkjentArbeidsgiver.length;
 
     if (antallUkjente === 0) {
         return null;
     }
 
-    const antallSomKanEndres = getAktiviteterSomSkalEndres(sak.arbeidsaktiviteter).length;
+    const antallSomKanEndres = getAktiviteterSomSkalEndres(arbeidsaktiviteter).length;
 
     return (
         <FormBlock>
             <Alert variant="info">
                 <Heading level="3" size="small">
-                    Avsluttet arbeidsforhold
+                    <AppText id="arbeidsaktiviteterMedUkjentArbeidsgiver.tittel" />
                 </Heading>
                 <ul>
-                    {sak.arbeidsaktivitetMedUkjentArbeidsgiver.map((a) => (
-                        <li key={a.organisasjonsnummer}>Org.nr. {a.organisasjonsnummer}</li>
+                    {arbeidsaktivitetMedUkjentArbeidsgiver.map((a) => (
+                        <li key={a.organisasjonsnummer}>
+                            <AppText
+                                id="arbeidsaktiviteterMedUkjentArbeidsgiver.orgnummer"
+                                values={{ orgnr: a.organisasjonsnummer }}
+                            />
+                        </li>
                     ))}
                 </ul>
                 <p>
-                    Du har arbeidsforhold i din pleiepengeperiode som er registrert som avsluttet av arbeidsgiver i{' '}
-                    <AAregisteret />. Dette kan være hvis du har sluttet i en jobb, byttet avdeling eller lignende.
+                    <AppText
+                        id="arbeidsaktiviteterMedUkjentArbeidsgiver.aaRegisteret"
+                        values={{ AAregisteret: () => <AAregisteret /> }}
+                    />
                 </p>
                 {antallSomKanEndres === 0 ? (
-                    <p>Du kan ikke lenger endre arbeidstid for dette arbeidsforholdet.</p>
+                    <p>
+                        <AppText id="arbeidsaktiviteterMedUkjentArbeidsgiver.kanIkkeEndreNoe" />
+                    </p>
                 ) : (
                     <p>
-                        Du kan ikke lenger endre arbeidstid for{' '}
-                        {antallUkjente === 1 ? 'dette arbeidsforholdet' : 'disse arbeidsforholdene'}, men du kan
-                        fortsatt melde inn endringer for andre arbeidsforhold under.
+                        <AppText
+                            id="arbeidsaktiviteterMedUkjentArbeidsgiver.kanIkkeEndreAlle"
+                            values={{ antallUkjente }}
+                        />
                     </p>
                 )}
 

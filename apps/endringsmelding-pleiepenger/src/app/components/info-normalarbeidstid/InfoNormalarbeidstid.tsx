@@ -1,7 +1,7 @@
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { AppText, useAppIntl } from '../../i18n';
 
-export const InfoNormalarbeidstid = () => {
+const InfoNormalarbeidstid = () => {
     const { text } = useAppIntl();
     return (
         <>
@@ -66,3 +66,5 @@ export const InfoNormalarbeidstid = () => {
         </>
     );
 };
+
+export default InfoNormalarbeidstid;
