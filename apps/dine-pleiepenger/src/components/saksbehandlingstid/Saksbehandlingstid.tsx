@@ -2,9 +2,9 @@
 import { BodyShort, Box, Heading, Link } from '@navikt/ds-react';
 import React from 'react';
 import { dateFormatter } from '@navikt/sif-common-utils';
+import { Msg } from '../../i18n';
 import { Venteårsak } from '../../types/Venteårsak';
 import { browserEnv } from '../../utils/env';
-import { Msg, useMessages } from '../../i18n';
 import { erSaksbehandlingsfristPassert } from '../../utils/sakUtils';
 
 interface Props {
@@ -38,37 +38,41 @@ const getFristTekst = (frist: Date, venteårsak?: Venteårsak): React.ReactNode 
     }
 };
 
-const Saksbehandlingstid: React.FunctionComponent<Props> = ({ frist, venteårsak, saksbehandlingstidUker = 7 }) => {
+const SaksbehandlingstidMelding = ({ frist, venteårsak, saksbehandlingstidUker }: Props) => {
     const fristErPassert = frist ? erSaksbehandlingsfristPassert(frist) : false;
-    const { text } = useMessages();
+    if (frist) {
+        return fristErPassert ? (
+            <>
+                <BodyShort spacing={true}>
+                    <Msg id="svarfrist.fristPassert.1" />
+                </BodyShort>
+                <BodyShort spacing={true}>
+                    <Msg id="svarfrist.fristPassert.2" />
+                </BodyShort>
+            </>
+        ) : (
+            getFristTekst(frist, venteårsak)
+        );
+    }
+    return <Msg id="svarfrist.forventetBehandlingstid" values={{ saksbehandlingstidUker }} />;
+};
 
-    const getMelding = () => {
-        if (frist) {
-            return fristErPassert ? (
-                <>
-                    <BodyShort spacing={true}>
-                        <Msg id="svarfrist.fristPassert.1" />
-                    </BodyShort>
-                    <BodyShort spacing={true}>
-                        <Msg id="svarfrist.fristPassert.2" />
-                    </BodyShort>
-                </>
-            ) : (
-                getFristTekst(frist, venteårsak)
-            );
-        }
-        return <Msg id="svarfrist.forventetBehandlingstid" values={{ saksbehandlingstidUker }} />;
-    };
-
+const Saksbehandlingstid: React.FunctionComponent<Props> = ({ frist, venteårsak, saksbehandlingstidUker = 7 }) => {
     return (
         <Box>
             <Heading size="medium" level="2" className="text-deepblue-800" spacing={true}>
-                {text('svarfrist.tittel')}
+                <Msg id="svarfrist.tittel" />
             </Heading>
             <BodyShort as="div" className="bg-deepblue-100 pt-4 pl-6 pr-6 pb-6 rounded">
-                <Box className="mb-2">{getMelding()}</Box>
+                <Box className="mb-2">
+                    <SaksbehandlingstidMelding
+                        frist={frist}
+                        venteårsak={venteårsak}
+                        saksbehandlingstidUker={saksbehandlingstidUker}
+                    />
+                </Box>
                 <Link variant="neutral" href={browserEnv.NEXT_PUBLIC_SAKSBEHANDLINGSTID_INFO_URL}>
-                    {text('svarfrist.lesMerLenke')}
+                    <Msg id="svarfrist.lesMerLenke" />
                 </Link>
             </BodyShort>
         </Box>
