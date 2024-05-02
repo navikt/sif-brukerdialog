@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import IngenTilgangPage from '../../../app/pages/ingen-tilgang/IngenTilgangPage';
-import { withAmplitudeProvider } from '../../decorators/withAmplitudeProvider';
-import { withIntl } from '../../decorators/withIntl';
-import { withRouterProvider } from '../../decorators/withRouter';
-import { søkerMock } from '../../data/søkerMock';
-import { IngenTilgangÅrsak } from '../../../app/types/IngenTilgangÅrsak';
+import { søkerMock } from '../../../storybook/data/søkerMock';
+import { withAmplitudeProvider } from '../../../storybook/decorators/withAmplitudeProvider';
+import { withIntl } from '../../../storybook/decorators/withIntl';
+import { withRouterProvider } from '../../../storybook/decorators/withRouter';
+import { IngenTilgangÅrsak } from '../../types/IngenTilgangÅrsak';
+import IngenTilgangPage from './IngenTilgangPage';
 
 const meta: Meta<typeof IngenTilgangPage> = {
     title: 'Pages/IngenTilgangPage',
