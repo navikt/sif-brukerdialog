@@ -9,8 +9,8 @@
         "date-fns": "3.6.0"
     },
     "devDependencies": {
-        "@babel/core": "7.24.4",
-        "@babel/preset-env": "7.24.4",
+        "@babel/core": "7.24.5",
+        "@babel/preset-env": "7.24.5",
         "@babel/preset-react": "7.24.1",
         "@babel/preset-typescript": "7.24.1",
         "@formatjs/intl-pluralrules": "5.2.12",
@@ -30,10 +30,10 @@
         "@storybook/react": "8.0.9",
         "@storybook/react-vite": "8.0.9",
         "@storybook/testing-library": "0.2.2",
-        "@testing-library/dom": "10.0.0",
-        "@testing-library/react": "15.0.5",
+        "@testing-library/dom": "10.1.0",
+        "@testing-library/react": "15.0.6",
         "@testing-library/user-event": "14.5.2",
-        "@types/node": "20.12.7",
+        "@types/node": "20.12.8",
         "@types/react": "18.3.1",
         "@types/react-dom": "18.3.0",
         "@vitejs/plugin-react": "4.2.1",
@@ -57,7 +57,7 @@
         "storybook": "8.0.9",
         "vite": "5.2.10",
         "vite-plugin-checker": "0.6.4",
-        "vitest": "1.5.2"
+        "vitest": "1.5.3"
     },
     "scripts": {
         "build-storybook": "storybook build",
