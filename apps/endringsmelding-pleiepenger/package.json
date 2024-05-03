@@ -118,6 +118,8 @@
         ]
     },
     "msw": {
-        "workerDirectory": "dist"
+        "workerDirectory": [
+            "dist"
+        ]
     }
 }
