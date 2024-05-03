@@ -76,6 +76,31 @@ const nb = {
     'lovbestemtFerieListe.endreFerie.ariaLabel': 'Endre ferie {periode}',
     'lovbestemtFerieListe.fjernFerie.label': 'Fjern ferie',
     'lovbestemtFerieListe.fjernFerie.ariaLabel': 'Fjern ferie {periode}',
+
+    'ingenTilgangPage.skrivTilOssGenerell':
+        'I mellomtiden bruker du tjenesten {SkrivTilOssLink}, for å melde fra om endringer.',
+    'ingenTilgangPage.harUgyldigK9FormatSak.1':
+        'Vi ser at du har en sak om pleiepenger hos oss, men foreløpig kan du ikke bruke denne tjenesten. Vi jobber for å få det til, slik at du også snart kan melde fra om endring her.',
+
+    'ingenTilgangPage.tittel': 'Hei {navn}',
+    'ingenTilgangPage.harIngenSak.1':
+        'Vi finner ingen sak om pleiepenger for sykt barn registrert på deg, derfor kan du heller ikke bruke denne tjenesten. Hvis du akkurat har sendt inn en søknad, tar det noen minutter før saken din kommer opp her.',
+    'ingenTilgangPage.harIngenSak.2':
+        'Hvis du har søkt om pleiepenger for en periode frem i tid, eller for barn som ikke er folkeregistrert på deg, kan det ta tid før du kan bruke endringsmeldingen. Du kan foreløpig melde endringer i pleiepengesaken din via {SkrivTilOssLink}.',
+    'ingenTilgangPage.harIngenSak.3':
+        'Hvis du ønsker at en av våre veiledere skal undersøke hvorfor du ikke kan bruke endringsmeldingen, kan du kontakte oss på telefon 55 55 33 33.',
+    'ingenTilgangPage.harArbeidsgiverUtenArbeidsaktivitet.1':
+        'Du kan ikke bruke denne tjenesten. Dette er fordi vi har funnet et arbeidsforhold på deg, som ikke er registrert i pleiepengesaken din. Du må derfor sende en ny søknad, slik at saken og utbetalingene dine blir riktige.',
+    'ingenTilgangPage.harArbeidsgiverUtenArbeidsaktivitet.2':
+        'Hvis du mener at dette ikke stemmer, er det fint at du sender en melding til oss {SkrivTilOssLink}.',
+    'ingenTilgangPage.harArbeidstidSomSelvstendigNæringsdrivende.1':
+        'Du kan ikke bruke denne tjenesten per i dag. Dette er fordi tjenesten foreløpig ikke kan ta imot endringer fra selvstendig næringsdrivende. Vi jobber for å få det til, og selvstendig næringsdrivende blir også tilbudt denne tjenesten på et senere tidspunkt.',
+    'ingenTilgangPage.harMerEnnEnSak.1':
+        'Du kan ikke bruke denne tjenesten per i dag. Dette er fordi tjenesten foreløpig ikke kan ta imot endringer når du har pleiepenger for flere barn. Vi jobber for å få det til, og du blir også tilbudt denne tjenesten på et senere tidspunkt',
+    'ingenTilgangPage.utenforEndringsperiode.1':
+        'Du kan ikke bruke denne tjenesten fordi siste søknadsperiode gikk ut for mer enn enn {ANTALL_MÅNEDER_TILLATT_FOR_ENDRING} måneder siden. Du kan melde fra om endring i tjenesten {SkrivTilOssLink}, eller sende oss en ny søknad.',
+    'ingenTilgangPage.utenforEndringsperiode.2':
+        'Hvis du mener at dette ikke stemmer, er det fint at du sender en melding til oss {SkrivTilOssLink}.',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };
