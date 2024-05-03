@@ -5,6 +5,7 @@ import { TimerEllerProsent } from '../../app/types/TimerEllerProsent';
 import { arbeidsgivereMock } from '../data/arbeidsgivereMock';
 import { søkerMock } from '../data/søkerMock';
 import { sakMock } from '../data/sakMock';
+import { StepId } from '../../app/søknad/config/StepId';
 
 export const initialStateStorybook: SøknadContextState = {
     versjon: '1.0.0',
@@ -22,7 +23,7 @@ export const initialStateStorybook: SøknadContextState = {
         to: new Date(),
     },
     antallSakerFørEndringsperiode: 2,
-    søknadSteps: [],
+    søknadSteps: [StepId.UKJENT_ARBEIDSFOHOLD, StepId.LOVBESTEMT_FERIE, StepId.ARBEIDSTID],
     sak: {
         ...sakMock,
     },
