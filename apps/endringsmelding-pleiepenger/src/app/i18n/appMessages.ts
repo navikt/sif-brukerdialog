@@ -103,6 +103,17 @@ const nb = {
     'kvitteringPage.info.1':
         'Når vi har behandlet meldingen fra deg, får du svar på din side på nav.no og i Digipost. Hvis du har registrert deg mot å motta digital post, får du svaret tilsendt i posten.',
     'kvitteringPage.info.2': 'Du kan se hva du har sendt inn på {dinePleiepengerLink}.',
+
+    'lovbestemtFerieStep.guide.tittel': 'Slik endrer du ferie',
+    'lovbestemtFerieStep.guide.tekst.1': 'Du kan endre, legge til, eller fjerne ferie i pleiepengeperioden din.',
+    'lovbestemtFerieStep.guide.tekst.2': 'Du skal kun registrere ferie for ukedager (mandag til fredag).',
+
+    'lovbestemtFerieStep.heading.perioder':
+        '{antallPerioder, plural, one {Uker med pleiepenger} other {Dine perioder med pleiepenger}}',
+    'lovbestemtFerieStep.heading.registrertFerie': 'Registrert ferie',
+    'lovbestemtFerieStep.tags.ferieEndret': 'Ferie endret',
+    'lovbestemtFerieStep.ferieFjernet.melding':
+        'Du har fjernet dager med ferie. Hvis du skal du jobbe disse dagene må du se over at jobb i perioden er riktig. Dette gjør du på neste steg.',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };
