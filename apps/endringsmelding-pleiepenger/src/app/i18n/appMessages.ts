@@ -1,7 +1,6 @@
 import { infoNormalarbeidstid } from '../components/info-normalarbeidstid/infoNormalarbeidstid.messages';
 import { arbeidstidUkerMessages } from '../modules/arbeidstid-uker/arbeidstidUkerMessages';
 import { endreArbeidstidMessages } from '../modules/endre-arbeidstid-form/endreArbeidstidMessages';
-import { personalOpplysningerMessages } from '../pages/velkommen/personalopplysninger/personalopplysninger.messages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { arbeidstidStepMessages } from '../søknad/steps/arbeidstid/arbeidstidStepMessages';
 import { oppsummeringStepMessages } from '../søknad/steps/oppsummering/oppsummeringStepMessages';
@@ -13,13 +12,11 @@ const nb = {
     ...arbeidstidStepMessages.nb,
     ...endreArbeidstidMessages.nb,
     ...infoNormalarbeidstid.nb,
-    ...personalOpplysningerMessages.nb,
     ...samtykkeFormOverrideMessages.nb,
     ...ukjentArbeidsforholdFormMessages.nb,
     ...velkommenPageMessages.nb,
     ...oppsummeringStepMessages.nb,
     ...sifCommonSoknadOverrideMessages.nb,
-
     ...arbeidstidUkerMessages.nb,
 
     'application.title': 'Endringsmelding for pleiepenger sykt barn',
@@ -77,12 +74,11 @@ const nb = {
     'lovbestemtFerieListe.fjernFerie.label': 'Fjern ferie',
     'lovbestemtFerieListe.fjernFerie.ariaLabel': 'Fjern ferie {periode}',
 
+    'ingenTilgangPage.tittel': 'Hei {navn}',
     'ingenTilgangPage.skrivTilOssGenerell':
         'I mellomtiden bruker du tjenesten {SkrivTilOssLink}, for å melde fra om endringer.',
     'ingenTilgangPage.harUgyldigK9FormatSak.1':
         'Vi ser at du har en sak om pleiepenger hos oss, men foreløpig kan du ikke bruke denne tjenesten. Vi jobber for å få det til, slik at du også snart kan melde fra om endring her.',
-
-    'ingenTilgangPage.tittel': 'Hei {navn}',
     'ingenTilgangPage.harIngenSak.1':
         'Vi finner ingen sak om pleiepenger for sykt barn registrert på deg, derfor kan du heller ikke bruke denne tjenesten. Hvis du akkurat har sendt inn en søknad, tar det noen minutter før saken din kommer opp her.',
     'ingenTilgangPage.harIngenSak.2':
@@ -101,6 +97,12 @@ const nb = {
         'Du kan ikke bruke denne tjenesten fordi siste søknadsperiode gikk ut for mer enn enn {ANTALL_MÅNEDER_TILLATT_FOR_ENDRING} måneder siden. Du kan melde fra om endring i tjenesten {SkrivTilOssLink}, eller sende oss en ny søknad.',
     'ingenTilgangPage.utenforEndringsperiode.2':
         'Hvis du mener at dette ikke stemmer, er det fint at du sender en melding til oss {SkrivTilOssLink}.',
+
+    'kvitteringPage.pageTitle': 'Endringsmelding er mottatt',
+    'kvitteringPage.title': 'Melding om endring er lagt til saken din',
+    'kvitteringPage.info.1':
+        'Når vi har behandlet meldingen fra deg, får du svar på din side på nav.no og i Digipost. Hvis du har registrert deg mot å motta digital post, får du svaret tilsendt i posten.',
+    'kvitteringPage.info.2': 'Du kan se hva du har sendt inn på {dinePleiepengerLink}.',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };

@@ -4,14 +4,6 @@ const nb = {
         'Du må velge at du har forstått ditt ansvar når du sender inn en endring',
     'velkommenForm.hvaSkalEndres.listHasTooFewItems': 'Du må velge hva du ønsker å endre',
 
-    'page.velkommen.sidetittel': 'Søknad om ekstra omsorgsdager',
-    'page.velkommen.guide.tittel': 'Hei {navn}',
-    'page.velkommen.guide.ingress': 'Velkommen til søknad om ekstra omsorgsdager.',
-    'page.velkommen.guide.tekst.1':
-        'Denne søknaden bruker du for å søke om ekstra omsorgsdager når du har barn med kronisk sykdom, funksjonshemning eller langvarig sykdom. Det er bare foreldre/fosterforeldre som barnet bor fast hos, som kan få ekstra omsorgsdager.',
-    'page.velkommen.guide.tekst.2':
-        'Foreldre må søke hver for seg. Hvis du har flere barn med kronisk sykdom, funksjonshemning eller langvarig sykdom, må du sende én søknad for hvert barn.',
-
     'page.velkommen.omSøknaden.tittel': 'Om utfylling av skjemaet',
     'page.velkommen.omSøknaden.1': 'Du får veiledning underveis om hva du skal fylle ut, og hvordan.',
     'page.velkommen.omSøknaden.2':
@@ -31,10 +23,8 @@ const nb = {
     'personopplysninger.4.5': 'tilknytningen din til Norge',
     'personopplysninger.4.6':
         'trygdeordninger du kan ha rett til i andre land. Vi kan også sende opplysninger om deg til trygdemyndigheter i andre land',
-    'personopplysninger.5.1':
-        'Du har rett til innsyn i saken din. Vil du vite mer om hvordan NAV behandler personopplysninger? Se ',
-    'personopplysninger.5.2': 'nav.no/personvern',
-    'personopplysninger.5.3': '.',
+    'personopplysninger.5':
+        'Du har rett til innsyn i saken din. Vil du vite mer om hvordan NAV behandler personopplysninger? Se <Link>nav.no/personvern</Link>.',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };
