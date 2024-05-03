@@ -1,15 +1,26 @@
 const nb = {
+    'velkommenPage.tittel': 'Velkommen til endringsskjemaet',
     'velkommenForm.submitButtonLabel': 'Start',
     'velkommenForm.harForståttRettigheterOgPlikter.notChecked':
         'Du må velge at du har forstått ditt ansvar når du sender inn en endring',
     'velkommenForm.hvaSkalEndres.listHasTooFewItems': 'Du må velge hva du ønsker å endre',
 
-    'page.velkommen.omSøknaden.tittel': 'Om utfylling av skjemaet',
-    'page.velkommen.omSøknaden.1': 'Du får veiledning underveis om hva du skal fylle ut, og hvordan.',
-    'page.velkommen.omSøknaden.2':
+    'velkommenPage.guide.tittel': 'Hei {navn}',
+    'velkommenPage.guide.tekst':
+        'Du kan melde fra om endringer i pleiepenger for {barnetsNavn} i tidsrommet {samletSøknadsperiodeTekst}.',
+
+    'velkommenPage.endre.spm': 'Hva ønsker du å endre?',
+    'velkommenPage.endre.ferie': 'Ferie',
+    'velkommenPage.endre.jobb': 'Jobb',
+
+    'velkommenPage.omSøknaden.tittel': 'Om utfylling av skjemaet',
+    'velkommenPage.omSøknaden.1': 'Du får veiledning underveis om hva du skal fylle ut, og hvordan.',
+    'velkommenPage.omSøknaden.2':
         'Vi tar vare på svarene dine i 72 timer. Hvis du innenfor den tiden for eksempel vil ta en pause eller blir automatisk logget ut, fortsetter du der du var når du kommer tilbake.',
-    'page.velkommen.omSøknaden.3': 'Du må svare på alle spørsmålene for å kunne gå videre.',
-    'page.velkommen.omSøknaden.4': 'Om hvordan vi innhenter opplysninger om deg',
+    'velkommenPage.omSøknaden.3': 'Du må svare på alle spørsmålene for å kunne gå videre.',
+
+    'velkommenPage.merInformasjon.tittel': 'Mer informasjon',
+    'velkommenPage.personopplysninger.tittel': 'Om hvordan vi innhenter opplysninger om deg',
 
     'personopplysninger.1': 'Slik behandler NAV personopplysningene dine',
     'personopplysninger.2':
