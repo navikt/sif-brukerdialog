@@ -9,6 +9,7 @@ import { useSøknadsdataInfo } from '../../../hooks/useSøknadsdataInfo';
 import { StepId } from '../../config/StepId';
 import SøknadStep from '../../SøknadStep';
 import ArbeidstidForm from './ArbeidstidForm';
+import { AppText } from '../../../i18n';
 
 const ArbeidstidStep = () => {
     const stepId = StepId.ARBEIDSTID;
@@ -27,14 +28,17 @@ const ArbeidstidStep = () => {
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>
             <SifGuidePanel>
                 <Heading level="2" size="xsmall" spacing={true}>
-                    Slik endrer du jobb i pleiepengeperioden
+                    <AppText id="arbeidstidStep.title" />
                 </Heading>
                 <InfoList>
-                    <li>Du oppgir hvor mye du jobber i timer eller prosent per uke.</li>
-                    <li>Du kan endre flere uker samtidig, eller én og én uke.</li>
                     <li>
-                        Hvis du har endring som gjelder kun enkeltdager, skal du fremdeles oppgi hvor mye du jobber
-                        samlet for hele uken.
+                        <AppText id="arbeidstidStep.info.1" />
+                    </li>
+                    <li>
+                        <AppText id="arbeidstidStep.info.2" />
+                    </li>
+                    <li>
+                        <AppText id="arbeidstidStep.info.3" />
                     </li>
                 </InfoList>
             </SifGuidePanel>
@@ -42,8 +46,7 @@ const ArbeidstidStep = () => {
             {harFjernetFerie && (
                 <Block margin="xl">
                     <Alert variant="warning">
-                        Du har fjernet dager med ferie. Skal du jobbe disse dagene, se over at jobb i perioden er
-                        riktig.
+                        <AppText id="arbeidstidStep.fjernetFerie.melding" />
                     </Alert>
                 </Block>
             )}
