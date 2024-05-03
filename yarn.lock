@@ -3659,7 +3659,7 @@ __metadata:
     "@navikt/ds-react": 6.6.1
     "@navikt/sif-common-hooks": "workspace:*"
     "@portabletext/react": 3.0.18
-    "@sanity/client": 6.15.20
+    "@sanity/client": 6.17.0
     "@types/node": 20.12.8
     "@types/react": 18.3.1
     "@types/react-dom": 18.3.0
@@ -5853,14 +5853,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/client@npm:6.15.20":
-  version: 6.15.20
-  resolution: "@sanity/client@npm:6.15.20"
+"@sanity/client@npm:6.17.0":
+  version: 6.17.0
+  resolution: "@sanity/client@npm:6.17.0"
   dependencies:
     "@sanity/eventsource": ^5.0.2
     get-it: ^8.4.27
     rxjs: ^7.0.0
-  checksum: 269ab997895b91e921757a011f2f0bc499639502ada2849e72ea0876e20a0e4e49c2e34df1958d81b695215b69b5b6001eef208e77820c1bc05b23c38e9024b6
+  checksum: c3a08764c079fbf75ff04c95f79f58df9fc7d0bc8f1443f23bc67063a1eb7fff5978b9b0e97db73df988ef3609b3fb3cbdddea08f496ec596d199009e9dd5d0c
   languageName: node
   linkType: hard
 
