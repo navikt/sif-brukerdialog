@@ -44,7 +44,7 @@ const ArbeidsaktiviteterMedUkjentArbeidsgiver: React.FunctionComponent<Props> = 
                 <p>
                     <AppText
                         id="arbeidsaktiviteterMedUkjentArbeidsgiver.aaRegisteret"
-                        values={{ AAregisteret: () => <AAregisteret /> }}
+                        values={{ AAregisteret: <AAregisteret /> }}
                     />
                 </p>
                 {antallSomKanEndres === 0 ? (

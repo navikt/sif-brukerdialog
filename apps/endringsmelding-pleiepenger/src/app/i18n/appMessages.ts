@@ -53,16 +53,29 @@ const nb = {
     'arbeidsaktiviteterMedUkjentArbeidsgiver.tittel': 'Avsluttet arbeidsforhold',
     'arbeidsaktiviteterMedUkjentArbeidsgiver.orgnummer': 'Org.nr. {orgnr}',
     'arbeidsaktiviteterMedUkjentArbeidsgiver.aaRegisteret':
-        'Du har arbeidsforhold i din pleiepengeperiode som er registrert som avsluttet av arbeidsgiver i <AAregisteret></AAregisteret>. Dette kan være hvis du har sluttet i en jobb, byttet avdeling eller lignende.',
+        'Du har arbeidsforhold i din pleiepengeperiode som er registrert som avsluttet av arbeidsgiver i {AAregisteret}. Dette kan være hvis du har sluttet i en jobb, byttet avdeling eller lignende.',
     'arbeidsaktiviteterMedUkjentArbeidsgiver.kanIkkeEndreNoe':
         'Du kan ikke lenger endre arbeidstid for dette arbeidsforholdet.',
     'arbeidsaktiviteterMedUkjentArbeidsgiver.kanIkkeEndreAlle':
         'Du kan ikke lenger endre arbeidstid for {antallUkjente, plural, one {dette arbeidsforholdet} other {disse arbeidsforholdene}}, men du kan fortsatt melde inn endringer for andre arbeidsforhold under.',
     'arbeidsaktiviteterMedUkjentArbeidsgiver.feil.tittel': 'Dette er feil, hva kan jeg gjøre?',
     'arbeidsaktiviteterMedUkjentArbeidsgiver.feil.enUkjent':
-        'Jobber du fremdeles i arbeidsforholdet og det er feil at arbeidsforholdet er avsluttet, må du be arbeidsgiveren din om å rette dette i <AAregisteret></AAregisteret>. Dette gjør de enten via eget lønns- og personalsystem, eller via Altinn.',
+        'Jobber du fremdeles i arbeidsforholdet og det er feil at arbeidsforholdet er avsluttet, må du be arbeidsgiveren din om å rette dette i {AAregisteret}. Dette gjør de enten via eget lønns- og personalsystem, eller via Altinn.',
     'arbeidsaktiviteterMedUkjentArbeidsgiver.feil.flereUkjent':
         'Jobber du fremdeles i noen av arbeidsforholdene og det er feil at arbeidsforholdene er avsluttet, må du be arbeidsgiverene dine om å rette dette i <AAregisteret />. Dette gjør de enten via eget lønns- og personalsystem, eller via Altinn.',
+
+    'invalidStepSøknadsdataInfo.title': 'Oops, dette stemmer ikke helt',
+    'invalidStepSøknadsdataInfo.info':
+        'Vennligst gå tilbake til steget {Lenke}, og bruk knappene nederst i skjemaet for å gå videre. Ikke bruk frem og tilbake-funksjonaliteten i nettleseren.',
+
+    'lovbestemtFerieListe.ingenFerieRegistrert': 'Ingen ferie registrert',
+    'lovbestemtFerieListe.ferieLagtTil': 'Ferie lagt til',
+    'lovbestemtFerieListe.ferieFjernet': 'Ferie fjernet',
+    'lovbestemtFerieListe.angreFjern': 'Angre fjern',
+    'lovbestemtFerieListe.endreFerie.label': 'Endre ferie',
+    'lovbestemtFerieListe.endreFerie.ariaLabel': 'Endre ferie {periode}',
+    'lovbestemtFerieListe.fjernFerie.label': 'Fjern ferie',
+    'lovbestemtFerieListe.fjernFerie.ariaLabel': 'Fjern ferie {periode}',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };
