@@ -16,7 +16,7 @@ const TidsromOppsummering = ({ apiData, dagerMedPleie }: Props) => {
     return (
         <SummarySection header={text('steg.oppsummering.tidsrom.header')}>
             <SummaryBlock
-                header={`${dagerMedPleie.length} ${dagerMedPleie.length === 1 ? 'dag' : 'dager'} med pleiepenger`}>
+                header={text('steg.oppsummering.tidsrom.valgteDager.header', { dager: dagerMedPleie.length })}>
                 <ValgteDagerMedPleie dagerMedPleie={dagerMedPleie} />
             </SummaryBlock>
 

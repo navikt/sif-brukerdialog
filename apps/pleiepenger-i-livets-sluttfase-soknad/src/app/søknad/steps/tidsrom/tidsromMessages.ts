@@ -49,6 +49,10 @@ const nb = {
     'steg.tidsrom.hvilketTidsrom.spm': 'Hvilken periode søker du for?',
     'steg.tidsrom.hvilketTidsrom.fom': 'Fra og med',
     'steg.tidsrom.hvilketTidsrom.tom': 'Til og med',
+
+    'dagerMedPleie.info.1':
+        'I kalenderen velger du hvilke dager du skal gi pleie. Husk at det ikke er rett til pleiepenger på dager hvor personen er innlagt på sykehus eller annen institusjon.',
+    'dagerMedPleie.info.2': 'Hvis du skal gi pleie gjennom en hel uke, er det lettest å klikke på ukenummeret.',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };

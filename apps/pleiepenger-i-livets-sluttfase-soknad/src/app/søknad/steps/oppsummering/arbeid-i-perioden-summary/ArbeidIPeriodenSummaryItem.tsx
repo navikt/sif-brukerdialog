@@ -49,7 +49,7 @@ const ArbeidIPeriodeSummaryItem: React.FC<Props> = ({ arbeidIPeriode, dagerMedPl
             {arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.redusert && arbeidIPeriode.enkeltdager && (
                 <Block margin="xl">
                     <Heading size="xsmall" level="4" spacing={true}>
-                        Dager med pleiepenger hvor jeg skal jobbe
+                        <AppText id="oppsummering.arbeidIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading" />
                     </Heading>
                     <TidEnkeltdager
                         dager={fjernDagerIkkeSøktForOgUtenArbeidstid(arbeidIPeriode.enkeltdager, dagerMedPleie)}

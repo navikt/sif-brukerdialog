@@ -18,6 +18,7 @@ const nb = {
     'step.oppsummering.pleietrengende.id.ingenId': 'Ingen ID er lastet opp',
 
     'steg.oppsummering.tidsrom.header': 'Dagene du søker pleiepenger for',
+    'steg.oppsummering.tidsrom.valgteDager.header': '{dager} {dager, plural, one {dag} other {dager}} med pleiepenger',
     'steg.oppsummering.søknadsperiode.header': 'Periode',
     'steg.oppsummering.tidsrom.fomtom': '{fom} - {tom}',
 
@@ -90,6 +91,9 @@ const nb = {
     'oppsummering.arbeidIPeriode.jobberIPerioden.SOM_VANLIG': 'Jeg jobber som normalt, og har ikke fravær',
     'oppsummering.arbeidIPeriode.jobberIPerioden.liktHverUke': 'Jobber likt hver uke',
     'oppsummering.arbeidIPeriode.jobberIPerioden.prosent': 'Jobber {prosent} prosent, i snitt {timer} hver ukedag',
+    'oppsummering.arbeidIPeriode.jobberIPerioden.informasjonMangler': 'Informasjon om arbeid i perioden mangler',
+    'oppsummering.arbeidIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading':
+        'Dager med pleiepenger hvor jeg skal jobbe',
 
     'summary.virksomhet.virksomhetInfo.tittel': 'Næringsvirksomhet som du har lagt inn:',
 
@@ -119,6 +123,8 @@ const nb = {
     'step.oppsummering.apiValideringFeil.tittel': 'Noe av informasjonen mangler',
 
     'step.oppsummering.bekrefterOpplysninger.ikkeBekreftet': 'Du må bekrefte opplysningene',
+
+    'opptjeningIUtlandetSummaryItem.info': 'Jobbet i {landnavn} som {hva} hos {hvor}',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };

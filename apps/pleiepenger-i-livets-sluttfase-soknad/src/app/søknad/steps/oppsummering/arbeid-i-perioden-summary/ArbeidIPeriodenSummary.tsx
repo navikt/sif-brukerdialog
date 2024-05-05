@@ -10,7 +10,7 @@ import {
     SøknadApiData,
 } from '../../../../types/søknadApiData/SøknadApiData';
 import ArbeidIPeriodeSummaryItem from './ArbeidIPeriodenSummaryItem';
-import { AppIntlShape, useAppIntl } from '../../../../i18n';
+import { AppIntlShape, AppText, useAppIntl } from '../../../../i18n';
 
 interface Props {
     apiValues: SøknadApiData;
@@ -117,7 +117,9 @@ const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
                                 />
                             </SummaryBlock>
                         ) : (
-                            <div key={index}>Informasjon om arbeid i perioden mangler</div>
+                            <div key={index}>
+                                <AppText id="oppsummering.arbeidIPeriode.jobberIPerioden.informasjonMangler" />
+                            </div>
                         ),
                     )}
                 </SummarySection>

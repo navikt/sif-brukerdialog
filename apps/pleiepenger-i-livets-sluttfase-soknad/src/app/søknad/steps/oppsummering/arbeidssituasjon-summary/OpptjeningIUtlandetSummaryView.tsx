@@ -1,8 +1,8 @@
 import React from 'react';
-import { renderOpptjeningIUtlandetSummary } from './renderOpptjeningIUtlandetSummary';
-import { OpptjeningIUtlandetApi } from '../../../../types/søknadApiData/SøknadApiData';
 import { SummaryBlock } from '@navikt/sif-common-ui';
+import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '../../../../i18n';
+import { OpptjeningIUtlandetApi } from '../../../../types/søknadApiData/SøknadApiData';
 
 export interface Props {
     opptjeningUtland: OpptjeningIUtlandetApi[];
@@ -19,7 +19,24 @@ const OpptjeningIUtlandetSummaryView: React.FC<Props> = (props) => {
                 {opptjeningUtland.length > 0 && (
                     <ul>
                         {opptjeningUtland.map((opptjening, index) => (
-                            <li key={index}>{renderOpptjeningIUtlandetSummary(opptjening)}</li>
+                            <li key={index}>
+                                <div className={'opptjeningIUtlandetSummaryItem'}>
+                                    <span className={'opptjeningIUtlandetSummaryItem__dates'}>
+                                        {prettifyDateExtended(ISODateToDate(opptjening.fraOgMed))} -{' '}
+                                        {prettifyDateExtended(ISODateToDate(opptjening.tilOgMed))}
+                                    </span>
+                                    <span>
+                                        <AppText
+                                            id="opptjeningIUtlandetSummaryItem.info"
+                                            values={{
+                                                landnavn: opptjening.land.landnavn,
+                                                hva: opptjening.opptjeningType.toLowerCase(),
+                                                hvor: opptjening.navn,
+                                            }}
+                                        />
+                                    </span>
+                                </div>
+                            </li>
                         ))}
                     </ul>
                 )}
