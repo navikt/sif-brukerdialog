@@ -1,6 +1,5 @@
-import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { IntlShape } from 'react-intl';
+import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { StepId } from '../../types/StepId';
 import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 
@@ -9,7 +8,7 @@ export enum API_DATA_VALIDATION_ERROR {
     'omsorgsavtaleMangler' = 'omsorgsavtaleMangler',
 }
 
-export const validateApiDataMessages: MessageFileFormat = {
+export const validateApiDataMessages = {
     nb: {
         'apiDataValidation.undefined': 'Det oppstod en feil ved visningen av siden.',
         'apiDataValidation.omsorgsavtaleMangler': 'Det mangler avtale om delt bosted. ',
