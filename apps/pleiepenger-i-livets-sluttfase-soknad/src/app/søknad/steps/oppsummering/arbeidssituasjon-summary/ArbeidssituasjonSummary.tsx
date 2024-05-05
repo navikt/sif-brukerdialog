@@ -1,5 +1,4 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
 import ArbeidsgivereSummary from './ArbeidsgivereSummary';
 import ArbeidssituasjonFrilansSummary from './ArbeidssituasjonFrilansSummary';
 import ArbeidssituasjonSNSummary from './ArbeidssituasjonSNSummary';
@@ -8,8 +7,8 @@ import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData'
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
 import { SummaryBlock, SummarySection } from '@navikt/sif-common-ui';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import OpptjeningIUtlandetSummaryView from './OpptjeningIUtlandetSummaryView';
+import { useAppIntl } from '../../../../i18n';
 
 interface Props {
     apiData: SøknadApiData;
@@ -29,10 +28,10 @@ const ArbeidssituasjonSummary: React.FC<Props> = ({
     søknadsperiode,
     frilansoppdrag,
 }) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
 
     return (
-        <SummarySection header={intlHelper(intl, 'steg.oppsummering.arbeidssituasjon.header')}>
+        <SummarySection header={text('steg.oppsummering.arbeidssituasjon.header')}>
             <ArbeidsgivereSummary arbeidsgivere={arbeidsgivere} søknadsperiode={søknadsperiode} />
 
             <ArbeidssituasjonFrilansSummary frilans={frilans} frilansoppdrag={frilansoppdrag} />
@@ -45,11 +44,10 @@ const ArbeidssituasjonSummary: React.FC<Props> = ({
 
             {/* Vernepliktig */}
             {harVærtEllerErVernepliktig !== undefined && (
-                <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.verneplikt.header')}>
+                <SummaryBlock header={text('oppsummering.arbeidssituasjon.verneplikt.header')}>
                     <ul>
                         <li>
-                            {intlHelper(
-                                intl,
+                            {text(
                                 harVærtEllerErVernepliktig
                                     ? 'oppsummering.arbeidssituasjon.verneplikt.harVærtVernepliktig'
                                     : 'oppsummering.arbeidssituasjon.verneplikt.harIkkeVærtVernepliktig',

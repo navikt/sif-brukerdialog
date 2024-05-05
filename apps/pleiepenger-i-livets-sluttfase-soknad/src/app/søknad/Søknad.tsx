@@ -1,6 +1,4 @@
-import { useIntl } from 'react-intl';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import useSøknadInitialData from '../api/useSøknadInitialData';
 import ResetMellomagringButton from '../components/reset-mellomlagring-button/ResetMellomlagringButton';
@@ -8,11 +6,11 @@ import { RequestStatus } from '../types/RequestStatus';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import { SøknadContextProvider } from './context/SøknadContext';
 import SøknadRouter from './SøknadRouter';
-import { AppText } from '../i18n';
+import { AppText, useAppIntl } from '../i18n';
 
 const Søknad = () => {
     const initialData = useSøknadInitialData();
-    const intl = useIntl();
+    const { text } = useAppIntl();
     const { status } = initialData;
 
     /** Loading */
@@ -23,7 +21,7 @@ const Søknad = () => {
     if (status === 'error') {
         return (
             <ErrorPage
-                pageTitle={intlHelper(intl, 'initialLoadError.pageTitle')}
+                pageTitle={text('initialLoadError.pageTitle')}
                 contentRenderer={() => (
                     <>
                         <p>
@@ -32,7 +30,7 @@ const Søknad = () => {
                         <p>
                             <AppText id="resetMellomlagring.text.1" />
                         </p>
-                        <ResetMellomagringButton label={intlHelper(intl, 'resetMellomlagring.startPåNytt')} />
+                        <ResetMellomagringButton label={text('resetMellomlagring.startPåNytt')} />
                     </>
                 )}
             />

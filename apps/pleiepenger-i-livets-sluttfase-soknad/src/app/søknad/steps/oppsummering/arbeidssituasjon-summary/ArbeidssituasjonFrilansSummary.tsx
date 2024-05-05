@@ -1,10 +1,8 @@
-import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SummaryBlock } from '@navikt/sif-common-ui';
 import { prettifyApiDate } from '@navikt/sif-common-utils';
 import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
 import { FrilansApiData } from '../../../../types/søknadApiData/SøknadApiData';
-import { AppText } from '../../../../i18n';
+import { AppText, useAppIntl } from '../../../../i18n';
 
 interface Props {
     frilans?: FrilansApiData;
@@ -12,10 +10,10 @@ interface Props {
 }
 
 const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag }: Props) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     if (frilans === undefined) {
         return (
-            <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.frilanser.header')}>
+            <SummaryBlock header={text('oppsummering.arbeidssituasjon.frilanser.header')}>
                 <ul>
                     <li>
                         <p>
@@ -28,7 +26,7 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag }: Props) => {
     }
 
     return (
-        <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.frilanser.header')}>
+        <SummaryBlock header={text('oppsummering.arbeidssituasjon.frilanser.header')}>
             <ul>
                 {frilans.harHattInntektSomFrilanser === false && (
                     <li>

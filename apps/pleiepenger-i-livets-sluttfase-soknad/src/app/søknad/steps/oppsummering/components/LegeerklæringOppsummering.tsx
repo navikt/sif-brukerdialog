@@ -1,13 +1,11 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SummarySection } from '@navikt/sif-common-ui';
 import { LegeerklæringSøknadsdata } from '../../../../types/søknadsdata/LegeerklæringSøknadsdata';
 import { getAttachmentURLBackend } from '../../../../utils/attachmentUtilsAuthToken';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
-import { AppText } from '../../../../i18n';
+import { AppText, useAppIntl } from '../../../../i18n';
 
 interface Props {
     apiData: SøknadApiData;
@@ -15,7 +13,7 @@ interface Props {
 }
 
 const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringSøknadsdata }) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     const legeerklæringer = legeerklæringSøknadsdata
         ? legeerklæringSøknadsdata.vedlegg.filter(
               (v) => v.url && apiData.vedleggUrls.includes(getAttachmentURLBackend(v.url)),
@@ -23,7 +21,7 @@ const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringS�
         : [];
 
     return (
-        <SummarySection header={intlHelper(intl, 'step.oppsummering.legeerklæring.header')}>
+        <SummarySection header={text('step.oppsummering.legeerklæring.header')}>
             <Block>
                 {legeerklæringSøknadsdata?.vedlegg.length === 0 ? (
                     <AppText id="step.oppsummering.legeerklæring.ingenVedlegg" />

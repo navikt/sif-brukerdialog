@@ -1,6 +1,5 @@
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import {
     DateRange,
     FormikYesOrNoQuestion,
@@ -13,7 +12,6 @@ import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation
 import { Utenlandsopphold } from '@navikt/sif-common-forms-ds';
 import UtenlandsoppholdListAndDialog from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/UtenlandsoppholdListAndDialog';
 import { getDateRangeFromDates } from '@navikt/sif-common-utils';
-import { useIntl } from 'react-intl';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -33,7 +31,7 @@ import {
 } from './tidsromStepUtils';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { Alert } from '@navikt/ds-react';
-import { AppText } from '../../../i18n';
+import { AppText, useAppIntl } from '../../../i18n';
 
 export enum TidsromFormFields {
     dagerMedPleie = 'dagerMedPleie',
@@ -58,7 +56,7 @@ const { FormikWrapper, Form, YesOrNoQuestion } = getTypedFormComponents<
 >();
 
 const TidsromStep = () => {
-    const intl = useIntl();
+    const { text, intl } = useAppIntl();
 
     const {
         state: { søknadsdata },
@@ -129,16 +127,14 @@ const TidsromStep = () => {
                                     <>
                                         <FormBlock>
                                             <FormikYesOrNoQuestion
-                                                legend={intlHelper(
-                                                    intl,
+                                                legend={text(
                                                     'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.spm',
                                                 )}
                                                 name={TidsromFormFields.pleierDuDenSykeHjemme}
                                                 validate={getYesOrNoValidator()}
                                                 description={
                                                     <ExpandableInfo
-                                                        title={intlHelper(
-                                                            intl,
+                                                        title={text(
                                                             'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.info.tittel',
                                                         )}>
                                                         <p>
@@ -171,13 +167,12 @@ const TidsromStep = () => {
                                             <>
                                                 <FormBlock>
                                                     <YesOrNoQuestion
-                                                        legend={intlHelper(intl, 'steg.tidsrom.skalJobbeIPerioden.spm')}
+                                                        legend={text('steg.tidsrom.skalJobbeIPerioden.spm')}
                                                         name={TidsromFormFields.skalJobbeOgPleieSammeDag}
                                                         validate={getYesOrNoValidator()}
                                                         description={
                                                             <ExpandableInfo
-                                                                title={intlHelper(
-                                                                    intl,
+                                                                title={text(
                                                                     'steg.tidsrom.skalJobbeIPerioden.info.tittel',
                                                                 )}>
                                                                 <p>
@@ -195,7 +190,7 @@ const TidsromStep = () => {
                                                 </FormBlock>
                                                 <FormBlock>
                                                     <YesOrNoQuestion
-                                                        legend={intlHelper(intl, 'steg.tidsrom.iUtlandetIPerioden.spm')}
+                                                        legend={text('steg.tidsrom.iUtlandetIPerioden.spm')}
                                                         name={TidsromFormFields.skalOppholdeSegIUtlandetIPerioden}
                                                         validate={getYesOrNoValidator()}
                                                     />
@@ -208,16 +203,13 @@ const TidsromStep = () => {
                                                             maxDate={periode.to}
                                                             excludeInnlagtQuestion={true}
                                                             labels={{
-                                                                modalTitle: intlHelper(
-                                                                    intl,
+                                                                modalTitle: text(
                                                                     'steg.tidsrom.iUtlandetIPerioden.modalTitle',
                                                                 ),
-                                                                listTitle: intlHelper(
-                                                                    intl,
+                                                                listTitle: text(
                                                                     'steg.tidsrom.iUtlandetIPerioden.listTitle',
                                                                 ),
-                                                                addLabel: intlHelper(
-                                                                    intl,
+                                                                addLabel: text(
                                                                     'steg.tidsrom.iUtlandetIPerioden.addLabel',
                                                                 ),
                                                             }}

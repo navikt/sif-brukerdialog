@@ -1,6 +1,5 @@
 import { Alert, Link } from '@navikt/ds-react';
 import React from 'react';
-import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import FileUploadErrors from '@navikt/sif-common-core-ds/src/components/file-upload-errors/FileUploadErrors';
@@ -13,7 +12,6 @@ import {
     getTotalSizeOfAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getTypedFormComponents, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
@@ -22,7 +20,7 @@ import { relocateToLoginPage } from '../../../utils/navigationUtils';
 import { validateAttachments, ValidateAttachmentsErrors } from '../../../utils/validateAttachments';
 import LegeerklæringAvtaleAttachmentList from './LegeerklæringAttachmentList';
 import { getAttachmentURLFrontend } from '../../../utils/attachmentUtilsAuthToken';
-import { AppText } from '../../../i18n';
+import { AppText, useAppIntl } from '../../../i18n';
 
 interface Props {
     values: Partial<LegeerklæringFormValues>;
@@ -57,7 +55,7 @@ export const validateDocuments = (attachments: Attachment[]): ValidationResult<V
 };
 
 const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, andreVedlegg = [], isSubmitting }) => {
-    const intl = useIntl();
+    const { text, intl } = useAppIntl();
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
 
     const hasPendingUploads: boolean = (values.vedlegg || []).find((a: any) => a.pending === true) !== undefined;
@@ -88,7 +86,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                     <FormikFileUploader
                         attachments={legeerklæringAttachments}
                         name={LegeerklæringFormFields.vedlegg}
-                        buttonLabel={intlHelper(intl, 'step.legeerklæring.vedlegg.knappLabel')}
+                        buttonLabel={text('step.legeerklæring.vedlegg.knappLabel')}
                         onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
                         uploadFile={(file: File) => api.uploadFile(ApiEndpoint.vedlegg, file)}
                         getAttachmentURLFrontend={getAttachmentURLFrontend}

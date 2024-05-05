@@ -1,37 +1,33 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SummaryBlock, SummaryList } from '@navikt/sif-common-ui';
 import { prettifyApiDate } from '@navikt/sif-common-utils';
+import { AppText, useAppIntl } from '../../../../i18n';
 import { UtenlandskNæringApi } from '../../../../types/søknadApiData/SøknadApiData';
-import { AppText } from '../../../../i18n';
 
 interface Props {
     utenlandskNæring: UtenlandskNæringApi[];
 }
 
 function UtenlandskNæringSummary({ utenlandskNæring }: Props) {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     const renderUtenlandskNæring = (næring: UtenlandskNæringApi): React.ReactNode => {
         const land = næring.land.landnavn;
 
-        const næringstype = intlHelper(intl, `@forms.utenlandskNæringForm.næringstype_${næring.næringstype}`);
+        const næringstype = text(`@forms.utenlandskNæringForm.næringstype_${næring.næringstype}`);
 
         const tidsinfo = næring.tilOgMed
-            ? intlHelper(intl, '@forms.utenlandskNæringForm.summary.tidsinfo.avsluttet', {
+            ? text('@forms.utenlandskNæringForm.summary.tidsinfo.avsluttet', {
                   fraOgMed: prettifyApiDate(næring.fraOgMed),
                   tilOgMed: prettifyApiDate(næring.tilOgMed),
               })
-            : intlHelper(intl, '@forms.utenlandskNæringForm.summary.tidsinfo.pågående', {
+            : text('@forms.utenlandskNæringForm.summary.tidsinfo.pågående', {
                   fraOgMed: prettifyApiDate(næring.fraOgMed),
               });
         return (
             <Block margin="m" padBottom="l" key={næring.navnPåVirksomheten}>
-                <div>
-                    {`${intlHelper(intl, '@forms.utenlandskNæringForm.summary.navn')}: ${næring.navnPåVirksomheten}.`}
-                </div>
-                <div>{`${intlHelper(intl, '@forms.utenlandskNæringForm.summary.næringstype')}: ${næringstype}.`}</div>
+                <div>{`${text('@forms.utenlandskNæringForm.summary.navn')}: ${næring.navnPåVirksomheten}.`}</div>
+                <div>{`${text('@forms.utenlandskNæringForm.summary.næringstype')}: ${næringstype}.`}</div>
 
                 <div>
                     <AppText id="@forms.utenlandskNæringForm.summary.registrertILand" values={{ land }} />
@@ -50,7 +46,7 @@ function UtenlandskNæringSummary({ utenlandskNæring }: Props) {
         );
     };
     return (
-        <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.utenlandskNæring.listetittel')}>
+        <SummaryBlock header={text('oppsummering.arbeidssituasjon.utenlandskNæring.listetittel')}>
             {utenlandskNæring.length === 0 ? (
                 <AppText id={'oppsummering.arbeidssituasjon.utenlandskNæring.nei'} />
             ) : (

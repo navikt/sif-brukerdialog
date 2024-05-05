@@ -4,7 +4,6 @@ import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { ValidationError, YesOrNo, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
@@ -15,7 +14,6 @@ import { UtenlandskNæring } from '@navikt/sif-common-forms-ds/src/forms/utenlan
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { date1YearAgo, date1YearFromNow, dateToday } from '@navikt/sif-common-utils';
 import { useState } from 'react';
-import { useIntl } from 'react-intl';
 import { arbeidsgivereEndpoint } from '../../../api/endpoints/arbeidsgiverEndpoint';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
@@ -39,7 +37,7 @@ import { AnsattFormData } from './form-parts/ArbeidssituasjonAnsatt';
 import ArbeidssituasjonArbeidsgivere from './form-parts/ArbeidssituasjonArbeidsgivere';
 import ArbeidssituasjonFrilans, { FrilansFormData } from './form-parts/ArbeidssituasjonFrilans';
 import ArbeidssituasjonSN, { SelvstendigFormData } from './form-parts/ArbeidssituasjonSN';
-import { AppText } from '../../../i18n';
+import { AppText, useAppIntl } from '../../../i18n';
 
 export enum ArbeidssituasjonFormFields {
     ansatt_arbeidsforhold = 'ansatt_arbeidsforhold',
@@ -77,7 +75,7 @@ interface LoadState {
 }
 
 const ArbeidssituasjonStep = () => {
-    const intl = useIntl();
+    const { text, intl } = useAppIntl();
     const {
         state: { søknadsdata },
     } = useSøknadContext();
@@ -205,7 +203,7 @@ const ArbeidssituasjonStep = () => {
                                         <AppText id="steg.arbeidssituasjon.opptjeningUtland.tittel" />
                                     </Heading>
                                     <YesOrNoQuestion
-                                        legend={intlHelper(intl, 'steg.arbeidssituasjon.opptjeningUtland.spm')}
+                                        legend={text('steg.arbeidssituasjon.opptjeningUtland.spm')}
                                         name={ArbeidssituasjonFormFields.harOpptjeningUtland}
                                         validate={getYesOrNoValidator()}
                                     />
@@ -217,16 +215,9 @@ const ArbeidssituasjonStep = () => {
                                                 name={ArbeidssituasjonFormFields.opptjeningUtland}
                                                 validate={getListValidator({ required: true })}
                                                 labels={{
-                                                    addLabel: intlHelper(
-                                                        intl,
-                                                        'steg.arbeidssituasjon.opptjeningUtland.addLabel',
-                                                    ),
-                                                    listTitle: intlHelper(
-                                                        intl,
-                                                        'steg.arbeidssituasjon.opptjeningUtland.listTitle',
-                                                    ),
-                                                    modalTitle: intlHelper(
-                                                        intl,
+                                                    addLabel: text('steg.arbeidssituasjon.opptjeningUtland.addLabel'),
+                                                    listTitle: text('steg.arbeidssituasjon.opptjeningUtland.listTitle'),
+                                                    modalTitle: text(
                                                         'steg.arbeidssituasjon.opptjeningUtland.modalTitle',
                                                     ),
                                                 }}
@@ -235,7 +226,7 @@ const ArbeidssituasjonStep = () => {
                                     )}
                                     <FormBlock>
                                         <YesOrNoQuestion
-                                            legend={intlHelper(intl, 'steg.arbeidssituasjon.utenlandskNæring.spm')}
+                                            legend={text('steg.arbeidssituasjon.utenlandskNæring.spm')}
                                             name={ArbeidssituasjonFormFields.harUtenlandskNæring}
                                             validate={getYesOrNoValidator()}
                                         />
@@ -245,16 +236,13 @@ const ArbeidssituasjonStep = () => {
                                                     name={ArbeidssituasjonFormFields.utenlandskNæring}
                                                     validate={getListValidator({ required: true })}
                                                     labels={{
-                                                        addLabel: intlHelper(
-                                                            intl,
+                                                        addLabel: text(
                                                             'steg.arbeidssituasjon.utenlandskNæring.addLabel',
                                                         ),
-                                                        listTitle: intlHelper(
-                                                            intl,
+                                                        listTitle: text(
                                                             'steg.arbeidssituasjon.utenlandskNæring.listTitle',
                                                         ),
-                                                        modalTitle: intlHelper(
-                                                            intl,
+                                                        modalTitle: text(
                                                             'steg.arbeidssituasjon.utenlandskNæring.modalTitle',
                                                         ),
                                                     }}
@@ -277,14 +265,11 @@ const ArbeidssituasjonStep = () => {
                                         <Block margin="l">
                                             <YesOrNoQuestion
                                                 name={ArbeidssituasjonFormFields.harVærtEllerErVernepliktig}
-                                                legend={intlHelper(intl, 'steg.arbeidssituasjon.verneplikt.spm')}
+                                                legend={text('steg.arbeidssituasjon.verneplikt.spm')}
                                                 validate={getYesOrNoValidator()}
                                                 description={
                                                     <ExpandableInfo
-                                                        title={intlHelper(
-                                                            intl,
-                                                            'steg.arbeidssituasjon.verneplikt.info.tittel',
-                                                        )}>
+                                                        title={text('steg.arbeidssituasjon.verneplikt.info.tittel')}>
                                                         <AppText id="steg.arbeidssituasjon.verneplikt.info.tekst" />
                                                     </ExpandableInfo>
                                                 }

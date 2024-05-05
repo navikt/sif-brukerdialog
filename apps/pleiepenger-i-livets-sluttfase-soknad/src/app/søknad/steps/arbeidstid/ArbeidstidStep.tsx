@@ -8,7 +8,6 @@ import { DateRange, ValidationError } from '@navikt/sif-common-formik-ds';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { useState } from 'react';
-import { useIntl } from 'react-intl';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import useLogSøknadInfo from '../../../hooks/useLogSøknadInfo';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
@@ -35,8 +34,7 @@ import {
 import ArbeidIPeriodeSpørsmål from './form-parts/arbeid-i-periode-spørsmål/ArbeidIPeriodeSpørsmål';
 import { harFraværIPerioden } from './form-parts/arbeidstidUtils';
 import { ArbeidsforholdType } from './form-parts/types';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { AppText } from '../../../i18n';
+import { AppText, useAppIntl } from '../../../i18n';
 
 export enum ArbeidsaktivitetType {
     arbeidstaker = 'arbeidstaker',
@@ -84,7 +82,7 @@ export interface ArbeidstidFormValues {
 const { FormikWrapper, Form } = getTypedFormComponents<ArbeidstidFormFields, ArbeidstidFormValues, ValidationError>();
 
 const ArbeidstidStep = () => {
-    const intl = useIntl();
+    const { text, intl } = useAppIntl();
     const {
         state: { søknadsdata, tempFormData },
         dispatch,
@@ -263,8 +261,7 @@ const ArbeidstidStep = () => {
                                             </Heading>
                                             <Block>
                                                 <ArbeidIPeriodeSpørsmål
-                                                    arbeidsstedNavn={intlHelper(
-                                                        intl,
+                                                    arbeidsstedNavn={text(
                                                         'arbeidIPeriode.arbeidstidSted.frilansoppdrag',
                                                     )}
                                                     arbeidsforholdType={ArbeidsforholdType.FRILANSER}
@@ -289,10 +286,7 @@ const ArbeidstidStep = () => {
                                             </Heading>
                                             <Block>
                                                 <ArbeidIPeriodeSpørsmål
-                                                    arbeidsstedNavn={intlHelper(
-                                                        intl,
-                                                        'arbeidIPeriode.arbeidstidSted.sn',
-                                                    )}
+                                                    arbeidsstedNavn={text('arbeidIPeriode.arbeidstidSted.sn')}
                                                     arbeidsforholdType={ArbeidsforholdType.SELVSTENDIG}
                                                     jobberNormaltTimer={selvstendigArbeidstid.jobberNormaltTimer}
                                                     arbeidIPeriode={selvstendigArbeidstid.arbeidIPeriode}

@@ -4,7 +4,6 @@ import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import {
     ValidationError,
     getTypedFormComponents,
@@ -19,7 +18,6 @@ import {
 } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { dateToday } from '@navikt/sif-common-utils';
-import { useIntl } from 'react-intl';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -39,7 +37,7 @@ import {
     getOpplysningerOmPleietrengendeSøknadsdataFromFormValues,
     opplysningerOmPleietrengendeDefaultValues,
 } from './opplysningerOmPleietrengendeStepUtils';
-import { AppText } from '../../../i18n';
+import { AppText, useAppIntl } from '../../../i18n';
 
 export enum OpplysningerOmPleietrengendeFormFields {
     navn = 'navn',
@@ -68,7 +66,7 @@ const { FormikWrapper, Form, DatePicker, TextField, RadioGroup, Checkbox } = get
 >();
 
 const OpplysningerOmPleietrengendeStep = () => {
-    const intl = useIntl();
+    const { text, intl } = useAppIntl();
 
     const {
         state: { søknadsdata, søker },
@@ -126,14 +124,14 @@ const OpplysningerOmPleietrengendeStep = () => {
                                 <FormBlock>
                                     <TextField
                                         name={OpplysningerOmPleietrengendeFormFields.navn}
-                                        label={intlHelper(intl, 'step.opplysningerOmPleietrengende.spm.navn')}
+                                        label={text('step.opplysningerOmPleietrengende.spm.navn')}
                                         validate={getStringValidator({ required: true, maxLength: 50 })}
                                         style={{ maxWidth: '20rem' }}
                                     />
                                     <FormBlock>
                                         <TextField
                                             name={OpplysningerOmPleietrengendeFormFields.norskIdentitetsnummer}
-                                            label={intlHelper(intl, 'step.opplysningerOmPleietrengende.spm.fnr')}
+                                            label={text('step.opplysningerOmPleietrengende.spm.fnr')}
                                             validate={
                                                 harIkkeFnr
                                                     ? undefined
@@ -152,10 +150,7 @@ const OpplysningerOmPleietrengendeStep = () => {
                                         />
                                         <Block margin="m">
                                             <Checkbox
-                                                label={intlHelper(
-                                                    intl,
-                                                    'step.opplysningerOmPleietrengende.fnr.harIkkeFnr',
-                                                )}
+                                                label={text('step.opplysningerOmPleietrengende.fnr.harIkkeFnr')}
                                                 name={OpplysningerOmPleietrengendeFormFields.harIkkeFnr}
                                                 afterOnChange={(newValue) => {
                                                     if (newValue) {
@@ -184,10 +179,7 @@ const OpplysningerOmPleietrengendeStep = () => {
                                             <FormBlock>
                                                 <DatePicker
                                                     name={OpplysningerOmPleietrengendeFormFields.fødselsdato}
-                                                    label={intlHelper(
-                                                        intl,
-                                                        'step.opplysningerOmPleietrengende.fødselsdato',
-                                                    )}
+                                                    label={text('step.opplysningerOmPleietrengende.fødselsdato')}
                                                     validate={(value) => {
                                                         const dateError = getDateValidator({
                                                             required: true,
@@ -203,20 +195,26 @@ const OpplysningerOmPleietrengendeStep = () => {
                                             </FormBlock>
                                             <FormBlock>
                                                 <RadioGroup
-                                                    legend={intlHelper(
-                                                        intl,
+                                                    legend={text(
                                                         'step.opplysningerOmPleietrengende.årsakManglerIdentitetsnummer.spm',
                                                     )}
                                                     name={
                                                         OpplysningerOmPleietrengendeFormFields.årsakManglerIdentitetsnummer
                                                     }
-                                                    radios={Object.keys(ÅrsakManglerIdentitetsnummer).map((årsak) => ({
-                                                        label: intlHelper(
-                                                            intl,
-                                                            `step.opplysningerOmPleietrengende.årsakManglerIdentitetsnummer.${årsak}`,
-                                                        ),
-                                                        value: årsak,
-                                                    }))}
+                                                    radios={[
+                                                        {
+                                                            label: text(
+                                                                `step.opplysningerOmPleietrengende.årsakManglerIdentitetsnummer.${ÅrsakManglerIdentitetsnummer.BOR_I_UTLANDET}`,
+                                                            ),
+                                                            value: ÅrsakManglerIdentitetsnummer.BOR_I_UTLANDET,
+                                                        },
+                                                        {
+                                                            label: text(
+                                                                `step.opplysningerOmPleietrengende.årsakManglerIdentitetsnummer.${ÅrsakManglerIdentitetsnummer.ANNET}`,
+                                                            ),
+                                                            value: ÅrsakManglerIdentitetsnummer.ANNET,
+                                                        },
+                                                    ]}
                                                     validate={getRequiredFieldValidator()}></RadioGroup>
                                             </FormBlock>
                                             <FormBlock>
@@ -234,32 +232,28 @@ const OpplysningerOmPleietrengendeStep = () => {
 
                                 <FormBlock>
                                     <RadioGroup
-                                        legend={intlHelper(intl, 'steg.opplysningerOmPleietrengende.flereSokere.spm')}
+                                        legend={text('steg.opplysningerOmPleietrengende.flereSokere.spm')}
                                         name={OpplysningerOmPleietrengendeFormFields.flereSokere}
                                         validate={getRequiredFieldValidator()}
                                         description={
                                             <ExpandableInfo
-                                                title={intlHelper(
-                                                    intl,
+                                                title={text(
                                                     'steg.opplysningerOmPleietrengende.flereSokere.spm.description.tittle',
                                                 )}>
-                                                {intlHelper(
-                                                    intl,
-                                                    'steg.opplysningerOmPleietrengende.flereSokere.spm.description',
-                                                )}
+                                                {text('steg.opplysningerOmPleietrengende.flereSokere.spm.description')}
                                             </ExpandableInfo>
                                         }
                                         radios={[
                                             {
-                                                label: intlHelper(intl, `step.tidsrom.flereSokere.ja`),
+                                                label: text(`step.tidsrom.flereSokere.ja`),
                                                 value: YesOrNoDontKnow.YES,
                                             },
                                             {
-                                                label: intlHelper(intl, `step.tidsrom.flereSokere.nei`),
+                                                label: text(`step.tidsrom.flereSokere.nei`),
                                                 value: YesOrNoDontKnow.NO,
                                             },
                                             {
-                                                label: intlHelper(intl, `step.tidsrom.flereSokere.usikker`),
+                                                label: text(`step.tidsrom.flereSokere.usikker`),
                                                 value: YesOrNoDontKnow.DO_NOT_KNOW,
                                             },
                                         ]}

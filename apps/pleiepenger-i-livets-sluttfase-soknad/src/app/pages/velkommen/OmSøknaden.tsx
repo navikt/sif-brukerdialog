@@ -1,13 +1,11 @@
+import { BodyLong, Heading } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import { BodyLong, Heading } from '@navikt/ds-react';
+import { AppText, useAppIntl } from '../../i18n';
 import BehandlingAvPersonopplysningerContent from './personalopplysninger/BehandlingAvPersonopplysningerContent';
-import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { AppText } from '../../i18n';
 
 const OmSøknaden = () => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     return (
         <Block margin="xl">
             <Heading level="2" size="medium">
@@ -23,7 +21,7 @@ const OmSøknaden = () => {
                 <p>
                     <AppText id="page.velkommen.omSøknaden.3" />
                 </p>
-                <ExpandableInfo title={intlHelper(intl, 'page.velkommen.omSøknaden.4')}>
+                <ExpandableInfo title={text('page.velkommen.omSøknaden.4')}>
                     <BehandlingAvPersonopplysningerContent />
                 </ExpandableInfo>
             </BodyLong>

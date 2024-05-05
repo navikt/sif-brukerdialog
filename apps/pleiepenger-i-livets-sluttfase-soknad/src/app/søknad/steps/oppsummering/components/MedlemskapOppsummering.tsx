@@ -1,17 +1,16 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { JaNeiSvar, SummaryBlock, SummaryList, SummarySection } from '@navikt/sif-common-ui';
 import { MedlemskapApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { renderUtenlandsoppholdIPeriodenSummary } from './renderUtenlandsoppholdSummary';
+import { useAppIntl } from '../../../../i18n';
 
 export interface Props {
     medlemskap: MedlemskapApiData;
 }
 
 const MedlemskapOppsummering: React.FC<Props> = ({ medlemskap }) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     const {
         harBoddIUtlandetSiste12Mnd,
         utenlandsoppholdSiste12Mnd,
@@ -19,8 +18,8 @@ const MedlemskapOppsummering: React.FC<Props> = ({ medlemskap }) => {
         utenlandsoppholdNeste12Mnd,
     } = medlemskap;
     return (
-        <SummarySection header={intlHelper(intl, 'step.oppsummering.medlemskap.header')}>
-            <SummaryBlock header={intlHelper(intl, 'step.oppsummering.utlandetSiste12.header')}>
+        <SummarySection header={text('step.oppsummering.medlemskap.header')}>
+            <SummaryBlock header={text('step.oppsummering.utlandetSiste12.header')}>
                 <div data-testid="oppsummering-medlemskap-utlandetSiste12">
                     <JaNeiSvar harSvartJa={harBoddIUtlandetSiste12Mnd} />
                 </div>
@@ -35,7 +34,7 @@ const MedlemskapOppsummering: React.FC<Props> = ({ medlemskap }) => {
                     </div>
                 </Block>
             )}
-            <SummaryBlock header={intlHelper(intl, 'step.oppsummering.utlandetNeste12.header')}>
+            <SummaryBlock header={text('step.oppsummering.utlandetNeste12.header')}>
                 <div data-testid="oppsummering-medlemskap-utlandetNeste12">
                     <JaNeiSvar harSvartJa={skalBoIUtlandetNeste12Mnd} />
                 </div>

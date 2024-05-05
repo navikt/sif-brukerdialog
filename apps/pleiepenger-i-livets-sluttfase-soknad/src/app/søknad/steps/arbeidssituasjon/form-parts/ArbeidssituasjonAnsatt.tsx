@@ -1,15 +1,13 @@
-import { useIntl } from 'react-intl';
 import InfoJobberNormaltTimerAnsatt from './info/InfoJobberNormaltTimerAnsatt';
 import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
 import { DateRange, ValidationError, YesOrNo, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { prettifyDateExtended } from '@navikt/sif-common-utils';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { Alert, Heading } from '@navikt/ds-react';
 import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { getJobberNormaltTimerValidator } from '../../../../utils/jobberNormaltTimerValidator';
-import { AppText } from '../../../../i18n';
+import { AppText, useAppIntl } from '../../../../i18n';
 
 export enum AnsattFormFields {
     arbeidsgiver = 'arbeidsgiver',
@@ -34,14 +32,12 @@ interface Props {
 }
 
 const ArbeidssituasjonAnsatt = ({ arbeidsforhold, parentFieldName, søknadsperiode }: Props) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     const erAvsluttet = arbeidsforhold.erAnsatt === YesOrNo.NO;
 
     const intlValues = {
-        hvor: intlHelper(intl, 'arbeidsforhold.part.som.ANSATT', { navn: arbeidsforhold.arbeidsgiver.navn }),
-        jobber: erAvsluttet
-            ? intlHelper(intl, 'arbeidsforhold.part.jobbet')
-            : intlHelper(intl, 'arbeidsforhold.part.jobber'),
+        hvor: text('arbeidsforhold.part.som.ANSATT', { navn: arbeidsforhold.arbeidsgiver.navn }),
+        jobber: erAvsluttet ? text('arbeidsforhold.part.jobbet') : text('arbeidsforhold.part.jobber'),
         periodeFra: prettifyDateExtended(søknadsperiode.from),
         periodeTil: prettifyDateExtended(søknadsperiode.to),
     };
@@ -58,7 +54,7 @@ const ArbeidssituasjonAnsatt = ({ arbeidsforhold, parentFieldName, søknadsperio
                 </Block>
                 <Block>
                     <YesOrNoQuestion
-                        legend={intlHelper(intl, 'arbeidsforhold.erAnsatt.spm', {
+                        legend={text('arbeidsforhold.erAnsatt.spm', {
                             navn: arbeidsforhold.arbeidsgiver.navn,
                         })}
                         name={getFieldName(AnsattFormFields.erAnsatt)}
@@ -84,7 +80,7 @@ const ArbeidssituasjonAnsatt = ({ arbeidsforhold, parentFieldName, søknadsperio
                             <FormBlock>
                                 <YesOrNoQuestion
                                     name={getFieldName(AnsattFormFields.sluttetFørSøknadsperiode)}
-                                    legend={intlHelper(intl, 'arbeidsforhold.sluttetFørSøknadsperiode.spm', {
+                                    legend={text('arbeidsforhold.sluttetFørSøknadsperiode.spm', {
                                         navn: arbeidsforhold.arbeidsgiver.navn,
                                         fraDato: prettifyDateExtended(søknadsperiode.from),
                                     })}
@@ -108,8 +104,7 @@ const ArbeidssituasjonAnsatt = ({ arbeidsforhold, parentFieldName, søknadsperio
                     {((erAvsluttet && arbeidsforhold.sluttetFørSøknadsperiode === YesOrNo.NO) || !erAvsluttet) && (
                         <>
                             <NumberInput
-                                label={intlHelper(
-                                    intl,
+                                label={text(
                                     erAvsluttet
                                         ? `arbeidsforhold.jobberNormaltTimer.avsluttet.spm`
                                         : `arbeidsforhold.jobberNormaltTimer.spm`,

@@ -1,9 +1,7 @@
-import { useIntl } from 'react-intl';
 import InfoJobberNormaltTimerSN from './info/InfoJobberNormaltTimerSN';
 import { Virksomhet } from '@navikt/sif-common-forms-ds';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { DateRange, ValidationError, YesOrNo, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { Alert, Heading, Link } from '@navikt/ds-react';
@@ -11,7 +9,7 @@ import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock
 import VirksomhetInfoAndDialog from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetInfoAndDialog';
 import { getJobberNormaltTimerValidator } from '../../../../utils/jobberNormaltTimerValidator';
 import { getSelvstendigIPeriodeValidator } from '../../../../utils/selvstendigValidator';
-import { AppText } from '../../../../i18n';
+import { AppText, useAppIntl } from '../../../../i18n';
 
 export enum SelvstendigFormFields {
     harHattInntektSomSN = 'selvstendig.harHattInntektSomSN',
@@ -41,12 +39,12 @@ const { YesOrNoQuestion, NumberInput } = getTypedFormComponents<
 >();
 
 const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN, søknadsperiode }: Props) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     const { harHattInntektSomSN, virksomhet, harFlereVirksomheter, jobberNormaltTimer } = formValues;
     const søkerHarFlereVirksomheter = harFlereVirksomheter === YesOrNo.YES;
     const intlValues = {
-        hvor: intlHelper(intl, 'arbeidsforhold.part.som.SELVSTENDIG'),
-        jobber: intlHelper(intl, 'arbeidsforhold.part.jobber'),
+        hvor: text('arbeidsforhold.part.som.SELVSTENDIG'),
+        jobber: text('arbeidsforhold.part.jobber'),
     };
 
     return (
@@ -57,12 +55,12 @@ const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN, søknadsperiode }: 
             <Block margin="l">
                 <YesOrNoQuestion
                     name={SelvstendigFormFields.harHattInntektSomSN}
-                    legend={intlHelper(intl, 'selvstendig.harDuHattInntekt.spm')}
+                    legend={text('selvstendig.harDuHattInntekt.spm')}
                     validate={getYesOrNoValidator()}
                     description={
-                        <ExpandableInfo title={intlHelper(intl, 'selvstendig.harDuHattInntekt.hjelpetekst.tittel')}>
+                        <ExpandableInfo title={text('selvstendig.harDuHattInntekt.hjelpetekst.tittel')}>
                             <>
-                                {intlHelper(intl, 'selvstendig.harDuHattInntekt.hjelpetekst')}{' '}
+                                {text('selvstendig.harDuHattInntekt.hjelpetekst')}{' '}
                                 <Link href={urlSkatteetatenSN} target="_blank">
                                     <AppText id="selvstendig.harDuHattInntekt.hjelpetekst.snSkatteetatenLenke" />
                                 </Link>
@@ -75,7 +73,7 @@ const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN, søknadsperiode }: 
                 <FormBlock margin="l">
                     <YesOrNoQuestion
                         name={SelvstendigFormFields.harFlereVirksomheter}
-                        legend={intlHelper(intl, 'selvstendig.harFlereVirksomheter.spm')}
+                        legend={text('selvstendig.harFlereVirksomheter.spm')}
                         validate={getYesOrNoValidator()}
                     />
 
@@ -93,13 +91,11 @@ const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN, søknadsperiode }: 
                                 name={SelvstendigFormFields.virksomhet}
                                 harFlereVirksomheter={søkerHarFlereVirksomheter}
                                 labels={{
-                                    infoTitle: virksomhet
-                                        ? intlHelper(intl, 'selvstendig.infoDialog.infoTittel')
-                                        : undefined,
-                                    editLabel: intlHelper(intl, 'selvstendig.infoDialog.endreKnapp'),
-                                    deleteLabel: intlHelper(intl, 'selvstendig.infoDialog.fjernKnapp'),
-                                    addLabel: intlHelper(intl, 'selvstendig.infoDialog.registrerKnapp'),
-                                    modalTitle: intlHelper(intl, 'selvstendig.infoDialog.tittel'),
+                                    infoTitle: virksomhet ? text('selvstendig.infoDialog.infoTittel') : undefined,
+                                    editLabel: text('selvstendig.infoDialog.endreKnapp'),
+                                    deleteLabel: text('selvstendig.infoDialog.fjernKnapp'),
+                                    addLabel: text('selvstendig.infoDialog.registrerKnapp'),
+                                    modalTitle: text('selvstendig.infoDialog.tittel'),
                                 }}
                                 validate={(value) => {
                                     if (getRequiredFieldValidator()(value) !== undefined) {
@@ -114,7 +110,7 @@ const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN, søknadsperiode }: 
                         <FormBlock>
                             <FormBlock>
                                 <NumberInput
-                                    label={intlHelper(intl, `sn.arbeidsforhold.spm`)}
+                                    label={text(`sn.arbeidsforhold.spm`)}
                                     name={SelvstendigFormFields.jobberNormaltTimer}
                                     description={<InfoJobberNormaltTimerSN />}
                                     validate={getJobberNormaltTimerValidator(intlValues)}

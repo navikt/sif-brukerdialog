@@ -1,12 +1,10 @@
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { useIntl } from 'react-intl';
-import { AppText } from '../../../../../i18n';
+import { AppText, useAppIntl } from '../../../../../i18n';
 
 const InfoJobberNormaltTimerSN = () => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     return (
-        <ExpandableInfo title={intlHelper(intl, 'arbeidsforhold.normalTimer.info.tittel')}>
+        <ExpandableInfo title={text('arbeidsforhold.normalTimer.info.tittel')}>
             <AppText id={`arbeidsforhold.selvstendig.normalTimer.info`} />
 
             <ul style={{ paddingInlineStart: '20px' }}>
@@ -17,7 +15,7 @@ const InfoJobberNormaltTimerSN = () => {
                     <AppText id={'arbeidsforhold.normalTimer.info.list.item.2'} />
                 </li>
             </ul>
-            <ExpandableInfo title={intlHelper(intl, 'arbeidsforhold.normalTimer.info.turnus.tittel')}>
+            <ExpandableInfo title={text('arbeidsforhold.normalTimer.info.turnus.tittel')}>
                 <AppText id={'arbeidsforhold.normalTimer.info.turnus.avsnitt.1'} />
 
                 <p>
@@ -37,7 +35,7 @@ const InfoJobberNormaltTimerSN = () => {
                     <AppText id={'arbeidsforhold.normalTimer.info.turnus.avsnitt.5'} />
                 </p>
             </ExpandableInfo>
-            <ExpandableInfo title={intlHelper(intl, 'arbeidsforhold.normalTimer.info.varierende.tittel')}>
+            <ExpandableInfo title={text('arbeidsforhold.normalTimer.info.varierende.tittel')}>
                 <AppText id={'arbeidsforhold.normalTimer.info.varierende.avsnitt.1'} />
 
                 <p>

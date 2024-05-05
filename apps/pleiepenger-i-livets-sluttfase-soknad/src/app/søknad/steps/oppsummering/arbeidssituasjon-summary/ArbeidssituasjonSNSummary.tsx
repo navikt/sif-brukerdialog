@@ -1,21 +1,19 @@
-import { useIntl } from 'react-intl';
 import { SelvstendigNæringsdrivendeApiData } from '../../../../types/søknadApiData/SøknadApiData';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SummaryBlock } from '@navikt/sif-common-ui';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import VirksomhetSummary from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetSummary';
 import { Label } from '@navikt/ds-react';
-import { AppText } from '../../../../i18n';
+import { AppText, useAppIntl } from '../../../../i18n';
 
 interface Props {
     selvstendigNæringsdrivende?: SelvstendigNæringsdrivendeApiData;
 }
 
 function ArbeidssituasjonSNSummary({ selvstendigNæringsdrivende }: Props) {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     const { arbeidsforhold, virksomhet } = selvstendigNæringsdrivende || {};
     return (
-        <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.selvstendig.header')}>
+        <SummaryBlock header={text('oppsummering.arbeidssituasjon.selvstendig.header')}>
             {selvstendigNæringsdrivende === undefined && (
                 <ul>
                     <li>
@@ -49,7 +47,7 @@ function ArbeidssituasjonSNSummary({ selvstendigNæringsdrivende }: Props) {
                             </>
                         )}
                     </ul>
-                    <Label>{intlHelper(intl, 'summary.virksomhet.virksomhetInfo.tittel')}</Label>
+                    <Label>{text('summary.virksomhet.virksomhetInfo.tittel')}</Label>
                     <Block margin="m">
                         <div style={{ paddingLeft: '1rem' }}>
                             <VirksomhetSummary virksomhet={virksomhet} />

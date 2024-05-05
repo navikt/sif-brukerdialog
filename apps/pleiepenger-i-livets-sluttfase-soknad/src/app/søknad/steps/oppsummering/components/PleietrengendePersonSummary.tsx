@@ -1,13 +1,11 @@
 import { BodyLong } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { FødselsnummerSvar, SummaryBlock, SummarySection } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils';
 import { FlereSokereApiData, PleietrengendeApi } from '../../../../types/søknadApiData/SøknadApiData';
-import { AppText } from '../../../../i18n';
+import { AppText, useAppIntl } from '../../../../i18n';
 
 interface Props {
     pleietrengende: PleietrengendeApi;
@@ -16,9 +14,9 @@ interface Props {
 }
 
 const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId, flereSøkere }: Props) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     return (
-        <SummarySection header={intlHelper(intl, 'step.oppsummering.pleietrengende.header')}>
+        <SummarySection header={text('step.oppsummering.pleietrengende.header')}>
             <SummaryBlock header={pleietrengende.navn}>
                 {pleietrengende.fødselsdato ? (
                     <BodyLong>
@@ -43,8 +41,7 @@ const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId, flereS�
                                 <AppText
                                     id="steg.oppsummering.pleietrengende.harIkkeFnr"
                                     values={{
-                                        årsak: intlHelper(
-                                            intl,
+                                        årsak: text(
                                             `steg.oppsummering.pleietrengende.årsakManglerIdentitetsnummer.${pleietrengende.årsakManglerIdentitetsnummer}`,
                                         ),
                                     }}
@@ -52,7 +49,7 @@ const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId, flereS�
                             </BodyLong>
                         </Block>
                         <Block margin="m">
-                            <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.pleietrengende.id')}>
+                            <SummaryBlock header={text('steg.oppsummering.pleietrengende.id')}>
                                 {pleietrengendeId.filter(({ pending, uploaded }) => uploaded || pending).length > 0 && (
                                     <AttachmentList attachments={pleietrengendeId} />
                                 )}
@@ -64,7 +61,7 @@ const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId, flereS�
                     </>
                 )}
             </SummaryBlock>
-            <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.flereSokere.header')}>
+            <SummaryBlock header={text('steg.oppsummering.flereSokere.header')}>
                 <AppText id={`steg.oppsummering.${flereSøkere}`} />
             </SummaryBlock>
         </SummarySection>
