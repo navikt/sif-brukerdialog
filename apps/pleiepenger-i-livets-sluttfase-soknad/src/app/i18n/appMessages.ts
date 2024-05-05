@@ -1,7 +1,6 @@
 import { calendarGridMessages } from '../components/calendar-grid/calendarGridMessages';
 import { dagerMedTidMessages } from '../components/dager-med-tid-liste/dagerMedTidMessages';
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
-import { personalOpplysningerMessages } from '../pages/velkommen/personalopplysninger/personalopplysninger.messages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { arbeidssituasjonMessages } from '../søknad/steps/arbeidssituasjon/arbeidssituasjonMessages';
 import { arbeidstidMessages } from '../søknad/steps/arbeidstid/arbeidstidMessages';
@@ -14,7 +13,6 @@ import { tidsromMessages } from '../søknad/steps/tidsrom/tidsromMessages';
 import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
 
 const nb = {
-    ...personalOpplysningerMessages.nb,
     ...velkommenPageMessages.nb,
     ...opplysningerOmPleietrengendeMessages.nb,
     ...legeerklæringMessages.nb,
@@ -272,6 +270,12 @@ const nb = {
     'frilansoppdragInfo.tittel': 'Registrerte frilansoppdrag i perioden:',
     'frilansoppdragInfo.tekst':
         'Dette er frilansoppdrag registrert i AA-registeret i perioden du søker om pleiepenger. Hvis informasjonen ikke stemmer, må du ta kontakt med oppdragsgiver og be de oppdatere informasjonen i AA-registeret.',
+    'ingenFraværConfirmation.title': 'Ingen fravær registrert',
+    'ingenFraværConfirmation.okLabel': 'Ja, det stemmer',
+    'ingenFraværConfirmation.cancelLabel': 'Nei, det stemmer ikke',
+    'ingenFraværConfirmation.content':
+        'Du har oppgitt at du jobber som normalt og ikke har fravær i dagene du søker for. For å ha rett til pleiepenger må du ha fravær fra jobb fordi du pleier noen. Stemmer det at du ikke har fravær fra jobb i dagene du søker for?',
+    'ingenFraværConfirmation.heading': 'Fravær fra jobb',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };

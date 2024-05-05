@@ -48,15 +48,20 @@ const KvitteringPage = ({ kvitteringInfo, onUnmount }: Props) => {
                                 />
                             </li>
                         )}
-
                         <li>
                             <AppText id="page.kvittering.list.item.2" />
                         </li>
                         <li>
-                            <AppText id="page.kvittering.list.item.3" />{' '}
-                            <Link href={getLenker(intl.locale).saksbehandlingstider} target="_blank">
-                                <AppText id="page.kvittering.list.item.3.lenke" />
-                            </Link>
+                            <AppText
+                                id="page.kvittering.list.item.3"
+                                values={{
+                                    Lenke: (children) => (
+                                        <Link href={getLenker(intl.locale).saksbehandlingstider} target="_blank">
+                                            {children}
+                                        </Link>
+                                    ),
+                                }}
+                            />
                         </li>
                     </Checklist>
                 </Block>
