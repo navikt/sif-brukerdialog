@@ -19,7 +19,7 @@ import {
 } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { dateToday } from '@navikt/sif-common-utils';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -39,6 +39,7 @@ import {
     getOpplysningerOmPleietrengendeSøknadsdataFromFormValues,
     opplysningerOmPleietrengendeDefaultValues,
 } from './opplysningerOmPleietrengendeStepUtils';
+import { AppText } from '../../../i18n';
 
 export enum OpplysningerOmPleietrengendeFormFields {
     navn = 'navn',
@@ -118,7 +119,7 @@ const OpplysningerOmPleietrengendeStep = () => {
                                 runDelayedFormValidation={true}>
                                 <SifGuidePanel>
                                     <p>
-                                        <FormattedMessage id="step.opplysningerOmPleietrengende.counsellorPanel.info" />
+                                        <AppText id="step.opplysningerOmPleietrengende.counsellorPanel.info" />
                                     </p>
                                 </SifGuidePanel>
 
@@ -220,10 +221,10 @@ const OpplysningerOmPleietrengendeStep = () => {
                                             </FormBlock>
                                             <FormBlock>
                                                 <Heading level="2" size="medium">
-                                                    <FormattedMessage id="step.opplysningerOmPleietrengende.id.tittel" />
+                                                    <AppText id="step.opplysningerOmPleietrengende.id.tittel" />
                                                 </Heading>
                                                 <Block>
-                                                    <FormattedMessage id="step.opplysningerOmPleietrengende.id.info" />
+                                                    <AppText id="step.opplysningerOmPleietrengende.id.info" />
                                                 </Block>
                                                 <IdPart />
                                             </FormBlock>

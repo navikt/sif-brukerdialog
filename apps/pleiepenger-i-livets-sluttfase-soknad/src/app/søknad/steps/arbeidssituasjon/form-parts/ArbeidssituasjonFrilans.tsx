@@ -1,4 +1,4 @@
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { Link } from '@navikt/ds-react';
 import { ISODate, ISODateToDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
@@ -16,6 +16,7 @@ import { getFrilanserSluttdatoValidator, getFrilanserStartdatoValidator } from '
 import { erFrilanserISøknadsperiode, harFrilansoppdrag } from './arbeidssituasjonFrilansUtils';
 import { getJobberNormaltTimerValidator } from '../../../../utils/jobberNormaltTimerValidator';
 import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
+import { AppText } from '../../../../i18n';
 
 export enum FrilansFormFields {
     harHattInntektSomFrilanser = 'frilans.harHattInntektSomFrilanser',
@@ -85,7 +86,7 @@ const ArbeidssituasjonFrilans = ({
     return (
         <>
             <Heading level="2" size="large">
-                <FormattedMessage id="steg.arbeidssituasjon.frilanser.tittel" />
+                <AppText id="steg.arbeidssituasjon.frilanser.tittel" />
             </Heading>
             {søkerHarFrilansoppdrag && <FrilansoppdragInfo frilansoppdrag={frilansoppdrag} />}
             {søkerHarFrilansoppdrag === false && (
@@ -100,7 +101,7 @@ const ArbeidssituasjonFrilans = ({
                                     <>
                                         {intlHelper(intl, 'frilanser.hjelpetekst')}{' '}
                                         <Link href={urlSkatteetaten} target="_blank">
-                                            <FormattedMessage id="frilanser.hjelpetekst.skatteetatenLenke" />
+                                            <AppText id="frilanser.hjelpetekst.skatteetatenLenke" />
                                         </Link>
                                     </>
                                 </ExpandableInfo>
@@ -114,7 +115,7 @@ const ArbeidssituasjonFrilans = ({
                     {søkerHarFrilansoppdrag && (
                         <Block padBottom="l">
                             <Heading level="2" size="small">
-                                <FormattedMessage id="arbeidssituasjonFrilanser.frilanserPart.tittel" />
+                                <AppText id="arbeidssituasjonFrilanser.frilanserPart.tittel" />
                             </Heading>
                         </Block>
                     )}

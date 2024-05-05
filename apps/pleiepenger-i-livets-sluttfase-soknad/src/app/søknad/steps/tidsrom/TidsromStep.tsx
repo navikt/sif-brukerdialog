@@ -13,7 +13,7 @@ import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation
 import { Utenlandsopphold } from '@navikt/sif-common-forms-ds';
 import UtenlandsoppholdListAndDialog from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/UtenlandsoppholdListAndDialog';
 import { getDateRangeFromDates } from '@navikt/sif-common-utils';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -33,6 +33,7 @@ import {
 } from './tidsromStepUtils';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { Alert } from '@navikt/ds-react';
+import { AppText } from '../../../i18n';
 
 export enum TidsromFormFields {
     dagerMedPleie = 'dagerMedPleie',
@@ -114,10 +115,10 @@ const TidsromStep = () => {
                                 runDelayedFormValidation={true}>
                                 <SifGuidePanel>
                                     <p>
-                                        <FormattedMessage id="step.tidsrom.counsellorPanel.avsnitt.1" />
+                                        <AppText id="step.tidsrom.counsellorPanel.avsnitt.1" />
                                     </p>
                                     <p>
-                                        <FormattedMessage id="step.tidsrom.counsellorPanel.avsnitt.2" />
+                                        <AppText id="step.tidsrom.counsellorPanel.avsnitt.2" />
                                     </p>
                                 </SifGuidePanel>
 
@@ -141,14 +142,14 @@ const TidsromStep = () => {
                                                             'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.info.tittel',
                                                         )}>
                                                         <p>
-                                                            <FormattedMessage
+                                                            <AppText
                                                                 id={
                                                                     'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.info.1'
                                                                 }
                                                             />
                                                         </p>
                                                         <p>
-                                                            <FormattedMessage
+                                                            <AppText
                                                                 id={
                                                                     'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.info.2'
                                                                 }
@@ -161,7 +162,7 @@ const TidsromStep = () => {
                                         {pleierDuDenSykeHjemme === YesOrNo.NO && (
                                             <FormBlock>
                                                 <Alert variant="warning">
-                                                    <FormattedMessage id="steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.alert" />
+                                                    <AppText id="steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.alert" />
                                                 </Alert>
                                             </FormBlock>
                                         )}
@@ -180,13 +181,13 @@ const TidsromStep = () => {
                                                                     'steg.tidsrom.skalJobbeIPerioden.info.tittel',
                                                                 )}>
                                                                 <p>
-                                                                    <FormattedMessage id="steg.tidsrom.skalJobbeIPerioden.info.tekst.1" />
+                                                                    <AppText id="steg.tidsrom.skalJobbeIPerioden.info.tekst.1" />
                                                                 </p>
                                                                 <p>
                                                                     <strong>
-                                                                        <FormattedMessage id="steg.tidsrom.skalJobbeIPerioden.info.tekst.2.1" />
+                                                                        <AppText id="steg.tidsrom.skalJobbeIPerioden.info.tekst.2.1" />
                                                                     </strong>{' '}
-                                                                    <FormattedMessage id="steg.tidsrom.skalJobbeIPerioden.info.tekst.2.2" />
+                                                                    <AppText id="steg.tidsrom.skalJobbeIPerioden.info.tekst.2.2" />
                                                                 </p>
                                                             </ExpandableInfo>
                                                         }

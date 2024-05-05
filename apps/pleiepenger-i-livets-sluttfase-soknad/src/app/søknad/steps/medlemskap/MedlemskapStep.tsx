@@ -11,7 +11,7 @@ import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation
 import { Utenlandsopphold } from '@navikt/sif-common-forms-ds';
 import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/BostedUtlandListAndDialog';
 import { dateToday } from '@navikt/sif-common-utils';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -30,6 +30,7 @@ import {
     getMedlemskapStepInitialValues,
     getMedlemskapSøknadsdataFromFormValues,
 } from './medlemskapStepUtils';
+import { AppText } from '../../../i18n';
 
 export enum MedlemskapFormFields {
     harBoddUtenforNorgeSiste12Mnd = 'harBoddUtenforNorgeSiste12Mnd',
@@ -99,7 +100,7 @@ const MedlemskapStep = () => {
                                 <SifGuidePanel>
                                     {intlHelper(intl, 'step.medlemskap.info.1')}
                                     <Link href={getLenker().medlemskap} target="_blank">
-                                        <FormattedMessage id="step.medlemskap.info.2" />
+                                        <AppText id="step.medlemskap.info.2" />
                                     </Link>
                                     .
                                 </SifGuidePanel>

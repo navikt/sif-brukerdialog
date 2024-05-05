@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
@@ -27,6 +27,7 @@ import ArbeidssituasjonSummary from './arbeidssituasjon-summary/Arbeidssituasjon
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import ArbeidIPeriodenSummary from './arbeid-i-perioden-summary/ArbeidIPeriodenSummary';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
+import { AppText } from '../../../i18n';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -74,10 +75,10 @@ const OppsummeringStep = () => {
                     return (
                         <>
                             <p>
-                                <FormattedMessage id="apiDataValidation.undefined" />
+                                <AppText id="apiDataValidation.undefined" />
                             </p>
                             <p>
-                                <FormattedMessage id="resetMellomlagring.text.1" />
+                                <AppText id="resetMellomlagring.text.1" />
                             </p>
                             <ResetMellomagringButton label={intlHelper(intl, 'resetMellomlagring.startPåNytt')} />
                         </>
@@ -156,7 +157,7 @@ const OppsummeringStep = () => {
                                     disabled={isSubmitting}
                                     label={
                                         <span data-testid="bekreft-label">
-                                            <FormattedMessage id="step.oppsummering.bekrefterOpplysninger" />
+                                            <AppText id="step.oppsummering.bekrefterOpplysninger" />
                                         </span>
                                     }
                                     validate={getCheckedValidator()}

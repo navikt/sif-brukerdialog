@@ -1,4 +1,4 @@
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import InfoJobberNormaltTimerAnsatt from './info/InfoJobberNormaltTimerAnsatt';
 import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
 import { DateRange, ValidationError, YesOrNo, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
@@ -9,6 +9,7 @@ import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { Alert, Heading } from '@navikt/ds-react';
 import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { getJobberNormaltTimerValidator } from '../../../../utils/jobberNormaltTimerValidator';
+import { AppText } from '../../../../i18n';
 
 export enum AnsattFormFields {
     arbeidsgiver = 'arbeidsgiver',
@@ -78,7 +79,7 @@ const ArbeidssituasjonAnsatt = ({ arbeidsforhold, parentFieldName, søknadsperio
                     {erAvsluttet && (
                         <Block padBottom={arbeidsforhold.sluttetFørSøknadsperiode === YesOrNo.NO ? 'xl' : 'none'}>
                             <Alert variant="info">
-                                <FormattedMessage id="arbeidsforhold.ikkeAnsatt.info" />
+                                <AppText id="arbeidsforhold.ikkeAnsatt.info" />
                             </Alert>
                             <FormBlock>
                                 <YesOrNoQuestion

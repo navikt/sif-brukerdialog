@@ -1,6 +1,5 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { dateToISODate, ISODurationToDecimalDuration } from '@navikt/sif-common-utils';
@@ -11,6 +10,7 @@ import {
     TidEnkeltdagApiData,
 } from '../../../../types/søknadApiData/SøknadApiData';
 import { JobberIPeriodeSvar } from '../../arbeidstid/ArbeidstidTypes';
+import { AppText } from '../../../../i18n';
 
 interface Props {
     periode: DateRange;
@@ -36,17 +36,13 @@ const ArbeidIPeriodeSummaryItem: React.FC<Props> = ({ arbeidIPeriode, dagerMedPl
             {(arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.heltFravær ||
                 arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.somVanlig) && (
                 <p style={{ marginTop: 0 }}>
-                    <FormattedMessage
-                        id={`oppsummering.arbeidIPeriode.jobberIPerioden.${arbeidIPeriode.jobberIPerioden}`}
-                    />
+                    <AppText id={`oppsummering.arbeidIPeriode.jobberIPerioden.${arbeidIPeriode.jobberIPerioden}`} />
                 </p>
             )}
 
             {arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.redusert && (
                 <p style={{ marginTop: 0 }}>
-                    <FormattedMessage
-                        id={`oppsummering.arbeidIPeriode.jobberIPerioden.${arbeidIPeriode.jobberIPerioden}`}
-                    />
+                    <AppText id={`oppsummering.arbeidIPeriode.jobberIPerioden.${arbeidIPeriode.jobberIPerioden}`} />
                 </p>
             )}
 

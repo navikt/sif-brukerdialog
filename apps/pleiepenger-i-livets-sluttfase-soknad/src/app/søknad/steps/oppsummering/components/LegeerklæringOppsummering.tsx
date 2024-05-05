@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
@@ -7,6 +7,7 @@ import { SummarySection } from '@navikt/sif-common-ui';
 import { LegeerklæringSøknadsdata } from '../../../../types/søknadsdata/LegeerklæringSøknadsdata';
 import { getAttachmentURLBackend } from '../../../../utils/attachmentUtilsAuthToken';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
+import { AppText } from '../../../../i18n';
 
 interface Props {
     apiData: SøknadApiData;
@@ -25,7 +26,7 @@ const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringS�
         <SummarySection header={intlHelper(intl, 'step.oppsummering.legeerklæring.header')}>
             <Block>
                 {legeerklæringSøknadsdata?.vedlegg.length === 0 ? (
-                    <FormattedMessage id="step.oppsummering.legeerklæring.ingenVedlegg" />
+                    <AppText id="step.oppsummering.legeerklæring.ingenVedlegg" />
                 ) : (
                     <div data-testid="legeerklæring-liste">
                         <AttachmentList attachments={legeerklæringer} />

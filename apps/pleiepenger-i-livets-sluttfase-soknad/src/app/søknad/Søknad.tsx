@@ -1,4 +1,4 @@
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
@@ -8,6 +8,7 @@ import { RequestStatus } from '../types/RequestStatus';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import { SøknadContextProvider } from './context/SøknadContext';
 import SøknadRouter from './SøknadRouter';
+import { AppText } from '../i18n';
 
 const Søknad = () => {
     const initialData = useSøknadInitialData();
@@ -26,10 +27,10 @@ const Søknad = () => {
                 contentRenderer={() => (
                     <>
                         <p>
-                            <FormattedMessage id="initialLoadError.text.1" />
+                            <AppText id="initialLoadError.text.1" />
                         </p>
                         <p>
-                            <FormattedMessage id="resetMellomlagring.text.1" />
+                            <AppText id="resetMellomlagring.text.1" />
                         </p>
                         <ResetMellomagringButton label={intlHelper(intl, 'resetMellomlagring.startPåNytt')} />
                     </>

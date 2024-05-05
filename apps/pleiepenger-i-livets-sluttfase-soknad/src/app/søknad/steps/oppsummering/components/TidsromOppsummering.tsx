@@ -1,10 +1,11 @@
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SummaryBlock, SummaryList, SummarySection } from '@navikt/sif-common-ui';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { renderUtenlandsoppholdIPeriodenSummary } from './renderUtenlandsoppholdSummary';
 import ValgteDagerMedPleie from './ValgteDagerMedPleie';
+import { AppText } from '../../../../i18n';
 
 interface Props {
     dagerMedPleie: Date[];
@@ -22,17 +23,17 @@ const TidsromOppsummering = ({ apiData, dagerMedPleie }: Props) => {
             </SummaryBlock>
 
             <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.pleierDuDenSykeHjemme.header')}>
-                <FormattedMessage id={apiData.pleierDuDenSykeHjemme ? 'Ja' : 'Nei'} />
+                <AppText id={apiData.pleierDuDenSykeHjemme ? 'Ja' : 'Nei'} />
             </SummaryBlock>
 
             <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.skalJobbeOgPleieSammeDag.header')}>
-                <FormattedMessage id={apiData.skalJobbeOgPleieSammeDag ? 'Ja' : 'Nei'} />
+                <AppText id={apiData.skalJobbeOgPleieSammeDag ? 'Ja' : 'Nei'} />
             </SummaryBlock>
 
             {apiData.utenlandsoppholdIPerioden && (
                 <>
                     <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.utenlandsoppholdIPerioden.header')}>
-                        <FormattedMessage
+                        <AppText
                             id={apiData.utenlandsoppholdIPerioden.skalOppholdeSegIUtlandetIPerioden ? 'Ja' : 'Nei'}
                         />
                     </SummaryBlock>

@@ -15,7 +15,7 @@ import { UtenlandskNæring } from '@navikt/sif-common-forms-ds/src/forms/utenlan
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { date1YearAgo, date1YearFromNow, dateToday } from '@navikt/sif-common-utils';
 import { useState } from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { arbeidsgivereEndpoint } from '../../../api/endpoints/arbeidsgiverEndpoint';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
@@ -39,6 +39,7 @@ import { AnsattFormData } from './form-parts/ArbeidssituasjonAnsatt';
 import ArbeidssituasjonArbeidsgivere from './form-parts/ArbeidssituasjonArbeidsgivere';
 import ArbeidssituasjonFrilans, { FrilansFormData } from './form-parts/ArbeidssituasjonFrilans';
 import ArbeidssituasjonSN, { SelvstendigFormData } from './form-parts/ArbeidssituasjonSN';
+import { AppText } from '../../../i18n';
 
 export enum ArbeidssituasjonFormFields {
     ansatt_arbeidsforhold = 'ansatt_arbeidsforhold',
@@ -167,10 +168,10 @@ const ArbeidssituasjonStep = () => {
                                 runDelayedFormValidation={true}>
                                 <SifGuidePanel>
                                     <p>
-                                        <FormattedMessage id="steg.arbeidssituasjon.veileder.1" />
+                                        <AppText id="steg.arbeidssituasjon.veileder.1" />
                                     </p>
                                     <p>
-                                        <FormattedMessage id="steg.arbeidssituasjon.veileder.2" />
+                                        <AppText id="steg.arbeidssituasjon.veileder.2" />
                                     </p>
                                 </SifGuidePanel>
 
@@ -201,7 +202,7 @@ const ArbeidssituasjonStep = () => {
                                 </FormBlock>
                                 <FormBlock>
                                     <Heading level="2" size="large" spacing={true}>
-                                        <FormattedMessage id="steg.arbeidssituasjon.opptjeningUtland.tittel" />
+                                        <AppText id="steg.arbeidssituasjon.opptjeningUtland.tittel" />
                                     </Heading>
                                     <YesOrNoQuestion
                                         legend={intlHelper(intl, 'steg.arbeidssituasjon.opptjeningUtland.spm')}
@@ -271,7 +272,7 @@ const ArbeidssituasjonStep = () => {
                                 ) && (
                                     <FormBlock>
                                         <Heading level="2" size="large">
-                                            <FormattedMessage id="steg.arbeidssituasjon.verneplikt.tittel" />
+                                            <AppText id="steg.arbeidssituasjon.verneplikt.tittel" />
                                         </Heading>
                                         <Block margin="l">
                                             <YesOrNoQuestion
@@ -284,7 +285,7 @@ const ArbeidssituasjonStep = () => {
                                                             intl,
                                                             'steg.arbeidssituasjon.verneplikt.info.tittel',
                                                         )}>
-                                                        <FormattedMessage id="steg.arbeidssituasjon.verneplikt.info.tekst" />
+                                                        <AppText id="steg.arbeidssituasjon.verneplikt.info.tekst" />
                                                     </ExpandableInfo>
                                                 }
                                             />

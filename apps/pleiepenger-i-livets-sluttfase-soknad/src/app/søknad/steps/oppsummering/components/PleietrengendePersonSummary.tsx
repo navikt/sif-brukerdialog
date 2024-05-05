@@ -1,5 +1,5 @@
 import { BodyLong } from '@navikt/ds-react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
@@ -7,6 +7,7 @@ import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { FødselsnummerSvar, SummaryBlock, SummarySection } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils';
 import { FlereSokereApiData, PleietrengendeApi } from '../../../../types/søknadApiData/SøknadApiData';
+import { AppText } from '../../../../i18n';
 
 interface Props {
     pleietrengende: PleietrengendeApi;
@@ -21,7 +22,7 @@ const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId, flereS�
             <SummaryBlock header={pleietrengende.navn}>
                 {pleietrengende.fødselsdato ? (
                     <BodyLong>
-                        <FormattedMessage
+                        <AppText
                             id="steg.oppsummering.pleietrengende.fødselsdato"
                             values={{
                                 dato: prettifyDate(ISODateToDate(pleietrengende.fødselsdato)),
@@ -31,7 +32,7 @@ const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId, flereS�
                 ) : null}
                 {pleietrengende.norskIdentitetsnummer && !pleietrengende.årsakManglerIdentitetsnummer && (
                     <>
-                        <FormattedMessage id="fødselsnummer" />{' '}
+                        <AppText id="fødselsnummer" />{' '}
                         <FødselsnummerSvar fødselsnummer={pleietrengende.norskIdentitetsnummer} />
                     </>
                 )}
@@ -39,7 +40,7 @@ const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId, flereS�
                     <>
                         <Block margin="l">
                             <BodyLong>
-                                <FormattedMessage
+                                <AppText
                                     id="steg.oppsummering.pleietrengende.harIkkeFnr"
                                     values={{
                                         årsak: intlHelper(
@@ -57,14 +58,14 @@ const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId, flereS�
                                 )}
 
                                 {pleietrengendeId.filter(({ pending, uploaded }) => uploaded || pending).length ===
-                                    0 && <FormattedMessage id="step.oppsummering.pleietrengende.id.ingenId" />}
+                                    0 && <AppText id="step.oppsummering.pleietrengende.id.ingenId" />}
                             </SummaryBlock>
                         </Block>
                     </>
                 )}
             </SummaryBlock>
             <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.flereSokere.header')}>
-                <FormattedMessage id={`steg.oppsummering.${flereSøkere}`} />
+                <AppText id={`steg.oppsummering.${flereSøkere}`} />
             </SummaryBlock>
         </SummarySection>
     );

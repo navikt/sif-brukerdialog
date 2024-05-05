@@ -8,7 +8,7 @@ import { DateRange, ValidationError } from '@navikt/sif-common-formik-ds';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { useState } from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import useLogSøknadInfo from '../../../hooks/useLogSøknadInfo';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
@@ -36,6 +36,7 @@ import ArbeidIPeriodeSpørsmål from './form-parts/arbeid-i-periode-spørsmål/A
 import { harFraværIPerioden } from './form-parts/arbeidstidUtils';
 import { ArbeidsforholdType } from './form-parts/types';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { AppText } from '../../../i18n';
 
 export enum ArbeidsaktivitetType {
     arbeidstaker = 'arbeidstaker',
@@ -220,7 +221,7 @@ const ArbeidstidStep = () => {
                                 <FormBlock>
                                     <SifGuidePanel>
                                         <p>
-                                            <FormattedMessage id={'arbeidIPeriode.StepInfo.1'} />
+                                            <AppText id={'arbeidIPeriode.StepInfo.1'} />
                                         </p>
                                     </SifGuidePanel>
 
@@ -258,7 +259,7 @@ const ArbeidstidStep = () => {
                                     {frilansArbeidstid && periodeSomFrilanserISøknadsperiode && (
                                         <FormBlock>
                                             <Heading level="2" size="large">
-                                                <FormattedMessage id="arbeidIPeriode.FrilansLabel" />
+                                                <AppText id="arbeidIPeriode.FrilansLabel" />
                                             </Heading>
                                             <Block>
                                                 <ArbeidIPeriodeSpørsmål
@@ -284,7 +285,7 @@ const ArbeidstidStep = () => {
                                     {selvstendigArbeidstid && periode && periodeSomSelvstendigISøknadsperiode && (
                                         <FormBlock>
                                             <Heading level="2" size="large">
-                                                <FormattedMessage id="arbeidIPeriode.SNLabel" />
+                                                <AppText id="arbeidIPeriode.SNLabel" />
                                             </Heading>
                                             <Block>
                                                 <ArbeidIPeriodeSpørsmål

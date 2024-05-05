@@ -1,10 +1,11 @@
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SummaryBlock, SummaryList } from '@navikt/sif-common-ui';
 import { prettifyApiDate } from '@navikt/sif-common-utils';
 import { UtenlandskNæringApi } from '../../../../types/søknadApiData/SøknadApiData';
+import { AppText } from '../../../../i18n';
 
 interface Props {
     utenlandskNæring: UtenlandskNæringApi[];
@@ -33,10 +34,10 @@ function UtenlandskNæringSummary({ utenlandskNæring }: Props) {
                 <div>{`${intlHelper(intl, '@forms.utenlandskNæringForm.summary.næringstype')}: ${næringstype}.`}</div>
 
                 <div>
-                    <FormattedMessage id="@forms.utenlandskNæringForm.summary.registrertILand" values={{ land }} />
+                    <AppText id="@forms.utenlandskNæringForm.summary.registrertILand" values={{ land }} />
                     {næring.organisasjonsnummer !== undefined && (
                         <>
-                            <FormattedMessage
+                            <AppText
                                 id="@forms.utenlandskNæringForm.summary.registrertILand.orgnr"
                                 values={{ orgnr: næring.organisasjonsnummer }}
                             />
@@ -51,7 +52,7 @@ function UtenlandskNæringSummary({ utenlandskNæring }: Props) {
     return (
         <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.utenlandskNæring.listetittel')}>
             {utenlandskNæring.length === 0 ? (
-                <FormattedMessage id={'oppsummering.arbeidssituasjon.utenlandskNæring.nei'} />
+                <AppText id={'oppsummering.arbeidssituasjon.utenlandskNæring.nei'} />
             ) : (
                 <SummaryList items={utenlandskNæring} itemRenderer={renderUtenlandskNæring} />
             )}

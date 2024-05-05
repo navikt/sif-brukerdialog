@@ -1,4 +1,4 @@
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import InfoJobberNormaltTimerSN from './info/InfoJobberNormaltTimerSN';
 import { Virksomhet } from '@navikt/sif-common-forms-ds';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
@@ -11,6 +11,7 @@ import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock
 import VirksomhetInfoAndDialog from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetInfoAndDialog';
 import { getJobberNormaltTimerValidator } from '../../../../utils/jobberNormaltTimerValidator';
 import { getSelvstendigIPeriodeValidator } from '../../../../utils/selvstendigValidator';
+import { AppText } from '../../../../i18n';
 
 export enum SelvstendigFormFields {
     harHattInntektSomSN = 'selvstendig.harHattInntektSomSN',
@@ -51,7 +52,7 @@ const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN, søknadsperiode }: 
     return (
         <>
             <Heading level="2" size="large">
-                <FormattedMessage id="steg.arbeidssituasjon.sn.tittel" />
+                <AppText id="steg.arbeidssituasjon.sn.tittel" />
             </Heading>
             <Block margin="l">
                 <YesOrNoQuestion
@@ -63,7 +64,7 @@ const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN, søknadsperiode }: 
                             <>
                                 {intlHelper(intl, 'selvstendig.harDuHattInntekt.hjelpetekst')}{' '}
                                 <Link href={urlSkatteetatenSN} target="_blank">
-                                    <FormattedMessage id="selvstendig.harDuHattInntekt.hjelpetekst.snSkatteetatenLenke" />
+                                    <AppText id="selvstendig.harDuHattInntekt.hjelpetekst.snSkatteetatenLenke" />
                                 </Link>
                             </>
                         </ExpandableInfo>
@@ -81,7 +82,7 @@ const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN, søknadsperiode }: 
                     {søkerHarFlereVirksomheter && (
                         <FormBlock>
                             <Alert variant="info">
-                                <FormattedMessage id="selvstendig.veileder.flereAktiveVirksomheter" />
+                                <AppText id="selvstendig.veileder.flereAktiveVirksomheter" />
                             </Alert>
                         </FormBlock>
                     )}
