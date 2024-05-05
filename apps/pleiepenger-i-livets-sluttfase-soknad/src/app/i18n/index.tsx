@@ -9,7 +9,7 @@ import {
 import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
 import { appMessages } from './appMessages';
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 
 export const libMessages = {
@@ -52,7 +52,7 @@ export const useAppIntl = () => {
 export type AppIntlShape = ReturnType<typeof useAppIntl>;
 
 export const AppText = (props: { id: AppMessageKeys; values?: any }) => {
-    return <AppText {...props} />;
+    return <FormattedMessage {...props} />;
 };
 
 export const applicationIntlMessages = {
