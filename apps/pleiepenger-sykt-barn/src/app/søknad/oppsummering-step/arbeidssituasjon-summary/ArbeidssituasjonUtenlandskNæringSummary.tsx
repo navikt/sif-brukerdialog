@@ -1,9 +1,10 @@
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SummaryBlock } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils';
+import { AppText } from '../../../i18n';
 import { UtenlandskNæringApiData } from '../../../types/søknad-api-data/SøknadApiData';
 
 interface Props {
@@ -38,9 +39,9 @@ function UtenlandskNæringSummary({ utenlandskNæring }: Props) {
                     </div>
 
                     <div data-testid="oppsummering-utenlandskNæring-registrertILand">
-                        <FormattedMessage id="@forms.utenlandskNæringForm.summary.registrertILand" values={{ land }} />
+                        <AppText id="@forms.utenlandskNæringForm.summary.registrertILand" values={{ land }} />
                         {næring.organisasjonsnummer !== undefined && (
-                            <FormattedMessage
+                            <AppText
                                 id="@forms.utenlandskNæringForm.summary.registrertILand.orgnr"
                                 values={{ orgnr: næring.organisasjonsnummer }}
                             />

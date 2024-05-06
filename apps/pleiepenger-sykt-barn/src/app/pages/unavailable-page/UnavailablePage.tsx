@@ -1,12 +1,13 @@
 import { Alert, Link } from '@navikt/ds-react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import './unavailablePage.less';
 import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
+import './unavailablePage.less';
+import { AppText } from '../../i18n';
 
 const bem = bemUtils('introPage');
 
@@ -21,16 +22,16 @@ const UnavailablePage = () => {
             <Block margin="xxxl">
                 <Alert variant="warning">
                     <p>
-                        <FormattedMessage id="page.unavailable.1" />{' '}
+                        <AppText id="page.unavailable.1" />{' '}
                         <strong>
                             <Link href={link}>
-                                <FormattedMessage id="page.unavailable.2" />
+                                <AppText id="page.unavailable.2" />
                             </Link>
                         </strong>
                         .
                     </p>
                     <p>
-                        <FormattedMessage id="page.unavailable.3" />
+                        <AppText id="page.unavailable.3" />
                     </p>
                 </Alert>
             </Block>

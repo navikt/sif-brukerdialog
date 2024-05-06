@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
@@ -18,6 +18,7 @@ import {
     getstønadGodtgjørelseSluttdatoValidator,
     getstønadGodtgjørelseStartdatoValidator,
 } from '../../../../validation/fieldValidations';
+import { AppText } from '../../../../i18n';
 
 const StønadGodtgjørelseFormComponents = getTypedFormComponents<
     StønadGodtgjørelseFormField,
@@ -47,7 +48,7 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
                             intl,
                             'steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelse.spm.description.tittel',
                         )}>
-                        <FormattedMessage id="steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelse.spm.description" />
+                        <AppText id="steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelse.spm.description" />
                     </ExpandableInfo>
                 }
             />

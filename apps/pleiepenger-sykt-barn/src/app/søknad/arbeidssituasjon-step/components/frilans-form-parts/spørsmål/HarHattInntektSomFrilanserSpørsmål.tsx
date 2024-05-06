@@ -1,10 +1,11 @@
 import { BodyShort } from '@navikt/ds-react';
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { AppText } from '../../../../../i18n';
 import { FrilansFormField } from '../../../../../types/søknad-form-values/FrilansFormValues';
 import { ArbFriFormComponents } from '../FrilanserFormPart';
 
@@ -27,7 +28,7 @@ const HarHattInntektSomFrilanserSpørsmål: React.FunctionComponent<Props> = ({
                 <>
                     {søkerMottarOmsorgsstønad && (
                         <BodyShort spacing={false}>
-                            <FormattedMessage id="frilanser.harDuHattInntekt.omsorgsstønad" />
+                            <AppText id="frilanser.harDuHattInntekt.omsorgsstønad" />
                         </BodyShort>
                     )}
                     <Block margin="m">
@@ -41,17 +42,17 @@ const HarHattInntektSomFrilanserSpørsmål: React.FunctionComponent<Props> = ({
                                 {søkerHarFrilansoppdrag && (
                                     <>
                                         <p>
-                                            <FormattedMessage id="frilanser.harDuHattInntekt.hvaBetyr.info.1" />
+                                            <AppText id="frilanser.harDuHattInntekt.hvaBetyr.info.1" />
                                         </p>
                                         <p>
-                                            <FormattedMessage id="frilanser.harDuHattInntekt.hvaBetyr.info.2" />
+                                            <AppText id="frilanser.harDuHattInntekt.hvaBetyr.info.2" />
                                         </p>
                                     </>
                                 )}
                                 {!søkerHarFrilansoppdrag && (
                                     <>
                                         <p>
-                                            <FormattedMessage id="frilanser.hjelpetekst.1" />
+                                            <AppText id="frilanser.hjelpetekst.1" />
                                         </p>
                                     </>
                                 )}

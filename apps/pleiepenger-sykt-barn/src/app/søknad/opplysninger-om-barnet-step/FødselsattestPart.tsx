@@ -1,6 +1,6 @@
 import { Alert, Heading, Link } from '@navikt/ds-react';
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { ApplikasjonHendelse, SIFCommonGeneralEvents, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FileUploadErrors from '@navikt/sif-common-core-ds/src/components/file-upload-errors/FileUploadErrors';
@@ -16,6 +16,7 @@ import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { useFormikContext } from 'formik';
 import { persist, uploadFile } from '../../api/api';
 import UploadedDocumentsList from '../../components/fødselsattest-file-list/UploadedDocumentsList';
+import { AppText } from '../../i18n';
 import getLenker from '../../lenker';
 import { StepID } from '../../types/StepID';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
@@ -86,7 +87,7 @@ const FødselsattestPart: React.FC<Props> = ({ attachments }) => {
                 {intlHelper(intl, 'steg.omBarnet.fødselsattest.tittel')}
             </Heading>
             <Block margin="m">
-                <FormattedMessage id="steg.omBarnet.fødselsattest.info" />
+                <AppText id="steg.omBarnet.fødselsattest.info" />
             </Block>
             <Block margin={'l'}>
                 <PictureScanningGuide />
@@ -114,9 +115,9 @@ const FødselsattestPart: React.FC<Props> = ({ attachments }) => {
             {totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
                 <Block margin={'l'}>
                     <Alert variant="warning">
-                        <FormattedMessage id={'dokumenter.advarsel.totalstørrelse.1'} />
+                        <AppText id={'dokumenter.advarsel.totalstørrelse.1'} />
                         <Link target={'_blank'} rel={'noopener noreferrer'} href={getLenker(intl.locale).ettersend}>
-                            <FormattedMessage id={'dokumenter.advarsel.totalstørrelse.2'} />
+                            <AppText id={'dokumenter.advarsel.totalstørrelse.2'} />
                         </Link>
                     </Alert>
                 </Block>

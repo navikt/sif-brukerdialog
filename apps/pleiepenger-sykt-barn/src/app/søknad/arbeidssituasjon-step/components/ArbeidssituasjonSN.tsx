@@ -1,5 +1,5 @@
 import { Alert, Link } from '@navikt/ds-react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
@@ -20,6 +20,7 @@ import { getArbeiderNormaltTimerIUkenValidator } from '../validation/arbeiderNor
 import { getSelvstendigIPeriodeValidator } from '../validation/selvstendigIPeriodeValidator';
 import { InfoArbeiderNormaltTimerSN } from './info/InfoArbeiderNormaltTimerIUken';
 import { ArbeidsforholdFormField } from '../../../types/søknad-form-values/ArbeidsforholdFormValues';
+import { AppText } from '../../../i18n';
 
 const ArbSNFormComponents = getTypedFormComponents<SelvstendigFormField, SelvstendigFormValues, ValidationError>();
 
@@ -52,7 +53,7 @@ const ArbeidssituasjonSN = ({ søknadsperiode }: Props) => {
                             <>
                                 {intlHelper(intl, 'selvstendig.harDuHattInntekt.hjelpetekst')}{' '}
                                 <Link href={urlSkatteetatenSN} target="_blank">
-                                    <FormattedMessage id="selvstendig.harDuHattInntekt.hjelpetekst.snSkatteetatenLenke" />
+                                    <AppText id="selvstendig.harDuHattInntekt.hjelpetekst.snSkatteetatenLenke" />
                                 </Link>
                             </>
                         </ExpandableInfo>
@@ -85,7 +86,7 @@ const ArbeidssituasjonSN = ({ søknadsperiode }: Props) => {
                         {søkerHarFlereVirksomheter && (
                             <FormBlock>
                                 <Alert variant="info">
-                                    <FormattedMessage id="selvstendig.veileder.flereAktiveVirksomheter" />
+                                    <AppText id="selvstendig.veileder.flereAktiveVirksomheter" />
                                 </Alert>
                             </FormBlock>
                         )}

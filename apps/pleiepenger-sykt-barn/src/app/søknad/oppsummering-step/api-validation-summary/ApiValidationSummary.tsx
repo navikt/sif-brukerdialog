@@ -1,11 +1,12 @@
 import { BodyLong, ErrorSummary } from '@navikt/ds-react';
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import ActionLink from '@navikt/sif-common-core-ds/src/atoms/action-link/ActionLink';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SoknadStepsConfig, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
+import { AppText } from '../../../i18n';
 import { StepID } from '../../../types/StepID';
 import { ApiValidationError } from '../../../validation/apiValuesValidation';
 
@@ -29,14 +30,10 @@ const ApiValidationSummary: React.FunctionComponent<Props> = ({ errors, søknadS
                         <BodyLong as="div" key={error.stepId} className="bodyTextColor">
                             <p>{error.feilmelding}</p>
                             <p>
-                                <FormattedMessage id="steg.oppsummering.validering.navigasjonTilStegInfo" />
+                                <AppText id="steg.oppsummering.validering.navigasjonTilStegInfo" />
                             </p>
                             <ActionLink onClick={() => navigate(søknadStepConfig[error.stepId].route)}>
-                                <FormattedMessage
-                                    id="steg.oppsummering.validering.navigasjonTilStegGåTil"
-                                    tagName="span"
-                                />{' '}
-                                &quot;
+                                <AppText id="steg.oppsummering.validering.navigasjonTilStegGåTil" /> &quot;
                                 {stepTexts.stepTitle}&quot;
                             </ActionLink>
                         </BodyLong>

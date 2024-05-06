@@ -1,5 +1,5 @@
 import { Button, Heading, Link } from '@navikt/ds-react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import bemHelper from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
@@ -10,6 +10,7 @@ import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/typ
 import getLenker from '../../lenker';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import InfoList from './components/info-list/InfoList';
+import { AppText } from '../../i18n';
 
 interface Props {
     onConfirm: () => void;
@@ -33,17 +34,17 @@ const SamtykkeForm = ({ onConfirm }: Props) => {
                         name={SøknadFormField.harForståttRettigheterOgPlikter}
                         validate={getCheckedValidator()}>
                         <Heading level="2" size="small" spacing={true}>
-                            <FormattedMessage id="page.velkommen.form.ansvar.tittel" />
+                            <AppText id="page.velkommen.form.ansvar.tittel" />
                         </Heading>
 
                         <InfoList>
                             <li>
-                                <FormattedMessage id="page.velkommen.form.ansvar.list.1" />
+                                <AppText id="page.velkommen.form.ansvar.list.1" />
                             </li>
                             <li>
-                                <FormattedMessage id="page.velkommen.form.ansvar.list.2.1" />{' '}
+                                <AppText id="page.velkommen.form.ansvar.list.2.1" />{' '}
                                 <Link href={getLenker(intl.locale).rettOgPlikt} target="_blank">
-                                    <FormattedMessage id="page.velkommen.form.ansvar.list.2.2" />
+                                    <AppText id="page.velkommen.form.ansvar.list.2.2" />
                                 </Link>
                             </li>
                         </InfoList>

@@ -1,6 +1,6 @@
 import { Alert } from '@navikt/ds-react';
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
@@ -17,6 +17,7 @@ import minMax from 'dayjs/plugin/minMax';
 import { useFormikContext } from 'formik';
 import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 import { SøkerdataContext } from '../../context/SøkerdataContext';
+import { AppText } from '../../i18n';
 import { StepCommonProps } from '../../types/StepCommonProps';
 import { StepID } from '../../types/StepID';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
@@ -73,14 +74,14 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
                 description={
                     <ExpandableInfo title={intlHelper(intl, 'steg.tidsrom.hvilketTidsrom.info.tittel')}>
                         <p>
-                            <FormattedMessage id="steg.tidsrom.hvilketTidsrom.info.1" />
+                            <AppText id="steg.tidsrom.hvilketTidsrom.info.1" />
                         </p>
                         <p>
                             <strong>
-                                <FormattedMessage id="steg.tidsrom.hvilketTidsrom.info.2" />
+                                <AppText id="steg.tidsrom.hvilketTidsrom.info.2" />
                             </strong>
                             <br />
-                            <FormattedMessage id="steg.tidsrom.hvilketTidsrom.info.3" />
+                            <AppText id="steg.tidsrom.hvilketTidsrom.info.3" />
                         </p>
                     </ExpandableInfo>
                 }
@@ -109,7 +110,7 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
             {søkerKunHelgedager(values.periodeFra, values.periodeTil) && (
                 <Block padBottom="xl">
                     <Alert variant="warning">
-                        <FormattedMessage id="step.tidsrom.søkerKunHelgedager.alert" />
+                        <AppText id="step.tidsrom.søkerKunHelgedager.alert" />
                     </Alert>
                 </Block>
             )}
@@ -148,7 +149,7 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
                     {visInfoOmUtenlandsopphold && (
                         <Block margin="l" padBottom="l">
                             <Alert variant="info">
-                                <FormattedMessage id="steg.tidsrom.veileder.utenlandsopphold" />
+                                <AppText id="steg.tidsrom.veileder.utenlandsopphold" />
                             </Alert>
                         </Block>
                     )}

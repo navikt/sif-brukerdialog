@@ -1,10 +1,10 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { ISODate, ISODateToDate, ISODuration, ISODurationToDuration } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import groupBy from 'lodash.groupby';
+import { AppText } from '../../../i18n';
 import { DagMedTid } from '../../types/DagMedTid';
 import DagerMedTidListe from '../dager-med-tid-liste/DagerMedTidListe';
 
@@ -27,7 +27,7 @@ const TidEnkeltdager: React.FunctionComponent<Props> = ({ dager }) => {
         }
     });
 
-    const ingenDagerRegistrertMelding = <FormattedMessage id="dagerMedTid.ingenDagerRegistrert" />;
+    const ingenDagerRegistrertMelding = <AppText id="dagerMedTid.ingenDagerRegistrert" />;
     if (dager.length === 0) {
         return ingenDagerRegistrertMelding;
     }

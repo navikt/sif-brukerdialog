@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { DurationText } from '@navikt/sif-common-ui';
@@ -31,6 +31,7 @@ import {
     trimDateRangeToWeekdays,
 } from './utils/tidEnkeltdagUtils';
 import { getTidEnkeltdagFormTidValidator } from './utils/tidEnkeltdagValidation';
+import { AppText } from '../../../i18n';
 
 dayjs.extend(minMax);
 
@@ -136,9 +137,8 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
         key: string,
         periode?: { fra: string; til: string },
         values?: any,
-    ): JSX.Element => (
-        <FormattedMessage id={`tidEnkeltdagForm.gjentagelse.${key}`} values={{ ...values, ...periode }} />
-    );
+        // TODO - fikse nøkkel
+    ): JSX.Element => <AppText id={`tidEnkeltdagForm.gjentagelse.${key}` as any} values={{ ...values, ...periode }} />;
 
     return (
         <FormComponents.FormikWrapper
@@ -165,7 +165,7 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
                         />
                         {tidOpprinnelig && erEndret && (
                             <p>
-                                <FormattedMessage id="tidEnkeltdagForm.endretFra" />{' '}
+                                <AppText id="tidEnkeltdagForm.endretFra" />{' '}
                                 <DurationText duration={tidOpprinnelig} fullText={true} />
                             </p>
                         )}

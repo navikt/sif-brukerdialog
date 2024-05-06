@@ -541,6 +541,7 @@ const nb = {
     'steg.oppsummering.barnRelasjon.MEDMOR': 'Du er medmor til barnet',
     'steg.oppsummering.barnRelasjon.FOSTERFORELDER': 'Du er fosterforelder til barnet',
     'steg.oppsummering.barnRelasjon.FAR': 'Du er far til barnet',
+    'steg.oppsummering.barnRelasjon.ANNET': 'Annet',
     'steg.oppsummering.utenlandsoppholdIPerioden.header': 'Skal du være i utlandet i perioden?',
     'steg.oppsummering.utenlandsoppholdIPerioden.listetittel': 'Utenlandsopphold i perioden',
     'steg.oppsummering.utenlandsoppholdIPerioden.innlagtBarn.spm': 'Skal barnet være innlagt på sykehus i utlandet?',
@@ -552,6 +553,7 @@ const nb = {
         'Har barnet vært fast og regelmessig på skolen, i barnehagen eller i andre omsorgstilbud?',
     'steg.oppsummering.omsorgstilbud.fortid.svar.JA': 'Ja, i hele eller deler av perioden',
     'steg.oppsummering.omsorgstilbud.fortid.svar.NEI': 'Nei',
+    'steg.oppsummering.omsorgstilbud.fortid.svar.USIKKER': 'Usikker',
     'steg.oppsummering.omsorgstilbud.fremtid.spm':
         'Skal barnet være fast og regelmessig på skolen, i barnehagen eller i andre omsorgstilbud fremover i tid?',
     'steg.oppsummering.omsorgstilbud.fremtid.spm.kunFremtid':

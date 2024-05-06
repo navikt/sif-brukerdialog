@@ -1,6 +1,6 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
@@ -18,6 +18,7 @@ import {
 import { dateToday, prettifyDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { useFormikContext } from 'formik';
+import { AppText } from '../../i18n';
 import { BarnRelasjon, ÅrsakManglerIdentitetsnummer } from '../../types';
 import { initialValues, SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { validateNavn } from '../../validation/fieldValidations';
@@ -167,18 +168,15 @@ const AnnetBarnPart: React.FC<Props> = ({ formValues, søkersFødselsnummer, att
                                     <>
                                         <ExpandableInfo
                                             title={intlHelper(intl, 'steg.omBarnet.relasjonAnnet.info.tittel')}>
-                                            <FormattedMessage
-                                                tagName="div"
-                                                id="steg.omBarnet.relasjonAnnet.info.hjelpetekst.1"
-                                            />
-                                            <FormattedMessage
-                                                tagName="p"
-                                                id="steg.omBarnet.relasjonAnnet.info.hjelpetekst.2"
-                                            />
-                                            <FormattedMessage
-                                                tagName="p"
-                                                id="steg.omBarnet.relasjonAnnet.info.hjelpetekst.3"
-                                            />
+                                            <div>
+                                                <AppText id="steg.omBarnet.relasjonAnnet.info.hjelpetekst.1" />
+                                            </div>
+                                            <p>
+                                                <AppText id="steg.omBarnet.relasjonAnnet.info.hjelpetekst.2" />
+                                            </p>
+                                            <p>
+                                                <AppText id="steg.omBarnet.relasjonAnnet.info.hjelpetekst.3" />
+                                            </p>
                                         </ExpandableInfo>
                                     </>
                                 }

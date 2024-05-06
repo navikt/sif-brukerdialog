@@ -1,5 +1,5 @@
 import { Alert, Heading } from '@navikt/ds-react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
@@ -8,6 +8,7 @@ import { DateRange } from '@navikt/sif-common-formik-ds/src';
 import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
+import { AppText } from '../../i18n';
 import { getOmsorgstilbudFastDagValidator } from '../../local-sif-common-pleiepenger/components/omsorgstilbud-periode/components/omsorgstilbud-periode-form/omsorgstilbudFormValidation';
 import TidFasteUkedagerInput from '../../local-sif-common-pleiepenger/components/tid-faste-ukedager-input/TidFasteUkedagerInput';
 import { OmsorgstilbudFormValues } from '../../types/søknad-form-values/OmsorgtilbudFormValues';
@@ -49,7 +50,7 @@ const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChange
                     {periodeFortidFremtid && (
                         <Block padBottom="l">
                             <Heading level="2" size="medium">
-                                <FormattedMessage id="steg.omsorgstilbud.erIOmsorgstilbudFortid" />
+                                <AppText id="steg.omsorgstilbud.erIOmsorgstilbudFortid" />
                             </Heading>
                         </Block>
                     )}
@@ -84,7 +85,7 @@ const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChange
                     {periodeFortidFremtid && (
                         <Block padBottom="l">
                             <Heading level="2" size="medium">
-                                <FormattedMessage id="steg.omsorgstilbud.erIOmsorgstilbudFremtid" />
+                                <AppText id="steg.omsorgstilbud.erIOmsorgstilbudFremtid" />
                             </Heading>
                         </Block>
                     )}
@@ -135,7 +136,7 @@ const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChange
                 omsorgstilbud.erIOmsorgstilbudFremtid === YesOrNoOrDoNotKnow.DO_NOT_KNOW && (
                     <Block margin="l">
                         <Alert variant="info">
-                            <FormattedMessage id="steg.omsorgstilbud.erIOmsorgstilbudFremtid.neiUsikker" />
+                            <AppText id="steg.omsorgstilbud.erIOmsorgstilbudFremtid.neiUsikker" />
                         </Alert>
                     </Block>
                 )}
@@ -144,7 +145,7 @@ const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChange
                 omsorgstilbud.erIOmsorgstilbudFremtid === YesOrNoOrDoNotKnow.DO_NOT_KNOW && (
                     <Block margin="l">
                         <Alert variant="info">
-                            <FormattedMessage id="steg.omsorgstilbud.erIOmsorgstilbudFremtid.neiUsikker" />
+                            <AppText id="steg.omsorgstilbud.erIOmsorgstilbudFremtid.neiUsikker" />
                         </Alert>
                     </Block>
                 )}
@@ -157,13 +158,13 @@ const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChange
                                 <>
                                     <Block padBottom="l">
                                         <Heading level="2" size="medium">
-                                            <FormattedMessage id="steg.omsorgstilbud.erLiktHverUke.spm.tittel" />
+                                            <AppText id="steg.omsorgstilbud.erLiktHverUke.spm.tittel" />
                                         </Heading>
                                         {omsorgstilbud.erIOmsorgstilbudFortid === YesOrNoOrDoNotKnow.YES &&
                                             omsorgstilbud.erIOmsorgstilbudFremtid ===
                                                 YesOrNoOrDoNotKnow.DO_NOT_KNOW && (
                                                 <Block margin="l">
-                                                    <FormattedMessage id="steg.omsorgstilbud.erIOmsorgstilbudFremtid.usikker" />
+                                                    <AppText id="steg.omsorgstilbud.erIOmsorgstilbudFremtid.usikker" />
                                                 </Block>
                                             )}
                                     </Block>

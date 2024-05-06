@@ -1,5 +1,5 @@
 import { BodyShort, Heading } from '@navikt/ds-react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import ActionLink from '@navikt/sif-common-core-ds/src/atoms/action-link/ActionLink';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
@@ -10,6 +10,7 @@ import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
 import RouteConfig from '../../config/routeConfig';
 import { StepID } from '../../types/StepID';
+import { AppText } from '../../i18n';
 
 interface Props {
     stepId: StepID;
@@ -27,7 +28,7 @@ const InvalidStepPage = ({ stepId }: Props) => {
             <div style={{ paddingTop: '1rem' }}>
                 <SifGuidePanel poster={true} compact={true} mood="uncertain">
                     <Heading level="2" size="medium">
-                        <FormattedMessage id="page.invalidStepPage.tittel" />
+                        <AppText id="page.invalidStepPage.tittel" />
                     </Heading>
                     <Block margin="m" padBottom="l">
                         <BodyShort as="div">
@@ -41,7 +42,7 @@ const InvalidStepPage = ({ stepId }: Props) => {
                                             history.go(-1);
                                         }
                                     }}>
-                                    <FormattedMessage id="page.invalidStepPage.tilbakeLenke" />
+                                    <AppText id="page.invalidStepPage.tilbakeLenke" />
                                 </ActionLink>
                             </p>
                         </BodyShort>

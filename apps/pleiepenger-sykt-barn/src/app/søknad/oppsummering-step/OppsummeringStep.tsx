@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
@@ -49,6 +49,7 @@ import {
     renderUtenlandsoppholdSummary,
 } from './summaryItemRenderers';
 import './oppsummeringStep.less';
+import { AppText } from '../../i18n';
 
 interface Props {
     values: SøknadFormValues;
@@ -169,7 +170,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                         showButtonSpinner={sendingInProgress}>
                         <SifGuidePanel>
                             <p>
-                                <FormattedMessage id="steg.oppsummering.info" />
+                                <AppText id="steg.oppsummering.info" />
                             </p>
                         </SifGuidePanel>
 
@@ -191,7 +192,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                             {formatName(fornavn, etternavn, mellomnavn)}
                                         </div>
                                         <div data-testid="oppsummering-søker-fødselsnummer">
-                                            <FormattedMessage
+                                            <AppText
                                                 id={'steg.oppsummering.søker.fnr'}
                                                 values={{
                                                     fødselsnummer: fødselsnummer,
@@ -208,7 +209,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                 <SummarySection header={intlHelper(intl, 'steg.oppsummering.tidsrom.header')}>
                                     <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.søknadsperiode.header')}>
                                         <div data-testid="oppsummering-tidsrom-fomtom">
-                                            <FormattedMessage
+                                            <AppText
                                                 id="steg.oppsummering.tidsrom.fomtom"
                                                 values={{
                                                     fom: `${dayjs(søknadsperiode.from).format('D. MMMM YYYY')}`,
@@ -227,7 +228,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                                     'steg.oppsummering.utenlandsoppholdIPerioden.header',
                                                 )}>
                                                 <div data-testid="oppsummering-utenlandsoppholdIPerioden">
-                                                    <FormattedMessage
+                                                    <AppText
                                                         id={
                                                             utenlandsoppholdIPerioden.skalOppholdeSegIUtlandetIPerioden
                                                                 ? 'Ja'
@@ -259,7 +260,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                                     'steg.oppsummering.ferieuttakIPerioden.header',
                                                 )}>
                                                 <div data-testid="oppsummering-ferieuttakIPerioden">
-                                                    <FormattedMessage
+                                                    <AppText
                                                         id={ferieuttakIPerioden.skalTaUtFerieIPerioden ? 'Ja' : 'Nei'}
                                                     />
                                                 </div>
@@ -299,7 +300,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                 <SummarySection header={intlHelper(intl, 'medlemskap.summary.header')}>
                                     <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.utlandetSiste12.header')}>
                                         <div data-testid="oppsummering-medlemskap-utlandetSiste12">
-                                            <FormattedMessage
+                                            <AppText
                                                 id={
                                                     apiValues.medlemskap.harBoddIUtlandetSiste12Mnd === true
                                                         ? 'Ja'
@@ -321,7 +322,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                         )}
                                     <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.utlandetNeste12.header')}>
                                         <div data-testid="oppsummering-medlemskap-utlandetNeste12">
-                                            <FormattedMessage
+                                            <AppText
                                                 id={
                                                     apiValues.medlemskap.skalBoIUtlandetNeste12Mnd === true
                                                         ? 'Ja'

@@ -1,6 +1,6 @@
 import { BodyShort, ExpansionCard, Heading } from '@navikt/ds-react';
 import React, { useState } from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { DateRange, dateToISOString, InputTime } from '@navikt/sif-common-formik-ds/src';
 import { DurationText } from '@navikt/sif-common-ui';
@@ -10,6 +10,7 @@ import OmsorgstilbudEnkeltdagDialog from '../omsorgstilbud-enkeltdag/Omsorgstilb
 import { TidEnkeltdagEndring } from '../tid-enkeltdag-dialog/TidEnkeltdagForm';
 import TidsbrukKalender from '../tidsbruk-kalender/TidsbrukKalender';
 import { ExpansionCardContent, ExpansionCardHeader } from '@navikt/ds-react/ExpansionCard';
+import { AppText } from '../../../i18n';
 
 interface Props {
     måned: DateRange;
@@ -44,15 +45,15 @@ const OmsorgstilbudMåned: React.FunctionComponent<Props> = ({
         <ExpansionCard defaultOpen={defaultOpen} aria-label={label}>
             <ExpansionCardHeader>
                 <Heading level={månedTittelHeadingLevel} size="xsmall">
-                    <FormattedMessage
+                    <AppText
                         id="omsorgstilbudMåned.ukeOgÅr"
                         values={{ ukeOgÅr: dayjs(måned.from).format('MMMM YYYY') }}
                     />{' '}
                     <BodyShort as="div">
                         {dagerMedRegistrertOmsorgstilbud.length === 0 ? (
-                            <FormattedMessage id="omsorgstilbudMåned.dagerRegistrert.ingenDager" />
+                            <AppText id="omsorgstilbudMåned.dagerRegistrert.ingenDager" />
                         ) : (
-                            <FormattedMessage
+                            <AppText
                                 id="omsorgstilbudMåned.dagerRegistrert.dager"
                                 values={{ dager: dagerMedRegistrertOmsorgstilbud.length }}
                             />

@@ -1,10 +1,10 @@
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { SummaryList } from '@navikt/sif-common-ui';
-import { renderOpptjeningIUtlandetSummary } from './renderOpptjeningIUtlandetSummary';
+import { SummaryBlock, SummaryList } from '@navikt/sif-common-ui';
+import { AppText } from '../../../i18n';
 import { OpptjeningIUtlandetApiData } from '../../../types/søknad-api-data/SøknadApiData';
-import { SummaryBlock } from '@navikt/sif-common-ui';
+import { renderOpptjeningIUtlandetSummary } from './renderOpptjeningIUtlandetSummary';
 
 export interface Props {
     opptjeningUtland: OpptjeningIUtlandetApiData[];
@@ -19,7 +19,7 @@ const OpptjeningIUtlandetSummary: React.FC<Props> = (props) => {
             <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.optjeningIUtlandet.listetittel')}>
                 {opptjeningUtland.length === 0 && (
                     <div data-testid="oppsummering-opptjeningUtland-nei">
-                        <FormattedMessage id="oppsummering.arbeidssituasjon.optjeningIUtlandet.nei" />
+                        <AppText id="oppsummering.arbeidssituasjon.optjeningIUtlandet.nei" />
                     </div>
                 )}
                 {opptjeningUtland.length > 0 && (

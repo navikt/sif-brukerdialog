@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { FormattedMessage } from 'react-intl';
 import { DateRange } from '@navikt/sif-common-formik-ds/src';
 import {
     DateDurationMap,
@@ -12,6 +11,7 @@ import dayjs from 'dayjs';
 import { OmsorgstilbudPeriodeData } from '../../../local-sif-common-pleiepenger/components/omsorgstilbud-periode/components/omsorgstilbud-periode-form/OmsorgstilbudPeriodeForm';
 import OmsorgstilbudPeriodeDialog from '../../../local-sif-common-pleiepenger/components/omsorgstilbud-periode/components/omsorgstilbud-periode-dialog/OmsorgstilbudPeriodeDialog';
 import { Button } from '@navikt/ds-react';
+import { AppText } from '../../../i18n';
 
 interface Props {
     periode: DateRange;
@@ -48,7 +48,7 @@ const OmsorgstilbudPeriode: React.FC<Props> = ({ periode, onPeriodeChange }) => 
     return (
         <>
             <Button type="button" onClick={() => setVisPeriode(true)} size={'small'}>
-                <FormattedMessage id="omsorgstilbudPeriode.leggTilTidIOmsorgstilbudLabel" />
+                <AppText id="omsorgstilbudPeriode.leggTilTidIOmsorgstilbudLabel" />
             </Button>
             <OmsorgstilbudPeriodeDialog
                 formProps={{
