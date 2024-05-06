@@ -2298,6 +2298,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@chromatic-com/storybook@npm:^1.3.3":
+  version: 1.3.3
+  resolution: "@chromatic-com/storybook@npm:1.3.3"
+  dependencies:
+    chromatic: ^11.3.0
+    filesize: ^10.0.12
+    jsonfile: ^6.1.0
+    react-confetti: ^6.1.0
+    strip-ansi: ^7.1.0
+  checksum: c61819e318642c4530b4a1edc02b428798e70b83d827ab433bff4dd62a05bc947dce4e7ba5b09213216f1f5fcd0fdb54ad306ffe885a2affb23da6648f5219ac
+  languageName: node
+  linkType: hard
+
 "@colors/colors@npm:1.5.0":
   version: 1.5.0
   resolution: "@colors/colors@npm:1.5.0"
@@ -4337,6 +4350,7 @@ __metadata:
     "@babel/plugin-transform-modules-commonjs": 7.24.1
     "@babel/preset-env": 7.24.5
     "@babel/preset-react": 7.24.1
+    "@chromatic-com/storybook": ^1.3.3
     "@navikt/appstatus-react-ds": "workspace:*"
     "@navikt/ds-css": 6.7.0
     "@navikt/ds-icons": 3.4.3
@@ -4351,7 +4365,14 @@ __metadata:
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@sentry/vite-plugin": 2.16.1
+    "@storybook/addon-essentials": ^8.0.10
+    "@storybook/addon-interactions": ^8.0.10
+    "@storybook/addon-links": ^8.0.10
+    "@storybook/addon-onboarding": ^8.0.10
+    "@storybook/blocks": ^8.0.10
+    "@storybook/react": ^8.0.10
     "@storybook/react-vite": 8.0.10
+    "@storybook/test": ^8.0.10
     "@testing-library/react": 15.0.6
     "@testing-library/user-event": 14.5.2
     "@types/lodash.debounce": 4.0.9
@@ -4379,6 +4400,7 @@ __metadata:
     eslint-plugin-prettier: 5.1.3
     eslint-plugin-react: 7.34.1
     eslint-plugin-react-hooks: 4.6.2
+    eslint-plugin-storybook: ^0.8.0
     express: 4.19.2
     express-rate-limit: 7.2.0
     formik: 2.4.6
@@ -4398,6 +4420,7 @@ __metadata:
     react-dom: 18.3.1
     react-intl: 6.6.6
     react-router-dom: 6.23.0
+    storybook: ^8.0.10
     typescript: 5.4.5
     uuid: 9.0.1
     vite: 5.2.11
@@ -6239,7 +6262,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-essentials@npm:8.0.10":
+"@storybook/addon-essentials@npm:8.0.10, @storybook/addon-essentials@npm:^8.0.10":
   version: 8.0.10
   resolution: "@storybook/addon-essentials@npm:8.0.10"
   dependencies:
@@ -6270,7 +6293,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-interactions@npm:8.0.10":
+"@storybook/addon-interactions@npm:8.0.10, @storybook/addon-interactions@npm:^8.0.10":
   version: 8.0.10
   resolution: "@storybook/addon-interactions@npm:8.0.10"
   dependencies:
@@ -6284,7 +6307,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-links@npm:8.0.10":
+"@storybook/addon-links@npm:8.0.10, @storybook/addon-links@npm:^8.0.10":
   version: 8.0.10
   resolution: "@storybook/addon-links@npm:8.0.10"
   dependencies:
@@ -6310,7 +6333,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-onboarding@npm:8.0.10":
+"@storybook/addon-onboarding@npm:8.0.10, @storybook/addon-onboarding@npm:^8.0.10":
   version: 8.0.10
   resolution: "@storybook/addon-onboarding@npm:8.0.10"
   checksum: 34d1bd7c16e68260c860dbea500f12eb6ef8b11e99bfc0144b74352edadf4b089a26a98a7ab0a0b47e68438803f660cbae56de2269a635712e16c02d4284f831
@@ -6398,7 +6421,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/blocks@npm:8.0.10":
+"@storybook/blocks@npm:8.0.10, @storybook/blocks@npm:^8.0.10":
   version: 8.0.10
   resolution: "@storybook/blocks@npm:8.0.10"
   dependencies:
@@ -7367,7 +7390,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/react@npm:8.0.10":
+"@storybook/react@npm:8.0.10, @storybook/react@npm:^8.0.10":
   version: 8.0.10
   resolution: "@storybook/react@npm:8.0.10"
   dependencies:
@@ -7472,7 +7495,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/test@npm:8.0.10":
+"@storybook/test@npm:8.0.10, @storybook/test@npm:^8.0.10":
   version: 8.0.10
   resolution: "@storybook/test@npm:8.0.10"
   dependencies:
@@ -10765,7 +10788,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromatic@npm:11.3.0":
+"chromatic@npm:11.3.0, chromatic@npm:^11.3.0":
   version: 11.3.0
   resolution: "chromatic@npm:11.3.0"
   peerDependencies:
@@ -13490,7 +13513,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-storybook@npm:0.8.0":
+"eslint-plugin-storybook@npm:0.8.0, eslint-plugin-storybook@npm:^0.8.0":
   version: 0.8.0
   resolution: "eslint-plugin-storybook@npm:0.8.0"
   dependencies:
@@ -14105,6 +14128,13 @@ __metadata:
     strip-outer: ^1.0.1
     trim-repeated: ^1.0.0
   checksum: 5b71a7ff8e958c8621957e6fbf7872024126d3b5da50f59b1634af3343ba1a69d4cc15cfe4ca4bbfa7c959ad4d98614ee51e6f1d9fa7326eef8ceda2da8cd74e
+  languageName: node
+  linkType: hard
+
+"filesize@npm:^10.0.12":
+  version: 10.1.1
+  resolution: "filesize@npm:10.1.1"
+  checksum: 8a3b5773c507bd566b9c0872a55a7564c68df3f74b6a3af1ada9dcc51128a03754ba19a75c36a292ab38f2c5fcb4293b5a1b2fe09b17d460696f175fc6dbccfd
   languageName: node
   linkType: hard
 
@@ -17461,7 +17491,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsonfile@npm:^6.0.1":
+"jsonfile@npm:^6.0.1, jsonfile@npm:^6.1.0":
   version: 6.1.0
   resolution: "jsonfile@npm:6.1.0"
   dependencies:
@@ -20798,6 +20828,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-confetti@npm:^6.1.0":
+  version: 6.1.0
+  resolution: "react-confetti@npm:6.1.0"
+  dependencies:
+    tween-functions: ^1.2.0
+  peerDependencies:
+    react: ^16.3.0 || ^17.0.1 || ^18.0.0
+  checksum: 24b6975df144d2bf09d8e1c95ddc49e547775f911efaa8d96b49e522659d931539e9d9e48cc0db3a01f3a671be7e3824e6e728db85096f5527db5d1c69ebb153
+  languageName: node
+  linkType: hard
+
 "react-day-picker@npm:8.10.0":
   version: 8.10.0
   resolution: "react-day-picker@npm:8.10.0"
@@ -22604,7 +22645,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"storybook@npm:8.0.10":
+"storybook@npm:8.0.10, storybook@npm:^8.0.10":
   version: 8.0.10
   resolution: "storybook@npm:8.0.10"
   dependencies:
@@ -23643,6 +23684,13 @@ __metadata:
   bin:
     turbo: bin/turbo
   checksum: d00655987e5d2e714d5e5a8d5950624508fb69e8671ca17e8ac7b9316ce01e518308ec4eaa472306950782704caa2eaa3c4fb328192818fcd9fcc05423bc29e7
+  languageName: node
+  linkType: hard
+
+"tween-functions@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "tween-functions@npm:1.2.0"
+  checksum: 880708d680eff5c347ddcb9f922ad121703a91c78ce308ed309073e73a794b633eb0b80589a839365803f150515ad34c9646809ae8a0e90f09e62686eefb1ab6
   languageName: node
   linkType: hard
 
