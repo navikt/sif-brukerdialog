@@ -3,7 +3,6 @@ import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
 import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
 import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
@@ -49,7 +48,7 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
         from: periodeFra || date1YearAgo,
         to: periodeTil || date1YearFromNow,
     };
-    const { intl } = useAppIntl();
+    const { text } = useAppIntl();
 
     const validateFraDatoField = (date?: string) => {
         return validateFradato(date, values.periodeTil, barnetSøknadenGjelder?.fødselsdato);
@@ -70,9 +69,9 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
             onValidFormSubmit={onValidSubmit}
             showSubmitButton={!søkerKunHelgedager(values.periodeFra, values.periodeTil)}>
             <SøknadFormComponents.DateRangePicker
-                legend={intlHelper(intl, 'steg.tidsrom.hvilketTidsrom.spm')}
+                legend={text('steg.tidsrom.hvilketTidsrom.spm')}
                 description={
-                    <ExpandableInfo title={intlHelper(intl, 'steg.tidsrom.hvilketTidsrom.info.tittel')}>
+                    <ExpandableInfo title={text('steg.tidsrom.hvilketTidsrom.info.tittel')}>
                         <p>
                             <AppText id="steg.tidsrom.hvilketTidsrom.info.1" />
                         </p>
@@ -96,12 +95,12 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
                         : date3YearsAgo
                 }
                 fromInputProps={{
-                    label: intlHelper(intl, 'steg.tidsrom.hvilketTidsrom.fom'),
+                    label: text('steg.tidsrom.hvilketTidsrom.fom'),
                     validate: validateFraDatoField,
                     name: SøknadFormField.periodeFra,
                 }}
                 toInputProps={{
-                    label: intlHelper(intl, 'steg.tidsrom.hvilketTidsrom.tom'),
+                    label: text('steg.tidsrom.hvilketTidsrom.tom'),
                     validate: validateTilDatoField,
                     name: SøknadFormField.periodeTil,
                     defaultMonth: periodeFra ? new Date(periodeFra) : undefined,
@@ -119,7 +118,7 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
                 <>
                     <Block margin="xl">
                         <SøknadFormComponents.YesOrNoQuestion
-                            legend={intlHelper(intl, 'steg.tidsrom.iUtlandetIPerioden.spm')}
+                            legend={text('steg.tidsrom.iUtlandetIPerioden.spm')}
                             name={SøknadFormField.skalOppholdeSegIUtlandetIPerioden}
                             validate={getYesOrNoValidator()}
                         />
@@ -132,9 +131,9 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
                                     minDate={periode.from}
                                     maxDate={periode.to}
                                     labels={{
-                                        modalTitle: intlHelper(intl, 'steg.tidsrom.iUtlandetIPerioden.modalTitle'),
-                                        listTitle: intlHelper(intl, 'steg.tidsrom.iUtlandetIPerioden.listTitle'),
-                                        addLabel: intlHelper(intl, 'steg.tidsrom.iUtlandetIPerioden.addLabel'),
+                                        modalTitle: text('steg.tidsrom.iUtlandetIPerioden.modalTitle'),
+                                        listTitle: text('steg.tidsrom.iUtlandetIPerioden.listTitle'),
+                                        addLabel: text('steg.tidsrom.iUtlandetIPerioden.addLabel'),
                                     }}
                                     validate={
                                         periode
@@ -156,7 +155,7 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
 
                     <Block margin="xl">
                         <SøknadFormComponents.YesOrNoQuestion
-                            legend={intlHelper(intl, 'steg.tidsrom.ferieuttakIPerioden.spm')}
+                            legend={text('steg.tidsrom.ferieuttakIPerioden.spm')}
                             name={SøknadFormField.skalTaUtFerieIPerioden}
                             validate={getYesOrNoValidator()}
                         />
@@ -169,9 +168,9 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
                                     minDate={periode.from}
                                     maxDate={periode.to}
                                     labels={{
-                                        modalTitle: intlHelper(intl, 'steg.tidsrom.ferieuttakIPerioden.modalTitle'),
-                                        listTitle: intlHelper(intl, 'steg.tidsrom.ferieuttakIPerioden.listTitle'),
-                                        addLabel: intlHelper(intl, 'steg.tidsrom.ferieuttakIPerioden.addLabel'),
+                                        modalTitle: text('steg.tidsrom.ferieuttakIPerioden.modalTitle'),
+                                        listTitle: text('steg.tidsrom.ferieuttakIPerioden.listTitle'),
+                                        addLabel: text('steg.tidsrom.ferieuttakIPerioden.addLabel'),
                                     }}
                                     validate={
                                         periode

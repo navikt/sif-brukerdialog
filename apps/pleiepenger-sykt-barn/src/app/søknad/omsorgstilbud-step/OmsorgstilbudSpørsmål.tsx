@@ -3,7 +3,6 @@ import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds/src';
 import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { dateFormatter } from '@navikt/sif-common-utils';
@@ -33,7 +32,7 @@ interface Props {
 }
 
 const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChanged }: Props) => {
-    const { intl } = useAppIntl();
+    const { text } = useAppIntl();
 
     const periodeFortid = søkerKunFortid(periode);
     const periodeFremtid = søkerKunFremtid(periode);
@@ -57,8 +56,7 @@ const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChange
 
                     <SøknadFormComponents.YesOrNoQuestion
                         name={SøknadFormField.omsorgstilbud__erIOmsorgstilbud_fortid}
-                        legend={intlHelper(
-                            intl,
+                        legend={text(
                             periodeFortidFremtid
                                 ? 'steg.omsorgstilbud.erIOmsorgstilbudFortid.spm'
                                 : 'steg.omsorgstilbud.erIOmsorgstilbudKunFortid.spm',
@@ -92,8 +90,7 @@ const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChange
 
                     <SøknadFormComponents.RadioGroup
                         name={SøknadFormField.omsorgstilbud__erIOmsorgstilbud_fremtid}
-                        legend={intlHelper(
-                            intl,
+                        legend={text(
                             periodeFortidFremtid
                                 ? 'steg.omsorgstilbud.erIOmsorgstilbudFremtid.spm'
                                 : 'steg.omsorgstilbud.erIOmsorgstilbudKunFremtid.spm',
@@ -171,10 +168,10 @@ const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChange
                                 </>
                             )}
                             <SøknadFormComponents.YesOrNoQuestion
-                                legend={intlHelper(intl, `steg.omsorgstilbud.erLiktHverUke.spm.${tekstLiktHverUke}`)}
+                                legend={text(`steg.omsorgstilbud.erLiktHverUke.spm.${tekstLiktHverUke}`)}
                                 labels={{
-                                    yes: intlHelper(intl, `steg.omsorgstilbud.erLiktHverUke.yes.${tekstLiktHverUke}`),
-                                    no: intlHelper(intl, `steg.omsorgstilbud.erLiktHverUke.no.${tekstLiktHverUke}`),
+                                    yes: text(`steg.omsorgstilbud.erLiktHverUke.yes.${tekstLiktHverUke}`),
+                                    no: text(`steg.omsorgstilbud.erLiktHverUke.no.${tekstLiktHverUke}`),
                                 }}
                                 name={SøknadFormField.omsorgstilbud__erLiktHverUke}
                                 description={omsorgstilbudInfo.erLiktHverUke}
@@ -197,8 +194,7 @@ const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChange
                         <FormBlock>
                             <ResponsivePanel border={true}>
                                 <SøknadFormComponents.InputGroup
-                                    legend={intlHelper(
-                                        intl,
+                                    legend={text(
                                         periodeFremtid
                                             ? 'steg.omsorgstilbud.hvorMyeTidIOmsorgstilbud.kunFremtid'
                                             : 'steg.omsorgstilbud.hvorMyeTidIOmsorgstilbud',
@@ -234,8 +230,7 @@ const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChange
                             <ResponsivePanel border={true}>
                                 <OmsorgstilbudVariert
                                     omsorgsdager={omsorgstilbud.enkeltdager || {}}
-                                    tittel={intlHelper(
-                                        intl,
+                                    tittel={text(
                                         periodeFremtid
                                             ? 'steg.omsorgstilbud.hvormyetittel.kunFremtid'
                                             : 'steg.omsorgstilbud.hvormyetittel',

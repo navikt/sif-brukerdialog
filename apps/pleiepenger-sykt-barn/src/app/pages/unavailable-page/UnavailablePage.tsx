@@ -4,7 +4,6 @@ import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitud
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
 import './unavailablePage.less';
 import { AppText } from '../../i18n';
@@ -14,8 +13,8 @@ const bem = bemUtils('introPage');
 const link = 'https://www.nav.no/soknader/nb/person/familie/pleiepenger-og-opplaringspenger';
 
 const UnavailablePage = () => {
-    const { intl } = useAppIntl();
-    const title = intlHelper(intl, 'application.title');
+    const { text } = useAppIntl();
+    const title = text('application.title');
     useLogSidevisning(SIFCommonPageKey.ikkeTilgjengelig);
     return (
         <Page className={bem.block} title={title} topContentRenderer={() => <SoknadHeader title={title} />}>

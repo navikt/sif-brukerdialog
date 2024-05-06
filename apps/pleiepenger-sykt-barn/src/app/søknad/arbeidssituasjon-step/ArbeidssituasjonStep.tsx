@@ -2,7 +2,6 @@ import { useContext, useState } from 'react';
 import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { DateRange } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
@@ -36,7 +35,7 @@ const ArbeidssituasjonStep = ({ onValidSubmit, søknadsdato, søknadsperiode }: 
     const [loadState, setLoadState] = useState<LoadState>({ isLoading: false, isLoaded: false });
     const søkerdata = useContext(SøkerdataContext);
     const formikProps = useFormikContext<SøknadFormValues>();
-    const { intl } = useAppIntl();
+    const { text } = useAppIntl();
 
     const { values } = formikProps;
     const { isLoading, isLoaded } = loadState;
@@ -64,26 +63,24 @@ const ArbeidssituasjonStep = ({ onValidSubmit, søknadsdato, søknadsperiode }: 
                         <ArbeidssituasjonStepVeileder />
                     </Block>
 
-                    <FormSection title={intlHelper(intl, 'steg.arbeidssituasjon.tittel')} titleLevel="2">
+                    <FormSection title={text('steg.arbeidssituasjon.tittel')} titleLevel="2">
                         <ArbeidssituasjonArbeidsgivere søknadsperiode={søknadsperiode} />
                     </FormSection>
 
-                    <FormSection title={intlHelper(intl, 'steg.arbeidssituasjon.frilanser.tittel')} titleLevel="2">
+                    <FormSection title={text('steg.arbeidssituasjon.frilanser.tittel')} titleLevel="2">
                         <ArbeidssituasjonFrilans søknadsperiode={søknadsperiode} søknadsdato={søknadsdato} />
                     </FormSection>
 
-                    <FormSection title={intlHelper(intl, 'steg.arbeidssituasjon.sn.tittel')} titleLevel="2">
+                    <FormSection title={text('steg.arbeidssituasjon.sn.tittel')} titleLevel="2">
                         <ArbeidssituasjonSN søknadsperiode={søknadsperiode} />
                     </FormSection>
 
-                    <FormSection
-                        title={intlHelper(intl, 'steg.arbeidssituasjon.opptjeningUtland.tittel')}
-                        titleLevel="2">
+                    <FormSection title={text('steg.arbeidssituasjon.opptjeningUtland.tittel')} titleLevel="2">
                         <ArbeidssituasjonOpptjeningUtland />
                     </FormSection>
 
                     {visVernepliktSpørsmål(values) && (
-                        <FormSection title={intlHelper(intl, 'steg.arbeidssituasjon.verneplikt.tittel')} titleLevel="2">
+                        <FormSection title={text('steg.arbeidssituasjon.verneplikt.tittel')} titleLevel="2">
                             <ArbeidssituasjonVerneplikt />
                         </FormSection>
                     )}

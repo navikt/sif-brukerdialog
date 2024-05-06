@@ -2,7 +2,6 @@ import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import ContentWithHeader from '@navikt/sif-common-core-ds/src/components/content-with-header/ContentWithHeader';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SummaryBlock, SummarySection, TextareaSvar } from '@navikt/sif-common-ui';
 import { DateRange, prettifyDateExtended } from '@navikt/sif-common-utils';
 import Sitat from '../../../components/sitat/Sitat';
@@ -21,19 +20,19 @@ const OmsorgstilbudSummary: React.FC<Props> = ({
     apiValues: { nattevåk, beredskap, omsorgstilbud },
     søknadsperiode,
 }) => {
-    const { intl } = useAppIntl();
+    const { text } = useAppIntl();
 
     return (
         <>
             <SummarySection
-                header={intlHelper(intl, 'steg.oppsummering.omsorgstilbud.header', {
+                header={text('steg.oppsummering.omsorgstilbud.header', {
                     fra: prettifyDateExtended(søknadsperiode.from),
                     til: prettifyDateExtended(søknadsperiode.to),
                 })}>
                 {omsorgstilbud === undefined && (
                     <>
                         {(søkerKunFortid(søknadsperiode) || søkerFortidOgFremtid(søknadsperiode)) && (
-                            <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.omsorgstilbud.fortid.spm')}>
+                            <SummaryBlock header={text('steg.oppsummering.omsorgstilbud.fortid.spm')}>
                                 <div data-testid="oppsummering-omsorgstilbud-svarFortid">
                                     <AppText id={`steg.oppsummering.omsorgstilbud.fortid.svar.NEI`} />
                                 </div>
@@ -41,8 +40,7 @@ const OmsorgstilbudSummary: React.FC<Props> = ({
                         )}
                         {(søkerKunFremtid(søknadsperiode) || søkerFortidOgFremtid(søknadsperiode)) && (
                             <SummaryBlock
-                                header={intlHelper(
-                                    intl,
+                                header={text(
                                     søkerFortidOgFremtid(søknadsperiode)
                                         ? 'steg.oppsummering.omsorgstilbud.fremtid.spm'
                                         : 'steg.oppsummering.omsorgstilbud.fremtid.spm.kunFremtid',
@@ -55,7 +53,7 @@ const OmsorgstilbudSummary: React.FC<Props> = ({
                     </>
                 )}
                 {omsorgstilbud !== undefined && omsorgstilbud.svarFortid && (
-                    <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.omsorgstilbud.fortid.spm')}>
+                    <SummaryBlock header={text('steg.oppsummering.omsorgstilbud.fortid.spm')}>
                         <div data-testid="oppsummering-omsorgstilbud-svarFortid">
                             <AppText id={`steg.oppsummering.omsorgstilbud.fortid.svar.${omsorgstilbud.svarFortid}`} />
                         </div>
@@ -63,8 +61,7 @@ const OmsorgstilbudSummary: React.FC<Props> = ({
                 )}
                 {omsorgstilbud !== undefined && omsorgstilbud.svarFremtid && (
                     <SummaryBlock
-                        header={intlHelper(
-                            intl,
+                        header={text(
                             søkerFortidOgFremtid(søknadsperiode)
                                 ? 'steg.oppsummering.omsorgstilbud.fremtid.spm'
                                 : 'steg.oppsummering.omsorgstilbud.fremtid.spm.kunFremtid',
@@ -76,8 +73,7 @@ const OmsorgstilbudSummary: React.FC<Props> = ({
                 )}
                 {omsorgstilbud !== undefined && omsorgstilbud.ukedager && (
                     <SummaryBlock
-                        header={intlHelper(
-                            intl,
+                        header={text(
                             søkerKunFortid(søknadsperiode)
                                 ? 'steg.oppsummering.omsorgstilbud.fast.header.fortid'
                                 : 'steg.oppsummering.omsorgstilbud.fast.header',
@@ -86,16 +82,16 @@ const OmsorgstilbudSummary: React.FC<Props> = ({
                     </SummaryBlock>
                 )}
                 {omsorgstilbud !== undefined && omsorgstilbud.enkeltdager && (
-                    <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.omsorgstilbud.enkeltdager.header')}>
+                    <SummaryBlock header={text('steg.oppsummering.omsorgstilbud.enkeltdager.header')}>
                         <TidEnkeltdager dager={omsorgstilbud.enkeltdager} />
                     </SummaryBlock>
                 )}
             </SummarySection>
             {(nattevåk || beredskap) && (
-                <SummarySection header={intlHelper(intl, 'steg.oppsummering.nattevåkBeredskap.header')}>
+                <SummarySection header={text('steg.oppsummering.nattevåkBeredskap.header')}>
                     {nattevåk && (
                         <Block margin="xl">
-                            <ContentWithHeader header={intlHelper(intl, 'steg.nattevåkOgBeredskap.nattevåk.spm')}>
+                            <ContentWithHeader header={text('steg.nattevåkOgBeredskap.nattevåk.spm')}>
                                 <div data-testid="oppsummering-nattevåk">
                                     <AppText id={nattevåk.harNattevåk === true ? 'Ja' : 'Nei'} />
                                 </div>
@@ -112,7 +108,7 @@ const OmsorgstilbudSummary: React.FC<Props> = ({
                     )}
                     {beredskap && (
                         <Block margin="xl">
-                            <ContentWithHeader header={intlHelper(intl, 'steg.nattevåkOgBeredskap.beredskap.spm')}>
+                            <ContentWithHeader header={text('steg.nattevåkOgBeredskap.beredskap.spm')}>
                                 <div data-testid="oppsummering-beredskap">
                                     <AppText id={beredskap.beredskap === true ? 'Ja' : 'Nei'} />
                                 </div>

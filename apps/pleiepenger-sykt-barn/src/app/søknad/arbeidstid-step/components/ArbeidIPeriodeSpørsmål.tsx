@@ -1,7 +1,6 @@
 import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
 import { FormikRadioProp } from '@navikt/sif-common-formik-ds/src/components/formik-radio-group/FormikRadioGroup';
 import { DateRange } from '@navikt/sif-common-utils';
@@ -53,7 +52,8 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
     arbeidsforholdType,
     arbeiderIPeriodenDescription,
 }) => {
-    const { intl } = useAppIntl();
+    const appIntl = useAppIntl();
+    const { text } = appIntl;
     const getFieldName = (field: ArbeidIPeriodeFormField) => `${parentFieldName}.arbeidIPeriode.${field}` as any;
     const visKunArbeidstidPerUke = skalSvarePåOmEnJobberLiktIPerioden(periode) === false;
 
@@ -61,7 +61,7 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
         formValues?.arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert &&
         (visKunArbeidstidPerUke || formValues?.erLiktHverUke === YesOrNo.NO);
 
-    const spørsmål = getArbeidstidSpørsmålstekst(intl, arbeidsforholdType, intlValues);
+    const spørsmål = getArbeidstidSpørsmålstekst(appIntl, arbeidsforholdType, intlValues);
     return (
         <>
             <SøknadFormComponents.RadioGroup
@@ -72,15 +72,15 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
                 radios={
                     arbeiderIPeriodenAlternativer || [
                         {
-                            label: intlHelper(intl, 'arbeidIPeriode.arbeiderIPerioden.svar.jobberIkke'),
+                            label: text('arbeidIPeriode.arbeiderIPerioden.svar.jobberIkke'),
                             value: ArbeiderIPeriodenSvar.heltFravær,
                         },
                         {
-                            label: intlHelper(intl, 'arbeidIPeriode.arbeiderIPerioden.svar.jobberRedusert'),
+                            label: text('arbeidIPeriode.arbeiderIPerioden.svar.jobberRedusert'),
                             value: ArbeiderIPeriodenSvar.redusert,
                         },
                         {
-                            label: intlHelper(intl, 'arbeidIPeriode.arbeiderIPerioden.svar.jobberVanlig'),
+                            label: text('arbeidIPeriode.arbeiderIPerioden.svar.jobberVanlig'),
                             value: ArbeiderIPeriodenSvar.somVanlig,
                         },
                     ]
@@ -97,8 +97,8 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
                                     legend={spørsmål.erLiktHverUke}
                                     validate={getArbeidIPeriodeErLiktHverUkeValidator(intlValues)}
                                     labels={{
-                                        yes: intlHelper(intl, `arbeidIPeriode.erLiktHverUke.ja`),
-                                        no: intlHelper(intl, `arbeidIPeriode.erLiktHverUke.nei`),
+                                        yes: text(`arbeidIPeriode.erLiktHverUke.ja`),
+                                        no: text(`arbeidIPeriode.erLiktHverUke.nei`),
                                     }}
                                 />
                             </FormBlock>
@@ -111,12 +111,12 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
                                         legend={spørsmål.timerEllerProsent}
                                         radios={[
                                             {
-                                                label: intlHelper(intl, `arbeidIPeriode.timerEllerProsent.prosent`),
+                                                label: text(`arbeidIPeriode.timerEllerProsent.prosent`),
                                                 value: TimerEllerProsent.PROSENT,
                                                 'data-testid': TimerEllerProsent.PROSENT,
                                             },
                                             {
-                                                label: intlHelper(intl, `arbeidIPeriode.timerEllerProsent.timer`),
+                                                label: text(`arbeidIPeriode.timerEllerProsent.timer`),
                                                 value: TimerEllerProsent.TIMER,
                                                 'data-testid': TimerEllerProsent.TIMER,
                                             },
@@ -144,7 +144,7 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
                                             name={getFieldName(ArbeidIPeriodeFormField.snittTimerPerUke)}
                                             label={spørsmål.snittTimerPerUke}
                                             validate={getArbeidIPeriodeSnittTimerPerUkeValidator(
-                                                intl,
+                                                appIntl,
                                                 intlValues,
                                                 normalarbeidstid,
                                             )}
@@ -165,7 +165,7 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
                                     arbeidIPeriode={formValues}
                                     timerPerUkeValidator={(arbeidsuke: ArbeidsukeInfo) =>
                                         getArbeidIPeriodeSnittTimerEnArbeidsukeValidator(
-                                            intl,
+                                            appIntl,
                                             intlValues,
                                             normalarbeidstid,
                                             arbeidsuke,

@@ -1,9 +1,7 @@
 import React from 'react';
-import { IntlShape } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { ISODuration, ISODurationToDuration } from '@navikt/sif-common-utils';
 import { Time } from '../../../types/Time';
-import { useAppIntl } from '../../../i18n';
+import { AppIntlShape, useAppIntl } from '../../../i18n';
 
 interface TidFasteDagerType {
     mandag?: ISODuration;
@@ -17,14 +15,15 @@ interface Props {
     fasteDager?: TidFasteDagerType;
 }
 
-const formatTime = (intl: IntlShape, time: Partial<Time>): string => {
+const formatTime = ({ text }: AppIntlShape, time: Partial<Time>): string => {
     const timer = time.hours || '0';
     const minutter = time.minutes || '0';
-    return intlHelper(intl, 'psb.timerOgMinutter', { timer, minutter });
+    return text('psb.timerOgMinutter', { timer, minutter });
 };
 
 const TidFasteDager: React.FunctionComponent<Props> = ({ fasteDager }) => {
-    const { intl } = useAppIntl();
+    const appIntl = useAppIntl();
+    const { text } = appIntl;
 
     if (fasteDager) {
         const days = Object.keys(fasteDager).filter((day) => (fasteDager as any)[day] !== undefined);
@@ -35,7 +34,7 @@ const TidFasteDager: React.FunctionComponent<Props> = ({ fasteDager }) => {
                         const time = ISODurationToDuration((fasteDager as any)[day]);
                         return (
                             <li key={idx} style={{ marginBottom: '.25rem' }}>
-                                {`${intlHelper(intl, `${day}er.caps`)}: ${time ? formatTime(intl, time) : 0}`}
+                                {`${text(`${day}er.caps` as any)}: ${time ? formatTime(appIntl, time) : 0}`}
                             </li>
                         );
                     })}
@@ -43,7 +42,7 @@ const TidFasteDager: React.FunctionComponent<Props> = ({ fasteDager }) => {
             );
         }
     }
-    return <>{intlHelper(intl, 'dagerMedTid.ingenDagerRegistrert')}</>;
+    return <>{text('dagerMedTid.ingenDagerRegistrert')}</>;
 };
 
 export default TidFasteDager;

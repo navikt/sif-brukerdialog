@@ -5,11 +5,10 @@ import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormattedHtmlMessage from '@navikt/sif-common-core-ds/src/atoms/formatted-html-message/FormattedHtmlMessage';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { AppText } from '../../../i18n';
 
 const OmsorgstilbudStepInfo = () => {
-    const { intl } = useAppIntl();
+    const { text } = useAppIntl();
     return (
         <SifGuidePanel>
             <p>
@@ -39,13 +38,17 @@ const OmsorgstilbudStepInfo = () => {
                 <FormattedHtmlMessage id="steg.omsorgstilbud.veileder.2" />
             </p>
             <Block>
-                <ExpandableInfo title={intlHelper(intl, 'steg.omsorgstilbud.eksempel.tittel')}>
-                    <p>{intlHelper(intl, 'steg.omsorgstilbud.eksempel.1')}</p>
-                    <p>{intlHelper(intl, 'steg.omsorgstilbud.eksempel.2')}</p>
+                <ExpandableInfo title={text('steg.omsorgstilbud.eksempel.tittel')}>
+                    <p>
+                        <AppText id="steg.omsorgstilbud.eksempel.1" />
+                    </p>
+                    <p>
+                        <AppText id="steg.omsorgstilbud.eksempel.2" />
+                    </p>
                 </ExpandableInfo>
             </Block>
             <Block>
-                <ExpandableInfo title={intlHelper(intl, 'steg.omsorgstilbud.veileder.3')}>
+                <ExpandableInfo title={text('steg.omsorgstilbud.veileder.3')}>
                     <p>
                         <AppText id="steg.omsorgstilbud.veileder.3.1" />{' '}
                         <strong>
@@ -60,14 +63,14 @@ const OmsorgstilbudStepInfo = () => {
             </Block>
 
             <Block>
-                <ExpandableInfo title={intlHelper(intl, 'steg.omsorgstilbud.veileder.4')}>
+                <ExpandableInfo title={text('steg.omsorgstilbud.veileder.4')}>
                     <p>
                         <AppText id="steg.omsorgstilbud.veileder.4.1" />
                     </p>
                 </ExpandableInfo>
             </Block>
             <Block>
-                <ExpandableInfo title={intlHelper(intl, 'steg.omsorgstilbud.veileder.5')}>
+                <ExpandableInfo title={text('steg.omsorgstilbud.veileder.5')}>
                     <p>
                         <AppText id="steg.omsorgstilbud.veileder.5.1" />
                     </p>
@@ -101,9 +104,9 @@ const AdvarselSøkerKunHelgedager = () => (
 );
 
 const ErLiktHverUke: React.FunctionComponent = () => {
-    const { intl } = useAppIntl();
+    const { text } = useAppIntl();
     return (
-        <ExpandableInfo title={intlHelper(intl, 'steg.omsorgstilbud.erLiktHverUke.info.tittel')}>
+        <ExpandableInfo title={text('steg.omsorgstilbud.erLiktHverUke.info.tittel')}>
             <AppText id={'steg.omsorgstilbud.erLiktHverUke.info.1'} />
             <br />
             <AppText id={'steg.omsorgstilbud.erLiktHverUke.info.2'} />
@@ -112,9 +115,9 @@ const ErLiktHverUke: React.FunctionComponent = () => {
 };
 
 const ErIOmsorgstilbud: React.FunctionComponent = () => {
-    const { intl } = useAppIntl();
+    const { text } = useAppIntl();
     return (
-        <ExpandableInfo title={intlHelper(intl, 'steg.omsorgstilbud.hvorMyeTidIOmsorgstilbud.description.tittel')}>
+        <ExpandableInfo title={text('steg.omsorgstilbud.hvorMyeTidIOmsorgstilbud.description.tittel')}>
             <p>
                 <AppText id={'steg.omsorgstilbud.hvorMyeTidIOmsorgstilbud.description.info.1'} />
             </p>

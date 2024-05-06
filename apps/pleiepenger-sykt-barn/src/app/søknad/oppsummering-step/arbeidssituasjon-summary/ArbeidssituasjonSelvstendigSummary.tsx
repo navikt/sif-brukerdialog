@@ -1,7 +1,6 @@
 import { Heading } from '@navikt/ds-react';
 import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import VirksomhetSummary from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetSummary';
 import { SummaryBlock } from '@navikt/sif-common-ui';
 import { AppText } from '../../../i18n';
@@ -13,10 +12,10 @@ interface Props {
 }
 
 function ArbeidssituasjonSelvstendigSummary({ selvstendig }: Props) {
-    const { intl } = useAppIntl();
+    const { text } = useAppIntl();
     return (
         <div data-testid="arbeidssituasjon-sn">
-            <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.selvstendig.header')}>
+            <SummaryBlock header={text('oppsummering.arbeidssituasjon.selvstendig.header')}>
                 {selvstendig.harInntektSomSelvstendig === false && (
                     <ul>
                         <li>
@@ -47,7 +46,7 @@ function ArbeidssituasjonSelvstendigSummary({ selvstendig }: Props) {
                             </li>
                         </ul>
                         <Heading level="4" size="xsmall">
-                            {intlHelper(intl, 'summary.virksomhet.virksomhetInfo.tittel')}
+                            {text('summary.virksomhet.virksomhetInfo.tittel')}
                         </Heading>
                         <Block margin="m">
                             <div style={{ paddingLeft: '1rem' }}>

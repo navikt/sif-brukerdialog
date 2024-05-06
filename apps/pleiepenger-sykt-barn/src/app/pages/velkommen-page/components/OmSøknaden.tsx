@@ -2,13 +2,12 @@ import { Heading, Link } from '@navikt/ds-react';
 import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { AppText } from '../../../i18n';
 import getLenker from '../../../lenker';
 import BehandlingAvPersonopplysningerContent from './BehandlingAvPersonopplysningerContent';
-import { AppText } from '../../../i18n';
 
 const OmSøknaden = () => {
-    const { intl } = useAppIntl();
+    const { text } = useAppIntl();
     return (
         <Block margin="xl">
             <Heading level="2" size="medium">
@@ -21,7 +20,7 @@ const OmSøknaden = () => {
             <p>
                 <AppText id="page.velkommen.omSøknaden.fremoverITid" />
             </p>
-            <ExpandableInfo title={intlHelper(intl, 'page.velkommen.omSøknaden.endringer.tittel')}>
+            <ExpandableInfo title={text('page.velkommen.omSøknaden.endringer.tittel')}>
                 <p>
                     <AppText id="page.velkommen.omSøknaden.endringer.tekst.1.a" />{' '}
                     <Link href={getLenker('nb').endringsmelding} target="_blank">
@@ -44,7 +43,7 @@ const OmSøknaden = () => {
             <p>
                 <AppText id="page.velkommen.omSøknaden.3" />
             </p>
-            <ExpandableInfo title={intlHelper(intl, 'page.velkommen.omSøknaden.4')}>
+            <ExpandableInfo title={text('page.velkommen.omSøknaden.4')}>
                 <BehandlingAvPersonopplysningerContent />
             </ExpandableInfo>
         </Block>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { useAppIntl } from '@i18n/index';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SummaryBlock, SummarySection } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
 import { Arbeidsgiver } from '../../../types';
@@ -31,11 +30,11 @@ const ArbeidssituasjonSummary: React.FunctionComponent<Props> = ({
     søknadsperiode,
     frilansoppdrag,
 }) => {
-    const { intl } = useAppIntl();
+    const { text } = useAppIntl();
 
     return (
         <div data-testid="oppsummering-arbeidssituasjon">
-            <SummarySection header={intlHelper(intl, 'steg.oppsummering.arbeidssituasjon.header')}>
+            <SummarySection header={text('steg.oppsummering.arbeidssituasjon.header')}>
                 <ArbeidsgivereSummary arbeidsgivere={arbeidsgivere} søknadsperiode={søknadsperiode} />
 
                 <StønadGodtgjørelseSummary stønadGodtgjørelse={stønadGodtgjørelse} />
@@ -54,11 +53,10 @@ const ArbeidssituasjonSummary: React.FunctionComponent<Props> = ({
 
                 {/* Vernepliktig */}
                 {harVærtEllerErVernepliktig !== undefined && (
-                    <SummaryBlock header={intlHelper(intl, 'verneplikt.summary.header')}>
+                    <SummaryBlock header={text('verneplikt.summary.header')}>
                         <ul>
                             <li>
-                                {intlHelper(
-                                    intl,
+                                {text(
                                     harVærtEllerErVernepliktig
                                         ? 'verneplikt.summary.harVærtVernepliktig'
                                         : 'verneplikt.summary.harIkkeVærtVernepliktig',

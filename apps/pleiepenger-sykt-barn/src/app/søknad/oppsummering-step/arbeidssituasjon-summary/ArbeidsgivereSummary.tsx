@@ -1,6 +1,5 @@
 import React from 'react';
 import { useAppIntl } from '@i18n/index';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SummaryBlock } from '@navikt/sif-common-ui';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
 import { AppText } from '../../../i18n';
@@ -13,11 +12,11 @@ interface Props {
 }
 
 const ArbeidsgivereSummary: React.FunctionComponent<Props> = ({ arbeidsgivere, søknadsperiode }) => {
-    const { intl } = useAppIntl();
+    const { text } = useAppIntl();
 
     if (arbeidsgivere === undefined || arbeidsgivere.length === 0) {
         return (
-            <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.arbeidsgivere.ingenIPeriode.header')}>
+            <SummaryBlock header={text('oppsummering.arbeidssituasjon.arbeidsgivere.ingenIPeriode.header')}>
                 <ul>
                     <li>
                         <p>
@@ -38,7 +37,7 @@ const ArbeidsgivereSummary: React.FunctionComponent<Props> = ({ arbeidsgivere, s
                     <div data-testid={`arbeidssituasjon-ansatt-${organisasjonsnummer}`} key={organisasjonsnummer}>
                         <SummaryBlock
                             key={organisasjonsnummer}
-                            header={intlHelper(intl, 'arbeidsgiver.tittel', { navn, organisasjonsnummer })}>
+                            header={text('arbeidsgiver.tittel', { navn, organisasjonsnummer })}>
                             <ul>
                                 <li>
                                     <AppText

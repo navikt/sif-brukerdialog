@@ -1,7 +1,5 @@
 import { BodyShort } from '@navikt/ds-react';
 import React from 'react';
-import { IntlShape } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { DateRange, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/src';
 import { dateFormatter, dateRangeToISODateRange } from '@navikt/sif-common-utils';
 import { AppText } from '../../../i18n';
@@ -13,11 +11,7 @@ import {
 } from '../../../types/søknad-form-values/ArbeidIPeriodeFormValues';
 import SøknadFormComponents from '../../SøknadFormComponents';
 import { ArbeidsukeFieldName } from '../types/Arbeidsuke';
-import {
-    ArbeidsperiodeIForholdTilSøknadsperiode,
-    getArbeidsperiodeIForholdTilSøknadsperiode,
-    getArbeidsukerIPerioden,
-} from '../utils/arbeidstidStepUtils';
+import { getArbeidsukerIPerioden } from '../utils/arbeidstidStepUtils';
 
 export const getArbeidsukeKey = (week: ArbeidsukeInfo): string => {
     return `${dateRangeToISODateRange(week.periode)}`;
@@ -34,27 +28,6 @@ interface Props {
     parentFieldName: string;
     arbeidIPeriode: ArbeidIPeriodeFormValues;
 }
-
-export const getPeriodeISøknadsperiodeInfo = (intl: IntlShape, periode: DateRange, søknadsperiode: DateRange) => {
-    const arbeidsperiodeVariant = getArbeidsperiodeIForholdTilSøknadsperiode(periode, søknadsperiode);
-    switch (arbeidsperiodeVariant) {
-        case ArbeidsperiodeIForholdTilSøknadsperiode.slutterIPerioden:
-            return intlHelper(intl, 'arbeidIPeriode.arbeidsperiode.slutterIPerioden', {
-                fra: dateFormatter.full(periode.to),
-            });
-        case ArbeidsperiodeIForholdTilSøknadsperiode.starterIPerioden:
-            return intlHelper(intl, 'arbeidIPeriode.arbeidsperiode.starterIPerioden', {
-                fra: dateFormatter.full(periode.from),
-            });
-        case ArbeidsperiodeIForholdTilSøknadsperiode.starterOgSlutterIPerioden:
-            return intlHelper(intl, 'arbeidIPeriode.arbeidsperiode.starterOgSlutterIPerioden', {
-                fra: dateFormatter.full(periode.from),
-                til: dateFormatter.full(periode.to),
-            });
-        default:
-            return '';
-    }
-};
 
 const ArbeidstidEnkeltuker: React.FunctionComponent<Props> = ({
     periode,

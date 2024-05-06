@@ -1,14 +1,13 @@
 import { Link } from '@navikt/ds-react';
+import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
 import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/BostedUtlandListAndDialog';
 import { useFormikContext } from 'formik';
-import { useAppIntl } from '@i18n/index';
 import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 import getLenker from '../../lenker';
 import { StepCommonProps } from '../../types/StepCommonProps';
@@ -25,14 +24,14 @@ type Props = {
 
 const MedlemsskapStep = ({ onValidSubmit, søknadsdato }: StepCommonProps & Props) => {
     const { values } = useFormikContext<SøknadFormValues>();
-    const { intl } = useAppIntl();
+    const { text } = useAppIntl();
     const { neste12Måneder, siste12Måneder } = getMedlemsskapDateRanges(søknadsdato);
 
     return (
         <SøknadFormStep stepId={StepID.MEDLEMSKAP} onValidFormSubmit={onValidSubmit}>
             <Block padBottom="xxl">
                 <SifGuidePanel>
-                    {intlHelper(intl, 'step.medlemskap.veileder')}{' '}
+                    {text('step.medlemskap.veileder')}{' '}
                     <Link href={getLenker().medlemskap} target="_blank">
                         nav.no
                     </Link>
@@ -40,12 +39,12 @@ const MedlemsskapStep = ({ onValidSubmit, søknadsdato }: StepCommonProps & Prop
                 </SifGuidePanel>
             </Block>
             <SøknadFormComponents.YesOrNoQuestion
-                legend={intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.spm')}
+                legend={text('steg.medlemsskap.annetLandSiste12.spm')}
                 name={SøknadFormField.harBoddUtenforNorgeSiste12Mnd}
                 validate={getYesOrNoValidator()}
                 description={
-                    <ExpandableInfo title={intlHelper(intl, 'HvaBetyrDette')}>
-                        {intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.hjelp')}
+                    <ExpandableInfo title={text('HvaBetyrDette')}>
+                        {text('steg.medlemsskap.annetLandSiste12.hjelp')}
                     </ExpandableInfo>
                 }
             />
@@ -58,9 +57,9 @@ const MedlemsskapStep = ({ onValidSubmit, søknadsdato }: StepCommonProps & Prop
                                 minDate={siste12Måneder.from}
                                 maxDate={siste12Måneder.to}
                                 labels={{
-                                    addLabel: intlHelper(intl, 'step.medlemskap.leggTilKnapp'),
-                                    listTitle: intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.listeTittel'),
-                                    modalTitle: intlHelper(intl, 'step.medlemskap.utenlandsoppholdSiste12'),
+                                    addLabel: text('step.medlemskap.leggTilKnapp'),
+                                    listTitle: text('steg.medlemsskap.annetLandSiste12.listeTittel'),
+                                    modalTitle: text('step.medlemskap.utenlandsoppholdSiste12'),
                                 }}
                                 validate={validateUtenlandsoppholdSiste12Mnd}
                             />
@@ -70,12 +69,12 @@ const MedlemsskapStep = ({ onValidSubmit, søknadsdato }: StepCommonProps & Prop
             )}
             <FormBlock>
                 <SøknadFormComponents.YesOrNoQuestion
-                    legend={intlHelper(intl, 'steg.medlemsskap.annetLandNeste12.spm')}
+                    legend={text('steg.medlemsskap.annetLandNeste12.spm')}
                     name={SøknadFormField.skalBoUtenforNorgeNeste12Mnd}
                     validate={getYesOrNoValidator()}
                     description={
-                        <ExpandableInfo title={intlHelper(intl, 'HvaBetyrDette')}>
-                            {intlHelper(intl, 'steg.medlemsskap.annetLandNeste12.hjelp')}
+                        <ExpandableInfo title={text('HvaBetyrDette')}>
+                            {text('steg.medlemsskap.annetLandNeste12.hjelp')}
                         </ExpandableInfo>
                     }
                 />
@@ -89,9 +88,9 @@ const MedlemsskapStep = ({ onValidSubmit, søknadsdato }: StepCommonProps & Prop
                                 minDate={neste12Måneder.from}
                                 maxDate={neste12Måneder.to}
                                 labels={{
-                                    addLabel: intlHelper(intl, 'step.medlemskap.leggTilKnapp'),
-                                    listTitle: intlHelper(intl, 'steg.medlemsskap.annetLandNeste12.listeTittel'),
-                                    modalTitle: intlHelper(intl, 'step.medlemskap.utenlandsoppholdNeste12'),
+                                    addLabel: text('step.medlemskap.leggTilKnapp'),
+                                    listTitle: text('steg.medlemsskap.annetLandNeste12.listeTittel'),
+                                    modalTitle: text('step.medlemskap.utenlandsoppholdNeste12'),
                                 }}
                                 validate={validateUtenlandsoppholdNeste12Mnd}
                             />

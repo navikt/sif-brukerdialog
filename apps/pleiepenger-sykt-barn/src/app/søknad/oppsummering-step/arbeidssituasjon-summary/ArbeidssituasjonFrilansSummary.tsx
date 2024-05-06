@@ -1,5 +1,4 @@
 import { useAppIntl } from '@i18n/index';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SummaryBlock } from '@navikt/sif-common-ui';
 import { dateFormatter, DateRange, ISODateToDate } from '@navikt/sif-common-utils';
 import { AppText } from '../../../i18n';
@@ -16,10 +15,10 @@ interface Props {
 }
 
 const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag, søknadsperiode }: Props) => {
-    const { intl } = useAppIntl();
+    const { text } = useAppIntl();
     if (frilans.harInntektSomFrilanser === false) {
         return (
-            <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.frilanser.header')}>
+            <SummaryBlock header={text('oppsummering.arbeidssituasjon.frilanser.header')}>
                 <ul data-testid="arbeidssituasjon-frilanser">
                     <li>
                         <p>
@@ -33,7 +32,7 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag, søknadsperio
 
     if (frilans.type === Frilanstype.HONORAR && frilans._misterInntektSomFrilanser === false) {
         return (
-            <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.frilanser.header')}>
+            <SummaryBlock header={text('oppsummering.arbeidssituasjon.frilanser.header')}>
                 <ul data-testid="arbeidssituasjon-frilanser">
                     <li>
                         <AppText id={`oppsummering.arbeidssituasjon.frilans.HONORAR`} />
@@ -47,7 +46,7 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag, søknadsperio
     }
 
     return (
-        <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.frilanser.header')}>
+        <SummaryBlock header={text('oppsummering.arbeidssituasjon.frilanser.header')}>
             <ul data-testid="arbeidssituasjon-frilanser">
                 <li>
                     <AppText id={`oppsummering.arbeidssituasjon.frilans.${frilans.type}`} />

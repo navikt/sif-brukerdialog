@@ -5,7 +5,6 @@ import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
 import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
@@ -33,7 +32,7 @@ export const cleanupNattevåkOgBeredskapStep = (values: SøknadFormValues): Søk
 };
 
 const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
-    const { intl } = useAppIntl();
+    const { text } = useAppIntl();
     const [loaded, setLoaded] = useState<boolean>(false);
 
     const { values } = useFormikContext<SøknadFormValues>();
@@ -55,10 +54,7 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
                     </p>
                     <Block>
                         <ExpandableInfo
-                            title={intlHelper(
-                                intl,
-                                'steg.nattevåkOgBeredskap.nattevåk.spm.description.flereBarn.tittel',
-                            )}>
+                            title={text('steg.nattevåkOgBeredskap.nattevåk.spm.description.flereBarn.tittel')}>
                             <AppText id={'steg.nattevåkOgBeredskap.nattevåk.spm.description.flereBarn'} />
                         </ExpandableInfo>
                     </Block>
@@ -71,7 +67,7 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
 
                 <FormBlock>
                     <SøknadFormComponents.YesOrNoQuestion
-                        legend={intlHelper(intl, 'steg.nattevåkOgBeredskap.nattevåk.spm')}
+                        legend={text('steg.nattevåkOgBeredskap.nattevåk.spm')}
                         name={SøknadFormField.harNattevåk}
                         validate={getYesOrNoValidator()}
                         data-testid="nattevåk"
@@ -116,7 +112,7 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
                 </BodyLong>
                 <FormBlock>
                     <SøknadFormComponents.YesOrNoQuestion
-                        legend={intlHelper(intl, 'steg.nattevåkOgBeredskap.beredskap.spm')}
+                        legend={text('steg.nattevåkOgBeredskap.beredskap.spm')}
                         name={SøknadFormField.harBeredskap}
                         validate={getYesOrNoValidator()}
                         data-testid="beredskap"

@@ -4,19 +4,18 @@ import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitud
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
 import { AppText } from '../../i18n';
 import getLenker from '../../lenker';
 
 const IkkeTilgangPage = () => {
-    const { intl } = useAppIntl();
+    const { text, intl } = useAppIntl();
     useLogSidevisning(SIFCommonPageKey.ikkeTilgang);
     return (
         <Page
             className="ikkeTilgangPage"
-            title={intlHelper(intl, 'application.title')}
-            topContentRenderer={() => <SoknadHeader title={intlHelper(intl, 'application.title')} />}>
+            title={text('application.title')}
+            topContentRenderer={() => <SoknadHeader title={text('application.title')} />}>
             <Block margin="xxl">
                 <SifGuidePanel poster={true}>
                     <p>

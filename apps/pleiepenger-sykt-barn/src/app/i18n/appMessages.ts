@@ -1205,6 +1205,9 @@ const nb = {
     'omsorgstilbudVariert.deleteLabel': 'Fjern alle timer',
     'omsorgstilbudVariert.editLabel': 'Endre omsorgstilbud {periode}',
     'omsorgstilbudVariert.modalTitle': 'Omsorgstilbud - ${periode}',
+
+    'komponent.bekreftDialog.bekreftLabel': 'Ok',
+    'komponent.bekreftDialog.avbrytLabel': 'Avbryt',
 };
 
 const nn: Record<keyof typeof nb, string> = {

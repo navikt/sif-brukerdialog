@@ -1,20 +1,19 @@
 import React from 'react';
-import { useAppIntl } from '@i18n/index';
 import { useNavigate } from 'react-router-dom';
+import { useAppIntl } from '@i18n/index';
 import { ApplikasjonHendelse, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { soknadStepUtils, Step as SøknadStep } from '@navikt/sif-common-soknad-ds';
 import { useFormikContext } from 'formik';
 import { purge } from '../api/api';
 import usePersistSoknad from '../hooks/usePersistSoknad';
+import InvalidStepPage from '../pages/invalid-step-page/InvalidStepPage';
 import { StepID } from '../types/StepID';
 import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import { relocateToMinSide, relocateToSoknad } from '../utils/navigationUtils';
 import SøknadFormComponents from './SøknadFormComponents';
 import { getSøknadStepConfig } from './søknadStepConfig';
-import InvalidStepPage from '../pages/invalid-step-page/InvalidStepPage';
 
 interface Props {
     stepId: StepID;
@@ -31,7 +30,7 @@ interface Props {
 const SøknadFormStep = (props: Props) => {
     const formik = useFormikContext<SøknadFormValues>();
     const { persistSoknad } = usePersistSoknad();
-    const { intl } = useAppIntl();
+    const { intl, text } = useAppIntl();
     const {
         children,
         onValidFormSubmit,
@@ -72,7 +71,7 @@ const SøknadFormStep = (props: Props) => {
     return (
         <SøknadStep
             activeStepId={stepId}
-            applicationTitle={intlHelper(intl, 'application.title')}
+            applicationTitle={text('application.title')}
             onCancel={handleAvbrytSøknad}
             onContinueLater={handleAvsluttOgFortsettSenere}
             steps={soknadStepUtils.getProgressStepsFromConfig(søknadStepConfig, index, intl)}>

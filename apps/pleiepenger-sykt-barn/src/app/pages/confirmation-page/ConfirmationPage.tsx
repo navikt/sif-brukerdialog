@@ -7,7 +7,6 @@ import CheckmarkIcon from '@navikt/sif-common-core-ds/src/atoms/checkmark-icon/C
 import FormattedHtmlMessage from '@navikt/sif-common-core-ds/src/atoms/formatted-html-message/FormattedHtmlMessage';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
 import { AppText } from '../../i18n';
 import getLenker from '../../lenker';
@@ -22,7 +21,7 @@ interface Props {
 const bem = bemUtils('confirmationPage');
 
 const ConfirmationPage = ({ kvitteringInfo, onUnmount }: Props) => {
-    const { intl } = useAppIntl();
+    const { text, intl } = useAppIntl();
 
     useEffect(() => {
         return () => {
@@ -35,9 +34,9 @@ const ConfirmationPage = ({ kvitteringInfo, onUnmount }: Props) => {
 
     return (
         <Page
-            title={intlHelper(intl, 'page.confirmation.sidetittel')}
+            title={text('page.confirmation.sidetittel')}
             className={bem.block}
-            topContentRenderer={() => <SoknadHeader title={intlHelper(intl, 'application.title')} />}>
+            topContentRenderer={() => <SoknadHeader title={text('application.title')} />}>
             <div className={bem.element('centeredContent')}>
                 <CheckmarkIcon />
                 <Block margin="xl">
@@ -54,7 +53,7 @@ const ConfirmationPage = ({ kvitteringInfo, onUnmount }: Props) => {
             {kvitteringInfo?.arbeidsgivere && (
                 <Block margin="xl">
                     <Alert variant="warning">
-                        {intlHelper(intl, 'page.confirmation.tittel.advarsel.list.tittel')}
+                        <AppText id="page.confirmation.tittel.advarsel.list.tittel" />
                         <ul style={{ marginTop: '0rem', marginBottom: '0rem' }}>
                             <li>
                                 <AppText id="page.confirmation.tittel.advarsel.list.item.1" />

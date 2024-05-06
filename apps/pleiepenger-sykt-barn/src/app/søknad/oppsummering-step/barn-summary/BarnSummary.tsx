@@ -1,12 +1,10 @@
-import { IntlShape } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { SummaryBlock, SummarySection, TextareaSvar } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils';
 import UploadedDocumentsList from '../../../components/fødselsattest-file-list/UploadedDocumentsList';
 import Sitat from '../../../components/sitat/Sitat';
-import { AppText, useAppIntl } from '../../../i18n';
+import { AppIntlShape, AppText, useAppIntl } from '../../../i18n';
 import { BarnRelasjon, RegistrerteBarn, ÅrsakManglerIdentitetsnummer } from '../../../types';
 import { SøknadApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
@@ -39,7 +37,7 @@ const apiBarnSummary = (apiBarn: RegistrerteBarn) => (
     </>
 );
 
-const annetBarnSummary = (intl: IntlShape, apiValues: SøknadApiData) => (
+const annetBarnSummary = ({ text }: AppIntlShape, apiValues: SøknadApiData) => (
     <>
         {apiValues.barn.fødselsdato ? (
             <div data-testid="oppsummering-barnets-fødselsdato">
@@ -63,7 +61,7 @@ const annetBarnSummary = (intl: IntlShape, apiValues: SøknadApiData) => (
         ) : null}
         {apiValues._barnetHarIkkeFnr && apiValues.barn.årsakManglerIdentitetsnummer && (
             <Block margin="l">
-                <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.barnet.barnetHarIkkeFnr')}>
+                <SummaryBlock header={text('steg.oppsummering.barnet.barnetHarIkkeFnr')}>
                     <div data-testid="oppsummering-årsakManglerIdentitetsnummer">
                         <AppText
                             id={`steg.oppsummering.barnet.årsakManglerIdentitetsnummer.${apiValues.barn.årsakManglerIdentitetsnummer}`}
@@ -75,7 +73,7 @@ const annetBarnSummary = (intl: IntlShape, apiValues: SøknadApiData) => (
         {apiValues._barnetHarIkkeFnr === true &&
             apiValues.barn.årsakManglerIdentitetsnummer === ÅrsakManglerIdentitetsnummer.BARNET_BOR_I_UTLANDET && (
                 <Block margin="m">
-                    <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.omBarn.fødselsattest.tittel')}>
+                    <SummaryBlock header={text('steg.oppsummering.omBarn.fødselsattest.tittel')}>
                         <div data-testid={'oppsummering-omBarn-fødselsattest'}>
                             <UploadedDocumentsList includeDeletionFunctionality={false} />
                         </div>
@@ -88,8 +86,8 @@ const annetBarnSummary = (intl: IntlShape, apiValues: SøknadApiData) => (
     </>
 );
 
-const RelasjonTilBarnet = (intl: IntlShape, apiValues: SøknadApiData) => (
-    <SummarySection header={intlHelper(intl, 'steg.oppsummering.relasjonTilBarnet.header')}>
+const RelasjonTilBarnet = ({ text }: AppIntlShape, apiValues: SøknadApiData) => (
+    <SummarySection header={text('steg.oppsummering.relasjonTilBarnet.header')}>
         <Block margin="m">
             {apiValues.barnRelasjon && apiValues.barnRelasjon !== BarnRelasjon.ANNET && (
                 <div data-testid="oppsummering-barn-relasjon">
@@ -111,19 +109,19 @@ const RelasjonTilBarnet = (intl: IntlShape, apiValues: SøknadApiData) => (
 );
 
 const BarnSummary = ({ formValues, apiValues, barn }: Props) => {
-    const { intl } = useAppIntl();
+    const appIntl = useAppIntl();
     const apiBarn = barn.find(({ aktørId }) => aktørId === formValues.barnetSøknadenGjelder);
     const useApiBarn = !formValues.søknadenGjelderEtAnnetBarn && barn && barn.length > 0;
 
     return (
         <>
-            <SummarySection header={intlHelper(intl, 'steg.oppsummering.barnet.header')}>
+            <SummarySection header={appIntl.text('steg.oppsummering.barnet.header')}>
                 <Block margin="m">
                     {useApiBarn && apiBarn && apiBarnSummary(apiBarn)}
-                    {!useApiBarn && annetBarnSummary(intl, apiValues)}
+                    {!useApiBarn && annetBarnSummary(appIntl, apiValues)}
                 </Block>
             </SummarySection>
-            {!useApiBarn && RelasjonTilBarnet(intl, apiValues)}
+            {!useApiBarn && RelasjonTilBarnet(appIntl, apiValues)}
         </>
     );
 };

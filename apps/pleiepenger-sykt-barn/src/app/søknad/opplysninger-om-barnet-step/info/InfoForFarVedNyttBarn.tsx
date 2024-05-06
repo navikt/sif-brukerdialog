@@ -1,13 +1,12 @@
+import { Link } from '@navikt/ds-react';
 import { useAppIntl } from '@i18n/index';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { Link } from '@navikt/ds-react';
 import { AppText } from '../../../i18n';
 
 const InfoForFarVedNyttBarn = () => {
-    const { intl } = useAppIntl();
+    const { text } = useAppIntl();
     return (
-        <ExpandableInfo title={intlHelper(intl, 'infoForFarVedNyttBarn.tittel')}>
+        <ExpandableInfo title={text('infoForFarVedNyttBarn.tittel')}>
             <p>
                 <AppText id="infoForFarVedNyttBarn.info.1.1" />{' '}
                 <Link href="https://farskapsportal.nav.no/nb/" target="_blank">

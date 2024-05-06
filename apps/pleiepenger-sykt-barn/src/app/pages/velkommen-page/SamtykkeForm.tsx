@@ -2,7 +2,6 @@ import { Button, Heading, Link } from '@navikt/ds-react';
 import { useAppIntl } from '@i18n/index';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import bemHelper from '@navikt/sif-common-core-ds/src/utils/bemUtils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
@@ -21,7 +20,7 @@ const AppForm = getTypedFormComponents<SøknadFormField, SøknadFormValues, Vali
 const bem = bemHelper('welcomingPage');
 
 const SamtykkeForm = ({ onConfirm }: Props) => {
-    const { intl } = useAppIntl();
+    const { intl, text } = useAppIntl();
     return (
         <AppForm.Form
             onValidSubmit={onConfirm}
@@ -30,7 +29,7 @@ const SamtykkeForm = ({ onConfirm }: Props) => {
             <FormBlock>
                 <div data-testid={'welcomingPage-harForståttRettigheterOgPlikter'}>
                     <AppForm.ConfirmationCheckbox
-                        label={intlHelper(intl, 'page.velkommen.form.bekreftLabel')}
+                        label={text('page.velkommen.form.bekreftLabel')}
                         name={SøknadFormField.harForståttRettigheterOgPlikter}
                         validate={getCheckedValidator()}>
                         <Heading level="2" size="small" spacing={true}>
@@ -54,7 +53,7 @@ const SamtykkeForm = ({ onConfirm }: Props) => {
             <FormBlock>
                 <div data-testid={'welcomingPage-begynnsøknad'}>
                     <Button variant="primary" type="submit" className={bem.element('startApplicationButton')}>
-                        {intlHelper(intl, 'welcomingPage.begynnsøknad')}
+                        {text('welcomingPage.begynnsøknad')}
                     </Button>
                 </div>
             </FormBlock>

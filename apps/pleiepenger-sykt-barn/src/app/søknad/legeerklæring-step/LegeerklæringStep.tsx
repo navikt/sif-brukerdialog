@@ -13,7 +13,6 @@ import {
     mapFileToPersistedFile,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { useFormikContext } from 'formik';
 import { uploadFile } from '../../api/api';
 import LegeerklæringFileList from '../../components/legeerklæring-file-list/LegeerklæringFileList';
@@ -31,7 +30,7 @@ import SøknadFormStep from '../SøknadFormStep';
 const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
     const { values, setFieldValue } = useFormikContext<SøknadFormValues>();
-    const { intl } = useAppIntl();
+    const { intl, text } = useAppIntl();
     const attachments: Attachment[] = React.useMemo(() => {
         return values ? values[SøknadFormField.legeerklæring] : [];
     }, [values]);
@@ -117,10 +116,10 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
                     <FormikFileUploader
                         uploadFile={(file) => uploadFile(file)}
                         getAttachmentURLFrontend={getAttachmentURLFrontend}
-                        legend={intlHelper(intl, 'steg.lege.vedlegg.legend')}
+                        legend={text('steg.lege.vedlegg.legend')}
                         name={SøknadFormField.legeerklæring}
                         attachments={attachments}
-                        buttonLabel={intlHelper(intl, 'steg.lege.vedlegg')}
+                        buttonLabel={text('steg.lege.vedlegg')}
                         onErrorUploadingAttachments={vedleggOpplastingFeilet}
                         onFileInputClick={() => {
                             setFilesThatDidntGetUploaded([]);

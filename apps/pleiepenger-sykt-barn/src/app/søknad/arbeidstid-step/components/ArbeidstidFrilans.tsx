@@ -1,7 +1,6 @@
 import { BodyLong } from '@navikt/ds-react';
 import React from 'react';
-import { useAppIntl } from '@i18n/index';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { AppText, useAppIntl } from '@i18n/index';
 import { DateRange } from '@navikt/sif-common-utils';
 import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
 import { getArbeidstidIPeriodeIntlValues } from '../../../local-sif-common-pleiepenger/utils';
@@ -27,9 +26,8 @@ const ArbeidstidFrilans: React.FunctionComponent<Props> = ({
     søkerFremITid,
     mottarOmsorgsstønad,
 }) => {
-    const { intl } = useAppIntl();
-
-    const intlValues = getArbeidstidIPeriodeIntlValues(intl, {
+    const appIntl = useAppIntl();
+    const intlValues = getArbeidstidIPeriodeIntlValues(appIntl, {
         periode: periode,
         jobberNormaltTimer: normalarbeidstid,
         arbeidsforholdType: ArbeidsforholdType.FRILANSER,
@@ -43,10 +41,12 @@ const ArbeidstidFrilans: React.FunctionComponent<Props> = ({
             parentFieldName={FrilansFormField.arbeidsforhold}
             normalarbeidstid={normalarbeidstid}
             intlValues={intlValues}
-            tittel={intlHelper(intl, 'frilans.tittel')}
+            tittel={appIntl.text('frilans.tittel')}
             arbeiderIPeriodenDescription={
                 frilanstype === Frilanstype.FRILANS_HONORAR ? (
-                    <p>{intlHelper(intl, 'arbeidIPeriode.arbeiderIPerioden.description')}</p>
+                    <p>
+                        <AppText id="arbeidIPeriode.arbeiderIPerioden.description" />
+                    </p>
                 ) : undefined
             }
             info={

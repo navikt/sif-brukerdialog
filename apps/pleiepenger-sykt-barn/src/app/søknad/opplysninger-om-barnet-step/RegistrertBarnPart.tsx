@@ -2,7 +2,6 @@ import { BodyShort } from '@navikt/ds-react';
 import { useAppIntl } from '@i18n/index';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { resetFieldValue, resetFieldValues, SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
@@ -18,7 +17,7 @@ interface Props {
 }
 
 const RegistrertBarnPart = ({ søkersBarn }: Props) => {
-    const { intl } = useAppIntl();
+    const { text } = useAppIntl();
     const {
         values: { søknadenGjelderEtAnnetBarn },
         setFieldValue,
@@ -28,9 +27,9 @@ const RegistrertBarnPart = ({ søkersBarn }: Props) => {
         <SkjemagruppeQuestion legend="Barn" hideLegend={true}>
             <SøknadFormComponents.RadioGroup
                 name={SøknadFormField.barnetSøknadenGjelder}
-                legend={intlHelper(intl, 'steg.omBarnet.hvilketBarn.spm')}
+                legend={text('steg.omBarnet.hvilketBarn.spm')}
                 description={
-                    <ExpandableInfo title={intlHelper(intl, 'steg.omBarnet.hvilketBarn.description.tittel')}>
+                    <ExpandableInfo title={text('steg.omBarnet.hvilketBarn.description.tittel')}>
                         <p>
                             <AppText id={'steg.omBarnet.hvilketBarn.description.info.1'} />
                         </p>
@@ -66,7 +65,7 @@ const RegistrertBarnPart = ({ søkersBarn }: Props) => {
             />
             <FormBlock margin="l">
                 <SøknadFormComponents.Checkbox
-                    label={intlHelper(intl, 'steg.omBarnet.gjelderAnnetBarn')}
+                    label={text('steg.omBarnet.gjelderAnnetBarn')}
                     name={SøknadFormField.søknadenGjelderEtAnnetBarn}
                     afterOnChange={(newValue) => {
                         if (newValue) {

@@ -27,11 +27,11 @@ const ArbeidstidAnsatt: React.FunctionComponent<Props> = ({
     søkerFremITid,
     index,
 }) => {
-    const { intl } = useAppIntl();
+    const appIntl = useAppIntl();
     const periode = getPeriodeSomAnsattInnenforPeriode(søknadsperiode, arbeidsgiver);
     const ansattParentFieldName = `${SøknadFormField.ansatt_arbeidsforhold}.${index}` as SøknadFormField;
 
-    const intlValues = getArbeidstidIPeriodeIntlValues(intl, {
+    const intlValues = getArbeidstidIPeriodeIntlValues(appIntl, {
         periode,
         jobberNormaltTimer: normalarbeidstid,
         arbeidsgiverNavn: arbeidsgiver.navn,

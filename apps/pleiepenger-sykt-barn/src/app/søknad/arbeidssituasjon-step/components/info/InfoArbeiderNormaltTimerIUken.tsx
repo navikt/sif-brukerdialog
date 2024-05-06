@@ -3,19 +3,18 @@ import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { AppText } from '../../../../i18n';
 import { Frilanstype } from '../../../../types/søknad-form-values/FrilansFormValues';
 
 export const InfoArbeiderNormaltTimerAnsatt = () => {
-    const { intl } = useAppIntl();
+    const { text } = useAppIntl();
     return (
-        <ExpandableInfo title={intlHelper(intl, 'arbeidsforhold.ansatt.normalTimer.info.tittel')}>
+        <ExpandableInfo title={text('arbeidsforhold.ansatt.normalTimer.info.tittel')}>
             <p>
                 <AppText id={`arbeidsforhold.normalTimer.info.turnus`} />
             </p>
 
-            <ExpandableInfo title={intlHelper(intl, 'arbeidsforhold.normalTimer.info.turnus.tittel')}>
+            <ExpandableInfo title={text('arbeidsforhold.normalTimer.info.turnus.tittel')}>
                 <AppText id={'arbeidsforhold.normalTimer.info.turnus.avsnitt.1'} />
                 <p>
                     <strong>
@@ -36,7 +35,7 @@ export const InfoArbeiderNormaltTimerAnsatt = () => {
                     <AppText id={'arbeidsforhold.normalTimer.info.turnus.avsnitt.5'} />
                 </p>
             </ExpandableInfo>
-            <ExpandableInfo title={intlHelper(intl, 'arbeidsforhold.normalTimer.info.varierende.tittel')}>
+            <ExpandableInfo title={text('arbeidsforhold.normalTimer.info.varierende.tittel')}>
                 <AppText id={'arbeidsforhold.normalTimer.info.varierende.avsnitt.1'} />
 
                 <p>
@@ -72,7 +71,7 @@ export const InfoArbeiderNormaltTimerFrilanser: React.FunctionComponent<PropsFri
     frilanstype,
     mottarOmsorgsstønadFosterhjemsgodtgjørelse,
 }) => {
-    const { intl } = useAppIntl();
+    const { text } = useAppIntl();
     return (
         <>
             {mottarOmsorgsstønadFosterhjemsgodtgjørelse && (
@@ -81,7 +80,7 @@ export const InfoArbeiderNormaltTimerFrilanser: React.FunctionComponent<PropsFri
                 </BodyShort>
             )}
             <Block margin="m">
-                <ExpandableInfo title={intlHelper(intl, 'arbeidsforhold.frilanser.normalTimer.frilans.info.tittel')}>
+                <ExpandableInfo title={text('arbeidsforhold.frilanser.normalTimer.frilans.info.tittel')}>
                     <p>
                         <AppText id={`arbeidsforhold.frilanser.normalTimer.frilans.${frilanstype}.info.1`} />
                     </p>
@@ -109,14 +108,14 @@ export const InfoArbeiderNormaltTimerFrilanser: React.FunctionComponent<PropsFri
 };
 
 export const InfoArbeiderNormaltTimerSN = () => {
-    const { intl } = useAppIntl();
+    const { text } = useAppIntl();
     return (
-        <ExpandableInfo title={intlHelper(intl, 'arbeidsforhold.selvstendig.normalTimer.info.tittel')}>
+        <ExpandableInfo title={text('arbeidsforhold.selvstendig.normalTimer.info.tittel')}>
             <p>
                 <AppText id={`arbeidsforhold.normalTimer.info.turnus`} />
             </p>
 
-            <ExpandableInfo title={intlHelper(intl, 'arbeidsforhold.normalTimer.info.turnus.tittel')}>
+            <ExpandableInfo title={text('arbeidsforhold.normalTimer.info.turnus.tittel')}>
                 <AppText id={'arbeidsforhold.normalTimer.info.turnus.avsnitt.1'} />
 
                 <p>
@@ -138,7 +137,7 @@ export const InfoArbeiderNormaltTimerSN = () => {
                     <AppText id={'arbeidsforhold.normalTimer.info.turnus.avsnitt.5'} />
                 </p>
             </ExpandableInfo>
-            <ExpandableInfo title={intlHelper(intl, 'arbeidsforhold.normalTimer.info.varierende.tittel')}>
+            <ExpandableInfo title={text('arbeidsforhold.normalTimer.info.varierende.tittel')}>
                 <AppText id={'arbeidsforhold.normalTimer.info.varierende.avsnitt.1'} />
 
                 <p>

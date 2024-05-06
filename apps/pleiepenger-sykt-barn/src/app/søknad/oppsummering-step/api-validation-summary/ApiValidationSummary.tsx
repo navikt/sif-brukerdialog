@@ -4,7 +4,6 @@ import { useAppIntl } from '@i18n/index';
 import { useNavigate } from 'react-router-dom';
 import ActionLink from '@navikt/sif-common-core-ds/src/atoms/action-link/ActionLink';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SoknadStepsConfig, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
 import { AppText } from '../../../i18n';
 import { StepID } from '../../../types/StepID';
@@ -16,14 +15,14 @@ interface Props {
 }
 
 const ApiValidationSummary: React.FunctionComponent<Props> = ({ errors, søknadStepConfig }) => {
-    const { intl } = useAppIntl();
+    const { text, intl } = useAppIntl();
     const navigate = useNavigate();
     if (errors.length === 0) {
         return null;
     }
     return (
         <FormBlock>
-            <ErrorSummary heading={intlHelper(intl, 'apiValidationError.tittel')}>
+            <ErrorSummary heading={text('apiValidationError.tittel')}>
                 {errors.map((error) => {
                     const stepTexts = soknadStepUtils.getStepTexts(intl, søknadStepConfig[error.stepId]);
                     return (

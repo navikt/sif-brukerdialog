@@ -4,7 +4,6 @@ import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { DurationText } from '@navikt/sif-common-ui';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { DateRange, getTypedFormComponents, InputTime } from '@navikt/sif-common-formik-ds/src';
 import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
@@ -96,7 +95,7 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
     onSubmit,
     onCancel,
 }) => {
-    const { intl } = useAppIntl();
+    const { text, intl } = useAppIntl();
 
     const onValidSubmit = (values: Partial<TidEnkeltdagFormValues>) => {
         if (values.tid) {
@@ -172,7 +171,7 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
                         {skalViseValgetGjelderFlereDager && (
                             <FormBlock margin="l">
                                 <FormComponents.Checkbox
-                                    label={intlHelper(intl, 'tidEnkeltdagForm.gjelderFlereDager.label')}
+                                    label={text('tidEnkeltdagForm.gjelderFlereDager.label')}
                                     name={FormFields.skalGjentas}
                                 />
                             </FormBlock>
@@ -183,7 +182,7 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
                                     {/* <div style={{ paddingLeft: '1.5rem' }}> */}
 
                                     <FormComponents.RadioGroup
-                                        legend={intlHelper(intl, 'tidEnkeltdagForm.gjelderFlereDager.info')}
+                                        legend={text('tidEnkeltdagForm.gjelderFlereDager.info')}
                                         className={bem.element('gjentagelseOptions')}
                                         name={FormFields.gjentagelse}
                                         validate={getRequiredFieldValidator()}
@@ -231,20 +230,14 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
                                                 <div style={{ marginLeft: '1.5rem' }}>
                                                     <FormBlock margin="m">
                                                         <FormComponents.Checkbox
-                                                            label={intlHelper(
-                                                                intl,
-                                                                'tidEnkeltdagForm.stoppGjentagelse.label',
-                                                            )}
+                                                            label={text('tidEnkeltdagForm.stoppGjentagelse.label')}
                                                             name={FormFields.stoppGjentagelse}
                                                         />
                                                     </FormBlock>
                                                     {stoppGjentagelse && (
                                                         <FormBlock margin="l">
                                                             <FormComponents.DatePicker
-                                                                label={intlHelper(
-                                                                    intl,
-                                                                    'tidEnkeltdagForm.stopDato.label',
-                                                                )}
+                                                                label={text('tidEnkeltdagForm.stopDato.label')}
                                                                 minDate={dato}
                                                                 maxDate={periode.to}
                                                                 validate={getDateValidator({

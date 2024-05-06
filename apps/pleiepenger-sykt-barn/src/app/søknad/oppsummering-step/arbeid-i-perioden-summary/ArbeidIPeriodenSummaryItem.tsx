@@ -1,6 +1,4 @@
 import React from 'react';
-import { IntlShape } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds/src';
 import {
     decimalDurationToDuration,
@@ -8,7 +6,7 @@ import {
     ISODurationToDecimalDuration,
     ISODurationToDuration,
 } from '@navikt/sif-common-utils';
-import { AppText, useAppIntl } from '../../../i18n';
+import { AppIntlShape, AppText, useAppIntl } from '../../../i18n';
 import { ArbeidIPeriodeType } from '../../../types/ArbeidIPeriodeType';
 import { RedusertArbeidstidType } from '../../../types/RedusertArbeidstidType';
 import { ArbeidsforholdApiData, ArbeidsukeTimerApiData } from '../../../types/søknad-api-data/SøknadApiData';
@@ -26,7 +24,7 @@ export interface ArbeidIPeriodenSummaryItemType extends ArbeidsforholdApiData {
 }
 
 const ArbeidIPeriodeSummaryItem: React.FunctionComponent<Props> = ({ arbeidIPeriodeSummaryItem }) => {
-    const { intl } = useAppIntl();
+    const appIntl = useAppIntl();
 
     const { arbeidIPeriode, normalarbeidstid, gjelderHonorar } = arbeidIPeriodeSummaryItem;
     const timerNormaltNumber = ISODurationToDecimalDuration(normalarbeidstid.timerPerUkeISnitt);
@@ -72,7 +70,7 @@ const ArbeidIPeriodeSummaryItem: React.FunctionComponent<Props> = ({ arbeidIPeri
                     <li>
                         <AppText id="oppsummering.arbeidIPeriode.arbeiderIPerioden.redusert" />
                     </li>
-                    <li>{getArbeidProsentTekst(redusertArbeid.prosentAvNormalt, intl)}</li>
+                    <li>{getArbeidProsentTekst(redusertArbeid.prosentAvNormalt, appIntl)}</li>
                 </ul>
             );
         case RedusertArbeidstidType.timerISnittPerUke:
@@ -85,8 +83,11 @@ const ArbeidIPeriodeSummaryItem: React.FunctionComponent<Props> = ({ arbeidIPeri
                         <AppText
                             id="oppsummering.arbeidIPeriode.arbeiderIPerioden.timerPerUke"
                             values={{
-                                timer: formatTimerOgMinutter(intl, ISODurationToDuration(redusertArbeid.timerPerUke)),
-                                timerNormalt: getTimerNormaltString(timerNormaltNumber, intl),
+                                timer: formatTimerOgMinutter(
+                                    appIntl,
+                                    ISODurationToDuration(redusertArbeid.timerPerUke),
+                                ),
+                                timerNormalt: getTimerNormaltString(timerNormaltNumber, appIntl),
                             }}
                         />
                     </li>
@@ -108,23 +109,23 @@ const ArbeidIPeriodeSummaryItem: React.FunctionComponent<Props> = ({ arbeidIPeri
                                 }
                             />
                         </p>
-                        {getArbeiderUlikeUkerTimerSummary(redusertArbeid.arbeidsuker, intl)}
+                        {getArbeiderUlikeUkerTimerSummary(redusertArbeid.arbeidsuker, appIntl)}
                     </li>
                 </ul>
             );
     }
 };
 
-const getTimerNormaltString = (timerNormaltNumber: number, intl: IntlShape) =>
-    formatTimerOgMinutter(intl, decimalDurationToDuration(timerNormaltNumber));
+const getTimerNormaltString = (timerNormaltNumber: number, appIntl: AppIntlShape) =>
+    formatTimerOgMinutter(appIntl, decimalDurationToDuration(timerNormaltNumber));
 
-const getArbeidProsentTekst = (prosent: number, intl: IntlShape) => {
-    return intlHelper(intl, 'oppsummering.arbeidIPeriode.arbeiderIPerioden.prosent', {
+const getArbeidProsentTekst = (prosent: number, { text }: AppIntlShape) => {
+    return text('oppsummering.arbeidIPeriode.arbeiderIPerioden.prosent', {
         prosent: Intl.NumberFormat().format(prosent),
     });
 };
 
-const getArbeiderUlikeUkerTimerSummary = (arbeidsuker: ArbeidsukeTimerApiData[], intl: IntlShape) => {
+const getArbeiderUlikeUkerTimerSummary = (arbeidsuker: ArbeidsukeTimerApiData[], appIntl: AppIntlShape) => {
     return (
         <ul>
             {arbeidsuker.map((uke) => {
@@ -139,7 +140,7 @@ const getArbeiderUlikeUkerTimerSummary = (arbeidsuker: ArbeidsukeTimerApiData[],
                             id="oppsummering.arbeidIPeriode.arbeiderIPerioden.ulikeUker.timer.uke"
                             values={{
                                 ukenummer: week.ukenummer,
-                                timer: formatTimerOgMinutter(intl, ISODurationToDuration(uke.timer)),
+                                timer: formatTimerOgMinutter(appIntl, ISODurationToDuration(uke.timer)),
                             }}
                         />
                     </li>

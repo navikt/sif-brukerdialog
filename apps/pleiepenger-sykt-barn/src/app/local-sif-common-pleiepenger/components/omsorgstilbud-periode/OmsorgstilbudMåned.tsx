@@ -1,7 +1,6 @@
 import { BodyShort, ExpansionCard, Heading } from '@navikt/ds-react';
 import React, { useState } from 'react';
 import { useAppIntl } from '@i18n/index';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { DateRange, dateToISOString, InputTime } from '@navikt/sif-common-formik-ds/src';
 import { DurationText } from '@navikt/sif-common-ui';
 import { DateDurationMap, durationIsZero, getDurationsInDateRange } from '@navikt/sif-common-utils';
@@ -31,7 +30,7 @@ const OmsorgstilbudMåned: React.FunctionComponent<Props> = ({
     defaultOpen,
     onEnkeltdagChange,
 }) => {
-    const { intl } = useAppIntl();
+    const { text } = useAppIntl();
     const [editDate, setEditDate] = useState<{ dato: Date; tid: Partial<InputTime> } | undefined>();
 
     const dager: DateDurationMap = getDurationsInDateRange(tidOmsorgstilbud, måned);
@@ -40,7 +39,7 @@ const OmsorgstilbudMåned: React.FunctionComponent<Props> = ({
         return datoTid !== undefined && datoTid !== undefined && durationIsZero(datoTid) === false;
     });
 
-    const label = intlHelper(intl, 'omsorgstilbudMåned.ukeOgÅr', { ukeOgÅr: dayjs(måned.from).format('MMMM YYYY') });
+    const label = text('omsorgstilbudMåned.ukeOgÅr', { ukeOgÅr: dayjs(måned.from).format('MMMM YYYY') });
     return (
         <ExpansionCard defaultOpen={defaultOpen} aria-label={label}>
             <ExpansionCardHeader>

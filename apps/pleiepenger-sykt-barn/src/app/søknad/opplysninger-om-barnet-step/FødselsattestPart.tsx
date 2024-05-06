@@ -12,7 +12,6 @@ import {
     mapFileToPersistedFile,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { useFormikContext } from 'formik';
 import { persist, uploadFile } from '../../api/api';
 import UploadedDocumentsList from '../../components/fødselsattest-file-list/UploadedDocumentsList';
@@ -28,7 +27,7 @@ interface Props {
 }
 
 const FødselsattestPart: React.FC<Props> = ({ attachments }) => {
-    const { intl } = useAppIntl();
+    const { text, intl } = useAppIntl();
     const { values, setFieldValue } = useFormikContext<SøknadFormValues>();
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
     const totalSize = getTotalSizeOfAttachments(attachments);
@@ -84,7 +83,7 @@ const FødselsattestPart: React.FC<Props> = ({ attachments }) => {
     return (
         <>
             <Heading level="2" size="medium" style={{ display: 'inline-block', fontSize: '1.125rem' }}>
-                {intlHelper(intl, 'steg.omBarnet.fødselsattest.tittel')}
+                {text('steg.omBarnet.fødselsattest.tittel')}
             </Heading>
             <Block margin="m">
                 <AppText id="steg.omBarnet.fødselsattest.info" />
@@ -95,12 +94,12 @@ const FødselsattestPart: React.FC<Props> = ({ attachments }) => {
             {totalSize <= MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
                 <Block margin="l">
                     <FormikFileUploader
-                        legend={intlHelper(intl, 'steg.omBarnet.fødselsattest.vedlegg.legend')}
+                        legend={text('steg.omBarnet.fødselsattest.vedlegg.legend')}
                         name={SøknadFormField.fødselsattest}
                         attachments={attachments}
                         uploadFile={uploadFile}
                         getAttachmentURLFrontend={getAttachmentURLFrontend}
-                        buttonLabel={intlHelper(intl, 'steg.omBarnet.fødselsattest.vedlegg')}
+                        buttonLabel={text('steg.omBarnet.fødselsattest.vedlegg')}
                         onErrorUploadingAttachments={vedleggOpplastingFeilet}
                         onFileInputClick={() => {
                             setFilesThatDidntGetUploaded([]);

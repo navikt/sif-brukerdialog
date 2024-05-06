@@ -1,7 +1,6 @@
 import { Button, Modal, ModalProps } from '@navikt/ds-react';
 import { useAppIntl } from '@i18n/index';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import classnames from 'classnames';
 import Knapperad from '../knapperad/Knapperad';
 import './bekreftDialog.less';
@@ -22,7 +21,7 @@ export interface Props extends Omit<ModalProps, 'onClose'> {
 }
 const bem = bemUtils('bekreftDialog');
 const BekreftDialog = (props: Props) => {
-    const { intl } = useAppIntl();
+    const { text } = useAppIntl();
     const { tittel, onAvbryt, onBekreft, avbrytLabel, bekreftLabel, children, størrelse, ...modalProps } = props;
     return props.open ? (
         <Modal
@@ -42,10 +41,10 @@ const BekreftDialog = (props: Props) => {
                         type="button"
                         onClick={() => onBekreft()}
                         className="bekreftDialog__bekreftKnapp">
-                        {bekreftLabel || intlHelper(intl, 'komponent.bekreftDialog.bekreftLabel')}
+                        {bekreftLabel || text('komponent.bekreftDialog.bekreftLabel')}
                     </Button>
                     <Button variant="tertiary" type="button" onClick={onAvbryt} className="bekreftDialog__avbrytKnapp">
-                        {avbrytLabel || intlHelper(intl, 'komponent.bekreftDialog.avbrytLabel')}
+                        {avbrytLabel || text('komponent.bekreftDialog.avbrytLabel')}
                     </Button>
                 </Knapperad>
             </Modal.Body>
