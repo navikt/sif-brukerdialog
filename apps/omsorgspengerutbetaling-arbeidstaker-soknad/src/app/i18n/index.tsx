@@ -16,7 +16,6 @@ const libMessages = {
         ...fraværMessages.nb,
         ...fosterbarnMessages.nb,
         ...bostedUtlandMessages.nb,
-        ...appMessages.nb,
     },
     nn: {
         ...commonMessages.nn,
@@ -25,7 +24,6 @@ const libMessages = {
         ...fraværMessages.nn,
         ...fosterbarnMessages.nn,
         ...bostedUtlandMessages.nn,
-        ...appMessages.nn,
     },
 };
 
