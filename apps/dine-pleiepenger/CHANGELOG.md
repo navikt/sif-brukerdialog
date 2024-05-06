@@ -1,5 +1,20 @@
 # @navikt/dine-pleiepenger
 
+## 1.1.3
+
+### Patch Changes
+
+- 4de3dca: Endre tekst som kommer når saksbehandlingstid-fristen er passert.
+- 9c29019: Pakkeoppdateringer - minor/patch
+- 35938df: Pakkeoppdateringer - minor/patch
+- Updated dependencies [9c29019]
+- Updated dependencies [35938df]
+  - @navikt/sif-common-amplitude@2.24.36
+  - @navikt/appstatus-react-ds@2.17.41
+  - @navikt/sif-common-core-ds@9.16.1
+  - @navikt/sif-common-sentry@0.25.33
+  - @navikt/sif-common-utils@3.44.21
+
 ## 1.1.2
 
 ### Patch Changes
