@@ -13,7 +13,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import FormSection from '../../components/form-section/FormSection';
 import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 import usePersistOnChange from '../../hooks/usePersistOnChange';
-import InfoList from '../../pages/welcoming-page/components/info-list/InfoList';
+import InfoList from '../../pages/velkommen-page/components/info-list/InfoList';
 import { StepCommonProps } from '../../types/StepCommonProps';
 import { StepID } from '../../types/StepID';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';

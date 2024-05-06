@@ -1,18 +1,17 @@
 import { BodyLong } from '@navikt/ds-react';
-import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
+import { TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 
 interface Props {
     parameters?: {
-        formik?: any;
-        includeButtons?: boolean;
+        initialValues?: any;
         maxWidth?: string;
     };
     children: React.ReactNode;
 }
 export const StoryFormikWrapper: React.FunctionComponent<Props> = (props) => {
     const { children, parameters } = props;
-    const { formik, maxWidth = '800px', includeButtons = true } = parameters || {};
-    const initialValues = formik?.initialValues || {};
+    const { initialValues = {}, maxWidth = '800px' } = parameters || {};
+
     return (
         <TypedFormikWrapper
             initialValues={initialValues}
@@ -22,11 +21,9 @@ export const StoryFormikWrapper: React.FunctionComponent<Props> = (props) => {
             }}
             renderForm={() => {
                 return (
-                    <TypedFormikForm includeButtons={includeButtons}>
-                        <BodyLong size="large" style={{ maxWidth: maxWidth }}>
-                            {children}
-                        </BodyLong>
-                    </TypedFormikForm>
+                    <BodyLong size="large" style={{ maxWidth: maxWidth }} as="div">
+                        {children}
+                    </BodyLong>
                 );
             }}
         />

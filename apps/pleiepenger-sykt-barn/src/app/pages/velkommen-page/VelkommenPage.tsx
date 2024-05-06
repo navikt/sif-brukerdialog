@@ -17,15 +17,13 @@ const WelcomingPage: React.FunctionComponent<Props> = ({ onValidSubmit, søker }
     useLogSidevisning(SIFCommonPageKey.velkommen);
 
     return (
-        <>
-            <Page
-                title={intlHelper(intl, 'welcomingPage.sidetittel')}
-                topContentRenderer={() => <SoknadHeader title={intlHelper(intl, 'application.title')} />}>
-                <VelkommenGuide navn={søker.fornavn} />
-                <OmSøknaden />
-                <SamtykkeForm onConfirm={onValidSubmit} />
-            </Page>
-        </>
+        <Page
+            title={intlHelper(intl, 'welcomingPage.sidetittel')}
+            topContentRenderer={() => <SoknadHeader title={intlHelper(intl, 'application.title')} />}>
+            <VelkommenGuide navn={søker.fornavn} />
+            <OmSøknaden />
+            <SamtykkeForm onConfirm={onValidSubmit} />
+        </Page>
     );
 };
 

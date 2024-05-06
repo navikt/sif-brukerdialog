@@ -10,7 +10,7 @@ import RouteConfig from '../config/routeConfig';
 import useLogSøknadInfo from '../hooks/useLogSøknadInfo';
 import usePersistSoknad from '../hooks/usePersistSoknad';
 import ConfirmationPage from '../pages/confirmation-page/ConfirmationPage';
-import WelcomingPage from '../pages/welcoming-page/WelcomingPage';
+import WelcomingPage from '../pages/velkommen-page/VelkommenPage';
 import { Søker } from '../types';
 import { ConfirmationDialog } from '../types/ConfirmationDialog';
 import { KvitteringInfo } from '../types/KvitteringInfo';
