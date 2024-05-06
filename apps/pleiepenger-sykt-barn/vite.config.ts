@@ -2,8 +2,7 @@
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
-
-const path = require('path');
+import * as path from 'path';
 
 export default defineConfig({
     plugins: [
