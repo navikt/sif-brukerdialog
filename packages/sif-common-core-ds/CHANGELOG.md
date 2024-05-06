@@ -1,5 +1,25 @@
 # @navikt/sif-common-core-ds
 
+## 9.16.0
+
+### Minor Changes
+
+- 25d7bf0: Utvide typedIntlHelper til å inkludere intl
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch/minor
+- Updated dependencies
+  - @navikt/sif-common-utils@3.44.20
+
+## 9.15.26
+
+### Patch Changes
+
+- c418fc8: Pakkeoppdateringer minor/patch
+- Updated dependencies [c418fc8]
+  - @navikt/sif-common-utils@3.44.19
+
 ## 9.15.25
 
 ### Patch Changes

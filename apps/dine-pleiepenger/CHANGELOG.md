@@ -1,5 +1,45 @@
 # @navikt/dine-pleiepenger
 
+## 1.1.2
+
+### Patch Changes
+
+- 33f4b9c: To interne bugfix
+
+  - Legge "ryujtq87.api.sanity.io" til i externalHosts
+  - Endre path fra internal til health for isAlive og isHealthy
+
+## 1.1.1
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch/minor
+- Updated dependencies
+- Updated dependencies [25d7bf0]
+  - @navikt/sif-common-amplitude@2.24.35
+  - @navikt/appstatus-react-ds@2.17.40
+  - @navikt/sif-common-core-ds@9.16.0
+  - @navikt/sif-common-sentry@0.25.32
+  - @navikt/sif-common-utils@3.44.20
+
+## 1.1.0
+
+### Minor Changes
+
+- 475dc4c: Endre til å hente ut brukerprofil på serversiden, og ikke returnere innsendinger til bruker dersom det finnes sak.
+
+## 1.0.9
+
+### Patch Changes
+
+- c418fc8: Pakkeoppdateringer minor/patch
+- Updated dependencies [c418fc8]
+  - @navikt/sif-common-amplitude@2.24.34
+  - @navikt/appstatus-react-ds@2.17.39
+  - @navikt/sif-common-core-ds@9.15.26
+  - @navikt/sif-common-sentry@0.25.31
+  - @navikt/sif-common-utils@3.44.19
+
 ## 1.0.8
 
 ### Patch Changes
