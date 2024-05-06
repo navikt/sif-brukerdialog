@@ -89,9 +89,13 @@ const ArbeidssituasjonStep = () => {
     useEffectOnce(() => {
         const fetchData = async () => {
             if (søknadsperiode) {
-                const arbeidsgivere = await arbeidsgivereEndpoint.fetch(søknadsperiode);
-                setArbeidsgivereIPerioden(arbeidsgivere);
-                setLoadState({ isLoading: false, isLoaded: true });
+                try {
+                    const arbeidsgivere = await arbeidsgivereEndpoint.fetch(søknadsperiode);
+                    setArbeidsgivereIPerioden(arbeidsgivere);
+                    setLoadState({ isLoading: false, isLoaded: true });
+                } catch (e) {
+                    setLoadState({ isLoading: false, isLoaded: true });
+                }
             }
         };
         if (søknadsperiode && !isLoaded && !isLoading) {
