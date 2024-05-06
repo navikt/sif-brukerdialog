@@ -1,6 +1,6 @@
 import { Alert, Heading, Link } from '@navikt/ds-react';
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import { ApplikasjonHendelse, SIFCommonGeneralEvents, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FileUploadErrors from '@navikt/sif-common-core-ds/src/components/file-upload-errors/FileUploadErrors';
@@ -28,7 +28,7 @@ interface Props {
 }
 
 const FødselsattestPart: React.FC<Props> = ({ attachments }) => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     const { values, setFieldValue } = useFormikContext<SøknadFormValues>();
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
     const totalSize = getTotalSizeOfAttachments(attachments);

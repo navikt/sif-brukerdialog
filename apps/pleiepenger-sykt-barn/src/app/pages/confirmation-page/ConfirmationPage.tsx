@@ -1,6 +1,6 @@
 import { Alert, Heading, Link } from '@navikt/ds-react';
 import { useEffect } from 'react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import CheckmarkIcon from '@navikt/sif-common-core-ds/src/atoms/checkmark-icon/CheckmarkIcon';
@@ -22,7 +22,7 @@ interface Props {
 const bem = bemUtils('confirmationPage');
 
 const ConfirmationPage = ({ kvitteringInfo, onUnmount }: Props) => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
 
     useEffect(() => {
         return () => {

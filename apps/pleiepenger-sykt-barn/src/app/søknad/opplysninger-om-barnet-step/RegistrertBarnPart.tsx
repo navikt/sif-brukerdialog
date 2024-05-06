@@ -1,5 +1,5 @@
 import { BodyShort } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
@@ -18,7 +18,7 @@ interface Props {
 }
 
 const RegistrertBarnPart = ({ søkersBarn }: Props) => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     const {
         values: { søknadenGjelderEtAnnetBarn },
         setFieldValue,

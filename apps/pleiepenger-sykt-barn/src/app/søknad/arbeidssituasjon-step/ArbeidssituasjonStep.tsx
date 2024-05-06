@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
@@ -36,7 +36,7 @@ const ArbeidssituasjonStep = ({ onValidSubmit, søknadsdato, søknadsperiode }: 
     const [loadState, setLoadState] = useState<LoadState>({ isLoading: false, isLoaded: false });
     const søkerdata = useContext(SøkerdataContext);
     const formikProps = useFormikContext<SøknadFormValues>();
-    const intl = useIntl();
+    const { intl } = useAppIntl();
 
     const { values } = formikProps;
     const { isLoading, isLoaded } = loadState;

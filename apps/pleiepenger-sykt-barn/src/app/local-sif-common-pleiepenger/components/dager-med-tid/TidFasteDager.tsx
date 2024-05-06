@@ -1,8 +1,9 @@
 import React from 'react';
-import { IntlShape, useIntl } from 'react-intl';
+import { IntlShape } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { ISODuration, ISODurationToDuration } from '@navikt/sif-common-utils';
 import { Time } from '../../../types/Time';
+import { useAppIntl } from '../../../i18n';
 
 interface TidFasteDagerType {
     mandag?: ISODuration;
@@ -23,7 +24,7 @@ const formatTime = (intl: IntlShape, time: Partial<Time>): string => {
 };
 
 const TidFasteDager: React.FunctionComponent<Props> = ({ fasteDager }) => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
 
     if (fasteDager) {
         const days = Object.keys(fasteDager).filter((day) => (fasteDager as any)[day] !== undefined);

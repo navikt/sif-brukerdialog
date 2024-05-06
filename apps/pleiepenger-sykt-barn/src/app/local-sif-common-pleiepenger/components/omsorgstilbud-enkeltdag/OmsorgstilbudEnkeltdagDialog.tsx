@@ -1,5 +1,5 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { dateFormatter, dateToday } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
@@ -11,7 +11,7 @@ interface Props extends Omit<TidEnkeltdagDialogProps, 'dialogTitle' | 'formProps
 }
 
 const OmsorgstilbudEnkeltdagDialog: React.FunctionComponent<Props> = ({ open: isOpen, formProps }: Props) => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
 
     const hvorMyeSpørsmålRenderer = (dato: Date): string => {
         const erHistorisk = dayjs(dato).isBefore(dateToday, 'day');

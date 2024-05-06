@@ -1,6 +1,6 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
@@ -38,7 +38,7 @@ const nYearsAgo = (years: number): Date => {
 };
 
 const AnnetBarnPart: React.FC<Props> = ({ formValues, søkersFødselsnummer, attachments, harRegistrerteBarn }) => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     const {
         values: { barnetHarIkkeFnr, årsakManglerIdentitetsnummer },
         setFieldValue,

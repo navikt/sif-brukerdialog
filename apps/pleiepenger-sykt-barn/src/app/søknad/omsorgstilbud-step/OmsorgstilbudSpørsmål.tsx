@@ -1,5 +1,5 @@
 import { Alert, Heading } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
@@ -33,7 +33,7 @@ interface Props {
 }
 
 const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChanged }: Props) => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
 
     const periodeFortid = søkerKunFortid(periode);
     const periodeFremtid = søkerKunFremtid(periode);

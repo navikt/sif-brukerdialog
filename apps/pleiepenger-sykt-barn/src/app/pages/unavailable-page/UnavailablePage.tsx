@@ -1,5 +1,5 @@
 import { Alert, Link } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
@@ -14,7 +14,7 @@ const bem = bemUtils('introPage');
 const link = 'https://www.nav.no/soknader/nb/person/familie/pleiepenger-og-opplaringspenger';
 
 const UnavailablePage = () => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     const title = intlHelper(intl, 'application.title');
     useLogSidevisning(SIFCommonPageKey.ikkeTilgjengelig);
     return (

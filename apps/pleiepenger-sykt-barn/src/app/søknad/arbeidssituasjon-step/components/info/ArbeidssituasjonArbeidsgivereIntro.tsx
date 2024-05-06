@@ -1,5 +1,5 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { AppText } from '../../../../i18n';
@@ -9,7 +9,7 @@ interface Props {
 }
 
 const ArbeidssituasjonArbeidsgivereIntro: React.FunctionComponent<Props> = ({ antallArbeidsforhold }) => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     return (
         <>
             <p>

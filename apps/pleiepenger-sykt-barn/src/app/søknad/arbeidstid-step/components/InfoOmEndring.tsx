@@ -1,5 +1,5 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import FormattedHtmlMessage from '@navikt/sif-common-core-ds/src/atoms/formatted-html-message/FormattedHtmlMessage';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
@@ -10,7 +10,7 @@ interface Props {
 }
 
 const InfoOmEndring: React.FunctionComponent<Props> = ({ arbeidsforholdType }) => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     switch (arbeidsforholdType) {
         case ArbeidsforholdType.ANSATT:
         case ArbeidsforholdType.FRILANSER:

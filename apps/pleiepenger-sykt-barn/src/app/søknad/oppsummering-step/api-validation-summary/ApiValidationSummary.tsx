@@ -1,6 +1,6 @@
 import { BodyLong, ErrorSummary } from '@navikt/ds-react';
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import { useNavigate } from 'react-router-dom';
 import ActionLink from '@navikt/sif-common-core-ds/src/atoms/action-link/ActionLink';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
@@ -16,7 +16,7 @@ interface Props {
 }
 
 const ApiValidationSummary: React.FunctionComponent<Props> = ({ errors, søknadStepConfig }) => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     const navigate = useNavigate();
     if (errors.length === 0) {
         return null;

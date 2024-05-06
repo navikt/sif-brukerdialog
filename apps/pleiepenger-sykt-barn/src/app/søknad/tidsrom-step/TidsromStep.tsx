@@ -1,6 +1,6 @@
 import { Alert } from '@navikt/ds-react';
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
@@ -49,7 +49,7 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
         from: periodeFra || date1YearAgo,
         to: periodeTil || date1YearFromNow,
     };
-    const intl = useIntl();
+    const { intl } = useAppIntl();
 
     const validateFraDatoField = (date?: string) => {
         return validateFradato(date, values.periodeTil, barnetSøknadenGjelder?.fødselsdato);

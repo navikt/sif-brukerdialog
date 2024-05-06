@@ -1,5 +1,5 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds/src';
 import { ArbeidsforholdType } from '../../../../local-sif-common-pleiepenger';
@@ -23,7 +23,7 @@ interface Props {
 }
 
 const AnsattNormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({ arbeidsforhold, fieldName }) => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
 
     const intlValues = getArbeidsforholdIntlValues(intl, {
         arbeidsforhold: {

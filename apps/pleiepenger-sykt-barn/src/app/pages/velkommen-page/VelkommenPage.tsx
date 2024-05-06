@@ -1,5 +1,5 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
@@ -13,7 +13,7 @@ import SamtykkeForm from './SamtykkeForm';
 type Props = StepCommonProps & { søker: Søker };
 
 const WelcomingPage: React.FunctionComponent<Props> = ({ onValidSubmit, søker }) => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     useLogSidevisning(SIFCommonPageKey.velkommen);
 
     return (

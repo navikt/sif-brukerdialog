@@ -1,6 +1,6 @@
 import { Alert, Link } from '@navikt/ds-react';
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import { ApplikasjonHendelse, SIFCommonGeneralEvents, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FileUploadErrors from '@navikt/sif-common-core-ds/src/components/file-upload-errors/FileUploadErrors';
@@ -31,7 +31,7 @@ import SøknadFormStep from '../SøknadFormStep';
 const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
     const { values, setFieldValue } = useFormikContext<SøknadFormValues>();
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     const attachments: Attachment[] = React.useMemo(() => {
         return values ? values[SøknadFormField.legeerklæring] : [];
     }, [values]);

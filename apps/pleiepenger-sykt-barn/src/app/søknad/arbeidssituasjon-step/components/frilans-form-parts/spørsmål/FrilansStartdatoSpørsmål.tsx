@@ -1,5 +1,5 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { dateFormatter, DateRange, ISODate } from '@navikt/sif-common-utils';
 import { FrilansFormField } from '../../../../../types/søknad-form-values/FrilansFormValues';
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const FrilansStartdatoSpørsmål: React.FunctionComponent<Props> = ({ startdatoValue, søknadsperiode }) => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     const minDato = getStartdatoForNySomFrilanser(søknadsperiode);
 
     return (

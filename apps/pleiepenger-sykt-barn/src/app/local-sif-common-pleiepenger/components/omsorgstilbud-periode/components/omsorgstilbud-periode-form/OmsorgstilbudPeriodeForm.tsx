@@ -1,5 +1,5 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { DateRange, getTypedFormComponents } from '@navikt/sif-common-formik-ds/src';
 import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
@@ -45,7 +45,7 @@ const initialFormValues: Partial<FormValues> = {};
 const FormComponents = getTypedFormComponents<FormFields, FormValues, ValidationError>();
 
 const OmsorgstilbudPeriodeForm: React.FC<OmsorgstilbudPeriodeFormProps> = ({ periode, onSubmit, onCancel }) => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     const { text } = getOmsorgstilbudPeriodeIntl(intl);
 
     const onValidSubmit = (values: Partial<FormValues>) => {

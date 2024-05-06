@@ -8,7 +8,7 @@ import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
 import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/BostedUtlandListAndDialog';
 import { useFormikContext } from 'formik';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 import getLenker from '../../lenker';
 import { StepCommonProps } from '../../types/StepCommonProps';
@@ -25,7 +25,7 @@ type Props = {
 
 const MedlemsskapStep = ({ onValidSubmit, søknadsdato }: StepCommonProps & Props) => {
     const { values } = useFormikContext<SøknadFormValues>();
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     const { neste12Måneder, siste12Måneder } = getMedlemsskapDateRanges(søknadsdato);
 
     return (

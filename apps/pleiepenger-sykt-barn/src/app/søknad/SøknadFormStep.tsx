@@ -1,5 +1,5 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import { useNavigate } from 'react-router-dom';
 import { ApplikasjonHendelse, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
@@ -31,7 +31,7 @@ interface Props {
 const SøknadFormStep = (props: Props) => {
     const formik = useFormikContext<SøknadFormValues>();
     const { persistSoknad } = usePersistSoknad();
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     const {
         children,
         onValidFormSubmit,

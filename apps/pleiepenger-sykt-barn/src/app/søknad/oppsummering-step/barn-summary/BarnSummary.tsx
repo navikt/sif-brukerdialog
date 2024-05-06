@@ -1,4 +1,4 @@
-import { IntlShape, useIntl } from 'react-intl';
+import { IntlShape } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
@@ -6,7 +6,7 @@ import { SummaryBlock, SummarySection, TextareaSvar } from '@navikt/sif-common-u
 import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils';
 import UploadedDocumentsList from '../../../components/fødselsattest-file-list/UploadedDocumentsList';
 import Sitat from '../../../components/sitat/Sitat';
-import { AppText } from '../../../i18n';
+import { AppText, useAppIntl } from '../../../i18n';
 import { BarnRelasjon, RegistrerteBarn, ÅrsakManglerIdentitetsnummer } from '../../../types';
 import { SøknadApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
@@ -111,7 +111,7 @@ const RelasjonTilBarnet = (intl: IntlShape, apiValues: SøknadApiData) => (
 );
 
 const BarnSummary = ({ formValues, apiValues, barn }: Props) => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     const apiBarn = barn.find(({ aktørId }) => aktørId === formValues.barnetSøknadenGjelder);
     const useApiBarn = !formValues.søknadenGjelderEtAnnetBarn && barn && barn.length > 0;
 

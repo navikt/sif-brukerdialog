@@ -1,5 +1,5 @@
 import { Modal } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import OmsorgstilbudPeriodeForm, {
     OmsorgstilbudPeriodeFormProps,
@@ -12,7 +12,7 @@ interface Props {
 }
 
 const OmsorgstilbudPeriodeDialog = ({ formProps, isOpen }: Props) => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     return isOpen ? (
         <Modal
             open={isOpen}

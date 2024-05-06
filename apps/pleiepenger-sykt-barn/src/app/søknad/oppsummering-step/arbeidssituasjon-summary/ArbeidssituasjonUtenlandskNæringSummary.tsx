@@ -1,5 +1,5 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SummaryBlock } from '@navikt/sif-common-ui';
@@ -12,7 +12,7 @@ interface Props {
 }
 
 function UtenlandskNæringSummary({ utenlandskNæring }: Props) {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     const renderUtenlandskNæring = (næring: UtenlandskNæringApiData): React.ReactNode => {
         const land = næring.land.landnavn;
 

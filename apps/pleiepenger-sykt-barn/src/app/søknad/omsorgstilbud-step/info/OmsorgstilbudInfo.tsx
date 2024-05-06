@@ -1,6 +1,6 @@
 import { Alert } from '@navikt/ds-react';
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormattedHtmlMessage from '@navikt/sif-common-core-ds/src/atoms/formatted-html-message/FormattedHtmlMessage';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
@@ -9,7 +9,7 @@ import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { AppText } from '../../../i18n';
 
 const OmsorgstilbudStepInfo = () => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     return (
         <SifGuidePanel>
             <p>
@@ -101,7 +101,7 @@ const AdvarselSøkerKunHelgedager = () => (
 );
 
 const ErLiktHverUke: React.FunctionComponent = () => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     return (
         <ExpandableInfo title={intlHelper(intl, 'steg.omsorgstilbud.erLiktHverUke.info.tittel')}>
             <AppText id={'steg.omsorgstilbud.erLiktHverUke.info.1'} />
@@ -112,7 +112,7 @@ const ErLiktHverUke: React.FunctionComponent = () => {
 };
 
 const ErIOmsorgstilbud: React.FunctionComponent = () => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     return (
         <ExpandableInfo title={intlHelper(intl, 'steg.omsorgstilbud.hvorMyeTidIOmsorgstilbud.description.tittel')}>
             <p>

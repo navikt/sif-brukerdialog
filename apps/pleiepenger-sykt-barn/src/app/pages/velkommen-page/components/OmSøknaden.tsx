@@ -1,5 +1,5 @@
 import { Heading, Link } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
@@ -8,7 +8,7 @@ import BehandlingAvPersonopplysningerContent from './BehandlingAvPersonopplysnin
 import { AppText } from '../../../i18n';
 
 const OmSøknaden = () => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     return (
         <Block margin="xl">
             <Heading level="2" size="medium">

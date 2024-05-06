@@ -1,5 +1,5 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SummaryBlock, SummaryList } from '@navikt/sif-common-ui';
 import { AppText } from '../../../i18n';
@@ -12,7 +12,7 @@ export interface Props {
 
 const OpptjeningIUtlandetSummary: React.FC<Props> = (props) => {
     const { opptjeningUtland } = props;
-    const intl = useIntl();
+    const { intl } = useAppIntl();
 
     return (
         <div data-testid="arbeidssituasjon-opptjeningUtland">

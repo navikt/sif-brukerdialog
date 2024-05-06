@@ -1,5 +1,5 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SoknadStepsConfig, soknadStepUtils, Step } from '@navikt/sif-common-soknad-ds';
@@ -12,7 +12,7 @@ interface Props {
 }
 
 const SøknadStep: React.FunctionComponent<Props> = ({ stepId, stepConfig, children }) => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
 
     useLogSidevisning(stepId);
 

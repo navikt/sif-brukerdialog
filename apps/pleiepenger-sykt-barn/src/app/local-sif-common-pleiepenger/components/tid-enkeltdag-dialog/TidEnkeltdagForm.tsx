@@ -1,5 +1,5 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { DurationText } from '@navikt/sif-common-ui';
@@ -96,7 +96,7 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
     onSubmit,
     onCancel,
 }) => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
 
     const onValidSubmit = (values: Partial<TidEnkeltdagFormValues>) => {
         if (values.tid) {

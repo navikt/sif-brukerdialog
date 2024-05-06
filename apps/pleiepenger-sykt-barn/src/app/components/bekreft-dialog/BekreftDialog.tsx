@@ -1,5 +1,5 @@
 import { Button, Modal, ModalProps } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import classnames from 'classnames';
@@ -22,7 +22,7 @@ export interface Props extends Omit<ModalProps, 'onClose'> {
 }
 const bem = bemUtils('bekreftDialog');
 const BekreftDialog = (props: Props) => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     const { tittel, onAvbryt, onBekreft, avbrytLabel, bekreftLabel, children, størrelse, ...modalProps } = props;
     return props.open ? (
         <Modal

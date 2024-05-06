@@ -1,5 +1,5 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds/src';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
@@ -26,7 +26,7 @@ const SluttetIArbeidsforholdFørSøknadsperiodeSpørsmål: React.FunctionCompone
     arbeidsforhold,
     søknadsperiode,
 }) => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     return (
         <AnsattFormComponents.RadioGroup
             name={fieldName}

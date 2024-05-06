@@ -1,6 +1,6 @@
 import { BodyShort, ExpansionCard, Heading } from '@navikt/ds-react';
 import React, { useState } from 'react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { DateRange, dateToISOString, InputTime } from '@navikt/sif-common-formik-ds/src';
 import { DurationText } from '@navikt/sif-common-ui';
@@ -31,7 +31,7 @@ const OmsorgstilbudMåned: React.FunctionComponent<Props> = ({
     defaultOpen,
     onEnkeltdagChange,
 }) => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     const [editDate, setEditDate] = useState<{ dato: Date; tid: Partial<InputTime> } | undefined>();
 
     const dager: DateDurationMap = getDurationsInDateRange(tidOmsorgstilbud, måned);

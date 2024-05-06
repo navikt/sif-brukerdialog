@@ -1,5 +1,5 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import ContentWithHeader from '@navikt/sif-common-core-ds/src/components/content-with-header/ContentWithHeader';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
@@ -21,7 +21,7 @@ const OmsorgstilbudSummary: React.FC<Props> = ({
     apiValues: { nattevåk, beredskap, omsorgstilbud },
     søknadsperiode,
 }) => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
 
     return (
         <>

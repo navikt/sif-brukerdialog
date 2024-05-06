@@ -1,5 +1,5 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
@@ -53,7 +53,7 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
     arbeidsforholdType,
     arbeiderIPeriodenDescription,
 }) => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     const getFieldName = (field: ArbeidIPeriodeFormField) => `${parentFieldName}.arbeidIPeriode.${field}` as any;
     const visKunArbeidstidPerUke = skalSvarePåOmEnJobberLiktIPerioden(periode) === false;
 

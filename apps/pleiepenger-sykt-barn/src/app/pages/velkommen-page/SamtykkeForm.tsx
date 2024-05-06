@@ -1,5 +1,5 @@
 import { Button, Heading, Link } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import bemHelper from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
@@ -21,7 +21,7 @@ const AppForm = getTypedFormComponents<SøknadFormField, SøknadFormValues, Vali
 const bem = bemHelper('welcomingPage');
 
 const SamtykkeForm = ({ onConfirm }: Props) => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     return (
         <AppForm.Form
             onValidSubmit={onConfirm}

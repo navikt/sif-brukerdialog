@@ -1,8 +1,12 @@
 {
     "extends": "../../packages/config/tsconfig-apps.json",
     "compilerOptions": {
+        "baseUrl": "./",
         "outDir": "build/dist",
-        "typeRoots": ["../../node_modules/@types", "./node_modules/@types"]
+        "typeRoots": ["../../node_modules/@types", "./node_modules/@types"],
+        "paths": {
+            "@i18n/*": ["./src/app/i18n/*"]
+        }
     },
     "sourceMap": true,
     "exclude": ["node_modules", "src/build", "**.js", "dist"],

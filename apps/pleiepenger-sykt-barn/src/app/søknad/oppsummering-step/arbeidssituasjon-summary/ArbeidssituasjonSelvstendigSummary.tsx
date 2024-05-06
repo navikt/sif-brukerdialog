@@ -1,5 +1,5 @@
 import { Heading } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import VirksomhetSummary from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetSummary';
@@ -13,7 +13,7 @@ interface Props {
 }
 
 function ArbeidssituasjonSelvstendigSummary({ selvstendig }: Props) {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     return (
         <div data-testid="arbeidssituasjon-sn">
             <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.selvstendig.header')}>

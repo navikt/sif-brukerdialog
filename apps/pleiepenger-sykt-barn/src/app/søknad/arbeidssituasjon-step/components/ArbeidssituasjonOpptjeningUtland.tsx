@@ -1,4 +1,4 @@
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
@@ -12,7 +12,7 @@ import { SøknadFormField, SøknadFormValues } from '../../../types/søknad-form
 import SøknadFormComponents from '../../SøknadFormComponents';
 
 const ArbeidssituasjonOpptjeningUtland = () => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     const { values } = useFormikContext<SøknadFormValues>();
 
     return (

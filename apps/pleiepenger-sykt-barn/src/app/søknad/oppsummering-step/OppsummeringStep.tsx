@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import { useNavigate } from 'react-router-dom';
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
@@ -62,7 +62,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
     const [soknadSent, setSoknadSent] = useState<boolean>(false);
     const [invalidParameters, setInvalidParameters] = useState<InvalidParameter[] | undefined>();
 
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     const navigate = useNavigate();
 
     const søknadStepConfig = getSøknadStepConfig(values);

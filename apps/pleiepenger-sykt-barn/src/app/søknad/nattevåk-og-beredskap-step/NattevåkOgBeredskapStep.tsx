@@ -1,6 +1,6 @@
 import { BodyLong } from '@navikt/ds-react';
 import { useState } from 'react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
@@ -33,7 +33,7 @@ export const cleanupNattevåkOgBeredskapStep = (values: SøknadFormValues): Søk
 };
 
 const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     const [loaded, setLoaded] = useState<boolean>(false);
 
     const { values } = useFormikContext<SøknadFormValues>();

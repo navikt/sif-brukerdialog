@@ -1,5 +1,5 @@
 import React from 'react';
-import { IntlShape, useIntl } from 'react-intl';
+import { IntlShape } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds/src';
 import {
@@ -8,7 +8,7 @@ import {
     ISODurationToDecimalDuration,
     ISODurationToDuration,
 } from '@navikt/sif-common-utils';
-import { AppText } from '../../../i18n';
+import { AppText, useAppIntl } from '../../../i18n';
 import { ArbeidIPeriodeType } from '../../../types/ArbeidIPeriodeType';
 import { RedusertArbeidstidType } from '../../../types/RedusertArbeidstidType';
 import { ArbeidsforholdApiData, ArbeidsukeTimerApiData } from '../../../types/søknad-api-data/SøknadApiData';
@@ -26,7 +26,7 @@ export interface ArbeidIPeriodenSummaryItemType extends ArbeidsforholdApiData {
 }
 
 const ArbeidIPeriodeSummaryItem: React.FunctionComponent<Props> = ({ arbeidIPeriodeSummaryItem }) => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
 
     const { arbeidIPeriode, normalarbeidstid, gjelderHonorar } = arbeidIPeriodeSummaryItem;
     const timerNormaltNumber = ISODurationToDecimalDuration(normalarbeidstid.timerPerUkeISnitt);

@@ -1,5 +1,5 @@
 import { BodyShort, Heading } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import { useNavigate } from 'react-router-dom';
 import ActionLink from '@navikt/sif-common-core-ds/src/atoms/action-link/ActionLink';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
@@ -17,7 +17,7 @@ interface Props {
 }
 
 const InvalidStepPage = ({ stepId }: Props) => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     const navigate = useNavigate();
     const backLink = getPrevStepFromNotIncludedStep(stepId);
 
