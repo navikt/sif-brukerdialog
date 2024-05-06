@@ -3659,7 +3659,7 @@ __metadata:
     "@navikt/ds-react": 6.6.1
     "@navikt/sif-common-hooks": "workspace:*"
     "@portabletext/react": 3.0.18
-    "@sanity/client": 6.15.20
+    "@sanity/client": 6.17.2
     "@types/node": 20.12.8
     "@types/react": 18.3.1
     "@types/react-dom": 18.3.0
@@ -5853,14 +5853,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/client@npm:6.15.20":
-  version: 6.15.20
-  resolution: "@sanity/client@npm:6.15.20"
+"@sanity/client@npm:6.17.2":
+  version: 6.17.2
+  resolution: "@sanity/client@npm:6.17.2"
   dependencies:
     "@sanity/eventsource": ^5.0.2
-    get-it: ^8.4.27
+    get-it: ^8.4.28
     rxjs: ^7.0.0
-  checksum: 269ab997895b91e921757a011f2f0bc499639502ada2849e72ea0876e20a0e4e49c2e34df1958d81b695215b69b5b6001eef208e77820c1bc05b23c38e9024b6
+  checksum: b467a2563677ed103cffc1c4771b1ebdb64cb9e5239be04147d33d86790d995c971ee502635f1f156b19de1c9dc19e175d5ece97fbfb8556113c5edaef212d28
   languageName: node
   linkType: hard
 
@@ -14641,9 +14641,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"get-it@npm:^8.4.27":
-  version: 8.4.27
-  resolution: "get-it@npm:8.4.27"
+"get-it@npm:^8.4.28":
+  version: 8.4.28
+  resolution: "get-it@npm:8.4.28"
   dependencies:
     decompress-response: ^7.0.0
     follow-redirects: ^1.15.6
@@ -14652,7 +14652,7 @@ __metadata:
     is-stream: ^2.0.1
     progress-stream: ^2.0.0
     tunnel-agent: ^0.6.0
-  checksum: ab9d3a7661b18e10cb521c7903991df5eed9f8feeef371f3795a6138c7d69459a665a0c9e1376b59c5e668355ac2e5a52f754103693b120fecc93d226d776eef
+  checksum: db31bfb4f363079c15770f23f785846a30e3a6ce5b8475e789c737c7e0c1efce562a84c6b02412f2deb6047d329aebdccc19cc3f30b5a4fce83f2d9f03e54919
   languageName: node
   linkType: hard
 
