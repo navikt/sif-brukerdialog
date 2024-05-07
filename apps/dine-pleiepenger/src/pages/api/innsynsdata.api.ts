@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { createChildLogger } from '@navikt/next-logger';
 import { HttpStatusCode } from 'axios';
+import dayjs from 'dayjs';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import {
     fetchMellomlagringer,
@@ -15,7 +16,6 @@ import { getXRequestId } from '../../utils/apiUtils';
 import { Feature } from '../../utils/features';
 import { sortInnsendtSøknadEtterOpprettetDato } from '../../utils/innsendtSøknadUtils';
 import { fetchAppStatus } from './appStatus.api';
-import dayjs from 'dayjs';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const childLogger = createChildLogger(getXRequestId(req));
@@ -53,6 +53,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         childLogger.info(`Parser innsynsdata`);
 
         const saker = sakerReq.status === 'fulfilled' ? sakerReq.value : [];
+        const harSak = saker.length > 0;
 
         const innsendteSøknader =
             søknaderReq.status === 'fulfilled' ? søknaderReq.value.sort(sortInnsendtSøknadEtterOpprettetDato) : [];
@@ -83,11 +84,12 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         const innsynsdata: Innsynsdata = {
             appStatus: appStatus.status === 'fulfilled' ? appStatus.value : undefined,
             søker,
-            innsendteSøknader,
+            innsendteSøknader: harSak ? [] : innsendteSøknader,
+            brukerprofil,
             mellomlagring: mellomlagringReq.status === 'fulfilled' ? mellomlagringReq.value : {},
             saksbehandlingstidUker,
             saker,
-            harSak: saker.length > 0,
+            harSak,
         };
         res.json(innsynsdata);
     } catch (err) {

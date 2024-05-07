@@ -1,5 +1,38 @@
 # @navikt/sif-common-forms-ds
 
+## 8.20.7
+
+### Patch Changes
+
+- c4d70c1: Pakkeoppdateringer - minor/patch
+
+## 8.20.6
+
+### Patch Changes
+
+- 9c29019: Pakkeoppdateringer - minor/patch
+- 35938df: Pakkeoppdateringer - minor/patch
+
+## 8.20.5
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch/minor
+
+## 8.20.4
+
+### Patch Changes
+
+- c418fc8: Pakkeoppdateringer minor/patch
+
+## 8.20.3
+
+### Patch Changes
+
+- a30118d: Støtte flere målformer i utenlandsopphold form
+- a30118d: Endre til å støtte flere målformer i virksomhetform
+- a30118d: Legge til rette for flere språk i Tidsperiode forms
+
 ## 8.20.2
 
 ### Patch Changes

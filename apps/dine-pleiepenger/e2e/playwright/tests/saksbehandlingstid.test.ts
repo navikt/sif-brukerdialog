@@ -1,17 +1,18 @@
+import { expect, test } from '@playwright/test';
+import dayjs from 'dayjs';
 import { Innsynsdata } from '../../../src/types/InnsynData';
+import { sakerAvsluttetMock } from '../mockdata/saker-avsluttet.mock';
+import { sakerMock } from '../mockdata/saker.mock';
 import { søkerMockData } from '../mockdata/søker.mock';
 import { søknaderMockData } from '../mockdata/søknader.mock';
-import { test, expect } from '@playwright/test';
 import { setupMockRoutes } from '../utils/setup-mock-routes';
-import { sakerMock } from '../mockdata/saker.mock';
-import { sakerAvsluttetMock } from '../mockdata/saker-avsluttet.mock';
-import dayjs from 'dayjs';
 
 const defaultInnsynsdata: Innsynsdata = {
     saker: sakerMock,
     harSak: true,
     søker: søkerMockData,
     mellomlagring: {},
+    brukerprofil: {} as any,
     innsendteSøknader: søknaderMockData as any,
 };
 
@@ -59,7 +60,7 @@ test('Saksbehandlingstid er i fortid', async ({ page }) => {
         await route.fulfill({ status: 200, body: JSON.stringify(response) });
     });
     await page.goto('http://localhost:8080/innsyn');
-    await expect(page.getByText('Forventet behandlingstid er')).toBeVisible();
+    await expect(page.getByText('Vi jobber fremdeles med søknaden din')).toBeVisible();
 });
 
 test('Ingen Saksbehandlingstid, men behandlingstid', async ({ page }) => {

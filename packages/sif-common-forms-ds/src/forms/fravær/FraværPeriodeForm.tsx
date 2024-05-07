@@ -1,7 +1,6 @@
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { DateRange, dateToday } from '@navikt/sif-common-utils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import {
     getDateRangeValidator,
@@ -23,6 +22,7 @@ import {
 } from './fraværValidationUtils';
 import { FraværPeriode, FraværPeriodeFormValues } from './types';
 import { Alert } from '@navikt/ds-react';
+import { useFraværIntl } from './fraværMessages';
 
 export interface FraværPeriodeFormLabels {
     tittel: string;
@@ -102,6 +102,7 @@ const FraværPeriodeForm = ({
     onCancel,
 }: Props) => {
     const intl = useIntl();
+    const { text } = useFraværIntl();
 
     const onFormikSubmit = (formValues: FraværPeriodeFormValues) => {
         const fraværPeriodeToSubmit = mapFormValuesToFraværPeriode(formValues, fraværPeriode.id);
@@ -113,12 +114,12 @@ const FraværPeriodeForm = ({
     };
 
     const formLabels: FraværPeriodeFormLabels = {
-        ok: intlHelper(intl, '@forms.fravær.form.felles.ok'),
-        avbryt: intlHelper(intl, '@forms.fravær.form.felles.avbryt'),
-        tittel: intlHelper(intl, '@forms.fravær.form.periode.tittel'),
-        tidsrom: intlHelper(intl, '@forms.fravær.form.periode.tidsrom'),
-        fom: intlHelper(intl, '@forms.fravær.form.periode.fom'),
-        tom: intlHelper(intl, '@forms.fravær.form.periode.tom'),
+        ok: text('@forms.fravær.form.felles.ok'),
+        avbryt: text('@forms.fravær.form.felles.avbryt'),
+        tittel: text('@forms.fravær.form.periode.tittel'),
+        tidsrom: text('@forms.fravær.form.periode.tidsrom'),
+        fom: text('@forms.fravær.form.periode.fom'),
+        tom: text('@forms.fravær.form.periode.tom'),
     };
 
     const disabledDateRanges = dateRangesToDisable

@@ -1,4 +1,5 @@
 import { ErrorSummary } from '@navikt/ds-react';
+import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { useEffect, useRef } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
@@ -130,7 +131,9 @@ const OppsummeringStep = () => {
                             </Form>
                             {sendSøknadError && (
                                 <FormBlock>
-                                    <ErrorSummary ref={sendSøknadErrorSummary}>{sendSøknadError.message}</ErrorSummary>
+                                    <ErrorSummary ref={sendSøknadErrorSummary}>
+                                        <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
+                                    </ErrorSummary>
                                 </FormBlock>
                             )}
                         </>

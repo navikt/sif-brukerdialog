@@ -35,8 +35,8 @@ const OpptjeningUtlandExample = () => {
         <Tabs defaultValue="list">
             <VStack gap="4">
                 <Tabs.List>
-                    <Tabs.Tab value="list" label="FosterbarnListAndDialog" />
-                    <Tabs.Tab value="form" label="FosterbarnForm" />
+                    <Tabs.Tab value="list" label="ListAndDialog" />
+                    <Tabs.Tab value="form" label="Form" />
                     <Tabs.Tab value="messages" label="Tekster" />
                 </Tabs.List>
                 <Tabs.Panel value="list" style={{ maxWidth: '50rem' }}>

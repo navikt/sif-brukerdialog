@@ -1,7 +1,6 @@
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
 import { FormikDatepickerProps } from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/FormikDatepicker';
@@ -24,6 +23,7 @@ import {
     validateNotHelgedag,
 } from './fraværValidationUtils';
 import { FraværDag, FraværDagFormValues } from './types';
+import { useFraværIntl } from './fraværMessages';
 
 export interface FraværDagFormLabels {
     tittel: string;
@@ -94,6 +94,7 @@ const FraværDagFormView = ({
     onCancel,
 }: Props) => {
     const intl = useIntl();
+    const { text } = useFraværIntl();
     const onFormikSubmit = (formValues: FraværDagFormValues) => {
         const fraværDagToSubmit = mapFormValuesToFraværDag(formValues, fraværDag.id);
         if (isFraværDag(fraværDagToSubmit)) {
@@ -104,12 +105,12 @@ const FraværDagFormView = ({
     };
 
     const formLabels: FraværDagFormLabels = {
-        ok: intlHelper(intl, '@forms.fravær.form.felles.ok'),
-        avbryt: intlHelper(intl, '@forms.fravær.form.felles.avbryt'),
-        tittel: intlHelper(intl, '@forms.fravær.form.dag.tittel'),
-        dato: intlHelper(intl, '@forms.fravær.form.dag.dato'),
-        antallArbeidstimer: intlHelper(intl, '@forms.fravær.form.dag.antallArbeidstimer'),
-        timerFravær: intlHelper(intl, '@forms.fravær.form.dag.timerFravær'),
+        ok: text('@forms.fravær.form.felles.ok'),
+        avbryt: text('@forms.fravær.form.felles.avbryt'),
+        tittel: text('@forms.fravær.form.dag.tittel'),
+        dato: text('@forms.fravær.form.dag.dato'),
+        antallArbeidstimer: text('@forms.fravær.form.dag.antallArbeidstimer'),
+        timerFravær: text('@forms.fravær.form.dag.timerFravær'),
     };
 
     const disabledDateRanges = dateRangesToDisable

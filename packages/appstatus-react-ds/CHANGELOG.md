@@ -1,5 +1,34 @@
 # @navikt/appstatus-react-ds
 
+## 2.17.42
+
+### Patch Changes
+
+- c4d70c1: Pakkeoppdateringer - minor/patch
+
+## 2.17.41
+
+### Patch Changes
+
+- 9c29019: Pakkeoppdateringer - minor/patch
+- 35938df: Pakkeoppdateringer - minor/patch
+
+## 2.17.40
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch/minor
+- Updated dependencies
+  - @navikt/sif-common-hooks@0.1.11
+
+## 2.17.39
+
+### Patch Changes
+
+- c418fc8: Pakkeoppdateringer minor/patch
+- Updated dependencies [c418fc8]
+  - @navikt/sif-common-hooks@0.1.10
+
 ## 2.17.38
 
 ### Patch Changes

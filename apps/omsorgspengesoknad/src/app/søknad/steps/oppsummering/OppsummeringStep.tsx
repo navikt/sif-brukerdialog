@@ -22,6 +22,7 @@ import OmBarnetOppsummering from './OmBarnetOppsummering';
 import OmSøkerOppsummering from './OmSøkerOppsummering';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 import VedleggOppsummering from './VedleggOppsummering';
+import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -132,7 +133,9 @@ const OppsummeringStep = () => {
                             </Form>
                             {sendSøknadError && (
                                 <FormBlock>
-                                    <ErrorSummary ref={sendSøknadErrorSummary}>{sendSøknadError.message}</ErrorSummary>
+                                    <ErrorSummary ref={sendSøknadErrorSummary}>
+                                        <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
+                                    </ErrorSummary>
                                 </FormBlock>
                             )}
                         </>
