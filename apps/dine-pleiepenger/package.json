@@ -46,7 +46,7 @@
         "@navikt/ds-react": "6.7.0",
         "@navikt/ds-tailwind": "6.7.0",
         "@next/bundle-analyzer": "14.2.3",
-        "@playwright/test": "1.43.1",
+        "@playwright/test": "1.44.0",
         "@storybook/addon-essentials": "8.0.10",
         "@storybook/addon-interactions": "8.0.10",
         "@storybook/addon-links": "8.0.10",
