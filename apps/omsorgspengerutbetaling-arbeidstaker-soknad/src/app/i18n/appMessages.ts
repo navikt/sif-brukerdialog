@@ -21,41 +21,9 @@ const nb = {
 
     Ja: 'Ja',
     Nei: 'Nei',
-    VetIkke: 'Jeg er usikker',
 
-    'locale.nb': 'Bokmål - norsk',
-    'locale.nn': 'Nynorsk - norsk',
-
-    mandag: 'mandag',
-    tirsdag: 'tirsdag',
-    onsdag: 'onsdag',
-    torsdag: 'torsdag',
-    fredag: 'fredag',
-
-    'mandag.caps': 'Mandag',
-    'tirsdag.caps': 'Tirsdag',
-    'onsdag.caps': 'Onsdag',
-    'torsdag.caps': 'Torsdag',
-    'fredag.caps': 'Fredag',
-
-    Mandag: 'Mandag',
-    Tirsdag: 'Tirsdag',
-    Onsdag: 'Onsdag',
-    Torsdag: 'Torsdag',
-    Fredag: 'Fredag',
-
-    'banner.title': 'Søknad om utbetaling av omsorgspenger når arbeidsgiver ikke utbetaler',
-    'application.bannerTitle': 'Søknad om utbetaling av omsorgspenger når arbeidsgiver ikke utbetaler',
     'application.title': 'Søknad om utbetaling av omsorgspenger når arbeidsgiver ikke utbetaler',
-
-    timer: '{timer, plural, one {# time} other {# timer}}',
-    minutter: '{minutter, plural, one {# minutt} other {# minutter}}',
-    timerOgMinutter:
-        '{timer, plural, one {# time} other {# timer}} og {minutter, plural, one {# minutt} other {# minutter}}',
     dager: '{dager, plural, one {# dag} other {# dager}}',
-
-    'timeInput.hours': 'Timer',
-    'timeInput.minutes': 'Minutter',
 
     'initialLoadError.pageTitle': 'Det oppstod en feil',
     'initialLoadError.text.1': 'Det oppstod en feil under oppstarten av søknaden. Vennligst prøv igjen senere.',
@@ -63,40 +31,9 @@ const nb = {
     'resetMellomlagring.text.1': 'Dersom feilen vedvarer, kan du prøve å starte på nytt med et tom skjema.',
     'resetMellomlagring.startPåNytt': 'Start på nytt',
 
-    'page.form.ubesvarteSpørsmålInfo': 'For å komme videre, må du svare på alle spørsmålene ovenfor',
-
-    'fileUploadErrors.part1': 'Det har dessverre skjedd en feil under opplasting av følgende vedlegg:',
-    'formikValidationErrorSummary.tittel': 'Du må rette opp i følgende feil:',
-
     'step.nextButtonLabel': 'Fortsett',
     'step.sendButtonLabel': 'Send inn søknaden',
     'step.sendButtonAriaLabel': 'Send inn søknaden',
-
-    'avbrytSøknadDialog.avbrytSøknadLabel': 'Ja, avbryt søknad',
-    'avbrytSøknadDialog.fortsettSøknadLabel': 'Nei',
-    'avbrytSøknadDialog.intro': 'Det du har fylt ut i søknaden blir slettet, og du kommer tilbake til velkomstsiden.',
-    'avbrytSøknadDialog.spørsmål': 'Ønsker du å slette søknaden?',
-    'avbrytSøknadDialog.tittel': 'Avbryt og slett søknad',
-
-    'fortsettSøknadSenereDialog.avbrytSøknadLabel': 'Ja, fortsett senere',
-    'fortsettSøknadSenereDialog.fortsettSøknadLabel': 'Nei',
-    'fortsettSøknadSenereDialog.intro':
-        'Vi lagrer det du har fylt ut i 72 timer. Når du vil fortsette, starter du bare søknaden på nytt.',
-    'fortsettSøknadSenereDialog.spørsmål': 'Vil du avslutte nå og fortsette senere?',
-    'fortsettSøknadSenereDialog.tittel': 'Avslutt og fortsett senere',
-
-    'steg.footer.avbryt': 'Avbryt og slett søknad',
-    'steg.footer.fortsettSenere': 'Avslutt og fortsett senere',
-
-    'vedleggsliste.fjernKnapp': 'Fjern vedlegg',
-
-    'formikVedleggsKomponent.advarsel.totalstørrelse.1':
-        'Du har totalt lastet opp mer enn grensen på 24 Mb. Det betyr at du må fjerne noe av det du har lastet opp. Hvis det betyr at du ikke får plass til alt du ønsker å sende nå, kan du ',
-    'formikVedleggsKomponent.advarsel.totalstørrelse.2': 'ettersende flere dokumenter.',
-
-    'page.generalErrorPage.sidetittel': 'Feil',
-    'page.generalErrorPage.tittel': 'Noe gikk galt...',
-    'page.generalErrorPage.tekst': 'Beklager, her har det dessverre skjedd en feil.',
 
     'step.fosterbarn.stepTitle': 'Fosterbarn',
     'step.fosterbarn.stepIndicatorLabel': 'Fosterbarn',
