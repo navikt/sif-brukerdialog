@@ -21,47 +21,10 @@ const nb = {
     ...kvitteringMessages.nb,
     ...validateApiDataMessages.nb,
 
-    mandag: 'mandag',
-    tirsdag: 'tirsdag',
-    onsdag: 'onsdag',
-    torsdag: 'torsdag',
-    fredag: 'fredag',
-
-    'mandag.caps': 'Mandag',
-    'tirsdag.caps': 'Tirsdag',
-    'onsdag.caps': 'Onsdag',
-    'torsdag.caps': 'Torsdag',
-    'fredag.caps': 'Fredag',
-
-    Mandag: 'Mandag',
-    Tirsdag: 'Tirsdag',
-    Onsdag: 'Onsdag',
-    Torsdag: 'Torsdag',
-    Fredag: 'Fredag',
-
     'application.title': 'Søknad om utbetaling av omsorgspenger til selvstendig næringsdrivende eller frilansere',
-
-    'page.loadingPage.tekst': 'Laster ...',
-    'page.form.ubesvarteSpørsmålInfo': 'For å komme videre, må du svare på alle spørsmålene ovenfor',
-
-    'gotoApplicationLink.lenketekst': 'Gå til den digitale søknaden',
 
     time: 'time',
     timer: 'timer',
-
-    'timeInput.hours': 'Timer',
-    'timeInput.minutes': 'Minutter',
-
-    'welcomingPage.sidetittel': 'Søknad om utbetaling av omsorgspenger',
-    'welcomingPage.begynnsøknad': 'Gå til søknaden',
-
-    'page.ikkeTilgang.sidetittel':
-        'Søknad om utbetaling av omsorgspenger til selvstendig næringsdrivende eller frilansere',
-    'page.ikkeTilgang.tekst':
-        'Du har ikke tilgang til denne siden. Dersom du er under 18 år, må en av foreldrene dine eller en foresatt skrive under på søknaden sammen med deg. Du må derfor fylle ut søknaden på papir og sende den i posten.',
-
-    'steg.footer.avbryt': 'Avbryt og slett søknad',
-    'steg.footer.fortsettSenere': 'Avslutt og fortsett senere',
 
     'step.dineBarn.stepTitle': 'Barn og rett til omsorgspenger fra NAV',
     'step.dineBarn.stepIndicatorLabel': 'Barn og rett til omsorgspenger fra NAV',
@@ -82,7 +45,6 @@ const nb = {
     'step.legeerklæring.nextButtonLabel': 'Fortsett',
 
     'vedleggsliste.ingenLegeerklæringLastetOpp': 'Ingen vedlegg er lastet opp',
-    'vedleggsliste.ingenSamværsavtaleLastetOpp': 'Ingen vedlegg er lastet opp',
 
     'dokumenter.advarsel.totalstørrelse':
         'Du har totalt lastet opp mer enn grensen på 24 Mb. Det betyr at du må fjerne noe av det du har lastet opp. Hvis det betyr at du ikke får plass til alt du ønsker å sende nå, kan du <Lenke>ettersende flere dokumenter</Lenke>.',
