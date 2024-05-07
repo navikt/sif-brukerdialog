@@ -63,6 +63,9 @@ const nb = {
     'invalidStepSøknadsdataInfo.info':
         'Vennligst gå tilbake til steget {Lenke}, og bruk knappene nederst i skjemaet for å gå videre. Ikke bruk frem og tilbake-funksjonaliteten i nettleseren.',
 
+    'feriedagerISøknadsperiode.leggTilFerie': 'Legg til ferie',
+    'feriedagerISøknadsperiode.modal.tittel': 'Ferie',
+
     'lovbestemtFerieListe.ingenFerieRegistrert': 'Ingen ferie registrert',
     'lovbestemtFerieListe.ferieLagtTil': 'Ferie lagt til',
     'lovbestemtFerieListe.ferieFjernet': 'Ferie fjernet',
