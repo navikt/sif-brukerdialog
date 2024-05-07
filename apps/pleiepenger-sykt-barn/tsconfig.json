@@ -5,7 +5,8 @@
         "outDir": "build/dist",
         "typeRoots": ["../../node_modules/@types", "./node_modules/@types"],
         "paths": {
-            "@i18n/*": ["./src/app/i18n/*"]
+            "@i18n/*": ["./src/app/i18n/*"],
+            "@sb/*": ["./src/storybook/*"]
         }
     },
     "sourceMap": true,
