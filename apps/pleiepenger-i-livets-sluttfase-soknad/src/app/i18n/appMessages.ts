@@ -27,9 +27,7 @@ const nb = {
     ...calendarGridMessages.nb,
     ...dagerMedTidMessages.nb,
 
-    'application.bannerTitle': 'Søknad om pleiepenger i livets sluttfase',
     'application.title': 'Søknad om pleiepenger i livets sluttfase',
-    'page.form.ubesvarteSpørsmålInfo': 'For å komme videre, må du svare på alle spørsmålene ovenfor.',
 
     'initialLoadError.pageTitle': 'Det oppstod en feil',
     'initialLoadError.text.1': 'Det oppstod en feil under oppstarten av søknaden. Vennligst prøv igjen senere.',
@@ -39,69 +37,11 @@ const nb = {
 
     hvaBetyrDette: 'Hva betyr dette?',
     fødselsnummer: 'Fødselsnummer:',
-    apiVerdierMangler: 'Api verdier mangler',
-    'page.loadingPage.tekst': 'Laster ...',
 
-    ukeÅr: 'Uke {ukenummer}, {år}',
     'dagerMedTid.uke': 'Uke {uke}',
     'dagerMedTid.ingenDagerRegistrert': 'Ingen dager registrert',
 
-    'page.generalErrorPage.sidetittel': 'Feil',
-    'page.generalErrorPage.tittel': 'Noe gikk galt...',
-    'page.generalErrorPage.tekst': 'Beklager, her har det dessverre skjedd en feil.',
-
-    'page.invalidStepPage.sidetittel': 'Oops, nå skjedde det en feil...',
-    'page.invalidStepPage.tittel': 'Oops, nå skjedde det en feil...',
-    'page.invalidStepPage.tekst':
-        'Du er kommet til en side du ikke trenger å fylle ut. Dette kan skje hvis du går frem og tilbake i søknaden gjennom pilene i nettleseren (pilene helt øverst til venstre på siden). Du unngår dette problemet hvis du heller bruker knapper og lenker som ligger inne i selve søknaden for å gå frem eller tilbake.:',
-    'page.invalidStepPage.tilbakeLenke': 'Gå tilbake til forrige side',
-
-    'page.ikkeTilgang.sidetittel': 'Søknad om pleiepenger i livets sluttfase',
-    'page.ikkeTilgang.tekst':
-        'Du har ikke tilgang til denne siden. Hvis du er under 18 år, må en av foreldrene dine eller en foresatt skrive under på søknaden sammen med deg. Du må derfor fylle ut søknaden på papir og sende den i posten.',
-    'page.ikkeTilgang.lastNed': 'Søknad om pleiepenger i livets sluttfase',
-
-    'avbrytSøknadDialog.avbrytSøknadLabel': 'Ja, avbryt søknad',
-    'avbrytSøknadDialog.fortsettSøknadLabel': 'Nei',
-    'avbrytSøknadDialog.intro': 'Det du har fylt ut i søknaden blir slettet, og du kommer tilbake til velkomstsiden.',
-    'avbrytSøknadDialog.spørsmål': 'Ønsker du å slette søknaden?',
-    'avbrytSøknadDialog.tittel': 'Avbryt og slett søknad',
-
-    'fortsettSøknadSenereDialog.avbrytSøknadLabel': 'Ja, fortsett senere',
-    'fortsettSøknadSenereDialog.fortsettSøknadLabel': 'Nei',
-    'fortsettSøknadSenereDialog.intro':
-        'Vi lagrer det du har fylt ut i 72 timer. Når du vil fortsette, starter du bare søknaden på nytt.',
-    'fortsettSøknadSenereDialog.spørsmål': 'Vil du avslutte nå og fortsette senere?',
-    'fortsettSøknadSenereDialog.tittel': 'Avslutt og fortsett senere',
-
-    'steg.footer.avbryt': 'Avbryt og slett søknad',
-    'steg.footer.fortsettSenere': 'Avslutt og fortsett senere',
-
-    'step.nextButtonLabel': 'Fortsett',
-    'step.nextButtonAriaLabel': 'Gå til neste steg',
-    'step.sendButtonLabel': 'Send inn søknaden',
-    'step.sendButtonAriaLabel': 'Send inn søknaden',
-
-    'arbeidsforhold.turnus.info.tittel': 'Hvordan regner jeg ut et snitt av turnusen min?',
-    'arbeidsforhold.turnus.info.tekst.1':
-        'Du regner ut snittet ved å legge sammen antall timer du jobber totalt i hele turnusperioden din, og deler det med antall uker som turnusperioden din består av.',
-    'arbeidsforhold.turnus.info.tekst.2':
-        'Du har en turnus som går over 3 uker. Den første uka jobber du 20 timer, den andre 40 timer og den tredje uka jobber du 15 timer. Da legger du sammen antall timer du har jobbet og deler med antall uker i turnusperioden din.',
-    'arbeidsforhold.turnus.info.tekst.3': 'Da blir regnestykket slik i dette eksempelet:',
-    'arbeidsforhold.turnus.info.tekst.4': '20 timer + 40 timer + 15 timer = 75 timer',
-    'arbeidsforhold.turnus.info.tekst.5': 'Så deler du antall timer med antall uker i turnusperioden din: 75 / 3 = 25',
-    'arbeidsforhold.turnus.info.tekst.6': 'Du jobber altså i snitt 25 timer per uke, og det er dette tallet du oppgir.',
-    'arbeidsforhold.turnus.info.tekst.eksempel': 'Eksempel:',
-    'arbeidsforhold.varierende': 'Deltid/varierende/tilkalling',
-    'arbeidsforhold.varierende.1': 'Deltid',
-    'arbeidsforhold.varierende.2': 'varierende',
-    'arbeidsforhold.varierende.3': 'tilkalling',
-    'arbeidsforhold.varierende.info.tittel': 'Hvordan regner jeg ut et snitt i min situasjon?',
-    'arbeidsforhold.varierende.info.tekst.1':
-        'Du regner ut et snitt ved å legge sammen antall timer du totalt har jobbet de siste 12 ukene og deler det med 12. Hvis du ikke har jobbet i 12 uker, regner du ut snittet på samme måte ved å bruke de ukene du har jobbet.',
-
     'frilanser.harDuHattInntekt.spm': 'Er du frilanser i perioden du søker for?',
-    'frilanser.harDuAndreFrilansoppdrag.spm': 'Har du andre frilansoppdrag du har fravær fra i perioden du søker for?',
     'frilanser.nårStartet.spm': 'Når startet du å jobbe som frilanser?',
     'frilanser.jobberFortsatt.spm': 'Jobber du fortsatt som frilanser?',
     'frilanser.nårSluttet.spm': 'Når sluttet du som frilanser?',
@@ -124,9 +64,6 @@ const nb = {
     'selvstendig.harFlereVirksomheter.spm': 'Har du flere enn én næringsvirksomhet som er aktiv?',
     'selvstendig.veileder.flereAktiveVirksomheter':
         'Når du har flere aktive næringsvirksomheter skal du kun legge inn den virksomheten som er eldst av dem. Har du for eksempel en virksomhet du startet i 2012 og en annen som du startet i 2020, skal du kun legge inn virksomheten du startet i 2012.',
-    'selvstendig.list.tittel': 'Dine registrerte næringsvirksomheter',
-    'selvstendig.list.leggTilLabel': 'Legg til næringsvirksomhet',
-    'selvstendig.dialog.tittel': 'Næringsvirksomhet',
 
     'selvstendig.infoDialog.infoTittel': 'Næringsvirksomhet som du har lagt inn:',
     'selvstendig.infoDialog.registrerKnapp': 'Registrer virksomhet',
@@ -136,15 +73,6 @@ const nb = {
 
     'sn.arbeidsforhold.spm':
         'Hvor mange timer jobber du normalt per uke som selvstendig næringsdrivende når du ikke har fravær?',
-    'sn.arbeidsforhold.avsluttet.spm':
-        'Hvor mange timer jobbet du normalt per uke som selvstendig næringsdrivende når du ikke hadde fravær?',
-    'sn.arbeidsforhold.utledet': 'timer i uka',
-
-    'snF.ArbeidsforholdDetaljer.hvaBetyr.spm': 'Hva betyr dette?',
-    'snF.ArbeidsforholdDetaljer.hvaBetyr.frilanser.info':
-        'Hvis du jobber som frilanser flere steder skal du her svare samlet for alle oppdragene. Hvis du f.eks. skal jobbe i en av to frilansforhold skal du her svare "Ja, men jeg skal jobbe mindre enn normalt".',
-    'snF.ArbeidsforholdDetaljer.hvaBetyr.SN.info':
-        'Hvis du jobber som selvstendig i flere virksomheter skal du her svare samlet for alle virksomhetene dine. Hvis du f.eks. skal jobbe i en av to virksomheter skal du her svare "Ja, men jeg skal jobbe mindre enn normalt".',
 
     'step.arbeidstid.pageTitle': 'Opplysninger om arbeidstid',
     'step.arbeidstid.stepTitle': 'Jobb i søknadsperioden',
@@ -155,8 +83,6 @@ const nb = {
     'step.medlemskap.stepTitle': 'Medlemskap i folketrygden',
     'step.medlemskap.stepIndicatorLabel': 'Om medlemskap i folketrygden',
     'step.medlemskap.nextButtonLabel': 'Fortsett',
-
-    'fieldvalidation.mottakersFnrErSøkersFnr': 'Du har tastet inn ditt eget fødselsnummer',
 
     'validation.harForståttRettigheterOgPlikter.notChecked': 'Du må bekrefte at du har lest og forstått dine plikter.',
 
@@ -258,11 +184,6 @@ const nb = {
         'Ett eller flere av utenlandsoppholdene du har lagt inn for de neste 12 månedene, har datoer som overlapper hverandre.',
 
     'validation.harBekreftetOpplysninger.notChecked': 'Du må bekrefte at opplysningene du har gitt er riktige.',
-
-    'page.unavailable.1':
-        'Den digitale pleiepengesøknaden er dessverre ikke tilgjengelig akkurat nå. Vi jobber med saken, slik at du kan søke digitalt. Frem til vi får fikset dette, kan du fylle ut vårt',
-    'page.unavailable.2': 'papirskjema for pleiepenger i livets sluttfase',
-    'page.unavailable.3': 'Vi beklager.',
 
     'arbeidssituasjonFrilanser.frilanserPart.tittel': 'Om deg som frilanser',
     'frilansoppdragListe.oppdrag': 'Periode: {tidsrom}',
