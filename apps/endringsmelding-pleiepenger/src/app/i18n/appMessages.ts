@@ -26,8 +26,6 @@ const nb = {
     'step.arbeidstid.stepTitle': 'Jobb i pleiepengeperioden',
     'step.lovbestemtFerie.stepTitle': 'Ferie i pleiepengeperioden',
     'step.oppsummering.stepTitle': 'Oppsummering',
-    'steg.footer.avbryt': 'Avbryt og slett melding om endring',
-    'steg.footer.fortsettSenere': 'Avslutt og fortsett senere',
 
     'arbeidsaktivitetBlockHeader.nyttArbeidsforhold': 'Nytt arbeidsforhold',
     'arbeidsaktivitetBlockHeader.arbeidsgiver.orgnummer': 'Organisasjonsnummer: {orgnr}',
@@ -102,7 +100,7 @@ const nb = {
     'kvitteringPage.title': 'Melding om endring er lagt til saken din',
     'kvitteringPage.info.1':
         'Når vi har behandlet meldingen fra deg, får du svar på din side på nav.no og i Digipost. Hvis du har registrert deg mot å motta digital post, får du svaret tilsendt i posten.',
-    'kvitteringPage.info.2': 'Du kan se hva du har sendt inn på {dinePleiepengerLink}.',
+    'kvitteringPage.info.2': 'Du kan se hva du har sendt inn på <Lenke>dine pleiepenger</Lenke>.',
 
     'lovbestemtFerieStep.guide.tittel': 'Slik endrer du ferie',
     'lovbestemtFerieStep.guide.tekst.1': 'Du kan endre, legge til, eller fjerne ferie i pleiepengeperioden din.',

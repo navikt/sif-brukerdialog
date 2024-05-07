@@ -5,13 +5,14 @@ import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { Kvittering } from '@navikt/sif-common-soknad-ds';
 import { useEffect } from 'react';
-import { AppText } from '../../i18n';
+import { AppText, useAppIntl } from '../../i18n';
 
 interface Props {
     onUnmount: () => void;
 }
 
 const KvitteringPage = ({ onUnmount }: Props) => {
+    const { text } = useAppIntl();
     useLogSidevisning(SIFCommonPageKey.kvittering);
     useEffect(() => {
         return () => {
@@ -19,8 +20,8 @@ const KvitteringPage = ({ onUnmount }: Props) => {
         };
     });
     return (
-        <Page title="Endringsmelding er mottatt">
-            <Kvittering tittel="Melding om endring er lagt til saken din">
+        <Page title={text('kvitteringPage.pageTitle')}>
+            <Kvittering tittel={text('kvitteringPage.title')}>
                 <p>
                     <AppText id="kvitteringPage.info.1" />
                 </p>
@@ -28,9 +29,7 @@ const KvitteringPage = ({ onUnmount }: Props) => {
                     <AppText
                         id="kvitteringPage.info.2"
                         values={{
-                            dinePleiepengerLink: (
-                                <Link href={getEnvironmentVariable('INNSYN_URL')}>dine pleiepenger</Link>
-                            ),
+                            Lenke: (children) => <Link href={getEnvironmentVariable('INNSYN_URL')}>{children}</Link>,
                         }}
                     />
                 </Block>

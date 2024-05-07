@@ -26,7 +26,7 @@ const nb = {
     ...appMessages.nb,
 };
 
-const nn: Record<keyof typeof nb, string> = {
+const nn: Partial<Record<keyof typeof nb, string>> = {
     ...libMessages.nn,
     ...appMessages.nn,
 };
