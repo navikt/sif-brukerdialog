@@ -1,3 +1,9 @@
+/**
+ *
+ * Start opp app og hent ut appMessages fra i18/index.tsx. Lagre dem som messages.json i i18n-mappen.
+ * Kjør node findUnusedIntlKeys.cjs for å finne ubrukte keys i messages.json.
+ */
+
 const fs = require('fs');
 const path = require('path');
 
@@ -12,6 +18,10 @@ const keys = Object.keys(messages);
 // Function to recursively search through files
 function searchFiles(dir, key) {
     const files = fs.readdirSync(dir);
+    if (dir === 'src/app/i18n') {
+        return;
+    }
+
     for (const file of files) {
         const fullPath = path.join(dir, file);
         if (fs.statSync(fullPath).isDirectory()) {
@@ -31,4 +41,5 @@ function searchFiles(dir, key) {
 
 // Check each key
 const unusedKeys = keys.filter((key) => !searchFiles(SOURCE_PATH, key));
-console.log('Unused keys:', unusedKeys);
+// eslint-disable-next-line no-console
+console.log('Unused keys:', unusedKeys.slice(0));
