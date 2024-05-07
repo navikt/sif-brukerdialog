@@ -32,7 +32,6 @@ const RegistrertBarnPart = ({ registrertBarn }: Props) => {
                             const barnetsNavn = formatName(fornavn, etternavn, mellomnavn);
                             return {
                                 value: aktørId,
-                                key: aktørId,
                                 label: (
                                     <BodyShort as="div">
                                         <div>{barnetsNavn}</div>
