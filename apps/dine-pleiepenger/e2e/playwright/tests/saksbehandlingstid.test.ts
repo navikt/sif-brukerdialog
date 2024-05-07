@@ -60,7 +60,7 @@ test('Saksbehandlingstid er i fortid', async ({ page }) => {
         await route.fulfill({ status: 200, body: JSON.stringify(response) });
     });
     await page.goto('http://localhost:8080/innsyn');
-    await expect(page.getByText('Forventet behandlingstid er')).toBeVisible();
+    await expect(page.getByText('Vi jobber fremdeles med søknaden din')).toBeVisible();
 });
 
 test('Ingen Saksbehandlingstid, men behandlingstid', async ({ page }) => {
