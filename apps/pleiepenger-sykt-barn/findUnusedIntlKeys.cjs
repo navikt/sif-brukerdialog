@@ -18,6 +18,10 @@ const keys = Object.keys(messages);
 // Function to recursively search through files
 function searchFiles(dir, key) {
     const files = fs.readdirSync(dir);
+    if (dir === 'src/app/i18n') {
+        return;
+    }
+
     for (const file of files) {
         const fullPath = path.join(dir, file);
         if (fs.statSync(fullPath).isDirectory()) {
