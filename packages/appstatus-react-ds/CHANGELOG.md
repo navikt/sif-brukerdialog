@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 2.17.42
+
+### Patch Changes
+
+- c4d70c1: Pakkeoppdateringer - minor/patch
+
 ## 2.17.41
 
 ### Patch Changes
