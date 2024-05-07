@@ -1,18 +1,12 @@
 const nb = {
-    'gotoApplicationLink.lenketekst': 'Gå til den digitale søknaden',
     'step.button.gåVidere': 'Gå videre',
-    'step.button.startSøknad': 'Start ettersendelsen',
     'page.form.ubesvarteSpørsmålInfo': 'For å komme videre må du svare på spørsmålet ovenfor.',
 
     'ettersendelse.samtykkeForm.submitButtonLabel': 'Start ettersendelse',
 
     'application.cancelOrContinueLaterLabel': 'Avbryt eller fortsett senere',
 
-    'steg.footer.avbryt': 'Avbryt og slett ettersendelse',
-    'steg.footer.fortsettSenere': 'Avslutt og fortsett senere',
-
     'banner.title': 'Ettersending av dokumenter',
-    'page.error.pageTitle': 'Det oppstod en feil',
 
     'søknadstype.pleiepenger': 'pleiepengesøknad',
     'søknadstype.omsorgspenger': 'omsorgspengesøknad',
@@ -95,8 +89,6 @@ const nb = {
     'step.beskrivelse_pp.annetBarn.fnr.spm': 'Barnets fødselsnummer/D-nummer',
     'step.beskrivelse_pp.dokumentType.ANNET': 'Annet',
     'step.beskrivelse_pp.hvaSendes.spm': 'Beskriv hva slags dokumentasjon du skal sende',
-    'step.beskrivelse_pp.intro':
-        'Her beskriver du hvilken dokumentasjon du skal sende oss. Hvis en annen søker har sendt inn samme dokumentasjon for barnet i perioden du søker, trenger du ikke sende inn disse på nytt.',
     'step.beskrivelse_pp.annet.info.1': 'Har vi etterspurt mer dokumentasjon fra deg?',
     'step.beskrivelse_pp.annet.info.2':
         'Ved siden av legeerklæring, er det kun nødvendig å ettersende mer dokumentasjon hvis en saksbehandler har spurt om noe konkret fra deg.',
@@ -154,10 +146,7 @@ const nb = {
     'page.intro.type.pleiepenger': 'Pleiepenger for sykt barn',
     'page.intro.type.pleiepenger_livets_sluttfase': 'Pleiepenger i livets sluttfase',
     'page.intro.type.omsorgspenger': 'Omsorgspenger',
-    'page.intro.gåVidere': 'Gå videre',
-    'page.intro.søknadstype.noValue': 'Du må velge hva denne ettersendelsen gjelder',
 
-    'page.ikkeTilgang.sidetittel': 'Ettersending av dokumenter',
     'page.ikkeTilgang.tekst': 'Du har ikke tilgang til denne siden.',
 
     'page.generalErrorPage.sidetittel': 'Feil',
@@ -201,7 +190,6 @@ const nb = {
         'Du har oppgitt et ugyldig fødselsnummer. Kontroller at du har tastet inn riktig.',
     'validation.barnetLegeerklæringGjelder.noValue': 'Du må velge hvilket barn legeerklæringen gjelder',
     'validation.dokumentType.noValue': 'Du må velge hva du skal ettersende',
-    'ekspanderbarPSG.title': 'Slik tar du et godt bilde av dokumentet',
 
     'page.velkommen.guide.tittel': 'Hei',
     'page.velkommen.guide.ingress':
@@ -209,8 +197,6 @@ const nb = {
 
     'page.velkommen.omSøknaden.tittel': 'Om ettersendingen',
     'page.velkommen.omSøknaden.1': 'Du får veiledning underveis om hva du skal fylle ut, og hvordan.',
-    'page.velkommen.omSøknaden.fremoverITid':
-        'Hvis du søker frem i tid, har vi forståelse for at du kan bli usikker på hva du skal svare på noen spørsmål som handler om tiden fremover. Da svarer du så godt du kan ut fra hva situasjonen er nå, og så kan du melde fra om eventuelle endringer senere.',
     'page.velkommen.omSøknaden.2':
         'Vi tar vare på svarene dine i 72 timer. Hvis du innenfor den tiden for eksempel vil ta en pause eller blir automatisk logget ut, fortsetter du der du var når du kommer tilbake.',
     'page.velkommen.omSøknaden.3': 'Du må svare på alle spørsmålene for å kunne gå videre.',
