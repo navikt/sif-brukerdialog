@@ -1,5 +1,17 @@
 # @navikt/sif-common-hooks
 
+## 0.1.11
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch/minor
+
+## 0.1.10
+
+### Patch Changes
+
+- c418fc8: Pakkeoppdateringer minor/patch
+
 ## 0.1.9
 
 ### Patch Changes

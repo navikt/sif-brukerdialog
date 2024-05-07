@@ -1,20 +1,8 @@
 import dayjs from 'dayjs';
 import { PleietrengendeMedSak } from '../../server/api-models/PleietrengendeMedSakSchema';
+import { Brukerprofil } from '../../types/Brukerprofil';
 import { InnsendtSøknad } from '../../types/Søknad';
 import { getEndringsmeldinger, getEttersendelser, getPleiepengesøknader } from '../innsendtSøknadUtils';
-
-type Brukerprofil = {
-    profilVersjon: '1.0';
-    antallSøknader: number;
-    antallEttersendelser: number;
-    antallEndringsmeldinger: number;
-    antallSaker: number;
-    harSaksbehandlingstid: boolean;
-    sisteSøknad: Date | undefined;
-    sisteEndring: Date | undefined;
-    sisteEttersendelse: Date | undefined;
-    dagerSidenSøknad: number | undefined;
-};
 
 export const getBrukerprofil = (
     søknader: InnsendtSøknad[],
