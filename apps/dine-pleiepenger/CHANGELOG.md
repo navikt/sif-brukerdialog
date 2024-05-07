@@ -1,5 +1,54 @@
 # @navikt/dine-pleiepenger
 
+## 1.1.4
+
+### Patch Changes
+
+- c4d70c1: Pakkeoppdateringer - minor/patch
+- Updated dependencies [c4d70c1]
+  - @navikt/sif-common-amplitude@2.24.37
+  - @navikt/appstatus-react-ds@2.17.42
+  - @navikt/sif-common-core-ds@9.16.2
+  - @navikt/sif-common-sentry@0.25.34
+  - @navikt/sif-common-utils@3.44.22
+
+## 1.1.3
+
+### Patch Changes
+
+- 4de3dca: Endre tekst som kommer når saksbehandlingstid-fristen er passert.
+- 9c29019: Pakkeoppdateringer - minor/patch
+- 35938df: Pakkeoppdateringer - minor/patch
+- Updated dependencies [9c29019]
+- Updated dependencies [35938df]
+  - @navikt/sif-common-amplitude@2.24.36
+  - @navikt/appstatus-react-ds@2.17.41
+  - @navikt/sif-common-core-ds@9.16.1
+  - @navikt/sif-common-sentry@0.25.33
+  - @navikt/sif-common-utils@3.44.21
+
+## 1.1.2
+
+### Patch Changes
+
+- 33f4b9c: To interne bugfix
+
+  - Legge "ryujtq87.api.sanity.io" til i externalHosts
+  - Endre path fra internal til health for isAlive og isHealthy
+
+## 1.1.1
+
+### Patch Changes
+
+- Pakkeoppdateringer - patch/minor
+- Updated dependencies
+- Updated dependencies [25d7bf0]
+  - @navikt/sif-common-amplitude@2.24.35
+  - @navikt/appstatus-react-ds@2.17.40
+  - @navikt/sif-common-core-ds@9.16.0
+  - @navikt/sif-common-sentry@0.25.32
+  - @navikt/sif-common-utils@3.44.20
+
 ## 1.1.0
 
 ### Minor Changes
