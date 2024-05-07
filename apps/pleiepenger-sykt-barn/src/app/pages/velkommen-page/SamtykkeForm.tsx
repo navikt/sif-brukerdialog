@@ -53,7 +53,7 @@ const SamtykkeForm = ({ onConfirm }: Props) => {
             <FormBlock>
                 <div data-testid={'welcomingPage-begynnsøknad'}>
                     <Button variant="primary" type="submit" className={bem.element('startApplicationButton')}>
-                        {text('welcomingPage.begynnsøknad')}
+                        {text('page.velkommen.startSøknad')}
                     </Button>
                 </div>
             </FormBlock>

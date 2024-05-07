@@ -27,23 +27,11 @@ const nb = {
     thursday: 'torsdag',
     friday: 'fredag',
 
-    'monday.plural': 'mandager',
-    'tuesday.plural': 'tirsdager',
-    'wednesday.plural': 'onsdager',
-    'thursday.plural': 'torsdager',
-    'friday.plural': 'fredager',
-
     'mandag.caps': 'Mandag',
     'tirsdag.caps': 'Tirsdag',
     'onsdag.caps': 'Onsdag',
     'torsdag.caps': 'Torsdag',
     'fredag.caps': 'Fredag',
-
-    'mandager.caps': 'Mandager',
-    'tirsdager.caps': 'Tirsdager',
-    'onsdager.caps': 'Onsdager',
-    'torsdager.caps': 'Torsdager',
-    'fredager.caps': 'Fredager',
 
     Mandag: 'Mandag',
     Tirsdag: 'Tirsdag',
@@ -57,29 +45,15 @@ const nb = {
     Torsdager: 'Torsdager',
     Fredager: 'Fredager',
 
-    ukeÅr: 'Uke {ukenummer}, {år}',
     'dagerMedTid.uke': 'Uke {uke}',
     'dagerMedTid.ingenDagerRegistrert': 'Ingen dager registrert',
 
-    'page.loadingPage.tekst': 'Laster ...',
-    'gotoApplicationLink.lenketekst': 'Gå til den digitale søknaden',
-
     'timer.ikkeTall': '{timer} timer',
-
-    'timeInput.hours': 'Timer',
-    'timeInput.minutes': 'Minutter',
 
     'arbeidsperiode.avsluttet': 'Periode: {fra} - {til}',
     'arbeidsperiode.pågående': 'Periode: {fra} - pågående',
 
     'apiValidationError.tittel': 'Her har det skjedd en feil',
-
-    'NAV_YTELSE.dagpenger': 'Dagpenger',
-    'NAV_YTELSE.foreldrepenger': 'Foreldrepenger',
-    'NAV_YTELSE.svangerskapspenger': 'Svangerskapspenger',
-    'NAV_YTELSE.sykepenger': 'Sykepenger',
-    'NAV_YTELSE.omsorgspenger': 'Omsorgspenger',
-    'NAV_YTELSE.opplæringspenger': 'Opplæringspenger',
 
     'barnRelasjon.MOR': 'Mor',
     'barnRelasjon.MEDMOR': 'Medmor',
@@ -91,22 +65,10 @@ const nb = {
     'frilans.tittel': 'Frilans og oppdrag som regnes som frilansoppdrag',
     'selvstendigNæringsdrivende.tittel': 'Selvstendig næringsdrivende',
 
-    'avbrytSøknadDialog.avbrytSøknadLabel': 'Ja, avbryt søknad',
-    'avbrytSøknadDialog.fortsettSøknadLabel': 'Nei',
-    'avbrytSøknadDialog.intro': 'Det du har fylt ut i søknaden blir slettet, og du kommer tilbake til velkomstsiden.',
-    'avbrytSøknadDialog.spørsmål': 'Ønsker du å slette søknaden?',
-    'avbrytSøknadDialog.tittel': 'Avbryt og slett søknad',
-    'fortsettSøknadSenereDialog.avbrytSøknadLabel': 'Ja, fortsett senere',
-    'fortsettSøknadSenereDialog.fortsettSøknadLabel': 'Nei',
-    'fortsettSøknadSenereDialog.intro':
-        'Når du vil fortsette, finner du igjen søknaden på «Min side» under «Dine pleiepenger».',
-    'fortsettSøknadSenereDialog.spørsmål': 'Vil du avslutte nå og fortsette senere?',
-    'fortsettSøknadSenereDialog.tittel': 'Avslutt og fortsett senere',
-
-    'step.nextButtonLabel': 'Neste',
-    'step.nextButtonAriaLabel': 'Fortsett til neste steg',
-    'step.sendButtonLabel': 'Send inn søknaden',
-    'step.sendButtonAriaLabel': 'Send inn søknaden',
+    'step.tidsrom.søkerKunHelgedager.alert':
+        'Du kan kun få utbetalt pleiepenger for hverdager. Det utbetales ikke pleiepenger for lørdag eller søndag selv om du har hatt fravær fra jobb for å pleie barn. Du kan derfor ikke søke pleiepenger kun for lørdag og/eller søndag.',
+    'steg.tidsrom.veileder.utenlandsopphold':
+        'Når du oppholder deg i et land utenfor EØS, kan du beholde pleiepengene i en begrenset periode på opptil 8 uker av en 12 måneder lang periode.',
 
     'step.opplysninger-om-barnet.pageTitle': 'Pleiepengesøknad - opplysninger om barnet',
     'step.opplysninger-om-barnet.stepTitle': 'Barn',
@@ -117,12 +79,6 @@ const nb = {
     'step.tidsrom.stepTitle': 'Perioden med pleiepenger',
     'step.tidsrom.stepIndicatorLabel': 'Periode',
     'step.tidsrom.nextButtonLabel': 'Neste',
-    'step.tidsrom.infotekst':
-        'For å ha rett til pleiepenger må du ha omsorgen for barnet i hele perioden du søker for.',
-    'step.tidsrom.søkerKunHelgedager.alert':
-        'Du kan kun få utbetalt pleiepenger for hverdager. Det utbetales ikke pleiepenger for lørdag eller søndag selv om du har hatt fravær fra jobb for å pleie barn. Du kan derfor ikke søke pleiepenger kun for lørdag og/eller søndag.',
-    'steg.tidsrom.veileder.utenlandsopphold':
-        'Når du oppholder deg i et land utenfor EØS, kan du beholde pleiepengene i en begrenset periode på opptil 8 uker av en 12 måneder lang periode.',
 
     'steg.tidsrom.iUtlandetIPerioden.spm': 'Skal du reise til utlandet i perioden du søker for?',
     'steg.tidsrom.iUtlandetIPerioden.listTitle': 'Utenlandsopphold i perioden',
@@ -181,50 +137,9 @@ const nb = {
     'page.unavailable.2': 'papirskjema for pleiepenger sykt barn',
     'page.unavailable.3': 'Vi beklager.',
 
-    ubesvarteSpørsmålInfo: 'For å komme videre, må du svare på alle spørsmålene ovenfor',
-    'page.intro.tittel': 'Søknad om pleiepenger for sykt barn',
-    'page.intro.stegTittel': 'Søknad om pleiepenger for sykt barn',
-    'page.intro.text.1': 'Denne søknaden er for deg som må være borte fra jobb fordi du enten',
-    'page.intro.text.2.a':
-        'skal være sammen med et barn som er sykt, eller som er under utredning for sykdom, og som derfor trenger din omsorg og pleie hele tiden,',
-    'page.intro.text.2.b': 'eller',
-    'page.intro.text.2.c':
-        'skal pleie og/eller ha tilsyn med en svært alvorlig syk og utviklingshemmet person som er 18 år eller eldre.',
-    'page.intro.text.3': 'Om søknaden',
-    'page.intro.text.4':
-        'Det kan være greit for deg å vite at du må svare på alle spørsmålene for å kunne gå videre i søknaden. Du får veiledning underveis om hva du skal fylle ut og hvordan.',
-    'page.intro.text.5':
-        'Hvis du begynner på en søknad og ikke fullfører utfyllingen, lagrer vi søknaden for deg i 72 timer. På den måten trenger du ikke fylle inn på nytt det du allerede har svart på. Om du velger å avbryte utfyllingen uten å lagre, blir opplysningene du har lagt inn slettet.',
+    'page.velkommen.tittel': 'Søknad om pleiepenger for sykt barn',
+    'page.velkommen.startSøknad': 'Start søknad',
 
-    'introForm.form.harLegeerklæring.spm':
-        'Har du fått legeerklæring fra sykehuslege eller lege i spesialisthelsetjenesten?',
-    'introForm.form.harLegeerklæring.ja.info':
-        'Legeerklæringen laster du opp som et vedlegg senere i søknaden. Da tar du enten et bilde av legeerklæringen, eller skanner den for å få lastet den opp. Du får mer veiledning om hvordan du laster opp vedlegg når du kommer til dette steget i søknaden.',
-    'introForm.form.harLegeerklæring.nei.info':
-        'For at du skal få svar på søknaden din så raskt som mulig anbefaler vi at du sender legeerklæringen samtidig som du sender inn søknaden. Hvis du ikke har legeerklæringen tilgjengelig nå ettersender du den så snart du kan. Vi trenger den for å kunne behandle søknaden din.',
-    'introForm.form.erArbeidstaker.spm': 'Er du arbeidstaker?',
-    'introForm.form.erArbeidstaker.nei.info':
-        'Hvis du er selvstendig næringsdrivende, frilanser eller mottar utbetaling fra NAV trenger du ikke sende med dokumentasjon om inntekten din. Vi innhenter opplysninger om inntekten din fra offentlige registre, og kontakter deg hvis vi trenger flere opplysninger fra deg.',
-    'introForm.form.erArbeidstaker.ja.info.1':
-        'Hvis du søker for første gang eller det er mer enn 4 uker siden sist du hadde pleiepenger er det viktig at du gir beskjed til arbeidsgiveren(e) dine om at de må sende inntektsmelding til oss. Vi trenger den for å kunne behandle søknaden din.',
-    'introForm.form.inntektsmelding.spm': 'Jeg har lest og forstått informasjonen om inntektsmelding',
-    'introForm.form.inntektsmelding.ikkeBesvart':
-        'Du må bekrefte at du har lest og forstått informasjonen om inntektsmeldingen',
-    'introForm.start': 'Start søknad',
-
-    'welcomingPage.sidetittel': 'Søknad om pleiepenger for sykt barn',
-    'welcomingPage.introtittel': 'Søknad om pleiepenger for sykt barn',
-    'welcomingPage.samtykke.tekst': 'Jeg bekrefter at jeg har lest og forstått',
-    'welcomingPage.samtykke.harForståttLabel':
-        'For å gå videre med søknaden må du bekrefte at du har lest og forstått {plikterLink}.',
-    'welcomingPage.samtykke.harForståttLabel.lenketekst': 'dine plikter',
-    'welcomingPage.personopplysninger.lenketekst': 'Les om hvordan NAV behandler personopplysningene dine',
-    'welcomingPage.modal.omDinePlikter.tittel': 'Om dine plikter',
-    'welcomingPage.modal.behandlingAvPersonalia.tittel': 'Om behandling av personopplysninger',
-    'welcomingPage.begynnsøknad': 'Start søknad',
-
-    'steg.footer.avbryt': 'Avbryt og slett søknad',
-    'steg.footer.fortsettSenere': 'Avslutt og fortsett senere',
     'steg.omBarnet.hvilketBarn.spm': 'Hvilket barn gjelder søknaden?',
     'steg.omBarnet.hvilketBarn.description.tittel': 'Hva gjør jeg når jeg pleier flere barn samtidig?',
     'steg.omBarnet.hvilketBarn.description.info.1':
@@ -269,15 +184,6 @@ const nb = {
     'steg.tidsrom.hvilketTidsrom.info.2': 'Eksempel:',
     'steg.tidsrom.hvilketTidsrom.info.3':
         'Du har innvilget pleiepenger fra 1.-15. januar. Du skal søke om forlengelse, og velger 16. januar som fra og med-dato.',
-    'steg.tidsrom.hvorMye.spm': 'Hvor mye søker du om?',
-    'steg.tidsrom.hvorMye.hjelp.part1': 'Kan du jobbe noe? Da reduserer du prosenten tilsvarende.',
-    'steg.tidsrom.hvorMye.hjelp.part2':
-        'Jobber du deltid i utgangspunktet? Du kan likevel søke om 100 % pleiepenger hvis du mister hele inntekten fordi du pleier barnet.',
-
-    'steg.tidsrom.skalPassePåBarnetIHelePerioden.spm':
-        'Skal du passe på barnet i hele tidsrommet du skal ha pleiepenger?',
-    'steg.tidsrom.bekreftOmsorgEkstrainfo.spm':
-        'Beskriv omsorgsrollen du har for barnet i tidsrommet du skal ha pleiepenger:',
 
     'steg.arbeidssituasjon.tittel': 'Arbeidsgivere',
     'steg.arbeidssituasjon.veileder.1':
@@ -293,12 +199,6 @@ const nb = {
     'steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver.tittel': 'Har du arbeidsforhold som ikke vises?',
     'steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver':
         'Hvis du i perioden du søker for er, eller var, ansatt hos en arbeidsgiver som ikke vises her, må du be arbeidsgiveren om å sende en ny A-melding. Det gjør de enten via eget lønns- og personalsystem, eller via Altinn.',
-    'steg.arbeidssituasjon.info.tekst':
-        'Dersom det mangler en arbeidsgiver her, må du be arbeidsgiveren din sende ny A-melding, enten via lønns- og personalsystemet eller gjennom Altinn.',
-    'steg.arbeidssituasjon.ingenOpplysninger': 'Vi har ikke funnet noen arbeidsgiver registrert på deg.',
-
-    'steg.arbeidssituasjon.intro': 'Vi har funnet disse arbeidsforholdene registrert på deg.',
-    'steg.arbeidssituasjon.info.tittel': 'Mangler det et arbeidsforhold her?',
 
     'steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelse.spm':
         'Mottar du fosterhjemsgodtgjørelse eller omsorgsstønad fra kommunen?',
@@ -315,12 +215,6 @@ const nb = {
     'steg.arbeidssituasjon.stønadGodtgjørelse.starterUndeveis.sluttdato': 'Sluttdato:',
 
     'steg.arbeidssituasjon.frilanser.tittel': 'Frilans og oppdrag som regnes som frilansoppdrag',
-
-    'frilansoppdragInfo.tittel':
-        'Du har {antall,  plural, one {frilansoppdrag} other {frilansoppdragene}} registrert på deg i AA-registeret.',
-    'frilansoppdragInfo.tittel.1':
-        'Hvis du har omsorgsstønad, fosterhjemsgodtgjørelse, er dette også registrert som frilansoppdrag. Det samme gjelder hvis du har et verv som du får honorar for.',
-
     'steg.arbeidssituasjon.sn.tittel': 'Selvstendig næringsdrivende',
 
     'steg.arbeidssituasjon.opptjeningUtland.tittel': 'Jobbet i et annet EØS-land',
@@ -332,11 +226,6 @@ const nb = {
 
     'steg.arbeidssituasjon.utenlandskNæring.spm':
         'Har du jobbet som selvstendig næringsdrivende i et annet EØS-land i løpet av de 3 siste årene før perioden du søker om?',
-    'steg.arbeidssituasjon.utenlandskNæring.infoDialog.infoTittel': 'Næringsvirksomhet som du har lagt inn:',
-    'steg.arbeidssituasjon.utenlandskNæring.infoDialog.endreKnapp': 'Endre opplysninger',
-    'steg.arbeidssituasjon.utenlandskNæring.infoDialog.fjernKnapp': 'Fjern virksomhet',
-    'steg.arbeidssituasjon.utenlandskNæring.infoDialog.registrerKnapp': 'Registrer virksomhet',
-    'steg.arbeidssituasjon.utenlandskNæring.infoDialog.modal.tittel': 'Opplysninger om virksomheten din',
 
     'steg.arbeidssituasjon.verneplikt.tittel': 'Verneplikt',
     'steg.arbeidssituasjon.verneplikt.spm': 'Utøvde du verneplikt på tidspunktet du søker pleiepenger fra?',
@@ -383,9 +272,6 @@ const nb = {
     'step.omsorgstilbud.søkerKunHelgedager.alert.avsnitt.3':
         'Vennligst gå tilbake  til steg "Perioden med pleiepenger" og sjekk informasjonen du har fylt ut. Når du har gjort det, trykker du på "Fortsett"-knappen for å gå videre.',
 
-    'steg.omsorgstilbud.generelt.tittel': 'Omsorgstilbud i perioden',
-    'steg.omsorgstilbud.tittel': 'Omsorgstilbud frem i tid',
-    'steg.omsorgstilbud.erIOmsorgstilbud.spm': 'Er barnet fast og regelmessig i et omsorgstilbud i perioden?',
     'steg.omsorgstilbud.erIOmsorgstilbudFortid': 'Frem til nå',
     'steg.omsorgstilbud.erIOmsorgstilbudFortid.spm':
         'Har barnet vært fast og regelmessig i skole/barnehage, eller andre omsorgstilbud, fra datoen du søker om og frem til nå?',
@@ -405,8 +291,6 @@ const nb = {
         'I perioden med pleiepenger klarer Anna å være i barnehagen mellom 5 og 15 timer per uke. Det er det laveste antallet timer Anna er i barnehagen som anses som fast og regelmessig. I dette eksempelet skal det derfor oppgis 5 timer per uke.',
     'steg.omsorgstilbud.eksempel.2':
         'Peder er på skolen bare av og til, når han er i form til det. Noen uker klarer han å være der noen timer, andre uker er han ikke på skolen i det hele tatt. I dette eksempelet skal det svares nei på om barnet er fast og regelmessig i omsorgstilbudet, ettersom tiden Peder er på skolen er uforutsigbar og uregelmessig.',
-    'steg.omsorgstilbud.erIOmsorgstilbud.nei.info':
-        'Du må gi oss beskjed hvis barnet begynner å være fast og regelmessig i et omsorgstilbud i pleiepengeperioden.',
     'steg.omsorgstilbud.erLiktHverUke.spm.tittel': 'Tid i omsorgstilbud',
     'steg.omsorgstilbud.erLiktHverUke.spm.fortidFremtid': 'Er tiden barnet er i omsorgstilbudet lik hver uke?',
     'steg.omsorgstilbud.erLiktHverUke.spm.fortid': 'Har tiden i omsorgstilbudet vært lik hver uke?',
@@ -445,7 +329,6 @@ const nb = {
         'Du kan oppgi opptil 7 timer og 30 minutter per dag:',
     'steg.omsorgstilbud.hvormyetittel': 'Hvor mye er barnet i omsorgstilbudet?',
     'steg.omsorgstilbud.hvormyetittel.kunFremtid': 'Hvor mye skal barnet være i omsorgstilbudet?',
-    'steg.omsorgstilbud.omsorgstilbud.uketittel': 'Uke {ukenummer}, {år}',
 
     'steg.nattevåkOgBeredskap.veileder':
         'Nå trenger vi å vite om du på grunn av barnets sykdom må være våken om natten, eller være i beredskap for barnet i pleiepengeperioden. Hvis noen av disse situasjonene gjør at du ikke kan gå på jobb, skal pleiepengene som hovedregel ikke graderes, selv om barnet er i et omsorgstilbud på dagtid.',
@@ -466,19 +349,10 @@ const nb = {
     'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.3':
         'Må du være våken de fleste nettene i perioden du søker om pleiepenger, eller er det kun i deler av perioden?',
 
-    'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.veiledning.tittel':
-        'Hva om jeg har våkenetter kun deler av perioden?',
-    'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.veiledning':
-        'Hvis du har våkenetter i kun deler av perioden du søker pleiepenger for, må du presisere hvilke perioder eller netter du må være våken.',
-
     'steg.nattevåkOgBeredskap.beredskap.veileder':
         'I noen tilfeller kan barnets sykdom gjøre at du må være i beredskap eller være tilgjengelig, selv om barnet er i et omsorgstilbud. Det kan for eksempel være hvis barnet trenger at du er til stede i omsorgstilbudet, eller at du må være tilgjengelig til å dra dit på kort varsel, slik at du ikke kan jobbe.',
     'steg.nattevåkOgBeredskap.beredskap.spm':
         'Gjør barnets sykdom at du må være i beredskap, slik at du må være borte fra jobb?',
-    'steg.nattevåkOgBeredskap.beredskap.spm.description.flereBarn.tittel':
-        'Hvordan svarer jeg når jeg pleier flere barn samtidig?',
-    'steg.nattevåkOgBeredskap.beredskap.spm.description.flereBarn':
-        'Du skal svare ja hvis minst ett av barnas sykdom gjør at du må være i beredskap slik at du må være borte fra jobb.',
     'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.spm':
         'Nå trenger vi en beskrivelse av hvordan barnets sykdom gjør at du må være i beredskap.',
     'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.liste.tittel': 'Vi trenger detaljert informasjon om:',
@@ -488,11 +362,6 @@ const nb = {
         'Hvis du må være tilgjengelig på kort varsel: Hvor ofte må du dra dit barnet er?',
     'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.liste.3':
         'Må du være i beredskap i hele perioden du søker om pleiepenger, eller er det kun i deler av perioden?',
-
-    'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.veiledning.tittel':
-        'Hva om jeg må være i beredskap kun deler av perioden?',
-    'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.veiledning':
-        'Hvis du må være i beredskap i kun deler av perioden du søker pleiepenger for, må du presisere hvilke perioder eller dager du må være i beredskap.',
 
     'steg.medlemsskap.annetLandSiste12.spm': 'Har du bodd i utlandet i hele eller deler av de siste 12 månedene?',
     'steg.medlemsskap.annetLandNeste12.spm':
@@ -519,11 +388,6 @@ const nb = {
     'steg.oppsummering.søknadsperiode.header': 'Periode',
     'steg.oppsummering.tidsrom.fomtom': '{fom} - {tom}',
 
-    'steg.oppsummering.skalPassePåBarnetIHelePerioden.header':
-        'Skal du passe på barnet i hele tidsrommet du skal ha pleiepenger?',
-    'steg.oppsummering.bekreftOmsorgEkstrainfo.header':
-        'Beskriv omsorgsrollen du har for barnet i tidsrommet du skal ha pleiepenger:',
-
     'steg.oppsummering.barnet.header': 'Om barnet',
     'steg.oppsummering.barnet.navn': 'Navn: {navn}',
     'steg.oppsummering.barnet.fødselsdato': 'Fødselsdato: {dato}',
@@ -543,10 +407,7 @@ const nb = {
     'steg.oppsummering.barnRelasjon.FAR': 'Du er far til barnet',
     'steg.oppsummering.barnRelasjon.ANNET': 'Annet',
     'steg.oppsummering.utenlandsoppholdIPerioden.header': 'Skal du være i utlandet i perioden?',
-    'steg.oppsummering.utenlandsoppholdIPerioden.listetittel': 'Utenlandsopphold i perioden',
-    'steg.oppsummering.utenlandsoppholdIPerioden.innlagtBarn.spm': 'Skal barnet være innlagt på sykehus i utlandet?',
     'steg.oppsummering.ferieuttakIPerioden.header': 'Skal du ta ut ferie i perioden?',
-    'steg.oppsummering.ferieuttakIPerioden.listetittel': 'Ferieuttak i perioden',
 
     'steg.oppsummering.omsorgstilbud.header': 'Omsorgstilbud i søknadsperioden',
     'steg.oppsummering.omsorgstilbud.fortid.spm':
@@ -561,8 +422,6 @@ const nb = {
     'steg.oppsummering.omsorgstilbud.fremtid.svar.JA': 'Ja, i hele eller deler av perioden',
     'steg.oppsummering.omsorgstilbud.fremtid.svar.NEI': 'Nei',
     'steg.oppsummering.omsorgstilbud.fremtid.svar.USIKKER': 'Usikker',
-    'steg.oppsummering.omsorgstilbud.fortidFremtid.spm':
-        'Er barnet fast og regelmessig på skolen, i barnehagen eller i andre omsorgstilbud i perioden?',
     'steg.oppsummering.nattevåkBeredskap.header': 'Nattevåk og beredskap',
     'steg.oppsummering.omsorgstilbud.fast.header': 'Omsorgstilbud er likt hver uke i perioden:',
     'steg.oppsummering.omsorgstilbud.fast.header.fortid': 'Tiden har vært lik hver uke i perioden:',
@@ -574,19 +433,10 @@ const nb = {
 
     'steg.oppsummering.bekrefterOpplysninger':
         'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til pleiepenger.',
-    'steg.oppsummering.bekrefterOpplysninger.ikkeBekreftet': 'Du må bekrefte opplysningene',
 
     'steg.oppsummering.arbeidssituasjon.header': 'Arbeidssituasjonen din',
     'steg.oppsummering.vedlegg.header': 'Legeerklæring',
 
-    'steg.oppsummering.validering.ugyldigArbeidsforholdAnsatt':
-        'Det er ikke fylt ut informasjon om hvordan du jobber {hvor} i perioden du har søkt pleiepenger.',
-    'steg.oppsummering.validering.manglendeArbeidsgiverNavn':
-        'Det har oppstått en feil rundt arbeidsgiverinformasjonen; navn på arbeidsgiver mangler. Vennligst gå tilbake og kontroller informasjonen som er oppgitt.',
-    'steg.oppsummering.validering.ugyldigArbeidsforholdFrilans':
-        'Det er ikke fylt ut informasjon om hvordan du jobber som frilanser i perioden du har søkt pleiepenger.',
-    'steg.oppsummering.validering.ugyldigArbeidsforholdSN':
-        'Det er ikke fylt ut informasjon om hvordan du jobber som selvstendig næringsdrivende i perioden du har søkt pleiepenger.',
     'steg.oppsummering.validering.navigasjonTilStegInfo':
         'Vennligst gå tilbake og sjekk informasjonen du har fylt ut. Når du har gjort det, trykker du på "Fortsett"-knappen for å gå videre.',
     'steg.oppsummering.validering.navigasjonTilStegGåTil': 'Gå til',
@@ -596,10 +446,6 @@ const nb = {
         'Oops, noe gikk galt med legeerklæringen. Vennligst gå tilbake og kontroller at den er lastet opp riktig.',
     'steg.oppsummering.validering.fødselsattest':
         'Oops, noe gikk galt med fødselsattest. Vennligst gå tilbake og kontroller at den er lastet opp riktig.',
-    'steg.oppsummering.validering.ugyldigArbeidsforhold':
-        'Oops, noe gikk galt med arbeidsforholdet som du har registrert.',
-    'steg.oppsummering.validering.ugyldigRegnskapsførerTelefonnummer':
-        'Telefonnummeret til regnskapsfører inneholder ugyldig tegn. Vennligst gå tilbake til skjemaet og kontroller verdien.',
     'steg.oppsummering.validering.omsorgstilbud.ugyldig': 'Oops, noe gikk galt med omsorgstilbudet som er registrert.',
     'steg.oppsummering.validering.omsorgstilbud.nattevåkBeskrivelseForLang':
         'Oops, nå ser vi at teksten du har skrevet om nattevåk er for lang.',
@@ -607,7 +453,6 @@ const nb = {
         'Oops, nå ser vi at teksten du har skrevet om beredskap er for lang.',
     'steg.oppsummering.validering.arbeidssituasjon.sn.forHøyInntekt':
         'Oops, nå ser vi at inntekten du har oppgitt for virksomheten din er for høy.',
-    'steg.oppsummering.validering.arbeidssituasjon.frylans.frilansTyperTomt': 'Oops, noe gikk galt med frilans.',
 
     'page.confirmation.sidetittel': 'Vi har mottatt søknaden din',
     'page.confirmation.tittel.1': 'Takk!',
@@ -635,7 +480,6 @@ const nb = {
         'Du er kommet til en side du ikke trenger å fylle ut. Dette kan skje hvis du går frem og tilbake i søknaden gjennom pilene i nettleseren (pilene helt øverst til venstre på siden). Du unngår dette problemet hvis du heller bruker knapper og lenker som ligger inne i selve søknaden for å gå frem eller tilbake.:',
     'page.invalidStepPage.tilbakeLenke': 'Gå tilbake til forrige side',
 
-    'page.ikkeTilgang.sidetittel': 'Søknad om pleiepenger - ikke tilgang',
     'page.ikkeTilgang.tekst':
         'Du har ikke tilgang til denne siden. Dersom du er under 18 år, må en av foreldrene dine eller en foresatt skrive under på søknaden sammen med deg. Du må derfor fylle ut søknaden på papir og sende den i posten.',
     'page.ikkeTilgang.lastNed': 'Her kan du laste ned papirsøknaden',
@@ -647,17 +491,13 @@ const nb = {
 
     'arbeidsforhold.ikkeAnsatt.info':
         'Når du ikke er ansatt her lenger, må du be denne arbeidsgiveren om å sende en ny A-melding med sluttdato. Dette gjør de enten via eget lønns- og personalsystem, eller via Altinn.',
-    'arbeidsforhold.ikkeFrilansoppdragIPerioden.info': 'Informasjon når frilansoppdraget ikke gjelder perioden',
 
     'arbeidsforhold.erAnsatt.spm': 'Stemmer det at du er ansatt hos {navn} i perioden du søker for?',
     'arbeidsforhold.sluttetFørSøknadsperiode.spm': 'Sluttet du hos {navn} før {fraDato}?',
-    'arbeidsforhold.avsluttet.info':
-        'Sluttdato var innenfor perioden du søker om pleiepenger. Vi trenger derfor å vite hvordan normalarbeidstiden din var hos {navn}',
     'arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.spm':
         'Hvor mange timer {jobber} du vanligvis {hvor}? Oppgi tiden i et snitt per uke:',
     'arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.infoStønadGodtgjørelse':
         'Du skal ikke inkludere timer for omsorgsstønad/fosterhjemgodtgjørelse.',
-    'arbeidsforhold.utledet': 'timer i uka',
 
     'arbeidsforhold.ansatt.normalTimer.info.tittel': 'Hva om jeg jobber turnus eller varierende?',
     'arbeidsforhold.selvstendig.normalTimer.info.tittel': 'Hva om jeg jobber turnus eller varierende?',
@@ -679,13 +519,6 @@ const nb = {
     'arbeidsforhold.frilanser.normalTimer.frilans.FRILANS_HONORAR.info.3': 'Eksempel på hvordan du regner ut:',
     'arbeidsforhold.frilanser.normalTimer.frilans.FRILANS_HONORAR.info.4':
         'Du har de siste 12 ukene jobbet 40 timer som frilanser, og du har brukt 20 timer på det du mottar honorar for. Da får du til sammen 60 timer, som du deler på 12 = 5. Du oppgir altså at du jobber 5 timer i snitt per uke.',
-    'arbeidsforhold.frilanser.normalTimer.frilans.FRILANSinfo.2': '',
-
-    'arbeidsforhold.frilanser.normalTimer.honorar.info.tittel': 'Hvordan oppgir jeg antall timer med honorar?',
-    'arbeidsforhold.frilanser.normalTimer.honorar.info.1':
-        'Du kan ha rett til å få kompensert tap av honorar hvis du skal pleie et sykt barn. Vi trenger derfor å vite antall timer du normalt bruker per uke på det du får honorar for.',
-    'arbeidsforhold.frilanser.normalTimer.honorar.info.2':
-        'Hvis antall timer varierer veldig, kan du ta et snitt for en lengre periode. For eksempel for de siste 12 ukene, eller de siste 52 ukene. Du vurderer selv hvilken periode som blir representativ for deg til å ta et snitt fra. For å få et snitt per uke, deler du antall timer med antall uker du har med i snittperioden.',
 
     'arbeidsforhold.normalTimer.info.turnus':
         'Når du jobber turnus, eller har annen varierende arbeidstid, oppgir du et snitt per uke.',
@@ -702,14 +535,6 @@ const nb = {
     'arbeidsforhold.normalTimer.info.turnus.avsnitt.5':
         'Du jobber altså i snitt 25 timer per uke, og det er dette tallet du oppgir.',
 
-    'arbeidsforhold.frilanser.normalTimer.info.utbetalingNav.tittel': 'Jeg har en ytelse fra NAV som frilanser nå',
-    'arbeidsforhold.frilanser.normalTimer.info.utbetalingNav.info':
-        'Når du har en ytelse fra NAV som frilanser nå, oppgir du det som var den normale arbeidstiden din før du begynte med ytelsen. En ytelse kan for eksempel være foreldrepenger eller sykepenger.',
-    'arbeidsforhold.sn.normalTimer.info.utbetalingNav.tittel':
-        'Jeg har en ytelse fra NAV som selvstendig næringsdrivende nå',
-    'arbeidsforhold.sn.normalTimer.info.utbetalingNav.info':
-        'Når du har en ytelse fra NAV som selvstendig næringsdrivende nå, oppgir du det som var den normale arbeidstiden din før du begynte med ytelsen. En ytelse kan for eksempel være foreldrepenger eller sykepenger.',
-
     'arbeidsforhold.normalTimer.info.varierende.tittel': 'Slik regner du ut et snitt ved varierende arbeidstid',
     'arbeidsforhold.normalTimer.info.varierende.avsnitt.1':
         'Du regner ut et snitt ved å legge sammen antall timer du totalt har jobbet de siste 12 ukene og deler det med 12. Hvis du ikke har jobbet i 12 uker, regner du ut snittet på samme måte ved å bruke de ukene du har jobbet.',
@@ -724,37 +549,7 @@ const nb = {
     'arbeidsforhold.normalTimer.info.varierende.avsnitt.6':
         'Da deler du antall timer med antall uker du har jobbet. Hvis du for eksempel har jobbet i 7 uker, så deler du antall timer du har jobbet med 7.',
 
-    'arbeidsforhold.normalTimer.info.utbetalingFraNAV.tittel': 'Hva om jeg får utbetaling fra NAV nå?',
-    'arbeidsforhold.normalTimer.info.utbetalingFraNAV.avsnitt.1':
-        'Hvis du for eksempel får foreldrepenger eller sykepenger i dette arbeidsforholdet nå, registrerer du det om var den normale arbeidstiden din før du begynte å få denne utbetalingen fra NAV.',
-
-    'arbeidsforhold.frilanser.fast.info.tekst': 'Her skal du legge inn antall timer du jobber som frilanser per uke.',
-    'arbeidsforhold.avsluttet.frilanser.fast.info.tekst':
-        'Her skal du legge inn antall timer du jobbet per uke da du var frilanser.',
-    'arbeidsforhold.sn.fast.info.tekst':
-        'Her skal du legge inn antall timer du jobber som selvstendig næringsdrivende per uke.',
-    'arbeidsforhold.timerPerUke.suffix': 'timer per uke',
-    'arbeidsforhold.turnus': 'Turnus',
-    'arbeidsforhold.turnus.info.tittel': 'Hvordan regner jeg ut et snitt av turnusen min?',
-    'arbeidsforhold.turnus.info.tekst.1':
-        'Du regner ut snittet ved å legge sammen antall timer du jobber totalt i hele turnusperioden din, og deler det med antall uker som turnusperioden din består av.',
-    'arbeidsforhold.turnus.info.tekst.2':
-        'Du har en turnus som går over 3 uker. Den første uka jobber du 20 timer, den andre 40 timer og den tredje uka jobber du 15 timer. Da legger du sammen antall timer du har jobbet og deler med antall uker i turnusperioden din.',
-    'arbeidsforhold.turnus.info.tekst.3': 'Da blir regnestykket slik i dette eksempelet:',
-    'arbeidsforhold.turnus.info.tekst.4': '20 timer + 40 timer + 15 timer = 75 timer',
-    'arbeidsforhold.turnus.info.tekst.5': 'Så deler du antall timer med antall uker i turnusperioden din: 75 / 3 = 25',
-    'arbeidsforhold.turnus.info.tekst.6': 'Du jobber altså i snitt 25 timer per uke, og det er dette tallet du oppgir.',
-    'arbeidsforhold.turnus.info.tekst.eksempel': 'Eksempel:',
-    'arbeidsforhold.varierende': 'Deltid/varierende/tilkalling',
-    'arbeidsforhold.varierende.1': 'Deltid',
-    'arbeidsforhold.varierende.2': 'varierende',
-    'arbeidsforhold.varierende.3': 'tilkalling',
-    'arbeidsforhold.varierende.info.tittel': 'Hvordan regner jeg ut et snitt i min situasjon?',
-    'arbeidsforhold.varierende.info.tekst.1':
-        'Du regner ut et snitt ved å legge sammen antall timer du totalt har jobbet de siste 12 ukene og deler det med 12. Hvis du ikke har jobbet i 12 uker, regner du ut snittet på samme måte ved å bruke de ukene du har jobbet.',
-
     'arbeidsforhold.arbeidsforholdIntlValues.jobber': 'jobber',
-    'arbeidsforhold.arbeidsforholdIntlValues.skalJobbe': 'skal jobbe',
     'arbeidsforhold.arbeidsforholdIntlValues.somAnsatt': 'hos {arbeidsgiverNavn}',
     'arbeidsforhold.arbeidsforholdIntlValues.somFrilanser': 'som frilanser',
     'arbeidsforhold.arbeidsforholdIntlValues.somSN': 'som selvstendig næringsdrivende',
@@ -763,8 +558,6 @@ const nb = {
         'Her skal du svare på om du jobber noe i perioden du søker om. Altså om du kombinerer pleiepenger med delvis jobb.',
     'arbeidIPeriode.StepInfo.2':
         'Pleiepengene graderes mot den tiden du jobber. Det vil si at hvis du for eksempel i søknadsperioden jobber 30 prosent, kan du ha rett til opptil 70 prosent pleiepenger.',
-    'arbeidIPeriode.FrilansLabel': 'Frilanser, oppdragstaker og honorarer',
-    'arbeidIPeriode.SNLabel': 'Selvstendig næringsdrivende',
 
     'arbeidIPeriode.redusert.info.tekst':
         'Hvis du er usikker på hvor mye du skal jobbe fremover i tid, legger du inn slik du tror du skal jobbe. Hvis det senere viser seg at du jobber mer eller mindre av hva du tror nå, melder du fra om endring i slutten av den aktuelle måneden.',
@@ -774,14 +567,6 @@ const nb = {
         'Du sender endringsmelding for pleiepenger som du finner under «Skjema og søknad» på nav.no, eller på «Dine pleiepenger» på innlogget side. I endringsmeldingen kan du enkelt registrere hvor mye du har jobbet.',
     'arbeidIPeriode.redusert.endring.sn.tekst':
         'Du sender en melding med hvor mye du har jobbet via «Skriv til oss»-tjenesten på innlogget side.',
-
-    'tidKalenderForm.ok.label': 'Lagre',
-    'tidKalenderForm.avbryt.label': 'Avbryt',
-
-    'arbeidstid.addLabel': 'Registrer jobb for {periode}',
-    'arbeidstid.deleteLabel': 'Fjern alle timer',
-    'arbeidstid.editLabel': 'Vis skjema for alle dager i {periode}',
-    'arbeidstid.modalTitle': 'Jobb i ${periode}',
 
     'oppsummering.arbeidssituasjon.arbeidsgiver.ansatt': 'Er ansatt',
     'oppsummering.arbeidssituasjon.avsluttet.arbeidsgiver.ansatt': 'Er ikke lenger ansatt',
@@ -799,7 +584,6 @@ const nb = {
     'oppsummering.arbeidssituasjon.frilans.startetFørSisteTreHeleMåneder':
         'Startet som frilanser før {opptjeningStartdato}',
     'oppsummering.arbeidssituasjon.frilans.startet': 'Startet som frilanser {dato}',
-    'oppsummering.arbeidssituasjon.frilans.fortsattFrilanser': 'Er fortsatt frilanser',
     'oppsummering.arbeidssituasjon.frilans.FRILANS': 'Jobber som frilanser',
     'oppsummering.arbeidssituasjon.frilans.FRILANS_HONORAR': 'Jobber som frilanser og mottar honorar',
     'oppsummering.arbeidssituasjon.frilans.HONORAR': 'Mottar honorar',
@@ -824,7 +608,6 @@ const nb = {
 
     'oppsummering.arbeidIPeriode.jobbIPerioden.header': 'Jobb i søknadsperioden',
     'oppsummering.arbeidIPeriode.jobbIPerioden': 'Jobb i søknadsperioden',
-    'oppsummering.arbeidIPeriode.arbeiderIPerioden.ja': 'jobber',
     'oppsummering.arbeidIPeriode.arbeiderIPerioden.nei': 'Jobber ikke i søknadsperioden',
     'oppsummering.arbeidIPeriode.arbeiderIPerioden.nei.honorar': 'Mister alt av honorar',
     'oppsummering.arbeidIPeriode.arbeiderIPerioden.somVanlig':
@@ -839,10 +622,7 @@ const nb = {
     'oppsummering.arbeidIPeriode.arbeiderIPerioden.frilanser.SOM_VANLIG':
         'Frilanser: Jobber som normalt, har ikke fravær på grunn av pleiepenger',
 
-    'oppsummering.arbeidIPeriode.arbeiderIPerioden.liktHverUke': 'Jobber likt hver uke i søknadsperioden',
     'oppsummering.arbeidIPeriode.arbeiderIPerioden.prosent': 'Jobber {prosent} prosent av normalt',
-    'oppsummering.arbeidIPeriode.arbeiderIPerioden.prosent_full':
-        'Jobber {prosent} prosent av normalt {timerNormalt} timer i hele uken (tilsvarer {timerIPeriode} i uken)',
     'oppsummering.arbeidIPeriode.arbeiderIPerioden.timerPerUke': 'Jobber {timer} per uke',
     'oppsummering.arbeidIPeriode.arbeiderIPerioden.ulikeUker.timer.tittel':
         'Jobber ulikt antall timer i ukene i søknadsperioden:',
@@ -851,24 +631,7 @@ const nb = {
 
     timerPerUke: '{timer, plural, one {# time} other {# timer}} per uke',
 
-    'næringstype.FISKE': 'Fiske',
-    'næringstype.JORDBRUK_SKOGBRUK': 'Jordbruk',
-    'næringstype.DAGMAMMA': 'Dagmamma eller familiebarnehage i eget hjem',
-    'næringstype.ANNEN': 'Annen virksomhet',
-
-    'fiskerinfo.LOTT': 'Lott',
-    'fiskerinfo.HYRE': 'Hyre',
-    'fiskerinfo.BLAD_A': 'Blad A',
-    'fiskerinfo.BLAD_B': 'Blad B',
-
-    'summary.virksomhet.header': 'Selvstendig næringsdrivende',
-    'summary.virksomhet.harDuHattInntekt.header': 'Er du selvstendig næringsdrivende i perioden du søker for?',
-    'summary.virksomhet.harFlereVirksomheter.header': 'Har du flere enn én næringsvirksomhet som er aktiv?',
     'summary.virksomhet.virksomhetInfo.tittel': 'Næringsvirksomhet som du har lagt inn:',
-
-    'selvstendig.summary.arbeidsforhold.header':
-        'Hvordan skal du jobbe som selvstendig næringsdrivende i søknadsperioden?',
-    'frilanser.summary.arbeidsforhold.header': 'Hvordan skal du jobbe som frilanser i søknadsperioden?',
 
     'selvstendig.harDuHattInntekt.spm': 'Er du selvstendig næringsdrivende i perioden du søker for?',
     'selvstendig.harDuHattInntekt.hjelpetekst.tittel': 'Hva betyr det å være selvstendig næringsdrivende?',
@@ -879,9 +642,6 @@ const nb = {
     'selvstendig.harFlereVirksomheter.spm': 'Har du flere enn én næringsvirksomhet som er aktiv?',
     'selvstendig.veileder.flereAktiveVirksomheter':
         'Når du har flere aktive næringsvirksomheter skal du kun legge inn den virksomheten som er eldst av dem. Har du for eksempel en virksomhet du startet i 2012 og en annen som du startet i 2020, skal du kun legge inn virksomheten du startet i 2012.',
-    'selvstendig.list.tittel': 'Dine registrerte næringsvirksomheter',
-    'selvstendig.list.leggTilLabel': 'Legg til næringsvirksomhet',
-    'selvstendig.dialog.tittel': 'Næringsvirksomhet',
 
     'frilanser.harDuHattInntekt.spm': 'Jobber du som frilanser eller mottar du honorar?',
     'frilanser.harDuHattInntekt.omsorgsstønad':
@@ -892,7 +652,6 @@ const nb = {
     'frilanser.harDuHattInntekt.hvaBetyr.info.2':
         'Et honorar kan for eksempel være en utbetaling i forbindelse med et styreverv, eller som trener for et idrettslag. Honorar blir også ofte brukt av frie yrker som forfattere, fotografer og kunstnere.',
 
-    'frilanser.harDuAndreFrilansoppdrag.spm': 'Har du andre frilansoppdrag du har fravær fra i perioden du søker for?',
     'frilanser.startetFørSisteTreHeleMåneder.spm': 'Startet du som frilanser før {dato}?',
     'frilanser.startdato.spm': 'Når startet du å jobbe som frilanser?',
 
@@ -901,17 +660,6 @@ const nb = {
         'Hvis det ikke stemmer at du skal være registrert med frilansoppdrag i AA-registeret må du be de som har gjort registreringen om å oppdatere informasjonen. Du kan likevel fortsette å fylle ut og sende inn søknaden.',
 
     'frilanser.sluttdato.spm': 'Når sluttet du å jobbe som frilanser?',
-    'frilanser.sluttdato.info':
-        'Hvis du ikke lenger jobber som frilanser, må du oppgi når du sluttet. Hvis du fortsatt jobber som frilanser, kan du la feltet stå tomt.',
-    'snF.ArbeidsforholdDetaljer.hvaBetyr.spm': 'Hva betyr dette?',
-    'snF.ArbeidsforholdDetaljer.hvaBetyr.frilanser.info':
-        'Hvis du jobber som frilanser flere steder skal du her svare samlet for alle oppdragene. Hvis du f.eks. skal jobbe i en av to frilansforhold skal du her svare "Ja, men jeg skal jobbe mindre enn normalt".',
-    'snF.ArbeidsforholdDetaljer.hvaBetyr.SN.info':
-        'Hvis du jobber som selvstendig i flere virksomheter skal du her svare samlet for alle virksomhetene dine. Hvis du f.eks. skal jobbe i en av to virksomheter skal du her svare "Ja, men jeg skal jobbe mindre enn normalt".',
-
-    'frilanser.info':
-        'De neste spørsmålene stiller vi for å sikre at du får kompensasjon hvis du mister noe av inntekten din fordi du har pleiepenger',
-    'frilanser.type.tittel': 'Kryss av for hva som gjelder for deg:',
     'frilanser.misterHonorar.tittle': 'Mister du honorar fordi du må pleie barnet?',
     'frilanser.misterHonorar.description.tittel': 'Hva betyr dette?',
     'frilanser.misterHonorar.description':
@@ -920,12 +668,6 @@ const nb = {
     'frilanser.hjelpetekst.spm': 'Hva betyr det å være frilanser?',
     'frilanser.hjelpetekst.1':
         'Du er frilanser når du mottar lønn for enkeltstående oppdrag uten å være fast eller midlertidig ansatt hos den du utfører oppdraget for. Hvis du er usikker på om du er frilanser må du sjekke om oppdragene dine er registrert som frilansoppdrag på skatteetaten sine nettsider.',
-
-    'frilanser.summary.header': 'Frilans',
-    'frilanser.summary.harDuHattInntekt.header': 'Er du frilanser i perioden du søker for?',
-    'frilanser.summary.startdato.header': 'Når startet du å jobbe som frilanser?',
-    'frilanser.summary.jobberFortsatt.header': 'Jobber du fortsatt som frilanser?',
-    'frilanser.summary.sluttdao.header': 'Når sluttet du som frilanser?',
 
     'verneplikt.summary.header': 'Verneplikt',
     'verneplikt.summary.harVærtVernepliktig': 'Utøvde verneplikt på tidspunktet det søkes pleiepenger fra',
@@ -1171,8 +913,6 @@ const nb = {
     'validation.stønadGodtgjørelse.sluttdato.sluttetFørStartDato':
         'Slutt-datoen kan ikke være før start-datoen. Skriv inn eller velg dato fra kalenderen.',
 
-    'virksomhetForm.næringstype.noValue': 'Du må velge hvilken type virksomhet du har.',
-
     'infoForFarVedNyttBarn.tittel': 'Er du registrert som far i folkeregisteret?',
     'infoForFarVedNyttBarn.info.1.1':
         'Hvis du og moren til barnet er gift blir du automatisk registrert som far til barnet. Hvis dere ikke er gift må du erklære farskap for at du skal bli registrert som far til barnet i folkeregisteret.',
@@ -1187,27 +927,7 @@ const nb = {
     'psb.timerOgMinutter':
         '{timer, plural, one {# time} other {# timer}} og {minutter, plural, one {# minutt} other {# minutter}}',
 
-    'omsorgstilbud.svar.ja': 'Ja',
-    'omsorgstilbud.svar.nei': 'Nei',
-
     'omsorgstilbudPeriode.leggTilTidIOmsorgstilbudLabel': 'Oppgi periode med omsorgstilbud',
-    'omsorgstilbudMåned.tittel': 'Omsorgstilbud - {måned}',
-    'omsorgstilbudMåned.intro.1':
-        'Fyll ut antall timer og minutter barnet skal være fast og regelmessig i et omsorgstilbud. Du trenger ikke fylle ut noe de dagene barnet ikke skal være der. ',
-    'omsorgstilbudMåned.intro_fortid.1':
-        'Fyll ut antall timer og minutter barnet var fast og regelmessig i et omsorgstilbud. Du trenger ikke fylle ut noe de dagene barnet ikke var der.',
-    'omsorgstilbudMåned.intro.2': 'Du kan registrere opp til 7 timer og 30 minutter per dag.',
-    'omsorgstilbudMåned.flereBarn.tittel': 'Hvordan fyller jeg ut om omsorgstilbud når jeg pleier flere barn samtidig?',
-    'omsorgstilbudMåned.flereBarn':
-        'Du skal svare ja på at barna er i et fast og regelmessig omsorgstilbud bare hvis de skal være der samtidig. Du skal svare nei hvis barna skal være i omsorgstilbudet på ulike tider, eller hvis minst ett barn ikke skal være i et omsorgstilbud i det hele tatt.',
-
-    'omsorgstilbudVariert.addLabel': 'Registrer omsorgstilbud {periode}',
-    'omsorgstilbudVariert.deleteLabel': 'Fjern alle timer',
-    'omsorgstilbudVariert.editLabel': 'Endre omsorgstilbud {periode}',
-    'omsorgstilbudVariert.modalTitle': 'Omsorgstilbud - ${periode}',
-
-    'komponent.bekreftDialog.bekreftLabel': 'Ok',
-    'komponent.bekreftDialog.avbrytLabel': 'Avbryt',
 };
 
 const nn: Record<keyof typeof nb, string> = {

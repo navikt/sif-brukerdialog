@@ -11,13 +11,13 @@ import SamtykkeForm from './SamtykkeForm';
 
 type Props = StepCommonProps & { søker: Søker };
 
-const WelcomingPage: React.FunctionComponent<Props> = ({ onValidSubmit, søker }) => {
+const VelkommenPage: React.FunctionComponent<Props> = ({ onValidSubmit, søker }) => {
     const { text } = useAppIntl();
     useLogSidevisning(SIFCommonPageKey.velkommen);
 
     return (
         <Page
-            title={text('welcomingPage.sidetittel')}
+            title={text('page.velkommen.tittel')}
             topContentRenderer={() => <SoknadHeader title={text('application.title')} />}>
             <VelkommenGuide navn={søker.fornavn} />
             <OmSøknaden />
@@ -26,4 +26,4 @@ const WelcomingPage: React.FunctionComponent<Props> = ({ onValidSubmit, søker }
     );
 };
 
-export default WelcomingPage;
+export default VelkommenPage;

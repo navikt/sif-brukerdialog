@@ -41,4 +41,5 @@ function searchFiles(dir, key) {
 
 // Check each key
 const unusedKeys = keys.filter((key) => !searchFiles(SOURCE_PATH, key));
-console.log('Unused keys:', unusedKeys);
+// eslint-disable-next-line no-console
+console.log('Unused keys:', unusedKeys.slice(0));
