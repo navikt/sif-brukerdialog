@@ -3660,7 +3660,7 @@ __metadata:
     "@navikt/sif-common-hooks": "workspace:*"
     "@portabletext/react": 3.0.18
     "@sanity/client": 6.17.2
-    "@types/node": 20.12.8
+    "@types/node": 20.12.10
     "@types/react": 18.3.1
     "@types/react-dom": 18.3.0
     config: "workspace:*"
@@ -3670,7 +3670,7 @@ __metadata:
     react: 18.3.1
     react-dom: 18.3.1
     rimraf: 5.0.5
-    sass: 1.76.0
+    sass: 1.77.0
   languageName: unknown
   linkType: soft
 
@@ -3693,7 +3693,7 @@ __metadata:
     "@navikt/sif-common-sentry": "workspace: *"
     "@navikt/sif-common-utils": "workspace: *"
     "@next/bundle-analyzer": 14.2.3
-    "@playwright/test": 1.43.1
+    "@playwright/test": 1.44.0
     "@storybook/addon-essentials": 8.0.10
     "@storybook/addon-interactions": 8.0.10
     "@storybook/addon-links": 8.0.10
@@ -3703,7 +3703,7 @@ __metadata:
     "@storybook/react": 8.0.10
     "@storybook/test": 8.0.10
     axios: 1.6.8
-    chromatic: 11.3.0
+    chromatic: 11.3.1
     classnames: 2.5.1
     dayjs: 1.11.11
     eslint-plugin-storybook: 0.8.0
@@ -3801,9 +3801,9 @@ __metadata:
     "@navikt/sif-common-sentry": "workspace:*"
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
-    "@playwright/test": 1.43.1
+    "@playwright/test": 1.44.0
     "@storybook/react-vite": 8.0.10
-    "@testing-library/react": 15.0.6
+    "@testing-library/react": 15.0.7
     "@types/object-hash": 3.0.6
     "@types/react": 18.3.1
     "@types/react-dom": 18.3.0
@@ -3870,7 +3870,7 @@ __metadata:
     "@storybook/preset-create-react-app": 8.0.10
     "@storybook/react": 8.0.10
     "@storybook/testing-library": 0.2.2
-    "@testing-library/react": 15.0.6
+    "@testing-library/react": 15.0.7
     "@types/flat": 5.0.5
     "@types/intl": 1.2.2
     "@types/js-cookie": 3.0.6
@@ -3881,7 +3881,7 @@ __metadata:
     "@types/react-modal": 3.16.3
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.2.1
-    axe-core: 4.9.0
+    axe-core: 4.9.1
     axios: 1.6.8
     babel-polyfill: 6.26.0
     compression: 1.7.4
@@ -3988,8 +3988,8 @@ __metadata:
     "@navikt/sif-common-sentry": "workspace:*"
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
-    "@playwright/test": 1.43.1
-    "@testing-library/react": 15.0.6
+    "@playwright/test": 1.44.0
+    "@testing-library/react": 15.0.7
     "@types/object-hash": 3.0.6
     "@types/react": 18.3.1
     "@types/react-dom": 18.3.0
@@ -4034,8 +4034,8 @@ __metadata:
     "@navikt/ds-react": 6.7.0
     "@navikt/ds-tailwind": 6.7.0
     "@navikt/nav-dekoratoren-moduler": 2.1.6
-    "@playwright/test": 1.43.1
-    "@types/node": 20.12.8
+    "@playwright/test": 1.44.0
+    "@types/node": 20.12.10
     "@types/react": 18.3.1
     "@types/react-dom": 18.3.0
     "@types/uuid": 9.0.8
@@ -4080,9 +4080,9 @@ __metadata:
     "@navikt/sif-common-sentry": "workspace:*"
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
-    "@playwright/test": 1.43.1
-    "@testing-library/react": 15.0.6
-    "@types/node": 20.12.8
+    "@playwright/test": 1.44.0
+    "@testing-library/react": 15.0.7
+    "@types/node": 20.12.10
     "@types/object-hash": 3.0.6
     "@types/react": 18.3.1
     "@types/react-dom": 18.3.0
@@ -4144,7 +4144,7 @@ __metadata:
     "@navikt/sif-common-sentry": "workspace:*"
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
-    "@playwright/test": 1.43.1
+    "@playwright/test": 1.44.0
     "@storybook/addon-essentials": 8.0.10
     "@storybook/addon-interactions": 8.0.10
     "@storybook/addon-links": 8.0.10
@@ -4153,8 +4153,8 @@ __metadata:
     "@storybook/react": 8.0.10
     "@storybook/react-vite": 8.0.10
     "@storybook/test": 8.0.10
-    "@testing-library/react": 15.0.6
-    "@types/node": 20.12.8
+    "@testing-library/react": 15.0.7
+    "@types/node": 20.12.10
     "@types/object-hash": 3.0.6
     "@types/react": 18.3.1
     "@types/react-dom": 18.3.0
@@ -4163,7 +4163,7 @@ __metadata:
     axios: 1.6.8
     babel-polyfill: 6.26.0
     busboy: 1.6.0
-    chromatic: 11.3.0
+    chromatic: 11.3.1
     compression: 1.7.4
     cookie-parser: 1.4.6
     cross-env: 7.0.3
@@ -4217,7 +4217,7 @@ __metadata:
     "@navikt/sif-common-sentry": "workspace:*"
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
-    "@playwright/test": 1.43.1
+    "@playwright/test": 1.44.0
     "@storybook/addon-actions": 8.0.10
     "@storybook/addon-essentials": 8.0.10
     "@storybook/addon-interactions": 8.0.10
@@ -4226,13 +4226,13 @@ __metadata:
     "@storybook/preset-create-react-app": 8.0.10
     "@storybook/react": 8.0.10
     "@storybook/testing-library": 0.2.2
-    "@testing-library/react": 15.0.6
+    "@testing-library/react": 15.0.7
     "@types/object-hash": 3.0.6
     "@types/react": 18.3.1
     "@types/react-dom": 18.3.0
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.2.1
-    axe-core: 4.9.0
+    axe-core: 4.9.1
     axios: 1.6.8
     babel-polyfill: 6.26.0
     busboy: 1.6.0
@@ -4289,9 +4289,9 @@ __metadata:
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-ui": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
-    "@playwright/test": 1.43.1
+    "@playwright/test": 1.44.0
     "@storybook/react-vite": 8.0.10
-    "@testing-library/react": 15.0.6
+    "@testing-library/react": 15.0.7
     "@types/object-hash": 3.0.6
     "@types/react": 18.3.1
     "@types/react-dom": 18.3.0
@@ -4352,7 +4352,7 @@ __metadata:
     "@navikt/sif-common-utils": "workspace:*"
     "@sentry/vite-plugin": 2.16.1
     "@storybook/react-vite": 8.0.10
-    "@testing-library/react": 15.0.6
+    "@testing-library/react": 15.0.7
     "@testing-library/user-event": 14.5.2
     "@types/lodash.debounce": 4.0.9
     "@types/lodash.groupby": 4.6.9
@@ -4362,7 +4362,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": 7.8.0
     "@typescript-eslint/parser": 7.8.0
     "@vitejs/plugin-react": 4.2.1
-    axe-core: 4.9.0
+    axe-core: 4.9.1
     axios: 1.6.8
     busboy: 1.6.0
     classnames: 2.5.1
@@ -4434,7 +4434,7 @@ __metadata:
   resolution: "@navikt/sif-common-amplitude@workspace:packages/sif-common-amplitude"
   dependencies:
     "@amplitude/analytics-browser": 2.7.1
-    "@types/node": 20.12.8
+    "@types/node": 20.12.10
     "@types/react": 18.3.1
     config: "workspace:*"
     constate: 3.3.2
@@ -4475,14 +4475,14 @@ __metadata:
     "@storybook/react": 8.0.10
     "@storybook/react-vite": 8.0.10
     "@storybook/testing-library": 0.2.2
-    "@types/node": 20.12.8
+    "@types/node": 20.12.10
     "@types/react": 18.3.1
     "@types/react-collapse": 5.0.4
     "@types/react-dom": 18.3.0
     "@vitejs/plugin-react": 4.2.1
     axios: 1.6.8
     browser-image-compression: 2.0.2
-    chromatic: 11.3.0
+    chromatic: 11.3.1
     classnames: 2.5.1
     config: "workspace:*"
     copyfiles: 2.4.1
@@ -4540,7 +4540,7 @@ __metadata:
     "@storybook/test-runner": 0.17.0
     "@storybook/testing-library": 0.2.2
     "@types/jest": 29.5.12
-    "@types/node": 20.12.8
+    "@types/node": 20.12.10
     "@types/react": 18.3.1
     "@types/react-dom": 18.3.0
     "@types/uuid": 9.0.8
@@ -4604,9 +4604,9 @@ __metadata:
     "@storybook/react-vite": 8.0.10
     "@storybook/testing-library": 0.2.2
     "@testing-library/dom": 10.1.0
-    "@testing-library/react": 15.0.6
+    "@testing-library/react": 15.0.7
     "@testing-library/user-event": 14.5.2
-    "@types/node": 20.12.8
+    "@types/node": 20.12.10
     "@types/react": 18.3.1
     "@types/react-dom": 18.3.0
     "@vitejs/plugin-react": 4.2.1
@@ -4653,7 +4653,7 @@ __metadata:
     "@sentry/browser": 7.113.0
     "@sentry/react": 7.113.0
     "@sentry/types": 7.113.0
-    "@types/node": 20.12.8
+    "@types/node": 20.12.10
     axios: 1.6.8
     config: "*"
     copyfiles: 2.4.1
@@ -4698,10 +4698,10 @@ __metadata:
     "@storybook/testing-library": 0.2.2
     "@testing-library/dom": 10.1.0
     "@testing-library/jest-dom": 6.4.5
-    "@testing-library/react": 15.0.6
+    "@testing-library/react": 15.0.7
     "@testing-library/user-event": 14.5.2
     "@types/jest": 29.5.12
-    "@types/node": 20.12.8
+    "@types/node": 20.12.10
     "@types/react": 18.3.1
     "@types/react-dom": 18.3.0
     "@types/react-modal": 3.16.3
@@ -4754,7 +4754,7 @@ __metadata:
     "@storybook/preset-create-react-app": 8.0.10
     "@storybook/react": 8.0.10
     "@storybook/testing-library": 0.2.2
-    chromatic: 11.3.0
+    chromatic: 11.3.1
     classnames: 2.5.1
     copyfiles: 2.4.1
     dayjs: 1.11.11
@@ -4773,7 +4773,7 @@ __metadata:
     "@babel/core": 7.24.5
     "@babel/preset-env": 7.24.5
     "@babel/preset-react": 7.24.1
-    "@types/node": 20.12.8
+    "@types/node": 20.12.10
     "@types/react": 18.3.1
     "@types/react-dom": 18.3.0
     "@types/uuid": 9.0.8
@@ -4812,15 +4812,15 @@ __metadata:
     "@navikt/sif-common-sentry": "workspace:*"
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
-    "@playwright/test": 1.43.1
+    "@playwright/test": 1.44.0
     "@storybook/react-vite": 8.0.10
-    "@testing-library/react": 15.0.6
+    "@testing-library/react": 15.0.7
     "@types/react": 18.3.1
     "@types/react-dom": 18.3.0
     "@types/react-router-dom": 5.3.3
     "@types/uuid": 9.0.8
     "@vitejs/plugin-react": 4.2.1
-    axe-core: 4.9.0
+    axe-core: 4.9.1
     axios: 1.6.8
     babel-polyfill: 6.26.0
     busboy: 1.6.0
@@ -5058,14 +5058,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:1.43.1":
-  version: 1.43.1
-  resolution: "@playwright/test@npm:1.43.1"
+"@playwright/test@npm:1.44.0":
+  version: 1.44.0
+  resolution: "@playwright/test@npm:1.44.0"
   dependencies:
-    playwright: 1.43.1
+    playwright: 1.44.0
   bin:
     playwright: cli.js
-  checksum: f9db387b488a03125e5dc22dd7ffed9c661d1f2428188912a35a2235b3bd9d826b390e7600d04998639994f5a96695b9dc9034ca9cb59e261d2fdee93a60df3f
+  checksum: 64cb12e26156e0530d16cec629d82c228db7a57fe29096a6961a18fc8b7fc5f35e28f8905af7039fad5d3af0224d38e93dba479760db2ce16a63c5e2fbe2990c
   languageName: node
   linkType: hard
 
@@ -7839,9 +7839,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/react@npm:15.0.6":
-  version: 15.0.6
-  resolution: "@testing-library/react@npm:15.0.6"
+"@testing-library/react@npm:15.0.7":
+  version: 15.0.7
+  resolution: "@testing-library/react@npm:15.0.7"
   dependencies:
     "@babel/runtime": ^7.12.5
     "@testing-library/dom": ^10.0.0
@@ -7853,7 +7853,7 @@ __metadata:
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: bc9a839b352d748a0d5bcab81621e2e1d09ea58f245c4795cb8e69f97a4f71867a66115c9832f083b62abc357b510be396cd000eb751c85543b974e6a90caf7f
+  checksum: eb33fd82eb811bb8612aa154e430a2c1c251d5ed45a477ef57fe20095db494ea7dcfa6b1e1e2bffb0c7ee10c86e408745d95a879be8ca8fbe301bb91e5f2e5db
   languageName: node
   linkType: hard
 
@@ -8333,12 +8333,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:20.12.8":
-  version: 20.12.8
-  resolution: "@types/node@npm:20.12.8"
+"@types/node@npm:20.12.10":
+  version: 20.12.10
+  resolution: "@types/node@npm:20.12.10"
   dependencies:
     undici-types: ~5.26.4
-  checksum: 84d4876d95792a9567d2cc5a2c48db7028c397820e842cd65e2f848c23dd4b868b7131bda8eb66a1729d4944289070153d6180048de5bd155b35de421283c433
+  checksum: 8c35a349f494846c1f1db4e4f8b21e7fc7f6ee14d99a0998f38699f941652be0e2a236b11f13fe404a6fec9b9a82e0e39b80ca71dafc38c742b160cc498b56c3
   languageName: node
   linkType: hard
 
@@ -9901,10 +9901,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axe-core@npm:4.9.0, axe-core@npm:^4.2.0, axe-core@npm:~4.9.0":
-  version: 4.9.0
-  resolution: "axe-core@npm:4.9.0"
-  checksum: cabaa07586a92510f4befc742744b548c30033dfda99dd439c21d736f51913d52022c8836180084b13f2098f06a01c716dc42d8e91599c43c9db25905ba5403f
+"axe-core@npm:4.9.1":
+  version: 4.9.1
+  resolution: "axe-core@npm:4.9.1"
+  checksum: 41d9227871781f96c2952e2a777fca73624959dd0e98864f6d82806a77602f82b4fc490852082a7e524d8cd864e50d8b4d9931819b4a150112981d8c932110c5
   languageName: node
   linkType: hard
 
@@ -9912,6 +9912,13 @@ __metadata:
   version: 4.7.0
   resolution: "axe-core@npm:4.7.0"
   checksum: f086bcab42be1761ba2b0b127dec350087f4c3a853bba8dd58f69d898cefaac31a1561da23146f6f3c07954c76171d1f2ce460e555e052d2b02cd79af628fa4a
+  languageName: node
+  linkType: hard
+
+"axe-core@npm:^4.2.0, axe-core@npm:~4.9.0":
+  version: 4.9.0
+  resolution: "axe-core@npm:4.9.0"
+  checksum: cabaa07586a92510f4befc742744b548c30033dfda99dd439c21d736f51913d52022c8836180084b13f2098f06a01c716dc42d8e91599c43c9db25905ba5403f
   languageName: node
   linkType: hard
 
@@ -10765,9 +10772,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromatic@npm:11.3.0":
-  version: 11.3.0
-  resolution: "chromatic@npm:11.3.0"
+"chromatic@npm:11.3.1":
+  version: 11.3.1
+  resolution: "chromatic@npm:11.3.1"
   peerDependencies:
     "@chromatic-com/cypress": ^0.*.* || ^1.0.0
     "@chromatic-com/playwright": ^0.*.* || ^1.0.0
@@ -10780,7 +10787,7 @@ __metadata:
     chroma: dist/bin.js
     chromatic: dist/bin.js
     chromatic-cli: dist/bin.js
-  checksum: 267bf4f4b5b548e065f770e6909229e67089f560233f04f8be3dc176583bd640a4637ad8f6f7e796b86b37af2a512b14b5e16ec7c0f6d07abf529ece740c62db
+  checksum: fe54de672b30953eb8ccb125a9d85de4070901185fae581118fcd3acdbc12a220d58593df13bbe3d6b0fe03a0b4457abff64665201169849e6c66018dc286cb8
   languageName: node
   linkType: hard
 
@@ -20091,7 +20098,31 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright@npm:1.43.1, playwright@npm:^1.14.0":
+"playwright-core@npm:1.44.0":
+  version: 1.44.0
+  resolution: "playwright-core@npm:1.44.0"
+  bin:
+    playwright-core: cli.js
+  checksum: 7bee257c830153578753a6dfb34b8216f8c552d750e24a0be6d3ba10baff013fb1320a1c3d487fbb0df9d1ce5d1f027ccf6e990d4514989da63691f177141ba4
+  languageName: node
+  linkType: hard
+
+"playwright@npm:1.44.0":
+  version: 1.44.0
+  resolution: "playwright@npm:1.44.0"
+  dependencies:
+    fsevents: 2.3.2
+    playwright-core: 1.44.0
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  bin:
+    playwright: cli.js
+  checksum: 22653ded652f436c1a837842009a175e8acb91ab340bb3deee87dbdb7205b439bd174f5f20591eb67f0171728c9f8f4bdfa3668a517da6bc7b45a4a79eabdbd5
+  languageName: node
+  linkType: hard
+
+"playwright@npm:^1.14.0":
   version: 1.43.1
   resolution: "playwright@npm:1.43.1"
   dependencies:
@@ -21875,16 +21906,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:1.76.0":
-  version: 1.76.0
-  resolution: "sass@npm:1.76.0"
+"sass@npm:1.77.0":
+  version: 1.77.0
+  resolution: "sass@npm:1.77.0"
   dependencies:
     chokidar: ">=3.0.0 <4.0.0"
     immutable: ^4.0.0
     source-map-js: ">=0.6.2 <2.0.0"
   bin:
     sass: sass.js
-  checksum: 5f3fa7e7a1be09b7cea842a397fb07b9413fa9903bf82ead2ea059aa56faea534c2a84ede5a140103ee18a1dec9162b2fa1413fe71bbe8f8074712bf3bd3a8c7
+  checksum: 684b70e58ab2077b2ed90c5ae0e3bfed59fb6f362e4cbae2514c6bef57b013a0a1012d1c199b9d9d362fe52e37cddf12c6d843e78d3402ba5ed6fcf29b98e28c
   languageName: node
   linkType: hard
 
