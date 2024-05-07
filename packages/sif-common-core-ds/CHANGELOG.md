@@ -1,5 +1,13 @@
 # @navikt/sif-common-core-ds
 
+## 9.16.2
+
+### Patch Changes
+
+- c4d70c1: Pakkeoppdateringer - minor/patch
+- Updated dependencies [c4d70c1]
+  - @navikt/sif-common-utils@3.44.22
+
 ## 9.16.1
 
 ### Patch Changes
