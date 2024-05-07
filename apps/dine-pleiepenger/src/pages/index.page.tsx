@@ -5,15 +5,15 @@ import { withAuthenticatedPage } from '../auth/withAuthentication';
 import DineInnsendteSøknader from '../components/dine-innsendte-søknader/DineInnsendteSøknader';
 import HvaSkjer from '../components/hva-skjer/HvaSkjer';
 import DefaultPageLayout from '../components/page-layout/default-page-layout/DefaultPageLayout';
-import Snarveier from '../components/snarveier/Snarveier';
 import Saksbehandlingstid from '../components/saksbehandlingstid/Saksbehandlingstid';
+import Snarveier from '../components/snarveier/Snarveier';
+import VelgSakPage from '../components/velg-sak-page/VelgSakPage';
 import { useInnsynsdataContext } from '../hooks/useInnsynsdataContext';
 import { useLogBrukerprofil } from '../hooks/useLogBrukerprofil';
 import { useMessages } from '../i18n';
 import { PleietrengendeMedSak } from '../server/api-models/PleietrengendeMedSakSchema';
 import { InnsendtSøknad, InnsendtSøknadstype } from '../types/Søknad';
 import SakPage from './sak/SakPage';
-import VelgSakPage from '../components/velg-sak-page/VelgSakPage';
 
 const harSendtInnSøknadEllerEndringsmelding = (søknader: InnsendtSøknad[]): boolean => {
     return søknader.some(
@@ -32,10 +32,10 @@ const getSaksbehandlingsfrist = (søknader: InnsendtSøknad[], saker: Pleietreng
 
 function DinePleiepengerPage(): ReactElement {
     const {
-        innsynsdata: { innsendteSøknader, saker, saksbehandlingstidUker },
+        innsynsdata: { innsendteSøknader, saker, saksbehandlingstidUker, brukerprofil },
     } = useInnsynsdataContext();
 
-    useLogBrukerprofil(innsendteSøknader, saker, saksbehandlingstidUker);
+    useLogBrukerprofil(brukerprofil);
 
     const { text } = useMessages();
 
