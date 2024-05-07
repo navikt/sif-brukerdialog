@@ -11,6 +11,7 @@ import {
 } from '../dateFormatUtils';
 import datepickerUtils, { isISODateString } from '../datepickerUtils';
 import { DatepickerLimitations } from '../FormikDatepicker';
+import { usePrevious } from './usePrevious';
 
 type Props = Omit<DatePickerProps, 'onChange' | 'fromDate' | 'toDate'> &
     DatepickerLimitations & {
@@ -93,7 +94,7 @@ const DateInputAndPicker: React.FunctionComponent<Props> = ({
         }
     };
 
-    const { inputProps, datepickerProps, selectedDay } = useDatepicker({
+    const { inputProps, datepickerProps, selectedDay, setSelected } = useDatepicker({
         locale,
         disabled: disabledDates,
         fromDate: restProps.minDate,
@@ -102,6 +103,17 @@ const DateInputAndPicker: React.FunctionComponent<Props> = ({
         ...restProps,
         defaultSelected: ISODateStringToUTCDate(value),
     });
+
+    const previous = usePrevious(value);
+    useEffect(() => {
+        if (previous !== value) {
+            if (!value || value === '') {
+                setSelected(undefined);
+            } else if (isISODateString(value)) {
+                setSelected(ISODateStringToUTCDate(value));
+            }
+        }
+    }, [value, previous, setSelected]);
 
     const inputValue = inputProps.value;
 
