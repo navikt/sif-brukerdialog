@@ -1,8 +1,7 @@
 import { Alert } from '@navikt/ds-react';
 import React from 'react';
-import { useAppIntl } from '@i18n/index';
+import { AppHtml, useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormattedHtmlMessage from '@navikt/sif-common-core-ds/src/atoms/formatted-html-message/FormattedHtmlMessage';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { AppText } from '../../../i18n';
@@ -35,7 +34,9 @@ const OmsorgstilbudStepInfo = () => {
                 </li>
             </ul>
             <p>
-                <FormattedHtmlMessage id="steg.omsorgstilbud.veileder.2" />
+                <strong>
+                    <AppText id="steg.omsorgstilbud.veileder.2" />
+                </strong>
             </p>
             <Block>
                 <ExpandableInfo title={text('steg.omsorgstilbud.eksempel.tittel')}>
@@ -78,7 +79,7 @@ const OmsorgstilbudStepInfo = () => {
                         <AppText id="steg.omsorgstilbud.veileder.5.2" />
                     </p>
                     <p>
-                        <FormattedHtmlMessage id="steg.omsorgstilbud.veileder.5.3" />
+                        <AppHtml id="steg.omsorgstilbud.veileder.5.3" />
                     </p>
                     <p>
                         <AppText id="steg.omsorgstilbud.veileder.5.4" />

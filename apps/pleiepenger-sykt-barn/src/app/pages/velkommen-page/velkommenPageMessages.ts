@@ -19,8 +19,7 @@ const nb = {
     'page.velkommen.form.ansvar.tittel': 'Ditt ansvar som søker',
     'page.velkommen.form.ansvar.list.1':
         'Jeg forstår at hvis jeg gir uriktige opplysninger, kan det få konsekvenser for retten min til det jeg søker om',
-    'page.velkommen.form.ansvar.list.2.1': 'Jeg har lest og forstått det som står på',
-    'page.velkommen.form.ansvar.list.2.2': 'nav.no/rett og plikt',
+    'page.velkommen.form.ansvar.list.2': 'Jeg har lest og forstått det som står på <Lenke>nav.no/rett og plikt</Lenke>',
     'page.velkommen.harForståttRettigheterOgPlikter.notChecked': 'Du må velge at du har forstått ditt ansvar som søker',
     'personopplysninger.dialogtittel': 'Om behandling av personopplysninger',
 
@@ -50,10 +49,8 @@ const nb = {
         'trygdeordninger du kan ha rett til i andre land. Vi kan også sende opplysninger om deg til trygdemyndigheter i andre land.',
     'personopplysninger.4b':
         'Vi lagrer opplysningene vi får inn om barnet du søker pleiepenger for. Dette gjør vi for å kunne gjenbruke opplysningene hvis andre omsorgspersoner søker pleiepenger for samme barn.',
-    'personopplysninger.5.1':
-        'Du har rett til innsyn i saken din. Vil du vite mer om hvordan NAV behandler personopplysninger? Se ',
-    'personopplysninger.5.2': 'nav.no/personvern',
-    'personopplysninger.5.3': '.',
+    'personopplysninger.5':
+        'Du har rett til innsyn i saken din. Vil du vite mer om hvordan NAV behandler personopplysninger? Se <Lenke>nav.no/personvern</Lenke>.',
 };
 
 const nn: Record<keyof typeof nb, string> = {

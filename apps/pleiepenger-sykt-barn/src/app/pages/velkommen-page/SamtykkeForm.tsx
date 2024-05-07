@@ -41,10 +41,16 @@ const SamtykkeForm = ({ onConfirm }: Props) => {
                                 <AppText id="page.velkommen.form.ansvar.list.1" />
                             </li>
                             <li>
-                                <AppText id="page.velkommen.form.ansvar.list.2.1" />{' '}
-                                <Link href={getLenker(intl.locale).rettOgPlikt} target="_blank">
-                                    <AppText id="page.velkommen.form.ansvar.list.2.2" />
-                                </Link>
+                                <AppText
+                                    id="page.velkommen.form.ansvar.list.2"
+                                    values={{
+                                        Lenke: (children) => (
+                                            <Link href={getLenker(intl.locale).rettOgPlikt} target="_blank">
+                                                {children}
+                                            </Link>
+                                        ),
+                                    }}
+                                />
                             </li>
                         </InfoList>
                     </AppForm.ConfirmationCheckbox>

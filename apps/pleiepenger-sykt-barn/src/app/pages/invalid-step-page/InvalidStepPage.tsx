@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useAppIntl } from '@i18n/index';
 import ActionLink from '@navikt/sif-common-core-ds/src/atoms/action-link/ActionLink';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormattedHtmlMessage from '@navikt/sif-common-core-ds/src/atoms/formatted-html-message/FormattedHtmlMessage';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
@@ -31,7 +30,7 @@ const InvalidStepPage = ({ stepId }: Props) => {
                     </Heading>
                     <Block margin="m" padBottom="l">
                         <BodyShort as="div">
-                            <FormattedHtmlMessage id="page.invalidStepPage.tekst" />
+                            <AppText id="page.invalidStepPage.tekst" />
                             <p>
                                 <ActionLink
                                     onClick={() => {

@@ -1,6 +1,5 @@
 import React from 'react';
-import { useAppIntl } from '@i18n/index';
-import FormattedHtmlMessage from '@navikt/sif-common-core-ds/src/atoms/formatted-html-message/FormattedHtmlMessage';
+import { AppText, useAppIntl } from '@i18n/index';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
 
@@ -15,13 +14,13 @@ const InfoOmEndring: React.FunctionComponent<Props> = ({ arbeidsforholdType }) =
         case ArbeidsforholdType.FRILANSER:
             return (
                 <ExpandableInfo title={text('arbeidIPeriode.redusert.endring.tittel')}>
-                    <FormattedHtmlMessage id="arbeidIPeriode.redusert.endring.arb_frilans.tekst" />
+                    <AppText id="arbeidIPeriode.redusert.endring.arb_frilans.tekst" />
                 </ExpandableInfo>
             );
         case ArbeidsforholdType.SELVSTENDIG:
             return (
                 <ExpandableInfo title={text('arbeidIPeriode.redusert.endring.tittel')}>
-                    <FormattedHtmlMessage id="arbeidIPeriode.redusert.endring.sn.tekst" />
+                    <AppText id="arbeidIPeriode.redusert.endring.sn.tekst" />
                 </ExpandableInfo>
             );
     }

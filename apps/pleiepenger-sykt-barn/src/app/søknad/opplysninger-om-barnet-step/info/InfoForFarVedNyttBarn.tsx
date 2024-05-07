@@ -8,11 +8,16 @@ const InfoForFarVedNyttBarn = () => {
     return (
         <ExpandableInfo title={text('infoForFarVedNyttBarn.tittel')}>
             <p>
-                <AppText id="infoForFarVedNyttBarn.info.1.1" />{' '}
-                <Link href="https://farskapsportal.nav.no/nb/" target="_blank">
-                    <AppText id="infoForFarVedNyttBarn.info.1.2" />
-                </Link>
-                <AppText id="infoForFarVedNyttBarn.info.1.3" />
+                <AppText
+                    id="infoForFarVedNyttBarn.info.1"
+                    values={{
+                        Lenke: (children) => (
+                            <Link href="https://farskapsportal.nav.no/nb/" target="_blank">
+                                {children}
+                            </Link>
+                        ),
+                    }}
+                />
             </p>
             <p>
                 <AppText id="infoForFarVedNyttBarn.info.2" />

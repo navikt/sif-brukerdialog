@@ -241,8 +241,7 @@ const nb = {
     'steg.omsorgstilbud.veileder.1.4': 'omsorgsbolig',
     'steg.omsorgstilbud.veileder.1.5': 'BPA (brukerstyrt personlig assistent)',
     'steg.omsorgstilbud.veileder.1.6': 'andre organiserte omsorgstilbud ',
-    'steg.omsorgstilbud.veileder.2':
-        '<strong>Å være innlagt eller til behandling på sykehus regnes ikke som et omsorgstilbud.</strong>',
+    'steg.omsorgstilbud.veileder.2': 'Å være innlagt eller til behandling på sykehus regnes ikke som et omsorgstilbud.',
     'steg.omsorgstilbud.veileder.3': 'Pleiepenger graderes ved fast og regelmessig  omsorgstilbud',
     'steg.omsorgstilbud.veileder.3.1':
         'Når tiden barnet oppholder seg i et omsorgstilbud er fast og regelmessig, skal pleiepengene graderes tilsvarende den tiden barnet er i omsorgstilbudet. Det er bare når bruken av omsorgstilbudet er',
@@ -477,7 +476,7 @@ const nb = {
     'page.invalidStepPage.sidetittel': 'Oops, nå skjedde det en feil...',
     'page.invalidStepPage.tittel': 'Oops, nå skjedde det en feil...',
     'page.invalidStepPage.tekst':
-        'Du er kommet til en side du ikke trenger å fylle ut. Dette kan skje hvis du går frem og tilbake i søknaden gjennom pilene i nettleseren (pilene helt øverst til venstre på siden). Du unngår dette problemet hvis du heller bruker knapper og lenker som ligger inne i selve søknaden for å gå frem eller tilbake.:',
+        'Du er kommet til en side du ikke trenger å fylle ut. Dette kan skje hvis du går frem og tilbake i søknaden gjennom pilene i nettleseren (pilene helt øverst til venstre på siden). Du unngår dette problemet hvis du heller bruker knapper og lenker som ligger inne i selve søknaden for å gå frem eller tilbake.',
     'page.invalidStepPage.tilbakeLenke': 'Gå tilbake til forrige side',
 
     'page.ikkeTilgang.tekst':
@@ -914,10 +913,8 @@ const nb = {
         'Slutt-datoen kan ikke være før start-datoen. Skriv inn eller velg dato fra kalenderen.',
 
     'infoForFarVedNyttBarn.tittel': 'Er du registrert som far i folkeregisteret?',
-    'infoForFarVedNyttBarn.info.1.1':
-        'Hvis du og moren til barnet er gift blir du automatisk registrert som far til barnet. Hvis dere ikke er gift må du erklære farskap for at du skal bli registrert som far til barnet i folkeregisteret.',
-    'infoForFarVedNyttBarn.info.1.2': 'Her kan du erklære farskap digitalt',
-    'infoForFarVedNyttBarn.info.1.3': '.',
+    'infoForFarVedNyttBarn.info.1':
+        'Hvis du og moren til barnet er gift blir du automatisk registrert som far til barnet. Hvis dere ikke er gift må du erklære farskap for at du skal bli registrert som far til barnet i folkeregisteret. <Lenke>Her kan du erklære farskap digitalt</Lenke>.',
 
     'infoForFarVedNyttBarn.info.2':
         'Uavhengig av hva som er situasjonen din, kan du fortsette å fylle ut søknaden og sende den inn.',

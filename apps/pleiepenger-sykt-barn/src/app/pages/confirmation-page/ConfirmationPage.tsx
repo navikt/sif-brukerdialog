@@ -4,7 +4,6 @@ import { useAppIntl } from '@i18n/index';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import CheckmarkIcon from '@navikt/sif-common-core-ds/src/atoms/checkmark-icon/CheckmarkIcon';
-import FormattedHtmlMessage from '@navikt/sif-common-core-ds/src/atoms/formatted-html-message/FormattedHtmlMessage';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
@@ -68,7 +67,7 @@ const ConfirmationPage = ({ kvitteringInfo, onUnmount }: Props) => {
 
             <Block margin="xxl">
                 <Heading level="2" size="medium">
-                    <FormattedHtmlMessage id="page.confirmation.dinePP.info.tittel" />
+                    <AppText id="page.confirmation.dinePP.info.tittel" />
                 </Heading>
                 <Block margin="m">
                     <ul>
