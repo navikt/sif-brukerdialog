@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.7.37
+
+### Patch Changes
+
+- 99c9b1f: Forhindre evig loop i input hvis bruker tabber ut av input-felt når verdien er ugyldig
+
 ## 1.7.36
 
 ### Patch Changes
