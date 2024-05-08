@@ -1,5 +1,16 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.6.18
+
+### Patch Changes
+
+- Updated dependencies [99c9b1f]
+  - @navikt/sif-common-formik-ds@1.7.37
+  - @navikt/sif-common-core-ds@9.16.2
+  - @navikt/sif-common-forms-ds@8.20.7
+  - @navikt/sif-common-soknad-ds@10.13.36
+  - @navikt/sif-common-ui@0.6.35
+
 ## 2.6.17
 
 ### Patch Changes
