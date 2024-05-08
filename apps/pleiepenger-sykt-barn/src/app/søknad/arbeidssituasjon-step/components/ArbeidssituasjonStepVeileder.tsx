@@ -8,7 +8,10 @@ const ArbeidssituasjonStepVeileder: React.FunctionComponent = () => (
             <AppText id="steg.arbeidssituasjon.veileder.1" />
         </p>
         <p>
-            <AppText id="steg.arbeidssituasjon.veileder.2" />
+            <AppText
+                id="steg.arbeidssituasjon.veileder.2"
+                values={{ strong: (children) => <strong>{children}</strong> }}
+            />
         </p>
         <p>
             <AppText id="steg.arbeidssituasjon.veileder.3" />
