@@ -1,5 +1,6 @@
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
+import { deltBostedMessages } from '../søknad/steps/delt-bosted/deltBostedMessages';
 import { dineBarnMessages } from '../søknad/steps/dine-barn/dineBarnMessages';
 import { fraværStepMessages } from '../søknad/steps/fravær/fraværStepMessages';
 import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerklæringMessages';
@@ -11,6 +12,7 @@ import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validate
 const nb = {
     ...situasjonMessages.nb,
     ...dineBarnMessages.nb,
+    ...deltBostedMessages.nb,
     ...velkommenPageMessages.nb,
     ...fraværStepMessages.nb,
     ...legeerklæringMessages.nb,

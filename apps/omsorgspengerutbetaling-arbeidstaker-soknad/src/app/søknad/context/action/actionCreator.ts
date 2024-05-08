@@ -4,6 +4,7 @@ import {
     MedlemskapSøknadsdata,
     SituasjonSøknadsdata,
     FraværSøknadsdata,
+    DeltBostedSøknadsdata,
 } from '../../../types/søknadsdata/Søknadsdata';
 import { OppsummeringFormValues } from '../../steps/oppsummering/OppsummeringStep';
 import { ArbeidsgiverDetaljer } from '../../../types/søknadApiData/SøknadApiData';
@@ -17,6 +18,7 @@ export enum SøknadContextActionKeys {
     FORTSETT_SØKNAD_SENERE = 'fortsettSøknadSenere',
     SET_SØKNAD_ROUTE = 'setSøknadRoute',
     SET_SØKNAD_DINE_BARN = 'setSøknadDineBarn',
+    SET_SØKNAD_DELT_BOSTED = 'setSøknadDeltBosted',
     SET_SØKNAD_SITUASJON = 'setSøknadSituasjon',
     SET_SØKNAD_FRAVÆR = 'setSøknadFravær',
     SET_SØKNAD_LEGEERKLÆRING = 'setSøknadLegeerklæring',
@@ -59,6 +61,11 @@ interface SetSøknadRoute {
 interface SetSøknadDineBarn {
     type: SøknadContextActionKeys.SET_SØKNAD_DINE_BARN;
     payload: DineBarnSøknadsdata;
+}
+
+interface SetSøknadDeltBosted {
+    type: SøknadContextActionKeys.SET_SØKNAD_DELT_BOSTED;
+    payload: DeltBostedSøknadsdata;
 }
 
 interface SetSøknadSituasjon {
@@ -134,6 +141,11 @@ const setSøknadDineBarn = (payload: DineBarnSøknadsdata): SetSøknadDineBarn =
     payload,
 });
 
+const setSøknadDeltBosted = (payload: DeltBostedSøknadsdata): SetSøknadDeltBosted => ({
+    type: SøknadContextActionKeys.SET_SØKNAD_DELT_BOSTED,
+    payload,
+});
+
 const setSøknadFravær = (payload: FraværSøknadsdata): SetSøknadFravær => ({
     type: SøknadContextActionKeys.SET_SØKNAD_FRAVÆR,
     payload,
@@ -177,6 +189,7 @@ export type SøknadContextAction =
     | RequestLagreSøknad
     | SetSøknadLagret
     | SetSøknadDineBarn
+    | SetSøknadDeltBosted
     | SetSøknadSendt
     | SetSøknadSituasjon
     | SetSøknadFravær
@@ -195,6 +208,7 @@ const actionsCreator = {
     requestLagreSøknad,
     setSøknadRoute,
     setSøknadDineBarn,
+    setSøknadDeltBosted,
     setSøknadSituasjon,
     setSøknadFravær,
     setSøknadLegeerklæring,
