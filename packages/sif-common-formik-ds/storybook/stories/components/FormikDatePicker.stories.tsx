@@ -1,6 +1,6 @@
 import type { Meta, StoryFn, StoryObj } from '@storybook/react';
 
-import { BodyShort } from '@navikt/ds-react';
+import { BodyShort, Box, Button, HStack, VStack } from '@navikt/ds-react';
 import { expect } from '@storybook/jest';
 import { userEvent, within } from '@storybook/testing-library';
 import { useFormikContext } from 'formik';
@@ -31,10 +31,29 @@ const Wrapper: StoryFn = ({ children }) => {
     );
 };
 
+const ModifyValueButtons = () => {
+    const { setFieldValue } = useFormikContext();
+    return (
+        <HStack gap="2">
+            <Button type="button" onClick={() => setFieldValue('date', '')} variant="secondary" size="small">
+                Tøm felt
+            </Button>
+            <Button type="button" onClick={() => setFieldValue('date', '2025-01-01')} variant="secondary" size="small">
+                Sett dato
+            </Button>
+        </HStack>
+    );
+};
+
 export const Default: Story = {
     render: () => (
         <Wrapper>
-            <FormikDatepicker {...defaultProps} />
+            <VStack gap="2">
+                <FormikDatepicker {...defaultProps} />
+                <Box>
+                    <ModifyValueButtons />
+                </Box>
+            </VStack>
         </Wrapper>
     ),
 };
