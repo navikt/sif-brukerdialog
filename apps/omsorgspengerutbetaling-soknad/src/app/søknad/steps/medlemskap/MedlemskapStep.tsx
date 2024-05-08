@@ -108,7 +108,6 @@ const MedlemskapStep = () => {
                                                 ),
                                             }}
                                         />
-                                        .
                                     </SifGuidePanel>
                                 </Block>
                                 <YesOrNoQuestion
