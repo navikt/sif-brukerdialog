@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.7.35
+
+### Patch Changes
+
+- c4d70c1: Pakkeoppdateringer - minor/patch
+
 ## 1.7.34
 
 ### Patch Changes
