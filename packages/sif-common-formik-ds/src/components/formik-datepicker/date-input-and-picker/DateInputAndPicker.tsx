@@ -106,14 +106,14 @@ const DateInputAndPicker: React.FunctionComponent<Props> = ({
 
     const previous = usePrevious(value);
     useEffect(() => {
-        if (previous !== value) {
+        if (previous !== value && listenForInputValueChange === false) {
             if (isISODateString(value)) {
                 setSelected(ISODateStringToUTCDate(value));
             } else {
                 setSelected(undefined);
             }
         }
-    }, [value, previous, setSelected]);
+    }, [listenForInputValueChange, value, previous, setSelected]);
 
     const inputValue = inputProps.value;
 
