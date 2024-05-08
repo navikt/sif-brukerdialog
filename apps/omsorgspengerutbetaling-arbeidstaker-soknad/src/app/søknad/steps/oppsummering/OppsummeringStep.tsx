@@ -46,7 +46,7 @@ const OppsummeringStep = () => {
     } = useSøknadContext();
 
     const stepId = StepId.OPPSUMMERING;
-    const step = getSøknadStepConfigForStep(stepId);
+    const step = getSøknadStepConfigForStep(søknadsdata, stepId);
 
     const { invalidSteps } = useSøknadsdataStatus(stepId, getSøknadStepConfig());
     const hasInvalidSteps = invalidSteps.length > 0;

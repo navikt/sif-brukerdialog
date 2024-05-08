@@ -1,5 +1,6 @@
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
+import { dineBarnMessages } from '../søknad/steps/dine-barn/dineBarnMessages';
 import { fosterbarnFormMessages } from '../søknad/steps/fosterbarn/fosterbarnFormMessages';
 import { fraværStepMessages } from '../søknad/steps/fravær/fraværStepMessages';
 import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerklæringMessages';
@@ -10,6 +11,7 @@ import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validate
 
 const nb = {
     ...situasjonMessages.nb,
+    ...dineBarnMessages.nb,
     ...velkommenPageMessages.nb,
     ...fraværStepMessages.nb,
     ...legeerklæringMessages.nb,

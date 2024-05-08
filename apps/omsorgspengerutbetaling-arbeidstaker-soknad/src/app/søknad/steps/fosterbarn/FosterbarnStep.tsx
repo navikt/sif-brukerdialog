@@ -46,7 +46,7 @@ const FosterbarnStep = () => {
     } = useSøknadContext();
 
     const stepId = StepId.FOSTERBARN;
-    const step = getSøknadStepConfigForStep(stepId);
+    const step = getSøknadStepConfigForStep(søknadsdata, stepId);
 
     const { goBack } = useStepNavigation(step);
 

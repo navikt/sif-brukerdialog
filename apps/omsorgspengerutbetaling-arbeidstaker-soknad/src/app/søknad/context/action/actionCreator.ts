@@ -9,6 +9,7 @@ import {
 import { OppsummeringFormValues } from '../../steps/oppsummering/OppsummeringStep';
 import { ArbeidsgiverDetaljer } from '../../../types/søknadApiData/SøknadApiData';
 import { TempFormValues } from '../../../types/SøknadContextState';
+import { DineBarnSøknadsdata } from '../../../types/søknadsdata/DineBarnSøknadsdata';
 
 export enum SøknadContextActionKeys {
     RESET_SØKNAD = 'resetSøknad',
@@ -17,6 +18,7 @@ export enum SøknadContextActionKeys {
     FORTSETT_SØKNAD_SENERE = 'fortsettSøknadSenere',
     SET_SØKNAD_ROUTE = 'setSøknadRoute',
     SET_SØKNAD_FOSTERBARN = 'setSøknadFosterbarn',
+    SET_SØKNAD_DINE_BARN = 'setSøknadDineBarn',
     SET_SØKNAD_SITUASJON = 'setSøknadSituasjon',
     SET_SØKNAD_FRAVÆR = 'setSøknadFravær',
     SET_SØKNAD_LEGEERKLÆRING = 'setSøknadLegeerklæring',
@@ -60,6 +62,11 @@ interface SetSøknadFosterbarn {
     type: SøknadContextActionKeys.SET_SØKNAD_FOSTERBARN;
     payload: FosterbarnSøknadsdata;
 }
+interface SetSøknadDineBarn {
+    type: SøknadContextActionKeys.SET_SØKNAD_DINE_BARN;
+    payload: DineBarnSøknadsdata;
+}
+
 interface SetSøknadSituasjon {
     type: SøknadContextActionKeys.SET_SØKNAD_SITUASJON;
     payload: SituasjonSøknadsdata;
@@ -133,6 +140,10 @@ const setSøknadFosterbarn = (payload: FosterbarnSøknadsdata): SetSøknadFoster
     type: SøknadContextActionKeys.SET_SØKNAD_FOSTERBARN,
     payload,
 });
+const setSøknadDineBarn = (payload: DineBarnSøknadsdata): SetSøknadDineBarn => ({
+    type: SøknadContextActionKeys.SET_SØKNAD_DINE_BARN,
+    payload,
+});
 
 const setSøknadFravær = (payload: FraværSøknadsdata): SetSøknadFravær => ({
     type: SøknadContextActionKeys.SET_SØKNAD_FRAVÆR,
@@ -177,6 +188,7 @@ export type SøknadContextAction =
     | RequestLagreSøknad
     | SetSøknadLagret
     | SetSøknadFosterbarn
+    | SetSøknadDineBarn
     | SetSøknadSendt
     | SetSøknadSituasjon
     | SetSøknadFravær
@@ -194,6 +206,7 @@ const actionsCreator = {
     fortsettSøknadSenere,
     requestLagreSøknad,
     setSøknadRoute,
+    setSøknadDineBarn,
     setSøknadFosterbarn,
     setSøknadSituasjon,
     setSøknadFravær,

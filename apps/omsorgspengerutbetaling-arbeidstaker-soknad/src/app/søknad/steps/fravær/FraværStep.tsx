@@ -72,7 +72,7 @@ const FraværStep: React.FC = () => {
     } = useSøknadContext();
 
     const stepId = StepId.FRAVÆR;
-    const step = getSøknadStepConfigForStep(stepId);
+    const step = getSøknadStepConfigForStep(søknadsdata, stepId);
 
     const { goBack } = useStepNavigation(step);
 

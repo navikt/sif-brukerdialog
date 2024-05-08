@@ -5,6 +5,8 @@ export const getSøknadStepRoute = (stepId: StepId): SøknadRoutes => {
     switch (stepId) {
         case StepId.VELKOMMEN:
             return SøknadRoutes.VELKOMMEN;
+        case StepId.DINE_BARN:
+            return SøknadRoutes.DINE_BARN;
         case StepId.FOSTERBARN:
             return SøknadRoutes.FOSTERBARN;
         case StepId.SITUASJON:

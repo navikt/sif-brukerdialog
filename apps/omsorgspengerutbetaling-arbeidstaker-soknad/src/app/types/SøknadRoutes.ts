@@ -15,6 +15,7 @@ export enum SøknadRoutes {
     INNLOGGET_ROOT = '/soknad/*',
     VELKOMMEN = '/soknad/velkommen',
     FOSTERBARN = '/soknad/fosterbarn',
+    DINE_BARN = '/soknad/dine-barn',
     SITUASJON = '/soknad/situasjon',
     FRAVÆR = '/soknad/fravær',
     LEGEERKLÆRING = '/soknad/legeerklaring',

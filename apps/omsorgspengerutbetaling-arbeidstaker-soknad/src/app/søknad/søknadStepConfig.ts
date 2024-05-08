@@ -1,9 +1,11 @@
 import { SoknadApplicationType, SoknadStepsConfig, soknadStepUtils, StepConfig } from '@navikt/sif-common-soknad-ds';
 import { StepId } from '../types/StepId';
 import { getSøknadStepRoute } from '../utils/søknadRoutesUtils';
+import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 
 const getSøknadSteps = (): StepId[] => {
     return [
+        StepId.DINE_BARN,
         StepId.FOSTERBARN,
         StepId.SITUASJON,
         StepId.FRAVÆR,
@@ -18,7 +20,7 @@ export const getSøknadStepConfig = (): SoknadStepsConfig<StepId> =>
         return getSøknadStepRoute(step);
     });
 
-export const getSøknadStepConfigForStep = (stepId: StepId): StepConfig<StepId> => {
+export const getSøknadStepConfigForStep = (søknadsdata: Søknadsdata, stepId: StepId): StepConfig<StepId> => {
     const config = getSøknadStepConfig()[stepId];
     if (!config) {
         throw `Missing step config ${stepId}`;

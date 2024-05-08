@@ -1,5 +1,7 @@
+import { DineBarnFormValues } from '../søknad/steps/dine-barn/DineBarnStep';
 import { FosterbarnFormValues } from '../søknad/steps/fosterbarn/FosterbarnStep';
 import { SituasjonFormValues } from '../søknad/steps/situasjon/SituasjonStep';
+import { RegistrertBarn } from './RegistrertBarn';
 import { StepId } from './StepId';
 import { Søker } from './Søker';
 import { SøknadRoutes } from './SøknadRoutes';
@@ -16,11 +18,21 @@ export type BarnStepTempFormValues = {
     values: Partial<FosterbarnFormValues>;
 };
 
-export type TempFormValues = SituasjonStepTempFormValues | BarnStepTempFormValues | undefined;
+export type DineBarnStepTempFormValues = {
+    stepId: StepId.DINE_BARN;
+    values: Partial<DineBarnFormValues>;
+};
+
+export type TempFormValues =
+    | SituasjonStepTempFormValues
+    | BarnStepTempFormValues
+    | DineBarnStepTempFormValues
+    | undefined;
 
 export interface SøknadContextState {
     versjon: string;
     søker: Søker;
+    registrerteBarn: RegistrertBarn[];
     søknadsdata: Søknadsdata;
     kvitteringInfo?: ArbeidsgiverDetaljer[];
     tempFormValues?: TempFormValues;
