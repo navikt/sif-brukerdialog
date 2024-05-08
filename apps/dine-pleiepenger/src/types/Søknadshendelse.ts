@@ -8,6 +8,7 @@ export enum SøknadshendelseType {
     'AKSJONSPUNKT' = 'AKSJONSPUNKT',
     'FERDIG_BEHANDLET' = 'FERDIG_BEHANDLET',
     'FORVENTET_SVAR' = 'FORVENTET_SVAR',
+    'ETTERSENDELSE' = 'ETTERSENDELSE',
 }
 
 interface SøknadshendelseBase {
@@ -17,6 +18,13 @@ interface SøknadshendelseBase {
 interface SøknadshendelseMottattSøknad extends SøknadshendelseBase {
     type: SøknadshendelseType.MOTTATT_SØKNAD;
     søknad: Søknad;
+    /** Mottatt dato */
+    dato: Date;
+}
+
+interface SøknadshendelseMottattEttersendelse extends SøknadshendelseBase {
+    type: SøknadshendelseType.ETTERSENDELSE;
+    søknad: Pick<Søknad, 'dokumenter'>;
     /** Mottatt dato */
     dato: Date;
 }

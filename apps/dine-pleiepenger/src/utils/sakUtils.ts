@@ -70,6 +70,11 @@ const mapSøknadTilSøknadshendelse = (søknad: Søknad): Søknadshendelse => {
                 dato: undefined,
             };
 
+        case Søknadstype.ETTERSENDELSE:
+            return {
+                type: SøknadshendelseType.ETTERSENDELSE,
+            };
+
         case Søknadstype.ENDRINGSMELDING:
         case Søknadstype.SØKNAD:
             return {
