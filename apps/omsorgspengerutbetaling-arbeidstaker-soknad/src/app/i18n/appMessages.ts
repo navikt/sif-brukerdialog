@@ -1,7 +1,6 @@
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { dineBarnMessages } from '../søknad/steps/dine-barn/dineBarnMessages';
-import { fosterbarnFormMessages } from '../søknad/steps/fosterbarn/fosterbarnFormMessages';
 import { fraværStepMessages } from '../søknad/steps/fravær/fraværStepMessages';
 import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerklæringMessages';
 import { medlemskapMessages } from '../søknad/steps/medlemskap/medlemskapMessages';
@@ -19,7 +18,6 @@ const nb = {
     ...oppsummeringMessages.nb,
     ...kvitteringMessages.nb,
     ...validateApiDataMessages.nb,
-    ...fosterbarnFormMessages.nb,
 
     Ja: 'Ja',
     Nei: 'Nei',
@@ -37,8 +35,8 @@ const nb = {
     'step.sendButtonLabel': 'Send inn søknaden',
     'step.sendButtonAriaLabel': 'Send inn søknaden',
 
-    'step.fosterbarn.stepTitle': 'Fosterbarn',
-    'step.fosterbarn.stepIndicatorLabel': 'Fosterbarn',
+    'step.dineBarn.stepTitle': 'Dine barn',
+    'step.dineBarn.stepIndicatorLabel': 'Dine barn',
 
     'step.situasjon.pageTitle': 'Din arbeidssituasjon',
     'step.situasjon.stepTitle': 'Din arbeidssituasjon',

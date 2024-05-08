@@ -1,10 +1,9 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import {
     FormikInputGroup,
     FormikYesOrNoQuestion,
@@ -20,7 +19,7 @@ import { DineBarnFormFields, DineBarnFormValues } from './DineBarnStep';
 import AndreBarnPart from './parts/AndreBarnPart';
 import DineBarnStepIntro from './parts/DineBarnStepIntro';
 import RegistrerteBarnPart from './parts/RegistrerteBarnPart';
-import { useAppIntl } from '../../../i18n';
+import { AppText, useAppIntl } from '../../../i18n';
 
 const { Form } = getTypedFormComponents<DineBarnFormFields, DineBarnFormValues, ValidationError>();
 
@@ -64,7 +63,7 @@ const DineBarnForm: React.FunctionComponent<DineBarnFormProps> = ({
 
             <FormBlock margin="xxl">
                 <Heading level="2" size="medium">
-                    <FormattedMessage id="step.dineBarn.seksjonsTittel" />
+                    <AppText id="step.dineBarn.seksjonsTittel" />
                 </Heading>
             </FormBlock>
 
@@ -89,27 +88,22 @@ const DineBarnForm: React.FunctionComponent<DineBarnFormProps> = ({
                     onAndreBarnChange={oppdatereAndreBarn}
                 />
 
-                <FormBlock>
-                    <FormikYesOrNoQuestion
-                        name={DineBarnFormFields.harDeltBosted}
-                        legend={text('step.dineBarn.utvidetRettAleneomsorg.spm')}
-                        validate={getYesOrNoValidator()}
-                        description={
-                            <ExpandableInfo
-                                title={intlHelper(intl, 'step.dineBarn.utvidetRettAleneomsorg.info.tittel')}>
-                                <p>
-                                    <FormattedMessage id="step.dineBarn.utvidetRettAleneomsorg.info.tekst.1" />
-                                </p>
-                                <p>
-                                    <FormattedMessage id="step.dineBarn.utvidetRettAleneomsorg.info.tekst.2" />
-                                </p>
-                                <p>
-                                    <FormattedMessage id="step.dineBarn.utvidetRettAleneomsorg.info.tekst.3" />
-                                </p>
-                            </ExpandableInfo>
-                        }
-                    />
-                </FormBlock>
+                <div>
+                    <FormBlock>
+                        <FormikYesOrNoQuestion
+                            name={DineBarnFormFields.harDeltBosted}
+                            legend={text('step.dineBarn.harDeltBosted.spm')}
+                            validate={getYesOrNoValidator()}
+                            description={
+                                <ExpandableInfo title={text('step.dineBarn.harDeltBosted.info.tittel')}>
+                                    <p>
+                                        <AppText id="step.dineBarn.harDeltBosted.info.tekst" />
+                                    </p>
+                                </ExpandableInfo>
+                            }
+                        />
+                    </FormBlock>
+                </div>
             </FormikInputGroup>
         </Form>
     );

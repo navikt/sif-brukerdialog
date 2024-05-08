@@ -43,12 +43,12 @@ const DineBarnStep = () => {
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const onValidSubmitHandler = (values: DineBarnFormValues) => {
-        const DineBarnSøknadsdata = getDineBarnSøknadsdataFromFormValues(values);
-        if (DineBarnSøknadsdata) {
+        const dineBarnSøknadsdata = getDineBarnSøknadsdataFromFormValues(values);
+        if (dineBarnSøknadsdata) {
             clearStepFormValues(stepId);
             return [
-                actionsCreator.setSøknadDineBarn(DineBarnSøknadsdata),
-                actionsCreator.setSøknadTempFormValues(undefined),
+                actionsCreator.setSøknadDineBarn(dineBarnSøknadsdata),
+                // actionsCreator.setSøknadTempFormValues(undefined),
             ];
         }
         return [];

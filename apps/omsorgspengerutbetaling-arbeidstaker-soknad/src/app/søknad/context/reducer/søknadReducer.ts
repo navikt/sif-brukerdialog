@@ -2,7 +2,6 @@ import { guid } from '@navikt/sif-common-utils';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
-import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {
     switch (action.type) {
@@ -15,7 +14,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                         harForståttRettigheterOgPlikter: true,
                     },
                 },
-                søknadRoute: SøknadRoutes.FOSTERBARN,
+                søknadRoute: SøknadRoutes.DINE_BARN,
                 børMellomlagres: true,
             };
         case SøknadContextActionKeys.AVBRYT_SØKNAD:
@@ -33,27 +32,26 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     søknadRoute: action.payload,
                 };
+
             case SøknadContextActionKeys.REQUEST_LAGRE_SØKNAD:
                 return {
                     ...state,
                     børMellomlagres: true,
                 };
+
             case SøknadContextActionKeys.SET_SØKNAD_LAGRET:
                 return {
                     ...state,
                     børMellomlagres: false,
                 };
-            case SøknadContextActionKeys.SET_SØKNAD_FOSTERBARN:
-                const søknadsdata: Søknadsdata = {
-                    ...state.søknadsdata,
-                    fosterbarn: {
-                        ...action.payload,
-                    },
-                };
 
+            case SøknadContextActionKeys.SET_SØKNAD_DINE_BARN:
                 return {
                     ...state,
-                    søknadsdata,
+                    søknadsdata: {
+                        ...state.søknadsdata,
+                        dineBarn: action.payload,
+                    },
                 };
 
             case SøknadContextActionKeys.SET_SØKNAD_SITUASJON:

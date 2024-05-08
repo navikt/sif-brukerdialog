@@ -2,7 +2,7 @@ import { StepId } from './StepId';
 
 export const SøknadStepRoutePath = {
     [StepId.VELKOMMEN]: 'velkommen',
-    [StepId.FOSTERBARN]: 'fosterbarn',
+    [StepId.DINE_BARN]: 'dine-barn',
     [StepId.SITUASJON]: 'situasjon',
     [StepId.FRAVÆR]: 'fravær',
     [StepId.LEGEERKLÆRING]: 'legeerklaring',
@@ -14,7 +14,6 @@ export const SøknadStepRoutePath = {
 export enum SøknadRoutes {
     INNLOGGET_ROOT = '/soknad/*',
     VELKOMMEN = '/soknad/velkommen',
-    FOSTERBARN = '/soknad/fosterbarn',
     DINE_BARN = '/soknad/dine-barn',
     SITUASJON = '/soknad/situasjon',
     FRAVÆR = '/soknad/fravær',

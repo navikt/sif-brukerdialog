@@ -56,7 +56,7 @@ export const getDineBarnStepInitialValues = (
     if (dineBarn) {
         return {
             andreBarn: dineBarn.andreBarn,
-            harDeltBosted: dineBarn.harDeltBosted ? YesOrNo.YES : YesOrNo.NO,
+            harDeltBosted: getYesOrNoFromBoolean(dineBarn.harDeltBosted),
         };
     }
     return defaultValues;

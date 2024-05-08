@@ -4,7 +4,6 @@ import {
     MedlemskapSøknadsdata,
     SituasjonSøknadsdata,
     FraværSøknadsdata,
-    FosterbarnSøknadsdata,
 } from '../../../types/søknadsdata/Søknadsdata';
 import { OppsummeringFormValues } from '../../steps/oppsummering/OppsummeringStep';
 import { ArbeidsgiverDetaljer } from '../../../types/søknadApiData/SøknadApiData';
@@ -17,7 +16,6 @@ export enum SøknadContextActionKeys {
     AVBRYT_SØKNAD = 'avbrytSøknad',
     FORTSETT_SØKNAD_SENERE = 'fortsettSøknadSenere',
     SET_SØKNAD_ROUTE = 'setSøknadRoute',
-    SET_SØKNAD_FOSTERBARN = 'setSøknadFosterbarn',
     SET_SØKNAD_DINE_BARN = 'setSøknadDineBarn',
     SET_SØKNAD_SITUASJON = 'setSøknadSituasjon',
     SET_SØKNAD_FRAVÆR = 'setSøknadFravær',
@@ -58,10 +56,6 @@ interface SetSøknadRoute {
     payload: SøknadRoutes;
 }
 
-interface SetSøknadFosterbarn {
-    type: SøknadContextActionKeys.SET_SØKNAD_FOSTERBARN;
-    payload: FosterbarnSøknadsdata;
-}
 interface SetSøknadDineBarn {
     type: SøknadContextActionKeys.SET_SØKNAD_DINE_BARN;
     payload: DineBarnSøknadsdata;
@@ -135,11 +129,6 @@ const setSøknadSituasjon = (payload: SituasjonSøknadsdata): SetSøknadSituasjo
         payload,
     };
 };
-
-const setSøknadFosterbarn = (payload: FosterbarnSøknadsdata): SetSøknadFosterbarn => ({
-    type: SøknadContextActionKeys.SET_SØKNAD_FOSTERBARN,
-    payload,
-});
 const setSøknadDineBarn = (payload: DineBarnSøknadsdata): SetSøknadDineBarn => ({
     type: SøknadContextActionKeys.SET_SØKNAD_DINE_BARN,
     payload,
@@ -187,7 +176,6 @@ export type SøknadContextAction =
     | FortsettSøknadSenere
     | RequestLagreSøknad
     | SetSøknadLagret
-    | SetSøknadFosterbarn
     | SetSøknadDineBarn
     | SetSøknadSendt
     | SetSøknadSituasjon
@@ -207,7 +195,6 @@ const actionsCreator = {
     requestLagreSøknad,
     setSøknadRoute,
     setSøknadDineBarn,
-    setSøknadFosterbarn,
     setSøknadSituasjon,
     setSøknadFravær,
     setSøknadLegeerklæring,

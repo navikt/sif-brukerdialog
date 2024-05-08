@@ -6,8 +6,8 @@ import { getAttachmentURLBackend } from '../attachmentUtilsAuthToken';
 import { getMedlemskapApiDataFromSøknadsdata } from './getMedlemskapApiDataFromSøknadsdata';
 import { getUtenlansoppholdApiDataFromSøknadsdata } from './getUtenlandsoppholdApiDataFromSøknadsdata';
 import { getArbeidsgivereApiDataFromSøknadsdata } from './getArbeidsgivereApiDataFromSøknadsdata';
-import { getFosterbarnApiDataFromSøknadsdata } from './getFosterbarnApiDataFromSøknadsdata';
 import { getDataBruktTilUtledning } from './getDataBruktTilUtledning';
+import { getDineBarnApiDataFromSøknadsdata } from './getDineBarnApiDataFromSøknadsdata';
 
 const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
     if (!vedlegg || vedlegg.length === 0) {
@@ -29,8 +29,8 @@ const getArbeidsforholdDokumenter = (situasjon: SituasjonSøknadsdata): string[]
 };
 
 export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadApiData | undefined => {
-    const { id, fosterbarn, situasjon, fravær, legeerklæring, medlemskap } = søknadsdata;
-    if (!id || !fosterbarn || !situasjon || !fravær || !medlemskap || !legeerklæring) {
+    const { id, dineBarn, situasjon, fravær, legeerklæring, medlemskap } = søknadsdata;
+    if (!id || !dineBarn || !situasjon || !fravær || !medlemskap || !legeerklæring) {
         return undefined;
     }
     const språk = 'nb';
@@ -42,7 +42,7 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadA
             harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true,
             harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true,
         },
-        fosterbarn: getFosterbarnApiDataFromSøknadsdata(fosterbarn),
+        dineBarn: getDineBarnApiDataFromSøknadsdata(dineBarn),
         arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(situasjon, fravær),
         opphold: getUtenlansoppholdApiDataFromSøknadsdata(språk, fravær),
         bosteder: getMedlemskapApiDataFromSøknadsdata(språk, medlemskap),

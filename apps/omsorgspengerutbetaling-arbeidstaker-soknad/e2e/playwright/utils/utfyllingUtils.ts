@@ -16,11 +16,6 @@ const startSøknad = async (page: Page) => {
     await page.getByRole('button').getByText('Start søknad').click();
 };
 
-const fyllUtFosterbarnSteg = async (page: Page) => {
-    await page.getByTestId('harFostrerbarn').getByText('Nei').click();
-    await page.getByTestId('typedFormikForm-submitButton').click();
-};
-
 const fyllUtDinArbeidssituasjonSteg = async (page: Page) => {
     await page.getByRole('heading', { name: 'Din arbeidssituasjon' }).isVisible;
     await page.getByTestId('arbeidsforhold-liste-0').getByTestId('arbeidsforhold-harHattFravær_yes').check();
@@ -77,7 +72,6 @@ const kontrollerKvittering = async (page: Page) => {
 
 export const utfyllingUtils = {
     startSøknad,
-    fyllUtOmBarnSteg: fyllUtFosterbarnSteg,
     fyllUtDinArbeidssituasjonSteg,
     fyllUtFraværSteg,
     lastOppLegeerklæring,

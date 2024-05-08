@@ -6,7 +6,6 @@ import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 const getSøknadSteps = (): StepId[] => {
     return [
         StepId.DINE_BARN,
-        StepId.FOSTERBARN,
         StepId.SITUASJON,
         StepId.FRAVÆR,
         StepId.LEGEERKLÆRING,
@@ -21,6 +20,8 @@ export const getSøknadStepConfig = (): SoknadStepsConfig<StepId> =>
     });
 
 export const getSøknadStepConfigForStep = (søknadsdata: Søknadsdata, stepId: StepId): StepConfig<StepId> => {
+    // eslint-disable-next-line no-console
+    console.log(søknadsdata);
     const config = getSøknadStepConfig()[stepId];
     if (!config) {
         throw `Missing step config ${stepId}`;

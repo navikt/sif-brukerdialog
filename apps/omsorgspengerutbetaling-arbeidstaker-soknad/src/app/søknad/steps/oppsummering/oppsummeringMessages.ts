@@ -7,10 +7,6 @@ const nb = {
     'step.oppsummering.søker.header': 'Om deg',
     'step.oppsummering.søker.fnr': 'Fødselsnummer: {fødselsnummer}',
 
-    'step.oppsummering.fosterbarn': 'Fosterbarn',
-    'step.oppsummering.fosterbarn.harFosterbarn': 'Har du fosterbarn?',
-    'step.oppsummering.fosterbarn.listItem': ' (fnr. {identitetsnummer})',
-
     'step.oppsummering.arbeidsforhold.titel': 'Fravær fra arbeid',
     'step.oppsummering.arbeidsforhold.forhold': '{navn} (organisasjonsnummer: {organisasjonsnummer})',
     'step.oppsummering.arbeidsforhold.ingenArbeidsforhold': 'Ingen arbeidsgiver er valgt',

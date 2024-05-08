@@ -60,7 +60,7 @@ const startServer = () => {
         res.send(søkerMock);
     });
 
-    server.get(`${process.env.PUBLIC_PATH}/oppslag/barn`, (req, res) => {
+    server.get(`/oppslag/barn`, (req, res) => {
         setTimeout(() => {
             res.send(barnMock);
         }, 200);

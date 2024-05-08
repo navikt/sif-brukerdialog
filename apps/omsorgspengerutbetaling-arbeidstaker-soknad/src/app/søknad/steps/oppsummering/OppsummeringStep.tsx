@@ -19,7 +19,6 @@ import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../../søk
 import { StepId } from '../../../types/StepId';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import ArbeidsforholdSummaryView from './components/ArbeidsforholdSummaryView';
-import FosterbarnOppsummering from './components/FosterbarnOppsummering';
 import LegeerklæringOppsummering from './components/LegeerklæringOppsummering';
 import MedlemskapOppsummering from './components/MedlemskapOppsummering';
 import OmSøkerOppsummering from './components/OmSøkerOppsummering';
@@ -114,7 +113,6 @@ const OppsummeringStep = () => {
                                 onBack={goBack}>
                                 {/* Om deg */}
                                 <OmSøkerOppsummering søker={søker} />
-                                <FosterbarnOppsummering fosterbarn={apiData.fosterbarn} />
                                 {/* Fravær fra arbeid */}
                                 <SummarySection header={text('step.oppsummering.arbeidsforhold.titel')}>
                                     <ArbeidsforholdSummaryView
