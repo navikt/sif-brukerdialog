@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.7.36
+
+### Patch Changes
+
+- d89b9f6: Bugfix. Verdi i input ble ikke oppdatert dersom en satte value på datepicker programmatisk. Dette er nå mulig.
+
 ## 1.7.35
 
 ### Patch Changes
