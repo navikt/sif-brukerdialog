@@ -4537,7 +4537,7 @@ __metadata:
     "@storybook/preset-create-react-app": 8.0.10
     "@storybook/react": 8.0.10
     "@storybook/react-vite": 8.0.10
-    "@storybook/test-runner": 0.17.0
+    "@storybook/test-runner": 0.18.0
     "@storybook/testing-library": 0.2.2
     "@types/jest": 29.5.12
     "@types/node": 20.12.10
@@ -7441,9 +7441,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/test-runner@npm:0.17.0":
-  version: 0.17.0
-  resolution: "@storybook/test-runner@npm:0.17.0"
+"@storybook/test-runner@npm:0.18.0":
+  version: 0.18.0
+  resolution: "@storybook/test-runner@npm:0.18.0"
   dependencies:
     "@babel/core": ^7.22.5
     "@babel/generator": ^7.22.5
@@ -7465,10 +7465,11 @@ __metadata:
     jest-runner: ^29.6.4
     jest-serializer-html: ^7.1.0
     jest-watch-typeahead: ^2.0.0
+    nyc: ^15.1.0
     playwright: ^1.14.0
   bin:
     test-storybook: dist/test-storybook.js
-  checksum: 02efe380242b4c60d2e063ac30feb48369aa55d9d4bb5268fb3fcade84bb2e462713bc4829b538ee2e6bf7ffe499f341b9333a729e42de202085a5e8537d304b
+  checksum: 7084a809e5145f0172be4237c0a7675f8ab240401743a9eef0e5abd5466fdc9cd25364a8a838f987b096b07bbf88ac8028fa5084d5cfe4cb3e66aed5f79bf225
   languageName: node
   linkType: hard
 
