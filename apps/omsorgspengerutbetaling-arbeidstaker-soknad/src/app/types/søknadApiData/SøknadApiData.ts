@@ -1,6 +1,7 @@
 import { ISODate } from '@navikt/sif-common-utils/src';
 import { Utbetalingsårsak, ÅrsakNyoppstartet } from '../ArbeidsforholdTypes';
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
+import { BarnType } from '@navikt/sif-common-forms-ds';
 
 export type ISO8601Duration = string;
 
@@ -25,18 +26,8 @@ export interface ArbeidsgiverDetaljer {
     perioder: Utbetalingsperiode[];
 }
 
-export interface ApiBarnFraOppslag {
-    aktørId: string;
-    fødselsdato: ISODate;
-    navn: string;
-}
-
 export enum RegistrertBarnTypeApi {
     'fraOppslag' = 'FRA_OPPSLAG',
-}
-export enum BarnType {
-    'fosterbarn' = 'FOSTERBARN',
-    'annet' = 'ANNET',
 }
 
 export interface ApiBarn {
@@ -46,9 +37,10 @@ export interface ApiBarn {
     navn: string;
     type: RegistrertBarnTypeApi | BarnType;
 }
+
 export interface DineBarnApiData {
     barn: ApiBarn[];
-    harDeltBosted?: boolean;
+    harDeltBosted: boolean;
 }
 
 export enum ApiAktivitet {
