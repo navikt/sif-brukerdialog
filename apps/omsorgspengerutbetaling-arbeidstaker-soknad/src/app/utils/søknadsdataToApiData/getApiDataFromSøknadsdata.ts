@@ -16,20 +16,18 @@ const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
     return vedlegg.filter(attachmentIsUploadedAndIsValidFileFormat).map(({ url }) => getAttachmentURLBackend(url));
 };
 
-const getArbeidsforholdDokumenter = (situasjon: SituasjonSøknadsdata): string[] => {
+const getArbeidsforholdDokumenter = (situasjon: SituasjonSøknadsdata): Attachment[] => {
     const dokumenter: Attachment[] = [];
-
     Object.values(situasjon).forEach((forhold) => {
         if (forhold.type === 'harHattFraværUtenLønnKonfliktMedArbeidsgiver') {
             dokumenter.push(...forhold.dokumenter);
         }
     });
-
-    return getVedleggApiData(dokumenter);
+    return dokumenter;
 };
 
 export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadApiData | undefined => {
-    const { id, dineBarn, situasjon, fravær, legeerklæring, medlemskap } = søknadsdata;
+    const { id, dineBarn, deltBosted, situasjon, fravær, legeerklæring, medlemskap } = søknadsdata;
     if (!id || !dineBarn || !situasjon || !fravær || !medlemskap || !legeerklæring) {
         return undefined;
     }
@@ -46,7 +44,11 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadA
         arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(situasjon, fravær),
         opphold: getUtenlansoppholdApiDataFromSøknadsdata(språk, fravær),
         bosteder: getMedlemskapApiDataFromSøknadsdata(språk, medlemskap),
-        vedlegg: [...getVedleggApiData(legeerklæring?.vedlegg), ...getArbeidsforholdDokumenter(situasjon)],
+        vedlegg: [
+            ...getVedleggApiData(deltBosted?.vedlegg),
+            ...getVedleggApiData(legeerklæring?.vedlegg),
+            ...getVedleggApiData(getArbeidsforholdDokumenter(situasjon)),
+        ],
         dataBruktTilUtledningAnnetData: JSON.stringify(getDataBruktTilUtledning(søknadsdata)),
     };
 };

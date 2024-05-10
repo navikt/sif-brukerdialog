@@ -55,12 +55,20 @@ const nb = {
 
     'step.oppsummering.dokumenter.header': 'Vedlegg',
 
+    'step.oppsummering.deltBosted.ingenVedlegg': 'Ingen avtale om delt bosted er lastet opp, må ettersendes',
+    'step.oppsummering.deltBosted.header': 'Avtale om delt bosted',
+
     'step.oppsummering.legeerklæring.ingenVedlegg': 'Ingen egeerklæring er lastet opp, må ettersendes',
     'step.oppsummering.legeerklæring.header': 'Legeerklæring',
 
     'step.oppsummering.bekrefterOpplysninger':
         'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til omsorgspenger.',
     'step.oppsummering.bekrefterOpplysninger.ikkeBekreftet': 'Du må bekrefte opplysningene',
+
+    'step.oppsummering.dineBarn.tittel': 'Barn',
+    'step.oppsummering.dineBarn.listItem': ' (fnr. {identitetsnummer})',
+    'step.oppsummering.dineBarn.listItem.utvidetRett': 'Ekstra omsorgsdager.',
+    'step.oppsummering.dineBarn.listItem.årsak.FOSTERBARN': '(Barnet er mitt fosterbarn).',
 };
 
 export const oppsummeringMessages = { nb };

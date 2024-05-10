@@ -1,6 +1,4 @@
 const nb = {
-    'step.deltBosted.stepIndicatorLabel': 'Delt fast bosted',
-
     'step.deltBosted.info.1': 'Du har opplyst om at dere har avtale om delt fast bosted.  ',
     'step.deltBosted.info.2': 'Du kan registrere at barnet har delt fast bosted i <Lenke>Folkeregisteret</Lenke>.',
     'step.deltBosted.info.3':

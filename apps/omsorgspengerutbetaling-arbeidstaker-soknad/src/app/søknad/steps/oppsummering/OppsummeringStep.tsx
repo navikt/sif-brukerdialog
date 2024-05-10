@@ -24,6 +24,8 @@ import MedlemskapOppsummering from './components/MedlemskapOppsummering';
 import OmSøkerOppsummering from './components/OmSøkerOppsummering';
 import UtenlandsoppholdISøkeperiodeOppsummering from './components/UtenlandsoppholdISøkeperiodeOppsummering';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
+import DeltBostedOppsummering from './components/DeltBostedOppsummering';
+import DineBarnOppsummering from './components/DineBarnOppsummering';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -41,7 +43,7 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 const OppsummeringStep = () => {
     const { intl, text } = useAppIntl();
     const {
-        state: { søknadsdata, søker },
+        state: { søknadsdata, søker, registrerteBarn },
     } = useSøknadContext();
 
     const stepId = StepId.OPPSUMMERING;
@@ -113,6 +115,22 @@ const OppsummeringStep = () => {
                                 onBack={goBack}>
                                 {/* Om deg */}
                                 <OmSøkerOppsummering søker={søker} />
+
+                                {/* Dine barn */}
+                                <DineBarnOppsummering
+                                    barn={apiData.dineBarn.barn}
+                                    harDeltBosted={søknadsdata.dineBarn?.harDeltBosted}
+                                    registrerteBarn={registrerteBarn}
+                                />
+
+                                {/* Delt bosted */}
+                                {søknadsdata.deltBosted ? (
+                                    <DeltBostedOppsummering
+                                        vedlegg={apiData.vedlegg}
+                                        deltBostedSøknadsdata={søknadsdata.deltBosted}
+                                    />
+                                ) : null}
+
                                 {/* Fravær fra arbeid */}
                                 <SummarySection header={text('step.oppsummering.arbeidsforhold.titel')}>
                                     <ArbeidsforholdSummaryView
@@ -129,7 +147,7 @@ const OppsummeringStep = () => {
 
                                 {/* Vedlegg */}
                                 <LegeerklæringOppsummering
-                                    apiData={apiData}
+                                    vedlegg={apiData.vedlegg}
                                     legeerklæringSøknadsdata={søknadsdata.legeerklæring}
                                 />
 
