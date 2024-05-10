@@ -46,11 +46,13 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                 };
 
             case SøknadContextActionKeys.SET_SØKNAD_DINE_BARN:
+                const { harDeltBosted } = action.payload;
                 return {
                     ...state,
                     søknadsdata: {
                         ...state.søknadsdata,
                         dineBarn: action.payload,
+                        deltBosted: harDeltBosted ? state.søknadsdata.deltBosted : undefined,
                     },
                 };
 

@@ -46,9 +46,12 @@ const DineBarnStep = () => {
         const dineBarnSøknadsdata = getDineBarnSøknadsdataFromFormValues(values);
         if (dineBarnSøknadsdata) {
             clearStepFormValues(stepId);
+            if (dineBarnSøknadsdata.harDeltBosted === false) {
+                clearStepFormValues(StepId.DELT_BOSTED);
+            }
             return [
                 actionsCreator.setSøknadDineBarn(dineBarnSøknadsdata),
-                // actionsCreator.setSøknadTempFormValues(undefined),
+                actionsCreator.setSøknadTempFormValues(undefined),
             ];
         }
         return [];

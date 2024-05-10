@@ -55,10 +55,10 @@ const nb = {
 
     'step.oppsummering.dokumenter.header': 'Vedlegg',
 
-    'step.oppsummering.deltBosted.ingenVedlegg': 'Ingen avtale om delt bosted er lastet opp, må ettersendes',
+    'step.oppsummering.deltBosted.ingenVedlegg': 'Ingen avtale om delt bosted er lastet opp. Denne må ettersendes.',
     'step.oppsummering.deltBosted.header': 'Avtale om delt bosted',
 
-    'step.oppsummering.legeerklæring.ingenVedlegg': 'Ingen egeerklæring er lastet opp, må ettersendes',
+    'step.oppsummering.legeerklæring.ingenVedlegg': 'Ingen egeerklæring er lastet opp. Denne må ettersendes.',
     'step.oppsummering.legeerklæring.header': 'Legeerklæring',
 
     'step.oppsummering.bekrefterOpplysninger':
