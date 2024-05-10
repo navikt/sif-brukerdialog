@@ -30,7 +30,7 @@ test.describe('Fyller ut søknad', () => {
 
     test('Fyller ut søknad enkelt', async ({ page }) => {
         await utfyllingUtils.startSøknad(page);
-        await utfyllingUtils.fyllUtOmBarnSteg(page);
+        await utfyllingUtils.fyllUtDineBarnSteg(page);
         await utfyllingUtils.fyllUtDinArbeidssituasjonSteg(page);
         await utfyllingUtils.fyllUtFraværSteg(page);
         await utfyllingUtils.lastOppLegeerklæring(page);
