@@ -37,6 +37,8 @@ export const nb = {
     'svarfrist.lesMerLenke': 'Se saksbehandlingstider',
     'svarfrist.dokumenterManglerFrist':
         'Fordi vi mangler dokumenter kan saksbehandlingstiden bli lenger enn <dato>{frist}</dato>.',
+    'svarfrist.forTidligSoknad':
+        'Fordi vi ikke kan behandle søknaden din enda, kan saksbehandlingstiden bli lenger enn <dato>{frist}</dato>.',
     'svarfrist.generellFrist': 'Du kan forvente svar innen <dato>{frist}</dato>.',
 
     'hvaSkjerInfo.tittel': 'Hva skjer etter at du har sendt søknad til oss?',
