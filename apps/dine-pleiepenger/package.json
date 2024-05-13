@@ -37,14 +37,14 @@
         "react-loading-skeleton": "3.4.0",
         "swr": "2.2.5",
         "uuid": "9.0.1",
-        "zod": "3.23.6"
+        "zod": "3.23.8"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.9.0",
-        "@navikt/ds-css": "6.7.0",
+        "@navikt/ds-css": "6.7.1",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "6.7.0",
-        "@navikt/ds-tailwind": "6.7.0",
+        "@navikt/ds-react": "6.7.1",
+        "@navikt/ds-tailwind": "6.7.1",
         "@next/bundle-analyzer": "14.2.3",
         "@playwright/test": "1.44.0",
         "@storybook/addon-essentials": "8.0.10",
@@ -55,7 +55,7 @@
         "@storybook/nextjs": "8.0.10",
         "@storybook/react": "8.0.10",
         "@storybook/test": "8.0.10",
-        "chromatic": "11.3.1",
+        "chromatic": "11.3.2",
         "classnames": "2.5.1",
         "dayjs": "1.11.11",
         "eslint-plugin-storybook": "0.8.0",
