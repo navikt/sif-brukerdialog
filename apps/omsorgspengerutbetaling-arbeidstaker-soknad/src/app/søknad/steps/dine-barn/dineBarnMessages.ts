@@ -4,8 +4,11 @@ const nb = {
         'Vi må vite hvor mange barn du har, for å vurdere hvor mange omsorgsdager du har rett til.',
 
     'step.dineBarn.seksjonsTittel': 'Dine barn',
+    'step.dineBarn.registrerteBarn.tekst': 'Barn vi har funnet på deg i folkeregisteret.',
+    'step.dineBarn.registrerteBarn.ingenFunnet': 'Vi fant ikke noen barn registrert på deg.',
     'step.dineBarn.født': 'Født {dato}',
 
+    'step.dineBarn.andreBarn.heading': 'Andre barn',
     'step.dineBarn.annetBarnListAndDialog.addLabel': 'Legg til barn',
     'step.dineBarn.annetBarnListAndDialog.listTitle': 'Har du barn som ikke er registrert her?',
     'step.dineBarn.annetBarnListAndDialog.listTitle.ingenRegistrerteBarn': 'Har du andre barn?',

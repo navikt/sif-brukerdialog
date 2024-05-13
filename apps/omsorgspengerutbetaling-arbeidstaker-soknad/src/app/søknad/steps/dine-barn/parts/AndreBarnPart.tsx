@@ -6,7 +6,8 @@ import { useIntl } from 'react-intl';
 import { DineBarnFormFields } from '../DineBarnStep';
 import { dateToday } from '@navikt/sif-common-utils';
 import { nYearsAgo } from '../dineBarnStepUtils';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import { Heading } from '@navikt/ds-react';
+import { AppText } from '../../../../i18n';
 
 interface Props {
     søkerFnr: string;
@@ -24,7 +25,10 @@ const AndreBarnPart: React.FunctionComponent<Props> = ({
     const intl = useIntl();
     const andreBarnFnr = andreBarn.map((barn) => barn.fnr);
     return (
-        <FormBlock>
+        <div>
+            <Heading size="medium" level="2" spacing={true}>
+                <AppText id="step.dineBarn.andreBarn.heading" />
+            </Heading>
             <AnnetBarnListAndDialog<DineBarnFormFields>
                 name={DineBarnFormFields.andreBarn}
                 labels={{
@@ -42,7 +46,7 @@ const AndreBarnPart: React.FunctionComponent<Props> = ({
                 visBarnTypeValg={true}
                 onAfterChange={(values) => onAndreBarnChange(values)}
             />
-        </FormBlock>
+        </div>
     );
 };
 
