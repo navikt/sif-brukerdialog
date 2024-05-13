@@ -24,7 +24,7 @@ const getFristTekst = (frist: Date, venteårsak?: Venteårsak): React.ReactNode 
                     values={{ frist: dateFormatter.full(frist), dato: (chunk) => <strong>{chunk}</strong> }}
                 />
             );
-        case Venteårsak.SØKT_FOR_TIDLIG:
+        case Venteårsak.FOR_TIDLIG_SOKNAD:
         default:
             return (
                 <AppText

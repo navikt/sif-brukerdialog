@@ -31,7 +31,7 @@ const getVenteårsakTag = (venteårsak: Venteårsak): React.ReactNode => {
                 </Tag>
             );
 
-        case Venteårsak.SØKT_FOR_TIDLIG:
+        case Venteårsak.FOR_TIDLIG_SOKNAD:
             return (
                 <Tag variant="info" size="small">
                     <AppText id="statusTag.venteårsak.søktForTidlig" />

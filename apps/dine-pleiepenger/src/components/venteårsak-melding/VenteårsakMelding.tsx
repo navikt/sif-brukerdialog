@@ -58,7 +58,7 @@ const VenteårsakMelding: React.FunctionComponent<Props> = ({ venteårsak }) => 
                     />
                 </Alert>
             );
-        case Venteårsak.SØKT_FOR_TIDLIG:
+        case Venteårsak.FOR_TIDLIG_SOKNAD:
             return (
                 <Alert variant="info">
                     <MeldingHeading>
