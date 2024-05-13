@@ -58,9 +58,16 @@ export const VenteårsakInntektsmelding: Story = {
     },
 };
 export const VenteårsakForTidligSøknad: Story = {
-    name: 'Venteårsak: Søkt for tidlig',
+    name: 'Venteårsak: Søkt for tidlig (innenfor frist)',
     args: {
         frist: dayjs().toDate(),
+        venteårsak: Venteårsak.FOR_TIDLIG_SOKNAD,
+    },
+};
+export const VenteårsakForTidligSøknadFristPassert: Story = {
+    name: 'Venteårsak: Søkt for tidlig (etter frist)',
+    args: {
+        frist: dayjs().subtract(3, 'months').toDate(),
         venteårsak: Venteårsak.FOR_TIDLIG_SOKNAD,
     },
 };

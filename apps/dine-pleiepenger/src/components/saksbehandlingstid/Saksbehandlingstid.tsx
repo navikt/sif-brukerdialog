@@ -13,7 +13,36 @@ interface Props {
     venteårsak?: Venteårsak;
 }
 
-const getFristTekst = (frist: Date, venteårsak?: Venteårsak): React.ReactNode => {
+const SaksbehandlingstidMelding = ({ frist, venteårsak, saksbehandlingstidUker }: Props) => {
+    if (!frist) {
+        return <AppText id="svarfrist.forventetBehandlingstid" values={{ saksbehandlingstidUker }} />;
+    }
+
+    if (erSaksbehandlingsfristPassert(frist)) {
+        if (venteårsak === Venteårsak.FOR_TIDLIG_SOKNAD) {
+            return (
+                <AppText
+                    id="svarfrist.forTidligSoknad.fristPassert"
+                    values={{
+                        frist: dateFormatter.full(frist),
+                        dato: (chunk) => <strong>{chunk}</strong>,
+                        saksbehandlingstidUker,
+                    }}
+                />
+            );
+        }
+        return (
+            <div>
+                <BodyShort spacing={true}>
+                    <AppText id="svarfrist.fristPassert.1" />
+                </BodyShort>
+                <BodyShort spacing={true}>
+                    <AppText id="svarfrist.fristPassert.2" />
+                </BodyShort>
+            </div>
+        );
+    }
+
     switch (venteårsak) {
         case Venteårsak.INNTEKTSMELDING:
         case Venteårsak.MEDISINSK_DOKUMENTASJON:
@@ -44,25 +73,6 @@ const getFristTekst = (frist: Date, venteårsak?: Venteårsak): React.ReactNode 
     }
 };
 
-const SaksbehandlingstidMelding = ({ frist, venteårsak, saksbehandlingstidUker }: Props) => {
-    const fristErPassert = frist ? erSaksbehandlingsfristPassert(frist) : false;
-    if (frist) {
-        return fristErPassert ? (
-            <>
-                <BodyShort spacing={true}>
-                    <AppText id="svarfrist.fristPassert.1" />
-                </BodyShort>
-                <BodyShort spacing={true}>
-                    <AppText id="svarfrist.fristPassert.2" />
-                </BodyShort>
-            </>
-        ) : (
-            getFristTekst(frist, venteårsak)
-        );
-    }
-    return <AppText id="svarfrist.forventetBehandlingstid" values={{ saksbehandlingstidUker }} />;
-};
-
 const Saksbehandlingstid: React.FunctionComponent<Props> = ({ frist, venteårsak, saksbehandlingstidUker = 7 }) => {
     return (
         <Box>
@@ -70,7 +80,7 @@ const Saksbehandlingstid: React.FunctionComponent<Props> = ({ frist, venteårsak
                 <AppText id="svarfrist.tittel" />
             </Heading>
             <BodyShort as="div" className="bg-deepblue-100 pt-4 pl-6 pr-6 pb-6 rounded">
-                <Box className="mb-2">
+                <Box className="mb-4">
                     <SaksbehandlingstidMelding
                         frist={frist}
                         venteårsak={venteårsak}
