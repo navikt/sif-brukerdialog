@@ -1,5 +1,4 @@
 import { Box, Heading } from '@navikt/ds-react';
-import React from 'react';
 import { Msg } from '../../../i18n';
 import { Dokument } from '../../../server/api-models/DokumenetSchema';
 import { Innsendelse } from '../../../server/api-models/InnsendelseSchema';
@@ -22,7 +21,7 @@ const mapDokumenter = (dokument: Dokument) => {
     );
 };
 
-const DokumenterISøknad: React.FunctionComponent<Props> = ({ innsendelse, tittel }) => {
+const DokumenterISøknad = ({ innsendelse, tittel }: Props) => {
     if (innsendelse.dokumenter.length === 0) {
         return (
             <p>
