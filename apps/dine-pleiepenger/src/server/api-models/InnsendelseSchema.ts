@@ -5,24 +5,30 @@ import { Innsendelsestype } from './Innsendelsestype';
 import { OrganisasjonSchema } from './OrganisasjonSchema';
 import { K9FormatEttersendelseSchema } from './K9FormatEttersendelseSchema';
 
-const InnsendelseBaseSchema = z.object({
-    søknadId: z.string(),
-    innsendelsestype: z.nativeEnum(Innsendelsestype),
-    dokumenter: z.array(DokumentSchema),
-});
+// const InnsendelseBaseSchema = z.object({
+//     søknadId: z.string(),
+//     innsendelsestype: z.nativeEnum(Innsendelsestype),
+//     dokumenter: z.array(DokumentSchema),
+// });
 
-const PleiepengerSøknadSchema = InnsendelseBaseSchema.extend({
+const PleiepengerSøknadSchema = z.object({
+    søknadId: z.string(),
+    dokumenter: z.array(DokumentSchema),
     innsendelsestype: z.literal(Innsendelsestype.SØKNAD),
     k9FormatInnsendelse: k9FormatSøknadSchema,
     arbeidsgivere: z.array(OrganisasjonSchema).optional(),
 });
 
-const EndringsmeldingSchema = InnsendelseBaseSchema.extend({
+const EndringsmeldingSchema = z.object({
+    søknadId: z.string(),
+    dokumenter: z.array(DokumentSchema),
     innsendelsestype: z.literal(Innsendelsestype.ENDRINGSMELDING),
     k9FormatInnsendelse: k9FormatSøknadSchema,
 });
 
-const EttersendelseSchema = InnsendelseBaseSchema.extend({
+const EttersendelseSchema = z.object({
+    søknadId: z.string(),
+    dokumenter: z.array(DokumentSchema),
     innsendelsestype: z.literal(Innsendelsestype.ETTERSENDELSE),
     k9FormatInnsendelse: K9FormatEttersendelseSchema,
 });

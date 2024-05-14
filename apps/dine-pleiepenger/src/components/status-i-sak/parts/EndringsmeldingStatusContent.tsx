@@ -1,16 +1,15 @@
-import React from 'react';
 import { PleiepengerEndringsmelding } from '../../../server/api-models/InnsendelseSchema';
 import { VStack } from '@navikt/ds-react';
-import DokumenterISøknad from './DokumenterISøknad';
+import Dokumenter from './Dokumenter';
 
 interface Props {
     søknad: PleiepengerEndringsmelding;
 }
 
-const EndringsmeldingStatusContent: React.FunctionComponent<Props> = ({ søknad }) => {
+const EndringsmeldingStatusContent = ({ søknad }: Props) => {
     return (
         <VStack gap="2">
-            <DokumenterISøknad innsendelse={søknad} />
+            <Dokumenter dokumenter={søknad.dokumenter} />
         </VStack>
     );
 };

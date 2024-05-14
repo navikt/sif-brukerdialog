@@ -1,13 +1,12 @@
 import { Box, Heading } from '@navikt/ds-react';
 import { Msg } from '../../../i18n';
 import { Dokument } from '../../../server/api-models/DokumenetSchema';
-import { Innsendelse } from '../../../server/api-models/InnsendelseSchema';
 import { getDokumentFrontendUrl, getSøknadDokumentFilnavn } from '../../../utils/dokumentUtils';
 import PdfLenke from '../../pdf-lenke/PdfLenke';
 
 interface Props {
     tittel?: string;
-    innsendelse: Innsendelse;
+    dokumenter: Dokument[];
 }
 
 const mapDokumenter = (dokument: Dokument) => {
@@ -21,8 +20,8 @@ const mapDokumenter = (dokument: Dokument) => {
     );
 };
 
-const DokumenterISøknad = ({ innsendelse, tittel }: Props) => {
-    if (innsendelse.dokumenter.length === 0) {
+const Dokumenter = ({ dokumenter, tittel }: Props) => {
+    if (dokumenter.length === 0) {
         return (
             <p>
                 <Msg id="dokumenter.ingenDokumenter" />
@@ -36,10 +35,8 @@ const DokumenterISøknad = ({ innsendelse, tittel }: Props) => {
                     {tittel}
                 </Heading>
             ) : null}
-            {innsendelse.dokumenter && innsendelse.dokumenter.length > 0 && (
-                <ul>{innsendelse.dokumenter.map((dokument) => mapDokumenter(dokument))}</ul>
-            )}
-            {(innsendelse.dokumenter === undefined || innsendelse.dokumenter.length === 0) && (
+            {dokumenter && dokumenter.length > 0 && <ul>{dokumenter.map((dokument) => mapDokumenter(dokument))}</ul>}
+            {(dokumenter === undefined || dokumenter.length === 0) && (
                 <p>
                     <Msg id="dokumenter.ingenDokumenter" />
                 </p>
@@ -48,4 +45,4 @@ const DokumenterISøknad = ({ innsendelse, tittel }: Props) => {
     );
 };
 
-export default DokumenterISøknad;
+export default Dokumenter;
