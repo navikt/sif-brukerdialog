@@ -1,6 +1,6 @@
 import { Alert, BodyShort } from '@navikt/ds-react';
-import { FormattedMessage } from 'react-intl';
 import prettyBytes from 'pretty-bytes';
+import { CoreText } from '../../i18n/common.messages';
 import { fileSizeIsValid } from '../../utils/attachmentUtils';
 
 interface Props {
@@ -14,7 +14,7 @@ const FileUploadErrors = ({ filesThatDidntGetUploaded }: Props) => {
 
     return (
         <Alert variant="warning">
-            <FormattedMessage id="common.fileUploadError" />
+            <CoreText id="common.fileUploadError" />
             <ul>
                 {filesThatDidntGetUploaded.map(({ name, size }) => {
                     return (

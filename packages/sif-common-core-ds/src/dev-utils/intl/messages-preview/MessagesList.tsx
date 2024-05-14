@@ -1,9 +1,9 @@
 import { Alert, Button, Tabs } from '@navikt/ds-react';
+import { useState } from 'react';
+import Block from '../../../atoms/block/Block';
 import { createMultiLocaleObject, MessageFileFormat } from '../devIntlUtils';
 import { useTranslation } from './useTranslation';
 import './messagesList.scss';
-import Block from '../../../atoms/block/Block';
-import { useState } from 'react';
 
 interface Props {
     messages: MessageFileFormat;
