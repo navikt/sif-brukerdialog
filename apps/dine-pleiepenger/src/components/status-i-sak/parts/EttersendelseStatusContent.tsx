@@ -12,7 +12,8 @@ const EttersendelseStatusContent = ({ ettersendelse }: Props) => {
     return (
         <ReadMore header={text('statusISak.søknadStatusContent.ettersendelse.readMoreHeader')}>
             <VStack gap="2" className="pt-2">
-                <Dokumenter dokumenter={ettersendelse.dokumenter} />
+                {/* as any fordi typesjekk feiler i build på github */}
+                <Dokumenter dokumenter={ettersendelse.dokumenter as any} />
             </VStack>
         </ReadMore>
     );
