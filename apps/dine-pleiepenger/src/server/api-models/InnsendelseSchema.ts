@@ -5,12 +5,6 @@ import { Innsendelsestype } from './Innsendelsestype';
 import { OrganisasjonSchema } from './OrganisasjonSchema';
 import { K9FormatEttersendelseSchema } from './K9FormatEttersendelseSchema';
 
-// const InnsendelseBaseSchema = z.object({
-//     søknadId: z.string(),
-//     innsendelsestype: z.nativeEnum(Innsendelsestype),
-//     dokumenter: z.array(DokumentSchema),
-// });
-
 const PleiepengerSøknadSchema = z.object({
     søknadId: z.string(),
     dokumenter: z.array(DokumentSchema),

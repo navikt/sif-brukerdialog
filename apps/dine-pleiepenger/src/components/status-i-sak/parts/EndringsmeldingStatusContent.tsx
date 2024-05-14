@@ -3,13 +3,13 @@ import { VStack } from '@navikt/ds-react';
 import Dokumenter from './Dokumenter';
 
 interface Props {
-    søknad: PleiepengerEndringsmelding;
+    endringsmelding: PleiepengerEndringsmelding;
 }
 
-const EndringsmeldingStatusContent = ({ søknad }: Props) => {
+const EndringsmeldingStatusContent = ({ endringsmelding }: Props) => {
     return (
         <VStack gap="2">
-            <Dokumenter dokumenter={søknad.dokumenter} />
+            <Dokumenter dokumenter={endringsmelding.dokumenter as any} />
         </VStack>
     );
 };

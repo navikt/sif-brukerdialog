@@ -29,7 +29,7 @@ export const getProcessStepFromInnsendelse = (
             return {
                 title: text('statusISak.mottattEndringsmelding.tittel'),
                 timestamp: innsendelse.k9FormatInnsendelse.mottattDato,
-                content: <EndringsmeldingStatusContent søknad={innsendelse} />,
+                content: <EndringsmeldingStatusContent endringsmelding={innsendelse} />,
                 completed: true,
                 current,
                 isLastStep: false,
