@@ -1,9 +1,9 @@
 import { z } from 'zod';
-import { k9FormatSøknadSchema } from './k9FormatSøknadSchema';
+import { k9FormatSøknadSchema } from './k9-søknad';
 import { DokumentSchema } from './DokumenetSchema';
 import { Innsendelsestype } from './Innsendelsestype';
 import { OrganisasjonSchema } from './OrganisasjonSchema';
-import { K9FormatEttersendelseSchema } from './K9FormatEttersendelseSchema';
+import { K9FormatEttersendelseSchema } from './k9-ettersendelse';
 
 const PleiepengerSøknadSchema = z.object({
     søknadId: z.string(),

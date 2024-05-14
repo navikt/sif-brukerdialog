@@ -29,9 +29,6 @@ const nextConfig = {
     experimental: {
         optimizePackageImports: ['@navikt/aksel-icons', '@navikt/ds-react'],
     },
-    typescript: {
-        ignoreBuildErrors: true,
-    },
     eslint: {
         dirs: ['src'],
     },

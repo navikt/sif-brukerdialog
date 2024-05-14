@@ -21,9 +21,8 @@ const SøknadStatusContent = ({ søknad }: Props) => {
                     : 'statusISak.søknadStatusContent.readMoreHeader.ingenArbeidsgiver',
             )}>
             <VStack gap="2" className="pt-2">
-                {/* as any fordi typesjekk feiler i build på github */}
                 <Dokumenter
-                    dokumenter={søknad.dokumenter as any}
+                    dokumenter={søknad.dokumenter}
                     tittel={text('statusISak.søknadStatusContent.dokumenterISøknad')}
                 />
                 {harArbeidsgivere ? (
