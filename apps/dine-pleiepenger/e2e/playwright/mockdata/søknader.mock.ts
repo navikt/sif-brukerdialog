@@ -3,7 +3,7 @@ export const søknaderMockData = [
         søknadId: '9054ab9e-2b82-4998-9f10-9a82827f06e9',
         søknadstype: 'PP_SYKT_BARN_ENDRINGSMELDING',
         status: 'MOTTATT',
-        søknad: {
+        innsendelse: {
             søker: {
                 fornavn: 'KRIMINELL',
                 aktørId: '2391969373424',
@@ -16,7 +16,7 @@ export const søknaderMockData = [
                     'eyJraWQiOiIxIiwidHlwIjoiSldUIiwiYWxnIjoibm9uZSJ9.eyJqdGkiOiJmZjMwZGRhZi1lN2M3LTRlY2UtOWZhNC03ODZmZGVhZDg2MDEifQ',
                 ],
             ],
-            k9FormatSøknad: {
+            k9FormatInnsendelse: {
                 språk: 'nb',
                 søker: { norskIdentitetsnummer: '17097721564' },
                 ytelse: {
@@ -84,7 +84,7 @@ export const søknaderMockData = [
         søknadId: '9a562927-bd1c-4b4f-b901-07180ff67b66',
         søknadstype: 'PP_SYKT_BARN',
         status: 'MOTTATT',
-        søknad: {
+        innsendelse: {
             barn: {
                 navn: 'ALFABETISK FAGOTT',
                 aktørId: '2811762539343',
@@ -146,7 +146,7 @@ export const søknaderMockData = [
                 ],
             },
 
-            k9FormatSøknad: {
+            k9FormatInnsendelse: {
                 språk: 'nb',
                 søker: { norskIdentitetsnummer: '02869599258' },
                 ytelse: {
@@ -240,7 +240,7 @@ export const søknaderMockData = [
         søknadId: '64f75397-b4f7-419a-9147-0cd803446f4b',
         søknadstype: 'PP_SYKT_BARN',
         status: 'MOTTATT',
-        søknad: {
+        innsendelse: {
             barn: {
                 navn: 'ALFABETISK FAGOTT',
                 aktørId: '2811762539343',
@@ -296,7 +296,7 @@ export const søknaderMockData = [
                     sluttetFørSøknadsperiode: false,
                 },
             ],
-            k9FormatSøknad: {
+            k9FormatInnsendelse: {
                 språk: 'nb',
                 søker: { norskIdentitetsnummer: '02869599258' },
                 ytelse: {
@@ -386,7 +386,7 @@ export const søknaderMockData = [
         søknadId: '14a13a07-8634-4c8e-88c9-49e25823260a',
         søknadstype: 'PP_SYKT_BARN',
         status: 'MOTTATT',
-        søknad: {
+        innsendelse: {
             barn: { navn: 'SKRIVEFØR FRENDE', fødselsdato: '2020-04-20', fødselsnummer: '20842099774' },
             språk: 'nb',
             søker: {
@@ -489,7 +489,7 @@ export const søknaderMockData = [
                     sluttetFørSøknadsperiode: false,
                 },
             ],
-            k9FormatSøknad: {
+            k9FormatInnsendelse: {
                 språk: 'nb',
                 søker: { norskIdentitetsnummer: '02869599258' },
                 ytelse: {
@@ -631,7 +631,7 @@ export const søknaderMockData = [
         søknadId: '6de9b420-c11a-4722-b7a1-63e63c73f329',
         søknadstype: 'PP_ETTERSENDELSE',
         status: 'MOTTATT',
-        søknad: {
+        innsendelse: {
             sprak: 'nb',
             søker: {
                 fornavn: 'PRESENTABEL',
@@ -704,7 +704,7 @@ export const søknaderMockData = [
         søknadId: '8f968f00-6ecc-4e78-a5ab-11ff175db3bb',
         søknadstype: 'PP_SYKT_BARN',
         status: 'MOTTATT',
-        søknad: {
+        innsendelse: {
             barn: {
                 navn: 'ALFABETISK FAGOTT',
                 aktørId: '2811762539343',
@@ -775,7 +775,7 @@ export const søknaderMockData = [
                     sluttetFørSøknadsperiode: false,
                 },
             ],
-            k9FormatSøknad: {
+            k9FormatInnsendelse: {
                 språk: 'nb',
                 søker: { norskIdentitetsnummer: '02869599258' },
                 ytelse: {
@@ -875,7 +875,7 @@ export const søknaderMockData = [
         søknadId: '863d6bd3-b939-47aa-9653-cbfc7cc11367',
         søknadstype: 'PP_SYKT_BARN',
         status: 'MOTTATT',
-        søknad: {
+        innsendelse: {
             barn: {
                 navn: 'ALFABETISK FAGOTT',
                 aktørId: '2811762539343',
@@ -976,7 +976,7 @@ export const søknaderMockData = [
                 erLiktHverUke: true,
             },
             samtidigHjemme: true,
-            k9FormatSøknad: {
+            k9FormatInnsendelse: {
                 språk: 'nb',
                 søker: { norskIdentitetsnummer: '02869599258' },
                 ytelse: {
@@ -1417,7 +1417,7 @@ export const søknaderMockData = [
         søknadId: '7202fa92-721f-4049-96c8-e44feed96586',
         søknadstype: 'PP_SYKT_BARN',
         status: 'MOTTATT',
-        søknad: {
+        innsendelse: {
             barn: {
                 navn: 'ALFABETISK FAGOTT',
                 aktørId: '2811762539343',
@@ -1535,7 +1535,7 @@ export const søknaderMockData = [
                     sluttetFørSøknadsperiode: false,
                 },
             ],
-            k9FormatSøknad: {
+            k9FormatInnsendelse: {
                 språk: 'nb',
                 søker: { norskIdentitetsnummer: '02869599258' },
                 ytelse: {
@@ -1669,7 +1669,7 @@ export const søknaderMockData = [
         søknadId: '68e5ae8d-d003-40ee-ae86-767f76b2c7bb',
         søknadstype: 'PP_SYKT_BARN',
         status: 'MOTTATT',
-        søknad: {
+        innsendelse: {
             barn: {
                 navn: 'ALFABETISK FAGOTT',
                 aktørId: '2811762539343',
@@ -1725,7 +1725,7 @@ export const søknaderMockData = [
                     sluttetFørSøknadsperiode: false,
                 },
             ],
-            k9FormatSøknad: {
+            k9FormatInnsendelse: {
                 språk: 'nb',
                 søker: { norskIdentitetsnummer: '02869599258' },
                 ytelse: {
@@ -1815,7 +1815,7 @@ export const søknaderMockData = [
         søknadId: '3ff3f365-7e7e-4b1f-838f-448684959f9e',
         søknadstype: 'PP_SYKT_BARN',
         status: 'MOTTATT',
-        søknad: {
+        innsendelse: {
             barn: {
                 navn: 'ALFABETISK FAGOTT',
                 aktørId: '2811762539343',
@@ -1856,7 +1856,7 @@ export const søknaderMockData = [
             },
             harMedsøker: false,
             arbeidsgivere: [{ navn: 'SJOKKERENDE ELEKTRIKER', erAnsatt: false, organisasjonsnummer: '947064649' }],
-            k9FormatSøknad: {
+            k9FormatInnsendelse: {
                 språk: 'nb',
                 søker: { norskIdentitetsnummer: '02869599258' },
                 ytelse: {
@@ -1946,7 +1946,7 @@ export const søknaderMockData = [
         søknadId: 'eced6d00-7c81-4828-a2e9-79c04f8e4bcf',
         søknadstype: 'PP_SYKT_BARN',
         status: 'MOTTATT',
-        søknad: {
+        innsendelse: {
             barn: {
                 navn: 'ALFABETISK FAGOTT',
                 aktørId: '2811762539343',
@@ -1987,7 +1987,7 @@ export const søknaderMockData = [
             },
             harMedsøker: false,
             arbeidsgivere: [{ navn: 'SJOKKERENDE ELEKTRIKER', erAnsatt: false, organisasjonsnummer: '947064649' }],
-            k9FormatSøknad: {
+            k9FormatInnsendelse: {
                 språk: 'nb',
                 søker: { norskIdentitetsnummer: '02869599258' },
                 ytelse: {
@@ -2077,7 +2077,7 @@ export const søknaderMockData = [
         søknadId: '509a21da-3c26-4899-b9d3-c494cfb9309a',
         søknadstype: 'PP_SYKT_BARN',
         status: 'MOTTATT',
-        søknad: {
+        innsendelse: {
             barn: {
                 navn: 'ALFABETISK FAGOTT',
                 aktørId: '2811762539343',
@@ -2118,7 +2118,7 @@ export const søknaderMockData = [
             },
             harMedsøker: false,
             arbeidsgivere: [{ navn: 'SJOKKERENDE ELEKTRIKER', erAnsatt: false, organisasjonsnummer: '947064649' }],
-            k9FormatSøknad: {
+            k9FormatInnsendelse: {
                 språk: 'nb',
                 søker: { norskIdentitetsnummer: '02869599258' },
                 ytelse: {

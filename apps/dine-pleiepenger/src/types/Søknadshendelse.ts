@@ -1,5 +1,5 @@
-import { Søknad } from '../server/api-models/SøknadSchema';
-import { Søknadstype } from '../server/api-models/Søknadstype';
+import { Innsendelse } from '../server/api-models/InnsendelseSchema';
+import { Innsendelsestype } from '../server/api-models/Innsendelsestype';
 import { Venteårsak } from './Venteårsak';
 
 export enum SøknadshendelseType {
@@ -17,14 +17,14 @@ interface SøknadshendelseBase {
 
 interface SøknadshendelseMottattSøknad extends SøknadshendelseBase {
     type: SøknadshendelseType.MOTTATT_SØKNAD;
-    søknad: Søknad;
+    innsendelse: Innsendelse;
     /** Mottatt dato */
     dato: Date;
 }
 
 interface SøknadshendelseMottattEttersendelse extends SøknadshendelseBase {
     type: SøknadshendelseType.ETTERSENDELSE;
-    søknad: Pick<Søknad, 'dokumenter'>;
+    innsendelse: Pick<Innsendelse, 'dokumenter'>;
     /** Mottatt dato */
     dato: Date;
 }
@@ -40,7 +40,7 @@ export interface SøknadshendelseForventetSvar extends SøknadshendelseBase {
     /** saksbehandlingFrist */
     dato?: Date;
     /** Søknad eller endringsmelding */
-    søknadstyperIBehandling: Array<Søknadstype>;
+    søknadstyperIBehandling: Array<Innsendelsestype>;
 }
 interface SøknadshendelseFerdigBehandlet extends SøknadshendelseBase {
     type: SøknadshendelseType.FERDIG_BEHANDLET;
@@ -48,15 +48,10 @@ interface SøknadshendelseFerdigBehandlet extends SøknadshendelseBase {
     dato: Date;
 }
 
-interface SøknadshendelseUkjent extends SøknadshendelseBase {
-    type: SøknadshendelseType.UKJENT;
-    dato: undefined;
-}
-
 export type Søknadshendelse =
-    | SøknadshendelseUkjent
     | SøknadshendelseMottattSøknad
     | SøknadshendelseAksjonspunkt
     | SøknadshendelseAksjonspunkt
     | SøknadshendelseForventetSvar
+    | SøknadshendelseMottattEttersendelse
     | SøknadshendelseFerdigBehandlet;

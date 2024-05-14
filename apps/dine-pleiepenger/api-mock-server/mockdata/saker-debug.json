@@ -18,11 +18,11 @@
                     "status": "UNDER_BEHANDLING",
                     "opprettetTidspunkt": "2024-02-14T11:30:09.000Z",
                     "avsluttetTidspunkt": null,
-                    "søknader": [
+                    "innsendelser": [
                         {
                             "søknadId": "67bc44cb-bd73-4ba7-91b2-c069cf5abe8d",
                             "søknadstype": "ENDRINGSMELDING",
-                            "k9FormatSøknad": {
+                            "k9FormatInnsendelse": {
                                 "søknadId": "67bc44cb-bd73-4ba7-91b2-c069cf5abe8d",
                                 "versjon": "1.0.0",
                                 "mottattDato": "2024-04-22T14:08:12.567Z",
@@ -106,7 +106,7 @@
                         {
                             "søknadId": "c82e2cfa-e928-49c3-bd6b-cb88f36ce63b",
                             "søknadstype": "SØKNAD",
-                            "k9FormatSøknad": {
+                            "k9FormatInnsendelse": {
                                 "søknadId": "c82e2cfa-e928-49c3-bd6b-cb88f36ce63b",
                                 "versjon": "1.0.0",
                                 "mottattDato": "2024-02-14T11:17:39.392Z",

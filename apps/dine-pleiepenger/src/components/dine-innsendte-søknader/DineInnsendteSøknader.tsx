@@ -1,6 +1,6 @@
 import { Box, Heading } from '@navikt/ds-react';
 import { Msg } from '../../i18n';
-import { InnsendtSøknad } from '../../types/Søknad';
+import { InnsendtSøknad } from '../../types/InnsendtSøknad';
 import InnsendtSøknadListe from '../innsendt-søknad-liste/InnsendtSøknadListe';
 
 interface Props {

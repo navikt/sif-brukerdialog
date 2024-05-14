@@ -2,13 +2,13 @@ import { Box, Heading } from '@navikt/ds-react';
 import React from 'react';
 import { Msg } from '../../../i18n';
 import { Dokument } from '../../../server/api-models/DokumenetSchema';
-import { Søknad } from '../../../server/api-models/SøknadSchema';
+import { Innsendelse } from '../../../server/api-models/InnsendelseSchema';
 import { getDokumentFrontendUrl, getSøknadDokumentFilnavn } from '../../../utils/dokumentUtils';
 import PdfLenke from '../../pdf-lenke/PdfLenke';
 
 interface Props {
     tittel?: string;
-    søknad: Søknad;
+    innsendelse: Innsendelse;
 }
 
 const mapDokumenter = (dokument: Dokument) => {
@@ -22,8 +22,8 @@ const mapDokumenter = (dokument: Dokument) => {
     );
 };
 
-const DokumenterISøknad: React.FunctionComponent<Props> = ({ søknad, tittel }) => {
-    if (søknad.dokumenter.length === 0) {
+const DokumenterISøknad: React.FunctionComponent<Props> = ({ innsendelse, tittel }) => {
+    if (innsendelse.dokumenter.length === 0) {
         return (
             <p>
                 <Msg id="dokumenter.ingenDokumenter" />
@@ -37,10 +37,10 @@ const DokumenterISøknad: React.FunctionComponent<Props> = ({ søknad, tittel })
                     {tittel}
                 </Heading>
             ) : null}
-            {søknad.dokumenter && søknad.dokumenter.length > 0 && (
-                <ul>{søknad.dokumenter.map((dokument) => mapDokumenter(dokument))}</ul>
+            {innsendelse.dokumenter && innsendelse.dokumenter.length > 0 && (
+                <ul>{innsendelse.dokumenter.map((dokument) => mapDokumenter(dokument))}</ul>
             )}
-            {(søknad.dokumenter === undefined || søknad.dokumenter.length === 0) && (
+            {(innsendelse.dokumenter === undefined || innsendelse.dokumenter.length === 0) && (
                 <p>
                     <Msg id="dokumenter.ingenDokumenter" />
                 </p>

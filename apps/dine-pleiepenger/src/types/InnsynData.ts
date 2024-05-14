@@ -3,7 +3,7 @@ import { PleietrengendeMedSak } from '../server/api-models/PleietrengendeMedSakS
 import { Søker } from '../server/api-models/SøkerSchema';
 import { Brukerprofil } from './Brukerprofil';
 import { Mellomlagringer } from './Mellomlagring';
-import { InnsendtSøknad } from './Søknad';
+import { InnsendtSøknad } from './InnsendtSøknad';
 
 export interface Innsynsdata {
     søker: Søker;

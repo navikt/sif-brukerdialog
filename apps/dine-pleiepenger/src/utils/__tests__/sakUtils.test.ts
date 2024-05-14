@@ -4,25 +4,25 @@ import { Behandlingsstatus } from '../../server/api-models/Behandlingsstatus';
 import { getSisteBehandlingISak, sortBehandlingerNyesteFørst, sortSøknadshendelse } from '../sakUtils';
 import { Sak } from '../../server/api-models/SakSchema';
 import { Søknadshendelse, SøknadshendelseType } from '../../types/Søknadshendelse';
-import { Søknadstype } from '../../server/api-models/Søknadstype';
+import { Innsendelsestype } from '../../server/api-models/Innsendelsestype';
 
 const behandling1: Behandling = {
     status: Behandlingsstatus.UNDER_BEHANDLING,
-    søknader: [] as any,
+    innsendelser: [] as any,
     opprettetTidspunkt: ISODateToDate('2020-01-01'),
     aksjonspunkter: [],
     avsluttetTidspunkt: null,
 };
 const behandling2: Behandling = {
     status: Behandlingsstatus.UNDER_BEHANDLING,
-    søknader: [] as any,
+    innsendelser: [] as any,
     opprettetTidspunkt: ISODateToDate('2020-01-03'),
     aksjonspunkter: [],
     avsluttetTidspunkt: null,
 };
 const behandling3: Behandling = {
     status: Behandlingsstatus.UNDER_BEHANDLING,
-    søknader: [] as any,
+    innsendelser: [] as any,
     opprettetTidspunkt: ISODateToDate('2020-01-02'),
     aksjonspunkter: [],
     avsluttetTidspunkt: null,
@@ -55,7 +55,7 @@ describe('sakUtils', () => {
         const hendelse2: Søknadshendelse = {
             dato: ISODateToDate('2020-01-03'),
             type: SøknadshendelseType.MOTTATT_SØKNAD,
-            søknad: {} as any,
+            innsendelse: {} as any,
         };
         const hendelse3: Søknadshendelse = {
             dato: ISODateToDate('2020-01-03'),
@@ -65,7 +65,7 @@ describe('sakUtils', () => {
         const hendelseForventetSvar: Søknadshendelse = {
             dato: ISODateToDate('2020-01-02'),
             type: SøknadshendelseType.FORVENTET_SVAR,
-            søknadstyperIBehandling: [Søknadstype.SØKNAD],
+            søknadstyperIBehandling: [Innsendelsestype.SØKNAD],
         };
 
         it('sorterer riktig på hendelser som ikke er FORVENTET_SVAR', () => {

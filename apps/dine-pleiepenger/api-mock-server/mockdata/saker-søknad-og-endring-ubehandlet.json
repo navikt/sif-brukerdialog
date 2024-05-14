@@ -21,7 +21,7 @@
                         {
                             "søknadId": "cc232c17-d8ed-4cbf-b95c-06a3681ff20d",
                             "søknadstype": "SØKNAD",
-                            "k9FormatSøknad": {
+                            "k9FormatInnsendelse": {
                                 "søknadId": "cc232c17-d8ed-4cbf-b95c-06a3681ff20d",
                                 "versjon": "1.0.0",
                                 "mottattDato": "2024-03-08T15:43:57.268Z",
@@ -181,7 +181,7 @@
                         {
                             "søknadId": "2e3234e0-01e2-46ca-a073-e70eae9a836c",
                             "søknadstype": "ENDRINGSMELDING",
-                            "k9FormatSøknad": {
+                            "k9FormatInnsendelse": {
                                 "søknadId": "2e3234e0-01e2-46ca-a073-e70eae9a836c",
                                 "versjon": "1.0.0",
                                 "mottattDato": "2024-03-08T15:58:09.828Z",

@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import mockSøknader from '../../../api-mock-server/mockdata/soknader.json';
 import { withEmptyPage } from '../../storybook/hooks/withEmptyPage';
 import { withIntl } from '../../storybook/hooks/withIntl';
-import { InnsendtSøknad } from '../../types/Søknad';
+import { InnsendtSøknad } from '../../types/InnsendtSøknad';
 import DineInnsendteSøknader from './DineInnsendteSøknader';
 
 const meta: Meta<typeof DineInnsendteSøknader> = {
