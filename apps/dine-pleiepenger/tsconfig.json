@@ -7,19 +7,19 @@
         "typeRoots": ["../../node_modules/@types", "./node_modules/@types"],
         "plugins": [
             {
-                "name": "next",
-            },
+                "name": "next"
+            }
         ],
         "paths": {
-            "@/*": ["./src/*"],
+            "@/*": ["./src/*"]
         },
         "allowJs": true,
         "strict": false,
         "incremental": true,
         "isolatedModules": true,
         "resolveJsonModule": true,
-        "jsx": "preserve",
+        "jsx": "preserve"
     },
     "exclude": ["node_modules", "pages/build", "**.js", "dist"],
-    "include": ["src/**/*", "public", "e2e/**/*"],
+    "include": ["src/**/*", "public", "e2e/**/*"]
 }

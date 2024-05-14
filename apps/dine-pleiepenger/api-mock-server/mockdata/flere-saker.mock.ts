@@ -1,7 +1,7 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { PleietrengendeMedSak } from '../../../src/server/api-models/PleietrengendeMedSakSchema';
-import { Behandlingsstatus } from '../../../src/server/api-models/Behandlingsstatus';
-import { Innsendelsestype } from '../../../src/server/api-models/Innsendelsestype';
+import { PleietrengendeMedSak } from '../../src/server/api-models/PleietrengendeMedSakSchema';
+import { Behandlingsstatus } from '../../src/server/api-models/Behandlingsstatus';
+import { Innsendelsestype } from '../../src/server/api-models/Innsendelsestype';
 
 export const flereSakerMock: PleietrengendeMedSak[] = [
     {

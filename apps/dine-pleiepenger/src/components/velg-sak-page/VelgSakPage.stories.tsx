@@ -1,4 +1,4 @@
-import { flereSakerMock } from '../../../e2e/playwright/mockdata/flere-saker.mock';
+import { flereSakerMock } from '../../../api-mock-server/mockdata/flere-saker.mock';
 import { withEmptyPage } from '../../storybook/hooks/withEmptyPage';
 import { withIntl } from '../../storybook/hooks/withIntl';
 import VelgSakPage from './VelgSakPage';
