@@ -1,4 +1,4 @@
 export enum Ettersendelsestype {
-    legeerklæring = 'legeerklæring',
-    annet = 'annet',
+    legeerklæring = 'LEGEERKLÆRING',
+    annet = 'ANNET',
 }

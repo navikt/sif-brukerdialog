@@ -20,6 +20,34 @@
                     "innsendelser": [
                         {
                             "søknadId": "84cfcf3e-069a-4d4a-9292-61a179eb2427",
+                            "innsendelsestype": "ETTERSENDELSE",
+                            "k9FormatInnsendelse": {
+                                "søknadId": "84cfcf3e-069a-4d4a-9292-61a179eb2427",
+                                "versjon": "0.0.1",
+                                "mottattDato": "2024-03-19T14:50:24.318Z",
+                                "type": "LEGEERKLÆRING"
+                            },
+                            "dokumenter": [
+                                {
+                                    "journalpostId": "637581829",
+                                    "dokumentInfoId": "667124163",
+                                    "saksnummer": "1DQAQRW",
+                                    "tittel": "Søknad om pleiepenger for sykt barn",
+                                    "dokumentType": "PLEIEPENGER_SYKT_BARN_SOKNAD",
+                                    "filtype": "PDF",
+                                    "harTilgang": true,
+                                    "url": "http://sif-innsyn-api/dokument/637581829/667124163/ARKIV",
+                                    "relevanteDatoer": [
+                                        { "dato": "2024-02-15T08:45:41", "datotype": "DATO_OPPRETTET" },
+                                        { "dato": "2024-02-15T08:45:41", "datotype": "DATO_DOKUMENT" },
+                                        { "dato": "2024-02-15T08:45:48", "datotype": "DATO_JOURNALFOERT" },
+                                        { "dato": "2024-02-15T08:45:36", "datotype": "DATO_REGISTRERT" }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "søknadId": "84cfcf3e-069a-4d4a-9292-61a179eb2427",
                             "innsendelsestype": "SØKNAD",
                             "k9FormatInnsendelse": {
                                 "søknadId": "84cfcf3e-069a-4d4a-9292-61a179eb2427",

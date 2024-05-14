@@ -11,7 +11,7 @@ import { Pleiepengesøknad, Innsendelse } from '../server/api-models/Innsendelse
 import { Innsendelsestype } from '../server/api-models/Innsendelsestype';
 import { BehandlingsstatusISak } from '../types/BehandlingsstatusISak';
 import { Organisasjon } from '../types/Organisasjon';
-import { Søknadshendelse, SøknadshendelseType } from '../types/Søknadshendelse';
+import { Sakshendelse, Sakshendelser } from '../types/Sakshendelse';
 import { Venteårsak } from '../types/Venteårsak';
 
 dayjs.extend(utc);
@@ -44,10 +44,10 @@ export const sortInnsendelser = (innsendelser: Innsendelse[]): Innsendelse[] => 
     ).reverse();
 };
 
-export const sortSøknadshendelse = (h1: Søknadshendelse, h2: Søknadshendelse): number => {
-    if (h1.type === SøknadshendelseType.FORVENTET_SVAR) {
+export const sortSakshendelse = (h1: Sakshendelse, h2: Sakshendelse): number => {
+    if (h1.type === Sakshendelser.FORVENTET_SVAR) {
         return 1;
-    } else if (h2.type === SøknadshendelseType.FORVENTET_SVAR) {
+    } else if (h2.type === Sakshendelser.FORVENTET_SVAR) {
         return -1;
     }
     return (h1.dato?.getTime() || 0) > (h2.dato?.getTime() || 0) ? 1 : -1;
@@ -63,11 +63,11 @@ export const getBehandlingsstatusISak = (sak: Sak): BehandlingsstatusISak | unde
         : undefined;
 };
 
-const mapSøknadTilSøknadshendelse = (innsendelse: Innsendelse): Søknadshendelse => {
+const mapInnsendelseTilSakshendelse = (innsendelse: Innsendelse): Sakshendelse => {
     switch (innsendelse.innsendelsestype) {
         case Innsendelsestype.ETTERSENDELSE:
             return {
-                type: SøknadshendelseType.ETTERSENDELSE,
+                type: Sakshendelser.ETTERSENDELSE,
                 dato: innsendelse.k9FormatInnsendelse.mottattDato,
                 innsendelse,
             };
@@ -75,24 +75,24 @@ const mapSøknadTilSøknadshendelse = (innsendelse: Innsendelse): Søknadshendel
         case Innsendelsestype.ENDRINGSMELDING:
         case Innsendelsestype.SØKNAD:
             return {
-                type: SøknadshendelseType.MOTTATT_SØKNAD,
+                type: Sakshendelser.MOTTATT_SØKNAD,
                 dato: innsendelse.k9FormatInnsendelse.mottattDato,
                 innsendelse: innsendelse,
             };
     }
 };
 
-export const getHendelserIBehandling = (behandling: Behandling, saksbehandlingFrist?: Date): Søknadshendelse[] => {
+export const getHendelserIBehandling = (behandling: Behandling, saksbehandlingFrist?: Date): Sakshendelse[] => {
     const { innsendelser: søknader, aksjonspunkter, avsluttetTidspunkt, status } = behandling;
-    const hendelser: Søknadshendelse[] = [];
+    const hendelser: Sakshendelse[] = [];
 
     søknader.forEach((søknad) => {
-        hendelser.push(mapSøknadTilSøknadshendelse(søknad));
+        hendelser.push(mapInnsendelseTilSakshendelse(søknad));
     });
 
     if (aksjonspunkter.length >= 1) {
         hendelser.push({
-            type: SøknadshendelseType.AKSJONSPUNKT,
+            type: Sakshendelser.AKSJONSPUNKT,
             venteårsak: getViktigsteVenteårsakForAksjonspunkter(aksjonspunkter),
         });
     }
@@ -100,12 +100,12 @@ export const getHendelserIBehandling = (behandling: Behandling, saksbehandlingFr
     /** Avsluttet eller forventet svar på søknad */
     if (status === Behandlingsstatus.AVSLUTTET && avsluttetTidspunkt) {
         hendelser.push({
-            type: SøknadshendelseType.FERDIG_BEHANDLET,
+            type: Sakshendelser.FERDIG_BEHANDLET,
             dato: avsluttetTidspunkt,
         });
     } else {
         hendelser.push({
-            type: SøknadshendelseType.FORVENTET_SVAR,
+            type: Sakshendelser.FORVENTET_SVAR,
             dato: saksbehandlingFrist,
             søknadstyperIBehandling: getSøknadstyperIBehandling(søknader),
         });
@@ -118,11 +118,11 @@ export const getSøknadstyperIBehandling = (søknader: Innsendelse[]): Array<Inn
     return uniq(søknader.map((s) => s.innsendelsestype));
 };
 
-export const getAlleHendelserISak = (sak: Sak): Søknadshendelse[] => {
-    const søknadshendelser: Søknadshendelse[] = sak.behandlinger
+export const getAlleHendelserISak = (sak: Sak): Sakshendelse[] => {
+    const sakshendelser: Sakshendelse[] = sak.behandlinger
         .map((b) => getHendelserIBehandling(b, sak.saksbehandlingsFrist))
         .flat();
-    return søknadshendelser.sort(sortSøknadshendelse);
+    return sakshendelser.sort(sortSakshendelse);
 };
 
 export const getViktigsteVenteårsakForAksjonspunkter = (aksjonspunkter: Aksjonspunkt[]): Venteårsak => {
@@ -133,7 +133,7 @@ export const getViktigsteVenteårsakForAksjonspunkter = (aksjonspunkter: Aksjons
     return årsaker[0];
 };
 
-export const formatSøknadshendelseTidspunkt = (date: Date) => {
+export const formatSakshendelseTidspunkt = (date: Date) => {
     return dayjs(date).tz('Europe/Oslo').format('DD.MM.YYYY, [kl.] HH:mm');
 };
 

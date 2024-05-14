@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import { ChevronRightIcon } from '@navikt/aksel-icons';
 import { default as NextLink } from 'next/link';
 import { Sak } from '../../server/api-models/SakSchema';
-import { formatSøknadshendelseTidspunkt, getAlleHendelserISak } from '../../utils/sakUtils';
+import { formatSakshendelseTidspunkt, getAlleHendelserISak } from '../../utils/sakUtils';
 import { Process } from '../process';
 import ProcessStep from '../process/ProcessStep';
-import { getProcessStepsFraSøknadshendelser } from './statusISakUtils';
+import { getProcessStepsFraSakshendelser } from './statusISakUtils';
 import { Msg, useMessages } from '../../i18n';
 import SkrivTilOssLenke from '../lenker/SkrivTilOssLenke';
 
@@ -20,7 +20,7 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser, tit
     const [reverseDirection, setReverseDirection] = useState(false);
     const { text } = useMessages();
     const hendelser = getAlleHendelserISak(sak);
-    const processSteps = getProcessStepsFraSøknadshendelser(text, hendelser);
+    const processSteps = getProcessStepsFraSakshendelser(text, hendelser);
 
     if (processSteps.length === 0) {
         return (
@@ -85,7 +85,7 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser, tit
                                     {step.title}{' '}
                                     {step.timestamp ? (
                                         <BodyShort className="mb-2">
-                                            {formatSøknadshendelseTidspunkt(step.timestamp)}
+                                            {formatSakshendelseTidspunkt(step.timestamp)}
                                         </BodyShort>
                                     ) : null}
                                 </Heading>
