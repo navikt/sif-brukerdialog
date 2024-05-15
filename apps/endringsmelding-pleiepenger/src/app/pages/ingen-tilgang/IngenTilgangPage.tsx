@@ -7,7 +7,7 @@ import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/env
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { IngenTilgangÅrsak, Søker } from '@types';
 import DevFooter from '../../dev/DevFooter';
-import { AppText } from '../../i18n';
+import { AppText, useAppIntl } from '../../i18n';
 import { SkrivTilOssLink } from '../../lenker';
 import { SøknadContextProvider } from '../../søknad/context/SøknadContext';
 import { ANTALL_MÅNEDER_TILLATT_FOR_ENDRING } from '../../utils/endringsperiode';
@@ -110,6 +110,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
 
 const IngenTilgangPage = ({ årsak = [], søker, ingenTilgangMeta }: IngenTilgangPageProps) => {
     const { logInfo } = useAmplitudeInstance();
+    const { text } = useAppIntl();
 
     useLogSidevisning(SIFCommonPageKey.ikkeTilgang);
 
@@ -119,7 +120,7 @@ const IngenTilgangPage = ({ årsak = [], søker, ingenTilgangMeta }: IngenTilgan
 
     return (
         <SøknadContextProvider initialData={{} as any}>
-            <Page title="Ingen tilgang">
+            <Page title={text('ingenTilgangPage.pageTitle')}>
                 <SifGuidePanel poster={true}>
                     <Heading level="1" size="large" spacing={true} data-testid="ingen-tilgang-heading">
                         <AppText id="ingenTilgangPage.tittel" values={{ navn: søker.fornavn }} />

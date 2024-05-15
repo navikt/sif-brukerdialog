@@ -18,13 +18,13 @@ const container = document.getElementById('app');
 // eslint-disable-next-line
 const root = createRoot(container!);
 const publicPath = getEnvironmentVariable('PUBLIC_PATH');
-const isCypress = getEnvironmentVariable('CYPRESS_ENV') === 'true';
+const isE2E = getEnvironmentVariable('E2E_TEST') === 'true';
 
 ensureBaseNameForReactRouter(publicPath);
 
 function prepare() {
     if (getEnvironmentVariable('APP_VERSION') !== 'production') {
-        if (getEnvironmentVariable('MSW') === 'on' && (window as any).Cypress === undefined) {
+        if (getEnvironmentVariable('MSW') === 'on' && (window as any).isE2E === undefined) {
             return import('../mocks/msw/browser').then(({ worker }) => {
                 worker.start({
                     onUnhandledRequest: 'bypass',
@@ -41,7 +41,7 @@ const App = () => (
         appKey={EndringsmeldingPsbApp.key}
         appName={EndringsmeldingPsbApp.navn}
         intlMessages={applicationIntlMessages}
-        useAmplitude={!isCypress}
+        useAmplitude={!isE2E}
         appStatus={{
             sanityConfig: {
                 projectId: getEnvironmentVariable('APPSTATUS_PROJECT_ID'),

@@ -1,7 +1,7 @@
 import { contextConfig } from '../../contextConfig';
-import { enSakEnArbeidsgiverEnPeriodeMock } from '../../data/enSakEnArbeidsgiverEnPeriodeMock';
-import { enSakEnArbeidsgiverMock } from '../../data/enSakEnArbeidsgiverMock';
-import { flereArbeidsgivereMock } from '../../data/flereArbeidsgivereMock';
+import { enSakEnArbeidsgiverEnPeriodeMock } from '../../../../mock-data/enSakEnArbeidsgiverEnPeriodeMock';
+import { enSakEnArbeidsgiverMock } from '../../../../mock-data/enSakEnArbeidsgiverMock';
+import { flereArbeidsgivereMock } from '../../../../mock-data/flereArbeidsgivereMock';
 import { cyHelpers } from './cyHelpers';
 
 const settings = `

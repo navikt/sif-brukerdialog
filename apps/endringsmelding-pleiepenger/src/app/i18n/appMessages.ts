@@ -75,6 +75,7 @@ const nb = {
     'lovbestemtFerieListe.fjernFerie.label': 'Fjern ferie',
     'lovbestemtFerieListe.fjernFerie.ariaLabel': 'Fjern ferie {periode}',
 
+    'ingenTilgangPage.pageTitle': 'Ingen tilgang - Endringsmelding for pleiepenger sykt barn',
     'ingenTilgangPage.tittel': 'Hei {navn}',
     'ingenTilgangPage.skrivTilOssGenerell':
         'I mellomtiden bruker du tjenesten {SkrivTilOssLink}, for å melde fra om endringer.',

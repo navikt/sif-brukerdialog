@@ -1,4 +1,4 @@
-import { søkerMock } from './data/søkerMock';
+import { søkerMock } from '../../mock-data/søkerMock';
 
 const PUBLIC_PATH = '/soknad';
 

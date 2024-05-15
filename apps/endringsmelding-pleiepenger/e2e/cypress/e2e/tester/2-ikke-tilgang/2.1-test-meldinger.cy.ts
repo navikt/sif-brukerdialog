@@ -1,8 +1,8 @@
 import { contextConfig } from '../../contextConfig';
-import { enArbeidsgiverMock } from '../../data/enArbeidsgiverMock';
-import { enSakSN } from '../../data/enSakSN';
-import { flereSakerMock } from '../../data/flereSakerMock';
-import { ugyldigK9FormatSakMock } from '../../data/ugyldigK9FormatSakMock';
+import { enArbeidsgiverMock } from '../../../../mock-data/enArbeidsgiverMock';
+import { enSakSN } from '../../../../mock-data/enSakSN';
+import { flereSakerMock } from '../../../../mock-data/flereSakerMock';
+import { ugyldigK9FormatSakMock } from '../../../../mock-data/ugyldigK9FormatSakMock';
 import { getTestElement } from '../../utils';
 import { cyHelpers } from '../1-utfylling-av-dialog/cyHelpers';
 

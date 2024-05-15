@@ -1,6 +1,6 @@
 import { contextConfig } from '../../contextConfig';
-import { enSakFlereArbeidsgivereMock } from '../../data/enSakFlereArbeidsgivereMock';
-import { flereArbeidsgivereMock } from '../../data/flereArbeidsgivereMock';
+import { enSakFlereArbeidsgivereMock } from '../../../../mock-data/enSakFlereArbeidsgivereMock';
+import { flereArbeidsgivereMock } from '../../../../mock-data/flereArbeidsgivereMock';
 import { cyHelpers } from './cyHelpers';
 
 describe('Endre arbeidstid for flere arbeidsgivere', () => {

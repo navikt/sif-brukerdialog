@@ -3484,6 +3484,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/endringsmelding-pleiepenger@workspace:apps/endringsmelding-pleiepenger"
   dependencies:
+    "@axe-core/playwright": 4.9.0
     "@babel/core": 7.24.5
     "@babel/plugin-proposal-object-rest-spread": 7.20.7
     "@babel/plugin-transform-modules-commonjs": 7.24.1
@@ -3503,6 +3504,7 @@ __metadata:
     "@navikt/sif-common-sentry": "workspace:*"
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
+    "@playwright/test": 1.44.0
     "@sentry/vite-plugin": 2.16.1
     "@storybook/addon-actions": 8.1.0
     "@storybook/addon-essentials": 8.1.0

@@ -45,6 +45,7 @@
         "react-router-dom": "6.23.1"
     },
     "devDependencies": {
+        "@axe-core/playwright": "4.9.0",
         "@babel/core": "7.24.5",
         "@babel/plugin-proposal-object-rest-spread": "7.20.7",
         "@babel/plugin-transform-modules-commonjs": "7.24.1",
@@ -53,6 +54,7 @@
         "@babel/preset-typescript": "7.24.1",
         "@mswjs/data": "0.16.1",
         "@navikt/ds-tailwind": "6.8.0",
+        "@playwright/test": "1.44.0",
         "@sentry/vite-plugin": "2.16.1",
         "@storybook/addon-actions": "8.1.0",
         "@storybook/addon-essentials": "8.1.0",
@@ -95,8 +97,10 @@
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
         "build-storybook": "storybook build",
         "clean": "rm -rf node_modules .dist",
-        "cypress-open": "cypress open --project $PWD/e2e",
-        "cypress-run": "cypress run --project $PWD/e2e",
+        "codegen": "playwright codegen",
+        "playwright-test": "playwright test",
+        "e2e": "playwright test",
+        "e2e-ui": "playwright test --ui",
         "dev-api": "PORT=8089 node ./src/mocks/server.cjs",
         "lint": "eslint ./src --ext js,ts,tsx",
         "dev": "cross-env NODE_ENV=development node ./server.cjs",
