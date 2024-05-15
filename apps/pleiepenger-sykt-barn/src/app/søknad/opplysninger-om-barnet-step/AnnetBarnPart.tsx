@@ -1,11 +1,10 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { resetFieldValue, resetFieldValues } from '@navikt/sif-common-formik-ds';
 import { SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds/src';
 import {
@@ -18,6 +17,7 @@ import {
 import { dateToday, prettifyDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { useFormikContext } from 'formik';
+import { AppText } from '../../i18n';
 import { BarnRelasjon, ÅrsakManglerIdentitetsnummer } from '../../types';
 import { initialValues, SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { validateNavn } from '../../validation/fieldValidations';
@@ -37,7 +37,7 @@ const nYearsAgo = (years: number): Date => {
 };
 
 const AnnetBarnPart: React.FC<Props> = ({ formValues, søkersFødselsnummer, attachments, harRegistrerteBarn }) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     const {
         values: { barnetHarIkkeFnr, årsakManglerIdentitetsnummer },
         setFieldValue,
@@ -49,13 +49,13 @@ const AnnetBarnPart: React.FC<Props> = ({ formValues, søkersFødselsnummer, att
                 legend={
                     harRegistrerteBarn ? (
                         <Heading level="2" size="small" style={{ display: 'inline-block', fontSize: '1.125rem' }}>
-                            {intlHelper(intl, 'steg.omBarnet.annetBarn.tittel')}
+                            {text('steg.omBarnet.annetBarn.tittel')}
                         </Heading>
                     ) : undefined
                 }>
                 <div>
                     <SøknadFormComponents.TextField
-                        label={intlHelper(intl, 'steg.omBarnet.fnr.spm')}
+                        label={text('steg.omBarnet.fnr.spm')}
                         name={SøknadFormField.barnetsFødselsnummer}
                         validate={
                             barnetHarIkkeFnr
@@ -72,7 +72,7 @@ const AnnetBarnPart: React.FC<Props> = ({ formValues, søkersFødselsnummer, att
                     />
                     <FormBlock margin="l">
                         <SøknadFormComponents.Checkbox
-                            label={intlHelper(intl, 'steg.omBarnet.fnr.barnHarIkkeFnr')}
+                            label={text('steg.omBarnet.fnr.barnHarIkkeFnr')}
                             name={SøknadFormField.barnetHarIkkeFnr}
                             afterOnChange={(newValue) => {
                                 if (newValue) {
@@ -94,10 +94,10 @@ const AnnetBarnPart: React.FC<Props> = ({ formValues, søkersFødselsnummer, att
                     {barnetHarIkkeFnr && (
                         <FormBlock>
                             <SøknadFormComponents.RadioGroup
-                                legend={intlHelper(intl, 'steg.omBarnet.årsakManglerIdentitetsnummer.spm')}
+                                legend={text('steg.omBarnet.årsakManglerIdentitetsnummer.spm')}
                                 name={SøknadFormField.årsakManglerIdentitetsnummer}
                                 radios={Object.keys(ÅrsakManglerIdentitetsnummer).map((årsak, index) => ({
-                                    label: intlHelper(intl, `steg.omBarnet.årsakManglerIdentitetsnummer.${årsak}`),
+                                    label: text(`steg.omBarnet.årsakManglerIdentitetsnummer.${årsak}` as any),
                                     value: årsak,
                                     className:
                                         index === Object.keys(ÅrsakManglerIdentitetsnummer).length - 1
@@ -111,7 +111,7 @@ const AnnetBarnPart: React.FC<Props> = ({ formValues, søkersFødselsnummer, att
                     )}
                     <FormBlock>
                         <SøknadFormComponents.TextField
-                            label={intlHelper(intl, 'steg.omBarnet.navn')}
+                            label={text('steg.omBarnet.navn')}
                             name={SøknadFormField.barnetsNavn}
                             validate={validateNavn}
                             width="xl"
@@ -121,7 +121,7 @@ const AnnetBarnPart: React.FC<Props> = ({ formValues, søkersFødselsnummer, att
                         <FormBlock>
                             <SøknadFormComponents.DatePicker
                                 name={SøknadFormField.barnetsFødselsdato}
-                                label={intlHelper(intl, 'steg.omBarnet.fødselsdato')}
+                                label={text('steg.omBarnet.fødselsdato')}
                                 validate={(value) => {
                                     const dateError = getDateValidator({
                                         required: true,
@@ -145,10 +145,10 @@ const AnnetBarnPart: React.FC<Props> = ({ formValues, søkersFødselsnummer, att
 
                     <FormBlock>
                         <SøknadFormComponents.RadioGroup
-                            legend={intlHelper(intl, 'steg.omBarnet.relasjon.spm')}
+                            legend={text('steg.omBarnet.relasjon.spm')}
                             name={SøknadFormField.relasjonTilBarnet}
                             radios={Object.keys(BarnRelasjon).map((relasjon) => ({
-                                label: intlHelper(intl, `barnRelasjon.${relasjon}`),
+                                label: text(`barnRelasjon.${relasjon}` as any),
                                 value: relasjon,
                             }))}
                             validate={getRequiredFieldValidator()}
@@ -162,23 +162,19 @@ const AnnetBarnPart: React.FC<Props> = ({ formValues, søkersFødselsnummer, att
                     {formValues.relasjonTilBarnet === BarnRelasjon.ANNET && (
                         <FormBlock>
                             <SøknadFormComponents.Textarea
-                                label={intlHelper(intl, 'steg.omBarnet.relasjonAnnet.spm')}
+                                label={text('steg.omBarnet.relasjonAnnet.spm')}
                                 description={
                                     <>
-                                        <ExpandableInfo
-                                            title={intlHelper(intl, 'steg.omBarnet.relasjonAnnet.info.tittel')}>
-                                            <FormattedMessage
-                                                tagName="div"
-                                                id="steg.omBarnet.relasjonAnnet.info.hjelpetekst.1"
-                                            />
-                                            <FormattedMessage
-                                                tagName="p"
-                                                id="steg.omBarnet.relasjonAnnet.info.hjelpetekst.2"
-                                            />
-                                            <FormattedMessage
-                                                tagName="p"
-                                                id="steg.omBarnet.relasjonAnnet.info.hjelpetekst.3"
-                                            />
+                                        <ExpandableInfo title={text('steg.omBarnet.relasjonAnnet.info.tittel')}>
+                                            <div>
+                                                <AppText id="steg.omBarnet.relasjonAnnet.info.hjelpetekst.1" />
+                                            </div>
+                                            <p>
+                                                <AppText id="steg.omBarnet.relasjonAnnet.info.hjelpetekst.2" />
+                                            </p>
+                                            <p>
+                                                <AppText id="steg.omBarnet.relasjonAnnet.info.hjelpetekst.3" />
+                                            </p>
                                         </ExpandableInfo>
                                     </>
                                 }

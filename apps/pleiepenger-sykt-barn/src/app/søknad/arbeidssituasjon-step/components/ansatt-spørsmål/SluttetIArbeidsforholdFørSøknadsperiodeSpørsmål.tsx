@@ -1,6 +1,5 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { useAppIntl } from '@i18n/index';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds/src';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
@@ -26,11 +25,11 @@ const SluttetIArbeidsforholdFørSøknadsperiodeSpørsmål: React.FunctionCompone
     arbeidsforhold,
     søknadsperiode,
 }) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     return (
         <AnsattFormComponents.RadioGroup
             name={fieldName}
-            legend={intlHelper(intl, 'arbeidsforhold.sluttetFørSøknadsperiode.spm', {
+            legend={text('arbeidsforhold.sluttetFørSøknadsperiode.spm', {
                 navn: arbeidsforhold.arbeidsgiver.navn,
                 fraDato: dateFormatter.full(søknadsperiode.from),
             })}

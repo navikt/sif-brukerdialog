@@ -1,6 +1,4 @@
-import { IntlShape } from 'react-intl';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { VirksomhetApiData } from '@navikt/sif-common-forms-ds/src/forms/virksomhet/types';
 import { durationToDecimalDuration, ISODurationToDuration, summarizeDurations } from '@navikt/sif-common-utils';
 import { isEqual } from 'lodash';
@@ -9,6 +7,7 @@ import { OmsorgstilbudApiData, SøknadApiData, TimerFasteDagerApiData } from '..
 import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import { søkerKunHelgedager } from '../utils/formValuesUtils';
 import { getAttachmentsApiDataFromSøknadsdata } from '../utils/søknadsdataToApiData/getAttachmentsApiDataFromSøknadsdata';
+import { AppIntlShape } from '../i18n';
 
 export const apiVedleggIsInvalid = (apiVedlegg: string[], vedlegg: Attachment[]) => {
     const apiVedleggFromSøknadsdata = vedlegg ? getAttachmentsApiDataFromSøknadsdata(vedlegg) : [];
@@ -64,14 +63,14 @@ export const isOmsorgstilbudApiDataValid = (omsorgstilbud: OmsorgstilbudApiData)
 export const validateApiValues = (
     values: SøknadApiData,
     formValues: SøknadFormValues,
-    intl: IntlShape,
+    { text }: AppIntlShape,
 ): ApiValidationError[] | undefined => {
     const errors: ApiValidationError[] = [];
     try {
         if (apiVedleggIsInvalid(values.vedlegg, formValues.legeerklæring)) {
             errors.push({
                 skjemaelementId: 'vedlegg',
-                feilmelding: intlHelper(intl, 'steg.oppsummering.validering.manglerVedlegg'),
+                feilmelding: text('steg.oppsummering.validering.manglerVedlegg'),
                 stepId: StepID.LEGEERKLÆRING,
             });
         }
@@ -79,7 +78,7 @@ export const validateApiValues = (
         if (apiVedleggIsInvalid(values.fødselsattestVedleggUrls, formValues.fødselsattest)) {
             errors.push({
                 skjemaelementId: 'fødselsattest',
-                feilmelding: intlHelper(intl, 'steg.oppsummering.validering.fødselsattest'),
+                feilmelding: text('steg.oppsummering.validering.fødselsattest'),
                 stepId: StepID.OPPLYSNINGER_OM_BARNET,
             });
         }
@@ -87,7 +86,7 @@ export const validateApiValues = (
         if (søkerKunHelgedager(values.fraOgMed, values.tilOgMed)) {
             errors.push({
                 skjemaelementId: 'tidsrom',
-                feilmelding: intlHelper(intl, 'steg.oppsummering.validering.tidsromKunHelg'),
+                feilmelding: text('steg.oppsummering.validering.tidsromKunHelg'),
                 stepId: StepID.TIDSROM,
             });
         }
@@ -95,7 +94,7 @@ export const validateApiValues = (
         if (values.omsorgstilbud && isOmsorgstilbudApiDataValid(values.omsorgstilbud) === false) {
             errors.push({
                 skjemaelementId: 'omsorgstilbud',
-                feilmelding: intlHelper(intl, 'steg.oppsummering.validering.omsorgstilbud.ugyldig'),
+                feilmelding: text('steg.oppsummering.validering.omsorgstilbud.ugyldig'),
                 stepId: StepID.OMSORGSTILBUD,
             });
         }
@@ -107,7 +106,7 @@ export const validateApiValues = (
         ) {
             errors.push({
                 skjemaelementId: 'omsorgstilbud',
-                feilmelding: intlHelper(intl, 'steg.oppsummering.validering.omsorgstilbud.nattevåkBeskrivelseForLang'),
+                feilmelding: text('steg.oppsummering.validering.omsorgstilbud.nattevåkBeskrivelseForLang'),
                 stepId: StepID.OMSORGSTILBUD,
             });
         }
@@ -119,7 +118,7 @@ export const validateApiValues = (
         ) {
             errors.push({
                 skjemaelementId: 'omsorgstilbud',
-                feilmelding: intlHelper(intl, 'steg.oppsummering.validering.omsorgstilbud.beredskapBeskrivelseForLang'),
+                feilmelding: text('steg.oppsummering.validering.omsorgstilbud.beredskapBeskrivelseForLang'),
                 stepId: StepID.OMSORGSTILBUD,
             });
         }
@@ -129,7 +128,7 @@ export const validateApiValues = (
             if (inntekt !== undefined && inntekt > 10000000) {
                 errors.push({
                     skjemaelementId: 'arbeidssituasjon',
-                    feilmelding: intlHelper(intl, 'steg.oppsummering.validering.arbeidssituasjon.sn.forHøyInntekt'),
+                    feilmelding: text('steg.oppsummering.validering.arbeidssituasjon.sn.forHøyInntekt'),
                     stepId: StepID.ARBEIDSSITUASJON,
                 });
             }
@@ -137,7 +136,7 @@ export const validateApiValues = (
             if (varigEndringInntekt !== undefined && varigEndringInntekt > 10000000) {
                 errors.push({
                     skjemaelementId: 'arbeidssituasjon',
-                    feilmelding: intlHelper(intl, 'steg.oppsummering.validering.arbeidssituasjon.sn.forHøyInntekt'),
+                    feilmelding: text('steg.oppsummering.validering.arbeidssituasjon.sn.forHøyInntekt'),
                     stepId: StepID.ARBEIDSSITUASJON,
                 });
             }

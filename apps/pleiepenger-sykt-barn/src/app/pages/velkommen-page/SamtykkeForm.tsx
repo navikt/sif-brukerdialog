@@ -1,8 +1,7 @@
 import { Button, Heading, Link } from '@navikt/ds-react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import bemHelper from '@navikt/sif-common-core-ds/src/utils/bemUtils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
@@ -10,6 +9,7 @@ import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/typ
 import getLenker from '../../lenker';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import InfoList from './components/info-list/InfoList';
+import { AppText } from '../../i18n';
 
 interface Props {
     onConfirm: () => void;
@@ -20,7 +20,7 @@ const AppForm = getTypedFormComponents<SøknadFormField, SøknadFormValues, Vali
 const bem = bemHelper('welcomingPage');
 
 const SamtykkeForm = ({ onConfirm }: Props) => {
-    const intl = useIntl();
+    const { intl, text } = useAppIntl();
     return (
         <AppForm.Form
             onValidSubmit={onConfirm}
@@ -29,22 +29,28 @@ const SamtykkeForm = ({ onConfirm }: Props) => {
             <FormBlock>
                 <div data-testid={'welcomingPage-harForståttRettigheterOgPlikter'}>
                     <AppForm.ConfirmationCheckbox
-                        label={intlHelper(intl, 'page.velkommen.form.bekreftLabel')}
+                        label={text('page.velkommen.form.bekreftLabel')}
                         name={SøknadFormField.harForståttRettigheterOgPlikter}
                         validate={getCheckedValidator()}>
                         <Heading level="2" size="small" spacing={true}>
-                            <FormattedMessage id="page.velkommen.form.ansvar.tittel" />
+                            <AppText id="page.velkommen.form.ansvar.tittel" />
                         </Heading>
 
                         <InfoList>
                             <li>
-                                <FormattedMessage id="page.velkommen.form.ansvar.list.1" />
+                                <AppText id="page.velkommen.form.ansvar.list.1" />
                             </li>
                             <li>
-                                <FormattedMessage id="page.velkommen.form.ansvar.list.2.1" />{' '}
-                                <Link href={getLenker(intl.locale).rettOgPlikt} target="_blank">
-                                    <FormattedMessage id="page.velkommen.form.ansvar.list.2.2" />
-                                </Link>
+                                <AppText
+                                    id="page.velkommen.form.ansvar.list.2"
+                                    values={{
+                                        Lenke: (children) => (
+                                            <Link href={getLenker(intl.locale).rettOgPlikt} target="_blank">
+                                                {children}
+                                            </Link>
+                                        ),
+                                    }}
+                                />
                             </li>
                         </InfoList>
                     </AppForm.ConfirmationCheckbox>
@@ -53,7 +59,7 @@ const SamtykkeForm = ({ onConfirm }: Props) => {
             <FormBlock>
                 <div data-testid={'welcomingPage-begynnsøknad'}>
                     <Button variant="primary" type="submit" className={bem.element('startApplicationButton')}>
-                        {intlHelper(intl, 'welcomingPage.begynnsøknad')}
+                        {text('page.velkommen.startSøknad')}
                     </Button>
                 </div>
             </FormBlock>

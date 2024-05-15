@@ -1,11 +1,9 @@
-import { IntlShape } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { dateFormatter } from '@navikt/sif-common-utils';
-import { DateRange } from '@navikt/sif-common-utils';
+import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
+import { AppIntlShape } from '../../i18n';
 import { ArbeidIPeriodeIntlValues, ArbeidsforholdType } from '../types';
 
 export const getArbeidstidIPeriodeIntlValues = (
-    intl: IntlShape,
+    { text }: AppIntlShape,
     info: {
         arbeidsforholdType: ArbeidsforholdType;
         periode: DateRange;
@@ -16,20 +14,20 @@ export const getArbeidstidIPeriodeIntlValues = (
     const getHvorTekst = () => {
         switch (info.arbeidsforholdType) {
             case ArbeidsforholdType.ANSATT:
-                return intlHelper(intl, 'arbeidsforhold.arbeidsforholdIntlValues.somAnsatt', {
+                return text('arbeidsforhold.arbeidsforholdIntlValues.somAnsatt', {
                     arbeidsgiverNavn: info.arbeidsgiverNavn || 'som ansatt',
                 });
             case ArbeidsforholdType.FRILANSER:
-                return intlHelper(intl, 'arbeidsforhold.arbeidsforholdIntlValues.somFrilanser');
+                return text('arbeidsforhold.arbeidsforholdIntlValues.somFrilanser');
             case ArbeidsforholdType.SELVSTENDIG:
-                return intlHelper(intl, 'arbeidsforhold.arbeidsforholdIntlValues.somSN');
+                return text('arbeidsforhold.arbeidsforholdIntlValues.somSN');
         }
     };
 
     return {
         hvor: getHvorTekst(),
         arbeidsgiverNavn: info.arbeidsgiverNavn,
-        timer: intlHelper(intl, 'arbeidstidPeriode.timer', { timer: info.jobberNormaltTimer }),
+        timer: text('arbeidstidPeriode.timer', { timer: info.jobberNormaltTimer }),
         fra: dateFormatter.full(info.periode.from),
         til: dateFormatter.full(info.periode.to),
     };

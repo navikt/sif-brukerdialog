@@ -1,7 +1,7 @@
-import { FormattedMessage, useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { useAppIntl } from '@i18n/index';
 import { SummaryBlock } from '@navikt/sif-common-ui';
 import { dateFormatter, DateRange, ISODateToDate } from '@navikt/sif-common-utils';
+import { AppText } from '../../../i18n';
 import { Arbeidsgiver } from '../../../types';
 import { FrilansApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import { Frilanstype } from '../../../types/søknad-form-values/FrilansFormValues';
@@ -15,13 +15,15 @@ interface Props {
 }
 
 const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag, søknadsperiode }: Props) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     if (frilans.harInntektSomFrilanser === false) {
         return (
-            <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.frilanser.header')}>
+            <SummaryBlock header={text('oppsummering.arbeidssituasjon.frilanser.header')}>
                 <ul data-testid="arbeidssituasjon-frilanser">
                     <li>
-                        <FormattedMessage id={'oppsummering.arbeidssituasjon.frilans.erIkkeFrilanser'} tagName="p" />
+                        <p>
+                            <AppText id={'oppsummering.arbeidssituasjon.frilans.erIkkeFrilanser'} />
+                        </p>
                     </li>
                 </ul>
             </SummaryBlock>
@@ -30,13 +32,13 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag, søknadsperio
 
     if (frilans.type === Frilanstype.HONORAR && frilans._misterInntektSomFrilanser === false) {
         return (
-            <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.frilanser.header')}>
+            <SummaryBlock header={text('oppsummering.arbeidssituasjon.frilanser.header')}>
                 <ul data-testid="arbeidssituasjon-frilanser">
                     <li>
-                        <FormattedMessage id={`oppsummering.arbeidssituasjon.frilans.HONORAR`} />
+                        <AppText id={`oppsummering.arbeidssituasjon.frilans.HONORAR`} />
                     </li>
                     <li>
-                        <FormattedMessage id={'oppsummering.arbeidssituasjon.frilans.HONORAR.misterIkkeHonorar'} />
+                        <AppText id={'oppsummering.arbeidssituasjon.frilans.HONORAR.misterIkkeHonorar'} />
                     </li>
                 </ul>
             </SummaryBlock>
@@ -44,20 +46,20 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag, søknadsperio
     }
 
     return (
-        <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.frilanser.header')}>
+        <SummaryBlock header={text('oppsummering.arbeidssituasjon.frilanser.header')}>
             <ul data-testid="arbeidssituasjon-frilanser">
                 <li>
-                    <FormattedMessage id={`oppsummering.arbeidssituasjon.frilans.${frilans.type}`} />
+                    <AppText id={`oppsummering.arbeidssituasjon.frilans.${frilans.type}`} />
                 </li>
 
                 {frilans.type === Frilanstype.HONORAR && frilans.misterHonorar === false && (
                     <li>
-                        <FormattedMessage id={'oppsummering.arbeidssituasjon.frilans.HONORAR.misterIkkeHonorar'} />
+                        <AppText id={'oppsummering.arbeidssituasjon.frilans.HONORAR.misterIkkeHonorar'} />
                     </li>
                 )}
                 {frilans.type === Frilanstype.HONORAR && frilans.misterHonorar === true && (
                     <li>
-                        <FormattedMessage id={'oppsummering.arbeidssituasjon.frilans.HONORAR.misterHonorar'} />
+                        <AppText id={'oppsummering.arbeidssituasjon.frilans.HONORAR.misterHonorar'} />
                     </li>
                 )}
                 <li>
@@ -65,7 +67,7 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag, søknadsperio
                 </li>
                 {frilans.startetFørSisteTreHeleMåneder ? (
                     <li>
-                        <FormattedMessage
+                        <AppText
                             id="oppsummering.arbeidssituasjon.frilans.startetFørSisteTreHeleMåneder"
                             values={{
                                 opptjeningStartdato: dateFormatter.full(getStartdatoForNySomFrilanser(søknadsperiode)),
@@ -74,7 +76,7 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag, søknadsperio
                     </li>
                 ) : (
                     <li>
-                        <FormattedMessage
+                        <AppText
                             id="oppsummering.arbeidssituasjon.frilans.startet"
                             values={{ dato: dateFormatter.full(ISODateToDate(frilans.startdato)) }}
                         />
@@ -83,7 +85,7 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag, søknadsperio
 
                 {frilans.sluttdato && (
                     <li>
-                        <FormattedMessage
+                        <AppText
                             id="oppsummering.arbeidssituasjon.frilans.sluttet"
                             values={{ dato: dateFormatter.full(ISODateToDate(frilans.sluttdato)) }}
                         />
@@ -92,7 +94,7 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag, søknadsperio
 
                 {frilansoppdrag && frilansoppdrag.length > 0 && (
                     <li>
-                        <FormattedMessage id="oppsummering.arbeidssituasjon.frilans.frilansoppdrag" />
+                        <AppText id="oppsummering.arbeidssituasjon.frilans.frilansoppdrag" />
                         <br />
                         <ul style={{ margin: 0, padding: '0 0 0 1rem' }}>
                             {frilansoppdrag.map((oppdrag) => (

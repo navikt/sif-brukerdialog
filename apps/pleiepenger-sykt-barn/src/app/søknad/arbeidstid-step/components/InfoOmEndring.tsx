@@ -1,8 +1,6 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
-import FormattedHtmlMessage from '@navikt/sif-common-core-ds/src/atoms/formatted-html-message/FormattedHtmlMessage';
+import { AppText, useAppIntl } from '@i18n/index';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
 
 interface Props {
@@ -10,19 +8,19 @@ interface Props {
 }
 
 const InfoOmEndring: React.FunctionComponent<Props> = ({ arbeidsforholdType }) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     switch (arbeidsforholdType) {
         case ArbeidsforholdType.ANSATT:
         case ArbeidsforholdType.FRILANSER:
             return (
-                <ExpandableInfo title={intlHelper(intl, 'arbeidIPeriode.redusert.endring.tittel')}>
-                    <FormattedHtmlMessage id="arbeidIPeriode.redusert.endring.arb_frilans.tekst" />
+                <ExpandableInfo title={text('arbeidIPeriode.redusert.endring.tittel')}>
+                    <AppText id="arbeidIPeriode.redusert.endring.arb_frilans.tekst" />
                 </ExpandableInfo>
             );
         case ArbeidsforholdType.SELVSTENDIG:
             return (
-                <ExpandableInfo title={intlHelper(intl, 'arbeidIPeriode.redusert.endring.tittel')}>
-                    <FormattedHtmlMessage id="arbeidIPeriode.redusert.endring.sn.tekst" />
+                <ExpandableInfo title={text('arbeidIPeriode.redusert.endring.tittel')}>
+                    <AppText id="arbeidIPeriode.redusert.endring.sn.tekst" />
                 </ExpandableInfo>
             );
     }
