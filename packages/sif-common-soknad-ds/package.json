@@ -64,7 +64,7 @@
         "react-intl": "6.6.6",
         "react-router-dom": "6.23.1",
         "rimraf": "5.0.7",
-        "storybook": "8.0.10",
+        "storybook": "8.1.0",
         "uuid": "9.0.1",
         "vite": "5.2.11",
         "vite-plugin-checker": "0.6.4"
