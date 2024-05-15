@@ -1,35 +1,22 @@
 import * as React from 'react';
-import { StepFormValuesContextProvider } from '../../app/søknad/context/StepFormValuesContext';
 import { SøknadContextProvider } from '../../app/søknad/context/SøknadContext';
 import { SøknadContextState } from '../../app/types/SøknadContextState';
-import { TimerEllerProsent } from '../../app/types/TimerEllerProsent';
-import { arbeidsgivereMock } from '../data/arbeidsgivereMock';
-import { søkerMock } from '../data/søkerMock';
+import { RegistrerteBarnMock, SøkerMock } from '../mock-data';
 
-const initialState: SøknadContextState = {
+export const mockInitialSøknadContextState: SøknadContextState = {
     versjon: '1.0.0',
-    søker: søkerMock,
+    søker: SøkerMock,
+    registrerteBarn: RegistrerteBarnMock,
     søknadsdata: {
-        id: '123',
+        id: '1',
     },
-    k9saker: [],
-    hvaSkalEndres: [],
-    tillattEndringsperiode: {
-        from: new Date(),
-        to: new Date(),
-    },
-    sak: {} as any,
     søknadRoute: undefined,
-    arbeidsgivere: arbeidsgivereMock,
-    inputPreferanser: {
-        timerEllerProsent: TimerEllerProsent.PROSENT,
-    },
+    søknadSendt: false,
+    børMellomlagres: false,
 };
 
 export const withSøknadContextProvider = (Story: any, state: Partial<SøknadContextState> = {}) => (
-    <SøknadContextProvider initialData={{ ...initialState, ...state }}>
-        <StepFormValuesContextProvider>
-            <Story />
-        </StepFormValuesContextProvider>
+    <SøknadContextProvider initialData={{ ...mockInitialSøknadContextState, ...state }}>
+        <Story />
     </SøknadContextProvider>
 );
