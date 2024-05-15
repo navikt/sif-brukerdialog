@@ -1,11 +1,11 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { UtenlandsoppholdÅrsak } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
 import { SummaryList } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 import classNames from 'classnames';
+import { AppText } from '../../i18n';
 import {
     BostedUtlandApiData,
     isUtenlandsoppholdUtenforEØSApiData,
@@ -48,7 +48,7 @@ export const renderUtenlandsoppholdIPeriodenSummary = (opphold: Utenlandsopphold
                 <Block margin="l">
                     {opphold.perioderBarnetErInnlagt !== undefined && opphold.perioderBarnetErInnlagt.length > 0 && (
                         <>
-                            <FormattedMessage id={`utenlandsopphold.form.perioderBarnetErInnlag.listTitle`} />:
+                            <AppText id={`@forms.utenlandsopphold.form.perioderBarnetErInnlag.listTitle`} />:
                             <SummaryList
                                 items={opphold.perioderBarnetErInnlagt}
                                 itemRenderer={(periode: PeriodeApiData) => (
@@ -60,14 +60,14 @@ export const renderUtenlandsoppholdIPeriodenSummary = (opphold: Utenlandsopphold
                         </>
                     )}
 
-                    {opphold.årsak !== UtenlandsoppholdÅrsak.ANNET && (
-                        <FormattedMessage
-                            id={`utenlandsopphold.form.årsak.${opphold.årsak}`}
+                    {opphold.årsak && opphold.årsak !== UtenlandsoppholdÅrsak.ANNET && (
+                        <AppText
+                            id={`@forms.utenlandsopphold.form.årsak.${opphold.årsak}`}
                             values={{ land: opphold.landnavn }}
                         />
                     )}
-                    {opphold.årsak === UtenlandsoppholdÅrsak.ANNET && (
-                        <FormattedMessage id={`utenlandsopphold.oppsummering.årsak.ANNET`} />
+                    {opphold.årsak && opphold.årsak === UtenlandsoppholdÅrsak.ANNET && (
+                        <AppText id={`@forms.utenlandsopphold.oppsummering.årsak.ANNET`} />
                     )}
                 </Block>
             )}

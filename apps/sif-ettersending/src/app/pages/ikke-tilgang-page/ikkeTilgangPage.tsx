@@ -1,10 +1,9 @@
-import { FormattedMessage, useIntl } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
+import { AppText, useAppIntl } from '../../i18n';
 import { Søknadstype } from '../../types/Søknadstype';
 
 interface Props {
@@ -12,18 +11,18 @@ interface Props {
 }
 
 const IkkeTilgangPage = ({ søknadstype }: Props) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     useLogSidevisning(SIFCommonPageKey.ikkeTilgang);
 
     return (
         <Page
             className="ikkeTilgangPage"
-            title={intlHelper(intl, `application.title.${søknadstype}`)}
-            topContentRenderer={() => <SoknadHeader title={intlHelper(intl, `application.title.${søknadstype}`)} />}>
+            title={text(`application.title.${søknadstype}`)}
+            topContentRenderer={() => <SoknadHeader title={text(`application.title.${søknadstype}`)} />}>
             <Block margin="xxl">
                 <SifGuidePanel poster={true}>
                     <p>
-                        <FormattedMessage id="page.ikkeTilgang.tekst" />
+                        <AppText id="page.ikkeTilgang.tekst" />
                     </p>
                 </SifGuidePanel>
             </Block>

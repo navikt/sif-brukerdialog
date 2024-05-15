@@ -1,5 +1,29 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.27.2
+
+### Patch Changes
+
+- 20b3033: Pakkeoppdateringer - minor/patch
+- Updated dependencies [20b3033]
+  - @navikt/sif-common-amplitude@2.25.1
+  - @navikt/sif-common-formik-ds@1.8.1
+  - @navikt/sif-common-soknad-ds@10.15.1
+  - @navikt/sif-common-forms-ds@8.21.2
+  - @navikt/sif-common-core-ds@9.17.1
+  - @navikt/sif-common-sentry@0.26.1
+  - @navikt/sif-common-utils@3.45.1
+
+## 2.27.1
+
+### Patch Changes
+
+- 5fce12b: Legge til rette for flere språk
+- Updated dependencies [a98157a]
+- Updated dependencies [8e314e0]
+  - @navikt/sif-common-soknad-ds@10.15.0
+  - @navikt/sif-common-forms-ds@8.21.1
+
 ## 2.27.0
 
 ### Minor Changes

@@ -1,6 +1,5 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { useAppIntl } from '@i18n/index';
 import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
 import { FrilansFormField } from '../../../../../types/søknad-form-values/FrilansFormValues';
@@ -12,13 +11,13 @@ interface Props {
 }
 
 const FrilansStartetFørSisteTreHeleMånederSpørsmål: React.FunctionComponent<Props> = ({ søknadsperiode }) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     const dato = dateFormatter.dateShortMonthYear(getStartdatoForNySomFrilanser(søknadsperiode));
 
     return (
         <ArbFriFormComponents.YesOrNoQuestion
             name={FrilansFormField.startetFørSisteTreHeleMåneder}
-            legend={intlHelper(intl, `frilanser.startetFørSisteTreHeleMåneder.spm`, {
+            legend={text(`frilanser.startetFørSisteTreHeleMåneder.spm`, {
                 dato,
             })}
             validate={(value) => {

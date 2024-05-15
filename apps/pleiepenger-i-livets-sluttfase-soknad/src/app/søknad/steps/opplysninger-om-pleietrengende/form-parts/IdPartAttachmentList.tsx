@@ -1,6 +1,5 @@
 import { BodyShort } from '@navikt/ds-react';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 import AttachmentListWithDeletion from '@navikt/sif-common-core-ds/src/components/attachment-list-with-deletion/AttachmentListWithDeletion';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
@@ -16,6 +15,7 @@ import {
     OpplysningerOmPleietrengendeFormFields,
     OpplysningerOmPleietrengendeFormValues,
 } from '../OpplysningerOmPleietrengendeStep';
+import { AppText } from '../../../../i18n';
 
 interface Props {
     includeDeletionFunctionality: boolean;
@@ -31,7 +31,7 @@ const IdPartAttachmentList: React.FC<Props> = ({ wrapNoAttachmentsInBlock, inclu
     if (!containsAnyUploadedAttachments(idDokumenter)) {
         const noAttachmentsText = (
             <BodyShort>
-                <FormattedMessage id="vedleggsliste.ingenDokumenter" />
+                <AppText id="vedleggsliste.ingenDokumenter" />
             </BodyShort>
         );
         if (wrapNoAttachmentsInBlock) {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { DateRange, getTypedFormComponents } from '@navikt/sif-common-formik-ds/src';
 import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
@@ -12,7 +12,6 @@ import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { DurationWeekdays } from '@navikt/sif-common-utils';
 import TidFasteUkedagerInput from '../../../tid-faste-ukedager-input/TidFasteUkedagerInput';
-import { getOmsorgstilbudPeriodeIntl } from '../../i18n/omsorgstilbudPeriodeMessages';
 import { getOmsorgstilbudFastDagValidator, validateOmsorgstilbudFasteDager } from './omsorgstilbudFormValidation';
 
 export interface OmsorgstilbudPeriodeFormProps {
@@ -45,8 +44,7 @@ const initialFormValues: Partial<FormValues> = {};
 const FormComponents = getTypedFormComponents<FormFields, FormValues, ValidationError>();
 
 const OmsorgstilbudPeriodeForm: React.FC<OmsorgstilbudPeriodeFormProps> = ({ periode, onSubmit, onCancel }) => {
-    const intl = useIntl();
-    const { text } = getOmsorgstilbudPeriodeIntl(intl);
+    const { intl, text } = useAppIntl();
 
     const onValidSubmit = (values: Partial<FormValues>) => {
         const fom = datepickerUtils.getDateFromDateString(values.fom);

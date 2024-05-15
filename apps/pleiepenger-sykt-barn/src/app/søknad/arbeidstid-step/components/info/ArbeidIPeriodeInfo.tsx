@@ -1,9 +1,9 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import InfoOmEndring from '../InfoOmEndring';
 import { ArbeidsforholdType } from '../../../../local-sif-common-pleiepenger';
+import { AppText } from '../../../../i18n';
 
 interface Props {
     arbeidsforholdType: ArbeidsforholdType;
@@ -28,7 +28,7 @@ const ArbeidIPeriodeInfo: React.FunctionComponent<Props> = ({
         {mottarOmsorgsstønad && <p>Du skal ikke inkludere tid for fosterhjemsgodtgjørelse og omsorgsstønad.</p>}
         {søkerFremITid && (
             <p>
-                <FormattedMessage id="arbeidIPeriode.redusert.info.tekst" />
+                <AppText id="arbeidIPeriode.redusert.info.tekst" />
             </p>
         )}
         <Block margin="m">

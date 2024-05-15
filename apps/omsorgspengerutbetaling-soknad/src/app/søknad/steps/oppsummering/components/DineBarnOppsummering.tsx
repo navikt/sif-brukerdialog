@@ -1,9 +1,8 @@
-import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { BarnType } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
 import { JaNeiSvar, SummaryBlock, SummaryList, SummarySection } from '@navikt/sif-common-ui';
-import { ApiBarn, RegistrertBarnTypeApi } from '../../../../types/søknadApiData/SøknadApiData';
+import { useAppIntl } from '../../../../i18n';
 import { RegistrertBarn } from '../../../../types/RegistrertBarn';
+import { ApiBarn, RegistrertBarnTypeApi } from '../../../../types/søknadApiData/SøknadApiData';
 import { mapRegistrertBarnToApiBarn } from '../../../../utils/søknadsdataToApiData/getDineBarnApiDataFromSøknadsdata';
 
 interface Props {
@@ -21,34 +20,34 @@ const DineBarnOppsummering = ({
     harAleneomsorg,
     harDekketTiFørsteDagerSelv,
 }: Props) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     const registrerteBarnSomIkkeSkalSendesInnMenVises = registrerteBarn.map(mapRegistrertBarnToApiBarn);
     return (
-        <SummarySection header={intlHelper(intl, 'step.oppsummering.dineBarn')}>
+        <SummarySection header={text('step.oppsummering.dineBarn')}>
             <SummaryList
                 items={[...registrerteBarnSomIkkeSkalSendesInnMenVises, ...barn]}
                 itemRenderer={({ identitetsnummer, navn, type }: ApiBarn) => {
                     const fnr = identitetsnummer ? identitetsnummer : '';
                     const barnType =
                         type !== BarnType.annet && type !== RegistrertBarnTypeApi.fraOppslag
-                            ? intlHelper(intl, `step.oppsummering.dineBarn.listItem.årsak.${type}`)
+                            ? text(`step.oppsummering.dineBarn.listItem.årsak.${type}`)
                             : '';
                     const punktum = type === RegistrertBarnTypeApi.fraOppslag ? '.' : '';
                     return <>{`${navn}${punktum} ${fnr} ${barnType}`}</>;
                 }}
             />
             {harSyktBarn !== undefined && (
-                <SummaryBlock header={intlHelper(intl, 'step.dineBarn.utvidetRettSykdom.spm')}>
+                <SummaryBlock header={text('step.dineBarn.utvidetRettSykdom.spm')}>
                     <JaNeiSvar harSvartJa={harSyktBarn} />
                 </SummaryBlock>
             )}
             {harAleneomsorg !== undefined && (
-                <SummaryBlock header={intlHelper(intl, 'step.dineBarn.utvidetRettAleneomsorg.spm')}>
+                <SummaryBlock header={text('step.dineBarn.utvidetRettAleneomsorg.spm')}>
                     <JaNeiSvar harSvartJa={harAleneomsorg} />
                 </SummaryBlock>
             )}
             {harDekketTiFørsteDagerSelv !== undefined && (
-                <SummaryBlock header={intlHelper(intl, 'step.dineBarn.bekrefterDektTiDagerSelv.spm')}>
+                <SummaryBlock header={text('step.dineBarn.bekrefterDektTiDagerSelv.spm')}>
                     <JaNeiSvar harSvartJa={harDekketTiFørsteDagerSelv} />
                 </SummaryBlock>
             )}

@@ -1,7 +1,5 @@
 import { Button, Modal, ModalProps } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import classnames from 'classnames';
 import Knapperad from '../knapperad/Knapperad';
 import './bekreftDialog.less';
@@ -12,17 +10,16 @@ export interface Props extends Omit<ModalProps, 'onClose'> {
     onBekreft: () => void;
     /** Kalles når bruker klikker avbryt. Dersom denne ikke settes */
     onAvbryt: () => void;
-    /** Label for bekreft-knapp. Default hentes fra intl: komponent.bekreftDialog.bekreftLabel */
-    bekreftLabel?: string;
-    /** Label for avbryt-knapp. Default hentes fra intl: komponent.bekreftDialog.avbrytLabel */
-    avbrytLabel?: string;
+    /** Label for bekreft-knapp. */
+    bekreftLabel: string;
+    /** Label for avbryt-knapp. */
+    avbrytLabel: string;
     /** Maks bredde */
     størrelse?: '30';
     onClose: React.ReactEventHandler<HTMLDialogElement>;
 }
 const bem = bemUtils('bekreftDialog');
 const BekreftDialog = (props: Props) => {
-    const intl = useIntl();
     const { tittel, onAvbryt, onBekreft, avbrytLabel, bekreftLabel, children, størrelse, ...modalProps } = props;
     return props.open ? (
         <Modal
@@ -42,10 +39,10 @@ const BekreftDialog = (props: Props) => {
                         type="button"
                         onClick={() => onBekreft()}
                         className="bekreftDialog__bekreftKnapp">
-                        {bekreftLabel || intlHelper(intl, 'komponent.bekreftDialog.bekreftLabel')}
+                        {bekreftLabel}
                     </Button>
                     <Button variant="tertiary" type="button" onClick={onAvbryt} className="bekreftDialog__avbrytKnapp">
-                        {avbrytLabel || intlHelper(intl, 'komponent.bekreftDialog.avbrytLabel')}
+                        {avbrytLabel}
                     </Button>
                 </Knapperad>
             </Modal.Body>

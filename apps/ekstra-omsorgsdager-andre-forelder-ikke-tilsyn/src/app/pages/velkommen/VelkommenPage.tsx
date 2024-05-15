@@ -1,7 +1,5 @@
-import { useIntl } from 'react-intl';
 import { SIFCommonPageKey, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { OmsorgsdagerAnnenForelderIkkeTilsynApp } from '@navikt/sif-app-register';
 import { SamtykkeForm } from '@navikt/sif-common-soknad-ds';
 import actionsCreator from '../../søknad/context/action/actionCreator';
@@ -9,9 +7,10 @@ import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext
 import { SøknadRoutes } from '../../types/SøknadRoutes';
 import OmSøknaden from './OmSøknaden';
 import VelkommenGuide from './VelkommenGuide';
+import { useAppIntl } from '../../i18n';
 
 const VelkommenPage = () => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     const {
         state: { søker },
         dispatch,
@@ -27,7 +26,7 @@ const VelkommenPage = () => {
         dispatch(actionsCreator.setSøknadRoute(SøknadRoutes.OM_ANNEN_FORELDER));
     };
     return (
-        <Page title={intlHelper(intl, 'application.title')}>
+        <Page title={text('application.title')}>
             <VelkommenGuide navn={søker.fornavn} />
 
             <OmSøknaden />

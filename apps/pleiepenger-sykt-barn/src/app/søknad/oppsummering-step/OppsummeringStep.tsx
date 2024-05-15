@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import { useNavigate } from 'react-router-dom';
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
@@ -8,7 +8,6 @@ import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds/src';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
@@ -49,6 +48,7 @@ import {
     renderUtenlandsoppholdSummary,
 } from './summaryItemRenderers';
 import './oppsummeringStep.less';
+import { AppText } from '../../i18n';
 
 interface Props {
     values: SøknadFormValues;
@@ -61,7 +61,8 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
     const [soknadSent, setSoknadSent] = useState<boolean>(false);
     const [invalidParameters, setInvalidParameters] = useState<InvalidParameter[] | undefined>();
 
-    const intl = useIntl();
+    const appIntl = useAppIntl();
+    const { text, intl } = appIntl;
     const navigate = useNavigate();
 
     const søknadStepConfig = getSøknadStepConfig(values);
@@ -146,7 +147,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                     to: ISODateToDate(apiValues.tilOgMed),
                 };
 
-                const apiValuesValidationErrors = validateApiValues(apiValues, values, intl);
+                const apiValuesValidationErrors = validateApiValues(apiValues, values, appIntl);
 
                 const { medlemskap, utenlandsoppholdIPerioden, ferieuttakIPerioden } = apiValues;
 
@@ -169,7 +170,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                         showButtonSpinner={sendingInProgress}>
                         <SifGuidePanel>
                             <p>
-                                <FormattedMessage id="steg.oppsummering.info" />
+                                <AppText id="steg.oppsummering.info" />
                             </p>
                         </SifGuidePanel>
 
@@ -185,13 +186,13 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                         <Block margin="xl">
                             <ResponsivePanel border={true}>
                                 {/* Om deg */}
-                                <SummarySection header={intlHelper(intl, 'steg.oppsummering.søker.header')}>
+                                <SummarySection header={text('steg.oppsummering.søker.header')}>
                                     <Block margin="m">
                                         <div data-testid="oppsummering-søker-navn">
                                             {formatName(fornavn, etternavn, mellomnavn)}
                                         </div>
                                         <div data-testid="oppsummering-søker-fødselsnummer">
-                                            <FormattedMessage
+                                            <AppText
                                                 id={'steg.oppsummering.søker.fnr'}
                                                 values={{
                                                     fødselsnummer: fødselsnummer,
@@ -205,10 +206,10 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                 <BarnSummary barn={barn} formValues={values} apiValues={apiValues} />
 
                                 {/* Perioden du søker pleiepenger for */}
-                                <SummarySection header={intlHelper(intl, 'steg.oppsummering.tidsrom.header')}>
-                                    <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.søknadsperiode.header')}>
+                                <SummarySection header={text('steg.oppsummering.tidsrom.header')}>
+                                    <SummaryBlock header={text('steg.oppsummering.søknadsperiode.header')}>
                                         <div data-testid="oppsummering-tidsrom-fomtom">
-                                            <FormattedMessage
+                                            <AppText
                                                 id="steg.oppsummering.tidsrom.fomtom"
                                                 values={{
                                                     fom: `${dayjs(søknadsperiode.from).format('D. MMMM YYYY')}`,
@@ -222,12 +223,9 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                     {utenlandsoppholdIPerioden && (
                                         <>
                                             <SummaryBlock
-                                                header={intlHelper(
-                                                    intl,
-                                                    'steg.oppsummering.utenlandsoppholdIPerioden.header',
-                                                )}>
+                                                header={text('steg.oppsummering.utenlandsoppholdIPerioden.header')}>
                                                 <div data-testid="oppsummering-utenlandsoppholdIPerioden">
-                                                    <FormattedMessage
+                                                    <AppText
                                                         id={
                                                             utenlandsoppholdIPerioden.skalOppholdeSegIUtlandetIPerioden
                                                                 ? 'Ja'
@@ -253,13 +251,9 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                     {/* Ferieuttak i perioden */}
                                     {ferieuttakIPerioden && (
                                         <>
-                                            <SummaryBlock
-                                                header={intlHelper(
-                                                    intl,
-                                                    'steg.oppsummering.ferieuttakIPerioden.header',
-                                                )}>
+                                            <SummaryBlock header={text('steg.oppsummering.ferieuttakIPerioden.header')}>
                                                 <div data-testid="oppsummering-ferieuttakIPerioden">
-                                                    <FormattedMessage
+                                                    <AppText
                                                         id={ferieuttakIPerioden.skalTaUtFerieIPerioden ? 'Ja' : 'Nei'}
                                                     />
                                                 </div>
@@ -296,10 +290,10 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                 <OmsorgstilbudSummary søknadsperiode={søknadsperiode} apiValues={apiValues} />
 
                                 {/* Medlemskap i folketrygden */}
-                                <SummarySection header={intlHelper(intl, 'medlemskap.summary.header')}>
-                                    <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.utlandetSiste12.header')}>
+                                <SummarySection header={text('medlemskap.summary.header')}>
+                                    <SummaryBlock header={text('steg.oppsummering.utlandetSiste12.header')}>
                                         <div data-testid="oppsummering-medlemskap-utlandetSiste12">
-                                            <FormattedMessage
+                                            <AppText
                                                 id={
                                                     apiValues.medlemskap.harBoddIUtlandetSiste12Mnd === true
                                                         ? 'Ja'
@@ -319,9 +313,9 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                                 </div>
                                             </Block>
                                         )}
-                                    <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.utlandetNeste12.header')}>
+                                    <SummaryBlock header={text('steg.oppsummering.utlandetNeste12.header')}>
                                         <div data-testid="oppsummering-medlemskap-utlandetNeste12">
-                                            <FormattedMessage
+                                            <AppText
                                                 id={
                                                     apiValues.medlemskap.skalBoIUtlandetNeste12Mnd === true
                                                         ? 'Ja'
@@ -344,7 +338,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                 </SummarySection>
 
                                 {/* Vedlegg */}
-                                <SummarySection header={intlHelper(intl, 'steg.oppsummering.vedlegg.header')}>
+                                <SummarySection header={text('steg.oppsummering.vedlegg.header')}>
                                     <Block margin="m">
                                         <div data-testid={'oppsummering-vedleggList'}>
                                             <LegeerklæringAttachmentList includeDeletionFunctionality={false} />
@@ -356,7 +350,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
 
                         <Block margin="l">
                             <SøknadFormComponents.ConfirmationCheckbox
-                                label={intlHelper(intl, 'steg.oppsummering.bekrefterOpplysninger')}
+                                label={text('steg.oppsummering.bekrefterOpplysninger')}
                                 name={SøknadFormField.harBekreftetOpplysninger}
                                 validate={getCheckedValidator()}
                             />

@@ -1,7 +1,6 @@
 import { Alert, HStack, Heading, Tag } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import {
     DateRange,
     TypedFormikFormContext,
@@ -23,12 +22,12 @@ import {
 import dayjs from 'dayjs';
 import { useFormikContext } from 'formik';
 import { useContext, useEffect, useState } from 'react';
-import { IntlShape, useIntl } from 'react-intl';
 import { getArbeidstidIPeriodeIntlValues } from '../../arbeidstidPeriodeIntlValuesUtils';
 import { ArbeidstidFormFields, ArbeidstidFormValues } from '../../ArbeidstidStep';
 import { ArbeidIPeriode, ArbeidIPeriodeField, JobberIPeriodeSvar } from '../../ArbeidstidTypes';
 import { ArbeidsforholdType, ArbeidstidRegistrertLogProps } from '../types';
 import { getJobberIPeriodenValidator } from '../validation/jobberIPeriodenSpørsmål';
+import { AppIntlShape, useAppIntl } from '../../../../../i18n';
 
 const { RadioGroup, InputGroup } = getTypedFormComponents<
     ArbeidstidFormFields,
@@ -59,7 +58,9 @@ const ArbeidIPeriodeSpørsmål = ({
     skjulJobberNormaltValg = false,
     onArbeidstidVariertChange,
 }: Props) => {
-    const intl = useIntl();
+    const appIntl = useAppIntl();
+    const { text } = appIntl;
+
     const [arbeidstidChanged, setArbeidstidChanged] = useState(false);
 
     const context = useContext(TypedFormikFormContext);
@@ -82,7 +83,7 @@ const ArbeidIPeriodeSpørsmål = ({
         return <Alert variant="error">Det mangler informasjon om hvor mye du jobber normalt</Alert>;
     }
 
-    const intlValues = getArbeidstidIPeriodeIntlValues(intl, {
+    const intlValues = getArbeidstidIPeriodeIntlValues(appIntl.intl, {
         arbeidsforhold: {
             arbeidsstedNavn,
             jobberNormaltTimer,
@@ -144,9 +145,9 @@ const ArbeidIPeriodeSpørsmål = ({
             {!skjulJobberNormaltValg && (
                 <RadioGroup
                     name={getFieldName(ArbeidIPeriodeField.jobberIPerioden)}
-                    legend={intlHelper(intl, `arbeidIPeriode.jobberIPerioden.spm`, intlValues)}
+                    legend={text(`arbeidIPeriode.jobberIPerioden.spm`, intlValues)}
                     validate={getJobberIPeriodenValidator(intlValues)}
-                    radios={getJobberIPeriodenRadios(intl, skjulJobberNormaltValg)}
+                    radios={getJobberIPeriodenRadios(appIntl, skjulJobberNormaltValg)}
                 />
             )}
 
@@ -155,7 +156,7 @@ const ArbeidIPeriodeSpørsmål = ({
                     <InputGroup
                         id={`${fieldName}_group`}
                         name={`${fieldName}_group` as any}
-                        legend={intlHelper(intl, 'arbeidIPeriode.enkeltdager_gruppe.legend', intlValues)}
+                        legend={text('arbeidIPeriode.enkeltdager_gruppe.legend', intlValues)}
                         validate={() => {
                             const { jobberIPerioden, enkeltdager = {} } = arbeidIPeriode || {};
                             if (jobberIPerioden === JobberIPeriodeSvar.redusert && skjulJobberNormaltValg === false) {
@@ -207,20 +208,20 @@ const ArbeidIPeriodeSpørsmål = ({
     );
 };
 
-const getJobberIPeriodenRadios = (intl: IntlShape, skjulJobberNormaltValg: boolean) => [
+const getJobberIPeriodenRadios = ({ text }: AppIntlShape, skjulJobberNormaltValg: boolean) => [
     {
-        label: intlHelper(intl, 'arbeidIPeriode.jobberIPerioden.jobberIkke'),
+        label: text('arbeidIPeriode.jobberIPerioden.jobberIkke'),
         value: JobberIPeriodeSvar.heltFravær,
     },
     {
-        label: intlHelper(intl, 'arbeidIPeriode.jobberIPerioden.jobberRedusert'),
+        label: text('arbeidIPeriode.jobberIPerioden.jobberRedusert'),
         value: JobberIPeriodeSvar.redusert,
     },
     ...(skjulJobberNormaltValg
         ? []
         : [
               {
-                  label: intlHelper(intl, 'arbeidIPeriode.jobberIPerioden.jobberVanlig'),
+                  label: text('arbeidIPeriode.jobberIPerioden.jobberVanlig'),
                   value: JobberIPeriodeSvar.somVanlig,
               },
           ]),

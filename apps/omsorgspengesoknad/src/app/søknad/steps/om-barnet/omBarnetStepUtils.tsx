@@ -1,14 +1,15 @@
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
-import { FormikRadioProp } from '@navikt/sif-common-formik-ds/src/components/formik-radio-group/FormikRadioGroup';
-import { RegistrertBarn } from '../../../types/RegistrertBarn';
-import { Søknadsdata, OmBarnetSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
-import { OmBarnetFormValues } from './OmBarnetStep';
-import { FormattedMessage } from 'react-intl';
-import { dateFormatter } from '@navikt/sif-common-utils';
-import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
-import { SøknadContextState } from '../../../types/SøknadContextState';
+import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import { FormikRadioProp } from '@navikt/sif-common-formik-ds/src/components/formik-radio-group/FormikRadioGroup';
+import { dateFormatter } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import { AppMessageKeys, AppText } from '../../../i18n';
+import { RegistrertBarn } from '../../../types/RegistrertBarn';
+import { SøknadContextState } from '../../../types/SøknadContextState';
+import { OmBarnetSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { OmBarnetFormValues } from './OmBarnetStep';
+import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
 
 export const getOmBarnetStepInitialValues = (
     søknadsdata: Søknadsdata,
@@ -124,7 +125,7 @@ export const mapBarnTilRadioProps = (barn: RegistrertBarn, disabled?: boolean): 
             <>
                 <div>{barnetsNavn}</div>
                 <div>
-                    <FormattedMessage
+                    <AppText
                         id="steg.omBarnet.hvilketBarn.født"
                         values={{ dato: dateFormatter.compact(fødselsdato) }}
                     />
@@ -152,4 +153,17 @@ export const getMinDatoForBarnetsFødselsdato = (): Date => {
     return today.isBefore(frist)
         ? today.subtract(19, 'year').startOf('year').toDate()
         : today.subtract(18, 'year').startOf('year').toDate();
+};
+
+export const getRelasjonTilBarnetIntlKey = (relasjonTilBarnet: SøkersRelasjonTilBarnet): AppMessageKeys => {
+    switch (relasjonTilBarnet) {
+        case SøkersRelasjonTilBarnet.MOR:
+            return 'steg.omBarnet.relasjonTilBarnet.mor';
+        case SøkersRelasjonTilBarnet.FAR:
+            return 'steg.omBarnet.relasjonTilBarnet.far';
+        case SøkersRelasjonTilBarnet.FOSTERFORELDER:
+            return 'steg.omBarnet.relasjonTilBarnet.fosterforelder';
+        case SøkersRelasjonTilBarnet.ADOPTIVFORELDER:
+            return 'steg.omBarnet.relasjonTilBarnet.adoptivforelder';
+    }
 };

@@ -1,24 +1,23 @@
-import { Heading, Ingress } from '@navikt/ds-react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { BodyLong, Heading } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { AppText, useAppIntl } from '../../i18n';
 import './generalErrorPage.css';
 
 const GeneralErrorPage = () => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     return (
-        <Page title={intlHelper(intl, 'page.generalErrorPage.sidetittel')}>
+        <Page title={text('page.generalErrorPage.sidetittel')}>
             <div className={'generalErrorPage'}>
                 <SifGuidePanel mood="uncertain">
                     <Heading level="2" size="large">
-                        <FormattedMessage id="page.generalErrorPage.tittel" />
+                        <AppText id="page.generalErrorPage.tittel" />
                     </Heading>
                     <Block margin="m" padBottom="l">
-                        <Ingress>
-                            <FormattedMessage id="page.generalErrorPage.tekst" />
-                        </Ingress>
+                        <BodyLong size="large">
+                            <AppText id="page.generalErrorPage.tekst" />
+                        </BodyLong>
                     </Block>
                 </SifGuidePanel>
             </div>
