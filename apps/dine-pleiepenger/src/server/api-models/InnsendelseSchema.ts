@@ -1,28 +1,28 @@
 import { z } from 'zod';
-import { k9FormatSøknadSchema } from './k9FormatSøknadSchema';
 import { DokumentSchema } from './DokumenetSchema';
 import { Innsendelsestype } from './Innsendelsestype';
-import { OrganisasjonSchema } from './OrganisasjonSchema';
 import { K9FormatEttersendelseSchema } from './k9FormatEttersendelseSchema';
+import { k9FormatSøknadSchema } from './k9FormatSøknadSchema';
+import { OrganisasjonSchema } from './OrganisasjonSchema';
 
-const PleiepengerSøknadSchema = z.object({
+const InnsendelseBaseSchema = z.object({
     søknadId: z.string(),
     dokumenter: z.array(DokumentSchema),
+    innsendelsestype: z.nativeEnum(Innsendelsestype),
+});
+
+const PleiepengerSøknadSchema = InnsendelseBaseSchema.extend({
     innsendelsestype: z.literal(Innsendelsestype.SØKNAD),
     k9FormatInnsendelse: k9FormatSøknadSchema,
     arbeidsgivere: z.array(OrganisasjonSchema).optional(),
 });
 
-const EndringsmeldingSchema = z.object({
-    søknadId: z.string(),
-    dokumenter: z.array(DokumentSchema),
+const EndringsmeldingSchema = InnsendelseBaseSchema.extend({
     innsendelsestype: z.literal(Innsendelsestype.ENDRINGSMELDING),
     k9FormatInnsendelse: k9FormatSøknadSchema,
 });
 
-const EttersendelseSchema = z.object({
-    søknadId: z.string(),
-    dokumenter: z.array(DokumentSchema),
+const EttersendelseSchema = InnsendelseBaseSchema.extend({
     innsendelsestype: z.literal(Innsendelsestype.ETTERSENDELSE),
     k9FormatInnsendelse: K9FormatEttersendelseSchema,
 });
