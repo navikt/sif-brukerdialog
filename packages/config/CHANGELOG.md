@@ -1,5 +1,11 @@
 # config
 
+## 0.9.25
+
+### Patch Changes
+
+- 20b3033: Pakkeoppdateringer - minor/patch
+
 ## 0.9.24
 
 ### Patch Changes

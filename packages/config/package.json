@@ -1,7 +1,7 @@
 {
     "main": "index.js",
     "name": "config",
-    "version": "0.9.24",
+    "version": "0.9.25",
     "private": true,
     "dependencies": {
         "@typescript-eslint/eslint-plugin": "7.9.0",
