@@ -1,13 +1,12 @@
 import React from 'react';
 import { Alert, Heading, Link } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds';
 import { useSøknadsdataStatus } from '../../hooks/useSøknadsdataStatus';
 import { StepId } from '../../types/StepId';
 import { getSøknadStepRoute } from '../../utils/søknadRoutesUtils';
+import { useAppIntl } from '../../i18n';
 
 interface Props {
     stepId: StepId;
@@ -15,13 +14,13 @@ interface Props {
 }
 
 const InvalidStepSøknadsdataInfo: React.FunctionComponent<Props> = ({ stepId, stepConfig }) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     const navigate = useNavigate();
     const { invalidSteps } = useSøknadsdataStatus(stepId, stepConfig);
 
     if (invalidSteps.length > 0) {
         const step = invalidSteps[0];
-        const stepTitle = intlHelper(intl, stepConfig[step].stepTitleIntlKey);
+        const stepTitle = text(stepConfig[step].stepTitleIntlKey as any);
         const stepRoute = getSøknadStepRoute(step);
         const getStepLink = () => (
             <Link

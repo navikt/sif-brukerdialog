@@ -5,6 +5,7 @@ import { Arbeidsgiver, ArbeidstidApiData } from '@types';
 import ArbeidstidUker from '../../../modules/arbeidstid-uker/ArbeidstidUker';
 import ArbeidstidArbeidstakerOppsummering from './ArbeidstidArbeidstakerOppsummering';
 import { oppsummeringStepUtils } from './oppsummeringStepUtils';
+import { AppText, useAppIntl } from '../../../i18n';
 
 interface Props {
     arbeidstid: ArbeidstidApiData;
@@ -12,8 +13,9 @@ interface Props {
 }
 
 const ArbeidstidOppsummering: React.FunctionComponent<Props> = ({ arbeidstid, arbeidsgivere }) => {
+    const { text } = useAppIntl();
     const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } = arbeidstid;
-    const arbeidstidKolonneTittel = 'Endret arbeidstid';
+    const arbeidstidKolonneTittel = text('oppsummeringStep.arbeidstid.kolonne.endretArbeidstid');
 
     const eksisterendeArbeidstakere = arbeidstakerList.filter((a) => a._erUkjentArbeidsforhold === false);
     const ukjenteArbeidsforhold = arbeidstakerList.filter((a) => a._erUkjentArbeidsforhold === true);
@@ -25,7 +27,7 @@ const ArbeidstidOppsummering: React.FunctionComponent<Props> = ({ arbeidstid, ar
                         key={key}
                         arbeidstaker={ukjenteArbeidsforhold[key]}
                         arbeidsgivere={arbeidsgivere}
-                        arbeidstidKolonneTittel="I perioden"
+                        arbeidstidKolonneTittel={text('oppsummeringStep.arbeidstid.kolonne.iPerioden')}
                     />
                 ))}
 
@@ -41,7 +43,7 @@ const ArbeidstidOppsummering: React.FunctionComponent<Props> = ({ arbeidstid, ar
             {frilanserArbeidstidInfo && (
                 <Block margin="xl" padBottom="l">
                     <Heading level="3" size="small">
-                        Frilanser
+                        <AppText id="oppsummeringStep.arbeidstid.frilanser.tittel" />
                     </Heading>
                     <>
                         <ArbeidstidUker
@@ -54,7 +56,7 @@ const ArbeidstidOppsummering: React.FunctionComponent<Props> = ({ arbeidstid, ar
             {selvstendigNæringsdrivendeArbeidstidInfo && (
                 <Block margin="xl" padBottom="l">
                     <Heading level="3" size="small">
-                        Selvstendig næringsdrivende
+                        <AppText id="oppsummeringStep.arbeidstid.sn.tittel" />
                     </Heading>
                     <>
                         <ArbeidstidUker

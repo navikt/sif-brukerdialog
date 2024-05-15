@@ -77,6 +77,8 @@ export const barnMockData = {
     annetBarn15years,
     ettBarnUnder13: [registrertBarn2years],
     toBarnUnder13: [registrertBarn2years, annetBarn2years],
+    toBarnRegistrertUnder13: [registrertBarn2years, registrertBarn4years],
+    treBarnRegistrertUnder13: [registrertBarn2years, registrertBarn3years, registrertBarn4years],
     treBarnUnder13: [annetBarn2years, registrertBarn3years, registrertBarn4years],
     toBarnUnderOgEttBarnOver: [registrertBarn2years, registrertBarn3years, registrertBarn13years],
     treBarnUnderOgEttBarnOver: [

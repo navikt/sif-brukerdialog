@@ -2,6 +2,7 @@ import { BodyShort } from '@navikt/ds-react';
 import React from 'react';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
 import { Arbeidsaktivitet } from '@types';
+import { AppText } from '../../../../../i18n';
 import { SkrivTilOssLink } from '../../../../../lenker';
 
 interface Props {
@@ -16,26 +17,21 @@ const ArbeidsaktivitetUtenforPeriodeInfo: React.FunctionComponent<Props> = ({
     if (!harPerioderFørTillattEndringsperiode && !harPerioderEtterTillattEndringsperiode) {
         return null;
     }
-    const førDato = dateFormatter.full(tillattEndringsperiode.from);
-    const etterDato = dateFormatter.full(tillattEndringsperiode.to);
+    const intlValues = {
+        førDato: dateFormatter.full(tillattEndringsperiode.from),
+        etterDato: dateFormatter.full(tillattEndringsperiode.to),
+        skrivTilOssLink: <SkrivTilOssLink />,
+    };
     return (
         <BodyShort style={{ paddingBottom: '1rem' }}>
             {harPerioderFørTillattEndringsperiode && !harPerioderEtterTillattEndringsperiode && (
-                <>
-                    Hvis du ønsker å gjøre endringer før {førDato}, må du sende oss en melding via <SkrivTilOssLink />.
-                </>
+                <AppText id="arbeidsaktivitetContent.utenforPeriode.før" values={intlValues} />
             )}
             {!harPerioderFørTillattEndringsperiode && harPerioderEtterTillattEndringsperiode && (
-                <>
-                    Hvis du ønsker å gjøre endringer etter {etterDato}, må du sende oss en melding via{' '}
-                    <SkrivTilOssLink />.
-                </>
+                <AppText id="arbeidsaktivitetContent.utenforPeriode.før" values={intlValues} />
             )}
             {harPerioderFørTillattEndringsperiode && harPerioderEtterTillattEndringsperiode && (
-                <>
-                    Hvis du ønsker å gjøre endringer før {førDato} eller etter {etterDato}, må du sende oss en melding
-                    via <SkrivTilOssLink />.
-                </>
+                <AppText id="arbeidsaktivitetContent.utenforPeriode.før" values={intlValues} />
             )}
         </BodyShort>
     );

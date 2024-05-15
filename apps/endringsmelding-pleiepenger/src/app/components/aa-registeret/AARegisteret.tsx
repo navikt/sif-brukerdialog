@@ -1,5 +1,8 @@
+import { useAppIntl } from '../../i18n';
+
 const AAregisteret = () => {
-    return <abbr title="Arbeidsgiver- og arbeidstakerregisteret">Aa-registeret</abbr>;
+    const { text } = useAppIntl();
+    return <abbr title={text('aaRegisteret.lang')}>{text('aaRegisteret.kort')}</abbr>;
 };
 
 export default AAregisteret;

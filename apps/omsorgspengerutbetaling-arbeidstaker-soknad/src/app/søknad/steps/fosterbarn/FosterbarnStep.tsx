@@ -1,27 +1,26 @@
-import { FormattedMessage, useIntl } from 'react-intl';
-import { useSøknadContext } from '../../context/hooks/useSøknadContext';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { StepId } from '../../../types/StepId';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
-import { getFosterbarnStepInitialValues, getFosterbarnSøknadsdataFromFormValues } from './fosterbarnStepUtils';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
-import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
-import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
-import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import actionsCreator from '../../context/action/actionCreator';
-import { SøknadContextState } from '../../../types/SøknadContextState';
-import SøknadStep from '../../SøknadStep';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
+import { YesOrNo } from '@navikt/sif-common-formik-ds/src/types';
+import getYesOrNoValidator from '@navikt/sif-common-formik-ds/src/validation/getYesOrNoValidator';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import FosterbarnListAndDialog from '@navikt/sif-common-forms-ds/src/forms/fosterbarn/FosterbarnListAndDialog';
 import { Fosterbarn } from '@navikt/sif-common-forms-ds/src/forms/fosterbarn/types';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/src/types';
-import getYesOrNoValidator from '@navikt/sif-common-formik-ds/src/validation/getYesOrNoValidator';
+import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
+import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
+import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import { AppText, useAppIntl } from '../../../i18n';
+import { StepId } from '../../../types/StepId';
+import { SøknadContextState } from '../../../types/SøknadContextState';
+import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import actionsCreator from '../../context/action/actionCreator';
+import { useSøknadContext } from '../../context/hooks/useSøknadContext';
+import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
+import SøknadStep from '../../SøknadStep';
+import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
+import { getFosterbarnStepInitialValues, getFosterbarnSøknadsdataFromFormValues } from './fosterbarnStepUtils';
 
 export enum FosterbarnFormFields {
     harFostrerbarn = 'harFostrerbarn',
@@ -40,7 +39,7 @@ const { FormikWrapper, Form, YesOrNoQuestion } = getTypedFormComponents<
 >();
 
 const FosterbarnStep = () => {
-    const intl = useIntl();
+    const { text, intl } = useAppIntl();
 
     const {
         state: { søknadsdata, søker },
@@ -92,19 +91,19 @@ const FosterbarnStep = () => {
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
                                 <SifGuidePanel>
-                                    <FormattedMessage id="step.fosterbarn.counsellorPanel.avsnitt.1" />
+                                    <AppText id="step.fosterbarn.counsellorPanel.avsnitt.1" />
                                     <Block margin="l">
-                                        <FormattedMessage id="step.fosterbarn.counsellorPanel.avsnitt.2" />
+                                        <AppText id="step.fosterbarn.counsellorPanel.avsnitt.2" />
                                     </Block>
                                     <Block margin="l">
-                                        <FormattedMessage id="step.fosterbarn.counsellorPanel.avsnitt.3" />
+                                        <AppText id="step.fosterbarn.counsellorPanel.avsnitt.3" />
                                     </Block>
                                 </SifGuidePanel>
 
                                 <FormBlock>
                                     <YesOrNoQuestion
                                         name={FosterbarnFormFields.harFostrerbarn}
-                                        legend={intlHelper(intl, 'step.fosterbarn.info.spm.fosterbarn')}
+                                        legend={text('step.fosterbarn.info.spm.fosterbarn')}
                                         validate={getYesOrNoValidator()}
                                         data-testid="harFostrerbarn"
                                     />

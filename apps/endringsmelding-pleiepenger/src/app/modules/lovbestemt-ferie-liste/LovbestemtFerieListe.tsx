@@ -6,6 +6,7 @@ import DeleteButton from '../../components/buttons/DeleteButton';
 import EditButton from '../../components/buttons/EditButton';
 import FerieTag from '../../components/tags/FerieTag';
 import './lovbestemtFerieListe.scss';
+import { AppText, useAppIntl } from '../../i18n';
 
 interface Props {
     perioder: LovbestemtFeriePeriode[];
@@ -15,13 +16,14 @@ interface Props {
 }
 
 const LovbestemtFerieListe: React.FunctionComponent<Props> = ({ perioder, onEdit, onDelete, onUndoDelete }) => {
+    const { text } = useAppIntl();
     return (
         <>
             <ul className="lovbestemtFerieListe">
                 {perioder.length === 0 && (
                     <li>
                         <Alert inline={true} variant="info">
-                            Ingen ferie registrert
+                            <AppText id="lovbestemtFerieListe.ingenFerieRegistrert" />
                         </Alert>
                     </li>
                 )}
@@ -42,10 +44,14 @@ const LovbestemtFerieListe: React.FunctionComponent<Props> = ({ perioder, onEdit
                                     }`}>
                                     <span className={'dato'}>{periodeTekst}</span>
                                     {periode.liggerISak && periode.skalHaFerie === false && (
-                                        <FerieTag type="fjernet">Ferie fjernet</FerieTag>
+                                        <FerieTag type="fjernet">
+                                            <AppText id="lovbestemtFerieListe.ferieFjernet" />
+                                        </FerieTag>
                                     )}
                                     {periode.liggerISak === false && (
-                                        <FerieTag type="registrert">Ferie lagt til</FerieTag>
+                                        <FerieTag type="registrert">
+                                            <AppText id="lovbestemtFerieListe.ferieLagtTil" />
+                                        </FerieTag>
                                     )}
                                 </div>
                                 <div className="lovbestemtFerieListe__ferie__actions">
@@ -56,7 +62,7 @@ const LovbestemtFerieListe: React.FunctionComponent<Props> = ({ perioder, onEdit
                                             size="small"
                                             onClick={() => onUndoDelete(periode)}
                                             data-testid="angre_fjern_ferie_knapp">
-                                            Angre fjern
+                                            <AppText id="lovbestemtFerieListe.angreFjern" />
                                         </Button>
                                     )}
                                     {periode.skalHaFerie === true && (
@@ -65,8 +71,10 @@ const LovbestemtFerieListe: React.FunctionComponent<Props> = ({ perioder, onEdit
                                                 <div className="lovbestemtFerieListe__ferie__endreKnapp">
                                                     <EditButton
                                                         onClick={() => onEdit(periode)}
-                                                        title="Endre ferie"
-                                                        aria-label={`Endre ferie ${periodeTekst}`}
+                                                        title={text('lovbestemtFerieListe.endreFerie.label')}
+                                                        aria-label={text('lovbestemtFerieListe.endreFerie.ariaLabel', {
+                                                            periode: periodeTekst,
+                                                        })}
                                                     />
                                                 </div>
                                             )}
@@ -76,8 +84,10 @@ const LovbestemtFerieListe: React.FunctionComponent<Props> = ({ perioder, onEdit
                                                         onClick={() => {
                                                             onDelete(periode);
                                                         }}
-                                                        title="Fjern ferie"
-                                                        aria-label={`Fjern ferie ${periodeTekst}`}
+                                                        title={text('lovbestemtFerieListe.fjernFerie.label')}
+                                                        aria-label={text('lovbestemtFerieListe.fjernFerie.ariaLabel', {
+                                                            periode: periodeTekst,
+                                                        })}
                                                     />
                                                 </div>
                                             )}

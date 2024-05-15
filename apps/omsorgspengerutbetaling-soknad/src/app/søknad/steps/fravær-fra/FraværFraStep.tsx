@@ -5,19 +5,18 @@ import getRequiredFieldValidator from '@navikt/sif-common-formik-ds/src/validati
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import dayjs from 'dayjs';
-import { FormattedMessage } from 'react-intl';
-import useIntl from 'react-intl/src/components/useIntl';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import { AppText, useAppIntl } from '../../../i18n';
 import { Aktivitet, AktivitetFravær } from '../../../types/AktivitetFravær';
 import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import SøknadStep from '../../SøknadStep';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
+import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
+import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import {
     getFraværFraStepInitialValues,
@@ -44,7 +43,7 @@ const { FormikWrapper, Form, RadioGroup } = getTypedFormComponents<
 >();
 
 const FraværFraStep = () => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     const {
         state: { søknadsdata },
     } = useSøknadContext();
@@ -114,7 +113,7 @@ const FraværFraStep = () => {
                                 <FormBlock>
                                     <SifGuidePanel>
                                         <p>
-                                            <FormattedMessage id="step.fravaerFra.info" />
+                                            <AppText id="step.fravaerFra.info" />
                                         </p>
                                     </SifGuidePanel>
                                 </FormBlock>
@@ -128,12 +127,7 @@ const FraværFraStep = () => {
                                             <FormBlock key={fieldName}>
                                                 <RadioGroup
                                                     name={fieldName as FraværFraFormFields}
-                                                    legend={
-                                                        <FormattedMessage
-                                                            id="step.fravaerFra.dag.spm"
-                                                            values={{ dato }}
-                                                        />
-                                                    }
+                                                    legend={<AppText id="step.fravaerFra.dag.spm" values={{ dato }} />}
                                                     radios={[
                                                         {
                                                             label: 'Frilanser',
