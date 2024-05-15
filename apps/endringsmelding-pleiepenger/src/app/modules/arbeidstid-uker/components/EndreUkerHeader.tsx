@@ -1,6 +1,7 @@
 import { Alert, Checkbox } from '@navikt/ds-react';
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { AppText } from '../../../i18n';
 
 interface Props {
     visKorteUkerMelding?: boolean;
@@ -21,12 +22,12 @@ const EndreUkerHeader: React.FunctionComponent<Props> = ({
                 onChange={(evt) => {
                     onUkerKanVelgesChange(evt.target.checked);
                 }}>
-                Jeg ønsker å endre flere uker samtidig
+                <AppText id="endreUkerHeader.cb.endreFlereSamtidig.label" />
             </Checkbox>
             {visKorteUkerMelding && (
                 <Block margin="m" padBottom="l">
                     <Alert variant="info">
-                        Korte uker, altså ikke hele uker, eller uker med ferie må endres hver for seg.
+                        <AppText id="endreUkerHeader.korteUker.melding" />
                     </Alert>
                 </Block>
             )}

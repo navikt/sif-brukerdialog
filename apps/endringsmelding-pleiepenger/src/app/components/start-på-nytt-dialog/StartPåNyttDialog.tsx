@@ -1,6 +1,7 @@
 import { BodyShort } from '@navikt/ds-react';
 import React from 'react';
 import ConfirmationDialog from '@navikt/sif-common-core-ds/src/components/dialogs/confirmation-dialog/ConfirmationDialog';
+import { AppText } from '../../i18n';
 
 interface Props {
     open: boolean;
@@ -16,8 +17,12 @@ const StartPåNyttDialog: React.FunctionComponent<Props> = ({ open, onCancel, on
         onCancel={onCancel}
         okLabel="Starte på nytt"
         cancelLabel="Fortsette der jeg var">
-        <BodyShort spacing={true}>Du har trykket deg tilbake til startsiden.</BodyShort>
-        <BodyShort spacing={true}>Vil du starte utfyllingen på nytt eller fortsette der du var?</BodyShort>
+        <BodyShort spacing={true}>
+            <AppText id="startPåNyttDialog.tekst.1" />
+        </BodyShort>
+        <BodyShort spacing={true}>
+            <AppText id="startPåNyttDialog.tekst.2" />
+        </BodyShort>
     </ConfirmationDialog>
 );
 
