@@ -1,5 +1,13 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.23.1
+
+### Patch Changes
+
+- 798d58a: Legge til rette for flere språk
+- Updated dependencies [a98157a]
+  - @navikt/sif-common-soknad-ds@10.15.0
+
 ## 1.23.0
 
 ### Minor Changes
