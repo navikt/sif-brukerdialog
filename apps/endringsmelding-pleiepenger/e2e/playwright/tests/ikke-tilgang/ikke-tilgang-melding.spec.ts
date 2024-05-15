@@ -1,9 +1,9 @@
 import { expect, test } from '@playwright/test';
+import { SøknadRoutes } from '../../../../src/app/søknad/config/SøknadRoutes';
+import { FlereSaker } from '../../../../src/mocks/data/scenario/flere-saker/FlereSaker';
+import { UgyldigK9Format } from '../../../../src/mocks/data/scenario/ugyldig-k9-format/UgyldigK9Format';
 import { routeUtils } from '../../utils/routeUtils';
 import { setNow as setNow } from '../../utils/setNow';
-import { SøknadRoutes } from '../../../../src/app/søknad/config/SøknadRoutes';
-import { ugyldigK9FormatSakMock } from '../../../mock-data/ugyldigK9FormatSakMock';
-import { flereSakerMock } from '../../../mock-data/flereSakerMock';
 
 test.beforeEach(async ({ page }) => {
     await setNow(page);
@@ -12,7 +12,7 @@ test.beforeEach(async ({ page }) => {
 test('Ugyldig k9format på sak', async ({ page }) => {
     await routeUtils.resumeFromRoute(page, SøknadRoutes.VELKOMMEN);
     await page.route('**/api/innsyn/sak', async (route) => {
-        await route.fulfill({ status: 200, body: JSON.stringify([ugyldigK9FormatSakMock]) });
+        await route.fulfill({ status: 200, body: JSON.stringify(UgyldigK9Format.sak) });
     });
     await expect(page).toHaveTitle('Ingen tilgang - Endringsmelding for pleiepenger sykt barn');
     await expect(page.getByText('Hei STERK')).toBeVisible();
@@ -32,7 +32,7 @@ test('Ingen sak funnet', async ({ page }) => {
 test('Flere saker', async ({ page }) => {
     await routeUtils.resumeFromRoute(page, SøknadRoutes.VELKOMMEN);
     await page.route('**/api/innsyn/sak', async (route) => {
-        await route.fulfill({ status: 200, body: JSON.stringify(flereSakerMock) });
+        await route.fulfill({ status: 200, body: JSON.stringify(FlereSaker.sak) });
     });
     await expect(page).toHaveTitle('Ingen tilgang - Endringsmelding for pleiepenger sykt barn');
     await expect(page.getByText('Hei STERK')).toBeVisible();
