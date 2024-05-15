@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.15.0
+
+### Minor Changes
+
+- a98157a: Default kun bruke amplitude i prod
+
 ## 10.14.0
 
 ### Minor Changes

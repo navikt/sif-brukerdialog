@@ -1,5 +1,14 @@
 # @navikt/sif-ettersending
 
+## 3.32.1
+
+### Patch Changes
+
+- 94e2ae3: Legge til rette for flere språk
+- 94e2ae3: Endre til å bruke typede komponenter og hooks for alle tekster i dialogen. Gir mulighet for flere målformer.
+- Updated dependencies [a98157a]
+  - @navikt/sif-common-soknad-ds@10.15.0
+
 ## 3.32.0
 
 ### Minor Changes

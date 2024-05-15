@@ -1,5 +1,15 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.7.1
+
+### Patch Changes
+
+- cc44967: Legge til rette for flere språk
+- Updated dependencies [a98157a]
+- Updated dependencies [8e314e0]
+  - @navikt/sif-common-soknad-ds@10.15.0
+  - @navikt/sif-common-forms-ds@8.21.1
+
 ## 2.7.0
 
 ### Minor Changes
