@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.8.1
+
+### Patch Changes
+
+- 20b3033: Pakkeoppdateringer - minor/patch
+
 ## 1.8.0
 
 ### Minor Changes
