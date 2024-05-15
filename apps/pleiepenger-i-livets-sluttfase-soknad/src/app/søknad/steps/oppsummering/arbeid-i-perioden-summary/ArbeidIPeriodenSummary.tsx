@@ -1,6 +1,4 @@
 import React from 'react';
-import { IntlShape, useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { SummaryBlock, SummarySection } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
@@ -12,6 +10,7 @@ import {
     SøknadApiData,
 } from '../../../../types/søknadApiData/SøknadApiData';
 import ArbeidIPeriodeSummaryItem from './ArbeidIPeriodenSummaryItem';
+import { AppIntlShape, AppText, useAppIntl } from '../../../../i18n';
 
 interface Props {
     apiValues: SøknadApiData;
@@ -24,10 +23,10 @@ export interface ArbeidIPeriodenSummaryItemType extends ArbeidsforholdApiData {
     erAktivIPeriode: boolean;
 }
 
-const getArbeidsgiverTittel = (intl: IntlShape, arbeidsgiver: ArbeidsgiverApiData, periode: DateRange) => {
+const getArbeidsgiverTittel = ({ text }: AppIntlShape, arbeidsgiver: ArbeidsgiverApiData, periode: DateRange) => {
     switch (arbeidsgiver.type) {
         case ArbeidsgiverType.ORGANISASJON:
-            return intlHelper(intl, 'arbeidsgiver.tittel', {
+            return text('arbeidsgiver.tittel', {
                 navn: arbeidsgiver.navn,
                 organisasjonsnummer: arbeidsgiver.organisasjonsnummer,
             });
@@ -47,16 +46,16 @@ const getArbeidsgiverTittel = (intl: IntlShape, arbeidsgiver: ArbeidsgiverApiDat
                 const visSluttdato = sluttdato && dayjs(sluttdato).isBefore(periode.to, 'day');
 
                 if (visStartdato && visSluttdato) {
-                    return intlHelper(intl, 'frilans.tittel.startOgSlutt', intlValues);
+                    return text('frilans.tittel.startOgSlutt', intlValues);
                 }
                 if (visStartdato) {
-                    return intlHelper(intl, 'frilans.tittel.start', intlValues);
+                    return text('frilans.tittel.start', intlValues);
                 }
                 if (visSluttdato) {
-                    return intlHelper(intl, 'frilans.tittel.slutt', intlValues);
+                    return text('frilans.tittel.slutt', intlValues);
                 }
             }
-            return intlHelper(intl, 'frilans.tittel');
+            return text('frilans.tittel');
     }
 };
 
@@ -65,7 +64,8 @@ const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
     dagerMedPleie,
     søknadsperiode,
 }) => {
-    const intl = useIntl();
+    const appIntl = useAppIntl();
+    const { text } = appIntl;
     const alleArbeidsforhold: ArbeidIPeriodenSummaryItemType[] = [];
 
     if (arbeidsgivere) {
@@ -73,7 +73,7 @@ const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
             if (arbeidsgiverApiData.arbeidsforhold) {
                 alleArbeidsforhold.push({
                     ...arbeidsgiverApiData.arbeidsforhold,
-                    tittel: getArbeidsgiverTittel(intl, arbeidsgiverApiData, søknadsperiode),
+                    tittel: getArbeidsgiverTittel(appIntl, arbeidsgiverApiData, søknadsperiode),
                     erAktivIPeriode: arbeidsgiverApiData.arbeidsforhold.arbeidIPeriode !== undefined,
                 });
             }
@@ -91,7 +91,7 @@ const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
     if (selvstendigNæringsdrivende?.arbeidsforhold) {
         alleArbeidsforhold.push({
             ...selvstendigNæringsdrivende.arbeidsforhold,
-            tittel: intlHelper(intl, 'selvstendigNæringsdrivende.tittel'),
+            tittel: text('selvstendigNæringsdrivende.tittel'),
             erAktivIPeriode: true,
         });
     }
@@ -105,7 +105,7 @@ const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
     return (
         <>
             {aktiveArbeidsforhold.length > 0 && (
-                <SummarySection header={intlHelper(intl, 'oppsummering.arbeidIPeriode.jobbIPerioden.header')}>
+                <SummarySection header={text('oppsummering.arbeidIPeriode.jobbIPerioden.header')}>
                     {aktiveArbeidsforhold.map((forhold, index) =>
                         forhold.arbeidIPeriode ? (
                             <SummaryBlock header={forhold.tittel} key={forhold.tittel}>
@@ -117,7 +117,9 @@ const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
                                 />
                             </SummaryBlock>
                         ) : (
-                            <div key={index}>Informasjon om arbeid i perioden mangler</div>
+                            <div key={index}>
+                                <AppText id="oppsummering.arbeidIPeriode.jobberIPerioden.informasjonMangler" />
+                            </div>
                         ),
                     )}
                 </SummarySection>

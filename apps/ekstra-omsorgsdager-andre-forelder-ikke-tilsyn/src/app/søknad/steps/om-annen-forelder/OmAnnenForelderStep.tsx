@@ -1,24 +1,23 @@
-import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { getFødselsnummerValidator, getStringValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import { useSøknadContext } from '../../context/hooks/useSøknadContext';
-import { StepId } from '../../../types/StepId';
-import { getSøknadStepConfigForStep } from '../../../søknad/søknadStepConfig';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { useStepFormValuesContext } from '../../../søknad/context/StepFormValuesContext';
-import actionsCreator from '../../../søknad/context/action/actionCreator';
+import { getFødselsnummerValidator, getStringValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
+import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import { useAppIntl } from '../../../i18n';
+import actionsCreator from '../../../søknad/context/action/actionCreator';
+import { useStepFormValuesContext } from '../../../søknad/context/StepFormValuesContext';
+import { getSøknadStepConfigForStep } from '../../../søknad/søknadStepConfig';
+import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import {
-    getOmAnnenForelderSøknadsdataFromFormValues,
     getOmAnnenForelderStepInitialValues,
+    getOmAnnenForelderSøknadsdataFromFormValues,
 } from './omAnnenForelderStepUtils';
 
 export enum OmAnnenForelderFormFields {
@@ -38,7 +37,7 @@ const { FormikWrapper, Form, TextField } = getTypedFormComponents<
 >();
 
 const OmAnnenForelderStep = () => {
-    const intl = useIntl();
+    const { text, intl } = useAppIntl();
     const {
         state: { søknadsdata, søker },
     } = useSøknadContext();
@@ -83,17 +82,17 @@ const OmAnnenForelderStep = () => {
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
                                 <SifGuidePanel>
-                                    {intlHelper(intl, 'step.omAnnenForelder.sifGuidePanel')}
+                                    {text('step.omAnnenForelder.sifGuidePanel')}
                                     <ul>
-                                        <li>{intlHelper(intl, 'step.omAnnenForelder.sifGuidePanel.list.1')}</li>
-                                        <li>{intlHelper(intl, 'step.omAnnenForelder.sifGuidePanel.list.2')}</li>
+                                        <li>{text('step.omAnnenForelder.sifGuidePanel.list.1')}</li>
+                                        <li>{text('step.omAnnenForelder.sifGuidePanel.list.2')}</li>
                                     </ul>
                                 </SifGuidePanel>
 
                                 <FormBlock>
                                     <TextField
                                         name={OmAnnenForelderFormFields.annenForelderFnr}
-                                        label={intlHelper(intl, 'step.omAnnenForelder.fnr.spm')}
+                                        label={text('step.omAnnenForelder.fnr.spm')}
                                         validate={getFødselsnummerValidator({
                                             required: true,
                                             disallowedValues: [søker.fødselsnummer],
@@ -107,7 +106,7 @@ const OmAnnenForelderStep = () => {
                                 <FormBlock>
                                     <TextField
                                         name={OmAnnenForelderFormFields.annenForelderNavn}
-                                        label={intlHelper(intl, 'step.omAnnenForelder.navn.spm')}
+                                        label={text('step.omAnnenForelder.navn.spm')}
                                         validate={(value) => {
                                             const error = getStringValidator({
                                                 required: true,

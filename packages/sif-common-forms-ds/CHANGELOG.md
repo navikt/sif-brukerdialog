@@ -1,5 +1,23 @@
 # @navikt/sif-common-forms-ds
 
+## 8.21.2
+
+### Patch Changes
+
+- 20b3033: Pakkeoppdateringer - minor/patch
+
+## 8.21.1
+
+### Patch Changes
+
+- 8e314e0: Legge til rette for flere språk
+
+## 8.21.0
+
+### Minor Changes
+
+- 30b57da: Pakkeoppdatering - minor/patch
+
 ## 8.20.7
 
 ### Patch Changes

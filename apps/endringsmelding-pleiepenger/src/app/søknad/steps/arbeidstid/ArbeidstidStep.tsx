@@ -2,15 +2,23 @@ import { Alert, Heading } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import InfoList from '@navikt/sif-common-core-ds/src/components/lists/info-list/InfoList';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import ArbeidsaktiviteterMedUkjentArbeidsgiver from '../../../components/arbeidsaktiviteter-med-ukjent-arbeidsgiver/ArbeidsaktiviteterMedUkjentArbeidsgiver';
+import { useSøknadContext } from '../../../hooks';
 import { useStepConfig } from '../../../hooks/useStepConfig';
 import { useSøknadsdataInfo } from '../../../hooks/useSøknadsdataInfo';
-import SøknadStep from '../../SøknadStep';
 import { StepId } from '../../config/StepId';
-import ArbeidsaktiviteterMedUkjentArbeidsgiver from './ArbeidsaktiviteterMedUkjentArbeidsgiver';
+import SøknadStep from '../../SøknadStep';
 import ArbeidstidForm from './ArbeidstidForm';
+import { AppText } from '../../../i18n';
 
 const ArbeidstidStep = () => {
     const stepId = StepId.ARBEIDSTID;
+
+    const {
+        state: {
+            sak: { arbeidsaktivitetMedUkjentArbeidsgiver, arbeidsaktiviteter },
+        },
+    } = useSøknadContext();
 
     const { goBack, stepConfig } = useStepConfig(stepId);
 
@@ -20,14 +28,17 @@ const ArbeidstidStep = () => {
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>
             <SifGuidePanel>
                 <Heading level="2" size="xsmall" spacing={true}>
-                    Slik endrer du jobb i pleiepengeperioden
+                    <AppText id="arbeidstidStep.title" />
                 </Heading>
                 <InfoList>
-                    <li>Du oppgir hvor mye du jobber i timer eller prosent per uke.</li>
-                    <li>Du kan endre flere uker samtidig, eller én og én uke.</li>
                     <li>
-                        Hvis du har endring som gjelder kun enkeltdager, skal du fremdeles oppgi hvor mye du jobber
-                        samlet for hele uken.
+                        <AppText id="arbeidstidStep.info.1" />
+                    </li>
+                    <li>
+                        <AppText id="arbeidstidStep.info.2" />
+                    </li>
+                    <li>
+                        <AppText id="arbeidstidStep.info.3" />
                     </li>
                 </InfoList>
             </SifGuidePanel>
@@ -35,12 +46,18 @@ const ArbeidstidStep = () => {
             {harFjernetFerie && (
                 <Block margin="xl">
                     <Alert variant="warning">
-                        Du har fjernet dager med ferie. Skal du jobbe disse dagene, se over at jobb i perioden er
-                        riktig.
+                        <AppText id="arbeidstidStep.fjernetFerie.melding" />
                     </Alert>
                 </Block>
             )}
-            <ArbeidsaktiviteterMedUkjentArbeidsgiver />
+
+            {arbeidsaktivitetMedUkjentArbeidsgiver.length === 0 ? null : (
+                <ArbeidsaktiviteterMedUkjentArbeidsgiver
+                    arbeidsaktivitetMedUkjentArbeidsgiver={arbeidsaktivitetMedUkjentArbeidsgiver}
+                    arbeidsaktiviteter={arbeidsaktiviteter}
+                />
+            )}
+
             <ArbeidstidForm goBack={goBack} />
         </SøknadStep>
     );

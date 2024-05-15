@@ -1,18 +1,17 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SummaryBlock, SummaryList } from '@navikt/sif-common-ui';
 import { UtenlandsoppholdIPeriodenApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { renderUtenlandsoppholdIPeriodenSummary } from './renderUtenlandsoppholdSummary';
+import { useAppIntl } from '../../../../i18n';
 
 export interface Props {
     utenlandsopphold: UtenlandsoppholdIPeriodenApiData[];
 }
 
 const UtenlandsoppholdISøkeperiodeOppsummering: React.FC<Props> = ({ utenlandsopphold }) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     return utenlandsopphold && utenlandsopphold.length > 0 ? (
-        <SummaryBlock header={intlHelper(intl, 'step.oppsummering.utenlandsoppholdIPerioden.listetittel')}>
+        <SummaryBlock header={text('step.oppsummering.utenlandsoppholdIPerioden.listetittel')}>
             <SummaryList items={utenlandsopphold} itemRenderer={renderUtenlandsoppholdIPeriodenSummary} />
         </SummaryBlock>
     ) : null;

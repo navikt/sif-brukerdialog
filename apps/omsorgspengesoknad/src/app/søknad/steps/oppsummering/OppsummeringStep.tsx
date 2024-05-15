@@ -1,18 +1,17 @@
 import { ErrorSummary } from '@navikt/ds-react';
 import { useEffect, useRef } from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { usePrevious } from '@navikt/sif-common-hooks';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { useEffectOnce, usePrevious } from '@navikt/sif-common-hooks';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
+import { AppText, useAppIntl } from '../../../i18n';
 import { StepId } from '../../../types/StepId';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
@@ -40,6 +39,8 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 
 const OppsummeringStep = () => {
     const intl = useIntl();
+    const { text } = useAppIntl();
+
     const {
         state: { søknadsdata, søker },
     } = useSøknadContext();
@@ -79,12 +80,12 @@ const OppsummeringStep = () => {
                     return (
                         <>
                             <p>
-                                <FormattedMessage id="apiDataValidation.undefined" />
+                                <AppText id="apiDataValidation.undefined" />
                             </p>
                             <p>
-                                <FormattedMessage id="resetMellomlagring.text.1" />
+                                <AppText id="resetMellomlagring.text.1" />
                             </p>
-                            <ResetMellomagringButton label={intlHelper(intl, 'resetMellomlagring.startPåNytt')} />
+                            <ResetMellomagringButton label={text('resetMellomlagring.startPåNytt')} />
                         </>
                     );
                 }}
@@ -125,7 +126,7 @@ const OppsummeringStep = () => {
                                 />
                                 <ConfirmationCheckbox
                                     disabled={isSubmitting}
-                                    label={<FormattedMessage id="steg.oppsummering.bekrefterOpplysninger" />}
+                                    label={<AppText id="steg.oppsummering.bekrefterOpplysninger" />}
                                     validate={getCheckedValidator()}
                                     name={OppsummeringFormFields.harBekreftetOpplysninger}
                                 />

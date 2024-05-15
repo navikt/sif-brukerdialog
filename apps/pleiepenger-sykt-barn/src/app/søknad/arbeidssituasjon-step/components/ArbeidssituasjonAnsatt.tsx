@@ -1,6 +1,5 @@
 import { Alert } from '@navikt/ds-react';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
@@ -15,6 +14,7 @@ import AnsattNormalarbeidstidSpørsmål from './ansatt-spørsmål/AnsattNormalar
 import ErAnsattIArbeidsforholdSpørsmål from './ansatt-spørsmål/ErAnsattIArbeidsforholdSpørsmål';
 import SluttetIArbeidsforholdFørSøknadsperiodeSpørsmål from './ansatt-spørsmål/SluttetIArbeidsforholdFørSøknadsperiodeSpørsmål';
 import ArbeidssituasjonPanel from './arbeidssituasjon-panel/ArbeidssituasjonPanel';
+import { AppText } from '../../../i18n';
 
 interface Props {
     arbeidsforhold: ArbeidsforholdFormValues;
@@ -55,7 +55,7 @@ const ArbeidssituasjonAnsatt: React.FC<Props> = ({ arbeidsforhold, parentFieldNa
                         {arbeidsforhold.erAnsatt === YesOrNo.NO && (
                             <Block padBottom={arbeidsforhold.sluttetFørSøknadsperiode === YesOrNo.NO ? 'xl' : 'none'}>
                                 <Alert variant="info">
-                                    <FormattedMessage id="arbeidsforhold.ikkeAnsatt.info" />
+                                    <AppText id="arbeidsforhold.ikkeAnsatt.info" />
                                 </Alert>
                                 <FormBlock>
                                     <SluttetIArbeidsforholdFørSøknadsperiodeSpørsmål

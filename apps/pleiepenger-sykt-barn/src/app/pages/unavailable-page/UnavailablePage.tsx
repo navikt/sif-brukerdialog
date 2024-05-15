@@ -1,36 +1,36 @@
 import { Alert, Link } from '@navikt/ds-react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import './unavailablePage.less';
 import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
+import './unavailablePage.less';
+import { AppText } from '../../i18n';
 
 const bem = bemUtils('introPage');
 
 const link = 'https://www.nav.no/soknader/nb/person/familie/pleiepenger-og-opplaringspenger';
 
 const UnavailablePage = () => {
-    const intl = useIntl();
-    const title = intlHelper(intl, 'application.title');
+    const { text } = useAppIntl();
+    const title = text('application.title');
     useLogSidevisning(SIFCommonPageKey.ikkeTilgjengelig);
     return (
         <Page className={bem.block} title={title} topContentRenderer={() => <SoknadHeader title={title} />}>
             <Block margin="xxxl">
                 <Alert variant="warning">
                     <p>
-                        <FormattedMessage id="page.unavailable.1" />{' '}
+                        <AppText id="page.unavailable.1" />{' '}
                         <strong>
                             <Link href={link}>
-                                <FormattedMessage id="page.unavailable.2" />
+                                <AppText id="page.unavailable.2" />
                             </Link>
                         </strong>
                         .
                     </p>
                     <p>
-                        <FormattedMessage id="page.unavailable.3" />
+                        <AppText id="page.unavailable.3" />
                     </p>
                 </Alert>
             </Block>

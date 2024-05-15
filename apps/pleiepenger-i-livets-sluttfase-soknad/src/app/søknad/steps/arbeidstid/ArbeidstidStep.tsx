@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { Heading } from '@navikt/ds-react';
+import { useState } from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ConfirmationDialog from '@navikt/sif-common-core-ds/src/components/dialogs/confirmation-dialog/ConfirmationDialog';
@@ -7,35 +8,32 @@ import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-p
 import { DateRange, ValidationError } from '@navikt/sif-common-formik-ds';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { useState } from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import useLogSøknadInfo from '../../../hooks/useLogSøknadInfo';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { usePersistTempFormValues } from '../../../hooks/usePersistTempFormValues';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import { AppText, useAppIntl } from '../../../i18n';
 import { ConfirmationDialogType } from '../../../types/ConfirmationDialog';
 import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import SøknadStep from '../../SøknadStep';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
+import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
+import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import { getPeriodeSomFrilanserInnenforPeriode } from '../arbeidssituasjon/form-parts/arbeidssituasjonFrilansUtils';
 import { getPeriodeSomSelvstendigInnenforPeriode } from '../arbeidssituasjon/form-parts/arbeidssituasjonSelvstendigUtils';
-import { getIngenFraværConfirmationDialog } from '../confirmation-dialogs/ingenFraværConfirmation';
-import { ArbeidIPeriode } from './ArbeidstidTypes';
 import {
     getAntallArbeidsforhold,
     getArbeidstidStepInitialValues,
     getArbeidstidSøknadsdataFromFormValues,
 } from './arbeidstidStepUtils';
+import { ArbeidIPeriode } from './ArbeidstidTypes';
 import ArbeidIPeriodeSpørsmål from './form-parts/arbeid-i-periode-spørsmål/ArbeidIPeriodeSpørsmål';
 import { harFraværIPerioden } from './form-parts/arbeidstidUtils';
 import { ArbeidsforholdType } from './form-parts/types';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 
 export enum ArbeidsaktivitetType {
     arbeidstaker = 'arbeidstaker',
@@ -83,7 +81,9 @@ export interface ArbeidstidFormValues {
 const { FormikWrapper, Form } = getTypedFormComponents<ArbeidstidFormFields, ArbeidstidFormValues, ValidationError>();
 
 const ArbeidstidStep = () => {
-    const intl = useIntl();
+    const appIntl = useAppIntl();
+    const { text, intl } = appIntl;
+
     const {
         state: { søknadsdata, tempFormData },
         dispatch,
@@ -104,19 +104,30 @@ const ArbeidstidStep = () => {
         return new Promise((resolve) => {
             if (harFraværIPerioden(frilansArbeidstid, selvstendigArbeidstid, ansattArbeidstid) === false) {
                 setTimeout(() => {
-                    setConfirmationDialog(
-                        getIngenFraværConfirmationDialog({
-                            onCancel: () => {
-                                logBekreftIngenFraværFraJobb(false);
-                                setConfirmationDialog(undefined);
-                            },
-                            onConfirm: () => {
-                                logBekreftIngenFraværFraJobb(true);
-                                setConfirmationDialog(undefined);
-                                resolve(true);
-                            },
-                        }),
-                    );
+                    setConfirmationDialog({
+                        title: text('ingenFraværConfirmation.title'),
+                        okLabel: text('ingenFraværConfirmation.okLabel'),
+                        cancelLabel: text('ingenFraværConfirmation.cancelLabel'),
+                        content: (
+                            <div style={{ maxWidth: '35rem' }}>
+                                <Heading level="1" size="medium">
+                                    <AppText id="ingenFraværConfirmation.heading" />
+                                </Heading>
+                                <p>
+                                    <AppText id="ingenFraværConfirmation.content" />
+                                </p>
+                            </div>
+                        ),
+                        onCancel: () => {
+                            logBekreftIngenFraværFraJobb(false);
+                            setConfirmationDialog(undefined);
+                        },
+                        onConfirm: () => {
+                            logBekreftIngenFraværFraJobb(true);
+                            setConfirmationDialog(undefined);
+                            resolve(true);
+                        },
+                    });
                 });
             } else {
                 resolve(true);
@@ -220,7 +231,7 @@ const ArbeidstidStep = () => {
                                 <FormBlock>
                                     <SifGuidePanel>
                                         <p>
-                                            <FormattedMessage id={'arbeidIPeriode.StepInfo.1'} />
+                                            <AppText id={'arbeidIPeriode.StepInfo.1'} />
                                         </p>
                                     </SifGuidePanel>
 
@@ -258,12 +269,11 @@ const ArbeidstidStep = () => {
                                     {frilansArbeidstid && periodeSomFrilanserISøknadsperiode && (
                                         <FormBlock>
                                             <Heading level="2" size="large">
-                                                <FormattedMessage id="arbeidIPeriode.FrilansLabel" />
+                                                <AppText id="arbeidIPeriode.FrilansLabel" />
                                             </Heading>
                                             <Block>
                                                 <ArbeidIPeriodeSpørsmål
-                                                    arbeidsstedNavn={intlHelper(
-                                                        intl,
+                                                    arbeidsstedNavn={text(
                                                         'arbeidIPeriode.arbeidstidSted.frilansoppdrag',
                                                     )}
                                                     arbeidsforholdType={ArbeidsforholdType.FRILANSER}
@@ -284,14 +294,11 @@ const ArbeidstidStep = () => {
                                     {selvstendigArbeidstid && periode && periodeSomSelvstendigISøknadsperiode && (
                                         <FormBlock>
                                             <Heading level="2" size="large">
-                                                <FormattedMessage id="arbeidIPeriode.SNLabel" />
+                                                <AppText id="arbeidIPeriode.SNLabel" />
                                             </Heading>
                                             <Block>
                                                 <ArbeidIPeriodeSpørsmål
-                                                    arbeidsstedNavn={intlHelper(
-                                                        intl,
-                                                        'arbeidIPeriode.arbeidstidSted.sn',
-                                                    )}
+                                                    arbeidsstedNavn={text('arbeidIPeriode.arbeidstidSted.sn')}
                                                     arbeidsforholdType={ArbeidsforholdType.SELVSTENDIG}
                                                     jobberNormaltTimer={selvstendigArbeidstid.jobberNormaltTimer}
                                                     arbeidIPeriode={selvstendigArbeidstid.arbeidIPeriode}

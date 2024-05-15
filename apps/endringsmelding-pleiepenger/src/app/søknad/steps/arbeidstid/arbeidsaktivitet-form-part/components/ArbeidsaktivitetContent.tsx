@@ -23,7 +23,7 @@ import EndretTag from '../../../../../components/tags/EndretTag';
 import FerieTag from '../../../../../components/tags/FerieTag';
 import TagsContainer from '../../../../../components/tags/tags-container/TagsContainer';
 import ArbeidstidUker from '../../../../../modules/arbeidstid-uker/ArbeidstidUker';
-import { ArbeidstidUkerItem } from '../../../../../modules/arbeidstid-uker/ArbeidstidUkerItem';
+import { ArbeidstidUkerItem } from '../../../../../modules/arbeidstid-uker/types/ArbeidstidUkerItem';
 import EndreArbeidstidForm from '../../../../../modules/endre-arbeidstid-form/EndreArbeidstidForm';
 import EndreArbeidstidModal from '../../../../../modules/endre-arbeidstid-modal/EndreArbeidstidModal';
 import { ArbeidsaktivitetFormValues } from '../../ArbeidstidForm';
@@ -35,6 +35,7 @@ import { arbeidsaktivitetUtils, getEndringerForArbeidsukeForm } from '../arbeids
 import ArbeidsaktivitetUtenforPeriodeInfo from './ArbeidsaktivitetUtenforPeriodeInfo';
 import ArbeiderIPeriodenSpørsmål from './ArbeiderIPeriodenSpørsmål';
 import './arbeidsaktivitetContent.scss';
+import { AppText } from '../../../../../i18n';
 
 interface Props {
     perioder: PeriodeMedArbeidstid[];
@@ -95,8 +96,16 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                     {dateFormatter.full(periode.from)} - {dateFormatter.full(periode.to)}
                 </div>
                 <TagsContainer>
-                    {harEndringer && <EndretTag>Arbeidstid endret</EndretTag>}
-                    {harFjernetFerie && <FerieTag type="fjernet">Ferie fjernet</FerieTag>}
+                    {harEndringer && (
+                        <EndretTag>
+                            <AppText id="arbeidsaktivitetContent.tags.endretArbeid" />
+                        </EndretTag>
+                    )}
+                    {harFjernetFerie && (
+                        <FerieTag type="fjernet">
+                            <AppText id="arbeidsaktivitetContent.tags.ferieFjernet" />
+                        </FerieTag>
+                    )}
                 </TagsContainer>
             </div>
         );
@@ -114,7 +123,10 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                     {perioder.length > 0 ? (
                         <>
                             <Heading level="3" size="small" spacing={true}>
-                                {perioder.length > 1 ? 'Dine perioder med pleiepenger' : 'Uker med pleiepenger'}
+                                <AppText
+                                    id="arbeidsaktivitetContent.heading.perioder"
+                                    values={{ antallPerioder: perioder.length }}
+                                />
                             </Heading>
                             <ArbeidsaktivitetUtenforPeriodeInfo
                                 arbeidsaktivitet={arbeidsaktivitet}
@@ -144,7 +156,7 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                     ) : (
                         <>
                             <Heading level="3" size="small" spacing={true}>
-                                Ingen perioder tilgjengelig for endring
+                                <AppText id="arbeidsaktivitetContent.heading.ingenPerioder" />
                             </Heading>
                             <ArbeidsaktivitetUtenforPeriodeInfo
                                 arbeidsaktivitet={arbeidsaktivitet}

@@ -4,8 +4,8 @@ import { OmOmsorgenForBarnSøknadsdata, Søknadsdata } from '../../../types/søk
 import { OmOmsorgenForBarnFormValues } from './OmOmsorgenForBarnStep';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { FormattedMessage } from 'react-intl';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn';
+import { AppText } from '../../../i18n';
 
 export const getOmOmsorgenForBarnStepInitialValues = (
     søknadsdata: Søknadsdata,
@@ -76,8 +76,8 @@ export const barnItemLabelRenderer = (registrertBarn: RegistrertBarn): React.Rea
     return (
         <span className="dineBarn">
             <span>
-                <FormattedMessage
-                    id="step.omOmsorgenForBarn.form.født"
+                <AppText
+                    id="steg.omOmsorgenForBarn.form.født"
                     values={{ dato: dateFormatter.compact(registrertBarn.fødselsdato) }}
                 />
             </span>
@@ -93,8 +93,8 @@ export const getBarnOptions = (registrertBarn: RegistrertBarn[] = [], andreBarn:
     return [
         ...registrertBarn.map((barnet) => ({
             label: (
-                <FormattedMessage
-                    id="step.omOmsorgenForBarn.form.fødtNavn"
+                <AppText
+                    id="steg.omOmsorgenForBarn.form.fødtNavn"
                     values={{
                         dato: dateFormatter.compact(barnet.fødselsdato),
                         navn: formatName(barnet.fornavn, barnet.etternavn),
@@ -105,8 +105,8 @@ export const getBarnOptions = (registrertBarn: RegistrertBarn[] = [], andreBarn:
         })),
         ...andreBarn.map((barnet) => ({
             label: (
-                <FormattedMessage
-                    id="step.omOmsorgenForBarn.form.fødtNavn"
+                <AppText
+                    id="steg.omOmsorgenForBarn.form.fødtNavn"
                     values={{
                         dato: dateFormatter.compact(barnet.fødselsdato),
                         navn: barnet.navn,

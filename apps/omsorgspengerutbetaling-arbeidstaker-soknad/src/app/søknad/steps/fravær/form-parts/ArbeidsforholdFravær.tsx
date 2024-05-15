@@ -1,22 +1,20 @@
-import * as React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
-import { ValidationError, ValidationResult, YesOrNo, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
+import { BodyLong } from '@navikt/ds-react';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
+import { getTypedFormComponents, ValidationError, ValidationResult, YesOrNo } from '@navikt/sif-common-formik-ds';
+import { getYesOrNoValidator, ValidateYesOrNoError } from '@navikt/sif-common-formik-ds/src/validation';
+import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
+import { fraværDagToFraværDateRange, fraværPeriodeToDateRange } from '@navikt/sif-common-forms-ds/src/forms/fravær';
+import FraværDagerListAndDialog from '@navikt/sif-common-forms-ds/src/forms/fravær/FraværDagerListAndDialog';
+import FraværPerioderListAndDialog from '@navikt/sif-common-forms-ds/src/forms/fravær/FraværPerioderListAndDialog';
+import { AppText, useAppIntl } from '../../../../i18n';
+import { Fravær, FraværFormFields } from '../../../../types/FraværTypes';
 import {
     AppFieldValidationErrors,
     getFraværDagerValidator,
     getFraværPerioderValidator,
 } from '../../../../utils/validations';
-import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { FraværStepFormFields, FraværStepFormValues } from '../FraværStep';
-import { Fravær, FraværFormFields } from '../../../../types/FraværTypes';
-import FraværPerioderListAndDialog from '@navikt/sif-common-forms-ds/src/forms/fravær/FraværPerioderListAndDialog';
-import FraværDagerListAndDialog from '@navikt/sif-common-forms-ds/src/forms/fravær/FraværDagerListAndDialog';
-import { fraværDagToFraværDateRange, fraværPeriodeToDateRange } from '@navikt/sif-common-forms-ds/src/forms/fravær';
-import { ValidateYesOrNoError, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
-import { BodyLong } from '@navikt/ds-react';
 
 const { YesOrNoQuestion } = getTypedFormComponents<FraværStepFormFields, FraværStepFormValues, ValidationError>();
 
@@ -47,18 +45,18 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
     minDateForFravær,
     årstall,
 }: Props) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
 
     const getFieldName = (field: FraværFormFields) => `${parentFieldName}.${field}` as FraværStepFormFields;
 
     const getTidsromBegrensningInfo = (delvisdag?: boolean) => (
         <>
-            <ExpandableInfo title={intlHelper(intl, 'step.fravær.info.ikkeHelg.tittel')}>
-                {delvisdag && <FormattedMessage id="step.fravær.delvisdag.info.ikkeHelg.tekst" />}
-                {!delvisdag && <FormattedMessage id="step.fravær.heledager.info.ikkeHelg.tekst" />}
+            <ExpandableInfo title={text('step.fravær.info.ikkeHelg.tittel')}>
+                {delvisdag && <AppText id="step.fravær.delvisdag.info.ikkeHelg.tekst" />}
+                {!delvisdag && <AppText id="step.fravær.heledager.info.ikkeHelg.tekst" />}
             </ExpandableInfo>
             <BodyLong style={{ marginTop: '.5rem', paddingBottom: '.5rem' }}>
-                <FormattedMessage id="step.fravær.perioderDagModal.begrensTilSammeÅrInfo" />
+                <AppText id="step.fravær.perioderDagModal.begrensTilSammeÅrInfo" />
             </BodyLong>
         </>
     );
@@ -70,7 +68,7 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
             <FormBlock>
                 <YesOrNoQuestion
                     name={getFieldName(FraværFormFields.harPerioderMedFravær)}
-                    legend={intlHelper(intl, 'step.fravær.heledager.spm')}
+                    legend={text('step.fravær.heledager.spm')}
                     validate={(value) => {
                         const error = validateAll([
                             () => getYesOrNoValidator()(value),
@@ -99,8 +97,8 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
                         maxDate={maxDateForFravær}
                         validate={getFraværPerioderValidator({ fraværDager, arbeidsgiverNavn, årstall })}
                         labels={{
-                            addLabel: intlHelper(intl, 'step.fravær.heledager.perioderModal.label'),
-                            modalTitle: intlHelper(intl, 'step.fravær.heledager.perioderModal.title'),
+                            addLabel: text('step.fravær.heledager.perioderModal.label'),
+                            modalTitle: text('step.fravær.heledager.perioderModal.title'),
                         }}
                         dateRangesToDisable={[
                             ...fraværPerioder.map(fraværPeriodeToDateRange),
@@ -113,7 +111,7 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
             <FormBlock>
                 <YesOrNoQuestion
                     name={getFieldName(FraværFormFields.harDagerMedDelvisFravær)}
-                    legend={intlHelper(intl, 'step.fravær.delvisdag.spm')}
+                    legend={text('step.fravær.delvisdag.spm')}
                     validate={(value) => {
                         const error = validateAll([
                             () => {
@@ -145,8 +143,8 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
                             maxDate={maxDateForFravær}
                             validate={getFraværDagerValidator({ fraværPerioder, arbeidsgiverNavn, årstall })}
                             labels={{
-                                addLabel: intlHelper(intl, 'step.fravær.delvisdag.dagModal.label'),
-                                modalTitle: intlHelper(intl, 'step.fravær.delvisdag.dagModal.title'),
+                                addLabel: text('step.fravær.delvisdag.dagModal.label'),
+                                modalTitle: text('step.fravær.delvisdag.dagModal.title'),
                             }}
                             dateRangesToDisable={[
                                 ...fraværDager.map(fraværDagToFraværDateRange),

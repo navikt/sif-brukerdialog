@@ -1,11 +1,10 @@
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { IntlShape } from 'react-intl';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
+import { prettifyDate } from '@navikt/sif-common-utils';
+import { AppIntlShape } from '../../../i18n';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
 import { OmBarnaSøknadsdata } from '../../../types/søknadsdata/OmBarnaSøknadsdata';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { OmBarnaFormValues } from './OmBarnaStep';
-import { prettifyDate } from '@navikt/sif-common-utils';
-import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 
 export const getOmBarnaStepInitialValues = (
     søknadsdata: Søknadsdata,
@@ -39,10 +38,10 @@ export const getOmBarnaSøknadsdataFromFormValues = (values: OmBarnaFormValues):
     };
 };
 
-export const barnItemLabelRenderer = (barnet: RegistrertBarn, intl: IntlShape) => (
+export const barnItemLabelRenderer = (barnet: RegistrertBarn, { text }: AppIntlShape) => (
     <div style={{ display: 'flex' }}>
         <span style={{ order: 1 }}>
-            {intlHelper(intl, 'step.omBarna.født')} {prettifyDate(barnet.fødselsdato)}
+            {text('step.omBarna.født')} {prettifyDate(barnet.fødselsdato)}
         </span>
         <span style={{ order: 2, paddingLeft: '1rem', justifySelf: 'flex-end' }}>
             {formatName(barnet.fornavn, barnet.etternavn, barnet.mellomnavn)}

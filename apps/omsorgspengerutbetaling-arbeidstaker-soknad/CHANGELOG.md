@@ -1,5 +1,66 @@
 # @navikt/omsorgspengerutbetaling-arbeidstaker-soknad
 
+## 1.2.2
+
+### Patch Changes
+
+- 20b3033: Pakkeoppdateringer - minor/patch
+- Updated dependencies [20b3033]
+  - @navikt/sif-common-amplitude@2.25.1
+  - @navikt/sif-common-formik-ds@1.8.1
+  - @navikt/sif-common-soknad-ds@10.15.1
+  - @navikt/sif-common-forms-ds@8.21.2
+  - @navikt/sif-common-core-ds@9.17.1
+  - @navikt/sif-common-sentry@0.26.1
+  - @navikt/sif-common-utils@3.45.1
+
+## 1.2.1
+
+### Patch Changes
+
+- 049a75c: Legge til rette for flere språk
+- Updated dependencies [a98157a]
+- Updated dependencies [8e314e0]
+  - @navikt/sif-common-soknad-ds@10.15.0
+  - @navikt/sif-common-forms-ds@8.21.1
+
+## 1.2.0
+
+### Minor Changes
+
+- 30b57da: Pakkeoppdatering - minor/patch
+
+### Patch Changes
+
+- Updated dependencies [30b57da]
+  - @navikt/sif-common-amplitude@2.25.0
+  - @navikt/sif-common-formik-ds@1.8.0
+  - @navikt/sif-common-soknad-ds@10.14.0
+  - @navikt/sif-common-forms-ds@8.21.0
+  - @navikt/sif-common-core-ds@9.17.0
+  - @navikt/sif-common-sentry@0.26.0
+  - @navikt/sif-common-utils@3.45.0
+
+## 1.1.18
+
+### Patch Changes
+
+- Updated dependencies [99c9b1f]
+  - @navikt/sif-common-formik-ds@1.7.37
+  - @navikt/sif-common-core-ds@9.16.2
+  - @navikt/sif-common-forms-ds@8.20.7
+  - @navikt/sif-common-soknad-ds@10.13.36
+
+## 1.1.17
+
+### Patch Changes
+
+- Updated dependencies [d89b9f6]
+  - @navikt/sif-common-formik-ds@1.7.36
+  - @navikt/sif-common-core-ds@9.16.2
+  - @navikt/sif-common-forms-ds@8.20.7
+  - @navikt/sif-common-soknad-ds@10.13.36
+
 ## 1.1.16
 
 ### Patch Changes

@@ -1,6 +1,5 @@
 import { Alert, Link } from '@navikt/ds-react';
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import FileUploadErrors from '@navikt/sif-common-core-ds/src/components/file-upload-errors/FileUploadErrors';
@@ -13,11 +12,11 @@ import {
     getTotalSizeOfAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getTypedFormComponents, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
 import api, { ApiEndpoint } from '../../../api/api';
+import { AppText, useAppIntl } from '../../../i18n';
 import { getAttachmentURLFrontend } from '../../../utils/attachmentUtilsAuthToken';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
 import { validateAttachments, ValidateAttachmentsErrors } from '../../../utils/validateAttachments';
@@ -56,7 +55,7 @@ export const validateDocuments = (attachments: Attachment[]): ValidationResult<V
 };
 
 const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, andreVedlegg = [], isSubmitting }) => {
-    const intl = useIntl();
+    const { text, intl } = useAppIntl();
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
 
     const hasPendingUploads: boolean = (values.vedlegg || []).find((a: any) => a.pending === true) !== undefined;
@@ -75,10 +74,10 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
             <Block padBottom="xl">
                 <SifGuidePanel>
                     <p>
-                        <FormattedMessage id={'steg.legeerklæring.counsellorpanel.1'} />
+                        <AppText id={'steg.legeerklæring.counsellorpanel.1'} />
                     </p>
                     <p>
-                        <FormattedMessage id={'steg.legeerklæring.counsellorpanel.2'} />
+                        <AppText id={'steg.legeerklæring.counsellorpanel.2'} />
                     </p>
                 </SifGuidePanel>
             </Block>
@@ -90,7 +89,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                     <FormikFileUploader
                         attachments={legeerklæringAttachments}
                         name={LegeerklæringFormFields.vedlegg}
-                        buttonLabel={intlHelper(intl, 'steg.legeerklæring.vedlegg.knappLabel')}
+                        buttonLabel={text('steg.legeerklæring.vedlegg.knappLabel')}
                         getAttachmentURLFrontend={getAttachmentURLFrontend}
                         uploadFile={(file) => api.uploadFile(ApiEndpoint.vedlegg, file)}
                         onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
@@ -110,15 +109,21 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
             {totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
                 <Block margin={'l'}>
                     <Alert variant="warning">
-                        <FormattedMessage id={'dokumenter.advarsel.totalstørrelse.1'} />
-                        <Link
-                            target={'_blank'}
-                            rel={'noopener noreferrer'}
-                            href={
-                                'https://www.nav.no/soknader/nb/person/familie/omsorgspenger/NAV%2009-35.01/ettersendelse'
-                            }>
-                            <FormattedMessage id={'dokumenter.advarsel.totalstørrelse.2'} />
-                        </Link>
+                        <AppText
+                            id={'dokumenter.advarsel.totalstørrelse'}
+                            values={{
+                                Lenke: (children: React.ReactNode) => (
+                                    <Link
+                                        target={'_blank'}
+                                        rel={'noopener noreferrer'}
+                                        href={
+                                            'https://www.nav.no/soknader/nb/person/familie/omsorgspenger/NAV%2009-35.01/ettersendelse'
+                                        }>
+                                        {children}
+                                    </Link>
+                                ),
+                            }}
+                        />
                     </Alert>
                 </Block>
             )}

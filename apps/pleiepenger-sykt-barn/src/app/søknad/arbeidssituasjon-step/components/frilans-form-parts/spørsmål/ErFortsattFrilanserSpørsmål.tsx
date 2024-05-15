@@ -1,6 +1,5 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { useAppIntl } from '@i18n/index';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
 import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { FrilansFormField } from '../../../../../types/søknad-form-values/FrilansFormValues';
@@ -11,12 +10,12 @@ interface Props {
 }
 
 const ErFortsattFrilanserSpørsmål: React.FunctionComponent<Props> = ({ erFortsattFrilanserValue }) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     return (
         <ArbFriFormComponents.RadioGroup
             name={FrilansFormField.erFortsattFrilanser}
             data-testid="erFortsattFrilanser"
-            legend={intlHelper(intl, `frilanser.erFortsattFrilanser.spm`)}
+            legend={text(`frilanser.erFortsattFrilanser.spm`)}
             validate={(value) => {
                 const error = getYesOrNoValidator()(value);
                 return error

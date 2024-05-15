@@ -1,14 +1,13 @@
 import { Heading, Link } from '@navikt/ds-react';
-import { FormattedMessage, useIntl } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import CheckmarkIcon from '@navikt/sif-common-core-ds/src/atoms/checkmark-icon/CheckmarkIcon';
 import Checklist from '@navikt/sif-common-core-ds/src/components/lists/checklist/Checklist';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import getLenker from '../../lenker';
 import { useEffect } from 'react';
 import { KvitteringInfo } from '../../types/KvitteringInfo';
+import { AppText, useAppIntl } from '../../i18n';
 
 interface Props {
     kvitteringInfo?: KvitteringInfo;
@@ -16,7 +15,7 @@ interface Props {
 }
 
 const KvitteringPage = ({ kvitteringInfo, onUnmount }: Props) => {
-    const intl = useIntl();
+    const { text, intl } = useAppIntl();
 
     useEffect(() => {
         return () => {
@@ -27,37 +26,42 @@ const KvitteringPage = ({ kvitteringInfo, onUnmount }: Props) => {
     useLogSidevisning(SIFCommonPageKey.kvittering);
 
     return (
-        <Page title={intlHelper(intl, 'page.kvittering.sidetittel')}>
+        <Page title={text('page.kvittering.sidetittel')}>
             <div data-testid="kvittering-page">
                 <div role="presentation" aria-hidden="true" style={{ textAlign: 'center', marginBottom: '2rem' }}>
                     <CheckmarkIcon />
                 </div>
 
                 <Heading level="1" size="large">
-                    <FormattedMessage id="page.kvittering.tittel" />
+                    <AppText id="page.kvittering.tittel" />
                 </Heading>
                 <Block margin="xl">
                     <Heading size="medium" level="2">
-                        <FormattedMessage id="page.kvittering.info.tittel" />
+                        <AppText id="page.kvittering.info.tittel" />
                     </Heading>
                     <Checklist>
                         {kvitteringInfo?.arbeidsgivere && (
                             <li>
-                                <FormattedMessage
+                                <AppText
                                     id={'page.kvittering.list.item.1'}
                                     values={{ antall: kvitteringInfo.arbeidsgivere.length }}
                                 />
                             </li>
                         )}
-
                         <li>
-                            <FormattedMessage id="page.kvittering.list.item.2" />
+                            <AppText id="page.kvittering.list.item.2" />
                         </li>
                         <li>
-                            <FormattedMessage id="page.kvittering.list.item.3" />{' '}
-                            <Link href={getLenker(intl.locale).saksbehandlingstider} target="_blank">
-                                <FormattedMessage id="page.kvittering.list.item.3.lenke" />
-                            </Link>
+                            <AppText
+                                id="page.kvittering.list.item.3"
+                                values={{
+                                    Lenke: (children) => (
+                                        <Link href={getLenker(intl.locale).saksbehandlingstider} target="_blank">
+                                            {children}
+                                        </Link>
+                                    ),
+                                }}
+                            />
                         </li>
                     </Checklist>
                 </Block>

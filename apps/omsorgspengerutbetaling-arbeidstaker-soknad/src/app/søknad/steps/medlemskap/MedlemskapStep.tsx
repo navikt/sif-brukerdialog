@@ -1,36 +1,35 @@
-import { FormattedMessage, useIntl } from 'react-intl';
-import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/BostedUtlandListAndDialog';
 import { Link } from '@navikt/ds-react';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
+import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
+import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/BostedUtlandListAndDialog';
+import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
+import { dateToday } from '@navikt/sif-common-utils/src/dateUtils';
+import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
+import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
+import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
+import { StepId } from '../../../types/StepId';
+import { SøknadContextState } from '../../../types/SøknadContextState';
+import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import actionsCreator from '../../context/action/actionCreator';
+import { useSøknadContext } from '../../context/hooks/useSøknadContext';
+import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
+import SøknadStep from '../../SøknadStep';
+import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
+import { validateUtenlandsoppholdNeste12Mnd, validateUtenlandsoppholdSiste12Mnd } from './medlemskapFieldValidations';
 import {
     getMedlemskapDateRanges,
     getMedlemskapStepInitialValues,
     getMedlemskapSøknadsdataFromFormValues,
 } from './medlemskapStepUtils';
-import { validateUtenlandsoppholdNeste12Mnd, validateUtenlandsoppholdSiste12Mnd } from './medlemskapFieldValidations';
-import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
-import { dateToday } from '@navikt/sif-common-utils/src/dateUtils';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { useSøknadContext } from '../../context/hooks/useSøknadContext';
-import { StepId } from '../../../types/StepId';
-import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
-import actionsCreator from '../../context/action/actionCreator';
-import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
-import { SøknadContextState } from '../../../types/SøknadContextState';
-import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import SøknadStep from '../../SøknadStep';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 
 export enum MedlemskapFormFields {
     harBoddUtenforNorgeSiste12Mnd = 'harBoddUtenforNorgeSiste12Mnd',
@@ -53,7 +52,7 @@ const { FormikWrapper, Form, YesOrNoQuestion } = getTypedFormComponents<
 >();
 
 const MedlemskapStep = () => {
-    const intl = useIntl();
+    const { text, intl } = useAppIntl();
     const { neste12Måneder, siste12Måneder } = getMedlemskapDateRanges(dateToday);
     const {
         state: { søknadsdata },
@@ -99,20 +98,20 @@ const MedlemskapStep = () => {
                                 runDelayedFormValidation={true}>
                                 <Block padBottom="xxl">
                                     <SifGuidePanel>
-                                        {intlHelper(intl, 'step.medlemskap.info.1')}
+                                        {text('step.medlemskap.info.1')}
                                         <Link href={getLenker().medlemskap} target="_blank">
-                                            <FormattedMessage id="step.medlemskap.info.2" />
+                                            <AppText id="step.medlemskap.info.2" />
                                         </Link>
                                         .
                                     </SifGuidePanel>
                                 </Block>
                                 <YesOrNoQuestion
-                                    legend={intlHelper(intl, 'step.medlemskap.annetLandSiste12.spm')}
+                                    legend={text('step.medlemskap.annetLandSiste12.spm')}
                                     name={MedlemskapFormFields.harBoddUtenforNorgeSiste12Mnd}
                                     validate={getYesOrNoValidator()}
                                     description={
-                                        <ExpandableInfo title={intlHelper(intl, 'step.medlemskap.hvaBetyrDette')}>
-                                            {intlHelper(intl, 'step.medlemskap.annetLandSiste12.hjelp')}
+                                        <ExpandableInfo title={text('step.medlemskap.hvaBetyrDette')}>
+                                            {text('step.medlemskap.annetLandSiste12.hjelp')}
                                         </ExpandableInfo>
                                     }
                                     data-testid="medlemskap-annetLandSiste12"
@@ -125,18 +124,9 @@ const MedlemskapStep = () => {
                                                 minDate={siste12Måneder.from}
                                                 maxDate={siste12Måneder.to}
                                                 labels={{
-                                                    addLabel: intlHelper(
-                                                        intl,
-                                                        'step.medlemskap.utenlandsopphold.leggTilLabel',
-                                                    ),
-                                                    listTitle: intlHelper(
-                                                        intl,
-                                                        'step.medlemskap.annetLandSiste12.listeTittel',
-                                                    ),
-                                                    modalTitle: intlHelper(
-                                                        intl,
-                                                        'step.medlemskap.annetLandSiste12.listeTittel',
-                                                    ),
+                                                    addLabel: text('step.medlemskap.utenlandsopphold.leggTilLabel'),
+                                                    listTitle: text('step.medlemskap.annetLandSiste12.listeTittel'),
+                                                    modalTitle: text('step.medlemskap.annetLandSiste12.listeTittel'),
                                                 }}
                                                 validate={validateUtenlandsoppholdSiste12Mnd}
                                             />
@@ -145,12 +135,12 @@ const MedlemskapStep = () => {
                                 )}
                                 <FormBlock>
                                     <YesOrNoQuestion
-                                        legend={intlHelper(intl, 'step.medlemskap.annetLandNeste12.spm')}
+                                        legend={text('step.medlemskap.annetLandNeste12.spm')}
                                         name={MedlemskapFormFields.skalBoUtenforNorgeNeste12Mnd}
                                         validate={getYesOrNoValidator()}
                                         description={
-                                            <ExpandableInfo title={intlHelper(intl, 'step.medlemskap.hvaBetyrDette')}>
-                                                {intlHelper(intl, 'step.medlemskap.annetLandNeste12.hjelp')}
+                                            <ExpandableInfo title={text('step.medlemskap.hvaBetyrDette')}>
+                                                {text('step.medlemskap.annetLandNeste12.hjelp')}
                                             </ExpandableInfo>
                                         }
                                         data-testid="medlemskap-annetLandNeste12"
@@ -164,18 +154,9 @@ const MedlemskapStep = () => {
                                                 minDate={neste12Måneder.from}
                                                 maxDate={neste12Måneder.to}
                                                 labels={{
-                                                    addLabel: intlHelper(
-                                                        intl,
-                                                        'step.medlemskap.utenlandsopphold.leggTilLabel',
-                                                    ),
-                                                    listTitle: intlHelper(
-                                                        intl,
-                                                        'step.medlemskap.annetLandNeste12.listeTittel',
-                                                    ),
-                                                    modalTitle: intlHelper(
-                                                        intl,
-                                                        'step.medlemskap.annetLandNeste12.listeTittel',
-                                                    ),
+                                                    addLabel: text('step.medlemskap.utenlandsopphold.leggTilLabel'),
+                                                    listTitle: text('step.medlemskap.annetLandNeste12.listeTittel'),
+                                                    modalTitle: text('step.medlemskap.annetLandNeste12.listeTittel'),
                                                 }}
                                                 validate={validateUtenlandsoppholdNeste12Mnd}
                                             />

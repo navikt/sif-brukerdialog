@@ -1,25 +1,25 @@
 import { Alert, Link } from '@navikt/ds-react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { DateRange, getTypedFormComponents } from '@navikt/sif-common-formik-ds/src';
 import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import VirksomhetInfoAndDialog from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetInfoAndDialog';
 import { useFormikContext } from 'formik';
 import ResponsivePanel from '../../../components/responsive-panel/ResponsivePanel';
+import { AppText } from '../../../i18n';
 import getLenker from '../../../lenker';
 import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
-import { SelvstendigFormValues, SelvstendigFormField } from '../../../types/søknad-form-values/SelvstendigFormValues';
+import { ArbeidsforholdFormField } from '../../../types/søknad-form-values/ArbeidsforholdFormValues';
+import { SelvstendigFormField, SelvstendigFormValues } from '../../../types/søknad-form-values/SelvstendigFormValues';
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import { getArbeidsforholdIntlValues } from '../utils/arbeidsforholdIntlValues';
 import { getArbeiderNormaltTimerIUkenValidator } from '../validation/arbeiderNormaltTimerIUkenValidator';
 import { getSelvstendigIPeriodeValidator } from '../validation/selvstendigIPeriodeValidator';
 import { InfoArbeiderNormaltTimerSN } from './info/InfoArbeiderNormaltTimerIUken';
-import { ArbeidsforholdFormField } from '../../../types/søknad-form-values/ArbeidsforholdFormValues';
 
 const ArbSNFormComponents = getTypedFormComponents<SelvstendigFormField, SelvstendigFormValues, ValidationError>();
 
@@ -28,13 +28,14 @@ interface Props {
 }
 
 const ArbeidssituasjonSN = ({ søknadsperiode }: Props) => {
-    const intl = useIntl();
+    const appIntl = useAppIntl();
+    const { intl, text } = appIntl;
     const { values } = useFormikContext<SøknadFormValues>();
     const { harHattInntektSomSN, virksomhet, harFlereVirksomheter, arbeidsforhold } = values.selvstendig;
     const søkerHarFlereVirksomheter = harFlereVirksomheter === YesOrNo.YES;
     const urlSkatteetatenSN = getLenker(intl.locale).skatteetatenSN;
 
-    const intlValues = getArbeidsforholdIntlValues(intl, {
+    const intlValues = getArbeidsforholdIntlValues(appIntl, {
         arbeidsforhold: {
             type: ArbeidsforholdType.SELVSTENDIG,
         },
@@ -45,14 +46,14 @@ const ArbeidssituasjonSN = ({ søknadsperiode }: Props) => {
             <Block margin="l">
                 <ArbSNFormComponents.YesOrNoQuestion
                     name={SelvstendigFormField.harHattInntektSomSN}
-                    legend={intlHelper(intl, 'selvstendig.harDuHattInntekt.spm')}
+                    legend={text('selvstendig.harDuHattInntekt.spm')}
                     validate={getYesOrNoValidator()}
                     description={
-                        <ExpandableInfo title={intlHelper(intl, 'selvstendig.harDuHattInntekt.hjelpetekst.tittel')}>
+                        <ExpandableInfo title={text('selvstendig.harDuHattInntekt.hjelpetekst.tittel')}>
                             <>
-                                {intlHelper(intl, 'selvstendig.harDuHattInntekt.hjelpetekst')}{' '}
+                                <AppText id="selvstendig.harDuHattInntekt.hjelpetekst" />{' '}
                                 <Link href={urlSkatteetatenSN} target="_blank">
-                                    <FormattedMessage id="selvstendig.harDuHattInntekt.hjelpetekst.snSkatteetatenLenke" />
+                                    <AppText id="selvstendig.harDuHattInntekt.hjelpetekst.snSkatteetatenLenke" />
                                 </Link>
                             </>
                         </ExpandableInfo>
@@ -65,7 +66,7 @@ const ArbeidssituasjonSN = ({ søknadsperiode }: Props) => {
                         <ArbSNFormComponents.RadioGroup
                             name={SelvstendigFormField.harFlereVirksomheter}
                             data-testid="har-flere-virksomheter"
-                            legend={intlHelper(intl, 'selvstendig.harFlereVirksomheter.spm')}
+                            legend={text('selvstendig.harFlereVirksomheter.spm')}
                             validate={getYesOrNoValidator()}
                             radios={[
                                 {
@@ -85,7 +86,7 @@ const ArbeidssituasjonSN = ({ søknadsperiode }: Props) => {
                         {søkerHarFlereVirksomheter && (
                             <FormBlock>
                                 <Alert variant="info">
-                                    <FormattedMessage id="selvstendig.veileder.flereAktiveVirksomheter" />
+                                    <AppText id="selvstendig.veileder.flereAktiveVirksomheter" />
                                 </Alert>
                             </FormBlock>
                         )}
@@ -98,14 +99,14 @@ const ArbeidssituasjonSN = ({ søknadsperiode }: Props) => {
                                         harFlereVirksomheter={søkerHarFlereVirksomheter}
                                         labels={{
                                             infoTitle: virksomhet
-                                                ? intlHelper(intl, 'selvstendig.infoDialog.infoTittel')
+                                                ? text('selvstendig.infoDialog.infoTittel')
                                                 : undefined,
-                                            editLabel: intlHelper(intl, 'selvstendig.infoDialog.endreKnapp'),
-                                            deleteLabel: intlHelper(intl, 'selvstendig.infoDialog.fjernKnapp'),
-                                            addLabel: intlHelper(intl, 'selvstendig.infoDialog.registrerKnapp'),
+                                            editLabel: text('selvstendig.infoDialog.endreKnapp'),
+                                            deleteLabel: text('selvstendig.infoDialog.fjernKnapp'),
+                                            addLabel: text('selvstendig.infoDialog.registrerKnapp'),
                                             modalTitle: harFlereVirksomheter
-                                                ? intlHelper(intl, 'selvstendig.infoDialog.tittel.flere')
-                                                : intlHelper(intl, 'selvstendig.infoDialog.tittel.en'),
+                                                ? text('selvstendig.infoDialog.tittel.flere')
+                                                : text('selvstendig.infoDialog.tittel.en'),
                                         }}
                                         validate={(value) => {
                                             if (getRequiredFieldValidator()(value) !== undefined) {
@@ -120,11 +121,7 @@ const ArbeidssituasjonSN = ({ søknadsperiode }: Props) => {
                         {virksomhet !== undefined && (
                             <FormBlock>
                                 <ArbSNFormComponents.NumberInput
-                                    label={intlHelper(
-                                        intl,
-                                        `arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.spm`,
-                                        intlValues,
-                                    )}
+                                    label={text(`arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.spm`, intlValues)}
                                     name={
                                         `${SelvstendigFormField.arbeidsforhold}.${ArbeidsforholdFormField.normalarbeidstid_TimerPerUke}` as any
                                     }

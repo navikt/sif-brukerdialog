@@ -1,11 +1,11 @@
 import { Heading } from '@navikt/ds-react';
-import { FormattedMessage } from 'react-intl';
 import { DurationText } from '@navikt/sif-common-ui';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import dayjs from 'dayjs';
 import { groupBy } from 'lodash';
 import { DagMedTid } from '../../types/DagMedTid';
 import './dagerMedTidListe.less';
+import { AppText } from '../../../i18n';
 
 interface Props {
     dagerMedTid: DagMedTid[];
@@ -34,10 +34,7 @@ export const DagerMedTidListe = ({ dagerMedTid, viseUke, visMåned, visNormaltid
                         <div key={key} className={bem.element('uke')}>
                             {viseUke && (
                                 <Heading level="3" size="xsmall" className={bem.element('uketittel')}>
-                                    <FormattedMessage
-                                        id="dagerMedTid.uke"
-                                        values={{ uke: dayjs(days[0].dato).isoWeek() }}
-                                    />
+                                    <AppText id="dagerMedTid.uke" values={{ uke: dayjs(days[0].dato).isoWeek() }} />
                                 </Heading>
                             )}
                             <ol className={bem.element('dager')}>
