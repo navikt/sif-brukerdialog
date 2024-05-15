@@ -17,6 +17,7 @@
         "APPSTATUS_DATASET": "production",
         "APPSTATUS_PROJECT_ID": "ryujtq87",
         "DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=true&chatbot=false&logoutUrl=https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspenger/oauth2/logout",
+        "FEATURE_NYNORSK": "off",
         "FRONTEND_API_PATH": "/familie/sykdom-i-familien/soknad/omsorgspenger/api",
         "FRONTEND_VEDLEGG_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspenger/api",
         "LOGIN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspenger/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/omsorgspenger/soknad",

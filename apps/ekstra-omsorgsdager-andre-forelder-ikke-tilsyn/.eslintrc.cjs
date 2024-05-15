@@ -5,7 +5,6 @@ module.exports = {
         root: true,
         tsconfigRootDir: __dirname,
     },
-    ignorePatterns: ['!.storybook'],
 
     extends: ['plugin:storybook/recommended'],
 };

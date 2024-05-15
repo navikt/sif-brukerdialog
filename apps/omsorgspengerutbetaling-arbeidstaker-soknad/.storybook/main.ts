@@ -1,6 +1,16 @@
+import { join, dirname } from 'path';
+
+function getAbsolutePath(value) {
+    return dirname(require.resolve(join(value, 'package.json')));
+}
+
 const config = {
     stories: ['../src/storybook/**/*.stories.tsx'],
-    addons: ['@storybook/addon-essentials', '@storybook/addon-a11y', 'storybook-addon-mock'],
+    addons: [
+        getAbsolutePath('@storybook/addon-essentials'),
+        getAbsolutePath('@storybook/addon-a11y'),
+        getAbsolutePath('storybook-addon-mock'),
+    ],
     framework: {
         name: '@storybook/react-vite',
         options: {},

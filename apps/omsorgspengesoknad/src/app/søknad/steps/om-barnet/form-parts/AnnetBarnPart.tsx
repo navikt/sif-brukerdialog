@@ -1,18 +1,17 @@
 import { Heading } from '@navikt/ds-react';
-import { FormattedMessage, useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import {
     getDateValidator,
     getFødselsnummerValidator,
     getRequiredFieldValidator,
     getStringValidator,
 } from '@navikt/sif-common-formik-ds/src/validation';
+import { dateFormatter, dateToday } from '@navikt/sif-common-utils';
+import { AppText, useAppIntl } from '../../../../i18n';
+import { SøkersRelasjonTilBarnet } from '../../../../types/SøkersRelasjonTilBarnet';
 import { useSøknadContext } from '../../../context/hooks/useSøknadContext';
 import { OmBarnetFormFields, OmBarnetFormValues } from '../OmBarnetStep';
-import { SøkersRelasjonTilBarnet, SøkersRelasjonTilBarnetKeys } from '../../../../types/SøkersRelasjonTilBarnet';
-import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import { dateFormatter, dateToday } from '@navikt/sif-common-utils';
 import { getMinDatoForBarnetsFødselsdato, isBarnOver18år } from '../omBarnetStepUtils';
 
 const { TextField, DatePicker, Select } = getTypedFormComponents<
@@ -25,16 +24,18 @@ const AnnetBarnpart = () => {
     const {
         state: { søker },
     } = useSøknadContext();
-    const intl = useIntl();
+
+    const { text } = useAppIntl();
     const minDatoForBarnetsFødselsdato = getMinDatoForBarnetsFødselsdato();
+
     return (
         <>
             <Heading level="2" size="medium">
-                <FormattedMessage id="steg.omBarnet.annetBarn.tittel" />
+                <AppText id="steg.omBarnet.annetBarn.tittel" />
             </Heading>
             <FormBlock>
                 <TextField
-                    label={intlHelper(intl, 'steg.omBarnet.fnr.spm')}
+                    label={text('steg.omBarnet.fnr.spm')}
                     name={OmBarnetFormFields.barnetsFødselsnummer}
                     validate={getFødselsnummerValidator({ required: true, disallowedValues: [søker.fødselsnummer] })}
                     width="xl"
@@ -44,7 +45,7 @@ const AnnetBarnpart = () => {
             </FormBlock>
             <FormBlock>
                 <TextField
-                    label={intlHelper(intl, 'steg.omBarnet.navn')}
+                    label={text('steg.omBarnet.navn')}
                     name={OmBarnetFormFields.barnetsNavn}
                     width="xl"
                     validate={(value) => {
@@ -56,7 +57,7 @@ const AnnetBarnpart = () => {
             <FormBlock>
                 <DatePicker
                     name={OmBarnetFormFields.barnetsFødselsdato}
-                    label={intlHelper(intl, 'step.omBarnet.fødselsdato')}
+                    label={text('steg.omBarnet.fødselsdato')}
                     validate={(value) => {
                         const dateError = getDateValidator({
                             required: true,
@@ -65,7 +66,6 @@ const AnnetBarnpart = () => {
                         if (dateError) {
                             return dateError;
                         }
-
                         if (isBarnOver18år(value)) {
                             return {
                                 key: 'barnOver18år',
@@ -76,7 +76,7 @@ const AnnetBarnpart = () => {
                     minDate={minDatoForBarnetsFødselsdato}
                     maxDate={dateToday}
                     dropdownCaption={true}
-                    description={intlHelper(intl, 'step.omBarnet.fødselsdato.info', {
+                    description={text('steg.omBarnet.fødselsdato.info', {
                         minFødselsdato: dateFormatter.full(minDatoForBarnetsFødselsdato),
                     })}
                 />
@@ -84,15 +84,22 @@ const AnnetBarnpart = () => {
             <FormBlock>
                 <Select
                     style={{ maxWidth: '25rem' }}
-                    label={intlHelper(intl, 'steg.omBarnet.relasjon')}
+                    label={text('steg.omBarnet.relasjon')}
                     name={OmBarnetFormFields.søkersRelasjonTilBarnet}
                     validate={getRequiredFieldValidator()}>
                     <option />
-                    {Object.keys(SøkersRelasjonTilBarnet).map((key: SøkersRelasjonTilBarnetKeys) => (
-                        <option key={key} value={SøkersRelasjonTilBarnet[key]}>
-                            {intlHelper(intl, `relasjonTilBarnet.${SøkersRelasjonTilBarnet[key]}`)}
-                        </option>
-                    ))}
+                    <option value={SøkersRelasjonTilBarnet.MOR}>
+                        <AppText id="steg.omBarnet.relasjonTilBarnet.mor" />
+                    </option>
+                    <option value={SøkersRelasjonTilBarnet.FAR}>
+                        <AppText id="steg.omBarnet.relasjonTilBarnet.far" />
+                    </option>
+                    <option value={SøkersRelasjonTilBarnet.ADOPTIVFORELDER}>
+                        <AppText id="steg.omBarnet.relasjonTilBarnet.adoptivforelder" />
+                    </option>
+                    <option value={SøkersRelasjonTilBarnet.FOSTERFORELDER}>
+                        <AppText id="steg.omBarnet.relasjonTilBarnet.fosterforelder" />
+                    </option>
                 </Select>
             </FormBlock>
         </>
