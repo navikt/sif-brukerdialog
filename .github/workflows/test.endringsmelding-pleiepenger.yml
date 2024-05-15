@@ -71,7 +71,7 @@ jobs:
               run: npx playwright install chromium
 
             - name: Build application
-              run: yarn build --filter=omsorgsdager-kalkulator
+              run: yarn build --filter=endringsmelding-pleiepenger
 
             - name: Run tests
-              run: yarn turbo playwright-test --filter=omsorgsdager-kalkulator
+              run: yarn turbo playwright-test --filter=endringsmelding-pleiepenger
