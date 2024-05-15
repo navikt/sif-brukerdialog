@@ -1,43 +1,30 @@
-import * as React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
-import {
-    getFraværStepInitialValues,
-    getFraværSøknadsdataFromFormValues,
-    getOrganisasjonsnummerKey,
-} from './fraværStepUtils';
 import { useCallback, useState } from 'react';
-import { FraværMap } from '../../../types/FraværTypes';
+import { Office1 } from '@navikt/ds-icons';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import {
     DateRange,
     FormikValuesObserver,
+    getTypedFormComponents,
     ValidationError,
     YesOrNo,
-    getTypedFormComponents,
 } from '@navikt/sif-common-formik-ds';
-import { useSøknadContext } from '../../context/hooks/useSøknadContext';
-import { StepId } from '../../../types/StepId';
-import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../søknadStepConfig';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
-import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
-import actionsCreator from '../../context/action/actionCreator';
-import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
-import { SøknadContextState } from '../../../types/SøknadContextState';
-import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import { date1YearAgo, dateToday } from '@navikt/sif-common-utils';
-import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
-import { ArbeidforholdSøknadsdata } from '../../../types/søknadsdata/SituasjonSøknadsdata';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import FormSection from '../../../components/form-section/FormSection';
-import { Office1 } from '@navikt/ds-icons';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/BostedUtlandListAndDialog';
-import SøknadStep from '../../SøknadStep';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/BostedUtlandListAndDialog';
+import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
+import { date1YearAgo, dateToday } from '@navikt/sif-common-utils';
+import FormSection from '../../../components/form-section/FormSection';
+import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
+import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
+import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
+import { AppText, useAppIntl } from '../../../i18n';
+import { FraværMap } from '../../../types/FraværTypes';
+import { StepId } from '../../../types/StepId';
+import { SøknadContextState } from '../../../types/SøknadContextState';
+import { ArbeidforholdSøknadsdata } from '../../../types/søknadsdata/SituasjonSøknadsdata';
 import {
     getAlleFraværDager,
     getAlleFraværDagerFromSøknadsdata,
@@ -46,7 +33,18 @@ import {
     getTidsromFromÅrstall,
     getÅrstallFromFravær,
 } from '../../../utils/fraværUtils';
+import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import actionsCreator from '../../context/action/actionCreator';
+import { useSøknadContext } from '../../context/hooks/useSøknadContext';
+import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
+import SøknadStep from '../../SøknadStep';
+import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import ArbeidsforholdFravær from './form-parts/ArbeidsforholdFravær';
+import {
+    getFraværStepInitialValues,
+    getFraværSøknadsdataFromFormValues,
+    getOrganisasjonsnummerKey,
+} from './fraværStepUtils';
 
 export enum FraværStepFormFields {
     fravær = 'fravær',
@@ -67,7 +65,7 @@ const { FormikWrapper, Form, YesOrNoQuestion } = getTypedFormComponents<
 >();
 
 const FraværStep: React.FC = () => {
-    const intl = useIntl();
+    const { text, intl } = useAppIntl();
 
     const {
         state: { søknadsdata },
@@ -170,9 +168,9 @@ const FraværStep: React.FC = () => {
                                 runDelayedFormValidation={true}>
                                 <FormBlock>
                                     <SifGuidePanel>
-                                        <FormattedMessage id={'step.fravær.info.1'} />
+                                        <AppText id={'step.fravær.info.1'} />
                                         <Block margin={'m'}>
-                                            <FormattedMessage
+                                            <AppText
                                                 id={'step.fravær.info.2'}
                                                 values={{
                                                     strong: (msg): React.ReactNode => <strong>{msg}</strong>,
@@ -218,10 +216,10 @@ const FraværStep: React.FC = () => {
                                     </FormBlock>
                                 )}
 
-                                <FormSection title={intlHelper(intl, 'step.fravær.utenlandsopphold.tittel')}>
+                                <FormSection title={text('step.fravær.utenlandsopphold.tittel')}>
                                     <YesOrNoQuestion
                                         name={FraværStepFormFields.perioderHarVærtIUtlandet}
-                                        legend={intlHelper(intl, 'step.fravær.værtIUtlandet.spm')}
+                                        legend={text('step.fravær.værtIUtlandet.spm')}
                                         validate={getYesOrNoValidator()}
                                         data-testid="utenlandsopphold"
                                     />
@@ -233,14 +231,8 @@ const FraværStep: React.FC = () => {
                                                 minDate={date1YearAgo}
                                                 maxDate={dateToday}
                                                 labels={{
-                                                    addLabel: intlHelper(
-                                                        intl,
-                                                        'step.fravær.værtIUtlandet.leggTilLabel',
-                                                    ),
-                                                    modalTitle: intlHelper(
-                                                        intl,
-                                                        'step.fravær.værtIUtlandet.modalTittel',
-                                                    ),
+                                                    addLabel: text('step.fravær.værtIUtlandet.leggTilLabel'),
+                                                    modalTitle: text('step.fravær.værtIUtlandet.modalTittel'),
                                                 }}
                                                 validate={getListValidator({ required: true })}
                                             />

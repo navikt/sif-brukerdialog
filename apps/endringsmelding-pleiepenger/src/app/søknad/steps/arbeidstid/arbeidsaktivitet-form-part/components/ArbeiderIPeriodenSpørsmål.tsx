@@ -2,39 +2,41 @@ import React from 'react';
 import { FormikRadioGroup, IntlErrorObject } from '@navikt/sif-common-formik-ds';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { ArbeidsaktivitetArbeidstaker, ArbeiderIPeriodenSvar } from '@types';
+import { AppMessageKeys, useAppIntl } from '../../../../../i18n';
 
 interface Props {
     arbeidsaktivitet: ArbeidsaktivitetArbeidstaker;
     parentFieldName: string;
 }
 
-export const ArbeiderIPeriodenSvarTekst = {
-    [ArbeiderIPeriodenSvar.heltFravær]: 'Jeg jobber ikke og har fullt fravær her',
-    [ArbeiderIPeriodenSvar.redusert]: 'Jeg kombinerer delvis jobb med pleiepenger',
-    [ArbeiderIPeriodenSvar.somVanlig]: 'Jeg jobber som normalt og har ingen fravær her',
+export const ArbeiderIPeriodenSvarIntlKey: Record<string, AppMessageKeys> = {
+    [ArbeiderIPeriodenSvar.heltFravær]: 'arbeidstidStep.arbeiderIPeriodenSpm.heltFravær',
+    [ArbeiderIPeriodenSvar.redusert]: 'arbeidstidStep.arbeiderIPeriodenSpm.redusert',
+    [ArbeiderIPeriodenSvar.somVanlig]: 'arbeidstidStep.arbeiderIPeriodenSpm.somVanlig',
 };
 
 const ArbeiderIPeriodenSpørsmål: React.FunctionComponent<Props> = ({ parentFieldName, arbeidsaktivitet }) => {
+    const { text } = useAppIntl();
     const fieldName = `${parentFieldName}.arbeiderIPerioden`;
 
     return (
         <FormikRadioGroup
             name={fieldName}
-            legend={`I perioden med pleiepenger, hvilken situasjon gjelder for deg hos ${arbeidsaktivitet.arbeidsgiver.navn}?`}
+            legend={text('arbeidstidStep.arbeiderIPeriodenSpm.legend', { navn: arbeidsaktivitet.arbeidsgiver.navn })}
             validate={getArbeidIPeriodeArbeiderIPeriodenValidator(arbeidsaktivitet.arbeidsgiver.navn)}
             radios={[
                 {
-                    label: ArbeiderIPeriodenSvarTekst[ArbeiderIPeriodenSvar.heltFravær],
+                    label: text(ArbeiderIPeriodenSvarIntlKey[ArbeiderIPeriodenSvar.heltFravær]),
                     value: ArbeiderIPeriodenSvar.heltFravær,
                     'data-testid': ArbeiderIPeriodenSvar.heltFravær,
                 },
                 {
-                    label: ArbeiderIPeriodenSvarTekst[ArbeiderIPeriodenSvar.redusert],
+                    label: text(ArbeiderIPeriodenSvarIntlKey[ArbeiderIPeriodenSvar.redusert]),
                     value: ArbeiderIPeriodenSvar.redusert,
                     'data-testid': ArbeiderIPeriodenSvar.redusert,
                 },
                 {
-                    label: ArbeiderIPeriodenSvarTekst[ArbeiderIPeriodenSvar.somVanlig],
+                    label: text(ArbeiderIPeriodenSvarIntlKey[ArbeiderIPeriodenSvar.somVanlig]),
                     value: ArbeiderIPeriodenSvar.somVanlig,
                     'data-testid': ArbeiderIPeriodenSvar.somVanlig,
                 },

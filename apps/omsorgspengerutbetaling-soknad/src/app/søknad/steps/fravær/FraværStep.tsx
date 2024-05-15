@@ -1,10 +1,9 @@
 import { Alert, Heading } from '@navikt/ds-react';
 import { useEffect } from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { FormikValuesObserver } from '@navikt/sif-common-formik-ds';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
@@ -22,6 +21,7 @@ import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { usePersistTempFormValues } from '../../../hooks/usePersistTempFormValues';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
+import { AppText, useAppIntl } from '../../../i18n';
 import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
@@ -33,9 +33,8 @@ import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../søknad
 import { getFraværDagerValidator, getFraværPerioderValidator } from './fraværFieldValidations';
 import FraværStepInfo from './FraværStepInfo';
 import fraværStepUtils, { getFraværStepInitialValues, getFraværSøknadsdataFromFormValues } from './FraværStepUtils';
-import { useFraværsperiodeDetaljer } from './useFraværsperiodeDetaljer';
 import OmsorgsdagerInfo from './OmsorgsdagerInfo';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import { useFraværsperiodeDetaljer } from './useFraværsperiodeDetaljer';
 
 export enum FraværFormFields {
     harPerioderMedFravær = 'harPerioderMedFravær',
@@ -62,7 +61,8 @@ const { FormikWrapper, Form, YesOrNoQuestion } = getTypedFormComponents<
 >();
 
 const FraværStep = () => {
-    const intl = useIntl();
+    const appIntl = useAppIntl();
+    const { text, intl } = appIntl;
     const {
         state: { søknadsdata, tempFormData },
     } = useSøknadContext();
@@ -151,16 +151,10 @@ const FraværStep = () => {
 
                                 <FormBlock>
                                     <FormBlock>
-                                        {/* <Heading level="2" size="medium">
-                                            <FormattedMessage id="step.fravaer.dager.tittel" />
-                                        </Heading>
-
-                                        <OmsorgsdagerInfo dineBarn={søknadsdata.dineBarn} /> */}
-
                                         <Block margin="m">
                                             <YesOrNoQuestion
                                                 name={FraværFormFields.harPerioderMedFravær}
-                                                legend={intlHelper(intl, 'step.fravaer.spm.harPerioderMedFravær')}
+                                                legend={text('step.fravaer.spm.harPerioderMedFravær')}
                                                 validate={getYesOrNoValidator()}
                                                 data-testid="harPerioderMedFravær"
                                             />
@@ -171,21 +165,18 @@ const FraværStep = () => {
                                                 <FormBlock margin="l">
                                                     <FraværPerioderListAndDialog<FraværFormFields>
                                                         name={FraværFormFields.fraværPerioder}
-                                                        periodeDescription={FraværStepInfo.Tidsbegrensning(intl)}
+                                                        periodeDescription={FraværStepInfo.Tidsbegrensning(appIntl)}
                                                         minDate={minDateForFravær}
                                                         maxDate={maxDateForFravær}
                                                         validate={getFraværPerioderValidator({ fraværDager, årstall })}
                                                         labels={{
-                                                            listTitle: intlHelper(
-                                                                intl,
+                                                            listTitle: text(
                                                                 'step.fravaer.harPerioderMedFravær.listTitle',
                                                             ),
-                                                            addLabel: intlHelper(
-                                                                intl,
+                                                            addLabel: text(
                                                                 'step.fravaer.harPerioderMedFravær.addLabel',
                                                             ),
-                                                            modalTitle: intlHelper(
-                                                                intl,
+                                                            modalTitle: text(
                                                                 'step.fravaer.harPerioderMedFravær.modalTitle',
                                                             ),
                                                         }}
@@ -201,7 +192,7 @@ const FraværStep = () => {
                                         <FormBlock>
                                             <YesOrNoQuestion
                                                 name={FraværFormFields.harDagerMedDelvisFravær}
-                                                legend={intlHelper(intl, 'step.fravaer.spm.harDagerMedDelvisFravær')}
+                                                legend={text('step.fravaer.spm.harDagerMedDelvisFravær')}
                                                 validate={getYesOrNoValidator()}
                                                 data-testid="harDagerMedDelvisFravær"
                                             />
@@ -212,21 +203,18 @@ const FraværStep = () => {
                                                 <FormBlock margin="l">
                                                     <FraværDagerListAndDialog<FraværFormFields>
                                                         name={FraværFormFields.fraværDager}
-                                                        dagDescription={FraværStepInfo.Tidsbegrensning(intl, true)}
+                                                        dagDescription={FraværStepInfo.Tidsbegrensning(appIntl, true)}
                                                         minDate={minDateForFravær}
                                                         maxDate={maxDateForFravær}
                                                         validate={getFraværDagerValidator({ fraværPerioder, årstall })}
                                                         labels={{
-                                                            listTitle: intlHelper(
-                                                                intl,
+                                                            listTitle: text(
                                                                 'step.fravaer.harDagerMedDelvisFravær.listTitle',
                                                             ),
-                                                            addLabel: intlHelper(
-                                                                intl,
+                                                            addLabel: text(
                                                                 'step.fravaer.harDagerMedDelvisFravær.addLabel',
                                                             ),
-                                                            modalTitle: intlHelper(
-                                                                intl,
+                                                            modalTitle: text(
                                                                 'step.fravaer.harDagerMedDelvisFravær.modalTitle',
                                                             ),
                                                         }}
@@ -243,7 +231,7 @@ const FraværStep = () => {
                                         {kanIkkeFortsette && (
                                             <FormBlock margin="xxl">
                                                 <Alert variant="warning">
-                                                    <FormattedMessage id="step.fravaer.måVelgeSituasjon" />
+                                                    <AppText id="step.fravaer.måVelgeSituasjon" />
                                                 </Alert>
                                             </FormBlock>
                                         )}
@@ -252,13 +240,12 @@ const FraværStep = () => {
                                 {kanIkkeFortsette === false && (
                                     <FormBlock margin="xl">
                                         <Heading level="2" size="medium">
-                                            <FormattedMessage id="step.fravaer.utenlandsopphold.tittel" />
+                                            <AppText id="step.fravaer.utenlandsopphold.tittel" />
                                         </Heading>
                                         <Block margin="l">
                                             <YesOrNoQuestion
                                                 name={FraværFormFields.perioder_harVærtIUtlandet}
-                                                legend={intlHelper(
-                                                    intl,
+                                                legend={text(
                                                     'step.fravaer.har_du_oppholdt_deg_i_utlandet_for_dager_du_soker_ok.spm',
                                                 )}
                                                 validate={getYesOrNoValidator()}
@@ -273,14 +260,8 @@ const FraværStep = () => {
                                                     minDate={førsteOgSisteDagMedFravær?.from || gyldigTidsrom.from}
                                                     maxDate={førsteOgSisteDagMedFravær?.to || gyldigTidsrom.to}
                                                     labels={{
-                                                        addLabel: intlHelper(
-                                                            intl,
-                                                            'step.fravaer.utenlandsopphold.addLabel',
-                                                        ),
-                                                        modalTitle: intlHelper(
-                                                            intl,
-                                                            'step.fravaer.utenlandsopphold.modalTitle',
-                                                        ),
+                                                        addLabel: text('step.fravaer.utenlandsopphold.addLabel'),
+                                                        modalTitle: text('step.fravaer.utenlandsopphold.modalTitle'),
                                                     }}
                                                     validate={getListValidator({ required: true })}
                                                 />

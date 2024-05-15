@@ -1,7 +1,5 @@
-import { FormattedMessage, useIntl } from 'react-intl';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { DateRange, dateToday } from '@navikt/sif-common-utils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getDateValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { ValidationError, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { ArbeidssituasjonFormFields, ArbeidssituasjonFormValues } from '../ArbeidssituasjonStep';
@@ -11,6 +9,7 @@ import getLenker from '../../../../lenker';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
 import { nYearsAgo } from '../../dine-barn/dineBarnStepUtils';
+import { AppText, useAppIntl } from '../../../../i18n';
 
 const { YesOrNoQuestion, DatePicker } = getTypedFormComponents<
     ArbeidssituasjonFormFields,
@@ -24,7 +23,7 @@ interface Props {
 }
 
 const FrilansFormPart: React.FC<Props> = ({ values, fraværPeriode }) => {
-    const intl = useIntl();
+    const { text, intl } = useAppIntl();
 
     const { frilans_erFrilanser, frilans_jobberFortsattSomFrilans, frilans_startdato } = values;
 
@@ -45,13 +44,13 @@ const FrilansFormPart: React.FC<Props> = ({ values, fraværPeriode }) => {
         <>
             <YesOrNoQuestion
                 name={ArbeidssituasjonFormFields.frilans_erFrilanser}
-                legend={intlHelper(intl, 'frilanser.erFrilanser.spm')}
+                legend={text('frilanser.erFrilanser.spm')}
                 description={
-                    <ExpandableInfo title={intlHelper(intl, 'step.arbeidssituasjon.frilanser.hjelpetekst.tittel')}>
+                    <ExpandableInfo title={text('step.arbeidssituasjon.frilanser.hjelpetekst.tittel')}>
                         <>
-                            {intlHelper(intl, 'step.arbeidssituasjon.frilanser.hjelpetekst')}{' '}
+                            {text('step.arbeidssituasjon.frilanser.hjelpetekst')}{' '}
                             <Link href={getLenker(intl.locale).skatteetaten} target="_blank">
-                                <FormattedMessage id="step.arbeidssituasjon.frilanser.hjelpetekst.skatteetatenLenke" />
+                                <AppText id="step.arbeidssituasjon.frilanser.hjelpetekst.skatteetatenLenke" />
                             </Link>
                         </>
                     </ExpandableInfo>
@@ -65,7 +64,7 @@ const FrilansFormPart: React.FC<Props> = ({ values, fraværPeriode }) => {
                         <FormBlock margin="none">
                             <DatePicker
                                 name={ArbeidssituasjonFormFields.frilans_startdato}
-                                label={intlHelper(intl, 'frilanser.nårStartet.spm')}
+                                label={text('frilanser.nårStartet.spm')}
                                 dropdownCaption={true}
                                 minDate={startetDateRange.from}
                                 maxDate={startetDateRange.to}
@@ -80,7 +79,7 @@ const FrilansFormPart: React.FC<Props> = ({ values, fraværPeriode }) => {
                         <FormBlock>
                             <YesOrNoQuestion
                                 name={ArbeidssituasjonFormFields.frilans_jobberFortsattSomFrilans}
-                                legend={intlHelper(intl, 'frilanser.jobberFortsatt.spm')}
+                                legend={text('frilanser.jobberFortsatt.spm')}
                                 validate={getYesOrNoValidator()}
                                 data-testid="frilans_jobberFortsattSomFrilans"
                             />
@@ -89,7 +88,7 @@ const FrilansFormPart: React.FC<Props> = ({ values, fraværPeriode }) => {
                             <FormBlock>
                                 <DatePicker
                                     name={ArbeidssituasjonFormFields.frilans_sluttdato}
-                                    label={intlHelper(intl, 'frilanser.nårSluttet.spm')}
+                                    label={text('frilanser.nårSluttet.spm')}
                                     dropdownCaption={true}
                                     minDate={sluttetDateRange.from}
                                     maxDate={sluttetDateRange.to}

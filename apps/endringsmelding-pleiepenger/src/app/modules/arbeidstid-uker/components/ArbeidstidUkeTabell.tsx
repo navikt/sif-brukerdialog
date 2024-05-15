@@ -6,12 +6,12 @@ import { DurationText } from '@navikt/sif-common-ui';
 import { dateFormatter, getDateRangeText } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { SelectableListType } from '../../../hooks/useSelectableList';
-import { ArbeidstidUkerItem } from '../ArbeidstidUkerItem';
+import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
 import ArbeidstidUkeInfo from './ArbeidstidUkeInfo';
 import UkeInfoIkon from './UkeInfo';
 import UkeTags from './UkeTags';
 import VelgArbeidsukeItem from './VelgArbeidsukeItem';
-import { useIntl } from 'react-intl';
+import { AppText, useAppIntl } from '../../../i18n';
 
 interface Props {
     uker: ArbeidstidUkerItem[];
@@ -31,7 +31,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
     renderCompactTable,
     renderEditButton,
 }) => {
-    const { locale } = useIntl();
+    const { text, intl } = useAppIntl();
     const {
         isItemSelected,
         setItemSelected,
@@ -46,7 +46,9 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                 <Table.Row>
                     {itemsAreSelectable && (
                         <Table.HeaderCell className="arbeidstidUkeTabell__velgUke">
-                            <AriaText>Velg uke</AriaText>
+                            <AriaText>
+                                <AppText id="arbeidstidUkeTabell.aria.velgUke" />
+                            </AriaText>
                             <Checkbox
                                 checked={selectedItems.length === uker.length}
                                 indeterminate={selectedItems.length > 0 && selectedItems.length !== uker.length}
@@ -57,18 +59,24 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                         : setSelectedItems(uker.filter((uke) => uke.kanEndres && uke.kanVelges));
                                 }}
                                 hideLabel>
-                                Velg alle uker i tabellen
+                                <AppText id="arbeidstidUkeTabell.velgAlleUker.cb" />
                             </Checkbox>
                         </Table.HeaderCell>
                     )}
                     {renderCompactTable && <Table.HeaderCell>Uke</Table.HeaderCell>}
                     {!renderCompactTable && (
                         <>
-                            <Table.HeaderCell className="arbeidstidUker__ukenummer">Uke</Table.HeaderCell>
-                            <Table.HeaderCell className="arbeidstidUker__periode">Dato</Table.HeaderCell>
+                            <Table.HeaderCell className="arbeidstidUker__ukenummer">
+                                <AppText id="arbeidstidUkeTabell.header.uke" />
+                            </Table.HeaderCell>
+                            <Table.HeaderCell className="arbeidstidUker__periode">
+                                <AppText id="arbeidstidUkeTabell.header.dato" />
+                            </Table.HeaderCell>
                             <Table.HeaderCell className="arbeidstidUker__normalt">
-                                <Tooltip content="Hvor mye du jobber normalt når du ikke har pleiepenger">
-                                    <span>Normalt</span>
+                                <Tooltip content={text('arbeidstidUkeTabell.header.normalt.tooltip')}>
+                                    <span>
+                                        <AppText id="arbeidstidUkeTabell.header.normalt.title" />
+                                    </span>
                                 </Tooltip>
                             </Table.HeaderCell>
                         </>
@@ -76,16 +84,18 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
 
                     <Table.HeaderCell className="arbeidstidUker__faktisk">
                         {arbeidstidKolonneTittel || (
-                            <>
-                                <Tooltip content="Hvor mye du jobber i pleiepengeperioden">
-                                    <span>I perioden</span>
-                                </Tooltip>
-                            </>
+                            <Tooltip content={text('arbeidstidUkeTabell.header.arbeidstid.tooltip')}>
+                                <span>
+                                    <AppText id="arbeidstidUkeTabell.header.arbeidstid.title" />
+                                </span>
+                            </Tooltip>
                         )}
                     </Table.HeaderCell>
 
                     {singleSelectEnabled && (
-                        <Table.HeaderCell className="arbeidstidUker__endre">Endre</Table.HeaderCell>
+                        <Table.HeaderCell className="arbeidstidUker__endre">
+                            <AppText id="arbeidstidUkeTabell.header.endre" />
+                        </Table.HeaderCell>
                     )}
                 </Table.Row>
             </Table.Header>
@@ -112,7 +122,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                             {renderCompactTable && (
                                 <Table.DataCell>
                                     <div>
-                                        Uke {ukenummer}
+                                        <AppText id="arbeidstidUkeTabell.compact.uke" values={{ ukenummer }} />
                                         <div>
                                             {dateFormatter.compact(uke.periode.from)} - {` `}
                                             {dateFormatter.compact(uke.periode.to)}
@@ -120,10 +130,16 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                     </div>
 
                                     <div>
-                                        Normal arbeidstid:{` `}
-                                        <span style={{ whiteSpace: 'nowrap' }}>
-                                            <DurationText duration={uke.opprinnelig.normalt} />
-                                        </span>
+                                        <AppText
+                                            id="arbeidstidUkeTabell.compact.normalarbeidstid"
+                                            values={{
+                                                Varighet: () => (
+                                                    <span style={{ whiteSpace: 'nowrap' }}>
+                                                        <DurationText duration={uke.opprinnelig.normalt} />
+                                                    </span>
+                                                ),
+                                            }}
+                                        />
                                     </div>
 
                                     {(uke.harFeriedager || uke.harFjernetFeriedager || uke.erKortUke) && (
@@ -140,13 +156,16 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                             {!renderCompactTable && (
                                 <>
                                     <Table.DataCell data-testid="ukenummer" className="arbeidstidUker__ukenummer">
-                                        <AriaText>Uke</AriaText> {ukenummer}
+                                        <AriaText>
+                                            <AppText id="arbeidstidUkeTabell.aria.uke" />
+                                        </AriaText>{' '}
+                                        {ukenummer}
                                     </Table.DataCell>
                                     <Table.DataCell data-testid="periode" className="arbeidstidUker__periode">
                                         <div>
                                             <div className="arbeidsukeTidsrom">
                                                 <span className="arbeidsukeTidsrom__tekst">
-                                                    {getDateRangeText(uke.periode, locale)}
+                                                    {getDateRangeText(uke.periode, intl.locale)}
                                                     {(uke.harFeriedager || uke.harFjernetFeriedager) && (
                                                         <Block margin="s">
                                                             <UkeTags

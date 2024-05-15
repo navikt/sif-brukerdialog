@@ -4,6 +4,7 @@ import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { yesOrNoIsAnswered } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import HarSyktBarnSpørsmål from '../spørsmål/HarSyktBarnSpørsmål';
+import { AppText } from '../../../../i18n';
 
 interface Props {
     antallBarn: number;
@@ -19,8 +20,7 @@ const KunBarnOver13: React.FunctionComponent<Props> = ({ harSyktBarn, harUtvidet
             {yesOrNoIsAnswered(harSyktBarn) && !harUtvidetRett ? (
                 <Block>
                     <Alert variant="warning">
-                        For å ha rett til omsorgspenger fra det året barnet fyller 13 år, må du ha fått ekstra
-                        omsorgsdager fra NAV fordi barnet har en kronisk/langvarig sykdom eller en funksjonshemning.
+                        <AppText id="step.dineBarn.kunBarnOver13.ingenRett.tekst" />
                     </Alert>
                 </Block>
             ) : null}

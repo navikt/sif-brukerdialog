@@ -1,12 +1,12 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { AppMessageKeys, AppText } from '../../../i18n';
 import { DineBarnSøknadsdata, DineBarnSøknadsdataType } from '../../../types/søknadsdata/DineBarnSøknadsdata';
 
 interface Props {
     dineBarn?: DineBarnSøknadsdata;
 }
 
-const getIntlMessageKey = (type?: DineBarnSøknadsdataType): string | undefined => {
+const getIntlMessageKey = (type?: DineBarnSøknadsdataType): AppMessageKeys | undefined => {
     switch (type) {
         case DineBarnSøknadsdataType.UTVIDET_RETT_PGA_SYKT_BARN_OVER_13:
             return 'step.fravaer.dager.info.UTVIDET_RETT_PGA_SYKT_BARN_OVER_13';
@@ -21,8 +21,7 @@ const getIntlMessageKey = (type?: DineBarnSøknadsdataType): string | undefined 
 
 const OmsorgsdagerInfo: React.FunctionComponent<Props> = ({ dineBarn }) => {
     const key = getIntlMessageKey(dineBarn?.type);
-
-    return key ? <FormattedMessage id={key} /> : null;
+    return key ? <AppText id={key} /> : null;
 };
 
 export default OmsorgsdagerInfo;

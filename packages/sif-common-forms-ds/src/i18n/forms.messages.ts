@@ -26,7 +26,6 @@ type FormsMessageKeys = keyof typeof nb;
 
 const nn: Record<FormsMessageKeys, string> = {
     ...nb,
-    ...annetBarnMessages.nn,
 };
 
 export const formsMessages = {

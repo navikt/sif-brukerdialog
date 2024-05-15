@@ -15,7 +15,7 @@ import {
 } from '@utils';
 import dayjs from 'dayjs';
 import { uniqBy } from 'lodash';
-import { ArbeidstidUkerItem } from '../../../../modules/arbeidstid-uker/ArbeidstidUkerItem';
+import { ArbeidstidUkerItem } from '../../../../modules/arbeidstid-uker/types/ArbeidstidUkerItem';
 
 const sorterItemsPåStartdato = (u1: ArbeidstidUkerItem, u2: ArbeidstidUkerItem): number => {
     return dayjs(u1.periode.from).isBefore(u2.periode.from) ? -1 : 1;

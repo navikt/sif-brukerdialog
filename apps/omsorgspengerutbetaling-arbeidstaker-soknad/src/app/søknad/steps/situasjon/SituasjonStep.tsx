@@ -1,4 +1,3 @@
-import { FormattedMessage, useIntl } from 'react-intl';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import {
     getTotalSizeOfAttachments,
@@ -39,6 +38,7 @@ import { useState } from 'react';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import arbeidsgivereEndpoint from '../../../api/endpoints/arbeidsgivereEndpoint';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
+import { AppText, useAppIntl } from '../../../i18n';
 
 export enum ArbeidsforholdFormFields {
     navn = 'navn',
@@ -67,7 +67,7 @@ interface LoadState {
 const { FormikWrapper, Form } = getTypedFormComponents<SituasjonFormFields, SituasjonFormValues, ValidationError>();
 
 const SituasjonStep = () => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     const {
         state: { søknadsdata },
     } = useSøknadContext();
@@ -153,10 +153,10 @@ const SituasjonStep = () => {
                                 runDelayedFormValidation={true}>
                                 <SifGuidePanel>
                                     <p>
-                                        <FormattedMessage id="step.situasjon.arbeidsforhold.aktivtArbeidsforhold.info.del1" />
+                                        <AppText id="step.situasjon.arbeidsforhold.aktivtArbeidsforhold.info.del1" />
                                     </p>
                                     <p>
-                                        <FormattedMessage id="step.situasjon.arbeidsforhold.aktivtArbeidsforhold.info.del2" />
+                                        <AppText id="step.situasjon.arbeidsforhold.aktivtArbeidsforhold.info.del2" />
                                     </p>
                                 </SifGuidePanel>
 
@@ -192,7 +192,7 @@ const SituasjonStep = () => {
                                 {arbeidsforhold.length === 0 && (
                                     <FormBlock>
                                         <Alert variant={'info'}>
-                                            <FormattedMessage id={'step.situasjon.arbeidsforhold.ingen.info.text'} />
+                                            <AppText id={'step.situasjon.arbeidsforhold.ingen.info.text'} />
                                         </Alert>
                                     </FormBlock>
                                 )}
@@ -200,7 +200,7 @@ const SituasjonStep = () => {
                                 {arbeidsforhold.length > 0 && harKlikketNeiPåAlle && (
                                     <FormBlock paddingBottom={'l'}>
                                         <Alert variant={'warning'}>
-                                            <FormattedMessage
+                                            <AppText
                                                 id={'step.situasjon.arbeidsforhold.ingenGjeldende.info.text.nei'}
                                             />
                                         </Alert>

@@ -1,6 +1,5 @@
 import { Button } from '@navikt/ds-react';
 import React, { useEffect } from 'react';
-import { useIntl } from 'react-intl';
 import { useMediaQuery } from 'react-responsive';
 import { AddCircle } from '@navikt/ds-icons';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
@@ -9,12 +8,13 @@ import { getDateRangeText } from '@navikt/sif-common-utils';
 import EditButton from '../../components/buttons/EditButton';
 import { usePagination } from '../../hooks/usePagination';
 import { useSelectableList } from '../../hooks/useSelectableList';
-import { ArbeidstidUkerItem } from './ArbeidstidUkerItem';
+import { ArbeidstidUkerItem } from './types/ArbeidstidUkerItem';
 import ArbeidstidUkeListe from './components/ArbeidstidUkeListe';
 import ArbeidstidUkeTabell from './components/ArbeidstidUkeTabell';
 import EndreUkerFooter from './components/EndreUkerFooter';
 import EndreUkerHeader from './components/EndreUkerHeader';
 import './arbeidstidUker.scss';
+import { AppText, useAppIntl } from '../../i18n';
 
 interface Props {
     listItems: ArbeidstidUkerItem[];
@@ -38,7 +38,7 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
 
     onEndreUker,
 }) => {
-    const { locale } = useIntl();
+    const { text, intl } = useAppIntl();
     const { visibleItems, hasMoreItems, showMoreItems, showAllItems } = usePagination<ArbeidstidUkerItem>(
         listItems,
         10,
@@ -76,8 +76,11 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
 
         const title =
             selectedItems.length > 1
-                ? 'Endre valgte uker'
-                : `Endre uke ${ukenummer} (${getDateRangeText(uke.periode, locale)})`;
+                ? text('arbeidstidUker.editButton.endreValgteUker.title')
+                : text('arbeidstidUker.editButton.endreEnkeltuke.title', {
+                      ukenummer,
+                      tidsrom: getDateRangeText(uke.periode, intl.locale),
+                  });
 
         return (
             <EditButton
@@ -88,7 +91,7 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
                 }}
                 title={title}
                 aria-label={title}>
-                {renderLabel && <>Endre arbeidstid</>}
+                {renderLabel && <AppText id="arbeidstidUker.editButton.endreEnkeltuke.label" />}
             </EditButton>
         );
     };
@@ -113,14 +116,14 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
                         icon={<AddCircle role="presentation" aria-hidden={true} />}
                         type="button"
                         onClick={showMoreItems}>
-                        Vis flere uker
+                        <AppText id="arbeidstidUker.visMer.visFlereUker.label" />
                     </Button>
                     <Button
                         variant="tertiary"
                         icon={<AddCircle role="presentation" aria-hidden={true} />}
                         type="button"
                         onClick={showAllItems}>
-                        Vis alle uker
+                        <AppText id="arbeidstidUker.visMer.visAlleUker.label" />
                     </Button>
                 </Block>
             );
