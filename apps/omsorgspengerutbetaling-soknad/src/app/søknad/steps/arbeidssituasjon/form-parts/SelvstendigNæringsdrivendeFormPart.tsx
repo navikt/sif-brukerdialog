@@ -4,12 +4,11 @@ import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
 import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import VirksomhetInfoAndDialog from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetInfoAndDialog';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { AppText, useAppIntl } from '../../../../i18n';
 import getLenker from '../../../../lenker';
 import { ArbeidssituasjonFormFields, ArbeidssituasjonFormValues } from '../ArbeidssituasjonStep';
 
@@ -24,7 +23,7 @@ interface Props {
 }
 
 const SelvstendigNæringsdrivendeFormPart: React.FC<Props> = ({ values }) => {
-    const intl = useIntl();
+    const { intl, text } = useAppIntl();
     const skipOrgNumValidation = getEnvironmentVariable('SKIP_ORGNUM_VALIDATION') === 'true';
     const { selvstendig_erSelvstendigNæringsdrivende, selvstendig_virksomhet, selvstendig_harFlereVirksomheter } =
         values;
@@ -35,14 +34,14 @@ const SelvstendigNæringsdrivendeFormPart: React.FC<Props> = ({ values }) => {
         <>
             <YesOrNoQuestion
                 name={ArbeidssituasjonFormFields.selvstendig_erSelvstendigNæringsdrivende}
-                legend={intlHelper(intl, 'selvstendig.erDuSelvstendigNæringsdrivende.spm')}
+                legend={text('selvstendig.erDuSelvstendigNæringsdrivende.spm')}
                 validate={getYesOrNoValidator()}
                 description={
-                    <ExpandableInfo title={intlHelper(intl, 'step.arbeidssituasjon.selvstendig.hjelpetekst.tittel')}>
+                    <ExpandableInfo title={text('step.arbeidssituasjon.selvstendig.hjelpetekst.tittel')}>
                         <>
-                            {intlHelper(intl, 'step.arbeidssituasjon.selvstendig.hjelpetekst')}{' '}
+                            {text('step.arbeidssituasjon.selvstendig.hjelpetekst')}{' '}
                             <Link href={getLenker(intl.locale).skatteetatenSN} target="_blank">
-                                <FormattedMessage id="step.arbeidssituasjon.selvstendig.hjelpetekst.snSkatteetatenLenke" />
+                                <AppText id="step.arbeidssituasjon.selvstendig.hjelpetekst.snSkatteetatenLenke" />
                             </Link>
                         </>
                     </ExpandableInfo>
@@ -54,7 +53,7 @@ const SelvstendigNæringsdrivendeFormPart: React.FC<Props> = ({ values }) => {
                 <FormBlock>
                     <YesOrNoQuestion
                         name={ArbeidssituasjonFormFields.selvstendig_harFlereVirksomheter}
-                        legend={intlHelper(intl, 'selvstendig.harFlereVirksomheter.spm')}
+                        legend={text('selvstendig.harFlereVirksomheter.spm')}
                         validate={getYesOrNoValidator()}
                         data-testid="selvstendig_harFlereVirksomheter"
                     />
@@ -65,7 +64,7 @@ const SelvstendigNæringsdrivendeFormPart: React.FC<Props> = ({ values }) => {
                 <FormBlock>
                     <SifGuidePanel>
                         <p>
-                            <FormattedMessage id="selvstendig.veileder.flereAktiveVirksomheter" />
+                            <AppText id="selvstendig.veileder.flereAktiveVirksomheter" />
                         </p>
                     </SifGuidePanel>
                 </FormBlock>
@@ -77,15 +76,13 @@ const SelvstendigNæringsdrivendeFormPart: React.FC<Props> = ({ values }) => {
                         name={ArbeidssituasjonFormFields.selvstendig_virksomhet}
                         harFlereVirksomheter={harFlereVirksomheter}
                         labels={{
-                            infoTitle: selvstendig_virksomhet
-                                ? intlHelper(intl, 'selvstendig.infoDialog.infoTittel')
-                                : undefined,
-                            editLabel: intlHelper(intl, 'selvstendig.infoDialog.endreKnapp'),
-                            deleteLabel: intlHelper(intl, 'selvstendig.infoDialog.fjernKnapp'),
-                            addLabel: intlHelper(intl, 'selvstendig.infoDialog.registrerKnapp'),
+                            infoTitle: selvstendig_virksomhet ? text('selvstendig.infoDialog.infoTittel') : undefined,
+                            editLabel: text('selvstendig.infoDialog.endreKnapp'),
+                            deleteLabel: text('selvstendig.infoDialog.fjernKnapp'),
+                            addLabel: text('selvstendig.infoDialog.registrerKnapp'),
                             modalTitle: harFlereVirksomheter
-                                ? intlHelper(intl, 'selvstendig.infoDialog.tittel.flere')
-                                : intlHelper(intl, 'selvstendig.infoDialog.tittel.en'),
+                                ? text('selvstendig.infoDialog.tittel.flere')
+                                : text('selvstendig.infoDialog.tittel.en'),
                         }}
                         skipOrgNumValidation={skipOrgNumValidation}
                         validate={getRequiredFieldValidator()}

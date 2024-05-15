@@ -6,6 +6,3 @@ export const getOppsummeringStepInitialValues = (søknadsdata: Søknadsdata): Op
         harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger || false,
     };
 };
-
-export const timeText = (timer: string): string =>
-    timer === '0' || timer === '0.5' || timer === '1' ? 'time' : 'timer';

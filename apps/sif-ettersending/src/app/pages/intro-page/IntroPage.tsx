@@ -2,12 +2,12 @@ import { useIntl } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
+import { useAppIntl } from '../../i18n';
 import { Søknadstype } from '../../types/Søknadstype';
 import { navigateToWelcomePage } from '../../utils/navigationUtils';
 
@@ -23,12 +23,11 @@ const PageForm = getTypedFormComponents<PageFormField, PageFormValues, Validatio
 
 const IntroPage = () => {
     const intl = useIntl();
+    const { text } = useAppIntl();
 
     useLogSidevisning(SIFCommonPageKey.intro);
     return (
-        <Page
-            title={intlHelper(intl, 'banner.intro')}
-            topContentRenderer={() => <SoknadHeader title={intlHelper(intl, 'banner.intro')} />}>
+        <Page title={text('banner.intro')} topContentRenderer={() => <SoknadHeader title={text('banner.intro')} />}>
             <PageForm.FormikWrapper
                 initialValues={{}}
                 onSubmit={({ søknadstype }) => {
@@ -42,23 +41,23 @@ const IntroPage = () => {
                     return (
                         <PageForm.Form
                             formErrorHandler={getIntlFormErrorHandler(intl, 'page.intro')}
-                            submitButtonLabel={intlHelper(intl, 'step.button.gåVidere')}>
+                            submitButtonLabel={text('step.button.gåVidere')}>
                             <Block margin="xl">
                                 <PageForm.RadioGroup
                                     name={PageFormField.søknadstype}
-                                    legend={intlHelper(intl, 'page.intro.hvilkenTypeSøknad')}
+                                    legend={text('page.intro.hvilkenTypeSøknad')}
                                     radios={[
                                         {
                                             value: Søknadstype.pleiepengerSyktBarn,
-                                            label: intlHelper(intl, 'page.intro.type.pleiepenger'),
+                                            label: text('page.intro.type.pleiepenger'),
                                         },
                                         {
                                             value: Søknadstype.pleiepengerLivetsSluttfase,
-                                            label: intlHelper(intl, 'page.intro.type.pleiepenger_livets_sluttfase'),
+                                            label: text('page.intro.type.pleiepenger_livets_sluttfase'),
                                         },
                                         {
                                             value: Søknadstype.omsorgspenger,
-                                            label: intlHelper(intl, 'page.intro.type.omsorgspenger'),
+                                            label: text('page.intro.type.omsorgspenger'),
                                         },
                                     ]}
                                     validate={getRequiredFieldValidator()}

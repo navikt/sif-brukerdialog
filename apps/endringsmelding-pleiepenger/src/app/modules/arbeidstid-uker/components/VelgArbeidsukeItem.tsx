@@ -2,7 +2,7 @@ import { Checkbox } from '@navikt/ds-react';
 import React from 'react';
 import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
 import dayjs from 'dayjs';
-import { ArbeidstidUkerItem } from '../ArbeidstidUkerItem';
+import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
 
 interface Props {
     uke: ArbeidstidUkerItem;

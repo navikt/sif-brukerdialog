@@ -3,6 +3,7 @@ import { Alert, Button } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import React from 'react';
+import { AppText } from '../../../i18n';
 
 interface Props {
     visVelgUkerMelding: boolean;
@@ -17,7 +18,9 @@ const EndreUkerFooter: React.FunctionComponent<Props> = ({ visVelgUkerMelding, o
                 <div aria-relevant="additions removals" aria-live="polite">
                     {visVelgUkerMelding && (
                         <Block padBottom="l">
-                            <Alert variant="info">Du må velge uker først</Alert>
+                            <Alert variant="info">
+                                <AppText id="endreUkerFooter.velgUkerFørst.melding" />
+                            </Alert>
                         </Block>
                     )}
                 </div>
@@ -27,7 +30,7 @@ const EndreUkerFooter: React.FunctionComponent<Props> = ({ visVelgUkerMelding, o
                     type="button"
                     data-testid="endre-flere-uker-button"
                     onClick={onEndreUker}>
-                    Endre valgte uker
+                    <AppText id="endreUkerFooter.endreButton.label" />
                 </Button>
             </FormBlock>
         </div>

@@ -1,12 +1,11 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { JaNeiSvar, SummaryBlock, SummaryList, SummarySection } from '@navikt/sif-common-ui';
 import { dateToday, ISODateToDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+import { useAppIntl } from '../../../../i18n';
 import { UtenlandsoppholdApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { renderUtenlandsoppholdIPeriodenSummary } from './renderUtenlandsoppholdSummary';
 
@@ -18,14 +17,14 @@ export interface Props {
 }
 
 const MedlemskapOppsummering: React.FC<Props> = ({ bosteder }) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
 
     const bostederSiste12 = bosteder.filter((b) => dayjs(ISODateToDate(b.tilOgMed)).isSameOrBefore(dateToday));
     const bostederNeste12 = bosteder.filter((b) => dayjs(ISODateToDate(b.tilOgMed)).isSameOrAfter(dateToday));
 
     return (
-        <SummarySection header={intlHelper(intl, 'step.oppsummering.medlemskap.header')}>
-            <SummaryBlock header={intlHelper(intl, 'step.oppsummering.utlandetSiste12.header')}>
+        <SummarySection header={text('step.oppsummering.medlemskap.header')}>
+            <SummaryBlock header={text('step.oppsummering.utlandetSiste12.header')}>
                 <div data-testid="oppsummering-medlemskap-utlandetSiste12">
                     <JaNeiSvar harSvartJa={bostederSiste12.length > 0} />
                 </div>
@@ -37,7 +36,7 @@ const MedlemskapOppsummering: React.FC<Props> = ({ bosteder }) => {
                     </div>
                 </Block>
             )}
-            <SummaryBlock header={intlHelper(intl, 'step.oppsummering.utlandetNeste12.header')}>
+            <SummaryBlock header={text('step.oppsummering.utlandetNeste12.header')}>
                 <div data-testid="oppsummering-medlemskap-utlandetNeste12">
                     <JaNeiSvar harSvartJa={bostederNeste12.length > 0} />
                 </div>

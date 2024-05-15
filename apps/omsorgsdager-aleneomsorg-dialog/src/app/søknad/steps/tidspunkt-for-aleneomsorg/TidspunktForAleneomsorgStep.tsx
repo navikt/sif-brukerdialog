@@ -1,13 +1,13 @@
+import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { useIntl } from 'react-intl';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import { AppText } from '../../../i18n';
 import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
@@ -125,7 +125,9 @@ const TidspunktForAleneomsorgStep = () => {
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
                                 <SifGuidePanel>
-                                    <p>{intlHelper(intl, 'step.tidspunktForAleneomsorg.stepIntro')}</p>
+                                    <p>
+                                        <AppText id="step.tidspunktForAleneomsorg.stepIntro" />
+                                    </p>
                                 </SifGuidePanel>
 
                                 <Block margin="xl" padBottom="xl">

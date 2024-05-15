@@ -1,7 +1,6 @@
-import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { JaNeiSvar, SummaryBlock, SummaryList, SummarySection } from '@navikt/sif-common-ui';
+import { useAppIntl } from '../../../../i18n';
 import { ApiFosterbarn } from '../../../../types/søknadApiData/SøknadApiData';
 
 interface Props {
@@ -9,11 +8,11 @@ interface Props {
 }
 
 const FosterbarnOppsummering = ({ fosterbarn }: Props) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     return (
-        <SummarySection header={intlHelper(intl, 'step.oppsummering.fosterbarn')}>
+        <SummarySection header={text('step.oppsummering.fosterbarn')}>
             <Block margin={'s'}>
-                <SummaryBlock header={intlHelper(intl, 'step.oppsummering.fosterbarn.harFosterbarn')}>
+                <SummaryBlock header={text('step.oppsummering.fosterbarn.harFosterbarn')}>
                     <JaNeiSvar harSvartJa={fosterbarn && fosterbarn.length > 0} />
                 </SummaryBlock>
             </Block>
