@@ -1,11 +1,9 @@
-import { FormattedMessage, useIntl } from 'react-intl';
 import { Link } from '@navikt/ds-react';
 import { ISODate, ISODateToDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import FrilansoppdragInfo from './info/FrilansoppdragInfo';
 import InfoJobberNormaltTimerFrilanser from './info/InfoJobberNormaltTimerFrilanser';
 import { DateRange, ValidationError, YesOrNo, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
@@ -16,6 +14,7 @@ import { getFrilanserSluttdatoValidator, getFrilanserStartdatoValidator } from '
 import { erFrilanserISøknadsperiode, harFrilansoppdrag } from './arbeidssituasjonFrilansUtils';
 import { getJobberNormaltTimerValidator } from '../../../../utils/jobberNormaltTimerValidator';
 import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
+import { AppText, useAppIntl } from '../../../../i18n';
 
 export enum FrilansFormFields {
     harHattInntektSomFrilanser = 'frilans.harHattInntektSomFrilanser',
@@ -57,7 +56,7 @@ const ArbeidssituasjonFrilans = ({
     const { startdato, sluttdato, harHattInntektSomFrilanser, jobberFortsattSomFrilans, jobberNormaltTimer } =
         formValues;
 
-    const intl = useIntl();
+    const { text } = useAppIntl();
 
     const søkerHarFrilansoppdrag = harFrilansoppdrag(frilansoppdrag);
     const erAktivFrilanserIPerioden = erFrilanserISøknadsperiode(søknadsperiode, formValues, frilansoppdrag);
@@ -78,29 +77,29 @@ const ArbeidssituasjonFrilans = ({
         erAktivFrilanserIPerioden;
 
     const intlValues = {
-        hvor: intlHelper(intl, 'arbeidsforhold.part.som.FRILANSER'),
-        jobber: intlHelper(intl, 'arbeidsforhold.part.jobber'),
+        hvor: text('arbeidsforhold.part.som.FRILANSER'),
+        jobber: text('arbeidsforhold.part.jobber'),
     };
 
     return (
         <>
             <Heading level="2" size="large">
-                <FormattedMessage id="steg.arbeidssituasjon.frilanser.tittel" />
+                <AppText id="steg.arbeidssituasjon.frilanser.tittel" />
             </Heading>
             {søkerHarFrilansoppdrag && <FrilansoppdragInfo frilansoppdrag={frilansoppdrag} />}
             {søkerHarFrilansoppdrag === false && (
                 <Block margin="l">
                     <YesOrNoQuestion
                         name={FrilansFormFields.harHattInntektSomFrilanser}
-                        legend={intlHelper(intl, 'frilanser.harDuHattInntekt.spm')}
+                        legend={text('frilanser.harDuHattInntekt.spm')}
                         validate={getYesOrNoValidator()}
                         description={
                             søkerHarFrilansoppdrag ? undefined : (
-                                <ExpandableInfo title={intlHelper(intl, 'frilanser.hjelpetekst.spm')}>
+                                <ExpandableInfo title={text('frilanser.hjelpetekst.spm')}>
                                     <>
-                                        {intlHelper(intl, 'frilanser.hjelpetekst')}{' '}
+                                        {text('frilanser.hjelpetekst')}{' '}
                                         <Link href={urlSkatteetaten} target="_blank">
-                                            <FormattedMessage id="frilanser.hjelpetekst.skatteetatenLenke" />
+                                            <AppText id="frilanser.hjelpetekst.skatteetatenLenke" />
                                         </Link>
                                     </>
                                 </ExpandableInfo>
@@ -114,14 +113,14 @@ const ArbeidssituasjonFrilans = ({
                     {søkerHarFrilansoppdrag && (
                         <Block padBottom="l">
                             <Heading level="2" size="small">
-                                <FormattedMessage id="arbeidssituasjonFrilanser.frilanserPart.tittel" />
+                                <AppText id="arbeidssituasjonFrilanser.frilanserPart.tittel" />
                             </Heading>
                         </Block>
                     )}
 
                     <DatePicker
                         name={FrilansFormFields.startdato}
-                        label={intlHelper(intl, 'frilanser.nårStartet.spm')}
+                        label={text('frilanser.nårStartet.spm')}
                         dropdownCaption={true}
                         minDate={dayjs().subtract(50, 'years').toDate()}
                         maxDate={søknadsdato}
@@ -130,7 +129,7 @@ const ArbeidssituasjonFrilans = ({
                     <FormBlock>
                         <YesOrNoQuestion
                             name={FrilansFormFields.jobberFortsattSomFrilans}
-                            legend={intlHelper(intl, 'frilanser.jobberFortsatt.spm')}
+                            legend={text('frilanser.jobberFortsatt.spm')}
                             validate={getYesOrNoValidator()}
                         />
                     </FormBlock>
@@ -138,7 +137,7 @@ const ArbeidssituasjonFrilans = ({
                         <FormBlock>
                             <DatePicker
                                 name={FrilansFormFields.sluttdato}
-                                label={intlHelper(intl, 'frilanser.nårSluttet.spm')}
+                                label={text('frilanser.nårSluttet.spm')}
                                 dropdownCaption={true}
                                 minDate={datepickerUtils.getDateFromDateString(startdato)}
                                 maxDate={søknadsdato}
@@ -155,8 +154,7 @@ const ArbeidssituasjonFrilans = ({
                         <>
                             <FormBlock>
                                 <NumberInput
-                                    label={intlHelper(
-                                        intl,
+                                    label={text(
                                         jobberFortsattSomFrilans === YesOrNo.NO
                                             ? 'frilanser.jobberNormaltTimer.avsluttet.spm'
                                             : 'frilanser.jobberNormaltTimer.spm',

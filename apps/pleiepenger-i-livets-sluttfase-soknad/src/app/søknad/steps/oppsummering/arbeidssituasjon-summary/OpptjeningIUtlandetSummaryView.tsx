@@ -1,9 +1,8 @@
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
-import { renderOpptjeningIUtlandetSummary } from './renderOpptjeningIUtlandetSummary';
-import { OpptjeningIUtlandetApi } from '../../../../types/søknadApiData/SøknadApiData';
 import { SummaryBlock } from '@navikt/sif-common-ui';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
+import { AppText, useAppIntl } from '../../../../i18n';
+import { OpptjeningIUtlandetApi } from '../../../../types/søknadApiData/SøknadApiData';
 
 export interface Props {
     opptjeningUtland: OpptjeningIUtlandetApi[];
@@ -11,18 +10,33 @@ export interface Props {
 
 const OpptjeningIUtlandetSummaryView: React.FC<Props> = (props) => {
     const { opptjeningUtland } = props;
-    const intl = useIntl();
+    const { text } = useAppIntl();
 
     return (
         <>
-            <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.optjeningIUtlandet.listetittel')}>
-                {opptjeningUtland.length === 0 && (
-                    <FormattedMessage id="oppsummering.arbeidssituasjon.optjeningIUtlandet.nei" />
-                )}
+            <SummaryBlock header={text('oppsummering.arbeidssituasjon.optjeningIUtlandet.listetittel')}>
+                {opptjeningUtland.length === 0 && <AppText id="oppsummering.arbeidssituasjon.optjeningIUtlandet.nei" />}
                 {opptjeningUtland.length > 0 && (
                     <ul>
                         {opptjeningUtland.map((opptjening, index) => (
-                            <li key={index}>{renderOpptjeningIUtlandetSummary(opptjening)}</li>
+                            <li key={index}>
+                                <div className={'opptjeningIUtlandetSummaryItem'}>
+                                    <span className={'opptjeningIUtlandetSummaryItem__dates'}>
+                                        {prettifyDateExtended(ISODateToDate(opptjening.fraOgMed))} -{' '}
+                                        {prettifyDateExtended(ISODateToDate(opptjening.tilOgMed))}
+                                    </span>
+                                    <span>
+                                        <AppText
+                                            id="opptjeningIUtlandetSummaryItem.info"
+                                            values={{
+                                                landnavn: opptjening.land.landnavn,
+                                                hva: opptjening.opptjeningType.toLowerCase(),
+                                                hvor: opptjening.navn,
+                                            }}
+                                        />
+                                    </span>
+                                </div>
+                            </li>
                         ))}
                     </ul>
                 )}
