@@ -1,37 +1,36 @@
-import { FormattedMessage, useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
+import { Alert, Heading } from '@navikt/ds-react';
+import { useIntl } from 'react-intl';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ContentWithHeader from '@navikt/sif-common-core-ds/src/components/content-with-header/ContentWithHeader';
-import AnnetBarnListAndDialog from '@navikt/sif-common-forms-ds/src/forms/annet-barn/AnnetBarnListAndDialog';
-import { nYearsAgo } from '../../../utils/aldersUtils';
-import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn';
-import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import { useSøknadContext } from '../../context/hooks/useSøknadContext';
-import { StepId } from '../../../types/StepId';
-import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
-import actionsCreator from '../../context/action/actionCreator';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
-import { SøknadContextState } from '../../../types/SøknadContextState';
-import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import SøknadStep from '../../SøknadStep';
-import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
+import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
+import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
+import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn';
+import AnnetBarnListAndDialog from '@navikt/sif-common-forms-ds/src/forms/annet-barn/AnnetBarnListAndDialog';
+import { dateToday } from '@navikt/sif-common-utils';
+import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
+import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
+import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import { AppText, useAppIntl } from '../../../i18n';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { Alert, Heading } from '@navikt/ds-react';
+import { StepId } from '../../../types/StepId';
+import { SøknadContextState } from '../../../types/SøknadContextState';
+import { nYearsAgo } from '../../../utils/aldersUtils';
+import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import actionsCreator from '../../context/action/actionCreator';
+import { useSøknadContext } from '../../context/hooks/useSøknadContext';
+import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
+import SøknadStep from '../../SøknadStep';
+import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import {
     barnItemLabelRenderer,
     getBarnOptions,
     getOmOmsorgenForBarnStepInitialValues,
     getOmOmsorgenForBarnSøknadsdataFromFormValues,
 } from './omOmsorgenForBarnStepUtils';
-import { dateToday } from '@navikt/sif-common-utils';
 import './omOmsorgenForBarn.css';
 
 export enum OmOmsorgenForBarnFormFields {
@@ -56,6 +55,7 @@ const { FormikWrapper, Form, YesOrNoQuestion, CheckboxGroup } = getTypedFormComp
 
 const OmOmsorgenForBarnStep = () => {
     const intl = useIntl();
+    const { text } = useAppIntl();
     const {
         state: { søknadsdata, søker, registrertBarn },
     } = useSøknadContext();
@@ -143,7 +143,7 @@ const OmOmsorgenForBarnStep = () => {
                                 runDelayedFormValidation={true}>
                                 <Block margin="xxl">
                                     <Heading level="2" size="medium">
-                                        <FormattedMessage id="step.omOmsorgenForBarn.dineBarn.seksjonsTittel" />
+                                        <AppText id="steg.omOmsorgenForBarn.dineBarn.seksjonsTittel" />
                                     </Heading>
 
                                     {registrertBarn.length > 0 && (
@@ -162,38 +162,33 @@ const OmOmsorgenForBarnStep = () => {
                                         <ContentWithHeader
                                             header={
                                                 annetBarn.length === 0
-                                                    ? intlHelper(intl, 'step.omOmsorgenForBarn.info.spm.andreBarn')
-                                                    : intlHelper(intl, 'step.omOmsorgenForBarn.info.spm.flereBarn')
+                                                    ? text('steg.omOmsorgenForBarn.info.spm.andreBarn')
+                                                    : text('steg.omOmsorgenForBarn.info.spm.flereBarn')
                                             }>
-                                            {intlHelper(intl, 'step.omOmsorgenForBarn.info.spm.text')}
+                                            {text('steg.omOmsorgenForBarn.info.spm.text')}
                                         </ContentWithHeader>
                                     </FormBlock>
                                     <Block margin="l">
                                         <AnnetBarnListAndDialog<OmOmsorgenForBarnFormFields>
                                             name={OmOmsorgenForBarnFormFields.annetBarn}
                                             labels={{
-                                                addLabel: intlHelper(
-                                                    intl,
-                                                    'step.omOmsorgenForBarn.annetBarnListAndDialog.addLabel',
+                                                addLabel: text(
+                                                    'steg.omOmsorgenForBarn.annetBarnListAndDialog.addLabel',
                                                 ),
-                                                listTitle: intlHelper(
-                                                    intl,
-                                                    'step.omOmsorgenForBarn.annetBarnListAndDialog.listTitle',
+                                                listTitle: text(
+                                                    'steg.omOmsorgenForBarn.annetBarnListAndDialog.listTitle',
                                                 ),
-                                                modalTitle: intlHelper(
-                                                    intl,
-                                                    'step.omOmsorgenForBarn.annetBarnListAndDialog.modalTitle',
+                                                modalTitle: text(
+                                                    'steg.omOmsorgenForBarn.annetBarnListAndDialog.modalTitle',
                                                 ),
                                             }}
                                             maxDate={dateToday}
                                             minDate={nYearsAgo(19)}
                                             disallowedFødselsnumre={[...[søker.fødselsnummer], ...annetBarnFnr]}
-                                            aldersGrenseText={intlHelper(
-                                                intl,
-                                                'step.omOmsorgenForBarn.formLeggTilBarn.aldersGrenseInfo',
+                                            aldersGrenseText={text(
+                                                'steg.omOmsorgenForBarn.formLeggTilBarn.aldersGrenseInfo',
                                             )}
                                             visBarnTypeValg={true}
-                                            // onAfterChange={() => setAnnetBarnChanged(true)}
                                         />
                                     </Block>
                                 </Block>
@@ -201,14 +196,13 @@ const OmOmsorgenForBarnStep = () => {
                                     <>
                                         <Block margin="xxl">
                                             <Heading level="2" size="medium">
-                                                <FormattedMessage id="step.omOmsorgenForBarn.aleneomsorg.seksjonsTittel" />
+                                                <AppText id="steg.omOmsorgenForBarn.aleneomsorg.seksjonsTittel" />
                                             </Heading>
 
                                             <Block margin="l">
                                                 <CheckboxGroup
-                                                    legend={intlHelper(
-                                                        intl,
-                                                        'step.omOmsorgenForBarn.form.spm.hvilkeAvBarnaAleneomsorg',
+                                                    legend={text(
+                                                        'steg.omOmsorgenForBarn.form.spm.hvilkeAvBarnaAleneomsorg',
                                                     )}
                                                     name={OmOmsorgenForBarnFormFields.harAleneomsorgFor}
                                                     checkboxes={getBarnOptions(registrertBarn, annetBarn)}
@@ -218,15 +212,14 @@ const OmOmsorgenForBarnStep = () => {
                                         </Block>
                                         <Block margin="xxl">
                                             <Heading level="2" size="medium">
-                                                <FormattedMessage id="step.omOmsorgenForBarn.deltBosted.seksjonsTittel" />
+                                                <AppText id="steg.omOmsorgenForBarn.deltBosted.seksjonsTittel" />
                                             </Heading>
                                             <Block margin="l">
                                                 <YesOrNoQuestion
-                                                    legend={intlHelper(
-                                                        intl,
+                                                    legend={text(
                                                         flereBarn
-                                                            ? 'step.omOmsorgenForBarn.deltBosted.flereBarn.spm'
-                                                            : 'step.omOmsorgenForBarn.deltBosted.spm',
+                                                            ? 'steg.omOmsorgenForBarn.deltBosted.flereBarn.spm'
+                                                            : 'steg.omOmsorgenForBarn.deltBosted.spm',
                                                     )}
                                                     name={OmOmsorgenForBarnFormFields.avtaleOmDeltBosted}
                                                     validate={getYesOrNoValidator()}
@@ -235,11 +228,10 @@ const OmOmsorgenForBarnStep = () => {
                                                     }
                                                     description={
                                                         <ExpandableInfo
-                                                            title={intlHelper(
-                                                                intl,
-                                                                'step.omOmsorgenForBarn.deltBosted.description.tittel',
+                                                            title={text(
+                                                                'steg.omOmsorgenForBarn.deltBosted.description.tittel',
                                                             )}>
-                                                            <FormattedMessage id="step.omOmsorgenForBarn.deltBosted.description" />
+                                                            <AppText id="steg.omOmsorgenForBarn.deltBosted.description" />
                                                         </ExpandableInfo>
                                                     }
                                                 />
@@ -248,7 +240,7 @@ const OmOmsorgenForBarnStep = () => {
                                             {visDeltBostedBarnValg && (
                                                 <Block margin="xl">
                                                     <CheckboxGroup
-                                                        legend={intlHelper(intl, 'step.omOmsorgenForBarn.deltBosted')}
+                                                        legend={text('steg.omOmsorgenForBarn.deltBosted')}
                                                         name={OmOmsorgenForBarnFormFields.harAvtaleOmDeltBostedFor}
                                                         checkboxes={getBarnOptions(registrertBarn, annetBarn)}
                                                         validate={getListValidator({ required: true })}
@@ -261,7 +253,7 @@ const OmOmsorgenForBarnStep = () => {
                                             barnMedDeltBostedHarAleneomsorg) && (
                                             <Block margin="l">
                                                 <Alert variant="warning">
-                                                    {intlHelper(intl, 'step.omOmsorgenForBarn.alleBarnMedDeltBosted')}
+                                                    {text('steg.omOmsorgenForBarn.alleBarnMedDeltBosted')}
                                                 </Alert>
                                             </Block>
                                         )}
@@ -270,9 +262,7 @@ const OmOmsorgenForBarnStep = () => {
 
                                 {!harBarn && (
                                     <Block margin="l">
-                                        <Alert variant="warning">
-                                            {intlHelper(intl, 'step.omOmsorgenForBarn.ingenbarn')}
-                                        </Alert>
+                                        <Alert variant="warning">{text('steg.omOmsorgenForBarn.ingenbarn')}</Alert>
                                     </Block>
                                 )}
                             </Form>
