@@ -1,6 +1,6 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { DateRange } from '@navikt/sif-common-utils';
 import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
@@ -9,6 +9,7 @@ import { ArbeidIPeriodeFormValues } from '../../../types/søknad-form-values/Arb
 import { SelvstendigFormField } from '../../../types/søknad-form-values/SelvstendigFormValues';
 import ArbeidstidArbeidsaktivitet from './ArbeidstidArbeidsaktivitet';
 import InfoOmEndring from './InfoOmEndring';
+import { AppText } from '../../../i18n';
 
 interface Props {
     arbeidIPeriode?: ArbeidIPeriodeFormValues;
@@ -24,9 +25,9 @@ const ArbeidstidSelvstendig: React.FunctionComponent<Props> = ({
     normalarbeidstid,
     søkerFremITid,
 }) => {
-    const intl = useIntl();
+    const appIntl = useAppIntl();
 
-    const intlValues = getArbeidstidIPeriodeIntlValues(intl, {
+    const intlValues = getArbeidstidIPeriodeIntlValues(appIntl, {
         periode: periode,
         jobberNormaltTimer: normalarbeidstid,
         arbeidsforholdType: ArbeidsforholdType.SELVSTENDIG,
@@ -49,7 +50,7 @@ const ArbeidstidSelvstendig: React.FunctionComponent<Props> = ({
 
                     {søkerFremITid && (
                         <p>
-                            <FormattedMessage id="arbeidIPeriode.redusert.info.tekst" />
+                            <AppText id="arbeidIPeriode.redusert.info.tekst" />
                         </p>
                     )}
                     <Block margin="m">

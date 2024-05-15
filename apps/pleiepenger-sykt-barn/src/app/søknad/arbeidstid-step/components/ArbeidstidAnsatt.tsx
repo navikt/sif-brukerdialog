@@ -1,5 +1,5 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import { DateRange } from '@navikt/sif-common-utils';
 import { getArbeidstidIPeriodeIntlValues } from '../../../local-sif-common-pleiepenger/utils';
 import { Arbeidsgiver } from '../../../types';
@@ -27,11 +27,11 @@ const ArbeidstidAnsatt: React.FunctionComponent<Props> = ({
     søkerFremITid,
     index,
 }) => {
-    const intl = useIntl();
+    const appIntl = useAppIntl();
     const periode = getPeriodeSomAnsattInnenforPeriode(søknadsperiode, arbeidsgiver);
     const ansattParentFieldName = `${SøknadFormField.ansatt_arbeidsforhold}.${index}` as SøknadFormField;
 
-    const intlValues = getArbeidstidIPeriodeIntlValues(intl, {
+    const intlValues = getArbeidstidIPeriodeIntlValues(appIntl, {
         periode,
         jobberNormaltTimer: normalarbeidstid,
         arbeidsgiverNavn: arbeidsgiver.navn,

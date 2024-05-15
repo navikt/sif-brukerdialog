@@ -1,4 +1,3 @@
-import { FormattedMessage } from 'react-intl';
 import AttachmentListWithDeletion from '@navikt/sif-common-core-ds/src/components/attachment-list-with-deletion/AttachmentListWithDeletion';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
@@ -11,6 +10,7 @@ import { removeElementFromArray } from '@navikt/sif-common-core-ds/src/utils/lis
 import { connect, useFormikContext } from 'formik';
 import { deleteFile } from '../../api/api';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
+import { AppText } from '../../i18n';
 
 interface LegeerklæringAttachmentListProps {
     includeDeletionFunctionality: boolean;
@@ -28,7 +28,7 @@ const LegeerklæringAttachmentList = ({ wrapNoAttachmentsInBox, includeDeletionF
     if (!containsAnyUploadedAttachments(legeerklæring)) {
         const noAttachmentsText = (
             <p data-testid="ingenLegeerklæring">
-                <FormattedMessage id="vedleggsliste.ingenLegeerklæringLastetOpp" />
+                <AppText id="vedleggsliste.ingenLegeerklæringLastetOpp" />
             </p>
         );
         if (wrapNoAttachmentsInBox) {

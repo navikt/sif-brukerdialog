@@ -2,7 +2,7 @@ import { Alert } from '@navikt/ds-react';
 import React from 'react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import InfoList from '../../pages/welcoming-page/components/info-list/InfoList';
+import InfoList from '../../pages/velkommen-page/components/info-list/InfoList';
 import { InvalidParameter, K9Valideringsfeil } from './invalidParameter';
 
 const visFlereMeldinger = false;

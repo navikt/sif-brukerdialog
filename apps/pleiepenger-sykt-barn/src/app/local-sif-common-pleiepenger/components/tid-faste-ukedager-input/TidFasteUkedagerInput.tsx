@@ -1,4 +1,3 @@
-import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { FormikTimeInput, TestProps } from '@navikt/sif-common-formik-ds/src';
@@ -7,6 +6,7 @@ import { Weekday } from '@navikt/sif-common-utils';
 import classNames from 'classnames';
 import { getTidFasteUkerdagerInputMessages } from './tidFasteUkerdagerInputMessages';
 import './tidFasteUkedagerInput.less';
+import { useAppIntl } from '../../../i18n';
 
 interface OwnProps {
     name: string;
@@ -29,7 +29,8 @@ const TidFasteUkedagerInput = ({
     hideDisabledDays,
     'data-testid': testId,
 }: TidFasteUkedagerInputProps) => {
-    const txt = getTidFasteUkerdagerInputMessages(useIntl().locale);
+    const { intl } = useAppIntl();
+    const txt = getTidFasteUkerdagerInputMessages(intl.locale);
 
     const renderWeekdayTimeInput = (weekday: Weekday, weekdayLabel: string, validationDayName: string) => {
         const disabled = isWeekdayDisabled(disabledDays, weekday);

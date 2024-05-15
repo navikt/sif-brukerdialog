@@ -1,8 +1,8 @@
-import { Heading, Ingress } from '@navikt/ds-react';
+import { BodyLong, Heading } from '@navikt/ds-react';
+import React from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { AppText } from '../../../i18n';
 
 interface Props {
     navn: string;
@@ -11,18 +11,18 @@ interface Props {
 const VelkommenGuide: React.FunctionComponent<Props> = ({ navn }) => (
     <SifGuidePanel>
         <Heading level="1" size="medium">
-            <FormattedMessage id="page.velkommen.guide.tittel" values={{ navn }} />
+            <AppText id="page.velkommen.guide.tittel" values={{ navn }} />
         </Heading>
         <Block margin="l">
-            <Ingress>
-                <FormattedMessage id="page.velkommen.guide.ingress" />
-            </Ingress>
+            <BodyLong size="large">
+                <AppText id="page.velkommen.guide.ingress" />
+            </BodyLong>
         </Block>
         <p>
-            <FormattedMessage id="page.velkommen.guide.tekst.1" />
+            <AppText id="page.velkommen.guide.tekst.1" />
         </p>
         <p>
-            <FormattedMessage id="page.velkommen.guide.tekst.2" />
+            <AppText id="page.velkommen.guide.tekst.2" />
         </p>
     </SifGuidePanel>
 );

@@ -1,6 +1,5 @@
-import { useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import OpptjeningUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/opptjening-utland/OpptjeningUtlandListAndDialog';
@@ -12,14 +11,14 @@ import { SøknadFormField, SøknadFormValues } from '../../../types/søknad-form
 import SøknadFormComponents from '../../SøknadFormComponents';
 
 const ArbeidssituasjonOpptjeningUtland = () => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     const { values } = useFormikContext<SøknadFormValues>();
 
     return (
         <>
             <div data-testid="arbeidssituasjonOpptjeningUtland">
                 <SøknadFormComponents.YesOrNoQuestion
-                    legend={intlHelper(intl, 'steg.arbeidssituasjon.opptjeningUtland.spm')}
+                    legend={text('steg.arbeidssituasjon.opptjeningUtland.spm')}
                     name={SøknadFormField.harOpptjeningUtland}
                     validate={getYesOrNoValidator()}
                 />
@@ -32,18 +31,9 @@ const ArbeidssituasjonOpptjeningUtland = () => {
                                 name={SøknadFormField.opptjeningUtland}
                                 validate={getListValidator({ required: true })}
                                 labels={{
-                                    addLabel: intlHelper(
-                                        intl,
-                                        'steg.arbeidssituasjon.opptjeningUtland.listAndDialog.addLabel',
-                                    ),
-                                    listTitle: intlHelper(
-                                        intl,
-                                        'steg.arbeidssituasjon.opptjeningUtland.listAndDialog.listTitle',
-                                    ),
-                                    modalTitle: intlHelper(
-                                        intl,
-                                        'steg.arbeidssituasjon.opptjeningUtland.listAndDialog.modalTitle',
-                                    ),
+                                    addLabel: text('steg.arbeidssituasjon.opptjeningUtland.listAndDialog.addLabel'),
+                                    listTitle: text('steg.arbeidssituasjon.opptjeningUtland.listAndDialog.listTitle'),
+                                    modalTitle: text('steg.arbeidssituasjon.opptjeningUtland.listAndDialog.modalTitle'),
                                 }}
                             />
                         </ResponsivePanel>
@@ -53,7 +43,7 @@ const ArbeidssituasjonOpptjeningUtland = () => {
             <FormBlock>
                 <div data-testid="arbeidssituasjonUtenlandskNæring">
                     <SøknadFormComponents.YesOrNoQuestion
-                        legend={intlHelper(intl, 'steg.arbeidssituasjon.utenlandskNæring.spm')}
+                        legend={text('steg.arbeidssituasjon.utenlandskNæring.spm')}
                         name={SøknadFormField.harUtenlandskNæring}
                         validate={getYesOrNoValidator()}
                     />

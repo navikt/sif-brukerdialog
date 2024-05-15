@@ -136,7 +136,9 @@ export const visLiktHverUke = (
     return true;
 };
 
-export const getSpmTeksterLiktHverUke = (omsorgstilbud?: OmsorgstilbudFormValues): string => {
+export const getSpmTeksterLiktHverUke = (
+    omsorgstilbud?: OmsorgstilbudFormValues,
+): 'fortid' | 'fortidFremtidUsiker' | 'fremtid' | 'kunFremtid' | 'kunFremtid' | 'fortidFremtid' => {
     if (
         omsorgstilbud?.erIOmsorgstilbudFortid === YesOrNoOrDoNotKnow.YES &&
         (omsorgstilbud?.erIOmsorgstilbudFremtid === YesOrNoOrDoNotKnow.NO ||

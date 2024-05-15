@@ -1,10 +1,9 @@
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { DurationText } from '@navikt/sif-common-ui';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { DateRange, getTypedFormComponents, InputTime } from '@navikt/sif-common-formik-ds/src';
 import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
@@ -31,6 +30,7 @@ import {
     trimDateRangeToWeekdays,
 } from './utils/tidEnkeltdagUtils';
 import { getTidEnkeltdagFormTidValidator } from './utils/tidEnkeltdagValidation';
+import { AppText } from '../../../i18n';
 
 dayjs.extend(minMax);
 
@@ -95,7 +95,7 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
     onSubmit,
     onCancel,
 }) => {
-    const intl = useIntl();
+    const { text, intl } = useAppIntl();
 
     const onValidSubmit = (values: Partial<TidEnkeltdagFormValues>) => {
         if (values.tid) {
@@ -136,9 +136,8 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
         key: string,
         periode?: { fra: string; til: string },
         values?: any,
-    ): JSX.Element => (
-        <FormattedMessage id={`tidEnkeltdagForm.gjentagelse.${key}`} values={{ ...values, ...periode }} />
-    );
+        // TODO - fikse nøkkel
+    ): JSX.Element => <AppText id={`tidEnkeltdagForm.gjentagelse.${key}` as any} values={{ ...values, ...periode }} />;
 
     return (
         <FormComponents.FormikWrapper
@@ -165,14 +164,14 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
                         />
                         {tidOpprinnelig && erEndret && (
                             <p>
-                                <FormattedMessage id="tidEnkeltdagForm.endretFra" />{' '}
+                                <AppText id="tidEnkeltdagForm.endretFra" />{' '}
                                 <DurationText duration={tidOpprinnelig} fullText={true} />
                             </p>
                         )}
                         {skalViseValgetGjelderFlereDager && (
                             <FormBlock margin="l">
                                 <FormComponents.Checkbox
-                                    label={intlHelper(intl, 'tidEnkeltdagForm.gjelderFlereDager.label')}
+                                    label={text('tidEnkeltdagForm.gjelderFlereDager.label')}
                                     name={FormFields.skalGjentas}
                                 />
                             </FormBlock>
@@ -183,7 +182,7 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
                                     {/* <div style={{ paddingLeft: '1.5rem' }}> */}
 
                                     <FormComponents.RadioGroup
-                                        legend={intlHelper(intl, 'tidEnkeltdagForm.gjelderFlereDager.info')}
+                                        legend={text('tidEnkeltdagForm.gjelderFlereDager.info')}
                                         className={bem.element('gjentagelseOptions')}
                                         name={FormFields.gjentagelse}
                                         validate={getRequiredFieldValidator()}
@@ -231,20 +230,14 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
                                                 <div style={{ marginLeft: '1.5rem' }}>
                                                     <FormBlock margin="m">
                                                         <FormComponents.Checkbox
-                                                            label={intlHelper(
-                                                                intl,
-                                                                'tidEnkeltdagForm.stoppGjentagelse.label',
-                                                            )}
+                                                            label={text('tidEnkeltdagForm.stoppGjentagelse.label')}
                                                             name={FormFields.stoppGjentagelse}
                                                         />
                                                     </FormBlock>
                                                     {stoppGjentagelse && (
                                                         <FormBlock margin="l">
                                                             <FormComponents.DatePicker
-                                                                label={intlHelper(
-                                                                    intl,
-                                                                    'tidEnkeltdagForm.stopDato.label',
-                                                                )}
+                                                                label={text('tidEnkeltdagForm.stopDato.label')}
                                                                 minDate={dato}
                                                                 maxDate={periode.to}
                                                                 validate={getDateValidator({
