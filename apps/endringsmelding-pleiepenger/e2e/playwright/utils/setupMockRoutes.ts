@@ -1,7 +1,5 @@
 import { Page } from '@playwright/test';
-import { enArbeidsgiverMock } from '../../mock-data/enArbeidsgiverMock';
-import { enSakEnArbeidsgiverMock } from '../../mock-data/enSakEnArbeidsgiverMock';
-import { søkerMock } from '../../mock-data/søkerMock';
+import { EnArbeidsgiverEnPeriode } from '../../../src/mocks/data/scenario/en-arbeidsgiver-en-periode/EnArbeidsgiverEnPeriode';
 
 export const setupMockRoutes = async (page: Page, props?: { mellomlagring: any }) => {
     await page.route('**hotjar**', async (route) => {
@@ -30,12 +28,12 @@ export const setupMockRoutes = async (page: Page, props?: { mellomlagring: any }
         await route.fulfill({ status: 200, body: '{}' });
     });
     await page.route('**/oppslag/soker?ytelse=endringsmelding-pleiepenger', async (route) => {
-        await route.fulfill({ status: 200, body: JSON.stringify(søkerMock) });
+        await route.fulfill({ status: 200, body: JSON.stringify(EnArbeidsgiverEnPeriode.søker) });
     });
     await page.route('**/oppslag/arbeidsgiver**', async (route) => {
-        await route.fulfill({ status: 200, body: JSON.stringify(enArbeidsgiverMock) });
+        await route.fulfill({ status: 200, body: JSON.stringify(EnArbeidsgiverEnPeriode.arbeidsgiver) });
     });
     await page.route('**/api/innsyn/sak', async (route) => {
-        await route.fulfill({ status: 200, body: JSON.stringify(enSakEnArbeidsgiverMock) });
+        await route.fulfill({ status: 200, body: JSON.stringify(EnArbeidsgiverEnPeriode.sak) });
     });
 };

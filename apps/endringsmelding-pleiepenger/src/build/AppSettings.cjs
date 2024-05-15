@@ -19,6 +19,7 @@ const getAppSettings = (isTest) => ({
     MSW: `${process.env.MSW}`,
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
     E2E_TEST: isTest ? 'true' : false,
+    NOW: `${process.env.NOW}`,
 });
 
 module.exports = getAppSettings;

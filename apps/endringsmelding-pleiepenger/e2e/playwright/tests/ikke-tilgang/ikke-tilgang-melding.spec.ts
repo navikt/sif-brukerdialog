@@ -15,7 +15,7 @@ test('Ugyldig k9format på sak', async ({ page }) => {
         await route.fulfill({ status: 200, body: JSON.stringify(UgyldigK9Format.sak) });
     });
     await expect(page).toHaveTitle('Ingen tilgang - Endringsmelding for pleiepenger sykt barn');
-    await expect(page.getByText('Hei STERK')).toBeVisible();
+    await expect(page.getByText('Hei Fornavn')).toBeVisible();
     await expect(page.getByTestId('ugyldigK9FormatSak')).toBeVisible();
 });
 
@@ -25,7 +25,7 @@ test('Ingen sak funnet', async ({ page }) => {
         await route.fulfill({ status: 200, body: JSON.stringify([]) });
     });
     await expect(page).toHaveTitle('Ingen tilgang - Endringsmelding for pleiepenger sykt barn');
-    await expect(page.getByText('Hei STERK')).toBeVisible();
+    await expect(page.getByText('Hei Fornavn')).toBeVisible();
     await expect(page.getByTestId('ingenSak')).toBeVisible();
 });
 
@@ -35,6 +35,6 @@ test('Flere saker', async ({ page }) => {
         await route.fulfill({ status: 200, body: JSON.stringify(FlereSaker.sak) });
     });
     await expect(page).toHaveTitle('Ingen tilgang - Endringsmelding for pleiepenger sykt barn');
-    await expect(page.getByText('Hei STERK')).toBeVisible();
+    await expect(page.getByText('Hei Fornavn')).toBeVisible();
     await expect(page.getByTestId('flereSaker')).toBeVisible();
 });

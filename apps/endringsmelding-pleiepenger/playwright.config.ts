@@ -34,6 +34,7 @@ export default defineConfig({
             APPSTATUS_PROJECT_ID: 'ryujtq87',
             APPSTATUS_DATASET: 'staging',
             MSW: 'off',
+            NOW: '2023-01-01',
         },
     },
 });
