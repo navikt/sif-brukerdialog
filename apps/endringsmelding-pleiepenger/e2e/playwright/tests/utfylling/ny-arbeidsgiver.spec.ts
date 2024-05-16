@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { setNow } from '../utils/setNow';
-import { routeUtils } from '../utils/routeUtils';
-import { SøknadRoutes } from '../../../src/app/søknad/config/SøknadRoutes';
+import { setNow } from '../../utils/setNow';
+import { routeUtils } from '../../utils/routeUtils';
+import { SøknadRoutes } from '../../../../src/app/søknad/config/SøknadRoutes';
 
 test.beforeEach(async ({ page }) => {
     await setNow(page);
@@ -9,9 +9,6 @@ test.beforeEach(async ({ page }) => {
 
 test('test', async ({ page }) => {
     await routeUtils.resumeFromRoute(page, SøknadRoutes.VELKOMMEN, 'arbeidsgiver-ikke-i-sak');
-
-    await page.goto('http://localhost:8080/');
-    await page.goto('http://localhost:8080/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/');
     await page.goto(
         'http://localhost:8080/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/melding/velkommen',
     );
