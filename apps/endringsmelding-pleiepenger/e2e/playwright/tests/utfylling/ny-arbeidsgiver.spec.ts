@@ -15,12 +15,14 @@ test('test', async ({ page }) => {
     await page.getByTestId('endreArbeidstid').check();
     await page.getByTestId('bekreft-label').click();
     await page.getByTestId('typedFormikForm-submitButton').click();
+
     await page.getByTestId('ukjentArbeidsforhold_a_947064642').getByLabel('Ja').check();
     await page.getByLabel('Hvor mange timer jobber du').click();
     await page.getByLabel('Hvor mange timer jobber du').fill('50');
     await page.getByLabel('Hovedinnhold').click();
     await page.getByTestId('ukjentArbeidsforhold_a_947064643').getByLabel('Nei').check();
     await page.getByTestId('typedFormikForm-submitButton').click();
+
     await page.getByTestId('REDUSERT').check();
     await page.getByRole('button', { name: 'Vis flere uker' }).click();
     await page.getByRole('button', { name: 'Vis flere uker' }).click();
