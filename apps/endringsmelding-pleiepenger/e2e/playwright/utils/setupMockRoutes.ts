@@ -41,5 +41,12 @@ export const setupMockRoutes = async (page: Page, scenario: ScenarioType, props?
         }
         await route.fulfill({ status: 200, body: '{}' });
     });
+    await page.route('**/endringsmelding/innsending', async (route, request) => {
+        if (request.method() === 'POST') {
+            await route.fulfill({ status: 200 });
+            return;
+        }
+        await route.fulfill({ status: 200, body: '{}' });
+    });
     await setupScenarioMockRoutes(page, scenario);
 };
