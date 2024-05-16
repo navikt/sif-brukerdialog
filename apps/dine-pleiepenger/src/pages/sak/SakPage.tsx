@@ -1,6 +1,7 @@
 import { Box, VStack } from '@navikt/ds-react';
 import React from 'react';
 import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
+import { useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import DevBranchInfo from '../../components/dev-branch-info/DevBranchInfo';
@@ -16,12 +17,10 @@ import { useLogSaksprofil } from '../../hooks/useLogSaksprofil';
 import { Behandlingsstatus } from '../../server/api-models/Behandlingsstatus';
 import { Pleietrengende } from '../../server/api-models/PleietrengendeSchema';
 import { Sak } from '../../server/api-models/SakSchema';
+import { PageKey } from '../../types/PageKey';
 import { getAllBreadcrumbs } from '../../utils/decoratorBreadcrumbs';
 import { browserEnv } from '../../utils/env';
-import { personaliaUtils } from '../../utils/personaliaUtils';
 import { getBehandlingsstatusISak } from '../../utils/sakUtils';
-import { useLogSidevisning } from '@navikt/sif-common-amplitude';
-import { PageKey } from '../../types/PageKey';
 
 interface Props {
     pleietrengende: Pleietrengende;
@@ -31,7 +30,6 @@ interface Props {
 }
 
 const SakPage: React.FunctionComponent<Props> = ({ sak, pleietrengende, saksbehandlingstidUker, antallSaker }) => {
-    const navn = personaliaUtils.navn(pleietrengende);
     const router = useRouter();
     useLogSaksprofil(sak, antallSaker);
     useLogSidevisning(PageKey.sak);
@@ -50,7 +48,7 @@ const SakPage: React.FunctionComponent<Props> = ({ sak, pleietrengende, saksbeha
         <DefaultPageLayout
             pageHeader={
                 <SakPageHeader
-                    navn={navn}
+                    pleietrengende={pleietrengende}
                     saksnr={sak.saksnummer}
                     titleTag={statusISak ? <StatusTag {...statusISak} /> : null}
                 />

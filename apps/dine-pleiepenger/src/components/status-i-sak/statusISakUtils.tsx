@@ -5,11 +5,11 @@ import { Søknad } from '../../server/api-models/SøknadSchema';
 import SøknadStatusContent from './parts/SøknadStatusContent';
 import EndringsmeldingStatusContent from './parts/EndringsmeldingStatusContent';
 import FerdigBehandletStatusContent from './parts/FerdigBehandletStatusContent';
-import { Msg, TextFn as TextFn } from '../../i18n';
+import { AppText, IntlTextFn as IntlTextFn } from '../../i18n';
 import { Box } from '@navikt/ds-react';
 
 export const getProcessStepFromMottattSøknad = (
-    text: TextFn,
+    text: IntlTextFn,
     søknad: Søknad,
     current: boolean,
 ): ProcessStepData | undefined => {
@@ -37,7 +37,10 @@ export const getProcessStepFromMottattSøknad = (
     }
 };
 
-export const getProcessStepsFraSøknadshendelser = (text: TextFn, hendelser: Søknadshendelse[]): ProcessStepData[] => {
+export const getProcessStepsFraSøknadshendelser = (
+    text: IntlTextFn,
+    hendelser: Søknadshendelse[],
+): ProcessStepData[] => {
     /** Aksjonspunkt skal ikke vises enda */
     const hendelserSomSkalVises = hendelser.filter((h) => h.type !== SøknadshendelseType.AKSJONSPUNKT);
 
@@ -91,7 +94,7 @@ export const getProcessStepsFraSøknadshendelser = (text: TextFn, hendelser: Sø
 
 const getForventetSvarTitleContent = (
     hendelse: SøknadshendelseForventetSvar,
-    text: TextFn,
+    text: IntlTextFn,
 ): Pick<ProcessStepData, 'title' | 'content'> => {
     const inneholderSøknad = hendelse.søknadstyperIBehandling.includes(Søknadstype.SØKNAD);
     const inneholderEndring = hendelse.søknadstyperIBehandling.includes(Søknadstype.ENDRINGSMELDING);
@@ -101,7 +104,7 @@ const getForventetSvarTitleContent = (
             title: text('statusISak.forventetSvar.endring.tittel'),
             content: (
                 <Box className="mt-2">
-                    <Msg id="statusISak.forventetSvar.endring.info" />
+                    <AppText id="statusISak.forventetSvar.endring.info" />
                 </Box>
             ),
         };
@@ -110,7 +113,7 @@ const getForventetSvarTitleContent = (
         title: text('statusISak.forventetSvar.søknad.tittel'),
         content: (
             <Box className="mt-2">
-                <Msg id="statusISak.forventetSvar.søknad.info" />
+                <AppText id="statusISak.forventetSvar.søknad.info" />
             </Box>
         ),
     };

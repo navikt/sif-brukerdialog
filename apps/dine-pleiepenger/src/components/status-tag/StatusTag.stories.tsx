@@ -44,7 +44,7 @@ export const Default: Story = {
                 </HStack>
                 <HStack gap="2">
                     {Behandlingsstatus.PÅ_VENT}/{Venteårsak.MEDISINSK_DOKUMENTASJON}:
-                    <StatusTag status={Behandlingsstatus.PÅ_VENT} venteårsak={Venteårsak.SØKT_FOR_TIDLIG} />
+                    <StatusTag status={Behandlingsstatus.PÅ_VENT} venteårsak={Venteårsak.FOR_TIDLIG_SOKNAD} />
                 </HStack>
                 <HStack gap="2">
                     {Behandlingsstatus.AVSLUTTET}:

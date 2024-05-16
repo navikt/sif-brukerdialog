@@ -1,4 +1,4 @@
-import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { nb } from './nb';
 
@@ -10,15 +10,11 @@ const nn: MessagesType = {
     ...nb,
 };
 
-export const getMessagesIntl = (intl: IntlShape) => {
-    return typedIntlHelper<keyof typeof nb>(intl);
-};
+export type IntlTextFn = (key: MessageKeys, values?: any) => string;
 
-export type TextFn = (key: MessageKeys, values?: any) => string;
-
-export const useMessages = () => {
+export const useAppIntl = () => {
     const intl = useIntl();
-    return getMessagesIntl(intl);
+    return typedIntlHelper<keyof typeof nb>(intl);
 };
 
 interface Props {
@@ -26,7 +22,9 @@ interface Props {
     values?: any;
 }
 
-export const Msg: React.FunctionComponent<Props> = ({ id, values }) => <FormattedMessage id={id} values={values} />;
+export const AppText: React.FunctionComponent<Props> = ({ id, values }) => <FormattedMessage id={id} values={values} />;
+
+export type AppIntlShape = ReturnType<typeof useAppIntl>;
 
 export const messages = {
     nb,
