@@ -10,7 +10,6 @@ import { SøknadContextState, TempFormValues } from '../../../types/SøknadConte
 import { DineBarnSøknadsdata, DineBarnSøknadsdataType } from '../../../types/søknadsdata/DineBarnSøknadsdata';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { DineBarnFormValues } from './DineBarnStep';
-import './dineBarn.css';
 
 export const nYearsAgo = (years: number): Date => {
     return dayjs(dateToday).subtract(years, 'y').startOf('year').toDate();

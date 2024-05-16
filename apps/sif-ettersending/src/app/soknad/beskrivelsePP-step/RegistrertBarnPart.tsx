@@ -1,21 +1,20 @@
-import { FormattedMessage, useIntl } from 'react-intl';
-import { dateToISODate, prettifyDate } from '@navikt/sif-common-utils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { BodyShort } from '@navikt/ds-react';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
+import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { dateToISODate, prettifyDate } from '@navikt/sif-common-utils';
+import { useFormikContext } from 'formik';
+import { AppText, useAppIntl } from '../../i18n';
+import { RegistrertBarn } from '../../types/RegistrertBarn';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import SoknadFormComponents from '../SoknadFormComponents';
-import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { BodyShort } from '@navikt/ds-react';
-import { RegistrertBarn } from '../../types/RegistrertBarn';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { useFormikContext } from 'formik';
 
 interface Props {
     registrertBarn: RegistrertBarn[];
 }
 
 const RegistrertBarnPart = ({ registrertBarn }: Props) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     const {
         values: { legeerklæringGjelderEtAnnetBarn },
         setFieldValue,
@@ -27,18 +26,17 @@ const RegistrertBarnPart = ({ registrertBarn }: Props) => {
                 <>
                     <SoknadFormComponents.RadioGroup
                         name={SoknadFormField.registrertBarnAktørId}
-                        legend={intlHelper(intl, 'step.beskrivelse_pp.registrertBarnPart.spm')}
+                        legend={text('step.beskrivelse_pp.registrertBarnPart.spm')}
                         radios={registrertBarn.map((barn) => {
                             const { fornavn, mellomnavn, etternavn, fødselsdato, aktørId } = barn;
                             const barnetsNavn = formatName(fornavn, etternavn, mellomnavn);
                             return {
                                 value: aktørId,
-                                key: aktørId,
                                 label: (
                                     <BodyShort as="div">
                                         <div>{barnetsNavn}</div>
                                         <div>
-                                            <FormattedMessage
+                                            <AppText
                                                 id="step.beskrivelse_pp.registrertBarnPart.hvilketBarn.født"
                                                 values={{ dato: prettifyDate(fødselsdato) }}
                                             />
@@ -67,7 +65,7 @@ const RegistrertBarnPart = ({ registrertBarn }: Props) => {
 
                     <FormBlock margin="l">
                         <SoknadFormComponents.Checkbox
-                            label={intlHelper(intl, 'step.beskrivelse_pp.gjelderAnnetBarn')}
+                            label={text('step.beskrivelse_pp.gjelderAnnetBarn')}
                             name={SoknadFormField.legeerklæringGjelderEtAnnetBarn}
                             afterOnChange={(newValue) => {
                                 if (newValue) {

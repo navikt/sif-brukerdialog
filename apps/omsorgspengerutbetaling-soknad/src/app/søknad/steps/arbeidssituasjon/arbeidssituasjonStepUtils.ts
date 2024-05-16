@@ -1,36 +1,12 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
+import { DateRange } from '@navikt/sif-common-formik-ds';
 import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
-import { ArbeidssituasjonFormValues } from './ArbeidssituasjonStep';
-import { ArbeidSøknadsdata } from '../../../types/søknadsdata/ArbeidSøknadsdata';
+import dayjs from 'dayjs';
 import { ArbeidFrilansSøknadsdata } from '../../../types/søknadsdata/ArbeidFrilansSøknadsdata';
 import { ArbeidSelvstendigSøknadsdata } from '../../../types/søknadsdata/ArbeidSelvstendigSøknadsdata';
+import { ArbeidSøknadsdata } from '../../../types/søknadsdata/ArbeidSøknadsdata';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
-import { DateRange } from '@navikt/sif-common-formik-ds';
-import dayjs from 'dayjs';
-
-// export const frilansIsValid = (values: Partial<ArbeidssituasjonFormValues>) => {
-//     const erFrilanser = values.frilans_erFrilanser;
-//     const frilansStartdato = datepickerUtils.getDateFromDateString(values.frilans_startdato);
-//     const frilansSluttdato = datepickerUtils.getDateFromDateString(values.frilans_sluttdato);
-//     const frilansJobberFortsattSomFrilans = values.frilans_jobberFortsattSomFrilans;
-
-//     return !!(
-//         erFrilanser === YesOrNo.NO ||
-//         (erFrilanser === YesOrNo.YES &&
-//             frilansStartdato &&
-//             (frilansJobberFortsattSomFrilans === YesOrNo.YES ||
-//                 (frilansJobberFortsattSomFrilans === YesOrNo.NO && frilansSluttdato !== undefined)))
-//     );
-// };
-
-// export const selvstendigIsValid = (values: Partial<ArbeidssituasjonFormValues>) => {
-//     const erSelvstendigNæringsdrivende = values.selvstendig_erSelvstendigNæringsdrivende;
-//     const selvstendigVirksomhet = values.selvstendig_virksomhet;
-//     return !!(
-//         erSelvstendigNæringsdrivende === YesOrNo.NO ||
-//         (erSelvstendigNæringsdrivende === YesOrNo.YES && selvstendigVirksomhet !== undefined)
-//     );
-// };
+import { ArbeidssituasjonFormValues } from './ArbeidssituasjonStep';
 
 export const getArbeidssituasjonSøknadsdataFromFormValues = (
     values: ArbeidssituasjonFormValues,

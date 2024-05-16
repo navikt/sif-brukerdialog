@@ -57,10 +57,10 @@ const getSøknadInitialData = async (
     const lagretSøknadStateToUse = isValid ? lagretSøknadState : defaultSøknadState;
     return Promise.resolve({
         versjon: SØKNAD_VERSJON,
-        søker,
-        registrerteBarn,
         søknadsdata: {},
         ...lagretSøknadStateToUse,
+        søker,
+        registrerteBarn,
     });
 };
 
@@ -72,9 +72,10 @@ function useSøknadInitialData(): SøknadInitialDataState {
             const søker = await søkerEndpoint.fetch();
             const barn = await barnEndpoint.fetch();
             const lagretSøknadState = await søknadStateEndpoint.fetch();
+            const data = await getSøknadInitialData(søker, barn, lagretSøknadState);
             setInitialData({
                 status: RequestStatus.success,
-                data: await getSøknadInitialData(søker, barn, lagretSøknadState),
+                data,
             });
         } catch (error: any) {
             if (isUnauthorized(error)) {

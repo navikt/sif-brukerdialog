@@ -1,6 +1,6 @@
 import { Alert } from '@navikt/ds-react';
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+
 import { SIFCommonGeneralEvents, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
@@ -13,20 +13,20 @@ import {
     getTotalSizeOfAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { useFormikContext } from 'formik';
+import api from '../../api/api';
 import UploadedDocumentsList from '../../components/uploaded-documents-list/UploadedDocumentsList';
+import { AppText, useAppIntl } from '../../i18n';
+import { ApiEndpoint } from '../../types/ApiEndpoint';
 import { Person } from '../../types/Person';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import { Søknadstype } from '../../types/Søknadstype';
+import { getAttachmentURLFrontend } from '../../utils/attachmentUtilsAuthToken';
 import { navigateToLoginPage } from '../../utils/navigationUtils';
 import { validateDocuments } from '../../validation/fieldValidations';
 import SoknadFormStep from '../SoknadFormStep';
 import { StepID } from '../soknadStepsConfig';
 import SøknadTempStorage from '../soknadTempStorage';
-import { getAttachmentURLFrontend } from '../../utils/attachmentUtilsAuthToken';
-import api from '../../api/api';
-import { ApiEndpoint } from '../../types/ApiEndpoint';
 
 interface Props {
     søknadstype: Søknadstype;
@@ -35,7 +35,7 @@ interface Props {
 }
 
 const DokumenterStep: React.FC<Props> = ({ søknadstype, søker, soknadId }: Props) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     const { values, setFieldValue } = useFormikContext<SoknadFormData>();
     const dokumenter: Attachment[] = React.useMemo(() => {
         return values ? values[SoknadFormField.dokumenter] : [];
@@ -84,13 +84,13 @@ const DokumenterStep: React.FC<Props> = ({ søknadstype, søker, soknadId }: Pro
             buttonDisabled={hasPendingUploads || sizeOver24Mb}>
             <SifGuidePanel>
                 <p>
-                    <FormattedMessage id={'steg.dokumenter.infopanel.1'} />
+                    <AppText id={'steg.dokumenter.infopanel.1'} />
                 </p>
                 <p>
-                    <FormattedMessage id={'steg.dokumenter.infopanel.2'} />
+                    <AppText id={'steg.dokumenter.infopanel.2'} />
                 </p>
                 <p>
-                    <FormattedMessage id={'steg.dokumenter.infopanel.3'} />
+                    <AppText id={'steg.dokumenter.infopanel.3'} />
                 </p>
             </SifGuidePanel>
 
@@ -102,7 +102,7 @@ const DokumenterStep: React.FC<Props> = ({ søknadstype, søker, soknadId }: Pro
                 <FormBlock>
                     <FormikFileUploader
                         name={SoknadFormField.dokumenter}
-                        buttonLabel={intlHelper(intl, 'steg.dokumenter.vedlegg')}
+                        buttonLabel={text('steg.dokumenter.vedlegg')}
                         onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
                         onFileInputClick={() => {
                             setFilesThatDidntGetUploaded([]);
@@ -122,7 +122,7 @@ const DokumenterStep: React.FC<Props> = ({ søknadstype, søker, soknadId }: Pro
             {totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
                 <Block margin="l">
                     <Alert variant="warning">
-                        <FormattedMessage id={'steg.dokumenter.advarsel.totalstørrelse'} />
+                        <AppText id={'steg.dokumenter.advarsel.totalstørrelse'} />
                     </Alert>
                 </Block>
             )}

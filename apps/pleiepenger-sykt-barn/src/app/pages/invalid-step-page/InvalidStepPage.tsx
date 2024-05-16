@@ -1,14 +1,13 @@
 import { BodyShort, Heading } from '@navikt/ds-react';
-import { FormattedMessage, useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
+import { useAppIntl } from '@i18n/index';
 import ActionLink from '@navikt/sif-common-core-ds/src/atoms/action-link/ActionLink';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormattedHtmlMessage from '@navikt/sif-common-core-ds/src/atoms/formatted-html-message/FormattedHtmlMessage';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
 import RouteConfig from '../../config/routeConfig';
+import { AppText } from '../../i18n';
 import { StepID } from '../../types/StepID';
 
 interface Props {
@@ -16,22 +15,22 @@ interface Props {
 }
 
 const InvalidStepPage = ({ stepId }: Props) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     const navigate = useNavigate();
     const backLink = getPrevStepFromNotIncludedStep(stepId);
 
     return (
         <Page
-            title={intlHelper(intl, 'page.invalidStepPage.sidetittel')}
-            topContentRenderer={() => <SoknadHeader title={intlHelper(intl, 'application.title')} />}>
+            title={text('page.invalidStepPage.sidetittel')}
+            topContentRenderer={() => <SoknadHeader title={text('application.title')} />}>
             <div style={{ paddingTop: '1rem' }}>
                 <SifGuidePanel poster={true} compact={true} mood="uncertain">
                     <Heading level="2" size="medium">
-                        <FormattedMessage id="page.invalidStepPage.tittel" />
+                        <AppText id="page.invalidStepPage.tittel" />
                     </Heading>
                     <Block margin="m" padBottom="l">
                         <BodyShort as="div">
-                            <FormattedHtmlMessage id="page.invalidStepPage.tekst" />
+                            <AppText id="page.invalidStepPage.tekst" />
                             <p>
                                 <ActionLink
                                     onClick={() => {
@@ -41,7 +40,7 @@ const InvalidStepPage = ({ stepId }: Props) => {
                                             history.go(-1);
                                         }
                                     }}>
-                                    <FormattedMessage id="page.invalidStepPage.tilbakeLenke" />
+                                    <AppText id="page.invalidStepPage.tilbakeLenke" />
                                 </ActionLink>
                             </p>
                         </BodyShort>

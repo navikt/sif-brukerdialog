@@ -1,6 +1,5 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { useAppIntl } from '@i18n/index';
 import { dateFormatter, DateRange, ISODate } from '@navikt/sif-common-utils';
 import { FrilansFormField } from '../../../../../types/søknad-form-values/FrilansFormValues';
 import { getStartdatoForNySomFrilanser } from '../../../../../utils/frilanserUtils';
@@ -13,13 +12,13 @@ interface Props {
 }
 
 const FrilansStartdatoSpørsmål: React.FunctionComponent<Props> = ({ startdatoValue, søknadsperiode }) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     const minDato = getStartdatoForNySomFrilanser(søknadsperiode);
 
     return (
         <ArbFriFormComponents.DatePicker
             name={FrilansFormField.startdato}
-            label={intlHelper(intl, `frilanser.startdato.spm`)}
+            label={text(`frilanser.startdato.spm`)}
             dropdownCaption={true}
             maxDate={søknadsperiode.to}
             minDate={minDato}

@@ -10,6 +10,7 @@ import {
 import ArbeidsaktivitetBlock from '../../../../components/arbeidsaktivitet-block/ArbeidsaktivitetBlock';
 import { ArbeidsaktivitetFormValues, ArbeidstidFormFields } from '../ArbeidstidForm';
 import ArbeidsaktivitetContent from './components/ArbeidsaktivitetContent';
+import { useAppIntl } from '../../../../i18n';
 
 interface Props {
     arbeidsaktivitet: Arbeidsaktivitet;
@@ -30,6 +31,7 @@ const ArbeidsaktivitetFormPart = ({
     aktivitetFormValues,
     onArbeidstidChange,
 }: Props) => {
+    const { text } = useAppIntl();
     const aktivitetFieldName = `${ArbeidstidFormFields.arbeidsaktivitet}.${arbeidsaktivitet.key}`;
     const endringer = aktivitetFormValues?.endringer;
     const perioder = arbeidsaktivitet.perioderMedArbeidstid;
@@ -52,7 +54,7 @@ const ArbeidsaktivitetFormPart = ({
                         ? arbeidsaktivitet.arbeidsgiver
                         : undefined
                 }
-                endret={harEndringer ? { tekst: 'Endret arbeidstid' } : undefined}
+                endret={harEndringer ? { tekst: text('arbeidsaktivitetFormPart.aktivitet.erEndret') } : undefined}
                 erUkjent={
                     arbeidsaktivitet.type === ArbeidsaktivitetType.arbeidstaker &&
                     arbeidsaktivitet.erUkjentArbeidsforhold

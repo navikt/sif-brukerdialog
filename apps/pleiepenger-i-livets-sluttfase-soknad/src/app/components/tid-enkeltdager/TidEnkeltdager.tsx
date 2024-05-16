@@ -1,12 +1,12 @@
 import { Accordion, Heading } from '@navikt/ds-react';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { ISODate, ISODateToDate, ISODuration, ISODurationToDuration } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { groupBy } from 'lodash';
 import { DagMedTid } from '../../types/DagMedTid';
 import DagerMedTidListe from '../dager-med-tid-liste/DagerMedTidListe';
+import { AppText } from '../../i18n';
 
 interface ISODagMedTid {
     dato: ISODate;
@@ -35,7 +35,7 @@ const TidEnkeltdager: React.FunctionComponent<Props> = ({
         }
     });
 
-    const ingenDagerRegistrertMelding = <FormattedMessage id="dagerMedTid.ingenDagerRegistrert" />;
+    const ingenDagerRegistrertMelding = <AppText id="dagerMedTid.ingenDagerRegistrert" />;
     if (dager.length === 0) {
         return ingenDagerRegistrertMelding;
     }

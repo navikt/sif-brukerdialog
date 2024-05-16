@@ -1,6 +1,3 @@
-import { IntlShape } from 'react-intl';
-import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-
 const omsorgstilbudPeriodeFormMessages = {
     nb: {
         'omsorgstilbudPeriodeForm.tittel': 'Oppgi periode med omsorgstilbud',
@@ -74,7 +71,3 @@ export const omsorgstibudPeriodeMessages = {
         'omsorgstilbudPeriode.part.skalVære': 'skal være',
     },
 };
-
-type OmsorgstilbudPeriodeMessagesType = keyof typeof omsorgstibudPeriodeMessages.nb;
-
-export const getOmsorgstilbudPeriodeIntl = (intl: IntlShape) => typedIntlHelper<OmsorgstilbudPeriodeMessagesType>(intl);

@@ -1,15 +1,14 @@
 import { SummaryList } from '@navikt/sif-common-ui';
-import { IntlShape, useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { ApiBarn } from '../../../types/søknadApiData/SøknadApiData';
 import { TidspunktForAleneomsorg } from '../tidspunkt-for-aleneomsorg/TidspunktForAleneomsorgStep';
 import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
+import { AppIntlShape, useAppIntl } from '../../../i18n';
 
 interface Props {
     barn: ApiBarn[];
 }
 const tidspunktRenderer = (
-    intl: IntlShape,
+    { text }: AppIntlShape,
     navn: string,
     tidspunktForAleneomsorg: TidspunktForAleneomsorg,
     dato?: string,
@@ -21,38 +20,29 @@ const tidspunktRenderer = (
             </div>
             <div>
                 {tidspunktForAleneomsorg === TidspunktForAleneomsorg.TIDLIGERE && (
-                    <>
-                        <span>
-                            {intlHelper(
-                                intl,
-                                'step.oppsummering.omOmsorgenForBarn.harOmsorgFor.tidspunktForAleneomsorg.tidligere',
-                            )}
-                        </span>
-                    </>
+                    <span>
+                        {text('step.oppsummering.omOmsorgenForBarn.harOmsorgFor.tidspunktForAleneomsorg.tidligere')}
+                    </span>
                 )}
                 {tidspunktForAleneomsorg === TidspunktForAleneomsorg.SISTE_2_ÅRENE && dato && (
-                    <>
-                        <span>
-                            {intlHelper(
-                                intl,
-                                'step.oppsummering.omOmsorgenForBarn.harOmsorgFor.tidspunktForAleneomsorg',
-                                { dato: prettifyDateExtended(ISODateToDate(dato)) },
-                            )}
-                        </span>
-                    </>
+                    <span>
+                        {text('step.oppsummering.omOmsorgenForBarn.harOmsorgFor.tidspunktForAleneomsorg', {
+                            dato: prettifyDateExtended(ISODateToDate(dato)),
+                        })}
+                    </span>
                 )}
             </div>
         </>
     );
 };
 const BarnSummaryList = ({ barn }: Props) => {
-    const intl = useIntl();
+    const appIntl = useAppIntl();
     return (
         <SummaryList
             items={barn}
             itemRenderer={({ navn, tidspunktForAleneomsorg, dato }: ApiBarn) => {
                 if (tidspunktForAleneomsorg) {
-                    return tidspunktRenderer(intl, navn, tidspunktForAleneomsorg, dato);
+                    return tidspunktRenderer(appIntl, navn, tidspunktForAleneomsorg, dato);
                 } else return navn;
             }}
         />

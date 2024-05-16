@@ -1,5 +1,88 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.23.2
+
+### Patch Changes
+
+- 20b3033: Pakkeoppdateringer - minor/patch
+- Updated dependencies [20b3033]
+  - @navikt/sif-common-amplitude@2.25.1
+  - @navikt/sif-common-formik-ds@1.8.1
+  - @navikt/sif-common-soknad-ds@10.15.1
+  - @navikt/sif-common-core-ds@9.17.1
+  - @navikt/sif-common-sentry@0.26.1
+  - @navikt/sif-common-utils@3.45.1
+
+## 1.23.1
+
+### Patch Changes
+
+- 798d58a: Legge til rette for flere språk
+- Updated dependencies [a98157a]
+  - @navikt/sif-common-soknad-ds@10.15.0
+
+## 1.23.0
+
+### Minor Changes
+
+- 30b57da: Pakkeoppdatering - minor/patch
+
+### Patch Changes
+
+- Updated dependencies [30b57da]
+  - @navikt/sif-common-amplitude@2.25.0
+  - @navikt/sif-common-formik-ds@1.8.0
+  - @navikt/sif-common-soknad-ds@10.14.0
+  - @navikt/sif-common-core-ds@9.17.0
+  - @navikt/sif-common-sentry@0.26.0
+  - @navikt/sif-common-utils@3.45.0
+
+## 1.22.15
+
+### Patch Changes
+
+- Updated dependencies [99c9b1f]
+  - @navikt/sif-common-formik-ds@1.7.37
+  - @navikt/sif-common-core-ds@9.16.2
+  - @navikt/sif-common-soknad-ds@10.13.36
+
+## 1.22.14
+
+### Patch Changes
+
+- Updated dependencies [d89b9f6]
+  - @navikt/sif-common-formik-ds@1.7.36
+  - @navikt/sif-common-core-ds@9.16.2
+  - @navikt/sif-common-soknad-ds@10.13.36
+
+## 1.22.13
+
+### Patch Changes
+
+- c4d70c1: Pakkeoppdateringer - minor/patch
+- Updated dependencies [c4d70c1]
+  - @navikt/sif-common-amplitude@2.24.37
+  - @navikt/sif-common-formik-ds@1.7.35
+  - @navikt/sif-common-soknad-ds@10.13.36
+  - @navikt/sif-common-core-ds@9.16.2
+  - @navikt/sif-common-sentry@0.25.34
+  - @navikt/sif-common-utils@3.44.22
+
+## 1.22.12
+
+### Patch Changes
+
+- 9c29019: Pakkeoppdateringer - minor/patch
+- 35938df: Pakkeoppdateringer - minor/patch
+- Updated dependencies [9c29019]
+- Updated dependencies [35938df]
+  - @navikt/sif-common-amplitude@2.24.36
+  - @navikt/sif-common-formik-ds@1.7.34
+  - @navikt/sif-common-soknad-ds@10.13.35
+  - @navikt/sif-common-core-ds@9.16.1
+  - @navikt/sif-common-sentry@0.25.33
+  - @navikt/sif-common-utils@3.44.21
+
 ## 1.22.11
 
 ### Patch Changes

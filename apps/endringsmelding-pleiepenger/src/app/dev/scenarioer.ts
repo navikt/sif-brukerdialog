@@ -60,7 +60,7 @@ export const scenarioer: Scenario[] = [
     {
         name: 'Arbeidsaktivitet uten arbeidsgiver',
         value: 'arbeidsaktivitet-uten-arbeidsgiver',
-        harTilgang: false,
+        harTilgang: true,
     },
     {
         name: 'Ugyldig k9format',

@@ -1,15 +1,13 @@
 import { Alert, BodyShort, Heading, Ingress, ToggleGroup } from '@navikt/ds-react';
 import React from 'react';
-import { IntlShape, useIntl } from 'react-intl';
 import { useSøknadContext } from '@hooks';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { getDurationString } from '@navikt/sif-common-ui';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getNumberFromNumberInputValue, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { getNumberValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { getDurationString } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
 import { ArbeidstidEndring, Arbeidsuke, LovbestemtFerieSøknadsdata, TimerEllerProsent } from '@types';
 import {
@@ -21,6 +19,7 @@ import {
     getFeriedagerIUkeTekst,
 } from '@utils';
 import dayjs from 'dayjs';
+import { AppIntlShape, AppText, useAppIntl } from '../../i18n';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import UkeTags from '../arbeidstid-uker/components/UkeTags';
 import { getArbeidstidSpørsmålDescription, getArbeidsukerPerÅr } from './endreArbeidstidFormUtils';
@@ -65,7 +64,8 @@ const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = (
     onCancel,
     onSubmit,
 }) => {
-    const intl = useIntl();
+    const appIntl = useAppIntl();
+    const { text, intl } = appIntl;
     const {
         dispatch,
         state: { inputPreferanser },
@@ -144,12 +144,14 @@ const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = (
                         <Block margin="l" padBottom="l">
                             <Heading size="large" level="2">
                                 {arbeidsuker.length === 1
-                                    ? `Endre jobb for uke ${getArbeidsukeUkenummer(arbeidsuker[0], true)}`
-                                    : 'Endre jobb for flere uker'}
+                                    ? text('endreArbeidstidForm.heading.endreForEnUke', {
+                                          ukenummer: getArbeidsukeUkenummer(arbeidsuker[0], true),
+                                      })
+                                    : text('endreArbeidstidForm.heading.endreForFlereUker')}
                             </Heading>
                             <Block margin="m">
                                 <Ingress as="div">
-                                    {getUkerOgÅrBeskrivelse(arbeidsuker, intl.locale, lovbestemtFerie)}
+                                    {getUkerOgÅrBeskrivelse(arbeidsuker, appIntl, lovbestemtFerie)}
                                 </Ingress>
                             </Block>
                         </Block>
@@ -157,8 +159,10 @@ const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = (
                         {dagerMedFjernetFerie && dagerMedFjernetFerie.length > 0 && (
                             <Block margin="s" padBottom="l">
                                 <Alert variant="warning">
-                                    Du har fjernet ferie ({getFeriedagerIUkeTekst(dagerMedFjernetFerie)}) denne uken.
-                                    Hvis du skal jobbe i stedet for ferie, oppgi hvor mye du jobber denne uken.
+                                    <AppText
+                                        id="endreArbeidstidForm.dagerMedFerieFjernet.melding"
+                                        values={{ feriedagerTekst: getFeriedagerIUkeTekst(dagerMedFjernetFerie) }}
+                                    />
                                 </Alert>
                             </Block>
                         )}
@@ -170,7 +174,9 @@ const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = (
                             onCancel={onCancel}
                             showButtonArrows={false}>
                             <Block padBottom="m">
-                                <strong>Hvordan vil du oppgi hvor mye du jobber?</strong>
+                                <strong>
+                                    <AppText id="endreArbeidstidForm.hvordanOppgiArbeid.spm" />
+                                </strong>
                             </Block>
                             <ToggleGroup
                                 className="endreArbeidstidForm__timerProsentToggler"
@@ -185,18 +191,20 @@ const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = (
                                     setValues({ ...values, timerEllerProsent: value as TimerEllerProsent });
                                 }}>
                                 <ToggleGroup.Item value={TimerEllerProsent.PROSENT} data-testid="toggle-prosent">
-                                    I prosent
+                                    <AppText id="endreArbeidstidForm.hvordanOppgiArbeid.iProsent" />
                                 </ToggleGroup.Item>
                                 <ToggleGroup.Item value={TimerEllerProsent.TIMER} data-testid="toggle-timer">
-                                    I timer
+                                    <AppText id="endreArbeidstidForm.hvordanOppgiArbeid.iTimer" />
                                 </ToggleGroup.Item>
                             </ToggleGroup>
 
                             {gjelderKortUke && (
                                 <Block margin="xl">
                                     <Alert variant="info" inline={false}>
-                                        Dette er en kort uke, som går fra {getDagerTekst(arbeidsuker[0].periode)}. Du
-                                        skal oppgi hvor mye du jobber kun for disse dagene.
+                                        <AppText
+                                            id="endreArbeidstidForm.kortUke.info"
+                                            values={{ dager: getDagerTekst(arbeidsuker[0].periode) }}
+                                        />
                                     </Alert>
                                 </Block>
                             )}
@@ -206,10 +214,10 @@ const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = (
                                     <NumberInput
                                         className="arbeidstidUkeInput"
                                         name={EndreArbeidstidFormField.prosentAvNormalt}
-                                        label={intlHelper(intl, 'endreArbeidstid.prosentAvNormalt.spm', intlValues)}
+                                        label={text('endreArbeidstidForm.prosentAvNormalt.spm', intlValues)}
                                         data-testid="prosent-verdi"
                                         width="xs"
-                                        description={getNormalarbeidstidDescription(intl, arbeidsuker)}
+                                        description={getNormalarbeidstidDescription(appIntl, arbeidsuker)}
                                         maxLength={5}
                                         validate={(value) => {
                                             return getNumberValidator({
@@ -225,16 +233,15 @@ const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = (
                                         <NumberInput
                                             className="arbeidstidUkeInput"
                                             name={EndreArbeidstidFormField.antallTimer}
-                                            label={intlHelper(
-                                                intl,
+                                            label={text(
                                                 arbeidsuker.length === 1
-                                                    ? `endreArbeidstid.timerAvNormalt.spm`
-                                                    : `endreArbeidstid.timerAvNormalt.flereUker.spm`,
+                                                    ? `endreArbeidstidForm.timerAvNormalt.spm`
+                                                    : `endreArbeidstidForm.timerAvNormalt.flereUker.spm`,
                                                 intlValues,
                                             )}
                                             data-testid="timer-verdi"
                                             width="xs"
-                                            description={getNormalarbeidstidDescription(intl, arbeidsuker)}
+                                            description={getNormalarbeidstidDescription(appIntl, arbeidsuker)}
                                             maxLength={5}
                                             validate={(value) => {
                                                 const max = getMaksTimer();
@@ -261,7 +268,7 @@ export default EndreArbeidstidForm;
 
 const getUkerOgÅrBeskrivelse = (
     arbeidsuker: Arbeidsuke[],
-    locale: string,
+    { text, intl }: AppIntlShape,
     lovbestemtFerie?: LovbestemtFerieSøknadsdata,
 ) => {
     if (arbeidsuker.length === 1) {
@@ -270,7 +277,7 @@ const getUkerOgÅrBeskrivelse = (
             : [];
         return (
             <BodyShort as="div" className="capsFirstChar">
-                {getArbeidstidSpørsmålDescription(arbeidsuker[0], locale)}
+                {getArbeidstidSpørsmålDescription(arbeidsuker[0], intl.locale)}
                 {dagerMedFerie.length > 0 && (
                     <Block margin="m">
                         <UkeTags visDagNavn={true} dagerMedFerie={dagerMedFerie} />
@@ -282,7 +289,7 @@ const getUkerOgÅrBeskrivelse = (
     const ukerPerÅr = getArbeidsukerPerÅr(arbeidsuker);
     const getUker = (uker: Arbeidsuke[]) => {
         if (!uker) {
-            return 'Ingen uker valgt';
+            return text('endreArbeidstidForm.ukerOgÅr.ingenUkerValgt');
         }
         return uker ? uker.map((uke) => dayjs(uke.periode.from).isoWeek()).join(', ') : [];
     };
@@ -291,9 +298,19 @@ const getUkerOgÅrBeskrivelse = (
     return (
         <>
             <Block margin="m">
-                <ExpandableInfo title={`Vis hvilke ${arbeidsuker.length} uker som er valgt`}>
+                <ExpandableInfo
+                    title={text('endreArbeidstidForm.ukerOgÅr.visValgteUker.tittel', {
+                        antallUker: arbeidsuker.length,
+                    })}>
                     {årKeys.map((år) => {
-                        return <div key={år}>{`${år}: Uke ${getUker(ukerPerÅr[år])}`}</div>;
+                        return (
+                            <div key={år}>
+                                <AppText
+                                    id="endreArbeidstidForm.ukerOgÅr.årOgUke"
+                                    values={{ år, uker: getUker(ukerPerÅr[år]) }}
+                                />
+                            </div>
+                        );
                     })}
                 </ExpandableInfo>
             </Block>
@@ -301,20 +318,23 @@ const getUkerOgÅrBeskrivelse = (
     );
 };
 
-const getNormalarbeidstidDescription = (intl: IntlShape, arbeidsuker: Arbeidsuke[]) => {
+const getNormalarbeidstidDescription = ({ text, intl }: AppIntlShape, arbeidsuker: Arbeidsuke[]) => {
     if (arbeidsuker.length === 1) {
         const uke = arbeidsuker[0];
         const gjelderKortUke = erKortArbeidsuke(uke.periode);
         const periodeTekst = gjelderKortUke ? ` ${getDagerTekst(uke.periode)}` : ' denne uken';
-        return `Oppgitt normal arbeidstid for ${periodeTekst} er ${getDurationString(intl, {
-            duration: uke.normalt.uke,
-        })}`;
+        return text('endreArbeidstidForm.normalarbeidstid.enUke', {
+            periodeTekst,
+            varighet: getDurationString(intl, { duration: uke.normalt.uke }),
+        });
     }
     if (arbeidsukerHarLikNormaltidPerDag(arbeidsuker)) {
         const uke = arbeidsuker[0];
-        return `Oppgitt normal arbeidstid for disse ukene er ${getDurationString(intl, {
-            duration: uke.normalt.uke,
-        })} per uke`;
+        return text('endreArbeidstidForm.normalarbeidstid.likHverUke', {
+            varighet: getDurationString(intl, {
+                duration: uke.normalt.uke,
+            }),
+        });
     }
-    return 'Merk: normal arbeidstid er ikke lik for alle disse ukene.';
+    return text('endreArbeidstidForm.normalarbeidstid.ulikMellomUker');
 };

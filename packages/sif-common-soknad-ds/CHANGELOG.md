@@ -1,5 +1,36 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.15.1
+
+### Patch Changes
+
+- 20b3033: Pakkeoppdateringer - minor/patch
+
+## 10.15.0
+
+### Minor Changes
+
+- a98157a: Default kun bruke amplitude i prod
+
+## 10.14.0
+
+### Minor Changes
+
+- 30b57da: Pakkeoppdatering - minor/patch
+
+## 10.13.36
+
+### Patch Changes
+
+- c4d70c1: Pakkeoppdateringer - minor/patch
+
+## 10.13.35
+
+### Patch Changes
+
+- 9c29019: Pakkeoppdateringer - minor/patch
+- 35938df: Pakkeoppdateringer - minor/patch
+
 ## 10.13.34
 
 ### Patch Changes

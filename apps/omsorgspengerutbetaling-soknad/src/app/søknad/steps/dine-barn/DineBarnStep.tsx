@@ -14,12 +14,13 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
+import DineBarnForm from './DineBarnForm';
 import {
     getDineBarnStepInitialValues,
     getDineBarnSøknadsdataFromFormValues,
     kanFortsetteFraDineBarnStep,
 } from './dineBarnStepUtils';
-import DineBarnForm from './DineBarnForm';
+import './dineBarn.css';
 
 export enum DineBarnFormFields {
     andreBarn = 'andreBarn',

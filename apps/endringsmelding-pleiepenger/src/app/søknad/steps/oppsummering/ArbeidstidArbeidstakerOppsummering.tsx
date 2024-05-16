@@ -1,9 +1,11 @@
 import { Heading } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { SummaryBlock } from '@navikt/sif-common-ui';
-import { ArbeiderIPeriodenSvar, ArbeiderIPeriodenSvarTekst, Arbeidsgiver, ArbeidstakerApiData } from '@types';
+import { ArbeiderIPeriodenSvar, Arbeidsgiver, ArbeidstakerApiData } from '@types';
 import ArbeidstidUker from '../../../modules/arbeidstid-uker/ArbeidstidUker';
 import { oppsummeringStepUtils } from './oppsummeringStepUtils';
+import { ArbeiderIPeriodenSvarIntlKey } from '../arbeidstid/arbeidsaktivitet-form-part/components/ArbeiderIPeriodenSpørsmål';
+import { AppText, useAppIntl } from '../../../i18n';
 
 type Props = {
     arbeidstaker: ArbeidstakerApiData;
@@ -12,6 +14,7 @@ type Props = {
 };
 
 const ArbeidstidArbeidstakerOppsummering = ({ arbeidsgivere, arbeidstaker, arbeidstidKolonneTittel }: Props) => {
+    const { text } = useAppIntl();
     const { organisasjonsnummer, arbeidstidInfo } = arbeidstaker;
     const arbeidsgiver = arbeidsgivere.find((a) => a.organisasjonsnummer === organisasjonsnummer);
 
@@ -25,9 +28,8 @@ const ArbeidstidArbeidstakerOppsummering = ({ arbeidsgivere, arbeidstaker, arbei
                 {arbeidsgiver.navn}
             </Heading>
             {arbeidstaker._erUkjentArbeidsforhold && arbeidstaker._arbeiderIPerioden && (
-                <SummaryBlock
-                    header={`I perioden med pleiepenger, hvilken situasjon gjelder for deg hos ${arbeidsgiver.navn}?`}>
-                    {ArbeiderIPeriodenSvarTekst[arbeidstaker._arbeiderIPerioden]}
+                <SummaryBlock header={text('arbeidstidStep.arbeiderIPeriodenSpm.legend', { navn: arbeidsgiver.navn })}>
+                    <AppText id={ArbeiderIPeriodenSvarIntlKey[arbeidstaker._arbeiderIPerioden]} />
                 </SummaryBlock>
             )}
             {(arbeidstaker._erUkjentArbeidsforhold === false ||

@@ -24,6 +24,7 @@ import {
     getLovbestemtFerieStepInitialValues,
     getLovbestemtFerieSøknadsdataFromFormValues,
 } from './lovbestemtFerieStepUtils';
+import { AppText } from '../../../i18n';
 
 export enum LovbestemtFerieFormFields {
     perioder = 'perioder',
@@ -87,11 +88,15 @@ const LovbestemtFerieStep = () => {
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>
             <SifGuidePanel>
                 <Heading level="2" size="xsmall" spacing={true}>
-                    Slik endrer du ferie
+                    <AppText id="lovbestemtFerieStep.guide.tittel" />
                 </Heading>
                 <InfoList>
-                    <li>Du kan endre, legge til, eller fjerne ferie i pleiepengeperioden din.</li>
-                    <li>Du skal kun registrere ferie for ukedager (mandag til fredag).</li>
+                    <li>
+                        <AppText id="lovbestemtFerieStep.guide.tekst.1" />
+                    </li>
+                    <li>
+                        <AppText id="lovbestemtFerieStep.guide.tekst.2" />
+                    </li>
                 </InfoList>
             </SifGuidePanel>
 
@@ -122,7 +127,12 @@ const LovbestemtFerieStep = () => {
                                     {sak.søknadsperioder.length === 1 ? null : (
                                         <Block margin="xl">
                                             <Heading level="3" size="small" spacing={true}>
-                                                Dine perioder med pleiepenger
+                                                <AppText
+                                                    id="lovbestemtFerieStep.heading.perioder"
+                                                    values={{
+                                                        antallPerioder: sak.søknadsperioder.length,
+                                                    }}
+                                                />
                                             </Heading>
                                         </Block>
                                     )}
@@ -144,7 +154,7 @@ const LovbestemtFerieStep = () => {
                                                                 feriedager,
                                                             );
                                                         }}>
-                                                        Registrert ferie
+                                                        <AppText id="lovbestemtFerieStep.heading.registrertFerie" />
                                                     </Heading>
                                                     <FeriedagerISøknadsperiode
                                                         alleFeriedager={values.feriedager || {}}
@@ -174,7 +184,9 @@ const LovbestemtFerieStep = () => {
                                                                 top: '-.125rem',
                                                             }}>
                                                             {` `}
-                                                            <EndretTag>Ferie endret</EndretTag>
+                                                            <EndretTag>
+                                                                <AppText id="lovbestemtFerieStep.tags.ferieEndret" />
+                                                            </EndretTag>
                                                         </span>
                                                     )}
                                                 </>
@@ -185,8 +197,7 @@ const LovbestemtFerieStep = () => {
                                 {harFjernetFerieIValues && valgteEndringer.arbeidstid === false && (
                                     <Block margin="l">
                                         <Alert variant="warning">
-                                            Du har fjernet dager med ferie. Hvis du skal du jobbe disse dagene må du se
-                                            over at jobb i perioden er riktig. Dette gjør du på neste steg.
+                                            <AppText id="lovbestemtFerieStep.ferieFjernet.melding" />
                                         </Alert>
                                     </Block>
                                 )}

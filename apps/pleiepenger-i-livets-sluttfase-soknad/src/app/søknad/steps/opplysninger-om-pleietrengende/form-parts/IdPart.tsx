@@ -1,11 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FileUploadErrors from '@navikt/sif-common-core-ds/src/components/file-upload-errors/FileUploadErrors';
 import FormikFileUploader from '@navikt/sif-common-core-ds/src/components/formik-file-uploader/FormikFileUploader';
 import PictureScanningGuide from '@navikt/sif-common-core-ds/src/components/picture-scanning-guide/PictureScanningGuide';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
 import { useFormikContext } from 'formik';
@@ -18,10 +16,11 @@ import {
     OpplysningerOmPleietrengendeFormValues,
 } from '../OpplysningerOmPleietrengendeStep';
 import IdPartAttachmentList from './IdPartAttachmentList';
+import { useAppIntl } from '../../../../i18n';
 
 //TODO VALIDATE  alleDokumenterISøknaden: Attachment[];
 const IdPart = () => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     const { values, setFieldValue } = useFormikContext<OpplysningerOmPleietrengendeFormValues>();
 
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = useState<File[]>([]);
@@ -54,7 +53,7 @@ const IdPart = () => {
             <FormikFileUploader
                 attachments={values.pleietrengendeId}
                 name={OpplysningerOmPleietrengendeFormFields.pleietrengendeId}
-                buttonLabel={intlHelper(intl, 'step.opplysningerOmPleietrengende.id.uploadButtonLabel')}
+                buttonLabel={text('step.opplysningerOmPleietrengende.id.uploadButtonLabel')}
                 onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
                 uploadFile={(file: File) => api.uploadFile(ApiEndpoint.vedlegg, file)}
                 getAttachmentURLFrontend={getAttachmentURLFrontend}

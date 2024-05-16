@@ -6,6 +6,7 @@ import HarAleneomsorgSpørsmål from '../spørsmål/HarAleneomsorgSpørsmål';
 import HarSyktBarnSpørsmål from '../spørsmål/HarSyktBarnSpørsmål';
 import HarDekketTiFørsteDagerSelvSpørsmål from '../spørsmål/HarDekketTiFørsteDagerSelvSpørsmål';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import { AppText } from '../../../../i18n';
 
 interface Props {
     harSyktBarn?: YesOrNo;
@@ -25,14 +26,12 @@ const EttEllerToBarnUnder13: React.FunctionComponent<Props> = ({ harSyktBarn, ha
             {harBesvartAlleSpørsmål && harUtvidetRett === false ? (
                 <FormBlock>
                     <Heading level="3" size="small" spacing={true}>
-                        Du må selv dekke omsorgsdagene dine
+                        <AppText id="step.dineBarn.ettEllerToBarnUnder13.ingenRett.tittel" />
                     </Heading>
                     <Alert variant="warning">
-                        Ut fra svarene dine har du ikke mer enn to barn som du kan bruke omsorgsdager for, og du har
-                        ikke ekstra omsorgsdager fra NAV. Du har da rett til 10 omsorgsdager.{' '}
+                        <AppText id="step.dineBarn.ettEllerToBarnUnder13.ingenRett.tekst.1" />
                         <p>
-                            Fordi du er selvstendig næringsdrivende eller frilanser, må du selv dekke disse 10
-                            omsorgsdagene.
+                            <AppText id="step.dineBarn.ettEllerToBarnUnder13.ingenRett.tekst.2" />
                         </p>
                     </Alert>
                 </FormBlock>
