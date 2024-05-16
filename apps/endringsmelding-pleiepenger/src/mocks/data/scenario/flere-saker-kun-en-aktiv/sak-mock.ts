@@ -97,7 +97,7 @@ export default [
     {
         barn: {
             fødselsdato: '2017-03-02',
-            fornavn: 'Nora',
+            fornavn: 'NORA',
             mellomnavn: null,
             etternavn: 'Nordmann',
             aktørId: '2559652436222',

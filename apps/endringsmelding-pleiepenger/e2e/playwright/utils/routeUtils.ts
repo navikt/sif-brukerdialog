@@ -3,6 +3,7 @@ import { Page } from '@playwright/test';
 import { SøknadRoutes } from '../../../src/app/søknad/config/SøknadRoutes';
 import { mellomlagring } from '../../mock-data/mellomlagring.mock';
 import { setupMockRoutes } from './setupMockRoutes';
+import { ScenarioType } from '../../../src/app/dev/scenarioer';
 
 const rootUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger';
 
@@ -14,7 +15,12 @@ const getRouteUrl = (route: SøknadRoutes): string => {
     return `${rootUrl}${route}`;
 };
 
-const resumeFromRoute = async (page: Page, route: SøknadRoutes, søknadsdata?: any) => {
+const resumeFromRoute = async (
+    page: Page,
+    route: SøknadRoutes,
+    scenario: ScenarioType = 'en-arbeidsgiver-en-periode',
+    søknadsdata?: any,
+) => {
     const mellomlagringToUse = {
         ...mellomlagring,
         søknadRoute: route,
@@ -24,7 +30,7 @@ const resumeFromRoute = async (page: Page, route: SøknadRoutes, søknadsdata?: 
         },
     };
 
-    await setupMockRoutes(page, {
+    await setupMockRoutes(page, scenario, {
         mellomlagring: mellomlagringToUse,
     });
 

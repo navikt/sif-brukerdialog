@@ -1,7 +1,21 @@
 import { Page } from '@playwright/test';
-import { EnArbeidsgiverEnPeriode } from '../../../src/mocks/data/scenario/en-arbeidsgiver-en-periode/EnArbeidsgiverEnPeriode';
+import { ScenarioType } from '../../../src/app/dev/scenarioer';
+import { getScenarioMockData } from '../../../src/mocks/data/scenario';
 
-export const setupMockRoutes = async (page: Page, props?: { mellomlagring: any }) => {
+export const setupScenarioMockRoutes = async (page: Page, scenario: ScenarioType) => {
+    const mockData = getScenarioMockData(scenario);
+    await page.route('**/oppslag/soker?ytelse=endringsmelding-pleiepenger', async (route) => {
+        await route.fulfill({ status: 200, body: JSON.stringify(mockData.søker) });
+    });
+    await page.route('**/oppslag/arbeidsgiver**', async (route) => {
+        await route.fulfill({ status: 200, body: JSON.stringify(mockData.arbeidsgiver) });
+    });
+    await page.route('**/api/innsyn/sak', async (route) => {
+        await route.fulfill({ status: 200, body: JSON.stringify(mockData.sak) });
+    });
+};
+
+export const setupMockRoutes = async (page: Page, scenario: ScenarioType, props?: { mellomlagring: any }) => {
     await page.route('**hotjar**', async (route) => {
         await route.fulfill({ status: 200 });
     });
@@ -27,13 +41,5 @@ export const setupMockRoutes = async (page: Page, props?: { mellomlagring: any }
         }
         await route.fulfill({ status: 200, body: '{}' });
     });
-    await page.route('**/oppslag/soker?ytelse=endringsmelding-pleiepenger', async (route) => {
-        await route.fulfill({ status: 200, body: JSON.stringify(EnArbeidsgiverEnPeriode.søker) });
-    });
-    await page.route('**/oppslag/arbeidsgiver**', async (route) => {
-        await route.fulfill({ status: 200, body: JSON.stringify(EnArbeidsgiverEnPeriode.arbeidsgiver) });
-    });
-    await page.route('**/api/innsyn/sak', async (route) => {
-        await route.fulfill({ status: 200, body: JSON.stringify(EnArbeidsgiverEnPeriode.sak) });
-    });
+    await setupScenarioMockRoutes(page, scenario);
 };
