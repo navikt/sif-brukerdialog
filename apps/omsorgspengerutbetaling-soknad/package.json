@@ -24,7 +24,7 @@
         "@storybook/react-vite": "8.1.0",
         "@testing-library/react": "15.0.7",
         "@vitejs/plugin-react": "4.2.1",
-        "axios": "1.6.8",
+        "axios": "1.7.0",
         "busboy": "1.6.0",
         "compression": "1.7.4",
         "cookie-parser": "1.4.6",

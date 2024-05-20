@@ -3343,7 +3343,7 @@ __metadata:
     "@storybook/nextjs": 8.1.0
     "@storybook/react": 8.1.0
     "@storybook/test": 8.1.0
-    axios: 1.6.8
+    axios: 1.7.0
     chromatic: 11.3.2
     classnames: 2.5.1
     dayjs: 1.11.11
@@ -3450,7 +3450,7 @@ __metadata:
     "@types/react": 18.3.2
     "@types/react-dom": 18.3.0
     "@types/react-router-dom": 5.3.3
-    axios: 1.6.8
+    axios: 1.7.0
     babel-polyfill: 6.26.0
     compression: 1.7.4
     cookie-parser: 1.4.6
@@ -3524,7 +3524,7 @@ __metadata:
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.2.1
     axe-core: 4.9.1
-    axios: 1.6.8
+    axios: 1.7.0
     babel-polyfill: 6.26.0
     compression: 1.7.4
     cookie-parser: 1.4.6
@@ -3638,7 +3638,7 @@ __metadata:
     "@types/react-dom": 18.3.0
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.2.1
-    axios: 1.6.8
+    axios: 1.7.0
     babel-polyfill: 6.26.0
     compression: 1.7.4
     cookie-parser: 1.4.6
@@ -3741,7 +3741,7 @@ __metadata:
     "@types/react-dom": 18.3.0
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.2.1
-    axios: 1.6.8
+    axios: 1.7.0
     babel-polyfill: 6.26.0
     busboy: 1.6.0
     compression: 1.7.4
@@ -3816,7 +3816,7 @@ __metadata:
     "@types/react-dom": 18.3.0
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.2.1
-    axios: 1.6.8
+    axios: 1.7.0
     babel-polyfill: 6.26.0
     busboy: 1.6.0
     chromatic: 11.3.2
@@ -3889,7 +3889,7 @@ __metadata:
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.2.1
     axe-core: 4.9.1
-    axios: 1.6.8
+    axios: 1.7.0
     babel-polyfill: 6.26.0
     busboy: 1.6.0
     compression: 1.7.4
@@ -3960,7 +3960,7 @@ __metadata:
     "@types/react": 18.3.2
     "@types/react-dom": 18.3.0
     "@types/react-router-dom": 5.3.3
-    axios: 1.6.8
+    axios: 1.7.0
     babel-polyfill: 6.26.0
     busboy: 1.6.0
     classnames: 2.5.1
@@ -4038,7 +4038,7 @@ __metadata:
     "@typescript-eslint/parser": 7.9.0
     "@vitejs/plugin-react": 4.2.1
     axe-core: 4.9.1
-    axios: 1.6.8
+    axios: 1.7.0
     busboy: 1.6.0
     classnames: 2.5.1
     compression: 1.7.4
@@ -4158,7 +4158,7 @@ __metadata:
     "@types/react-collapse": 5.0.4
     "@types/react-dom": 18.3.0
     "@vitejs/plugin-react": 4.2.1
-    axios: 1.6.8
+    axios: 1.7.0
     browser-image-compression: 2.0.2
     chromatic: 11.3.2
     classnames: 2.5.1
@@ -4288,7 +4288,7 @@ __metadata:
     "@types/react": 18.3.2
     "@types/react-dom": 18.3.0
     "@vitejs/plugin-react": 4.2.1
-    axios: 1.6.8
+    axios: 1.7.0
     config: "workspace:*"
     copyfiles: 2.4.1
     date-fns: 3.6.0
@@ -4332,7 +4332,7 @@ __metadata:
     "@sentry/react": 8.0.0
     "@sentry/types": 8.0.0
     "@types/node": 20.12.12
-    axios: 1.6.8
+    axios: 1.7.0
     config: "*"
     copyfiles: 2.4.1
     gh-pages: 6.1.1
@@ -4384,7 +4384,7 @@ __metadata:
     "@types/react-dom": 18.3.0
     "@types/react-modal": 3.16.3
     "@vitejs/plugin-react": 4.2.1
-    axios: 1.6.8
+    axios: 1.7.0
     classnames: 2.5.1
     copyfiles: 2.4.1
     date-fns: 3.6.0
@@ -4499,7 +4499,7 @@ __metadata:
     "@types/uuid": 9.0.8
     "@vitejs/plugin-react": 4.2.1
     axe-core: 4.9.1
-    axios: 1.6.8
+    axios: 1.7.0
     babel-polyfill: 6.26.0
     busboy: 1.6.0
     classnames: 2.5.1
@@ -9492,7 +9492,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:1.6.8, axios@npm:^1.6.1":
+"axios@npm:1.7.0":
+  version: 1.7.0
+  resolution: "axios@npm:1.7.0"
+  dependencies:
+    follow-redirects: ^1.15.6
+    form-data: ^4.0.0
+    proxy-from-env: ^1.1.0
+  checksum: f6caa42d52ac4e18acf3db2361c92c83efcfc81eac8647dcfaa8ef04ee4f91f3d3b2e8c09a497a10b7669384f398436e88554f76db12a67518d996c0cdc3c2a1
+  languageName: node
+  linkType: hard
+
+"axios@npm:^1.6.1":
   version: 1.6.8
   resolution: "axios@npm:1.6.8"
   dependencies:
