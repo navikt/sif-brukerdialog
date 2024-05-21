@@ -25,7 +25,7 @@
         "@navikt/sif-common-core-ds": "workspace: *",
         "@navikt/sif-common-sentry": "workspace: *",
         "@navikt/sif-common-utils": "workspace: *",
-        "axios": "1.6.8",
+        "axios": "1.7.1",
         "jsonwebtoken": "9.0.2",
         "lodash.sortby": "4.7.0",
         "lodash.uniq": "4.5.0",

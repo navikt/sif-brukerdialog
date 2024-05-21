@@ -44,7 +44,7 @@
         "@types/react-collapse": "5.0.4",
         "@types/react-dom": "18.3.0",
         "@vitejs/plugin-react": "4.2.1",
-        "axios": "1.6.8",
+        "axios": "1.7.1",
         "chromatic": "11.3.2",
         "config": "workspace:*",
         "copyfiles": "2.4.1",
