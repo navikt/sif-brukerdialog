@@ -1,7 +1,8 @@
 import { Page } from '@playwright/test';
 import { e2eMockData } from '../../mock-data/';
+import { StepID } from '../../../src/app/types/StepID';
 
-export const setupMockRoutes = async (page: Page, props?: { mellomlagring: any }) => {
+export const setupMockRoutes = async (page: Page, props?: { mellomlagring: any; lastStep: StepID }) => {
     await page.route('**hotjar**', async (route) => {
         await route.fulfill({ status: 200 });
     });
@@ -22,6 +23,10 @@ export const setupMockRoutes = async (page: Page, props?: { mellomlagring: any }
     });
     await page.route('**/mellomlagring/PLEIEPENGER_SYKT_BARN', async (route, request) => {
         if (request.method() === 'GET') {
+            const mellomlagring = props?.mellomlagring || {};
+            if (mellomlagring && props.lastStep) {
+                mellomlagring.metadata.lastStepID = props.lastStep;
+            }
             await route.fulfill({ status: 200, body: JSON.stringify(props?.mellomlagring || {}) });
             return;
         }
