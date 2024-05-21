@@ -3542,9 +3542,6 @@ __metadata:
     compression: 1.7.4
     cookie-parser: 1.4.6
     cross-env: 7.0.3
-    cypress: 13.9.0
-    cypress-axe: 1.5.0
-    cypress-file-upload: 5.0.8
     dayjs: 1.11.11
     dotenv: 16.4.5
     express: 4.19.2
