@@ -10,7 +10,7 @@ export default defineConfig({
     use: {
         trace: 'on-first-retry',
         launchOptions: {
-            slowMo: 200,
+            slowMo: 50,
         },
     },
     projects: [
