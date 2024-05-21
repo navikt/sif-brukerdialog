@@ -33,6 +33,6 @@ export const Meldekort: Story = {
 };
 export const SøktForTidlig: Story = {
     args: {
-        venteårsak: Venteårsak.SØKT_FOR_TIDLIG,
+        venteårsak: Venteårsak.FOR_TIDLIG_SOKNAD,
     },
 };
