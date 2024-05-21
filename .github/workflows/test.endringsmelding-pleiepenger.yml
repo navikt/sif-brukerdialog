@@ -68,7 +68,7 @@ jobs:
               run: yarn
 
             - name: Install Playwright Browsers
-              run: yarn playwright install --with-deps
+              run: npx playwright install chromium --with-deps
 
             - name: Build application
               run: yarn build --filter=endringsmelding-pleiepenger
