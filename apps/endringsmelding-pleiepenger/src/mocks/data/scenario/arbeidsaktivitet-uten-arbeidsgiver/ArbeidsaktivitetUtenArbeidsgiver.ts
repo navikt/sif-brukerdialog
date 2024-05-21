@@ -1,8 +1,7 @@
-import { ScenarioData } from '../../../msw/handlers';
-
-import arbeidsgiver from './arbeidsgiver-mock.json';
-import sak from './sak-mock.json';
-import søker from './søker-mock.json';
+import { ScenarioData } from '../';
+import arbeidsgiver from './arbeidsgiver-mock';
+import sak from './sak-mock';
+import søker from './søker-mock';
 
 export const ArbeidsaktivitetUtenArbeidsgiver: ScenarioData = {
     sak,

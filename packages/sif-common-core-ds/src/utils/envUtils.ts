@@ -4,6 +4,12 @@ const appSettingsInline = settingsNode ? JSON.parse(settingsNode.text) : undefin
 export const getEnvironmentVariable = (variableName: string): string => {
     return (appSettingsInline || (window as any).appSettings || {})[variableName];
 };
+
+export const getMaybeEnvironmentVariable = (variableName: string): string | undefined => {
+    const value = getEnvironmentVariable(variableName);
+    return value === undefined || value === 'undefined' ? undefined : value;
+};
+
 export const getEnvVariableOrDefault = (key: string, defaultValue: string): string => {
     const value = getEnvironmentVariable(key);
     return value === undefined || value === 'undefined' ? defaultValue : value;

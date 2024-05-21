@@ -1,10 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { søkerMock } from '../../../storybook/data/søkerMock';
+import { getScenarioMockData } from '../../../mocks/data/scenario';
 import { withAmplitudeProvider } from '../../../storybook/decorators/withAmplitudeProvider';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import { withRouterProvider } from '../../../storybook/decorators/withRouter';
 import { IngenTilgangÅrsak } from '../../types/IngenTilgangÅrsak';
 import IngenTilgangPage from './IngenTilgangPage';
+
+const { søker } = getScenarioMockData('en-arbeidsgiver-en-periode');
 
 const meta: Meta<typeof IngenTilgangPage> = {
     title: 'Pages/IngenTilgangPage',
@@ -21,7 +23,7 @@ type Story = StoryObj<typeof IngenTilgangPage>;
 export const Default: Story = {
     name: 'harArbeidsgiverUtenArbeidsaktivitet',
     args: {
-        søker: søkerMock,
+        søker,
         årsak: [IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet],
     },
 };
@@ -29,7 +31,7 @@ export const Default: Story = {
 export const ArbeidstidSomSelvstendigNæringsdrivende: Story = {
     name: 'harArbeidstidSomSelvstendigNæringsdrivende',
     args: {
-        søker: søkerMock,
+        søker,
         årsak: [IngenTilgangÅrsak.harArbeidstidSomSelvstendigNæringsdrivende],
     },
 };
@@ -37,7 +39,7 @@ export const ArbeidstidSomSelvstendigNæringsdrivende: Story = {
 export const IngenPerioder: Story = {
     name: 'harIngenPerioder',
     args: {
-        søker: søkerMock,
+        søker,
         årsak: [IngenTilgangÅrsak.harIngenPerioder],
     },
 };
@@ -45,7 +47,7 @@ export const IngenPerioder: Story = {
 export const IngenSak: Story = {
     name: 'harIngenSak',
     args: {
-        søker: søkerMock,
+        søker,
         årsak: [IngenTilgangÅrsak.harIngenSak],
     },
 };
@@ -53,21 +55,21 @@ export const IngenSak: Story = {
 export const MerEnnEnSak: Story = {
     name: 'harMerEnnEnSak',
     args: {
-        søker: søkerMock,
+        søker,
         årsak: [IngenTilgangÅrsak.harMerEnnEnSak],
     },
 };
 export const UgyldigK9FormatSak: Story = {
     name: 'harUgyldigK9FormatSak',
     args: {
-        søker: søkerMock,
+        søker,
         årsak: [IngenTilgangÅrsak.harUgyldigK9FormatSak],
     },
 };
 export const SøknadsperioderUtenforTillattEndringsperiode: Story = {
     name: 'søknadsperioderUtenforTillattEndringsperiode',
     args: {
-        søker: søkerMock,
+        søker,
         årsak: [IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode],
     },
 };
