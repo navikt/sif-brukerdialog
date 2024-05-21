@@ -25,7 +25,7 @@ appSentryLogger.init();
 
 const App = () => {
     const publicPath = getEnvironmentVariable('PUBLIC_PATH');
-    const isCypress = getEnvironmentVariable('CYPRESS_ENV') === 'true';
+    const useAmplitude = getEnvironmentVariable('USE_AMPLITUDE') === 'true';
 
     const sanityConfig: SanityConfig = {
         projectId: getEnvironmentVariable('APPSTATUS_PROJECT_ID'),
@@ -38,7 +38,7 @@ const App = () => {
             appName={PleiepengerSyktBarnApp.navn}
             appStatus={{ sanityConfig: sanityConfig }}
             intlMessages={applicationIntlMessages}
-            useAmplitude={!isCypress}
+            useAmplitude={useAmplitude}
             publicPath={publicPath}>
             <SoknadApplicationCommonRoutes
                 onReset={() => {
@@ -59,7 +59,6 @@ const App = () => {
 };
 
 const container = document.getElementById('app');
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const root = createRoot(container!);
 ensureBaseNameForReactRouter(publicPath);
 

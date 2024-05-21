@@ -7,20 +7,6 @@
     "version": "3.9.3",
     "private": true,
     "type": "module",
-    "scripts": {
-        "build": "vite build --base=/familie/sykdom-i-familien/soknad/pleiepenger",
-        "build-storybook": "storybook build",
-        "clean": "rm -rf node_modules .dist",
-        "cypress-open": "cypress open --project $PWD/e2e",
-        "cypress-run": "cypress run --project $PWD/e2e",
-        "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",
-        "dev": "cross-env NODE_ENV=development node ./server.cjs",
-        "start-express": "node ./server.cjs",
-        "start-e2e-server": "node ./server-e2e.cjs",
-        "storybook": "storybook dev -p 6006",
-        "test": "vitest run",
-        "lint": "eslint ./src --ext ts,tsx"
-    },
     "dependencies": {
         "@navikt/appstatus-react-ds": "workspace:*",
         "@navikt/ds-css": "6.8.0",
@@ -56,11 +42,13 @@
         "uuid": "9.0.1"
     },
     "devDependencies": {
+        "@axe-core/playwright": "4.9.0",
         "@babel/plugin-proposal-object-rest-spread": "7.20.7",
         "@babel/plugin-transform-modules-commonjs": "7.24.1",
         "@babel/preset-env": "7.24.5",
         "@babel/preset-react": "7.24.1",
         "@chromatic-com/storybook": "1.4.0",
+        "@playwright/test": "1.44.0",
         "@sentry/vite-plugin": "2.16.1",
         "@storybook/addon-essentials": "8.1.1",
         "@storybook/addon-interactions": "8.1.1",
@@ -83,9 +71,6 @@
         "axe-core": "4.9.1",
         "busboy": "1.6.0",
         "cross-env": "7.0.3",
-        "cypress": "13.9.0",
-        "cypress-axe": "1.5.0",
-        "cypress-file-upload": "5.0.8",
         "dayjs": "1.11.11",
         "eslint-config-prettier": "9.1.0",
         "eslint-plugin-jsx-a11y": "6.8.0",
@@ -105,5 +90,21 @@
         "vite": "5.2.11",
         "vite-plugin-checker": "0.6.4",
         "vitest": "1.6.0"
+    },
+    "scripts": {
+        "build-storybook": "storybook build",
+        "build": "vite build --base=/familie/sykdom-i-familien/soknad/pleiepenger",
+        "clean": "rm -rf node_modules .dist",
+        "codegen": "playwright codegen",
+        "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",
+        "dev": "cross-env NODE_ENV=development node ./server.cjs",
+        "e2e-ui": "playwright test --ui",
+        "e2e": "playwright test",
+        "lint": "eslint ./src --ext ts,tsx",
+        "playwright-test": "playwright test",
+        "start-e2e-server": "node ./server-e2e.cjs",
+        "start-express": "node ./server.cjs",
+        "storybook": "storybook dev -p 6006",
+        "test": "vitest run"
     }
 }

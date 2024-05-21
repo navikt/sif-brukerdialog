@@ -16,7 +16,7 @@ const getAppSettings = (isCypress) => ({
     MIN_SIDE_URL: `${process.env.MIN_SIDE_URL}`,
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
     VEDLEGG_API_URL: `${process.env.VEDLEGG_API_URL}`,
-    CYPRESS_ENV: isCypress ? 'true' : false,
+    USE_AMPLITUDE: `${process.env.USE_AMPLITUDE}`,
 });
 
 module.exports = getAppSettings;
