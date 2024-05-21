@@ -77,6 +77,7 @@ const privatArbeidsgiverMock = {
     ansattFom: '2021-01-01',
     ansattTom: '2021-12-31',
 };
+
 const frilansoppdrag = {
     type: 'type oppdrag',
     organisasjonsnummer: '991012133',
@@ -84,6 +85,7 @@ const frilansoppdrag = {
     ansattFom: '2022-01-01',
     ansattTom: '2022-01-15',
 };
+
 const frilansoppdrag2 = {
     type: 'type oppdrag',
     organisasjonsnummer: '991012134',

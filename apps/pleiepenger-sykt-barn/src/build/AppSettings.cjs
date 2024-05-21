@@ -14,6 +14,7 @@ const getAppSettings = (isCypress) => ({
     INNSYN_URL: `${process.env.INNSYN_URL}`,
     LOGIN_URL: `${process.env.LOGIN_URL}`,
     MIN_SIDE_URL: `${process.env.MIN_SIDE_URL}`,
+    NOW: `${process.env.NOW}`,
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
     VEDLEGG_API_URL: `${process.env.VEDLEGG_API_URL}`,
     USE_AMPLITUDE: `${process.env.USE_AMPLITUDE}`,
