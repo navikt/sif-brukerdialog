@@ -59,10 +59,7 @@ function DinePleiepengerPage(): ReactElement {
             <Head>
                 <title>{text('forside.dokumentTittel')}</title>
             </Head>
-            <VStack gap="12">
-                <Box>
-                    <Snarveier />
-                </Box>
+            <VStack gap="8">
                 <Box className="md:flex md:gap-6">
                     <div className="md:grow mb-10 md:mb-0">
                         <DineInnsendteSøknader søknader={innsendteSøknader} />
@@ -75,6 +72,9 @@ function DinePleiepengerPage(): ReactElement {
                     </div>
                 </Box>
                 <Box>
+                    <Snarveier title="Trenger du å oppdatere saken din?" />
+                </Box>
+                <Box className="mt-4">
                     <HvaSkjer />
                 </Box>
             </VStack>

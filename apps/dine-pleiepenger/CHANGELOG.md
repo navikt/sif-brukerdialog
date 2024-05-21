@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 1.2.4
+
+### Patch Changes
+
+-   Endre rekkefølge på fallback - legge snarveier under liste
+
 ## 1.2.3
 
 ### Patch Changes
