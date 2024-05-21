@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
+import { getEnvironmentVariable, getMaybeEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { ensureBaseNameForReactRouter, SoknadApplication } from '@navikt/sif-common-soknad-ds';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
@@ -25,8 +25,9 @@ ensureBaseNameForReactRouter(publicPath);
 
 function prepare() {
     if (getEnvironmentVariable('APP_VERSION') !== 'production') {
-        if (getEnvironmentVariable('NOW')) {
-            MockDate.set(new Date(getEnvironmentVariable('NOW')));
+        const envNow = getMaybeEnvironmentVariable('NOW');
+        if (envNow && getEnvironmentVariable('APP_VERSION') === 'dev') {
+            MockDate.set(new Date(envNow));
         }
         if (getEnvironmentVariable('MSW') === 'on' && (window as any).isE2E === undefined) {
             return import('../mocks/msw/browser').then(({ worker }) => {
