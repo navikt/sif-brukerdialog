@@ -19,28 +19,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@amplitude/analytics-browser@npm:2.7.4":
-  version: 2.7.4
-  resolution: "@amplitude/analytics-browser@npm:2.7.4"
+"@amplitude/analytics-browser@npm:2.8.0":
+  version: 2.8.0
+  resolution: "@amplitude/analytics-browser@npm:2.8.0"
   dependencies:
-    "@amplitude/analytics-client-common": ^2.1.6
-    "@amplitude/analytics-core": ^2.2.7
-    "@amplitude/analytics-types": ^2.5.0
-    "@amplitude/plugin-page-view-tracking-browser": ^2.2.11
+    "@amplitude/analytics-client-common": ^2.2.0
+    "@amplitude/analytics-core": ^2.2.8
+    "@amplitude/analytics-types": ^2.5.1
+    "@amplitude/plugin-page-view-tracking-browser": ^2.2.12
     tslib: ^2.4.1
-  checksum: 2177f8434ee1f7d240c3e5154c5573f76f1160915c2d710e344c91ac2eff3052a0b873455275f63aa2f791e2e171b7d27499e0c5986de857a8178092b50a78fc
+  checksum: 3f7cbec435ef7aa1393f608afff374d42543a64fe5019b3849c137c98918246ef4b905079d85893a2a88fba510749b5a0ac0685848551620187c21cbac7a4ea6
   languageName: node
   linkType: hard
 
-"@amplitude/analytics-client-common@npm:^2.1.6":
-  version: 2.1.6
-  resolution: "@amplitude/analytics-client-common@npm:2.1.6"
+"@amplitude/analytics-client-common@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "@amplitude/analytics-client-common@npm:2.2.0"
   dependencies:
     "@amplitude/analytics-connector": ^1.4.8
-    "@amplitude/analytics-core": ^2.2.7
-    "@amplitude/analytics-types": ^2.5.0
+    "@amplitude/analytics-core": ^2.2.8
+    "@amplitude/analytics-types": ^2.5.1
     tslib: ^2.4.1
-  checksum: e45bebbce40cb085577a658b984a3e43a9ff295088acfe0ba246f390654c7ae276b0af156b7e4d8ded333dd2e61a11e96e7db241771caa3feddd87282e93226a
+  checksum: eb9a7a122a6b02a16abcae6c9e112b04ed1e0c7430619334fea323e95ada9f894638dcd86c1e6cbcd7aeee6cdeb0f2e0ff13de1c10b7790774174b018a3d21ee
   languageName: node
   linkType: hard
 
@@ -51,31 +51,31 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@amplitude/analytics-core@npm:^2.2.7":
-  version: 2.2.7
-  resolution: "@amplitude/analytics-core@npm:2.2.7"
+"@amplitude/analytics-core@npm:^2.2.8":
+  version: 2.2.8
+  resolution: "@amplitude/analytics-core@npm:2.2.8"
   dependencies:
-    "@amplitude/analytics-types": ^2.5.0
+    "@amplitude/analytics-types": ^2.5.1
     tslib: ^2.4.1
-  checksum: eb077885faf0ce43c23f2b10eb637479ebf5a1affb5792d7423839b485da1cd11684f127b37dd145ee65c00d97e1e9388bcc824fa73360766295e270a992b064
+  checksum: a7a70b1124bf25bfb4fee74ec2d9124fce05bd31147a61ecf6dcfa307ba150e4114cd68fba336ddeb8d6b53ee6c2f4ed561fdc329dd652955daea848887baafc
   languageName: node
   linkType: hard
 
-"@amplitude/analytics-types@npm:^2.5.0":
-  version: 2.5.0
-  resolution: "@amplitude/analytics-types@npm:2.5.0"
-  checksum: c2f0d4514d4d1772794dd6209df2311368076aaa2555b03763a9fcc21d4d861996fd1c13cd1c29a8d9f801470b20e56b2d47c3c4f35e76a3f8ab9ce2de3efcd9
+"@amplitude/analytics-types@npm:^2.5.1":
+  version: 2.5.1
+  resolution: "@amplitude/analytics-types@npm:2.5.1"
+  checksum: 7b46ed1fbe856990ac71ee3d9a9185f16f286a17f5bbd93560d03b608a6696deeb6c7cf42b9937889b38266f97e8b22a59f132177cdfd682da4b30accb3ae1b4
   languageName: node
   linkType: hard
 
-"@amplitude/plugin-page-view-tracking-browser@npm:^2.2.11":
-  version: 2.2.11
-  resolution: "@amplitude/plugin-page-view-tracking-browser@npm:2.2.11"
+"@amplitude/plugin-page-view-tracking-browser@npm:^2.2.12":
+  version: 2.2.12
+  resolution: "@amplitude/plugin-page-view-tracking-browser@npm:2.2.12"
   dependencies:
-    "@amplitude/analytics-client-common": ^2.1.6
-    "@amplitude/analytics-types": ^2.5.0
+    "@amplitude/analytics-client-common": ^2.2.0
+    "@amplitude/analytics-types": ^2.5.1
     tslib: ^2.4.1
-  checksum: 0c764ada0b2d1ddeaa458b959786ae2ae96eb2fc2055020c1739eba770b1c27652e1cc3b27a6b7c194b927598d7eaad01d2da86be71e466f68e2d1d27e936ed4
+  checksum: 5073f93fbf4e58e3907954b7d2070d936e67cdf8a9e5f665ea60777c970622a0c211767ade22326c5a5062d7c4149d5cd0a9688e88ff29beddb1cf61f28e6415
   languageName: node
   linkType: hard
 
@@ -4122,7 +4122,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-amplitude@workspace:packages/sif-common-amplitude"
   dependencies:
-    "@amplitude/analytics-browser": 2.7.4
+    "@amplitude/analytics-browser": 2.8.0
     "@types/node": 20.12.12
     "@types/react": 18.3.2
     config: "workspace:*"
