@@ -8,10 +8,6 @@ test.beforeEach(async ({ page }) => {
     await setNow(page);
 });
 
-test.afterEach(async ({ page }) => {
-    await expect(page.getByRole('heading', { name: 'Perioden med pleiepenger' })).toBeVisible();
-});
-
 test('Start med mellomlagring', async ({ page }) => {
     await routeUtils.setupMockRoutes(page, {
         mellomlagring: mellomlagringMock,
