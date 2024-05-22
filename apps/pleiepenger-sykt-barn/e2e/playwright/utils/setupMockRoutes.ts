@@ -48,6 +48,12 @@ export const setupMockRoutes = async (page: Page, props?: { mellomlagring: any; 
     await page.route('**/oppslag/arbeidsgiver*', async (route) => {
         await route.fulfill({ status: 200, body: JSON.stringify(e2eMockData.arbeidsgiver) });
     });
+    await page.route('**/vedlegg', async (route) => {
+        await route.fulfill({
+            status: 200,
+            headers: { Location: '/vedlegg', 'access-control-expose-headers': 'Location' },
+        });
+    });
 
     await page.route('**/pleiepenger-sykt-barn/innsending', async (route, request) => {
         if (request.method() === 'POST') {
