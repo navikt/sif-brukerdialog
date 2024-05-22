@@ -21,7 +21,7 @@ export const setupMockRoutes = async (page: Page, props?: { mellomlagring: any; 
     await page.route('https://www.nav.no/person/nav-dekoratoren-api/auth', async (route) => {
         await route.fulfill({ status: 200 });
     });
-    await page.route('**/mellomlagring/PLEIEPENGER_SYKT_BARN', async (route, request) => {
+    await page.route('**/mellomlagring/PLEIEPENGER_SYKT_BARN**', async (route, request) => {
         let body: any = {};
 
         if (request.method() === 'GET') {

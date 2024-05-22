@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import { setNow } from '../utils/setNow';
 import { routeUtils } from '../utils/routeUtils';
 
@@ -11,6 +11,8 @@ test('Velkommen side', async ({ page }) => {
     await page.goto('http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger/soknad/velkommen');
     await page.getByLabel('Jeg bekrefter at jeg har').check();
     await page.getByRole('button', { name: 'Start søknad' }).click();
+
+    await expect(page.getByRole('heading', { name: 'Barn', level: 1 })).toBeVisible();
     await page.getByLabel('ALFABETISK FAGGOTTFødt').check();
     await page.getByTestId('typedFormikForm-submitButton').click();
     await page
