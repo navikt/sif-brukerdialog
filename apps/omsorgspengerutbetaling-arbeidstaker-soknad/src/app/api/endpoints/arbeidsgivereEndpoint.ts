@@ -1,7 +1,7 @@
 import { getNMonthsAgo } from '../../søknad/steps/situasjon/SituasjonStepUtils';
 import { Arbeidsgiver } from '../../types/Arbeidsgiver';
 import api, { ApiEndpoint } from '../api';
-import { dateToISODate, dateToday } from '@navikt/sif-common-utils/src/dateUtils';
+import { dateToISODate, getDateToday } from '@navikt/sif-common-utils/src/dateUtils';
 
 type AAregArbeidsgiver = {
     organisasjoner?: {
@@ -13,7 +13,7 @@ type AAregArbeidsgiver = {
 const arbeidsgivereEndpoint = {
     fetch: async (): Promise<Arbeidsgiver[]> => {
         const threeMonthsAgo = getNMonthsAgo(3);
-        const today: Date = dateToday;
+        const today: Date = getDateToday();
         try {
             const { data } = await api.get<AAregArbeidsgiver>(
                 ApiEndpoint.arbeidsgiver,

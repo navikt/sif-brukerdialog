@@ -9,15 +9,14 @@ dayjs.extend(isoWeek);
 
 const ISODateFormat = 'YYYY-MM-DD';
 
-export const dateToday = dayjs().toDate();
-export const date10MonthsAgo = dayjs().subtract(10, 'month').startOf('day').toDate();
-export const date1YearAgo = dayjs().subtract(1, 'year').startOf('day').toDate();
-export const date2YearsAgo = dayjs().subtract(2, 'year').startOf('day').toDate();
-export const date3YearsAgo = dayjs().subtract(3, 'year').startOf('day').toDate();
-export const date4YearsAgo = dayjs().subtract(4, 'year').startOf('day').toDate();
-export const date4WeeksAgo = dayjs().subtract(4, 'week').startOf('day').toDate();
-export const date1YearFromNow = dayjs().add(1, 'year').endOf('day').toDate();
-export const date99YearsFromNow = dayjs().subtract(99, 'year').startOf('day').toDate();
+export const getDateToday = () => dayjs().toDate();
+export const getDate1YearAgo = () => dayjs().subtract(1, 'year').startOf('day').toDate();
+export const getDate2YearsAgo = () => dayjs().subtract(2, 'year').startOf('day').toDate();
+export const getDate3YearsAgo = () => dayjs().subtract(3, 'year').startOf('day').toDate();
+export const getDate4YearsAgo = () => dayjs().subtract(4, 'year').startOf('day').toDate();
+export const getDate4WeeksAgo = () => dayjs().subtract(4, 'week').startOf('day').toDate();
+export const getDate1YearFromNow = () => dayjs().add(1, 'year').endOf('day').toDate();
+export const getDate99YearsFromNow = () => dayjs().subtract(99, 'year').startOf('day').toDate();
 
 export const dateToISODate = (date: Date): ISODate => dayjs(date).format(ISODateFormat);
 
@@ -112,7 +111,7 @@ export const sortDates = (d1: Date, d2: Date) => {
 };
 
 export const dateUtils = {
-    dateToday,
+    getDateToday: getDateToday(),
     dateToISODate,
     getDatesInMonth,
     getFirstOfTwoDates,

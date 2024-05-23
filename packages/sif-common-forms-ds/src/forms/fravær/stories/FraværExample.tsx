@@ -7,7 +7,7 @@ import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-d
 import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { date1YearAgo, date1YearFromNow, dateToday } from '@navikt/sif-common-utils';
+import { getDate1YearAgo, getDate1YearFromNow, getDateToday } from '@navikt/sif-common-utils';
 import { flatten } from 'flat';
 import { FraværDag, fraværDagToFraværDateRange, fraværMessages, FraværPeriode, fraværPeriodeToDateRange } from '../';
 import MessagesPreview from '../../../../storybook/components/messages-preview/MessagesPreview';
@@ -71,8 +71,8 @@ const FormikExample = () => {
                                         </Heading>
                                         <FraværPerioderListAndDialog<FormField>
                                             name={FormField.perioder}
-                                            minDate={date1YearAgo}
-                                            maxDate={dateToday}
+                                            minDate={getDate1YearAgo()}
+                                            maxDate={getDateToday()}
                                             periodeDescription={
                                                 <BodyLong style={{ marginTop: '.5rem', paddingBottom: '.5rem' }}>
                                                     Du kan kun søke for ett og samme år i en søknad. Får å søke for
@@ -105,8 +105,8 @@ const FormikExample = () => {
                                         </Heading>
                                         <FraværDagerListAndDialog<FormField>
                                             name={FormField.dager}
-                                            minDate={date1YearAgo}
-                                            maxDate={dateToday}
+                                            minDate={getDate1YearAgo()}
+                                            maxDate={getDateToday()}
                                             validate={(value) => {
                                                 const listError = getListValidator({ required: true })(value);
                                                 if (listError) {
@@ -137,8 +137,8 @@ const FormikExample = () => {
                 <Tabs.Panel value="perioderForm" style={{ maxWidth: '30rem' }}>
                     <Box padding="6" borderWidth="1" borderRadius="medium">
                         <FraværPeriodeForm
-                            minDate={date1YearAgo}
-                            maxDate={date1YearFromNow}
+                            minDate={getDate1YearAgo()}
+                            maxDate={getDate1YearFromNow()}
                             fraværPeriode={{}}
                             onSubmit={setFraværPeriodeSingleFormValues}
                             onCancel={() => {}}
@@ -149,8 +149,8 @@ const FormikExample = () => {
                 <Tabs.Panel value="dagerForm" style={{ maxWidth: '30rem' }}>
                     <Box padding="4" borderWidth="1" borderRadius="small">
                         <FraværDagFormView
-                            minDate={date1YearAgo}
-                            maxDate={date1YearFromNow}
+                            minDate={getDate1YearAgo()}
+                            maxDate={getDate1YearFromNow()}
                             fraværDag={{}}
                             onSubmit={setFraværDagSingleFormValues}
                             onCancel={() => {}}

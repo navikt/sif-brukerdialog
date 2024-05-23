@@ -10,7 +10,6 @@ import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { Utenlandsopphold } from '@navikt/sif-common-forms-ds';
 import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/BostedUtlandListAndDialog';
-import { dateToday } from '@navikt/sif-common-utils';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -30,6 +29,7 @@ import {
     getMedlemskapStepInitialValues,
     getMedlemskapSøknadsdataFromFormValues,
 } from './medlemskapStepUtils';
+import { getDateToday } from '@navikt/sif-common-utils';
 
 export enum MedlemskapFormFields {
     harBoddUtenforNorgeSiste12Mnd = 'harBoddUtenforNorgeSiste12Mnd',
@@ -53,7 +53,7 @@ const { FormikWrapper, Form, YesOrNoQuestion } = getTypedFormComponents<
 
 const MedlemskapStep = () => {
     const { intl, text } = useAppIntl();
-    const { neste12Måneder, siste12Måneder } = getMedlemskapDateRanges(dateToday);
+    const { neste12Måneder, siste12Måneder } = getMedlemskapDateRanges(getDateToday());
     const {
         state: { søknadsdata },
     } = useSøknadContext();

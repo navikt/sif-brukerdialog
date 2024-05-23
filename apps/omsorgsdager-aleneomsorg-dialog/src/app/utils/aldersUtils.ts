@@ -1,4 +1,4 @@
-import { dateToday } from '@navikt/sif-common-utils';
+import { getDateToday } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 
 export const aldersBegrensingOver = (fødselsdato: Date, maxGrenseYears: number): boolean => {
@@ -6,5 +6,5 @@ export const aldersBegrensingOver = (fødselsdato: Date, maxGrenseYears: number)
 };
 
 export const nYearsAgo = (years: number): Date => {
-    return dayjs(dateToday).subtract(years, 'y').startOf('year').toDate();
+    return dayjs(getDateToday()).subtract(years, 'y').startOf('year').toDate();
 };
