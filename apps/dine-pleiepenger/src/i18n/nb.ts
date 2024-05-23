@@ -122,6 +122,8 @@ export const nb = {
     'statusISak.forventetSvar.endring.tittel': 'Endringen er ferdig behandlet',
     'statusISak.forventetSvar.endring.info':
         'Endringsmeldingen vil oppdatere saken og du vil få ett nytt vedtaksbrev når endringene er ferdig behandlet.',
+    'statusISak.forventetSvar.ettersendelse.tittel': 'Ettersendelsen ...',
+    'statusISak.forventetSvar.ettersendelse.info': 'Ettersendelsen vil ...',
     'statusISak.ingenHendelser':
         '<p>Hei, vi kan dessverre ikke vise informasjon om saken din enda.</p><p>Hvis du har spørsmål, kan du ta kontakt via {lenke}.</p>',
     'statusISak.ingenHendelser.skrivTilOssLenkeTekst': 'Skriv til oss',

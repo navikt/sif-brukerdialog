@@ -105,6 +105,19 @@ const getForventetSvarTitleContent = (
     hendelse: SakshendelseForventetSvar,
     text: TextFn,
 ): Pick<ProcessStepData, 'title' | 'content'> => {
+    const sisteHendelseErEttersendelse =
+        hendelse.søknadstyperIBehandling[hendelse.søknadstyperIBehandling.length - 1] ===
+        Innsendelsestype.ETTERSENDELSE;
+    if (sisteHendelseErEttersendelse) {
+        return {
+            title: text('statusISak.forventetSvar.ettersendelse.tittel'),
+            content: (
+                <Box className="mt-2">
+                    <Msg id="statusISak.forventetSvar.ettersendelse.info" />
+                </Box>
+            ),
+        };
+    }
     const inneholderSøknad = hendelse.søknadstyperIBehandling.includes(Innsendelsestype.SØKNAD);
     const inneholderEndring = hendelse.søknadstyperIBehandling.includes(Innsendelsestype.ENDRINGSMELDING);
 
