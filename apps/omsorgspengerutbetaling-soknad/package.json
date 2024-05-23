@@ -23,7 +23,7 @@
         "@navikt/sif-common-utils": "workspace:*",
         "@storybook/react-vite": "8.1.1",
         "@testing-library/react": "15.0.7",
-        "@vitejs/plugin-react": "4.2.1",
+        "@vitejs/plugin-react": "4.3.0",
         "axios": "1.7.1",
         "busboy": "1.6.0",
         "compression": "1.7.4",

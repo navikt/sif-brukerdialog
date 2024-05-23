@@ -43,7 +43,7 @@
         "@types/react": "18.3.2",
         "@types/react-collapse": "5.0.4",
         "@types/react-dom": "18.3.0",
-        "@vitejs/plugin-react": "4.2.1",
+        "@vitejs/plugin-react": "4.3.0",
         "axios": "1.7.1",
         "chromatic": "11.3.5",
         "config": "workspace:*",
