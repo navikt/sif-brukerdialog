@@ -22,8 +22,8 @@ import './app.less';
 const publicPath = getEnvironmentVariable('PUBLIC_PATH');
 ensureBaseNameForReactRouter(publicPath);
 
-const envNow = getMaybeEnvironmentVariable('NOW');
-if (envNow && getEnvironmentVariable('APP_VERSION') === 'dev') {
+const envNow = getMaybeEnvironmentVariable('MOCK_DATE');
+if (envNow && getEnvironmentVariable('USE_MOCK_DATE') === 'true') {
     // eslint-disable-next-line no-console
     console.log(`setting time to: ${envNow}`);
     MockDate.set(new Date(envNow));

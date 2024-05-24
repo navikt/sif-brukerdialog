@@ -41,6 +41,8 @@ export default defineConfig({
             NODE_ENV: 'development',
             PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/pleiepenger',
             USE_AMPLITUDE: 'false',
+            USE_MOCK_DATE: 'true',
+            MOCK_DATE: '2023-01-01',
         },
     },
 });
