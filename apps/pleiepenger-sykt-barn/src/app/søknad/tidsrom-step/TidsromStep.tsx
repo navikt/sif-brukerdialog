@@ -10,7 +10,7 @@ import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/src/forms/ferie
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/types';
 import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
 import UtenlandsoppholdListAndDialog from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/UtenlandsoppholdListAndDialog';
-import { date1YearAgo, date1YearFromNow, date3YearsAgo, DateRange } from '@navikt/sif-common-utils';
+import { getDate1YearAgo, getDate1YearFromNow, getDate3YearsAgo, DateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
 import { useFormikContext } from 'formik';
@@ -45,8 +45,8 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
 
     const periodeTil = datepickerUtils.getDateFromDateString(values.periodeTil);
     const periode: DateRange = {
-        from: periodeFra || date1YearAgo,
-        to: periodeTil || date1YearFromNow,
+        from: periodeFra || getDate1YearAgo(),
+        to: periodeTil || getDate1YearFromNow(),
     };
     const { text } = useAppIntl();
 
@@ -88,11 +88,11 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
                     barnetSøknadenGjelder?.fødselsdato
                         ? dayjs
                               .max(
-                                  dayjs(date3YearsAgo).endOf('day'),
+                                  dayjs(getDate3YearsAgo()).endOf('day'),
                                   dayjs(barnetSøknadenGjelder?.fødselsdato).endOf('day'),
                               )!
                               .toDate()
-                        : date3YearsAgo
+                        : getDate3YearsAgo()
                 }
                 fromInputProps={{
                     label: text('steg.tidsrom.hvilketTidsrom.fom'),

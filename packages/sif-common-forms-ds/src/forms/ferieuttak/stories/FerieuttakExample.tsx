@@ -6,7 +6,7 @@ import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-d
 import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { date1YearAgo, date1YearFromNow } from '@navikt/sif-common-utils';
+import { getDate1YearAgo, getDate1YearFromNow } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { flatten } from 'flat';
 import { ferieuttakMessages } from '../';
@@ -50,8 +50,8 @@ const FormikExample = () => {
                                     formErrorHandler={getFormErrorHandler(intl)}>
                                     <FerieuttakListAndDialog<FormField>
                                         name={FormField.ferie}
-                                        minDate={date1YearAgo}
-                                        maxDate={date1YearFromNow}
+                                        minDate={getDate1YearAgo()}
+                                        maxDate={getDate1YearFromNow()}
                                         validate={getListValidator({ required: true })}
                                         labels={{
                                             addLabel: 'Legg til ferie',
@@ -69,7 +69,7 @@ const FormikExample = () => {
                 <Tabs.Panel value="form" style={{ maxWidth: '30rem' }}>
                     <Box padding="4" borderWidth="1" borderRadius="small">
                         <FerieuttakForm
-                            minDate={date1YearAgo}
+                            minDate={getDate1YearAgo()}
                             maxDate={dayjs().subtract(1, 'month').toDate()}
                             ferieuttak={{}}
                             onSubmit={setSingleFormValues}

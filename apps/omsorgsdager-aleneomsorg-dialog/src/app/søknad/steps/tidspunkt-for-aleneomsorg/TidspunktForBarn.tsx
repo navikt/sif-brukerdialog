@@ -1,7 +1,7 @@
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { dateToday } from '@navikt/sif-common-utils';
+import { getDateToday } from '@navikt/sif-common-utils';
 import { AppIntlShape, useAppIntl } from '../../../i18n';
 import {
     AleneomsorgTidspunktField,
@@ -86,12 +86,12 @@ const TidspunktForBarn = ({ barnMedAleneomsorg, aleneomsorgTidspunkt }: Props) =
                         })}
                         dropdownCaption={true}
                         minDate={getMinDateYearAgo()}
-                        maxDate={dateToday}
+                        maxDate={getDateToday()}
                         validate={(value) => {
                             const error = getDateValidator({
                                 required: true,
                                 min: getMinDateYearAgo(),
-                                max: dateToday,
+                                max: getDateToday(),
                             })(value);
                             return error
                                 ? {

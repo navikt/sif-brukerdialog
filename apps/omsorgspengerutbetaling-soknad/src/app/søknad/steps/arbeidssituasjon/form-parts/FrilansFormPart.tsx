@@ -1,5 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import { DateRange, dateToday } from '@navikt/sif-common-utils';
+import { DateRange, getDateToday } from '@navikt/sif-common-utils';
 import { getDateValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { ValidationError, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { ArbeidssituasjonFormFields, ArbeidssituasjonFormValues } from '../ArbeidssituasjonStep';
@@ -33,11 +33,11 @@ const FrilansFormPart: React.FC<Props> = ({ values, fraværPeriode }) => {
     const valgtStartdato = datepickerUtils.getDateFromDateString(frilans_startdato);
     const startetDateRange: DateRange = {
         from: nYearsAgo(80),
-        to: fraværPeriode?.to || dateToday,
+        to: fraværPeriode?.to || getDateToday(),
     };
     const sluttetDateRange: DateRange = {
         from: valgtStartdato || startetDateRange.from || nYearsAgo(80),
-        to: dateToday,
+        to: getDateToday(),
     };
 
     return (

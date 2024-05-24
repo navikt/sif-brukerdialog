@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { DateRange, dateToday } from '@navikt/sif-common-utils';
+import { DateRange, getDateToday } from '@navikt/sif-common-utils';
 import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import {
     getDateRangeValidator,
@@ -169,7 +169,9 @@ const FraværPeriodeForm = ({
                                 label: formLabels.fom,
                                 name: FraværPeriodeFormFields.fraOgMed,
                                 defaultMonth:
-                                    fromDate || toDate || dayjs(dateToday).isAfter(maxDate) ? maxDate : dateToday,
+                                    fromDate || toDate || dayjs(getDateToday()).isAfter(maxDate)
+                                        ? maxDate
+                                        : getDateToday(),
                                 validate: getFromDateValidator({
                                     begrensTilSammeÅr,
                                     minDate,
@@ -190,7 +192,9 @@ const FraværPeriodeForm = ({
                                 label: formLabels.tom,
                                 name: FraværPeriodeFormFields.tilOgMed,
                                 defaultMonth:
-                                    toDate || fromDate || dayjs(dateToday).isAfter(maxDate) ? maxDate : dateToday,
+                                    toDate || fromDate || dayjs(getDateToday()).isAfter(maxDate)
+                                        ? maxDate
+                                        : getDateToday(),
                                 validate: getToDateValidator({
                                     begrensTilSammeÅr,
                                     disabledDateRanges,

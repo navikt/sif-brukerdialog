@@ -27,7 +27,13 @@ import {
 } from '@navikt/sif-common-formik-ds/src/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { date3YearsAgo, date4YearsAgo, date99YearsFromNow, dateToday, prettifyDate } from '@navikt/sif-common-utils';
+import {
+    getDate3YearsAgo,
+    getDate4YearsAgo,
+    getDate99YearsFromNow,
+    getDateToday,
+    prettifyDate,
+} from '@navikt/sif-common-utils';
 import { FormikProps } from 'formik';
 import { handleDateRangeValidationError } from '../../utils';
 import { isVirksomhet, Næringstype, Virksomhet, VirksomhetFormField, VirksomhetFormValues } from './types';
@@ -290,21 +296,21 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                 <Form.DateRangePicker
                                     legend={text('@forms.virksomhet.startdato', { navnPåVirksomheten })}
                                     dropdownCaption={true}
-                                    maxDate={dateToday}
-                                    minDate={date99YearsFromNow}
+                                    maxDate={getDateToday()}
+                                    minDate={getDate99YearsFromNow()}
                                     fromInputProps={{
                                         label: text('@forms.virksomhet.kalender_fom'),
                                         name: VirksomhetFormField.fom,
                                         validate: (value) => {
                                             const error = getDateRangeValidator({
                                                 required: true,
-                                                max: dateToday,
+                                                max: getDateToday(),
                                                 toDate: tomDate,
                                             }).validateFromDate(value);
                                             if (error === ValidateDateError.dateIsAfterMax) {
                                                 return {
                                                     key: error,
-                                                    values: { dato: prettifyDate(dateToday) },
+                                                    values: { dato: prettifyDate(getDateToday()) },
                                                 };
                                             }
                                             return error;
@@ -320,13 +326,13 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                 : (value) => {
                                                       const error = getDateRangeValidator({
                                                           required: true,
-                                                          max: dateToday,
+                                                          max: getDateToday(),
                                                           fromDate: fomDate,
                                                       }).validateToDate(value);
                                                       return handleDateRangeValidationError(
                                                           error,
                                                           undefined,
-                                                          dateToday,
+                                                          getDateToday(),
                                                       );
                                                   },
                                     }}
@@ -451,12 +457,12 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                     name={VirksomhetFormField.blittYrkesaktivDato}
                                                     label={text('@forms.virksomhet.har_blitt_yrkesaktiv_dato')}
                                                     dropdownCaption={true}
-                                                    minDate={date3YearsAgo}
-                                                    maxDate={dateToday}
+                                                    minDate={getDate3YearsAgo()}
+                                                    maxDate={getDateToday()}
                                                     validate={getDateValidator({
                                                         required: true,
-                                                        max: dateToday,
-                                                        min: date3YearsAgo,
+                                                        max: getDateToday(),
+                                                        min: getDate3YearsAgo(),
                                                     })}
                                                 />
                                             </FormBlock>
@@ -485,22 +491,22 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                         validate={(value) => {
                                                             const error = getDateValidator({
                                                                 required: true,
-                                                                min: date4YearsAgo,
-                                                                max: dateToday,
+                                                                min: getDate4YearsAgo(),
+                                                                max: getDateToday(),
                                                             })(value);
                                                             if (error) {
                                                                 return {
                                                                     key: error,
                                                                     values: {
                                                                         navn: navnPåVirksomheten,
-                                                                        min: prettifyDate(date4YearsAgo),
-                                                                        max: prettifyDate(dateToday),
+                                                                        min: prettifyDate(getDate4YearsAgo()),
+                                                                        max: prettifyDate(getDateToday()),
                                                                     },
                                                                 };
                                                             }
                                                         }}
-                                                        minDate={date4YearsAgo}
-                                                        maxDate={dateToday}
+                                                        minDate={getDate4YearsAgo()}
+                                                        maxDate={getDateToday()}
                                                     />
                                                 </Block>
                                                 <Block margin="xl">

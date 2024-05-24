@@ -5,7 +5,7 @@ import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-d
 import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { date1YearAgo, date1YearFromNow } from '@navikt/sif-common-utils';
+import { getDate1YearAgo, getDate1YearFromNow } from '@navikt/sif-common-utils';
 import { flatten } from 'flat';
 import { OpptjeningUtland } from '../types';
 import OpptjeningUtlandListAndDialog from '../OpptjeningUtlandListAndDialog';
@@ -50,8 +50,8 @@ const OpptjeningUtlandExample = () => {
                                     submitButtonLabel="Valider skjema"
                                     formErrorHandler={getFormErrorHandler(intl)}>
                                     <OpptjeningUtlandListAndDialog
-                                        minDate={date1YearAgo}
-                                        maxDate={date1YearFromNow}
+                                        minDate={getDate1YearAgo()}
+                                        maxDate={getDate1YearFromNow()}
                                         name={FormField.opptjeningUtland}
                                         validate={getListValidator({ required: true })}
                                         labels={{
@@ -71,8 +71,8 @@ const OpptjeningUtlandExample = () => {
                     <Box padding="4" borderWidth="1" borderRadius="small">
                         <OpptjeningUtlandForm
                             opptjening={initialValues.opptjeningUtland[0]}
-                            minDate={date1YearAgo}
-                            maxDate={date1YearFromNow}
+                            minDate={getDate1YearAgo()}
+                            maxDate={getDate1YearFromNow()}
                             onSubmit={setSingleFormValues}
                             onCancel={() => null}
                         />

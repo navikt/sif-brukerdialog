@@ -10,7 +10,7 @@ import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn';
 import AnnetBarnListAndDialog from '@navikt/sif-common-forms-ds/src/forms/annet-barn/AnnetBarnListAndDialog';
-import { dateToday } from '@navikt/sif-common-utils';
+import { getDateToday } from '@navikt/sif-common-utils';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -182,7 +182,7 @@ const OmOmsorgenForBarnStep = () => {
                                                     'steg.omOmsorgenForBarn.annetBarnListAndDialog.modalTitle',
                                                 ),
                                             }}
-                                            maxDate={dateToday}
+                                            maxDate={getDateToday()}
                                             minDate={nYearsAgo(19)}
                                             disallowedFødselsnumre={[...[søker.fødselsnummer], ...annetBarnFnr]}
                                             aldersGrenseText={text(

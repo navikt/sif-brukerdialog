@@ -6,7 +6,7 @@ import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-d
 import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { date1YearAgo, date1YearFromNow, dateToday } from '@navikt/sif-common-utils';
+import { getDate1YearAgo, getDate1YearFromNow, getDateToday } from '@navikt/sif-common-utils';
 import { flatten } from 'flat';
 import MessagesPreview from '../../../../storybook/components/messages-preview/MessagesPreview';
 import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
@@ -49,8 +49,8 @@ const TidsperiodeExample = () => {
                                     formErrorHandler={getFormErrorHandler(intl)}>
                                     <TidsperiodeListAndDialog<FormField>
                                         name={FormField.tidsperiode}
-                                        minDate={date1YearAgo}
-                                        maxDate={dateToday}
+                                        minDate={getDate1YearAgo()}
+                                        maxDate={getDateToday()}
                                         validate={getListValidator({ required: true })}
                                         labels={{
                                             addLabel: 'Legg til periode',
@@ -67,8 +67,8 @@ const TidsperiodeExample = () => {
                 <Tabs.Panel value="form" style={{ maxWidth: '30rem' }}>
                     <Box padding="4" borderWidth="1" borderRadius="small">
                         <TidsperiodeForm
-                            minDate={date1YearAgo}
-                            maxDate={date1YearFromNow}
+                            minDate={getDate1YearAgo()}
+                            maxDate={getDate1YearFromNow()}
                             tidsperiode={{}}
                             onSubmit={setSingleFormValues}
                             onCancel={() => null}

@@ -10,7 +10,7 @@ import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/typ
 import {
     DateRange,
     dateRangeToISODateRange,
-    dateToday,
+    getDateToday,
     isDateInMaybeDateRange,
     isDateRange,
     prettifyDate,
@@ -110,11 +110,11 @@ const FerieuttakForm = ({
                       return dateRangeToISODateRange(f) !== dateRangeToISODateRange(ferieuttak);
                   }
               });
-    let defaultMonth: Date = dateToday;
-    if ((minDate || maxDate) && !isDateInMaybeDateRange(dateToday, { from: minDate, to: maxDate })) {
-        if (maxDate && dayjs(dateToday).isAfter(maxDate, 'day')) {
+    let defaultMonth: Date = getDateToday();
+    if ((minDate || maxDate) && !isDateInMaybeDateRange(getDateToday(), { from: minDate, to: maxDate })) {
+        if (maxDate && dayjs(getDateToday()).isAfter(maxDate, 'day')) {
             defaultMonth = maxDate;
-        } else if (minDate && dayjs(dateToday).isBefore(minDate, 'day')) {
+        } else if (minDate && dayjs(getDateToday()).isBefore(minDate, 'day')) {
             defaultMonth = minDate;
         }
     }

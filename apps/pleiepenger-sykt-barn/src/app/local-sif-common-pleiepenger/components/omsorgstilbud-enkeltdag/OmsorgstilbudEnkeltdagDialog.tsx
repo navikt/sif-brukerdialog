@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppIntl } from '@i18n/index';
-import { dateFormatter, dateToday } from '@navikt/sif-common-utils';
+import { dateFormatter, getDateToday } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import TidEnkeltdagDialog, { TidEnkeltdagDialogProps } from '../tid-enkeltdag-dialog/TidEnkeltdagDialog';
 import { TidEnkeltdagFormProps } from '../tid-enkeltdag-dialog/TidEnkeltdagForm';
@@ -13,7 +13,7 @@ const OmsorgstilbudEnkeltdagDialog: React.FunctionComponent<Props> = ({ open: is
     const { text } = useAppIntl();
 
     const hvorMyeSpørsmålRenderer = (dato: Date): string => {
-        const erHistorisk = dayjs(dato).isBefore(dateToday, 'day');
+        const erHistorisk = dayjs(dato).isBefore(getDateToday(), 'day');
         return text(
             erHistorisk ? 'omsorgstilbudEnkeltdagForm.tid.spm.historisk' : 'omsorgstilbudEnkeltdagForm.tid.spm',
             { dato: dateFormatter.dayDateMonthYear(dato) },
