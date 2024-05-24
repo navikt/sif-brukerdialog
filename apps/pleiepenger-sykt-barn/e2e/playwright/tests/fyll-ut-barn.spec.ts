@@ -27,7 +27,8 @@ test.describe('Barn steg', () => {
         await page.getByText('Barnet bor i utlandet').click();
         await page.getByLabel('Barnets navn').fill('Tore');
         await page.getByRole('button', { name: 'Åpne datovelger' }).click();
-        await page.getByLabel('onsdag 4').click();
+        await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
+        await page.getByLabel('torsdag 1', { exact: true }).click();
         await page.getByText('Fosterforelder').click();
         await page.getByRole('group', { name: 'Hvilken relasjon har du til' }).getByLabel('Annet').check();
         await page.getByTestId('opplysninger-om-barnet-relasjonAnnetBeskrivelse').click();

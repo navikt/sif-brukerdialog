@@ -103,6 +103,7 @@
         "e2e": "playwright test",
         "lint": "eslint ./src --ext ts,tsx",
         "playwright-test": "playwright test",
+        "pw": "playwright test --ui",
         "start-e2e-server": "node ./server-e2e.cjs",
         "start-express": "node ./server.cjs",
         "storybook": "storybook dev -p 6006",
