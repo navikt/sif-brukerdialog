@@ -91,11 +91,15 @@ export const getProcessStepsFraSakshendelser = (text: TextFn, hendelser: Sakshen
                     };
 
                 case Sakshendelser.FORVENTET_SVAR:
-                    return {
-                        ...getForventetSvarTitleContent(hendelse, text),
-                        completed: false,
-                        isLastStep: true,
-                    };
+                    const titleContent = getForventetSvarTitleContent(hendelse, text);
+                    if (titleContent) {
+                        return {
+                            ...titleContent,
+                            completed: false,
+                            isLastStep: true,
+                        };
+                    }
+                    return undefined;
             }
         })
         .filter((h) => h !== undefined) as ProcessStepData[];
@@ -104,19 +108,12 @@ export const getProcessStepsFraSakshendelser = (text: TextFn, hendelser: Sakshen
 const getForventetSvarTitleContent = (
     hendelse: SakshendelseForventetSvar,
     text: TextFn,
-): Pick<ProcessStepData, 'title' | 'content'> => {
+): Pick<ProcessStepData, 'title' | 'content'> | undefined => {
     const sisteHendelseErEttersendelse =
         hendelse.søknadstyperIBehandling[hendelse.søknadstyperIBehandling.length - 1] ===
         Innsendelsestype.ETTERSENDELSE;
     if (sisteHendelseErEttersendelse) {
-        return {
-            title: text('statusISak.forventetSvar.ettersendelse.tittel'),
-            content: (
-                <Box className="mt-2">
-                    <Msg id="statusISak.forventetSvar.ettersendelse.info" />
-                </Box>
-            ),
-        };
+        return undefined;
     }
     const inneholderSøknad = hendelse.søknadstyperIBehandling.includes(Innsendelsestype.SØKNAD);
     const inneholderEndring = hendelse.søknadstyperIBehandling.includes(Innsendelsestype.ENDRINGSMELDING);
