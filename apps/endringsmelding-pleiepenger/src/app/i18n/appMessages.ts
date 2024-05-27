@@ -103,9 +103,7 @@ const nb = {
     'kvitteringPage.pageTitle': 'Endringsmelding er mottatt',
     'kvitteringPage.title': 'Melding om endring er lagt til saken din',
     'kvitteringPage.info.1':
-        'Når vi har behandlet meldingen fra deg, får du svar på din side på nav.no og i Digipost. Hvis du har registrert deg mot å motta digital post, får du svaret tilsendt i posten.',
-    'kvitteringPage.info.2':
-        'På <Lenke>Dine pleiepenger</Lenke> kan du se endringsmeldingen etter ca. 15 minutter. Der finner du også svar på endringene, når meldingen er behandlet.',
+        'Du kan se endringsmeldingen etter ca. 15 minutter på <Lenke>Dine Pleiepenger</Lenke>.  Der finner du svar på endringene, når meldingen er behandlet.',
 
     'lovbestemtFerieStep.guide.tittel': 'Slik endrer du ferie',
     'lovbestemtFerieStep.guide.tekst.1': 'Du kan endre, legge til, eller fjerne ferie i pleiepengeperioden din.',
