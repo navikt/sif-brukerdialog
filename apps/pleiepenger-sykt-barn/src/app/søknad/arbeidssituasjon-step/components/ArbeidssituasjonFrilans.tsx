@@ -1,5 +1,4 @@
 import { Alert } from '@navikt/ds-react';
-import { FormattedMessage } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
@@ -11,6 +10,7 @@ import FrilanserFormPart from './frilans-form-parts/FrilanserFormPart';
 import StønadsgodtgjørelseFormPart from './frilans-form-parts/StønadsgodtgjørelseFormPart';
 import FrilansoppdragInfo from './info/FrilansoppdragInfo';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
+import { AppText } from '../../../i18n';
 
 interface Props {
     søknadsperiode: DateRange;
@@ -64,7 +64,7 @@ const ArbeidssituasjonFrilans = ({ søknadsperiode, søknadsdato }: Props) => {
                 stønadGodtgjørelse.mottarStønadGodtgjørelse === YesOrNo.NO && (
                     <Block margin="l">
                         <Alert variant="info">
-                            <FormattedMessage id={'frilanser.ingenFrilans.info'} />
+                            <AppText id={'frilanser.ingenFrilans.info'} />
                         </Alert>
                     </Block>
                 )}

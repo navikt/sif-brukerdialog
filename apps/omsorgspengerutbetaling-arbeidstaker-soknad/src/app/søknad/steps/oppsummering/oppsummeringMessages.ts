@@ -59,6 +59,10 @@ const nb = {
     'step.oppsummering.deltBosted.header': 'Avtale om delt bosted',
 
     'step.oppsummering.legeerklæring.ingenVedlegg': 'Ingen egeerklæring er lastet opp. Denne må ettersendes.',
+    'step.oppsummering.fosterbarn': 'Fosterbarn',
+    'step.oppsummering.fosterbarn.harFosterbarn': 'Har du fosterbarn?',
+    'step.oppsummering.fosterbarn.listItem': ' (fnr. {identitetsnummer})',
+
     'step.oppsummering.legeerklæring.header': 'Legeerklæring',
 
     'step.oppsummering.bekrefterOpplysninger':

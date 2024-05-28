@@ -3,7 +3,7 @@ import { Pleiepengesøknad } from '../../../server/api-models/SøknadSchema';
 import { ReadMore, VStack } from '@navikt/ds-react';
 import DokumenterISøknad from './DokumenterISøknad';
 import ArbeidsgivereISøknad from './ArbeidsgivereISøknad';
-import { useMessages } from '../../../i18n';
+import { useAppIntl } from '../../../i18n';
 import { getArbeidsgiverinfoFraSøknad } from '../../../utils/sakUtils';
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
 }
 
 const SøknadStatusContent: React.FunctionComponent<Props> = ({ søknad }) => {
-    const { text } = useMessages();
+    const { text } = useAppIntl();
     const arbeidsgivere = getArbeidsgiverinfoFraSøknad(søknad);
     const harArbeidsgivere = arbeidsgivere.length > 0;
     return (

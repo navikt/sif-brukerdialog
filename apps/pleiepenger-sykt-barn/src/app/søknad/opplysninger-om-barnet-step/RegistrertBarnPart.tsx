@@ -1,23 +1,23 @@
-import { FormattedMessage, useIntl } from 'react-intl';
+import { BodyShort } from '@navikt/ds-react';
+import { useAppIntl } from '@i18n/index';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { prettifyDate } from '@navikt/sif-common-utils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { resetFieldValue, resetFieldValues, SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds';
-import { useFormikContext } from 'formik';
-import { SøknadFormField, initialValues, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
-import SøknadFormComponents from '../SøknadFormComponents';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
+import { prettifyDate } from '@navikt/sif-common-utils';
+import { useFormikContext } from 'formik';
+import { AppText } from '../../i18n';
 import { RegistrerteBarn } from '../../types';
-import { BodyShort } from '@navikt/ds-react';
+import { initialValues, SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
+import SøknadFormComponents from '../SøknadFormComponents';
 
 interface Props {
     søkersBarn: RegistrerteBarn[];
 }
 
 const RegistrertBarnPart = ({ søkersBarn }: Props) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     const {
         values: { søknadenGjelderEtAnnetBarn },
         setFieldValue,
@@ -27,17 +27,17 @@ const RegistrertBarnPart = ({ søkersBarn }: Props) => {
         <SkjemagruppeQuestion legend="Barn" hideLegend={true}>
             <SøknadFormComponents.RadioGroup
                 name={SøknadFormField.barnetSøknadenGjelder}
-                legend={intlHelper(intl, 'steg.omBarnet.hvilketBarn.spm')}
+                legend={text('steg.omBarnet.hvilketBarn.spm')}
                 description={
-                    <ExpandableInfo title={intlHelper(intl, 'steg.omBarnet.hvilketBarn.description.tittel')}>
+                    <ExpandableInfo title={text('steg.omBarnet.hvilketBarn.description.tittel')}>
                         <p>
-                            <FormattedMessage id={'steg.omBarnet.hvilketBarn.description.info.1'} />
+                            <AppText id={'steg.omBarnet.hvilketBarn.description.info.1'} />
                         </p>
                         <p>
-                            <FormattedMessage id={'steg.omBarnet.hvilketBarn.description.info.2'} />
+                            <AppText id={'steg.omBarnet.hvilketBarn.description.info.2'} />
                         </p>
                         <p>
-                            <FormattedMessage id={'steg.omBarnet.hvilketBarn.description.info.3'} />
+                            <AppText id={'steg.omBarnet.hvilketBarn.description.info.3'} />
                         </p>
                     </ExpandableInfo>
                 }
@@ -46,12 +46,11 @@ const RegistrertBarnPart = ({ søkersBarn }: Props) => {
                     const barnetsNavn = formatName(fornavn, etternavn, mellomnavn);
                     return {
                         value: aktørId,
-                        key: aktørId,
                         label: (
                             <BodyShort as="div">
                                 <div>{barnetsNavn}</div>
                                 <div>
-                                    <FormattedMessage
+                                    <AppText
                                         id="steg.omBarnet.hvilketBarn.født"
                                         values={{ dato: prettifyDate(fødselsdato) }}
                                     />
@@ -65,7 +64,7 @@ const RegistrertBarnPart = ({ søkersBarn }: Props) => {
             />
             <FormBlock margin="l">
                 <SøknadFormComponents.Checkbox
-                    label={intlHelper(intl, 'steg.omBarnet.gjelderAnnetBarn')}
+                    label={text('steg.omBarnet.gjelderAnnetBarn')}
                     name={SøknadFormField.søknadenGjelderEtAnnetBarn}
                     afterOnChange={(newValue) => {
                         if (newValue) {

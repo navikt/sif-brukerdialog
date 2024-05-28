@@ -1,11 +1,11 @@
 import { z } from 'zod';
-import { PleietrengendeSchema } from './PleietrengendeSchema';
+import { PleietrengendeAnonymisertSchema, PleietrengendeSchema } from './PleietrengendeSchema';
 import { SakSchema } from './SakSchema';
 
 export type PleietrengendeMedSak = z.infer<typeof PleietrengendeMedSakSchema>;
 
 export const PleietrengendeMedSakSchema = z.object({
-    pleietrengende: PleietrengendeSchema,
+    pleietrengende: z.union([PleietrengendeSchema, PleietrengendeAnonymisertSchema]),
     sak: SakSchema,
 });
 

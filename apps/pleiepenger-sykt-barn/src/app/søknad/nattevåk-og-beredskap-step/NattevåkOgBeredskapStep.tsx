@@ -1,19 +1,19 @@
 import { BodyLong } from '@navikt/ds-react';
+import { useState } from 'react';
+import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
 import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { useFormikContext } from 'formik';
-import { useState } from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
 import FormSection from '../../components/form-section/FormSection';
 import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 import usePersistOnChange from '../../hooks/usePersistOnChange';
-import InfoList from '../../pages/welcoming-page/components/info-list/InfoList';
+import { AppText } from '../../i18n';
+import InfoList from '../../pages/velkommen-page/components/info-list/InfoList';
 import { StepCommonProps } from '../../types/StepCommonProps';
 import { StepID } from '../../types/StepID';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
@@ -32,7 +32,7 @@ export const cleanupNattevåkOgBeredskapStep = (values: SøknadFormValues): Søk
 };
 
 const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     const [loaded, setLoaded] = useState<boolean>(false);
 
     const { values } = useFormikContext<SøknadFormValues>();
@@ -50,27 +50,24 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
             <Block padBottom="xl">
                 <SifGuidePanel compact={true}>
                     <p>
-                        <FormattedMessage id={'steg.nattevåkOgBeredskap.veileder'} />
+                        <AppText id={'steg.nattevåkOgBeredskap.veileder'} />
                     </p>
                     <Block>
                         <ExpandableInfo
-                            title={intlHelper(
-                                intl,
-                                'steg.nattevåkOgBeredskap.nattevåk.spm.description.flereBarn.tittel',
-                            )}>
-                            <FormattedMessage id={'steg.nattevåkOgBeredskap.nattevåk.spm.description.flereBarn'} />
+                            title={text('steg.nattevåkOgBeredskap.nattevåk.spm.description.flereBarn.tittel')}>
+                            <AppText id={'steg.nattevåkOgBeredskap.nattevåk.spm.description.flereBarn'} />
                         </ExpandableInfo>
                     </Block>
                 </SifGuidePanel>
             </Block>
             <FormSection title="Nattevåk" titleLevel="2">
                 <BodyLong>
-                    <FormattedMessage id={'steg.nattevåkOgBeredskap.nattevåk.veileder'} />
+                    <AppText id={'steg.nattevåkOgBeredskap.nattevåk.veileder'} />
                 </BodyLong>
 
                 <FormBlock>
                     <SøknadFormComponents.YesOrNoQuestion
-                        legend={intlHelper(intl, 'steg.nattevåkOgBeredskap.nattevåk.spm')}
+                        legend={text('steg.nattevåkOgBeredskap.nattevåk.spm')}
                         name={SøknadFormField.harNattevåk}
                         validate={getYesOrNoValidator()}
                         data-testid="nattevåk"
@@ -82,20 +79,20 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
                         <ResponsivePanel border={true}>
                             <SøknadFormComponents.Textarea
                                 name={SøknadFormField.harNattevåk_ekstrainfo}
-                                label={<FormattedMessage id={'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.spm'} />}
+                                label={<AppText id={'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.spm'} />}
                                 description={
                                     <Block>
                                         <BodyLong as="div">
-                                            <FormattedMessage id="steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.tittel" />
+                                            <AppText id="steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.tittel" />
                                             <InfoList>
                                                 <li>
-                                                    <FormattedMessage id="steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.1" />
+                                                    <AppText id="steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.1" />
                                                 </li>
                                                 <li>
-                                                    <FormattedMessage id="steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.2" />
+                                                    <AppText id="steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.2" />
                                                 </li>
                                                 <li>
-                                                    <FormattedMessage id="steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.3" />
+                                                    <AppText id="steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.3" />
                                                 </li>
                                             </InfoList>
                                         </BodyLong>
@@ -111,11 +108,11 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
             </FormSection>
             <FormSection title="Beredskap" titleLevel="2">
                 <BodyLong>
-                    <FormattedMessage id={'steg.nattevåkOgBeredskap.beredskap.veileder'} />
+                    <AppText id={'steg.nattevåkOgBeredskap.beredskap.veileder'} />
                 </BodyLong>
                 <FormBlock>
                     <SøknadFormComponents.YesOrNoQuestion
-                        legend={intlHelper(intl, 'steg.nattevåkOgBeredskap.beredskap.spm')}
+                        legend={text('steg.nattevåkOgBeredskap.beredskap.spm')}
                         name={SøknadFormField.harBeredskap}
                         validate={getYesOrNoValidator()}
                         data-testid="beredskap"
@@ -126,22 +123,22 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
                         <ResponsivePanel border={true}>
                             <SøknadFormComponents.Textarea
                                 name={SøknadFormField.harBeredskap_ekstrainfo}
-                                label={<FormattedMessage id={'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.spm'} />}
+                                label={<AppText id={'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.spm'} />}
                                 maxLength={1000}
                                 validate={getStringValidator({ required: true, maxLength: 1000 })}
                                 description={
                                     <Block>
                                         <BodyLong as="div">
-                                            <FormattedMessage id="steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.liste.tittel" />
+                                            <AppText id="steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.liste.tittel" />
                                             <InfoList>
                                                 <li>
-                                                    <FormattedMessage id="steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.liste.1" />
+                                                    <AppText id="steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.liste.1" />
                                                 </li>
                                                 <li>
-                                                    <FormattedMessage id="steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.liste.2" />
+                                                    <AppText id="steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.liste.2" />
                                                 </li>
                                                 <li>
-                                                    <FormattedMessage id="steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.liste.3" />
+                                                    <AppText id="steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.liste.3" />
                                                 </li>
                                             </InfoList>
                                         </BodyLong>

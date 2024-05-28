@@ -1,10 +1,9 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { YtelseKey, Ytelser } from '@navikt/sif-common-core-ds/src/types/Ytelser';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { FormikRadioProp } from '@navikt/sif-common-formik-ds/src/components/formik-radio-group/FormikRadioGroup';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { useAppIntl } from '../../i18n';
 import { SoknadFormField } from '../../types/SoknadFormData';
 import { Søknadstype } from '../../types/Søknadstype';
 import SoknadFormComponents from '../SoknadFormComponents';
@@ -23,13 +22,13 @@ const getYtelseRadio = (ytelseKey: YtelseKey): FormikRadioProp => {
 };
 
 const ValgOmsTypeStep: React.FC<Props> = ({ søknadstype }) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     return (
         <SoknadFormStep id={StepID.OMS_TYPE} søknadstype={søknadstype}>
             <FormBlock>
                 <SoknadFormComponents.RadioGroup
                     name={SoknadFormField.ytelse}
-                    legend={intlHelper(intl, 'step.omsorgspenger_type.søknadstype.spm')}
+                    legend={text('step.omsorgspenger_type.søknadstype.spm')}
                     validate={getRequiredFieldValidator()}
                     radios={[
                         getYtelseRadio(YtelseKey.omsorgsdagerKroniskSyk),

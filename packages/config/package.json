@@ -1,17 +1,17 @@
 {
     "main": "index.js",
     "name": "config",
-    "version": "0.9.24",
+    "version": "0.9.27",
     "private": true,
     "dependencies": {
-        "@typescript-eslint/eslint-plugin": "7.8.0",
-        "@typescript-eslint/parser": "7.8.0",
+        "@typescript-eslint/eslint-plugin": "7.11.0",
+        "@typescript-eslint/parser": "7.11.0",
         "autoprefixer": "10.4.19",
         "eslint": "8.57.0",
         "eslint-config-prettier": "9.1.0",
         "eslint-plugin-jsx-a11y": "6.8.0",
         "eslint-plugin-prettier": "5.1.3",
-        "eslint-plugin-react": "7.34.1",
+        "eslint-plugin-react": "7.34.2",
         "eslint-plugin-storybook": "0.8.0",
         "postcss": "8.4.38"
     },

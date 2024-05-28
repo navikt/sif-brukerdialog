@@ -10,7 +10,7 @@ import Snarveier from '../components/snarveier/Snarveier';
 import VelgSakPage from '../components/velg-sak-page/VelgSakPage';
 import { useInnsynsdataContext } from '../hooks/useInnsynsdataContext';
 import { useLogBrukerprofil } from '../hooks/useLogBrukerprofil';
-import { useMessages } from '../i18n';
+import { useAppIntl } from '../i18n';
 import { PleietrengendeMedSak } from '../server/api-models/PleietrengendeMedSakSchema';
 import { InnsendtSøknad, InnsendtSøknadstype } from '../types/Søknad';
 import SakPage from './sak/SakPage';
@@ -37,7 +37,7 @@ function DinePleiepengerPage(): ReactElement {
 
     useLogBrukerprofil(brukerprofil);
 
-    const { text } = useMessages();
+    const { text } = useAppIntl();
 
     if (saker.length === 1) {
         return (
@@ -59,10 +59,7 @@ function DinePleiepengerPage(): ReactElement {
             <Head>
                 <title>{text('forside.dokumentTittel')}</title>
             </Head>
-            <VStack gap="12">
-                <Box>
-                    <Snarveier />
-                </Box>
+            <VStack gap="8">
                 <Box className="md:flex md:gap-6">
                     <div className="md:grow mb-10 md:mb-0">
                         <DineInnsendteSøknader søknader={innsendteSøknader} />
@@ -75,6 +72,9 @@ function DinePleiepengerPage(): ReactElement {
                     </div>
                 </Box>
                 <Box>
+                    <Snarveier title="Trenger du å oppdatere saken din?" />
+                </Box>
+                <Box className="mt-4">
                     <HvaSkjer />
                 </Box>
             </VStack>

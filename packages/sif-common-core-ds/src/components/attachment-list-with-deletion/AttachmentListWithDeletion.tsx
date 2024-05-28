@@ -1,10 +1,10 @@
-import { FormattedMessage, useIntl } from 'react-intl';
 import { Attachment } from '../../types/Attachment';
-import intlHelper from '../../utils/intlUtils';
+
 import AttachmentListElement from '../attachment-list-element/AttachmentListElement';
 import DeleteButton from '../../atoms/delete-button/DeleteButton';
 import LoadingSpinner from '../../atoms/loading-spinner/LoadingSpinner';
 import UnstyledList from '../lists/unstyled-list/UnstyledList';
+import { CoreText, useCoreIntl } from '../../i18n/common.messages';
 
 interface Props {
     attachments: Attachment[];
@@ -12,7 +12,7 @@ interface Props {
 }
 
 const AttachmentListWithDeletion = ({ attachments, onRemoveAttachmentClick }: Props) => {
-    const intl = useIntl();
+    const { text } = useCoreIntl();
     return (
         <UnstyledList>
             {attachments
@@ -27,9 +27,9 @@ const AttachmentListWithDeletion = ({ attachments, onRemoveAttachmentClick }: Pr
                             ) : (
                                 <DeleteButton
                                     useTrashcan={false}
-                                    ariaLabel={intlHelper(intl, 'common.vedleggsliste.fjernKnapp')}
+                                    ariaLabel={text('common.vedleggsliste.fjernKnapp')}
                                     onClick={() => onRemoveAttachmentClick(attachment)}>
-                                    <FormattedMessage id="common.vedleggsliste.fjernKnapp" />
+                                    <CoreText id="common.vedleggsliste.fjernKnapp" />
                                 </DeleteButton>
                             )
                         }

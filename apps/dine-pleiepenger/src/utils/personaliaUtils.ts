@@ -1,7 +1,12 @@
+import { IntlTextFn } from '../i18n';
 import { Pleietrengende } from '../server/api-models/PleietrengendeSchema';
 
 export const personaliaUtils = {
-    navn: ({ fornavn, mellomnavn, etternavn }: Pleietrengende): string => {
-        return `${fornavn} ${mellomnavn ? mellomnavn : ''} ${etternavn}`;
+    navn: (pleietrengende: Pleietrengende, text: IntlTextFn): string => {
+        if (pleietrengende.anonymisert === false) {
+            const { fornavn, etternavn, mellomnavn } = pleietrengende;
+            return `${fornavn} ${mellomnavn ? mellomnavn : ''} ${etternavn}`;
+        }
+        return text('barn.navn.anonymisert');
     },
 };

@@ -15,6 +15,7 @@ type SøkerDTO = {
 const søkerEndpoint = {
     fetch: async (): Promise<Søker> => {
         const { data } = await api.psb.get<SøkerDTO>(ApiEndpointPsb.soker, 'ytelse=endringsmelding-pleiepenger');
+
         if (!isValidSøkerResponse(data)) {
             appSentryLogger.logInfo('søkerEndpoint.Invalid søkerdata');
             return Promise.reject('Invalid søkerdata');

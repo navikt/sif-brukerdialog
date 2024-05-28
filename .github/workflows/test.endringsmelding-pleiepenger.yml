@@ -22,14 +22,14 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v4
-            
+
             - name: Setup .yarnrc.yml
               run: |
                   yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
                   yarn config set npmScopes.navikt.npmAlwaysAuth true
                   yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
               env:
-                NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
             - name: Setup Node.js environment
               uses: actions/setup-node@v4
@@ -43,19 +43,20 @@ jobs:
             - name: Run code tests
               run: yarn test --filter=endringsmelding-pleiepenger
 
-    run-cypress-test:
+    run-playwright-test:
+        timeout-minutes: 60
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
               uses: actions/checkout@v4
-            
+
             - name: Setup .yarnrc.yml
               run: |
                   yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
                   yarn config set npmScopes.navikt.npmAlwaysAuth true
                   yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
               env:
-                NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
             - name: Setup Node.js environment
               uses: actions/setup-node@v4
@@ -63,31 +64,14 @@ jobs:
                   node-version: 18
                   cache: 'yarn'
 
-            - name: Build and start e2e server
-              uses: cypress-io/github-action@v6.6.1
-              env:
-                  API_URL_INNSYN: http://localhost:8099
-                  API_URL: http://localhost:8099
-                  DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
-                  PUBLIC_PATH: /familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger
-                  MSW: off
-                  FRONTEND_API_PATH: http://localhost:8099/
-                  FRONTEND_VEDLEGG_URL: http://localhost:8099/api
-                  FRONTEND_INNSYN_API_PATH: http://localhost:8099/api
-                  VELG_SAK: off
-                  APPSTATUS_PROJECT_ID: ryujtq87
-                  APPSTATUS_DATASET: staging
-                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              with:
-                  project: ./apps/endringsmelding-pleiepenger/e2e
-                  build: yarn turbo run build --filter=@navikt/endringsmelding-pleiepenger
-                  start: yarn turbo start-e2e-server --filter=endringsmelding-pleiepenger
-                  wait-on: 'http://localhost:8080/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/alive'
-                  wait-on-timeout: 60
-                  runTests: false
+            - name: Install dependencies
+              run: yarn
 
-            - name: Run cypress tests
-              run: yarn turbo cypress-run --filter=endringsmelding-pleiepenger
-              env:
-                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+            - name: Install Playwright Browsers
+              run: npx playwright install chromium --with-deps
+
+            - name: Build application
+              run: yarn build --filter=endringsmelding-pleiepenger
+
+            - name: Run tests
+              run: yarn turbo playwright-test --filter=endringsmelding-pleiepenger

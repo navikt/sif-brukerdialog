@@ -1,22 +1,21 @@
-import React, { useEffect } from 'react';
 import { Alert, Heading, Link } from '@navikt/ds-react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import React, { useEffect } from 'react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getRequiredFieldValidator, getStringValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { useFormikContext } from 'formik';
+import { AppText, useAppIntl } from '../../i18n';
+import getLenker from '../../lenker';
+import { DokumentType } from '../../types/DokumentType';
+import { RegistrertBarn } from '../../types/RegistrertBarn';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import { Søknadstype } from '../../types/Søknadstype';
 import { MAX_BESKRIVELSE_LENGTH, MIN_BESKRIVELSE_LENGTH } from '../../validation/fieldValidations';
 import SoknadFormComponents from '../SoknadFormComponents';
 import SoknadFormStep from '../SoknadFormStep';
 import { StepID } from '../soknadStepsConfig';
-import { DokumentType } from '../../types/DokumentType';
-import { useFormikContext } from 'formik';
-import RegistrertBarnPart from './RegistrertBarnPart';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import AnnetBarnPart from './AnnetBarnPart';
-import { RegistrertBarn } from '../../types/RegistrertBarn';
-import getLenker from '../../lenker';
+import RegistrertBarnPart from './RegistrertBarnPart';
 
 interface Props {
     søknadstype: Søknadstype;
@@ -25,7 +24,7 @@ interface Props {
 }
 
 const BeskrivelsePPStep: React.FC<Props> = ({ søknadstype, søkersFødselsnummer, registrertBarn }) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     const {
         values: { legeerklæringGjelderEtAnnetBarn, dokumentType, registrertBarnAktørId, barnetsFødselsnummer },
         setFieldValue,
@@ -39,19 +38,17 @@ const BeskrivelsePPStep: React.FC<Props> = ({ søknadstype, søkersFødselsnumme
         }
     }, [harRegistrerteBarn, legeerklæringGjelderEtAnnetBarn, setFieldValue]);
 
-    console.log('get lenker', getLenker().pleiepengerSyktBarn);
-
     return (
         <SoknadFormStep id={StepID.BESKRIVELSE_PP} søknadstype={søknadstype}>
             <SifGuidePanel>
-                <FormattedMessage id="step.beskrivelse_pp.info" />
+                <AppText id="step.beskrivelse_pp.info" />
             </SifGuidePanel>
             <FormBlock>
                 <SoknadFormComponents.RadioGroup
-                    legend={intlHelper(intl, 'step.beskrivelse_pp.dokumentType.spm')}
+                    legend={text('step.beskrivelse_pp.dokumentType.spm')}
                     name={SoknadFormField.dokumentType}
                     radios={Object.values(DokumentType).map((type) => ({
-                        label: intlHelper(intl, `step.beskrivelse_pp.dokumentType.${type}`),
+                        label: text(`step.beskrivelse_pp.dokumentType.${type}`),
                         value: type,
                     }))}
                     validate={getRequiredFieldValidator()}
@@ -86,9 +83,9 @@ const BeskrivelsePPStep: React.FC<Props> = ({ søknadstype, søkersFødselsnumme
                         <FormBlock>
                             <Alert variant="info" className="mb-10">
                                 <Heading level="3" size="small" className="mb-4">
-                                    <FormattedMessage id="step.beskrivelse_pp.barn.info.tittel" />
+                                    <AppText id="step.beskrivelse_pp.barn.info.tittel" />
                                 </Heading>
-                                <FormattedMessage
+                                <AppText
                                     id="step.beskrivelse_pp.barn.info.1.1"
                                     values={{
                                         ppSyktBarnLenke: (
@@ -96,7 +93,7 @@ const BeskrivelsePPStep: React.FC<Props> = ({ søknadstype, søkersFødselsnumme
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 href={getLenker().pleiepengerSyktBarn}>
-                                                <FormattedMessage id="step.beskrivelse_pp.barn.info.lenke" />
+                                                <AppText id="step.beskrivelse_pp.barn.info.lenke" />
                                             </Link>
                                         ),
                                     }}
@@ -111,14 +108,14 @@ const BeskrivelsePPStep: React.FC<Props> = ({ søknadstype, søkersFødselsnumme
                 <FormBlock>
                     <Alert variant="info" className="mb-10">
                         <Heading level="3" size="small" className="mb-4">
-                            <FormattedMessage id="step.beskrivelse_pp.annet.info.1" />
+                            <AppText id="step.beskrivelse_pp.annet.info.1" />
                         </Heading>
-                        <FormattedMessage id="step.beskrivelse_pp.annet.info.2" />
+                        <AppText id="step.beskrivelse_pp.annet.info.2" />
                     </Alert>
                     <SoknadFormComponents.Textarea
                         data-testid="beskrivelse"
                         name={SoknadFormField.beskrivelse}
-                        label={intlHelper(intl, 'step.beskrivelse_pp.hvaSendes.spm')}
+                        label={text('step.beskrivelse_pp.hvaSendes.spm')}
                         maxLength={MAX_BESKRIVELSE_LENGTH}
                         autoComplete="off"
                         validate={(value) => {

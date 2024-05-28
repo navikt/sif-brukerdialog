@@ -2,7 +2,7 @@ import { Heading, HGrid, VStack } from '@navikt/ds-react';
 import React from 'react';
 import { PencilWritingIcon } from '@navikt/aksel-icons';
 import { Dialog, File, Task } from '@navikt/ds-icons';
-import { useMessages } from '../../i18n';
+import { useAppIntl } from '../../i18n';
 import { browserEnv } from '../../utils/env';
 import SnarveiLinkPanel from '../snarvei-link-panel/SnarveiLinkPanel';
 
@@ -11,7 +11,7 @@ interface Props {
 }
 
 const Snarveier: React.FunctionComponent<Props> = ({ title }) => {
-    const { text } = useMessages();
+    const { text } = useAppIntl();
     return (
         <section>
             <VStack gap="4">

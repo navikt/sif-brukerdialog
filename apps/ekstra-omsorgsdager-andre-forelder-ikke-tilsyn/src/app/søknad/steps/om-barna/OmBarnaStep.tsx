@@ -1,8 +1,6 @@
 import { Alert } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
 import ContentWithHeader from '@navikt/sif-common-core-ds/src/components/content-with-header/ContentWithHeader';
 import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import BarnListAndDialog from '../../../pre-common/forms/barn/BarnListAndDialog';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
 import { AndreBarn } from '../../../pre-common/forms/barn';
@@ -25,6 +23,7 @@ import {
     getOmBarnaStepInitialValues,
     getOmBarnaSøknadsdataFromFormValues,
 } from './OmBarnaStepUtils';
+import { useAppIntl } from '../../../i18n';
 
 export enum OmBarnaFormFields {
     andreBarn = 'andreBarn',
@@ -37,7 +36,8 @@ export interface OmBarnaFormValues {
 const { FormikWrapper, Form } = getTypedFormComponents<OmBarnaFormFields, OmBarnaFormValues, ValidationError>();
 
 const OmBarnaStep = () => {
-    const intl = useIntl();
+    const appIntl = useAppIntl();
+    const { text, intl } = appIntl;
     const {
         state: { søknadsdata, registrerteBarn, søker },
     } = useSøknadContext();
@@ -91,12 +91,11 @@ const OmBarnaStep = () => {
                                 runDelayedFormValidation={true}>
                                 {registrerteBarn.length > 0 && (
                                     <Block margin="xl">
-                                        <ContentWithHeader
-                                            header={intlHelper(intl, 'step.omBarna.listHeader.registrerteBarn')}>
+                                        <ContentWithHeader header={text('step.omBarna.listHeader.registrerteBarn')}>
                                             <ItemList<RegistrertBarn>
                                                 getItemId={(registrerteBarn): string => registrerteBarn.aktørId}
                                                 getItemTitle={(registrerteBarn): string => registrerteBarn.etternavn}
-                                                labelRenderer={(barnet) => barnItemLabelRenderer(barnet, intl)}
+                                                labelRenderer={(barnet) => barnItemLabelRenderer(barnet, appIntl)}
                                                 items={registrerteBarn}
                                             />
                                         </ContentWithHeader>
@@ -107,19 +106,19 @@ const OmBarnaStep = () => {
                                     <ContentWithHeader
                                         header={
                                             andreBarn && andreBarn.length === 0
-                                                ? intlHelper(intl, 'step.omBarna.spm.andreBarn')
-                                                : intlHelper(intl, 'step.omBarna.spm.flereBarn')
+                                                ? text('step.omBarna.spm.andreBarn')
+                                                : text('step.omBarna.spm.flereBarn')
                                         }>
-                                        {intlHelper(intl, 'step.omBarna.info.spm.text')}
+                                        {text('step.omBarna.info.spm.text')}
                                     </ContentWithHeader>
                                 </Block>
                                 <Block margin="l">
                                     <BarnListAndDialog<OmBarnaFormFields>
                                         name={OmBarnaFormFields.andreBarn}
                                         labels={{
-                                            addLabel: intlHelper(intl, 'step.omBarna.listDialog.knapplabel'),
-                                            listTitle: intlHelper(intl, 'step.omBarna.listDialog.listTitle'),
-                                            modalTitle: intlHelper(intl, 'step.omBarna.listDialog.modalTitle'),
+                                            addLabel: text('step.omBarna.listDialog.knapplabel'),
+                                            listTitle: text('step.omBarna.listDialog.listTitle'),
+                                            modalTitle: text('step.omBarna.listDialog.modalTitle'),
                                         }}
                                         disallowedFødselsnumre={[
                                             ...[søker.fødselsnummer],
@@ -130,9 +129,7 @@ const OmBarnaStep = () => {
                                 </Block>
                                 {andreBarn && andreBarn.length === 0 && registrerteBarn.length === 0 && (
                                     <Block margin="l">
-                                        <Alert variant="warning">
-                                            {intlHelper(intl, 'step.omBarna.info.ingenbarn.2')}
-                                        </Alert>
+                                        <Alert variant="warning">{text('step.omBarna.info.ingenbarn.2')}</Alert>
                                     </Block>
                                 )}
                             </Form>

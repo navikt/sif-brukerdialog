@@ -1,32 +1,32 @@
-import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import { Virksomhet } from '@navikt/sif-common-forms-ds/src/forms/virksomhet/types';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
-import { useSøknadContext } from '../../context/hooks/useSøknadContext';
-import { StepId } from '../../../types/StepId';
-import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
-import actionsCreator from '../../context/action/actionCreator';
-import SøknadStep from '../../SøknadStep';
-import { SøknadContextState } from '../../../types/SøknadContextState';
-import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
-import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { FormattedMessage, useIntl } from 'react-intl';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { Alert } from '@navikt/ds-react';
-import FrilansFormPart from './form-parts/FrilansFormPart';
-import SelvstendigNæringsdrivendeFormPart from './form-parts/SelvstendigNæringsdrivendeFormPart';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
+import { FormikInputGroup } from '@navikt/sif-common-formik-ds';
+import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { Virksomhet } from '@navikt/sif-common-forms-ds/src/forms/virksomhet/types';
+import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
+import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
+import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import { AppText, useAppIntl } from '../../../i18n';
+import { StepId } from '../../../types/StepId';
+import { SøknadContextState } from '../../../types/SøknadContextState';
+import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import actionsCreator from '../../context/action/actionCreator';
+import { useSøknadContext } from '../../context/hooks/useSøknadContext';
+import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
+import SøknadStep from '../../SøknadStep';
+import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import {
     getArbeidssituasjonStepInitialValues,
     getArbeidssituasjonSøknadsdataFromFormValues,
     getFrilanserSnSituasjon,
     validateArbeidssituasjonTidsrom,
 } from './arbeidssituasjonStepUtils';
-import { FormikInputGroup } from '@navikt/sif-common-formik-ds';
+import FrilansFormPart from './form-parts/FrilansFormPart';
+import SelvstendigNæringsdrivendeFormPart from './form-parts/SelvstendigNæringsdrivendeFormPart';
 
 export enum ArbeidssituasjonFormFields {
     frilans_erFrilanser = 'frilans_erFrilanser',
@@ -62,7 +62,7 @@ const submitDisabled = (values: Partial<ArbeidssituasjonFormValues>): boolean =>
 };
 
 const ArbeidssituasjonStep = () => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
     const {
         state: { søknadsdata },
     } = useSøknadContext();
@@ -109,7 +109,7 @@ const ArbeidssituasjonStep = () => {
                                 runDelayedFormValidation={true}>
                                 <SifGuidePanel>
                                     <p>
-                                        <FormattedMessage id="step.arbeidssituasjon.info.1" />
+                                        <AppText id="step.arbeidssituasjon.info.1" />
                                     </p>
                                 </SifGuidePanel>
 
@@ -151,7 +151,7 @@ const ArbeidssituasjonStep = () => {
                                 {submitDisabled(values) && (
                                     <FormBlock margin="l">
                                         <Alert variant="warning">
-                                            <FormattedMessage id="step.arbeidssituasjon.advarsel.ingenSituasjonValgt" />
+                                            <AppText id="step.arbeidssituasjon.advarsel.ingenSituasjonValgt" />
                                         </Alert>
                                     </FormBlock>
                                 )}

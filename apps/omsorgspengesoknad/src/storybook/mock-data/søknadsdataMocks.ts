@@ -1,4 +1,5 @@
 import { RegistrerteBarnMock } from '.';
+import { BarnSammeAdresse } from '../../app/types/BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from '../../app/types/SøkersRelasjonTilBarnet';
 import { Søknadsdata } from '../../app/types/søknadsdata/Søknadsdata';
 
@@ -12,7 +13,8 @@ const komplett_annetBarnFarDeltBosted: Søknadsdata = {
         barnetsNavn: 'Navn på barnet',
         søkersRelasjonTilBarnet: SøkersRelasjonTilBarnet.FAR,
         kroniskEllerFunksjonshemming: false,
-        sammeAdresse: false,
+        sammeAdresse: BarnSammeAdresse.JA_DELT_BOSTED,
+        barnetsFødselsdato: '2020-01-01',
     },
     deltBosted: {
         vedlegg: [{ file: { name: 'file.jpg' } as any, url: '/vedlegg', uploaded: true, pending: false }],
@@ -27,7 +29,7 @@ const komplett_registrertBarnIngenLegeerklæring: Søknadsdata = {
     omBarnet: {
         registrertBarn,
         kroniskEllerFunksjonshemming: false,
-        sammeAdresse: false,
+        sammeAdresse: BarnSammeAdresse.NEI,
         type: 'registrertBarn',
     },
     legeerklaering: { vedlegg: [] },
@@ -42,9 +44,10 @@ const komplett_annetBarnAnnenAdresse: Søknadsdata = {
         søknadenGjelderEtAnnetBarn: true,
         barnetsFødselsnummer: '12312312312',
         barnetsNavn: 'Navn på barnet',
+        barnetsFødselsdato: '2020-01-01',
         søkersRelasjonTilBarnet: SøkersRelasjonTilBarnet.FAR,
         kroniskEllerFunksjonshemming: false,
-        sammeAdresse: false,
+        sammeAdresse: BarnSammeAdresse.NEI,
     },
     legeerklaering: { vedlegg: [] },
     velkommen: {

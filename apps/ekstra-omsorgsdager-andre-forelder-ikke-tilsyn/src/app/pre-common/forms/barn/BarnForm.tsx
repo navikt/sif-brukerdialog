@@ -1,13 +1,12 @@
-import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { guid } from '@navikt/sif-common-utils';
 import { AndreBarn } from './types';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import barnUtils from './barnUtils';
 import { getFødselsnummerValidator, getStringValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { useAppIntl } from '../../../i18n';
 
 interface BarnFormLabels {
     title: string;
@@ -43,7 +42,7 @@ const BarnForm = ({
     onSubmit,
     onCancel,
 }: Props) => {
-    const intl = useIntl();
+    const { text, intl } = useAppIntl();
 
     const onFormikSubmit = (formValues: BarnFormValues) => {
         if (barnUtils.isBarn(formValues)) {
@@ -54,11 +53,11 @@ const BarnForm = ({
     };
 
     const defaultLabels: BarnFormLabels = {
-        title: intlHelper(intl, 'barn.form.title'),
-        fnr: intlHelper(intl, 'barn.form.fnr'),
-        navn: intlHelper(intl, 'barn.form.navn'),
-        okButton: intlHelper(intl, 'barn.form.okButton'),
-        cancelButton: intlHelper(intl, 'barn.form.cancelButton'),
+        title: text('barn.form.title'),
+        fnr: text('barn.form.fnr'),
+        navn: text('barn.form.navn'),
+        okButton: text('barn.form.okButton'),
+        cancelButton: text('barn.form.cancelButton'),
     };
 
     const formLabels: BarnFormLabels = { ...defaultLabels, ...labels };

@@ -1,10 +1,11 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { FormikInputGroup, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
+import { AppText, useAppIntl } from '../../../i18n';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
 import { Søker } from '../../../types/Søker';
 import { DineBarnFormFields, DineBarnFormValues } from './DineBarnStep';
@@ -12,7 +13,6 @@ import AndreBarnPart from './parts/AndreBarnPart';
 import DineBarnStepIntro from './parts/DineBarnStepIntro';
 import RegistrerteBarnPart from './parts/RegistrerteBarnPart';
 import DineBarnScenarioer from './scenario/DineBarnScenarioer';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 
 const { Form } = getTypedFormComponents<DineBarnFormFields, DineBarnFormValues, ValidationError>();
 
@@ -35,7 +35,7 @@ const DineBarnForm: React.FunctionComponent<DineBarnFormProps> = ({
     goBack,
     onAndreBarnChanged,
 }) => {
-    const intl = useIntl();
+    const { intl } = useAppIntl();
 
     const { andreBarn = [], harSyktBarn, harDekketTiFørsteDagerSelv } = values;
 
@@ -59,7 +59,7 @@ const DineBarnForm: React.FunctionComponent<DineBarnFormProps> = ({
 
             <FormBlock margin="xxl">
                 <Heading level="2" size="medium">
-                    <FormattedMessage id="step.dineBarn.seksjonsTittel" />
+                    <AppText id="step.dineBarn.seksjonsTittel" />
                 </Heading>
             </FormBlock>
 

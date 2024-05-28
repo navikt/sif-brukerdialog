@@ -1,6 +1,5 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { useAppIntl } from '@i18n/index';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds/src';
 import { ArbeidsforholdType } from '../../../../local-sif-common-pleiepenger';
 import {
@@ -23,9 +22,10 @@ interface Props {
 }
 
 const AnsattNormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({ arbeidsforhold, fieldName }) => {
-    const intl = useIntl();
+    const appIntl = useAppIntl();
+    const { text } = appIntl;
 
-    const intlValues = getArbeidsforholdIntlValues(intl, {
+    const intlValues = getArbeidsforholdIntlValues(appIntl, {
         arbeidsforhold: {
             arbeidsgiverNavn: arbeidsforhold.arbeidsgiver.navn,
             type: ArbeidsforholdType.ANSATT,
@@ -35,7 +35,7 @@ const AnsattNormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({ arbe
     const erAktivtArbeidsforhold = arbeidsforhold.erAnsatt === YesOrNo.YES;
     return (
         <AnsattFormComponents.NumberInput
-            label={intlHelper(intl, `arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.spm`, intlValues)}
+            label={text(`arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.spm`, intlValues)}
             name={fieldName}
             description={<InfoArbeiderNormaltTimerAnsatt />}
             width="xs"

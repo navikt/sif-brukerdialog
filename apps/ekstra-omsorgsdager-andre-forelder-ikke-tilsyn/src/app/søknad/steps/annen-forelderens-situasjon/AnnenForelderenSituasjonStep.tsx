@@ -1,33 +1,32 @@
-import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
 import { Alert } from '@navikt/ds-react';
-import { getYesOrNoValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { validateFraDato, validateTextArea, validateTildato } from '../../../validation/fieldValidations';
-import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import { useSøknadContext } from '../../context/hooks/useSøknadContext';
-import { StepId } from '../../../types/StepId';
-import { getSøknadStepConfigForStep } from '../../../søknad/søknadStepConfig';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { useStepFormValuesContext } from '../../../søknad/context/StepFormValuesContext';
-import actionsCreator from '../../context/action/actionCreator';
-import { AnnenForeldrenSituasjon, AnnenForeldrenSituasjonType } from '../../../types/AnnenForeldrenSituasjon';
-import {
-    getAnnenForelderenSituasjonSøknadsdataFromFormValues,
-    getAnnenForelderenSituasjonStepInitialValues,
-    isPeriodeLess6month,
-} from './annenForelderenSituasjonStepUtils';
+import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
+import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
+import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import { useAppIntl } from '../../../i18n';
+import { useStepFormValuesContext } from '../../../søknad/context/StepFormValuesContext';
+import { getSøknadStepConfigForStep } from '../../../søknad/søknadStepConfig';
+import { AnnenForeldrenSituasjon, AnnenForeldrenSituasjonType } from '../../../types/AnnenForeldrenSituasjon';
+import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import { validateFraDato, validateTextArea, validateTildato } from '../../../validation/fieldValidations';
+import actionsCreator from '../../context/action/actionCreator';
+import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
-import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import {
+    getAnnenForelderenSituasjonStepInitialValues,
+    getAnnenForelderenSituasjonSøknadsdataFromFormValues,
+    isPeriodeLess6month,
+} from './annenForelderenSituasjonStepUtils';
 
 export enum AnnenForelderenSituasjonFormFields {
     annenForelderSituasjon = 'annenForelderSituasjon',
@@ -51,7 +50,7 @@ const { FormikWrapper, Form, YesOrNoQuestion, Textarea, DateRangePicker, Checkbo
     getTypedFormComponents<AnnenForelderenSituasjonFormFields, AnnenForelderenSituasjonFormValues, ValidationError>();
 
 const AnnenForelderenSituasjonStep = () => {
-    const intl = useIntl();
+    const { intl, text } = useAppIntl();
     const {
         state: { søknadsdata },
     } = useSøknadContext();
@@ -107,21 +106,16 @@ const AnnenForelderenSituasjonStep = () => {
                                 submitPending={isSubmitting}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
-                                <SifGuidePanel>
-                                    {intlHelper(intl, 'step.annenForeldrensSituasjon.banner.1')}
-                                </SifGuidePanel>
+                                <SifGuidePanel>{text('step.annenForeldrensSituasjon.banner.1')}</SifGuidePanel>
 
                                 <Block margin="xxl">
                                     <RadioGroup
-                                        legend={intlHelper(intl, 'step.annenForeldrensSituasjon.grunn.spm')}
+                                        legend={text('step.annenForeldrensSituasjon.grunn.spm')}
                                         name={AnnenForelderenSituasjonFormFields.annenForelderSituasjon}
                                         radios={Object.keys(AnnenForeldrenSituasjon).map(
                                             (grunn: AnnenForeldrenSituasjonType) => {
                                                 return {
-                                                    label: intlHelper(
-                                                        intl,
-                                                        `step.annenForeldrensSituasjon.grunn.${grunn}`,
-                                                    ),
+                                                    label: text(`step.annenForeldrensSituasjon.grunn.${grunn}`),
                                                     value: AnnenForeldrenSituasjon[grunn],
                                                 };
                                             },
@@ -147,10 +141,7 @@ const AnnenForelderenSituasjonStep = () => {
                                     <FormBlock>
                                         <Textarea
                                             name={AnnenForelderenSituasjonFormFields.annenForelderSituasjonBeskrivelse}
-                                            label={intlHelper(
-                                                intl,
-                                                'step.annenForeldrensSituasjon.beskrivelseAvSituasjonen.spm',
-                                            )}
+                                            label={text('step.annenForeldrensSituasjon.beskrivelseAvSituasjonen.spm')}
                                             minLength={5}
                                             maxLength={1000}
                                             validate={validateTextArea}
@@ -161,18 +152,17 @@ const AnnenForelderenSituasjonStep = () => {
                                 {annenForelderSituasjon && (
                                     <FormBlock>
                                         <DateRangePicker
-                                            legend={intlHelper(
-                                                intl,
+                                            legend={text(
                                                 `step.annenForeldrensSituasjon.periode.${annenForelderSituasjon}.spm`,
                                             )}
                                             fromInputProps={{
-                                                label: intlHelper(intl, 'step.annenForeldrensSituasjon.periode.fra'),
+                                                label: text('step.annenForeldrensSituasjon.periode.fra'),
                                                 name: AnnenForelderenSituasjonFormFields.annenForelderPeriodeFom,
                                                 validate: (value) =>
                                                     validateFraDato(value, periodeTil, annenForelderSituasjon),
                                             }}
                                             toInputProps={{
-                                                label: intlHelper(intl, 'step.annenForeldrensSituasjon.periode.til'),
+                                                label: text('step.annenForeldrensSituasjon.periode.til'),
                                                 name: AnnenForelderenSituasjonFormFields.annenForelderPeriodeTom,
                                                 validate: annenForelderPeriodeVetIkkeTom
                                                     ? undefined
@@ -185,8 +175,7 @@ const AnnenForelderenSituasjonStep = () => {
                                         {annenForelderSituasjon !== AnnenForeldrenSituasjon.fengsel &&
                                             annenForelderSituasjon !== AnnenForeldrenSituasjon.utøverVerneplikt && (
                                                 <Checkbox
-                                                    label={intlHelper(
-                                                        intl,
+                                                    label={text(
                                                         'step.annenForeldrensSituasjon.periode.checkboxVetIkkeTom',
                                                     )}
                                                     name={
@@ -213,7 +202,7 @@ const AnnenForelderenSituasjonStep = () => {
                                             isPeriodeLess6month(annenForelderPeriodeFom, annenForelderPeriodeTom) && (
                                                 <FormBlock>
                                                     <Alert variant="info">
-                                                        {intlHelper(intl, 'step.annenForeldrensSituasjon.advarsel.1')}
+                                                        {text('step.annenForeldrensSituasjon.advarsel.1')}
                                                     </Alert>
                                                 </FormBlock>
                                             )}
@@ -224,16 +213,13 @@ const AnnenForelderenSituasjonStep = () => {
                                     <FormBlock>
                                         <YesOrNoQuestion
                                             name={AnnenForelderenSituasjonFormFields.annenForelderPeriodeMer6Maneder}
-                                            legend={intlHelper(
-                                                intl,
-                                                'step.annenForeldrensSituasjon.erVarighetMerEnn6Maneder.spm',
-                                            )}
+                                            legend={text('step.annenForeldrensSituasjon.erVarighetMerEnn6Maneder.spm')}
                                             validate={getYesOrNoValidator()}
                                         />
                                         {annenForelderPeriodeMer6Maneder === YesOrNo.NO && (
                                             <FormBlock>
                                                 <Alert variant="info">
-                                                    {intlHelper(intl, 'step.annenForeldrensSituasjon.advarsel.1')}
+                                                    {text('step.annenForeldrensSituasjon.advarsel.1')}
                                                 </Alert>
                                             </FormBlock>
                                         )}

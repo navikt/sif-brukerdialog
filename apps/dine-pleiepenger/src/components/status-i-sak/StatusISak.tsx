@@ -7,7 +7,7 @@ import { formatSøknadshendelseTidspunkt, getAlleHendelserISak } from '../../uti
 import { Process } from '../process';
 import ProcessStep from '../process/ProcessStep';
 import { getProcessStepsFraSøknadshendelser } from './statusISakUtils';
-import { Msg, useMessages } from '../../i18n';
+import { AppText, useAppIntl } from '../../i18n';
 import SkrivTilOssLenke from '../lenker/SkrivTilOssLenke';
 
 interface Props {
@@ -18,7 +18,7 @@ interface Props {
 
 const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser, tittel }) => {
     const [reverseDirection, setReverseDirection] = useState(false);
-    const { text } = useMessages();
+    const { text } = useAppIntl();
     const hendelser = getAlleHendelserISak(sak);
     const processSteps = getProcessStepsFraSøknadshendelser(text, hendelser);
 
@@ -31,7 +31,7 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser, tit
                     </Heading>
                 ) : null}
                 <Alert variant="info">
-                    <Msg
+                    <AppText
                         id="statusISak.ingenHendelser"
                         values={{
                             p: (txt) => <BodyLong>{txt}</BodyLong>,

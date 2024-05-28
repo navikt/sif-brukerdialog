@@ -1,6 +1,20 @@
+export type ScenarioType =
+    | 'en-arbeidsgiver-en-periode'
+    | 'en-arbeidsgiver-to-perioder'
+    | 'arbeidsgiver-og-frilanser'
+    | 'arbeidsgivere-og-frilanser'
+    | 'arbeidsgiver-ikke-i-sak'
+    | 'flere-saker-kun-en-aktiv'
+    | 'debug'
+    | 'selvstendig-næringsdrivende'
+    | 'flere-saker'
+    | 'ingen-sak'
+    | 'arbeidsaktivitet-uten-arbeidsgiver'
+    | 'ugyldig-k9-format';
+
 export interface Scenario {
     name: string;
-    value: string;
+    value: ScenarioType;
     description?: string;
     harTilgang: boolean;
 }
@@ -36,12 +50,6 @@ export const scenarioer: Scenario[] = [
         value: 'flere-saker-kun-en-aktiv',
         harTilgang: true,
     },
-
-    {
-        name: 'Debug',
-        value: 'debug',
-        harTilgang: true,
-    },
     {
         name: 'Selvstendig næringsdrivende',
         value: 'selvstendig-næringsdrivende',
@@ -60,7 +68,7 @@ export const scenarioer: Scenario[] = [
     {
         name: 'Arbeidsaktivitet uten arbeidsgiver',
         value: 'arbeidsaktivitet-uten-arbeidsgiver',
-        harTilgang: false,
+        harTilgang: true,
     },
     {
         name: 'Ugyldig k9format',

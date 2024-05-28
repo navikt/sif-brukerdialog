@@ -11,6 +11,7 @@ import {
     ISODateToDate,
 } from '@navikt/sif-common-utils';
 import { getFeriedagerIPeriode, getFeriedagerMeta } from '@utils';
+import { AppText, useAppIntl } from '../../../i18n';
 import LovbestemtFerieListe from '../../../modules/lovbestemt-ferie-liste/LovbestemtFerieListe';
 import LovbestemtFerieModal from '../../../modules/lovbestemt-ferie-modal/LovbestemtFerieModal';
 import { FeriedagMap } from './LovbestemtFerieStep';
@@ -22,6 +23,7 @@ interface Props {
 }
 
 const FeriedagerISøknadsperiode: React.FunctionComponent<Props> = ({ alleFeriedager, søknadsperiode, onChange }) => {
+    const { text } = useAppIntl();
     const [visFerieModal, setVisFerieModal] = useState<{ periode: DateRange | undefined } | undefined>();
 
     const perioder = getFeriedagerMeta(getFeriedagerIPeriode(alleFeriedager, søknadsperiode)).ferieperioder;
@@ -63,14 +65,14 @@ const FeriedagerISøknadsperiode: React.FunctionComponent<Props> = ({ alleFeried
                     type="button"
                     variant="secondary"
                     size="small">
-                    Legg til ferie
+                    <AppText id="feriedagerISøknadsperiode.leggTilFerie" />
                 </Button>
             </Block>
 
             {visFerieModal && (
                 <LovbestemtFerieModal
                     onClose={() => setVisFerieModal(undefined)}
-                    title={'Ferie'}
+                    title={text('feriedagerISøknadsperiode.modal.tittel')}
                     open={visFerieModal !== undefined}>
                     <FerieuttakForm
                         ferieuttak={visFerieModal.periode}
