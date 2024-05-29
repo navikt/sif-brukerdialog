@@ -3128,16 +3128,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chromatic-com/storybook@npm:1.4.0":
-  version: 1.4.0
-  resolution: "@chromatic-com/storybook@npm:1.4.0"
+"@chromatic-com/storybook@npm:1.5.0":
+  version: 1.5.0
+  resolution: "@chromatic-com/storybook@npm:1.5.0"
   dependencies:
-    chromatic: ^11.3.2
+    chromatic: ^11.4.0
     filesize: ^10.0.12
     jsonfile: ^6.1.0
     react-confetti: ^6.1.0
     strip-ansi: ^7.1.0
-  checksum: 807574e1acc48ad3a422e32cc088b5365aed148f8aaf36528058e9fde5432b1b26a7f485d9f0ab7a7283f8fa737686797293e0496a985efccfafa703ecdffa99
+  checksum: 611513117da3e19f33aee97156dd1bf45e5dfe84e23c495b7449247c6ba251296b0efb890660c6a2973576cf91ebd1b973bdaccf56e0a6576cee35f6c1cb0948
   languageName: node
   linkType: hard
 
@@ -4912,7 +4912,7 @@ __metadata:
     "@babel/preset-env": 7.24.6
     "@babel/preset-react": 7.24.6
     "@babel/preset-typescript": 7.24.6
-    "@chromatic-com/storybook": 1.4.0
+    "@chromatic-com/storybook": 1.5.0
     "@navikt/ds-css": 6.8.0
     "@navikt/ds-icons": 3.4.3
     "@navikt/ds-react": 6.8.0
@@ -5133,7 +5133,7 @@ __metadata:
     "@babel/preset-env": 7.24.6
     "@babel/preset-react": 7.24.6
     "@babel/preset-typescript": 7.24.6
-    "@chromatic-com/storybook": 1.4.0
+    "@chromatic-com/storybook": 1.5.0
     "@navikt/ds-css": 6.8.0
     "@navikt/ds-icons": 3.4.3
     "@navikt/ds-react": 6.8.0
@@ -5206,7 +5206,7 @@ __metadata:
     "@babel/plugin-transform-modules-commonjs": 7.24.6
     "@babel/preset-env": 7.24.6
     "@babel/preset-react": 7.24.6
-    "@chromatic-com/storybook": 1.4.0
+    "@chromatic-com/storybook": 1.5.0
     "@navikt/appstatus-react-ds": "workspace:*"
     "@navikt/ds-css": 6.8.0
     "@navikt/ds-icons": 3.4.3
@@ -12006,7 +12006,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromatic@npm:11.4.1":
+"chromatic@npm:11.4.1, chromatic@npm:^11.4.0":
   version: 11.4.1
   resolution: "chromatic@npm:11.4.1"
   peerDependencies:
@@ -12022,25 +12022,6 @@ __metadata:
     chromatic: dist/bin.js
     chromatic-cli: dist/bin.js
   checksum: 193bd7f02d9c5645c44ad4f0917c6d82e09c8df437ad2a5a4fd9c08f7c51d3fdf125dbbe5f2b7bfd2b458bd86caf146b9e56a56e4573335f9f88aae7d3bcd7a2
-  languageName: node
-  linkType: hard
-
-"chromatic@npm:^11.3.2":
-  version: 11.3.5
-  resolution: "chromatic@npm:11.3.5"
-  peerDependencies:
-    "@chromatic-com/cypress": ^0.*.* || ^1.0.0
-    "@chromatic-com/playwright": ^0.*.* || ^1.0.0
-  peerDependenciesMeta:
-    "@chromatic-com/cypress":
-      optional: true
-    "@chromatic-com/playwright":
-      optional: true
-  bin:
-    chroma: dist/bin.js
-    chromatic: dist/bin.js
-    chromatic-cli: dist/bin.js
-  checksum: 810115ea6f538e561204e5f380f4bb51484d1876fa41431408a7cb8c0409ca5432d803a7d589ce5f710f2400b46e672f4294953c16f4cf6dfa7c66368e30751f
   languageName: node
   linkType: hard
 
