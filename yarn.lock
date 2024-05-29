@@ -2893,14 +2893,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@changesets/apply-release-plan@npm:^7.0.1":
-  version: 7.0.1
-  resolution: "@changesets/apply-release-plan@npm:7.0.1"
+"@changesets/apply-release-plan@npm:^7.0.3":
+  version: 7.0.3
+  resolution: "@changesets/apply-release-plan@npm:7.0.3"
   dependencies:
     "@babel/runtime": ^7.20.1
-    "@changesets/config": ^3.0.0
+    "@changesets/config": ^3.0.1
     "@changesets/get-version-range-type": ^0.4.0
     "@changesets/git": ^3.0.0
+    "@changesets/should-skip-package": ^0.1.0
     "@changesets/types": ^6.0.0
     "@manypkg/get-packages": ^1.1.3
     detect-indent: ^6.0.0
@@ -2910,21 +2911,22 @@ __metadata:
     prettier: ^2.7.1
     resolve-from: ^5.0.0
     semver: ^7.5.3
-  checksum: 44a2686d3dc3ee569f23862a6c3da5c247987b320ddaf64be6c2096bb486b3da620c9336164f73e30e6272149e435988b46776508b81f328e1d66e885a8264cc
+  checksum: 622b1ed7652b072b28bee431d5407ce686cff058caa3db9353848cd1177dc535d352711f6e5f9f819a7331235e72279f7e0f34955da67681c50d051ec30f476a
   languageName: node
   linkType: hard
 
-"@changesets/assemble-release-plan@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "@changesets/assemble-release-plan@npm:6.0.0"
+"@changesets/assemble-release-plan@npm:^6.0.2":
+  version: 6.0.2
+  resolution: "@changesets/assemble-release-plan@npm:6.0.2"
   dependencies:
     "@babel/runtime": ^7.20.1
     "@changesets/errors": ^0.2.0
-    "@changesets/get-dependents-graph": ^2.0.0
+    "@changesets/get-dependents-graph": ^2.1.0
+    "@changesets/should-skip-package": ^0.1.0
     "@changesets/types": ^6.0.0
     "@manypkg/get-packages": ^1.1.3
     semver: ^7.5.3
-  checksum: 0e6d25f25e0e3cc0e92aa8c43f5f496bae9464e2523be4ff81e31b6c9971b63bb1264821a2483c48d451d89d60af1acebe727e7f8c392ed48188a3ff26d0950e
+  checksum: 90019a9bd22ad1368f23f1335d1b7eea5a55b1ed8b9141c9cc2fdab99bda85f9cb3886062a33c078cfb6f08f1a6f165aedbb1d1ce2a63c15ce0bfa7a7c365854
   languageName: node
   linkType: hard
 
@@ -2937,22 +2939,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@changesets/cli@npm:2.27.3":
-  version: 2.27.3
-  resolution: "@changesets/cli@npm:2.27.3"
+"@changesets/cli@npm:2.27.5":
+  version: 2.27.5
+  resolution: "@changesets/cli@npm:2.27.5"
   dependencies:
     "@babel/runtime": ^7.20.1
-    "@changesets/apply-release-plan": ^7.0.1
-    "@changesets/assemble-release-plan": ^6.0.0
+    "@changesets/apply-release-plan": ^7.0.3
+    "@changesets/assemble-release-plan": ^6.0.2
     "@changesets/changelog-git": ^0.2.0
-    "@changesets/config": ^3.0.0
+    "@changesets/config": ^3.0.1
     "@changesets/errors": ^0.2.0
-    "@changesets/get-dependents-graph": ^2.0.0
-    "@changesets/get-release-plan": ^4.0.0
+    "@changesets/get-dependents-graph": ^2.1.0
+    "@changesets/get-release-plan": ^4.0.2
     "@changesets/git": ^3.0.0
     "@changesets/logger": ^0.1.0
     "@changesets/pre": ^2.0.0
     "@changesets/read": ^0.6.0
+    "@changesets/should-skip-package": ^0.1.0
     "@changesets/types": ^6.0.0
     "@changesets/write": ^0.3.1
     "@manypkg/get-packages": ^1.1.3
@@ -2975,22 +2978,22 @@ __metadata:
     tty-table: ^4.1.5
   bin:
     changeset: bin.js
-  checksum: e3b0bb3a123f71701f3b76e80104968fdf99a7403b97860631ed6f98f7ba0df5d9fb56767191fa46148372a0b35d44f7883decb2b70f60d5fa2716692332c0fd
+  checksum: 7e0d0aadabcf3028abbb2e079b58135b8e39f78bc174f4fa669cf94482ca3a4ec873e4b4ff9a7e071d83aee592780f0c47bd36a3a12282ab5f13a493c796663f
   languageName: node
   linkType: hard
 
-"@changesets/config@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "@changesets/config@npm:3.0.0"
+"@changesets/config@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "@changesets/config@npm:3.0.1"
   dependencies:
     "@changesets/errors": ^0.2.0
-    "@changesets/get-dependents-graph": ^2.0.0
+    "@changesets/get-dependents-graph": ^2.1.0
     "@changesets/logger": ^0.1.0
     "@changesets/types": ^6.0.0
     "@manypkg/get-packages": ^1.1.3
     fs-extra: ^7.0.1
     micromatch: ^4.0.2
-  checksum: 31a8c37e38768cf3676d24b7d371009dd1d691f221ecf086b79f0d96dc8e95aa408cda3659eb867a14615ea38a1c2be448bf0655c7570539af57c930ca784051
+  checksum: 588a8139f721e2917c9bad842e3a933a8a5216b6a73c6a203ddcb834c274f873eaa780b32b42f89a477159e898ad3c1c93ca0ac28a07401b7b3f56185672a6a8
   languageName: node
   linkType: hard
 
@@ -3003,31 +3006,31 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@changesets/get-dependents-graph@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@changesets/get-dependents-graph@npm:2.0.0"
+"@changesets/get-dependents-graph@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@changesets/get-dependents-graph@npm:2.1.0"
   dependencies:
     "@changesets/types": ^6.0.0
     "@manypkg/get-packages": ^1.1.3
     chalk: ^2.1.0
     fs-extra: ^7.0.1
     semver: ^7.5.3
-  checksum: 6690d3ed36e8a636bc2a985d209bd72ee1100601ccf00850ca1fbe8500af839a3f4e5bd2167858cf11383aa76360f853e481533157060ad882fb56319db3090a
+  checksum: 1cd9c0f145a20d735ab9e1d615c5bdf52179cd2fc9b8555649d74979d8dbc915f9e85af4e20f7b71da76d3d860cd2090cee4c6ecccac4f5bf42ae11bb245471d
   languageName: node
   linkType: hard
 
-"@changesets/get-release-plan@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "@changesets/get-release-plan@npm:4.0.0"
+"@changesets/get-release-plan@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "@changesets/get-release-plan@npm:4.0.2"
   dependencies:
     "@babel/runtime": ^7.20.1
-    "@changesets/assemble-release-plan": ^6.0.0
-    "@changesets/config": ^3.0.0
+    "@changesets/assemble-release-plan": ^6.0.2
+    "@changesets/config": ^3.0.1
     "@changesets/pre": ^2.0.0
     "@changesets/read": ^0.6.0
     "@changesets/types": ^6.0.0
     "@manypkg/get-packages": ^1.1.3
-  checksum: 57672c1e94f95de8ac65aac969275e0cb225f02aa86b2cef69329fff6e36ba5fde04eadeb6af36f4d8ac41a8fd329028b4df4c23c15c10fd13e026c77463d576
+  checksum: 651814230890bf7605f4094332e4842505eb060092fbe65d9c8fa1a44f724ce0086890b8437f2fa96aedfa11c88e622e133d700847dea4c92141c2fbb486460f
   languageName: node
   linkType: hard
 
@@ -3101,6 +3104,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@changesets/should-skip-package@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "@changesets/should-skip-package@npm:0.1.0"
+  dependencies:
+    "@babel/runtime": ^7.20.1
+    "@changesets/types": ^6.0.0
+    "@manypkg/get-packages": ^1.1.3
+  checksum: 3c966feae085a41d4ce10a46a1b525f980cec59951f7cf23ea805866b370de5c75fdd45af326e1a5ef502fa4846f821d9df15550c2b606b96e99ed4b967f01c0
+  languageName: node
+  linkType: hard
+
 "@changesets/types@npm:^4.0.1":
   version: 4.1.0
   resolution: "@changesets/types@npm:4.1.0"
@@ -3128,16 +3142,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chromatic-com/storybook@npm:1.4.0":
-  version: 1.4.0
-  resolution: "@chromatic-com/storybook@npm:1.4.0"
+"@chromatic-com/storybook@npm:1.5.0":
+  version: 1.5.0
+  resolution: "@chromatic-com/storybook@npm:1.5.0"
   dependencies:
-    chromatic: ^11.3.2
+    chromatic: ^11.4.0
     filesize: ^10.0.12
     jsonfile: ^6.1.0
     react-confetti: ^6.1.0
     strip-ansi: ^7.1.0
-  checksum: 807574e1acc48ad3a422e32cc088b5365aed148f8aaf36528058e9fde5432b1b26a7f485d9f0ab7a7283f8fa737686797293e0496a985efccfafa703ecdffa99
+  checksum: 611513117da3e19f33aee97156dd1bf45e5dfe84e23c495b7449247c6ba251296b0efb890660c6a2973576cf91ebd1b973bdaccf56e0a6576cee35f6c1cb0948
   languageName: node
   linkType: hard
 
@@ -4501,8 +4515,8 @@ __metadata:
     "@navikt/ds-css": 6.8.0
     "@navikt/ds-react": 6.8.0
     "@navikt/sif-common-hooks": "workspace:*"
-    "@portabletext/react": 3.0.18
-    "@sanity/client": 6.18.3
+    "@portabletext/react": 3.1.0
+    "@sanity/client": 6.19.0
     "@types/node": 20.12.12
     "@types/react": 18.3.3
     "@types/react-dom": 18.3.0
@@ -4676,7 +4690,7 @@ __metadata:
     react-router-dom: 6.23.1
     rimraf: 5.0.7
     typescript: 5.4.5
-    vite: 5.2.11
+    vite: 5.2.12
     vite-plugin-checker: 0.6.4
     vitest: 1.6.0
   languageName: unknown
@@ -4762,7 +4776,7 @@ __metadata:
     storybook-addon-mock: 5.0.0
     tailwindcss: 3.4.3
     typescript: 5.4.5
-    vite: 5.2.11
+    vite: 5.2.12
     vite-plugin-checker: 0.6.4
     vitest: 1.6.0
   languageName: unknown
@@ -4864,7 +4878,7 @@ __metadata:
     react-intl: 6.6.8
     react-router-dom: 6.23.1
     uuid: 9.0.1
-    vite: 5.2.11
+    vite: 5.2.12
     vite-plugin-checker: 0.6.4
   languageName: unknown
   linkType: soft
@@ -4912,7 +4926,7 @@ __metadata:
     "@babel/preset-env": 7.24.6
     "@babel/preset-react": 7.24.6
     "@babel/preset-typescript": 7.24.6
-    "@chromatic-com/storybook": 1.4.0
+    "@chromatic-com/storybook": 1.5.0
     "@navikt/ds-css": 6.8.0
     "@navikt/ds-icons": 3.4.3
     "@navikt/ds-react": 6.8.0
@@ -4975,7 +4989,7 @@ __metadata:
     typescript: 5.4.5
     ulid: 2.3.0
     uuid: 9.0.1
-    vite: 5.2.11
+    vite: 5.2.12
     vite-plugin-checker: 0.6.4
     vitest: 1.6.0
   languageName: unknown
@@ -5047,7 +5061,7 @@ __metadata:
     tailwindcss: 3.4.3
     typescript: 5.4.5
     uuid: 9.0.1
-    vite: 5.2.11
+    vite: 5.2.12
     vite-plugin-checker: 0.6.4
     vitest: 1.6.0
   languageName: unknown
@@ -5118,7 +5132,7 @@ __metadata:
     react-router-dom: 6.23.1
     storybook: 8.1.4
     typescript: 5.4.5
-    vite: 5.2.11
+    vite: 5.2.12
     vite-plugin-checker: 0.6.4
     vitest: 1.6.0
   languageName: unknown
@@ -5133,7 +5147,7 @@ __metadata:
     "@babel/preset-env": 7.24.6
     "@babel/preset-react": 7.24.6
     "@babel/preset-typescript": 7.24.6
-    "@chromatic-com/storybook": 1.4.0
+    "@chromatic-com/storybook": 1.5.0
     "@navikt/ds-css": 6.8.0
     "@navikt/ds-icons": 3.4.3
     "@navikt/ds-react": 6.8.0
@@ -5192,7 +5206,7 @@ __metadata:
     storybook-addon-mock: 5.0.0
     typescript: 5.4.5
     uuid: 9.0.1
-    vite: 5.2.11
+    vite: 5.2.12
     vite-plugin-checker: 0.6.4
     vitest: 1.6.0
   languageName: unknown
@@ -5206,7 +5220,7 @@ __metadata:
     "@babel/plugin-transform-modules-commonjs": 7.24.6
     "@babel/preset-env": 7.24.6
     "@babel/preset-react": 7.24.6
-    "@chromatic-com/storybook": 1.4.0
+    "@chromatic-com/storybook": 1.5.0
     "@navikt/appstatus-react-ds": "workspace:*"
     "@navikt/ds-css": 6.8.0
     "@navikt/ds-icons": 3.4.3
@@ -5280,7 +5294,7 @@ __metadata:
     storybook-addon-mock: 5.0.0
     typescript: 5.4.5
     uuid: 9.0.1
-    vite: 5.2.11
+    vite: 5.2.12
     vite-plugin-checker: 0.6.4
     vitest: 1.6.0
   languageName: unknown
@@ -5299,7 +5313,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-brukerdialog@workspace:."
   dependencies:
-    "@changesets/cli": 2.27.3
+    "@changesets/cli": 2.27.5
     husky: 9.0.11
     lint-staged: 15.2.5
     npm-run-all: 4.1.5
@@ -5387,7 +5401,7 @@ __metadata:
     storybook: 8.1.4
     tailwindcss: 3.4.3
     uuid: 9.0.1
-    vite: 5.2.11
+    vite: 5.2.12
     vite-plugin-checker: 0.6.4
     vitest: 1.6.0
   languageName: unknown
@@ -5447,7 +5461,7 @@ __metadata:
     rimraf: 5.0.7
     storybook: 8.1.4
     uuid: 9.0.1
-    vite: 5.2.11
+    vite: 5.2.12
     vite-plugin-checker: 0.6.4
     vitest: 1.6.0
   peerDependencies:
@@ -5509,7 +5523,7 @@ __metadata:
     react-router-dom: 6.23.1
     rimraf: 5.0.7
     storybook: 8.1.4
-    vite: 5.2.11
+    vite: 5.2.12
     vite-plugin-checker: 0.6.4
     vitest: 1.6.0
   languageName: unknown
@@ -5608,7 +5622,7 @@ __metadata:
     rimraf: 5.0.7
     storybook: 8.1.4
     uuid: 9.0.1
-    vite: 5.2.11
+    vite: 5.2.12
     vite-plugin-checker: 0.6.4
   languageName: unknown
   linkType: soft
@@ -5730,7 +5744,7 @@ __metadata:
     tailwindcss: 3.4.3
     typescript: 5.4.5
     uuid: 9.0.1
-    vite: 5.2.11
+    vite: 5.2.12
     vite-plugin-checker: 0.6.4
     vitest: 1.6.0
   languageName: unknown
@@ -5993,15 +6007,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@portabletext/react@npm:3.0.18":
-  version: 3.0.18
-  resolution: "@portabletext/react@npm:3.0.18"
+"@portabletext/react@npm:3.1.0":
+  version: 3.1.0
+  resolution: "@portabletext/react@npm:3.1.0"
   dependencies:
     "@portabletext/toolkit": ^2.0.15
     "@portabletext/types": ^2.0.13
   peerDependencies:
-    react: ^17 || ^18
-  checksum: 01e8b2710e3636adca93f643026d0ccfa885b736fe11fcd4dcee8147441c8fd61900af08e573af29b95a6640a55644e199b51b97f76d3fa5c13badba46219e21
+    react: ^17 || ^18 || >=19.0.0-rc
+  checksum: eb368140f6c6b5e5c8863c90960b5047cb0c2f097500d75b7c9776e4b0c31ad1ad83ca075c1287a07d5cf1101f3655a5b22bf0b5a9ffcd17f0c7b1d380768766
   languageName: node
   linkType: hard
 
@@ -6851,14 +6865,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/client@npm:6.18.3":
-  version: 6.18.3
-  resolution: "@sanity/client@npm:6.18.3"
+"@sanity/client@npm:6.19.0":
+  version: 6.19.0
+  resolution: "@sanity/client@npm:6.19.0"
   dependencies:
     "@sanity/eventsource": ^5.0.2
     get-it: ^8.5.0
     rxjs: ^7.0.0
-  checksum: 2bd690b353f2b87b31ec80ac0e4579e9686d888ed1168d4cce8f1f04ecf39198bf9b0082da2047b336c8aca284a2f87326b19f397e2b9eaaaebb859b6f2349ae
+  checksum: eb589734f8e5320e11158daf1d1ec6058028394f1e1b14d02b93dc9d412f2a2733c22d5fb8f2d8663cad4f10d3ceb13af3ae9729511ccee7aeafa3daa509d193
   languageName: node
   linkType: hard
 
@@ -12006,7 +12020,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromatic@npm:11.4.1":
+"chromatic@npm:11.4.1, chromatic@npm:^11.4.0":
   version: 11.4.1
   resolution: "chromatic@npm:11.4.1"
   peerDependencies:
@@ -12022,25 +12036,6 @@ __metadata:
     chromatic: dist/bin.js
     chromatic-cli: dist/bin.js
   checksum: 193bd7f02d9c5645c44ad4f0917c6d82e09c8df437ad2a5a4fd9c08f7c51d3fdf125dbbe5f2b7bfd2b458bd86caf146b9e56a56e4573335f9f88aae7d3bcd7a2
-  languageName: node
-  linkType: hard
-
-"chromatic@npm:^11.3.2":
-  version: 11.3.5
-  resolution: "chromatic@npm:11.3.5"
-  peerDependencies:
-    "@chromatic-com/cypress": ^0.*.* || ^1.0.0
-    "@chromatic-com/playwright": ^0.*.* || ^1.0.0
-  peerDependenciesMeta:
-    "@chromatic-com/cypress":
-      optional: true
-    "@chromatic-com/playwright":
-      optional: true
-  bin:
-    chroma: dist/bin.js
-    chromatic: dist/bin.js
-    chromatic-cli: dist/bin.js
-  checksum: 810115ea6f538e561204e5f380f4bb51484d1876fa41431408a7cb8c0409ca5432d803a7d589ce5f710f2400b46e672f4294953c16f4cf6dfa7c66368e30751f
   languageName: node
   linkType: hard
 
@@ -25649,7 +25644,47 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:5.2.11, vite@npm:^5.0.0":
+"vite@npm:5.2.12":
+  version: 5.2.12
+  resolution: "vite@npm:5.2.12"
+  dependencies:
+    esbuild: ^0.20.1
+    fsevents: ~2.3.3
+    postcss: ^8.4.38
+    rollup: ^4.13.0
+  peerDependencies:
+    "@types/node": ^18.0.0 || >=20.0.0
+    less: "*"
+    lightningcss: ^1.21.0
+    sass: "*"
+    stylus: "*"
+    sugarss: "*"
+    terser: ^5.4.0
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  peerDependenciesMeta:
+    "@types/node":
+      optional: true
+    less:
+      optional: true
+    lightningcss:
+      optional: true
+    sass:
+      optional: true
+    stylus:
+      optional: true
+    sugarss:
+      optional: true
+    terser:
+      optional: true
+  bin:
+    vite: bin/vite.js
+  checksum: 908b8a09460c031fe94c2038a46743a73a70fe76fd1991ae8b51a56eb88dec75128bc7da7ab37d8f84c0e1e3063ce268bdd81cc27d79229f8ea756e752bc83d9
+  languageName: node
+  linkType: hard
+
+"vite@npm:^5.0.0":
   version: 5.2.11
   resolution: "vite@npm:5.2.11"
   dependencies:
