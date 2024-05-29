@@ -4501,7 +4501,7 @@ __metadata:
     "@navikt/ds-css": 6.8.0
     "@navikt/ds-react": 6.8.0
     "@navikt/sif-common-hooks": "workspace:*"
-    "@portabletext/react": 3.0.18
+    "@portabletext/react": 3.1.0
     "@sanity/client": 6.18.3
     "@types/node": 20.12.12
     "@types/react": 18.3.3
@@ -5993,15 +5993,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@portabletext/react@npm:3.0.18":
-  version: 3.0.18
-  resolution: "@portabletext/react@npm:3.0.18"
+"@portabletext/react@npm:3.1.0":
+  version: 3.1.0
+  resolution: "@portabletext/react@npm:3.1.0"
   dependencies:
     "@portabletext/toolkit": ^2.0.15
     "@portabletext/types": ^2.0.13
   peerDependencies:
-    react: ^17 || ^18
-  checksum: 01e8b2710e3636adca93f643026d0ccfa885b736fe11fcd4dcee8147441c8fd61900af08e573af29b95a6640a55644e199b51b97f76d3fa5c13badba46219e21
+    react: ^17 || ^18 || >=19.0.0-rc
+  checksum: eb368140f6c6b5e5c8863c90960b5047cb0c2f097500d75b7c9776e4b0c31ad1ad83ca075c1287a07d5cf1101f3655a5b22bf0b5a9ffcd17f0c7b1d380768766
   languageName: node
   linkType: hard
 
