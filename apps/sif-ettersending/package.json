@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/sif-ettersending",
     "repository": "https://github.com/navikt/sif-ettersending",
-    "version": "3.32.4",
+    "version": "3.32.5",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -65,7 +65,7 @@
         "tailwindcss": "3.4.3",
         "typescript": "5.4.5",
         "uuid": "9.0.1",
-        "vite": "5.2.11",
+        "vite": "5.2.12",
         "vite-plugin-checker": "0.6.4",
         "vitest": "1.6.0"
     },

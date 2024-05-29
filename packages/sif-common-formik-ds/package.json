@@ -4,7 +4,7 @@
     "license": "MIT",
     "main": "src/index.ts",
     "name": "@navikt/sif-common-formik-ds",
-    "version": "1.8.3",
+    "version": "1.8.4",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-formik-ds/issues"
     },
@@ -61,7 +61,7 @@
         "react-syntax-highlighter": "15.5.0",
         "rimraf": "5.0.7",
         "storybook": "8.1.4",
-        "vite": "5.2.11",
+        "vite": "5.2.12",
         "vite-plugin-checker": "0.6.4",
         "vitest": "1.6.0"
     },
