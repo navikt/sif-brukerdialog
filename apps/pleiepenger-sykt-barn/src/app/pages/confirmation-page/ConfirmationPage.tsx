@@ -1,4 +1,4 @@
-import { Alert, Heading, Link } from '@navikt/ds-react';
+import { Alert, BodyLong, Heading, Link } from '@navikt/ds-react';
 import { useEffect } from 'react';
 import { useAppIntl } from '@i18n/index';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
@@ -70,6 +70,9 @@ const ConfirmationPage = ({ kvitteringInfo, onUnmount }: Props) => {
                     <AppText id="page.confirmation.dinePP.info.tittel" />
                 </Heading>
                 <Block margin="m">
+                    <BodyLong>
+                        <AppText id="page.confirmation.dinePP.info.1" />
+                    </BodyLong>
                     <ul>
                         {kvitteringInfo?.arbeidsgivere && (
                             <li>

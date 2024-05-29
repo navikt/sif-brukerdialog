@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.10.0
+
+### Minor Changes
+
+-   b1344ce: Endre tekster på kvitteringssiden for å informere bedre om Dine pleiepenger.
+
 ## 3.9.5
 
 ### Patch Changes

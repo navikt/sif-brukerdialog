@@ -33,10 +33,19 @@ test.describe('Start og innsending av ettersending', () => {
     test('Fyller ut og sender inn ett vedlegg', async ({ page }) => {
         await utfyllingUtils.velgYtelsePleiepenger(page);
         await utfyllingUtils.startSøknad(page);
-        await utfyllingUtils.fyllUtBeskrivelseSteg(page);
+        await utfyllingUtils.fyllUtBeskrivelseSteg(page, false);
         await utfyllingUtils.fyllUtDokumenterSteg(page);
         await utfyllingUtils.kontrollerOppsummering(page);
         await utfyllingUtils.sendInnDokumenter(page);
         await utfyllingUtils.kontrollerKvittering(page);
+    });
+    test('Fyller ut og sender inn legeerklæring', async ({ page }) => {
+        await utfyllingUtils.velgYtelsePleiepenger(page);
+        await utfyllingUtils.startSøknad(page);
+        await utfyllingUtils.fyllUtBeskrivelseSteg(page, true);
+        await utfyllingUtils.fyllUtDokumenterSteg(page);
+        await utfyllingUtils.kontrollerOppsummering(page);
+        await utfyllingUtils.sendInnDokumenter(page);
+        await utfyllingUtils.kontrollerKvitteringLegeerklæring(page);
     });
 });
