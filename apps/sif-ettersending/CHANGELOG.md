@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.33.0
+
+### Minor Changes
+
+-   b1344ce: Endre tekster på kvitteringssiden for å informere bedre om Dine pleiepenger.
+
 ## 3.32.5
 
 ### Patch Changes

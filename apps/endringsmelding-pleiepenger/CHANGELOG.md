@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.28.0
+
+### Minor Changes
+
+-   b1344ce: Endre tekster på kvitteringssiden for å informere bedre om Dine pleiepenger.
+
 ## 2.27.5
 
 ### Patch Changes
