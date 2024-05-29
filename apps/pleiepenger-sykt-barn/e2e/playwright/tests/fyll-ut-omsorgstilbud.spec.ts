@@ -52,7 +52,6 @@ test('Fyll ut omsorgstilbud', async ({ page }) => {
     await page.getByTestId('fasteDager__thursday_hours').fill('1');
     await page.getByTestId('fasteDager__friday_hours').click();
     await page.getByTestId('fasteDager__friday_hours').fill('1');
-    await page.locator('form').click();
     await page.getByText('Det varierer fra uke til uke').click();
     await page.getByLabel('Omsorgstilbud desember').getByRole('button', { name: 'Vis mer' }).click();
     await page.getByTestId('calendar-grid-date-2022-12-05').click();
@@ -63,20 +62,16 @@ test('Fyll ut omsorgstilbud', async ({ page }) => {
     await page.getByText('Alle dager i uke').click();
     await page.getByRole('button', { name: 'Lagre' }).click();
     await page.getByTestId('calendar-grid-date-2022-12-19').click();
-    await page.getByLabel('Timer').click();
-    await page.getByLabel('Timer').press('Shift+ArrowRight');
     await page.getByLabel('Timer').fill('5');
     await page.getByRole('button', { name: 'Lagre' }).click();
     await page.getByLabel('Omsorgstilbud januar').getByRole('button', { name: 'Vis mer' }).click();
     await page.getByLabel('Omsorgstilbud februar').getByRole('button', { name: 'Vis mer' }).click();
     await page.getByTestId('calendar-grid-date-2023-01-16').click();
     await page.getByLabel('Gjenta disse timene for flere').check();
-    await page.getByLabel('Timer').click();
     await page.getByLabel('Timer').fill('3');
     await page.getByText('Alle dager i januar').click();
     await page.getByRole('button', { name: 'Lagre' }).click();
     await page.getByTestId('calendar-grid-date-2023-02-10').click();
-    await page.getByLabel('Timer').click();
     await page.getByLabel('Timer').fill('5');
     await page.getByRole('button', { name: 'Lagre' }).click();
     await page.getByTestId('typedFormikForm-submitButton').click();
