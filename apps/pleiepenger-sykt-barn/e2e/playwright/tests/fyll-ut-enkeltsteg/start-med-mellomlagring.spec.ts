@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test';
-import { setNow } from '../utils/setNow';
-import { mellomlagringMock } from '../../mock-data/mellomlagring';
-import { routeUtils } from '../utils/routeUtils';
-import { StepID } from '../../../src/app/types/StepID';
+import { setNow } from '../../utils/setNow';
+import { mellomlagringMock } from '../../../mock-data/mellomlagring';
+import { routeUtils } from '../../utils/routeUtils';
+import { StepID } from '../../../../src/app/types/StepID';
 
 test.beforeEach(async ({ page }) => {
     await setNow(page);

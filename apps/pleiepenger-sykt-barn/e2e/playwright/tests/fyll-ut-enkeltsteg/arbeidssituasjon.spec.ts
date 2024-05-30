@@ -1,8 +1,8 @@
-import { test } from '@playwright/test';
-import { setNow } from '../utils/setNow';
-import { mellomlagringMock } from '../../mock-data/mellomlagring';
-import { routeUtils } from '../utils/routeUtils';
-import { StepID } from '../../../src/app/types/StepID';
+import { test, expect } from '@playwright/test';
+import { setNow } from '../../utils/setNow';
+import { mellomlagringMock } from '../../../mock-data/mellomlagring';
+import { routeUtils } from '../../utils/routeUtils';
+import { StepID } from '../../../../src/app/types/StepID';
 
 test.beforeEach(async ({ page }) => {
     await setNow(page);
@@ -10,9 +10,8 @@ test.beforeEach(async ({ page }) => {
         mellomlagring: mellomlagringMock,
         lastStep: StepID.TIDSROM,
     });
-    await page.goto('http://localhost:8080/');
     await page.goto('http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger/soknad/arbeidssituasjon');
-    await page.getByRole('heading', { name: 'Arbeidssituasjonen din' }).click();
+    await expect(page.getByRole('heading', { name: 'Arbeidssituasjonen din' })).toBeVisible();
 });
 
 test('Fyll ut arbeidssituasjon', async ({ page }) => {

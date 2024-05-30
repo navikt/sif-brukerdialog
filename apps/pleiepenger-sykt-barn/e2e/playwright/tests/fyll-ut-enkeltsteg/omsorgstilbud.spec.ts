@@ -1,9 +1,9 @@
-import { test, expect } from '@playwright/test';
-import { setNow } from '../utils/setNow';
-import { mellomlagringMock } from '../../mock-data/mellomlagring';
-import { routeUtils } from '../utils/routeUtils';
-import { StepID } from '../../../src/app/types/StepID';
-import { SøknadFormValues } from '../../../src/app/types/søknad-form-values/SøknadFormValues';
+import { expect, test } from '@playwright/test';
+import { StepID } from '../../../../src/app/types/StepID';
+import { SøknadFormValues } from '../../../../src/app/types/søknad-form-values/SøknadFormValues';
+import { mellomlagringMock } from '../../../mock-data/mellomlagring';
+import { routeUtils } from '../../utils/routeUtils';
+import { setNow } from '../../utils/setNow';
 
 const formValues: SøknadFormValues = {
     ...(mellomlagringMock.formValues as any),
@@ -17,9 +17,8 @@ test.beforeEach(async ({ page }) => {
         mellomlagring: { ...mellomlagringMock, formValues },
         lastStep: StepID.ARBEIDSSITUASJON,
     });
-    await page.goto('http://localhost:8080/');
     await page.goto('http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger/soknad/omsorgstilbud');
-    await page.getByRole('heading', { name: 'Omsorgstilbud i søknadsperioden' }).click();
+    await expect(page.getByRole('heading', { name: 'Omsorgstilbud i søknadsperioden' })).toBeVisible();
 });
 
 test.afterEach(async ({ page }) => {
@@ -27,8 +26,6 @@ test.afterEach(async ({ page }) => {
 });
 
 test('Fyll ut omsorgstilbud', async ({ page }) => {
-    await page.goto('http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger/soknad/omsorgstilbud');
-    await page.goto('http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger/soknad/omsorgstilbud');
     await page.getByText('Ja, i hele eller deler av').first().click();
     await page.getByText('Nei').nth(2).click();
     await page.getByText('Ja, i hele eller deler av').first().click();
