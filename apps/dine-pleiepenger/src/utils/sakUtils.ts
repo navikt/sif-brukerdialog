@@ -64,6 +64,7 @@ export const getBehandlingsstatusISak = (sak: Sak): BehandlingsstatusISak | unde
 
 const mapSøknadTilSøknadshendelse = (søknad: Søknad): Søknadshendelse => {
     switch (søknad.søknadstype) {
+        case Søknadstype.ETTERSENDELSE: // Ettersendelse skal ikke vises enda, og grupperes da med UKJENT
         case Søknadstype.UKJENT:
             return {
                 type: SøknadshendelseType.UKJENT,

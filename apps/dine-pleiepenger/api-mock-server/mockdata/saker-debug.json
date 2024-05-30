@@ -20,7 +20,7 @@
                     "søknader": [
                         {
                             "søknadId": "84cfcf3e-069a-4d4a-9292-61a179eb2427",
-                            "søknadstype": "SØKNAD",
+                            "søknadstype": "ETTERSENDELSE",
                             "k9FormatSøknad": {
                                 "søknadId": "84cfcf3e-069a-4d4a-9292-61a179eb2427",
                                 "versjon": "1.0.0",

@@ -4,6 +4,7 @@ import { Venteårsak } from './Venteårsak';
 
 export enum SøknadshendelseType {
     'UKJENT' = 'UKJENT',
+    'ETTERSENDELSER' = 'ETTERSENDELSER',
     'MOTTATT_SØKNAD' = 'MOTTATT_SØKNAD',
     'AKSJONSPUNKT' = 'AKSJONSPUNKT',
     'FERDIG_BEHANDLET' = 'FERDIG_BEHANDLET',
