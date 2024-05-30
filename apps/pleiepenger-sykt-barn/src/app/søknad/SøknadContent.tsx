@@ -10,7 +10,7 @@ import RouteConfig from '../config/routeConfig';
 import useLogSøknadInfo from '../hooks/useLogSøknadInfo';
 import usePersistSoknad from '../hooks/usePersistSoknad';
 import ConfirmationPage from '../pages/confirmation-page/ConfirmationPage';
-import WelcomingPage from '../pages/welcoming-page/WelcomingPage';
+import VelkommenPage from '../pages/velkommen-page/VelkommenPage';
 import { Søker } from '../types';
 import { ConfirmationDialog } from '../types/ConfirmationDialog';
 import { KvitteringInfo } from '../types/KvitteringInfo';
@@ -143,7 +143,7 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
             )}
             <Routes>
                 <Route path={'/'} element={<Navigate to={RouteConfig.WELCOMING_PAGE_ROUTE} />} />
-                <Route path={'velkommen'} element={<WelcomingPage onValidSubmit={startSoknad} søker={søker} />} />
+                <Route path={'velkommen'} element={<VelkommenPage onValidSubmit={startSoknad} søker={søker} />} />
 
                 {isAvailable(StepID.OPPLYSNINGER_OM_BARNET, values) && (
                     <Route

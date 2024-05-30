@@ -1,6 +1,6 @@
-import { GuidePanel, Heading } from '@navikt/ds-react';
+import { BodyLong, GuidePanel, Heading } from '@navikt/ds-react';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { AppText } from '../../i18n';
 
 interface Props {
     navn: string;
@@ -9,17 +9,19 @@ interface Props {
 const VelkommenGuide: React.FunctionComponent<Props> = ({ navn }) => (
     <GuidePanel>
         <Heading level="1" size="large" spacing={true}>
-            <FormattedMessage id="page.velkommen.guide.tittel" values={{ navn }} />
+            <AppText id="page.velkommen.guide.tittel" values={{ navn }} />
         </Heading>
-        <p>
-            <FormattedMessage id="page.velkommen.guide.ingress" />
-        </p>
-        <p>
-            <FormattedMessage id="page.velkommen.guide.tekst.1" />
-        </p>
-        <p>
-            <FormattedMessage id="page.velkommen.guide.tekst.2" />
-        </p>
+        <BodyLong as="div">
+            <p>
+                <AppText id="page.velkommen.guide.ingress" />
+            </p>
+            <p>
+                <AppText id="page.velkommen.guide.tekst.1" />
+            </p>
+            <p>
+                <AppText id="page.velkommen.guide.tekst.2" />
+            </p>
+        </BodyLong>
     </GuidePanel>
 );
 

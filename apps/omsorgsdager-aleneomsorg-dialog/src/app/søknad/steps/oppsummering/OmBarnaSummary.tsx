@@ -1,9 +1,8 @@
-import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { AnnetBarn, BarnType } from '@navikt/sif-common-forms-ds/src/forms/annet-barn';
 import { SummaryList, SummarySection } from '@navikt/sif-common-ui';
+import { useAppIntl } from '../../../i18n';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
 
 export interface AlleBarnSummary {
@@ -30,23 +29,21 @@ const mapAnnetBarnToAlleBarnSummary = (annetBarn: AnnetBarn): AlleBarnSummary =>
 };
 
 const OmBarnaSummary = ({ registrertBarn, annetBarn = [] }: Props) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
 
     const alleBarn: AlleBarnSummary[] = [
         ...registrertBarn.map((barn) => mapRegistrertBarnToAlleBarnSummary(barn)),
         ...annetBarn.map((barn) => mapAnnetBarnToAlleBarnSummary(barn)),
     ];
     return (
-        <SummarySection header={intlHelper(intl, 'step.oppsummering.deres-felles-barn.header')}>
+        <SummarySection header={text('step.oppsummering.deres-felles-barn.header')}>
             <Block margin="l">
                 <SummaryList
                     items={alleBarn}
                     itemRenderer={(barn: AlleBarnSummary): string | React.ReactNode => {
                         const { fnr, type, navn } = barn;
                         const barnType =
-                            type === BarnType.fosterbarn
-                                ? intlHelper(intl, `step.oppsummering.dineBarn.listItem.${type}`)
-                                : '';
+                            type === BarnType.fosterbarn ? text(`step.oppsummering.dineBarn.listItem.${type}`) : '';
 
                         return <>{`${navn} ${fnr || ''} ${barnType}`}</>;
                     }}

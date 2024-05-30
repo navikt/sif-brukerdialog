@@ -1,5 +1,4 @@
 import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import {
     getDateRangeValidator,
@@ -11,6 +10,7 @@ import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/typ
 import { handleDateRangeValidationError, mapFomTomToDateRange } from '../../utils';
 import tidsperiodeUtils from './tidsperiodeUtils';
 import { DateTidsperiode, DateTidsperiodeFormValues } from './types';
+import { TidsperiodeMessageKeys, useTidsperiodeIntl } from './tidsperiodeMessages';
 
 export interface TidsperiodeFormLabels {
     fromDate: string;
@@ -35,20 +35,20 @@ enum TidsperiodeFormFields {
     fom = 'fom',
 }
 
-export const TidsperiodeFormErrors = {
+export const TidsperiodeFormErrors: Record<TidsperiodeFormFields, { [key: string]: TidsperiodeMessageKeys }> = {
     [TidsperiodeFormFields.fom]: {
-        [ValidateDateError.dateHasNoValue]: 'tidsperiodeForm.fom.dateHasNoValue',
-        [ValidateDateRangeError.fromDateIsAfterToDate]: 'tidsperiodeForm.fom.fromDateIsAfterToDate',
-        [ValidateDateError.dateHasInvalidFormat]: 'tidsperiodeForm.fom.dateHasInvalidFormat',
-        [ValidateDateError.dateIsBeforeMin]: 'tidsperiodeForm.fom.dateIsBeforeMin',
-        [ValidateDateError.dateIsAfterMax]: 'tidsperiodeForm.fom.dateIsAfterMax',
+        [ValidateDateError.dateHasNoValue]: '@forms.tidsperiodeForm.fom.dateHasNoValue',
+        [ValidateDateRangeError.fromDateIsAfterToDate]: '@forms.tidsperiodeForm.fom.fromDateIsAfterToDate',
+        [ValidateDateError.dateHasInvalidFormat]: '@forms.tidsperiodeForm.fom.dateHasInvalidFormat',
+        [ValidateDateError.dateIsBeforeMin]: '@forms.tidsperiodeForm.fom.dateIsBeforeMin',
+        [ValidateDateError.dateIsAfterMax]: '@forms.tidsperiodeForm.fom.dateIsAfterMax',
     },
     [TidsperiodeFormFields.tom]: {
-        [ValidateDateError.dateHasNoValue]: 'tidsperiodeForm.tom.dateHasNoValue',
-        [ValidateDateRangeError.toDateIsBeforeFromDate]: 'tidsperiodeForm.tom.toDateIsBeforeFromDate',
-        [ValidateDateError.dateHasInvalidFormat]: 'tidsperiodeForm.tom.dateHasInvalidFormat',
-        [ValidateDateError.dateIsBeforeMin]: 'tidsperiodeForm.tom.dateIsBeforeMin',
-        [ValidateDateError.dateIsAfterMax]: 'tidsperiodeForm.tom.dateIsAfterMax',
+        [ValidateDateError.dateHasNoValue]: '@forms.tidsperiodeForm.tom.dateHasNoValue',
+        [ValidateDateRangeError.toDateIsBeforeFromDate]: '@forms.tidsperiodeForm.tom.toDateIsBeforeFromDate',
+        [ValidateDateError.dateHasInvalidFormat]: '@forms.tidsperiodeForm.tom.dateHasInvalidFormat',
+        [ValidateDateError.dateIsBeforeMin]: '@forms.tidsperiodeForm.tom.dateIsBeforeMin',
+        [ValidateDateError.dateIsAfterMax]: '@forms.tidsperiodeForm.tom.dateIsAfterMax',
     },
 };
 
@@ -64,6 +64,7 @@ const TidsperiodeForm = ({
     onCancel,
 }: Props) => {
     const intl = useIntl();
+    const { text } = useTidsperiodeIntl();
 
     const onFormikSubmit = (formValues: DateTidsperiodeFormValues) => {
         const dateTidsperiodeToSubmit = tidsperiodeUtils.mapFormValuesToDateTidsperiode(formValues, tidsperiode?.id);
@@ -75,11 +76,11 @@ const TidsperiodeForm = ({
     };
 
     const defaultLabels: TidsperiodeFormLabels = {
-        intervalTitle: intlHelper(intl, 'tidsperiode.form.title'),
-        fromDate: intlHelper(intl, 'tidsperiode.form.fromDate'),
-        toDate: intlHelper(intl, 'tidsperiode.form.toDate'),
-        okButton: intlHelper(intl, 'tidsperiode.form.okButton'),
-        cancelButton: intlHelper(intl, 'tidsperiode.form.cancelButton'),
+        intervalTitle: text('@forms.tidsperiode.form.title'),
+        fromDate: text('@forms.tidsperiode.form.fromDate'),
+        toDate: text('@forms.tidsperiode.form.toDate'),
+        okButton: text('@forms.tidsperiode.form.okButton'),
+        cancelButton: text('@forms.tidsperiode.form.cancelButton'),
     };
 
     const inlineLabels: TidsperiodeFormLabels = { ...defaultLabels, ...formLabels };
@@ -98,7 +99,7 @@ const TidsperiodeForm = ({
                     return (
                         <Form.Form
                             onCancel={onCancel}
-                            formErrorHandler={getFormErrorHandler(intl, 'tidsperiodeForm')}
+                            formErrorHandler={getFormErrorHandler(intl, '@forms.tidsperiodeForm')}
                             submitButtonLabel="Ok"
                             showButtonArrows={false}>
                             <Form.DateRangePicker

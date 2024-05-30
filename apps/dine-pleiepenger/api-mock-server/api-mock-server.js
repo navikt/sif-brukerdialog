@@ -7,9 +7,12 @@ const søknader = require('./mockdata/soknader.json');
 // const saker = require('./mockdata/saker-med-to-vedtak.json');
 // const saker = require('./mockdata/saker-uten-søknad-men-behandling.json');
 // const saker = require('./mockdata/sak-uten-behandling.json');
-// const saker = require('./mockdata/saker.json');
+const saker = require('./mockdata/saker-for-tidlig-soknad.json');
 // const saker = require('./mockdata/saker-sn.json');
-const saker = require('./mockdata/saker-med-venteårsak.json');
+// const saker = require('./mockdata/saker-med-venteårsak.json');
+// const saker = require('./mockdata/saker-debug.json');
+// const saker = require('./mockdata/flere-saker.json');
+// const saker = require('./mockdata/saker-anonymisert-pleietrengende.json');
 
 server.use(express.json());
 
@@ -55,7 +58,7 @@ const startServer = () => {
     });
 
     server.get('/saker', (req, res) => {
-        res.send(saker);
+        res.send([]);
     });
 
     server.get('/saker/saksbehandlingstid', (req, res) => {

@@ -10,7 +10,7 @@ import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import { Søknadstype } from '../types/Søknadstype';
 import { StepID } from './soknadStepsConfig';
 
-export const STORAGE_VERSION = '2.1';
+export const STORAGE_VERSION = '2.2';
 
 interface UserHashInfo {
     søker: Person;

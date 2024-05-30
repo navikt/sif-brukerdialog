@@ -1,16 +1,19 @@
 import { BodyShort, HStack } from '@navikt/ds-react';
+import { AppText, useAppIntl } from '../../../i18n';
+import { Pleietrengende } from '../../../server/api-models/PleietrengendeSchema';
 import PageHeader from '../page-header/PageHeader';
-import { Msg, useMessages } from '../../../i18n';
+import { personaliaUtils } from '../../../utils/personaliaUtils';
+import { dateFormatter } from '@navikt/sif-common-utils';
 
 interface Props {
     saksnr: string;
-    navn: string;
+    pleietrengende: Pleietrengende;
     tittel?: string;
     titleTag?: React.ReactNode;
 }
 
-const SakPageHeader: React.FunctionComponent<Props> = ({ tittel, titleTag, saksnr, navn }) => {
-    const { text } = useMessages();
+const SakPageHeader: React.FunctionComponent<Props> = ({ tittel, titleTag, saksnr, pleietrengende }) => {
+    const { text } = useAppIntl();
     return (
         <PageHeader
             title={tittel || text('sakPageHeader.defaultTittel')}
@@ -19,12 +22,26 @@ const SakPageHeader: React.FunctionComponent<Props> = ({ tittel, titleTag, saksn
                 <BodyShort as="div">
                     <HStack gap="2">
                         <span>
-                            <Msg id="sakPageHeader.saksnr" values={{ saksnr }} />
+                            <AppText id="sakPageHeader.saksnr" values={{ saksnr }} />
                         </span>
                         <span aria-hidden={true} className="sakPageHeaderPipe">
                             |
                         </span>
-                        <Msg id="sakPageHeader.pleietrengende" values={{ navn }} />
+                        {pleietrengende.anonymisert ? (
+                            <AppText
+                                id="sakPageHeader.pleietrengende.anonymisert"
+                                values={{
+                                    dato: dateFormatter.compact(pleietrengende.fødselsdato),
+                                }}
+                            />
+                        ) : (
+                            <AppText
+                                id="sakPageHeader.pleietrengende"
+                                values={{
+                                    navn: personaliaUtils.navn(pleietrengende, text),
+                                }}
+                            />
+                        )}
                     </HStack>
                 </BodyShort>
             }

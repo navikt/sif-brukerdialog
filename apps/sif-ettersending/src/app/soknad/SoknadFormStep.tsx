@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { UnansweredQuestionsInfo } from '@navikt/sif-common-formik-ds';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { soknadStepUtils, Step } from '@navikt/sif-common-soknad-ds';
@@ -12,6 +11,7 @@ import { useSoknadContext } from './SoknadContext';
 import SoknadFormComponents from './SoknadFormComponents';
 import { StepID } from './soknadStepsConfig';
 import { ProgressStep } from '@navikt/sif-common-ui';
+import { AppText, useAppIntl } from '../i18n';
 
 interface OwnProps {
     id: StepID;
@@ -43,12 +43,13 @@ const SoknadFormStep: React.FunctionComponent<Props> = ({
     søknadstype,
 }) => {
     const intl = useIntl();
+    const { text } = useAppIntl();
     const [pending, setPending] = useState(false);
     const { soknadStepsConfig, resetSoknad, gotoNextStepFromStep, continueSoknadLater } = useSoknadContext();
     const stepConfig = soknadStepsConfig[id];
     const navigate = useNavigate();
 
-    const applicationTitle = intlHelper(intl, `application.title.${søknadstype}`);
+    const applicationTitle = text(`application.title.${søknadstype}`);
 
     useLogSidevisning(id);
 
@@ -65,7 +66,7 @@ const SoknadFormStep: React.FunctionComponent<Props> = ({
     return (
         <Step
             applicationTitle={applicationTitle}
-            cancelOrContinueLaterAriaLabel={intlHelper(intl, 'application.cancelOrContinueLaterLabel')}
+            cancelOrContinueLaterAriaLabel={text('application.cancelOrContinueLaterLabel')}
             steps={steps}
             activeStepId={id}
             onCancel={resetSoknad}
@@ -83,7 +84,7 @@ const SoknadFormStep: React.FunctionComponent<Props> = ({
                     showNotAllQuestionsAnsweredMessage
                         ? (): React.ReactNode => (
                               <UnansweredQuestionsInfo>
-                                  <FormattedMessage id="page.form.ubesvarteSpørsmålInfo" />
+                                  <AppText id="page.form.ubesvarteSpørsmålInfo" />
                               </UnansweredQuestionsInfo>
                           )
                         : undefined

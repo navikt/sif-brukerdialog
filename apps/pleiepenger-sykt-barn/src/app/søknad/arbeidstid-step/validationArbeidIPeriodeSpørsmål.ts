@@ -1,4 +1,3 @@
-import { IntlShape } from 'react-intl';
 import { DateRange } from '@navikt/sif-common-formik-ds/src';
 import {
     getNumberValidator,
@@ -6,6 +5,7 @@ import {
     ValidateNumberError,
 } from '@navikt/sif-common-formik-ds/src/validation';
 import { dateRangeUtils, decimalDurationToDuration } from '@navikt/sif-common-utils';
+import { AppIntlShape } from '../../i18n';
 import { ArbeidIPeriodeIntlValues } from '../../local-sif-common-pleiepenger';
 import { getArbeidstidFastProsentValidator } from '../../local-sif-common-pleiepenger/utils/arbeidstidValidation';
 import { ArbeidsukeInfo } from '../../types/ArbeidsukeInfo';
@@ -68,7 +68,7 @@ export const getArbeidIPeriodeProsentAvNormaltValidator =
     };
 
 export const getArbeidIPeriodeSnittTimerPerUkeValidator =
-    (intl: IntlShape, intlValues: ArbeidIPeriodeIntlValues, timerNormalt: number) => (value: string) => {
+    (intl: AppIntlShape, intlValues: ArbeidIPeriodeIntlValues, timerNormalt: number) => (value: string) => {
         const min = 1;
         const error = getNumberValidator({ required: true, min, max: timerNormalt })(value);
 
@@ -88,7 +88,7 @@ export const getArbeidIPeriodeSnittTimerPerUkeValidator =
     };
 
 export const getArbeidIPeriodeSnittTimerEnArbeidsukeValidator =
-    (intl: IntlShape, intlValues: ArbeidIPeriodeIntlValues, timerNormalt: number, arbeidsuke: ArbeidsukeInfo) =>
+    (appIntl: AppIntlShape, intlValues: ArbeidIPeriodeIntlValues, timerNormalt: number, arbeidsuke: ArbeidsukeInfo) =>
     (value: string) => {
         const min = 0;
         const error = getNumberValidator({ required: true, min, max: timerNormalt })(value);
@@ -100,7 +100,7 @@ export const getArbeidIPeriodeSnittTimerEnArbeidsukeValidator =
                     ...intlValues,
                     ukenummer: arbeidsuke.ukenummer,
                     min,
-                    max: formatTimerOgMinutter(intl, decimalDurationToDuration(timerNormalt)),
+                    max: formatTimerOgMinutter(appIntl, decimalDurationToDuration(timerNormalt)),
                 },
                 keepKeyUnaltered: true,
             };
@@ -122,7 +122,7 @@ export const getArbeidIPeriodeSnittTimerEnArbeidsukeValidator =
                         ...intlValues,
                         ukenummer: arbeidsuke.ukenummer,
                         min,
-                        max: formatTimerOgMinutter(intl, decimalDurationToDuration(maksTimerIPeriode)),
+                        max: formatTimerOgMinutter(appIntl, decimalDurationToDuration(maksTimerIPeriode)),
                         dagInfo: getArbeidsdagerIUkeTekst(arbeidsuke.arbeidsdagerPeriode),
                     },
                     keepKeyUnaltered: true,

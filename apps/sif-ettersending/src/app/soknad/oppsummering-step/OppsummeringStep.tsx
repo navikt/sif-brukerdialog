@@ -1,16 +1,18 @@
 import { Alert, Panel } from '@navikt/ds-react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { isFailure, isPending } from '@devexperts/remote-data-ts';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { TextareaSvar } from '@navikt/sif-common-ui';
+import { prettifyDate } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 import UploadedDocumentsList from '../../components/uploaded-documents-list/UploadedDocumentsList';
+import { AppText, useAppIntl } from '../../i18n';
+import { DokumentType } from '../../types/DokumentType';
 import { Person } from '../../types/Person';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import { Søknadstype } from '../../types/Søknadstype';
@@ -30,6 +32,7 @@ interface Props {
 
 const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
     const intl = useIntl();
+    const { text } = useAppIntl();
     const { sendSoknadStatus, sendSoknad, resetSendSøknadStatus } = useSoknadContext();
     const { values } = useFormikContext<SoknadFormData>();
     const { fornavn, mellomnavn, etternavn, fødselsnummer } = søker;
@@ -45,32 +48,62 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
             søknadstype={søknadstype}
             includeValidationSummary={false}
             showButtonSpinner={isPending(sendSoknadStatus.status)}
-            submitButtonLabel={intlHelper(intl, 'step.sendButtonLabel')}
+            submitButtonLabel={text('step.sendButtonLabel')}
             buttonDisabled={isPending(sendSoknadStatus.status) || apiValues === undefined}
             onSendSoknad={apiValues ? () => sendSoknad(apiValues) : undefined}>
             <SifGuidePanel>
-                <FormattedMessage id="steg.oppsummering.info" />
+                <AppText id="steg.oppsummering.info" />
             </SifGuidePanel>
             <Block margin="xl">
                 <div data-testid="oppsummering">
                     <Panel border={true}>
-                        <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.søker.header')}>
+                        <SummaryBlock header={text('steg.oppsummering.søker.header')}>
                             <p>{formatName(fornavn, etternavn, mellomnavn)}</p>
                             <div>
-                                {intlHelper(intl, 'steg.oppsummering.fødselsnummer')}: {fødselsnummer}
+                                {text('steg.oppsummering.fødselsnummer')}: {fødselsnummer}
                             </div>
                         </SummaryBlock>
 
-                        <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.typeSøknad.tittel')}>
+                        {apiValues.ettersendelsesType === DokumentType.legeerklæring && (
+                            <SummaryBlock header={text('steg.oppsummering.barn.header')}>
+                                {values.valgteRegistrertBarn && (
+                                    <div>
+                                        {text('steg.oppsummering.barn.registretBarnInfo', {
+                                            navn: values.valgteRegistrertBarn?.barnetsNavn,
+                                            fødselsdato: prettifyDate(values.valgteRegistrertBarn?.barnetsFødselsdato),
+                                        })}
+                                    </div>
+                                )}
+                                {apiValues.pleietrengende?.norskIdentitetsnummer && (
+                                    <div>
+                                        {text('steg.oppsummering.barn.fnr', {
+                                            fnr: apiValues.pleietrengende?.norskIdentitetsnummer,
+                                        })}
+                                    </div>
+                                )}
+                                {!apiValues.pleietrengende?.norskIdentitetsnummer &&
+                                    !apiValues.pleietrengende?.aktørId && (
+                                        <div>{text('steg.oppsummering.barn.harIkkefnr')}</div>
+                                    )}
+                            </SummaryBlock>
+                        )}
+
+                        <SummaryBlock header={text('steg.oppsummering.typeSøknad.tittel')}>
                             {apiValues.ytelseTittel}
                         </SummaryBlock>
 
+                        {apiValues.ettersendelsesType === DokumentType.legeerklæring && (
+                            <SummaryBlock header={text('steg.oppsummering.dokumentType.header')}>
+                                {text('steg.oppsummering.dokumentType.legeerklæring')}
+                            </SummaryBlock>
+                        )}
+
                         {apiValues.beskrivelse && (
-                            <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.hvaGjelder.header')}>
+                            <SummaryBlock header={text('steg.oppsummering.hvaGjelder.header')}>
                                 <TextareaSvar text={apiValues.beskrivelse} />
                             </SummaryBlock>
                         )}
-                        <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.dokumenter.header')}>
+                        <SummaryBlock header={text('steg.oppsummering.dokumenter.header')}>
                             <div data-testid="vedlegg-liste">
                                 <UploadedDocumentsList includeDeletionFunctionality={false} />
                             </div>
@@ -81,11 +114,7 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
 
             <Block margin="l">
                 <SoknadFormComponents.ConfirmationCheckbox
-                    label={
-                        <span data-testid="bekreft-label">
-                            {intlHelper(intl, 'steg.oppsummering.bekrefterOpplysninger')}
-                        </span>
-                    }
+                    label={<span data-testid="bekreft-label">{text('steg.oppsummering.bekrefterOpplysninger')}</span>}
                     name={SoknadFormField.harBekreftetOpplysninger}
                     validate={getCheckedValidator()}
                 />
@@ -95,12 +124,12 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
                 <FormBlock>
                     {sendSoknadStatus.failures === 1 && (
                         <Alert variant="error">
-                            <FormattedMessage id="step.oppsummering.sendMelding.feilmelding.førsteGang" />
+                            <AppText id="steg.oppsummering.sendMelding.feilmelding.førsteGang" />
                         </Alert>
                     )}
                     {sendSoknadStatus.failures === 2 && (
                         <Alert variant="error">
-                            <FormattedMessage id="step.oppsummering.sendMelding.feilmelding.andreGang" />
+                            <AppText id="steg.oppsummering.sendMelding.feilmelding.andreGang" />
                         </Alert>
                     )}
                 </FormBlock>

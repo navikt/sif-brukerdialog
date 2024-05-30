@@ -1,27 +1,27 @@
+import { ErrorSummary } from '@navikt/ds-react';
+import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { useEffect, useRef } from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import AnnenForelderSituasjonOppsummering from './AnnenForelderSituasjonOppsummering';
-import OmAnnenForelderOppsummering from './AnnenForelderOppsummering';
-import OmBarnaOppsummering from './OmBarnaOppsummering';
-import OmSøkerOppsummering from './OmSøkerOppsummering';
-import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
+import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { usePrevious } from '@navikt/sif-common-hooks';
+import { ErrorPage } from '@navikt/sif-common-soknad-ds';
+import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
+import { useSendSøknad } from '../../../hooks/useSendSøknad';
+import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
+import { AppText, useAppIntl } from '../../../i18n';
 import { useSøknadContext } from '../../../søknad/context/hooks/useSøknadContext';
 import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../../søknad/søknadStepConfig';
 import { StepId } from '../../../types/StepId';
-import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { useSendSøknad } from '../../../hooks/useSendSøknad';
-import { usePrevious } from '@navikt/sif-common-hooks';
-import SøknadStep from '../../SøknadStep';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { ErrorSummary } from '@navikt/ds-react';
-import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
-import { ErrorPage } from '@navikt/sif-common-soknad-ds';
-import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
+import SøknadStep from '../../SøknadStep';
+import OmAnnenForelderOppsummering from './AnnenForelderOppsummering';
+import AnnenForelderSituasjonOppsummering from './AnnenForelderSituasjonOppsummering';
+import OmBarnaOppsummering from './OmBarnaOppsummering';
+import OmSøkerOppsummering from './OmSøkerOppsummering';
+import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -37,7 +37,7 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 >();
 
 const OppsummeringStep = () => {
-    const intl = useIntl();
+    const { text, intl } = useAppIntl();
     const {
         state: { søknadsdata, søker, registrerteBarn },
     } = useSøknadContext();
@@ -69,12 +69,12 @@ const OppsummeringStep = () => {
                     return (
                         <>
                             <p>
-                                <FormattedMessage id="apiDataValidation.undefined" />
+                                <AppText id="apiDataValidation.undefined" />
                             </p>
                             <p>
-                                <FormattedMessage id="resetMellomlagring.text.1" />
+                                <AppText id="resetMellomlagring.text.1" />
                             </p>
-                            <ResetMellomagringButton label={intlHelper(intl, 'resetMellomlagring.startPåNytt')} />
+                            <ResetMellomagringButton label={text('resetMellomlagring.startPåNytt')} />
                         </>
                     );
                 }}
@@ -113,14 +113,16 @@ const OppsummeringStep = () => {
 
                                 <ConfirmationCheckbox
                                     disabled={isSubmitting}
-                                    label={<FormattedMessage id="step.oppsummering.bekrefterOpplysninger" />}
+                                    label={<AppText id="step.oppsummering.bekrefterOpplysninger" />}
                                     validate={getCheckedValidator()}
                                     name={OppsummeringFormFields.harBekreftetOpplysninger}
                                 />
                             </Form>
                             {sendSøknadError && (
                                 <FormBlock>
-                                    <ErrorSummary ref={sendSøknadErrorSummary}>{sendSøknadError.message}</ErrorSummary>
+                                    <ErrorSummary ref={sendSøknadErrorSummary}>
+                                        <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
+                                    </ErrorSummary>
                                 </FormBlock>
                             )}
                         </>

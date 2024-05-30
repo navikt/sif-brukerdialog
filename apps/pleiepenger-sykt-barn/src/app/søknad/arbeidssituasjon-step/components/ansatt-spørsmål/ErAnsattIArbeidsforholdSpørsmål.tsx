@@ -1,6 +1,5 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { useAppIntl } from '@i18n/index';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds/src';
 import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import {
@@ -20,10 +19,10 @@ interface Props {
 }
 
 const ErAnsattIArbeidsforholdSpørsmål: React.FunctionComponent<Props> = ({ arbeidsforhold, fieldName }) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     return (
         <AnsattFormComponents.RadioGroup
-            legend={intlHelper(intl, 'arbeidsforhold.erAnsatt.spm', {
+            legend={text('arbeidsforhold.erAnsatt.spm', {
                 navn: arbeidsforhold.arbeidsgiver.navn,
             })}
             name={fieldName}

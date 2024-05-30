@@ -12,6 +12,7 @@ export const withInnsynsdata = (Story) => (
             harSak: true,
             søker: mockSøker as any as Søker,
             mellomlagring: {},
+            brukerprofil: {} as any,
             innsendteSøknader: mockSøknader as any as InnsendtSøknad[],
         }}>
         <Story />

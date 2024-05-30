@@ -6,6 +6,7 @@ import { OmBarnaSøknadsdata } from './OmBarnaSøknadsdata';
 export * from './OmAnnenForelderSøknadsdata';
 export * from './AnnenForelderenSituasjonSøknadsdata';
 export * from './OmBarnaSøknadsdata';
+
 export interface Søknadsdata {
     id: string;
     [StepId.VELKOMMEN]?: {

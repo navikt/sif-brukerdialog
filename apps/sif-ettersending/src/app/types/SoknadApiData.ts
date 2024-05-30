@@ -1,4 +1,5 @@
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
+import { DokumentType } from './DokumentType';
 
 export type ISO8601Duration = string;
 
@@ -12,12 +13,21 @@ export enum YtelseTypeApi {
     // 'OMP_ALENEOMSORG' = 'OMP_ALENEOMSORG', ikke i bruk frem til backend støtter denne
 }
 
+export interface BarnetLegeerklæringGjelderApiData {
+    norskIdentitetsnummer?: string;
+    aktørId?: string;
+    fødselsdato?: Date;
+    navn?: string;
+}
+
 export interface SoknadApiData {
     id: string;
     språk: Locale;
     harForståttRettigheterOgPlikter: boolean;
     harBekreftetOpplysninger: boolean;
     beskrivelse?: string;
+    ettersendelsesType: DokumentType;
+    pleietrengende?: BarnetLegeerklæringGjelderApiData;
     vedlegg: string[];
     søknadstype: YtelseTypeApi;
     ytelseTittel: string;

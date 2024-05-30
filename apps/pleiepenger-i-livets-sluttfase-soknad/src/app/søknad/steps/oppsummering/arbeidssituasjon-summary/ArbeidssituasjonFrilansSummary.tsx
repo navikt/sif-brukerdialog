@@ -1,9 +1,8 @@
-import { FormattedMessage, useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SummaryBlock } from '@navikt/sif-common-ui';
 import { prettifyApiDate } from '@navikt/sif-common-utils';
 import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
 import { FrilansApiData } from '../../../../types/søknadApiData/SøknadApiData';
+import { AppText, useAppIntl } from '../../../../i18n';
 
 interface Props {
     frilans?: FrilansApiData;
@@ -11,13 +10,15 @@ interface Props {
 }
 
 const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag }: Props) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     if (frilans === undefined) {
         return (
-            <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.frilanser.header')}>
+            <SummaryBlock header={text('oppsummering.arbeidssituasjon.frilanser.header')}>
                 <ul>
                     <li>
-                        <FormattedMessage id={'oppsummering.arbeidssituasjon.frilans.erIkkeFrilanser'} tagName="p" />
+                        <p>
+                            <AppText id={'oppsummering.arbeidssituasjon.frilans.erIkkeFrilanser'} />
+                        </p>
                     </li>
                 </ul>
             </SummaryBlock>
@@ -25,23 +26,23 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag }: Props) => {
     }
 
     return (
-        <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.frilanser.header')}>
+        <SummaryBlock header={text('oppsummering.arbeidssituasjon.frilanser.header')}>
             <ul>
                 {frilans.harHattInntektSomFrilanser === false && (
                     <li>
-                        <FormattedMessage id={'oppsummering.arbeidssituasjon.frilans.erIkkeFrilanser'} />
+                        <AppText id={'oppsummering.arbeidssituasjon.frilans.erIkkeFrilanser'} />
                     </li>
                 )}
 
                 <li>
-                    <FormattedMessage
+                    <AppText
                         id="oppsummering.arbeidssituasjon.frilans.startet"
                         values={{ dato: prettifyApiDate(frilans.startdato) }}
                     />
                 </li>
                 {frilans.sluttdato && (
                     <li>
-                        <FormattedMessage
+                        <AppText
                             id="oppsummering.arbeidssituasjon.frilans.sluttet"
                             values={{ dato: prettifyApiDate(frilans.sluttdato) }}
                         />
@@ -49,13 +50,13 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag }: Props) => {
                 )}
                 {frilans.jobberFortsattSomFrilans && (
                     <li>
-                        <FormattedMessage id="oppsummering.arbeidssituasjon.frilans.fortsattFrilanser" />
+                        <AppText id="oppsummering.arbeidssituasjon.frilans.fortsattFrilanser" />
                     </li>
                 )}
                 {frilans.arbeidsforhold && (
                     <>
                         <li>
-                            <FormattedMessage
+                            <AppText
                                 id={`oppsummering.arbeidssituasjon.tid`}
                                 values={{ timer: frilans.arbeidsforhold.jobberNormaltTimer }}
                             />
@@ -65,7 +66,7 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag }: Props) => {
                 {/* Hvis bruker fortsatt er frilanser i perioden (arbeidsforhold finnes), og har frilansoppdrag */}
                 {frilans.arbeidsforhold && frilansoppdrag && frilansoppdrag.length > 0 && (
                     <li>
-                        <FormattedMessage id="oppsummering.arbeidssituasjon.frilans.frilansoppdrag" />
+                        <AppText id="oppsummering.arbeidssituasjon.frilans.frilansoppdrag" />
                         <ul style={{ margin: 0, padding: '0 0 0 1rem' }}>
                             {frilansoppdrag.map((oppdrag) => (
                                 <li key={oppdrag.id}>{oppdrag.navn}</li>

@@ -1,14 +1,13 @@
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import {
+    countryIsMemberOfEøsOrEfta,
     DateRange,
     getCountryName,
-    countryIsMemberOfEøsOrEfta,
+    getTypedFormComponents,
     ISOStringToDate,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import {
     getDateRangeValidator,
     getListValidator,
@@ -26,6 +25,7 @@ import { hasValue } from '@navikt/sif-common-formik-ds/src/validation/validation
 import { handleDateRangeValidationError, mapFomTomToDateRange } from '../../utils';
 import TidsperiodeListAndDialog from '../tidsperiode/TidsperiodeListAndDialog';
 import { Utenlandsopphold, UtenlandsoppholdFormValues, UtenlandsoppholdÅrsak } from './types';
+import { useUtenlandsoppholdIntl, UtenlandsoppholdMessageKeys } from './utenlandsoppholdMessages';
 import utils from './utenlandsoppholdUtils';
 
 interface Props {
@@ -47,30 +47,35 @@ enum UtenlandsoppholdFormFields {
     barnInnlagtPerioder = 'barnInnlagtPerioder',
 }
 
-export const UtlandsoppholdFormErrors = {
+export const UtlandsoppholdFormErrors: Record<
+    UtenlandsoppholdFormFields,
+    { [key: string]: UtenlandsoppholdMessageKeys }
+> = {
     [UtenlandsoppholdFormFields.fom]: {
-        [ValidateDateError.dateHasNoValue]: 'utenlandsoppholdForm.fom.dateHasNoValue',
-        [ValidateDateRangeError.fromDateIsAfterToDate]: 'utenlandsoppholdForm.fom.fromDateIsAfterToDate',
-        [ValidateDateError.dateHasInvalidFormat]: 'utenlandsoppholdForm.fom.dateHasInvalidFormat',
-        [ValidateDateError.dateIsBeforeMin]: 'utenlandsoppholdForm.fom.dateIsBeforeMin',
-        [ValidateDateError.dateIsAfterMax]: 'utenlandsoppholdForm.fom.dateIsAfterMax',
+        [ValidateDateError.dateHasNoValue]: '@forms.utenlandsoppholdForm.fom.dateHasNoValue',
+        [ValidateDateRangeError.fromDateIsAfterToDate]: '@forms.utenlandsoppholdForm.fom.fromDateIsAfterToDate',
+        [ValidateDateError.dateHasInvalidFormat]: '@forms.utenlandsoppholdForm.fom.dateHasInvalidFormat',
+        [ValidateDateError.dateIsBeforeMin]: '@forms.utenlandsoppholdForm.fom.dateIsBeforeMin',
+        [ValidateDateError.dateIsAfterMax]: '@forms.utenlandsoppholdForm.fom.dateIsAfterMax',
     },
     [UtenlandsoppholdFormFields.tom]: {
-        [ValidateDateError.dateHasNoValue]: 'utenlandsoppholdForm.tom.dateHasNoValue',
-        [ValidateDateRangeError.toDateIsBeforeFromDate]: 'utenlandsoppholdForm.tom.toDateIsBeforeFromDate',
-        [ValidateDateError.dateHasInvalidFormat]: 'utenlandsoppholdForm.tom.dateHasInvalidFormat',
-        [ValidateDateError.dateIsBeforeMin]: 'utenlandsoppholdForm.tom.dateIsBeforeMin',
-        [ValidateDateError.dateIsAfterMax]: 'utenlandsoppholdForm.tom.dateIsAfterMax',
+        [ValidateDateError.dateHasNoValue]: '@forms.utenlandsoppholdForm.tom.dateHasNoValue',
+        [ValidateDateRangeError.toDateIsBeforeFromDate]: '@forms.utenlandsoppholdForm.tom.toDateIsBeforeFromDate',
+        [ValidateDateError.dateHasInvalidFormat]: '@forms.utenlandsoppholdForm.tom.dateHasInvalidFormat',
+        [ValidateDateError.dateIsBeforeMin]: '@forms.utenlandsoppholdForm.tom.dateIsBeforeMin',
+        [ValidateDateError.dateIsAfterMax]: '@forms.utenlandsoppholdForm.tom.dateIsAfterMax',
     },
     [UtenlandsoppholdFormFields.landkode]: {
-        [ValidateRequiredFieldError.noValue]: 'utenlandsoppholdForm.landkode.noValue',
+        [ValidateRequiredFieldError.noValue]: '@forms.utenlandsoppholdForm.landkode.noValue',
     },
-    [UtenlandsoppholdFormFields.årsak]: { [ValidateRequiredFieldError.noValue]: 'utenlandsoppholdForm.årsak.noValue' },
+    [UtenlandsoppholdFormFields.årsak]: {
+        [ValidateRequiredFieldError.noValue]: '@forms.utenlandsoppholdForm.årsak.noValue',
+    },
     [UtenlandsoppholdFormFields.erBarnetInnlagt]: {
-        [ValidateYesOrNoError.yesOrNoIsUnanswered]: 'utenlandsoppholdForm.erBarnetInnlagt.yesOrNoIsUnanswered',
+        [ValidateYesOrNoError.yesOrNoIsUnanswered]: '@forms.utenlandsoppholdForm.erBarnetInnlagt.yesOrNoIsUnanswered',
     },
     [UtenlandsoppholdFormFields.barnInnlagtPerioder]: {
-        [ValidateListError.listIsEmpty]: 'utenlandsoppholdForm.barnInnlagtPerioder.listIsEmpty',
+        [ValidateListError.listIsEmpty]: '@forms.utenlandsoppholdForm.barnInnlagtPerioder.listIsEmpty',
     },
 };
 
@@ -95,6 +100,7 @@ const UtenlandsoppholdForm = ({
     onCancel,
 }: Props) => {
     const intl = useIntl();
+    const { text } = useUtenlandsoppholdIntl();
 
     const onFormikSubmit = (formValues: Partial<UtenlandsoppholdFormValues>) => {
         const utenlandsoppholdToSubmit = utils.mapFormValuesToUtenlandsopphold(
@@ -152,15 +158,15 @@ const UtenlandsoppholdForm = ({
                         onCancel={onCancel}
                         submitButtonLabel="Ok"
                         showButtonArrows={false}
-                        formErrorHandler={getFormErrorHandler(intl, 'utenlandsoppholdForm')}>
+                        formErrorHandler={getFormErrorHandler(intl, '@forms.utenlandsoppholdForm')}>
                         <Form.DateRangePicker
-                            legend={intlHelper(intl, 'utenlandsopphold.form.tidsperiode.spm')}
+                            legend={text('@forms.utenlandsopphold.form.tidsperiode.spm')}
                             disabledDateRanges={registrerteTidsperioder}
                             minDate={minDate}
                             maxDate={maxDate}
                             fromInputProps={{
                                 name: UtenlandsoppholdFormFields.fom,
-                                label: intlHelper(intl, 'utenlandsopphold.form.tidsperiode.fraDato'),
+                                label: text('@forms.utenlandsopphold.form.tidsperiode.fraDato'),
                                 validate: (value) => {
                                     const error = getDateRangeValidator({
                                         required: true,
@@ -173,7 +179,7 @@ const UtenlandsoppholdForm = ({
                             }}
                             toInputProps={{
                                 name: UtenlandsoppholdFormFields.tom,
-                                label: intlHelper(intl, 'utenlandsopphold.form.tidsperiode.tilDato'),
+                                label: text('@forms.utenlandsopphold.form.tidsperiode.tilDato'),
                                 validate: (value) => {
                                     const error = getDateRangeValidator({
                                         required: true,
@@ -190,7 +196,7 @@ const UtenlandsoppholdForm = ({
                             <FormBlock>
                                 <Form.CountrySelect
                                     name={UtenlandsoppholdFormFields.landkode}
-                                    label={intlHelper(intl, 'utenlandsopphold.form.land.spm')}
+                                    label={text('@forms.utenlandsopphold.form.land.spm')}
                                     validate={getRequiredFieldValidator()}
                                 />
                             </FormBlock>
@@ -201,7 +207,7 @@ const UtenlandsoppholdForm = ({
                                 <FormBlock>
                                     <Form.YesOrNoQuestion
                                         name={UtenlandsoppholdFormFields.erBarnetInnlagt}
-                                        legend={intlHelper(intl, 'utenlandsopphold.form.erBarnetInnlagt.spm', {
+                                        legend={text('@forms.utenlandsopphold.form.erBarnetInnlagt.spm', {
                                             land: getCountryName(landkode, intl.locale),
                                         })}
                                         validate={(value) => {
@@ -223,17 +229,14 @@ const UtenlandsoppholdForm = ({
                                             maxDate={ISOStringToDate(tom)}
                                             validate={getListValidator({ required: true })}
                                             labels={{
-                                                addLabel: intlHelper(
-                                                    intl,
-                                                    'utenlandsopphold.form.perioderBarnetErInnlag.addLabel',
+                                                addLabel: text(
+                                                    '@forms.utenlandsopphold.form.perioderBarnetErInnlag.addLabel',
                                                 ),
-                                                modalTitle: intlHelper(
-                                                    intl,
-                                                    'utenlandsopphold.form.perioderBarnetErInnlag.formTitle',
+                                                modalTitle: text(
+                                                    '@forms.utenlandsopphold.form.perioderBarnetErInnlag.formTitle',
                                                 ),
-                                                listTitle: intlHelper(
-                                                    intl,
-                                                    'utenlandsopphold.form.perioderBarnetErInnlag.listTitle',
+                                                listTitle: text(
+                                                    '@forms.utenlandsopphold.form.perioderBarnetErInnlag.listTitle',
                                                 ),
                                             }}
                                         />
@@ -243,7 +246,7 @@ const UtenlandsoppholdForm = ({
                                     <>
                                         <FormBlock>
                                             <Form.RadioGroup
-                                                legend={intlHelper(intl, 'utenlandsopphold.form.årsak.spm', {
+                                                legend={text('@forms.utenlandsopphold.form.årsak.spm', {
                                                     land: getCountryName(landkode, intl.locale),
                                                 })}
                                                 name={UtenlandsoppholdFormFields.årsak}
@@ -251,24 +254,21 @@ const UtenlandsoppholdForm = ({
                                                 radios={[
                                                     {
                                                         value: UtenlandsoppholdÅrsak.INNLAGT_DEKKET_NORGE,
-                                                        label: intlHelper(
-                                                            intl,
-                                                            `utenlandsopphold.form.årsak.${UtenlandsoppholdÅrsak.INNLAGT_DEKKET_NORGE}`,
+                                                        label: text(
+                                                            `@forms.utenlandsopphold.form.årsak.${UtenlandsoppholdÅrsak.INNLAGT_DEKKET_NORGE}`,
                                                         ),
                                                     },
                                                     {
                                                         value: UtenlandsoppholdÅrsak.INNLAGT_DEKKET_ANNET_LAND,
-                                                        label: intlHelper(
-                                                            intl,
-                                                            `utenlandsopphold.form.årsak.${UtenlandsoppholdÅrsak.INNLAGT_DEKKET_ANNET_LAND}`,
+                                                        label: text(
+                                                            `@forms.utenlandsopphold.form.årsak.${UtenlandsoppholdÅrsak.INNLAGT_DEKKET_ANNET_LAND}`,
                                                             { land: getCountryName(landkode, intl.locale) },
                                                         ),
                                                     },
                                                     {
                                                         value: UtenlandsoppholdÅrsak.ANNET,
-                                                        label: intlHelper(
-                                                            intl,
-                                                            `utenlandsopphold.form.årsak.${UtenlandsoppholdÅrsak.ANNET}`,
+                                                        label: text(
+                                                            `@forms.utenlandsopphold.form.årsak.${UtenlandsoppholdÅrsak.ANNET}`,
                                                         ),
                                                     },
                                                 ]}

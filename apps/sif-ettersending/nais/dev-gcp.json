@@ -15,9 +15,8 @@
         "LOGIN_URL": "https://k9-ettersending-soknad.intern.dev.nav.no/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/ettersending",
         "MIN_SIDE_URL": "https://www.intern.dev.nav.no/minside",
         "NPM_CONFIG_CACHE": "/tmp",
-        "NYNORSK": "off",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/ettersending",
-        "USE_AMPLITUDE": "true",
+        "PLEIEPENGER_SYKT_BARN_URL": "https://pleiepengesoknad.intern.dev.nav.no",
         "VEDLEGG_API_URL": "https://k9-brukerdialog-api"
     },
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],

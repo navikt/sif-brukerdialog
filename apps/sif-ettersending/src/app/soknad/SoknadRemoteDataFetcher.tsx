@@ -1,8 +1,7 @@
-import { useIntl } from 'react-intl';
 import { useParams } from 'react-router-dom';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { ErrorPage, LoadingPage, SoknadErrorMessages } from '@navikt/sif-common-soknad-ds';
 import useSoknadEssentials from '../hooks/useSoknadEssentials';
+import { useAppIntl } from '../i18n';
 import IkkeTilgangPage from '../pages/ikke-tilgang-page/ikkeTilgangPage';
 import { RequestStatus } from '../types/RequestStatus';
 import { Søknadstype } from '../types/Søknadstype';
@@ -31,7 +30,7 @@ const getSøknadstypeFromUrlParam = (param?: string): Søknadstype | undefined =
 };
 
 const SoknadRemoteDataFetcher = (): JSX.Element => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     const { soknadstype } = useParams();
     const søknadstype = getSøknadstypeFromUrlParam(soknadstype);
 
@@ -51,7 +50,7 @@ const SoknadRemoteDataFetcher = (): JSX.Element => {
     if (status === 'error') {
         return (
             <ErrorPage
-                bannerTitle={intlHelper(intl, `application.title.${søknadstype}`)}
+                bannerTitle={text(`application.title.${søknadstype}`)}
                 contentRenderer={(): JSX.Element => (
                     <>
                         <SoknadErrorMessages.GeneralApplicationError />
@@ -68,6 +67,7 @@ const SoknadRemoteDataFetcher = (): JSX.Element => {
     return (
         <Soknad
             søker={initialData.data.søker}
+            barn={initialData.data.barn}
             søknadstype={søknadstype}
             soknadTempStorage={initialData.data.mellomlagring}
         />

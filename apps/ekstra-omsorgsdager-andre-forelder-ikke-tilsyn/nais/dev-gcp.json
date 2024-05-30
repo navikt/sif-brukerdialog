@@ -21,7 +21,6 @@
         "LOGIN_URL": "https://ekstra-omsorgsdager-andre-forelder-ikke-tilsyn.intern.dev.nav.no/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/soknad",
         "MINSIDE_URL": "https://www.intern.dev.nav.no/minside",
         "NPM_CONFIG_CACHE": "/tmp",
-        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",
-        "USE_AMPLITUDE": "true"
+        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
     }
 }

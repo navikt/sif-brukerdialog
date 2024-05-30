@@ -15,9 +15,8 @@
         "LOGIN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/ettersending/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/ettersending",
         "MIN_SIDE_URL": "https://www.nav.no/minside",
         "NPM_CONFIG_CACHE": "/tmp",
-        "NYNORSK": "off",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/ettersending",
-        "USE_AMPLITUDE": "true",
+        "PLEIEPENGER_SYKT_BARN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/pleiepenger",
         "VEDLEGG_API_URL": "https://k9-brukerdialog-api"
     },
     "externalHosts": ["www.nav.no"],

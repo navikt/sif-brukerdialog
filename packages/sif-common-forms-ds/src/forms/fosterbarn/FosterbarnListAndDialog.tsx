@@ -1,10 +1,9 @@
-import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { FormikModalFormAndList, TypedFormInputValidationProps } from '@navikt/sif-common-formik-ds';
 import FosterbarnForm from './FosterbarnForm';
 import FosterbarnList from './FosterbarnList';
 import { Fosterbarn } from './types';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { useFosterbarnIntl } from './fosterbarnMessages';
 
 export interface FosterbarnListAndDialogText {
     liste_legg_til_knapp: string;
@@ -20,12 +19,12 @@ interface Props<FieldNames> extends TypedFormInputValidationProps<FieldNames, Va
 }
 
 function FosterbarnListAndDialog<FieldNames>({ name, validate, texts, disallowedFødselsnumre }: Props<FieldNames>) {
-    const intl = useIntl();
+    const { text } = useFosterbarnIntl();
 
     const defaultText: FosterbarnListAndDialogText = {
-        liste_legg_til_knapp: intlHelper(intl, 'fosterbarn.list.legg_til_knapp'),
-        liste_tittel: intlHelper(intl, 'fosterbarn.list.tittel'),
-        modal_tittel: intlHelper(intl, 'fosterbarn.modal.tittel'),
+        liste_legg_til_knapp: text('@forms.fosterbarn.list.legg_til_knapp'),
+        liste_tittel: text('@forms.fosterbarn.list.tittel'),
+        modal_tittel: text('@forms.fosterbarn.modal.tittel'),
     };
 
     const txt = { ...defaultText, ...texts };

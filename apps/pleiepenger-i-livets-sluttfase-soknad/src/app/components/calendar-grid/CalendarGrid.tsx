@@ -1,5 +1,4 @@
 import React, { useRef } from 'react';
-import { FormattedMessage } from 'react-intl';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import {
@@ -15,6 +14,7 @@ import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import utc from 'dayjs/plugin/utc';
 import { groupBy } from 'lodash';
 import { useElementWidthIsWithinRange } from '../../hooks/useElementWidthIsWithinRange';
+import { AppText } from '../../i18n';
 import { hasIncreasedFontSize } from '../../utils/hasIncreasedFontSize';
 import CalendarGridDate from './CalendarGridDate';
 import './calendarGrid.less';
@@ -158,7 +158,7 @@ const CalendarGrid: React.FunctionComponent<Props> = ({
                 aria-hidden={true}
                 className={bem.element('weekNum', areAllDaysInWeekDisabledOrOutsideMonth ? 'empty' : undefined)}>
                 <span className={bem.element('weekNum_label')} role="presentation" aria-hidden={true}>
-                    <FormattedMessage id="calendarGrid.Uke" /> {` `}
+                    <AppText id="calendarGrid.Uke" /> {` `}
                 </span>
                 <span>
                     <span className="sr-only">Uke </span>
@@ -182,22 +182,22 @@ const CalendarGrid: React.FunctionComponent<Props> = ({
                 bem.modifier(doRenderAsList ? 'list' : 'grid'),
             )}>
             <span aria-hidden={true} className={bem.element('dayHeader', 'week')}>
-                <FormattedMessage id="calendarGrid.Uke" />
+                <AppText id="calendarGrid.Uke" />
             </span>
             <span aria-hidden={true} className={bem.element('dayHeader')}>
-                <FormattedMessage id="calendarGrid.Mandag" />
+                <AppText id="calendarGrid.Mandag" />
             </span>
             <span aria-hidden={true} className={bem.element('dayHeader')}>
-                <FormattedMessage id="calendarGrid.Tirsdag" />
+                <AppText id="calendarGrid.Tirsdag" />
             </span>
             <span aria-hidden={true} className={bem.element('dayHeader')}>
-                <FormattedMessage id="calendarGrid.Onsdag" />
+                <AppText id="calendarGrid.Onsdag" />
             </span>
             <span aria-hidden={true} className={bem.element('dayHeader')}>
-                <FormattedMessage id="calendarGrid.Torsdag" />
+                <AppText id="calendarGrid.Torsdag" />
             </span>
             <span aria-hidden={true} className={bem.element('dayHeader')}>
-                <FormattedMessage id="calendarGrid.Fredag" />
+                <AppText id="calendarGrid.Fredag" />
             </span>
             {weeks.map(renderWeek)}
         </div>

@@ -3,7 +3,6 @@ import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
 import { useFormikContext } from 'formik';
-import { FormattedMessage } from 'react-intl';
 import GeneralErrorPage from '../../pages/general-error-page/GeneralErrorPage';
 import { StepCommonProps } from '../../types/StepCommonProps';
 import { StepID } from '../../types/StepID';
@@ -15,6 +14,7 @@ import { useSøknadsdataContext } from '../SøknadsdataContext';
 import ArbeidstidAnsatt from './components/ArbeidstidAnsatt';
 import ArbeidstidFrilans from './components/ArbeidstidFrilans';
 import ArbeidstidSelvstendig from './components/ArbeidstidSelvstendig';
+import { AppText } from '../../i18n';
 
 const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
     const { values } = useFormikContext<SøknadFormValues>();
@@ -38,10 +38,10 @@ const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
             <Block padBottom="m">
                 <SifGuidePanel>
                     <p>
-                        <FormattedMessage id={'arbeidIPeriode.StepInfo.1'} />
+                        <AppText id={'arbeidIPeriode.StepInfo.1'} />
                     </p>
                     <p>
-                        <FormattedMessage id={'arbeidIPeriode.StepInfo.2'} />
+                        <AppText id={'arbeidIPeriode.StepInfo.2'} />
                     </p>
                 </SifGuidePanel>
             </Block>

@@ -1,7 +1,6 @@
-import { IntlShape } from 'react-intl';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { AppIntlShape } from '../../i18n';
 import { SøknadApiData, YesNoSpørsmålOgSvar } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { getAttachmentURLBackend } from '../attachmentUtilsAuthToken';
@@ -19,7 +18,10 @@ const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
     return vedlegg.filter(attachmentIsUploadedAndIsValidFileFormat).map(({ url }) => getAttachmentURLBackend(url));
 };
 
-export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata, intl: IntlShape): SøknadApiData | undefined => {
+export const getApiDataFromSøknadsdata = (
+    søknadsdata: Søknadsdata,
+    { text }: AppIntlShape,
+): SøknadApiData | undefined => {
     const { id, dineBarn, fravaer, arbeidssituasjon, medlemskap, legeerklæring } = søknadsdata;
 
     if (!id || !dineBarn || !medlemskap || !legeerklæring || !arbeidssituasjon) {
@@ -37,13 +39,13 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata, intl: Int
 
     if (frilans.type === 'pågående' || frilans.type === 'sluttetISøknadsperiode') {
         yesOrNoQuestions.push({
-            spørsmål: intlHelper(intl, 'frilanser.erFrilanser.spm'),
+            spørsmål: text('frilanser.erFrilanser.spm'),
             svar: frilans.erFrilanser,
         });
     }
     if (selvstendig.type === 'erSN') {
         yesOrNoQuestions.push({
-            spørsmål: intlHelper(intl, 'selvstendig.erDuSelvstendigNæringsdrivende.spm'),
+            spørsmål: text('selvstendig.erDuSelvstendigNæringsdrivende.spm'),
             svar: selvstendig.erSelvstendigNæringsdrivende,
         });
     }

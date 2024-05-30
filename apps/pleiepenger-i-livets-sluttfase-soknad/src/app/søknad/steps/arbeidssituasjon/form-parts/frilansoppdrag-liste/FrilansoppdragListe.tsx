@@ -1,9 +1,9 @@
 import { BodyLong } from '@navikt/ds-react';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { prettifyDateExtended } from '@navikt/sif-common-utils';
 import { Arbeidsgiver } from '../../../../../types/Arbeidsgiver';
+import { AppText } from '../../../../../i18n';
 
 interface Props {
     frilansoppdrag: Arbeidsgiver[];
@@ -13,19 +13,14 @@ interface Props {
 const renderTidsrom = ({ ansattFom, ansattTom }: Arbeidsgiver) => {
     if (ansattFom && ansattTom) {
         return (
-            <FormattedMessage
+            <AppText
                 id="frilansoppdragListe.tidsrom.avsluttet"
                 values={{ fra: prettifyDateExtended(ansattFom), til: prettifyDateExtended(ansattTom) }}
             />
         );
     }
     if (ansattFom) {
-        return (
-            <FormattedMessage
-                id="frilansoppdragListe.tidsrom.pågående"
-                values={{ fra: prettifyDateExtended(ansattFom) }}
-            />
-        );
+        return <AppText id="frilansoppdragListe.tidsrom.pågående" values={{ fra: prettifyDateExtended(ansattFom) }} />;
     }
     return null;
 };
@@ -43,10 +38,7 @@ const FrilansoppdragListe: React.FC<Props> = ({ frilansoppdrag, kompakt }) =>
                 <li key={oppdrag.id}>
                     <BodyLong size="large">{oppdrag.navn}</BodyLong>
                     <Block padBottom="l">
-                        <FormattedMessage
-                            id="frilansoppdragListe.oppdrag"
-                            values={{ tidsrom: renderTidsrom(oppdrag) }}
-                        />
+                        <AppText id="frilansoppdragListe.oppdrag" values={{ tidsrom: renderTidsrom(oppdrag) }} />
                     </Block>
                 </li>
             ))}

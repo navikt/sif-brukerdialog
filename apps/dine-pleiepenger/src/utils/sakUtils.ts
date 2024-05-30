@@ -19,12 +19,15 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.locale('nb');
 
-const getSisteBehandlingISak = (sak: Sak): Behandling | undefined => {
-    return sortBy(sak.behandlinger, (b) => b.opprettetDato)[0];
+export const getSisteBehandlingISak = (sak: Sak): Behandling | undefined => {
+    return sortBehandlingerNyesteFørst(sak.behandlinger)[0];
 };
 
-export const sortBehandlinger = (behandlinger: Behandling[], doSortSøknader: boolean = true): Behandling[] => {
-    const sortedBehandlinger = sortBy(behandlinger, (b) => b.opprettetDato).reverse();
+export const sortBehandlingerNyesteFørst = (
+    behandlinger: Behandling[],
+    doSortSøknader: boolean = true,
+): Behandling[] => {
+    const sortedBehandlinger = sortBy(behandlinger, (b: Behandling) => b.opprettetTidspunkt).reverse();
     if (doSortSøknader) {
         return sortedBehandlinger.map((b): Behandling => {
             return {
@@ -40,12 +43,13 @@ export const sortSøknader = (søknader: Søknad[]): Søknad[] => {
     return sortBy(søknader, ({ k9FormatSøknad }: Søknad) => k9FormatSøknad.mottattDato.getTime()).reverse();
 };
 
-export const sortSøknadshendelser = (hendelser: Søknadshendelse[]): Søknadshendelse[] => {
-    return sortBy(hendelser, ({ dato }: Søknadshendelse) => dato?.getTime());
-};
-
-export const getBehandlingerISakSorted = (sak: Sak): Behandling[] => {
-    return sortBehandlinger(sak.behandlinger);
+export const sortSøknadshendelse = (h1: Søknadshendelse, h2: Søknadshendelse): number => {
+    if (h1.type === SøknadshendelseType.FORVENTET_SVAR) {
+        return 1;
+    } else if (h2.type === SøknadshendelseType.FORVENTET_SVAR) {
+        return -1;
+    }
+    return (h1.dato?.getTime() || 0) > (h2.dato?.getTime() || 0) ? 1 : -1;
 };
 
 export const getBehandlingsstatusISak = (sak: Sak): BehandlingsstatusISak | undefined => {
@@ -113,9 +117,10 @@ export const getSøknadstyperIBehandling = (søknader: Søknad[]): Array<Søknad
 };
 
 export const getAlleHendelserISak = (sak: Sak): Søknadshendelse[] => {
-    return sortSøknadshendelser(
-        sak.behandlinger.map((b) => getHendelserIBehandling(b, sak.saksbehandlingsFrist)).flat(),
-    );
+    const søknadshendelser: Søknadshendelse[] = sak.behandlinger
+        .map((b) => getHendelserIBehandling(b, sak.saksbehandlingsFrist))
+        .flat();
+    return søknadshendelser.sort(sortSøknadshendelse);
 };
 
 export const getViktigsteVenteårsakForAksjonspunkter = (aksjonspunkter: Aksjonspunkt[]): Venteårsak => {

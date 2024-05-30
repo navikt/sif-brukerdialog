@@ -1,5 +1,4 @@
-import { IntlShape } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { AppIntlShape } from '../../../i18n';
 import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
 
 interface ArbeidsforholdIntlValues extends Record<string, string> {
@@ -8,7 +7,7 @@ interface ArbeidsforholdIntlValues extends Record<string, string> {
 }
 
 export const getArbeidsforholdIntlValues = (
-    intl: IntlShape,
+    { text }: AppIntlShape,
     info: {
         arbeidsforhold:
             | {
@@ -23,18 +22,18 @@ export const getArbeidsforholdIntlValues = (
     const getHvorTekst = () => {
         switch (info.arbeidsforhold.type) {
             case ArbeidsforholdType.ANSATT:
-                return intlHelper(intl, 'arbeidsforhold.arbeidsforholdIntlValues.somAnsatt', {
+                return text('arbeidsforhold.arbeidsforholdIntlValues.somAnsatt', {
                     arbeidsgiverNavn: info.arbeidsforhold.arbeidsgiverNavn || 'som ansatt',
                 });
             case ArbeidsforholdType.FRILANSER:
-                return intlHelper(intl, 'arbeidsforhold.arbeidsforholdIntlValues.somFrilanser');
+                return text('arbeidsforhold.arbeidsforholdIntlValues.somFrilanser');
             case ArbeidsforholdType.SELVSTENDIG:
-                return intlHelper(intl, 'arbeidsforhold.arbeidsforholdIntlValues.somSN');
+                return text('arbeidsforhold.arbeidsforholdIntlValues.somSN');
         }
     };
 
     return {
-        jobber: intlHelper(intl, 'arbeidsforhold.arbeidsforholdIntlValues.jobber'),
+        jobber: text('arbeidsforhold.arbeidsforholdIntlValues.jobber'),
         hvor: getHvorTekst(),
     };
 };

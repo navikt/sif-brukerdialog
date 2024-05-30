@@ -14,9 +14,15 @@ const startSøknad = async (page: Page) => {
     await page.getByRole('button').getByText('Start ettersendelse').click();
 };
 
-const fyllUtBeskrivelseSteg = async (page: Page) => {
-    await expect(page.getByRole('heading', { name: 'Ettersendelse av dokumentasjon', level: 1 })).toBeVisible();
-    await page.getByTestId('beskrivelse').fill('Her er en kommentar');
+const fyllUtBeskrivelseSteg = async (page: Page, legeerklæring: boolean) => {
+    await expect(page.getByRole('heading', { name: 'Hva skal du ettersende?', level: 1 })).toBeVisible();
+    if (legeerklæring) {
+        await page.getByText('Legeerklæring').click();
+        await page.getByText('ALFABETISK FAGGOTT').click();
+    } else {
+        await page.getByText('Annet').click();
+        await page.getByTestId('beskrivelse').fill('Her er en kommentar');
+    }
     await page.getByRole('button').getByText('Neste').click();
 };
 
@@ -49,6 +55,11 @@ const kontrollerKvittering = async (page: Page) => {
     await expect(page.getByRole('heading', { name: 'Vi har mottatt ettersendingen av dokumenter' })).toBeVisible();
 };
 
+const kontrollerKvitteringLegeerklæring = async (page: Page) => {
+    await page.waitForURL('**/dokumenter-sendt');
+    await expect(page.getByRole('heading', { name: 'Vi har mottatt legeerklæring' })).toBeVisible();
+};
+
 export const utfyllingUtils = {
     velgYtelsePleiepenger,
     startSøknad,
@@ -57,4 +68,5 @@ export const utfyllingUtils = {
     kontrollerOppsummering,
     sendInnDokumenter,
     kontrollerKvittering,
+    kontrollerKvitteringLegeerklæring,
 };

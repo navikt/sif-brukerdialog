@@ -1,16 +1,16 @@
-import * as React from 'react';
-import { ApiAktivitet, ArbeidsgiverDetaljer, Utbetalingsperiode } from '../../../types/søknadApiData/SøknadApiData';
-import {
-    ISODateToDate,
-    Time,
-    isValidTime,
-    iso8601DurationToTime,
-    prettifyDateExtended,
-} from '@navikt/sif-common-utils';
 import { Alert, Heading, Panel } from '@navikt/ds-react';
-import { FormattedMessage } from 'react-intl';
-import { utbetalingsperiodeDagToDagSummaryStringView } from '../../../søknad/steps/oppsummering/components/UtbetalingsperioderSummaryView';
+import * as React from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import {
+    iso8601DurationToTime,
+    ISODateToDate,
+    isValidTime,
+    prettifyDateExtended,
+    Time,
+} from '@navikt/sif-common-utils';
+import { AppText } from '../../../i18n';
+import { utbetalingsperiodeDagToDagSummaryStringView } from '../../../søknad/steps/oppsummering/components/UtbetalingsperioderSummaryView';
+import { ApiAktivitet, ArbeidsgiverDetaljer, Utbetalingsperiode } from '../../../types/søknadApiData/SøknadApiData';
 
 interface Props {
     arbeidsgiverDetaljer: ArbeidsgiverDetaljer;
@@ -39,12 +39,12 @@ const TilArbeidsgiverDokument: React.FC<Props> = ({ arbeidsgiverDetaljer, søker
                 </Heading>
 
                 <p>
-                    <FormattedMessage id="page.conformation.tilArbeidsgiverDokument.tittel" />
+                    <AppText id="page.conformation.tilArbeidsgiverDokument.tittel" />
                 </p>
 
                 <p>
                     <b>
-                        <FormattedMessage
+                        <AppText
                             id="page.conformation.tilArbeidsgiverDokument.1"
                             values={{
                                 søkersNavn: søkersNavn,
@@ -55,7 +55,7 @@ const TilArbeidsgiverDokument: React.FC<Props> = ({ arbeidsgiverDetaljer, søker
                 </p>
                 <p>
                     <b>
-                        <FormattedMessage
+                        <AppText
                             id="page.conformation.tilArbeidsgiverDokument.2"
                             values={{
                                 søkersNavn: søkersNavn,
@@ -92,11 +92,11 @@ const TilArbeidsgiverDokument: React.FC<Props> = ({ arbeidsgiverDetaljer, søker
 
                 <Panel border={true} className={'luftOver'}>
                     <Alert variant="warning" inline={true}>
-                        <FormattedMessage id="page.conformation.tilArbeidsgiverDokument.alert.1" />
+                        <AppText id="page.conformation.tilArbeidsgiverDokument.alert.1" />
 
                         <Block padBottom={'l'}>
                             <b>
-                                <FormattedMessage
+                                <AppText
                                     id="page.conformation.tilArbeidsgiverDokument.alert.2"
                                     values={{
                                         søknadNavn: søknadNavn,
@@ -105,24 +105,24 @@ const TilArbeidsgiverDokument: React.FC<Props> = ({ arbeidsgiverDetaljer, søker
                             </b>
                         </Block>
                         <Block>
-                            <FormattedMessage id="page.conformation.tilArbeidsgiverDokument.alert.3" />
+                            <AppText id="page.conformation.tilArbeidsgiverDokument.alert.3" />
                         </Block>
                     </Alert>
                 </Panel>
 
                 <div>
                     <h3>
-                        <FormattedMessage id="page.conformation.tilArbeidsgiverDokument.info.tittel" />
+                        <AppText id="page.conformation.tilArbeidsgiverDokument.info.tittel" />
                     </h3>
 
                     <p>
-                        <FormattedMessage id="page.conformation.tilArbeidsgiverDokument.info.1" />
+                        <AppText id="page.conformation.tilArbeidsgiverDokument.info.1" />
                     </p>
                     <p>
-                        <FormattedMessage id="page.conformation.tilArbeidsgiverDokument.info.2" />
+                        <AppText id="page.conformation.tilArbeidsgiverDokument.info.2" />
                     </p>
                     <p>
-                        <FormattedMessage id="page.conformation.tilArbeidsgiverDokument.info.3" />{' '}
+                        <AppText id="page.conformation.tilArbeidsgiverDokument.info.3" />{' '}
                         <a
                             className="lenke"
                             target="_blank"
@@ -130,7 +130,7 @@ const TilArbeidsgiverDokument: React.FC<Props> = ({ arbeidsgiverDetaljer, søker
                             href={
                                 'https://www.nav.no/no/bedrift/tjenester-og-skjemaer/nav-og-altinn-tjenester/inntektsmelding'
                             }>
-                            <FormattedMessage id="page.conformation.tilArbeidsgiverDokument.info.4.lenkeTekst" />
+                            <AppText id="page.conformation.tilArbeidsgiverDokument.info.4.lenkeTekst" />
                         </a>
                     </p>
                 </div>

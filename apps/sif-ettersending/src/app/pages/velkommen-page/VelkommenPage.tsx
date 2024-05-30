@@ -1,10 +1,8 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
-import { SamtykkeForm } from '@navikt/sif-common-soknad-ds';
+import { SamtykkeForm, SoknadHeader } from '@navikt/sif-common-soknad-ds';
+import { useAppIntl } from '../../i18n';
 import { useSoknadContext } from '../../soknad/SoknadContext';
 import { Søknadstype } from '../../types/Søknadstype';
 import OmSøknaden from './OmSøknaden';
@@ -15,7 +13,7 @@ interface Props {
 }
 
 const VelkommenPage: React.FC<Props> = ({ søknadstype }) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     const { startSoknad } = useSoknadContext();
 
     useLogSidevisning(SIFCommonPageKey.velkommen);
@@ -23,17 +21,15 @@ const VelkommenPage: React.FC<Props> = ({ søknadstype }) => {
     return (
         <>
             <Page
-                title={intlHelper(intl, `application.title.${søknadstype}`)}
-                topContentRenderer={() => (
-                    <SoknadHeader title={intlHelper(intl, `application.title.${søknadstype}`)} level="2" />
-                )}>
+                title={text(`application.title.${søknadstype}`)}
+                topContentRenderer={() => <SoknadHeader title={text(`application.title.${søknadstype}`)} level="2" />}>
                 <VelkommenGuide />
 
                 <OmSøknaden />
 
                 <SamtykkeForm
                     onValidSubmit={startSoknad}
-                    submitButtonLabel={intlHelper(intl, 'ettersendelse.samtykkeForm.submitButtonLabel')}
+                    submitButtonLabel={text('ettersendelse.samtykkeForm.submitButtonLabel')}
                 />
             </Page>
         </>

@@ -3,7 +3,12 @@ import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { StepID } from '../soknad/soknadStepsConfig';
 import { SoknadFormData } from '../types/SoknadFormData';
 import { Søknadstype } from '../types/Søknadstype';
-import { beskrivelseStepIsValid, documentsStepIsValid, welcomingPageIsValid } from '../validation/stepValidations';
+import {
+    beskrivelsePPStepIsValid,
+    beskrivelseStepIsValid,
+    documentsStepIsValid,
+    welcomingPageIsValid,
+} from '../validation/stepValidations';
 
 export interface StepConfigItemTexts {
     pageTitle: string;
@@ -38,9 +43,15 @@ export const beskrivelseStepIsAvailable = (formData: SoknadFormData) => welcomin
 
 export const omsTypeStepIsAvailable = (formData: SoknadFormData) => welcomingPageIsValid(formData);
 
-export const documentsStepIsAvailable = (formData: SoknadFormData, søknadstype: Søknadstype) =>
-    søknadstype === Søknadstype.pleiepengerSyktBarn || søknadstype === Søknadstype.pleiepengerLivetsSluttfase
-        ? beskrivelseStepIsValid(formData)
-        : welcomingPageIsValid(formData);
+export const documentsStepIsAvailable = (formData: SoknadFormData, søknadstype: Søknadstype) => {
+    switch (søknadstype) {
+        case Søknadstype.pleiepengerSyktBarn:
+            return beskrivelsePPStepIsValid(formData);
+        case Søknadstype.pleiepengerLivetsSluttfase:
+            return beskrivelseStepIsValid(formData);
+        default:
+            return welcomingPageIsValid(formData);
+    }
+};
 
 export const summaryStepAvailable = (formData: SoknadFormData) => documentsStepIsValid(formData);

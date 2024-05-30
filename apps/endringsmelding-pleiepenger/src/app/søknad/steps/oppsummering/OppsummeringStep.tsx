@@ -1,28 +1,27 @@
+import { Alert, Button, ErrorSummary, Heading } from '@navikt/ds-react';
+import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
+import { useEffect, useRef } from 'react';
 import { useSendSøknad, useSøknadContext, useSøknadsdataStatus } from '@hooks';
 import { Back } from '@navikt/ds-icons';
-import { Alert, Button, ErrorSummary, Heading } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { DurationText } from '@navikt/sif-common-ui';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { JaNeiSvar } from '@navikt/sif-common-ui';
 import { usePrevious } from '@navikt/sif-common-hooks';
-import { SummaryBlock, SummarySection } from '@navikt/sif-common-ui';
+import { DurationText, JaNeiSvar, SummaryBlock, SummarySection } from '@navikt/sif-common-ui';
 import { ISODurationToDuration } from '@navikt/sif-common-utils';
 import { getApiDataFromSøknadsdata } from '@utils';
-import { useEffect, useRef } from 'react';
-import { useIntl } from 'react-intl';
 import IkkeAnsattMelding from '../../../components/ikke-ansatt-melding/IkkeAnsattMelding';
 import { useStepConfig } from '../../../hooks/useStepConfig';
-import SøknadStep from '../../SøknadStep';
 import { StepId } from '../../config/StepId';
+import SøknadStep from '../../SøknadStep';
 import ArbeidstidOppsummering from './ArbeidstidOppsummering';
 import LovbestemtFerieOppsummering from './LovbestemtFerieOppsummering';
-import './oppsummering.css';
 import { getOppsummeringStepInitialValues, oppsummeringStepUtils } from './oppsummeringStepUtils';
+import './oppsummering.css';
+import { AppText, useAppIntl } from '../../../i18n';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -39,7 +38,7 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 
 const OppsummeringStep = () => {
     const stepId = StepId.OPPSUMMERING;
-    const intl = useIntl();
+    const { text, intl } = useAppIntl();
     const {
         state: { søknadsdata, sak, arbeidsgivere, valgteEndringer },
     } = useSøknadContext();
@@ -78,14 +77,13 @@ const OppsummeringStep = () => {
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>
             <SifGuidePanel>
                 <p>
-                    Nedenfor ser du endringene som du har lagt inn. Se over at alt stemmer før du sender inn. Hvis noe
-                    ikke stemmer, kan du gå tilbake og endre igjen.
+                    <AppText id="oppsummeringStep.guide" />
                 </p>
             </SifGuidePanel>
 
             {sak.harArbeidsgivereIkkeISak && ukjenteArbeidsforhold && (
                 <Block margin="xxl">
-                    <SummarySection header="Nytt arbeidsforhold">
+                    <SummarySection header={text('oppsummeringStep.nyttArbeidsforhold.tittel')}>
                         {sak.arbeidsgivereIkkeISak.map((arbeidsgiver) => {
                             const arbeidsforhold = ukjenteArbeidsforhold.find(
                                 (a) => a.organisasjonsnummer === arbeidsgiver.organisasjonsnummer,
@@ -102,7 +100,9 @@ const OppsummeringStep = () => {
                                     </Heading>
                                     <SummaryBlock
                                         level="4"
-                                        header={`Stemmer det at du er ansatt hos ${arbeidsgiver.navn} i perioden du har søkt pleiepenger?`}>
+                                        header={text('oppsummeringStep.arbeidsgiver.erAnsatt', {
+                                            arbeidsgivernavn: arbeidsgiver.navn,
+                                        })}>
                                         <div data-testid={getTestKey('erAnsatt')}>
                                             <JaNeiSvar harSvartJa={arbeidsforhold.erAnsatt} />
                                         </div>
@@ -116,7 +116,9 @@ const OppsummeringStep = () => {
                                         <>
                                             <SummaryBlock
                                                 level="4"
-                                                header={`Hvor mange timer jobber du normalt per uke hos ${arbeidsgiver.navn}?`}>
+                                                header={text('oppsummeringStep.arbeidsgiver.normalarbeidstid', {
+                                                    arbeidsgivernavn: arbeidsgiver.navn,
+                                                })}>
                                                 <div data-testid={getTestKey('timerPerUke')}>
                                                     <DurationText
                                                         duration={ISODurationToDuration(
@@ -136,7 +138,7 @@ const OppsummeringStep = () => {
 
             {(valgteEndringer.arbeidstid || (arbeidstid && arbeidstidErEndret)) && (
                 <Block margin="xxl">
-                    <SummarySection header="Arbeidstid">
+                    <SummarySection header={text('oppsummeringStep.arbeidstid.tittel')}>
                         {arbeidstid && arbeidstidErEndret ? (
                             <>
                                 <ArbeidstidOppsummering
@@ -146,15 +148,16 @@ const OppsummeringStep = () => {
                                 {!harGyldigArbeidstid && (
                                     <Block margin="none" padBottom="l">
                                         <Alert variant="error">
-                                            Det er registrert flere timer enn det er tilgjengelig for en periode.
-                                            Vennligst gå tilbake til steget for arbeidstid og korriger dette.
+                                            <AppText id="oppsummeringStep.arbeidstid.flereTimerEnnTilgjengelig" />
                                         </Alert>
                                     </Block>
                                 )}
                             </>
                         ) : (
                             <Block padBottom="l">
-                                <Alert variant="info">Det er ikke registrert noen endringer i arbeidstid</Alert>
+                                <Alert variant="info">
+                                    <AppText id="oppsummeringStep.arbeidstid.ingenEndringer" />
+                                </Alert>
                             </Block>
                         )}
                     </SummarySection>
@@ -162,12 +165,14 @@ const OppsummeringStep = () => {
             )}
             {valgteEndringer.lovbestemtFerie && (
                 <Block margin="xxl" padBottom="m">
-                    <SummarySection header="Endringer i ferie">
+                    <SummarySection header={text('oppsummeringStep.ferie.tittel')}>
                         {lovbestemtFerie !== undefined && lovbestemtFerieErEndret ? (
                             <LovbestemtFerieOppsummering lovbestemtFerie={lovbestemtFerie} />
                         ) : (
                             <Block padBottom="l">
-                                <Alert variant="info">Det er ikke registrert noen endringer i ferie</Alert>
+                                <Alert variant="info">
+                                    <AppText id="oppsummeringStep.ferie.ingenEndringer" />
+                                </Alert>
                             </Block>
                         )}
                     </SummarySection>
@@ -175,8 +180,12 @@ const OppsummeringStep = () => {
             )}
             {harIngenEndringer ? (
                 <FormBlock margin="l">
-                    <Button type="button" variant="secondary" onClick={goBack} icon={<Back aria-label="Pil venstre" />}>
-                        Forrige
+                    <Button
+                        type="button"
+                        variant="secondary"
+                        onClick={goBack}
+                        icon={<Back aria-label={text('oppsummeringStep.forrige.ariaLabel')} />}>
+                        <AppText id="oppsummeringStep.forrige" />
                     </Button>
                 </FormBlock>
             ) : (
@@ -201,13 +210,13 @@ const OppsummeringStep = () => {
                                             isSubmitting || hasInvalidSteps || harIngenEndringer || !harGyldigArbeidstid
                                         }
                                         includeValidationSummary={true}
-                                        submitButtonLabel="Send melding om endring"
+                                        submitButtonLabel={text('oppsummeringStep.submit.label')}
                                         submitPending={isSubmitting}
                                         backButtonDisabled={isSubmitting}
                                         onBack={goBack}>
                                         <ConfirmationCheckbox
                                             disabled={isSubmitting || harIngenEndringer || !harGyldigArbeidstid}
-                                            label="Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til pleiepenger."
+                                            label={text('oppsummeringStep.bekrefter.tekst')}
                                             validate={getCheckedValidator()}
                                             data-testid="bekreft-opplysninger"
                                             name={OppsummeringFormFields.harBekreftetOpplysninger}
@@ -216,7 +225,7 @@ const OppsummeringStep = () => {
                                     {sendSøknadError && (
                                         <FormBlock>
                                             <ErrorSummary ref={sendSøknadErrorSummary}>
-                                                {sendSøknadError.message}
+                                                <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
                                             </ErrorSummary>
                                         </FormBlock>
                                     )}

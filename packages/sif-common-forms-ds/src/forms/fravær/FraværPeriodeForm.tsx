@@ -1,7 +1,6 @@
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { DateRange, dateToday } from '@navikt/sif-common-utils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import {
     getDateRangeValidator,
@@ -23,6 +22,7 @@ import {
 } from './fraværValidationUtils';
 import { FraværPeriode, FraværPeriodeFormValues } from './types';
 import { Alert } from '@navikt/ds-react';
+import { useFraværIntl } from './fraværMessages';
 
 export interface FraværPeriodeFormLabels {
     tittel: string;
@@ -54,31 +54,33 @@ enum FraværPeriodeFormFields {
 
 export const FraværPeriodeFormErrors = {
     [FraværPeriodeFormFields.fraOgMed]: {
-        [ValidateDateError.dateHasNoValue]: 'fraværPeriodeForm.fraOgMed.dateHasNoValue',
-        [ValidateDateError.dateIsAfterMax]: 'fraværPeriodeForm.fraOgMed.dateIsAfterMax',
-        [ValidateDateError.dateIsBeforeMin]: 'fraværPeriodeForm.fraOgMed.dateIsBeforeMin',
-        [ValidateDateError.dateHasInvalidFormat]: 'fraværPeriodeForm.fraOgMed.dateHasInvalidFormat',
-        [ValidateDateRangeError.fromDateIsAfterToDate]: 'fraværPeriodeForm.fraOgMed.fromDateIsAfterToDate',
-        [FraværFieldValidationErrors.er_helg]: 'fraværPeriodeForm.fraOgMed.er_helg',
-        [FraværFieldValidationErrors.fra_og_til_er_ulike_år]: 'fraværPeriodeForm.fraOgMed.fra_og_til_er_ulike_år',
+        [ValidateDateError.dateHasNoValue]: '@forms.fraværPeriodeForm.fraOgMed.dateHasNoValue',
+        [ValidateDateError.dateIsAfterMax]: '@forms.fraværPeriodeForm.fraOgMed.dateIsAfterMax',
+        [ValidateDateError.dateIsBeforeMin]: '@forms.fraværPeriodeForm.fraOgMed.dateIsBeforeMin',
+        [ValidateDateError.dateHasInvalidFormat]: '@forms.fraværPeriodeForm.fraOgMed.dateHasInvalidFormat',
+        [ValidateDateRangeError.fromDateIsAfterToDate]: '@forms.fraværPeriodeForm.fraOgMed.fromDateIsAfterToDate',
+        [FraværFieldValidationErrors.er_helg]: '@forms.fraværPeriodeForm.fraOgMed.er_helg',
+        [FraværFieldValidationErrors.fra_og_til_er_ulike_år]:
+            '@forms.fraværPeriodeForm.fraOgMed.fra_og_til_er_ulike_år',
         [FraværFieldValidationErrors.fra_dato_kolliderer_med_annet_fravær]:
-            'fraværPeriodeForm.fraOgMed.fra_dato_kolliderer_med_annet_fravær',
+            '@forms.fraværPeriodeForm.fraOgMed.fra_dato_kolliderer_med_annet_fravær',
     },
     [FraværPeriodeFormFields.tilOgMed]: {
-        [ValidateDateError.dateHasNoValue]: 'fraværPeriodeForm.tilOgMed.dateHasNoValue',
-        [ValidateDateError.dateIsAfterMax]: 'fraværPeriodeForm.tilOgMed.dateIsAfterMax',
-        [ValidateDateError.dateIsBeforeMin]: 'fraværPeriodeForm.tilOgMed.dateIsBeforeMin',
-        [ValidateDateError.dateHasInvalidFormat]: 'fraværPeriodeForm.tilOgMed.dateHasInvalidFormat',
-        [ValidateDateRangeError.toDateIsBeforeFromDate]: 'fraværPeriodeForm.tilOgMed.toDateIsBeforeFromDate',
-        [FraværFieldValidationErrors.er_helg]: 'fraværPeriodeForm.tilOgMed.er_helg',
-        [FraværFieldValidationErrors.fra_og_til_er_ulike_år]: 'fraværPeriodeForm.tilOgMed.fra_og_til_er_ulike_år',
+        [ValidateDateError.dateHasNoValue]: '@forms.fraværPeriodeForm.tilOgMed.dateHasNoValue',
+        [ValidateDateError.dateIsAfterMax]: '@forms.fraværPeriodeForm.tilOgMed.dateIsAfterMax',
+        [ValidateDateError.dateIsBeforeMin]: '@forms.fraværPeriodeForm.tilOgMed.dateIsBeforeMin',
+        [ValidateDateError.dateHasInvalidFormat]: '@forms.fraværPeriodeForm.tilOgMed.dateHasInvalidFormat',
+        [ValidateDateRangeError.toDateIsBeforeFromDate]: '@forms.fraværPeriodeForm.tilOgMed.toDateIsBeforeFromDate',
+        [FraværFieldValidationErrors.er_helg]: '@forms.fraværPeriodeForm.tilOgMed.er_helg',
+        [FraværFieldValidationErrors.fra_og_til_er_ulike_år]:
+            '@forms.fraværPeriodeForm.tilOgMed.fra_og_til_er_ulike_år',
         [FraværFieldValidationErrors.til_dato_kolliderer_med_annet_fravær]:
-            'fraværPeriodeForm.tilOgMed.til_dato_kolliderer_med_annet_fravær',
+            '@forms.fraværPeriodeForm.tilOgMed.til_dato_kolliderer_med_annet_fravær',
     },
 
     ['fraOgMed_tilOgMed']: {
         [FraværFieldValidationErrors.dager_overlapper_med_andre_dager]:
-            'fraværPeriodeForm.periode.dager_overlapper_med_andre_dager',
+            '@forms.fraværPeriodeForm.periode.dager_overlapper_med_andre_dager',
     },
 };
 
@@ -100,6 +102,7 @@ const FraværPeriodeForm = ({
     onCancel,
 }: Props) => {
     const intl = useIntl();
+    const { text } = useFraværIntl();
 
     const onFormikSubmit = (formValues: FraværPeriodeFormValues) => {
         const fraværPeriodeToSubmit = mapFormValuesToFraværPeriode(formValues, fraværPeriode.id);
@@ -111,12 +114,12 @@ const FraværPeriodeForm = ({
     };
 
     const formLabels: FraværPeriodeFormLabels = {
-        ok: intlHelper(intl, 'fravær.form.felles.ok'),
-        avbryt: intlHelper(intl, 'fravær.form.felles.avbryt'),
-        tittel: intlHelper(intl, 'fravær.form.periode.tittel'),
-        tidsrom: intlHelper(intl, 'fravær.form.periode.tidsrom'),
-        fom: intlHelper(intl, 'fravær.form.periode.fom'),
-        tom: intlHelper(intl, 'fravær.form.periode.tom'),
+        ok: text('@forms.fravær.form.felles.ok'),
+        avbryt: text('@forms.fravær.form.felles.avbryt'),
+        tittel: text('@forms.fravær.form.periode.tittel'),
+        tidsrom: text('@forms.fravær.form.periode.tidsrom'),
+        fom: text('@forms.fravær.form.periode.fom'),
+        tom: text('@forms.fravær.form.periode.tom'),
     };
 
     const disabledDateRanges = dateRangesToDisable
@@ -142,7 +145,7 @@ const FraværPeriodeForm = ({
                 return (
                     <Form.Form
                         onCancel={onCancel}
-                        formErrorHandler={getFormErrorHandler(intl, 'fraværPeriodeForm')}
+                        formErrorHandler={getFormErrorHandler(intl, '@forms.fraværPeriodeForm')}
                         submitButtonLabel="Ok"
                         showButtonArrows={false}>
                         {headerContent && <Block margin="l">{headerContent}</Block>}
@@ -159,7 +162,7 @@ const FraværPeriodeForm = ({
                                 }
                             }}
                             minDate={minDate}
-                            maxDate={toDate || maxDate}
+                            maxDate={maxDate}
                             disableWeekends={helgedagerIkkeTillat || false}
                             disabledDateRanges={disabledDateRanges}
                             fromInputProps={{

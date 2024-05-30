@@ -30,5 +30,5 @@ module.exports = {
             version: 'detect',
         },
     },
-    ignorePatterns: ['node_modules', 'dist', 'lib', '.turbo'],
+    ignorePatterns: ['node_modules', 'dist', 'lib', '.turbo', '!.storybook'],
 };

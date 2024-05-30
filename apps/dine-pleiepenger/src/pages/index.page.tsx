@@ -5,15 +5,15 @@ import { withAuthenticatedPage } from '../auth/withAuthentication';
 import DineInnsendteSøknader from '../components/dine-innsendte-søknader/DineInnsendteSøknader';
 import HvaSkjer from '../components/hva-skjer/HvaSkjer';
 import DefaultPageLayout from '../components/page-layout/default-page-layout/DefaultPageLayout';
-import Snarveier from '../components/snarveier/Snarveier';
 import Saksbehandlingstid from '../components/saksbehandlingstid/Saksbehandlingstid';
+import Snarveier from '../components/snarveier/Snarveier';
+import VelgSakPage from '../components/velg-sak-page/VelgSakPage';
 import { useInnsynsdataContext } from '../hooks/useInnsynsdataContext';
 import { useLogBrukerprofil } from '../hooks/useLogBrukerprofil';
-import { useMessages } from '../i18n';
+import { useAppIntl } from '../i18n';
 import { PleietrengendeMedSak } from '../server/api-models/PleietrengendeMedSakSchema';
 import { InnsendtSøknad, InnsendtSøknadstype } from '../types/Søknad';
 import SakPage from './sak/SakPage';
-import VelgSakPage from '../components/velg-sak-page/VelgSakPage';
 
 const harSendtInnSøknadEllerEndringsmelding = (søknader: InnsendtSøknad[]): boolean => {
     return søknader.some(
@@ -32,12 +32,12 @@ const getSaksbehandlingsfrist = (søknader: InnsendtSøknad[], saker: Pleietreng
 
 function DinePleiepengerPage(): ReactElement {
     const {
-        innsynsdata: { innsendteSøknader, saker, saksbehandlingstidUker },
+        innsynsdata: { innsendteSøknader, saker, saksbehandlingstidUker, brukerprofil },
     } = useInnsynsdataContext();
 
-    useLogBrukerprofil(innsendteSøknader, saker, saksbehandlingstidUker);
+    useLogBrukerprofil(brukerprofil);
 
-    const { text } = useMessages();
+    const { text } = useAppIntl();
 
     if (saker.length === 1) {
         return (
@@ -59,10 +59,7 @@ function DinePleiepengerPage(): ReactElement {
             <Head>
                 <title>{text('forside.dokumentTittel')}</title>
             </Head>
-            <VStack gap="12">
-                <Box>
-                    <Snarveier />
-                </Box>
+            <VStack gap="8">
                 <Box className="md:flex md:gap-6">
                     <div className="md:grow mb-10 md:mb-0">
                         <DineInnsendteSøknader søknader={innsendteSøknader} />
@@ -75,6 +72,9 @@ function DinePleiepengerPage(): ReactElement {
                     </div>
                 </Box>
                 <Box>
+                    <Snarveier title="Trenger du å oppdatere saken din?" />
+                </Box>
+                <Box className="mt-4">
                     <HvaSkjer />
                 </Box>
             </VStack>

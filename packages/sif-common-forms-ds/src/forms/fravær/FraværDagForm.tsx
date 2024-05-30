@@ -1,7 +1,6 @@
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
 import { FormikDatepickerProps } from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/FormikDatepicker';
@@ -24,6 +23,7 @@ import {
     validateNotHelgedag,
 } from './fraværValidationUtils';
 import { FraværDag, FraværDagFormValues } from './types';
+import { useFraværIntl } from './fraværMessages';
 
 export interface FraværDagFormLabels {
     tittel: string;
@@ -55,21 +55,21 @@ export enum FraværDagFormFields {
 
 export const FraværDagFormErrors = {
     [FraværDagFormFields.dato]: {
-        [ValidateDateError.dateHasNoValue]: 'fraværDagForm.dato.dateHasNoValue',
-        [ValidateDateError.dateHasInvalidFormat]: 'fraværDagForm.dato.dateHasInvalidFormat',
-        [ValidateDateError.dateIsAfterMax]: 'fraværDagForm.dato.dateIsAfterMax',
-        [ValidateDateError.dateIsBeforeMin]: 'fraværDagForm.dato.dateIsBeforeMin',
-        [FraværFieldValidationErrors.er_helg]: 'fraværDagForm.dato.er_helg',
+        [ValidateDateError.dateHasNoValue]: '@forms.fraværDagForm.dato.dateHasNoValue',
+        [ValidateDateError.dateHasInvalidFormat]: '@forms.fraværDagForm.dato.dateHasInvalidFormat',
+        [ValidateDateError.dateIsAfterMax]: '@forms.fraværDagForm.dato.dateIsAfterMax',
+        [ValidateDateError.dateIsBeforeMin]: '@forms.fraværDagForm.dato.dateIsBeforeMin',
+        [FraværFieldValidationErrors.er_helg]: '@forms.fraværDagForm.dato.er_helg',
         [FraværFieldValidationErrors.dato_kolliderer_med_annet_fravær]:
-            'fraværDagForm.dato.dato_kolliderer_med_annet_fravær',
+            '@forms.fraværDagForm.dato.dato_kolliderer_med_annet_fravær',
     },
     [FraværDagFormFields.timerArbeidsdag]: {
-        [ValidateNumberError.numberHasNoValue]: 'fraværDagForm.timerArbeidsdag.numberHasNoValue',
+        [ValidateNumberError.numberHasNoValue]: '@forms.fraværDagForm.timerArbeidsdag.numberHasNoValue',
     },
     [FraværDagFormFields.timerFravær]: {
-        [ValidateNumberError.numberHasNoValue]: 'fraværDagForm.timerFravær.numberHasNoValue',
+        [ValidateNumberError.numberHasNoValue]: '@forms.fraværDagForm.timerFravær.numberHasNoValue',
         [FraværFieldValidationErrors.fravær_timer_mer_enn_arbeidstimer]:
-            'fraværDagForm.timerFravær.fravær_timer_mer_enn_arbeidstimer',
+            '@forms.fraværDagForm.timerFravær.fravær_timer_mer_enn_arbeidstimer',
     },
 };
 
@@ -94,22 +94,23 @@ const FraværDagFormView = ({
     onCancel,
 }: Props) => {
     const intl = useIntl();
+    const { text } = useFraværIntl();
     const onFormikSubmit = (formValues: FraværDagFormValues) => {
         const fraværDagToSubmit = mapFormValuesToFraværDag(formValues, fraværDag.id);
         if (isFraværDag(fraværDagToSubmit)) {
             onSubmit(fraværDagToSubmit);
         } else {
-            throw new Error('FraværDagFOrm: Formvalues is not a valid FraværDag on submit.');
+            throw new Error('FraværDagForm: Formvalues is not a valid FraværDag on submit.');
         }
     };
 
     const formLabels: FraværDagFormLabels = {
-        ok: intlHelper(intl, 'fravær.form.felles.ok'),
-        avbryt: intlHelper(intl, 'fravær.form.felles.avbryt'),
-        tittel: intlHelper(intl, 'fravær.form.dag.tittel'),
-        dato: intlHelper(intl, 'fravær.form.dag.dato'),
-        antallArbeidstimer: intlHelper(intl, 'fravær.form.dag.antallArbeidstimer'),
-        timerFravær: intlHelper(intl, 'fravær.form.dag.timerFravær'),
+        ok: text('@forms.fravær.form.felles.ok'),
+        avbryt: text('@forms.fravær.form.felles.avbryt'),
+        tittel: text('@forms.fravær.form.dag.tittel'),
+        dato: text('@forms.fravær.form.dag.dato'),
+        antallArbeidstimer: text('@forms.fravær.form.dag.antallArbeidstimer'),
+        timerFravær: text('@forms.fravær.form.dag.timerFravær'),
     };
 
     const disabledDateRanges = dateRangesToDisable
@@ -162,7 +163,7 @@ const FraværDagFormView = ({
                             submitButtonLabel="Ok"
                             showButtonArrows={false}
                             onCancel={onCancel}
-                            formErrorHandler={getFormErrorHandler(intl, 'fraværDagForm')}>
+                            formErrorHandler={getFormErrorHandler(intl, '@forms.fraværDagForm')}>
                             {headerContent && <Block>{headerContent}</Block>}
 
                             <FraværDagForm.DatePicker {...datepickerProps} description={dagDescription} />

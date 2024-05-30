@@ -2,18 +2,18 @@ import { Panel, Tabs, VStack } from '@navikt/ds-react';
 /* eslint-disable no-console */
 import { useState } from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import MessagesPreview from '../../../../storybook/components/messages-preview/MessagesPreview';
-import { date4YearsAgo, dateToday } from '@navikt/sif-common-utils';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { date4YearsAgo, dateToday } from '@navikt/sif-common-utils';
 import { flatten } from 'flat';
+import MessagesPreview from '../../../../storybook/components/messages-preview/MessagesPreview';
+import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
+import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
 import AnnetBarnForm, { AnnetBarnFormErrors } from '../AnnetBarnForm';
 import AnnetBarnListAndDialog from '../AnnetBarnListAndDialog';
 import { annetBarnMessages, useAnnetBarnIntl } from '../annetBarnMessages';
 import { AnnetBarn } from '../types';
-import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
-import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
 
 enum FormField {
     'annetBarn' = 'annetBarn',

@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { HttpStatusCode } from 'axios';
+import dayjs from 'dayjs';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import {
     fetchMellomlagringer,
@@ -13,7 +14,6 @@ import { getBrukerprofil } from '../../utils/amplitude/getBrukerprofil';
 import { Feature } from '../../utils/features';
 import { sortInnsendtSøknadEtterOpprettetDato } from '../../utils/innsendtSøknadUtils';
 import { fetchAppStatus } from './appStatus.api';
-import dayjs from 'dayjs';
 import { getLogger } from '../../utils/getLogCorrelationID';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -50,6 +50,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         logger.info(`Parser innsynsdata`);
 
         const saker = sakerReq.status === 'fulfilled' ? sakerReq.value : [];
+        const harSak = saker.length > 0;
 
         const innsendteSøknader =
             søknaderReq.status === 'fulfilled' ? søknaderReq.value.sort(sortInnsendtSøknadEtterOpprettetDato) : [];
@@ -77,11 +78,12 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         const innsynsdata: Innsynsdata = {
             appStatus: appStatus.status === 'fulfilled' ? appStatus.value : undefined,
             søker,
-            innsendteSøknader,
+            innsendteSøknader: harSak ? [] : innsendteSøknader,
+            brukerprofil,
             mellomlagring: mellomlagringReq.status === 'fulfilled' ? mellomlagringReq.value : {},
             saksbehandlingstidUker,
             saker,
-            harSak: saker.length > 0,
+            harSak,
         };
         res.json(innsynsdata);
     } catch (err) {

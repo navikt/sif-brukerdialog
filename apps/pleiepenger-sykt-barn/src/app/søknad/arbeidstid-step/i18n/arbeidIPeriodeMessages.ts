@@ -1,6 +1,4 @@
-import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
-
-const arbeidIPeriodeValideringMessages: MessageFileFormat = {
+const arbeidIPeriodeValideringMessages = {
     nb: {
         'arbeidIPeriode.validation.arbeiderIPerioden.noValue':
             'Du må svare på hvilken situasjon som gjelder for deg {hvor} i søknadsperioden.',
@@ -36,7 +34,7 @@ const arbeidIPeriodeValideringMessages: MessageFileFormat = {
     },
 };
 
-const arbeidIPeriodeSpørsmål: MessageFileFormat = {
+const arbeidIPeriodeSpørsmål = {
     nb: {
         'arbeidIPeriode.spørsmål.ANSATT.arbeiderIPerioden':
             'Hvilken situasjon gjelder for deg {hvor} i søknadsperioden?',
@@ -72,7 +70,7 @@ const arbeidIPeriodeSpørsmål: MessageFileFormat = {
     },
 };
 
-export const arbeidIPeriodeSvarAlternativer: MessageFileFormat = {
+const arbeidIPeriodeSvarAlternativer = {
     nb: {
         'arbeidIPeriode.erLiktHverUke.ja': 'Ja',
         'arbeidIPeriode.erLiktHverUke.nei': 'Nei, det varierer',
@@ -85,18 +83,25 @@ export const arbeidIPeriodeSvarAlternativer: MessageFileFormat = {
     },
 };
 
-export const arbeidIPeriodeMessages: MessageFileFormat = {
-    nb: {
-        ...arbeidIPeriodeSpørsmål.nb,
-        ...arbeidIPeriodeValideringMessages.nb,
-        ...arbeidIPeriodeSvarAlternativer.nb,
-        'arbeidIPeriode.arbeiderIPerioden.description':
-            'Husk at du også skal ta med eventuell jobb som du mottar honorar for.',
-        'arbeidIPeriode.uke.ukenummer': 'Uke {ukenummer}',
-        'arbeidIPeriode.uke.ukedatoer': '{ukedatoer}',
-        'arbeidstidPeriode.timer': '{timer, plural, one {# time} other {# timer}}',
-        'arbeidstidPeriode.timer.ikkeTall': `{timer} timer`,
-        'arbeidIPeriode.info.frilanser.tekst.1':
-            'Nå trenger vi å vite hvor mange timer du jobber som frilanser i søknadsperioden.',
-    },
+const nb = {
+    ...arbeidIPeriodeSpørsmål.nb,
+    ...arbeidIPeriodeValideringMessages.nb,
+    ...arbeidIPeriodeSvarAlternativer.nb,
+    'arbeidIPeriode.arbeiderIPerioden.description':
+        'Husk at du også skal ta med eventuell jobb som du mottar honorar for.',
+    'arbeidIPeriode.uke.ukenummer': 'Uke {ukenummer}',
+    'arbeidIPeriode.uke.ukedatoer': '{ukedatoer}',
+    'arbeidstidPeriode.timer': '{timer, plural, one {# time} other {# timer}}',
+    'arbeidstidPeriode.timer.ikkeTall': `{timer} timer`,
+    'arbeidIPeriode.info.frilanser.tekst.1':
+        'Nå trenger vi å vite hvor mange timer du jobber som frilanser i søknadsperioden.',
+};
+
+const nn: Record<keyof typeof nb, string> = {
+    ...nb,
+};
+
+export const arbeidIPeriodeMessages = {
+    nb,
+    nn,
 };

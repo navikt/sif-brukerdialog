@@ -1,7 +1,6 @@
-import { IntlShape } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { ArbeidIPeriodeFormField } from '../../../types/søknad-form-values/ArbeidIPeriodeFormValues';
+import { AppIntlShape, AppMessageKeys } from '../../../i18n';
 import { ArbeidIPeriodeIntlValues, ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
+import { ArbeidIPeriodeFormField } from '../../../types/søknad-form-values/ArbeidIPeriodeFormValues';
 
 type ArbeidstidSpørsmål = {
     [ArbeidIPeriodeFormField.arbeiderIPerioden]: string;
@@ -13,43 +12,37 @@ type ArbeidstidSpørsmål = {
 };
 
 export const getArbeidstidSpørsmålstekst = (
-    intl: IntlShape,
+    { text }: AppIntlShape,
     arbeidsforholdType: ArbeidsforholdType,
     values?: ArbeidIPeriodeIntlValues,
 ): ArbeidstidSpørsmål => {
     return {
-        [ArbeidIPeriodeFormField.arbeiderIPerioden]: intlHelper(
-            intl,
+        [ArbeidIPeriodeFormField.arbeiderIPerioden]: text(
             getSpørsmålIntlKey(ArbeidIPeriodeFormField.arbeiderIPerioden, arbeidsforholdType),
             values,
         ),
-        [ArbeidIPeriodeFormField.erLiktHverUke]: intlHelper(
-            intl,
+        [ArbeidIPeriodeFormField.erLiktHverUke]: text(
             getSpørsmålIntlKey(ArbeidIPeriodeFormField.erLiktHverUke, arbeidsforholdType),
             values,
         ),
-        [ArbeidIPeriodeFormField.timerEllerProsent]: intlHelper(
-            intl,
+        [ArbeidIPeriodeFormField.timerEllerProsent]: text(
             getSpørsmålIntlKey(ArbeidIPeriodeFormField.timerEllerProsent, arbeidsforholdType),
             values,
         ),
-        [ArbeidIPeriodeFormField.snittTimerPerUke]: intlHelper(
-            intl,
+        [ArbeidIPeriodeFormField.snittTimerPerUke]: text(
             getSpørsmålIntlKey(ArbeidIPeriodeFormField.snittTimerPerUke, arbeidsforholdType),
             values,
         ),
-        [ArbeidIPeriodeFormField.prosentAvNormalt]: intlHelper(
-            intl,
+        [ArbeidIPeriodeFormField.prosentAvNormalt]: text(
             getSpørsmålIntlKey(ArbeidIPeriodeFormField.prosentAvNormalt, arbeidsforholdType),
             values,
         ),
-        [ArbeidIPeriodeFormField.arbeidsuker]: intlHelper(
-            intl,
+        [ArbeidIPeriodeFormField.arbeidsuker]: text(
             getSpørsmålIntlKey(ArbeidIPeriodeFormField.arbeidsuker, arbeidsforholdType),
             values,
         ),
     };
 };
 
-const getSpørsmålIntlKey = (field: ArbeidIPeriodeFormField, arbeidsforholdType: ArbeidsforholdType) =>
+const getSpørsmålIntlKey = (field: ArbeidIPeriodeFormField, arbeidsforholdType: ArbeidsforholdType): AppMessageKeys =>
     `arbeidIPeriode.spørsmål.${arbeidsforholdType}.${field}`;

@@ -1,3 +1,4 @@
+import { useEffectOnce } from '@navikt/sif-common-hooks';
 import React from 'react';
 
 interface Props {
@@ -5,10 +6,9 @@ interface Props {
 }
 
 const SifAppWrapper: React.FunctionComponent<Props> = ({ children }) => {
-    React.useEffect(() => {
+    useEffectOnce(() => {
         window.document.body.className = window.document.body.className + ' sif-ds-theme';
     });
-
     return <div className="sif-ds-theme">{children}</div>;
 };
 

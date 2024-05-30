@@ -1,27 +1,26 @@
-import React from 'react';
-import { useIntl } from 'react-intl';
-import { useFormikContext } from 'formik';
-import PictureScanningGuide from '@navikt/sif-common-core-ds/src/components/picture-scanning-guide/PictureScanningGuide';
-import { Arbeidsforhold, Utbetalingsårsak, ÅrsakNyoppstartet } from '../../../../types/ArbeidsforholdTypes';
-import { ArbeidsforholdFormFields, SituasjonFormValues } from '../SituasjonStep';
-import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { ValidationError, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import FileUploadErrors from '@navikt/sif-common-core-ds/src/components/file-upload-errors/FileUploadErrors';
+import PictureScanningGuide from '@navikt/sif-common-core-ds/src/components/picture-scanning-guide/PictureScanningGuide';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import {
-    ValidateStringError,
     getRequiredFieldValidator,
     getStringValidator,
+    ValidateStringError,
 } from '@navikt/sif-common-formik-ds/src/validation';
-import { AppFieldValidationErrors } from '../../../../utils/validations';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
+import { useFormikContext } from 'formik';
+import { ApiEndpoint } from '../../../../api/api';
 // import { valuesToAlleDokumenterISøknaden } from '../../../../utils/attachmentUtils';
 import FormikFileUploader from '../../../../components/formik-file-uploader/FormikFileUploader';
-import { ApiEndpoint } from '../../../../api/api';
-import FileUploadErrors from '@navikt/sif-common-core-ds/src/components/file-upload-errors/FileUploadErrors';
-import { ValidateAttachmentsErrors, validateAttachments } from '../../../../utils/validateAttachments';
-import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
+import { useAppIntl } from '../../../../i18n';
+import { Arbeidsforhold, Utbetalingsårsak, ÅrsakNyoppstartet } from '../../../../types/ArbeidsforholdTypes';
 import { relocateToLoginPage } from '../../../../utils/navigationUtils';
+import { validateAttachments, ValidateAttachmentsErrors } from '../../../../utils/validateAttachments';
+import { AppFieldValidationErrors } from '../../../../utils/validations';
+import { ArbeidsforholdFormFields, SituasjonFormValues } from '../SituasjonStep';
 import ArbeidsforholdAttachmentList from './ArbeidsforholdAttachmentList';
 
 const { RadioGroup, Textarea } = getTypedFormComponents<ArbeidsforholdFormFields, Arbeidsforhold, ValidationError>();
@@ -32,23 +31,23 @@ interface Props {
 }
 
 const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Props) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     const { values, setFieldValue } = useFormikContext<SituasjonFormValues>();
-    const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
+    const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = useState<File[]>([]);
 
     const getFieldName = (field: ArbeidsforholdFormFields) => `${parentFieldName}.${field}` as ArbeidsforholdFormFields;
 
     const utbetalingsårsak: Utbetalingsårsak | undefined = arbeidsforhold.utbetalingsårsak;
     const arbeidsgivernavn = arbeidsforhold.navn;
 
-    const attachments: Attachment[] = React.useMemo(() => {
+    const attachments: Attachment[] = useMemo(() => {
         return arbeidsforhold ? arbeidsforhold.dokumenter : [];
     }, [arbeidsforhold]);
 
     // const alleDokumenterISøknaden: Attachment[] = valuesToAlleDokumenterISøknaden(values);
-    const ref = React.useRef({ attachments });
+    const ref = useRef({ attachments });
 
-    React.useEffect(() => {
+    useEffect(() => {
         const hasPendingAttachments = attachments.find((a) => a.pending === true);
         if (hasPendingAttachments) {
             return;
@@ -70,31 +69,22 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Pr
                 <RadioGroup
                     radios={[
                         {
-                            label: intlHelper(
-                                intl,
-                                'step.situasjon.arbeidsforhold.utbetalingsårsak.nyoppstartetHosArbeidsgiver',
-                            ),
+                            label: text('step.situasjon.arbeidsforhold.utbetalingsårsak.nyoppstartetHosArbeidsgiver'),
                             value: Utbetalingsårsak.nyoppstartetHosArbeidsgiver,
                             'data-testid': 'arbeidsforhold-utbetalingsårsak-nyoppstartetHosArbeidsgiver',
                         },
                         {
-                            label: intlHelper(
-                                intl,
-                                'step.situasjon.arbeidsforhold.utbetalingsårsak.arbeidsgiverKonkurs',
-                            ),
+                            label: text('step.situasjon.arbeidsforhold.utbetalingsårsak.arbeidsgiverKonkurs'),
                             value: Utbetalingsårsak.arbeidsgiverKonkurs,
                             'data-testid': 'arbeidsforhold-utbetalingsårsak-arbeidsgiverKonkurs',
                         },
                         {
-                            label: intlHelper(
-                                intl,
-                                'step.situasjon.arbeidsforhold.utbetalingsårsak.konfliktMedArbeidsgiver',
-                            ),
+                            label: text('step.situasjon.arbeidsforhold.utbetalingsårsak.konfliktMedArbeidsgiver'),
                             value: Utbetalingsårsak.konfliktMedArbeidsgiver,
                             'data-testid': 'arbeidsforhold-utbetalingsårsak-konfliktMedArbeidsgiver',
                         },
                     ]}
-                    legend={intlHelper(intl, 'step.situasjon.arbeidsforhold.utbetalingsårsak.spm')}
+                    legend={text('step.situasjon.arbeidsforhold.utbetalingsårsak.spm')}
                     name={getFieldName(ArbeidsforholdFormFields.utbetalingsårsak)}
                     validate={(value) => {
                         return getRequiredFieldValidator()(value === Utbetalingsårsak.ikkeBesvart ? undefined : value)
@@ -139,8 +129,7 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Pr
                                 return error;
                             }}
                             maxLength={2000}
-                            label={intlHelper(
-                                intl,
+                            label={text(
                                 'step.situasjon.arbeidsforhold.utbetalingsårsak.konfliktMedArbeidsgiver.forklaring',
                             )}
                             data-testid="konfliktMedArbeidsgiver-forklaring"
@@ -151,7 +140,7 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Pr
                         <FormikFileUploader
                             attachments={attachments}
                             name={getFieldName(ArbeidsforholdFormFields.dokumenter)}
-                            buttonLabel={intlHelper(intl, 'step.situasjon.arbeidsforhold.utbetalingsårsak.vedlegg')}
+                            buttonLabel={text('step.situasjon.arbeidsforhold.utbetalingsårsak.vedlegg')}
                             apiEndpoint={ApiEndpoint.vedlegg}
                             onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
                             onFileInputClick={() => {
@@ -189,60 +178,44 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Pr
                         <RadioGroup
                             radios={[
                                 {
-                                    label: intlHelper(
-                                        intl,
+                                    label: text(
                                         'step.situasjon.arbeidsforhold.årsakMinde4Uker.jobbetHosAnnenArbeidsgiver',
                                     ),
                                     value: ÅrsakNyoppstartet.jobbetHosAnnenArbeidsgiver,
                                     'data-testid': 'nyoppstartetHosArbeidsgiver-jobbetHosAnnenArbeidsgiver',
                                 },
                                 {
-                                    label: intlHelper(
-                                        intl,
-                                        'step.situasjon.arbeidsforhold.årsakMinde4Uker.varFrilanser',
-                                    ),
+                                    label: text('step.situasjon.arbeidsforhold.årsakMinde4Uker.varFrilanser'),
                                     value: ÅrsakNyoppstartet.varFrilanser,
                                     'data-testid': 'nyoppstartetHosArbeidsgiver-varFrilanser',
                                 },
                                 {
-                                    label: intlHelper(
-                                        intl,
-                                        'step.situasjon.arbeidsforhold.årsakMinde4Uker.varSelvstendige',
-                                    ),
+                                    label: text('step.situasjon.arbeidsforhold.årsakMinde4Uker.varSelvstendige'),
                                     value: ÅrsakNyoppstartet.varSelvstendige,
                                     'data-testid': 'nyoppstartetHosArbeidsgiver-varSelvstendige',
                                 },
                                 {
-                                    label: intlHelper(
-                                        intl,
-                                        'step.situasjon.arbeidsforhold.årsakMinde4Uker.søkteAndreUtbetalinger',
-                                    ),
+                                    label: text('step.situasjon.arbeidsforhold.årsakMinde4Uker.søkteAndreUtbetalinger'),
                                     value: ÅrsakNyoppstartet.søkteAndreUtbetalinger,
                                     'data-testid': 'nyoppstartetHosArbeidsgiver-søkteAndreUtbetalinger',
                                 },
                                 {
-                                    label: intlHelper(
-                                        intl,
-                                        'step.situasjon.arbeidsforhold.årsakMinde4Uker.arbeidIUtlandet',
-                                    ),
+                                    label: text('step.situasjon.arbeidsforhold.årsakMinde4Uker.arbeidIUtlandet'),
                                     value: ÅrsakNyoppstartet.arbeidIUtlandet,
                                     'data-testid': 'nyoppstartetHosArbeidsgiver-arbeidIUtlandet',
                                 },
                                 {
-                                    label: intlHelper(
-                                        intl,
-                                        'step.situasjon.arbeidsforhold.årsakMinde4Uker.utøvdeVerneplikt',
-                                    ),
+                                    label: text('step.situasjon.arbeidsforhold.årsakMinde4Uker.utøvdeVerneplikt'),
                                     value: ÅrsakNyoppstartet.utøvdeVerneplikt,
                                     'data-testid': 'nyoppstartetHosArbeidsgiver-utøvdeVerneplikt',
                                 },
                                 {
-                                    label: intlHelper(intl, 'step.situasjon.arbeidsforhold.årsakMinde4Uker.annet'),
+                                    label: text('step.situasjon.arbeidsforhold.årsakMinde4Uker.annet'),
                                     value: ÅrsakNyoppstartet.annet,
                                     'data-testid': 'nyoppstartetHosArbeidsgiver-annet',
                                 },
                             ]}
-                            legend={intlHelper(intl, 'step.situasjon.arbeidsforhold.årsakMinde4Uker.spm')}
+                            legend={text('step.situasjon.arbeidsforhold.årsakMinde4Uker.spm')}
                             name={getFieldName(ArbeidsforholdFormFields.årsakNyoppstartet)}
                             validate={(value) => {
                                 return getRequiredFieldValidator()(value)

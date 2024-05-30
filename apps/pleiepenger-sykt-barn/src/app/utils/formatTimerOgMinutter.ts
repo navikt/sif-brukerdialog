@@ -1,19 +1,18 @@
-import { IntlShape } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { AppIntlShape } from '../i18n';
 
 interface InputType {
     hours: string;
     minutes: string;
 }
 
-export const formatTimerOgMinutter = (intl: IntlShape, time: Partial<InputType>): string => {
+export const formatTimerOgMinutter = ({ text }: AppIntlShape, time: Partial<InputType>): string => {
     const timer = time.hours || '0';
     const minutter = time.minutes || '0';
     if (minutter === '0') {
-        return intlHelper(intl, 'psb.timer', { timer });
+        return text('psb.timer', { timer });
     }
     if (timer === '0') {
-        return intlHelper(intl, 'psb.minutter', { minutter });
+        return text('psb.minutter', { minutter });
     }
-    return intlHelper(intl, 'psb.timerOgMinutter', { timer, minutter });
+    return text('psb.timerOgMinutter', { timer, minutter });
 };

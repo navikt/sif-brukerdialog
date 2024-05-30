@@ -22,8 +22,8 @@ const UkeTags = ({ dagerMedFerie = [], dagerMedFjernetFerie = [], visDagNavn, er
                 {visDagNavn
                     ? `Ferie: ${getFeriedagerIUkeTekst(dagerMedFerie)}`
                     : dagerMedFerie?.length === 1
-                    ? 'Feriedag'
-                    : 'Feriedager'}
+                      ? 'Feriedag'
+                      : 'Feriedager'}
             </FerieTag>,
         );
     }
@@ -45,8 +45,8 @@ const UkeTags = ({ dagerMedFerie = [], dagerMedFjernetFerie = [], visDagNavn, er
                             {visDagNavn
                                 ? `Ferie: ${getFeriedagerIUkeTekst(dagerMedFerie)}`
                                 : dagerMedFerie?.length === 1
-                                ? 'Feriedag'
-                                : 'Feriedager'}
+                                  ? 'Feriedag'
+                                  : 'Feriedager'}
                         </FerieTag>
                     )}
                     {dagerMedFjernetFerie?.length > 0 && (

@@ -1,6 +1,4 @@
 export enum Feature {
-    'NYNORSK' = 'NYNORSK',
-    'UTILGJENGELIG' = 'UTILGJENGELIG',
     'NY_ARBEIDSGIVER' = 'NY_ARBEIDSGIVER',
 }
 

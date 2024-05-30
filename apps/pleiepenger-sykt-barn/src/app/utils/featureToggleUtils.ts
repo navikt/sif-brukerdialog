@@ -1,9 +1,4 @@
-export enum Feature {
-    'UTILGJENGELIG' = 'UTILGJENGELIG',
-    'NYNORSK' = 'NYNORSK',
-    'INNSYN' = 'INNSYN',
-    'FORENKLET_ARBEID' = 'FORENKLET_ARBEID',
-}
+export enum Feature {}
 
 export const isFeatureEnabled = (feature: Feature) => {
     const appSettings = (window as any).appSettings;

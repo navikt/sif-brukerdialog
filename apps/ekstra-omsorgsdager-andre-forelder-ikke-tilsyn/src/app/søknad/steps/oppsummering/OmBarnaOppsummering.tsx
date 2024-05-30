@@ -1,7 +1,6 @@
-import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { SummarySection } from '@navikt/sif-common-ui';
+import { useAppIntl } from '../../../i18n';
 import { ApiBarn } from '../../../types/søknadApiData/SøknadApiData';
 import BarnSummaryList from './BarnSummaryList';
 
@@ -10,10 +9,10 @@ interface Props {
 }
 
 const OmBarnaOppsummering = ({ barn }: Props) => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
 
     return (
-        <SummarySection header={intlHelper(intl, 'step.oppsummering.omBarna.header')}>
+        <SummarySection header={text('step.oppsummering.omBarna.header')}>
             <Block margin="l">
                 <BarnSummaryList barn={barn} />
             </Block>

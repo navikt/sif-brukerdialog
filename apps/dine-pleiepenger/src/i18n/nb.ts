@@ -1,8 +1,11 @@
 export const nb = {
     'velgSak.dokumentTittel': 'Dine pleiepenger - velg sak',
     'velgSak.tittel': 'Dine pleiepengesaker',
-    'velgSak.barn.fdato': 'Født: {dato}',
+    'velgSak.barn.fdato': 'Født {dato}',
+    'velgSak.barn.anonymisert': 'Pleietrengende født {dato}',
     'forside.dokumentTittel': 'Dine pleiepenger',
+
+    'barn.navn.anonymisert': 'Pleietrengende',
 
     'snarveier.endring.tittel': 'Meld fra om endring',
     'snarveier.endring.tekst': 'Ved endringer i arbeidstid og ferie i din pleiepengeperiode.',
@@ -26,10 +29,18 @@ export const nb = {
 
     'svarfrist.tittel': 'Saksbehandlingstid',
     'svarfrist.forventetBehandlingstid':
-        'Forventet behandlingstid er {saksbehandlingstidUker} uker fra vi fikk søknaden din.',
+        'Forventet behandlingstid er {saksbehandlingstidUker, plural, one {# uke} other {# uker}} fra vi fikk søknaden din.',
+    'svarfrist.fristPassert.1':
+        'Vi jobber fremdeles med søknaden din. Noen ganger kan det ta lengre tid, spesielt hvis saken er komplisert eller vi har ventet på dokumenter.',
+    'svarfrist.fristPassert.2':
+        'Hvis du eller arbeidsgiveren din nylig har sendt oss dokumenter, tar det som regel noen dager før vår saksbehandler har vurdert dem.',
     'svarfrist.lesMerLenke': 'Se saksbehandlingstider',
     'svarfrist.dokumenterManglerFrist':
         'Fordi vi mangler dokumenter kan saksbehandlingstiden bli lenger enn <dato>{frist}</dato>.',
+    'svarfrist.forTidligSoknad':
+        'Fordi vi ikke kan behandle søknaden din enda, kan saksbehandlingstiden bli lenger enn <dato>{frist}</dato>.',
+    'svarfrist.forTidligSoknad.fristPassert':
+        'Fordi vi ikke kan behandle søknaden din enda, kan saksbehandlingstiden bli lenger enn vanlig.',
     'svarfrist.generellFrist': 'Du kan forvente svar innen <dato>{frist}</dato>.',
 
     'hvaSkjerInfo.tittel': 'Hva skjer etter at du har sendt søknad til oss?',
@@ -68,6 +79,7 @@ export const nb = {
     'påbegyntEndring.info': 'Lagres til og med {datoNårSlettes}',
 
     'dineInnsendteSøknader.tittel': 'Dine søknader, endringer og ettersendelser',
+
     'innsendtSøknadListe.ingenSøknader': 'Ingen søknader funnet',
     'innsendtSøknadListe.visFlereInnsendinger': 'Vis flere innsendinger',
     'innsendtSøknadTitle.mottatt': 'Mottatt: {dato}',
@@ -98,6 +110,7 @@ export const nb = {
 
     'sakPageHeader.saksnr': 'Saksnummer: {saksnr}',
     'sakPageHeader.pleietrengende': 'Pleietrengende: {navn}',
+    'sakPageHeader.pleietrengende.anonymisert': 'Pleietrengende født {dato}',
     'sakPageHeader.defaultTittel': 'Din pleiepengesak',
 
     'pdfLenke.lenke': '{tittel} (PDF)',
@@ -110,9 +123,9 @@ export const nb = {
     'statusISak.mottattSøknad.tittel': 'Vi har fått søknaden din om pleiepenger',
     'statusISak.mottattEndringsmelding.tittel': 'Vi har fått endringsmelding fra deg',
     'statusISak.ferdigBehandlet.tittel': 'Du har fått vedtak om pleiepenger',
-    'statusISak.forventetSvar.søknad.tittel': 'Søknaden er ferdig behandlet',
+    'statusISak.forventetSvar.søknad.tittel': 'Søknaden vil bli ferdig behandlet',
     'statusISak.forventetSvar.søknad.info':
-        'Inntektsmelding fra arbeidsgiver og legeerklæring må være sendt inn for at vi kan behandle saken.',
+        'Når søknaden er ferdig behandlet, vil du finne vedtaksbrevet i innboksen din på Min side.',
     'statusISak.forventetSvar.endring.tittel': 'Endringen er ferdig behandlet',
     'statusISak.forventetSvar.endring.info':
         'Endringsmeldingen vil oppdatere saken og du vil få ett nytt vedtaksbrev når endringene er ferdig behandlet.',

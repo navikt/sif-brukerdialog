@@ -1,9 +1,9 @@
 import { Heading } from '@navikt/ds-react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import VirksomhetSummary from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetSummary';
 import { SummaryBlock } from '@navikt/sif-common-ui';
+import { AppText } from '../../../i18n';
 import { SelvstendigApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import NormalarbeidstidSummary from './NormalarbeidstidSummary';
 
@@ -12,14 +12,16 @@ interface Props {
 }
 
 function ArbeidssituasjonSelvstendigSummary({ selvstendig }: Props) {
-    const intl = useIntl();
+    const { text } = useAppIntl();
     return (
         <div data-testid="arbeidssituasjon-sn">
-            <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.selvstendig.header')}>
+            <SummaryBlock header={text('oppsummering.arbeidssituasjon.selvstendig.header')}>
                 {selvstendig.harInntektSomSelvstendig === false && (
                     <ul>
                         <li>
-                            <FormattedMessage id={'oppsummering.arbeidssituasjon.selvstendig.erIkkeSN'} tagName="p" />
+                            <p>
+                                <AppText id={'oppsummering.arbeidssituasjon.selvstendig.erIkkeSN'} />
+                            </p>
                         </li>
                     </ul>
                 )}
@@ -27,13 +29,13 @@ function ArbeidssituasjonSelvstendigSummary({ selvstendig }: Props) {
                     <>
                         <ul>
                             <li>
-                                <FormattedMessage id="oppsummering.arbeidssituasjon.selvstendig.erSn" />
+                                <AppText id="oppsummering.arbeidssituasjon.selvstendig.erSn" />
                             </li>
                             <li>
                                 {selvstendig.virksomhet.harFlereAktiveVirksomheter ? (
-                                    <FormattedMessage id="oppsummering.arbeidssituasjon.selvstendig.flereVirksomheter" />
+                                    <AppText id="oppsummering.arbeidssituasjon.selvstendig.flereVirksomheter" />
                                 ) : (
-                                    <FormattedMessage id="oppsummering.arbeidssituasjon.selvstendig.enVirksomhet" />
+                                    <AppText id="oppsummering.arbeidssituasjon.selvstendig.enVirksomhet" />
                                 )}
                             </li>
                             <li>
@@ -44,7 +46,7 @@ function ArbeidssituasjonSelvstendigSummary({ selvstendig }: Props) {
                             </li>
                         </ul>
                         <Heading level="4" size="xsmall">
-                            {intlHelper(intl, 'summary.virksomhet.virksomhetInfo.tittel')}
+                            {text('summary.virksomhet.virksomhetInfo.tittel')}
                         </Heading>
                         <Block margin="m">
                             <div style={{ paddingLeft: '1rem' }}>

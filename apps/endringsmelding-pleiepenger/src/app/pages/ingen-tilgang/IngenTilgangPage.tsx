@@ -3,10 +3,11 @@ import { IngenTilgangMeta } from '@hooks';
 import { SIFCommonPageKey, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { IngenTilgangÅrsak, Søker } from '@types';
 import DevFooter from '../../dev/DevFooter';
+import { AppText, useAppIntl } from '../../i18n';
 import { SkrivTilOssLink } from '../../lenker';
 import { SøknadContextProvider } from '../../søknad/context/SøknadContext';
 import { ANTALL_MÅNEDER_TILLATT_FOR_ENDRING } from '../../utils/endringsperiode';
@@ -18,17 +19,22 @@ export interface IngenTilgangPageProps {
 }
 
 const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
+    const skrivTilOssGenerell = (
+        <AppText
+            id="ingenTilgangPage.skrivTilOssGenerell"
+            values={{
+                SkrivTilOssLink: <SkrivTilOssLink />,
+            }}
+        />
+    );
     switch (årsak) {
         case IngenTilgangÅrsak.harUgyldigK9FormatSak:
             return (
                 <BodyLong as="div" data-testid="ugyldigK9FormatSak">
                     <p>
-                        Vi ser at du har en sak om pleiepenger hos oss, men foreløpig kan du ikke bruke denne tjenesten.
-                        Vi jobber for å få det til, slik at du også snart kan melde fra om endring her.
+                        <AppText id="ingenTilgangPage.harUgyldigK9FormatSak.1" />
                     </p>
-                    <p>
-                        I mellomtiden bruker du tjenesten <SkrivTilOssLink />, for å melde fra om endringer.
-                    </p>
+                    <p>{skrivTilOssGenerell}</p>
                 </BodyLong>
             );
 
@@ -37,18 +43,16 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
             return (
                 <BodyLong as="div" data-testid="ingenSak">
                     <p>
-                        Vi finner ingen sak om pleiepenger for sykt barn registrert på deg, derfor kan du heller ikke
-                        bruke denne tjenesten. Hvis du akkurat har sendt inn en søknad, tar det noen minutter før saken
-                        din kommer opp her.
+                        <AppText id="ingenTilgangPage.harIngenSak.1" />
                     </p>
                     <p>
-                        Hvis du har søkt om pleiepenger for en periode frem i tid, eller for barn som ikke er
-                        folkeregistrert på deg, kan det ta tid før du kan bruke endringsmeldingen. Du kan foreløpig
-                        melde endringer i pleiepengesaken din via <SkrivTilOssLink />.
+                        <AppText
+                            id="ingenTilgangPage.harIngenSak.2"
+                            values={{ SkrivTilOssLink: <SkrivTilOssLink /> }}
+                        />
                     </p>
                     <p>
-                        Hvis du ønsker at en av våre veiledere skal undersøke hvorfor du ikke kan bruke
-                        endringsmeldingen, kan du kontakte oss på telefon 55 55 33 33.
+                        <AppText id="ingenTilgangPage.harIngenSak.3" />
                     </p>
                 </BodyLong>
             );
@@ -56,13 +60,13 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
             return (
                 <BodyLong as="div" data-testid="ukjentArbeidsforhold">
                     <p>
-                        Du kan ikke bruke denne tjenesten. Dette er fordi vi har funnet et arbeidsforhold på deg, som
-                        ikke er registrert i pleiepengesaken din. Du må derfor sende en ny søknad, slik at saken og
-                        utbetalingene dine blir riktige.
+                        <AppText id="ingenTilgangPage.harArbeidsgiverUtenArbeidsaktivitet.1" />
                     </p>
                     <p>
-                        Hvis du mener at dette ikke stemmer, er det fint at du sender en melding til oss{' '}
-                        <SkrivTilOssLink />.
+                        <AppText
+                            id="ingenTilgangPage.harArbeidsgiverUtenArbeidsaktivitet.2"
+                            values={{ SkrivTilOssLink: <SkrivTilOssLink /> }}
+                        />
                     </p>
                 </BodyLong>
             );
@@ -70,39 +74,34 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
             return (
                 <BodyLong as="div" data-testid="erSN">
                     <p>
-                        Du kan ikke bruke denne tjenesten per i dag. Dette er fordi tjenesten foreløpig ikke kan ta imot
-                        endringer fra selvstendig næringsdrivende. Vi jobber for å få det til, og selvstendig
-                        næringsdrivende blir også tilbudt denne tjenesten på et senere tidspunkt.
+                        <AppText id="ingenTilgangPage.harArbeidstidSomSelvstendigNæringsdrivende.1" />
                     </p>
-                    <p>
-                        I mellomtiden bruker du tjenesten <SkrivTilOssLink />, for å melde fra om endringer.
-                    </p>
+                    <p>{skrivTilOssGenerell}</p>
                 </BodyLong>
             );
         case IngenTilgangÅrsak.harMerEnnEnSak:
             return (
                 <BodyLong as="div" data-testid="flereSaker">
                     <p>
-                        Du kan ikke bruke denne tjenesten per i dag. Dette er fordi tjenesten foreløpig ikke kan ta imot
-                        endringer når du har pleiepenger for flere barn. Vi jobber for å få det til, og du blir også
-                        tilbudt denne tjenesten på et senere tidspunkt
+                        <AppText id="ingenTilgangPage.harMerEnnEnSak.1" />
                     </p>
-                    <p>
-                        I mellomtiden bruker du tjenesten <SkrivTilOssLink />, for å melde fra om endringer.
-                    </p>
+                    <p>{skrivTilOssGenerell}</p>
                 </BodyLong>
             );
         case IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode:
             return (
                 <BodyLong as="div" data-testid="søknadsperiodeAvsluttetFørTillattEndringsperiode">
                     <p>
-                        Du kan ikke bruke denne tjenesten fordi siste søknadsperiode gikk ut for mer enn enn{' '}
-                        {ANTALL_MÅNEDER_TILLATT_FOR_ENDRING} måneder siden. Du kan melde fra om endring i tjenesten{' '}
-                        <SkrivTilOssLink />, eller sende oss en ny søknad.
+                        <AppText
+                            id="ingenTilgangPage.utenforEndringsperiode.1"
+                            values={{ ANTALL_MÅNEDER_TILLATT_FOR_ENDRING, SkrivTilOssLink: <SkrivTilOssLink /> }}
+                        />
                     </p>
                     <p>
-                        Hvis du mener at dette ikke stemmer, er det fint at du sender en melding til oss{' '}
-                        <SkrivTilOssLink />.
+                        <AppText
+                            id="ingenTilgangPage.utenforEndringsperiode.2"
+                            values={{ SkrivTilOssLink: <SkrivTilOssLink /> }}
+                        />
                     </p>
                 </BodyLong>
             );
@@ -111,6 +110,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
 
 const IngenTilgangPage = ({ årsak = [], søker, ingenTilgangMeta }: IngenTilgangPageProps) => {
     const { logInfo } = useAmplitudeInstance();
+    const { text } = useAppIntl();
 
     useLogSidevisning(SIFCommonPageKey.ikkeTilgang);
 
@@ -120,10 +120,10 @@ const IngenTilgangPage = ({ årsak = [], søker, ingenTilgangMeta }: IngenTilgan
 
     return (
         <SøknadContextProvider initialData={{} as any}>
-            <Page title="Ingen tilgang">
+            <Page title={text('ingenTilgangPage.pageTitle')}>
                 <SifGuidePanel poster={true}>
                     <Heading level="1" size="large" spacing={true} data-testid="ingen-tilgang-heading">
-                        Hei {søker.fornavn}
+                        <AppText id="ingenTilgangPage.tittel" values={{ navn: søker.fornavn }} />
                     </Heading>
                     {getÅrsakMelding(årsak[0])}
                 </SifGuidePanel>

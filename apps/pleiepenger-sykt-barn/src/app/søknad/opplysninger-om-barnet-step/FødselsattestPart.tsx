@@ -1,6 +1,6 @@
 import { Alert, Heading, Link } from '@navikt/ds-react';
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useAppIntl } from '@i18n/index';
 import { ApplikasjonHendelse, SIFCommonGeneralEvents, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FileUploadErrors from '@navikt/sif-common-core-ds/src/components/file-upload-errors/FileUploadErrors';
@@ -12,10 +12,10 @@ import {
     mapFileToPersistedFile,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { useFormikContext } from 'formik';
 import { persist, uploadFile } from '../../api/api';
 import UploadedDocumentsList from '../../components/fødselsattest-file-list/UploadedDocumentsList';
+import { AppText } from '../../i18n';
 import getLenker from '../../lenker';
 import { StepID } from '../../types/StepID';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
@@ -27,7 +27,7 @@ interface Props {
 }
 
 const FødselsattestPart: React.FC<Props> = ({ attachments }) => {
-    const intl = useIntl();
+    const { text, intl } = useAppIntl();
     const { values, setFieldValue } = useFormikContext<SøknadFormValues>();
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
     const totalSize = getTotalSizeOfAttachments(attachments);
@@ -83,10 +83,10 @@ const FødselsattestPart: React.FC<Props> = ({ attachments }) => {
     return (
         <>
             <Heading level="2" size="medium" style={{ display: 'inline-block', fontSize: '1.125rem' }}>
-                {intlHelper(intl, 'steg.omBarnet.fødselsattest.tittel')}
+                {text('steg.omBarnet.fødselsattest.tittel')}
             </Heading>
             <Block margin="m">
-                <FormattedMessage id="steg.omBarnet.fødselsattest.info" />
+                <AppText id="steg.omBarnet.fødselsattest.info" />
             </Block>
             <Block margin={'l'}>
                 <PictureScanningGuide />
@@ -94,12 +94,12 @@ const FødselsattestPart: React.FC<Props> = ({ attachments }) => {
             {totalSize <= MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
                 <Block margin="l">
                     <FormikFileUploader
-                        legend={intlHelper(intl, 'steg.omBarnet.fødselsattest.vedlegg.legend')}
+                        legend={text('steg.omBarnet.fødselsattest.vedlegg.legend')}
                         name={SøknadFormField.fødselsattest}
                         attachments={attachments}
                         uploadFile={uploadFile}
                         getAttachmentURLFrontend={getAttachmentURLFrontend}
-                        buttonLabel={intlHelper(intl, 'steg.omBarnet.fødselsattest.vedlegg')}
+                        buttonLabel={text('steg.omBarnet.fødselsattest.vedlegg')}
                         onErrorUploadingAttachments={vedleggOpplastingFeilet}
                         onFileInputClick={() => {
                             setFilesThatDidntGetUploaded([]);
@@ -114,9 +114,9 @@ const FødselsattestPart: React.FC<Props> = ({ attachments }) => {
             {totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
                 <Block margin={'l'}>
                     <Alert variant="warning">
-                        <FormattedMessage id={'dokumenter.advarsel.totalstørrelse.1'} />
+                        <AppText id={'dokumenter.advarsel.totalstørrelse.1'} />
                         <Link target={'_blank'} rel={'noopener noreferrer'} href={getLenker(intl.locale).ettersend}>
-                            <FormattedMessage id={'dokumenter.advarsel.totalstørrelse.2'} />
+                            <AppText id={'dokumenter.advarsel.totalstørrelse.2'} />
                         </Link>
                     </Alert>
                 </Block>

@@ -1,13 +1,12 @@
-import { FormattedMessage, useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { timeText } from '@navikt/sif-common-forms-ds/src/forms/fravær/fraværUtilities';
 import { SummaryBlock, SummaryList } from '@navikt/sif-common-ui';
 import { ISODateToDate } from '@navikt/sif-common-utils/src';
 import { prettifyDate, prettifyDateExtended } from '@navikt/sif-common-utils/src/dateFormatter';
 import { iso8601DurationToTime, timeToDecimalTime } from '@navikt/sif-common-utils/src/timeUtils';
 import { Time } from '@navikt/sif-common-utils/src/types';
 import { isString } from 'formik';
+import { AppText, useAppIntl } from '../../../../i18n';
 import { ApiAktivitet, Utbetalingsperiode } from '../../../../types/søknadApiData/SøknadApiData';
+import { timeText } from '../oppsummeringStepUtils';
 
 export interface Props {
     utbetalingsperioder: Utbetalingsperiode[];
@@ -33,7 +32,6 @@ export const timeToStringTemporaryFix = (time: Time, hideZeroMinutes?: boolean):
     return `${time.hours} timer og ${time.minutes} minutter`;
 };
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const isTime = (value: any): value is Time => {
     return value && value.hours !== undefined && value.minutes !== undefined;
 };
@@ -72,8 +70,7 @@ export const utbetalingsperiodeDagToDagSummaryStringView = (dag: Utbetalingsperi
     )}`;
     return (
         <>
-            <FormattedMessage
-                tagName="span"
+            <AppText
                 id="step.oppsummering.arbeidsforhold.delvisFravær.item"
                 values={{
                     dato: prettifyDateExtended(ISODateToDate(dag.dato)),
@@ -86,7 +83,7 @@ export const utbetalingsperiodeDagToDagSummaryStringView = (dag: Utbetalingsperi
 };
 
 const UtbetalingsperioderSummaryView: React.FC<Props> = ({ utbetalingsperioder = [] }: Props): JSX.Element => {
-    const intl = useIntl();
+    const { text } = useAppIntl();
 
     const perioder = utbetalingsperioder.filter((p) => p.antallTimerBorte === null);
     const dager: UtbetalingsperiodeDag[] = utbetalingsperioder.map(toMaybeUtbetalingsperiodeDag).filter(outNull);
@@ -94,13 +91,12 @@ const UtbetalingsperioderSummaryView: React.FC<Props> = ({ utbetalingsperioder =
     return (
         <>
             {perioder.length > 0 && (
-                <SummaryBlock header={intlHelper(intl, 'step.oppsummering.arbeidsforhold.fravær.heleDager.header')}>
+                <SummaryBlock header={text('step.oppsummering.arbeidsforhold.fravær.heleDager.header')}>
                     <SummaryList
                         items={perioder}
                         itemRenderer={(periode: Utbetalingsperiode): JSX.Element => (
                             <>
-                                <FormattedMessage
-                                    tagName="span"
+                                <AppText
                                     id="step.oppsummering.arbeidsforhold.fravær.heleDager.item"
                                     values={{
                                         fom: prettifyDate(ISODateToDate(periode.fraOgMed)),
@@ -113,7 +109,7 @@ const UtbetalingsperioderSummaryView: React.FC<Props> = ({ utbetalingsperioder =
                 </SummaryBlock>
             )}
             {dager.length > 0 && (
-                <SummaryBlock header={intlHelper(intl, 'step.oppsummering.arbeidsforhold.delvisFravær.header')}>
+                <SummaryBlock header={text('step.oppsummering.arbeidsforhold.delvisFravær.header')}>
                     <SummaryList
                         items={dager}
                         itemRenderer={(dag: UtbetalingsperiodeDag) => utbetalingsperiodeDagToDagSummaryStringView(dag)}

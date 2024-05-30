@@ -6,7 +6,7 @@ import { APPLICATION_SENDT_PAGE } from '../config/routeConfig';
 import ConfirmationPage from '../pages/confirmation-page/ConfirmationPage';
 import VelkommenPage from '../pages/velkommen-page/VelkommenPage';
 import { Person } from '../types/Person';
-import { SoknadFormData } from '../types/SoknadFormData';
+import { SoknadFormData, SoknadFormField } from '../types/SoknadFormData';
 import { Søknadstype } from '../types/Søknadstype';
 import { getAvailableSteps } from '../utils/routeUtils';
 import BeskrivelseStep from './beskrivelse-step/BeskrivelseStep';
@@ -15,18 +15,24 @@ import OppsummeringStep from './oppsummering-step/OppsummeringStep';
 import { useSoknadContext } from './SoknadContext';
 import { StepID } from './soknadStepsConfig';
 import ValgOmsTypeStep from './valgOmsType-step/ValgOmsTypeStep';
+import BeskrivelsePPStep from './beskrivelsePP-step/BeskrivelsePPStep';
+import { RegistrertBarn } from '../types/RegistrertBarn';
 
 interface Props {
     søker: Person;
+    barn?: RegistrertBarn[];
     søknadstype: Søknadstype;
     soknadId?: string;
     onKvitteringUnmount?: () => void;
 }
 
-const SoknadRouter = ({ søker, søknadstype, soknadId, onKvitteringUnmount }: Props) => {
+const SoknadRouter = ({ søker, barn, søknadstype, soknadId, onKvitteringUnmount }: Props) => {
     const intl = useIntl();
     const { values } = useFormikContext<SoknadFormData>();
     const { soknadStepsConfig } = useSoknadContext();
+    const dokumenttype = values[SoknadFormField.dokumentType];
+
+    const registrertBarn = barn ? barn : [];
 
     return (
         <Routes>
@@ -35,6 +41,16 @@ const SoknadRouter = ({ søker, søknadstype, soknadId, onKvitteringUnmount }: P
             {soknadId && (
                 <>
                     <Route path={StepID.BESKRIVELSE} element={<BeskrivelseStep søknadstype={søknadstype} />} />
+                    <Route
+                        path={StepID.BESKRIVELSE_PP}
+                        element={
+                            <BeskrivelsePPStep
+                                søknadstype={søknadstype}
+                                søkersFødselsnummer={søker.fødselsnummer}
+                                registrertBarn={registrertBarn}
+                            />
+                        }
+                    />
                     <Route path={StepID.OMS_TYPE} element={<ValgOmsTypeStep søknadstype={søknadstype} />} />
                     <Route
                         path={StepID.DOKUMENTER}
@@ -75,7 +91,13 @@ const SoknadRouter = ({ søker, søknadstype, soknadId, onKvitteringUnmount }: P
 
             <Route
                 path={APPLICATION_SENDT_PAGE}
-                element={<ConfirmationPage søknadstype={søknadstype} onUnmount={onKvitteringUnmount} />}
+                element={
+                    <ConfirmationPage
+                        søknadstype={søknadstype}
+                        dokumenttype={dokumenttype}
+                        onUnmount={onKvitteringUnmount}
+                    />
+                }
             />
             <Route path="*" element={soknadId === undefined ? <Navigate replace={true} to="velkommen" /> : undefined} />
         </Routes>
