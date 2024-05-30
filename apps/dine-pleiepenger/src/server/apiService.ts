@@ -88,7 +88,13 @@ export const fetchSaker = async (req: NextApiRequest, raw?: boolean): Promise<Pl
         `Parsing saker response data`,
     );
     const saker = await PleietrengendeMedSakResponseSchema.parse(response.data);
-    childLogger.info(`Saker response data parsed`);
+    childLogger.info(`Saker response data parsed. Antall saker: ${saker.length}`);
+    if (saker.length !== sakerLength) {
+        childLogger.warn(
+            { sakerLength, parsedSakerLength: saker.length },
+            'Antall saker før og etter parsing stemmer ikke overens.',
+        );
+    }
 
     return saker.map((ps): PleietrengendeMedSak => {
         return {
