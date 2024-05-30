@@ -21,9 +21,9 @@ const fyllUtDineBarnSteg = async (page: Page) => {
     await page.getByRole('button', { name: 'Legg til barn' }).click();
     await page.getByLabel('Barnets navn').click();
     await page.getByLabel('Barnets navn').fill('Tore Tang');
-    await page.getByLabel('Barnets fødselsdato step.').click();
-    await page.getByLabel('Barnets fødselsdato step.').fill('10.10.2020');
-    await page.getByLabel('Barnets fødselsdato step.').press('Tab');
+    await page.getByLabel('Barnets fødselsdato').click();
+    await page.getByLabel('Barnets fødselsdato').fill('10.10.2020');
+    await page.getByLabel('Barnets fødselsdato').press('Tab');
     await page.getByLabel('Barnets fødselsnummer/D-nummer').fill('09898098122');
     await page.getByText('Barnet er mitt fosterbarn').click();
     await page.getByRole('button', { name: 'Ok' }).click();
