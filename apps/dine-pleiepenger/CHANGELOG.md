@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 1.3.0
+
+### Minor Changes
+
+-   101fb21: Utvide logging ved feil av zod parsing. Godta, men ikke vise søknadstype === Ettersendelse
+
 ## 1.2.5
 
 ### Patch Changes

@@ -63,7 +63,9 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
 
     return (
         <ErrorBoundary>
-            <AmplitudeProvider applicationKey={InnsynPsbApp.key}>
+            <AmplitudeProvider
+                applicationKey={InnsynPsbApp.key}
+                isActive={browserEnv.NEXT_PUBLIC_RUNTIME_ENVIRONMENT === 'production'}>
                 <main>
                     {appStatus?.message && (
                         <div className="max-w-[1128px] mx-auto p-5 mb-5">
