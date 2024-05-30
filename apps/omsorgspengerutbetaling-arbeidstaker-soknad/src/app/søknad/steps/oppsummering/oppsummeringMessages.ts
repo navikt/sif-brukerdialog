@@ -69,10 +69,10 @@ const nb = {
         'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til omsorgspenger.',
     'step.oppsummering.bekrefterOpplysninger.ikkeBekreftet': 'Du må bekrefte opplysningene',
 
-    'step.oppsummering.dineBarn.tittel': 'Barn',
-    'step.oppsummering.dineBarn.listItem': ' (fnr. {identitetsnummer})',
-    'step.oppsummering.dineBarn.listItem.utvidetRett': 'Ekstra omsorgsdager.',
-    'step.oppsummering.dineBarn.listItem.årsak.FOSTERBARN': '(Barnet er mitt fosterbarn).',
+    'step.oppsummering.dineBarn.tittel': 'Dine barn',
+    'step.oppsummering.dineBarn.født': 'Født {dato}',
+    'step.oppsummering.dineBarn.id': 'Fødselsnummer/id: {identitetsnummer}',
+    'step.oppsummering.dineBarn.fosterbarn': 'Barnet er mitt fosterbarn',
 };
 
 export const oppsummeringMessages = { nb };
