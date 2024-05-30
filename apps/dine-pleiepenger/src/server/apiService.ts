@@ -96,7 +96,7 @@ export const fetchSaker = async (req: NextApiRequest, raw?: boolean): Promise<Pl
         saker.push(...parsedSaker);
     } catch (error) {
         if (error instanceof ZodError) {
-            childLogger.error(getZodErrorsInfo(error), 'Parsing av Saker feiler');
+            childLogger.error({ parseDetails: JSON.stringify(getZodErrorsInfo(error)) }, 'Parsing av Saker feiler');
         } else {
             childLogger.error(error, 'Ukjent feil ved parsing saker');
         }
