@@ -1,5 +1,21 @@
 # @navikt/sif-ettersending
 
+## 3.33.0
+
+### Minor Changes
+
+-   b1344ce: Endre tekster på kvitteringssiden for å informere bedre om Dine pleiepenger.
+
+## 3.32.5
+
+### Patch Changes
+
+-   cc9e4d3: Pakkeoppdateringer - minor/patch
+-   Updated dependencies [cc9e4d3]
+    -   @navikt/sif-common-formik-ds@1.8.4
+    -   @navikt/sif-common-soknad-ds@10.15.4
+    -   @navikt/sif-common-core-ds@9.17.4
+
 ## 3.32.4
 
 ### Patch Changes

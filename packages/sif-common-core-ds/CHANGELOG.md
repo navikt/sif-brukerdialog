@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 9.17.4
+
+### Patch Changes
+
+-   cc9e4d3: Pakkeoppdateringer - minor/patch
+
 ## 9.17.3
 
 ### Patch Changes

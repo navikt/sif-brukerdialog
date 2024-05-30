@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/omsorgspengerutbetaling-soknad",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "1.11.4",
+    "version": "1.11.5",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -43,7 +43,7 @@
         "react-intl": "6.6.8",
         "react-router-dom": "6.23.1",
         "uuid": "9.0.1",
-        "vite": "5.2.11",
+        "vite": "5.2.12",
         "vite-plugin-checker": "0.6.4"
     },
     "devDependencies": {
