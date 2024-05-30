@@ -70,7 +70,7 @@ const nb = {
     'step.oppsummering.bekrefterOpplysninger.ikkeBekreftet': 'Du må bekrefte opplysningene',
 
     'step.oppsummering.dineBarn.tittel': 'Dine barn',
-    'step.oppsummering.dineBarn.født': 'Født {dato}',
+    'step.oppsummering.dineBarn.født': 'Fødselsdato: {dato}',
     'step.oppsummering.dineBarn.id': 'Fødselsnummer/id: {identitetsnummer}',
     'step.oppsummering.dineBarn.fosterbarn': 'Barnet er mitt fosterbarn',
 };
