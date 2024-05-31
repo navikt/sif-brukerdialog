@@ -1,9 +1,10 @@
+import { BarnType } from '@navikt/sif-common-forms-ds';
 import { JaNeiSvar, SummaryBlock, SummaryList, SummarySection } from '@navikt/sif-common-ui';
+import { ISODateToDate, dateFormatter } from '@navikt/sif-common-utils';
 import { useAppIntl } from '../../../../i18n';
 import { RegistrertBarn } from '../../../../types/RegistrertBarn';
 import { ApiBarn, RegistrertBarnTypeApi } from '../../../../types/søknadApiData/SøknadApiData';
 import { mapRegistrertBarnToApiBarn } from '../../../../utils/søknadsdataToApiData/getDineBarnApiDataFromSøknadsdata';
-import { ISODateToDate, dateFormatter } from '@navikt/sif-common-utils';
 
 interface Props {
     barn: ApiBarn[];
@@ -34,7 +35,9 @@ const DineBarnOppsummering = ({ barn, registrerteBarn, harDeltBosted }: Props) =
                                             identitetsnummer: barn.identitetsnummer,
                                         })}
                                     </div>
-                                    <div>{text('step.oppsummering.dineBarn.fosterbarn')}</div>
+                                    {barn.type === BarnType.fosterbarn && (
+                                        <div>{text('step.oppsummering.dineBarn.fosterbarn')}</div>
+                                    )}
                                 </>
                             ) : undefined}
                         </>
