@@ -5,7 +5,7 @@
     "homepage": "https://navikt.github.io/sif-common-sentry",
     "license": "MIT",
     "main": "src/index.ts",
-    "version": "0.26.3",
+    "version": "0.26.4",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-sentry/issues"
     },
@@ -15,7 +15,7 @@
         "@sentry/types": "8.7.0"
     },
     "devDependencies": {
-        "@types/node": "20.12.12",
+        "@types/node": "20.14.0",
         "axios": "1.7.2",
         "config": "*",
         "copyfiles": "2.4.1",
