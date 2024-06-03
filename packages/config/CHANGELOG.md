@@ -1,5 +1,11 @@
 # config
 
+## 0.9.27
+
+### Patch Changes
+
+-   c36a566: Pakkeoppdateringer minor/patch
+
 ## 0.9.26
 
 ### Patch Changes

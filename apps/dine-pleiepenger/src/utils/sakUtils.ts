@@ -64,6 +64,7 @@ export const getBehandlingsstatusISak = (sak: Sak): BehandlingsstatusISak | unde
 
 const mapSøknadTilSøknadshendelse = (søknad: Søknad): Søknadshendelse => {
     switch (søknad.søknadstype) {
+        case Søknadstype.ETTERSENDELSE: // Ettersendelse skal ikke vises enda, og grupperes da med UKJENT
         case Søknadstype.UKJENT:
             return {
                 type: SøknadshendelseType.UKJENT,
@@ -84,9 +85,11 @@ export const getHendelserIBehandling = (behandling: Behandling, saksbehandlingFr
     const { søknader, aksjonspunkter, avsluttetTidspunkt, status } = behandling;
     const hendelser: Søknadshendelse[] = [];
 
-    søknader.forEach((søknad) => {
-        hendelser.push(mapSøknadTilSøknadshendelse(søknad));
-    });
+    if (søknader) {
+        søknader.forEach((søknad) => {
+            hendelser.push(mapSøknadTilSøknadshendelse(søknad));
+        });
+    }
 
     if (aksjonspunkter.length >= 1) {
         hendelser.push({
@@ -105,7 +108,7 @@ export const getHendelserIBehandling = (behandling: Behandling, saksbehandlingFr
         hendelser.push({
             type: SøknadshendelseType.FORVENTET_SVAR,
             dato: saksbehandlingFrist,
-            søknadstyperIBehandling: getSøknadstyperIBehandling(søknader),
+            søknadstyperIBehandling: getSøknadstyperIBehandling(søknader || []),
         });
     }
 
@@ -153,7 +156,7 @@ export const getArbeidsgiverinfoFraSøknad = (søknad: Pleiepengesøknad): Organ
 export const fjernPunsjOgUkjenteSøknaderFraBehandling = (behandling: Behandling): Behandling => {
     return {
         ...behandling,
-        søknader: behandling.søknader.filter(
+        søknader: (behandling.søknader || []).filter(
             (s) => !!s.k9FormatSøknad.kildesystem && s.k9FormatSøknad.kildesystem !== Kildesystem.punsj,
         ),
     };
