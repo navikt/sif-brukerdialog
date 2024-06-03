@@ -35,7 +35,6 @@ const resumeFromRoute = async (
     });
 
     await page.goto(getRouteUrl(SøknadRoutes.VELKOMMEN));
-    await page.waitForURL(`**${route}`);
 };
 
 export const routeUtils = {
