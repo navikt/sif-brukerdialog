@@ -71,7 +71,7 @@
         "babel-polyfill": "6.26.0",
         "cross-env": "7.0.3",
         "eslint-plugin-storybook": "0.8.0",
-        "express-rate-limit": "7.2.0",
+        "express-rate-limit": "7.3.0",
         "jsdom": "24.1.0",
         "postcss-nesting": "12.1.5",
         "storybook": "8.1.4",
