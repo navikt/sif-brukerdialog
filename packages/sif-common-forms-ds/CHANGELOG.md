@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 8.21.6
+
+### Patch Changes
+
+-   6751f58: Pakkeoppdateringer - minor/patch
+
 ## 8.21.5
 
 ### Patch Changes
