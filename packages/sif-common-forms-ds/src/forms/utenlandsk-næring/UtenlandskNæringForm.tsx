@@ -12,7 +12,7 @@ import {
 } from '@navikt/sif-common-formik-ds/src/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { date99YearsFromNow, dateToday, prettifyDate } from '@navikt/sif-common-utils';
+import { getDate99YearsFromNow, getDateToday, prettifyDate } from '@navikt/sif-common-utils';
 import { handleDateRangeValidationError } from '../../utils';
 import { UtenlandskNæring, UtenlandskNæringFormValues, UtenlandskNæringstype } from './types';
 import {
@@ -177,21 +177,24 @@ const UtenlandskNæringForm = ({ utenlandskNæring, onSubmit, onCancel }: Props)
                             <Form.DateRangePicker
                                 legend={text('@forms.utenlandskNæringForm.startdato', { navnPåVirksomheten })}
                                 dropdownCaption={true}
-                                maxDate={dateToday}
-                                minDate={date99YearsFromNow}
+                                maxDate={getDateToday()}
+                                minDate={getDate99YearsFromNow()}
                                 fromInputProps={{
                                     label: text('@forms.utenlandskNæringForm.kalender_fom'),
                                     name: UtenlandskNæringFormField.fraOgMed,
                                     validate: (value) => {
                                         const error = getDateRangeValidator({
                                             required: true,
-                                            max: dateToday,
+                                            max: getDateToday(),
                                             toDate: tomDate,
                                         }).validateFromDate(value);
                                         if (error === ValidateDateError.dateIsAfterMax) {
                                             return {
                                                 key: error,
-                                                values: { dato: prettifyDate(dateToday), navn: navnPåVirksomheten },
+                                                values: {
+                                                    dato: prettifyDate(getDateToday()),
+                                                    navn: navnPåVirksomheten,
+                                                },
                                             };
                                         }
                                         return error;
@@ -206,10 +209,14 @@ const UtenlandskNæringForm = ({ utenlandskNæring, onSubmit, onCancel }: Props)
                                             : (value) => {
                                                   const error = getDateRangeValidator({
                                                       required: true,
-                                                      max: dateToday,
+                                                      max: getDateToday(),
                                                       fromDate: fomDate,
                                                   }).validateToDate(value);
-                                                  return handleDateRangeValidationError(error, undefined, dateToday);
+                                                  return handleDateRangeValidationError(
+                                                      error,
+                                                      undefined,
+                                                      getDateToday(),
+                                                  );
                                               },
                                 }}
                             />

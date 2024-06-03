@@ -16,7 +16,7 @@ import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/
 import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/types';
 import {
-    date3YearsAgo,
+    getDate3YearsAgo,
     DateDurationMap,
     DateRange,
     dateRangesCollide,
@@ -88,8 +88,8 @@ export const validateFradato = (
 ): ValidationResult<ValidationError> => {
     const tilDato = datepickerUtils.getDateFromDateString(tilDatoString);
     const minDate = eldsteBarnFodselsdato
-        ? dayjs.max(dayjs(date3YearsAgo).endOf('day'), dayjs(eldsteBarnFodselsdato).endOf('day'))!.toDate()
-        : date3YearsAgo;
+        ? dayjs.max(dayjs(getDate3YearsAgo()).endOf('day'), dayjs(eldsteBarnFodselsdato).endOf('day'))!.toDate()
+        : getDate3YearsAgo();
 
     const error = getDateRangeValidator({
         required: true,
@@ -100,7 +100,7 @@ export const validateFradato = (
     return error
         ? {
               key:
-                  error === 'dateIsBeforeMin' && !dayjs(date3YearsAgo).isSame(minDate, 'day')
+                  error === 'dateIsBeforeMin' && !dayjs(getDate3YearsAgo()).isSame(minDate, 'day')
                       ? `${error}.${'fødselsdato'}`
                       : error,
           }
@@ -110,7 +110,7 @@ export const validateFradato = (
 export const validateTildato = (tilDatoString?: string, fraDatoString?: string): ValidationResult<ValidationError> => {
     return getDateRangeValidator({
         required: true,
-        min: date3YearsAgo,
+        min: getDate3YearsAgo(),
         max: fraDatoString ? dayjs(fraDatoString).endOf('day').add(1, 'year').toDate() : undefined,
         fromDate: datepickerUtils.getDateFromDateString(fraDatoString),
         onlyWeekdays: false,

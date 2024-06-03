@@ -125,8 +125,8 @@ const VirksomhetExample = () => {
                 {/* <Box padding="4" borderWidth="1" borderRadius="small">
                         <VirksomhetForm
                             opptjening={initialValues.opptjeningUtland[0]}
-                            minDate={date1YearAgo}
-                            maxDate={date1YearFromNow}
+                            minDate={getDate1YearAgo()}
+                            maxDate={getDate1YearFromNow()}
                             onSubmit={setSingleFormValues}
                             onCancel={() => null}
                         />

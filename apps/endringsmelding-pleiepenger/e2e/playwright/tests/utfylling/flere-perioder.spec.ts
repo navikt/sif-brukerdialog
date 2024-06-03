@@ -25,13 +25,13 @@ test('test', async ({ page }) => {
         .filter({ hasText: /^Fra og medÅpne datovelger$/ })
         .getByRole('button')
         .click();
-    await page.getByRole('button', { name: 'mandag 4' }).click();
+    await page.getByRole('button', { name: 'mandag 7' }).click();
     await page
         .locator('div')
         .filter({ hasText: /^Til og medÅpne datovelger$/ })
         .getByRole('button')
         .click();
-    await page.getByRole('button', { name: 'søndag 10' }).click();
+    await page.getByRole('button', { name: 'søndag 13' }).click();
     await page.getByRole('button', { name: 'Ok' }).click();
     await page.getByTestId('dateRangeAccordion_0_header').click();
     await page.getByLabel('Fjern ferie fredag 23.12.2022').click();
@@ -67,7 +67,7 @@ test('test', async ({ page }) => {
 
     /** Oppsummering */
     await expect(page.getByText('fredag 23.12.2022 - torsdag')).toBeVisible();
-    await expect(page.getByText('mandag 04.12.2023 - søndag')).toBeVisible();
+    await expect(page.getByText('mandag 07.08.2023 - søndag')).toBeVisible();
     await expect(page.getByText('- 23.12.2022')).toBeVisible();
     await page.getByText('Jeg bekrefter at').click();
     await page.getByTestId('arbeidstid-faktisk').click();

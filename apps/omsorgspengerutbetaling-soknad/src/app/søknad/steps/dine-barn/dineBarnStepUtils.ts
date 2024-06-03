@@ -1,6 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
-import { dateToday } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { BarnAlderInfo } from '../../../types/BarnAlderInfo';
 import { DineBarnScenario } from '../../../types/DineBarnScenario';
@@ -10,9 +9,10 @@ import { SøknadContextState, TempFormValues } from '../../../types/SøknadConte
 import { DineBarnSøknadsdata, DineBarnSøknadsdataType } from '../../../types/søknadsdata/DineBarnSøknadsdata';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { DineBarnFormValues } from './DineBarnStep';
+import { getDateToday } from '@navikt/sif-common-utils';
 
 export const nYearsAgo = (years: number): Date => {
-    return dayjs(dateToday).subtract(years, 'y').startOf('year').toDate();
+    return dayjs(getDateToday()).subtract(years, 'y').startOf('year').toDate();
 };
 
 export const getYesOrNoFromBoolean = (value?: boolean): YesOrNo => {

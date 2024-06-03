@@ -1,6 +1,6 @@
 import { Accordion, Ingress } from '@navikt/ds-react';
 import React from 'react';
-import { DateRange, dateRangeToISODateRange, dateToday, isDateInDateRange } from '@navikt/sif-common-utils';
+import { DateRange, dateRangeToISODateRange, getDateToday, isDateInDateRange } from '@navikt/sif-common-utils';
 
 type State = 'all' | 'none' | 'current';
 
@@ -18,7 +18,7 @@ const erÅpen = (periode: DateRange, defaultOpenState: State = 'none') => {
         case 'none':
             return false;
         case 'current':
-            return isDateInDateRange(dateToday, periode);
+            return isDateInDateRange(getDateToday(), periode);
     }
 };
 

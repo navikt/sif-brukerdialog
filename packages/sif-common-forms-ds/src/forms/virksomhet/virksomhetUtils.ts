@@ -1,6 +1,6 @@
 import { dateToISOString, ISOStringToDate, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { getNumberFromStringInput } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
-import { date4YearsAgo, guid } from '@navikt/sif-common-utils';
+import { getDate4YearsAgo, guid } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { Næringstype, Virksomhet, VirksomhetFormValues } from './types';
 
@@ -10,7 +10,7 @@ export const erFiskerNæringstype = (næringstype?: Næringstype): boolean =>
     næringstype ? næringstype === Næringstype.FISKE : false;
 
 export const erVirksomhetRegnetSomNyoppstartet = (oppstartsdato: Date) => {
-    return dayjs(oppstartsdato).startOf('day').isAfter(date4YearsAgo);
+    return dayjs(oppstartsdato).startOf('day').isAfter(getDate4YearsAgo());
 };
 
 export const cleanupVirksomhetFormValues = (formValues: VirksomhetFormValues): VirksomhetFormValues => {
