@@ -10,7 +10,9 @@ const søknader = require('./mockdata/soknader.json');
 const saker = require('./mockdata/sak-med-ettersendelse.json');
 // const saker = require('./mockdata/saker-sn.json');
 // const saker = require('./mockdata/saker-med-venteårsak.json');
-// const saker = require('./mockdata/saker-ingen-sak.json');
+// const saker = require('./mockdata/saker-debug.json');
+// const saker = require('./mockdata/flere-saker.json');
+// const saker = require('./mockdata/saker-anonymisert-pleietrengende.json');
 
 server.use(express.json());
 

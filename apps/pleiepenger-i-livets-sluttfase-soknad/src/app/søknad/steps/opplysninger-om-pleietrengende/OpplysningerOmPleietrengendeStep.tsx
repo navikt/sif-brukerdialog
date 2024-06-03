@@ -17,7 +17,7 @@ import {
     getStringValidator,
 } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { dateToday } from '@navikt/sif-common-utils';
+
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -38,6 +38,7 @@ import {
     opplysningerOmPleietrengendeDefaultValues,
 } from './opplysningerOmPleietrengendeStepUtils';
 import { AppText, useAppIntl } from '../../../i18n';
+import { getDateToday } from '@navikt/sif-common-utils';
 
 export enum OpplysningerOmPleietrengendeFormFields {
     navn = 'navn',
@@ -183,12 +184,12 @@ const OpplysningerOmPleietrengendeStep = () => {
                                                     validate={(value) => {
                                                         const dateError = getDateValidator({
                                                             required: true,
-                                                            max: dateToday,
+                                                            max: getDateToday(),
                                                         })(value);
 
                                                         return dateError;
                                                     }}
-                                                    maxDate={dateToday}
+                                                    maxDate={getDateToday()}
                                                     minDate={new Date('01.01.1900')}
                                                     dropdownCaption={true}
                                                 />

@@ -18,7 +18,6 @@ const EndreUkerHeader: React.FunctionComponent<Props> = ({
         <>
             <Checkbox
                 checked={ukerKanVelges}
-                data-testid="endre-flere-uker-cb"
                 onChange={(evt) => {
                     onUkerKanVelgesChange(evt.target.checked);
                 }}>

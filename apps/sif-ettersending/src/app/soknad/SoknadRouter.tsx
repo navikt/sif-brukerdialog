@@ -6,7 +6,7 @@ import { APPLICATION_SENDT_PAGE } from '../config/routeConfig';
 import ConfirmationPage from '../pages/confirmation-page/ConfirmationPage';
 import VelkommenPage from '../pages/velkommen-page/VelkommenPage';
 import { Person } from '../types/Person';
-import { SoknadFormData } from '../types/SoknadFormData';
+import { SoknadFormData, SoknadFormField } from '../types/SoknadFormData';
 import { Søknadstype } from '../types/Søknadstype';
 import { getAvailableSteps } from '../utils/routeUtils';
 import BeskrivelseStep from './beskrivelse-step/BeskrivelseStep';
@@ -30,6 +30,7 @@ const SoknadRouter = ({ søker, barn, søknadstype, soknadId, onKvitteringUnmoun
     const intl = useIntl();
     const { values } = useFormikContext<SoknadFormData>();
     const { soknadStepsConfig } = useSoknadContext();
+    const dokumenttype = values[SoknadFormField.dokumentType];
 
     const registrertBarn = barn ? barn : [];
 
@@ -90,7 +91,13 @@ const SoknadRouter = ({ søker, barn, søknadstype, soknadId, onKvitteringUnmoun
 
             <Route
                 path={APPLICATION_SENDT_PAGE}
-                element={<ConfirmationPage søknadstype={søknadstype} onUnmount={onKvitteringUnmount} />}
+                element={
+                    <ConfirmationPage
+                        søknadstype={søknadstype}
+                        dokumenttype={dokumenttype}
+                        onUnmount={onKvitteringUnmount}
+                    />
+                }
             />
             <Route path="*" element={soknadId === undefined ? <Navigate replace={true} to="velkommen" /> : undefined} />
         </Routes>

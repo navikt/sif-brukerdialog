@@ -12,6 +12,7 @@ export const sakerAvsluttetMock: PleietrengendeMedSak[] = [
             mellomnavn: null,
             etternavn: 'LØVETANN',
             aktørId: '2175638020356',
+            anonymisert: false,
         },
         sak: {
             saksnummer: '1DQAQRW',

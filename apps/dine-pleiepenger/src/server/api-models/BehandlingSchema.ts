@@ -1,8 +1,8 @@
 import { z } from 'zod';
-import { AksjonspunktSchema } from './AksjonspunktSchema';
-import { InnsendelseSchema } from './InnsendelseSchema';
-import { Behandlingsstatus } from './Behandlingsstatus';
 import { parseMaybeDateStringToDate } from '../../utils/jsonParseUtils';
+import { AksjonspunktSchema } from './AksjonspunktSchema';
+import { Behandlingsstatus } from './Behandlingsstatus';
+import { InnsendelseSchema } from './InnsendelseSchema';
 
 export type Behandling = z.infer<typeof BehandlingSchema>;
 

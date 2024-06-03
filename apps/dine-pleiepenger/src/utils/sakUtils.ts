@@ -5,9 +5,9 @@ import sortBy from 'lodash.sortby';
 import { Aksjonspunkt } from '../server/api-models/AksjonspunktSchema';
 import { Behandling } from '../server/api-models/BehandlingSchema';
 import { Behandlingsstatus } from '../server/api-models/Behandlingsstatus';
-import { Sak } from '../server/api-models/SakSchema';
-import { Pleiepengesøknad, Innsendelse } from '../server/api-models/InnsendelseSchema';
+import { Innsendelse, Pleiepengesøknad } from '../server/api-models/InnsendelseSchema';
 import { Innsendelsestype } from '../server/api-models/Innsendelsestype';
+import { Sak } from '../server/api-models/SakSchema';
 import { BehandlingsstatusISak } from '../types/BehandlingsstatusISak';
 import { Organisasjon } from '../types/Organisasjon';
 import { Sakshendelse, Sakshendelser } from '../types/Sakshendelse';
@@ -106,7 +106,7 @@ export const getHendelserIBehandling = (behandling: Behandling, saksbehandlingFr
         hendelser.push({
             type: Sakshendelser.FORVENTET_SVAR,
             dato: saksbehandlingFrist,
-            søknadstyperIBehandling: getSøknadstyperIBehandling(søknader),
+            søknadstyperIBehandling: getSøknadstyperIBehandling(søknader || []),
         });
     }
 

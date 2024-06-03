@@ -157,16 +157,14 @@ const nb = {
         'Ettersendelse av dokumenter digitalt er dessverre ikke tilgjengelig på grunn av teknisk vedlikehold.',
     'page.unavailable.info.2': 'Vi beklager.',
 
-    'page.confirmation.sidetittel': 'Vi har mottatt ettersendingen av dokumenter',
-    'page.confirmation.tittel': 'Vi har mottatt ettersendingen av dokumenter',
-    'page.confirmation.undertittel': 'Hva skjer videre nå?',
-    'page.confirmation.check.1.pp': 'Dokumentene du har sendt finner du på',
-    'page.confirmation.check.1.pp.lenke': 'Dine pleiepenger',
+    'page.confirmation.psb.legeerklæring.sidetittel': 'Vi har mottatt legeerklæring',
+    'page.confirmation.psb.legeerklæring.tittel': 'Vi har mottatt legeerklæring',
+    'page.confirmation.psb.legeerklæring.info': 'Du kan følge status i saken din på <Lenke>Dine pleiepenger</Lenke>.',
 
-    'page.confirmation.check.2':
-        'Vi starter behandlingen av søknaden din når vi har mottatt all nødvendig dokumentasjon. Vi kontakter deg hvis vi trenger flere opplysninger.',
-    'page.confirmation.check.3':
-        'Når søknaden er ferdigbehandlet, får du et svar fra oss på «Min side». <Lenke>Du kan sjekke saksbehandlingstiden her</Lenke>.',
+    'page.confirmation.generell.sidetittel': 'Vi har mottatt ettersendingen av dokumenter',
+    'page.confirmation.generell.tittel': 'Vi har mottatt ettersendingen av dokumenter',
+    'page.confirmation.generell.info':
+        'En av våre saksbehandlere vil snart gjennomgå dokumentet ditt, dette kan ta noen dager. Vi gir deg beskjed hvis vi trenger noe mer fra deg.',
 
     'validation.harForståttRettigheterOgPlikter.notChecked': 'Du må bekrefte at du har lest og forstått dine plikter',
     'validation.registrertBarnAktørId.noValue': 'Du må velge hvilket barn legeerklæringen gjelder',

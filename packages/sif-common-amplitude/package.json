@@ -5,16 +5,16 @@
     "license": "MIT",
     "main": "src/index.ts",
     "name": "@navikt/sif-common-amplitude",
-    "version": "2.25.1",
+    "version": "2.25.4",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-amplitude/issues"
     },
     "dependencies": {
-        "@amplitude/analytics-browser": "2.7.2"
+        "@amplitude/analytics-browser": "2.8.1"
     },
     "devDependencies": {
-        "@types/node": "20.12.12",
-        "@types/react": "18.3.2",
+        "@types/node": "20.14.0",
+        "@types/react": "18.3.3",
         "config": "workspace:*",
         "constate": "3.3.2",
         "gh-pages": "6.1.1",

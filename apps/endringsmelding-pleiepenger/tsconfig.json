@@ -11,5 +11,5 @@
         "typeRoots": ["../../node_modules/@types", "./node_modules/@types", "./src/app/types"]
     },
     "exclude": ["node_modules", "src/build", "**.js", "dist"],
-    "include": ["./src/app/**/*", "./src/mocks/**/*"]
+    "include": ["./src/app/**/*", "./src/mocks/**/*", "./e2e/playwright/**/*"]
 }

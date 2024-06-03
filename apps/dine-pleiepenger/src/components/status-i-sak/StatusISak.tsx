@@ -2,13 +2,13 @@ import { Alert, BodyLong, BodyShort, Box, Heading, Link, Switch, VStack } from '
 import React, { useState } from 'react';
 import { ChevronRightIcon } from '@navikt/aksel-icons';
 import { default as NextLink } from 'next/link';
+import { AppText, useAppIntl } from '../../i18n';
 import { Sak } from '../../server/api-models/SakSchema';
 import { formatSakshendelseTidspunkt, getAlleHendelserISak } from '../../utils/sakUtils';
+import SkrivTilOssLenke from '../lenker/SkrivTilOssLenke';
 import { Process } from '../process';
 import ProcessStep from '../process/ProcessStep';
 import { getProcessStepsFraSakshendelser } from './statusISakUtils';
-import { Msg, useMessages } from '../../i18n';
-import SkrivTilOssLenke from '../lenker/SkrivTilOssLenke';
 
 interface Props {
     sak: Sak;
@@ -18,7 +18,7 @@ interface Props {
 
 const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser, tittel }) => {
     const [reverseDirection, setReverseDirection] = useState(false);
-    const { text } = useMessages();
+    const { text } = useAppIntl();
     const hendelser = getAlleHendelserISak(sak);
     const processSteps = getProcessStepsFraSakshendelser(text, hendelser);
 
@@ -31,7 +31,7 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser, tit
                     </Heading>
                 ) : null}
                 <Alert variant="info">
-                    <Msg
+                    <AppText
                         id="statusISak.ingenHendelser"
                         values={{
                             p: (txt) => <BodyLong>{txt}</BodyLong>,

@@ -1,5 +1,5 @@
 import { Box, Heading } from '@navikt/ds-react';
-import { Msg } from '../../../i18n';
+import { AppText } from '../../../i18n';
 import { Dokument } from '../../../server/api-models/DokumenetSchema';
 import { getDokumentFrontendUrl, getSøknadDokumentFilnavn } from '../../../utils/dokumentUtils';
 import PdfLenke from '../../pdf-lenke/PdfLenke';
@@ -24,7 +24,7 @@ const Dokumenter = ({ dokumenter, tittel }: Props) => {
     if (dokumenter.length === 0) {
         return (
             <p>
-                <Msg id="dokumenter.ingenDokumenter" />
+                <AppText id="dokumenter.ingenDokumenter" />
             </p>
         );
     }
@@ -38,7 +38,7 @@ const Dokumenter = ({ dokumenter, tittel }: Props) => {
             {dokumenter && dokumenter.length > 0 && <ul>{dokumenter.map((dokument) => mapDokumenter(dokument))}</ul>}
             {(dokumenter === undefined || dokumenter.length === 0) && (
                 <p>
-                    <Msg id="dokumenter.ingenDokumenter" />
+                    <AppText id="dokumenter.ingenDokumenter" />
                 </p>
             )}
         </Box>

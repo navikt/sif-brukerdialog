@@ -1,0 +1,134 @@
+[
+    {
+        "pleietrengende": {
+            "identitetsnummer": "23420958048",
+            "fødselsdato": "2009-02-23",
+            "aktørId": "2205079915295",
+            "fornavn": null,
+            "mellomnavn": null,
+            "etternavn": null
+        },
+        "sak": {
+            "saksnummer": "1DQB4A0",
+            "saksbehandlingsFrist": "2024-04-23",
+            "fagsakYtelseType": { "kode": "PSB", "kodeverk": "FAGSAK_YTELSE" },
+            "ytelseType": "PSB",
+            "behandlinger": [
+                {
+                    "status": "PÅ_VENT",
+                    "opprettetTidspunkt": "2024-03-12T09:23:27.000Z",
+                    "avsluttetTidspunkt": null,
+                    "søknader": [
+                        {
+                            "søknadId": "474a59ca-a0c2-4172-bf9c-d9ce66be745f",
+                            "søknadstype": "SØKNAD",
+                            "k9FormatSøknad": {
+                                "søknadId": "474a59ca-a0c2-4172-bf9c-d9ce66be745f",
+                                "versjon": "1.0.0",
+                                "mottattDato": "2024-03-12T09:22:13.372Z",
+                                "søker": { "norskIdentitetsnummer": "24467507334" },
+                                "språk": "nb",
+                                "ytelse": {
+                                    "type": "PLEIEPENGER_SYKT_BARN",
+                                    "barn": { "norskIdentitetsnummer": "23420958048", "fødselsdato": null },
+                                    "søknadsperiode": ["2024-06-24/2024-08-09"],
+                                    "endringsperiode": [],
+                                    "trekkKravPerioder": [],
+                                    "opptjeningAktivitet": {},
+                                    "dataBruktTilUtledning": null,
+                                    "annetDataBruktTilUtledning": {
+                                        "harForståttRettigheterOgPlikter": true,
+                                        "harBekreftetOpplysninger": true,
+                                        "soknadDialogCommitSha": null,
+                                        "annetData": null
+                                    },
+                                    "infoFraPunsj": null,
+                                    "bosteder": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "utenlandsopphold": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "beredskap": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "nattevåk": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "tilsynsordning": {
+                                        "perioder": { "2024-06-24/2024-08-09": { "etablertTilsynTimerPerDag": "PT0S" } }
+                                    },
+                                    "lovbestemtFerie": { "perioder": {} },
+                                    "arbeidstid": {
+                                        "arbeidstakerList": [
+                                            {
+                                                "norskIdentitetsnummer": null,
+                                                "organisasjonsnummer": "972674818",
+                                                "organisasjonsnavn": "PENGELØS SPAREBANK",
+                                                "arbeidstidInfo": {
+                                                    "perioder": {
+                                                        "2024-06-24/2024-08-09": {
+                                                            "jobberNormaltTimerPerDag": "PT7H30M",
+                                                            "faktiskArbeidTimerPerDag": "PT0S"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        ],
+                                        "frilanserArbeidstidInfo": {
+                                            "perioder": {
+                                                "2024-06-24/2024-08-09": {
+                                                    "jobberNormaltTimerPerDag": "PT0S",
+                                                    "faktiskArbeidTimerPerDag": "PT0S"
+                                                }
+                                            }
+                                        },
+                                        "selvstendigNæringsdrivendeArbeidstidInfo": null
+                                    },
+                                    "uttak": {
+                                        "perioder": {
+                                            "2024-06-24/2024-08-09": { "timerPleieAvBarnetPerDag": "PT7H30M" }
+                                        }
+                                    },
+                                    "omsorg": { "relasjonTilBarnet": null, "beskrivelseAvOmsorgsrollen": null }
+                                },
+                                "journalposter": [],
+                                "begrunnelseForInnsending": { "tekst": null },
+                                "kildesystem": "søknadsdialog"
+                            },
+                            "dokumenter": [
+                                {
+                                    "journalpostId": "637592080",
+                                    "dokumentInfoId": "667138304",
+                                    "saksnummer": "1DQB4A0",
+                                    "tittel": "Søknad om pleiepenger for sykt barn",
+                                    "dokumentType": "PLEIEPENGER_SYKT_BARN_SOKNAD",
+                                    "filtype": "PDF",
+                                    "harTilgang": true,
+                                    "url": "http://sif-innsyn-api/dokument/637592080/667138304/ARKIV",
+                                    "relevanteDatoer": [
+                                        { "dato": "2024-03-12T10:22:19", "datotype": "DATO_OPPRETTET" },
+                                        { "dato": "2024-03-12T10:22:19", "datotype": "DATO_DOKUMENT" },
+                                        { "dato": "2024-03-12T10:22:27", "datotype": "DATO_JOURNALFOERT" },
+                                        { "dato": "2024-03-12T10:22:13", "datotype": "DATO_REGISTRERT" }
+                                    ]
+                                },
+                                {
+                                    "journalpostId": "637592080",
+                                    "dokumentInfoId": "667138305",
+                                    "saksnummer": "1DQB4A0",
+                                    "tittel": "pc-robot.jpg",
+                                    "dokumentType": "PLEIEPENGER_SYKT_BARN_SOKNAD",
+                                    "filtype": "PDF",
+                                    "harTilgang": true,
+                                    "url": "http://sif-innsyn-api/dokument/637592080/667138305/ARKIV",
+                                    "relevanteDatoer": [
+                                        { "dato": "2024-03-12T10:22:19", "datotype": "DATO_OPPRETTET" },
+                                        { "dato": "2024-03-12T10:22:19", "datotype": "DATO_DOKUMENT" },
+                                        { "dato": "2024-03-12T10:22:27", "datotype": "DATO_JOURNALFOERT" },
+                                        { "dato": "2024-03-12T10:22:13", "datotype": "DATO_REGISTRERT" }
+                                    ]
+                                }
+                            ],
+                            "arbeidsgivere": [{ "organisasjonsnummer": "972674818", "navn": "PENGELØS SPAREBANK" }]
+                        }
+                    ],
+                    "aksjonspunkter": [{ "venteårsak": "FOR_TIDLIG_SOKNAD", "tidsfrist": "2024-05-26T22:00:00.000Z" }],
+                    "utgåendeDokumenter": []
+                }
+            ]
+        }
+    }
+]

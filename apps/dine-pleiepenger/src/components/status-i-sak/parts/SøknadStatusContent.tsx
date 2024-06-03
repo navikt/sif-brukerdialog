@@ -1,5 +1,5 @@
 import { ReadMore, VStack } from '@navikt/ds-react';
-import { useMessages } from '../../../i18n';
+import { useAppIntl } from '../../../i18n';
 import { Pleiepengesøknad } from '../../../server/api-models/InnsendelseSchema';
 import { getArbeidsgiverinfoFraSøknad } from '../../../utils/sakUtils';
 import ArbeidsgivereISøknad from './ArbeidsgivereISøknad';
@@ -10,7 +10,7 @@ interface Props {
 }
 
 const SøknadStatusContent = ({ søknad }: Props) => {
-    const { text } = useMessages();
+    const { text } = useAppIntl();
     const arbeidsgivere = getArbeidsgiverinfoFraSøknad(søknad);
     const harArbeidsgivere = arbeidsgivere.length > 0;
     return (

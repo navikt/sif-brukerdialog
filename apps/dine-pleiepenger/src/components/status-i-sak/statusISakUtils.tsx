@@ -1,17 +1,17 @@
-import { ProcessStepData } from '../process/ProcessStep';
-import { Innsendelsestype } from '../../server/api-models/Innsendelsestype';
-import { Sakshendelse, SakshendelseForventetSvar, Sakshendelser } from '../../types/Sakshendelse';
-import { Innsendelse } from '../../server/api-models/InnsendelseSchema';
-import SøknadStatusContent from './parts/SøknadStatusContent';
-import EndringsmeldingStatusContent from './parts/EndringsmeldingStatusContent';
-import FerdigBehandletStatusContent from './parts/FerdigBehandletStatusContent';
-import { Msg, TextFn as TextFn } from '../../i18n';
 import { Box } from '@navikt/ds-react';
-import EttersendelseStatusContent from './parts/EttersendelseStatusContent';
+import { AppText, IntlTextFn as IntlTextFn } from '../../i18n';
+import { Innsendelse } from '../../server/api-models/InnsendelseSchema';
+import { Innsendelsestype } from '../../server/api-models/Innsendelsestype';
 import { Ettersendelsestype } from '../../types/EttersendelseType';
+import { Sakshendelse, SakshendelseForventetSvar, Sakshendelser } from '../../types/Sakshendelse';
+import { ProcessStepData } from '../process/ProcessStep';
+import EndringsmeldingStatusContent from './parts/EndringsmeldingStatusContent';
+import EttersendelseStatusContent from './parts/EttersendelseStatusContent';
+import FerdigBehandletStatusContent from './parts/FerdigBehandletStatusContent';
+import SøknadStatusContent from './parts/SøknadStatusContent';
 
 export const getProcessStepFromInnsendelse = (
-    text: TextFn,
+    text: IntlTextFn,
     innsendelse: Innsendelse,
     current: boolean,
 ): ProcessStepData | undefined => {
@@ -50,7 +50,7 @@ export const getProcessStepFromInnsendelse = (
     }
 };
 
-export const getProcessStepsFraSakshendelser = (text: TextFn, hendelser: Sakshendelse[]): ProcessStepData[] => {
+export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sakshendelse[]): ProcessStepData[] => {
     /** Aksjonspunkt skal ikke vises enda */
     const hendelserSomSkalVises = hendelser.filter((h) => h.type !== Sakshendelser.AKSJONSPUNKT);
 
@@ -107,7 +107,7 @@ export const getProcessStepsFraSakshendelser = (text: TextFn, hendelser: Sakshen
 
 const getForventetSvarTitleContent = (
     hendelse: SakshendelseForventetSvar,
-    text: TextFn,
+    text: IntlTextFn,
 ): Pick<ProcessStepData, 'title' | 'content'> | undefined => {
     const sisteHendelseErEttersendelse =
         hendelse.søknadstyperIBehandling[hendelse.søknadstyperIBehandling.length - 1] ===
@@ -123,7 +123,7 @@ const getForventetSvarTitleContent = (
             title: text('statusISak.forventetSvar.endring.tittel'),
             content: (
                 <Box className="mt-2">
-                    <Msg id="statusISak.forventetSvar.endring.info" />
+                    <AppText id="statusISak.forventetSvar.endring.info" />
                 </Box>
             ),
         };
@@ -132,7 +132,7 @@ const getForventetSvarTitleContent = (
         title: text('statusISak.forventetSvar.søknad.tittel'),
         content: (
             <Box className="mt-2">
-                <Msg id="statusISak.forventetSvar.søknad.info" />
+                <AppText id="statusISak.forventetSvar.søknad.info" />
             </Box>
         ),
     };

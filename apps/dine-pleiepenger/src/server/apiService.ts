@@ -15,6 +15,8 @@ import {
 import { Søker, SøkerSchema } from './api-models/SøkerSchema';
 import { exchangeTokenAndPrepRequest } from './utils/exchangeTokenPrepRequest';
 import { isValidMellomlagring } from './utils/isValidMellomlagring';
+import { ZodError } from 'zod';
+import { getZodErrorsInfo } from '../utils/zodUtils';
 
 export enum ApiService {
     k9Brukerdialog = 'k9-brukerdialog-api',
@@ -87,8 +89,27 @@ export const fetchSaker = async (req: NextApiRequest, raw?: boolean): Promise<Pl
         },
         `Parsing saker response data`,
     );
-    const saker = await PleietrengendeMedSakResponseSchema.parse(response.data);
-    childLogger.info(`Saker response data parsed`);
+
+    const saker: PleietrengendeMedSak[] = [];
+    try {
+        const parsedSaker = await PleietrengendeMedSakResponseSchema.parse(response.data);
+        saker.push(...parsedSaker);
+    } catch (error) {
+        if (error instanceof ZodError) {
+            childLogger.error({ parseDetails: JSON.stringify(getZodErrorsInfo(error)) }, 'Parsing av Saker feiler');
+        } else {
+            childLogger.error(error, 'Ukjent feil ved parsing saker');
+        }
+    }
+
+    childLogger.info(`Saker response data parsed. Antall saker: ${saker.length}`);
+    if (saker.length !== sakerLength) {
+        childLogger.warn(
+            { sakerLength, parsedSakerLength: saker.length },
+            'Antall saker før og etter parsing stemmer ikke overens.',
+        );
+        return Promise.reject(new Error('Antall saker før og etter parsing stemmer ikke overens.'));
+    }
 
     return saker.map((ps): PleietrengendeMedSak => {
         return {

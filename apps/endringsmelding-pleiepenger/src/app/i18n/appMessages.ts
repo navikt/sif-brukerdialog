@@ -75,6 +75,7 @@ const nb = {
     'lovbestemtFerieListe.fjernFerie.label': 'Fjern ferie',
     'lovbestemtFerieListe.fjernFerie.ariaLabel': 'Fjern ferie {periode}',
 
+    'ingenTilgangPage.pageTitle': 'Ingen tilgang - Endringsmelding for pleiepenger sykt barn',
     'ingenTilgangPage.tittel': 'Hei {navn}',
     'ingenTilgangPage.skrivTilOssGenerell':
         'I mellomtiden bruker du tjenesten {SkrivTilOssLink}, for å melde fra om endringer.',
@@ -102,8 +103,7 @@ const nb = {
     'kvitteringPage.pageTitle': 'Endringsmelding er mottatt',
     'kvitteringPage.title': 'Melding om endring er lagt til saken din',
     'kvitteringPage.info.1':
-        'Når vi har behandlet meldingen fra deg, får du svar på din side på nav.no og i Digipost. Hvis du har registrert deg mot å motta digital post, får du svaret tilsendt i posten.',
-    'kvitteringPage.info.2': 'Du kan se hva du har sendt inn på <Lenke>dine pleiepenger</Lenke>.',
+        'Du kan se endringsmeldingen etter ca. 15 minutter på <Lenke>Dine Pleiepenger</Lenke>.  Der finner du svar på endringene, når meldingen er behandlet.',
 
     'lovbestemtFerieStep.guide.tittel': 'Slik endrer du ferie',
     'lovbestemtFerieStep.guide.tekst.1': 'Du kan endre, legge til, eller fjerne ferie i pleiepengeperioden din.',

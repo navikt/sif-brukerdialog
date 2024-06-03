@@ -14,7 +14,7 @@ import {
     getStringValidator,
     ValidateDateError,
 } from '@navikt/sif-common-formik-ds/src/validation';
-import { dateToday, prettifyDate } from '@navikt/sif-common-utils';
+import { getDateToday, prettifyDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { useFormikContext } from 'formik';
 import { AppText } from '../../i18n';
@@ -33,7 +33,7 @@ interface Props {
 }
 
 const nYearsAgo = (years: number): Date => {
-    return dayjs(dateToday).subtract(years, 'y').startOf('year').toDate();
+    return dayjs(getDateToday()).subtract(years, 'y').startOf('year').toDate();
 };
 
 const AnnetBarnPart: React.FC<Props> = ({ formValues, søkersFødselsnummer, attachments, harRegistrerteBarn }) => {
@@ -125,7 +125,7 @@ const AnnetBarnPart: React.FC<Props> = ({ formValues, søkersFødselsnummer, att
                                 validate={(value) => {
                                     const dateError = getDateValidator({
                                         required: true,
-                                        max: dateToday,
+                                        max: getDateToday(),
                                     })(value);
                                     if (dateError === ValidateDateError.dateIsBeforeMin) {
                                         return {
@@ -137,7 +137,7 @@ const AnnetBarnPart: React.FC<Props> = ({ formValues, søkersFødselsnummer, att
                                 }}
                                 title="abc"
                                 minDate={nYearsAgo(18)}
-                                maxDate={dateToday}
+                                maxDate={getDateToday()}
                                 dropdownCaption={true}
                             />
                         </FormBlock>
