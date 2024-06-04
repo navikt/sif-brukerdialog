@@ -1,4 +1,4 @@
-import { dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds';
+import { dateToISOString, ISOStringToDate, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { guid } from '@navikt/sif-common-utils';
 import { Utenlandsopphold, UtenlandsoppholdFormValues } from './types';
 
@@ -15,18 +15,34 @@ const mapFormValuesToUtenlandsopphold = (
     excludeInnlagtQuestion: boolean,
     id: string | undefined,
 ): Partial<Utenlandsopphold> => {
-    const { barnInnlagtPerioder } = formValues;
-    return {
-        ...formValues,
+    const baseValues: Partial<Utenlandsopphold> = {
         id: id || guid(),
         fom: ISOStringToDate(formValues.fom),
         tom: ISOStringToDate(formValues.tom),
-        barnInnlagtPerioder: excludeInnlagtQuestion ? undefined : barnInnlagtPerioder,
+        landkode: formValues.landkode,
+    };
+
+    if (excludeInnlagtQuestion) {
+        return baseValues;
+    }
+
+    const { barnInnlagtPerioder, erBarnetInnlagt, erSammenMedBarn } = formValues;
+    if (formValues.erBarnetInnlagt === YesOrNo.YES) {
+        return {
+            ...baseValues,
+            erBarnetInnlagt,
+            barnInnlagtPerioder,
+        };
+    }
+    return {
+        ...baseValues,
+        erBarnetInnlagt,
+        erSammenMedBarn,
     };
 };
 
 const mapUtenlandsoppholdToFormValues = (
-    { fom, tom, erBarnetInnlagt, barnInnlagtPerioder, landkode, årsak }: Partial<Utenlandsopphold>,
+    { fom, tom, erBarnetInnlagt, barnInnlagtPerioder, landkode, årsak, erSammenMedBarn }: Partial<Utenlandsopphold>,
     excludeInnlagtQuestion: boolean,
 ): UtenlandsoppholdFormValues => ({
     fom: dateToISOString(fom),
@@ -35,6 +51,7 @@ const mapUtenlandsoppholdToFormValues = (
     erBarnetInnlagt: excludeInnlagtQuestion ? undefined : erBarnetInnlagt,
     årsak,
     barnInnlagtPerioder,
+    erSammenMedBarn,
 });
 
 const utenlandsoppholdUtils = {

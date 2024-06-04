@@ -27,7 +27,7 @@ const initialValues: FormValues = {
     utenlandsopphold: [],
 };
 
-const UtenlandsoppholdExample = () => {
+const UtenlandsoppholdExample = ({ excludeInnlagtQuestion }: { excludeInnlagtQuestion: boolean }) => {
     const [singleFormValues, setSingleFormValues] = useState<Partial<Utenlandsopphold> | undefined>(undefined);
     const [listFormValues, setListFormValues] = useState<Partial<FormValues> | undefined>(undefined);
     const intl = useIntl();
@@ -53,6 +53,7 @@ const UtenlandsoppholdExample = () => {
                                         minDate={getDate1YearAgo()}
                                         maxDate={getDate1YearFromNow()}
                                         name={FormField.utenlandsopphold}
+                                        excludeInnlagtQuestion={excludeInnlagtQuestion}
                                         validate={getListValidator({ required: true })}
                                         labels={{
                                             addLabel: 'Legg til utenlandsopphold',
@@ -73,7 +74,7 @@ const UtenlandsoppholdExample = () => {
                             opphold={initialValues.utenlandsopphold[0]}
                             minDate={getDate1YearAgo()}
                             maxDate={getDate1YearFromNow()}
-                            excludeInnlagtQuestion={false}
+                            excludeInnlagtQuestion={excludeInnlagtQuestion}
                             onSubmit={setSingleFormValues}
                             onCancel={() => null}
                         />

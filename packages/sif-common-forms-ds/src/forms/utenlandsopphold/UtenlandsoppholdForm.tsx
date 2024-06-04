@@ -45,6 +45,7 @@ enum UtenlandsoppholdFormFields {
     årsak = 'årsak',
     erBarnetInnlagt = 'erBarnetInnlagt',
     barnInnlagtPerioder = 'barnInnlagtPerioder',
+    erSammenMedBarn = 'erSammenMedBarn',
 }
 
 export const UtlandsoppholdFormErrors: Record<
@@ -77,6 +78,9 @@ export const UtlandsoppholdFormErrors: Record<
     [UtenlandsoppholdFormFields.barnInnlagtPerioder]: {
         [ValidateListError.listIsEmpty]: '@forms.utenlandsoppholdForm.barnInnlagtPerioder.listIsEmpty',
     },
+    [UtenlandsoppholdFormFields.erSammenMedBarn]: {
+        [ValidateYesOrNoError.yesOrNoIsUnanswered]: '@forms.utenlandsoppholdForm.erSammenMedBarn.yesOrNoIsUnanswered',
+    },
 };
 
 const defaultFormValues: UtenlandsoppholdFormValues = {
@@ -86,6 +90,7 @@ const defaultFormValues: UtenlandsoppholdFormValues = {
     erBarnetInnlagt: YesOrNo.UNANSWERED,
     barnInnlagtPerioder: [],
     årsak: undefined,
+    erSammenMedBarn: YesOrNo.UNANSWERED,
 };
 
 const Form = getTypedFormComponents<UtenlandsoppholdFormFields, UtenlandsoppholdFormValues, ValidationError>();
@@ -109,10 +114,14 @@ const UtenlandsoppholdForm = ({
             opphold?.id,
         );
         if (utils.isValidUtenlandsopphold(utenlandsoppholdToSubmit)) {
-            onSubmit({
-                ...utenlandsoppholdToSubmit,
-                årsak: countryIsMemberOfEøsOrEfta(utenlandsoppholdToSubmit.landkode) ? undefined : formValues.årsak,
-            });
+            if (utenlandsoppholdToSubmit.erBarnetInnlagt !== YesOrNo.YES) {
+                onSubmit(utenlandsoppholdToSubmit);
+            } else {
+                onSubmit({
+                    ...utenlandsoppholdToSubmit,
+                    årsak: countryIsMemberOfEøsOrEfta(utenlandsoppholdToSubmit.landkode) ? undefined : formValues.årsak,
+                });
+            }
         } else {
             throw new Error('UtenlandsoppholdForm: Formvalues is not a valid Utenlandsopphold on submit.');
         }
@@ -141,10 +150,13 @@ const UtenlandsoppholdForm = ({
 
                 const hasDateStringValues = hasValue(fom) && hasValue(tom);
 
-                const includeInnlagtPerioderQuestion =
+                const showInnlagtPerioderQuestion =
                     hasDateStringValues && landkode !== undefined && erBarnetInnlagt === YesOrNo.YES;
 
-                const includeInnlagtQuestion: boolean =
+                const showSammenMedBarnQuestion =
+                    hasDateStringValues && landkode !== undefined && erBarnetInnlagt === YesOrNo.NO;
+
+                const showInnlagtQuestion: boolean =
                     landkode !== undefined &&
                     hasValue(landkode) &&
                     !countryIsMemberOfEøsOrEfta(landkode) &&
@@ -202,7 +214,7 @@ const UtenlandsoppholdForm = ({
                             </FormBlock>
                         )}
 
-                        {includeInnlagtQuestion && landkode && hasDateStringValues && (
+                        {showInnlagtQuestion && landkode && hasDateStringValues && (
                             <>
                                 <FormBlock>
                                     <Form.YesOrNoQuestion
@@ -221,7 +233,26 @@ const UtenlandsoppholdForm = ({
                                         }}
                                     />
                                 </FormBlock>
-                                {includeInnlagtPerioderQuestion && (
+                                {showSammenMedBarnQuestion && (
+                                    <FormBlock margin="l">
+                                        <Form.YesOrNoQuestion
+                                            name={UtenlandsoppholdFormFields.erSammenMedBarn}
+                                            legend={text('@forms.utenlandsopphold.form.erSammenMedBarn.spm', {
+                                                land: getCountryName(landkode, intl.locale),
+                                            })}
+                                            validate={(value) => {
+                                                const error = getYesOrNoValidator()(value);
+                                                return error
+                                                    ? {
+                                                          key: error,
+                                                          values: { land: getCountryName(landkode, intl.locale) },
+                                                      }
+                                                    : undefined;
+                                            }}
+                                        />
+                                    </FormBlock>
+                                )}
+                                {showInnlagtPerioderQuestion && (
                                     <FormBlock margin="l">
                                         <TidsperiodeListAndDialog
                                             name={UtenlandsoppholdFormFields.barnInnlagtPerioder}

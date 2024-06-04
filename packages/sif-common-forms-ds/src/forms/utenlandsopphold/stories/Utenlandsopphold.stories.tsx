@@ -14,5 +14,9 @@ type Story = StoryObj<typeof UtenlandsoppholdExample>;
 
 export const Default: Story = {
     name: 'Default',
-    render: () => <UtenlandsoppholdExample />,
+    render: () => <UtenlandsoppholdExample excludeInnlagtQuestion={false} />,
+};
+export const UtenSpmOm: Story = {
+    name: 'Uten spørsmål om innleggelse ',
+    render: () => <UtenlandsoppholdExample excludeInnlagtQuestion={true} />,
 };
