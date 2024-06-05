@@ -30,7 +30,7 @@ test.describe('Arbeidssituasjoner arbeidstaker', () => {
         await page.getByTestId('er-ansatt_yes').check();
         await page.getByLabel('Hvor mange timer jobber du').fill('40');
         await gåTilOppsummering(page);
-        expect(
+        await expect(
             page.getByText('WHOA.BOA (organisasjonsnummer 947064649)Er ansattJobber normalt 40 timer per uke'),
         ).toBeVisible();
     });
@@ -40,7 +40,7 @@ test.describe('Arbeidssituasjoner arbeidstaker', () => {
         await page.getByLabel('Hvor mange timer jobber du').fill('30');
         await gåTilOppsummering(page);
 
-        expect(
+        await expect(
             page.getByText('WHOA.BOA (organisasjonsnummer 947064649)Er ikke lenger ansattJobbet normalt 30'),
         ).toBeVisible();
     });
@@ -49,7 +49,7 @@ test.describe('Arbeidssituasjoner arbeidstaker', () => {
         await page.getByTestId('sluttet-før-søknadsperiode').getByLabel('Ja').check();
         await page.getByTestId('verneplikt').getByText('Nei', { exact: true }).check(); // Vernepllikt spm kommer opp når en har ingen annen aktivitet
         await gåTilOppsummering(page, false);
-        expect(
+        await expect(
             page.getByText('WHOA.BOA (organisasjonsnummer 947064649)Er ikke lenger ansattSluttet før 2. januar'),
         ).toBeVisible();
     });

@@ -19,7 +19,7 @@ test.describe('Fosterhjemsgodtgjørelse eller omsorgsstønad ', () => {
         await page.getByRole('group', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Nei').check();
         await routeUtils.gåTilOppsummeringFraArbeidssituasjon(page);
         const summary = await page.getByTestId('omsorgsstønad');
-        expect(summary.getByText('Mottar ikke fosterhjemgodtgjø')).toBeVisible();
+        await expect(summary.getByText('Mottar ikke fosterhjemgodtgjø')).toBeVisible();
     });
     test('Starter og slutter å motta i perioden', async ({ page }) => {
         await page.getByRole('group', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Ja').check();
@@ -38,8 +38,8 @@ test.describe('Fosterhjemsgodtgjørelse eller omsorgsstønad ', () => {
         await routeUtils.gåTilOppsummeringFraArbeidssituasjon(page);
 
         const summary = await page.getByTestId('omsorgsstønad');
-        expect(
-            await summary.getByText('Mottar stønad eller godtgjørelsen i deler av perioden jeg søker om'),
+        await expect(
+            summary.getByText('Mottar stønad eller godtgjørelsen i deler av perioden jeg søker om'),
         ).toBeVisible();
         await expect(summary.getByText('Startet 2. januar')).toBeVisible();
         await expect(summary.getByText('Sluttet 3. januar')).toBeVisible();
