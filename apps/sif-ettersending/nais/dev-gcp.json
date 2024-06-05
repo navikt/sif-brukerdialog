@@ -11,7 +11,7 @@
         "DITT_NAV_URL": "https://www.dev.nav.no/person/dittnav/",
         "FRONTEND_API_PATH": "/api",
         "FRONTEND_VEDLEGG_URL": "https://k9-ettersending-soknad.intern.dev.nav.no/api",
-        "INNSYN_PP": "https://sif-innsyn.intern.dev.nav.no/familie/sykdom-i-familien/soknad/innsyn/dine-pleiepenger",
+        "INNSYN_PP": "https://https://dine-pleiepenger.intern.dev.nav.no/",
         "LOGIN_URL": "https://k9-ettersending-soknad.intern.dev.nav.no/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/ettersending",
         "MIN_SIDE_URL": "https://www.intern.dev.nav.no/minside",
         "NPM_CONFIG_CACHE": "/tmp",

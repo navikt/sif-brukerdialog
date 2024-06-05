@@ -1,5 +1,19 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.11.0
+
+### Minor Changes
+
+-   ecd2cdb: Endre fra å bruke dato-konstanter som settes ved last av applikasjonen, til funksjoner som henter ny dato.
+
+### Patch Changes
+
+-   Updated dependencies [ecd2cdb]
+    -   @navikt/sif-common-forms-ds@8.22.0
+    -   @navikt/sif-common-utils@3.46.0
+    -   @navikt/sif-common-core-ds@9.17.6
+    -   @navikt/sif-common-soknad-ds@10.15.5
+
 ## 3.10.1
 
 ### Patch Changes

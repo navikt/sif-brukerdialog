@@ -1,5 +1,12 @@
 # @navikt/sif-common-core-ds
 
+## 9.17.6
+
+### Patch Changes
+
+-   Updated dependencies [ecd2cdb]
+    -   @navikt/sif-common-utils@3.46.0
+
 ## 9.17.5
 
 ### Patch Changes

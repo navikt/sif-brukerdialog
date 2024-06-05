@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.46.0
+
+### Minor Changes
+
+-   ecd2cdb: Endre fra å bruke dato-konstanter som settes ved last av applikasjonen, til funksjoner som henter ny dato.
+
 ## 3.45.4
 
 ### Patch Changes
