@@ -41,8 +41,7 @@ jobs:
               run: yarn
 
             - name: Run code tests
-              run: yarn test --filter=ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
-
+              run: yarn test --filter=@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
     run-playwright-test:
         timeout-minutes: 60
@@ -57,7 +56,7 @@ jobs:
                   yarn config set npmScopes.navikt.npmAlwaysAuth true
                   yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
               env:
-                NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
             - name: Setup Node.js environment
               uses: actions/setup-node@v4
@@ -72,7 +71,7 @@ jobs:
               run: npx playwright install chromium
 
             - name: Build application
-              run: yarn build --filter=ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
+              run: yarn build --filter=@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
             - name: Run tests
-              run: yarn turbo playwright-test --filter=ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
+              run: yarn turbo playwright-test --filter=@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
