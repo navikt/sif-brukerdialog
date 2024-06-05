@@ -1,7 +1,7 @@
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { JaNeiSvar, SummaryBlock, SummaryList, SummarySection } from '@navikt/sif-common-ui';
-import { dateToday, ISODateToDate } from '@navikt/sif-common-utils';
+import { ISODateToDate, getDateToday } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
@@ -19,8 +19,8 @@ export interface Props {
 const MedlemskapOppsummering: React.FC<Props> = ({ bosteder }) => {
     const { text } = useAppIntl();
 
-    const bostederSiste12 = bosteder.filter((b) => dayjs(ISODateToDate(b.tilOgMed)).isSameOrBefore(dateToday));
-    const bostederNeste12 = bosteder.filter((b) => dayjs(ISODateToDate(b.tilOgMed)).isSameOrAfter(dateToday));
+    const bostederSiste12 = bosteder.filter((b) => dayjs(ISODateToDate(b.tilOgMed)).isSameOrBefore(getDateToday()));
+    const bostederNeste12 = bosteder.filter((b) => dayjs(ISODateToDate(b.tilOgMed)).isSameOrAfter(getDateToday()));
 
     return (
         <SummarySection header={text('step.oppsummering.medlemskap.header')}>

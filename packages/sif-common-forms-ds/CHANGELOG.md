@@ -1,5 +1,23 @@
 # @navikt/sif-common-forms-ds
 
+## 8.22.1
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 8.22.0
+
+### Minor Changes
+
+-   ecd2cdb: Endre fra å bruke dato-konstanter som settes ved last av applikasjonen, til funksjoner som henter ny dato.
+
+## 8.21.6
+
+### Patch Changes
+
+-   6751f58: Pakkeoppdateringer - minor/patch
+
 ## 8.21.5
 
 ### Patch Changes

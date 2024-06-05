@@ -1,5 +1,36 @@
 # @navikt/dine-pleiepenger
 
+## 1.3.2
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.25.5
+    -   @navikt/appstatus-react-ds@2.18.6
+    -   @navikt/sif-common-core-ds@9.17.7
+    -   @navikt/sif-common-sentry@0.26.5
+    -   @navikt/sif-common-utils@3.46.1
+
+## 1.3.1
+
+### Patch Changes
+
+-   6751f58: Pakkeoppdateringer - minor/patch
+-   1823681: Håndtere at backend kan returnere søknader === null på en behandling
+-   Updated dependencies [6751f58]
+    -   @navikt/sif-common-amplitude@2.25.4
+    -   @navikt/appstatus-react-ds@2.18.5
+    -   @navikt/sif-common-core-ds@9.17.5
+    -   @navikt/sif-common-sentry@0.26.4
+    -   @navikt/sif-common-utils@3.45.4
+
+## 1.3.0
+
+### Minor Changes
+
+-   101fb21: Utvide logging ved feil av zod parsing. Godta, men ikke vise søknadstype === Ettersendelse
+
 ## 1.2.5
 
 ### Patch Changes

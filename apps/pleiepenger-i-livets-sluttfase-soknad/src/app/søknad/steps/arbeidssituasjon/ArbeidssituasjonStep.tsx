@@ -12,7 +12,7 @@ import { OpptjeningUtland } from '@navikt/sif-common-forms-ds/src/forms/opptjeni
 import UtenlandskNæringListAndDialog from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring/UtenlandskNæringListAndDialog';
 import { UtenlandskNæring } from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring/types';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { date1YearAgo, date1YearFromNow, dateToday } from '@navikt/sif-common-utils';
+import { getDate1YearAgo, getDate1YearFromNow, getDateToday } from '@navikt/sif-common-utils';
 import { useState } from 'react';
 import { arbeidsgivereEndpoint } from '../../../api/endpoints/arbeidsgiverEndpoint';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
@@ -190,7 +190,7 @@ const ArbeidssituasjonStep = () => {
                                         formValues={frilans}
                                         frilansoppdrag={frilansoppdrag || []}
                                         søknadsperiode={søknadsperiode}
-                                        søknadsdato={dateToday}
+                                        søknadsdato={getDateToday()}
                                         urlSkatteetaten={getLenker(intl.locale).skatteetaten}
                                     />
                                 </FormBlock>
@@ -214,8 +214,8 @@ const ArbeidssituasjonStep = () => {
                                     {harOpptjeningUtland === YesOrNo.YES && (
                                         <FormBlock>
                                             <OpptjeningUtlandListAndDialog
-                                                minDate={date1YearAgo}
-                                                maxDate={date1YearFromNow}
+                                                minDate={getDate1YearAgo()}
+                                                maxDate={getDate1YearFromNow()}
                                                 name={ArbeidssituasjonFormFields.opptjeningUtland}
                                                 validate={getListValidator({ required: true })}
                                                 labels={{

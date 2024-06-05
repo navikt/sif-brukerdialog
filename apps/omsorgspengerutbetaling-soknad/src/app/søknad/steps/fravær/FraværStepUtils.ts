@@ -1,4 +1,3 @@
-import { date1YearAgo, dateToday } from '@navikt/sif-common-utils';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds';
 import dayjs, { Dayjs } from 'dayjs';
@@ -7,6 +6,7 @@ import { FraværSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/S
 import { FraværFormValues } from './FraværStep';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
+import { getDate1YearAgo, getDateToday } from '@navikt/sif-common-utils';
 
 dayjs.extend(minMax);
 
@@ -29,13 +29,13 @@ const getÅrstallFromFravær = (
 
 const getGyldigTidsromForFravær = (årstall?: number): DateRange => {
     if (årstall === undefined) {
-        return { from: date1YearAgo, to: dayjs().endOf('day').toDate() };
+        return { from: getDate1YearAgo(), to: dayjs().endOf('day').toDate() };
     }
     const førsteDagIÅret = dayjs(`${årstall}-01-01`).toDate();
     const sisteDagIÅret = dayjs(`${årstall}-12-31`).toDate();
     return {
         from: førsteDagIÅret,
-        to: dayjs.min([dayjs(sisteDagIÅret), dayjs(dateToday)])!.toDate(),
+        to: dayjs.min([dayjs(sisteDagIÅret), dayjs(getDateToday())])!.toDate(),
     };
 };
 

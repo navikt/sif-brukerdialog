@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
-import { dateToday } from '@navikt/sif-common-utils';
+
 import { useFormikContext } from 'formik';
 import { purge } from '../api/api';
 import BekreftDialog from '../components/bekreft-dialog/BekreftDialog';
@@ -39,6 +39,7 @@ import OppsummeringStep from './oppsummering-step/OppsummeringStep';
 import { useSøknadsdataContext } from './SøknadsdataContext';
 import TidsromStep from './tidsrom-step/TidsromStep';
 import { getSøknadStepConfig } from './søknadStepConfig';
+import { getDateToday } from '@navikt/sif-common-utils';
 
 interface PleiepengesøknadContentProps {
     /** Sist steg som bruker submittet skjema */
@@ -125,7 +126,7 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
     };
 
     const søknadsperiode = values ? getSøknadsperiodeFromFormValues(values) : undefined;
-    const søknadsdato = dateToday;
+    const søknadsdato = getDateToday();
 
     return (
         <>

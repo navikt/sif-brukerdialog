@@ -1,5 +1,17 @@
 # @navikt/appstatus-react-ds
 
+## 2.18.6
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 2.18.5
+
+### Patch Changes
+
+-   6751f58: Pakkeoppdateringer - minor/patch
+
 ## 2.18.4
 
 ### Patch Changes

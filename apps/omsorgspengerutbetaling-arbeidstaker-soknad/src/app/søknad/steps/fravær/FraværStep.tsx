@@ -14,7 +14,7 @@ import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/BostedUtlandListAndDialog';
 import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
-import { date1YearAgo, dateToday } from '@navikt/sif-common-utils';
+import { getDate1YearAgo, getDateToday } from '@navikt/sif-common-utils';
 import FormSection from '../../../components/form-section/FormSection';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
@@ -145,8 +145,8 @@ const FraværStep: React.FC = () => {
                     const fraværDager = getAlleFraværDager(fravær);
                     const fraværPerioder = getAlleFraværPerioder(fravær);
                     const harRegistrertFravær = fraværDager.length + fraværPerioder.length > 0;
-                    const minDateForFravær = harRegistrertFravær ? gyldigTidsrom.from : date1YearAgo;
-                    const maxDateForFravær = harRegistrertFravær ? gyldigTidsrom.to : dateToday;
+                    const minDateForFravær = harRegistrertFravær ? gyldigTidsrom.from : getDate1YearAgo();
+                    const maxDateForFravær = harRegistrertFravær ? gyldigTidsrom.to : getDateToday();
 
                     return (
                         <>
@@ -228,8 +228,8 @@ const FraværStep: React.FC = () => {
                                         <FormBlock margin="m">
                                             <BostedUtlandListAndDialog<FraværStepFormFields>
                                                 name={FraværStepFormFields.perioderUtenlandsopphold}
-                                                minDate={date1YearAgo}
-                                                maxDate={dateToday}
+                                                minDate={getDate1YearAgo()}
+                                                maxDate={getDateToday()}
                                                 labels={{
                                                     addLabel: text('step.fravær.værtIUtlandet.leggTilLabel'),
                                                     modalTitle: text('step.fravær.værtIUtlandet.modalTittel'),

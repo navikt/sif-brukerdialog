@@ -6,7 +6,7 @@ import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-d
 import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { date1YearAgo, date1YearFromNow } from '@navikt/sif-common-utils';
+import { getDate1YearAgo, getDate1YearFromNow } from '@navikt/sif-common-utils';
 import { flatten } from 'flat';
 import MessagesPreview from '../../../../storybook/components/messages-preview/MessagesPreview';
 import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
@@ -50,8 +50,8 @@ const UtenlandsoppholdExample = () => {
                                     submitButtonLabel="Valider skjema"
                                     formErrorHandler={getFormErrorHandler(intl)}>
                                     <UtenlandsoppholdListAndDialog
-                                        minDate={date1YearAgo}
-                                        maxDate={date1YearFromNow}
+                                        minDate={getDate1YearAgo()}
+                                        maxDate={getDate1YearFromNow()}
                                         name={FormField.utenlandsopphold}
                                         validate={getListValidator({ required: true })}
                                         labels={{
@@ -71,8 +71,8 @@ const UtenlandsoppholdExample = () => {
                     <Box padding="4" borderWidth="1" borderRadius="small">
                         <UtenlandsoppholdForm
                             opphold={initialValues.utenlandsopphold[0]}
-                            minDate={date1YearAgo}
-                            maxDate={date1YearFromNow}
+                            minDate={getDate1YearAgo()}
+                            maxDate={getDate1YearFromNow()}
                             excludeInnlagtQuestion={false}
                             onSubmit={setSingleFormValues}
                             onCancel={() => null}
