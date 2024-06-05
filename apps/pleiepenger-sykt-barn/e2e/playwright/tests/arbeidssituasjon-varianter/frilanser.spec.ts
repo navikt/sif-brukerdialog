@@ -49,8 +49,7 @@ test.describe('Frilanser', () => {
     test('Er ikke frilanser', async ({ page }) => {
         await page.getByTestId('arbeidssituasjonFrilanser').getByText('Nei', { exact: true }).nth(1).click();
         await routeUtils.gåTilOppsummeringFraArbeidssituasjon(page);
-        const summary = await page.getByTestId('frilans');
-        expect(await summary.getByText('Er ikke frilanser og får ikke')).toBeVisible();
+        expect(page.getByText('Er ikke frilanser og får ikke')).toBeVisible();
     });
 
     test('Er kun frilanser', async ({ page }) => {
