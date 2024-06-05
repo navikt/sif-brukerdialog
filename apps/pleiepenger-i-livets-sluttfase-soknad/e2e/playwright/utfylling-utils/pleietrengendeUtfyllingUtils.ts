@@ -8,8 +8,8 @@ export const fyllUtPleietrengendeMedFnr = async (page: Page) => {
 };
 
 export const kontrollerPleietrengendeMedFnr = async (page: Page) => {
-    await expect(page.getByRole('heading', { level: 1, name: 'Oppsummering' })).toBeVisible();
-    await expect(page.getByText('Test TestesenFødselsnummer: 2 7 8 5 7 7 9 8 8 0 027857798800')).toBeTruthy();
+    await expect(await page.getByRole('heading', { level: 1, name: 'Oppsummering' })).toBeVisible();
+    await expect(await page.getByText('Test TestesenFødselsnummer: 2 7 8 5 7 7 9 8 8 0 027857798800')).toBeTruthy();
 };
 
 export const fyllUtPleietrengendeUtenFnr = async (page: Page) => {
