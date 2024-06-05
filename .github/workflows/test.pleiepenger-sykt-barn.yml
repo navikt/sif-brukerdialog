@@ -28,8 +28,7 @@ jobs:
                   yarn config set npmScopes.navikt.npmAlwaysAuth true
                   yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
               env:
-                NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
-
+                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
             - name: Setup Node.js environment
               uses: actions/setup-node@v4
@@ -41,7 +40,7 @@ jobs:
               run: yarn
 
             - name: Run code tests
-              run: yarn test --filter=pleiepenger-sykt-barn
+              run: yarn test --filter=@navikt/pleiepenger-sykt-barn
 
     run-cypress-test:
         runs-on: ubuntu-latest
@@ -55,7 +54,7 @@ jobs:
                   yarn config set npmScopes.navikt.npmAlwaysAuth true
                   yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
               env:
-                NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
             - name: Setup Node.js environment
               uses: actions/setup-node@v4
@@ -74,12 +73,12 @@ jobs:
               with:
                   project: ./apps/pleiepenger-sykt-barn/e2e
                   build: yarn turbo run build --filter=@navikt/pleiepenger-sykt-barn
-                  start: yarn turbo start-e2e-server --filter=pleiepenger-sykt-barn
+                  start: yarn turbo start-e2e-server --filter=@navikt/pleiepenger-sykt-barn
                   wait-on: 'http://localhost:8080'
                   wait-on-timeout: 60
                   runTests: false
 
             - name: Run cypress tests
-              run: yarn turbo cypress-run --filter=pleiepenger-sykt-barn
+              run: yarn turbo cypress-run --filter=@navikt/pleiepenger-sykt-barn
               env:
                   CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
