@@ -41,15 +41,15 @@ test.describe('Fosterhjemsgodtgjørelse eller omsorgsstønad ', () => {
         expect(
             await summary.getByText('Mottar stønad eller godtgjørelsen i deler av perioden jeg søker om'),
         ).toBeVisible();
-        expect(await summary.getByText('Startet 2. januar')).toBeVisible();
-        expect(await summary.getByText('Sluttet 3. januar')).toBeVisible();
+        await expect(summary.getByText('Startet 2. januar')).toBeVisible();
+        await expect(summary.getByText('Sluttet 3. januar')).toBeVisible();
     });
 });
 test.describe('Frilanser', () => {
     test('Er ikke frilanser', async ({ page }) => {
         await page.getByTestId('arbeidssituasjonFrilanser').getByText('Nei', { exact: true }).nth(1).click();
         await routeUtils.gåTilOppsummeringFraArbeidssituasjon(page);
-        expect(page.getByText('Er ikke frilanser og får ikke')).toBeVisible();
+        await expect(page.getByText('Er ikke frilanser og får ikke')).toBeVisible();
     });
 
     test('Er kun frilanser', async ({ page }) => {
@@ -65,10 +65,9 @@ test.describe('Frilanser', () => {
 
         await routeUtils.gåTilOppsummeringFraJobbISøknadsperioden(page);
         const summary = await page.getByTestId('frilans');
-        expect(summary).toBeVisible();
-        expect(summary.getByText('Jobber som frilanser')).toBeVisible();
-        expect(summary.getByText('Jobber normalt 33 timer per')).toBeVisible();
-        expect(summary.getByText('Startet som frilanser før 1. oktober')).toBeVisible();
+        await expect(summary.getByText('Jobber som frilanser')).toBeVisible();
+        await expect(summary.getByText('Jobber normalt 33 timer per')).toBeVisible();
+        await expect(summary.getByText('Startet som frilanser før 1. oktober')).toBeVisible();
     });
 
     test('Mottar kun honorar - mister honorar', async ({ page }) => {
@@ -85,24 +84,21 @@ test.describe('Frilanser', () => {
 
         await routeUtils.gåTilOppsummeringFraJobbISøknadsperioden(page);
         const summary = await page.getByTestId('frilans');
-        expect(summary).toBeVisible();
-        expect(summary.getByText('Mottar honorar')).toBeVisible();
-        expect(summary.getByText('Mister honorar i sø')).toBeVisible();
-        expect(summary.getByText('Jobber normalt 33 timer per')).toBeVisible();
-        expect(summary.getByText('Startet som frilanser før 1. oktober')).toBeVisible();
+        await expect(summary.getByText('Mottar honorar')).toBeVisible();
+        await expect(summary.getByText('Mister honorar i sø')).toBeVisible();
+        await expect(summary.getByText('Jobber normalt 33 timer per')).toBeVisible();
+        await expect(summary.getByText('Startet som frilanser før 1. oktober')).toBeVisible();
     });
     test('Mottar kun honorar - mister ikke honorar', async ({ page }) => {
         await page.getByRole('group', { name: 'Jobber du som frilanser eller' }).getByLabel('Ja').check();
         await page.getByLabel('Jeg mottar honorar').check();
         await page.getByTestId('misterHonorar').getByText('Nei').click();
         await page.getByTestId('typedFormikForm-submitButton').click();
-        // await page.getByLabel('Frilans og oppdrag som regnes').getByText('Jeg jobber ikke').click();
 
         await routeUtils.gåTilOppsummeringFraJobbISøknadsperioden(page);
         const summary = await page.getByTestId('frilans');
-        expect(summary).toBeVisible();
-        expect(summary.getByText('Mottar honorar')).toBeVisible();
-        expect(summary.getByText('Mister ikke honorar i sø')).toBeVisible();
+        await expect(summary.getByText('Mottar honorar')).toBeVisible();
+        await expect(summary.getByText('Mister ikke honorar i sø')).toBeVisible();
     });
     test('Er frilanser og mottar honorar', async ({ page }) => {
         await page.getByRole('group', { name: 'Jobber du som frilanser eller' }).getByLabel('Ja').check();
@@ -117,9 +113,8 @@ test.describe('Frilanser', () => {
 
         await routeUtils.gåTilOppsummeringFraJobbISøknadsperioden(page);
         const summary = await page.getByTestId('frilans');
-        expect(summary).toBeVisible();
-        expect(summary.getByText('Jobber som frilanser og mottar honorar')).toBeVisible();
-        expect(summary.getByText('Jobber normalt 33 timer per')).toBeVisible();
-        expect(summary.getByText('Startet som frilanser før 1. oktober')).toBeVisible();
+        await expect(summary.getByText('Jobber som frilanser og mottar honorar')).toBeVisible();
+        await expect(summary.getByText('Jobber normalt 33 timer per')).toBeVisible();
+        await expect(summary.getByText('Startet som frilanser før 1. oktober')).toBeVisible();
     });
 });
