@@ -12,7 +12,6 @@
         "clean": "rm -rf node_modules .dist",
         "codegen": "playwright codegen",
         "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",
-        "e2e-ui": "playwright test --ui",
         "e2e": "playwright test",
         "lint": "eslint ./src --ext ts,tsx",
         "playwright-test": "playwright test",

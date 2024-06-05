@@ -98,7 +98,6 @@
         "codegen": "playwright codegen",
         "playwright-test": "playwright test",
         "e2e": "playwright test",
-        "e2e-ui": "playwright test --ui",
         "dev-api": "PORT=8089 node ./src/mocks/server.cjs",
         "lint": "eslint ./src --ext js,ts,tsx",
         "dev": "cross-env NODE_ENV=development node ./server.cjs",
