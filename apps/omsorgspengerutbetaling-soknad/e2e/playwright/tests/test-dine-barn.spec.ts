@@ -45,9 +45,6 @@ const svarUtils = (page: Page) => ({
             .getByLabel(harDekket ? 'Ja' : 'Nei')
             .click();
     },
-    submitIsEnabled: async () => {
-        return page.getByRole('button', { name: 'Neste' }).isEnabled();
-    },
 });
 
 test.describe('Tester varianter av Dine barn steg', () => {
@@ -78,18 +75,18 @@ test.describe('Tester varianter av Dine barn steg', () => {
 
         /** Har søkt utvidet */
         await svarUtils(page).harSøktOmEkstraDager(true);
-        expect(await svarUtils(page).submitIsEnabled()).toBe(true);
+        await expect(page.getByRole('button', { name: 'Neste' })).toBeEnabled();
 
         /** Har ikke søkt utvidet */
         await svarUtils(page).harSøktOmEkstraDager(false);
-        expect(await page.getByText('For å ha rett til omsorgspenger fra det året barnet fyller 13 år')).toBeVisible();
-        expect(await svarUtils(page).submitIsEnabled()).toBe(false);
+        await expect(page.getByText('For å ha rett til omsorgspenger fra det året barnet fyller 13 år')).toBeVisible();
+        await expect(page.getByRole('button', { name: 'Neste' })).toBeDisabled();
     });
     test('Ingen barn', async ({ page }) => {
         await startScenario(page, playwrightApiMockData.barnMock.ingenBarn);
         await utfyllingUtils.startSøknad(page);
 
         await page.getByRole('button', { name: 'Neste' }).click();
-        expect(await page.getByRole('link', { name: 'Du må legge til minst ett' })).toBeVisible();
+        await expect(page.getByRole('link', { name: 'Du må legge til minst ett' })).toBeVisible();
     });
 });
