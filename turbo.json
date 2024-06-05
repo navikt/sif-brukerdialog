@@ -1,48 +1,32 @@
 {
-  "$schema": "https://turborepo.org/schema.json",
-  "tasks": {
-    "build": {
-      "outputs": [
-        "dist/**",
-        ".next/**",
-        "!.next/cache/**"
-      ],
-      "dependsOn": [
-        "^build"
-      ]
-    },
-    "test": {
-      "outputs": [],
-      "dependsOn": [
-        "^test"
-      ]
-    },
-    "lint": {
-      "outputs": [],
-      "dependsOn": [
-        "^lint"
-      ]
-    },
-    "clean": {
-      "cache": false
-    },
-    "start-e2e-server": {
-      "outputs": [],
-      "dependsOn": [
-        "^build"
-      ]
-    },
-    "cypress-run": {
-      "outputs": [],
-      "dependsOn": [
-        "^build"
-      ]
-    },
-    "playwright-test": {
-      "outputs": [],
-      "dependsOn": [
-        "build"
-      ]
+    "$schema": "https://turborepo.org/schema.json",
+    "tasks": {
+        "build": {
+            "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
+            "dependsOn": ["^build"]
+        },
+        "test": {
+            "outputs": [],
+            "dependsOn": ["^test"]
+        },
+        "lint": {
+            "outputs": [],
+            "dependsOn": ["^lint"]
+        },
+        "clean": {
+            "cache": false
+        },
+        "start-e2e-server": {
+            "outputs": [],
+            "dependsOn": ["^build"]
+        },
+        "cypress-run": {
+            "outputs": [],
+            "dependsOn": ["^build"]
+        },
+        "playwright-test": {
+            "outputs": [],
+            "dependsOn": ["^build"]
+        }
     }
-  }
 }
