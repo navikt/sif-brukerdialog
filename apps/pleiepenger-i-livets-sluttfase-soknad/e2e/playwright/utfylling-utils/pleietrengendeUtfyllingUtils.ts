@@ -29,11 +29,11 @@ export const fyllUtPleietrengendeUtenFnr = async (page: Page) => {
 
 export const kontrollerPleietrengendeUtenFnr = async (page: Page) => {
     /** Kontroller oppsummering */
-    await expect(page.getByText('Test Testesen').isVisible()).toBeTruthy();
-    await expect(page.getByText('Fødselsdato: 04.04.1994').isVisible()).toBeTruthy();
-    await expect(page.locator('a').getByText('navlogopng.png').nth(0).isVisible()).toBeTruthy();
+    await expect(await page.getByText('Test Testesen').isVisible()).toBeTruthy();
+    await expect(await page.getByText('Fødselsdato: 04.04.1994').isVisible()).toBeTruthy();
+    await expect(await page.locator('a').getByText('navlogopng.png').nth(0).isVisible()).toBeTruthy();
     await expect(
-        page.getByText('Oppgitt grunn for at han/hun ikke har fødselsnummer eller D-nummer: Annet').isVisible(),
+        await page.getByText('Oppgitt grunn for at han/hun ikke har fødselsnummer eller D-nummer: Annet').isVisible(),
     ).toBeTruthy();
-    await expect(page.getByText('Er dere flere som skal dele på pleiepengene?Nei').isVisible()).toBeTruthy();
+    await expect(await page.getByText('Er dere flere som skal dele på pleiepengene?Nei').isVisible()).toBeTruthy();
 };
