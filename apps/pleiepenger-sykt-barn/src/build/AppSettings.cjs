@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const getAppSettings = (isCypress) => ({
+const getAppSettings = () => ({
     API_URL_INNSYN: `${process.env.API_URL_INNSYN}`,
     API_URL: `${process.env.API_URL}`,
     APP_VERSION: `${process.env.APP_VERSION}`,
