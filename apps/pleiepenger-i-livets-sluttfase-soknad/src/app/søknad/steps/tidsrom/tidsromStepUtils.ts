@@ -3,8 +3,8 @@ import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-
 import { getDateRangeValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { Utenlandsopphold } from '@navikt/sif-common-forms-ds';
 import {
-    date1YearFromNow,
-    date3YearsAgo,
+    getDate1YearFromNow,
+    getDate3YearsAgo,
     dateRangesCollide,
     dateRangesExceedsRange,
     getDateRangeFromDates,
@@ -19,7 +19,7 @@ import { TidsromFormValues } from './TidsromStep';
 dayjs.extend(isoWeek);
 
 export const getMaxDato = (fraDato?: string | Date): Date => {
-    return fraDato ? dayjs(fraDato).endOf('day').add(1, 'year').toDate() : date1YearFromNow;
+    return fraDato ? dayjs(fraDato).endOf('day').add(1, 'year').toDate() : getDate1YearFromNow();
 };
 
 export const validateFraDato = (fraDatoString?: string, tilDatoString?: string): ValidationResult<ValidationError> => {
@@ -27,7 +27,7 @@ export const validateFraDato = (fraDatoString?: string, tilDatoString?: string):
 
     return getDateRangeValidator({
         required: true,
-        min: date3YearsAgo,
+        min: getDate3YearsAgo(),
         toDate: tilDato,
         onlyWeekdays: false,
     }).validateFromDate(fraDatoString);
@@ -36,7 +36,7 @@ export const validateFraDato = (fraDatoString?: string, tilDatoString?: string):
 export const validateTildato = (tilDatoString?: string, fraDatoString?: string): ValidationResult<ValidationError> => {
     return getDateRangeValidator({
         required: true,
-        min: date3YearsAgo,
+        min: getDate3YearsAgo(),
         max: getMaxDato(fraDatoString),
         fromDate: datepickerUtils.getDateFromDateString(fraDatoString),
         onlyWeekdays: false,

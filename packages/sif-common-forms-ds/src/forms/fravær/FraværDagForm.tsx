@@ -12,7 +12,7 @@ import {
 } from '@navikt/sif-common-formik-ds/src/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { DateRange, dateToday } from '@navikt/sif-common-utils';
+import { DateRange, getDateToday } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import FraværTimerSelect from './FraværTimerSelect';
 import { isFraværDag, mapFormValuesToFraværDag, mapFraværDagToFormValues, toMaybeNumber } from './fraværUtilities';
@@ -131,7 +131,7 @@ const FraværDagFormView = ({
                     const datepickerProps: FormikDatepickerProps<FraværDagFormFields, ValidationError> = {
                         label: formLabels.dato,
                         name: FraværDagFormFields.dato,
-                        defaultMonth: dayjs(dateToday).isAfter(maxDate) ? maxDate : dateToday,
+                        defaultMonth: dayjs(getDateToday()).isAfter(maxDate) ? maxDate : getDateToday(),
                         minDate,
                         maxDate,
                         disableWeekends: helgedagerIkkeTillatt || false,

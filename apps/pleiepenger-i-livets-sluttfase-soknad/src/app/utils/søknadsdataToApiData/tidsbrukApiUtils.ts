@@ -2,7 +2,6 @@ import { dateToISOString } from '@navikt/sif-common-formik-ds';
 import {
     DateDurationMap,
     DateRange,
-    dateToday,
     dateToISODate,
     decimalDurationToDuration,
     decimalDurationToISODuration,
@@ -80,7 +79,7 @@ export const fjernTidUtenforPeriodeOgHelgedager = (
     tidEnkeltdag?: TidEnkeltdagApiData[],
 ): TidEnkeltdagApiData[] | undefined => {
     const { from, to } = periode;
-    dateToday;
+
     if (!tidEnkeltdag || (!from && !to)) {
         return tidEnkeltdag;
     }

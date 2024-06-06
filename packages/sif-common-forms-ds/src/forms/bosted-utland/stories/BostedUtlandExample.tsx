@@ -6,7 +6,7 @@ import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-d
 import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { date1YearAgo, date1YearFromNow } from '@navikt/sif-common-utils';
+import { getDate1YearAgo, getDate1YearFromNow } from '@navikt/sif-common-utils';
 import { flatten } from 'flat';
 import MessagesPreview from '../../../../storybook/components/messages-preview/MessagesPreview';
 import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
@@ -49,8 +49,8 @@ const FormikExample = () => {
                                     formErrorHandler={getFormErrorHandler(intl)}>
                                     <BostedUtlandListAndDialog<FormField>
                                         name={FormField.bosted}
-                                        minDate={date1YearAgo}
-                                        maxDate={date1YearFromNow}
+                                        minDate={getDate1YearAgo()}
+                                        maxDate={getDate1YearFromNow()}
                                         validate={getListValidator({ required: true })}
                                         labels={{
                                             addLabel: 'Legg til utenlandsopphold',
@@ -68,8 +68,8 @@ const FormikExample = () => {
                 <Tabs.Panel value="form" style={{ maxWidth: '30rem' }}>
                     <Panel border={true}>
                         <BostedUtlandForm
-                            minDate={date1YearAgo}
-                            maxDate={date1YearFromNow}
+                            minDate={getDate1YearAgo()}
+                            maxDate={getDate1YearFromNow()}
                             onSubmit={setSingleFormValues}
                             onCancel={() => null}
                         />

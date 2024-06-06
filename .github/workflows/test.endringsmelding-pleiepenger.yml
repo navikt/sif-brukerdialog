@@ -41,7 +41,7 @@ jobs:
               run: yarn
 
             - name: Run code tests
-              run: yarn test --filter=endringsmelding-pleiepenger
+              run: yarn test --filter=@navikt/endringsmelding-pleiepenger
 
     run-playwright-test:
         timeout-minutes: 60
@@ -71,7 +71,7 @@ jobs:
               run: npx playwright install chromium --with-deps
 
             - name: Build application
-              run: yarn build --filter=endringsmelding-pleiepenger
+              run: yarn build --filter=@navikt/endringsmelding-pleiepenger
 
             - name: Run tests
-              run: yarn turbo playwright-test --filter=endringsmelding-pleiepenger
+              run: yarn turbo playwright-test --filter=@navikt/endringsmelding-pleiepenger

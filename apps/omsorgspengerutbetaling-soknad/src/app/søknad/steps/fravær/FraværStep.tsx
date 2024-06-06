@@ -15,7 +15,7 @@ import FraværDagerListAndDialog from '@navikt/sif-common-forms-ds/src/forms/fra
 import FraværPerioderListAndDialog from '@navikt/sif-common-forms-ds/src/forms/fravær/FraværPerioderListAndDialog';
 import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds/src/forms/fravær/types';
 import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
-import { date1YearAgo, dateToday } from '@navikt/sif-common-utils';
+
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { usePersistTempFormValues } from '../../../hooks/usePersistTempFormValues';
@@ -35,6 +35,7 @@ import FraværStepInfo from './FraværStepInfo';
 import fraværStepUtils, { getFraværStepInitialValues, getFraværSøknadsdataFromFormValues } from './FraværStepUtils';
 import OmsorgsdagerInfo from './OmsorgsdagerInfo';
 import { useFraværsperiodeDetaljer } from './useFraværsperiodeDetaljer';
+import { getDate1YearAgo, getDateToday } from '@navikt/sif-common-utils';
 
 export enum FraværFormFields {
     harPerioderMedFravær = 'harPerioderMedFravær',
@@ -122,8 +123,8 @@ const FraværStep = () => {
                     const kanIkkeFortsette =
                         harPerioderMedFravær === YesOrNo.NO && harDagerMedDelvisFravær === YesOrNo.NO;
                     const harRegistrertFravær = fraværDager.length + fraværPerioder.length > 0;
-                    const minDateForFravær = harRegistrertFravær ? gyldigTidsrom.from : date1YearAgo;
-                    const maxDateForFravær = harRegistrertFravær ? gyldigTidsrom.to : dateToday;
+                    const minDateForFravær = harRegistrertFravær ? gyldigTidsrom.from : getDate1YearAgo();
+                    const maxDateForFravær = harRegistrertFravær ? gyldigTidsrom.to : getDateToday();
                     return (
                         <>
                             <FormikValuesObserver

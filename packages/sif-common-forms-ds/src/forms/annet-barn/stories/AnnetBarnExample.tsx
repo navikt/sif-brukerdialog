@@ -5,7 +5,7 @@ import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { date4YearsAgo, dateToday } from '@navikt/sif-common-utils';
+import { getDate4YearsAgo, getDateToday } from '@navikt/sif-common-utils';
 import { flatten } from 'flat';
 import MessagesPreview from '../../../../storybook/components/messages-preview/MessagesPreview';
 import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
@@ -59,8 +59,8 @@ const AnnetBarnExample = () => {
                                             emptyListText: text('@forms.annetBarn.list.ingenLagtTil'),
                                             modalTitle: text('@forms.annetBarn.dialog.title'),
                                         }}
-                                        minDate={date4YearsAgo}
-                                        maxDate={dateToday}
+                                        minDate={getDate4YearsAgo()}
+                                        maxDate={getDateToday()}
                                         visBarnTypeValg={visBarnTypeValg}
                                         disallowedFødselsnumre={disallowedFødselsnumre}
                                     />
@@ -78,8 +78,8 @@ const AnnetBarnExample = () => {
                             onCancel={() => {
                                 console.log('cancel me');
                             }}
-                            minDate={date4YearsAgo}
-                            maxDate={dateToday}
+                            minDate={getDate4YearsAgo()}
+                            maxDate={getDateToday()}
                         />
 
                         <SubmitPreview values={singleFormValues} />

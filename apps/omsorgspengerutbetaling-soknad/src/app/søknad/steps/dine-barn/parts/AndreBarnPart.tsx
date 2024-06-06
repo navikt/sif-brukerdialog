@@ -2,10 +2,11 @@ import React from 'react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import AnnetBarnListAndDialog from '@navikt/sif-common-forms-ds/src/forms/annet-barn/AnnetBarnListAndDialog';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
-import { dateToday } from '@navikt/sif-common-utils';
+
 import { useAppIntl } from '../../../../i18n';
 import { DineBarnFormFields } from '../DineBarnStep';
 import { nYearsAgo } from '../dineBarnStepUtils';
+import { getDateToday } from '@navikt/sif-common-utils';
 
 interface Props {
     søkerFnr: string;
@@ -34,7 +35,7 @@ const AndreBarnPart: React.FunctionComponent<Props> = ({
 
                     modalTitle: text('step.dineBarn.annetBarnListAndDialog.modalTitle'),
                 }}
-                maxDate={dateToday}
+                maxDate={getDateToday()}
                 minDate={nYearsAgo(18)}
                 disallowedFødselsnumre={[...[søkerFnr], ...andreBarnFnr]}
                 aldersGrenseText={text('step.dineBarn.formLeggTilBarn.aldersGrenseInfo')}

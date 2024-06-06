@@ -7,7 +7,7 @@ import {
     getRequiredFieldValidator,
     getStringValidator,
 } from '@navikt/sif-common-formik-ds/src/validation';
-import { dateFormatter, dateToday } from '@navikt/sif-common-utils';
+import { dateFormatter, getDateToday } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '../../../../i18n';
 import { SøkersRelasjonTilBarnet } from '../../../../types/SøkersRelasjonTilBarnet';
 import { useSøknadContext } from '../../../context/hooks/useSøknadContext';
@@ -61,7 +61,7 @@ const AnnetBarnpart = () => {
                     validate={(value) => {
                         const dateError = getDateValidator({
                             required: true,
-                            max: dateToday,
+                            max: getDateToday(),
                         })(value);
                         if (dateError) {
                             return dateError;
@@ -74,7 +74,7 @@ const AnnetBarnpart = () => {
                         return undefined;
                     }}
                     minDate={minDatoForBarnetsFødselsdato}
-                    maxDate={dateToday}
+                    maxDate={getDateToday()}
                     dropdownCaption={true}
                     description={text('steg.omBarnet.fødselsdato.info', {
                         minFødselsdato: dateFormatter.full(minDatoForBarnetsFødselsdato),

@@ -43,7 +43,7 @@ test('Fyll ut og kontroller person uten fødselsnummer', async ({ page }) => {
 test('Fyll ut og kontroller person med fødselsnummer', async ({ page }) => {
     await fyllUtPleietrengendeMedFnr(page);
     await gåTilOppsummering(page);
-    kontrollerPleietrengendeMedFnr(page);
+    await kontrollerPleietrengendeMedFnr(page);
 });
 
 test('Valider manglende navn', async ({ page }) => {

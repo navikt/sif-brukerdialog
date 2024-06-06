@@ -2,12 +2,13 @@ import { SanityConfig } from '@navikt/appstatus-react-ds';
 import { createRoot } from 'react-dom/client';
 import { Navigate, Route } from 'react-router-dom';
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
+import { getEnvironmentVariable, getMaybeEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import {
-    SoknadApplicationCommonRoutes,
-    SoknadApplication,
     ensureBaseNameForReactRouter,
+    SoknadApplication,
+    SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
+import MockDate from 'mockdate';
 import RouteConfig from './config/routeConfig';
 import { applicationIntlMessages } from './i18n';
 import GeneralErrorPage from './pages/general-error-page/GeneralErrorPage';
@@ -21,11 +22,18 @@ import './app.less';
 const publicPath = getEnvironmentVariable('PUBLIC_PATH');
 ensureBaseNameForReactRouter(publicPath);
 
+const envNow = getMaybeEnvironmentVariable('MOCK_DATE');
+if (envNow && getEnvironmentVariable('USE_MOCK_DATE') === 'true') {
+    // eslint-disable-next-line no-console
+    console.log(`setting time to: ${envNow}`);
+    MockDate.set(new Date(envNow));
+}
+
 appSentryLogger.init();
 
 const App = () => {
     const publicPath = getEnvironmentVariable('PUBLIC_PATH');
-    const isCypress = getEnvironmentVariable('CYPRESS_ENV') === 'true';
+    const useAmplitude = getEnvironmentVariable('USE_AMPLITUDE') === 'true';
 
     const sanityConfig: SanityConfig = {
         projectId: getEnvironmentVariable('APPSTATUS_PROJECT_ID'),
@@ -38,7 +46,7 @@ const App = () => {
             appName={PleiepengerSyktBarnApp.navn}
             appStatus={{ sanityConfig: sanityConfig }}
             intlMessages={applicationIntlMessages}
-            useAmplitude={!isCypress}
+            useAmplitude={useAmplitude}
             publicPath={publicPath}>
             <SoknadApplicationCommonRoutes
                 onReset={() => {
