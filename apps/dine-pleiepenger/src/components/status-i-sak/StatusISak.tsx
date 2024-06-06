@@ -8,6 +8,7 @@ import { formatSakshendelseTidspunkt, getAlleHendelserISak } from '../../utils/s
 import SkrivTilOssLenke from '../lenker/SkrivTilOssLenke';
 import { Process } from '../process';
 import ProcessStep from '../process/ProcessStep';
+import StatusISakHeading from './parts/StatusISakHeading';
 import { getProcessStepsFraSakshendelser } from './statusISakUtils';
 
 interface Props {
@@ -25,11 +26,7 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser, tit
     if (processSteps.length === 0) {
         return (
             <VStack gap="3">
-                {tittel ? (
-                    <Heading level="2" size="medium">
-                        {tittel}
-                    </Heading>
-                ) : null}
+                <StatusISakHeading tittel={tittel} />
                 <Alert variant="info">
                     <AppText
                         id="statusISak.ingenHendelser"
@@ -51,12 +48,7 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser, tit
 
     return (
         <VStack gap="3">
-            {tittel ? (
-                <Heading level="2" size="medium">
-                    {tittel}
-                </Heading>
-            ) : null}
-
+            <StatusISakHeading tittel={tittel} />
             {visAlleHendelser ? (
                 <Box>
                     <Switch
