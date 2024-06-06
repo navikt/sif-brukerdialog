@@ -25,7 +25,7 @@ export type UtenlandsoppholdIPerioden = Pick<SøknadApiData, 'utenlandsoppholdIP
 export const mapUtenlandsoppholdIPeriodenApiData = (
     opphold: Utenlandsopphold,
     locale: string,
-): UtenlandsoppholdIPeriodenApiData => {
+): UtenlandsoppholdIPeriodenApiData | UtenlandsoppholdUtenforEøsIPeriodenApiData => {
     const erUtenforEØS: boolean = countryIsMemberOfEøsOrEfta(opphold.landkode) === false;
     const apiData: UtenlandsoppholdIPeriodenApiData = {
         landnavn: getCountryName(opphold.landkode, locale),
@@ -34,20 +34,29 @@ export const mapUtenlandsoppholdIPeriodenApiData = (
         tilOgMed: dateToISODate(opphold.tom),
     };
 
-    if (erUtenforEØS && opphold.årsak && opphold.barnInnlagtPerioder) {
+    if (erUtenforEØS) {
+        const erBarnetInnlagt = opphold.erBarnetInnlagt === YesOrNo.YES;
+
+        if (erBarnetInnlagt) {
+        }
+
+        const perioderBarnetErInnlagt = erBarnetInnlagt
+            ? opphold.barnInnlagtPerioder.sort(sortItemsByFomTom).map(mapBarnInnlagtPeriodeToApiFormat)
+            : [];
+
         const periodeopphold: UtenlandsoppholdUtenforEøsIPeriodenApiData = {
             ...apiData,
             erUtenforEøs: erUtenforEØS,
-            erBarnetInnlagt: opphold.erBarnetInnlagt === YesOrNo.YES,
-            perioderBarnetErInnlagt: opphold.barnInnlagtPerioder
-                .sort(sortItemsByFomTom)
-                .map(mapBarnInnlagtPeriodeToApiFormat),
-            årsak: opphold.erBarnetInnlagt === YesOrNo.YES ? opphold.årsak : null,
+            erBarnetInnlagt,
+            perioderBarnetErInnlagt: erBarnetInnlagt
+                ? opphold.barnInnlagtPerioder.sort(sortItemsByFomTom).map(mapBarnInnlagtPeriodeToApiFormat)
+                : [],
+            erSammenMedBarnet: !erBarnetInnlagt ? opphold.erSammenMedBarnet === YesOrNo.YES : undefined,
+            årsak: erBarnetInnlagt ? opphold.årsak : null,
         };
         return periodeopphold;
-    } else {
-        return apiData;
     }
+    return apiData;
 };
 
 export const getUtenlandsoppholdIPeriodenApiDataFromSøknadsdata = (

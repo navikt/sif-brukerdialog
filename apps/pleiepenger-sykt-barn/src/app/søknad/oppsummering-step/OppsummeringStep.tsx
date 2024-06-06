@@ -240,7 +240,9 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                                     <div data-testid="oppsummering-utenlandsoppholdIPerioden-list">
                                                         <SummaryList
                                                             items={utenlandsoppholdIPerioden.opphold}
-                                                            itemRenderer={renderUtenlandsoppholdIPeriodenSummary}
+                                                            itemRenderer={(item) =>
+                                                                renderUtenlandsoppholdIPeriodenSummary(item, appIntl)
+                                                            }
                                                         />
                                                     </div>
                                                 </Block>

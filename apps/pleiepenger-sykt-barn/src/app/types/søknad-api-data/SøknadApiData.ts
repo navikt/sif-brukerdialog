@@ -80,6 +80,7 @@ export interface UtenlandsoppholdUtenforEøsIPeriodenApiData extends Utenlandsop
     erBarnetInnlagt: boolean;
     erUtenforEøs: boolean;
     perioderBarnetErInnlagt: PeriodeApiData[];
+    erSammenMedBarnet?: boolean;
     årsak: UtenlandsoppholdÅrsak | null;
 }
 

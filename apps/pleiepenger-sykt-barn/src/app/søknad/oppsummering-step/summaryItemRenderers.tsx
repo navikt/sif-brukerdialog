@@ -2,16 +2,17 @@ import React from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { UtenlandsoppholdÅrsak } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
-import { SummaryList } from '@navikt/sif-common-ui';
+import { JaNeiSvar, SummaryList } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 import classNames from 'classnames';
-import { AppText } from '../../i18n';
+import { AppIntlShape, AppText } from '../../i18n';
 import {
     BostedUtlandApiData,
     isUtenlandsoppholdUtenforEØSApiData,
     PeriodeApiData,
     UtenlandsoppholdIPeriodenApiData,
 } from '../../types/søknad-api-data/SøknadApiData';
+import ContentWithHeader from '@navikt/sif-common-core-ds/src/components/content-with-header/ContentWithHeader';
 
 const bem = bemUtils('utenlandsoppholdSummaryItem');
 
@@ -34,7 +35,10 @@ export const renderUtenlandsoppholdSummary = (opphold: BostedUtlandApiData): Rea
     </div>
 );
 
-export const renderUtenlandsoppholdIPeriodenSummary = (opphold: UtenlandsoppholdIPeriodenApiData): React.ReactNode => {
+export const renderUtenlandsoppholdIPeriodenSummary = (
+    opphold: UtenlandsoppholdIPeriodenApiData,
+    { text }: AppIntlShape,
+): React.ReactNode => {
     return (
         <>
             <Block>
@@ -46,6 +50,10 @@ export const renderUtenlandsoppholdIPeriodenSummary = (opphold: Utenlandsopphold
             </Block>
             {isUtenlandsoppholdUtenforEØSApiData(opphold) && opphold.erBarnetInnlagt === true && (
                 <Block margin="l">
+                    <ContentWithHeader header={text('@forms.utenlandsopphold.form.erBarnetInnlagt.spm')}>
+                        <JaNeiSvar harSvartJa={opphold.erBarnetInnlagt} />
+                    </ContentWithHeader>
+
                     {opphold.perioderBarnetErInnlagt !== undefined && opphold.perioderBarnetErInnlagt.length > 0 && (
                         <>
                             <AppText id={`@forms.utenlandsopphold.form.perioderBarnetErInnlag.listTitle`} />:
@@ -59,7 +67,6 @@ export const renderUtenlandsoppholdIPeriodenSummary = (opphold: Utenlandsopphold
                                 )}></SummaryList>
                         </>
                     )}
-
                     {opphold.årsak && opphold.årsak !== UtenlandsoppholdÅrsak.ANNET && (
                         <AppText
                             id={`@forms.utenlandsopphold.form.årsak.${opphold.årsak}`}
@@ -69,6 +76,17 @@ export const renderUtenlandsoppholdIPeriodenSummary = (opphold: Utenlandsopphold
                     {opphold.årsak && opphold.årsak === UtenlandsoppholdÅrsak.ANNET && (
                         <AppText id={`@forms.utenlandsopphold.oppsummering.årsak.ANNET`} />
                     )}
+                </Block>
+            )}
+            {isUtenlandsoppholdUtenforEØSApiData(opphold) && opphold.erBarnetInnlagt === false && (
+                <Block margin="l">
+                    asd
+                    <ContentWithHeader header={text('@forms.utenlandsopphold.form.erBarnetInnlagt.spm')}>
+                        <JaNeiSvar harSvartJa={opphold.erBarnetInnlagt} />
+                    </ContentWithHeader>
+                    <ContentWithHeader header={text('@forms.utenlandsopphold.form.erSammenMedBarnet.spm')}>
+                        <JaNeiSvar harSvartJa={opphold.erSammenMedBarnet} />
+                    </ContentWithHeader>
                 </Block>
             )}
         </>

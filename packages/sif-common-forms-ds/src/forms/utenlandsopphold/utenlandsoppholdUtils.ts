@@ -26,7 +26,7 @@ const mapFormValuesToUtenlandsopphold = (
         return baseValues;
     }
 
-    const { barnInnlagtPerioder, erBarnetInnlagt, erSammenMedBarn } = formValues;
+    const { barnInnlagtPerioder, erBarnetInnlagt, erSammenMedBarnet } = formValues;
     if (formValues.erBarnetInnlagt === YesOrNo.YES) {
         return {
             ...baseValues,
@@ -37,12 +37,12 @@ const mapFormValuesToUtenlandsopphold = (
     return {
         ...baseValues,
         erBarnetInnlagt,
-        erSammenMedBarn,
+        erSammenMedBarnet,
     };
 };
 
 const mapUtenlandsoppholdToFormValues = (
-    { fom, tom, erBarnetInnlagt, barnInnlagtPerioder, landkode, årsak, erSammenMedBarn }: Partial<Utenlandsopphold>,
+    { fom, tom, erBarnetInnlagt, barnInnlagtPerioder, landkode, årsak, erSammenMedBarnet }: Partial<Utenlandsopphold>,
     excludeInnlagtQuestion: boolean,
 ): UtenlandsoppholdFormValues => ({
     fom: dateToISOString(fom),
@@ -51,7 +51,7 @@ const mapUtenlandsoppholdToFormValues = (
     erBarnetInnlagt: excludeInnlagtQuestion ? undefined : erBarnetInnlagt,
     årsak,
     barnInnlagtPerioder,
-    erSammenMedBarn,
+    erSammenMedBarnet,
 });
 
 const utenlandsoppholdUtils = {

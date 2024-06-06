@@ -8,7 +8,7 @@ const nb = {
     '@forms.utenlandsopphold.form.tidsperiode.fraDato': 'Fra og med',
     '@forms.utenlandsopphold.form.tidsperiode.tilDato': 'Til og med',
     '@forms.utenlandsopphold.form.land.spm': 'Velg land',
-    '@forms.utenlandsopphold.form.erSammenMedBarn.spm': 'Skal du være sammen barnet i {land}?',
+    '@forms.utenlandsopphold.form.erSammenMedBarnet.spm': 'Skal du være sammen med barnet i {land}?',
     '@forms.utenlandsopphold.form.erBarnetInnlagt.spm':
         'Er, eller skal, barnet være innlagt i helseinstitusjon i {land}?',
     '@forms.utenlandsopphold.form.perioderBarnetErInnlag.formTitle': 'Periode barnet er innlagt',
@@ -48,7 +48,7 @@ const nb = {
     '@forms.utenlandsoppholdForm.erBarnetInnlagt.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om barnet er, eller skal være innlagt i helseinstitusjon i {land}.',
     '@forms.utenlandsoppholdForm.barnInnlagtPerioder.listIsEmpty': 'Du har ikke lagt til periode for innleggelse.',
-    '@forms.utenlandsoppholdForm.erSammenMedBarn.yesOrNoIsUnanswered':
+    '@forms.utenlandsoppholdForm.erSammenMedBarnet.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om du er sammen med barnet i {land}.',
 };
 

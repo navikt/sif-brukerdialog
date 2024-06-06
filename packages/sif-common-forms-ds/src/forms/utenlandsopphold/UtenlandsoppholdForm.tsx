@@ -45,7 +45,7 @@ enum UtenlandsoppholdFormFields {
     årsak = 'årsak',
     erBarnetInnlagt = 'erBarnetInnlagt',
     barnInnlagtPerioder = 'barnInnlagtPerioder',
-    erSammenMedBarn = 'erSammenMedBarn',
+    erSammenMedBarnet = 'erSammenMedBarnet',
 }
 
 export const UtlandsoppholdFormErrors: Record<
@@ -78,8 +78,8 @@ export const UtlandsoppholdFormErrors: Record<
     [UtenlandsoppholdFormFields.barnInnlagtPerioder]: {
         [ValidateListError.listIsEmpty]: '@forms.utenlandsoppholdForm.barnInnlagtPerioder.listIsEmpty',
     },
-    [UtenlandsoppholdFormFields.erSammenMedBarn]: {
-        [ValidateYesOrNoError.yesOrNoIsUnanswered]: '@forms.utenlandsoppholdForm.erSammenMedBarn.yesOrNoIsUnanswered',
+    [UtenlandsoppholdFormFields.erSammenMedBarnet]: {
+        [ValidateYesOrNoError.yesOrNoIsUnanswered]: '@forms.utenlandsoppholdForm.erSammenMedBarnet.yesOrNoIsUnanswered',
     },
 };
 
@@ -90,7 +90,7 @@ const defaultFormValues: UtenlandsoppholdFormValues = {
     erBarnetInnlagt: YesOrNo.UNANSWERED,
     barnInnlagtPerioder: [],
     årsak: undefined,
-    erSammenMedBarn: YesOrNo.UNANSWERED,
+    erSammenMedBarnet: YesOrNo.UNANSWERED,
 };
 
 const Form = getTypedFormComponents<UtenlandsoppholdFormFields, UtenlandsoppholdFormValues, ValidationError>();
@@ -236,8 +236,8 @@ const UtenlandsoppholdForm = ({
                                 {showSammenMedBarnQuestion && (
                                     <FormBlock margin="l">
                                         <Form.YesOrNoQuestion
-                                            name={UtenlandsoppholdFormFields.erSammenMedBarn}
-                                            legend={text('@forms.utenlandsopphold.form.erSammenMedBarn.spm', {
+                                            name={UtenlandsoppholdFormFields.erSammenMedBarnet}
+                                            legend={text('@forms.utenlandsopphold.form.erSammenMedBarnet.spm', {
                                                 land: getCountryName(landkode, intl.locale),
                                             })}
                                             validate={(value) => {

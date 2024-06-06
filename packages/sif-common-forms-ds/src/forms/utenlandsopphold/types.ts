@@ -19,14 +19,14 @@ export interface Utenlandsopphold {
     erBarnetInnlagt?: YesOrNo;
     barnInnlagtPerioder?: UtenlandsoppholdInnlagtPeriode[];
     årsak?: UtenlandsoppholdÅrsak;
-    erSammenMedBarn?: YesOrNo;
+    erSammenMedBarnet?: YesOrNo;
 }
 
 export type UtenlandsoppholdFormValues = Partial<
-    Omit<Utenlandsopphold, 'id' | 'fom' | 'tom' | 'barnInnlagtPerioder' | 'erSammenMedBarn'> & {
+    Omit<Utenlandsopphold, 'id' | 'fom' | 'tom' | 'barnInnlagtPerioder' | 'erSammenMedBarnet'> & {
         fom?: string;
         tom?: string;
         barnInnlagtPerioder?: UtenlandsoppholdInnlagtPeriode[];
-        erSammenMedBarn?: YesOrNo;
+        erSammenMedBarnet?: YesOrNo;
     }
 >;

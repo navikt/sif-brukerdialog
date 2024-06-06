@@ -43,7 +43,7 @@ export const Default: Story = {
         (await within(innlagtSpm).findByLabelText('Nei')).click();
 
         const sammenSpm = await canvas.findByRole('group', {
-            name: 'Skal du være sammen barnet i Albania?',
+            name: 'Skal du være sammen med barnet i Albania?',
         });
         (await within(sammenSpm).findByLabelText('Nei')).click();
     },
