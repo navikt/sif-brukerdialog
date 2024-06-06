@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 1.3.4
+
+### Patch Changes
+
+Legge til informasjon om at det kan ta opptil 15 minutter før innsendinger vises.
+
 ## 1.3.3
 
 ### Patch Changes
