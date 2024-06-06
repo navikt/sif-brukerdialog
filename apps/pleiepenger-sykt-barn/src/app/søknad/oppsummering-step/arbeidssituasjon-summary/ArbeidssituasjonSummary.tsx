@@ -37,13 +37,17 @@ const ArbeidssituasjonSummary: React.FunctionComponent<Props> = ({
             <SummarySection header={text('steg.oppsummering.arbeidssituasjon.header')}>
                 <ArbeidsgivereSummary arbeidsgivere={arbeidsgivere} søknadsperiode={søknadsperiode} />
 
-                <StønadGodtgjørelseSummary stønadGodtgjørelse={stønadGodtgjørelse} />
+                <div data-testid="omsorgsstønad">
+                    <StønadGodtgjørelseSummary stønadGodtgjørelse={stønadGodtgjørelse} />
+                </div>
 
-                <ArbeidssituasjonFrilansSummary
-                    frilans={frilans}
-                    frilansoppdrag={frilansoppdrag}
-                    søknadsperiode={søknadsperiode}
-                />
+                <div data-testid="frilans">
+                    <ArbeidssituasjonFrilansSummary
+                        frilans={frilans}
+                        frilansoppdrag={frilansoppdrag}
+                        søknadsperiode={søknadsperiode}
+                    />
+                </div>
 
                 <ArbeidssituasjonSelvstendigSummary selvstendig={selvstendigNæringsdrivende} />
 
