@@ -56,7 +56,7 @@ const startServer = async (html) => {
 
 const logError = (errorMessage, details) => console.log(errorMessage, details);
 
-getDecorator(getAppSettings(true))
+getDecorator(getAppSettings())
     .then(renderApp, (error) => {
         logError('Failed to get decorator', error);
         process.exit(1);

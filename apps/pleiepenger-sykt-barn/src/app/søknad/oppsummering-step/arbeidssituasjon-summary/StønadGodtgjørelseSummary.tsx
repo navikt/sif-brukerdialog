@@ -18,16 +18,18 @@ const StønadGodtgjørelseSummary = ({ stønadGodtgjørelse }: Props) => {
 
     if (mottarStønadGodtgjørelse === false) {
         return (
-            <SummaryBlock header={'Omsorgsstønad eller fosterhjemsgodtgjørelse'}>
-                <ul>
-                    <li>Mottar ikke fosterhjemgodtgjørelse, eller omsorgsstønad fra kommunen</li>
-                </ul>
-            </SummaryBlock>
+            <div data-testid="omsorgsstønad">
+                <SummaryBlock header={'Omsorgsstønad eller fosterhjemsgodtgjørelse'}>
+                    <ul>
+                        <li>Mottar ikke fosterhjemgodtgjørelse, eller omsorgsstønad fra kommunen</li>
+                    </ul>
+                </SummaryBlock>
+            </div>
         );
     }
 
     return (
-        <SummaryBlock header={'Omsorgsstønad eller fosterhjemsgodtgjørelse'}>
+        <SummaryBlock header={'Omsorgsstønad eller fosterhjemsgodtgjørelse'} data-testid="omsorgsstønad">
             <ul>
                 {mottarStønadGodtgjørelseIHelePerioden ? (
                     <li>Mottar stønad eller godtgjørelsen gjennom hele perioden jeg søker om</li>

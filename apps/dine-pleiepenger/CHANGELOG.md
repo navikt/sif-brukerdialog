@@ -1,10 +1,32 @@
 # @navikt/dine-pleiepenger
 
+## 1.3.4
+
+### Patch Changes
+
+Legge til informasjon om at det kan ta opptil 15 minutter før innsendinger vises.
+
+## 1.3.3
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/appstatus-react-ds@2.18.7
+    -   @navikt/sif-common-core-ds@9.17.8
+    -   @navikt/sif-common-utils@3.46.2
+
 ## 1.3.2
 
 ### Patch Changes
 
--   a870825: Legge til informasjon om at det kan ta opptil 15 minutter før innsendinger vises.
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.25.5
+    -   @navikt/appstatus-react-ds@2.18.6
+    -   @navikt/sif-common-core-ds@9.17.7
+    -   @navikt/sif-common-sentry@0.26.5
+    -   @navikt/sif-common-utils@3.46.1
 
 ## 1.3.1
 
