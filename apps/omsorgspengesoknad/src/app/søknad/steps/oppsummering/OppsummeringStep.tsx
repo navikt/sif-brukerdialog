@@ -1,4 +1,4 @@
-import { ErrorSummary } from '@navikt/ds-react';
+import { ErrorSummary, VStack } from '@navikt/ds-react';
 import { useEffect, useRef } from 'react';
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
@@ -117,19 +117,21 @@ const OppsummeringStep = () => {
                                 submitPending={isSubmitting}
                                 backButtonDisabled={isSubmitting}
                                 onBack={goBack}>
-                                <OmSøkerOppsummering søker={søker} />
-                                <OmBarnetOppsummering apiData={apiData} />
-                                <VedleggOppsummering
-                                    apiData={apiData}
-                                    legeerklæringSøknadsdata={søknadsdata.legeerklaering}
-                                    samværsavtaleSøknadsdata={søknadsdata.deltBosted}
-                                />
-                                <ConfirmationCheckbox
-                                    disabled={isSubmitting}
-                                    label={<AppText id="steg.oppsummering.bekrefterOpplysninger" />}
-                                    validate={getCheckedValidator()}
-                                    name={OppsummeringFormFields.harBekreftetOpplysninger}
-                                />
+                                <VStack gap="8">
+                                    <OmSøkerOppsummering søker={søker} />
+                                    <OmBarnetOppsummering apiData={apiData} />
+                                    <VedleggOppsummering
+                                        apiData={apiData}
+                                        legeerklæringSøknadsdata={søknadsdata.legeerklaering}
+                                        samværsavtaleSøknadsdata={søknadsdata.deltBosted}
+                                    />
+                                    <ConfirmationCheckbox
+                                        disabled={isSubmitting}
+                                        label={<AppText id="steg.oppsummering.bekrefterOpplysninger" />}
+                                        validate={getCheckedValidator()}
+                                        name={OppsummeringFormFields.harBekreftetOpplysninger}
+                                    />
+                                </VStack>
                             </Form>
                             {sendSøknadError && (
                                 <FormBlock>
