@@ -40,16 +40,16 @@ test('Fyll ut søknad med ikke delt bosted', async ({ page }) => {
     /** Oppsummering */
     await page.getByRole('heading', { level: 1, name: 'Oppsummering' });
     // Kontroller verdier
-    await expect(await page.getByText('PRESENTABEL HOFTE').isVisible()).toBeTruthy();
-    await expect(await page.getByText('Fødselsnummer: 02869599258').isVisible()).toBeTruthy();
-    await expect(await page.getByText('Navn: ALFABETISK FAGGOTT').isVisible()).toBeTruthy();
-    await expect(await page.getByText('Fødselsdato: 8. juni 2019').isVisible()).toBeTruthy();
-    await expect(await page.getByText('Bor du sammen med barnet?').isVisible()).toBeTruthy();
+    await expect(page.getByText('PRESENTABEL HOFTE')).toBeVisible();
+    await expect(page.getByText('Fødselsnummer02869599258')).toBeVisible();
+    await expect(page.getByText('NavnALFABETISK FAGGOTT')).toBeVisible();
+    await expect(page.getByText('Fødselsdato8. juni 2019')).toBeVisible();
+    await expect(page.getByText('Bor du sammen med barnet?Ja')).toBeVisible();
     await expect(
-        await page.getByText('Har barnet kronisk/langvarig sykdom eller funksjonshemning?Ja').isVisible(),
+        page.getByText('Har barnet kronisk/langvarig sykdom eller funksjonshemning?Ja').isVisible(),
     ).toBeTruthy();
-    await expect(await page.getByText('navlogopng.png').isVisible()).toBeTruthy();
-    await expect(await page.getByText('avtale.png').isVisible()).toBeTruthy();
+    await expect(page.getByText('navlogopng.png')).toBeVisible();
+    await expect(page.getByText('avtale.png')).toBeVisible();
 
     await page
         .getByLabel(
@@ -64,10 +64,8 @@ test('Fyll ut søknad med ikke delt bosted', async ({ page }) => {
         name: 'Vi har mottatt søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
     });
     await expect(
-        await page
-            .getByRole('heading', {
-                name: 'Vi har mottatt søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
-            })
-            .isVisible(),
-    ).toBeTruthy();
+        page.getByRole('heading', {
+            name: 'Vi har mottatt søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
+        }),
+    ).toBeVisible();
 });
