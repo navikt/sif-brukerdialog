@@ -1,9 +1,8 @@
-import { Heading, Link } from '@navikt/ds-react';
+import { BodyLong, Heading, Link, VStack } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import InfoList from '@navikt/sif-common-core-ds/src/components/lists/info-list/InfoList';
-import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import { FormikCheckbox, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { useSoknadIntl } from '../../hooks/useSoknadIntl';
@@ -26,6 +25,7 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 
 interface Props {
     submitButtonLabel?: string;
+    variant?: 'vanlig' | 'enkel';
     onValidSubmit: () => void;
 }
 
@@ -54,8 +54,23 @@ export const SamtykkeFormPart = () => {
         </ConfirmationCheckbox>
     );
 };
+export const SamtykkeFormPartEnkel = () => {
+    return (
+        <>
+            <BodyLong>
+                Det er viktig at du gir oss riktige opplysninger slik at vi kan behandle saken din.{' '}
+                <Link href={RettOgPliktURL}>Les mer om viktigheten av å gi riktige opplysninger.</Link>
+            </BodyLong>
+            <FormikCheckbox
+                label="Jeg vil svare så godt jeg kan på spørsmålene i søknaden."
+                name={SamtykkeFormFields.harForståttRettigheterOgPlikter}
+                validate={getCheckedValidator()}
+            />
+        </>
+    );
+};
 
-const SamtykkeForm: React.FunctionComponent<Props> = ({ onValidSubmit, submitButtonLabel }) => {
+const SamtykkeForm: React.FunctionComponent<Props> = ({ onValidSubmit, variant = 'vanlig', submitButtonLabel }) => {
     const { text } = useSoknadIntl();
     const intl = useIntl();
     return (
@@ -66,10 +81,9 @@ const SamtykkeForm: React.FunctionComponent<Props> = ({ onValidSubmit, submitBut
                 <Form
                     includeButtons={true}
                     submitButtonLabel={submitButtonLabel || text('scs.samtykkeform.submitButtonLabel')}
+                    includeValidationSummary={true}
                     formErrorHandler={getIntlFormErrorHandler(intl, 'scs.samtykkeForm')}>
-                    <FormBlock>
-                        <SamtykkeFormPart />
-                    </FormBlock>
+                    <VStack gap="4">{variant === 'vanlig' ? <SamtykkeFormPart /> : <SamtykkeFormPartEnkel />}</VStack>
                 </Form>
             )}
         />

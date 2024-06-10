@@ -13,7 +13,7 @@ test('Fyll ut søknad med ikke delt bosted', async ({ page }) => {
     await page.goto(startUrl);
 
     /** Velkommen side */
-    await page.getByRole('heading', { level: 1, name: 'Hei PRESENTABEL' });
+    await page.getByRole('heading', { level: 1, name: 'Hei, PRESENTABEL' });
     await page.getByLabel('Jeg bekrefter at jeg har forstått mitt ansvar som søker').click();
     await page.getByRole('button', { name: 'Start søknad' }).click();
 
