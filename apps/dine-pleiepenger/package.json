@@ -36,7 +36,7 @@
         "react-dom": "18.3.1",
         "react-loading-skeleton": "3.4.0",
         "swr": "2.2.5",
-        "uuid": "9.0.1",
+        "uuid": "10.0.0",
         "zod": "3.23.8"
     },
     "devDependencies": {
@@ -71,7 +71,7 @@
         "react-intl": "6.6.8",
         "storybook": "8.1.6",
         "tailwindcss": "3.4.4",
-        "uuid": "9.0.1",
+        "uuid": "10.0.0",
         "vitest": "1.6.0"
     },
     "eslintConfig": {

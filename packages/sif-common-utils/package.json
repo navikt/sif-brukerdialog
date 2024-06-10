@@ -9,7 +9,7 @@
         "dayjs": "1.11.11",
         "iso8601-duration": "2.1.2",
         "lodash": "4.17.21",
-        "uuid": "9.0.1"
+        "uuid": "10.0.0"
     },
     "devDependencies": {
         "@babel/core": "7.24.7",

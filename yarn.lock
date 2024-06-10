@@ -4554,7 +4554,7 @@ __metadata:
     storybook: 8.1.6
     swr: 2.2.5
     tailwindcss: 3.4.4
-    uuid: 9.0.1
+    uuid: 10.0.0
     vitest: 1.6.0
     zod: 3.23.8
   languageName: unknown
@@ -4846,7 +4846,7 @@ __metadata:
     react-fast-compare: 3.2.2
     react-intl: 6.6.8
     react-router-dom: 6.23.1
-    uuid: 9.0.1
+    uuid: 10.0.0
     vite: 5.2.12
     vite-plugin-checker: 0.6.4
   languageName: unknown
@@ -4883,7 +4883,7 @@ __metadata:
     react-intl: 6.6.8
     tailwindcss: 3.4.4
     typescript: 5.4.5
-    uuid: 9.0.1
+    uuid: 10.0.0
   languageName: unknown
   linkType: soft
 
@@ -4957,7 +4957,7 @@ __metadata:
     tailwindcss: 3.4.4
     typescript: 5.4.5
     ulid: 2.3.0
-    uuid: 9.0.1
+    uuid: 10.0.0
     vite: 5.2.12
     vite-plugin-checker: 0.6.4
     vitest: 1.6.0
@@ -5029,7 +5029,7 @@ __metadata:
     storybook: 8.1.6
     tailwindcss: 3.4.4
     typescript: 5.4.5
-    uuid: 9.0.1
+    uuid: 10.0.0
     vite: 5.2.12
     vite-plugin-checker: 0.6.4
     vitest: 1.6.0
@@ -5174,7 +5174,7 @@ __metadata:
     storybook: 8.1.6
     storybook-addon-mock: 5.0.0
     typescript: 5.4.5
-    uuid: 9.0.1
+    uuid: 10.0.0
     vite: 5.2.12
     vite-plugin-checker: 0.6.4
     vitest: 1.6.0
@@ -5262,7 +5262,7 @@ __metadata:
     storybook: 8.1.6
     storybook-addon-mock: 5.0.0
     typescript: 5.4.5
-    uuid: 9.0.1
+    uuid: 10.0.0
     vite: 5.2.12
     vite-plugin-checker: 0.6.4
     vitest: 1.6.0
@@ -5369,7 +5369,7 @@ __metadata:
     rimraf: 5.0.7
     storybook: 8.1.6
     tailwindcss: 3.4.4
-    uuid: 9.0.1
+    uuid: 10.0.0
     vite: 5.2.12
     vite-plugin-checker: 0.6.4
     vitest: 1.6.0
@@ -5429,7 +5429,7 @@ __metadata:
     react-syntax-highlighter: 15.5.0
     rimraf: 5.0.7
     storybook: 8.1.6
-    uuid: 9.0.1
+    uuid: 10.0.0
     vite: 5.2.12
     vite-plugin-checker: 0.6.4
     vitest: 1.6.0
@@ -5590,7 +5590,7 @@ __metadata:
     react-router-dom: 6.23.1
     rimraf: 5.0.7
     storybook: 8.1.6
-    uuid: 9.0.1
+    uuid: 10.0.0
     vite: 5.2.12
     vite-plugin-checker: 0.6.4
   languageName: unknown
@@ -5649,7 +5649,7 @@ __metadata:
     react: 18.3.1
     react-dom: 18.3.1
     react-intl: 6.6.8
-    uuid: 9.0.1
+    uuid: 10.0.0
     vitest: 1.6.0
   languageName: unknown
   linkType: soft
@@ -5712,7 +5712,7 @@ __metadata:
     react-router-dom: 6.23.1
     tailwindcss: 3.4.4
     typescript: 5.4.5
-    uuid: 9.0.1
+    uuid: 10.0.0
     vite: 5.2.12
     vite-plugin-checker: 0.6.4
     vitest: 1.6.0
@@ -24730,12 +24730,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uuid@npm:9.0.1, uuid@npm:^9.0.0":
-  version: 9.0.1
-  resolution: "uuid@npm:9.0.1"
+"uuid@npm:10.0.0":
+  version: 10.0.0
+  resolution: "uuid@npm:10.0.0"
   bin:
     uuid: dist/bin/uuid
-  checksum: 39931f6da74e307f51c0fb463dc2462807531dc80760a9bff1e35af4316131b4fc3203d16da60ae33f07fdca5b56f3f1dd662da0c99fea9aaeab2004780cc5f4
+  checksum: 4b81611ade2885d2313ddd8dc865d93d8dccc13ddf901745edca8f86d99bc46d7a330d678e7532e7ebf93ce616679fb19b2e3568873ac0c14c999032acb25869
   languageName: node
   linkType: hard
 
@@ -24745,6 +24745,15 @@ __metadata:
   bin:
     uuid: dist/bin/uuid
   checksum: 5575a8a75c13120e2f10e6ddc801b2c7ed7d8f3c8ac22c7ed0c7b2ba6383ec0abda88c905085d630e251719e0777045ae3236f04c812184b7c765f63a70e58df
+  languageName: node
+  linkType: hard
+
+"uuid@npm:^9.0.0":
+  version: 9.0.1
+  resolution: "uuid@npm:9.0.1"
+  bin:
+    uuid: dist/bin/uuid
+  checksum: 39931f6da74e307f51c0fb463dc2462807531dc80760a9bff1e35af4316131b4fc3203d16da60ae33f07fdca5b56f3f1dd662da0c99fea9aaeab2004780cc5f4
   languageName: node
   linkType: hard
 
