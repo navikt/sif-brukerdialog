@@ -7,7 +7,7 @@ import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { useSoknadIntl } from '../../hooks/useSoknadIntl';
 
-const RettOgPliktURL = 'https://nav.no/rettOgPlikt';
+const RettOgPliktURL = 'https://www.nav.no/endringer#du-har-plikt-til-a-gi-nav-riktige-opplysninger';
 
 export enum SamtykkeFormFields {
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',

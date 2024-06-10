@@ -38,7 +38,7 @@ const SoknadVelkommenPage = ({ pageTitle, soknadTitle, onStartSøknad, guide, ch
 
                 {children}
 
-                <SamtykkeForm variant="enkel" onValidSubmit={onStartSøknad} />
+                <SamtykkeForm variant="vanlig" onValidSubmit={onStartSøknad} />
             </VStack>
         </Page>
     );
