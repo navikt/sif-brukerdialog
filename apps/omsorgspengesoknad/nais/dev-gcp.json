@@ -13,6 +13,8 @@
     "env": {
         "API_TOKENX_AUDIENCE": "dev-gcp:dusseldorf:k9-brukerdialog-api",
         "API_URL": "http://k9-brukerdialog-api",
+        "K9_SAK_INNSYN_API_URL": "http://k9-sak-innsyn-api",
+        "K9_SAK_INNSYN_API_TOKENX_AUDIENCE": "dev-gcp:dusseldorf:k9-sak-innsyn-api",
         "APP_VERSION": "dev",
         "APPSTATUS_DATASET": "staging",
         "APPSTATUS_PROJECT_ID": "ryujtq87",

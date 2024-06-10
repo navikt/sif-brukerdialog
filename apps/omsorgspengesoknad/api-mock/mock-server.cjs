@@ -55,6 +55,8 @@ const soker = 'søker1';
 
 const søkerFileName = `søker-mock.json`;
 const barnFileName = `barn-mock.json`;
+const innvilgetVedtakFileName = `innvilget-vedtak-mock.json`;
+const ikkeInnvilgetVedtakFileName = `ikke-innvilget-vedtak-mock.json`;
 
 const readMockFile = (file, responseObject) => {
     const filePath = `${mockPath}/${soker}/${file}`;
@@ -139,6 +141,20 @@ const startExpressServer = () => {
 
     server.listen(port, () => {
         console.log(`Express mock-api server listening on port: ${port}`);
+    });
+
+    /** --- Sjekk tidligere innvilget vedtak ---------- */
+
+    server.post('/k9sak/omsorgsdager-kronisk-sykt-barn/har-gyldig-vedtak', (req, res) => {
+        const body = req.body;
+        console.log('[POST] body', body);
+        setTimeout(() => {
+            if (body.pleietrengendeAktørId === "2") {
+                readMockFile(innvilgetVedtakFileName, res);
+            } else {
+                readMockFile(ikkeInnvilgetVedtakFileName, res);
+            }
+        }, 2500);
     });
 };
 
