@@ -5,14 +5,14 @@
     "homepage": "https://navikt.github.io/sif-common-sentry",
     "license": "MIT",
     "main": "src/index.ts",
-    "version": "0.26.5",
+    "version": "0.26.6",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-sentry/issues"
     },
     "dependencies": {
-        "@sentry/browser": "8.7.0",
-        "@sentry/react": "8.7.0",
-        "@sentry/types": "8.7.0"
+        "@sentry/browser": "8.8.0",
+        "@sentry/react": "8.8.0",
+        "@sentry/types": "8.8.0"
     },
     "devDependencies": {
         "@types/node": "20.14.2",

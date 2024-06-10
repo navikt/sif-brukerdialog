@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.15.8
+
+### Patch Changes
+
+-   1972384: Pakkeoppdateringer minor/patch + uuid major
+
 ## 10.15.7
 
 ### Patch Changes
