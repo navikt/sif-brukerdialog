@@ -52,7 +52,7 @@
         "react-fast-compare": "3.2.2",
         "react-intl": "6.6.8",
         "react-router-dom": "6.23.1",
-        "vite": "5.2.12",
+        "vite": "5.2.13",
         "vite-plugin-checker": "0.6.4"
     },
     "devDependencies": {
@@ -71,7 +71,7 @@
         "@types/react-router-dom": "5.3.3",
         "babel-polyfill": "6.26.0",
         "cross-env": "7.0.3",
-        "express-rate-limit": "7.3.0",
+        "express-rate-limit": "7.3.1",
         "jsdom": "24.1.0",
         "rimraf": "5.0.7",
         "typescript": "5.4.5",

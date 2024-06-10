@@ -36,7 +36,7 @@
         "@types/node": "20.14.2",
         "@types/react": "18.3.3",
         "@types/react-dom": "18.3.0",
-        "@vitejs/plugin-react": "4.3.0",
+        "@vitejs/plugin-react": "4.3.1",
         "axios": "1.7.2",
         "config": "workspace:*",
         "copyfiles": "2.4.1",
@@ -55,7 +55,7 @@
         "react-router-dom": "6.23.1",
         "rimraf": "5.0.7",
         "storybook": "8.1.6",
-        "vite": "5.2.12",
+        "vite": "5.2.13",
         "vite-plugin-checker": "0.6.4",
         "vitest": "1.6.0"
     },

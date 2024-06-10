@@ -44,7 +44,7 @@
         "react-fast-compare": "3.2.2",
         "react-intl": "6.6.8",
         "react-router-dom": "6.23.1",
-        "uuid": "9.0.1"
+        "uuid": "10.0.0"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.9.1",
@@ -70,12 +70,12 @@
         "babel-polyfill": "6.26.0",
         "cross-env": "7.0.3",
         "eslint-plugin-storybook": "0.8.0",
-        "express-rate-limit": "7.3.0",
+        "express-rate-limit": "7.3.1",
         "postcss": "8.4.38",
         "storybook": "8.1.6",
         "storybook-addon-mock": "5.0.0",
         "typescript": "5.4.5",
-        "vite": "5.2.12",
+        "vite": "5.2.13",
         "vite-plugin-checker": "0.6.4",
         "vitest": "1.6.0"
     },
