@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.8.8
+
+### Patch Changes
+
+-   1972384: Pakkeoppdateringer minor/patch + uuid major
+
 ## 1.8.7
 
 ### Patch Changes
