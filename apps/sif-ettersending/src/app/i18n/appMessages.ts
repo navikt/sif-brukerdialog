@@ -88,7 +88,6 @@ const nb = {
     'step.beskrivelse_pp.annetBarn.tittel': 'Annet barn',
     'step.beskrivelse_pp.annetBarn.fnr.spm': 'Barnets fødselsnummer/D-nummer',
     'step.beskrivelse_pp.dokumentType.ANNET': 'Annet',
-    'step.beskrivelse_pp.hvaSendes.spm': 'Beskriv hva slags dokumentasjon du skal sende',
     'step.beskrivelse_pp.annet.info.1': 'Har vi etterspurt mer dokumentasjon fra deg?',
     'step.beskrivelse_pp.annet.info.2':
         'Ved siden av legeerklæring, er det kun nødvendig å ettersende mer dokumentasjon hvis en saksbehandler har spurt om noe konkret fra deg.',
