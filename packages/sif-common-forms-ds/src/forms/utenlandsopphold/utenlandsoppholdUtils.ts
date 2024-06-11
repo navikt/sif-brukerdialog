@@ -85,7 +85,7 @@ export const getUtenlandsoppholdQuestionVisibility = (
     showInnlagtQuestion: boolean;
     showÅrsakQuestion: boolean;
 } => {
-    const { erBarnetInnlagt, landkode, barnInnlagtPerioder, fom, tom } = formValues;
+    const { erBarnetInnlagt, landkode, fom, tom } = formValues;
 
     if (variant === UtenlandsoppholdVariant.ENKEL) {
         return {
@@ -97,8 +97,6 @@ export const getUtenlandsoppholdQuestionVisibility = (
     }
     const hasFomTomValues = hasValue(fom) && hasValue(tom);
 
-    const showInnlagtPerioderQuestion = hasFomTomValues && landkode !== undefined && erBarnetInnlagt === YesOrNo.YES;
-
     const showSammenMedBarnQuestion =
         hasFomTomValues &&
         landkode !== undefined &&
@@ -107,7 +105,14 @@ export const getUtenlandsoppholdQuestionVisibility = (
     const showInnlagtQuestion: boolean =
         landkode !== undefined && hasValue(landkode) && !countryIsMemberOfEøsOrEfta(landkode);
 
-    const showÅrsakQuestion = erBarnetInnlagt === YesOrNo.YES && (barnInnlagtPerioder || []).length > 0;
+    const showInnlagtPerioderQuestion =
+        hasFomTomValues &&
+        landkode !== undefined &&
+        erBarnetInnlagt === YesOrNo.YES &&
+        countryIsMemberOfEøsOrEfta(landkode) === false;
+
+    const showÅrsakQuestion = showInnlagtPerioderQuestion;
+
     return {
         showInnlagtPerioderQuestion,
         showSammenMedBarnQuestion,
