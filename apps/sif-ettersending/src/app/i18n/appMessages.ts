@@ -71,25 +71,25 @@ const nb = {
         'Du kan ikke skrive spørsmål til oss her. Se informasjon om hvordan du kommer i {kontaktMedOssLink}.',
     'step.beskrivelse.intro.2.1': 'kontakt med oss',
 
-    'step.beskrivelse_pp.stepTitle': 'Hva skal du ettersende?',
-    'step.beskrivelse_pp.stepIndicatorLabel': 'Hva skal du ettersende?',
-    'step.beskrivelse_pp.nextButtonLabel': 'Fortsett',
-    'step.beskrivelse_pp.info':
+    'step.dokumentType.stepTitle': 'Hva skal du ettersende?',
+    'step.dokumentType.stepIndicatorLabel': 'Hva skal du ettersende?',
+    'step.dokumentType.nextButtonLabel': 'Fortsett',
+    'step.dokumentType.info':
         'Her beskriver du hvilken dokumentasjon du skal sende oss. Hvis en annen søker har sendt inn samme dokumentasjon for barnet i perioden du søker, trenger du ikke sende inn disse på nytt.',
-    'step.beskrivelse_pp.dokumentType.spm': 'Hva skal du ettersende?',
-    'step.beskrivelse_pp.dokumentType.LEGEERKLÆRING': 'Legeerklæring',
-    'step.beskrivelse_pp.registrertBarnPart.spm': 'Hvilket barn gjelder legeerklæringen?',
-    'step.beskrivelse_pp.registrertBarnPart.hvilketBarn.født': 'Født {dato}',
-    'step.beskrivelse_pp.barn.info.tittel': 'Husk søknad, også ved forlengelser',
-    'step.beskrivelse_pp.barn.info.1.1':
+    'step.dokumentType.dokumentType.spm': 'Hva skal du ettersende?',
+    'step.dokumentType.dokumentType.LEGEERKLÆRING': 'Legeerklæring',
+    'step.dokumentType.registrertBarnPart.spm': 'Hvilket barn gjelder legeerklæringen?',
+    'step.dokumentType.registrertBarnPart.hvilketBarn.født': 'Født {dato}',
+    'step.dokumentType.barn.info.tittel': 'Husk søknad, også ved forlengelser',
+    'step.dokumentType.barn.info.1.1':
         'For å behandle din pleiepengesak må vi ha både legeerklæring og {ppSyktBarnLenke}. Dette gjelder også ved forlengelser.',
-    'step.beskrivelse_pp.barn.info.lenke': 'søknad om pleiepenger for sykt barn',
-    'step.beskrivelse_pp.gjelderAnnetBarn': 'Legeerklæringen gjelder et annet barn',
-    'step.beskrivelse_pp.annetBarn.tittel': 'Annet barn',
-    'step.beskrivelse_pp.annetBarn.fnr.spm': 'Barnets fødselsnummer/D-nummer',
-    'step.beskrivelse_pp.dokumentType.ANNET': 'Annet',
-    'step.beskrivelse_pp.annet.info.1': 'Har vi etterspurt mer dokumentasjon fra deg?',
-    'step.beskrivelse_pp.annet.info.2':
+    'step.dokumentType.barn.info.lenke': 'søknad om pleiepenger for sykt barn',
+    'step.dokumentType.gjelderAnnetBarn': 'Legeerklæringen gjelder et annet barn',
+    'step.dokumentType.annetBarn.tittel': 'Annet barn',
+    'step.dokumentType.annetBarn.fnr.spm': 'Barnets fødselsnummer/D-nummer',
+    'step.dokumentType.dokumentType.ANNET': 'Annet',
+    'step.dokumentType.annet.info.1': 'Har vi etterspurt mer dokumentasjon fra deg?',
+    'step.dokumentType.annet.info.2':
         'Ved siden av legeerklæring, er det kun nødvendig å ettersende mer dokumentasjon hvis en saksbehandler har spurt om noe konkret fra deg.',
 
     'step.omsorgspenger_type.stepTitle': 'Hva skal du ettersende til?',
