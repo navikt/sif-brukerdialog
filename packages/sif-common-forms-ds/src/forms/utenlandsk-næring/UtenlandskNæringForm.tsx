@@ -160,7 +160,6 @@ const UtenlandskNæringForm = ({ utenlandskNæring, onSubmit, onCancel }: Props)
                                     navnPåVirksomheten,
                                 })}
                                 validate={getRequiredFieldValidator()}
-                                useAlpha3Code={true}
                                 showOnlyEuAndEftaCountries={true}
                             />
                         </Block>

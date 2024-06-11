@@ -35,6 +35,7 @@
         "@storybook/jest": "0.2.3",
         "@storybook/node-logger": "8.1.6",
         "@storybook/preset-create-react-app": "8.1.6",
+        "@storybook/preset-scss": "1.0.3",
         "@storybook/react": "8.1.6",
         "@storybook/react-vite": "8.1.6",
         "@storybook/test-runner": "0.18.2",
