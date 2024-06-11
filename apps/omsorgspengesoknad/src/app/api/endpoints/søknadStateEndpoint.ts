@@ -22,9 +22,11 @@ interface SøknadStatePersistenceEndpoint
     fetch: () => Promise<SøknadStatePersistence>;
 }
 
+const mellomlagring = ApiEndpoint.mellomlagring;
+const axiosRequestConfig = axiosConfig(mellomlagring);
 const persistSetup = persistence<SøknadStatePersistence>({
-    url: ApiEndpoint.mellomlagring,
-    requestConfig: { ...axiosConfig, transformResponse: axiosConfig.transformResponse },
+    url: mellomlagring,
+    requestConfig: { ...axiosRequestConfig, transformResponse: axiosRequestConfig.transformResponse },
 });
 
 const createHashString = (info: SøknadStateHashInfo) => {

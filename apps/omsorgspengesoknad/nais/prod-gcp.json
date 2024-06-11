@@ -14,6 +14,7 @@
         "API_TOKENX_AUDIENCE": "prod-gcp:dusseldorf:k9-brukerdialog-api",
         "API_URL": "http://k9-brukerdialog-api",
         "K9_SAK_INNSYN_API_URL": "http://k9-sak-innsyn-api",
+        "K9_SAK_INNSYN_API_PATH": "/familie/sykdom-i-familien/soknad/omsorgspenger/k9-sak-innsyn-api",
         "K9_SAK_INNSYN_API_TOKENX_AUDIENCE": "prod-gcp:dusseldorf:k9-sak-innsyn-api",
         "APP_VERSION": "prod",
         "APPSTATUS_DATASET": "production",
