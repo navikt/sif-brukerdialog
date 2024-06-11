@@ -1,3 +1,4 @@
+import React from 'react';
 import { SelectProps } from '@navikt/ds-react';
 import { Field, FieldProps } from 'formik';
 import { TestProps, TypedFormInputValidationProps } from '../../types';
