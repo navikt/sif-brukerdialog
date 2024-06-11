@@ -8,9 +8,7 @@ import { OmBarnetFormFields, OmBarnetFormValues } from '../OmBarnetStep';
 import { mapBarnTilRadioProps } from '../omBarnetStepUtils';
 import { useAppIntl } from '../../../../i18n';
 import innvilgetVedtakEndpoint from '../../../../api/endpoints/innvilgetVedtakEndpoint';
-import {
-    HentSisteGyldigeVedtakResponseDto
-} from '../../../../types/innvilgetVedtakApiData/HentSisteGyldigeVedtakResponseDto';
+import { HentSisteGyldigeVedtakResponseDto } from '../../../../types/innvilgetVedtakApiData/HentSisteGyldigeVedtakResponseDto';
 
 interface Props {
     registrerteBarn: RegistrertBarn[];
@@ -22,10 +20,11 @@ const { RadioGroup, Checkbox } = getTypedFormComponents<OmBarnetFormFields, OmBa
 const VelgRegistrertBarn: React.FunctionComponent<Props> = ({ registrerteBarn, søknadenGjelderEtAnnetBarn }) => {
     const { text } = useAppIntl();
     // use sate to store the last innvilget vedtak
-    const [sisteInnvilgetVedtak, setSisteInnvilgetVedtak] = useState<HentSisteGyldigeVedtakResponseDto | undefined>(undefined);
+    const [sisteInnvilgetVedtak, setSisteInnvilgetVedtak] = useState<HentSisteGyldigeVedtakResponseDto | undefined>(
+        undefined,
+    );
 
     async function harInnvilgetVedFraFør(aktørId: string) {
-        console.log(aktørId);
         const sisteInnvilgetVedtak = await innvilgetVedtakEndpoint.send({ pleietrengendeAktørId: aktørId });
         setSisteInnvilgetVedtak(sisteInnvilgetVedtak.data);
     }
