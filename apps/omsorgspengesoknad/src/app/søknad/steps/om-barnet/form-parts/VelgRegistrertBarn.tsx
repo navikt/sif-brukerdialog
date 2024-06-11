@@ -35,11 +35,6 @@ const VelgRegistrertBarn: React.FunctionComponent<Props> = ({ registrerteBarn, s
             <Heading level="2" size="medium">
                 {text('steg.omBarnet.hvilketBarn.spm')}
             </Heading>
-            {sisteInnvilgetVedtak && sisteInnvilgetVedtak.harInnvilgedeBehandlinger && (
-                <Alert variant="warning">
-                    Du har allerede innvilget vedtak fra før. Vedtaksdato: {sisteInnvilgetVedtak.vedtaksdato}.
-                </Alert>
-            )}
             <FormBlock margin="l">
                 <RadioGroup
                     legend={text('steg.omBarnet.hvilketBarn.registrerteBarn')}
@@ -58,6 +53,14 @@ const VelgRegistrertBarn: React.FunctionComponent<Props> = ({ registrerteBarn, s
                     name={OmBarnetFormFields.søknadenGjelderEtAnnetBarn}
                 />
             </FormBlock>
+            {sisteInnvilgetVedtak && sisteInnvilgetVedtak.harInnvilgedeBehandlinger && (
+                <FormBlock margin="l">
+                    <Alert variant="warning">
+                        Du har allerede et vedtak med saksnummer <b>{sisteInnvilgetVedtak.saksnummer}</b> som gjelder
+                        fram til barnet fyller 18 år. Du trenger ikke å søke igjen.
+                    </Alert>
+                </FormBlock>
+            )}
         </>
     );
 };
