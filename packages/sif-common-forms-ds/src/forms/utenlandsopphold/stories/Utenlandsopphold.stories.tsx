@@ -4,6 +4,7 @@ import { withIntl } from '../../../../storybook/decorators/withIntl';
 import UtenlandsoppholdExample from './UtenlandsoppholdExample';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import { UtenlandsoppholdVariant } from '../types';
 
 const meta: Meta<typeof UtenlandsoppholdExample> = {
     component: UtenlandsoppholdExample,
@@ -16,7 +17,7 @@ export default meta;
 type Story = StoryObj<typeof UtenlandsoppholdExample>;
 
 export const Default: Story = {
-    name: 'Default',
+    name: 'Utvidet',
     play: async ({ canvasElement }) => {
         const canvas = within(canvasElement);
         (await canvas.findByText('Form')).click();
@@ -38,18 +39,19 @@ export const Default: Story = {
         await userEvent.tab();
 
         const innlagtSpm = await canvas.findByRole('group', {
-            name: 'Er, eller skal, barnet være innlagt i helseinstitusjon i Albania?',
+            name: 'Er, eller skal barnet være innlagt i helseinstitusjon i Albania?',
         });
         (await within(innlagtSpm).findByLabelText('Nei')).click();
 
         const sammenSpm = await canvas.findByRole('group', {
-            name: 'Skal du være sammen med barnet i Albania?',
+            name: 'Er, eller skal barnet være sammen med deg til Albania?',
         });
         (await within(sammenSpm).findByLabelText('Nei')).click();
     },
-    render: () => <UtenlandsoppholdExample excludeInnlagtQuestion={false} />,
+    render: () => <UtenlandsoppholdExample variant={UtenlandsoppholdVariant.UTVIDET} />,
 };
+
 export const UtenSpmOm: Story = {
-    name: 'Uten spørsmål om innleggelse ',
-    render: () => <UtenlandsoppholdExample excludeInnlagtQuestion={true} />,
+    name: 'Enkel - kun periode og land',
+    render: () => <UtenlandsoppholdExample variant={UtenlandsoppholdVariant.ENKEL} />,
 };

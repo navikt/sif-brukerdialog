@@ -11,7 +11,7 @@ import { flatten } from 'flat';
 import MessagesPreview from '../../../../storybook/components/messages-preview/MessagesPreview';
 import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
 import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
-import { Utenlandsopphold } from '../types';
+import { Utenlandsopphold, UtenlandsoppholdVariant } from '../types';
 import UtenlandsoppholdForm, { UtlandsoppholdFormErrors } from '../UtenlandsoppholdForm';
 import UtenlandsoppholdListAndDialog from '../UtenlandsoppholdListAndDialog';
 import { utenlandsoppholdMessages } from '../utenlandsoppholdMessages';
@@ -27,7 +27,7 @@ const initialValues: FormValues = {
     utenlandsopphold: [],
 };
 
-const UtenlandsoppholdExample = ({ excludeInnlagtQuestion }: { excludeInnlagtQuestion: boolean }) => {
+const UtenlandsoppholdExample = ({ variant }: { variant: UtenlandsoppholdVariant }) => {
     const [singleFormValues, setSingleFormValues] = useState<Partial<Utenlandsopphold> | undefined>(undefined);
     const [listFormValues, setListFormValues] = useState<Partial<FormValues> | undefined>(undefined);
     const intl = useIntl();
@@ -53,7 +53,7 @@ const UtenlandsoppholdExample = ({ excludeInnlagtQuestion }: { excludeInnlagtQue
                                         minDate={getDate1YearAgo()}
                                         maxDate={getDate1YearFromNow()}
                                         name={FormField.utenlandsopphold}
-                                        excludeInnlagtQuestion={excludeInnlagtQuestion}
+                                        variant={variant}
                                         validate={getListValidator({ required: true })}
                                         labels={{
                                             addLabel: 'Legg til utenlandsopphold',
@@ -74,7 +74,7 @@ const UtenlandsoppholdExample = ({ excludeInnlagtQuestion }: { excludeInnlagtQue
                             opphold={initialValues.utenlandsopphold[0]}
                             minDate={getDate1YearAgo()}
                             maxDate={getDate1YearFromNow()}
-                            excludeInnlagtQuestion={excludeInnlagtQuestion}
+                            variant={variant}
                             onSubmit={setSingleFormValues}
                             onCancel={() => null}
                         />

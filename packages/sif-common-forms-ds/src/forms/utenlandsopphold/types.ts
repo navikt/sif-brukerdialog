@@ -11,22 +11,30 @@ export interface UtenlandsoppholdInnlagtPeriode {
     tom: Date;
 }
 
+export enum UtenlandsoppholdVariant {
+    'ENKEL' = 'ENKEL', // Kun periode og land
+    'UTVIDET' = 'UTVIDET', // Periode, land og flere spørsmål
+}
+
 export interface Utenlandsopphold {
     id?: string;
     fom: Date;
     tom: Date;
     landkode: string;
+    erBarnetInnlagt?: boolean;
+    barnInnlagtPerioder?: UtenlandsoppholdInnlagtPeriode[];
+    årsak?: UtenlandsoppholdÅrsak;
+    erSammenMedBarnet?: boolean;
+}
+
+export type UtenlandsoppholdEnkel = Pick<Utenlandsopphold, 'id' | 'fom' | 'tom' | 'landkode'>;
+
+export type UtenlandsoppholdFormValues = {
+    fom?: string;
+    tom?: string;
+    landkode?: string;
+    erSammenMedBarnet?: YesOrNo;
     erBarnetInnlagt?: YesOrNo;
     barnInnlagtPerioder?: UtenlandsoppholdInnlagtPeriode[];
     årsak?: UtenlandsoppholdÅrsak;
-    erSammenMedBarnet?: YesOrNo;
-}
-
-export type UtenlandsoppholdFormValues = Partial<
-    Omit<Utenlandsopphold, 'id' | 'fom' | 'tom' | 'barnInnlagtPerioder' | 'erSammenMedBarnet'> & {
-        fom?: string;
-        tom?: string;
-        barnInnlagtPerioder?: UtenlandsoppholdInnlagtPeriode[];
-        erSammenMedBarnet?: YesOrNo;
-    }
->;
+};
