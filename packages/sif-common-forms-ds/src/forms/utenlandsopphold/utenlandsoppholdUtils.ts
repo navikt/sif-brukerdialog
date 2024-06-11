@@ -2,7 +2,7 @@ import { countryIsMemberOfEøsOrEfta, dateToISOString, ISOStringToDate, YesOrNo 
 import { guid } from '@navikt/sif-common-utils';
 import { Utenlandsopphold, UtenlandsoppholdEnkel, UtenlandsoppholdFormValues, UtenlandsoppholdVariant } from './types';
 import { hasValue } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
-import { getYesOrNoFromBoolean, yesOrNoIsAnswered } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
+import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 
 export const mapFormValuesToUtenlandsopphold = (
     formValues: UtenlandsoppholdFormValues,
@@ -35,20 +35,23 @@ export const mapFormValuesToUtenlandsopphold = (
         fom,
         tom,
         landkode,
-        erSammenMedBarnet: yesOrNoIsAnswered(erSammenMedBarnet) ? erSammenMedBarnet === YesOrNo.YES : undefined,
     };
 
     if (isEøsOrEftaLand === true) {
-        return utvidetUtenlandsopphold;
+        utvidetUtenlandsopphold.erSammenMedBarnet = erSammenMedBarnet === YesOrNo.YES;
+    } else {
+        const erBarnetInnlagt = formValues.erBarnetInnlagt === YesOrNo.YES ? true : false;
+        if (erBarnetInnlagt) {
+            utvidetUtenlandsopphold.erBarnetInnlagt = true;
+            utvidetUtenlandsopphold.barnInnlagtPerioder = barnInnlagtPerioder;
+            utvidetUtenlandsopphold.årsak = årsak;
+        } else {
+            utvidetUtenlandsopphold.erBarnetInnlagt = false;
+            utvidetUtenlandsopphold.erSammenMedBarnet = erSammenMedBarnet === YesOrNo.YES;
+        }
     }
 
-    const erBarnetInnlagt = formValues.erBarnetInnlagt === YesOrNo.YES ? true : false;
-    return {
-        ...utvidetUtenlandsopphold,
-        erBarnetInnlagt,
-        barnInnlagtPerioder: erBarnetInnlagt ? barnInnlagtPerioder : undefined,
-        årsak: erBarnetInnlagt ? årsak : undefined,
-    };
+    return utvidetUtenlandsopphold;
 };
 
 export const mapUtenlandsoppholdToFormValues = (
