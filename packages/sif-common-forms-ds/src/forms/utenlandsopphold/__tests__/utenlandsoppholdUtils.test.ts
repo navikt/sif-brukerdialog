@@ -27,42 +27,6 @@ describe('utenlandsoppholdUtils', () => {
     });
     describe('variant===UTVIDET', () => {
         describe('reise innenfor eøs', () => {
-            const values: UtenlandsoppholdFormValues = {
-                fom: '2021-01-01',
-                tom: '2021-01-02',
-                landkode: landkoder.belgia,
-                erBarnetInnlagt: YesOrNo.NO,
-                erSammenMedBarnet: YesOrNo.NO,
-            };
-            it('er ikke sammen med barnet', () => {
-                const result = mapFormValuesToUtenlandsopphold(values, UtenlandsoppholdVariant.UTVIDET, undefined);
-                const expectedResult: Utenlandsopphold = {
-                    id: expect.any(String),
-                    fom: new Date('2021-01-01'),
-                    tom: new Date('2021-01-02'),
-                    landkode: landkoder.belgia,
-                    erSammenMedBarnet: false,
-                };
-                expect(result).toEqual(expectedResult);
-            });
-            it('er sammen med barnet', () => {
-                const result = mapFormValuesToUtenlandsopphold(
-                    { ...values, erSammenMedBarnet: YesOrNo.YES },
-                    UtenlandsoppholdVariant.UTVIDET,
-                    undefined,
-                );
-                const expectedResult: Utenlandsopphold = {
-                    id: expect.any(String),
-                    fom: new Date('2021-01-01'),
-                    tom: new Date('2021-01-02'),
-                    landkode: landkoder.belgia,
-                    erSammenMedBarnet: true,
-                };
-                expect(result).toEqual(expectedResult);
-            });
-        });
-
-        describe('reise innenfor eøs', () => {
             const innenforEøsValues: UtenlandsoppholdFormValues = {
                 fom: '2021-01-01',
                 tom: '2021-01-02',
