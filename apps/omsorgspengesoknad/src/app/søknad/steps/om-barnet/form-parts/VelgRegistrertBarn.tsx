@@ -55,8 +55,11 @@ const VelgRegistrertBarn: React.FunctionComponent<Props> = ({ registrerteBarn, s
             {sisteInnvilgetVedtak && sisteInnvilgetVedtak.harInnvilgedeBehandlinger && (
                 <FormBlock margin="l">
                     <Alert variant="warning">
-                        Du har allerede et vedtak med saksnummer <b>{sisteInnvilgetVedtak.saksnummer}</b> som gjelder
-                        fram til barnet fyller 18 år. Du trenger ikke å søke igjen.
+                        <Heading spacing size="small" level="3">
+                            Du trenger ikke å søke igjen.
+                        </Heading>
+                        Du har allerede et vedtak med saksnummer {sisteInnvilgetVedtak.saksnummer} som gjelder fram til
+                        barnet fyller 18 år.
                     </Alert>
                 </FormBlock>
             )}
