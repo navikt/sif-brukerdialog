@@ -43,7 +43,7 @@ export const ensureValidAlpha3CodeForIsoCountries = (alphaCode: string): string 
 };
 
 /**
- * @param alphaCode lankode
+ * @param alphaCode landkode
  * @param locale språkkode
  * @returns navn på land
  */
