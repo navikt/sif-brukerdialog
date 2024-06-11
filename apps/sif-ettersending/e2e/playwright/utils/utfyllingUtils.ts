@@ -21,7 +21,6 @@ const fyllUtBeskrivelseSteg = async (page: Page, legeerklæring: boolean) => {
         await page.getByText('ALFABETISK FAGGOTT').click();
     } else {
         await page.getByText('Annet').click();
-        await page.getByTestId('beskrivelse').fill('Her er en kommentar');
     }
     await page.getByRole('button').getByText('Neste').click();
 };
