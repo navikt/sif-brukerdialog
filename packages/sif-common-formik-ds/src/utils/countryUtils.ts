@@ -17,6 +17,7 @@ interface Country {
  */
 export const NAV_KOSOVO_ALPHA3_CODE = 'XXK';
 export const ISO_COUNTRIES_KOSOVO_ALPHA3_CODE = alpha2ToAlpha3('XK') || 'XKX';
+export const INVALID_ISO_COUNTRIES_KOSOVO_ALPHA3_CODE = 'XKK'; // Ugyldig kode i i18n-iso-countries
 
 /** Finner riktig kode for innsending til NAV systemer */
 export const ensureValid3AlphaCodeForNAV = (alphaCode: string): string => {
@@ -24,7 +25,10 @@ export const ensureValid3AlphaCodeForNAV = (alphaCode: string): string => {
     if (!alpha3Code) {
         throw `countryUtils: ensureValidCodeForNAV:  ${alphaCode}`;
     }
-    if (alpha3Code.toUpperCase() === ISO_COUNTRIES_KOSOVO_ALPHA3_CODE) {
+    if (
+        // Sjekk begge kodene for å håndtere mellomlagringer med ugyldig kode
+        [INVALID_ISO_COUNTRIES_KOSOVO_ALPHA3_CODE, ISO_COUNTRIES_KOSOVO_ALPHA3_CODE].includes(alpha3Code.toUpperCase())
+    ) {
         return NAV_KOSOVO_ALPHA3_CODE;
     }
     return alpha3Code;

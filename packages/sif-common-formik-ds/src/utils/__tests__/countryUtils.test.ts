@@ -5,6 +5,7 @@ import {
     ensureValid3AlphaCodeForNAV,
     ISO_COUNTRIES_KOSOVO_ALPHA3_CODE,
     NAV_KOSOVO_ALPHA3_CODE,
+    INVALID_ISO_COUNTRIES_KOSOVO_ALPHA3_CODE,
 } from '../countryUtils';
 
 describe('countryUtils', () => {
@@ -34,6 +35,11 @@ describe('countryUtils', () => {
         });
     });
     describe('ensureValid3AlphaCodeForNAV', () => {
+        it('mapper ugyldig iso-countries kode for Kosovo til riktig alpha3 kode for bruk mot NAV', () => {
+            expect(ensureValid3AlphaCodeForNAV(INVALID_ISO_COUNTRIES_KOSOVO_ALPHA3_CODE)).toEqual(
+                NAV_KOSOVO_ALPHA3_CODE,
+            );
+        });
         it('mapper iso-countries kode for Kosovo til riktig alpha3 kode for bruk mot NAV', () => {
             expect(ensureValid3AlphaCodeForNAV('XK')).toEqual(NAV_KOSOVO_ALPHA3_CODE);
             expect(ensureValid3AlphaCodeForNAV(ISO_COUNTRIES_KOSOVO_ALPHA3_CODE)).toEqual(NAV_KOSOVO_ALPHA3_CODE);
