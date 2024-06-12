@@ -1,12 +1,13 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { MedlemskapFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
-import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src';
+import { UtenlandsoppholdEnkel } from '@navikt/sif-common-forms-ds/src';
 import { extractMedlemskapSøknadsdata } from '../extractMedlemskapSøknadsdata';
 
-const mockUtenlandsopphold: Utenlandsopphold = {
+const mockUtenlandsopphold: UtenlandsoppholdEnkel = {
+    type: 'enkel',
     fom: new Date(),
     tom: new Date(),
-    landkode: 'ARG',
+    landkode: 'BEL',
     id: '12334',
 };
 

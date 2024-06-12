@@ -1,16 +1,11 @@
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import { SøknadApiData } from '../../types/søknad-api-data/SøknadApiData';
 import { UtenlandsoppholdIPeriodenSøknadsdata } from '../../types/søknadsdata/UtenlandsoppholdIPeriodenSøknadsdata';
-import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { dateToISODate } from '@navikt/sif-common-utils';
-import { countryIsMemberOfEøsOrEfta, getCountryName } from '@navikt/sif-common-formik-ds';
+import { getCountryName } from '@navikt/sif-common-formik-ds';
 import { DateTidsperiode } from '@navikt/sif-common-forms-ds/src/forms/tidsperiode';
-import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
-import {
-    PeriodeApiData,
-    UtenlandsoppholdIPeriodenApiData,
-    UtenlandsoppholdUtenforEøsIPeriodenApiData,
-} from '../../types/søknad-api-data/SøknadApiData';
+import { UtenlandsoppholdUtvidet } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
+import { PeriodeApiData, UtenlandsoppholdIPeriodenApiData } from '../../types/søknad-api-data/SøknadApiData';
 import { sortItemsByFomTom } from '../../local-sif-common-pleiepenger/utils';
 
 const mapBarnInnlagtPeriodeToApiFormat = (periode: DateTidsperiode): PeriodeApiData => {
@@ -23,40 +18,37 @@ const mapBarnInnlagtPeriodeToApiFormat = (periode: DateTidsperiode): PeriodeApiD
 export type UtenlandsoppholdIPerioden = Pick<SøknadApiData, 'utenlandsoppholdIPerioden'>;
 
 export const mapUtenlandsoppholdIPeriodenApiData = (
-    opphold: Utenlandsopphold,
+    utenlandsopphold: UtenlandsoppholdUtvidet,
     locale: string,
-): UtenlandsoppholdIPeriodenApiData | UtenlandsoppholdUtenforEøsIPeriodenApiData => {
-    const erUtenforEØS: boolean = countryIsMemberOfEøsOrEfta(opphold.landkode) === false;
-    const apiData: UtenlandsoppholdIPeriodenApiData = {
-        landnavn: getCountryName(opphold.landkode, locale),
-        landkode: opphold.landkode,
-        fraOgMed: dateToISODate(opphold.fom),
-        tilOgMed: dateToISODate(opphold.tom),
-    };
+): UtenlandsoppholdIPeriodenApiData => {
+    if (utenlandsopphold.erUtenforEØS === false) {
+        return {
+            landnavn: getCountryName(utenlandsopphold.landkode, locale),
+            landkode: utenlandsopphold.landkode,
+            fraOgMed: dateToISODate(utenlandsopphold.fom),
+            tilOgMed: dateToISODate(utenlandsopphold.tom),
+            erUtenforEøs: false,
+            erSammenMedBarnet: utenlandsopphold.erSammenMedBarnet,
+        };
+    }
+    const { erBarnetInnlagt, barnInnlagtPerioder, årsak } = utenlandsopphold;
 
-    if (erUtenforEØS) {
-        const erBarnetInnlagt = opphold.erBarnetInnlagt === YesOrNo.YES;
-
-        if (erBarnetInnlagt) {
-        }
-
-        const perioderBarnetErInnlagt = erBarnetInnlagt
-            ? opphold.barnInnlagtPerioder.sort(sortItemsByFomTom).map(mapBarnInnlagtPeriodeToApiFormat)
+    const perioderBarnetErInnlagt =
+        erBarnetInnlagt && barnInnlagtPerioder
+            ? barnInnlagtPerioder.sort(sortItemsByFomTom).map(mapBarnInnlagtPeriodeToApiFormat)
             : [];
 
-        const periodeopphold: UtenlandsoppholdUtenforEøsIPeriodenApiData = {
-            ...apiData,
-            erUtenforEøs: erUtenforEØS,
-            erBarnetInnlagt,
-            perioderBarnetErInnlagt: erBarnetInnlagt
-                ? opphold.barnInnlagtPerioder.sort(sortItemsByFomTom).map(mapBarnInnlagtPeriodeToApiFormat)
-                : [],
-            erSammenMedBarnet: !erBarnetInnlagt ? opphold.erSammenMedBarnet === YesOrNo.YES : undefined,
-            årsak: erBarnetInnlagt ? opphold.årsak : null,
-        };
-        return periodeopphold;
-    }
-    return apiData;
+    return {
+        erUtenforEøs: true,
+        landnavn: getCountryName(utenlandsopphold.landkode, locale),
+        landkode: utenlandsopphold.landkode,
+        fraOgMed: dateToISODate(utenlandsopphold.fom),
+        tilOgMed: dateToISODate(utenlandsopphold.tom),
+        erSammenMedBarnet: utenlandsopphold.erSammenMedBarnet,
+        erBarnetInnlagt,
+        perioderBarnetErInnlagt,
+        årsak: årsak || null,
+    };
 };
 
 export const getUtenlandsoppholdIPeriodenApiDataFromSøknadsdata = (

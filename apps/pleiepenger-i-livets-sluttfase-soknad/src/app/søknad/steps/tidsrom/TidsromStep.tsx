@@ -9,7 +9,7 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { Utenlandsopphold } from '@navikt/sif-common-forms-ds';
+import { UtenlandsoppholdEnkel, UtenlandsoppholdUtvidet } from '@navikt/sif-common-forms-ds';
 import UtenlandsoppholdListAndDialog from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/UtenlandsoppholdListAndDialog';
 import { getDateRangeFromDates } from '@navikt/sif-common-utils';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
@@ -46,7 +46,7 @@ export interface TidsromFormValues {
     [TidsromFormFields.pleierDuDenSykeHjemme]?: YesOrNo;
     [TidsromFormFields.skalJobbeOgPleieSammeDag]?: YesOrNo;
     [TidsromFormFields.skalOppholdeSegIUtlandetIPerioden]?: YesOrNo;
-    [TidsromFormFields.utenlandsoppholdIPerioden]: Utenlandsopphold[];
+    [TidsromFormFields.utenlandsoppholdIPerioden]: UtenlandsoppholdEnkel[];
 }
 
 const { FormikWrapper, Form, YesOrNoQuestion } = getTypedFormComponents<
@@ -201,7 +201,7 @@ const TidsromStep = () => {
                                                             name={TidsromFormFields.utenlandsoppholdIPerioden}
                                                             minDate={periode.from}
                                                             maxDate={periode.to}
-                                                            excludeInnlagtQuestion={true}
+                                                            variant="utvidet"
                                                             labels={{
                                                                 modalTitle: text(
                                                                     'steg.tidsrom.iUtlandetIPerioden.modalTitle',
@@ -215,7 +215,7 @@ const TidsromStep = () => {
                                                             }}
                                                             validate={
                                                                 periode
-                                                                    ? (opphold: Utenlandsopphold[]) =>
+                                                                    ? (opphold: UtenlandsoppholdUtvidet[]) =>
                                                                           validateUtenlandsoppholdIPerioden(
                                                                               periode,
                                                                               opphold,

@@ -11,10 +11,7 @@ export interface UtenlandsoppholdInnlagtPeriode {
     tom: Date;
 }
 
-export enum UtenlandsoppholdVariant {
-    'ENKEL' = 'ENKEL', // Kun periode og land
-    'UTVIDET' = 'UTVIDET', // Periode, land og flere spørsmål
-}
+export type UtenlandsoppholdVariant = 'enkel' | 'utvidet';
 
 interface UtenlandsoppholdBase {
     id?: string;
@@ -23,23 +20,28 @@ interface UtenlandsoppholdBase {
     landkode: string;
 }
 
-export type UtenlandsoppholdEnkel = UtenlandsoppholdBase & {
-    type: 'enkel';
-};
-
-export type UtenlandsoppholdInnenforEØS = UtenlandsoppholdBase & {
+type UtenlandsoppholdInnenforEØS = UtenlandsoppholdBase & {
     type: 'innenfor_eøs';
+    erUtenforEØS: false;
     erSammenMedBarnet: boolean;
 };
 
-export type UtenlandsoppholdUtenforEØS = UtenlandsoppholdBase & {
+type UtenlandsoppholdUtenforEØS = UtenlandsoppholdBase & {
     type: 'utenfor_eøs';
+    erUtenforEØS: true;
     erSammenMedBarnet: boolean;
     erBarnetInnlagt?: boolean;
     barnInnlagtPerioder?: UtenlandsoppholdInnlagtPeriode[];
     årsak?: UtenlandsoppholdÅrsak;
 };
-export type Utenlandsopphold = UtenlandsoppholdEnkel | UtenlandsoppholdInnenforEØS | UtenlandsoppholdUtenforEØS;
+
+export type UtenlandsoppholdEnkel = UtenlandsoppholdBase & {
+    type: 'enkel';
+};
+
+export type UtenlandsoppholdUtvidet = UtenlandsoppholdInnenforEØS | UtenlandsoppholdUtenforEØS;
+
+export type Utenlandsopphold = UtenlandsoppholdEnkel | UtenlandsoppholdUtvidet;
 
 export type UtenlandsoppholdFormValues = {
     fom?: string;

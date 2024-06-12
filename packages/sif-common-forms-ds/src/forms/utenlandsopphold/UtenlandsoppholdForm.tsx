@@ -111,7 +111,7 @@ const UtenlandsoppholdForm = ({ variant, maxDate, minDate, opphold, alleOpphold 
             ? alleOpphold.map(mapFomTomToDateRange)
             : alleOpphold.filter((o) => o.id !== opphold.id).map(mapFomTomToDateRange);
 
-    if (variant === UtenlandsoppholdVariant.ENKEL) {
+    if (variant === 'enkel') {
         defaultFormValues.erBarnetInnlagt = undefined;
     }
 
@@ -177,7 +177,7 @@ const UtenlandsoppholdForm = ({ variant, maxDate, minDate, opphold, alleOpphold 
                             />
                         </FormBlock>
 
-                        {landkode && variant === UtenlandsoppholdVariant.UTVIDET && (
+                        {landkode && variant === 'utvidet' && (
                             <>
                                 <FormBlock>
                                     <Form.YesOrNoQuestion

@@ -18,7 +18,7 @@ export const mapFormValuesToUtenlandsopphold = (
         throw 'Invalid utenlandsopphold';
     }
 
-    if (variant === UtenlandsoppholdVariant.ENKEL) {
+    if (variant === 'enkel') {
         const opphold: UtenlandsoppholdEnkel = {
             type: 'enkel',
             id,
@@ -35,6 +35,7 @@ export const mapFormValuesToUtenlandsopphold = (
     if (isEøsOrEftaLand) {
         return {
             type: 'innenfor_eøs',
+            erUtenforEØS: false,
             id,
             fom,
             tom,
@@ -46,6 +47,7 @@ export const mapFormValuesToUtenlandsopphold = (
     if (isEøsOrEftaLand === false && erSammenMedBarnet === false) {
         return {
             type: 'utenfor_eøs',
+            erUtenforEØS: true,
             id,
             fom,
             tom,
@@ -57,6 +59,7 @@ export const mapFormValuesToUtenlandsopphold = (
     const erBarnetInnlagt = formValues.erBarnetInnlagt === YesOrNo.YES ? true : false;
     return {
         type: 'utenfor_eøs',
+        erUtenforEØS: true,
         id,
         fom,
         tom,
@@ -78,7 +81,7 @@ export const mapUtenlandsoppholdToFormValues = (
         landkode: utenlandsopphold.landkode,
     };
 
-    if (variant === UtenlandsoppholdVariant.ENKEL || utenlandsopphold.type === 'enkel') {
+    if (variant === 'enkel' || utenlandsopphold.type === 'enkel') {
         return values;
     }
 
@@ -112,7 +115,7 @@ export const getUtenlandsoppholdQuestionVisibility = (
 } => {
     const { erBarnetInnlagt, landkode, erSammenMedBarnet, fom, tom } = formValues;
 
-    if (variant === UtenlandsoppholdVariant.ENKEL) {
+    if (variant === 'enkel') {
         return {
             showInnlagtPerioderQuestion: false,
             showInnlagtQuestion: false,

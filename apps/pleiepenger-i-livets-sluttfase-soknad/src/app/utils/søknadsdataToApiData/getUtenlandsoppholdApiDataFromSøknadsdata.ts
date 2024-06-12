@@ -1,5 +1,5 @@
 import { getCountryName } from '@navikt/sif-common-formik-ds';
-import { Utenlandsopphold } from '@navikt/sif-common-forms-ds';
+import { UtenlandsoppholdEnkel } from '@navikt/sif-common-forms-ds';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import {
     UtenlandsoppholdIPeriodenApi,
@@ -27,7 +27,7 @@ export const getUtenlansoppholdApiDataFromSøknadsdata = (
 };
 
 export const getUtenlandsoppholdIPeriodenApiData = (
-    opphold: Utenlandsopphold,
+    opphold: UtenlandsoppholdEnkel,
     locale: string,
 ): UtenlandsoppholdIPeriodenApiData => {
     const apiData: UtenlandsoppholdIPeriodenApiData = {
