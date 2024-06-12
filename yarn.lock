@@ -4196,6 +4196,7 @@ __metadata:
     "@storybook/jest": 0.2.3
     "@storybook/node-logger": 8.1.6
     "@storybook/preset-create-react-app": 8.1.6
+    "@storybook/preset-scss": 1.0.3
     "@storybook/react": 8.1.6
     "@storybook/react-vite": 8.1.6
     "@storybook/test-runner": 0.18.2
@@ -6928,6 +6929,17 @@ __metadata:
     typescript:
       optional: true
   checksum: a649ce13b1a068db1abddf3d4c8208b71e2338a7fa11c8902dbe2a5e544812577474778891385b628397d90302df62fa608f1e8f6b678dcb38ea47876088aeed
+  languageName: node
+  linkType: hard
+
+"@storybook/preset-scss@npm:1.0.3":
+  version: 1.0.3
+  resolution: "@storybook/preset-scss@npm:1.0.3"
+  peerDependencies:
+    css-loader: "*"
+    sass-loader: "*"
+    style-loader: "*"
+  checksum: 4f1cf1f57a4cd277d76afad5fc4f677436dc3ae3753ce549a6395c0aa9f3d9cf58e9d04c7f8b2cccd2e01929ae563764cca03c016c7e3fed4044a6409e8ca8cd
   languageName: node
   linkType: hard
 

@@ -272,7 +272,6 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                         navnPåVirksomheten,
                                     })}
                                     validate={getRequiredFieldValidator()}
-                                    useAlpha3Code={true}
                                 />
                             </Block>
                         )}
