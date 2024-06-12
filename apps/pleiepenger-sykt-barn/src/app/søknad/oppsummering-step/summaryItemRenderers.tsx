@@ -1,5 +1,6 @@
+import { Box, Heading, VStack } from '@navikt/ds-react';
 import React from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import ContentWithHeader from '@navikt/sif-common-core-ds/src/components/content-with-header/ContentWithHeader';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { UtenlandsoppholdÅrsak } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
 import { JaNeiSvar, SummaryList } from '@navikt/sif-common-ui';
@@ -8,12 +9,9 @@ import classNames from 'classnames';
 import { AppIntlShape, AppText } from '../../i18n';
 import {
     BostedUtlandApiData,
-    isUtenlandsoppholdUtenforEØSApiData,
     PeriodeApiData,
     UtenlandsoppholdIPeriodenApiData,
 } from '../../types/søknad-api-data/SøknadApiData';
-import ContentWithHeader from '@navikt/sif-common-core-ds/src/components/content-with-header/ContentWithHeader';
-import { Box, Heading, VStack } from '@navikt/ds-react';
 
 const bem = bemUtils('utenlandsoppholdSummaryItem');
 
@@ -41,7 +39,7 @@ export const renderUtenlandsoppholdIPeriodenSummary = (
     { text }: AppIntlShape,
 ): React.ReactNode => {
     return (
-        <Box>
+        <Box style={{ paddingBottom: '1rem' }}>
             <Heading level="3" size="xsmall" spacing={true}>
                 {opphold.landnavn}: {prettifyDateExtended(ISODateToDate(opphold.fraOgMed))} -{' '}
                 {prettifyDateExtended(ISODateToDate(opphold.tilOgMed))}
@@ -53,7 +51,7 @@ export const renderUtenlandsoppholdIPeriodenSummary = (
                     <JaNeiSvar harSvartJa={opphold.erSammenMedBarnet} />
                 </ContentWithHeader>
 
-                {opphold.erUtenforEøs && opphold.erBarnetInnlagt === true && (
+                {opphold.erUtenforEøs && (
                     <>
                         <ContentWithHeader
                             header={text('@forms.utenlandsopphold.form.erBarnetInnlagt.spm', {
@@ -94,17 +92,6 @@ export const renderUtenlandsoppholdIPeriodenSummary = (
                     </>
                 )}
             </VStack>
-            {isUtenlandsoppholdUtenforEØSApiData(opphold) && opphold.erBarnetInnlagt === false && (
-                <Block margin="l">
-                    asd
-                    <ContentWithHeader header={text('@forms.utenlandsopphold.form.erBarnetInnlagt.spm')}>
-                        <JaNeiSvar harSvartJa={opphold.erBarnetInnlagt} />
-                    </ContentWithHeader>
-                    <ContentWithHeader header={text('@forms.utenlandsopphold.form.erSammenMedBarnet.spm')}>
-                        <JaNeiSvar harSvartJa={opphold.erSammenMedBarnet} />
-                    </ContentWithHeader>
-                </Block>
-            )}
         </Box>
     );
 };
