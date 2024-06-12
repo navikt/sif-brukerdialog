@@ -17,6 +17,7 @@ import { exchangeTokenAndPrepRequest } from './utils/exchangeTokenPrepRequest';
 import { isValidMellomlagring } from './utils/isValidMellomlagring';
 import { ZodError } from 'zod';
 import { getZodErrorsInfo } from '../utils/zodUtils';
+import { SakerParseError } from '../types/SakerParseError';
 
 export enum ApiService {
     k9Brukerdialog = 'k9-brukerdialog-api',
@@ -97,9 +98,17 @@ export const fetchSaker = async (req: NextApiRequest, raw?: boolean): Promise<Pl
     } catch (error) {
         if (error instanceof ZodError) {
             childLogger.error({ parseDetails: JSON.stringify(getZodErrorsInfo(error)) }, 'Parsing av Saker feiler');
+            if (sakerLength !== undefined) {
+                const sakerParseError: SakerParseError = {
+                    antallSaker: sakerLength,
+                    error,
+                };
+                throw sakerParseError;
+            }
         } else {
             childLogger.error(error, 'Ukjent feil ved parsing saker');
         }
+        throw error;
     }
 
     childLogger.info(`Saker response data parsed. Antall saker: ${saker.length}`);

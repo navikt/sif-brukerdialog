@@ -16,6 +16,7 @@ import { getXRequestId } from '../../utils/apiUtils';
 import { Feature } from '../../utils/features';
 import { sortInnsendtSøknadEtterOpprettetDato } from '../../utils/innsendtSøknadUtils';
 import { fetchAppStatus } from './appStatus.api';
+import { isSakerParseError } from '../../types/SakerParseError';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const childLogger = createChildLogger(getXRequestId(req));
@@ -90,6 +91,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             saksbehandlingstidUker,
             saker,
             harSak,
+            sakerParseError:
+                sakerReq.status === 'rejected' && isSakerParseError(sakerReq.reason) ? sakerReq.reason : undefined,
         };
         res.json(innsynsdata);
     } catch (err) {

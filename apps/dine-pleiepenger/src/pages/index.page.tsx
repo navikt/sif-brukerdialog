@@ -1,4 +1,4 @@
-import { Box, VStack } from '@navikt/ds-react';
+import { Alert, Box, VStack } from '@navikt/ds-react';
 import { ReactElement } from 'react';
 import Head from 'next/head';
 import { withAuthenticatedPage } from '../auth/withAuthentication';
@@ -32,7 +32,7 @@ const getSaksbehandlingsfrist = (søknader: InnsendtSøknad[], saker: Pleietreng
 
 function DinePleiepengerPage(): ReactElement {
     const {
-        innsynsdata: { innsendteSøknader, saker, saksbehandlingstidUker, brukerprofil },
+        innsynsdata: { innsendteSøknader, saker, sakerParseError, saksbehandlingstidUker, brukerprofil },
     } = useInnsynsdataContext();
 
     useLogBrukerprofil(brukerprofil);
@@ -60,6 +60,9 @@ function DinePleiepengerPage(): ReactElement {
                 <title>{text('forside.dokumentTittel')}</title>
             </Head>
             <VStack gap="8">
+                {sakerParseError ? (
+                    <Alert variant="warning">Vi klarer ikke å vise informasjon om din sak nå.</Alert>
+                ) : null}
                 <Box className="md:flex md:gap-6">
                     <div className="md:grow mb-10 md:mb-0">
                         <DineInnsendteSøknader søknader={innsendteSøknader} />
