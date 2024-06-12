@@ -45,10 +45,10 @@ const nb = {
     '@forms.utenlandsoppholdForm.landkode.noValue': 'Du må velge land.',
     '@forms.utenlandsoppholdForm.årsak.noValue': 'Du må velge hvordan utgiftene til innleggelsen dekkes.',
     '@forms.utenlandsoppholdForm.erBarnetInnlagt.yesOrNoIsUnanswered':
-        'Du må svare ja eller nei på om barnet er, eller skal være innlagt i helseinstitusjon i {land}.',
+        'Du må svare ja eller nei på om barnet er innlagt i helseinstitusjon i {land}.',
     '@forms.utenlandsoppholdForm.barnInnlagtPerioder.listIsEmpty': 'Du har ikke lagt til periode for innleggelse.',
     '@forms.utenlandsoppholdForm.erSammenMedBarnet.yesOrNoIsUnanswered':
-        'Du må svare ja eller nei på om barnet barnet er, eller skal være sammen med deg til {land}.',
+        'Du må svare ja eller nei på om barnet barnet sammen med deg til {land}.',
 };
 
 const nn: Record<keyof typeof nb, string> = {

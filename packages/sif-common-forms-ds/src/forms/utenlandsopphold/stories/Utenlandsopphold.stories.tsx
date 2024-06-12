@@ -25,26 +25,14 @@ export const Default: Story = {
         const fom = dateFormatter.compact(dayjs().subtract(3, 'days').toDate());
         const tom = dateFormatter.compact(dayjs().add(3, 'days').toDate());
 
-        /** EØS-land */
         await userEvent.type(await canvas.findByRole('textbox', { name: 'Fra og med' }), fom);
         await userEvent.tab();
         await userEvent.type(await canvas.findByRole('textbox', { name: 'Til og med' }), tom);
         await userEvent.tab();
         await userEvent.selectOptions(await canvas.findByRole('combobox', { name: 'Velg land' }), 'FRA');
         await userEvent.tab();
-        await userEvent.click(await canvas.findByRole('button', { name: 'Ok' }));
-
-        /** Utenfor EØS */
-        await userEvent.selectOptions(await canvas.findByRole('combobox', { name: 'Velg land' }), 'ALB');
-        await userEvent.tab();
-
-        const innlagtSpm = await canvas.findByRole('group', {
-            name: 'Er, eller skal barnet være innlagt i helseinstitusjon i Albania?',
-        });
-        (await within(innlagtSpm).findByLabelText('Nei')).click();
-
         const sammenSpm = await canvas.findByRole('group', {
-            name: 'Er, eller skal barnet være sammen med deg til Albania?',
+            name: 'Er barnet sammen med deg til Frankrike?',
         });
         (await within(sammenSpm).findByLabelText('Nei')).click();
     },

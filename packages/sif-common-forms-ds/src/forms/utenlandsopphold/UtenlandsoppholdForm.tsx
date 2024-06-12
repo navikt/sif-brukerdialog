@@ -177,7 +177,7 @@ const UtenlandsoppholdForm = ({ variant, maxDate, minDate, opphold, alleOpphold 
                             />
                         </FormBlock>
 
-                        {landkode && (
+                        {landkode && variant === UtenlandsoppholdVariant.UTVIDET && (
                             <>
                                 <FormBlock>
                                     <Form.YesOrNoQuestion
@@ -196,6 +196,7 @@ const UtenlandsoppholdForm = ({ variant, maxDate, minDate, opphold, alleOpphold 
                                         }}
                                     />
                                 </FormBlock>
+
                                 {showInnlagtQuestion && (
                                     <FormBlock>
                                         <Form.YesOrNoQuestion
