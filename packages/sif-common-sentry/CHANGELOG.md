@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.26.6
+
+### Patch Changes
+
+-   1972384: Pakkeoppdateringer minor/patch + uuid major
+
 ## 0.26.5
 
 ### Patch Changes

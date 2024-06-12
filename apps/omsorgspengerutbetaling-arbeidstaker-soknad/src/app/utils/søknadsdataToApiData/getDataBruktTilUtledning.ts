@@ -1,26 +1,18 @@
 import { DataBruktTilUtledningAnnetData } from '../../types/søknadApiData/SøknadApiData';
-import { FosterbarnSøknadsdata, Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
+import { DineBarnSøknadsdata, Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 
-export const getFosterbarnDataBruktTilUtledningFromSøknadsdata = (
-    fosterbarn?: FosterbarnSøknadsdata,
+export const getDineBarnDataBruktTilUtledningFromSøknadsdata = (
+    dineBarn?: DineBarnSøknadsdata,
 ): DataBruktTilUtledningAnnetData | undefined => {
-    if (!fosterbarn) {
+    if (!dineBarn) {
         // Feil situasjon
         return undefined;
     }
-
-    switch (fosterbarn.type) {
-        case 'harFosterbarn':
-            return {
-                harFosterbarn: true,
-            };
-        default:
-            return {
-                harFosterbarn: false,
-            };
-    }
+    return {
+        harDeltBosted: dineBarn.harDeltBosted,
+    };
 };
 
 export const getDataBruktTilUtledning = (søknadsdata: Søknadsdata): DataBruktTilUtledningAnnetData | undefined => {
-    return getFosterbarnDataBruktTilUtledningFromSøknadsdata(søknadsdata.fosterbarn);
+    return getDineBarnDataBruktTilUtledningFromSøknadsdata(søknadsdata.dineBarn);
 };
