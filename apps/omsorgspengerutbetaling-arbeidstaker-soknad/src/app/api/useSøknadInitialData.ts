@@ -11,6 +11,8 @@ import søknadStateEndpoint, {
     isPersistedSøknadStateValid,
     SøknadStatePersistence,
 } from './endpoints/søknadStateEndpoint';
+import { RegistrertBarn } from '../types/RegistrertBarn';
+import barnEndpoint from './endpoints/barnEndpoint';
 export type SøknadInitialData = SøknadContextState;
 
 type SøknadInitialSuccess = {
@@ -43,9 +45,10 @@ export const defaultSøknadState: Partial<SøknadContextState> = {
 
 const getSøknadInitialData = async (
     søker: Søker,
+    registrerteBarn: RegistrertBarn[],
     lagretSøknadState: SøknadStatePersistence,
 ): Promise<SøknadInitialData> => {
-    const isValid = isPersistedSøknadStateValid(lagretSøknadState, { søker });
+    const isValid = isPersistedSøknadStateValid(lagretSøknadState, { søker, registrerteBarn });
 
     if (!isValid) {
         await søknadStateEndpoint.purge();
@@ -54,6 +57,7 @@ const getSøknadInitialData = async (
     return Promise.resolve({
         versjon: SØKNAD_VERSJON,
         søker,
+        registrerteBarn,
         søknadsdata: {},
         ...lagretSøknadStateToUse,
     });
@@ -65,10 +69,11 @@ function useSøknadInitialData(): SøknadInitialDataState {
     const fetch = async () => {
         try {
             const søker = await søkerEndpoint.fetch();
+            const registrerteBarn = await barnEndpoint.fetch();
             const lagretSøknadState = await søknadStateEndpoint.fetch();
             setInitialData({
                 status: RequestStatus.success,
-                data: await getSøknadInitialData(søker, lagretSøknadState),
+                data: await getSøknadInitialData(søker, registrerteBarn, lagretSøknadState),
             });
         } catch (error: any) {
             if (isUnauthorized(error)) {

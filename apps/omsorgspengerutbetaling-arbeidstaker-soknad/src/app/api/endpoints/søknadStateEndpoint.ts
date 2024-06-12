@@ -7,6 +7,7 @@ import { Søker } from '../../types/Søker';
 import { SøknadContextState } from '../../types/SøknadContextState';
 import { isValidSøknadRoute } from '../../utils/søknadRoutesUtils';
 import { ApiEndpoint, axiosConfig } from '../api';
+import { RegistrertBarn } from '../../types/RegistrertBarn';
 
 export type SøknadStatePersistence = Omit<SøknadContextState, 'søker'> & {
     søknadHashString: string;
@@ -14,6 +15,7 @@ export type SøknadStatePersistence = Omit<SøknadContextState, 'søker'> & {
 
 interface SøknadStateHashInfo {
     søker: Søker;
+    registrerteBarn: RegistrertBarn[];
 }
 
 interface SøknadStatePersistenceEndpoint
@@ -46,13 +48,14 @@ export const isPersistedSøknadStateValid = (
 const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
     create: persistSetup.create,
     purge: persistSetup.purge,
-    update: ({ søker, søknadsdata, søknadRoute, søknadSendt, tempFormValues }: SøknadContextState) => {
+    update: ({ søker, søknadsdata, søknadRoute, søknadSendt, registrerteBarn, tempFormValues }: SøknadContextState) => {
         return persistSetup.update({
-            søknadHashString: createHashString({ søker }),
+            søknadHashString: createHashString({ søker, registrerteBarn }),
             søknadsdata,
             søknadRoute,
             søknadSendt,
             tempFormValues,
+            registrerteBarn,
             versjon: SØKNAD_VERSJON,
         });
     },
