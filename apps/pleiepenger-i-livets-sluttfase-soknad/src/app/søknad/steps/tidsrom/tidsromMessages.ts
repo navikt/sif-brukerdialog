@@ -2,10 +2,11 @@ const nb = {
     'step.tidsrom.pageTitle': 'Dager du må være hjemme fra jobb for å gi pleie',
     'step.tidsrom.stepTitle': 'Dager du må være hjemme fra jobb for å gi pleie',
     'step.tidsrom.stepIndicatorLabel': 'Periode',
-    'step.tidsrom.counsellorPanel.avsnitt.1':
-        'Nå skal du fylle inn de dagene du må være hjemme fra jobb for å gi pleie.  ',
+    'step.tidsrom.counsellorPanel.avsnitt.1': 'Nå skal du velge de dagene du må være hjemme fra jobb for å gi pleie.',
     'step.tidsrom.counsellorPanel.avsnitt.2':
-        'I denne situasjonen kan du få dekket 60 dager hjemme fra jobb. De kan du få alene, eller du kan dele de med andre personer. Dere har i så fall 60 dager å dele på.',
+        'Du kan få dekket 60 dager hjemme fra jobb. De kan du få alene, eller du kan dele de med andre personer. Dere har i så fall 60 dager å dele på.',
+    'step.tidsrom.counsellorPanel.avsnitt.3':
+        'Husk at det ikke er rett til pleiepenger på dager hvor personen er innlagt på sykehus eller annen institusjon.',
 
     'step.tidsrom.nextButtonLabel': 'Fortsett',
     'step.tidsrom.infotekst':
@@ -51,8 +52,7 @@ const nb = {
     'steg.tidsrom.hvilketTidsrom.tom': 'Til og med',
 
     'dagerMedPleie.info.1':
-        'I kalenderen velger du hvilke dager du skal gi pleie. Husk at det ikke er rett til pleiepenger på dager hvor personen er innlagt på sykehus eller annen institusjon.',
-    'dagerMedPleie.info.2': 'Hvis du skal gi pleie gjennom en hel uke, er det lettest å klikke på ukenummeret.',
+        'Velg i kalenderen hvilke dager du skal gi pleie. Du kan velge dager opptil 2 uker frem i tid.',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };

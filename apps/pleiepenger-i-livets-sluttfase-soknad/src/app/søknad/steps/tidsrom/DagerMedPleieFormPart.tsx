@@ -6,7 +6,7 @@ import { DaySelector } from '@navikt/sif-common-ui';
 import { getMonthsInDates, sortDates } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { useFormikContext } from 'formik';
-import { getTilgjengeligEndringsperiode } from '../../../utils/getTilgjengeligEndringsperiode';
+import { getTilgjengeligSøknadsperiode } from '../../../utils/getTilgjengeligSøknadsperiode';
 import { TidsromFormFields, TidsromFormValues } from './TidsromStep';
 import { AppText } from '../../../i18n';
 
@@ -18,7 +18,7 @@ interface MånedOgDag {
 }
 
 const DagerMedPleieFormPart: React.FunctionComponent<Props> = () => {
-    const periode = getTilgjengeligEndringsperiode();
+    const periode = getTilgjengeligSøknadsperiode();
     const { setFieldValue, values } = useFormikContext<TidsromFormValues>();
 
     const handleOnChange = (selectedDates: Date[]) => {
@@ -47,9 +47,6 @@ const DagerMedPleieFormPart: React.FunctionComponent<Props> = () => {
                     <Block margin="m">
                         <BodyLong>
                             <AppText id="dagerMedPleie.info.1" />
-                        </BodyLong>
-                        <BodyLong>
-                            <AppText id="dagerMedPleie.info.2" />
                         </BodyLong>
                     </Block>
                 }>
