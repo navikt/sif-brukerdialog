@@ -18,6 +18,7 @@ describe('utenlandsoppholdUtils', () => {
             };
             const result = mapFormValuesToUtenlandsopphold(values, UtenlandsoppholdVariant.ENKEL, undefined);
             expect(result).toEqual({
+                type: 'enkel',
                 id: expect.any(String),
                 fom: new Date('2021-01-01'),
                 tom: new Date('2021-01-02'),
@@ -40,6 +41,7 @@ describe('utenlandsoppholdUtils', () => {
                     undefined,
                 );
                 const expectedResult: Utenlandsopphold = {
+                    type: 'innenfor_eøs',
                     id: expect.any(String),
                     fom: new Date('2021-01-01'),
                     tom: new Date('2021-01-02'),
@@ -55,6 +57,7 @@ describe('utenlandsoppholdUtils', () => {
                     undefined,
                 );
                 const expectedResult: Utenlandsopphold = {
+                    type: 'innenfor_eøs',
                     id: expect.any(String),
                     fom: new Date('2021-01-01'),
                     tom: new Date('2021-01-02'),
@@ -83,6 +86,7 @@ describe('utenlandsoppholdUtils', () => {
                 );
 
                 const expectedResult: Utenlandsopphold = {
+                    type: 'utenfor_eøs',
                     id: expect.any(String),
                     fom: new Date('2021-01-01'),
                     tom: new Date('2021-01-02'),
@@ -106,6 +110,7 @@ describe('utenlandsoppholdUtils', () => {
                     undefined,
                 );
                 const expectedResult: Utenlandsopphold = {
+                    type: 'utenfor_eøs',
                     id: expect.any(String),
                     fom: new Date('2021-01-01'),
                     tom: new Date('2021-01-02'),
@@ -122,6 +127,7 @@ describe('utenlandsoppholdUtils', () => {
                     undefined,
                 );
                 const expectedResult: Utenlandsopphold = {
+                    type: 'utenfor_eøs',
                     id: expect.any(String),
                     fom: new Date('2021-01-01'),
                     tom: new Date('2021-01-02'),

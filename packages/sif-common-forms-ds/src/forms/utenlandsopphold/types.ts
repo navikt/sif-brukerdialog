@@ -16,18 +16,30 @@ export enum UtenlandsoppholdVariant {
     'UTVIDET' = 'UTVIDET', // Periode, land og flere spørsmål
 }
 
-export interface Utenlandsopphold {
+interface UtenlandsoppholdBase {
     id?: string;
     fom: Date;
     tom: Date;
     landkode: string;
+}
+
+export type UtenlandsoppholdEnkel = UtenlandsoppholdBase & {
+    type: 'enkel';
+};
+
+export type UtenlandsoppholdInnenforEØS = UtenlandsoppholdBase & {
+    type: 'innenfor_eøs';
+    erSammenMedBarnet: boolean;
+};
+
+export type UtenlandsoppholdUtenforEØS = UtenlandsoppholdBase & {
+    type: 'utenfor_eøs';
+    erSammenMedBarnet: boolean;
     erBarnetInnlagt?: boolean;
     barnInnlagtPerioder?: UtenlandsoppholdInnlagtPeriode[];
     årsak?: UtenlandsoppholdÅrsak;
-    erSammenMedBarnet?: boolean;
-}
-
-export type UtenlandsoppholdEnkel = Pick<Utenlandsopphold, 'id' | 'fom' | 'tom' | 'landkode'>;
+};
+export type Utenlandsopphold = UtenlandsoppholdEnkel | UtenlandsoppholdInnenforEØS | UtenlandsoppholdUtenforEØS;
 
 export type UtenlandsoppholdFormValues = {
     fom?: string;
