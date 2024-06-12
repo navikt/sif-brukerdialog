@@ -1,6 +1,6 @@
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
+import { withFormikWrapper } from '../../../storybook/decorators/withFormikWrapper';
 import FormikCountrySelect from '../../../src/components/formik-country-select/FormikCountrySelect';
-import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 
 const meta: Meta<typeof FormikCountrySelect> = {
     title: 'Component/FormikCountrySelect',
@@ -10,18 +10,15 @@ const meta: Meta<typeof FormikCountrySelect> = {
 
 export default meta;
 
-const Template: StoryFn<typeof FormikCountrySelect> = (args) => <FormikCountrySelect {...args} />;
+type Story = StoryObj<typeof FormikCountrySelect>;
 
-export const Default = Template.bind({});
-Default.args = {
-    label: 'FormikCountrySelect',
-    name: 'country',
-    value: 'abc',
+export const AllCountries: Story = {
+    name: 'Alle land',
+    args: {},
 };
-Default.parameters = {
-    formik: {
-        initialValues: {
-            country: 'FLK',
-        },
+export const EøsCountries: Story = {
+    name: 'Eøs/efta-land',
+    args: {
+        showOnlyEuAndEftaCountries: true,
     },
 };

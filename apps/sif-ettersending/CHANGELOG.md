@@ -1,5 +1,14 @@
 # @navikt/sif-ettersending
 
+## 3.33.6
+
+### Patch Changes
+
+-   Updated dependencies [a739a56]
+    -   @navikt/sif-common-formik-ds@1.9.0
+    -   @navikt/sif-common-core-ds@9.17.9
+    -   @navikt/sif-common-soknad-ds@10.15.8
+
 ## 3.33.5
 
 ### Patch Changes

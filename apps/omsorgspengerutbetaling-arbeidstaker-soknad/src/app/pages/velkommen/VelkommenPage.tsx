@@ -23,7 +23,7 @@ const VelkommenPage = () => {
     const startSøknad = async () => {
         await logSoknadStartet(OmsorgspengerutbetalingArbeidstakerApp.navn);
         dispatch(actionsCreator.startSøknad());
-        dispatch(actionsCreator.setSøknadRoute(SøknadRoutes.FOSTERBARN));
+        dispatch(actionsCreator.setSøknadRoute(SøknadRoutes.DINE_BARN));
     };
     return (
         <Page title={text('page.velkommen.sidetittel')}>
