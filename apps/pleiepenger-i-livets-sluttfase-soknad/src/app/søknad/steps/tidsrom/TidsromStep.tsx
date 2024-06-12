@@ -9,7 +9,7 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { UtenlandsoppholdEnkel, UtenlandsoppholdUtvidet } from '@navikt/sif-common-forms-ds';
+import { UtenlandsoppholdEnkel } from '@navikt/sif-common-forms-ds';
 import UtenlandsoppholdListAndDialog from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/UtenlandsoppholdListAndDialog';
 import { getDateRangeFromDates } from '@navikt/sif-common-utils';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
@@ -215,7 +215,7 @@ const TidsromStep = () => {
                                                             }}
                                                             validate={
                                                                 periode
-                                                                    ? (opphold: UtenlandsoppholdUtvidet[]) =>
+                                                                    ? (opphold: UtenlandsoppholdEnkel[]) =>
                                                                           validateUtenlandsoppholdIPerioden(
                                                                               periode,
                                                                               opphold,

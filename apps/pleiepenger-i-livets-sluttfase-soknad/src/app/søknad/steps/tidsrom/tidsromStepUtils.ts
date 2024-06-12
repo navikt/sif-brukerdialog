@@ -1,7 +1,7 @@
 import { DateRange, ValidationError, ValidationResult, YesOrNo } from '@navikt/sif-common-formik-ds';
 import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
 import { getDateRangeValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { UtenlandsoppholdUtvidet } from '@navikt/sif-common-forms-ds';
+import { UtenlandsoppholdEnkel } from '@navikt/sif-common-forms-ds';
 import {
     getDate1YearFromNow,
     getDate3YearsAgo,
@@ -45,7 +45,7 @@ export const validateTildato = (tilDatoString?: string, fraDatoString?: string):
 
 export const validateUtenlandsoppholdIPerioden = (
     periode: DateRange,
-    utenlandsopphold: UtenlandsoppholdUtvidet[],
+    utenlandsopphold: UtenlandsoppholdEnkel[],
 ): ValidationResult<ValidationError> => {
     if (utenlandsopphold.length === 0) {
         return AppFieldValidationErrors.utenlandsopphold_ikke_registrert;
