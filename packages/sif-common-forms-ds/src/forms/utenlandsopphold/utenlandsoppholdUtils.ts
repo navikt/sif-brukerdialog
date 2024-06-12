@@ -28,26 +28,24 @@ export const mapFormValuesToUtenlandsopphold = (
     }
 
     const isEøsOrEftaLand: boolean = countryIsMemberOfEøsOrEfta(landkode);
-    const { barnInnlagtPerioder, erSammenMedBarnet, årsak } = formValues;
+    const erSammenMedBarnet = formValues.erSammenMedBarnet === YesOrNo.YES;
 
     const utvidetUtenlandsopphold: Utenlandsopphold = {
         id,
         fom,
         tom,
         landkode,
+        erSammenMedBarnet,
     };
 
-    if (isEøsOrEftaLand === true) {
-        utvidetUtenlandsopphold.erSammenMedBarnet = erSammenMedBarnet === YesOrNo.YES;
-    } else {
+    if (isEøsOrEftaLand === false && erSammenMedBarnet) {
         const erBarnetInnlagt = formValues.erBarnetInnlagt === YesOrNo.YES ? true : false;
         if (erBarnetInnlagt) {
             utvidetUtenlandsopphold.erBarnetInnlagt = true;
-            utvidetUtenlandsopphold.barnInnlagtPerioder = barnInnlagtPerioder;
-            utvidetUtenlandsopphold.årsak = årsak;
+            utvidetUtenlandsopphold.barnInnlagtPerioder = formValues.barnInnlagtPerioder;
+            utvidetUtenlandsopphold.årsak = formValues.årsak;
         } else {
             utvidetUtenlandsopphold.erBarnetInnlagt = false;
-            utvidetUtenlandsopphold.erSammenMedBarnet = erSammenMedBarnet === YesOrNo.YES;
         }
     }
 
@@ -81,29 +79,25 @@ export const getUtenlandsoppholdQuestionVisibility = (
     variant: UtenlandsoppholdVariant,
 ): {
     showInnlagtPerioderQuestion: boolean;
-    showSammenMedBarnQuestion: boolean;
     showInnlagtQuestion: boolean;
     showÅrsakQuestion: boolean;
 } => {
-    const { erBarnetInnlagt, landkode, fom, tom } = formValues;
+    const { erBarnetInnlagt, landkode, erSammenMedBarnet, fom, tom } = formValues;
 
     if (variant === UtenlandsoppholdVariant.ENKEL) {
         return {
             showInnlagtPerioderQuestion: false,
-            showSammenMedBarnQuestion: false,
             showInnlagtQuestion: false,
             showÅrsakQuestion: false,
         };
     }
     const hasFomTomValues = hasValue(fom) && hasValue(tom);
 
-    const showSammenMedBarnQuestion =
-        hasFomTomValues &&
-        landkode !== undefined &&
-        (erBarnetInnlagt === YesOrNo.NO || countryIsMemberOfEøsOrEfta(landkode));
-
     const showInnlagtQuestion: boolean =
-        landkode !== undefined && hasValue(landkode) && !countryIsMemberOfEøsOrEfta(landkode);
+        erSammenMedBarnet === YesOrNo.YES &&
+        landkode !== undefined &&
+        hasValue(landkode) &&
+        !countryIsMemberOfEøsOrEfta(landkode);
 
     const showInnlagtPerioderQuestion =
         hasFomTomValues &&
@@ -115,7 +109,6 @@ export const getUtenlandsoppholdQuestionVisibility = (
 
     return {
         showInnlagtPerioderQuestion,
-        showSammenMedBarnQuestion,
         showInnlagtQuestion,
         showÅrsakQuestion,
     };

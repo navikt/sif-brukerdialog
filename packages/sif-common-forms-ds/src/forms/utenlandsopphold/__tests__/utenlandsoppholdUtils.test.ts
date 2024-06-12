@@ -31,10 +31,11 @@ describe('utenlandsoppholdUtils', () => {
                 fom: '2021-01-01',
                 tom: '2021-01-02',
                 landkode: landkoder.belgia,
+                erSammenMedBarnet: YesOrNo.NO,
             };
             it('er ikke sammen med barnet', () => {
                 const result = mapFormValuesToUtenlandsopphold(
-                    { ...innenforEøsValues, erSammenMedBarnet: YesOrNo.NO },
+                    { ...innenforEøsValues },
                     UtenlandsoppholdVariant.UTVIDET,
                     undefined,
                 );
@@ -47,7 +48,7 @@ describe('utenlandsoppholdUtils', () => {
                 };
                 expect(result).toEqual(expectedResult);
             });
-            it('er sammen med barnet', () => {
+            it('er sammen med barnet innenfor EØS', () => {
                 const result = mapFormValuesToUtenlandsopphold(
                     { ...innenforEøsValues, erSammenMedBarnet: YesOrNo.YES },
                     UtenlandsoppholdVariant.UTVIDET,
@@ -69,9 +70,9 @@ describe('utenlandsoppholdUtils', () => {
                 fom: '2021-01-01',
                 tom: '2021-01-02',
                 landkode: landkoder.algerie,
+                erSammenMedBarnet: YesOrNo.YES,
                 erBarnetInnlagt: YesOrNo.YES,
                 barnInnlagtPerioder: [{ fom: ISODateToDate('2021-01-01'), tom: ISODateToDate('2021-01-02') }],
-                erSammenMedBarnet: YesOrNo.NO,
                 årsak: UtenlandsoppholdÅrsak.INNLAGT_DEKKET_NORGE,
             };
             it('barnet er innlagt', () => {
@@ -86,6 +87,7 @@ describe('utenlandsoppholdUtils', () => {
                     fom: new Date('2021-01-01'),
                     tom: new Date('2021-01-02'),
                     landkode: landkoder.algerie,
+                    erSammenMedBarnet: true,
                     erBarnetInnlagt: true,
                     barnInnlagtPerioder: [
                         {
@@ -99,7 +101,7 @@ describe('utenlandsoppholdUtils', () => {
             });
             it('barnet er ikke innlagt - er sammen med barnet', () => {
                 const result = mapFormValuesToUtenlandsopphold(
-                    { ...utenforEøsValues, erBarnetInnlagt: YesOrNo.NO, erSammenMedBarnet: YesOrNo.YES },
+                    { ...utenforEøsValues, erSammenMedBarnet: YesOrNo.YES, erBarnetInnlagt: YesOrNo.NO },
                     UtenlandsoppholdVariant.UTVIDET,
                     undefined,
                 );
@@ -124,7 +126,6 @@ describe('utenlandsoppholdUtils', () => {
                     fom: new Date('2021-01-01'),
                     tom: new Date('2021-01-02'),
                     landkode: landkoder.algerie,
-                    erBarnetInnlagt: false,
                     erSammenMedBarnet: false,
                 };
                 expect(result).toEqual(expectedResult);

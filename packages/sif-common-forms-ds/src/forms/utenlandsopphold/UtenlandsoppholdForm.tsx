@@ -126,12 +126,8 @@ const UtenlandsoppholdForm = ({ variant, maxDate, minDate, opphold, alleOpphold 
                     values: { fom, tom, landkode },
                 } = formik;
 
-                const {
-                    showInnlagtPerioderQuestion,
-                    showInnlagtQuestion,
-                    showSammenMedBarnQuestion,
-                    showÅrsakQuestion,
-                } = getUtenlandsoppholdQuestionVisibility(formik.values, variant);
+                const { showInnlagtPerioderQuestion, showInnlagtQuestion, showÅrsakQuestion } =
+                    getUtenlandsoppholdQuestionVisibility(formik.values, variant);
 
                 return (
                     <Form.Form
@@ -183,30 +179,28 @@ const UtenlandsoppholdForm = ({ variant, maxDate, minDate, opphold, alleOpphold 
 
                         {landkode && (
                             <>
+                                <FormBlock>
+                                    <Form.YesOrNoQuestion
+                                        name={UtenlandsoppholdFormFields.erSammenMedBarnet}
+                                        legend={text('@forms.utenlandsopphold.form.erSammenMedBarnet.spm', {
+                                            land: getCountryName(landkode, intl.locale),
+                                        })}
+                                        validate={(value) => {
+                                            const error = getYesOrNoValidator()(value);
+                                            return error
+                                                ? {
+                                                      key: error,
+                                                      values: { land: getCountryName(landkode, intl.locale) },
+                                                  }
+                                                : undefined;
+                                        }}
+                                    />
+                                </FormBlock>
                                 {showInnlagtQuestion && (
                                     <FormBlock>
                                         <Form.YesOrNoQuestion
                                             name={UtenlandsoppholdFormFields.erBarnetInnlagt}
                                             legend={text('@forms.utenlandsopphold.form.erBarnetInnlagt.spm', {
-                                                land: getCountryName(landkode, intl.locale),
-                                            })}
-                                            validate={(value) => {
-                                                const error = getYesOrNoValidator()(value);
-                                                return error
-                                                    ? {
-                                                          key: error,
-                                                          values: { land: getCountryName(landkode, intl.locale) },
-                                                      }
-                                                    : undefined;
-                                            }}
-                                        />
-                                    </FormBlock>
-                                )}
-                                {showSammenMedBarnQuestion && (
-                                    <FormBlock>
-                                        <Form.YesOrNoQuestion
-                                            name={UtenlandsoppholdFormFields.erSammenMedBarnet}
-                                            legend={text('@forms.utenlandsopphold.form.erSammenMedBarnet.spm', {
                                                 land: getCountryName(landkode, intl.locale),
                                             })}
                                             validate={(value) => {
