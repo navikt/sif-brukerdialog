@@ -1,5 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { Utenlandsopphold, UtenlandsoppholdFormValues, UtenlandsoppholdVariant, UtenlandsoppholdÅrsak } from '../types';
+import { Utenlandsopphold, UtenlandsoppholdFormValues, UtenlandsoppholdUtvidet, UtenlandsoppholdÅrsak } from '../types';
 import { mapFormValuesToUtenlandsopphold } from '../utenlandsoppholdUtils';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 
@@ -16,7 +16,7 @@ describe('utenlandsoppholdUtils', () => {
                 tom: '2021-01-02',
                 landkode: landkoder.belgia,
             };
-            const result = mapFormValuesToUtenlandsopphold(values, UtenlandsoppholdVariant.ENKEL, undefined);
+            const result = mapFormValuesToUtenlandsopphold(values, 'enkel', undefined);
             expect(result).toEqual({
                 type: 'enkel',
                 id: expect.any(String),
@@ -35,13 +35,10 @@ describe('utenlandsoppholdUtils', () => {
                 erSammenMedBarnet: YesOrNo.NO,
             };
             it('er ikke sammen med barnet', () => {
-                const result = mapFormValuesToUtenlandsopphold(
-                    { ...innenforEøsValues },
-                    UtenlandsoppholdVariant.UTVIDET,
-                    undefined,
-                );
-                const expectedResult: Utenlandsopphold = {
+                const result = mapFormValuesToUtenlandsopphold({ ...innenforEøsValues }, 'utvidet', undefined);
+                const expectedResult: UtenlandsoppholdUtvidet = {
                     type: 'innenfor_eøs',
+                    erUtenforEØS: false,
                     id: expect.any(String),
                     fom: new Date('2021-01-01'),
                     tom: new Date('2021-01-02'),
@@ -53,11 +50,12 @@ describe('utenlandsoppholdUtils', () => {
             it('er sammen med barnet innenfor EØS', () => {
                 const result = mapFormValuesToUtenlandsopphold(
                     { ...innenforEøsValues, erSammenMedBarnet: YesOrNo.YES },
-                    UtenlandsoppholdVariant.UTVIDET,
+                    'utvidet',
                     undefined,
                 );
                 const expectedResult: Utenlandsopphold = {
                     type: 'innenfor_eøs',
+                    erUtenforEØS: false,
                     id: expect.any(String),
                     fom: new Date('2021-01-01'),
                     tom: new Date('2021-01-02'),
@@ -79,14 +77,11 @@ describe('utenlandsoppholdUtils', () => {
                 årsak: UtenlandsoppholdÅrsak.INNLAGT_DEKKET_NORGE,
             };
             it('barnet er innlagt', () => {
-                const result = mapFormValuesToUtenlandsopphold(
-                    utenforEøsValues,
-                    UtenlandsoppholdVariant.UTVIDET,
-                    undefined,
-                );
+                const result = mapFormValuesToUtenlandsopphold(utenforEøsValues, 'utvidet', undefined);
 
                 const expectedResult: Utenlandsopphold = {
                     type: 'utenfor_eøs',
+                    erUtenforEØS: true,
                     id: expect.any(String),
                     fom: new Date('2021-01-01'),
                     tom: new Date('2021-01-02'),
@@ -106,11 +101,12 @@ describe('utenlandsoppholdUtils', () => {
             it('barnet er ikke innlagt - er sammen med barnet', () => {
                 const result = mapFormValuesToUtenlandsopphold(
                     { ...utenforEøsValues, erSammenMedBarnet: YesOrNo.YES, erBarnetInnlagt: YesOrNo.NO },
-                    UtenlandsoppholdVariant.UTVIDET,
+                    'utvidet',
                     undefined,
                 );
                 const expectedResult: Utenlandsopphold = {
                     type: 'utenfor_eøs',
+                    erUtenforEØS: true,
                     id: expect.any(String),
                     fom: new Date('2021-01-01'),
                     tom: new Date('2021-01-02'),
@@ -123,11 +119,12 @@ describe('utenlandsoppholdUtils', () => {
             it('barnet er ikke innlagt - er ikke sammen med barnet', () => {
                 const result = mapFormValuesToUtenlandsopphold(
                     { ...utenforEøsValues, erBarnetInnlagt: YesOrNo.NO, erSammenMedBarnet: YesOrNo.NO },
-                    UtenlandsoppholdVariant.UTVIDET,
+                    'utvidet',
                     undefined,
                 );
                 const expectedResult: Utenlandsopphold = {
                     type: 'utenfor_eøs',
+                    erUtenforEØS: true,
                     id: expect.any(String),
                     fom: new Date('2021-01-01'),
                     tom: new Date('2021-01-02'),

@@ -4,7 +4,6 @@ import { withIntl } from '../../../../storybook/decorators/withIntl';
 import UtenlandsoppholdExample from './UtenlandsoppholdExample';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
-import { UtenlandsoppholdVariant } from '../types';
 
 const meta: Meta<typeof UtenlandsoppholdExample> = {
     component: UtenlandsoppholdExample,
@@ -36,10 +35,10 @@ export const Default: Story = {
         });
         (await within(sammenSpm).findByLabelText('Nei')).click();
     },
-    render: () => <UtenlandsoppholdExample variant={UtenlandsoppholdVariant.UTVIDET} />,
+    render: () => <UtenlandsoppholdExample variant="utvidet" />,
 };
 
 export const UtenSpmOm: Story = {
     name: 'Enkel - kun periode og land',
-    render: () => <UtenlandsoppholdExample variant={UtenlandsoppholdVariant.ENKEL} />,
+    render: () => <UtenlandsoppholdExample variant="enkel" />,
 };
