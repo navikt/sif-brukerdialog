@@ -13,6 +13,7 @@ import {
     UtenlandsoppholdIPeriodenApiData,
 } from '../../types/søknad-api-data/SøknadApiData';
 import ContentWithHeader from '@navikt/sif-common-core-ds/src/components/content-with-header/ContentWithHeader';
+import { Box, Heading, VStack } from '@navikt/ds-react';
 
 const bem = bemUtils('utenlandsoppholdSummaryItem');
 
@@ -40,44 +41,59 @@ export const renderUtenlandsoppholdIPeriodenSummary = (
     { text }: AppIntlShape,
 ): React.ReactNode => {
     return (
-        <>
-            <Block>
-                <span className={bem.element('dates')}>
-                    {prettifyDateExtended(ISODateToDate(opphold.fraOgMed))} -{' '}
-                    {prettifyDateExtended(ISODateToDate(opphold.tilOgMed))}
-                </span>
-                <span className={bem.element('country')}>{opphold.landnavn}</span>
-            </Block>
-            {isUtenlandsoppholdUtenforEØSApiData(opphold) && opphold.erBarnetInnlagt === true && (
-                <Block margin="l">
-                    <ContentWithHeader header={text('@forms.utenlandsopphold.form.erBarnetInnlagt.spm')}>
-                        <JaNeiSvar harSvartJa={opphold.erBarnetInnlagt} />
-                    </ContentWithHeader>
+        <Box>
+            <Heading level="3" size="xsmall" spacing={true}>
+                {opphold.landnavn}: {prettifyDateExtended(ISODateToDate(opphold.fraOgMed))} -{' '}
+                {prettifyDateExtended(ISODateToDate(opphold.tilOgMed))}
+            </Heading>
 
-                    {opphold.perioderBarnetErInnlagt !== undefined && opphold.perioderBarnetErInnlagt.length > 0 && (
-                        <>
-                            <AppText id={`@forms.utenlandsopphold.form.perioderBarnetErInnlag.listTitle`} />:
-                            <SummaryList
-                                items={opphold.perioderBarnetErInnlagt}
-                                itemRenderer={(periode: PeriodeApiData) => (
-                                    <>
-                                        {prettifyDateExtended(ISODateToDate(periode.fraOgMed))} -{' '}
-                                        {prettifyDateExtended(ISODateToDate(periode.tilOgMed))}
-                                    </>
-                                )}></SummaryList>
-                        </>
-                    )}
-                    {opphold.årsak && opphold.årsak !== UtenlandsoppholdÅrsak.ANNET && (
-                        <AppText
-                            id={`@forms.utenlandsopphold.form.årsak.${opphold.årsak}`}
-                            values={{ land: opphold.landnavn }}
-                        />
-                    )}
-                    {opphold.årsak && opphold.årsak === UtenlandsoppholdÅrsak.ANNET && (
-                        <AppText id={`@forms.utenlandsopphold.oppsummering.årsak.ANNET`} />
-                    )}
-                </Block>
-            )}
+            <VStack gap="4" style={{ paddingLeft: '1.5rem' }}>
+                <ContentWithHeader
+                    header={text('@forms.utenlandsopphold.form.erSammenMedBarnet.spm', { land: opphold.landnavn })}>
+                    <JaNeiSvar harSvartJa={opphold.erSammenMedBarnet} />
+                </ContentWithHeader>
+
+                {opphold.erUtenforEøs && opphold.erBarnetInnlagt === true && (
+                    <>
+                        <ContentWithHeader
+                            header={text('@forms.utenlandsopphold.form.erBarnetInnlagt.spm', {
+                                land: opphold.landnavn,
+                            })}>
+                            <JaNeiSvar harSvartJa={opphold.erBarnetInnlagt} />
+                        </ContentWithHeader>
+
+                        {opphold.perioderBarnetErInnlagt !== undefined &&
+                            opphold.perioderBarnetErInnlagt.length > 0 && (
+                                <ContentWithHeader
+                                    header={text('@forms.utenlandsopphold.form.perioderBarnetErInnlag.listTitle')}>
+                                    <SummaryList
+                                        items={opphold.perioderBarnetErInnlagt}
+                                        itemRenderer={(periode: PeriodeApiData) => (
+                                            <>
+                                                {prettifyDateExtended(ISODateToDate(periode.fraOgMed))} -{' '}
+                                                {prettifyDateExtended(ISODateToDate(periode.tilOgMed))}
+                                            </>
+                                        )}></SummaryList>
+                                </ContentWithHeader>
+                            )}
+                        {opphold.årsak && (
+                            <ContentWithHeader
+                                header={text('@forms.utenlandsopphold.form.årsak.spm', {
+                                    land: opphold.landnavn,
+                                })}>
+                                {opphold.årsak !== UtenlandsoppholdÅrsak.ANNET ? (
+                                    <AppText
+                                        id={`@forms.utenlandsopphold.form.årsak.${opphold.årsak}`}
+                                        values={{ land: opphold.landnavn }}
+                                    />
+                                ) : (
+                                    <AppText id={`@forms.utenlandsopphold.oppsummering.årsak.ANNET`} />
+                                )}
+                            </ContentWithHeader>
+                        )}
+                    </>
+                )}
+            </VStack>
             {isUtenlandsoppholdUtenforEØSApiData(opphold) && opphold.erBarnetInnlagt === false && (
                 <Block margin="l">
                     asd
@@ -89,6 +105,6 @@ export const renderUtenlandsoppholdIPeriodenSummary = (
                     </ContentWithHeader>
                 </Block>
             )}
-        </>
+        </Box>
     );
 };
