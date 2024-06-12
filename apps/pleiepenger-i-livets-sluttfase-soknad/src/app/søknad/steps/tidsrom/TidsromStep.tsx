@@ -201,7 +201,7 @@ const TidsromStep = () => {
                                                             name={TidsromFormFields.utenlandsoppholdIPerioden}
                                                             minDate={periode.from}
                                                             maxDate={periode.to}
-                                                            variant="utvidet"
+                                                            variant="enkel"
                                                             labels={{
                                                                 modalTitle: text(
                                                                     'steg.tidsrom.iUtlandetIPerioden.modalTitle',
