@@ -34,7 +34,8 @@ export const getStateForApplication = (
             message: appMessage || teamMessage,
         };
     }
-    return defaultAppStatus;
+
+    return { ...defaultAppStatus, message: appMessage || teamMessage };
 };
 
 function useAppStatus(applicationKey: string, sanityConfig: SanityConfig): State & { isLoading: boolean } {
