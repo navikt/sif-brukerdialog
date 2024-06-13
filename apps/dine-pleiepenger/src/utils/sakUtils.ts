@@ -2,17 +2,15 @@ import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 import sortBy from 'lodash.sortby';
-import uniq from 'lodash.uniq';
 import { Aksjonspunkt } from '../server/api-models/AksjonspunktSchema';
 import { Behandling } from '../server/api-models/BehandlingSchema';
 import { Behandlingsstatus } from '../server/api-models/Behandlingsstatus';
+import { Innsendelse, Pleiepengesøknad } from '../server/api-models/InnsendelseSchema';
+import { Innsendelsestype } from '../server/api-models/Innsendelsestype';
 import { Sak } from '../server/api-models/SakSchema';
-import { Pleiepengesøknad, Søknad } from '../server/api-models/SøknadSchema';
-import { Søknadstype } from '../server/api-models/Søknadstype';
 import { BehandlingsstatusISak } from '../types/BehandlingsstatusISak';
-import { Kildesystem } from '../types/Kildesystem';
 import { Organisasjon } from '../types/Organisasjon';
-import { Søknadshendelse, SøknadshendelseType } from '../types/Søknadshendelse';
+import { Sakshendelse, Sakshendelser } from '../types/Sakshendelse';
 import { Venteårsak } from '../types/Venteårsak';
 
 dayjs.extend(utc);
@@ -29,24 +27,26 @@ export const sortBehandlingerNyesteFørst = (
 ): Behandling[] => {
     const sortedBehandlinger = sortBy(behandlinger, (b: Behandling) => b.opprettetTidspunkt).reverse();
     if (doSortSøknader) {
-        return sortedBehandlinger.map((b): Behandling => {
+        return sortedBehandlinger.map((b: Behandling): Behandling => {
             return {
                 ...b,
-                søknader: sortSøknader(b.søknader),
+                innsendelser: sortInnsendelser(b.innsendelser),
             };
         });
     }
     return sortedBehandlinger;
 };
 
-export const sortSøknader = (søknader: Søknad[]): Søknad[] => {
-    return sortBy(søknader, ({ k9FormatSøknad }: Søknad) => k9FormatSøknad.mottattDato.getTime()).reverse();
+export const sortInnsendelser = (innsendelser: Innsendelse[]): Innsendelse[] => {
+    return sortBy(innsendelser, ({ k9FormatInnsendelse }: Innsendelse) =>
+        k9FormatInnsendelse.mottattDato.getTime(),
+    ).reverse();
 };
 
-export const sortSøknadshendelse = (h1: Søknadshendelse, h2: Søknadshendelse): number => {
-    if (h1.type === SøknadshendelseType.FORVENTET_SVAR) {
+export const sortSakshendelse = (h1: Sakshendelse, h2: Sakshendelse): number => {
+    if (h1.type === Sakshendelser.FORVENTET_SVAR) {
         return 1;
-    } else if (h2.type === SøknadshendelseType.FORVENTET_SVAR) {
+    } else if (h2.type === Sakshendelser.FORVENTET_SVAR) {
         return -1;
     }
     return (h1.dato?.getTime() || 0) > (h2.dato?.getTime() || 0) ? 1 : -1;
@@ -62,38 +62,36 @@ export const getBehandlingsstatusISak = (sak: Sak): BehandlingsstatusISak | unde
         : undefined;
 };
 
-const mapSøknadTilSøknadshendelse = (søknad: Søknad): Søknadshendelse => {
-    switch (søknad.søknadstype) {
-        case Søknadstype.ETTERSENDELSE: // Ettersendelse skal ikke vises enda, og grupperes da med UKJENT
-        case Søknadstype.UKJENT:
+const mapInnsendelseTilSakshendelse = (innsendelse: Innsendelse): Sakshendelse => {
+    switch (innsendelse.innsendelsestype) {
+        case Innsendelsestype.ETTERSENDELSE:
             return {
-                type: SøknadshendelseType.UKJENT,
-                dato: undefined,
+                type: Sakshendelser.ETTERSENDELSE,
+                dato: innsendelse.k9FormatInnsendelse.mottattDato,
+                innsendelse,
             };
 
-        case Søknadstype.ENDRINGSMELDING:
-        case Søknadstype.SØKNAD:
+        case Innsendelsestype.ENDRINGSMELDING:
+        case Innsendelsestype.SØKNAD:
             return {
-                type: SøknadshendelseType.MOTTATT_SØKNAD,
-                dato: søknad.k9FormatSøknad.mottattDato,
-                søknad,
+                type: Sakshendelser.MOTTATT_SØKNAD,
+                dato: innsendelse.k9FormatInnsendelse.mottattDato,
+                innsendelse: innsendelse,
             };
     }
 };
 
-export const getHendelserIBehandling = (behandling: Behandling, saksbehandlingFrist?: Date): Søknadshendelse[] => {
-    const { søknader, aksjonspunkter, avsluttetTidspunkt, status } = behandling;
-    const hendelser: Søknadshendelse[] = [];
+export const getHendelserIBehandling = (behandling: Behandling, saksbehandlingFrist?: Date): Sakshendelse[] => {
+    const { innsendelser: søknader, aksjonspunkter, avsluttetTidspunkt, status } = behandling;
+    const hendelser: Sakshendelse[] = [];
 
-    if (søknader) {
-        søknader.forEach((søknad) => {
-            hendelser.push(mapSøknadTilSøknadshendelse(søknad));
-        });
-    }
+    søknader.forEach((søknad) => {
+        hendelser.push(mapInnsendelseTilSakshendelse(søknad));
+    });
 
     if (aksjonspunkter.length >= 1) {
         hendelser.push({
-            type: SøknadshendelseType.AKSJONSPUNKT,
+            type: Sakshendelser.AKSJONSPUNKT,
             venteårsak: getViktigsteVenteårsakForAksjonspunkter(aksjonspunkter),
         });
     }
@@ -101,12 +99,12 @@ export const getHendelserIBehandling = (behandling: Behandling, saksbehandlingFr
     /** Avsluttet eller forventet svar på søknad */
     if (status === Behandlingsstatus.AVSLUTTET && avsluttetTidspunkt) {
         hendelser.push({
-            type: SøknadshendelseType.FERDIG_BEHANDLET,
+            type: Sakshendelser.FERDIG_BEHANDLET,
             dato: avsluttetTidspunkt,
         });
     } else {
         hendelser.push({
-            type: SøknadshendelseType.FORVENTET_SVAR,
+            type: Sakshendelser.FORVENTET_SVAR,
             dato: saksbehandlingFrist,
             søknadstyperIBehandling: getSøknadstyperIBehandling(søknader || []),
         });
@@ -115,15 +113,15 @@ export const getHendelserIBehandling = (behandling: Behandling, saksbehandlingFr
     return hendelser;
 };
 
-export const getSøknadstyperIBehandling = (søknader: Søknad[]): Array<Søknadstype> => {
-    return uniq(søknader.map((s) => s.søknadstype));
+export const getSøknadstyperIBehandling = (søknader: Innsendelse[]): Array<Innsendelsestype> => {
+    return søknader.map((s) => s.innsendelsestype);
 };
 
-export const getAlleHendelserISak = (sak: Sak): Søknadshendelse[] => {
-    const søknadshendelser: Søknadshendelse[] = sak.behandlinger
+export const getAlleHendelserISak = (sak: Sak): Sakshendelse[] => {
+    const sakshendelser: Sakshendelse[] = sak.behandlinger
         .map((b) => getHendelserIBehandling(b, sak.saksbehandlingsFrist))
         .flat();
-    return søknadshendelser.sort(sortSøknadshendelse);
+    return sakshendelser.sort(sortSakshendelse);
 };
 
 export const getViktigsteVenteårsakForAksjonspunkter = (aksjonspunkter: Aksjonspunkt[]): Venteårsak => {
@@ -134,7 +132,7 @@ export const getViktigsteVenteårsakForAksjonspunkter = (aksjonspunkter: Aksjons
     return årsaker[0];
 };
 
-export const formatSøknadshendelseTidspunkt = (date: Date) => {
+export const formatSakshendelseTidspunkt = (date: Date) => {
     return dayjs(date).tz('Europe/Oslo').format('DD.MM.YYYY, [kl.] HH:mm');
 };
 
@@ -144,22 +142,13 @@ const getArbeidsgivernavn = (organisasjonsnummer: string, arbeidsgivere: Organis
 
 export const getArbeidsgiverinfoFraSøknad = (søknad: Pleiepengesøknad): Organisasjon[] => {
     const arbeidsgivere = søknad.arbeidsgivere || [];
-    return søknad.k9FormatSøknad.ytelse.arbeidstid.arbeidstakerList.map((a) => {
+    return søknad.k9FormatInnsendelse.ytelse.arbeidstid.arbeidstakerList.map((a) => {
         const organisasjon: Organisasjon = {
             organisasjonsnummer: a.organisasjonsnummer,
             navn: getArbeidsgivernavn(a.organisasjonsnummer, arbeidsgivere),
         };
         return organisasjon;
     });
-};
-
-export const fjernPunsjOgUkjenteSøknaderFraBehandling = (behandling: Behandling): Behandling => {
-    return {
-        ...behandling,
-        søknader: (behandling.søknader || []).filter(
-            (s) => !!s.k9FormatSøknad.kildesystem && s.k9FormatSøknad.kildesystem !== Kildesystem.punsj,
-        ),
-    };
 };
 
 export const erSaksbehandlingsfristPassert = (frist: Date) => dayjs(frist).isBefore(dayjs(), 'day');

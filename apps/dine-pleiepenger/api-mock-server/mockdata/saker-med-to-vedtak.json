@@ -21,7 +21,7 @@
                         {
                             "søknadId": "8913cf35-834c-4909-aca7-07ee622aaf45",
                             "søknadstype": "SØKNAD",
-                            "k9FormatSøknad": {
+                            "k9FormatInnsendelse": {
                                 "søknadId": "8913cf35-834c-4909-aca7-07ee622aaf45",
                                 "versjon": "1.0.0",
                                 "mottattDato": "2024-02-15T07:47:07.865Z",

@@ -21,7 +21,7 @@
                         {
                             "søknadId": "46b77dab-485e-4529-bb63-d6026cebebad",
                             "søknadstype": "SØKNAD",
-                            "k9FormatSøknad": {
+                            "k9FormatInnsendelse": {
                                 "søknadId": "46b77dab-485e-4529-bb63-d6026cebebad",
                                 "versjon": "1.0.0",
                                 "mottattDato": "2024-03-07T13:58:00.000Z",
@@ -126,7 +126,7 @@
                         {
                             "søknadId": "97841568-5a81-410f-b7f7-c56281ebc382",
                             "søknadstype": "SØKNAD",
-                            "k9FormatSøknad": {
+                            "k9FormatInnsendelse": {
                                 "søknadId": "97841568-5a81-410f-b7f7-c56281ebc382",
                                 "versjon": "1.0.0",
                                 "mottattDato": "2024-03-07T13:53:37.918Z",
@@ -231,7 +231,7 @@
                         {
                             "søknadId": "06c6496c-cf20-42ad-918f-5a629a00a991",
                             "søknadstype": "SØKNAD",
-                            "k9FormatSøknad": {
+                            "k9FormatInnsendelse": {
                                 "søknadId": "06c6496c-cf20-42ad-918f-5a629a00a991",
                                 "versjon": "1.0.0",
                                 "mottattDato": "2024-03-07T14:06:18.449Z",

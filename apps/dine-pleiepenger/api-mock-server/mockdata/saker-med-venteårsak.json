@@ -21,7 +21,7 @@
                         {
                             "søknadId": "af5088f4-7739-4c47-8665-ee1397200e8f",
                             "søknadstype": "ENDRINGSMELDING",
-                            "k9FormatSøknad": {
+                            "k9FormatInnsendelse": {
                                 "søknadId": "af5088f4-7739-4c47-8665-ee1397200e8f",
                                 "versjon": "1.0.0",
                                 "mottattDato": "2024-02-14T11:59:40.061Z",
@@ -103,7 +103,7 @@
                         {
                             "søknadId": "7cfe7997-cea2-4bb6-a0e1-23899fc38bda",
                             "søknadstype": "ENDRINGSMELDING",
-                            "k9FormatSøknad": {
+                            "k9FormatInnsendelse": {
                                 "søknadId": "7cfe7997-cea2-4bb6-a0e1-23899fc38bda",
                                 "versjon": "1.0.0",
                                 "mottattDato": "2024-02-13T07:57:22.932Z",
@@ -185,7 +185,7 @@
                         {
                             "søknadId": "9aaee6b4-0218-4a3b-a56a-1164c0fb7f75",
                             "søknadstype": "ENDRINGSMELDING",
-                            "k9FormatSøknad": {
+                            "k9FormatInnsendelse": {
                                 "søknadId": "9aaee6b4-0218-4a3b-a56a-1164c0fb7f75",
                                 "versjon": "1.0.0",
                                 "mottattDato": "2024-02-13T07:56:25.433Z",
@@ -255,7 +255,7 @@
                         {
                             "søknadId": "cb528acf-d452-4572-959d-27492e3f10ed",
                             "søknadstype": "SØKNAD",
-                            "k9FormatSøknad": {
+                            "k9FormatInnsendelse": {
                                 "søknadId": "cb528acf-d452-4572-959d-27492e3f10ed",
                                 "versjon": "1.0.0",
                                 "mottattDato": "2024-02-13T07:52:43.049Z",

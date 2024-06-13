@@ -2,9 +2,9 @@ import { createChildLogger } from '@navikt/next-logger';
 import axios from 'axios';
 import { NextApiRequest } from 'next';
 import { Mellomlagringer } from '../types/Mellomlagring';
-import { InnsendtSøknad } from '../types/Søknad';
+import { InnsendtSøknad } from '../types/InnsendtSøknad';
 import { getContextForApiHandler, getXRequestId } from '../utils/apiUtils';
-import { fjernPunsjOgUkjenteSøknaderFraBehandling, sortBehandlingerNyesteFørst } from '../utils/sakUtils';
+import { sortBehandlingerNyesteFørst } from '../utils/sakUtils';
 import { InnsendtSøknaderSchema } from './api-models/InnsendtSøknadSchema';
 import { MellomlagringModel, MellomlagringSchema } from './api-models/MellomlagringSchema';
 import { PleietrengendeMedSak, PleietrengendeMedSakResponseSchema } from './api-models/PleietrengendeMedSakSchema';
@@ -17,6 +17,7 @@ import { exchangeTokenAndPrepRequest } from './utils/exchangeTokenPrepRequest';
 import { isValidMellomlagring } from './utils/isValidMellomlagring';
 import { ZodError } from 'zod';
 import { getZodErrorsInfo } from '../utils/zodUtils';
+import { SakerParseError } from '../types/SakerParseError';
 
 export enum ApiService {
     k9Brukerdialog = 'k9-brukerdialog-api',
@@ -97,9 +98,17 @@ export const fetchSaker = async (req: NextApiRequest, raw?: boolean): Promise<Pl
     } catch (error) {
         if (error instanceof ZodError) {
             childLogger.error({ parseDetails: JSON.stringify(getZodErrorsInfo(error)) }, 'Parsing av Saker feiler');
+            if (sakerLength !== undefined && sakerLength > 0) {
+                const sakerParseError: SakerParseError = {
+                    antallSaker: sakerLength,
+                    error,
+                };
+                throw sakerParseError;
+            }
         } else {
             childLogger.error(error, 'Ukjent feil ved parsing saker');
         }
+        throw error;
     }
 
     childLogger.info(`Saker response data parsed. Antall saker: ${saker.length}`);
@@ -116,9 +125,7 @@ export const fetchSaker = async (req: NextApiRequest, raw?: boolean): Promise<Pl
             pleietrengende: ps.pleietrengende,
             sak: {
                 ...ps.sak,
-                behandlinger: sortBehandlingerNyesteFørst(ps.sak.behandlinger).map(
-                    fjernPunsjOgUkjenteSøknaderFraBehandling,
-                ),
+                behandlinger: sortBehandlingerNyesteFørst(ps.sak.behandlinger),
             },
         };
     });

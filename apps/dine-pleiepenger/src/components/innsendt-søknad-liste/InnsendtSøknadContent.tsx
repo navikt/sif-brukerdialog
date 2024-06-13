@@ -7,7 +7,7 @@ import { AppText } from '../../i18n';
 import { InnsendtSøknadArbeidsgiver } from '../../server/api-models/ArbeidsgivereSchema';
 import { InnsendtSøknadDokument } from '../../types/InnsendtSøknadDocument';
 import { Organisasjon } from '../../types/Organisasjon';
-import { InnsendtSøknad, InnsendtSøknadstype } from '../../types/Søknad';
+import { InnsendtSøknad, InnsendtSøknadstype } from '../../types/InnsendtSøknad';
 import { getDokumentFrontendUrl, getSøknadDokumentFilnavn } from '../../utils/dokumentUtils';
 import { browserEnv } from '../../utils/env';
 
