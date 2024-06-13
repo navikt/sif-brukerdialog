@@ -43,6 +43,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             Feature.HENT_APPSTATUS ? fetchAppStatus() : Promise.resolve(undefined),
         ]);
         childLogger.info(`Hentet innsynsdata`);
+        childLogger.info(appStatus.status);
 
         if (søknaderReq.status === 'rejected') {
             childLogger.error(
