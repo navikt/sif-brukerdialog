@@ -65,9 +65,9 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
                     <UnavailablePage />
                 ) : (
                     <main>
-                        {appStatus?.message && (
+                        {data.appStatus?.message && (
                             <div className="max-w-[1128px] mx-auto p-5 mb-5">
-                                <StatusMessage message={appStatus.message} />
+                                <StatusMessage message={data.appStatus.message} />
                             </div>
                         )}
                         <IntlProvider locale="nb" messages={messages.nb}>
