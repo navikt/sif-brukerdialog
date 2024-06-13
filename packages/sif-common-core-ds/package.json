@@ -2,7 +2,7 @@
     "author": "navikt",
     "main": "src",
     "name": "@navikt/sif-common-core-ds",
-    "version": "9.17.9",
+    "version": "9.17.10",
     "private": true,
     "dependencies": {
         "@navikt/sif-common-utils": "workspace:*",
