@@ -72,13 +72,13 @@ const FraværStep: React.FC = () => {
     } = useSøknadContext();
 
     const stepId = StepId.FRAVÆR;
-    const step = getSøknadStepConfigForStep(stepId);
+    const step = getSøknadStepConfigForStep(søknadsdata, stepId);
 
     const { goBack } = useStepNavigation(step);
 
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
-    const { invalidSteps } = useSøknadsdataStatus(stepId, getSøknadStepConfig());
+    const { invalidSteps } = useSøknadsdataStatus(stepId, getSøknadStepConfig(søknadsdata));
     const hasInvalidSteps = invalidSteps.length > 0;
 
     const onValidSubmitHandler = (values: FraværStepFormValues) => {

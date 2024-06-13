@@ -1,6 +1,7 @@
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
-import { fosterbarnFormMessages } from '../søknad/steps/fosterbarn/fosterbarnFormMessages';
+import { deltBostedMessages } from '../søknad/steps/delt-bosted/deltBostedMessages';
+import { dineBarnMessages } from '../søknad/steps/dine-barn/dineBarnMessages';
 import { fraværStepMessages } from '../søknad/steps/fravær/fraværStepMessages';
 import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerklæringMessages';
 import { medlemskapMessages } from '../søknad/steps/medlemskap/medlemskapMessages';
@@ -10,6 +11,8 @@ import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validate
 
 const nb = {
     ...situasjonMessages.nb,
+    ...dineBarnMessages.nb,
+    ...deltBostedMessages.nb,
     ...velkommenPageMessages.nb,
     ...fraværStepMessages.nb,
     ...legeerklæringMessages.nb,
@@ -17,7 +20,6 @@ const nb = {
     ...oppsummeringMessages.nb,
     ...kvitteringMessages.nb,
     ...validateApiDataMessages.nb,
-    ...fosterbarnFormMessages.nb,
 
     Ja: 'Ja',
     Nei: 'Nei',
@@ -35,8 +37,11 @@ const nb = {
     'step.sendButtonLabel': 'Send inn søknaden',
     'step.sendButtonAriaLabel': 'Send inn søknaden',
 
-    'step.fosterbarn.stepTitle': 'Fosterbarn',
-    'step.fosterbarn.stepIndicatorLabel': 'Fosterbarn',
+    'step.dineBarn.stepTitle': 'Dine barn',
+    'step.dineBarn.stepIndicatorLabel': 'Dine barn',
+
+    'step.deltBosted.stepTitle': 'Delt fast bosted',
+    'step.deltBosted.stepIndicatorLabel': 'Delt fast bosted',
 
     'step.situasjon.pageTitle': 'Din arbeidssituasjon',
     'step.situasjon.stepTitle': 'Din arbeidssituasjon',

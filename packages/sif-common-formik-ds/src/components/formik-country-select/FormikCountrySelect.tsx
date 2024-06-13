@@ -1,5 +1,5 @@
-import { SelectProps } from '@navikt/ds-react';
 import React from 'react';
+import { SelectProps } from '@navikt/ds-react';
 import { Field, FieldProps } from 'formik';
 import { TestProps, TypedFormInputValidationProps } from '../../types';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
@@ -9,7 +9,6 @@ import CountrySelect from './CountrySelect';
 interface OwnProps<FieldName> extends Omit<SelectProps, 'name' | 'children'> {
     name: FieldName;
     showOnlyEuAndEftaCountries?: boolean;
-    useAlpha3Code?: boolean;
 }
 
 export type FormikCountrySelectProps<FieldName, ErrorType> = OwnProps<FieldName> &
@@ -20,7 +19,6 @@ function FormikCountrySelect<FieldName, ErrorType>({
     name,
     error,
     validate,
-    useAlpha3Code = true,
     showOnlyEuAndEftaCountries,
     ...restProps
 }: FormikCountrySelectProps<FieldName, ErrorType>) {
@@ -42,7 +40,6 @@ function FormikCountrySelect<FieldName, ErrorType>({
                             }
                         }}
                         showOnlyEuAndEftaCountries={showOnlyEuAndEftaCountries}
-                        useAlpha3Code={useAlpha3Code}
                     />
                 );
             }}
