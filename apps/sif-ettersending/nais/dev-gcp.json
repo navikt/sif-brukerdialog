@@ -9,6 +9,7 @@
         "APPSTATUS_PROJECT_ID": "ryujtq87",
         "DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&logoutUrl=https://k9-ettersending-soknad.intern.dev.nav.no/oauth2/logout&redirectToApp=true",
         "DITT_NAV_URL": "https://www.dev.nav.no/person/dittnav/",
+        "ENDRINGSMELDING_PP": "https://endringsmelding-pleiepenger.intern.dev.nav.no",
         "FRONTEND_API_PATH": "/api",
         "FRONTEND_VEDLEGG_URL": "https://k9-ettersending-soknad.intern.dev.nav.no/api",
         "INNSYN_PP": "https://https://dine-pleiepenger.intern.dev.nav.no/",

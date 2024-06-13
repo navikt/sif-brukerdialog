@@ -1,5 +1,5 @@
 import { Alert, Heading, Link } from '@navikt/ds-react';
-import React, { useEffect } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
@@ -41,6 +41,35 @@ const DokumentTypeStep: React.FC<Props> = ({ søknadstype, søkersFødselsnummer
         <SoknadFormStep id={StepID.DOKUMENT_TYPE} søknadstype={søknadstype}>
             <SifGuidePanel>
                 <AppText id="step.dokumentType.info" />
+                <ul>
+                    <li>
+                        <AppText id="step.dokumentType.info.1" />
+                    </li>
+                    <li>
+                        <AppText
+                            id="step.dokumentType.info.2"
+                            values={{
+                                Lenke: (children: ReactNode) => (
+                                    <Link href={getLenker().endringsmelding} target="_blank">
+                                        {children}
+                                    </Link>
+                                ),
+                            }}
+                        />
+                    </li>
+                    <li>
+                        <AppText
+                            id="step.dokumentType.info.3"
+                            values={{
+                                Lenke: (children: ReactNode) => (
+                                    <Link href={getLenker().skrivTilOss} target="_blank">
+                                        {children}
+                                    </Link>
+                                ),
+                            }}
+                        />
+                    </li>
+                </ul>
             </SifGuidePanel>
             <FormBlock>
                 <SoknadFormComponents.RadioGroup

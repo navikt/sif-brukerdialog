@@ -74,8 +74,12 @@ const nb = {
     'step.dokumentType.stepTitle': 'Hva skal du ettersende?',
     'step.dokumentType.stepIndicatorLabel': 'Hva skal du ettersende?',
     'step.dokumentType.nextButtonLabel': 'Fortsett',
-    'step.dokumentType.info':
-        'Her beskriver du hvilken dokumentasjon du skal sende oss. Hvis en annen søker har sendt inn samme dokumentasjon for barnet i perioden du søker, trenger du ikke sende inn disse på nytt.',
+    'step.dokumentType.info': 'Her beskriver du hvilken dokumentasjon du skal sende oss.',
+    'step.dokumentType.info.1':
+        'Hvis en annen søker har sendt inn samme dokumentasjon for barnet i perioden du søker, trenger du ikke sende inn denne på nytt.',
+    'step.dokumentType.info.2':
+        'Skal du melde om endringer i jobb eller ferie i tillegg til ettersendelsen gå til <Lenke>endringsmelding for pleiepenger sykt barn</Lenke>.',
+    'step.dokumentType.info.3': 'For andre henvendelser send oss en melding via <Lenke>skriv til oss</Lenke>.',
     'step.dokumentType.dokumentType.spm': 'Hva skal du ettersende?',
     'step.dokumentType.dokumentType.LEGEERKLÆRING': 'Legeerklæring',
     'step.dokumentType.registrertBarnPart.spm': 'Hvilket barn gjelder legeerklæringen?',
