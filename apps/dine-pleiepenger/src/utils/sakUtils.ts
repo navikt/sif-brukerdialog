@@ -151,4 +151,11 @@ export const getArbeidsgiverinfoFraSøknad = (søknad: Pleiepengesøknad): Organ
     });
 };
 
+export const getOrganisasjonsnavnEllerOrgNummer = (organisasjon: Organisasjon): string => {
+    if (organisasjon.navn === null) {
+        return organisasjon.organisasjonsnummer;
+    }
+    return organisasjon.navn;
+};
+
 export const erSaksbehandlingsfristPassert = (frist: Date) => dayjs(frist).isBefore(dayjs(), 'day');
