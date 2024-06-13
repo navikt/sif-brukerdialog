@@ -7,10 +7,6 @@ const nb = {
     'step.oppsummering.søker.header': 'Om deg',
     'step.oppsummering.søker.fnr': 'Fødselsnummer: {fødselsnummer}',
 
-    'step.oppsummering.fosterbarn': 'Fosterbarn',
-    'step.oppsummering.fosterbarn.harFosterbarn': 'Har du fosterbarn?',
-    'step.oppsummering.fosterbarn.listItem': ' (fnr. {identitetsnummer})',
-
     'step.oppsummering.arbeidsforhold.titel': 'Fravær fra arbeid',
     'step.oppsummering.arbeidsforhold.forhold': '{navn} (organisasjonsnummer: {organisasjonsnummer})',
     'step.oppsummering.arbeidsforhold.ingenArbeidsforhold': 'Ingen arbeidsgiver er valgt',
@@ -59,12 +55,24 @@ const nb = {
 
     'step.oppsummering.dokumenter.header': 'Vedlegg',
 
-    'step.oppsummering.legeerklæring.ingenVedlegg': 'Ingen egeerklæring er lastet opp, må ettersendes',
+    'step.oppsummering.deltBosted.ingenVedlegg': 'Ingen avtale om delt bosted er lastet opp. Denne må ettersendes.',
+    'step.oppsummering.deltBosted.header': 'Avtale om delt bosted',
+
+    'step.oppsummering.legeerklæring.ingenVedlegg': 'Ingen egeerklæring er lastet opp. Denne må ettersendes.',
+    'step.oppsummering.fosterbarn': 'Fosterbarn',
+    'step.oppsummering.fosterbarn.harFosterbarn': 'Har du fosterbarn?',
+    'step.oppsummering.fosterbarn.listItem': ' (fnr. {identitetsnummer})',
+
     'step.oppsummering.legeerklæring.header': 'Legeerklæring',
 
     'step.oppsummering.bekrefterOpplysninger':
         'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til omsorgspenger.',
     'step.oppsummering.bekrefterOpplysninger.ikkeBekreftet': 'Du må bekrefte opplysningene',
+
+    'step.oppsummering.dineBarn.tittel': 'Dine barn',
+    'step.oppsummering.dineBarn.født': 'Fødselsdato: {dato}',
+    'step.oppsummering.dineBarn.id': 'Fødselsnummer/id: {identitetsnummer}',
+    'step.oppsummering.dineBarn.fosterbarn': 'Barnet er mitt fosterbarn',
 };
 
 export const oppsummeringMessages = { nb };

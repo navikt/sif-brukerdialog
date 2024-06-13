@@ -10,11 +10,12 @@ import {
     fetchSøknader,
 } from '../../server/apiService';
 import { Innsynsdata } from '../../types/InnsynData';
+import { isSakerParseError } from '../../types/SakerParseError';
 import { getBrukerprofil } from '../../utils/amplitude/getBrukerprofil';
 import { Feature } from '../../utils/features';
+import { getLogger } from '../../utils/getLogCorrelationID';
 import { sortInnsendtSøknadEtterOpprettetDato } from '../../utils/innsendtSøknadUtils';
 import { fetchAppStatus } from './appStatus.api';
-import { getLogger } from '../../utils/getLogCorrelationID';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const logger = getLogger(req);
@@ -84,6 +85,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             saksbehandlingstidUker,
             saker,
             harSak,
+            sakerParseError:
+                sakerReq.status === 'rejected' && isSakerParseError(sakerReq.reason) ? sakerReq.reason : undefined,
         };
         res.json(innsynsdata);
     } catch (err) {

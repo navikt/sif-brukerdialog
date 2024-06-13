@@ -16,7 +16,7 @@
                     "eyJraWQiOiIxIiwidHlwIjoiSldUIiwiYWxnIjoibm9uZSJ9.eyJqdGkiOiJmZjMwZGRhZi1lN2M3LTRlY2UtOWZhNC03ODZmZGVhZDg2MDEifQ"
                 ]
             ],
-            "k9FormatSøknad": {
+            "k9FormatInnsendelse": {
                 "språk": "nb",
                 "søker": { "norskIdentitetsnummer": "17097721564" },
                 "ytelse": {
@@ -144,7 +144,7 @@
                     }
                 ]
             },
-            "k9FormatSøknad": {
+            "k9FormatInnsendelse": {
                 "språk": "nb",
                 "søker": { "norskIdentitetsnummer": "02869599258" },
                 "ytelse": {
@@ -294,7 +294,7 @@
                     "sluttetFørSøknadsperiode": false
                 }
             ],
-            "k9FormatSøknad": {
+            "k9FormatInnsendelse": {
                 "språk": "nb",
                 "søker": { "norskIdentitetsnummer": "02869599258" },
                 "ytelse": {
@@ -487,7 +487,7 @@
                     "sluttetFørSøknadsperiode": false
                 }
             ],
-            "k9FormatSøknad": {
+            "k9FormatInnsendelse": {
                 "språk": "nb",
                 "søker": { "norskIdentitetsnummer": "02869599258" },
                 "ytelse": {
@@ -773,7 +773,7 @@
                     "sluttetFørSøknadsperiode": false
                 }
             ],
-            "k9FormatSøknad": {
+            "k9FormatInnsendelse": {
                 "språk": "nb",
                 "søker": { "norskIdentitetsnummer": "02869599258" },
                 "ytelse": {
@@ -974,7 +974,7 @@
                 "erLiktHverUke": true
             },
             "samtidigHjemme": true,
-            "k9FormatSøknad": {
+            "k9FormatInnsendelse": {
                 "språk": "nb",
                 "søker": { "norskIdentitetsnummer": "02869599258" },
                 "ytelse": {
@@ -1533,7 +1533,7 @@
                     "sluttetFørSøknadsperiode": false
                 }
             ],
-            "k9FormatSøknad": {
+            "k9FormatInnsendelse": {
                 "språk": "nb",
                 "søker": { "norskIdentitetsnummer": "02869599258" },
                 "ytelse": {
@@ -1723,7 +1723,7 @@
                     "sluttetFørSøknadsperiode": false
                 }
             ],
-            "k9FormatSøknad": {
+            "k9FormatInnsendelse": {
                 "språk": "nb",
                 "søker": { "norskIdentitetsnummer": "02869599258" },
                 "ytelse": {
@@ -1856,7 +1856,7 @@
             "arbeidsgivere": [
                 { "navn": "SJOKKERENDE ELEKTRIKER", "erAnsatt": false, "organisasjonsnummer": "947064649" }
             ],
-            "k9FormatSøknad": {
+            "k9FormatInnsendelse": {
                 "språk": "nb",
                 "søker": { "norskIdentitetsnummer": "02869599258" },
                 "ytelse": {
@@ -1989,7 +1989,7 @@
             "arbeidsgivere": [
                 { "navn": "SJOKKERENDE ELEKTRIKER", "erAnsatt": false, "organisasjonsnummer": "947064649" }
             ],
-            "k9FormatSøknad": {
+            "k9FormatInnsendelse": {
                 "språk": "nb",
                 "søker": { "norskIdentitetsnummer": "02869599258" },
                 "ytelse": {
@@ -2122,7 +2122,7 @@
             "arbeidsgivere": [
                 { "navn": "SJOKKERENDE ELEKTRIKER", "erAnsatt": false, "organisasjonsnummer": "947064649" }
             ],
-            "k9FormatSøknad": {
+            "k9FormatInnsendelse": {
                 "språk": "nb",
                 "søker": { "norskIdentitetsnummer": "02869599258" },
                 "ytelse": {

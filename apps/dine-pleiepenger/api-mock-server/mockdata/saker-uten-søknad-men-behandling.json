@@ -21,7 +21,7 @@
                         {
                             "søknadId": "3772c90b-d6c5-4d62-87fd-4436e19bdf2a",
                             "søknadstype": "SØKNAD",
-                            "k9FormatSøknad": {
+                            "k9FormatInnsendelse": {
                                 "søknadId": "3772c90b-d6c5-4d62-87fd-4436e19bdf2a",
                                 "versjon": "1.0.0",
                                 "mottattDato": "2024-03-06T07:11:05.468Z",
@@ -211,7 +211,7 @@
                         {
                             "søknadId": "c03679cc-d93e-43d4-94d3-91c625947c06",
                             "søknadstype": "SØKNAD",
-                            "k9FormatSøknad": {
+                            "k9FormatInnsendelse": {
                                 "søknadId": "c03679cc-d93e-43d4-94d3-91c625947c06",
                                 "versjon": "1.0.0",
                                 "mottattDato": "2024-03-06T07:24:51.835Z",
@@ -385,7 +385,7 @@
                         {
                             "søknadId": "a250dcee-f9f7-4ed3-bf13-b69cc5beb962",
                             "søknadstype": "SØKNAD",
-                            "k9FormatSøknad": {
+                            "k9FormatInnsendelse": {
                                 "søknadId": "a250dcee-f9f7-4ed3-bf13-b69cc5beb962",
                                 "versjon": "1.0.0",
                                 "mottattDato": "2024-03-06T07:34:12.179Z",
@@ -545,7 +545,7 @@
                         {
                             "søknadId": "a91fdf78-443c-4b6c-a427-7042be7cb881",
                             "søknadstype": "SØKNAD",
-                            "k9FormatSøknad": {
+                            "k9FormatInnsendelse": {
                                 "søknadId": "a91fdf78-443c-4b6c-a427-7042be7cb881",
                                 "versjon": "1.0.0",
                                 "mottattDato": "2024-03-06T07:43:07.014Z",
@@ -719,7 +719,7 @@
                         {
                             "søknadId": "4e2ac1a1-2de8-4d1a-8afe-8dd752e518b8",
                             "søknadstype": "SØKNAD",
-                            "k9FormatSøknad": {
+                            "k9FormatInnsendelse": {
                                 "søknadId": "4e2ac1a1-2de8-4d1a-8afe-8dd752e518b8",
                                 "versjon": "1.0.0",
                                 "mottattDato": "2024-03-06T07:53:33.362Z",

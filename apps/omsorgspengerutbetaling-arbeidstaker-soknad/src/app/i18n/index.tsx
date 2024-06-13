@@ -1,28 +1,28 @@
+import { FormattedMessage, useIntl } from 'react-intl';
 import { commonMessages } from '@navikt/sif-common-core-ds/src/i18n/common.messages';
+import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { annetBarnMessages } from '@navikt/sif-common-forms-ds';
 import { bostedUtlandMessages } from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/bostedUtlandMessages';
-import { fosterbarnMessages } from '@navikt/sif-common-forms-ds/src/forms/fosterbarn/fosterbarnMessages';
+import { fraværMessages } from '@navikt/sif-common-forms-ds/src/forms/fravær/fraværMessages';
 import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
 import { appMessages } from './appMessages';
-import { fraværMessages } from '@navikt/sif-common-forms-ds/src/forms/fravær/fraværMessages';
-import { FormattedMessage, useIntl } from 'react-intl';
-import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 
 const libMessages = {
     nb: {
         ...commonMessages.nb,
         ...uiMessages.nb,
         ...soknadMessages.nb,
+        ...annetBarnMessages.nb,
         ...fraværMessages.nb,
-        ...fosterbarnMessages.nb,
         ...bostedUtlandMessages.nb,
     },
     nn: {
         ...commonMessages.nn,
         ...uiMessages.nn,
         ...soknadMessages.nn,
+        ...annetBarnMessages.nn,
         ...fraværMessages.nn,
-        ...fosterbarnMessages.nn,
         ...bostedUtlandMessages.nn,
     },
 };

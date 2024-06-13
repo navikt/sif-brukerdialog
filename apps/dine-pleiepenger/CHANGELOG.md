@@ -1,5 +1,15 @@
 # @navikt/dine-pleiepenger
 
+## 1.3.5
+
+### Patch Changes
+
+-   1972384: Pakkeoppdateringer minor/patch + uuid major
+-   Updated dependencies [1972384]
+    -   @navikt/sif-common-core-ds@9.17.9
+    -   @navikt/sif-common-sentry@0.26.6
+    -   @navikt/sif-common-utils@3.46.3
+
 ## 1.3.4
 
 ### Patch Changes

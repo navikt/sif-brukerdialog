@@ -5,6 +5,7 @@ import { Box, Heading } from '@navikt/ds-react';
 import PdfLenke from '../../pdf-lenke/PdfLenke';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { Organisasjon } from '../../../types/Organisasjon';
+import { getOrganisasjonsnavnEllerOrgNummer } from '../../../utils/sakUtils';
 
 interface Props {
     arbeidsgivere: Organisasjon[];
@@ -31,7 +32,7 @@ const ArbeidsgivereISøknad: React.FunctionComponent<Props> = ({ søknadId, arbe
                                 organisasjon.organisasjonsnummer,
                             )}
                             tittel={intlHelper(intl, 'dokumenterSomKanLastesNed.bekreftelse', {
-                                organisasjonsnavn: organisasjon.navn,
+                                organisasjonsnavn: getOrganisasjonsnavnEllerOrgNummer(organisasjon),
                             })}
                         />
                     </li>

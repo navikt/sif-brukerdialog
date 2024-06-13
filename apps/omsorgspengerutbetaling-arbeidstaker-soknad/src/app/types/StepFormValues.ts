@@ -5,11 +5,11 @@ import { SituasjonFormValues } from '../søknad/steps/situasjon/SituasjonStep';
 import { MedlemskapFormValues } from '../søknad/steps/medlemskap/MedlemskapStep';
 import { FraværStepFormValues } from '../søknad/steps/fravær/FraværStep';
 import { OppsummeringFormValues } from '../søknad/steps/oppsummering/OppsummeringStep';
-import { FosterbarnFormValues } from '../søknad/steps/fosterbarn/FosterbarnStep';
+import { DineBarnFormValues } from '../søknad/steps/dine-barn/DineBarnStep';
 
 export interface StepFormValues {
     [StepId.VELKOMMEN]?: SamtykkeFormValues;
-    [StepId.FOSTERBARN]?: FosterbarnFormValues;
+    [StepId.DINE_BARN]?: DineBarnFormValues;
     [StepId.SITUASJON]?: SituasjonFormValues;
     [StepId.FRAVÆR]?: FraværStepFormValues;
     [StepId.LEGEERKLÆRING]?: LegeerklæringFormValues;

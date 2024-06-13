@@ -1,5 +1,17 @@
 # @navikt/sif-common-forms-ds
 
+## 8.23.0
+
+### Minor Changes
+
+-   a739a56: Håndtere lankode for Kosovo på en bedre måte. Refactoring av CountrySelect.
+
+## 8.22.3
+
+### Patch Changes
+
+-   1972384: Pakkeoppdateringer minor/patch + uuid major
+
 ## 8.22.2
 
 ### Patch Changes

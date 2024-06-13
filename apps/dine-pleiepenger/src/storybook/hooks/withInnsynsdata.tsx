@@ -3,7 +3,7 @@ import mockSøker from '../../../api-mock-server/mockdata/soker.json';
 import mockSøknader from '../../../api-mock-server/mockdata/soknader.json';
 import { InnsynsdataContextProvider } from '../../context/InnsynsdataContextProvider';
 import { Søker } from '../../server/api-models/SøkerSchema';
-import { InnsendtSøknad } from '../../types/Søknad';
+import { InnsendtSøknad } from '../../types/InnsendtSøknad';
 
 export const withInnsynsdata = (Story) => (
     <InnsynsdataContextProvider

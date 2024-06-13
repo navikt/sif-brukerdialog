@@ -1,9 +1,13 @@
 import axios from 'axios';
 import { NextApiRequest } from 'next';
+import { ZodError } from 'zod';
+import { InnsendtSøknad } from '../types/InnsendtSøknad';
 import { Mellomlagringer } from '../types/Mellomlagring';
-import { InnsendtSøknad } from '../types/Søknad';
+import { SakerParseError } from '../types/SakerParseError';
 import { getContextForApiHandler } from '../utils/apiUtils';
-import { fjernPunsjOgUkjenteSøknaderFraBehandling, sortBehandlingerNyesteFørst } from '../utils/sakUtils';
+import { getLogger } from '../utils/getLogCorrelationID';
+import { sortBehandlingerNyesteFørst } from '../utils/sakUtils';
+import { getZodErrorsInfo } from '../utils/zodUtils';
 import { InnsendtSøknaderSchema } from './api-models/InnsendtSøknadSchema';
 import { MellomlagringModel, MellomlagringSchema } from './api-models/MellomlagringSchema';
 import { PleietrengendeMedSak, PleietrengendeMedSakResponseSchema } from './api-models/PleietrengendeMedSakSchema';
@@ -14,9 +18,6 @@ import {
 import { Søker, SøkerSchema } from './api-models/SøkerSchema';
 import { exchangeTokenAndPrepRequest } from './utils/exchangeTokenPrepRequest';
 import { isValidMellomlagring } from './utils/isValidMellomlagring';
-import { getLogger } from '../utils/getLogCorrelationID';
-import { ZodError } from 'zod';
-import { getZodErrorsInfo } from '../utils/zodUtils';
 
 export enum ApiService {
     k9Brukerdialog = 'k9-brukerdialog-api',
@@ -95,9 +96,17 @@ export const fetchSaker = async (req: NextApiRequest, raw?: boolean): Promise<Pl
     } catch (error) {
         if (error instanceof ZodError) {
             logger.error('Parsing av Saker feiler', { parseDetails: JSON.stringify(getZodErrorsInfo(error)) });
+            if (sakerLength !== undefined && sakerLength > 0) {
+                const sakerParseError: SakerParseError = {
+                    antallSaker: sakerLength,
+                    error,
+                };
+                throw sakerParseError;
+            }
         } else {
             logger.error(error, 'Ukjent feil ved parsing saker');
         }
+        throw error;
     }
 
     logger.info(`Saker response data parsed. Antall saker: ${saker.length}`);
@@ -114,9 +123,7 @@ export const fetchSaker = async (req: NextApiRequest, raw?: boolean): Promise<Pl
             pleietrengende: ps.pleietrengende,
             sak: {
                 ...ps.sak,
-                behandlinger: sortBehandlingerNyesteFørst(ps.sak.behandlinger).map(
-                    fjernPunsjOgUkjenteSøknaderFraBehandling,
-                ),
+                behandlinger: sortBehandlingerNyesteFørst(ps.sak.behandlinger),
             },
         };
     });

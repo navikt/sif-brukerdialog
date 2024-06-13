@@ -70,28 +70,27 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
         );
     }
 
-    const { appStatus } = data;
-    if (appStatus?.status === Status.unavailable) {
-        return <UnavailablePage />;
-    }
-
     return (
         <ErrorBoundary>
             <AmplitudeProvider
                 applicationKey={InnsynPsbApp.key}
                 isActive={browserEnv.NEXT_PUBLIC_RUNTIME_ENVIRONMENT === 'production'}>
-                <main>
-                    {appStatus?.message && (
-                        <div className="max-w-[1128px] mx-auto p-5 mb-5">
-                            <StatusMessage message={appStatus.message} />
-                        </div>
-                    )}
-                    <IntlProvider locale="nb" messages={messages.nb}>
-                        <InnsynsdataContextProvider innsynsdata={data}>
-                            <Component {...pageProps} />
-                        </InnsynsdataContextProvider>
-                    </IntlProvider>
-                </main>
+                {data.appStatus?.status === Status.unavailable ? (
+                    <UnavailablePage />
+                ) : (
+                    <main>
+                        {data.appStatus?.message && (
+                            <div className="max-w-[1128px] mx-auto p-5 mb-5">
+                                <StatusMessage message={data.appStatus.message} />
+                            </div>
+                        )}
+                        <IntlProvider locale="nb" messages={messages.nb}>
+                            <InnsynsdataContextProvider innsynsdata={data}>
+                                <Component {...pageProps} />
+                            </InnsynsdataContextProvider>
+                        </IntlProvider>
+                    </main>
+                )}
             </AmplitudeProvider>
         </ErrorBoundary>
     );

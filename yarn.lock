@@ -3372,7 +3372,7 @@ __metadata:
     "@storybook/react": 8.1.6
     "@storybook/test": 8.1.6
     axios: 1.7.2
-    chromatic: 11.5.1
+    chromatic: 11.5.3
     classnames: 2.5.1
     dayjs: 1.11.11
     eslint-plugin-storybook: 0.8.0
@@ -3395,7 +3395,7 @@ __metadata:
     storybook: 8.1.6
     swr: 2.2.5
     tailwindcss: 3.4.4
-    uuid: 9.0.1
+    uuid: 10.0.0
     vitest: 1.6.0
     zod: 3.23.8
   languageName: unknown
@@ -3486,7 +3486,7 @@ __metadata:
     dayjs: 1.11.11
     dotenv: 16.4.5
     express: 4.19.2
-    express-rate-limit: 7.3.0
+    express-rate-limit: 7.3.1
     formik: 2.4.6
     helmet: 7.1.0
     http-proxy-middleware: 3.0.0
@@ -3502,7 +3502,7 @@ __metadata:
     react-router-dom: 6.23.1
     rimraf: 5.0.7
     typescript: 5.4.5
-    vite: 5.2.12
+    vite: 5.2.13
     vite-plugin-checker: 0.6.4
     vitest: 1.6.0
   languageName: unknown
@@ -3552,7 +3552,7 @@ __metadata:
     "@types/react-dom": 18.3.0
     "@types/react-modal": 3.16.3
     "@types/react-router-dom": 5.3.3
-    "@vitejs/plugin-react": 4.3.0
+    "@vitejs/plugin-react": 4.3.1
     axe-core: 4.9.1
     axios: 1.7.2
     babel-polyfill: 6.26.0
@@ -3562,7 +3562,7 @@ __metadata:
     dayjs: 1.11.11
     dotenv: 16.4.5
     express: 4.19.2
-    express-rate-limit: 7.3.0
+    express-rate-limit: 7.3.1
     flat: 6.0.1
     formik: 2.4.6
     http-proxy-middleware: 3.0.0
@@ -3588,7 +3588,7 @@ __metadata:
     storybook-addon-mock: 5.0.0
     tailwindcss: 3.4.4
     typescript: 5.4.5
-    vite: 5.2.12
+    vite: 5.2.13
     vite-plugin-checker: 0.6.4
     vitest: 1.6.0
   languageName: unknown
@@ -3663,7 +3663,7 @@ __metadata:
     "@types/react": 18.3.3
     "@types/react-dom": 18.3.0
     "@types/react-router-dom": 5.3.3
-    "@vitejs/plugin-react": 4.3.0
+    "@vitejs/plugin-react": 4.3.1
     axios: 1.7.2
     babel-polyfill: 6.26.0
     compression: 1.7.4
@@ -3687,8 +3687,8 @@ __metadata:
     react-fast-compare: 3.2.2
     react-intl: 6.6.8
     react-router-dom: 6.23.1
-    uuid: 9.0.1
-    vite: 5.2.12
+    uuid: 10.0.0
+    vite: 5.2.13
     vite-plugin-checker: 0.6.4
   languageName: unknown
   linkType: soft
@@ -3724,7 +3724,7 @@ __metadata:
     react-intl: 6.6.8
     tailwindcss: 3.4.4
     typescript: 5.4.5
-    uuid: 9.0.1
+    uuid: 10.0.0
   languageName: unknown
   linkType: soft
 
@@ -3766,7 +3766,7 @@ __metadata:
     "@types/react": 18.3.3
     "@types/react-dom": 18.3.0
     "@types/react-router-dom": 5.3.3
-    "@vitejs/plugin-react": 4.3.0
+    "@vitejs/plugin-react": 4.3.1
     axios: 1.7.2
     babel-polyfill: 6.26.0
     busboy: 1.6.0
@@ -3777,7 +3777,7 @@ __metadata:
     dotenv: 16.4.5
     eslint-plugin-storybook: 0.8.0
     express: 4.19.2
-    express-rate-limit: 7.3.0
+    express-rate-limit: 7.3.1
     helmet: 7.1.0
     history: 5.3.0
     http-proxy-middleware: 3.0.0
@@ -3798,8 +3798,8 @@ __metadata:
     tailwindcss: 3.4.4
     typescript: 5.4.5
     ulid: 2.3.0
-    uuid: 9.0.1
-    vite: 5.2.12
+    uuid: 10.0.0
+    vite: 5.2.13
     vite-plugin-checker: 0.6.4
     vitest: 1.6.0
   languageName: unknown
@@ -3841,18 +3841,18 @@ __metadata:
     "@types/react": 18.3.3
     "@types/react-dom": 18.3.0
     "@types/react-router-dom": 5.3.3
-    "@vitejs/plugin-react": 4.3.0
+    "@vitejs/plugin-react": 4.3.1
     axios: 1.7.2
     babel-polyfill: 6.26.0
     busboy: 1.6.0
-    chromatic: 11.5.1
+    chromatic: 11.5.3
     compression: 1.7.4
     cookie-parser: 1.4.6
     cross-env: 7.0.3
     dotenv: 16.4.5
     eslint-plugin-storybook: 0.8.0
     express: 4.19.2
-    express-rate-limit: 7.3.0
+    express-rate-limit: 7.3.1
     helmet: 7.1.0
     http-proxy-middleware: 3.0.0
     jose: 5.4.0
@@ -3870,8 +3870,8 @@ __metadata:
     storybook: 8.1.6
     tailwindcss: 3.4.4
     typescript: 5.4.5
-    uuid: 9.0.1
-    vite: 5.2.12
+    uuid: 10.0.0
+    vite: 5.2.13
     vite-plugin-checker: 0.6.4
     vitest: 1.6.0
   languageName: unknown
@@ -3913,7 +3913,7 @@ __metadata:
     "@types/react": 18.3.3
     "@types/react-dom": 18.3.0
     "@types/react-router-dom": 5.3.3
-    "@vitejs/plugin-react": 4.3.0
+    "@vitejs/plugin-react": 4.3.1
     axe-core: 4.9.1
     axios: 1.7.2
     babel-polyfill: 6.26.0
@@ -3924,7 +3924,7 @@ __metadata:
     dayjs: 1.11.11
     dotenv: 16.4.5
     express: 4.19.2
-    express-rate-limit: 7.3.0
+    express-rate-limit: 7.3.1
     formik: 2.4.6
     helmet: 7.1.0
     http-proxy-middleware: 3.0.0
@@ -3942,7 +3942,7 @@ __metadata:
     react-router-dom: 6.23.1
     storybook: 8.1.6
     typescript: 5.4.5
-    vite: 5.2.12
+    vite: 5.2.13
     vite-plugin-checker: 0.6.4
     vitest: 1.6.0
   languageName: unknown
@@ -3997,7 +3997,7 @@ __metadata:
     dotenv: 16.4.5
     eslint-plugin-storybook: 0.8.0
     express: 4.19.2
-    express-rate-limit: 7.3.0
+    express-rate-limit: 7.3.1
     formik: 2.4.6
     helmet: 7.1.0
     http-proxy-middleware: 3.0.0
@@ -4015,8 +4015,8 @@ __metadata:
     storybook: 8.1.6
     storybook-addon-mock: 5.0.0
     typescript: 5.4.5
-    uuid: 9.0.1
-    vite: 5.2.12
+    uuid: 10.0.0
+    vite: 5.2.13
     vite-plugin-checker: 0.6.4
     vitest: 1.6.0
   languageName: unknown
@@ -4064,7 +4064,7 @@ __metadata:
     "@types/react-router-dom": 5.3.3
     "@typescript-eslint/eslint-plugin": 7.12.0
     "@typescript-eslint/parser": 7.12.0
-    "@vitejs/plugin-react": 4.3.0
+    "@vitejs/plugin-react": 4.3.1
     axe-core: 4.9.1
     axios: 1.7.2
     busboy: 1.6.0
@@ -4081,7 +4081,7 @@ __metadata:
     eslint-plugin-react-hooks: 4.6.2
     eslint-plugin-storybook: 0.8.0
     express: 4.19.2
-    express-rate-limit: 7.3.0
+    express-rate-limit: 7.3.1
     formik: 2.4.6
     helmet: 7.1.0
     http-proxy-middleware: 3.0.0
@@ -4103,8 +4103,8 @@ __metadata:
     storybook: 8.1.6
     storybook-addon-mock: 5.0.0
     typescript: 5.4.5
-    uuid: 9.0.1
-    vite: 5.2.12
+    uuid: 10.0.0
+    vite: 5.2.13
     vite-plugin-checker: 0.6.4
     vitest: 1.6.0
   languageName: unknown
@@ -4183,10 +4183,10 @@ __metadata:
     "@types/react": 18.3.3
     "@types/react-collapse": 5.0.4
     "@types/react-dom": 18.3.0
-    "@vitejs/plugin-react": 4.3.0
+    "@vitejs/plugin-react": 4.3.1
     axios: 1.7.2
     browser-image-compression: 2.0.2
-    chromatic: 11.5.1
+    chromatic: 11.5.3
     classnames: 2.5.1
     config: "workspace:*"
     copyfiles: 2.4.1
@@ -4210,8 +4210,8 @@ __metadata:
     rimraf: 5.0.7
     storybook: 8.1.6
     tailwindcss: 3.4.4
-    uuid: 9.0.1
-    vite: 5.2.12
+    uuid: 10.0.0
+    vite: 5.2.13
     vite-plugin-checker: 0.6.4
     vitest: 1.6.0
   languageName: unknown
@@ -4239,6 +4239,7 @@ __metadata:
     "@storybook/jest": 0.2.3
     "@storybook/node-logger": 8.1.6
     "@storybook/preset-create-react-app": 8.1.6
+    "@storybook/preset-scss": 1.0.3
     "@storybook/react": 8.1.6
     "@storybook/react-vite": 8.1.6
     "@storybook/test-runner": 0.18.2
@@ -4248,7 +4249,7 @@ __metadata:
     "@types/react": 18.3.3
     "@types/react-dom": 18.3.0
     "@types/uuid": 9.0.8
-    "@vitejs/plugin-react": 4.3.0
+    "@vitejs/plugin-react": 4.3.1
     classnames: 2.5.1
     config: "workspace:*"
     copyfiles: 2.4.1
@@ -4270,8 +4271,8 @@ __metadata:
     react-syntax-highlighter: 15.5.0
     rimraf: 5.0.7
     storybook: 8.1.6
-    uuid: 9.0.1
-    vite: 5.2.12
+    uuid: 10.0.0
+    vite: 5.2.13
     vite-plugin-checker: 0.6.4
     vitest: 1.6.0
   peerDependencies:
@@ -4313,7 +4314,7 @@ __metadata:
     "@types/node": 20.14.2
     "@types/react": 18.3.3
     "@types/react-dom": 18.3.0
-    "@vitejs/plugin-react": 4.3.0
+    "@vitejs/plugin-react": 4.3.1
     axios: 1.7.2
     config: "workspace:*"
     copyfiles: 2.4.1
@@ -4333,7 +4334,7 @@ __metadata:
     react-router-dom: 6.23.1
     rimraf: 5.0.7
     storybook: 8.1.6
-    vite: 5.2.12
+    vite: 5.2.13
     vite-plugin-checker: 0.6.4
     vitest: 1.6.0
   languageName: unknown
@@ -4354,9 +4355,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-sentry@workspace:packages/sif-common-sentry"
   dependencies:
-    "@sentry/browser": 8.7.0
-    "@sentry/react": 8.7.0
-    "@sentry/types": 8.7.0
+    "@sentry/browser": 8.8.0
+    "@sentry/react": 8.8.0
+    "@sentry/types": 8.8.0
     "@types/node": 20.14.2
     axios: 1.7.2
     config: "*"
@@ -4409,7 +4410,7 @@ __metadata:
     "@types/react": 18.3.3
     "@types/react-dom": 18.3.0
     "@types/react-modal": 3.16.3
-    "@vitejs/plugin-react": 4.3.0
+    "@vitejs/plugin-react": 4.3.1
     axios: 1.7.2
     classnames: 2.5.1
     copyfiles: 2.4.1
@@ -4431,8 +4432,8 @@ __metadata:
     react-router-dom: 6.23.1
     rimraf: 5.0.7
     storybook: 8.1.6
-    uuid: 9.0.1
-    vite: 5.2.12
+    uuid: 10.0.0
+    vite: 5.2.13
     vite-plugin-checker: 0.6.4
   languageName: unknown
   linkType: soft
@@ -4458,7 +4459,7 @@ __metadata:
     "@storybook/preset-create-react-app": 8.1.6
     "@storybook/react": 8.1.6
     "@storybook/testing-library": 0.2.2
-    chromatic: 11.5.1
+    chromatic: 11.5.3
     classnames: 2.5.1
     copyfiles: 2.4.1
     dayjs: 1.11.11
@@ -4490,7 +4491,7 @@ __metadata:
     react: 18.3.1
     react-dom: 18.3.1
     react-intl: 6.6.8
-    uuid: 9.0.1
+    uuid: 10.0.0
     vitest: 1.6.0
   languageName: unknown
   linkType: soft
@@ -4523,7 +4524,7 @@ __metadata:
     "@types/react-dom": 18.3.0
     "@types/react-router-dom": 5.3.3
     "@types/uuid": 9.0.8
-    "@vitejs/plugin-react": 4.3.0
+    "@vitejs/plugin-react": 4.3.1
     axe-core: 4.9.1
     axios: 1.7.2
     babel-polyfill: 6.26.0
@@ -4536,7 +4537,7 @@ __metadata:
     dayjs: 1.11.11
     dotenv: 16.4.5
     express: 4.19.2
-    express-rate-limit: 7.3.0
+    express-rate-limit: 7.3.1
     formik: 2.4.6
     helmet: 7.1.0
     http-proxy-middleware: 3.0.0
@@ -4553,8 +4554,8 @@ __metadata:
     react-router-dom: 6.23.1
     tailwindcss: 3.4.4
     typescript: 5.4.5
-    uuid: 9.0.1
-    vite: 5.2.12
+    uuid: 10.0.0
+    vite: 5.2.13
     vite-plugin-checker: 0.6.4
     vitest: 1.6.0
   languageName: unknown
@@ -5950,49 +5951,49 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry-internal/browser-utils@npm:8.7.0":
-  version: 8.7.0
-  resolution: "@sentry-internal/browser-utils@npm:8.7.0"
+"@sentry-internal/browser-utils@npm:8.8.0":
+  version: 8.8.0
+  resolution: "@sentry-internal/browser-utils@npm:8.8.0"
   dependencies:
-    "@sentry/core": 8.7.0
-    "@sentry/types": 8.7.0
-    "@sentry/utils": 8.7.0
-  checksum: 10b436f01944f3c2ff412d4abd20b42a34c06419a1e00b841ded0c9925d58e19cbb7b86eb2f5bb21226f3282908e9e0ac452f0390c44af91b6b46d1c345feca3
+    "@sentry/core": 8.8.0
+    "@sentry/types": 8.8.0
+    "@sentry/utils": 8.8.0
+  checksum: 06d1ff26d024a0341afca14b6c4e051d9acc3ee7113ce1d577a0aed11c0d232d598f801cb6867782b848d88d14bc04cf31a0bc8eadf76dd86f35dddb1d7bcb1a
   languageName: node
   linkType: hard
 
-"@sentry-internal/feedback@npm:8.7.0":
-  version: 8.7.0
-  resolution: "@sentry-internal/feedback@npm:8.7.0"
+"@sentry-internal/feedback@npm:8.8.0":
+  version: 8.8.0
+  resolution: "@sentry-internal/feedback@npm:8.8.0"
   dependencies:
-    "@sentry/core": 8.7.0
-    "@sentry/types": 8.7.0
-    "@sentry/utils": 8.7.0
-  checksum: fc8378a91e4a34f5edaef6cbc49e3d1bc29eae3991df8badfa114619fc20824193316dfe0bec4351a4dc87fe91fa39dcba5ce8eac8f3b36f42ca4c6ea5bde17f
+    "@sentry/core": 8.8.0
+    "@sentry/types": 8.8.0
+    "@sentry/utils": 8.8.0
+  checksum: 448b35d605c21effb7c02779227c1f241002e8ef740389917738924d092e2794ebb95a2f253da6b8e7eca4bd1bd65aaa44e4f7654843c64db69dab1e515a8e0c
   languageName: node
   linkType: hard
 
-"@sentry-internal/replay-canvas@npm:8.7.0":
-  version: 8.7.0
-  resolution: "@sentry-internal/replay-canvas@npm:8.7.0"
+"@sentry-internal/replay-canvas@npm:8.8.0":
+  version: 8.8.0
+  resolution: "@sentry-internal/replay-canvas@npm:8.8.0"
   dependencies:
-    "@sentry-internal/replay": 8.7.0
-    "@sentry/core": 8.7.0
-    "@sentry/types": 8.7.0
-    "@sentry/utils": 8.7.0
-  checksum: 18e555673a945ebfe438f189cda23906a90430bd4cb32121cbd24fb17c7c8349da3aa5e730ef42b0a5c3984da2e361f8a67ac592b64843a2327cb31582a1746c
+    "@sentry-internal/replay": 8.8.0
+    "@sentry/core": 8.8.0
+    "@sentry/types": 8.8.0
+    "@sentry/utils": 8.8.0
+  checksum: c56069d90a8705fa8cd12e3dcaaf71a26e4ae60ef0f9a5b95f55d7dd0ab69c4bfc755060267acd6db0870209f8ab936f176557d0eb58ad42dd95ba157ce8ad36
   languageName: node
   linkType: hard
 
-"@sentry-internal/replay@npm:8.7.0":
-  version: 8.7.0
-  resolution: "@sentry-internal/replay@npm:8.7.0"
+"@sentry-internal/replay@npm:8.8.0":
+  version: 8.8.0
+  resolution: "@sentry-internal/replay@npm:8.8.0"
   dependencies:
-    "@sentry-internal/browser-utils": 8.7.0
-    "@sentry/core": 8.7.0
-    "@sentry/types": 8.7.0
-    "@sentry/utils": 8.7.0
-  checksum: 3649a11c2bdc7d18bc89dd33d76e0d88e634e09f7d8f4d68fcfb3416e22ebd6bd8f3b0d9679903fff5819c46490c28b9b5a30f1c826948d3f387567706f7f262
+    "@sentry-internal/browser-utils": 8.8.0
+    "@sentry/core": 8.8.0
+    "@sentry/types": 8.8.0
+    "@sentry/utils": 8.8.0
+  checksum: 6c89b8235d07af89563f26f29822a126f70e529b6027ed959ba60e1afc20ff271cc8239519959b071dfde54cd5b37acf963c161e4408587dc612c71328fe2064
   languageName: node
   linkType: hard
 
@@ -6003,18 +6004,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/browser@npm:8.7.0":
-  version: 8.7.0
-  resolution: "@sentry/browser@npm:8.7.0"
+"@sentry/browser@npm:8.8.0":
+  version: 8.8.0
+  resolution: "@sentry/browser@npm:8.8.0"
   dependencies:
-    "@sentry-internal/browser-utils": 8.7.0
-    "@sentry-internal/feedback": 8.7.0
-    "@sentry-internal/replay": 8.7.0
-    "@sentry-internal/replay-canvas": 8.7.0
-    "@sentry/core": 8.7.0
-    "@sentry/types": 8.7.0
-    "@sentry/utils": 8.7.0
-  checksum: df9e8ba3b5a69afc036d0b95769793192fd955624bf7fa01203cb3d3ff788a110415bc250251f433829c7969782d4ba3b8994f7a4fcc6ccca8529d35df45a191
+    "@sentry-internal/browser-utils": 8.8.0
+    "@sentry-internal/feedback": 8.8.0
+    "@sentry-internal/replay": 8.8.0
+    "@sentry-internal/replay-canvas": 8.8.0
+    "@sentry/core": 8.8.0
+    "@sentry/types": 8.8.0
+    "@sentry/utils": 8.8.0
+  checksum: 774b90d7f9bea6df3a403154f49e5178e7ea5bbb494578d078491531ffa6b1015a7e38245293155ea76254964b48ad86779e928f480817c6efeef1648e8bef87
   languageName: node
   linkType: hard
 
@@ -6120,44 +6121,44 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/core@npm:8.7.0":
-  version: 8.7.0
-  resolution: "@sentry/core@npm:8.7.0"
+"@sentry/core@npm:8.8.0":
+  version: 8.8.0
+  resolution: "@sentry/core@npm:8.8.0"
   dependencies:
-    "@sentry/types": 8.7.0
-    "@sentry/utils": 8.7.0
-  checksum: 76b4ce452bc14a82aedaca3ae32c85cf5613456a730fac1308843d20c0bd2a105589ffb26bdc633ea106a9a2478a1021ae9ef2ec84f067b5cc2fefdef759f742
+    "@sentry/types": 8.8.0
+    "@sentry/utils": 8.8.0
+  checksum: c2a603b50d60d864acf3356d4a81f9314b1bc90b26169b0c0b12c0bd3bc41b1c0a00e890e774f5b5295e5f957b2caffa5e627e86d69ef7b23f98a398e52d22b6
   languageName: node
   linkType: hard
 
-"@sentry/react@npm:8.7.0":
-  version: 8.7.0
-  resolution: "@sentry/react@npm:8.7.0"
+"@sentry/react@npm:8.8.0":
+  version: 8.8.0
+  resolution: "@sentry/react@npm:8.8.0"
   dependencies:
-    "@sentry/browser": 8.7.0
-    "@sentry/core": 8.7.0
-    "@sentry/types": 8.7.0
-    "@sentry/utils": 8.7.0
+    "@sentry/browser": 8.8.0
+    "@sentry/core": 8.8.0
+    "@sentry/types": 8.8.0
+    "@sentry/utils": 8.8.0
     hoist-non-react-statics: ^3.3.2
   peerDependencies:
     react: ^16.14.0 || 17.x || 18.x || 19.x
-  checksum: 9baf3bfb26531893b6cb52ac22ab91f51ebdcc39ab5a96a716906818825db552e4b74f7d8404d73fc95a7620a4ecd8268d644fb3c089189780eef81b019f48d1
+  checksum: 0662ecfb878130ebb616cf2da5ab81fd57775eeeeb63e475b21facab522e748578290596e9f2d9059a600a70f3eba2ae28a13fe65559f24f5c58fb2e34f89d14
   languageName: node
   linkType: hard
 
-"@sentry/types@npm:8.7.0":
-  version: 8.7.0
-  resolution: "@sentry/types@npm:8.7.0"
-  checksum: f4abe8646cd981107e400eab6087b74e6ed22007c183a0f2f98d95fa7ea7813f9a7fd7b072c4352cc8eebe26fc762b7538d6da4dd1abf55b1e16ce585388be50
+"@sentry/types@npm:8.8.0":
+  version: 8.8.0
+  resolution: "@sentry/types@npm:8.8.0"
+  checksum: 7131851f4fd1c65115dc95a2f58f767254dc1ed8cae8ee3962eacefa337f695413ba6c8fd78af90f9217a9fc5a6f7509975db231c3dad9d33b54409112f53381
   languageName: node
   linkType: hard
 
-"@sentry/utils@npm:8.7.0":
-  version: 8.7.0
-  resolution: "@sentry/utils@npm:8.7.0"
+"@sentry/utils@npm:8.8.0":
+  version: 8.8.0
+  resolution: "@sentry/utils@npm:8.8.0"
   dependencies:
-    "@sentry/types": 8.7.0
-  checksum: 4f66a88b46564b36631d8c580d40ac3c61c3dbbe81637a84dff5191b3fd64d6a2c862e9cd7a794676e659edc2d89d5480cc9999f6df30b5ce8f160cb7cc6c180
+    "@sentry/types": 8.8.0
+  checksum: 74830a39ac6e4791228703d79e855be5a78d99e0d8c34929bfc28effe3dba93a0425f88d347dfc218d097123e1d973f2afb81a89caf8e32b2696f366f17a8b73
   languageName: node
   linkType: hard
 
@@ -7223,6 +7224,17 @@ __metadata:
     typescript:
       optional: true
   checksum: a649ce13b1a068db1abddf3d4c8208b71e2338a7fa11c8902dbe2a5e544812577474778891385b628397d90302df62fa608f1e8f6b678dcb38ea47876088aeed
+  languageName: node
+  linkType: hard
+
+"@storybook/preset-scss@npm:1.0.3":
+  version: 1.0.3
+  resolution: "@storybook/preset-scss@npm:1.0.3"
+  peerDependencies:
+    css-loader: "*"
+    sass-loader: "*"
+    style-loader: "*"
+  checksum: 4f1cf1f57a4cd277d76afad5fc4f677436dc3ae3753ce549a6395c0aa9f3d9cf58e9d04c7f8b2cccd2e01929ae563764cca03c016c7e3fed4044a6409e8ca8cd
   languageName: node
   linkType: hard
 
@@ -8767,9 +8779,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitejs/plugin-react@npm:4.3.0":
-  version: 4.3.0
-  resolution: "@vitejs/plugin-react@npm:4.3.0"
+"@vitejs/plugin-react@npm:4.3.1":
+  version: 4.3.1
+  resolution: "@vitejs/plugin-react@npm:4.3.1"
   dependencies:
     "@babel/core": ^7.24.5
     "@babel/plugin-transform-react-jsx-self": ^7.24.5
@@ -8778,7 +8790,7 @@ __metadata:
     react-refresh: ^0.14.2
   peerDependencies:
     vite: ^4.2.0 || ^5.0.0
-  checksum: e4642c081e74e701fc07f03f505b44eb428d7105461b8026e7364ecd30dcf7785126bf272767a3bc36899b6abe85479af444612ef6d09509d9bc7d6025cac925
+  checksum: 57872e0193c7e545c5ef4852cbe1adf17a6b35406a2aba4b3acce06c173a9dabbf6ff4c72701abc11bb3cbe24a056f5054f39018f7034c9aa57133a3a7770237
   languageName: node
   linkType: hard
 
@@ -10513,7 +10525,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromatic@npm:11.5.1, chromatic@npm:^11.4.0":
+"chromatic@npm:11.5.3":
+  version: 11.5.3
+  resolution: "chromatic@npm:11.5.3"
+  peerDependencies:
+    "@chromatic-com/cypress": ^0.*.* || ^1.0.0
+    "@chromatic-com/playwright": ^0.*.* || ^1.0.0
+  peerDependenciesMeta:
+    "@chromatic-com/cypress":
+      optional: true
+    "@chromatic-com/playwright":
+      optional: true
+  bin:
+    chroma: dist/bin.js
+    chromatic: dist/bin.js
+    chromatic-cli: dist/bin.js
+  checksum: 121072ab353aa62a9187d0dc80913d5de517222e3d9e43aa855ee027bab151eb73944596a9a43a677fc611bc4573581f3afeadf986deb9d92aa9a0ad8129e275
+  languageName: node
+  linkType: hard
+
+"chromatic@npm:^11.4.0":
   version: 11.5.1
   resolution: "chromatic@npm:11.5.1"
   peerDependencies:
@@ -13443,12 +13474,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"express-rate-limit@npm:7.3.0":
-  version: 7.3.0
-  resolution: "express-rate-limit@npm:7.3.0"
+"express-rate-limit@npm:7.3.1":
+  version: 7.3.1
+  resolution: "express-rate-limit@npm:7.3.1"
   peerDependencies:
     express: 4 || 5 || ^5.0.0-beta.1
-  checksum: 6fe4c775391b0c516f1b37fc134fd6f924b8c0c81e7b68108d1ce5fa16aee3ffb9132c8785562ad71ad89f333093358f9750e0f25af060b8f03882205477b349
+  checksum: d82e374319be23bf68b9a6b572f431ec4021ea20f83d88eb724d197e0a88f1755898f66501f2696eb5ff49bcbd5c84dfbf6c0629989c01b3ef303b45acd9d7ec
   languageName: node
   linkType: hard
 
@@ -23424,12 +23455,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uuid@npm:9.0.1, uuid@npm:^9.0.0":
-  version: 9.0.1
-  resolution: "uuid@npm:9.0.1"
+"uuid@npm:10.0.0":
+  version: 10.0.0
+  resolution: "uuid@npm:10.0.0"
   bin:
     uuid: dist/bin/uuid
-  checksum: 39931f6da74e307f51c0fb463dc2462807531dc80760a9bff1e35af4316131b4fc3203d16da60ae33f07fdca5b56f3f1dd662da0c99fea9aaeab2004780cc5f4
+  checksum: 4b81611ade2885d2313ddd8dc865d93d8dccc13ddf901745edca8f86d99bc46d7a330d678e7532e7ebf93ce616679fb19b2e3568873ac0c14c999032acb25869
   languageName: node
   linkType: hard
 
@@ -23439,6 +23470,15 @@ __metadata:
   bin:
     uuid: dist/bin/uuid
   checksum: 5575a8a75c13120e2f10e6ddc801b2c7ed7d8f3c8ac22c7ed0c7b2ba6383ec0abda88c905085d630e251719e0777045ae3236f04c812184b7c765f63a70e58df
+  languageName: node
+  linkType: hard
+
+"uuid@npm:^9.0.0":
+  version: 9.0.1
+  resolution: "uuid@npm:9.0.1"
+  bin:
+    uuid: dist/bin/uuid
+  checksum: 39931f6da74e307f51c0fb463dc2462807531dc80760a9bff1e35af4316131b4fc3203d16da60ae33f07fdca5b56f3f1dd662da0c99fea9aaeab2004780cc5f4
   languageName: node
   linkType: hard
 
@@ -23542,7 +23582,47 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:5.2.12, vite@npm:^5.0.0":
+"vite@npm:5.2.13":
+  version: 5.2.13
+  resolution: "vite@npm:5.2.13"
+  dependencies:
+    esbuild: ^0.20.1
+    fsevents: ~2.3.3
+    postcss: ^8.4.38
+    rollup: ^4.13.0
+  peerDependencies:
+    "@types/node": ^18.0.0 || >=20.0.0
+    less: "*"
+    lightningcss: ^1.21.0
+    sass: "*"
+    stylus: "*"
+    sugarss: "*"
+    terser: ^5.4.0
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  peerDependenciesMeta:
+    "@types/node":
+      optional: true
+    less:
+      optional: true
+    lightningcss:
+      optional: true
+    sass:
+      optional: true
+    stylus:
+      optional: true
+    sugarss:
+      optional: true
+    terser:
+      optional: true
+  bin:
+    vite: bin/vite.js
+  checksum: 79620413e45804494bedb81f2b78b48ca1d26fb026894a114a2f40cb1a3ad9b6783e777bc8969a51f8711e168b4db93a9563a5af027c80eecf000ef9b675a3be
+  languageName: node
+  linkType: hard
+
+"vite@npm:^5.0.0":
   version: 5.2.12
   resolution: "vite@npm:5.2.12"
   dependencies:

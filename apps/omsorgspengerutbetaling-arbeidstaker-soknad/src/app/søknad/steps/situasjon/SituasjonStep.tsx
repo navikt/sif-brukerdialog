@@ -90,7 +90,7 @@ const SituasjonStep = () => {
     });
 
     const stepId = StepId.SITUASJON;
-    const step = getSøknadStepConfigForStep(stepId);
+    const step = getSøknadStepConfigForStep(søknadsdata, stepId);
 
     const { goBack } = useStepNavigation(step);
 
