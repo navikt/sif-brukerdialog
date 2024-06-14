@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.15.9
+
+### Patch Changes
+
+-   99e1bd2: Pakkeoppdateringer - minor/patch
+
 ## 10.15.8
 
 ### Patch Changes

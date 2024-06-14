@@ -122,6 +122,8 @@ export const nb = {
 
     'statusISak.mottattSøknad.tittel': 'Vi har fått søknaden din om pleiepenger',
     'statusISak.mottattEndringsmelding.tittel': 'Vi har fått endringsmelding fra deg',
+    'statusISak.mottattEttersendelse.legeerklæring.tittel': 'Vi har fått ettersendelse av legeerklæring fra deg',
+    'statusISak.mottattEttersendelse.annet.tittel': 'Vi har fått ettersendelse av dokumenter fra deg',
     'statusISak.ferdigBehandlet.tittel': 'Du har fått vedtak om pleiepenger',
     'statusISak.forventetSvar.søknad.tittel': 'Søknaden vil bli ferdig behandlet',
     'statusISak.forventetSvar.søknad.info':
@@ -129,6 +131,8 @@ export const nb = {
     'statusISak.forventetSvar.endring.tittel': 'Endringen er ferdig behandlet',
     'statusISak.forventetSvar.endring.info':
         'Endringsmeldingen vil oppdatere saken og du vil få ett nytt vedtaksbrev når endringene er ferdig behandlet.',
+    'statusISak.forventetSvar.ettersendelse.tittel': 'Ettersendelsen ...',
+    'statusISak.forventetSvar.ettersendelse.info': 'Ettersendelsen vil ...',
     'statusISak.ingenHendelser':
         '<p>Hei, vi kan dessverre ikke vise informasjon om saken din enda.</p><p>Hvis du har spørsmål, kan du ta kontakt via {lenke}.</p>',
     'statusISak.ingenHendelser.skrivTilOssLenkeTekst': 'Skriv til oss',
@@ -154,4 +158,6 @@ export const nb = {
     'statusISak.søknadStatusContent.readMoreHeader': 'Se dokumenter og bekreftelse til arbeidsgiver',
     'statusISak.søknadStatusContent.readMoreHeader.ingenArbeidsgiver': 'Se dokumenter',
     'statusISak.søknadStatusContent.dokumenterISøknad': 'Søknad og eventuelle vedlegg i søknad',
+    'statusISak.søknadStatusContent.ettersendelse.dokumenter': 'Dokumenter i ettersendelse',
+    'statusISak.søknadStatusContent.ettersendelse.readMoreHeader': 'Se dokumenter',
 };

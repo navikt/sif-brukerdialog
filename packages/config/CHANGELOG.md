@@ -1,5 +1,11 @@
 # config
 
+## 0.9.29
+
+### Patch Changes
+
+-   99e1bd2: Pakkeoppdateringer - minor/patch
+
 ## 0.9.28
 
 ### Patch Changes

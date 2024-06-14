@@ -1,5 +1,21 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.12.4
+
+### Patch Changes
+
+-   99e1bd2: Pakkeoppdateringer - minor/patch
+-   Updated dependencies [74ca01b]
+-   Updated dependencies [99e1bd2]
+    -   @navikt/appstatus-react-ds@2.18.8
+    -   @navikt/sif-common-formik-ds@1.9.1
+    -   @navikt/sif-common-soknad-ds@10.15.9
+    -   @navikt/sif-common-forms-ds@8.23.1
+    -   @navikt/sif-common-core-ds@9.17.10
+    -   @navikt/sif-common-sentry@0.26.7
+    -   @navikt/sif-common-amplitude@2.25.5
+    -   @navikt/sif-common-utils@3.46.3
+
 ## 3.12.3
 
 ### Patch Changes

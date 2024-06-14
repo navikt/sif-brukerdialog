@@ -7,7 +7,7 @@ import {
     InnsendtPleiepengesøknad,
     InnsendtSøknad,
     InnsendtSøknadstype,
-} from '../types/Søknad';
+} from '../types/InnsendtSøknad';
 
 require('dayjs/locale/nb');
 

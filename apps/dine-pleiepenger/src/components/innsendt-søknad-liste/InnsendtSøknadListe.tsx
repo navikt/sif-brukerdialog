@@ -1,5 +1,5 @@
 import { Alert, Box, Button, ExpansionCard, HStack, VStack } from '@navikt/ds-react';
-import { InnsendtSøknad } from '../../types/Søknad';
+import { InnsendtSøknad } from '../../types/InnsendtSøknad';
 import InnsendtSøknadTitle from './InnsendtSøknadTitle';
 import InnsendtSøknadContent from './InnsendtSøknadContent';
 import Skeleton from 'react-loading-skeleton';

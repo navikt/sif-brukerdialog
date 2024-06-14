@@ -51,6 +51,7 @@ export const exchangeTokenAndPrepRequest = async (
                 `Unable to exchange token for dine-pleiepenger-backend token, requestId: ${context.requestId}, reason: ${tokenX.error.message}`,
             );
         }
+
         return {
             url: `${serverUrl}/${path}`,
             headers: {
@@ -58,6 +59,7 @@ export const exchangeTokenAndPrepRequest = async (
                 'Content-Type': contentType,
                 'x-request-id': context.requestId,
                 'X-K9-Brukerdialog': serverEnv.NAIS_CLIENT_ID!,
+                'X-Correlation-ID': context.requestId,
             },
         };
     }
@@ -67,6 +69,7 @@ export const exchangeTokenAndPrepRequest = async (
             'Content-Type': contentType,
             'x-request-id': context.requestId,
             'X-K9-Brukerdialog': serverEnv.NAIS_CLIENT_ID!,
+            'X-Correlation-ID': context.requestId,
         },
     };
 };
