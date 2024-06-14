@@ -1,6 +1,5 @@
 import { BodyLong, GuidePanel, Heading, Link } from '@navikt/ds-react';
 import React from 'react';
-import InfoList from '@navikt/sif-common-core-ds/src/components/lists/info-list/InfoList';
 import { AppText } from '../../i18n';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 
@@ -37,23 +36,7 @@ const VelkommenGuide: React.FunctionComponent<Props> = ({ navn }) => (
             <p>
                 <AppText id="page.velkommen.guide.tekst.3" />
             </p>
-            <p>
-                <strong>
-                    <AppText id="page.velkommen.guide.tekst.4" />
-                </strong>
-            </p>
         </BodyLong>
-        <InfoList>
-            <li>
-                <AppText id="page.velkommen.guide.tekst.4.1" />
-            </li>
-            <li>
-                <AppText id="page.velkommen.guide.tekst.4.2" />
-            </li>
-            <li>
-                <AppText id="page.velkommen.guide.tekst.4.3" />
-            </li>
-        </InfoList>
     </GuidePanel>
 );
 
