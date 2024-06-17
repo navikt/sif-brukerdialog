@@ -1,4 +1,4 @@
-name: Deploy pleiepenger-sykt-barn to prod
+name: Prod - deploy pleiepenger-sykt-barn
 run-name: Deploy pleiepenger-sykt-barn to prod
 
 on:
@@ -10,20 +10,20 @@ on:
     workflow_dispatch:
 
 jobs:
-  run-tests:
-    uses: ./.github/workflows/test.pleiepenger-sykt-barn.yml
-    secrets: inherit
+    run-tests:
+        uses: ./.github/workflows/test.pleiepenger-sykt-barn.yml
+        secrets: inherit
 
-  deploy-to-prod:
-    name: Deploy pleiepenger-sykt-barn to prod
-    needs: [run-tests]
-    uses: ./.github/workflows/.deploy-app-to-prod.yml
-    secrets: inherit
-    permissions:
-      contents: write
-      security-events: write
-      id-token: write
-      actions: read
-    with:
-        app-name: 'pleiepenger-sykt-barn'
-        working-directory: 'apps/pleiepenger-sykt-barn'
+    deploy-to-prod:
+        name: Deploy pleiepenger-sykt-barn to prod
+        needs: [run-tests]
+        uses: ./.github/workflows/.deploy-app-to-prod.yml
+        secrets: inherit
+        permissions:
+            contents: write
+            security-events: write
+            id-token: write
+            actions: read
+        with:
+            app-name: 'pleiepenger-sykt-barn'
+            working-directory: 'apps/pleiepenger-sykt-barn'

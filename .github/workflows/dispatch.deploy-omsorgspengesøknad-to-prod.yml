@@ -1,4 +1,4 @@
-name: Deploy omsorgspengesøknad to prod
+name: Prod - deploy omsorgspengesøknad
 run-name: Deploy omsorgspengesøknad to prod
 
 on:
