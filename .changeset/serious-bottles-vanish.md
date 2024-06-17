@@ -3,4 +3,4 @@
 ---
 
 -   Legge til melding når bruker velger "Annet" for den andre forelderens situasjon
--   Endre tekst i melding om periode
+-   Fjerne tekst om at en allikevel kan fortsette
