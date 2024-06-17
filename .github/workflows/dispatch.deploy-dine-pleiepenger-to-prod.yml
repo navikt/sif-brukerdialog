@@ -1,5 +1,5 @@
-name: Deploy dine-pleiepenger to prod
-run-name: Deploy dine-pleiepenger to prod
+name: Prod - deploy dine-pleiepenger
+run-name: Prod - deploy dine-pleiepenger to prod
 
 on:
     push:
