@@ -66,7 +66,7 @@ const SakPage: React.FunctionComponent<Props> = ({ sak, pleietrengende, saksbeha
                         {statusISak?.status === Behandlingsstatus.AVSLUTTET ? null : (
                             <VStack gap="5">
                                 <Saksbehandlingstid
-                                    frist={sak.saksbehandlingsFrist}
+                                    frist={sak.utledetStatus.saksbehandlingsFrist}
                                     saksbehandlingstidUker={saksbehandlingstidUker}
                                     venteårsak={statusISak?.venteårsak}
                                 />
