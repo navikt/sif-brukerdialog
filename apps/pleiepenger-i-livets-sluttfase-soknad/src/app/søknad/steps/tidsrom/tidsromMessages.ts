@@ -4,7 +4,7 @@ const nb = {
     'step.tidsrom.stepIndicatorLabel': 'Periode',
     'step.tidsrom.counsellorPanel.avsnitt.1': 'Nå skal du velge de dagene du må være hjemme fra jobb for å gi pleie.',
     'step.tidsrom.counsellorPanel.avsnitt.2':
-        'Du kan søke tre måneder tilbake i tid, og to uker frem i tid. Hvis du etter 2 uker fortsatt er borte fra jobb for å gi pleie, kan du sende inn en ny søknad.',
+        'Du kan søke tre måneder tilbake i tid, og to uker frem i tid. Hvis du etter to uker fortsatt er borte fra jobb for å gi pleie, kan du sende inn en ny søknad.',
     'step.tidsrom.counsellorPanel.avsnitt.3':
         'Husk at det ikke er rett til pleiepenger på dager hvor personen er innlagt på sykehus eller annen institusjon.',
 
