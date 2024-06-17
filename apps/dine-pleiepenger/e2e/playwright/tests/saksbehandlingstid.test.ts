@@ -121,7 +121,7 @@ test('Hverken Saksbehandlingstid eller behandlingstid', async ({ page }) => {
         await route.fulfill({ status: 200, body: JSON.stringify(response) });
     });
     await page.goto('http://localhost:8080/innsyn');
-    await expect(page.getByText('Forventet behandlingstid er 7 uker fra vi fikk søknaden din.')).toBeVisible();
+    await expect(page.getByText('Forventet behandlingstid er 7 uker fra vi mottar søknad.')).toBeVisible();
 });
 
 test('Sak er ikke under behandling - ikke vis saksbehandlingstid', async ({ page }) => {
