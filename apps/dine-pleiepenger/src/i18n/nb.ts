@@ -29,7 +29,7 @@ export const nb = {
 
     'svarfrist.tittel': 'Saksbehandlingstid',
     'svarfrist.forventetBehandlingstid':
-        'Forventet behandlingstid er {saksbehandlingstidUker, plural, one {# uke} other {# uker}} fra vi fikk søknaden din.',
+        'Forventet behandlingstid er {saksbehandlingstidUker, plural, one {# uke} other {# uker}} fra vi mottar søknad.',
     'svarfrist.fristPassert.1':
         'Vi jobber fremdeles med søknaden din. Noen ganger kan det ta lengre tid, spesielt hvis saken er komplisert eller vi har ventet på dokumenter.',
     'svarfrist.fristPassert.2':
