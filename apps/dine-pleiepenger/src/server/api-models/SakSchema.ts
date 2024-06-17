@@ -14,16 +14,10 @@ export const UtledetStatusSakSchema = z.object({
         z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
         z.undefined(),
     ]),
-    // .nullable(),
 });
 
 export const SakSchema = z.object({
     saksnummer: z.string(),
     utledetStatus: UtledetStatusSakSchema,
-    // saksbehandlingsFrist: z.union([
-    //     z.preprocess((val) => (val === null ? undefined : val), z.undefined() || z.string()),
-    //     z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
-    //     z.undefined(),
-    // ]),
     behandlinger: z.array(BehandlingSchema),
 });
