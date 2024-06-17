@@ -1,4 +1,4 @@
-name: Deploy pleiepenger-i-livets-sluttfase-soknad to prod
+name: Prod - deploy pleiepenger-i-livets-sluttfase-soknad
 run-name: Deploy pleiepenger-i-livets-sluttfase-soknad to prod
 
 on:

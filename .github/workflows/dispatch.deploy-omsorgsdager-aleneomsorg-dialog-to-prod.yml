@@ -1,4 +1,4 @@
-name: Deploy omsorgsdager-aleneomsorg-dialog to prod
+name: Prod - deploy omsorgsdager-aleneomsorg-dialog
 run-name: Deploy omsorgsdager-aleneomsorg-dialog to prod
 
 on:
