@@ -4,7 +4,7 @@ const nb = {
     'step.tidsrom.stepIndicatorLabel': 'Periode',
     'step.tidsrom.counsellorPanel.avsnitt.1': 'Nå skal du velge de dagene du må være hjemme fra jobb for å gi pleie.',
     'step.tidsrom.counsellorPanel.avsnitt.2':
-        'Du kan få dekket 60 dager hjemme fra jobb. De kan du få alene, eller du kan dele de med andre personer. Dere har i så fall 60 dager å dele på.',
+        'Du kan søke tre måneder tilbake i tid, og to uker frem i tid. Hvis du etter 2 uker fortsatt er borte fra jobb for å gi pleie, kan du sende inn en ny søknad.',
     'step.tidsrom.counsellorPanel.avsnitt.3':
         'Husk at det ikke er rett til pleiepenger på dager hvor personen er innlagt på sykehus eller annen institusjon.',
 
@@ -52,7 +52,7 @@ const nb = {
     'steg.tidsrom.hvilketTidsrom.tom': 'Til og med',
 
     'dagerMedPleie.info.1':
-        'Velg i kalenderen hvilke dager du skal gi pleie. Du kan velge dager opptil 2 uker frem i tid.',
+        'Velg i kalenderen hvilke dager du er borte fra jobben for å gi pleie. Du kan velge hele uker ved å klikke på ukenummer.',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };
