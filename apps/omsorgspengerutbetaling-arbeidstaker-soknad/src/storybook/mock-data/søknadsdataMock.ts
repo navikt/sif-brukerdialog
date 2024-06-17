@@ -7,15 +7,9 @@ export const søknadsdataMock: Søknadsdata = {
     velkommen: {
         harForståttRettigheterOgPlikter: true,
     },
-    fosterbarn: {
-        type: 'harFosterbarn',
-        fosterbarn: [
-            {
-                navn: 'Tore Tang',
-                fødselsnummer: '09898098122',
-                id: '4ad7bb25-4d16-4743-b886-d53452d8e815',
-            },
-        ],
+    dineBarn: {
+        harDeltBosted: false,
+        andreBarn: [],
     },
     situasjon: {
         '123451234': {

@@ -1,7 +1,7 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import { PleietrengendeMedSak } from '../../../src/server/api-models/PleietrengendeMedSakSchema';
 import { Behandlingsstatus } from '../../../src/server/api-models/Behandlingsstatus';
-import { Søknadstype } from '../../../src/server/api-models/Søknadstype';
+import { Innsendelsestype } from '../../../src/server/api-models/Innsendelsestype';
 
 export const sakerMock: PleietrengendeMedSak[] = [
     {
@@ -22,10 +22,11 @@ export const sakerMock: PleietrengendeMedSak[] = [
                     status: Behandlingsstatus.UNDER_BEHANDLING,
                     opprettetTidspunkt: new Date('2024-02-14T11:59:40.061Z'),
                     avsluttetTidspunkt: new Date('2024-02-14T11:59:40.061Z'),
-                    søknader: [
+                    innsendelser: [
                         {
-                            søknadstype: Søknadstype.ENDRINGSMELDING,
-                            k9FormatSøknad: {
+                            søknadId: 'af5088f4-7739-4c47-8665-ee1397200e8f',
+                            innsendelsestype: Innsendelsestype.ENDRINGSMELDING,
+                            k9FormatInnsendelse: {
                                 søknadId: 'af5088f4-7739-4c47-8665-ee1397200e8f',
                                 mottattDato: new Date('2024-02-14T11:59:40.061Z'),
                                 ytelse: {

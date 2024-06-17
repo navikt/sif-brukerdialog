@@ -1,102 +1,90 @@
-import * as countries from 'i18n-iso-countries';
+import { getNames, registerLocale, alpha2ToAlpha3, getName } from 'i18n-iso-countries';
 import * as langNB from 'i18n-iso-countries/langs/nb.json';
 import * as langNN from 'i18n-iso-countries/langs/nn.json';
+import { eøsCountries } from './eøsCountries';
 
-countries.registerLocale(langNB);
-countries.registerLocale(langNN);
+registerLocale(langNB);
+registerLocale(langNN);
 
-/** Kilde:
- * https://www.nav.no/no/person/flere-tema/arbeid-og-opphold-i-utlandet/relatert-informasjon/eos-landene
+interface Country {
+    name: string;
+    alpha3: string;
+}
+
+/**
+ * NAV sin landkode for Kosovo er ikke lik koden som brukes i i18n-iso-countries.
+ * Nedenfor er et par utils for å håndtere disse ulikhetene
  */
-export const filteredListEØSCountries = (countryOptionValue: string, shouldFilter?: boolean) => {
-    if (shouldFilter) {
-        switch (countryOptionValue) {
-            case 'BE': // Belgia
-            case 'BG': // Bulgaria
-            case 'DK': // Danmark
-            case 'EE': // Estland
-            case 'FI': // Finland
-            case 'FR': // Frankrike
-            case 'GR': // Hellas
-            case 'IE': // Irland
-            case 'IS': // Island
-            case 'IT': // Italia
-            case 'HR': // Kroatia
-            case 'CY': // Kypros
-            case 'LV': // Latvia
-            case 'LI': // Liechtenstein
-            case 'LT': // Litauen
-            case 'LU': // Luxembourg
-            case 'MT': // Malta
-            case 'NL': // Nederland
-            case 'NO': // Norge
-            case 'PL': // Polen
-            case 'PT': // Portugal
-            case 'RO': // Romania
-            case 'SK': // Slovakia
-            case 'SI': // Slovenia
-            case 'ES': // Spania
-            case 'CH': // Sveits
-            case 'SE': // Sverige
-            case 'CZ': // Tsjekkia
-            case 'DE': // Tyskland
-            case 'HU': // Ungarn
-            case 'AT': // Østerrike
-                return true;
-            default:
-                return false;
-        }
-    } else {
-        // Filter ut Antarktis
-        return countryOptionValue !== 'AQ';
+export const NAV_KOSOVO_ALPHA3_CODE = 'XXK';
+export const ISO_COUNTRIES_KOSOVO_ALPHA3_CODE = alpha2ToAlpha3('XK') || 'XKX';
+export const INVALID_ISO_COUNTRIES_KOSOVO_ALPHA3_CODE = 'XKK'; // Ugyldig kode i i18n-iso-countries
+
+/** Finner riktig kode for innsending til NAV systemer */
+export const ensureValid3AlphaCodeForNAV = (alphaCode: string): string => {
+    const alpha3Code = alphaCode.length === 2 ? alpha2ToAlpha3(alphaCode) : alphaCode;
+    if (!alpha3Code) {
+        throw `countryUtils: ensureValidCodeForNAV:  ${alphaCode}`;
     }
+    if (
+        // Sjekk begge kodene for å håndtere mellomlagringer med ugyldig kode
+        [INVALID_ISO_COUNTRIES_KOSOVO_ALPHA3_CODE, ISO_COUNTRIES_KOSOVO_ALPHA3_CODE].includes(alpha3Code.toUpperCase())
+    ) {
+        return NAV_KOSOVO_ALPHA3_CODE;
+    }
+    return alpha3Code;
 };
 
-export const getLocaleKey = (locale: string): string => {
-    switch (locale) {
-        case 'nn':
-        case 'no-NN':
-            return 'nn';
-        default:
-            return 'nb';
+/** Finner riktig kode for bruk mot i18n-iso-countries */
+export const ensureValidAlpha3CodeForIsoCountries = (alphaCode: string): string => {
+    const alpha3Code = alphaCode.length === 2 ? alpha2ToAlpha3(alphaCode) : alphaCode;
+    if (!alpha3Code) {
+        throw `countryUtils: ensureValidCodeForIsoCountries:  ${alphaCode}`;
     }
+    if (alpha3Code === NAV_KOSOVO_ALPHA3_CODE) {
+        return ISO_COUNTRIES_KOSOVO_ALPHA3_CODE;
+    }
+    return alpha3Code;
 };
 
+/**
+ * @param alphaCode landkode
+ * @param locale språkkode
+ * @returns navn på land
+ */
 export const getCountryName = (alphaCode: string, locale: string): string => {
-    // i18n-iso-countries 7.5.0 bruker 'XKX' 'alpha3Code' for Kosovo. 'XXK' kode brukes i NAV.
-    // Endrer NAV sin landkode av Kosovo til i18n-iso-countries sin landkode for å hente riktig landsnavn.
-    if (alphaCode === 'XXK') {
-        alphaCode = 'XKX';
-    }
-    const name = countries.getName(alphaCode, getLocaleKey(locale));
+    const lang = locale === 'nn' || locale === 'no-NN' ? 'nn' : 'nb';
+    const name = getName(ensureValidAlpha3CodeForIsoCountries(alphaCode), lang);
     if (!name) {
         throw `countryUtils: getCountryName:  ${alphaCode}`;
     }
     return name;
 };
 
-export const getAlpha3Code = (alpha2Code: string) => {
-    const countryAlpha3Code = countries.alpha2ToAlpha3(alpha2Code);
-    if (!countryAlpha3Code) {
-        throw `countryUtils: getAlpha3Code:  ${alpha2Code}`;
-    }
-
-    // i18n-iso-countries 7.5.0 bruker 'XKX' 'alpha3Code' for Kosovo. 'XXK' kode brukes i NAV.
-    // Endrer i18n-iso-countries sin landkode til landkode som brukes i NAV for å sende riktig kode videre.
-    return countryAlpha3Code === 'XKX' ? 'XXK' : countryAlpha3Code.toUpperCase();
+/**
+ * @param alphaCode Alpha2 eller Alpha3 kode for landet som brukes for å slå opp i listen over eøs/eftaland
+ * @returns boolean
+ */
+export const countryIsMemberOfEøsOrEfta = (alphaCode: string): boolean => {
+    return eøsCountries.some((country) => (alphaCode.length === 2 ? country.alpha2 : country.alpha3) === alphaCode);
 };
 
-export const countryIsMemberOfEøsOrEfta = (isoCode: string) => {
-    let isoCodeToUse: string | undefined = isoCode.toUpperCase();
-    if (isoCodeToUse === 'XXK') {
-        isoCodeToUse = 'XKX';
-    }
-    isoCodeToUse = isoCodeToUse.length === 2 ? isoCodeToUse : countries.alpha3ToAlpha2(isoCodeToUse);
-    if (!isoCodeToUse) {
-        throw `countryUtils: countryIsMemberOfEøsOrEfta:  ${isoCodeToUse}`;
-    }
+/**
+ *
+ * @param onlyEuAndEftaCountries Om bare eøs/efta-land skal returneres
+ * @param lang Språkkode som skal brukes
+ * @returns liste over alle land/kun eøs-land med navn ut fra lang
+ */
 
-    return filteredListEØSCountries(isoCodeToUse.toUpperCase(), true) === true;
+export const getCountries = (onlyEuAndEftaCountries: boolean, lang: string): Array<Country> => {
+    const names: [string, any][] = Object.entries(getNames(lang));
+    return names
+        .sort((a: string[], b: string[]) => a[1].localeCompare(b[1], lang))
+        .filter((countryOptionValue: string[]) =>
+            onlyEuAndEftaCountries ? countryIsMemberOfEøsOrEfta(countryOptionValue[0]) : true,
+        )
+        .map((countryOptionValue) => ({
+            name: countryOptionValue[1],
+            alpha2: countryOptionValue[0],
+            alpha3: ensureValid3AlphaCodeForNAV(countryOptionValue[0]),
+        }));
 };
-
-export const getCountries = () => countries;

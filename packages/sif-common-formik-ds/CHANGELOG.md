@@ -1,5 +1,17 @@
 # @navikt/sif-common-formik-ds
 
+## 1.9.1
+
+### Patch Changes
+
+-   99e1bd2: Pakkeoppdateringer - minor/patch
+
+## 1.9.0
+
+### Minor Changes
+
+-   a739a56: Håndtere lankode for Kosovo på en bedre måte. Refactoring av CountrySelect.
+
 ## 1.8.8
 
 ### Patch Changes

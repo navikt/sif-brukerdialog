@@ -1,4 +1,4 @@
-name: Deploy sif-ettersending to prod
+name: Prod - deploy sif-ettersending
 run-name: Deploy sif-ettersending to prod
 
 on:

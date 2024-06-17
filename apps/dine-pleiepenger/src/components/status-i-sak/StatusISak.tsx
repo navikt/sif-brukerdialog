@@ -2,14 +2,14 @@ import { Alert, BodyLong, BodyShort, Box, Heading, Link, Switch, VStack } from '
 import React, { useState } from 'react';
 import { ChevronRightIcon } from '@navikt/aksel-icons';
 import { default as NextLink } from 'next/link';
+import { AppText, useAppIntl } from '../../i18n';
 import { Sak } from '../../server/api-models/SakSchema';
-import { formatSøknadshendelseTidspunkt, getAlleHendelserISak } from '../../utils/sakUtils';
+import { formatSakshendelseTidspunkt, getAlleHendelserISak } from '../../utils/sakUtils';
+import SkrivTilOssLenke from '../lenker/SkrivTilOssLenke';
 import { Process } from '../process';
 import ProcessStep from '../process/ProcessStep';
-import { getProcessStepsFraSøknadshendelser } from './statusISakUtils';
-import { AppText, useAppIntl } from '../../i18n';
-import SkrivTilOssLenke from '../lenker/SkrivTilOssLenke';
 import StatusISakHeading from './parts/StatusISakHeading';
+import { getProcessStepsFraSakshendelser } from './statusISakUtils';
 
 interface Props {
     sak: Sak;
@@ -21,7 +21,7 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser, tit
     const [reverseDirection, setReverseDirection] = useState(false);
     const { text } = useAppIntl();
     const hendelser = getAlleHendelserISak(sak);
-    const processSteps = getProcessStepsFraSøknadshendelser(text, hendelser);
+    const processSteps = getProcessStepsFraSakshendelser(text, hendelser);
 
     if (processSteps.length === 0) {
         return (
@@ -77,7 +77,7 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser, tit
                                     {step.title}{' '}
                                     {step.timestamp ? (
                                         <BodyShort className="mb-2">
-                                            {formatSøknadshendelseTidspunkt(step.timestamp)}
+                                            {formatSakshendelseTidspunkt(step.timestamp)}
                                         </BodyShort>
                                     ) : null}
                                 </Heading>
