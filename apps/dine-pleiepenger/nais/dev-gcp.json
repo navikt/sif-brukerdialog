@@ -22,10 +22,6 @@
         "NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE": "dev-gcp:dusseldorf:k9-brukerdialog-api",
         "NEXT_PUBLIC_APPSTATUS_DATASET": "staging",
         "NEXT_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
-        "NEXT_PUBLIC_FEATURE_APPSTATUS": "off",
-        "NEXT_PUBLIC_FEATURE_HENT_SAKER": "on",
-        "NEXT_PUBLIC_FEATURE_HENT_BEHANDLINGSTID": "on",
-        "NEXT_PUBLIC_FEATURE_HENT_MELLOMLAGRING": "off",
         "NPM_CONFIG_CACHE": "/tmp",
 
         "NEXT_PUBLIC_SKJEMA_PLEIEPENGER_URL": "https://pleiepengesoknad.intern.dev.nav.no/soknad",
@@ -44,6 +40,13 @@
         "NEXT_PUBLIC_SYKDOM_I_FAMILIEN_INFO_URL": "https://www.nav.no/familie/sykdom-i-familien/nb/pleiepenger-for-sykt-barn",
         "NEXT_PUBLIC_ARBEIDSGIVER_PLEIEPENGER_URL": "https://www.nav.no/arbeidsgiver/pleiepenger-barn",
         "NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL": "https://person.dev.nav.no/mine-saker",
-        "NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL": "https://tjenester.nav.no/utbetalingsoversikt"
+        "NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL": "https://tjenester.nav.no/utbetalingsoversikt",
+
+        "NEXT_PUBLIC_FEATURE_APPSTATUS": "off",
+        "NEXT_PUBLIC_FEATURE_HENT_SAKER": "on",
+        "NEXT_PUBLIC_FEATURE_HENT_BEHANDLINGSTID": "on",
+        "NEXT_PUBLIC_FEATURE_HENT_MELLOMLAGRING": "off",
+        "NEXT_PUBLIC_FEATURE_FARO": "on",
+        "NEXT_PUBLIC_TELEMETRY_URL": "https://telemetry.ekstern.dev.nav.no/collect"
     }
 }

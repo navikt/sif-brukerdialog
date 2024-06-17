@@ -1,0 +1,207 @@
+[
+    {
+        "pleietrengende": {
+            "identitetsnummer": "02501795782",
+            "fødselsdato": "2017-10-02",
+            "aktørId": "2792242320878",
+            "fornavn": "PARAT",
+            "mellomnavn": null,
+            "etternavn": "BÆR"
+        },
+        "sak": {
+            "saksnummer": "1DQBooQ",
+            "saksbehandlingsFrist": null,
+            "fagsakYtelseType": { "kode": "PSB", "kodeverk": "FAGSAK_YTELSE" },
+            "ytelseType": "PSB",
+            "behandlinger": [
+                {
+                    "status": "AVSLUTTET",
+                    "opprettetTidspunkt": "2024-05-23T12:38:59.000Z",
+                    "avsluttetTidspunkt": "2024-05-23T12:39:35.000Z",
+                    "innsendelser": [
+                        {
+                            "søknadId": "6468739d-5cba-4412-bb9f-42c64d07f685",
+                            "innsendelsestype": "SØKNAD",
+                            "k9FormatInnsendelse": {
+                                "søknadId": "6468739d-5cba-4412-bb9f-42c64d07f685",
+                                "versjon": "1.0.0",
+                                "mottattDato": "2024-05-23T12:37:47.184Z",
+                                "søker": { "norskIdentitetsnummer": "23419424692" },
+                                "språk": "nb",
+                                "ytelse": {
+                                    "type": "PLEIEPENGER_SYKT_BARN",
+                                    "barn": { "norskIdentitetsnummer": "02501795782", "fødselsdato": null },
+                                    "søknadsperiode": ["2024-04-01/2024-04-30"],
+                                    "endringsperiode": [],
+                                    "trekkKravPerioder": [],
+                                    "opptjeningAktivitet": {},
+                                    "dataBruktTilUtledning": null,
+                                    "annetDataBruktTilUtledning": {
+                                        "harForståttRettigheterOgPlikter": true,
+                                        "harBekreftetOpplysninger": true,
+                                        "soknadDialogCommitSha": null,
+                                        "annetData": null
+                                    },
+                                    "infoFraPunsj": null,
+                                    "bosteder": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "utenlandsopphold": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "beredskap": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "nattevåk": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "tilsynsordning": {
+                                        "perioder": { "2024-04-01/2024-04-30": { "etablertTilsynTimerPerDag": "PT0S" } }
+                                    },
+                                    "lovbestemtFerie": { "perioder": {} },
+                                    "arbeidstid": {
+                                        "arbeidstakerList": [
+                                            {
+                                                "norskIdentitetsnummer": null,
+                                                "organisasjonsnummer": "967170232",
+                                                "organisasjonsnavn": "SNILL TORPEDO",
+                                                "arbeidstidInfo": {
+                                                    "perioder": {
+                                                        "2024-04-01/2024-04-30": {
+                                                            "jobberNormaltTimerPerDag": "PT8H",
+                                                            "faktiskArbeidTimerPerDag": "PT0S"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        ],
+                                        "frilanserArbeidstidInfo": {
+                                            "perioder": {
+                                                "2024-04-01/2024-04-30": {
+                                                    "jobberNormaltTimerPerDag": "PT0S",
+                                                    "faktiskArbeidTimerPerDag": "PT0S"
+                                                }
+                                            }
+                                        },
+                                        "selvstendigNæringsdrivendeArbeidstidInfo": null
+                                    },
+                                    "uttak": {
+                                        "perioder": {
+                                            "2024-04-01/2024-04-30": { "timerPleieAvBarnetPerDag": "PT7H30M" }
+                                        }
+                                    },
+                                    "omsorg": { "relasjonTilBarnet": null, "beskrivelseAvOmsorgsrollen": null }
+                                },
+                                "journalposter": [],
+                                "begrunnelseForInnsending": { "tekst": null },
+                                "kildesystem": "søknadsdialog"
+                            },
+                            "dokumenter": [
+                                {
+                                    "journalpostId": "639552088",
+                                    "dokumentInfoId": "669108782",
+                                    "saksnummer": "1DQBooQ",
+                                    "tittel": "Søknad om pleiepenger for sykt barn",
+                                    "dokumentType": "PLEIEPENGER_SYKT_BARN_SOKNAD",
+                                    "filtype": "PDF",
+                                    "harTilgang": true,
+                                    "url": "http://sif-innsyn-api/dokument/639552088/669108782/ARKIV",
+                                    "relevanteDatoer": [
+                                        { "dato": "2024-05-23T14:37:49", "datotype": "DATO_OPPRETTET" },
+                                        { "dato": "2024-05-23T14:37:49", "datotype": "DATO_DOKUMENT" },
+                                        { "dato": "2024-05-23T14:37:57", "datotype": "DATO_JOURNALFOERT" },
+                                        { "dato": "2024-05-23T14:37:47", "datotype": "DATO_REGISTRERT" }
+                                    ]
+                                }
+                            ],
+                            "arbeidsgivere": [{ "organisasjonsnummer": "967170232", "navn": "SNILL TORPEDO" }]
+                        }
+                    ],
+                    "aksjonspunkter": [],
+                    "utgåendeDokumenter": [
+                        {
+                            "journalpostId": "639552089",
+                            "dokumentInfoId": "669108783",
+                            "saksnummer": "1DQBooQ",
+                            "tittel": "Pleiepenger barn Avslag",
+                            "dokumentType": "VEDTAK_AVSLAG",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/639552089/669108783/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2024-05-23T14:39:37", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2024-05-23T14:39:37", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2024-05-23T14:39:37", "datotype": "DATO_JOURNALFOERT" }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "status": "UNDER_BEHANDLING",
+                    "opprettetTidspunkt": "2024-05-23T12:44:36.000Z",
+                    "avsluttetTidspunkt": null,
+                    "innsendelser": [
+                        {
+                            "søknadId": "b285fbfe-f3d5-4640-bfca-845ab60ad40c",
+                            "innsendelsestype": "ETTERSENDELSE",
+                            "k9FormatInnsendelse": {
+                                "søknadId": "b285fbfe-f3d5-4640-bfca-845ab60ad40c",
+                                "versjon": "0.0.1",
+                                "mottattDato": "2024-05-23T12:43:25.667Z",
+                                "søker": { "norskIdentitetsnummer": "23419424692" },
+                                "ytelse": "PLEIEPENGER_SYKT_BARN",
+                                "pleietrengende": { "norskIdentitetsnummer": "02501795782" },
+                                "type": "LEGEERKLÆRING"
+                            },
+                            "dokumenter": [
+                                {
+                                    "journalpostId": "639552090",
+                                    "dokumentInfoId": "669108784",
+                                    "saksnummer": "1DQBooQ",
+                                    "tittel": "Ettersendelse av dokumentasjon til søknad om pleiepenger",
+                                    "dokumentType": "PLEIEPENGER_SYKT_BARN_ETTERSENDELSE",
+                                    "filtype": "PDF",
+                                    "harTilgang": true,
+                                    "url": "http://sif-innsyn-api/dokument/639552090/669108784/ARKIV",
+                                    "relevanteDatoer": [
+                                        { "dato": "2024-05-23T14:43:27", "datotype": "DATO_OPPRETTET" },
+                                        { "dato": "2024-05-23T14:43:27", "datotype": "DATO_DOKUMENT" },
+                                        { "dato": "2024-05-23T14:43:35", "datotype": "DATO_JOURNALFOERT" },
+                                        { "dato": "2024-05-23T14:43:25", "datotype": "DATO_REGISTRERT" }
+                                    ]
+                                },
+                                {
+                                    "journalpostId": "639552090",
+                                    "dokumentInfoId": "669108815",
+                                    "saksnummer": "1DQBooQ",
+                                    "tittel": "70før18.pdf",
+                                    "dokumentType": "PLEIEPENGER_SYKT_BARN_ETTERSENDELSE",
+                                    "filtype": "PDF",
+                                    "harTilgang": true,
+                                    "url": "http://sif-innsyn-api/dokument/639552090/669108815/ARKIV",
+                                    "relevanteDatoer": [
+                                        { "dato": "2024-05-23T14:43:27", "datotype": "DATO_OPPRETTET" },
+                                        { "dato": "2024-05-23T14:43:27", "datotype": "DATO_DOKUMENT" },
+                                        { "dato": "2024-05-23T14:43:35", "datotype": "DATO_JOURNALFOERT" },
+                                        { "dato": "2024-05-23T14:43:25", "datotype": "DATO_REGISTRERT" }
+                                    ]
+                                }
+                            ],
+                            "arbeidsgivere": null
+                        }
+                    ],
+                    "aksjonspunkter": [],
+                    "utgåendeDokumenter": [
+                        {
+                            "journalpostId": "639552089",
+                            "dokumentInfoId": "669108783",
+                            "saksnummer": "1DQBooQ",
+                            "tittel": "Pleiepenger barn Avslag",
+                            "dokumentType": "VEDTAK_AVSLAG",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/639552089/669108783/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2024-05-23T14:39:37", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2024-05-23T14:39:37", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2024-05-23T14:39:37", "datotype": "DATO_JOURNALFOERT" }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+]

@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import { PleietrengendeMedSak } from '../../server/api-models/PleietrengendeMedSakSchema';
 import { Brukerprofil } from '../../types/Brukerprofil';
-import { InnsendtSøknad } from '../../types/Søknad';
+import { InnsendtSøknad } from '../../types/InnsendtSøknad';
 import { getEndringsmeldinger, getEttersendelser, getPleiepengesøknader } from '../innsendtSøknadUtils';
 
 export const getBrukerprofil = (

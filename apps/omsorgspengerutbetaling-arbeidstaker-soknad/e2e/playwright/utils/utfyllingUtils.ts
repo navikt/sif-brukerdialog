@@ -16,8 +16,18 @@ const startSøknad = async (page: Page) => {
     await page.getByRole('button').getByText('Start søknad').click();
 };
 
-const fyllUtFosterbarnSteg = async (page: Page) => {
-    await page.getByTestId('harFostrerbarn').getByText('Nei').click();
+const fyllUtDineBarnSteg = async (page: Page) => {
+    await page.getByRole('heading', { name: 'Dine barn' }).isVisible;
+    await page.getByRole('button', { name: 'Legg til barn' }).click();
+    await page.getByLabel('Barnets navn').click();
+    await page.getByLabel('Barnets navn').fill('Tore Tang');
+    await page.getByLabel('Barnets fødselsdato').click();
+    await page.getByLabel('Barnets fødselsdato').fill('10.10.2020');
+    await page.getByLabel('Barnets fødselsdato').press('Tab');
+    await page.getByLabel('Barnets fødselsnummer/D-nummer').fill('09898098122');
+    await page.getByText('Barnet er mitt fosterbarn').click();
+    await page.getByRole('button', { name: 'Ok' }).click();
+    await page.getByLabel('Nei').check();
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
@@ -77,7 +87,7 @@ const kontrollerKvittering = async (page: Page) => {
 
 export const utfyllingUtils = {
     startSøknad,
-    fyllUtOmBarnSteg: fyllUtFosterbarnSteg,
+    fyllUtDineBarnSteg,
     fyllUtDinArbeidssituasjonSteg,
     fyllUtFraværSteg,
     lastOppLegeerklæring,

@@ -1,5 +1,6 @@
 interface Lenker {
     medlemskap: string;
+    deltFastBosted: string;
     papirskjemaPrivat: string;
     vilkårOmsorgspenger: string;
     personvern: string;
@@ -9,6 +10,8 @@ interface Lenker {
 }
 
 const LenkerBokmål: Lenker = {
+    deltFastBosted:
+        'https://www.skatteetaten.no/person/folkeregister/fodsel-og-navnevalg/delt-fast-bosted-for-felles-barn',
     medlemskap:
         'https://www.nav.no/no/Person/Flere+tema/Arbeid+og+opphold+i+Norge/Relatert+informasjon/medlemskap-i-folketrygden',
     papirskjemaPrivat: 'https://www.nav.no/soknader/nb/person/familie/omsorgspenger/NAV%2009-06.05/brev',

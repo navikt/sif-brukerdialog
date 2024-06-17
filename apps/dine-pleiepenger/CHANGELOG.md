@@ -1,5 +1,23 @@
 # @navikt/dine-pleiepenger
 
+## 1.4.0
+
+### Minor Changes
+
+-   74ca01b: - Alltid returnere melding dersom den finnes i Sanity.
+    -   Legge til visning av Sanity-melding i Dine pleiepenger.
+
+### Patch Changes
+
+-   99e1bd2: Pakkeoppdateringer - minor/patch
+-   Updated dependencies [74ca01b]
+-   Updated dependencies [99e1bd2]
+    -   @navikt/appstatus-react-ds@2.18.8
+    -   @navikt/sif-common-core-ds@9.17.10
+    -   @navikt/sif-common-sentry@0.26.7
+    -   @navikt/sif-common-amplitude@2.25.5
+    -   @navikt/sif-common-utils@3.46.3
+
 ## 1.3.5
 
 ### Patch Changes

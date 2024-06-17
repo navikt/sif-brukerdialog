@@ -2,7 +2,7 @@ import { BodyShort, HStack } from '@navikt/ds-react';
 import React from 'react';
 import { Task } from '@navikt/ds-icons';
 import { AppText } from '../../i18n';
-import { InnsendtSøknad } from '../../types/Søknad';
+import { InnsendtSøknad } from '../../types/InnsendtSøknad';
 import { formatInnsendtSøknadOpprettetDato } from '../../utils/innsendtSøknadUtils';
 
 interface Props {

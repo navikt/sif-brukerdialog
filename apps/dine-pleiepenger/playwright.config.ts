@@ -27,6 +27,7 @@ export default defineConfig({
             PUBLIC_PATH: '/innsyn',
             API_URL: 'http://localhost:8089',
             NEXT_PUBLIC_FEATURE_APPSTATUS: 'off',
+            NEXT_PUBLIC_FEATURE_FARO: 'off',
             NEXT_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
             NEXT_PUBLIC_APPSTATUS_DATASET: 'staging',
             NEXT_PUBLIC_GITHUB_REF_NAME: 'dev-branch',
@@ -62,6 +63,7 @@ export default defineConfig({
             NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL: 'https://tjenester.nav.no/utbetalingsoversikt',
             NEXT_PUBLIC_FEATURE_HENT_SAKER: 'on',
             NEXT_PUBLIC_FEATURE_HENT_MELLOMLAGRING: 'off',
+            NEXT_PUBLIC_TELEMETRY_URL: 'http://localhost:12347/collect',
         },
     },
 });

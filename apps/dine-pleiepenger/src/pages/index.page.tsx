@@ -12,7 +12,7 @@ import { useInnsynsdataContext } from '../hooks/useInnsynsdataContext';
 import { useLogBrukerprofil } from '../hooks/useLogBrukerprofil';
 import { useAppIntl } from '../i18n';
 import { PleietrengendeMedSak } from '../server/api-models/PleietrengendeMedSakSchema';
-import { InnsendtSøknad, InnsendtSøknadstype } from '../types/Søknad';
+import { InnsendtSøknad, InnsendtSøknadstype } from '../types/InnsendtSøknad';
 import SakPage from './sak/SakPage';
 
 const harSendtInnSøknadEllerEndringsmelding = (søknader: InnsendtSøknad[]): boolean => {

@@ -13,6 +13,7 @@ const appDirectives = {
         'https://*.nav.no',
         'https://*.uxsignals.com',
         'http://localhost:1234',
+        'http://localhost:12347',
         'http://*.api.sanity.io',
     ],
 };
@@ -31,7 +32,6 @@ const nextConfig = {
     },
     eslint: {
         dirs: ['src'],
-        ignoreDuringBuilds: true,
     },
 
     redirects: async () => [

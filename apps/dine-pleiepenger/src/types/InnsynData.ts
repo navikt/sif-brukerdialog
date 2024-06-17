@@ -3,7 +3,8 @@ import { PleietrengendeMedSak } from '../server/api-models/PleietrengendeMedSakS
 import { Søker } from '../server/api-models/SøkerSchema';
 import { Brukerprofil } from './Brukerprofil';
 import { Mellomlagringer } from './Mellomlagring';
-import { InnsendtSøknad } from './Søknad';
+import { InnsendtSøknad } from './InnsendtSøknad';
+import { SakerParseError } from './SakerParseError';
 
 export interface Innsynsdata {
     søker: Søker;
@@ -14,4 +15,5 @@ export interface Innsynsdata {
     saker: PleietrengendeMedSak[];
     saksbehandlingstidUker?: number;
     harSak: boolean;
+    sakerParseError?: SakerParseError;
 }

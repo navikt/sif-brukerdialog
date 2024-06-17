@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { createChildLogger } from '@navikt/next-logger';
 import { HttpStatusCode } from 'axios';
 import dayjs from 'dayjs';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
@@ -11,23 +10,21 @@ import {
     fetchSøknader,
 } from '../../server/apiService';
 import { Innsynsdata } from '../../types/InnsynData';
+import { isSakerParseError } from '../../types/SakerParseError';
 import { getBrukerprofil } from '../../utils/amplitude/getBrukerprofil';
-import { getXRequestId } from '../../utils/apiUtils';
 import { Feature } from '../../utils/features';
+import { getLogger } from '../../utils/getLogCorrelationID';
 import { sortInnsendtSøknadEtterOpprettetDato } from '../../utils/innsendtSøknadUtils';
 import { fetchAppStatus } from './appStatus.api';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const childLogger = createChildLogger(getXRequestId(req));
-    childLogger.info(
-        {
-            mellomlagring: Feature.HENT_MELLOMLAGRING,
-            saker: Feature.HENT_SAKER,
-            behandlingstid: Feature.HENT_BEHANDLINGSTID,
-            appstatus: Feature.HENT_APPSTATUS,
-        },
-        `Henter innsynsdata`,
-    );
+    const logger = getLogger(req);
+    logger.info(`Henter innsynsdata`, {
+        mellomlagring: Feature.HENT_MELLOMLAGRING,
+        saker: Feature.HENT_SAKER,
+        behandlingstid: Feature.HENT_BEHANDLINGSTID,
+        appstatus: Feature.HENT_APPSTATUS,
+    });
     try {
         /** Hent søker først for å se om bruker har tilgang */
         const søker = await fetchSøker(req);
@@ -42,15 +39,16 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
                 : Promise.resolve({ saksbehandlingstidUker: undefined }),
             Feature.HENT_APPSTATUS ? fetchAppStatus() : Promise.resolve(undefined),
         ]);
-        childLogger.info(`Hentet innsynsdata`);
+        logger.info(`Hentet innsynsdata`);
 
         if (søknaderReq.status === 'rejected') {
-            childLogger.error(
+            logger.error(
+                'Hent søknader feilet',
                 new Error(`Hent søknader feilet: ${søknaderReq.reason.message}`, { cause: søknaderReq.reason }),
             );
         }
 
-        childLogger.info(`Parser innsynsdata`);
+        logger.info(`Parser innsynsdata`);
 
         const saker = sakerReq.status === 'fulfilled' ? sakerReq.value : [];
         const harSak = saker.length > 0;
@@ -64,20 +62,17 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
                 : undefined;
 
         const brukerprofil = getBrukerprofil(innsendteSøknader, saker, saksbehandlingstidUker);
-        childLogger.info(brukerprofil, `Innsynsdata parset`);
+        logger.info(`Innsynsdata parset`, brukerprofil);
 
         if (brukerprofil.antallSaker === 0 && brukerprofil.antallSøknader > 0) {
             const søknadEldreEnnToDager = innsendteSøknader.find((søknad) =>
                 dayjs(søknad.opprettet).isBefore(dayjs().subtract(2, 'days')),
             );
             if (søknadEldreEnnToDager) {
-                childLogger.info(
-                    {
-                        ...brukerprofil,
-                        journalpostId: søknadEldreEnnToDager.journalpostId,
-                    },
-                    'Bruker har søknad, men ingen sak',
-                );
+                logger.info('Bruker har søknad, men ingen sak', {
+                    ...brukerprofil,
+                    journalpostId: søknadEldreEnnToDager.journalpostId,
+                });
             }
         }
 
@@ -90,10 +85,12 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             saksbehandlingstidUker,
             saker,
             harSak,
+            sakerParseError:
+                sakerReq.status === 'rejected' && isSakerParseError(sakerReq.reason) ? sakerReq.reason : undefined,
         };
         res.json(innsynsdata);
     } catch (err) {
-        childLogger.error(`Hent innsynsdata feilet: ${err}`);
+        logger.error(`Hent innsynsdata feilet: ${err}`);
         if (
             err.response.status === HttpStatusCode.Forbidden ||
             err.response.status === HttpStatusCode.UnavailableForLegalReasons

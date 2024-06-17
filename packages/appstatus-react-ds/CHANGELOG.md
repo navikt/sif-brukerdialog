@@ -1,5 +1,13 @@
 # @navikt/appstatus-react-ds
 
+## 2.18.8
+
+### Patch Changes
+
+-   74ca01b: - Alltid returnere melding dersom den finnes i Sanity.
+    -   Legge til visning av Sanity-melding i Dine pleiepenger.
+-   99e1bd2: Pakkeoppdateringer - minor/patch
+
 ## 2.18.7
 
 ### Patch Changes

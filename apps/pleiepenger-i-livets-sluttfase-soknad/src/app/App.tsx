@@ -15,7 +15,6 @@ import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.css';
 
 const container = document.getElementById('app');
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const root = createRoot(container!);
 const publicPath = getEnvironmentVariable('PUBLIC_PATH');
 
