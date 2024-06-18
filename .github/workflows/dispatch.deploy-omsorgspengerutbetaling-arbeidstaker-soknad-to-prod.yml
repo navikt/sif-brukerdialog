@@ -1,4 +1,4 @@
-name: Deploy omsorgspengerutbetaling-arbeidstaker-soknad to prod
+name: Prod - deploy omsorgspengerutbetaling-arbeidstaker-soknad
 run-name: Deploy omsorgspengerutbetaling-arbeidstaker-soknad to prod
 
 on:

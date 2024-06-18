@@ -8,7 +8,7 @@ const getZodIssueDetails = (issue: ZodIssue): any => {
                 message: issue.message,
                 path: issue.path,
                 unionErrors: issue.unionErrors.map((unionError) => ({
-                    message: unionError.issues.map((i) => i.message),
+                    message: unionError.issues.map(getZodIssueDetails),
                 })),
             };
         default:

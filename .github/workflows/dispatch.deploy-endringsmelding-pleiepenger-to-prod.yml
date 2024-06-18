@@ -1,4 +1,4 @@
-name: Deploy endringsmelding-pleiepenger to prod
+name: Prod - deploy endringsmelding-pleiepenger
 run-name: Deploy endringsmelding-pleiepenger to prod
 
 on:
