@@ -10,6 +10,8 @@ interface Lenker {
     dittNAV: string;
     INNSYN_PP: string;
     pleiepengerSyktBarn: string;
+    skrivTilOss: string;
+    endringsmelding: string;
 }
 
 const LenkerBokmål: Lenker = {
@@ -24,6 +26,8 @@ const LenkerBokmål: Lenker = {
     dittNAV: getEnvironmentVariable('DITT_NAV_URL'),
     INNSYN_PP: getEnvironmentVariable('INNSYN_PP'),
     pleiepengerSyktBarn: getEnvironmentVariable('PLEIEPENGER_SYKT_BARN_URL'),
+    skrivTilOss: 'https://www.nav.no/skriv-til-oss',
+    endringsmelding: getEnvironmentVariable('ENDRINGSMELDING_PP'),
 };
 
 const LenkerNynorsk: Partial<Lenker> = {
