@@ -25,7 +25,7 @@ ensureBaseNameForReactRouter(publicPath);
 const App = () => {
     return (
         <SoknadApplication
-            appKey={EttersendelseApp.navn}
+            appKey={EttersendelseApp.key}
             appName={EttersendelseApp.navn}
             intlMessages={applicationIntlMessages}
             appStatus={{

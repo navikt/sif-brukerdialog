@@ -8,12 +8,12 @@ export const welcomingPageIsValid = ({ harForståttRettigheterOgPlikter }: Sokna
 export const beskrivelseStepIsValid = (values: SoknadFormData) =>
     hasValue(values.beskrivelse) && welcomingPageIsValid(values);
 
-export const beskrivelsePPStepIsValid = (values: SoknadFormData) => {
+export const dokumentTypeStepIsValid = (values: SoknadFormData) => {
     const { dokumentType, registrertBarnAktørId, barnetsFødselsnummer, legeerklæringGjelderEtAnnetBarn } = values;
     let isValid = false;
 
     if (dokumentType === DokumentType.annet) {
-        isValid = hasValue(values.beskrivelse);
+        isValid = true;
     } else if (legeerklæringGjelderEtAnnetBarn) {
         isValid = hasValue(barnetsFødselsnummer);
     } else {

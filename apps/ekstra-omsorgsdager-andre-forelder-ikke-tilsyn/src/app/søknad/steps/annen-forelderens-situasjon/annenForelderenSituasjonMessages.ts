@@ -15,6 +15,8 @@ const nb = {
     'step.annenForeldrensSituasjon.grunn.fengsel': 'Fengsel',
     'step.annenForeldrensSituasjon.grunn.utøverVerneplikt': 'Verneplikt',
     'step.annenForeldrensSituasjon.grunn.annet': 'Annet',
+    'step.annenForeldrensSituasjon.grunn.annet.info':
+        'For å få ekstra omsorgsdager fordi den andre forelderen ikke kan ha tilsyn med barn, må det skyldes forhold som er utenfor ens kontroll. Det betyr at hvis forelderen er mye borte på grunn av jobb eller studier, vil ikke dette gi rett til ekstra omsorgsdager.',
 
     'step.annenForeldrensSituasjon.beskrivelseAvSituasjonen.spm':
         'Beskriv hva som gjør at den andre forelderen ikke kan ha tilsyn med barn:',
@@ -36,7 +38,7 @@ const nb = {
     'step.annenForeldrensSituasjon.vetLengdePåInnleggelseperioden.spm':
         'Er det avklart hvor lenge innleggelsen skal vare?',
     'step.annenForeldrensSituasjon.advarsel.1':
-        'Hvis perioden den andre forelderen ikke kan ha tilsyn med barn er på mindre enn 6 måneder, kan det være at du får avslag på søknaden. Du kan likevel fortsette slik at vi kan vurdere søknaden din.',
+        'Hvis perioden den andre forelderen ikke kan ha tilsyn med barn er på mindre enn 6 måneder, kan det være at du får avslag på søknaden.',
 
     'step.annenForeldrensSituasjon.nextButtonLabel': 'Fortsett',
 

@@ -1,4 +1,4 @@
-name: Deploy ekstra-omsorgsdager-andre-forelder-ikke-tilsyn to prod
+name: Prod - deploy ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 run-name: Deploy ekstra-omsorgsdager-andre-forelder-ikke-tilsyn to prod
 
 on:

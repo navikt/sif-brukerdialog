@@ -118,6 +118,9 @@ const TidsromStep = () => {
                                     <p>
                                         <AppText id="step.tidsrom.counsellorPanel.avsnitt.2" />
                                     </p>
+                                    <p>
+                                        <AppText id="step.tidsrom.counsellorPanel.avsnitt.3" />
+                                    </p>
                                 </SifGuidePanel>
 
                                 <FormBlock>

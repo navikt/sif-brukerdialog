@@ -1,4 +1,4 @@
-name: Deploy omsorgsdager kalkulator to prod
+name: Prod - deploy omsorgsdager kalkulator
 run-name: Deploy omsorgsdager kalkulator to prod
 
 on:

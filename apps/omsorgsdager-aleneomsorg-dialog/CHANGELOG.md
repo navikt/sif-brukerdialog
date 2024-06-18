@@ -1,5 +1,19 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.17.6
+
+### Patch Changes
+
+-   f184cf4: Pakkeoppdateringer - minor/patch
+-   Updated dependencies [f184cf4]
+    -   @navikt/sif-common-amplitude@2.25.6
+    -   @navikt/sif-common-formik-ds@1.9.2
+    -   @navikt/sif-common-soknad-ds@10.15.10
+    -   @navikt/sif-common-forms-ds@8.23.2
+    -   @navikt/sif-common-core-ds@9.17.11
+    -   @navikt/sif-common-sentry@0.26.8
+    -   @navikt/sif-common-utils@3.46.4
+
 ## 2.17.5
 
 ### Patch Changes
