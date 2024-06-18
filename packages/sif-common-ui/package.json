@@ -1,7 +1,7 @@
 {
     "name": "@navikt/sif-common-ui",
     "main": "src/index.ts",
-    "version": "0.7.11",
+    "version": "0.7.12",
     "private": true,
     "dependencies": {
         "@navikt/ds-css": "6.10.1",
