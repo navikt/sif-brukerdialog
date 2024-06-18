@@ -11,7 +11,7 @@ import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/typ
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { useAppIntl } from '../../../i18n';
+import { AppText, useAppIntl } from '../../../i18n';
 import { useStepFormValuesContext } from '../../../søknad/context/StepFormValuesContext';
 import { getSøknadStepConfigForStep } from '../../../søknad/søknadStepConfig';
 import { AnnenForeldrenSituasjon, AnnenForeldrenSituasjonType } from '../../../types/AnnenForeldrenSituasjon';
@@ -138,15 +138,28 @@ const AnnenForelderenSituasjonStep = () => {
 
                                 {(annenForelderSituasjon === AnnenForeldrenSituasjon.sykdom ||
                                     annenForelderSituasjon === AnnenForeldrenSituasjon.annet) && (
-                                    <FormBlock>
-                                        <Textarea
-                                            name={AnnenForelderenSituasjonFormFields.annenForelderSituasjonBeskrivelse}
-                                            label={text('step.annenForeldrensSituasjon.beskrivelseAvSituasjonen.spm')}
-                                            minLength={5}
-                                            maxLength={1000}
-                                            validate={validateTextArea}
-                                        />
-                                    </FormBlock>
+                                    <>
+                                        {annenForelderSituasjon === AnnenForeldrenSituasjon.annet && (
+                                            <FormBlock margin="m">
+                                                <Alert variant="info">
+                                                    <AppText id="step.annenForeldrensSituasjon.grunn.annet.info" />
+                                                </Alert>
+                                            </FormBlock>
+                                        )}
+                                        <FormBlock>
+                                            <Textarea
+                                                name={
+                                                    AnnenForelderenSituasjonFormFields.annenForelderSituasjonBeskrivelse
+                                                }
+                                                label={text(
+                                                    'step.annenForeldrensSituasjon.beskrivelseAvSituasjonen.spm',
+                                                )}
+                                                minLength={5}
+                                                maxLength={1000}
+                                                validate={validateTextArea}
+                                            />
+                                        </FormBlock>
+                                    </>
                                 )}
 
                                 {annenForelderSituasjon && (
