@@ -16,67 +16,69 @@ const OmSøknaden = () => {
                         <AppText id="page.velkommen.omSøknaden.1" />
                     </List.Item>
                     <List.Item>
-                        <AppText id="page.velkommen.omSøknaden.3" />
+                        <AppText id="page.velkommen.omSøknaden.2" />
                     </List.Item>
                     <List.Item>
-                        <AppText id="page.velkommen.omSøknaden.2" />
+                        <AppText id="page.velkommen.omSøknaden.3" />
                     </List.Item>
                 </List>
             </Box>
 
             <Accordion>
                 <Accordion.Item>
-                    <Accordion.Header>{text('page.velkommen.personopplysninger.3')}</Accordion.Header>
+                    <Accordion.Header>{text('page.velkommen.personopplysninger.tittel')}</Accordion.Header>
                     <Accordion.Content>
-                        <p>
-                            <AppText id="page.velkommen.personopplysninger.4" />
-                        </p>
-                        <List>
-                            <List.Item>
-                                <AppText id="page.velkommen.personopplysninger.4.1" />
-                            </List.Item>
-                            <List.Item>
-                                <AppText id="page.velkommen.personopplysninger.4.2" />
-                            </List.Item>
-                            <List.Item>
-                                <AppText id="page.velkommen.personopplysninger.4.3" />
-                            </List.Item>
-                            <List.Item>
-                                <AppText id="page.velkommen.personopplysninger.4.4" />
-                            </List.Item>
-                            <List.Item>
-                                <AppText id="page.velkommen.personopplysninger.4.5" />
-                            </List.Item>
-                            <List.Item>
-                                <AppText id="page.velkommen.personopplysninger.4.6" />
-                            </List.Item>
-                        </List>
+                        <VStack gap="2">
+                            <div>
+                                <Heading level="3" size="xsmall" spacing={true}>
+                                    <AppText id="page.velkommen.personopplysninger.behandler.tittel" />
+                                </Heading>
+                                <p>
+                                    <AppText id="page.velkommen.personopplysninger.behandler.info" />
+                                </p>
+                            </div>
+                            <div>
+                                <Heading level="3" size="xsmall" spacing={true}>
+                                    <AppText id="page.velkommen.personopplysninger.innhenter.tittel" />
+                                </Heading>
+                                <p>
+                                    <AppText id="page.velkommen.personopplysninger.innhenter" />
+                                </p>
+                                <List>
+                                    <List.Item>
+                                        <AppText id="page.velkommen.personopplysninger.innhenter.1" />
+                                    </List.Item>
+                                    <List.Item>
+                                        <AppText id="page.velkommen.personopplysninger.innhenter.2" />
+                                    </List.Item>
+                                    <List.Item>
+                                        <AppText id="page.velkommen.personopplysninger.innhenter.3" />
+                                    </List.Item>
+                                    <List.Item>
+                                        <AppText id="page.velkommen.personopplysninger.innhenter.4" />
+                                    </List.Item>
+                                    <List.Item>
+                                        <AppText id="page.velkommen.personopplysninger.innhenter.5" />
+                                    </List.Item>
+                                    <List.Item>
+                                        <AppText id="page.velkommen.personopplysninger.innhenter.6" />
+                                    </List.Item>
+                                </List>
+                            </div>
+                            <p>
+                                <AppText
+                                    id="page.velkommen.personopplysninger.5.3"
+                                    values={{
+                                        Lenke: (children: React.ReactNode) => (
+                                            <Link href={getLenker().personvern} target="_blank">
+                                                {children}
+                                            </Link>
+                                        ),
+                                    }}
+                                />
+                            </p>
+                        </VStack>
                     </Accordion.Content>
-                </Accordion.Item>
-                <Accordion.Item>
-                    <Accordion.Header>Hvordan vi behandler personopplysninger</Accordion.Header>
-                    <Accordion.Content>
-                        <p>
-                            Vi innhenter og mottar opplysninger om deg for å behandle saken din. Det er nødvendig for at
-                            du skal få riktig tjeneste.
-                        </p>
-                        <p>
-                            <AppText
-                                id="page.velkommen.personopplysninger.5"
-                                values={{
-                                    Lenke: (children: React.ReactNode) => (
-                                        <Link href={getLenker().personvern} target="_blank">
-                                            {children}
-                                        </Link>
-                                    ),
-                                }}
-                            />
-                        </p>
-                    </Accordion.Content>
-                </Accordion.Item>
-                <Accordion.Item>
-                    <Accordion.Header>Automatisk saksbehandling</Accordion.Header>
-                    <Accordion.Content>Deler av saken din behandles automatisk.</Accordion.Content>
                 </Accordion.Item>
             </Accordion>
         </VStack>

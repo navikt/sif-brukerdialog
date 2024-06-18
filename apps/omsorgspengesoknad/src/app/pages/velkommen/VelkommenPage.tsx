@@ -6,8 +6,6 @@ import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext
 import { SøknadRoutes } from '../../types/SøknadRoutes';
 import OmSøknaden from './om-søknaden/OmSøknaden';
 import { SoknadVelkommenPage } from '@navikt/sif-common-soknad-ds';
-import { Link } from '@navikt/ds-react';
-import getLenker from '../../lenker';
 
 const VelkommenPage = () => {
     const { text } = useAppIntl();
@@ -43,7 +41,7 @@ const VelkommenPage = () => {
                         <p>
                             <AppText id="page.velkommen.guide.tekst.2" />
                         </p>
-                        <p>
+                        {/* <p>
                             <AppText
                                 id="page.velkommen.guide.tekst.3"
                                 values={{
@@ -54,7 +52,7 @@ const VelkommenPage = () => {
                                     ),
                                 }}
                             />
-                        </p>
+                        </p> */}
                     </>
                 ),
             }}>
