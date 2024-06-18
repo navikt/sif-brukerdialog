@@ -1,9 +1,9 @@
 import { DateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 
-export const getTilgjengeligEndringsperiode = (): DateRange => {
+export const getTilgjengeligSøknadsperiode = (): DateRange => {
     return {
         from: dayjs().startOf('month').subtract(3, 'months').toDate(),
-        to: dayjs().add(4, 'weeks').toDate(),
+        to: dayjs().add(2, 'weeks').toDate(),
     };
 };

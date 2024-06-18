@@ -5,11 +5,13 @@ import { useIntl } from 'react-intl';
 import {
     DateRange,
     dateRangeToISODateRange,
+    dateRangesCollide,
     getDatesInDateRange,
     getFirstOfTwoDates,
     getLastOfTwoDates,
     getMonthsInDateRange,
     isDateInDateRange,
+    limitDateRangeToDateRange,
     sortDateRange,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
@@ -66,19 +68,23 @@ const DaySelector: React.FunctionComponent<Props> = ({
 
     const onWeekNumberClick = (weekNumber: number, month: Date) => {
         const weekDateRangeInMonth = getWeekDateRangeWithinMonth(weekNumber, month);
+
+        if (!dateRangesCollide([weekDateRangeInMonth, dateRange])) {
+            // Week is outside of date range
+            return;
+        }
         const datesSelectedInMonth = selectedDaysInMonths[getMonthKey(month)] || [];
         const selectedDatesInWeek = getSelectedDatesInWeek(weekDateRangeInMonth, datesSelectedInMonth);
 
-        if (selectedDatesInWeek.length === getDatesInDateRange(weekDateRangeInMonth).length) {
+        const availableDatesInWeek = getDatesInDateRange(
+            limitDateRangeToDateRange(weekDateRangeInMonth, dateRange),
+            true,
+        );
+
+        if (selectedDatesInWeek.length === availableDatesInWeek.length) {
             onSelectDates(month, removeDatesInArray(datesSelectedInMonth, selectedDatesInWeek));
         } else {
-            onSelectDates(
-                month,
-                removeDuplicateDatesInArray([
-                    ...getDatesInDateRange(weekDateRangeInMonth, true),
-                    ...datesSelectedInMonth,
-                ]),
-            );
+            onSelectDates(month, removeDuplicateDatesInArray([...availableDatesInWeek, ...datesSelectedInMonth]));
         }
     };
 
