@@ -10,10 +10,10 @@
         "url": "https://github.com/navikt/sif-common-amplitude/issues"
     },
     "dependencies": {
-        "@amplitude/analytics-browser": "2.8.1"
+        "@amplitude/analytics-browser": "2.9.0"
     },
     "devDependencies": {
-        "@types/node": "20.14.2",
+        "@types/node": "20.14.5",
         "@types/react": "18.3.3",
         "config": "workspace:*",
         "constate": "3.3.2",
