@@ -4,7 +4,7 @@ const nb = {
     'step.opplysningerOmPleietrengende.stepIndicatorLabel': 'Om personen du pleier',
     'step.opplysningerOmPleietrengende.nextButtonLabel': 'Fortsett',
     'step.opplysningerOmPleietrengende.counsellorPanel.info':
-        'Her gir du opplysninger om personen du skal gi pleie til. I tillegg trenger vi å vite om du skal pleie personen hjemme, og om det er flere som skal dele på å gi pleie.',
+        'Her gir du opplysninger om personen du skal gi pleie til, og om det er flere som skal dele på å gi pleie.',
 
     'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.spm':
         'Skal du pleie personen hjemme i de dagene du søker for?',

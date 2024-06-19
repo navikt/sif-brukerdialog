@@ -4,7 +4,7 @@ import { StepID } from '../soknad/soknadStepsConfig';
 import { SoknadFormData } from '../types/SoknadFormData';
 import { Søknadstype } from '../types/Søknadstype';
 import {
-    beskrivelsePPStepIsValid,
+    dokumentTypeStepIsValid,
     beskrivelseStepIsValid,
     documentsStepIsValid,
     welcomingPageIsValid,
@@ -46,7 +46,7 @@ export const omsTypeStepIsAvailable = (formData: SoknadFormData) => welcomingPag
 export const documentsStepIsAvailable = (formData: SoknadFormData, søknadstype: Søknadstype) => {
     switch (søknadstype) {
         case Søknadstype.pleiepengerSyktBarn:
-            return beskrivelsePPStepIsValid(formData);
+            return dokumentTypeStepIsValid(formData);
         case Søknadstype.pleiepengerLivetsSluttfase:
             return beskrivelseStepIsValid(formData);
         default:

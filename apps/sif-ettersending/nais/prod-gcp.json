@@ -9,6 +9,7 @@
         "APPSTATUS_PROJECT_ID": "ryujtq87",
         "DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=true&chatbot=false&logoutUrl=https://www.nav.no/familie/sykdom-i-familien/soknad/ettersending/oauth2/logout",
         "DITT_NAV_URL": "https://www.nav.no/person/dittnav",
+        "ENDRINGSMELDING_PP": "https://www.nav.no/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
         "FRONTEND_API_PATH": "/familie/sykdom-i-familien/soknad/ettersending/api",
         "FRONTEND_VEDLEGG_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/ettersending/api",
         "INNSYN_PP": "https://www.nav.no/familie/sykdom-i-familien/soknad/innsyn/dine-pleiepenger",

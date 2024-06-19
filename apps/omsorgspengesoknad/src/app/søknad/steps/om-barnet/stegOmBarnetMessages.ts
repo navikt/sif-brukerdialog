@@ -23,7 +23,7 @@ const nb = {
     'steg.omBarnet.spm.høyereRisikoForFravær':
         'Har du høyere risiko for fravær på jobb på grunn av barnets sykdom eller funksjonshemning? ',
     'steg.omBarnet.spm.høyereRisikoForFraværBeskrivelse.tittel':
-        'Nå trenger vi en beskrivelse fra deg på hvordan barnets sykdom eller funksjonshemning gir høyere risiko for fravær fra jobb:',
+        'Nå trenger vi en beskrivelse fra deg på hvordan barnets sykdom eller funksjonshemning gir markert høyere risiko for fravær fra jobb:',
     'steg.omBarnet.spm.høyereRisikoForFravær.alert':
         'For å ha rett til ekstra omsorgsdager på grunn av sykdom eller funksjonshemning, må det være en sammenheng mellom barnets sykdom/funksjonshemning og risikoen for høyere fravær fra jobb.',
     'steg.omBarnet.alert.ikkeKroniskSykdom':

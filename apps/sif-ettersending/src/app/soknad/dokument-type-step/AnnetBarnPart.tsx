@@ -21,13 +21,13 @@ const AnnetBarnPart: React.FC<Props> = ({ søkersFødselsnummer, harRegistrerteB
                 legend={
                     harRegistrerteBarn ? (
                         <Heading level="2" size="small" style={{ display: 'inline-block', fontSize: '1.125rem' }}>
-                            {text('step.beskrivelse_pp.annetBarn.tittel')}
+                            {text('step.dokumentType.annetBarn.tittel')}
                         </Heading>
                     ) : undefined
                 }>
                 <div>
                     <SoknadFormComponents.TextField
-                        label={text('step.beskrivelse_pp.annetBarn.fnr.spm')}
+                        label={text('step.dokumentType.annetBarn.fnr.spm')}
                         name={SoknadFormField.barnetsFødselsnummer}
                         validate={getFødselsnummerValidator({
                             required: true,
