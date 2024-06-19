@@ -4,10 +4,12 @@ import { AxiosResponse } from 'axios';
 import { HentSisteGyldigeVedtakResponseDto } from '../../types/innvilgetVedtakApiData/HentSisteGyldigeVedtakResponseDto';
 
 const innvilgetVedtakEndpoint: {
-    send: (apiData: OmsorgsdagerKronsinskSyktBarnRequestDto) => Promise<AxiosResponse<HentSisteGyldigeVedtakResponseDto>>;
+    send: (
+        apiData: OmsorgsdagerKronsinskSyktBarnRequestDto,
+    ) => Promise<AxiosResponse<HentSisteGyldigeVedtakResponseDto>>;
 } = {
-    send: async (apiData: OmsorgsdagerKronsinskSyktBarnRequestDto) =>
-        await api.post<OmsorgsdagerKronsinskSyktBarnRequestDto>(ApiEndpoint.innvilget_vedtak, apiData),
+    send: (apiData: OmsorgsdagerKronsinskSyktBarnRequestDto) =>
+        api.post<OmsorgsdagerKronsinskSyktBarnRequestDto>(ApiEndpoint.innvilget_vedtak, apiData),
 };
 
 export default innvilgetVedtakEndpoint;
