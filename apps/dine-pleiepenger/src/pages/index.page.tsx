@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { withAuthenticatedPage } from '../auth/withAuthentication';
 import DineInnsendteSøknader from '../components/dine-innsendte-søknader/DineInnsendteSøknader';
 import HvaSkjer from '../components/hva-skjer/HvaSkjer';
+import IngenSakEllerSøknadPage from '../components/ingen-sak-eller-søknad-page/IngenSakEllerSøknadPage';
 import DefaultPageLayout from '../components/page-layout/default-page-layout/DefaultPageLayout';
 import Saksbehandlingstid from '../components/saksbehandlingstid/Saksbehandlingstid';
 import Snarveier from '../components/snarveier/Snarveier';
@@ -52,6 +53,10 @@ function DinePleiepengerPage(): ReactElement {
 
     if (saker.length > 1) {
         return <VelgSakPage saker={saker} />;
+    }
+
+    if (innsendteSøknader.length === 0) {
+        return <IngenSakEllerSøknadPage />;
     }
 
     return (

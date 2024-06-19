@@ -35,7 +35,10 @@ const SakPage: React.FunctionComponent<Props> = ({ sak, pleietrengende, saksbeha
     useLogSidevisning(PageKey.sak);
 
     setBreadcrumbs(
-        getAllBreadcrumbs([{ url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Din pleiepengesak' }], antallSaker > 1),
+        getAllBreadcrumbs(
+            [{ url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Din pleiepengesak for sykt barn' }],
+            antallSaker > 1,
+        ),
     );
 
     onBreadcrumbClick((breadcrumb) => {
@@ -54,7 +57,7 @@ const SakPage: React.FunctionComponent<Props> = ({ sak, pleietrengende, saksbeha
                 />
             }>
             <Head>
-                <title>Din pleiepengesak - {sak.saksnummer}</title>
+                <title>Din pleiepengesak for sykt barn - {sak.saksnummer}</title>
             </Head>
             <VStack gap="12">
                 {statusISak?.venteårsak && statusISak.status !== Behandlingsstatus.AVSLUTTET ? (
