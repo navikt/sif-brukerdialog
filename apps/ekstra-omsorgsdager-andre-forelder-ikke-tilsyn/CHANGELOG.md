@@ -1,5 +1,12 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.23.14
+
+### Patch Changes
+
+-   7ecf9f9: - Legge til melding når bruker velger "Annet" for den andre forelderens situasjon
+    -   Fjerne tekst om at en allikevel kan fortsette
+
 ## 1.23.13
 
 ### Patch Changes

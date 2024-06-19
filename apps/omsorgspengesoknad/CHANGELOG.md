@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.26.14
+
+### Patch Changes
+
+-   3dcd91d: Tekstendring om høyere risiko for fravær
+
 ## 1.26.13
 
 ### Patch Changes
