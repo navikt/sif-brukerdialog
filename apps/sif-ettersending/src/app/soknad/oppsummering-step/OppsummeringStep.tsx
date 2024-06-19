@@ -1,10 +1,9 @@
-import { Alert, Panel } from '@navikt/ds-react';
+import { Alert, FormSummary, VStack } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import { isFailure, isPending } from '@devexperts/remote-data-ts';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { TextareaSvar } from '@navikt/sif-common-ui';
@@ -21,8 +20,8 @@ import { useSoknadContext } from '../SoknadContext';
 import SoknadFormComponents from '../SoknadFormComponents';
 import SoknadFormStep from '../SoknadFormStep';
 import { StepID } from '../soknadStepsConfig';
-import SummaryBlock from './SummaryBlock';
 import './oppsummeringStep.css';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 
 interface Props {
     soknadId: string;
@@ -56,59 +55,101 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
             </SifGuidePanel>
             <Block margin="xl">
                 <div data-testid="oppsummering">
-                    <Panel border={true}>
-                        <SummaryBlock header={text('steg.oppsummering.søker.header')}>
-                            <p>{formatName(fornavn, etternavn, mellomnavn)}</p>
-                            <div>
-                                {text('steg.oppsummering.fødselsnummer')}: {fødselsnummer}
-                            </div>
-                        </SummaryBlock>
-
-                        {apiValues.ettersendelsesType === DokumentType.legeerklæring && (
-                            <SummaryBlock header={text('steg.oppsummering.barn.header')}>
-                                {values.valgteRegistrertBarn && (
-                                    <div>
-                                        {text('steg.oppsummering.barn.registretBarnInfo', {
-                                            navn: values.valgteRegistrertBarn?.barnetsNavn,
-                                            fødselsdato: prettifyDate(values.valgteRegistrertBarn?.barnetsFødselsdato),
-                                        })}
-                                    </div>
+                    <VStack gap="8">
+                        <FormSummary>
+                            <FormSummary.Header>
+                                <FormSummary.Heading level="2">
+                                    <AppText id="steg.oppsummering.søker.header" />
+                                </FormSummary.Heading>
+                            </FormSummary.Header>
+                            <FormSummary.Answers>
+                                <FormSummary.Answer>
+                                    <FormSummary.Label>
+                                        <AppText id="steg.oppsummering.navn" />
+                                    </FormSummary.Label>
+                                    <FormSummary.Value>{formatName(fornavn, etternavn, mellomnavn)}</FormSummary.Value>
+                                </FormSummary.Answer>
+                                <FormSummary.Answer>
+                                    <FormSummary.Label>
+                                        <AppText id="steg.oppsummering.fødselsnummer" />
+                                    </FormSummary.Label>
+                                    <FormSummary.Value>{fødselsnummer}</FormSummary.Value>
+                                </FormSummary.Answer>
+                            </FormSummary.Answers>
+                        </FormSummary>
+                        <FormSummary>
+                            <FormSummary.Header>
+                                <FormSummary.Heading level="2">Ettersendelse</FormSummary.Heading>
+                            </FormSummary.Header>
+                            <FormSummary.Answers>
+                                <FormSummary.Answer>
+                                    <FormSummary.Label>
+                                        <AppText id="steg.oppsummering.typeSøknad.tittel" />
+                                    </FormSummary.Label>
+                                    <FormSummary.Value>{apiValues.ytelseTittel}</FormSummary.Value>
+                                </FormSummary.Answer>
+                                {apiValues.ettersendelsesType === DokumentType.legeerklæring && (
+                                    <FormSummary.Answer>
+                                        <FormSummary.Label>
+                                            <AppText id="steg.oppsummering.dokumentType.header" />
+                                        </FormSummary.Label>
+                                        <FormSummary.Value>
+                                            <AppText id="steg.oppsummering.dokumentType.legeerklæring" />
+                                        </FormSummary.Value>
+                                    </FormSummary.Answer>
                                 )}
-                                {apiValues.pleietrengende?.norskIdentitetsnummer && (
-                                    <div>
-                                        {text('steg.oppsummering.barn.fnr', {
-                                            fnr: apiValues.pleietrengende?.norskIdentitetsnummer,
-                                        })}
-                                    </div>
+
+                                {apiValues.ettersendelsesType === DokumentType.legeerklæring && (
+                                    <FormSummary.Answer>
+                                        <FormSummary.Label>Hvilket barn gjelder legeerklæringen?</FormSummary.Label>
+                                        <FormSummary.Value>
+                                            {values.valgteRegistrertBarn && (
+                                                <div>
+                                                    {text('steg.oppsummering.barn.registretBarnInfo', {
+                                                        navn: values.valgteRegistrertBarn?.barnetsNavn,
+                                                        fødselsdato: prettifyDate(
+                                                            values.valgteRegistrertBarn?.barnetsFødselsdato,
+                                                        ),
+                                                    })}
+                                                </div>
+                                            )}
+                                            {apiValues.pleietrengende?.norskIdentitetsnummer && (
+                                                <div>
+                                                    {text('steg.oppsummering.barn.fnr', {
+                                                        fnr: apiValues.pleietrengende?.norskIdentitetsnummer,
+                                                    })}
+                                                </div>
+                                            )}
+                                            {!apiValues.pleietrengende?.norskIdentitetsnummer &&
+                                                !apiValues.pleietrengende?.aktørId && (
+                                                    <div>{text('steg.oppsummering.barn.harIkkefnr')}</div>
+                                                )}
+                                        </FormSummary.Value>
+                                    </FormSummary.Answer>
                                 )}
-                                {!apiValues.pleietrengende?.norskIdentitetsnummer &&
-                                    !apiValues.pleietrengende?.aktørId && (
-                                        <div>{text('steg.oppsummering.barn.harIkkefnr')}</div>
-                                    )}
-                            </SummaryBlock>
-                        )}
-
-                        <SummaryBlock header={text('steg.oppsummering.typeSøknad.tittel')}>
-                            {apiValues.ytelseTittel}
-                        </SummaryBlock>
-
-                        {apiValues.ettersendelsesType === DokumentType.legeerklæring && (
-                            <SummaryBlock header={text('steg.oppsummering.dokumentType.header')}>
-                                {text('steg.oppsummering.dokumentType.legeerklæring')}
-                            </SummaryBlock>
-                        )}
-
-                        {apiValues.beskrivelse && (
-                            <SummaryBlock header={text('steg.oppsummering.hvaGjelder.header')}>
-                                <TextareaSvar text={apiValues.beskrivelse} />
-                            </SummaryBlock>
-                        )}
-                        <SummaryBlock header={text('steg.oppsummering.dokumenter.header')}>
-                            <div data-testid="vedlegg-liste">
-                                <UploadedDocumentsList includeDeletionFunctionality={false} />
-                            </div>
-                        </SummaryBlock>
-                    </Panel>
+                                {apiValues.beskrivelse && (
+                                    <FormSummary.Answer>
+                                        <FormSummary.Label>
+                                            <AppText id="steg.oppsummering.hvaGjelder.header" />
+                                        </FormSummary.Label>
+                                        <FormSummary.Value>
+                                            <TextareaSvar text={apiValues.beskrivelse} />
+                                        </FormSummary.Value>
+                                    </FormSummary.Answer>
+                                )}
+                                <FormSummary.Answer>
+                                    <FormSummary.Label>
+                                        <AppText id="steg.oppsummering.dokumenter.header" />
+                                    </FormSummary.Label>
+                                    <FormSummary.Value>
+                                        <div data-testid="vedlegg-liste">
+                                            <UploadedDocumentsList includeDeletionFunctionality={false} />
+                                        </div>
+                                    </FormSummary.Value>
+                                </FormSummary.Answer>
+                            </FormSummary.Answers>
+                        </FormSummary>
+                    </VStack>
                 </div>
             </Block>
 
