@@ -7,6 +7,7 @@ import { FormSummary } from '@navikt/ds-react';
 interface Props {
     søker: Søker;
 }
+
 const OmSøkerOppsummering: React.FunctionComponent<Props> = ({ søker }) => {
     const { text } = useAppIntl();
     return (
@@ -19,7 +20,6 @@ const OmSøkerOppsummering: React.FunctionComponent<Props> = ({ søker }) => {
                     <FormSummary.Label>Navn</FormSummary.Label>
                     <FormSummary.Value>
                         {formatName(søker.fornavn, søker.etternavn, søker.mellomnavn)}
-                        <br />
                     </FormSummary.Value>
                 </FormSummary.Answer>
                 <FormSummary.Answer>

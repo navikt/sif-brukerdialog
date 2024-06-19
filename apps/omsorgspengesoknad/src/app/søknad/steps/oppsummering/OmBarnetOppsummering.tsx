@@ -1,10 +1,11 @@
 import { FormSummary } from '@navikt/ds-react';
 import { JaNeiSvar, TextareaSvar } from '@navikt/sif-common-ui';
 import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
-import { AppIntlShape, AppText, useAppIntl } from '../../../i18n';
+import { AppText, useAppIntl } from '../../../i18n';
 import { BarnSammeAdresse } from '../../../types/BarnSammeAdresse';
-import { OmBarnetApiData } from '../../../types/søknadApiData/SøknadApiData';
+import { BarnToSendToApi, OmBarnetApiData } from '../../../types/søknadApiData/SøknadApiData';
 import { getRelasjonTilBarnetIntlKey } from '../om-barnet/omBarnetStepUtils';
+import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
 
 interface Props {
     apiData: OmBarnetApiData;
@@ -23,7 +24,11 @@ const OmBarnetOppsummering = ({ apiData }: Props) => {
                     </FormSummary.Heading>
                 </FormSummary.Header>
                 <FormSummary.Answers>
-                    {apiData.barn.aktørId ? getRegistrertBarnInfo(apiData) : getAnnetBarnInfo(apiData, appIntl)}
+                    {apiData.barn.aktørId ? (
+                        <RegistrertBarnOppsummering barn={apiData.barn} />
+                    ) : (
+                        <AnnetBarnOppsummering barn={apiData.barn} relasjonTilBarnet={apiData.relasjonTilBarnet} />
+                    )}
                     <FormSummary.Answer>
                         <FormSummary.Label>
                             <AppText id="steg.oppsummering.barnet.sammeAdresse.header" />
@@ -75,49 +80,53 @@ const OmBarnetOppsummering = ({ apiData }: Props) => {
 
 export default OmBarnetOppsummering;
 
-const getRegistrertBarnInfo = (apiData: OmBarnetApiData) => {
-    return (
-        <>
+const RegistrertBarnOppsummering = ({ barn }: { barn: BarnToSendToApi }) => (
+    <>
+        <FormSummary.Answer>
+            <FormSummary.Label>Navn</FormSummary.Label>
+            <FormSummary.Value>{barn.navn}</FormSummary.Value>
+        </FormSummary.Answer>
+        {barn.fødselsdato ? (
             <FormSummary.Answer>
-                <FormSummary.Label>Navn</FormSummary.Label>
-                <FormSummary.Value>{apiData.barn.navn}</FormSummary.Value>
+                <FormSummary.Label>Fødselsdato</FormSummary.Label>
+                <FormSummary.Value>{dateFormatter.full(ISODateToDate(barn.fødselsdato))}</FormSummary.Value>
             </FormSummary.Answer>
-            {apiData.barn.fødselsdato ? (
-                <FormSummary.Answer>
-                    <FormSummary.Label>Fødselsdato</FormSummary.Label>
-                    <FormSummary.Value>{dateFormatter.full(ISODateToDate(apiData.barn.fødselsdato))}</FormSummary.Value>
-                </FormSummary.Answer>
-            ) : null}
-        </>
-    );
-};
-const getAnnetBarnInfo = (apiData: OmBarnetApiData, { text }: AppIntlShape) => {
+        ) : null}
+    </>
+);
+
+const AnnetBarnOppsummering = ({
+    barn,
+    relasjonTilBarnet,
+}: {
+    barn: BarnToSendToApi;
+    relasjonTilBarnet?: SøkersRelasjonTilBarnet;
+}) => {
+    const { text } = useAppIntl();
     return (
         <>
-            {apiData.barn.norskIdentifikator ? (
+            {barn.norskIdentifikator ? (
                 <FormSummary.Answer>
                     <FormSummary.Label>Fødselsnummer</FormSummary.Label>
-                    <FormSummary.Value>{apiData.barn.norskIdentifikator}</FormSummary.Value>
+                    <FormSummary.Value>{barn.norskIdentifikator}</FormSummary.Value>
                 </FormSummary.Answer>
             ) : null}
-            {apiData.barn.navn ? (
+            {barn.navn ? (
                 <FormSummary.Answer>
                     <FormSummary.Label>Navn</FormSummary.Label>
-                    <FormSummary.Value>{apiData.barn.navn}</FormSummary.Value>
+                    <FormSummary.Value>{barn.navn}</FormSummary.Value>
                 </FormSummary.Answer>
             ) : null}
-            {apiData.barn.fødselsdato ? (
+            {barn.fødselsdato ? (
                 <FormSummary.Answer>
                     <FormSummary.Label>Fødselsdato</FormSummary.Label>
-                    <FormSummary.Value>{dateFormatter.full(ISODateToDate(apiData.barn.fødselsdato))}</FormSummary.Value>
+                    <FormSummary.Value>{dateFormatter.full(ISODateToDate(barn.fødselsdato))}</FormSummary.Value>
                 </FormSummary.Answer>
             ) : null}
-            {apiData.relasjonTilBarnet && (
+            {relasjonTilBarnet && (
                 <FormSummary.Answer>
                     <FormSummary.Label>Din relasjon til barnet</FormSummary.Label>
-                    <FormSummary.Value>
-                        {text(getRelasjonTilBarnetIntlKey(apiData.relasjonTilBarnet))}
-                    </FormSummary.Value>
+                    <FormSummary.Value>{text(getRelasjonTilBarnetIntlKey(relasjonTilBarnet))}</FormSummary.Value>
                 </FormSummary.Answer>
             )}
         </>
