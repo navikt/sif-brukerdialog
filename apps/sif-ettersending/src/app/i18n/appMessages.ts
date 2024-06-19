@@ -135,6 +135,7 @@ const nb = {
     'steg.oppsummering.navn': 'Navn',
     'steg.oppsummering.fødselsnummer': 'Fødselsnummer',
 
+    'steg.oppsummering.ettersendelse.header': 'Ettersendelse',
     'steg.oppsummering.typeSøknad.tittel': 'Hva skal du ettersende til?',
 
     'steg.oppsummering.sendMelding.feilmelding.førsteGang':

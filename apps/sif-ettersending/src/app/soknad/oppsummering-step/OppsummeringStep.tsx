@@ -79,7 +79,9 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
                         </FormSummary>
                         <FormSummary>
                             <FormSummary.Header>
-                                <FormSummary.Heading level="2">Ettersendelse</FormSummary.Heading>
+                                <FormSummary.Heading level="2">
+                                    <AppText id="steg.oppsummering.ettersendelse.header" />
+                                </FormSummary.Heading>
                             </FormSummary.Header>
                             <FormSummary.Answers>
                                 <FormSummary.Answer>
