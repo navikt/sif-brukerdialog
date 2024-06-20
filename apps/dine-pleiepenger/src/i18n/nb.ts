@@ -85,7 +85,8 @@ export const nb = {
 
     'dineInnsendteSøknader.tittel': 'Dine søknader, endringer og ettersendelser',
 
-    'innsendtSøknadListe.ingenSøknader': 'Ingen søknader funnet',
+    'innsendtSøknadListe.ingenSøknader':
+        'Vi finner ingen søknader. Hvis du nettopp har sendt inn en søknad kan det ta noen minutter før den dukker opp.',
     'innsendtSøknadListe.visFlereInnsendinger': 'Vis flere innsendinger',
     'innsendtSøknadTitle.mottatt': 'Mottatt: {dato}',
 

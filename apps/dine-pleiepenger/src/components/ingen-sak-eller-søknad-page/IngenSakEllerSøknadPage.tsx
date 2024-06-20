@@ -11,7 +11,7 @@ const IngeSakEllerSøknadPage = () => (
                 <AppText id="forside.dokumentTittel" />
             </title>
         </Head>
-        <VStack gap="8">
+        <VStack gap="8" className="mb-24">
             <Box className="md:flex md:gap-6">
                 <div className="md:grow mb-10 md:mb-0">
                     <Box className="md:flex md:gap-6">
@@ -20,7 +20,7 @@ const IngeSakEllerSøknadPage = () => (
                         </Alert>
                     </Box>
                 </div>
-                <div className="md:mb-none shrink-0 md:w-72">
+                <div className="md:mb-none shrink-0 md:w-128">
                     <VStack gap="4">
                         <LinkPanel href={browserEnv.NEXT_PUBLIC_PLEIEPENGER_INFO_URL}>
                             <AppText id="snarveier.omPleiepenger" />
