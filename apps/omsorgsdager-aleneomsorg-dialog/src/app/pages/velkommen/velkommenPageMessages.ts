@@ -3,10 +3,10 @@ const nb = {
     'page.velkommen.guide.tittel': 'Hei {navn}',
     'page.velkommen.guide.ingress': 'Velkommen til søknad om ekstra omsorgsdager ved aleneomsorg.',
     'page.velkommen.guide.tekst.1.1':
-        'Når det gjelder omsorgsdager er du alene om omsorgen når barnet bor fast hos deg, og du ikke bor sammen med den andre forelderen. Det kan for eksempel være.',
+        'Når det gjelder omsorgsdager er du alene om omsorgen når barnet bor fast hos deg, og du ikke bor sammen med den andre forelderen. Det kan for eksempel være',
     'page.velkommen.guide.tekst.1.1.a': 'på grunn av samlivsbrudd',
-    'page.velkommen.guide.tekst.1.1.b': 'at du er blitt enke/enkemann',
-    'page.velkommen.guide.tekst.1.1.c': 'at du har aleneomsorg for et donorbarn',
+    'page.velkommen.guide.tekst.1.1.b': 'at du har aleneomsorg for et donorbarn',
+    'page.velkommen.guide.tekst.1.1.c': 'den andre forelderen er død',
     'page.velkommen.guide.tekst.1.2':
         'Hvis dere vanligvis bor sammen, men den andre forelderen ikke kan ha tilsyn med barnet, skal du bruke <Lenke>Søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn</Lenke>',
     'page.velkommen.guide.tekst.2':
