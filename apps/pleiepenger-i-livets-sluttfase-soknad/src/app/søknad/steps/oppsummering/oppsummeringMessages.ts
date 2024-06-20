@@ -7,11 +7,11 @@ const nb = {
         'Les gjennom oppsummeringen og sjekk at alt er riktig før du sender inn søknaden. Hvis du vil gjøre endringer, kan du gå tilbake.',
 
     'step.oppsummering.søker.header': 'Om deg',
-    'step.oppsummering.søker.fnr': 'Fødselsnummer: {fødselsnummer}',
+    'step.oppsummering.søker.navn': 'Navn',
+    'step.oppsummering.søker.fnr': 'Fødselsnummer',
     'step.oppsummering.pleietrengende.header': 'Om personen du pleier',
-    'steg.oppsummering.pleietrengende.harIkkeFnr':
-        'Oppgitt grunn for at han/hun ikke har fødselsnummer eller D-nummer: {årsak}',
-    'steg.oppsummering.pleietrengende.fødselsdato': 'Fødselsdato: {dato}',
+    'steg.oppsummering.pleietrengende.harIkkeFnr': 'Oppgitt grunn for at han/hun ikke har fødselsnummer eller D-nummer',
+    'steg.oppsummering.pleietrengende.fødselsdato': 'Fødselsdato',
     'steg.oppsummering.pleietrengende.årsakManglerIdentitetsnummer.BOR_I_UTLANDET': 'Personen bor i utlandet',
     'steg.oppsummering.pleietrengende.årsakManglerIdentitetsnummer.ANNET': 'Annet',
     'steg.oppsummering.pleietrengende.id': 'ID for personen du pleier',
@@ -32,7 +32,7 @@ const nb = {
     'steg.oppsummering.USIKKER': 'Usikker',
 
     'steg.oppsummering.utenlandsoppholdIPerioden.header': 'Oppholder du deg i utlandet i noen av dagene du søker for?',
-    'steg.oppsummering.utenlandsoppholdIPerioden.listetittel': 'Utenlandsopphold i perioden',
+    'steg.oppsummering.utenlandsoppholdIPerioden.listetittel': 'Utenlandsopphold',
 
     'steg.oppsummering.arbeidssituasjon.header': 'Din arbeidssituasjon',
     'steg.oppsummering.vedlegg.header': 'Vedlegg',
@@ -95,7 +95,7 @@ const nb = {
     'oppsummering.arbeidIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading':
         'Dager med pleiepenger hvor jeg skal jobbe',
 
-    'summary.virksomhet.virksomhetInfo.tittel': 'Næringsvirksomhet som du har lagt inn:',
+    'summary.virksomhet.virksomhetInfo.tittel': 'Næringsvirksomhet',
 
     'step.oppsummering.bekrefterOpplysninger':
         'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til pleiepenger.',

@@ -12,7 +12,7 @@ import { usePrevious } from '@navikt/sif-common-hooks';
 import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import SøknadStep from '../../../søknad/SøknadStep';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { ErrorSummary } from '@navikt/ds-react';
+import { ErrorSummary, VStack } from '@navikt/ds-react';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
@@ -118,38 +118,43 @@ const OppsummeringStep = () => {
                                 submitPending={isSubmitting}
                                 backButtonDisabled={isSubmitting}
                                 onBack={goBack}>
-                                <OmSøkerOppsummering søker={søker} />
-                                <PleietrengendePersonSummary
-                                    flereSøkere={apiData.flereSokere}
-                                    pleietrengende={apiData.pleietrengende}
-                                    pleietrengendeId={pleietrengendeId}
-                                />
-                                <TidsromOppsummering
-                                    apiData={apiData}
-                                    dagerMedPleie={søknadsdata.tidsrom!.dagerMedPleie}
-                                />
+                                <VStack gap="8">
+                                    <OmSøkerOppsummering søker={søker} />
 
-                                <ArbeidssituasjonSummary
-                                    apiData={apiData}
-                                    søknadsperiode={{
-                                        from: ISODateToDate(apiData.fraOgMed),
-                                        to: ISODateToDate(apiData.tilOgMed),
-                                    }}
-                                    frilansoppdrag={frilansoppdrag}
-                                />
-                                <ArbeidIPeriodenSummary
-                                    apiValues={apiData}
-                                    dagerMedPleie={søknadsdata.tidsrom?.dagerMedPleie || []}
-                                    søknadsperiode={{
-                                        from: ISODateToDate(apiData.fraOgMed),
-                                        to: ISODateToDate(apiData.tilOgMed),
-                                    }}
-                                />
-                                <MedlemskapOppsummering medlemskap={apiData.medlemskap} />
-                                <LegeerklæringOppsummering
-                                    apiData={apiData}
-                                    legeerklæringSøknadsdata={søknadsdata.legeerklæring}
-                                />
+                                    <PleietrengendePersonSummary
+                                        flereSøkere={apiData.flereSokere}
+                                        pleietrengende={apiData.pleietrengende}
+                                        pleietrengendeId={pleietrengendeId}
+                                    />
+
+                                    <TidsromOppsummering
+                                        apiData={apiData}
+                                        dagerMedPleie={søknadsdata.tidsrom!.dagerMedPleie}
+                                    />
+
+                                    <ArbeidssituasjonSummary
+                                        apiData={apiData}
+                                        søknadsperiode={{
+                                            from: ISODateToDate(apiData.fraOgMed),
+                                            to: ISODateToDate(apiData.tilOgMed),
+                                        }}
+                                        frilansoppdrag={frilansoppdrag}
+                                    />
+
+                                    <ArbeidIPeriodenSummary
+                                        apiValues={apiData}
+                                        dagerMedPleie={søknadsdata.tidsrom?.dagerMedPleie || []}
+                                        søknadsperiode={{
+                                            from: ISODateToDate(apiData.fraOgMed),
+                                            to: ISODateToDate(apiData.tilOgMed),
+                                        }}
+                                    />
+                                    <MedlemskapOppsummering medlemskap={apiData.medlemskap} />
+                                    <LegeerklæringOppsummering
+                                        apiData={apiData}
+                                        legeerklæringSøknadsdata={søknadsdata.legeerklæring}
+                                    />
+                                </VStack>
 
                                 <ConfirmationCheckbox
                                     disabled={isSubmitting}
