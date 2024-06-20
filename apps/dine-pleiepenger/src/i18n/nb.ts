@@ -1,9 +1,12 @@
 export const nb = {
-    'velgSak.dokumentTittel': 'Dine pleiepenger - velg sak',
+    'velgSak.dokumentTittel': 'Dine pleiepenger for sykt barn - velg sak',
     'velgSak.tittel': 'Dine pleiepengesaker',
     'velgSak.barn.fdato': 'Født {dato}',
     'velgSak.barn.anonymisert': 'Pleietrengende født {dato}',
-    'forside.dokumentTittel': 'Dine pleiepenger',
+    'forside.dokumentTittel': 'Dine pleiepenger for sykt barn',
+
+    'ingeSakPage.melding':
+        'Vi finner ingen søknader. Hvis du nettopp har sendt inn en søknad kan det ta noen minutter før den dukker opp.',
 
     'barn.navn.anonymisert': 'Pleietrengende',
 
@@ -15,6 +18,8 @@ export const nb = {
     'snarveier.skrivTilOss.tekst': 'Har du spørsmål til saken din eller vil melde fra om annet enn jobb og ferie?',
     'snarveier.nySøknad.tittel': 'Ny pleiepengesøknad',
     'snarveier.nySøknad.tekst': 'Ved forlengelser, nye arbeidsforhold eller større endringer i perioden.',
+    'snarveier.omPleiepenger': 'Om pleiepenger for sykt barn',
+    'snarveier.søkOmPleiepenger': 'Søk om pleiepenger for sykt barn',
 
     'statusTag.status.underBehandling': 'Til behandling',
     'statusTag.status.ferdigBehandlet': 'Ferdig behandlet',
@@ -80,7 +85,8 @@ export const nb = {
 
     'dineInnsendteSøknader.tittel': 'Dine søknader, endringer og ettersendelser',
 
-    'innsendtSøknadListe.ingenSøknader': 'Ingen søknader funnet',
+    'innsendtSøknadListe.ingenSøknader':
+        'Vi finner ingen søknader. Hvis du nettopp har sendt inn en søknad kan det ta noen minutter før den dukker opp.',
     'innsendtSøknadListe.visFlereInnsendinger': 'Vis flere innsendinger',
     'innsendtSøknadTitle.mottatt': 'Mottatt: {dato}',
 
@@ -111,7 +117,7 @@ export const nb = {
     'sakPageHeader.saksnr': 'Saksnummer: {saksnr}',
     'sakPageHeader.pleietrengende': 'Pleietrengende: {navn}',
     'sakPageHeader.pleietrengende.anonymisert': 'Pleietrengende født {dato}',
-    'sakPageHeader.defaultTittel': 'Din pleiepengesak',
+    'sakPageHeader.defaultTittel': 'Din pleiepengesak for sykt barn',
 
     'pdfLenke.lenke': '{tittel} (PDF)',
 

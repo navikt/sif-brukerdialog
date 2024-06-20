@@ -48,7 +48,7 @@ class MyDocument extends Document<Props> {
                 context: 'privatperson',
                 breadcrumbs: [
                     { url: serverEnv.NEXT_PUBLIC_MIN_SIDE_URL, title: 'Min side' },
-                    { url: serverEnv.NEXT_PUBLIC_BASE_PATH, title: 'Dine pleiepenger' },
+                    { url: serverEnv.NEXT_PUBLIC_BASE_PATH, title: 'Dine pleiepenger for sykt barn' },
                 ],
             },
         });

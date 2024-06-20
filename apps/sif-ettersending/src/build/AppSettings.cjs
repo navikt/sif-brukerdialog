@@ -7,6 +7,7 @@ const getAppSettings = () => ({
     APPSTATUS_PROJECT_ID: `${process.env.APPSTATUS_PROJECT_ID}`,
     DEKORATOR_URL: `${process.env.DEKORATOR_URL}`,
     DITT_NAV_URL: `${process.env.DITT_NAV_URL}`,
+    ENDRINGSMELDING_PP: `${process.env.ENDRINGSMELDING_PP}`,
     FRONTEND_API_PATH: `${process.env.FRONTEND_API_PATH}`,
     FRONTEND_VEDLEGG_URL: `${process.env.FRONTEND_VEDLEGG_URL}`,
     GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,

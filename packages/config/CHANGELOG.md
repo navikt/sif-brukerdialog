@@ -1,5 +1,11 @@
 # config
 
+## 0.9.30
+
+### Patch Changes
+
+-   f184cf4: Pakkeoppdateringer - minor/patch
+
 ## 0.9.29
 
 ### Patch Changes

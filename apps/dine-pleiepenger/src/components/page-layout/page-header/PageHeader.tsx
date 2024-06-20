@@ -7,7 +7,7 @@ interface Props {
     byline?: React.ReactNode;
 }
 
-const PageHeader: React.FunctionComponent<Props> = ({ title = 'Dine pleiepenger', titleTag, byline }) => {
+const PageHeader: React.FunctionComponent<Props> = ({ title = 'Dine pleiepenger for sykt barn', titleTag, byline }) => {
     return (
         <div className="bg-[--a-deepblue-50]">
             <div className="text-left">

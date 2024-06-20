@@ -1,5 +1,25 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.23.14
+
+### Patch Changes
+
+-   7ecf9f9: - Legge til melding når bruker velger "Annet" for den andre forelderens situasjon
+    -   Fjerne tekst om at en allikevel kan fortsette
+
+## 1.23.13
+
+### Patch Changes
+
+-   f184cf4: Pakkeoppdateringer - minor/patch
+-   Updated dependencies [f184cf4]
+    -   @navikt/sif-common-amplitude@2.25.6
+    -   @navikt/sif-common-formik-ds@1.9.2
+    -   @navikt/sif-common-soknad-ds@10.15.10
+    -   @navikt/sif-common-core-ds@9.17.11
+    -   @navikt/sif-common-sentry@0.26.8
+    -   @navikt/sif-common-utils@3.46.4
+
 ## 1.23.12
 
 ### Patch Changes

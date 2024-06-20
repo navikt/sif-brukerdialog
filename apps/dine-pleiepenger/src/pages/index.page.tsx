@@ -54,6 +54,10 @@ function DinePleiepengerPage(): ReactElement {
         return <VelgSakPage saker={saker} />;
     }
 
+    // if (innsendteSøknader.length === 0) {
+    //     return <IngenSakEllerSøknadPage />;
+    // }
+
     return (
         <DefaultPageLayout>
             <Head>

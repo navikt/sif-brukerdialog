@@ -18,11 +18,11 @@ export const getAvailableSteps = (values: SoknadFormData, søknadstype: Søknads
     const steps: StepID[] = [];
 
     const visBeskrivelseStep = søknadstype === Søknadstype.pleiepengerLivetsSluttfase;
-    const visBeskrivelsePPStep = søknadstype === Søknadstype.pleiepengerSyktBarn;
+    const visDokumentTypeStep = søknadstype === Søknadstype.pleiepengerSyktBarn;
     const visOmsTypeStep = søknadstype === Søknadstype.omsorgspenger;
 
-    if (visBeskrivelsePPStep && beskrivelseStepIsAvailable(values)) {
-        steps.push(StepID.BESKRIVELSE_PP);
+    if (visDokumentTypeStep && beskrivelseStepIsAvailable(values)) {
+        steps.push(StepID.DOKUMENT_TYPE);
     }
 
     if (visBeskrivelseStep && beskrivelseStepIsAvailable(values)) {

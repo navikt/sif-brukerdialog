@@ -19,7 +19,7 @@ const NotFoundPage: NextPage = () => {
                             <List.Item>Bruk gjerne søket eller menyen</List.Item>
                             <List.Item>
                                 <Link href={browserEnv.NEXT_PUBLIC_BASE_PATH} className="navds-link navds-link--action">
-                                    Gå til forsiden for Dine pleiepenger
+                                    Gå til forsiden for Dine pleiepenger for sykt barn
                                 </Link>
                             </List.Item>
                         </List>

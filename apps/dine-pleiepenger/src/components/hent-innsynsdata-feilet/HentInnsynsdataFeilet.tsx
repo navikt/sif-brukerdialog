@@ -14,7 +14,7 @@ const HentInnsynsdataFeilet: React.FunctionComponent<Props> = ({ error }) => {
             {status !== undefined && [403, 451].includes(status) ? (
                 <>
                     <Head>
-                        <title>Ingen tilgang - Dine pleiepenger</title>
+                        <title>Ingen tilgang - Dine pleiepenger for sykt barn</title>
                     </Head>
                     <Heading level="1" size="large" spacing={true}>
                         Ingen tilgang
@@ -24,7 +24,7 @@ const HentInnsynsdataFeilet: React.FunctionComponent<Props> = ({ error }) => {
             ) : (
                 <>
                     <Head>
-                        <title>Det oppstod en feil - Dine pleiepenger</title>
+                        <title>Det oppstod en feil - Dine pleiepenger for sykt barn</title>
                     </Head>
                     <Heading level="1" size="large" spacing={true}>
                         Det oppstod en feil

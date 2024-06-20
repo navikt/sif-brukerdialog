@@ -26,7 +26,7 @@ const RegistrertBarnPart = ({ registrertBarn }: Props) => {
                 <>
                     <SoknadFormComponents.RadioGroup
                         name={SoknadFormField.registrertBarnAktørId}
-                        legend={text('step.beskrivelse_pp.registrertBarnPart.spm')}
+                        legend={text('step.dokumentType.registrertBarnPart.spm')}
                         radios={registrertBarn.map((barn) => {
                             const { fornavn, mellomnavn, etternavn, fødselsdato, aktørId } = barn;
                             const barnetsNavn = formatName(fornavn, etternavn, mellomnavn);
@@ -37,7 +37,7 @@ const RegistrertBarnPart = ({ registrertBarn }: Props) => {
                                         <div>{barnetsNavn}</div>
                                         <div>
                                             <AppText
-                                                id="step.beskrivelse_pp.registrertBarnPart.hvilketBarn.født"
+                                                id="step.dokumentType.registrertBarnPart.hvilketBarn.født"
                                                 values={{ dato: prettifyDate(fødselsdato) }}
                                             />
                                         </div>
@@ -65,7 +65,7 @@ const RegistrertBarnPart = ({ registrertBarn }: Props) => {
 
                     <FormBlock margin="l">
                         <SoknadFormComponents.Checkbox
-                            label={text('step.beskrivelse_pp.gjelderAnnetBarn')}
+                            label={text('step.dokumentType.gjelderAnnetBarn')}
                             name={SoknadFormField.legeerklæringGjelderEtAnnetBarn}
                             afterOnChange={(newValue) => {
                                 if (newValue) {
