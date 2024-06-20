@@ -7,6 +7,7 @@ const nb = {
     'page.velkommen.guide.tekst.1.1.a': 'på grunn av samlivsbrudd',
     'page.velkommen.guide.tekst.1.1.b': 'at du har aleneomsorg for et donorbarn',
     'page.velkommen.guide.tekst.1.1.c': 'den andre forelderen er død',
+    'page.velkommen.guide.tekst.1.2.tittel': 'Når skal du ikke bruke denne søknaden?',
     'page.velkommen.guide.tekst.1.2':
         'Hvis dere vanligvis bor sammen, men den andre forelderen ikke kan ha tilsyn med barnet, skal du bruke <Lenke>Søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn</Lenke>',
     'page.velkommen.guide.tekst.2':

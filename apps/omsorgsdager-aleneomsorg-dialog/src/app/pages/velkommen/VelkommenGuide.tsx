@@ -45,8 +45,8 @@ const VelkommenGuide: React.FunctionComponent<Props> = ({ navn }) => (
             <p>
                 <AppText id="page.velkommen.guide.tekst.3" />
             </p>
-            <Heading level="3" size="small">
-                Når skal du ikke bruke denne søknaden?
+            <Heading level="2" size="small">
+                <AppText id="page.velkommen.guide.tekst.1.2.tittel" />
             </Heading>
             <p>
                 <AppText
