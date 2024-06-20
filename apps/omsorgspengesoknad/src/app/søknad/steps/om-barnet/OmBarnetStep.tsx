@@ -146,9 +146,8 @@ const OmBarnetStep = () => {
                                             </Heading>
                                             <BodyShort>
                                                 Du har allerede et gyldig vedtak som gjelder til og med det kalenderåret{' '}
-                                                {valgtBarn.fornavn} fyller 18 år. Det betyr at allerede har ekstra
-                                                omsorgsdager, og at du ikke trenger å søke på nytt. Du kan finne melding
-                                                og dokumentasjon om vedtaket på{' '}
+                                                {valgtBarn.fornavn} fyller 18 år. Du trenger derfor ikke å søke på nytt.{' '}
+                                                Du kan finne melding og dokumentasjon om vedtaket på{' '}
                                                 <Link href="https://www.nav.no/minside/">Min side</Link>.
                                             </BodyShort>
                                         </Alert>
