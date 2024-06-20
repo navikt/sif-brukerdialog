@@ -31,6 +31,7 @@ import { useEffect, useState } from 'react';
 import { HentSisteGyldigeVedtakResponseDto } from '../../../types/innvilgetVedtakApiData/HentSisteGyldigeVedtakResponseDto';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
 import innvilgetVedtakEndpoint from '../../../api/endpoints/innvilgetVedtakEndpoint';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 
 export enum OmBarnetFormFields {
     barnetSøknadenGjelder = 'barnetSøknadenGjelder',
@@ -148,7 +149,7 @@ const OmBarnetStep = () => {
                                                 Du har allerede et gyldig vedtak som gjelder til og med det kalenderåret{' '}
                                                 {valgtBarn.fornavn} fyller 18 år. Du trenger derfor ikke å søke på nytt.{' '}
                                                 Du kan finne melding og dokumentasjon om vedtaket på{' '}
-                                                <Link href="https://www.nav.no/minside/">Min side</Link>.
+                                                <Link href={getEnvironmentVariable('MINSIDE_URL')}>Min side</Link>.
                                             </BodyShort>
                                         </Alert>
                                     </FormBlock>
