@@ -1,5 +1,11 @@
 # config
 
+## 0.9.31
+
+### Patch Changes
+
+-   b4e0847: Pakkeoppdateringer - minor/patch
+
 ## 0.9.30
 
 ### Patch Changes
