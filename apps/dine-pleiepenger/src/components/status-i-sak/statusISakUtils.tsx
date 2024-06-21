@@ -82,7 +82,7 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
                 //     };
 
                 case Sakshendelser.FERDIG_BEHANDLET:
-                    if (!hendelse.harVedtak) {
+                    if (hendelse.harVedtak === false) {
                         return undefined;
                     }
                     return {

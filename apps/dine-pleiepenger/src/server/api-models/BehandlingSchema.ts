@@ -9,7 +9,7 @@ export type Behandling = z.infer<typeof BehandlingSchema>;
 export const BehandlingSchema = z.object({
     status: z.nativeEnum(Behandlingsstatus),
     innsendelser: z.array(InnsendelseSchema),
-    harVedtak: z.boolean(),
+    harVedtak: z.boolean().optional(),
     opprettetTidspunkt: z.preprocess(parseMaybeDateStringToDate, z.date()).or(z.undefined()).or(z.null()),
     avsluttetTidspunkt: z.preprocess(parseMaybeDateStringToDate, z.date()).or(z.undefined()).or(z.null()),
     aksjonspunkter: z.array(AksjonspunktSchema),
