@@ -1,5 +1,5 @@
 import { FormSummary } from '@navikt/ds-react';
-import { JaNeiSvar, TextareaSvar } from '@navikt/sif-common-ui';
+import { JaNeiSvar, Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '../../../i18n';
 import { BarnSammeAdresse } from '../../../types/BarnSammeAdresse';
@@ -66,7 +66,9 @@ const OmBarnetOppsummering = ({ apiData }: Props) => {
                                         <AppText id="steg.oppsummering.barnet.høyereRisikoForFraværBeskrivelse.header" />
                                     </FormSummary.Label>
                                     <FormSummary.Value>
-                                        <TextareaSvar text={apiData.høyereRisikoForFraværBeskrivelse} />
+                                        <Sitat>
+                                            <TextareaSvar text={apiData.høyereRisikoForFraværBeskrivelse} />
+                                        </Sitat>
                                     </FormSummary.Value>
                                 </FormSummary.Answer>
                             ) : null}

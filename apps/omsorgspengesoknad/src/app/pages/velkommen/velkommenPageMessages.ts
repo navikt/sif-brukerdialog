@@ -9,7 +9,7 @@ const nb = {
     'page.velkommen.guide.tekst.2':
         'Hvis flere skal ha ekstra omsorgsdager for samme barn, må dere sende hver deres søknad til NAV.',
     'page.velkommen.guide.tekst.3':
-        'For mer informasjon om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning, se <Lenke>nav.no/omsorgspenger</Lenke>.',
+        'Hvis du har fått godkjent søknaden av NAV, trenger du ikke å søke om ekstra omsorgsdager igjen. Vedtak om ekstra dager varer til barnet blir 18 år.',
     'page.velkommen.omSøknaden.tittel': 'Om søknaden',
     'page.velkommen.omSøknaden.1': 'Du får veiledning underveis i søknaden om hva du skal fylle ut, og hvordan.',
     'page.velkommen.omSøknaden.fremoverITid':
