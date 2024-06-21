@@ -3868,7 +3868,7 @@ __metadata:
     "@types/node": 20.14.7
     "@types/react": 18.3.3
     "@types/react-dom": 18.3.0
-    "@types/uuid": 9.0.8
+    "@types/uuid": 10.0.0
     classnames: 2.5.1
     dayjs: 1.11.11
     eslint: 8.57.0
@@ -4409,7 +4409,7 @@ __metadata:
     "@types/node": 20.14.7
     "@types/react": 18.3.3
     "@types/react-dom": 18.3.0
-    "@types/uuid": 9.0.8
+    "@types/uuid": 10.0.0
     "@vitejs/plugin-react": 4.3.1
     classnames: 2.5.1
     config: "workspace:*"
@@ -4642,7 +4642,7 @@ __metadata:
     "@types/node": 20.14.7
     "@types/react": 18.3.3
     "@types/react-dom": 18.3.0
-    "@types/uuid": 9.0.8
+    "@types/uuid": 10.0.0
     config: "workspace:*"
     dayjs: 1.11.11
     intl: 1.2.5
@@ -4684,7 +4684,7 @@ __metadata:
     "@types/react": 18.3.3
     "@types/react-dom": 18.3.0
     "@types/react-router-dom": 5.3.3
-    "@types/uuid": 9.0.8
+    "@types/uuid": 10.0.0
     "@vitejs/plugin-react": 4.3.1
     axe-core: 4.9.1
     axios: 1.7.2
@@ -9105,10 +9105,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/uuid@npm:9.0.8, @types/uuid@npm:^9.0.1":
-  version: 9.0.8
-  resolution: "@types/uuid@npm:9.0.8"
-  checksum: b8c60b7ba8250356b5088302583d1704a4e1a13558d143c549c408bf8920535602ffc12394ede77f8a8083511b023704bc66d1345792714002bfa261b17c5275
+"@types/uuid@npm:10.0.0":
+  version: 10.0.0
+  resolution: "@types/uuid@npm:10.0.0"
+  checksum: e3958f8b0fe551c86c14431f5940c3470127293280830684154b91dc7eb3514aeb79fe3216968833cf79d4d1c67f580f054b5be2cd562bebf4f728913e73e944
   languageName: node
   linkType: hard
 
@@ -9116,6 +9116,13 @@ __metadata:
   version: 8.3.4
   resolution: "@types/uuid@npm:8.3.4"
   checksum: 6f11f3ff70f30210edaa8071422d405e9c1d4e53abbe50fdce365150d3c698fe7bbff65c1e71ae080cbfb8fded860dbb5e174da96fdbbdfcaa3fb3daa474d20f
+  languageName: node
+  linkType: hard
+
+"@types/uuid@npm:^9.0.1":
+  version: 9.0.8
+  resolution: "@types/uuid@npm:9.0.8"
+  checksum: b8c60b7ba8250356b5088302583d1704a4e1a13558d143c549c408bf8920535602ffc12394ede77f8a8083511b023704bc66d1345792714002bfa261b17c5275
   languageName: node
   linkType: hard
 
