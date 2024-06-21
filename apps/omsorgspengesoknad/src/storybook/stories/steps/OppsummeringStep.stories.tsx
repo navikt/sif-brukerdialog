@@ -75,6 +75,6 @@ export const AnnetBarnSamværsavtale = Template.bind({});
 AnnetBarnSamværsavtale.args = {
     context: {
         ...mockInitialSøknadContextState,
-        søknadsdata: søknadsdataMocks.komplett_annetBarnFarDeltBosted,
+        søknadsdata: { ...søknadsdataMocks.komplett_annetBarnFarDeltBosted },
     },
 };

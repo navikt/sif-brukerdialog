@@ -14,7 +14,7 @@ test('Fyll ut søknad med annet barn', async ({ page }) => {
     await page.goto(startUrl);
 
     /** Velkommen side */
-    await page.getByRole('heading', { level: 1, name: 'Hei PRESENTABEL' });
+    await page.getByRole('heading', { level: 1, name: 'Hei, PRESENTABEL' });
     await page.getByLabel('Jeg bekrefter at jeg har forstått mitt ansvar som søker').click();
     await page.getByRole('button', { name: 'Start søknad' }).click();
 
@@ -43,16 +43,14 @@ test('Fyll ut søknad med annet barn', async ({ page }) => {
     /** Oppsummering */
     await page.getByRole('heading', { level: 1, name: 'Oppsummering' });
 
-    await expect(await page.getByText('PRESENTABEL HOFTE').isVisible()).toBeTruthy();
-    await expect(await page.getByText('Fødselsnummer: 02869599258').isVisible()).toBeTruthy();
-    await expect(await page.getByText('Navn: ALFABETISK FAGGOTT').isVisible()).toBeTruthy();
-    await expect(await page.getByText('Fødselsdato: 8. juni 2019').isVisible()).toBeTruthy();
-    await expect(await page.getByText('Din relasjon til barnet: mor').isVisible()).toBeTruthy();
-    await expect(await page.getByText('Bor du sammen med barnet?Ja').isVisible()).toBeTruthy();
-    await expect(
-        await page.getByText('Har barnet kronisk/langvarig sykdom eller funksjonshemning?Ja').isVisible(),
-    ).toBeTruthy();
-    await expect(await page.getByText('navlogopng.png').isVisible()).toBeTruthy();
+    await expect(page.getByText('NavnPRESENTABEL HOFTE')).toBeVisible();
+    await expect(page.getByText('Fødselsnummer02869599258')).toBeVisible();
+    await expect(page.getByText('NavnALFABETISK FAGGOTT')).toBeVisible();
+    await expect(page.getByText('Fødselsdato8. juni')).toBeVisible();
+    await expect(page.getByText('Din relasjon til barnetMor')).toBeVisible();
+    await expect(page.getByText('Bor du sammen med barnet?Ja')).toBeVisible();
+    await expect(page.getByText('Har barnet kronisk/langvarig sykdom eller funksjonshemning?Ja')).toBeVisible();
+    await expect(page.getByText('navlogopng.png')).toBeVisible();
 
     await page
         .getByLabel(
@@ -67,10 +65,8 @@ test('Fyll ut søknad med annet barn', async ({ page }) => {
         name: 'Vi har mottatt søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
     });
     await expect(
-        await page
-            .getByRole('heading', {
-                name: 'Vi har mottatt søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
-            })
-            .isVisible(),
-    ).toBeTruthy();
+        page.getByRole('heading', {
+            name: 'Vi har mottatt søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
+        }),
+    ).toBeVisible();
 });
