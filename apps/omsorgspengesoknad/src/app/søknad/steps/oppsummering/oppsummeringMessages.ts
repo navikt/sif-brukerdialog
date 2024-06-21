@@ -4,7 +4,7 @@ const nb = {
     'steg.oppsummering.barnet.header': 'Om barnet',
     'steg.oppsummering.barnet.navn': 'Navn',
     'steg.oppsummering.barnet.fødselsdato': 'Fødselsdato',
-    'steg.oppsummering.barnet.fnr': 'Fødselsnummer: {fnr}',
+    'steg.oppsummering.barnet.fnr': 'Fødselsnummer',
     'steg.oppsummering.barnet.søkersRelasjonTilBarnet': 'Din relasjon til barnet',
     'steg.oppsummering.barnet.sammeAdresse.header': 'Bor du sammen med barnet?',
     'steg.oppsummering.barnet.sammeAdresse.ja': 'Ja',
