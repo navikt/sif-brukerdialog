@@ -54,6 +54,7 @@ function DinePleiepengerPage(): ReactElement {
         return <VelgSakPage saker={saker} />;
     }
 
+    /** Foreløpig kommentert ut pga avklaring av innhold på siden. */
     // if (innsendteSøknader.length === 0) {
     //     return <IngenSakEllerSøknadPage />;
     // }
