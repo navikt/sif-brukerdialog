@@ -32,6 +32,9 @@ export const nb = {
     'sakstype.PP_ETTERSENDELSE': 'Ettersendelse av dokumenter - Pleiepenger sykt barn',
     'sakstype.PP_SYKT_BARN_ENDRINGSMELDING': 'Endringsmelding pleiepenger',
 
+    'info.forsinkelse':
+        'Det kan ta opptil 15 minutter før en ny søknad, endringsmelding eller ettersendt legeerklæring vises her.',
+
     'svarfrist.tittel': 'Saksbehandlingstid',
     'svarfrist.forventetBehandlingstid':
         'Forventet behandlingstid er {saksbehandlingstidUker, plural, one {# uke} other {# uker}} fra vi mottar søknad.',
