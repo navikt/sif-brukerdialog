@@ -21,6 +21,9 @@ const VelkommenGuide: React.FunctionComponent<Props> = ({ navn }) => (
             <p>
                 <AppText id="page.velkommen.guide.tekst.2" />
             </p>
+            <p>
+                <AppText id="page.velkommen.guide.tekst.3" />
+            </p>
         </BodyLong>
     </GuidePanel>
 );

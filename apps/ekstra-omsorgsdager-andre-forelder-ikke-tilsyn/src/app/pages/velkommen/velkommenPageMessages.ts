@@ -12,7 +12,7 @@ const nb = {
     'page.velkommen.guide.tekst.1.5': 'utøver verneplikt',
 
     'page.velkommen.guide.tekst.2':
-        'Hvis du får innvilget søknaden får du doblet antall omsorgsdager. For å ha rett til å bruke omsorgsdager må du være yrkesaktiv. Det betyr at du må være arbeidstaker, selvstendig næringsdrivende, frilanser eller en kombinasjon av disse.',
+        'Hvis du får innvilget søknaden får du doblet antall omsorgsdager så lenge vedtaket gjelder. Du trenger ikke å søke på nytt hvert kalenderår, vedtaket vil bekrefte hvor lenge du har rett til ekstra omsorgsdager.',
 
     'page.velkommen.omSøknaden.tittel': 'Om søknaden',
     'page.velkommen.omSøknaden.1': 'Du får veiledning underveis i søknaden om hva du skal fylle ut, og hvordan.',
