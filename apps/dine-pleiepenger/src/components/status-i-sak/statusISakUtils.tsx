@@ -71,14 +71,15 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
                 case Sakshendelser.ETTERSENDELSE:
                     return getProcessStepFromInnsendelse(text, hendelse.innsendelse, erGjeldendeHendelse);
 
-                case Sakshendelser.AKSJONSPUNKT:
-                    return {
-                        title: hendelse.venteårsak,
-                        completed: false,
-                        current: true,
-                        content: '',
-                        timestamp: hendelse.dato,
-                    };
+                /** Denne skal ikke vises enda */
+                // case Sakshendelser.AKSJONSPUNKT:
+                //     return {
+                //         title: hendelse.venteårsak,
+                //         completed: false,
+                //         current: true,
+                //         content: '',
+                //         timestamp: hendelse.dato,
+                //     };
 
                 case Sakshendelser.FERDIG_BEHANDLET:
                     return {
