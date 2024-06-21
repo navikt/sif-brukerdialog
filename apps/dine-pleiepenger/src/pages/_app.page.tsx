@@ -55,7 +55,7 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
     if (isLoading) {
         return (
             <EmptyPage>
-                <Head>Henter informasjon - Dine pleiepenger</Head>
+                <Head>Henter informasjon - Dine pleiepenger for sykt barn</Head>
                 <ComponentLoader />
             </EmptyPage>
         );
