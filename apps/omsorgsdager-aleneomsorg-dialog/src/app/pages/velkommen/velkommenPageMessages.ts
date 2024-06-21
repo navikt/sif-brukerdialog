@@ -2,16 +2,18 @@ const nb = {
     'page.velkommen.sidetittel': 'Søknad om ekstra omsorgsdager',
     'page.velkommen.guide.tittel': 'Hei {navn}',
     'page.velkommen.guide.ingress': 'Velkommen til søknad om ekstra omsorgsdager ved aleneomsorg.',
-    'page.velkommen.guide.tekst.1':
-        'Her søker du om ekstra omsorgsdager når du er alene om omsorgen for barn. I disse tilfellene får du doblet antall omsorgsdager. Doblingen gjelder så lenge du er alene om omsorgen, og så lenge retten din til å bruke omsorgsdager gjelder. Du trenger altså ikke søke på nytt ved nytt kalenderår.',
+    'page.velkommen.guide.tekst.1.1':
+        'Når det gjelder omsorgsdager er du alene om omsorgen når barnet bor fast hos deg, og du ikke bor sammen med den andre forelderen. Det kan for eksempel være',
+    'page.velkommen.guide.tekst.1.1.a': 'på grunn av samlivsbrudd',
+    'page.velkommen.guide.tekst.1.1.b': 'at du har aleneomsorg for et donorbarn',
+    'page.velkommen.guide.tekst.1.1.c': 'den andre forelderen er død',
+    'page.velkommen.guide.tekst.1.2.tittel': 'Når skal du ikke bruke denne søknaden?',
+    'page.velkommen.guide.tekst.1.2':
+        'Hvis dere vanligvis bor sammen, men den andre forelderen ikke kan ha tilsyn med barnet, skal du bruke <Lenke>Søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn</Lenke>',
     'page.velkommen.guide.tekst.2':
-        'Når det gjelder omsorgsdager er du alene om omsorgen når barnet bor fast hos deg, og du ikke bor sammen med den andre forelderen. Det kan for eksempel være på grunn av samlivsbrudd, at du er blitt enke/enkemann eller at du har aleneomsorg for et donorbarn. Hvis dere vanligvis bor sammen, men den andre forelderen ikke kan ha tilsyn med barnet, skal du bruke <Lenke>Søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn</Lenke>.',
+        'Hvis dere har avtalt delt fast bosted for barnet har begge foreldre rett på omsorgsdager, og ingen av dere skal søke om ekstra omsorgsdager på grunn av aleneomsorg.',
     'page.velkommen.guide.tekst.3':
-        'Hvis dere har avtalt delt fast bosted for barnet har begge foreldre rett på ordinære omsorgsdager, og ingen av dere skal søke om ekstra omsorgsdager på grunn av aleneomsorg.',
-    'page.velkommen.guide.tekst.4': 'Du må gi beskjed til oss hvis',
-    'page.velkommen.guide.tekst.4.1': 'dere inngår avtale om delt fast bosted',
-    'page.velkommen.guide.tekst.4.2': 'du og den andre forelderen flytter sammen igjen',
-    'page.velkommen.guide.tekst.4.3': 'barnet flytter fra deg',
+        'Hvis du har aleneomsorg for flere barn, må du sende en søknad for hvert av barna. Du trenger ikke å søke flere ganger for samme barn, hvis du har fått godkjent søknaden. Vedtaket om ekstra omsorgsdager gjelder så lenge du har rett til omsorgsdager for barnet.',
 
     'page.velkommen.omSøknaden.tittel': 'Om søknaden',
     'page.velkommen.omSøknaden.1': 'Du får veiledning underveis i søknaden om hva du skal fylle ut, og hvordan.',
