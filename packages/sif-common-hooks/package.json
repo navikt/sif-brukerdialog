@@ -5,7 +5,7 @@
     "private": true,
     "dependencies": {
         "react": "18.3.1",
-        "typescript": "5.4.5"
+        "typescript": "5.5.2"
     },
     "devDependencies": {
         "copyfiles": "2.4.1",
