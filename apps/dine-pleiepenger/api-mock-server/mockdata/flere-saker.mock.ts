@@ -26,6 +26,7 @@ export const flereSakerMock: PleietrengendeMedSak[] = [
                     status: Behandlingsstatus.UNDER_BEHANDLING,
                     opprettetTidspunkt: new Date('2024-02-14T11:59:40.061Z'),
                     avsluttetTidspunkt: new Date('2024-02-14T11:59:40.061Z'),
+                    harVedtak: false,
                     innsendelser: [
                         {
                             søknadId: '1',
@@ -91,6 +92,7 @@ export const flereSakerMock: PleietrengendeMedSak[] = [
                     status: Behandlingsstatus.AVSLUTTET,
                     opprettetTidspunkt: new Date('2024-02-14T11:59:40.061Z'),
                     avsluttetTidspunkt: new Date('2024-02-14T11:59:40.061Z'),
+                    harVedtak: true,
                     innsendelser: [
                         {
                             søknadId: '2',

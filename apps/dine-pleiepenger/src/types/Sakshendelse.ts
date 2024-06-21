@@ -46,6 +46,7 @@ interface SakshendelseFerdigBehandlet extends SakshendelseBase {
     type: Sakshendelser.FERDIG_BEHANDLET;
     /** avsluttet dato */
     dato: Date;
+    harVedtak: boolean;
 }
 
 export type Sakshendelse =

@@ -95,6 +95,7 @@ export const getHendelserIBehandling = (behandling: Behandling, saksbehandlingFr
         hendelser.push({
             type: Sakshendelser.FERDIG_BEHANDLET,
             dato: avsluttetTidspunkt,
+            harVedtak: true,
         });
     } else {
         hendelser.push({

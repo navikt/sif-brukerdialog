@@ -10,6 +10,7 @@ const behandling1: Behandling = {
     innsendelser: [] as any,
     opprettetTidspunkt: ISODateToDate('2020-01-01'),
     aksjonspunkter: [],
+    harVedtak: false,
     avsluttetTidspunkt: null,
 };
 const behandling2: Behandling = {
@@ -17,11 +18,13 @@ const behandling2: Behandling = {
     innsendelser: [] as any,
     opprettetTidspunkt: ISODateToDate('2020-01-03'),
     aksjonspunkter: [],
+    harVedtak: false,
     avsluttetTidspunkt: null,
 };
 const behandling3: Behandling = {
     status: Behandlingsstatus.UNDER_BEHANDLING,
     innsendelser: [] as any,
+    harVedtak: false,
     opprettetTidspunkt: ISODateToDate('2020-01-02'),
     aksjonspunkter: [],
     avsluttetTidspunkt: null,
@@ -39,6 +42,7 @@ describe('sakUtils', () => {
         const hendelse1: Sakshendelse = {
             dato: ISODateToDate('2020-01-01'),
             type: Sakshendelser.FERDIG_BEHANDLET,
+            harVedtak: true,
         };
         const hendelse2: Sakshendelse = {
             dato: ISODateToDate('2020-01-03'),
@@ -48,6 +52,7 @@ describe('sakUtils', () => {
         const hendelse3: Sakshendelse = {
             dato: ISODateToDate('2020-01-03'),
             type: Sakshendelser.FERDIG_BEHANDLET,
+            harVedtak: true,
         };
 
         const hendelseForventetSvar: Sakshendelse = {

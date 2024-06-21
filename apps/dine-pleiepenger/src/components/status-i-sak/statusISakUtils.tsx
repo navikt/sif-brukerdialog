@@ -82,6 +82,9 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
                 //     };
 
                 case Sakshendelser.FERDIG_BEHANDLET:
+                    if (!hendelse.harVedtak) {
+                        return undefined;
+                    }
                     return {
                         title: text('statusISak.ferdigBehandlet.tittel'),
                         content: <FerdigBehandletStatusContent />,
