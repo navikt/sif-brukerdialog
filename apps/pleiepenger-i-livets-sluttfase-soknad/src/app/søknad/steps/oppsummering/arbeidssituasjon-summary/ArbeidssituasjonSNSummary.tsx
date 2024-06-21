@@ -1,4 +1,4 @@
-import { FormSummary, Heading } from '@navikt/ds-react';
+import { FormSummary } from '@navikt/ds-react';
 import VirksomhetFormSummaryAnswers from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetFormSummaryAnswers';
 import { AppText } from '../../../../i18n';
 import { SelvstendigNæringsdrivendeApiData } from '../../../../types/søknadApiData/SøknadApiData';
@@ -39,13 +39,13 @@ function ArbeidssituasjonSNSummary({ selvstendigNæringsdrivende }: Props) {
                                     />
                                 </li>
                             )}
+                            <li>
+                                Registrert virksomhet:
+                                <FormSummary.Answers>
+                                    <VirksomhetFormSummaryAnswers virksomhet={virksomhet} />
+                                </FormSummary.Answers>
+                            </li>
                         </ul>
-                        <FormSummary.Answers>
-                            <Heading level="4" size="small" spacing={true}>
-                                <AppText id="summary.virksomhet.virksomhetInfo.tittel" />
-                            </Heading>
-                            <VirksomhetFormSummaryAnswers virksomhet={virksomhet} />
-                        </FormSummary.Answers>
                     </>
                 )}
             </FormSummary.Value>
