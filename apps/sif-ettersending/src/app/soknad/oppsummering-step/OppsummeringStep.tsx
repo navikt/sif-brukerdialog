@@ -6,7 +6,7 @@ import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { TextareaSvar } from '@navikt/sif-common-ui';
+import { Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 import { prettifyDate } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 import UploadedDocumentsList from '../../components/uploaded-documents-list/UploadedDocumentsList';
@@ -135,7 +135,9 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
                                             <AppText id="steg.oppsummering.hvaGjelder.header" />
                                         </FormSummary.Label>
                                         <FormSummary.Value>
-                                            <TextareaSvar text={apiValues.beskrivelse} />
+                                            <Sitat>
+                                                <TextareaSvar text={apiValues.beskrivelse} />
+                                            </Sitat>
                                         </FormSummary.Value>
                                     </FormSummary.Answer>
                                 )}
