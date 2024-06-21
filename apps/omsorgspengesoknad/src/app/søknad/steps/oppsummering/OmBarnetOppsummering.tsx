@@ -85,12 +85,12 @@ export default OmBarnetOppsummering;
 const RegistrertBarnOppsummering = ({ barn }: { barn: BarnToSendToApi }) => (
     <>
         <FormSummary.Answer>
-            <FormSummary.Label>Navn</FormSummary.Label>
+            <AppText id="steg.oppsummering.barnet.navn" />
             <FormSummary.Value>{barn.navn}</FormSummary.Value>
         </FormSummary.Answer>
         {barn.fødselsdato ? (
             <FormSummary.Answer>
-                <FormSummary.Label>Fødselsdato</FormSummary.Label>
+                <AppText id="steg.oppsummering.barnet.fødselsdato" />
                 <FormSummary.Value>{dateFormatter.full(ISODateToDate(barn.fødselsdato))}</FormSummary.Value>
             </FormSummary.Answer>
         ) : null}
@@ -109,25 +109,33 @@ const AnnetBarnOppsummering = ({
         <>
             {barn.norskIdentifikator ? (
                 <FormSummary.Answer>
-                    <FormSummary.Label>Fødselsnummer</FormSummary.Label>
+                    <FormSummary.Label>
+                        <AppText id="steg.oppsummering.barnet.fnr" />
+                    </FormSummary.Label>
                     <FormSummary.Value>{barn.norskIdentifikator}</FormSummary.Value>
                 </FormSummary.Answer>
             ) : null}
             {barn.navn ? (
                 <FormSummary.Answer>
-                    <FormSummary.Label>Navn</FormSummary.Label>
+                    <FormSummary.Label>
+                        <AppText id="steg.oppsummering.barnet.navn" />
+                    </FormSummary.Label>
                     <FormSummary.Value>{barn.navn}</FormSummary.Value>
                 </FormSummary.Answer>
             ) : null}
             {barn.fødselsdato ? (
                 <FormSummary.Answer>
-                    <FormSummary.Label>Fødselsdato</FormSummary.Label>
+                    <FormSummary.Label>
+                        <AppText id="steg.oppsummering.barnet.fødselsdato" />
+                    </FormSummary.Label>
                     <FormSummary.Value>{dateFormatter.full(ISODateToDate(barn.fødselsdato))}</FormSummary.Value>
                 </FormSummary.Answer>
             ) : null}
             {relasjonTilBarnet && (
                 <FormSummary.Answer>
-                    <FormSummary.Label>Din relasjon til barnet</FormSummary.Label>
+                    <FormSummary.Label>
+                        <AppText id="steg.oppsummering.barnet.søkersRelasjonTilBarnet" />
+                    </FormSummary.Label>
                     <FormSummary.Value>{text(getRelasjonTilBarnetIntlKey(relasjonTilBarnet))}</FormSummary.Value>
                 </FormSummary.Answer>
             )}
