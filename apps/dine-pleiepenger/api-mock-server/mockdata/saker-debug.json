@@ -1,0 +1,27 @@
+[
+    {
+        "pleietrengende": {
+            "identitetsnummer": "27870899799",
+            "fødselsdato": "2008-07-27",
+            "fornavn": "RAVGUL",
+            "mellomnavn": null,
+            "etternavn": "LØVETANN",
+            "aktørId": "2175638020356"
+        },
+        "sak": {
+            "saksnummer": "1DQAQRW",
+            "saksbehandlingsFrist": "2024-03-26",
+            "fagsakYtelseType": { "kode": "PSB", "kodeverk": "FAGSAK_YTELSE" },
+            "behandlinger": [
+                {
+                    "status": "UNDER_BEHANDLING",
+                    "opprettetTidspunkt": "2024-02-13T07:53:56.000Z",
+                    "avsluttetTidspunkt": null,
+                    "søknader": null,
+                    "aksjonspunkter": [],
+                    "utgåendeDokumenter": []
+                }
+            ]
+        }
+    }
+]

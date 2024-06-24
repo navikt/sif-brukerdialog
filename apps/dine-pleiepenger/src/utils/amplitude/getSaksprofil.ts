@@ -19,10 +19,9 @@ export const getSaksprofil = (sak: Sak, antallSaker: number): Saksprofil => {
         profilVersjon: '1.0',
         status: statusISak?.status,
         venteårsak: statusISak?.venteårsak,
-        harSaksbehandlingsfrist: !!sak.utledetStatus.saksbehandlingsFrist,
+        harSaksbehandlingsfrist: !!sak.saksbehandlingsFrist,
         harPassertSaksbehandlingsfrist:
-            !!sak.utledetStatus.saksbehandlingsFrist &&
-            erSaksbehandlingsfristPassert(sak.utledetStatus.saksbehandlingsFrist),
+            !!sak.saksbehandlingsFrist && erSaksbehandlingsfristPassert(sak.saksbehandlingsFrist),
         antallSaker,
         antallBehandlinger: sak.behandlinger.length,
     };

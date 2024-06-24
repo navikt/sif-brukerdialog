@@ -1,12 +1,9 @@
 export const nb = {
-    'velgSak.dokumentTittel': 'Dine pleiepenger for sykt barn - velg sak',
+    'velgSak.dokumentTittel': 'Dine pleiepenger - velg sak',
     'velgSak.tittel': 'Dine pleiepengesaker',
     'velgSak.barn.fdato': 'Født {dato}',
     'velgSak.barn.anonymisert': 'Pleietrengende født {dato}',
-    'forside.dokumentTittel': 'Dine pleiepenger for sykt barn',
-
-    'ingeSakPage.melding':
-        'Vi finner ingen søknader. Hvis du nettopp har sendt inn en søknad kan det ta noen minutter før den dukker opp.',
+    'forside.dokumentTittel': 'Dine pleiepenger',
 
     'barn.navn.anonymisert': 'Pleietrengende',
 
@@ -18,8 +15,6 @@ export const nb = {
     'snarveier.skrivTilOss.tekst': 'Har du spørsmål til saken din eller vil melde fra om annet enn jobb og ferie?',
     'snarveier.nySøknad.tittel': 'Ny pleiepengesøknad',
     'snarveier.nySøknad.tekst': 'Ved forlengelser, nye arbeidsforhold eller større endringer i perioden.',
-    'snarveier.omPleiepenger': 'Om pleiepenger for sykt barn',
-    'snarveier.søkOmPleiepenger': 'Søk om pleiepenger for sykt barn',
 
     'statusTag.status.underBehandling': 'Til behandling',
     'statusTag.status.ferdigBehandlet': 'Ferdig behandlet',
@@ -32,12 +27,9 @@ export const nb = {
     'sakstype.PP_ETTERSENDELSE': 'Ettersendelse av dokumenter - Pleiepenger sykt barn',
     'sakstype.PP_SYKT_BARN_ENDRINGSMELDING': 'Endringsmelding pleiepenger',
 
-    'info.forsinkelse':
-        'Det kan ta opptil 15 minutter før en ny søknad, endringsmelding eller ettersendt legeerklæring vises her.',
-
     'svarfrist.tittel': 'Saksbehandlingstid',
     'svarfrist.forventetBehandlingstid':
-        'Forventet behandlingstid er {saksbehandlingstidUker, plural, one {# uke} other {# uker}} fra vi mottar søknad.',
+        'Forventet behandlingstid er {saksbehandlingstidUker, plural, one {# uke} other {# uker}} fra vi fikk søknaden din.',
     'svarfrist.fristPassert.1':
         'Vi jobber fremdeles med søknaden din. Noen ganger kan det ta lengre tid, spesielt hvis saken er komplisert eller vi har ventet på dokumenter.',
     'svarfrist.fristPassert.2':
@@ -88,8 +80,7 @@ export const nb = {
 
     'dineInnsendteSøknader.tittel': 'Dine søknader, endringer og ettersendelser',
 
-    'innsendtSøknadListe.ingenSøknader':
-        'Vi finner ingen søknader. Hvis du nettopp har sendt inn en søknad kan det ta noen minutter før den dukker opp.',
+    'innsendtSøknadListe.ingenSøknader': 'Ingen søknader funnet',
     'innsendtSøknadListe.visFlereInnsendinger': 'Vis flere innsendinger',
     'innsendtSøknadTitle.mottatt': 'Mottatt: {dato}',
 
@@ -120,7 +111,7 @@ export const nb = {
     'sakPageHeader.saksnr': 'Saksnummer: {saksnr}',
     'sakPageHeader.pleietrengende': 'Pleietrengende: {navn}',
     'sakPageHeader.pleietrengende.anonymisert': 'Pleietrengende født {dato}',
-    'sakPageHeader.defaultTittel': 'Din pleiepengesak for sykt barn',
+    'sakPageHeader.defaultTittel': 'Din pleiepengesak',
 
     'pdfLenke.lenke': '{tittel} (PDF)',
 

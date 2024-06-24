@@ -50,7 +50,7 @@ const startServer = () => {
     });
 
     server.get('/soknad', (req, res) => {
-        res.send([]);
+        res.send(søknader);
     });
 
     server.get('/soknad/:soknadId/dokument', (req, res) => {

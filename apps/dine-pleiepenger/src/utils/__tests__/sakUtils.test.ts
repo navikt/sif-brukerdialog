@@ -1,7 +1,8 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import { Behandling } from '../../server/api-models/BehandlingSchema';
 import { Behandlingsstatus } from '../../server/api-models/Behandlingsstatus';
-import { sortBehandlingerNyesteFørst, sortSakshendelse } from '../sakUtils';
+import { getSisteBehandlingISak, sortBehandlingerNyesteFørst, sortSakshendelse } from '../sakUtils';
+import { Sak } from '../../server/api-models/SakSchema';
 import { Sakshendelse, Sakshendelser } from '../../types/Sakshendelse';
 import { Innsendelsestype } from '../../server/api-models/Innsendelsestype';
 
@@ -32,6 +33,17 @@ describe('sakUtils', () => {
         it('sorterer behandlinger på sak riktig', () => {
             const sorterteBehandlinger = sortBehandlingerNyesteFørst([behandling1, behandling2, behandling3]);
             expect(sorterteBehandlinger).toEqual([behandling2, behandling3, behandling1]);
+        });
+    });
+
+    describe('getSisteBehandlingISak', () => {
+        it('returnerer siste behandling i sak', () => {
+            const sak: Sak = {
+                saksnummer: '123',
+                behandlinger: [behandling1, behandling2, behandling3],
+            };
+            const sisteBehandling = getSisteBehandlingISak(sak);
+            expect(sisteBehandling).toEqual(behandling2);
         });
     });
 

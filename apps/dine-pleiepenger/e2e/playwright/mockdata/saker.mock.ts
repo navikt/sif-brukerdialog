@@ -16,11 +16,7 @@ export const sakerMock: PleietrengendeMedSak[] = [
         },
         sak: {
             saksnummer: '1DQAQRW',
-            utledetStatus: {
-                saksbehandlingsFrist: ISODateToDate('2024-03-26'),
-                aksjonspunkter: [],
-                status: Behandlingsstatus.UNDER_BEHANDLING,
-            },
+            saksbehandlingsFrist: ISODateToDate('2024-03-26'),
             behandlinger: [
                 {
                     status: Behandlingsstatus.UNDER_BEHANDLING,

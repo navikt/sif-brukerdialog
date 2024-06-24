@@ -29,7 +29,7 @@ const HistorikkPage: React.FunctionComponent<Props> = ({ sak, harFlereSaker, ple
             [
                 {
                     url: `/sak/${sak.saksnummer}`,
-                    title: 'Din pleiepengesak for sykt barn',
+                    title: 'Din pleiepengesak',
                     handleInApp: true,
                 },
                 { url: browserEnv.NEXT_PUBLIC_BASE_PATH, title: 'Historikk' },
@@ -46,7 +46,7 @@ const HistorikkPage: React.FunctionComponent<Props> = ({ sak, harFlereSaker, ple
         <DefaultPageLayout
             pageHeader={<SakPageHeader tittel="Historikk" pleietrengende={pleietrengende} saksnr={sak.saksnummer} />}>
             <Head>
-                <title>Historikk - Din pleiepengesak for sykt barn - {sak.saksnummer}</title>
+                <title>Historikk - Din pleiepengesak - {sak.saksnummer}</title>
             </Head>
             <VStack gap="12">
                 <Box className="md:flex md:gap-6 mb-10">

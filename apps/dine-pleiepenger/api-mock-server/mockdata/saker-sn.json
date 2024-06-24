@@ -1,0 +1,142 @@
+[
+    {
+        "pleietrengende": {
+            "identitetsnummer": "05461855751",
+            "fødselsdato": "2018-06-05",
+            "fornavn": "TENTATIV",
+            "mellomnavn": null,
+            "etternavn": "RADIOSTASJON",
+            "aktørId": "2652594481074"
+        },
+        "sak": {
+            "saksnummer": "1DQB8TW",
+            "saksbehandlingsFrist": "2024-05-14",
+            "fagsakYtelseType": { "kode": "PSB", "kodeverk": "FAGSAK_YTELSE" },
+            "ytelseType": "PSB",
+            "behandlinger": [
+                {
+                    "status": "UNDER_BEHANDLING",
+                    "opprettetTidspunkt": "2024-04-02T11:15:23.000Z",
+                    "avsluttetTidspunkt": null,
+                    "søknader": [
+                        {
+                            "søknadId": "052e3eb9-c10f-44b0-b466-ec47e9fb17ea",
+                            "søknadstype": "SØKNAD",
+                            "k9FormatInnsendelse": {
+                                "søknadId": "052e3eb9-c10f-44b0-b466-ec47e9fb17ea",
+                                "versjon": "1.0.0",
+                                "mottattDato": "2024-04-02T11:14:10.862Z",
+                                "søker": { "norskIdentitetsnummer": "09456610436" },
+                                "språk": "nb",
+                                "ytelse": {
+                                    "type": "PLEIEPENGER_SYKT_BARN",
+                                    "barn": { "norskIdentitetsnummer": "05461855751", "fødselsdato": null },
+                                    "søknadsperiode": ["2024-04-01/2024-07-11"],
+                                    "endringsperiode": [],
+                                    "trekkKravPerioder": [],
+                                    "opptjeningAktivitet": {
+                                        "selvstendigNæringsdrivende": [
+                                            {
+                                                "perioder": {
+                                                    "2020-04-01/..": {
+                                                        "virksomhetstyper": ["ANNEN"],
+                                                        "erNyoppstartet": false,
+                                                        "registrertIUtlandet": false,
+                                                        "landkode": "NOR"
+                                                    }
+                                                },
+                                                "organisasjonsnummer": "896929119",
+                                                "virksomhetNavn": "Næringsdrivende"
+                                            }
+                                        ]
+                                    },
+                                    "dataBruktTilUtledning": null,
+                                    "annetDataBruktTilUtledning": {
+                                        "harForståttRettigheterOgPlikter": true,
+                                        "harBekreftetOpplysninger": true,
+                                        "soknadDialogCommitSha": null,
+                                        "annetData": null
+                                    },
+                                    "infoFraPunsj": null,
+                                    "bosteder": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "utenlandsopphold": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "beredskap": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "nattevåk": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                                    "tilsynsordning": {
+                                        "perioder": { "2024-04-01/2024-07-11": { "etablertTilsynTimerPerDag": "PT0S" } }
+                                    },
+                                    "lovbestemtFerie": { "perioder": {} },
+                                    "arbeidstid": {
+                                        "arbeidstakerList": [],
+                                        "frilanserArbeidstidInfo": {
+                                            "perioder": {
+                                                "2024-04-01/2024-07-11": {
+                                                    "jobberNormaltTimerPerDag": "PT0S",
+                                                    "faktiskArbeidTimerPerDag": "PT0S"
+                                                }
+                                            }
+                                        },
+                                        "selvstendigNæringsdrivendeArbeidstidInfo": {
+                                            "perioder": {
+                                                "2024-04-01/2024-07-11": {
+                                                    "jobberNormaltTimerPerDag": "PT8H",
+                                                    "faktiskArbeidTimerPerDag": "PT0S"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "uttak": {
+                                        "perioder": {
+                                            "2024-04-01/2024-07-11": { "timerPleieAvBarnetPerDag": "PT7H30M" }
+                                        }
+                                    },
+                                    "omsorg": { "relasjonTilBarnet": null, "beskrivelseAvOmsorgsrollen": null }
+                                },
+                                "journalposter": [],
+                                "begrunnelseForInnsending": { "tekst": null },
+                                "kildesystem": "søknadsdialog"
+                            },
+                            "dokumenter": [
+                                {
+                                    "journalpostId": "637598582",
+                                    "dokumentInfoId": "667149796",
+                                    "saksnummer": "1DQB8TW",
+                                    "tittel": "Søknad om pleiepenger for sykt barn",
+                                    "dokumentType": "PLEIEPENGER_SYKT_BARN_SOKNAD",
+                                    "filtype": "PDF",
+                                    "harTilgang": true,
+                                    "url": "http://sif-innsyn-api/dokument/637598582/667149796/ARKIV",
+                                    "relevanteDatoer": [
+                                        { "dato": "2024-04-02T13:14:15", "datotype": "DATO_OPPRETTET" },
+                                        { "dato": "2024-04-02T13:14:15", "datotype": "DATO_DOKUMENT" },
+                                        { "dato": "2024-04-02T13:14:21", "datotype": "DATO_JOURNALFOERT" },
+                                        { "dato": "2024-04-02T13:14:10", "datotype": "DATO_REGISTRERT" }
+                                    ]
+                                },
+                                {
+                                    "journalpostId": "637598582",
+                                    "dokumentInfoId": "667149797",
+                                    "saksnummer": "1DQB8TW",
+                                    "tittel": "pc-robot.jpg",
+                                    "dokumentType": "PLEIEPENGER_SYKT_BARN_SOKNAD",
+                                    "filtype": "PDF",
+                                    "harTilgang": true,
+                                    "url": "http://sif-innsyn-api/dokument/637598582/667149797/ARKIV",
+                                    "relevanteDatoer": [
+                                        { "dato": "2024-04-02T13:14:15", "datotype": "DATO_OPPRETTET" },
+                                        { "dato": "2024-04-02T13:14:15", "datotype": "DATO_DOKUMENT" },
+                                        { "dato": "2024-04-02T13:14:21", "datotype": "DATO_JOURNALFOERT" },
+                                        { "dato": "2024-04-02T13:14:10", "datotype": "DATO_REGISTRERT" }
+                                    ]
+                                }
+                            ],
+                            "arbeidsgivere": []
+                        }
+                    ],
+                    "aksjonspunkter": [],
+                    "utgåendeDokumenter": []
+                }
+            ]
+        }
+    }
+]
