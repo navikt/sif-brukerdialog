@@ -1,13 +1,13 @@
+import { Link } from '@navikt/ds-react';
 import { OmsorgsdagerKroniskApp } from '@navikt/sif-app-register';
 import { SIFCommonPageKey, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude';
+import { SoknadVelkommenPage } from '@navikt/sif-common-soknad-ds';
 import { AppText, useAppIntl } from '../../i18n';
+import getLenker from '../../lenker';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 import { SøknadRoutes } from '../../types/SøknadRoutes';
 import OmSøknaden from './om-søknaden/OmSøknaden';
-import { SoknadVelkommenPage } from '@navikt/sif-common-soknad-ds';
-import { Link } from '@navikt/ds-react';
-import getLenker from '../../lenker';
 
 const VelkommenPage = () => {
     const { text } = useAppIntl();
@@ -27,11 +27,10 @@ const VelkommenPage = () => {
     };
     return (
         <SoknadVelkommenPage
-            pageTitle={text('page.velkommen.sidetittel')}
-            soknadTitle={text('application.title')}
+            title={text('page.velkommen.sidetittel')}
             onStartSøknad={startSøknad}
             guide={{
-                title: text('page.velkommen.guide.tittel', { navn: søker.fornavn }),
+                navn: søker.fornavn,
                 content: (
                     <>
                         <p>

@@ -7,7 +7,7 @@ import { ListItem } from '@navikt/ds-react/List';
 
 const OmSøknaden = () => {
     return (
-        <Block margin="xl">
+        <div>
             <Heading level="2" size="medium">
                 <AppText id="page.velkommen.omSøknaden.tittel" />
             </Heading>
@@ -36,7 +36,7 @@ const OmSøknaden = () => {
                     />
                 </Block>
             </BodyLong>
-        </Block>
+        </div>
     );
 };
 

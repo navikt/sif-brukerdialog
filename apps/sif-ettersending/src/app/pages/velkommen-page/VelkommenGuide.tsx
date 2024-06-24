@@ -1,19 +1,17 @@
-import { BodyLong, GuidePanel, Heading } from '@navikt/ds-react';
-import { AppText } from '../../i18n';
+import { AppText, useAppIntl } from '../../i18n';
+import { SoknadVelkommenGuide } from '@navikt/sif-common-soknad-ds';
 
 interface Props {
     navn: string;
 }
 
-const VelkommenGuide = ({ navn }: Props) => (
-    <GuidePanel poster={true}>
-        <Heading level="2" size="large" spacing={true}>
-            <AppText id="page.velkommen.guide.tittel" values={{ navn }} />
-        </Heading>
-        <BodyLong size="large">
+const VelkommenGuide = ({ navn }: Props) => {
+    const { text } = useAppIntl();
+    return (
+        <SoknadVelkommenGuide title={text('page.velkommen.guide.tittel', { navn })}>
             <AppText id="page.velkommen.guide.ingress" />
-        </BodyLong>
-    </GuidePanel>
-);
+        </SoknadVelkommenGuide>
+    );
+};
 
 export default VelkommenGuide;
