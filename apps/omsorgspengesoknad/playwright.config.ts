@@ -27,6 +27,8 @@ export default defineConfig({
             DEKORATOR_URL: 'https://www.nav.no/dekoratoren/?simple=true&chatbot=false',
             PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/omsorgspenger',
             API_URL: 'http://localhost:8089',
+            K9_SAK_INNSYN_API_URL: 'http://localhost:8089',
+            K9_SAK_INNSYN_API_PATH: 'http://localhost:8089',
             FRONTEND_API_PATH: 'http://localhost:8089',
             FRONTEND_VEDLEGG_URL: 'http://localhost:8089',
             VEDLEGG_API_URL: 'http://localhost:8089',

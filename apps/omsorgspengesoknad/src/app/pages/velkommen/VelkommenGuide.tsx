@@ -7,8 +7,8 @@ interface Props {
 }
 
 const VelkommenGuide: React.FunctionComponent<Props> = ({ navn }) => (
-    <GuidePanel>
-        <Heading level="1" size="large" spacing={true}>
+    <GuidePanel poster={true}>
+        <Heading level="2" size="large" spacing={true}>
             <AppText id="page.velkommen.guide.tittel" values={{ navn }} />
         </Heading>
         <BodyLong as="div">
@@ -20,6 +20,9 @@ const VelkommenGuide: React.FunctionComponent<Props> = ({ navn }) => (
             </p>
             <p>
                 <AppText id="page.velkommen.guide.tekst.2" />
+            </p>
+            <p>
+                <AppText id="page.velkommen.guide.tekst.3" />
             </p>
         </BodyLong>
     </GuidePanel>

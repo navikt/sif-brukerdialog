@@ -1,124 +1,143 @@
-import React from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import ContentWithHeader from '@navikt/sif-common-core-ds/src/components/content-with-header/ContentWithHeader';
-import { SummaryBlock, SummarySection } from '@navikt/sif-common-ui';
+import { FormSummary } from '@navikt/ds-react';
+import { JaNeiSvar, Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
-import { AppIntlShape, AppText, useAppIntl } from '../../../i18n';
+import { AppText, useAppIntl } from '../../../i18n';
 import { BarnSammeAdresse } from '../../../types/BarnSammeAdresse';
-import { OmBarnetApiData } from '../../../types/søknadApiData/SøknadApiData';
+import { BarnToSendToApi, OmBarnetApiData } from '../../../types/søknadApiData/SøknadApiData';
 import { getRelasjonTilBarnetIntlKey } from '../om-barnet/omBarnetStepUtils';
+import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
 
 interface Props {
     apiData: OmBarnetApiData;
 }
 
-const OmBarnetOppsummering: React.FC<Props> = ({ apiData: apiData }) => {
+const OmBarnetOppsummering = ({ apiData }: Props) => {
     const appIntl = useAppIntl();
     const { text } = appIntl;
+
     return (
-        <SummarySection header={text('steg.oppsummering.barnet.header')}>
-            <Block margin="l">
-                {apiData.barn.aktørId ? getRegistrertBarnInfo(apiData) : getAnnetBarnInfo(apiData, appIntl)}
-            </Block>
-            <Block margin="l">
-                <ContentWithHeader header={text('steg.oppsummering.barnet.sammeAdresse.header')}>
-                    {apiData.sammeAdresse === BarnSammeAdresse.JA && text('steg.oppsummering.barnet.sammeAdresse.ja')}
-                    {apiData.sammeAdresse === BarnSammeAdresse.JA_DELT_BOSTED &&
-                        text('steg.oppsummering.barnet.sammeAdresse.jaDeltBosted')}
-                    {apiData.sammeAdresse === BarnSammeAdresse.NEI && text('steg.oppsummering.barnet.sammeAdresse.nei')}
-                </ContentWithHeader>
-            </Block>
-            <Block margin="l">
-                <ContentWithHeader header={text('steg.oppsummering.barnet.kroniskEllerFunksjonshemmende.header')}>
-                    {apiData.kroniskEllerFunksjonshemming === true && text('Ja')}
-                    {apiData.kroniskEllerFunksjonshemming === false && text('Nei')}
-                </ContentWithHeader>
-            </Block>
-            {apiData.kroniskEllerFunksjonshemming === true && (
-                <>
-                    <Block margin="l">
-                        <ContentWithHeader header={text('steg.oppsummering.barnet.høyereRisikoForFravær.header')}>
-                            {apiData.høyereRisikoForFravær === true && text('Ja')}
-                            {apiData.høyereRisikoForFravær === false && text('Nei')}
-                        </ContentWithHeader>
-                    </Block>
-                    {apiData.høyereRisikoForFravær && (
-                        <Block margin={'s'}>
-                            <SummaryBlock
-                                header={text('steg.oppsummering.barnet.høyereRisikoForFraværBeskrivelse.header')}>
-                                <p>{apiData.høyereRisikoForFraværBeskrivelse}</p>
-                            </SummaryBlock>
-                        </Block>
+        <>
+            <FormSummary>
+                <FormSummary.Header>
+                    <FormSummary.Heading level="2">
+                        <AppText id="steg.oppsummering.barnet.header" />
+                    </FormSummary.Heading>
+                </FormSummary.Header>
+                <FormSummary.Answers>
+                    {apiData.barn.aktørId ? (
+                        <RegistrertBarnOppsummering barn={apiData.barn} />
+                    ) : (
+                        <AnnetBarnOppsummering barn={apiData.barn} relasjonTilBarnet={apiData.relasjonTilBarnet} />
                     )}
-                </>
-            )}
-        </SummarySection>
+                    <FormSummary.Answer>
+                        <FormSummary.Label>
+                            <AppText id="steg.oppsummering.barnet.sammeAdresse.header" />
+                        </FormSummary.Label>
+                        <FormSummary.Value>
+                            {apiData.sammeAdresse === BarnSammeAdresse.JA &&
+                                text('steg.oppsummering.barnet.sammeAdresse.ja')}
+                            {apiData.sammeAdresse === BarnSammeAdresse.JA_DELT_BOSTED &&
+                                text('steg.oppsummering.barnet.sammeAdresse.jaDeltBosted')}
+                            {apiData.sammeAdresse === BarnSammeAdresse.NEI &&
+                                text('steg.oppsummering.barnet.sammeAdresse.nei')}
+                        </FormSummary.Value>
+                    </FormSummary.Answer>
+                    <FormSummary.Answer>
+                        <FormSummary.Label>
+                            <AppText id="steg.oppsummering.barnet.kroniskEllerFunksjonshemmende.header" />
+                        </FormSummary.Label>
+                        <FormSummary.Value>
+                            <JaNeiSvar harSvartJa={apiData.kroniskEllerFunksjonshemming} />
+                        </FormSummary.Value>
+                    </FormSummary.Answer>
+                    {apiData.kroniskEllerFunksjonshemming === true ? (
+                        <>
+                            <FormSummary.Answer>
+                                <FormSummary.Label>
+                                    <AppText id="steg.oppsummering.barnet.høyereRisikoForFravær.header" />
+                                </FormSummary.Label>
+                                <FormSummary.Value>
+                                    <JaNeiSvar harSvartJa={apiData.høyereRisikoForFravær} />
+                                </FormSummary.Value>
+                            </FormSummary.Answer>
+                            {apiData.høyereRisikoForFravær ? (
+                                <FormSummary.Answer>
+                                    <FormSummary.Label>
+                                        <AppText id="steg.oppsummering.barnet.høyereRisikoForFraværBeskrivelse.header" />
+                                    </FormSummary.Label>
+                                    <FormSummary.Value>
+                                        <Sitat>
+                                            <TextareaSvar text={apiData.høyereRisikoForFraværBeskrivelse} />
+                                        </Sitat>
+                                    </FormSummary.Value>
+                                </FormSummary.Answer>
+                            ) : null}
+                        </>
+                    ) : null}
+                </FormSummary.Answers>
+            </FormSummary>
+        </>
     );
 };
 
 export default OmBarnetOppsummering;
 
-const getRegistrertBarnInfo = (apiData: OmBarnetApiData) => {
+const RegistrertBarnOppsummering = ({ barn }: { barn: BarnToSendToApi }) => (
+    <>
+        <FormSummary.Answer>
+            <AppText id="steg.oppsummering.barnet.navn" />
+            <FormSummary.Value>{barn.navn}</FormSummary.Value>
+        </FormSummary.Answer>
+        {barn.fødselsdato ? (
+            <FormSummary.Answer>
+                <AppText id="steg.oppsummering.barnet.fødselsdato" />
+                <FormSummary.Value>{dateFormatter.full(ISODateToDate(barn.fødselsdato))}</FormSummary.Value>
+            </FormSummary.Answer>
+        ) : null}
+    </>
+);
+
+const AnnetBarnOppsummering = ({
+    barn,
+    relasjonTilBarnet,
+}: {
+    barn: BarnToSendToApi;
+    relasjonTilBarnet?: SøkersRelasjonTilBarnet;
+}) => {
+    const { text } = useAppIntl();
     return (
         <>
-            <div>
-                <AppText
-                    id="steg.oppsummering.barnet.navn"
-                    values={{
-                        navn: apiData.barn.navn,
-                    }}
-                />
-            </div>
-            {apiData.barn.fødselsdato && (
-                <div>
-                    <AppText
-                        id="steg.oppsummering.barnet.fødselsdato"
-                        values={{
-                            dato: dateFormatter.full(ISODateToDate(apiData.barn.fødselsdato)),
-                        }}
-                    />
-                </div>
-            )}
-        </>
-    );
-};
-const getAnnetBarnInfo = (apiData: OmBarnetApiData, { text }: AppIntlShape) => {
-    return (
-        <>
-            {apiData.barn.norskIdentifikator ? (
-                <div>
-                    <AppText
-                        id="steg.oppsummering.barnet.fnr"
-                        values={{
-                            fnr: apiData.barn.norskIdentifikator,
-                        }}
-                    />
-                </div>
+            {barn.norskIdentifikator ? (
+                <FormSummary.Answer>
+                    <FormSummary.Label>
+                        <AppText id="steg.oppsummering.barnet.fnr" />
+                    </FormSummary.Label>
+                    <FormSummary.Value>{barn.norskIdentifikator}</FormSummary.Value>
+                </FormSummary.Answer>
             ) : null}
-            {apiData.barn.navn ? (
-                <div>
-                    <AppText id="steg.oppsummering.barnet.navn" values={{ navn: apiData.barn.navn }} />
-                </div>
+            {barn.navn ? (
+                <FormSummary.Answer>
+                    <FormSummary.Label>
+                        <AppText id="steg.oppsummering.barnet.navn" />
+                    </FormSummary.Label>
+                    <FormSummary.Value>{barn.navn}</FormSummary.Value>
+                </FormSummary.Answer>
             ) : null}
-            {apiData.barn.fødselsdato && (
-                <div>
-                    <AppText
-                        id="steg.oppsummering.barnet.fødselsdato"
-                        values={{
-                            dato: dateFormatter.full(ISODateToDate(apiData.barn.fødselsdato)),
-                        }}
-                    />
-                </div>
-            )}
-            {apiData.relasjonTilBarnet && (
-                <div>
-                    <AppText
-                        id="steg.oppsummering.barnet.søkersRelasjonTilBarnet"
-                        values={{
-                            relasjon: text(getRelasjonTilBarnetIntlKey(apiData.relasjonTilBarnet)),
-                        }}
-                    />
-                </div>
+            {barn.fødselsdato ? (
+                <FormSummary.Answer>
+                    <FormSummary.Label>
+                        <AppText id="steg.oppsummering.barnet.fødselsdato" />
+                    </FormSummary.Label>
+                    <FormSummary.Value>{dateFormatter.full(ISODateToDate(barn.fødselsdato))}</FormSummary.Value>
+                </FormSummary.Answer>
+            ) : null}
+            {relasjonTilBarnet && (
+                <FormSummary.Answer>
+                    <FormSummary.Label>
+                        <AppText id="steg.oppsummering.barnet.søkersRelasjonTilBarnet" />
+                    </FormSummary.Label>
+                    <FormSummary.Value>{text(getRelasjonTilBarnetIntlKey(relasjonTilBarnet))}</FormSummary.Value>
+                </FormSummary.Answer>
             )}
         </>
     );

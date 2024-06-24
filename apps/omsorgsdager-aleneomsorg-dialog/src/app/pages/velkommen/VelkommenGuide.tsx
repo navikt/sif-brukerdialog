@@ -1,6 +1,6 @@
-import { BodyLong, GuidePanel, Heading, Link } from '@navikt/ds-react';
+import { BodyLong, GuidePanel, Heading, Link, List } from '@navikt/ds-react';
+import { ListItem } from '@navikt/ds-react/List';
 import React from 'react';
-import InfoList from '@navikt/sif-common-core-ds/src/components/lists/info-list/InfoList';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { AppText } from '../../i18n';
 
@@ -20,11 +20,37 @@ const VelkommenGuide: React.FunctionComponent<Props> = ({ navn }) => (
             </BodyLong>
 
             <p>
-                <AppText id="page.velkommen.guide.tekst.1" />
+                <AppText
+                    id="page.velkommen.guide.tekst.1.1"
+                    values={{
+                        Lenke: (children: React.ReactNode) => (
+                            <Link href={getEnvironmentVariable('OMS_IKKE_TILSYN_URL')} inlineText={true}>
+                                {children}
+                            </Link>
+                        ),
+                    }}
+                />
             </p>
+            <List>
+                <ListItem>
+                    <AppText id="page.velkommen.guide.tekst.1.1.a" />
+                </ListItem>
+                <ListItem>
+                    <AppText id="page.velkommen.guide.tekst.1.1.b" />
+                </ListItem>
+                <ListItem>
+                    <AppText id="page.velkommen.guide.tekst.1.1.c" />
+                </ListItem>
+            </List>
+            <p>
+                <AppText id="page.velkommen.guide.tekst.3" />
+            </p>
+            <Heading level="2" size="small">
+                <AppText id="page.velkommen.guide.tekst.1.2.tittel" />
+            </Heading>
             <p>
                 <AppText
-                    id="page.velkommen.guide.tekst.2"
+                    id="page.velkommen.guide.tekst.1.2"
                     values={{
                         Lenke: (children: React.ReactNode) => (
                             <Link href={getEnvironmentVariable('OMS_IKKE_TILSYN_URL')} inlineText={true}>
@@ -35,25 +61,9 @@ const VelkommenGuide: React.FunctionComponent<Props> = ({ navn }) => (
                 />
             </p>
             <p>
-                <AppText id="page.velkommen.guide.tekst.3" />
-            </p>
-            <p>
-                <strong>
-                    <AppText id="page.velkommen.guide.tekst.4" />
-                </strong>
+                <AppText id="page.velkommen.guide.tekst.2" />
             </p>
         </BodyLong>
-        <InfoList>
-            <li>
-                <AppText id="page.velkommen.guide.tekst.4.1" />
-            </li>
-            <li>
-                <AppText id="page.velkommen.guide.tekst.4.2" />
-            </li>
-            <li>
-                <AppText id="page.velkommen.guide.tekst.4.3" />
-            </li>
-        </InfoList>
     </GuidePanel>
 );
 

@@ -17,10 +17,6 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.locale('nb');
 
-export const getSisteBehandlingISak = (sak: Sak): Behandling | undefined => {
-    return sortBehandlingerNyesteFørst(sak.behandlinger)[0];
-};
-
 export const sortBehandlingerNyesteFørst = (
     behandlinger: Behandling[],
     doSortSøknader: boolean = true,
@@ -53,13 +49,11 @@ export const sortSakshendelse = (h1: Sakshendelse, h2: Sakshendelse): number => 
 };
 
 export const getBehandlingsstatusISak = (sak: Sak): BehandlingsstatusISak | undefined => {
-    const behandling = getSisteBehandlingISak(sak);
-    return behandling
-        ? {
-              status: behandling.status,
-              venteårsak: behandling.aksjonspunkter?.length > 0 ? behandling.aksjonspunkter[0]?.venteårsak : undefined,
-          }
-        : undefined;
+    return {
+        status: sak.utledetStatus.status,
+        venteårsak:
+            sak.utledetStatus.aksjonspunkter?.length > 0 ? sak.utledetStatus.aksjonspunkter[0]?.venteårsak : undefined,
+    };
 };
 
 const mapInnsendelseTilSakshendelse = (innsendelse: Innsendelse): Sakshendelse => {
@@ -81,11 +75,16 @@ const mapInnsendelseTilSakshendelse = (innsendelse: Innsendelse): Sakshendelse =
     }
 };
 
+export const harBehandlingSøknadEllerEndringsmelding = (behandling: Behandling): boolean =>
+    behandling.innsendelser.some((i) =>
+        [Innsendelsestype.SØKNAD, Innsendelsestype.ENDRINGSMELDING].includes(i.innsendelsestype),
+    );
+
 export const getHendelserIBehandling = (behandling: Behandling, saksbehandlingFrist?: Date): Sakshendelse[] => {
-    const { innsendelser: søknader, aksjonspunkter, avsluttetTidspunkt, status } = behandling;
+    const { innsendelser, aksjonspunkter, avsluttetTidspunkt, status } = behandling;
     const hendelser: Sakshendelse[] = [];
 
-    søknader.forEach((søknad) => {
+    innsendelser.forEach((søknad) => {
         hendelser.push(mapInnsendelseTilSakshendelse(søknad));
     });
 
@@ -96,18 +95,21 @@ export const getHendelserIBehandling = (behandling: Behandling, saksbehandlingFr
         });
     }
 
-    /** Avsluttet eller forventet svar på søknad */
-    if (status === Behandlingsstatus.AVSLUTTET && avsluttetTidspunkt) {
-        hendelser.push({
-            type: Sakshendelser.FERDIG_BEHANDLET,
-            dato: avsluttetTidspunkt,
-        });
-    } else {
-        hendelser.push({
-            type: Sakshendelser.FORVENTET_SVAR,
-            dato: saksbehandlingFrist,
-            søknadstyperIBehandling: getSøknadstyperIBehandling(søknader || []),
-        });
+    /** Melding om vedtak eller fremtidig vedtak skal kun vises hvis behandling inneholder endringsmelding eller søknad */
+    if (harBehandlingSøknadEllerEndringsmelding(behandling)) {
+        /** Avsluttet eller forventet svar på søknad */
+        if (status === Behandlingsstatus.AVSLUTTET && avsluttetTidspunkt) {
+            hendelser.push({
+                type: Sakshendelser.FERDIG_BEHANDLET,
+                dato: avsluttetTidspunkt,
+            });
+        } else {
+            hendelser.push({
+                type: Sakshendelser.FORVENTET_SVAR,
+                dato: saksbehandlingFrist,
+                søknadstyperIBehandling: getSøknadstyperIBehandling(innsendelser || []),
+            });
+        }
     }
 
     return hendelser;
@@ -119,7 +121,7 @@ export const getSøknadstyperIBehandling = (søknader: Innsendelse[]): Array<Inn
 
 export const getAlleHendelserISak = (sak: Sak): Sakshendelse[] => {
     const sakshendelser: Sakshendelse[] = sak.behandlinger
-        .map((b) => getHendelserIBehandling(b, sak.saksbehandlingsFrist))
+        .map((b) => getHendelserIBehandling(b, sak.utledetStatus.saksbehandlingsFrist))
         .flat();
     return sakshendelser.sort(sortSakshendelse);
 };

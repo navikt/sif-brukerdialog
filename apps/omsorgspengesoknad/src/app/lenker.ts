@@ -1,4 +1,5 @@
 interface Lenker {
+    infosider: string;
     medlemskap: string;
     papirskjemaPrivat: string;
     vilkårPleiepenger: string;
@@ -13,6 +14,7 @@ interface Lenker {
 }
 
 const LenkerBokmål: Lenker = {
+    infosider: 'https://www.nav.no/omsorgspenger',
     medlemskap:
         'https://www.nav.no/no/Person/Flere+tema/Arbeid+og+opphold+i+Norge/Relatert+informasjon/medlemskap-i-folketrygden',
     papirskjemaPrivat:

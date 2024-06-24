@@ -1,5 +1,35 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.24.1
+
+### Patch Changes
+
+-   Updated dependencies [a10b53c]
+    -   @navikt/sif-common-amplitude@2.25.8
+    -   @navikt/sif-common-formik-ds@1.9.4
+    -   @navikt/sif-common-soknad-ds@10.15.12
+    -   @navikt/sif-common-core-ds@9.17.13
+    -   @navikt/sif-common-sentry@0.26.10
+    -   @navikt/sif-common-utils@3.46.6
+
+## 1.24.0
+
+### Minor Changes
+
+-   f5d16f7: Endre litt på tekst på velkommensider
+
+### Patch Changes
+
+-   b4e0847: Pakkeoppdateringer - minor/patch
+-   Updated dependencies [b4e0847]
+    -   @navikt/sif-common-amplitude@2.25.7
+    -   @navikt/sif-common-formik-ds@1.9.3
+    -   @navikt/sif-common-soknad-ds@10.15.11
+    -   @navikt/sif-common-core-ds@9.17.12
+    -   @navikt/sif-common-sentry@0.26.9
+    -   @navikt/sif-common-hooks@0.1.12
+    -   @navikt/sif-common-utils@3.46.5
+
 ## 1.23.14
 
 ### Patch Changes

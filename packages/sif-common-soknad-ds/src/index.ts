@@ -2,6 +2,8 @@ export { default as ErrorPage } from './pages/error-page/ErrorPage';
 export { default as FormQuestion } from './components/form-question/FormQuestion';
 export { default as Kvittering } from './components/kvittering/Kvittering';
 export { default as LoadingPage } from './pages/loading-page/LoadingPage';
+export { default as SoknadVelkommenPage } from './components/soknad-velkommen-page/SoknadVelkommenPage';
+export { default as VelkommenGuide } from './components/soknad-velkommen-page/VelkommenGuide';
 export { default as QuestionVisibilityBlock } from './modules/question-visibility/QuestionVisibilityBlock';
 export { default as SamtykkeForm, SamtykkeFormPart } from './modules/samtykke-form/SamtykkeForm';
 export { default as SoknadApplication } from './setup/SoknadApplication';
