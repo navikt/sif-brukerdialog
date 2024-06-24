@@ -22,6 +22,7 @@ const VelkommenPage: React.FC<Props> = ({ søknadstype, søker }) => {
         <SoknadVelkommenPage
             title={text(`application.title.${søknadstype}`)}
             onStartSøknad={startSoknad}
+            submitButtonLabel={text('ettersendelse.samtykkeForm.submitButtonLabel')}
             guide={{
                 navn: søker.fornavn,
                 content: <AppText id="page.velkommen.guide.ingress" />,

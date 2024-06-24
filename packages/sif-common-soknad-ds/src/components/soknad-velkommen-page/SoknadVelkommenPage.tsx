@@ -8,6 +8,7 @@ import SoknadVelkommenGuide from './SoknadVelkommenGuide';
 interface Props {
     /** Tittel på søknad/app */
     title: string;
+    /** Intro-guide */
     guide: {
         /** Søkers navn */
         navn: string;
@@ -16,11 +17,13 @@ interface Props {
     };
     /** Innhold under guide */
     children: React.ReactNode;
+    /** Label på start knapp */
+    submitButtonLabel?: string;
     /** Ved gyldig samtykkeform subnmit */
     onStartSøknad: () => void;
 }
 
-const SoknadVelkommenPage = ({ title, onStartSøknad, guide, children }: Props) => {
+const SoknadVelkommenPage = ({ title, onStartSøknad, guide, submitButtonLabel, children }: Props) => {
     const { text } = useSoknadIntl();
     return (
         <Page title={title}>
@@ -46,7 +49,7 @@ const SoknadVelkommenPage = ({ title, onStartSøknad, guide, children }: Props) 
 
                 <div>{children}</div>
 
-                <SamtykkeForm variant="vanlig" onValidSubmit={onStartSøknad} />
+                <SamtykkeForm variant="vanlig" onValidSubmit={onStartSøknad} submitButtonLabel={submitButtonLabel} />
             </VStack>
         </Page>
     );
