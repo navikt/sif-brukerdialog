@@ -10,9 +10,9 @@
         "url": "https://github.com/navikt/sif-common-sentry/issues"
     },
     "dependencies": {
-        "@sentry/browser": "8.10.0",
-        "@sentry/react": "8.10.0",
-        "@sentry/types": "8.10.0"
+        "@sentry/browser": "8.11.0",
+        "@sentry/react": "8.11.0",
+        "@sentry/types": "8.11.0"
     },
     "devDependencies": {
         "@types/node": "20.14.7",
