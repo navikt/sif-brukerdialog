@@ -6,12 +6,17 @@ import { ApplicationPictogram } from '../application-pictogram/ApplicationPictog
 import SoknadVelkommenGuide from './SoknadVelkommenGuide';
 
 interface Props {
+    /** Tittel på søknad/app */
     title: string;
     guide: {
+        /** Søkers navn */
         navn: string;
+        /** Innhold i guide */
         content: React.ReactNode;
     };
+    /** Innhold under guide */
     children: React.ReactNode;
+    /** Ved gyldig samtykkeform subnmit */
     onStartSøknad: () => void;
 }
 
