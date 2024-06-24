@@ -1,10 +1,7 @@
-import { Alert } from '@navikt/ds-react';
+import { Alert, FormSummary } from '@navikt/ds-react';
 import React from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
-import ContentWithHeader from '@navikt/sif-common-core-ds/src/components/content-with-header/ContentWithHeader';
-import { SummarySection } from '@navikt/sif-common-ui';
-import { AppText, useAppIntl } from '../../../i18n';
+import { AppText } from '../../../i18n';
 import { SøknadApiData } from '../../../types/søknadApiData/SøknadApiData';
 import { DeltBostedSøknadsdata } from '../../../types/søknadsdata/DeltBostedSøknadsdata';
 import { LegeerklæringSøknadsdata } from '../../../types/søknadsdata/LegeerklæringSøknadsdata';
@@ -21,7 +18,6 @@ const VedleggOppsummering: React.FunctionComponent<Props> = ({
     legeerklæringSøknadsdata,
     samværsavtaleSøknadsdata,
 }) => {
-    const { text } = useAppIntl();
     const legeerklæringer = legeerklæringSøknadsdata
         ? legeerklæringSøknadsdata.vedlegg.filter(
               (v) => v.url && apiData.legeerklæring.includes(getAttachmentURLBackend(v.url)),
@@ -35,32 +31,45 @@ const VedleggOppsummering: React.FunctionComponent<Props> = ({
         : undefined;
 
     return (
-        <SummarySection header={text('steg.oppsummering.vedlegg.header')}>
-            <Block>
-                <ContentWithHeader header={text('steg.oppsummering.legeerklæring.header')}>
-                    {legeerklæringSøknadsdata?.vedlegg.length === 0 ? (
-                        <Alert inline={true} variant="warning">
-                            <AppText id="vedleggsliste.ingenLegeerklæringLastetOpp" />
-                        </Alert>
-                    ) : (
-                        <AttachmentList attachments={legeerklæringer} />
-                    )}
-                </ContentWithHeader>
-            </Block>
-            {samværsavtaler && (
-                <Block margin="xl">
-                    <ContentWithHeader header={text('steg.oppsummering.samværsavtale.header')}>
-                        {samværsavtaler.length > 0 ? (
-                            <AttachmentList attachments={samværsavtaler} />
-                        ) : (
+        <FormSummary>
+            <FormSummary.Header>
+                <FormSummary.Heading level="2">
+                    <AppText id="steg.oppsummering.vedlegg.header" />
+                </FormSummary.Heading>
+            </FormSummary.Header>
+            <FormSummary.Answers>
+                <FormSummary.Answer>
+                    <FormSummary.Label>
+                        <AppText id="steg.oppsummering.legeerklæring.header" />
+                    </FormSummary.Label>
+                    <FormSummary.Value>
+                        {legeerklæringSøknadsdata?.vedlegg.length === 0 ? (
                             <Alert inline={true} variant="warning">
-                                <AppText id="vedleggsliste.ingenBostedsavtaleLastetOpp" />
+                                <AppText id="vedleggsliste.ingenLegeerklæringLastetOpp" />
                             </Alert>
+                        ) : (
+                            <AttachmentList attachments={legeerklæringer} />
                         )}
-                    </ContentWithHeader>
-                </Block>
-            )}
-        </SummarySection>
+                    </FormSummary.Value>
+                </FormSummary.Answer>
+                {samværsavtaler && (
+                    <FormSummary.Answer>
+                        <FormSummary.Label>
+                            <AppText id="steg.oppsummering.samværsavtale.header" />
+                        </FormSummary.Label>
+                        <FormSummary.Value>
+                            {samværsavtaler.length > 0 ? (
+                                <AttachmentList attachments={samværsavtaler} />
+                            ) : (
+                                <Alert inline={true} variant="warning">
+                                    <AppText id="vedleggsliste.ingenBostedsavtaleLastetOpp" />
+                                </Alert>
+                            )}
+                        </FormSummary.Value>
+                    </FormSummary.Answer>
+                )}
+            </FormSummary.Answers>
+        </FormSummary>
     );
 };
 

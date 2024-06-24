@@ -1,13 +1,13 @@
 import { OmsorgsdagerKroniskApp } from '@navikt/sif-app-register';
 import { SIFCommonPageKey, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude';
-import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import { SamtykkeForm } from '@navikt/sif-common-soknad-ds';
-import { useAppIntl } from '../../i18n';
+import { AppText, useAppIntl } from '../../i18n';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 import { SøknadRoutes } from '../../types/SøknadRoutes';
 import OmSøknaden from './om-søknaden/OmSøknaden';
-import VelkommenGuide from './VelkommenGuide';
+import { SoknadVelkommenPage } from '@navikt/sif-common-soknad-ds';
+import { Link } from '@navikt/ds-react';
+import getLenker from '../../lenker';
 
 const VelkommenPage = () => {
     const { text } = useAppIntl();
@@ -26,13 +26,40 @@ const VelkommenPage = () => {
         dispatch(actionsCreator.setSøknadRoute(SøknadRoutes.OM_BARNET));
     };
     return (
-        <Page title={text('page.velkommen.sidetittel')}>
-            <VelkommenGuide navn={søker.fornavn} />
-
+        <SoknadVelkommenPage
+            pageTitle={text('page.velkommen.sidetittel')}
+            soknadTitle={text('application.title')}
+            onStartSøknad={startSøknad}
+            guide={{
+                title: text('page.velkommen.guide.tittel', { navn: søker.fornavn }),
+                content: (
+                    <>
+                        <p>
+                            <AppText id="page.velkommen.guide.ingress" />
+                        </p>
+                        <p>
+                            <AppText id="page.velkommen.guide.tekst.1" />
+                        </p>
+                        <p>
+                            <AppText id="page.velkommen.guide.tekst.2" />
+                        </p>
+                        <p>
+                            <AppText
+                                id="page.velkommen.guide.tekst.3"
+                                values={{
+                                    Lenke: (children) => (
+                                        <Link href={getLenker().infosider} target="_blank">
+                                            {children}
+                                        </Link>
+                                    ),
+                                }}
+                            />
+                        </p>
+                    </>
+                ),
+            }}>
             <OmSøknaden />
-
-            <SamtykkeForm onValidSubmit={startSøknad} />
-        </Page>
+        </SoknadVelkommenPage>
     );
 };
 

@@ -17,10 +17,6 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.locale('nb');
 
-export const getSisteBehandlingISak = (sak: Sak): Behandling | undefined => {
-    return sortBehandlingerNyesteFørst(sak.behandlinger)[0];
-};
-
 export const sortBehandlingerNyesteFørst = (
     behandlinger: Behandling[],
     doSortSøknader: boolean = true,
@@ -53,13 +49,11 @@ export const sortSakshendelse = (h1: Sakshendelse, h2: Sakshendelse): number => 
 };
 
 export const getBehandlingsstatusISak = (sak: Sak): BehandlingsstatusISak | undefined => {
-    const behandling = getSisteBehandlingISak(sak);
-    return behandling
-        ? {
-              status: behandling.status,
-              venteårsak: behandling.aksjonspunkter?.length > 0 ? behandling.aksjonspunkter[0]?.venteårsak : undefined,
-          }
-        : undefined;
+    return {
+        status: sak.utledetStatus.status,
+        venteårsak:
+            sak.utledetStatus.aksjonspunkter?.length > 0 ? sak.utledetStatus.aksjonspunkter[0]?.venteårsak : undefined,
+    };
 };
 
 const mapInnsendelseTilSakshendelse = (innsendelse: Innsendelse): Sakshendelse => {
@@ -119,7 +113,7 @@ export const getSøknadstyperIBehandling = (søknader: Innsendelse[]): Array<Inn
 
 export const getAlleHendelserISak = (sak: Sak): Sakshendelse[] => {
     const sakshendelser: Sakshendelse[] = sak.behandlinger
-        .map((b) => getHendelserIBehandling(b, sak.saksbehandlingsFrist))
+        .map((b) => getHendelserIBehandling(b, sak.utledetStatus.saksbehandlingsFrist))
         .flat();
     return sakshendelser.sort(sortSakshendelse);
 };
