@@ -1,9 +1,10 @@
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { SummaryBlock, SummaryList } from '@navikt/sif-common-ui';
+import { SummaryList } from '@navikt/sif-common-ui';
 import { prettifyApiDate } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '../../../../i18n';
 import { UtenlandskNæringApi } from '../../../../types/søknadApiData/SøknadApiData';
+import { FormSummary } from '@navikt/ds-react';
 
 interface Props {
     utenlandskNæring: UtenlandskNæringApi[];
@@ -46,13 +47,18 @@ function UtenlandskNæringSummary({ utenlandskNæring }: Props) {
         );
     };
     return (
-        <SummaryBlock header={text('oppsummering.arbeidssituasjon.utenlandskNæring.listetittel')}>
-            {utenlandskNæring.length === 0 ? (
-                <AppText id={'oppsummering.arbeidssituasjon.utenlandskNæring.nei'} />
-            ) : (
-                <SummaryList items={utenlandskNæring} itemRenderer={renderUtenlandskNæring} />
-            )}
-        </SummaryBlock>
+        <FormSummary.Answer>
+            <FormSummary.Label>
+                <AppText id="oppsummering.arbeidssituasjon.utenlandskNæring.listetittel" />
+            </FormSummary.Label>
+            <FormSummary.Value>
+                {utenlandskNæring.length === 0 ? (
+                    <AppText id={'oppsummering.arbeidssituasjon.utenlandskNæring.nei'} />
+                ) : (
+                    <SummaryList items={utenlandskNæring} itemRenderer={renderUtenlandskNæring} />
+                )}
+            </FormSummary.Value>
+        </FormSummary.Answer>
     );
 }
 

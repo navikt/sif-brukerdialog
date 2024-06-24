@@ -7,6 +7,9 @@
     margin-bottom: 0.25rem !important;
     border: none !important;
 }
+.navds-form-summary__answers .navds-form-summary__answers {
+    background-color: var(--a-surface-subtle);
+}
 .navds-form-summary__answer--compact dt {
     display: inline-block;
     padding-right: 0.5rem;
