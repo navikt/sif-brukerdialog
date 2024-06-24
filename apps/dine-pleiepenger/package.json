@@ -48,7 +48,6 @@
         "@navikt/ds-icons": "3.4.3",
         "@navikt/ds-react": "6.11.0",
         "@navikt/ds-tailwind": "6.11.0",
-        "@next/bundle-analyzer": "14.2.4",
         "@playwright/test": "1.44.1",
         "@storybook/addon-essentials": "8.1.10",
         "@storybook/addon-interactions": "8.1.10",
