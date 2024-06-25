@@ -4,7 +4,7 @@ import {
     dateRangesExceedsRange,
     getDate1YearAgo,
 } from '@navikt/sif-common-utils';
-import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src';
+import { UtenlandsoppholdUtvidet } from '@navikt/sif-common-forms-ds/src';
 import dayjs from 'dayjs';
 
 enum UtenlandsoppholdErrors {
@@ -13,7 +13,7 @@ enum UtenlandsoppholdErrors {
     'utenlandsopphold_utenfor_periode' = 'utenlandsopphold_utenfor_periode',
 }
 
-export const validateUtenlandsoppholdSiste12Mnd = (utenlandsopphold: Utenlandsopphold[]): string | undefined => {
+export const validateUtenlandsoppholdSiste12Mnd = (utenlandsopphold: UtenlandsoppholdUtvidet[]): string | undefined => {
     if (utenlandsopphold.length === 0) {
         return UtenlandsoppholdErrors.utenlandsopphold_ikke_registrert;
     }
@@ -27,7 +27,7 @@ export const validateUtenlandsoppholdSiste12Mnd = (utenlandsopphold: Utenlandsop
     return undefined;
 };
 
-export const validateUtenlandsoppholdNeste12Mnd = (utenlandsopphold: Utenlandsopphold[]): string | undefined => {
+export const validateUtenlandsoppholdNeste12Mnd = (utenlandsopphold: UtenlandsoppholdUtvidet[]): string | undefined => {
     if (utenlandsopphold.length === 0) {
         return UtenlandsoppholdErrors.utenlandsopphold_ikke_registrert;
     }

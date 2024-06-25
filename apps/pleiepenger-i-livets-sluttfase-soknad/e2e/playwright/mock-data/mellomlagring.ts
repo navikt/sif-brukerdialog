@@ -109,5 +109,5 @@ export const mellomlagring = {
     },
     frilansoppdrag: [],
     søknadRoute: '/soknad/oppsummering',
-    versjon: '2.0.0',
+    versjon: '2.0.1',
 };

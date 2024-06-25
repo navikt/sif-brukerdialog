@@ -55,7 +55,9 @@ test('Fyll ut periodesteget', async ({ page }) => {
         .click();
     await page.getByRole('button', { name: 'onsdag 4' }).click();
     await page.getByLabel('Velg land').selectOption('AFG');
+    await page.getByLabel('Velg land').selectOption('AFG');
     await page.getByLabel('Utenlandsopphold').getByLabel('Ja', { exact: true }).check();
+    await page.getByRole('group', { name: 'Er barnet innlagt i' }).getByLabel('Ja').check();
     await page.getByRole('button', { name: 'Legg til periode barnet er' }).click();
     await page
         .getByLabel('Periode barnet er innlagt')

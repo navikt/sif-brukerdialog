@@ -1,11 +1,11 @@
-import { dateToISODate } from '@navikt/sif-common-utils';
+import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import { getCountryName } from '@navikt/sif-common-formik-ds/src';
-import { BostedUtland } from '@navikt/sif-common-forms-ds/src';
+import { UtenlandsoppholdEnkel } from '@navikt/sif-common-forms-ds';
+import { dateToISODate } from '@navikt/sif-common-utils';
 import { BostedUtlandApiData, MedlemskapApiData } from '../../types/søknad-api-data/SøknadApiData';
 import { MedlemskapSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
-import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 
-const mapBostedUtlandToApi = (opphold: BostedUtland, locale: string): BostedUtlandApiData => ({
+const mapBostedUtlandToApi = (opphold: UtenlandsoppholdEnkel, locale: string): BostedUtlandApiData => ({
     landnavn: getCountryName(opphold.landkode, locale),
     landkode: opphold.landkode,
     fraOgMed: dateToISODate(opphold.fom),

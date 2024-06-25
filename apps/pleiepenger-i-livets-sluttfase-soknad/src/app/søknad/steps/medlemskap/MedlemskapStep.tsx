@@ -7,7 +7,7 @@ import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
 import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { Utenlandsopphold } from '@navikt/sif-common-forms-ds';
+import { UtenlandsoppholdEnkel } from '@navikt/sif-common-forms-ds';
 import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/BostedUtlandListAndDialog';
 import { getDateToday } from '@navikt/sif-common-utils';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
@@ -39,9 +39,9 @@ export enum MedlemskapFormFields {
 
 export interface MedlemskapFormValues {
     [MedlemskapFormFields.harBoddUtenforNorgeSiste12Mnd]: YesOrNo;
-    [MedlemskapFormFields.utenlandsoppholdSiste12Mnd]: Utenlandsopphold[];
+    [MedlemskapFormFields.utenlandsoppholdSiste12Mnd]: UtenlandsoppholdEnkel[];
     [MedlemskapFormFields.skalBoUtenforNorgeNeste12Mnd]: YesOrNo;
-    [MedlemskapFormFields.utenlandsoppholdNeste12Mnd]: Utenlandsopphold[];
+    [MedlemskapFormFields.utenlandsoppholdNeste12Mnd]: UtenlandsoppholdEnkel[];
 }
 
 const { FormikWrapper, Form, YesOrNoQuestion } = getTypedFormComponents<

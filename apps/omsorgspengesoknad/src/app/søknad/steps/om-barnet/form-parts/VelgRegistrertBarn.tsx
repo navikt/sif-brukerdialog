@@ -1,22 +1,28 @@
 import { Heading } from '@navikt/ds-react';
-import React from 'react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import React from 'react';
+import { useAppIntl } from '../../../../i18n';
 import { RegistrertBarn } from '../../../../types/RegistrertBarn';
 import { OmBarnetFormFields, OmBarnetFormValues } from '../OmBarnetStep';
 import { mapBarnTilRadioProps } from '../omBarnetStepUtils';
-import { useAppIntl } from '../../../../i18n';
 
 interface Props {
     registrerteBarn: RegistrertBarn[];
     søknadenGjelderEtAnnetBarn?: boolean;
+    onAnnetBarnSelected: () => void;
 }
 
 const { RadioGroup, Checkbox } = getTypedFormComponents<OmBarnetFormFields, OmBarnetFormValues>();
 
-const VelgRegistrertBarn: React.FunctionComponent<Props> = ({ registrerteBarn, søknadenGjelderEtAnnetBarn }) => {
+const VelgRegistrertBarn: React.FunctionComponent<Props> = ({
+    registrerteBarn,
+    søknadenGjelderEtAnnetBarn,
+    onAnnetBarnSelected,
+}) => {
     const { text } = useAppIntl();
+
     return (
         <>
             <Heading level="2" size="medium">
@@ -35,6 +41,11 @@ const VelgRegistrertBarn: React.FunctionComponent<Props> = ({ registrerteBarn, s
                 <Checkbox
                     label={text('steg.omBarnet.gjelderAnnetBarn')}
                     name={OmBarnetFormFields.søknadenGjelderEtAnnetBarn}
+                    afterOnChange={(isChecked) => {
+                        if (isChecked) {
+                            onAnnetBarnSelected();
+                        }
+                    }}
                 />
             </FormBlock>
         </>

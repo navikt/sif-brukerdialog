@@ -1,13 +1,16 @@
-import { Utenlandsopphold, UtenlandsoppholdÅrsak } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
-import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
+import {
+    UtenlandsoppholdUtvidet,
+    UtenlandsoppholdÅrsak,
+} from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
 
-const erOppholdMedInnlagtBarnForEgenRegning = (opphold: Utenlandsopphold): boolean =>
-    opphold.erBarnetInnlagt === YesOrNo.YES && opphold.årsak === UtenlandsoppholdÅrsak.ANNET;
+const erOppholdMedInnlagtBarnForEgenRegning = (opphold: UtenlandsoppholdUtvidet): boolean =>
+    opphold.type === 'utenfor_eøs' && opphold.erBarnetInnlagt === true && opphold.årsak === UtenlandsoppholdÅrsak.ANNET;
 
-const erOppholdUtenInnlagtBarn = (opphold: Utenlandsopphold): boolean => opphold.erBarnetInnlagt === YesOrNo.NO;
+const erOppholdUtenInnlagtBarn = (opphold: UtenlandsoppholdUtvidet): boolean =>
+    opphold.type === 'utenfor_eøs' && opphold.erBarnetInnlagt === true;
 
 const harUtenlandsoppholdUtenInnleggelseEllerInnleggeleForEgenRegning = (
-    utenlandsopphold: Utenlandsopphold[],
+    utenlandsopphold: UtenlandsoppholdUtvidet[],
 ): boolean => {
     return (
         utenlandsopphold.filter(

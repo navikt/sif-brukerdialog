@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const busboyCons = require('busboy');
 const os = require('os');
 const fs = require('fs');
+const cors = require('cors');
 
 const server = express();
 
@@ -16,14 +17,15 @@ server.use(
     }),
 );
 
-server.use((req, res, next) => {
-    res.set('Access-Control-Allow-Origin', 'http://localhost:8080');
-    res.set('Access-Control-Allow-Methods', ['GET', 'POST', 'DELETE', 'PUT']);
-    res.set('Access-Control-Allow-Headers', ['content-type', 'X-Brukerdialog-Git-Sha']);
-    res.set('Access-Control-Allow-Credentials', true);
-
-    next();
-});
+server.use(
+    cors({
+        origin: 'http://localhost:8080',
+        methods: ['GET', 'POST', 'DELETE', 'PUT', 'OPTIONS'],
+        allowedHeaders: ['content-type', 'X-Brukerdialog-Git-Sha'],
+        credentials: true,
+    }),
+);
+server.options('*', cors());
 
 const MELLOMLAGRING_JSON = `${os.tmpdir()}/omsorgspengesoknad-mellomlagring.json`;
 
@@ -55,6 +57,8 @@ const soker = 'søker1';
 
 const søkerFileName = `søker-mock.json`;
 const barnFileName = `barn-mock.json`;
+const innvilgetVedtakFileName = `innvilget-vedtak-mock.json`;
+const ikkeInnvilgetVedtakFileName = `ikke-innvilget-vedtak-mock.json`;
 
 const readMockFile = (file, responseObject) => {
     const filePath = `${mockPath}/${soker}/${file}`;
@@ -139,6 +143,20 @@ const startExpressServer = () => {
 
     server.listen(port, () => {
         console.log(`Express mock-api server listening on port: ${port}`);
+    });
+
+    /** --- Sjekk tidligere innvilget vedtak ---------- */
+
+    server.post('/k9-sak-innsyn-api/k9sak/omsorgsdager-kronisk-sykt-barn/har-gyldig-vedtak', (req, res) => {
+        const body = req.body;
+        console.log('[POST] body', body);
+        setTimeout(() => {
+            if (body.pleietrengendeAktørId === '2') {
+                readMockFile(innvilgetVedtakFileName, res);
+            } else {
+                readMockFile(ikkeInnvilgetVedtakFileName, res);
+            }
+        }, 2500);
     });
 };
 

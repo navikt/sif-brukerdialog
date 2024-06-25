@@ -56,7 +56,7 @@ const isExpiredOrNotAuthorized = (token) => {
     return true;
 };
 
-const getRouterConfig = async (req, audienceInnsyn) => {
+const getRouterConfig = async (req, audience) => {
     {
         req.headers['X-Correlation-ID'] = uuidv4();
 
@@ -69,7 +69,7 @@ const getRouterConfig = async (req, audienceInnsyn) => {
             if (isExpiredOrNotAuthorized(token)) {
                 return undefined;
             }
-            const exchangedToken = await exchangeToken(token, audienceInnsyn);
+            const exchangedToken = await exchangeToken(token, audience);
             if (exchangedToken != null && !exchangedToken.expired() && exchangedToken.access_token) {
                 req.headers['authorization'] = `Bearer ${exchangedToken.access_token}`;
             }
@@ -111,7 +111,22 @@ const startServer = async (html) => {
             pathRewrite: (path) => {
                 return path.replace(process.env.FRONTEND_API_PATH, '');
             },
-            router: async (req) => getRouterConfig(req, false),
+            router: async (req) => getRouterConfig(req, process.env.API_TOKENX_AUDIENCE),
+            secure: true,
+            xfwd: true,
+            logLevel: 'info',
+        }),
+    );
+
+    server.use(
+        process.env.K9_SAK_INNSYN_API_PATH,
+        createProxyMiddleware({
+            target: process.env.K9_SAK_INNSYN_API_URL,
+            changeOrigin: true,
+            pathRewrite: (path) => {
+                return path.replace(process.env.K9_SAK_INNSYN_API_PATH, '');
+            },
+            router: async (req) => getRouterConfig(req, process.env.K9_SAK_INNSYN_API_TOKENX_AUDIENCE),
             secure: true,
             xfwd: true,
             logLevel: 'info',

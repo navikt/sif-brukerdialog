@@ -8,7 +8,7 @@ import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-
 import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/FerieuttakListAndDialog';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/types';
-import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
+import { UtenlandsoppholdUtvidet } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
 import UtenlandsoppholdListAndDialog from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/UtenlandsoppholdListAndDialog';
 import { getDate1YearAgo, getDate1YearFromNow, getDate3YearsAgo, DateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
@@ -127,6 +127,7 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
                         <Block margin="m">
                             <ResponsivePanel border={true}>
                                 <UtenlandsoppholdListAndDialog<SøknadFormField>
+                                    variant="utvidet"
                                     name={SøknadFormField.utenlandsoppholdIPerioden}
                                     minDate={periode.from}
                                     maxDate={periode.to}
@@ -137,7 +138,7 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
                                     }}
                                     validate={
                                         periode
-                                            ? (opphold: Utenlandsopphold[]) =>
+                                            ? (opphold: UtenlandsoppholdUtvidet[]) =>
                                                   validateUtenlandsoppholdIPerioden(periode, opphold)
                                             : undefined
                                     }
