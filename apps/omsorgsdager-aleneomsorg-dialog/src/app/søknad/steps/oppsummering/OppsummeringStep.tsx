@@ -21,7 +21,7 @@ import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../../søk
 import { StepId } from '../../../types/StepId';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import BarnSummaryList from './BarnSummaryList';
-import OmBarnaSummary from './OmBarnaSummary';
+import OmBarnaOppsummering from './OmBarnaOppsummering';
 import OmSøkerOppsummering from './OmSøkerOppsummering';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 
@@ -111,7 +111,7 @@ const OppsummeringStep = () => {
                                 onBack={goBack}>
                                 <OmSøkerOppsummering søker={søker} />
 
-                                <OmBarnaSummary
+                                <OmBarnaOppsummering
                                     registrertBarn={registrertBarn}
                                     annetBarn={søknadsdata.omOmsorgenForBarn?.annetBarn}
                                 />

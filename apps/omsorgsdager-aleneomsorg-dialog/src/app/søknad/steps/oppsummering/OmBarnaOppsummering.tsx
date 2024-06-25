@@ -5,7 +5,7 @@ import { SummaryList, SummarySection } from '@navikt/sif-common-ui';
 import { useAppIntl } from '../../../i18n';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
 
-export interface AlleBarnSummary {
+export interface AlleBarnOppsummering {
     navn: string;
     fnr?: string;
     type?: BarnType;
@@ -15,12 +15,12 @@ interface Props {
     annetBarn?: AnnetBarn[];
 }
 
-const mapRegistrertBarnToAlleBarnSummary = (registrertBarn: RegistrertBarn): AlleBarnSummary => {
+const mapRegistrertBarnToAlleBarnOppsummering = (registrertBarn: RegistrertBarn): AlleBarnOppsummering => {
     return {
         navn: formatName(registrertBarn.fornavn, registrertBarn.etternavn, registrertBarn.mellomnavn),
     };
 };
-const mapAnnetBarnToAlleBarnSummary = (annetBarn: AnnetBarn): AlleBarnSummary => {
+const mapAnnetBarnToAlleBarnOppsummering = (annetBarn: AnnetBarn): AlleBarnOppsummering => {
     return {
         navn: annetBarn.navn,
         fnr: annetBarn.fnr,
@@ -28,19 +28,19 @@ const mapAnnetBarnToAlleBarnSummary = (annetBarn: AnnetBarn): AlleBarnSummary =>
     };
 };
 
-const OmBarnaSummary = ({ registrertBarn, annetBarn = [] }: Props) => {
+const OmBarnaOppsummering = ({ registrertBarn, annetBarn = [] }: Props) => {
     const { text } = useAppIntl();
 
-    const alleBarn: AlleBarnSummary[] = [
-        ...registrertBarn.map((barn) => mapRegistrertBarnToAlleBarnSummary(barn)),
-        ...annetBarn.map((barn) => mapAnnetBarnToAlleBarnSummary(barn)),
+    const alleBarn: AlleBarnOppsummering[] = [
+        ...registrertBarn.map((barn) => mapRegistrertBarnToAlleBarnOppsummering(barn)),
+        ...annetBarn.map((barn) => mapAnnetBarnToAlleBarnOppsummering(barn)),
     ];
     return (
         <SummarySection header={text('step.oppsummering.deres-felles-barn.header')}>
             <Block margin="l">
                 <SummaryList
                     items={alleBarn}
-                    itemRenderer={(barn: AlleBarnSummary): string | React.ReactNode => {
+                    itemRenderer={(barn: AlleBarnOppsummering): string | React.ReactNode => {
                         const { fnr, type, navn } = barn;
                         const barnType =
                             type === BarnType.fosterbarn ? text(`step.oppsummering.dineBarn.listItem.${type}`) : '';
@@ -53,4 +53,4 @@ const OmBarnaSummary = ({ registrertBarn, annetBarn = [] }: Props) => {
     );
 };
 
-export default OmBarnaSummary;
+export default OmBarnaOppsummering;
