@@ -1,11 +1,9 @@
 const nb = {
     'step.oppsummering.søker.header': 'Om deg',
     'step.oppsummering.søker.fnr': 'Fødselsnummer: {fødselsnummer}',
-    'step.oppsummering.deres-felles-barn.header': 'Barn',
-    'step.oppsummering.deres-felles-barn.barn': 'Barn',
     'step.oppsummering.dineBarn.listItem.FOSTERBARN': '(Barnet er mitt fosterbarn).',
 
-    'step.oppsummering.omOmsorgenForBarn.barnList.tittle': 'Barn du er alene om omsorgen for',
+    'step.oppsummering.omOmsorgenForBarn.barnList.title': 'Barn du er alene om omsorgen for',
     'step.oppsummering.omOmsorgenForBarn.harOmsorgFor.tidspunktForAleneomsorg': 'Tidspunkt for aleneomsorg: {dato}',
     'step.oppsummering.omOmsorgenForBarn.harOmsorgFor.tidspunktForAleneomsorg.tidligere':
         'Du ble alene om omsorgen for over 2 år siden.',
