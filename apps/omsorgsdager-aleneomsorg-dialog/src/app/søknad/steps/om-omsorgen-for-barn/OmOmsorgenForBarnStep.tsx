@@ -129,6 +129,11 @@ const OmOmsorgenForBarnStep = () => {
                             setFieldValue(OmOmsorgenForBarnFormFields.harAvtaleOmDeltBostedFor, []);
                         }
                     };
+
+                    const harAleneomsorgForOptions = getBarnOptions(registrertBarn, annetBarn).filter((option) =>
+                        harAleneomsorgFor.includes(option.value),
+                    );
+
                     const kanIkkeFortsette =
                         !harBarn || alleBarnMedDeltBosted || ettBarnOgDeltBosted || barnMedDeltBostedHarAleneomsorg;
                     return (
@@ -242,7 +247,7 @@ const OmOmsorgenForBarnStep = () => {
                                                     <CheckboxGroup
                                                         legend={text('steg.omOmsorgenForBarn.deltBosted')}
                                                         name={OmOmsorgenForBarnFormFields.harAvtaleOmDeltBostedFor}
-                                                        checkboxes={getBarnOptions(registrertBarn, annetBarn)}
+                                                        checkboxes={harAleneomsorgForOptions}
                                                         validate={getListValidator({ required: true })}
                                                     />
                                                 </Block>
