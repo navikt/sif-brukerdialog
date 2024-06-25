@@ -194,7 +194,6 @@ const nb = {
     'validation.barnetLegeerklæringGjelder.noValue': 'Du må velge hvilket barn legeerklæringen gjelder',
     'validation.dokumentType.noValue': 'Du må velge hva du skal ettersende',
 
-    'page.velkommen.guide.tittel': 'Hei, {navn}',
     'page.velkommen.guide.ingress':
         'Her laster du opp dokumenter som hører til en søknad du har sendt inn tidligere. Har du dokumentene klare?',
 
