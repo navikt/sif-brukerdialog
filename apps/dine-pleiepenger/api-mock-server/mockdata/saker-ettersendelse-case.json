@@ -192,7 +192,7 @@
                                 "søker": { "norskIdentitetsnummer": "10429441582" },
                                 "ytelse": "PLEIEPENGER_SYKT_BARN",
                                 "pleietrengende": { "norskIdentitetsnummer": "11431851360" },
-                                "type": "LEGEERKLÆRING"
+                                "type": null
                             },
                             "dokumenter": [
                                 {
