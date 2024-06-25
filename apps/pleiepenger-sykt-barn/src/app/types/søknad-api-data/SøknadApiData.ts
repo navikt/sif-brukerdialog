@@ -71,21 +71,29 @@ export interface BostedUtlandApiData extends PeriodeApiData {
     landnavn: string;
 }
 
-export interface UtenlandsoppholdIPeriodenApiData extends PeriodeApiData {
+export interface UtenlandsoppholdInnenforEØSIPeriodenApiData extends PeriodeApiData {
+    erUtenforEøs: false;
     landkode: string;
     landnavn: string;
+    erSammenMedBarnet: boolean;
 }
-
-export interface UtenlandsoppholdUtenforEøsIPeriodenApiData extends UtenlandsoppholdIPeriodenApiData {
-    erBarnetInnlagt: boolean;
-    erUtenforEøs: boolean;
+export interface UtenlandsoppholdUtenforEØSIPeriodenApiData extends PeriodeApiData {
+    erUtenforEøs: true;
+    landkode: string;
+    landnavn: string;
+    erSammenMedBarnet: boolean;
+    erBarnetInnlagt?: boolean;
     perioderBarnetErInnlagt: PeriodeApiData[];
     årsak: UtenlandsoppholdÅrsak | null;
 }
 
+export type UtenlandsoppholdIPeriodenApiData =
+    | UtenlandsoppholdInnenforEØSIPeriodenApiData
+    | UtenlandsoppholdUtenforEØSIPeriodenApiData;
+
 export function isUtenlandsoppholdUtenforEØSApiData(
     opphold: UtenlandsoppholdIPeriodenApiData,
-): opphold is UtenlandsoppholdUtenforEøsIPeriodenApiData {
+): opphold is UtenlandsoppholdUtenforEØSIPeriodenApiData {
     return Object.keys(opphold).includes('erBarnetInnlagt');
 }
 

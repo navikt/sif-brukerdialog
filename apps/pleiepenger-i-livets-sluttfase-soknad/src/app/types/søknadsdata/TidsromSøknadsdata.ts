@@ -1,5 +1,5 @@
 import { DateRange } from '@navikt/sif-common-formik-ds';
-import { Utenlandsopphold } from '@navikt/sif-common-forms-ds';
+import { UtenlandsoppholdEnkel } from '@navikt/sif-common-forms-ds';
 
 interface BaseTidsrom {
     søknadsperiode: DateRange;
@@ -16,7 +16,7 @@ interface TidsromUtenUtenlandsopphold extends BaseTidsrom {
 interface tidsromMedUtenlandsopphold extends BaseTidsrom {
     type: 'tidsromMedUtenlandsopphold';
     skalOppholdeSegIUtlandetIPerioden: true;
-    utenlandsoppholdIPerioden: Utenlandsopphold[];
+    utenlandsoppholdIPerioden: UtenlandsoppholdEnkel[];
 }
 
 export type TidsromSøknadsdata = TidsromUtenUtenlandsopphold | tidsromMedUtenlandsopphold;

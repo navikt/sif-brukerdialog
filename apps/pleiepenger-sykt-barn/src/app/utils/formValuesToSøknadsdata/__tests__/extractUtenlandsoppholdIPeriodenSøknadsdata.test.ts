@@ -1,15 +1,18 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { extractUtenlandsoppholdIPeriodenSøknadsdata } from '../extractUtenlandsoppholdIPeriodenSøknadsdata';
+import { UtenlandsoppholdUtvidet } from '@navikt/sif-common-forms-ds';
 
+const utenlandsopphold: UtenlandsoppholdUtvidet = {
+    type: 'innenfor_eøs',
+    erUtenforEØS: false,
+    erSammenMedBarnet: false,
+    fom: new Date(),
+    tom: new Date(),
+    landkode: 'SE',
+};
 const mock = {
     skalOppholdeSegIUtlandetIPerioden: YesOrNo.YES,
-    utenlandsoppholdIPerioden: [
-        {
-            fom: new Date(),
-            tom: new Date(),
-            landkode: 'SE',
-        },
-    ],
+    utenlandsoppholdIPerioden: [utenlandsopphold],
 };
 
 describe('extractUtenlandsoppholdIPeriodenSøknadsdata', () => {
