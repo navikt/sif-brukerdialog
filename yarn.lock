@@ -3522,7 +3522,7 @@ __metadata:
     "@navikt/sif-common-core-ds": "workspace: *"
     "@navikt/sif-common-sentry": "workspace: *"
     "@navikt/sif-common-utils": "workspace: *"
-    "@playwright/test": 1.44.1
+    "@playwright/test": 1.45.0
     "@storybook/addon-essentials": 8.1.10
     "@storybook/addon-interactions": 8.1.10
     "@storybook/addon-links": 8.1.10
@@ -3632,7 +3632,7 @@ __metadata:
     "@navikt/sif-common-sentry": "workspace:*"
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
-    "@playwright/test": 1.44.1
+    "@playwright/test": 1.45.0
     "@storybook/react-vite": 8.1.10
     "@testing-library/react": 16.0.0
     "@types/object-hash": 3.0.6
@@ -3693,7 +3693,7 @@ __metadata:
     "@navikt/sif-common-sentry": "workspace:*"
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
-    "@playwright/test": 1.44.1
+    "@playwright/test": 1.45.0
     "@sentry/vite-plugin": 2.19.0
     "@storybook/addon-actions": 8.1.10
     "@storybook/addon-essentials": 8.1.10
@@ -3818,7 +3818,7 @@ __metadata:
     "@navikt/sif-common-sentry": "workspace:*"
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
-    "@playwright/test": 1.44.1
+    "@playwright/test": 1.45.0
     "@testing-library/react": 16.0.0
     "@types/object-hash": 3.0.6
     "@types/react": 18.3.3
@@ -3864,7 +3864,7 @@ __metadata:
     "@navikt/ds-react": 6.11.0
     "@navikt/ds-tailwind": 6.11.0
     "@navikt/nav-dekoratoren-moduler": 2.1.6
-    "@playwright/test": 1.44.1
+    "@playwright/test": 1.45.0
     "@types/node": 20.14.8
     "@types/react": 18.3.3
     "@types/react-dom": 18.3.0
@@ -3911,7 +3911,7 @@ __metadata:
     "@navikt/sif-common-sentry": "workspace:*"
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
-    "@playwright/test": 1.44.1
+    "@playwright/test": 1.45.0
     "@storybook/addon-a11y": 8.1.10
     "@storybook/addon-essentials": 8.1.10
     "@storybook/addon-interactions": 8.1.10
@@ -3987,7 +3987,7 @@ __metadata:
     "@navikt/sif-common-sentry": "workspace:*"
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
-    "@playwright/test": 1.44.1
+    "@playwright/test": 1.45.0
     "@storybook/addon-essentials": 8.1.10
     "@storybook/addon-interactions": 8.1.10
     "@storybook/addon-links": 8.1.10
@@ -4060,7 +4060,7 @@ __metadata:
     "@navikt/sif-common-sentry": "workspace:*"
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
-    "@playwright/test": 1.44.1
+    "@playwright/test": 1.45.0
     "@storybook/addon-actions": 8.1.10
     "@storybook/addon-essentials": 8.1.10
     "@storybook/addon-interactions": 8.1.10
@@ -4134,7 +4134,7 @@ __metadata:
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-ui": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
-    "@playwright/test": 1.44.1
+    "@playwright/test": 1.45.0
     "@storybook/addon-essentials": 8.1.10
     "@storybook/addon-interactions": 8.1.10
     "@storybook/addon-links": 8.1.10
@@ -4207,7 +4207,7 @@ __metadata:
     "@navikt/sif-common-sentry": "workspace:*"
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
-    "@playwright/test": 1.44.1
+    "@playwright/test": 1.45.0
     "@sentry/vite-plugin": 2.19.0
     "@storybook/addon-essentials": 8.1.10
     "@storybook/addon-interactions": 8.1.10
@@ -4679,7 +4679,7 @@ __metadata:
     "@navikt/sif-common-sentry": "workspace:*"
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
-    "@playwright/test": 1.44.1
+    "@playwright/test": 1.45.0
     "@storybook/react-vite": 8.1.10
     "@testing-library/react": 16.0.0
     "@types/react": 18.3.3
@@ -5168,14 +5168,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:1.44.1":
-  version: 1.44.1
-  resolution: "@playwright/test@npm:1.44.1"
+"@playwright/test@npm:1.45.0":
+  version: 1.45.0
+  resolution: "@playwright/test@npm:1.45.0"
   dependencies:
-    playwright: 1.44.1
+    playwright: 1.45.0
   bin:
     playwright: cli.js
-  checksum: 90507b77e388aa984deb92db56f7bb3b305c6be441e1d0087ca046989cfdda068bbc26d75bd29c20ad3dbb2434e69a8ff0d6b30003b88c9234cd3aa6a9f7deb9
+  checksum: 55fb72f393b05f6684b5098e0681712f71e1fe25aa6a00bd636133f9ccc26d096d61ee30f569b83368e4bf6a1288d2f8f6fd5364da5d396eab180f89f61b7164
   languageName: node
   linkType: hard
 
@@ -20185,7 +20185,31 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright@npm:1.44.1, playwright@npm:^1.14.0":
+"playwright-core@npm:1.45.0":
+  version: 1.45.0
+  resolution: "playwright-core@npm:1.45.0"
+  bin:
+    playwright-core: cli.js
+  checksum: e81a55eeefa997fcb559527127c9cefbbabe81f196de486224e6c2a3a66852dab883379ff28a05b8008fb0ad4992840ad53c2415cee27e2d1778836210d9248e
+  languageName: node
+  linkType: hard
+
+"playwright@npm:1.45.0":
+  version: 1.45.0
+  resolution: "playwright@npm:1.45.0"
+  dependencies:
+    fsevents: 2.3.2
+    playwright-core: 1.45.0
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  bin:
+    playwright: cli.js
+  checksum: 2a5f827fdcc90f1ec0ea4d9e4f2021ae894df88d3c0577677a81f72a09d91fb15584346e63ec2f85bfc24f872976ff2a76cee6ca7d7f29a8cc3159ced4f25b50
+  languageName: node
+  linkType: hard
+
+"playwright@npm:^1.14.0":
   version: 1.44.1
   resolution: "playwright@npm:1.44.1"
   dependencies:
