@@ -17,7 +17,7 @@
     },
     "dependencies": {
         "@grafana/faro-web-sdk": "1.7.3",
-        "@grafana/faro-web-tracing": "1.7.3",
+        "@grafana/faro-web-tracing": "1.8.0",
         "@navikt/appstatus-react-ds": "workspace: *",
         "@navikt/nav-dekoratoren-moduler": "2.1.6",
         "@navikt/next-logger": "1.25.0",
