@@ -42,7 +42,7 @@
         "react-dom": "18.3.1",
         "react-intl": "6.6.8",
         "react-modal": "3.16.1",
-        "react-router-dom": "6.23.1"
+        "react-router-dom": "6.24.0"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.9.1",
