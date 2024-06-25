@@ -8,7 +8,7 @@
     border: none !important;
 }
 .navds-form-summary__answers .navds-form-summary__answers {
-    background-color: var(--a-surface-subtle);
+    /* background-color: var(--a-surface-subtle); */
 }
 .navds-form-summary__answer--compact dt {
     display: inline-block;

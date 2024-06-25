@@ -1,6 +1,4 @@
-import { Heading } from '@navikt/ds-react';
 import React from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { dateToISODate, ISODurationToDecimalDuration } from '@navikt/sif-common-utils';
 import TidEnkeltdager from '../../../../components/tid-enkeltdager/TidEnkeltdager';
@@ -11,6 +9,7 @@ import {
 } from '../../../../types/søknadApiData/SøknadApiData';
 import { JobberIPeriodeSvar } from '../../arbeidstid/ArbeidstidTypes';
 import { AppText } from '../../../../i18n';
+import { FormSummary } from '@navikt/ds-react';
 
 interface Props {
     periode: DateRange;
@@ -35,28 +34,32 @@ const ArbeidIPeriodeSummaryItem: React.FC<Props> = ({ arbeidIPeriode, dagerMedPl
         <>
             {(arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.heltFravær ||
                 arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.somVanlig) && (
-                <p style={{ marginTop: 0 }}>
+                <>
                     <AppText id={`oppsummering.arbeidIPeriode.jobberIPerioden.${arbeidIPeriode.jobberIPerioden}`} />
-                </p>
+                </>
             )}
 
             {arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.redusert && (
-                <p style={{ marginTop: 0 }}>
+                <>
                     <AppText id={`oppsummering.arbeidIPeriode.jobberIPerioden.${arbeidIPeriode.jobberIPerioden}`} />
-                </p>
+                </>
             )}
 
             {arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.redusert && arbeidIPeriode.enkeltdager && (
-                <Block margin="xl">
-                    <Heading size="xsmall" level="4" spacing={true}>
-                        <AppText id="oppsummering.arbeidIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading" />
-                    </Heading>
-                    <TidEnkeltdager
-                        dager={fjernDagerIkkeSøktForOgUtenArbeidstid(arbeidIPeriode.enkeltdager, dagerMedPleie)}
-                        renderAsAccordion={false}
-                        visUke={false}
-                    />
-                </Block>
+                <FormSummary.Answers>
+                    <FormSummary.Answer>
+                        <FormSummary.Label>
+                            <AppText id="oppsummering.arbeidIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading" />
+                        </FormSummary.Label>
+                        <FormSummary.Value>
+                            <TidEnkeltdager
+                                dager={fjernDagerIkkeSøktForOgUtenArbeidstid(arbeidIPeriode.enkeltdager, dagerMedPleie)}
+                                renderAsAccordion={false}
+                                visUke={false}
+                            />
+                        </FormSummary.Value>
+                    </FormSummary.Answer>
+                </FormSummary.Answers>
             )}
         </>
     );
