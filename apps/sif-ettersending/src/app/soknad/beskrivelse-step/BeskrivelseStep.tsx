@@ -1,5 +1,4 @@
 import { BodyLong, Link } from '@navikt/ds-react';
-import React from 'react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { getStringValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { AppText, useAppIntl } from '../../i18n';
@@ -14,7 +13,7 @@ interface Props {
     søknadstype: Søknadstype;
 }
 
-const BeskrivelseStep: React.FC<Props> = ({ søknadstype }) => {
+const BeskrivelseStep = ({ søknadstype }: Props) => {
     const { text } = useAppIntl();
     return (
         <SoknadFormStep id={StepID.BESKRIVELSE} søknadstype={søknadstype}>

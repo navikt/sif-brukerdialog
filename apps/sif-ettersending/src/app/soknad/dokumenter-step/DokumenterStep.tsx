@@ -1,6 +1,5 @@
 import { Alert } from '@navikt/ds-react';
 import React from 'react';
-
 import { SIFCommonGeneralEvents, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
@@ -34,7 +33,7 @@ interface Props {
     soknadId: string;
 }
 
-const DokumenterStep: React.FC<Props> = ({ søknadstype, søker, soknadId }: Props) => {
+const DokumenterStep = ({ søknadstype, søker, soknadId }: Props) => {
     const { text } = useAppIntl();
     const { values, setFieldValue } = useFormikContext<SoknadFormData>();
     const dokumenter: Attachment[] = React.useMemo(() => {

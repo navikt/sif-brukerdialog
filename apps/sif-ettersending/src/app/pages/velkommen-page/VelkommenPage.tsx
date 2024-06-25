@@ -1,4 +1,3 @@
-import React from 'react';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import { SoknadVelkommenPage } from '@navikt/sif-common-soknad-ds';
 import { AppText, useAppIntl } from '../../i18n';
@@ -12,7 +11,7 @@ interface Props {
     søker: Person;
 }
 
-const VelkommenPage: React.FC<Props> = ({ søknadstype, søker }) => {
+const VelkommenPage = ({ søknadstype, søker }: Props) => {
     const { text } = useAppIntl();
     const { startSoknad } = useSoknadContext();
 
