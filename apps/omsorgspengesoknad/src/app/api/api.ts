@@ -9,6 +9,7 @@ export enum ApiEndpoint {
     'send_søknad' = 'omsorgspenger-utvidet-rett/innsending',
     'vedlegg' = 'vedlegg',
     'mellomlagring' = 'mellomlagring/OMSORGSPENGER_UTVIDET_RETT',
+    'innvilget_vedtak' = 'k9sak/omsorgsdager-kronisk-sykt-barn/har-gyldig-vedtak',
 }
 
 const axiosConfigCommon: AxiosRequestConfig = {
@@ -16,14 +17,24 @@ const axiosConfigCommon: AxiosRequestConfig = {
     headers: { 'Content-type': 'application/json; charset=utf-8' },
 };
 
-export const axiosConfig: AxiosRequestConfig = {
-    ...axiosConfigCommon,
-    baseURL: getEnvVariableOrDefault('FRONTEND_API_PATH', 'http://localhost:8089'),
+export const axiosConfig = (apiPath?: ApiEndpoint): AxiosRequestConfig => {
+    if (apiPath === ApiEndpoint.innvilget_vedtak) {
+        return {
+            ...axiosConfigCommon,
+            baseURL: getEnvVariableOrDefault('K9_SAK_INNSYN_API_PATH', 'http://localhost:8080'),
+        };
+    }
+    return {
+        ...axiosConfigCommon,
+        baseURL: getEnvVariableOrDefault('FRONTEND_API_PATH', 'http://localhost:8089'),
+    };
 };
 
-export const axiosMultipartConfig: AxiosRequestConfig = {
-    ...axiosConfig,
-    headers: { 'Content-Type': 'multipart/form-data' },
+export const axiosMultipartConfig = (apiEndpoint: ApiEndpoint): AxiosRequestConfig => {
+    return {
+        ...axiosConfig(apiEndpoint),
+        headers: { 'Content-Type': 'multipart/form-data' },
+    };
 };
 
 export const handleAxiosError = (error: AxiosError) => {
@@ -42,7 +53,7 @@ axios.interceptors.response.use((response) => {
 const api = {
     get: <ResponseType>(endpoint: ApiEndpoint, paramString?: string, config?: AxiosRequestConfig) => {
         const url = `${endpoint}${paramString ? `?${paramString}` : ''}`;
-        return axios.get<ResponseType>(url, config || axiosConfig);
+        return axios.get<ResponseType>(url, config || axiosConfig(endpoint));
     },
     post: <DataType = any, ResponseType = any>(
         endpoint: ApiEndpoint,
@@ -50,16 +61,16 @@ const api = {
         headers?: RawAxiosRequestHeaders,
     ) => {
         return axios.post<ResponseType>(endpoint, data, {
-            ...axiosConfig,
-            headers: { ...axiosConfig.headers, ...headers },
+            ...axiosConfig(endpoint),
+            headers: { ...axiosConfig(endpoint).headers, ...headers },
         });
     },
     uploadFile: (endpoint: ApiEndpoint, file: File) => {
         const formData = new FormData();
         formData.append('vedlegg', file);
-        return axios.post(endpoint, formData, axiosMultipartConfig);
+        return axios.post(endpoint, formData, axiosMultipartConfig(endpoint));
     },
-    deleteFile: (url: string) => axios.delete(url, axiosConfig),
+    deleteFile: (url: string) => axios.delete(url, axiosConfig()),
 };
 
 export default api;

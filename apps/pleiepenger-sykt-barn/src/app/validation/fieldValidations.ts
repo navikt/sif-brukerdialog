@@ -13,7 +13,7 @@ import {
     getStringValidator,
 } from '@navikt/sif-common-formik-ds/src/validation';
 import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src';
+import { UtenlandsoppholdUtvidet } from '@navikt/sif-common-forms-ds/src';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/types';
 import {
     getDate3YearsAgo,
@@ -119,7 +119,7 @@ export const validateTildato = (tilDatoString?: string, fraDatoString?: string):
 
 export const validateUtenlandsoppholdIPerioden = (
     periode: DateRange,
-    utenlandsopphold: Utenlandsopphold[],
+    utenlandsopphold: UtenlandsoppholdUtvidet[],
 ): ValidationResult<ValidationError> => {
     if (utenlandsopphold.length === 0) {
         return AppFieldValidationErrors.utenlandsopphold_ikke_registrert;

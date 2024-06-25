@@ -3,16 +3,8 @@ const express = require('express');
 const helmet = require('helmet');
 const server = express();
 const søknader = require('./mockdata/soknader.json');
-const saker = require('./mockdata/saker.json');
-// const saker = require('./mockdata/saker-med-to-vedtak.json');
-// const saker = require('./mockdata/saker-uten-søknad-men-behandling.json');
-// const saker = require('./mockdata/sak-uten-behandling.json');
-// const saker = require('./mockdata/sak-med-ettersendelse.json');
-// const saker = require('./mockdata/saker-sn.json');
-// const saker = require('./mockdata/saker-med-venteårsak.json');
-// const saker = require('./mockdata/saker-debug.json');
-// const saker = require('./mockdata/flere-saker.json');
-// const saker = require('./mockdata/saker-anonymisert-pleietrengende.json');
+// const saker = require('./mockdata/saker.json');
+const saker = require('./mockdata/saker-ettersendelse-case.json');
 
 server.use(express.json());
 

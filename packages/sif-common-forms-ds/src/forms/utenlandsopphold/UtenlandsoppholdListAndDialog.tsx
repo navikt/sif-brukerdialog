@@ -5,7 +5,7 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { sortMaybeDateRange } from '@navikt/sif-common-utils';
-import { Utenlandsopphold } from './types';
+import { Utenlandsopphold, UtenlandsoppholdVariant } from './types';
 import UtenlandsoppholdForm from './UtenlandsoppholdForm';
 import UtenlandsoppholdListe from './UtenlandsoppholdList';
 
@@ -14,16 +14,16 @@ interface Props<FieldNames> extends TypedFormInputValidationProps<FieldNames, Va
     minDate: Date;
     maxDate: Date;
     labels: ModalFormAndListLabels;
-    excludeInnlagtQuestion?: boolean;
+    variant: UtenlandsoppholdVariant;
 }
 
 function UtenlandsoppholdListAndDialog<FieldNames>({
+    variant,
     name,
     minDate,
     maxDate,
     validate,
     labels,
-    excludeInnlagtQuestion = false,
 }: Props<FieldNames>) {
     return (
         <FormikModalFormAndList<FieldNames, Utenlandsopphold, ValidationError>
@@ -38,7 +38,7 @@ function UtenlandsoppholdListAndDialog<FieldNames>({
                     alleOpphold={allItems}
                     minDate={minDate}
                     maxDate={maxDate}
-                    excludeInnlagtQuestion={excludeInnlagtQuestion}
+                    variant={variant}
                     onSubmit={onSubmit}
                     onCancel={onCancel}
                 />

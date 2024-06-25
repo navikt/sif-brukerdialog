@@ -1,9 +1,9 @@
-import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src';
+import { UtenlandsoppholdUtvidet } from '@navikt/sif-common-forms-ds/src';
 
 export interface SkalOppholdeSegIUtlandetSøknadsdata {
     type: 'skalOppholdeSegIUtlandet';
     skalOppholdeSegIUtlandetIPerioden: true;
-    opphold: Utenlandsopphold[];
+    opphold: UtenlandsoppholdUtvidet[];
 }
 
 export interface SkalIkkeOppholdeSegIUtlandetSøknadsdata {

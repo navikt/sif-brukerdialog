@@ -14,7 +14,7 @@ async function initTokenX() {
     );
 }
 
-async function getTokenXToken(token, additionalClaims) {
+async function getTokenXToken(token, additionalClaims, audience) {
     let tokenSet;
     try {
         tokenSet = await tokenxClient?.grant(
@@ -22,7 +22,7 @@ async function getTokenXToken(token, additionalClaims) {
                 grant_type: 'urn:ietf:params:oauth:grant-type:token-exchange',
                 client_assertion_type: 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
                 subject_token_type: 'urn:ietf:params:oauth:token-type:jwt',
-                audience: process.env.API_TOKENX_AUDIENCE,
+                audience: audience,
                 subject_token: token,
             },
             additionalClaims
@@ -34,7 +34,7 @@ async function getTokenXToken(token, additionalClaims) {
     return tokenSet;
 }
 
-async function exchangeToken(token) {
+async function exchangeToken(token, audience) {
     if (!token) {
         // Brukeren er ikke autorisert
         return;
@@ -48,7 +48,7 @@ async function exchangeToken(token) {
         },
     };
 
-    return await getTokenXToken(token, additionalClaims);
+    return await getTokenXToken(token, additionalClaims, audience);
 }
 
 module.exports = {

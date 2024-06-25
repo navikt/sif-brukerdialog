@@ -53,6 +53,7 @@ export const søknadContextMock: SøknadContextState = {
             skalOppholdeSegIUtlandetIPerioden: true,
             utenlandsoppholdIPerioden: [
                 {
+                    type: 'enkel',
                     fom: new Date('2024-05-13T00:00:00.000Z'),
                     tom: new Date('2024-05-19T00:00:00.000Z'),
                     landkode: 'ALB',
@@ -168,6 +169,7 @@ export const søknadContextMock: SøknadContextState = {
             harBoddUtenforNorgeSiste12Mnd: true,
             utenlandsoppholdSiste12Mnd: [
                 {
+                    type: 'enkel',
                     id: '87b46d9b-85a3-4f25-8af9-2a584c2d75be',
                     fom: new Date('2024-01-15T00:00:00.000Z'),
                     tom: new Date('2024-02-09T00:00:00.000Z'),
@@ -177,6 +179,7 @@ export const søknadContextMock: SøknadContextState = {
             skalBoUtenforNorgeNeste12Mnd: true,
             utenlandsoppholdNeste12Mnd: [
                 {
+                    type: 'enkel',
                     id: '18f7901b-b2ff-4ea2-ae13-2d738ceebc69',
                     fom: new Date('2024-05-22T00:00:00.000Z'),
                     tom: new Date('2024-05-31T00:00:00.000Z'),

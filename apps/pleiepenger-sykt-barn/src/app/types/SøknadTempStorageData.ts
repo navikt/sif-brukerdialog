@@ -1,7 +1,7 @@
 import { StepID } from './StepID';
 import { SøknadFormValues } from './søknad-form-values/SøknadFormValues';
 
-export const MELLOMLAGRING_VERSION = '14.0.0';
+export const MELLOMLAGRING_VERSION = '14.0.1';
 
 export interface MellomlagringMetadata {
     version: string;

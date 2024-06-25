@@ -75,11 +75,16 @@ const mapInnsendelseTilSakshendelse = (innsendelse: Innsendelse): Sakshendelse =
     }
 };
 
+export const harBehandlingSøknadEllerEndringsmelding = (behandling: Behandling): boolean =>
+    behandling.innsendelser.some((i) =>
+        [Innsendelsestype.SØKNAD, Innsendelsestype.ENDRINGSMELDING].includes(i.innsendelsestype),
+    );
+
 export const getHendelserIBehandling = (behandling: Behandling, saksbehandlingFrist?: Date): Sakshendelse[] => {
-    const { innsendelser: søknader, aksjonspunkter, avsluttetTidspunkt, status } = behandling;
+    const { innsendelser, aksjonspunkter, avsluttetTidspunkt, status } = behandling;
     const hendelser: Sakshendelse[] = [];
 
-    søknader.forEach((søknad) => {
+    innsendelser.forEach((søknad) => {
         hendelser.push(mapInnsendelseTilSakshendelse(søknad));
     });
 
@@ -90,18 +95,21 @@ export const getHendelserIBehandling = (behandling: Behandling, saksbehandlingFr
         });
     }
 
-    /** Avsluttet eller forventet svar på søknad */
-    if (status === Behandlingsstatus.AVSLUTTET && avsluttetTidspunkt) {
-        hendelser.push({
-            type: Sakshendelser.FERDIG_BEHANDLET,
-            dato: avsluttetTidspunkt,
-        });
-    } else {
-        hendelser.push({
-            type: Sakshendelser.FORVENTET_SVAR,
-            dato: saksbehandlingFrist,
-            søknadstyperIBehandling: getSøknadstyperIBehandling(søknader || []),
-        });
+    /** Melding om vedtak eller fremtidig vedtak skal kun vises hvis behandling inneholder endringsmelding eller søknad */
+    if (harBehandlingSøknadEllerEndringsmelding(behandling)) {
+        /** Avsluttet eller forventet svar på søknad */
+        if (status === Behandlingsstatus.AVSLUTTET && avsluttetTidspunkt) {
+            hendelser.push({
+                type: Sakshendelser.FERDIG_BEHANDLET,
+                dato: avsluttetTidspunkt,
+            });
+        } else {
+            hendelser.push({
+                type: Sakshendelser.FORVENTET_SVAR,
+                dato: saksbehandlingFrist,
+                søknadstyperIBehandling: getSøknadstyperIBehandling(innsendelser || []),
+            });
+        }
     }
 
     return hendelser;
