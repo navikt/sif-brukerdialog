@@ -1,16 +1,16 @@
 import { Alert, Heading } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ContentWithHeader from '@navikt/sif-common-core-ds/src/components/content-with-header/ContentWithHeader';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
-import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
+import { ValidationError, YesOrNo, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn';
 import AnnetBarnListAndDialog from '@navikt/sif-common-forms-ds/src/forms/annet-barn/AnnetBarnListAndDialog';
 import { getDateToday } from '@navikt/sif-common-utils';
+import { useIntl } from 'react-intl';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -20,18 +20,18 @@ import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { nYearsAgo } from '../../../utils/aldersUtils';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import SøknadStep from '../../SøknadStep';
+import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
-import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
+import './omOmsorgenForBarn.css';
 import {
     barnItemLabelRenderer,
     getBarnOptions,
     getOmOmsorgenForBarnStepInitialValues,
     getOmOmsorgenForBarnSøknadsdataFromFormValues,
 } from './omOmsorgenForBarnStepUtils';
-import './omOmsorgenForBarn.css';
 
 export enum OmOmsorgenForBarnFormFields {
     annetBarn = 'annetBarn',
@@ -98,7 +98,16 @@ const OmOmsorgenForBarnStep = () => {
                     const harBarn = registrertBarn.length > 0 || annetBarn.length > 0;
                     const flereBarn = registrertBarn.length + annetBarn.length > 1;
                     const ettBarn = registrertBarn.length + annetBarn.length === 1;
-                    const visDeltBostedBarnValg = avtaleOmDeltBosted === YesOrNo.YES && flereBarn;
+
+                    const harAleneomsorgForOptions = getBarnOptions(registrertBarn, annetBarn).filter((option) =>
+                        harAleneomsorgFor.includes(option.value),
+                    );
+
+                    const visVelgMinstEttBarnMedDeltBostedAdvarsel =
+                        harAleneomsorgForOptions.length === 0 && avtaleOmDeltBosted === YesOrNo.YES;
+                    const harAleneomsorgForNøyaktigEttBarn = harAleneomsorgFor.length === 1;
+                    const visDeltBostedBarnValg =
+                        avtaleOmDeltBosted === YesOrNo.YES && !harAleneomsorgForNøyaktigEttBarn;
 
                     const filtrertBarn = harAvtaleOmDeltBostedFor
                         ? registrertBarn.filter((barnet) => !harAvtaleOmDeltBostedFor.includes(barnet.aktørId))
@@ -119,7 +128,7 @@ const OmOmsorgenForBarnStep = () => {
                         : false;
 
                     const clearHarAvtaleOmDeltBostedFor = (newValue: string) => {
-                        if (ettBarn) {
+                        if (harAleneomsorgForNøyaktigEttBarn) {
                             setFieldValue(
                                 OmOmsorgenForBarnFormFields.harAvtaleOmDeltBostedFor,
                                 newValue === YesOrNo.YES ? harAleneomsorgFor : [],
@@ -129,11 +138,6 @@ const OmOmsorgenForBarnStep = () => {
                             setFieldValue(OmOmsorgenForBarnFormFields.harAvtaleOmDeltBostedFor, []);
                         }
                     };
-
-                    const harAleneomsorgForOptions = getBarnOptions(registrertBarn, annetBarn).filter((option) =>
-                        harAleneomsorgFor.includes(option.value),
-                    );
-                    const visVelgMinstEttBarnMedDeltBostedAdvarsel = harAleneomsorgForOptions.length === 0;
 
                     const kanIkkeFortsette =
                         !harBarn || alleBarnMedDeltBosted || ettBarnOgDeltBosted || barnMedDeltBostedHarAleneomsorg;
@@ -223,9 +227,9 @@ const OmOmsorgenForBarnStep = () => {
                                             <Block margin="l">
                                                 <YesOrNoQuestion
                                                     legend={text(
-                                                        flereBarn
-                                                            ? 'steg.omOmsorgenForBarn.deltBosted.flereBarn.spm'
-                                                            : 'steg.omOmsorgenForBarn.deltBosted.spm',
+                                                        harAleneomsorgForNøyaktigEttBarn
+                                                            ? 'steg.omOmsorgenForBarn.deltBosted.spm'
+                                                            : 'steg.omOmsorgenForBarn.deltBosted.flereBarn.spm',
                                                     )}
                                                     name={OmOmsorgenForBarnFormFields.avtaleOmDeltBosted}
                                                     validate={getYesOrNoValidator()}
@@ -243,22 +247,14 @@ const OmOmsorgenForBarnStep = () => {
                                                 />
                                             </Block>
 
-                                            {visDeltBostedBarnValg && (
+                                            {visDeltBostedBarnValg && !visVelgMinstEttBarnMedDeltBostedAdvarsel && (
                                                 <Block margin="xl">
-                                                    {visVelgMinstEttBarnMedDeltBostedAdvarsel ? (
-                                                        <Alert variant="warning">
-                                                            {text(
-                                                                'steg.omOmsorgenForBarna.deltBosted.velgMinstEttBarnMedDeltBostedAdvarsel',
-                                                            )}
-                                                        </Alert>
-                                                    ) : (
-                                                        <CheckboxGroup
-                                                            legend={text('steg.omOmsorgenForBarn.deltBosted')}
-                                                            name={OmOmsorgenForBarnFormFields.harAvtaleOmDeltBostedFor}
-                                                            checkboxes={harAleneomsorgForOptions}
-                                                            validate={getListValidator({ required: true })}
-                                                        />
-                                                    )}
+                                                    <CheckboxGroup
+                                                        legend={text('steg.omOmsorgenForBarn.deltBosted')}
+                                                        name={OmOmsorgenForBarnFormFields.harAvtaleOmDeltBostedFor}
+                                                        checkboxes={harAleneomsorgForOptions}
+                                                        validate={getListValidator({ required: true })}
+                                                    />
                                                 </Block>
                                             )}
                                         </Block>
@@ -268,6 +264,15 @@ const OmOmsorgenForBarnStep = () => {
                                             <Block margin="l">
                                                 <Alert variant="warning">
                                                     {text('steg.omOmsorgenForBarn.alleBarnMedDeltBosted')}
+                                                </Alert>
+                                            </Block>
+                                        )}
+                                        {visVelgMinstEttBarnMedDeltBostedAdvarsel && (
+                                            <Block margin="l">
+                                                <Alert variant="warning">
+                                                    {text(
+                                                        'steg.omOmsorgenForBarna.deltBosted.velgMinstEttBarnMedDeltBostedAdvarsel',
+                                                    )}
                                                 </Alert>
                                             </Block>
                                         )}
