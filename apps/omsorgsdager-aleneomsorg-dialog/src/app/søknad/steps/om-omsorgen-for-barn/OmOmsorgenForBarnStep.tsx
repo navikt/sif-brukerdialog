@@ -133,6 +133,7 @@ const OmOmsorgenForBarnStep = () => {
                     const harAleneomsorgForOptions = getBarnOptions(registrertBarn, annetBarn).filter((option) =>
                         harAleneomsorgFor.includes(option.value),
                     );
+                    const visVelgMinstEttBarnMedDeltBostedAdvarsel = harAleneomsorgForOptions.length === 0;
 
                     const kanIkkeFortsette =
                         !harBarn || alleBarnMedDeltBosted || ettBarnOgDeltBosted || barnMedDeltBostedHarAleneomsorg;
@@ -244,12 +245,20 @@ const OmOmsorgenForBarnStep = () => {
 
                                             {visDeltBostedBarnValg && (
                                                 <Block margin="xl">
-                                                    <CheckboxGroup
-                                                        legend={text('steg.omOmsorgenForBarn.deltBosted')}
-                                                        name={OmOmsorgenForBarnFormFields.harAvtaleOmDeltBostedFor}
-                                                        checkboxes={harAleneomsorgForOptions}
-                                                        validate={getListValidator({ required: true })}
-                                                    />
+                                                    {visVelgMinstEttBarnMedDeltBostedAdvarsel ? (
+                                                        <Alert variant="warning">
+                                                            {text(
+                                                                'steg.omOmsorgenForBarna.deltBosted.velgMinstEttBarnMedDeltBostedAdvarsel',
+                                                            )}
+                                                        </Alert>
+                                                    ) : (
+                                                        <CheckboxGroup
+                                                            legend={text('steg.omOmsorgenForBarn.deltBosted')}
+                                                            name={OmOmsorgenForBarnFormFields.harAvtaleOmDeltBostedFor}
+                                                            checkboxes={harAleneomsorgForOptions}
+                                                            validate={getListValidator({ required: true })}
+                                                        />
+                                                    )}
                                                 </Block>
                                             )}
                                         </Block>

@@ -22,6 +22,8 @@ const nb = {
     'steg.omOmsorgenForBarn.deltBosted.description':
         'Avtale om delt fast bosted er en juridisk avtale i henhold til barneloven §36 og betyr at barnet har fast bosted hos begge foreldrene. Hvis det er avtalt delt fast bosted er ingen av foreldrene alene om omsorgen for barnet, men begge har rett til ordinære omsorgsdager.',
     'steg.omOmsorgenForBarn.deltBosted': 'Kryss av for hvilke barn du har delt fast bosted for:',
+    'steg.omOmsorgenForBarna.deltBosted.velgMinstEttBarnMedDeltBostedAdvarsel':
+        'Du må ha aleneomsorg for minst ett barn for å kunne svare på hvilke(t) barn man har avtale om delt fast bosted for.',
 
     'steg.omOmsorgenForBarn.form.født': 'Født {dato}',
     'steg.omOmsorgenForBarn.form.fødtNavn': 'Født {dato} {navn}',
