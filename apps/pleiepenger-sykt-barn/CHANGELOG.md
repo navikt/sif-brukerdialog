@@ -1,5 +1,28 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.13.0
+
+### Minor Changes
+
+-   0bb2df0: Endre utenlandsopphold-skjema
+
+    -   Legge til spørsmål om barnet er med på utenlandsoppholdet
+    -   Endre rekkefølge på spørsmålene
+    -   Refactoring
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+-   Updated dependencies [0bb2df0]
+    -   @navikt/sif-common-amplitude@2.25.9
+    -   @navikt/sif-common-soknad-ds@10.15.13
+    -   @navikt/sif-common-forms-ds@9.0.0
+    -   @navikt/appstatus-react-ds@2.18.11
+    -   @navikt/sif-common-core-ds@9.17.13
+    -   @navikt/sif-common-formik-ds@1.9.4
+    -   @navikt/sif-common-utils@3.46.6
+
 ## 3.12.7
 
 ### Patch Changes
