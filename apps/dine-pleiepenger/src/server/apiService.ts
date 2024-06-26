@@ -8,6 +8,7 @@ import { getContextForApiHandler } from '../utils/apiUtils';
 import { getLogger } from '../utils/getLogCorrelationID';
 import { sortBehandlingerNyesteFørst } from '../utils/sakUtils';
 import { getZodErrorsInfo } from '../utils/zodUtils';
+import { Innsendelse } from './api-models/InnsendelseSchema';
 import { InnsendtSøknaderSchema } from './api-models/InnsendtSøknadSchema';
 import { MellomlagringModel, MellomlagringSchema } from './api-models/MellomlagringSchema';
 import { PleietrengendeMedSak, PleietrengendeMedSakResponseSchema } from './api-models/PleietrengendeMedSakSchema';
@@ -91,7 +92,9 @@ export const fetchSaker = async (req: NextApiRequest, raw?: boolean): Promise<Pl
 
     const saker: PleietrengendeMedSak[] = [];
     try {
-        const parsedSaker = await PleietrengendeMedSakResponseSchema.parse(response.data);
+        const parsedSaker = await PleietrengendeMedSakResponseSchema.parse(
+            fjernUkjenteInnsendelserISaker(response.data),
+        );
         saker.push(...parsedSaker);
     } catch (error) {
         if (error instanceof ZodError) {
@@ -212,4 +215,25 @@ const fixSøknadMetadata = (data: MellomlagringModel): MellomlagringModel => {
         delete (data.metadata as any).updatedTimestemp;
     }
     return data;
+};
+
+const fjernUkjenteInnsendelserISaker = (pleietrengendeMedSak: PleietrengendeMedSak[]): PleietrengendeMedSak[] => {
+    return pleietrengendeMedSak.map((pt) => {
+        return {
+            ...pt,
+            sak: {
+                ...pt.sak,
+                behandlinger: pt.sak.behandlinger.map((behandling) => {
+                    return {
+                        ...behandling,
+                        innsendelser: filtrerUtUkjentInnsendelse(behandling.innsendelser),
+                    };
+                }),
+            },
+        };
+    });
+};
+
+const filtrerUtUkjentInnsendelse = (innsendelser: Innsendelse[]): Innsendelse[] => {
+    return innsendelser.filter((i) => (i as any).innsendelsestype !== 'UKJENT');
 };
