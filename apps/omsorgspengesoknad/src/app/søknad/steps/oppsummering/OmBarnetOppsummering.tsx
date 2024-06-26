@@ -85,12 +85,16 @@ export default OmBarnetOppsummering;
 const RegistrertBarnOppsummering = ({ barn }: { barn: BarnToSendToApi }) => (
     <>
         <FormSummary.Answer>
-            <AppText id="steg.oppsummering.barnet.navn" />
+            <FormSummary.Label>
+                <AppText id="steg.oppsummering.barnet.navn" />
+            </FormSummary.Label>
             <FormSummary.Value>{barn.navn}</FormSummary.Value>
         </FormSummary.Answer>
         {barn.fødselsdato ? (
             <FormSummary.Answer>
-                <AppText id="steg.oppsummering.barnet.fødselsdato" />
+                <FormSummary.Label>
+                    <AppText id="steg.oppsummering.barnet.fødselsdato" />
+                </FormSummary.Label>
                 <FormSummary.Value>{dateFormatter.full(ISODateToDate(barn.fødselsdato))}</FormSummary.Value>
             </FormSummary.Answer>
         ) : null}

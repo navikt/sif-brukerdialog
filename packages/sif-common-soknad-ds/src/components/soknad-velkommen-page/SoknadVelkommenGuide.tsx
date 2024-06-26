@@ -6,7 +6,7 @@ interface Props {
     children: React.ReactNode;
 }
 
-const VelkommenGuide: React.FunctionComponent<Props> = ({ title, children }) => (
+const SoknadVelkommenGuide: React.FunctionComponent<Props> = ({ title, children }) => (
     <GuidePanel poster={true}>
         <Heading level="2" size="medium" spacing={true}>
             {title}
@@ -15,4 +15,4 @@ const VelkommenGuide: React.FunctionComponent<Props> = ({ title, children }) => 
     </GuidePanel>
 );
 
-export default VelkommenGuide;
+export default SoknadVelkommenGuide;

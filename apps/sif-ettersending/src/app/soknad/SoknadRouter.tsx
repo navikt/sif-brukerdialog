@@ -37,7 +37,7 @@ const SoknadRouter = ({ søker, barn, søknadstype, soknadId, onKvitteringUnmoun
     return (
         <Routes>
             <Route index={true} element={<Navigate to="velkommen" replace={false} />} />
-            <Route path="velkommen" element={<VelkommenPage søknadstype={søknadstype} />} />
+            <Route path="velkommen" element={<VelkommenPage søknadstype={søknadstype} søker={søker} />} />
             {soknadId && (
                 <>
                     <Route path={StepID.BESKRIVELSE} element={<BeskrivelseStep søknadstype={søknadstype} />} />

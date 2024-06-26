@@ -1,4 +1,3 @@
-import React from 'react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { YtelseKey, Ytelser } from '@navikt/sif-common-core-ds/src/types/Ytelser';
 import { FormikRadioProp } from '@navikt/sif-common-formik-ds/src/components/formik-radio-group/FormikRadioGroup';
@@ -21,7 +20,7 @@ const getYtelseRadio = (ytelseKey: YtelseKey): FormikRadioProp => {
     };
 };
 
-const ValgOmsTypeStep: React.FC<Props> = ({ søknadstype }) => {
+const ValgOmsTypeStep = ({ søknadstype }: Props) => {
     const { text } = useAppIntl();
     return (
         <SoknadFormStep id={StepID.OMS_TYPE} søknadstype={søknadstype}>

@@ -1,5 +1,4 @@
 import { Heading } from '@navikt/ds-react';
-import React from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds/src';
 import { getFødselsnummerValidator } from '@navikt/sif-common-formik-ds/src/validation';
@@ -12,7 +11,7 @@ interface Props {
     harRegistrerteBarn: boolean;
 }
 
-const AnnetBarnPart: React.FC<Props> = ({ søkersFødselsnummer, harRegistrerteBarn }) => {
+const AnnetBarnPart = ({ søkersFødselsnummer, harRegistrerteBarn }: Props) => {
     const { text } = useAppIntl();
 
     return (

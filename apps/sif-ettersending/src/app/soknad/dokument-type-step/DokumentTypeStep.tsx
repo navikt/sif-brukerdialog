@@ -1,5 +1,5 @@
 import { Alert, Heading, Link } from '@navikt/ds-react';
-import React, { ReactNode, useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
@@ -22,7 +22,7 @@ interface Props {
     registrertBarn: RegistrertBarn[];
 }
 
-const DokumentTypeStep: React.FC<Props> = ({ søknadstype, søkersFødselsnummer, registrertBarn }) => {
+const DokumentTypeStep = ({ søknadstype, søkersFødselsnummer, registrertBarn }: Props) => {
     const { text } = useAppIntl();
     const {
         values: { legeerklæringGjelderEtAnnetBarn, dokumentType, registrertBarnAktørId, barnetsFødselsnummer },
