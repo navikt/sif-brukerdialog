@@ -16,6 +16,7 @@ const getZodIssueDetails = (issue: ZodIssue): any => {
                 code: issue.code,
                 message: issue.message,
                 path: issue.path,
+                received: issue.received,
             };
         default:
             return {
