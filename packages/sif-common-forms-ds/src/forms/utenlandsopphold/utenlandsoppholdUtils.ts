@@ -1,45 +1,146 @@
-import { dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds';
+import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
+import { countryIsMemberOfEøsOrEfta, dateToISOString, ISOStringToDate, YesOrNo } from '@navikt/sif-common-formik-ds';
+import { hasValue } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
 import { guid } from '@navikt/sif-common-utils';
-import { Utenlandsopphold, UtenlandsoppholdFormValues } from './types';
+import { Utenlandsopphold, UtenlandsoppholdEnkel, UtenlandsoppholdFormValues, UtenlandsoppholdVariant } from './types';
 
-const isValidUtenlandsopphold = (utenlandsopphold: Partial<Utenlandsopphold>): utenlandsopphold is Utenlandsopphold => {
-    return (
-        utenlandsopphold.fom !== undefined &&
-        utenlandsopphold.tom !== undefined &&
-        utenlandsopphold.landkode !== undefined
-    );
-};
-
-const mapFormValuesToUtenlandsopphold = (
+export const mapFormValuesToUtenlandsopphold = (
     formValues: UtenlandsoppholdFormValues,
-    excludeInnlagtQuestion: boolean,
-    id: string | undefined,
-): Partial<Utenlandsopphold> => {
-    const { barnInnlagtPerioder } = formValues;
+    variant: UtenlandsoppholdVariant,
+    oppholdId: string | undefined,
+): Utenlandsopphold => {
+    const id = oppholdId || guid();
+    const fom = ISOStringToDate(formValues.fom);
+    const tom = ISOStringToDate(formValues.tom);
+    const { landkode } = formValues;
+
+    if (!fom || !tom || !landkode) {
+        throw 'Invalid utenlandsopphold';
+    }
+
+    if (variant === 'enkel') {
+        const opphold: UtenlandsoppholdEnkel = {
+            type: 'enkel',
+            id,
+            fom,
+            tom,
+            landkode,
+        };
+        return opphold;
+    }
+
+    const isEøsOrEftaLand: boolean = countryIsMemberOfEøsOrEfta(landkode);
+    const erSammenMedBarnet = formValues.erSammenMedBarnet === YesOrNo.YES;
+
+    if (isEøsOrEftaLand) {
+        return {
+            type: 'innenfor_eøs',
+            erUtenforEØS: false,
+            id,
+            fom,
+            tom,
+            landkode,
+            erSammenMedBarnet,
+        };
+    }
+
+    if (isEøsOrEftaLand === false && erSammenMedBarnet === false) {
+        return {
+            type: 'utenfor_eøs',
+            erUtenforEØS: true,
+            id,
+            fom,
+            tom,
+            landkode,
+            erSammenMedBarnet,
+        };
+    }
+
+    const erBarnetInnlagt = formValues.erBarnetInnlagt === YesOrNo.YES ? true : false;
     return {
-        ...formValues,
-        id: id || guid(),
-        fom: ISOStringToDate(formValues.fom),
-        tom: ISOStringToDate(formValues.tom),
-        barnInnlagtPerioder: excludeInnlagtQuestion ? undefined : barnInnlagtPerioder,
+        type: 'utenfor_eøs',
+        erUtenforEØS: true,
+        id,
+        fom,
+        tom,
+        landkode,
+        erSammenMedBarnet,
+        erBarnetInnlagt,
+        barnInnlagtPerioder: erBarnetInnlagt ? formValues.barnInnlagtPerioder : undefined,
+        årsak: erBarnetInnlagt ? formValues.årsak : undefined,
     };
 };
 
-const mapUtenlandsoppholdToFormValues = (
-    { fom, tom, erBarnetInnlagt, barnInnlagtPerioder, landkode, årsak }: Partial<Utenlandsopphold>,
-    excludeInnlagtQuestion: boolean,
-): UtenlandsoppholdFormValues => ({
-    fom: dateToISOString(fom),
-    tom: dateToISOString(tom),
-    landkode,
-    erBarnetInnlagt: excludeInnlagtQuestion ? undefined : erBarnetInnlagt,
-    årsak,
-    barnInnlagtPerioder,
-});
+export const mapUtenlandsoppholdToFormValues = (
+    utenlandsopphold: Utenlandsopphold,
+    variant: UtenlandsoppholdVariant,
+): UtenlandsoppholdFormValues => {
+    const values: UtenlandsoppholdFormValues = {
+        fom: dateToISOString(utenlandsopphold.fom),
+        tom: dateToISOString(utenlandsopphold.tom),
+        landkode: utenlandsopphold.landkode,
+    };
 
-const utenlandsoppholdUtils = {
-    isValidUtenlandsopphold,
-    mapFormValuesToUtenlandsopphold,
-    mapUtenlandsoppholdToFormValues,
+    if (variant === 'enkel' || utenlandsopphold.type === 'enkel') {
+        return values;
+    }
+
+    const erSammenMedBarnet = getYesOrNoFromBoolean(utenlandsopphold.erSammenMedBarnet);
+    switch (utenlandsopphold.type) {
+        case 'innenfor_eøs':
+            return {
+                ...values,
+                erSammenMedBarnet,
+            };
+        case 'utenfor_eøs':
+            return {
+                ...values,
+                erSammenMedBarnet,
+                erBarnetInnlagt: getYesOrNoFromBoolean(utenlandsopphold.erBarnetInnlagt),
+                årsak: utenlandsopphold.årsak,
+                barnInnlagtPerioder: utenlandsopphold.barnInnlagtPerioder,
+            };
+        default:
+            return values;
+    }
 };
-export default utenlandsoppholdUtils;
+
+export const getUtenlandsoppholdQuestionVisibility = (
+    formValues: UtenlandsoppholdFormValues,
+    variant: UtenlandsoppholdVariant,
+): {
+    showInnlagtPerioderQuestion: boolean;
+    showInnlagtQuestion: boolean;
+    showÅrsakQuestion: boolean;
+} => {
+    const { erBarnetInnlagt, landkode, erSammenMedBarnet, fom, tom } = formValues;
+
+    if (variant === 'enkel') {
+        return {
+            showInnlagtPerioderQuestion: false,
+            showInnlagtQuestion: false,
+            showÅrsakQuestion: false,
+        };
+    }
+    const hasFomTomValues = hasValue(fom) && hasValue(tom);
+
+    const showInnlagtQuestion: boolean =
+        erSammenMedBarnet === YesOrNo.YES &&
+        landkode !== undefined &&
+        hasValue(landkode) &&
+        !countryIsMemberOfEøsOrEfta(landkode);
+
+    const showInnlagtPerioderQuestion =
+        hasFomTomValues &&
+        landkode !== undefined &&
+        erBarnetInnlagt === YesOrNo.YES &&
+        countryIsMemberOfEøsOrEfta(landkode) === false;
+
+    const showÅrsakQuestion = showInnlagtPerioderQuestion;
+
+    return {
+        showInnlagtPerioderQuestion,
+        showInnlagtQuestion,
+        showÅrsakQuestion,
+    };
+};

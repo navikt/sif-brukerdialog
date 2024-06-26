@@ -26,7 +26,7 @@
                     "innsendelser": [
                         {
                             "søknadId": "cb528acf-d452-4572-959d-27492e3f10ed",
-                            "innsendelsestype": "SØKNAD",
+                            "innsendelsestype": "UKJENT",
                             "k9FormatInnsendelse": {
                                 "søknadId": "cb528acf-d452-4572-959d-27492e3f10ed",
                                 "versjon": "1.0.0",

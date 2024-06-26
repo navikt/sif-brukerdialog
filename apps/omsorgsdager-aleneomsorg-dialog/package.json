@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/omsorgsdager-aleneomsorg-dialog",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "2.18.1",
+    "version": "2.18.2",
     "private": true,
     "type": "module",
     "scripts": {
@@ -51,7 +51,7 @@
         "react-dom": "18.3.1",
         "react-fast-compare": "3.2.2",
         "react-intl": "6.6.8",
-        "react-router-dom": "6.23.1",
+        "react-router-dom": "6.24.0",
         "uuid": "10.0.0"
     },
     "devDependencies": {
@@ -60,7 +60,7 @@
         "@babel/plugin-transform-modules-commonjs": "7.24.7",
         "@babel/preset-env": "7.24.7",
         "@babel/preset-react": "7.24.7",
-        "@playwright/test": "1.44.1",
+        "@playwright/test": "1.45.0",
         "@types/object-hash": "3.0.6",
         "@types/react": "18.3.3",
         "@types/react-dom": "18.3.0",

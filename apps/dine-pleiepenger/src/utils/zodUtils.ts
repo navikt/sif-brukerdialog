@@ -11,6 +11,13 @@ const getZodIssueDetails = (issue: ZodIssue): any => {
                     message: unionError.issues.map(getZodIssueDetails),
                 })),
             };
+        case 'invalid_literal':
+            return {
+                code: issue.code,
+                message: issue.message,
+                path: issue.path,
+                received: issue.received,
+            };
         default:
             return {
                 code: issue.code,

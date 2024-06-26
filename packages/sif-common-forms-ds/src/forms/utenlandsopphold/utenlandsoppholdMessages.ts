@@ -8,8 +8,8 @@ const nb = {
     '@forms.utenlandsopphold.form.tidsperiode.fraDato': 'Fra og med',
     '@forms.utenlandsopphold.form.tidsperiode.tilDato': 'Til og med',
     '@forms.utenlandsopphold.form.land.spm': 'Velg land',
-    '@forms.utenlandsopphold.form.erBarnetInnlagt.spm':
-        'Er, eller skal, barnet være innlagt i helseinstitusjon i {land}?',
+    '@forms.utenlandsopphold.form.erSammenMedBarnet.spm': 'Er barnet sammen med deg til {land}?',
+    '@forms.utenlandsopphold.form.erBarnetInnlagt.spm': 'Er barnet innlagt i helseinstitusjon i {land}?',
     '@forms.utenlandsopphold.form.perioderBarnetErInnlag.formTitle': 'Periode barnet er innlagt',
     '@forms.utenlandsopphold.form.perioderBarnetErInnlag.addLabel': 'Legg til periode barnet er innlagt',
     '@forms.utenlandsopphold.form.perioderBarnetErInnlag.listTitle': 'Periode(r) barnet er innlagt',
@@ -45,8 +45,10 @@ const nb = {
     '@forms.utenlandsoppholdForm.landkode.noValue': 'Du må velge land.',
     '@forms.utenlandsoppholdForm.årsak.noValue': 'Du må velge hvordan utgiftene til innleggelsen dekkes.',
     '@forms.utenlandsoppholdForm.erBarnetInnlagt.yesOrNoIsUnanswered':
-        'Du må svare ja eller nei på om barnet er, eller skal være innlagt i helseinstitusjon i {land}.',
+        'Du må svare ja eller nei på om barnet er innlagt i helseinstitusjon i {land}.',
     '@forms.utenlandsoppholdForm.barnInnlagtPerioder.listIsEmpty': 'Du har ikke lagt til periode for innleggelse.',
+    '@forms.utenlandsoppholdForm.erSammenMedBarnet.yesOrNoIsUnanswered':
+        'Du må svare ja eller nei på om barnet barnet sammen med deg til {land}.',
 };
 
 const nn: Record<keyof typeof nb, string> = {
