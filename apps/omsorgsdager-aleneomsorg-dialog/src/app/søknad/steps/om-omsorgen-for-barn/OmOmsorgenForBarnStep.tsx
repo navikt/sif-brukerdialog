@@ -93,54 +93,41 @@ const OmOmsorgenForBarnStep = () => {
                     values: { annetBarn = [], harAvtaleOmDeltBostedFor, avtaleOmDeltBosted, harAleneomsorgFor = [] },
                     setFieldValue,
                 }) => {
-                    const annetBarnFnr = annetBarn ? annetBarn.map((barn) => barn.fnr) : [];
-
-                    const harBarn = registrertBarn.length > 0 || annetBarn.length > 0;
-                    const flereBarn = registrertBarn.length + annetBarn.length > 1;
-                    const ettBarn = registrertBarn.length + annetBarn.length === 1;
-
-                    const harAleneomsorgForOptions = getBarnOptions(registrertBarn, annetBarn).filter((option) =>
-                        harAleneomsorgFor.includes(option.value),
+                    const alleBarn = [...registrertBarn, ...annetBarn];
+                    const barnManHarAleneomsorgFor = alleBarn.filter((barn) =>
+                        harAleneomsorgFor.includes('fnr' in barn ? barn.fnr : barn.aktørId),
                     );
+                    const antallBarn = alleBarn.length;
+                    const antallBarnManHarAleneomsorgFor = barnManHarAleneomsorgFor.length;
 
-                    const visVelgMinstEttBarnMedDeltBostedAdvarsel =
-                        harAleneomsorgForOptions.length === 0 && avtaleOmDeltBosted === YesOrNo.YES;
-                    const harAleneomsorgForNøyaktigEttBarn = harAleneomsorgFor.length === 1;
-                    const visDeltBostedBarnValg =
-                        avtaleOmDeltBosted === YesOrNo.YES && !harAleneomsorgForNøyaktigEttBarn;
+                    const harBarn = antallBarn > 0;
+                    const harFlereBarn = antallBarn > 1;
 
-                    const filtrertBarn = harAvtaleOmDeltBostedFor
-                        ? registrertBarn.filter((barnet) => !harAvtaleOmDeltBostedFor.includes(barnet.aktørId))
-                        : registrertBarn;
-                    const filtrertAnnetBarn = harAvtaleOmDeltBostedFor
-                        ? annetBarn.filter((barnet) => !harAvtaleOmDeltBostedFor.includes(barnet.fnr))
-                        : annetBarn;
+                    const harAvtaleOmDeltBosted = avtaleOmDeltBosted === YesOrNo.YES;
+                    const harAleneomsorgForNoenBarn = antallBarnManHarAleneomsorgFor > 0;
+                    const harIkkeAleneomsorgForNoenBarn = antallBarnManHarAleneomsorgFor === 0;
+                    const harAleneomsorgForNøyaktigEttBarn = antallBarnManHarAleneomsorgFor === 1;
+                    const harAleneomsorgForFlereBarn = antallBarnManHarAleneomsorgFor > 1;
+                    const harAvtaleOmDeltBostedForNoenBarnManHarAleneomsorgFor =
+                        harAleneomsorgForNoenBarn &&
+                        harAleneomsorgFor.some((barnId) => harAvtaleOmDeltBostedFor?.includes(barnId));
 
-                    const alleBarnMedDeltBosted =
-                        filtrertBarn.length + filtrertAnnetBarn.length === 0 && avtaleOmDeltBosted === YesOrNo.YES;
-
-                    const ettBarnOgDeltBosted =
-                        ettBarn && harAleneomsorgFor.length > 0 && avtaleOmDeltBosted === YesOrNo.YES;
-
-                    const barnMedDeltBostedHarAleneomsorg = harAvtaleOmDeltBostedFor
-                        ? harAvtaleOmDeltBostedFor.find((barnId) => (harAleneomsorgFor || []).includes(barnId)) !==
-                          undefined
-                        : false;
-
-                    const clearHarAvtaleOmDeltBostedFor = (newValue: string) => {
+                    const clearHarAvtaleOmDeltBostedFor = (harAvtale: string) => {
                         if (harAleneomsorgForNøyaktigEttBarn) {
                             setFieldValue(
                                 OmOmsorgenForBarnFormFields.harAvtaleOmDeltBostedFor,
-                                newValue === YesOrNo.YES ? harAleneomsorgFor : [],
+                                harAvtale === YesOrNo.YES ? harAleneomsorgFor : [],
                             );
-                        }
-                        if (flereBarn) {
+                        } else if (harFlereBarn) {
                             setFieldValue(OmOmsorgenForBarnFormFields.harAvtaleOmDeltBostedFor, []);
                         }
                     };
 
+                    const visVelgMinstEttBarnMedDeltBostedAdvarsel =
+                        harIkkeAleneomsorgForNoenBarn && harAvtaleOmDeltBosted;
                     const kanIkkeFortsette =
-                        !harBarn || alleBarnMedDeltBosted || ettBarnOgDeltBosted || barnMedDeltBostedHarAleneomsorg;
+                        harIkkeAleneomsorgForNoenBarn || harAvtaleOmDeltBostedForNoenBarnManHarAleneomsorgFor;
+
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -194,7 +181,10 @@ const OmOmsorgenForBarnStep = () => {
                                             }}
                                             maxDate={getDateToday()}
                                             minDate={nYearsAgo(19)}
-                                            disallowedFødselsnumre={[...[søker.fødselsnummer], ...annetBarnFnr]}
+                                            disallowedFødselsnumre={[
+                                                søker.fødselsnummer,
+                                                ...annetBarn?.map((barn) => barn.fnr),
+                                            ]}
                                             aldersGrenseText={text(
                                                 'steg.omOmsorgenForBarn.formLeggTilBarn.aldersGrenseInfo',
                                             )}
@@ -215,7 +205,7 @@ const OmOmsorgenForBarnStep = () => {
                                                         'steg.omOmsorgenForBarn.form.spm.hvilkeAvBarnaAleneomsorg',
                                                     )}
                                                     name={OmOmsorgenForBarnFormFields.harAleneomsorgFor}
-                                                    checkboxes={getBarnOptions(registrertBarn, annetBarn)}
+                                                    checkboxes={getBarnOptions(alleBarn)}
                                                     validate={getListValidator({ required: true })}
                                                 />
                                             </Block>
@@ -233,9 +223,7 @@ const OmOmsorgenForBarnStep = () => {
                                                     )}
                                                     name={OmOmsorgenForBarnFormFields.avtaleOmDeltBosted}
                                                     validate={getYesOrNoValidator()}
-                                                    afterOnChange={(newvalue) =>
-                                                        clearHarAvtaleOmDeltBostedFor(newvalue)
-                                                    }
+                                                    afterOnChange={clearHarAvtaleOmDeltBostedFor}
                                                     description={
                                                         <ExpandableInfo
                                                             title={text(
@@ -247,20 +235,18 @@ const OmOmsorgenForBarnStep = () => {
                                                 />
                                             </Block>
 
-                                            {visDeltBostedBarnValg && !visVelgMinstEttBarnMedDeltBostedAdvarsel && (
+                                            {harAvtaleOmDeltBosted && harAleneomsorgForFlereBarn && (
                                                 <Block margin="xl">
                                                     <CheckboxGroup
                                                         legend={text('steg.omOmsorgenForBarn.deltBosted')}
                                                         name={OmOmsorgenForBarnFormFields.harAvtaleOmDeltBostedFor}
-                                                        checkboxes={harAleneomsorgForOptions}
+                                                        checkboxes={getBarnOptions(barnManHarAleneomsorgFor)}
                                                         validate={getListValidator({ required: true })}
                                                     />
                                                 </Block>
                                             )}
                                         </Block>
-                                        {(alleBarnMedDeltBosted ||
-                                            ettBarnOgDeltBosted ||
-                                            barnMedDeltBostedHarAleneomsorg) && (
+                                        {harAvtaleOmDeltBostedForNoenBarnManHarAleneomsorgFor && (
                                             <Block margin="l">
                                                 <Alert variant="warning">
                                                     {text('steg.omOmsorgenForBarn.alleBarnMedDeltBosted')}
