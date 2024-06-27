@@ -90,43 +90,35 @@ const OmOmsorgenForBarnStep = () => {
                 initialValues={getOmOmsorgenForBarnStepInitialValues(søknadsdata, stepFormValues[stepId])}
                 onSubmit={handleSubmit}
                 renderForm={({
-                    values: { annetBarn = [], harAvtaleOmDeltBostedFor, avtaleOmDeltBosted, harAleneomsorgFor = [] },
+                    values: { annetBarn = [], avtaleOmDeltBosted, harAleneomsorgFor = [] },
                     setFieldValue,
                 }) => {
                     const alleBarn = [...registrertBarn, ...annetBarn];
-                    const barnManHarAleneomsorgFor = alleBarn.filter((barn) =>
-                        harAleneomsorgFor.includes('fnr' in barn ? barn.fnr : barn.aktørId),
-                    );
                     const antallBarn = alleBarn.length;
-                    const antallBarnManHarAleneomsorgFor = barnManHarAleneomsorgFor.length;
+                    const antallBarnManHarAleneomsorgFor = harAleneomsorgFor.length;
 
                     const harBarn = antallBarn > 0;
-                    const harFlereBarn = antallBarn > 1;
 
-                    const harAvtaleOmDeltBosted = avtaleOmDeltBosted === YesOrNo.YES;
-                    const harAleneomsorgForNoenBarn = antallBarnManHarAleneomsorgFor > 0;
                     const harIkkeAleneomsorgForNoenBarn = antallBarnManHarAleneomsorgFor === 0;
                     const harAleneomsorgForNøyaktigEttBarn = antallBarnManHarAleneomsorgFor === 1;
-                    const harAleneomsorgForFlereBarn = antallBarnManHarAleneomsorgFor > 1;
-                    const harAvtaleOmDeltBostedForNoenBarnManHarAleneomsorgFor =
-                        harAleneomsorgForNoenBarn &&
-                        harAleneomsorgFor.some((barnId) => harAvtaleOmDeltBostedFor?.includes(barnId));
+                    const harAvtaleOmDeltBosted = avtaleOmDeltBosted === YesOrNo.YES;
+                    const harSvartPåOmManHarAvtaleOmDeltBosted = avtaleOmDeltBosted !== YesOrNo.UNANSWERED;
 
                     const clearHarAvtaleOmDeltBostedFor = (harAvtale: string) => {
-                        if (harAleneomsorgForNøyaktigEttBarn) {
-                            setFieldValue(
-                                OmOmsorgenForBarnFormFields.harAvtaleOmDeltBostedFor,
-                                harAvtale === YesOrNo.YES ? harAleneomsorgFor : [],
-                            );
-                        } else if (harFlereBarn) {
-                            setFieldValue(OmOmsorgenForBarnFormFields.harAvtaleOmDeltBostedFor, []);
-                        }
+                        setFieldValue(
+                            OmOmsorgenForBarnFormFields.harAvtaleOmDeltBostedFor,
+                            harAvtale === YesOrNo.YES ? harAleneomsorgFor : [],
+                        );
                     };
 
-                    const visVelgMinstEttBarnMedDeltBostedAdvarsel =
-                        harIkkeAleneomsorgForNoenBarn && harAvtaleOmDeltBosted;
-                    const kanIkkeFortsette =
-                        harIkkeAleneomsorgForNoenBarn || harAvtaleOmDeltBostedForNoenBarnManHarAleneomsorgFor;
+                    const kanIkkeFortsette = harIkkeAleneomsorgForNoenBarn || harAvtaleOmDeltBosted;
+
+                    const advarsel =
+                        harIkkeAleneomsorgForNoenBarn && harSvartPåOmManHarAvtaleOmDeltBosted
+                            ? text('steg.omOmsorgenForBarna.deltBosted.velgMinstEttBarnMedDeltBostedAdvarsel')
+                            : harAvtaleOmDeltBosted
+                              ? text('steg.omOmsorgenForBarn.alleBarnMedDeltBosted')
+                              : false;
 
                     return (
                         <>
@@ -234,32 +226,10 @@ const OmOmsorgenForBarnStep = () => {
                                                     }
                                                 />
                                             </Block>
-
-                                            {harAvtaleOmDeltBosted && harAleneomsorgForFlereBarn && (
-                                                <Block margin="xl">
-                                                    <CheckboxGroup
-                                                        legend={text('steg.omOmsorgenForBarn.deltBosted')}
-                                                        name={OmOmsorgenForBarnFormFields.harAvtaleOmDeltBostedFor}
-                                                        checkboxes={getBarnOptions(barnManHarAleneomsorgFor)}
-                                                        validate={getListValidator({ required: true })}
-                                                    />
-                                                </Block>
-                                            )}
                                         </Block>
-                                        {harAvtaleOmDeltBostedForNoenBarnManHarAleneomsorgFor && (
+                                        {advarsel && (
                                             <Block margin="l">
-                                                <Alert variant="warning">
-                                                    {text('steg.omOmsorgenForBarn.alleBarnMedDeltBosted')}
-                                                </Alert>
-                                            </Block>
-                                        )}
-                                        {visVelgMinstEttBarnMedDeltBostedAdvarsel && (
-                                            <Block margin="l">
-                                                <Alert variant="warning">
-                                                    {text(
-                                                        'steg.omOmsorgenForBarna.deltBosted.velgMinstEttBarnMedDeltBostedAdvarsel',
-                                                    )}
-                                                </Alert>
+                                                <Alert variant="warning">{advarsel}</Alert>
                                             </Block>
                                         )}
                                     </>
