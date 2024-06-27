@@ -26,16 +26,11 @@ test('Fyll ut full søknad nytt barn', async ({ page }) => {
     await page.getByLabel('Barnets fødselsnummer/D-nummer').fill('09847696068');
     await page.getByLabel('Barnet er mitt fosterbarn').check();
     await page.getByLabel('Legg til barn').getByTestId('typedFormikForm-submitButton').click();
-    await page.getByLabel('Nei').check();
-    await page.getByLabel('Ja').check();
     await page
         .getByRole('group', { name: 'Kryss av for barn du er alene om omsorgen for:' })
         .getByLabel('Født 10.10.2020 Nytt Barn')
         .check();
-    await page
-        .getByRole('group', { name: 'Kryss av for hvilke barn du har delt fast bosted for:' })
-        .getByLabel('Født 20.04.2020 Barn Barnesen')
-        .check();
+    await page.getByLabel('Nei').check();
     await page.getByRole('button', { name: 'Neste' }).click();
 
     await page.getByRole('heading', { level: 1, name: 'Tidspunkt for aleneomsorg' });
