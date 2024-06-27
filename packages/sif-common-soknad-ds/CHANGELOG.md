@@ -1,5 +1,17 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.16.0
+
+### Minor Changes
+
+-   1d31a53: Oppdatere SoknadVelkommenPage
+    Bruke oppdatert side i ettersending og omsorgspengesoknad
+    Bruke Aksel-maler for oppsummering i ettersending
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
 ## 10.15.13
 
 ### Patch Changes
