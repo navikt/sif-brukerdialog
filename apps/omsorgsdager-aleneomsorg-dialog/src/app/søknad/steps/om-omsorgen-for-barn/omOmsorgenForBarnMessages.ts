@@ -28,7 +28,7 @@ const nb = {
     'steg.omOmsorgenForBarn.form.fødtNavn': 'Født {dato} {navn}',
 
     'steg.omOmsorgenForBarn.alleBarnMedDeltBosted':
-        'Hvis du og den andre forelderen har en avtale om delt fast bosted, bor barnet fast hos dere begge. I disse tilfellene kan ingen av dere få ekstra dager på grunn av aleneomsorg, men dere har begge rett til ordinære omsorgsdager.',
+        'Du kan kun søke for barn du er alene med omsorgen for, og ikke har avtale om fast delt bosted for. Hvis du og den andre forelderen har en avtale om delt fast bosted, bor barnet fast hos dere begge. I disse tilfellene kan ingen av dere få ekstra dager på grunn av aleneomsorg, men dere har begge rett til ordinære omsorgsdager.',
     'steg.omOmsorgenForBarn.ingenbarn': 'Du må ha minst ett barn for å kunne gå videre.',
     'steg.omOmsorgenForBarn.nextButtonLabel': 'Fortsett',
 
