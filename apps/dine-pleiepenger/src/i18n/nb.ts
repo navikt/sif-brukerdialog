@@ -5,8 +5,13 @@ export const nb = {
     'velgSak.barn.anonymisert': 'Pleietrengende født {dato}',
     'forside.dokumentTittel': 'Dine pleiepenger for sykt barn',
 
-    'ingeSakPage.melding':
-        'Vi finner ingen søknader. Hvis du nettopp har sendt inn en søknad kan det ta noen minutter før den dukker opp.',
+    'ingeSakPage.saker.tittel': 'Dine pleiengesaker for sykt barn',
+    'ingeSakPage.snarveier.tittel': 'Snarveier',
+    'ingeSakPage.melding.tittel': 'Vi finner ingen søknader',
+    'ingeSakPage.melding.tekst': 'Hvis du nettopp har sendt inn en søknad kan det ta noen minutter før den dukker opp.',
+    'ingeSakPage.melding.andreYtelser.tittel': 'Leter du etter søknader for andre ytelser?',
+    'ingeSakPage.melding.andreYtelser.tekst':
+        'Ikke alle ytelser har egne undersider. Denne siden viser kun søknader som gjelder pleiepenger for sykt barn. For søknader om pleiepenger i livets sluttfase, grunnstønad, hjelpestønad og andre ytelser, kan du se de innsendte søknadene i <Lenke>dokumentarkivet</Lenke>.',
 
     'barn.navn.anonymisert': 'Pleietrengende',
 
