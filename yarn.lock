@@ -4206,6 +4206,7 @@ __metadata:
     "@navikt/sif-common-hooks": "workspace:*"
     "@navikt/sif-common-sentry": "workspace:*"
     "@navikt/sif-common-soknad-ds": "workspace:*"
+    "@navikt/sif-common-ui": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@playwright/test": "npm:1.45.0"
     "@sentry/vite-plugin": "npm:2.20.1"
