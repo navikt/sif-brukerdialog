@@ -58,6 +58,7 @@ const VelkommenPage = () => {
                 ),
             }}>
             <OmSøknaden />
+            <hr />
         </SoknadVelkommenPage>
     );
 };
