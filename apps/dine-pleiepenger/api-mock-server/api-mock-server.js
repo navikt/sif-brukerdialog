@@ -50,7 +50,7 @@ const startServer = () => {
     });
 
     server.get('/saker', (req, res) => {
-        res.send(saker);
+        res.send([]);
     });
 
     server.get('/saker/saksbehandlingstid', (req, res) => {
