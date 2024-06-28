@@ -3650,7 +3650,7 @@ __metadata:
     formik: 2.4.6
     helmet: 7.1.0
     http-proxy-middleware: 3.0.0
-    jose: 5.5.0
+    jose: 5.6.2
     jsdom: 24.1.0
     mustache-express: 1.3.2
     object-hash: 3.0.0
@@ -3727,7 +3727,7 @@ __metadata:
     formik: 2.4.6
     http-proxy-middleware: 3.0.0
     intl: 1.2.5
-    jose: 5.5.0
+    jose: 5.6.2
     jsdom: 24.1.0
     lodash: 4.17.21
     mockdate: 3.0.5
@@ -3835,7 +3835,7 @@ __metadata:
     formik: 2.4.6
     helmet: 7.1.0
     http-proxy-middleware: 3.0.0
-    jose: 5.5.0
+    jose: 5.6.2
     jsdom: 24.1.0
     less: 4.2.0
     mini-css-extract-plugin: 2.9.0
@@ -3941,7 +3941,7 @@ __metadata:
     helmet: 7.1.0
     history: 5.3.0
     http-proxy-middleware: 3.0.0
-    jose: 5.5.0
+    jose: 5.6.2
     jsdom: 24.1.0
     mustache-express: 1.3.2
     object-hash: 3.0.0
@@ -4015,7 +4015,7 @@ __metadata:
     express-rate-limit: 7.3.1
     helmet: 7.1.0
     http-proxy-middleware: 3.0.0
-    jose: 5.5.0
+    jose: 5.6.2
     jsdom: 24.1.0
     lodash: 4.17.21
     mustache-express: 1.3.2
@@ -4089,7 +4089,7 @@ __metadata:
     formik: 2.4.6
     helmet: 7.1.0
     http-proxy-middleware: 3.0.0
-    jose: 5.5.0
+    jose: 5.6.2
     jsdom: 24.1.0
     lodash: 4.17.21
     mustache-express: 1.3.2
@@ -4162,7 +4162,7 @@ __metadata:
     formik: 2.4.6
     helmet: 7.1.0
     http-proxy-middleware: 3.0.0
-    jose: 5.5.0
+    jose: 5.6.2
     lodash: 4.17.21
     mustache-express: 1.3.2
     object-hash: 3.0.0
@@ -4248,7 +4248,7 @@ __metadata:
     http-proxy-middleware: 3.0.0
     http-status-codes: 2.3.0
     intl: 1.2.5
-    jose: 5.5.0
+    jose: 5.6.2
     jsdom: 24.1.0
     less: 4.2.0
     lodash.debounce: 4.0.8
@@ -4702,7 +4702,7 @@ __metadata:
     formik: 2.4.6
     helmet: 7.1.0
     http-proxy-middleware: 3.0.0
-    jose: 5.5.0
+    jose: 5.6.2
     jsdom: 24.1.0
     lodash: 4.17.21
     mustache-express: 1.3.2
@@ -17317,10 +17317,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jose@npm:5.5.0":
-  version: 5.5.0
-  resolution: "jose@npm:5.5.0"
-  checksum: 4fad87a6cd4280dad6ff15392314d3b743f744a8a4c99ee9ff11e64d1db34b55c74b05648437e8f92d97f32aa81df61fc02a6d6a377f14debb8e22d27572b955
+"jose@npm:5.6.2":
+  version: 5.6.2
+  resolution: "jose@npm:5.6.2"
+  checksum: 53201bc1b623561e78287a867b84edf4c73014023da1f48508cba4fcd0e808adcbc3fab5d6835c642a1bd43ad867e965a1a62a547f7ec661a98b780ac0a3c96b
   languageName: node
   linkType: hard
 
