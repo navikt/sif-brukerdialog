@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { failure, pending, success } from '@devexperts/remote-data-ts';
 import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { YtelseKey } from '@navikt/sif-common-core-ds/src/types/Ytelser';
 import { isUserLoggedOut } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { LoadingPage } from '@navikt/sif-common-soknad-ds';
 import { v4 as uuid } from 'uuid';
 import { sendSoknad } from '../api/sendSoknad';
 import { getRouteConfig } from '../config/routeConfig';
 import { Person } from '../types/Person';
+import { RegistrertBarn } from '../types/RegistrertBarn';
 import { SoknadApiData } from '../types/SoknadApiData';
 import { initialSoknadFormData, SoknadFormData } from '../types/SoknadFormData';
 import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
@@ -25,9 +28,6 @@ import SoknadFormComponents from './SoknadFormComponents';
 import SoknadRouter from './SoknadRouter';
 import { getFirstStep, getSoknadStepsConfig, StepID } from './soknadStepsConfig';
 import soknadTempStorage, { isStorageDataValid } from './soknadTempStorage';
-import { YtelseKey } from '@navikt/sif-common-core-ds/src/types/Ytelser';
-import { LoadingPage } from '@navikt/sif-common-soknad-ds';
-import { RegistrertBarn } from '../types/RegistrertBarn';
 
 interface Props {
     søker: Person;
@@ -61,7 +61,7 @@ const getInitialYtelse = (søknadstype: Søknadstype): YtelseKey | undefined => 
     }
 };
 
-const Soknad: React.FunctionComponent<Props> = ({ søker, barn, søknadstype, soknadTempStorage: tempStorage }) => {
+const Soknad = ({ søker, barn, søknadstype, soknadTempStorage: tempStorage }: Props) => {
     const navigate = useNavigate();
     const location = useLocation();
     const [initializing, setInitializing] = useState(true);
@@ -207,6 +207,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, barn, søknadstype, so
     if (initializing) {
         return <LoadingPage />;
     }
+
     return (
         <SoknadFormComponents.FormikWrapper
             initialValues={initialFormData}

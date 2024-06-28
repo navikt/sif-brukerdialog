@@ -5,15 +5,15 @@ import { useLogSidevisning } from '@navikt/sif-common-amplitude';
 import { UnansweredQuestionsInfo } from '@navikt/sif-common-formik-ds';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { soknadStepUtils, Step } from '@navikt/sif-common-soknad-ds';
+import { ProgressStep } from '@navikt/sif-common-ui';
+import { AppText, useAppIntl } from '../i18n';
 import { SoknadFormData } from '../types/SoknadFormData';
 import { Søknadstype } from '../types/Søknadstype';
 import { useSoknadContext } from './SoknadContext';
 import SoknadFormComponents from './SoknadFormComponents';
 import { StepID } from './soknadStepsConfig';
-import { ProgressStep } from '@navikt/sif-common-ui';
-import { AppText, useAppIntl } from '../i18n';
 
-interface OwnProps {
+interface Props {
     id: StepID;
     onStepCleanup?: (values: SoknadFormData) => SoknadFormData;
     onSendSoknad?: () => void;
@@ -28,9 +28,7 @@ interface OwnProps {
     children: React.ReactNode;
 }
 
-type Props = OwnProps;
-
-const SoknadFormStep: React.FunctionComponent<Props> = ({
+const SoknadFormStep = ({
     id,
     onStepCleanup,
     onSendSoknad,
@@ -41,7 +39,7 @@ const SoknadFormStep: React.FunctionComponent<Props> = ({
     buttonDisabled,
     submitButtonLabel,
     søknadstype,
-}) => {
+}: Props) => {
     const intl = useIntl();
     const { text } = useAppIntl();
     const [pending, setPending] = useState(false);

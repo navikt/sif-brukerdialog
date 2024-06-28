@@ -13,7 +13,7 @@ const nb = {
     'page.velkommen.guide.tekst.2':
         'Hvis dere har avtalt delt fast bosted for barnet har begge foreldre rett på omsorgsdager, og ingen av dere skal søke om ekstra omsorgsdager på grunn av aleneomsorg.',
     'page.velkommen.guide.tekst.3':
-        'Hvis du har aleneomsorg for flere barn, må du sende en søknad for hvert av barna. Du trenger ikke å søke flere ganger for samme barn, hvis du har fått godkjent søknaden. Vedtaket om ekstra omsorgsdager gjelder så lenge du har rett til omsorgsdager for barnet.',
+        'Du trenger ikke å søke flere ganger for samme barn, hvis du tidligere har fått godkjent søknad.',
 
     'page.velkommen.omSøknaden.tittel': 'Om søknaden',
     'page.velkommen.omSøknaden.1': 'Du får veiledning underveis i søknaden om hva du skal fylle ut, og hvordan.',

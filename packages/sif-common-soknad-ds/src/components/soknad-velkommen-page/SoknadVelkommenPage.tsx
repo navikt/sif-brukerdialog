@@ -1,23 +1,32 @@
 import { Heading, Show, Stack, VStack } from '@navikt/ds-react';
-import { ApplicationPictogram } from '../application-pictogram/ApplicationPictogram';
-import SamtykkeForm from '../../modules/samtykke-form/SamtykkeForm';
-import VelkommenGuide from './VelkommenGuide';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
+import { useSoknadIntl } from '../../hooks/useSoknadIntl';
+import SamtykkeForm from '../../modules/samtykke-form/SamtykkeForm';
+import { ApplicationPictogram } from '../application-pictogram/ApplicationPictogram';
+import SoknadVelkommenGuide from './SoknadVelkommenGuide';
 
 interface Props {
-    pageTitle: string;
-    soknadTitle: string;
+    /** Tittel på søknad/app */
+    title: string;
+    /** Intro-guide */
     guide: {
-        title: string;
+        /** Søkers navn */
+        navn: string;
+        /** Innhold i guide */
         content: React.ReactNode;
     };
+    /** Innhold under guide */
     children: React.ReactNode;
+    /** Label på start knapp */
+    submitButtonLabel?: string;
+    /** Ved gyldig samtykkeform subnmit */
     onStartSøknad: () => void;
 }
 
-const SoknadVelkommenPage = ({ pageTitle, soknadTitle, onStartSøknad, guide, children }: Props) => {
+const SoknadVelkommenPage = ({ title, onStartSøknad, guide, submitButtonLabel, children }: Props) => {
+    const { text } = useSoknadIntl();
     return (
-        <Page title={pageTitle}>
+        <Page title={title}>
             <VStack as="main" gap="8">
                 <Stack
                     gap="6"
@@ -29,16 +38,18 @@ const SoknadVelkommenPage = ({ pageTitle, soknadTitle, onStartSøknad, guide, ch
                     </Show>
                     <VStack gap="1">
                         <Heading level="1" size="large">
-                            {soknadTitle}
+                            {title}
                         </Heading>
                     </VStack>
                 </Stack>
 
-                <VelkommenGuide title={guide.title}>{guide.content}</VelkommenGuide>
+                <SoknadVelkommenGuide title={text('scs.velkommenGuide.tittel', { navn: guide.navn })}>
+                    {guide.content}
+                </SoknadVelkommenGuide>
 
-                {children}
+                <div>{children}</div>
 
-                <SamtykkeForm variant="vanlig" onValidSubmit={onStartSøknad} />
+                <SamtykkeForm variant="vanlig" onValidSubmit={onStartSøknad} submitButtonLabel={submitButtonLabel} />
             </VStack>
         </Page>
     );

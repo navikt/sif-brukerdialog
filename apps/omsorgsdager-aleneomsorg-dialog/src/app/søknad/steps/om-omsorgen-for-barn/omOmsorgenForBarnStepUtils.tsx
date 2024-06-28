@@ -89,31 +89,21 @@ export const barnItemLabelRenderer = (registrertBarn: RegistrertBarn): React.Rea
     );
 };
 
-export const getBarnOptions = (registrertBarn: RegistrertBarn[] = [], andreBarn: AnnetBarn[] = []) => {
-    return [
-        ...registrertBarn.map((barnet) => ({
-            label: (
-                <AppText
-                    id="steg.omOmsorgenForBarn.form.fødtNavn"
-                    values={{
-                        dato: dateFormatter.compact(barnet.fødselsdato),
-                        navn: formatName(barnet.fornavn, barnet.etternavn),
-                    }}
-                />
-            ),
-            value: barnet.aktørId,
-        })),
-        ...andreBarn.map((barnet) => ({
-            label: (
-                <AppText
-                    id="steg.omOmsorgenForBarn.form.fødtNavn"
-                    values={{
-                        dato: dateFormatter.compact(barnet.fødselsdato),
-                        navn: barnet.navn,
-                    }}
-                />
-            ),
-            value: barnet.fnr,
-        })),
-    ];
+export const getBarnOptions = (barn: (RegistrertBarn | AnnetBarn)[] = []) => {
+    return barn.map((barnet) => ({
+        label: (
+            <AppText
+                id="steg.omOmsorgenForBarn.form.fødtNavn"
+                values={{
+                    dato: dateFormatter.compact(barnet.fødselsdato),
+                    navn: erRegistrertBarn(barnet) ? formatName(barnet.fornavn, barnet.etternavn) : barnet.navn,
+                }}
+            />
+        ),
+        value: erRegistrertBarn(barnet) ? barnet.aktørId : barnet.fnr,
+    }));
+};
+
+const erRegistrertBarn = (barn: RegistrertBarn | AnnetBarn): barn is RegistrertBarn => {
+    return 'aktørId' in barn;
 };
