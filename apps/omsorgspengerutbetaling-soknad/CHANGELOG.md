@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.12.1
+
+### Patch Changes
+
+-   Flytte dev dep til devDeps
+
 ## 1.12.0
 
 ### Minor Changes
