@@ -1946,16 +1946,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chromatic-com/storybook@npm:1.5.0":
-  version: 1.5.0
-  resolution: "@chromatic-com/storybook@npm:1.5.0"
+"@chromatic-com/storybook@npm:1.6.0":
+  version: 1.6.0
+  resolution: "@chromatic-com/storybook@npm:1.6.0"
   dependencies:
     chromatic: ^11.4.0
     filesize: ^10.0.12
     jsonfile: ^6.1.0
     react-confetti: ^6.1.0
     strip-ansi: ^7.1.0
-  checksum: 611513117da3e19f33aee97156dd1bf45e5dfe84e23c495b7449247c6ba251296b0efb890660c6a2973576cf91ebd1b973bdaccf56e0a6576cee35f6c1cb0948
+  checksum: 60bee2a9b55dc3cb3f24399e56ddb75931072b39d2e60edbca88b4b76528f39d70e04e097a3a845271f08d2e7780940baa8691bbb4852606b8295626d6b2dde0
   languageName: node
   linkType: hard
 
@@ -3896,7 +3896,7 @@ __metadata:
     "@babel/preset-env": 7.24.7
     "@babel/preset-react": 7.24.7
     "@babel/preset-typescript": 7.24.7
-    "@chromatic-com/storybook": 1.5.0
+    "@chromatic-com/storybook": 1.6.0
     "@navikt/ds-css": 6.12.0
     "@navikt/ds-icons": 3.4.3
     "@navikt/ds-react": 6.12.0
@@ -4118,7 +4118,7 @@ __metadata:
     "@babel/preset-env": 7.24.7
     "@babel/preset-react": 7.24.7
     "@babel/preset-typescript": 7.24.7
-    "@chromatic-com/storybook": 1.5.0
+    "@chromatic-com/storybook": 1.6.0
     "@navikt/ds-css": 6.12.0
     "@navikt/ds-icons": 3.4.3
     "@navikt/ds-react": 6.12.0
@@ -4192,7 +4192,7 @@ __metadata:
     "@babel/plugin-transform-modules-commonjs": 7.24.7
     "@babel/preset-env": 7.24.7
     "@babel/preset-react": 7.24.7
-    "@chromatic-com/storybook": 1.5.0
+    "@chromatic-com/storybook": 1.6.0
     "@navikt/appstatus-react-ds": "workspace:*"
     "@navikt/ds-css": 6.12.0
     "@navikt/ds-icons": 3.4.3
