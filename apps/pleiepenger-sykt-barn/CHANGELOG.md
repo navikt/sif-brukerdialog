@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.14.0
+
+### Minor Changes
+
+-   f5c9ace: Oppdatere til Yarn 4. Endre Dockerfiler for å redusere image størrelse
+
 ## 3.13.2
 
 ### Patch Changes

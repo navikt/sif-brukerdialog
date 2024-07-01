@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.30.0
+
+### Minor Changes
+
+-   f5c9ace: Oppdatere til Yarn 4. Endre Dockerfiler for å redusere image størrelse
+
 ## 2.29.11
 
 ### Patch Changes

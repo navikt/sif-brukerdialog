@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.12.0
+
+### Minor Changes
+
+-   f5c9ace: Oppdatere til Yarn 4. Endre Dockerfiler for å redusere image størrelse
+
 ## 1.11.18
 
 ### Patch Changes
