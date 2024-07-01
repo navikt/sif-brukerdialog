@@ -28,8 +28,7 @@ jobs:
               uses: actions/setup-node@v4
               with:
                   node-version: 18.x
-            - run: yarn set version berry
-            - run: yarn set version latest
+            - run: yarn set version 4.x
 
             - name: Install Dependencies
               run: yarn
