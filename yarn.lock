@@ -3832,6 +3832,7 @@ __metadata:
     dayjs: "npm:1.11.11"
     dotenv: "npm:16.4.5"
     express: "npm:4.19.2"
+    express-rate-limit: "npm:7.3.1"
     formik: "npm:2.4.6"
     helmet: "npm:7.1.0"
     http-proxy-middleware: "npm:3.0.0"
