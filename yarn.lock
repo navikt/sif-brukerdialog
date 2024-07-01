@@ -1946,16 +1946,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chromatic-com/storybook@npm:1.5.0":
-  version: 1.5.0
-  resolution: "@chromatic-com/storybook@npm:1.5.0"
+"@chromatic-com/storybook@npm:1.6.0":
+  version: 1.6.0
+  resolution: "@chromatic-com/storybook@npm:1.6.0"
   dependencies:
     chromatic: ^11.4.0
     filesize: ^10.0.12
     jsonfile: ^6.1.0
     react-confetti: ^6.1.0
     strip-ansi: ^7.1.0
-  checksum: 611513117da3e19f33aee97156dd1bf45e5dfe84e23c495b7449247c6ba251296b0efb890660c6a2973576cf91ebd1b973bdaccf56e0a6576cee35f6c1cb0948
+  checksum: 60bee2a9b55dc3cb3f24399e56ddb75931072b39d2e60edbca88b4b76528f39d70e04e097a3a845271f08d2e7780940baa8691bbb4852606b8295626d6b2dde0
   languageName: node
   linkType: hard
 
@@ -3471,10 +3471,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aksel-icons@npm:^6.12.0":
-  version: 6.12.0
-  resolution: "@navikt/aksel-icons@npm:6.12.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faksel-icons%2F6.12.0%2Fa34bfde9bd19df39fcf18ef89651713875d8375f"
-  checksum: e5acab455e374f3a90789d914d222271b96964a9126262b870cedbe06405573ae4fc6431289541b016392f9dc08fbe93736cc2918cbcf8ddff566ab86d0e6619
+"@navikt/aksel-icons@npm:^6.13.0":
+  version: 6.13.0
+  resolution: "@navikt/aksel-icons@npm:6.13.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faksel-icons%2F6.13.0%2F7378bad8c8230187b30a9e0b15675f7740dc96cf"
+  checksum: d3617d1c1166ebc4896f020ff163d4faf3cdd868306acc0d0dce69db920c358af80703abf6a38b6a71daf5c95f98d78b753a00d6aba3ae8f2bd7e55c95c222c8
   languageName: node
   linkType: hard
 
@@ -3482,8 +3482,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/appstatus-react-ds@workspace:packages/appstatus-react-ds"
   dependencies:
-    "@navikt/ds-css": 6.12.0
-    "@navikt/ds-react": 6.12.0
+    "@navikt/ds-css": 6.13.0
+    "@navikt/ds-react": 6.13.0
     "@navikt/sif-common-hooks": "workspace:*"
     "@portabletext/react": 3.1.0
     "@sanity/client": 6.20.1
@@ -3492,7 +3492,7 @@ __metadata:
     "@types/react-dom": 18.3.0
     config: "workspace:*"
     copyfiles: 2.4.1
-    postcss: 8.4.38
+    postcss: 8.4.39
     prop-types: 15.8.1
     react: 18.3.1
     react-dom: 18.3.1
@@ -3509,10 +3509,10 @@ __metadata:
     "@grafana/faro-web-sdk": 1.8.0
     "@grafana/faro-web-tracing": 1.8.0
     "@navikt/appstatus-react-ds": "workspace: *"
-    "@navikt/ds-css": 6.12.0
+    "@navikt/ds-css": 6.13.0
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 6.12.0
-    "@navikt/ds-tailwind": 6.12.0
+    "@navikt/ds-react": 6.13.0
+    "@navikt/ds-tailwind": 6.13.0
     "@navikt/nav-dekoratoren-moduler": 2.1.6
     "@navikt/next-logger": 1.25.0
     "@navikt/oasis": 3.3.0
@@ -3561,10 +3561,10 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/ds-css@npm:6.12.0":
-  version: 6.12.0
-  resolution: "@navikt/ds-css@npm:6.12.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-css%2F6.12.0%2F64ff5257c606b34786cd3af214f6ae8751d2739a"
-  checksum: ec802d177ba4180a04ab685f34cb8a131a83fa43f12467efcd05c44f2dd88826740a820ca3b7407b6294cf16de7fb84504c2dcfebed2b152983721274850c336
+"@navikt/ds-css@npm:6.13.0":
+  version: 6.13.0
+  resolution: "@navikt/ds-css@npm:6.13.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-css%2F6.13.0%2F9882c3009d59c19da414477877ab27aad65f7b13"
+  checksum: b96a73bf8cbb8c24fbf059914c097bdf28100c0393e6345c325ea2a82ef454877b041021227d53b68c7e2431aeda20919e95e301b7765b01616ce365d87268e7
   languageName: node
   linkType: hard
 
@@ -3578,35 +3578,35 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/ds-react@npm:6.12.0":
-  version: 6.12.0
-  resolution: "@navikt/ds-react@npm:6.12.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-react%2F6.12.0%2F4ecc0540d30557072bd28a3f5e41c68af6890e94"
+"@navikt/ds-react@npm:6.13.0":
+  version: 6.13.0
+  resolution: "@navikt/ds-react@npm:6.13.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-react%2F6.13.0%2F2e522bc611fbaf96128c08e6d678d622a67d39e2"
   dependencies:
     "@floating-ui/react": 0.25.4
     "@floating-ui/react-dom": ^2.0.9
-    "@navikt/aksel-icons": ^6.12.0
-    "@navikt/ds-tokens": ^6.12.0
+    "@navikt/aksel-icons": ^6.13.0
+    "@navikt/ds-tokens": ^6.13.0
     clsx: ^2.1.0
     date-fns: ^3.0.0
     react-day-picker: 8.10.0
   peerDependencies:
     "@types/react": ^17.0.30 || ^18.0.0
     react: ^17.0.0 || ^18.0.0
-  checksum: c184560b84800c1251d5d206d81640fdce0497b517096427a3501bb5ba4a3c15d76fd687dfb8ba6740fcf3a0c017cead7c9eb22c07ec232e9c696054c569b229
+  checksum: 905a897db042f3a9ffadbd6b0cadae996889ee6b496bee836d70cae3d4ab058cd75c3c28576ab0b351ee5fea3cf9902fd1fbb7ab55b1a11a7e0172786dcf8809
   languageName: node
   linkType: hard
 
-"@navikt/ds-tailwind@npm:6.12.0":
-  version: 6.12.0
-  resolution: "@navikt/ds-tailwind@npm:6.12.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-tailwind%2F6.12.0%2Fcc3da27b4463bd253162076ac75963e160787fbf"
-  checksum: bf526df772bb19387870867b43c089874c113790c9d6d717e577c77e16ee277e0745410a270c7bbade1dd7a0347905331ae81524494f00f939b5548c2995a16e
+"@navikt/ds-tailwind@npm:6.13.0":
+  version: 6.13.0
+  resolution: "@navikt/ds-tailwind@npm:6.13.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-tailwind%2F6.13.0%2F26007f66871356b67e6d9b4f7fbe3a1f9771b8a2"
+  checksum: 171f3d53bcbff87eb74e320725beb2b872b4ac6536bf95d1917e2a1a87fb4bbae946f6e1b25bf7d74c865a8bd6c0035dce81dcf61acaa5d7ffe04241e6e99546
   languageName: node
   linkType: hard
 
-"@navikt/ds-tokens@npm:^6.12.0":
-  version: 6.12.0
-  resolution: "@navikt/ds-tokens@npm:6.12.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-tokens%2F6.12.0%2Fdb7b88419ee3b0cdf24a329046180541ff95f116"
-  checksum: 2693e46e13d53433f2a28fe9913cc44bb2eee2462e0711d54abf7c37f871d397282286577ba6f397eb3f80e96243b58041d47667399594d1be15ba53ccc7bacf
+"@navikt/ds-tokens@npm:^6.13.0":
+  version: 6.13.0
+  resolution: "@navikt/ds-tokens@npm:6.13.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-tokens%2F6.13.0%2F6704caca2fffee89abdce0207e5dfe00b875482f"
+  checksum: a5bb9b0d8b4867912ecac8f04d21119a649c7fe6d3d74ca18782c5b5bf749d0dab6a3de6fb261d63d00620fcbd40c2f26e8aedab27c50d6fa7acc4fb1d45200c
   languageName: node
   linkType: hard
 
@@ -3620,9 +3620,9 @@ __metadata:
     "@babel/plugin-transform-modules-commonjs": 7.24.7
     "@babel/preset-env": 7.24.7
     "@babel/preset-react": 7.24.7
-    "@navikt/ds-css": 6.12.0
-    "@navikt/ds-react": 6.12.0
-    "@navikt/ds-tailwind": 6.12.0
+    "@navikt/ds-css": 6.13.0
+    "@navikt/ds-react": 6.13.0
+    "@navikt/ds-tailwind": 6.13.0
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
@@ -3662,8 +3662,8 @@ __metadata:
     react-router-dom: 6.24.0
     rimraf: 5.0.7
     typescript: 5.5.2
-    vite: 5.3.1
-    vite-plugin-checker: 0.6.4
+    vite: 5.3.2
+    vite-plugin-checker: 0.7.0
     vitest: 1.6.0
   languageName: unknown
   linkType: soft
@@ -3680,10 +3680,10 @@ __metadata:
     "@babel/preset-react": 7.24.7
     "@babel/preset-typescript": 7.24.7
     "@mswjs/data": 0.16.1
-    "@navikt/ds-css": 6.12.0
+    "@navikt/ds-css": 6.13.0
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 6.12.0
-    "@navikt/ds-tailwind": 6.12.0
+    "@navikt/ds-react": 6.13.0
+    "@navikt/ds-tailwind": 6.13.0
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-formik-ds": "workspace:*"
@@ -3735,7 +3735,7 @@ __metadata:
     mustache-express: 1.3.2
     object-hash: 3.0.0
     openid-client: 5.6.5
-    postcss: 8.4.38
+    postcss: 8.4.39
     postcss-import: 16.1.0
     react: 18.3.1
     react-day-picker: 8.10.1
@@ -3748,8 +3748,8 @@ __metadata:
     storybook-addon-mock: 5.0.0
     tailwindcss: 3.4.4
     typescript: 5.5.2
-    vite: 5.3.1
-    vite-plugin-checker: 0.6.4
+    vite: 5.3.2
+    vite-plugin-checker: 0.7.0
     vitest: 1.6.0
   languageName: unknown
   linkType: soft
@@ -3805,9 +3805,9 @@ __metadata:
     "@babel/plugin-transform-modules-commonjs": 7.24.7
     "@babel/preset-env": 7.24.7
     "@babel/preset-react": 7.24.7
-    "@navikt/ds-css": 6.12.0
-    "@navikt/ds-react": 6.12.0
-    "@navikt/ds-tailwind": 6.12.0
+    "@navikt/ds-css": 6.13.0
+    "@navikt/ds-react": 6.13.0
+    "@navikt/ds-tailwind": 6.13.0
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
@@ -3848,8 +3848,8 @@ __metadata:
     react-intl: 6.6.8
     react-router-dom: 6.24.0
     uuid: 10.0.0
-    vite: 5.3.1
-    vite-plugin-checker: 0.6.4
+    vite: 5.3.2
+    vite-plugin-checker: 0.7.0
   languageName: unknown
   linkType: soft
 
@@ -3858,10 +3858,10 @@ __metadata:
   resolution: "@navikt/omsorgsdager-kalkulator@workspace:apps/omsorgsdager-kalkulator"
   dependencies:
     "@axe-core/playwright": 4.9.1
-    "@navikt/ds-css": 6.12.0
+    "@navikt/ds-css": 6.13.0
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 6.12.0
-    "@navikt/ds-tailwind": 6.12.0
+    "@navikt/ds-react": 6.13.0
+    "@navikt/ds-tailwind": 6.13.0
     "@navikt/nav-dekoratoren-moduler": 2.1.6
     "@playwright/test": 1.45.0
     "@types/node": 20.14.9
@@ -3877,7 +3877,7 @@ __metadata:
     jest-environment-jsdom: 29.7.0
     next: 14.2.4
     node-fetch: 3.3.2
-    postcss: 8.4.38
+    postcss: 8.4.39
     react: 18.3.1
     react-day-picker: 8.10.1
     react-dom: 18.3.1
@@ -3896,11 +3896,11 @@ __metadata:
     "@babel/preset-env": 7.24.7
     "@babel/preset-react": 7.24.7
     "@babel/preset-typescript": 7.24.7
-    "@chromatic-com/storybook": 1.5.0
-    "@navikt/ds-css": 6.12.0
+    "@chromatic-com/storybook": 1.6.0
+    "@navikt/ds-css": 6.13.0
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 6.12.0
-    "@navikt/ds-tailwind": 6.12.0
+    "@navikt/ds-react": 6.13.0
+    "@navikt/ds-tailwind": 6.13.0
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
@@ -3959,8 +3959,8 @@ __metadata:
     typescript: 5.5.2
     ulid: 2.3.0
     uuid: 10.0.0
-    vite: 5.3.1
-    vite-plugin-checker: 0.6.4
+    vite: 5.3.2
+    vite-plugin-checker: 0.7.0
     vitest: 1.6.0
   languageName: unknown
   linkType: soft
@@ -3973,10 +3973,10 @@ __metadata:
     "@babel/preset-env": 7.24.7
     "@babel/preset-react": 7.24.7
     "@babel/preset-typescript": 7.24.7
-    "@navikt/ds-css": 6.12.0
+    "@navikt/ds-css": 6.13.0
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 6.12.0
-    "@navikt/ds-tailwind": 6.12.0
+    "@navikt/ds-react": 6.13.0
+    "@navikt/ds-tailwind": 6.13.0
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
@@ -4031,8 +4031,8 @@ __metadata:
     tailwindcss: 3.4.4
     typescript: 5.5.2
     uuid: 10.0.0
-    vite: 5.3.1
-    vite-plugin-checker: 0.6.4
+    vite: 5.3.2
+    vite-plugin-checker: 0.7.0
     vitest: 1.6.0
   languageName: unknown
   linkType: soft
@@ -4046,10 +4046,10 @@ __metadata:
     "@babel/preset-env": 7.24.7
     "@babel/preset-react": 7.24.7
     "@babel/preset-typescript": 7.24.7
-    "@navikt/ds-css": 6.12.0
+    "@navikt/ds-css": 6.13.0
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 6.12.0
-    "@navikt/ds-tailwind": 6.12.0
+    "@navikt/ds-react": 6.13.0
+    "@navikt/ds-tailwind": 6.13.0
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
@@ -4095,7 +4095,7 @@ __metadata:
     mustache-express: 1.3.2
     object-hash: 3.0.0
     openid-client: 5.6.5
-    postcss: 8.4.38
+    postcss: 8.4.39
     react: 18.3.1
     react-dom: 18.3.1
     react-fast-compare: 3.2.2
@@ -4103,8 +4103,8 @@ __metadata:
     react-router-dom: 6.24.0
     storybook: 8.1.11
     typescript: 5.5.2
-    vite: 5.3.1
-    vite-plugin-checker: 0.6.4
+    vite: 5.3.2
+    vite-plugin-checker: 0.7.0
     vitest: 1.6.0
   languageName: unknown
   linkType: soft
@@ -4118,11 +4118,11 @@ __metadata:
     "@babel/preset-env": 7.24.7
     "@babel/preset-react": 7.24.7
     "@babel/preset-typescript": 7.24.7
-    "@chromatic-com/storybook": 1.5.0
-    "@navikt/ds-css": 6.12.0
+    "@chromatic-com/storybook": 1.6.0
+    "@navikt/ds-css": 6.13.0
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 6.12.0
-    "@navikt/ds-tailwind": 6.12.0
+    "@navikt/ds-react": 6.13.0
+    "@navikt/ds-tailwind": 6.13.0
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
@@ -4167,7 +4167,7 @@ __metadata:
     mustache-express: 1.3.2
     object-hash: 3.0.0
     openid-client: 5.6.5
-    postcss: 8.4.38
+    postcss: 8.4.39
     react: 18.3.1
     react-dom: 18.3.1
     react-fast-compare: 3.2.2
@@ -4177,8 +4177,8 @@ __metadata:
     storybook-addon-mock: 5.0.0
     typescript: 5.5.2
     uuid: 10.0.0
-    vite: 5.3.1
-    vite-plugin-checker: 0.6.4
+    vite: 5.3.2
+    vite-plugin-checker: 0.7.0
     vitest: 1.6.0
   languageName: unknown
   linkType: soft
@@ -4192,11 +4192,11 @@ __metadata:
     "@babel/plugin-transform-modules-commonjs": 7.24.7
     "@babel/preset-env": 7.24.7
     "@babel/preset-react": 7.24.7
-    "@chromatic-com/storybook": 1.5.0
+    "@chromatic-com/storybook": 1.6.0
     "@navikt/appstatus-react-ds": "workspace:*"
-    "@navikt/ds-css": 6.12.0
+    "@navikt/ds-css": 6.13.0
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 6.12.0
+    "@navikt/ds-react": 6.13.0
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
@@ -4265,8 +4265,8 @@ __metadata:
     storybook-addon-mock: 5.0.0
     typescript: 5.5.2
     uuid: 10.0.0
-    vite: 5.3.1
-    vite-plugin-checker: 0.6.4
+    vite: 5.3.2
+    vite-plugin-checker: 0.7.0
     vitest: 1.6.0
   languageName: unknown
   linkType: soft
@@ -4289,7 +4289,7 @@ __metadata:
     lint-staged: 15.2.7
     npm-run-all: 4.1.5
     prettier: 3.3.2
-    turbo: 2.0.5
+    turbo: 2.0.6
     typescript: 5.5.2
   languageName: unknown
   linkType: soft
@@ -4322,10 +4322,10 @@ __metadata:
     "@babel/preset-react": 7.24.7
     "@babel/preset-typescript": 7.24.7
     "@navikt/appstatus-react-ds": "workspace:*"
-    "@navikt/ds-css": 6.12.0
+    "@navikt/ds-css": 6.13.0
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 6.12.0
-    "@navikt/ds-tailwind": 6.12.0
+    "@navikt/ds-react": 6.13.0
+    "@navikt/ds-tailwind": 6.13.0
     "@navikt/sif-common-formik-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@originjs/vite-plugin-commonjs": 1.0.3
@@ -4358,7 +4358,7 @@ __metadata:
     i18n-iso-countries: 7.11.2
     mini-css-extract-plugin: 2.9.0
     npm-run-all: 4.1.5
-    postcss: 8.4.38
+    postcss: 8.4.39
     pretty-bytes: 6.1.1
     prop-types: 15.8.1
     react: 18.3.1
@@ -4372,8 +4372,8 @@ __metadata:
     storybook: 8.1.11
     tailwindcss: 3.4.4
     uuid: 10.0.0
-    vite: 5.3.1
-    vite-plugin-checker: 0.6.4
+    vite: 5.3.2
+    vite-plugin-checker: 0.7.0
     vitest: 1.6.0
   languageName: unknown
   linkType: soft
@@ -4386,9 +4386,9 @@ __metadata:
     "@babel/preset-env": 7.24.7
     "@babel/preset-react": 7.24.7
     "@babel/preset-typescript": 7.24.7
-    "@navikt/ds-css": 6.12.0
+    "@navikt/ds-css": 6.13.0
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 6.12.0
+    "@navikt/ds-react": 6.13.0
     "@navikt/fnrvalidator": 2.1.0
     "@originjs/vite-plugin-commonjs": 1.0.3
     "@storybook/addon-a11y": 8.1.11
@@ -4433,8 +4433,8 @@ __metadata:
     rimraf: 5.0.7
     storybook: 8.1.11
     uuid: 10.0.0
-    vite: 5.3.1
-    vite-plugin-checker: 0.6.4
+    vite: 5.3.2
+    vite-plugin-checker: 0.7.0
     vitest: 1.6.0
   peerDependencies:
     "@navikt/ds-css": 5
@@ -4453,8 +4453,8 @@ __metadata:
     "@babel/preset-react": 7.24.7
     "@babel/preset-typescript": 7.24.7
     "@formatjs/intl-pluralrules": 5.2.14
-    "@navikt/ds-css": 6.12.0
-    "@navikt/ds-react": 6.12.0
+    "@navikt/ds-css": 6.13.0
+    "@navikt/ds-react": 6.13.0
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-formik-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
@@ -4495,8 +4495,8 @@ __metadata:
     react-router-dom: 6.24.0
     rimraf: 5.0.7
     storybook: 8.1.11
-    vite: 5.3.1
-    vite-plugin-checker: 0.6.4
+    vite: 5.3.2
+    vite-plugin-checker: 0.7.0
     vitest: 1.6.0
   languageName: unknown
   linkType: soft
@@ -4516,9 +4516,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-sentry@workspace:packages/sif-common-sentry"
   dependencies:
-    "@sentry/browser": 8.12.0
-    "@sentry/react": 8.12.0
-    "@sentry/types": 8.12.0
+    "@sentry/browser": 8.13.0
+    "@sentry/react": 8.13.0
+    "@sentry/types": 8.13.0
     "@types/node": 20.14.9
     axios: 1.7.2
     config: "*"
@@ -4543,8 +4543,8 @@ __metadata:
     "@devexperts/remote-data-ts": 2.1.1
     "@formatjs/intl-pluralrules": 5.2.14
     "@navikt/appstatus-react-ds": "workspace:*"
-    "@navikt/ds-css": 6.12.0
-    "@navikt/ds-react": 6.12.0
+    "@navikt/ds-css": 6.13.0
+    "@navikt/ds-react": 6.13.0
     "@navikt/nav-dekoratoren-moduler": 2.1.6
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-formik-ds": "workspace:*"
@@ -4578,7 +4578,7 @@ __metadata:
     date-fns: 3.6.0
     dayjs: 1.11.11
     formik: 2.4.6
-    fp-ts: 2.16.6
+    fp-ts: 2.16.7
     gh-pages: 6.1.1
     intl: 1.2.5
     io-ts: 2.2.21
@@ -4594,8 +4594,8 @@ __metadata:
     rimraf: 5.0.7
     storybook: 8.1.11
     uuid: 10.0.0
-    vite: 5.3.1
-    vite-plugin-checker: 0.6.4
+    vite: 5.3.2
+    vite-plugin-checker: 0.7.0
   languageName: unknown
   linkType: soft
 
@@ -4603,9 +4603,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-ui@workspace:packages/sif-common-ui"
   dependencies:
-    "@navikt/ds-css": 6.12.0
+    "@navikt/ds-css": 6.13.0
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 6.12.0
+    "@navikt/ds-react": 6.13.0
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-formik-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
@@ -4665,10 +4665,10 @@ __metadata:
     "@babel/core": 7.24.7
     "@babel/preset-env": 7.24.7
     "@babel/preset-react": 7.24.7
-    "@navikt/ds-css": 6.12.0
+    "@navikt/ds-css": 6.13.0
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 6.12.0
-    "@navikt/ds-tailwind": 6.12.0
+    "@navikt/ds-react": 6.13.0
+    "@navikt/ds-tailwind": 6.13.0
     "@navikt/nav-dekoratoren-moduler": 2.1.6
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
@@ -4707,7 +4707,7 @@ __metadata:
     lodash: 4.17.21
     mustache-express: 1.3.2
     openid-client: 5.6.5
-    postcss: 8.4.38
+    postcss: 8.4.39
     react: 18.3.1
     react-day-picker: 8.10.1
     react-dom: 18.3.1
@@ -4716,8 +4716,8 @@ __metadata:
     tailwindcss: 3.4.4
     typescript: 5.5.2
     uuid: 10.0.0
-    vite: 5.3.1
-    vite-plugin-checker: 0.6.4
+    vite: 5.3.2
+    vite-plugin-checker: 0.7.0
     vitest: 1.6.0
   languageName: unknown
   linkType: soft
@@ -6116,49 +6116,49 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry-internal/browser-utils@npm:8.12.0":
-  version: 8.12.0
-  resolution: "@sentry-internal/browser-utils@npm:8.12.0"
+"@sentry-internal/browser-utils@npm:8.13.0":
+  version: 8.13.0
+  resolution: "@sentry-internal/browser-utils@npm:8.13.0"
   dependencies:
-    "@sentry/core": 8.12.0
-    "@sentry/types": 8.12.0
-    "@sentry/utils": 8.12.0
-  checksum: cf8166aa0699eda51d43c73766f1fc7840692e47f83a6b97e9979f2527f2d565d537c0b8a47b81802bfd3116dda474f580acbf5ee4526203e936bd8e6d9a0ebf
+    "@sentry/core": 8.13.0
+    "@sentry/types": 8.13.0
+    "@sentry/utils": 8.13.0
+  checksum: ff7386f879517720e2b14f03564f55ba799b3ea3905e9dcec8c2681cff0a042875954df8ce9fe8e63506b9ea42a0044ab3f3de2678db7d42e782516cd79a8abf
   languageName: node
   linkType: hard
 
-"@sentry-internal/feedback@npm:8.12.0":
-  version: 8.12.0
-  resolution: "@sentry-internal/feedback@npm:8.12.0"
+"@sentry-internal/feedback@npm:8.13.0":
+  version: 8.13.0
+  resolution: "@sentry-internal/feedback@npm:8.13.0"
   dependencies:
-    "@sentry/core": 8.12.0
-    "@sentry/types": 8.12.0
-    "@sentry/utils": 8.12.0
-  checksum: dabbfb1dc9a4e133cea8576518a6ef3e6cf8eb072fc1af71dbaef71320dd3471d73f02333a161b59896240762f8d2cf0c40d5b515ac207cc7bdfcd8db81aeeaf
+    "@sentry/core": 8.13.0
+    "@sentry/types": 8.13.0
+    "@sentry/utils": 8.13.0
+  checksum: b182c1fd0a6ee3348c1067d7a121029c2f8aff5f4e137df2a45f1dffecbbde349e6d952ef75ee9f798e146a011b7e064e43a666f2622dcb6b97f3b84b6828229
   languageName: node
   linkType: hard
 
-"@sentry-internal/replay-canvas@npm:8.12.0":
-  version: 8.12.0
-  resolution: "@sentry-internal/replay-canvas@npm:8.12.0"
+"@sentry-internal/replay-canvas@npm:8.13.0":
+  version: 8.13.0
+  resolution: "@sentry-internal/replay-canvas@npm:8.13.0"
   dependencies:
-    "@sentry-internal/replay": 8.12.0
-    "@sentry/core": 8.12.0
-    "@sentry/types": 8.12.0
-    "@sentry/utils": 8.12.0
-  checksum: 9d6ef9be2b9189eb6264d66aa2fbfbeaefd3e18323da56af3fab69be74fcb05a479b09c138433b18c6b2bc19d5cf1f43e1bb85850acb6fdedb132c86f466f9ea
+    "@sentry-internal/replay": 8.13.0
+    "@sentry/core": 8.13.0
+    "@sentry/types": 8.13.0
+    "@sentry/utils": 8.13.0
+  checksum: 48d85a33479bcebed49e92bf695e9211ed41995749f5bcb306c0be0c18360dada029dfb72f5af1bfaf093fe60f187eeea037ae364b680b6fbe2539f6cd78d8e1
   languageName: node
   linkType: hard
 
-"@sentry-internal/replay@npm:8.12.0":
-  version: 8.12.0
-  resolution: "@sentry-internal/replay@npm:8.12.0"
+"@sentry-internal/replay@npm:8.13.0":
+  version: 8.13.0
+  resolution: "@sentry-internal/replay@npm:8.13.0"
   dependencies:
-    "@sentry-internal/browser-utils": 8.12.0
-    "@sentry/core": 8.12.0
-    "@sentry/types": 8.12.0
-    "@sentry/utils": 8.12.0
-  checksum: bd6dbfc5ed664795cf57708e5c96942d22b0a9ad0100eb4a4480200104fa3f84ef3bdc0ca4a334426787091cfdd1a19f187667b9931486a2fe96876909dd2138
+    "@sentry-internal/browser-utils": 8.13.0
+    "@sentry/core": 8.13.0
+    "@sentry/types": 8.13.0
+    "@sentry/utils": 8.13.0
+  checksum: 2c513b04c9afe6f134065bceafac342561380244b865ce606bf079149338c75389352afcf30b9cba9f27953d35efe2a415f8b303ce2b3708e22ae057ad54943d
   languageName: node
   linkType: hard
 
@@ -6169,18 +6169,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/browser@npm:8.12.0":
-  version: 8.12.0
-  resolution: "@sentry/browser@npm:8.12.0"
+"@sentry/browser@npm:8.13.0":
+  version: 8.13.0
+  resolution: "@sentry/browser@npm:8.13.0"
   dependencies:
-    "@sentry-internal/browser-utils": 8.12.0
-    "@sentry-internal/feedback": 8.12.0
-    "@sentry-internal/replay": 8.12.0
-    "@sentry-internal/replay-canvas": 8.12.0
-    "@sentry/core": 8.12.0
-    "@sentry/types": 8.12.0
-    "@sentry/utils": 8.12.0
-  checksum: a4aeab333de18695a246ce2e71c30caf7c515eb1e41ad77fef344499fe02494c23f8b8f81ec990ef6df1cbd94daff0009aea2039343de117cb7cd6e032fd9f15
+    "@sentry-internal/browser-utils": 8.13.0
+    "@sentry-internal/feedback": 8.13.0
+    "@sentry-internal/replay": 8.13.0
+    "@sentry-internal/replay-canvas": 8.13.0
+    "@sentry/core": 8.13.0
+    "@sentry/types": 8.13.0
+    "@sentry/utils": 8.13.0
+  checksum: 6bac7de19b118e7ed3bba7153605453224695b6d4ca036add7d9e0dac2b960b5c2ae752d3c47ba5a9721c88b6f98cd47f84d3452b2b37c85546e657412e58c7a
   languageName: node
   linkType: hard
 
@@ -6286,44 +6286,44 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/core@npm:8.12.0":
-  version: 8.12.0
-  resolution: "@sentry/core@npm:8.12.0"
+"@sentry/core@npm:8.13.0":
+  version: 8.13.0
+  resolution: "@sentry/core@npm:8.13.0"
   dependencies:
-    "@sentry/types": 8.12.0
-    "@sentry/utils": 8.12.0
-  checksum: 9640ef037d860cbd2784711d6d800e5d1f567ae45cfd831e29f0dafd7cb130d46bee7ced7f38d26abc3014b06ef78db901e496dbab062c7368f3dc45797a7cff
+    "@sentry/types": 8.13.0
+    "@sentry/utils": 8.13.0
+  checksum: 1841f57a4695919086c27ddcab261a16d8dccb93b158584e26e73952a9822562531b99fd46a167e5aaab205a73f375de64888e3f7d7f66d788710b494fc8b5cd
   languageName: node
   linkType: hard
 
-"@sentry/react@npm:8.12.0":
-  version: 8.12.0
-  resolution: "@sentry/react@npm:8.12.0"
+"@sentry/react@npm:8.13.0":
+  version: 8.13.0
+  resolution: "@sentry/react@npm:8.13.0"
   dependencies:
-    "@sentry/browser": 8.12.0
-    "@sentry/core": 8.12.0
-    "@sentry/types": 8.12.0
-    "@sentry/utils": 8.12.0
+    "@sentry/browser": 8.13.0
+    "@sentry/core": 8.13.0
+    "@sentry/types": 8.13.0
+    "@sentry/utils": 8.13.0
     hoist-non-react-statics: ^3.3.2
   peerDependencies:
     react: ^16.14.0 || 17.x || 18.x || 19.x
-  checksum: cf51e3e5950f2c2c81910202bd0767e9e83a90bcfd56e2b0f6d5c109611150812e55b37aca069f9f2886e85683f8a6a98d42fcb9aea35ebf73a61ea4b4a0b45e
+  checksum: 90e13c2956f9d10d33b2a6dcf242b99caa268e728bed7cba5fd9e7cc88b4ef7b50634fc653f4e6c4365049002c8d8d27f99c4ce9ff676f814e02ed5ad7e0dc48
   languageName: node
   linkType: hard
 
-"@sentry/types@npm:8.12.0":
-  version: 8.12.0
-  resolution: "@sentry/types@npm:8.12.0"
-  checksum: 4799af1e9e586a5c1d77fc8a5e44d12f1e66340d7f986aa8a745ddf329a7d10400abe56a1099e508e8dc67d88c72e1d30e324956825299013ac8ccd4b3f8d749
+"@sentry/types@npm:8.13.0":
+  version: 8.13.0
+  resolution: "@sentry/types@npm:8.13.0"
+  checksum: 571a15d24d5882502a233c950fe786f6b4f3ba5c0a2276c9bd497a42b682680b885dd161adcc26ef03cda6f9986fd9fb4254c8d8b3ae57e6c21828b65a956cb0
   languageName: node
   linkType: hard
 
-"@sentry/utils@npm:8.12.0":
-  version: 8.12.0
-  resolution: "@sentry/utils@npm:8.12.0"
+"@sentry/utils@npm:8.13.0":
+  version: 8.13.0
+  resolution: "@sentry/utils@npm:8.13.0"
   dependencies:
-    "@sentry/types": 8.12.0
-  checksum: 37458ac5e281bdbb09f0e79825cb1fffe1acbad65a45591649cfe7e412ef80a0fb9ccf3d6a1fc5cf745708da22c6f87b675909e40bb99b104e639df2051745ce
+    "@sentry/types": 8.13.0
+  checksum: 2fe28ce6d4fac1d358b468ca54fb22433d1e9d601cbe24699346b334e8ba268f4430d05017c855d6228dc90eba54c0ed181e51b31bdbdd443e8594a298d9d0bf
   languageName: node
   linkType: hard
 
@@ -9510,6 +9510,33 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@volar/language-core@npm:2.3.4":
+  version: 2.3.4
+  resolution: "@volar/language-core@npm:2.3.4"
+  dependencies:
+    "@volar/source-map": 2.3.4
+  checksum: 5656231dbba6634d0b8a5db130ff19e7407c9cc37ff9a362641fb07c66b893cf405c872ee4fdee8e8502717f9f73f1e35141cf48370317ef17e372e65c980729
+  languageName: node
+  linkType: hard
+
+"@volar/source-map@npm:2.3.4":
+  version: 2.3.4
+  resolution: "@volar/source-map@npm:2.3.4"
+  checksum: 0ba854e65b7afcf17c50c1dd482577ca59c338823d7c04bb80ec3db8df9eb8040118e7edabd926d298d7e69a9a9d43cd46487f045ba2c391df3c296547394c25
+  languageName: node
+  linkType: hard
+
+"@volar/typescript@npm:^2.3.0":
+  version: 2.3.4
+  resolution: "@volar/typescript@npm:2.3.4"
+  dependencies:
+    "@volar/language-core": 2.3.4
+    path-browserify: ^1.0.1
+    vscode-uri: ^3.0.8
+  checksum: ea68da94f71134d703bb94c461ed77c918e8e862bc5a292c769c36536e2ffae3fccdfbfb0b256e561a1fdd0029b1bbb0ea4b13dad7d30c8314d2c49220051936
+  languageName: node
+  linkType: hard
+
 "@webassemblyjs/ast@npm:1.12.1, @webassemblyjs/ast@npm:^1.12.1":
   version: 1.12.1
   resolution: "@webassemblyjs/ast@npm:1.12.1"
@@ -11584,7 +11611,7 @@ __metadata:
     eslint-plugin-prettier: 5.1.3
     eslint-plugin-react: 7.34.3
     eslint-plugin-storybook: 0.8.0
-    postcss: 8.4.38
+    postcss: 8.4.39
   languageName: unknown
   linkType: soft
 
@@ -14694,10 +14721,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fp-ts@npm:2.16.6":
-  version: 2.16.6
-  resolution: "fp-ts@npm:2.16.6"
-  checksum: 9667b8789f1306c5657a92940af5f5014e84347b733fe2cf56a0a44322674f679e87a866e3b29bf01f706518f670173cff7996ee24ec708025097ce6b7cc42bb
+"fp-ts@npm:2.16.7":
+  version: 2.16.7
+  resolution: "fp-ts@npm:2.16.7"
+  checksum: 07dc475295ee9b878af416a9d7fdafa7944e3395a85e78e27e714bc2fa8c00d33c9fd201f1b4912eb6f773e4e671d6bdbe8044e528b0fddb0cd1453884247888
   languageName: node
   linkType: hard
 
@@ -20313,7 +20340,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:8.4.38, postcss@npm:^8.2.14, postcss@npm:^8.4.23, postcss@npm:^8.4.33, postcss@npm:^8.4.38":
+"postcss@npm:8.4.39":
+  version: 8.4.39
+  resolution: "postcss@npm:8.4.39"
+  dependencies:
+    nanoid: ^3.3.7
+    picocolors: ^1.0.1
+    source-map-js: ^1.2.0
+  checksum: 14b130c90f165961772bdaf99c67f907f3d16494adf0868e57ef68baa67e0d1f6762db9d41ab0f4d09bab6fb7888588dba3596afd1a235fd5c2d43fba7006ac6
+  languageName: node
+  linkType: hard
+
+"postcss@npm:^8.2.14, postcss@npm:^8.4.23, postcss@npm:^8.4.33, postcss@npm:^8.4.38":
   version: 8.4.38
   resolution: "postcss@npm:8.4.38"
   dependencies:
@@ -21969,7 +22007,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:^7.3.4, semver@npm:^7.3.5, semver@npm:^7.3.7, semver@npm:^7.5.0, semver@npm:^7.5.2, semver@npm:^7.5.3, semver@npm:^7.5.4, semver@npm:^7.6.0":
+"semver@npm:^7.3.4, semver@npm:^7.3.5, semver@npm:^7.3.7, semver@npm:^7.5.2, semver@npm:^7.5.3, semver@npm:^7.5.4, semver@npm:^7.6.0":
   version: 7.6.2
   resolution: "semver@npm:7.6.2"
   bin:
@@ -23505,58 +23543,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo-darwin-64@npm:2.0.5":
-  version: 2.0.5
-  resolution: "turbo-darwin-64@npm:2.0.5"
+"turbo-darwin-64@npm:2.0.6":
+  version: 2.0.6
+  resolution: "turbo-darwin-64@npm:2.0.6"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-darwin-arm64@npm:2.0.5":
-  version: 2.0.5
-  resolution: "turbo-darwin-arm64@npm:2.0.5"
+"turbo-darwin-arm64@npm:2.0.6":
+  version: 2.0.6
+  resolution: "turbo-darwin-arm64@npm:2.0.6"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-linux-64@npm:2.0.5":
-  version: 2.0.5
-  resolution: "turbo-linux-64@npm:2.0.5"
+"turbo-linux-64@npm:2.0.6":
+  version: 2.0.6
+  resolution: "turbo-linux-64@npm:2.0.6"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-linux-arm64@npm:2.0.5":
-  version: 2.0.5
-  resolution: "turbo-linux-arm64@npm:2.0.5"
+"turbo-linux-arm64@npm:2.0.6":
+  version: 2.0.6
+  resolution: "turbo-linux-arm64@npm:2.0.6"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-windows-64@npm:2.0.5":
-  version: 2.0.5
-  resolution: "turbo-windows-64@npm:2.0.5"
+"turbo-windows-64@npm:2.0.6":
+  version: 2.0.6
+  resolution: "turbo-windows-64@npm:2.0.6"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-windows-arm64@npm:2.0.5":
-  version: 2.0.5
-  resolution: "turbo-windows-arm64@npm:2.0.5"
+"turbo-windows-arm64@npm:2.0.6":
+  version: 2.0.6
+  resolution: "turbo-windows-arm64@npm:2.0.6"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo@npm:2.0.5":
-  version: 2.0.5
-  resolution: "turbo@npm:2.0.5"
+"turbo@npm:2.0.6":
+  version: 2.0.6
+  resolution: "turbo@npm:2.0.6"
   dependencies:
-    turbo-darwin-64: 2.0.5
-    turbo-darwin-arm64: 2.0.5
-    turbo-linux-64: 2.0.5
-    turbo-linux-arm64: 2.0.5
-    turbo-windows-64: 2.0.5
-    turbo-windows-arm64: 2.0.5
+    turbo-darwin-64: 2.0.6
+    turbo-darwin-arm64: 2.0.6
+    turbo-linux-64: 2.0.6
+    turbo-linux-arm64: 2.0.6
+    turbo-windows-64: 2.0.6
+    turbo-windows-arm64: 2.0.6
   dependenciesMeta:
     turbo-darwin-64:
       optional: true
@@ -23572,7 +23610,7 @@ __metadata:
       optional: true
   bin:
     turbo: bin/turbo
-  checksum: b5b6916c3da420a2fbbae1119ed346dfc973ac30e8664f27a0a4f82b91410cf824414ca18c4fdf443131e53d24c069b6ed10b754c81c5ec9d48825e1d7cc7c1c
+  checksum: c6d8dffd89d923021ef1b319d7aa7649ab1cace15f2cbea542aae890c94eaa78634474598be8da9d8299b07a14ae175fba62539966426b8d11bc23b6e2d642c4
   languageName: node
   linkType: hard
 
@@ -24150,11 +24188,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-plugin-checker@npm:0.6.4":
-  version: 0.6.4
-  resolution: "vite-plugin-checker@npm:0.6.4"
+"vite-plugin-checker@npm:0.7.0":
+  version: 0.7.0
+  resolution: "vite-plugin-checker@npm:0.7.0"
   dependencies:
     "@babel/code-frame": ^7.12.13
+    "@volar/typescript": ^2.3.0
     ansi-escapes: ^4.3.0
     chalk: ^4.1.1
     chokidar: ^3.5.1
@@ -24162,7 +24201,6 @@ __metadata:
     fast-glob: ^3.2.7
     fs-extra: ^11.1.0
     npm-run-path: ^4.0.1
-    semver: ^7.5.0
     strip-ansi: ^6.0.0
     tiny-invariant: ^1.1.0
     vscode-languageclient: ^7.0.0
@@ -24178,7 +24216,7 @@ __metadata:
     vite: ">=2.0.0"
     vls: "*"
     vti: "*"
-    vue-tsc: ">=1.3.9"
+    vue-tsc: ">=2.0.0"
   peerDependenciesMeta:
     eslint:
       optional: true
@@ -24196,13 +24234,13 @@ __metadata:
       optional: true
     vue-tsc:
       optional: true
-  checksum: 2bd1467ec03e9d9ba7bf6da8bfb6ebed232c55d5253c9ccc4fdd6f38c0cb621e637b76426a3730e37574b351a0386791f37893f6768b700731168acfb12a9d61
+  checksum: c81e1a0386199d3e028af0376d0090dcf4c7528340ba5941d3649724e877408ae9f1e22ff4f5cb3af558b87656c74ae6db8e2bf7e77ac08a8b8885c6761b39a4
   languageName: node
   linkType: hard
 
-"vite@npm:5.3.1":
-  version: 5.3.1
-  resolution: "vite@npm:5.3.1"
+"vite@npm:5.3.2":
+  version: 5.3.2
+  resolution: "vite@npm:5.3.2"
   dependencies:
     esbuild: ^0.21.3
     fsevents: ~2.3.3
@@ -24236,7 +24274,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: a06d35566338794a877538ddacccccfdac30df7e260546dc0513e77191b86a13398b86a8082bb6c842013b0d3062f951f624a3f800867cbf06aef89e49767d6c
+  checksum: d6872cb72701ec4b8d8dbccc5deacb5af03c3f247df02750787d6dcf4e49e207effed7a06e4f103008a918188cdf0789ff7348db451ebd0d59ef1a22ae4a267d
   languageName: node
   linkType: hard
 
@@ -24390,7 +24428,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vscode-uri@npm:^3.0.2":
+"vscode-uri@npm:^3.0.2, vscode-uri@npm:^3.0.8":
   version: 3.0.8
   resolution: "vscode-uri@npm:3.0.8"
   checksum: 514249126850c0a41a7d8c3c2836cab35983b9dc1938b903cfa253b9e33974c1416d62a00111385adcfa2b98df456437ab704f709a2ecca76a90134ef5eb4832

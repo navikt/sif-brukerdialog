@@ -14,8 +14,8 @@
         "@babel/preset-react": "7.24.7",
         "@babel/preset-typescript": "7.24.7",
         "@formatjs/intl-pluralrules": "5.2.14",
-        "@navikt/ds-css": "6.12.0",
-        "@navikt/ds-react": "6.12.0",
+        "@navikt/ds-css": "6.13.0",
+        "@navikt/ds-react": "6.13.0",
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
@@ -55,8 +55,8 @@
         "react-router-dom": "6.24.0",
         "rimraf": "5.0.7",
         "storybook": "8.1.11",
-        "vite": "5.3.1",
-        "vite-plugin-checker": "0.6.4",
+        "vite": "5.3.2",
+        "vite-plugin-checker": "0.7.0",
         "vitest": "1.6.0"
     },
     "scripts": {
