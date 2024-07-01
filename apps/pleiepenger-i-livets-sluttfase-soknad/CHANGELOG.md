@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.8.0
+
+### Minor Changes
+
+-   f5c9ace: Oppdatere til Yarn 4. Endre Dockerfiler for å redusere image størrelse
+
 ## 2.7.18
 
 ### Patch Changes

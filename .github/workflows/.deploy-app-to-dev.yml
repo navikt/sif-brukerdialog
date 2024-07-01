@@ -29,13 +29,14 @@ jobs:
                   yarn config set npmScopes.navikt.npmAlwaysAuth true
                   yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
               env:
-                NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
             - name: Setup Node.js environment
               uses: actions/setup-node@v4
               with:
                   node-version: 18
                   cache: 'yarn'
+            - run: yarn set version 4.x
 
             - name: Install dependencies (yarn)
               run: yarn install
