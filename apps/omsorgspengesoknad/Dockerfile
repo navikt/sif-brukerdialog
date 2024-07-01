@@ -14,9 +14,16 @@ COPY . .
 RUN yarn
 RUN yarn turbo run build --filter=${SCOPE}
 
+FROM base AS ws-installer
+RUN apk update && apk add git
+RUN apk add --no-cache libc6-compat
+WORKDIR /app-ws
+COPY . .
+RUN yarn workspaces focus ${SCOPE} --production
+
 FROM gcr.io/distroless/nodejs18-debian11:nonroot
 WORKDIR /apps/omsorgspengesoknad
-COPY --from=turbo-builder /app/node_modules ./node_modules/
+COPY --from=ws-installer /app-ws/node_modules ./node_modules/
 COPY --from=turbo-builder /app/apps/omsorgspengesoknad/server.cjs .
 COPY --from=turbo-builder /app/apps/omsorgspengesoknad/tokenx.cjs .
 COPY --from=turbo-builder /app/apps/omsorgspengesoknad/package.json .
