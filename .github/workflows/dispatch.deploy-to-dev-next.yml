@@ -14,7 +14,7 @@ on:
 jobs:
     deploy-to-dev:
         name: Deploy ${{ inputs.app-name }} to dev
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@yarn-4-vite
         secrets: inherit
         permissions:
             id-token: write
