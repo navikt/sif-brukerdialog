@@ -35,8 +35,7 @@ jobs:
               with:
                   node-version: 18
                   cache: 'yarn'
-            - run: yarn set version berry
-            - run: yarn set version latest
+            - run: yarn set version 4.x
 
             - name: Install dependencies (yarn)
               run: yarn
@@ -64,8 +63,7 @@ jobs:
               with:
                   node-version: 18
                   cache: 'yarn'
-            - run: yarn set version berry
-            - run: yarn set version latest
+            - run: yarn set version 4.x
 
             - name: Install dependencies
               run: yarn
