@@ -4,7 +4,7 @@
     "license": "MIT",
     "main": "src",
     "name": "@navikt/appstatus-react-ds",
-    "version": "2.18.13",
+    "version": "2.18.14",
     "private": true,
     "dependencies": {
         "@navikt/sif-common-hooks": "workspace:*",
