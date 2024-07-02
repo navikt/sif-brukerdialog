@@ -6,7 +6,7 @@ import BehandlingAvPersonopplysningerContent from './BehandlingAvPersonopplysnin
 
 const OmSøknaden = () => {
     return (
-        <Block margin="xl">
+        <Block margin="xl" padBottom="l">
             <Heading level="2" size="medium">
                 <AppText id="page.velkommen.omSøknaden.tittel" />
             </Heading>
