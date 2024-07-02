@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.19.2
+
+### Patch Changes
+
+-   8c33962: Layoutendring - spacing på velkommen-side
+
 ## 2.19.1
 
 ### Patch Changes

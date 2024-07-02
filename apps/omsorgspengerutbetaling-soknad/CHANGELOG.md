@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.12.3
+
+### Patch Changes
+
+-   8c33962: Layoutendring - spacing på velkommen-side
+
 ## 1.12.2
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.8.2
+
+### Patch Changes
+
+-   8c33962: Layoutendring - spacing på velkommen-side
+
 ## 2.8.1
 
 ### Patch Changes
