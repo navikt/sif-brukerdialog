@@ -1,20 +1,22 @@
+import { FormSummary } from '@navikt/ds-react';
 import React from 'react';
+import { DateRange } from '@navikt/sif-common-formik-ds';
+import { AppText } from '../../../../i18n';
+import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
+import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import ArbeidsgivereSummary from './ArbeidsgivereSummary';
 import ArbeidssituasjonFrilansSummary from './ArbeidssituasjonFrilansSummary';
 import ArbeidssituasjonSNSummary from './ArbeidssituasjonSNSummary';
 import UtenlandskNæringSummary from './ArbeidssituasjonUtenlandskNæringSummary';
-import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
-import { DateRange } from '@navikt/sif-common-formik-ds';
-import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
-import { SummaryBlock, SummarySection } from '@navikt/sif-common-ui';
 import OpptjeningIUtlandetSummaryView from './OpptjeningIUtlandetSummaryView';
-import { useAppIntl } from '../../../../i18n';
 
 interface Props {
     apiData: SøknadApiData;
     søknadsperiode: DateRange;
     frilansoppdrag?: Arbeidsgiver[];
 }
+
+const { Answers, Answer, Label, Value, Header, Heading } = FormSummary;
 
 const ArbeidssituasjonSummary: React.FC<Props> = ({
     apiData: {
@@ -28,35 +30,45 @@ const ArbeidssituasjonSummary: React.FC<Props> = ({
     søknadsperiode,
     frilansoppdrag,
 }) => {
-    const { text } = useAppIntl();
-
     return (
-        <SummarySection header={text('steg.oppsummering.arbeidssituasjon.header')}>
-            <ArbeidsgivereSummary arbeidsgivere={arbeidsgivere} søknadsperiode={søknadsperiode} />
+        <>
+            <FormSummary>
+                <Header>
+                    <Heading level="2">
+                        <AppText id="steg.oppsummering.arbeidssituasjon.header" />
+                    </Heading>
+                </Header>
+                <Answers>
+                    <ArbeidsgivereSummary arbeidsgivere={arbeidsgivere} søknadsperiode={søknadsperiode} />
 
-            <ArbeidssituasjonFrilansSummary frilans={frilans} frilansoppdrag={frilansoppdrag} />
+                    <ArbeidssituasjonFrilansSummary frilans={frilans} frilansoppdrag={frilansoppdrag} />
 
-            <ArbeidssituasjonSNSummary selvstendigNæringsdrivende={selvstendigNæringsdrivende} />
+                    <ArbeidssituasjonSNSummary selvstendigNæringsdrivende={selvstendigNæringsdrivende} />
 
-            <OpptjeningIUtlandetSummaryView opptjeningUtland={opptjeningUtland} />
+                    <OpptjeningIUtlandetSummaryView opptjeningUtland={opptjeningUtland} />
 
-            <UtenlandskNæringSummary utenlandskNæring={utenlandskNæring} />
+                    <UtenlandskNæringSummary utenlandskNæring={utenlandskNæring} />
 
-            {/* Vernepliktig */}
-            {harVærtEllerErVernepliktig !== undefined && (
-                <SummaryBlock header={text('oppsummering.arbeidssituasjon.verneplikt.header')}>
-                    <ul>
-                        <li>
-                            {text(
-                                harVærtEllerErVernepliktig
-                                    ? 'oppsummering.arbeidssituasjon.verneplikt.harVærtVernepliktig'
-                                    : 'oppsummering.arbeidssituasjon.verneplikt.harIkkeVærtVernepliktig',
-                            )}
-                        </li>
-                    </ul>
-                </SummaryBlock>
-            )}
-        </SummarySection>
+                    {/* Vernepliktig */}
+                    {harVærtEllerErVernepliktig !== undefined && (
+                        <Answer>
+                            <Label>
+                                <AppText id="oppsummering.arbeidssituasjon.verneplikt.header" />
+                            </Label>
+                            <Value>
+                                <AppText
+                                    id={
+                                        harVærtEllerErVernepliktig
+                                            ? 'oppsummering.arbeidssituasjon.verneplikt.harVærtVernepliktig'
+                                            : 'oppsummering.arbeidssituasjon.verneplikt.harIkkeVærtVernepliktig'
+                                    }
+                                />
+                            </Value>
+                        </Answer>
+                    )}
+                </Answers>
+            </FormSummary>
+        </>
     );
 };
 
