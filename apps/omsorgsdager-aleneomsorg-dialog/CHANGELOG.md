@@ -1,5 +1,40 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.19.1
+
+### Patch Changes
+
+-   Pakkeoppdateringer og trigge deploy for å få med oppdatert decorator
+-   Updated dependencies
+    -   @navikt/sif-common-hooks@0.1.13
+    -   @navikt/sif-common-soknad-ds@10.16.1
+    -   @navikt/sif-common-amplitude@2.25.10
+    -   @navikt/sif-common-core-ds@9.17.15
+    -   @navikt/sif-common-formik-ds@1.9.6
+    -   @navikt/sif-common-forms-ds@9.0.2
+    -   @navikt/sif-common-utils@3.46.7
+
+## 2.19.0
+
+### Minor Changes
+
+-   f5c9ace: Oppdatere til Yarn 4. Endre Dockerfiler for å redusere image størrelse
+
+## 2.18.4
+
+### Patch Changes
+
+-   b277c16: Forenklet søknaden ved å fjerne spørsmål om hvilke barn man har avtale om delt fast bosted med
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.9.6
+    -   @navikt/sif-common-soknad-ds@10.16.1
+    -   @navikt/sif-common-forms-ds@9.0.2
+    -   @navikt/sif-common-core-ds@9.17.15
+    -   @navikt/sif-common-sentry@0.26.12
+    -   @navikt/sif-common-amplitude@2.25.10
+    -   @navikt/sif-common-utils@3.46.7
+
 ## 2.18.3
 
 ### Patch Changes

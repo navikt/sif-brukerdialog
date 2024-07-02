@@ -1,5 +1,33 @@
 # @navikt/dine-pleiepenger
 
+## 1.5.1
+
+### Patch Changes
+
+-   Pakkeoppdateringer og trigge deploy for å få med oppdatert decorator
+    -   @navikt/appstatus-react-ds@2.18.14
+    -   @navikt/sif-common-amplitude@2.25.10
+    -   @navikt/sif-common-core-ds@9.17.15
+    -   @navikt/sif-common-utils@3.46.7
+
+## 1.5.0
+
+### Minor Changes
+
+-   f5c9ace: Oppdatere til Yarn 4. Endre Dockerfiler for å redusere image størrelse
+
+## 1.4.5
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/appstatus-react-ds@2.18.13
+    -   @navikt/sif-common-core-ds@9.17.15
+    -   @navikt/sif-common-sentry@0.26.12
+    -   @navikt/sif-common-amplitude@2.25.10
+    -   @navikt/sif-common-utils@3.46.7
+
 ## 1.4.4
 
 ### Patch Changes

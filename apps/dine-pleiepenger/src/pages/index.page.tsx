@@ -14,6 +14,7 @@ import { useAppIntl } from '../i18n';
 import { PleietrengendeMedSak } from '../server/api-models/PleietrengendeMedSakSchema';
 import { InnsendtSøknad, InnsendtSøknadstype } from '../types/InnsendtSøknad';
 import SakPage from './sak/SakPage';
+import IngenSakEllerSøknadPage from '../components/ingen-sak-eller-søknad-page/IngenSakEllerSøknadPage';
 
 const harSendtInnSøknadEllerEndringsmelding = (søknader: InnsendtSøknad[]): boolean => {
     return søknader.some(
@@ -54,10 +55,9 @@ function DinePleiepengerPage(): ReactElement {
         return <VelgSakPage saker={saker} />;
     }
 
-    /** Foreløpig kommentert ut pga avklaring av innhold på siden. */
-    // if (innsendteSøknader.length === 0) {
-    //     return <IngenSakEllerSøknadPage />;
-    // }
+    if (innsendteSøknader.length === 0) {
+        return <IngenSakEllerSøknadPage />;
+    }
 
     return (
         <DefaultPageLayout>

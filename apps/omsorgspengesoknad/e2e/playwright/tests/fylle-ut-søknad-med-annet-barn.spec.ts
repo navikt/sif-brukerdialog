@@ -25,7 +25,7 @@ test('Fyll ut søknad med annet barn', async ({ page }) => {
     await page.getByLabel('Barnets fødselsnummer/D-nummer').fill(barn.fødselsnummer);
     await page.getByLabel('Barnets navn').fill(`${barn.fornavn} ${barn.etternavn}`);
     await page.getByRole('button', { name: 'Åpne datovelger' }).click();
-    await page.getByLabel('År').selectOption('2019');
+    await page.getByLabel('År', { exact: true }).selectOption('2019');
     await page.getByLabel('Måned', { exact: true }).selectOption('5');
     await page.getByLabel('Lørdag 8').click();
     await page.getByLabel('Min relasjon til barnet').selectOption('mor');

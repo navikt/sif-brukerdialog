@@ -15,7 +15,7 @@ export const kontrollerPleietrengendeMedFnr = async (page: Page) => {
 export const fyllUtPleietrengendeUtenFnr = async (page: Page) => {
     await page.getByLabel('Personen har ikke fødselsnummer/D-nummer').check();
     await page.getByRole('button', { name: 'Åpne datovelger' }).click();
-    await page.getByLabel('År').selectOption('1994');
+    await page.getByLabel('År', { exact: true }).selectOption('1994');
     await page.getByLabel('Måned', { exact: true }).selectOption('3');
     await page.getByLabel('Mandag 4').click();
     await page.getByText('Annet').click();

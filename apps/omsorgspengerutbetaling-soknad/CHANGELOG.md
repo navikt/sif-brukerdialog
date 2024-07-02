@@ -1,5 +1,45 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.12.2
+
+### Patch Changes
+
+-   Pakkeoppdateringer og trigge deploy for å få med oppdatert decorator
+-   Updated dependencies
+    -   @navikt/sif-common-hooks@0.1.13
+    -   @navikt/sif-common-soknad-ds@10.16.1
+    -   @navikt/sif-common-amplitude@2.25.10
+    -   @navikt/sif-common-core-ds@9.17.15
+    -   @navikt/sif-common-formik-ds@1.9.6
+    -   @navikt/sif-common-forms-ds@9.0.2
+    -   @navikt/sif-common-utils@3.46.7
+
+## 1.12.1
+
+### Patch Changes
+
+-   Flytte dev dep til devDeps
+
+## 1.12.0
+
+### Minor Changes
+
+-   f5c9ace: Oppdatere til Yarn 4. Endre Dockerfiler for å redusere image størrelse
+
+## 1.11.18
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.9.6
+    -   @navikt/sif-common-soknad-ds@10.16.1
+    -   @navikt/sif-common-forms-ds@9.0.2
+    -   @navikt/sif-common-core-ds@9.17.15
+    -   @navikt/sif-common-sentry@0.26.12
+    -   @navikt/sif-common-amplitude@2.25.10
+    -   @navikt/sif-common-utils@3.46.7
+
 ## 1.11.17
 
 ### Patch Changes

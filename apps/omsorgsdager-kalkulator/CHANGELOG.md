@@ -1,5 +1,23 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.7.1
+
+### Patch Changes
+
+-   Pakkeoppdateringer og trigge deploy for å få med oppdatert decorator
+
+## 3.7.0
+
+### Minor Changes
+
+-   f5c9ace: Oppdatere til Yarn 4. Endre Dockerfiler for å redusere image størrelse
+
+## 3.6.14
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
 ## 3.6.13
 
 ### Patch Changes
