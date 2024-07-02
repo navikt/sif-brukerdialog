@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.7.1
+
+### Patch Changes
+
+-   Pakkeoppdateringer og trigge deploy for å få med oppdatert decorator
+
 ## 3.7.0
 
 ### Minor Changes

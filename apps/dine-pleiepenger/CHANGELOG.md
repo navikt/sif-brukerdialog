@@ -1,5 +1,15 @@
 # @navikt/dine-pleiepenger
 
+## 1.5.1
+
+### Patch Changes
+
+-   Pakkeoppdateringer og trigge deploy for å få med oppdatert decorator
+    -   @navikt/appstatus-react-ds@2.18.14
+    -   @navikt/sif-common-amplitude@2.25.10
+    -   @navikt/sif-common-core-ds@9.17.15
+    -   @navikt/sif-common-utils@3.46.7
+
 ## 1.5.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @navikt/sif-common-hooks
 
+## 0.1.13
+
+### Patch Changes
+
+-   Pakkeoppdateringer og trigge deploy for å få med oppdatert decorator
+
 ## 0.1.12
 
 ### Patch Changes

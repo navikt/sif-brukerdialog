@@ -1,5 +1,11 @@
 # config
 
+## 0.9.34
+
+### Patch Changes
+
+-   Pakkeoppdateringer og trigge deploy for å få med oppdatert decorator
+
 ## 0.9.33
 
 ### Patch Changes
