@@ -1,5 +1,11 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.25.2
+
+### Patch Changes
+
+-   8c33962: Layoutendring - spacing på velkommen-side
+
 ## 1.25.1
 
 ### Patch Changes

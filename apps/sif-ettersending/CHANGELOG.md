@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.34.2
+
+### Patch Changes
+
+-   8c33962: Layoutendring - spacing på velkommen-side
+
 ## 3.34.1
 
 ### Patch Changes
