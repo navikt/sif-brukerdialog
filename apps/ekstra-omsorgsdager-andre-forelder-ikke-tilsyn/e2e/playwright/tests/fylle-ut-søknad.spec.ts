@@ -31,7 +31,7 @@ test('Fyll ut søknad med annet barn', async ({ page }) => {
         .getByLabel('Beskriv hva som gjør at den andre forelderen ikke kan ha tilsyn med barn:')
         .fill('Test Beskrivelse');
     await page.getByText('FraÅpne datovelger').click();
-    await page.getByLabel('Fra').fill('28.02.2023');
+    await page.getByLabel('Fra', { exact: true }).fill('28.02.2023');
     await page.getByLabel('Til', { exact: true }).fill('03.09.2023');
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
 
