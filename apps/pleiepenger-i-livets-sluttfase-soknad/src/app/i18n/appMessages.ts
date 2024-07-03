@@ -36,7 +36,7 @@ const nb = {
     'resetMellomlagring.startPåNytt': 'Start på nytt',
 
     hvaBetyrDette: 'Hva betyr dette?',
-    fødselsnummer: 'Fødselsnummer:',
+    fødselsnummer: 'Fødselsnummer',
 
     'dagerMedTid.uke': 'Uke {uke}',
     'dagerMedTid.ingenDagerRegistrert': 'Ingen dager registrert',

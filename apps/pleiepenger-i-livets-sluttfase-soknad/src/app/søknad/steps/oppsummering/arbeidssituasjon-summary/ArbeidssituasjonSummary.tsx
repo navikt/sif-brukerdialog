@@ -9,14 +9,13 @@ import ArbeidssituasjonFrilansSummary from './ArbeidssituasjonFrilansSummary';
 import ArbeidssituasjonSNSummary from './ArbeidssituasjonSNSummary';
 import UtenlandskNæringSummary from './ArbeidssituasjonUtenlandskNæringSummary';
 import OpptjeningIUtlandetSummaryView from './OpptjeningIUtlandetSummaryView';
+import VernepliktigSummary from './VernepliktigSummary';
 
 interface Props {
     apiData: SøknadApiData;
     søknadsperiode: DateRange;
     frilansoppdrag?: Arbeidsgiver[];
 }
-
-const { Answers, Answer, Label, Value, Header, Heading } = FormSummary;
 
 const ArbeidssituasjonSummary: React.FC<Props> = ({
     apiData: {
@@ -33,12 +32,12 @@ const ArbeidssituasjonSummary: React.FC<Props> = ({
     return (
         <>
             <FormSummary>
-                <Header>
-                    <Heading level="2">
+                <FormSummary.Header>
+                    <FormSummary.Heading level="2">
                         <AppText id="steg.oppsummering.arbeidssituasjon.header" />
-                    </Heading>
-                </Header>
-                <Answers>
+                    </FormSummary.Heading>
+                </FormSummary.Header>
+                <FormSummary.Answers>
                     <ArbeidsgivereSummary arbeidsgivere={arbeidsgivere} søknadsperiode={søknadsperiode} />
 
                     <ArbeidssituasjonFrilansSummary frilans={frilans} frilansoppdrag={frilansoppdrag} />
@@ -51,22 +50,9 @@ const ArbeidssituasjonSummary: React.FC<Props> = ({
 
                     {/* Vernepliktig */}
                     {harVærtEllerErVernepliktig !== undefined && (
-                        <Answer>
-                            <Label>
-                                <AppText id="oppsummering.arbeidssituasjon.verneplikt.header" />
-                            </Label>
-                            <Value>
-                                <AppText
-                                    id={
-                                        harVærtEllerErVernepliktig
-                                            ? 'oppsummering.arbeidssituasjon.verneplikt.harVærtVernepliktig'
-                                            : 'oppsummering.arbeidssituasjon.verneplikt.harIkkeVærtVernepliktig'
-                                    }
-                                />
-                            </Value>
-                        </Answer>
+                        <VernepliktigSummary harVærtEllerErVernepliktig={harVærtEllerErVernepliktig} />
                     )}
-                </Answers>
+                </FormSummary.Answers>
             </FormSummary>
         </>
     );
