@@ -34,28 +34,34 @@ const IngenSakEllerSøknadPage = () => (
                                         <BodyLong as="div">
                                             <AppText id="ingeSakPage.melding.andreYtelser.tekst.avsnitt.1" />
                                         </BodyLong>
-                                        <BodyLong as="div">
-                                            <AppText
-                                                id="ingeSakPage.melding.andreYtelser.tekst.avsnitt.2"
-                                                values={{
-                                                    Lenke: (children) => (
-                                                        <Link href={browserEnv.NEXT_PUBLIC_MIN_SIDE_URL}>
-                                                            {children}
-                                                        </Link>
-                                                    ),
-                                                }}
-                                            />
-                                        </BodyLong>
-                                        <BodyLong as="div">
-                                            <AppText
-                                                id="ingeSakPage.melding.andreYtelser.tekst.avsnitt.3"
-                                                values={{
-                                                    Lenke: (children) => (
-                                                        <Link href={browserEnv.NEXT_PUBLIC_NAV_URL}>{children}</Link>
-                                                    ),
-                                                }}
-                                            />
-                                        </BodyLong>
+                                        <Box className="mt-4">
+                                            <BodyLong as="div">
+                                                <AppText
+                                                    id="ingeSakPage.melding.andreYtelser.tekst.avsnitt.2"
+                                                    values={{
+                                                        Lenke: (children) => (
+                                                            <Link href={browserEnv.NEXT_PUBLIC_MIN_SIDE_URL}>
+                                                                {children}
+                                                            </Link>
+                                                        ),
+                                                    }}
+                                                />
+                                            </BodyLong>
+                                        </Box>
+                                        <Box className="mt-4">
+                                            <BodyLong as="div">
+                                                <AppText
+                                                    id="ingeSakPage.melding.andreYtelser.tekst.avsnitt.3"
+                                                    values={{
+                                                        Lenke: (children) => (
+                                                            <Link href={browserEnv.NEXT_PUBLIC_NAV_URL}>
+                                                                {children}
+                                                            </Link>
+                                                        ),
+                                                    }}
+                                                />
+                                            </BodyLong>
+                                        </Box>
                                     </Box>
                                 </div>
                             </Alert>
