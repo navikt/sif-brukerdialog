@@ -32,14 +32,26 @@ const IngenSakEllerSøknadPage = () => (
                                             <AppText id="ingeSakPage.melding.andreYtelser.tittel" />
                                         </Heading>
                                         <BodyLong as="div">
+                                            <AppText id="ingeSakPage.melding.andreYtelser.tekst.avsnitt.1" />
+                                        </BodyLong>
+                                        <BodyLong as="div">
                                             <AppText
-                                                id="ingeSakPage.melding.andreYtelser.tekst"
+                                                id="ingeSakPage.melding.andreYtelser.tekst.avsnitt.2"
                                                 values={{
                                                     Lenke: (children) => (
-                                                        <Link
-                                                            href={browserEnv.NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL}>
+                                                        <Link href={browserEnv.NEXT_PUBLIC_MIN_SIDE_URL}>
                                                             {children}
                                                         </Link>
+                                                    ),
+                                                }}
+                                            />
+                                        </BodyLong>
+                                        <BodyLong as="div">
+                                            <AppText
+                                                id="ingeSakPage.melding.andreYtelser.tekst.avsnitt.3"
+                                                values={{
+                                                    Lenke: (children) => (
+                                                        <Link href={browserEnv.NEXT_PUBLIC_NAV_URL}>{children}</Link>
                                                     ),
                                                 }}
                                             />
