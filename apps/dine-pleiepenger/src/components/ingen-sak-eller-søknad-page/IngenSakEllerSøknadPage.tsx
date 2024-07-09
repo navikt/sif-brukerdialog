@@ -39,12 +39,12 @@ const IngenSakEllerSøknadPage = () => (
                                                 <AppText
                                                     id="ingeSakPage.melding.andreYtelser.tekst.avsnitt.2"
                                                     values={{
-                                                        LenkeMinSide: (children) => (
+                                                        lenkeMinSide: (children) => (
                                                             <Link href={browserEnv.NEXT_PUBLIC_MIN_SIDE_URL}>
                                                                 {children}
                                                             </Link>
                                                         ),
-                                                        LenkeInnboksen: (children) => (
+                                                        lenkeInnboksen: (children) => (
                                                             <Link href={browserEnv.NEXT_PUBLIC_INNBOKS_URL}>
                                                                 {children}
                                                             </Link>
