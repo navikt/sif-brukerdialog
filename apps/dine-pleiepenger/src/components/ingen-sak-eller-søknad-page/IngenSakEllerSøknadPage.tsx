@@ -39,8 +39,13 @@ const IngenSakEllerSøknadPage = () => (
                                                 <AppText
                                                     id="ingeSakPage.melding.andreYtelser.tekst.avsnitt.2"
                                                     values={{
-                                                        Lenke: (children) => (
+                                                        LenkeMinSide: (children) => (
                                                             <Link href={browserEnv.NEXT_PUBLIC_MIN_SIDE_URL}>
+                                                                {children}
+                                                            </Link>
+                                                        ),
+                                                        LenkeInnboksen: (children) => (
+                                                            <Link href={browserEnv.NEXT_PUBLIC_INNBOKS_URL}>
                                                                 {children}
                                                             </Link>
                                                         ),
@@ -53,13 +58,8 @@ const IngenSakEllerSøknadPage = () => (
                                                 <AppText
                                                     id="ingeSakPage.melding.andreYtelser.tekst.avsnitt.3"
                                                     values={{
-                                                        LenkeMinSide: (children) => (
+                                                        Lenke: (children) => (
                                                             <Link href={browserEnv.NEXT_PUBLIC_NAV_URL}>
-                                                                {children}
-                                                            </Link>
-                                                        ),
-                                                        LenkeInnboksen: (children) => (
-                                                            <Link href={browserEnv.NEXT_PUBLIC_INNBOKS_URL}>
                                                                 {children}
                                                             </Link>
                                                         ),
