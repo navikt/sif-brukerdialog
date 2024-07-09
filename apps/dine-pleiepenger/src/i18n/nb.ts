@@ -15,7 +15,7 @@ export const nb = {
         'Ikke alle pengestøtter har innloggede informasjonssider. Denne siden viser kun saker som gjelder pleiepenger for sykt barn.',
 
     'ingeSakPage.melding.andreYtelser.tekst.avsnitt.2':
-        'Hvis du ikke finner egen informasjonsside på <Lenke>Min Side</Lenke>, finner du dine innsendte søknader og brev fra NAV i innboksen.',
+        'Hvis du ikke finner egen informasjonsside på <LenkeMinSide>Min Side</LenkeMinSide>, finner du dine innsendte søknader og brev fra NAV i <LenkeInnboksen>innboksen<LenkeInnboksen>.',
 
     'ingeSakPage.melding.andreYtelser.tekst.avsnitt.3':
         'Hvis du leter etter informasjon om søknader som du har sendt i ditt barns navn, vil du ikke finne informasjon om denne saken ved å logge inn på <Lenke>nav.no</Lenke> . Det gjelder for eksempel søknad om hjelpemidler og grunn- og hjelpestønad for barnet ditt. Du må da kontakte oss på telefon 55 55 33 33.',
