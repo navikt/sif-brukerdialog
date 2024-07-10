@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 1.5.2
+
+### Patch Changes
+
+-   38b2b0f: Tekstendringer - ingen sak side
+
 ## 1.5.1
 
 ### Patch Changes
