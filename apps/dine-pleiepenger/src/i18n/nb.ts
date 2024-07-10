@@ -9,7 +9,7 @@ export const nb = {
     'ingeSakPage.snarveier.tittel': 'Snarveier',
     'ingeSakPage.melding.tittel': 'Vi finner ingen sak om pleiepenger for sykt barn',
     'ingeSakPage.melding.tekst':
-        'Hvis du nettopp har sendt inn en søknad kan det ta opptil 15 minutter før den dukker opp her.',
+        'Hvis du nettopp har sendt inn en søknad kan det ta opptil 15 minutter før den vises her.',
     'ingeSakPage.melding.andreYtelser.tittel': 'Leter du etter informasjon om andre saker?',
     'ingeSakPage.melding.andreYtelser.tekst.avsnitt.1':
         'Ikke alle pengestøtter har innloggede informasjonssider. Denne siden viser kun saker som gjelder pleiepenger for sykt barn.',
