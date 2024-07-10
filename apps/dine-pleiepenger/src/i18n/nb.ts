@@ -7,12 +7,18 @@ export const nb = {
 
     'ingeSakPage.saker.tittel': 'Dine pleiengesaker for sykt barn',
     'ingeSakPage.snarveier.tittel': 'Snarveier',
-    'ingeSakPage.melding.tittel': 'Vi finner ingen søknader',
+    'ingeSakPage.melding.tittel': 'Vi finner ingen sak om pleiepenger for sykt barn',
     'ingeSakPage.melding.tekst':
-        'Hvis du nettopp har sendt inn en søknad kan det ta noen minutter før den dukker opp her.',
-    'ingeSakPage.melding.andreYtelser.tittel': 'Leter du etter søknader for andre ytelser?',
-    'ingeSakPage.melding.andreYtelser.tekst':
-        'Ikke alle ytelser har egne undersider. Denne siden viser kun søknader som gjelder pleiepenger for sykt barn. For søknader om pleiepenger i livets sluttfase, grunnstønad, hjelpestønad og andre ytelser, kan du se de innsendte søknadene i <Lenke>dokumentarkivet</Lenke>.',
+        'Hvis du nettopp har sendt inn en søknad kan det ta opptil 15 minutter før den vises her.',
+    'ingeSakPage.melding.andreYtelser.tittel': 'Leter du etter informasjon om andre saker?',
+    'ingeSakPage.melding.andreYtelser.tekst.avsnitt.1':
+        'Ikke alle pengestøtter har innloggede informasjonssider. Denne siden viser kun saker som gjelder pleiepenger for sykt barn.',
+
+    'ingeSakPage.melding.andreYtelser.tekst.avsnitt.2':
+        'Hvis du ikke finner egen informasjonsside på <lenkeMinSide>Min Side</lenkeMinSide>, finner du dine innsendte søknader og brev fra NAV i <lenkeInnboksen>innboksen</lenkeInnboksen>.',
+
+    'ingeSakPage.melding.andreYtelser.tekst.avsnitt.3':
+        'Hvis du leter etter informasjon om søknader som du har sendt i ditt barns navn, vil du ikke finne informasjon om denne saken ved å logge inn på <Lenke>nav.no</Lenke> . Det gjelder for eksempel søknad om hjelpemidler og grunn- og hjelpestønad for barnet ditt. Du må da kontakte oss på telefon 55 55 33 33.',
 
     'barn.navn.anonymisert': 'Pleietrengende',
 

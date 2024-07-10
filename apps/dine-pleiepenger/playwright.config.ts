@@ -47,7 +47,9 @@ export default defineConfig({
             NEXT_PUBLIC_SKJEMA_ETTERSENDELSE_URL:
                 'https://k9-ettersending-soknad.intern.dev.nav.no/familie/sykdom-i-familien/soknad/ettersending/pleiepenger',
             NEXT_PUBLIC_KLAGE_INFO_URL: 'https://www.nav.no/person/kontakt-oss/nb/tilbakemeldinger',
-            NEXT_PUBLIC_MIN_SIDE_URL: 'https://www.dev.nav.no/minside',
+            NEXT_PUBLIC_MIN_SIDE_URL: 'https://www.intern.dev.nav.no/minside',
+            NEXT_PUBLIC_NAV_URL: 'https://www.ansatt.dev.nav.no',
+            NEXT_PUBLIC_INNBOKS_URL: 'https://innboks.dev.nav.no',
             NEXT_PUBLIC_SKJEMA_PLEIEPENGER_URL:
                 'https://pleiepengesoknad.intern.dev.nav.no/familie/sykdom-i-familien/soknad/pleiepenger/soknad/',
             NEXT_PUBLIC_PLEIEPENGER_INFO_URL: 'https://www.dev.nav.no/pleiepenger-barn',
