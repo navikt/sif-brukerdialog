@@ -32,9 +32,6 @@ const PictureScanningGuide = () => {
                         <li>
                             <CoreText id="psg.section1.liste.3" />
                         </li>
-                        <li>
-                            <CoreText id="psg.section1.liste.4" />
-                        </li>
                     </ul>
                 </BodyLong>
 
@@ -54,7 +51,22 @@ const PictureScanningGuide = () => {
                         </li>
                     </ul>
                 </div>
-
+                <div>
+                    <Heading level="3" size="xsmall" spacing={true}>
+                        <CoreText id="psg.section3.tittel" />
+                    </Heading>
+                    <ul>
+                        <li>
+                            <CoreText id="psg.section3.liste.1" />
+                        </li>
+                        <li>
+                            <CoreText id="psg.section3.liste.2" />
+                        </li>
+                        <li>
+                            <CoreText id="psg.section3.liste.3" />
+                        </li>
+                    </ul>
+                </div>
                 <div>
                     <Heading level="3" size="xsmall" spacing={true}>
                         <CoreText id="psg.icon.heading" />
