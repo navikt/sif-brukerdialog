@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/sif-ettersending",
     "repository": "https://github.com/navikt/sif-ettersending",
-    "version": "3.34.2",
+    "version": "3.34.3",
     "private": true,
     "type": "module",
     "dependencies": {
