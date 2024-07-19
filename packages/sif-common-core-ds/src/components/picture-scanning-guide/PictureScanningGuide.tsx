@@ -17,7 +17,7 @@ const PictureScanningGuide = () => {
         <ExpandableInfo title={text('psg.expandable.tittel')}>
             <div className={bem.block}>
                 <Block margin="l">
-                    <Heading level="2" size="small" spacing={true}>
+                    <Heading level="3" size="xsmall" spacing={true}>
                         <CoreText id="psg.section1.tittel" />
                     </Heading>
                 </Block>
@@ -31,9 +31,6 @@ const PictureScanningGuide = () => {
                         </li>
                         <li>
                             <CoreText id="psg.section1.liste.3" />
-                        </li>
-                        <li>
-                            <CoreText id="psg.section1.liste.4" />
                         </li>
                     </ul>
                 </BodyLong>
@@ -54,7 +51,22 @@ const PictureScanningGuide = () => {
                         </li>
                     </ul>
                 </div>
-
+                <div>
+                    <Heading level="3" size="xsmall" spacing={true}>
+                        <CoreText id="psg.section3.tittel" />
+                    </Heading>
+                    <ul>
+                        <li>
+                            <CoreText id="psg.section3.liste.1" />
+                        </li>
+                        <li>
+                            <CoreText id="psg.section3.liste.2" />
+                        </li>
+                        <li>
+                            <CoreText id="psg.section3.liste.3" />
+                        </li>
+                    </ul>
+                </div>
                 <div>
                     <Heading level="3" size="xsmall" spacing={true}>
                         <CoreText id="psg.icon.heading" />
