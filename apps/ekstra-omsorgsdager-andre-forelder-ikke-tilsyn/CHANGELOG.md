@@ -1,5 +1,13 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.25.3
+
+### Patch Changes
+
+-   Updated dependencies [fd363d7]
+    -   @navikt/sif-common-core-ds@9.17.16
+    -   @navikt/sif-common-soknad-ds@10.16.1
+
 ## 1.25.2
 
 ### Patch Changes
