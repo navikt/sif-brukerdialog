@@ -17,7 +17,7 @@ const PictureScanningGuide = () => {
         <ExpandableInfo title={text('psg.expandable.tittel')}>
             <div className={bem.block}>
                 <Block margin="l">
-                    <Heading level="2" size="small" spacing={true}>
+                    <Heading level="3" size="xsmall" spacing={true}>
                         <CoreText id="psg.section1.tittel" />
                     </Heading>
                 </Block>
