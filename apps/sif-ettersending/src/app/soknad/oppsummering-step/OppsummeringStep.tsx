@@ -118,7 +118,7 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
                                                 </div>
                                             )}
                                             {apiValues.pleietrengende?.norskIdentitetsnummer && (
-                                                <div>
+                                                <div data-testid="fnr-barn">
                                                     {text('steg.oppsummering.barn.fnr', {
                                                         fnr: apiValues.pleietrengende?.norskIdentitetsnummer,
                                                     })}

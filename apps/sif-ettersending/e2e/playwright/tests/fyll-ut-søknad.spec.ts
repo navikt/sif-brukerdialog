@@ -33,19 +33,29 @@ test.describe('Start og innsending av ettersending', () => {
     test('Fyller ut og sender inn ett vedlegg', async ({ page }) => {
         await utfyllingUtils.velgYtelsePleiepenger(page);
         await utfyllingUtils.startSøknad(page);
-        await utfyllingUtils.fyllUtBeskrivelseSteg(page, false);
+        await utfyllingUtils.fyllUtdokumentTypeSteg(page, false);
         await utfyllingUtils.fyllUtDokumenterSteg(page);
-        await utfyllingUtils.kontrollerOppsummering(page);
+        await utfyllingUtils.kontrollerOppsummeringPPSyktBarn(page, false);
         await utfyllingUtils.sendInnDokumenter(page);
         await utfyllingUtils.kontrollerKvittering(page);
     });
-    test('Fyller ut og sender inn legeerklæring', async ({ page }) => {
+    test('Fyller ut og sender inn legeerklæring med barn fra liste', async ({ page }) => {
         await utfyllingUtils.velgYtelsePleiepenger(page);
         await utfyllingUtils.startSøknad(page);
-        await utfyllingUtils.fyllUtBeskrivelseSteg(page, true);
+        await utfyllingUtils.fyllUtdokumentTypeSteg(page, true);
         await utfyllingUtils.fyllUtDokumenterSteg(page);
-        await utfyllingUtils.kontrollerOppsummering(page);
+        await utfyllingUtils.kontrollerOppsummeringPPSyktBarn(page, true);
         await utfyllingUtils.sendInnDokumenter(page);
         await utfyllingUtils.kontrollerKvitteringLegeerklæring(page);
+    });
+
+    test('Fyller ut og sender inn annet med annet barn', async ({ page }) => {
+        await utfyllingUtils.velgYtelsePleiepenger(page);
+        await utfyllingUtils.startSøknad(page);
+        await utfyllingUtils.fyllUtdokumentTypeSteg(page, false, '02869599258');
+        await utfyllingUtils.fyllUtDokumenterSteg(page);
+        await utfyllingUtils.kontrollerOppsummeringPPSyktBarn(page, false, '02869599258');
+        await utfyllingUtils.sendInnDokumenter(page);
+        await utfyllingUtils.kontrollerKvittering(page);
     });
 });
