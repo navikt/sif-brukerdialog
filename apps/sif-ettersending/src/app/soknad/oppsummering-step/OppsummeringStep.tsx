@@ -101,9 +101,11 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
                                     </FormSummary.Answer>
                                 )}
 
-                                {apiValues.ettersendelsesType === DokumentType.legeerklæring && (
+                                {apiValues.pleietrengende !== undefined && (
                                     <FormSummary.Answer>
-                                        <FormSummary.Label>Hvilket barn gjelder legeerklæringen?</FormSummary.Label>
+                                        <FormSummary.Label>
+                                            <AppText id="steg.oppsummering.barn.spm" />
+                                        </FormSummary.Label>
                                         <FormSummary.Value>
                                             {values.valgteRegistrertBarn && (
                                                 <div>

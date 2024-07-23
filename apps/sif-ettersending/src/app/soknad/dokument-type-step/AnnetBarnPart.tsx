@@ -27,6 +27,9 @@ const AnnetBarnPart = ({ søkersFødselsnummer, harRegistrerteBarn }: Props) => 
                 <div>
                     <SoknadFormComponents.TextField
                         label={text('step.dokumentType.annetBarn.fnr.spm')}
+                        description={
+                            !harRegistrerteBarn ? text('step.dokumentType.annetBarn.fnr.spm.description') : undefined
+                        }
                         name={SoknadFormField.barnetsFødselsnummer}
                         validate={getFødselsnummerValidator({
                             required: true,

@@ -25,17 +25,17 @@ interface Props {
 const DokumentTypeStep = ({ søknadstype, søkersFødselsnummer, registrertBarn }: Props) => {
     const { text } = useAppIntl();
     const {
-        values: { legeerklæringGjelderEtAnnetBarn, dokumentType, registrertBarnAktørId, barnetsFødselsnummer },
+        values: { gjelderEtAnnetBarn, dokumentType },
         setFieldValue,
     } = useFormikContext<SoknadFormData>();
 
     const harRegistrerteBarn = registrertBarn.length > 0;
 
     useEffect(() => {
-        if (!harRegistrerteBarn && legeerklæringGjelderEtAnnetBarn === undefined) {
-            setFieldValue(SoknadFormField.legeerklæringGjelderEtAnnetBarn, true);
+        if (!harRegistrerteBarn && gjelderEtAnnetBarn === undefined) {
+            setFieldValue(SoknadFormField.gjelderEtAnnetBarn, true);
         }
-    }, [harRegistrerteBarn, legeerklæringGjelderEtAnnetBarn, setFieldValue]);
+    }, [harRegistrerteBarn, gjelderEtAnnetBarn, setFieldValue]);
 
     return (
         <SoknadFormStep id={StepID.DOKUMENT_TYPE} søknadstype={søknadstype}>
@@ -81,56 +81,8 @@ const DokumentTypeStep = ({ søknadstype, søkersFødselsnummer, registrertBarn 
                     }))}
                     validate={getRequiredFieldValidator()}
                     value={dokumentType}
-                    afterOnChange={(value) => {
-                        if (value !== DokumentType.legeerklæring) {
-                            setFieldValue(SoknadFormField.registrertBarnAktørId, undefined);
-                            setFieldValue(SoknadFormField.barnetsFødselsnummer, undefined);
-                            setFieldValue(SoknadFormField.legeerklæringGjelderEtAnnetBarn, undefined);
-                            setFieldValue(SoknadFormField.valgteRegistrertBarn, undefined);
-                        }
-                        if (value !== DokumentType.annet) {
-                            setFieldValue(SoknadFormField.beskrivelse, undefined);
-                        }
-                    }}
                 />
             </FormBlock>
-
-            {dokumentType === DokumentType.legeerklæring && (
-                <>
-                    <FormBlock>
-                        <RegistrertBarnPart registrertBarn={registrertBarn} />
-                    </FormBlock>
-
-                    {(legeerklæringGjelderEtAnnetBarn || !harRegistrerteBarn) && (
-                        <AnnetBarnPart
-                            søkersFødselsnummer={søkersFødselsnummer}
-                            harRegistrerteBarn={harRegistrerteBarn}
-                        />
-                    )}
-                    {(!!registrertBarnAktørId || !harRegistrerteBarn || barnetsFødselsnummer?.length === 11) && (
-                        <FormBlock>
-                            <Alert variant="info" className="mb-10">
-                                <Heading level="3" size="small" className="mb-4">
-                                    <AppText id="step.dokumentType.barn.info.tittel" />
-                                </Heading>
-                                <AppText
-                                    id="step.dokumentType.barn.info.1.1"
-                                    values={{
-                                        ppSyktBarnLenke: (
-                                            <Link
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                href={getLenker().pleiepengerSyktBarn}>
-                                                <AppText id="step.dokumentType.barn.info.lenke" />
-                                            </Link>
-                                        ),
-                                    }}
-                                />
-                            </Alert>
-                        </FormBlock>
-                    )}
-                </>
-            )}
 
             {dokumentType === DokumentType.annet && (
                 <FormBlock>
@@ -141,6 +93,44 @@ const DokumentTypeStep = ({ søknadstype, søkersFødselsnummer, registrertBarn 
                         <AppText id="step.dokumentType.annet.info.2" />
                     </Alert>
                 </FormBlock>
+            )}
+
+            {dokumentType === DokumentType.legeerklæring && (
+                <FormBlock>
+                    <Alert variant="info" className="mb-10">
+                        <Heading level="3" size="small" className="mb-4">
+                            <AppText id="step.dokumentType.barn.info.tittel" />
+                        </Heading>
+                        <AppText
+                            id="step.dokumentType.barn.info.1.1"
+                            values={{
+                                ppSyktBarnLenke: (
+                                    <Link
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        href={getLenker().pleiepengerSyktBarn}>
+                                        <AppText id="step.dokumentType.barn.info.lenke" />
+                                    </Link>
+                                ),
+                            }}
+                        />
+                    </Alert>
+                </FormBlock>
+            )}
+
+            {dokumentType && (
+                <>
+                    <FormBlock>
+                        <RegistrertBarnPart registrertBarn={registrertBarn} />
+                    </FormBlock>
+
+                    {(gjelderEtAnnetBarn || !harRegistrerteBarn) && (
+                        <AnnetBarnPart
+                            søkersFødselsnummer={søkersFødselsnummer}
+                            harRegistrerteBarn={harRegistrerteBarn}
+                        />
+                    )}
+                </>
             )}
         </SoknadFormStep>
     );

@@ -16,7 +16,7 @@ interface Props {
 const RegistrertBarnPart = ({ registrertBarn }: Props) => {
     const { text } = useAppIntl();
     const {
-        values: { legeerklæringGjelderEtAnnetBarn },
+        values: { gjelderEtAnnetBarn },
         setFieldValue,
     } = useFormikContext<SoknadFormData>();
 
@@ -27,6 +27,7 @@ const RegistrertBarnPart = ({ registrertBarn }: Props) => {
                     <SoknadFormComponents.RadioGroup
                         name={SoknadFormField.registrertBarnAktørId}
                         legend={text('step.dokumentType.registrertBarnPart.spm')}
+                        description={text('step.dokumentType.registrertBarnPart.spm.description')}
                         radios={registrertBarn.map((barn) => {
                             const { fornavn, mellomnavn, etternavn, fødselsdato, aktørId } = barn;
                             const barnetsNavn = formatName(fornavn, etternavn, mellomnavn);
@@ -43,7 +44,7 @@ const RegistrertBarnPart = ({ registrertBarn }: Props) => {
                                         </div>
                                     </BodyShort>
                                 ),
-                                disabled: legeerklæringGjelderEtAnnetBarn,
+                                disabled: gjelderEtAnnetBarn,
                             };
                         })}
                         afterOnChange={(value) => {
@@ -60,13 +61,13 @@ const RegistrertBarnPart = ({ registrertBarn }: Props) => {
                                 });
                             }
                         }}
-                        validate={legeerklæringGjelderEtAnnetBarn ? undefined : getRequiredFieldValidator()}
+                        validate={gjelderEtAnnetBarn ? undefined : getRequiredFieldValidator()}
                     />
 
                     <FormBlock margin="l">
                         <SoknadFormComponents.Checkbox
                             label={text('step.dokumentType.gjelderAnnetBarn')}
-                            name={SoknadFormField.legeerklæringGjelderEtAnnetBarn}
+                            name={SoknadFormField.gjelderEtAnnetBarn}
                             afterOnChange={(newValue) => {
                                 if (newValue) {
                                     setFieldValue(SoknadFormField.registrertBarnAktørId, undefined);
