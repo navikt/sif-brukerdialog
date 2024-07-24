@@ -3648,7 +3648,7 @@ __metadata:
     dayjs: "npm:1.11.11"
     dotenv: "npm:16.4.5"
     express: "npm:4.19.2"
-    express-rate-limit: "npm:7.3.1"
+    express-rate-limit: "npm:7.4.0"
     formik: "npm:2.4.6"
     helmet: "npm:7.1.0"
     http-proxy-middleware: "npm:3.0.0"
@@ -3724,7 +3724,7 @@ __metadata:
     dayjs: "npm:1.11.11"
     dotenv: "npm:16.4.5"
     express: "npm:4.19.2"
-    express-rate-limit: "npm:7.3.1"
+    express-rate-limit: "npm:7.4.0"
     flat: "npm:6.0.1"
     formik: "npm:2.4.6"
     http-proxy-middleware: "npm:3.0.0"
@@ -3834,7 +3834,7 @@ __metadata:
     dayjs: "npm:1.11.11"
     dotenv: "npm:16.4.5"
     express: "npm:4.19.2"
-    express-rate-limit: "npm:7.3.1"
+    express-rate-limit: "npm:7.4.0"
     formik: "npm:2.4.6"
     helmet: "npm:7.1.0"
     http-proxy-middleware: "npm:3.0.0"
@@ -3940,7 +3940,7 @@ __metadata:
     dotenv: "npm:16.4.5"
     eslint-plugin-storybook: "npm:0.8.0"
     express: "npm:4.19.2"
-    express-rate-limit: "npm:7.3.1"
+    express-rate-limit: "npm:7.4.0"
     helmet: "npm:7.1.0"
     history: "npm:5.3.0"
     http-proxy-middleware: "npm:3.0.0"
@@ -4015,7 +4015,7 @@ __metadata:
     dotenv: "npm:16.4.5"
     eslint-plugin-storybook: "npm:0.8.0"
     express: "npm:4.19.2"
-    express-rate-limit: "npm:7.3.1"
+    express-rate-limit: "npm:7.4.0"
     helmet: "npm:7.1.0"
     http-proxy-middleware: "npm:3.0.0"
     jose: "npm:5.6.2"
@@ -4089,7 +4089,7 @@ __metadata:
     dayjs: "npm:1.11.11"
     dotenv: "npm:16.4.5"
     express: "npm:4.19.2"
-    express-rate-limit: "npm:7.3.1"
+    express-rate-limit: "npm:7.4.0"
     formik: "npm:2.4.6"
     helmet: "npm:7.1.0"
     http-proxy-middleware: "npm:3.0.0"
@@ -4162,7 +4162,7 @@ __metadata:
     dotenv: "npm:16.4.5"
     eslint-plugin-storybook: "npm:0.8.0"
     express: "npm:4.19.2"
-    express-rate-limit: "npm:7.3.1"
+    express-rate-limit: "npm:7.4.0"
     formik: "npm:2.4.6"
     helmet: "npm:7.1.0"
     http-proxy-middleware: "npm:3.0.0"
@@ -4248,7 +4248,7 @@ __metadata:
     eslint-plugin-react-hooks: "npm:4.6.2"
     eslint-plugin-storybook: "npm:0.8.0"
     express: "npm:4.19.2"
-    express-rate-limit: "npm:7.3.1"
+    express-rate-limit: "npm:7.4.0"
     formik: "npm:2.4.6"
     helmet: "npm:7.1.0"
     http-proxy-middleware: "npm:3.0.0"
@@ -4704,7 +4704,7 @@ __metadata:
     dayjs: "npm:1.11.11"
     dotenv: "npm:16.4.5"
     express: "npm:4.19.2"
-    express-rate-limit: "npm:7.3.1"
+    express-rate-limit: "npm:7.4.0"
     formik: "npm:2.4.6"
     helmet: "npm:7.1.0"
     http-proxy-middleware: "npm:3.0.0"
@@ -13841,12 +13841,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"express-rate-limit@npm:7.3.1":
-  version: 7.3.1
-  resolution: "express-rate-limit@npm:7.3.1"
+"express-rate-limit@npm:7.4.0":
+  version: 7.4.0
+  resolution: "express-rate-limit@npm:7.4.0"
   peerDependencies:
     express: 4 || 5 || ^5.0.0-beta.1
-  checksum: 10/9d9c2ea59d778d0e74aca91cb70cd784a29b0e1193ad3cb7e057d79dca7507c48a6bfb7ca0eb7173c2110f08969d65a30bf9071cb6642b4422d2848ac7f27b33
+  checksum: 10/33178c652bb1472aad2022194b5cd7963bd3e74d3eaf5e49eb1491a968fdce54551cc76b097ac10d3a1646d62cec2e6f2405ccef5ef5b60152a0c4a148749a4d
   languageName: node
   linkType: hard
 
