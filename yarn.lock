@@ -4291,7 +4291,7 @@ __metadata:
   resolution: "@navikt/sif-brukerdialog@workspace:."
   dependencies:
     "@changesets/cli": "npm:2.27.7"
-    husky: "npm:9.0.11"
+    husky: "npm:9.1.2"
     lint-staged: "npm:15.2.7"
     npm-run-all: "npm:4.1.5"
     prettier: "npm:3.3.2"
@@ -15436,12 +15436,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"husky@npm:9.0.11":
-  version: 9.0.11
-  resolution: "husky@npm:9.0.11"
+"husky@npm:9.1.2":
+  version: 9.1.2
+  resolution: "husky@npm:9.1.2"
   bin:
-    husky: bin.mjs
-  checksum: 10/8a9b7cb9dc8494b470b3b47b386e65d579608c6206da80d3cc8b71d10e37947264af3dfe00092368dad9673b51d2a5ee87afb4b2291e77ba9e7ec1ac36e56cd1
+    husky: bin.js
+  checksum: 10/0a187a0b7808f8dda700c14210adf2e894a9639c61dea801551afa2d9fd776aa96ec0bcd3bb7efbaecc8539de593622ebad907ea58dc9ef6c12e24916f0be2a6
   languageName: node
   linkType: hard
 
