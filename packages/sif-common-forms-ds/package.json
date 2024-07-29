@@ -10,7 +10,7 @@
     },
     "devDependencies": {
         "@babel/core": "7.24.7",
-        "@babel/preset-env": "7.24.7",
+        "@babel/preset-env": "7.25.0",
         "@babel/preset-react": "7.24.7",
         "@babel/preset-typescript": "7.24.7",
         "@formatjs/intl-pluralrules": "5.2.14",
