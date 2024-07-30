@@ -3715,7 +3715,7 @@ __metadata:
     "@types/react-modal": "npm:3.16.3"
     "@types/react-router-dom": "npm:5.3.3"
     "@vitejs/plugin-react": "npm:4.3.1"
-    axe-core: "npm:4.9.1"
+    axe-core: "npm:4.10.0"
     axios: "npm:1.7.2"
     babel-polyfill: "npm:6.26.0"
     compression: "npm:1.7.4"
@@ -4078,7 +4078,7 @@ __metadata:
     "@types/react-dom": "npm:18.3.0"
     "@types/react-router-dom": "npm:5.3.3"
     "@vitejs/plugin-react": "npm:4.3.1"
-    axe-core: "npm:4.9.1"
+    axe-core: "npm:4.10.0"
     axios: "npm:1.7.2"
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
@@ -4232,7 +4232,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:7.15.0"
     "@typescript-eslint/parser": "npm:7.15.0"
     "@vitejs/plugin-react": "npm:4.3.1"
-    axe-core: "npm:4.9.1"
+    axe-core: "npm:4.10.0"
     axios: "npm:1.7.2"
     busboy: "npm:1.6.0"
     classnames: "npm:2.5.1"
@@ -4692,7 +4692,7 @@ __metadata:
     "@types/react-router-dom": "npm:5.3.3"
     "@types/uuid": "npm:10.0.0"
     "@vitejs/plugin-react": "npm:4.3.1"
-    axe-core: "npm:4.9.1"
+    axe-core: "npm:4.10.0"
     axios: "npm:1.7.2"
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
@@ -10099,7 +10099,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axe-core@npm:4.9.1, axe-core@npm:^4.2.0, axe-core@npm:^4.9.1, axe-core@npm:~4.9.1":
+"axe-core@npm:4.10.0":
+  version: 4.10.0
+  resolution: "axe-core@npm:4.10.0"
+  checksum: 10/6158489a7a704edc98bd30ed56243b8280c5203c60e095a2feb5bff95d9bf2ef10becfe359b1cbc8601338418999c26cf4eee704181dedbcb487f4d63a06d8d5
+  languageName: node
+  linkType: hard
+
+"axe-core@npm:^4.2.0, axe-core@npm:^4.9.1, axe-core@npm:~4.9.1":
   version: 4.9.1
   resolution: "axe-core@npm:4.9.1"
   checksum: 10/9d4944f6d3289428e1c6b41a80516f6558a960889f59c3c00f0fb88b955eda81edf9ca377c2cbc2a775f4003596d2aeaa35acca5aad3e1fc6b3d1e26e82b02cc
