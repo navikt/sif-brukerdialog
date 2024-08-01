@@ -9,8 +9,8 @@
         "date-fns": "3.6.0"
     },
     "devDependencies": {
-        "@babel/core": "7.24.7",
-        "@babel/preset-env": "7.24.7",
+        "@babel/core": "7.25.2",
+        "@babel/preset-env": "7.25.3",
         "@babel/preset-react": "7.24.7",
         "@babel/preset-typescript": "7.24.7",
         "@formatjs/intl-pluralrules": "5.2.14",

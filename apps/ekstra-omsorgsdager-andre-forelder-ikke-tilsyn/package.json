@@ -57,10 +57,10 @@
     },
     "devDependencies": {
         "@axe-core/playwright": "4.9.1",
-        "@babel/core": "7.24.7",
+        "@babel/core": "7.25.2",
         "@babel/plugin-proposal-object-rest-spread": "7.20.7",
         "@babel/plugin-transform-modules-commonjs": "7.24.7",
-        "@babel/preset-env": "7.24.7",
+        "@babel/preset-env": "7.25.3",
         "@babel/preset-react": "7.24.7",
         "@playwright/test": "1.45.0",
         "@storybook/react-vite": "8.1.11",
