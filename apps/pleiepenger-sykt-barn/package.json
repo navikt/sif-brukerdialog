@@ -41,7 +41,7 @@
         "openid-client": "5.6.5",
         "react": "18.3.1",
         "react-day-picker": "8.10.1",
-        "react-router-dom": "6.24.0",
+        "react-router-dom": "6.26.0",
         "uuid": "10.0.0"
     },
     "devDependencies": {
