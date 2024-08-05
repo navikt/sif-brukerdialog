@@ -14,7 +14,7 @@
     "devDependencies": {
         "@navikt/ds-css": "6.13.0",
         "@navikt/ds-react": "6.13.0",
-        "@types/node": "20.14.14",
+        "@types/node": "22.1.0",
         "@types/react": "18.3.3",
         "@types/react-dom": "18.3.0",
         "config": "workspace:*",
@@ -23,7 +23,7 @@
         "prop-types": "15.8.1",
         "react": "18.3.1",
         "react-dom": "18.3.1",
-        "rimraf": "5.0.10",
+        "rimraf": "6.0.1",
         "sass": "1.77.8"
     },
     "scripts": {
