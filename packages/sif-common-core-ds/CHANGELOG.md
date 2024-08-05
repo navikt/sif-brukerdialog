@@ -1,5 +1,19 @@
 # @navikt/sif-common-core-ds
 
+## 9.17.17
+
+### Patch Changes
+
+-   Minor og patch oppdateringer
+-   Updated dependencies
+    -   @navikt/sif-common-utils@3.46.8
+
+## 9.17.16
+
+### Patch Changes
+
+-   fd363d7: Ny tekst i picture scanning guide - Trygg bruk av bilde i søknaden
+
 ## 9.17.15
 
 ### Patch Changes
