@@ -6,14 +6,14 @@
     "version": "3.46.7",
     "private": true,
     "dependencies": {
-        "dayjs": "1.11.11",
+        "dayjs": "1.11.12",
         "iso8601-duration": "2.1.2",
         "lodash": "4.17.21",
         "uuid": "10.0.0"
     },
     "devDependencies": {
-        "@babel/core": "7.24.7",
-        "@babel/preset-env": "7.24.7",
+        "@babel/core": "7.25.2",
+        "@babel/preset-env": "7.25.3",
         "@babel/preset-react": "7.24.7",
         "@types/node": "20.14.9",
         "@types/react": "18.3.3",
