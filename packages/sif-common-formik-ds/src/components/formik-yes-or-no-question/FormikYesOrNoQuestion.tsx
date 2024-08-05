@@ -23,6 +23,7 @@ function FormikYesOrNoQuestion<FieldName, ErrorType>({
         <FormikRadioGroup<FieldName, ErrorType>
             data-testid={testKey}
             {...restProps}
+            renderHorizontal={true}
             radios={[
                 { label: yesLabel, value: YesOrNo.YES, ['data-testid']: testKey ? `${testKey}_yes` : undefined },
                 { label: noLabel, value: YesOrNo.NO, ['data-testid']: testKey ? `${testKey}_no` : undefined },
