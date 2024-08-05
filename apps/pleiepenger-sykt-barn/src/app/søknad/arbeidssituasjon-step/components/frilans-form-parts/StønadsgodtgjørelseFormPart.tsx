@@ -53,21 +53,11 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
             {stønadGodtgjørelse && stønadGodtgjørelse.mottarStønadGodtgjørelse === YesOrNo.YES && (
                 <FormBlock>
                     <ResponsivePanel border={true}>
-                        <StønadGodtgjørelseFormComponents.RadioGroup
+                        <StønadGodtgjørelseFormComponents.YesOrNoQuestion
                             name={StønadGodtgjørelseFormField.mottarStønadGodtgjørelseIHelePerioden}
                             legend={text(
                                 'steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePerioden.spm',
                             )}
-                            radios={[
-                                {
-                                    label: 'Ja',
-                                    value: YesOrNo.YES,
-                                },
-                                {
-                                    label: 'Nei',
-                                    value: YesOrNo.NO,
-                                },
-                            ]}
                             validate={getRequiredFieldValidator()}
                             value={stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePerioden}
                         />
@@ -75,19 +65,9 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
                         {stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePerioden === YesOrNo.NO && (
                             <>
                                 <FormBlock>
-                                    <StønadGodtgjørelseFormComponents.RadioGroup
+                                    <StønadGodtgjørelseFormComponents.YesOrNoQuestion
                                         name={StønadGodtgjørelseFormField.starterUndeveis}
                                         legend={text('steg.arbeidssituasjon.stønadGodtgjørelse.starterUndeveis.spm')}
-                                        radios={[
-                                            {
-                                                label: 'Ja',
-                                                value: YesOrNo.YES,
-                                            },
-                                            {
-                                                label: 'Nei',
-                                                value: YesOrNo.NO,
-                                            },
-                                        ]}
                                         validate={getRequiredFieldValidator()}
                                         value={stønadGodtgjørelse.starterUndeveis}
                                     />
@@ -112,19 +92,9 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
                                     )}
                                 </FormBlock>
                                 <FormBlock>
-                                    <StønadGodtgjørelseFormComponents.RadioGroup
+                                    <StønadGodtgjørelseFormComponents.YesOrNoQuestion
                                         name={StønadGodtgjørelseFormField.slutterUnderveis}
                                         legend={text('steg.arbeidssituasjon.stønadGodtgjørelse.slutterUndeveis.spm')}
-                                        radios={[
-                                            {
-                                                label: 'Ja',
-                                                value: YesOrNo.YES,
-                                            },
-                                            {
-                                                label: 'Nei',
-                                                value: YesOrNo.NO,
-                                            },
-                                        ]}
                                         validate={(value) => {
                                             if (
                                                 value === YesOrNo.NO &&

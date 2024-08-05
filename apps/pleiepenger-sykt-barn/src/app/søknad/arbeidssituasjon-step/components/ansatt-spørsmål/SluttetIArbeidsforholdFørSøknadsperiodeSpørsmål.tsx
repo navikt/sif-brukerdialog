@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppIntl } from '@i18n/index';
-import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds/src';
+import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/src';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
 import {
@@ -27,22 +27,12 @@ const SluttetIArbeidsforholdFørSøknadsperiodeSpørsmål: React.FunctionCompone
 }) => {
     const { text } = useAppIntl();
     return (
-        <AnsattFormComponents.RadioGroup
+        <AnsattFormComponents.YesOrNoQuestion
             name={fieldName}
             legend={text('arbeidsforhold.sluttetFørSøknadsperiode.spm', {
                 navn: arbeidsforhold.arbeidsgiver.navn,
                 fraDato: dateFormatter.full(søknadsperiode.from),
             })}
-            radios={[
-                {
-                    label: 'Ja',
-                    value: YesOrNo.YES,
-                },
-                {
-                    label: 'Nei',
-                    value: YesOrNo.NO,
-                },
-            ]}
             value={arbeidsforhold.sluttetFørSøknadsperiode}
             data-testid="sluttet-før-søknadsperiode"
             validate={(value) => {

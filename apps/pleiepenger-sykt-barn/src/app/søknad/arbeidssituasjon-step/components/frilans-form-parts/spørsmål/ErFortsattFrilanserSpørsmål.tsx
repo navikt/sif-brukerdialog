@@ -12,7 +12,7 @@ interface Props {
 const ErFortsattFrilanserSpørsmål: React.FunctionComponent<Props> = ({ erFortsattFrilanserValue }) => {
     const { text } = useAppIntl();
     return (
-        <ArbFriFormComponents.RadioGroup
+        <ArbFriFormComponents.YesOrNoQuestion
             name={FrilansFormField.erFortsattFrilanser}
             data-testid="erFortsattFrilanser"
             legend={text(`frilanser.erFortsattFrilanser.spm`)}
@@ -24,18 +24,6 @@ const ErFortsattFrilanserSpørsmål: React.FunctionComponent<Props> = ({ erForts
                       }
                     : undefined;
             }}
-            radios={[
-                {
-                    label: 'Ja',
-                    value: YesOrNo.YES,
-                    'data-testid': 'er-fortsatt-frilanser_yes',
-                },
-                {
-                    label: 'Nei',
-                    value: YesOrNo.NO,
-                    'data-testid': 'er-fortsatt-frilanser_no',
-                },
-            ]}
             value={erFortsattFrilanserValue}
         />
     );
