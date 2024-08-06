@@ -118,14 +118,16 @@ const ArbeidssituasjonFrilans = ({
                         </Block>
                     )}
 
-                    <DatePicker
-                        name={FrilansFormFields.startdato}
-                        label={text('frilanser.nårStartet.spm')}
-                        dropdownCaption={true}
-                        minDate={dayjs().subtract(50, 'years').toDate()}
-                        maxDate={søknadsdato}
-                        validate={getFrilanserStartdatoValidator(formValues, søknadsperiode, søknadsdato)}
-                    />
+                    <FormBlock>
+                        <DatePicker
+                            name={FrilansFormFields.startdato}
+                            label={text('frilanser.nårStartet.spm')}
+                            dropdownCaption={true}
+                            minDate={dayjs().subtract(50, 'years').toDate()}
+                            maxDate={søknadsdato}
+                            validate={getFrilanserStartdatoValidator(formValues, søknadsperiode, søknadsdato)}
+                        />
+                    </FormBlock>
                     <FormBlock>
                         <YesOrNoQuestion
                             name={FrilansFormFields.jobberFortsattSomFrilans}
@@ -151,21 +153,19 @@ const ArbeidssituasjonFrilans = ({
                         </FormBlock>
                     )}
                     {visSpørsmålOmArbeidsforhold && (
-                        <>
-                            <FormBlock>
-                                <NumberInput
-                                    label={text(
-                                        jobberFortsattSomFrilans === YesOrNo.NO
-                                            ? 'frilanser.jobberNormaltTimer.avsluttet.spm'
-                                            : 'frilanser.jobberNormaltTimer.spm',
-                                    )}
-                                    name={FrilansFormFields.jobberNormaltTimer}
-                                    description={<InfoJobberNormaltTimerFrilanser />}
-                                    validate={getJobberNormaltTimerValidator(intlValues)}
-                                    value={jobberNormaltTimer ? jobberNormaltTimer || '' : ''}
-                                />
-                            </FormBlock>
-                        </>
+                        <FormBlock>
+                            <NumberInput
+                                label={text(
+                                    jobberFortsattSomFrilans === YesOrNo.NO
+                                        ? 'frilanser.jobberNormaltTimer.avsluttet.spm'
+                                        : 'frilanser.jobberNormaltTimer.spm',
+                                )}
+                                name={FrilansFormFields.jobberNormaltTimer}
+                                description={<InfoJobberNormaltTimerFrilanser />}
+                                validate={getJobberNormaltTimerValidator(intlValues)}
+                                value={jobberNormaltTimer ? jobberNormaltTimer || '' : ''}
+                            />
+                        </FormBlock>
                     )}
                 </Block>
             )}
