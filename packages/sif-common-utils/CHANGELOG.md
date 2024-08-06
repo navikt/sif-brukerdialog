@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.46.9
+
+### Patch Changes
+
+-   8240d14: Major oppdateringer av libs - ingen påvirkning av funksjonalitet
+
 ## 3.46.8
 
 ### Patch Changes

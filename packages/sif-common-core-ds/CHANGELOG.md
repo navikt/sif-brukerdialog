@@ -1,5 +1,14 @@
 # @navikt/sif-common-core-ds
 
+## 9.17.18
+
+### Patch Changes
+
+-   8240d14: Major oppdateringer av libs - ingen påvirkning av funksjonalitet
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies [8240d14]
+    -   @navikt/sif-common-utils@3.46.9
+
 ## 9.17.17
 
 ### Patch Changes

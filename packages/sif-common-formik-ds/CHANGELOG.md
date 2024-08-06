@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.9.8
+
+### Patch Changes
+
+-   8240d14: Major oppdateringer av libs - ingen påvirkning av funksjonalitet
+
 ## 1.9.7
 
 ### Patch Changes

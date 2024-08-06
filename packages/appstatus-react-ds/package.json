@@ -4,7 +4,7 @@
     "license": "MIT",
     "main": "src",
     "name": "@navikt/appstatus-react-ds",
-    "version": "2.18.15",
+    "version": "2.18.16",
     "private": true,
     "dependencies": {
         "@navikt/sif-common-hooks": "workspace:*",
@@ -19,7 +19,7 @@
         "@types/react-dom": "18.3.0",
         "config": "workspace:*",
         "copyfiles": "2.4.1",
-        "postcss": "8.4.40",
+        "postcss": "8.4.41",
         "prop-types": "15.8.1",
         "react": "18.3.1",
         "react-dom": "18.3.1",
