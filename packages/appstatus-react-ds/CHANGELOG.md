@@ -1,5 +1,12 @@
 # @navikt/appstatus-react-ds
 
+## 2.18.16
+
+### Patch Changes
+
+-   8240d14: Major oppdateringer av libs - ingen påvirkning av funksjonalitet
+-   Pakkeoppdateringer - minor/patch
+
 ## 2.18.15
 
 ### Patch Changes

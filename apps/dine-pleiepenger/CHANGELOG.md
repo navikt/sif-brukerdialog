@@ -1,5 +1,19 @@
 # @navikt/dine-pleiepenger
 
+## 1.5.4
+
+### Patch Changes
+
+-   8240d14: Major oppdateringer av libs - ingen påvirkning av funksjonalitet
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies [8240d14]
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.25.12
+    -   @navikt/appstatus-react-ds@2.18.16
+    -   @navikt/sif-common-core-ds@9.17.18
+    -   @navikt/sif-common-sentry@0.26.14
+    -   @navikt/sif-common-utils@3.46.9
+
 ## 1.5.3
 
 ### Patch Changes
