@@ -1,7 +1,8 @@
-import { BodyShort, Heading, Stepper } from '@navikt/ds-react';
+import { BodyShort, Heading, Link, Stepper } from '@navikt/ds-react';
 import { StepperStepProps } from '@navikt/ds-react/Stepper';
 import React, { useEffect, useRef, useState } from 'react';
-import { Back, Collapse, Expand } from '@navikt/ds-icons';
+import { Collapse, Expand } from '@navikt/ds-icons';
+import { ArrowLeftIcon } from '@navikt/aksel-icons';
 import { guid } from '@navikt/sif-common-utils';
 import { useUiIntl } from '../../i18n/ui.messages';
 import './progressStepper.css';
@@ -40,7 +41,7 @@ const ProgressStepper: React.FunctionComponent<Props> = ({
     allStepsFooter,
     labels,
     titleHeadingLevel = '1',
-    includeBackLink = false,
+    includeBackLink = true,
     setFocusOnHeadingOnMount = true,
     onStepSelect,
 }) => {
@@ -81,7 +82,16 @@ const ProgressStepper: React.FunctionComponent<Props> = ({
     );
     const includeGotoPreviousStepLink = onStepSelect !== undefined && includeBackLink === true;
     const currentStepInfoInHeader = includeGotoPreviousStepLink ? (
-        <div className="progressStepper__heading__stepInfo">{currentStepInfo}</div>
+        <div className="progressStepper__heading__stepInfo">
+            <BodyShort size="medium">
+                {currentStepIndex > 0 && (
+                    <Link href="#" onClick={handleBackClick}>
+                        <ArrowLeftIcon aria-hidden="true" />
+                        {labelsToUse.goToPreviousStepLabel}
+                    </Link>
+                )}
+            </BodyShort>
+        </div>
     ) : undefined;
 
     const headingRef = useRef<HTMLHeadingElement>(null);
@@ -111,21 +121,8 @@ const ProgressStepper: React.FunctionComponent<Props> = ({
             </div>
             <nav aria-label={labelsToUse.navigasjonAriaLabel}>
                 <div className="progressStepper__stepsInfo">
-                    {includeGotoPreviousStepLink ? (
-                        <BodyShort>
-                            {currentStepIndex > 0 && (
-                                <button
-                                    type="button"
-                                    onClick={handleBackClick}
-                                    className="navds-read-more__button navds-body-short progressStepper__backLink">
-                                    <Back className="progressStepper__backLink__icon" aria-hidden />
-                                    {labelsToUse.goToPreviousStepLabel}
-                                </button>
-                            )}
-                        </BodyShort>
-                    ) : (
-                        <>{currentStepInfo}</>
-                    )}
+                    {currentStepInfo}
+
                     <button
                         type="button"
                         className="navds-read-more__button navds-body-short"
@@ -138,7 +135,7 @@ const ProgressStepper: React.FunctionComponent<Props> = ({
                             <Expand className="progressStepper__toggleAllStepsIcon" aria-hidden />
                         )}
                         {allStepsVisible && <Collapse className="progressStepper__toggleAllStepsIcon" aria-hidden />}
-                        {labelsToUse.showAllStepsLabel}
+                        <BodyShort size="small">{labelsToUse.showAllStepsLabel}</BodyShort>
                     </button>
                 </div>
                 <div id={contentContainerID} aria-hidden={allStepsVisible === false} aria-live="polite">
