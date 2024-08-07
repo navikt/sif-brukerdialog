@@ -1,6 +1,6 @@
 import { Button } from '@navikt/ds-react';
 import React, { createContext, useEffect, useRef, useState } from 'react';
-import { Back, Next } from '@navikt/ds-icons';
+import { ArrowRightIcon, ArrowLeftIcon, PaperplaneIcon } from '@navikt/aksel-icons';
 import { FieldInputProps, FormikProps, useFormikContext } from 'formik';
 import { CancelButtonTypes, CustomFormErrorHandler, ErrorTypeChecker, FieldErrorHandler, FormError } from '../../types';
 import { getErrorForField, isValidationErrorsVisible } from '../../utils/typedFormErrorUtils';
@@ -13,6 +13,7 @@ export interface TypedFormikFormProps<FormValues, ErrorType> {
     includeButtons?: boolean;
     resetFormOnCancel?: boolean;
     submitButtonLabel?: string;
+    isFinalSubmit?: boolean;
     cancelButtonLabel?: string;
     backButtonLabel?: string;
     id?: string;
@@ -57,6 +58,7 @@ function TypedFormikForm<FormValues, ErrorType>({
     className,
     includeValidationSummary,
     submitButtonLabel,
+    isFinalSubmit,
     cancelButtonLabel,
     backButtonLabel,
     id,
@@ -179,12 +181,8 @@ function TypedFormikForm<FormValues, ErrorType>({
                                     onClick={() => onBack(formik.values)}
                                     disabled={backDisabled}
                                     data-testid="typedFormikForm-goBackButton"
-                                    icon={
-                                        showButtonArrows ? (
-                                            <Back aria-hidden className="typedFormikForm__buttonLabel__icon" />
-                                        ) : undefined
-                                    }>
-                                    {backButtonLabel || 'Forrige'}
+                                    icon={showButtonArrows ? <ArrowLeftIcon aria-hidden /> : undefined}>
+                                    {backButtonLabel || 'Forrige steg'}
                                 </Button>
                             )}
                             {showSubmitButton && (
@@ -197,10 +195,14 @@ function TypedFormikForm<FormValues, ErrorType>({
                                     iconPosition="right"
                                     icon={
                                         showButtonArrows ? (
-                                            <Next aria-hidden className="typedFormikForm__buttonLabel__icon" />
+                                            isFinalSubmit ? (
+                                                <PaperplaneIcon aria-hidden />
+                                            ) : (
+                                                <ArrowRightIcon aria-hidden />
+                                            )
                                         ) : undefined
                                     }>
-                                    {submitButtonLabel || 'Neste'}
+                                    {submitButtonLabel || 'Neste steg'}
                                 </Button>
                             )}
 

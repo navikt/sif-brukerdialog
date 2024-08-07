@@ -20,6 +20,7 @@ interface Props {
     useValidationErrorSummary?: boolean;
     children: React.ReactNode;
     showSubmitButton?: boolean;
+    isFinalSubmit?: boolean;
     showButtonSpinner?: boolean;
     buttonDisabled?: boolean;
     skipValidation?: boolean;
@@ -38,6 +39,7 @@ const SøknadFormStep = (props: Props) => {
         buttonDisabled,
         stepId,
         customErrorSummary,
+        isFinalSubmit,
         showSubmitButton = true,
     } = props;
     useLogSidevisning(stepId);
@@ -79,6 +81,7 @@ const SøknadFormStep = (props: Props) => {
                 onValidSubmit={onValidFormSubmit}
                 includeButtons={true}
                 submitButtonLabel={texts.nextButtonLabel}
+                isFinalSubmit={isFinalSubmit}
                 showSubmitButton={showSubmitButton}
                 includeValidationSummary={true}
                 runDelayedFormValidation={true}

@@ -110,6 +110,7 @@ const OppsummeringStep = () => {
                                 submitDisabled={isSubmitting || hasInvalidSteps}
                                 includeValidationSummary={true}
                                 submitButtonLabel="Send søknad"
+                                isFinalSubmit={true}
                                 submitPending={isSubmitting}
                                 backButtonDisabled={isSubmitting}
                                 onBack={goBack}>
