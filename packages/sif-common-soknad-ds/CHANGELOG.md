@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.16.3
+
+### Patch Changes
+
+-   8240d14: Major oppdateringer av libs - ingen påvirkning av funksjonalitet
+
 ## 10.16.2
 
 ### Patch Changes
