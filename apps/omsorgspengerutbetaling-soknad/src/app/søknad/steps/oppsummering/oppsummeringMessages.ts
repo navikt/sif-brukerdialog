@@ -34,6 +34,8 @@ const nb = {
     'step.oppsummering.fravær.aktivitet.2': 'Fravær som {aktivitet1} og {aktivitet2}.',
     'step.oppsummering.dokumenter.ikkelastetopp': 'Ikke lastet opp, må ettersendes',
 
+    'step.oppsummering.sendSøknad': 'Send søknad',
+
     'summary.virksomhet.header': 'Selvstendig næringsdrivende',
     'summary.virksomhet.næringstype': 'Næringstype',
     'summary.virksomhet.regnskapsfører': 'Regnskapsfører er {navn}, telefon: {telefon}.',

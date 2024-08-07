@@ -109,7 +109,7 @@ const OppsummeringStep = () => {
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
                                 submitDisabled={isSubmitting || hasInvalidSteps}
                                 includeValidationSummary={true}
-                                submitButtonLabel="Send søknad"
+                                submitButtonLabel={text('step.oppsummering.sendSøknad')}
                                 isFinalSubmit={true}
                                 submitPending={isSubmitting}
                                 backButtonDisabled={isSubmitting}
