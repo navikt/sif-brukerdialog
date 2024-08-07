@@ -23,19 +23,19 @@ test('Fyll ut søknad med ikke delt bosted', async ({ page }) => {
     await page.getByText('Ja, barnet har delt fast').click();
     await page.getByRole('group', { name: 'Har barnet kronisk/langvarig' }).getByLabel('Ja').check();
     await page.getByTestId('høyereRisikoForFravær_no').check();
-    await page.getByRole('button', { name: 'Neste', exact: true }).click();
+    await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Legeerklæring */
     await page.getByRole('heading', { level: 1, name: 'Legeerklæring' });
     await page.locator('input[name="vedlegg"]').setInputFiles('./e2e/playwright/files/navlogopng.png');
     await expect(await page.getByText('Fjern').count()).toEqual(1);
-    await page.getByRole('button', { name: 'Neste', exact: true }).click();
+    await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Delt bosted */
     await page.getByRole('heading', { level: 1, name: 'Delt bosted' });
     await page.locator('input[name="samværsavtale"]').setInputFiles('./e2e/playwright/files/avtale.png');
     await expect(await page.getByText('Fjern').count()).toEqual(1);
-    await page.getByRole('button', { name: 'Neste', exact: true }).click();
+    await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Oppsummering */
     await page.getByRole('heading', { level: 1, name: 'Oppsummering' });

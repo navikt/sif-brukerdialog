@@ -20,11 +20,11 @@ test('Fyll ut enkel søknad', async ({ page }) => {
     await page.getByRole('heading', { level: 1, name: 'Om aleneomsorg for barn' });
     await page.getByLabel('Mock Mocknes').check();
     await page.getByLabel('Nei').check();
-    await page.getByRole('button', { name: 'Neste' }).click();
+    await page.getByRole('button', { name: 'Neste steg' }).click();
 
     await page.getByRole('heading', { level: 1, name: 'Tidspunkt for aleneomsorg' });
     await page.getByLabel('I 2021 eller tidligere').check();
-    await page.getByRole('button', { name: 'Neste' }).click();
+    await page.getByRole('button', { name: 'Neste steg' }).click();
 
     /** Oppsummering */
     await page.getByRole('heading', { level: 1, name: 'Oppsummering' });

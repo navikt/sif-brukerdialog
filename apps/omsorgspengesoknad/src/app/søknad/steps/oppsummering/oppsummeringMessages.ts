@@ -21,6 +21,7 @@ const nb = {
     'steg.oppsummering.samværsavtale.header': 'Avtale om delt fast bosted',
     'steg.oppsummering.bekrefterOpplysninger':
         'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til omsorgspenger.',
+    'step.oppsummering.sendSøknad': 'Send søknad',
     'validation.harBekreftetOpplysninger.notChecked': 'Du må bekrefte opplysningene.',
 };
 

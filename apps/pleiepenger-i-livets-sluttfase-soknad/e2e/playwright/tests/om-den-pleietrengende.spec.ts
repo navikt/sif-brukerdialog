@@ -10,11 +10,11 @@ import {
 } from '../utfylling-utils/pleietrengendeUtfyllingUtils';
 
 const gåTilOppsummering = async (page: Page) => {
-    await page.getByRole('button', { name: 'Neste', exact: true }).click();
-    await page.getByRole('button', { name: 'Neste', exact: true }).click();
-    await page.getByRole('button', { name: 'Neste', exact: true }).click();
-    await page.getByRole('button', { name: 'Neste', exact: true }).click();
-    await page.getByRole('button', { name: 'Neste', exact: true }).click();
+    await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
+    await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
+    await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
+    await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
+    await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
     await expect(page.getByRole('heading', { level: 1, name: 'Oppsummering' })).toBeVisible();
 };
 
@@ -48,7 +48,7 @@ test('Fyll ut og kontroller person med fødselsnummer', async ({ page }) => {
 
 test('Valider manglende navn', async ({ page }) => {
     await page.getByRole('textbox', { name: 'Navn på den du skal pleie' }).fill('');
-    await page.getByRole('button', { name: 'Neste' }).click();
+    await page.getByRole('button', { name: 'Neste steg' }).click();
     const errorMessages = await page.getByLabel('Feil i skjema');
     expect(await errorMessages.isVisible()).toBeTruthy();
     expect(await errorMessages.getByText('Du må skrive inn navnet til den du pleier.').isVisible()).toBeTruthy();
