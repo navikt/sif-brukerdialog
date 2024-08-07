@@ -1,9 +1,7 @@
-import { BodyShort, Heading, Link, Stepper } from '@navikt/ds-react';
+import { BodyShort, Box, FormProgress, Heading, Link, VStack } from '@navikt/ds-react';
 import { StepperStepProps } from '@navikt/ds-react/Stepper';
-import React, { useEffect, useRef, useState } from 'react';
-import { Collapse, Expand } from '@navikt/ds-icons';
+import React, { useEffect, useRef } from 'react';
 import { ArrowLeftIcon } from '@navikt/aksel-icons';
-import { guid } from '@navikt/sif-common-utils';
 import { useUiIntl } from '../../i18n/ui.messages';
 import './progressStepper.css';
 
@@ -37,33 +35,14 @@ interface Props {
 const ProgressStepper: React.FunctionComponent<Props> = ({
     steps,
     currentStepIndex,
-    allStepsHeader,
-    allStepsFooter,
-    labels,
     titleHeadingLevel = '1',
     includeBackLink = true,
     setFocusOnHeadingOnMount = true,
     onStepSelect,
 }) => {
-    const [allStepsVisible, setAllStepsVisible] = useState(false);
     const { text } = useUiIntl();
 
-    const defaultLabels: Labels = {
-        showAllStepsLabel: text('progressStepper.showAllStepsLabel'),
-        goToPreviousStepLabel: text('progressStepper.goToPreviousStepLabel'),
-        allStepsSectionAriaLabel: text('progressStepper.allStepsSectionAriaLabel'),
-        navigasjonAriaLabel: text('progressStepper.navigasjonAriaLabel'),
-        stepProgressLabelFunc: (currentStep, totalSteps) =>
-            text('progressStepper.stegXavY', { currentStep, totalSteps }),
-    };
-
-    const labelsToUse: Labels = { ...defaultLabels, ...labels };
-
     const step = steps[currentStepIndex];
-    const currentStepNumber = currentStepIndex + 1;
-    const totalSteps = steps.length;
-    const progress = (100 / totalSteps) * currentStepNumber;
-    const contentContainerID = guid();
 
     const handleStepChange = (idx: number) => {
         if (onStepSelect) {
@@ -77,24 +56,10 @@ const ProgressStepper: React.FunctionComponent<Props> = ({
         }
     };
 
-    const currentStepInfo = (
-        <BodyShort as="div">{labelsToUse.stepProgressLabelFunc(currentStepNumber, totalSteps)}</BodyShort>
-    );
     const includeGotoPreviousStepLink = onStepSelect !== undefined && includeBackLink === true;
-    const currentStepInfoInHeader = includeGotoPreviousStepLink ? (
-        <div className="progressStepper__heading__stepInfo">
-            <BodyShort size="medium">
-                {currentStepIndex > 0 && (
-                    <Link href="#" onClick={handleBackClick}>
-                        <ArrowLeftIcon aria-hidden="true" />
-                        {labelsToUse.goToPreviousStepLabel}
-                    </Link>
-                )}
-            </BodyShort>
-        </div>
-    ) : undefined;
 
     const headingRef = useRef<HTMLHeadingElement>(null);
+
     useEffect(() => {
         if (setFocusOnHeadingOnMount && headingRef.current) {
             headingRef.current.focus();
@@ -102,74 +67,44 @@ const ProgressStepper: React.FunctionComponent<Props> = ({
     }, [setFocusOnHeadingOnMount]);
 
     return (
-        <div className="progressStepper">
-            <div className="progressStepper__heading">
-                <Heading
-                    tabIndex={-1}
-                    size="xlarge"
-                    level={titleHeadingLevel}
-                    className="progressStepper__heading__title"
-                    ref={headingRef}>
-                    {currentStepInfoInHeader}
-                    {step.label}
-                </Heading>
-            </div>
-            <div className="progressStepper__progressBarWrapper" role="presentation" aria-hidden={true}>
-                <div className="progressStepper__progressBar">
-                    <div className="progressStepper__progressBar__progress" style={{ width: `${progress}%` }} />
-                </div>
-            </div>
-            <nav aria-label={labelsToUse.navigasjonAriaLabel}>
-                <div className="progressStepper__stepsInfo">
-                    {currentStepInfo}
+        <VStack gap="5">
+            {includeGotoPreviousStepLink && currentStepIndex ? (
+                <Box paddingBlock="0 1">
+                    <BodyShort size="medium">
+                        <Link href="#" onClick={handleBackClick}>
+                            <ArrowLeftIcon aria-hidden="true" />
+                            {text('progressStepper.goToPreviousStepLabel')}
+                        </Link>
+                    </BodyShort>
+                </Box>
+            ) : undefined}
 
-                    <button
-                        type="button"
-                        className="navds-read-more__button navds-body-short"
-                        aria-controls={contentContainerID}
-                        aria-expanded={allStepsVisible}
-                        onClick={() => {
-                            setAllStepsVisible(!allStepsVisible);
-                        }}>
-                        {allStepsVisible === false && (
-                            <Expand className="progressStepper__toggleAllStepsIcon" aria-hidden />
-                        )}
-                        {allStepsVisible && <Collapse className="progressStepper__toggleAllStepsIcon" aria-hidden />}
-                        <BodyShort size="small">{labelsToUse.showAllStepsLabel}</BodyShort>
-                    </button>
-                </div>
-                <div id={contentContainerID} aria-hidden={allStepsVisible === false} aria-live="polite">
-                    {allStepsVisible && (
-                        <section
-                            className="progressStepper__allSteps"
-                            aria-label={labelsToUse.allStepsSectionAriaLabel}>
-                            {allStepsHeader && (
-                                <BodyShort as="div" className="progressStepper__allSteps__header">
-                                    {allStepsHeader}
-                                </BodyShort>
-                            )}
-                            <Stepper
-                                activeStep={currentStepNumber}
-                                onStepChange={onStepSelect ? handleStepChange : undefined}>
-                                {steps.map((s) => (
-                                    <Stepper.Step
-                                        key={s.id}
-                                        completed={s.completed}
-                                        interactive={onStepSelect !== undefined && s.completed === true}>
-                                        {s.label}
-                                    </Stepper.Step>
-                                ))}
-                            </Stepper>
-                            {allStepsFooter && (
-                                <BodyShort as="div" className="progressStepper__allSteps__footer">
-                                    {allStepsFooter}
-                                </BodyShort>
-                            )}
-                        </section>
-                    )}
-                </div>
-            </nav>
-        </div>
+            <Heading
+                tabIndex={-1}
+                size="xlarge"
+                level={titleHeadingLevel}
+                className="progressStepper__heading__title"
+                ref={headingRef}>
+                {step.label}
+            </Heading>
+
+            <FormProgress activeStep={currentStepIndex + 1} totalSteps={steps.length}>
+                {steps.map((s) => (
+                    <FormProgress.Step
+                        key={s.id}
+                        completed={s.completed}
+                        href="#"
+                        onClick={(evt) => {
+                            evt.stopPropagation();
+                            evt.preventDefault();
+                            handleStepChange(s.index + 1);
+                        }}
+                        interactive={onStepSelect !== undefined && s.completed === true}>
+                        {s.label}
+                    </FormProgress.Step>
+                ))}
+            </FormProgress>
+        </VStack>
     );
 };
 
