@@ -1,10 +1,11 @@
-import { BodyShort, Button } from '@navikt/ds-react';
+import { Box, Button } from '@navikt/ds-react';
 import React from 'react';
+import { FloppydiskIcon, TrashIcon } from '@navikt/aksel-icons';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import AvbrytSoknadDialog from '../../../components/avbrytSøknadDialog/AvbrytSøknadDialog';
 import FortsettSøknadSenereDialog from '../../../components/fortsettSøknadSenereDialog/FortsettSøknadSenereDialog';
-import './stepFooter.scss';
 import { useSoknadIntl } from '../../../hooks/useSoknadIntl';
+import './stepFooter.scss';
 
 interface Props {
     onAvbrytOgFortsettSenere?: () => void;
@@ -23,17 +24,23 @@ function StepFooter({ onAvbrytOgFortsettSenere, onAvbrytOgSlett }: Props) {
                 <div className={bem.element('horizontalDivider')} />
                 <div className={bem.element('actions')}>
                     {onAvbrytOgFortsettSenere && (
+                        <Box asChild marginBlock={{ xs: '4 0', sm: '0' }}>
+                            <Button
+                                type="button"
+                                variant="tertiary"
+                                icon={<FloppydiskIcon aria-hidden={true} />}
+                                onClick={() => setVisFortsettSenereDialog(true)}>
+                                {text('scs.stepFooter.fortsettSenere')}
+                            </Button>
+                        </Box>
+                    )}
+                    {onAvbrytOgSlett && (
                         <Button
                             type="button"
                             variant="tertiary"
-                            size="small"
-                            onClick={() => setVisFortsettSenereDialog(true)}>
-                            <BodyShort as="span">{text('scs.stepFooter.fortsettSenere')}</BodyShort>
-                        </Button>
-                    )}
-                    {onAvbrytOgSlett && (
-                        <Button type="button" variant="tertiary" size="small" onClick={() => setVisAvbrytDialog(true)}>
-                            <BodyShort as="span">{text('scs.stepFooter.avbryt')}</BodyShort>
+                            onClick={() => setVisAvbrytDialog(true)}
+                            icon={<TrashIcon aria-hidden={true} />}>
+                            {text('scs.stepFooter.avbryt')}
                         </Button>
                     )}
                 </div>
