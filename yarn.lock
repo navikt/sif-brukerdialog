@@ -5132,6 +5132,15 @@ __metadata:
     uuid: "npm:10.0.0"
     vite: "npm:5.4.0"
     vite-plugin-checker: "npm:0.7.2"
+  peerDependencies:
+    "@navikt/ds-css": 6.13.0
+    "@navikt/ds-react": 6.13.0
+    "@navikt/sif-common-core-ds": "workspace:*"
+    "@navikt/sif-common-formik-ds": "workspace:*"
+    "@navikt/sif-common-hooks": "workspace:*"
+    "@navikt/sif-common-sentry": "workspace:*"
+    "@navikt/sif-common-ui": "workspace:*"
+    "@navikt/sif-common-utils": "workspace:*"
   languageName: unknown
   linkType: soft
 

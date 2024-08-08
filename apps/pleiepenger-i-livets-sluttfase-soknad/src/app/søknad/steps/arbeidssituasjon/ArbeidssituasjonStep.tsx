@@ -203,57 +203,63 @@ const ArbeidssituasjonStep = () => {
                                     />
                                 </FormBlock>
                                 <FormBlock>
-                                    <Heading level="2" size="large" spacing={true}>
+                                    <Heading level="2" size="medium">
                                         <AppText id="steg.arbeidssituasjon.opptjeningUtland.tittel" />
                                     </Heading>
-                                    <YesOrNoQuestion
-                                        legend={text('steg.arbeidssituasjon.opptjeningUtland.spm')}
-                                        name={ArbeidssituasjonFormFields.harOpptjeningUtland}
-                                        validate={getYesOrNoValidator()}
-                                    />
-                                    {harOpptjeningUtland === YesOrNo.YES && (
-                                        <FormBlock>
-                                            <OpptjeningUtlandListAndDialog
-                                                minDate={getDate1YearAgo()}
-                                                maxDate={getDate1YearFromNow()}
-                                                name={ArbeidssituasjonFormFields.opptjeningUtland}
-                                                validate={getListValidator({ required: true })}
-                                                labels={{
-                                                    addLabel: text('steg.arbeidssituasjon.opptjeningUtland.addLabel'),
-                                                    listTitle: text('steg.arbeidssituasjon.opptjeningUtland.listTitle'),
-                                                    modalTitle: text(
-                                                        'steg.arbeidssituasjon.opptjeningUtland.modalTitle',
-                                                    ),
-                                                }}
-                                            />
-                                        </FormBlock>
-                                    )}
-                                    <FormBlock>
+                                    <Block margin="l">
                                         <YesOrNoQuestion
-                                            legend={text('steg.arbeidssituasjon.utenlandskNæring.spm')}
-                                            name={ArbeidssituasjonFormFields.harUtenlandskNæring}
+                                            legend={text('steg.arbeidssituasjon.opptjeningUtland.spm')}
+                                            name={ArbeidssituasjonFormFields.harOpptjeningUtland}
                                             validate={getYesOrNoValidator()}
                                         />
-                                        {harUtenlandskNæring === YesOrNo.YES && (
+                                        {harOpptjeningUtland === YesOrNo.YES && (
                                             <FormBlock>
-                                                <UtenlandskNæringListAndDialog
-                                                    name={ArbeidssituasjonFormFields.utenlandskNæring}
+                                                <OpptjeningUtlandListAndDialog
+                                                    minDate={getDate1YearAgo()}
+                                                    maxDate={getDate1YearFromNow()}
+                                                    name={ArbeidssituasjonFormFields.opptjeningUtland}
                                                     validate={getListValidator({ required: true })}
                                                     labels={{
                                                         addLabel: text(
-                                                            'steg.arbeidssituasjon.utenlandskNæring.addLabel',
+                                                            'steg.arbeidssituasjon.opptjeningUtland.addLabel',
                                                         ),
                                                         listTitle: text(
-                                                            'steg.arbeidssituasjon.utenlandskNæring.listTitle',
+                                                            'steg.arbeidssituasjon.opptjeningUtland.listTitle',
                                                         ),
                                                         modalTitle: text(
-                                                            'steg.arbeidssituasjon.utenlandskNæring.modalTitle',
+                                                            'steg.arbeidssituasjon.opptjeningUtland.modalTitle',
                                                         ),
                                                     }}
                                                 />
                                             </FormBlock>
                                         )}
-                                    </FormBlock>
+                                        <FormBlock>
+                                            <YesOrNoQuestion
+                                                legend={text('steg.arbeidssituasjon.utenlandskNæring.spm')}
+                                                name={ArbeidssituasjonFormFields.harUtenlandskNæring}
+                                                validate={getYesOrNoValidator()}
+                                            />
+                                            {harUtenlandskNæring === YesOrNo.YES && (
+                                                <FormBlock>
+                                                    <UtenlandskNæringListAndDialog
+                                                        name={ArbeidssituasjonFormFields.utenlandskNæring}
+                                                        validate={getListValidator({ required: true })}
+                                                        labels={{
+                                                            addLabel: text(
+                                                                'steg.arbeidssituasjon.utenlandskNæring.addLabel',
+                                                            ),
+                                                            listTitle: text(
+                                                                'steg.arbeidssituasjon.utenlandskNæring.listTitle',
+                                                            ),
+                                                            modalTitle: text(
+                                                                'steg.arbeidssituasjon.utenlandskNæring.modalTitle',
+                                                            ),
+                                                        }}
+                                                    />
+                                                </FormBlock>
+                                            )}
+                                        </FormBlock>
+                                    </Block>
                                 </FormBlock>
                                 {visVernepliktSpørsmål(
                                     søknadsperiode,
@@ -263,7 +269,7 @@ const ArbeidssituasjonStep = () => {
                                     frilansoppdrag,
                                 ) && (
                                     <FormBlock>
-                                        <Heading level="2" size="large">
+                                        <Heading level="2" size="medium">
                                             <AppText id="steg.arbeidssituasjon.verneplikt.tittel" />
                                         </Heading>
                                         <Block margin="l">
