@@ -18,6 +18,7 @@ interface Props {
     onStepCleanup?: (values: SoknadFormData) => SoknadFormData;
     onSendSoknad?: () => void;
     submitButtonLabel?: string;
+    isFinalSubmit?: boolean;
     showSubmitButton?: boolean;
     showButtonSpinner?: boolean;
     includeValidationSummary?: boolean;
@@ -38,6 +39,7 @@ const SoknadFormStep = ({
     showNotAllQuestionsAnsweredMessage,
     buttonDisabled,
     submitButtonLabel,
+    isFinalSubmit,
     søknadstype,
 }: Props) => {
     const intl = useIntl();
@@ -77,6 +79,7 @@ const SoknadFormStep = ({
                 backButtonDisabled={pending || showButtonSpinner}
                 submitDisabled={buttonDisabled}
                 submitButtonLabel={submitButtonLabel}
+                isFinalSubmit={isFinalSubmit}
                 onBack={previousStepRoute ? () => navigate(previousStepRoute) : undefined}
                 noButtonsContentRenderer={
                     showNotAllQuestionsAnsweredMessage

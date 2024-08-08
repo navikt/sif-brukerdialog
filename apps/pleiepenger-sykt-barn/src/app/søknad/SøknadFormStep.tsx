@@ -20,6 +20,7 @@ interface Props {
     useValidationErrorSummary?: boolean;
     children: React.ReactNode;
     showSubmitButton?: boolean;
+    isFinalSubmit?: boolean;
     showButtonSpinner?: boolean;
     buttonDisabled?: boolean;
     skipValidation?: boolean;
@@ -38,6 +39,7 @@ const SøknadFormStep = (props: Props) => {
         buttonDisabled,
         stepId,
         customErrorSummary,
+        isFinalSubmit,
         showSubmitButton = true,
     } = props;
     useLogSidevisning(stepId);
@@ -50,7 +52,6 @@ const SøknadFormStep = (props: Props) => {
     if (currentStepConfig === undefined) {
         return <InvalidStepPage stepId={stepId} />;
     }
-    const texts = soknadStepUtils.getStepTexts(intl, currentStepConfig);
     const { index } = currentStepConfig;
 
     const handleAvbrytSøknad = async () => {
@@ -78,8 +79,9 @@ const SøknadFormStep = (props: Props) => {
             <SøknadFormComponents.Form
                 onValidSubmit={onValidFormSubmit}
                 includeButtons={true}
-                submitButtonLabel={texts.nextButtonLabel}
+                isFinalSubmit={isFinalSubmit}
                 showSubmitButton={showSubmitButton}
+                submitButtonLabel={isFinalSubmit ? text('step.oppsummering.nextButtonLabel') : undefined}
                 includeValidationSummary={true}
                 runDelayedFormValidation={true}
                 onBack={previousStepRoute ? () => navigate(previousStepRoute) : undefined}

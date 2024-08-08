@@ -21,7 +21,7 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
 
     /** Pleietrengende side */
     await fyllUtPleietrengendeMedFnr(page);
-    await page.getByRole('button', { name: 'Neste', exact: true }).click();
+    await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Tidsrom side */
     await expect(
@@ -49,7 +49,7 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
         .getByRole('group', { name: 'Oppholder du deg i utlandet i noen av dagene du søker for?' })
         .getByLabel('Nei')
         .check();
-    await page.getByRole('button', { name: 'Neste', exact: true }).click();
+    await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Arbeidssituasjon */
     await expect(page.getByRole('heading', { level: 1, name: 'Arbeidssituasjon' })).toBeVisible();
@@ -82,7 +82,7 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
         })
         .getByLabel('Nei')
         .check();
-    await page.getByRole('button', { name: 'Neste', exact: true }).click();
+    await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Jobb i søknadsperioden */
     await expect(page.getByRole('heading', { level: 1, name: 'Jobb i søknadsperioden' })).toBeVisible();
@@ -97,7 +97,7 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     await page.getByRole('group', { name: 'Uke 38' }).getByLabel('Timer').click();
     await page.getByRole('group', { name: 'Uke 38' }).getByLabel('Timer').fill('3');
     await page.getByRole('group', { name: 'Uke 38' }).getByLabel('Minutter').fill('30');
-    await page.getByRole('button', { name: 'Neste', exact: true }).click();
+    await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Medlemsskap */
     await expect(page.getByRole('heading', { level: 1, name: 'Medlemskap i folketrygden' })).toBeVisible();
@@ -109,12 +109,12 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
         .getByRole('group', { name: 'Planlegger du å bo i utlandet i hele eller deler av de neste 12 månedene?' })
         .getByLabel('Nei')
         .click();
-    await page.getByRole('button', { name: 'Neste', exact: true }).click();
+    await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Legeerklæring */
     await expect(page.getByRole('heading', { level: 1, name: 'Legeerklæring' })).toBeVisible();
     await page.locator('input[name="vedlegg"]').setInputFiles('./e2e/playwright/files/navlogopng.png');
-    await page.getByRole('button', { name: 'Neste', exact: true }).click();
+    await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Oppsummering */
     await expect(page.getByRole('heading', { level: 1, name: 'Oppsummering' })).toBeVisible();

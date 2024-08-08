@@ -9,8 +9,8 @@ const nb = {
     'application.title': 'Applikasjonen', // Kun fallback - skal overstyres i hver app
     'scs.stepConfig.previousStepLinkText': 'Tilbake til {title}',
     'scs.loadingPage.henterInformasjon': 'Henter informasjon',
-    'scs.stepFooter.avbryt': 'Avbryt og slett søknad',
-    'scs.stepFooter.fortsettSenere': 'Avslutt og fortsett senere',
+    'scs.stepFooter.avbryt': 'Slett søknaden',
+    'scs.stepFooter.fortsettSenere': 'Fortsett senere',
     'scs.velkommenGuide.tittel': 'Hei, {navn}',
     ...samtykkeFormMessages.nb,
     ...soknadErrorMessages.nb,
@@ -19,12 +19,7 @@ const nb = {
 };
 
 const nn: SoknadMessagesType = {
-    'application.title': 'Applikasjonen',
-    'scs.stepConfig.previousStepLinkText': 'Tilbake til {title}',
-    'scs.loadingPage.henterInformasjon': 'Hentar informasjon',
-    'scs.stepFooter.avbryt': 'Avbryt og slett søknad',
-    'scs.stepFooter.fortsettSenere': 'Avslutt og fortsett senere',
-    'scs.velkommenGuide.tittel': 'Hei, {navn}',
+    ...nb,
     ...samtykkeFormMessages.nn,
     ...soknadErrorMessages.nn,
     ...avbrytSøknadDialogMessages.nn,

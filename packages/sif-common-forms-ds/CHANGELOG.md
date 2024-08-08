@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 9.0.4
+
+### Patch Changes
+
+-   8240d14: Major oppdateringer av libs - ingen påvirkning av funksjonalitet
+
 ## 9.0.3
 
 ### Patch Changes

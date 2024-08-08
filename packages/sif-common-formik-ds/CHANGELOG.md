@@ -1,5 +1,17 @@
 # @navikt/sif-common-formik-ds
 
+## 1.10.0
+
+### Minor Changes
+
+-   72585dc: Endrer tekst og layout (ikon) på forrige og neste knapper + send inn knapp. I henhold til Aksel.
+
+## 1.9.8
+
+### Patch Changes
+
+-   8240d14: Major oppdateringer av libs - ingen påvirkning av funksjonalitet
+
 ## 1.9.7
 
 ### Patch Changes

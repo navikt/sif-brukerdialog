@@ -27,6 +27,7 @@
         "NPM_CONFIG_CACHE": "/tmp",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/pleiepenger",
         "TOGGLE_BEKREFT_OMSORG": "off",
-        "VEDLEGG_API_URL": "https://k9-brukerdialog-api"
+        "VEDLEGG_API_URL": "https://k9-brukerdialog-api",
+        "USE_AMPLITUDE": "true"
     }
 }

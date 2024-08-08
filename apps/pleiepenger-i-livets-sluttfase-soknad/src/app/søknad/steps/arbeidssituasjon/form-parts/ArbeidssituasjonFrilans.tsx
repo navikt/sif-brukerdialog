@@ -83,7 +83,7 @@ const ArbeidssituasjonFrilans = ({
 
     return (
         <>
-            <Heading level="2" size="large">
+            <Heading level="2" size="medium">
                 <AppText id="steg.arbeidssituasjon.frilanser.tittel" />
             </Heading>
             {søkerHarFrilansoppdrag && <FrilansoppdragInfo frilansoppdrag={frilansoppdrag} />}
