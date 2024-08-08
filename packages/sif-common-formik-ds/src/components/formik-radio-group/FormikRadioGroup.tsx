@@ -76,7 +76,11 @@ function FormikRadioGroup<FieldName, ErrorType>({
                         error={getErrorPropForFormikInput({ field, form, context, error })}
                         value={field.value || ''}>
                         {renderHorizontal ? (
-                            <Stack gap="0 6" direction={{ xs: 'column', sm: 'row' }} wrap={false}>
+                            <Stack
+                                gap="0 6"
+                                direction={{ xs: 'column', sm: 'row' }}
+                                wrap={false}
+                                style={{ marginTop: '-.5rem' }}>
                                 {renderRadiobuttons(context, fieldProps, radios, afterOnChange)}
                             </Stack>
                         ) : (
