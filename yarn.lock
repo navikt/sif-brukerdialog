@@ -4194,7 +4194,7 @@ __metadata:
     react-router-dom: "npm:6.26.0"
     rimraf: "npm:6.0.1"
     typescript: "npm:5.5.4"
-    vite: "npm:5.3.5"
+    vite: "npm:5.4.0"
     vite-plugin-checker: "npm:0.7.2"
     vitest: "npm:2.0.5"
   languageName: unknown
@@ -4280,7 +4280,7 @@ __metadata:
     storybook-addon-mock: "npm:5.0.0"
     tailwindcss: "npm:3.4.7"
     typescript: "npm:5.5.4"
-    vite: "npm:5.3.5"
+    vite: "npm:5.4.0"
     vite-plugin-checker: "npm:0.7.2"
     vitest: "npm:2.0.5"
   languageName: unknown
@@ -4381,7 +4381,7 @@ __metadata:
     react-intl: "npm:6.6.8"
     react-router-dom: "npm:6.26.0"
     uuid: "npm:10.0.0"
-    vite: "npm:5.3.5"
+    vite: "npm:5.4.0"
     vite-plugin-checker: "npm:0.7.2"
   languageName: unknown
   linkType: soft
@@ -4492,7 +4492,7 @@ __metadata:
     typescript: "npm:5.5.4"
     ulid: "npm:2.3.0"
     uuid: "npm:10.0.0"
-    vite: "npm:5.3.5"
+    vite: "npm:5.4.0"
     vite-plugin-checker: "npm:0.7.2"
     vitest: "npm:2.0.5"
   languageName: unknown
@@ -4564,7 +4564,7 @@ __metadata:
     tailwindcss: "npm:3.4.7"
     typescript: "npm:5.5.4"
     uuid: "npm:10.0.0"
-    vite: "npm:5.3.5"
+    vite: "npm:5.4.0"
     vite-plugin-checker: "npm:0.7.2"
     vitest: "npm:2.0.5"
   languageName: unknown
@@ -4637,7 +4637,7 @@ __metadata:
     react-router-dom: "npm:6.26.0"
     storybook: "npm:8.2.7"
     typescript: "npm:5.5.4"
-    vite: "npm:5.3.5"
+    vite: "npm:5.4.0"
     vite-plugin-checker: "npm:0.7.2"
     vitest: "npm:2.0.5"
   languageName: unknown
@@ -4712,7 +4712,7 @@ __metadata:
     storybook-addon-mock: "npm:5.0.0"
     typescript: "npm:5.5.4"
     uuid: "npm:10.0.0"
-    vite: "npm:5.3.5"
+    vite: "npm:5.4.0"
     vite-plugin-checker: "npm:0.7.2"
     vitest: "npm:2.0.5"
   languageName: unknown
@@ -4801,7 +4801,7 @@ __metadata:
     storybook-addon-mock: "npm:5.0.0"
     typescript: "npm:5.5.4"
     uuid: "npm:10.0.0"
-    vite: "npm:5.3.5"
+    vite: "npm:5.4.0"
     vite-plugin-checker: "npm:0.7.2"
     vitest: "npm:2.0.5"
   languageName: unknown
@@ -4908,7 +4908,7 @@ __metadata:
     storybook: "npm:8.2.7"
     tailwindcss: "npm:3.4.7"
     uuid: "npm:10.0.0"
-    vite: "npm:5.3.5"
+    vite: "npm:5.4.0"
     vite-plugin-checker: "npm:0.7.2"
     vitest: "npm:2.0.5"
   languageName: unknown
@@ -4969,7 +4969,7 @@ __metadata:
     rimraf: "npm:6.0.1"
     storybook: "npm:8.2.7"
     uuid: "npm:10.0.0"
-    vite: "npm:5.3.5"
+    vite: "npm:5.4.0"
     vite-plugin-checker: "npm:0.7.2"
     vitest: "npm:2.0.5"
   peerDependencies:
@@ -5031,7 +5031,7 @@ __metadata:
     react-router-dom: "npm:6.26.0"
     rimraf: "npm:6.0.1"
     storybook: "npm:8.2.7"
-    vite: "npm:5.3.5"
+    vite: "npm:5.4.0"
     vite-plugin-checker: "npm:0.7.2"
     vitest: "npm:2.0.5"
   languageName: unknown
@@ -5130,7 +5130,7 @@ __metadata:
     rimraf: "npm:6.0.1"
     storybook: "npm:8.2.7"
     uuid: "npm:10.0.0"
-    vite: "npm:5.3.5"
+    vite: "npm:5.4.0"
     vite-plugin-checker: "npm:0.7.2"
   peerDependencies:
     "@navikt/ds-css": 6.13.0
@@ -5261,7 +5261,7 @@ __metadata:
     tailwindcss: "npm:3.4.7"
     typescript: "npm:5.5.4"
     uuid: "npm:10.0.0"
-    vite: "npm:5.3.5"
+    vite: "npm:5.4.0"
     vite-plugin-checker: "npm:0.7.2"
     vitest: "npm:2.0.5"
   languageName: unknown
@@ -20975,7 +20975,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:8.4.41":
+"postcss@npm:8.4.41, postcss@npm:^8.4.40":
   version: 8.4.41
   resolution: "postcss@npm:8.4.41"
   dependencies:
@@ -20994,17 +20994,6 @@ __metadata:
     picocolors: "npm:^1.0.1"
     source-map-js: "npm:^1.2.0"
   checksum: 10/ad9c1add892c96433b9a5502878201ede4a20c4ce02d056251f61f8d9a3e5426dab3683fe5a086edfa78a1a19f2b4988c8cea02c5122136d29758cb5a17e2621
-  languageName: node
-  linkType: hard
-
-"postcss@npm:^8.4.39":
-  version: 8.4.40
-  resolution: "postcss@npm:8.4.40"
-  dependencies:
-    nanoid: "npm:^3.3.7"
-    picocolors: "npm:^1.0.1"
-    source-map-js: "npm:^1.2.0"
-  checksum: 10/bdd01b55152e4be7b4a82b03dd22876e33ff6a038680d1b80a50405a5eccc10aff0f466a0e5e574bc476943b0ba120fbd5de7cde9f219bbf8efc011898f5f631
   languageName: node
   linkType: hard
 
@@ -24970,19 +24959,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:5.3.5":
-  version: 5.3.5
-  resolution: "vite@npm:5.3.5"
+"vite@npm:5.4.0":
+  version: 5.4.0
+  resolution: "vite@npm:5.4.0"
   dependencies:
     esbuild: "npm:^0.21.3"
     fsevents: "npm:~2.3.3"
-    postcss: "npm:^8.4.39"
+    postcss: "npm:^8.4.40"
     rollup: "npm:^4.13.0"
   peerDependencies:
     "@types/node": ^18.0.0 || >=20.0.0
     less: "*"
     lightningcss: ^1.21.0
     sass: "*"
+    sass-embedded: "*"
     stylus: "*"
     sugarss: "*"
     terser: ^5.4.0
@@ -24998,6 +24988,8 @@ __metadata:
       optional: true
     sass:
       optional: true
+    sass-embedded:
+      optional: true
     stylus:
       optional: true
     sugarss:
@@ -25006,7 +24998,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10/5672dde4a969349d9cf90a9e43029c8489dfff60fb04d6a10717d6224553cf12283a8cace633fa80b006df6037f72d08a459a38bf8ea66cb19075d60fe159482
+  checksum: 10/5a98b1d30cc8c0263551f417a360102d40b78b9170e9e58a99c1a394ab700c7e604d3c52dafda323c11356a76eba865800d3d8588b33a8febdeaddd5a8981410
   languageName: node
   linkType: hard
 
