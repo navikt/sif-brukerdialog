@@ -240,7 +240,7 @@ const ArbeidstidStep = () => {
                                             {ansattArbeidstid.map((arbeidsforhold, index) => {
                                                 return (
                                                     <FormBlock key={arbeidsforhold.organisasjonsnummer}>
-                                                        <Heading level="2" size="large">
+                                                        <Heading level="2" size="medium">
                                                             {arbeidsforhold.navn}
                                                         </Heading>
                                                         <Block>
@@ -268,7 +268,7 @@ const ArbeidstidStep = () => {
 
                                     {frilansArbeidstid && periodeSomFrilanserISøknadsperiode && (
                                         <FormBlock>
-                                            <Heading level="2" size="large">
+                                            <Heading level="2" size="medium">
                                                 <AppText id="arbeidIPeriode.FrilansLabel" />
                                             </Heading>
                                             <Block>
@@ -293,7 +293,7 @@ const ArbeidstidStep = () => {
 
                                     {selvstendigArbeidstid && periode && periodeSomSelvstendigISøknadsperiode && (
                                         <FormBlock>
-                                            <Heading level="2" size="large">
+                                            <Heading level="2" size="medium">
                                                 <AppText id="arbeidIPeriode.SNLabel" />
                                             </Heading>
                                             <Block>

@@ -14,7 +14,7 @@ interface Props {
 const ArbeidssituasjonArbeidsgivere = ({ ansatt_arbeidsforhold, søknadsperiode, parentFieldName }: Props) => (
     <>
         <Block>
-            <Heading level="2" size="large">
+            <Heading level="2" size="medium">
                 <AppText id="steg.arbeidssituasjon.tittel" />
             </Heading>
         </Block>
