@@ -1,5 +1,16 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.19.7
+
+### Patch Changes
+
+-   e1c739b: Pakkeoppdateringer - minor/patch
+-   Updated dependencies [e1c739b]
+    -   @navikt/sif-common-formik-ds@1.10.1
+    -   @navikt/sif-common-soknad-ds@11.0.1
+    -   @navikt/sif-common-forms-ds@9.0.5
+    -   @navikt/sif-common-core-ds@9.17.19
+
 ## 2.19.6
 
 ### Patch Changes
