@@ -18,7 +18,7 @@ const FormSection = ({ title, titleLevel = '3', titleIcon, children }: Props) =>
 
     return (
         <section className={bem.block} aria-labelledby={sectionHeaderId}>
-            <Heading size="large" level={titleLevel} className={bem.element('title')} id={sectionHeaderId}>
+            <Heading size="medium" level={titleLevel} className={bem.element('title')} id={sectionHeaderId}>
                 {titleIcon && <span className={bem.element('titleIcon')}>{titleIcon}</span>}
                 {title}
             </Heading>
