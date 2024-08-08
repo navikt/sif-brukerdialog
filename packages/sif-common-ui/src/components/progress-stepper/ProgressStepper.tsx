@@ -81,7 +81,7 @@ const ProgressStepper: React.FunctionComponent<Props> = ({
 
             <Heading
                 tabIndex={-1}
-                size="xlarge"
+                size="large"
                 level={titleHeadingLevel}
                 className="progressStepper__heading__title"
                 ref={headingRef}>
