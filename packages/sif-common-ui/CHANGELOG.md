@@ -1,5 +1,14 @@
 # @navikt/sif-common-ui
 
+## 0.7.20
+
+### Patch Changes
+
+-   347828a: Bruke FormProgress komponent fra Aksel i stedet for egen komponent. Justere headingstørrelser der dette var nødvendig.
+-   Updated dependencies [72585dc]
+    -   @navikt/sif-common-formik-ds@1.10.0
+    -   @navikt/sif-common-core-ds@9.17.18
+
 ## 0.7.19
 
 ### Patch Changes
