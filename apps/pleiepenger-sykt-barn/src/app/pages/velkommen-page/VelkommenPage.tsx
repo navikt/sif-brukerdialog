@@ -1,13 +1,12 @@
+import { BodyLong } from '@navikt/ds-react';
 import React from 'react';
-import { useAppIntl } from '@i18n/index';
+import { AppText, useAppIntl } from '@i18n/index';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
-import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { SoknadVelkommenPage } from '@navikt/sif-common-soknad-ds';
 import { Søker } from '../../types';
 import { StepCommonProps } from '../../types/StepCommonProps';
 import OmSøknaden from './components/OmSøknaden';
-import VelkommenGuide from './components/VelkommenGuide';
-import SamtykkeForm from './SamtykkeForm';
 
 type Props = StepCommonProps & { søker: Søker };
 
@@ -16,13 +15,29 @@ const VelkommenPage: React.FunctionComponent<Props> = ({ onValidSubmit, søker }
     useLogSidevisning(SIFCommonPageKey.velkommen);
 
     return (
-        <Page
-            title={text('page.velkommen.tittel')}
-            topContentRenderer={() => <SoknadHeader title={text('application.title')} />}>
-            <VelkommenGuide navn={søker.fornavn} />
+        <SoknadVelkommenPage
+            title={text('application.title')}
+            onStartSøknad={onValidSubmit}
+            guide={{
+                navn: søker.fornavn,
+                content: (
+                    <>
+                        <Block margin="l">
+                            <BodyLong size="large">
+                                <AppText id="page.velkommen.guide.ingress" />
+                            </BodyLong>
+                        </Block>
+                        <p>
+                            <AppText id="page.velkommen.guide.tekst.1" />
+                        </p>
+                        <p>
+                            <AppText id="page.velkommen.guide.tekst.2" />
+                        </p>
+                    </>
+                ),
+            }}>
             <OmSøknaden />
-            <SamtykkeForm onConfirm={onValidSubmit} />
-        </Page>
+        </SoknadVelkommenPage>
     );
 };
 
