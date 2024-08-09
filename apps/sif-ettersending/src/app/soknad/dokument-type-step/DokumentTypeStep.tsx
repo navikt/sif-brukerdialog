@@ -71,6 +71,7 @@ const DokumentTypeStep = ({ søknadstype, søkersFødselsnummer, registrertBarn 
                     </li>
                 </ul>
             </SifGuidePanel>
+
             <FormBlock>
                 <SoknadFormComponents.RadioGroup
                     legend={text('step.dokumentType.dokumentType.spm')}

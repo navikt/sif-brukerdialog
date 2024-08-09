@@ -175,7 +175,8 @@ const nb = {
         'En av våre saksbehandlere vil snart gjennomgå dokumentet ditt, dette kan ta noen dager. Vi gir deg beskjed hvis vi trenger noe mer fra deg.',
 
     'validation.harForståttRettigheterOgPlikter.notChecked': 'Du må bekrefte at du har lest og forstått dine plikter',
-    'validation.registrertBarnAktørId.noValue': 'Du må velge hvilket barn legeerklæringen gjelder',
+    'validation.registrertBarnAktørId.ANNET.noValue': 'Du må velge hvilket barn dokumentasjonen gjelder',
+    'validation.registrertBarnAktørId.LEGEERKLÆRING.noValue': 'Du må velge hvilket barn legeerklæringen gjelder',
     'validation.ingen_dokumenter': 'Ingen dokumenter er lastet opp',
     'validation.for_mange_dokumenter': 'For mange dokumenter er lastet opp',
     'validation.samlet_storrelse_for_hoy':

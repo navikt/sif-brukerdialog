@@ -15,71 +15,86 @@ interface Props {
 
 const RegistrertBarnPart = ({ registrertBarn }: Props) => {
     const { text } = useAppIntl();
+
     const {
-        values: { gjelderEtAnnetBarn },
+        values: { gjelderEtAnnetBarn, dokumentType },
         setFieldValue,
     } = useFormikContext<SoknadFormData>();
 
+    const handleRegistrertBarnAktørIdChange = (value: string) => {
+        const valgteBarn = registrertBarn.find((barn) => barn.aktørId === value);
+
+        if (valgteBarn) {
+            setFieldValue(SoknadFormField.valgteRegistrertBarn, {
+                aktørId: valgteBarn.aktørId,
+                barnetsNavn: formatName(valgteBarn.fornavn, valgteBarn.etternavn, valgteBarn.mellomnavn),
+                barnetsFødselsdato: dateToISODate(valgteBarn.fødselsdato).toString(),
+            });
+        }
+    };
+
+    const validateRegistrertBarnAktørId = (value: string) => {
+        if (gjelderEtAnnetBarn) {
+            return undefined;
+        }
+
+        return getRequiredFieldValidator()(value)
+            ? {
+                  key: `validation.registrertBarnAktørId.${dokumentType}.noValue`,
+                  keepKeyUnaltered: true,
+              }
+            : undefined;
+    };
+
+    const handleGjelderAnnetBarnCheckboxChange = (newValue: boolean) => {
+        if (newValue) {
+            setFieldValue(SoknadFormField.registrertBarnAktørId, undefined);
+            setFieldValue(SoknadFormField.valgteRegistrertBarn, undefined);
+        } else {
+            setFieldValue(SoknadFormField.barnetsFødselsnummer, undefined);
+        }
+    };
+
+    if (registrertBarn.length === 0) {
+        return null;
+    }
+
     return (
         <>
-            {registrertBarn.length > 0 && (
-                <>
-                    <SoknadFormComponents.RadioGroup
-                        name={SoknadFormField.registrertBarnAktørId}
-                        legend={text('step.dokumentType.registrertBarnPart.spm')}
-                        description={text('step.dokumentType.registrertBarnPart.spm.description')}
-                        radios={registrertBarn.map((barn) => {
-                            const { fornavn, mellomnavn, etternavn, fødselsdato, aktørId } = barn;
-                            const barnetsNavn = formatName(fornavn, etternavn, mellomnavn);
-                            return {
-                                value: aktørId,
-                                label: (
-                                    <BodyShort as="div">
-                                        <div>{barnetsNavn}</div>
-                                        <div>
-                                            <AppText
-                                                id="step.dokumentType.registrertBarnPart.hvilketBarn.født"
-                                                values={{ dato: prettifyDate(fødselsdato) }}
-                                            />
-                                        </div>
-                                    </BodyShort>
-                                ),
-                                disabled: gjelderEtAnnetBarn,
-                            };
-                        })}
-                        afterOnChange={(value) => {
-                            const valgteBarn = registrertBarn.find((barn) => barn.aktørId === value);
-                            if (valgteBarn) {
-                                setFieldValue(SoknadFormField.valgteRegistrertBarn, {
-                                    aktørId: valgteBarn.aktørId,
-                                    barnetsNavn: formatName(
-                                        valgteBarn.fornavn,
-                                        valgteBarn.etternavn,
-                                        valgteBarn.mellomnavn,
-                                    ),
-                                    barnetsFødselsdato: dateToISODate(valgteBarn.fødselsdato).toString(),
-                                });
-                            }
-                        }}
-                        validate={gjelderEtAnnetBarn ? undefined : getRequiredFieldValidator()}
-                    />
+            <SoknadFormComponents.RadioGroup
+                name={SoknadFormField.registrertBarnAktørId}
+                legend={text('step.dokumentType.registrertBarnPart.spm')}
+                description={text('step.dokumentType.registrertBarnPart.spm.description')}
+                radios={registrertBarn.map((barn) => {
+                    const { fornavn, mellomnavn, etternavn, fødselsdato, aktørId } = barn;
+                    const barnetsNavn = formatName(fornavn, etternavn, mellomnavn);
+                    return {
+                        value: aktørId,
+                        label: (
+                            <BodyShort as="div">
+                                <div>{barnetsNavn}</div>
+                                <div>
+                                    <AppText
+                                        id="step.dokumentType.registrertBarnPart.hvilketBarn.født"
+                                        values={{ dato: prettifyDate(fødselsdato) }}
+                                    />
+                                </div>
+                            </BodyShort>
+                        ),
+                        disabled: gjelderEtAnnetBarn,
+                    };
+                })}
+                afterOnChange={handleRegistrertBarnAktørIdChange}
+                validate={validateRegistrertBarnAktørId}
+            />
 
-                    <FormBlock margin="l">
-                        <SoknadFormComponents.Checkbox
-                            label={text('step.dokumentType.gjelderAnnetBarn')}
-                            name={SoknadFormField.gjelderEtAnnetBarn}
-                            afterOnChange={(newValue) => {
-                                if (newValue) {
-                                    setFieldValue(SoknadFormField.registrertBarnAktørId, undefined);
-                                    setFieldValue(SoknadFormField.valgteRegistrertBarn, undefined);
-                                } else {
-                                    setFieldValue(SoknadFormField.barnetsFødselsnummer, undefined);
-                                }
-                            }}
-                        />
-                    </FormBlock>
-                </>
-            )}
+            <FormBlock margin="l">
+                <SoknadFormComponents.Checkbox
+                    label={text('step.dokumentType.gjelderAnnetBarn')}
+                    name={SoknadFormField.gjelderEtAnnetBarn}
+                    afterOnChange={handleGjelderAnnetBarnCheckboxChange}
+                />
+            </FormBlock>
         </>
     );
 };
