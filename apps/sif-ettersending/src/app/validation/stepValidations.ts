@@ -1,4 +1,3 @@
-import { DokumentType } from '../types/DokumentType';
 import { SoknadFormData } from '../types/SoknadFormData';
 import { hasValue } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
 
@@ -9,12 +8,10 @@ export const beskrivelseStepIsValid = (values: SoknadFormData) =>
     hasValue(values.beskrivelse) && welcomingPageIsValid(values);
 
 export const dokumentTypeStepIsValid = (values: SoknadFormData) => {
-    const { dokumentType, registrertBarnAktørId, barnetsFødselsnummer, legeerklæringGjelderEtAnnetBarn } = values;
+    const { registrertBarnAktørId, barnetsFødselsnummer, gjelderEtAnnetBarn } = values;
     let isValid = false;
 
-    if (dokumentType === DokumentType.annet) {
-        isValid = true;
-    } else if (legeerklæringGjelderEtAnnetBarn) {
+    if (gjelderEtAnnetBarn) {
         isValid = hasValue(barnetsFødselsnummer);
     } else {
         isValid = hasValue(registrertBarnAktørId);
