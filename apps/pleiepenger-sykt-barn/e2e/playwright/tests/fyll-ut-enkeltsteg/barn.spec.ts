@@ -6,7 +6,7 @@ test.beforeEach(async ({ page }) => {
     await setNow(page);
     await routeUtils.setupMockRoutes(page);
     await page.goto('http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger/soknad/velkommen');
-    await expect(page.getByRole('heading', { name: 'Hei Test' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Hei, Test' })).toBeVisible();
     await page.getByText('Jeg bekrefter at jeg har').click();
     await page.getByRole('button', { name: 'Start søknad' }).click();
     await expect(page.getByRole('heading', { name: 'Barn', level: 1 })).toBeVisible();
