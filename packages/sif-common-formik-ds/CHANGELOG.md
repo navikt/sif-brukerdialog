@@ -1,5 +1,16 @@
 # @navikt/sif-common-formik-ds
 
+## 1.11.1
+
+### Patch Changes
+
+-   90ba6ff: Pakkeoppdateringer - minor/patch.
+
+    -   ds-pakker
+    -   storybook
+    -   tailwindcss
+    -   vite
+
 ## 1.11.0
 
 ### Minor Changes

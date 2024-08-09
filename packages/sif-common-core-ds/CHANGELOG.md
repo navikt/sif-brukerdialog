@@ -1,5 +1,16 @@
 # @navikt/sif-common-core-ds
 
+## 9.17.19
+
+### Patch Changes
+
+-   90ba6ff: Pakkeoppdateringer - minor/patch.
+
+    -   ds-pakker
+    -   storybook
+    -   tailwindcss
+    -   vite
+
 ## 9.17.18
 
 ### Patch Changes

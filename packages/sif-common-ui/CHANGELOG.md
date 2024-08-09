@@ -1,5 +1,20 @@
 # @navikt/sif-common-ui
 
+## 0.7.22
+
+### Patch Changes
+
+-   90ba6ff: Pakkeoppdateringer - minor/patch.
+
+    -   ds-pakker
+    -   storybook
+    -   tailwindcss
+    -   vite
+
+-   Updated dependencies [90ba6ff]
+    -   @navikt/sif-common-formik-ds@1.11.1
+    -   @navikt/sif-common-core-ds@9.17.19
+
 ## 0.7.21
 
 ### Patch Changes
