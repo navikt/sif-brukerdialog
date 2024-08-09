@@ -1,5 +1,28 @@
 # @navikt/sif-common-formik-ds
 
+## 1.11.1
+
+### Patch Changes
+
+-   90ba6ff: Pakkeoppdateringer - minor/patch.
+
+    -   ds-pakker
+    -   storybook
+    -   tailwindcss
+    -   vite
+
+## 1.11.0
+
+### Minor Changes
+
+-   2690b03: Oppdatere visning av radios for YesOrNoQuestion, slik at disse kommer horisontalt ved stor skjerm. Fortsatt vertikalt på mobil. Satt opp i henhold til guide i Aksel.
+
+## 1.10.0
+
+### Minor Changes
+
+-   72585dc: Endrer tekst og layout (ikon) på forrige og neste knapper + send inn knapp. I henhold til Aksel.
+
 ## 1.9.8
 
 ### Patch Changes

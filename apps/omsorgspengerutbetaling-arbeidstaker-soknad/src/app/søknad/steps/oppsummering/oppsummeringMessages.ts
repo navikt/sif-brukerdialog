@@ -73,6 +73,7 @@ const nb = {
     'step.oppsummering.dineBarn.født': 'Fødselsdato: {dato}',
     'step.oppsummering.dineBarn.id': 'Fødselsnummer/id: {identitetsnummer}',
     'step.oppsummering.dineBarn.fosterbarn': 'Barnet er mitt fosterbarn',
+    'step.oppsummering.sendSøknad': 'Send søknad',
 };
 
 export const oppsummeringMessages = { nb };

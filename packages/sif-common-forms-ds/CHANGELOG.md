@@ -1,5 +1,16 @@
 # @navikt/sif-common-forms-ds
 
+## 9.0.5
+
+### Patch Changes
+
+-   90ba6ff: Pakkeoppdateringer - minor/patch.
+
+    -   ds-pakker
+    -   storybook
+    -   tailwindcss
+    -   vite
+
 ## 9.0.4
 
 ### Patch Changes

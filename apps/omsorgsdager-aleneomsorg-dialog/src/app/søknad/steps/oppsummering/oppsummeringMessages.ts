@@ -15,6 +15,7 @@ const nb = {
         'Det oppstod en feil under innsending. Vennligst prøv på nytt.',
     'step.oppsummering.sendMelding.feilmelding.andreGang':
         'Det oppstod fortsatt en feil under innsending. Vennligst vent litt og prøv på nytt.',
+    'step.oppsummering.sendSøknad': 'Send søknad',
 
     'validation.harBekreftetOpplysninger.notChecked': 'Du må bekrefte at opplysningene du har gitt er riktige.',
 };

@@ -16,18 +16,18 @@ test.beforeEach(async ({ page }) => {
 
 const gåTilOppsummering = async (page: Page, harArbeidsaktivitet = true) => {
     if (harArbeidsaktivitet) {
-        await page.getByRole('button', { name: 'Neste' }).click();
+        await page.getByRole('button', { name: 'Neste steg' }).click();
     }
-    await page.getByRole('button', { name: 'Neste' }).click();
-    await page.getByRole('button', { name: 'Neste' }).click();
-    await page.getByRole('button', { name: 'Neste' }).click();
-    await page.getByRole('button', { name: 'Neste' }).click();
+    await page.getByRole('button', { name: 'Neste steg' }).click();
+    await page.getByRole('button', { name: 'Neste steg' }).click();
+    await page.getByRole('button', { name: 'Neste steg' }).click();
+    await page.getByRole('button', { name: 'Neste steg' }).click();
     await expect(page.getByRole('heading', { name: 'Oppsummering' })).toBeVisible();
 };
 
 test.describe('Arbeidssituasjoner arbeidstaker', () => {
     test('Ansatt hele søknadsperioden', async ({ page }) => {
-        await page.getByTestId('er-ansatt_yes').check();
+        await page.getByTestId('er-ansatt').getByText('Ja').click();
         await page.getByLabel('Hvor mange timer jobber du').fill('40');
         await gåTilOppsummering(page);
         await expect(
@@ -35,7 +35,7 @@ test.describe('Arbeidssituasjoner arbeidstaker', () => {
         ).toBeVisible();
     });
     test('Slutter i søknadsperioden', async ({ page }) => {
-        await page.getByTestId('er-ansatt_no').check();
+        await page.getByTestId('er-ansatt').getByText('Nei').click();
         await page.getByTestId('sluttet-før-søknadsperiode').getByLabel('Nei').check();
         await page.getByLabel('Hvor mange timer jobber du').fill('30');
         await gåTilOppsummering(page);
@@ -45,7 +45,7 @@ test.describe('Arbeidssituasjoner arbeidstaker', () => {
         ).toBeVisible();
     });
     test('Slutter før søknadsperioden', async ({ page }) => {
-        await page.getByTestId('er-ansatt_no').check();
+        await page.getByTestId('er-ansatt').getByText('Nei').click();
         await page.getByTestId('sluttet-før-søknadsperiode').getByLabel('Ja').check();
         await page.getByTestId('verneplikt').getByText('Nei', { exact: true }).check(); // Vernepllikt spm kommer opp når en har ingen annen aktivitet
         await gåTilOppsummering(page, false);

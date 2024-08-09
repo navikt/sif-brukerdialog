@@ -1,5 +1,20 @@
 # @navikt/dine-pleiepenger
 
+## 1.5.5
+
+### Patch Changes
+
+-   90ba6ff: Pakkeoppdateringer - minor/patch.
+
+    -   ds-pakker
+    -   storybook
+    -   tailwindcss
+    -   vite
+
+-   Updated dependencies [90ba6ff]
+    -   @navikt/appstatus-react-ds@2.18.17
+    -   @navikt/sif-common-core-ds@9.17.19
+
 ## 1.5.4
 
 ### Patch Changes

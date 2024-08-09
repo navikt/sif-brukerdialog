@@ -121,6 +121,7 @@ const nb = {
     'step.oppsummering.legeerklæring.ingenVedlegg': 'Ingen legeerklæring er lastet opp',
 
     'step.oppsummering.apiValideringFeil.tittel': 'Noe av informasjonen mangler',
+    'step.oppsummering.sendSøknad': 'Send søknad',
 
     'step.oppsummering.bekrefterOpplysninger.ikkeBekreftet': 'Du må bekrefte opplysningene',
 

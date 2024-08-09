@@ -1,5 +1,53 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.15.2
+
+### Patch Changes
+
+-   90ba6ff: Pakkeoppdateringer - minor/patch.
+
+    -   ds-pakker
+    -   storybook
+    -   tailwindcss
+    -   vite
+
+-   Updated dependencies [90ba6ff]
+    -   @navikt/sif-common-formik-ds@1.11.1
+    -   @navikt/sif-common-soknad-ds@12.0.1
+    -   @navikt/sif-common-forms-ds@9.0.5
+    -   @navikt/appstatus-react-ds@2.18.17
+    -   @navikt/sif-common-core-ds@9.17.19
+    -   @navikt/sif-common-ui@0.7.22
+
+## 3.15.1
+
+### Patch Changes
+
+-   Updated dependencies [2690b03]
+    -   @navikt/sif-common-formik-ds@1.11.0
+    -   @navikt/sif-common-core-ds@9.17.18
+    -   @navikt/sif-common-forms-ds@9.0.4
+    -   @navikt/sif-common-soknad-ds@12.0.0
+    -   @navikt/sif-common-ui@0.7.21
+
+## 3.15.0
+
+### Minor Changes
+
+-   72585dc: Endrer tekst og layout (ikon) på forrige og neste knapper + send inn knapp. I henhold til Aksel.
+
+### Patch Changes
+
+-   347828a: Bruke FormProgress komponent fra Aksel i stedet for egen komponent. Justere headingstørrelser der dette var nødvendig.
+-   Updated dependencies [347828a]
+-   Updated dependencies [72585dc]
+-   Updated dependencies [bb419a1]
+    -   @navikt/sif-common-ui@0.7.20
+    -   @navikt/sif-common-formik-ds@1.10.0
+    -   @navikt/sif-common-soknad-ds@11.0.0
+    -   @navikt/sif-common-core-ds@9.17.18
+    -   @navikt/sif-common-forms-ds@9.0.4
+
 ## 3.14.4
 
 ### Patch Changes

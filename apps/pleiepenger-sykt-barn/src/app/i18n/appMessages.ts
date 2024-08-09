@@ -73,12 +73,10 @@ const nb = {
     'step.opplysninger-om-barnet.pageTitle': 'Pleiepengesøknad - opplysninger om barnet',
     'step.opplysninger-om-barnet.stepTitle': 'Barn',
     'step.opplysninger-om-barnet.stepIndicatorLabel': 'Om barnet',
-    'step.opplysninger-om-barnet.nextButtonLabel': 'Neste',
 
     'step.tidsrom.pageTitle': 'Pleiepengesøknad - periode',
     'step.tidsrom.stepTitle': 'Perioden med pleiepenger',
     'step.tidsrom.stepIndicatorLabel': 'Periode',
-    'step.tidsrom.nextButtonLabel': 'Neste',
 
     'steg.tidsrom.iUtlandetIPerioden.spm': 'Skal du reise til utlandet i perioden du søker for?',
     'steg.tidsrom.iUtlandetIPerioden.listTitle': 'Utenlandsopphold i perioden',
@@ -93,29 +91,24 @@ const nb = {
     'step.arbeidssituasjon.pageTitle': 'Pleiepengesøknad - opplysninger om din arbeidssituasjon',
     'step.arbeidssituasjon.stepTitle': 'Arbeidssituasjonen din',
     'step.arbeidssituasjon.stepIndicatorLabel': 'Om din arbeidssituasjon',
-    'step.arbeidssituasjon.nextButtonLabel': 'Neste',
 
     'step.arbeidstid.pageTitle': 'Pleiepengesøknad - opplysninger om arbeidstid',
     'step.arbeidstid.stepTitle': 'Jobb i søknadsperioden',
     'step.arbeidstid.stepIndicatorLabel': 'Jobb i søknadsperioden',
-    'step.arbeidstid.nextButtonLabel': 'Neste',
 
     'step.omsorgstilbud.pageTitle': 'Pleiepengesøknad - omsorgstilbud',
     'step.omsorgstilbud.stepTitle': 'Omsorgstilbud i søknadsperioden',
     'step.omsorgstilbud.stepIndicatorLabel': 'Omsorgstilbud i søknadsperioden',
-    'step.omsorgstilbud.nextButtonLabel': 'Neste',
 
     'step.nattevåkOgBeredskap.pageTitle': 'Pleiepengesøknad - nattevåk og beredskap',
     'step.nattevåkOgBeredskap.stepTitle': 'Nattevåk og beredskap',
     'step.nattevåkOgBeredskap.stepIndicatorLabel': 'Nattevåk og beredskap',
-    'step.nattevåkOgBeredskap.nextButtonLabel': 'Neste',
 
     'step.medlemskap.pageTitle': 'Pleiepengesøknad - medlemskap',
     'step.medlemskap.stepTitle': 'Medlemskap',
     'step.medlemskap.veileder':
         'Medlemskap i folketrygden er nøkkelen til rettigheter fra NAV. Hvis du bor eller jobber i Norge er du vanligvis medlem. Du kan lese mer om medlemskap på',
     'step.medlemskap.stepIndicatorLabel': 'Om medlemskap i folketrygden',
-    'step.medlemskap.nextButtonLabel': 'Neste',
     'step.medlemskap.leggTilKnapp': 'Legg til nytt utenlandsopphold',
     'step.medlemskap.utenlandsoppholdSiste12': 'Utenlandsopphold siste 12 måneder',
     'step.medlemskap.utenlandsoppholdNeste12': 'Utenlandsopphold neste 12 måneder',
@@ -125,7 +118,6 @@ const nb = {
     'step.legeerklaering.pageTitle': 'Pleiepengesøknad - legeerklæring',
     'step.legeerklaering.stepTitle': 'Last opp legeerklæring',
     'step.legeerklaering.stepIndicatorLabel': 'Last opp din legeerklæring',
-    'step.legeerklaering.nextButtonLabel': 'Neste',
 
     'step.oppsummering.pageTitle': 'Pleiepengesøknad - oppsummering',
     'step.oppsummering.stepTitle': 'Oppsummering',

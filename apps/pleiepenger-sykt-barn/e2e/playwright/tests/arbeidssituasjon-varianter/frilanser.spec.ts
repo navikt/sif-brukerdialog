@@ -56,7 +56,7 @@ test.describe('Frilanser', () => {
         await page.getByRole('group', { name: 'Jobber du som frilanser eller' }).getByLabel('Ja').check();
         await page.getByLabel('Jeg jobber som frilanser').check();
         await page.getByRole('group', { name: 'Startet du som frilanser før' }).getByLabel('Ja').check();
-        await page.getByTestId('er-fortsatt-frilanser_yes').check();
+        await page.getByTestId('erFortsattFrilanser').getByText('Ja').click();
         await page.getByTestId('arbeidssituasjonFrilanser').getByLabel('Hvor mange timer jobber du').click();
         await page.getByTestId('arbeidssituasjonFrilanser').getByLabel('Hvor mange timer jobber du').fill('33');
 
@@ -75,7 +75,7 @@ test.describe('Frilanser', () => {
         await page.getByLabel('Jeg mottar honorar').check();
         await page.getByTestId('misterHonorar').getByText('Ja').click();
         await page.getByRole('group', { name: 'Startet du som frilanser før' }).getByLabel('Ja').check();
-        await page.getByTestId('er-fortsatt-frilanser_yes').check();
+        await page.getByTestId('erFortsattFrilanser').getByText('Ja').click();
         await page.getByTestId('arbeidssituasjonFrilanser').getByLabel('Hvor mange timer jobber du').click();
         await page.getByTestId('arbeidssituasjonFrilanser').getByLabel('Hvor mange timer jobber du').fill('33');
 
@@ -104,7 +104,7 @@ test.describe('Frilanser', () => {
         await page.getByRole('group', { name: 'Jobber du som frilanser eller' }).getByLabel('Ja').check();
         await page.getByText('Jeg jobber både som frilanser').check();
         await page.getByRole('group', { name: 'Startet du som frilanser før' }).getByLabel('Ja').check();
-        await page.getByTestId('er-fortsatt-frilanser_yes').check();
+        await page.getByTestId('erFortsattFrilanser').getByText('Ja').click();
         await page.getByTestId('arbeidssituasjonFrilanser').getByLabel('Hvor mange timer jobber du').click();
         await page.getByTestId('arbeidssituasjonFrilanser').getByLabel('Hvor mange timer jobber du').fill('33');
 

@@ -4,6 +4,7 @@ import { isFailure, isPending } from '@devexperts/remote-data-ts';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { Sitat, TextareaSvar } from '@navikt/sif-common-ui';
@@ -21,7 +22,6 @@ import SoknadFormComponents from '../SoknadFormComponents';
 import SoknadFormStep from '../SoknadFormStep';
 import { StepID } from '../soknadStepsConfig';
 import './oppsummeringStep.css';
-import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 
 interface Props {
     soknadId: string;
@@ -48,6 +48,7 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
             includeValidationSummary={false}
             showButtonSpinner={isPending(sendSoknadStatus.status)}
             submitButtonLabel={text('step.sendButtonLabel')}
+            isFinalSubmit={true}
             buttonDisabled={isPending(sendSoknadStatus.status) || apiValues === undefined}
             onSendSoknad={apiValues ? () => sendSoknad(apiValues) : undefined}>
             <SifGuidePanel>

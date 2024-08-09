@@ -16,7 +16,7 @@ test.beforeEach(async ({ page }) => {
 
 test.describe('Arbeidssituasjon', () => {
     test('Fyll ut arbeidssituasjon', async ({ page }) => {
-        await page.getByTestId('er-ansatt_yes').check();
+        await page.getByTestId('er-ansatt').getByText('Ja').click();
         await page.getByLabel('Hvor mange timer jobber du').fill('20');
         await page.getByRole('group', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Ja').check();
         await page.getByRole('group', { name: 'Mottar du denne stønaden' }).getByLabel('Ja').check();
@@ -34,8 +34,8 @@ test.describe('Arbeidssituasjon', () => {
         await page.getByRole('group', { name: 'Jobber du som frilanser eller' }).getByLabel('Ja').check();
         await page.getByLabel('Jeg jobber både som frilanser').check();
         await page.getByRole('group', { name: 'Startet du som frilanser før' }).getByLabel('Ja').check();
-        await page.getByTestId('er-fortsatt-frilanser_yes').check();
-        await page.getByTestId('er-fortsatt-frilanser_no').check();
+        await page.getByTestId('erFortsattFrilanser').getByText('Ja').click();
+        await page.getByTestId('erFortsattFrilanser').getByText('Nei').click();
         await page
             .locator('div')
             .filter({ hasText: /^Når sluttet du å jobbe som frilanser\?Åpne datovelger$/ })
@@ -55,7 +55,7 @@ test.describe('Arbeidssituasjon', () => {
         await page.getByLabel('Hvor mange timer jobbet du').fill('5');
         await page.getByLabel('Hvor mange timer jobbet du').press('Tab');
         await page.getByTestId('arbeidssituasjonSelvstendig').getByLabel('Ja').check();
-        await page.getByTestId('har-flere-virksomheter_no').check();
+        await page.getByTestId('har-flere-virksomheter').getByText('Nei').click();
         await page.getByRole('button', { name: 'Registrer virksomhet' }).click();
         await page.getByText('Jordbruker').click();
         await page.getByLabel('Hva heter virksomheten?').click();

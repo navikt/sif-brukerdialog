@@ -1,5 +1,42 @@
 # @navikt/sif-common-soknad-ds
 
+## 12.0.1
+
+### Patch Changes
+
+-   90ba6ff: Pakkeoppdateringer - minor/patch.
+
+    -   ds-pakker
+    -   storybook
+    -   tailwindcss
+    -   vite
+
+-   Updated dependencies [90ba6ff]
+    -   @navikt/sif-common-formik-ds@1.11.1
+    -   @navikt/sif-common-core-ds@9.17.19
+    -   @navikt/sif-common-ui@0.7.22
+
+## 12.0.0
+
+### Patch Changes
+
+-   Updated dependencies [2690b03]
+    -   @navikt/sif-common-formik-ds@1.11.0
+    -   @navikt/sif-common-core-ds@9.17.18
+    -   @navikt/sif-common-ui@0.7.21
+
+## 11.0.0
+
+### Patch Changes
+
+-   bb419a1: - Bump versjonsnummer for å deploye versjon med FormProgress.
+    -   Legge til peerDeps i sif-common-soknad-ds
+-   Updated dependencies [347828a]
+-   Updated dependencies [72585dc]
+    -   @navikt/sif-common-ui@0.7.20
+    -   @navikt/sif-common-formik-ds@1.10.0
+    -   @navikt/sif-common-core-ds@9.17.18
+
 ## 10.16.3
 
 ### Patch Changes

@@ -31,12 +31,12 @@ test('Fyll ut full søknad nytt barn', async ({ page }) => {
         .getByLabel('Født 10.10.2020 Nytt Barn')
         .check();
     await page.getByLabel('Nei').check();
-    await page.getByRole('button', { name: 'Neste' }).click();
+    await page.getByRole('button', { name: 'Neste steg' }).click();
 
     await page.getByRole('heading', { level: 1, name: 'Tidspunkt for aleneomsorg' });
     await page.locator('label').filter({ hasText: 'I 2022 eller 2023' }).click();
     await page.getByLabel('Hvilken dato ble du alene om omsorgen for Nytt Barn?').fill('10.10.2022');
-    await page.getByRole('button', { name: 'Neste' }).click();
+    await page.getByRole('button', { name: 'Neste steg' }).click();
 
     /** Oppsummering */
     await page.getByRole('heading', { level: 1, name: 'Oppsummering' });
