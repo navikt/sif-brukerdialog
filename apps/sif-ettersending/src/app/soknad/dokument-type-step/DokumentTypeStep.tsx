@@ -88,7 +88,7 @@ const DokumentTypeStep = ({ søknadstype, søkersFødselsnummer, registrertBarn 
             {dokumentType === DokumentType.annet && (
                 <FormBlock>
                     <Alert variant="info" className="mb-10">
-                        <Heading level="3" size="small" className="mb-4">
+                        <Heading level="2" size="small" className="mb-4">
                             <AppText id="step.dokumentType.annet.info.1" />
                         </Heading>
                         <AppText id="step.dokumentType.annet.info.2" />
@@ -99,7 +99,7 @@ const DokumentTypeStep = ({ søknadstype, søkersFødselsnummer, registrertBarn 
             {dokumentType === DokumentType.legeerklæring && (
                 <FormBlock>
                     <Alert variant="info" className="mb-10">
-                        <Heading level="3" size="small" className="mb-4">
+                        <Heading level="2" size="small" className="mb-4">
                             <AppText id="step.dokumentType.barn.info.tittel" />
                         </Heading>
                         <AppText
