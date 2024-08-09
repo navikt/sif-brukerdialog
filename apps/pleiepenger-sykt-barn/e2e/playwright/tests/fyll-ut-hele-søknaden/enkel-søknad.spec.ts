@@ -30,7 +30,7 @@ test('Velkommen side', async ({ page }) => {
     await page.getByRole('group', { name: 'Skal du reise til utlandet i' }).getByLabel('Nei').check();
     await page.getByRole('group', { name: 'Skal du ha ferie i perioden' }).getByLabel('Nei').check();
     await page.getByTestId('typedFormikForm-submitButton').click();
-    await page.getByTestId('er-ansatt_yes').check();
+    await page.getByTestId('er-ansatt').getByText('Ja').click();
     await page.getByLabel('Hvor mange timer jobber du').click();
     await page.getByLabel('Hvor mange timer jobber du').fill('30');
     await page.getByTestId('arbeidssituasjonFrilanser').getByText('Nei').first().click();
