@@ -1,5 +1,17 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.15.3
+
+### Patch Changes
+
+-   569761e: Bruke Aksel-mal for velkommenside
+-   Updated dependencies [569761e]
+    -   @navikt/sif-common-formik-ds@1.11.2
+    -   @navikt/sif-common-soknad-ds@12.0.2
+    -   @navikt/sif-common-core-ds@9.17.19
+    -   @navikt/sif-common-forms-ds@9.0.5
+    -   @navikt/sif-common-ui@0.7.23
+
 ## 3.15.2
 
 ### Patch Changes

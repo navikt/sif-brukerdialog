@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.11.2
+
+### Patch Changes
+
+-   569761e: Bugfix - tillate overstyring av renderHorizontal for yesOrNo
+
 ## 1.11.1
 
 ### Patch Changes
