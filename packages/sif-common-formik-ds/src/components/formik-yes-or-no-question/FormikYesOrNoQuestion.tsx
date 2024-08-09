@@ -13,6 +13,7 @@ export interface FormikYesOrNoQuestionProps<FieldName, ErrorType>
 function FormikYesOrNoQuestion<FieldName, ErrorType>({
     name,
     labels,
+    renderHorizontal = true,
     ...restProps
 }: FormikYesOrNoQuestionProps<FieldName, ErrorType> & TypedFormInputValidationProps<FieldName, ErrorType>) {
     const { yes: yesLabel = 'Ja', no: noLabel = 'Nei' } = labels || {};
@@ -23,7 +24,7 @@ function FormikYesOrNoQuestion<FieldName, ErrorType>({
         <FormikRadioGroup<FieldName, ErrorType>
             data-testid={testKey}
             {...restProps}
-            renderHorizontal={true}
+            renderHorizontal={renderHorizontal}
             radios={[
                 { label: yesLabel, value: YesOrNo.YES, ['data-testid']: testKey ? `${testKey}_yes` : undefined },
                 { label: noLabel, value: YesOrNo.NO, ['data-testid']: testKey ? `${testKey}_no` : undefined },
