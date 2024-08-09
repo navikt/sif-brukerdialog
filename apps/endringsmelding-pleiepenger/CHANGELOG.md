@@ -1,5 +1,22 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.30.7
+
+### Patch Changes
+
+-   90ba6ff: Pakkeoppdateringer - minor/patch.
+
+    -   ds-pakker
+    -   storybook
+    -   tailwindcss
+    -   vite
+
+-   Updated dependencies [90ba6ff]
+    -   @navikt/sif-common-formik-ds@1.11.1
+    -   @navikt/sif-common-soknad-ds@12.0.1
+    -   @navikt/sif-common-forms-ds@9.0.5
+    -   @navikt/sif-common-core-ds@9.17.19
+
 ## 2.30.6
 
 ### Patch Changes

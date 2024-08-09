@@ -1,5 +1,16 @@
 # @navikt/appstatus-react-ds
 
+## 2.18.17
+
+### Patch Changes
+
+-   90ba6ff: Pakkeoppdateringer - minor/patch.
+
+    -   ds-pakker
+    -   storybook
+    -   tailwindcss
+    -   vite
+
 ## 2.18.16
 
 ### Patch Changes
