@@ -5,6 +5,7 @@ export const ApplicationPictogram = ({ style }: { style?: React.CSSProperties })
         height="72"
         viewBox="0 0 72 72"
         fill="none"
+        role="presentation"
         style={{ flexShrink: 0, ...style }}
         aria-hidden>
         <rect x="23.25" y="22.5" width="26.25" height="9" fill="#CCE2F0" />
