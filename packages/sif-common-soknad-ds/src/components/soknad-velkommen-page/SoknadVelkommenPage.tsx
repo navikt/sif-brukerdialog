@@ -27,11 +27,12 @@ const SoknadVelkommenPage = ({ title, onStartSøknad, guide, submitButtonLabel, 
     const { text } = useSoknadIntl();
     return (
         <Page title={title}>
-            <VStack as="main" gap="8">
+            <VStack gap="8">
                 <Stack
                     gap="6"
-                    direction={{ sm: 'row-reverse', lg: 'row' }}
-                    justify={{ sm: 'space-between', lg: 'start' }}
+                    direction={{ sm: 'row-reverse', md: 'row' }}
+                    justify={{ sm: 'space-between', md: 'start' }}
+                    align="center"
                     wrap={false}>
                     <Show above="sm">
                         <ApplicationPictogram />
