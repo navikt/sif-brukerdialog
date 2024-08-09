@@ -33,7 +33,7 @@ const renderRadiobuttons = (
             <Radio
                 key={idx}
                 {...rest}
-                name={field.name as any}
+                name={field.name}
                 onChange={(evt) => {
                     form.setFieldValue(field.name, evt.target.value);
                     const newValue = evt.target.value;
