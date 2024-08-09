@@ -1,21 +1,22 @@
+import { Heading, Link, VStack } from '@navikt/ds-react';
 import React from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import InfoList from '@navikt/sif-common-core-ds/src/components/lists/info-list/InfoList';
-import { Heading, Link } from '@navikt/ds-react';
-import getLenker from '../../lenker';
 import { AppText } from '../../i18n';
+import getLenker from '../../lenker';
 
 const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
     return (
-        <Block margin="l" style={{ paddingTop: '.5rem' }}>
-            <Heading level="3" size="small">
-                <AppText id="personopplysninger.1" />
-            </Heading>
-            <p>
-                <AppText id="personopplysninger.2" />
-            </p>
-            <Block margin="l">
-                <Heading size="small" level="3">
+        <VStack gap="2" paddingBlock="2 0">
+            <div>
+                <Heading level="3" size="xsmall" spacing={true}>
+                    <AppText id="personopplysninger.1" />
+                </Heading>
+                <p>
+                    <AppText id="personopplysninger.2" />
+                </p>
+            </div>
+            <div>
+                <Heading level="3" size="xsmall" spacing={true}>
                     <AppText id="personopplysninger.3" />
                 </Heading>
                 <p>
@@ -41,16 +42,20 @@ const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
                         <AppText id="personopplysninger.4.6" />
                     </li>
                 </InfoList>
-            </Block>
-
-            <Block>
-                <AppText id="personopplysninger.5.1" />
-                <Link href={getLenker().personvern} target="_blank">
-                    <AppText id="personopplysninger.5.2" />
-                </Link>
-                <AppText id="personopplysninger.5.3" />
-            </Block>
-        </Block>
+            </div>
+            <div>
+                <AppText
+                    id="personopplysninger.5"
+                    values={{
+                        Lenke: (value) => (
+                            <Link href={getLenker().personvern} target="_blank">
+                                {value}
+                            </Link>
+                        ),
+                    }}
+                />
+            </div>
+        </VStack>
     );
 };
 
