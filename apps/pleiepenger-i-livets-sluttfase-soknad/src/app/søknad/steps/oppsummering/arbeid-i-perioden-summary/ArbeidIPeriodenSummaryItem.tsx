@@ -1,6 +1,4 @@
-import { Heading } from '@navikt/ds-react';
 import React from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { dateToISODate, ISODurationToDecimalDuration } from '@navikt/sif-common-utils';
 import TidEnkeltdager from '../../../../components/tid-enkeltdager/TidEnkeltdager';
@@ -11,6 +9,7 @@ import {
 } from '../../../../types/søknadApiData/SøknadApiData';
 import { JobberIPeriodeSvar } from '../../arbeidstid/ArbeidstidTypes';
 import { AppText } from '../../../../i18n';
+import { Box, List } from '@navikt/ds-react';
 
 interface Props {
     periode: DateRange;
@@ -32,33 +31,34 @@ const fjernDagerIkkeSøktForOgUtenArbeidstid = (enkeltdager: TidEnkeltdagApiData
 
 const ArbeidIPeriodeSummaryItem: React.FC<Props> = ({ arbeidIPeriode, dagerMedPleie }) => {
     return (
-        <>
+        <List>
             {(arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.heltFravær ||
                 arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.somVanlig) && (
-                <p style={{ marginTop: 0 }}>
+                <List.Item>
                     <AppText id={`oppsummering.arbeidIPeriode.jobberIPerioden.${arbeidIPeriode.jobberIPerioden}`} />
-                </p>
+                </List.Item>
             )}
 
             {arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.redusert && (
-                <p style={{ marginTop: 0 }}>
+                <List.Item>
                     <AppText id={`oppsummering.arbeidIPeriode.jobberIPerioden.${arbeidIPeriode.jobberIPerioden}`} />
-                </p>
+                </List.Item>
             )}
 
             {arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.redusert && arbeidIPeriode.enkeltdager && (
-                <Block margin="xl">
-                    <Heading size="xsmall" level="4" spacing={true}>
-                        <AppText id="oppsummering.arbeidIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading" />
-                    </Heading>
+                <List.Item>
+                    <Box className="mb-2">
+                        <AppText id="oppsummering.arbeidIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading" />:
+                    </Box>
+
                     <TidEnkeltdager
                         dager={fjernDagerIkkeSøktForOgUtenArbeidstid(arbeidIPeriode.enkeltdager, dagerMedPleie)}
-                        renderAsAccordion={false}
+                        renderAsAccordion={true}
                         visUke={false}
                     />
-                </Block>
+                </List.Item>
             )}
-        </>
+        </List>
     );
 };
 

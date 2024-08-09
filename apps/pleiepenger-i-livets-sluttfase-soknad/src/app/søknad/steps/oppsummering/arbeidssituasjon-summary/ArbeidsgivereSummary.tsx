@@ -1,9 +1,9 @@
+import { FormSummary } from '@navikt/ds-react';
 import React from 'react';
-import { ArbeidsgiverApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { DateRange } from '@navikt/sif-common-formik-ds';
-import { SummaryBlock } from '@navikt/sif-common-ui';
 import { prettifyDateExtended } from '@navikt/sif-common-utils';
-import { AppText, useAppIntl } from '../../../../i18n';
+import { AppText } from '../../../../i18n';
+import { ArbeidsgiverApiData } from '../../../../types/søknadApiData/SøknadApiData';
 
 interface Props {
     arbeidsgivere?: ArbeidsgiverApiData[];
@@ -11,19 +11,16 @@ interface Props {
 }
 
 const ArbeidsgivereSummary: React.FunctionComponent<Props> = ({ arbeidsgivere, søknadsperiode }) => {
-    const { text } = useAppIntl();
-
     if (arbeidsgivere === undefined || arbeidsgivere.length === 0) {
         return (
-            <SummaryBlock header={text('oppsummering.arbeidssituasjon.arbeidsgivere.ingenIPeriode.header')}>
-                <ul>
-                    <li>
-                        <p>
-                            <AppText id="oppsummering.arbeidssituasjon.arbeidsgivere.ingenIPeriode.tekst" />
-                        </p>
-                    </li>
-                </ul>
-            </SummaryBlock>
+            <FormSummary.Answer>
+                <FormSummary.Label>
+                    <AppText id="oppsummering.arbeidssituasjon.arbeidsgivere.ingenIPeriode.header" />
+                </FormSummary.Label>
+                <FormSummary.Value>
+                    <AppText id="oppsummering.arbeidssituasjon.arbeidsgivere.ingenIPeriode.tekst" />
+                </FormSummary.Value>
+            </FormSummary.Answer>
         );
     }
 
@@ -32,50 +29,53 @@ const ArbeidsgivereSummary: React.FunctionComponent<Props> = ({ arbeidsgivere, s
             {arbeidsgivere.map((arbeidsgiver) => {
                 const { navn, organisasjonsnummer, erAnsatt } = arbeidsgiver;
                 return (
-                    <SummaryBlock
-                        key={organisasjonsnummer}
-                        header={text('arbeidsgiver.tittel', { navn, organisasjonsnummer })}>
-                        <ul>
-                            <li>
-                                <AppText
-                                    id={
-                                        erAnsatt
-                                            ? `oppsummering.arbeidssituasjon.arbeidsgiver.ansatt`
-                                            : 'oppsummering.arbeidssituasjon.avsluttet.arbeidsgiver.ansatt'
-                                    }
-                                />
-                            </li>
-                            {arbeidsgiver.arbeidsforhold && (
-                                <>
-                                    <li>
-                                        <AppText
-                                            id={
-                                                erAnsatt
-                                                    ? `oppsummering.arbeidssituasjon.tid`
-                                                    : `oppsummering.arbeidssituasjon.avsluttet.tid`
-                                            }
-                                            values={{ timer: arbeidsgiver.arbeidsforhold.jobberNormaltTimer }}
-                                        />
-                                    </li>
-                                </>
-                            )}
-                            {erAnsatt === false && (
+                    <FormSummary.Answer key={organisasjonsnummer}>
+                        <FormSummary.Label>
+                            <AppText id="arbeidsgiver.tittel" values={{ navn, organisasjonsnummer }} />
+                        </FormSummary.Label>
+                        <FormSummary.Value>
+                            <ul>
                                 <li>
                                     <AppText
                                         id={
-                                            arbeidsgiver.sluttetFørSøknadsperiode
-                                                ? 'oppsummering.arbeidssituasjon.avsluttet.sluttetFørSøknadsperiode'
-                                                : 'oppsummering.arbeidssituasjon.avsluttet.sluttetISøknadsperiode'
+                                            erAnsatt
+                                                ? `oppsummering.arbeidssituasjon.arbeidsgiver.ansatt`
+                                                : 'oppsummering.arbeidssituasjon.avsluttet.arbeidsgiver.ansatt'
                                         }
-                                        values={{
-                                            periodeFra: prettifyDateExtended(søknadsperiode.from),
-                                            periodeTil: prettifyDateExtended(søknadsperiode.to),
-                                        }}
                                     />
                                 </li>
-                            )}
-                        </ul>
-                    </SummaryBlock>
+                                {arbeidsgiver.arbeidsforhold && (
+                                    <>
+                                        <li>
+                                            <AppText
+                                                id={
+                                                    erAnsatt
+                                                        ? `oppsummering.arbeidssituasjon.tid`
+                                                        : `oppsummering.arbeidssituasjon.avsluttet.tid`
+                                                }
+                                                values={{ timer: arbeidsgiver.arbeidsforhold.jobberNormaltTimer }}
+                                            />
+                                        </li>
+                                    </>
+                                )}
+                                {erAnsatt === false && (
+                                    <li>
+                                        <AppText
+                                            id={
+                                                arbeidsgiver.sluttetFørSøknadsperiode
+                                                    ? 'oppsummering.arbeidssituasjon.avsluttet.sluttetFørSøknadsperiode'
+                                                    : 'oppsummering.arbeidssituasjon.avsluttet.sluttetISøknadsperiode'
+                                            }
+                                            values={{
+                                                periodeFra: prettifyDateExtended(søknadsperiode.from),
+                                                periodeTil: prettifyDateExtended(søknadsperiode.to),
+                                            }}
+                                        />
+                                    </li>
+                                )}
+                            </ul>
+                        </FormSummary.Value>
+                    </FormSummary.Answer>
                 );
             })}
         </>

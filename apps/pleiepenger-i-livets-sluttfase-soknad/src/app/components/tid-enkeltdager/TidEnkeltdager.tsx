@@ -5,8 +5,8 @@ import { ISODate, ISODateToDate, ISODuration, ISODurationToDuration } from '@nav
 import dayjs from 'dayjs';
 import { groupBy } from 'lodash';
 import { DagMedTid } from '../../types/DagMedTid';
-import DagerMedTidListe from '../dager-med-tid-liste/DagerMedTidListe';
 import { AppText } from '../../i18n';
+import DagerMedTidDefinitionList from '../dager-med-tid-liste/DagerMedTidDefinitionList';
 
 interface ISODagMedTid {
     dato: ISODate;
@@ -51,11 +51,11 @@ const TidEnkeltdager: React.FunctionComponent<Props> = ({
                     }
                     return (
                         <div key={key} style={{ paddingTop: index > 0 ? '2rem' : '.5rem' }}>
-                            <Heading level="5" size="xsmall" className="capitalize">
+                            <Heading as="div" level="5" size="xsmall" className="capitalize">
                                 {dayjs(dagerMedTid[0].dato).format('MMMM YYYY')}
                             </Heading>
-                            <Block margin="l">
-                                <DagerMedTidListe
+                            <Block margin="m">
+                                <DagerMedTidDefinitionList
                                     dagerMedTid={dagerMedTid}
                                     viseUke={visUke}
                                     headingLevel={headingLevel}
@@ -80,7 +80,11 @@ const TidEnkeltdager: React.FunctionComponent<Props> = ({
                             <div className="capitalize">{dayjs(dagerMedTid[0].dato).format('MMMM YYYY')}</div>
                         </Accordion.Header>
                         <Accordion.Content>
-                            <DagerMedTidListe dagerMedTid={dagerMedTid} viseUke={visUke} headingLevel={headingLevel} />
+                            <DagerMedTidDefinitionList
+                                dagerMedTid={dagerMedTid}
+                                viseUke={visUke}
+                                headingLevel={headingLevel}
+                            />
                         </Accordion.Content>
                     </Accordion.Item>
                 );
