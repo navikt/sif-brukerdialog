@@ -4,8 +4,8 @@ import { PleiepengerLivetsSluttApp } from '@navikt/sif-app-register';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import {
     ensureBaseNameForReactRouter,
-    SoknadApplicationCommonRoutes,
     SoknadApplication,
+    SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
 import { applicationIntlMessages } from './i18n';
 import Søknad from './søknad/Søknad';
