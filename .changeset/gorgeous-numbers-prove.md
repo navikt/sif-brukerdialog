@@ -3,4 +3,4 @@
 '@navikt/sif-common-core-ds': patch
 ---
 
-Tillate hnr i PILS for pleietrengende
+Tillate syntetisk fødselsnummer for pleietrengende i Q - alle søknadsdialoger
