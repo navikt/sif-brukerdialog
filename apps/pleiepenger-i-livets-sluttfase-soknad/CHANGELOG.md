@@ -1,5 +1,17 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.9.4
+
+### Patch Changes
+
+-   12cfdc9: Tillate syntetisk fødselsnummer for pleietrengende i Q - alle søknadsdialoger
+-   Updated dependencies [12cfdc9]
+-   Updated dependencies [4cb3c3b]
+    -   @navikt/sif-common-core-ds@9.17.20
+    -   @navikt/sif-common-soknad-ds@12.0.3
+    -   @navikt/sif-common-forms-ds@9.0.6
+    -   @navikt/sif-common-ui@0.7.24
+
 ## 2.9.3
 
 ### Patch Changes
