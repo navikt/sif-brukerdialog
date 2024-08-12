@@ -24,6 +24,7 @@ import { validateNavn } from '../../validation/fieldValidations';
 import SøknadFormComponents from '../SøknadFormComponents';
 import FødselsattestPart from './FødselsattestPart';
 import InfoForFarVedNyttBarn from './info/InfoForFarVedNyttBarn';
+import { isDevMode } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 
 interface Props {
     formValues: SøknadFormValues;
@@ -62,6 +63,7 @@ const AnnetBarnPart: React.FC<Props> = ({ formValues, søkersFødselsnummer, att
                                 ? undefined
                                 : getFødselsnummerValidator({
                                       required: true,
+                                      allowHnr: isDevMode,
                                       disallowedValues: [søkersFødselsnummer],
                                   })
                         }

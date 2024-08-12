@@ -4,11 +4,12 @@ import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import { isDevMode } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import {
-    ValidationError,
     getTypedFormComponents,
     resetFieldValue,
     resetFieldValues,
+    ValidationError,
 } from '@navikt/sif-common-formik-ds';
 import {
     getDateValidator,
@@ -17,19 +18,20 @@ import {
     getStringValidator,
 } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-
+import { getDateToday } from '@navikt/sif-common-utils';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import { AppText, useAppIntl } from '../../../i18n';
 import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { YesOrNoDontKnow } from '../../../types/YesOrNoDontKnow';
 import { ÅrsakManglerIdentitetsnummer } from '../../../types/ÅrsakManglerIdentitetsnummer';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import SøknadStep from '../../SøknadStep';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
+import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
+import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import IdPart from './form-parts/IdPart';
 import {
@@ -37,8 +39,6 @@ import {
     getOpplysningerOmPleietrengendeSøknadsdataFromFormValues,
     opplysningerOmPleietrengendeDefaultValues,
 } from './opplysningerOmPleietrengendeStepUtils';
-import { AppText, useAppIntl } from '../../../i18n';
-import { getDateToday } from '@navikt/sif-common-utils';
 
 export enum OpplysningerOmPleietrengendeFormFields {
     navn = 'navn',
@@ -138,6 +138,7 @@ const OpplysningerOmPleietrengendeStep = () => {
                                                     ? undefined
                                                     : getFødselsnummerValidator({
                                                           required: true,
+                                                          allowHnr: isDevMode,
                                                           disallowedValues: søker.fødselsnummer
                                                               ? [søker.fødselsnummer]
                                                               : [],
