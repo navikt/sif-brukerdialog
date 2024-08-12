@@ -11,7 +11,7 @@ interface Props {
 const SoknadHeader: React.FunctionComponent<Props> = ({ title, level = '1' }) => (
     <div style={{ boxShadow: '0 -4px 0 var(--a-deepblue-400) inset' }}>
         <PageBoundary>
-            <HStack gap="4" paddingBlock="2 2" align={'center'}>
+            <HStack gap="4" paddingBlock="2 2" align={'center'} wrap={false}>
                 <Show above="sm">
                     <ApplicationPictogram style={{ width: '2.5rem', height: '2.5rem' }} />
                 </Show>

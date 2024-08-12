@@ -1,31 +1,36 @@
-import { BodyLong, Heading } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
+import { Accordion, Box, Heading, List, VStack } from '@navikt/ds-react';
 import { AppText, useAppIntl } from '../../i18n';
 import BehandlingAvPersonopplysningerContent from './BehandlingAvPersonopplysningerContent';
 
 const OmSøknaden = () => {
     const { text } = useAppIntl();
     return (
-        <Block margin="xl" padBottom="l">
-            <Heading level="2" size="medium">
-                <AppText id="page.velkommen.omSøknaden.tittel" />
-            </Heading>
-            <BodyLong as="div">
-                <p>
-                    <AppText id="page.velkommen.omSøknaden.1" />
-                </p>
-                <p>
-                    <AppText id="page.velkommen.omSøknaden.2" />
-                </p>
-                <p>
-                    <AppText id="page.velkommen.omSøknaden.3" />
-                </p>
-                <ExpandableInfo title={text('page.velkommen.omSøknaden.4')}>
-                    <BehandlingAvPersonopplysningerContent />
-                </ExpandableInfo>
-            </BodyLong>
-        </Block>
+        <VStack gap="4">
+            <Box>
+                <Heading level="2" size="medium" spacing={true}>
+                    <AppText id="page.velkommen.omSøknaden.tittel" />
+                </Heading>
+                <List>
+                    <List.Item>
+                        <AppText id="page.velkommen.omSøknaden.1" />
+                    </List.Item>
+                    <List.Item>
+                        <AppText id="page.velkommen.omSøknaden.2" />
+                    </List.Item>
+                    <List.Item>
+                        <AppText id="page.velkommen.omSøknaden.3" />
+                    </List.Item>
+                </List>
+            </Box>
+            <Accordion>
+                <Accordion.Item>
+                    <Accordion.Header>{text('page.velkommen.omSøknaden.4')}</Accordion.Header>
+                    <Accordion.Content>
+                        <BehandlingAvPersonopplysningerContent />
+                    </Accordion.Content>
+                </Accordion.Item>
+            </Accordion>
+        </VStack>
     );
 };
 

@@ -1,5 +1,12 @@
 # @navikt/sif-ettersending
 
+## 3.35.6
+
+### Patch Changes
+
+-   Updated dependencies [7f61cd6]
+    -   @navikt/sif-common-soknad-ds@12.0.5
+
 ## 3.35.5
 
 ### Patch Changes

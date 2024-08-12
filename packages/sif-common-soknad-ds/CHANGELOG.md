@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 12.0.5
+
+### Patch Changes
+
+-   7f61cd6: Sette wrap=false for SoknadHeader
+
 ## 12.0.4
 
 ### Patch Changes
