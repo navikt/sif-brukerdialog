@@ -5034,6 +5034,10 @@ __metadata:
     vite: "npm:5.4.0"
     vite-plugin-checker: "npm:0.7.2"
     vitest: "npm:2.0.5"
+  peerDependencies:
+    "@navikt/sif-common-core-ds": "workspace:*"
+    "@navikt/sif-common-formik-ds": "workspace:*"
+    "@navikt/sif-common-utils": "workspace:*"
   languageName: unknown
   linkType: soft
 

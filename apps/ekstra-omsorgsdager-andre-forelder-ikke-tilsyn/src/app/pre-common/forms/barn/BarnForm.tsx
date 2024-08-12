@@ -7,6 +7,7 @@ import barnUtils from './barnUtils';
 import { getFødselsnummerValidator, getStringValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { useAppIntl } from '../../../i18n';
+import { isDevMode } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 
 interface BarnFormLabels {
     title: string;
@@ -97,6 +98,7 @@ const BarnForm = ({
                                 label={formLabels.fnr}
                                 validate={getFødselsnummerValidator({
                                     required: true,
+                                    allowHnr: isDevMode,
                                     disallowedValues: disallowedFødselsnumre,
                                 })}
                                 inputMode="numeric"
