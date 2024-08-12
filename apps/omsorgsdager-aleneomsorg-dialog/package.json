@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/omsorgsdager-aleneomsorg-dialog",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "2.19.9",
+    "version": "2.19.10",
     "private": true,
     "type": "module",
     "scripts": {

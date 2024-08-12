@@ -1,5 +1,18 @@
 # @navikt/sif-common-soknad-ds
 
+## 12.0.3
+
+### Patch Changes
+
+-   4cb3c3b: Vise ikon i søknadsheader på undersider.
+-   a0ed083: Pakkeroppdateringer - minor/patch
+-   Updated dependencies [a0ed083]
+    -   @navikt/sif-common-formik-ds@1.11.3
+    -   @navikt/sif-common-core-ds@9.17.20
+    -   @navikt/sif-common-sentry@0.26.15
+    -   @navikt/sif-common-utils@3.46.10
+    -   @navikt/sif-common-ui@0.7.24
+
 ## 12.0.2
 
 ### Patch Changes
