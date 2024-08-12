@@ -1,21 +1,12 @@
-import { BodyLong, GuidePanel, Heading, Link } from '@navikt/ds-react';
-import React from 'react';
-import getLenker from '../../lenker';
+import { BodyLong, Link } from '@navikt/ds-react';
 import { AppText } from '../../i18n';
+import getLenker from '../../lenker';
 
-interface Props {
-    navn: string;
-}
-
-const VelkommenGuide: React.FunctionComponent<Props> = ({ navn }) => (
-    <GuidePanel>
-        <Heading level="1" size="large" spacing={true}>
-            <AppText id="page.velkommen.guide.tittel" values={{ navn }} />
-        </Heading>
+const VelkommenGuideContent = () => (
+    <>
         <BodyLong size="large">
             <AppText id="page.velkommen.guide.ingress" />
         </BodyLong>
-
         <p>
             <AppText id="page.velkommen.guide.tekst.1" values={{ Strong: (children) => <strong>{children}</strong> }} />
         </p>
@@ -25,7 +16,7 @@ const VelkommenGuide: React.FunctionComponent<Props> = ({ navn }) => (
                 values={{ Lenke: (children) => <Link href={getLenker().inntektsmelding}>{children}</Link> }}
             />
         </p>
-    </GuidePanel>
+    </>
 );
 
-export default VelkommenGuide;
+export default VelkommenGuideContent;
