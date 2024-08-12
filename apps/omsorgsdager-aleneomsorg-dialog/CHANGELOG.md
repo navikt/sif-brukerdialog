@@ -1,5 +1,13 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.19.12
+
+### Patch Changes
+
+-   039a2c1: Bruke SoknadVelkommenPage komponent
+-   Updated dependencies [7f61cd6]
+    -   @navikt/sif-common-soknad-ds@12.0.5
+
 ## 2.19.11
 
 ### Patch Changes

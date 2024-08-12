@@ -1,5 +1,13 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.13.6
+
+### Patch Changes
+
+-   3fbe91e: Bruke Aksel mal for Velkommenside
+-   Updated dependencies [7f61cd6]
+    -   @navikt/sif-common-soknad-ds@12.0.5
+
 ## 1.13.5
 
 ### Patch Changes

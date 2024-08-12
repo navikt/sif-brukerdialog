@@ -1,5 +1,13 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.25.12
+
+### Patch Changes
+
+-   d2355d6: Bruke Aksel mal for Velkommenside
+-   Updated dependencies [7f61cd6]
+    -   @navikt/sif-common-soknad-ds@12.0.5
+
 ## 1.25.11
 
 ### Patch Changes
