@@ -1,5 +1,19 @@
 # @navikt/sif-common-core-ds
 
+## 9.17.21
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-utils@3.46.10
+
+## 9.17.20
+
+### Patch Changes
+
+-   12cfdc9: Tillate syntetisk fødselsnummer for pleietrengende i Q - alle søknadsdialoger
+
 ## 9.17.19
 
 ### Patch Changes

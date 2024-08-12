@@ -19,6 +19,7 @@ import {
     getOmAnnenForelderStepInitialValues,
     getOmAnnenForelderSøknadsdataFromFormValues,
 } from './omAnnenForelderStepUtils';
+import { isDevMode } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 
 export enum OmAnnenForelderFormFields {
     annenForelderNavn = 'annenForelderNavn',
@@ -95,6 +96,7 @@ const OmAnnenForelderStep = () => {
                                         label={text('step.omAnnenForelder.fnr.spm')}
                                         validate={getFødselsnummerValidator({
                                             required: true,
+                                            allowHnr: isDevMode,
                                             disallowedValues: [søker.fødselsnummer],
                                         })}
                                         inputMode="numeric"

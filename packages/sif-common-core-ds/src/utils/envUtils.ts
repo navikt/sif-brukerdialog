@@ -20,3 +20,5 @@ export const getCommitShaFromEnv = () => {
     const parts = image.split('mono:');
     return parts.length === 2 ? parts[1] : undefined;
 };
+
+export const isDevMode = getEnvironmentVariable('APP_VERSION') === 'dev';
