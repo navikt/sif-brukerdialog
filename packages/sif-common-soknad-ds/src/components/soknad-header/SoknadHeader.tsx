@@ -1,36 +1,24 @@
-import { BodyLong, Heading } from '@navikt/ds-react';
+import { Heading, HStack, Show } from '@navikt/ds-react';
 import React from 'react';
-import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import PageBoundary from '@navikt/sif-common-core-ds/src/components/page-boundary/PageBoundary';
-import './soknadHeader.scss';
+import { ApplicationPictogram } from '../application-pictogram/ApplicationPictogram';
 
 interface Props {
-    icon?: React.ReactNode;
     title: string;
     level?: '1' | '2';
-    subtitle?: string;
 }
 
-const bem = bemUtils('soknadHeader');
-
-const SoknadHeader: React.FunctionComponent<Props> = ({ title, subtitle, level = '1', icon }) => (
-    <div className={bem.block}>
+const SoknadHeader: React.FunctionComponent<Props> = ({ title, level = '1' }) => (
+    <div style={{ boxShadow: '0 -4px 0 var(--a-deepblue-400) inset' }}>
         <PageBoundary>
-            <div className={bem.element('content')}>
-                {icon && <div className={bem.element('icon')}>{icon}</div>}
-                <div className={bem.element('text')}>
-                    <div className={bem.element('title')}>
-                        <Heading size="small" level={level}>
-                            {title}
-                        </Heading>
-                    </div>
-                    {subtitle && (
-                        <div className={bem.element('subtitle')}>
-                            <BodyLong size="small">{subtitle}</BodyLong>
-                        </div>
-                    )}
-                </div>
-            </div>
+            <HStack gap="4" paddingBlock="2 2" align={'center'}>
+                <Show above="sm">
+                    <ApplicationPictogram style={{ width: '2.5rem', height: '2.5rem' }} />
+                </Show>
+                <Heading size="small" level={level}>
+                    {title}
+                </Heading>
+            </HStack>
         </PageBoundary>
     </div>
 );
