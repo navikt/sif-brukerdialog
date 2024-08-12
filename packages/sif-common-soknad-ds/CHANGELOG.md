@@ -1,5 +1,17 @@
 # @navikt/sif-common-soknad-ds
 
+## 12.0.4
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.11.3
+    -   @navikt/sif-common-core-ds@9.17.21
+    -   @navikt/sif-common-sentry@0.26.15
+    -   @navikt/sif-common-utils@3.46.10
+    -   @navikt/sif-common-ui@0.7.25
+
 ## 12.0.3
 
 ### Patch Changes
