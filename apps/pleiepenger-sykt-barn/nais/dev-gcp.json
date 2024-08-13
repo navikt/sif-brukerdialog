@@ -27,6 +27,7 @@
         "MIN_SIDE_URL": "https://www.intern.dev.nav.no/minside",
         "NPM_CONFIG_CACHE": "/tmp",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/pleiepenger",
-        "VEDLEGG_API_URL": "https://k9-brukerdialog-api"
+        "VEDLEGG_API_URL": "https://k9-brukerdialog-api",
+        "USE_AMPLITUDE": "true"
     }
 }

@@ -1,5 +1,24 @@
 # config
 
+## 0.9.37
+
+### Patch Changes
+
+-   9563070: - Fjerne eslint import i psb pck-json
+    -   Oppdatere versjonsnummer av config pakken
+
+## 0.9.36
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 0.9.35
+
+### Patch Changes
+
+-   Minor og patch oppdateringer
+
 ## 0.9.34
 
 ### Patch Changes

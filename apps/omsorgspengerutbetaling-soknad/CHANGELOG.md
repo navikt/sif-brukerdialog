@@ -1,5 +1,120 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.13.6
+
+### Patch Changes
+
+-   3fbe91e: Bruke Aksel mal for Velkommenside
+-   Updated dependencies [7f61cd6]
+    -   @navikt/sif-common-soknad-ds@12.0.5
+
+## 1.13.5
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.25.13
+    -   @navikt/sif-common-formik-ds@1.11.3
+    -   @navikt/sif-common-soknad-ds@12.0.4
+    -   @navikt/sif-common-forms-ds@9.0.7
+    -   @navikt/sif-common-core-ds@9.17.21
+    -   @navikt/sif-common-sentry@0.26.15
+    -   @navikt/sif-common-utils@3.46.10
+
+## 1.13.4
+
+### Patch Changes
+
+-   Updated dependencies [12cfdc9]
+-   Updated dependencies [4cb3c3b]
+    -   @navikt/sif-common-core-ds@9.17.20
+    -   @navikt/sif-common-soknad-ds@12.0.3
+    -   @navikt/sif-common-forms-ds@9.0.6
+
+## 1.13.3
+
+### Patch Changes
+
+-   Updated dependencies [569761e]
+    -   @navikt/sif-common-formik-ds@1.11.2
+    -   @navikt/sif-common-soknad-ds@12.0.2
+    -   @navikt/sif-common-core-ds@9.17.19
+    -   @navikt/sif-common-forms-ds@9.0.5
+
+## 1.13.2
+
+### Patch Changes
+
+-   90ba6ff: Pakkeoppdateringer - minor/patch.
+
+    -   ds-pakker
+    -   storybook
+    -   tailwindcss
+    -   vite
+
+-   Updated dependencies [90ba6ff]
+    -   @navikt/sif-common-formik-ds@1.11.1
+    -   @navikt/sif-common-soknad-ds@12.0.1
+    -   @navikt/sif-common-forms-ds@9.0.5
+    -   @navikt/sif-common-core-ds@9.17.19
+
+## 1.13.1
+
+### Patch Changes
+
+-   Updated dependencies [2690b03]
+    -   @navikt/sif-common-formik-ds@1.11.0
+    -   @navikt/sif-common-core-ds@9.17.18
+    -   @navikt/sif-common-forms-ds@9.0.4
+    -   @navikt/sif-common-soknad-ds@12.0.0
+
+## 1.13.0
+
+### Minor Changes
+
+-   72585dc: Endrer tekst og layout (ikon) på forrige og neste knapper + send inn knapp. I henhold til Aksel.
+
+### Patch Changes
+
+-   Updated dependencies [72585dc]
+-   Updated dependencies [bb419a1]
+    -   @navikt/sif-common-formik-ds@1.10.0
+    -   @navikt/sif-common-soknad-ds@11.0.0
+    -   @navikt/sif-common-core-ds@9.17.18
+    -   @navikt/sif-common-forms-ds@9.0.4
+
+## 1.12.6
+
+### Patch Changes
+
+-   8240d14: Major oppdateringer av libs - ingen påvirkning av funksjonalitet
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies [8240d14]
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.25.12
+    -   @navikt/sif-common-formik-ds@1.9.8
+    -   @navikt/sif-common-soknad-ds@10.16.3
+    -   @navikt/sif-common-forms-ds@9.0.4
+    -   @navikt/sif-common-core-ds@9.17.18
+    -   @navikt/sif-common-sentry@0.26.14
+    -   @navikt/sif-common-utils@3.46.9
+
+## 1.12.5
+
+### Patch Changes
+
+-   Minor og patch oppdateringer
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.25.11
+    -   @navikt/sif-common-formik-ds@1.9.7
+    -   @navikt/sif-common-soknad-ds@10.16.2
+    -   @navikt/sif-common-forms-ds@9.0.3
+    -   @navikt/sif-common-core-ds@9.17.17
+    -   @navikt/sif-common-sentry@0.26.13
+    -   @navikt/sif-common-hooks@0.1.14
+    -   @navikt/sif-common-utils@3.46.8
+
 ## 1.12.4
 
 ### Patch Changes

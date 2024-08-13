@@ -1,5 +1,147 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.15.7
+
+### Patch Changes
+
+-   9563070: - Fjerne eslint import i psb pck-json
+    -   Oppdatere versjonsnummer av config pakken
+    -   @navikt/appstatus-react-ds@2.18.18
+    -   @navikt/sif-common-amplitude@2.25.13
+    -   @navikt/sif-common-core-ds@9.17.21
+    -   @navikt/sif-common-formik-ds@1.11.3
+    -   @navikt/sif-common-forms-ds@9.0.7
+    -   @navikt/sif-common-utils@3.46.10
+
+## 3.15.6
+
+### Patch Changes
+
+-   Updated dependencies [7f61cd6]
+    -   @navikt/sif-common-soknad-ds@12.0.5
+
+## 3.15.5
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.25.13
+    -   @navikt/sif-common-formik-ds@1.11.3
+    -   @navikt/sif-common-soknad-ds@12.0.4
+    -   @navikt/sif-common-forms-ds@9.0.7
+    -   @navikt/appstatus-react-ds@2.18.18
+    -   @navikt/sif-common-core-ds@9.17.21
+    -   @navikt/sif-common-sentry@0.26.15
+    -   @navikt/sif-common-utils@3.46.10
+    -   @navikt/sif-common-ui@0.7.25
+
+## 3.15.4
+
+### Patch Changes
+
+-   Updated dependencies [12cfdc9]
+-   Updated dependencies [4cb3c3b]
+    -   @navikt/sif-common-core-ds@9.17.20
+    -   @navikt/sif-common-soknad-ds@12.0.3
+    -   @navikt/sif-common-forms-ds@9.0.6
+    -   @navikt/sif-common-ui@0.7.24
+
+## 3.15.3
+
+### Patch Changes
+
+-   569761e: Bruke Aksel-mal for velkommenside
+-   Updated dependencies [569761e]
+    -   @navikt/sif-common-formik-ds@1.11.2
+    -   @navikt/sif-common-soknad-ds@12.0.2
+    -   @navikt/sif-common-core-ds@9.17.19
+    -   @navikt/sif-common-forms-ds@9.0.5
+    -   @navikt/sif-common-ui@0.7.23
+
+## 3.15.2
+
+### Patch Changes
+
+-   90ba6ff: Pakkeoppdateringer - minor/patch.
+
+    -   ds-pakker
+    -   storybook
+    -   tailwindcss
+    -   vite
+
+-   Updated dependencies [90ba6ff]
+    -   @navikt/sif-common-formik-ds@1.11.1
+    -   @navikt/sif-common-soknad-ds@12.0.1
+    -   @navikt/sif-common-forms-ds@9.0.5
+    -   @navikt/appstatus-react-ds@2.18.17
+    -   @navikt/sif-common-core-ds@9.17.19
+    -   @navikt/sif-common-ui@0.7.22
+
+## 3.15.1
+
+### Patch Changes
+
+-   Updated dependencies [2690b03]
+    -   @navikt/sif-common-formik-ds@1.11.0
+    -   @navikt/sif-common-core-ds@9.17.18
+    -   @navikt/sif-common-forms-ds@9.0.4
+    -   @navikt/sif-common-soknad-ds@12.0.0
+    -   @navikt/sif-common-ui@0.7.21
+
+## 3.15.0
+
+### Minor Changes
+
+-   72585dc: Endrer tekst og layout (ikon) på forrige og neste knapper + send inn knapp. I henhold til Aksel.
+
+### Patch Changes
+
+-   347828a: Bruke FormProgress komponent fra Aksel i stedet for egen komponent. Justere headingstørrelser der dette var nødvendig.
+-   Updated dependencies [347828a]
+-   Updated dependencies [72585dc]
+-   Updated dependencies [bb419a1]
+    -   @navikt/sif-common-ui@0.7.20
+    -   @navikt/sif-common-formik-ds@1.10.0
+    -   @navikt/sif-common-soknad-ds@11.0.0
+    -   @navikt/sif-common-core-ds@9.17.18
+    -   @navikt/sif-common-forms-ds@9.0.4
+
+## 3.14.4
+
+### Patch Changes
+
+-   8240d14: Major oppdateringer av libs - ingen påvirkning av funksjonalitet
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies [8240d14]
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.25.12
+    -   @navikt/sif-common-formik-ds@1.9.8
+    -   @navikt/sif-common-soknad-ds@10.16.3
+    -   @navikt/sif-common-forms-ds@9.0.4
+    -   @navikt/appstatus-react-ds@2.18.16
+    -   @navikt/sif-common-core-ds@9.17.18
+    -   @navikt/sif-common-sentry@0.26.14
+    -   @navikt/sif-common-utils@3.46.9
+    -   @navikt/sif-common-ui@0.7.19
+
+## 3.14.3
+
+### Patch Changes
+
+-   Minor og patch oppdateringer
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.25.11
+    -   @navikt/sif-common-formik-ds@1.9.7
+    -   @navikt/sif-common-soknad-ds@10.16.2
+    -   @navikt/sif-common-forms-ds@9.0.3
+    -   @navikt/appstatus-react-ds@2.18.15
+    -   @navikt/sif-common-core-ds@9.17.17
+    -   @navikt/sif-common-sentry@0.26.13
+    -   @navikt/sif-common-hooks@0.1.14
+    -   @navikt/sif-common-utils@3.46.8
+    -   @navikt/sif-common-ui@0.7.18
+
 ## 3.14.2
 
 ### Patch Changes

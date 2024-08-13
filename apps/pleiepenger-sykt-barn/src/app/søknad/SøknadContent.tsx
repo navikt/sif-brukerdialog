@@ -115,12 +115,11 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
         await logSoknadStartet(PleiepengerSyktBarnApp.navn);
         await purge();
 
-        const initialFormValues = undefined;
-
-        await persistSoknad({ formValues: initialFormValues, stepID: StepID.OPPLYSNINGER_OM_BARNET });
+        await persistSoknad({ formValues: undefined, stepID: StepID.OPPLYSNINGER_OM_BARNET });
+        setValues({ ...initialValues, harForståttRettigheterOgPlikter: true });
 
         setTimeout(() => {
-            setSøknadsdata(extractSøknadsdataFromFormValues(initialFormValues || values));
+            setSøknadsdata(extractSøknadsdataFromFormValues({ ...values, harForståttRettigheterOgPlikter: true }));
             navigate(`${RouteConfig.SØKNAD_ROUTE_PREFIX}/${StepID.OPPLYSNINGER_OM_BARNET}`);
         });
     };

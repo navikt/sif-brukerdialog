@@ -1,5 +1,91 @@
 # @navikt/sif-common-soknad-ds
 
+## 12.0.5
+
+### Patch Changes
+
+-   7f61cd6: Sette wrap=false for SoknadHeader
+
+## 12.0.4
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.11.3
+    -   @navikt/sif-common-core-ds@9.17.21
+    -   @navikt/sif-common-sentry@0.26.15
+    -   @navikt/sif-common-utils@3.46.10
+    -   @navikt/sif-common-ui@0.7.25
+
+## 12.0.3
+
+### Patch Changes
+
+-   4cb3c3b: Vise ikon i søknadsheader på undersider.
+-   Updated dependencies [12cfdc9]
+    -   @navikt/sif-common-core-ds@9.17.20
+    -   @navikt/sif-common-ui@0.7.24
+
+## 12.0.2
+
+### Patch Changes
+
+-   569761e: Bugfix - tillate overstyring av renderHorizontal for yesOrNo
+-   Updated dependencies [569761e]
+    -   @navikt/sif-common-formik-ds@1.11.2
+    -   @navikt/sif-common-core-ds@9.17.19
+    -   @navikt/sif-common-ui@0.7.23
+
+## 12.0.1
+
+### Patch Changes
+
+-   90ba6ff: Pakkeoppdateringer - minor/patch.
+
+    -   ds-pakker
+    -   storybook
+    -   tailwindcss
+    -   vite
+
+-   Updated dependencies [90ba6ff]
+    -   @navikt/sif-common-formik-ds@1.11.1
+    -   @navikt/sif-common-core-ds@9.17.19
+    -   @navikt/sif-common-ui@0.7.22
+
+## 12.0.0
+
+### Patch Changes
+
+-   Updated dependencies [2690b03]
+    -   @navikt/sif-common-formik-ds@1.11.0
+    -   @navikt/sif-common-core-ds@9.17.18
+    -   @navikt/sif-common-ui@0.7.21
+
+## 11.0.0
+
+### Patch Changes
+
+-   bb419a1: - Bump versjonsnummer for å deploye versjon med FormProgress.
+    -   Legge til peerDeps i sif-common-soknad-ds
+-   Updated dependencies [347828a]
+-   Updated dependencies [72585dc]
+    -   @navikt/sif-common-ui@0.7.20
+    -   @navikt/sif-common-formik-ds@1.10.0
+    -   @navikt/sif-common-core-ds@9.17.18
+
+## 10.16.3
+
+### Patch Changes
+
+-   8240d14: Major oppdateringer av libs - ingen påvirkning av funksjonalitet
+
+## 10.16.2
+
+### Patch Changes
+
+-   Minor og patch oppdateringer
+
 ## 10.16.1
 
 ### Patch Changes

@@ -1,5 +1,45 @@
 # @navikt/sif-common-forms-ds
 
+## 9.0.7
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.11.3
+    -   @navikt/sif-common-core-ds@9.17.21
+    -   @navikt/sif-common-utils@3.46.10
+
+## 9.0.6
+
+### Patch Changes
+
+-   Updated dependencies [12cfdc9]
+    -   @navikt/sif-common-core-ds@9.17.20
+
+## 9.0.5
+
+### Patch Changes
+
+-   90ba6ff: Pakkeoppdateringer - minor/patch.
+
+    -   ds-pakker
+    -   storybook
+    -   tailwindcss
+    -   vite
+
+## 9.0.4
+
+### Patch Changes
+
+-   8240d14: Major oppdateringer av libs - ingen påvirkning av funksjonalitet
+
+## 9.0.3
+
+### Patch Changes
+
+-   Minor og patch oppdateringer
+
 ## 9.0.2
 
 ### Patch Changes

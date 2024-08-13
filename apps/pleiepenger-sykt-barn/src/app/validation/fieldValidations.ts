@@ -31,6 +31,7 @@ import isoWeek from 'dayjs/plugin/isoWeek';
 import minMax from 'dayjs/plugin/minMax';
 import { StønadGodtgjørelseFormValues } from '../types/søknad-form-values/StønadGodtgjørelseFormValues';
 import { YesOrNoOrDoNotKnow } from '../types/YesOrNoOrDoNotKnow';
+import { isDevMode } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 
 dayjs.extend(minMax);
 dayjs.extend(isoWeek);
@@ -78,7 +79,7 @@ export const validateNavn = (value: string): ValidationResult<ValidationError> =
 };
 
 export const validateFødselsnummer = (value: string): ValidationResult<ValidationError> => {
-    return getFødselsnummerValidator({ required: true })(value);
+    return getFødselsnummerValidator({ required: true, allowHnr: isDevMode })(value);
 };
 
 export const validateFradato = (

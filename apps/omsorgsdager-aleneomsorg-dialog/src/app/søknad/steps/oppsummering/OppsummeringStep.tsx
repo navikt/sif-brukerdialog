@@ -89,13 +89,12 @@ const OppsummeringStep = () => {
             <FormikWrapper
                 initialValues={getOppsummeringStepInitialValues(søknadsdata)}
                 onSubmit={(values) => {
-                    apiData
-                        ? sendSøknad({
-                              ...apiData,
-                              harBekreftetOpplysninger:
-                                  values[OppsummeringFormFields.harBekreftetOpplysninger] === true,
-                          })
-                        : undefined;
+                    if (apiData) {
+                        sendSøknad({
+                            ...apiData,
+                            harBekreftetOpplysninger: values[OppsummeringFormFields.harBekreftetOpplysninger] === true,
+                        });
+                    }
                 }}
                 renderForm={() => {
                     return (
@@ -104,7 +103,8 @@ const OppsummeringStep = () => {
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
                                 submitDisabled={isSubmitting || hasInvalidSteps}
                                 includeValidationSummary={true}
-                                submitButtonLabel="Send søknad"
+                                submitButtonLabel={text('step.oppsummering.sendSøknad')}
+                                isFinalSubmit={true}
                                 submitPending={isSubmitting}
                                 backButtonDisabled={isSubmitting}
                                 onBack={goBack}>

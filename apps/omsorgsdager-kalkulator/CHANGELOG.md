@@ -1,5 +1,35 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.7.5
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 3.7.4
+
+### Patch Changes
+
+-   90ba6ff: Pakkeoppdateringer - minor/patch.
+
+    -   ds-pakker
+    -   storybook
+    -   tailwindcss
+    -   vite
+
+## 3.7.3
+
+### Patch Changes
+
+-   8240d14: Major oppdateringer av libs - ingen påvirkning av funksjonalitet
+-   Pakkeoppdateringer - minor/patch
+
+## 3.7.2
+
+### Patch Changes
+
+-   Minor og patch oppdateringer
+
 ## 3.7.1
 
 ### Patch Changes

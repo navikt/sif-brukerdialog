@@ -19,6 +19,8 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfig, getSøknadStepConfigForStep, includeDeltBostedStep } from '../../søknadStepConfig';
+import InnsendingFeiletInformasjon from './InnsendingFeiletInformasjon';
+import { isInvalidParameterErrorResponse } from './invalidParameter';
 import OmBarnetOppsummering from './OmBarnetOppsummering';
 import OmSøkerOppsummering from './OmSøkerOppsummering';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
@@ -57,6 +59,10 @@ const OppsummeringStep = () => {
     const { sendSøknad, isSubmitting, sendSøknadError } = useSendSøknad();
     const previousSøknadError = usePrevious(sendSøknadError);
     const sendSøknadErrorSummary = useRef<HTMLDivElement>(null);
+    const invalidParameters =
+        sendSøknadError && isInvalidParameterErrorResponse(sendSøknadError)
+            ? sendSøknadError.response.data.invalid_parameters
+            : undefined;
 
     useEffect(() => {
         if (previousSøknadError === undefined && sendSøknadError !== undefined) {
@@ -98,13 +104,12 @@ const OppsummeringStep = () => {
             <FormikWrapper
                 initialValues={getOppsummeringStepInitialValues(søknadsdata)}
                 onSubmit={(values) => {
-                    apiData
-                        ? sendSøknad({
-                              ...apiData,
-                              harBekreftetOpplysninger:
-                                  values[OppsummeringFormFields.harBekreftetOpplysninger] === true,
-                          })
-                        : undefined;
+                    if (apiData) {
+                        sendSøknad({
+                            ...apiData,
+                            harBekreftetOpplysninger: values[OppsummeringFormFields.harBekreftetOpplysninger] === true,
+                        });
+                    }
                 }}
                 renderForm={() => {
                     return (
@@ -113,7 +118,8 @@ const OppsummeringStep = () => {
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
                                 submitDisabled={isSubmitting || hasInvalidSteps}
                                 includeValidationSummary={true}
-                                submitButtonLabel="Send søknad"
+                                submitButtonLabel={text('step.oppsummering.sendSøknad')}
+                                isFinalSubmit={true}
                                 submitPending={isSubmitting}
                                 backButtonDisabled={isSubmitting}
                                 onBack={goBack}>
@@ -133,12 +139,15 @@ const OppsummeringStep = () => {
                                     />
                                 </VStack>
                             </Form>
-                            {sendSøknadError && (
+                            {sendSøknadError && !invalidParameters && (
                                 <FormBlock>
                                     <ErrorSummary ref={sendSøknadErrorSummary}>
                                         <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
                                     </ErrorSummary>
                                 </FormBlock>
+                            )}
+                            {sendSøknadError && invalidParameters && (
+                                <InnsendingFeiletInformasjon invalidParameter={invalidParameters} />
                             )}
                         </>
                     );

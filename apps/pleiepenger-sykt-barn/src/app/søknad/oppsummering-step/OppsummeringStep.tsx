@@ -166,6 +166,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                         }}
                         useValidationErrorSummary={false}
                         showSubmitButton={apiValuesValidationErrors === undefined}
+                        isFinalSubmit={true}
                         buttonDisabled={sendingInProgress}
                         showButtonSpinner={sendingInProgress}>
                         <SifGuidePanel>

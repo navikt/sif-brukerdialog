@@ -24,7 +24,7 @@ const nb = {
     'oppsummeringStep.ferie.lagtTil': 'Ferie som er lagt til',
     'oppsummeringStep.ferie.fjernet': 'Ferie som er fjernet',
 
-    'oppsummeringStep.forrige': 'Forrige',
+    'oppsummeringStep.forrige': 'Forrige steg',
     'oppsummeringStep.forrige.ariaLabel': 'Pil venstre',
 
     'oppsummeringStep.submit.label': 'Send melding om endring',

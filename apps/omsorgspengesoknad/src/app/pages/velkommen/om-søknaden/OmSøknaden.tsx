@@ -7,7 +7,7 @@ const OmSøknaden = () => {
     return (
         <VStack gap="4">
             <Box>
-                <Heading level="2" size="large" spacing={true}>
+                <Heading level="2" size="medium" spacing={true}>
                     <AppText id="page.velkommen.omSøknaden.tittel" />
                 </Heading>
 

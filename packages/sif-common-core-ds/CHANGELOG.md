@@ -1,5 +1,47 @@
 # @navikt/sif-common-core-ds
 
+## 9.17.21
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-utils@3.46.10
+
+## 9.17.20
+
+### Patch Changes
+
+-   12cfdc9: Tillate syntetisk fødselsnummer for pleietrengende i Q - alle søknadsdialoger
+
+## 9.17.19
+
+### Patch Changes
+
+-   90ba6ff: Pakkeoppdateringer - minor/patch.
+
+    -   ds-pakker
+    -   storybook
+    -   tailwindcss
+    -   vite
+
+## 9.17.18
+
+### Patch Changes
+
+-   8240d14: Major oppdateringer av libs - ingen påvirkning av funksjonalitet
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies [8240d14]
+    -   @navikt/sif-common-utils@3.46.9
+
+## 9.17.17
+
+### Patch Changes
+
+-   Minor og patch oppdateringer
+-   Updated dependencies
+    -   @navikt/sif-common-utils@3.46.8
+
 ## 9.17.16
 
 ### Patch Changes

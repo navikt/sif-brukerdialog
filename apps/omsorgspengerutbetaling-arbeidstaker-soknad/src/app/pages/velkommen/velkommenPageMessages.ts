@@ -34,11 +34,8 @@ const nb = {
     'personopplysninger.4.5': 'tilknytningen din til Norge',
     'personopplysninger.4.6':
         'trygdeordninger du kan ha rett til i andre land. Vi kan også sende opplysninger om deg til trygdemyndigheter i andre land',
-
-    'personopplysninger.5.1':
-        'Du har rett til innsyn i saken din. Vil du vite mer om hvordan NAV behandler personopplysninger? Se ',
-    'personopplysninger.5.2': 'nav.no/personvern',
-    'personopplysninger.5.3': '.',
+    'personopplysninger.5':
+        'Du har rett til innsyn i saken din. Vil du vite mer om hvordan NAV behandler personopplysninger? Se <Lenke>nav.no/personvern</Lenke>.',
 };
 
 export const velkommenPageMessages = { nb };

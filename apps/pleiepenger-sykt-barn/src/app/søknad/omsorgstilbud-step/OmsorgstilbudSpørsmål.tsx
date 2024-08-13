@@ -61,6 +61,7 @@ const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChange
                                 ? 'steg.omsorgstilbud.erIOmsorgstilbudFortid.spm'
                                 : 'steg.omsorgstilbud.erIOmsorgstilbudKunFortid.spm',
                         )}
+                        renderHorizontal={false}
                         validate={(value) => {
                             const error = getYesOrNoValidator()(value);
                             if (error) {
