@@ -1,5 +1,16 @@
 # @navikt/omsorgspengesoknad
 
+## 1.28.12
+
+### Patch Changes
+
+-   657987a: Vise feilmelding i oppsummeringssteget når innsending feiler og backend returnerer parameterfeil.
+    -   @navikt/sif-common-amplitude@2.25.13
+    -   @navikt/sif-common-core-ds@9.17.21
+    -   @navikt/sif-common-formik-ds@1.11.3
+    -   @navikt/sif-common-forms-ds@9.0.7
+    -   @navikt/sif-common-utils@3.46.10
+
 ## 1.28.11
 
 ### Patch Changes

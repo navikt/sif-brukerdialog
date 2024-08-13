@@ -1,5 +1,18 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.15.7
+
+### Patch Changes
+
+-   9563070: - Fjerne eslint import i psb pck-json
+    -   Oppdatere versjonsnummer av config pakken
+    -   @navikt/appstatus-react-ds@2.18.18
+    -   @navikt/sif-common-amplitude@2.25.13
+    -   @navikt/sif-common-core-ds@9.17.21
+    -   @navikt/sif-common-formik-ds@1.11.3
+    -   @navikt/sif-common-forms-ds@9.0.7
+    -   @navikt/sif-common-utils@3.46.10
+
 ## 3.15.6
 
 ### Patch Changes
