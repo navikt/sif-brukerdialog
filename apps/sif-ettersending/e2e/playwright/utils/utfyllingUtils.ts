@@ -70,7 +70,7 @@ const kontrollerOppsummeringPPSyktBarn = async (page: Page, legeerklæring: bool
 
     if (barnFnr) {
         await expect(page.getByText('Hvilket barn gjelder')).toBeVisible();
-        await expect(page.getByTestId('fnr-barn')).toHaveText(`Fødselsnummer: ${barnFnr}`);
+        await expect(page.getByText(`Fødselsnummer: ${barnFnr}`)).toBeVisible();
     }
 
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
