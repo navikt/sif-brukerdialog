@@ -1,15 +1,13 @@
-import { ErrorSummary } from '@navikt/ds-react';
+import { ErrorSummary, FormSummary, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { useEffect, useRef } from 'react';
 import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
-import { SummarySection } from '@navikt/sif-common-ui';
 import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -108,20 +106,29 @@ const OppsummeringStep = () => {
                                 submitPending={isSubmitting}
                                 backButtonDisabled={isSubmitting}
                                 onBack={goBack}>
-                                <OmSøkerOppsummering søker={søker} />
-
-                                <SummarySection header={text('step.oppsummering.omOmsorgenForBarn.barnList.title')}>
-                                    <Block margin="m">
-                                        <BarnSummaryList barn={apiData.barn} />
-                                    </Block>
-                                </SummarySection>
-
-                                <ConfirmationCheckbox
-                                    disabled={isSubmitting}
-                                    label={<AppText id="step.oppsummering.bekrefterOpplysninger" />}
-                                    validate={getCheckedValidator()}
-                                    name={OppsummeringFormFields.harBekreftetOpplysninger}
-                                />
+                                <VStack gap="8">
+                                    <OmSøkerOppsummering søker={søker} />
+                                    <FormSummary>
+                                        <FormSummary.Header>
+                                            <FormSummary.Heading level="2">
+                                                <AppText id="step.oppsummering.omOmsorgenForBarn.barnList.title" />
+                                            </FormSummary.Heading>
+                                        </FormSummary.Header>
+                                        <FormSummary.Answers>
+                                            <FormSummary.Answer>
+                                                <FormSummary.Value>
+                                                    <BarnSummaryList barn={apiData.barn} />
+                                                </FormSummary.Value>
+                                            </FormSummary.Answer>
+                                        </FormSummary.Answers>
+                                    </FormSummary>
+                                    <ConfirmationCheckbox
+                                        disabled={isSubmitting}
+                                        label={<AppText id="step.oppsummering.bekrefterOpplysninger" />}
+                                        validate={getCheckedValidator()}
+                                        name={OppsummeringFormFields.harBekreftetOpplysninger}
+                                    />
+                                </VStack>
                             </Form>
                             {sendSøknadError && (
                                 <FormBlock>
