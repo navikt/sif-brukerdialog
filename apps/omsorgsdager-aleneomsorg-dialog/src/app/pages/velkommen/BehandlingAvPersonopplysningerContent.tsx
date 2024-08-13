@@ -1,53 +1,55 @@
-import { Heading, Link } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import InfoList from '@navikt/sif-common-core-ds/src/components/lists/info-list/InfoList';
-import getLenker from '../../lenker';
+import { Heading, Link, List, VStack } from '@navikt/ds-react';
 import { AppText } from '../../i18n';
+import getLenker from '../../lenker';
 
 const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
     return (
-        <Block margin="l" style={{ paddingTop: '.5rem' }}>
-            <Heading level="3" size="small">
-                <AppText id="page.velkommen.personopplysninger.1" />
-            </Heading>
-            <p>
-                <AppText id="page.velkommen.personopplysninger.2" />
-            </p>
-            <Block margin="l">
-                <Heading size="small" level="4">
+        <VStack gap="2" paddingBlock="2 0">
+            <div>
+                <Heading level="3" size="xsmall" spacing={true}>
+                    <AppText id="page.velkommen.personopplysninger.1" />
+                </Heading>
+                <p>
+                    <AppText id="page.velkommen.personopplysninger.2" />
+                </p>
+            </div>
+            <div>
+                <Heading level="3" size="xsmall" spacing={true}>
                     <AppText id="page.velkommen.personopplysninger.3" />
                 </Heading>
                 <p>
                     <AppText id="page.velkommen.personopplysninger.4" />
                 </p>
-                <InfoList>
-                    <li>
+                <List>
+                    <List.Item>
                         <AppText id="page.velkommen.personopplysninger.4.1" />
-                    </li>
-                    <li>
+                    </List.Item>
+                    <List.Item>
                         <AppText id="page.velkommen.personopplysninger.4.2" />
-                    </li>
-                    <li>
+                    </List.Item>
+                    <List.Item>
                         <AppText id="page.velkommen.personopplysninger.4.3" />
-                    </li>
-                    <li>
+                    </List.Item>
+                    <List.Item>
                         <AppText id="page.velkommen.personopplysninger.4.4" />
-                    </li>
-                </InfoList>
-            </Block>
-            <Block>
-                <AppText
-                    id="page.velkommen.personopplysninger.5"
-                    values={{
-                        Lenke: (children: React.ReactNode) => (
-                            <Link href={getLenker().personvern} target="_blank">
-                                {children}
-                            </Link>
-                        ),
-                    }}
-                />{' '}
-            </Block>
-        </Block>
+                    </List.Item>
+                </List>
+            </div>
+            <div>
+                <p style={{ margin: '0' }}>
+                    <AppText
+                        id="page.velkommen.personopplysninger.5"
+                        values={{
+                            Lenke: (children: React.ReactNode) => (
+                                <Link href={getLenker().personvern} target="_blank">
+                                    {children}
+                                </Link>
+                            ),
+                        }}
+                    />
+                </p>
+            </div>
+        </VStack>
     );
 };
 

@@ -5,6 +5,7 @@ import { getFødselsnummerValidator } from '@navikt/sif-common-formik-ds/src/val
 import { useAppIntl } from '../../i18n';
 import { SoknadFormField } from '../../types/SoknadFormData';
 import SoknadFormComponents from '../SoknadFormComponents';
+import { isDevMode } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 
 interface Props {
     søkersFødselsnummer: string;
@@ -27,9 +28,13 @@ const AnnetBarnPart = ({ søkersFødselsnummer, harRegistrerteBarn }: Props) => 
                 <div>
                     <SoknadFormComponents.TextField
                         label={text('step.dokumentType.annetBarn.fnr.spm')}
+                        description={
+                            !harRegistrerteBarn ? text('step.dokumentType.annetBarn.fnr.spm.description') : undefined
+                        }
                         name={SoknadFormField.barnetsFødselsnummer}
                         validate={getFødselsnummerValidator({
                             required: true,
+                            allowHnr: isDevMode,
                             disallowedValues: [søkersFødselsnummer],
                         })}
                         width="xl"

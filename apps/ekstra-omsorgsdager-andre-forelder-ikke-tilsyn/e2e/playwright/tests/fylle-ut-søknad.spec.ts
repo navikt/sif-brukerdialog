@@ -22,7 +22,7 @@ test('Fyll ut søknad med annet barn', async ({ page }) => {
     await page.getByRole('heading', { level: 1, name: 'Om den andre forelderen' });
     await page.getByLabel('Skriv inn fødselsnummeret til den andre forelderen, 11 siffer').fill(annenForelderMock.fnr);
     await page.getByLabel('Skriv inn navnet til den andre forelderen').fill(annenForelderMock.navn);
-    await page.getByRole('button', { name: 'Neste', exact: true }).click();
+    await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Den andre forelderens situasjon */
     await page.getByRole('heading', { level: 1, name: 'Den andre forelderens situasjon' });
@@ -33,7 +33,7 @@ test('Fyll ut søknad med annet barn', async ({ page }) => {
     await page.getByText('FraÅpne datovelger').click();
     await page.getByLabel('Fra', { exact: true }).fill('28.02.2023');
     await page.getByLabel('Til', { exact: true }).fill('03.09.2023');
-    await page.getByRole('button', { name: 'Neste', exact: true }).click();
+    await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Om barn */
     await page.getByRole('heading', { level: 1, name: 'Om barn' });
@@ -41,7 +41,7 @@ test('Fyll ut søknad med annet barn', async ({ page }) => {
     await page.getByLabel('Barnets navn').fill('Test Barn');
     await page.getByLabel('Barnets fødselsnummer/D-nummer').fill('18897699792');
     await page.getByLabel('Legg til barn').getByTestId('typedFormikForm-submitButton').click();
-    await page.getByRole('button', { name: 'Neste', exact: true }).click();
+    await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Oppsummering */
     await page.getByRole('heading', { level: 1, name: 'Oppsummering' });

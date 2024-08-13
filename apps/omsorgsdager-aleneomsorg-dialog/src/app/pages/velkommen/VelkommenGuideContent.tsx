@@ -1,19 +1,11 @@
-import { BodyLong, GuidePanel, Heading, Link, List } from '@navikt/ds-react';
+import { BodyLong, Heading, Link, List } from '@navikt/ds-react';
 import { ListItem } from '@navikt/ds-react/List';
 import React from 'react';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { AppText } from '../../i18n';
 
-interface Props {
-    navn: string;
-}
-
-const VelkommenGuide: React.FunctionComponent<Props> = ({ navn }) => (
-    <GuidePanel>
-        <Heading level="1" size="large" spacing={true}>
-            <AppText id="page.velkommen.guide.tittel" values={{ navn }} />
-        </Heading>
-
+const VelkommenGuideContent = () => (
+    <>
         <BodyLong as="div">
             <BodyLong size="large">
                 <AppText id="page.velkommen.guide.ingress" />
@@ -64,7 +56,7 @@ const VelkommenGuide: React.FunctionComponent<Props> = ({ navn }) => (
                 <AppText id="page.velkommen.guide.tekst.2" />
             </p>
         </BodyLong>
-    </GuidePanel>
+    </>
 );
 
-export default VelkommenGuide;
+export default VelkommenGuideContent;

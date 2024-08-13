@@ -49,7 +49,7 @@ const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN, søknadsperiode }: 
 
     return (
         <>
-            <Heading level="2" size="large">
+            <Heading level="2" size="medium">
                 <AppText id="steg.arbeidssituasjon.sn.tittel" />
             </Heading>
             <Block margin="l">

@@ -1,5 +1,72 @@
 # @navikt/sif-common-ui
 
+## 0.7.25
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.11.3
+    -   @navikt/sif-common-core-ds@9.17.21
+    -   @navikt/sif-common-utils@3.46.10
+
+## 0.7.24
+
+### Patch Changes
+
+-   Updated dependencies [12cfdc9]
+    -   @navikt/sif-common-core-ds@9.17.20
+
+## 0.7.23
+
+### Patch Changes
+
+-   Updated dependencies [569761e]
+    -   @navikt/sif-common-formik-ds@1.11.2
+    -   @navikt/sif-common-core-ds@9.17.19
+
+## 0.7.22
+
+### Patch Changes
+
+-   90ba6ff: Pakkeoppdateringer - minor/patch.
+
+    -   ds-pakker
+    -   storybook
+    -   tailwindcss
+    -   vite
+
+-   Updated dependencies [90ba6ff]
+    -   @navikt/sif-common-formik-ds@1.11.1
+    -   @navikt/sif-common-core-ds@9.17.19
+
+## 0.7.21
+
+### Patch Changes
+
+-   Updated dependencies [2690b03]
+    -   @navikt/sif-common-formik-ds@1.11.0
+    -   @navikt/sif-common-core-ds@9.17.18
+
+## 0.7.20
+
+### Patch Changes
+
+-   347828a: Bruke FormProgress komponent fra Aksel i stedet for egen komponent. Justere headingstørrelser der dette var nødvendig.
+-   Updated dependencies [72585dc]
+    -   @navikt/sif-common-formik-ds@1.10.0
+    -   @navikt/sif-common-core-ds@9.17.18
+
+## 0.7.19
+
+### Patch Changes
+
+-   Updated dependencies [8240d14]
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.9.8
+    -   @navikt/sif-common-core-ds@9.17.18
+    -   @navikt/sif-common-utils@3.46.9
+
 ## 0.7.18
 
 ### Patch Changes

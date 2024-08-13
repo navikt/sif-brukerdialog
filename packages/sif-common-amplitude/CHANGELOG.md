@@ -1,5 +1,17 @@
 # @navikt/sif-common-amplitude
 
+## 2.25.13
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 2.25.12
+
+### Patch Changes
+
+-   8240d14: Major oppdateringer av libs - ingen påvirkning av funksjonalitet
+
 ## 2.25.11
 
 ### Patch Changes

@@ -15,23 +15,11 @@ const MisterHonorarSpørsmål: React.FunctionComponent<Props> = ({ misterHonorar
     const { text } = useAppIntl();
     return (
         <>
-            <ArbFriFormComponents.RadioGroup
+            <ArbFriFormComponents.YesOrNoQuestion
                 name={FrilansFormField.misterHonorar}
                 data-testid="misterHonorar"
                 legend={text('frilanser.misterHonorar.tittle')}
                 validate={getYesOrNoValidator()}
-                radios={[
-                    {
-                        label: 'Ja',
-                        value: YesOrNo.YES,
-                        'data-testid': 'mister-honorar_yes',
-                    },
-                    {
-                        label: 'Nei',
-                        value: YesOrNo.NO,
-                        'data-testid': 'mister-honorar_no',
-                    },
-                ]}
                 value={misterHonorar}
                 description={
                     <ExpandableInfo title={text('frilanser.misterHonorar.description.tittel')}>

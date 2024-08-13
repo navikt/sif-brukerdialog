@@ -95,6 +95,24 @@ const startExpressServer = () => {
         }, 2500);
     });
 
+    const errorResponse = {
+        type: '/problem-details/invalid-request-parameters',
+        title: 'invalid-request-parameters',
+        status: 400,
+        detail: 'Requesten inneholder ugyldige paramtere.',
+        instance: 'about:blank',
+        invalid_parameters: [
+            'høyereRisikoForFraværBeskrivelse matcher ikke tilatt møønster: ^[\\p{Punct}\\p{L}\\p{M}\\p{N}\\p{Sc}\\p{Space}«»–§�\\u2018\\u2019\\u201a\\u201b\\u201c\\u201d\\u201e\\u201f\\u00b4\\u2026]*$',
+        ],
+    };
+    server.post('/omsorgspenger-utvidet-rett/innsending-error', (req, res) => {
+        const body = req.body;
+        console.log('[POST] body', body);
+        setTimeout(() => {
+            res.status(400).send(errorResponse);
+        }, 100);
+    });
+
     /** --- Vedlegg ---------- */
 
     server.post('/vedlegg', (req, res) => {
