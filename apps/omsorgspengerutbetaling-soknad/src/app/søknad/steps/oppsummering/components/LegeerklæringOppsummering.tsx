@@ -1,8 +1,7 @@
+import { FormSummary } from '@navikt/ds-react';
 import React from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
-import { SummarySection } from '@navikt/sif-common-ui';
-import { AppText, useAppIntl } from '../../../../i18n';
+import { AppText } from '../../../../i18n';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { LegeerklæringSøknadsdata } from '../../../../types/søknadsdata/LegeerklæringSøknadsdata';
 import { getAttachmentURLBackend } from '../../../../utils/attachmentUtilsAuthToken';
@@ -13,7 +12,6 @@ interface Props {
 }
 
 const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringSøknadsdata }) => {
-    const { text } = useAppIntl();
     const legeerklæringer = legeerklæringSøknadsdata
         ? legeerklæringSøknadsdata.vedlegg.filter(
               (v) => v.url && apiData.vedlegg.includes(getAttachmentURLBackend(v.url)),
@@ -21,17 +19,26 @@ const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringS�
         : [];
 
     return (
-        <SummarySection header={text('step.oppsummering.legeerklæring.header')}>
-            <Block>
-                {legeerklæringSøknadsdata?.vedlegg.length === 0 ? (
-                    <AppText id="step.oppsummering.legeerklæring.ingenVedlegg" />
-                ) : (
-                    <div data-testid="legeerklæring-liste">
-                        <AttachmentList attachments={legeerklæringer} />
-                    </div>
-                )}
-            </Block>
-        </SummarySection>
+        <FormSummary>
+            <FormSummary.Header>
+                <FormSummary.Heading level="2">
+                    <AppText id="step.oppsummering.legeerklæring.header" />
+                </FormSummary.Heading>
+            </FormSummary.Header>
+            <FormSummary.Answers>
+                <FormSummary.Answer>
+                    <FormSummary.Value>
+                        {legeerklæringSøknadsdata?.vedlegg.length === 0 ? (
+                            <AppText id="step.oppsummering.legeerklæring.ingenVedlegg" />
+                        ) : (
+                            <div data-testid="legeerklæring-liste">
+                                <AttachmentList attachments={legeerklæringer} />
+                            </div>
+                        )}
+                    </FormSummary.Value>
+                </FormSummary.Answer>
+            </FormSummary.Answers>
+        </FormSummary>
     );
 };
 

@@ -1,4 +1,4 @@
-import { ErrorSummary } from '@navikt/ds-react';
+import { ErrorSummary, FormSummary, VStack } from '@navikt/ds-react';
 import { useEffect, useRef } from 'react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
@@ -6,7 +6,6 @@ import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
-import { SummarySection } from '@navikt/sif-common-ui';
 import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -23,9 +22,9 @@ import LegeerklæringOppsummering from './components/LegeerklæringOppsummering'
 import MedlemskapOppsummering from './components/MedlemskapOppsummering';
 import OmSøkerOppsummering from './components/OmSøkerOppsummering';
 import SelvstendigOppsummering from './components/SelvstendigOppsummering';
+import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 import UtbetalingsperioderOppsummering from './components/UtbetalingsperioderOppsummering';
 import UtenlandsoppholdISøkeperiodeOppsummering from './components/UtenlandsoppholdISøkeperiodeOppsummering';
-import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -115,40 +114,55 @@ const OppsummeringStep = () => {
                                 submitPending={isSubmitting}
                                 backButtonDisabled={isSubmitting}
                                 onBack={goBack}>
-                                <OmSøkerOppsummering søker={søker} />
-                                <DineBarnOppsummering
-                                    barn={apiData.barn}
-                                    registrerteBarn={registrerteBarn}
-                                    harSyktBarn={apiData.harSyktBarn}
-                                    harAleneomsorg={apiData.harAleneomsorg}
-                                    harDekketTiFørsteDagerSelv={apiData.harDekketTiFørsteDagerSelv}
-                                />
-                                <SummarySection header={text('step.oppsummering.utbetalinger.header')}>
-                                    <UtbetalingsperioderOppsummering
-                                        utbetalingsperioder={apiData.utbetalingsperioder}
+                                <VStack gap="8">
+                                    <OmSøkerOppsummering søker={søker} />
+
+                                    <DineBarnOppsummering
+                                        barn={apiData.barn}
+                                        registrerteBarn={registrerteBarn}
+                                        harSyktBarn={apiData.harSyktBarn}
+                                        harAleneomsorg={apiData.harAleneomsorg}
+                                        harDekketTiFørsteDagerSelv={apiData.harDekketTiFørsteDagerSelv}
                                     />
-                                    <UtenlandsoppholdISøkeperiodeOppsummering utenlandsopphold={apiData.opphold} />
-                                </SummarySection>
 
-                                <FrilansOppsummering frilans={apiData.frilans} />
-                                <SelvstendigOppsummering virksomhet={apiData.selvstendigNæringsdrivende} />
-                                <MedlemskapOppsummering bosteder={apiData.bosteder} />
+                                    <FormSummary>
+                                        <FormSummary.Header>
+                                            <FormSummary.Heading level="2">
+                                                <AppText id="step.oppsummering.utbetalinger.header" />
+                                            </FormSummary.Heading>
+                                        </FormSummary.Header>
+                                        <FormSummary.Answers>
+                                            <UtbetalingsperioderOppsummering
+                                                utbetalingsperioder={apiData.utbetalingsperioder}
+                                            />
+                                            <UtenlandsoppholdISøkeperiodeOppsummering
+                                                utenlandsopphold={apiData.opphold}
+                                            />
+                                        </FormSummary.Answers>
+                                    </FormSummary>
 
-                                <LegeerklæringOppsummering
-                                    apiData={apiData}
-                                    legeerklæringSøknadsdata={søknadsdata.legeerklæring}
-                                />
+                                    <FrilansOppsummering frilans={apiData.frilans} />
 
-                                <ConfirmationCheckbox
-                                    disabled={isSubmitting}
-                                    label={
-                                        <span data-testid="bekreft-label">
-                                            <AppText id="step.oppsummering.bekrefterOpplysninger" />
-                                        </span>
-                                    }
-                                    validate={getCheckedValidator()}
-                                    name={OppsummeringFormFields.harBekreftetOpplysninger}
-                                />
+                                    <SelvstendigOppsummering virksomhet={apiData.selvstendigNæringsdrivende} />
+
+                                    <MedlemskapOppsummering bosteder={apiData.bosteder} />
+
+                                    <LegeerklæringOppsummering
+                                        apiData={apiData}
+                                        legeerklæringSøknadsdata={søknadsdata.legeerklæring}
+                                    />
+
+                                    <ConfirmationCheckbox
+                                        disabled={isSubmitting}
+                                        label={
+                                            <span data-testid="bekreft-label">
+                                                <AppText id="step.oppsummering.bekrefterOpplysninger" />
+                                            </span>
+                                        }
+                                        validate={getCheckedValidator()}
+                                        name={OppsummeringFormFields.harBekreftetOpplysninger}
+                                    />
+                                </VStack>
                             </Form>
                             {sendSøknadError && (
                                 <FormBlock>
