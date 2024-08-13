@@ -4,14 +4,16 @@ const nb = {
         'Les gjennom oppsummeringen og sjekk at alt er riktig før du sender inn søknaden. Hvis du vil gjøre endringer, kan du gå tilbake.',
 
     'step.oppsummering.søker.header': 'Om deg som søker',
-    'step.oppsummering.søker.fnr': 'Fødselsnummer: {fødselsnummer}',
+    'step.oppsummering.søker.navn': 'Navn',
+    'step.oppsummering.søker.fnr': 'Fødselsnummer',
 
-    'step.oppsummering.omBarna.header': 'Dine barn',
-    'step.oppsummering.omBarna.barn': 'Barn',
+    'step.oppsummering.omBarna.header': 'Om barn',
+    'step.oppsummering.omBarna.barn': 'Dine barn',
     'step.oppsummering.omBarna.listItem': ' (fnr. {identitetsnummer})',
 
     'step.oppsummering.annenForelder.header': 'Om den andre forelderen',
-    'step.oppsummering.annenForelder.fnr': 'Fødselsnummer: {fødselsnummer}',
+    'step.oppsummering.annenForelder.navn': 'Navn',
+    'step.oppsummering.annenForelder.fnr': 'Fødselsnummer',
 
     'step.oppsummering.annenForelderensSituasjon.header': 'Den andre forelderens situasjon',
     'step.oppsummering.annenForelderensSituasjon.erVarighetMerEnn6Maneder':

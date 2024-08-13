@@ -1,5 +1,6 @@
+import { FormSummary } from '@navikt/ds-react';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
-import { JaNeiSvar, SummaryBlock, SummarySection, TextareaSvar } from '@navikt/sif-common-ui';
+import { JaNeiSvar, TextareaSvar } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '../../../i18n';
 import { AnnenForelderApiData } from '../../../types/søknadApiData/SøknadApiData';
@@ -23,31 +24,56 @@ const AnnenForelderSituasjonOppsummering = ({ annenForelder }: Props) => {
     );
 
     return (
-        <SummarySection header={text('step.oppsummering.annenForelderensSituasjon.header')}>
-            <SummaryBlock header={text('step.oppsummering.annenForelderensSituasjon.tittel')}>
-                <AppText id={`grunn.${annenForelder.situasjon}`} />
-            </SummaryBlock>
-
-            {annenForelder.situasjonBeskrivelse && (
-                <SummaryBlock header={text('step.oppsummering.annenForelderensSituasjon.beskrivelse')}>
-                    <TextareaSvar text={annenForelder.situasjonBeskrivelse} />
-                </SummaryBlock>
-            )}
-
-            {annenForelder.periodeFraOgMed && (
-                <SummaryBlock header={text('step.oppsummering.annenForelderensSituasjon.periode.header')}>
-                    {renderPeriodeAnnenForelderenKanIkkeHaTilsyn(
-                        annenForelder.periodeFraOgMed,
-                        annenForelder.periodeTilOgMed,
-                    )}
-                </SummaryBlock>
-            )}
-            {!annenForelder.periodeTilOgMed && (
-                <SummaryBlock header={text('step.oppsummering.annenForelderensSituasjon.erVarighetMerEnn6Maneder')}>
-                    <JaNeiSvar harSvartJa={annenForelder.periodeOver6Måneder} />
-                </SummaryBlock>
-            )}
-        </SummarySection>
+        <FormSummary>
+            <FormSummary.Header>
+                <FormSummary.Heading level="2">
+                    <AppText id="step.oppsummering.annenForelderensSituasjon.header" />
+                </FormSummary.Heading>
+            </FormSummary.Header>
+            <FormSummary.Answers>
+                <FormSummary.Answer>
+                    <FormSummary.Label>
+                        <AppText id="step.oppsummering.annenForelderensSituasjon.tittel" />
+                    </FormSummary.Label>
+                    <FormSummary.Value>
+                        <AppText id={`grunn.${annenForelder.situasjon}`} />
+                    </FormSummary.Value>
+                </FormSummary.Answer>
+                {annenForelder.situasjonBeskrivelse && (
+                    <FormSummary.Answer>
+                        <FormSummary.Label>
+                            <AppText id="step.oppsummering.annenForelderensSituasjon.beskrivelse" />
+                        </FormSummary.Label>
+                        <FormSummary.Value>
+                            <TextareaSvar text={annenForelder.situasjonBeskrivelse} />
+                        </FormSummary.Value>
+                    </FormSummary.Answer>
+                )}
+                {annenForelder.periodeFraOgMed && (
+                    <FormSummary.Answer>
+                        <FormSummary.Label>
+                            <AppText id="step.oppsummering.annenForelderensSituasjon.periode.header" />
+                        </FormSummary.Label>
+                        <FormSummary.Value>
+                            {renderPeriodeAnnenForelderenKanIkkeHaTilsyn(
+                                annenForelder.periodeFraOgMed,
+                                annenForelder.periodeTilOgMed,
+                            )}
+                        </FormSummary.Value>
+                    </FormSummary.Answer>
+                )}
+                {!annenForelder.periodeTilOgMed && (
+                    <FormSummary.Answer>
+                        <FormSummary.Label>
+                            <AppText id="step.oppsummering.annenForelderensSituasjon.erVarighetMerEnn6Maneder" />
+                        </FormSummary.Label>
+                        <FormSummary.Value>
+                            <JaNeiSvar harSvartJa={annenForelder.periodeOver6Måneder} />
+                        </FormSummary.Value>
+                    </FormSummary.Answer>
+                )}
+            </FormSummary.Answers>
+        </FormSummary>
     );
 };
 
