@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.35.7
+
+### Patch Changes
+
+-   baff1f2: La til valg av barn for alle ettesendelser PP sykt barn
+
 ## 3.35.6
 
 ### Patch Changes
