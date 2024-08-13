@@ -37,7 +37,7 @@ const nb = {
     'apiDataValidation.omsorgsavtaleMangler': 'Det mangler avtale om delt fast bosted. ',
     'innsendingFeilet.tittel': 'Oops, noe gikk galt.',
     'innsendingFeilet.tekst.høyereRisikoForFraværBeskrivelseFeil':
-        'Beskrivelsen på hvordan barnets sykdom eller funksjonshemning gir markert høyere risiko for fravær fra jobb inneholder tegn som ikke er tillatt.',
+        'Beskrivelsen på hvordan barnets sykdom eller funksjonshemning gir markert høyere risiko for fravær fra jobb inneholder tegn som ikke er tillatt. Gå tilbake til steg én og se over teksten.',
     'innsendingFeilet.tekst.generell.1': 'Søknaden din inneholder ugyldig informasjon.',
     'innsendingFeilet.tekst.generell.2':
         'Når du selv skriver inn tekst i et felt i søknaden, kan noen tegn være ugyldige ut fra informasjonen vi ber om. Dette skjer vanligvis hvis du kopierer og limer inn tekst fra andre steder. Du fikser dette ved å skrive inn teksten på ny, uten å kopiere den fra et annet sted.',
