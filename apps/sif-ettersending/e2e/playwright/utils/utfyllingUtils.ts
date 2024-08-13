@@ -64,7 +64,7 @@ const kontrollerOppsummeringPPSyktBarn = async (page: Page, legeerklæring: bool
     await expect(page.getByTestId('oppsummering').getByText('Søknad om pleiepenger for')).toBeVisible();
 
     if (legeerklæring) {
-        await expect(page.getByText('Hva skal du ettersende?')).toBeVisible();
+        await expect(page.getByTestId('oppsummering').getByText('Hva skal du ettersende?')).toBeVisible();
         await expect(page.getByText('ALFABETISK FAGGOTT (født 08.06.2019)')).toBeVisible();
     }
 
