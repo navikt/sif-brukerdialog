@@ -144,6 +144,7 @@ const UtbetalingsperioderOppsummering: React.FunctionComponent<Props> = ({ utbet
                     </FormSummary.Label>
                     <FormSummary.Value>
                         <SummaryList
+                            useAkselList={true}
                             items={perioder}
                             itemRenderer={(periode) => renderUtbetalingsperiode(periode, visAktivitetInfo, appIntl)}
                         />
@@ -157,6 +158,7 @@ const UtbetalingsperioderOppsummering: React.FunctionComponent<Props> = ({ utbet
                     </FormSummary.Label>
                     <FormSummary.Value>
                         <SummaryList
+                            useAkselList={true}
                             items={dager}
                             itemRenderer={(dag: UtbetalingsperiodeDag) =>
                                 renderUtbetalingsperiodeDag(dag, visAktivitetInfo, appIntl)

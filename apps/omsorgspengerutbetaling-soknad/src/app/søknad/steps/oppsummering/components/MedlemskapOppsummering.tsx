@@ -46,6 +46,7 @@ const MedlemskapOppsummering: React.FC<Props> = ({ bosteder }) => {
                         <FormSummary.Value>
                             <div data-testid="oppsummering-medlemskap-utlandetSiste12-list">
                                 <SummaryList
+                                    useAkselList={true}
                                     items={bostederSiste12}
                                     itemRenderer={renderUtenlandsoppholdIPeriodenSummary}
                                 />
@@ -71,6 +72,7 @@ const MedlemskapOppsummering: React.FC<Props> = ({ bosteder }) => {
                         <FormSummary.Value>
                             <div data-testid="oppsummering-medlemskap-utlandetNeste12-list">
                                 <SummaryList
+                                    useAkselList={true}
                                     items={bostederNeste12}
                                     itemRenderer={renderUtenlandsoppholdIPeriodenSummary}
                                 />

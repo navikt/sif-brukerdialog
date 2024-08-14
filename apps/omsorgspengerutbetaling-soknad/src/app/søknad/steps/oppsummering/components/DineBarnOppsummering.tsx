@@ -37,6 +37,7 @@ const DineBarnOppsummering = ({
                     </FormSummary.Label>
                     <FormSummary.Value>
                         <SummaryList
+                            useAkselList={true}
                             items={[...registrerteBarnSomIkkeSkalSendesInnMenVises, ...barn]}
                             itemRenderer={({ identitetsnummer, navn, type }: ApiBarn) => {
                                 const fnr = identitetsnummer ? identitetsnummer : '';
