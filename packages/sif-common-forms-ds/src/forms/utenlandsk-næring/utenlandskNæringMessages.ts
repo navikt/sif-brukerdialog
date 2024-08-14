@@ -20,8 +20,8 @@ const nb = {
     '@forms.utenlandskNæringForm.summary.tittel': 'Næringsvirksomhet som du har lagt inn:',
     '@forms.utenlandskNæringForm.summary.navn': 'Navn',
     '@forms.utenlandskNæringForm.summary.næringstype': 'Næringstype',
-    '@forms.utenlandskNæringForm.summary.tidsinfo.avsluttet': 'Startet {fraOgMed}, avsluttet {tilOgMed}.',
-    '@forms.utenlandskNæringForm.summary.tidsinfo.pågående': 'Startet {fraOgMed} (pågående).',
+    '@forms.utenlandskNæringForm.summary.tidsinfo.avsluttet': 'Startet {fraOgMed}, avsluttet {tilOgMed}',
+    '@forms.utenlandskNæringForm.summary.tidsinfo.pågående': 'Startet {fraOgMed} (pågående)',
 
     '@forms.utenlandskNæringForm.summary.registrertILand': 'Registrert i {land}',
     '@forms.utenlandskNæringForm.summary.registrertILand.orgnr': ' (organisasjonsnummer {orgnr})',

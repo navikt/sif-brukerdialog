@@ -132,8 +132,8 @@ const nb = {
 
     'step.oppsummering.bekrefterOpplysninger.ikkeBekreftet': 'Du må bekrefte opplysningene',
 
-    'opptjeningIUtlandetSummaryItem.periode': 'Periode: {periode}.',
-    'opptjeningIUtlandetSummaryItem.info': 'Jobbet i {landnavn} som {hva} hos {hvor}.',
+    'opptjeningIUtlandetSummaryItem.periode': 'Periode: {periode}',
+    'opptjeningIUtlandetSummaryItem.info': 'Jobbet i {landnavn} som {hva} hos {hvor}',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };

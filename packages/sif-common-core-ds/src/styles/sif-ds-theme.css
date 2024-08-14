@@ -38,3 +38,13 @@ body.sif-ds-theme {
 .navds-form-summary__answer--compact dd.fullWidth {
     display: block;
 }
+
+.summary-listItem-block {
+    background-color: var(--a-surface-subtle);
+    border-radius: var(--a-border-radius-large);
+    padding: 0.5rem 0.75rem !important;
+    list-style-position: inside;
+}
+.summary-listItem-block .navds-list__item-marker--bullet {
+    display: none;
+}

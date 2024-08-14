@@ -1,9 +1,9 @@
 import { FormSummary, Heading, List } from '@navikt/ds-react';
 import React from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { prettifyApiDate } from '@navikt/sif-common-utils';
 import { AppIntlShape, AppText, useAppIntl } from '../../../../i18n';
 import { UtenlandskNæringApi } from '../../../../types/søknadApiData/SøknadApiData';
+import { ListItem } from '@navikt/ds-react/List';
 
 interface Props {
     utenlandskNæring: UtenlandskNæringApi[];
@@ -23,8 +23,8 @@ const renderUtenlandskNæring = (næring: UtenlandskNæringApi, { text }: AppInt
               fraOgMed: prettifyApiDate(næring.fraOgMed),
           });
     return (
-        <Block margin="none" padBottom="l" key={næring.navnPåVirksomheten}>
-            <div>{`${text('@forms.utenlandskNæringForm.summary.næringstype')}: ${næringstype}.`}</div>
+        <div key={næring.navnPåVirksomheten}>
+            <div>{`${text('@forms.utenlandskNæringForm.summary.næringstype')}: ${næringstype}`}</div>
             <div>
                 <AppText id="@forms.utenlandskNæringForm.summary.registrertILand" values={{ land }} />
                 {næring.organisasjonsnummer !== undefined && (
@@ -35,16 +35,14 @@ const renderUtenlandskNæring = (næring: UtenlandskNæringApi, { text }: AppInt
                         />
                     </>
                 )}
-                .
             </div>
             <div>{tidsinfo}</div>
-        </Block>
+        </div>
     );
 };
 
 function UtenlandskNæringSummary({ utenlandskNæring }: Props) {
     const appIntl = useAppIntl();
-
     return (
         <>
             <FormSummary.Answer>
@@ -63,15 +61,18 @@ function UtenlandskNæringSummary({ utenlandskNæring }: Props) {
                             )}
                         </List.Item>
                         {utenlandskNæring.length > 0 && (
-                            <>
-                                {utenlandskNæring.map((næring, index) => (
-                                    <List.Item
-                                        title={`${appIntl.text('@forms.utenlandskNæringForm.summary.navn')}: ${næring.navnPåVirksomheten}.`}
-                                        key={index}>
-                                        {renderUtenlandskNæring(næring, appIntl)}
-                                    </List.Item>
-                                ))}
-                            </>
+                            <ListItem title="Registrerte næringer">
+                                <List className="navds-list--blockSummary">
+                                    {utenlandskNæring.map((næring, index) => (
+                                        <List.Item
+                                            className="summary-listItem-block"
+                                            title={`${appIntl.text('@forms.utenlandskNæringForm.summary.navn')}: ${næring.navnPåVirksomheten}.`}
+                                            key={index}>
+                                            {renderUtenlandskNæring(næring, appIntl)}
+                                        </List.Item>
+                                    ))}
+                                </List>
+                            </ListItem>
                         )}
                     </List>
                 </FormSummary.Value>

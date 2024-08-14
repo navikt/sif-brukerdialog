@@ -33,24 +33,27 @@ const OpptjeningIUtlandetSummaryView: React.FC<Props> = (props) => {
                             )}
                         </List.Item>
                         {opptjeningUtland.length > 0 && (
-                            <>
-                                {opptjeningUtland.map((opptjening, index) => (
-                                    <List.Item
-                                        key={index}
-                                        title={text('opptjeningIUtlandetSummaryItem.periode', {
-                                            periode: getPeriode(opptjening),
-                                        })}>
-                                        <AppText
-                                            id="opptjeningIUtlandetSummaryItem.info"
-                                            values={{
-                                                landnavn: opptjening.land.landnavn,
-                                                hva: opptjening.opptjeningType.toLowerCase(),
-                                                hvor: opptjening.navn,
-                                            }}
-                                        />
-                                    </List.Item>
-                                ))}
-                            </>
+                            <List.Item title="Registrerte perioder">
+                                <List>
+                                    {opptjeningUtland.map((opptjening, index) => (
+                                        <List.Item
+                                            className="summary-listItem-block"
+                                            key={index}
+                                            title={text('opptjeningIUtlandetSummaryItem.periode', {
+                                                periode: getPeriode(opptjening),
+                                            })}>
+                                            <AppText
+                                                id="opptjeningIUtlandetSummaryItem.info"
+                                                values={{
+                                                    landnavn: opptjening.land.landnavn,
+                                                    hva: opptjening.opptjeningType.toLowerCase(),
+                                                    hvor: opptjening.navn,
+                                                }}
+                                            />
+                                        </List.Item>
+                                    ))}
+                                </List>
+                            </List.Item>
                         )}
                     </List>
                 </FormSummary.Value>
