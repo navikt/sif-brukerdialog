@@ -15,7 +15,7 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     await page.goto(startUrl);
 
     /** Velkommen side */
-    await expect(page.getByRole('heading', { level: 1, name: 'Hei PRESENTABEL' })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 2, name: 'Hei, PRESENTABEL' })).toBeVisible();
     await page.getByLabel('Jeg bekrefter at jeg har forstått mitt ansvar som søker').click();
     await page.getByRole('button', { name: 'Start søknad' }).click();
 
