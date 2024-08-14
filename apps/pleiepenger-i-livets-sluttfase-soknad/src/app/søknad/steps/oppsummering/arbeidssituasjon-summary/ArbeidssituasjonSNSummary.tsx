@@ -1,9 +1,7 @@
 import { SelvstendigNæringsdrivendeApiData } from '../../../../types/søknadApiData/SøknadApiData';
-import { SummaryBlock } from '@navikt/sif-common-ui';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import VirksomhetSummary from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetSummary';
-import { Label } from '@navikt/ds-react';
+import { FormSummary, Heading, List } from '@navikt/ds-react';
 import { AppText, useAppIntl } from '../../../../i18n';
+import VirksomhetFormSummary from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetFormSummary';
 
 interface Props {
     selvstendigNæringsdrivende?: SelvstendigNæringsdrivendeApiData;
@@ -13,49 +11,48 @@ function ArbeidssituasjonSNSummary({ selvstendigNæringsdrivende }: Props) {
     const { text } = useAppIntl();
     const { arbeidsforhold, virksomhet } = selvstendigNæringsdrivende || {};
     return (
-        <SummaryBlock header={text('oppsummering.arbeidssituasjon.selvstendig.header')}>
-            {selvstendigNæringsdrivende === undefined && (
-                <ul>
-                    <li>
-                        <p>
+        <FormSummary.Answer>
+            <FormSummary.Label>
+                <Heading level="3" size="small">
+                    <AppText id="oppsummering.arbeidssituasjon.selvstendig.header" />
+                </Heading>
+            </FormSummary.Label>
+            <FormSummary.Value>
+                <List>
+                    {selvstendigNæringsdrivende === undefined && (
+                        <List.Item>
                             <AppText id={'oppsummering.arbeidssituasjon.selvstendig.erIkkeSN'} />
-                        </p>
-                    </li>
-                </ul>
-            )}
-            {virksomhet && arbeidsforhold && (
-                <>
-                    <ul>
-                        <li>
-                            <AppText id="oppsummering.arbeidssituasjon.selvstendig.erSn" />
-                        </li>
-                        <li>
-                            {virksomhet.harFlereAktiveVirksomheter ? (
-                                <AppText id="oppsummering.arbeidssituasjon.selvstendig.flereVirksomheter" />
-                            ) : (
-                                <AppText id="oppsummering.arbeidssituasjon.selvstendig.enVirksomhet" />
-                            )}
-                        </li>
-                        {arbeidsforhold.jobberNormaltTimer && (
-                            <>
-                                <li>
+                        </List.Item>
+                    )}
+                    {virksomhet && arbeidsforhold && (
+                        <>
+                            <List.Item>
+                                <AppText id="oppsummering.arbeidssituasjon.selvstendig.erSn" />
+                            </List.Item>
+                            <List.Item>
+                                {virksomhet.harFlereAktiveVirksomheter ? (
+                                    <AppText id="oppsummering.arbeidssituasjon.selvstendig.flereVirksomheter" />
+                                ) : (
+                                    <AppText id="oppsummering.arbeidssituasjon.selvstendig.enVirksomhet" />
+                                )}
+                            </List.Item>
+                            {arbeidsforhold.jobberNormaltTimer && (
+                                <List.Item>
                                     <AppText
                                         id={`oppsummering.arbeidssituasjon.tid`}
                                         values={{ timer: arbeidsforhold.jobberNormaltTimer }}
                                     />
-                                </li>
-                            </>
-                        )}
-                    </ul>
-                    <Label>{text('summary.virksomhet.virksomhetInfo.tittel')}</Label>
-                    <Block margin="m">
-                        <div style={{ paddingLeft: '1rem' }}>
-                            <VirksomhetSummary virksomhet={virksomhet} />
-                        </div>
-                    </Block>
-                </>
-            )}
-        </SummaryBlock>
+                                </List.Item>
+                            )}
+                            <List.Item>
+                                <div>{text('summary.virksomhet.virksomhetInfo.tittel')}</div>
+                                <VirksomhetFormSummary virksomhet={virksomhet} />
+                            </List.Item>
+                        </>
+                    )}
+                </List>
+            </FormSummary.Value>
+        </FormSummary.Answer>
     );
 }
 

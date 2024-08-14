@@ -12,7 +12,11 @@ const UtenlandsoppholdISøkeperiodeOppsummering: React.FC<Props> = ({ utenlandso
     const { text } = useAppIntl();
     return utenlandsopphold && utenlandsopphold.length > 0 ? (
         <SummaryBlock header={text('step.oppsummering.utenlandsoppholdIPerioden.listetittel')}>
-            <SummaryList items={utenlandsopphold} itemRenderer={renderUtenlandsoppholdIPeriodenSummary} />
+            <SummaryList
+                useAkselList={true}
+                items={utenlandsopphold}
+                itemRenderer={renderUtenlandsoppholdIPeriodenSummary}
+            />
         </SummaryBlock>
     ) : null;
 };

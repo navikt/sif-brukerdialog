@@ -2498,7 +2498,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chromatic-com/storybook@npm:1.6.1":
+"@chromatic-com/storybook@npm:1.6.1, @chromatic-com/storybook@npm:^1.6.1":
   version: 1.6.1
   resolution: "@chromatic-com/storybook@npm:1.6.1"
   dependencies:
@@ -5009,6 +5009,7 @@ __metadata:
     "@babel/preset-env": "npm:7.25.3"
     "@babel/preset-react": "npm:7.24.7"
     "@babel/preset-typescript": "npm:7.24.7"
+    "@chromatic-com/storybook": "npm:^1.6.1"
     "@formatjs/intl-pluralrules": "npm:5.2.14"
     "@navikt/ds-css": "npm:6.16.0"
     "@navikt/ds-react": "npm:6.16.0"
@@ -5021,15 +5022,19 @@ __metadata:
     "@storybook/addon-essentials": "npm:8.2.9"
     "@storybook/addon-interactions": "npm:8.2.9"
     "@storybook/addon-links": "npm:8.2.9"
+    "@storybook/addon-onboarding": "npm:^8.2.9"
+    "@storybook/blocks": "npm:^8.2.9"
     "@storybook/builder-vite": "npm:8.2.9"
     "@storybook/node-logger": "npm:8.2.9"
     "@storybook/react": "npm:8.2.9"
     "@storybook/react-vite": "npm:8.2.9"
+    "@storybook/test": "npm:^8.2.9"
     "@storybook/testing-library": "npm:0.2.2"
     "@testing-library/dom": "npm:10.4.0"
     "@testing-library/react": "npm:16.0.0"
     "@testing-library/user-event": "npm:14.5.2"
     "@types/node": "npm:22.2.0"
+    "@types/prop-types": "npm:^15"
     "@types/react": "npm:18.3.3"
     "@types/react-dom": "npm:18.3.0"
     "@vitejs/plugin-react": "npm:4.3.1"
@@ -5038,11 +5043,13 @@ __metadata:
     copyfiles: "npm:2.4.1"
     date-fns: "npm:3.6.0"
     dayjs: "npm:1.11.12"
+    eslint-plugin-storybook: "npm:^0.8.0"
     flat: "npm:6.0.1"
     formik: "npm:2.4.6"
     gh-pages: "npm:6.1.1"
     intl: "npm:1.2.5"
     jsdom: "npm:24.1.1"
+    prop-types: "npm:^15.8.1"
     react: "npm:18.3.1"
     react-collapse: "npm:5.1.1"
     react-day-picker: "npm:8.10.1"
@@ -7297,7 +7304,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-onboarding@npm:8.2.9":
+"@storybook/addon-onboarding@npm:8.2.9, @storybook/addon-onboarding@npm:^8.2.9":
   version: 8.2.9
   resolution: "@storybook/addon-onboarding@npm:8.2.9"
   dependencies:
@@ -7395,7 +7402,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/blocks@npm:8.2.9":
+"@storybook/blocks@npm:8.2.9, @storybook/blocks@npm:^8.2.9":
   version: 8.2.9
   resolution: "@storybook/blocks@npm:8.2.9"
   dependencies:
@@ -8462,7 +8469,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/test@npm:8.2.9":
+"@storybook/test@npm:8.2.9, @storybook/test@npm:^8.2.9":
   version: 8.2.9
   resolution: "@storybook/test@npm:8.2.9"
   dependencies:
@@ -9399,7 +9406,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/prop-types@npm:*":
+"@types/prop-types@npm:*, @types/prop-types@npm:^15":
   version: 15.7.12
   resolution: "@types/prop-types@npm:15.7.12"
   checksum: 10/ac16cc3d0a84431ffa5cfdf89579ad1e2269549f32ce0c769321fdd078f84db4fbe1b461ed5a1a496caf09e637c0e367d600c541435716a55b1d9713f5035dfe
@@ -14401,7 +14408,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-storybook@npm:0.8.0":
+"eslint-plugin-storybook@npm:0.8.0, eslint-plugin-storybook@npm:^0.8.0":
   version: 0.8.0
   resolution: "eslint-plugin-storybook@npm:0.8.0"
   dependencies:

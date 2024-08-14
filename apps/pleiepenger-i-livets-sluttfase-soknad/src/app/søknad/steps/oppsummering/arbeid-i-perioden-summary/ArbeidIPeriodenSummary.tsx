@@ -1,6 +1,5 @@
 import React from 'react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
-import { SummaryBlock, SummarySection } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { ArbeidsgiverType } from '../../../../types/Arbeidsgiver';
@@ -11,6 +10,7 @@ import {
 } from '../../../../types/søknadApiData/SøknadApiData';
 import ArbeidIPeriodeSummaryItem from './ArbeidIPeriodenSummaryItem';
 import { AppIntlShape, AppText, useAppIntl } from '../../../../i18n';
+import { FormSummary, Heading } from '@navikt/ds-react';
 
 interface Props {
     apiValues: SøknadApiData;
@@ -105,24 +105,40 @@ const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
     return (
         <>
             {aktiveArbeidsforhold.length > 0 && (
-                <SummarySection header={text('oppsummering.arbeidIPeriode.jobbIPerioden.header')}>
-                    {aktiveArbeidsforhold.map((forhold, index) =>
-                        forhold.arbeidIPeriode ? (
-                            <SummaryBlock header={forhold.tittel} key={forhold.tittel}>
-                                <ArbeidIPeriodeSummaryItem
-                                    periode={søknadsperiode}
-                                    dagerMedPleie={dagerMedPleie}
-                                    arbeidIPeriode={forhold.arbeidIPeriode}
-                                    normaltimerUke={forhold.jobberNormaltTimer}
-                                />
-                            </SummaryBlock>
-                        ) : (
-                            <div key={index}>
-                                <AppText id="oppsummering.arbeidIPeriode.jobberIPerioden.informasjonMangler" />
-                            </div>
-                        ),
-                    )}
-                </SummarySection>
+                <FormSummary>
+                    <FormSummary.Header>
+                        <FormSummary.Heading level="2">
+                            <AppText id="oppsummering.arbeidIPeriode.jobbIPerioden.header" />
+                        </FormSummary.Heading>
+                    </FormSummary.Header>
+                    <FormSummary.Answers>
+                        {aktiveArbeidsforhold.map((forhold) => (
+                            <FormSummary.Answer key={forhold.tittel}>
+                                {forhold.arbeidIPeriode ? (
+                                    <>
+                                        <FormSummary.Label>
+                                            <Heading level="3" size="small">
+                                                {forhold.tittel}
+                                            </Heading>
+                                        </FormSummary.Label>
+                                        <FormSummary.Value>
+                                            <ArbeidIPeriodeSummaryItem
+                                                periode={søknadsperiode}
+                                                dagerMedPleie={dagerMedPleie}
+                                                arbeidIPeriode={forhold.arbeidIPeriode}
+                                                normaltimerUke={forhold.jobberNormaltTimer}
+                                            />
+                                        </FormSummary.Value>
+                                    </>
+                                ) : (
+                                    <FormSummary.Value>
+                                        <AppText id="oppsummering.arbeidIPeriode.jobberIPerioden.informasjonMangler" />
+                                    </FormSummary.Value>
+                                )}
+                            </FormSummary.Answer>
+                        ))}
+                    </FormSummary.Answers>
+                </FormSummary>
             )}
         </>
     );

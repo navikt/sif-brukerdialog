@@ -1,3 +1,4 @@
+import { List } from '@navikt/ds-react';
 import React from 'react';
 import { dateFormatter, dateRangeToISODateRange, getDateRangesFromDates } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
@@ -9,9 +10,9 @@ interface Props {
 const ValgteDagerMedPleie: React.FunctionComponent<Props> = ({ dagerMedPleie }) => {
     const dateRanges = getDateRangesFromDates(dagerMedPleie);
     return (
-        <ul>
+        <List>
             {dateRanges.map((dr) => (
-                <li key={dateRangeToISODateRange(dr)} className="capitalize">
+                <List.Item key={dateRangeToISODateRange(dr)} className="capitalize">
                     {dayjs(dr.from).isSame(dr.to, 'day') ? (
                         <>{dateFormatter.dayCompactDate(dr.from)}</>
                     ) : (
@@ -19,9 +20,9 @@ const ValgteDagerMedPleie: React.FunctionComponent<Props> = ({ dagerMedPleie }) 
                             {dateFormatter.dayCompactDate(dr.from)} - {dateFormatter.dayCompactDate(dr.to)}
                         </>
                     )}
-                </li>
+                </List.Item>
             ))}
-        </ul>
+        </List>
     );
 };
 

@@ -1,11 +1,10 @@
-import { BodyLong } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { FormSummary } from '@navikt/ds-react';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
-import { FødselsnummerSvar, SummaryBlock, SummarySection } from '@navikt/sif-common-ui';
+import { FødselsnummerSvar } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils';
+import { AppText } from '../../../../i18n';
 import { FlereSokereApiData, PleietrengendeApi } from '../../../../types/søknadApiData/SøknadApiData';
-import { AppText, useAppIntl } from '../../../../i18n';
 
 interface Props {
     pleietrengende: PleietrengendeApi;
@@ -14,57 +13,75 @@ interface Props {
 }
 
 const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId, flereSøkere }: Props) => {
-    const { text } = useAppIntl();
     return (
-        <SummarySection header={text('step.oppsummering.pleietrengende.header')}>
-            <SummaryBlock header={pleietrengende.navn}>
-                {pleietrengende.fødselsdato ? (
-                    <BodyLong>
-                        <AppText
-                            id="steg.oppsummering.pleietrengende.fødselsdato"
-                            values={{
-                                dato: prettifyDate(ISODateToDate(pleietrengende.fødselsdato)),
-                            }}
-                        />
-                    </BodyLong>
-                ) : null}
+        <FormSummary>
+            <FormSummary.Header>
+                <FormSummary.Heading level="2">
+                    <AppText id="step.oppsummering.pleietrengende.header" />
+                </FormSummary.Heading>
+            </FormSummary.Header>
+            <FormSummary.Answers>
+                <FormSummary.Answer>
+                    <FormSummary.Label>
+                        <AppText id="step.oppsummering.pleietrengende.navn" />
+                    </FormSummary.Label>
+                    <FormSummary.Value>{pleietrengende.navn}</FormSummary.Value>
+                </FormSummary.Answer>
+                {pleietrengende.fødselsdato && (
+                    <FormSummary.Answer>
+                        <FormSummary.Label>
+                            <AppText id="step.oppsummering.pleietrengende.fødselsdato" />
+                        </FormSummary.Label>
+                        <FormSummary.Value>{prettifyDate(ISODateToDate(pleietrengende.fødselsdato))}</FormSummary.Value>
+                    </FormSummary.Answer>
+                )}
                 {pleietrengende.norskIdentitetsnummer && !pleietrengende.årsakManglerIdentitetsnummer && (
-                    <>
-                        <AppText id="fødselsnummer" />{' '}
-                        <FødselsnummerSvar fødselsnummer={pleietrengende.norskIdentitetsnummer} />
-                    </>
+                    <FormSummary.Answer>
+                        <FormSummary.Label>
+                            <AppText id="step.oppsummering.pleietrengende.fnr" />
+                        </FormSummary.Label>
+                        <FormSummary.Value>
+                            <FødselsnummerSvar fødselsnummer={pleietrengende.norskIdentitetsnummer} />
+                        </FormSummary.Value>
+                    </FormSummary.Answer>
                 )}
                 {pleietrengende.årsakManglerIdentitetsnummer && !pleietrengende.norskIdentitetsnummer && (
                     <>
-                        <Block margin="l">
-                            <BodyLong>
+                        <FormSummary.Answer>
+                            <FormSummary.Label>
+                                <AppText id="step.oppsummeringpleietrengende.harIkkeFnr" />
+                            </FormSummary.Label>
+                            <FormSummary.Value>
                                 <AppText
-                                    id="steg.oppsummering.pleietrengende.harIkkeFnr"
-                                    values={{
-                                        årsak: text(
-                                            `steg.oppsummering.pleietrengende.årsakManglerIdentitetsnummer.${pleietrengende.årsakManglerIdentitetsnummer}`,
-                                        ),
-                                    }}
+                                    id={`step.oppsummeringpleietrengende.årsakManglerIdentitetsnummer.${pleietrengende.årsakManglerIdentitetsnummer}`}
                                 />
-                            </BodyLong>
-                        </Block>
-                        <Block margin="m">
-                            <SummaryBlock header={text('steg.oppsummering.pleietrengende.id')}>
+                            </FormSummary.Value>
+                        </FormSummary.Answer>
+                        <FormSummary.Answer>
+                            <FormSummary.Label>
+                                <AppText id="step.oppsummeringpleietrengende.id" />
+                            </FormSummary.Label>
+                            <FormSummary.Value>
                                 {pleietrengendeId.filter(({ pending, uploaded }) => uploaded || pending).length > 0 && (
                                     <AttachmentList attachments={pleietrengendeId} />
                                 )}
 
                                 {pleietrengendeId.filter(({ pending, uploaded }) => uploaded || pending).length ===
                                     0 && <AppText id="step.oppsummering.pleietrengende.id.ingenId" />}
-                            </SummaryBlock>
-                        </Block>
+                            </FormSummary.Value>
+                        </FormSummary.Answer>
                     </>
                 )}
-            </SummaryBlock>
-            <SummaryBlock header={text('steg.oppsummering.flereSokere.header')}>
-                <AppText id={`steg.oppsummering.${flereSøkere}`} />
-            </SummaryBlock>
-        </SummarySection>
+                <FormSummary.Answer>
+                    <FormSummary.Label>
+                        <AppText id="step.oppsummeringflereSokere.header" />
+                    </FormSummary.Label>
+                    <FormSummary.Value>
+                        <AppText id={`step.oppsummering${flereSøkere}`} />
+                    </FormSummary.Value>
+                </FormSummary.Answer>
+            </FormSummary.Answers>
+        </FormSummary>
     );
 };
 
