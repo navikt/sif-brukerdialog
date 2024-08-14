@@ -44,8 +44,7 @@ function ArbeidssituasjonSNSummary({ selvstendigNæringsdrivende }: Props) {
                                     />
                                 </List.Item>
                             )}
-                            <List.Item>
-                                <div>{text('summary.virksomhet.virksomhetInfo.tittel')}</div>
+                            <List.Item title={text('summary.virksomhet.virksomhetInfo.tittel')}>
                                 <VirksomhetFormSummary virksomhet={virksomhet} />
                             </List.Item>
                         </>

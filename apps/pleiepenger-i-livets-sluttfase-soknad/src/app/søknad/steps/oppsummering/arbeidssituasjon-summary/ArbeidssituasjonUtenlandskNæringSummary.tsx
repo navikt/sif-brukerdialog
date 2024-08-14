@@ -61,7 +61,12 @@ function UtenlandskNæringSummary({ utenlandskNæring }: Props) {
                             )}
                         </List.Item>
                         {utenlandskNæring.length > 0 && (
-                            <ListItem title="Registrerte næringer">
+                            <ListItem
+                                title={appIntl.text(
+                                    utenlandskNæring.length === 1
+                                        ? 'oppsummering.arbeidssituasjon.utenlandskNæring.næring'
+                                        : 'oppsummering.arbeidssituasjon.utenlandskNæring.næringer',
+                                )}>
                                 <List className="navds-list--blockSummary">
                                     {utenlandskNæring.map((næring, index) => (
                                         <List.Item

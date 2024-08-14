@@ -17,7 +17,7 @@ const nb = {
     '@forms.utenlandskNæringForm.kalender_tom': 'Sluttdato',
     '@forms.utenlandskNæringForm.kalender_pågående': 'Er pågående',
 
-    '@forms.utenlandskNæringForm.summary.tittel': 'Næringsvirksomhet som du har lagt inn:',
+    '@forms.utenlandskNæringForm.summary.tittel': 'Næringsvirksomhet som du har lagt inn',
     '@forms.utenlandskNæringForm.summary.navn': 'Navn',
     '@forms.utenlandskNæringForm.summary.næringstype': 'Næringstype',
     '@forms.utenlandskNæringForm.summary.tidsinfo.avsluttet': 'Startet {fraOgMed}, avsluttet {tilOgMed}',

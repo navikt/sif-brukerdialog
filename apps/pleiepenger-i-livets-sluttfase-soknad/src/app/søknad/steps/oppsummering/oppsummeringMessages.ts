@@ -82,12 +82,16 @@ const nb = {
         'Har  jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før perioden en søker om',
     'oppsummering.arbeidssituasjon.optjeningIUtlandet.nei':
         'Har ikke jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før perioden en søker om',
+    'oppsummering.arbeidssituasjon.optjeningIUtlandet.periode': 'Periode med jobb i annet EØS-land',
+    'oppsummering.arbeidssituasjon.optjeningIUtlandet.perioder': 'Perioder med jobb i annet EØS-land',
 
     'oppsummering.arbeidssituasjon.utenlandskNæring.tittel': 'Selvstendig næringsdrivende i et annet EØS-land',
     'oppsummering.arbeidssituasjon.utenlandskNæring.nei':
         'Har ikke jobbet som selvstendig næringsdrivende i et annet EØS-land i løpet av de 3 siste årene før perioden en søker om',
     'oppsummering.arbeidssituasjon.utenlandskNæring.ja':
         'Har jobbet som selvstendig næringsdrivende i et annet EØS-land i løpet av de 3 siste årene før perioden en søker om',
+    'oppsummering.arbeidssituasjon.utenlandskNæring.næringer': 'Næringsvirksomheter i andre EØS-land',
+    'oppsummering.arbeidssituasjon.utenlandskNæring.næring': 'Næringsvirksomhet i annet EØS-land',
 
     'oppsummering.arbeidIPeriode.jobbIPerioden.header': 'Jobb i søknadsperioden',
     'oppsummering.arbeidIPeriode.jobbIPerioden': 'Jobb i søknadsperioden',
@@ -101,7 +105,7 @@ const nb = {
     'oppsummering.arbeidIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading':
         'Dager med pleiepenger hvor jeg skal jobbe',
 
-    'summary.virksomhet.virksomhetInfo.tittel': 'Næringsvirksomhet som du har lagt inn:',
+    'summary.virksomhet.virksomhetInfo.tittel': 'Næringsvirksomhet som du har lagt inn',
 
     'step.oppsummering.bekrefterOpplysninger':
         'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til pleiepenger.',

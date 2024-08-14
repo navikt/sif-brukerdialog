@@ -33,7 +33,12 @@ const OpptjeningIUtlandetSummaryView: React.FC<Props> = (props) => {
                             )}
                         </List.Item>
                         {opptjeningUtland.length > 0 && (
-                            <List.Item title="Registrerte perioder">
+                            <List.Item
+                                title={text(
+                                    opptjeningUtland.length === 1
+                                        ? 'oppsummering.arbeidssituasjon.optjeningIUtlandet.periode'
+                                        : 'oppsummering.arbeidssituasjon.optjeningIUtlandet.perioder',
+                                )}>
                                 <List>
                                     {opptjeningUtland.map((opptjening, index) => (
                                         <List.Item
