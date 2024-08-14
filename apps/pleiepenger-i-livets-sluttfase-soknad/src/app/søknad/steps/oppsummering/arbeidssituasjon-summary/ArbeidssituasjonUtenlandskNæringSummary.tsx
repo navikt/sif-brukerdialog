@@ -71,7 +71,7 @@ function UtenlandskNæringSummary({ utenlandskNæring }: Props) {
                                     {utenlandskNæring.map((næring, index) => (
                                         <List.Item
                                             className="summary-listItem-block"
-                                            title={`${appIntl.text('@forms.utenlandskNæringForm.summary.navn')}: ${næring.navnPåVirksomheten}.`}
+                                            title={`${appIntl.text('@forms.utenlandskNæringForm.summary.navn')}: ${næring.navnPåVirksomheten}`}
                                             key={index}>
                                             {renderUtenlandskNæring(næring, appIntl)}
                                         </List.Item>
