@@ -1,5 +1,18 @@
 # @navikt/sif-common-formik-ds
 
+## 1.11.5
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 1.11.4
+
+### Patch Changes
+
+-   24fe90e: - Justere spacing i horisontale radios
+    -   Endre til vertikal som default for ja/nei radios
+
 ## 1.11.3
 
 ### Patch Changes
