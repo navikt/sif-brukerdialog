@@ -1,8 +1,7 @@
 import { FormSummary } from '@navikt/ds-react';
 import React from 'react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
-import { SummaryBlock } from '@navikt/sif-common-ui';
-import { AppText, useAppIntl } from '../../../../i18n';
+import { AppText } from '../../../../i18n';
 import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import ArbeidsgivereSummary from './ArbeidsgivereSummary';
@@ -10,6 +9,7 @@ import ArbeidssituasjonFrilansSummary from './ArbeidssituasjonFrilansSummary';
 import ArbeidssituasjonSNSummary from './ArbeidssituasjonSNSummary';
 import UtenlandskNæringSummary from './ArbeidssituasjonUtenlandskNæringSummary';
 import OpptjeningIUtlandetSummaryView from './OpptjeningIUtlandetSummaryView';
+import VernepliktSummary from './VernepliktSummary';
 
 interface Props {
     apiData: SøknadApiData;
@@ -22,15 +22,13 @@ const ArbeidssituasjonSummary: React.FC<Props> = ({
         arbeidsgivere,
         frilans,
         selvstendigNæringsdrivende,
-        opptjeningIUtlandet: opptjeningUtland,
+        opptjeningIUtlandet,
         harVærtEllerErVernepliktig,
         utenlandskNæring,
     },
     søknadsperiode,
     frilansoppdrag,
 }) => {
-    const { text } = useAppIntl();
-
     return (
         <FormSummary>
             <FormSummary.Header>
@@ -45,24 +43,11 @@ const ArbeidssituasjonSummary: React.FC<Props> = ({
 
                 <ArbeidssituasjonSNSummary selvstendigNæringsdrivende={selvstendigNæringsdrivende} />
 
-                <OpptjeningIUtlandetSummaryView opptjeningUtland={opptjeningUtland} />
+                <OpptjeningIUtlandetSummaryView opptjeningUtland={opptjeningIUtlandet} />
 
                 <UtenlandskNæringSummary utenlandskNæring={utenlandskNæring} />
 
-                {/* Vernepliktig */}
-                {harVærtEllerErVernepliktig !== undefined && (
-                    <SummaryBlock header={text('oppsummering.arbeidssituasjon.verneplikt.header')}>
-                        <ul>
-                            <li>
-                                {text(
-                                    harVærtEllerErVernepliktig
-                                        ? 'oppsummering.arbeidssituasjon.verneplikt.harVærtVernepliktig'
-                                        : 'oppsummering.arbeidssituasjon.verneplikt.harIkkeVærtVernepliktig',
-                                )}
-                            </li>
-                        </ul>
-                    </SummaryBlock>
-                )}
+                <VernepliktSummary harVærtEllerErVernepliktig={harVærtEllerErVernepliktig} />
             </FormSummary.Answers>
         </FormSummary>
     );
