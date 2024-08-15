@@ -8,7 +8,6 @@ import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
-import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds/src';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds';
@@ -49,6 +48,8 @@ import {
 } from './summaryItemRenderers';
 import './oppsummeringStep.less';
 import { AppText } from '../../i18n';
+import SøkerSummary from './søker-summary/SøkerSummary';
+import { VStack } from '@navikt/ds-react';
 
 interface Props {
     values: SøknadFormValues;
@@ -125,10 +126,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                     harArbeidIPerioden(søknadsdata.arbeidssituasjon) &&
                     !harFraværFraJobb(søknadsdata.arbeidstidIPerioden);
 
-                const {
-                    søker: { fornavn, mellomnavn, etternavn, fødselsnummer },
-                    barn,
-                } = søkerdata;
+                const { barn } = søkerdata;
                 const harBekreftetOpplysninger = values.harBekreftetOpplysninger;
 
                 const apiValues = getApiDataFromSøknadsdata(
@@ -169,42 +167,37 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                         isFinalSubmit={true}
                         buttonDisabled={sendingInProgress}
                         showButtonSpinner={sendingInProgress}>
-                        <SifGuidePanel>
-                            <p>
-                                <AppText id="steg.oppsummering.info" />
-                            </p>
-                        </SifGuidePanel>
+                        <VStack gap="8">
+                            <SifGuidePanel>
+                                <p>
+                                    <AppText id="steg.oppsummering.info" />
+                                </p>
+                            </SifGuidePanel>
 
-                        {apiValuesValidationErrors && apiValuesValidationErrors.length > 0 && (
-                            <FormBlock>
-                                <ApiValidationSummary
-                                    errors={apiValuesValidationErrors}
-                                    søknadStepConfig={søknadStepConfig}
-                                />
-                            </FormBlock>
-                        )}
+                            {apiValuesValidationErrors && apiValuesValidationErrors.length > 0 && (
+                                <FormBlock>
+                                    <ApiValidationSummary
+                                        errors={apiValuesValidationErrors}
+                                        søknadStepConfig={søknadStepConfig}
+                                    />
+                                </FormBlock>
+                            )}
 
+                            <SøkerSummary søker={søkerdata.søker} />
+                            <BarnSummary
+                                barn={barn}
+                                formValues={values}
+                                apiValues={apiValues}
+                                onEdit={() => {
+                                    navigate(søknadStepConfig[StepID.OPPLYSNINGER_OM_BARNET].route);
+                                }}
+                            />
+                        </VStack>
                         <Block margin="xl">
                             <ResponsivePanel border={true}>
                                 {/* Om deg */}
-                                <SummarySection header={text('steg.oppsummering.søker.header')}>
-                                    <Block margin="m">
-                                        <div data-testid="oppsummering-søker-navn">
-                                            {formatName(fornavn, etternavn, mellomnavn)}
-                                        </div>
-                                        <div data-testid="oppsummering-søker-fødselsnummer">
-                                            <AppText
-                                                id={'steg.oppsummering.søker.fnr'}
-                                                values={{
-                                                    fødselsnummer: fødselsnummer,
-                                                }}
-                                            />
-                                        </div>
-                                    </Block>
-                                </SummarySection>
 
                                 {/* Om barnet */}
-                                <BarnSummary barn={barn} formValues={values} apiValues={apiValues} />
 
                                 {/* Perioden du søker pleiepenger for */}
                                 <SummarySection header={text('steg.oppsummering.tidsrom.header')}>

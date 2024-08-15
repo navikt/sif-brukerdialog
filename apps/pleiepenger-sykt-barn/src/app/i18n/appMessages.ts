@@ -374,15 +374,16 @@ const nb = {
     'steg.oppsummering.info':
         'Les gjennom oppsummeringen før du sender inn søknaden. Du kan gå tilbake hvis du vil gjøre endringer.',
     'steg.oppsummering.søker.header': 'Om deg',
-    'steg.oppsummering.søker.fnr': 'Fødselsnummer: {fødselsnummer}',
+    'steg.oppsummering.søker.navn': 'Navn',
+    'steg.oppsummering.søker.fnr': 'Fødselsnummer',
     'steg.oppsummering.tidsrom.header': 'Perioden du søker pleiepenger for',
     'steg.oppsummering.søknadsperiode.header': 'Periode',
     'steg.oppsummering.tidsrom.fomtom': '{fom} - {tom}',
 
     'steg.oppsummering.barnet.header': 'Om barnet',
-    'steg.oppsummering.barnet.navn': 'Navn: {navn}',
-    'steg.oppsummering.barnet.fødselsdato': 'Fødselsdato: {dato}',
-    'steg.oppsummering.barnet.fnr': 'Fødselsnummer: {fnr}',
+    'steg.oppsummering.barnet.navn': 'Navn',
+    'steg.oppsummering.barnet.fødselsdato': 'Fødselsdato',
+    'steg.oppsummering.barnet.fnr': 'Fødselsnummer',
     'steg.oppsummering.barnet.barnetHarIkkeFnr': 'Uten fødselsnummer/D-nummer',
     'steg.oppsummering.barnet.årsakManglerIdentitetsnummer.NYFØDT':
         'Barnet er nyfødt, og har ikke fått fødselsnummer enda',
