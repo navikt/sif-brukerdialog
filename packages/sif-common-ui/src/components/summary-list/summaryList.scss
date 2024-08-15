@@ -5,12 +5,19 @@
     }
 }
 
-.sif_navds-form-summary-listItem--block {
+.navds-list__item.sif_navds-form-summary-listItem--block {
     background-color: var(--a-surface-subtle);
     border-radius: var(--a-border-radius-large);
     padding: 0.5rem 0.75rem !important;
     list-style-position: inside;
+    gap: 0 !important;
 }
-.sif_navds-form-summary-listItem--block .navds-list__item-marker--bullet {
-    display: none;
+
+// .navds-list__item.sif_navds-form-summary-listItem--block .navds-form-summary__answers {
+//     padding: 0;
+//     margin: 0;
+// }
+
+.navds-list .sif_navds-form-summary-listItem--block .navds-list__item-marker--bullet {
+    display: none !important;
 }

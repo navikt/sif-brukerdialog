@@ -13,7 +13,6 @@ import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation
 import { LoadingPage } from '@navikt/sif-common-soknad-ds';
 import { SummaryBlock, SummaryList, SummarySection } from '@navikt/sif-common-ui';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import dayjs from 'dayjs';
 import { purge, sendApplication } from '../../api/api';
 import LegeerklæringAttachmentList from '../../components/legeerklæring-file-list/LegeerklæringFileList';
 import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
@@ -41,15 +40,12 @@ import BarnSummary from './barn-summary/BarnSummary';
 import InnsendingFeiletInformasjon from './InnsendingFeiletInformasjon';
 import { InvalidParameter, isInvalidParameterErrorResponse } from './invalidParameter';
 import OmsorgstilbudSummary from './omsorgstilbud-summary/OmsorgstilbudSummary';
-import {
-    renderFerieuttakIPeriodenSummary,
-    renderUtenlandsoppholdIPeriodenSummary,
-    renderUtenlandsoppholdSummary,
-} from './summaryItemRenderers';
+import { renderUtenlandsoppholdSummary } from './summaryItemRenderers';
 import './oppsummeringStep.less';
 import { AppText } from '../../i18n';
 import SøkerSummary from './søker-summary/SøkerSummary';
 import { VStack } from '@navikt/ds-react';
+import PeriodeSummary from './periode-summary/PeriodeSummary';
 
 interface Props {
     values: SøknadFormValues;
@@ -147,7 +143,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
 
                 const apiValuesValidationErrors = validateApiValues(apiValues, values, appIntl);
 
-                const { medlemskap, utenlandsoppholdIPerioden, ferieuttakIPerioden } = apiValues;
+                const { medlemskap } = apiValues;
 
                 return (
                     <SøknadFormStep
@@ -192,82 +188,16 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                     navigate(søknadStepConfig[StepID.OPPLYSNINGER_OM_BARNET].route);
                                 }}
                             />
+                            <PeriodeSummary
+                                apiValues={apiValues}
+                                søknadsperiode={søknadsperiode}
+                                onEdit={() => {
+                                    navigate(søknadStepConfig[StepID.TIDSROM].route);
+                                }}
+                            />
                         </VStack>
                         <Block margin="xl">
                             <ResponsivePanel border={true}>
-                                {/* Om deg */}
-
-                                {/* Om barnet */}
-
-                                {/* Perioden du søker pleiepenger for */}
-                                <SummarySection header={text('steg.oppsummering.tidsrom.header')}>
-                                    <SummaryBlock header={text('steg.oppsummering.søknadsperiode.header')}>
-                                        <div data-testid="oppsummering-tidsrom-fomtom">
-                                            <AppText
-                                                id="steg.oppsummering.tidsrom.fomtom"
-                                                values={{
-                                                    fom: `${dayjs(søknadsperiode.from).format('D. MMMM YYYY')}`,
-                                                    tom: `${dayjs(søknadsperiode.to).format('D. MMMM YYYY')}`,
-                                                }}
-                                            />
-                                        </div>
-                                    </SummaryBlock>
-
-                                    {/* Utenlandsopphold i perioden */}
-                                    {utenlandsoppholdIPerioden && (
-                                        <>
-                                            <SummaryBlock
-                                                header={text('steg.oppsummering.utenlandsoppholdIPerioden.header')}>
-                                                <div data-testid="oppsummering-utenlandsoppholdIPerioden">
-                                                    <AppText
-                                                        id={
-                                                            utenlandsoppholdIPerioden.skalOppholdeSegIUtlandetIPerioden
-                                                                ? 'Ja'
-                                                                : 'Nei'
-                                                        }
-                                                    />
-                                                </div>
-                                            </SummaryBlock>
-
-                                            {utenlandsoppholdIPerioden.opphold.length > 0 && (
-                                                <Block>
-                                                    <div data-testid="oppsummering-utenlandsoppholdIPerioden-list">
-                                                        <SummaryList
-                                                            items={utenlandsoppholdIPerioden.opphold}
-                                                            itemRenderer={(item) =>
-                                                                renderUtenlandsoppholdIPeriodenSummary(item, appIntl)
-                                                            }
-                                                        />
-                                                    </div>
-                                                </Block>
-                                            )}
-                                        </>
-                                    )}
-
-                                    {/* Ferieuttak i perioden */}
-                                    {ferieuttakIPerioden && (
-                                        <>
-                                            <SummaryBlock header={text('steg.oppsummering.ferieuttakIPerioden.header')}>
-                                                <div data-testid="oppsummering-ferieuttakIPerioden">
-                                                    <AppText
-                                                        id={ferieuttakIPerioden.skalTaUtFerieIPerioden ? 'Ja' : 'Nei'}
-                                                    />
-                                                </div>
-                                            </SummaryBlock>
-                                            {ferieuttakIPerioden.ferieuttak.length > 0 && (
-                                                <Block margin="l">
-                                                    <div data-testid="oppsummering-ferieuttakIPerioden-list">
-                                                        <SummaryList
-                                                            items={ferieuttakIPerioden.ferieuttak}
-                                                            itemRenderer={renderFerieuttakIPeriodenSummary}
-                                                        />
-                                                    </div>
-                                                </Block>
-                                            )}
-                                        </>
-                                    )}
-                                </SummarySection>
-
                                 {/* Arbeidssituasjon i søknadsperiode */}
                                 <ArbeidssituasjonSummary
                                     apiValues={apiValues}

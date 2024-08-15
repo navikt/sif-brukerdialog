@@ -399,6 +399,7 @@ const nb = {
     'steg.oppsummering.barnRelasjon.FAR': 'Du er far til barnet',
     'steg.oppsummering.barnRelasjon.ANNET': 'Annet',
     'steg.oppsummering.utenlandsoppholdIPerioden.header': 'Skal du være i utlandet i perioden?',
+    'steg.oppsummering.utenlandsoppholdIPerioden.listTitle': 'Utlandsopphold i perioden',
     'steg.oppsummering.ferieuttakIPerioden.header': 'Skal du ta ut ferie i perioden?',
 
     'steg.oppsummering.omsorgstilbud.header': 'Omsorgstilbud i søknadsperioden',
