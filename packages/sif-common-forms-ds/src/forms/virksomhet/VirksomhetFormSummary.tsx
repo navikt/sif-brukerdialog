@@ -30,25 +30,25 @@ const renderVirksomhetSummary = (virksomhet: VirksomhetApiData, intl: Virksomhet
 
     return (
         <>
-            <FormSummary.Answer className="navds-form-summary__answer--compact">
+            <FormSummary.Answer>
                 <FormSummary.Label>{text('@forms.virksomhet.summary.navn')}</FormSummary.Label>
                 <FormSummary.Value>{virksomhet.navnPåVirksomheten}</FormSummary.Value>
             </FormSummary.Answer>
-            <FormSummary.Answer className="navds-form-summary__answer--compact">
+            <FormSummary.Answer>
                 <FormSummary.Label>{text('@forms.virksomhet.summary.næringstype')}</FormSummary.Label>
                 <FormSummary.Value>{næringstype}</FormSummary.Value>
             </FormSummary.Answer>
-            <FormSummary.Answer className="navds-form-summary__answer--compact">
+            <FormSummary.Answer>
                 <FormSummary.Label>Land</FormSummary.Label>
                 <FormSummary.Value>{land}</FormSummary.Value>
             </FormSummary.Answer>
             {virksomhet.registrertINorge && (
-                <FormSummary.Answer className="navds-form-summary__answer--compact">
+                <FormSummary.Answer>
                     <FormSummary.Label>Organisasjonsnummer</FormSummary.Label>
                     <FormSummary.Value>{virksomhet.organisasjonsnummer}</FormSummary.Value>
                 </FormSummary.Answer>
             )}
-            <FormSummary.Answer className="navds-form-summary__answer--compact">
+            <FormSummary.Answer>
                 <FormSummary.Label>Startet</FormSummary.Label>
                 <FormSummary.Value>
                     {prettifyApiDate(virksomhet.fraOgMed)}
@@ -56,7 +56,7 @@ const renderVirksomhetSummary = (virksomhet: VirksomhetApiData, intl: Virksomhet
                 </FormSummary.Value>
             </FormSummary.Answer>
             {virksomhet.tilOgMed && (
-                <FormSummary.Answer className="navds-form-summary__answer--compact">
+                <FormSummary.Answer>
                     <FormSummary.Label>Avsluttet</FormSummary.Label>
                     <FormSummary.Value>{prettifyApiDate(virksomhet.tilOgMed)}</FormSummary.Value>
                 </FormSummary.Answer>
@@ -71,11 +71,11 @@ const VirksomhetFormSummaryAnswers: React.FunctionComponent<Props> = ({ virksomh
     const erRegnetSomNyoppstartet = erVirksomhetRegnetSomNyoppstartet(ISODateToDate(virksomhet.fraOgMed));
 
     return (
-        <FormSummary.Answers>
+        <FormSummary.Answers className="navds-form-summary__answers--compact">
             {renderVirksomhetSummary(virksomhet, virksomhetIntl)}
 
             {virksomhet.næringsinntekt !== undefined && (
-                <FormSummary.Answer className="navds-form-summary__answer--compact">
+                <FormSummary.Answer>
                     <FormSummary.Label>
                         {harFlereVirksomheter
                             ? text('@forms.virksomhet.næringsinntekt.flereVirksomheter.spm')
@@ -87,7 +87,7 @@ const VirksomhetFormSummaryAnswers: React.FunctionComponent<Props> = ({ virksomh
                 </FormSummary.Answer>
             )}
             {erRegnetSomNyoppstartet === true && (
-                <FormSummary.Answer className="navds-form-summary__answer--compact">
+                <FormSummary.Answer>
                     <FormSummary.Label>{text('@forms.virksomhet.har_blitt_yrkesaktiv')}</FormSummary.Label>
                     <FormSummary.Value>
                         {virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene === undefined && (
@@ -105,7 +105,7 @@ const VirksomhetFormSummaryAnswers: React.FunctionComponent<Props> = ({ virksomh
             )}
             {erRegnetSomNyoppstartet === false && (
                 <>
-                    <FormSummary.Answer className="navds-form-summary__answer--compact">
+                    <FormSummary.Answer>
                         <FormSummary.Label>{text('@forms.virksomhet.varig_endring_spm')}</FormSummary.Label>
                         <FormSummary.Value>
                             <JaNeiSvar harSvartJa={virksomhet.varigEndring !== undefined} />
@@ -114,7 +114,7 @@ const VirksomhetFormSummaryAnswers: React.FunctionComponent<Props> = ({ virksomh
 
                     {virksomhet.varigEndring && (
                         <>
-                            <FormSummary.Answer className="navds-form-summary__answer--compact">
+                            <FormSummary.Answer>
                                 <FormSummary.Label>
                                     {text('@forms.virksomhet.summary.varigEndring.dato')}
                                 </FormSummary.Label>
@@ -122,7 +122,7 @@ const VirksomhetFormSummaryAnswers: React.FunctionComponent<Props> = ({ virksomh
                                     <DatoSvar isoDato={virksomhet.varigEndring.dato} />
                                 </FormSummary.Value>
                             </FormSummary.Answer>
-                            <FormSummary.Answer className="navds-form-summary__answer--compact">
+                            <FormSummary.Answer>
                                 <FormSummary.Label>
                                     {text('@forms.virksomhet.summary.varigEndring.næringsinntekt')}
                                 </FormSummary.Label>
@@ -130,7 +130,7 @@ const VirksomhetFormSummaryAnswers: React.FunctionComponent<Props> = ({ virksomh
                                     <TallSvar verdi={virksomhet.varigEndring.inntektEtterEndring} />
                                 </FormSummary.Value>
                             </FormSummary.Answer>
-                            <FormSummary.Answer className="navds-form-summary__answer--compact">
+                            <FormSummary.Answer>
                                 <FormSummary.Label>
                                     {text('@forms.virksomhet.summary.varigEndring.beskrivelse')}
                                 </FormSummary.Label>
@@ -146,7 +146,7 @@ const VirksomhetFormSummaryAnswers: React.FunctionComponent<Props> = ({ virksomh
             )}
             {/* Regnskapsfører */}
             {virksomhet.registrertINorge && (
-                <FormSummary.Answer className="navds-form-summary__answer--compact">
+                <FormSummary.Answer>
                     <FormSummary.Label>{text('@forms.virksomhet.regnskapsfører_spm')}</FormSummary.Label>
                     <FormSummary.Value>
                         {virksomhet.regnskapsfører === undefined && <JaNeiSvar harSvartJa={false} />}

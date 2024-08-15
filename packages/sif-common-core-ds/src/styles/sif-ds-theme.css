@@ -20,21 +20,22 @@ body.sif-ds-theme {
 .navds-form-summary__answers .navds-form-summary__answers {
     background-color: var(--a-surface-subtle);
 }
-.navds-form-summary__answer--compact {
+
+.navds-form-summary__answers--compact .navds-form-summary__answer {
     padding-bottom: 0.125rem !important;
     margin-bottom: 0.125rem !important;
     border: none !important;
 }
-.navds-form-summary__answer--compact dt {
+.navds-form-summary__answers--compact .navds-form-summary__answer dt {
     display: inline-block;
     padding-right: 0.5rem;
 }
-.navds-form-summary__answer--compact dt:after {
+.navds-form-summary__answers--compact .navds-form-summary__answer dt:after {
     content: ':';
 }
-.navds-form-summary__answer--compact dd {
+.navds-form-summary__answers--compact .navds-form-summary__answer dd {
     display: inline-block;
 }
-.navds-form-summary__answer--compact dd.fullWidth {
+.navds-form-summary__answers--compact .navds-form-summary__answer dd.fullWidth {
     display: block;
 }
