@@ -3,6 +3,7 @@ import React from 'react';
 import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '../../../../i18n';
 import { OpptjeningIUtlandetApi } from '../../../../types/søknadApiData/SøknadApiData';
+import { SummaryList } from '@navikt/sif-common-ui';
 
 export interface Props {
     opptjeningUtland: OpptjeningIUtlandetApi[];
@@ -39,25 +40,25 @@ const OpptjeningIUtlandetSummaryView: React.FC<Props> = (props) => {
                                         ? 'oppsummering.arbeidssituasjon.optjeningIUtlandet.periode'
                                         : 'oppsummering.arbeidssituasjon.optjeningIUtlandet.perioder',
                                 )}>
-                                <List>
-                                    {opptjeningUtland.map((opptjening, index) => (
-                                        <List.Item
-                                            className="summary-listItem-block"
-                                            key={index}
-                                            title={text('opptjeningIUtlandetSummaryItem.periode', {
-                                                periode: getPeriode(opptjening),
-                                            })}>
-                                            <AppText
-                                                id="opptjeningIUtlandetSummaryItem.info"
-                                                values={{
-                                                    landnavn: opptjening.land.landnavn,
-                                                    hva: opptjening.opptjeningType.toLowerCase(),
-                                                    hvor: opptjening.navn,
-                                                }}
-                                            />
-                                        </List.Item>
-                                    ))}
-                                </List>
+                                <SummaryList<OpptjeningIUtlandetApi>
+                                    variant="blocks"
+                                    items={opptjeningUtland}
+                                    itemRenderer={(opptjening) => (
+                                        <AppText
+                                            id="opptjeningIUtlandetSummaryItem.info"
+                                            values={{
+                                                landnavn: opptjening.land.landnavn,
+                                                hva: opptjening.opptjeningType.toLowerCase(),
+                                                hvor: opptjening.navn,
+                                            }}
+                                        />
+                                    )}
+                                    itemTitleRenderer={(opptjening) =>
+                                        text('opptjeningIUtlandetSummaryItem.periode', {
+                                            periode: getPeriode(opptjening),
+                                        })
+                                    }
+                                />
                             </List.Item>
                         )}
                     </List>

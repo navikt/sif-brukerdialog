@@ -4,6 +4,7 @@ import { prettifyApiDate } from '@navikt/sif-common-utils';
 import { AppIntlShape, AppText, useAppIntl } from '../../../../i18n';
 import { UtenlandskNæringApi } from '../../../../types/søknadApiData/SøknadApiData';
 import { ListItem } from '@navikt/ds-react/List';
+import { SummaryList } from '@navikt/sif-common-ui';
 
 interface Props {
     utenlandskNæring: UtenlandskNæringApi[];
@@ -67,16 +68,16 @@ function UtenlandskNæringSummary({ utenlandskNæring }: Props) {
                                         ? 'oppsummering.arbeidssituasjon.utenlandskNæring.næring'
                                         : 'oppsummering.arbeidssituasjon.utenlandskNæring.næringer',
                                 )}>
-                                <List className="navds-list--blockSummary">
-                                    {utenlandskNæring.map((næring, index) => (
-                                        <List.Item
-                                            className="summary-listItem-block"
-                                            title={`${appIntl.text('@forms.utenlandskNæringForm.summary.navn')}: ${næring.navnPåVirksomheten}`}
-                                            key={index}>
-                                            {renderUtenlandskNæring(næring, appIntl)}
-                                        </List.Item>
-                                    ))}
-                                </List>
+                                <SummaryList
+                                    items={utenlandskNæring}
+                                    variant="blocks"
+                                    itemTitleRenderer={(næring: UtenlandskNæringApi) =>
+                                        `${appIntl.text('@forms.utenlandskNæringForm.summary.navn')}: ${næring.navnPåVirksomheten}`
+                                    }
+                                    itemRenderer={(næring: UtenlandskNæringApi) =>
+                                        renderUtenlandskNæring(næring, appIntl)
+                                    }
+                                />
                             </ListItem>
                         )}
                     </List>
