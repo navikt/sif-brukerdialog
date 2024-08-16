@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/nb';
 import 'dayjs/locale/nn';
-import { ISODate, ISODateToDate, getValidLocale } from '.';
+import { ISODate, ISODateToDate, capsFirstCharacter, getValidLocale } from '.';
 
 dayjs.locale('nb');
 
@@ -88,4 +88,18 @@ export const dateFormatter = {
      */
     dayDateShortMonth: (date: Date, locale?: string) =>
         dayjs(date).locale(getValidLocale(locale)).format('dddd D. MMM'),
+
+    /**
+     *
+     * @param date: Date
+     * @return Måned årstall
+     */
+    monthFullYear: (date: Date, locale?: string) => dayjs(date).locale(getValidLocale(locale)).format('MMMM YYYY'),
+    /**
+     *
+     * @param date: Date
+     * @return Måned årstall
+     */
+    MonthFullYear: (date: Date, locale?: string) =>
+        capsFirstCharacter(dayjs(date).locale(getValidLocale(locale)).format('MMMM YYYY')),
 };

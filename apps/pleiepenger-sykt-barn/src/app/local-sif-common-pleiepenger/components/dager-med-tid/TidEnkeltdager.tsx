@@ -1,7 +1,13 @@
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import { ISODate, ISODateToDate, ISODuration, ISODurationToDuration } from '@navikt/sif-common-utils';
+import {
+    capsFirstCharacter,
+    ISODate,
+    ISODateToDate,
+    ISODuration,
+    ISODurationToDuration,
+} from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import groupBy from 'lodash.groupby';
 import { AppText } from '../../../i18n';
@@ -42,7 +48,7 @@ const TidEnkeltdager: React.FunctionComponent<Props> = ({ dager }) => {
                 }
                 return (
                     <Block margin="m" key={key}>
-                        <ExpandableInfo title={dayjs(dagerMedTid[0].dato).format('MMMM YYYY')}>
+                        <ExpandableInfo title={capsFirstCharacter(dayjs(dagerMedTid[0].dato).format('MMMM YYYY'))}>
                             <DagerMedTidListe dagerMedTid={dagerMedTid} viseUke={true} />
                         </ExpandableInfo>
                     </Block>
