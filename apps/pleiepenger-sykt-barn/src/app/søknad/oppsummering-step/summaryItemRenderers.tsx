@@ -76,6 +76,7 @@ export const renderUtenlandsoppholdIPeriodenSummary = (
                                     </FormSummary.Label>
                                     <FormSummary.Value className="fullWidth">
                                         <SummaryList
+                                            useAkselList={true}
                                             items={opphold.perioderBarnetErInnlagt}
                                             itemRenderer={(periode: PeriodeApiData) => (
                                                 <>

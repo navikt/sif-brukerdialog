@@ -73,8 +73,7 @@ const PeriodeSummary = ({ apiValues, søknadsperiode, onEdit }: Props) => {
                                     </FormSummary.Label>
                                     <FormSummary.Value>
                                         <SummaryList<UtenlandsoppholdIPeriodenApiData>
-                                            variant="blocks"
-                                            useAkselList={true}
+                                            variant="bullet-blocks"
                                             items={utenlandsoppholdIPerioden.opphold}
                                             itemTitleRenderer={renderUtenlandsoppholdIPeriodenSummaryTitle}
                                             itemRenderer={(item) =>
