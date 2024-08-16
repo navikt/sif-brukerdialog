@@ -203,16 +203,18 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                     navigate(søknadStepConfig[StepID.ARBEIDSSITUASJON].route);
                                 }}
                             />
+
+                            <ArbeidIPeriodenSummary
+                                apiValues={apiValues}
+                                søknadsperiode={søknadsperiode}
+                                søknadsdato={søknadsdato}
+                                onEdit={() => {
+                                    navigate(søknadStepConfig[StepID.ARBEIDSTID].route);
+                                }}
+                            />
                         </VStack>
                         <Block margin="xl">
                             <ResponsivePanel border={true}>
-                                {/* Arbeid i søknadsperiode */}
-                                <ArbeidIPeriodenSummary
-                                    apiValues={apiValues}
-                                    søknadsperiode={søknadsperiode}
-                                    søknadsdato={søknadsdato}
-                                />
-
                                 {/* Omsorgstilbud */}
                                 <OmsorgstilbudSummary søknadsperiode={søknadsperiode} apiValues={apiValues} />
 
