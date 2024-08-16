@@ -46,6 +46,7 @@ import { AppText } from '../../i18n';
 import SøkerSummary from './søker-summary/SøkerSummary';
 import { VStack } from '@navikt/ds-react';
 import PeriodeSummary from './periode-summary/PeriodeSummary';
+import NattevågOgBeredskapSummary from './nattevåk-og-beredskap-summary/NattevåkOgBeredskapSummary';
 
 interface Props {
     values: SøknadFormValues;
@@ -143,7 +144,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
 
                 const apiValuesValidationErrors = validateApiValues(apiValues, values, appIntl);
 
-                const { medlemskap } = apiValues;
+                const { medlemskap, nattevåk, beredskap } = apiValues;
 
                 return (
                     <SøknadFormStep
@@ -212,12 +213,27 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                     navigate(søknadStepConfig[StepID.ARBEIDSTID].route);
                                 }}
                             />
+
+                            <OmsorgstilbudSummary
+                                søknadsperiode={søknadsperiode}
+                                apiValues={apiValues}
+                                onEdit={() => {
+                                    navigate(søknadStepConfig[StepID.OMSORGSTILBUD].route);
+                                }}
+                            />
+
+                            {nattevåk && beredskap && (
+                                <NattevågOgBeredskapSummary
+                                    nattevåk={nattevåk}
+                                    beredskap={beredskap}
+                                    onEdit={() => {
+                                        navigate(søknadStepConfig[StepID.NATTEVÅK_OG_BEREDSKAP].route);
+                                    }}
+                                />
+                            )}
                         </VStack>
                         <Block margin="xl">
                             <ResponsivePanel border={true}>
-                                {/* Omsorgstilbud */}
-                                <OmsorgstilbudSummary søknadsperiode={søknadsperiode} apiValues={apiValues} />
-
                                 {/* Medlemskap i folketrygden */}
                                 <SummarySection header={text('medlemskap.summary.header')}>
                                     <SummaryBlock header={text('steg.oppsummering.utlandetSiste12.header')}>

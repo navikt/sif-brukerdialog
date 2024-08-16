@@ -1,7 +1,8 @@
 import React from 'react';
 import { ISODuration, ISODurationToDuration } from '@navikt/sif-common-utils';
 import { Time } from '../../../types/Time';
-import { AppIntlShape, AppMessageKeys, useAppIntl } from '../../../i18n';
+import { AppIntlShape, AppMessageKeys, AppText, useAppIntl } from '../../../i18n';
+import { List } from '@navikt/ds-react';
 
 enum Dager {
     'mandag' = 'mandag',
@@ -52,20 +53,20 @@ const TidFasteDager: React.FunctionComponent<Props> = ({ fasteDager }) => {
         const days = Object.keys(fasteDager).filter((day) => (fasteDager as any)[day] !== undefined) as Dager[];
         if (days.length > 0) {
             return (
-                <ul style={{ marginTop: 0 }}>
+                <List>
                     {days.map((day, idx) => {
                         const time = ISODurationToDuration((fasteDager as any)[day]);
                         return (
-                            <li key={idx} style={{ marginBottom: '.25rem' }}>
+                            <List.Item key={idx}>
                                 {`${text(getDagCapsIntlKey(day))}: ${time ? formatTime(appIntl, time) : 0}`}
-                            </li>
+                            </List.Item>
                         );
                     })}
-                </ul>
+                </List>
             );
         }
     }
-    return <>{text('dagerMedTid.ingenDagerRegistrert')}</>;
+    return <AppText id="dagerMedTid.ingenDagerRegistrert" />;
 };
 
 export default TidFasteDager;

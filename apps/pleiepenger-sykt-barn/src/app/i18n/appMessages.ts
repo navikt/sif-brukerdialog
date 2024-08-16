@@ -416,6 +416,10 @@ const nb = {
     'steg.oppsummering.omsorgstilbud.fremtid.svar.NEI': 'Nei',
     'steg.oppsummering.omsorgstilbud.fremtid.svar.USIKKER': 'Usikker',
     'steg.oppsummering.nattevåkBeredskap.header': 'Nattevåk og beredskap',
+    'steg.oppsummering.nattevåkBeredskap.nattevåk.beskrivelse':
+        'Beskrivelse av hvordan barnets sykdom gir et pleie- eller tilsynsbehov om nettene',
+    'steg.oppsummering.nattevåkBeredskap.beredskap.beskrivelse':
+        'Beskrivelse av hvordan barnets sykdom gjør at du må være i beredskap',
     'steg.oppsummering.omsorgstilbud.fast.header': 'Omsorgstilbud er likt hver uke i perioden:',
     'steg.oppsummering.omsorgstilbud.fast.header.fortid': 'Tiden har vært lik hver uke i perioden:',
 
