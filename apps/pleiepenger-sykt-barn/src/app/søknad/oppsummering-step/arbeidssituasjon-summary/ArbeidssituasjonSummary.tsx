@@ -1,6 +1,5 @@
 import React from 'react';
-import { AppText, useAppIntl } from '@i18n/index';
-import { SummaryBlock } from '@navikt/sif-common-ui';
+import { AppText } from '@i18n/index';
 import { DateRange } from '@navikt/sif-common-utils';
 import { Arbeidsgiver } from '../../../types';
 import { SøknadApiData } from '../../../types/søknad-api-data/SøknadApiData';
@@ -12,6 +11,7 @@ import OpptjeningIUtlandetSummary from './OpptjeningIUtlandetSummary';
 import StønadGodtgjørelseSummary from './StønadGodtgjørelseSummary';
 import { FormSummary } from '@navikt/ds-react';
 import EditStepLink from '../../../components/edit-step-link/EditStepLink';
+import VernepliktSummary from './VernepliktSummary';
 
 interface Props {
     apiValues: SøknadApiData;
@@ -34,8 +34,6 @@ const ArbeidssituasjonSummary: React.FunctionComponent<Props> = ({
     frilansoppdrag,
     onEdit,
 }) => {
-    const { text } = useAppIntl();
-
     return (
         <>
             <FormSummary>
@@ -62,20 +60,7 @@ const ArbeidssituasjonSummary: React.FunctionComponent<Props> = ({
 
                     <UtenlandskNæringSummary utenlandskNæring={utenlandskNæring} />
 
-                    {/* Vernepliktig */}
-                    {harVærtEllerErVernepliktig !== undefined && (
-                        <SummaryBlock header={text('verneplikt.summary.header')}>
-                            <ul>
-                                <li>
-                                    {text(
-                                        harVærtEllerErVernepliktig
-                                            ? 'verneplikt.summary.harVærtVernepliktig'
-                                            : 'verneplikt.summary.harIkkeVærtVernepliktig',
-                                    )}
-                                </li>
-                            </ul>
-                        </SummaryBlock>
-                    )}
+                    <VernepliktSummary harVærtEllerErVernepliktig={harVærtEllerErVernepliktig} />
                 </FormSummary.Answers>
             </FormSummary>
         </>

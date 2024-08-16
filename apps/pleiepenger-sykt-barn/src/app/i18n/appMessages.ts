@@ -599,11 +599,29 @@ const nb = {
     'oppsummering.arbeidssituasjon.selvstendig.enVirksomhet': 'Har 1 virksomhet',
 
     'oppsummering.arbeidssituasjon.optjeningIUtlandet.listetittel': 'Jobbet i annet EØS-land',
-    'oppsummering.arbeidssituasjon.optjeningIUtlandet.nei': 'Nei',
+    // 'oppsummering.arbeidssituasjon.optjeningIUtlandet.nei': 'Nei',
+    'oppsummering.arbeidssituasjon.optjeningIUtlandet.tittel': 'Arbeidstaker eller frilanser i et annet EØS-land',
+    'oppsummering.arbeidssituasjon.optjeningIUtlandet.ja':
+        'Har  jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før perioden en søker om',
+    'oppsummering.arbeidssituasjon.optjeningIUtlandet.nei':
+        'Har ikke jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før perioden en søker om',
+    'oppsummering.arbeidssituasjon.optjeningIUtlandet.periode': 'Periode med jobb i annet EØS-land',
+    'oppsummering.arbeidssituasjon.optjeningIUtlandet.perioder': 'Perioder med jobb i annet EØS-land',
+
+    'oppsummering.arbeidssituasjon.utenlandskNæring.tittel': 'Selvstendig næringsdrivende i et annet EØS-land',
+    'oppsummering.arbeidssituasjon.utenlandskNæring.nei':
+        'Har ikke jobbet som selvstendig næringsdrivende i et annet EØS-land i løpet av de 3 siste årene før perioden en søker om',
+    'oppsummering.arbeidssituasjon.utenlandskNæring.ja':
+        'Har jobbet som selvstendig næringsdrivende i et annet EØS-land i løpet av de 3 siste årene før perioden en søker om',
+    'oppsummering.arbeidssituasjon.utenlandskNæring.næringer': 'Næringsvirksomheter i andre EØS-land',
+    'oppsummering.arbeidssituasjon.utenlandskNæring.næring': 'Næringsvirksomhet i annet EØS-land',
+
+    'opptjeningIUtlandetSummaryItem.periode': 'Periode: {periode}',
+    'opptjeningIUtlandetSummaryItem.info': 'Jobbet i {landnavn} som {hva} hos {hvor}',
 
     'oppsummering.arbeidssituasjon.utenlandskNæring.listetittel':
         'Jobbet som selvstendig næringsdrivende i et annet EØS-land',
-    'oppsummering.arbeidssituasjon.utenlandskNæring.nei': 'Nei',
+    // 'oppsummering.arbeidssituasjon.utenlandskNæring.nei': 'Nei',
 
     'oppsummering.arbeidIPeriode.jobbIPerioden.header': 'Jobb i søknadsperioden',
     'oppsummering.arbeidIPeriode.jobbIPerioden': 'Jobb i søknadsperioden',

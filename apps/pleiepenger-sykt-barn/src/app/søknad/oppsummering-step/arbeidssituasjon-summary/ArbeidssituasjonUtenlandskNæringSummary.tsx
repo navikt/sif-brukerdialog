@@ -1,8 +1,8 @@
+import { FormSummary, Heading, List } from '@navikt/ds-react';
 import React from 'react';
-import { useAppIntl } from '@i18n/index';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { SummaryBlock } from '@navikt/sif-common-ui';
-import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils';
+import { AppIntlShape, useAppIntl } from '@i18n/index';
+import { SummaryList } from '@navikt/sif-common-ui';
+import { prettifyApiDate } from '@navikt/sif-common-utils';
 import { AppText } from '../../../i18n';
 import { UtenlandskNæringApiData } from '../../../types/søknad-api-data/SøknadApiData';
 
@@ -10,59 +10,79 @@ interface Props {
     utenlandskNæring: UtenlandskNæringApiData[];
 }
 
-function UtenlandskNæringSummary({ utenlandskNæring }: Props) {
-    const { text } = useAppIntl();
-    const renderUtenlandskNæring = (næring: UtenlandskNæringApiData): React.ReactNode => {
-        const land = næring.land.landnavn;
+const renderUtenlandskNæring = (næring: UtenlandskNæringApiData, { text }: AppIntlShape): React.ReactNode => {
+    const land = næring.land.landnavn;
 
-        const næringstype = text(`@forms.utenlandskNæringForm.næringstype_${næring.næringstype}`);
+    const næringstype = text(`@forms.utenlandskNæringForm.næringstype_${næring.næringstype}`);
 
-        const tidsinfo = næring.tilOgMed
-            ? text('@forms.utenlandskNæringForm.summary.tidsinfo.avsluttet', {
-                  fraOgMed: prettifyDate(ISODateToDate(næring.fraOgMed)),
-                  tilOgMed: prettifyDate(ISODateToDate(næring.tilOgMed)),
-              })
-            : text('@forms.utenlandskNæringForm.summary.tidsinfo.pågående', {
-                  fraOgMed: prettifyDate(ISODateToDate(næring.fraOgMed)),
-              });
-        return (
-            <li key={næring.navnPåVirksomheten}>
-                <Block margin="m" padBottom="l">
-                    <div data-testid="oppsummering-utenlandskNæring-navn">
-                        {`${text('@forms.utenlandskNæringForm.summary.navn')}: ${næring.navnPåVirksomheten}.`}
-                    </div>
-                    <div data-testid="oppsummering-utenlandskNæring-næringstype">
-                        {`${text('@forms.utenlandskNæringForm.summary.næringstype')}: ${næringstype}.`}
-                    </div>
-
-                    <div data-testid="oppsummering-utenlandskNæring-registrertILand">
-                        <AppText id="@forms.utenlandskNæringForm.summary.registrertILand" values={{ land }} />
-                        {næring.organisasjonsnummer !== undefined && (
-                            <AppText
-                                id="@forms.utenlandskNæringForm.summary.registrertILand.orgnr"
-                                values={{ orgnr: næring.organisasjonsnummer }}
-                            />
-                        )}
-                        .
-                    </div>
-                    <div data-testid="oppsummering-utenlandskNæring-tidsinfo">{tidsinfo}</div>
-                </Block>
-            </li>
-        );
-    };
+    const tidsinfo = næring.tilOgMed
+        ? text('@forms.utenlandskNæringForm.summary.tidsinfo.avsluttet', {
+              fraOgMed: prettifyApiDate(næring.fraOgMed),
+              tilOgMed: prettifyApiDate(næring.tilOgMed),
+          })
+        : text('@forms.utenlandskNæringForm.summary.tidsinfo.pågående', {
+              fraOgMed: prettifyApiDate(næring.fraOgMed),
+          });
     return (
-        <div data-testid="arbeidssituasjon-utenlandskNæring">
-            <SummaryBlock header={text('oppsummering.arbeidssituasjon.utenlandskNæring.listetittel')}>
-                {utenlandskNæring.length === 0 && (
-                    <p data-testid={'arbeidssituasjon-harUtenlandskNæringSvar'}>
-                        {text('oppsummering.arbeidssituasjon.utenlandskNæring.nei')}
-                    </p>
+        <div key={næring.navnPåVirksomheten}>
+            <div>{`${text('@forms.utenlandskNæringForm.summary.næringstype')}: ${næringstype}`}</div>
+            <div>
+                <AppText id="@forms.utenlandskNæringForm.summary.registrertILand" values={{ land }} />
+                {næring.organisasjonsnummer !== undefined && (
+                    <>
+                        <AppText
+                            id="@forms.utenlandskNæringForm.summary.registrertILand.orgnr"
+                            values={{ orgnr: næring.organisasjonsnummer }}
+                        />
+                    </>
                 )}
-                {utenlandskNæring.length > 0 && (
-                    <ul>{utenlandskNæring.map((næring) => renderUtenlandskNæring(næring))}</ul>
-                )}
-            </SummaryBlock>
+            </div>
+            <div>{tidsinfo}</div>
         </div>
+    );
+};
+
+function UtenlandskNæringSummary({ utenlandskNæring }: Props) {
+    const appIntl = useAppIntl();
+
+    return (
+        <FormSummary.Answer>
+            <FormSummary.Label>
+                <Heading level="3" size="small">
+                    <AppText id="oppsummering.arbeidssituasjon.utenlandskNæring.tittel" />
+                </Heading>
+            </FormSummary.Label>
+            <FormSummary.Value>
+                <List>
+                    <List.Item>
+                        {utenlandskNæring.length === 0 ? (
+                            <AppText id={'oppsummering.arbeidssituasjon.utenlandskNæring.nei'} />
+                        ) : (
+                            <AppText id={'oppsummering.arbeidssituasjon.utenlandskNæring.ja'} />
+                        )}
+                    </List.Item>
+                    {utenlandskNæring.length > 0 && (
+                        <List.Item
+                            title={appIntl.text(
+                                utenlandskNæring.length === 1
+                                    ? 'oppsummering.arbeidssituasjon.utenlandskNæring.næring'
+                                    : 'oppsummering.arbeidssituasjon.utenlandskNæring.næringer',
+                            )}>
+                            <SummaryList
+                                items={utenlandskNæring}
+                                variant="blocks"
+                                itemTitleRenderer={(næring: UtenlandskNæringApiData) =>
+                                    `${appIntl.text('@forms.utenlandskNæringForm.summary.navn')}: ${næring.navnPåVirksomheten}`
+                                }
+                                itemRenderer={(næring: UtenlandskNæringApiData) =>
+                                    renderUtenlandskNæring(næring, appIntl)
+                                }
+                            />
+                        </List.Item>
+                    )}
+                </List>
+            </FormSummary.Value>
+        </FormSummary.Answer>
     );
 }
 

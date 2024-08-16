@@ -71,7 +71,7 @@ const VirksomhetFormSummaryAnswers: React.FunctionComponent<Props> = ({ virksomh
     const erRegnetSomNyoppstartet = erVirksomhetRegnetSomNyoppstartet(ISODateToDate(virksomhet.fraOgMed));
 
     return (
-        <FormSummary.Answers className="navds-form-summary__answers--compact" style={{ padding: 0 }}>
+        <FormSummary.Answers className="navds-form-summary__answers--compact">
             {renderVirksomhetSummary(virksomhet, virksomhetIntl)}
 
             {virksomhet.næringsinntekt !== undefined && (
