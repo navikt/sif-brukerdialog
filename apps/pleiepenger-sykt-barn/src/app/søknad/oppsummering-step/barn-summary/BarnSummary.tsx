@@ -8,6 +8,7 @@ import { AppText } from '../../../i18n';
 import { BarnRelasjon, RegistrerteBarn, ÅrsakManglerIdentitetsnummer } from '../../../types';
 import { SøknadApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
+import EditStepLink from '../../../components/edit-step-link/EditStepLink';
 
 interface Props {
     barn: RegistrerteBarn[];
@@ -122,16 +123,7 @@ const BarnSummary = ({ formValues, apiValues, barn, onEdit }: Props) => {
                     <FormSummary.Heading level="2">
                         <AppText id="steg.oppsummering.barnet.header" />
                     </FormSummary.Heading>
-                    {onEdit && (
-                        <FormSummary.EditLink
-                            href="#"
-                            onClick={(evt) => {
-                                evt.stopPropagation();
-                                evt.preventDefault();
-                                onEdit();
-                            }}
-                        />
-                    )}
+                    {onEdit && <EditStepLink onEdit={onEdit} />}
                 </FormSummary.Header>
                 <FormSummary.Answers>
                     {useApiBarn && apiBarn && apiBarnSummary(apiBarn)}

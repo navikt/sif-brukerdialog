@@ -1,6 +1,5 @@
+import { FormSummary, List } from '@navikt/ds-react';
 import React from 'react';
-import { useAppIntl } from '@i18n/index';
-import { SummaryBlock } from '@navikt/sif-common-ui';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
 import { AppText } from '../../../i18n';
 import { ArbeidsgiverAnsattApiData } from '../../../types/søknad-api-data/SøknadApiData';
@@ -12,34 +11,32 @@ interface Props {
 }
 
 const ArbeidsgivereSummary: React.FunctionComponent<Props> = ({ arbeidsgivere, søknadsperiode }) => {
-    const { text } = useAppIntl();
-
     if (arbeidsgivere === undefined || arbeidsgivere.length === 0) {
         return (
-            <SummaryBlock header={text('oppsummering.arbeidssituasjon.arbeidsgivere.ingenIPeriode.header')}>
-                <ul>
-                    <li>
-                        <p>
-                            <AppText id="oppsummering.arbeidssituasjon.arbeidsgivere.ingenIPeriode.tekst" />
-                        </p>
-                    </li>
-                </ul>
-            </SummaryBlock>
+            <FormSummary.Answer>
+                <FormSummary.Label>
+                    <AppText id="oppsummering.arbeidssituasjon.arbeidsgivere.ingenIPeriode.header" />
+                </FormSummary.Label>
+                <FormSummary.Value>
+                    <AppText id="oppsummering.arbeidssituasjon.arbeidsgivere.ingenIPeriode.tekst" />
+                </FormSummary.Value>
+            </FormSummary.Answer>
         );
     }
 
     return (
-        <div data-testid="arbeidssituasjon-arbeidsgivere">
+        <>
             {arbeidsgivere.map((arbeidsgiver) => {
                 const { navn, organisasjonsnummer, erAnsatt } = arbeidsgiver;
 
                 return (
-                    <div data-testid={`arbeidssituasjon-ansatt-${organisasjonsnummer}`} key={organisasjonsnummer}>
-                        <SummaryBlock
-                            key={organisasjonsnummer}
-                            header={text('arbeidsgiver.tittel', { navn, organisasjonsnummer })}>
-                            <ul>
-                                <li>
+                    <FormSummary.Answer key={organisasjonsnummer}>
+                        <FormSummary.Label>
+                            <AppText id="arbeidsgiver.tittel" values={{ navn, organisasjonsnummer }} />
+                        </FormSummary.Label>
+                        <FormSummary.Value>
+                            <List>
+                                <List.Item>
                                     <AppText
                                         id={
                                             erAnsatt
@@ -47,17 +44,17 @@ const ArbeidsgivereSummary: React.FunctionComponent<Props> = ({ arbeidsgivere, s
                                                 : 'oppsummering.arbeidssituasjon.avsluttet.arbeidsgiver.ansatt'
                                         }
                                     />
-                                </li>
+                                </List.Item>
                                 {arbeidsgiver.arbeidsforhold && (
-                                    <li>
+                                    <List.Item>
                                         <NormalarbeidstidSummary
                                             erAnsatt={erAnsatt}
                                             normalarbeidstidApiData={arbeidsgiver.arbeidsforhold.normalarbeidstid}
                                         />
-                                    </li>
+                                    </List.Item>
                                 )}
                                 {erAnsatt === false && (
-                                    <li>
+                                    <List.Item>
                                         <AppText
                                             id={
                                                 arbeidsgiver.sluttetFørSøknadsperiode
@@ -69,14 +66,14 @@ const ArbeidsgivereSummary: React.FunctionComponent<Props> = ({ arbeidsgivere, s
                                                 periodeTil: dateFormatter.full(søknadsperiode.to),
                                             }}
                                         />
-                                    </li>
+                                    </List.Item>
                                 )}
-                            </ul>
-                        </SummaryBlock>
-                    </div>
+                            </List>
+                        </FormSummary.Value>
+                    </FormSummary.Answer>
                 );
             })}
-        </div>
+        </>
     );
 };
 

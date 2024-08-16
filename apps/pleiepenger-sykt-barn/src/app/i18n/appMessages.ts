@@ -428,6 +428,9 @@ const nb = {
         'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til pleiepenger.',
 
     'steg.oppsummering.arbeidssituasjon.header': 'Arbeidssituasjonen din',
+    'steg.oppsummering.arbeidssituasjon.omsfost.title': 'Omsorgsstønad eller fosterhjemsgodtgjørelse',
+    'steg.oppsummering.arbeidssituasjon.omsfost.mottarIkke':
+        'Mottar ikke fosterhjemgodtgjørelse, eller omsorgsstønad fra kommunen',
     'steg.oppsummering.vedlegg.header': 'Legeerklæring',
 
     'steg.oppsummering.validering.navigasjonTilStegInfo':

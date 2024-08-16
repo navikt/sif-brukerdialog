@@ -13,6 +13,7 @@ import {
     renderUtenlandsoppholdIPeriodenSummary,
     renderUtenlandsoppholdIPeriodenSummaryTitle,
 } from '../summaryItemRenderers';
+import EditStepLink from '../../../components/edit-step-link/EditStepLink';
 
 interface Props {
     apiValues: SøknadApiData;
@@ -31,16 +32,7 @@ const PeriodeSummary = ({ apiValues, søknadsperiode, onEdit }: Props) => {
                     <FormSummary.Heading level="2">
                         <AppText id="steg.oppsummering.tidsrom.header" />
                     </FormSummary.Heading>
-                    {onEdit && (
-                        <FormSummary.EditLink
-                            href="#"
-                            onClick={(evt) => {
-                                evt.stopPropagation();
-                                evt.preventDefault();
-                                onEdit();
-                            }}
-                        />
-                    )}
+                    {onEdit && <EditStepLink onEdit={onEdit} />}
                 </FormSummary.Header>
                 <FormSummary.Answers>
                     <FormSummary.Answer>
