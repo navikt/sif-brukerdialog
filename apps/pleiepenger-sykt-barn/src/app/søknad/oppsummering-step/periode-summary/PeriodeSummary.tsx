@@ -1,10 +1,13 @@
 import { FormSummary } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { SummaryList } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { AppText, useAppIntl } from '../../../i18n';
-import { SøknadApiData, UtenlandsoppholdIPeriodenApiData } from '../../../types/søknad-api-data/SøknadApiData';
+import {
+    PeriodeApiData,
+    SøknadApiData,
+    UtenlandsoppholdIPeriodenApiData,
+} from '../../../types/søknad-api-data/SøknadApiData';
 import {
     renderFerieuttakIPeriodenSummary,
     renderUtenlandsoppholdIPeriodenSummary,
@@ -97,14 +100,18 @@ const PeriodeSummary = ({ apiValues, søknadsperiode, onEdit }: Props) => {
                             </FormSummary.Answer>
 
                             {ferieuttakIPerioden.ferieuttak.length > 0 && (
-                                <Block margin="l">
-                                    <div data-testid="oppsummering-ferieuttakIPerioden-list">
-                                        <SummaryList
+                                <FormSummary.Answer>
+                                    <FormSummary.Label>
+                                        <AppText id="steg.oppsummering.utenlandsoppholdIPerioden.listTitle" />
+                                    </FormSummary.Label>
+                                    <FormSummary.Value>
+                                        <SummaryList<PeriodeApiData>
+                                            useAkselList={true}
                                             items={ferieuttakIPerioden.ferieuttak}
                                             itemRenderer={renderFerieuttakIPeriodenSummary}
                                         />
-                                    </div>
-                                </Block>
+                                    </FormSummary.Value>
+                                </FormSummary.Answer>
                             )}
                         </>
                     )}
