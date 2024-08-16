@@ -427,6 +427,8 @@ const nb = {
 
     'steg.oppsummering.utlandetSiste12.header': 'Har bodd i utlandet i de siste 12 månedene',
     'steg.oppsummering.utlandetNeste12.header': 'Skal bo i utlandet i de neste 12 månedene',
+    'steg.oppsummering.utlandetSiste12.liste.header': 'Utenlandsopphold siste 12 måneder',
+    'steg.oppsummering.utlandetNeste12.liste.header': 'Utenlandsopphold neste 12 måneder',
 
     'steg.oppsummering.bekrefterOpplysninger':
         'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til pleiepenger.',

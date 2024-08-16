@@ -11,7 +11,7 @@ import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds/src';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds';
-import { SummaryBlock, SummaryList, SummarySection } from '@navikt/sif-common-ui';
+import { SummarySection } from '@navikt/sif-common-ui';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import { purge, sendApplication } from '../../api/api';
 import LegeerklæringAttachmentList from '../../components/legeerklæring-file-list/LegeerklæringFileList';
@@ -40,13 +40,13 @@ import BarnSummary from './barn-summary/BarnSummary';
 import InnsendingFeiletInformasjon from './InnsendingFeiletInformasjon';
 import { InvalidParameter, isInvalidParameterErrorResponse } from './invalidParameter';
 import OmsorgstilbudSummary from './omsorgstilbud-summary/OmsorgstilbudSummary';
-import { renderUtenlandsoppholdSummary } from './summaryItemRenderers';
 import './oppsummeringStep.less';
 import { AppText } from '../../i18n';
 import SøkerSummary from './søker-summary/SøkerSummary';
 import { VStack } from '@navikt/ds-react';
 import PeriodeSummary from './periode-summary/PeriodeSummary';
 import NattevågOgBeredskapSummary from './nattevåk-og-beredskap-summary/NattevåkOgBeredskapSummary';
+import MedlemskapSummary from './medlemskap-summary/MedlemskapSummary';
 
 interface Props {
     values: SøknadFormValues;
@@ -231,57 +231,16 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                     }}
                                 />
                             )}
+
+                            <MedlemskapSummary
+                                medlemskap={medlemskap}
+                                onEdit={() => {
+                                    navigate(søknadStepConfig[StepID.MEDLEMSKAP].route);
+                                }}
+                            />
                         </VStack>
                         <Block margin="xl">
                             <ResponsivePanel border={true}>
-                                {/* Medlemskap i folketrygden */}
-                                <SummarySection header={text('medlemskap.summary.header')}>
-                                    <SummaryBlock header={text('steg.oppsummering.utlandetSiste12.header')}>
-                                        <div data-testid="oppsummering-medlemskap-utlandetSiste12">
-                                            <AppText
-                                                id={
-                                                    apiValues.medlemskap.harBoddIUtlandetSiste12Mnd === true
-                                                        ? 'Ja'
-                                                        : 'Nei'
-                                                }
-                                            />
-                                        </div>
-                                    </SummaryBlock>
-                                    {apiValues.medlemskap.harBoddIUtlandetSiste12Mnd === true &&
-                                        medlemskap.utenlandsoppholdSiste12Mnd.length > 0 && (
-                                            <Block margin="l">
-                                                <div data-testid="oppsummering-medlemskap-utlandetSiste12-list">
-                                                    <SummaryList
-                                                        items={medlemskap.utenlandsoppholdSiste12Mnd}
-                                                        itemRenderer={renderUtenlandsoppholdSummary}
-                                                    />
-                                                </div>
-                                            </Block>
-                                        )}
-                                    <SummaryBlock header={text('steg.oppsummering.utlandetNeste12.header')}>
-                                        <div data-testid="oppsummering-medlemskap-utlandetNeste12">
-                                            <AppText
-                                                id={
-                                                    apiValues.medlemskap.skalBoIUtlandetNeste12Mnd === true
-                                                        ? 'Ja'
-                                                        : 'Nei'
-                                                }
-                                            />
-                                        </div>
-                                    </SummaryBlock>
-                                    {apiValues.medlemskap.skalBoIUtlandetNeste12Mnd === true &&
-                                        medlemskap.utenlandsoppholdNeste12Mnd.length > 0 && (
-                                            <Block margin="l">
-                                                <div data-testid="oppsummering-medlemskap-utlandetNeste12-list">
-                                                    <SummaryList
-                                                        items={medlemskap.utenlandsoppholdNeste12Mnd}
-                                                        itemRenderer={renderUtenlandsoppholdSummary}
-                                                    />
-                                                </div>
-                                            </Block>
-                                        )}
-                                </SummarySection>
-
                                 {/* Vedlegg */}
                                 <SummarySection header={text('steg.oppsummering.vedlegg.header')}>
                                     <Block margin="m">
