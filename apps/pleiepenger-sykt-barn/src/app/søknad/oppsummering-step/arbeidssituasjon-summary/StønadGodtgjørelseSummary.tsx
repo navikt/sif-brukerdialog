@@ -1,6 +1,6 @@
 import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
 import { StønadGodtgjørelseApiData } from '../../../types/søknad-api-data/StønadGodtgjørelseApiData';
-import { FormSummary, List } from '@navikt/ds-react';
+import { FormSummary, Heading, List } from '@navikt/ds-react';
 import { AppText } from '../../../i18n';
 
 interface Props {
@@ -21,7 +21,9 @@ const StønadGodtgjørelseSummary = ({ stønadGodtgjørelse }: Props) => {
         return (
             <FormSummary.Answer data-testid="omsorgsstønad">
                 <FormSummary.Label>
-                    <AppText id="steg.oppsummering.arbeidssituasjon.omsfost.title" />
+                    <Heading level="3" size="small">
+                        <AppText id="steg.oppsummering.arbeidssituasjon.omsfost.title" />
+                    </Heading>
                 </FormSummary.Label>
                 <FormSummary.Value>
                     <AppText id="steg.oppsummering.arbeidssituasjon.omsfost.mottarIkke" />
@@ -33,7 +35,9 @@ const StønadGodtgjørelseSummary = ({ stønadGodtgjørelse }: Props) => {
     return (
         <FormSummary.Answer>
             <FormSummary.Label>
-                <AppText id="steg.oppsummering.arbeidssituasjon.omsfost.title" />
+                <Heading level="3" size="small">
+                    <AppText id="steg.oppsummering.arbeidssituasjon.omsfost.title" />
+                </Heading>
             </FormSummary.Label>
             <FormSummary.Value>
                 <List>

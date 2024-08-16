@@ -1,4 +1,4 @@
-import { FormSummary, List } from '@navikt/ds-react';
+import { FormSummary, Heading, List } from '@navikt/ds-react';
 import React from 'react';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
 import { AppText } from '../../../i18n';
@@ -15,7 +15,9 @@ const ArbeidsgivereSummary: React.FunctionComponent<Props> = ({ arbeidsgivere, s
         return (
             <FormSummary.Answer>
                 <FormSummary.Label>
-                    <AppText id="oppsummering.arbeidssituasjon.arbeidsgivere.ingenIPeriode.header" />
+                    <Heading level="3" size="small">
+                        <AppText id="oppsummering.arbeidssituasjon.arbeidsgivere.ingenIPeriode.header" />
+                    </Heading>
                 </FormSummary.Label>
                 <FormSummary.Value>
                     <AppText id="oppsummering.arbeidssituasjon.arbeidsgivere.ingenIPeriode.tekst" />
@@ -32,7 +34,9 @@ const ArbeidsgivereSummary: React.FunctionComponent<Props> = ({ arbeidsgivere, s
                 return (
                     <FormSummary.Answer key={organisasjonsnummer}>
                         <FormSummary.Label>
-                            <AppText id="arbeidsgiver.tittel" values={{ navn, organisasjonsnummer }} />
+                            <Heading level="3" size="small">
+                                <AppText id="arbeidsgiver.tittel" values={{ navn, organisasjonsnummer }} />
+                            </Heading>
                         </FormSummary.Label>
                         <FormSummary.Value>
                             <List>

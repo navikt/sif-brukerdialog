@@ -5,7 +5,7 @@ import { FrilansApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import { Frilanstype } from '../../../types/søknad-form-values/FrilansFormValues';
 import { getStartdatoForNySomFrilanser } from '../../../utils/frilanserUtils';
 import NormalarbeidstidSummary from './NormalarbeidstidSummary';
-import { FormSummary, List } from '@navikt/ds-react';
+import { FormSummary, Heading, List } from '@navikt/ds-react';
 
 interface Props {
     frilans: FrilansApiData;
@@ -18,7 +18,9 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag, søknadsperio
         return (
             <FormSummary.Answer>
                 <FormSummary.Label>
-                    <AppText id="oppsummering.arbeidssituasjon.frilanser.header" />
+                    <Heading level="3" size="small">
+                        <AppText id="oppsummering.arbeidssituasjon.frilanser.header" />
+                    </Heading>
                 </FormSummary.Label>
                 <FormSummary.Value>
                     <AppText id={'oppsummering.arbeidssituasjon.frilans.erIkkeFrilanser'} />
@@ -31,7 +33,9 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag, søknadsperio
         return (
             <FormSummary.Answer data-testid="frilans-summary">
                 <FormSummary.Label>
-                    <AppText id="oppsummering.arbeidssituasjon.frilanser.header" />
+                    <Heading level="3" size="small">
+                        <AppText id="oppsummering.arbeidssituasjon.frilanser.header" />
+                    </Heading>
                 </FormSummary.Label>
                 <FormSummary.Value>
                     <List>
@@ -50,7 +54,9 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag, søknadsperio
     return (
         <FormSummary.Answer data-testid="frilans-summary">
             <FormSummary.Label>
-                <AppText id="oppsummering.arbeidssituasjon.frilanser.header" />
+                <Heading level="3" size="small">
+                    <AppText id="oppsummering.arbeidssituasjon.frilanser.header" />
+                </Heading>
             </FormSummary.Label>
             <FormSummary.Value>
                 <List>
