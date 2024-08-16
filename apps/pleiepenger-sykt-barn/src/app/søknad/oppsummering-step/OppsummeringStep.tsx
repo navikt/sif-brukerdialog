@@ -3,7 +3,6 @@ import { useAppIntl } from '@i18n/index';
 import { useNavigate } from 'react-router-dom';
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
@@ -11,11 +10,8 @@ import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds/src';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds';
-import { SummarySection } from '@navikt/sif-common-ui';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import { purge, sendApplication } from '../../api/api';
-import LegeerklæringAttachmentList from '../../components/legeerklæring-file-list/LegeerklæringFileList';
-import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 import routeConfig from '../../config/routeConfig';
 import { SøkerdataContextConsumer } from '../../context/SøkerdataContext';
 import useLogSøknadInfo from '../../hooks/useLogSøknadInfo';
@@ -47,6 +43,7 @@ import { VStack } from '@navikt/ds-react';
 import PeriodeSummary from './periode-summary/PeriodeSummary';
 import NattevågOgBeredskapSummary from './nattevåk-og-beredskap-summary/NattevåkOgBeredskapSummary';
 import MedlemskapSummary from './medlemskap-summary/MedlemskapSummary';
+import LegeerklæringSummary from './legeerklæring-summary/LegeerklæringSummary';
 
 interface Props {
     values: SøknadFormValues;
@@ -238,27 +235,19 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                     navigate(søknadStepConfig[StepID.MEDLEMSKAP].route);
                                 }}
                             />
-                        </VStack>
-                        <Block margin="xl">
-                            <ResponsivePanel border={true}>
-                                {/* Vedlegg */}
-                                <SummarySection header={text('steg.oppsummering.vedlegg.header')}>
-                                    <Block margin="m">
-                                        <div data-testid={'oppsummering-vedleggList'}>
-                                            <LegeerklæringAttachmentList includeDeletionFunctionality={false} />
-                                        </div>
-                                    </Block>
-                                </SummarySection>
-                            </ResponsivePanel>
-                        </Block>
 
-                        <Block margin="l">
+                            <LegeerklæringSummary
+                                onEdit={() => {
+                                    navigate(søknadStepConfig[StepID.LEGEERKLÆRING].route);
+                                }}
+                            />
+
                             <SøknadFormComponents.ConfirmationCheckbox
                                 label={text('steg.oppsummering.bekrefterOpplysninger')}
                                 name={SøknadFormField.harBekreftetOpplysninger}
                                 validate={getCheckedValidator()}
                             />
-                        </Block>
+                        </VStack>
 
                         <div aria-live="polite">
                             {invalidParameters && <InnsendingFeiletInformasjon invalidParameter={invalidParameters} />}

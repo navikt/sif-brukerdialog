@@ -438,6 +438,7 @@ const nb = {
     'steg.oppsummering.arbeidssituasjon.omsfost.mottarIkke':
         'Mottar ikke fosterhjemgodtgjørelse, eller omsorgsstønad fra kommunen',
     'steg.oppsummering.vedlegg.header': 'Legeerklæring',
+    'steg.oppsummering.vedlegg.listTitle': 'Dokumenter lastet opp',
 
     'steg.oppsummering.validering.navigasjonTilStegInfo':
         'Vennligst gå tilbake og sjekk informasjonen du har fylt ut. Når du har gjort det, trykker du på "Fortsett"-knappen for å gå videre.',
