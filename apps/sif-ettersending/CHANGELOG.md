@@ -1,5 +1,41 @@
 # @navikt/sif-ettersending
 
+## 3.35.10
+
+### Patch Changes
+
+-   Updated dependencies [d42de23]
+    -   @navikt/sif-common-soknad-ds@12.0.8
+    -   @navikt/sif-common-core-ds@9.17.23
+    -   @navikt/sif-common-utils@3.46.11
+
+## 3.35.9
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.25.14
+    -   @navikt/sif-common-formik-ds@1.11.5
+    -   @navikt/sif-common-soknad-ds@12.0.7
+    -   @navikt/sif-common-core-ds@9.17.22
+    -   @navikt/sif-common-sentry@0.26.16
+
+## 3.35.8
+
+### Patch Changes
+
+-   Updated dependencies [24fe90e]
+    -   @navikt/sif-common-formik-ds@1.11.4
+    -   @navikt/sif-common-core-ds@9.17.21
+    -   @navikt/sif-common-soknad-ds@12.0.6
+
+## 3.35.7
+
+### Patch Changes
+
+-   baff1f2: La til valg av barn for alle ettesendelser PP sykt barn
+
 ## 3.35.6
 
 ### Patch Changes

@@ -80,7 +80,7 @@ function FormikRadioGroup<FieldName, ErrorType>({
                                 gap="0 6"
                                 direction={{ xs: 'column', sm: 'row' }}
                                 wrap={false}
-                                style={{ marginTop: '-.5rem' }}>
+                                style={{ marginTop: '-.25rem', marginBottom: '.5rem' }}>
                                 {renderRadiobuttons(context, fieldProps, radios, afterOnChange)}
                             </Stack>
                         ) : (

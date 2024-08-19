@@ -1,5 +1,19 @@
 # @navikt/sif-common-core-ds
 
+## 9.17.23
+
+### Patch Changes
+
+-   d42de23: Oppdaterte felleskomponenter ifbm aksel-oppsummeringsmal
+-   Updated dependencies [d42de23]
+    -   @navikt/sif-common-utils@3.46.11
+
+## 9.17.22
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
 ## 9.17.21
 
 ### Patch Changes
