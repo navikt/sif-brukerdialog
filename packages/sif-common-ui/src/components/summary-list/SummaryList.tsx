@@ -8,7 +8,8 @@ interface Props<ItemType> {
     items: ItemType[];
     bullets?: boolean;
     useAkselList?: boolean;
-    variant?: 'blocks';
+    variant?: 'blocks' | 'bullet-blocks';
+    as?: 'ul' | 'ol';
     itemTitleRenderer?: (data: ItemType) => string;
     itemRenderer: (data: ItemType) => React.ReactNode;
 }
@@ -21,15 +22,16 @@ function SummaryList<ItemType = any>({
     useAkselList,
     itemTitleRenderer,
     variant,
+    as,
     bullets,
 }: Props<ItemType>) {
-    return useAkselList || variant === 'blocks' ? (
-        <List>
+    return useAkselList || variant !== undefined ? (
+        <List as={as}>
             {items.map((item, idx) => (
                 <List.Item
                     key={idx}
                     title={itemTitleRenderer ? itemTitleRenderer(item) : undefined}
-                    className={variant === 'blocks' ? 'sif_navds-form-summary-listItem--block' : undefined}>
+                    className={variant !== undefined ? `sif_navds-form-summary-listItem--${variant}` : undefined}>
                     {itemRenderer(item)}
                 </List.Item>
             ))}

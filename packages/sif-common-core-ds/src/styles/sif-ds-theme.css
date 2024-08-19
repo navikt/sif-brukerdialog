@@ -16,11 +16,9 @@ body.sif-ds-theme {
 .navds-fieldset__description > .expandableInfo:first-child {
     margin-top: 1rem;
 }
-
 .navds-form-summary__answers .navds-form-summary__answers {
     background-color: var(--a-surface-subtle);
 }
-
 .navds-form-summary__answers--compact .navds-form-summary__answer {
     padding-bottom: 0.125rem !important;
     margin-bottom: 0.125rem !important;
