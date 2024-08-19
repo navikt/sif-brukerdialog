@@ -1,23 +1,39 @@
-import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
-import React from 'react';
-import './summaryList.scss';
-import classNames from 'classnames';
 import { List } from '@navikt/ds-react';
+import React from 'react';
+import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
+import classNames from 'classnames';
+import './summaryList.scss';
 
-interface Props {
-    items: any[];
+interface Props<ItemType> {
+    items: ItemType[];
     bullets?: boolean;
     useAkselList?: boolean;
-    itemRenderer: (data: any) => React.ReactNode;
+    variant?: 'blocks' | 'bullet-blocks';
+    as?: 'ul' | 'ol';
+    itemTitleRenderer?: (data: ItemType) => string;
+    itemRenderer: (data: ItemType) => React.ReactNode;
 }
 
 const bem = bemUtils('summaryList');
 
-const SummaryList = ({ items, itemRenderer, useAkselList, bullets }: Props) => {
-    return useAkselList ? (
-        <List>
+function SummaryList<ItemType = any>({
+    items,
+    itemRenderer,
+    useAkselList,
+    itemTitleRenderer,
+    variant,
+    as,
+    bullets,
+}: Props<ItemType>) {
+    return useAkselList || variant !== undefined ? (
+        <List as={as}>
             {items.map((item, idx) => (
-                <List.Item key={idx}>{itemRenderer(item)}</List.Item>
+                <List.Item
+                    key={idx}
+                    title={itemTitleRenderer ? itemTitleRenderer(item) : undefined}
+                    className={variant !== undefined ? `sif_navds-form-summary-listItem--${variant}` : undefined}>
+                    {itemRenderer(item)}
+                </List.Item>
             ))}
         </List>
     ) : (
@@ -29,6 +45,6 @@ const SummaryList = ({ items, itemRenderer, useAkselList, bullets }: Props) => {
             ))}
         </ul>
     );
-};
+}
 
 export default SummaryList;
