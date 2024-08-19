@@ -1,5 +1,17 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.7.7
+
+### Patch Changes
+
+-   1e97fef: Legge til ordet markert i informasjonstekst
+
+## 3.7.6
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
 ## 3.7.5
 
 ### Patch Changes

@@ -9,6 +9,7 @@ export * from './guid';
 export * from './timeUtils';
 export * from './localeUtils';
 export * from './jsonSort';
+export * from './stringUtils';
 export * from './typeGuardUtilities';
 export * from './types';
 export * from './weekdayUtils';

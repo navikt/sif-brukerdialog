@@ -13,7 +13,7 @@ export interface FormikYesOrNoQuestionProps<FieldName, ErrorType>
 function FormikYesOrNoQuestion<FieldName, ErrorType>({
     name,
     labels,
-    renderHorizontal = true,
+    renderHorizontal = false,
     ...restProps
 }: FormikYesOrNoQuestionProps<FieldName, ErrorType> & TypedFormInputValidationProps<FieldName, ErrorType>) {
     const { yes: yesLabel = 'Ja', no: noLabel = 'Nei' } = labels || {};

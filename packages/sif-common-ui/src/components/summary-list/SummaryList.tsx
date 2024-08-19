@@ -1,24 +1,50 @@
-import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
+import { List } from '@navikt/ds-react';
 import React from 'react';
-import './summaryList.scss';
+import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import classNames from 'classnames';
+import './summaryList.scss';
 
-interface Props {
-    items: any[];
+interface Props<ItemType> {
+    items: ItemType[];
     bullets?: boolean;
-    itemRenderer: (data: any) => React.ReactNode;
+    useAkselList?: boolean;
+    variant?: 'blocks' | 'bullet-blocks';
+    as?: 'ul' | 'ol';
+    itemTitleRenderer?: (data: ItemType) => string;
+    itemRenderer: (data: ItemType) => React.ReactNode;
 }
 
 const bem = bemUtils('summaryList');
 
-const SummaryList: React.FunctionComponent<Props> = ({ items, itemRenderer, bullets }) => (
-    <ul className={classNames(bem.block, bem.modifierConditional('bullet', bullets))}>
-        {items.map((item, idx) => (
-            <li key={idx} className={bem.element('item')}>
-                {itemRenderer(item)}
-            </li>
-        ))}
-    </ul>
-);
+function SummaryList<ItemType = any>({
+    items,
+    itemRenderer,
+    useAkselList,
+    itemTitleRenderer,
+    variant,
+    as,
+    bullets,
+}: Props<ItemType>) {
+    return useAkselList || variant !== undefined ? (
+        <List as={as}>
+            {items.map((item, idx) => (
+                <List.Item
+                    key={idx}
+                    title={itemTitleRenderer ? itemTitleRenderer(item) : undefined}
+                    className={variant !== undefined ? `sif_navds-form-summary-listItem--${variant}` : undefined}>
+                    {itemRenderer(item)}
+                </List.Item>
+            ))}
+        </List>
+    ) : (
+        <ul className={classNames(bem.block, bem.modifierConditional('bullet', bullets))}>
+            {items.map((item, idx) => (
+                <li key={idx} className={bem.element('item')}>
+                    {itemRenderer(item)}
+                </li>
+            ))}
+        </ul>
+    );
+}
 
 export default SummaryList;
