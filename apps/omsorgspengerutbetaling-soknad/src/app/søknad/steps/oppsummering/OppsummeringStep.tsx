@@ -1,4 +1,4 @@
-import { ErrorSummary, FormSummary, VStack } from '@navikt/ds-react';
+import { ErrorSummary, VStack } from '@navikt/ds-react';
 import { useEffect, useRef } from 'react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
@@ -23,8 +23,7 @@ import MedlemskapOppsummering from './components/MedlemskapOppsummering';
 import OmSøkerOppsummering from './components/OmSøkerOppsummering';
 import SelvstendigOppsummering from './components/SelvstendigOppsummering';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
-import UtbetalingsperioderOppsummering from './components/UtbetalingsperioderOppsummering';
-import UtenlandsoppholdISøkeperiodeOppsummering from './components/UtenlandsoppholdISøkeperiodeOppsummering';
+import FraværSummary from './components/FraværSummary';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -52,7 +51,7 @@ const OppsummeringStep = () => {
     const { invalidSteps } = useSøknadsdataStatus(stepId, getSøknadStepConfig(søknadsdata));
     const hasInvalidSteps = invalidSteps.length > 0;
 
-    const { goBack } = useStepNavigation(step);
+    const { goBack, gotoStep } = useStepNavigation(step);
 
     const { sendSøknad, isSubmitting, sendSøknadError } = useSendSøknad();
     const previousSøknadError = usePrevious(sendSøknadError);
@@ -123,33 +122,29 @@ const OppsummeringStep = () => {
                                         harSyktBarn={apiData.harSyktBarn}
                                         harAleneomsorg={apiData.harAleneomsorg}
                                         harDekketTiFørsteDagerSelv={apiData.harDekketTiFørsteDagerSelv}
+                                        onEdit={() => gotoStep(StepId.DINE_BARN)}
                                     />
 
-                                    <FormSummary>
-                                        <FormSummary.Header>
-                                            <FormSummary.Heading level="2">
-                                                <AppText id="step.oppsummering.utbetalinger.header" />
-                                            </FormSummary.Heading>
-                                        </FormSummary.Header>
-                                        <FormSummary.Answers>
-                                            <UtbetalingsperioderOppsummering
-                                                utbetalingsperioder={apiData.utbetalingsperioder}
-                                            />
-                                            <UtenlandsoppholdISøkeperiodeOppsummering
-                                                utenlandsopphold={apiData.opphold}
-                                            />
-                                        </FormSummary.Answers>
-                                    </FormSummary>
-
-                                    <FrilansOppsummering frilans={apiData.frilans} />
-
-                                    <SelvstendigOppsummering virksomhet={apiData.selvstendigNæringsdrivende} />
-
-                                    <MedlemskapOppsummering bosteder={apiData.bosteder} />
-
+                                    <FraværSummary apiData={apiData} onEdit={() => gotoStep(StepId.FRAVÆR)} />
                                     <LegeerklæringOppsummering
                                         apiData={apiData}
                                         legeerklæringSøknadsdata={søknadsdata.legeerklæring}
+                                        onEdit={() => gotoStep(StepId.LEGEERKLÆRING)}
+                                    />
+
+                                    <FrilansOppsummering
+                                        frilans={apiData.frilans}
+                                        onEdit={() => gotoStep(StepId.ARBEIDSSITUASJON)}
+                                    />
+
+                                    <SelvstendigOppsummering
+                                        virksomhet={apiData.selvstendigNæringsdrivende}
+                                        onEdit={() => gotoStep(StepId.ARBEIDSSITUASJON)}
+                                    />
+
+                                    <MedlemskapOppsummering
+                                        bosteder={apiData.bosteder}
+                                        onEdit={() => gotoStep(StepId.MEDLEMSKAP)}
                                     />
 
                                     <ConfirmationCheckbox

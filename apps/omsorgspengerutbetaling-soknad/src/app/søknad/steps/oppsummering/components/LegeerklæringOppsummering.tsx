@@ -1,6 +1,7 @@
 import { FormSummary } from '@navikt/ds-react';
 import React from 'react';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
+import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { AppText } from '../../../../i18n';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { LegeerklæringSøknadsdata } from '../../../../types/søknadsdata/LegeerklæringSøknadsdata';
@@ -9,9 +10,10 @@ import { getAttachmentURLBackend } from '../../../../utils/attachmentUtilsAuthTo
 interface Props {
     apiData: SøknadApiData;
     legeerklæringSøknadsdata?: LegeerklæringSøknadsdata;
+    onEdit?: () => void;
 }
 
-const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringSøknadsdata }) => {
+const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringSøknadsdata, onEdit }) => {
     const legeerklæringer = legeerklæringSøknadsdata
         ? legeerklæringSøknadsdata.vedlegg.filter(
               (v) => v.url && apiData.vedlegg.includes(getAttachmentURLBackend(v.url)),
@@ -24,6 +26,7 @@ const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringS�
                 <FormSummary.Heading level="2">
                     <AppText id="step.oppsummering.legeerklæring.header" />
                 </FormSummary.Heading>
+                {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>

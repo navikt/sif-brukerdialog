@@ -5,6 +5,7 @@ import { AppText, useAppIntl } from '../../../../i18n';
 import { RegistrertBarn } from '../../../../types/RegistrertBarn';
 import { ApiBarn, RegistrertBarnTypeApi } from '../../../../types/søknadApiData/SøknadApiData';
 import { mapRegistrertBarnToApiBarn } from '../../../../utils/søknadsdataToApiData/getDineBarnApiDataFromSøknadsdata';
+import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 
 interface Props {
     barn: ApiBarn[];
@@ -12,6 +13,7 @@ interface Props {
     harSyktBarn?: boolean;
     harAleneomsorg?: boolean;
     harDekketTiFørsteDagerSelv?: boolean;
+    onEdit?: () => void;
 }
 
 const DineBarnOppsummering = ({
@@ -20,6 +22,7 @@ const DineBarnOppsummering = ({
     harSyktBarn,
     harAleneomsorg,
     harDekketTiFørsteDagerSelv,
+    onEdit,
 }: Props) => {
     const { text } = useAppIntl();
     const registrerteBarnSomIkkeSkalSendesInnMenVises = registrerteBarn.map(mapRegistrertBarnToApiBarn);
@@ -29,6 +32,7 @@ const DineBarnOppsummering = ({
                 <FormSummary.Heading level="2">
                     <AppText id="step.oppsummering.dineBarn" />
                 </FormSummary.Heading>
+                {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>
