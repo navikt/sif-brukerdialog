@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.46.11
+
+### Patch Changes
+
+-   d42de23: Oppdaterte felleskomponenter ifbm aksel-oppsummeringsmal
+
 ## 3.46.10
 
 ### Patch Changes
