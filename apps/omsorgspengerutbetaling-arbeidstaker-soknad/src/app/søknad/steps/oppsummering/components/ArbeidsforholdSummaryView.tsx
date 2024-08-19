@@ -2,6 +2,7 @@ import { FormSummary, Heading } from '@navikt/ds-react';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
+import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { JaNeiSvar } from '@navikt/sif-common-ui';
 import { AppText, useAppIntl } from '../../../../i18n';
 import { Utbetalingsårsak } from '../../../../types/ArbeidsforholdTypes';
@@ -26,12 +27,10 @@ const getArbeidsforholdAttachments = (organisasjonsnummer: string, situasjon?: S
 interface Props {
     listeAvArbeidsforhold: ArbeidsgiverDetaljer[];
     søknadsdata: Søknadsdata;
+    onEdit?: () => void;
 }
 
-const ArbeidsforholdSummaryView: React.FC<Props> = ({
-    listeAvArbeidsforhold,
-    søknadsdata,
-}: Props): React.ReactElement => {
+const ArbeidsforholdSummaryView = ({ listeAvArbeidsforhold, søknadsdata, onEdit }: Props) => {
     const { text } = useAppIntl();
 
     const arbeidsgivereUtenFravær = søknadsdata.situasjon
@@ -47,6 +46,7 @@ const ArbeidsforholdSummaryView: React.FC<Props> = ({
                     <FormSummary.Heading level="2">
                         <AppText id="step.oppsummering.arbeidsforhold.tittel" />
                     </FormSummary.Heading>
+                    {onEdit && <EditStepLink onEdit={onEdit} />}
                 </FormSummary.Header>
 
                 {listeAvArbeidsforhold.map((arbeidsforhold: ArbeidsgiverDetaljer, index: number) => {

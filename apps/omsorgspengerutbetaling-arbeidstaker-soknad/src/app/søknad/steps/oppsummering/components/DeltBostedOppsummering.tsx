@@ -1,16 +1,18 @@
+import { FormSummary } from '@navikt/ds-react';
 import React from 'react';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
+import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { AppText } from '../../../../i18n';
 import { DeltBostedSøknadsdata } from '../../../../types/søknadsdata/DeltBostedSøknadsdata';
 import { getAttachmentURLBackend } from '../../../../utils/attachmentUtilsAuthToken';
-import { FormSummary } from '@navikt/ds-react';
 
 interface Props {
     vedlegg: string[];
     deltBostedSøknadsdata?: DeltBostedSøknadsdata;
+    onEdit?: () => void;
 }
 
-const DeltBostedOppsummering: React.FC<Props> = ({ vedlegg, deltBostedSøknadsdata }) => {
+const DeltBostedOppsummering: React.FC<Props> = ({ vedlegg, deltBostedSøknadsdata, onEdit }) => {
     const delteBosteder = deltBostedSøknadsdata
         ? deltBostedSøknadsdata.vedlegg.filter((v) => v.url && vedlegg.includes(getAttachmentURLBackend(v.url)))
         : [];
@@ -21,6 +23,7 @@ const DeltBostedOppsummering: React.FC<Props> = ({ vedlegg, deltBostedSøknadsda
                 <FormSummary.Heading level="2">
                     <AppText id="step.oppsummering.deltBosted.header" />
                 </FormSummary.Heading>
+                {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>

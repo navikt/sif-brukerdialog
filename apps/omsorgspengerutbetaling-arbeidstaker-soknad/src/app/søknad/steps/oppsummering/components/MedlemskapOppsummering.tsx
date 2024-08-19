@@ -1,4 +1,5 @@
 import { FormSummary } from '@navikt/ds-react';
+import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { JaNeiSvar, SummaryList } from '@navikt/sif-common-ui';
 import { getDateToday, ISODateToDate } from '@navikt/sif-common-utils/src';
 import dayjs from 'dayjs';
@@ -13,9 +14,10 @@ dayjs.extend(isSameOrAfter);
 
 export interface Props {
     bosteder: UtenlandsoppholdApiData[];
+    onEdit?: () => void;
 }
 
-const MedlemskapOppsummering = ({ bosteder }: Props) => {
+const MedlemskapOppsummering = ({ bosteder, onEdit }: Props) => {
     const bostederSiste12 = bosteder.filter((b) => dayjs(ISODateToDate(b.tilOgMed)).isSameOrBefore(getDateToday()));
     const bostederNeste12 = bosteder.filter((b) => dayjs(ISODateToDate(b.tilOgMed)).isSameOrAfter(getDateToday()));
 
@@ -26,6 +28,7 @@ const MedlemskapOppsummering = ({ bosteder }: Props) => {
                     <FormSummary.Heading level="2">
                         <AppText id="step.oppsummering.medlemskap.header" />
                     </FormSummary.Heading>
+                    {onEdit && <EditStepLink onEdit={onEdit} />}
                 </FormSummary.Header>
                 <FormSummary.Answers>
                     <FormSummary.Answer>
