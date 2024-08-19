@@ -1,6 +1,4 @@
 import React from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import {
     capsFirstCharacter,
     ISODate,
@@ -13,6 +11,7 @@ import groupBy from 'lodash.groupby';
 import { AppText } from '../../../i18n';
 import { DagMedTid } from '../../types/DagMedTid';
 import DagerMedTidListe from '../dager-med-tid-liste/DagerMedTidListe';
+import { Heading, VStack } from '@navikt/ds-react';
 
 interface ISODagMedTid {
     dato: ISODate;
@@ -40,21 +39,22 @@ const TidEnkeltdager: React.FunctionComponent<Props> = ({ dager }) => {
 
     const months = groupBy(days, ({ dato }) => `${dato.getFullYear()}.${dato.getMonth()}`);
     return (
-        <div>
+        <VStack gap="6">
             {Object.keys(months).map((key) => {
                 const dagerMedTid = months[key];
                 if (dagerMedTid.length === 0) {
                     return ingenDagerRegistrertMelding;
                 }
                 return (
-                    <Block margin="m" key={key}>
-                        <ExpandableInfo title={capsFirstCharacter(dayjs(dagerMedTid[0].dato).format('MMMM YYYY'))}>
-                            <DagerMedTidListe dagerMedTid={dagerMedTid} viseUke={true} />
-                        </ExpandableInfo>
-                    </Block>
+                    <>
+                        <Heading level="3" size="xsmall" className="m-caps" spacing={false}>
+                            {capsFirstCharacter(dayjs(dagerMedTid[0].dato).format('MMMM YYYY'))}
+                        </Heading>
+                        <DagerMedTidListe dagerMedTid={dagerMedTid} viseUke={true} />
+                    </>
                 );
             })}
-        </div>
+        </VStack>
     );
 };
 

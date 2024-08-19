@@ -9,6 +9,7 @@ interface Props<ItemType> {
     bullets?: boolean;
     useAkselList?: boolean;
     variant?: 'blocks' | 'bullet-blocks';
+    as?: 'ul' | 'ol';
     itemTitleRenderer?: (data: ItemType) => string;
     itemRenderer: (data: ItemType) => React.ReactNode;
 }
@@ -21,10 +22,11 @@ function SummaryList<ItemType = any>({
     useAkselList,
     itemTitleRenderer,
     variant,
+    as,
     bullets,
 }: Props<ItemType>) {
     return useAkselList || variant !== undefined ? (
-        <List>
+        <List as={as}>
             {items.map((item, idx) => (
                 <List.Item
                     key={idx}

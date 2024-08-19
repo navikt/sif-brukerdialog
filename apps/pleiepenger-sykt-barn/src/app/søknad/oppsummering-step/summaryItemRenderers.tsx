@@ -34,7 +34,7 @@ export const renderUtenlandsoppholdSummary = (opphold: BostedUtlandApiData): Rea
 );
 
 export const renderUtenlandsoppholdIPeriodenSummaryTitle = (opphold: UtenlandsoppholdIPeriodenApiData): string => {
-    return `${opphold.landnavn}: ${prettifyDateExtended(ISODateToDate(opphold.fraOgMed))} - ${prettifyDateExtended(ISODateToDate(opphold.tilOgMed))}`;
+    return `${opphold.landnavn}: ${prettifyDateExtended(ISODateToDate(opphold.fraOgMed))} - ${prettifyDateExtended(ISODateToDate(opphold.tilOgMed))}:`;
 };
 export const renderUtenlandsoppholdIPeriodenSummary = (
     opphold: UtenlandsoppholdIPeriodenApiData,

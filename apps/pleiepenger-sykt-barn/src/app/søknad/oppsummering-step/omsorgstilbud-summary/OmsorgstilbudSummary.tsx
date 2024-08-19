@@ -5,7 +5,7 @@ import TidEnkeltdager from '../../../local-sif-common-pleiepenger/components/dag
 import TidFasteDager from '../../../local-sif-common-pleiepenger/components/dager-med-tid/TidFasteDager';
 import { SøknadApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import { søkerFortidOgFremtid, søkerKunFortid, søkerKunFremtid } from '../../../utils/søknadsperiodeUtils';
-import { FormSummary } from '@navikt/ds-react';
+import { Box, FormSummary } from '@navikt/ds-react';
 import EditStepLink from '../../../components/edit-step-link/EditStepLink';
 
 interface Props {
@@ -108,7 +108,9 @@ const OmsorgstilbudSummary: React.FC<Props> = ({ apiValues: { omsorgstilbud }, s
                             <AppText id="steg.oppsummering.omsorgstilbud.enkeltdager.header" />
                         </FormSummary.Label>
                         <FormSummary.Value>
-                            <TidEnkeltdager dager={omsorgstilbud.enkeltdager} />
+                            <Box marginBlock="6 0">
+                                <TidEnkeltdager dager={omsorgstilbud.enkeltdager} />
+                            </Box>
                         </FormSummary.Value>
                     </FormSummary.Answer>
                 )}
