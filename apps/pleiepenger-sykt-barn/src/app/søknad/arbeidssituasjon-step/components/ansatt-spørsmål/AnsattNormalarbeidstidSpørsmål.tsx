@@ -43,6 +43,7 @@ const AnsattNormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({ arbe
                 ...intlValues,
                 jobber: erAktivtArbeidsforhold ? 'jobber' : 'jobbet',
             })}
+            maxLength={5}
             value={arbeidsforhold.normalarbeidstid ? arbeidsforhold.normalarbeidstid.timerPerUke || '' : ''}
         />
     );

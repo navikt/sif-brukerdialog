@@ -59,6 +59,7 @@ const FrilansNormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({
                 ...intlValues,
                 jobber: erAktivtArbeidsforhold ? 'jobber' : 'jobbet',
             })}
+            maxLength={5}
             value={arbeidsforhold.normalarbeidstid ? arbeidsforhold.normalarbeidstid.timerPerUke || '' : ''}
         />
     );
