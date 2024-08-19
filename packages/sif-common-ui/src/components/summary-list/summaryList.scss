@@ -1,6 +1,30 @@
 .summaryList {
     margin: 0;
+    // margin: 0;
     > li {
         padding-bottom: 0.5rem;
     }
+}
+
+/** Variant blocks */
+.navds-list__item.sif_navds-form-summary-listItem--blocks {
+    background-color: var(--a-surface-subtle);
+    border-radius: var(--a-border-radius-large);
+    padding: var(--a-spacing-2) var(--a-spacing-3) !important;
+    list-style-position: inside;
+    gap: 0 !important;
+}
+
+.navds-list__item.sif_navds-form-summary-listItem--blocks .navds-form-summary__answers {
+    padding: 0;
+    margin: 0;
+}
+
+.navds-list .sif_navds-form-summary-listItem--blocks .navds-list__item-marker--bullet {
+    display: none !important;
+}
+
+/** Variant bullet-blocks */
+.navds-list__item.sif_navds-form-summary-listItem--bullet-blocks:not(:last-child) {
+    margin-bottom: var(--a-spacing-6);
 }
