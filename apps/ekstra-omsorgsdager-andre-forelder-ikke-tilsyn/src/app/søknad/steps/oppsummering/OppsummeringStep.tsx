@@ -48,7 +48,7 @@ const OppsummeringStep = () => {
     const { invalidSteps } = useSøknadsdataStatus(stepId, getSøknadStepConfig());
     const hasInvalidSteps = invalidSteps.length > 0;
 
-    const { goBack } = useStepNavigation(step);
+    const { goBack, gotoStep } = useStepNavigation(step);
 
     const { sendSøknad, isSubmitting, sendSøknadError } = useSendSøknad();
     const previousSøknadError = usePrevious(sendSøknadError);
@@ -109,9 +109,15 @@ const OppsummeringStep = () => {
                                 onBack={goBack}>
                                 <VStack gap="8">
                                     <OmSøkerOppsummering søker={søker} />
-                                    <OmAnnenForelderOppsummering annenForelder={apiData.annenForelder} />
-                                    <AnnenForelderSituasjonOppsummering annenForelder={apiData.annenForelder} />
-                                    <OmBarnaOppsummering barn={apiData.barn} />
+                                    <OmAnnenForelderOppsummering
+                                        annenForelder={apiData.annenForelder}
+                                        onEdit={() => gotoStep(StepId.OM_ANNEN_FORELDER)}
+                                    />
+                                    <AnnenForelderSituasjonOppsummering
+                                        annenForelder={apiData.annenForelder}
+                                        onEdit={() => gotoStep(StepId.ANNEN_FORELDER_SITUASJON)}
+                                    />
+                                    <OmBarnaOppsummering barn={apiData.barn} onEdit={() => gotoStep(StepId.OM_BARNA)} />
 
                                     <ConfirmationCheckbox
                                         disabled={isSubmitting}

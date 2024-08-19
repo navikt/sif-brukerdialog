@@ -1,3 +1,4 @@
+export { default as EditStepLink } from './components/edit-step-link/EditStepLink';
 export { default as ErrorPage } from './pages/error-page/ErrorPage';
 export { default as FormQuestion } from './components/form-question/FormQuestion';
 export { default as Kvittering } from './components/kvittering/Kvittering';
