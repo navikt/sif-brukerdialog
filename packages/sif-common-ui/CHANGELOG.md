@@ -1,5 +1,14 @@
 # @navikt/sif-common-ui
 
+## 0.7.28
+
+### Patch Changes
+
+-   d42de23: Oppdaterte felleskomponenter ifbm aksel-oppsummeringsmal
+-   Updated dependencies [d42de23]
+    -   @navikt/sif-common-core-ds@9.17.23
+    -   @navikt/sif-common-utils@3.46.11
+
 ## 0.7.27
 
 ### Patch Changes

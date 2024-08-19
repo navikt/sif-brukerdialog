@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/nb';
 import 'dayjs/locale/nn';
-import { ISODate, ISODateToDate, capsFirstCharacter, getValidLocale } from '.';
+import { capsFirstCharacter, getValidLocale, ISODate, ISODateToDate } from './';
 
 dayjs.locale('nb');
 

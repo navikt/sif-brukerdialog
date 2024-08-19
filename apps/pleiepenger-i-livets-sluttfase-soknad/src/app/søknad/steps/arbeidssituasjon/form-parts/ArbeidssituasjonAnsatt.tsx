@@ -115,6 +115,7 @@ const ArbeidssituasjonAnsatt = ({ arbeidsforhold, parentFieldName, søknadsperio
                                 name={getFieldName(AnsattFormFields.jobberNormaltTimer)}
                                 description={<InfoJobberNormaltTimerAnsatt />}
                                 validate={getJobberNormaltTimerValidator(intlValues)}
+                                maxLength={5}
                                 value={arbeidsforhold ? arbeidsforhold.jobberNormaltTimer || '' : ''}
                             />
                         </>
