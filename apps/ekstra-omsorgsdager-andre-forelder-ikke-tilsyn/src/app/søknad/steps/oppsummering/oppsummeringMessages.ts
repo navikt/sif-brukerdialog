@@ -18,7 +18,8 @@ const nb = {
     'step.oppsummering.annenForelderensSituasjon.header': 'Den andre forelderens situasjon',
     'step.oppsummering.annenForelderensSituasjon.erVarighetMerEnn6Maneder':
         'Har du bekreftet at den andre forelderen ikke kan ha tilsyn med barn i en periode på minst 6 måneder?',
-    'step.oppsummering.annenForelderensSituasjon.tittel': 'Grunn',
+    'step.oppsummering.annenForelderensSituasjon.tittel':
+        'Grunn til at den andre forelderen ikke kan ha tilsyn med barn:',
     'step.oppsummering.annenForelderensSituasjon.beskrivelse': 'Beskrivelse av situasjonen:',
     'step.oppsummering.annenForelderensSituasjon.periode.header':
         'Periode når den andre forelderen ikke kan ha tilsyn med barnet/barna:',

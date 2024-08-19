@@ -1,7 +1,7 @@
 import { FormSummary } from '@navikt/ds-react';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
-import { JaNeiSvar, TextareaSvar } from '@navikt/sif-common-ui';
+import { JaNeiSvar, Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '../../../i18n';
 import { AnnenForelderApiData } from '../../../types/søknadApiData/SøknadApiData';
@@ -48,7 +48,9 @@ const AnnenForelderSituasjonOppsummering = ({ annenForelder, onEdit }: Props) =>
                             <AppText id="step.oppsummering.annenForelderensSituasjon.beskrivelse" />
                         </FormSummary.Label>
                         <FormSummary.Value>
-                            <TextareaSvar text={annenForelder.situasjonBeskrivelse} />
+                            <Sitat>
+                                <TextareaSvar text={annenForelder.situasjonBeskrivelse} />
+                            </Sitat>
                         </FormSummary.Value>
                     </FormSummary.Answer>
                 )}
