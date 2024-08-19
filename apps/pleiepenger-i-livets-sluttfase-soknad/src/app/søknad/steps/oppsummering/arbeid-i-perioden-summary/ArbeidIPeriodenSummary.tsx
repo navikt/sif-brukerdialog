@@ -1,7 +1,10 @@
+import { FormSummary, Heading } from '@navikt/ds-react';
 import React from 'react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
+import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
 import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import { AppIntlShape, AppText, useAppIntl } from '../../../../i18n';
 import { ArbeidsgiverType } from '../../../../types/Arbeidsgiver';
 import {
     ArbeidsforholdApiData,
@@ -9,13 +12,12 @@ import {
     SøknadApiData,
 } from '../../../../types/søknadApiData/SøknadApiData';
 import ArbeidIPeriodeSummaryItem from './ArbeidIPeriodenSummaryItem';
-import { AppIntlShape, AppText, useAppIntl } from '../../../../i18n';
-import { FormSummary, Heading } from '@navikt/ds-react';
 
 interface Props {
     apiValues: SøknadApiData;
     dagerMedPleie: Date[];
     søknadsperiode: DateRange;
+    onEdit?: () => void;
 }
 
 export interface ArbeidIPeriodenSummaryItemType extends ArbeidsforholdApiData {
@@ -63,6 +65,7 @@ const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
     apiValues: { arbeidsgivere, frilans, selvstendigNæringsdrivende },
     dagerMedPleie,
     søknadsperiode,
+    onEdit,
 }) => {
     const appIntl = useAppIntl();
     const { text } = appIntl;
@@ -110,6 +113,7 @@ const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
                         <FormSummary.Heading level="2">
                             <AppText id="oppsummering.arbeidIPeriode.jobbIPerioden.header" />
                         </FormSummary.Heading>
+                        {onEdit && <EditStepLink onEdit={onEdit} />}
                     </FormSummary.Header>
                     <FormSummary.Answers>
                         {aktiveArbeidsforhold.map((forhold) => (

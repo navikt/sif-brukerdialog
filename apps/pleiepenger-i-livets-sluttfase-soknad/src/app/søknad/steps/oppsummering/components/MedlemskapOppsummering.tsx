@@ -1,5 +1,6 @@
 import { FormSummary } from '@navikt/ds-react';
 import React from 'react';
+import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
 import { JaNeiSvar, SummaryList } from '@navikt/sif-common-ui';
 import { AppText } from '../../../../i18n';
 import { MedlemskapApiData } from '../../../../types/søknadApiData/SøknadApiData';
@@ -7,9 +8,10 @@ import { renderUtenlandsoppholdIPeriodenSummary } from './renderUtenlandsopphold
 
 export interface Props {
     medlemskap: MedlemskapApiData;
+    onEdit?: () => void;
 }
 
-const MedlemskapOppsummering: React.FC<Props> = ({ medlemskap }) => {
+const MedlemskapOppsummering: React.FC<Props> = ({ medlemskap, onEdit }) => {
     const {
         harBoddIUtlandetSiste12Mnd,
         utenlandsoppholdSiste12Mnd,
@@ -22,6 +24,7 @@ const MedlemskapOppsummering: React.FC<Props> = ({ medlemskap }) => {
                 <FormSummary.Heading level="2">
                     <AppText id="step.oppsummering.medlemskap.header" />
                 </FormSummary.Heading>
+                {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>

@@ -1,6 +1,7 @@
 import { FormSummary } from '@navikt/ds-react';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
 import { FødselsnummerSvar } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils';
 import { AppText } from '../../../../i18n';
@@ -10,15 +11,17 @@ interface Props {
     pleietrengende: PleietrengendeApi;
     pleietrengendeId: Attachment[];
     flereSøkere: FlereSokereApiData;
+    onEdit?: () => void;
 }
 
-const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId, flereSøkere }: Props) => {
+const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId, flereSøkere, onEdit }: Props) => {
     return (
         <FormSummary>
             <FormSummary.Header>
                 <FormSummary.Heading level="2">
                     <AppText id="step.oppsummering.pleietrengende.header" />
                 </FormSummary.Heading>
+                {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>
