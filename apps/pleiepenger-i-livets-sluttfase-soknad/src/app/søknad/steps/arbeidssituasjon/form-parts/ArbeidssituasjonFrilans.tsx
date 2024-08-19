@@ -163,6 +163,7 @@ const ArbeidssituasjonFrilans = ({
                                 name={FrilansFormFields.jobberNormaltTimer}
                                 description={<InfoJobberNormaltTimerFrilanser />}
                                 validate={getJobberNormaltTimerValidator(intlValues)}
+                                maxLength={5}
                                 value={jobberNormaltTimer ? jobberNormaltTimer || '' : ''}
                             />
                         </FormBlock>
