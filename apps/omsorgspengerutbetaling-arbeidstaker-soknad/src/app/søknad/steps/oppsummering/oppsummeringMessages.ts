@@ -5,9 +5,10 @@ const nb = {
     'step.oppsummering.info':
         'Les gjennom oppsummeringen før du sender inn søknaden. Hvis du vil gjøre endringer, kan du gå tilbake.',
     'step.oppsummering.søker.header': 'Om deg',
-    'step.oppsummering.søker.fnr': 'Fødselsnummer: {fødselsnummer}',
+    'step.oppsummering.søker.navn': 'Navn',
+    'step.oppsummering.søker.fnr': 'Fødselsnummer',
 
-    'step.oppsummering.arbeidsforhold.titel': 'Fravær fra arbeid',
+    'step.oppsummering.arbeidsforhold.tittel': 'Fravær fra arbeid',
     'step.oppsummering.arbeidsforhold.forhold': '{navn} (organisasjonsnummer: {organisasjonsnummer})',
     'step.oppsummering.arbeidsforhold.ingenArbeidsforhold': 'Ingen arbeidsgiver er valgt',
     'step.oppsummering.arbeidsforhold.harHattFravær.spm':
@@ -51,12 +52,15 @@ const nb = {
 
     'step.oppsummering.medlemskap.header': 'Medlemskap i folketrygden',
     'step.oppsummering.utlandetSiste12.header': 'Har du bodd i utlandet de siste 12 månedene?',
+    'step.oppsummering.utlandetSiste12.liste.header': 'Bosteder i utlandet siste 12 måneder',
     'step.oppsummering.utlandetNeste12.header': 'Skal du bo i utlandet de neste 12 månedene?',
+    'step.oppsummering.utlandetNeste12.liste.header': 'Bosteder i utlandet neste 12 måneder',
 
     'step.oppsummering.dokumenter.header': 'Vedlegg',
 
     'step.oppsummering.deltBosted.ingenVedlegg': 'Ingen avtale om delt bosted er lastet opp. Denne må ettersendes.',
     'step.oppsummering.deltBosted.header': 'Avtale om delt bosted',
+    'step.oppsummering.deltBosted.dokumenter': 'Dokument lastet opp',
 
     'step.oppsummering.legeerklæring.ingenVedlegg': 'Ingen egeerklæring er lastet opp. Denne må ettersendes.',
     'step.oppsummering.fosterbarn': 'Fosterbarn',
@@ -64,12 +68,15 @@ const nb = {
     'step.oppsummering.fosterbarn.listItem': ' (fnr. {identitetsnummer})',
 
     'step.oppsummering.legeerklæring.header': 'Legeerklæring',
+    'step.oppsummering.legeerklæring.liste.header': 'Dokumenter lastet opp',
 
     'step.oppsummering.bekrefterOpplysninger':
         'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til omsorgspenger.',
     'step.oppsummering.bekrefterOpplysninger.ikkeBekreftet': 'Du må bekrefte opplysningene',
 
     'step.oppsummering.dineBarn.tittel': 'Dine barn',
+    'step.oppsummering.dineBarn.registrerteBarn': 'Barn vi har funnet på deg i folkeregisteret',
+    'step.oppsummering.dineBarn.andreBarn': 'Andre barn du har lagt til her',
     'step.oppsummering.dineBarn.født': 'Fødselsdato: {dato}',
     'step.oppsummering.dineBarn.id': 'Fødselsnummer/id: {identitetsnummer}',
     'step.oppsummering.dineBarn.fosterbarn': 'Barnet er mitt fosterbarn',

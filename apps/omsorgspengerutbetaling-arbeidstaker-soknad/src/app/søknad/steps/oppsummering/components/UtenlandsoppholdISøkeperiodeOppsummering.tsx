@@ -1,21 +1,33 @@
+import { FormSummary } from '@navikt/ds-react';
 import React from 'react';
-import { SummaryBlock, SummaryList, SummarySection } from '@navikt/sif-common-ui';
+import { SummaryList } from '@navikt/sif-common-ui';
+import { AppText } from '../../../../i18n';
 import { UtenlandsoppholdApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { renderUtenlandsoppholdIPeriodenSummary } from './renderUtenlandsoppholdSummary';
-import { useAppIntl } from '../../../../i18n';
 
 export interface Props {
     utenlandsopphold: UtenlandsoppholdApiData[];
 }
 
 const UtenlandsoppholdISøkeperiodeOppsummering: React.FC<Props> = ({ utenlandsopphold }) => {
-    const { text } = useAppIntl();
     return utenlandsopphold && utenlandsopphold.length > 0 ? (
-        <SummarySection header={text('step.oppsummering.utenlandsopphold.titel')}>
-            <SummaryBlock header={text('step.oppsummering.utenlandsoppholdIPerioden.listetittel')}>
-                <SummaryList items={utenlandsopphold} itemRenderer={renderUtenlandsoppholdIPeriodenSummary} />
-            </SummaryBlock>
-        </SummarySection>
+        <FormSummary>
+            <FormSummary.Header>
+                <FormSummary.Heading level="2">
+                    <AppText id="step.oppsummering.utenlandsopphold.titel" />
+                </FormSummary.Heading>
+            </FormSummary.Header>
+            <FormSummary.Answers>
+                <FormSummary.Answer>
+                    <FormSummary.Label>
+                        <AppText id="step.oppsummering.utenlandsoppholdIPerioden.listetittel" />
+                    </FormSummary.Label>
+                    <FormSummary.Value>
+                        <SummaryList items={utenlandsopphold} itemRenderer={renderUtenlandsoppholdIPeriodenSummary} />
+                    </FormSummary.Value>
+                </FormSummary.Answer>
+            </FormSummary.Answers>
+        </FormSummary>
     ) : null;
 };
 

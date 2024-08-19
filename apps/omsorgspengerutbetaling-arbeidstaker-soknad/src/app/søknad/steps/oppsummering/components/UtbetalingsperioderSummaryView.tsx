@@ -1,10 +1,11 @@
-import { SummaryBlock, SummaryList } from '@navikt/sif-common-ui';
+import { FormSummary } from '@navikt/ds-react';
+import { SummaryList } from '@navikt/sif-common-ui';
 import { ISODateToDate } from '@navikt/sif-common-utils/src';
 import { prettifyDate, prettifyDateExtended } from '@navikt/sif-common-utils/src/dateFormatter';
 import { iso8601DurationToTime, timeToDecimalTime } from '@navikt/sif-common-utils/src/timeUtils';
 import { Time } from '@navikt/sif-common-utils/src/types';
 import { isString } from 'formik';
-import { AppText, useAppIntl } from '../../../../i18n';
+import { AppText } from '../../../../i18n';
 import { ApiAktivitet, Utbetalingsperiode } from '../../../../types/søknadApiData/SøknadApiData';
 import { timeText } from '../oppsummeringStepUtils';
 
@@ -83,38 +84,48 @@ export const utbetalingsperiodeDagToDagSummaryStringView = (dag: Utbetalingsperi
 };
 
 const UtbetalingsperioderSummaryView: React.FC<Props> = ({ utbetalingsperioder = [] }: Props): JSX.Element => {
-    const { text } = useAppIntl();
-
     const perioder = utbetalingsperioder.filter((p) => p.antallTimerBorte === null);
     const dager: UtbetalingsperiodeDag[] = utbetalingsperioder.map(toMaybeUtbetalingsperiodeDag).filter(outNull);
 
     return (
         <>
             {perioder.length > 0 && (
-                <SummaryBlock header={text('step.oppsummering.arbeidsforhold.fravær.heleDager.header')}>
-                    <SummaryList
-                        items={perioder}
-                        itemRenderer={(periode: Utbetalingsperiode): JSX.Element => (
-                            <>
-                                <AppText
-                                    id="step.oppsummering.arbeidsforhold.fravær.heleDager.item"
-                                    values={{
-                                        fom: prettifyDate(ISODateToDate(periode.fraOgMed)),
-                                        tom: prettifyDate(ISODateToDate(periode.tilOgMed)),
-                                    }}
-                                />
-                            </>
-                        )}
-                    />
-                </SummaryBlock>
+                <FormSummary.Answer>
+                    <FormSummary.Label>
+                        <AppText id="step.oppsummering.arbeidsforhold.fravær.heleDager.header" />
+                    </FormSummary.Label>
+                    <FormSummary.Value>
+                        <SummaryList
+                            items={perioder}
+                            itemRenderer={(periode: Utbetalingsperiode): JSX.Element => (
+                                <>
+                                    <AppText
+                                        id="step.oppsummering.arbeidsforhold.fravær.heleDager.item"
+                                        values={{
+                                            fom: prettifyDate(ISODateToDate(periode.fraOgMed)),
+                                            tom: prettifyDate(ISODateToDate(periode.tilOgMed)),
+                                        }}
+                                    />
+                                </>
+                            )}
+                        />
+                    </FormSummary.Value>
+                </FormSummary.Answer>
             )}
             {dager.length > 0 && (
-                <SummaryBlock header={text('step.oppsummering.arbeidsforhold.delvisFravær.header')}>
-                    <SummaryList
-                        items={dager}
-                        itemRenderer={(dag: UtbetalingsperiodeDag) => utbetalingsperiodeDagToDagSummaryStringView(dag)}
-                    />
-                </SummaryBlock>
+                <FormSummary.Answer>
+                    <FormSummary.Label>
+                        <AppText id="step.oppsummering.arbeidsforhold.delvisFravær.header" />
+                    </FormSummary.Label>
+                    <FormSummary.Value>
+                        <SummaryList
+                            items={dager}
+                            itemRenderer={(dag: UtbetalingsperiodeDag) =>
+                                utbetalingsperiodeDagToDagSummaryStringView(dag)
+                            }
+                        />
+                    </FormSummary.Value>
+                </FormSummary.Answer>
             )}
         </>
     );
