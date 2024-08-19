@@ -13,7 +13,7 @@
         "@amplitude/analytics-browser": "2.11.0"
     },
     "devDependencies": {
-        "@types/node": "22.2.0",
+        "@types/node": "22.4.1",
         "@types/react": "18.3.3",
         "config": "workspace:*",
         "constate": "3.3.2",
