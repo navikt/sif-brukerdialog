@@ -40,6 +40,7 @@ const BarnSummaryList = ({ barn }: Props) => {
     return (
         <SummaryList
             items={barn}
+            useAkselList={true}
             itemRenderer={({ navn, tidspunktForAleneomsorg, dato }: ApiBarn) => {
                 if (tidspunktForAleneomsorg) {
                     return tidspunktRenderer(appIntl, navn, tidspunktForAleneomsorg, dato);
