@@ -73,7 +73,7 @@ const ArbeidstidEnkeltuker: React.FunctionComponent<Props> = ({
                             validate={timerPerUkeValidator ? timerPerUkeValidator(arbeidsuke) : undefined}
                             data-testid="timer-verdi"
                             width="xs"
-                            maxLength={4}
+                            maxLength={5}
                         />
                     </div>
                 );

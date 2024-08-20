@@ -118,6 +118,7 @@ const ArbeidssituasjonSN = ({ søknadsperiode }: Props) => {
                                     validate={getArbeiderNormaltTimerIUkenValidator({
                                         ...intlValues,
                                     })}
+                                    maxLength={5}
                                     value={
                                         arbeidsforhold?.normalarbeidstid
                                             ? arbeidsforhold.normalarbeidstid.timerPerUke || ''
