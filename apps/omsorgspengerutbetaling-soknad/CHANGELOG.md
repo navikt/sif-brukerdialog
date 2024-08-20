@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.13.12
+
+### Patch Changes
+
+-   4da6f8d: Ta i bruk Aksel-mal for oppsummeringssiden
+
 ## 1.13.11
 
 ### Patch Changes
