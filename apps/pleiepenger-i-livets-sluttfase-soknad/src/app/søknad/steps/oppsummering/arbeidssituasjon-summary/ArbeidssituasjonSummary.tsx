@@ -1,19 +1,22 @@
+import { FormSummary } from '@navikt/ds-react';
 import React from 'react';
+import { DateRange } from '@navikt/sif-common-formik-ds';
+import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
+import { AppText } from '../../../../i18n';
+import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
+import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import ArbeidsgivereSummary from './ArbeidsgivereSummary';
 import ArbeidssituasjonFrilansSummary from './ArbeidssituasjonFrilansSummary';
 import ArbeidssituasjonSNSummary from './ArbeidssituasjonSNSummary';
 import UtenlandskNæringSummary from './ArbeidssituasjonUtenlandskNæringSummary';
-import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
-import { DateRange } from '@navikt/sif-common-formik-ds';
-import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
-import { SummaryBlock, SummarySection } from '@navikt/sif-common-ui';
 import OpptjeningIUtlandetSummaryView from './OpptjeningIUtlandetSummaryView';
-import { useAppIntl } from '../../../../i18n';
+import VernepliktSummary from './VernepliktSummary';
 
 interface Props {
     apiData: SøknadApiData;
     søknadsperiode: DateRange;
     frilansoppdrag?: Arbeidsgiver[];
+    onEdit?: () => void;
 }
 
 const ArbeidssituasjonSummary: React.FC<Props> = ({
@@ -21,42 +24,36 @@ const ArbeidssituasjonSummary: React.FC<Props> = ({
         arbeidsgivere,
         frilans,
         selvstendigNæringsdrivende,
-        opptjeningIUtlandet: opptjeningUtland,
+        opptjeningIUtlandet,
         harVærtEllerErVernepliktig,
         utenlandskNæring,
     },
     søknadsperiode,
     frilansoppdrag,
+    onEdit,
 }) => {
-    const { text } = useAppIntl();
-
     return (
-        <SummarySection header={text('steg.oppsummering.arbeidssituasjon.header')}>
-            <ArbeidsgivereSummary arbeidsgivere={arbeidsgivere} søknadsperiode={søknadsperiode} />
+        <FormSummary>
+            <FormSummary.Header>
+                <FormSummary.Heading level="2">
+                    <AppText id="step.oppsummeringarbeidssituasjon.header" />
+                </FormSummary.Heading>
+                {onEdit && <EditStepLink onEdit={onEdit} />}
+            </FormSummary.Header>
+            <FormSummary.Answers>
+                <ArbeidsgivereSummary arbeidsgivere={arbeidsgivere} søknadsperiode={søknadsperiode} />
 
-            <ArbeidssituasjonFrilansSummary frilans={frilans} frilansoppdrag={frilansoppdrag} />
+                <ArbeidssituasjonFrilansSummary frilans={frilans} frilansoppdrag={frilansoppdrag} />
 
-            <ArbeidssituasjonSNSummary selvstendigNæringsdrivende={selvstendigNæringsdrivende} />
+                <ArbeidssituasjonSNSummary selvstendigNæringsdrivende={selvstendigNæringsdrivende} />
 
-            <OpptjeningIUtlandetSummaryView opptjeningUtland={opptjeningUtland} />
+                <OpptjeningIUtlandetSummaryView opptjeningUtland={opptjeningIUtlandet} />
 
-            <UtenlandskNæringSummary utenlandskNæring={utenlandskNæring} />
+                <UtenlandskNæringSummary utenlandskNæring={utenlandskNæring} />
 
-            {/* Vernepliktig */}
-            {harVærtEllerErVernepliktig !== undefined && (
-                <SummaryBlock header={text('oppsummering.arbeidssituasjon.verneplikt.header')}>
-                    <ul>
-                        <li>
-                            {text(
-                                harVærtEllerErVernepliktig
-                                    ? 'oppsummering.arbeidssituasjon.verneplikt.harVærtVernepliktig'
-                                    : 'oppsummering.arbeidssituasjon.verneplikt.harIkkeVærtVernepliktig',
-                            )}
-                        </li>
-                    </ul>
-                </SummaryBlock>
-            )}
-        </SummarySection>
+                <VernepliktSummary harVærtEllerErVernepliktig={harVærtEllerErVernepliktig} />
+            </FormSummary.Answers>
+        </FormSummary>
     );
 };
 

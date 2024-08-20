@@ -54,7 +54,7 @@ const ArbeidIPeriodeSummaryItem: React.FC<Props> = ({ arbeidIPeriode, dagerMedPl
                     <TidEnkeltdager
                         dager={fjernDagerIkkeSøktForOgUtenArbeidstid(arbeidIPeriode.enkeltdager, dagerMedPleie)}
                         renderAsAccordion={false}
-                        visUke={false}
+                        headingLevel="5"
                     />
                 </Block>
             )}

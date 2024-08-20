@@ -1,5 +1,13 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.9.12
+
+### Patch Changes
+
+-   Bruke Aksel mal for oppsummeringssiden
+-   Updated dependencies
+    -   @navikt/sif-common-forms-ds@9.1.0
+
 ## 2.9.11
 
 ### Patch Changes

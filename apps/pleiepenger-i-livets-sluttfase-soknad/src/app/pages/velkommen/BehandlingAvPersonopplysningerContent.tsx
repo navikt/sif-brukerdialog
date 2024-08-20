@@ -1,48 +1,48 @@
+import { Heading, Link, List, VStack } from '@navikt/ds-react';
 import React from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import InfoList from '@navikt/sif-common-core-ds/src/components/lists/info-list/InfoList';
-import { Heading, Link } from '@navikt/ds-react';
-import getLenker from '../../lenker';
 import { AppText } from '../../i18n';
+import getLenker from '../../lenker';
 
 const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
     return (
-        <Block margin="l" style={{ paddingTop: '.5rem' }}>
-            <Heading level="3" size="small">
-                <AppText id="personopplysninger.1" />
-            </Heading>
-            <p>
-                <AppText id="personopplysninger.2" />
-            </p>
-            <Block margin="l">
-                <Heading size="small" level="3">
+        <VStack gap="2" paddingBlock="2 0">
+            <div>
+                <Heading level="3" size="xsmall" spacing={true}>
+                    <AppText id="personopplysninger.1" />
+                </Heading>
+                <p>
+                    <AppText id="personopplysninger.2" />
+                </p>
+            </div>
+            <div>
+                <Heading level="3" size="xsmall" spacing={true}>
                     <AppText id="personopplysninger.3" />
                 </Heading>
                 <p>
                     <AppText id="personopplysninger.4" />
                 </p>
-                <InfoList>
-                    <li>
+                <List>
+                    <List.Item>
                         <AppText id="personopplysninger.4.1" />
-                    </li>
-                    <li>
+                    </List.Item>
+                    <List.Item>
                         <AppText id="personopplysninger.4.2" />
-                    </li>
-                    <li>
+                    </List.Item>
+                    <List.Item>
                         <AppText id="personopplysninger.4.3" />
-                    </li>
-                    <li>
+                    </List.Item>
+                    <List.Item>
                         <AppText id="personopplysninger.4.4" />
-                    </li>
-                    <li>
+                    </List.Item>
+                    <List.Item>
                         <AppText id="personopplysninger.4.5" />
-                    </li>
-                </InfoList>
-            </Block>
-            <p>
-                <AppText id="personopplysninger.5.1" />
-            </p>
-            <Block>
+                    </List.Item>
+                </List>
+                <p>
+                    <AppText id="personopplysninger.5.1" />
+                </p>
+            </div>
+            <div>
                 <AppText
                     id="personopplysninger.6"
                     values={{
@@ -53,8 +53,8 @@ const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
                         ),
                     }}
                 />
-            </Block>
-        </Block>
+            </div>
+        </VStack>
     );
 };
 

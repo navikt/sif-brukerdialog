@@ -7,35 +7,37 @@ const nb = {
         'Les gjennom oppsummeringen og sjekk at alt er riktig før du sender inn søknaden. Hvis du vil gjøre endringer, kan du gå tilbake.',
 
     'step.oppsummering.søker.header': 'Om deg',
-    'step.oppsummering.søker.fnr': 'Fødselsnummer: {fødselsnummer}',
+    'step.oppsummering.søker.navn': 'Navn',
+    'step.oppsummering.søker.fnr': 'Fødselsnummer',
     'step.oppsummering.pleietrengende.header': 'Om personen du pleier',
-    'steg.oppsummering.pleietrengende.harIkkeFnr':
-        'Oppgitt grunn for at han/hun ikke har fødselsnummer eller D-nummer: {årsak}',
-    'steg.oppsummering.pleietrengende.fødselsdato': 'Fødselsdato: {dato}',
-    'steg.oppsummering.pleietrengende.årsakManglerIdentitetsnummer.BOR_I_UTLANDET': 'Personen bor i utlandet',
-    'steg.oppsummering.pleietrengende.årsakManglerIdentitetsnummer.ANNET': 'Annet',
-    'steg.oppsummering.pleietrengende.id': 'ID for personen du pleier',
+    'step.oppsummering.pleietrengende.fødselsdato': 'Fødselsdato',
+    'step.oppsummering.pleietrengende.navn': 'Navn',
+    'step.oppsummeringpleietrengende.harIkkeFnr': 'Oppgitt grunn for at hen ikke har fødselsnummer eller D-nummer',
+    'step.oppsummeringpleietrengende.årsakManglerIdentitetsnummer.BOR_I_UTLANDET': 'Personen bor i utlandet',
+    'step.oppsummeringpleietrengende.årsakManglerIdentitetsnummer.ANNET': 'Annet',
+    'step.oppsummeringpleietrengende.id': 'ID for personen du pleier',
+    'step.oppsummering.pleietrengende.fnr': 'Fødselsnummer',
     'step.oppsummering.pleietrengende.id.ingenId': 'Ingen ID er lastet opp',
 
-    'steg.oppsummering.tidsrom.header': 'Dagene du søker pleiepenger for',
-    'steg.oppsummering.tidsrom.valgteDager.header': '{dager} {dager, plural, one {dag} other {dager}} med pleiepenger',
-    'steg.oppsummering.søknadsperiode.header': 'Periode',
-    'steg.oppsummering.tidsrom.fomtom': '{fom} - {tom}',
+    'step.oppsummeringtidsrom.header': 'Dagene du søker pleiepenger for',
+    'step.oppsummeringtidsrom.valgteDager.header': '{dager} {dager, plural, one {dag} other {dager}} med pleiepenger',
+    'step.oppsummeringsøknadsperiode.header': 'Periode',
+    'step.oppsummeringtidsrom.fomtom': '{fom} - {tom}',
 
-    'steg.oppsummering.pleierDuDenSykeHjemme.header': 'Skal du pleie personen hjemme i de dagene du søker for?',
-    'steg.oppsummering.skalJobbeOgPleieSammeDag.header': 'Skal du jobbe delvis i noen av dagene du søker for?',
+    'step.oppsummeringpleierDuDenSykeHjemme.header': 'Skal du pleie personen hjemme i de dagene du søker for?',
+    'step.oppsummeringskalJobbeOgPleieSammeDag.header': 'Skal du jobbe delvis i noen av dagene du søker for?',
 
-    'steg.oppsummering.flereSokere.header': 'Er dere flere som skal dele på pleiepengene?',
+    'step.oppsummeringflereSokere.header': 'Er dere flere som skal dele på pleiepengene?',
 
-    'steg.oppsummering.JA': 'Ja',
-    'steg.oppsummering.NEI': 'Nei',
-    'steg.oppsummering.USIKKER': 'Usikker',
+    'step.oppsummeringJA': 'Ja',
+    'step.oppsummeringNEI': 'Nei',
+    'step.oppsummeringUSIKKER': 'Usikker',
 
-    'steg.oppsummering.utenlandsoppholdIPerioden.header': 'Oppholder du deg i utlandet i noen av dagene du søker for?',
-    'steg.oppsummering.utenlandsoppholdIPerioden.listetittel': 'Utenlandsopphold i perioden',
+    'step.oppsummeringutenlandsoppholdIPerioden.header': 'Oppholder du deg i utlandet i noen av dagene du søker for?',
+    'step.oppsummeringutenlandsoppholdIPerioden.listetittel': 'Utenlandsopphold i perioden',
 
-    'steg.oppsummering.arbeidssituasjon.header': 'Din arbeidssituasjon',
-    'steg.oppsummering.vedlegg.header': 'Vedlegg',
+    'step.oppsummeringarbeidssituasjon.header': 'Din arbeidssituasjon',
+    'step.oppsummeringvedlegg.header': 'Vedlegg',
 
     'arbeidsgiver.tittel': '{navn} (organisasjonsnummer {organisasjonsnummer})',
     'frilans.tittel': 'Frilans',
@@ -75,13 +77,21 @@ const nb = {
     'oppsummering.arbeidssituasjon.verneplikt.harIkkeVærtVernepliktig':
         'Utøvde ikke verneplikt på tidspunktet det søkes pleiepenger fra',
 
-    'oppsummering.arbeidssituasjon.optjeningIUtlandet.listetittel':
-        'Har jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før perioden en søker om',
-    'oppsummering.arbeidssituasjon.optjeningIUtlandet.nei': 'Nei',
+    'oppsummering.arbeidssituasjon.optjeningIUtlandet.tittel': 'Arbeidstaker eller frilanser i et annet EØS-land',
+    'oppsummering.arbeidssituasjon.optjeningIUtlandet.ja':
+        'Har  jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før perioden en søker om',
+    'oppsummering.arbeidssituasjon.optjeningIUtlandet.nei':
+        'Har ikke jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før perioden en søker om',
+    'oppsummering.arbeidssituasjon.optjeningIUtlandet.periode': 'Periode med jobb i annet EØS-land',
+    'oppsummering.arbeidssituasjon.optjeningIUtlandet.perioder': 'Perioder med jobb i annet EØS-land',
 
-    'oppsummering.arbeidssituasjon.utenlandskNæring.listetittel':
+    'oppsummering.arbeidssituasjon.utenlandskNæring.tittel': 'Selvstendig næringsdrivende i et annet EØS-land',
+    'oppsummering.arbeidssituasjon.utenlandskNæring.nei':
+        'Har ikke jobbet som selvstendig næringsdrivende i et annet EØS-land i løpet av de 3 siste årene før perioden en søker om',
+    'oppsummering.arbeidssituasjon.utenlandskNæring.ja':
         'Har jobbet som selvstendig næringsdrivende i et annet EØS-land i løpet av de 3 siste årene før perioden en søker om',
-    'oppsummering.arbeidssituasjon.utenlandskNæring.nei': 'Nei',
+    'oppsummering.arbeidssituasjon.utenlandskNæring.næringer': 'Næringsvirksomheter i andre EØS-land',
+    'oppsummering.arbeidssituasjon.utenlandskNæring.næring': 'Næringsvirksomhet i annet EØS-land',
 
     'oppsummering.arbeidIPeriode.jobbIPerioden.header': 'Jobb i søknadsperioden',
     'oppsummering.arbeidIPeriode.jobbIPerioden': 'Jobb i søknadsperioden',
@@ -89,13 +99,13 @@ const nb = {
     'oppsummering.arbeidIPeriode.jobberIPerioden.HELT_FRAVÆR': 'Jeg jobber ikke her de dagene jeg pleier',
     'oppsummering.arbeidIPeriode.jobberIPerioden.REDUSERT': 'Jeg kombinerer delvis jobb med pleiepenger',
     'oppsummering.arbeidIPeriode.jobberIPerioden.SOM_VANLIG': 'Jeg jobber som normalt, og har ikke fravær',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.liktHverUke': 'Jobber likt hver uke',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.prosent': 'Jobber {prosent} prosent, i snitt {timer} hver ukedag',
+    'oppsummering.arbeidIPeriode.jobberIPerioden.liktHverUke': 'Jeg jobber likt hver uke',
+    'oppsummering.arbeidIPeriode.jobberIPerioden.prosent': 'Jeg jobber {prosent} prosent, i snitt {timer} hver ukedag',
     'oppsummering.arbeidIPeriode.jobberIPerioden.informasjonMangler': 'Informasjon om arbeid i perioden mangler',
     'oppsummering.arbeidIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading':
         'Dager med pleiepenger hvor jeg skal jobbe',
 
-    'summary.virksomhet.virksomhetInfo.tittel': 'Næringsvirksomhet som du har lagt inn:',
+    'summary.virksomhet.virksomhetInfo.tittel': 'Næringsvirksomhet som du har lagt inn',
 
     'step.oppsummering.bekrefterOpplysninger':
         'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til pleiepenger.',
@@ -112,12 +122,13 @@ const nb = {
     'step.oppsummering.utlandetSiste12.liste.header': 'Utenlandsopphold siste 12 måneder',
     'step.oppsummering.utlandetNeste12.liste.header': 'Utenlandsopphold neste 12 måneder',
     'step.oppsummering.legeerklæring.header': 'Legeerklæring',
+    'step.oppsummering.legeerklæring.label': 'Dokumenter som er lastet opp',
     'step.oppsummering.samværsavtale.header': 'Avtale om delt bosted',
 
     'step.oppsummering.fravær.aktivitet.1': 'Fravær som {aktivitet}.',
     'step.oppsummering.fravær.aktivitet.2': 'Fravær som {aktivitet1} og {aktivitet2}.',
 
-    'steg.oppsummering.bekreftelseFraLege.header': 'Legeerklæring',
+    'step.oppsummeringbekreftelseFraLege.header': 'Legeerklæring',
     'step.oppsummering.legeerklæring.ingenVedlegg': 'Ingen legeerklæring er lastet opp',
 
     'step.oppsummering.apiValideringFeil.tittel': 'Noe av informasjonen mangler',
@@ -125,6 +136,7 @@ const nb = {
 
     'step.oppsummering.bekrefterOpplysninger.ikkeBekreftet': 'Du må bekrefte opplysningene',
 
+    'opptjeningIUtlandetSummaryItem.periode': 'Periode: {periode}',
     'opptjeningIUtlandetSummaryItem.info': 'Jobbet i {landnavn} som {hva} hos {hvor}',
 };
 
