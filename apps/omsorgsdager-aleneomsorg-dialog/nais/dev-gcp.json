@@ -6,13 +6,13 @@
     "livenessPath": "/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/health/isAlive",
     "readinessPath": "/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/health/isReady",
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
-    "accessPolicyOutApps": ["k9-brukerdialog-api"],
+    "accessPolicyOutApps": ["k9-brukerdialog-prosessering"],
     "cluster": "dev-gcp",
     "minReplicas": 1,
     "maxReplicas": 1,
     "env": {
         "DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://omsorgsdager-aleneomsorg-dialog.intern.dev.nav.no/oauth2/logout&redirectToApp=true",
-        "API_URL": "http://k9-brukerdialog-api",
+        "API_URL": "http://k9-brukerdialog-prosessering",
         "FRONTEND_API_PATH": "/api",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg",
         "LOGIN_URL": "https://omsorgsdager-aleneomsorg-dialog.intern.dev.nav.no/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/soknad",
@@ -20,7 +20,7 @@
         "OMS_IKKE_TILSYN_URL": "https://ekstra-omsorgsdager-andre-forelder-ikke-tilsyn.intern.dev.nav.no/",
         "APPSTATUS_PROJECT_ID": "ryujtq87",
         "APPSTATUS_DATASET": "staging",
-        "API_TOKENX_AUDIENCE": "dev-gcp:dusseldorf:k9-brukerdialog-api",
+        "API_TOKENX_AUDIENCE": "dev-gcp:dusseldorf:k9-brukerdialog-prosessering",
         "NPM_CONFIG_CACHE": "/tmp",
         "APP_VERSION": "dev"
     }
