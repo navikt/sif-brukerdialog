@@ -1,5 +1,4 @@
 import { useIntl } from 'react-intl';
-import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
@@ -25,7 +24,6 @@ const IntroPage = () => {
     const intl = useIntl();
     const { text } = useAppIntl();
 
-    useLogSidevisning(SIFCommonPageKey.intro);
     return (
         <Page title={text('banner.intro')} topContentRenderer={() => <SoknadHeader title={text('banner.intro')} />}>
             <PageForm.FormikWrapper

@@ -1,5 +1,4 @@
 import React from 'react';
-import { useLogSidevisning } from '@navikt/sif-common-amplitude';
 import { SoknadStepsConfig, soknadStepUtils, Step } from '@navikt/sif-common-soknad-ds';
 import useAvbrytEllerFortsettSenere from '../hooks/useAvbrytSøknad';
 import { useAppIntl } from '../i18n';
@@ -16,8 +15,6 @@ const SøknadStep: React.FunctionComponent<Props> = ({ stepId, stepConfig, child
     const { text, intl } = useAppIntl();
 
     const { avbrytSøknad, fortsettSøknadSenere } = useAvbrytEllerFortsettSenere();
-
-    useLogSidevisning(stepId);
 
     const { index } = stepConfig[stepId];
 

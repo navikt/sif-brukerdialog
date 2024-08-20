@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppIntl } from '@i18n/index';
-import { ApplikasjonHendelse, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude';
+import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { soknadStepUtils, Step as SøknadStep } from '@navikt/sif-common-soknad-ds';
@@ -42,7 +42,6 @@ const SøknadFormStep = (props: Props) => {
         isFinalSubmit,
         showSubmitButton = true,
     } = props;
-    useLogSidevisning(stepId);
     const navigate = useNavigate();
     const { logHendelse } = useAmplitudeInstance();
 

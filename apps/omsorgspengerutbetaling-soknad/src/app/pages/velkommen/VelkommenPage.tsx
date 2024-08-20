@@ -1,5 +1,5 @@
 import { OmsorgspengerutbetalingSNFriApp } from '@navikt/sif-app-register';
-import { SIFCommonPageKey, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude';
+import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { SoknadVelkommenPage } from '@navikt/sif-common-soknad-ds';
 import { useAppIntl } from '../../i18n';
 import actionsCreator from '../../søknad/context/action/actionCreator';
@@ -14,8 +14,6 @@ const VelkommenPage = () => {
         state: { søker },
         dispatch,
     } = useSøknadContext();
-
-    useLogSidevisning(SIFCommonPageKey.velkommen);
 
     const { logSoknadStartet } = useAmplitudeInstance();
 
