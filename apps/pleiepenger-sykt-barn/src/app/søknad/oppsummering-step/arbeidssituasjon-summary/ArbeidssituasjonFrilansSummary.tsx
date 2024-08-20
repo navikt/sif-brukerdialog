@@ -23,7 +23,11 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag, søknadsperio
                     </Heading>
                 </FormSummary.Label>
                 <FormSummary.Value>
-                    <AppText id={'oppsummering.arbeidssituasjon.frilans.erIkkeFrilanser'} />
+                    <List>
+                        <List.Item>
+                            <AppText id={'oppsummering.arbeidssituasjon.frilans.erIkkeFrilanser'} />
+                        </List.Item>
+                    </List>
                 </FormSummary.Value>
             </FormSummary.Answer>
         );

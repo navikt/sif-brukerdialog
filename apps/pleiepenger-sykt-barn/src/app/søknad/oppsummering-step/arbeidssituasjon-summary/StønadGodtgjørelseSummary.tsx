@@ -26,7 +26,11 @@ const StønadGodtgjørelseSummary = ({ stønadGodtgjørelse }: Props) => {
                     </Heading>
                 </FormSummary.Label>
                 <FormSummary.Value>
-                    <AppText id="steg.oppsummering.arbeidssituasjon.omsfost.mottarIkke" />
+                    <List>
+                        <List.Item>
+                            <AppText id="steg.oppsummering.arbeidssituasjon.omsfost.mottarIkke" />
+                        </List.Item>
+                    </List>
                 </FormSummary.Value>
             </FormSummary.Answer>
         );

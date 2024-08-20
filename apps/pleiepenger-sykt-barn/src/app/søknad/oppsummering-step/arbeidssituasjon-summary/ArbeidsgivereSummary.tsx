@@ -20,7 +20,11 @@ const ArbeidsgivereSummary: React.FunctionComponent<Props> = ({ arbeidsgivere, s
                     </Heading>
                 </FormSummary.Label>
                 <FormSummary.Value>
-                    <AppText id="oppsummering.arbeidssituasjon.arbeidsgivere.ingenIPeriode.tekst" />
+                    <List>
+                        <List.Item>
+                            <AppText id="oppsummering.arbeidssituasjon.arbeidsgivere.ingenIPeriode.tekst" />
+                        </List.Item>
+                    </List>
                 </FormSummary.Value>
             </FormSummary.Answer>
         );
