@@ -1,10 +1,11 @@
+import { FormSummary } from '@navikt/ds-react';
 import React from 'react';
-import { SummaryBlock, SummaryList } from '@navikt/sif-common-ui';
+import { SummaryList } from '@navikt/sif-common-ui';
 import { iso8601DurationToTime, ISODateToDate, prettifyDate, Time, timeToDecimalTime } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import flatten from 'lodash/flatten';
 import uniq from 'lodash/uniq';
-import { AppIntlShape, useAppIntl } from '../../../../i18n';
+import { AppIntlShape, AppText, useAppIntl } from '../../../../i18n';
 import { ApiAktivitet } from '../../../../types/AktivitetFravær';
 import { UtbetalingsperiodeApi } from '../../../../types/søknadApiData/SøknadApiData';
 
@@ -137,22 +138,34 @@ const UtbetalingsperioderOppsummering: React.FunctionComponent<Props> = ({ utbet
     return (
         <>
             {perioder.length > 0 && (
-                <SummaryBlock header={'Hele dager med fravær'}>
-                    <SummaryList
-                        items={perioder}
-                        itemRenderer={(periode) => renderUtbetalingsperiode(periode, visAktivitetInfo, appIntl)}
-                    />
-                </SummaryBlock>
+                <FormSummary.Answer>
+                    <FormSummary.Label>
+                        <AppText id="step.oppsummering.utbetalinger.heleDager" />
+                    </FormSummary.Label>
+                    <FormSummary.Value>
+                        <SummaryList
+                            useAkselList={true}
+                            items={perioder}
+                            itemRenderer={(periode) => renderUtbetalingsperiode(periode, visAktivitetInfo, appIntl)}
+                        />
+                    </FormSummary.Value>
+                </FormSummary.Answer>
             )}
             {dager.length > 0 && (
-                <SummaryBlock header={'Dager med delvis fravær'}>
-                    <SummaryList
-                        items={dager}
-                        itemRenderer={(dag: UtbetalingsperiodeDag) =>
-                            renderUtbetalingsperiodeDag(dag, visAktivitetInfo, appIntl)
-                        }
-                    />
-                </SummaryBlock>
+                <FormSummary.Answer>
+                    <FormSummary.Label>
+                        <AppText id="step.oppsummering.utbetalinger.delvisDager" />
+                    </FormSummary.Label>
+                    <FormSummary.Value>
+                        <SummaryList
+                            useAkselList={true}
+                            items={dager}
+                            itemRenderer={(dag: UtbetalingsperiodeDag) =>
+                                renderUtbetalingsperiodeDag(dag, visAktivitetInfo, appIntl)
+                            }
+                        />
+                    </FormSummary.Value>
+                </FormSummary.Answer>
             )}
         </>
     );
