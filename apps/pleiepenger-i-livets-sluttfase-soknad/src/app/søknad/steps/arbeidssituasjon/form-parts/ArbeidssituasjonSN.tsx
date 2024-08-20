@@ -114,6 +114,7 @@ const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN, søknadsperiode }: 
                                     name={SelvstendigFormFields.jobberNormaltTimer}
                                     description={<InfoJobberNormaltTimerSN />}
                                     validate={getJobberNormaltTimerValidator(intlValues)}
+                                    maxLength={5}
                                     value={jobberNormaltTimer ? jobberNormaltTimer || '' : ''}
                                 />
                             </FormBlock>

@@ -45,6 +45,8 @@ interface Props {
     };
     /** The content */
     children: React.ReactNode;
+    /** Extra content in ErrorBoundary */
+    onResetSoknad?: () => void;
 }
 
 const localeFromSessionStorage = getLocaleFromSessionStorage();
@@ -65,6 +67,7 @@ const SoknadApplication = ({
     useAmplitude,
     useLanguageSelector,
     children,
+    onResetSoknad,
 }: Props) => {
     const [locale, setLocale] = React.useState<Locale>(localeFromSessionStorage);
     const localeMessages = intlMessages[locale] || intlMessages['nb'];
@@ -77,7 +80,7 @@ const SoknadApplication = ({
 
     return (
         <SifAppWrapper>
-            <ErrorBoundary appKey={appKey}>
+            <ErrorBoundary appKey={appKey} onResetSoknad={onResetSoknad}>
                 <AmplitudeProvider applicationKey={appKey} isActive={getUseAmplitude(useAmplitude)}>
                     <IntlProvider
                         locale={locale === 'nb' ? getBokmålLocale() : getNynorskLocale()}

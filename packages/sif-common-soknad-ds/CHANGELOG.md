@@ -1,5 +1,33 @@
 # @navikt/sif-common-soknad-ds
 
+## 12.0.10
+
+### Patch Changes
+
+-   a8ae0fe: Utvide ErrorBoundary til å motta prop for å resette en søknad.
+
+## 12.0.9
+
+### Patch Changes
+
+-   008a462: Pakkeoppdateringer - minor/patch
+-   Updated dependencies [008a462]
+    -   @navikt/sif-common-formik-ds@1.11.6
+    -   @navikt/sif-common-core-ds@9.17.24
+    -   @navikt/sif-common-sentry@0.26.17
+    -   @navikt/sif-common-utils@3.46.12
+    -   @navikt/sif-common-ui@0.7.29
+
+## 12.0.8
+
+### Patch Changes
+
+-   d42de23: Oppdaterte felleskomponenter ifbm aksel-oppsummeringsmal
+-   Updated dependencies [d42de23]
+    -   @navikt/sif-common-core-ds@9.17.23
+    -   @navikt/sif-common-utils@3.46.11
+    -   @navikt/sif-common-ui@0.7.28
+
 ## 12.0.7
 
 ### Patch Changes
