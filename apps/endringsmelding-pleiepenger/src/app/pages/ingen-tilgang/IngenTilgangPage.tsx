@@ -1,6 +1,6 @@
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { IngenTilgangMeta } from '@hooks';
-import { SIFCommonPageKey, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude';
+import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
@@ -111,8 +111,6 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
 const IngenTilgangPage = ({ årsak = [], søker, ingenTilgangMeta }: IngenTilgangPageProps) => {
     const { logInfo } = useAmplitudeInstance();
     const { text } = useAppIntl();
-
-    useLogSidevisning(SIFCommonPageKey.ikkeTilgang);
 
     useEffectOnce(() => {
         logInfo({ brukerIkkeTilgang: årsak, ...ingenTilgangMeta });

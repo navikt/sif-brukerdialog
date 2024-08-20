@@ -2,7 +2,6 @@ import { Box, Link, VStack } from '@navikt/ds-react';
 import React from 'react';
 import { ChevronLeftIcon } from '@navikt/aksel-icons';
 import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
-import { useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Head from 'next/head';
 import { default as NextLink } from 'next/link';
 import { useRouter } from 'next/router';
@@ -11,7 +10,6 @@ import SakPageHeader from '../../components/page-layout/sak-page-header/SakPageH
 import StatusISak from '../../components/status-i-sak/StatusISak';
 import { Pleietrengende } from '../../server/api-models/PleietrengendeSchema';
 import { Sak } from '../../server/api-models/SakSchema';
-import { PageKey } from '../../types/PageKey';
 import { getAllBreadcrumbs } from '../../utils/decoratorBreadcrumbs';
 import { browserEnv } from '../../utils/env';
 
@@ -23,7 +21,6 @@ interface Props {
 
 const HistorikkPage: React.FunctionComponent<Props> = ({ sak, harFlereSaker, pleietrengende }) => {
     const router = useRouter();
-    useLogSidevisning(PageKey.historikk);
     setBreadcrumbs(
         getAllBreadcrumbs(
             [

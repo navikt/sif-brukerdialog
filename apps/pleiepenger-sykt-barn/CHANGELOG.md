@@ -6,6 +6,20 @@
 
 -   Oppdatere oppsummeringssiden til å bruke Aksel maler
 
+## 3.15.16
+
+### Patch Changes
+
+-   Bugfix - sende header med git-sha ved innsending
+
+## 3.15.15
+
+### Patch Changes
+
+-   664f1eb: Fjerne egen logging av sidevisning til amplitude. Dette er erstattet av dekoratørens besøk event.
+-   Updated dependencies [664f1eb]
+    -   @navikt/sif-common-amplitude@2.25.16
+
 ## 3.15.14
 
 ### Patch Changes
