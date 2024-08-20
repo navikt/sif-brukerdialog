@@ -1,5 +1,11 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.25.18
+
+### Patch Changes
+
+-   Oppdatere oppsummeringssiden til å bruke Aksel-maler
+
 ## 1.25.17
 
 ### Patch Changes
