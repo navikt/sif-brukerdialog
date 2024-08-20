@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-arbeidstaker-soknad
 
+## 1.4.18
+
+### Patch Changes
+
+-   8a4685d: Gå over til å bruke aksel-maler for oppsummeringsiden
+
 ## 1.4.17
 
 ### Patch Changes

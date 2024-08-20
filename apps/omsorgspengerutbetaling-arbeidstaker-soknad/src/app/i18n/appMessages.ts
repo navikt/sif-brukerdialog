@@ -40,8 +40,8 @@ const nb = {
     'step.dineBarn.stepTitle': 'Dine barn',
     'step.dineBarn.stepIndicatorLabel': 'Dine barn',
 
-    'step.deltBosted.stepTitle': 'Delt fast bosted',
-    'step.deltBosted.stepIndicatorLabel': 'Delt fast bosted',
+    'step.deltBosted.stepTitle': 'Avtale om delt fast bosted',
+    'step.deltBosted.stepIndicatorLabel': 'Avtale om delt fast bosted',
 
     'step.situasjon.pageTitle': 'Din arbeidssituasjon',
     'step.situasjon.stepTitle': 'Din arbeidssituasjon',
