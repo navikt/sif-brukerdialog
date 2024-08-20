@@ -1,5 +1,13 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.15.12
+
+### Patch Changes
+
+-   a8ae0fe: Legge til mulighet for å resette søknad fra ErrorBoundary
+-   Updated dependencies [a8ae0fe]
+    -   @navikt/sif-common-soknad-ds@12.0.10
+
 ## 3.15.11
 
 ### Patch Changes
