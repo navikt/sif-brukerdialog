@@ -33,6 +33,7 @@ const DineBarnOppsummering = ({ barn, registrerteBarn, harDeltBosted, onEdit }: 
                     </FormSummary.Label>
                     <FormSummary.Value>
                         <SummaryList
+                            useAkselList={true}
                             items={registrerteBarnSomIkkeSkalSendesInnMenVises}
                             itemRenderer={(barn: ApiBarn) => {
                                 return (
@@ -55,6 +56,7 @@ const DineBarnOppsummering = ({ barn, registrerteBarn, harDeltBosted, onEdit }: 
                     </FormSummary.Label>
                     <FormSummary.Value>
                         <SummaryList
+                            useAkselList={true}
                             items={barn}
                             itemRenderer={(barn: ApiBarn) => {
                                 return (

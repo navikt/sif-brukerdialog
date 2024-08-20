@@ -26,7 +26,11 @@ const UtenlandsoppholdISøkeperiodeOppsummering: React.FC<Props> = ({ utenlandso
                         <AppText id="step.oppsummering.utenlandsoppholdIPerioden.listetittel" />
                     </FormSummary.Label>
                     <FormSummary.Value>
-                        <SummaryList items={utenlandsopphold} itemRenderer={renderUtenlandsoppholdIPeriodenSummary} />
+                        <SummaryList
+                            useAkselList={true}
+                            items={utenlandsopphold}
+                            itemRenderer={renderUtenlandsoppholdIPeriodenSummary}
+                        />
                     </FormSummary.Value>
                 </FormSummary.Answer>
             </FormSummary.Answers>

@@ -3,7 +3,7 @@ import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
-import { JaNeiSvar } from '@navikt/sif-common-ui';
+import { JaNeiSvar, Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 import { AppText, useAppIntl } from '../../../../i18n';
 import { Utbetalingsårsak } from '../../../../types/ArbeidsforholdTypes';
 import { ArbeidsgiverDetaljer } from '../../../../types/søknadApiData/SøknadApiData';
@@ -129,7 +129,9 @@ const ArbeidsforholdSummaryView = ({ listeAvArbeidsforhold, søknadsdata, onEdit
                                                         <AppText id="step.oppsummering.arbeidsforhold.konflikt.forklaringTittel" />
                                                     </FormSummary.Label>
                                                     <FormSummary.Value>
-                                                        <p>{arbeidsforhold.konfliktForklaring}</p>
+                                                        <Sitat>
+                                                            <TextareaSvar text={arbeidsforhold.konfliktForklaring} />
+                                                        </Sitat>
                                                     </FormSummary.Value>
                                                 </FormSummary.Answer>
                                                 <FormSummary.Answer>

@@ -96,6 +96,7 @@ const UtbetalingsperioderSummaryView: React.FC<Props> = ({ utbetalingsperioder =
                     </FormSummary.Label>
                     <FormSummary.Value>
                         <SummaryList
+                            useAkselList={true}
                             items={perioder}
                             itemRenderer={(periode: Utbetalingsperiode): JSX.Element => (
                                 <>
@@ -119,6 +120,7 @@ const UtbetalingsperioderSummaryView: React.FC<Props> = ({ utbetalingsperioder =
                     </FormSummary.Label>
                     <FormSummary.Value>
                         <SummaryList
+                            useAkselList={true}
                             items={dager}
                             itemRenderer={(dag: UtbetalingsperiodeDag) =>
                                 utbetalingsperiodeDagToDagSummaryStringView(dag)

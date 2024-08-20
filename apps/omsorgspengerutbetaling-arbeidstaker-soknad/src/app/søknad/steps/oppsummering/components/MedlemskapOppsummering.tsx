@@ -46,6 +46,7 @@ const MedlemskapOppsummering = ({ bosteder, onEdit }: Props) => {
                             </FormSummary.Label>
                             <FormSummary.Value>
                                 <SummaryList
+                                    useAkselList={true}
                                     items={bostederSiste12}
                                     itemRenderer={renderUtenlandsoppholdIPeriodenSummary}
                                 />
@@ -67,6 +68,7 @@ const MedlemskapOppsummering = ({ bosteder, onEdit }: Props) => {
                             </FormSummary.Label>
                             <FormSummary.Value>
                                 <SummaryList
+                                    useAkselList={true}
                                     items={bostederNeste12}
                                     itemRenderer={renderUtenlandsoppholdIPeriodenSummary}
                                 />
