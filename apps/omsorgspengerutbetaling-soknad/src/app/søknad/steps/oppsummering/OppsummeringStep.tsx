@@ -1,4 +1,4 @@
-import { ErrorSummary } from '@navikt/ds-react';
+import { ErrorSummary, VStack } from '@navikt/ds-react';
 import { useEffect, useRef } from 'react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
@@ -6,7 +6,6 @@ import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
-import { SummarySection } from '@navikt/sif-common-ui';
 import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -23,9 +22,8 @@ import LegeerklæringOppsummering from './components/LegeerklæringOppsummering'
 import MedlemskapOppsummering from './components/MedlemskapOppsummering';
 import OmSøkerOppsummering from './components/OmSøkerOppsummering';
 import SelvstendigOppsummering from './components/SelvstendigOppsummering';
-import UtbetalingsperioderOppsummering from './components/UtbetalingsperioderOppsummering';
-import UtenlandsoppholdISøkeperiodeOppsummering from './components/UtenlandsoppholdISøkeperiodeOppsummering';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
+import FraværSummary from './components/FraværSummary';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -53,7 +51,7 @@ const OppsummeringStep = () => {
     const { invalidSteps } = useSøknadsdataStatus(stepId, getSøknadStepConfig(søknadsdata));
     const hasInvalidSteps = invalidSteps.length > 0;
 
-    const { goBack } = useStepNavigation(step);
+    const { goBack, gotoStep } = useStepNavigation(step);
 
     const { sendSøknad, isSubmitting, sendSøknadError } = useSendSøknad();
     const previousSøknadError = usePrevious(sendSøknadError);
@@ -115,40 +113,51 @@ const OppsummeringStep = () => {
                                 submitPending={isSubmitting}
                                 backButtonDisabled={isSubmitting}
                                 onBack={goBack}>
-                                <OmSøkerOppsummering søker={søker} />
-                                <DineBarnOppsummering
-                                    barn={apiData.barn}
-                                    registrerteBarn={registrerteBarn}
-                                    harSyktBarn={apiData.harSyktBarn}
-                                    harAleneomsorg={apiData.harAleneomsorg}
-                                    harDekketTiFørsteDagerSelv={apiData.harDekketTiFørsteDagerSelv}
-                                />
-                                <SummarySection header={text('step.oppsummering.utbetalinger.header')}>
-                                    <UtbetalingsperioderOppsummering
-                                        utbetalingsperioder={apiData.utbetalingsperioder}
+                                <VStack gap="8">
+                                    <OmSøkerOppsummering søker={søker} />
+
+                                    <DineBarnOppsummering
+                                        barn={apiData.barn}
+                                        registrerteBarn={registrerteBarn}
+                                        harSyktBarn={apiData.harSyktBarn}
+                                        harAleneomsorg={apiData.harAleneomsorg}
+                                        harDekketTiFørsteDagerSelv={apiData.harDekketTiFørsteDagerSelv}
+                                        onEdit={() => gotoStep(StepId.DINE_BARN)}
                                     />
-                                    <UtenlandsoppholdISøkeperiodeOppsummering utenlandsopphold={apiData.opphold} />
-                                </SummarySection>
 
-                                <FrilansOppsummering frilans={apiData.frilans} />
-                                <SelvstendigOppsummering virksomhet={apiData.selvstendigNæringsdrivende} />
-                                <MedlemskapOppsummering bosteder={apiData.bosteder} />
+                                    <FraværSummary apiData={apiData} onEdit={() => gotoStep(StepId.FRAVÆR)} />
+                                    <LegeerklæringOppsummering
+                                        apiData={apiData}
+                                        legeerklæringSøknadsdata={søknadsdata.legeerklæring}
+                                        onEdit={() => gotoStep(StepId.LEGEERKLÆRING)}
+                                    />
 
-                                <LegeerklæringOppsummering
-                                    apiData={apiData}
-                                    legeerklæringSøknadsdata={søknadsdata.legeerklæring}
-                                />
+                                    <FrilansOppsummering
+                                        frilans={apiData.frilans}
+                                        onEdit={() => gotoStep(StepId.ARBEIDSSITUASJON)}
+                                    />
 
-                                <ConfirmationCheckbox
-                                    disabled={isSubmitting}
-                                    label={
-                                        <span data-testid="bekreft-label">
-                                            <AppText id="step.oppsummering.bekrefterOpplysninger" />
-                                        </span>
-                                    }
-                                    validate={getCheckedValidator()}
-                                    name={OppsummeringFormFields.harBekreftetOpplysninger}
-                                />
+                                    <SelvstendigOppsummering
+                                        virksomhet={apiData.selvstendigNæringsdrivende}
+                                        onEdit={() => gotoStep(StepId.ARBEIDSSITUASJON)}
+                                    />
+
+                                    <MedlemskapOppsummering
+                                        bosteder={apiData.bosteder}
+                                        onEdit={() => gotoStep(StepId.MEDLEMSKAP)}
+                                    />
+
+                                    <ConfirmationCheckbox
+                                        disabled={isSubmitting}
+                                        label={
+                                            <span data-testid="bekreft-label">
+                                                <AppText id="step.oppsummering.bekrefterOpplysninger" />
+                                            </span>
+                                        }
+                                        validate={getCheckedValidator()}
+                                        name={OppsummeringFormFields.harBekreftetOpplysninger}
+                                    />
+                                </VStack>
                             </Form>
                             {sendSøknadError && (
                                 <FormBlock>

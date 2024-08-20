@@ -35,6 +35,7 @@ export const useStepNavigation = (step?: StepConfig<StepId>) => {
     };
 
     return {
+        gotoStep,
         goBack: step?.previousStep ? goToPreviousStep : undefined,
         goNext: step?.nextStep ? goToNextStep : undefined,
     };

@@ -1,4 +1,4 @@
-import { SummaryList } from '@navikt/sif-common-ui';
+import { List } from '@navikt/ds-react';
 import { useAppIntl } from '../../../i18n';
 import { ApiBarn } from '../../../types/søknadApiData/SøknadApiData';
 
@@ -9,13 +9,16 @@ interface Props {
 const BarnSummaryList = ({ barn }: Props) => {
     const { text } = useAppIntl();
     return (
-        <SummaryList
-            items={barn}
-            itemRenderer={({ norskIdentifikator: identitetsnummer, navn }: ApiBarn): string => {
-                const fnr = identitetsnummer ? text('step.oppsummering.omBarna.listItem', { identitetsnummer }) : '';
-                return `${navn}${fnr}`;
-            }}
-        />
+        <List>
+            {barn.map((barn, idx) => (
+                <List.Item key={idx}>
+                    {barn.navn}
+                    {barn.norskIdentifikator
+                        ? text('step.oppsummering.omBarna.listItem', { identitetsnummer: barn.norskIdentifikator })
+                        : ''}
+                </List.Item>
+            ))}
+        </List>
     );
 };
 

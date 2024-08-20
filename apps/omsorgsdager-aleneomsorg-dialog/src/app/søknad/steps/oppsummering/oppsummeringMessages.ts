@@ -1,6 +1,7 @@
 const nb = {
     'step.oppsummering.søker.header': 'Om deg',
-    'step.oppsummering.søker.fnr': 'Fødselsnummer: {fødselsnummer}',
+    'step.oppsummering.søker.navn': 'Navn',
+    'step.oppsummering.søker.fnr': 'Fødselsnummer',
     'step.oppsummering.dineBarn.listItem.FOSTERBARN': '(Barnet er mitt fosterbarn).',
 
     'step.oppsummering.omOmsorgenForBarn.barnList.title': 'Barn du er alene om omsorgen for',

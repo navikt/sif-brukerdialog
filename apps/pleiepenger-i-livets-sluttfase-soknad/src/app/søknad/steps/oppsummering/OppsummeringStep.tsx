@@ -26,6 +26,7 @@ import { ISODateToDate } from '@navikt/sif-common-utils';
 import ArbeidIPeriodenSummary from './arbeid-i-perioden-summary/ArbeidIPeriodenSummary';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { AppText, useAppIntl } from '../../../i18n';
+import { useNavigate } from 'react-router-dom';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -47,9 +48,10 @@ const OppsummeringStep = () => {
     } = useSøknadContext();
 
     const stepId = StepId.OPPSUMMERING;
+    const stepConfig = getSøknadStepConfig(søknadsdata);
     const step = getSøknadStepConfigForStep(søknadsdata, stepId);
 
-    const { invalidSteps } = useSøknadsdataStatus(stepId, getSøknadStepConfig(søknadsdata));
+    const { invalidSteps } = useSøknadsdataStatus(stepId, stepConfig);
     const hasInvalidSteps = invalidSteps.length > 0;
 
     const { goBack } = useStepNavigation(step);
@@ -57,6 +59,7 @@ const OppsummeringStep = () => {
     const { sendSøknad, isSubmitting, sendSøknadError } = useSendSøknad();
     const previousSøknadError = usePrevious(sendSøknadError);
     const sendSøknadErrorSummary = useRef<HTMLDivElement>(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (previousSøknadError === undefined && sendSøknadError !== undefined) {
@@ -126,11 +129,13 @@ const OppsummeringStep = () => {
                                         flereSøkere={apiData.flereSokere}
                                         pleietrengende={apiData.pleietrengende}
                                         pleietrengendeId={pleietrengendeId}
+                                        onEdit={() => navigate(stepConfig[StepId.OPPLYSNINGER_OM_PLEIETRENGENDE].route)}
                                     />
 
                                     <TidsromOppsummering
                                         apiData={apiData}
                                         dagerMedPleie={søknadsdata.tidsrom!.dagerMedPleie}
+                                        onEdit={() => navigate(stepConfig[StepId.TIDSROM].route)}
                                     />
 
                                     <ArbeidssituasjonSummary
@@ -140,6 +145,7 @@ const OppsummeringStep = () => {
                                             to: ISODateToDate(apiData.tilOgMed),
                                         }}
                                         frilansoppdrag={frilansoppdrag}
+                                        onEdit={() => navigate(stepConfig[StepId.ARBEIDSSITUASJON].route)}
                                     />
 
                                     <ArbeidIPeriodenSummary
@@ -149,13 +155,22 @@ const OppsummeringStep = () => {
                                             from: ISODateToDate(apiData.fraOgMed),
                                             to: ISODateToDate(apiData.tilOgMed),
                                         }}
+                                        onEdit={
+                                            stepConfig[StepId.ARBEIDSTID]
+                                                ? () => navigate(stepConfig[StepId.ARBEIDSTID].route)
+                                                : undefined
+                                        }
                                     />
 
-                                    <MedlemskapOppsummering medlemskap={apiData.medlemskap} />
+                                    <MedlemskapOppsummering
+                                        medlemskap={apiData.medlemskap}
+                                        onEdit={() => navigate(stepConfig[StepId.MEDLEMSKAP].route)}
+                                    />
 
                                     <LegeerklæringOppsummering
                                         apiData={apiData}
                                         legeerklæringSøknadsdata={søknadsdata.legeerklæring}
+                                        onEdit={() => navigate(stepConfig[StepId.LEGEERKLÆRING].route)}
                                     />
 
                                     <ConfirmationCheckbox

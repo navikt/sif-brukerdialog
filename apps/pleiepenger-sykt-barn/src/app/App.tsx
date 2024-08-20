@@ -9,6 +9,7 @@ import {
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
 import MockDate from 'mockdate';
+import { purge } from './api/api';
 import RouteConfig from './config/routeConfig';
 import { applicationIntlMessages } from './i18n';
 import GeneralErrorPage from './pages/general-error-page/GeneralErrorPage';
@@ -40,6 +41,11 @@ const App = () => {
         dataset: getEnvironmentVariable('APPSTATUS_DATASET'),
     };
 
+    const handleResetSoknad = async () => {
+        await purge();
+        relocateToSoknad();
+    };
+
     return (
         <SoknadApplication
             appKey={PleiepengerSyktBarnApp.key}
@@ -47,7 +53,8 @@ const App = () => {
             appStatus={{ sanityConfig: sanityConfig }}
             intlMessages={applicationIntlMessages}
             useAmplitude={useAmplitude}
-            publicPath={publicPath}>
+            publicPath={publicPath}
+            onResetSoknad={handleResetSoknad}>
             <SoknadApplicationCommonRoutes
                 onReset={() => {
                     relocateToSoknad();

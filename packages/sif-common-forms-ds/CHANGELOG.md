@@ -1,5 +1,21 @@
 # @navikt/sif-common-forms-ds
 
+## 9.1.0
+
+### Minor Changes
+
+-   Legge til VirksomhetFormSummary komponent som bruker Aksel mal for oppsummering
+
+## 9.0.11
+
+### Patch Changes
+
+-   008a462: Pakkeoppdateringer - minor/patch
+-   Updated dependencies [008a462]
+    -   @navikt/sif-common-formik-ds@1.11.6
+    -   @navikt/sif-common-core-ds@9.17.24
+    -   @navikt/sif-common-utils@3.46.12
+
 ## 9.0.10
 
 ### Patch Changes

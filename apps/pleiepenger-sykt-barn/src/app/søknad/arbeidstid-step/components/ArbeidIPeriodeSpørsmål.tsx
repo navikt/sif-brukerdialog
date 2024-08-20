@@ -151,7 +151,7 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
                                             )}
                                             data-testid="timer-verdi"
                                             width="xs"
-                                            maxLength={4}
+                                            maxLength={5}
                                         />
                                     </FormBlock>
                                 )}

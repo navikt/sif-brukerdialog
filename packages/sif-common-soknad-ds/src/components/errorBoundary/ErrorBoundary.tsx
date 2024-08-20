@@ -1,4 +1,4 @@
-import { Heading } from '@navikt/ds-react';
+import { Box, Button, Heading } from '@navikt/ds-react';
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
@@ -10,12 +10,18 @@ interface State {
     eventId: string | null;
     hasError: boolean;
     error: Error | null;
+    resetPending?: boolean;
 }
 
-class ErrorBoundary extends React.Component<any, State> {
-    constructor(props: unknown) {
+interface Props {
+    appKey: string;
+    children: React.ReactNode;
+    onResetSoknad?: () => void;
+}
+class ErrorBoundary extends React.Component<Props, State> {
+    constructor(props: Props) {
         super(props);
-        this.state = { eventId: null, hasError: false, error: null };
+        this.state = { eventId: null, hasError: false, error: null, resetPending: false };
     }
 
     componentDidCatch(error: Error | null, errorInfo: any): void {
@@ -26,6 +32,13 @@ class ErrorBoundary extends React.Component<any, State> {
             }
         }
     }
+
+    resetSoknad = async () => {
+        if (this.props.onResetSoknad) {
+            this.setState({ ...this.state, resetPending: true });
+            this.props.onResetSoknad();
+        }
+    };
 
     render() {
         if (this.state.hasError) {
@@ -38,7 +51,20 @@ class ErrorBoundary extends React.Component<any, State> {
                             <Heading level="2" size="medium">
                                 Det oppstod en feil
                             </Heading>
+
                             <p>Dersom feilen vedvarer, kan du prøve å starte på nytt.</p>
+                            <Box marginBlock={'4 0'}>
+                                {this.props.onResetSoknad && (
+                                    <Button
+                                        type="button"
+                                        onClick={this.resetSoknad}
+                                        variant="secondary"
+                                        loading={this.state.resetPending}
+                                        size="small">
+                                        Start på nytt
+                                    </Button>
+                                )}
+                            </Box>
                         </SifGuidePanel>
                     </Block>
                 </Page>
