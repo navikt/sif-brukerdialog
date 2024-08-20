@@ -55,7 +55,9 @@ test('Fyll ut søknad med annet barn', async ({ page }) => {
     await expect(
         await page.getByText('Test Barn (fnr. 18897699792)ALFABETISK FAGGOTTBarn BarnesenMock Mocknes').isVisible(),
     ).toBeTruthy();
-    await expect(await page.getByText('GrunnSykdom, skade eller funksjonhemming').isVisible()).toBeTruthy();
+    await expect(
+        await page.getByText('Grunn til at den andre forelderen ikke kan ha tilsyn med barn:Sykdom, skade').isVisible(),
+    ).toBeTruthy();
     await expect(await page.getByText('Beskrivelse av situasjonen:Test Beskrivelse').isVisible()).toBeTruthy();
     await expect(
         await page
