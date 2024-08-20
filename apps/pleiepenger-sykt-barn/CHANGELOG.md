@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.15.16
+
+### Patch Changes
+
+-   Bugfix - sende header med git-sha ved innsending
+
 ## 3.15.15
 
 ### Patch Changes
