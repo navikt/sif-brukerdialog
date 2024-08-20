@@ -89,7 +89,7 @@ export const getApiDataFromSøknadsdata = (
             return apiData;
         } catch (e) {
             appSentryLogger.logError('getApiDataFromSøknadsdata failed', e as any);
-            return undefined;
+            throw e;
         }
     } else {
         appSentryLogger.logError('getApiDataFromSøknadsdata failed - empty periode', JSON.stringify(søknadsperiode));

@@ -47,23 +47,17 @@ test('Fyll ut søknad med annet barn', async ({ page }) => {
     await page.getByRole('heading', { level: 1, name: 'Oppsummering' });
     await page.getByLabel('Jeg bekrefter').check();
 
-    await expect(
-        await page
-            .getByText(
-                `Om deg som søker${søkerMock.fornavn} ${søkerMock.etternavn}Fødselsnummer: ${søkerMock.fødselsnummer}`,
-            )
-            .isVisible(),
-    ).toBeTruthy();
+    await expect(await page.getByText(`${søkerMock.fornavn} ${søkerMock.etternavn}`).isVisible()).toBeTruthy();
+    await expect(await page.getByText(søkerMock.fødselsnummer).isVisible()).toBeTruthy();
+    await expect(await page.getByText(annenForelderMock.navn).isVisible()).toBeTruthy();
+    await expect(await page.getByText(annenForelderMock.fnr).isVisible()).toBeTruthy();
 
-    await expect(
-        await page
-            .getByText(`Om den andre forelderen${annenForelderMock.navn}Fødselsnummer: ${annenForelderMock.fnr}`)
-            .isVisible(),
-    ).toBeTruthy();
     await expect(
         await page.getByText('Test Barn (fnr. 18897699792)ALFABETISK FAGGOTTBarn BarnesenMock Mocknes').isVisible(),
     ).toBeTruthy();
-    await expect(await page.getByText('GrunnSykdom, skade eller funksjonhemming').isVisible()).toBeTruthy();
+    await expect(
+        await page.getByText('Grunn til at den andre forelderen ikke kan ha tilsyn med barn:Sykdom, skade').isVisible(),
+    ).toBeTruthy();
     await expect(await page.getByText('Beskrivelse av situasjonen:Test Beskrivelse').isVisible()).toBeTruthy();
     await expect(
         await page
