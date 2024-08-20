@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 12.0.10
+
+### Patch Changes
+
+-   a8ae0fe: Utvide ErrorBoundary til å motta prop for å resette en søknad.
+
 ## 12.0.9
 
 ### Patch Changes
