@@ -13,7 +13,7 @@
         "codegen": "playwright codegen",
         "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",
         "e2e": "playwright test",
-        "lint": "eslint ./src --ext ts,tsx",
+        "depr-lint": "eslint ./src --ext ts,tsx",
         "playwright-test": "playwright test",
         "dev": "cross-env NODE_ENV=development node ./server.cjs",
         "start-api-mock": "PORT=8089 node ./server/api-mock.js",

@@ -27,6 +27,6 @@
         "sass": "1.77.8"
     },
     "scripts": {
-        "lint": "eslint ./src --ext ts,tsx"
+        "depr-lint": "eslint ./src --ext ts,tsx"
     }
 }

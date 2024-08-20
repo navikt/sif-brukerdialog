@@ -38,6 +38,6 @@
         "url": "git+https://github.com/navikt/sif-common-amplitude.git"
     },
     "scripts": {
-        "lint": "eslint ./src --ext ts,tsx"
+        "depr-lint": "eslint ./src --ext ts,tsx"
     }
 }

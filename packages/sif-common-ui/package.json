@@ -36,7 +36,7 @@
     "scripts": {
         "build-storybook": "storybook build ",
         "chromatic": "npx chromatic --project-token=chpt_eb5b80c88cc7e7f",
-        "lint": "eslint ./src --ext ts,tsx",
+        "depr-lint": "eslint ./src --ext ts,tsx",
         "storybook": "storybook dev -p 6006"
     },
     "readme": "ERROR: No README data found!",

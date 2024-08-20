@@ -8,6 +8,6 @@
         "npm-run-all": "4.1.5"
     },
     "scripts": {
-        "lint": "eslint ./src --ext ts,tsx"
+        "depr-lint": "eslint ./src --ext ts,tsx"
     }
 }
