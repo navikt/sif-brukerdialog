@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 9.1.0
+
+### Minor Changes
+
+-   Legge til VirksomhetFormSummary komponent som bruker Aksel mal for oppsummering
+
 ## 9.0.11
 
 ### Patch Changes
