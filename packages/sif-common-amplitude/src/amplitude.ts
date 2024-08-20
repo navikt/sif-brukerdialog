@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import * as amplitude from '@amplitude/analytics-browser';
-
 import constate from 'constate';
 
 const MAX_AWAIT_TIME = 500;
@@ -15,7 +14,6 @@ export enum SIFCommonPageKey {
 }
 
 export enum AmplitudeEvents {
-    'sidevisning' = 'sidevisning',
     'applikasjonStartet' = 'applikasjon-startet',
     'søknadStartet' = 'skjema startet',
     'søknadSendt' = 'skjema fullført',
@@ -98,12 +96,6 @@ export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props)
         }
     }
 
-    async function logSidevisning(pageKey: string) {
-        return logEvent(AmplitudeEvents.sidevisning, {
-            pageKey,
-        });
-    }
-
     async function logSoknadStartet(skjemanavn: string) {
         return logEvent(AmplitudeEvents.søknadStartet, {
             skjemanavn,
@@ -152,7 +144,6 @@ export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props)
 
     return {
         logEvent,
-        logSidevisning,
         logSoknadStartet,
         logSoknadSent,
         logSoknadFailed,

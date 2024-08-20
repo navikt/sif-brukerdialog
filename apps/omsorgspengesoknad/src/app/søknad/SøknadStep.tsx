@@ -1,6 +1,5 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import { useLogSidevisning } from '@navikt/sif-common-amplitude';
 import { soknadStepUtils, Step } from '@navikt/sif-common-soknad-ds';
 import InvalidStepSøknadsdataInfo from '../components/invalid-step-søknadsdata-info/InvalidStepSøknadsdataInfo';
 import useAvbrytEllerFortsettSenere from '../hooks/useAvbrytSøknad';
@@ -20,8 +19,6 @@ const SøknadStep: React.FunctionComponent<Props> = ({ stepId, children }) => {
     const {
         state: { søknadsdata },
     } = useSøknadContext();
-
-    useLogSidevisning(stepId);
 
     const stepConfig = getSøknadStepConfig(søknadsdata);
 

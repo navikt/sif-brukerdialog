@@ -1,6 +1,6 @@
 import { Link } from '@navikt/ds-react';
 import { OmsorgsdagerKroniskApp } from '@navikt/sif-app-register';
-import { SIFCommonPageKey, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude';
+import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { SoknadVelkommenPage } from '@navikt/sif-common-soknad-ds';
 import { AppText, useAppIntl } from '../../i18n';
 import getLenker from '../../lenker';
@@ -15,8 +15,6 @@ const VelkommenPage = () => {
         state: { søker },
         dispatch,
     } = useSøknadContext();
-
-    useLogSidevisning(SIFCommonPageKey.velkommen);
 
     const { logSoknadStartet } = useAmplitudeInstance();
 

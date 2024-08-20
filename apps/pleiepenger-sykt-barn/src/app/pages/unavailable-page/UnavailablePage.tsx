@@ -1,6 +1,5 @@
 import { Alert, Link } from '@navikt/ds-react';
 import { useAppIntl } from '@i18n/index';
-import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
@@ -15,7 +14,6 @@ const link = 'https://www.nav.no/soknader/nb/person/familie/pleiepenger-og-oppla
 const UnavailablePage = () => {
     const { text } = useAppIntl();
     const title = text('application.title');
-    useLogSidevisning(SIFCommonPageKey.ikkeTilgjengelig);
     return (
         <Page className={bem.block} title={title} topContentRenderer={() => <SoknadHeader title={title} />}>
             <Block margin="xxxl">
