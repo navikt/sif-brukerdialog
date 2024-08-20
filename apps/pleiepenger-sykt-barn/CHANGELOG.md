@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.15.13
+
+### Patch Changes
+
+-   38b6945: Sette maxLength til 5 på inputfelter hvor bruker oppgir timer med desimaler.
+
 ## 3.15.12
 
 ### Patch Changes
