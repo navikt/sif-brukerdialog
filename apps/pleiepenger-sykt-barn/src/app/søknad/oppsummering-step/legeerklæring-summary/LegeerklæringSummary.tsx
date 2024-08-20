@@ -1,5 +1,5 @@
 import { FormSummary } from '@navikt/ds-react';
-import EditStepLink from '../../../components/edit-step-link/EditStepLink';
+import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import LegeerklæringAttachmentList from '../../../components/legeerklæring-file-list/LegeerklæringFileList';
 import { AppText } from '../../../i18n';
 

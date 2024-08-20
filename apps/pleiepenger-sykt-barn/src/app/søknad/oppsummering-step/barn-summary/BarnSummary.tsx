@@ -1,5 +1,6 @@
 import { FormSummary } from '@navikt/ds-react';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
+import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { TextareaSvar } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils';
 import UploadedDocumentsList from '../../../components/fødselsattest-file-list/UploadedDocumentsList';
@@ -8,7 +9,6 @@ import { AppText } from '../../../i18n';
 import { BarnRelasjon, RegistrerteBarn, ÅrsakManglerIdentitetsnummer } from '../../../types';
 import { SøknadApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
-import EditStepLink from '../../../components/edit-step-link/EditStepLink';
 
 interface Props {
     barn: RegistrerteBarn[];

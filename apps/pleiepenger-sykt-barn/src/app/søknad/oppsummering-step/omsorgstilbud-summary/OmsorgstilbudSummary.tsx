@@ -1,12 +1,12 @@
+import { Box, FormSummary } from '@navikt/ds-react';
 import React from 'react';
+import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { DateRange, prettifyDateExtended } from '@navikt/sif-common-utils';
 import { AppText } from '../../../i18n';
 import TidEnkeltdager from '../../../local-sif-common-pleiepenger/components/dager-med-tid/TidEnkeltdager';
 import TidFasteDager from '../../../local-sif-common-pleiepenger/components/dager-med-tid/TidFasteDager';
 import { SøknadApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import { søkerFortidOgFremtid, søkerKunFortid, søkerKunFremtid } from '../../../utils/søknadsperiodeUtils';
-import { Box, FormSummary } from '@navikt/ds-react';
-import EditStepLink from '../../../components/edit-step-link/EditStepLink';
 
 interface Props {
     søknadsperiode: DateRange;

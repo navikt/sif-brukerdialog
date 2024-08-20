@@ -1,6 +1,6 @@
 import { FormSummary } from '@navikt/ds-react';
+import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { JaNeiSvar, SummaryList } from '@navikt/sif-common-ui';
-import EditStepLink from '../../../components/edit-step-link/EditStepLink';
 import { AppText } from '../../../i18n';
 import { MedlemskapApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import { renderUtenlandsoppholdSummary } from '../summaryItemRenderers';

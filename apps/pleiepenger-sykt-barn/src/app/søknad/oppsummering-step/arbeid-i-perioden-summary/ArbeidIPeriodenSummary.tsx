@@ -1,10 +1,10 @@
+import { FormSummary } from '@navikt/ds-react';
 import React from 'react';
 import { AppText, useAppIntl } from '@i18n/index';
+import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { DateRange } from '@navikt/sif-common-utils';
 import { ArbeidsforholdApiData, SøknadApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import ArbeidIPeriodeSummaryItem, { ArbeidIPeriodenSummaryItemType } from './ArbeidIPeriodenSummaryItem';
-import { FormSummary } from '@navikt/ds-react';
-import EditStepLink from '../../../components/edit-step-link/EditStepLink';
 
 interface Props {
     apiValues: SøknadApiData;

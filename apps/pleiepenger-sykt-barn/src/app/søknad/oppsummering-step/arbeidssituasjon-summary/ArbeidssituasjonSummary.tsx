@@ -1,5 +1,7 @@
+import { FormSummary } from '@navikt/ds-react';
 import React from 'react';
 import { AppText } from '@i18n/index';
+import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { DateRange } from '@navikt/sif-common-utils';
 import { Arbeidsgiver } from '../../../types';
 import { SøknadApiData } from '../../../types/søknad-api-data/SøknadApiData';
@@ -9,8 +11,6 @@ import ArbeidssituasjonSelvstendigSummary from './ArbeidssituasjonSelvstendigSum
 import UtenlandskNæringSummary from './ArbeidssituasjonUtenlandskNæringSummary';
 import OpptjeningIUtlandetSummary from './OpptjeningIUtlandetSummary';
 import StønadGodtgjørelseSummary from './StønadGodtgjørelseSummary';
-import { FormSummary } from '@navikt/ds-react';
-import EditStepLink from '../../../components/edit-step-link/EditStepLink';
 import VernepliktSummary from './VernepliktSummary';
 
 interface Props {

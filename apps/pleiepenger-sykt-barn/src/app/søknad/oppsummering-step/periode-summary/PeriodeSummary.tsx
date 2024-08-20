@@ -1,4 +1,5 @@
 import { FormSummary } from '@navikt/ds-react';
+import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { SummaryList } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
@@ -13,7 +14,6 @@ import {
     renderUtenlandsoppholdIPeriodenSummary,
     renderUtenlandsoppholdIPeriodenSummaryTitle,
 } from '../summaryItemRenderers';
-import EditStepLink from '../../../components/edit-step-link/EditStepLink';
 
 interface Props {
     apiValues: SøknadApiData;
