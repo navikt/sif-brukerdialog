@@ -2,20 +2,26 @@ const nb = {
     'step.oppsummering.info':
         'Les gjennom oppsummeringen før du sender inn søknaden. Hvis du vil gjøre endringer, kan du gå tilbake.',
     'step.oppsummering.søker.header': 'Om deg som søker',
-    'step.oppsummering.søker.fnr': 'Fødselsnummer: {fødselsnummer}',
+    'step.oppsummering.søker.navn': 'Navn',
+    'step.oppsummering.søker.fnr': 'Fødselsnummer',
     'step.oppsummering.søker.omDeg': 'Om deg',
 
     'step.oppsummering.dineBarn': 'Om barn og dager du må dekke selv',
+    'step.oppsummering.dineBarn.barn': 'Dine barn',
     'step.oppsummering.dineBarn.listItem': ' (fnr. {identitetsnummer})',
     'step.oppsummering.dineBarn.listItem.utvidetRett': 'Ekstra omsorgsdager.',
     'step.oppsummering.dineBarn.listItem.årsak.FOSTERBARN': '(Barnet er mitt fosterbarn).',
 
     'step.oppsummering.arbeidssituasjon.header': 'Din arbeidssituasjon',
     'step.oppsummering.utbetalinger.header': 'Dager du søker om utbetaling for',
+    'step.oppsummering.utbetalinger.heleDager': 'Hele dager med fravær',
+    'step.oppsummering.utbetalinger.delvisDager': 'Dager med delvis fravær',
     'step.oppsummering.medlemskap.header': 'Medlemskap i folketrygden',
 
     'step.oppsummering.utlandetSiste12.header': 'Har du bodd i utlandet i de siste 12 månedene?',
+    'step.oppsummering.utlandetSiste12.bosteder': 'Bosteder i utlandet de siste 12 månedene',
     'step.oppsummering.utlandetNeste12.header': 'Skal du bo i utlandet i de neste 12 månedene?',
+    'step.oppsummering.utlandetNeste12.bosteder': 'Bosteder i utlandet de neste 12 månedene',
     'step.oppsummering.utlandetSiste12.liste.header': 'Utenlandsopphold siste 12 måneder',
     'step.oppsummering.utlandetNeste12.liste.header': 'Utenlandsopphold neste 12 måneder',
     'step.oppsummering.samværsavtale.header': 'Avtale om delt bosted',
