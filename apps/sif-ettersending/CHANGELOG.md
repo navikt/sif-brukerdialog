@@ -1,5 +1,13 @@
 # @navikt/sif-ettersending
 
+## 3.35.13
+
+### Patch Changes
+
+-   664f1eb: Fjerne egen logging av sidevisning til amplitude. Dette er erstattet av dekoratørens besøk event.
+-   Updated dependencies [664f1eb]
+    -   @navikt/sif-common-amplitude@2.25.16
+
 ## 3.35.12
 
 ### Patch Changes

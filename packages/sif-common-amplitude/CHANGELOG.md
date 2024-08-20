@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.25.16
+
+### Patch Changes
+
+-   664f1eb: Fjerne egen logging av sidevisning til amplitude. Dette er erstattet av dekoratørens besøk event.
+
 ## 2.25.15
 
 ### Patch Changes
