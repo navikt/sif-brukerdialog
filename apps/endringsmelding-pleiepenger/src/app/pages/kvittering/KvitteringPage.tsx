@@ -1,6 +1,5 @@
 import { Link } from '@navikt/ds-react';
 import { useEffect } from 'react';
-import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { Kvittering } from '@navikt/sif-common-soknad-ds';
@@ -12,7 +11,6 @@ interface Props {
 
 const KvitteringPage = ({ onUnmount }: Props) => {
     const { text } = useAppIntl();
-    useLogSidevisning(SIFCommonPageKey.kvittering);
     useEffect(() => {
         return () => {
             onUnmount();

@@ -1,7 +1,6 @@
 import { Alert, BodyLong, Heading, Link } from '@navikt/ds-react';
 import { useEffect } from 'react';
 import { useAppIntl } from '@i18n/index';
-import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import CheckmarkIcon from '@navikt/sif-common-core-ds/src/atoms/checkmark-icon/CheckmarkIcon';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
@@ -28,8 +27,6 @@ const ConfirmationPage = ({ kvitteringInfo, onUnmount }: Props) => {
         };
     });
     const lenker = getLenker(intl.locale);
-
-    useLogSidevisning(SIFCommonPageKey.kvittering);
 
     return (
         <Page

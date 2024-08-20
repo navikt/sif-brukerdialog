@@ -1,4 +1,3 @@
-import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import { SoknadVelkommenPage } from '@navikt/sif-common-soknad-ds';
 import { AppText, useAppIntl } from '../../i18n';
 import { useSoknadContext } from '../../soknad/SoknadContext';
@@ -14,8 +13,6 @@ interface Props {
 const VelkommenPage = ({ søknadstype, søker }: Props) => {
     const { text } = useAppIntl();
     const { startSoknad } = useSoknadContext();
-
-    useLogSidevisning(SIFCommonPageKey.velkommen);
 
     return (
         <SoknadVelkommenPage

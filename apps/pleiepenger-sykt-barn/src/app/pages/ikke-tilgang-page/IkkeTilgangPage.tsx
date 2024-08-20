@@ -1,6 +1,5 @@
 import { Link } from '@navikt/ds-react';
 import { useAppIntl } from '@i18n/index';
-import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
@@ -10,7 +9,6 @@ import getLenker from '../../lenker';
 
 const IkkeTilgangPage = () => {
     const { text, intl } = useAppIntl();
-    useLogSidevisning(SIFCommonPageKey.ikkeTilgang);
     return (
         <Page
             className="ikkeTilgangPage"

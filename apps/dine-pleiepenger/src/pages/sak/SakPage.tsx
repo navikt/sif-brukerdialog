@@ -1,7 +1,6 @@
 import { Box, VStack } from '@navikt/ds-react';
 import React from 'react';
 import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
-import { useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import DevBranchInfo from '../../components/dev-branch-info/DevBranchInfo';
@@ -17,7 +16,6 @@ import { useLogSaksprofil } from '../../hooks/useLogSaksprofil';
 import { Behandlingsstatus } from '../../server/api-models/Behandlingsstatus';
 import { Pleietrengende } from '../../server/api-models/PleietrengendeSchema';
 import { Sak } from '../../server/api-models/SakSchema';
-import { PageKey } from '../../types/PageKey';
 import { getAllBreadcrumbs } from '../../utils/decoratorBreadcrumbs';
 import { browserEnv } from '../../utils/env';
 import { getBehandlingsstatusISak } from '../../utils/sakUtils';
@@ -32,7 +30,6 @@ interface Props {
 const SakPage: React.FunctionComponent<Props> = ({ sak, pleietrengende, saksbehandlingstidUker, antallSaker }) => {
     const router = useRouter();
     useLogSaksprofil(sak, antallSaker);
-    useLogSidevisning(PageKey.sak);
 
     setBreadcrumbs(
         getAllBreadcrumbs(

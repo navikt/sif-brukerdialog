@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
-import { useLogSidevisning } from '@navikt/sif-common-amplitude';
 import { UnansweredQuestionsInfo } from '@navikt/sif-common-formik-ds';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { soknadStepUtils, Step } from '@navikt/sif-common-soknad-ds';
@@ -50,8 +49,6 @@ const SoknadFormStep = ({
     const navigate = useNavigate();
 
     const applicationTitle = text(`application.title.${søknadstype}`);
-
-    useLogSidevisning(id);
 
     const steps: ProgressStep[] = soknadStepUtils.getProgressStepsFromConfig(soknadStepsConfig, stepConfig.index, intl);
     const { previousStepRoute } = stepConfig;
