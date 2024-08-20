@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.19.18
+
+### Patch Changes
+
+-   beda997: Bruke Aksel-mal på oppsummeringssiden
+
 ## 2.19.17
 
 ### Patch Changes
