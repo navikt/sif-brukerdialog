@@ -5,7 +5,7 @@
     "license": "MIT",
     "name": "@navikt/endringsmelding-pleiepenger",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "2.30.16",
+    "version": "2.30.18",
     "private": true,
     "dependencies": {
         "@navikt/ds-css": "6.16.0",
@@ -45,7 +45,7 @@
         "react-router-dom": "6.26.1"
     },
     "devDependencies": {
-        "@axe-core/playwright": "4.9.1",
+        "@axe-core/playwright": "4.10.0",
         "@babel/core": "7.25.2",
         "@babel/plugin-proposal-object-rest-spread": "7.20.7",
         "@babel/plugin-transform-modules-commonjs": "7.24.8",

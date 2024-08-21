@@ -1,5 +1,19 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.25.19
+
+### Patch Changes
+
+-   664f1eb: Fjerne egen logging av sidevisning til amplitude. Dette er erstattet av dekoratørens besøk event.
+-   Updated dependencies [664f1eb]
+    -   @navikt/sif-common-amplitude@2.25.16
+
+## 1.25.18
+
+### Patch Changes
+
+-   Oppdatere oppsummeringssiden til å bruke Aksel-maler
+
 ## 1.25.17
 
 ### Patch Changes

@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/omsorgspengesoknad",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "1.28.17",
+    "version": "1.28.19",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -44,7 +44,7 @@
         "react-router-dom": "6.26.1"
     },
     "devDependencies": {
-        "@axe-core/playwright": "4.9.1",
+        "@axe-core/playwright": "4.10.0",
         "@babel/core": "7.25.2",
         "@babel/preset-env": "7.25.3",
         "@babel/preset-react": "7.24.7",

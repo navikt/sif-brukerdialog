@@ -1,6 +1,5 @@
 import { useSøknadContext } from '@hooks';
 import { BodyShort, Heading } from '@navikt/ds-react';
-import { useLogSidevisning } from '@navikt/sif-common-amplitude';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
@@ -33,7 +32,6 @@ const VelgSakPage = () => {
         dispatch,
     } = useSøknadContext();
     const navigate = useNavigate();
-    useLogSidevisning('velgSak');
 
     const velgSak = (values: Partial<FormValues>) => {
         const k9Sak = k9saker.find((sak) => sak.barn.aktørId === values.barnAktørId);

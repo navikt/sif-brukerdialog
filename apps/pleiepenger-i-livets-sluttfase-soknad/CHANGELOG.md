@@ -1,5 +1,21 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.9.13
+
+### Patch Changes
+
+-   664f1eb: Fjerne egen logging av sidevisning til amplitude. Dette er erstattet av dekoratørens besøk event.
+-   Updated dependencies [664f1eb]
+    -   @navikt/sif-common-amplitude@2.25.16
+
+## 2.9.12
+
+### Patch Changes
+
+-   Bruke Aksel mal for oppsummeringssiden
+-   Updated dependencies
+    -   @navikt/sif-common-forms-ds@9.1.0
+
 ## 2.9.11
 
 ### Patch Changes

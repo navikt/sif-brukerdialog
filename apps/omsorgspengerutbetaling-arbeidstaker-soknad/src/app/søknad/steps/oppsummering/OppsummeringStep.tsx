@@ -1,4 +1,4 @@
-import { ErrorSummary } from '@navikt/ds-react';
+import { ErrorSummary, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { useEffect, useRef } from 'react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
@@ -7,7 +7,6 @@ import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
-import { SummarySection } from '@navikt/sif-common-ui';
 import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -114,54 +113,54 @@ const OppsummeringStep = () => {
                                 submitPending={isSubmitting}
                                 backButtonDisabled={isSubmitting}
                                 onBack={goBack}>
-                                {/* Om deg */}
-                                <OmSøkerOppsummering søker={søker} />
+                                <VStack gap="8">
+                                    {/* Om deg */}
+                                    <OmSøkerOppsummering søker={søker} />
 
-                                {/* Dine barn */}
-                                <DineBarnOppsummering
-                                    barn={apiData.dineBarn.barn}
-                                    harDeltBosted={søknadsdata.dineBarn?.harDeltBosted}
-                                    registrerteBarn={registrerteBarn}
-                                />
-
-                                {/* Delt bosted */}
-                                {søknadsdata.deltBosted ? (
-                                    <DeltBostedOppsummering
-                                        vedlegg={apiData.vedlegg}
-                                        deltBostedSøknadsdata={søknadsdata.deltBosted}
+                                    {/* Dine barn */}
+                                    <DineBarnOppsummering
+                                        barn={apiData.dineBarn.barn}
+                                        harDeltBosted={søknadsdata.dineBarn?.harDeltBosted}
+                                        registrerteBarn={registrerteBarn}
                                     />
-                                ) : null}
 
-                                {/* Fravær fra arbeid */}
-                                <SummarySection header={text('step.oppsummering.arbeidsforhold.titel')}>
+                                    {/* Delt bosted */}
+                                    {søknadsdata.deltBosted ? (
+                                        <DeltBostedOppsummering
+                                            vedlegg={apiData.vedlegg}
+                                            deltBostedSøknadsdata={søknadsdata.deltBosted}
+                                        />
+                                    ) : null}
+
+                                    {/* Fravær fra arbeid */}
                                     <ArbeidsforholdSummaryView
                                         listeAvArbeidsforhold={apiData.arbeidsgivere}
                                         søknadsdata={søknadsdata}
                                     />
-                                </SummarySection>
 
-                                {/* Utenlandsopphold */}
-                                <UtenlandsoppholdISøkeperiodeOppsummering utenlandsopphold={apiData.opphold} />
+                                    {/* Utenlandsopphold */}
+                                    <UtenlandsoppholdISøkeperiodeOppsummering utenlandsopphold={apiData.opphold} />
 
-                                {/* Medlemskap i folketrygden */}
-                                <MedlemskapOppsummering bosteder={apiData.bosteder} />
+                                    {/* Medlemskap i folketrygden */}
+                                    <MedlemskapOppsummering bosteder={apiData.bosteder} />
 
-                                {/* Vedlegg */}
-                                <LegeerklæringOppsummering
-                                    vedlegg={apiData.vedlegg}
-                                    legeerklæringSøknadsdata={søknadsdata.legeerklæring}
-                                />
+                                    {/* Vedlegg */}
+                                    <LegeerklæringOppsummering
+                                        vedlegg={apiData.vedlegg}
+                                        legeerklæringSøknadsdata={søknadsdata.legeerklæring}
+                                    />
 
-                                <ConfirmationCheckbox
-                                    disabled={isSubmitting}
-                                    label={
-                                        <span data-testid="bekreft-label">
-                                            <AppText id="step.oppsummering.bekrefterOpplysninger" />
-                                        </span>
-                                    }
-                                    validate={getCheckedValidator()}
-                                    name={OppsummeringFormFields.harBekreftetOpplysninger}
-                                />
+                                    <ConfirmationCheckbox
+                                        disabled={isSubmitting}
+                                        label={
+                                            <span data-testid="bekreft-label">
+                                                <AppText id="step.oppsummering.bekrefterOpplysninger" />
+                                            </span>
+                                        }
+                                        validate={getCheckedValidator()}
+                                        name={OppsummeringFormFields.harBekreftetOpplysninger}
+                                    />
+                                </VStack>
                             </Form>
                             {sendSøknadError && (
                                 <FormBlock>

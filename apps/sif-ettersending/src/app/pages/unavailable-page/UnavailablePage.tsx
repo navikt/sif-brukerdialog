@@ -1,5 +1,4 @@
 import { Alert, BodyLong } from '@navikt/ds-react';
-import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
@@ -11,8 +10,6 @@ const bem = bemUtils('introPage');
 const UnavailablePage = () => {
     const { text } = useAppIntl();
     const title = text('banner.title');
-
-    useLogSidevisning(SIFCommonPageKey.ikkeTilgjengelig);
 
     return (
         <Page className={bem.block} title={title} topContentRenderer={() => <SoknadHeader title={title} />}>

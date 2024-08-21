@@ -1,5 +1,26 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.19.20
+
+### Patch Changes
+
+-   664f1eb: Fjerne egen logging av sidevisning til amplitude. Dette er erstattet av dekoratørens besøk event.
+-   Updated dependencies [664f1eb]
+    -   @navikt/sif-common-amplitude@2.25.16
+
+## 2.19.19
+
+### Patch Changes
+
+-   Updated dependencies
+    -   @navikt/sif-common-forms-ds@9.1.0
+
+## 2.19.18
+
+### Patch Changes
+
+-   beda997: Bruke Aksel-mal på oppsummeringssiden
+
 ## 2.19.17
 
 ### Patch Changes

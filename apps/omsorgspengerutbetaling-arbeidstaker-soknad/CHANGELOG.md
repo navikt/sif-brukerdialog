@@ -1,5 +1,26 @@
 # @navikt/omsorgspengerutbetaling-arbeidstaker-soknad
 
+## 1.4.20
+
+### Patch Changes
+
+-   664f1eb: Fjerne egen logging av sidevisning til amplitude. Dette er erstattet av dekoratørens besøk event.
+-   Updated dependencies [664f1eb]
+    -   @navikt/sif-common-amplitude@2.25.16
+
+## 1.4.19
+
+### Patch Changes
+
+-   Updated dependencies
+    -   @navikt/sif-common-forms-ds@9.1.0
+
+## 1.4.18
+
+### Patch Changes
+
+-   8a4685d: Gå over til å bruke aksel-maler for oppsummeringsiden
+
 ## 1.4.17
 
 ### Patch Changes

@@ -1,7 +1,6 @@
 import { BodyLong } from '@navikt/ds-react';
 import React from 'react';
 import { AppText, useAppIntl } from '@i18n/index';
-import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { SoknadVelkommenPage } from '@navikt/sif-common-soknad-ds';
 import { Søker } from '../../types';
@@ -12,7 +11,6 @@ type Props = StepCommonProps & { søker: Søker };
 
 const VelkommenPage: React.FunctionComponent<Props> = ({ onValidSubmit, søker }) => {
     const { text } = useAppIntl();
-    useLogSidevisning(SIFCommonPageKey.velkommen);
 
     return (
         <SoknadVelkommenPage

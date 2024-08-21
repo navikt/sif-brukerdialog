@@ -1,6 +1,5 @@
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { useSakUtledet as useSakInfo, useStartSøknad } from '@hooks';
-import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
@@ -33,8 +32,6 @@ const VelkommenPage = () => {
     const { text, intl } = useAppIntl();
     const { startSøknad } = useStartSøknad();
     const { søkersFornavn, barnetsNavn, samletSøknadsperiodeTekst } = useSakInfo();
-
-    useLogSidevisning(SIFCommonPageKey.velkommen);
 
     return (
         <Page title={text('application.title')}>

@@ -1,8 +1,10 @@
+import { FormSummary, Heading } from '@navikt/ds-react';
 import React from 'react';
 import { DateRange } from '@navikt/sif-common-formik-ds';
-import { SummaryBlock, SummarySection } from '@navikt/sif-common-ui';
+import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
 import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import { AppIntlShape, AppText, useAppIntl } from '../../../../i18n';
 import { ArbeidsgiverType } from '../../../../types/Arbeidsgiver';
 import {
     ArbeidsforholdApiData,
@@ -10,12 +12,12 @@ import {
     SøknadApiData,
 } from '../../../../types/søknadApiData/SøknadApiData';
 import ArbeidIPeriodeSummaryItem from './ArbeidIPeriodenSummaryItem';
-import { AppIntlShape, AppText, useAppIntl } from '../../../../i18n';
 
 interface Props {
     apiValues: SøknadApiData;
     dagerMedPleie: Date[];
     søknadsperiode: DateRange;
+    onEdit?: () => void;
 }
 
 export interface ArbeidIPeriodenSummaryItemType extends ArbeidsforholdApiData {
@@ -63,6 +65,7 @@ const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
     apiValues: { arbeidsgivere, frilans, selvstendigNæringsdrivende },
     dagerMedPleie,
     søknadsperiode,
+    onEdit,
 }) => {
     const appIntl = useAppIntl();
     const { text } = appIntl;
@@ -105,24 +108,41 @@ const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
     return (
         <>
             {aktiveArbeidsforhold.length > 0 && (
-                <SummarySection header={text('oppsummering.arbeidIPeriode.jobbIPerioden.header')}>
-                    {aktiveArbeidsforhold.map((forhold, index) =>
-                        forhold.arbeidIPeriode ? (
-                            <SummaryBlock header={forhold.tittel} key={forhold.tittel}>
-                                <ArbeidIPeriodeSummaryItem
-                                    periode={søknadsperiode}
-                                    dagerMedPleie={dagerMedPleie}
-                                    arbeidIPeriode={forhold.arbeidIPeriode}
-                                    normaltimerUke={forhold.jobberNormaltTimer}
-                                />
-                            </SummaryBlock>
-                        ) : (
-                            <div key={index}>
-                                <AppText id="oppsummering.arbeidIPeriode.jobberIPerioden.informasjonMangler" />
-                            </div>
-                        ),
-                    )}
-                </SummarySection>
+                <FormSummary>
+                    <FormSummary.Header>
+                        <FormSummary.Heading level="2">
+                            <AppText id="oppsummering.arbeidIPeriode.jobbIPerioden.header" />
+                        </FormSummary.Heading>
+                        {onEdit && <EditStepLink onEdit={onEdit} />}
+                    </FormSummary.Header>
+                    <FormSummary.Answers>
+                        {aktiveArbeidsforhold.map((forhold) => (
+                            <FormSummary.Answer key={forhold.tittel}>
+                                {forhold.arbeidIPeriode ? (
+                                    <>
+                                        <FormSummary.Label>
+                                            <Heading level="3" size="small">
+                                                {forhold.tittel}
+                                            </Heading>
+                                        </FormSummary.Label>
+                                        <FormSummary.Value>
+                                            <ArbeidIPeriodeSummaryItem
+                                                periode={søknadsperiode}
+                                                dagerMedPleie={dagerMedPleie}
+                                                arbeidIPeriode={forhold.arbeidIPeriode}
+                                                normaltimerUke={forhold.jobberNormaltTimer}
+                                            />
+                                        </FormSummary.Value>
+                                    </>
+                                ) : (
+                                    <FormSummary.Value>
+                                        <AppText id="oppsummering.arbeidIPeriode.jobberIPerioden.informasjonMangler" />
+                                    </FormSummary.Value>
+                                )}
+                            </FormSummary.Answer>
+                        ))}
+                    </FormSummary.Answers>
+                </FormSummary>
             )}
         </>
     );

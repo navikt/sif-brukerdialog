@@ -1,13 +1,12 @@
 import { PleiepengerLivetsSluttApp } from '@navikt/sif-app-register';
-import { SIFCommonPageKey, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude';
-import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import { SamtykkeForm } from '@navikt/sif-common-soknad-ds';
+import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { SoknadVelkommenPage } from '@navikt/sif-common-soknad-ds';
 import { useAppIntl } from '../../i18n';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 import { SøknadRoutes } from '../../types/SøknadRoutes';
 import OmSøknaden from './OmSøknaden';
-import VelkommenGuide from './VelkommenGuide';
+import VelkommenGuideContent from './VelkommenGuideContent';
 
 const VelkommenPage = () => {
     const { text } = useAppIntl();
@@ -15,8 +14,6 @@ const VelkommenPage = () => {
         state: { søker },
         dispatch,
     } = useSøknadContext();
-
-    useLogSidevisning(SIFCommonPageKey.velkommen);
 
     const { logSoknadStartet } = useAmplitudeInstance();
 
@@ -26,13 +23,15 @@ const VelkommenPage = () => {
         dispatch(actionsCreator.setSøknadRoute(SøknadRoutes.OPPLYSNINGER_OM_PLEIETRENGENDE));
     };
     return (
-        <Page title={text('page.velkommen.sidetittel')}>
-            <VelkommenGuide navn={søker.fornavn} />
-
+        <SoknadVelkommenPage
+            title={text('page.velkommen.sidetittel')}
+            onStartSøknad={startSøknad}
+            guide={{
+                navn: søker.fornavn,
+                content: <VelkommenGuideContent />,
+            }}>
             <OmSøknaden />
-
-            <SamtykkeForm onValidSubmit={startSøknad} />
-        </Page>
+        </SoknadVelkommenPage>
     );
 };
 

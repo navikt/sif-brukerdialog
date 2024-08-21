@@ -11,7 +11,7 @@ interface Props {
     dagerMedTid: DagMedTid[];
     viseUke?: boolean;
     visNormaltid?: boolean;
-    headingLevel?: number;
+    ukeHeadingLevel?: '2' | '3' | '4' | '5';
 }
 
 const sortDays = (d1: DagMedTid, d2: DagMedTid): number => (dayjs(d1.dato).isSameOrBefore(d2.dato, 'day') ? -1 : 1);
@@ -46,7 +46,7 @@ const renderDagerMedTid = (dager: DagMedTid[], visNormaltid?: boolean) => {
     );
 };
 
-export const DagerMedTidListe = ({ dagerMedTid, viseUke, visNormaltid, headingLevel = 5 }: Props) => {
+export const DagerMedTidListe = ({ dagerMedTid, viseUke, visNormaltid, ukeHeadingLevel = '5' }: Props) => {
     const weeksWithDays = groupBy(dagerMedTid, (dag) => `${dag.dato.getFullYear()}-${dayjs(dag.dato).isoWeek()}`);
     return (
         <div className={bem.block}>
@@ -58,7 +58,7 @@ export const DagerMedTidListe = ({ dagerMedTid, viseUke, visNormaltid, headingLe
                             <div key={key} className={bem.element('uke', viseUke ? undefined : 'utenUkenummer')}>
                                 {viseUke && (
                                     <Heading
-                                        level={`${headingLevel}` as any}
+                                        level={`${ukeHeadingLevel}` as any}
                                         size="xsmall"
                                         className={bem.element('uketittel')}>
                                         <AppText id="dagerMedTid.uke" values={{ uke: dayjs(days[0].dato).isoWeek() }} />

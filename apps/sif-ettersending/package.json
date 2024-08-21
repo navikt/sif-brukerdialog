@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/sif-ettersending",
     "repository": "https://github.com/navikt/sif-ettersending",
-    "version": "3.35.12",
+    "version": "3.35.13",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -45,7 +45,7 @@
         "react-router-dom": "6.26.1"
     },
     "devDependencies": {
-        "@axe-core/playwright": "4.9.1",
+        "@axe-core/playwright": "4.10.0",
         "@babel/core": "7.25.2",
         "@babel/preset-env": "7.25.3",
         "@babel/preset-react": "7.24.7",
