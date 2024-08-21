@@ -80,14 +80,6 @@
         "vite-plugin-checker": "0.7.2",
         "vitest": "2.0.5"
     },
-    "lint-staged": {
-        "apps/**/*.{ts,tsx}": [
-            "eslint --fix"
-        ],
-        "packages/**/*.{ts,tsx}": [
-            "eslint --fix"
-        ]
-    },
     "scripts": {
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase",
         "build-storybook": "storybook build",
