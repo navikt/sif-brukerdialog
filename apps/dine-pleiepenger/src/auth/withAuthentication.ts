@@ -6,7 +6,6 @@ import { RequestContext } from '../types/RequestContext';
 import { browserEnv, isLocal } from '../utils/env';
 import { getSessionId } from '../utils/userSessionId';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface ServerSidePropsResult {}
 
 type ApiHandler = (req: NextApiRequest, res: NextApiResponse) => Promise<unknown> | unknown;
@@ -159,7 +158,6 @@ export function createDemoRequestContext(req: GetServerSidePropsContext['req'] |
     }
 
     return {
-        // eslint-disable-next-line @typescript-eslint/no-require-imports
         ...require('./fakeLocalAuthTokenSet.json'),
         requestId: 'not set',
         sessionId: getSessionId(req),
