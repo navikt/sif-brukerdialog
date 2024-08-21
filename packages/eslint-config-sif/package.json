@@ -1,5 +1,5 @@
 {
-    "name": "@navikt/eslint-config-sif",
+    "name": "@sif/eslint-config",
     "main": "eslint.config.mjs",
     "type": "module",
     "version": "1.0.0",

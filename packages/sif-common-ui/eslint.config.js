@@ -1,3 +1,3 @@
-import commonConfig from '@navikt/eslint-config-sif';
+import commonConfig from '@sif/eslint-config';
 
 export default commonConfig;

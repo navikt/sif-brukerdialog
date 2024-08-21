@@ -75,17 +75,5 @@
         "uuid": "10.0.0",
         "vitest": "2.0.5"
     },
-    "eslintConfig": {
-        "overrides": [
-            {
-                "files": [
-                    "**/*.stories.*"
-                ],
-                "rules": {
-                    "import/no-anonymous-default-export": "off"
-                }
-            }
-        ]
-    },
     "_id": "@navikt/dine-pleiepenger@0.3.1"
 }
