@@ -22,14 +22,15 @@
         "packages/**/*.{ts,tsx,js,jsx, css}": "prettier --write"
     },
     "scripts": {
-        "build": "turbo run build",
-        "clean-all": "turbo run clean && rm -rf node_modules",
-        "clean": "turbo run clean",
-        "dev-lib": "turbo run dev-lib --no-cache --parallel --continue",
+        "build": "turbo build",
+        "clean-all": "turbo clean && rm -rf node_modules",
+        "clean": "turbo clean",
         "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-        "lint": "turbo run lint",
+        "lint": "turbo lint",
+        "lint:eslint": "turbo lint:eslint",
+        "lint:tsc": "turbo lint:tsc",
         "prepare": "husky install",
-        "test": "turbo run test"
+        "test": "turbo test"
     },
     "workspaces": [
         "apps/*",

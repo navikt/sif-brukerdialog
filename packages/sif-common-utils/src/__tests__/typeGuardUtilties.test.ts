@@ -22,7 +22,7 @@ describe('isISODuration', () => {
     it('Feiler ved ugyldig ISOFORMAT string', () => {
         expect(isISODuration('PT')).toBeFalsy();
     });
-    it('Feiler ved ugyldig ISOFORMAT string', () => {
+    it('Feiler ved ugyldig ISOFORMAT 2 string', () => {
         expect(isISODuration('PL0H2S')).toBeFalsy();
     });
 });

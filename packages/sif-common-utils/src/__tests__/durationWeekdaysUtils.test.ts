@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { DurationWeekdays, getDurationForISOWeekdayNumber } from '..';
 import { ISODateToDate } from '../dateUtils';
 import { durationToISODuration, ISODurationToDuration } from '../durationUtils';
@@ -137,12 +136,12 @@ describe('workDurationUtils', () => {
             expect(weekdays[3]).toEqual(Weekday.thursday);
             expect(weekdays[4]).toEqual(Weekday.friday);
         });
-        it('returnerer ikke ukedag som har varighet === undefined ', () => {
+        it('returnerer ikke ukedag som har varighet === undefined', () => {
             const weekdays = getWeekdaysWithDuration({ thursday: { hours: '1', minutes: '0' }, friday: undefined });
             expect(weekdays.length).toEqual(1);
             expect(weekdays[0]).toEqual(Weekday.thursday);
         });
-        it('returnerer ikke ukedag som har varighet === 0 timer 0 minutter ', () => {
+        it('returnerer ikke ukedag som har varighet === 0 timer 0 minutter', () => {
             const weekdays = getWeekdaysWithDuration({
                 thursday: { hours: '1', minutes: '0' },
                 friday: { hours: '0', minutes: '0' },
@@ -333,34 +332,34 @@ describe('workDurationUtils', () => {
         });
     });
     describe('ensureCompleteDurationWeekdays', () => {
-        const duration: Duration = { hours: '2', minutes: '10' };
+        const durationLocal: Duration = { hours: '2', minutes: '10' };
         const noDuration: Duration = { hours: '0', minutes: '0' };
         it('endrer ikke allerede komplett durationWeekdays', () => {
             const dw: DurationWeekdays = {
-                [Weekday.monday]: { ...duration },
-                [Weekday.tuesday]: { ...duration },
-                [Weekday.wednesday]: { ...duration },
-                [Weekday.thursday]: { ...duration },
-                [Weekday.friday]: { ...duration },
+                [Weekday.monday]: { ...durationLocal },
+                [Weekday.tuesday]: { ...durationLocal },
+                [Weekday.wednesday]: { ...durationLocal },
+                [Weekday.thursday]: { ...durationLocal },
+                [Weekday.friday]: { ...durationLocal },
             };
             const result = ensureCompleteDurationWeekdays(dw);
-            expect(durationToISODuration(result[Weekday.monday]!)).toEqual(durationToISODuration(duration));
-            expect(durationToISODuration(result[Weekday.tuesday]!)).toEqual(durationToISODuration(duration));
-            expect(durationToISODuration(result[Weekday.wednesday]!)).toEqual(durationToISODuration(duration));
-            expect(durationToISODuration(result[Weekday.thursday]!)).toEqual(durationToISODuration(duration));
-            expect(durationToISODuration(result[Weekday.friday]!)).toEqual(durationToISODuration(duration));
+            expect(durationToISODuration(result[Weekday.monday]!)).toEqual(durationToISODuration(durationLocal));
+            expect(durationToISODuration(result[Weekday.tuesday]!)).toEqual(durationToISODuration(durationLocal));
+            expect(durationToISODuration(result[Weekday.wednesday]!)).toEqual(durationToISODuration(durationLocal));
+            expect(durationToISODuration(result[Weekday.thursday]!)).toEqual(durationToISODuration(durationLocal));
+            expect(durationToISODuration(result[Weekday.friday]!)).toEqual(durationToISODuration(durationLocal));
         });
         it('fyller ut en ukomplett uke', () => {
             const dw: DurationWeekdays = {
-                [Weekday.monday]: { ...duration },
-                [Weekday.friday]: { ...duration },
+                [Weekday.monday]: { ...durationLocal },
+                [Weekday.friday]: { ...durationLocal },
             };
             const result = ensureCompleteDurationWeekdays(dw);
-            expect(durationToISODuration(result[Weekday.monday]!)).toEqual(durationToISODuration(duration));
+            expect(durationToISODuration(result[Weekday.monday]!)).toEqual(durationToISODuration(durationLocal));
             expect(durationToISODuration(result[Weekday.tuesday]!)).toEqual(durationToISODuration(noDuration));
             expect(durationToISODuration(result[Weekday.wednesday]!)).toEqual(durationToISODuration(noDuration));
             expect(durationToISODuration(result[Weekday.thursday]!)).toEqual(durationToISODuration(noDuration));
-            expect(durationToISODuration(result[Weekday.friday]!)).toEqual(durationToISODuration(duration));
+            expect(durationToISODuration(result[Weekday.friday]!)).toEqual(durationToISODuration(durationLocal));
         });
         it('fyller ut en ukomplette dager', () => {
             const dw: DurationWeekdays = {
