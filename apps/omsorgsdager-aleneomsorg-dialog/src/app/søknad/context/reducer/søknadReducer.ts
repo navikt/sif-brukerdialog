@@ -47,7 +47,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     børMellomlagres: false,
                 };
-            case SøknadContextActionKeys.SET_SØKNAD_OM_OMSORGEN_FOR_BARN:
+            case SøknadContextActionKeys.SET_SØKNAD_OM_OMSORGEN_FOR_BARN: {
                 const søknadsdata: Søknadsdata = {
                     ...state.søknadsdata,
                     omOmsorgenForBarn: {
@@ -59,6 +59,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     søknadsdata,
                 };
+            }
 
             case SøknadContextActionKeys.SET_SØKNAD_TIDSPUNKT_FOR_ALENEOMSORG:
                 return {
