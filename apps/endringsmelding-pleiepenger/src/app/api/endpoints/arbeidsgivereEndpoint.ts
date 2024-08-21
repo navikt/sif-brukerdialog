@@ -5,12 +5,12 @@ import { ApiEndpointPsb } from './';
 import { getArbeidsgiverKey } from '../../utils/arbeidsgiverUtils';
 
 type AAregArbeidsgiver = {
-    organisasjoner?: {
+    organisasjoner?: Array<{
         organisasjonsnummer: string;
         navn: string;
         ansattFom?: ISODate;
         ansattTom?: ISODate;
-    }[];
+    }>;
 };
 
 export const arbeidsgivereEndpoint = {

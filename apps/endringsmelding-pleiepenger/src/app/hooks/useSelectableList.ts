@@ -14,7 +14,7 @@ interface ListState<T> {
     itemsAreSelectable: boolean;
     multipleSelectEnabled: boolean;
     selectAllIsIndeterminate: boolean;
-    selectedItems: Array<T>;
+    selectedItems: T[];
     showSelectItemsMessage: boolean;
     singleSelectEnabled: boolean;
 }

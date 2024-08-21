@@ -15,7 +15,7 @@ export const getOmBarnetApiDataFromSøknadsdata = (omBarnet: OmBarnetSøknadsdat
     };
 
     switch (omBarnet.type) {
-        case 'registrertBarn':
+        case 'registrertBarn': {
             const { aktørId, fornavn, etternavn, mellomnavn } = omBarnet.registrertBarn;
             return {
                 ...fellesInfo,
@@ -26,6 +26,7 @@ export const getOmBarnetApiDataFromSøknadsdata = (omBarnet: OmBarnetSøknadsdat
                     fødselsdato: dateToISODate(omBarnet.registrertBarn.fødselsdato),
                 },
             };
+        }
         case 'annetBarn':
             return {
                 ...fellesInfo,

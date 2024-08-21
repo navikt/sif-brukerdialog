@@ -5,13 +5,13 @@ import { RegistrertBarn } from '../../types/RegistrertBarn';
 import api, { ApiEndpoint } from '../api';
 
 export interface BarnDTO {
-    barn: {
+    barn: Array<{
         aktørId: string;
         fornavn: string;
         etternavn: string;
         mellomnavn?: string;
         fødselsdato: string;
-    }[];
+    }>;
 }
 export const isValidRegistrertBarnResponse = (response: any): response is RegistrertBarn => {
     if (

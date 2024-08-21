@@ -51,6 +51,7 @@
         "@babel/preset-react": "7.24.7",
         "@babel/preset-typescript": "7.24.7",
         "@chromatic-com/storybook": "1.6.1",
+        "@navikt/eslint-config-sif": "workspace:*",
         "@playwright/test": "1.46.1",
         "@storybook/addon-a11y": "8.2.9",
         "@storybook/addon-essentials": "8.2.9",
@@ -90,7 +91,9 @@
         "start-e2e-server": "node ./server-e2e.cjs",
         "storybook": "storybook dev -p 6006",
         "test": "vitest run",
-        "depr-lint": "eslint ./src --ext ts,tsx",
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit",
         "build-storybook": "storybook build"
     },
     "eslintConfig": {

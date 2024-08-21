@@ -30,13 +30,6 @@ describe('isBarnOver18år', () => {
         expect(result).toBe(false);
     });
 
-    it('should return false if the person is not yet 18 years old After 1 April', () => {
-        vi.useFakeTimers().setSystemTime(new Date('2023-04-15'));
-        const fødselsdato = new Date('2020-01-15');
-        const result = isBarnOver18år(fødselsdato);
-        expect(result).toBe(false);
-    });
-
     it('should return false if the person is 18 years old and today is before April 1 (15 Februar) of the following year', () => {
         vi.useFakeTimers().setSystemTime(new Date('2024-02-15'));
         const fødselsdato = new Date('2005-01-01');

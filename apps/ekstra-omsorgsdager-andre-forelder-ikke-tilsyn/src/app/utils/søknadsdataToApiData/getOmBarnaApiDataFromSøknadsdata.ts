@@ -29,8 +29,8 @@ export const getOmBarnaApiDataFromSøknadsdata = (
     const { andreBarn } = omBarna;
 
     const barn: ApiBarn[] = [
-        ...andreBarn.map((barn) => mapAndreBarnToApiBarn(barn)),
-        ...registrertBarn.map((barn) => mapRegistrertToApiBarn(barn)),
+        ...andreBarn.map((b) => mapAndreBarnToApiBarn(b)),
+        ...registrertBarn.map((b) => mapRegistrertToApiBarn(b)),
     ];
     return {
         barn: barn,

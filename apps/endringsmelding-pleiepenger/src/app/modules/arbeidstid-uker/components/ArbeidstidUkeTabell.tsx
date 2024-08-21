@@ -54,9 +54,11 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                 indeterminate={selectedItems.length > 0 && selectedItems.length !== uker.length}
                                 onChange={() => {
                                     setShowSelectItemsMessage(false);
-                                    selectedItems.length
-                                        ? setSelectedItems([])
-                                        : setSelectedItems(uker.filter((uke) => uke.kanEndres && uke.kanVelges));
+                                    if (selectedItems.length > 0) {
+                                        setSelectedItems([]);
+                                    } else {
+                                        setSelectedItems(uker.filter((uke) => uke.kanEndres && uke.kanVelges));
+                                    }
                                 }}
                                 hideLabel>
                                 <AppText id="arbeidstidUkeTabell.velgAlleUker.cb" />

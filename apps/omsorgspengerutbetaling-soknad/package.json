@@ -46,6 +46,7 @@
         "@babel/preset-env": "7.25.3",
         "@babel/preset-react": "7.24.7",
         "@babel/preset-typescript": "7.24.7",
+        "@navikt/eslint-config-sif": "workspace:*",
         "@playwright/test": "1.46.1",
         "@storybook/addon-essentials": "8.2.9",
         "@storybook/addon-interactions": "8.2.9",
@@ -84,11 +85,13 @@
         "playwright-test": "playwright test",
         "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",
         "dev": "cross-env NODE_ENV=development node ./server.cjs",
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit",
         "start-express": "node ./server.cjs",
         "start-e2e-server": "node ./server-e2e.cjs",
         "storybook": "storybook dev -p 6006",
-        "test": "vitest run",
-        "depr-lint": "eslint ./src --ext ts,tsx"
+        "test": "vitest run"
     },
     "eslintConfig": {
         "overrides": [

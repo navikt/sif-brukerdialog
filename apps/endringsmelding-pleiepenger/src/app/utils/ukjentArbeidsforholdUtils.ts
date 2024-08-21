@@ -3,15 +3,15 @@ import {
     dateRangeToISODateRange,
     dateToISODate,
     Duration,
+    getDateRangeFromDateRanges,
     getDateRangesWithinDateRange,
     getDatesInDateRange,
     getWeeksInDateRange,
 } from '@navikt/sif-common-utils';
-import { getDateRangeFromDateRanges } from '@navikt/sif-common-utils';
 import {
+    ArbeiderIPeriodenSvar,
     Arbeidsaktivitet,
     ArbeidsaktivitetType,
-    ArbeiderIPeriodenSvar,
     ArbeidsforholdAktivt,
     Arbeidsgiver,
     ArbeidstidEnkeltdagMap,

@@ -7,7 +7,7 @@ interface InvalidParameterErrorResponse {
             title: string;
             status: number;
             detail: string;
-            invalid_parameters: Array<string>;
+            invalid_parameters: string[];
         };
     };
 }
