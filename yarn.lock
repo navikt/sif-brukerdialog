@@ -4565,6 +4565,7 @@ __metadata:
     "@navikt/ds-icons": "npm:3.4.3"
     "@navikt/ds-react": "npm:6.16.0"
     "@navikt/ds-tailwind": "npm:6.16.0"
+    "@navikt/eslint-config-sif": "workspace:*"
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"

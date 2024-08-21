@@ -60,9 +60,9 @@ const IdPart = () => {
                 onFileInputClick={() => {
                     setFilesThatDidntGetUploaded([]);
                 }}
-                validate={(attachments: Attachment[] = []) => {
+                validate={(a: Attachment[] = []) => {
                     return validateAll<ValidateAttachmentsErrors | ValidationError>([
-                        () => validateAttachments([...attachments]),
+                        () => validateAttachments([...a]),
                     ]);
                 }}
                 onUnauthorizedOrForbiddenUpload={relocateToLoginPage}

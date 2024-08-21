@@ -30,7 +30,7 @@ export const getArbeidsgivereApiDataFromSøknadsdata = (
                 ansattTom: value.arbeidsgiver.ansattTom ? dateToISODate(value.arbeidsgiver.ansattTom) : undefined,
             };
         const arbeidIPeriodeSøknadsdata: ArbeidIPeriodeSøknadsdata | undefined =
-            arbeidstidArbeidsgivere && arbeidstidArbeidsgivere.hasOwnProperty(key)
+            arbeidstidArbeidsgivere && Object.prototype.hasOwnProperty.call(arbeidstidArbeidsgivere, key)
                 ? arbeidstidArbeidsgivere[key].arbeidIPeriode
                 : undefined;
 

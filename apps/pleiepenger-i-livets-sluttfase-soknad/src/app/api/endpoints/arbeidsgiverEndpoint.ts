@@ -3,26 +3,26 @@ import api, { ApiEndpoint } from '../api';
 import { DateRange, ISODate, ISODateToDate, dateToISODate } from '@navikt/sif-common-utils';
 
 export type AAregArbeidsgiver = {
-    organisasjoner?: {
+    organisasjoner?: Array<{
         organisasjonsnummer: string;
         navn: string;
         ansattFom?: ISODate;
         ansattTom?: ISODate;
-    }[];
-    privatarbeidsgiver?: {
+    }>;
+    privatarbeidsgiver?: Array<{
         offentligIdent: string;
         navn: string;
         ansattFom?: ISODate;
         ansattTom?: ISODate;
-    }[];
-    frilansoppdrag?: {
+    }>;
+    frilansoppdrag?: Array<{
         type: string;
         organisasjonsnummer?: string;
         offentligIdent?: string;
         navn?: string;
         ansattFom?: ISODate;
         ansattTom?: ISODate;
-    }[];
+    }>;
 };
 export const arbeidsgivereEndpoint = {
     fetch: async (periode: DateRange): Promise<Arbeidsgiver[]> => {

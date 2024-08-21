@@ -158,9 +158,9 @@ const ArbeidIPeriodeSpørsmål = ({
                         name={`${fieldName}_group` as any}
                         legend={text('arbeidIPeriode.enkeltdager_gruppe.legend', intlValues)}
                         validate={() => {
-                            const { jobberIPerioden, enkeltdager = {} } = arbeidIPeriode || {};
-                            if (jobberIPerioden === JobberIPeriodeSvar.redusert && skjulJobberNormaltValg === false) {
-                                if (durationToDecimalDuration(summarizeDateDurationMap(enkeltdager)) === 0) {
+                            const { jobberIPerioden: jip, enkeltdager: ed = {} } = arbeidIPeriode || {};
+                            if (jip === JobberIPeriodeSvar.redusert && skjulJobberNormaltValg === false) {
+                                if (durationToDecimalDuration(summarizeDateDurationMap(ed)) === 0) {
                                     return {
                                         key: 'arbeidIPeriode.validation.ingenTidRegistrert',
                                         values: intlValues,

@@ -20,7 +20,7 @@ export const getSelvstendigApiDataFromSøknadsdata = (
         case 'erIkkeSN':
             return undefined;
 
-        case 'erSN':
+        case 'erSN': {
             const { virksomhet, harFlereVirksomheter, jobberNormaltTimer } = selvstendig;
             const virksomhetApi = mapVirksomhetToVirksomhetApiData('nb', virksomhet, harFlereVirksomheter);
             const arbeidsforhold: ArbeidsforholdApiData = {
@@ -35,5 +35,6 @@ export const getSelvstendigApiDataFromSøknadsdata = (
             };
 
             return { virksomhet: virksomhetApi, arbeidsforhold };
+        }
     }
 };

@@ -10,7 +10,7 @@ export const getUtenlandskNæringApiDataFromSøknadsdata = (
     switch (utenlandskNæringSøknadsdata.type) {
         case 'harIkkeUtenlandskNæring':
             return [];
-        case 'harUtenlandskNæring':
+        case 'harUtenlandskNæring': {
             const apiData: UtenlandskNæringApi[] = utenlandskNæringSøknadsdata.utenlandskNæring.map((næring) => ({
                 næringstype: næring.næringstype,
                 navnPåVirksomheten: næring.navnPåVirksomheten,
@@ -23,5 +23,6 @@ export const getUtenlandskNæringApiDataFromSøknadsdata = (
                 tilOgMed: næring.tilOgMed ? dateToISODate(næring.tilOgMed) : undefined,
             }));
             return apiData;
+        }
     }
 };

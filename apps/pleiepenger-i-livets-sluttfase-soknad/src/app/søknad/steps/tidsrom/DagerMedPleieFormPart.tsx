@@ -1,5 +1,4 @@
 import { BodyLong } from '@navikt/ds-react';
-import React from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { FormikInputGroup } from '@navikt/sif-common-formik-ds';
 import { DaySelector } from '@navikt/sif-common-ui';
@@ -10,14 +9,12 @@ import { getTilgjengeligSøknadsperiode } from '../../../utils/getTilgjengeligS�
 import { TidsromFormFields, TidsromFormValues } from './TidsromStep';
 import { AppText } from '../../../i18n';
 
-interface Props {}
-
 interface MånedOgDag {
     måned: Date;
     dager: Date[];
 }
 
-const DagerMedPleieFormPart: React.FunctionComponent<Props> = () => {
+const DagerMedPleieFormPart = () => {
     const periode = getTilgjengeligSøknadsperiode();
     const { setFieldValue, values } = useFormikContext<TidsromFormValues>();
 
@@ -40,8 +37,8 @@ const DagerMedPleieFormPart: React.FunctionComponent<Props> = () => {
             <FormikInputGroup
                 name={TidsromFormFields.dagerMedPleie}
                 legend="Hvilke dager skal du være hjemme fra jobb for å gi pleie?"
-                validate={(selectedDates: Date[]) => {
-                    return selectedDates.length === 0 ? 'ingenDagerValgt' : undefined;
+                validate={(sd: Date[]) => {
+                    return sd.length === 0 ? 'ingenDagerValgt' : undefined;
                 }}
                 description={
                     <Block margin="m">
