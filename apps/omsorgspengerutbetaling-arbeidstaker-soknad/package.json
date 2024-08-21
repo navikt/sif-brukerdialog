@@ -6,6 +6,7 @@
     "repository": "https://github.com/navikt/sif-brukerdialog",
     "version": "1.4.20",
     "private": true,
+    "type": "module",
     "dependencies": {
         "@navikt/ds-css": "6.16.0",
         "@navikt/ds-icons": "3.4.3",

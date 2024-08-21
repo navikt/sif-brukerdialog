@@ -79,8 +79,8 @@ const SituasjonStep = () => {
 
     useEffectOnce(() => {
         const fetchData = async () => {
-            const arbeidsgivere = await arbeidsgivereEndpoint.fetch();
-            setArbeidsgivere(arbeidsgivere);
+            const a = await arbeidsgivereEndpoint.fetch();
+            setArbeidsgivere(a);
             setLoadState({ isLoading: false, isLoaded: true });
         };
         if (!isLoaded && !isLoading) {

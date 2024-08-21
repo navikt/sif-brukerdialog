@@ -5,6 +5,7 @@ import pluginReact from 'eslint-plugin-react';
 import vitest from 'eslint-plugin-vitest';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
+import reactHooks from 'eslint-plugin-react-hooks';
 
 const OFF = 0;
 const WARNING = 1;
@@ -20,6 +21,7 @@ export default [
         },
         plugins: {
             vitest,
+            'react-hooks': reactHooks,
         },
         languageOptions: { globals: globals.browser },
     },
@@ -47,6 +49,7 @@ export default [
             '@typescript-eslint/no-unused-vars': [ERROR],
             'no-duplicate-imports': ERROR,
             '@typescript-eslint/array-type': [ERROR, { default: 'array-simple' }],
+            'react-hooks/rules-of-hooks': 'error',
 
             // TODO Bør ein ha med desse to?
             'react/function-component-definition': [

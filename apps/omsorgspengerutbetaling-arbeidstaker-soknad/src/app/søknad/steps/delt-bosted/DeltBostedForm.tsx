@@ -110,9 +110,9 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
                         onFileInputClick={() => {
                             setFilesThatDidntGetUploaded([]);
                         }}
-                        validate={(attachments: Attachment[] = []) => {
+                        validate={(a: Attachment[] = []) => {
                             return validateAll<ValidateAttachmentsErrors | ValidationError>([
-                                () => validateAttachments([...attachments, ...andreVedlegg]),
+                                () => validateAttachments([...a, ...andreVedlegg]),
                             ]);
                         }}
                         onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
