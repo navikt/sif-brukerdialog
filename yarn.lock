@@ -4530,7 +4530,7 @@ __metadata:
     "@storybook/preset-create-react-app": "npm:8.2.9"
     "@storybook/react": "npm:8.2.9"
     "@storybook/testing-library": "npm:0.2.2"
-    "@types/eslint": "npm:9"
+    "@types/eslint": "npm:9.6.0"
     chromatic: "npm:11.7.1"
     classnames: "npm:2.5.1"
     copyfiles: "npm:2.4.1"
@@ -7740,7 +7740,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:*, @types/eslint@npm:9, @types/eslint@npm:9.6.0":
+"@types/eslint@npm:*, @types/eslint@npm:9.6.0":
   version: 9.6.0
   resolution: "@types/eslint@npm:9.6.0"
   dependencies:
