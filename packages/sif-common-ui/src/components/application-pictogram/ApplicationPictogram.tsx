@@ -11,6 +11,7 @@ export const ApplicationPictogram = () => (
         <rect x="23.25" y="36.75" width="26.25" height="9" fill="#CCE2F0" />
         <circle cx="36.75" cy="34.5" r="21" fill="#CCE2F0" />
         <path
+            // eslint-disable-next-line max-len
             d="M23.7672 5.508L30.1202 11.8434M1.5 33.75H34.5M26.4706 2.81211L10.5882 18.6506L9 26.5699L16.9412 24.986L32.8235 9.14751C34.5778 7.39804 34.5778 4.56158 32.8235 2.81211C31.0692 1.06263 28.2249 1.06263 26.4706 2.81211Z"
             stroke="#23262A"
             strokeWidth="2.25"

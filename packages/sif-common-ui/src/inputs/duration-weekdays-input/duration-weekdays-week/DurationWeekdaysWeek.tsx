@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { Fieldset, Heading } from '@navikt/ds-react';
 import React from 'react';
 import AriaAlternative from '@navikt/sif-common-core-ds/src/atoms/aria-alternative/AriaAlternative';

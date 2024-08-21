@@ -2382,7 +2382,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/js@npm:9.9.0":
+"@eslint/js@npm:9.9.0, @eslint/js@npm:^9.9.0":
   version: 9.9.0
   resolution: "@eslint/js@npm:9.9.0"
   checksum: 10/9d6e94d0334aecaa7e5c78e654297d9b11679f56c8ec1b64db122cbecf64b5a04138617e901d0c79727d03abce8a898cce4288259435bde78460ebdab202998f
@@ -4457,9 +4457,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-ui@workspace:packages/sif-common-ui"
   dependencies:
+    "@eslint/js": "npm:^9.9.0"
     "@navikt/ds-css": "npm:6.16.0"
     "@navikt/ds-icons": "npm:3.4.3"
     "@navikt/ds-react": "npm:6.16.0"
+    "@navikt/eslint-config-sif": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-formik-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
@@ -4474,15 +4476,20 @@ __metadata:
     "@storybook/preset-create-react-app": "npm:8.2.9"
     "@storybook/react": "npm:8.2.9"
     "@storybook/testing-library": "npm:0.2.2"
+    "@types/eslint": "npm:^9"
     chromatic: "npm:11.7.1"
     classnames: "npm:2.5.1"
     copyfiles: "npm:2.4.1"
     dayjs: "npm:1.11.12"
+    eslint: "npm:^9.9.0"
+    eslint-plugin-react: "npm:^7.35.0"
+    globals: "npm:^15.9.0"
     intl: "npm:1.2.5"
     npm-run-all: "npm:4.1.5"
     react-day-picker: "npm:8.10.1"
     react-intl: "npm:6.6.8"
     storybook: "npm:8.2.9"
+    typescript-eslint: "npm:^8.2.0"
   languageName: unknown
   linkType: soft
 
@@ -7679,7 +7686,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:*, @types/eslint@npm:9.6.0":
+"@types/eslint@npm:*, @types/eslint@npm:9.6.0, @types/eslint@npm:^9":
   version: 9.6.0
   resolution: "@types/eslint@npm:9.6.0"
   dependencies:
@@ -12851,7 +12858,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react@npm:7.35.0, eslint-plugin-react@npm:^7.33.2":
+"eslint-plugin-react@npm:7.35.0, eslint-plugin-react@npm:^7.33.2, eslint-plugin-react@npm:^7.35.0":
   version: 7.35.0
   resolution: "eslint-plugin-react@npm:7.35.0"
   dependencies:
@@ -12944,7 +12951,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:9.9.0":
+"eslint@npm:9.9.0, eslint@npm:^9.9.0":
   version: 9.9.0
   resolution: "eslint@npm:9.9.0"
   dependencies:
@@ -14199,7 +14206,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globals@npm:15.9.0":
+"globals@npm:15.9.0, globals@npm:^15.9.0":
   version: 15.9.0
   resolution: "globals@npm:15.9.0"
   checksum: 10/19bca70131c5d3e0d4171deed0f8ae16adda19f18d39b67421056f1eaa160b4433c3ffc8eb69b8b19adebbbdad4834d8a0494c5fe1ae295f0f769a5c0331d794
@@ -22594,7 +22601,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript-eslint@npm:8.2.0":
+"typescript-eslint@npm:8.2.0, typescript-eslint@npm:^8.2.0":
   version: 8.2.0
   resolution: "typescript-eslint@npm:8.2.0"
   dependencies:

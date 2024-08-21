@@ -11,7 +11,7 @@ export default {
     decorators: [withStoryWrapper, withIntlWrapper, withFormikWrapper],
 } as Meta<typeof TidFasteUkedagerInput>;
 
-const Template: StoryFn<typeof TidFasteUkedagerInput> = (args) => {
+const Template: StoryFn<typeof TidFasteUkedagerInput> = () => {
     return <TidFasteUkedagerInput name={'abc'} />;
 };
 
