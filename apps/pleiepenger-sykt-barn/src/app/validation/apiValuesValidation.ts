@@ -141,7 +141,10 @@ export const validateApiValues = (
                 });
             }
         }
-    } catch (e) {}
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (e) {
+        /* empty */
+    }
 
     return errors.length > 0 ? errors : undefined;
 };

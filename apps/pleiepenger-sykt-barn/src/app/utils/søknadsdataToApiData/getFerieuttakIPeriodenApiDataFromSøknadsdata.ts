@@ -11,9 +11,7 @@ export const getFerieuttakIPeriodenApiDataFromSøknadsdata = (
 
     switch (ferieuttakIPerioden?.type) {
         case 'skalTaUtFerieSøknadsdata':
-            const { ferieuttak } = ferieuttakIPerioden;
-
-            if (ferieuttak.length === 0) {
+            if (ferieuttakIPerioden.ferieuttak.length === 0) {
                 throw Error('ferieuttak er tomt');
             }
             return {

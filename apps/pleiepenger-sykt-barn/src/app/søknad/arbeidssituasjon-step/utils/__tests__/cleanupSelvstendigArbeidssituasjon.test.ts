@@ -22,12 +22,17 @@ describe('cleanupSelvstendigArbeidssituasjon', () => {
         expect(rest).toEqual({});
     });
     it('er selvstendig næringsdrivende', () => {
-        const { harHattInntektSomSN, harFlereVirksomheter, arbeidsforhold, virksomhet, ...rest } =
-            cleanupSelvstendigArbeidssituasjon(formValues);
+        const {
+            harHattInntektSomSN,
+            harFlereVirksomheter,
+            arbeidsforhold: a,
+            virksomhet: v,
+            ...rest
+        } = cleanupSelvstendigArbeidssituasjon(formValues);
         expect(harHattInntektSomSN).toEqual(YesOrNo.YES);
         expect(harFlereVirksomheter).toEqual(YesOrNo.NO);
-        expect(virksomhet).toBeDefined();
-        expect(arbeidsforhold).toBeDefined();
+        expect(a).toBeDefined();
+        expect(v).toBeDefined();
         expect(rest).toEqual({});
     });
 });

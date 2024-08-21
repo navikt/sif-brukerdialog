@@ -4,15 +4,12 @@ import { Mock, vi } from 'vitest';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import * as fieldValidations from '../fieldValidations';
 import {
-    arbeidssituasjonStepIsValid,
     legeerklæringStepIsValid,
     medlemskapStepIsValid,
     opplysningerOmBarnetStepIsValid,
     opplysningerOmTidsromStepIsValid,
     welcomingPageIsValid,
 } from '../stepValidations';
-
-// import Mock = vi.Mock;
 
 vi.mock('./../fieldValidations', () => {
     return {
@@ -90,12 +87,6 @@ describe('stepValidation tests', () => {
             formValues[SøknadFormField.periodeFra] = fromDate;
             formValues[SøknadFormField.periodeTil] = undefined;
             expect(opplysningerOmTidsromStepIsValid(formValues as SøknadFormValues)).toBe(false);
-        });
-    });
-
-    describe('opplysningerOmTidsromStepIsValid', () => {
-        it('should always be valid', () => {
-            expect(arbeidssituasjonStepIsValid()).toBe(true);
         });
     });
 
