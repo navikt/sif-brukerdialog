@@ -31,7 +31,7 @@ export default [
     {
         rules: {
             ...vitest.configs.recommended.rules,
-            'max-len': [ERROR, 160],
+            'max-len': [ERROR, 300],
             'no-console': WARNING,
             'no-debugger': WARNING,
             'react/prop-types': OFF,
