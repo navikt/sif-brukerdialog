@@ -3960,7 +3960,7 @@ __metadata:
     busboy: "npm:1.6.0"
     compression: "npm:1.7.4"
     cookie-parser: "npm:1.4.6"
-    cors: "npm:^2.8.5"
+    cors: "npm:2.8.5"
     cross-env: "npm:7.0.3"
     dayjs: "npm:1.11.12"
     dotenv: "npm:16.4.5"
@@ -4164,6 +4164,7 @@ __metadata:
     "@changesets/cli": "npm:2.27.7"
     "@sif/eslint-config": "workspace:*"
     config: "workspace:*"
+    eslint: "npm:9.9.0"
     husky: "npm:9.1.4"
     lint-staged: "npm:15.2.9"
     npm-run-all: "npm:4.1.5"
@@ -4604,7 +4605,7 @@ __metadata:
     express: "npm:4.19.2"
     express-rate-limit: "npm:7.4.0"
     formik: "npm:2.4.6"
-    globals: "npm:^15.9.0"
+    globals: "npm:15.9.0"
     helmet: "npm:7.1.0"
     http-proxy-middleware: "npm:3.0.0"
     jose: "npm:5.7.0"
@@ -10940,7 +10941,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cors@npm:^2.8.5":
+"cors@npm:2.8.5":
   version: 2.8.5
   resolution: "cors@npm:2.8.5"
   dependencies:
@@ -14263,7 +14264,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globals@npm:15.9.0, globals@npm:^15.9.0":
+"globals@npm:15.9.0":
   version: 15.9.0
   resolution: "globals@npm:15.9.0"
   checksum: 10/19bca70131c5d3e0d4171deed0f8ae16adda19f18d39b67421056f1eaa160b4433c3ffc8eb69b8b19adebbbdad4834d8a0494c5fe1ae295f0f769a5c0331d794
