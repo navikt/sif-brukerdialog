@@ -11,7 +11,7 @@
         "eslint-plugin-react": "7.35.0",
         "eslint-plugin-vitest": "0.5.4",
         "globals": "15.9.0",
-        "typescript-eslint": "7.17.0"
+        "typescript-eslint": "8.2.0"
     },
     "peerDependencies": {
         "typescript": "5.4.5"

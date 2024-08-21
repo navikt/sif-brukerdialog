@@ -6,6 +6,7 @@
     "main": "src/index.ts",
     "name": "@navikt/sif-common-amplitude",
     "version": "2.25.15",
+    "type": "module",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-amplitude/issues"
     },
@@ -13,19 +14,14 @@
         "@amplitude/analytics-browser": "2.11.0"
     },
     "devDependencies": {
-        "@eslint/js": "9.9.0",
         "@navikt/eslint-config-sif": "workspace:*",
-        "@types/eslint": "9.6.0",
         "@types/node": "22.4.1",
         "@types/react": "18.3.3",
         "config": "workspace:*",
         "constate": "3.3.2",
-        "eslint": "9.9.0",
-        "eslint-plugin-react": "7.35.0",
         "gh-pages": "6.1.1",
         "react": "18.3.1",
-        "rimraf": "6.0.1",
-        "typescript-eslint": "8.2.0"
+        "rimraf": "6.0.1"
     },
     "directories": {
         "lib": "lib"

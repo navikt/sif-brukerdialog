@@ -100,8 +100,9 @@ export const setupIgnoreErrorsAndAllowUrls = (
     const ignoreErrors: IgnoreErrorsType = initProps.ignoreErrors || [];
     try {
         ignoreErrors.push(...errorsToIgnore);
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {
-        null;
+        /* empty */
     }
     return { allowUrls, ignoreErrors };
 };

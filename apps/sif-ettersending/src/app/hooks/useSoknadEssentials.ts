@@ -48,6 +48,7 @@ const isUnknownAxiosError = (error: any) => {
             error.status === 'None' &&
             error.number[0] === undefined
         );
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {
         return false;
     }

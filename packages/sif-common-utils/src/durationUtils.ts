@@ -108,6 +108,7 @@ export const ISODurationToNumberDuration = (duration: string): NumberDuration | 
             hours: parts.hours || 0,
             minutes: parts.minutes || 0,
         };
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {
         return undefined;
     }
@@ -116,6 +117,7 @@ export const ISODurationToNumberDuration = (duration: string): NumberDuration | 
 export const ISODurationToMaybeDuration = (duration: string): Duration | undefined => {
     try {
         return ISODurationToDuration(duration);
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {
         return undefined;
     }

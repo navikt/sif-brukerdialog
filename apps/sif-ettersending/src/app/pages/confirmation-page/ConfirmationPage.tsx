@@ -4,7 +4,6 @@ import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitud
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import CheckmarkIcon from '@navikt/sif-common-core-ds/src/atoms/checkmark-icon/CheckmarkIcon';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import { YtelseKey } from '@navikt/sif-common-core-ds/src/types/Ytelser';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { AppText, useAppIntl } from '../../i18n';
 import getLenker from '../../lenker';
@@ -17,7 +16,6 @@ interface Props {
     dokumenttype?: DokumentType;
     onUnmount?: () => void;
 }
-YtelseKey;
 
 const bem = bemUtils('confirmationPage');
 

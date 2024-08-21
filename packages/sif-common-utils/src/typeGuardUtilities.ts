@@ -45,6 +45,7 @@ export const isISODuration = (value: any): value is ISODuration => {
     if (value && typeof value === 'string') {
         try {
             return parse(value) !== undefined;
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (error) {
             return false;
         }
