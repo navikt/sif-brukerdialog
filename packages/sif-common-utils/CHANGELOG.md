@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.47.0
+
+### Minor Changes
+
+-   ee9cbed: Oppdatere til eslint 9. Krevde noen endringer i kode.
+
 ## 3.46.12
 
 ### Patch Changes

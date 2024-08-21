@@ -1,5 +1,23 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.31.0
+
+### Minor Changes
+
+-   ee9cbed: Oppdatere til eslint 9. Krevde noen endringer i kode.
+
+### Patch Changes
+
+-   Updated dependencies [ee9cbed]
+    -   @navikt/sif-common-amplitude@2.26.0
+    -   @navikt/sif-common-formik-ds@1.12.0
+    -   @navikt/sif-common-soknad-ds@13.0.0
+    -   @navikt/sif-common-forms-ds@10.0.0
+    -   @navikt/sif-common-core-ds@9.18.0
+    -   @navikt/sif-common-sentry@0.27.0
+    -   @navikt/sif-common-hooks@0.2.0
+    -   @navikt/sif-common-utils@3.47.0
+
 ## 2.30.18
 
 ### Patch Changes

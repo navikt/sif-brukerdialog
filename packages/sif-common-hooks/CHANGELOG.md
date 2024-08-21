@@ -1,5 +1,11 @@
 # @navikt/sif-common-hooks
 
+## 0.2.0
+
+### Minor Changes
+
+-   ee9cbed: Oppdatere til eslint 9. Krevde noen endringer i kode.
+
 ## 0.1.14
 
 ### Patch Changes

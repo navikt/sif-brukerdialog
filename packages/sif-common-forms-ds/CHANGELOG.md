@@ -1,5 +1,18 @@
 # @navikt/sif-common-forms-ds
 
+## 10.0.0
+
+### Minor Changes
+
+-   ee9cbed: Oppdatere til eslint 9. Krevde noen endringer i kode.
+
+### Patch Changes
+
+-   Updated dependencies [ee9cbed]
+    -   @navikt/sif-common-formik-ds@1.12.0
+    -   @navikt/sif-common-core-ds@9.18.0
+    -   @navikt/sif-common-utils@3.47.0
+
 ## 9.1.0
 
 ### Minor Changes
