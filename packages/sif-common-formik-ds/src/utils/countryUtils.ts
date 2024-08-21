@@ -1,4 +1,4 @@
-import { getNames, registerLocale, alpha2ToAlpha3, getName } from 'i18n-iso-countries';
+import { alpha2ToAlpha3, getName, getNames, registerLocale } from 'i18n-iso-countries';
 import * as langNB from 'i18n-iso-countries/langs/nb.json';
 import * as langNN from 'i18n-iso-countries/langs/nn.json';
 import { eøsCountries } from './eøsCountries';
@@ -75,8 +75,8 @@ export const countryIsMemberOfEøsOrEfta = (alphaCode: string): boolean => {
  * @returns liste over alle land/kun eøs-land med navn ut fra lang
  */
 
-export const getCountries = (onlyEuAndEftaCountries: boolean, lang: string): Array<Country> => {
-    const names: [string, any][] = Object.entries(getNames(lang));
+export const getCountries = (onlyEuAndEftaCountries: boolean, lang: string): Country[] => {
+    const names: Array<[string, any]> = Object.entries(getNames(lang));
     return names
         .sort((a: string[], b: string[]) => a[1].localeCompare(b[1], lang))
         .filter((countryOptionValue: string[]) =>

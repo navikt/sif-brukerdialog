@@ -35,6 +35,8 @@ describe(`validateNumber`, () => {
         expect(getNumberValidator({ min: 2 })('2')).toBeUndefined();
         expect(getNumberValidator({ min: 2 })('2,3')).toBeUndefined();
         expect(getNumberValidator({ min: 2 })(2.3)).toBeUndefined();
+        expect(getNumberValidator({ max: 2 })('1,3')).toBeUndefined();
+        expect(getNumberValidator({ max: 2 })(1.3)).toBeUndefined();
     });
     it(`returns ${ValidateNumberError.numberIsTooLarge} if number is valid and too small`, () => {
         expect(getNumberValidator({ max: 2 })('2.1')).toEqual(ValidateNumberError.numberIsTooLarge);
@@ -48,10 +50,5 @@ describe(`validateNumber`, () => {
     it(`returns undefined if number has decimals and allowDecimals === true`, () => {
         expect(getNumberValidator({ allowDecimals: true })('2.1')).toBeUndefined();
         expect(getNumberValidator({ allowDecimals: true })('2,1')).toBeUndefined();
-    });
-    it(`returns undefined if number is not too small`, () => {
-        expect(getNumberValidator({ max: 2 })('2')).toBeUndefined();
-        expect(getNumberValidator({ max: 2 })('1,3')).toBeUndefined();
-        expect(getNumberValidator({ max: 2 })(1.3)).toBeUndefined();
     });
 });

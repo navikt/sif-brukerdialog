@@ -51,8 +51,8 @@ function useGetTeamStatus(teamKey: string | undefined, sanityConfig: SanityConfi
                 setMessage(getMessage(team.message));
                 setLiveUpdate(team.liveUpdate === true);
             }
-        } catch (error: any) {
-            setError(error);
+        } catch (err: any) {
+            setError(err);
             setStatus(Status.normal);
             setMessage(undefined);
             setLiveUpdate(false);

@@ -35,7 +35,7 @@ describe(`validateString`, () => {
         it(`returns undefined when string passes regexp test`, () => {
             expect(getStringValidator({ formatRegExp })('asd')).toBeUndefined();
         });
-        it(`returns undefined when string passes regexp test`, () => {
+        it(`returns undefined when string passes regexp test 2`, () => {
             expect(getStringValidator({ formatRegExp })('+(47) 11 22 33')).toBeUndefined();
         });
         it(`returns ${ValidateStringError.stringHasInvalidFormat} when string failes regexp test()`, () => {

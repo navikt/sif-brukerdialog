@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 function AttachmentIcon(props: any) {
     return (
         <svg viewBox="0 0 23.56 21.44" {...props}>

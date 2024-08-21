@@ -20,7 +20,7 @@ export const getErrorForField = <FormValues>(
     elementName: string,
     errors: FormikErrors<FormValues>,
 ): any | undefined => {
-    const fieldErrors: Array<string> | string = getIn(errors, elementName);
+    const fieldErrors: string[] | string = getIn(errors, elementName);
     if (fieldErrors === null) {
         return undefined;
     }

@@ -71,8 +71,8 @@ function useGetApplicationStatus(applicationKey: string, sanityConfig: SanityCon
                 setApplicationTeam(appResult.team?.key);
                 setLiveUpdate(appResult.liveUpdate === true);
             }
-        } catch (error: any) {
-            setError(error);
+        } catch (err: any) {
+            setError(err);
             setApplication(undefined);
             setApplicationTeam(undefined);
             setLiveUpdate(false);

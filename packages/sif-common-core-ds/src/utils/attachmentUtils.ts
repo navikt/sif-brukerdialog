@@ -15,7 +15,6 @@ export const getTotalSizeOfAttachments = (attachments: Attachment[]): number =>
 
 export const fileExtensionIsValid = (filename: string): boolean => {
     const ext = filename.split('.').pop();
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     return VALID_EXTENSIONS.includes(`.${ext!.toLowerCase()}`);
 };
 

@@ -64,8 +64,8 @@ function ModalFormAndInfo<DataType>({
         setModalState({ isVisible: false });
     };
 
-    const handleEdit = (data: DataType) => {
-        setModalState({ isVisible: true, data });
+    const handleEdit = (d: DataType) => {
+        setModalState({ isVisible: true, data: d });
     };
 
     const handleDelete = () => {
