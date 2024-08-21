@@ -7,7 +7,7 @@
         },
         "test": {
             "outputs": [],
-            "dependsOn": ["^test"]
+            "dependsOn": ["lint"]
         },
         "lint": {
             "dependsOn": ["lint:eslint", "lint:tsc"]
