@@ -13,9 +13,9 @@ export const useFraværsperiodeDetaljer = (fravær?: FraværSøknadsdata) => {
     );
 
     const setFraværsår = useCallback(
-        (årstall: number | undefined) => {
-            setÅrstall(årstall);
-            setGyldigTidsrom(fraværStepUtils.getGyldigTidsromForFravær(årstall));
+        (år: number | undefined) => {
+            setÅrstall(år);
+            setGyldigTidsrom(fraværStepUtils.getGyldigTidsromForFravær(år));
         },
         [setÅrstall],
     );

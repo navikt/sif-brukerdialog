@@ -102,7 +102,7 @@ export const getDineBarnStepInitialValues = (
                     andreBarn: dineBarn.andreBarn,
                     harDekketTiFørsteDagerSelv: getYesOrNoFromBoolean(dineBarn.harDekketTiFørsteDagerSelv),
                 };
-            case DineBarnSøknadsdataType.UTVIDET_RETT_PGA_SYKDOM_ELLER_ALENEOMSORG:
+            case DineBarnSøknadsdataType.UTVIDET_RETT_PGA_SYKDOM_ELLER_ALENEOMSORG: {
                 const harSyktBarn = dineBarn.harSyktBarn ? YesOrNo.YES : YesOrNo.NO;
                 return {
                     andreBarn: dineBarn.andreBarn,
@@ -115,6 +115,7 @@ export const getDineBarnStepInitialValues = (
                             : YesOrNo.NO
                         : undefined,
                 };
+            }
         }
     }
     return defaultValues;

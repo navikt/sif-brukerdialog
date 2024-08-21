@@ -48,7 +48,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     tempFormData: action.payload,
                 };
-            case SøknadContextActionKeys.SET_SØKNAD_DINE_BARN:
+            case SøknadContextActionKeys.SET_SØKNAD_DINE_BARN: {
                 const søknadsdata: Søknadsdata = {
                     ...state.søknadsdata,
                     dineBarn: {
@@ -60,6 +60,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     søknadsdata,
                 };
+            }
             case SøknadContextActionKeys.SET_SØKNAD_FRAVÆR:
                 return {
                     ...state,

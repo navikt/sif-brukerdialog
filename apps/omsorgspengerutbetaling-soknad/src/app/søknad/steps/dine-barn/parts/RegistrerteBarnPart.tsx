@@ -27,9 +27,9 @@ const RegistrerteBarnPart: React.FunctionComponent<Props> = ({ registrerteBarn }
     return (
         <Block>
             <ItemList<RegistrertBarn>
-                getItemId={(registrerteBarn): string => registrerteBarn.aktørId}
-                getItemTitle={(registrerteBarn): string => registrerteBarn.etternavn}
-                labelRenderer={(registrerteBarn): React.ReactNode => barnItemLabelRenderer(registrerteBarn)}
+                getItemId={(barn): string => barn.aktørId}
+                getItemTitle={(barn): string => barn.etternavn}
+                labelRenderer={(barn): React.ReactNode => barnItemLabelRenderer(barn)}
                 items={registrerteBarn}
             />
         </Block>
