@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextApiRequest } from 'next';
 import { createDemoRequestContext, createRequestContext } from '../auth/withAuthentication';
 import { isLocal } from './env';

@@ -115,7 +115,7 @@ export const getHendelserIBehandling = (behandling: Behandling, saksbehandlingFr
     return hendelser;
 };
 
-export const getSøknadstyperIBehandling = (søknader: Innsendelse[]): Array<Innsendelsestype> => {
+export const getSøknadstyperIBehandling = (søknader: Innsendelse[]): Innsendelsestype[] => {
     return søknader.map((s) => s.innsendelsestype);
 };
 

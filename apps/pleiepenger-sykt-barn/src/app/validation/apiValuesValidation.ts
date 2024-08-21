@@ -141,8 +141,7 @@ export const validateApiValues = (
                 });
             }
         }
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (e) {
+    } catch {
         /* empty */
     }
 
