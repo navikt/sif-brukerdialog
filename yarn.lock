@@ -4162,6 +4162,7 @@ __metadata:
   resolution: "@navikt/sif-brukerdialog@workspace:."
   dependencies:
     "@changesets/cli": "npm:2.27.7"
+    "@sif/eslint-config": "workspace:*"
     config: "workspace:*"
     husky: "npm:9.1.4"
     lint-staged: "npm:15.2.9"
