@@ -24,10 +24,7 @@ export const getAttachmentFrontendURL = (url: string, frontendAttachmentURL: str
         const vedleggId = getAttachmentId(url);
         return `${frontendAttachmentURL}/${SPLIT_KEY}${vedleggId}`;
     } catch {
-        if (url.indexOf('/api') === -1) {
-            return url.replace('/vedlegg', '/api/vedlegg');
-        }
-        return url;
+        return fixMissingApiInFrontendURL(url);
     }
 };
 
@@ -46,8 +43,16 @@ export const getAttachmentBackendURL = (url: string, backendAttachmentURL: strin
     }
 };
 
+const fixMissingApiInFrontendURL = (url: string) => {
+    if (url.indexOf('/api') === -1) {
+        return url.replace('/vedlegg', '/api/vedlegg');
+    }
+    return url;
+};
+
 export const attachmentUtils = {
     getAttachmentId,
     getAttachmentFrontendURL,
     getAttachmentBackendURL,
+    fixMissingApiInFrontendURL,
 };
