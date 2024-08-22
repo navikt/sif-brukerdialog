@@ -1,12 +1,28 @@
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 
-export const getAttachmentURLFrontend = (url: string): string => {
-    return url.replace(getEnvironmentVariable('VEDLEGG_API_URL'), getEnvironmentVariable('FRONTEND_VEDLEGG_URL'));
+export const getVedleggId = (url: string): string => {
+    return url.split('vedlegg/')[1];
 };
 
-export const getAttachmentURLBackend = (url?: string): string => {
-    if (url !== undefined) {
-        return url.replace(getEnvironmentVariable('FRONTEND_VEDLEGG_URL'), getEnvironmentVariable('VEDLEGG_API_URL'));
+/**
+ * Lager URL for å lage lenke til vedlegg i frontend.
+ * @param responseHeaderVedleggUrl URL mottatt fra backend ved opplasting av fil
+ * @returns URL som kan brukes i frontend i a href lenke
+ */
+export const getAttachmentURLFrontend = (responseHeaderVedleggUrl: string): string => {
+    const vedleggId = getVedleggId(responseHeaderVedleggUrl);
+    return `${getEnvironmentVariable('FRONTEND_VEDLEGG_URL')}/${vedleggId}`;
+};
+
+/**
+ * Henter ut vedlegg URL for backend fra frontend URL.
+ * @param frontendVedleggUrl URL som er generert for å brukes i frontend (a href link)
+ * @returns URL som kan brukes for å finne vedlegg i backend. Samme som er mottatt fra backend ved opplasting.
+ */
+export const getAttachmentURLBackend = (frontendVedleggUrl?: string): string => {
+    if (frontendVedleggUrl !== undefined) {
+        const vedleggId = getVedleggId(frontendVedleggUrl);
+        return `${getEnvironmentVariable('VEDLEGG_API_URL')}/${vedleggId}`;
     }
     return '';
 };
