@@ -21,8 +21,12 @@ export const getVedleggId = (url: string): string => {
  * @returns URL som kan brukes i frontend i a href lenke
  */
 export const getAttachmentURLFrontend = (responseHeaderVedleggUrl: string): string => {
-    const vedleggId = getVedleggId(responseHeaderVedleggUrl);
-    return `${getEnvironmentVariable('FRONTEND_VEDLEGG_URL')}/${SPLIT_KEY}${vedleggId}`;
+    try {
+        const vedleggId = getVedleggId(responseHeaderVedleggUrl);
+        return `${getEnvironmentVariable('FRONTEND_VEDLEGG_URL')}/${SPLIT_KEY}${vedleggId}`;
+    } catch {
+        return depr_getAttachmentURLFrontend(responseHeaderVedleggUrl);
+    }
 };
 
 /**
@@ -31,6 +35,21 @@ export const getAttachmentURLFrontend = (responseHeaderVedleggUrl: string): stri
  * @returns URL som kan brukes for å finne vedlegg i backend. Samme som er mottatt fra backend ved opplasting.
  */
 export const getAttachmentURLBackend = (frontendVedleggUrl: string): string => {
-    const vedleggId = getVedleggId(frontendVedleggUrl);
-    return `${getEnvironmentVariable('VEDLEGG_API_URL')}/${SPLIT_KEY}${vedleggId}`;
+    try {
+        const vedleggId = getVedleggId(frontendVedleggUrl);
+        return `${getEnvironmentVariable('VEDLEGG_API_URL')}/${SPLIT_KEY}${vedleggId}`;
+    } catch {
+        return depr_getAttachmentURLBackend(frontendVedleggUrl);
+    }
+};
+
+const depr_getAttachmentURLFrontend = (url: string): string => {
+    return url.replace(getEnvironmentVariable('VEDLEGG_API_URL'), getEnvironmentVariable('FRONTEND_VEDLEGG_URL'));
+};
+
+const depr_getAttachmentURLBackend = (url?: string): string => {
+    if (url !== undefined) {
+        return url.replace(getEnvironmentVariable('FRONTEND_VEDLEGG_URL'), getEnvironmentVariable('VEDLEGG_API_URL'));
+    }
+    return '';
 };
