@@ -9,7 +9,7 @@ import {
 import { removeElementFromArray } from '@navikt/sif-common-core-ds/src/utils/listUtils';
 import api from '../../api/api';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
-import { fixAttachmentURL } from '../../utils/attachmentUtilsAuthToken';
+import { fixAttachmentURL } from '../../utils/appAttachmentUtils';
 
 interface Props {
     includeDeletionFunctionality: boolean;

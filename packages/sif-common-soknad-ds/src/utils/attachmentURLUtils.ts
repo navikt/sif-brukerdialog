@@ -56,7 +56,7 @@ const fixInvalidPathInFrontendURL = (url: string, frontendAttachmentURL: string)
     return url;
 };
 
-export const attachmentAuthUtils = {
+export const attachmentURLUtils = {
     getAttachmentId,
     getAttachmentFrontendURL,
     getAttachmentBackendURL,

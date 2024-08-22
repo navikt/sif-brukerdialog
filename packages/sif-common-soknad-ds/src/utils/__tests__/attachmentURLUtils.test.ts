@@ -2,14 +2,14 @@ import {
     getAttachmentId,
     getAttachmentBackendURL,
     getAttachmentFrontendURL,
-    attachmentAuthUtils,
-} from '../attachmentUtilsAuthToken';
+    attachmentURLUtils,
+} from '../attachmentURLUtils';
 import { describe, expect, it } from 'vitest';
 
 const ATTACHMENT_BACKEND_URL = 'https://k9-brukerdialog-prosessering';
 const ATTACHMENT_FRONTEND_URL = 'https://k9-ettersending-soknad.intern.dev.nav.no/api';
 
-describe('attachmentUtilsAuthToken', () => {
+describe('attachmentURLUtils', () => {
     const vedleggId =
         'eyJraWQiOiIxIiwiYWxnIjoibm9uZSIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4MGVhZjM5ZC03OGJjLTQwZGEtYmEyNy1iNzAyNDA1MjQ5M2EifQ';
     const vedleggUrlFraResponseHeader = `http://k9-ettersending-soknad.intern.dev.nav.no/vedlegg/${vedleggId}`;
@@ -37,7 +37,7 @@ describe('attachmentUtilsAuthToken', () => {
     });
     it('fixInvalidPathInFrontendURL - korrigerer ugyldig frontent url', () => {
         const invalidFrontendURL = `http://www.nav.no/vedlegg/${vedleggId}`;
-        const result = attachmentAuthUtils.fixInvalidPathInFrontendURL(invalidFrontendURL, ATTACHMENT_FRONTEND_URL);
+        const result = attachmentURLUtils.fixInvalidPathInFrontendURL(invalidFrontendURL, ATTACHMENT_FRONTEND_URL);
         expect(result).toEqual(`https://k9-ettersending-soknad.intern.dev.nav.no/api/vedlegg/${vedleggId}`);
     });
 });

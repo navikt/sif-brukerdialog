@@ -14,7 +14,7 @@ export { default as SoknadHeader } from './components/soknad-header/SoknadHeader
 export { default as soknadStepUtils } from './modules/soknad-step/soknadStepUtils';
 export { default as Step } from './modules/soknad-step/step/Step';
 export { ensureBaseNameForReactRouter } from './utils/ensureBaseNameForReactRouter';
-export { attachmentAuthUtils } from './utils/attachmentUtilsAuthToken';
+export { attachmentURLUtils as attachmentAuthUtils } from './utils/attachmentURLUtils';
 export { EnsureCorrectSøknadRouteErrorType } from './hooks/useEnsureCorrectSøknadRoute';
 export { GlobalSoknadApplicationRoutes } from './setup/SoknadApplicationCommonRoutes';
 export { QuestionVisibilityContext } from './modules/question-visibility/QuestionVisibilityContext';
