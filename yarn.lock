@@ -4444,6 +4444,7 @@ __metadata:
     uuid: "npm:10.0.0"
     vite: "npm:5.4.2"
     vite-plugin-checker: "npm:0.7.2"
+    vitest: "npm:2.0.5"
   peerDependencies:
     "@navikt/ds-css": 6.13.0
     "@navikt/ds-react": 6.13.0
