@@ -1,5 +1,10 @@
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 
+/**
+ * Henter ut ID til et opplastet dokument ut fra URL som kommer i response header ved opplasting, eller som er generert fra frontend-url
+ * @param url string
+ * @returns string
+ */
 export const getVedleggId = (url: string): string => {
     return url.split('vedlegg/')[1];
 };

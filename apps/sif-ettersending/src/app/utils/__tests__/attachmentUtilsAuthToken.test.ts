@@ -1,5 +1,4 @@
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
-import { getAttachmentURLFrontend, getVedleggId } from '../attachmentUtilsAuthToken';
+import { getAttachmentURLBackend, getAttachmentURLFrontend, getVedleggId } from '../attachmentUtilsAuthToken';
 import { describe, expect, it, vi } from 'vitest';
 
 vi.mock('@navikt/sif-common-core-ds/src/utils/envUtils', () => {
@@ -20,9 +19,6 @@ describe('attachmentUtilsAuthToken', () => {
         'eyJraWQiOiIxIiwiYWxnIjoibm9uZSIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4MGVhZjM5ZC03OGJjLTQwZGEtYmEyNy1iNzAyNDA1MjQ5M2EifQ';
     const vedleggUrlFraResponseHeader = `http://k9-ettersending-soknad.intern.dev.nav.no/vedlegg/${vedleggId}`;
 
-    // const envFrontendVedleggUrl = 'https://k9-ettersending-soknad.intern.dev.nav.no/api';
-    // const vedleggApiUrl = 'https://k9-brukerdialog-prosessering';
-
     it('henter ut ID fra url', () => {
         const result = getVedleggId(vedleggUrlFraResponseHeader);
         expect(result).toEqual(
@@ -30,9 +26,12 @@ describe('attachmentUtilsAuthToken', () => {
         );
     });
 
-    it('genererer riktig frontend-url for et vedlegg', () => {
+    it('getAttachmentURLFrontend - genererer riktig frontend-url for et vedlegg', () => {
         const result = getAttachmentURLFrontend(vedleggUrlFraResponseHeader);
-        expect(getEnvironmentVariable('VEDLEGG_API_URL')).toEqual('https://k9-brukerdialog-prosessering');
         expect(result).toEqual(`https://k9-ettersending-soknad.intern.dev.nav.no/api/${vedleggId}`);
+    });
+    it('getAttachmentURLBackend - genererer riktig backend-url for et vedlegg', () => {
+        const result = getAttachmentURLBackend(vedleggUrlFraResponseHeader);
+        expect(result).toEqual(`https://k9-brukerdialog-prosessering/${vedleggId}`);
     });
 });
