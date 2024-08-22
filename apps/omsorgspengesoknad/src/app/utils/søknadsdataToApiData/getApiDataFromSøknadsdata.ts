@@ -3,15 +3,17 @@ import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-cor
 import { includeDeltBostedStep } from '../../søknad/søknadStepConfig';
 import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
-import { getAttachmentURLBackend } from '../attachmentUtilsAuthToken';
-import { getOmBarnetApiDataFromSøknadsdata } from './getOmBarnetApiDataFromSøknadsdata';
+import { getAttachmentURLBackend } from '../attachmentUtils';
 import { getDataBruktTilUtledning } from './getDataBruktTilUtledning';
+import { getOmBarnetApiDataFromSøknadsdata } from './getOmBarnetApiDataFromSøknadsdata';
 
 const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
     if (!vedlegg || vedlegg.length === 0) {
         return [];
     }
-    return vedlegg.filter(attachmentIsUploadedAndIsValidFileFormat).map(({ url }) => getAttachmentURLBackend(url));
+    return vedlegg
+        .filter(attachmentIsUploadedAndIsValidFileFormat)
+        .map(({ url }) => (url ? getAttachmentURLBackend(url) : ''));
 };
 
 export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadApiData | undefined => {

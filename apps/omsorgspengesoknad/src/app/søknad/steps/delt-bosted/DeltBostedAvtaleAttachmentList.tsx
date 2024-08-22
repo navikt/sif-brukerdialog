@@ -13,6 +13,7 @@ import { useFormikContext } from 'formik';
 import api from '../../../api/api';
 import { DeltBostedFormFields, DeltBostedFormValues } from './DeltBostedForm';
 import { AppText } from '../../../i18n';
+import { fixAttachmentURL } from '../../../utils/attachmentUtils';
 
 interface Props {
     includeDeletionFunctionality: boolean;
@@ -24,7 +25,9 @@ const DeltBostedAvtaleAttachmentList: React.FunctionComponent<Props> = ({
     includeDeletionFunctionality,
 }) => {
     const { values, setFieldValue } = useFormikContext<DeltBostedFormValues>();
-    const avtale: Attachment[] = values.samværsavtale.filter(({ file }: Attachment) => fileExtensionIsValid(file.name));
+    const avtale: Attachment[] = values.samværsavtale
+        .filter(({ file }: Attachment) => fileExtensionIsValid(file.name))
+        .map(fixAttachmentURL);
 
     if (!containsAnyUploadedAttachments(avtale)) {
         const noAttachmentsText = (

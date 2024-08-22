@@ -5,7 +5,7 @@ import { AppText } from '../../../i18n';
 import { SøknadApiData } from '../../../types/søknadApiData/SøknadApiData';
 import { DeltBostedSøknadsdata } from '../../../types/søknadsdata/DeltBostedSøknadsdata';
 import { LegeerklæringSøknadsdata } from '../../../types/søknadsdata/LegeerklæringSøknadsdata';
-import { getAttachmentURLBackend } from '../../../utils/attachmentUtilsAuthToken';
+import { fixAttachmentURL, getAttachmentURLBackend } from '../../../utils/attachmentUtils';
 
 interface Props {
     apiData: SøknadApiData;
@@ -19,15 +19,19 @@ const VedleggOppsummering: React.FunctionComponent<Props> = ({
     samværsavtaleSøknadsdata,
 }) => {
     const legeerklæringer = legeerklæringSøknadsdata
-        ? legeerklæringSøknadsdata.vedlegg.filter(
-              (v) => v.url && apiData.legeerklæring.includes(getAttachmentURLBackend(v.url)),
-          )
+        ? legeerklæringSøknadsdata.vedlegg
+              .filter((v) => v.url && apiData.legeerklæring.includes(getAttachmentURLBackend(v.url)))
+              .map(fixAttachmentURL)
         : [];
 
     const samværsavtaler = samværsavtaleSøknadsdata
-        ? samværsavtaleSøknadsdata.vedlegg.filter((v) => {
-              return v.url && apiData.samværsavtale && apiData.samværsavtale.includes(getAttachmentURLBackend(v.url));
-          })
+        ? samværsavtaleSøknadsdata.vedlegg
+              .filter((v) => {
+                  return (
+                      v.url && apiData.samværsavtale && apiData.samværsavtale.includes(getAttachmentURLBackend(v.url))
+                  );
+              })
+              .map(fixAttachmentURL)
         : undefined;
 
     return (

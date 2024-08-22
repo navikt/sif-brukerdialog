@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.29.4
+
+### Patch Changes
+
+-   032935c: Bugfix - feil frontendurl for vedlegg
+
 ## 1.29.3
 
 ### Patch Changes
