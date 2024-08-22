@@ -1,5 +1,16 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.0.0
+
+### Major Changes
+
+-   b73c301: Fix ugyldig vedlegg-url i frontend
+
+### Patch Changes
+
+-   Updated dependencies [b73c301]
+    -   @navikt/sif-common-soknad-ds@13.2.0
+
 ## 3.17.2
 
 ### Patch Changes

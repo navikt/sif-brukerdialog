@@ -1,5 +1,16 @@
 # @navikt/sif-ettersending
 
+## 3.37.0
+
+### Minor Changes
+
+-   b73c301: Fix attachmentURLUtils export
+
+### Patch Changes
+
+-   Updated dependencies [b73c301]
+    -   @navikt/sif-common-soknad-ds@13.2.0
+
 ## 3.36.2
 
 ### Patch Changes
