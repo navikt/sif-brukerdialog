@@ -1,12 +1,14 @@
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 
+const SPLIT_KEY = 'vedlegg/';
+
 /**
  * Henter ut ID til et opplastet dokument ut fra URL som kommer i response header ved opplasting, eller som er generert fra frontend-url
  * @param url string
  * @returns string
  */
 export const getVedleggId = (url: string): string => {
-    return url.split('vedlegg/')[1];
+    return url.split(SPLIT_KEY)[1];
 };
 
 /**
@@ -16,7 +18,7 @@ export const getVedleggId = (url: string): string => {
  */
 export const getAttachmentURLFrontend = (responseHeaderVedleggUrl: string): string => {
     const vedleggId = getVedleggId(responseHeaderVedleggUrl);
-    return `${getEnvironmentVariable('FRONTEND_VEDLEGG_URL')}/vedlegg/${vedleggId}`;
+    return `${getEnvironmentVariable('FRONTEND_VEDLEGG_URL')}/${SPLIT_KEY}${vedleggId}`;
 };
 
 /**
@@ -27,7 +29,7 @@ export const getAttachmentURLFrontend = (responseHeaderVedleggUrl: string): stri
 export const getAttachmentURLBackend = (frontendVedleggUrl?: string): string => {
     if (frontendVedleggUrl !== undefined) {
         const vedleggId = getVedleggId(frontendVedleggUrl);
-        return `${getEnvironmentVariable('VEDLEGG_API_URL')}/vedlegg/${vedleggId}`;
+        return `${getEnvironmentVariable('VEDLEGG_API_URL')}/${SPLIT_KEY}${vedleggId}`;
     }
     return '';
 };
