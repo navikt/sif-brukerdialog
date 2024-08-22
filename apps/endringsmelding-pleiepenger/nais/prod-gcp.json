@@ -2,9 +2,9 @@
     "app": "endringsmelding-pleiepenger",
     "cluster": "prod-gcp",
     "env": {
-        "API_TOKENX_AUDIENCE": "prod-gcp:dusseldorf:k9-brukerdialog-api",
+        "API_TOKENX_AUDIENCE": "prod-gcp:dusseldorf:k9-brukerdialog-prosessering",
         "API_URL_INNSYN": "http://sif-innsyn-api",
-        "API_URL": "http://k9-brukerdialog-api",
+        "API_URL": "http://k9-brukerdialog-prosessering",
         "APP_VERSION": "prod",
         "APPSTATUS_DATASET": "production",
         "APPSTATUS_PROJECT_ID": "ryujtq87",
@@ -21,7 +21,7 @@
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger"
     },
     "externalHosts": ["www.nav.no"],
-    "accessPolicyOutApps": ["k9-brukerdialog-api", "sif-innsyn-api"],
+    "accessPolicyOutApps": ["k9-brukerdialog-prosessering", "sif-innsyn-api"],
     "minReplicas": 2,
     "maxReplicas": 2,
     "ingresses": ["https://www.nav.no/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger"],
