@@ -2,8 +2,8 @@
     "app": "sif-ettersending",
     "cluster": "dev-gcp",
     "env": {
-        "API_TOKENX_AUDIENCE": "dev-gcp:dusseldorf:k9-brukerdialog-prosessering",
-        "API_URL": "http://k9-brukerdialog-prosessering",
+        "API_TOKENX_AUDIENCE": "dev-gcp:dusseldorf:k9-brukerdialog-api",
+        "API_URL": "http://k9-brukerdialog-api",
         "APP_VERSION": "dev",
         "APPSTATUS_DATASET": "staging",
         "APPSTATUS_PROJECT_ID": "ryujtq87",
@@ -18,10 +18,10 @@
         "NPM_CONFIG_CACHE": "/tmp",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/ettersending",
         "PLEIEPENGER_SYKT_BARN_URL": "https://pleiepengesoknad.intern.dev.nav.no",
-        "VEDLEGG_API_URL": "https://k9-brukerdialog-prosessering"
+        "VEDLEGG_API_URL": "https://k9-brukerdialog-api"
     },
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
-    "accessPolicyOutApps": ["k9-brukerdialog-prosessering"],
+    "accessPolicyOutApps": ["k9-brukerdialog-api"],
     "minReplicas": 1,
     "maxReplicas": 1,
     "ingresses": ["https://k9-ettersending-soknad.intern.dev.nav.no"],
