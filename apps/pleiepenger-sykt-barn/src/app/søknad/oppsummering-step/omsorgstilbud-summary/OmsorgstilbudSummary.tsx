@@ -1,10 +1,7 @@
+import { Box, FormSummary } from '@navikt/ds-react';
 import React from 'react';
-import { useAppIntl } from '@i18n/index';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import ContentWithHeader from '@navikt/sif-common-core-ds/src/components/content-with-header/ContentWithHeader';
-import { SummaryBlock, SummarySection, TextareaSvar } from '@navikt/sif-common-ui';
+import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { DateRange, prettifyDateExtended } from '@navikt/sif-common-utils';
-import Sitat from '../../../components/sitat/Sitat';
 import { AppText } from '../../../i18n';
 import TidEnkeltdager from '../../../local-sif-common-pleiepenger/components/dager-med-tid/TidEnkeltdager';
 import TidFasteDager from '../../../local-sif-common-pleiepenger/components/dager-med-tid/TidFasteDager';
@@ -14,117 +11,111 @@ import { søkerFortidOgFremtid, søkerKunFortid, søkerKunFremtid } from '../../
 interface Props {
     søknadsperiode: DateRange;
     apiValues: SøknadApiData;
+    onEdit?: () => void;
 }
 
-const OmsorgstilbudSummary: React.FC<Props> = ({
-    apiValues: { nattevåk, beredskap, omsorgstilbud },
-    søknadsperiode,
-}) => {
-    const { text } = useAppIntl();
-
+const OmsorgstilbudSummary: React.FC<Props> = ({ apiValues: { omsorgstilbud }, søknadsperiode, onEdit }) => {
     return (
-        <>
-            <SummarySection
-                header={text('steg.oppsummering.omsorgstilbud.header', {
-                    fra: prettifyDateExtended(søknadsperiode.from),
-                    til: prettifyDateExtended(søknadsperiode.to),
-                })}>
+        <FormSummary>
+            <FormSummary.Header>
+                <FormSummary.Heading level="2">
+                    <AppText
+                        id="steg.oppsummering.omsorgstilbud.header"
+                        values={{
+                            fra: prettifyDateExtended(søknadsperiode.from),
+                            til: prettifyDateExtended(søknadsperiode.to),
+                        }}
+                    />
+                </FormSummary.Heading>
+                {onEdit && <EditStepLink onEdit={onEdit} />}
+            </FormSummary.Header>
+            <FormSummary.Answers>
                 {omsorgstilbud === undefined && (
                     <>
                         {(søkerKunFortid(søknadsperiode) || søkerFortidOgFremtid(søknadsperiode)) && (
-                            <SummaryBlock header={text('steg.oppsummering.omsorgstilbud.fortid.spm')}>
-                                <div data-testid="oppsummering-omsorgstilbud-svarFortid">
+                            <FormSummary.Answer>
+                                <FormSummary.Label>
+                                    <AppText id="steg.oppsummering.omsorgstilbud.fortid.spm" />
+                                </FormSummary.Label>
+                                <FormSummary.Value>
                                     <AppText id={`steg.oppsummering.omsorgstilbud.fortid.svar.NEI`} />
-                                </div>
-                            </SummaryBlock>
+                                </FormSummary.Value>
+                            </FormSummary.Answer>
                         )}
                         {(søkerKunFremtid(søknadsperiode) || søkerFortidOgFremtid(søknadsperiode)) && (
-                            <SummaryBlock
-                                header={text(
-                                    søkerFortidOgFremtid(søknadsperiode)
-                                        ? 'steg.oppsummering.omsorgstilbud.fremtid.spm'
-                                        : 'steg.oppsummering.omsorgstilbud.fremtid.spm.kunFremtid',
-                                )}>
-                                <div data-testid="oppsummering-omsorgstilbud-svarFremtid">
+                            <FormSummary.Answer>
+                                <FormSummary.Label>
+                                    <AppText
+                                        id={
+                                            søkerFortidOgFremtid(søknadsperiode)
+                                                ? 'steg.oppsummering.omsorgstilbud.fremtid.spm'
+                                                : 'steg.oppsummering.omsorgstilbud.fremtid.spm.kunFremtid'
+                                        }
+                                    />
+                                </FormSummary.Label>
+                                <FormSummary.Value>
                                     <AppText id={`steg.oppsummering.omsorgstilbud.fremtid.svar.NEI`} />
-                                </div>
-                            </SummaryBlock>
+                                </FormSummary.Value>
+                            </FormSummary.Answer>
                         )}
                     </>
                 )}
                 {omsorgstilbud !== undefined && omsorgstilbud.svarFortid && (
-                    <SummaryBlock header={text('steg.oppsummering.omsorgstilbud.fortid.spm')}>
-                        <div data-testid="oppsummering-omsorgstilbud-svarFortid">
+                    <FormSummary.Answer>
+                        <FormSummary.Label>
+                            <AppText id="steg.oppsummering.omsorgstilbud.fortid.spm" />
+                        </FormSummary.Label>
+                        <FormSummary.Value>
                             <AppText id={`steg.oppsummering.omsorgstilbud.fortid.svar.${omsorgstilbud.svarFortid}`} />
-                        </div>
-                    </SummaryBlock>
+                        </FormSummary.Value>
+                    </FormSummary.Answer>
                 )}
                 {omsorgstilbud !== undefined && omsorgstilbud.svarFremtid && (
-                    <SummaryBlock
-                        header={text(
-                            søkerFortidOgFremtid(søknadsperiode)
-                                ? 'steg.oppsummering.omsorgstilbud.fremtid.spm'
-                                : 'steg.oppsummering.omsorgstilbud.fremtid.spm.kunFremtid',
-                        )}>
-                        <div data-testid="oppsummering-omsorgstilbud-svarFremtid">
+                    <FormSummary.Answer>
+                        <FormSummary.Label>
+                            <AppText
+                                id={
+                                    søkerFortidOgFremtid(søknadsperiode)
+                                        ? 'steg.oppsummering.omsorgstilbud.fremtid.spm'
+                                        : 'steg.oppsummering.omsorgstilbud.fremtid.spm.kunFremtid'
+                                }
+                            />
+                        </FormSummary.Label>
+                        <FormSummary.Value>
                             <AppText id={`steg.oppsummering.omsorgstilbud.fremtid.svar.${omsorgstilbud.svarFremtid}`} />
-                        </div>
-                    </SummaryBlock>
+                        </FormSummary.Value>
+                    </FormSummary.Answer>
                 )}
                 {omsorgstilbud !== undefined && omsorgstilbud.ukedager && (
-                    <SummaryBlock
-                        header={text(
-                            søkerKunFortid(søknadsperiode)
-                                ? 'steg.oppsummering.omsorgstilbud.fast.header.fortid'
-                                : 'steg.oppsummering.omsorgstilbud.fast.header',
-                        )}>
-                        <TidFasteDager fasteDager={omsorgstilbud.ukedager} />
-                    </SummaryBlock>
+                    <FormSummary.Answer>
+                        <FormSummary.Label>
+                            <AppText
+                                id={
+                                    søkerKunFortid(søknadsperiode)
+                                        ? 'steg.oppsummering.omsorgstilbud.fast.header.fortid'
+                                        : 'steg.oppsummering.omsorgstilbud.fast.header'
+                                }
+                            />
+                        </FormSummary.Label>
+                        <FormSummary.Value>
+                            <TidFasteDager fasteDager={omsorgstilbud.ukedager} />
+                        </FormSummary.Value>
+                    </FormSummary.Answer>
                 )}
                 {omsorgstilbud !== undefined && omsorgstilbud.enkeltdager && (
-                    <SummaryBlock header={text('steg.oppsummering.omsorgstilbud.enkeltdager.header')}>
-                        <TidEnkeltdager dager={omsorgstilbud.enkeltdager} />
-                    </SummaryBlock>
+                    <FormSummary.Answer>
+                        <FormSummary.Label>
+                            <AppText id="steg.oppsummering.omsorgstilbud.enkeltdager.header" />
+                        </FormSummary.Label>
+                        <FormSummary.Value>
+                            <Box marginBlock="6 0">
+                                <TidEnkeltdager dager={omsorgstilbud.enkeltdager} />
+                            </Box>
+                        </FormSummary.Value>
+                    </FormSummary.Answer>
                 )}
-            </SummarySection>
-            {(nattevåk || beredskap) && (
-                <SummarySection header={text('steg.oppsummering.nattevåkBeredskap.header')}>
-                    {nattevåk && (
-                        <Block margin="xl">
-                            <ContentWithHeader header={text('steg.nattevåkOgBeredskap.nattevåk.spm')}>
-                                <div data-testid="oppsummering-nattevåk">
-                                    <AppText id={nattevåk.harNattevåk === true ? 'Ja' : 'Nei'} />
-                                </div>
-
-                                {nattevåk.harNattevåk === true && nattevåk.tilleggsinformasjon && (
-                                    <Sitat>
-                                        <div data-testid="oppsummering-nattevåk-tilleggsinformasjon">
-                                            <TextareaSvar text={nattevåk.tilleggsinformasjon} />
-                                        </div>
-                                    </Sitat>
-                                )}
-                            </ContentWithHeader>
-                        </Block>
-                    )}
-                    {beredskap && (
-                        <Block margin="xl">
-                            <ContentWithHeader header={text('steg.nattevåkOgBeredskap.beredskap.spm')}>
-                                <div data-testid="oppsummering-beredskap">
-                                    <AppText id={beredskap.beredskap === true ? 'Ja' : 'Nei'} />
-                                </div>
-                                {beredskap.tilleggsinformasjon && (
-                                    <Sitat>
-                                        <div data-testid="oppsummering-beredskap-tilleggsinformasjon">
-                                            <TextareaSvar text={beredskap.tilleggsinformasjon} />
-                                        </div>
-                                    </Sitat>
-                                )}
-                            </ContentWithHeader>
-                        </Block>
-                    )}
-                </SummarySection>
-            )}
-        </>
+            </FormSummary.Answers>
+        </FormSummary>
     );
 };
 

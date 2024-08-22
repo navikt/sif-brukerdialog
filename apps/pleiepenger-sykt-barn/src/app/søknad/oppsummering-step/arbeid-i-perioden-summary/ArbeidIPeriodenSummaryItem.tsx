@@ -12,6 +12,7 @@ import { RedusertArbeidstidType } from '../../../types/RedusertArbeidstidType';
 import { ArbeidsforholdApiData, ArbeidsukeTimerApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import { getArbeidsukeInfoIPeriode } from '../../../utils/arbeidsukeInfoUtils';
 import { formatTimerOgMinutter } from '../../../utils/formatTimerOgMinutter';
+import { List } from '@navikt/ds-react';
 
 interface Props {
     periode: DateRange;
@@ -25,6 +26,7 @@ export interface ArbeidIPeriodenSummaryItemType extends ArbeidsforholdApiData {
 
 const ArbeidIPeriodeSummaryItem: React.FunctionComponent<Props> = ({ arbeidIPeriodeSummaryItem }) => {
     const appIntl = useAppIntl();
+    const { text } = appIntl;
 
     const { arbeidIPeriode, normalarbeidstid, gjelderHonorar } = arbeidIPeriodeSummaryItem;
     const timerNormaltNumber = ISODurationToDecimalDuration(normalarbeidstid.timerPerUkeISnitt);
@@ -35,29 +37,29 @@ const ArbeidIPeriodeSummaryItem: React.FunctionComponent<Props> = ({ arbeidIPeri
 
     if (arbeidIPeriode.type === ArbeidIPeriodeType.arbeiderVanlig) {
         return (
-            <ul>
-                <li>
+            <List>
+                <List.Item>
                     {gjelderHonorar ? (
                         <AppText id={`oppsummering.arbeidIPeriode.arbeiderIPerioden.somVanlig.honorar`} />
                     ) : (
                         <AppText id={`oppsummering.arbeidIPeriode.arbeiderIPerioden.somVanlig`} />
                     )}
-                </li>
-            </ul>
+                </List.Item>
+            </List>
         );
     }
 
     if (arbeidIPeriode.type === ArbeidIPeriodeType.arbeiderIkke) {
         return (
-            <ul>
-                <li>
+            <List>
+                <List.Item>
                     {gjelderHonorar ? (
                         <AppText id={`oppsummering.arbeidIPeriode.arbeiderIPerioden.nei.honorar`} />
                     ) : (
                         <AppText id={`oppsummering.arbeidIPeriode.arbeiderIPerioden.nei`} />
                     )}
-                </li>
-            </ul>
+                </List.Item>
+            </List>
         );
     }
 
@@ -66,20 +68,20 @@ const ArbeidIPeriodeSummaryItem: React.FunctionComponent<Props> = ({ arbeidIPeri
     switch (redusertArbeid.type) {
         case RedusertArbeidstidType.prosentAvNormalt:
             return (
-                <ul>
-                    <li>
+                <List>
+                    <List.Item>
                         <AppText id="oppsummering.arbeidIPeriode.arbeiderIPerioden.redusert" />
-                    </li>
-                    <li>{getArbeidProsentTekst(redusertArbeid.prosentAvNormalt, appIntl)}</li>
-                </ul>
+                    </List.Item>
+                    <List.Item>{getArbeidProsentTekst(redusertArbeid.prosentAvNormalt, appIntl)}</List.Item>
+                </List>
             );
         case RedusertArbeidstidType.timerISnittPerUke:
             return (
-                <ul>
-                    <li>
+                <List>
+                    <List.Item>
                         <AppText id="oppsummering.arbeidIPeriode.arbeiderIPerioden.redusert" />
-                    </li>
-                    <li>
+                    </List.Item>
+                    <List.Item>
                         <AppText
                             id="oppsummering.arbeidIPeriode.arbeiderIPerioden.timerPerUke"
                             values={{
@@ -90,28 +92,24 @@ const ArbeidIPeriodeSummaryItem: React.FunctionComponent<Props> = ({ arbeidIPeri
                                 timerNormalt: getTimerNormaltString(timerNormaltNumber, appIntl),
                             }}
                         />
-                    </li>
-                </ul>
+                    </List.Item>
+                </List>
             );
         case RedusertArbeidstidType.ulikeUkerTimer:
             return (
-                <ul>
-                    <li>
+                <List>
+                    <List.Item>
                         <AppText id="oppsummering.arbeidIPeriode.arbeiderIPerioden.redusert" />
-                    </li>
-                    <li>
-                        <p>
-                            <AppText
-                                id={
-                                    redusertArbeid.arbeidsuker.length === 1
-                                        ? 'oppsummering.arbeidIPeriode.arbeiderIPerioden.ulikeUker.enkeltuke.timer.tittel'
-                                        : 'oppsummering.arbeidIPeriode.arbeiderIPerioden.ulikeUker.timer.tittel'
-                                }
-                            />
-                        </p>
+                    </List.Item>
+                    <List.Item
+                        title={text(
+                            redusertArbeid.arbeidsuker.length === 1
+                                ? 'oppsummering.arbeidIPeriode.arbeiderIPerioden.ulikeUker.enkeltuke.timer.tittel'
+                                : 'oppsummering.arbeidIPeriode.arbeiderIPerioden.ulikeUker.timer.tittel',
+                        )}>
                         {getArbeiderUlikeUkerTimerSummary(redusertArbeid.arbeidsuker, appIntl)}
-                    </li>
-                </ul>
+                    </List.Item>
+                </List>
             );
     }
 };
@@ -127,7 +125,7 @@ const getArbeidProsentTekst = (prosent: number, { text }: AppIntlShape) => {
 
 const getArbeiderUlikeUkerTimerSummary = (arbeidsuker: ArbeidsukeTimerApiData[], appIntl: AppIntlShape) => {
     return (
-        <ul>
+        <List>
             {arbeidsuker.map((uke) => {
                 const dateRange: DateRange = {
                     from: ISODateToDate(uke.periode.fraOgMed),
@@ -135,7 +133,7 @@ const getArbeiderUlikeUkerTimerSummary = (arbeidsuker: ArbeidsukeTimerApiData[],
                 };
                 const week = getArbeidsukeInfoIPeriode(dateRange);
                 return (
-                    <li key={week.ukenummer}>
+                    <List.Item key={week.ukenummer}>
                         <AppText
                             id="oppsummering.arbeidIPeriode.arbeiderIPerioden.ulikeUker.timer.uke"
                             values={{
@@ -143,10 +141,10 @@ const getArbeiderUlikeUkerTimerSummary = (arbeidsuker: ArbeidsukeTimerApiData[],
                                 timer: formatTimerOgMinutter(appIntl, ISODurationToDuration(uke.timer)),
                             }}
                         />
-                    </li>
+                    </List.Item>
                 );
             })}
-        </ul>
+        </List>
     );
 };
 

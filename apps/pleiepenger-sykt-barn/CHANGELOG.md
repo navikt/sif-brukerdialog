@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.17.0
+
+### Minor Changes
+
+-   Oppdatere oppsummeringssiden til å bruke Aksel maler
+
 ## 3.16.0
 
 ### Minor Changes

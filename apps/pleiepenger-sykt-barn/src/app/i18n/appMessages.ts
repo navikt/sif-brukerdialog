@@ -375,15 +375,16 @@ const nb = {
     'steg.oppsummering.info':
         'Les gjennom oppsummeringen før du sender inn søknaden. Du kan gå tilbake hvis du vil gjøre endringer.',
     'steg.oppsummering.søker.header': 'Om deg',
-    'steg.oppsummering.søker.fnr': 'Fødselsnummer: {fødselsnummer}',
+    'steg.oppsummering.søker.navn': 'Navn',
+    'steg.oppsummering.søker.fnr': 'Fødselsnummer',
     'steg.oppsummering.tidsrom.header': 'Perioden du søker pleiepenger for',
     'steg.oppsummering.søknadsperiode.header': 'Periode',
     'steg.oppsummering.tidsrom.fomtom': '{fom} - {tom}',
 
     'steg.oppsummering.barnet.header': 'Om barnet',
-    'steg.oppsummering.barnet.navn': 'Navn: {navn}',
-    'steg.oppsummering.barnet.fødselsdato': 'Fødselsdato: {dato}',
-    'steg.oppsummering.barnet.fnr': 'Fødselsnummer: {fnr}',
+    'steg.oppsummering.barnet.navn': 'Navn',
+    'steg.oppsummering.barnet.fødselsdato': 'Fødselsdato',
+    'steg.oppsummering.barnet.fnr': 'Fødselsnummer',
     'steg.oppsummering.barnet.barnetHarIkkeFnr': 'Uten fødselsnummer/D-nummer',
     'steg.oppsummering.barnet.årsakManglerIdentitetsnummer.NYFØDT':
         'Barnet er nyfødt, og har ikke fått fødselsnummer enda',
@@ -399,6 +400,7 @@ const nb = {
     'steg.oppsummering.barnRelasjon.FAR': 'Du er far til barnet',
     'steg.oppsummering.barnRelasjon.ANNET': 'Annet',
     'steg.oppsummering.utenlandsoppholdIPerioden.header': 'Skal du være i utlandet i perioden?',
+    'steg.oppsummering.utenlandsoppholdIPerioden.listTitle': 'Utlandsopphold i perioden',
     'steg.oppsummering.ferieuttakIPerioden.header': 'Skal du ta ut ferie i perioden?',
 
     'steg.oppsummering.omsorgstilbud.header': 'Omsorgstilbud i søknadsperioden',
@@ -415,6 +417,10 @@ const nb = {
     'steg.oppsummering.omsorgstilbud.fremtid.svar.NEI': 'Nei',
     'steg.oppsummering.omsorgstilbud.fremtid.svar.USIKKER': 'Usikker',
     'steg.oppsummering.nattevåkBeredskap.header': 'Nattevåk og beredskap',
+    'steg.oppsummering.nattevåkBeredskap.nattevåk.beskrivelse':
+        'Beskrivelse av hvordan barnets sykdom gir et pleie- eller tilsynsbehov om nettene',
+    'steg.oppsummering.nattevåkBeredskap.beredskap.beskrivelse':
+        'Beskrivelse av hvordan barnets sykdom gjør at du må være i beredskap',
     'steg.oppsummering.omsorgstilbud.fast.header': 'Omsorgstilbud er likt hver uke i perioden:',
     'steg.oppsummering.omsorgstilbud.fast.header.fortid': 'Tiden har vært lik hver uke i perioden:',
 
@@ -422,12 +428,18 @@ const nb = {
 
     'steg.oppsummering.utlandetSiste12.header': 'Har bodd i utlandet i de siste 12 månedene',
     'steg.oppsummering.utlandetNeste12.header': 'Skal bo i utlandet i de neste 12 månedene',
+    'steg.oppsummering.utlandetSiste12.liste.header': 'Utenlandsopphold siste 12 måneder',
+    'steg.oppsummering.utlandetNeste12.liste.header': 'Utenlandsopphold neste 12 måneder',
 
     'steg.oppsummering.bekrefterOpplysninger':
         'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til pleiepenger.',
 
     'steg.oppsummering.arbeidssituasjon.header': 'Arbeidssituasjonen din',
+    'steg.oppsummering.arbeidssituasjon.omsfost.title': 'Omsorgsstønad eller fosterhjemsgodtgjørelse',
+    'steg.oppsummering.arbeidssituasjon.omsfost.mottarIkke':
+        'Mottar ikke fosterhjemgodtgjørelse, eller omsorgsstønad fra kommunen',
     'steg.oppsummering.vedlegg.header': 'Legeerklæring',
+    'steg.oppsummering.vedlegg.listTitle': 'Dokumenter lastet opp',
 
     'steg.oppsummering.validering.navigasjonTilStegInfo':
         'Vennligst gå tilbake og sjekk informasjonen du har fylt ut. Når du har gjort det, trykker du på "Fortsett"-knappen for å gå videre.',
@@ -595,11 +607,29 @@ const nb = {
     'oppsummering.arbeidssituasjon.selvstendig.enVirksomhet': 'Har 1 virksomhet',
 
     'oppsummering.arbeidssituasjon.optjeningIUtlandet.listetittel': 'Jobbet i annet EØS-land',
-    'oppsummering.arbeidssituasjon.optjeningIUtlandet.nei': 'Nei',
+    // 'oppsummering.arbeidssituasjon.optjeningIUtlandet.nei': 'Nei',
+    'oppsummering.arbeidssituasjon.optjeningIUtlandet.tittel': 'Arbeidstaker eller frilanser i et annet EØS-land',
+    'oppsummering.arbeidssituasjon.optjeningIUtlandet.ja':
+        'Har  jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før perioden en søker om',
+    'oppsummering.arbeidssituasjon.optjeningIUtlandet.nei':
+        'Har ikke jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før perioden en søker om',
+    'oppsummering.arbeidssituasjon.optjeningIUtlandet.periode': 'Periode med jobb i annet EØS-land',
+    'oppsummering.arbeidssituasjon.optjeningIUtlandet.perioder': 'Perioder med jobb i annet EØS-land',
+
+    'oppsummering.arbeidssituasjon.utenlandskNæring.tittel': 'Selvstendig næringsdrivende i et annet EØS-land',
+    'oppsummering.arbeidssituasjon.utenlandskNæring.nei':
+        'Har ikke jobbet som selvstendig næringsdrivende i et annet EØS-land i løpet av de 3 siste årene før perioden en søker om',
+    'oppsummering.arbeidssituasjon.utenlandskNæring.ja':
+        'Har jobbet som selvstendig næringsdrivende i et annet EØS-land i løpet av de 3 siste årene før perioden en søker om',
+    'oppsummering.arbeidssituasjon.utenlandskNæring.næringer': 'Næringsvirksomheter i andre EØS-land',
+    'oppsummering.arbeidssituasjon.utenlandskNæring.næring': 'Næringsvirksomhet i annet EØS-land',
+
+    'opptjeningIUtlandetSummaryItem.periode': 'Periode: {periode}',
+    'opptjeningIUtlandetSummaryItem.info': 'Jobbet i {landnavn} som {hva} hos {hvor}',
 
     'oppsummering.arbeidssituasjon.utenlandskNæring.listetittel':
         'Jobbet som selvstendig næringsdrivende i et annet EØS-land',
-    'oppsummering.arbeidssituasjon.utenlandskNæring.nei': 'Nei',
+    // 'oppsummering.arbeidssituasjon.utenlandskNæring.nei': 'Nei',
 
     'oppsummering.arbeidIPeriode.jobbIPerioden.header': 'Jobb i søknadsperioden',
     'oppsummering.arbeidIPeriode.jobbIPerioden': 'Jobb i søknadsperioden',

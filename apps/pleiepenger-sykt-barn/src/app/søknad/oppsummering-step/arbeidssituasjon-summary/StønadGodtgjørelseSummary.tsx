@@ -1,6 +1,7 @@
-import { SummaryBlock } from '@navikt/sif-common-ui';
 import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
 import { StønadGodtgjørelseApiData } from '../../../types/søknad-api-data/StønadGodtgjørelseApiData';
+import { FormSummary, Heading, List } from '@navikt/ds-react';
+import { AppText } from '../../../i18n';
 
 interface Props {
     stønadGodtgjørelse: StønadGodtgjørelseApiData;
@@ -18,32 +19,46 @@ const StønadGodtgjørelseSummary = ({ stønadGodtgjørelse }: Props) => {
 
     if (mottarStønadGodtgjørelse === false) {
         return (
-            <div data-testid="omsorgsstønad">
-                <SummaryBlock header={'Omsorgsstønad eller fosterhjemsgodtgjørelse'}>
-                    <ul>
-                        <li>Mottar ikke fosterhjemgodtgjørelse, eller omsorgsstønad fra kommunen</li>
-                    </ul>
-                </SummaryBlock>
-            </div>
+            <FormSummary.Answer data-testid="omsorgsstønad">
+                <FormSummary.Label>
+                    <Heading level="3" size="small">
+                        <AppText id="steg.oppsummering.arbeidssituasjon.omsfost.title" />
+                    </Heading>
+                </FormSummary.Label>
+                <FormSummary.Value>
+                    <List>
+                        <List.Item>
+                            <AppText id="steg.oppsummering.arbeidssituasjon.omsfost.mottarIkke" />
+                        </List.Item>
+                    </List>
+                </FormSummary.Value>
+            </FormSummary.Answer>
         );
     }
 
     return (
-        <SummaryBlock header={'Omsorgsstønad eller fosterhjemsgodtgjørelse'} data-testid="omsorgsstønad">
-            <ul>
-                {mottarStønadGodtgjørelseIHelePerioden ? (
-                    <li>Mottar stønad eller godtgjørelsen gjennom hele perioden jeg søker om</li>
-                ) : (
-                    <li>Mottar stønad eller godtgjørelsen i deler av perioden jeg søker om</li>
-                )}
-                {mottarStønadGodtgjørelseIHelePerioden === false && _starterUndeveis && startdato && (
-                    <li>{`Startet ${dateFormatter.full(ISODateToDate(startdato))}`}</li>
-                )}
-                {mottarStønadGodtgjørelseIHelePerioden === false && _slutterUnderveis && sluttdato && (
-                    <li>{`Sluttet ${dateFormatter.full(ISODateToDate(sluttdato))}`}</li>
-                )}
-            </ul>
-        </SummaryBlock>
+        <FormSummary.Answer>
+            <FormSummary.Label>
+                <Heading level="3" size="small">
+                    <AppText id="steg.oppsummering.arbeidssituasjon.omsfost.title" />
+                </Heading>
+            </FormSummary.Label>
+            <FormSummary.Value>
+                <List>
+                    {mottarStønadGodtgjørelseIHelePerioden ? (
+                        <List.Item>Mottar stønad eller godtgjørelsen gjennom hele perioden jeg søker om</List.Item>
+                    ) : (
+                        <List.Item>Mottar stønad eller godtgjørelsen i deler av perioden jeg søker om</List.Item>
+                    )}
+                    {mottarStønadGodtgjørelseIHelePerioden === false && _starterUndeveis && startdato && (
+                        <List.Item>{`Startet ${dateFormatter.full(ISODateToDate(startdato))}`}</List.Item>
+                    )}
+                    {mottarStønadGodtgjørelseIHelePerioden === false && _slutterUnderveis && sluttdato && (
+                        <List.Item>{`Sluttet ${dateFormatter.full(ISODateToDate(sluttdato))}`}</List.Item>
+                    )}
+                </List>
+            </FormSummary.Value>
+        </FormSummary.Answer>
     );
 };
 

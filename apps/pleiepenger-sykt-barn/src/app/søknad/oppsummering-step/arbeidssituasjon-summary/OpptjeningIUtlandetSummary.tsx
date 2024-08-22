@@ -1,33 +1,66 @@
 import React from 'react';
-import { useAppIntl } from '@i18n/index';
-import { SummaryBlock, SummaryList } from '@navikt/sif-common-ui';
-import { AppText } from '../../../i18n';
+import { SummaryList } from '@navikt/sif-common-ui';
+import { AppText, useAppIntl } from '../../../i18n';
 import { OpptjeningIUtlandetApiData } from '../../../types/søknad-api-data/SøknadApiData';
-import { renderOpptjeningIUtlandetSummary } from './renderOpptjeningIUtlandetSummary';
+import { FormSummary, List } from '@navikt/ds-react';
+import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 
 export interface Props {
     opptjeningUtland: OpptjeningIUtlandetApiData[];
 }
 
+const getPeriodeString = (opptjening: OpptjeningIUtlandetApiData): string => {
+    return `${prettifyDateExtended(ISODateToDate(opptjening.fraOgMed))} - ${prettifyDateExtended(ISODateToDate(opptjening.tilOgMed))}`;
+};
+
 const OpptjeningIUtlandetSummary: React.FC<Props> = (props) => {
     const { opptjeningUtland } = props;
     const { text } = useAppIntl();
-
     return (
-        <div data-testid="arbeidssituasjon-opptjeningUtland">
-            <SummaryBlock header={text('oppsummering.arbeidssituasjon.optjeningIUtlandet.listetittel')}>
-                {opptjeningUtland.length === 0 && (
-                    <div data-testid="oppsummering-opptjeningUtland-nei">
-                        <AppText id="oppsummering.arbeidssituasjon.optjeningIUtlandet.nei" />
-                    </div>
-                )}
-                {opptjeningUtland.length > 0 && (
-                    <div data-testid="oppsummering-opptjeningUtland">
-                        <SummaryList items={opptjeningUtland} itemRenderer={renderOpptjeningIUtlandetSummary} />
-                    </div>
-                )}
-            </SummaryBlock>
-        </div>
+        <FormSummary.Answer>
+            <FormSummary.Label>
+                <AppText id="oppsummering.arbeidssituasjon.optjeningIUtlandet.listetittel" />
+            </FormSummary.Label>
+            <FormSummary.Value>
+                <List>
+                    <List.Item>
+                        {opptjeningUtland.length === 0 ? (
+                            <AppText id="oppsummering.arbeidssituasjon.optjeningIUtlandet.nei" />
+                        ) : (
+                            <AppText id="oppsummering.arbeidssituasjon.optjeningIUtlandet.ja" />
+                        )}
+                    </List.Item>
+                    {opptjeningUtland.length > 0 && (
+                        <List.Item
+                            title={text(
+                                opptjeningUtland.length === 1
+                                    ? 'oppsummering.arbeidssituasjon.optjeningIUtlandet.periode'
+                                    : 'oppsummering.arbeidssituasjon.optjeningIUtlandet.perioder',
+                            )}>
+                            <SummaryList<OpptjeningIUtlandetApiData>
+                                variant="blocks"
+                                items={opptjeningUtland}
+                                itemRenderer={(opptjening) => (
+                                    <AppText
+                                        id="opptjeningIUtlandetSummaryItem.info"
+                                        values={{
+                                            landnavn: opptjening.land.landnavn,
+                                            hva: opptjening.opptjeningType.toLowerCase(),
+                                            hvor: opptjening.navn,
+                                        }}
+                                    />
+                                )}
+                                itemTitleRenderer={(opptjening) =>
+                                    text('opptjeningIUtlandetSummaryItem.periode', {
+                                        periode: getPeriodeString(opptjening),
+                                    })
+                                }
+                            />
+                        </List.Item>
+                    )}
+                </List>
+            </FormSummary.Value>
+        </FormSummary.Answer>
     );
 };
 

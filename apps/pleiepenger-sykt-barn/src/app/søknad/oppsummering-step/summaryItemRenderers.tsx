@@ -1,6 +1,4 @@
-import { Box, Heading, VStack } from '@navikt/ds-react';
 import React from 'react';
-import ContentWithHeader from '@navikt/sif-common-core-ds/src/components/content-with-header/ContentWithHeader';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { UtenlandsoppholdÅrsak } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
 import { JaNeiSvar, SummaryList } from '@navikt/sif-common-ui';
@@ -12,6 +10,7 @@ import {
     PeriodeApiData,
     UtenlandsoppholdIPeriodenApiData,
 } from '../../types/søknad-api-data/SøknadApiData';
+import { FormSummary } from '@navikt/ds-react/FormSummary';
 
 const bem = bemUtils('utenlandsoppholdSummaryItem');
 
@@ -34,64 +33,84 @@ export const renderUtenlandsoppholdSummary = (opphold: BostedUtlandApiData): Rea
     </div>
 );
 
+export const renderUtenlandsoppholdIPeriodenSummaryTitle = (opphold: UtenlandsoppholdIPeriodenApiData): string => {
+    return `${opphold.landnavn}: ${prettifyDateExtended(ISODateToDate(opphold.fraOgMed))} - ${prettifyDateExtended(ISODateToDate(opphold.tilOgMed))}:`;
+};
 export const renderUtenlandsoppholdIPeriodenSummary = (
     opphold: UtenlandsoppholdIPeriodenApiData,
     { text }: AppIntlShape,
 ): React.ReactNode => {
     return (
-        <Box style={{ paddingBottom: '1rem' }}>
-            <Heading level="3" size="xsmall" spacing={true}>
-                {opphold.landnavn}: {prettifyDateExtended(ISODateToDate(opphold.fraOgMed))} -{' '}
-                {prettifyDateExtended(ISODateToDate(opphold.tilOgMed))}
-            </Heading>
-
-            <VStack gap="4" style={{ paddingLeft: '1.5rem' }}>
-                <ContentWithHeader
-                    header={text('@forms.utenlandsopphold.form.erSammenMedBarnet.spm', { land: opphold.landnavn })}>
-                    <JaNeiSvar harSvartJa={opphold.erSammenMedBarnet} />
-                </ContentWithHeader>
-
+        <>
+            <FormSummary.Answers>
+                <FormSummary.Answer>
+                    <FormSummary.Label>
+                        {text('@forms.utenlandsopphold.form.erSammenMedBarnet.spm', { land: opphold.landnavn })}
+                    </FormSummary.Label>
+                    <FormSummary.Value>
+                        <JaNeiSvar harSvartJa={opphold.erSammenMedBarnet} />
+                    </FormSummary.Value>
+                </FormSummary.Answer>
+                {opphold.erUtenforEøs && (
+                    <FormSummary.Answer>
+                        <FormSummary.Label>
+                            <AppText
+                                id="@forms.utenlandsopphold.form.erBarnetInnlagt.spm"
+                                values={{
+                                    land: opphold.landnavn,
+                                }}
+                            />
+                        </FormSummary.Label>
+                        <FormSummary.Value>
+                            <JaNeiSvar harSvartJa={opphold.erBarnetInnlagt} />
+                        </FormSummary.Value>
+                    </FormSummary.Answer>
+                )}
                 {opphold.erUtenforEøs && (
                     <>
-                        <ContentWithHeader
-                            header={text('@forms.utenlandsopphold.form.erBarnetInnlagt.spm', {
-                                land: opphold.landnavn,
-                            })}>
-                            <JaNeiSvar harSvartJa={opphold.erBarnetInnlagt} />
-                        </ContentWithHeader>
-
                         {opphold.perioderBarnetErInnlagt !== undefined &&
                             opphold.perioderBarnetErInnlagt.length > 0 && (
-                                <ContentWithHeader
-                                    header={text('@forms.utenlandsopphold.form.perioderBarnetErInnlag.listTitle')}>
-                                    <SummaryList
-                                        items={opphold.perioderBarnetErInnlagt}
-                                        itemRenderer={(periode: PeriodeApiData) => (
-                                            <>
-                                                {prettifyDateExtended(ISODateToDate(periode.fraOgMed))} -{' '}
-                                                {prettifyDateExtended(ISODateToDate(periode.tilOgMed))}
-                                            </>
-                                        )}></SummaryList>
-                                </ContentWithHeader>
+                                <FormSummary.Answer>
+                                    <FormSummary.Label>
+                                        <AppText id="@forms.utenlandsopphold.form.perioderBarnetErInnlag.listTitle" />
+                                    </FormSummary.Label>
+                                    <FormSummary.Value className="fullWidth">
+                                        <SummaryList
+                                            useAkselList={true}
+                                            items={opphold.perioderBarnetErInnlagt}
+                                            itemRenderer={(periode: PeriodeApiData) => (
+                                                <>
+                                                    {prettifyDateExtended(ISODateToDate(periode.fraOgMed))} -{' '}
+                                                    {prettifyDateExtended(ISODateToDate(periode.tilOgMed))}
+                                                </>
+                                            )}
+                                        />
+                                    </FormSummary.Value>
+                                </FormSummary.Answer>
                             )}
                         {opphold.årsak && (
-                            <ContentWithHeader
-                                header={text('@forms.utenlandsopphold.form.årsak.spm', {
-                                    land: opphold.landnavn,
-                                })}>
-                                {opphold.årsak !== UtenlandsoppholdÅrsak.ANNET ? (
+                            <FormSummary.Answer>
+                                <FormSummary.Label>
                                     <AppText
-                                        id={`@forms.utenlandsopphold.form.årsak.${opphold.årsak}`}
+                                        id="@forms.utenlandsopphold.form.årsak.spm"
                                         values={{ land: opphold.landnavn }}
                                     />
-                                ) : (
-                                    <AppText id={`@forms.utenlandsopphold.oppsummering.årsak.ANNET`} />
-                                )}
-                            </ContentWithHeader>
+                                </FormSummary.Label>
+                                <FormSummary.Value>
+                                    {opphold.årsak !== UtenlandsoppholdÅrsak.ANNET ? (
+                                        <AppText
+                                            id={`@forms.utenlandsopphold.form.årsak.${opphold.årsak}`}
+                                            values={{ land: opphold.landnavn }}
+                                        />
+                                    ) : (
+                                        <AppText id={`@forms.utenlandsopphold.oppsummering.årsak.ANNET`} />
+                                    )}
+                                </FormSummary.Value>
+                            </FormSummary.Answer>
                         )}
                     </>
                 )}
-            </VStack>
-        </Box>
+            </FormSummary.Answers>
+        </>
     );
 };

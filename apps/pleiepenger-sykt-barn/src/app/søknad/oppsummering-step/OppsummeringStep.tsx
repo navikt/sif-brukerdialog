@@ -3,21 +3,15 @@ import { useAppIntl } from '@i18n/index';
 import { useNavigate } from 'react-router-dom';
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
-import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds/src';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds';
-import { SummaryBlock, SummaryList, SummarySection } from '@navikt/sif-common-ui';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import dayjs from 'dayjs';
 import { purge, sendApplication } from '../../api/api';
-import LegeerklæringAttachmentList from '../../components/legeerklæring-file-list/LegeerklæringFileList';
-import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 import routeConfig from '../../config/routeConfig';
 import { SøkerdataContextConsumer } from '../../context/SøkerdataContext';
 import useLogSøknadInfo from '../../hooks/useLogSøknadInfo';
@@ -42,13 +36,14 @@ import BarnSummary from './barn-summary/BarnSummary';
 import InnsendingFeiletInformasjon from './InnsendingFeiletInformasjon';
 import { InvalidParameter, isInvalidParameterErrorResponse } from './invalidParameter';
 import OmsorgstilbudSummary from './omsorgstilbud-summary/OmsorgstilbudSummary';
-import {
-    renderFerieuttakIPeriodenSummary,
-    renderUtenlandsoppholdIPeriodenSummary,
-    renderUtenlandsoppholdSummary,
-} from './summaryItemRenderers';
 import './oppsummeringStep.less';
 import { AppText } from '../../i18n';
+import SøkerSummary from './søker-summary/SøkerSummary';
+import { VStack } from '@navikt/ds-react';
+import PeriodeSummary from './periode-summary/PeriodeSummary';
+import NattevågOgBeredskapSummary from './nattevåk-og-beredskap-summary/NattevåkOgBeredskapSummary';
+import MedlemskapSummary from './medlemskap-summary/MedlemskapSummary';
+import LegeerklæringSummary from './legeerklæring-summary/LegeerklæringSummary';
 
 interface Props {
     values: SøknadFormValues;
@@ -125,10 +120,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                     harArbeidIPerioden(søknadsdata.arbeidssituasjon) &&
                     !harFraværFraJobb(søknadsdata.arbeidstidIPerioden);
 
-                const {
-                    søker: { fornavn, mellomnavn, etternavn, fødselsnummer },
-                    barn,
-                } = søkerdata;
+                const { barn } = søkerdata;
                 const harBekreftetOpplysninger = values.harBekreftetOpplysninger;
 
                 const apiValues = getApiDataFromSøknadsdata(
@@ -149,7 +141,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
 
                 const apiValuesValidationErrors = validateApiValues(apiValues, values, appIntl);
 
-                const { medlemskap, utenlandsoppholdIPerioden, ferieuttakIPerioden } = apiValues;
+                const { medlemskap, nattevåk, beredskap } = apiValues;
 
                 return (
                     <SøknadFormStep
@@ -169,195 +161,93 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                         isFinalSubmit={true}
                         buttonDisabled={sendingInProgress}
                         showButtonSpinner={sendingInProgress}>
-                        <SifGuidePanel>
-                            <p>
-                                <AppText id="steg.oppsummering.info" />
-                            </p>
-                        </SifGuidePanel>
+                        <VStack gap="8">
+                            <SifGuidePanel>
+                                <p>
+                                    <AppText id="steg.oppsummering.info" />
+                                </p>
+                            </SifGuidePanel>
 
-                        {apiValuesValidationErrors && apiValuesValidationErrors.length > 0 && (
-                            <FormBlock>
-                                <ApiValidationSummary
-                                    errors={apiValuesValidationErrors}
-                                    søknadStepConfig={søknadStepConfig}
+                            {apiValuesValidationErrors && apiValuesValidationErrors.length > 0 && (
+                                <FormBlock>
+                                    <ApiValidationSummary
+                                        errors={apiValuesValidationErrors}
+                                        søknadStepConfig={søknadStepConfig}
+                                    />
+                                </FormBlock>
+                            )}
+
+                            <SøkerSummary søker={søkerdata.søker} />
+                            <BarnSummary
+                                barn={barn}
+                                formValues={values}
+                                apiValues={apiValues}
+                                onEdit={() => {
+                                    navigate(søknadStepConfig[StepID.OPPLYSNINGER_OM_BARNET].route);
+                                }}
+                            />
+                            <PeriodeSummary
+                                apiValues={apiValues}
+                                søknadsperiode={søknadsperiode}
+                                onEdit={() => {
+                                    navigate(søknadStepConfig[StepID.TIDSROM].route);
+                                }}
+                            />
+                            <ArbeidssituasjonSummary
+                                apiValues={apiValues}
+                                søknadsperiode={søknadsperiode}
+                                frilansoppdrag={values.frilansoppdrag}
+                                onEdit={() => {
+                                    navigate(søknadStepConfig[StepID.ARBEIDSSITUASJON].route);
+                                }}
+                            />
+
+                            <ArbeidIPeriodenSummary
+                                apiValues={apiValues}
+                                søknadsperiode={søknadsperiode}
+                                søknadsdato={søknadsdato}
+                                onEdit={() => {
+                                    navigate(søknadStepConfig[StepID.ARBEIDSTID].route);
+                                }}
+                            />
+
+                            <OmsorgstilbudSummary
+                                søknadsperiode={søknadsperiode}
+                                apiValues={apiValues}
+                                onEdit={() => {
+                                    navigate(søknadStepConfig[StepID.OMSORGSTILBUD].route);
+                                }}
+                            />
+
+                            {nattevåk && beredskap && (
+                                <NattevågOgBeredskapSummary
+                                    nattevåk={nattevåk}
+                                    beredskap={beredskap}
+                                    onEdit={() => {
+                                        navigate(søknadStepConfig[StepID.NATTEVÅK_OG_BEREDSKAP].route);
+                                    }}
                                 />
-                            </FormBlock>
-                        )}
+                            )}
 
-                        <Block margin="xl">
-                            <ResponsivePanel border={true}>
-                                {/* Om deg */}
-                                <SummarySection header={text('steg.oppsummering.søker.header')}>
-                                    <Block margin="m">
-                                        <div data-testid="oppsummering-søker-navn">
-                                            {formatName(fornavn, etternavn, mellomnavn)}
-                                        </div>
-                                        <div data-testid="oppsummering-søker-fødselsnummer">
-                                            <AppText
-                                                id={'steg.oppsummering.søker.fnr'}
-                                                values={{
-                                                    fødselsnummer: fødselsnummer,
-                                                }}
-                                            />
-                                        </div>
-                                    </Block>
-                                </SummarySection>
+                            <MedlemskapSummary
+                                medlemskap={medlemskap}
+                                onEdit={() => {
+                                    navigate(søknadStepConfig[StepID.MEDLEMSKAP].route);
+                                }}
+                            />
 
-                                {/* Om barnet */}
-                                <BarnSummary barn={barn} formValues={values} apiValues={apiValues} />
+                            <LegeerklæringSummary
+                                onEdit={() => {
+                                    navigate(søknadStepConfig[StepID.LEGEERKLÆRING].route);
+                                }}
+                            />
 
-                                {/* Perioden du søker pleiepenger for */}
-                                <SummarySection header={text('steg.oppsummering.tidsrom.header')}>
-                                    <SummaryBlock header={text('steg.oppsummering.søknadsperiode.header')}>
-                                        <div data-testid="oppsummering-tidsrom-fomtom">
-                                            <AppText
-                                                id="steg.oppsummering.tidsrom.fomtom"
-                                                values={{
-                                                    fom: `${dayjs(søknadsperiode.from).format('D. MMMM YYYY')}`,
-                                                    tom: `${dayjs(søknadsperiode.to).format('D. MMMM YYYY')}`,
-                                                }}
-                                            />
-                                        </div>
-                                    </SummaryBlock>
-
-                                    {/* Utenlandsopphold i perioden */}
-                                    {utenlandsoppholdIPerioden && (
-                                        <>
-                                            <SummaryBlock
-                                                header={text('steg.oppsummering.utenlandsoppholdIPerioden.header')}>
-                                                <div data-testid="oppsummering-utenlandsoppholdIPerioden">
-                                                    <AppText
-                                                        id={
-                                                            utenlandsoppholdIPerioden.skalOppholdeSegIUtlandetIPerioden
-                                                                ? 'Ja'
-                                                                : 'Nei'
-                                                        }
-                                                    />
-                                                </div>
-                                            </SummaryBlock>
-
-                                            {utenlandsoppholdIPerioden.opphold.length > 0 && (
-                                                <Block>
-                                                    <div data-testid="oppsummering-utenlandsoppholdIPerioden-list">
-                                                        <SummaryList
-                                                            items={utenlandsoppholdIPerioden.opphold}
-                                                            itemRenderer={(item) =>
-                                                                renderUtenlandsoppholdIPeriodenSummary(item, appIntl)
-                                                            }
-                                                        />
-                                                    </div>
-                                                </Block>
-                                            )}
-                                        </>
-                                    )}
-
-                                    {/* Ferieuttak i perioden */}
-                                    {ferieuttakIPerioden && (
-                                        <>
-                                            <SummaryBlock header={text('steg.oppsummering.ferieuttakIPerioden.header')}>
-                                                <div data-testid="oppsummering-ferieuttakIPerioden">
-                                                    <AppText
-                                                        id={ferieuttakIPerioden.skalTaUtFerieIPerioden ? 'Ja' : 'Nei'}
-                                                    />
-                                                </div>
-                                            </SummaryBlock>
-                                            {ferieuttakIPerioden.ferieuttak.length > 0 && (
-                                                <Block margin="l">
-                                                    <div data-testid="oppsummering-ferieuttakIPerioden-list">
-                                                        <SummaryList
-                                                            items={ferieuttakIPerioden.ferieuttak}
-                                                            itemRenderer={renderFerieuttakIPeriodenSummary}
-                                                        />
-                                                    </div>
-                                                </Block>
-                                            )}
-                                        </>
-                                    )}
-                                </SummarySection>
-
-                                {/* Arbeidssituasjon i søknadsperiode */}
-                                <ArbeidssituasjonSummary
-                                    apiValues={apiValues}
-                                    søknadsperiode={søknadsperiode}
-                                    frilansoppdrag={values.frilansoppdrag}
-                                />
-
-                                {/* Arbeid i søknadsperiode */}
-                                <ArbeidIPeriodenSummary
-                                    apiValues={apiValues}
-                                    søknadsperiode={søknadsperiode}
-                                    søknadsdato={søknadsdato}
-                                />
-
-                                {/* Omsorgstilbud */}
-                                <OmsorgstilbudSummary søknadsperiode={søknadsperiode} apiValues={apiValues} />
-
-                                {/* Medlemskap i folketrygden */}
-                                <SummarySection header={text('medlemskap.summary.header')}>
-                                    <SummaryBlock header={text('steg.oppsummering.utlandetSiste12.header')}>
-                                        <div data-testid="oppsummering-medlemskap-utlandetSiste12">
-                                            <AppText
-                                                id={
-                                                    apiValues.medlemskap.harBoddIUtlandetSiste12Mnd === true
-                                                        ? 'Ja'
-                                                        : 'Nei'
-                                                }
-                                            />
-                                        </div>
-                                    </SummaryBlock>
-                                    {apiValues.medlemskap.harBoddIUtlandetSiste12Mnd === true &&
-                                        medlemskap.utenlandsoppholdSiste12Mnd.length > 0 && (
-                                            <Block margin="l">
-                                                <div data-testid="oppsummering-medlemskap-utlandetSiste12-list">
-                                                    <SummaryList
-                                                        items={medlemskap.utenlandsoppholdSiste12Mnd}
-                                                        itemRenderer={renderUtenlandsoppholdSummary}
-                                                    />
-                                                </div>
-                                            </Block>
-                                        )}
-                                    <SummaryBlock header={text('steg.oppsummering.utlandetNeste12.header')}>
-                                        <div data-testid="oppsummering-medlemskap-utlandetNeste12">
-                                            <AppText
-                                                id={
-                                                    apiValues.medlemskap.skalBoIUtlandetNeste12Mnd === true
-                                                        ? 'Ja'
-                                                        : 'Nei'
-                                                }
-                                            />
-                                        </div>
-                                    </SummaryBlock>
-                                    {apiValues.medlemskap.skalBoIUtlandetNeste12Mnd === true &&
-                                        medlemskap.utenlandsoppholdNeste12Mnd.length > 0 && (
-                                            <Block margin="l">
-                                                <div data-testid="oppsummering-medlemskap-utlandetNeste12-list">
-                                                    <SummaryList
-                                                        items={medlemskap.utenlandsoppholdNeste12Mnd}
-                                                        itemRenderer={renderUtenlandsoppholdSummary}
-                                                    />
-                                                </div>
-                                            </Block>
-                                        )}
-                                </SummarySection>
-
-                                {/* Vedlegg */}
-                                <SummarySection header={text('steg.oppsummering.vedlegg.header')}>
-                                    <Block margin="m">
-                                        <div data-testid={'oppsummering-vedleggList'}>
-                                            <LegeerklæringAttachmentList includeDeletionFunctionality={false} />
-                                        </div>
-                                    </Block>
-                                </SummarySection>
-                            </ResponsivePanel>
-                        </Block>
-
-                        <Block margin="l">
                             <SøknadFormComponents.ConfirmationCheckbox
                                 label={text('steg.oppsummering.bekrefterOpplysninger')}
                                 name={SøknadFormField.harBekreftetOpplysninger}
                                 validate={getCheckedValidator()}
                             />
-                        </Block>
+                        </VStack>
 
                         <div aria-live="polite">
                             {invalidParameters && <InnsendingFeiletInformasjon invalidParameter={invalidParameters} />}
