@@ -22,7 +22,7 @@ const UploadedDocumentsList = ({ includeDeletionFunctionality, onFileDeleted }: 
 
     const dokumenter: Attachment[] = values.dokumenter
         .filter(({ file }: Attachment) => fileExtensionIsValid(file.name))
-        .map(attachmentUtils.fixMissingApiInFrontendURL);
+        .map((a) => ({ ...a, url: a.url ? attachmentUtils.fixMissingApiInFrontendURL(a.url) : undefined }));
 
     if (!containsAnyUploadedAttachments(dokumenter)) {
         return null;
