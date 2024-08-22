@@ -50,7 +50,7 @@ const fixMissingApiInFrontendURL = (url: string) => {
     return url;
 };
 
-export const attachmentUtils = {
+export const attachmentAuthUtils = {
     getAttachmentId,
     getAttachmentFrontendURL,
     getAttachmentBackendURL,

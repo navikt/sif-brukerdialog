@@ -9,7 +9,7 @@ import {
 import { removeElementFromArray } from '@navikt/sif-common-core-ds/src/utils/listUtils';
 import api from '../../api/api';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
-import { attachmentUtils } from '@navikt/sif-common-soknad-ds/src';
+import { attachmentAuthUtils } from '@navikt/sif-common-soknad-ds/src';
 
 interface Props {
     includeDeletionFunctionality: boolean;
@@ -22,7 +22,7 @@ const UploadedDocumentsList = ({ includeDeletionFunctionality, onFileDeleted }: 
 
     const dokumenter: Attachment[] = values.dokumenter
         .filter(({ file }: Attachment) => fileExtensionIsValid(file.name))
-        .map((a) => ({ ...a, url: a.url ? attachmentUtils.fixMissingApiInFrontendURL(a.url) : undefined }));
+        .map((a) => ({ ...a, url: a.url ? attachmentAuthUtils.fixMissingApiInFrontendURL(a.url) : undefined }));
 
     if (!containsAnyUploadedAttachments(dokumenter)) {
         return null;
