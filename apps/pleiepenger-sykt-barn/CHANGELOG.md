@@ -1,5 +1,22 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.17.1
+
+### Patch Changes
+
+-   4e48646: Pakkeoppdateringer - minor/patch
+-   081e528: Ta i bruk Aksel maler for oppsummeringssiden.
+-   Updated dependencies [4e48646]
+    -   @navikt/sif-common-amplitude@2.26.1
+    -   @navikt/sif-common-formik-ds@1.12.1
+    -   @navikt/sif-common-soknad-ds@13.0.1
+    -   @navikt/sif-common-forms-ds@10.0.1
+    -   @navikt/appstatus-react-ds@2.19.1
+    -   @navikt/sif-common-core-ds@9.18.1
+    -   @navikt/sif-common-sentry@0.27.1
+    -   @navikt/sif-common-utils@3.47.1
+    -   @navikt/sif-common-ui@0.8.1
+
 ## 3.17.0
 
 ### Minor Changes

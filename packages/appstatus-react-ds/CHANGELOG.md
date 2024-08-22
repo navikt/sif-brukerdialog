@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 2.19.1
+
+### Patch Changes
+
+-   4e48646: Pakkeoppdateringer - minor/patch
+
 ## 2.19.0
 
 ### Minor Changes

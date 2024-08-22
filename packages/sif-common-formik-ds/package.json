@@ -4,7 +4,7 @@
     "license": "MIT",
     "main": "src/index.ts",
     "name": "@navikt/sif-common-formik-ds",
-    "version": "1.12.0",
+    "version": "1.12.1",
     "type": "module",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-formik-ds/issues"
