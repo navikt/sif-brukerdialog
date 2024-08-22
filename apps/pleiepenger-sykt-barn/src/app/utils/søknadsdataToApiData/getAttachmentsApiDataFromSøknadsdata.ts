@@ -1,6 +1,6 @@
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { attachmentUploadHasFailed } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
-import { getAttachmentURLBackend } from '../attachmentUtilsAuthToken';
+import { getAttachmentURLBackend } from '../appAttachmentUtils';
 
 export const getAttachmentsApiDataFromSøknadsdata = (attachments: Attachment[]): string[] => {
     const apiData: string[] = [];
