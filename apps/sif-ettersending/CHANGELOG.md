@@ -1,5 +1,13 @@
 # @navikt/sif-ettersending
 
+## 3.36.2
+
+### Patch Changes
+
+-   f3457cb: Bugfix - URL til vedlegg i frontend
+-   Updated dependencies [f3457cb]
+    -   @navikt/sif-common-soknad-ds@13.1.0
+
 ## 3.36.1
 
 ### Patch Changes

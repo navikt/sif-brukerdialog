@@ -22,7 +22,10 @@ test.describe('Start og innsending av ettersending', () => {
         await page.route('**/vedlegg', async (route) => {
             await route.fulfill({
                 status: 200,
-                headers: { Location: '/vedlegg', 'access-control-expose-headers': 'Location' },
+                headers: {
+                    Location: '/vedlegg/123',
+                    'access-control-expose-headers': 'Location',
+                },
             });
         });
         await page.route('**/innsending', async (route) => {

@@ -9,6 +9,7 @@ import {
 import { removeElementFromArray } from '@navikt/sif-common-core-ds/src/utils/listUtils';
 import api from '../../api/api';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
+import { fixAttachmentURL } from '../../utils/appAttachmentUtils';
 
 interface Props {
     includeDeletionFunctionality: boolean;
@@ -19,9 +20,9 @@ interface Props {
 const UploadedDocumentsList = ({ includeDeletionFunctionality, onFileDeleted }: Props) => {
     const { values, setFieldValue } = useFormikContext<SoknadFormData>();
 
-    const dokumenter: Attachment[] = values.dokumenter.filter(({ file }: Attachment) =>
-        fileExtensionIsValid(file.name),
-    );
+    const dokumenter: Attachment[] = values.dokumenter
+        .filter(({ file }: Attachment) => fileExtensionIsValid(file.name))
+        .map(fixAttachmentURL);
 
     if (!containsAnyUploadedAttachments(dokumenter)) {
         return null;

@@ -20,7 +20,7 @@ import { ApiEndpoint } from '../../types/ApiEndpoint';
 import { Person } from '../../types/Person';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import { Søknadstype } from '../../types/Søknadstype';
-import { getAttachmentURLFrontend } from '../../utils/attachmentUtilsAuthToken';
+import { getAttachmentURLFrontend } from '../../utils/appAttachmentUtils';
 import { navigateToLoginPage } from '../../utils/navigationUtils';
 import { validateDocuments } from '../../validation/fieldValidations';
 import SoknadFormStep from '../SoknadFormStep';
