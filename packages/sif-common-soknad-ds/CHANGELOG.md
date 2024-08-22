@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 13.1.0
+
+### Minor Changes
+
+-   f3457cb: Nye utils for logikk rundt å endre url for bruk i api og frontend (proxymiddleware)
+
 ## 13.0.1
 
 ### Patch Changes
