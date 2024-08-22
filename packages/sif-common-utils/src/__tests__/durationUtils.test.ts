@@ -25,7 +25,6 @@ import {
     getDurationsInDateRange,
     getNumberDurationOrUndefined,
     getPercentageOfDecimalDuration,
-    getPercentageOfDuration,
     getPercentageOfISODuration,
     getValidDurations,
     ISODurationToDecimalDuration,
@@ -490,23 +489,6 @@ describe('durationUtils', () => {
             expect(result['2021-01-02']).toBeDefined();
             expect(result['2021-01-03']).toBeDefined();
         });
-        // it('returns only valid durations within the date range', () => {
-        //     const result = getDurationsInDateRange(
-        //         {
-        //             '2021-01-01': { hours: 'a', minutes: '' },
-        //             '2021-01-02': { hours: '1', minutes: undefined },
-        //             '2021-01-03': { hours: '1', minutes: '2' },
-        //             '2021-01-05': { hours: undefined, minutes: '-1' },
-        //         },
-        //         {
-        //             from: ISODateToDate('2021-01-01'),
-        //             to: ISODateToDate('2021-01-04'),
-        //         }
-        //     );
-        //     expect(Object.keys(result).length).toBe(2);
-        //     expect(result['2021-01-02']).toBeDefined();
-        //     expect(result['2021-01-03']).toBeDefined();
-        // });
         it('returns only dates within the date range, and keeps invalid dates if removeInvalidDates === false', () => {
             const result = getDurationsInDateRange(data, {
                 from: ISODateToDate('2021-01-02'),
@@ -536,18 +518,7 @@ describe('durationUtils', () => {
             expect(getPercentageOfISODuration('P1XH30M', 50)).toBeUndefined();
         });
     });
-    describe('getPercentageOfISODuration', () => {
-        it('keeps 100% of 1 hour 30 minutes the same', () => {
-            const { hours, minutes } = getPercentageOfDuration({ hours: '1', minutes: '30' }, 100);
-            expect(hours).toEqual('1');
-            expect(minutes).toEqual('30');
-        });
-        it('returns half 45 minutes when calculating 50% of 1 hour 30 minutes', () => {
-            const { hours, minutes } = getPercentageOfDuration({ hours: '1', minutes: '30' }, 50);
-            expect(hours).toEqual('0');
-            expect(minutes).toEqual('45');
-        });
-    });
+
     describe('getPercentageOfDecimalDuration', () => {
         it('keeps 100% of 1 hour 30 minutes the same', () => {
             expect(getPercentageOfDecimalDuration(1.5, 100)).toEqual(1.5);

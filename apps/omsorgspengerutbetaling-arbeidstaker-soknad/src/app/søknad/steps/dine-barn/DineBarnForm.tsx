@@ -42,9 +42,9 @@ const DineBarnForm: React.FunctionComponent<DineBarnFormProps> = ({
 
     const { andreBarn = [], harDeltBosted } = values;
 
-    const oppdatereAndreBarn = (values: AnnetBarn[]) => {
+    const oppdatereAndreBarn = (v: AnnetBarn[]) => {
         onAndreBarnChanged({
-            andreBarn: values,
+            andreBarn: v,
             harDeltBosted,
         });
     };

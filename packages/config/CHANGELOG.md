@@ -1,5 +1,11 @@
 # config
 
+## 0.10.0
+
+### Minor Changes
+
+-   ee9cbed: Oppdatere til eslint 9. Krevde noen endringer i kode.
+
 ## 0.9.37
 
 ### Patch Changes

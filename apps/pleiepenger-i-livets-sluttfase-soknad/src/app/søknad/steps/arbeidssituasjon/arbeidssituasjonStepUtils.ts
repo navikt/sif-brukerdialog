@@ -170,7 +170,7 @@ const ansattArbeidsforholdDefaultValues = (
     arbeidsgivereFraAAreg: Arbeidsgiver[],
     arbeidsgivere?: ArbeidsgivereSøknadsdata,
 ): AnsattFormData[] => {
-    const ansattArbeidsforholdDefaultValues: AnsattFormData[] = [];
+    const ansattFormData: AnsattFormData[] = [];
 
     arbeidsgivereFraAAreg.map((arbeidsgiver) => {
         if (arbeidsgiver.type === ArbeidsgiverType.ORGANISASJON) {
@@ -179,11 +179,11 @@ const ansattArbeidsforholdDefaultValues = (
                 arbeidsgiver.organisasjonsnummer,
             );
 
-            ansattArbeidsforholdDefaultValues.push({ arbeidsgiver, ...arbeidsgiverSøknadsdata });
+            ansattFormData.push({ arbeidsgiver, ...arbeidsgiverSøknadsdata });
         }
     });
 
-    return ansattArbeidsforholdDefaultValues;
+    return ansattFormData;
 };
 
 const getArbeidsgiverFormDataFromSøknadsData = (

@@ -7,6 +7,7 @@ mockWorker.start();
 const ENDPOINT_MOCKS_KEY = `__ENDPOINT_MOCKS__`;
 
 export const mockEndpoint = (endpoint, { body, httpVerb = `get`, status = 200 }) => {
+    // eslint-disable-next-line no-undef
     mockWorker.use(rest[httpVerb](endpoint, (req, res, ctx) => res(ctx.status(status), ctx.json(body))));
 };
 

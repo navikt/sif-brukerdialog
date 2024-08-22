@@ -5,7 +5,8 @@
     "homepage": "https://navikt.github.io/sif-common-sentry",
     "license": "MIT",
     "main": "src/index.ts",
-    "version": "0.26.17",
+    "version": "0.27.0",
+    "type": "module",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-sentry/issues"
     },
@@ -15,6 +16,7 @@
         "@sentry/types": "8.26.0"
     },
     "devDependencies": {
+        "@sif/eslint-config": "workspace:*",
         "@types/node": "22.4.1",
         "axios": "1.7.4",
         "config": "*",
@@ -40,6 +42,8 @@
         "url": "git+https://github.com/navikt/sif-common-sentry.git"
     },
     "scripts": {
-        "lint": "eslint ./src --ext ts,tsx"
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit"
     }
 }

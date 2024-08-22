@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.8.0
+
+### Minor Changes
+
+-   ee9cbed: Oppdatere til eslint 9. Krevde noen endringer i kode.
+
 ## 3.7.8
 
 ### Patch Changes

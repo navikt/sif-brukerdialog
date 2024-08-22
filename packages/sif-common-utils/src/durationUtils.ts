@@ -108,7 +108,7 @@ export const ISODurationToNumberDuration = (duration: string): NumberDuration | 
             hours: parts.hours || 0,
             minutes: parts.minutes || 0,
         };
-    } catch (e) {
+    } catch {
         return undefined;
     }
 };
@@ -116,7 +116,7 @@ export const ISODurationToNumberDuration = (duration: string): NumberDuration | 
 export const ISODurationToMaybeDuration = (duration: string): Duration | undefined => {
     try {
         return ISODurationToDuration(duration);
-    } catch (e) {
+    } catch {
         return undefined;
     }
 };

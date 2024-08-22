@@ -48,7 +48,7 @@ const isUnknownAxiosError = (error: any) => {
             error.status === 'None' &&
             error.number[0] === undefined
         );
-    } catch (e) {
+    } catch {
         return false;
     }
 };

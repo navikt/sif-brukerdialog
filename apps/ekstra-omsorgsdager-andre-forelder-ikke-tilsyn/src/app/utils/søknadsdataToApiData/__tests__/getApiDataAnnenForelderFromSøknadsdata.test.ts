@@ -41,7 +41,7 @@ describe('getApiDataAnnenForelderFromSøknadsdata', () => {
     });
 
     it('should return expected data for "sykdomAnnetFom" type', () => {
-        const annenForelderenSituasjon: AnnenForelderenSituasjonSøknadsdata = {
+        const situasjon: AnnenForelderenSituasjonSøknadsdata = {
             type: 'sykdomAnnetFom',
             annenForelderSituasjon: AnnenForeldrenSituasjon.sykdom,
             annenForelderSituasjonBeskrivelse: 'Beskrivelse av situasjon',
@@ -50,7 +50,7 @@ describe('getApiDataAnnenForelderFromSøknadsdata', () => {
             annenForelderPeriodeMer6Maneder: YesOrNo.YES,
         };
 
-        const result = getApiDataAnnenForelderFromSøknadsdata(omAnnenForelder, annenForelderenSituasjon);
+        const result = getApiDataAnnenForelderFromSøknadsdata(omAnnenForelder, situasjon);
 
         const expected: AnnenForelderToApiData = {
             annenForelder: {
@@ -67,14 +67,14 @@ describe('getApiDataAnnenForelderFromSøknadsdata', () => {
     });
 
     it('should return correct API data for innlagtIHelseinstitusjon with fom and tom', () => {
-        const annenForelderenSituasjon: AnnenForelderenSituasjonSøknadsdata = {
+        const situasjon: AnnenForelderenSituasjonSøknadsdata = {
             type: 'helseinstitusjonFomTom',
             annenForelderSituasjon: AnnenForeldrenSituasjon.innlagtIHelseinstitusjon,
             annenForelderPeriodeFom: '2022-01-01',
             annenForelderPeriodeTom: '2022-02-28',
             annenForelderPeriodeVetIkkeTom: false,
         };
-        const apiData = getApiDataAnnenForelderFromSøknadsdata(omAnnenForelder, annenForelderenSituasjon);
+        const apiData = getApiDataAnnenForelderFromSøknadsdata(omAnnenForelder, situasjon);
         expect(apiData).toEqual({
             annenForelder: {
                 navn: 'John Doe',
@@ -87,14 +87,14 @@ describe('getApiDataAnnenForelderFromSøknadsdata', () => {
     });
 
     it('should return correct API data for innlagtIHelseinstitusjon with fom', () => {
-        const annenForelderenSituasjon: AnnenForelderenSituasjonSøknadsdata = {
+        const situasjon: AnnenForelderenSituasjonSøknadsdata = {
             type: 'helseinstitusjonFom',
             annenForelderSituasjon: AnnenForeldrenSituasjon.innlagtIHelseinstitusjon,
             annenForelderPeriodeFom: '2022-01-01',
             annenForelderPeriodeVetIkkeTom: true,
             annenForelderPeriodeMer6Maneder: YesOrNo.YES,
         };
-        const apiData = getApiDataAnnenForelderFromSøknadsdata(omAnnenForelder, annenForelderenSituasjon);
+        const apiData = getApiDataAnnenForelderFromSøknadsdata(omAnnenForelder, situasjon);
         expect(apiData).toEqual({
             annenForelder: {
                 navn: 'John Doe',
@@ -107,7 +107,7 @@ describe('getApiDataAnnenForelderFromSøknadsdata', () => {
     });
 
     it('should return correct API data for fengselVerneplikt', () => {
-        const annenForelderenSituasjon: AnnenForelderenSituasjonSøknadsdata = {
+        const situasjon: AnnenForelderenSituasjonSøknadsdata = {
             type: 'fengselVerneplikt',
             annenForelderSituasjon: AnnenForeldrenSituasjon.fengsel,
             annenForelderPeriodeFom: '2023-02-01',
@@ -119,12 +119,12 @@ describe('getApiDataAnnenForelderFromSøknadsdata', () => {
                 navn: 'John Doe',
                 fnr: '12345678910',
                 situasjon: AnnenForeldrenSituasjon.fengsel,
-                periodeFraOgMed: annenForelderenSituasjon.annenForelderPeriodeFom,
-                periodeTilOgMed: annenForelderenSituasjon.annenForelderPeriodeTom,
+                periodeFraOgMed: situasjon.annenForelderPeriodeFom,
+                periodeTilOgMed: situasjon.annenForelderPeriodeTom,
             },
         };
 
-        const result = getApiDataAnnenForelderFromSøknadsdata(omAnnenForelder, annenForelderenSituasjon);
+        const result = getApiDataAnnenForelderFromSøknadsdata(omAnnenForelder, situasjon);
         expect(result).toEqual(expectedApiData);
     });
 });

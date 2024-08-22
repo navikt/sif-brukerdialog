@@ -35,11 +35,11 @@ const søkerinfo: Søkerdata = {
 
 describe('kvitteringUtils', () => {
     describe('getKvitteringInfoFromApiData', () => {
-        it('returnerer undefined dersom søker ikke har arbeidsgivere ', () => {
+        it('returnerer undefined dersom søker ikke har arbeidsgivere', () => {
             const result = getKvitteringInfoFromApiData(apiData, søkerinfo);
             expect(result).toBeUndefined();
         });
-        it('returnerer undefined dersom søker kun har arbeidsgivere hvor en sluttet før søknadsperiode ', () => {
+        it('returnerer undefined dersom søker kun har arbeidsgivere hvor en sluttet før søknadsperiode', () => {
             const arbeidsgiver: ArbeidsgiverAnsattApiData = {
                 ...arbeidsgiverApiData,
                 erAnsatt: false,
@@ -48,7 +48,7 @@ describe('kvitteringUtils', () => {
             const result = getKvitteringInfoFromApiData({ ...apiData, arbeidsgivere: [arbeidsgiver] }, søkerinfo);
             expect(result).toBeUndefined();
         });
-        it('returnerer kun arbeidsgivere hvor søker ikke sluttet før søknadsperiode ', () => {
+        it('returnerer kun arbeidsgivere hvor søker ikke sluttet før søknadsperiode', () => {
             const arbeidsgiver1: ArbeidsgiverAnsattApiData = {
                 ...arbeidsgiverApiData,
                 organisasjonsnummer: '1',

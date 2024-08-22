@@ -15,8 +15,8 @@ import { getArbeidsukerIPerioden } from './arbeidstidStepUtils';
 export const cleanupArbeidsuker = (periode: DateRange, arbeidsuker: ArbeidsukerFormValues): ArbeidsukerFormValues => {
     const cleanedArbeidsuker: ArbeidsukerFormValues = {};
     const arbeidsukerIPerioden = getArbeidsukerIPerioden(periode);
-    arbeidsukerIPerioden.forEach((periode) => {
-        const key = getArbeidsukeKey(periode);
+    arbeidsukerIPerioden.forEach((p) => {
+        const key = getArbeidsukeKey(p);
         if (arbeidsuker[key]) {
             const { snittTimerPerUke } = arbeidsuker[key];
             cleanedArbeidsuker[key] = {

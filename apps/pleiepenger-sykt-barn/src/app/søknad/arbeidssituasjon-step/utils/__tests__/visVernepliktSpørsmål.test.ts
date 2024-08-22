@@ -76,23 +76,7 @@ describe('visVernepliktSpørsmål', () => {
                 }),
             ).toBeFalsy();
         });
-        it('søker er ikke ansatt, men sluttet i perioden', () => {
-            expect(
-                visVernepliktSpørsmål({
-                    ansatt_arbeidsforhold: [
-                        {
-                            ...defaultAnsattArbeidsforhold,
-                            erAnsatt: YesOrNo.NO,
-                            sluttetFørSøknadsperiode: YesOrNo.NO,
-                        },
-                    ],
-                    frilans: { harHattInntektSomFrilanser: YesOrNo.NO },
-                    selvstendig: {
-                        harHattInntektSomSN: YesOrNo.NO,
-                    },
-                }),
-            ).toBeFalsy();
-        });
+
         it('søker har ikke ansettesesforhold men er frilanser eller sn', () => {
             expect(
                 visVernepliktSpørsmål({

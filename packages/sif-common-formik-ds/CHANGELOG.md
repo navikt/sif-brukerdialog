@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.12.0
+
+### Minor Changes
+
+-   ee9cbed: Oppdatere til eslint 9. Krevde noen endringer i kode.
+
 ## 1.11.6
 
 ### Patch Changes

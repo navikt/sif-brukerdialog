@@ -83,15 +83,5 @@ describe('frilanserUtils', () => {
                 }),
             ).toBeFalsy();
         });
-        /*
-        it('returnerer true dersom en har frilansoppdrag og har svart på startdato', () => {
-            expect(
-                erFrilanserISøknadsperiode(
-                    periode,
-                    { startdato: '2021-01-01', harHattInntektSomFrilanser: YesOrNo.UNANSWERED },
-                    [frilansoppdragIPeriode]
-                )
-            ).toBeTruthy();
-        });*/
     });
 });

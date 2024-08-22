@@ -52,10 +52,10 @@ describe('dateRangeUtils', () => {
             expect(isDateRange({ from, to: undefined })).toBeFalsy();
             expect(isDateRange({ from: undefined, to: undefined })).toBeFalsy();
         });
-        it('returns true when it is a DateRange', () => {
-            const from: Date = ISODateToDate('2020-01-1');
-            const to: Date = ISODateToDate('2020-01-1');
-            expect(isDateRange({ from, to })).toBeTruthy();
+        it('returns true when is a DateRange', () => {
+            const from2: Date = ISODateToDate('2020-01-1');
+            const to2: Date = ISODateToDate('2020-01-1');
+            expect(isDateRange({ from: from2, to: to2 })).toBeTruthy();
         });
     });
     describe('sortDateRange', () => {
@@ -149,25 +149,25 @@ describe('dateRangeUtils', () => {
     describe('isDateInMaybeDateRange', () => {
         const dateBefore = ISODateToDate('2020-01-01');
         const date = ISODateToDate('2020-01-03');
-        const from = ISODateToDate('2020-01-02');
-        const to = ISODateToDate('2020-01-05');
+        const fromLocal = ISODateToDate('2020-01-02');
+        const toLocal = ISODateToDate('2020-01-05');
 
         it('returns true when date is within valid daterange', () => {
-            expect(isDateInMaybeDateRange(date, { from, to })).toBeTruthy();
+            expect(isDateInMaybeDateRange(date, { from: fromLocal, to: toLocal })).toBeTruthy();
         });
         it('return true when to-date is undefined and date is same or after from-date', () => {
             expect(isDateInMaybeDateRange(date, { from: date })).toBeTruthy();
-            expect(isDateInMaybeDateRange(date, { from })).toBeTruthy();
+            expect(isDateInMaybeDateRange(date, { from: fromLocal })).toBeTruthy();
         });
         it('returns false when to-date is undefined and date is before from-date', () => {
-            expect(isDateInMaybeDateRange(dateBefore, { from })).toBeFalsy();
+            expect(isDateInMaybeDateRange(dateBefore, { from: fromLocal })).toBeFalsy();
         });
         it('returns true when from-date is undefined and date is same or before to-date', () => {
             expect(isDateInMaybeDateRange(date, { to: date })).toBeTruthy();
-            expect(isDateInMaybeDateRange(date, { to })).toBeTruthy();
+            expect(isDateInMaybeDateRange(date, { to: toLocal })).toBeTruthy();
         });
         it('returns false when from-date is undefined and date is after to-date', () => {
-            expect(isDateInMaybeDateRange(date, { to: from })).toBeFalsy();
+            expect(isDateInMaybeDateRange(date, { to: fromLocal })).toBeFalsy();
         });
         it('returns false when daterange is not valid', () => {
             expect(isDateInMaybeDateRange(date, {})).toBeFalsy();
@@ -261,11 +261,11 @@ describe('dateRangeUtils', () => {
             expect(dateToISODate(result[0].to)).toEqual('2020-01-31');
         });
         it('returns correct number of months when daterange spans 15 months', () => {
-            const from = ISODateToDate('2020-01-10');
-            const to = dayjs(from).add(14, 'months').toDate();
+            const fromLocal = ISODateToDate('2020-01-10');
+            const toLocal = dayjs(fromLocal).add(14, 'months').toDate();
             const result = getMonthsInDateRange({
-                from,
-                to,
+                from: fromLocal,
+                to: toLocal,
             });
             expect(result.length).toEqual(15);
             expect(dateToISODate(result[0].from)).toEqual('2020-01-10');
@@ -513,13 +513,13 @@ describe('dateRangeUtils', () => {
     });
 
     describe('getISODatesInISODateRange', () => {
-        it('it returns all dates in daterange, excluding saturday and sunday if onlyWeekDays === true', () => {
+        it('returns all dates in daterange, excluding saturday and sunday if onlyWeekDays === true', () => {
             const result = getISODatesInISODateRange('2021-02-05/2021-02-08', true);
             expect(result.length).toBe(2);
             expect(result[0]).toEqual('2021-02-05');
             expect(result[1]).toEqual('2021-02-08');
         });
-        it('it returns all dates in daterange, including saturday and sunday if onlyWeekDays === false', () => {
+        it('returns all dates in daterange, including saturday and sunday if onlyWeekDays === false', () => {
             const result = getISODatesInISODateRange('2021-02-05/2021-02-08', false);
             expect(result.length).toBe(4);
             expect(result[0]).toEqual('2021-02-05');
@@ -527,7 +527,7 @@ describe('dateRangeUtils', () => {
             expect(result[2]).toEqual('2021-02-07');
             expect(result[3]).toEqual('2021-02-08');
         });
-        it('it returns all dates in daterange, including saturday and sunday if onlyWeekDays === undefined', () => {
+        it('returns all dates in daterange, including saturday and sunday if onlyWeekDays === undefined', () => {
             const result = getISODatesInISODateRange('2021-02-05/2021-02-08');
             expect(result.length).toBe(4);
             expect(result[0]).toEqual('2021-02-05');
@@ -762,7 +762,7 @@ describe('dateRangeUtils', () => {
         });
     });
 
-    describe('includeWeekendIfEndsOnFridayOrLater', () => {
+    describe('includeWeekendIfEndsOnFridayOrLater 2', () => {
         const dr1: DateRange = ISODateRangeToDateRange('2023-02-01/2023-02-05');
         const dr2: DateRange = ISODateRangeToDateRange('2023-02-06/2023-02-10');
         const dr3: DateRange = ISODateRangeToDateRange('2023-02-14/2023-02-20');
@@ -809,17 +809,17 @@ describe('dateRangeUtils', () => {
         const torsdag = ISODateToDate('2023-02-02');
         const fredag = ISODateToDate('2023-02-03');
 
-        it('keeps to-date unchanged if date is before max-date ', () => {
+        it('keeps to-date unchanged if date is before max-date', () => {
             const dateRange: DateRange = { from: onsdag, to: torsdag };
             const result = setMaxToDateForDateRange(dateRange, fredag);
             expect(dateRangeToISODateRange(result)).toEqual(dateRangeToISODateRange(dateRange));
         });
-        it('keeps to-date unchanged if date is same as max-date ', () => {
+        it('keeps to-date unchanged if date is same as max-date', () => {
             const dateRange: DateRange = { from: onsdag, to: torsdag };
             const result = setMaxToDateForDateRange(dateRange, torsdag);
             expect(dateRangeToISODateRange(result)).toEqual(dateRangeToISODateRange(dateRange));
         });
-        it('set to-date to max date if to-date is after as max-date ', () => {
+        it('set to-date to max date if to-date is after as max-date', () => {
             const dateRange: DateRange = { from: onsdag, to: fredag };
             const result = setMaxToDateForDateRange(dateRange, torsdag);
             expect(dateRangeToISODateRange(result)).toEqual(dateRangeToISODateRange({ from: onsdag, to: torsdag }));
@@ -882,7 +882,7 @@ describe('dateRangeUtils', () => {
         const dr2: ISODateRange = '2022-02-16/2022-02-18';
         const drEtter: ISODateRange = '2022-02-25/2022-02-28';
 
-        it('it keeps only dataranges within limit', () => {
+        it('keeps only dataranges within limit', () => {
             const result = getDateRangesWithinDateRange(
                 [
                     ISODateRangeToDateRange(drFør),
@@ -896,7 +896,7 @@ describe('dateRangeUtils', () => {
             expect(result[0]).toEqual(ISODateRangeToDateRange(dr1));
             expect(result[1]).toEqual(ISODateRangeToDateRange(dr2));
         });
-        it('it adjust dataranges crossing the limits by default', () => {
+        it('adjust dataranges crossing the limits by default', () => {
             const drStart: ISODateRange = '2022-02-05/2022-02-15';
             const drEnd: ISODateRange = '2022-02-16/2022-02-25';
             const result = getDateRangesWithinDateRange(
@@ -907,7 +907,7 @@ describe('dateRangeUtils', () => {
             expect(result[0]).toEqual(ISODateRangeToDateRange('2022-02-10/2022-02-15'));
             expect(result[1]).toEqual(ISODateRangeToDateRange('2022-02-16/2022-02-20'));
         });
-        it('it does NOT adjust dataranges crossing the limits if adjustToLimit===false', () => {
+        it('does NOT adjust dataranges crossing the limits if adjustToLimit===false', () => {
             const drStart: ISODateRange = '2022-02-05/2022-02-15';
             const drEnd: ISODateRange = '2022-02-16/2022-02-25';
             const result = getDateRangesWithinDateRange(
@@ -921,14 +921,14 @@ describe('dateRangeUtils', () => {
         });
     });
     describe('getLastDateInDateRanges', () => {
-        it('returns no date it dateRanges are empty', () => {
+        it('returns no date dateRanges are empty', () => {
             expect(getLastDateInDateRanges([])).toBeUndefined();
         });
         it('returns the last in the dateRange, if one date range is passed in', () => {
             const toISODate = '2020-01-10';
-            const from = ISODateToDate('2020-01-01');
-            const to = ISODateToDate(toISODate);
-            const result = getLastDateInDateRanges([{ from, to }]);
+            const fromLocal = ISODateToDate('2020-01-01');
+            const toLocal = ISODateToDate(toISODate);
+            const result = getLastDateInDateRanges([{ from: fromLocal, to: toLocal }]);
             expect(dateToISODate(result!)).toEqual(toISODate);
         });
         it('returns the last of all the dateRanges, if more than one date range is passed in', () => {

@@ -10,6 +10,8 @@
     },
     "devDependencies": {
         "@changesets/cli": "2.27.7",
+        "@sif/eslint-config": "workspace:*",
+        "config": "workspace:*",
         "husky": "9.1.4",
         "lint-staged": "15.2.9",
         "npm-run-all": "4.1.5",
@@ -18,22 +20,23 @@
         "typescript": "5.5.4"
     },
     "lint-staged": {
-        "apps/**/*.{ts,tsx}": [
-            "eslint --fix"
+        "apps/**/*.{ts,tsx,js,jsx, css}": [
+            "prettier --write"
         ],
-        "packages/**/*.{ts,tsx}": [
-            "eslint --fix"
+        "packages/**/*.{ts,tsx,js,jsx, css}": [
+            "prettier --write"
         ]
     },
     "scripts": {
-        "build": "turbo run build",
-        "clean-all": "turbo run clean && rm -rf node_modules",
-        "clean": "turbo run clean",
-        "dev-lib": "turbo run dev-lib --no-cache --parallel --continue",
+        "build": "turbo build",
+        "clean-all": "turbo clean && rm -rf node_modules",
+        "clean": "turbo clean",
         "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-        "lint": "turbo run lint",
+        "lint": "turbo lint",
+        "lint:eslint": "turbo lint:eslint",
+        "lint:tsc": "turbo lint:tsc",
         "prepare": "husky install",
-        "test": "turbo run test"
+        "test": "turbo test"
     },
     "workspaces": [
         "apps/*",

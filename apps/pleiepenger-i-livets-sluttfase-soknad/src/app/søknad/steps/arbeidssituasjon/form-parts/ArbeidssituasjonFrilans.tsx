@@ -1,20 +1,19 @@
-import { Link } from '@navikt/ds-react';
+import { Heading, Link } from '@navikt/ds-react';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
+import { DateRange, getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
+import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
+import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { ISODate, ISODateToDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import { AppText, useAppIntl } from '../../../../i18n';
+import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
+import { getFrilanserSluttdatoValidator, getFrilanserStartdatoValidator } from '../../../../utils/frilansValidation';
+import { getJobberNormaltTimerValidator } from '../../../../utils/jobberNormaltTimerValidator';
+import { erFrilanserISøknadsperiode, harFrilansoppdrag } from './arbeidssituasjonFrilansUtils';
 import FrilansoppdragInfo from './info/FrilansoppdragInfo';
 import InfoJobberNormaltTimerFrilanser from './info/InfoJobberNormaltTimerFrilanser';
-import { DateRange, ValidationError, YesOrNo, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
-import { Heading } from '@navikt/ds-react';
-import { getFrilanserSluttdatoValidator, getFrilanserStartdatoValidator } from '../../../../utils/frilansValidation';
-import { erFrilanserISøknadsperiode, harFrilansoppdrag } from './arbeidssituasjonFrilansUtils';
-import { getJobberNormaltTimerValidator } from '../../../../utils/jobberNormaltTimerValidator';
-import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
-import { AppText, useAppIntl } from '../../../../i18n';
 
 export enum FrilansFormFields {
     harHattInntektSomFrilanser = 'frilans.harHattInntektSomFrilanser',

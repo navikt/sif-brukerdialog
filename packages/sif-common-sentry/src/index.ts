@@ -100,7 +100,9 @@ export const setupIgnoreErrorsAndAllowUrls = (
     const ignoreErrors: IgnoreErrorsType = initProps.ignoreErrors || [];
     try {
         ignoreErrors.push(...errorsToIgnore);
-    } catch (e) {}
+    } catch {
+        /* empty */
+    }
     return { allowUrls, ignoreErrors };
 };
 

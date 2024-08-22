@@ -44,7 +44,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     børMellomlagres: false,
                 };
-            case SøknadContextActionKeys.SET_SØKNAD_OM_BARNET:
+            case SøknadContextActionKeys.SET_SØKNAD_OM_BARNET: {
                 const søknadsdata: Søknadsdata = {
                     ...state.søknadsdata,
                     omBarnet: {
@@ -60,6 +60,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     søknadsdata,
                 };
+            }
             case SøknadContextActionKeys.SET_SØKNAD_DELT_BOSTED:
                 return {
                     ...state,

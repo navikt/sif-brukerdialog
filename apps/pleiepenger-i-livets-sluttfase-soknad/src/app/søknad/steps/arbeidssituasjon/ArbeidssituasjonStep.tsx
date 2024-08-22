@@ -93,7 +93,7 @@ const ArbeidssituasjonStep = () => {
                     const arbeidsgivere = await arbeidsgivereEndpoint.fetch(søknadsperiode);
                     setArbeidsgivereIPerioden(arbeidsgivere);
                     setLoadState({ isLoading: false, isLoaded: true });
-                } catch (e) {
+                } catch {
                     setLoadState({ isLoading: false, isLoaded: true });
                 }
             }

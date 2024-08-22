@@ -93,7 +93,7 @@ export const sortFeriedagerMap = (feriedager: FeriedagMap): FeriedagMap => {
 
 export const harFjernetFerieIPeriode = (lovbestemtFerie: LovbestemtFerieSøknadsdata, periode: DateRange): boolean => {
     if (lovbestemtFerie?.feriedagerMeta.perioderFjernet) {
-        return dateRangeUtils.dateRangesCollide([periode, ...lovbestemtFerie?.feriedagerMeta.perioderFjernet]);
+        return dateRangeUtils.dateRangesCollide([periode, ...(lovbestemtFerie?.feriedagerMeta.perioderFjernet ?? [])]);
     }
     return false;
 };

@@ -89,7 +89,7 @@ export const barnItemLabelRenderer = (registrertBarn: RegistrertBarn): React.Rea
     );
 };
 
-export const getBarnOptions = (barn: (RegistrertBarn | AnnetBarn)[] = []) => {
+export const getBarnOptions = (barn: Array<RegistrertBarn | AnnetBarn> = []) => {
     return barn.map((barnet) => ({
         label: (
             <AppText

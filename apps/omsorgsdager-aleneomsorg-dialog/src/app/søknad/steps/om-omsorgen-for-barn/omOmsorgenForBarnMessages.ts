@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const nb = {
     'steg.omOmsorgenForBarn.dineBarn.seksjonsTittel': 'Dine barn',
 

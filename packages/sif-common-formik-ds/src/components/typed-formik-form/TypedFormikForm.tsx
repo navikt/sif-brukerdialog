@@ -136,15 +136,15 @@ function TypedFormikForm<FormValues, ErrorType>({
     };
 
     const createTypedFormikFormContext = (): TypedFormikFormContextType => {
-        const showErrors = isValidationErrorsVisible(formik);
+        const errorsIsVisible = isValidationErrorsVisible(formik);
         return {
-            showErrors,
+            showErrors: errorsIsVisible,
             fieldErrorHandler: (error, fieldName) => {
                 return formErrorHandler ? formErrorHandler.fieldErrorHandler(error, fieldName) : error;
             },
             isHandledErrorTypeChecker: formErrorHandler?.isHandledErrorTypeFunc,
             getAndRenderFieldErrorMessage: (field, form) => {
-                if (showErrors) {
+                if (errorsIsVisible) {
                     const error = getErrorForField(field.name, form.errors);
                     if (error) {
                         return formErrorHandler ? formErrorHandler.fieldErrorHandler(error, field.name) : error;

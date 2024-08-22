@@ -25,9 +25,7 @@ const Søknad = () => {
                     <SøknadsdataWrapper initialValues={formValues}>
                         <TypedFormikWrapper<SøknadFormValues>
                             initialValues={formValues}
-                            onSubmit={() => {
-                                null;
-                            }}
+                            onSubmit={() => {}}
                             renderForm={() => {
                                 return (
                                     <SøknadContent

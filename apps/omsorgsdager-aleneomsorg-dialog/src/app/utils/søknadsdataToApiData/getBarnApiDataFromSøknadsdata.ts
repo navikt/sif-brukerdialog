@@ -63,8 +63,8 @@ export const getBarnApiDataFromSøknadsdata = (
     const annetBarnMedAleneomsorg = annetBarn.filter((barnet) => harAleneomsorgFor.includes(barnet.fnr));
 
     const barn: ApiBarn[] = [
-        ...annetBarnMedAleneomsorg.map((barn) => mapAnnetBarnToApiBarn(barn, aleneomsorgTidspunkt)),
-        ...registrertBarnMedAleneomsorg.map((barn) => mapRegistrertBarnToApiBarn(barn, aleneomsorgTidspunkt)),
+        ...annetBarnMedAleneomsorg.map((b) => mapAnnetBarnToApiBarn(b, aleneomsorgTidspunkt)),
+        ...registrertBarnMedAleneomsorg.map((b) => mapRegistrertBarnToApiBarn(b, aleneomsorgTidspunkt)),
     ];
 
     return barn;

@@ -27,6 +27,6 @@ const getZodIssueDetails = (issue: ZodIssue): any => {
     }
 };
 
-export const getZodErrorsInfo = (error: ZodError): Array<any> => {
+export const getZodErrorsInfo = (error: ZodError): any[] => {
     return error.errors.map(getZodIssueDetails);
 };

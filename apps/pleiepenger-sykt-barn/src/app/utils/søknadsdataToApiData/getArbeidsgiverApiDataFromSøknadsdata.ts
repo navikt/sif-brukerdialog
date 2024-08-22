@@ -17,7 +17,6 @@ export const getArbeidsgiverApiDataFromSøknadsdata = (
     const { arbeidsgiver } = arbeidssituasjon;
 
     if (arbeidssituasjon.type !== ArbeidssituasjonAnsattType.sluttetFørSøknadsperiode) {
-        const { arbeidsgiver } = arbeidssituasjon;
         return {
             erAnsatt: arbeidssituasjon.type === 'sluttetISøknadsperiode' ? false : true,
             navn: arbeidsgiver.navn,

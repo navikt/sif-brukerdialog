@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import type { NextPage } from 'next';
 import { BodyShort, Box, HGrid, Heading, Link, List } from '@navikt/ds-react';
 import { browserEnv } from '../utils/env';

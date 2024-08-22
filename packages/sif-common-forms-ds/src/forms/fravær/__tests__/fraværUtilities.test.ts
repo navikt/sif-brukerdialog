@@ -32,7 +32,7 @@ describe('fraværUtilities', () => {
             fraOgMed: '2000-10-10',
             tilOgMed: '2000-10-11',
         };
-        it('maps all values when form is complete ', () => {
+        it('maps all values when form is complete', () => {
             const result = mapFormValuesToFraværPeriode(formValues, 'abc');
             expect(result.id).toEqual('abc');
             expect(dateToISOString(result.fraOgMed)).toEqual('2000-10-10');

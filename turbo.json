@@ -10,17 +10,14 @@
             "dependsOn": ["^test"]
         },
         "lint": {
-            "outputs": [],
-            "dependsOn": ["^lint"]
+            "dependsOn": ["lint:eslint", "lint:tsc"]
         },
+        "lint:eslint": {},
+        "lint:tsc": {},
         "clean": {
             "cache": false
         },
         "start-e2e-server": {
-            "outputs": [],
-            "dependsOn": ["^build"]
-        },
-        "cypress-run": {
             "outputs": [],
             "dependsOn": ["^build"]
         },

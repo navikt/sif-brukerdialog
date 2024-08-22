@@ -36,7 +36,7 @@ describe('<FormikCheckboxGroup>', () => {
         );
         const checkbox = screen.getByTestId('dragon-option');
         expect(checkbox).toBeDefined();
-        expect(checkbox.ariaChecked === 'true');
+        expect(checkbox.ariaChecked === 'true').toBeTruthy();
         expect(checkbox).toBeChecked();
     });
 });

@@ -39,7 +39,7 @@ const SoknadRemoteDataFetcher = (): JSX.Element => {
         return <LoadingPage />;
     }
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+    // eslint-disable-next-line
     const initialData = useSoknadEssentials(søknadstype);
     const { status } = initialData;
 

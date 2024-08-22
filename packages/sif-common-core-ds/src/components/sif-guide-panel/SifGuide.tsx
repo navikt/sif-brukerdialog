@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 export type GuideMood = 'happy' | 'uncertain';
 
 function SifGuide({ mood }: { mood: GuideMood }) {

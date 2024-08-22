@@ -102,10 +102,10 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
 
     const navigateToNextStepFrom = async (stepId: StepID, formValues: SøknadFormValues) => {
         setTimeout(() => {
-            const nextStepRoute = getNextStepRoute(stepId, formValues);
-            if (nextStepRoute) {
+            const n = getNextStepRoute(stepId, formValues);
+            if (n) {
                 persistSoknad({ formValues, stepID: stepId }).then(() => {
-                    navigate(nextStepRoute);
+                    navigate(n);
                 });
             }
         });

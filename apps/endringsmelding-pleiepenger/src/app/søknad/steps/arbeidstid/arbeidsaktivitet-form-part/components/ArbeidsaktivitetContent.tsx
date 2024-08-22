@@ -180,11 +180,11 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                             : undefined
                     }
                     onCancel={() => setArbeidsukerForEndring(undefined)}
-                    onSubmit={({ perioder, endring }) => {
+                    onSubmit={(data) => {
                         setArbeidsukerForEndring(undefined);
                         const nyeEndringer: ArbeidstidEndringMap = {};
-                        perioder.forEach((periode) => {
-                            nyeEndringer[dateRangeToISODateRange(periode)] = endring;
+                        data.perioder.forEach((periode) => {
+                            nyeEndringer[dateRangeToISODateRange(periode)] = data.endring;
                         });
                         onArbeidstidAktivitetChange(
                             cleanupArbeidsaktivitetEndringer(

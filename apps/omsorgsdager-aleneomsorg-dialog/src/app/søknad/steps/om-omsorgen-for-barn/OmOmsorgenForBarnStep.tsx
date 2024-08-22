@@ -138,11 +138,9 @@ const OmOmsorgenForBarnStep = () => {
                                     {registrertBarn.length > 0 && (
                                         <Block margin="l">
                                             <ItemList<RegistrertBarn>
-                                                getItemId={(registrertBarn): string => registrertBarn.aktørId}
-                                                getItemTitle={(registrertBarn): string => registrertBarn.etternavn}
-                                                labelRenderer={(registrertBarn): React.ReactNode =>
-                                                    barnItemLabelRenderer(registrertBarn)
-                                                }
+                                                getItemId={(barn): string => barn.aktørId}
+                                                getItemTitle={(barn): string => barn.etternavn}
+                                                labelRenderer={(barn): React.ReactNode => barnItemLabelRenderer(barn)}
                                                 items={registrertBarn}
                                             />
                                         </Block>
@@ -175,7 +173,7 @@ const OmOmsorgenForBarnStep = () => {
                                             minDate={nYearsAgo(19)}
                                             disallowedFødselsnumre={[
                                                 søker.fødselsnummer,
-                                                ...annetBarn?.map((barn) => barn.fnr),
+                                                ...(annetBarn ?? []).map((barn) => barn.fnr),
                                             ]}
                                             aldersGrenseText={text(
                                                 'steg.omOmsorgenForBarn.formLeggTilBarn.aldersGrenseInfo',

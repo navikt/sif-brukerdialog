@@ -28,7 +28,7 @@ export const getUtbetalingsdatoerFraFravær = (perioder: FraværPeriode[], dager
     const datoer: Date[] = uniqBy([...flatten(datoerIPeriode), ...dager.map((d) => d.dato)], (d) => {
         return dateToISOString(d);
     });
-    datoer;
+
     return datoer.filter((d) => dateErHelg(d) === false).sort(sortByDate);
 };
 

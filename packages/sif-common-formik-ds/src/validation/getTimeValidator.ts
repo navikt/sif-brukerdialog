@@ -41,7 +41,7 @@ const getMinutes = (hours: number, minutes: number): number => hours * 60 + minu
 
 const valueIsValidNumber = (value: string | undefined): boolean => {
     if (value) {
-        const containsNumbers = value.match(/^[\-0-9]+$/) !== null; // Tillatt - for å kunne gi feil på negative verdier
+        const containsNumbers = value.match(/^[-0-9]+$/) !== null; // Tillatt - for å kunne gi feil på negative verdier
         if (containsNumbers) {
             return getNumberFromStringInput(value) !== undefined;
         }

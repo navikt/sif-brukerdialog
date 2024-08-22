@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import { jsonSort } from '@navikt/sif-common-utils';
 import utils from './bostedUtlandUtils';

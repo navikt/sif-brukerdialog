@@ -8,13 +8,11 @@ export type Messages = {
 
 export function flattenMessages(nestedMessages: object, prefix = '') {
     return Object.keys(nestedMessages).reduce((messages, key) => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         const value = nestedMessages[key];
         const prefixedKey = prefix ? `${prefix}.${key}` : key;
 
         if (typeof value === 'string') {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             messages[prefixedKey] = value;
         } else {

@@ -1,32 +1,31 @@
 import apiUtils from '@navikt/sif-common-core-ds/src/utils/apiUtils';
-import { dateToISODate } from '@navikt/sif-common-utils';
-import { ISODate, ISODateToDate } from '@navikt/sif-common-utils';
-import { getArbeidsgiver } from './api';
+import { dateToISODate, ISODate, ISODateToDate } from '@navikt/sif-common-utils';
 import { Arbeidsgiver, ArbeidsgiverType } from '../types/Arbeidsgiver';
 import appSentryLogger from '../utils/appSentryLogger';
 import { relocateToLoginPage } from '../utils/navigationUtils';
+import { getArbeidsgiver } from './api';
 
 export type AAregArbeidsgiverRemoteData = {
-    organisasjoner?: {
+    organisasjoner?: Array<{
         organisasjonsnummer: string;
         navn: string;
         ansattFom?: ISODate;
         ansattTom?: ISODate;
-    }[];
-    privatarbeidsgiver?: {
+    }>;
+    privatarbeidsgiver?: Array<{
         offentligIdent: string;
         navn: string;
         ansattFom?: ISODate;
         ansattTom?: ISODate;
-    }[];
-    frilansoppdrag?: {
+    }>;
+    frilansoppdrag?: Array<{
         type: string;
         organisasjonsnummer?: string;
         offentligIdent?: string;
         navn?: string;
         ansattFom?: ISODate;
         ansattTom?: ISODate;
-    }[];
+    }>;
 };
 
 const mapAAregArbeidsgiverRemoteDataToArbeidsgiver = (data: AAregArbeidsgiverRemoteData): Arbeidsgiver[] => {

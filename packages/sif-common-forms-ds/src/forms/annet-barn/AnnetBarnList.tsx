@@ -31,29 +31,29 @@ const AnnetBarnList = ({ annetBarn = [], onDelete, onEdit }: Props) => {
         return null;
     }
 
-    const renderAnnetBarnLabel = (annetBarn: AnnetBarn): React.ReactNode => {
+    const renderAnnetBarnLabel = (barn: AnnetBarn): React.ReactNode => {
         return (
             <div className={bem.element('label')}>
-                <span className={bem.element('dato')}>{prettifyDate(annetBarn.fødselsdato)}</span>
+                <span className={bem.element('dato')}>{prettifyDate(barn.fødselsdato)}</span>
                 <span className={bem.element('navn')}>
-                    {onEdit && <ActionLink onClick={() => onEdit(annetBarn)}>{annetBarn.navn}</ActionLink>}
+                    {onEdit && <ActionLink onClick={() => onEdit(barn)}>{barn.navn}</ActionLink>}
                 </span>
                 <span className={bem.element('type')}>
-                    {annetBarn.type && <> ({text(getAnnetBarnÅrsakIntlKey(annetBarn.type))})</>}
+                    {barn.type && <> ({text(getAnnetBarnÅrsakIntlKey(barn.type))})</>}
                 </span>
-                {!onEdit && <span>{annetBarn.navn}</span>}
+                {!onEdit && <span>{barn.navn}</span>}
             </div>
         );
     };
 
     return (
         <ItemList<AnnetBarn>
-            getItemId={(annetBarn) => annetBarn.id}
-            getItemTitle={(annetBarn) => annetBarn.navn}
+            getItemId={(barn) => barn.id}
+            getItemTitle={(barn) => barn.navn}
             onDelete={onDelete}
             onEdit={onEdit}
             labelRenderer={renderAnnetBarnLabel}
-            items={annetBarn.filter((annetBarn) => annetBarn.id !== undefined)}
+            items={annetBarn.filter((barn) => barn.id !== undefined)}
         />
     );
 };

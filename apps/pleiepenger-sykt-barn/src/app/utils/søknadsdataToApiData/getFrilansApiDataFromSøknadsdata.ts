@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FrilansApiData, FrilanserMedArbeidsforholdApiDataPart } from '../../types/søknad-api-data/FrilansApiData';
 import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/ArbeidIPeriodeSøknadsdata';
 import { ArbeidssituasjonFrilansSøknadsdata } from '../../types/søknadsdata/ArbeidssituasjonFrilansSøknadsdata';
@@ -39,7 +38,6 @@ export const getFrilansApiDataFromSøknadsdata = ({
     /** Har inntekt og har registrert arbeidstid */
     if (misterInntektSomFrilanser === true && arbeidstid) {
         const {
-            type,
             erFortsattFrilanser,
             startdato,
             sluttdato,
@@ -49,7 +47,7 @@ export const getFrilansApiDataFromSøknadsdata = ({
         } = arbeidssituasjon;
 
         return {
-            type,
+            type: arbeidssituasjon.type,
             _misterInntektSomFrilanser: true,
             ...getFrilansFellesInfo(erFortsattFrilanser, startetFørSisteTreHeleMåneder, startdato, sluttdato),
             misterHonorar,

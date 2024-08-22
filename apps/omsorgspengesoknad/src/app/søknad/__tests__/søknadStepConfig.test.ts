@@ -11,7 +11,7 @@ const registrertBarn: RegistrertBarn = {
     fødselsdato: new Date(),
 };
 
-describe('søknadStepConfig', () =>
+describe('søknadStepConfig', () => {
     describe('includeDeltBostedStep', () => {
         describe('ved valg av registrert barn', () => {
             const omBarnet: OmBarnetSøknadsdata = {
@@ -85,4 +85,5 @@ describe('søknadStepConfig', () =>
                 ).toBeFalsy();
             });
         });
-    }));
+    });
+});

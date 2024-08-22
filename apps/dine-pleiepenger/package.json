@@ -1,6 +1,6 @@
 {
     "name": "@navikt/dine-pleiepenger",
-    "version": "1.5.9",
+    "version": "1.6.0",
     "private": true,
     "scripts": {
         "build-storybook": "storybook build",
@@ -8,7 +8,9 @@
         "chromatic": "npx chromatic --project-token=chpt_de374d449612e0f",
         "dev-api": "node ./api-mock-server/api-mock-server.js",
         "dev": "next dev -p 8080",
-        "lint": "next lint",
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit",
         "playwright-test": "playwright test",
         "start": "next start -p 8080",
         "storybook": "storybook dev -p 6006",
@@ -49,6 +51,7 @@
         "@navikt/ds-react": "6.16.0",
         "@navikt/ds-tailwind": "6.16.0",
         "@playwright/test": "1.46.1",
+        "@sif/eslint-config": "workspace:*",
         "@storybook/addon-essentials": "8.2.9",
         "@storybook/addon-interactions": "8.2.9",
         "@storybook/addon-links": "8.2.9",
@@ -75,18 +78,6 @@
         "tailwindcss": "3.4.10",
         "uuid": "10.0.0",
         "vitest": "2.0.5"
-    },
-    "eslintConfig": {
-        "overrides": [
-            {
-                "files": [
-                    "**/*.stories.*"
-                ],
-                "rules": {
-                    "import/no-anonymous-default-export": "off"
-                }
-            }
-        ]
     },
     "_id": "@navikt/dine-pleiepenger@0.3.1"
 }

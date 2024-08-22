@@ -21,7 +21,7 @@ const SøknadsdataWrapper: React.FunctionComponent<Props> = ({ initialValues, ch
         <SøknadsdataContextProvider
             value={{
                 søknadsdata,
-                setSøknadsdata: (søknadsdata) => setSøknadsdata(søknadsdata),
+                setSøknadsdata: (s) => setSøknadsdata(s),
             }}>
             {children}
         </SøknadsdataContextProvider>

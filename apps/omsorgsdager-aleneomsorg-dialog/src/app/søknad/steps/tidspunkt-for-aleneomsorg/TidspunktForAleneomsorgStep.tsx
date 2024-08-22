@@ -131,14 +131,12 @@ const TidspunktForAleneomsorgStep = () => {
                                 </SifGuidePanel>
 
                                 <Block margin="xl" padBottom="xl">
-                                    {barnMedAleneomsorg.map((barnMedAleneomsorg) => {
+                                    {barnMedAleneomsorg.map((barn) => {
                                         return (
-                                            <FormBlock key={barnMedAleneomsorg.idFnr}>
+                                            <FormBlock key={barn.idFnr}>
                                                 <TidspunktForBarn
-                                                    barnMedAleneomsorg={barnMedAleneomsorg}
-                                                    aleneomsorgTidspunkt={
-                                                        aleneomsorgTidspunkt[barnMedAleneomsorg.idFnr]
-                                                    }
+                                                    barnMedAleneomsorg={barn}
+                                                    aleneomsorgTidspunkt={aleneomsorgTidspunkt[barn.idFnr]}
                                                 />
                                             </FormBlock>
                                         );

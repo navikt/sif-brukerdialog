@@ -91,7 +91,7 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
                         timestamp: hendelse.dato,
                     };
 
-                case Sakshendelser.FORVENTET_SVAR:
+                case Sakshendelser.FORVENTET_SVAR: {
                     const titleContent = getForventetSvarTitleContent(hendelse, text);
                     if (titleContent) {
                         return {
@@ -101,6 +101,7 @@ export const getProcessStepsFraSakshendelser = (text: IntlTextFn, hendelser: Sak
                         };
                     }
                     return undefined;
+                }
             }
         })
         .filter((h) => h !== undefined) as ProcessStepData[];

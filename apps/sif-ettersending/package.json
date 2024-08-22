@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/sif-ettersending",
     "repository": "https://github.com/navikt/sif-ettersending",
-    "version": "3.35.13",
+    "version": "3.36.0",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -50,6 +50,7 @@
         "@babel/preset-env": "7.25.3",
         "@babel/preset-react": "7.24.7",
         "@playwright/test": "1.46.1",
+        "@sif/eslint-config": "workspace:*",
         "@storybook/react-vite": "8.2.9",
         "@types/react": "18.3.3",
         "@types/react-dom": "18.3.0",
@@ -60,6 +61,7 @@
         "babel-polyfill": "6.26.0",
         "busboy": "1.6.0",
         "cross-env": "7.0.3",
+        "globals": "15.9.0",
         "postcss": "8.4.41",
         "react-dom": "18.3.1",
         "tailwindcss": "3.4.10",
@@ -70,17 +72,19 @@
         "vitest": "2.0.5"
     },
     "scripts": {
-        "build": "vite build --base=/familie/sykdom-i-familien/soknad/ettersending",
         "build-storybook": "storybook build",
+        "build": "vite build --base=/familie/sykdom-i-familien/soknad/ettersending",
         "clean": "rm -rf node_modules .dist",
         "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",
-        "playwright-test": "playwright test",
         "dev": "cross-env NODE_ENV=development node ./server.cjs",
-        "start-express": "node ./server.cjs",
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit",
+        "playwright-test": "playwright test",
         "start-e2e-server": "node ./server-e2e.cjs",
+        "start-express": "node ./server.cjs",
         "storybook": "storybook dev -p 6006",
-        "test": "vitest run",
-        "lint": "eslint ./src --ext ts,tsx"
+        "test": "vitest run"
     },
     "resolutions": {
         "babel-core": "7.0.0-bridge.0"

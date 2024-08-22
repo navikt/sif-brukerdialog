@@ -32,8 +32,6 @@ next-env.d.ts
 
 packages/**/*/coverage
 packages/**/*/lib
-**/cypress/videos/**/*
-**/cypress/screenshots/**/*
 
 playwright-report
 test-results

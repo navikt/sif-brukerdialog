@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.27.0
+
+### Minor Changes
+
+-   ee9cbed: Oppdatere til eslint 9. Krevde noen endringer i kode.
+
 ## 0.26.17
 
 ### Patch Changes

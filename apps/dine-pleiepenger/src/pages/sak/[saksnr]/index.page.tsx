@@ -32,7 +32,7 @@ export default function SakRoutePage() {
                     <title>Sak ikke funnet</title>
                 </Head>
                 <Box className="mb-10">
-                    <Alert variant="error">Kunne ikke finne sak med saksnr "{router.query.saksnr}"</Alert>
+                    <Alert variant="error">Kunne ikke finne sak med saksnr &quot;{router.query.saksnr}&quot;</Alert>
                 </Box>
             </DefaultPageLayout>
         );

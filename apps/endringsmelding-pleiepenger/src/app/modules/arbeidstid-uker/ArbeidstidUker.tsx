@@ -164,6 +164,7 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
     return (
         <>
             {renderEndreUkerHeader()}
+
             <ArbeidstidUkeTabell
                 uker={visibleItems}
                 selectableList={selectableList}

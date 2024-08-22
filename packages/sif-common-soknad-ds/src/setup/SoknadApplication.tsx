@@ -73,9 +73,9 @@ const SoknadApplication = ({
     const localeMessages = intlMessages[locale] || intlMessages['nb'];
     const locales = useLanguageSelector ? (Object.keys(intlMessages) as any) : [];
 
-    useDecoratorLanguageSelector(locales, (locale: any) => {
-        setLocaleInSessionStorage(locale);
-        setLocale(locale);
+    useDecoratorLanguageSelector(locales, (decoratorLocale: any) => {
+        setLocaleInSessionStorage(decoratorLocale);
+        setLocale(decoratorLocale);
     });
 
     return (

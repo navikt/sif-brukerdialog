@@ -1,12 +1,15 @@
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
-import { SøknadApiData } from '../../types/søknad-api-data/SøknadApiData';
-import { UtenlandsoppholdIPeriodenSøknadsdata } from '../../types/søknadsdata/UtenlandsoppholdIPeriodenSøknadsdata';
-import { dateToISODate } from '@navikt/sif-common-utils';
 import { getCountryName } from '@navikt/sif-common-formik-ds';
 import { DateTidsperiode } from '@navikt/sif-common-forms-ds/src/forms/tidsperiode';
 import { UtenlandsoppholdUtvidet } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
-import { PeriodeApiData, UtenlandsoppholdIPeriodenApiData } from '../../types/søknad-api-data/SøknadApiData';
+import { dateToISODate } from '@navikt/sif-common-utils';
 import { sortItemsByFomTom } from '../../local-sif-common-pleiepenger/utils';
+import {
+    PeriodeApiData,
+    SøknadApiData,
+    UtenlandsoppholdIPeriodenApiData,
+} from '../../types/søknad-api-data/SøknadApiData';
+import { UtenlandsoppholdIPeriodenSøknadsdata } from '../../types/søknadsdata/UtenlandsoppholdIPeriodenSøknadsdata';
 
 const mapBarnInnlagtPeriodeToApiFormat = (periode: DateTidsperiode): PeriodeApiData => {
     return {
@@ -61,15 +64,15 @@ export const getUtenlandsoppholdIPeriodenApiDataFromSøknadsdata = (
 
     switch (utenlandsoppholdIPerioden?.type) {
         case 'skalOppholdeSegIUtlandet':
-            const { opphold } = utenlandsoppholdIPerioden;
-
-            if (opphold.length === 0) {
+            if (utenlandsoppholdIPerioden.opphold.length === 0) {
                 throw Error('utenlandsopphold er tomt');
             }
             return {
                 utenlandsoppholdIPerioden: {
                     skalOppholdeSegIUtlandetIPerioden: true,
-                    opphold: opphold.map((o) => mapUtenlandsoppholdIPeriodenApiData(o, locale)),
+                    opphold: utenlandsoppholdIPerioden.opphold.map((o) =>
+                        mapUtenlandsoppholdIPeriodenApiData(o, locale),
+                    ),
                 },
             };
         case 'skalIkkeOppholdeSegIUtlandet':

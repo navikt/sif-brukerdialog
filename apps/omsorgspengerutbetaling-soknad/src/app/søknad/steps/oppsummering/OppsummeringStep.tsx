@@ -90,16 +90,16 @@ const OppsummeringStep = () => {
             <FormikWrapper
                 initialValues={getOppsummeringStepInitialValues(søknadsdata)}
                 onSubmit={(values) => {
-                    apiData
-                        ? sendSøknad({
-                              ...apiData,
-                              bekreftelser: {
-                                  harForståttRettigheterOgPlikter: apiData.bekreftelser.harForståttRettigheterOgPlikter,
-                                  harBekreftetOpplysninger:
-                                      values[OppsummeringFormFields.harBekreftetOpplysninger] === true,
-                              },
-                          })
-                        : undefined;
+                    if (apiData) {
+                        sendSøknad({
+                            ...apiData,
+                            bekreftelser: {
+                                harForståttRettigheterOgPlikter: apiData.bekreftelser.harForståttRettigheterOgPlikter,
+                                harBekreftetOpplysninger:
+                                    values[OppsummeringFormFields.harBekreftetOpplysninger] === true,
+                            },
+                        });
+                    }
                 }}
                 renderForm={() => {
                     return (

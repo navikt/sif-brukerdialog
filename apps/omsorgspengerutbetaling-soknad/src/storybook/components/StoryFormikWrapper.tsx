@@ -14,7 +14,7 @@ interface Props {
 
 export const StoryFormikWrapper: React.FunctionComponent<Props> = (props) => {
     const { children, parameters } = props;
-    const { formik, maxWidth = '800px', includeButtons = true } = parameters || {};
+    const { formik, maxWidth = '800px' } = parameters || {};
     const initialValues = formik?.initialValues || {};
 
     return (

@@ -62,7 +62,7 @@ describe(`validateDate`, () => {
             expect(getDateValidator({ max })(`2020-10-21`)).toBe(ValidateDateError.dateIsAfterMax);
             expect(getDateValidator({ min, max })(`2020-10-21`)).toBe(ValidateDateError.dateIsAfterMax);
         });
-        it(`returns undefined when date is same or after min date`, () => {
+        it(`returns undefined when date is same or after max date`, () => {
             expect(getDateValidator({ max })('2020-10-20')).toBeUndefined();
             expect(getDateValidator({ max })('2020-10-19')).toBeUndefined();
             expect(getDateValidator({ min, max })('2020-10-19')).toBeUndefined();

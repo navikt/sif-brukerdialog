@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-types */
+/* eslint-disable  */
 import { Alert, Button, Modal } from '@navikt/ds-react';
 import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 type VeilederMood = 'happy' | 'uncertain';
 
 interface Props {

@@ -148,22 +148,16 @@ const LovbestemtFerieStep = () => {
                                                         level={sak.søknadsperioder.length === 1 ? '3' : '4'}
                                                         size={sak.søknadsperioder.length === 1 ? 'small' : 'xsmall'}
                                                         spacing={true}
-                                                        onChange={(feriedager) => {
-                                                            setFieldValue(
-                                                                LovbestemtFerieFormFields.feriedager,
-                                                                feriedager,
-                                                            );
+                                                        onChange={(dager) => {
+                                                            setFieldValue(LovbestemtFerieFormFields.feriedager, dager);
                                                         }}>
                                                         <AppText id="lovbestemtFerieStep.heading.registrertFerie" />
                                                     </Heading>
                                                     <FeriedagerISøknadsperiode
                                                         alleFeriedager={values.feriedager || {}}
                                                         søknadsperiode={søknadsperiode}
-                                                        onChange={(feriedager) => {
-                                                            setFieldValue(
-                                                                LovbestemtFerieFormFields.feriedager,
-                                                                feriedager,
-                                                            );
+                                                        onChange={(dager) => {
+                                                            setFieldValue(LovbestemtFerieFormFields.feriedager, dager);
                                                         }}
                                                     />
                                                 </Block>

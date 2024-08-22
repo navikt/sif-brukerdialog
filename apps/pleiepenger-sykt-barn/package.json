@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/pleiepenger-sykt-barn",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "3.15.16",
+    "version": "3.16.0",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -53,6 +53,7 @@
         "@chromatic-com/storybook": "1.6.1",
         "@playwright/test": "1.46.1",
         "@sentry/vite-plugin": "2.22.2",
+        "@sif/eslint-config": "workspace:*",
         "@storybook/addon-essentials": "8.2.9",
         "@storybook/addon-interactions": "8.2.9",
         "@storybook/addon-links": "8.2.9",
@@ -85,14 +86,6 @@
         "vite-plugin-checker": "0.7.2",
         "vitest": "2.0.5"
     },
-    "lint-staged": {
-        "apps/**/*.{ts,tsx}": [
-            "eslint --fix"
-        ],
-        "packages/**/*.{ts,tsx}": [
-            "eslint --fix"
-        ]
-    },
     "scripts": {
         "build-storybook": "storybook build",
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/pleiepenger",
@@ -101,7 +94,9 @@
         "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",
         "dev": "cross-env NODE_ENV=development node ./server.cjs",
         "e2e": "playwright test",
-        "lint": "eslint ./src --ext ts,tsx",
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit",
         "playwright-test": "playwright test",
         "pw": "playwright test --ui",
         "start-e2e-server": "node ./server-e2e.cjs",

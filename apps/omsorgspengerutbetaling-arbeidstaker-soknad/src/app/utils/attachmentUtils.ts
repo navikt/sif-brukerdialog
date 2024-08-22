@@ -11,6 +11,6 @@ export const getUploadedAttachments = (attachments: Attachment[]): Attachment[] 
     attachments.filter((attachment) => attachmentHasBeenUploaded(attachment));
 
 export const valuesToAlleDokumenterISøknaden = (arbeidsforhold: Arbeidsforhold[]): Attachment[] => [
-    ...arbeidsforhold.map((arbeidsforhold) => arbeidsforhold.dokumenter).flat(),
+    ...arbeidsforhold.map((a) => a.dokumenter).flat(),
     //TODO ENDRE NAVN, LEGG til Legeelklaring
 ];

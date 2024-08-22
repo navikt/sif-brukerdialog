@@ -141,7 +141,9 @@ export const validateApiValues = (
                 });
             }
         }
-    } catch (e) {}
+    } catch {
+        /* empty */
+    }
 
     return errors.length > 0 ? errors : undefined;
 };

@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.26.0
+
+### Minor Changes
+
+-   ee9cbed: Oppdatere til eslint 9. Krevde noen endringer i kode.
+
 ## 2.25.16
 
 ### Patch Changes

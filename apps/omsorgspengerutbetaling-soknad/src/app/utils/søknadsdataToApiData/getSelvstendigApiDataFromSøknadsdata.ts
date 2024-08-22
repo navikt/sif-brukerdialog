@@ -9,9 +9,10 @@ export const getSelvstendigApiDataFromSøknadsdata = (
         case 'erIkkeSN':
             return undefined;
 
-        case 'erSN':
+        case 'erSN': {
             const { virksomhet, harFlereVirksomheter } = selvstendig;
             const virksomhetApi = mapVirksomhetToVirksomhetApiData('nb', virksomhet, harFlereVirksomheter);
             return virksomhetApi;
+        }
     }
 };

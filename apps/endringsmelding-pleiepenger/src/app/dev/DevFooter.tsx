@@ -17,9 +17,9 @@ const DevFooter: React.FunctionComponent = () => {
     const { dispatch } = useSøknadContext();
 
     const setScenarioFromValue = (value: string) => {
-        const scenario = scenarioer.find((s) => s.value === value);
-        if (scenario) {
-            setScenario(scenario);
+        const scenarioFromValue = scenarioer.find((s) => s.value === value);
+        if (scenarioFromValue) {
+            setScenario(scenarioFromValue);
         }
     };
 
