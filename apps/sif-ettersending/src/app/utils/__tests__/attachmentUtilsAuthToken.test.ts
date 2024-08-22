@@ -30,6 +30,12 @@ describe('attachmentUtilsAuthToken', () => {
         const result = getAttachmentURLFrontend(vedleggUrlFraResponseHeader);
         expect(result).toEqual(`https://k9-ettersending-soknad.intern.dev.nav.no/api/vedlegg/${vedleggId}`);
     });
+
+    it('getAttachmentURLFrontend - setter inn /api dersom det er gammelt format og api ikke finnes i url', () => {
+        const result = getAttachmentURLFrontend(vedleggUrlFraResponseHeader);
+        expect(result).toEqual(`https://k9-ettersending-soknad.intern.dev.nav.no/api/vedlegg/${vedleggId}`);
+    });
+
     it('getAttachmentURLBackend - genererer riktig backend-url for et vedlegg', () => {
         const result = getAttachmentURLBackend(vedleggUrlFraResponseHeader);
         expect(result).toEqual(`https://k9-brukerdialog-prosessering/vedlegg/${vedleggId}`);

@@ -25,7 +25,11 @@ export const getAttachmentURLFrontend = (responseHeaderVedleggUrl: string): stri
         const vedleggId = getVedleggId(responseHeaderVedleggUrl);
         return `${getEnvironmentVariable('FRONTEND_VEDLEGG_URL')}/${SPLIT_KEY}${vedleggId}`;
     } catch {
-        return depr_getAttachmentURLFrontend(responseHeaderVedleggUrl);
+        const url = depr_getAttachmentURLFrontend(responseHeaderVedleggUrl);
+        if (url.indexOf('/api') === -1) {
+            return url.replace('/vedlegg', '/api/vedlegg');
+        }
+        return url;
     }
 };
 
