@@ -8,7 +8,11 @@ const SPLIT_KEY = 'vedlegg/';
  * @returns string
  */
 export const getVedleggId = (url: string): string => {
-    return url.split(SPLIT_KEY)[1];
+    const id = url.split(SPLIT_KEY)[1];
+    if (!id || id.length === 0) {
+        throw new Error('Kunne ikke hente vedleggId fra url');
+    }
+    return id;
 };
 
 /**
@@ -26,10 +30,7 @@ export const getAttachmentURLFrontend = (responseHeaderVedleggUrl: string): stri
  * @param frontendVedleggUrl URL som er generert for å brukes i frontend (a href link)
  * @returns URL som kan brukes for å finne vedlegg i backend. Samme som er mottatt fra backend ved opplasting.
  */
-export const getAttachmentURLBackend = (frontendVedleggUrl?: string): string => {
-    if (frontendVedleggUrl !== undefined) {
-        const vedleggId = getVedleggId(frontendVedleggUrl);
-        return `${getEnvironmentVariable('VEDLEGG_API_URL')}/${SPLIT_KEY}${vedleggId}`;
-    }
-    return '';
+export const getAttachmentURLBackend = (frontendVedleggUrl: string): string => {
+    const vedleggId = getVedleggId(frontendVedleggUrl);
+    return `${getEnvironmentVariable('VEDLEGG_API_URL')}/${SPLIT_KEY}${vedleggId}`;
 };
