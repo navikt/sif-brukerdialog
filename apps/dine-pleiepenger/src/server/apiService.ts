@@ -85,7 +85,9 @@ export const fetchSaker = async (req: NextApiRequest, raw?: boolean): Promise<Pl
     let sakerLength = undefined;
     try {
         sakerLength = response.data?.length;
-    } catch {}
+    } catch {
+        /* empty */
+    }
     logger.info(`Parsing saker response data`, {
         sakerLength,
     });

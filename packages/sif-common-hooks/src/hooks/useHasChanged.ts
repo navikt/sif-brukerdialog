@@ -6,7 +6,9 @@ export const useHasChanged = (value: any, callback: (value: any) => void) => {
     const hasChanged = previous !== value;
     useEffect(() => {
         if (hasChanged) {
-            callback && callback(previous);
+            if (callback) {
+                callback(previous);
+            }
         }
     }, [callback, hasChanged, previous]);
     return [hasChanged, previous];

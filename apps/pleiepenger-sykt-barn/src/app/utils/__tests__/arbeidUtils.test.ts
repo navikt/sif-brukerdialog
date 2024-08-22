@@ -114,7 +114,7 @@ describe('arbeidUtils', () => {
             });
         });
         describe('kombinasjoner', () => {
-            it('returnerer true dersom en jobber som vanlig alle steder unntatt hos én ', () => {
+            it('returnerer true dersom en jobber som vanlig alle steder unntatt hos én', () => {
                 expect(
                     harFraværFraJobb({
                         ...arbeidsgivereArbeiderIkke,

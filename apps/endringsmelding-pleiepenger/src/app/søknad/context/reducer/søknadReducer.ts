@@ -16,7 +16,7 @@ const getValgteEndringer = (endringer: EndringType[]): ValgteEndringer => ({
 
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {
     switch (action.type) {
-        case SøknadContextActionKeys.START_SØKNAD:
+        case SøknadContextActionKeys.START_SØKNAD: {
             const { sak, valgtHvaSkalEndres } = action.payload;
             const valgteEndringer = getValgteEndringer(valgtHvaSkalEndres);
             const søknadSteps = getSøknadSteps(valgteEndringer, sak.harArbeidsgivereIkkeISak);
@@ -38,6 +38,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                 søknadRoute: getSøknadStepRoute(søknadSteps[0]),
                 børMellomlagres: true,
             };
+        }
         case SøknadContextActionKeys.AVBRYT_SØKNAD:
             return {
                 ...state,
@@ -87,7 +88,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                         },
                     },
                 };
-            case SøknadContextActionKeys.SET_SØKNAD_LOVBESTEMT_FERIE:
+            case SøknadContextActionKeys.SET_SØKNAD_LOVBESTEMT_FERIE: {
                 const newState: SøknadContextState = {
                     ...state,
                     søknadsdata: {
@@ -107,6 +108,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...newState,
                     søknadSteps,
                 };
+            }
 
             case SøknadContextActionKeys.SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER:
                 return {

@@ -1,11 +1,10 @@
-/* eslint-disable no-console */
 import { Accordion, BodyShort, DatePicker, HStack, Tag, VStack } from '@navikt/ds-react';
 import React, { useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
 import {
     DateRange,
-    dateRangeToISODateRange,
     dateRangesCollide,
+    dateRangeToISODateRange,
     getDatesInDateRange,
     getFirstOfTwoDates,
     getLastOfTwoDates,

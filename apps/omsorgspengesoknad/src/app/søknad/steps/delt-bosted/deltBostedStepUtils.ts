@@ -9,7 +9,6 @@ export const getDeltBostedStepInitialValues = (
     if (formValues) {
         return formValues;
     }
-    const {} = søknadsdata.deltBosted || {};
     return {
         samværsavtale: [...(søknadsdata.deltBosted?.vedlegg || [])],
     };

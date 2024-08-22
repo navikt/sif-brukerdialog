@@ -93,8 +93,8 @@ const OmBarnaStep = () => {
                                     <Block margin="xl">
                                         <ContentWithHeader header={text('step.omBarna.listHeader.registrerteBarn')}>
                                             <ItemList<RegistrertBarn>
-                                                getItemId={(registrerteBarn): string => registrerteBarn.aktørId}
-                                                getItemTitle={(registrerteBarn): string => registrerteBarn.etternavn}
+                                                getItemId={(b): string => b.aktørId}
+                                                getItemTitle={(b): string => b.etternavn}
                                                 labelRenderer={(barnet) => barnItemLabelRenderer(barnet, appIntl)}
                                                 items={registrerteBarn}
                                             />

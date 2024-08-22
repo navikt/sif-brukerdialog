@@ -4,7 +4,8 @@
     "license": "MIT",
     "main": "src/index.ts",
     "name": "@navikt/sif-common-formik-ds",
-    "version": "1.11.6",
+    "version": "1.12.0",
+    "type": "module",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-formik-ds/issues"
     },
@@ -26,6 +27,7 @@
         "@navikt/ds-react": "6.16.0",
         "@navikt/fnrvalidator": "2.1.0",
         "@originjs/vite-plugin-commonjs": "1.0.3",
+        "@sif/eslint-config": "workspace:*",
         "@storybook/addon-a11y": "8.2.9",
         "@storybook/addon-actions": "8.2.9",
         "@storybook/addon-essentials": "8.2.9",
@@ -89,7 +91,9 @@
     },
     "scripts": {
         "build-storybook": "storybook build",
-        "lint": "eslint ./src --ext ts,tsx",
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit",
         "storybook": "storybook dev -p 6006",
         "test": "vitest run",
         "test-storybook": "test-storybook"

@@ -32,7 +32,8 @@ const nextConfig = {
         optimizePackageImports: ['@navikt/aksel-icons', '@navikt/ds-react'],
     },
     eslint: {
-        dirs: ['src'],
+        ignoreDuringBuilds: true,
+        // dirs: ['src'],
     },
 
     redirects: async () => [

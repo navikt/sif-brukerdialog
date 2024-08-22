@@ -1,7 +1,6 @@
 import getTimeValidator from '@navikt/sif-common-formik-ds/src/validation/getTimeValidator';
 import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { DurationWeekdays, summarizeDurationInDurationWeekdays } from '@navikt/sif-common-utils';
-import { durationUtils } from '@navikt/sif-common-utils';
+import { DurationWeekdays, summarizeDurationInDurationWeekdays, durationUtils } from '@navikt/sif-common-utils';
 
 export const getOmsorgstilbudFastDagValidator = () =>
     getTimeValidator({ max: { hours: 7, minutes: 30 }, min: { hours: 0, minutes: 0 } });

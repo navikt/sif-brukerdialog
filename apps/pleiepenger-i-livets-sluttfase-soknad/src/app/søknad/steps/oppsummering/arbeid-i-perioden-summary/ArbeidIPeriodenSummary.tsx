@@ -34,7 +34,7 @@ const getArbeidsgiverTittel = ({ text }: AppIntlShape, arbeidsgiver: Arbeidsgive
             });
         case ArbeidsgiverType.PRIVATPERSON:
             return arbeidsgiver.navn;
-        case ArbeidsgiverType.FRILANSOPPDRAG:
+        case ArbeidsgiverType.FRILANSOPPDRAG: {
             const startdato = arbeidsgiver.ansattFom && ISODateToDate(arbeidsgiver.ansattFom);
             const sluttdato = arbeidsgiver.ansattTom && ISODateToDate(arbeidsgiver.ansattTom);
 
@@ -58,6 +58,7 @@ const getArbeidsgiverTittel = ({ text }: AppIntlShape, arbeidsgiver: Arbeidsgive
                 }
             }
             return text('frilans.tittel');
+        }
     }
 };
 

@@ -134,10 +134,10 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
 
     const renderGjentagelseRadioLabel = (
         key: string,
-        periode?: { fra: string; til: string },
+        p?: { fra: string; til: string },
         values?: any,
         // TODO - fikse nøkkel
-    ): JSX.Element => <AppText id={`tidEnkeltdagForm.gjentagelse.${key}` as any} values={{ ...values, ...periode }} />;
+    ): JSX.Element => <AppText id={`tidEnkeltdagForm.gjentagelse.${key}` as any} values={{ ...values, ...p }} />;
 
     return (
         <FormComponents.FormikWrapper

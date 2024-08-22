@@ -34,17 +34,18 @@ export const getStønadGodtgjørelseApiDataFromSøknadsdata = (
             };
 
         case 'mottarIDelerAvPeroden':
-            const { starterUndeveis, startdato, slutterUnderveis, sluttdato } = stønadGodtgjørelse;
             return {
                 stønadGodtgjørelse: {
                     mottarStønadGodtgjørelse: true,
                     _mottarStønadGodtgjørelseIHelePeroden: false,
 
-                    _starterUndeveis: starterUndeveis === YesOrNo.YES ? true : false,
-                    startdato: starterUndeveis === YesOrNo.YES ? startdato : fraOgMed,
+                    _starterUndeveis: stønadGodtgjørelse.starterUndeveis === YesOrNo.YES ? true : false,
+                    startdato:
+                        stønadGodtgjørelse.starterUndeveis === YesOrNo.YES ? stønadGodtgjørelse.startdato : fraOgMed,
 
-                    _slutterUnderveis: slutterUnderveis === YesOrNo.YES ? true : false,
-                    sluttdato: slutterUnderveis === YesOrNo.YES ? sluttdato : tilOgMed,
+                    _slutterUnderveis: stønadGodtgjørelse.slutterUnderveis === YesOrNo.YES ? true : false,
+                    sluttdato:
+                        stønadGodtgjørelse.slutterUnderveis === YesOrNo.YES ? stønadGodtgjørelse.sluttdato : tilOgMed,
                 },
             };
     }

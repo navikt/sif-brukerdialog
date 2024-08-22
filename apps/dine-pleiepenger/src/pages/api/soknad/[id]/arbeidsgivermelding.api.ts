@@ -28,7 +28,7 @@ export async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
         res.setHeader('Content-Disposition', `filename="${dokumentTittel}.pdf"`);
         res.write(resBuffer, 'binary');
         res.end();
-    } catch (err) {
+    } catch {
         res.status(500).json({ error: 'Kunne ikke hente arbeidsgivermelding' });
     }
 }

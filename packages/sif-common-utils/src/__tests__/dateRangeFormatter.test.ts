@@ -27,26 +27,26 @@ describe('dateRangeFormatter', () => {
         });
     });
     describe('dateRange with same from and to date', () => {
-        const dateRange: DateRange = ISODateRangeToDateRange('2022-01-01/2022-01-01');
+        const dateRangeLocal: DateRange = ISODateRangeToDateRange('2022-01-01/2022-01-01');
         it('returns correct string for default values', () => {
-            const result = dateRangeFormatter.getDateRangeText(dateRange, 'nb');
+            const result = dateRangeFormatter.getDateRangeText(dateRangeLocal, 'nb');
             expect(result).toEqual('01.01.2022');
         });
 
         it('returns correct string; compact: true', () => {
-            const result = dateRangeFormatter.getDateRangeText(dateRange, 'nb', { compact: false });
+            const result = dateRangeFormatter.getDateRangeText(dateRangeLocal, 'nb', { compact: false });
             expect(result).toEqual('1. januar 2022');
         });
 
         it('returns correct string; compact: true, includeDayNames: true', () => {
-            const result = dateRangeFormatter.getDateRangeText(dateRange, 'nb', {
+            const result = dateRangeFormatter.getDateRangeText(dateRangeLocal, 'nb', {
                 compact: false,
                 includeDayName: true,
             });
             expect(result).toEqual('lørdag 1. januar 2022');
         });
         it('returns correct string; compact: false, includeDayNames: true', () => {
-            const result = dateRangeFormatter.getDateRangeText(dateRange, 'nb', { includeDayName: true });
+            const result = dateRangeFormatter.getDateRangeText(dateRangeLocal, 'nb', { includeDayName: true });
             expect(result).toEqual('lørdag 01.01.2022');
         });
     });

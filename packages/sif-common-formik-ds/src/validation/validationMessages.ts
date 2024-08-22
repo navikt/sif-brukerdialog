@@ -1,13 +1,15 @@
-import { ValidateCheckedError } from '.';
-import { ValidateDateRangeError } from '.';
-import { ValidateDateError } from '.';
-import { ValidateFødselsnummerError } from '.';
-import { ValidateListError } from '.';
-import { ValidateNumberError } from '.';
-import { ValidateOrgNumberError } from '.';
-import { ValidateRequiredFieldError } from '.';
-import { ValidateStringError } from '.';
-import { ValidateYesOrNoError } from '.';
+import {
+    ValidateCheckedError,
+    ValidateDateRangeError,
+    ValidateDateError,
+    ValidateFødselsnummerError,
+    ValidateListError,
+    ValidateNumberError,
+    ValidateOrgNumberError,
+    ValidateRequiredFieldError,
+    ValidateStringError,
+    ValidateYesOrNoError,
+} from '.';
 
 export const validationMessages = {
     [ValidateRequiredFieldError.noValue]: ({ hva }: { hva: string }) => `Du må svare på ${hva}.`,

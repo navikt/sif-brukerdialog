@@ -76,10 +76,10 @@ const UkjentArbeidsforholdForm: React.FunctionComponent<Props> = ({
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const onValidSubmitHandler = (values: UkjentArbeidsforholdFormValues) => {
-        const ukjentArbeidsforholdSøknadsdata = getUkjentArbeidsforholdSøknadsdataFromFormValues(values, arbeidsgivere);
-        if (ukjentArbeidsforholdSøknadsdata) {
+        const ukjentArbeidsforhold = getUkjentArbeidsforholdSøknadsdataFromFormValues(values, arbeidsgivere);
+        if (ukjentArbeidsforhold) {
             clearStepFormValues(stepId);
-            return [actionsCreator.setSøknadUkjentArbeidsforhold(ukjentArbeidsforholdSøknadsdata)];
+            return [actionsCreator.setSøknadUkjentArbeidsforhold(ukjentArbeidsforhold)];
         }
         return [];
     };

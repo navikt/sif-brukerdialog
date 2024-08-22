@@ -43,8 +43,8 @@ export const getTidsromFromÅrstall = (årstall?: number): DateRange => {
 export const getAlleFraværDager = (fravær: FraværMap): FraværDag[] => {
     const fraværliste = Object.values(fravær);
     const fraværDager: FraværDag[] = fraværliste
-        .map((fravær) => {
-            return fravær.fraværDager;
+        .map((f) => {
+            return f.fraværDager;
         })
         .flat();
     return fraværDager;
@@ -53,8 +53,8 @@ export const getAlleFraværDager = (fravær: FraværMap): FraværDag[] => {
 export const getAlleFraværDagerFromSøknadsdata = (fravær?: FraværSøknadsdataMap): FraværDag[] => {
     const fraværliste = fravær ? Object.values(fravær) : [];
     const fraværDager: FraværDag[] = fraværliste
-        .map((fravær) => {
-            return fravær.type !== 'harKunFulltFravær' ? fravær.fraværDager : [];
+        .map((f) => {
+            return f.type !== 'harKunFulltFravær' ? f.fraværDager : [];
         })
         .flat();
     return fraværDager;
@@ -63,8 +63,8 @@ export const getAlleFraværDagerFromSøknadsdata = (fravær?: FraværSøknadsdat
 export const getAlleFraværPerioderFromSøknadsdata = (fravær?: FraværSøknadsdataMap): FraværPeriode[] => {
     const fraværliste = fravær ? Object.values(fravær) : [];
     const fraværPerioder: FraværPeriode[] = fraværliste
-        .map((fravær) => {
-            return fravær.type !== 'harKunDelvisFravær' ? fravær.fraværPerioder : [];
+        .map((f) => {
+            return f.type !== 'harKunDelvisFravær' ? f.fraværPerioder : [];
         })
         .flat();
 
@@ -74,8 +74,8 @@ export const getAlleFraværPerioderFromSøknadsdata = (fravær?: FraværSøknads
 export const getAlleFraværPerioder = (fravær: FraværMap): FraværPeriode[] => {
     const fraværliste = Object.values(fravær);
     const fraværPerioder: FraværPeriode[] = fraværliste
-        .map((fravær) => {
-            return fravær.fraværPerioder;
+        .map((f) => {
+            return f.fraværPerioder;
         })
         .flat();
 

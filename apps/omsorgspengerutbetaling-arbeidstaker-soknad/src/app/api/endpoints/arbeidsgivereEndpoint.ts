@@ -4,10 +4,10 @@ import api, { ApiEndpoint } from '../api';
 import { dateToISODate, getDateToday } from '@navikt/sif-common-utils/src/dateUtils';
 
 type AAregArbeidsgiver = {
-    organisasjoner?: {
+    organisasjoner?: Array<{
         organisasjonsnummer: string;
         navn: string;
-    }[];
+    }>;
 };
 
 const arbeidsgivereEndpoint = {

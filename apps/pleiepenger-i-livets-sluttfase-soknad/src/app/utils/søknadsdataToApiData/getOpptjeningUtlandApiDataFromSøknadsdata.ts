@@ -10,7 +10,7 @@ export const getOpptjeningUtlandApiDataFromSøknadsdata = (
     switch (opptjeningUtlandSøknadsdata.type) {
         case 'harIkkeOpptjeningUtland':
             return [];
-        case 'harOpptjeningUtland':
+        case 'harOpptjeningUtland': {
             const apiData: OpptjeningIUtlandetApi[] = opptjeningUtlandSøknadsdata.opptjeningUtland.map(
                 (opptjening) => ({
                     navn: opptjening.navn,
@@ -24,5 +24,6 @@ export const getOpptjeningUtlandApiDataFromSøknadsdata = (
                 }),
             );
             return apiData;
+        }
     }
 };

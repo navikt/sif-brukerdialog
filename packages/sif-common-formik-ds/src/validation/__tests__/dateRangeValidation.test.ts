@@ -24,9 +24,6 @@ describe('dateRangeValidation', () => {
         it('returns undefined if date is undefined', () => {
             expect(getDateRangeValidator({}).validateToDate(undefined)).toBeUndefined();
         });
-        it('returns undefined if date is undefined', () => {
-            expect(getDateRangeValidator({}).validateToDate(undefined)).toBeUndefined();
-        });
         it('returns undefined if toDate is undefined', () => {
             expect(getDateRangeValidator({}).validateToDate('2020-10-10')).toBeUndefined();
         });

@@ -82,7 +82,8 @@ export const getAnsattArbeidstidFormData = (
                 )?.arbeidIPeriode;
 
                 const arbeidIPeriode =
-                    arbeidsgivereArbeidstidSøknadsdata && arbeidsgivereArbeidstidSøknadsdata.hasOwnProperty(key)
+                    arbeidsgivereArbeidstidSøknadsdata &&
+                    Object.prototype.hasOwnProperty.call(arbeidsgivereArbeidstidSøknadsdata, key)
                         ? getArbeidIPeriodeFormDataFromSøknadsdata(
                               arbeidsgivereArbeidstidSøknadsdata[key]?.arbeidIPeriode,
                           )

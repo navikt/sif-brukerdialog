@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const nb = {
     'steg.legeerklaering.counsellorpanel.1':
         'Her skal du laste opp legeerklæringen. Det gjør du enten ved å ta bilde av legeerklæringen, eller ved å skanne den. Vær nøye med at all tekst er med, inkludert legens signatur.',

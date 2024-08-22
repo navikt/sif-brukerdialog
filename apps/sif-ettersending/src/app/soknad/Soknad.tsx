@@ -256,7 +256,7 @@ const Soknad = ({ søker, barn, søknadstype, soknadTempStorage: tempStorage }: 
                                 setValues({ ...values, harForståttRettigheterOgPlikter: true });
                                 startSoknad();
                             },
-                            sendSoknad: (values) => triggerSend(values),
+                            sendSoknad: (v) => triggerSend(v),
                             gotoNextStepFromStep: (stepID: StepID) => {
                                 navigateToNextStepFromStep(stepID);
                             },

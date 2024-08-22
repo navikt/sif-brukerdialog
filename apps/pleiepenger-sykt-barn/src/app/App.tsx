@@ -33,7 +33,6 @@ if (envNow && getEnvironmentVariable('USE_MOCK_DATE') === 'true') {
 appSentryLogger.init();
 
 const App = () => {
-    const publicPath = getEnvironmentVariable('PUBLIC_PATH');
     const useAmplitude = getEnvironmentVariable('USE_AMPLITUDE') === 'true';
 
     const sanityConfig: SanityConfig = {

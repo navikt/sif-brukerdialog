@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { sifCommonPleiepengerMessages } from '../local-sif-common-pleiepenger/i18n';
 import { velkommenPageMessages } from '../pages/velkommen-page/velkommenPageMessages';
 import { arbeidIPeriodeMessages } from '../søknad/arbeidstid-step/i18n/arbeidIPeriodeMessages';

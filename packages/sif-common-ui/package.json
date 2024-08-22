@@ -1,8 +1,9 @@
 {
     "name": "@navikt/sif-common-ui",
     "main": "src/index.ts",
-    "version": "0.7.29",
+    "version": "0.8.0",
     "private": true,
+    "type": "module",
     "dependencies": {
         "@navikt/ds-css": "6.16.0",
         "@navikt/ds-icons": "3.4.3",
@@ -14,6 +15,7 @@
         "react-day-picker": "8.10.1"
     },
     "devDependencies": {
+        "@sif/eslint-config": "workspace:*",
         "@storybook/addon-a11y": "8.2.9",
         "@storybook/addon-actions": "8.2.9",
         "@storybook/addon-essentials": "8.2.9",
@@ -28,6 +30,7 @@
         "chromatic": "11.7.1",
         "copyfiles": "2.4.1",
         "dayjs": "1.11.12",
+        "globals": "15.9.0",
         "intl": "1.2.5",
         "npm-run-all": "4.1.5",
         "react-intl": "6.6.8",
@@ -36,7 +39,9 @@
     "scripts": {
         "build-storybook": "storybook build ",
         "chromatic": "npx chromatic --project-token=chpt_eb5b80c88cc7e7f",
-        "lint": "eslint ./src --ext ts,tsx",
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:tsc": "tsc --noEmit",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
         "storybook": "storybook dev -p 6006"
     },
     "readme": "ERROR: No README data found!",

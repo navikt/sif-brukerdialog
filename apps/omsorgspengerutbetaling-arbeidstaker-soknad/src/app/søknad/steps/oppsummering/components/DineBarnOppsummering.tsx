@@ -35,13 +35,13 @@ const DineBarnOppsummering = ({ barn, registrerteBarn, harDeltBosted, onEdit }: 
                         <SummaryList
                             useAkselList={true}
                             items={registrerteBarnSomIkkeSkalSendesInnMenVises}
-                            itemRenderer={(barn: ApiBarn) => {
+                            itemRenderer={(b: ApiBarn) => {
                                 return (
                                     <>
-                                        <div>{barn.navn}</div>
+                                        <div>{b.navn}</div>
                                         <div>
                                             {text('step.oppsummering.dineBarn.født', {
-                                                dato: dateFormatter.compact(ISODateToDate(barn.fødselsdato)),
+                                                dato: dateFormatter.compact(ISODateToDate(b.fødselsdato)),
                                             })}
                                         </div>
                                     </>
@@ -58,22 +58,22 @@ const DineBarnOppsummering = ({ barn, registrerteBarn, harDeltBosted, onEdit }: 
                         <SummaryList
                             useAkselList={true}
                             items={barn}
-                            itemRenderer={(barn: ApiBarn) => {
+                            itemRenderer={(b: ApiBarn) => {
                                 return (
                                     <>
-                                        <div>{barn.navn}</div>
+                                        <div>{b.navn}</div>
                                         <div>
                                             {text('step.oppsummering.dineBarn.født', {
-                                                dato: dateFormatter.compact(ISODateToDate(barn.fødselsdato)),
+                                                dato: dateFormatter.compact(ISODateToDate(b.fødselsdato)),
                                             })}
                                         </div>
 
                                         <div>
                                             {text('step.oppsummering.dineBarn.id', {
-                                                identitetsnummer: barn.identitetsnummer,
+                                                identitetsnummer: b.identitetsnummer,
                                             })}
                                         </div>
-                                        {barn.type === BarnType.fosterbarn && (
+                                        {b.type === BarnType.fosterbarn && (
                                             <div>{text('step.oppsummering.dineBarn.fosterbarn')}</div>
                                         )}
                                     </>

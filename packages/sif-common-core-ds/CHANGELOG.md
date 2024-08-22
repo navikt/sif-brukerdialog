@@ -1,5 +1,16 @@
 # @navikt/sif-common-core-ds
 
+## 9.18.0
+
+### Minor Changes
+
+-   ee9cbed: Oppdatere til eslint 9. Krevde noen endringer i kode.
+
+### Patch Changes
+
+-   Updated dependencies [ee9cbed]
+    -   @navikt/sif-common-utils@3.47.0
+
 ## 9.17.24
 
 ### Patch Changes

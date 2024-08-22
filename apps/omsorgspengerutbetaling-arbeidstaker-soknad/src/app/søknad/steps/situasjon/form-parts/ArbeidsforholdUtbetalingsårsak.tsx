@@ -146,10 +146,10 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Pr
                             onFileInputClick={() => {
                                 setFilesThatDidntGetUploaded([]);
                             }}
-                            validate={(attachments: Attachment[] = []) => {
+                            validate={(a: Attachment[] = []) => {
                                 return validateAll<ValidateAttachmentsErrors | ValidationError>([
                                     // () => validateAttachments([...attachments, ...andreVedlegg]),
-                                    () => validateAttachments([...attachments]),
+                                    () => validateAttachments([...a]),
                                 ]);
                             }}
                             onUnauthorizedOrForbiddenUpload={relocateToLoginPage}

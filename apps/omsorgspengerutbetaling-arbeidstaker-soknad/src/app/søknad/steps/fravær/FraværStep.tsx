@@ -124,9 +124,9 @@ const FraværStep: React.FC = () => {
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const updateÅrstall = useCallback(
-        (årstall: number | undefined) => {
-            setÅrstall(årstall);
-            setGyldigTidsrom(getTidsromFromÅrstall(årstall));
+        (å: number | undefined) => {
+            setÅrstall(å);
+            setGyldigTidsrom(getTidsromFromÅrstall(å));
         },
         [setÅrstall],
     );

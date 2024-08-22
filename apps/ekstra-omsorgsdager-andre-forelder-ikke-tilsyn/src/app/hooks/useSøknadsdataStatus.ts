@@ -60,16 +60,16 @@ export const useSøknadsdataStatus = (stepId: StepId, stepConfig: SoknadStepsCon
 
     useEffectOnce(() => {
         const currentStep = stepConfig[stepId];
-        const invalidSteps = <StepId[]>[];
+        const ip = <StepId[]>[];
         const precedingSteps = getPrecedingSteps(currentStep.index, stepConfig);
 
         precedingSteps.forEach((step) => {
             if (isStepFormValuesAndStepSøknadsdataValid(step, stepFormValues, søknadsdata) === false) {
-                invalidSteps.push(step);
+                ip.push(step);
             }
         });
 
-        setInvalidSteps(invalidSteps);
+        setInvalidSteps(ip);
     });
 
     return { invalidSteps, hasInvalidSteps: invalidSteps.length > 0 };

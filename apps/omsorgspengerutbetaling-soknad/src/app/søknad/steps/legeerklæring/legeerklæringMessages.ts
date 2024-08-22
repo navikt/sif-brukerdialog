@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const nb = {
     'steg.legeerklæring.stepIndicatorLabel': 'Last opp din legeerklæring',
     'steg.legeerklæring.nextButtonLabel': 'Fortsett',

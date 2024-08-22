@@ -40,7 +40,7 @@ export interface SakshendelseForventetSvar extends SakshendelseBase {
     /** saksbehandlingFrist */
     dato?: Date;
     /** Søknad, endringsmelding eller ettersendelse */
-    søknadstyperIBehandling: Array<Innsendelsestype>;
+    søknadstyperIBehandling: Innsendelsestype[];
 }
 interface SakshendelseFerdigBehandlet extends SakshendelseBase {
     type: Sakshendelser.FERDIG_BEHANDLET;

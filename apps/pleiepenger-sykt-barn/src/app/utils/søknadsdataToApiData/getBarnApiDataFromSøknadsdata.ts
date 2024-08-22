@@ -19,6 +19,7 @@ export const getBarnApiDataFromSøknadsdata = (
 
     switch (omBarnetSøknadsdata?.type) {
         case 'registrerteBarn':
+            // eslint-disable-next-line no-case-declarations
             const barnChosenFromList = registrerteBarn.find(
                 (currentBarn) => currentBarn.aktørId === omBarnetSøknadsdata.aktørId,
             );
@@ -26,6 +27,7 @@ export const getBarnApiDataFromSøknadsdata = (
             if (barnChosenFromList === undefined) {
                 throw Error('barnChosenFromList undefined');
             }
+            // eslint-disable-next-line no-case-declarations
             const { fornavn, etternavn, mellomnavn, aktørId, harSammeAdresse: sammeAdresse } = barnChosenFromList;
 
             return {

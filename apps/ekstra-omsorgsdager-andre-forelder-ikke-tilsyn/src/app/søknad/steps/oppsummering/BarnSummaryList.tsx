@@ -10,11 +10,11 @@ const BarnSummaryList = ({ barn }: Props) => {
     const { text } = useAppIntl();
     return (
         <List>
-            {barn.map((barn, idx) => (
+            {barn.map((b, idx) => (
                 <List.Item key={idx}>
-                    {barn.navn}
-                    {barn.norskIdentifikator
-                        ? text('step.oppsummering.omBarna.listItem', { identitetsnummer: barn.norskIdentifikator })
+                    {b.navn}
+                    {b.norskIdentifikator
+                        ? text('step.oppsummering.omBarna.listItem', { identitetsnummer: b.norskIdentifikator })
                         : ''}
                 </List.Item>
             ))}

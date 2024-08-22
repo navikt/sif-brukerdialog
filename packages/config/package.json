@@ -1,7 +1,7 @@
 {
     "main": "index.js",
     "name": "config",
-    "version": "0.9.37",
+    "version": "0.10.0",
     "private": true,
     "dependencies": {
         "@typescript-eslint/eslint-plugin": "8.2.0",
@@ -12,12 +12,11 @@
         "eslint-plugin-jsx-a11y": "6.9.0",
         "eslint-plugin-prettier": "5.2.1",
         "eslint-plugin-react": "7.35.0",
+        "eslint-plugin-react-hooks": "4.6.2",
         "eslint-plugin-storybook": "0.8.0",
         "postcss": "8.4.41"
     },
     "files": [
-        "eslint.js",
-        "eslint-next.js",
         "tsconfig-base.json"
     ]
 }

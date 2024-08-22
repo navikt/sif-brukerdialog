@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/omsorgspengerutbetaling-soknad",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "1.13.14",
+    "version": "1.14.0",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -47,6 +47,7 @@
         "@babel/preset-react": "7.24.7",
         "@babel/preset-typescript": "7.24.7",
         "@playwright/test": "1.46.1",
+        "@sif/eslint-config": "workspace:*",
         "@storybook/addon-essentials": "8.2.9",
         "@storybook/addon-interactions": "8.2.9",
         "@storybook/addon-links": "8.2.9",
@@ -84,11 +85,13 @@
         "playwright-test": "playwright test",
         "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",
         "dev": "cross-env NODE_ENV=development node ./server.cjs",
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit",
         "start-express": "node ./server.cjs",
         "start-e2e-server": "node ./server-e2e.cjs",
         "storybook": "storybook dev -p 6006",
-        "test": "vitest run",
-        "lint": "eslint ./src --ext ts,tsx"
+        "test": "vitest run"
     },
     "eslintConfig": {
         "overrides": [

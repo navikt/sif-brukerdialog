@@ -22,7 +22,7 @@ const erFrilansoppdrag = (a: Arbeidsgiver) => a.type === ArbeidsgiverType.FRILAN
 export const syncAnsattArbeidsforhold = (
     arbeidsgivere: Arbeidsgiver[],
     arbeidsforhold: ArbeidsforholdFormValues[] = [],
-): Array<ArbeidsforholdFormValues> => {
+): ArbeidsforholdFormValues[] => {
     const syncedArbeidsforhold: ArbeidsforholdFormValues[] = [];
     arbeidsgivere.forEach((arbeidsgiver) => {
         const forhold = arbeidsforhold.find((f) => f.arbeidsgiver.id === arbeidsgiver.id);

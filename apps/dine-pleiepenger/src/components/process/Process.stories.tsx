@@ -18,9 +18,15 @@ type Story = StoryObj<typeof Process>;
 export const Default: Story = {
     args: {
         children: [
-            <ProcessStep index={1}>Steg 1</ProcessStep>,
-            <ProcessStep index={2}>Steg 2</ProcessStep>,
-            <ProcessStep index={3}>Steg 3</ProcessStep>,
+            <ProcessStep index={1} key={1}>
+                Steg 1
+            </ProcessStep>,
+            <ProcessStep index={2} key={2}>
+                Steg 2
+            </ProcessStep>,
+            <ProcessStep index={3} key={3}>
+                Steg 3
+            </ProcessStep>,
         ],
     },
 };

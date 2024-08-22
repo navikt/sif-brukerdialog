@@ -1,5 +1,16 @@
 # @navikt/appstatus-react-ds
 
+## 2.19.0
+
+### Minor Changes
+
+-   ee9cbed: Oppdatere til eslint 9. Krevde noen endringer i kode.
+
+### Patch Changes
+
+-   Updated dependencies [ee9cbed]
+    -   @navikt/sif-common-hooks@0.2.0
+
 ## 2.18.20
 
 ### Patch Changes
