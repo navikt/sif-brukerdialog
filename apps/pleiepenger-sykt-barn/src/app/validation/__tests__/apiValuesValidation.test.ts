@@ -65,7 +65,7 @@ describe('apiVedleggIsInvalid', () => {
     it('should not return error if vedlegg[] in apiData is the same as in formValues', () => {
         expect(
             apiVedleggIsInvalid(
-                ['http://localhost:8080/vedlegg/eyJraWQiOiIxIiwidHlwIjoiSldUIiwiYWxnIjoibm9uZSJ9.eyJqdG'],
+                ['http://localhost:8089/vedlegg/eyJraWQiOiIxIiwidHlwIjoiSldUIiwiYWxnIjoibm9uZSJ9.eyJqdG'],
                 files,
             ),
         ).toBeFalsy();

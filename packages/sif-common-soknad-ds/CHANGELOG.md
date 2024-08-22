@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 13.2.0
+
+### Minor Changes
+
+-   b73c301: Fix attachmentURLUtils export
+
 ## 13.1.0
 
 ### Minor Changes

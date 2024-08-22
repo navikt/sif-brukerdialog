@@ -1,6 +1,6 @@
 import { Attachment } from '@navikt/sif-common-core-ds/src/types';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
-import { attachmentAuthUtils } from '@navikt/sif-common-soknad-ds/src';
+import { attachmentURLUtils } from '@navikt/sif-common-soknad-ds/src';
 
 /**
  * Lager URL for å lage lenke til vedlegg i frontend.
@@ -8,7 +8,7 @@ import { attachmentAuthUtils } from '@navikt/sif-common-soknad-ds/src';
  * @returns URL som kan brukes i frontend i a href lenke
  */
 export const getAttachmentURLFrontend = (responseHeaderVedleggUrl: string): string => {
-    return attachmentAuthUtils.getAttachmentFrontendURL(
+    return attachmentURLUtils.getAttachmentFrontendURL(
         responseHeaderVedleggUrl,
         getEnvironmentVariable('FRONTEND_VEDLEGG_URL'),
     );
@@ -20,14 +20,14 @@ export const getAttachmentURLFrontend = (responseHeaderVedleggUrl: string): stri
  * @returns URL som kan brukes for å finne vedlegg i backend. Samme som er mottatt fra backend ved opplasting.
  */
 export const getAttachmentURLBackend = (frontendVedleggUrl: string): string => {
-    return attachmentAuthUtils.getAttachmentBackendURL(frontendVedleggUrl, getEnvironmentVariable('VEDLEGG_API_URL'));
+    return attachmentURLUtils.getAttachmentBackendURL(frontendVedleggUrl, getEnvironmentVariable('VEDLEGG_API_URL'));
 };
 
 export const fixAttachmentURL = (a: Attachment) => {
     return {
         ...a,
         url: a.url
-            ? attachmentAuthUtils.fixInvalidPathInFrontendURL(a.url, getEnvironmentVariable('FRONTEND_VEDLEGG_URL'))
+            ? attachmentURLUtils.fixInvalidPathInFrontendURL(a.url, getEnvironmentVariable('FRONTEND_VEDLEGG_URL'))
             : undefined,
     };
 };

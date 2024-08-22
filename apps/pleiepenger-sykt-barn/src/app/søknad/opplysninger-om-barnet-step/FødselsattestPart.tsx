@@ -19,7 +19,7 @@ import { AppText } from '../../i18n';
 import getLenker from '../../lenker';
 import { StepID } from '../../types/StepID';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
-import { getAttachmentURLFrontend } from '../../utils/attachmentUtilsAuthToken';
+import { getAttachmentURLFrontend } from '../../utils/appAttachmentUtils';
 import { relocateToLoginPage } from '../../utils/navigationUtils';
 
 interface Props {
