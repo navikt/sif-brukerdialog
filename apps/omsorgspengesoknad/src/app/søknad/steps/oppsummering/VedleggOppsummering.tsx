@@ -5,7 +5,7 @@ import { AppText } from '../../../i18n';
 import { SøknadApiData } from '../../../types/søknadApiData/SøknadApiData';
 import { DeltBostedSøknadsdata } from '../../../types/søknadsdata/DeltBostedSøknadsdata';
 import { LegeerklæringSøknadsdata } from '../../../types/søknadsdata/LegeerklæringSøknadsdata';
-import { getAttachmentURLBackend } from '../../../utils/attachmentUtilsAuthToken';
+import { getAttachmentURLBackend } from '../../../utils/attachmentUtils';
 
 interface Props {
     apiData: SøknadApiData;
