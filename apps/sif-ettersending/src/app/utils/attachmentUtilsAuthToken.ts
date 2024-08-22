@@ -16,7 +16,7 @@ export const getVedleggId = (url: string): string => {
  */
 export const getAttachmentURLFrontend = (responseHeaderVedleggUrl: string): string => {
     const vedleggId = getVedleggId(responseHeaderVedleggUrl);
-    return `${getEnvironmentVariable('FRONTEND_VEDLEGG_URL')}/${vedleggId}`;
+    return `${getEnvironmentVariable('FRONTEND_VEDLEGG_URL')}/vedlegg/${vedleggId}`;
 };
 
 /**
@@ -27,7 +27,7 @@ export const getAttachmentURLFrontend = (responseHeaderVedleggUrl: string): stri
 export const getAttachmentURLBackend = (frontendVedleggUrl?: string): string => {
     if (frontendVedleggUrl !== undefined) {
         const vedleggId = getVedleggId(frontendVedleggUrl);
-        return `${getEnvironmentVariable('VEDLEGG_API_URL')}/${vedleggId}`;
+        return `${getEnvironmentVariable('VEDLEGG_API_URL')}/vedlegg/${vedleggId}`;
     }
     return '';
 };

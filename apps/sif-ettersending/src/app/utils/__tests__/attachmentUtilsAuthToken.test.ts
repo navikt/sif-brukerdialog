@@ -28,10 +28,10 @@ describe('attachmentUtilsAuthToken', () => {
 
     it('getAttachmentURLFrontend - genererer riktig frontend-url for et vedlegg', () => {
         const result = getAttachmentURLFrontend(vedleggUrlFraResponseHeader);
-        expect(result).toEqual(`https://k9-ettersending-soknad.intern.dev.nav.no/api/${vedleggId}`);
+        expect(result).toEqual(`https://k9-ettersending-soknad.intern.dev.nav.no/api/vedlegg/${vedleggId}`);
     });
     it('getAttachmentURLBackend - genererer riktig backend-url for et vedlegg', () => {
         const result = getAttachmentURLBackend(vedleggUrlFraResponseHeader);
-        expect(result).toEqual(`https://k9-brukerdialog-prosessering/${vedleggId}`);
+        expect(result).toEqual(`https://k9-brukerdialog-prosessering/vedlegg/${vedleggId}`);
     });
 });
