@@ -4,7 +4,7 @@
     "license": "MIT",
     "main": "src",
     "name": "@navikt/appstatus-react-ds",
-    "version": "2.19.0",
+    "version": "2.19.1",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -13,11 +13,11 @@
         "@sanity/client": "6.21.3"
     },
     "devDependencies": {
-        "@navikt/ds-css": "6.16.0",
-        "@navikt/ds-react": "6.16.0",
+        "@navikt/ds-css": "6.16.1",
+        "@navikt/ds-react": "6.16.1",
         "@sif/eslint-config": "workspace:*",
-        "@types/node": "22.4.1",
-        "@types/react": "18.3.3",
+        "@types/node": "22.5.0",
+        "@types/react": "18.3.4",
         "@types/react-dom": "18.3.0",
         "config": "workspace:*",
         "copyfiles": "2.4.1",
