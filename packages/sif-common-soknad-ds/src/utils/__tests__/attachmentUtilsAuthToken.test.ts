@@ -1,4 +1,9 @@
-import { getAttachmentId, getAttachmentBackendURL, getAttachmentFrontendURL } from '../attachmentUtilsAuthToken';
+import {
+    getAttachmentId,
+    getAttachmentBackendURL,
+    getAttachmentFrontendURL,
+    attachmentAuthUtils,
+} from '../attachmentUtilsAuthToken';
 import { describe, expect, it } from 'vitest';
 
 const ATTACHMENT_BACKEND_URL = 'https://k9-brukerdialog-prosessering';
@@ -29,5 +34,10 @@ describe('attachmentUtilsAuthToken', () => {
     it('getAttachmentURLBackend - genererer riktig backend-url for et vedlegg', () => {
         const result = getAttachmentBackendURL(vedleggUrlFraResponseHeader, ATTACHMENT_BACKEND_URL);
         expect(result).toEqual(`https://k9-brukerdialog-prosessering/vedlegg/${vedleggId}`);
+    });
+    it('fixInvalidPathInFrontendURL - korrigerer ugyldig frontent url', () => {
+        const invalidFrontendURL = `http://www.nav.no/vedlegg/${vedleggId}`;
+        const result = attachmentAuthUtils.fixInvalidPathInFrontendURL(invalidFrontendURL, ATTACHMENT_FRONTEND_URL);
+        expect(result).toEqual(`https://k9-ettersending-soknad.intern.dev.nav.no/api/vedlegg/${vedleggId}`);
     });
 });
