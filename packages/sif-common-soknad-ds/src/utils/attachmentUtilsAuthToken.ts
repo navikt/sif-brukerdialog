@@ -43,6 +43,12 @@ export const getAttachmentBackendURL = (url: string, backendAttachmentURL: strin
     }
 };
 
+/**
+ * Midlertidig funksjon for å fikse ugyldig frontend URL når URL ikke inneholder hele path for at lenke til dokumentet er riktig
+ * @param url URL som skal fikses
+ * @param frontendAttachmentURL URL path som brukes som base for å lage lenke til vedlegg i frontend
+ * @returns URL som kan brukes i frontend i a href lenke
+ */
 const fixInvalidPathInFrontendURL = (url: string, frontendAttachmentURL: string) => {
     if (url.indexOf(frontendAttachmentURL) === -1) {
         return getAttachmentFrontendURL(url, frontendAttachmentURL);
