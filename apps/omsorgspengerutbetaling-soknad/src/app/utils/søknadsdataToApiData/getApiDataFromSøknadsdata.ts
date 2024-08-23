@@ -3,7 +3,7 @@ import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-cor
 import { AppIntlShape } from '../../i18n';
 import { SøknadApiData, YesNoSpørsmålOgSvar } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
-import { getAttachmentURLBackend } from '../attachmentUtilsAuthToken';
+import { getAttachmentURLBackend } from '../attachmentUtils';
 import { getDineBarnApiDataFromSøknadsdata } from './getDineBarnApiDataFromSøknadsdata';
 import { getFrilansApiDataFromSøknadsdata } from './getFrilansApiDataFromSøknadsdata';
 import { getMedlemskapApiDataFromSøknadsdata } from './getMedlemskapApiDataFromSøknadsdata';
@@ -15,7 +15,9 @@ const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
     if (!vedlegg || vedlegg.length === 0) {
         return [];
     }
-    return vedlegg.filter(attachmentIsUploadedAndIsValidFileFormat).map(({ url }) => getAttachmentURLBackend(url));
+    return vedlegg
+        .filter(attachmentIsUploadedAndIsValidFileFormat)
+        .map(({ url }) => (url ? getAttachmentURLBackend(url) : ''));
 };
 
 export const getApiDataFromSøknadsdata = (
