@@ -4,7 +4,7 @@ import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-am
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
 
 import { useFormikContext } from 'formik';
-import { purge } from '../api/api';
+import { getSøkerId, purge } from '../api/api';
 import BekreftDialog from '../components/bekreft-dialog/BekreftDialog';
 import RouteConfig from '../config/routeConfig';
 import useLogSøknadInfo from '../hooks/useLogSøknadInfo';
@@ -40,6 +40,7 @@ import { useSøknadsdataContext } from './SøknadsdataContext';
 import TidsromStep from './tidsrom-step/TidsromStep';
 import { getSøknadStepConfig } from './søknadStepConfig';
 import { getDateToday } from '@navikt/sif-common-utils';
+import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds/src';
 
 interface PleiepengesøknadContentProps {
     /** Sist steg som bruker submittet skjema */
@@ -61,6 +62,7 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
     const { søknadsdata } = useSøknadsdataContext();
 
     const navigate = useNavigate();
+    useVerifyUserOnWindowFocus(søker.fødselsnummer, getSøkerId);
 
     const sendUserToStep = useCallback(
         async (step: StepID) => {
