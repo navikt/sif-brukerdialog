@@ -21,6 +21,7 @@ export interface BarnetLegeerklæringGjelderApiData {
 }
 
 export interface SoknadApiData {
+    søkerNorskIdent: string;
     id: string;
     språk: Locale;
     harForståttRettigheterOgPlikter: boolean;
