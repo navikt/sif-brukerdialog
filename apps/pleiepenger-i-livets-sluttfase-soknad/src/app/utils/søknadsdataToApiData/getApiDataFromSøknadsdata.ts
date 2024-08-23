@@ -39,7 +39,10 @@ export const getDagerMedPleieApiData = (søknadsdata: Søknadsdata): string[] =>
     return (søknadsdata.tidsrom?.dagerMedPleie || []).map(dateToISODate);
 };
 
-export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadApiData | undefined => {
+export const getApiDataFromSøknadsdata = (
+    søkerNorskIdent: string,
+    søknadsdata: Søknadsdata,
+): SøknadApiData | undefined => {
     const { id, opplysningerOmPleietrengende, legeerklæring, tidsrom, arbeidssituasjon, arbeidstid, medlemskap } =
         søknadsdata;
 
@@ -75,6 +78,7 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadA
     const språk = 'nb';
 
     return {
+        søkerNorskIdent,
         id,
         språk,
         harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true,

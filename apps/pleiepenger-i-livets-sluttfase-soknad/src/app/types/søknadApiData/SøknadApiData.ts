@@ -118,6 +118,7 @@ export enum FlereSokereApiData {
 export type DataBruktTilUtledningAnnetDataJsonString = string;
 
 export interface SøknadApiData {
+    søkerNorskIdent: string;
     id: string;
     språk: string;
     harForståttRettigheterOgPlikter: boolean;

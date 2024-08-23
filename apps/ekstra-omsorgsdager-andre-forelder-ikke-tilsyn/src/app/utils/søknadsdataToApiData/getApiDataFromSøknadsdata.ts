@@ -5,6 +5,7 @@ import { getApiDataAnnenForelderFromSøknadsdata } from './getApiDataAnnenForeld
 import { getOmBarnaApiDataFromSøknadsdata } from './getOmBarnaApiDataFromSøknadsdata';
 
 export const getApiDataFromSøknadsdata = (
+    søkerNorskIdent: string,
     søknadsdata: Søknadsdata,
     registrertBarn: RegistrertBarn[],
 ): SøknadApiData | undefined => {
@@ -14,6 +15,7 @@ export const getApiDataFromSøknadsdata = (
     }
 
     return {
+        søkerNorskIdent,
         id,
         språk: 'nb',
         harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true,

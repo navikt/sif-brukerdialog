@@ -124,6 +124,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                 const harBekreftetOpplysninger = values.harBekreftetOpplysninger;
 
                 const apiValues = getApiDataFromSøknadsdata(
+                    søkerdata.søker.fødselsnummer,
                     barn,
                     søknadsdata,
                     harBekreftetOpplysninger,

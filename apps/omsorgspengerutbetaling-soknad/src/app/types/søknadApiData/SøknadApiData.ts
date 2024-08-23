@@ -52,6 +52,7 @@ export interface YesNoSpørsmålOgSvar {
 }
 
 export interface SøknadApiData extends DineBarnApiData {
+    søkerNorskIdent: string;
     id: string;
     språk: Locale;
 

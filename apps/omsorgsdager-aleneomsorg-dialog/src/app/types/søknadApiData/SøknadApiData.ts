@@ -17,6 +17,7 @@ export interface ApiBarn {
 }
 
 export interface SøknadApiData {
+    søkerNorskIdent: string;
     id: string;
     språk: Locale;
     barn: ApiBarn[];

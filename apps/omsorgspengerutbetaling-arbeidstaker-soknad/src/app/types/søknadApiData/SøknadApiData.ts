@@ -63,6 +63,7 @@ export interface DataBruktTilUtledningAnnetData {
 export type DataBruktTilUtledningAnnetDataJsonString = string;
 
 export interface SøknadApiData {
+    søkerNorskIdent: string;
     id: string;
     språk: Locale;
     bekreftelser: {
