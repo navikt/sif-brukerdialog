@@ -17,6 +17,13 @@ const søkerEndpoint = {
         }
         return Promise.resolve(data);
     },
+    fetchId: async (): Promise<string> => {
+        const { data } = await api.get<SøkerDTO>(ApiEndpoint.soker);
+        if (!isValidSøkerResponse(data)) {
+            return Promise.reject(`Invalid søkerdata`);
+        }
+        return Promise.resolve(data.fødselsnummer);
+    },
 };
 
 export default søkerEndpoint;

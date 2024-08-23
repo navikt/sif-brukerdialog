@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.26.2
+
+### Patch Changes
+
+-   f15fd09: Utvide med hendelse for når innlogget bruker endres i et passivt vindu
+
 ## 2.26.1
 
 ### Patch Changes

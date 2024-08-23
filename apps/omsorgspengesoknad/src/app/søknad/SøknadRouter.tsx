@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
+import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds/src';
+import søkerEndpoint from '../api/endpoints/søkerEndpoint';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
 import { useResetSøknad } from '../hooks/useResetSøknad';
@@ -20,7 +22,7 @@ const SøknadRouter = () => {
     const { pathname } = useLocation();
     const {
         dispatch,
-        state: { søknadsdata, søknadRoute: stateSøknadRoute },
+        state: { søknadsdata, søknadRoute: stateSøknadRoute, søker },
     } = useSøknadContext();
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
@@ -28,6 +30,7 @@ const SøknadRouter = () => {
     const { setShouldResetSøknad, shouldResetSøknad } = useResetSøknad();
 
     usePersistSøknadState();
+    useVerifyUserOnWindowFocus(søker.fødselsnummer, søkerEndpoint.fetchId);
 
     useEffect(() => {
         if (stateSøknadRoute && isFirstTimeLoadingApp) {
