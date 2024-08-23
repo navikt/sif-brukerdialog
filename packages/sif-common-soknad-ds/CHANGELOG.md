@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 13.2.2
+
+### Patch Changes
+
+-   a479061: Reload side hvis bruker er utlogget ved useVerifyUserOnWindowFocus
+
 ## 13.2.1
 
 ### Patch Changes
