@@ -13,7 +13,7 @@ const ERROR = 2;
 
 export default [
     {
-        files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
+        files: ['**/*.{js,mjs,js,ts,jsx,tsx}'],
         settings: {
             react: {
                 version: 'detect',
