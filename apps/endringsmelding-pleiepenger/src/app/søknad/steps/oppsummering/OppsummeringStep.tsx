@@ -40,7 +40,7 @@ const OppsummeringStep = () => {
     const stepId = StepId.OPPSUMMERING;
     const { text, intl } = useAppIntl();
     const {
-        state: { søknadsdata, sak, arbeidsgivere, valgteEndringer },
+        state: { søknadsdata, sak, arbeidsgivere, valgteEndringer, søker },
     } = useSøknadContext();
 
     const { goBack, stepConfig } = useStepConfig(stepId);
@@ -55,7 +55,7 @@ const OppsummeringStep = () => {
         }
     }, [previousSøknadError, sendSøknadError]);
 
-    const apiData = getApiDataFromSøknadsdata(søknadsdata, sak, valgteEndringer, arbeidsgivere);
+    const apiData = getApiDataFromSøknadsdata(søker.fødselsnummer, søknadsdata, sak, valgteEndringer, arbeidsgivere);
 
     if (!apiData) {
         return <Alert variant="error">ApiData er undefined</Alert>;

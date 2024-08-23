@@ -5,6 +5,7 @@ import { getDataBruktTilUtledningAnnetDataApiData, getDataBruktTilUtledningApiDa
 import { getLovbestemtFerieApiDataFromSøknadsdata } from './getLovbestemtFerieApiDataFraSøknadsdata';
 
 export const getApiDataFromSøknadsdata = (
+    søkerNorskIdent: string,
     søknadsdata: Søknadsdata,
     sak: Sak,
     valgteEndringer: ValgteEndringer,
@@ -16,6 +17,7 @@ export const getApiDataFromSøknadsdata = (
         return undefined;
     }
     return {
+        søkerNorskIdent,
         id,
         språk: '',
         harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true ? true : false,
