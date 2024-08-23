@@ -15,18 +15,21 @@ import AnnenForelderenSituasjonStep from './steps/annen-forelderens-situasjon/An
 import OmAnnenForelderStep from './steps/om-annen-forelder/OmAnnenForelderStep';
 import OmBarnaStep from './steps/om-barna/OmBarnaStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
+import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds/src';
+import søkerEndpoint from '../api/endpoints/søkerEndpoint';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
     const {
         dispatch,
-        state: { søknadsdata, søknadRoute: stateSøknadRoute },
+        state: { søknadsdata, søker, søknadRoute: stateSøknadRoute },
     } = useSøknadContext();
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
     const { slettMellomlagring } = useMellomlagring();
     const { setShouldResetSøknad, shouldResetSøknad } = useResetSøknad();
 
+    useVerifyUserOnWindowFocus(søker.fødselsnummer, søkerEndpoint.fetchId);
     usePersistSøknadState();
 
     useEffect(() => {
