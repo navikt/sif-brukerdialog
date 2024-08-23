@@ -63,7 +63,7 @@ const OppsummeringStep = () => {
         }
     }, [previousSøknadError, sendSøknadError]);
 
-    const apiData = getApiDataFromSøknadsdata(søknadsdata);
+    const apiData = getApiDataFromSøknadsdata(søker.fødselsnummer, søknadsdata);
 
     if (!apiData) {
         return (

@@ -35,7 +35,7 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
     const { sendSoknadStatus, sendSoknad, resetSendSøknadStatus } = useSoknadContext();
     const { values } = useFormikContext<SoknadFormData>();
     const { fornavn, mellomnavn, etternavn, fødselsnummer } = søker;
-    const apiValues = mapFormDataToApiData(soknadId, values, intl);
+    const apiValues = mapFormDataToApiData(søker.fødselsnummer, soknadId, values, intl);
 
     useEffectOnce(() => {
         resetSendSøknadStatus();

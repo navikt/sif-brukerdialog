@@ -28,7 +28,10 @@ const getArbeidsforholdDokumenter = (situasjon: SituasjonSøknadsdata): Attachme
     return dokumenter;
 };
 
-export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadApiData | undefined => {
+export const getApiDataFromSøknadsdata = (
+    søkerNorskIdent: string,
+    søknadsdata: Søknadsdata,
+): SøknadApiData | undefined => {
     const { id, dineBarn, deltBosted, situasjon, fravær, legeerklæring, medlemskap } = søknadsdata;
     if (!id || !dineBarn || !situasjon || !fravær || !medlemskap || !legeerklæring) {
         return undefined;
@@ -36,6 +39,7 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadA
     const språk = 'nb';
 
     return {
+        søkerNorskIdent,
         id,
         språk,
         bekreftelser: {

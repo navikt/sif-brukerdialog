@@ -83,6 +83,7 @@ interface UkjentArbeidsforholdApiDataErIkkeAnsatt extends UkjentArbeidsforholdAp
 export type UkjentArbeidsforholdApiData = UkjentArbeidsforholdApiDataErAnsatt | UkjentArbeidsforholdApiDataErIkkeAnsatt;
 
 export interface SøknadApiData {
+    søkerNorskIdent: string;
     id: string;
     språk: string;
     harForståttRettigheterOgPlikter: boolean;

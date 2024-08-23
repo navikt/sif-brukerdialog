@@ -56,6 +56,7 @@ const mapBarnFormDataToApiData = (
 };
 
 export const mapFormDataToApiData = (
+    søkerNorskIdent: string,
     soknadId: string,
     {
         harBekreftetOpplysninger,
@@ -78,6 +79,7 @@ export const mapFormDataToApiData = (
         ytelse === YtelseKey.pleiepengerSyktBarn && dokumentType ? dokumentType : DokumentType.annet;
 
     const apiData: SoknadApiData = {
+        søkerNorskIdent,
         id: soknadId,
         språk: getLocaleForApi(intl.locale),
         harBekreftetOpplysninger,

@@ -25,6 +25,7 @@ import { getUtenlandskNæringSøknadsdata } from './getUtenlandskNæringSøknads
 import { getUtenlandsoppholdIPeriodenApiDataFromSøknadsdata } from './getUtenlandsoppholdIPeriodenFromSøknadsdata';
 
 export const getApiDataFromSøknadsdata = (
+    søkerNorskIdent: string,
     barn: RegistrerteBarn[],
     søknadsdata: Søknadsdata,
     harBekreftetOpplysninger: boolean,
@@ -37,6 +38,7 @@ export const getApiDataFromSøknadsdata = (
         try {
             const sprak = getValidSpråk(locale);
             const apiData: SøknadApiData = {
+                søkerNorskIdent,
                 språk: sprak,
                 apiDataVersjon: SøknadApiDataVersjon,
                 harForståttRettigheterOgPlikter:
