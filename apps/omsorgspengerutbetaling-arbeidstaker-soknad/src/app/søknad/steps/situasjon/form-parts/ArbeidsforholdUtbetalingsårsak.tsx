@@ -13,16 +13,15 @@ import {
 import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
 import { useFormikContext } from 'formik';
 import { ApiEndpoint } from '../../../../api/api';
-// import { valuesToAlleDokumenterISøknaden } from '../../../../utils/attachmentUtils';
 import FormikFileUploader from '../../../../components/formik-file-uploader/FormikFileUploader';
 import { useAppIntl } from '../../../../i18n';
 import { Arbeidsforhold, Utbetalingsårsak, ÅrsakNyoppstartet } from '../../../../types/ArbeidsforholdTypes';
+import { fixAttachmentURL } from '../../../../utils/attachmentUtils';
 import { relocateToLoginPage } from '../../../../utils/navigationUtils';
 import { validateAttachments, ValidateAttachmentsErrors } from '../../../../utils/validateAttachments';
 import { AppFieldValidationErrors } from '../../../../utils/validations';
 import { ArbeidsforholdFormFields, SituasjonFormValues } from '../SituasjonStep';
 import ArbeidsforholdAttachmentList from './ArbeidsforholdAttachmentList';
-import { fixAttachmentURL } from '../../../../utils/attachmentUtils';
 
 const { RadioGroup, Textarea } = getTypedFormComponents<ArbeidsforholdFormFields, Arbeidsforhold, ValidationError>();
 
@@ -45,7 +44,6 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Pr
         return arbeidsforhold ? arbeidsforhold.dokumenter.map(fixAttachmentURL) : [];
     }, [arbeidsforhold]);
 
-    // const alleDokumenterISøknaden: Attachment[] = valuesToAlleDokumenterISøknaden(values);
     const ref = useRef({ attachments });
 
     useEffect(() => {
