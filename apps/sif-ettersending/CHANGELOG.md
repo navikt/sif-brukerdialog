@@ -1,5 +1,14 @@
 # @navikt/sif-ettersending
 
+## 3.37.1
+
+### Patch Changes
+
+-   Updated dependencies [f15fd09]
+-   Updated dependencies [f15fd09]
+    -   @navikt/sif-common-amplitude@2.26.2
+    -   @navikt/sif-common-soknad-ds@13.2.1
+
 ## 3.37.0
 
 ### Minor Changes
