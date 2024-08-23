@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.10.8
+
+### Patch Changes
+
+-   7bd5ee5: Verifiser innlogget bruker ved window.focus
+
 ## 2.10.7
 
 ### Patch Changes

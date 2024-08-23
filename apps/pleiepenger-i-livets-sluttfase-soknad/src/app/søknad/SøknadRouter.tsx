@@ -1,29 +1,31 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds/src';
+import søkerEndpoint from '../api/endpoints/søkerEndpoint';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
+import { useResetSøknad } from '../hooks/useResetSøknad';
+import KvitteringPage from '../pages/kvittering/KvitteringPage';
+import UnknownRoutePage from '../pages/unknown-route/UnknownRoutePage';
+import VelkommenPage from '../pages/velkommen/VelkommenPage';
 import { StepId } from '../types/StepId';
 import { SøknadRoutes, SøknadStepRoutePath } from '../types/SøknadRoutes';
 import { relocateToWelcomePage } from '../utils/navigationUtils';
 import actionsCreator from './context/action/actionCreator';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
-import UnknownRoutePage from '../pages/unknown-route/UnknownRoutePage';
-import VelkommenPage from '../pages/velkommen/VelkommenPage';
-import OpplysningerOmPleietrengendeStep from './steps/opplysninger-om-pleietrengende/OpplysningerOmPleietrengendeStep';
-import LegeerklæringStep from './steps/legeerklæring/LegeerklæringStep';
-import TidsromStep from './steps/tidsrom/TidsromStep';
 import ArbeidssituasjonStep from './steps/arbeidssituasjon/ArbeidssituasjonStep';
 import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
+import LegeerklæringStep from './steps/legeerklæring/LegeerklæringStep';
 import MedlemskapStep from './steps/medlemskap/MedlemskapStep';
+import OpplysningerOmPleietrengendeStep from './steps/opplysninger-om-pleietrengende/OpplysningerOmPleietrengendeStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
-import KvitteringPage from '../pages/kvittering/KvitteringPage';
-import { useResetSøknad } from '../hooks/useResetSøknad';
+import TidsromStep from './steps/tidsrom/TidsromStep';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
     const {
         dispatch,
-        state: { søknadSendt, søknadsdata, kvitteringInfo, søknadRoute: stateSøknadRoute },
+        state: { søknadSendt, søknadsdata, kvitteringInfo, søker, søknadRoute: stateSøknadRoute },
     } = useSøknadContext();
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
@@ -31,6 +33,7 @@ const SøknadRouter = () => {
     const { setShouldResetSøknad, shouldResetSøknad } = useResetSøknad();
 
     usePersistSøknadState();
+    useVerifyUserOnWindowFocus(søker.fødselsnummer, søkerEndpoint.fetchId);
 
     useEffect(() => {
         if (stateSøknadRoute && isFirstTimeLoadingApp) {
