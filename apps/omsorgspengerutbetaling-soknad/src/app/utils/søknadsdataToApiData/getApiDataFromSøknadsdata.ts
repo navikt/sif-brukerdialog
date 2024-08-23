@@ -21,6 +21,7 @@ const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
 };
 
 export const getApiDataFromSøknadsdata = (
+    søkerNorskIdent: string,
     søknadsdata: Søknadsdata,
     { text }: AppIntlShape,
 ): SøknadApiData | undefined => {
@@ -53,6 +54,7 @@ export const getApiDataFromSøknadsdata = (
     }
 
     return {
+        søkerNorskIdent,
         id,
         språk,
         bekreftelser: {
