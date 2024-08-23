@@ -2,18 +2,20 @@ import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-cor
 import { Attachment } from '../../components/formik-file-uploader/useFormikFileUploader';
 import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { SituasjonSøknadsdata, Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
-import { getAttachmentURLBackend } from '../attachmentUtilsAuthToken';
-import { getMedlemskapApiDataFromSøknadsdata } from './getMedlemskapApiDataFromSøknadsdata';
-import { getUtenlansoppholdApiDataFromSøknadsdata } from './getUtenlandsoppholdApiDataFromSøknadsdata';
+import { getAttachmentURLBackend } from '../attachmentUtils';
 import { getArbeidsgivereApiDataFromSøknadsdata } from './getArbeidsgivereApiDataFromSøknadsdata';
 import { getDataBruktTilUtledning } from './getDataBruktTilUtledning';
 import { getDineBarnApiDataFromSøknadsdata } from './getDineBarnApiDataFromSøknadsdata';
+import { getMedlemskapApiDataFromSøknadsdata } from './getMedlemskapApiDataFromSøknadsdata';
+import { getUtenlansoppholdApiDataFromSøknadsdata } from './getUtenlandsoppholdApiDataFromSøknadsdata';
 
 const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
     if (!vedlegg || vedlegg.length === 0) {
         return [];
     }
-    return vedlegg.filter(attachmentIsUploadedAndIsValidFileFormat).map(({ url }) => getAttachmentURLBackend(url));
+    return vedlegg
+        .filter(attachmentIsUploadedAndIsValidFileFormat)
+        .map(({ url }) => (url ? getAttachmentURLBackend(url) : ''));
 };
 
 const getArbeidsforholdDokumenter = (situasjon: SituasjonSøknadsdata): Attachment[] => {

@@ -121,6 +121,7 @@ const nb = {
         'Forklaringen må være på minst {min} tegn.',
     'validation.arbeidsforhold.utbetalingsårsak.konfliktForklaring.stringIsTooLong':
         'Forklaringn kan være på maks {maks} tegn.',
+    'validation.barn.ingenBarn': 'Du må legge til minst ett barn du har omsorg for',
 };
 
 const nn: Record<keyof typeof nb, string> = {
