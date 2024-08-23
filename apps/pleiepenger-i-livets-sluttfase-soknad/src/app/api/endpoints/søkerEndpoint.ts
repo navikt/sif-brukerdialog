@@ -17,6 +17,10 @@ const søkerEndpoint = {
         }
         return Promise.resolve(data);
     },
+    fetchId: async (): Promise<string> => {
+        const { data } = await api.get<SøkerDTO>(ApiEndpoint.soker);
+        return data.fødselsnummer;
+    },
 };
 
 export default søkerEndpoint;
