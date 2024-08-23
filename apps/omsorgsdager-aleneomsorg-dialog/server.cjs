@@ -121,11 +121,6 @@ const startServer = async (html) => {
     if (isDev) {
         const fs = require('fs');
         fs.writeFileSync(path.resolve(__dirname, 'index-decorated.html'), html);
-        const vedleggMockStore = './dist/vedlegg';
-
-        if (!fs.existsSync(vedleggMockStore)) {
-            fs.mkdirSync(vedleggMockStore);
-        }
 
         const vite = await require('vite').createServer({
             root: __dirname,
