@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.14.4
+
+### Patch Changes
+
+-   324b68b: Bugfix - korrigere url for vedlegg i frontend
+
 ## 1.14.3
 
 ### Patch Changes
