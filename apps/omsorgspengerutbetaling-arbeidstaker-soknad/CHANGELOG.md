@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-arbeidstaker-soknad
 
+## 1.5.8
+
+### Patch Changes
+
+-   Verifiser innlogget bruker ved window.focus
+
 ## 1.5.7
 
 ### Patch Changes
