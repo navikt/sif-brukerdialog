@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-arbeidstaker-soknad
 
+## 1.5.4
+
+### Patch Changes
+
+-   a149706: Cleanup og legge til en manglende valideringstekst
+
 ## 1.5.3
 
 ### Patch Changes
