@@ -15,12 +15,14 @@ import DeltBostedStep from './steps/delt-bosted/DeltBostedStep';
 import LegeerklæringStep from './steps/legeerklæring/LegeerklæringStep';
 import OmBarnetStep from './steps/om-barnet/OmBarnetStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
+import { useVerifyUser } from './context/hooks/useVerifyUser';
+import søkerEndpoint from '../api/endpoints/søkerEndpoint';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
     const {
         dispatch,
-        state: { søknadsdata, søknadRoute: stateSøknadRoute },
+        state: { søknadsdata, søknadRoute: stateSøknadRoute, søker },
     } = useSøknadContext();
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
@@ -28,6 +30,7 @@ const SøknadRouter = () => {
     const { setShouldResetSøknad, shouldResetSøknad } = useResetSøknad();
 
     usePersistSøknadState();
+    useVerifyUser(søker.fødselsnummer, søkerEndpoint.fetchId);
 
     useEffect(() => {
         if (stateSøknadRoute && isFirstTimeLoadingApp) {

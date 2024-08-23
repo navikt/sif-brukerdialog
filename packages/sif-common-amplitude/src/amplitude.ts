@@ -35,6 +35,7 @@ export enum ApplikasjonHendelse {
     'ugyldigMellomlagring' = 'ugyldigMellomlagring',
     'avbryt' = 'avbryt',
     'fortsettSenere' = 'fortsettSenere',
+    'innloggetBrukerErEndret' = 'innloggetBrukerErEndret',
 }
 
 export enum ApiError {
