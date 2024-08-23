@@ -16,6 +16,7 @@ import {
     OpplysningerOmPleietrengendeFormValues,
 } from '../OpplysningerOmPleietrengendeStep';
 import { AppText } from '../../../../i18n';
+import { fixAttachmentURL } from '../../../../utils/attachmentUtils';
 
 interface Props {
     includeDeletionFunctionality: boolean;
@@ -24,9 +25,9 @@ interface Props {
 
 const IdPartAttachmentList: React.FC<Props> = ({ wrapNoAttachmentsInBlock, includeDeletionFunctionality }) => {
     const { values, setFieldValue } = useFormikContext<OpplysningerOmPleietrengendeFormValues>();
-    const idDokumenter: Attachment[] = values.pleietrengendeId.filter(({ file }: Attachment) =>
-        fileExtensionIsValid(file.name),
-    );
+    const idDokumenter: Attachment[] = values.pleietrengendeId
+        .filter(({ file }: Attachment) => fileExtensionIsValid(file.name))
+        .map(fixAttachmentURL);
 
     if (!containsAnyUploadedAttachments(idDokumenter)) {
         const noAttachmentsText = (

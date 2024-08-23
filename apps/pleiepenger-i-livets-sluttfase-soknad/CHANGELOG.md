@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.10.4
+
+### Patch Changes
+
+-   Bugfix - korrigere url for vedlegg i frontend
+
 ## 2.10.3
 
 ### Patch Changes

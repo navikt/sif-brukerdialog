@@ -8,7 +8,6 @@ import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
 import { useFormikContext } from 'formik';
 import api, { ApiEndpoint } from '../../../../api/api';
-import { getAttachmentURLFrontend } from '../../../../utils/attachmentUtilsAuthToken';
 import { relocateToLoginPage } from '../../../../utils/navigationUtils';
 import { validateAttachments, ValidateAttachmentsErrors } from '../../../../utils/validateAttachments';
 import {
@@ -17,6 +16,7 @@ import {
 } from '../OpplysningerOmPleietrengendeStep';
 import IdPartAttachmentList from './IdPartAttachmentList';
 import { useAppIntl } from '../../../../i18n';
+import { getAttachmentURLFrontend } from '../../../../utils/attachmentUtils';
 
 //TODO VALIDATE  alleDokumenterISøknaden: Attachment[];
 const IdPart = () => {
