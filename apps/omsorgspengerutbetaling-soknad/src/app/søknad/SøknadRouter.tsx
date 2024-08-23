@@ -18,18 +18,21 @@ import MedlemskapStep from './steps/medlemskap/MedlemskapStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
 import KvitteringPage from '../pages/kvittering/KvitteringPage';
 import { useResetSøknad } from '../hooks/useResetSøknad';
+import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds/src';
+import søkerEndpoint from '../api/endpoints/søkerEndpoint';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
     const {
         dispatch,
-        state: { søknadSendt, søknadsdata, søknadRoute: stateSøknadRoute },
+        state: { søknadSendt, søknadsdata, søker, søknadRoute: stateSøknadRoute },
     } = useSøknadContext();
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
     const { slettMellomlagring } = useMellomlagring();
     const { setShouldResetSøknad, shouldResetSøknad } = useResetSøknad();
 
+    useVerifyUserOnWindowFocus(søker.fødselsnummer, søkerEndpoint.fetchId);
     usePersistSøknadState();
 
     useEffect(() => {
