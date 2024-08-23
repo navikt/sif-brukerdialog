@@ -11,4 +11,9 @@ const getSokerRemoteData = async (): Promise<Person> => {
     }
 };
 
+export const getSokerId = async (): Promise<string> => {
+    const søker = await getSokerRemoteData();
+    return søker.fødselsnummer;
+};
+
 export default getSokerRemoteData;

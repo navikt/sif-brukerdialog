@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.37.3
+
+### Patch Changes
+
+-   87c67fa: Verifiser innlogget bruker ved window.focus
+
 ## 3.37.2
 
 ### Patch Changes
