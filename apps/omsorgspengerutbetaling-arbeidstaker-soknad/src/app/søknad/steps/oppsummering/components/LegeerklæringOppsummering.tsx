@@ -3,7 +3,7 @@ import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { AppText } from '../../../../i18n';
 import { LegeerklæringSøknadsdata } from '../../../../types/søknadsdata/LegeerklæringSøknadsdata';
-import { getAttachmentURLBackend } from '../../../../utils/attachmentUtilsAuthToken';
+import { getAttachmentURLBackend } from '../../../../utils/attachmentUtils';
 
 interface Props {
     vedlegg: string[];
