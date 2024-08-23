@@ -18,6 +18,8 @@ import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
 import KvitteringPage from '../pages/kvittering/KvitteringPage';
 import DineBarnStep from './steps/dine-barn/DineBarnStep';
 import DeltBostedStep from './steps/delt-bosted/DeltBostedStep';
+import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds/src';
+import søkerEndpoint from '../api/endpoints/søkerEndpoint';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
@@ -30,6 +32,7 @@ const SøknadRouter = () => {
     const { slettMellomlagring } = useMellomlagring();
     const { setShouldResetSøknad, shouldResetSøknad } = useResetSøknad();
 
+    useVerifyUserOnWindowFocus(søker.fødselsnummer, søkerEndpoint.fetchId);
     usePersistSøknadState();
 
     useEffect(() => {
