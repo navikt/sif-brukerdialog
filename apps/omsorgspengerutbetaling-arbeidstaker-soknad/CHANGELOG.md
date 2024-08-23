@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-arbeidstaker-soknad
 
+## 1.5.5
+
+### Patch Changes
+
+-   d5466f2: Bugfix - legge på fixAttachmentURL
+
 ## 1.5.4
 
 ### Patch Changes

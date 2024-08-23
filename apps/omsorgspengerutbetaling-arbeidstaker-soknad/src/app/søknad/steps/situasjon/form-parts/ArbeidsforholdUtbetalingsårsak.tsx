@@ -13,10 +13,10 @@ import {
 import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
 import { useFormikContext } from 'formik';
 import { ApiEndpoint } from '../../../../api/api';
-// import { valuesToAlleDokumenterISøknaden } from '../../../../utils/attachmentUtils';
 import FormikFileUploader from '../../../../components/formik-file-uploader/FormikFileUploader';
 import { useAppIntl } from '../../../../i18n';
 import { Arbeidsforhold, Utbetalingsårsak, ÅrsakNyoppstartet } from '../../../../types/ArbeidsforholdTypes';
+import { fixAttachmentURL } from '../../../../utils/attachmentUtils';
 import { relocateToLoginPage } from '../../../../utils/navigationUtils';
 import { validateAttachments, ValidateAttachmentsErrors } from '../../../../utils/validateAttachments';
 import { AppFieldValidationErrors } from '../../../../utils/validations';
@@ -41,10 +41,9 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Pr
     const arbeidsgivernavn = arbeidsforhold.navn;
 
     const attachments: Attachment[] = useMemo(() => {
-        return arbeidsforhold ? arbeidsforhold.dokumenter : [];
+        return arbeidsforhold ? arbeidsforhold.dokumenter.map(fixAttachmentURL) : [];
     }, [arbeidsforhold]);
 
-    // const alleDokumenterISøknaden: Attachment[] = valuesToAlleDokumenterISøknaden(values);
     const ref = useRef({ attachments });
 
     useEffect(() => {
