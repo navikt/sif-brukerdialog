@@ -1,5 +1,13 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.0.2
+
+### Patch Changes
+
+-   0fbe737: Verifisere bruker ved window.focus
+-   Updated dependencies [a479061]
+    -   @navikt/sif-common-soknad-ds@13.2.2
+
 ## 4.0.1
 
 ### Patch Changes
