@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 
-export const useVerifyUser = (userId: string, getUserId: () => Promise<string>) => {
+export const useVerifyUserOnWindowFocus = (userId: string, getUserId: () => Promise<string>) => {
     const { logHendelse } = useAmplitudeInstance();
     useEffect(() => {
         const handleFocus = async () => {

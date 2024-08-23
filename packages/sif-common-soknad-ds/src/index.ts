@@ -16,6 +16,7 @@ export { default as Step } from './modules/soknad-step/step/Step';
 export { ensureBaseNameForReactRouter } from './utils/ensureBaseNameForReactRouter';
 export { attachmentURLUtils } from './utils/attachmentURLUtils';
 export { EnsureCorrectSøknadRouteErrorType } from './hooks/useEnsureCorrectSøknadRoute';
+export { useVerifyUserOnWindowFocus } from './hooks/useVerifyUserOnWindowFocus';
 export { GlobalSoknadApplicationRoutes } from './setup/SoknadApplicationCommonRoutes';
 export { QuestionVisibilityContext } from './modules/question-visibility/QuestionVisibilityContext';
 export { SoknadApplicationType } from './modules/soknad-step/soknadStepTypes';
