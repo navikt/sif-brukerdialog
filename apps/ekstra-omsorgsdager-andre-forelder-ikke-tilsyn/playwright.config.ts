@@ -28,8 +28,6 @@ export default defineConfig({
             PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn',
             API_URL: 'http://localhost:8089',
             FRONTEND_API_PATH: 'http://localhost:8089',
-            FRONTEND_VEDLEGG_URL: 'http://localhost:8089',
-            VEDLEGG_API_URL: 'http://localhost:8089',
             APPSTATUS_PROJECT_ID: 'ryujtq87',
             APPSTATUS_DATASET: 'staging',
         },
