@@ -4,8 +4,13 @@ import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { EnsureCorrectSøknadRouteErrorType, useEnsureCorrectSøknadRoute } from '@navikt/sif-common-soknad-ds';
+import {
+    EnsureCorrectSøknadRouteErrorType,
+    useEnsureCorrectSøknadRoute,
+    useVerifyUserOnWindowFocus,
+} from '@navikt/sif-common-soknad-ds';
 import { appSentryLogger } from '@utils';
+import søkerEndpoint from '../api/endpoints/søkerEndpoint';
 import StartPåNyttDialog from '../components/start-på-nytt-dialog/StartPåNyttDialog';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
@@ -25,7 +30,7 @@ import UkjentArbeidsforholdStep from './steps/ukjent-arbeidsforhold/UkjentArbeid
 const SøknadRouter = () => {
     const { pathname } = useLocation();
     const {
-        state: { søknadsdata, søknadSteps = [], søknadRoute, k9saker, sak },
+        state: { søknadsdata, søknadSteps = [], søknadRoute, søker, k9saker, sak },
     } = useSøknadContext();
 
     const { slettMellomlagring } = useMellomlagring();
@@ -39,6 +44,7 @@ const SøknadRouter = () => {
         søknadSteps.map((step) => getSøknadStepRoute(step)),
     );
 
+    useVerifyUserOnWindowFocus(søker.fødselsnummer, søkerEndpoint.fetchId);
     usePersistSøknadState();
 
     const startPåNytt = async () => {

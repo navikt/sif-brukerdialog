@@ -1,8 +1,8 @@
 import { isStringOrNull } from '@navikt/sif-common-utils';
 import { Søker } from '@types';
 import { isObject, isString } from 'formik';
-import api, { ApiEndpointPsb } from '../api';
 import { appSentryLogger } from '../../utils';
+import api, { ApiEndpointPsb } from '../api';
 
 type SøkerDTO = {
     etternavn: string;
@@ -21,6 +21,10 @@ const søkerEndpoint = {
             return Promise.reject('Invalid søkerdata');
         }
         return Promise.resolve(data);
+    },
+    fetchId: async (): Promise<string> => {
+        const { fødselsnummer } = await søkerEndpoint.fetch();
+        return fødselsnummer;
     },
 };
 
