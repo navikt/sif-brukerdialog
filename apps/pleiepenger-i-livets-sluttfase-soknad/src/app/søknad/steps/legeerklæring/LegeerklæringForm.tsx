@@ -19,8 +19,8 @@ import api, { ApiEndpoint } from '../../../api/api';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
 import { validateAttachments, ValidateAttachmentsErrors } from '../../../utils/validateAttachments';
 import LegeerklæringAvtaleAttachmentList from './LegeerklæringAttachmentList';
-import { getAttachmentURLFrontend } from '../../../utils/attachmentUtilsAuthToken';
 import { AppText, useAppIntl } from '../../../i18n';
+import { getAttachmentURLFrontend } from '../../../utils/attachmentUtils';
 
 interface Props {
     values: Partial<LegeerklæringFormValues>;
