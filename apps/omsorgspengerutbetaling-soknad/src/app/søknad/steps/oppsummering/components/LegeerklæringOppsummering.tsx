@@ -5,7 +5,7 @@ import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { AppText } from '../../../../i18n';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { LegeerklæringSøknadsdata } from '../../../../types/søknadsdata/LegeerklæringSøknadsdata';
-import { getAttachmentURLBackend } from '../../../../utils/attachmentUtils';
+import { fixAttachmentURL, getAttachmentURLBackend } from '../../../../utils/attachmentUtils';
 
 interface Props {
     apiData: SøknadApiData;
@@ -15,9 +15,9 @@ interface Props {
 
 const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringSøknadsdata, onEdit }) => {
     const legeerklæringer = legeerklæringSøknadsdata
-        ? legeerklæringSøknadsdata.vedlegg.filter(
-              (v) => v.url && apiData.vedlegg.includes(getAttachmentURLBackend(v.url)),
-          )
+        ? legeerklæringSøknadsdata.vedlegg
+              .filter((v) => v.url && apiData.vedlegg.includes(getAttachmentURLBackend(v.url)))
+              .map(fixAttachmentURL)
         : [];
 
     return (
