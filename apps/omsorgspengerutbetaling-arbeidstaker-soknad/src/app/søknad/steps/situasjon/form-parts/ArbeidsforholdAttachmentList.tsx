@@ -18,7 +18,7 @@ interface Props {
     wrapNoAttachmentsInBlock?: boolean;
 }
 
-const LegeerklæringAvtaleAttachmentList: React.FunctionComponent<Props> = ({
+const ArbeidsforholdAttachmentList: React.FunctionComponent<Props> = ({
     wrapNoAttachmentsInBlock,
     dokumenter,
     fieldName,
@@ -59,4 +59,4 @@ const LegeerklæringAvtaleAttachmentList: React.FunctionComponent<Props> = ({
     }
 };
 
-export default LegeerklæringAvtaleAttachmentList;
+export default ArbeidsforholdAttachmentList;

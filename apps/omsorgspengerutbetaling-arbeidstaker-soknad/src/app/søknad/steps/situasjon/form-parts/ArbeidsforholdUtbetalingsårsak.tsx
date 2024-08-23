@@ -22,6 +22,7 @@ import { validateAttachments, ValidateAttachmentsErrors } from '../../../../util
 import { AppFieldValidationErrors } from '../../../../utils/validations';
 import { ArbeidsforholdFormFields, SituasjonFormValues } from '../SituasjonStep';
 import ArbeidsforholdAttachmentList from './ArbeidsforholdAttachmentList';
+import { fixAttachmentURL } from '../../../../utils/attachmentUtils';
 
 const { RadioGroup, Textarea } = getTypedFormComponents<ArbeidsforholdFormFields, Arbeidsforhold, ValidationError>();
 
@@ -41,7 +42,7 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Pr
     const arbeidsgivernavn = arbeidsforhold.navn;
 
     const attachments: Attachment[] = useMemo(() => {
-        return arbeidsforhold ? arbeidsforhold.dokumenter : [];
+        return arbeidsforhold ? arbeidsforhold.dokumenter.map(fixAttachmentURL) : [];
     }, [arbeidsforhold]);
 
     // const alleDokumenterISøknaden: Attachment[] = valuesToAlleDokumenterISøknaden(values);
