@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 1.6.2
+
+### Patch Changes
+
+-   Verifiser innlogget bruker ved window.focus
+
 ## 1.6.1
 
 ### Patch Changes

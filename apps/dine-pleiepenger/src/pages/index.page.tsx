@@ -1,20 +1,24 @@
 import { Box, VStack } from '@navikt/ds-react';
 import { ReactElement } from 'react';
+import axios from 'axios';
 import Head from 'next/head';
 import { withAuthenticatedPage } from '../auth/withAuthentication';
 import DineInnsendteSøknader from '../components/dine-innsendte-søknader/DineInnsendteSøknader';
 import HvaSkjer from '../components/hva-skjer/HvaSkjer';
+import IngenSakEllerSøknadPage from '../components/ingen-sak-eller-søknad-page/IngenSakEllerSøknadPage';
 import DefaultPageLayout from '../components/page-layout/default-page-layout/DefaultPageLayout';
 import Saksbehandlingstid from '../components/saksbehandlingstid/Saksbehandlingstid';
 import Snarveier from '../components/snarveier/Snarveier';
 import VelgSakPage from '../components/velg-sak-page/VelgSakPage';
 import { useInnsynsdataContext } from '../hooks/useInnsynsdataContext';
 import { useLogBrukerprofil } from '../hooks/useLogBrukerprofil';
+import { useVerifyUserOnWindowFocus } from '../hooks/useVerifyUserOnWindowFocus';
 import { useAppIntl } from '../i18n';
 import { PleietrengendeMedSak } from '../server/api-models/PleietrengendeMedSakSchema';
+import { Søker } from '../server/api-models/SøkerSchema';
 import { InnsendtSøknad, InnsendtSøknadstype } from '../types/InnsendtSøknad';
+import { browserEnv } from '../utils/env';
 import SakPage from './sak/SakPage';
-import IngenSakEllerSøknadPage from '../components/ingen-sak-eller-søknad-page/IngenSakEllerSøknadPage';
 
 const harSendtInnSøknadEllerEndringsmelding = (søknader: InnsendtSøknad[]): boolean => {
     return søknader.some(
@@ -31,12 +35,18 @@ const getSaksbehandlingsfrist = (søknader: InnsendtSøknad[], saker: Pleietreng
     return undefined;
 };
 
+const søkerIdFetcher = async (): Promise<string> => {
+    const url = `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/soker`;
+    return axios.get<Søker>(url).then((res) => res.data.fødselsnummer);
+};
+
 function DinePleiepengerPage(): ReactElement {
     const {
-        innsynsdata: { innsendteSøknader, saker, saksbehandlingstidUker, brukerprofil },
+        innsynsdata: { innsendteSøknader, saker, saksbehandlingstidUker, brukerprofil, søker },
     } = useInnsynsdataContext();
 
     useLogBrukerprofil(brukerprofil);
+    useVerifyUserOnWindowFocus(søker.fødselsnummer, søkerIdFetcher);
 
     const { text } = useAppIntl();
 
