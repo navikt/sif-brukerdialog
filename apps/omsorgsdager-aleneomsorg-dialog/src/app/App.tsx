@@ -9,7 +9,6 @@ import {
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
 import { applicationIntlMessages } from './i18n';
-import nais from './nais.js';
 import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
 import '@navikt/ds-css';
@@ -23,11 +22,17 @@ const publicPath = getEnvironmentVariable('PUBLIC_PATH');
 
 ensureBaseNameForReactRouter(publicPath);
 
-// const faroUrl = getEnvironmentVariable('NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL');
-initializeFaro({
-    url: nais.telemetryCollectorURL,
-    app: nais.app,
-});
+const telemetryCollectorURL = getEnvironmentVariable('NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL');
+if (telemetryCollectorURL) {
+    initializeFaro({
+        url: telemetryCollectorURL,
+        app: {
+            name: OmsorgsdagerAleneomsorgApp.navn,
+            version: getEnvironmentVariable('APP_VERSION'),
+            release: getEnvironmentVariable('GITHUB_REF_NAME'),
+        },
+    });
+}
 
 const App = () => (
     <SoknadApplication
