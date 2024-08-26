@@ -27,10 +27,10 @@ COPY --from=ws-installer /app-ws/node_modules ./node_modules/
 COPY --from=turbo-builder /app/apps/omsorgsdager-aleneomsorg-dialog/server.cjs .
 COPY --from=turbo-builder /app/apps/omsorgsdager-aleneomsorg-dialog/tokenx.cjs .
 COPY --from=turbo-builder /app/apps/omsorgsdager-aleneomsorg-dialog/package.json .
+COPY --from=turbo-builder /app/apps/omsorgsdager-aleneomsorg-dialog/nais.js ./nais.js
 COPY --from=turbo-builder /app/apps/omsorgsdager-aleneomsorg-dialog/src/build/decorator.cjs ./src/build/decorator.cjs
 COPY --from=turbo-builder /app/apps/omsorgsdager-aleneomsorg-dialog/src/build/AppSettings.cjs ./src/build/AppSettings.cjs
 COPY --from=turbo-builder /app/apps/omsorgsdager-aleneomsorg-dialog/dist ./dist
-COPY --from=turbo-builder /app/apps/omsorgsdager-aleneomsorg-dialog/nais.js ./dist/nais.js
 
 EXPOSE 8080
 CMD ["server.cjs"]

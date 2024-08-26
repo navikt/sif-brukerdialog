@@ -50,7 +50,7 @@ spec:
     {{#if faro}}
     frontend:
         generatedConfig:
-            mountPath: /app/apps/{{app}}/nais.js
+            mountPath: /apps/{{app}}/nais.js
     {{/if}}
     prometheus:
         enabled: true
