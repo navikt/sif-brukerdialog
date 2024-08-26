@@ -8,8 +8,8 @@ import {
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
-import nais from '../../nais.js';
 import { applicationIntlMessages } from './i18n';
+import nais from './nais.js';
 import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
 import '@navikt/ds-css';
