@@ -20,6 +20,11 @@ spec:
         path: {{readinessPath}}
         initialDelay: 20
         timeout: 1
+    {{#if faro}}
+    frontend:
+        generatedConfig:
+            mounthPath: /apps/{{app}}/nais.js
+    {{/if}}
     resources:
         limits:
             cpu: 2000m
