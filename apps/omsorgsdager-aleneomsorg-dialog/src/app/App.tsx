@@ -27,9 +27,9 @@ if (telemetryCollectorURL) {
     initializeFaro({
         url: telemetryCollectorURL,
         app: {
-            name: OmsorgsdagerAleneomsorgApp.navn,
+            name: OmsorgsdagerAleneomsorgApp.key,
             version: getEnvironmentVariable('APP_VERSION'),
-            release: getEnvironmentVariable('GITHUB_REF_NAME'),
+            release: getEnvironmentVariable('IMAGE'),
         },
     });
 }
