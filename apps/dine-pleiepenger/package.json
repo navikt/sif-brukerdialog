@@ -1,6 +1,6 @@
 {
     "name": "@navikt/dine-pleiepenger",
-    "version": "1.6.2",
+    "version": "1.6.3",
     "private": true,
     "scripts": {
         "build-storybook": "storybook build",
@@ -29,7 +29,7 @@
         "@navikt/sif-common-core-ds": "workspace: *",
         "@navikt/sif-common-sentry": "workspace: *",
         "@navikt/sif-common-utils": "workspace: *",
-        "axios": "1.7.4",
+        "axios": "1.7.5",
         "jsonwebtoken": "9.0.2",
         "lodash.sortby": "4.7.0",
         "lodash.uniq": "4.5.0",

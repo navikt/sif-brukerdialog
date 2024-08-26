@@ -4,7 +4,7 @@
     "license": "MIT",
     "main": "src/index.ts",
     "name": "@navikt/sif-common-formik-ds",
-    "version": "1.12.1",
+    "version": "1.12.2",
     "type": "module",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-formik-ds/issues"
@@ -20,7 +20,7 @@
     },
     "devDependencies": {
         "@babel/core": "7.25.2",
-        "@babel/preset-env": "7.25.3",
+        "@babel/preset-env": "7.25.4",
         "@babel/preset-react": "7.24.7",
         "@babel/preset-typescript": "7.24.7",
         "@navikt/ds-css": "6.16.1",

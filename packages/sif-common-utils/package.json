@@ -3,7 +3,7 @@
     "author": "navikt",
     "description": "Diverse utils for Sykdom i familien teamet",
     "main": "src/index.ts",
-    "version": "3.47.1",
+    "version": "3.47.2",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -14,7 +14,7 @@
     },
     "devDependencies": {
         "@babel/core": "7.25.2",
-        "@babel/preset-env": "7.25.3",
+        "@babel/preset-env": "7.25.4",
         "@babel/preset-react": "7.24.7",
         "@sif/eslint-config": "workspace:*",
         "@types/node": "22.5.0",
