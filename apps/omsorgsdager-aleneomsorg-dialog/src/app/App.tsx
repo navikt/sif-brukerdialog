@@ -1,12 +1,14 @@
 import { createRoot } from 'react-dom/client';
 import { Navigate, Route } from 'react-router-dom';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
+import { initializeFaro } from '@grafana/faro-web-sdk';
 import { OmsorgsdagerAleneomsorgApp } from '@navikt/sif-app-register';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import {
     ensureBaseNameForReactRouter,
-    SoknadApplicationCommonRoutes,
     SoknadApplication,
+    SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
+import nais from '../../nais.js';
 import { applicationIntlMessages } from './i18n';
 import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
@@ -20,6 +22,11 @@ const root = createRoot(container!);
 const publicPath = getEnvironmentVariable('PUBLIC_PATH');
 
 ensureBaseNameForReactRouter(publicPath);
+
+initializeFaro({
+    url: nais.telemetryCollectorURL,
+    app: nais.app,
+});
 
 const App = () => (
     <SoknadApplication
