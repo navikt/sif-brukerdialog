@@ -30,6 +30,7 @@ COPY --from=turbo-builder /app/apps/omsorgsdager-aleneomsorg-dialog/package.json
 COPY --from=turbo-builder /app/apps/omsorgsdager-aleneomsorg-dialog/src/build/decorator.cjs ./src/build/decorator.cjs
 COPY --from=turbo-builder /app/apps/omsorgsdager-aleneomsorg-dialog/src/build/AppSettings.cjs ./src/build/AppSettings.cjs
 COPY --from=turbo-builder /app/apps/omsorgsdager-aleneomsorg-dialog/dist ./dist
+COPY --from=turbo-builder /app/apps/omsorgsdager-aleneomsorg-dialog/nais.js ./dist/nais.js
 
 EXPOSE 8080
 CMD ["server.cjs"]
