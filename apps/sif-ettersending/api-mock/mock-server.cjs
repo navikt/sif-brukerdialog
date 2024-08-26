@@ -9,7 +9,7 @@ const server = express();
 server.use(express.json());
 server.use(
     helmet({
-        contentSecurityPolicy: false,
+        contentSecurityPolicy: true,
         crossOriginEmbedderPolicy: false,
         crossOriginResourcePolicy: false,
     }),
