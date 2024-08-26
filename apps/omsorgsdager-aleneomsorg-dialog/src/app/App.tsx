@@ -23,9 +23,9 @@ const publicPath = getEnvironmentVariable('PUBLIC_PATH');
 
 ensureBaseNameForReactRouter(publicPath);
 
-const faroUrl = getEnvironmentVariable('NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL');
+// const faroUrl = getEnvironmentVariable('NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL');
 initializeFaro({
-    url: faroUrl || nais.telemetryCollectorURL,
+    url: nais.telemetryCollectorURL,
     app: nais.app,
 });
 
