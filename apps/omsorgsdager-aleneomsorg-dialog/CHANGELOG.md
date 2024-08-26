@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.20.7
+
+### Patch Changes
+
+-   Verifiser innlogget bruker ved window.focus
+
 ## 2.20.6
 
 ### Patch Changes
