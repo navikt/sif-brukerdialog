@@ -14,18 +14,21 @@ import { useSøknadContext } from './context/hooks/useSøknadContext';
 import OmOmsorgenForBarnStep from './steps/om-omsorgen-for-barn/OmOmsorgenForBarnStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
 import TidspunktForAleneomsorgStep from './steps/tidspunkt-for-aleneomsorg/TidspunktForAleneomsorgStep';
+import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds/src';
+import søkerEndpoint from '../api/endpoints/søkerEndpoint';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
     const {
         dispatch,
-        state: { søknadsdata, søknadRoute: stateSøknadRoute },
+        state: { søknadsdata, søknadRoute: stateSøknadRoute, søker },
     } = useSøknadContext();
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
     const { slettMellomlagring } = useMellomlagring();
     const { setShouldResetSøknad, shouldResetSøknad } = useResetSøknad();
 
+    useVerifyUserOnWindowFocus(søker.fødselsnummer, søkerEndpoint.fetchId);
     usePersistSøknadState();
 
     useEffect(() => {
