@@ -18,8 +18,8 @@
         "test-w": "vitest"
     },
     "dependencies": {
-        "@grafana/faro-web-sdk": "1.9.0",
-        "@grafana/faro-web-tracing": "1.9.0",
+        "@grafana/faro-web-sdk": "1.9.1",
+        "@grafana/faro-web-tracing": "1.9.1",
         "@navikt/appstatus-react-ds": "workspace: *",
         "@navikt/nav-dekoratoren-moduler": "2.1.6",
         "@navikt/next-logger": "1.31.0",
@@ -46,10 +46,10 @@
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.0",
-        "@navikt/ds-css": "6.16.1",
+        "@navikt/ds-css": "6.16.2",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "6.16.1",
-        "@navikt/ds-tailwind": "6.16.1",
+        "@navikt/ds-react": "6.16.2",
+        "@navikt/ds-tailwind": "6.16.2",
         "@playwright/test": "1.46.1",
         "@sif/eslint-config": "workspace:*",
         "@storybook/addon-essentials": "8.2.9",
