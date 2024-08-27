@@ -47,6 +47,9 @@ describe(`validateString`, () => {
         it(`returns undefined when string passes unicode test`, () => {
             expect(getStringValidator({ disallowUnicodeCharacters: true })('asd')).toBeUndefined();
         });
+        it(`returns undefined when string passes unicode test and contains space`, () => {
+            expect(getStringValidator({ disallowUnicodeCharacters: true })('asd avc')).toBeUndefined();
+        });
         it(`returns ${ValidateStringError.stringContainsUnicodeChacters} when string failes regexp test()`, () => {
             expect(getStringValidator({ disallowUnicodeCharacters: true })(`${unicodeChar}asd`)).toBe(
                 ValidateStringError.stringContainsUnicodeChacters,

@@ -28,7 +28,7 @@ interface Options {
 }
 
 const containsNonLatinCodepoints = (s: string): boolean => {
-    return /[^u0000-\u00ff]/.test(s);
+    return /[^u0000-\u00ff]\s/.test(s);
 };
 
 const getStringValidator =
