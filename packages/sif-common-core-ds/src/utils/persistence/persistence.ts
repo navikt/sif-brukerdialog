@@ -2,6 +2,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { storageParser } from './storageParser';
+import apiUtils from '../apiUtils';
 
 dayjs.extend(customParseFormat);
 
@@ -24,20 +25,23 @@ export interface PersistenceConfig {
 function persistence<StorageFormat>({ requestConfig, url }: PersistenceConfig): PersistenceInterface<StorageFormat> {
     return {
         update: (data: StorageFormat) => {
-            return axios.put(url, data, requestConfig);
+            return axios.put(url, data, apiUtils.addCorrelationIdToAxionsConfig(requestConfig));
         },
         create: (data?: StorageFormat) => {
-            return axios.post(url, data || {}, requestConfig);
+            return axios.post(url, data || {}, apiUtils.addCorrelationIdToAxionsConfig(requestConfig));
         },
         /** deprecated */
         persist: (data?: StorageFormat) => {
-            return axios.post(url, data, requestConfig);
+            return axios.post(url, data, apiUtils.addCorrelationIdToAxionsConfig(requestConfig));
         },
         rehydrate: () => {
-            return axios.get(url, { ...requestConfig, transformResponse: storageParser });
+            return axios.get(
+                url,
+                apiUtils.addCorrelationIdToAxionsConfig({ ...requestConfig, transformResponse: storageParser }),
+            );
         },
         purge: () => {
-            return axios.delete(url, { ...requestConfig, data: {} });
+            return axios.delete(url, apiUtils.addCorrelationIdToAxionsConfig({ ...requestConfig, data: {} }));
         },
     };
 }
