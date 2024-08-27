@@ -1,6 +1,5 @@
 import { createRoot } from 'react-dom/client';
 import { Navigate, Route } from 'react-router-dom';
-import { initializeFaro } from '@grafana/faro-web-sdk';
 import { OmsorgsdagerAleneomsorgApp } from '@navikt/sif-app-register';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import {
@@ -21,18 +20,6 @@ const root = createRoot(container!);
 const publicPath = getEnvironmentVariable('PUBLIC_PATH');
 
 ensureBaseNameForReactRouter(publicPath);
-
-const telemetryCollectorURL = getEnvironmentVariable('NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL');
-if (telemetryCollectorURL) {
-    initializeFaro({
-        url: telemetryCollectorURL,
-        app: {
-            name: OmsorgsdagerAleneomsorgApp.key,
-            version: getEnvironmentVariable('APP_VERSION'),
-            release: getEnvironmentVariable('IMAGE'),
-        },
-    });
-}
 
 const App = () => (
     <SoknadApplication

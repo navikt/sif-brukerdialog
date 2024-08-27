@@ -23,6 +23,7 @@
         "APPSTATUS_DATASET": "staging",
         "API_TOKENX_AUDIENCE": "dev-gcp:dusseldorf:k9-brukerdialog-prosessering",
         "NPM_CONFIG_CACHE": "/tmp",
-        "APP_VERSION": "dev"
+        "APP_VERSION": "dev",
+        "USE_FARO": "true"
     }
 }

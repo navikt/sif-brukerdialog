@@ -3642,6 +3642,7 @@ __metadata:
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
+    "@navikt/sif-common-faro": "workspace:*"
     "@navikt/sif-common-formik-ds": "workspace:*"
     "@navikt/sif-common-forms-ds": "workspace:*"
     "@navikt/sif-common-hooks": "workspace:*"
@@ -4158,6 +4159,7 @@ __metadata:
     "@babel/preset-env": "npm:7.25.4"
     "@babel/preset-react": "npm:7.24.7"
     "@babel/preset-typescript": "npm:7.24.7"
+    "@grafana/faro-web-sdk": "npm:1.9.0"
     "@navikt/appstatus-react-ds": "workspace:*"
     "@navikt/ds-css": "npm:6.16.1"
     "@navikt/ds-icons": "npm:3.4.3"
@@ -4211,6 +4213,17 @@ __metadata:
     vite: "npm:5.4.2"
     vite-plugin-checker: "npm:0.7.2"
     vitest: "npm:2.0.5"
+  languageName: unknown
+  linkType: soft
+
+"@navikt/sif-common-faro@workspace:*, @navikt/sif-common-faro@workspace:packages/sif-common-faro":
+  version: 0.0.0-use.local
+  resolution: "@navikt/sif-common-faro@workspace:packages/sif-common-faro"
+  dependencies:
+    "@grafana/faro-web-sdk": "npm:1.9.0"
+    constate: "npm:3.3.2"
+  peerDependencies:
+    react: 18.3.1
   languageName: unknown
   linkType: soft
 
