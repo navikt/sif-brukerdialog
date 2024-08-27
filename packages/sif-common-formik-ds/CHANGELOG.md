@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.12.3
+
+### Patch Changes
+
+-   Endre regexp for sjekk av navn på virksomhet. Tillot ikke space i noen tilfeller.
+
 ## 1.12.2
 
 ### Patch Changes
