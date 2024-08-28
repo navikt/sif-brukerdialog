@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import isEqual from 'react-fast-compare';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds';
+import { MedlemskapFormValues, SoknadStepsConfig } from '@navikt/sif-common-soknad-ds';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../søknad/context/StepFormValuesContext';
 import { LegeerklæringFormValues } from '../søknad/steps/legeerklæring/LegeerklæringForm';
@@ -11,7 +11,6 @@ import { StepId } from '../types/StepId';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 import { SituasjonFormValues } from '../søknad/steps/situasjon/SituasjonStep';
 import { getSituasjonSøknadsdataFromFormValues } from '../søknad/steps/situasjon/SituasjonStepUtils';
-import { MedlemskapFormValues } from '../søknad/steps/medlemskap/MedlemskapStep';
 import { getMedlemskapSøknadsdataFromFormValues } from '../søknad/steps/medlemskap/medlemskapStepUtils';
 import { getFraværSøknadsdataFromFormValues } from '../søknad/steps/fravær/fraværStepUtils';
 import { FraværStepFormValues } from '../søknad/steps/fravær/FraværStep';

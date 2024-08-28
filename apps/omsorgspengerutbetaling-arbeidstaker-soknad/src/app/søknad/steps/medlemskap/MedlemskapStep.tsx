@@ -1,8 +1,6 @@
-import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
-import { MedlemskapForm } from '@navikt/sif-common-soknad-ds/src';
+import { MedlemskapForm, MedlemskapFormFields, MedlemskapFormValues } from '@navikt/sif-common-soknad-ds/src';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -16,20 +14,6 @@ import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import { getMedlemskapStepInitialValues, getMedlemskapSøknadsdataFromFormValues } from './medlemskapStepUtils';
-
-export enum MedlemskapFormFields {
-    harBoddUtenforNorgeSiste12Mnd = 'harBoddUtenforNorgeSiste12Mnd',
-    utenlandsoppholdSiste12Mnd = 'utenlandsoppholdSiste12Mnd',
-    skalBoUtenforNorgeNeste12Mnd = 'skalBoUtenforNorgeNeste12Mnd',
-    utenlandsoppholdNeste12Mnd = 'utenlandsoppholdNeste12Mnd',
-}
-
-export interface MedlemskapFormValues {
-    [MedlemskapFormFields.harBoddUtenforNorgeSiste12Mnd]: YesOrNo;
-    [MedlemskapFormFields.utenlandsoppholdSiste12Mnd]: Utenlandsopphold[];
-    [MedlemskapFormFields.skalBoUtenforNorgeNeste12Mnd]: YesOrNo;
-    [MedlemskapFormFields.utenlandsoppholdNeste12Mnd]: Utenlandsopphold[];
-}
 
 const { FormikWrapper } = getTypedFormComponents<MedlemskapFormFields, MedlemskapFormValues, ValidationError>();
 
