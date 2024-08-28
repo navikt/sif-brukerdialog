@@ -20,7 +20,7 @@ export const getStartedSøknadRequestParam = (date?: Date): string | undefined =
 export const generateCorrlationId = () => `CallId_${new Date().getTime()}_${Math.floor(Math.random() * 1000000000)}`;
 
 export const getCorrelationIdHeader = () => ({
-    correlation_id: generateCorrlationId(),
+    x_correlation_id: generateCorrlationId(),
 });
 
 export const addCorrelationIdToAxionsConfig = (config: AxiosRequestConfig): AxiosRequestConfig => {
