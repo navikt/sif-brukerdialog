@@ -122,22 +122,6 @@ const nb = {
         'Du har registrert fraværsdager utenfor perioden du har oppgitt som {situasjon}. Du kan kun søke for dager du har vært frilanser eller selvstendig næringsdrivende.',
 
     'validation.aktivitetFravær.noValue': 'Du må velge hvilket arbeid du hadde fravær fra {dato}.',
-    'validation.harBoddUtenforNorgeSiste12Mnd.yesOrNoIsUnanswered':
-        'Du må svare på om du har bodd i utlandet i hele eller deler av de siste 12 månedene.',
-    'validation.utenlandsoppholdSiste12Mnd.utenlandsopphold_ikke_registrert':
-        'Du har ikke registrert noen utenlandsopphold for de siste 12 månedene.',
-    'validation.utenlandsoppholdSiste12Mnd.utenlandsopphold_overlapper':
-        'Ett eller flere av utenlandsoppholdene de siste 12 månedene har datoer som overlapper.',
-    'validation.utenlandsoppholdSiste12Mnd.utenlandsopphold_utenfor_periode':
-        'Ett eller flere av utenlandsoppholdene de siste 12 månedene er utenfor tillatt tidsrom.',
-    'validation.skalBoUtenforNorgeNeste12Mnd.yesOrNoIsUnanswered':
-        'Du må svare på om du planlegger å bo i utlandet i hele eller deler av de neste 12 månedene.',
-    'validation.utenlandsoppholdNeste12Mnd.utenlandsopphold_ikke_registrert':
-        'Du har ikke registrert noen utenlandsopphold for de neste 12 månedene.',
-    'validation.utenlandsoppholdNeste12Mnd.utenlandsopphold_overlapper':
-        'Ett eller flere av utenlandsoppholdene de neste 12 månedene har datoer som overlapper.',
-    'validation.utenlandsoppholdNeste12Mnd.utenlandsopphold_utenfor_periode':
-        'Ett eller flere av utenlandsoppholdene de neste 12 månedene er utenfor tillatt tidsrom.',
     'validation.harBekreftetOpplysninger.notChecked': 'Du må bekrefte at opplysningene er riktige.',
     'validation.harForståttRettigheterOgPlikter.notChecked': 'Du må bekrefte at du har lest og forstått dine plikter.',
 };

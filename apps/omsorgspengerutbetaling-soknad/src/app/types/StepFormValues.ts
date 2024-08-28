@@ -1,10 +1,9 @@
-import { SamtykkeFormValues } from '@navikt/sif-common-soknad-ds';
+import { MedlemskapFormValues, SamtykkeFormValues } from '@navikt/sif-common-soknad-ds';
+import { ArbeidssituasjonFormValues } from '../søknad/steps/arbeidssituasjon/ArbeidssituasjonStep';
 import { DineBarnFormValues } from '../søknad/steps/dine-barn/DineBarnStep';
+import { FraværFraFormValues } from '../søknad/steps/fravær-fra/FraværFraStep';
 import { FraværFormValues } from '../søknad/steps/fravær/FraværStep';
 import { LegeerklæringFormValues } from '../søknad/steps/legeerklæring/LegeerklæringForm';
-import { ArbeidssituasjonFormValues } from '../søknad/steps/arbeidssituasjon/ArbeidssituasjonStep';
-import { FraværFraFormValues } from '../søknad/steps/fravær-fra/FraværFraStep';
-import { MedlemskapFormValues } from '../søknad/steps/medlemskap/MedlemskapStep';
 import { OppsummeringFormValues } from '../søknad/steps/oppsummering/OppsummeringStep';
 import { StepId } from './StepId';
 

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import isEqual from 'react-fast-compare';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds';
+import { MedlemskapFormValues, SoknadStepsConfig } from '@navikt/sif-common-soknad-ds';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../søknad/context/StepFormValuesContext';
 import { LegeerklæringFormValues } from '../søknad/steps/legeerklæring/LegeerklæringForm';
@@ -18,7 +18,6 @@ import { getArbeidssituasjonSøknadsdataFromFormValues } from '../søknad/steps/
 import { ArbeidssituasjonFormValues } from '../søknad/steps/arbeidssituasjon/ArbeidssituasjonStep';
 import { getFraværFraSøknadsdataFromFormValues } from '../søknad/steps/fravær-fra/FraværFraUtils';
 import { FraværFraFormValues } from '../søknad/steps/fravær-fra/FraværFraStep';
-import { MedlemskapFormValues } from '../søknad/steps/medlemskap/MedlemskapStep';
 import { getMedlemskapSøknadsdataFromFormValues } from '../søknad/steps/medlemskap/medlemskapStepUtils';
 
 const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConfig<StepId>): StepId[] => {
