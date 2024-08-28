@@ -1,8 +1,8 @@
 .modalFormAndList__addButton button {
+    background-color: white;
     @media (max-width: 600px) {
         white-space: pre-wrap;
     }
-    background-color: white;
 }
 
 .modalFormAndListFieldset:focus-visible {

@@ -1,25 +1,6 @@
-import { DateRange } from '@navikt/sif-common-formik-ds';
-import dayjs from 'dayjs';
+import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { MedlemskapSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { MedlemskapFormValues } from './MedlemskapStep';
-import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-
-interface MedlemskapDateRanges {
-    siste12Måneder: DateRange;
-    neste12Måneder: DateRange;
-}
-export const getMedlemskapDateRanges = (søknadsdato: Date): MedlemskapDateRanges => {
-    return {
-        siste12Måneder: {
-            from: dayjs(søknadsdato).subtract(1, 'year').toDate(),
-            to: dayjs(søknadsdato).subtract(1, 'day').toDate(),
-        },
-        neste12Måneder: {
-            from: søknadsdato,
-            to: dayjs(søknadsdato).add(1, 'year').toDate(),
-        },
-    };
-};
 
 export const getMedlemskapStepInitialValues = (
     søknadsdata: Søknadsdata,
