@@ -36,7 +36,7 @@ const DagerMedPleieFormPart = () => {
         <>
             <FormikInputGroup
                 name={TidsromFormFields.dagerMedPleie}
-                legend="Hvilke dager skal du være hjemme fra jobb for å gi pleie?"
+                legend="Hvilke dager skal du ha opplæring?"
                 validate={(sd: Date[]) => {
                     return sd.length === 0 ? 'ingenDagerValgt' : undefined;
                 }}

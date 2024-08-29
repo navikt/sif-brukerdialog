@@ -12,7 +12,6 @@ import { getMedlemskapApiDataFromSøknadsdata } from './getMedlemskapApiDataFrom
 import { getOpptjeningUtlandApiDataFromSøknadsdata } from './getOpptjeningUtlandApiDataFromSøknadsdata';
 import { getSelvstendigApiDataFromSøknadsdata } from './getSelvstendigApiDataFromSøknadsdata';
 import { getUtenlandskNæringApiDataFromSøknadsdata } from './getUtenlandskNæringApiDataFromSøknadsdata';
-import { getUtenlansoppholdApiDataFromSøknadsdata } from './getUtenlandsoppholdApiDataFromSøknadsdata';
 import { getOmBarnetApiDataFromSøknadsdata } from './getOmBarnetApiDataFromSøknadsdata';
 
 const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
@@ -45,7 +44,7 @@ export const getApiDataFromSøknadsdata = (
 ): SøknadApiData | undefined => {
     const { id, omBarnet, legeerklæring, tidsrom, arbeidssituasjon, arbeidstid, medlemskap } = søknadsdata;
 
-    const { søknadsperiode, dagerMedPleie } = tidsrom || {};
+    const { søknadsperiode, dagerMedPleie: dagerMedPleie } = tidsrom || {};
 
     if (
         !id ||
@@ -86,7 +85,6 @@ export const getApiDataFromSøknadsdata = (
         dagerMedPleie: getDagerMedPleieApiData(søknadsdata),
         fraOgMed: dateToISODate(periodeFra),
         tilOgMed: dateToISODate(periodeTil),
-        utenlandsoppholdIPerioden: getUtenlansoppholdApiDataFromSøknadsdata(språk, tidsrom),
         arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(
             søknadsperiode,
             dagerMedPleie,

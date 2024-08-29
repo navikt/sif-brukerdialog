@@ -167,7 +167,7 @@ const ArbeidstidStep = () => {
         return undefined;
     }
 
-    const { søknadsperiode, dagerMedPleie } = tidsrom;
+    const { søknadsperiode, dagerMedPleie: dagerMedPleie } = tidsrom;
     const periodeFra = søknadsperiode.from;
     const periodeTil = søknadsperiode.to;
 

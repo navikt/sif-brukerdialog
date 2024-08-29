@@ -1,9 +1,7 @@
 import { FormSummary } from '@navikt/ds-react';
 import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
-import { SummaryList } from '@navikt/sif-common-ui';
 import { AppText } from '../../../../i18n';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
-import { renderUtenlandsoppholdIPeriodenSummary } from './renderUtenlandsoppholdSummary';
 import ValgteDagerMedPleie from './ValgteDagerMedPleie';
 
 interface Props {
@@ -12,7 +10,7 @@ interface Props {
     onEdit?: () => void;
 }
 
-const TidsromOppsummering = ({ apiData, dagerMedPleie, onEdit }: Props) => {
+const TidsromOppsummering = ({ dagerMedPleie, onEdit }: Props) => {
     return (
         <>
             <FormSummary>
@@ -34,39 +32,6 @@ const TidsromOppsummering = ({ apiData, dagerMedPleie, onEdit }: Props) => {
                             <ValgteDagerMedPleie dagerMedPleie={dagerMedPleie} />
                         </FormSummary.Value>
                     </FormSummary.Answer>
-                    {apiData.utenlandsoppholdIPerioden && (
-                        <>
-                            <FormSummary.Answer>
-                                <FormSummary.Label>
-                                    <AppText id="steg.oppsummeringutenlandsoppholdIPerioden.header" />
-                                </FormSummary.Label>
-                                <FormSummary.Value>
-                                    <AppText
-                                        id={
-                                            apiData.utenlandsoppholdIPerioden.skalOppholdeSegIUtlandetIPerioden
-                                                ? 'Ja'
-                                                : 'Nei'
-                                        }
-                                    />
-                                </FormSummary.Value>
-                            </FormSummary.Answer>
-
-                            {apiData.utenlandsoppholdIPerioden.opphold.length > 0 && (
-                                <FormSummary.Answer>
-                                    <FormSummary.Label>
-                                        <AppText id="steg.oppsummeringutenlandsoppholdIPerioden.listetittel" />
-                                    </FormSummary.Label>
-                                    <FormSummary.Value>
-                                        <SummaryList
-                                            useAkselList={true}
-                                            items={apiData.utenlandsoppholdIPerioden.opphold}
-                                            itemRenderer={renderUtenlandsoppholdIPeriodenSummary}
-                                        />
-                                    </FormSummary.Value>
-                                </FormSummary.Answer>
-                            )}
-                        </>
-                    )}
                 </FormSummary.Answers>
             </FormSummary>
         </>

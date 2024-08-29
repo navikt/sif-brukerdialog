@@ -76,19 +76,21 @@ const nb = {
     'step.omBarnet.stepTitle': 'Om barnet',
     'step.omBarnet.stepIndicatorLabel': 'Om barnet',
 
-    'step.tidsrom.pageTitle': 'Dager du må være hjemme fra jobb for å gi pleie',
-    'step.tidsrom.stepTitle': 'Dager du må være hjemme fra jobb for å gi pleie',
-    'step.tidsrom.stepIndicatorLabel': 'Periode',
+    'step.tidsrom.pageTitle': 'Dager med opplæring',
+    'step.tidsrom.stepTitle': 'Dager med opplæring',
+    'step.tidsrom.stepIndicatorLabel': 'Dager med opplæring',
 
     'step.arbeidssituasjon.stepTitle': 'Arbeidssituasjon',
     'step.arbeidssituasjon.pageTitle': 'Arbeidssituasjon',
     'step.arbeidssituasjon.stepIndicatorLabel': 'Arbeidssituasjon',
-    'step.arbeidssituasjon.nextButtonLabel': 'Fortsett',
 
     'step.medlemskap.pageTitle': 'Medlemskap i folketrygden',
     'step.medlemskap.stepTitle': 'Medlemskap i folketrygden',
     'step.medlemskap.stepIndicatorLabel': 'Om medlemskap i folketrygden',
-    'step.medlemskap.nextButtonLabel': 'Fortsett',
+
+    'step.arbeidstid.pageTitle': 'Arbeidstid',
+    'step.arbeidstid.stepTitle': 'Arbeidstid',
+    'step.arbeidstid.stepIndicatorLabel': 'Arbeidstid',
 
     'step.legeerklæring.stepTitle': 'Legeerklæring',
     'step.legeerklæring.pageTitle': 'Legeerklæring',

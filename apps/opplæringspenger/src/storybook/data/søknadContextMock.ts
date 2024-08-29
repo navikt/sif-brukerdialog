@@ -24,7 +24,6 @@ export const søknadContextMock: SøknadContextState = {
 
         omBarnet: undefined,
         tidsrom: {
-            type: 'tidsromMedUtenlandsopphold',
             søknadsperiode: {
                 from: new Date('2024-05-05T22:00:00.000Z'),
                 to: new Date('2024-05-30T22:00:00.000Z'),
@@ -43,16 +42,6 @@ export const søknadContextMock: SøknadContextState = {
                 new Date('2024-05-28T22:00:00.000Z'),
                 new Date('2024-05-29T22:00:00.000Z'),
                 new Date('2024-05-30T22:00:00.000Z'),
-            ],
-            skalOppholdeSegIUtlandetIPerioden: true,
-            utenlandsoppholdIPerioden: [
-                {
-                    type: 'enkel',
-                    fom: new Date('2024-05-13T00:00:00.000Z'),
-                    tom: new Date('2024-05-19T00:00:00.000Z'),
-                    landkode: 'ALB',
-                    id: '8f15c259-081b-43cf-937c-f41f58df6b16',
-                },
             ],
         },
         arbeidstid: {

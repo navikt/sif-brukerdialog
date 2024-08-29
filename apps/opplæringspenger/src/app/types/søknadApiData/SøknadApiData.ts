@@ -102,7 +102,6 @@ export interface OpptjeningIUtlandetApi {
 
 export interface UtenlandsoppholdIPeriodenApi {
     skalOppholdeSegIUtlandetIPerioden: boolean;
-    opphold: UtenlandsoppholdIPeriodenApiData[];
 }
 
 export interface UtenlandskNæringApi {
@@ -131,7 +130,6 @@ export interface SøknadApiData {
     fraOgMed: ISODate;
     tilOgMed: ISODate;
     dagerMedPleie: ISODate[];
-    utenlandsoppholdIPerioden?: UtenlandsoppholdIPeriodenApi;
     arbeidsgivere?: ArbeidsgiverApiData[];
     frilans?: FrilansApiData;
     selvstendigNæringsdrivende?: SelvstendigNæringsdrivendeApiData;

@@ -1,11 +1,7 @@
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { DateRange, getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { UtenlandsoppholdEnkel } from '@navikt/sif-common-forms-ds';
-import UtenlandsoppholdListAndDialog from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/UtenlandsoppholdListAndDialog';
-import { getDateRangeFromDates } from '@navikt/sif-common-utils';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -19,32 +15,20 @@ import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import DagerMedPleieFormPart from './DagerMedPleieFormPart';
-import {
-    getTidsromStepInitialValues,
-    getTidsromSøknadsdataFromFormValues,
-    validateUtenlandsoppholdIPerioden,
-} from './tidsromStepUtils';
+import { getTidsromStepInitialValues, getTidsromSøknadsdataFromFormValues } from './tidsromStepUtils';
 
 export enum TidsromFormFields {
     dagerMedPleie = 'dagerMedPleie',
-    skalOppholdeSegIUtlandetIPerioden = 'skalOppholdeSegIUtlandetIPerioden',
-    utenlandsoppholdIPerioden = 'utenlandsoppholdIPerioden',
 }
 
 export interface TidsromFormValues {
     [TidsromFormFields.dagerMedPleie]?: Date[];
-    [TidsromFormFields.skalOppholdeSegIUtlandetIPerioden]?: YesOrNo;
-    [TidsromFormFields.utenlandsoppholdIPerioden]: UtenlandsoppholdEnkel[];
 }
 
-const { FormikWrapper, Form, YesOrNoQuestion } = getTypedFormComponents<
-    TidsromFormFields,
-    TidsromFormValues,
-    ValidationError
->();
+const { FormikWrapper, Form } = getTypedFormComponents<TidsromFormFields, TidsromFormValues, ValidationError>();
 
 const TidsromStep = () => {
-    const { text, intl } = useAppIntl();
+    const { intl } = useAppIntl();
 
     const {
         state: { søknadsdata },
@@ -82,10 +66,7 @@ const TidsromStep = () => {
             <FormikWrapper
                 initialValues={getTidsromStepInitialValues(søknadsdata, stepFormValues[stepId])}
                 onSubmit={handleSubmit}
-                renderForm={({ values: { skalOppholdeSegIUtlandetIPerioden, dagerMedPleie } }) => {
-                    const periode: DateRange | undefined =
-                        dagerMedPleie && dagerMedPleie.length > 0 ? getDateRangeFromDates(dagerMedPleie) : undefined;
-
+                renderForm={() => {
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -100,49 +81,11 @@ const TidsromStep = () => {
                                     <p>
                                         <AppText id="steg.tidsrom.counsellorPanel.avsnitt.1" />
                                     </p>
-                                    <p>
-                                        <AppText id="steg.tidsrom.counsellorPanel.avsnitt.2" />
-                                    </p>
-                                    <p>
-                                        <AppText id="steg.tidsrom.counsellorPanel.avsnitt.3" />
-                                    </p>
                                 </SifGuidePanel>
 
                                 <FormBlock>
                                     <DagerMedPleieFormPart />
                                 </FormBlock>
-                                {periode && (
-                                    <>
-                                        <FormBlock>
-                                            <YesOrNoQuestion
-                                                legend={text('steg.tidsrom.iUtlandetIPerioden.spm')}
-                                                name={TidsromFormFields.skalOppholdeSegIUtlandetIPerioden}
-                                                validate={getYesOrNoValidator()}
-                                            />
-                                        </FormBlock>
-                                        {skalOppholdeSegIUtlandetIPerioden === YesOrNo.YES && (
-                                            <FormBlock>
-                                                <UtenlandsoppholdListAndDialog<TidsromFormFields>
-                                                    name={TidsromFormFields.utenlandsoppholdIPerioden}
-                                                    minDate={periode.from}
-                                                    maxDate={periode.to}
-                                                    variant="enkel"
-                                                    labels={{
-                                                        modalTitle: text('steg.tidsrom.iUtlandetIPerioden.modalTitle'),
-                                                        listTitle: text('steg.tidsrom.iUtlandetIPerioden.listTitle'),
-                                                        addLabel: text('steg.tidsrom.iUtlandetIPerioden.addLabel'),
-                                                    }}
-                                                    validate={
-                                                        periode
-                                                            ? (opphold: UtenlandsoppholdEnkel[]) =>
-                                                                  validateUtenlandsoppholdIPerioden(periode, opphold)
-                                                            : undefined
-                                                    }
-                                                />
-                                            </FormBlock>
-                                        )}
-                                    </>
-                                )}
                             </Form>
                         </>
                     );

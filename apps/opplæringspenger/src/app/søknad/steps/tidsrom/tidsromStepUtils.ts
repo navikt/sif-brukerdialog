@@ -1,4 +1,4 @@
-import { DateRange, ValidationError, ValidationResult, YesOrNo } from '@navikt/sif-common-formik-ds';
+import { DateRange, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
 import { getDateRangeValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { UtenlandsoppholdEnkel } from '@navikt/sif-common-forms-ds';
@@ -65,33 +65,17 @@ export const validateUtenlandsoppholdIPerioden = (
 };
 
 export const getTidsromSøknadsdataFromFormValues = (values: TidsromFormValues): TidsromSøknadsdata | undefined => {
-    const { dagerMedPleie, skalOppholdeSegIUtlandetIPerioden, utenlandsoppholdIPerioden } = values;
+    const { dagerMedPleie } = values;
 
     if (!dagerMedPleie || dagerMedPleie.length === 0) {
         throw Error('getTidsromSøknadsdataFromFormValues dagerMedPleie må inneholde datoer');
     }
     const søknadsperiode: DateRange = getDateRangeFromDates(dagerMedPleie);
 
-    if (skalOppholdeSegIUtlandetIPerioden === YesOrNo.NO) {
-        return {
-            type: 'tidsromUtenUtenlandsopphold',
-            søknadsperiode,
-            dagerMedPleie,
-            skalOppholdeSegIUtlandetIPerioden: false,
-        };
-    }
-
-    if (skalOppholdeSegIUtlandetIPerioden === YesOrNo.YES) {
-        return {
-            type: 'tidsromMedUtenlandsopphold',
-            søknadsperiode,
-            dagerMedPleie,
-            skalOppholdeSegIUtlandetIPerioden: true,
-            utenlandsoppholdIPerioden,
-        };
-    }
-
-    return undefined;
+    return {
+        søknadsperiode,
+        dagerMedPleie: dagerMedPleie,
+    };
 };
 
 export const getTidsromStepInitialValues = (
@@ -104,31 +88,17 @@ export const getTidsromStepInitialValues = (
 
     const defaultValues: TidsromFormValues = {
         dagerMedPleie: [],
-        skalOppholdeSegIUtlandetIPerioden: YesOrNo.UNANSWERED,
-        utenlandsoppholdIPerioden: [],
     };
 
     const { tidsrom } = søknadsdata;
 
     if (tidsrom) {
-        const { dagerMedPleie } = tidsrom;
+        const { dagerMedPleie: dagerMedPleie } = tidsrom;
 
-        switch (tidsrom.type) {
-            case 'tidsromUtenUtenlandsopphold':
-                return {
-                    ...defaultValues,
-                    dagerMedPleie,
-                    skalOppholdeSegIUtlandetIPerioden: YesOrNo.NO,
-                };
-
-            case 'tidsromMedUtenlandsopphold':
-                return {
-                    ...defaultValues,
-                    dagerMedPleie,
-                    skalOppholdeSegIUtlandetIPerioden: YesOrNo.YES,
-                    utenlandsoppholdIPerioden: tidsrom.utenlandsoppholdIPerioden,
-                };
-        }
+        return {
+            ...defaultValues,
+            dagerMedPleie,
+        };
     }
 
     return defaultValues;
