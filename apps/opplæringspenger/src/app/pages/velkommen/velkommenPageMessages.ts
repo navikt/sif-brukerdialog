@@ -30,7 +30,7 @@ const nb = {
     'personopplysninger.4.5':
         'trygdeordninger du kan ha rett til i andre land. Vi kan også sende opplysninger om deg til trygdemyndigheter i andre land',
     'personopplysninger.5.1':
-        'Vi lagrer opplysninger vi får inn om personen du søker pleiepenger for. Dette gjør vi for å kunne gjenbruke opplysningene hvis andre søker pleiepenger for samme person.',
+        'Vi lagrer opplysninger vi får inn om personen du søker opplæringspenger for. Dette gjør vi for å kunne gjenbruke opplysningene hvis andre søker opplæringspenger for samme person.',
 
     'personopplysninger.6':
         'Du har rett til innsyn i saken din. Vil du vite mer om hvordan NAV behandler personopplysninger? Se <Lenke>nav.no/personvern</Lenke>.',

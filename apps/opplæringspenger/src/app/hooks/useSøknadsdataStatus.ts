@@ -38,10 +38,10 @@ const getStepSøknadsdataFromStepFormValues = (
     switch (step) {
         case StepId.OM_BARNET:
             return getOmBarnetSøknadsdataFromFormValues(formValues as OmBarnetFormValues, [] as any /*todo*/);
-        case StepId.LEGEERKLÆRING:
-            return getLegeerklæringSøknadsdataFromFormValues(formValues as LegeerklæringFormValues);
         case StepId.TIDSROM:
             return getTidsromSøknadsdataFromFormValues(formValues as TidsromFormValues);
+        case StepId.LEGEERKLÆRING:
+            return getLegeerklæringSøknadsdataFromFormValues(formValues as LegeerklæringFormValues);
         case StepId.ARBEIDSSITUASJON:
             return getArbeidssituasjonSøknadsdataFromFormValues(
                 formValues as ArbeidssituasjonFormValues,

@@ -6,7 +6,7 @@ const nb = {
     'steg.arbeidssituasjon.veileder.2':
         'Hvis du er arbeidstaker og er usikker på hva som er din normale arbeidstid, finner du svaret i arbeidskontrakten din. Eventuelt kan du forhøre deg med arbeidsgiveren din.',
     'steg.arbeidssituasjon.veileder.medArbeidsgiver':
-        'Nedenfor ser du {antall, plural, one {arbeidsgiveren} other {arbeidsgivere}} du er registrert ansatt hos i AA-registeret i perioden du søker om pleiepenger. For at vi skal være sikre på at opplysningene er riktige må du bekrefte om du er, eller har vært, ansatt der.',
+        'Nedenfor ser du {antall, plural, one {arbeidsgiveren} other {arbeidsgivere}} du er registrert ansatt hos i AA-registeret i perioden du søker om opplæringspenger. For at vi skal være sikre på at opplysningene er riktige må du bekrefte om du er, eller har vært, ansatt der.',
     'steg.arbeidssituasjon.veileder.ingenArbeidsgiverFunnet':
         'Vi har ikke funnet noen arbeidsgivere registrert på deg i AA-registeret.',
     'steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver':
@@ -20,7 +20,7 @@ const nb = {
     'steg.arbeidssituasjon.frilanser.tittel': 'Frilans',
     'steg.arbeidssituasjon.sn.tittel': 'Selvstendig næringsdrivende',
     'steg.arbeidssituasjon.verneplikt.tittel': 'Verneplikt',
-    'steg.arbeidssituasjon.verneplikt.spm': 'Utøvde du verneplikt på tidspunktet du søker pleiepenger fra?',
+    'steg.arbeidssituasjon.verneplikt.spm': 'Utøvde du verneplikt på tidspunktet du søker opplæringspenger fra?',
     'steg.arbeidssituasjon.verneplikt.info.tittel': 'Hva betyr dette?',
     'steg.arbeidssituasjon.verneplikt.info.tekst':
         'Du skal svare ja på dette spørsmålet om du har utøvd verneplikt i minst 28 dager på starttidspunktet for perioden du søker for, eller om perioden med verneplikt var ment å vare i minst 28 dager.',
@@ -56,7 +56,7 @@ const nb = {
         'Stemmer det at du har et frilansoppdrag hos {navn} i perioden du søker for?',
     'arbeidsforhold.sluttetFørSøknadsperiode.spm': 'Sluttet du hos {navn} før {fraDato}?',
     'arbeidsforhold.avsluttet.info':
-        'Sluttdato var innenfor perioden du søker om pleiepenger. Vi trenger derfor å vite hvordan normalarbeidstiden din var hos {navn}',
+        'Sluttdato var innenfor perioden du søker om opplæringspenger. Vi trenger derfor å vite hvordan normalarbeidstiden din var hos {navn}',
 
     'arbeidsforhold.jobberNormaltTimer.spm':
         'Hvor mange timer jobber du normalt per uke hos {navn} når du ikke har fravær?',

@@ -102,12 +102,7 @@ const nb = {
 
     'validation.harForståttRettigheterOgPlikter.notChecked': 'Du må bekrefte at du har lest og forstått dine plikter.',
 
-    'validation.flereSokere.noValue':
-        'Du må svare ja, nei eller usikker på om dere er flere som skal dele på pleiepengene.',
-
-    'validation.dagerMedPleie.ingenDagerValgt': 'Du må velge minst én dag med pleiepenger.',
-    'validation.skalJobbeOgPleieSammeDag.yesOrNoIsUnanswered':
-        'Du må svare på om du skal gi pleie og jobbe på samme dag.',
+    'validation.dagerMedPleie.ingenDagerValgt': 'Du må velge minst én dag med opplæringspenger.',
     'validation.skalOppholdeSegIUtlandetIPerioden.yesOrNoIsUnanswered':
         'Du må svare på på om du oppholder deg i utlandet i noen av dagene du søker for.',
     'validation.utenlandsoppholdIPerioden.utenlandsopphold_ikke_registrert':
@@ -120,7 +115,7 @@ const nb = {
         'Et utenlandsopphold kan ikke starte samme dag som et annet avsluttes.',
 
     'validation.arbeidsforhold.erAnsatt.yesOrNoIsUnanswered':
-        'Du må svare på på om du er ansatt hos {navn} i perioden du søker pleiepenger.',
+        'Du må svare på på om du er ansatt hos {navn} i perioden du søker opplæringspenger.',
 
     'validation.frilans.harHattInntektSomFrilanser.yesOrNoIsUnanswered':
         'Du må svare på på om du er frilanser i perioden du søker for.',
@@ -157,12 +152,12 @@ const nb = {
         'Du har oppgitt at du sluttet som selvstendig næringsdrivende før perioden du søker for. Hvis dette stemmer,  svarer du "Nei" på spørsmålet om du var selvstendig næringsdrivende i perioden du søker for.',
 
     'validation.harVærtEllerErVernepliktig.yesOrNoIsUnanswered':
-        'Du må svare på på om du utøvde verneplikt på tidspunktet du søker pleiepenger fra.',
+        'Du må svare på på om du utøvde verneplikt på tidspunktet du søker opplæringspenger fra.',
     'virksomhetForm.næringstype.noValue': 'Du må velge hvilken type virksomhet du har.',
 
     'validation.opptjeningUtland.listIsEmpty': 'Du må legge til jobb i et annet EØS-land.',
     'validation.harOpptjeningUtland.yesOrNoIsUnanswered':
-        'Du må svare på på om du har jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før første dag med pleiepenger.',
+        'Du må svare på på om du har jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før første dag med opplæringspenger.',
 
     'validation.harUtenlandskNæring.yesOrNoIsUnanswered':
         'Du må svare på på om du har jobbet som selvstendig næringsdrivende i et annet EØS-land i løpet av de 3 siste årene før perioden du søker om.',
@@ -202,12 +197,12 @@ const nb = {
     'frilansoppdragListe.tidsrom.pågående': 'fra {fra} - pågående',
     'frilansoppdragInfo.tittel': 'Registrerte frilansoppdrag i perioden:',
     'frilansoppdragInfo.tekst':
-        'Dette er frilansoppdrag registrert i AA-registeret i perioden du søker om pleiepenger. Hvis informasjonen ikke stemmer, må du ta kontakt med oppdragsgiver og be de oppdatere informasjonen i AA-registeret.',
+        'Dette er frilansoppdrag registrert i AA-registeret i perioden du søker om opplæringspenger. Hvis informasjonen ikke stemmer, må du ta kontakt med oppdragsgiver og be de oppdatere informasjonen i AA-registeret.',
     'ingenFraværConfirmation.title': 'Ingen fravær registrert',
     'ingenFraværConfirmation.okLabel': 'Ja, det stemmer',
     'ingenFraværConfirmation.cancelLabel': 'Nei, det stemmer ikke',
     'ingenFraværConfirmation.content':
-        'Du har oppgitt at du jobber som normalt og ikke har fravær i dagene du søker for. For å ha rett til pleiepenger må du ha fravær fra jobb fordi du pleier noen. Stemmer det at du ikke har fravær fra jobb i dagene du søker for?',
+        'Du har oppgitt at du jobber som normalt og ikke har fravær i dagene du søker for. For å ha rett til opplæringspenger må du ha fravær fra jobb fordi du pleier noen. Stemmer det at du ikke har fravær fra jobb i dagene du søker for?',
     'ingenFraværConfirmation.heading': 'Fravær fra jobb',
 };
 

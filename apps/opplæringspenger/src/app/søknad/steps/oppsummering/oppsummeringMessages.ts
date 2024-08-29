@@ -15,7 +15,7 @@ const nb = {
     'steg.oppsummering.pleietrengende.fnr': 'Fødselsnummer',
     'steg.oppsummering.pleietrengende.id.ingenId': 'Ingen ID er lastet opp',
 
-    'steg.oppsummeringtidsrom.header': 'Dagene du søker pleiepenger for',
+    'steg.oppsummeringtidsrom.header': 'Dagene du søker opplæringspenger for',
     'steg.oppsummeringtidsrom.valgteDager.header': '{dager} {dager, plural, one {dag} other {dager}} med pleiepenger',
     'steg.oppsummeringsøknadsperiode.header': 'Periode',
     'steg.oppsummeringtidsrom.fomtom': '{fom} - {tom}',
