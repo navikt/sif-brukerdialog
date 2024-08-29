@@ -2,7 +2,7 @@ import { StepId } from './StepId';
 
 export const SøknadStepRoutePath = {
     [StepId.VELKOMMEN]: 'velkommen',
-    [StepId.OM_BARNET]: 'opplysninger-om-pleietrengende',
+    [StepId.OM_BARNET]: 'om_barnet',
     [StepId.LEGEERKLÆRING]: 'legeerklaring',
     [StepId.TIDSROM]: 'tidsrom',
     [StepId.ARBEIDSSITUASJON]: 'arbeidssituasjon',
@@ -15,7 +15,8 @@ export const SøknadStepRoutePath = {
 export enum SøknadRoutes {
     INNLOGGET_ROOT = '/soknad/*',
     VELKOMMEN = '/soknad/velkommen',
-    BARN = '/soknad/opplysninger-om-pleietrengende',
+    BARN = '/soknad/om_barnet',
+    KURS = '/soknad/kurs',
     LEGEERKLÆRING = '/soknad/legeerklaring',
     TIDSROM = '/soknad/tidsrom',
     ARBEIDSSITUASJON = '/soknad/arbeidssituasjon',

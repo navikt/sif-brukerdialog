@@ -7,6 +7,8 @@ export const getSøknadStepRoute = (stepId: StepId): SøknadRoutes => {
             return SøknadRoutes.VELKOMMEN;
         case StepId.OM_BARNET:
             return SøknadRoutes.BARN;
+        case StepId.KURS:
+            return SøknadRoutes.KURS;
         case StepId.LEGEERKLÆRING:
             return SøknadRoutes.LEGEERKLÆRING;
         case StepId.TIDSROM:

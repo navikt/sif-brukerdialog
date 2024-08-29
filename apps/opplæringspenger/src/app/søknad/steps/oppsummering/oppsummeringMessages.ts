@@ -5,32 +5,10 @@ const nb = {
     'steg.oppsummering.søker.header': 'Om deg',
     'steg.oppsummering.søker.navn': 'Navn',
     'steg.oppsummering.søker.fnr': 'Fødselsnummer',
-    'steg.oppsummering.pleietrengende.header': 'Om personen du pleier',
-    'steg.oppsummering.pleietrengende.fødselsdato': 'Fødselsdato',
-    'steg.oppsummering.pleietrengende.navn': 'Navn',
-    'steg.oppsummeringpleietrengende.harIkkeFnr': 'Oppgitt grunn for at hen ikke har fødselsnummer eller D-nummer',
-    'steg.oppsummeringpleietrengende.årsakManglerIdentitetsnummer.BOR_I_UTLANDET': 'Personen bor i utlandet',
-    'steg.oppsummeringpleietrengende.årsakManglerIdentitetsnummer.ANNET': 'Annet',
-    'steg.oppsummeringpleietrengende.id': 'ID for personen du pleier',
-    'steg.oppsummering.pleietrengende.fnr': 'Fødselsnummer',
-    'steg.oppsummering.pleietrengende.id.ingenId': 'Ingen ID er lastet opp',
 
     'steg.oppsummeringtidsrom.header': 'Dagene du søker opplæringspenger for',
     'steg.oppsummeringtidsrom.valgteDager.header': '{dager} {dager, plural, one {dag} other {dager}} med pleiepenger',
-    'steg.oppsummeringsøknadsperiode.header': 'Periode',
-    'steg.oppsummeringtidsrom.fomtom': '{fom} - {tom}',
-
-    'steg.oppsummeringflereSokere.header': 'Er dere flere som skal dele på pleiepengene?',
-
-    'steg.oppsummeringJA': 'Ja',
-    'steg.oppsummeringNEI': 'Nei',
-    'steg.oppsummeringUSIKKER': 'Usikker',
-
-    'steg.oppsummeringutenlandsoppholdIPerioden.header': 'Oppholder du deg i utlandet i noen av dagene du søker for?',
-    'steg.oppsummeringutenlandsoppholdIPerioden.listetittel': 'Utenlandsopphold i perioden',
-
     'steg.oppsummeringarbeidssituasjon.header': 'Din arbeidssituasjon',
-    'steg.oppsummeringvedlegg.header': 'Vedlegg',
 
     'arbeidsgiver.tittel': '{navn} (organisasjonsnummer {organisasjonsnummer})',
     'frilans.tittel': 'Frilans',
