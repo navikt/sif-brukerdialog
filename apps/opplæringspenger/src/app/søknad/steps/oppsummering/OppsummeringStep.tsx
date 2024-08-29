@@ -126,8 +126,8 @@ const OppsummeringStep = () => {
                                     <ArbeidssituasjonSummary
                                         apiData={apiData}
                                         søknadsperiode={{
-                                            from: ISODateToDate(apiData.fraOgMed),
-                                            to: ISODateToDate(apiData.tilOgMed),
+                                            from: ISODateToDate(apiData.søknadsperiode.fraOgMed),
+                                            to: ISODateToDate(apiData.søknadsperiode.tilOgMed),
                                         }}
                                         frilansoppdrag={frilansoppdrag}
                                         onEdit={() => navigate(stepConfig[StepId.ARBEIDSSITUASJON].route)}

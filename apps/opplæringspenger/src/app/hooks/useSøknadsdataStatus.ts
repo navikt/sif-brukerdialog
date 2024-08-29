@@ -17,6 +17,7 @@ import { SøknadContextState } from '../types/SøknadContextState';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 import { getOmBarnetSøknadsdataFromFormValues } from '../søknad/steps/om-barnet/omBarnetStepUtils';
 import { OmBarnetFormValues } from '../søknad/steps/om-barnet/OmBarnetStep';
+import { KursFormValues } from '../søknad/steps/kurs/KursStep';
 
 const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConfig<StepId>): StepId[] => {
     return Object.keys(stepConfig).filter((_key, idx) => idx < currentStepIndex) as StepId[];
@@ -36,7 +37,7 @@ const getStepSøknadsdataFromStepFormValues = (
         case StepId.OM_BARNET:
             return getOmBarnetSøknadsdataFromFormValues(formValues as OmBarnetFormValues, [] as any /*todo*/);
         case StepId.KURS:
-            return getKursSøknadsdataFromFormValues();
+            return getKursSøknadsdataFromFormValues(formValues as KursFormValues);
         case StepId.LEGEERKLÆRING:
             return getLegeerklæringSøknadsdataFromFormValues(formValues as LegeerklæringFormValues);
         case StepId.ARBEIDSSITUASJON:

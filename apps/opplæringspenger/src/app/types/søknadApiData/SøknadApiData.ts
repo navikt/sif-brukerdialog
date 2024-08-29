@@ -139,15 +139,14 @@ export interface SøknadApiData {
     harForståttRettigheterOgPlikter: boolean;
     omBarnet: OmBarnetApiData;
     kurs?: KursApiData;
-    fraOgMed: ISODate;
-    tilOgMed: ISODate;
+    søknadsperiode: PeriodeApiData;
     arbeidsgivere?: ArbeidsgiverApiData[];
     frilans?: FrilansApiData;
     selvstendigNæringsdrivende?: SelvstendigNæringsdrivendeApiData;
-    medlemskap: MedlemskapApiData;
     harVærtEllerErVernepliktig?: boolean;
-    vedleggUrls: string[];
+    medlemskap: MedlemskapApiData;
     opptjeningIUtlandet: OpptjeningIUtlandetApi[];
     utenlandskNæring: UtenlandskNæringApi[];
+    vedleggUrls: string[];
     harBekreftetOpplysninger: boolean;
 }

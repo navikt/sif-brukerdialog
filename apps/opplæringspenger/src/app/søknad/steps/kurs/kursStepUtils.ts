@@ -63,7 +63,8 @@ export const validateUtenlandsoppholdIPerioden = (
     return undefined;
 };
 
-export const getKursSøknadsdataFromFormValues = (): KursSøknadsdata | undefined => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const getKursSøknadsdataFromFormValues = (_: KursFormValues): KursSøknadsdata | undefined => {
     return {};
 };
 

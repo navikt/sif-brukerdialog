@@ -16,13 +16,18 @@ import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import { getKursStepInitialValues, getKursSøknadsdataFromFormValues } from './kursStepUtils';
 import { Kursholder } from '../../../types/Kursholder';
+import { Kursperiode } from '../../../types/Kursperiode';
+import KursperiodeListAndDialog from './kursperiode/KursperiodeListAndDialog';
+import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
 
 export enum KursFormFields {
     kursholder = 'kursholder',
+    kursperioder = 'kursperioder',
 }
 
 export interface KursFormValues {
     [KursFormFields.kursholder]?: Kursholder;
+    [KursFormFields.kursperioder]?: Kursperiode[];
 }
 
 const { FormikWrapper, Form } = getTypedFormComponents<KursFormFields, KursFormValues, ValidationError>();
@@ -41,8 +46,8 @@ const KursStep = () => {
 
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
-    const onValidSubmitHandler = () => {
-        const kursSøknadsdata = getKursSøknadsdataFromFormValues();
+    const onValidSubmitHandler = (values) => {
+        const kursSøknadsdata = getKursSøknadsdataFromFormValues(values);
         if (kursSøknadsdata) {
             clearStepFormValues(stepId);
             return [actionsCreator.setSøknadKurs(kursSøknadsdata)];
@@ -80,7 +85,17 @@ const KursStep = () => {
                                     </p>
                                 </SifGuidePanel>
 
-                                <FormBlock>Kursholder</FormBlock>
+                                <FormBlock>
+                                    <KursperiodeListAndDialog
+                                        name={KursFormFields.kursperioder}
+                                        labels={{
+                                            addLabel: 'Legg til kursperiode',
+                                            modalTitle: 'Legg til kursperiode',
+                                            listTitle: 'Kursperioder',
+                                        }}
+                                        validate={getListValidator({ minItems: 1, required: true })}
+                                    />
+                                </FormBlock>
                             </Form>
                         </>
                     );

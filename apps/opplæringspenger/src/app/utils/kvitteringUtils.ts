@@ -4,10 +4,10 @@ import { Søker } from '../types/Søker';
 import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 
-export type KvitteringApiData = Pick<SøknadApiData, 'arbeidsgivere' | 'fraOgMed' | 'tilOgMed'>;
+export type KvitteringApiData = Pick<SøknadApiData, 'arbeidsgivere' | 'søknadsperiode'>;
 
 export const getKvitteringInfoFromApiData = (
-    { arbeidsgivere, fraOgMed, tilOgMed }: KvitteringApiData,
+    { arbeidsgivere, søknadsperiode: { fraOgMed, tilOgMed } }: KvitteringApiData,
     søker: Søker,
 ): KvitteringInfo | undefined => {
     const arbeidsgivereISøknadsperiode = (arbeidsgivere || [])?.filter(

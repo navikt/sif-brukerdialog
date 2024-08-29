@@ -8,6 +8,7 @@ import { medlemskapMessages } from '../søknad/steps/medlemskap/medlemskapMessag
 import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
 import { kursMessages } from '../søknad/steps/kurs/kursMessages';
 import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
+import { kursperiodeMessages } from '../søknad/steps/kurs/kursperiode';
 
 const nb = {
     ...velkommenPageMessages.nb,
@@ -20,6 +21,7 @@ const nb = {
     ...validateApiDataMessages.nb,
     ...calendarGridMessages.nb,
     ...dagerMedTidMessages.nb,
+    ...kursperiodeMessages.nb,
 
     'application.title': 'Søknad om opplæringspenger',
 

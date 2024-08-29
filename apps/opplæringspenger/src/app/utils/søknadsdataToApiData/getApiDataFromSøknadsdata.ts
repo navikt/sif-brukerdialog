@@ -60,8 +60,10 @@ export const getApiDataFromSøknadsdata = (
         harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true,
         omBarnet: getOmBarnetApiDataFromSøknadsdata(omBarnet),
         vedleggUrls: getVedleggApiData(legeerklæring.vedlegg),
-        fraOgMed: dateToISODate(new Date()),
-        tilOgMed: dateToISODate(new Date()),
+        søknadsperiode: {
+            fraOgMed: dateToISODate(new Date()),
+            tilOgMed: dateToISODate(new Date()),
+        },
         arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(arbeidsgivere),
         frilans: getFrilansApiDataFromSøknadsdata(frilans),
         selvstendigNæringsdrivende: getSelvstendigApiDataFromSøknadsdata(selvstendig),
