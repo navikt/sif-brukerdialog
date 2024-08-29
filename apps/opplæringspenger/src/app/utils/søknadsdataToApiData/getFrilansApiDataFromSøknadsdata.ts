@@ -1,15 +1,7 @@
-import { DateRange } from '@navikt/sif-common-formik-ds';
 import { FrilansApiData } from '../../types/søknadApiData/SøknadApiData';
 import { ArbeidFrilansSøknadsdata } from '../../types/søknadsdata/ArbeidFrilansSøknadsdata';
-import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/arbeidIPeriodeSøknadsdata';
-import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidIPeriodeApiDataFromSøknadsdata';
 
-export const getFrilansApiDataFromSøknadsdata = (
-    søknadsperiode: DateRange,
-    dagerMedPleie: Date[],
-    frilans?: ArbeidFrilansSøknadsdata,
-    arbeidIPeriode?: ArbeidIPeriodeSøknadsdata,
-): FrilansApiData | undefined => {
+export const getFrilansApiDataFromSøknadsdata = (frilans?: ArbeidFrilansSøknadsdata): FrilansApiData | undefined => {
     if (!frilans) {
         return undefined;
     }
@@ -18,23 +10,15 @@ export const getFrilansApiDataFromSøknadsdata = (
             return undefined;
 
         case 'sluttetISøknadsperiode':
-            if (arbeidIPeriode) {
-                return {
-                    harHattInntektSomFrilanser: true,
-                    startdato: frilans.startdato,
-                    jobberFortsattSomFrilans: false,
-                    sluttdato: frilans.sluttdato,
-                    arbeidsforhold: {
-                        jobberNormaltTimer: frilans.jobberNormaltTimer,
-                        arbeidIPeriode: getArbeidIPeriodeApiDataFromSøknadsdata(
-                            arbeidIPeriode,
-                            søknadsperiode,
-                            frilans.jobberNormaltTimer,
-                            dagerMedPleie,
-                        ),
-                    },
-                };
-            } else return undefined;
+            return {
+                harHattInntektSomFrilanser: true,
+                startdato: frilans.startdato,
+                jobberFortsattSomFrilans: false,
+                sluttdato: frilans.sluttdato,
+                arbeidsforhold: {
+                    jobberNormaltTimer: frilans.jobberNormaltTimer,
+                },
+            };
 
         case 'pågående':
             return {
@@ -43,12 +27,6 @@ export const getFrilansApiDataFromSøknadsdata = (
                 jobberFortsattSomFrilans: true,
                 arbeidsforhold: {
                     jobberNormaltTimer: frilans.jobberNormaltTimer,
-                    arbeidIPeriode: getArbeidIPeriodeApiDataFromSøknadsdata(
-                        arbeidIPeriode,
-                        søknadsperiode,
-                        frilans.jobberNormaltTimer,
-                        dagerMedPleie,
-                    ),
                 },
             };
     }

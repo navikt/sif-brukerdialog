@@ -6,8 +6,8 @@ const nb = {
     'steg.oppsummering.søker.navn': 'Navn',
     'steg.oppsummering.søker.fnr': 'Fødselsnummer',
 
-    'steg.oppsummeringtidsrom.header': 'Dagene du søker opplæringspenger for',
-    'steg.oppsummeringtidsrom.valgteDager.header': '{dager} {dager, plural, one {dag} other {dager}} med pleiepenger',
+    'steg.oppsummeringkurs.header': 'Dagene du søker opplæringspenger for',
+    'steg.oppsummeringkurs.valgteDager.header': '{dager} {dager, plural, one {dag} other {dager}} med pleiepenger',
     'steg.oppsummeringarbeidssituasjon.header': 'Din arbeidssituasjon',
 
     'arbeidsgiver.tittel': '{navn} (organisasjonsnummer {organisasjonsnummer})',
@@ -63,18 +63,6 @@ const nb = {
         'Har jobbet som selvstendig næringsdrivende i et annet EØS-land i løpet av de 3 siste årene før perioden en søker om',
     'oppsummering.arbeidssituasjon.utenlandskNæring.næringer': 'Næringsvirksomheter i andre EØS-land',
     'oppsummering.arbeidssituasjon.utenlandskNæring.næring': 'Næringsvirksomhet i annet EØS-land',
-
-    'oppsummering.arbeidIPeriode.jobbIPerioden.header': 'Jobb i søknadsperioden',
-    'oppsummering.arbeidIPeriode.jobbIPerioden': 'Jobb i søknadsperioden',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.ja': 'jobber',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.HELT_FRAVÆR': 'Jeg jobber ikke her de dagene jeg pleier',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.REDUSERT': 'Jeg kombinerer delvis jobb med pleiepenger',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.SOM_VANLIG': 'Jeg jobber som normalt, og har ikke fravær',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.liktHverUke': 'Jeg jobber likt hver uke',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.prosent': 'Jeg jobber {prosent} prosent, i snitt {timer} hver ukedag',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.informasjonMangler': 'Informasjon om arbeid i perioden mangler',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading':
-        'Dager med pleiepenger hvor jeg skal jobbe',
 
     'summary.virksomhet.virksomhetInfo.tittel': 'Næringsvirksomhet som du har lagt inn',
 

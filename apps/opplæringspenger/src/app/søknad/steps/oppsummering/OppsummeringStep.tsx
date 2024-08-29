@@ -19,10 +19,9 @@ import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import LegeerklæringOppsummering from './components/LegeerklæringOppsummering';
 import MedlemskapOppsummering from './components/MedlemskapOppsummering';
-import TidsromOppsummering from './components/TidsromOppsummering';
+import KursOppsummering from './components/KursOppsummering';
 import ArbeidssituasjonSummary from './arbeidssituasjon-summary/ArbeidssituasjonSummary';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import ArbeidIPeriodenSummary from './arbeid-i-perioden-summary/ArbeidIPeriodenSummary';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { AppText, useAppIntl } from '../../../i18n';
 import { useNavigate } from 'react-router-dom';
@@ -47,8 +46,8 @@ const OppsummeringStep = () => {
     } = useSøknadContext();
 
     const stepId = StepId.OPPSUMMERING;
-    const stepConfig = getSøknadStepConfig(søknadsdata);
-    const step = getSøknadStepConfigForStep(søknadsdata, stepId);
+    const stepConfig = getSøknadStepConfig();
+    const step = getSøknadStepConfigForStep(stepId);
 
     const { invalidSteps } = useSøknadsdataStatus(stepId, stepConfig);
     const hasInvalidSteps = invalidSteps.length > 0;
@@ -119,10 +118,9 @@ const OppsummeringStep = () => {
                                 <VStack gap="8">
                                     <OmSøkerOppsummering søker={søker} />
 
-                                    <TidsromOppsummering
+                                    <KursOppsummering
                                         apiData={apiData}
-                                        dagerMedPleie={søknadsdata.tidsrom!.dagerMedPleie}
-                                        onEdit={() => navigate(stepConfig[StepId.TIDSROM].route)}
+                                        onEdit={() => navigate(stepConfig[StepId.KURS].route)}
                                     />
 
                                     <ArbeidssituasjonSummary
@@ -133,20 +131,6 @@ const OppsummeringStep = () => {
                                         }}
                                         frilansoppdrag={frilansoppdrag}
                                         onEdit={() => navigate(stepConfig[StepId.ARBEIDSSITUASJON].route)}
-                                    />
-
-                                    <ArbeidIPeriodenSummary
-                                        apiValues={apiData}
-                                        dagerMedPleie={søknadsdata.tidsrom?.dagerMedPleie || []}
-                                        søknadsperiode={{
-                                            from: ISODateToDate(apiData.fraOgMed),
-                                            to: ISODateToDate(apiData.tilOgMed),
-                                        }}
-                                        onEdit={
-                                            stepConfig[StepId.ARBEIDSTID]
-                                                ? () => navigate(stepConfig[StepId.ARBEIDSTID].route)
-                                                : undefined
-                                        }
                                     />
 
                                     <MedlemskapOppsummering

@@ -84,7 +84,7 @@ const ArbeidssituasjonStep = () => {
 
     const { isLoading, isLoaded } = loadState;
 
-    const søknadsperiode = søknadsdata.tidsrom?.søknadsperiode;
+    const søknadsperiode = søknadsdata.kurs?.søknadsperiode;
 
     useEffectOnce(() => {
         const fetchData = async () => {
@@ -105,7 +105,7 @@ const ArbeidssituasjonStep = () => {
     });
 
     const stepId = StepId.ARBEIDSSITUASJON;
-    const step = getSøknadStepConfigForStep(søknadsdata, stepId);
+    const step = getSøknadStepConfigForStep(stepId);
 
     const { goBack } = useStepNavigation(step);
 

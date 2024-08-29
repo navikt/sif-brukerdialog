@@ -3,17 +3,17 @@ import { withAmplitudeProvider } from '../../../../storybook/decorators/withAmpl
 import { withIntl } from '../../../../storybook/decorators/withIntl';
 import { withRouterProvider } from '../../../../storybook/decorators/withRouter';
 import { withSøknadContextProvider } from '../../../../storybook/decorators/withSøknadContext';
-import ArbeidstidStep from './ArbeidstidStep';
+import KursStep from './KursStep';
 
-const meta: Meta<typeof ArbeidstidStep> = {
-    title: 'Step/Arbeidstid',
-    component: ArbeidstidStep,
+const meta: Meta<typeof KursStep> = {
+    title: 'Step/Kurs',
+    component: KursStep,
     decorators: [withIntl, (Story) => withSøknadContextProvider(Story), withAmplitudeProvider, withRouterProvider],
 };
 
 export default meta;
 
-type Story = StoryObj<typeof ArbeidstidStep>;
+type Story = StoryObj<typeof KursStep>;
 
 export const Default: Story = {
     args: {},

@@ -7,14 +7,13 @@ import {
     getDate3YearsAgo,
     dateRangesCollide,
     dateRangesExceedsRange,
-    getDateRangeFromDates,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
-import { TidsromSøknadsdata } from '../../../types/søknadsdata/TidsromSøknadsdata';
+import { KursSøknadsdata } from '../../../types/søknadsdata/KursSøknadsdata';
 import { AppFieldValidationErrors } from '../../../utils/fieldValidation';
-import { TidsromFormValues } from './TidsromStep';
+import { KursFormValues } from './KursStep';
 
 dayjs.extend(isoWeek);
 
@@ -64,40 +63,22 @@ export const validateUtenlandsoppholdIPerioden = (
     return undefined;
 };
 
-export const getTidsromSøknadsdataFromFormValues = (values: TidsromFormValues): TidsromSøknadsdata | undefined => {
-    const { dagerMedPleie } = values;
-
-    if (!dagerMedPleie || dagerMedPleie.length === 0) {
-        throw Error('getTidsromSøknadsdataFromFormValues dagerMedPleie må inneholde datoer');
-    }
-    const søknadsperiode: DateRange = getDateRangeFromDates(dagerMedPleie);
-
-    return {
-        søknadsperiode,
-        dagerMedPleie: dagerMedPleie,
-    };
+export const getKursSøknadsdataFromFormValues = (): KursSøknadsdata | undefined => {
+    return {};
 };
 
-export const getTidsromStepInitialValues = (
-    søknadsdata: Søknadsdata,
-    formValues?: TidsromFormValues,
-): TidsromFormValues => {
+export const getKursStepInitialValues = (søknadsdata: Søknadsdata, formValues?: KursFormValues): KursFormValues => {
     if (formValues) {
         return formValues;
     }
 
-    const defaultValues: TidsromFormValues = {
-        dagerMedPleie: [],
-    };
+    const defaultValues: KursFormValues = {};
 
-    const { tidsrom } = søknadsdata;
+    const { kurs } = søknadsdata;
 
-    if (tidsrom) {
-        const { dagerMedPleie: dagerMedPleie } = tidsrom;
-
+    if (kurs) {
         return {
             ...defaultValues,
-            dagerMedPleie,
         };
     }
 

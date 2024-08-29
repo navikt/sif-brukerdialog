@@ -2,7 +2,6 @@ import { guid } from '@navikt/sif-common-utils';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
-import { syncArbeidstidMedDagerMedPleie } from '../../steps/arbeidstid/arbeidstidStepUtils';
 
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {
     switch (action.type) {
@@ -59,12 +58,12 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                         },
                     },
                 };
-            case SøknadContextActionKeys.SET_SØKNAD_TIDSROM:
+            case SøknadContextActionKeys.SET_SØKNAD_KURS:
                 return {
                     ...state,
                     søknadsdata: {
                         ...state.søknadsdata,
-                        tidsrom: {
+                        kurs: {
                             ...action.payload,
                         },
                     },
@@ -84,17 +83,6 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                 return {
                     ...state,
                     frilansoppdrag: action.payload,
-                };
-
-            case SøknadContextActionKeys.SET_SØKNAD_ARBEIDSTID:
-                return {
-                    ...state,
-                    søknadsdata: {
-                        ...state.søknadsdata,
-                        arbeidstid: {
-                            ...action.payload,
-                        },
-                    },
                 };
 
             case SøknadContextActionKeys.SET_SØKNAD_OM_BARNET: {
@@ -153,19 +141,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     søknadSendt: false,
                     søknadRoute: SøknadRoutes.VELKOMMEN,
                 };
-            case SøknadContextActionKeys.SYNC_ARBEIDSTID_MED_TIDSROM:
-                return {
-                    ...state,
-                    søknadsdata: {
-                        ...state.søknadsdata,
-                        arbeidstid: state.søknadsdata.arbeidstid
-                            ? syncArbeidstidMedDagerMedPleie(
-                                  state.søknadsdata.arbeidstid,
-                                  state.søknadsdata.tidsrom?.dagerMedPleie,
-                              )
-                            : undefined,
-                    },
-                };
+
             default:
                 // eslint-disable-next-line no-console
                 console.error(`Missing handler for ${action.type}`);

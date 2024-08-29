@@ -312,11 +312,11 @@ export const getArbeidssituasjonSøknadsdataFromFormValues = (
     };
 };
 
-export const erFrilanserITidsrom = (tidsrom: DateRange, frilansStartdato: Date, frilansSluttdato?: Date): boolean => {
-    if (dayjs(frilansStartdato).isAfter(tidsrom.to, 'day')) {
+export const erFrilanserIKurs = (kurs: DateRange, frilansStartdato: Date, frilansSluttdato?: Date): boolean => {
+    if (dayjs(frilansStartdato).isAfter(kurs.to, 'day')) {
         return false;
     }
-    if (frilansSluttdato && dayjs(frilansSluttdato).isBefore(tidsrom.from, 'day')) {
+    if (frilansSluttdato && dayjs(frilansSluttdato).isBefore(kurs.from, 'day')) {
         return false;
     }
     return true;
@@ -334,7 +334,7 @@ export const erFrilanserISøknadsperiode = (
     const frilansSluttdato = datepickerUtils.getDateFromDateString(sluttdato);
 
     if (frilansStartdato && harSvartErFrilanserEllerHarFrilansoppdrag(harHattInntektSomFrilanser, frilansoppdrag)) {
-        return erFrilanserITidsrom(søknadsperiode, frilansStartdato, frilansSluttdato);
+        return erFrilanserIKurs(søknadsperiode, frilansStartdato, frilansSluttdato);
     }
     return false;
 };
@@ -399,11 +399,11 @@ export const getFrilansSøknadsdataFromFormValues = (
     return undefined;
 };
 
-export const erSNITidsrom = (tidsrom: DateRange, snStartdato: Date, snSluttdato?: Date): boolean => {
-    if (dayjs(snStartdato).isAfter(tidsrom.to, 'day')) {
+export const erSNIKurs = (kurs: DateRange, snStartdato: Date, snSluttdato?: Date): boolean => {
+    if (dayjs(snStartdato).isAfter(kurs.to, 'day')) {
         return false;
     }
-    if (snSluttdato && dayjs(snSluttdato).isBefore(tidsrom.from, 'day')) {
+    if (snSluttdato && dayjs(snSluttdato).isBefore(kurs.from, 'day')) {
         return false;
     }
     return true;
@@ -426,9 +426,9 @@ export const getSelvstendigSøknadsdataFromFormValues = (
     if (!virksomhet || !jobberNormaltTimer) {
         return undefined;
     }
-    const erSelvstendigITidsrom = erSNITidsrom(søknadsperiode, virksomhet?.fom, virksomhet?.tom);
+    const erSelvstendigIKurs = erSNIKurs(søknadsperiode, virksomhet?.fom, virksomhet?.tom);
 
-    if (harHattInntektSomSN === YesOrNo.YES && erSelvstendigITidsrom) {
+    if (harHattInntektSomSN === YesOrNo.YES && erSelvstendigIKurs) {
         return {
             type: 'erSN',
             erSelvstendigNæringsdrivende: true,

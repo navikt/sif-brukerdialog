@@ -4,9 +4,8 @@ import { TempFormValues } from '../../../types/SøknadContextState';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import {
     LegeerklæringSøknadsdata,
-    TidsromSøknadsdata,
+    KursSøknadsdata,
     ArbeidssituasjonSøknadsdata,
-    ArbeidstidSøknadsdata,
     MedlemskapSøknadsdata,
     OmBarnetSøknadsdata,
 } from '../../../types/søknadsdata/Søknadsdata';
@@ -22,10 +21,9 @@ export enum SøknadContextActionKeys {
     SET_SØKNAD_TEMP_FORM_DATA = 'setSøknadTempFormData',
     SET_SØKNAD_OPPLYSNINGER_OM_PLEIETRENGENDE = 'setSøknadOpplysningerOmPleietrengende',
     SET_SØKNAD_LEGEERKLÆRING = 'setSøknadLegeerklæring',
-    SET_SØKNAD_TIDSROM = 'setSøknadTidsrom',
+    SET_SØKNAD_KURS = 'setSøknadKurs',
     SET_SØKNAD_ARBEIDSSITUASJON = 'setSøknadArbeidssituasjon',
     SET_SØKNAD_FRILANSOPPDRAG = 'setSøknadFrilansoppdrag',
-    SET_SØKNAD_ARBEIDSTID = 'setSøknadArbeidstid',
     SET_SØKNAD_MEDLEMSKAP = 'setSøknadMedlemskap',
     SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER = 'setSøknadHarBekreftetOpplysninger',
     REQUEST_LAGRE_SØKNAD = 'requestLargeSøknad',
@@ -33,7 +31,6 @@ export enum SøknadContextActionKeys {
     SET_SØKNAD_SENDT = 'setSøknadSendt',
     SET_SØKNAD_KVITTERING_INFO = '',
     SET_UNSUBMITTED_STEP_FORM_VALUES = 'setUnsubmittedStepFormValues',
-    SYNC_ARBEIDSTID_MED_TIDSROM = 'syncArbeidstidMedTidsrom',
 }
 
 interface ResetSøknad {
@@ -76,9 +73,9 @@ interface SetSøknadLegeerklæring {
     payload: LegeerklæringSøknadsdata;
 }
 
-interface SetSøknadTidsrom {
-    type: SøknadContextActionKeys.SET_SØKNAD_TIDSROM;
-    payload: TidsromSøknadsdata;
+interface SetSøknadKurs {
+    type: SøknadContextActionKeys.SET_SØKNAD_KURS;
+    payload: KursSøknadsdata;
 }
 
 interface SetSøknadArbeidssituasjon {
@@ -91,10 +88,6 @@ interface SetSøknadFrilansoppdrag {
     payload: Arbeidsgiver[];
 }
 
-interface SetSøknadArbeidstid {
-    type: SøknadContextActionKeys.SET_SØKNAD_ARBEIDSTID;
-    payload: ArbeidstidSøknadsdata;
-}
 interface SetSøknadMedlemskap {
     type: SøknadContextActionKeys.SET_SØKNAD_MEDLEMSKAP;
     payload: MedlemskapSøknadsdata;
@@ -108,10 +101,6 @@ interface SetSøknadHarBekreftetOpplysninger {
 interface SetSøknadKvitteringInfo {
     type: SøknadContextActionKeys.SET_SØKNAD_KVITTERING_INFO;
     payload?: KvitteringInfo;
-}
-interface SyncArbeidstidMedTidsrom {
-    type: SøknadContextActionKeys.SYNC_ARBEIDSTID_MED_TIDSROM;
-    payload?: TidsromSøknadsdata;
 }
 
 const resetSøknad = (): ResetSøknad => ({
@@ -151,8 +140,8 @@ const setSøknadLegeerklæring = (payload: LegeerklæringSøknadsdata): SetSøkn
     payload,
 });
 
-const setSøknadTidsrom = (payload: TidsromSøknadsdata): SetSøknadTidsrom => ({
-    type: SøknadContextActionKeys.SET_SØKNAD_TIDSROM,
+const setSøknadKurs = (payload: KursSøknadsdata): SetSøknadKurs => ({
+    type: SøknadContextActionKeys.SET_SØKNAD_KURS,
     payload,
 });
 
@@ -171,10 +160,6 @@ const setSøknadFrilansoppdrag = (payload: Arbeidsgiver[]): SetSøknadFrilansopp
     payload,
 });
 
-const setSøknadArbeidstid = (payload: ArbeidstidSøknadsdata): SetSøknadArbeidstid => ({
-    type: SøknadContextActionKeys.SET_SØKNAD_ARBEIDSTID,
-    payload,
-});
 const setSøknadMedlemskap = (payload: MedlemskapSøknadsdata): SetSøknadMedlemskap => ({
     type: SøknadContextActionKeys.SET_SØKNAD_MEDLEMSKAP,
     payload,
@@ -194,11 +179,6 @@ const setSøknadRoute = (payload: SøknadRoutes): SetSøknadRoute => ({
     payload,
 });
 
-const syncArbeidstidMedTidsrom = (payload: TidsromSøknadsdata): SyncArbeidstidMedTidsrom => ({
-    type: SøknadContextActionKeys.SYNC_ARBEIDSTID_MED_TIDSROM,
-    payload,
-});
-
 export type SøknadContextAction =
     | StartSøknad
     | AvbrytSøknad
@@ -210,15 +190,13 @@ export type SøknadContextAction =
     | SetSøknadOmBarnet
     | SetSøknadTempFormData
     | SetSøknadLegeerklæring
-    | SetSøknadTidsrom
+    | SetSøknadKurs
     | SetSøknadArbeidssituasjon
     | SetSøknadFrilansoppdrag
-    | SetSøknadArbeidstid
     | SetSøknadMedlemskap
     | SetSøknadHarBekreftetOpplysninger
     | SetSøknadKvitteringInfo
-    | SetSøknadRoute
-    | SyncArbeidstidMedTidsrom;
+    | SetSøknadRoute;
 
 const actionsCreator = {
     resetSøknad,
@@ -229,17 +207,15 @@ const actionsCreator = {
     setSøknadRoute,
     setSøknadTempFormData,
     setSøknadLegeerklæring,
-    setSøknadTidsrom,
+    setSøknadKurs,
     setSøknadArbeidssituasjon,
     setSøknadFrilansoppdrag,
-    setSøknadArbeidstid,
     setSøknadMedlemskap,
     setSøknadHarBekreftetOpplysninger,
     setSøknadKvitteringInfo,
     setSøknadLagret,
     setSøknadOmBarnet,
     setSøknadSendt,
-    syncArbeidstidMedTidsrom,
 };
 
 export default actionsCreator;

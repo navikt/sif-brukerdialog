@@ -29,23 +29,13 @@ export const mellomlagring = {
                 },
             ],
         },
-        tidsrom: {
-            type: 'tidsromUtenUtenlandsopphold',
+        kurs: {
+            type: 'kursUtenUtenlandsopphold',
             søknadsperiode: {
                 from: '2023-09-03T22:00:00.000Z',
                 to: '2023-10-12T22:00:00.000Z',
             },
-            dagerMedPleie: [
-                '2023-09-03T22:00:00.000Z',
-                '2023-09-10T22:00:00.000Z',
-                '2023-09-17T22:00:00.000Z',
-                '2023-09-24T22:00:00.000Z',
-                '2023-10-08T22:00:00.000Z',
-                '2023-10-09T22:00:00.000Z',
-                '2023-10-10T22:00:00.000Z',
-                '2023-10-11T22:00:00.000Z',
-                '2023-10-12T22:00:00.000Z',
-            ],
+
             skalJobbeOgPleieSammeDag: 'yes',
             flereSokere: 'no',
             skalOppholdeSegIUtlandetIPerioden: false,
@@ -87,17 +77,6 @@ export const mellomlagring = {
             },
             utenlandskNæring: {
                 type: 'harIkkeUtenlandskNæring',
-            },
-        },
-        arbeidstid: {
-            arbeidsgivere: {
-                '123451234': {
-                    navn: 'Arbeids- og velferdsetaten',
-                    arbeidIPeriode: {
-                        type: 'ARBEIDER_IKKE',
-                        arbeiderIPerioden: false,
-                    },
-                },
             },
         },
         medlemskap: {

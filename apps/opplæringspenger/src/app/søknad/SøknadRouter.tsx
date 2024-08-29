@@ -14,11 +14,10 @@ import { relocateToWelcomePage } from '../utils/navigationUtils';
 import actionsCreator from './context/action/actionCreator';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
 import ArbeidssituasjonStep from './steps/arbeidssituasjon/ArbeidssituasjonStep';
-import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
 import LegeerklæringStep from './steps/legeerklæring/LegeerklæringStep';
 import MedlemskapStep from './steps/medlemskap/MedlemskapStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
-import TidsromStep from './steps/tidsrom/TidsromStep';
+import KursStep from './steps/kurs/KursStep';
 import OmBarnetStep from './steps/om-barnet/OmBarnetStep';
 
 const SøknadRouter = () => {
@@ -77,9 +76,8 @@ const SøknadRouter = () => {
             <Route path={SøknadStepRoutePath[StepId.VELKOMMEN]} element={<VelkommenPage />} />
             <Route path={SøknadStepRoutePath[StepId.OM_BARNET]} element={<OmBarnetStep />} />
             <Route path={SøknadStepRoutePath[StepId.LEGEERKLÆRING]} element={<LegeerklæringStep />} />
-            <Route path={SøknadStepRoutePath[StepId.TIDSROM]} element={<TidsromStep />} />
+            <Route path={SøknadStepRoutePath[StepId.KURS]} element={<KursStep />} />
             <Route path={SøknadStepRoutePath[StepId.ARBEIDSSITUASJON]} element={<ArbeidssituasjonStep />} />
-            <Route path={SøknadStepRoutePath[StepId.ARBEIDSTID]} element={<ArbeidstidStep />} />
             <Route path={SøknadStepRoutePath[StepId.MEDLEMSKAP]} element={<MedlemskapStep />} />
             <Route path={SøknadStepRoutePath[StepId.OPPSUMMERING]} element={<OppsummeringStep />} />
             <Route

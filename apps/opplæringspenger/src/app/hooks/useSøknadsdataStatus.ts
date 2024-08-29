@@ -6,14 +6,11 @@ import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../søknad/context/StepFormValuesContext';
 import { ArbeidssituasjonFormValues } from '../søknad/steps/arbeidssituasjon/ArbeidssituasjonStep';
 import { getArbeidssituasjonSøknadsdataFromFormValues } from '../søknad/steps/arbeidssituasjon/arbeidssituasjonStepUtils';
-import { ArbeidstidFormValues } from '../søknad/steps/arbeidstid/ArbeidstidStep';
-import { getArbeidstidSøknadsdataFromFormValues } from '../søknad/steps/arbeidstid/arbeidstidStepUtils';
 import { LegeerklæringFormValues } from '../søknad/steps/legeerklæring/LegeerklæringForm';
 import { getLegeerklæringSøknadsdataFromFormValues } from '../søknad/steps/legeerklæring/legeerklæringStepUtils';
 import { MedlemskapFormValues } from '../søknad/steps/medlemskap/MedlemskapStep';
 import { getMedlemskapSøknadsdataFromFormValues } from '../søknad/steps/medlemskap/medlemskapStepUtils';
-import { TidsromFormValues } from '../søknad/steps/tidsrom/TidsromStep';
-import { getTidsromSøknadsdataFromFormValues } from '../søknad/steps/tidsrom/tidsromStepUtils';
+import { getKursSøknadsdataFromFormValues } from '../søknad/steps/kurs/kursStepUtils';
 import { StepFormValues } from '../types/StepFormValues';
 import { StepId } from '../types/StepId';
 import { SøknadContextState } from '../types/SøknadContextState';
@@ -38,17 +35,15 @@ const getStepSøknadsdataFromStepFormValues = (
     switch (step) {
         case StepId.OM_BARNET:
             return getOmBarnetSøknadsdataFromFormValues(formValues as OmBarnetFormValues, [] as any /*todo*/);
-        case StepId.TIDSROM:
-            return getTidsromSøknadsdataFromFormValues(formValues as TidsromFormValues);
+        case StepId.KURS:
+            return getKursSøknadsdataFromFormValues();
         case StepId.LEGEERKLÆRING:
             return getLegeerklæringSøknadsdataFromFormValues(formValues as LegeerklæringFormValues);
         case StepId.ARBEIDSSITUASJON:
             return getArbeidssituasjonSøknadsdataFromFormValues(
                 formValues as ArbeidssituasjonFormValues,
-                state.søknadsdata.tidsrom?.søknadsperiode,
+                state.søknadsdata.kurs?.søknadsperiode,
             );
-        case StepId.ARBEIDSTID:
-            return getArbeidstidSøknadsdataFromFormValues(formValues as ArbeidstidFormValues);
         case StepId.MEDLEMSKAP:
             return getMedlemskapSøknadsdataFromFormValues(formValues as MedlemskapFormValues);
     }

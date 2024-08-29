@@ -19,11 +19,11 @@ export const harSvartErFrilanserEllerHarFrilansoppdrag = (
     return harFrilansoppdrag(frilansoppdrag) || harHattInntektSomFrilanser === YesOrNo.YES;
 };
 
-export const erFrilanserITidsrom = (tidsrom: DateRange, frilansStartdato: Date, frilansSluttdato?: Date): boolean => {
-    if (dayjs(frilansStartdato).isAfter(tidsrom.to, 'day')) {
+export const erFrilanserIKurs = (kurs: DateRange, frilansStartdato: Date, frilansSluttdato?: Date): boolean => {
+    if (dayjs(frilansStartdato).isAfter(kurs.to, 'day')) {
         return false;
     }
-    if (frilansSluttdato && dayjs(frilansSluttdato).isBefore(tidsrom.from, 'day')) {
+    if (frilansSluttdato && dayjs(frilansSluttdato).isBefore(kurs.from, 'day')) {
         return false;
     }
     return true;
@@ -41,7 +41,7 @@ export const erFrilanserISøknadsperiode = (
     const frilansSluttdato = datepickerUtils.getDateFromDateString(sluttdato);
 
     if (frilansStartdato && harSvartErFrilanserEllerHarFrilansoppdrag(harHattInntektSomFrilanser, frilansoppdrag)) {
-        return erFrilanserITidsrom(søknadsperiode, frilansStartdato, frilansSluttdato);
+        return erFrilanserIKurs(søknadsperiode, frilansStartdato, frilansSluttdato);
     }
     return false;
 };
@@ -88,7 +88,7 @@ export const getPeriodeSomFrilanserInnenforPeriode = (
             return undefined;
         }
 
-        if (erFrilanserITidsrom(periode, frilansStartdato, frilansSluttdato) === false) {
+        if (erFrilanserIKurs(periode, frilansStartdato, frilansSluttdato) === false) {
             return undefined;
         }
 

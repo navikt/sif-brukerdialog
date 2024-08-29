@@ -1,16 +1,9 @@
-import { DateRange } from '@navikt/sif-common-formik-ds';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { ArbeidsgiverApiData } from '../../types/søknadApiData/SøknadApiData';
-import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/arbeidIPeriodeSøknadsdata';
 import { ArbeidsgivereSøknadsdata } from '../../types/søknadsdata/ArbeidsgivereSøknadsdata';
-import { ArbeidstidArbeidsgivereSøknadsdata } from '../../types/søknadsdata/ArbeidstidArbeidsgivereSøknadsdata';
-import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidIPeriodeApiDataFromSøknadsdata';
 
 export const getArbeidsgivereApiDataFromSøknadsdata = (
-    søknadsperiode: DateRange,
-    dagerMedPleie: Date[],
     arbeidsgivere?: ArbeidsgivereSøknadsdata,
-    arbeidstidArbeidsgivere?: ArbeidstidArbeidsgivereSøknadsdata,
 ): ArbeidsgiverApiData[] | undefined => {
     if (!arbeidsgivere) {
         // Api sjekker at feltet kan ikke være null
@@ -18,7 +11,8 @@ export const getArbeidsgivereApiDataFromSøknadsdata = (
     }
     const arbeidsgiverApiData: ArbeidsgiverApiData[] = [];
 
-    Object.entries(arbeidsgivere).map(([key, value]) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    Object.entries(arbeidsgivere).map(([_, value]) => {
         const arbeidsgiverInfo: Omit<ArbeidsgiverApiData, 'erAnsatt' | 'sluttetFørSøknadsperiode' | 'arbeidsforhold'> =
             {
                 type: value.arbeidsgiver.type,
@@ -28,23 +22,13 @@ export const getArbeidsgivereApiDataFromSøknadsdata = (
                 ansattFom: value.arbeidsgiver.ansattFom ? dateToISODate(value.arbeidsgiver.ansattFom) : undefined,
                 ansattTom: value.arbeidsgiver.ansattTom ? dateToISODate(value.arbeidsgiver.ansattTom) : undefined,
             };
-        const arbeidIPeriodeSøknadsdata: ArbeidIPeriodeSøknadsdata | undefined =
-            arbeidstidArbeidsgivere && Object.prototype.hasOwnProperty.call(arbeidstidArbeidsgivere, key)
-                ? arbeidstidArbeidsgivere[key].arbeidIPeriode
-                : undefined;
 
-        if (arbeidIPeriodeSøknadsdata && (value.type === 'pågående' || value.type === 'sluttetISøknadsperiode')) {
-            const arbeidIPeriode = getArbeidIPeriodeApiDataFromSøknadsdata(
-                arbeidIPeriodeSøknadsdata,
-                søknadsperiode,
-                value.jobberNormaltTimer,
-                dagerMedPleie,
-            );
+        if (value.type === 'pågående' || value.type === 'sluttetISøknadsperiode') {
             arbeidsgiverApiData.push({
                 ...arbeidsgiverInfo,
                 erAnsatt: value.type === 'pågående',
                 sluttetFørSøknadsperiode: false,
-                arbeidsforhold: { jobberNormaltTimer: value.jobberNormaltTimer, arbeidIPeriode },
+                arbeidsforhold: { jobberNormaltTimer: value.jobberNormaltTimer },
             });
         }
 

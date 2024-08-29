@@ -3,25 +3,21 @@ import { dagerMedTidMessages } from '../components/dager-med-tid-liste/dagerMedT
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { arbeidssituasjonMessages } from '../søknad/steps/arbeidssituasjon/arbeidssituasjonMessages';
-import { arbeidstidMessages } from '../søknad/steps/arbeidstid/arbeidstidMessages';
-import { arbeidstidPeriodeMessages } from '../søknad/steps/arbeidstid/arbeidstidPeriodeMessages';
 import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerklæringMessages';
 import { medlemskapMessages } from '../søknad/steps/medlemskap/medlemskapMessages';
 import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
-import { tidsromMessages } from '../søknad/steps/tidsrom/tidsromMessages';
+import { kursMessages } from '../søknad/steps/kurs/kursMessages';
 import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
 
 const nb = {
     ...velkommenPageMessages.nb,
     ...legeerklæringMessages.nb,
-    ...tidsromMessages.nb,
-    ...arbeidstidMessages.nb,
+    ...kursMessages.nb,
     ...arbeidssituasjonMessages.nb,
     ...medlemskapMessages.nb,
     ...oppsummeringMessages.nb,
     ...kvitteringMessages.nb,
     ...validateApiDataMessages.nb,
-    ...arbeidstidPeriodeMessages.nb,
     ...calendarGridMessages.nb,
     ...dagerMedTidMessages.nb,
 
@@ -76,9 +72,9 @@ const nb = {
     'step.omBarnet.stepTitle': 'Om barnet',
     'step.omBarnet.stepIndicatorLabel': 'Om barnet',
 
-    'step.tidsrom.pageTitle': 'Dager med opplæring',
-    'step.tidsrom.stepTitle': 'Dager med opplæring',
-    'step.tidsrom.stepIndicatorLabel': 'Dager med opplæring',
+    'step.kurs.pageTitle': 'Om kurs',
+    'step.kurs.stepTitle': 'Om kurs',
+    'step.kurs.stepIndicatorLabel': 'Om kurs',
 
     'step.arbeidssituasjon.stepTitle': 'Arbeidssituasjon',
     'step.arbeidssituasjon.pageTitle': 'Arbeidssituasjon',
@@ -87,10 +83,6 @@ const nb = {
     'step.medlemskap.pageTitle': 'Medlemskap i folketrygden',
     'step.medlemskap.stepTitle': 'Medlemskap i folketrygden',
     'step.medlemskap.stepIndicatorLabel': 'Om medlemskap i folketrygden',
-
-    'step.arbeidstid.pageTitle': 'Arbeidstid',
-    'step.arbeidstid.stepTitle': 'Arbeidstid',
-    'step.arbeidstid.stepIndicatorLabel': 'Arbeidstid',
 
     'step.legeerklæring.stepTitle': 'Legeerklæring',
     'step.legeerklæring.pageTitle': 'Legeerklæring',
@@ -104,7 +96,6 @@ const nb = {
 
     'validation.harForståttRettigheterOgPlikter.notChecked': 'Du må bekrefte at du har lest og forstått dine plikter.',
 
-    'validation.dagerMedPleie.ingenDagerValgt': 'Du må velge minst én dag med opplæringspenger.',
     'validation.skalOppholdeSegIUtlandetIPerioden.yesOrNoIsUnanswered':
         'Du må svare på på om du oppholder deg i utlandet i noen av dagene du søker for.',
     'validation.utenlandsoppholdIPerioden.utenlandsopphold_ikke_registrert':
@@ -171,7 +162,6 @@ const nb = {
         'Du må oppgi hvor mange timer per uke du {jobber} {hvor} i perioden.',
     'validation.arbeidsforhold.jobberNormaltTimer.numberHasInvalidFormat':
         'Antall timer du {jobber} per uke {hvor} kan kun bestå av tall.',
-    'validation.arbeidIPeriode.jobber': 'Du må svare hvilken situasjon som gjelder for deg hos {hvor} i perioden.',
 
     'validation.arbeidsforhold.jobberNormaltTimer.numberIsTooSmall':
         'Antall timer du {jobber} per uke {hvor} kan ikke være mindre enn {min}.',
@@ -194,9 +184,9 @@ const nb = {
     'validation.harBekreftetOpplysninger.notChecked': 'Du må bekrefte at opplysningene du har gitt er riktige.',
 
     'arbeidssituasjonFrilanser.frilanserPart.tittel': 'Om deg som frilanser',
-    'frilansoppdragListe.oppdrag': 'Periode: {tidsrom}',
-    'frilansoppdragListe.tidsrom.avsluttet': 'fra {fra} til {til}',
-    'frilansoppdragListe.tidsrom.pågående': 'fra {fra} - pågående',
+    'frilansoppdragListe.oppdrag': 'Periode: {kurs}',
+    'frilansoppdragListe.kurs.avsluttet': 'fra {fra} til {til}',
+    'frilansoppdragListe.kurs.pågående': 'fra {fra} - pågående',
     'frilansoppdragInfo.tittel': 'Registrerte frilansoppdrag i perioden:',
     'frilansoppdragInfo.tekst':
         'Dette er frilansoppdrag registrert i AA-registeret i perioden du søker om opplæringspenger. Hvis informasjonen ikke stemmer, må du ta kontakt med oppdragsgiver og be de oppdatere informasjonen i AA-registeret.',

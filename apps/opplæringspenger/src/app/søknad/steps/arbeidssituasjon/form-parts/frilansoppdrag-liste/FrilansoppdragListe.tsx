@@ -10,17 +10,17 @@ interface Props {
     kompakt?: boolean;
 }
 
-const renderTidsrom = ({ ansattFom, ansattTom }: Arbeidsgiver) => {
+const renderKurs = ({ ansattFom, ansattTom }: Arbeidsgiver) => {
     if (ansattFom && ansattTom) {
         return (
             <AppText
-                id="frilansoppdragListe.tidsrom.avsluttet"
+                id="frilansoppdragListe.kurs.avsluttet"
                 values={{ fra: prettifyDateExtended(ansattFom), til: prettifyDateExtended(ansattTom) }}
             />
         );
     }
     if (ansattFom) {
-        return <AppText id="frilansoppdragListe.tidsrom.pågående" values={{ fra: prettifyDateExtended(ansattFom) }} />;
+        return <AppText id="frilansoppdragListe.kurs.pågående" values={{ fra: prettifyDateExtended(ansattFom) }} />;
     }
     return null;
 };
@@ -38,7 +38,7 @@ const FrilansoppdragListe: React.FC<Props> = ({ frilansoppdrag, kompakt }) =>
                 <li key={oppdrag.id}>
                     <BodyLong size="large">{oppdrag.navn}</BodyLong>
                     <Block padBottom="l">
-                        <AppText id="frilansoppdragListe.oppdrag" values={{ tidsrom: renderTidsrom(oppdrag) }} />
+                        <AppText id="frilansoppdragListe.oppdrag" values={{ kurs: renderKurs(oppdrag) }} />
                     </Block>
                 </li>
             ))}

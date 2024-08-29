@@ -14,41 +14,38 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
-import DagerMedPleieFormPart from './DagerMedPleieFormPart';
-import { getTidsromStepInitialValues, getTidsromSøknadsdataFromFormValues } from './tidsromStepUtils';
+import { getKursStepInitialValues, getKursSøknadsdataFromFormValues } from './kursStepUtils';
+import { Kursholder } from '../../../types/Kursholder';
 
-export enum TidsromFormFields {
-    dagerMedPleie = 'dagerMedPleie',
+export enum KursFormFields {
+    kursholder = 'kursholder',
 }
 
-export interface TidsromFormValues {
-    [TidsromFormFields.dagerMedPleie]?: Date[];
+export interface KursFormValues {
+    [KursFormFields.kursholder]?: Kursholder;
 }
 
-const { FormikWrapper, Form } = getTypedFormComponents<TidsromFormFields, TidsromFormValues, ValidationError>();
+const { FormikWrapper, Form } = getTypedFormComponents<KursFormFields, KursFormValues, ValidationError>();
 
-const TidsromStep = () => {
+const KursStep = () => {
     const { intl } = useAppIntl();
 
     const {
         state: { søknadsdata },
     } = useSøknadContext();
 
-    const stepId = StepId.TIDSROM;
-    const step = getSøknadStepConfigForStep(søknadsdata, stepId);
+    const stepId = StepId.KURS;
+    const step = getSøknadStepConfigForStep(stepId);
 
     const { goBack } = useStepNavigation(step);
 
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
-    const onValidSubmitHandler = (values: TidsromFormValues) => {
-        const tidsromSøknadsdata = getTidsromSøknadsdataFromFormValues(values);
-        if (tidsromSøknadsdata) {
+    const onValidSubmitHandler = () => {
+        const kursSøknadsdata = getKursSøknadsdataFromFormValues();
+        if (kursSøknadsdata) {
             clearStepFormValues(stepId);
-            return [
-                actionsCreator.setSøknadTidsrom(tidsromSøknadsdata),
-                actionsCreator.syncArbeidstidMedTidsrom(tidsromSøknadsdata),
-            ];
+            return [actionsCreator.setSøknadKurs(kursSøknadsdata)];
         }
         return [];
     };
@@ -64,7 +61,7 @@ const TidsromStep = () => {
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
-                initialValues={getTidsromStepInitialValues(søknadsdata, stepFormValues[stepId])}
+                initialValues={getKursStepInitialValues(søknadsdata, stepFormValues[stepId])}
                 onSubmit={handleSubmit}
                 renderForm={() => {
                     return (
@@ -79,13 +76,11 @@ const TidsromStep = () => {
                                 runDelayedFormValidation={true}>
                                 <SifGuidePanel>
                                     <p>
-                                        <AppText id="steg.tidsrom.counsellorPanel.avsnitt.1" />
+                                        <AppText id="steg.kurs.counsellorPanel.avsnitt.1" />
                                     </p>
                                 </SifGuidePanel>
 
-                                <FormBlock>
-                                    <DagerMedPleieFormPart />
-                                </FormBlock>
+                                <FormBlock>Kursholder</FormBlock>
                             </Form>
                         </>
                     );
@@ -95,4 +90,4 @@ const TidsromStep = () => {
     );
 };
 
-export default TidsromStep;
+export default KursStep;

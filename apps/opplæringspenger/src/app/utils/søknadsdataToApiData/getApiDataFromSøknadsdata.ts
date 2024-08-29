@@ -5,7 +5,6 @@ import { FlereSokereApiData, SøknadApiData } from '../../types/søknadApiData/S
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { YesOrNoDontKnow } from '../../types/YesOrNoDontKnow';
 import { getAttachmentURLBackend } from '../attachmentUtils';
-import { getDataBruktTilUtledning } from '../getDataBruktTilUtledning';
 import { getArbeidsgivereApiDataFromSøknadsdata } from './getArbeidsgivereApiDataFromSøknadsdata';
 import { getFrilansApiDataFromSøknadsdata } from './getFrilansApiDataFromSøknadsdata';
 import { getMedlemskapApiDataFromSøknadsdata } from './getMedlemskapApiDataFromSøknadsdata';
@@ -34,42 +33,21 @@ export const getFlereSokereApiData = (flereSokereSvar: YesOrNoDontKnow): FlereSo
     }
 };
 
-export const getDagerMedPleieApiData = (søknadsdata: Søknadsdata): string[] => {
-    return (søknadsdata.tidsrom?.dagerMedPleie || []).map(dateToISODate);
-};
-
 export const getApiDataFromSøknadsdata = (
     søkerNorskIdent: string,
     søknadsdata: Søknadsdata,
 ): SøknadApiData | undefined => {
-    const { id, omBarnet, legeerklæring, tidsrom, arbeidssituasjon, arbeidstid, medlemskap } = søknadsdata;
+    const { id, omBarnet, legeerklæring, kurs, arbeidssituasjon, medlemskap } = søknadsdata;
 
-    const { søknadsperiode, dagerMedPleie: dagerMedPleie } = tidsrom || {};
+    const { søknadsperiode } = kurs || {};
 
-    if (
-        !id ||
-        !omBarnet ||
-        !legeerklæring ||
-        !tidsrom ||
-        !arbeidssituasjon ||
-        !medlemskap ||
-        !søknadsperiode ||
-        !dagerMedPleie ||
-        dagerMedPleie.length === 0
-    ) {
+    if (!id || !omBarnet || !legeerklæring || !kurs || !arbeidssituasjon || !medlemskap || !søknadsperiode) {
         return undefined;
     }
-
-    const periodeFra = tidsrom.søknadsperiode.from;
-    const periodeTil = tidsrom.søknadsperiode.to;
 
     const { arbeidsgivere, frilans, selvstendig } = arbeidssituasjon;
 
     if (frilans === undefined || selvstendig === undefined) {
-        return undefined;
-    }
-
-    if (!periodeFra || !periodeTil) {
         return undefined;
     }
 
@@ -82,22 +60,11 @@ export const getApiDataFromSøknadsdata = (
         harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true,
         omBarnet: getOmBarnetApiDataFromSøknadsdata(omBarnet),
         vedleggUrls: getVedleggApiData(legeerklæring.vedlegg),
-        dagerMedPleie: getDagerMedPleieApiData(søknadsdata),
-        fraOgMed: dateToISODate(periodeFra),
-        tilOgMed: dateToISODate(periodeTil),
-        arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(
-            søknadsperiode,
-            dagerMedPleie,
-            arbeidsgivere,
-            arbeidstid?.arbeidsgivere,
-        ),
-        frilans: getFrilansApiDataFromSøknadsdata(søknadsperiode, dagerMedPleie, frilans, arbeidstid?.frilans),
-        selvstendigNæringsdrivende: getSelvstendigApiDataFromSøknadsdata(
-            søknadsperiode,
-            dagerMedPleie,
-            selvstendig,
-            arbeidstid?.selvstendig,
-        ),
+        fraOgMed: dateToISODate(new Date()),
+        tilOgMed: dateToISODate(new Date()),
+        arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(arbeidsgivere),
+        frilans: getFrilansApiDataFromSøknadsdata(frilans),
+        selvstendigNæringsdrivende: getSelvstendigApiDataFromSøknadsdata(selvstendig),
         opptjeningIUtlandet: getOpptjeningUtlandApiDataFromSøknadsdata(språk, arbeidssituasjon.opptjeningUtland),
         utenlandskNæring: getUtenlandskNæringApiDataFromSøknadsdata(språk, arbeidssituasjon.utenlandskNæring),
         harVærtEllerErVernepliktig: arbeidssituasjon.vernepliktig
@@ -105,6 +72,5 @@ export const getApiDataFromSøknadsdata = (
             : undefined,
         medlemskap: getMedlemskapApiDataFromSøknadsdata(språk, medlemskap),
         harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true,
-        dataBruktTilUtledning: JSON.stringify(getDataBruktTilUtledning(søknadsdata)),
     };
 };

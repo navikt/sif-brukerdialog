@@ -1,6 +1,5 @@
 import { OpptjeningAktivitet, UtenlandskNæringstype, VirksomhetApiData } from '@navikt/sif-common-forms-ds';
 import { ISODate, ISODateRange, ISODuration } from '@navikt/sif-common-utils';
-import { JobberIPeriodeSvar } from '../../søknad/steps/arbeidstid/ArbeidstidTypes';
 import { ArbeidsgiverType } from '../Arbeidsgiver';
 import { SøkersRelasjonTilBarnet } from '../SøkersRelasjonTilBarnet';
 
@@ -47,14 +46,8 @@ export interface TidFasteDagerApiData {
     fredag?: ISODuration;
 }
 
-export interface ArbeidIPeriodeApiData {
-    jobberIPerioden: JobberIPeriodeSvar;
-    enkeltdager: TidEnkeltdagApiData[];
-}
-
 export interface ArbeidsforholdApiData {
     jobberNormaltTimer: number;
-    arbeidIPeriode?: ArbeidIPeriodeApiData;
 }
 
 export interface ArbeidsgiverApiData {
@@ -148,7 +141,6 @@ export interface SøknadApiData {
     kurs?: KursApiData;
     fraOgMed: ISODate;
     tilOgMed: ISODate;
-    dagerMedPleie: ISODate[];
     arbeidsgivere?: ArbeidsgiverApiData[];
     frilans?: FrilansApiData;
     selvstendigNæringsdrivende?: SelvstendigNæringsdrivendeApiData;
@@ -158,5 +150,4 @@ export interface SøknadApiData {
     opptjeningIUtlandet: OpptjeningIUtlandetApi[];
     utenlandskNæring: UtenlandskNæringApi[];
     harBekreftetOpplysninger: boolean;
-    dataBruktTilUtledning: DataBruktTilUtledningAnnetDataJsonString;
 }

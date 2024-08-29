@@ -1,7 +1,6 @@
 import { Næringstype, OpptjeningAktivitet, UtenlandskNæringstype } from '@navikt/sif-common-forms-ds';
 import { ArbeidsgiverType } from '../../app/types/Arbeidsgiver';
 import { SøknadContextState } from '../../app/types/SøknadContextState';
-import { ArbeidIPeriodeType } from '../../app/types/arbeidIPeriodeType';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { SøknadRoutes } from '../../app/types/SøknadRoutes';
 
@@ -23,60 +22,10 @@ export const søknadContextMock: SøknadContextState = {
         },
 
         omBarnet: undefined,
-        tidsrom: {
+        kurs: {
             søknadsperiode: {
                 from: new Date('2024-05-05T22:00:00.000Z'),
                 to: new Date('2024-05-30T22:00:00.000Z'),
-            },
-            dagerMedPleie: [
-                new Date('2024-05-05T22:00:00.000Z'),
-                new Date('2024-05-09T22:00:00.000Z'),
-                new Date('2024-05-16T22:00:00.000Z'),
-                new Date('2024-05-19T22:00:00.000Z'),
-                new Date('2024-05-20T22:00:00.000Z'),
-                new Date('2024-05-21T22:00:00.000Z'),
-                new Date('2024-05-22T22:00:00.000Z'),
-                new Date('2024-05-23T22:00:00.000Z'),
-                new Date('2024-05-26T22:00:00.000Z'),
-                new Date('2024-05-27T22:00:00.000Z'),
-                new Date('2024-05-28T22:00:00.000Z'),
-                new Date('2024-05-29T22:00:00.000Z'),
-                new Date('2024-05-30T22:00:00.000Z'),
-            ],
-        },
-        arbeidstid: {
-            arbeidsgivere: {
-                '123451234': {
-                    navn: 'Arbeids- og velferdsetaten',
-                    arbeidIPeriode: {
-                        type: ArbeidIPeriodeType.arbeiderIkke,
-                        arbeiderIPerioden: false,
-                    },
-                },
-            },
-            frilans: {
-                type: ArbeidIPeriodeType.arbeiderUlikeUkerTimer,
-                arbeiderIPerioden: true,
-                arbeiderRedusert: true,
-                enkeltdager: {
-                    '2024-05-06': {
-                        hours: '2',
-                        minutes: '0',
-                    },
-                    '2024-05-20': {
-                        hours: '2',
-                        minutes: '0',
-                    },
-                    '2024-05-27': {
-                        hours: '2',
-                        minutes: '0',
-                    },
-                },
-            },
-            selvstendig: {
-                type: ArbeidIPeriodeType.arbeiderVanlig,
-                arbeiderIPerioden: true,
-                arbeiderRedusert: false,
             },
         },
         arbeidssituasjon: {
