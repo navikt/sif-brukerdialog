@@ -97,6 +97,18 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     },
                 };
 
+            case SøknadContextActionKeys.SET_SØKNAD_OM_BARNET: {
+                return {
+                    ...state,
+                    søknadsdata: {
+                        ...state.søknadsdata,
+                        omBarnet: {
+                            ...action.payload,
+                        },
+                    },
+                };
+            }
+
             case SøknadContextActionKeys.SET_SØKNAD_MEDLEMSKAP:
                 return {
                     ...state,

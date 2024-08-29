@@ -17,7 +17,7 @@ const nb = {
     'steg.tidsrom.iUtlandetIPerioden.addLabel': 'Legg til utenlandsopphold',
 
     'dagerMedPleie.info.1':
-        'Velg i kalenderen hvilke dager du er borte fra jobben for å gi pleie. Du kan velge hele uker ved å klikke på ukenummer.',
+        'Velg i kalenderen hvilke dager du er borte fra jobben for å delta på opplæring. Du kan velge hele uker ved å klikke på ukenummer.',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };
