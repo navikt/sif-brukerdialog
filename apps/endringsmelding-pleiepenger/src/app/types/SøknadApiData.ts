@@ -1,4 +1,4 @@
-import { ISODate, ISODateRange, ISODateRangeMap, ISODuration } from '@navikt/sif-common-utils';
+import { ISODate, ISODateRangeMap, ISODuration } from '@navikt/sif-common-utils';
 import { ArbeiderIPeriodenSvar } from './ArbeiderIPeriodenSvar';
 import { LovbestemtFerieType } from './LovbestemtFerieType';
 import { ValgteEndringer } from './ValgteEndringer';
@@ -36,24 +36,6 @@ export interface ArbeidstidApiData {
 export type LovbestemtFerieApiData = {
     perioder: ISODateRangeMap<LovbestemtFerieType>;
 };
-
-export interface KursperiodeApiData {
-    kursperiode: ISODateRange;
-    avreise: ISODate;
-    hjemkomst: ISODate;
-    begrunnelseReisetidTil?: string;
-    begrunnelseReisetidHjem?: string;
-}
-
-export interface KursholderApiData {
-    holder: string;
-    institusjonUuid: string;
-}
-
-export interface KursApiData {
-    kursholder: KursholderApiData;
-    perioder: KursperiodeApiData[];
-}
 
 interface BarnApiData {
     fødselsdato?: ISODate;

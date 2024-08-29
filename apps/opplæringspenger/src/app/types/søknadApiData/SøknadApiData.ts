@@ -1,5 +1,5 @@
 import { OpptjeningAktivitet, UtenlandskNæringstype, VirksomhetApiData } from '@navikt/sif-common-forms-ds';
-import { ISODate, ISODuration } from '@navikt/sif-common-utils';
+import { ISODate, ISODateRange, ISODuration } from '@navikt/sif-common-utils';
 import { JobberIPeriodeSvar } from '../../søknad/steps/arbeidstid/ArbeidstidTypes';
 import { ArbeidsgiverType } from '../Arbeidsgiver';
 import { SøkersRelasjonTilBarnet } from '../SøkersRelasjonTilBarnet';
@@ -14,6 +14,24 @@ export interface BarnToSendToApi {
 export interface OmBarnetApiData {
     barn: BarnToSendToApi;
     relasjonTilBarnet?: SøkersRelasjonTilBarnet;
+}
+
+export interface KursholderApiData {
+    holder: string;
+    institusjonUuid: string;
+}
+
+export interface KursperiodeApiData {
+    kursperiode: ISODateRange;
+    avreise: ISODate;
+    hjemkomst: ISODate;
+    begrunnelseReisetidTil?: string;
+    begrunnelseReisetidHjem?: string;
+}
+
+export interface KursApiData {
+    kursholder: KursholderApiData;
+    perioder: KursperiodeApiData[];
 }
 
 export interface TidEnkeltdagApiData {
@@ -122,11 +140,12 @@ export enum FlereSokereApiData {
 export type DataBruktTilUtledningAnnetDataJsonString = string;
 
 export interface SøknadApiData {
-    søkerNorskIdent: string;
     id: string;
+    søkerNorskIdent: string;
     språk: string;
     harForståttRettigheterOgPlikter: boolean;
     omBarnet: OmBarnetApiData;
+    kurs?: KursApiData;
     fraOgMed: ISODate;
     tilOgMed: ISODate;
     dagerMedPleie: ISODate[];
@@ -134,10 +153,10 @@ export interface SøknadApiData {
     frilans?: FrilansApiData;
     selvstendigNæringsdrivende?: SelvstendigNæringsdrivendeApiData;
     medlemskap: MedlemskapApiData;
-    harBekreftetOpplysninger: boolean;
-    vedleggUrls: string[];
     harVærtEllerErVernepliktig?: boolean;
+    vedleggUrls: string[];
     opptjeningIUtlandet: OpptjeningIUtlandetApi[];
     utenlandskNæring: UtenlandskNæringApi[];
+    harBekreftetOpplysninger: boolean;
     dataBruktTilUtledning: DataBruktTilUtledningAnnetDataJsonString;
 }
