@@ -22,7 +22,7 @@ function KursperiodeListAndDialog<FieldNames>({ name, minDate, maxDate, validate
             <FormikModalFormAndList<FieldNames, Kursperiode, ValidationError>
                 name={name}
                 labels={labels}
-                dialogWidth="narrow"
+                dialogWidth="wide"
                 validate={validate}
                 sortFunc={(d1, d2) => sortMaybeDateRange({ from: d1.periode.from }, { from: d2.periode.from })}
                 formRenderer={({ onSubmit, onCancel, item, allItems }) => (

@@ -54,6 +54,7 @@ const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
             frilansoppdrag,
             søknadRoute,
             søknadSendt,
+            kursholdere: [],
             registrerteBarn: [],
             versjon: SØKNAD_VERSJON,
         });

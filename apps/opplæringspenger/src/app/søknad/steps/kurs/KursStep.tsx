@@ -1,4 +1,3 @@
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
@@ -16,27 +15,37 @@ import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import { getKursStepInitialValues, getKursSøknadsdataFromFormValues } from './kursStepUtils';
 import { Kursholder } from '../../../types/Kursholder';
-import { Kursperiode } from '../../../types/Kursperiode';
 import KursperiodeListAndDialog from './kursperiode/KursperiodeListAndDialog';
-import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getListValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { Heading, VStack } from '@navikt/ds-react';
+import { Kursperiode } from '../../../types/Kursperiode';
+import { FormPanel } from '@navikt/sif-common-ui';
 
 export enum KursFormFields {
     kursholder = 'kursholder',
+    kursholder_annen_navn = 'kursholder_annen_navn',
+    kursholder_annen_beskrivelse = 'kursholder_annen_beskrivelse',
     kursperioder = 'kursperioder',
 }
 
 export interface KursFormValues {
-    [KursFormFields.kursholder]?: Kursholder;
+    [KursFormFields.kursholder]?: Kursholder | 'annen';
+    [KursFormFields.kursholder_annen_navn]?: string;
+    [KursFormFields.kursholder_annen_beskrivelse]?: string;
     [KursFormFields.kursperioder]?: Kursperiode[];
 }
 
-const { FormikWrapper, Form } = getTypedFormComponents<KursFormFields, KursFormValues, ValidationError>();
+const { FormikWrapper, Form, Select, TextField, Textarea } = getTypedFormComponents<
+    KursFormFields,
+    KursFormValues,
+    ValidationError
+>();
 
 const KursStep = () => {
     const { intl } = useAppIntl();
 
     const {
-        state: { søknadsdata },
+        state: { søknadsdata, kursholdere },
     } = useSøknadContext();
 
     const stepId = StepId.KURS;
@@ -68,7 +77,7 @@ const KursStep = () => {
             <FormikWrapper
                 initialValues={getKursStepInitialValues(søknadsdata, stepFormValues[stepId])}
                 onSubmit={handleSubmit}
-                renderForm={() => {
+                renderForm={({ values }) => {
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -79,13 +88,48 @@ const KursStep = () => {
                                 submitDisabled={isSubmitting}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
-                                <SifGuidePanel>
-                                    <p>
-                                        <AppText id="steg.kurs.counsellorPanel.avsnitt.1" />
-                                    </p>
-                                </SifGuidePanel>
+                                <VStack gap={'8'}>
+                                    <SifGuidePanel>
+                                        <p>
+                                            <AppText id="steg.kurs.counsellorPanel.avsnitt.1" />
+                                        </p>
+                                    </SifGuidePanel>
 
-                                <FormBlock>
+                                    <VStack gap={'4'}>
+                                        <Select
+                                            label="Velg helseinstitusjon/kompetansesenter"
+                                            name={KursFormFields.kursholder}
+                                            validate={getRequiredFieldValidator()}>
+                                            <option value="">Velg</option>
+                                            <optgroup label="Godkjente helseinstitusjoner">
+                                                {kursholdere.map((kursholder) => (
+                                                    <option value={kursholder.id} key={kursholder.id}>
+                                                        {kursholder.navn}
+                                                    </option>
+                                                ))}
+                                            </optgroup>
+                                            <optgroup label="Annen helseinstitusjon">
+                                                <option value={'annen'}>Legg til annen helseinstitusjon</option>
+                                            </optgroup>
+                                        </Select>
+
+                                        {values[KursFormFields.kursholder] === 'annen' && (
+                                            <FormPanel>
+                                                <VStack gap="6">
+                                                    <Heading as="h2" size="small">
+                                                        Annen helseinstitusjon/kompetansesenter
+                                                    </Heading>
+                                                    <TextField
+                                                        name={KursFormFields.kursholder_annen_navn}
+                                                        label="Navn på helseinstitusjon"></TextField>
+                                                    <Textarea
+                                                        name={KursFormFields.kursholder_annen_beskrivelse}
+                                                        label="Beskrivelse og kontaktinformasjon (telefon)"></Textarea>
+                                                </VStack>
+                                            </FormPanel>
+                                        )}
+                                    </VStack>
+
                                     <KursperiodeListAndDialog
                                         name={KursFormFields.kursperioder}
                                         labels={{
@@ -95,7 +139,7 @@ const KursStep = () => {
                                         }}
                                         validate={getListValidator({ minItems: 1, required: true })}
                                     />
-                                </FormBlock>
+                                </VStack>
                             </Form>
                         </>
                     );

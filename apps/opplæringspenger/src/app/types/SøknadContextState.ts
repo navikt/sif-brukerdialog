@@ -1,4 +1,5 @@
 import { Arbeidsgiver } from './Arbeidsgiver';
+import { Kursholder } from './Kursholder';
 import { KvitteringInfo } from './KvitteringInfo';
 import { RegistrertBarn } from './RegistrertBarn';
 import { Søker } from './Søker';
@@ -11,6 +12,7 @@ export interface SøknadContextState {
     versjon: string;
     søker: Søker;
     registrerteBarn: RegistrertBarn[];
+    kursholdere: Kursholder[];
     frilansoppdrag?: Arbeidsgiver[];
     søknadsdata: Søknadsdata;
     tempFormData?: TempFormValues;

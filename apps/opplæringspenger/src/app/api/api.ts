@@ -6,6 +6,7 @@ import { relocateToLoginPage, relocateToNoAccessPage } from '../utils/navigation
 export enum ApiEndpoint {
     'barn' = 'oppslag/barn',
     'soker' = 'oppslag/soker',
+    'kursholder' = 'oppslag/kursholder',
     'arbeidsgiver' = 'oppslag/arbeidsgiver',
     'send_søknad' = 'opplaringspenger/innsending',
     'vedlegg' = 'vedlegg',

@@ -13,6 +13,8 @@ import søknadStateEndpoint, {
 } from './endpoints/søknadStateEndpoint';
 import barnEndpoint from './endpoints/barnEndpoint';
 import { RegistrertBarn } from '../types/RegistrertBarn';
+import { kursholderEndpoint } from './endpoints/kursholderEndpoint';
+import { Kursholder } from '../types/Kursholder';
 
 export type SøknadInitialData = SøknadContextState;
 
@@ -47,6 +49,7 @@ export const defaultSøknadState: Partial<SøknadContextState> = {
 const getSøknadInitialData = async (
     søker: Søker,
     registrerteBarn: RegistrertBarn[],
+    kursholdere: Kursholder[],
     lagretSøknadState: SøknadStatePersistence,
 ): Promise<SøknadInitialData> => {
     const isValid = isPersistedSøknadStateValid(lagretSøknadState, { søker });
@@ -60,6 +63,7 @@ const getSøknadInitialData = async (
         søknadsdata: {},
         ...lagretSøknadStateToUse,
         søker,
+        kursholdere,
         registrerteBarn,
     });
 };
@@ -71,10 +75,11 @@ function useSøknadInitialData(): SøknadInitialDataState {
         try {
             const søker = await søkerEndpoint.fetch();
             const registrerteBarn = await barnEndpoint.fetch();
+            const kursholdere = await kursholderEndpoint.fetch();
             const lagretSøknadState = await søknadStateEndpoint.fetch();
             setInitialData({
                 status: RequestStatus.success,
-                data: await getSøknadInitialData(søker, registrerteBarn, lagretSøknadState),
+                data: await getSøknadInitialData(søker, registrerteBarn, kursholdere, lagretSøknadState),
             });
         } catch (error: any) {
             if (isUnauthorized(error)) {

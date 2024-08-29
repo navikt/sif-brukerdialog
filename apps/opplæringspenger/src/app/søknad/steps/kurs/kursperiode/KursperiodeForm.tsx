@@ -2,6 +2,8 @@ import { useIntl } from 'react-intl';
 import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import {
     getDateRangeValidator,
+    getDateValidator,
+    getStringValidator,
     ValidateDateError,
     ValidateDateRangeError,
 } from '@navikt/sif-common-formik-ds/src/validation';
@@ -12,7 +14,9 @@ import kursperiodeUtils from './kursperiodeUtils';
 import { KursperiodeMessageKeys, useKursperiodeIntl } from './kursperiodeMessages';
 import { handleDateRangeValidationError } from '@navikt/sif-common-forms-ds/src/utils';
 import { Kursperiode } from '../../../../types/Kursperiode';
-import { ISODate } from '@navikt/sif-common-utils';
+import { ISODate, ISODateToDate } from '@navikt/sif-common-utils';
+import { VStack } from '@navikt/ds-react';
+import { FormPanel } from '@navikt/sif-common-ui';
 
 export interface KursperiodeFormLabels {
     fromDate: string;
@@ -117,54 +121,95 @@ const KursperiodeForm = ({
                             ? alleKursperioder.map((k) => k.periode)
                             : alleKursperioder.filter((t) => t.id !== kursperiode.id).map((k) => k.periode);
 
+                    const startdato = ISODateToDate(formik.values[KursperiodeFormFields.fom] || '');
+                    const sluttdato = ISODateToDate(formik.values[KursperiodeFormFields.tom] || '');
+
                     return (
                         <Form.Form
                             onCancel={onCancel}
                             formErrorHandler={getFormErrorHandler(intl, 'kursperiodeForm')}
                             submitButtonLabel="Ok"
                             showButtonArrows={false}>
-                            <Form.DateRangePicker
-                                legend={inlineLabels.intervalTitle}
-                                minDate={minDate}
-                                maxDate={maxDate}
-                                disabledDateRanges={disabledDateRanges}
-                                fromInputProps={{
-                                    label: inlineLabels.fromDate,
-                                    name: KursperiodeFormFields.fom,
-                                    validate: (value) => {
-                                        const error = getDateRangeValidator({
-                                            required: true,
-                                            min: minDate,
-                                            max: maxDate,
-                                            toDate: ISOStringToDate(formik.values.tom),
-                                        }).validateFromDate(value);
-                                        return handleDateRangeValidationError(error, minDate, maxDate);
-                                    },
-                                    onChange: () => {
-                                        setTimeout(() => {
-                                            formik.validateField(KursperiodeFormFields.tom);
-                                        });
-                                    },
-                                }}
-                                toInputProps={{
-                                    label: inlineLabels.toDate,
-                                    name: KursperiodeFormFields.tom,
-                                    validate: (value) => {
-                                        const error = getDateRangeValidator({
-                                            required: true,
-                                            min: minDate,
-                                            max: maxDate,
-                                            fromDate: ISOStringToDate(formik.values.fom),
-                                        }).validateToDate(value);
-                                        return handleDateRangeValidationError(error, minDate, maxDate);
-                                    },
-                                    onChange: () => {
-                                        setTimeout(() => {
-                                            formik.validateField(KursperiodeFormFields.fom);
-                                        });
-                                    },
-                                }}
-                            />
+                            <VStack gap={'6'}>
+                                <Form.DateRangePicker
+                                    legend={inlineLabels.intervalTitle}
+                                    minDate={minDate}
+                                    maxDate={maxDate}
+                                    disabledDateRanges={disabledDateRanges}
+                                    fromInputProps={{
+                                        label: inlineLabels.fromDate,
+                                        name: KursperiodeFormFields.fom,
+                                        validate: (value) => {
+                                            const error = getDateRangeValidator({
+                                                required: true,
+                                                min: minDate,
+                                                max: maxDate,
+                                                toDate: ISOStringToDate(formik.values.tom),
+                                            }).validateFromDate(value);
+                                            return handleDateRangeValidationError(error, minDate, maxDate);
+                                        },
+                                        onChange: () => {
+                                            setTimeout(() => {
+                                                formik.validateField(KursperiodeFormFields.tom);
+                                            });
+                                        },
+                                    }}
+                                    toInputProps={{
+                                        label: inlineLabels.toDate,
+                                        name: KursperiodeFormFields.tom,
+                                        validate: (value) => {
+                                            const error = getDateRangeValidator({
+                                                required: true,
+                                                min: minDate,
+                                                max: maxDate,
+                                                fromDate: ISOStringToDate(formik.values.fom),
+                                            }).validateToDate(value);
+                                            return handleDateRangeValidationError(error, minDate, maxDate);
+                                        },
+                                        onChange: () => {
+                                            setTimeout(() => {
+                                                formik.validateField(KursperiodeFormFields.fom);
+                                            });
+                                        },
+                                    }}
+                                />
+                                <VStack gap={'2'}>
+                                    <Form.DatePicker
+                                        name={KursperiodeFormFields.avreise}
+                                        label="Avreisedato"
+                                        maxDate={startdato}
+                                        validate={getDateValidator({ max: startdato, required: true })}
+                                    />
+                                    {kursperiodeUtils.måBesvareBegrunnelseReisetidHjem(formik.values) && (
+                                        <FormPanel>
+                                            <Form.Textarea
+                                                name={KursperiodeFormFields.begrunnelseReisetidTil}
+                                                label="Begrunnelse for reisetid til kurssted"
+                                                description="På grunn av at det er mer enn én dag mellom avreise og startdato, må du begrunne reisetiden til kursstedet."
+                                                validate={getStringValidator({ minLength: 5, required: true })}
+                                            />
+                                        </FormPanel>
+                                    )}
+                                </VStack>
+                                <VStack gap={'2'}>
+                                    <Form.DatePicker
+                                        name={KursperiodeFormFields.hjemkomst}
+                                        label="Hjemkomst"
+                                        minDate={sluttdato}
+                                        validate={getDateValidator({ min: sluttdato, required: true })}
+                                    />
+                                    {kursperiodeUtils.måBesvareBegrunnelsebegrunnelseReisetidTil(formik.values) && (
+                                        <FormPanel>
+                                            <Form.Textarea
+                                                name={KursperiodeFormFields.begrunnelseReisetidHjem}
+                                                label="Begrunnelse for reisetid fra kurssted"
+                                                description="På grunn av at det er mer enn én dag mellom sluttdato og hjemkomst, må du begrunne reisetiden fra kursstedet."
+                                                validate={getStringValidator({ minLength: 5, required: true })}
+                                            />
+                                        </FormPanel>
+                                    )}
+                                </VStack>
+                            </VStack>
                         </Form.Form>
                     );
                 }}

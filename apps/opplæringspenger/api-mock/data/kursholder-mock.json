@@ -1,0 +1,12 @@
+{
+    "kursholdere": [
+        {
+            "id": "1",
+            "navn": "Institusjon 1"
+        },
+        {
+            "id": "2",
+            "navn": "Institusjon 2"
+        }
+    ]
+}
