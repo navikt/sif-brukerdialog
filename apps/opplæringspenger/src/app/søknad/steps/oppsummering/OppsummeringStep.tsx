@@ -111,7 +111,7 @@ const OppsummeringStep = () => {
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
                                 submitDisabled={isSubmitting || hasInvalidSteps}
                                 includeValidationSummary={true}
-                                submitButtonLabel={text('step.oppsummering.sendSøknad')}
+                                submitButtonLabel={text('steg.oppsummering.sendSøknad')}
                                 isFinalSubmit={true}
                                 submitPending={isSubmitting}
                                 backButtonDisabled={isSubmitting}
@@ -164,7 +164,7 @@ const OppsummeringStep = () => {
                                         disabled={isSubmitting}
                                         label={
                                             <span data-testid="bekreft-label">
-                                                <AppText id="step.oppsummering.bekrefterOpplysninger" />
+                                                <AppText id="steg.oppsummering.bekrefterOpplysninger" />
                                             </span>
                                         }
                                         validate={getCheckedValidator()}

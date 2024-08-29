@@ -1,40 +1,36 @@
 const nb = {
-    'step.oppsummering.pageTitle': 'Oppsummering',
-    'step.oppsummering.stepTitle': 'Oppsummering',
-    'step.oppsummering.stepIndicatorLabel': 'Oppsummering',
-    'step.oppsummering.nextButtonLabel': 'Send inn søknad',
-    'step.oppsummering.info':
+    'steg.oppsummering.info':
         'Les gjennom oppsummeringen og sjekk at alt er riktig før du sender inn søknaden. Hvis du vil gjøre endringer, kan du gå tilbake.',
 
-    'step.oppsummering.søker.header': 'Om deg',
-    'step.oppsummering.søker.navn': 'Navn',
-    'step.oppsummering.søker.fnr': 'Fødselsnummer',
-    'step.oppsummering.pleietrengende.header': 'Om personen du pleier',
-    'step.oppsummering.pleietrengende.fødselsdato': 'Fødselsdato',
-    'step.oppsummering.pleietrengende.navn': 'Navn',
-    'step.oppsummeringpleietrengende.harIkkeFnr': 'Oppgitt grunn for at hen ikke har fødselsnummer eller D-nummer',
-    'step.oppsummeringpleietrengende.årsakManglerIdentitetsnummer.BOR_I_UTLANDET': 'Personen bor i utlandet',
-    'step.oppsummeringpleietrengende.årsakManglerIdentitetsnummer.ANNET': 'Annet',
-    'step.oppsummeringpleietrengende.id': 'ID for personen du pleier',
-    'step.oppsummering.pleietrengende.fnr': 'Fødselsnummer',
-    'step.oppsummering.pleietrengende.id.ingenId': 'Ingen ID er lastet opp',
+    'steg.oppsummering.søker.header': 'Om deg',
+    'steg.oppsummering.søker.navn': 'Navn',
+    'steg.oppsummering.søker.fnr': 'Fødselsnummer',
+    'steg.oppsummering.pleietrengende.header': 'Om personen du pleier',
+    'steg.oppsummering.pleietrengende.fødselsdato': 'Fødselsdato',
+    'steg.oppsummering.pleietrengende.navn': 'Navn',
+    'steg.oppsummeringpleietrengende.harIkkeFnr': 'Oppgitt grunn for at hen ikke har fødselsnummer eller D-nummer',
+    'steg.oppsummeringpleietrengende.årsakManglerIdentitetsnummer.BOR_I_UTLANDET': 'Personen bor i utlandet',
+    'steg.oppsummeringpleietrengende.årsakManglerIdentitetsnummer.ANNET': 'Annet',
+    'steg.oppsummeringpleietrengende.id': 'ID for personen du pleier',
+    'steg.oppsummering.pleietrengende.fnr': 'Fødselsnummer',
+    'steg.oppsummering.pleietrengende.id.ingenId': 'Ingen ID er lastet opp',
 
-    'step.oppsummeringtidsrom.header': 'Dagene du søker pleiepenger for',
-    'step.oppsummeringtidsrom.valgteDager.header': '{dager} {dager, plural, one {dag} other {dager}} med pleiepenger',
-    'step.oppsummeringsøknadsperiode.header': 'Periode',
-    'step.oppsummeringtidsrom.fomtom': '{fom} - {tom}',
+    'steg.oppsummeringtidsrom.header': 'Dagene du søker pleiepenger for',
+    'steg.oppsummeringtidsrom.valgteDager.header': '{dager} {dager, plural, one {dag} other {dager}} med pleiepenger',
+    'steg.oppsummeringsøknadsperiode.header': 'Periode',
+    'steg.oppsummeringtidsrom.fomtom': '{fom} - {tom}',
 
-    'step.oppsummeringflereSokere.header': 'Er dere flere som skal dele på pleiepengene?',
+    'steg.oppsummeringflereSokere.header': 'Er dere flere som skal dele på pleiepengene?',
 
-    'step.oppsummeringJA': 'Ja',
-    'step.oppsummeringNEI': 'Nei',
-    'step.oppsummeringUSIKKER': 'Usikker',
+    'steg.oppsummeringJA': 'Ja',
+    'steg.oppsummeringNEI': 'Nei',
+    'steg.oppsummeringUSIKKER': 'Usikker',
 
-    'step.oppsummeringutenlandsoppholdIPerioden.header': 'Oppholder du deg i utlandet i noen av dagene du søker for?',
-    'step.oppsummeringutenlandsoppholdIPerioden.listetittel': 'Utenlandsopphold i perioden',
+    'steg.oppsummeringutenlandsoppholdIPerioden.header': 'Oppholder du deg i utlandet i noen av dagene du søker for?',
+    'steg.oppsummeringutenlandsoppholdIPerioden.listetittel': 'Utenlandsopphold i perioden',
 
-    'step.oppsummeringarbeidssituasjon.header': 'Din arbeidssituasjon',
-    'step.oppsummeringvedlegg.header': 'Vedlegg',
+    'steg.oppsummeringarbeidssituasjon.header': 'Din arbeidssituasjon',
+    'steg.oppsummeringvedlegg.header': 'Vedlegg',
 
     'arbeidsgiver.tittel': '{navn} (organisasjonsnummer {organisasjonsnummer})',
     'frilans.tittel': 'Frilans',
@@ -104,34 +100,34 @@ const nb = {
 
     'summary.virksomhet.virksomhetInfo.tittel': 'Næringsvirksomhet som du har lagt inn',
 
-    'step.oppsummering.bekrefterOpplysninger':
+    'steg.oppsummering.bekrefterOpplysninger':
         'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til pleiepenger.',
 
-    'step.oppsummering.sendMelding.feilmelding.førsteGang':
+    'steg.oppsummering.sendMelding.feilmelding.førsteGang':
         'Det oppstod en feil under innsending. Vennligst prøv på nytt.',
-    'step.oppsummering.sendMelding.feilmelding.andreGang':
+    'steg.oppsummering.sendMelding.feilmelding.andreGang':
         'Det oppstod fortsatt en feil under innsending. Vennligst vent litt og prøv på nytt.',
 
-    'step.oppsummering.medlemskap.header': 'Medlemskap i folketrygden',
-    'step.oppsummering.utenlandsoppholdIPerioden.listetittel': 'Utenlandsopphold i perioden',
-    'step.oppsummering.utlandetSiste12.header': 'Har du bodd i utlandet i de siste 12 månedene?',
-    'step.oppsummering.utlandetNeste12.header': 'Skal du bo i utlandet i de neste 12 månedene?',
-    'step.oppsummering.utlandetSiste12.liste.header': 'Utenlandsopphold siste 12 måneder',
-    'step.oppsummering.utlandetNeste12.liste.header': 'Utenlandsopphold neste 12 måneder',
-    'step.oppsummering.legeerklæring.header': 'Legeerklæring',
-    'step.oppsummering.legeerklæring.label': 'Dokumenter som er lastet opp',
-    'step.oppsummering.samværsavtale.header': 'Avtale om delt bosted',
+    'steg.oppsummering.medlemskap.header': 'Medlemskap i folketrygden',
+    'steg.oppsummering.utenlandsoppholdIPerioden.listetittel': 'Utenlandsopphold i perioden',
+    'steg.oppsummering.utlandetSiste12.header': 'Har du bodd i utlandet i de siste 12 månedene?',
+    'steg.oppsummering.utlandetNeste12.header': 'Skal du bo i utlandet i de neste 12 månedene?',
+    'steg.oppsummering.utlandetSiste12.liste.header': 'Utenlandsopphold siste 12 måneder',
+    'steg.oppsummering.utlandetNeste12.liste.header': 'Utenlandsopphold neste 12 måneder',
+    'steg.oppsummering.legeerklæring.header': 'Legeerklæring',
+    'steg.oppsummering.legeerklæring.label': 'Dokumenter som er lastet opp',
+    'steg.oppsummering.samværsavtale.header': 'Avtale om delt bosted',
 
-    'step.oppsummering.fravær.aktivitet.1': 'Fravær som {aktivitet}.',
-    'step.oppsummering.fravær.aktivitet.2': 'Fravær som {aktivitet1} og {aktivitet2}.',
+    'steg.oppsummering.fravær.aktivitet.1': 'Fravær som {aktivitet}.',
+    'steg.oppsummering.fravær.aktivitet.2': 'Fravær som {aktivitet1} og {aktivitet2}.',
 
-    'step.oppsummeringbekreftelseFraLege.header': 'Legeerklæring',
-    'step.oppsummering.legeerklæring.ingenVedlegg': 'Ingen legeerklæring er lastet opp',
+    'steg.oppsummeringbekreftelseFraLege.header': 'Legeerklæring',
+    'steg.oppsummering.legeerklæring.ingenVedlegg': 'Ingen legeerklæring er lastet opp',
 
-    'step.oppsummering.apiValideringFeil.tittel': 'Noe av informasjonen mangler',
-    'step.oppsummering.sendSøknad': 'Send søknad',
+    'steg.oppsummering.apiValideringFeil.tittel': 'Noe av informasjonen mangler',
+    'steg.oppsummering.sendSøknad': 'Send søknad',
 
-    'step.oppsummering.bekrefterOpplysninger.ikkeBekreftet': 'Du må bekrefte opplysningene',
+    'steg.oppsummering.bekrefterOpplysninger.ikkeBekreftet': 'Du må bekrefte opplysningene',
 
     'opptjeningIUtlandetSummaryItem.periode': 'Periode: {periode}',
     'opptjeningIUtlandetSummaryItem.info': 'Jobbet i {landnavn} som {hva} hos {hvor}',

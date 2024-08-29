@@ -1,15 +1,12 @@
 const nb = {
-    'step.tidsrom.pageTitle': 'Dager du må være hjemme fra jobb for å gi pleie',
-    'step.tidsrom.stepTitle': 'Dager du må være hjemme fra jobb for å gi pleie',
-    'step.tidsrom.stepIndicatorLabel': 'Periode',
-    'step.tidsrom.counsellorPanel.avsnitt.1': 'Nå skal du velge de dagene du må være hjemme fra jobb for å gi pleie.',
-    'step.tidsrom.counsellorPanel.avsnitt.2':
+    'steg.tidsrom.counsellorPanel.avsnitt.1': 'Nå skal du velge de dagene du må være hjemme fra jobb for å gi pleie.',
+    'steg.tidsrom.counsellorPanel.avsnitt.2':
         'Du kan søke tre måneder tilbake i tid, og to uker frem i tid. Hvis du etter to uker fortsatt er borte fra jobb for å gi pleie, kan du sende inn en ny søknad.',
-    'step.tidsrom.counsellorPanel.avsnitt.3':
+    'steg.tidsrom.counsellorPanel.avsnitt.3':
         'Husk at det ikke er rett til pleiepenger på dager hvor personen er innlagt på sykehus eller annen institusjon.',
 
-    'step.tidsrom.nextButtonLabel': 'Fortsett',
-    'step.tidsrom.infotekst':
+    'steg.tidsrom.nextButtonLabel': 'Fortsett',
+    'steg.tidsrom.infotekst':
         'For å ha rett til pleiepenger må du ha omsorgen for pleietrengende i hele perioden du søker for.',
     'steg.tidsrom.veileder.utenlandsopphold':
         'Når du oppholder deg i et land utenfor EØS, kan du beholde pleiepengene i en begrenset periode på opptil 8 uker av en 12 måneder lang periode.',
@@ -19,9 +16,9 @@ const nb = {
     'steg.barn.flereSokere.spm.description':
         'Hvis flere personer skal dele på å pleie personen har dere til sammen 60 dager å dele på. Om du er usikker på om dere blir flere, svarer du «Usikker» på dette spørsmålet.',
 
-    'step.tidsrom.flereSokere.ja': 'Ja',
-    'step.tidsrom.flereSokere.nei': 'Nei',
-    'step.tidsrom.flereSokere.usikker': 'Usikker',
+    'steg.tidsrom.flereSokere.ja': 'Ja',
+    'steg.tidsrom.flereSokere.nei': 'Nei',
+    'steg.tidsrom.flereSokere.usikker': 'Usikker',
 
     'steg.tidsrom.iUtlandetIPerioden.spm': 'Oppholder du deg i utlandet i noen av dagene du søker for?',
     'steg.tidsrom.iUtlandetIPerioden.listTitle': 'Utenlandsopphold i perioden',

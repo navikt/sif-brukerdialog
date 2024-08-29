@@ -96,20 +96,20 @@ const MedlemskapStep = () => {
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
                                 <SifGuidePanel>
-                                    {text('step.medlemskap.info.1')}
+                                    {text('steg.medlemskap.info.1')}
                                     <Link href={getLenker().medlemskap} target="_blank">
-                                        <AppText id="step.medlemskap.info.2" />
+                                        <AppText id="steg.medlemskap.info.2" />
                                     </Link>
                                     .
                                 </SifGuidePanel>
                                 <FormBlock>
                                     <YesOrNoQuestion
-                                        legend={text('step.medlemskap.annetLandSiste12.spm')}
+                                        legend={text('steg.medlemskap.annetLandSiste12.spm')}
                                         name={MedlemskapFormFields.harBoddUtenforNorgeSiste12Mnd}
                                         validate={getYesOrNoValidator()}
                                         description={
-                                            <ExpandableInfo title={text('step.medlemskap.hvaBetyrDette')}>
-                                                {text('step.medlemskap.annetLandSiste12.hjelp')}
+                                            <ExpandableInfo title={text('steg.medlemskap.hvaBetyrDette')}>
+                                                {text('steg.medlemskap.annetLandSiste12.hjelp')}
                                             </ExpandableInfo>
                                         }
                                     />
@@ -121,9 +121,9 @@ const MedlemskapStep = () => {
                                             minDate={siste12Måneder.from}
                                             maxDate={siste12Måneder.to}
                                             labels={{
-                                                addLabel: text('step.medlemskap.utenlandsopphold.leggTilLabel'),
-                                                listTitle: text('step.medlemskap.annetLandSiste12.listeTittel'),
-                                                modalTitle: text('step.medlemskap.annetLandSiste12.listeTittel'),
+                                                addLabel: text('steg.medlemskap.utenlandsopphold.leggTilLabel'),
+                                                listTitle: text('steg.medlemskap.annetLandSiste12.listeTittel'),
+                                                modalTitle: text('steg.medlemskap.annetLandSiste12.listeTittel'),
                                             }}
                                             validate={validateUtenlandsoppholdSiste12Mnd}
                                         />
@@ -131,12 +131,12 @@ const MedlemskapStep = () => {
                                 )}
                                 <FormBlock>
                                     <YesOrNoQuestion
-                                        legend={text('step.medlemskap.annetLandNeste12.spm')}
+                                        legend={text('steg.medlemskap.annetLandNeste12.spm')}
                                         name={MedlemskapFormFields.skalBoUtenforNorgeNeste12Mnd}
                                         validate={getYesOrNoValidator()}
                                         description={
-                                            <ExpandableInfo title={text('step.medlemskap.hvaBetyrDette')}>
-                                                {text('step.medlemskap.annetLandNeste12.hjelp')}
+                                            <ExpandableInfo title={text('steg.medlemskap.hvaBetyrDette')}>
+                                                {text('steg.medlemskap.annetLandNeste12.hjelp')}
                                             </ExpandableInfo>
                                         }
                                     />
@@ -148,9 +148,9 @@ const MedlemskapStep = () => {
                                             minDate={neste12Måneder.from}
                                             maxDate={neste12Måneder.to}
                                             labels={{
-                                                addLabel: text('step.medlemskap.utenlandsopphold.leggTilLabel'),
-                                                listTitle: text('step.medlemskap.annetLandNeste12.listeTittel'),
-                                                modalTitle: text('step.medlemskap.annetLandNeste12.listeTittel'),
+                                                addLabel: text('steg.medlemskap.utenlandsopphold.leggTilLabel'),
+                                                listTitle: text('steg.medlemskap.annetLandNeste12.listeTittel'),
+                                                modalTitle: text('steg.medlemskap.annetLandNeste12.listeTittel'),
                                             }}
                                             validate={validateUtenlandsoppholdNeste12Mnd}
                                         />

@@ -12,13 +12,13 @@ const OmSøkerOppsummering: React.FC<Props> = ({ søker }) => {
         <FormSummary>
             <FormSummary.Header>
                 <FormSummary.Heading level="2">
-                    <AppText id="step.oppsummering.søker.header" />
+                    <AppText id="steg.oppsummering.søker.header" />
                 </FormSummary.Heading>
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>
                     <FormSummary.Label>
-                        <AppText id="step.oppsummering.søker.navn" />
+                        <AppText id="steg.oppsummering.søker.navn" />
                     </FormSummary.Label>
                     <FormSummary.Value>
                         {formatName(søker.fornavn, søker.etternavn, søker.mellomnavn)}
@@ -26,7 +26,7 @@ const OmSøkerOppsummering: React.FC<Props> = ({ søker }) => {
                 </FormSummary.Answer>
                 <FormSummary.Answer>
                     <FormSummary.Label>
-                        <AppText id="step.oppsummering.søker.fnr" />
+                        <AppText id="steg.oppsummering.søker.fnr" />
                     </FormSummary.Label>
                     <FormSummary.Value>{søker.fødselsnummer}</FormSummary.Value>
                 </FormSummary.Answer>

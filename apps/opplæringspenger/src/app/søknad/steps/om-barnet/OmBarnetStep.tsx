@@ -1,20 +1,11 @@
-import { Alert } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import { ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
-import {
-    getRequiredFieldValidator,
-    getStringValidator,
-    getYesOrNoValidator,
-} from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { useAppIntl } from '../../../i18n';
-import { BarnSammeAdresse } from '../../../types/BarnSammeAdresse';
 import { StepId } from '../../../types/StepId';
 import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
 import { SøknadContextState } from '../../../types/SøknadContextState';
@@ -35,10 +26,6 @@ export enum OmBarnetFormFields {
     barnetsFødselsnummer = 'barnetsFødselsnummer',
     barnetsFødselsdato = 'barnetsFødselsdato',
     søkersRelasjonTilBarnet = 'søkersRelasjonTilBarnet',
-    sammeAdresse = 'sammeAdresse',
-    kroniskEllerFunksjonshemming = 'kroniskEllerFunksjonshemming',
-    høyereRisikoForFravær = 'høyereRisikoForFravær',
-    høyereRisikoForFraværBeskrivelse = 'høyereRisikoForFraværBeskrivelse',
 }
 
 export interface OmBarnetFormValues {
@@ -48,21 +35,12 @@ export interface OmBarnetFormValues {
     [OmBarnetFormFields.barnetsFødselsnummer]: string;
     [OmBarnetFormFields.barnetsFødselsdato]: string;
     [OmBarnetFormFields.søkersRelasjonTilBarnet]?: SøkersRelasjonTilBarnet;
-    [OmBarnetFormFields.sammeAdresse]?: BarnSammeAdresse;
-    [OmBarnetFormFields.kroniskEllerFunksjonshemming]?: YesOrNo;
-    [OmBarnetFormFields.høyereRisikoForFravær]?: YesOrNo;
-    [OmBarnetFormFields.høyereRisikoForFraværBeskrivelse]?: string;
 }
 
-const { FormikWrapper, Form, YesOrNoQuestion, RadioGroup, Textarea } = getTypedFormComponents<
-    OmBarnetFormFields,
-    OmBarnetFormValues,
-    ValidationError
->();
+const { FormikWrapper, Form } = getTypedFormComponents<OmBarnetFormFields, OmBarnetFormValues, ValidationError>();
 
 const OmBarnetStep = () => {
     const intl = useIntl();
-    const { text } = useAppIntl();
     const {
         state: { søknadsdata, registrerteBarn },
     } = useSøknadContext();
@@ -98,17 +76,7 @@ const OmBarnetStep = () => {
             <FormikWrapper
                 initialValues={getOmBarnetStepInitialValues(søknadsdata, stepFormValues[stepId])}
                 onSubmit={handleSubmit}
-                renderForm={({
-                    values: {
-                        barnetSøknadenGjelder,
-                        søknadenGjelderEtAnnetBarn,
-                        kroniskEllerFunksjonshemming,
-                        sammeAdresse,
-                        søkersRelasjonTilBarnet,
-                        høyereRisikoForFravær,
-                    },
-                    setFieldValue,
-                }) => {
+                renderForm={({ values: { søknadenGjelderEtAnnetBarn }, setFieldValue }) => {
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -132,102 +100,6 @@ const OmBarnetStep = () => {
                                     <FormBlock>
                                         <AnnetBarnpart />
                                     </FormBlock>
-                                )}
-                                {(barnetSøknadenGjelder !== undefined || søknadenGjelderEtAnnetBarn || harIkkeBarn) && (
-                                    <>
-                                        <FormBlock>
-                                            <RadioGroup
-                                                name={OmBarnetFormFields.sammeAdresse}
-                                                legend={text('steg.omBarnet.spm.sammeAdresse')}
-                                                radios={[
-                                                    {
-                                                        label: text('steg.omBarnet.spm.sammeAdresse.ja'),
-                                                        value: BarnSammeAdresse.JA,
-                                                    },
-                                                    {
-                                                        label: text('steg.omBarnet.spm.sammeAdresse.jaDeltBosted'),
-                                                        value: BarnSammeAdresse.JA_DELT_BOSTED,
-                                                    },
-                                                    {
-                                                        label: text('steg.omBarnet.spm.sammeAdresse.nei'),
-                                                        value: BarnSammeAdresse.NEI,
-                                                    },
-                                                ]}
-                                                validate={getRequiredFieldValidator()}
-                                                data-testid="sammeAdresse"
-                                                description={
-                                                    <ExpandableInfo
-                                                        title={text('steg.omBarnet.spm.sammeAdresse.hvaBetyrDette')}>
-                                                        {text('steg.omBarnet.spm.sammeAdresse.hvaBetyrDette.info')}
-                                                    </ExpandableInfo>
-                                                }
-                                            />
-                                        </FormBlock>
-                                        {sammeAdresse === BarnSammeAdresse.NEI &&
-                                            søkersRelasjonTilBarnet !== SøkersRelasjonTilBarnet.FOSTERFORELDER && (
-                                                <FormBlock margin="l">
-                                                    <Alert variant="info">
-                                                        {text('steg.omBarnet.spm.sammeAdresse.neiAlert')}
-                                                    </Alert>
-                                                </FormBlock>
-                                            )}
-                                        <FormBlock>
-                                            <YesOrNoQuestion
-                                                name={OmBarnetFormFields.kroniskEllerFunksjonshemming}
-                                                legend={text('steg.omBarnet.spm.kroniskEllerFunksjonshemmende')}
-                                                validate={getYesOrNoValidator()}
-                                            />
-                                        </FormBlock>
-                                        {kroniskEllerFunksjonshemming === YesOrNo.YES && (
-                                            <>
-                                                <FormBlock>
-                                                    <YesOrNoQuestion
-                                                        name={OmBarnetFormFields.høyereRisikoForFravær}
-                                                        legend={text('steg.omBarnet.spm.høyereRisikoForFravær')}
-                                                        data-testid="høyereRisikoForFravær"
-                                                        validate={getYesOrNoValidator()}
-                                                    />
-                                                </FormBlock>
-                                                {høyereRisikoForFravær === YesOrNo.YES && (
-                                                    <FormBlock>
-                                                        <Textarea
-                                                            name={OmBarnetFormFields.høyereRisikoForFraværBeskrivelse}
-                                                            validate={(value) => {
-                                                                const error = getStringValidator({
-                                                                    minLength: 5,
-                                                                    maxLength: 1000,
-                                                                    required: true,
-                                                                })(value);
-
-                                                                return error;
-                                                            }}
-                                                            maxLength={1000}
-                                                            label={text(
-                                                                'steg.omBarnet.spm.høyereRisikoForFraværBeskrivelse.tittel',
-                                                            )}
-                                                            data-testid="høyereRisikoForFraværBeskrivelse"
-                                                        />
-                                                    </FormBlock>
-                                                )}
-                                                {høyereRisikoForFravær === YesOrNo.NO && (
-                                                    <FormBlock>
-                                                        <FormBlock margin="l">
-                                                            <Alert variant="info">
-                                                                {text('steg.omBarnet.spm.høyereRisikoForFravær.alert')}
-                                                            </Alert>
-                                                        </FormBlock>
-                                                    </FormBlock>
-                                                )}
-                                            </>
-                                        )}
-                                        {kroniskEllerFunksjonshemming === YesOrNo.NO && (
-                                            <FormBlock margin="l">
-                                                <Alert variant="info">
-                                                    {text('steg.omBarnet.alert.ikkeKroniskSykdom')}
-                                                </Alert>
-                                            </FormBlock>
-                                        )}
-                                    </>
                                 )}
                             </Form>
                         </>

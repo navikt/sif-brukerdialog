@@ -24,18 +24,18 @@ const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringS�
         <FormSummary>
             <FormSummary.Header>
                 <FormSummary.Heading level="2">
-                    <AppText id="step.oppsummering.legeerklæring.header" />
+                    <AppText id="steg.oppsummering.legeerklæring.header" />
                 </FormSummary.Heading>
                 {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>
                     <FormSummary.Label>
-                        <AppText id="step.oppsummering.legeerklæring.label" />
+                        <AppText id="steg.oppsummering.legeerklæring.label" />
                     </FormSummary.Label>{' '}
                     <FormSummary.Value>
                         {legeerklæringSøknadsdata?.vedlegg.length === 0 ? (
-                            <AppText id="step.oppsummering.legeerklæring.ingenVedlegg" />
+                            <AppText id="steg.oppsummering.legeerklæring.ingenVedlegg" />
                         ) : (
                             <div data-testid="legeerklæring-liste">
                                 <AttachmentList attachments={legeerklæringer} />

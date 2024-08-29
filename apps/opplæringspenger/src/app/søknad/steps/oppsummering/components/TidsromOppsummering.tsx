@@ -18,7 +18,7 @@ const TidsromOppsummering = ({ apiData, dagerMedPleie, onEdit }: Props) => {
             <FormSummary>
                 <FormSummary.Header>
                     <FormSummary.Heading level="2">
-                        <AppText id="step.oppsummeringtidsrom.header" />
+                        <AppText id="steg.oppsummeringtidsrom.header" />
                     </FormSummary.Heading>
                     {onEdit && <EditStepLink onEdit={onEdit} />}
                 </FormSummary.Header>
@@ -26,7 +26,7 @@ const TidsromOppsummering = ({ apiData, dagerMedPleie, onEdit }: Props) => {
                     <FormSummary.Answer>
                         <FormSummary.Label>
                             <AppText
-                                id="step.oppsummeringtidsrom.valgteDager.header"
+                                id="steg.oppsummeringtidsrom.valgteDager.header"
                                 values={{ dager: dagerMedPleie.length }}
                             />
                         </FormSummary.Label>
@@ -38,7 +38,7 @@ const TidsromOppsummering = ({ apiData, dagerMedPleie, onEdit }: Props) => {
                         <>
                             <FormSummary.Answer>
                                 <FormSummary.Label>
-                                    <AppText id="step.oppsummeringutenlandsoppholdIPerioden.header" />
+                                    <AppText id="steg.oppsummeringutenlandsoppholdIPerioden.header" />
                                 </FormSummary.Label>
                                 <FormSummary.Value>
                                     <AppText
@@ -54,7 +54,7 @@ const TidsromOppsummering = ({ apiData, dagerMedPleie, onEdit }: Props) => {
                             {apiData.utenlandsoppholdIPerioden.opphold.length > 0 && (
                                 <FormSummary.Answer>
                                     <FormSummary.Label>
-                                        <AppText id="step.oppsummeringutenlandsoppholdIPerioden.listetittel" />
+                                        <AppText id="steg.oppsummeringutenlandsoppholdIPerioden.listetittel" />
                                     </FormSummary.Label>
                                     <FormSummary.Value>
                                         <SummaryList

@@ -1,9 +1,4 @@
 const nb = {
-    'step.arbeidssituasjon.pageTitle': 'Arbeidssituasjon',
-    'step.arbeidssituasjon.stepTitle': 'Arbeidssituasjon',
-    'step.arbeidssituasjon.stepIndicatorLabel': 'Arbeidssituasjon',
-    'step.arbeidssituasjon.nextButtonLabel': 'Fortsett',
-
     'steg.arbeidssituasjon.tittel': 'Arbeidsgivere',
 
     'steg.arbeidssituasjon.veileder.1':

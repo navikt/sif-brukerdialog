@@ -1,5 +1,4 @@
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
-import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { FormikRadioProp } from '@navikt/sif-common-formik-ds/src/components/formik-radio-group/FormikRadioGroup';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
@@ -25,10 +24,6 @@ export const getOmBarnetStepInitialValues = (
         barnetsNavn: '',
         barnetsFødselsdato: '',
         søkersRelasjonTilBarnet: undefined,
-        sammeAdresse: undefined,
-        kroniskEllerFunksjonshemming: YesOrNo.UNANSWERED,
-        høyereRisikoForFravær: YesOrNo.UNANSWERED,
-        høyereRisikoForFraværBeskrivelse: undefined,
     };
 
     const { omBarnet } = søknadsdata;
@@ -59,7 +54,7 @@ export const getOmBarnetSøknadsdataFromFormValues = (
     { registrerteBarn = [] }: Partial<SøknadContextState>,
 ): OmBarnetSøknadsdata | undefined => {
     if (values.søknadenGjelderEtAnnetBarn || registrerteBarn.length === 0) {
-        if (values.søkersRelasjonTilBarnet === undefined || values.sammeAdresse === undefined) {
+        if (values.søkersRelasjonTilBarnet === undefined) {
             return undefined;
         }
         return {
@@ -76,10 +71,6 @@ export const getOmBarnetSøknadsdataFromFormValues = (
         : undefined;
 
     if (!barn) {
-        return undefined;
-    }
-
-    if (!values.sammeAdresse) {
         return undefined;
     }
 

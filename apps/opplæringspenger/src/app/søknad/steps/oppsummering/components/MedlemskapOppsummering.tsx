@@ -22,14 +22,14 @@ const MedlemskapOppsummering: React.FC<Props> = ({ medlemskap, onEdit }) => {
         <FormSummary>
             <FormSummary.Header>
                 <FormSummary.Heading level="2">
-                    <AppText id="step.oppsummering.medlemskap.header" />
+                    <AppText id="steg.oppsummering.medlemskap.header" />
                 </FormSummary.Heading>
                 {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>
                     <FormSummary.Label>
-                        <AppText id="step.oppsummering.utlandetSiste12.header" />
+                        <AppText id="steg.oppsummering.utlandetSiste12.header" />
                     </FormSummary.Label>
                     <FormSummary.Value>
                         <div data-testid="oppsummering-medlemskap-utlandetSiste12">
@@ -40,7 +40,7 @@ const MedlemskapOppsummering: React.FC<Props> = ({ medlemskap, onEdit }) => {
                 {harBoddIUtlandetSiste12Mnd && utenlandsoppholdSiste12Mnd.length > 0 && (
                     <FormSummary.Answer>
                         <FormSummary.Label>
-                            <AppText id="step.oppsummering.utlandetSiste12.liste.header" />
+                            <AppText id="steg.oppsummering.utlandetSiste12.liste.header" />
                         </FormSummary.Label>
                         <FormSummary.Value>
                             <div data-testid="oppsummering-medlemskap-utlandetSiste12-list">
@@ -55,7 +55,7 @@ const MedlemskapOppsummering: React.FC<Props> = ({ medlemskap, onEdit }) => {
                 )}
                 <FormSummary.Answer>
                     <FormSummary.Label>
-                        <AppText id="step.oppsummering.utlandetNeste12.header" />
+                        <AppText id="steg.oppsummering.utlandetNeste12.header" />
                     </FormSummary.Label>
                     <FormSummary.Value>
                         <div data-testid="oppsummering-medlemskap-utlandetNeste12">
@@ -66,7 +66,7 @@ const MedlemskapOppsummering: React.FC<Props> = ({ medlemskap, onEdit }) => {
                 {skalBoIUtlandetNeste12Mnd && utenlandsoppholdNeste12Mnd.length > 0 && (
                     <FormSummary.Answer>
                         <FormSummary.Label>
-                            <AppText id="step.oppsummering.utlandetNeste12.liste.header" />
+                            <AppText id="steg.oppsummering.utlandetNeste12.liste.header" />
                         </FormSummary.Label>
                         <FormSummary.Value>
                             <div data-testid="oppsummering-medlemskap-utlandetNeste12-list">

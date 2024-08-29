@@ -36,7 +36,7 @@ const ArbeidssituasjonSummary: React.FC<Props> = ({
         <FormSummary>
             <FormSummary.Header>
                 <FormSummary.Heading level="2">
-                    <AppText id="step.oppsummeringarbeidssituasjon.header" />
+                    <AppText id="steg.oppsummeringarbeidssituasjon.header" />
                 </FormSummary.Heading>
                 {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>

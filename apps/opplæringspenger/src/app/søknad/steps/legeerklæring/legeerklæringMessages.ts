@@ -1,12 +1,7 @@
 const nb = {
-    'step.legeerklæring.pageTitle': 'Legeerklæring',
-    'step.legeerklæring.stepTitle': 'Legeerklæring',
-    'step.legeerklæring.stepIndicatorLabel': 'Legeerklæring',
-    'step.legeerklæring.nextButtonLabel': 'Fortsett',
+    'steg.legeerklæring.counsellorPanel.info': 'Her skal du laste opp en legeerklæring som bekrefter at ...',
 
-    'step.legeerklæring.counsellorPanel.info': 'Her skal du laste opp en legeerklæring som bekrefter at ...',
-
-    'step.legeerklæring.vedlegg.knappLabel': 'Last opp legeerklæringen',
+    'steg.legeerklæring.vedlegg.knappLabel': 'Last opp legeerklæringen',
 
     'vedleggsliste.ingenLegeerklæringLastetOpp': 'Ingen legeerklæring er lastet opp',
 

@@ -72,15 +72,33 @@ const nb = {
     'sn.arbeidsforhold.spm':
         'Hvor mange timer jobber du normalt per uke som selvstendig næringsdrivende når du ikke har fravær?',
 
-    'step.arbeidstid.pageTitle': 'Opplysninger om arbeidstid',
-    'step.arbeidstid.stepTitle': 'Jobb i søknadsperioden',
-    'step.arbeidstid.stepIndicatorLabel': 'Jobb i søknadsperioden',
-    'step.arbeidstid.nextButtonLabel': 'Fortsett',
+    'step.omBarnet.pageTitle': 'Om barnet',
+    'step.omBarnet.stepTitle': 'Om barnet',
+    'step.omBarnet.stepIndicatorLabel': 'Om barnet',
+
+    'step.tidsrom.pageTitle': 'Dager du må være hjemme fra jobb for å gi pleie',
+    'step.tidsrom.stepTitle': 'Dager du må være hjemme fra jobb for å gi pleie',
+    'step.tidsrom.stepIndicatorLabel': 'Periode',
+
+    'step.arbeidssituasjon.stepTitle': 'Arbeidssituasjon',
+    'step.arbeidssituasjon.pageTitle': 'Arbeidssituasjon',
+    'step.arbeidssituasjon.stepIndicatorLabel': 'Arbeidssituasjon',
+    'step.arbeidssituasjon.nextButtonLabel': 'Fortsett',
 
     'step.medlemskap.pageTitle': 'Medlemskap i folketrygden',
     'step.medlemskap.stepTitle': 'Medlemskap i folketrygden',
     'step.medlemskap.stepIndicatorLabel': 'Om medlemskap i folketrygden',
     'step.medlemskap.nextButtonLabel': 'Fortsett',
+
+    'step.legeerklæring.stepTitle': 'Legeerklæring',
+    'step.legeerklæring.pageTitle': 'Legeerklæring',
+    'step.legeerklæring.stepIndicatorLabel': 'Legeerklæring',
+    'step.legeerklæring.nextButtonLabel': 'Fortsett',
+
+    'step.oppsummering.pageTitle': 'Oppsummering',
+    'step.oppsummering.stepTitle': 'Oppsummering',
+    'step.oppsummering.stepIndicatorLabel': 'Oppsummering',
+    'step.oppsummering.nextButtonLabel': 'Send inn søknad',
 
     'validation.harForståttRettigheterOgPlikter.notChecked': 'Du må bekrefte at du har lest og forstått dine plikter.',
 

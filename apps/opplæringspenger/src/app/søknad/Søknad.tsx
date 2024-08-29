@@ -40,8 +40,6 @@ const Søknad = () => {
     /** Success */
     const { data } = initialData;
 
-    console.log(data);
-
     return (
         <SøknadContextProvider initialData={data}>
             <StepFormValuesContextProvider>

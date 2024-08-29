@@ -98,13 +98,13 @@ const TidsromStep = () => {
                                 runDelayedFormValidation={true}>
                                 <SifGuidePanel>
                                     <p>
-                                        <AppText id="step.tidsrom.counsellorPanel.avsnitt.1" />
+                                        <AppText id="steg.tidsrom.counsellorPanel.avsnitt.1" />
                                     </p>
                                     <p>
-                                        <AppText id="step.tidsrom.counsellorPanel.avsnitt.2" />
+                                        <AppText id="steg.tidsrom.counsellorPanel.avsnitt.2" />
                                     </p>
                                     <p>
-                                        <AppText id="step.tidsrom.counsellorPanel.avsnitt.3" />
+                                        <AppText id="steg.tidsrom.counsellorPanel.avsnitt.3" />
                                     </p>
                                 </SifGuidePanel>
 
