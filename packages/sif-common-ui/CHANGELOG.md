@@ -1,5 +1,11 @@
 # @navikt/sif-common-ui
 
+## 0.8.5
+
+### Patch Changes
+
+-   ProgressStepper - kun tillate klikk på steg som er ferdige
+
 ## 0.8.4
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.26.10
+
+### Patch Changes
+
+-   @navikt/sif-common-soknad-ds@13.2.6
+
 ## 1.26.9
 
 ### Patch Changes
