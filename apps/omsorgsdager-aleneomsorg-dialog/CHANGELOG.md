@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.20.10
+
+### Patch Changes
+
+-   @navikt/sif-common-soknad-ds@13.2.6
+
 ## 2.20.9
 
 ### Patch Changes

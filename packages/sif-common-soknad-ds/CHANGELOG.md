@@ -1,5 +1,12 @@
 # @navikt/sif-common-soknad-ds
 
+## 13.2.6
+
+### Patch Changes
+
+-   Updated dependencies
+    -   @navikt/sif-common-ui@0.8.5
+
 ## 13.2.5
 
 ### Patch Changes
