@@ -179,3 +179,15 @@ export const OmsorgsdagerKalkulator: AppInfo = {
         prod: 'https://www.nav.no/omsorgspenger/kalkulator-antall-omsorgsdager',
     },
 };
+
+export const OpplæringspengerApp: AppInfo = {
+    key: 'opplæringspenger-soknad',
+    navn: 'Søknad om opplæringspenger',
+    tittel: {
+        nb: 'Søknad om opplæringspenger',
+    },
+    lenker: {
+        q: 'https://opplaringspenger-soknad.intern.dev.nav.no',
+        prod: 'https://www.nav.no/familie/sykdom-i-familien/soknad/opplaringspenger',
+    },
+};
