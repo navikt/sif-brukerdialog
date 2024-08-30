@@ -25,7 +25,7 @@ const renderKursperiodeLabel = (
                 {!onEdit && <span>{title}</span>}
             </div>
 
-            <BodyShort size="small">
+            <BodyShort size="small" as="div">
                 <HStack gap={'5'}>
                     <span>Avreisedato: {prettifyDateExtended(kursperiode.avreise || kursperiode.periode.from)}</span>
                     <span>Hjemkomstdato: {prettifyDateExtended(kursperiode.hjemkomst || kursperiode.periode.to)}</span>

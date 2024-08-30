@@ -7,6 +7,7 @@ import {
     getDate3YearsAgo,
     dateRangesCollide,
     dateRangesExceedsRange,
+    dateRangeUtils,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
@@ -64,8 +65,20 @@ export const validateUtenlandsoppholdIPerioden = (
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const getKursSøknadsdataFromFormValues = (_: KursFormValues): KursSøknadsdata | undefined => {
-    return {};
+export const getKursSøknadsdataFromFormValues = ({
+    kursholder,
+    kursperioder,
+}: KursFormValues): KursSøknadsdata | undefined => {
+    if (!kursholder || !kursperioder || !kursholder) {
+        throw 'Kursholder eller kursperioder er ikke definert';
+    }
+
+    const søknadsperiode = dateRangeUtils.getDateRangeFromDateRanges(kursperioder.map((p) => p.periode));
+    return {
+        søknadsperiode,
+        kursholder,
+        kursperioder,
+    };
 };
 
 export const getKursStepInitialValues = (søknadsdata: Søknadsdata, formValues?: KursFormValues): KursFormValues => {
