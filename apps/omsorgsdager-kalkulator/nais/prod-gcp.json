@@ -9,7 +9,7 @@
     "readinessPath": "/omsorgspenger/kalkulator-antall-omsorgsdager/api/health/isReady",
     "minReplicas": 1,
     "maxReplicas": 1,
-    "observabilityEnabled": "false",
+    "observabilityEnabled": "true",
     "env": {
         "NEXT_PUBLIC_DEKORATOR_ENV": "prod",
         "NEXT_PUBLIC_ENVIRONMENT": "prod",
