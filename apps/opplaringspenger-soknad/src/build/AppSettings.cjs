@@ -13,6 +13,7 @@ const getAppSettings = () => ({
     MINSIDE_URL: `${process.env.MINSIDE_URL}`,
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
     VEDLEGG_API_URL: `${process.env.VEDLEGG_API_URL}`,
+    DISABLE_MELLOMLAGRING: `${process.env.DISABLE_MELLOMLAGRING}`,
 });
 
 module.exports = getAppSettings;

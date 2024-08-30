@@ -17,6 +17,7 @@
         "APPSTATUS_DATASET": "staging",
         "APPSTATUS_PROJECT_ID": "ryujtq87",
         "DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://opplaringspenger-soknad.intern.dev.nav.no/oauth2/logout&redirectToApp=true",
+        "DISABLE_MELLOMLAGRING": "true",
         "FRONTEND_API_PATH": "/familie/sykdom-i-familien/soknad/opplaringspenger/api",
         "FRONTEND_VEDLEGG_URL": "https://opplaringspenger-soknad.intern.dev.nav.no/familie/sykdom-i-familien/soknad/opplaringspenger/api",
         "LOGIN_URL": "https://opplaringspenger-soknad.intern.dev.nav.no/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/opplaringspenger/soknad",
