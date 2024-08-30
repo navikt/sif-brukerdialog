@@ -4,18 +4,15 @@ import {
     getDateRangeValidator,
     getDateValidator,
     getStringValidator,
-    ValidateDateError,
-    ValidateDateRangeError,
 } from '@navikt/sif-common-formik-ds/src/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-// import { handleDateRangeValidationError, mapFomTomToDateRange } from '../../utils';
 import kursperiodeUtils from './kursperiodeUtils';
-import { KursperiodeMessageKeys, useKursperiodeIntl } from './kursperiodeMessages';
+import { useKursperiodeIntl } from './kursperiodeMessages';
 import { handleDateRangeValidationError } from '@navikt/sif-common-forms-ds/src/utils';
 import { Kursperiode } from '../../../../types/Kursperiode';
 import { ISODate, ISODateToDate } from '@navikt/sif-common-utils';
-import { VStack } from '@navikt/ds-react';
+import { HStack, VStack } from '@navikt/ds-react';
 import { FormPanel } from '@navikt/sif-common-ui';
 
 export interface KursperiodeFormLabels {
@@ -36,7 +33,7 @@ interface Props {
     onCancel: () => void;
 }
 
-enum KursperiodeFormFields {
+export enum KursperiodeFormFields {
     tom = 'tom',
     fom = 'fom',
     avreise = 'avreise',
@@ -53,29 +50,6 @@ export interface KursperiodeFormValues {
     [KursperiodeFormFields.begrunnelseReisetidHjem]?: string;
     [KursperiodeFormFields.begrunnelseReisetidTil]?: string;
 }
-
-export const KursperiodeFormErrors: Record<KursperiodeFormFields, { [key: string]: KursperiodeMessageKeys }> = {
-    [KursperiodeFormFields.fom]: {
-        [ValidateDateError.dateHasNoValue]: 'kursperiodeForm.fom.dateHasNoValue',
-        [ValidateDateRangeError.fromDateIsAfterToDate]: 'kursperiodeForm.fom.fromDateIsAfterToDate',
-        [ValidateDateError.dateHasInvalidFormat]: 'kursperiodeForm.fom.dateHasInvalidFormat',
-        [ValidateDateError.dateIsBeforeMin]: 'kursperiodeForm.fom.dateIsBeforeMin',
-        [ValidateDateError.dateIsAfterMax]: 'kursperiodeForm.fom.dateIsAfterMax',
-    },
-    [KursperiodeFormFields.tom]: {
-        [ValidateDateError.dateHasNoValue]: 'kursperiodeForm.tom.dateHasNoValue',
-        [ValidateDateRangeError.toDateIsBeforeFromDate]: 'kursperiodeForm.tom.toDateIsBeforeFromDate',
-        [ValidateDateError.dateHasInvalidFormat]: 'kursperiodeForm.tom.dateHasInvalidFormat',
-        [ValidateDateError.dateIsBeforeMin]: 'kursperiodeForm.tom.dateIsBeforeMin',
-        [ValidateDateError.dateIsAfterMax]: 'kursperiodeForm.tom.dateIsAfterMax',
-    },
-    [KursperiodeFormFields.avreise]: {
-        [ValidateDateError.dateHasNoValue]: 'kursperiodeForm.tom.dateHasNoValue',
-    },
-    [KursperiodeFormFields.hjemkomst]: {},
-    [KursperiodeFormFields.begrunnelseReisetidHjem]: {},
-    [KursperiodeFormFields.begrunnelseReisetidTil]: {},
-};
 
 const Form = getTypedFormComponents<KursperiodeFormFields, KursperiodeFormValues, ValidationError>();
 
@@ -130,9 +104,10 @@ const KursperiodeForm = ({
                             formErrorHandler={getFormErrorHandler(intl, 'kursperiodeForm')}
                             submitButtonLabel="Ok"
                             showButtonArrows={false}>
-                            <VStack gap={'6'}>
+                            <VStack gap={'6'} maxWidth={'30rem'}>
                                 <Form.DateRangePicker
                                     legend={inlineLabels.intervalTitle}
+                                    description="Velg start- og sluttdato for kursperioden."
                                     minDate={minDate}
                                     maxDate={maxDate}
                                     disabledDateRanges={disabledDateRanges}
@@ -173,14 +148,30 @@ const KursperiodeForm = ({
                                         },
                                     }}
                                 />
-                                <VStack gap={'2'}>
-                                    <Form.DatePicker
-                                        name={KursperiodeFormFields.avreise}
-                                        label="Avreisedato"
-                                        maxDate={startdato}
-                                        validate={getDateValidator({ max: startdato, required: true })}
-                                    />
-                                    {kursperiodeUtils.måBesvareBegrunnelseReisetidHjem(formik.values) && (
+
+                                <Form.InputGroup legend="Reisetid" name={'as' as any}>
+                                    <p>
+                                        Hvis du reiser til eller hjem en annen dag enn kursperioden, må du oppgi dette
+                                        her.
+                                    </p>
+                                    <HStack gap={'4'}>
+                                        <Form.DatePicker
+                                            name={KursperiodeFormFields.avreise}
+                                            label="Avreisedato"
+                                            maxDate={startdato}
+                                            validate={getDateValidator({ max: startdato })}
+                                        />
+                                        <Form.DatePicker
+                                            name={KursperiodeFormFields.hjemkomst}
+                                            label="Hjemkomst"
+                                            minDate={sluttdato}
+                                            validate={getDateValidator({ min: sluttdato })}
+                                        />
+                                    </HStack>
+                                </Form.InputGroup>
+
+                                {kursperiodeUtils.måBesvareBegrunnelseReisetidHjem(formik.values) && (
+                                    <VStack gap={'2'}>
                                         <FormPanel>
                                             <Form.Textarea
                                                 name={KursperiodeFormFields.begrunnelseReisetidTil}
@@ -189,16 +180,10 @@ const KursperiodeForm = ({
                                                 validate={getStringValidator({ minLength: 5, required: true })}
                                             />
                                         </FormPanel>
-                                    )}
-                                </VStack>
-                                <VStack gap={'2'}>
-                                    <Form.DatePicker
-                                        name={KursperiodeFormFields.hjemkomst}
-                                        label="Hjemkomst"
-                                        minDate={sluttdato}
-                                        validate={getDateValidator({ min: sluttdato, required: true })}
-                                    />
-                                    {kursperiodeUtils.måBesvareBegrunnelsebegrunnelseReisetidTil(formik.values) && (
+                                    </VStack>
+                                )}
+                                {kursperiodeUtils.måBesvareBegrunnelsebegrunnelseReisetidTil(formik.values) && (
+                                    <VStack gap={'2'}>
                                         <FormPanel>
                                             <Form.Textarea
                                                 name={KursperiodeFormFields.begrunnelseReisetidHjem}
@@ -207,8 +192,8 @@ const KursperiodeForm = ({
                                                 validate={getStringValidator({ minLength: 5, required: true })}
                                             />
                                         </FormPanel>
-                                    )}
-                                </VStack>
+                                    </VStack>
+                                )}
                             </VStack>
                         </Form.Form>
                     );

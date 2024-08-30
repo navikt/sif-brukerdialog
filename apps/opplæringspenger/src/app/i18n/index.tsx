@@ -12,6 +12,7 @@ import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
 import { appMessages } from './appMessages';
 import { omBarnetMessages } from '../søknad/steps/om-barnet/stegOmBarnetMessages';
+import { kursperiodeMessages } from '../søknad/steps/kurs/kursperiode';
 
 export const libMessages = {
     nb: {
@@ -24,6 +25,7 @@ export const libMessages = {
         ...utenlandsoppholdMessages.nb,
         ...virksomhetMessages.nb,
         ...omBarnetMessages.nb,
+        ...kursperiodeMessages.nb,
     },
     nn: {
         ...commonMessages.nn,
