@@ -8,6 +8,7 @@ on:
                 description: Choose application
                 type: choice
                 options:
+                    - opplaringspenger-soknad
                     - endringsmelding-pleiepenger
                     - ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
                     - omsorgspengesoknad
