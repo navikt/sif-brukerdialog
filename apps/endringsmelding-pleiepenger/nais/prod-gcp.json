@@ -1,7 +1,7 @@
 {
     "app": "endringsmelding-pleiepenger",
     "cluster": "prod-gcp",
-    "observabilityEnabled": "false",
+    "observabilityEnabled": "true",
     "env": {
         "API_TOKENX_AUDIENCE": "prod-gcp:dusseldorf:k9-brukerdialog-prosessering",
         "API_URL_INNSYN": "http://sif-innsyn-api",
