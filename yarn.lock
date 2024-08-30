@@ -3946,9 +3946,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/opplaringspenger-soknad@workspace:apps/opplæringspenger":
+"@navikt/opplaringspenger-soknad@workspace:apps/opplaringspenger-soknad":
   version: 0.0.0-use.local
-  resolution: "@navikt/opplaringspenger-soknad@workspace:apps/opplæringspenger"
+  resolution: "@navikt/opplaringspenger-soknad@workspace:apps/opplaringspenger-soknad"
   dependencies:
     "@babel/core": "npm:7.25.2"
     "@babel/preset-env": "npm:7.25.4"
