@@ -2,6 +2,7 @@ import {
     ValidateDateError,
     ValidateDateRangeError,
     ValidateStringError,
+    ValidateYesOrNoError,
 } from '@navikt/sif-common-formik-ds/src/validation';
 import { KursperiodeFormFields } from './KursperiodeForm';
 import { KursperiodeMessageKeys } from './kursperiodeMessages';
@@ -32,6 +33,12 @@ export const KursperiodeFormErrors: Record<KursperiodeFormFields, { [key: string
         [ValidateDateError.dateHasInvalidFormat]: 'kursperiodeForm.hjemkomst.dateHasInvalidFormat',
         [ValidateDateError.dateIsBeforeMin]: 'kursperiodeForm.hjemkomst.dateIsBeforeMin',
         [ValidateDateError.dateIsAfterMax]: 'kursperiodeForm.hjemkomst.dateIsAfterMax',
+    },
+    [KursperiodeFormFields.avreiseSammeDag]: {
+        [ValidateYesOrNoError.yesOrNoIsUnanswered]: 'kursperiodeForm.avreiseSammeDag.yesOrNoIsUnanswered',
+    },
+    [KursperiodeFormFields.hjemkomstSammeDag]: {
+        [ValidateYesOrNoError.yesOrNoIsUnanswered]: 'kursperiodeForm.hjemkomstSammeDag.yesOrNoIsUnanswered',
     },
     [KursperiodeFormFields.begrunnelseReisetidHjem]: {
         [ValidateStringError.stringHasNoValue]: 'kursperiodeForm.begrunnelseReisetidFra.stringHasNoValue',

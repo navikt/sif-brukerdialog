@@ -1,5 +1,5 @@
-import { dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds';
-import { dateRangeUtils, guid, ISODateToDate } from '@navikt/sif-common-utils';
+import { dateToISOString, ISOStringToDate, YesOrNo } from '@navikt/sif-common-formik-ds';
+import { dateRangeUtils, guid } from '@navikt/sif-common-utils';
 import { KursperiodeFormValues } from './KursperiodeForm';
 import { Kursperiode } from '../../../../types/Kursperiode';
 
@@ -49,22 +49,24 @@ const mapKursperiodeToFormValues = ({
         tom: dateToISOString(periode?.to),
         avreise: dateToISOString(avreise),
         hjemkomst: dateToISOString(hjemkomst),
+        avreiseSammeDag: avreise ? YesOrNo.NO : periode ? YesOrNo.YES : YesOrNo.UNANSWERED,
+        hjemkomstSammeDag: hjemkomst ? YesOrNo.NO : periode ? YesOrNo.YES : YesOrNo.UNANSWERED,
         begrunnelseReisetidHjem,
         begrunnelseReisetidTil,
     };
 };
 
 const getDagerMellomAvreiseOgStartdato = ({ fom, avreise }: Partial<KursperiodeFormValues>): number => {
-    const startdato = ISODateToDate(fom || '');
-    const avreisedato = ISODateToDate(avreise || '');
+    const startdato = ISOStringToDate(fom);
+    const avreisedato = ISOStringToDate(avreise);
 
     return startdato && avreisedato
         ? dateRangeUtils.getNumberOfDaysInDateRange({ from: avreisedato, to: startdato })
         : 0;
 };
 const getDagerMellomSluttdatoOgHjemkomst = ({ hjemkomst, tom }: Partial<KursperiodeFormValues>): number => {
-    const sluttdato = ISODateToDate(tom || '');
-    const hjemkomstdato = ISODateToDate(hjemkomst || '');
+    const sluttdato = ISOStringToDate(tom);
+    const hjemkomstdato = ISOStringToDate(hjemkomst);
 
     return sluttdato && hjemkomstdato
         ? dateRangeUtils.getNumberOfDaysInDateRange({ from: sluttdato, to: hjemkomstdato })
@@ -86,7 +88,7 @@ const kursperiodeUtils = {
     getDagerMellomAvreiseOgStartdato,
     getDagerMellomSluttdatoOgHjemkomst,
     måBesvareBegrunnelseReisetidHjem,
-    måBesvareBegrunnelsebegrunnelseReisetidTil: måBesvareBegrunnelseReisetidTil,
+    måBesvareBegrunnelseReisetidTil,
 };
 
 export default kursperiodeUtils;

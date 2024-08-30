@@ -1,9 +1,10 @@
 import { useIntl } from 'react-intl';
-import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
+import { getTypedFormComponents, ISOStringToDate, YesOrNo } from '@navikt/sif-common-formik-ds';
 import {
     getDateRangeValidator,
     getDateValidator,
     getStringValidator,
+    getYesOrNoValidator,
 } from '@navikt/sif-common-formik-ds/src/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
@@ -11,10 +12,10 @@ import kursperiodeUtils from './kursperiodeUtils';
 import { useKursperiodeIntl } from './kursperiodeMessages';
 import { handleDateRangeValidationError } from '@navikt/sif-common-forms-ds/src/utils';
 import { Kursperiode } from '../../../../types/Kursperiode';
-import { ISODate, ISODateToDate } from '@navikt/sif-common-utils';
-import { HStack, VStack } from '@navikt/ds-react';
+import { ISODate } from '@navikt/sif-common-utils';
+import { VStack } from '@navikt/ds-react';
 import { FormPanel } from '@navikt/sif-common-ui';
-
+import dayjs from 'dayjs';
 export interface KursperiodeFormLabels {
     fromDate: string;
     toDate: string;
@@ -36,6 +37,8 @@ interface Props {
 export enum KursperiodeFormFields {
     tom = 'tom',
     fom = 'fom',
+    avreiseSammeDag = 'avreiseSammeDag',
+    hjemkomstSammeDag = 'hjemkomstSammeDag',
     avreise = 'avreise',
     hjemkomst = 'hjemkomst',
     begrunnelseReisetidTil = 'begrunnelseReisetidTil',
@@ -45,6 +48,8 @@ export enum KursperiodeFormFields {
 export interface KursperiodeFormValues {
     [KursperiodeFormFields.fom]: ISODate;
     [KursperiodeFormFields.tom]: ISODate;
+    [KursperiodeFormFields.avreiseSammeDag]: YesOrNo;
+    [KursperiodeFormFields.hjemkomstSammeDag]: YesOrNo;
     [KursperiodeFormFields.avreise]?: ISODate;
     [KursperiodeFormFields.hjemkomst]?: string;
     [KursperiodeFormFields.begrunnelseReisetidHjem]?: string;
@@ -95,8 +100,12 @@ const KursperiodeForm = ({
                             ? alleKursperioder.map((k) => k.periode)
                             : alleKursperioder.filter((t) => t.id !== kursperiode.id).map((k) => k.periode);
 
-                    const startdato = ISODateToDate(formik.values[KursperiodeFormFields.fom] || '');
-                    const sluttdato = ISODateToDate(formik.values[KursperiodeFormFields.tom] || '');
+                    const startdato = ISOStringToDate(formik.values[KursperiodeFormFields.fom]);
+                    const sluttdato = ISOStringToDate(formik.values[KursperiodeFormFields.tom]);
+
+                    const harIkkeAvreiseSammeDag = formik.values[KursperiodeFormFields.avreiseSammeDag] === YesOrNo.NO;
+                    const harIkkeHjemkomstSammeDag =
+                        formik.values[KursperiodeFormFields.hjemkomstSammeDag] === YesOrNo.NO;
 
                     return (
                         <Form.Form
@@ -148,52 +157,72 @@ const KursperiodeForm = ({
                                         },
                                     }}
                                 />
-
-                                <Form.InputGroup legend="Reisetid" name={'as' as any}>
-                                    <p>
-                                        Hvis du reiser til eller hjem en annen dag enn kursperioden, må du oppgi dette
-                                        her.
-                                    </p>
-                                    <HStack gap={'4'}>
-                                        <Form.DatePicker
-                                            name={KursperiodeFormFields.avreise}
-                                            label="Avreisedato"
-                                            maxDate={startdato}
-                                            validate={getDateValidator({ max: startdato })}
-                                        />
-                                        <Form.DatePicker
-                                            name={KursperiodeFormFields.hjemkomst}
-                                            label="Hjemkomst"
-                                            minDate={sluttdato}
-                                            validate={getDateValidator({ min: sluttdato })}
-                                        />
-                                    </HStack>
-                                </Form.InputGroup>
-
-                                {kursperiodeUtils.måBesvareBegrunnelseReisetidHjem(formik.values) && (
-                                    <VStack gap={'2'}>
-                                        <FormPanel>
-                                            <Form.Textarea
-                                                name={KursperiodeFormFields.begrunnelseReisetidTil}
-                                                label="Begrunnelse for reisetid til kurssted"
-                                                description="På grunn av at det er mer enn én dag mellom avreise og startdato, må du begrunne reisetiden til kursstedet."
-                                                validate={getStringValidator({ minLength: 5, required: true })}
+                                {startdato && sluttdato ? (
+                                    <VStack gap="6">
+                                        <VStack gap="4">
+                                            <Form.YesOrNoQuestion
+                                                name={KursperiodeFormFields.avreiseSammeDag}
+                                                legend="Reiser du til kursstedet på samme dag som kurset starter?"
+                                                validate={getYesOrNoValidator()}
                                             />
-                                        </FormPanel>
-                                    </VStack>
-                                )}
-                                {kursperiodeUtils.måBesvareBegrunnelsebegrunnelseReisetidTil(formik.values) && (
-                                    <VStack gap={'2'}>
-                                        <FormPanel>
-                                            <Form.Textarea
-                                                name={KursperiodeFormFields.begrunnelseReisetidHjem}
-                                                label="Begrunnelse for reisetid fra kurssted"
-                                                description="På grunn av at det er mer enn én dag mellom sluttdato og hjemkomst, må du begrunne reisetiden fra kursstedet."
-                                                validate={getStringValidator({ minLength: 5, required: true })}
+                                            {harIkkeAvreiseSammeDag ? (
+                                                <Form.DatePicker
+                                                    name={KursperiodeFormFields.avreise}
+                                                    label="Hvilken dato reiser du til kursstedet"
+                                                    maxDate={dayjs(startdato).subtract(1, 'day').toDate()}
+                                                    validate={getDateValidator({ max: startdato })}
+                                                />
+                                            ) : null}
+                                            {kursperiodeUtils.måBesvareBegrunnelseReisetidTil(formik.values) && (
+                                                <VStack gap={'2'}>
+                                                    <FormPanel>
+                                                        <Form.Textarea
+                                                            name={KursperiodeFormFields.begrunnelseReisetidTil}
+                                                            label="Begrunnelse for reisetid til kurssted"
+                                                            description="På grunn av at det er mer enn én dag mellom avreise og startdato, må du begrunne reisetiden til kursstedet."
+                                                            validate={getStringValidator({
+                                                                minLength: 5,
+                                                                required: true,
+                                                            })}
+                                                        />
+                                                    </FormPanel>
+                                                </VStack>
+                                            )}
+                                        </VStack>
+
+                                        <VStack gap="4">
+                                            <Form.YesOrNoQuestion
+                                                name={KursperiodeFormFields.hjemkomstSammeDag}
+                                                legend="Kommer du hjem fra kursstedet på samme dag som kurset slutter?"
+                                                validate={getYesOrNoValidator()}
                                             />
-                                        </FormPanel>
+                                            {harIkkeHjemkomstSammeDag ? (
+                                                <Form.DatePicker
+                                                    name={KursperiodeFormFields.hjemkomst}
+                                                    label="Hvilken dato kommer du hjem fra kursstedet"
+                                                    minDate={dayjs(sluttdato).add(1, 'day').toDate()}
+                                                    validate={getDateValidator({ min: sluttdato })}
+                                                />
+                                            ) : null}
+
+                                            {kursperiodeUtils.måBesvareBegrunnelseReisetidHjem(formik.values) && (
+                                                <VStack gap={'2'}>
+                                                    <FormPanel>
+                                                        <Form.Textarea
+                                                            name={KursperiodeFormFields.begrunnelseReisetidHjem}
+                                                            label="Begrunnelse for reisetid fra kurssted"
+                                                            description="På grunn av at det er mer enn én dag mellom sluttdato og hjemkomst, må du begrunne reisetiden fra kursstedet."
+                                                            validate={getStringValidator({
+                                                                minLength: 5,
+                                                                required: true,
+                                                            })}
+                                                        />
+                                                    </FormPanel>
+                                                </VStack>
+                                            )}
+                                        </VStack>
                                     </VStack>
-                                )}
+                                ) : null}
                             </VStack>
                         </Form.Form>
                     );

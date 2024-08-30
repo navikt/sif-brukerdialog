@@ -45,6 +45,11 @@ const nb = {
     'kursperiodeForm.hjemkomst.dateHasInvalidFormat':
         'Du må oppgi dato for avreise i et gyldig format. Gyldig format er dd.mm.åååå.',
 
+    'kursperiodeForm.avreiseSammeDag.yesOrNoIsUnanswered':
+        'Du må svare ja eller nei på om du reiser samme dag som kurset starter.',
+    'kursperiodeForm.hjemkomstSammeDag.yesOrNoIsUnanswered':
+        'Du må svare ja eller nei på om du kommer hjem samme dag som kurset slutter.',
+
     'kursperiodeForm.begrunnelseReisetidFra.stringHasNoValue':
         'Du må oppgi en beskrivelse av årsak til at avreisedato er over én dag etter sluttdato.',
     'kursperiodeForm.begrunnelseReisetidFra.stringIsTooLong':
