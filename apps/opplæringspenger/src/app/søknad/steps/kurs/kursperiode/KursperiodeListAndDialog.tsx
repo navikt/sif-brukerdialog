@@ -36,7 +36,7 @@ function KursperiodeListAndDialog<FieldNames>({ name, minDate, maxDate, validate
                     />
                 )}
                 listRenderer={({ items, onEdit, onDelete }) => {
-                    return <KursperiodeList kursperiode={items} onEdit={onEdit} onDelete={onDelete} />;
+                    return <KursperiodeList kursperioder={items} onEdit={onEdit} onDelete={onDelete} />;
                 }}
             />
         </>

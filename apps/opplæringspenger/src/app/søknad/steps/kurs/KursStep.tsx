@@ -96,16 +96,6 @@ const KursStep = () => {
                                     </SifGuidePanel>
 
                                     <VStack gap={'4'}>
-                                        {/* <Combobox
-                                            label="Velg helseinstitusjon/kompetansesenter"
-                                            name={KursFormFields.kursholder}
-                                            multiple={false}
-                                            validate={getRequiredFieldValidator()}
-                                            options={kursholdere.map((kursholder) => ({
-                                                label: kursholder.navn,
-                                                value: kursholder.id,
-                                            }))}
-                                        /> */}
                                         <Select
                                             label="Velg helseinstitusjon/kompetansesenter"
                                             name={KursFormFields.kursholder}
