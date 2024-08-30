@@ -61,7 +61,7 @@ const getDagerMellomAvreiseOgStartdato = ({ fom, avreise }: Partial<KursperiodeF
     const startdato = ISOStringToDate(fom);
     const avreisedato = ISOStringToDate(avreise);
 
-    return startdato && avreisedato ? dayjs(startdato).diff(avreisedato, 'days') : 0;
+    return startdato && avreisedato ? dayjs(avreisedato).diff(startdato, 'days') : 0;
 };
 const getDagerMellomSluttdatoOgHjemkomst = ({ hjemkomst, tom }: Partial<KursperiodeFormValues>): number => {
     const sluttdato = ISOStringToDate(tom);
