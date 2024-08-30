@@ -10,7 +10,7 @@
     "readinessPath": "/familie/sykdom-i-familien/soknad/innsyn/api/health/isReady",
     "minReplicas": 2,
     "maxReplicas": 2,
-    "autoInstrumentation": "false",
+    "observabilityEnabled": "false",
     "env": {
         "NEXT_PUBLIC_BASE_PATH": "/familie/sykdom-i-familien/soknad/innsyn",
         "NEXT_PUBLIC_LOGIN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/innsyn/oauth2/login?redirect=https://www.nav.no/familie/sykdom-i-familien/soknad/innsyn",

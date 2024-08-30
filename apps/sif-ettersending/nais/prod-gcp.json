@@ -1,7 +1,7 @@
 {
     "app": "sif-ettersending",
     "cluster": "prod-gcp",
-    "autoInstrumentation": "false",
+    "observabilityEnabled": "false",
     "env": {
         "API_TOKENX_AUDIENCE": "prod-gcp:dusseldorf:k9-brukerdialog-prosessering",
         "API_URL": "http://k9-brukerdialog-prosessering",
