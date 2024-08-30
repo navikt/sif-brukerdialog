@@ -10,6 +10,7 @@
     "readinessPath": "/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/health/isReady",
     "minReplicas": 1,
     "maxReplicas": 1,
+    "autoInstrumentation": "true",
     "env": {
         "DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://pleiepenger-i-livets-sluttfase.intern.dev.nav.no/oauth2/logout",
         "API_URL": "http://k9-brukerdialog-prosessering",

@@ -10,6 +10,7 @@
     "readinessPath": "/innsyn/api/health/isReady",
     "minReplicas": 1,
     "maxReplicas": 1,
+    "autoInstrumentation": "true",
     "env": {
         "NEXT_PUBLIC_BASE_PATH": "/innsyn",
         "NEXT_PUBLIC_LOGIN_URL": "https://dine-pleiepenger.intern.dev.nav.no/oauth2/login?redirect=https://dine-pleiepenger.intern.dev.nav.no/innsyn",
