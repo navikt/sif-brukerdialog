@@ -1,7 +1,8 @@
 import { dateToISOString, ISOStringToDate, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { dateRangeUtils, guid } from '@navikt/sif-common-utils';
-import { KursperiodeFormValues } from './KursperiodeForm';
+import { guid } from '@navikt/sif-common-utils';
+import dayjs from 'dayjs';
 import { Kursperiode } from '../../../../types/Kursperiode';
+import { KursperiodeFormFields, KursperiodeFormValues } from './KursperiodeForm';
 
 const isValidKursperiode = (kursperiode: Partial<Kursperiode>): kursperiode is Kursperiode => {
     return kursperiode.periode?.from !== undefined && kursperiode.periode.to !== undefined;
@@ -28,11 +29,11 @@ const mapFormValuesToKursperiode = (
         },
         avreise,
         hjemkomst,
-        begrunnelseReisetidTil: måBesvareBegrunnelseReisetidTil(formValues)
-            ? formValues.begrunnelseReisetidTil
+        beskrivelseReisetidTil: måBesvareBeskrivelseReisetidTil(formValues)
+            ? formValues.beskrivelseReisetidTil
             : undefined,
-        begrunnelseReisetidHjem: måBesvareBegrunnelseReisetidHjem(formValues)
-            ? formValues.begrunnelseReisetidHjem
+        beskrivelseReisetidHjem: måBesvareBeskrivelseReisetidHjem(formValues)
+            ? formValues.beskrivelseReisetidHjem
             : undefined,
     };
 };
@@ -40,8 +41,8 @@ const mapFormValuesToKursperiode = (
 const mapKursperiodeToFormValues = ({
     periode,
     avreise,
-    begrunnelseReisetidHjem,
-    begrunnelseReisetidTil,
+    beskrivelseReisetidHjem,
+    beskrivelseReisetidTil,
     hjemkomst,
 }: Partial<Kursperiode>): KursperiodeFormValues => {
     return {
@@ -51,8 +52,8 @@ const mapKursperiodeToFormValues = ({
         hjemkomst: dateToISOString(hjemkomst),
         avreiseSammeDag: avreise ? YesOrNo.NO : periode ? YesOrNo.YES : YesOrNo.UNANSWERED,
         hjemkomstSammeDag: hjemkomst ? YesOrNo.NO : periode ? YesOrNo.YES : YesOrNo.UNANSWERED,
-        begrunnelseReisetidHjem,
-        begrunnelseReisetidTil,
+        beskrivelseReisetidHjem,
+        beskrivelseReisetidTil,
     };
 };
 
@@ -60,25 +61,23 @@ const getDagerMellomAvreiseOgStartdato = ({ fom, avreise }: Partial<KursperiodeF
     const startdato = ISOStringToDate(fom);
     const avreisedato = ISOStringToDate(avreise);
 
-    return startdato && avreisedato
-        ? dateRangeUtils.getNumberOfDaysInDateRange({ from: avreisedato, to: startdato })
-        : 0;
+    return startdato && avreisedato ? dayjs(startdato).diff(avreisedato, 'days') : 0;
 };
 const getDagerMellomSluttdatoOgHjemkomst = ({ hjemkomst, tom }: Partial<KursperiodeFormValues>): number => {
     const sluttdato = ISOStringToDate(tom);
     const hjemkomstdato = ISOStringToDate(hjemkomst);
 
-    return sluttdato && hjemkomstdato
-        ? dateRangeUtils.getNumberOfDaysInDateRange({ from: sluttdato, to: hjemkomstdato })
-        : 0;
+    return sluttdato && hjemkomstdato ? dayjs(hjemkomstdato).diff(sluttdato, 'days') : 0;
 };
 
-const måBesvareBegrunnelseReisetidHjem = (values: Partial<KursperiodeFormValues>): boolean => {
-    return getDagerMellomAvreiseOgStartdato(values) > 1;
+const måBesvareBeskrivelseReisetidHjem = (values: Partial<KursperiodeFormValues>): boolean => {
+    return (
+        values[KursperiodeFormFields.hjemkomstSammeDag] === YesOrNo.NO && getDagerMellomSluttdatoOgHjemkomst(values) > 1
+    );
 };
 
-const måBesvareBegrunnelseReisetidTil = (values: Partial<KursperiodeFormValues>): boolean => {
-    return getDagerMellomSluttdatoOgHjemkomst(values) > 1;
+const måBesvareBeskrivelseReisetidTil = (values: Partial<KursperiodeFormValues>): boolean => {
+    return values[KursperiodeFormFields.avreiseSammeDag] === YesOrNo.NO && getDagerMellomAvreiseOgStartdato(values) > 1;
 };
 
 const kursperiodeUtils = {
@@ -87,8 +86,8 @@ const kursperiodeUtils = {
     mapFormValuesToKursperiode,
     getDagerMellomAvreiseOgStartdato,
     getDagerMellomSluttdatoOgHjemkomst,
-    måBesvareBegrunnelseReisetidHjem,
-    måBesvareBegrunnelseReisetidTil,
+    måBesvareBeskrivelseReisetidHjem,
+    måBesvareBeskrivelseReisetidTil,
 };
 
 export default kursperiodeUtils;

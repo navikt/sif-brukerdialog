@@ -5,6 +5,6 @@ export interface Kursperiode {
     periode: DateRange;
     avreise?: Date;
     hjemkomst?: Date;
-    begrunnelseReisetidTil?: string;
-    begrunnelseReisetidHjem?: string;
+    beskrivelseReisetidTil?: string;
+    beskrivelseReisetidHjem?: string;
 }

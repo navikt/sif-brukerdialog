@@ -41,8 +41,8 @@ export enum KursperiodeFormFields {
     hjemkomstSammeDag = 'hjemkomstSammeDag',
     avreise = 'avreise',
     hjemkomst = 'hjemkomst',
-    begrunnelseReisetidTil = 'begrunnelseReisetidTil',
-    begrunnelseReisetidHjem = 'begrunnelseReisetidHjem',
+    beskrivelseReisetidTil = 'beskrivelseReisetidTil',
+    beskrivelseReisetidHjem = 'beskrivelseReisetidHjem',
 }
 
 export interface KursperiodeFormValues {
@@ -52,8 +52,8 @@ export interface KursperiodeFormValues {
     [KursperiodeFormFields.hjemkomstSammeDag]: YesOrNo;
     [KursperiodeFormFields.avreise]?: ISODate;
     [KursperiodeFormFields.hjemkomst]?: string;
-    [KursperiodeFormFields.begrunnelseReisetidHjem]?: string;
-    [KursperiodeFormFields.begrunnelseReisetidTil]?: string;
+    [KursperiodeFormFields.beskrivelseReisetidHjem]?: string;
+    [KursperiodeFormFields.beskrivelseReisetidTil]?: string;
 }
 
 const Form = getTypedFormComponents<KursperiodeFormFields, KursperiodeFormValues, ValidationError>();
@@ -116,7 +116,7 @@ const KursperiodeForm = ({
                             <VStack gap={'6'} maxWidth={'30rem'}>
                                 <Form.DateRangePicker
                                     legend={inlineLabels.intervalTitle}
-                                    description="Velg start- og sluttdato for kursperioden."
+                                    description={<p>Når starter og slutter denne perioden?</p>}
                                     minDate={minDate}
                                     maxDate={maxDate}
                                     disabledDateRanges={disabledDateRanges}
@@ -173,13 +173,13 @@ const KursperiodeForm = ({
                                                     validate={getDateValidator({ max: startdato })}
                                                 />
                                             ) : null}
-                                            {kursperiodeUtils.måBesvareBegrunnelseReisetidTil(formik.values) && (
+                                            {kursperiodeUtils.måBesvareBeskrivelseReisetidTil(formik.values) && (
                                                 <VStack gap={'2'}>
                                                     <FormPanel>
                                                         <Form.Textarea
-                                                            name={KursperiodeFormFields.begrunnelseReisetidTil}
-                                                            label="Begrunnelse for reisetid til kurssted"
-                                                            description="På grunn av at det er mer enn én dag mellom avreise og startdato, må du begrunne reisetiden til kursstedet."
+                                                            name={KursperiodeFormFields.beskrivelseReisetidTil}
+                                                            label="Beskrivelse av årsak reisetid til kurssted"
+                                                            description="På grunn av at det er mer enn én dag mellom avreise og startdato, må du beskrive reisetiden til kursstedet."
                                                             validate={getStringValidator({
                                                                 minLength: 5,
                                                                 required: true,
@@ -205,13 +205,13 @@ const KursperiodeForm = ({
                                                 />
                                             ) : null}
 
-                                            {kursperiodeUtils.måBesvareBegrunnelseReisetidHjem(formik.values) && (
+                                            {kursperiodeUtils.måBesvareBeskrivelseReisetidHjem(formik.values) && (
                                                 <VStack gap={'2'}>
                                                     <FormPanel>
                                                         <Form.Textarea
-                                                            name={KursperiodeFormFields.begrunnelseReisetidHjem}
-                                                            label="Begrunnelse for reisetid fra kurssted"
-                                                            description="På grunn av at det er mer enn én dag mellom sluttdato og hjemkomst, må du begrunne reisetiden fra kursstedet."
+                                                            name={KursperiodeFormFields.beskrivelseReisetidHjem}
+                                                            label="Beskrivelse av årsak reisetid fra kurssted"
+                                                            description="På grunn av at det er mer enn én dag mellom sluttdato og hjemkomst, må du beskrive reisetiden fra kursstedet."
                                                             validate={getStringValidator({
                                                                 minLength: 5,
                                                                 required: true,

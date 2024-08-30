@@ -40,18 +40,18 @@ export const KursperiodeFormErrors: Record<KursperiodeFormFields, { [key: string
     [KursperiodeFormFields.hjemkomstSammeDag]: {
         [ValidateYesOrNoError.yesOrNoIsUnanswered]: 'kursperiodeForm.hjemkomstSammeDag.yesOrNoIsUnanswered',
     },
-    [KursperiodeFormFields.begrunnelseReisetidHjem]: {
+    [KursperiodeFormFields.beskrivelseReisetidHjem]: {
         [ValidateStringError.stringHasNoValue]: 'kursperiodeForm.begrunnelseReisetidFra.stringHasNoValue',
         [ValidateStringError.stringIsTooLong]: 'kursperiodeForm.begrunnelseReisetidFra.stringIsTooLong',
         [ValidateStringError.stringIsTooShort]: 'kursperiodeForm.begrunnelseReisetidFra.stringIsTooShort',
         [ValidateStringError.stringContainsUnicodeChacters]:
             'kursperiodeForm.begrunnelseReisetidFra.stringContainsUnicodeChacters',
     },
-    [KursperiodeFormFields.begrunnelseReisetidTil]: {
-        [ValidateStringError.stringHasNoValue]: 'kursperiodeForm.begrunnelseReisetidTil.stringHasNoValue',
-        [ValidateStringError.stringIsTooLong]: 'kursperiodeForm.begrunnelseReisetidTil.stringIsTooLong',
-        [ValidateStringError.stringIsTooShort]: 'kursperiodeForm.begrunnelseReisetidTil.stringIsTooShort',
+    [KursperiodeFormFields.beskrivelseReisetidTil]: {
+        [ValidateStringError.stringHasNoValue]: 'kursperiodeForm.beskrivelseReisetidTil.stringHasNoValue',
+        [ValidateStringError.stringIsTooLong]: 'kursperiodeForm.beskrivelseReisetidTil.stringIsTooLong',
+        [ValidateStringError.stringIsTooShort]: 'kursperiodeForm.beskrivelseReisetidTil.stringIsTooShort',
         [ValidateStringError.stringContainsUnicodeChacters]:
-            'kursperiodeForm.begrunnelseReisetidTil.stringContainsUnicodeChacters',
+            'kursperiodeForm.beskrivelseReisetidTil.stringContainsUnicodeChacters',
     },
 };

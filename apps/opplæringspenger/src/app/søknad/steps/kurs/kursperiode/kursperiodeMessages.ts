@@ -59,13 +59,13 @@ const nb = {
     'kursperiodeForm.begrunnelseReisetidFra.stringContainsUnicodeChacters':
         'Beskrivelsen årsak til avreisedato kan ikke inneholde spesialtegn.',
 
-    'kursperiodeForm.begrunnelseReisetidTil.stringHasNoValue':
+    'kursperiodeForm.beskrivelseReisetidTil.stringHasNoValue':
         'Du må oppgi en beskrivelse av årsak til at hjemkomstdato er over én dag etter sluttdato.',
-    'kursperiodeForm.begrunnelseReisetidTil.stringIsTooLong':
+    'kursperiodeForm.beskrivelseReisetidTil.stringIsTooLong':
         'Beskrivelsen av årsak til hjemkomstdato kan ikke være lengre enn 500 tegn.',
-    'kursperiodeForm.begrunnelseReisetidTil.stringIsTooShort':
+    'kursperiodeForm.beskrivelseReisetidTil.stringIsTooShort':
         'Beskrivelsen av årsak til hjemkomstdato må være minst 5 tegn.',
-    'kursperiodeForm.begrunnelseReisetidTil.stringContainsUnicodeChacters':
+    'kursperiodeForm.beskrivelseReisetidTil.stringContainsUnicodeChacters':
         'Beskrivelsen årsak til hjemkomstdato kan ikke inneholde spesialtegn.',
 };
 

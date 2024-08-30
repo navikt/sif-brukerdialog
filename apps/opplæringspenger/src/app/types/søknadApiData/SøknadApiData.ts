@@ -24,8 +24,8 @@ export interface KursperiodeApiData {
     kursperiode: ISODateRange;
     avreise: ISODate;
     hjemkomst: ISODate;
-    begrunnelseReisetidTil?: string;
-    begrunnelseReisetidHjem?: string;
+    BeskrivelseReisetidTil?: string;
+    beskrivelseReisetidHjem?: string;
 }
 
 export interface KursApiData {
