@@ -24,6 +24,7 @@ const App = () => (
     <SoknadApplication
         appKey={OmsorgspengerutbetalingArbeidstakerApp.key}
         appName={OmsorgspengerutbetalingArbeidstakerApp.navn}
+        appTitle={OmsorgspengerutbetalingArbeidstakerApp.tittel.nb}
         intlMessages={applicationIntlMessages}
         appStatus={{
             sanityConfig: {

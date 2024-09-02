@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/pleiepenger-i-livets-sluttfase-soknad",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "2.10.12",
+    "version": "2.10.14",
     "private": true,
     "type": "module",
     "dependencies": {

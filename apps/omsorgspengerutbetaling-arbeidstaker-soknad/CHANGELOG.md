@@ -1,5 +1,27 @@
 # @navikt/omsorgspengerutbetaling-arbeidstaker-soknad
 
+## 1.5.14
+
+### Patch Changes
+
+-   Bugfix - sende med tittel til ErrorBoundary
+-   Updated dependencies
+    -   @navikt/sif-common-soknad-ds@13.2.8
+
+## 1.5.13
+
+### Patch Changes
+
+-   485d6eb: Pakkeoppdateringer - minor/patch
+-   Updated dependencies [485d6eb]
+    -   @navikt/sif-common-amplitude@2.26.4
+    -   @navikt/sif-common-formik-ds@1.12.5
+    -   @navikt/sif-common-soknad-ds@13.2.7
+    -   @navikt/sif-common-forms-ds@10.0.5
+    -   @navikt/sif-common-core-ds@9.18.4
+    -   @navikt/sif-common-sentry@0.27.4
+    -   @navikt/sif-common-utils@3.47.3
+
 ## 1.5.12
 
 ### Patch Changes
