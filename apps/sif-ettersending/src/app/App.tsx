@@ -27,6 +27,7 @@ const App = () => {
         <SoknadApplication
             appKey={EttersendelseApp.key}
             appName={EttersendelseApp.navn}
+            appTitle={EttersendelseApp.tittel.nb}
             intlMessages={applicationIntlMessages}
             appStatus={{
                 sanityConfig: {

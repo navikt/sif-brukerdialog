@@ -24,6 +24,7 @@ const App = () => (
     <SoknadApplication
         appKey={OmsorgsdagerKroniskApp.key}
         appName={OmsorgsdagerKroniskApp.navn}
+        appTitle={OmsorgsdagerKroniskApp.tittel.nb}
         intlMessages={applicationIntlMessages}
         useLanguageSelector={getEnvironmentVariable('FEATURE_NYNORSK') === 'on'}
         appStatus={{

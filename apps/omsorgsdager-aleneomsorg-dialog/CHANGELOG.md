@@ -1,5 +1,13 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.20.12
+
+### Patch Changes
+
+-   Bugfix - sende med tittel til ErrorBoundary
+-   Updated dependencies
+    -   @navikt/sif-common-soknad-ds@13.2.8
+
 ## 2.20.11
 
 ### Patch Changes

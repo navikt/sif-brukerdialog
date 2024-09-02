@@ -16,6 +16,7 @@ interface State {
 interface Props {
     appKey: string;
     children: React.ReactNode;
+    appTitle: string;
     onResetSoknad?: () => void;
 }
 class ErrorBoundary extends React.Component<Props, State> {
@@ -45,7 +46,7 @@ class ErrorBoundary extends React.Component<Props, State> {
             return (
                 <Page
                     title={'Det oppstod en feil'}
-                    topContentRenderer={() => <SoknadHeader title="Søknad om omsorgspengesoknad" />}>
+                    topContentRenderer={() => <SoknadHeader title={this.props.appTitle} />}>
                     <Block margin="xxxl">
                         <SifGuidePanel mood="uncertain">
                             <Heading level="2" size="medium">
