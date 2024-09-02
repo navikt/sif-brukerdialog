@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 13.2.8
+
+### Patch Changes
+
+-   Bugfix - sende med tittel til ErrorBoundary
+
 ## 13.2.7
 
 ### Patch Changes

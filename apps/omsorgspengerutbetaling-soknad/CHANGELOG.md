@@ -1,5 +1,13 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.14.13
+
+### Patch Changes
+
+-   Bugfix - sende med tittel til ErrorBoundary
+-   Updated dependencies
+    -   @navikt/sif-common-soknad-ds@13.2.8
+
 ## 1.14.12
 
 ### Patch Changes
