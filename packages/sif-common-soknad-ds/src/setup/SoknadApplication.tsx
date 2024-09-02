@@ -31,6 +31,8 @@ interface Props {
     appKey: string;
     /** App name - not visual to user */
     appName: string;
+    /** App title - visaul to user*/
+    appTitle: string;
     /** Public path used in BrowserRouter */
     publicPath: string;
     /** Locale messages */
@@ -67,6 +69,7 @@ const SoknadApplication = ({
     useAmplitude,
     useLanguageSelector,
     children,
+    appTitle,
     onResetSoknad,
 }: Props) => {
     const [locale, setLocale] = React.useState<Locale>(localeFromSessionStorage);
@@ -80,7 +83,7 @@ const SoknadApplication = ({
 
     return (
         <SifAppWrapper>
-            <ErrorBoundary appKey={appKey} onResetSoknad={onResetSoknad}>
+            <ErrorBoundary appKey={appKey} onResetSoknad={onResetSoknad} appTitle={appTitle}>
                 <AmplitudeProvider applicationKey={appKey} isActive={getUseAmplitude(useAmplitude)}>
                     <IntlProvider
                         locale={locale === 'nb' ? getBokmålLocale() : getNynorskLocale()}

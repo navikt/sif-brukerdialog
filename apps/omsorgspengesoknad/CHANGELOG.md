@@ -1,5 +1,13 @@
 # @navikt/omsorgspengesoknad
 
+## 1.29.12
+
+### Patch Changes
+
+-   Bugfix - sende med tittel til ErrorBoundary
+-   Updated dependencies
+    -   @navikt/sif-common-soknad-ds@13.2.8
+
 ## 1.29.11
 
 ### Patch Changes

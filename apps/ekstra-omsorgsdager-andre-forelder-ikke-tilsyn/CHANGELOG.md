@@ -1,5 +1,13 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.26.12
+
+### Patch Changes
+
+-   Bugfix - sende med tittel til ErrorBoundary
+-   Updated dependencies
+    -   @navikt/sif-common-soknad-ds@13.2.8
+
 ## 1.26.11
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.10.14
+
+### Patch Changes
+
+-   Bugfix - sende med tittel til ErrorBoundary
+-   Updated dependencies
+    -   @navikt/sif-common-soknad-ds@13.2.8
+
 ## 2.10.13
 
 ### Patch Changes

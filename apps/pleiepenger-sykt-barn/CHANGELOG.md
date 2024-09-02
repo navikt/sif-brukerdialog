@@ -1,5 +1,13 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.0.8
+
+### Patch Changes
+
+-   Bugfix - sende med tittel til ErrorBoundary
+-   Updated dependencies
+    -   @navikt/sif-common-soknad-ds@13.2.8
+
 ## 4.0.7
 
 ### Patch Changes

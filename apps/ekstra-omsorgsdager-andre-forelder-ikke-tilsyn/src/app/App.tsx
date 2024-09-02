@@ -24,6 +24,7 @@ const App = () => (
     <SoknadApplication
         appKey={OmsorgsdagerAnnenForelderIkkeTilsynApp.key}
         appName={OmsorgsdagerAnnenForelderIkkeTilsynApp.navn}
+        appTitle={OmsorgsdagerAnnenForelderIkkeTilsynApp.tittel.nb}
         intlMessages={applicationIntlMessages}
         publicPath={publicPath}
         useLanguageSelector={false}

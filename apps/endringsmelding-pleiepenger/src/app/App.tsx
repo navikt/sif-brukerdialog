@@ -45,6 +45,7 @@ const App = () => (
     <SoknadApplication
         appKey={EndringsmeldingPsbApp.key}
         appName={EndringsmeldingPsbApp.navn}
+        appTitle={EndringsmeldingPsbApp.tittel.nb}
         intlMessages={applicationIntlMessages}
         useAmplitude={!isE2E}
         appStatus={{

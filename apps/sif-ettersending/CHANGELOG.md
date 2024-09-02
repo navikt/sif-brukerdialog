@@ -1,5 +1,13 @@
 # @navikt/sif-ettersending
 
+## 3.37.9
+
+### Patch Changes
+
+-   Bugfix - sende med tittel til ErrorBoundary
+-   Updated dependencies
+    -   @navikt/sif-common-soknad-ds@13.2.8
+
 ## 3.37.8
 
 ### Patch Changes
