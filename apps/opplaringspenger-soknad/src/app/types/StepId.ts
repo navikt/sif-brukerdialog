@@ -3,6 +3,7 @@ export enum StepId {
     'OM_BARNET' = 'omBarnet',
     'KURS' = 'kurs',
     'ARBEIDSSITUASJON' = 'arbeidssituasjon',
+    'ARBEIDSTID' = 'arbeidstid',
     'MEDLEMSKAP' = 'medlemskap',
     'LEGEERKLÆRING' = 'legeerklæring',
     'OPPSUMMERING' = 'oppsummering',

@@ -9,6 +9,7 @@ import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummering
 import { kursMessages } from '../søknad/steps/kurs/kursMessages';
 import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
 import { kursperiodeMessages } from '../søknad/steps/kurs/kursperiode';
+import { arbeidstidMessages } from '../søknad/steps/arbeidstid/arbeidstidMessages';
 
 const nb = {
     ...velkommenPageMessages.nb,
@@ -22,6 +23,7 @@ const nb = {
     ...calendarGridMessages.nb,
     ...dagerMedTidMessages.nb,
     ...kursperiodeMessages.nb,
+    ...arbeidstidMessages.nb,
 
     'application.title': 'Søknad om opplæringspenger',
 
@@ -81,6 +83,10 @@ const nb = {
     'step.arbeidssituasjon.stepTitle': 'Arbeidssituasjon',
     'step.arbeidssituasjon.pageTitle': 'Arbeidssituasjon',
     'step.arbeidssituasjon.stepIndicatorLabel': 'Arbeidssituasjon',
+
+    'step.arbeidstid.stepTitle': 'Arbeidstid',
+    'step.arbeidstid.pageTitle': 'Arbeidstid',
+    'step.arbeidstid.stepIndicatorLabel': 'Arbeidstid',
 
     'step.medlemskap.pageTitle': 'Medlemskap i folketrygden',
     'step.medlemskap.stepTitle': 'Medlemskap i folketrygden',

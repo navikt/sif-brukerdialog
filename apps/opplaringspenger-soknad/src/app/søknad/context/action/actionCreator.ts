@@ -1,4 +1,5 @@
 import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
+import { ArbeidstidSøknadsdata } from '../../../types/søknadsdata/ArbeidstidSøknadsdata';
 import { KvitteringInfo } from '../../../types/KvitteringInfo';
 import { TempFormValues } from '../../../types/SøknadContextState';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
@@ -23,6 +24,7 @@ export enum SøknadContextActionKeys {
     SET_SØKNAD_LEGEERKLÆRING = 'setSøknadLegeerklæring',
     SET_SØKNAD_KURS = 'setSøknadKurs',
     SET_SØKNAD_ARBEIDSSITUASJON = 'setSøknadArbeidssituasjon',
+    SET_SØKNAD_ARBEIDSTID = 'setSøknadArbeidstid',
     SET_SØKNAD_FRILANSOPPDRAG = 'setSøknadFrilansoppdrag',
     SET_SØKNAD_MEDLEMSKAP = 'setSøknadMedlemskap',
     SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER = 'setSøknadHarBekreftetOpplysninger',
@@ -81,6 +83,11 @@ interface SetSøknadKurs {
 interface SetSøknadArbeidssituasjon {
     type: SøknadContextActionKeys.SET_SØKNAD_ARBEIDSSITUASJON;
     payload: ArbeidssituasjonSøknadsdata;
+}
+
+interface SetSøknadArbeidstid {
+    type: SøknadContextActionKeys.SET_SØKNAD_ARBEIDSTID;
+    payload: ArbeidstidSøknadsdata;
 }
 
 interface SetSøknadFrilansoppdrag {
@@ -155,6 +162,11 @@ const setSøknadArbeidssituasjon = (payload: ArbeidssituasjonSøknadsdata): SetS
     payload,
 });
 
+const setSøknadArbeidstid = (payload: ArbeidstidSøknadsdata): SetSøknadArbeidstid => ({
+    type: SøknadContextActionKeys.SET_SØKNAD_ARBEIDSTID,
+    payload,
+});
+
 const setSøknadFrilansoppdrag = (payload: Arbeidsgiver[]): SetSøknadFrilansoppdrag => ({
     type: SøknadContextActionKeys.SET_SØKNAD_FRILANSOPPDRAG,
     payload,
@@ -192,6 +204,7 @@ export type SøknadContextAction =
     | SetSøknadLegeerklæring
     | SetSøknadKurs
     | SetSøknadArbeidssituasjon
+    | SetSøknadArbeidstid
     | SetSøknadFrilansoppdrag
     | SetSøknadMedlemskap
     | SetSøknadHarBekreftetOpplysninger
@@ -209,6 +222,7 @@ const actionsCreator = {
     setSøknadLegeerklæring,
     setSøknadKurs,
     setSøknadArbeidssituasjon,
+    setSøknadArbeidstid,
     setSøknadFrilansoppdrag,
     setSøknadMedlemskap,
     setSøknadHarBekreftetOpplysninger,

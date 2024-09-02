@@ -2,11 +2,11 @@ import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import useSøknadInitialData from '../api/useSøknadInitialData';
 import ResetMellomagringButton from '../components/reset-mellomlagring-button/ResetMellomlagringButton';
+import { AppText, useAppIntl } from '../i18n';
 import { RequestStatus } from '../types/RequestStatus';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import { SøknadContextProvider } from './context/SøknadContext';
 import SøknadRouter from './SøknadRouter';
-import { AppText, useAppIntl } from '../i18n';
 
 const Søknad = () => {
     const initialData = useSøknadInitialData();
