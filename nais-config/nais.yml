@@ -52,6 +52,10 @@ spec:
         path: /metrics
     vault:
         enabled: false
+    observability:
+      autoInstrumentation:
+        enabled: {{observabilityEnabled}}
+        runtime: nodejs
     env:
   {{#each env}}
      - name: {{@key}}
