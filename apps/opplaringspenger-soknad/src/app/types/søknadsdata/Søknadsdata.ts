@@ -1,7 +1,8 @@
 import { StepId } from '../StepId';
-import { LegeerklæringSøknadsdata } from './LegeerklæringSøknadsdata';
-import { KursSøknadsdata } from './KursSøknadsdata';
 import { ArbeidssituasjonSøknadsdata } from './ArbeidssituasjonSøknadsdata';
+import { ArbeidstidSøknadsdata } from './ArbeidstidSøknadsdata';
+import { KursSøknadsdata } from './KursSøknadsdata';
+import { LegeerklæringSøknadsdata } from './LegeerklæringSøknadsdata';
 import { MedlemskapSøknadsdata } from './MedlemskapSøknadsdata';
 import { OmBarnetSøknadsdata } from './OmBarnetSøknadsdata';
 
@@ -19,6 +20,7 @@ export interface Søknadsdata {
     [StepId.OM_BARNET]?: OmBarnetSøknadsdata;
     [StepId.KURS]?: KursSøknadsdata;
     [StepId.ARBEIDSSITUASJON]?: ArbeidssituasjonSøknadsdata;
+    [StepId.ARBEIDSTID]?: ArbeidstidSøknadsdata;
     [StepId.LEGEERKLÆRING]?: LegeerklæringSøknadsdata;
     [StepId.MEDLEMSKAP]?: MedlemskapSøknadsdata;
     [StepId.OPPSUMMERING]?: {

@@ -13,6 +13,8 @@ export const getSøknadStepRoute = (stepId: StepId): SøknadRoutes => {
             return SøknadRoutes.KURS;
         case StepId.ARBEIDSSITUASJON:
             return SøknadRoutes.ARBEIDSSITUASJON;
+        case StepId.ARBEIDSTID:
+            return SøknadRoutes.ARBEIDSTID;
         case StepId.MEDLEMSKAP:
             return SøknadRoutes.MEDLEMSKAP;
         case StepId.OPPSUMMERING:

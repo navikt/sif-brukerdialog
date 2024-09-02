@@ -79,6 +79,17 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     },
                 };
 
+            case SøknadContextActionKeys.SET_SØKNAD_ARBEIDSTID:
+                return {
+                    ...state,
+                    søknadsdata: {
+                        ...state.søknadsdata,
+                        arbeidstid: {
+                            ...action.payload,
+                        },
+                    },
+                };
+
             case SøknadContextActionKeys.SET_SØKNAD_FRILANSOPPDRAG:
                 return {
                     ...state,

@@ -19,6 +19,7 @@ import MedlemskapStep from './steps/medlemskap/MedlemskapStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
 import KursStep from './steps/kurs/KursStep';
 import OmBarnetStep from './steps/om-barnet/OmBarnetStep';
+import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
@@ -78,6 +79,7 @@ const SøknadRouter = () => {
             <Route path={SøknadStepRoutePath[StepId.LEGEERKLÆRING]} element={<LegeerklæringStep />} />
             <Route path={SøknadStepRoutePath[StepId.KURS]} element={<KursStep />} />
             <Route path={SøknadStepRoutePath[StepId.ARBEIDSSITUASJON]} element={<ArbeidssituasjonStep />} />
+            <Route path={SøknadStepRoutePath[StepId.ARBEIDSTID]} element={<ArbeidstidStep />} />
             <Route path={SøknadStepRoutePath[StepId.MEDLEMSKAP]} element={<MedlemskapStep />} />
             <Route path={SøknadStepRoutePath[StepId.OPPSUMMERING]} element={<OppsummeringStep />} />
             <Route

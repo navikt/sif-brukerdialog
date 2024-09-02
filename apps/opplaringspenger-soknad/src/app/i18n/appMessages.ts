@@ -82,6 +82,10 @@ const nb = {
     'step.arbeidssituasjon.pageTitle': 'Arbeidssituasjon',
     'step.arbeidssituasjon.stepIndicatorLabel': 'Arbeidssituasjon',
 
+    'step.arbeidstid.stepTitle': 'Arbeidstid',
+    'step.arbeidstid.pageTitle': 'Arbeidstid',
+    'step.arbeidstid.stepIndicatorLabel': 'Arbeidstid',
+
     'step.medlemskap.pageTitle': 'Medlemskap i folketrygden',
     'step.medlemskap.stepTitle': 'Medlemskap i folketrygden',
     'step.medlemskap.stepIndicatorLabel': 'Om medlemskap i folketrygden',

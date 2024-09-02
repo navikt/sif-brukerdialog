@@ -7,6 +7,7 @@ const getSøknadSteps = (): StepId[] => {
         StepId.OM_BARNET,
         StepId.KURS,
         StepId.ARBEIDSSITUASJON,
+        StepId.ARBEIDSTID,
         StepId.MEDLEMSKAP,
         StepId.LEGEERKLÆRING,
         StepId.OPPSUMMERING,

@@ -13,6 +13,7 @@ import { uiMessages } from '@navikt/sif-common-ui';
 import { appMessages } from './appMessages';
 import { omBarnetMessages } from '../søknad/steps/om-barnet/stegOmBarnetMessages';
 import { kursperiodeMessages } from '../søknad/steps/kurs/kursperiode';
+import { arbeidstidMessages } from '../søknad/steps/arbeidstid/arbeidstidMessages';
 
 export const libMessages = {
     nb: {
@@ -26,6 +27,7 @@ export const libMessages = {
         ...virksomhetMessages.nb,
         ...omBarnetMessages.nb,
         ...kursperiodeMessages.nb,
+        ...arbeidstidMessages.nb,
     },
     nn: {
         ...commonMessages.nn,

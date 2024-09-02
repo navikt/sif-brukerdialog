@@ -65,10 +65,7 @@ export const validateUtenlandsoppholdIPerioden = (
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const getKursSøknadsdataFromFormValues = ({
-    kursholder,
-    kursperioder,
-}: KursFormValues): KursSøknadsdata | undefined => {
+export const getKursSøknadsdataFromFormValues = ({ kursholder, kursperioder }: KursFormValues): KursSøknadsdata => {
     if (!kursholder || !kursperioder || !kursholder) {
         throw 'Kursholder eller kursperioder er ikke definert';
     }
