@@ -49,6 +49,7 @@ const App = () => {
         <SoknadApplication
             appKey={PleiepengerSyktBarnApp.key}
             appName={PleiepengerSyktBarnApp.navn}
+            appTitle={PleiepengerSyktBarnApp.tittel.nb}
             appStatus={{ sanityConfig: sanityConfig }}
             intlMessages={applicationIntlMessages}
             useAmplitude={useAmplitude}
