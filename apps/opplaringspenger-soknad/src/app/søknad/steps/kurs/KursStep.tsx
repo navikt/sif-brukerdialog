@@ -1,10 +1,19 @@
+import { Heading, VStack } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
+import {
+    getListValidator,
+    getRequiredFieldValidator,
+    getYesOrNoValidator,
+} from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { FormPanel } from '@navikt/sif-common-ui';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
+import { Kursholder } from '../../../types/Kursholder';
+import { Kursperiode } from '../../../types/Kursperiode';
 import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
@@ -13,19 +22,15 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
-import { getKursStepInitialValues, getKursSøknadsdataFromFormValues } from './kursStepUtils';
-import { Kursholder } from '../../../types/Kursholder';
 import KursperiodeListAndDialog from './kursperiode/KursperiodeListAndDialog';
-import { getListValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { Heading, VStack } from '@navikt/ds-react';
-import { Kursperiode } from '../../../types/Kursperiode';
-import { FormPanel } from '@navikt/sif-common-ui';
+import { getKursStepInitialValues, getKursSøknadsdataFromFormValues } from './kursStepUtils';
 
 export enum KursFormFields {
     kursholder = 'kursholder',
     kursholder_annen_navn = 'kursholder_annen_navn',
     kursholder_annen_beskrivelse = 'kursholder_annen_beskrivelse',
     kursperioder = 'kursperioder',
+    arbeiderIKursperiode = 'arbeiderIKursperiode',
 }
 
 export interface KursFormValues {
@@ -33,9 +38,10 @@ export interface KursFormValues {
     [KursFormFields.kursholder_annen_navn]?: string;
     [KursFormFields.kursholder_annen_beskrivelse]?: string;
     [KursFormFields.kursperioder]?: Kursperiode[];
+    [KursFormFields.arbeiderIKursperiode]?: YesOrNo;
 }
 
-const { FormikWrapper, Form, Select, TextField, Textarea } = getTypedFormComponents<
+const { FormikWrapper, Form, Select, TextField, Textarea, YesOrNoQuestion } = getTypedFormComponents<
     KursFormFields,
     KursFormValues,
     ValidationError
@@ -138,6 +144,11 @@ const KursStep = () => {
                                             listTitle: 'Kursperioder',
                                         }}
                                         validate={getListValidator({ minItems: 1, required: true })}
+                                    />
+                                    <YesOrNoQuestion
+                                        name={KursFormFields.arbeiderIKursperiode}
+                                        legend="Jobber du noe på de dagene du er på er på kurs, eller reiser til og fra kurs?"
+                                        validate={getYesOrNoValidator()}
                                     />
                                 </VStack>
                             </Form>

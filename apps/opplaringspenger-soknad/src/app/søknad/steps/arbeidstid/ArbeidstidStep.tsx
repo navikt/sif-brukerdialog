@@ -14,7 +14,7 @@ import { ArbeidstidFormFields, ArbeidstidFormValues } from './types';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { useIntl } from 'react-intl';
 import { getArbeidstidStepInitialValues, getArbeidstidSøknadsdataFromFormValues } from './arbeidstidStepUtils';
-import { VStack } from '@navikt/ds-react';
+import { Heading, VStack } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { AppText } from '../../../i18n';
 
@@ -23,7 +23,7 @@ const { FormikWrapper, Form } = getTypedFormComponents<ArbeidstidFormFields, Arb
 const ArbeidstidStep = () => {
     const {
         state: {
-            søknadsdata: { arbeidstid },
+            søknadsdata: { arbeidstid, kurs },
         },
     } = useSøknadContext();
 
@@ -74,6 +74,10 @@ const ArbeidstidStep = () => {
                                             <AppText id="steg.arbeidstid.counsellorPanel.avsnitt.1" />
                                         </p>
                                     </SifGuidePanel>
+
+                                    <Heading level="2" size="medium">
+                                        Arbeid i kursperioden
+                                    </Heading>
                                 </VStack>
                             </Form>
                         </>

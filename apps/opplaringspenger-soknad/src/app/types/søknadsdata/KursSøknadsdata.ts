@@ -6,4 +6,5 @@ export interface KursSøknadsdata {
     søknadsperiode?: DateRange;
     kursholder: Kursholder | 'annen';
     kursperioder: Kursperiode[];
+    arbeiderIKursperiode: boolean;
 }

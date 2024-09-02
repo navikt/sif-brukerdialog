@@ -38,6 +38,7 @@ export const søknadContextMock: SøknadContextState = {
                     },
                 },
             ],
+            arbeiderIKursperiode: true,
         },
         arbeidssituasjon: {
             arbeidsgivere: {

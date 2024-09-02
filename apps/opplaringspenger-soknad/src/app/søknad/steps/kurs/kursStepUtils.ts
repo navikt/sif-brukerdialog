@@ -1,4 +1,4 @@
-import { DateRange, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
+import { DateRange, ValidationError, ValidationResult, YesOrNo } from '@navikt/sif-common-formik-ds';
 import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
 import { getDateRangeValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { UtenlandsoppholdEnkel } from '@navikt/sif-common-forms-ds';
@@ -15,6 +15,7 @@ import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { KursSøknadsdata } from '../../../types/søknadsdata/KursSøknadsdata';
 import { AppFieldValidationErrors } from '../../../utils/fieldValidation';
 import { KursFormValues } from './KursStep';
+import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 
 dayjs.extend(isoWeek);
 
@@ -67,9 +68,10 @@ export const validateUtenlandsoppholdIPerioden = (
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const getKursSøknadsdataFromFormValues = ({
     kursholder,
+    arbeiderIKursperiode,
     kursperioder,
 }: KursFormValues): KursSøknadsdata | undefined => {
-    if (!kursholder || !kursperioder || !kursholder) {
+    if (!kursholder || !kursperioder || !kursholder || !arbeiderIKursperiode) {
         throw 'Kursholder eller kursperioder er ikke definert';
     }
 
@@ -78,6 +80,7 @@ export const getKursSøknadsdataFromFormValues = ({
         søknadsperiode,
         kursholder,
         kursperioder,
+        arbeiderIKursperiode: arbeiderIKursperiode === YesOrNo.YES,
     };
 };
 
@@ -93,6 +96,9 @@ export const getKursStepInitialValues = (søknadsdata: Søknadsdata, formValues?
     if (kurs) {
         return {
             ...defaultValues,
+            kursholder: kurs.kursholder,
+            kursperioder: kurs.kursperioder,
+            arbeiderIKursperiode: getYesOrNoFromBoolean(kurs.arbeiderIKursperiode),
         };
     }
 
