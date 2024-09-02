@@ -7,14 +7,14 @@ import {
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
+import søknadStateEndpoint from './api/endpoints/søknadStateEndpoint';
 import { applicationIntlMessages } from './i18n';
 import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
+import { relocateToWelcomePage } from './utils/navigationUtils';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.css';
-import søknadStateEndpoint from './api/endpoints/søknadStateEndpoint';
-import { relocateToWelcomePage } from './utils/navigationUtils';
 
 const container = document.getElementById('app');
 const root = createRoot(container!);
@@ -44,7 +44,7 @@ const App = () => {
             publicPath={publicPath}>
             <SoknadApplicationCommonRoutes
                 contentRoutes={[
-                    <Route index key="redirect" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
+                    <Route path="/" key="index" element={<Navigate to={SøknadRoutes.VELKOMMEN} replace={true} />} />,
                     <Route path={SøknadRoutes.INNLOGGET_ROOT} key="soknad" element={<Søknad />} />,
                     <Route path={SøknadRoutes.IKKE_TILGANG} key="ikke-tilgang" element={<>Ikke tilgang</>} />,
                     <Route path="*" key="ukjent" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
