@@ -61,18 +61,18 @@ const sortTidEnkeltdagApiData = (d1: TidEnkeltdagApiData, d2: TidEnkeltdagApiDat
     dayjs(d1.dato).isBefore(d2.dato, 'day') ? -1 : 1;
 
 export const getEnkeltdagerIPeriodeApiData = (
-    dagerMedPleie: Date[],
+    valgteDatoer: Date[],
     enkeltdager: DateDurationMap,
     periode: DateRange,
     jobberNormaltTimer: number,
 ): TidEnkeltdagApiData[] => {
     const dager: TidEnkeltdagApiData[] = [];
     const tidNormalt = decimalDurationToISODuration(jobberNormaltTimer / 5);
-    const isoDagerMedPleie = dagerMedPleie.map((d) => dateToISODate(d));
+    const isoValgteDatoer = valgteDatoer.map((d) => dateToISODate(d));
 
     getDatesInDateRange(periode, true).forEach((date) => {
         const dateKey = dateToISODate(date);
-        const erDagMedPleie = isoDagerMedPleie.includes(dateKey);
+        const erDagMedPleie = isoValgteDatoer.includes(dateKey);
 
         if (erDagMedPleie === false) {
             dager.push({
@@ -90,9 +90,9 @@ export const getEnkeltdagerIPeriodeApiData = (
     return dager.sort(sortTidEnkeltdagApiData);
 };
 
-export const getEnkeltdagerMedTidPerDag = (dagerMedPleie: Date[], tidPerDag: Duration): DateDurationMap => {
+export const getEnkeltdagerMedTidPerDag = (valgteDatoer: Date[], tidPerDag: Duration): DateDurationMap => {
     const enkeltdager: DateDurationMap = {};
-    dagerMedPleie.forEach((date) => {
+    valgteDatoer.forEach((date) => {
         enkeltdager[dateToISODate(date)] = tidPerDag;
     });
     return enkeltdager;

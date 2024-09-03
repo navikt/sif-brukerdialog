@@ -33,6 +33,7 @@ export enum SøknadContextActionKeys {
     SET_SØKNAD_SENDT = 'setSøknadSendt',
     SET_SØKNAD_KVITTERING_INFO = '',
     SET_UNSUBMITTED_STEP_FORM_VALUES = 'setUnsubmittedStepFormValues',
+    SYNC_ARBEIDSTID_MED_KURSPERIODER = 'syncArbeidstidMedKursperioder',
 }
 
 interface ResetSøknad {
@@ -108,6 +109,11 @@ interface SetSøknadHarBekreftetOpplysninger {
 interface SetSøknadKvitteringInfo {
     type: SøknadContextActionKeys.SET_SØKNAD_KVITTERING_INFO;
     payload?: KvitteringInfo;
+}
+
+interface SyncArbeidstidMedKursperioder {
+    type: SøknadContextActionKeys.SYNC_ARBEIDSTID_MED_KURSPERIODER;
+    payload?: KursSøknadsdata;
 }
 
 const resetSøknad = (): ResetSøknad => ({
@@ -191,6 +197,11 @@ const setSøknadRoute = (payload: SøknadRoutes): SetSøknadRoute => ({
     payload,
 });
 
+const syncArbeidstidMedKursperioder = (payload: KursSøknadsdata): SyncArbeidstidMedKursperioder => ({
+    type: SøknadContextActionKeys.SYNC_ARBEIDSTID_MED_KURSPERIODER,
+    payload,
+});
+
 export type SøknadContextAction =
     | StartSøknad
     | AvbrytSøknad
@@ -209,7 +220,8 @@ export type SøknadContextAction =
     | SetSøknadMedlemskap
     | SetSøknadHarBekreftetOpplysninger
     | SetSøknadKvitteringInfo
-    | SetSøknadRoute;
+    | SetSøknadRoute
+    | SyncArbeidstidMedKursperioder;
 
 const actionsCreator = {
     resetSøknad,
@@ -230,6 +242,7 @@ const actionsCreator = {
     setSøknadLagret,
     setSøknadOmBarnet,
     setSøknadSendt,
+    syncArbeidstidMedKursperioder,
 };
 
 export default actionsCreator;

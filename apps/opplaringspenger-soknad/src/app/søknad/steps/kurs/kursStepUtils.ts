@@ -5,9 +5,10 @@ import { getDate1YearFromNow, getDate3YearsAgo, dateRangeUtils } from '@navikt/s
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
-import { KursSøknadsdata } from '../../../types/søknadsdata/KursSøknadsdata';
+import { INKLUDER_REISEDAGER_I_PERIODE, KursSøknadsdata } from '../../../types/søknadsdata/KursSøknadsdata';
 import { KursFormValues } from './KursStep';
 import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
+import { Kursperiode } from '../../../types/Kursperiode';
 
 dayjs.extend(isoWeek);
 
@@ -36,6 +37,14 @@ export const validateTildato = (tilDatoString?: string, fraDatoString?: string):
     }).validateToDate(tilDatoString);
 };
 
+export const getDatoerIKursperioderUtenReisedager = (perioder: Kursperiode[]) => {
+    return dateRangeUtils.getDatesInDateRanges(perioder.map((p) => p.periode));
+};
+
+export const getDatoerIKursperioderInkludertReisedager = (perioder: Kursperiode[]) => {
+    return dateRangeUtils.getDatesInDateRanges(perioder.map((p) => p.periodeMedReise));
+};
+
 export const getKursSøknadsdataFromFormValues = ({
     kursholder,
     arbeiderIKursperiode,
@@ -45,13 +54,16 @@ export const getKursSøknadsdataFromFormValues = ({
         throw 'Kursholder eller kursperioder er ikke definert';
     }
 
-    const søknadsperiode = dateRangeUtils.getDateRangeFromDateRanges(kursperioder.map((p) => p.periode));
+    const søknadsperiodeUtenReisedager = dateRangeUtils.getDateRangeFromDateRanges(kursperioder.map((p) => p.periode));
     const søknadsperiodeMedReisedager = dateRangeUtils.getDateRangeFromDateRanges(
         kursperioder.map((p) => p.periodeMedReise),
     );
+
     return {
-        søknadsperiode,
-        søknadsperiodeMedReisedager,
+        søknadsperiode: INKLUDER_REISEDAGER_I_PERIODE ? søknadsperiodeMedReisedager : søknadsperiodeUtenReisedager,
+        søknadsdatoer: INKLUDER_REISEDAGER_I_PERIODE
+            ? getDatoerIKursperioderInkludertReisedager(kursperioder)
+            : getDatoerIKursperioderUtenReisedager(kursperioder),
         kursholder,
         kursperioder,
         arbeiderIKursperiode: arbeiderIKursperiode === YesOrNo.YES,

@@ -28,7 +28,6 @@ import {
     getAntallArbeidsforhold,
     getArbeidstidStepInitialValues,
     getArbeidstidSøknadsdataFromFormValues,
-    getDatoerIKursperioderInkludertReisedager,
 } from './arbeidstidStepUtils';
 import { ArbeidIPeriode } from './ArbeidstidTypes';
 import ArbeidIPeriodeSpørsmål from './form-parts/arbeid-i-periode-spørsmål/ArbeidIPeriodeSpørsmål';
@@ -151,13 +150,13 @@ const ArbeidstidStep = () => {
         persistTempFormValues({ stepId, values });
     };
 
-    const periode = søknadsdata.kurs?.søknadsperiodeMedReisedager || søknadsdata.kurs?.søknadsperiode;
+    const søknadsperiode = søknadsdata.kurs?.søknadsperiode;
 
-    if (!søknadsdata.kurs || !periode) {
+    if (!søknadsdata.kurs || !søknadsperiode) {
         return undefined;
     }
 
-    const valgteDatoer = getDatoerIKursperioderInkludertReisedager(søknadsdata.kurs?.kursperioder);
+    const valgteDatoer = søknadsdata.kurs?.søknadsdatoer;
 
     const antallArbeidsforhold = søknadsdata.arbeidssituasjon
         ? getAntallArbeidsforhold(søknadsdata.arbeidssituasjon)
@@ -178,14 +177,17 @@ const ArbeidstidStep = () => {
                         return undefined;
                     }
                     const periodeSomFrilanserISøknadsperiode =
-                        frilansArbeidstid && periode
-                            ? getPeriodeSomFrilanserInnenforPeriode(periode, søknadsdata.arbeidssituasjon?.frilans)
+                        frilansArbeidstid && søknadsperiode
+                            ? getPeriodeSomFrilanserInnenforPeriode(
+                                  søknadsperiode,
+                                  søknadsdata.arbeidssituasjon?.frilans,
+                              )
                             : undefined;
 
                     const periodeSomSelvstendigISøknadsperiode =
-                        selvstendigArbeidstid && periode
+                        selvstendigArbeidstid && søknadsperiode
                             ? getPeriodeSomSelvstendigInnenforPeriode(
-                                  periode,
+                                  søknadsperiode,
                                   søknadsdata.arbeidssituasjon?.selvstendig,
                               )
                             : undefined;
@@ -233,7 +235,7 @@ const ArbeidstidStep = () => {
                                                                 arbeidIPeriode={arbeidsforhold.arbeidIPeriode}
                                                                 jobberNormaltTimer={arbeidsforhold.jobberNormaltTimer}
                                                                 valgteDatoer={valgteDatoer}
-                                                                periode={periode}
+                                                                periode={søknadsperiode}
                                                                 parentFieldName={`${ArbeidstidFormFields.ansattArbeidstid}.${index}`}
                                                                 onArbeidstidVariertChange={oppdatereArbeidstid}
                                                                 onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
@@ -274,28 +276,30 @@ const ArbeidstidStep = () => {
                                         </FormBlock>
                                     )}
 
-                                    {selvstendigArbeidstid && periode && periodeSomSelvstendigISøknadsperiode && (
-                                        <FormBlock>
-                                            <Heading level="2" size="medium">
-                                                <AppText id="arbeidIPeriode.SNLabel" />
-                                            </Heading>
-                                            <Block>
-                                                <ArbeidIPeriodeSpørsmål
-                                                    arbeidsstedNavn={text('arbeidIPeriode.arbeidstidSted.sn')}
-                                                    arbeidsforholdType={ArbeidsforholdType.SELVSTENDIG}
-                                                    jobberNormaltTimer={selvstendigArbeidstid.jobberNormaltTimer}
-                                                    arbeidIPeriode={selvstendigArbeidstid.arbeidIPeriode}
-                                                    periode={periodeSomSelvstendigISøknadsperiode}
-                                                    valgteDatoer={valgteDatoer}
-                                                    parentFieldName={ArbeidstidFormFields.selvstendigArbeidstid}
-                                                    onArbeidstidVariertChange={oppdatereArbeidstid}
-                                                    onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
-                                                    onArbeidstidEnkeltdagRegistrert={logArbeidEnkeltdagRegistrert}
-                                                    skjulJobberNormaltValg={antallArbeidsforhold === 1}
-                                                />
-                                            </Block>
-                                        </FormBlock>
-                                    )}
+                                    {selvstendigArbeidstid &&
+                                        søknadsperiode &&
+                                        periodeSomSelvstendigISøknadsperiode && (
+                                            <FormBlock>
+                                                <Heading level="2" size="medium">
+                                                    <AppText id="arbeidIPeriode.SNLabel" />
+                                                </Heading>
+                                                <Block>
+                                                    <ArbeidIPeriodeSpørsmål
+                                                        arbeidsstedNavn={text('arbeidIPeriode.arbeidstidSted.sn')}
+                                                        arbeidsforholdType={ArbeidsforholdType.SELVSTENDIG}
+                                                        jobberNormaltTimer={selvstendigArbeidstid.jobberNormaltTimer}
+                                                        arbeidIPeriode={selvstendigArbeidstid.arbeidIPeriode}
+                                                        periode={periodeSomSelvstendigISøknadsperiode}
+                                                        valgteDatoer={valgteDatoer}
+                                                        parentFieldName={ArbeidstidFormFields.selvstendigArbeidstid}
+                                                        onArbeidstidVariertChange={oppdatereArbeidstid}
+                                                        onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
+                                                        onArbeidstidEnkeltdagRegistrert={logArbeidEnkeltdagRegistrert}
+                                                        skjulJobberNormaltValg={antallArbeidsforhold === 1}
+                                                    />
+                                                </Block>
+                                            </FormBlock>
+                                        )}
                                 </FormBlock>
                             </Form>
                         </>

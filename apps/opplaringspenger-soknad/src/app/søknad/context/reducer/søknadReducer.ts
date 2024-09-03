@@ -2,6 +2,7 @@ import { guid } from '@navikt/sif-common-utils';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
+import { syncArbeidstidMedKursperioder } from '../../steps/arbeidstid/arbeidstidStepUtils';
 
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {
     switch (action.type) {
@@ -152,6 +153,19 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     søknadRoute: SøknadRoutes.VELKOMMEN,
                 };
 
+            case SøknadContextActionKeys.SYNC_ARBEIDSTID_MED_KURSPERIODER:
+                return {
+                    ...state,
+                    søknadsdata: {
+                        ...state.søknadsdata,
+                        arbeidstid: state.søknadsdata.arbeidstid
+                            ? syncArbeidstidMedKursperioder(
+                                  state.søknadsdata.arbeidstid,
+                                  state.søknadsdata.kurs?.søknadsdatoer,
+                              )
+                            : undefined,
+                    },
+                };
             default:
                 // eslint-disable-next-line no-console
                 console.error(`Missing handler for ${action.type}`);

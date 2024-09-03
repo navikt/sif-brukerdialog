@@ -1,6 +1,5 @@
-import { DateDurationMap, dateRangeUtils, dateToISODate } from '@navikt/sif-common-utils';
+import { DateDurationMap, dateToISODate } from '@navikt/sif-common-utils';
 
-import { Kursperiode } from '../../../types/Kursperiode';
 import { ArbeidFrilansSøknadsdata } from '../../../types/søknadsdata/ArbeidFrilansSøknadsdata';
 import { ArbeidSelvstendigSøknadsdata } from '../../../types/søknadsdata/ArbeidSelvstendigSøknadsdata';
 import { ArbeidsgivereSøknadsdata } from '../../../types/søknadsdata/ArbeidsgivereSøknadsdata';
@@ -246,7 +245,7 @@ export const getArbeidIPeriodeSøknadsdata = (
     return undefined;
 };
 
-export const syncArbeidstidMedDagerMedPleie = (arbeidstid: ArbeidstidSøknadsdata, dagerMedPleie: Date[] = []) => {
+export const syncArbeidstidMedKursperioder = (arbeidstid: ArbeidstidSøknadsdata, valgteDager: Date[] = []) => {
     const { arbeidsgivere } = arbeidstid;
     if (arbeidsgivere) {
         Object.keys(arbeidsgivere).forEach((key) => {
@@ -254,7 +253,7 @@ export const syncArbeidstidMedDagerMedPleie = (arbeidstid: ArbeidstidSøknadsdat
             if (a && a.arbeidIPeriode?.type === ArbeidIPeriodeType.arbeiderUlikeUkerTimer) {
                 a.arbeidIPeriode.enkeltdager = cleanupDateDurationMapWithValidDates(
                     a.arbeidIPeriode.enkeltdager,
-                    dagerMedPleie,
+                    valgteDager,
                 );
             }
         });
@@ -262,13 +261,13 @@ export const syncArbeidstidMedDagerMedPleie = (arbeidstid: ArbeidstidSøknadsdat
     if (arbeidstid.frilans?.type === ArbeidIPeriodeType.arbeiderUlikeUkerTimer) {
         arbeidstid.frilans.enkeltdager = cleanupDateDurationMapWithValidDates(
             arbeidstid.frilans.enkeltdager,
-            dagerMedPleie,
+            valgteDager,
         );
     }
     if (arbeidstid.selvstendig?.type === ArbeidIPeriodeType.arbeiderUlikeUkerTimer) {
         arbeidstid.selvstendig.enkeltdager = cleanupDateDurationMapWithValidDates(
             arbeidstid.selvstendig.enkeltdager,
-            dagerMedPleie,
+            valgteDager,
         );
     }
 
@@ -284,12 +283,4 @@ export const cleanupDateDurationMapWithValidDates = (enkeltdager: DateDurationMa
         }
     });
     return cleanedMap;
-};
-
-export const getDatoerIKursperioder = (perioder: Kursperiode[]) => {
-    return dateRangeUtils.getDatesInDateRanges(perioder.map((p) => p.periode));
-};
-
-export const getDatoerIKursperioderInkludertReisedager = (perioder: Kursperiode[]) => {
-    return dateRangeUtils.getDatesInDateRanges(perioder.map((p) => p.periodeMedReise));
 };

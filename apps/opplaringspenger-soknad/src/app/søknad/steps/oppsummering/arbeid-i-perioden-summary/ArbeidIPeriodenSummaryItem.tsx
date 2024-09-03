@@ -14,7 +14,7 @@ import { AppText } from '../../../../i18n';
 
 interface Props {
     periode: DateRange;
-    dagerMedPleie: Date[];
+    valgteDatoer: Date[];
     arbeidIPeriode: ArbeidIPeriodeApiData;
     normaltimerUke: number;
 }
@@ -23,14 +23,14 @@ export interface ArbeidIPeriodenSummaryItemType extends ArbeidsforholdApiData {
     tittel: string;
 }
 
-const fjernDagerIkkeSøktForOgUtenArbeidstid = (enkeltdager: TidEnkeltdagApiData[], dagerMedPleie: Date[]) => {
-    const isoDagerMedPleie = dagerMedPleie.map(dateToISODate);
+const fjernDagerIkkeSøktForOgUtenArbeidstid = (enkeltdager: TidEnkeltdagApiData[], valgteDatoer: Date[]) => {
+    const isoValgteDatoer = valgteDatoer.map(dateToISODate);
     return enkeltdager.filter(({ dato, tid }) => {
-        return isoDagerMedPleie.includes(dato) && ISODurationToDecimalDuration(tid) !== 0;
+        return isoValgteDatoer.includes(dato) && ISODurationToDecimalDuration(tid) !== 0;
     });
 };
 
-const ArbeidIPeriodeSummaryItem: React.FC<Props> = ({ arbeidIPeriode, dagerMedPleie }) => {
+const ArbeidIPeriodeSummaryItem: React.FC<Props> = ({ arbeidIPeriode, valgteDatoer }) => {
     return (
         <>
             {(arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.heltFravær ||
@@ -52,7 +52,7 @@ const ArbeidIPeriodeSummaryItem: React.FC<Props> = ({ arbeidIPeriode, dagerMedPl
                         <AppText id="oppsummering.arbeidIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading" />
                     </Heading>
                     <TidEnkeltdager
-                        dager={fjernDagerIkkeSøktForOgUtenArbeidstid(arbeidIPeriode.enkeltdager, dagerMedPleie)}
+                        dager={fjernDagerIkkeSøktForOgUtenArbeidstid(arbeidIPeriode.enkeltdager, valgteDatoer)}
                         renderAsAccordion={false}
                         headingLevel="5"
                     />

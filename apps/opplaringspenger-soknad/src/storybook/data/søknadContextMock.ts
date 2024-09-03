@@ -3,7 +3,22 @@ import { ArbeidsgiverType } from '../../app/types/Arbeidsgiver';
 import { SøknadContextState } from '../../app/types/SøknadContextState';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { SøknadRoutes } from '../../app/types/SøknadRoutes';
+import { getDatoerIKursperioderInkludertReisedager } from '../../app/søknad/steps/kurs/kursStepUtils';
+import { Kursperiode } from '../../app/types/Kursperiode';
 
+const kursperioder: Kursperiode[] = [
+    {
+        id: '1',
+        periode: {
+            from: new Date('2024-05-05T22:00:00.000Z'),
+            to: new Date('2024-05-30T22:00:00.000Z'),
+        },
+        periodeMedReise: {
+            from: new Date('2024-05-05T22:00:00.000Z'),
+            to: new Date('2024-05-30T22:00:00.000Z'),
+        },
+    },
+];
 export const søknadContextMock: SøknadContextState = {
     versjon: '2.0.0',
     søker: {
@@ -28,24 +43,9 @@ export const søknadContextMock: SøknadContextState = {
                 from: new Date('2024-05-05T22:00:00.000Z'),
                 to: new Date('2024-05-30T22:00:00.000Z'),
             },
-            søknadsperiodeMedReisedager: {
-                from: new Date('2024-05-05T22:00:00.000Z'),
-                to: new Date('2024-05-30T22:00:00.000Z'),
-            },
+            søknadsdatoer: getDatoerIKursperioderInkludertReisedager(kursperioder),
             kursholder: 'annen',
-            kursperioder: [
-                {
-                    id: '1',
-                    periode: {
-                        from: new Date('2024-05-05T22:00:00.000Z'),
-                        to: new Date('2024-05-30T22:00:00.000Z'),
-                    },
-                    periodeMedReise: {
-                        from: new Date('2024-05-05T22:00:00.000Z'),
-                        to: new Date('2024-05-30T22:00:00.000Z'),
-                    },
-                },
-            ],
+            kursperioder,
             arbeiderIKursperiode: true,
         },
         arbeidssituasjon: {

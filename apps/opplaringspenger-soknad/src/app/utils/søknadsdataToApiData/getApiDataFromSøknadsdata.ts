@@ -12,7 +12,6 @@ import { getOpptjeningUtlandApiDataFromSøknadsdata } from './getOpptjeningUtlan
 import { getSelvstendigApiDataFromSøknadsdata } from './getSelvstendigApiDataFromSøknadsdata';
 import { getUtenlandskNæringApiDataFromSøknadsdata } from './getUtenlandskNæringApiDataFromSøknadsdata';
 import { getOmBarnetApiDataFromSøknadsdata } from './getOmBarnetApiDataFromSøknadsdata';
-import { getDatoerIKursperioderInkludertReisedager } from '../../søknad/steps/arbeidstid/arbeidstidStepUtils';
 
 const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
     if (!vedlegg || vedlegg.length === 0) {
@@ -47,7 +46,7 @@ export const getApiDataFromSøknadsdata = (
     }
 
     const { arbeidsgivere, frilans, selvstendig } = arbeidssituasjon;
-    const valgteDatoer = getDatoerIKursperioderInkludertReisedager(kurs.kursperioder);
+    const valgteDatoer = kurs.søknadsdatoer;
 
     if (frilans === undefined || selvstendig === undefined) {
         return undefined;
@@ -63,8 +62,8 @@ export const getApiDataFromSøknadsdata = (
         omBarnet: getOmBarnetApiDataFromSøknadsdata(omBarnet),
         vedleggUrls: getVedleggApiData(legeerklæring.vedlegg),
         søknadsperiode: {
-            fraOgMed: dateToISODate(new Date()),
-            tilOgMed: dateToISODate(new Date()),
+            fraOgMed: dateToISODate(søknadsperiode.from),
+            tilOgMed: dateToISODate(søknadsperiode.to),
         },
         arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(
             søknadsperiode,

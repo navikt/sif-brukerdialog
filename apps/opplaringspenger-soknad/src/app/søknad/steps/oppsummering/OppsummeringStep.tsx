@@ -25,7 +25,6 @@ import { ISODateToDate } from '@navikt/sif-common-utils';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { AppText, useAppIntl } from '../../../i18n';
 import { useNavigate } from 'react-router-dom';
-import { getDatoerIKursperioderInkludertReisedager } from '../arbeidstid/arbeidstidStepUtils';
 import ArbeidIPeriodenSummary from './arbeid-i-perioden-summary/ArbeidIPeriodenSummary';
 
 enum OppsummeringFormFields {
@@ -106,9 +105,7 @@ const OppsummeringStep = () => {
                     }
                 }}
                 renderForm={() => {
-                    const valgteDatoer = getDatoerIKursperioderInkludertReisedager(
-                        søknadsdata.kurs?.kursperioder || [],
-                    );
+                    const valgteDatoer = søknadsdata.kurs?.søknadsdatoer || [];
                     return (
                         <div data-testid="oppsummering">
                             <Form

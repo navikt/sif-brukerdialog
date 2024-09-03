@@ -227,8 +227,8 @@ const getJobberIPeriodenRadios = ({ text }: AppIntlShape, skjulJobberNormaltValg
           ]),
 ];
 
-const getDagerSomSkalDisables = (dateRange: DateRange, dagerMedPleie: Date[]): Date[] => {
-    return getDatesInDateRange(dateRange).filter((d) => isDateInDates(d, dagerMedPleie) === false);
+const getDagerSomSkalDisables = (dateRange: DateRange, valgteDatoer: Date[]): Date[] => {
+    return getDatesInDateRange(dateRange).filter((d) => isDateInDates(d, valgteDatoer) === false);
 };
 
 export default ArbeidIPeriodeSpørsmål;

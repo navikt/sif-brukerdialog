@@ -65,7 +65,10 @@ const KursStep = () => {
         const kursSøknadsdata = getKursSøknadsdataFromFormValues(values);
         if (kursSøknadsdata) {
             clearStepFormValues(stepId);
-            return [actionsCreator.setSøknadKurs(kursSøknadsdata)];
+            return [
+                actionsCreator.setSøknadKurs(kursSøknadsdata),
+                actionsCreator.syncArbeidstidMedKursperioder(kursSøknadsdata),
+            ];
         }
         return [];
     };

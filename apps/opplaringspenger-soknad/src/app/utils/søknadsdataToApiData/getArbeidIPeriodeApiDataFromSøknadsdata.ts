@@ -14,14 +14,14 @@ export const getArbeidIPeriodeApiDataFromSøknadsdata = (
     arbeidIPeriodeSøknadsdata: ArbeidIPeriodeSøknadsdata | undefined,
     periode: DateRange,
     jobberNormaltTimer: number,
-    dagerMedPleie: Date[],
+    valgteDatoer: Date[],
 ): ArbeidIPeriodeApiData => {
     if (skalJobbeIPerioden === false || !arbeidIPeriodeSøknadsdata) {
         return {
             jobberIPerioden: JobberIPeriodeSvar.heltFravær,
             enkeltdager: getEnkeltdagerIPeriodeApiData(
-                dagerMedPleie,
-                getEnkeltdagerMedTidPerDag(dagerMedPleie, { hours: '0', minutes: '0' }),
+                valgteDatoer,
+                getEnkeltdagerMedTidPerDag(valgteDatoer, { hours: '0', minutes: '0' }),
                 periode,
                 jobberNormaltTimer,
             ),
@@ -32,8 +32,8 @@ export const getArbeidIPeriodeApiDataFromSøknadsdata = (
             return {
                 jobberIPerioden: JobberIPeriodeSvar.heltFravær,
                 enkeltdager: getEnkeltdagerIPeriodeApiData(
-                    dagerMedPleie,
-                    getEnkeltdagerMedTidPerDag(dagerMedPleie, { hours: '0', minutes: '0' }),
+                    valgteDatoer,
+                    getEnkeltdagerMedTidPerDag(valgteDatoer, { hours: '0', minutes: '0' }),
                     periode,
                     jobberNormaltTimer,
                 ),
@@ -42,8 +42,8 @@ export const getArbeidIPeriodeApiDataFromSøknadsdata = (
             return {
                 jobberIPerioden: JobberIPeriodeSvar.somVanlig,
                 enkeltdager: getEnkeltdagerIPeriodeApiData(
-                    dagerMedPleie,
-                    getEnkeltdagerMedTidPerDag(dagerMedPleie, getNormalarbeidstidPerDag(jobberNormaltTimer)),
+                    valgteDatoer,
+                    getEnkeltdagerMedTidPerDag(valgteDatoer, getNormalarbeidstidPerDag(jobberNormaltTimer)),
                     periode,
                     jobberNormaltTimer,
                 ),
@@ -52,7 +52,7 @@ export const getArbeidIPeriodeApiDataFromSøknadsdata = (
             return {
                 jobberIPerioden: JobberIPeriodeSvar.redusert,
                 enkeltdager: getEnkeltdagerIPeriodeApiData(
-                    dagerMedPleie,
+                    valgteDatoer,
                     arbeidIPeriodeSøknadsdata.enkeltdager,
                     periode,
                     jobberNormaltTimer,
