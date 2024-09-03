@@ -35,8 +35,6 @@ export const mellomlagring = {
                 from: '2023-09-03T22:00:00.000Z',
                 to: '2023-10-12T22:00:00.000Z',
             },
-
-            skalJobbeOgPleieSammeDag: 'yes',
             flereSokere: 'no',
             skalOppholdeSegIUtlandetIPerioden: false,
         },

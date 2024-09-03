@@ -1,15 +1,15 @@
 export const arbeidstidMessages = {
     nb: {
         'arbeidIPeriode.StepInfo.1':
-            'Du har fortalt oss at du skal jobbe noe de dagene du skal gi pleie. Så, nå må du legge inn i kalenderen hvor mye du skal jobbe.',
+            'Du har fortalt oss at du skal jobbe noe de dagene du skal delta på opplæring. Så, nå må du legge inn i kalenderen hvor mye du skal jobbe.',
         'arbeidIPeriode.FrilansLabel': 'Frilans',
         'arbeidIPeriode.SNLabel': 'Selvstendig næringsdrivende',
         'arbeidIPeriode.jobberIPerioden.spm': 'I dagene du søker for, hvilken situasjon gjelder for deg {hvor}?',
         'arbeidIPeriode.enkeltdager_gruppe.legend':
-            'Oppgi hvor mye du jobber {hvor} i de dagene du søker pleiepenger for.',
-        'arbeidIPeriode.jobberIPerioden.jobberIkke': 'Jeg jobber ikke noe de dagene jeg pleier',
+            'Oppgi hvor mye du jobber {hvor} i de dagene du søker opplæringspenger for.',
+        'arbeidIPeriode.jobberIPerioden.jobberIkke': 'Jeg jobber ikke noe de dagene jeg søker om',
         'arbeidIPeriode.jobberIPerioden.jobberVanlig': 'Jeg jobber som normalt, og har ikke fravær',
-        'arbeidIPeriode.jobberIPerioden.jobberRedusert': 'Jeg kombinerer delvis jobb med pleiepenger',
+        'arbeidIPeriode.jobberIPerioden.jobberRedusert': 'Jeg jobber noe de dagene jeg søker om',
         'arbeidIPeriode.iDag.utledet': 'timer i uka',
         'arbeidIPeriode.prosent.utledet.medTimer': 'prosent av {timerNormalt} ({timerRedusert} per dag)',
         'arbeidIPeriode.arbeidstidSted.frilansoppdrag': 'Frilansoppdrag',

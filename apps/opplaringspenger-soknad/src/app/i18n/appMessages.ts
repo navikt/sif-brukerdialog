@@ -202,7 +202,7 @@ const nb = {
     'ingenFraværConfirmation.okLabel': 'Ja, det stemmer',
     'ingenFraværConfirmation.cancelLabel': 'Nei, det stemmer ikke',
     'ingenFraværConfirmation.content':
-        'Du har oppgitt at du jobber som normalt og ikke har fravær i dagene du søker for. For å ha rett til opplæringspenger må du ha fravær fra jobb fordi du pleier noen. Stemmer det at du ikke har fravær fra jobb i dagene du søker for?',
+        'Du har oppgitt at du jobber som normalt og ikke har fravær i dagene du søker for. For å ha rett til opplæringspenger må du ha fravær fra jobb fordi du skal delta på opplæring. Stemmer det at du ikke har fravær fra jobb i dagene du søker for?',
     'ingenFraværConfirmation.heading': 'Fravær fra jobb',
 };
 

@@ -7,7 +7,7 @@ const nb = {
     'steg.oppsummering.søker.fnr': 'Fødselsnummer',
 
     'steg.oppsummeringkurs.header': 'Dagene du søker opplæringspenger for',
-    'steg.oppsummeringkurs.valgteDager.header': '{dager} {dager, plural, one {dag} other {dager}} med pleiepenger',
+    'steg.oppsummeringkurs.valgteDager.header': '{dager} {dager, plural, one {dag} other {dager}} med opplæringspenger',
     'steg.oppsummeringarbeidssituasjon.header': 'Din arbeidssituasjon',
 
     'arbeidsgiver.tittel': '{navn} (organisasjonsnummer {organisasjonsnummer})',
@@ -44,9 +44,9 @@ const nb = {
 
     'oppsummering.arbeidssituasjon.verneplikt.header': 'Verneplikt',
     'oppsummering.arbeidssituasjon.verneplikt.harVærtVernepliktig':
-        'Utøvde verneplikt på tidspunktet det søkes pleiepenger fra',
+        'Utøvde verneplikt på tidspunktet det søkes opplæringspenger fra',
     'oppsummering.arbeidssituasjon.verneplikt.harIkkeVærtVernepliktig':
-        'Utøvde ikke verneplikt på tidspunktet det søkes pleiepenger fra',
+        'Utøvde ikke verneplikt på tidspunktet det søkes opplæringspenger fra',
 
     'oppsummering.arbeidssituasjon.optjeningIUtlandet.tittel': 'Arbeidstaker eller frilanser i et annet EØS-land',
     'oppsummering.arbeidssituasjon.optjeningIUtlandet.ja':
@@ -67,19 +67,19 @@ const nb = {
     'oppsummering.arbeidIPeriode.jobbIPerioden.header': 'Jobb i søknadsperioden',
     'oppsummering.arbeidIPeriode.jobbIPerioden': 'Jobb i søknadsperioden',
     'oppsummering.arbeidIPeriode.jobberIPerioden.ja': 'jobber',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.HELT_FRAVÆR': 'Jeg jobber ikke her de dagene jeg pleier',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.REDUSERT': 'Jeg kombinerer delvis jobb med pleiepenger',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.SOM_VANLIG': 'Jeg jobber som normalt, og har ikke fravær',
+    'oppsummering.arbeidIPeriode.jobberIPerioden.HELT_FRAVÆR': 'Jeg jobber ikke her de dagene jeg søker for',
+    'oppsummering.arbeidIPeriode.jobberIPerioden.REDUSERT': 'Jeg jobber noe de dagene jeg søker for',
+    'oppsummering.arbeidIPeriode.jobberIPerioden.SOM_VANLIG': 'Jeg jobber som normalt, og har ikke fravær fra jobb',
     'oppsummering.arbeidIPeriode.jobberIPerioden.liktHverUke': 'Jeg jobber likt hver uke',
     'oppsummering.arbeidIPeriode.jobberIPerioden.prosent': 'Jeg jobber {prosent} prosent, i snitt {timer} hver ukedag',
     'oppsummering.arbeidIPeriode.jobberIPerioden.informasjonMangler': 'Informasjon om arbeid i perioden mangler',
     'oppsummering.arbeidIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading':
-        'Dager med pleiepenger hvor jeg skal jobbe',
+        'Dager med opplæringspenger hvor jeg skal jobbe',
 
     'summary.virksomhet.virksomhetInfo.tittel': 'Næringsvirksomhet som du har lagt inn',
 
     'steg.oppsummering.bekrefterOpplysninger':
-        'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til pleiepenger.',
+        'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til opplæringspenger.',
 
     'steg.oppsummering.sendMelding.feilmelding.førsteGang':
         'Det oppstod en feil under innsending. Vennligst prøv på nytt.',

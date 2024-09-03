@@ -20,7 +20,6 @@ export enum SøknadContextActionKeys {
     SET_SØKNAD_ROUTE = 'setSøknadRoute',
     SET_SØKNAD_OM_BARNET = 'setSøknadOmBarnet',
     SET_SØKNAD_TEMP_FORM_DATA = 'setSøknadTempFormData',
-    SET_SØKNAD_OPPLYSNINGER_OM_PLEIETRENGENDE = 'setSøknadOpplysningerOmPleietrengende',
     SET_SØKNAD_LEGEERKLÆRING = 'setSøknadLegeerklæring',
     SET_SØKNAD_KURS = 'setSøknadKurs',
     SET_SØKNAD_ARBEIDSSITUASJON = 'setSøknadArbeidssituasjon',

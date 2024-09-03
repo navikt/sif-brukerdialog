@@ -72,9 +72,9 @@ export const getEnkeltdagerIPeriodeApiData = (
 
     getDatesInDateRange(periode, true).forEach((date) => {
         const dateKey = dateToISODate(date);
-        const erDagMedPleie = isoValgteDatoer.includes(dateKey);
+        const valgteDager = isoValgteDatoer.includes(dateKey);
 
-        if (erDagMedPleie === false) {
+        if (valgteDager === false) {
             dager.push({
                 dato: dateToISOString(date),
                 tid: tidNormalt,
