@@ -64,6 +64,18 @@ const nb = {
     'oppsummering.arbeidssituasjon.utenlandskNæring.næringer': 'Næringsvirksomheter i andre EØS-land',
     'oppsummering.arbeidssituasjon.utenlandskNæring.næring': 'Næringsvirksomhet i annet EØS-land',
 
+    'oppsummering.arbeidIPeriode.jobbIPerioden.header': 'Jobb i søknadsperioden',
+    'oppsummering.arbeidIPeriode.jobbIPerioden': 'Jobb i søknadsperioden',
+    'oppsummering.arbeidIPeriode.jobberIPerioden.ja': 'jobber',
+    'oppsummering.arbeidIPeriode.jobberIPerioden.HELT_FRAVÆR': 'Jeg jobber ikke her de dagene jeg pleier',
+    'oppsummering.arbeidIPeriode.jobberIPerioden.REDUSERT': 'Jeg kombinerer delvis jobb med pleiepenger',
+    'oppsummering.arbeidIPeriode.jobberIPerioden.SOM_VANLIG': 'Jeg jobber som normalt, og har ikke fravær',
+    'oppsummering.arbeidIPeriode.jobberIPerioden.liktHverUke': 'Jeg jobber likt hver uke',
+    'oppsummering.arbeidIPeriode.jobberIPerioden.prosent': 'Jeg jobber {prosent} prosent, i snitt {timer} hver ukedag',
+    'oppsummering.arbeidIPeriode.jobberIPerioden.informasjonMangler': 'Informasjon om arbeid i perioden mangler',
+    'oppsummering.arbeidIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading':
+        'Dager med pleiepenger hvor jeg skal jobbe',
+
     'summary.virksomhet.virksomhetInfo.tittel': 'Næringsvirksomhet som du har lagt inn',
 
     'steg.oppsummering.bekrefterOpplysninger':

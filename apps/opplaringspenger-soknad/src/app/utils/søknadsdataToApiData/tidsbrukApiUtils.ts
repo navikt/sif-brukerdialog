@@ -1,14 +1,19 @@
 import {
+    DateDurationMap,
     DateRange,
+    dateToISODate,
     decimalDurationToDuration,
+    decimalDurationToISODuration,
     Duration,
     durationToISODuration,
     DurationWeekdays,
+    getDatesInDateRange,
     isDateWeekDay,
     ISODateToDate,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { TidEnkeltdagApiData, TidFasteDagerApiData } from '../../types/søknadApiData/SøknadApiData';
+import { dateToISOString } from '@navikt/sif-common-formik-ds';
 
 export const getFasteDagerApiData = ({
     monday: mandag,
@@ -50,4 +55,45 @@ export const fjernTidUtenforPeriodeOgHelgedager = (
         }
         return true;
     });
+};
+
+const sortTidEnkeltdagApiData = (d1: TidEnkeltdagApiData, d2: TidEnkeltdagApiData): number =>
+    dayjs(d1.dato).isBefore(d2.dato, 'day') ? -1 : 1;
+
+export const getEnkeltdagerIPeriodeApiData = (
+    dagerMedPleie: Date[],
+    enkeltdager: DateDurationMap,
+    periode: DateRange,
+    jobberNormaltTimer: number,
+): TidEnkeltdagApiData[] => {
+    const dager: TidEnkeltdagApiData[] = [];
+    const tidNormalt = decimalDurationToISODuration(jobberNormaltTimer / 5);
+    const isoDagerMedPleie = dagerMedPleie.map((d) => dateToISODate(d));
+
+    getDatesInDateRange(periode, true).forEach((date) => {
+        const dateKey = dateToISODate(date);
+        const erDagMedPleie = isoDagerMedPleie.includes(dateKey);
+
+        if (erDagMedPleie === false) {
+            dager.push({
+                dato: dateToISOString(date),
+                tid: tidNormalt,
+            });
+        } else {
+            dager.push({
+                dato: dateToISOString(date),
+                tid: durationToISODuration(enkeltdager[dateKey] || { hours: 0, minutes: 0 }),
+            });
+        }
+    });
+
+    return dager.sort(sortTidEnkeltdagApiData);
+};
+
+export const getEnkeltdagerMedTidPerDag = (dagerMedPleie: Date[], tidPerDag: Duration): DateDurationMap => {
+    const enkeltdager: DateDurationMap = {};
+    dagerMedPleie.forEach((date) => {
+        enkeltdager[dateToISODate(date)] = tidPerDag;
+    });
+    return enkeltdager;
 };

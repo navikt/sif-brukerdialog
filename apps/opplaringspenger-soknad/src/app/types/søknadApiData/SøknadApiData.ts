@@ -2,6 +2,7 @@ import { OpptjeningAktivitet, UtenlandskNæringstype, VirksomhetApiData } from '
 import { ISODate, ISODateRange, ISODuration } from '@navikt/sif-common-utils';
 import { ArbeidsgiverType } from '../Arbeidsgiver';
 import { SøkersRelasjonTilBarnet } from '../SøkersRelasjonTilBarnet';
+import { JobberIPeriodeSvar } from '../../søknad/steps/arbeidstid/ArbeidstidTypes';
 
 export interface BarnToSendToApi {
     navn: string;
@@ -37,6 +38,10 @@ export interface TidEnkeltdagApiData {
     dato: ISODate;
     tid: ISODuration;
 }
+export interface ArbeidIPeriodeApiData {
+    jobberIPerioden: JobberIPeriodeSvar;
+    enkeltdager: TidEnkeltdagApiData[];
+}
 
 export interface TidFasteDagerApiData {
     mandag?: ISODuration;
@@ -48,6 +53,7 @@ export interface TidFasteDagerApiData {
 
 export interface ArbeidsforholdApiData {
     jobberNormaltTimer: number;
+    arbeidIPeriode?: ArbeidIPeriodeApiData;
 }
 
 export interface ArbeidsgiverApiData {

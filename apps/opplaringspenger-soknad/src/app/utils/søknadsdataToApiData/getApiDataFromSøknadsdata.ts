@@ -12,6 +12,7 @@ import { getOpptjeningUtlandApiDataFromSøknadsdata } from './getOpptjeningUtlan
 import { getSelvstendigApiDataFromSøknadsdata } from './getSelvstendigApiDataFromSøknadsdata';
 import { getUtenlandskNæringApiDataFromSøknadsdata } from './getUtenlandskNæringApiDataFromSøknadsdata';
 import { getOmBarnetApiDataFromSøknadsdata } from './getOmBarnetApiDataFromSøknadsdata';
+import { getDatoerIKursperioderInkludertReisedager } from '../../søknad/steps/arbeidstid/arbeidstidStepUtils';
 
 const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
     if (!vedlegg || vedlegg.length === 0) {
@@ -37,7 +38,7 @@ export const getApiDataFromSøknadsdata = (
     søkerNorskIdent: string,
     søknadsdata: Søknadsdata,
 ): SøknadApiData | undefined => {
-    const { id, omBarnet, legeerklæring, kurs, arbeidssituasjon, medlemskap } = søknadsdata;
+    const { id, omBarnet, legeerklæring, kurs, arbeidssituasjon, medlemskap, arbeidstid } = søknadsdata;
 
     const { søknadsperiode } = kurs || {};
 
@@ -46,6 +47,7 @@ export const getApiDataFromSøknadsdata = (
     }
 
     const { arbeidsgivere, frilans, selvstendig } = arbeidssituasjon;
+    const valgteDatoer = getDatoerIKursperioderInkludertReisedager(kurs.kursperioder);
 
     if (frilans === undefined || selvstendig === undefined) {
         return undefined;
@@ -64,7 +66,13 @@ export const getApiDataFromSøknadsdata = (
             fraOgMed: dateToISODate(new Date()),
             tilOgMed: dateToISODate(new Date()),
         },
-        arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(arbeidsgivere),
+        arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(
+            søknadsperiode,
+            valgteDatoer,
+            kurs.arbeiderIKursperiode,
+            arbeidsgivere,
+            arbeidstid?.arbeidsgivere,
+        ),
         frilans: getFrilansApiDataFromSøknadsdata(frilans),
         selvstendigNæringsdrivende: getSelvstendigApiDataFromSøknadsdata(selvstendig),
         opptjeningIUtlandet: getOpptjeningUtlandApiDataFromSøknadsdata(språk, arbeidssituasjon.opptjeningUtland),
