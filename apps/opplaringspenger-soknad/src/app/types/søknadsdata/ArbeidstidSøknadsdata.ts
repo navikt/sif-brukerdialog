@@ -1,3 +1,8 @@
+import { ArbeidstidArbeidsgivereSøknadsdata } from './ArbeidstidArbeidsgivereSøknadsdata';
+import { ArbeidIPeriodeSøknadsdata } from './ArbeidIPeriodeSøknadsdata';
+
 export interface ArbeidstidSøknadsdata {
-    todo: string;
+    arbeidsgivere?: ArbeidstidArbeidsgivereSøknadsdata;
+    frilans?: ArbeidIPeriodeSøknadsdata;
+    selvstendig?: ArbeidIPeriodeSøknadsdata;
 }

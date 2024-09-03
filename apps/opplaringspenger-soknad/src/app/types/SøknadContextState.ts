@@ -1,12 +1,19 @@
+import { ArbeidstidFormValues } from '../søknad/steps/arbeidstid/ArbeidstidStep';
 import { Arbeidsgiver } from './Arbeidsgiver';
 import { Kursholder } from './Kursholder';
 import { KvitteringInfo } from './KvitteringInfo';
 import { RegistrertBarn } from './RegistrertBarn';
+import { StepId } from './StepId';
 import { Søker } from './Søker';
 import { SøknadRoutes } from './SøknadRoutes';
 import { Søknadsdata } from './søknadsdata/Søknadsdata';
 
-export type TempFormValues = undefined;
+export type ArbeidstidStepTempFormValues = {
+    stepId: StepId.ARBEIDSTID;
+    values: Partial<ArbeidstidFormValues>;
+};
+
+export type TempFormValues = ArbeidstidStepTempFormValues | undefined;
 
 export interface SøknadContextState {
     versjon: string;

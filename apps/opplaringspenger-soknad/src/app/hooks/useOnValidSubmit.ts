@@ -19,7 +19,11 @@ export const useOnValidSubmit = <T>(
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitError, setSubmitError] = useState(undefined);
 
-    const { nextStep } = getSøknadStepConfig()[stepId];
+    const {
+        state: { søknadsdata },
+    } = useSøknadContext();
+
+    const { nextStep } = getSøknadStepConfig(søknadsdata)[stepId];
 
     useEffect(() => {
         if (hasSubmitted && postSubmit) {

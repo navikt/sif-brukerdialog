@@ -5,6 +5,7 @@ import useAvbrytEllerFortsettSenere from '../hooks/useAvbrytSøknad';
 import { StepId } from '../types/StepId';
 import { getSøknadStepConfig } from './søknadStepConfig';
 import { useAppIntl } from '../i18n';
+import { useSøknadContext } from './context/hooks/useSøknadContext';
 
 interface Props {
     stepId: StepId;
@@ -14,7 +15,11 @@ interface Props {
 const SøknadStep: React.FunctionComponent<Props> = ({ stepId, children }) => {
     const { text, intl } = useAppIntl();
 
-    const stepConfig = getSøknadStepConfig();
+    const {
+        state: { søknadsdata },
+    } = useSøknadContext();
+
+    const stepConfig = getSøknadStepConfig(søknadsdata);
 
     const { avbrytSøknad, fortsettSøknadSenere } = useAvbrytEllerFortsettSenere();
 

@@ -1,19 +1,11 @@
-import { DateRange, ValidationError, ValidationResult, YesOrNo } from '@navikt/sif-common-formik-ds';
+import { ValidationError, ValidationResult, YesOrNo } from '@navikt/sif-common-formik-ds';
 import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
 import { getDateRangeValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { UtenlandsoppholdEnkel } from '@navikt/sif-common-forms-ds';
-import {
-    getDate1YearFromNow,
-    getDate3YearsAgo,
-    dateRangesCollide,
-    dateRangesExceedsRange,
-    dateRangeUtils,
-} from '@navikt/sif-common-utils';
+import { getDate1YearFromNow, getDate3YearsAgo, dateRangeUtils } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { KursSøknadsdata } from '../../../types/søknadsdata/KursSøknadsdata';
-import { AppFieldValidationErrors } from '../../../utils/fieldValidation';
 import { KursFormValues } from './KursStep';
 import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 
@@ -44,28 +36,6 @@ export const validateTildato = (tilDatoString?: string, fraDatoString?: string):
     }).validateToDate(tilDatoString);
 };
 
-export const validateUtenlandsoppholdIPerioden = (
-    periode: DateRange,
-    utenlandsopphold: UtenlandsoppholdEnkel[],
-): ValidationResult<ValidationError> => {
-    if (utenlandsopphold.length === 0) {
-        return AppFieldValidationErrors.utenlandsopphold_ikke_registrert;
-    }
-    const dateRanges = utenlandsopphold.map((u) => ({ from: u.fom, to: u.tom }));
-    if (dateRangesCollide(dateRanges)) {
-        return AppFieldValidationErrors.utenlandsopphold_overlapper;
-    }
-    if (dateRangesExceedsRange(dateRanges, periode)) {
-        return AppFieldValidationErrors.utenlandsopphold_utenfor_periode;
-    }
-    // TODO
-    /*if (dateRangesHasFromDateEqualPreviousRangeToDate(dateRanges)) {
-        return AppFieldValidationErrors.utenlandsopphold_overlapper_samme_start_slutt;
-    }*/
-    return undefined;
-};
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const getKursSøknadsdataFromFormValues = ({
     kursholder,
     arbeiderIKursperiode,
@@ -76,8 +46,12 @@ export const getKursSøknadsdataFromFormValues = ({
     }
 
     const søknadsperiode = dateRangeUtils.getDateRangeFromDateRanges(kursperioder.map((p) => p.periode));
+    const søknadsperiodeMedReisedager = dateRangeUtils.getDateRangeFromDateRanges(
+        kursperioder.map((p) => p.periodeMedReise),
+    );
     return {
         søknadsperiode,
+        søknadsperiodeMedReisedager,
         kursholder,
         kursperioder,
         arbeiderIKursperiode: arbeiderIKursperiode === YesOrNo.YES,

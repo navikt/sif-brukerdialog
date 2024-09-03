@@ -3,7 +3,8 @@ import { Kursholder } from '../Kursholder';
 import { Kursperiode } from '../Kursperiode';
 
 export interface KursSøknadsdata {
-    søknadsperiode?: DateRange;
+    søknadsperiode: DateRange;
+    søknadsperiodeMedReisedager: DateRange;
     kursholder: Kursholder | 'annen';
     kursperioder: Kursperiode[];
     arbeiderIKursperiode: boolean;

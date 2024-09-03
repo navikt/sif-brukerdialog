@@ -9,6 +9,7 @@ import { ArbeidstidSøknadsdata } from './ArbeidstidSøknadsdata';
 export * from './LegeerklæringSøknadsdata';
 export * from './KursSøknadsdata';
 export * from './ArbeidssituasjonSøknadsdata';
+export * from './ArbeidstidSøknadsdata';
 export * from './MedlemskapSøknadsdata';
 export * from './OmBarnetSøknadsdata';
 

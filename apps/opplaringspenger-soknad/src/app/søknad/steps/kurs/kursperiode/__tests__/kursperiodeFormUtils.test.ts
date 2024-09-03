@@ -4,8 +4,8 @@ describe('kursperiodeUtils', () => {
     describe('getDagerMellomAvreiseOgStartdato', () => {
         it('returnerer riktig antall dager mellom avreise og startdato', () => {
             const formValues = {
-                fom: '2021-01-01',
-                avreise: '2021-01-05',
+                fom: '2021-01-05',
+                avreise: '2021-01-01',
             };
             const result = kursperiodeUtils.getDagerMellomAvreiseOgStartdato(formValues);
             expect(result).toBe(4);

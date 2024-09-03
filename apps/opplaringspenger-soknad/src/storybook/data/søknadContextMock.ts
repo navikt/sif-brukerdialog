@@ -28,11 +28,19 @@ export const søknadContextMock: SøknadContextState = {
                 from: new Date('2024-05-05T22:00:00.000Z'),
                 to: new Date('2024-05-30T22:00:00.000Z'),
             },
+            søknadsperiodeMedReisedager: {
+                from: new Date('2024-05-05T22:00:00.000Z'),
+                to: new Date('2024-05-30T22:00:00.000Z'),
+            },
             kursholder: 'annen',
             kursperioder: [
                 {
                     id: '1',
                     periode: {
+                        from: new Date('2024-05-05T22:00:00.000Z'),
+                        to: new Date('2024-05-30T22:00:00.000Z'),
+                    },
+                    periodeMedReise: {
                         from: new Date('2024-05-05T22:00:00.000Z'),
                         to: new Date('2024-05-30T22:00:00.000Z'),
                     },

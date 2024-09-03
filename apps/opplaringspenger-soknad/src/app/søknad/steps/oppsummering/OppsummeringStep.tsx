@@ -46,8 +46,8 @@ const OppsummeringStep = () => {
     } = useSøknadContext();
 
     const stepId = StepId.OPPSUMMERING;
-    const stepConfig = getSøknadStepConfig();
-    const step = getSøknadStepConfigForStep(stepId);
+    const stepConfig = getSøknadStepConfig(søknadsdata);
+    const step = getSøknadStepConfigForStep(søknadsdata, stepId);
 
     const { invalidSteps } = useSøknadsdataStatus(stepId, stepConfig);
     const hasInvalidSteps = invalidSteps.length > 0;
@@ -104,6 +104,9 @@ const OppsummeringStep = () => {
                     }
                 }}
                 renderForm={() => {
+                    // const valgteDatoer = getDatoerIKursperioderInkludertReisedager(
+                    //     søknadsdata.kurs?.kursperioder || [],
+                    // );
                     return (
                         <div data-testid="oppsummering">
                             <Form
@@ -132,6 +135,20 @@ const OppsummeringStep = () => {
                                         frilansoppdrag={frilansoppdrag}
                                         onEdit={() => navigate(stepConfig[StepId.ARBEIDSSITUASJON].route)}
                                     />
+
+                                    {/* <ArbeidIPeriodenSummary
+                                        apiValues={apiData}
+                                        valgteDatoer={valgteDatoer}
+                                        søknadsperiode={{
+                                            from: ISODateToDate(apiData.søknadsperiode.fraOgMed),
+                                            to: ISODateToDate(apiData.søknadsperiode.tilOgMed),
+                                        }}
+                                        onEdit={
+                                            stepConfig[StepId.ARBEIDSTID]
+                                                ? () => navigate(stepConfig[StepId.ARBEIDSTID].route)
+                                                : undefined
+                                        }
+                                    /> */}
 
                                     <MedlemskapOppsummering
                                         medlemskap={apiData.medlemskap}

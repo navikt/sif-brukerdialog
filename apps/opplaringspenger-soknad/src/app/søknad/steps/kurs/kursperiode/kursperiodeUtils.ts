@@ -1,4 +1,4 @@
-import { dateToISOString, ISOStringToDate, YesOrNo } from '@navikt/sif-common-formik-ds';
+import { DateRange, dateToISOString, ISOStringToDate, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { guid } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { Kursperiode } from '../../../../types/Kursperiode';
@@ -8,10 +8,7 @@ const isValidKursperiode = (kursperiode: Partial<Kursperiode>): kursperiode is K
     return kursperiode.periode?.from !== undefined && kursperiode.periode.to !== undefined;
 };
 
-const mapFormValuesToKursperiode = (
-    formValues: KursperiodeFormValues,
-    id: string | undefined,
-): Partial<Kursperiode> => {
+const mapFormValuesToKursperiode = (formValues: KursperiodeFormValues, id: string | undefined): Kursperiode => {
     const from = ISOStringToDate(formValues.fom);
     const to = ISOStringToDate(formValues.tom);
     const avreise = ISOStringToDate(formValues.avreise);
@@ -21,12 +18,22 @@ const mapFormValuesToKursperiode = (
         throw new Error('Kan ikke mappe form values til kursperiode: Fom og tom må være satt');
     }
 
+    const periode: DateRange = {
+        from,
+        to,
+    };
+    const periodeMedReise: DateRange =
+        avreise || hjemkomst
+            ? {
+                  from: dayjs.min(dayjs(from), dayjs(avreise)).toDate(),
+                  to: dayjs.max(dayjs(to), dayjs(hjemkomst)).toDate(),
+              }
+            : periode;
+
     return {
         id: id || guid(),
-        periode: {
-            from,
-            to,
-        },
+        periode,
+        periodeMedReise,
         avreise,
         hjemkomst,
         beskrivelseReisetidTil: måBesvareBeskrivelseReisetidTil(formValues)
@@ -61,7 +68,11 @@ const getDagerMellomAvreiseOgStartdato = ({ fom, avreise }: Partial<KursperiodeF
     const startdato = ISOStringToDate(fom);
     const avreisedato = ISOStringToDate(avreise);
 
-    return startdato && avreisedato ? dayjs(avreisedato).diff(startdato, 'days') : 0;
+    // if (!startdato || !avreisedato) {
+    //     throw 'Kan ikke beregen dagerMellomAvreiseOgStartdato pga manglende verdi';
+    // }
+
+    return startdato && avreisedato ? dayjs(startdato).diff(avreisedato, 'days') : 0;
 };
 const getDagerMellomSluttdatoOgHjemkomst = ({ hjemkomst, tom }: Partial<KursperiodeFormValues>): number => {
     const sluttdato = ISOStringToDate(tom);
