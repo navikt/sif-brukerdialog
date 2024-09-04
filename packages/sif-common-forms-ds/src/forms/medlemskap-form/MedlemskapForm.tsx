@@ -8,10 +8,9 @@ import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation
 import { UtenlandsoppholdEnkel } from '@navikt/sif-common-forms-ds/src';
 import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/BostedUtlandListAndDialog';
 import { getDateToday } from '@navikt/sif-common-utils';
-import { useSoknadIntl } from '../../hooks/useSoknadIntl';
-import { SoknadText } from '../../i18n/soknad.messages';
 import { validateUtenlandsoppholdNeste12Mnd, validateUtenlandsoppholdSiste12Mnd } from './medlemskapFieldValidations';
 import { getMedlemskapDateRanges } from './medlemskapUtils';
+import { MedlemskapFormText, useMedlemskapFormIntl } from './medlemskapMessages';
 
 export enum MedlemskapFormFields {
     harBoddUtenforNorgeSiste12Mnd = 'harBoddUtenforNorgeSiste12Mnd',
@@ -38,7 +37,7 @@ interface Props {
 
 const MedlemskapForm = ({ values = {}, isSubmitting, goBack, medlemskapInfoUrl }: Props) => {
     const intl = useIntl();
-    const { text } = useSoknadIntl();
+    const { text } = useMedlemskapFormIntl();
     const { neste12Måneder, siste12Måneder } = getMedlemskapDateRanges(getDateToday());
 
     return (
@@ -50,8 +49,8 @@ const MedlemskapForm = ({ values = {}, isSubmitting, goBack, medlemskapInfoUrl }
             runDelayedFormValidation={true}>
             <VStack gap="10">
                 <SifGuidePanel>
-                    <SoknadText
-                        id="medlemskapForm.info"
+                    <MedlemskapFormText
+                        id="@forms.medlemskapForm.info"
                         values={{
                             Lenke: (children: React.ReactNode) => (
                                 <Link href={medlemskapInfoUrl} target="_blank">
@@ -64,12 +63,12 @@ const MedlemskapForm = ({ values = {}, isSubmitting, goBack, medlemskapInfoUrl }
 
                 <VStack gap="3">
                     <YesOrNoQuestion
-                        legend={text('medlemskapForm.annetLandSiste12.spm')}
+                        legend={text('@forms.medlemskapForm.annetLandSiste12.spm')}
                         name={MedlemskapFormFields.harBoddUtenforNorgeSiste12Mnd}
                         validate={getYesOrNoValidator()}
                         description={
-                            <ExpandableInfo title={text('medlemskapForm.hvaBetyrDette')}>
-                                <SoknadText id="medlemskapForm.annetLandSiste12.hjelp" />
+                            <ExpandableInfo title={text('@forms.medlemskapForm.hvaBetyrDette')}>
+                                <MedlemskapFormText id="@forms.medlemskapForm.annetLandSiste12.hjelp" />
                             </ExpandableInfo>
                         }
                         data-testid="medlemskap-annetLandSiste12"
@@ -82,9 +81,9 @@ const MedlemskapForm = ({ values = {}, isSubmitting, goBack, medlemskapInfoUrl }
                                 minDate={siste12Måneder.from}
                                 maxDate={siste12Måneder.to}
                                 labels={{
-                                    addLabel: text('medlemskapForm.utenlandsopphold.leggTilLabel'),
-                                    listTitle: text('medlemskapForm.annetLandSiste12.listeTittel'),
-                                    modalTitle: text('medlemskapForm.annetLandSiste12.listeTittel'),
+                                    addLabel: text('@forms.medlemskapForm.utenlandsopphold.leggTilLabel'),
+                                    listTitle: text('@forms.medlemskapForm.annetLandSiste12.listeTittel'),
+                                    modalTitle: text('@forms.medlemskapForm.annetLandSiste12.listeTittel'),
                                 }}
                                 validate={validateUtenlandsoppholdSiste12Mnd}
                             />
@@ -94,12 +93,12 @@ const MedlemskapForm = ({ values = {}, isSubmitting, goBack, medlemskapInfoUrl }
 
                 <VStack gap="3">
                     <YesOrNoQuestion
-                        legend={text('medlemskapForm.annetLandNeste12.spm')}
+                        legend={text('@forms.medlemskapForm.annetLandNeste12.spm')}
                         name={MedlemskapFormFields.skalBoUtenforNorgeNeste12Mnd}
                         validate={getYesOrNoValidator()}
                         description={
-                            <ExpandableInfo title={text('medlemskapForm.hvaBetyrDette')}>
-                                <SoknadText id="medlemskapForm.annetLandNeste12.hjelp" />
+                            <ExpandableInfo title={text('@forms.medlemskapForm.hvaBetyrDette')}>
+                                <MedlemskapFormText id="@forms.medlemskapForm.annetLandNeste12.hjelp" />
                             </ExpandableInfo>
                         }
                         data-testid="medlemskap-annetLandNeste12"
@@ -112,9 +111,9 @@ const MedlemskapForm = ({ values = {}, isSubmitting, goBack, medlemskapInfoUrl }
                                 minDate={neste12Måneder.from}
                                 maxDate={neste12Måneder.to}
                                 labels={{
-                                    addLabel: text('medlemskapForm.utenlandsopphold.leggTilLabel'),
-                                    listTitle: text('medlemskapForm.annetLandNeste12.listeTittel'),
-                                    modalTitle: text('medlemskapForm.annetLandNeste12.listeTittel'),
+                                    addLabel: text('@forms.medlemskapForm.utenlandsopphold.leggTilLabel'),
+                                    listTitle: text('@forms.medlemskapForm.annetLandNeste12.listeTittel'),
+                                    modalTitle: text('@forms.medlemskapForm.annetLandNeste12.listeTittel'),
                                 }}
                                 validate={validateUtenlandsoppholdNeste12Mnd}
                             />

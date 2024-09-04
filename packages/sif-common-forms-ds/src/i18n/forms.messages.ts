@@ -3,6 +3,7 @@ import { bostedUtlandMessages } from '../forms/bosted-utland/bostedUtlandMessage
 import { ferieuttakMessages } from '../forms/ferieuttak/ferieuttakMessages';
 import { fosterbarnMessages } from '../forms/fosterbarn/fosterbarnMessages';
 import { fraværMessages } from '../forms/fravær/fraværMessages';
+import { medlemskapFormMessages } from '../forms/medlemskap-form/medlemskapMessages';
 import { opptjeningUtlandMessages } from '../forms/opptjening-utland/opptjeningUtlandMessages';
 import { tidsperiodeMessages } from '../forms/tidsperiode/tidsperiodeMessages';
 import { utenlandskNæringMessages } from '../forms/utenlandsk-næring/utenlandskNæringMessages';
@@ -20,6 +21,7 @@ const nb = {
     ...utenlandskNæringMessages.nb,
     ...utenlandsoppholdMessages.nb,
     ...virksomhetMessages.nb,
+    ...medlemskapFormMessages.nb,
 };
 
 type FormsMessageKeys = keyof typeof nb;

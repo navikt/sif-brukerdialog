@@ -1,4 +1,5 @@
-import { MedlemskapFormValues, SamtykkeFormValues } from '@navikt/sif-common-soknad-ds';
+import { SamtykkeFormValues } from '@navikt/sif-common-soknad-ds';
+import { MedlemskapFormValues } from '@navikt/sif-common-forms-ds';
 import { ArbeidssituasjonFormValues } from '../søknad/steps/arbeidssituasjon/ArbeidssituasjonStep';
 import { DineBarnFormValues } from '../søknad/steps/dine-barn/DineBarnStep';
 import { FraværFraFormValues } from '../søknad/steps/fravær-fra/FraværFraStep';

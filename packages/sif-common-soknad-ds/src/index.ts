@@ -26,6 +26,3 @@ export type { LastAvailableStepInfo } from './components/soknad-error-messages/S
 export type { SamtykkeFormValues } from './modules/samtykke-form/SamtykkeForm';
 export type { SoknadContextInterface, SendSoknadStatusInterface } from './setup/SoknadContext';
 export type { StepConfig, SoknadStepsConfig } from './modules/soknad-step/soknadStepTypes';
-export type { MedlemskapFormValues } from './forms/medlemskapForm/MedlemskapForm';
-export { MedlemskapFormFields } from './forms/medlemskapForm/MedlemskapForm';
-export { default as MedlemskapForm } from './forms/medlemskapForm/MedlemskapForm';

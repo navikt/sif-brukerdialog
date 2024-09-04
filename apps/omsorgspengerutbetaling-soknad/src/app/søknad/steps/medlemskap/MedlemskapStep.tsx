@@ -1,6 +1,6 @@
 import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
-import { MedlemskapForm, MedlemskapFormFields, MedlemskapFormValues } from '@navikt/sif-common-soknad-ds/src';
+import { MedlemskapForm, MedlemskapFormFields, MedlemskapFormValues } from '@navikt/sif-common-forms-ds';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';

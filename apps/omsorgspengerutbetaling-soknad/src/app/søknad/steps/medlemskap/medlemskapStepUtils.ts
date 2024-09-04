@@ -1,5 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import { MedlemskapFormValues } from '@navikt/sif-common-soknad-ds/src';
+import { MedlemskapFormValues } from '@navikt/sif-common-forms-ds';
 import { MedlemskapSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 
 export const getMedlemskapStepInitialValues = (

@@ -4,7 +4,6 @@ import { fortsettSøknadSenereDialogMessages } from '../components/fortsettSøkn
 import { soknadErrorMessages } from '../components/soknad-error-messages/soknadError.messages';
 import { samtykkeFormMessages } from '../modules/samtykke-form/samtykkeForm.messages';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { medlemskapFormMessages } from '../forms/medlemskapForm/medlemskapMessages';
 
 const nb = {
     'application.title': 'Applikasjonen', // Kun fallback - skal overstyres i hver app
@@ -17,7 +16,6 @@ const nb = {
     ...soknadErrorMessages.nb,
     ...avbrytSøknadDialogMessages.nb,
     ...fortsettSøknadSenereDialogMessages.nb,
-    ...medlemskapFormMessages.nb,
 };
 
 const nn: SoknadMessagesType = {

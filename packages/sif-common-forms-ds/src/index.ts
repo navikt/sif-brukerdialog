@@ -8,3 +8,4 @@ export * from './forms/opptjening-utland';
 export * from './forms/utenlandsopphold';
 export * from './forms/utenlandsk-næring';
 export * from './forms/virksomhet';
+export * from './forms/medlemskap-form';
