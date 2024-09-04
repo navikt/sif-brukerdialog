@@ -9,6 +9,7 @@
     "peerDependencies": {
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",
+        "@navikt/sif-common-ui": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*"
     },
     "dependencies": {

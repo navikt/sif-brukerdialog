@@ -3,14 +3,18 @@ import { useIntl } from 'react-intl';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getYesOrNoValidator, ValidateYesOrNoError } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { UtenlandsoppholdEnkel } from '@navikt/sif-common-forms-ds/src';
 import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/BostedUtlandListAndDialog';
 import { getDateToday } from '@navikt/sif-common-utils';
-import { validateUtenlandsoppholdNeste12Mnd, validateUtenlandsoppholdSiste12Mnd } from './medlemskapFieldValidations';
+import {
+    MedlemskapFormErrorKeys,
+    validateUtenlandsoppholdNeste12Mnd,
+    validateUtenlandsoppholdSiste12Mnd,
+} from './medlemskapFieldValidations';
 import { getMedlemskapDateRanges } from './medlemskapUtils';
-import { MedlemskapFormText, useMedlemskapFormIntl } from './medlemskapMessages';
+import { MedlemskapFormMessageKeys, MedlemskapFormText, useMedlemskapFormIntl } from './medlemskapMessages';
 
 export enum MedlemskapFormFields {
     harBoddUtenforNorgeSiste12Mnd = 'harBoddUtenforNorgeSiste12Mnd',
@@ -25,6 +29,33 @@ export interface MedlemskapFormValues {
     [MedlemskapFormFields.skalBoUtenforNorgeNeste12Mnd]: YesOrNo;
     [MedlemskapFormFields.utenlandsoppholdNeste12Mnd]: UtenlandsoppholdEnkel[];
 }
+
+export const MedlemskapFormErrors: Record<MedlemskapFormFields, { [key: string]: MedlemskapFormMessageKeys }> = {
+    [MedlemskapFormFields.harBoddUtenforNorgeSiste12Mnd]: {
+        [ValidateYesOrNoError.yesOrNoIsUnanswered]:
+            '@forms.medlemskapForm.validation.harBoddUtenforNorgeSiste12Mnd.yesOrNoIsUnanswered',
+    },
+    [MedlemskapFormFields.skalBoUtenforNorgeNeste12Mnd]: {
+        [ValidateYesOrNoError.yesOrNoIsUnanswered]:
+            '@forms.medlemskapForm.validation.skalBoUtenforNorgeNeste12Mnd.yesOrNoIsUnanswered',
+    },
+    [MedlemskapFormFields.utenlandsoppholdSiste12Mnd]: {
+        [MedlemskapFormErrorKeys.utenlandsopphold_ikke_registrert]:
+            '@forms.medlemskapForm.validation.utenlandsoppholdSiste12Mnd.utenlandsopphold_ikke_registrert',
+        [MedlemskapFormErrorKeys.utenlandsopphold_overlapper]:
+            '@forms.medlemskapForm.validation.utenlandsoppholdSiste12Mnd.utenlandsopphold_overlapper',
+        [MedlemskapFormErrorKeys.utenlandsopphold_utenfor_periode]:
+            '@forms.medlemskapForm.validation.utenlandsoppholdSiste12Mnd.utenlandsopphold_utenfor_periode',
+    },
+    [MedlemskapFormFields.utenlandsoppholdNeste12Mnd]: {
+        [MedlemskapFormErrorKeys.utenlandsopphold_ikke_registrert]:
+            '@forms.medlemskapForm.validation.utenlandsoppholdNeste12Mnd.utenlandsopphold_ikke_registrert',
+        [MedlemskapFormErrorKeys.utenlandsopphold_overlapper]:
+            '@forms.medlemskapForm.validation.utenlandsoppholdNeste12Mnd.utenlandsopphold_overlapper',
+        [MedlemskapFormErrorKeys.utenlandsopphold_utenfor_periode]:
+            '@forms.medlemskapForm.validation.utenlandsoppholdNeste12Mnd.utenlandsopphold_utenfor_periode',
+    },
+};
 
 const { Form, YesOrNoQuestion } = getTypedFormComponents<MedlemskapFormFields, MedlemskapFormValues, ValidationError>();
 
@@ -42,7 +73,7 @@ const MedlemskapForm = ({ values = {}, isSubmitting, goBack, medlemskapInfoUrl }
 
     return (
         <Form
-            formErrorHandler={getIntlFormErrorHandler(intl, 'medlemskapForm.validation')}
+            formErrorHandler={getIntlFormErrorHandler(intl, '@forms.medlemskapForm.validation')}
             includeValidationSummary={true}
             submitPending={isSubmitting}
             onBack={goBack}

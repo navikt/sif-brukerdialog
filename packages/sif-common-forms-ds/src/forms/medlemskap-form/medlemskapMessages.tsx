@@ -33,6 +33,13 @@ const nb = {
         'Ett eller flere av utenlandsoppholdene de neste 12 månedene har datoer som overlapper.',
     '@forms.medlemskapForm.validation.utenlandsoppholdNeste12Mnd.utenlandsopphold_utenfor_periode':
         'Ett eller flere av utenlandsoppholdene de neste 12 månedene er utenfor tillatt tidsrom.',
+
+    '@forms.medlemskapForm.summary.header': 'Medlemskap i folketrygden',
+    '@forms.medlemskapForm.summary.utlandetSiste12.header': 'Har bodd i utlandet i de siste 12 månedene',
+    '@forms.medlemskapForm.summary.utlandetNeste12.header': 'Skal bo i utlandet i de neste 12 månedene',
+    '@forms.medlemskapForm.summary.utlandetSiste12.liste.header': 'Utenlandsopphold siste 12 måneder',
+    '@forms.medlemskapForm.summary.utlandetNeste12.liste.header': 'Utenlandsopphold neste 12 måneder',
+    '@forms.medlemskapForm.summary.tidsperiode': '{fraOgMed} - {tilOgMed}: {landnavn}',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };
