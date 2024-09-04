@@ -10,6 +10,7 @@
     "readinessPath": "/familie/sykdom-i-familien/soknad/pleiepenger/health/isReady",
     "minReplicas": 1,
     "maxReplicas": 1,
+    "observabilityEnabled": "true",
     "env": {
         "API_TOKENX_AUDIENCE": "dev-gcp:dusseldorf:k9-brukerdialog-prosessering",
         "API_URL_INNSYN": "http://sif-innsyn-api",
