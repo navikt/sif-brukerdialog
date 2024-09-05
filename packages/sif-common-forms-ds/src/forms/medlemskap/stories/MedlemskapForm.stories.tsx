@@ -4,7 +4,7 @@ import MedlemskapFormExample from './MedlemskapFormExample';
 
 const meta: Meta<typeof MedlemskapFormExample> = {
     component: MedlemskapFormExample,
-    title: 'Form/MedlemskapForm',
+    title: 'Stegskjema/Medlemskap',
     decorators: [withIntl],
 };
 
