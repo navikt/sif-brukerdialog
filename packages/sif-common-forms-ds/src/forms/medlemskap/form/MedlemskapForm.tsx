@@ -1,5 +1,4 @@
 import { Box, Link, VStack } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
@@ -8,13 +7,13 @@ import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation
 import { UtenlandsoppholdEnkel } from '@navikt/sif-common-forms-ds/src';
 import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/BostedUtlandListAndDialog';
 import { getDateToday } from '@navikt/sif-common-utils';
+import { MedlemskapFormMessageKeys, MedlemskapFormText, useMedlemskapFormIntl } from '../i18n/medlemskapMessages';
+import { getMedlemskapDateRanges } from '../utils';
 import {
     MedlemskapFormErrorKeys,
     validateUtenlandsoppholdNeste12Mnd,
     validateUtenlandsoppholdSiste12Mnd,
-} from './medlemskapFieldValidations';
-import { getMedlemskapDateRanges } from './medlemskapUtils';
-import { MedlemskapFormMessageKeys, MedlemskapFormText, useMedlemskapFormIntl } from './medlemskapMessages';
+} from '../utils/medlemskapFieldValidations';
 
 export enum MedlemskapFormFields {
     harBoddUtenforNorgeSiste12Mnd = 'harBoddUtenforNorgeSiste12Mnd',
@@ -67,8 +66,7 @@ interface Props {
 }
 
 const MedlemskapForm = ({ values = {}, isSubmitting, goBack, medlemskapInfoUrl }: Props) => {
-    const intl = useIntl();
-    const { text } = useMedlemskapFormIntl();
+    const { text, intl } = useMedlemskapFormIntl();
     const { neste12Måneder, siste12Måneder } = getMedlemskapDateRanges(getDateToday());
 
     return (
@@ -102,7 +100,6 @@ const MedlemskapForm = ({ values = {}, isSubmitting, goBack, medlemskapInfoUrl }
                                 <MedlemskapFormText id="@forms.medlemskapForm.annetLandSiste12.hjelp" />
                             </ExpandableInfo>
                         }
-                        data-testid="medlemskap-annetLandSiste12"
                     />
 
                     {values.harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES && (
@@ -132,7 +129,6 @@ const MedlemskapForm = ({ values = {}, isSubmitting, goBack, medlemskapInfoUrl }
                                 <MedlemskapFormText id="@forms.medlemskapForm.annetLandNeste12.hjelp" />
                             </ExpandableInfo>
                         }
-                        data-testid="medlemskap-annetLandNeste12"
                     />
 
                     {values.skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES && (

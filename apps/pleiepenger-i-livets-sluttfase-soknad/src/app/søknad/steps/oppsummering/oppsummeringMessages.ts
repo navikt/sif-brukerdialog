@@ -115,12 +115,6 @@ const nb = {
     'step.oppsummering.sendMelding.feilmelding.andreGang':
         'Det oppstod fortsatt en feil under innsending. Vennligst vent litt og prøv på nytt.',
 
-    'step.oppsummering.medlemskap.header': 'Medlemskap i folketrygden',
-    'step.oppsummering.utenlandsoppholdIPerioden.listetittel': 'Utenlandsopphold i perioden',
-    'step.oppsummering.utlandetSiste12.header': 'Har du bodd i utlandet i de siste 12 månedene?',
-    'step.oppsummering.utlandetNeste12.header': 'Skal du bo i utlandet i de neste 12 månedene?',
-    'step.oppsummering.utlandetSiste12.liste.header': 'Utenlandsopphold siste 12 måneder',
-    'step.oppsummering.utlandetNeste12.liste.header': 'Utenlandsopphold neste 12 måneder',
     'step.oppsummering.legeerklæring.header': 'Legeerklæring',
     'step.oppsummering.legeerklæring.label': 'Dokumenter som er lastet opp',
     'step.oppsummering.samværsavtale.header': 'Avtale om delt bosted',

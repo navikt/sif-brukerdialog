@@ -5,6 +5,7 @@ interface MedlemskapDateRanges {
     siste12Måneder: DateRange;
     neste12Måneder: DateRange;
 }
+
 export const getMedlemskapDateRanges = (søknadsdato: Date): MedlemskapDateRanges => {
     return {
         siste12Måneder: {

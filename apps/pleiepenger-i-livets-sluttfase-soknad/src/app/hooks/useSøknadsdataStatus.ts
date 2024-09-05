@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import isEqual from 'react-fast-compare';
+import { getMedlemskapSøknadsdataFromFormValues, MedlemskapFormValues } from '@navikt/sif-common-forms-ds';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds';
-import { MedlemskapFormValues } from '@navikt/sif-common-forms-ds';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../søknad/context/StepFormValuesContext';
 import { ArbeidssituasjonFormValues } from '../søknad/steps/arbeidssituasjon/ArbeidssituasjonStep';
@@ -11,7 +11,6 @@ import { ArbeidstidFormValues } from '../søknad/steps/arbeidstid/ArbeidstidStep
 import { getArbeidstidSøknadsdataFromFormValues } from '../søknad/steps/arbeidstid/arbeidstidStepUtils';
 import { LegeerklæringFormValues } from '../søknad/steps/legeerklæring/LegeerklæringForm';
 import { getLegeerklæringSøknadsdataFromFormValues } from '../søknad/steps/legeerklæring/legeerklæringStepUtils';
-import { getMedlemskapSøknadsdataFromFormValues } from '../søknad/steps/medlemskap/medlemskapStepUtils';
 import { OpplysningerOmPleietrengendeFormValues } from '../søknad/steps/opplysninger-om-pleietrengende/OpplysningerOmPleietrengendeStep';
 import { getOpplysningerOmPleietrengendeSøknadsdataFromFormValues } from '../søknad/steps/opplysninger-om-pleietrengende/opplysningerOmPleietrengendeStepUtils';
 import { TidsromFormValues } from '../søknad/steps/tidsrom/TidsromStep';

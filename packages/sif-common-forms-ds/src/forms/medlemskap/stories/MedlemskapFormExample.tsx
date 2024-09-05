@@ -4,9 +4,9 @@ import { TypedFormikWrapper, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { flatten } from 'flat';
 import MessagesPreview from '../../../../storybook/components/messages-preview/MessagesPreview';
 import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
-import MedlemskapForm, { MedlemskapFormErrors, MedlemskapFormValues } from '../MedlemskapForm';
-import { medlemskapFormMessages } from '../medlemskapMessages';
-import MedlemskapSummary from '../MedlemskapSummary';
+import MedlemskapForm, { MedlemskapFormErrors, MedlemskapFormValues } from '../form/MedlemskapForm';
+import { medlemskapFormMessages } from '../i18n/medlemskapMessages';
+import MedlemskapSummary from '../summary/MedlemskapSummary';
 
 const initialValues: MedlemskapFormValues = {
     harBoddUtenforNorgeSiste12Mnd: YesOrNo.UNANSWERED,
