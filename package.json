@@ -9,7 +9,7 @@
         "url": "https://github.com/navikt/sif-brukerdialog/issues"
     },
     "devDependencies": {
-        "@changesets/cli": "2.27.7",
+        "@changesets/cli": "2.27.8",
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
         "husky": "9.1.5",
