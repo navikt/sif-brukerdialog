@@ -3493,7 +3493,7 @@ __metadata:
     rimraf: "npm:6.0.1"
     typescript: "npm:5.5.4"
     vite: "npm:5.4.2"
-    vite-plugin-checker: "npm:0.7.2"
+    vite-plugin-checker: "npm:0.8.0"
     vitest: "npm:2.0.5"
   languageName: unknown
   linkType: soft
@@ -3580,7 +3580,7 @@ __metadata:
     tailwindcss: "npm:3.4.10"
     typescript: "npm:5.5.4"
     vite: "npm:5.4.2"
-    vite-plugin-checker: "npm:0.7.2"
+    vite-plugin-checker: "npm:0.8.0"
     vitest: "npm:2.0.5"
   languageName: unknown
   linkType: soft
@@ -3682,7 +3682,7 @@ __metadata:
     react-router-dom: "npm:6.26.1"
     uuid: "npm:10.0.0"
     vite: "npm:5.4.2"
-    vite-plugin-checker: "npm:0.7.2"
+    vite-plugin-checker: "npm:0.8.0"
   languageName: unknown
   linkType: soft
 
@@ -3794,7 +3794,7 @@ __metadata:
     ulid: "npm:2.3.0"
     uuid: "npm:10.0.0"
     vite: "npm:5.4.2"
-    vite-plugin-checker: "npm:0.7.2"
+    vite-plugin-checker: "npm:0.8.0"
     vitest: "npm:2.0.5"
   languageName: unknown
   linkType: soft
@@ -3867,7 +3867,7 @@ __metadata:
     typescript: "npm:5.5.4"
     uuid: "npm:10.0.0"
     vite: "npm:5.4.2"
-    vite-plugin-checker: "npm:0.7.2"
+    vite-plugin-checker: "npm:0.8.0"
     vitest: "npm:2.0.5"
   languageName: unknown
   linkType: soft
@@ -3941,7 +3941,7 @@ __metadata:
     storybook: "npm:8.2.9"
     typescript: "npm:5.5.4"
     vite: "npm:5.4.2"
-    vite-plugin-checker: "npm:0.7.2"
+    vite-plugin-checker: "npm:0.8.0"
     vitest: "npm:2.0.5"
   languageName: unknown
   linkType: soft
@@ -4017,7 +4017,7 @@ __metadata:
     typescript: "npm:5.5.4"
     uuid: "npm:10.0.0"
     vite: "npm:5.4.2"
-    vite-plugin-checker: "npm:0.7.2"
+    vite-plugin-checker: "npm:0.8.0"
     vitest: "npm:2.0.5"
   languageName: unknown
   linkType: soft
@@ -4099,7 +4099,7 @@ __metadata:
     typescript: "npm:5.5.4"
     uuid: "npm:10.0.0"
     vite: "npm:5.4.2"
-    vite-plugin-checker: "npm:0.7.2"
+    vite-plugin-checker: "npm:0.8.0"
     vitest: "npm:2.0.5"
   languageName: unknown
   linkType: soft
@@ -4209,7 +4209,7 @@ __metadata:
     tailwindcss: "npm:3.4.10"
     uuid: "npm:10.0.0"
     vite: "npm:5.4.2"
-    vite-plugin-checker: "npm:0.7.2"
+    vite-plugin-checker: "npm:0.8.0"
     vitest: "npm:2.0.5"
   languageName: unknown
   linkType: soft
@@ -4271,7 +4271,7 @@ __metadata:
     storybook: "npm:8.2.9"
     uuid: "npm:10.0.0"
     vite: "npm:5.4.2"
-    vite-plugin-checker: "npm:0.7.2"
+    vite-plugin-checker: "npm:0.8.0"
     vitest: "npm:2.0.5"
   peerDependencies:
     "@navikt/ds-css": 5
@@ -4333,7 +4333,7 @@ __metadata:
     rimraf: "npm:6.0.1"
     storybook: "npm:8.2.9"
     vite: "npm:5.4.2"
-    vite-plugin-checker: "npm:0.7.2"
+    vite-plugin-checker: "npm:0.8.0"
     vitest: "npm:2.0.5"
   peerDependencies:
     "@navikt/sif-common-core-ds": "workspace:*"
@@ -4439,7 +4439,7 @@ __metadata:
     storybook: "npm:8.2.9"
     uuid: "npm:10.0.0"
     vite: "npm:5.4.2"
-    vite-plugin-checker: "npm:0.7.2"
+    vite-plugin-checker: "npm:0.8.0"
     vitest: "npm:2.0.5"
   peerDependencies:
     "@navikt/ds-css": 6.13.0
@@ -4577,7 +4577,7 @@ __metadata:
     typescript: "npm:5.5.4"
     uuid: "npm:10.0.0"
     vite: "npm:5.4.2"
-    vite-plugin-checker: "npm:0.7.2"
+    vite-plugin-checker: "npm:0.8.0"
     vitest: "npm:2.0.5"
   languageName: unknown
   linkType: soft
@@ -23015,9 +23015,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-plugin-checker@npm:0.7.2":
-  version: 0.7.2
-  resolution: "vite-plugin-checker@npm:0.7.2"
+"vite-plugin-checker@npm:0.8.0":
+  version: 0.8.0
+  resolution: "vite-plugin-checker@npm:0.8.0"
   dependencies:
     "@babel/code-frame": "npm:^7.12.13"
     ansi-escapes: "npm:^4.3.0"
@@ -23043,7 +23043,7 @@ __metadata:
     vite: ">=2.0.0"
     vls: "*"
     vti: "*"
-    vue-tsc: ">=2.0.0"
+    vue-tsc: ~2.1.6
   peerDependenciesMeta:
     "@biomejs/biome":
       optional: true
@@ -23063,7 +23063,7 @@ __metadata:
       optional: true
     vue-tsc:
       optional: true
-  checksum: 10/95ff8631896a3d3999e5a99e808e4e33289f63ff96b932a6b722a58879ebebfd0335cad8897e8279c47145636a03c10372b3b8e7b92eabe91779d163768994f8
+  checksum: 10/a38a90ac706b4fdd21db52caca7e380118ae1e8cd520184b000481cf40baac491723c71e90b6d36197051131f0e20509d2e297e199831bf3428cf4b1c50114ef
   languageName: node
   linkType: hard
 
