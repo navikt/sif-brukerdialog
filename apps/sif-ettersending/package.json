@@ -49,7 +49,7 @@
         "@babel/core": "7.25.2",
         "@babel/preset-env": "7.25.4",
         "@babel/preset-react": "7.24.7",
-        "@playwright/test": "1.46.1",
+        "@playwright/test": "1.47.0",
         "@sif/eslint-config": "workspace:*",
         "@storybook/react-vite": "8.2.9",
         "@types/react": "18.3.5",

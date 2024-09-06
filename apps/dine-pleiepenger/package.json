@@ -50,7 +50,7 @@
         "@navikt/ds-icons": "3.4.3",
         "@navikt/ds-react": "6.16.2",
         "@navikt/ds-tailwind": "6.16.2",
-        "@playwright/test": "1.46.1",
+        "@playwright/test": "1.47.0",
         "@sif/eslint-config": "workspace:*",
         "@storybook/addon-essentials": "8.2.9",
         "@storybook/addon-interactions": "8.2.9",

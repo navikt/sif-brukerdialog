@@ -54,7 +54,7 @@
         "@babel/preset-typescript": "7.24.7",
         "@mswjs/data": "0.16.1",
         "@navikt/ds-tailwind": "6.16.2",
-        "@playwright/test": "1.46.1",
+        "@playwright/test": "1.47.0",
         "@sentry/vite-plugin": "2.22.3",
         "@sif/eslint-config": "workspace:*",
         "@storybook/addon-actions": "8.2.9",
