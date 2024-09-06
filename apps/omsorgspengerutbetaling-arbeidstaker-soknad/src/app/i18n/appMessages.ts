@@ -4,7 +4,6 @@ import { deltBostedMessages } from '../søknad/steps/delt-bosted/deltBostedMessa
 import { dineBarnMessages } from '../søknad/steps/dine-barn/dineBarnMessages';
 import { fraværStepMessages } from '../søknad/steps/fravær/fraværStepMessages';
 import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerklæringMessages';
-import { medlemskapMessages } from '../søknad/steps/medlemskap/medlemskapMessages';
 import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
 import { situasjonMessages } from '../søknad/steps/situasjon/situasjonStepMessages';
 import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
@@ -16,7 +15,6 @@ const nb = {
     ...velkommenPageMessages.nb,
     ...fraværStepMessages.nb,
     ...legeerklæringMessages.nb,
-    ...medlemskapMessages.nb,
     ...oppsummeringMessages.nb,
     ...kvitteringMessages.nb,
     ...validateApiDataMessages.nb,

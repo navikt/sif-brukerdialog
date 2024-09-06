@@ -5,7 +5,6 @@ import { dineBarnMessages } from '../søknad/steps/dine-barn/dineBarnMessages';
 import { fraværFraMessages } from '../søknad/steps/fravær-fra/fraværFraMessages';
 import { fraværStepMessages } from '../søknad/steps/fravær/fraværStepMessages';
 import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerklæringMessages';
-import { medlemskapMessages } from '../søknad/steps/medlemskap/medlemskapMessages';
 import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
 import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
 
@@ -16,7 +15,6 @@ const nb = {
     ...arbeidssituasjonMessages.nb,
     ...fraværFraMessages.nb,
     ...legeerklæringMessages.nb,
-    ...medlemskapMessages.nb,
     ...oppsummeringMessages.nb,
     ...kvitteringMessages.nb,
     ...validateApiDataMessages.nb,

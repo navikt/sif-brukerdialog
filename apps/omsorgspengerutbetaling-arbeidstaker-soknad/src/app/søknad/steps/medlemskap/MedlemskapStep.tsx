@@ -1,6 +1,12 @@
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { MedlemskapForm, MedlemskapFormFields, MedlemskapFormValues } from '@navikt/sif-common-forms-ds';
+import {
+    getMedlemskapFormInitialValues,
+    getMedlemskapSøknadsdataFromFormValues,
+    MedlemskapForm,
+    MedlemskapFormFields,
+    MedlemskapFormValues,
+} from '@navikt/sif-common-forms-ds';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -13,7 +19,6 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
-import { getMedlemskapStepInitialValues, getMedlemskapSøknadsdataFromFormValues } from './medlemskapStepUtils';
 
 const { FormikWrapper } = getTypedFormComponents<MedlemskapFormFields, MedlemskapFormValues, ValidationError>();
 
@@ -48,7 +53,7 @@ const MedlemskapStep = () => {
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
-                initialValues={getMedlemskapStepInitialValues(søknadsdata, stepFormValues[stepId])}
+                initialValues={getMedlemskapFormInitialValues(søknadsdata.medlemskap, stepFormValues[stepId])}
                 onSubmit={handleSubmit}
                 renderForm={({ values }) => {
                     return (
