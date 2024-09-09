@@ -167,8 +167,8 @@ const fyllerUtFraværFraSteg = async (page: Page) => {
 
 const fyllUtMedlemsskap = async (page: Page) => {
     await page.getByRole('heading', { name: 'Medlemskap i folketrygden' });
-    await page.getByTestId('medlemskap-annetLandSiste12').getByText('Nei').click();
-    await page.getByTestId('medlemskap-annetLandNeste12_no').check();
+    await page.getByRole('group', { name: 'Har du bodd i utlandet i hele' }).getByLabel('Nei').check();
+    await page.getByRole('group', { name: 'Planlegger du å bo i utlandet' }).getByLabel('Nei').check();
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 

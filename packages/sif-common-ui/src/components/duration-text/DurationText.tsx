@@ -13,11 +13,11 @@ interface DurationTextProps {
 type durationTextKeys = keyof typeof durationTextMessages.nb;
 
 const getHoursString = (intl: IntlShape, hours: string, fullText?: boolean): string => {
-    const key: durationTextKeys = fullText ? 'durationText.full.hours' : 'durationText.hours';
+    const key: durationTextKeys = fullText ? '@ui.durationText.full.hours' : '@ui.durationText.hours';
     return intlHelper(intl, key, { hours });
 };
 const getMinutesString = (intl: IntlShape, minutes: string, fullText?: boolean): string => {
-    const key: durationTextKeys = fullText ? 'durationText.full.minutes' : 'durationText.minutes';
+    const key: durationTextKeys = fullText ? '@ui.durationText.full.minutes' : '@ui.durationText.minutes';
     return intlHelper(intl, key, { minutes });
 };
 
@@ -27,7 +27,7 @@ export const getDurationString = (
 ): string => {
     if (type === 'decimal') {
         const time = durationToDecimalDuration(ensureDuration(duration));
-        const key: durationTextKeys = fullText ? 'durationText.full.decimal' : 'durationText.decimal';
+        const key: durationTextKeys = fullText ? '@ui.durationText.full.decimal' : '@ui.durationText.decimal';
         return intlHelper(intl, key, {
             time: intl.formatNumber(time, { maximumFractionDigits: 2 }),
         });
@@ -37,7 +37,7 @@ export const getDurationString = (
     const minutes = duration.minutes || '0';
 
     if (type === 'digital') {
-        const key: durationTextKeys = fullText ? 'durationText.full.digital' : 'durationText.digital';
+        const key: durationTextKeys = fullText ? '@ui.durationText.full.digital' : '@ui.durationText.digital';
         return intlHelper(intl, key, {
             hours: hours.padStart(2, '0'),
             minutes: minutes.padStart(2, '0'),
@@ -54,7 +54,9 @@ export const getDurationString = (
     }
 
     /** Hours and minutes */
-    const key: durationTextKeys = fullText ? 'durationText.full.hoursAndMinutes' : 'durationText.hoursAndMinutes';
+    const key: durationTextKeys = fullText
+        ? '@ui.durationText.full.hoursAndMinutes'
+        : '@ui.durationText.hoursAndMinutes';
     return intlHelper(intl, key, { hours, minutes });
 };
 

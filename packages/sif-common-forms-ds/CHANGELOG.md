@@ -1,5 +1,29 @@
 # @navikt/sif-common-forms-ds
 
+## 10.1.1
+
+### Patch Changes
+
+-   Updated dependencies [ee7d9fd]
+    -   @navikt/sif-common-core-ds@9.18.6
+    -   @navikt/sif-common-ui@0.8.8
+
+## 10.1.0
+
+### Minor Changes
+
+-   454d6e2: Flytte Medlemskap skjema til sif-common-forms-ds
+
+## 10.0.6
+
+### Patch Changes
+
+-   16f2ebf: Pakkeoppdateringer minor/patch
+-   Updated dependencies [16f2ebf]
+    -   @navikt/sif-common-formik-ds@1.12.6
+    -   @navikt/sif-common-core-ds@9.18.5
+    -   @navikt/sif-common-utils@3.47.4
+
 ## 10.0.5
 
 ### Patch Changes

@@ -1,28 +1,9 @@
-import { DateRange } from '@navikt/sif-common-formik-ds';
-import dayjs from 'dayjs';
-import { MedlemskapSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
-import { MedlemskapFormValues } from './MedlemskapStep';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
+import { MedlemskapSøknadsdata } from '../types/MedlemskapSøknadsdata';
+import { MedlemskapFormValues } from '../types';
 
-interface MedlemskapDateRanges {
-    siste12Måneder: DateRange;
-    neste12Måneder: DateRange;
-}
-export const getMedlemskapDateRanges = (søknadsdato: Date): MedlemskapDateRanges => {
-    return {
-        siste12Måneder: {
-            from: dayjs(søknadsdato).subtract(1, 'year').toDate(),
-            to: dayjs(søknadsdato).subtract(1, 'day').toDate(),
-        },
-        neste12Måneder: {
-            from: søknadsdato,
-            to: dayjs(søknadsdato).add(1, 'year').toDate(),
-        },
-    };
-};
-
-export const getMedlemskapStepInitialValues = (
-    søknadsdata: Søknadsdata,
+export const getMedlemskapFormInitialValues = (
+    medlemskapSøknadsdata?: MedlemskapSøknadsdata,
     formValues?: MedlemskapFormValues,
 ): MedlemskapFormValues => {
     if (formValues) {
@@ -36,10 +17,8 @@ export const getMedlemskapStepInitialValues = (
         utenlandsoppholdNeste12Mnd: [],
     };
 
-    const { medlemskap } = søknadsdata;
-
-    if (medlemskap) {
-        switch (medlemskap.type) {
+    if (medlemskapSøknadsdata) {
+        switch (medlemskapSøknadsdata.type) {
             case 'harIkkeBoddSkalIkkeBo':
                 return {
                     ...defaultValues,
@@ -50,7 +29,7 @@ export const getMedlemskapStepInitialValues = (
                 return {
                     ...defaultValues,
                     harBoddUtenforNorgeSiste12Mnd: YesOrNo.YES,
-                    utenlandsoppholdSiste12Mnd: medlemskap.utenlandsoppholdSiste12Mnd,
+                    utenlandsoppholdSiste12Mnd: medlemskapSøknadsdata.utenlandsoppholdSiste12Mnd,
                     skalBoUtenforNorgeNeste12Mnd: YesOrNo.NO,
                 };
             case 'skalBo':
@@ -58,15 +37,15 @@ export const getMedlemskapStepInitialValues = (
                     ...defaultValues,
                     harBoddUtenforNorgeSiste12Mnd: YesOrNo.NO,
                     skalBoUtenforNorgeNeste12Mnd: YesOrNo.YES,
-                    utenlandsoppholdNeste12Mnd: medlemskap.utenlandsoppholdNeste12Mnd,
+                    utenlandsoppholdNeste12Mnd: medlemskapSøknadsdata.utenlandsoppholdNeste12Mnd,
                 };
             case 'harBoddSkalBo':
                 return {
                     ...defaultValues,
                     harBoddUtenforNorgeSiste12Mnd: YesOrNo.YES,
                     skalBoUtenforNorgeNeste12Mnd: YesOrNo.YES,
-                    utenlandsoppholdSiste12Mnd: medlemskap.utenlandsoppholdSiste12Mnd,
-                    utenlandsoppholdNeste12Mnd: medlemskap.utenlandsoppholdNeste12Mnd,
+                    utenlandsoppholdSiste12Mnd: medlemskapSøknadsdata.utenlandsoppholdSiste12Mnd,
+                    utenlandsoppholdNeste12Mnd: medlemskapSøknadsdata.utenlandsoppholdNeste12Mnd,
                 };
         }
     }

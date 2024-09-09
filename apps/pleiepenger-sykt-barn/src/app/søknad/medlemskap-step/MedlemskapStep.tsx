@@ -22,7 +22,7 @@ type Props = {
     søknadsdato: Date;
 };
 
-const MedlemsskapStep = ({ onValidSubmit, søknadsdato }: StepCommonProps & Props) => {
+const MedlemskapStep = ({ onValidSubmit, søknadsdato }: StepCommonProps & Props) => {
     const { values } = useFormikContext<SøknadFormValues>();
     const { text } = useAppIntl();
     const { neste12Måneder, siste12Måneder } = getMedlemsskapDateRanges(søknadsdato);
@@ -102,4 +102,4 @@ const MedlemsskapStep = ({ onValidSubmit, søknadsdato }: StepCommonProps & Prop
     );
 };
 
-export default MedlemsskapStep;
+export default MedlemskapStep;

@@ -1,4 +1,9 @@
-import { OpptjeningAktivitet, UtenlandskNæringstype, VirksomhetApiData } from '@navikt/sif-common-forms-ds';
+import {
+    MedlemskapApiData,
+    OpptjeningAktivitet,
+    UtenlandskNæringstype,
+    VirksomhetApiData,
+} from '@navikt/sif-common-forms-ds';
 import { ISODate, ISODuration } from '@navikt/sif-common-utils';
 import { JobberIPeriodeSvar } from '../../søknad/steps/arbeidstid/ArbeidstidTypes';
 import { ArbeidsgiverType } from '../Arbeidsgiver';
@@ -58,21 +63,6 @@ export interface SelvstendigNæringsdrivendeApiData {
     virksomhet: VirksomhetApiData;
     arbeidsforhold: ArbeidsforholdApiData;
 }
-
-export interface MedlemskapApiData {
-    harBoddIUtlandetSiste12Mnd: boolean;
-    skalBoIUtlandetNeste12Mnd: boolean;
-    utenlandsoppholdNeste12Mnd: BostedUtlandApiData[];
-    utenlandsoppholdSiste12Mnd: BostedUtlandApiData[];
-}
-
-export interface BostedUtlandApiData {
-    fraOgMed: ISODate;
-    tilOgMed: ISODate;
-    landkode: string;
-    landnavn: string;
-}
-
 export interface PeriodeApiData {
     fraOgMed: ISODate;
     tilOgMed: ISODate;

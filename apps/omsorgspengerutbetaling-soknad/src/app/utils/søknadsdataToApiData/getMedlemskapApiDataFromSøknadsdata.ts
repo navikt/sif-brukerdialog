@@ -1,4 +1,4 @@
-import { BostedUtland, Utenlandsopphold } from '@navikt/sif-common-forms-ds';
+import { BostedUtland, Utenlandsopphold, UtenlandsoppholdEnkel } from '@navikt/sif-common-forms-ds';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { UtenlandsoppholdApiData } from '../../types/søknadApiData/SøknadApiData';
 import { countryIsMemberOfEøsOrEfta, getCountryName } from '@navikt/sif-common-formik-ds/src/utils/countryUtils';
@@ -53,9 +53,9 @@ export const getMedlemskapApiDataFromSøknadsdata = (
 
 const settInnBosteder = (
     harBoddUtenforNorgeSiste12Mnd: boolean,
-    utenlandsoppholdSiste12Mnd: Utenlandsopphold[],
+    utenlandsoppholdSiste12Mnd: UtenlandsoppholdEnkel[],
     skalBoUtenforNorgeNeste12Mnd: boolean,
-    utenlandsoppholdNeste12Mnd: Utenlandsopphold[],
+    utenlandsoppholdNeste12Mnd: UtenlandsoppholdEnkel[],
     locale: string,
 ): UtenlandsoppholdApiData[] => {
     const mappedSiste12Mnd = harBoddUtenforNorgeSiste12Mnd

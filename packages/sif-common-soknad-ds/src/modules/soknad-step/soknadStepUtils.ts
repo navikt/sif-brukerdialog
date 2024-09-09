@@ -17,7 +17,7 @@ const getStepTexts = <Step>(intl: IntlShape, stepConfig: StepConfig<Step>): Step
         stepTitle: intlHelper(intl, stepConfig.stepTitleIntlKey),
         nextButtonLabel: intlHelper(intl, stepConfig.nextButtonLabelIntlKey),
         previousStepTitle: stepConfig.previousStepTitleIntlKey
-            ? text('scs.stepConfig.previousStepLinkText', {
+            ? text('@soknad.stepConfig.previousStepLinkText', {
                   title: intlHelper(intl, stepConfig.previousStepTitleIntlKey),
               })
             : undefined,
