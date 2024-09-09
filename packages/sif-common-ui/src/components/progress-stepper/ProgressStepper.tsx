@@ -94,11 +94,15 @@ const ProgressStepper: React.FunctionComponent<Props> = ({
                         key={s.id}
                         completed={s.completed}
                         href="#"
-                        onClick={(evt) => {
-                            evt.stopPropagation();
-                            evt.preventDefault();
-                            handleStepChange(s.index + 1);
-                        }}
+                        onClick={
+                            s.completed
+                                ? (evt) => {
+                                      evt.stopPropagation();
+                                      evt.preventDefault();
+                                      handleStepChange(s.index + 1);
+                                  }
+                                : undefined
+                        }
                         interactive={onStepSelect !== undefined && s.completed === true}>
                         {s.label}
                     </FormProgress.Step>

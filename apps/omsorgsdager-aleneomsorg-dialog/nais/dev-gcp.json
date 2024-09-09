@@ -11,6 +11,7 @@
     "minReplicas": 1,
     "maxReplicas": 1,
     "faro": true,
+    "observabilityEnabled": "true",
     "env": {
         "DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://omsorgsdager-aleneomsorg-dialog.intern.dev.nav.no/oauth2/logout&redirectToApp=true",
         "API_URL": "http://k9-brukerdialog-prosessering",

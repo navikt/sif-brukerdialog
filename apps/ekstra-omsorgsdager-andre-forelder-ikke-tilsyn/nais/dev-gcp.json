@@ -10,6 +10,7 @@
     "minReplicas": 1,
     "maxReplicas": 1,
     "cluster": "dev-gcp",
+    "observabilityEnabled": "true",
     "env": {
         "API_TOKENX_AUDIENCE": "dev-gcp:dusseldorf:k9-brukerdialog-prosessering",
         "API_URL": "http://k9-brukerdialog-prosessering",

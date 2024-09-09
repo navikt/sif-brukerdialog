@@ -1,5 +1,23 @@
 # config
 
+## 0.10.5
+
+### Patch Changes
+
+-   16f2ebf: Pakkeoppdateringer minor/patch
+
+## 0.10.4
+
+### Patch Changes
+
+-   485d6eb: Pakkeoppdateringer - minor/patch
+
+## 0.10.3
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
 ## 0.10.2
 
 ### Patch Changes

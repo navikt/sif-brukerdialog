@@ -1,5 +1,81 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.31.14
+
+### Patch Changes
+
+-   Updated dependencies [454d6e2]
+    -   @navikt/sif-common-forms-ds@10.1.0
+    -   @navikt/sif-common-soknad-ds@14.0.0
+
+## 2.31.13
+
+### Patch Changes
+
+-   16f2ebf: Pakkeoppdateringer minor/patch
+-   Updated dependencies [16f2ebf]
+    -   @navikt/sif-common-amplitude@2.26.5
+    -   @navikt/sif-common-formik-ds@1.12.6
+    -   @navikt/sif-common-soknad-ds@13.2.9
+    -   @navikt/sif-common-forms-ds@10.0.6
+    -   @navikt/sif-common-core-ds@9.18.5
+    -   @navikt/sif-common-sentry@0.27.5
+    -   @navikt/sif-common-utils@3.47.4
+    -   @navikt/sif-common-hooks@0.2.0
+
+## 2.31.12
+
+### Patch Changes
+
+-   Bugfix - sende med tittel til ErrorBoundary
+-   Updated dependencies
+    -   @navikt/sif-common-soknad-ds@13.2.8
+
+## 2.31.11
+
+### Patch Changes
+
+-   485d6eb: Pakkeoppdateringer - minor/patch
+-   Updated dependencies [485d6eb]
+    -   @navikt/sif-common-amplitude@2.26.4
+    -   @navikt/sif-common-formik-ds@1.12.5
+    -   @navikt/sif-common-soknad-ds@13.2.7
+    -   @navikt/sif-common-forms-ds@10.0.5
+    -   @navikt/sif-common-core-ds@9.18.4
+    -   @navikt/sif-common-sentry@0.27.4
+    -   @navikt/sif-common-utils@3.47.3
+
+## 2.31.10
+
+### Patch Changes
+
+-   @navikt/sif-common-soknad-ds@13.2.6
+
+## 2.31.9
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.12.4
+    -   @navikt/sif-common-soknad-ds@13.2.5
+    -   @navikt/sif-common-forms-ds@10.0.4
+    -   @navikt/sif-common-core-ds@9.18.3
+    -   @navikt/sif-common-sentry@0.27.3
+    -   @navikt/sif-common-amplitude@2.26.3
+    -   @navikt/sif-common-hooks@0.2.0
+    -   @navikt/sif-common-utils@3.47.2
+
+## 2.31.8
+
+### Patch Changes
+
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.12.3
+    -   @navikt/sif-common-core-ds@9.18.2
+    -   @navikt/sif-common-forms-ds@10.0.3
+    -   @navikt/sif-common-soknad-ds@13.2.4
+
 ## 2.31.7
 
 ### Patch Changes

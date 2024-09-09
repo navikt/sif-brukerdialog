@@ -4,6 +4,7 @@ import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils'
 import {
     bostedUtlandMessages,
     ferieuttakMessages,
+    medlemskapFormMessages,
     opptjeningUtlandMessages,
     tidsperiodeMessages,
     utenlandskNæringMessages,
@@ -28,6 +29,7 @@ const libMessages = {
         ...ferieuttakMessages.nb,
         ...opptjeningUtlandMessages.nb,
         ...utenlandskNæringMessages.nb,
+        ...medlemskapFormMessages.nb,
     },
     nn: {
         ...commonMessages.nn,

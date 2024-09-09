@@ -1,4 +1,4 @@
-import { IntlShape } from 'react-intl';
+import { FormattedMessage, IntlShape } from 'react-intl';
 import { avbrytSøknadDialogMessages } from '../components/avbrytSøknadDialog/avbrytSøknadDialog.messages';
 import { fortsettSøknadSenereDialogMessages } from '../components/fortsettSøknadSenereDialog/fortsettSøknadSenereDialog.messages';
 import { soknadErrorMessages } from '../components/soknad-error-messages/soknadError.messages';
@@ -32,6 +32,10 @@ export type SoknadMessagesType = Record<SoknadMessageKeys, string>;
 
 export const getSoknadIntl = (intl: IntlShape) => {
     return typedIntlHelper<SoknadMessageKeys>(intl);
+};
+
+export const SoknadText = (props: { id: SoknadMessageKeys; values?: any }) => {
+    return <FormattedMessage {...props} />;
 };
 
 export const soknadMessages = {

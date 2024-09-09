@@ -1,5 +1,72 @@
 # @navikt/sif-common-soknad-ds
 
+## 14.0.0
+
+### Patch Changes
+
+-   Updated dependencies [454d6e2]
+    -   @navikt/sif-common-forms-ds@10.1.0
+
+## 13.2.9
+
+### Patch Changes
+
+-   16f2ebf: Pakkeoppdateringer minor/patch
+-   Updated dependencies [16f2ebf]
+    -   @navikt/sif-common-formik-ds@1.12.6
+    -   @navikt/sif-common-core-ds@9.18.5
+    -   @navikt/sif-common-sentry@0.27.5
+    -   @navikt/sif-common-utils@3.47.4
+    -   @navikt/sif-common-ui@0.8.7
+    -   @navikt/sif-common-hooks@0.2.0
+
+## 13.2.8
+
+### Patch Changes
+
+-   Bugfix - sende med tittel til ErrorBoundary
+
+## 13.2.7
+
+### Patch Changes
+
+-   485d6eb: Pakkeoppdateringer - minor/patch
+-   Updated dependencies [485d6eb]
+    -   @navikt/sif-common-formik-ds@1.12.5
+    -   @navikt/sif-common-core-ds@9.18.4
+    -   @navikt/sif-common-sentry@0.27.4
+    -   @navikt/sif-common-utils@3.47.3
+    -   @navikt/sif-common-ui@0.8.6
+
+## 13.2.6
+
+### Patch Changes
+
+-   Updated dependencies
+    -   @navikt/sif-common-ui@0.8.5
+
+## 13.2.5
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.12.4
+    -   @navikt/sif-common-core-ds@9.18.3
+    -   @navikt/sif-common-sentry@0.27.3
+    -   @navikt/sif-common-ui@0.8.4
+    -   @navikt/sif-common-hooks@0.2.0
+    -   @navikt/sif-common-utils@3.47.2
+
+## 13.2.4
+
+### Patch Changes
+
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.12.3
+    -   @navikt/sif-common-core-ds@9.18.2
+    -   @navikt/sif-common-ui@0.8.3
+
 ## 13.2.3
 
 ### Patch Changes

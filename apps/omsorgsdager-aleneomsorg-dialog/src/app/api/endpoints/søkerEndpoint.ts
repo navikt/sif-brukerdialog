@@ -17,6 +17,10 @@ const søkerEndpoint = {
         }
         return Promise.resolve(data);
     },
+    fetchId: async (): Promise<string> => {
+        const { fødselsnummer } = await søkerEndpoint.fetch();
+        return fødselsnummer;
+    },
 };
 
 export default søkerEndpoint;

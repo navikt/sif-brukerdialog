@@ -1,5 +1,29 @@
 # @navikt/sif-common-formik-ds
 
+## 1.12.6
+
+### Patch Changes
+
+-   16f2ebf: Pakkeoppdateringer minor/patch
+
+## 1.12.5
+
+### Patch Changes
+
+-   485d6eb: Pakkeoppdateringer - minor/patch
+
+## 1.12.4
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 1.12.3
+
+### Patch Changes
+
+-   Endre regexp for sjekk av navn på virksomhet. Tillot ikke space i noen tilfeller.
+
 ## 1.12.2
 
 ### Patch Changes

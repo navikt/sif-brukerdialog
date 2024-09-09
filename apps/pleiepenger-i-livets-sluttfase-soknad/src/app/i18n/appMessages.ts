@@ -6,7 +6,6 @@ import { arbeidssituasjonMessages } from '../søknad/steps/arbeidssituasjon/arbe
 import { arbeidstidMessages } from '../søknad/steps/arbeidstid/arbeidstidMessages';
 import { arbeidstidPeriodeMessages } from '../søknad/steps/arbeidstid/arbeidstidPeriodeMessages';
 import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerklæringMessages';
-import { medlemskapMessages } from '../søknad/steps/medlemskap/medlemskapMessages';
 import { opplysningerOmPleietrengendeMessages } from '../søknad/steps/opplysninger-om-pleietrengende/opplysningerOmPleietrengendeMessages';
 import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
 import { tidsromMessages } from '../søknad/steps/tidsrom/tidsromMessages';
@@ -19,7 +18,6 @@ const nb = {
     ...tidsromMessages.nb,
     ...arbeidstidMessages.nb,
     ...arbeidssituasjonMessages.nb,
-    ...medlemskapMessages.nb,
     ...oppsummeringMessages.nb,
     ...kvitteringMessages.nb,
     ...validateApiDataMessages.nb,

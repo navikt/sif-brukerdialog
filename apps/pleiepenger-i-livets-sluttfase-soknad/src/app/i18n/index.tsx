@@ -3,6 +3,7 @@ import { commonMessages } from '@navikt/sif-common-core-ds/src/i18n/common.messa
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import {
     bostedUtlandMessages,
+    medlemskapFormMessages,
     opptjeningUtlandMessages,
     utenlandskNæringMessages,
     utenlandsoppholdMessages,
@@ -22,6 +23,7 @@ export const libMessages = {
         ...utenlandskNæringMessages.nb,
         ...utenlandsoppholdMessages.nb,
         ...virksomhetMessages.nb,
+        ...medlemskapFormMessages.nb,
     },
     nn: {
         ...commonMessages.nn,
@@ -32,6 +34,7 @@ export const libMessages = {
         ...utenlandskNæringMessages.nn,
         ...utenlandsoppholdMessages.nn,
         ...virksomhetMessages.nn,
+        ...medlemskapFormMessages.nn,
     },
 };
 

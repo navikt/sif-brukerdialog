@@ -1,7 +1,12 @@
 import { FormattedMessage, useIntl } from 'react-intl';
 import { commonMessages } from '@navikt/sif-common-core-ds/src/i18n/common.messages';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
-import { annetBarnMessages, bostedUtlandMessages, virksomhetMessages } from '@navikt/sif-common-forms-ds';
+import {
+    annetBarnMessages,
+    bostedUtlandMessages,
+    medlemskapFormMessages,
+    virksomhetMessages,
+} from '@navikt/sif-common-forms-ds';
 import { fraværMessages } from '@navikt/sif-common-forms-ds/src/forms/fravær/fraværMessages';
 import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
@@ -16,6 +21,7 @@ export const libMessages = {
         ...bostedUtlandMessages.nb,
         ...fraværMessages.nb,
         ...virksomhetMessages.nb,
+        ...medlemskapFormMessages.nb,
     },
     nn: {
         ...commonMessages.nn,
@@ -25,6 +31,7 @@ export const libMessages = {
         ...bostedUtlandMessages.nn,
         ...fraværMessages.nn,
         ...virksomhetMessages.nn,
+        ...medlemskapFormMessages.nb,
     },
 };
 
