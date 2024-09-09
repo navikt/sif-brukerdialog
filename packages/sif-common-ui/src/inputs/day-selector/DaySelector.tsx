@@ -115,7 +115,7 @@ const DaySelector: React.FunctionComponent<Props> = ({
                     <div className="daySelector__tags">
                         <VStack gap="2">
                             <BodyShort as="div" spacing={false} size="small">
-                                {text('daySelector.antallValgteDager')}
+                                {text('@ui.daySelector.antallValgteDager')}
                             </BodyShort>
 
                             <HStack gap={'2'} align={'center'} wrap={true}>
@@ -125,7 +125,7 @@ const DaySelector: React.FunctionComponent<Props> = ({
                                         <Tag variant="info" key={index} size="small">
                                             <div className="capitalize">{dayjs(m.from).format('MMMM')}</div>:{' '}
                                             {antallValgteDager}{' '}
-                                            {text('daySelector.plural.dag', { dager: antallValgteDager })}
+                                            {text('@ui.daySelector.plural.dag', { dager: antallValgteDager })}
                                         </Tag>
                                     );
                                 })}
@@ -152,11 +152,11 @@ const DaySelector: React.FunctionComponent<Props> = ({
                                     </div>
                                     {numSelectedDays === 0 ? (
                                         <BodyShort as="div" size="small">
-                                            {text('daySelector.ingenDagerValgt')}
+                                            {text('@ui.daySelector.ingenDagerValgt')}
                                         </BodyShort>
                                     ) : (
                                         <Tag variant="info" size="small">
-                                            {text('daySelector.valgteDager', { dager: numSelectedDays })}
+                                            {text('@ui.daySelector.valgteDager', { dager: numSelectedDays })}
                                         </Tag>
                                     )}
                                 </HStack>
