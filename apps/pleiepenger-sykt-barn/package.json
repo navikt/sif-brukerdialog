@@ -52,7 +52,7 @@
         "@babel/plugin-transform-modules-commonjs": "7.24.8",
         "@babel/preset-env": "7.25.4",
         "@babel/preset-react": "7.24.7",
-        "@chromatic-com/storybook": "1.8.0",
+        "@chromatic-com/storybook": "1.9.0",
         "@playwright/test": "1.47.0",
         "@sentry/vite-plugin": "2.22.4",
         "@sif/eslint-config": "workspace:*",
