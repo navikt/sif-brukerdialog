@@ -3958,7 +3958,7 @@ __metadata:
     postcss: "npm:8.4.45"
     postcss-import: "npm:16.1.0"
     react: "npm:18.3.1"
-    react-day-picker: "npm:8.10.1"
+    react-day-picker: "npm:9.0.9"
     react-dom: "npm:18.3.1"
     react-intl: "npm:6.6.8"
     react-loading-skeleton: "npm:3.4.0"
@@ -4161,7 +4161,7 @@ __metadata:
     postcss: "npm:8.4.45"
     postcss-import: "npm:16.1.0"
     react: "npm:18.3.1"
-    react-day-picker: "npm:8.10.1"
+    react-day-picker: "npm:9.0.9"
     react-dom: "npm:18.3.1"
     react-intl: "npm:6.6.8"
     react-modal: "npm:3.16.1"
@@ -4313,7 +4313,7 @@ __metadata:
     playwright-core: "npm:1.47.0"
     postcss: "npm:8.4.45"
     react: "npm:18.3.1"
-    react-day-picker: "npm:8.10.1"
+    react-day-picker: "npm:9.0.9"
     react-dom: "npm:18.3.1"
     react-intl: "npm:6.6.8"
     tailwindcss: "npm:3.4.10"
@@ -4709,7 +4709,7 @@ __metadata:
     openid-client: "npm:5.6.5"
     playwright-core: "npm:1.47.0"
     react: "npm:18.3.1"
-    react-day-picker: "npm:8.10.1"
+    react-day-picker: "npm:9.0.9"
     react-dom: "npm:18.3.1"
     react-intl: "npm:6.6.8"
     react-router-dom: "npm:6.26.1"
@@ -4818,7 +4818,7 @@ __metadata:
     pretty-bytes: "npm:6.1.1"
     prop-types: "npm:15.8.1"
     react: "npm:18.3.1"
-    react-day-picker: "npm:8.10.1"
+    react-day-picker: "npm:9.0.9"
     react-dom: "npm:18.3.1"
     react-intl: "npm:6.6.8"
     react-responsive: "npm:10.0.0"
@@ -4882,7 +4882,7 @@ __metadata:
     npm-run-all: "npm:4.1.5"
     prop-types: "npm:15.8.1"
     react: "npm:18.3.1"
-    react-day-picker: "npm:8.10.1"
+    react-day-picker: "npm:9.0.9"
     react-dom: "npm:18.3.1"
     react-dropzone: "npm:14.2.3"
     react-fast-compare: "npm:3.2.2"
@@ -4949,7 +4949,7 @@ __metadata:
     intl: "npm:1.2.5"
     jsdom: "npm:25.0.0"
     react: "npm:18.3.1"
-    react-day-picker: "npm:8.10.1"
+    react-day-picker: "npm:9.0.9"
     react-dom: "npm:18.3.1"
     react-intl: "npm:6.6.8"
     react-modal: "npm:3.16.1"
@@ -5059,7 +5059,7 @@ __metadata:
     monocle-ts: "npm:2.3.13"
     newtype-ts: "npm:0.3.5"
     react: "npm:18.3.1"
-    react-day-picker: "npm:8.10.1"
+    react-day-picker: "npm:9.0.9"
     react-dom: "npm:18.3.1"
     react-intl: "npm:6.6.8"
     react-router-dom: "npm:6.26.1"
@@ -5118,7 +5118,7 @@ __metadata:
     npm-run-all: "npm:4.1.5"
     postcss: "npm:8.4.45"
     react: "npm:18.3.1"
-    react-day-picker: "npm:8.10.1"
+    react-day-picker: "npm:9.0.9"
     react-dom: "npm:18.3.1"
     react-intl: "npm:6.6.8"
     react-scripts: "npm:5.0.1"
@@ -5214,7 +5214,7 @@ __metadata:
     playwright-core: "npm:1.47.0"
     postcss: "npm:8.4.45"
     react: "npm:18.3.1"
-    react-day-picker: "npm:8.10.1"
+    react-day-picker: "npm:9.0.9"
     react-dom: "npm:18.3.1"
     react-intl: "npm:6.6.8"
     react-router-dom: "npm:6.26.1"
@@ -12951,7 +12951,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"date-fns@npm:3.6.0, date-fns@npm:^3.0.0":
+"date-fns@npm:3.6.0, date-fns@npm:^3.0.0, date-fns@npm:^3.6.0":
   version: 3.6.0
   resolution: "date-fns@npm:3.6.0"
   checksum: 10/cac35c58926a3b5d577082ff2b253612ec1c79eb6754fddef46b6a8e826501ea2cb346ecbd211205f1ba382ddd1f9d8c3f00bf433ad63cc3063454d294e3a6b8
@@ -23565,13 +23565,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-day-picker@npm:8.10.1":
-  version: 8.10.1
-  resolution: "react-day-picker@npm:8.10.1"
+"react-day-picker@npm:9.0.9":
+  version: 9.0.9
+  resolution: "react-day-picker@npm:9.0.9"
+  dependencies:
+    date-fns: "npm:^3.6.0"
   peerDependencies:
-    date-fns: ^2.28.0 || ^3.0.0
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 10/374056dca7fed70a154a3b0e98c6c746c26b4fc868548fa8f285ef3cab9679537e84c0c21ba7b6db67b3f7f54cc562f5d83efba2c7f2c7bd3705ac8992869607
+    react: ">=16.8.0"
+  checksum: 10/6bbb5726e75e60aeb2646c02184d3f326d9ee486521b6aadb962393c9fc7f71afc259df51f92fef141bae7e603b8dfb64b4503c58cf44d1417eb50349cab1090
   languageName: node
   linkType: hard
 
