@@ -9,6 +9,7 @@ import { FrilansApiData } from './FrilansApiData';
 import { SelvstendigApiData } from './SelvstendigApiData';
 import { StønadGodtgjørelseApiData } from './StønadGodtgjørelseApiData';
 import { ISODateString } from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/dateFormatUtils';
+import { MedlemskapApiData } from '@navikt/sif-common-forms-ds/src';
 
 export * from './ArbeidIPeriodeApiData';
 export * from './ArbeidsgiverAnsattApiData';
@@ -57,18 +58,6 @@ export interface BarnetSøknadenGjelderApiData {
     aktørId?: string;
     sammeAdresse?: boolean;
     årsakManglerIdentitetsnummer?: ÅrsakManglerIdentitetsnummer;
-}
-
-export interface MedlemskapApiData {
-    harBoddIUtlandetSiste12Mnd: boolean;
-    skalBoIUtlandetNeste12Mnd: boolean;
-    utenlandsoppholdNeste12Mnd: BostedUtlandApiData[];
-    utenlandsoppholdSiste12Mnd: BostedUtlandApiData[];
-}
-
-export interface BostedUtlandApiData extends PeriodeApiData {
-    landkode: string;
-    landnavn: string;
 }
 
 export interface UtenlandsoppholdInnenforEØSIPeriodenApiData extends PeriodeApiData {

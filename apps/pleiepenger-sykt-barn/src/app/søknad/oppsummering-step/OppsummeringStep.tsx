@@ -42,8 +42,8 @@ import SøkerSummary from './søker-summary/SøkerSummary';
 import { VStack } from '@navikt/ds-react';
 import PeriodeSummary from './periode-summary/PeriodeSummary';
 import NattevågOgBeredskapSummary from './nattevåk-og-beredskap-summary/NattevåkOgBeredskapSummary';
-import MedlemskapSummary from './medlemskap-summary/MedlemskapSummary';
 import LegeerklæringSummary from './legeerklæring-summary/LegeerklæringSummary';
+import { MedlemskapSummary } from '@navikt/sif-common-forms-ds/src';
 
 interface Props {
     values: SøknadFormValues;

@@ -1,5 +1,17 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.11.0
+
+### Minor Changes
+
+-   454d6e2: Ta i bruk Medlemskap fra sif-common-forms-ds
+
+### Patch Changes
+
+-   Updated dependencies [454d6e2]
+    -   @navikt/sif-common-forms-ds@10.1.0
+    -   @navikt/sif-common-soknad-ds@14.0.0
+
 ## 2.10.15
 
 ### Patch Changes

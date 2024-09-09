@@ -5,11 +5,7 @@ import { JaNeiSvar, SummaryList } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 import classNames from 'classnames';
 import { AppIntlShape, AppText } from '../../i18n';
-import {
-    BostedUtlandApiData,
-    PeriodeApiData,
-    UtenlandsoppholdIPeriodenApiData,
-} from '../../types/søknad-api-data/SøknadApiData';
+import { PeriodeApiData, UtenlandsoppholdIPeriodenApiData } from '../../types/søknad-api-data/SøknadApiData';
 import { FormSummary } from '@navikt/ds-react/FormSummary';
 
 const bem = bemUtils('utenlandsoppholdSummaryItem');
@@ -20,16 +16,6 @@ export const renderFerieuttakIPeriodenSummary = (ferieuttak: PeriodeApiData): Re
             {prettifyDateExtended(ISODateToDate(ferieuttak.fraOgMed))} -{' '}
             {prettifyDateExtended(ISODateToDate(ferieuttak.tilOgMed))}
         </span>
-    </div>
-);
-
-export const renderUtenlandsoppholdSummary = (opphold: BostedUtlandApiData): React.ReactNode => (
-    <div className={bem.block}>
-        <span className={bem.element('dates')}>
-            {prettifyDateExtended(ISODateToDate(opphold.fraOgMed))} -{' '}
-            {prettifyDateExtended(ISODateToDate(opphold.tilOgMed))}
-        </span>
-        <span className={bem.element('country')}>{opphold.landnavn}</span>
     </div>
 );
 

@@ -31,7 +31,7 @@ import ArbeidssituasjonStep from './arbeidssituasjon-step/ArbeidssituasjonStep';
 import ArbeidstidStep from './arbeidstid-step/ArbeidstidStep';
 import { getIngenFraværConfirmationDialog } from './confirmation-dialogs/ingenFraværConfirmation';
 import LegeerklæringStep from './legeerklæring-step/LegeerklæringStep';
-import MedlemsskapStep from './medlemskap-step/MedlemsskapStep';
+import MedlemskapStep from './medlemskap-step/MedlemskapStep';
 import NattevåkOgBeredskapStep from './nattevåk-og-beredskap-step/NattevåkOgBeredskapStep';
 import OmsorgstilbudStep from './omsorgstilbud-step/OmsorgstilbudStep';
 import OpplysningerOmBarnetStep from './opplysninger-om-barnet-step/OpplysningerOmBarnetStep';
@@ -287,7 +287,7 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
                     <Route
                         path={StepID.MEDLEMSKAP}
                         element={
-                            <MedlemsskapStep
+                            <MedlemskapStep
                                 onValidSubmit={() => {
                                     setTimeout(() => {
                                         setSøknadsdata(extractSøknadsdataFromFormValues(values));

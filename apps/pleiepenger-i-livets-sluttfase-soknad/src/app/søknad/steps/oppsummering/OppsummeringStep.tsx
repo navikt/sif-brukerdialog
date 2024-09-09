@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
+import { MedlemskapSummary } from '@navikt/sif-common-forms-ds';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
@@ -19,7 +20,6 @@ import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import LegeerklæringOppsummering from './components/LegeerklæringOppsummering';
 import PleietrengendePersonSummary from './components/PleietrengendePersonSummary';
-import MedlemskapOppsummering from './components/MedlemskapOppsummering';
 import TidsromOppsummering from './components/TidsromOppsummering';
 import ArbeidssituasjonSummary from './arbeidssituasjon-summary/ArbeidssituasjonSummary';
 import { ISODateToDate } from '@navikt/sif-common-utils';
@@ -163,7 +163,7 @@ const OppsummeringStep = () => {
                                         }
                                     />
 
-                                    <MedlemskapOppsummering
+                                    <MedlemskapSummary
                                         medlemskap={apiData.medlemskap}
                                         onEdit={() => navigate(stepConfig[StepId.MEDLEMSKAP].route)}
                                     />
