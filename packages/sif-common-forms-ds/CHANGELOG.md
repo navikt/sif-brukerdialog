@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 10.1.0
+
+### Minor Changes
+
+-   454d6e2: Flytte Medlemskap skjema til sif-common-forms-ds
+
 ## 10.0.6
 
 ### Patch Changes
