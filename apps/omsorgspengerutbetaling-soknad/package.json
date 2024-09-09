@@ -67,7 +67,6 @@
         "@vitejs/plugin-react": "4.3.1",
         "babel-polyfill": "6.26.0",
         "busboy": "1.6.0",
-        "chromatic": "11.7.1",
         "cross-env": "7.0.3",
         "eslint": "9.10.0",
         "eslint-plugin-storybook": "0.8.0",
@@ -84,7 +83,6 @@
     "scripts": {
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling",
         "build-storybook": "storybook build",
-        "chromatic": "npx chromatic --project-token=chpt_8062a1949f480d1",
         "clean": "rm -rf node_modules .dist",
         "playwright-test": "playwright test",
         "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",
