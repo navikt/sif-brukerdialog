@@ -1,15 +1,15 @@
 const nb = {
-    'daySelector.antallValgteDager': 'Antall valgte dager:',
-    'daySelector.plural.dag': '{dager, plural, one {dag} other {dager}}',
-    'daySelector.valgteDager': '{dager} {dager, plural, one {dag} other {dager}} valgt',
-    'daySelector.ingenDagerValgt': 'Ingen dager valgt',
+    '@ui.daySelector.antallValgteDager': 'Antall valgte dager:',
+    '@ui.daySelector.plural.dag': '{dager, plural, one {dag} other {dager}}',
+    '@ui.daySelector.valgteDager': '{dager} {dager, plural, one {dag} other {dager}} valgt',
+    '@ui.daySelector.ingenDagerValgt': 'Ingen dager valgt',
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    'daySelector.antallValgteDager': 'Antall valgte dagar:',
-    'daySelector.plural.dag': '{dager, plural, one {dag} other {dagar}}',
-    'daySelector.valgteDager': '{dager} {dager, plural, one {dag} other {dagar}} valgt',
-    'daySelector.ingenDagerValgt': 'Ingen dagar valgt',
+    '@ui.daySelector.antallValgteDager': 'Antall valgte dagar:',
+    '@ui.daySelector.plural.dag': '{dager, plural, one {dag} other {dagar}}',
+    '@ui.daySelector.valgteDager': '{dager} {dager, plural, one {dag} other {dagar}} valgt',
+    '@ui.daySelector.ingenDagerValgt': 'Ingen dagar valgt',
 };
 
 export const daySelectorMessages = {

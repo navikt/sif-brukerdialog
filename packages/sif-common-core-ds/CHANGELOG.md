@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 9.18.6
+
+### Patch Changes
+
+-   ee7d9fd: Rydde i intl-tekstnøkler. Legge til scope i fellespakker for å se hvilken pakke teksten kommer fra.
+
 ## 9.18.5
 
 ### Patch Changes

@@ -45,8 +45,8 @@ const TidFasteUkedagerInput = ({
                     compact: true,
                 }}
                 timeInputLabels={{
-                    minutes: text('tidFasteUkedaterInput.minutter'),
-                    hours: text('tidFasteUkedaterInput.timer'),
+                    minutes: text('@ui.tidFasteUkedaterInput.minutter'),
+                    hours: text('@ui.tidFasteUkedaterInput.timer'),
                 }}
                 data-testid={testId ? `${testId}__${weekday}` : undefined}
                 validate={validateDag ? (value) => validateDag(validationDayName, value) : undefined}
@@ -59,28 +59,28 @@ const TidFasteUkedagerInput = ({
             <div className={classNames(bem.block, bem.modifierConditional('withHiddenDays', hasHiddenDays))}>
                 {renderWeekdayTimeInput(
                     Weekday.monday,
-                    text('tidFasteUkedaterInput.Mandager'),
-                    text('tidFasteUkedaterInput.mandag'),
+                    text('@ui.tidFasteUkedaterInput.Mandager'),
+                    text('@ui.tidFasteUkedaterInput.mandag'),
                 )}
                 {renderWeekdayTimeInput(
                     Weekday.tuesday,
-                    text('tidFasteUkedaterInput.Tirsdager'),
-                    text('tidFasteUkedaterInput.tirsdag'),
+                    text('@ui.tidFasteUkedaterInput.Tirsdager'),
+                    text('@ui.tidFasteUkedaterInput.tirsdag'),
                 )}
                 {renderWeekdayTimeInput(
                     Weekday.wednesday,
-                    text('tidFasteUkedaterInput.Onsdager'),
-                    text('tidFasteUkedaterInput.onsdag'),
+                    text('@ui.tidFasteUkedaterInput.Onsdager'),
+                    text('@ui.tidFasteUkedaterInput.onsdag'),
                 )}
                 {renderWeekdayTimeInput(
                     Weekday.thursday,
-                    text('tidFasteUkedaterInput.Torsdager'),
-                    text('tidFasteUkedaterInput.torsdag'),
+                    text('@ui.tidFasteUkedaterInput.Torsdager'),
+                    text('@ui.tidFasteUkedaterInput.torsdag'),
                 )}
                 {renderWeekdayTimeInput(
                     Weekday.friday,
-                    text('tidFasteUkedaterInput.Fredager'),
-                    text('tidFasteUkedaterInput.fredag'),
+                    text('@ui.tidFasteUkedaterInput.Fredager'),
+                    text('@ui.tidFasteUkedaterInput.fredag'),
                 )}
             </div>
         </Block>

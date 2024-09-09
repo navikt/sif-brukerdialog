@@ -13,7 +13,7 @@ const ErrorPage = ({ contentRenderer, pageTitle, bannerTitle }: Props) => {
     const { text } = useSoknadIntl();
     return (
         <Page
-            title={pageTitle || text('scs.errorPage.defaultTitle')}
+            title={pageTitle || text('@soknad.errorPage.defaultTitle')}
             topContentRenderer={() => <SoknadHeader title={bannerTitle || text('application.title')} />}>
             <Block margin="xxxl">
                 {contentRenderer ? contentRenderer() : <SoknadErrorMessages.GeneralApplicationError />}

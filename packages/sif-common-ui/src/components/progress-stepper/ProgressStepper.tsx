@@ -12,18 +12,9 @@ export interface ProgressStep extends Pick<StepperStepProps, 'completed'> {
     href?: string;
 }
 
-interface Labels {
-    showAllStepsLabel?: string;
-    goToPreviousStepLabel: string;
-    allStepsSectionAriaLabel?: string;
-    navigasjonAriaLabel?: string;
-    stepProgressLabelFunc: (currentStep: number, totalSteps: number) => string;
-}
-
 interface Props {
     steps: ProgressStep[];
     currentStepIndex: number;
-    labels?: Labels;
     titleHeadingLevel?: '1' | '2';
     allStepsHeader?: React.ReactNode;
     allStepsFooter?: React.ReactNode;
@@ -73,7 +64,7 @@ const ProgressStepper: React.FunctionComponent<Props> = ({
                     <BodyShort size="medium">
                         <Link href="#" onClick={handleBackClick}>
                             <ArrowLeftIcon aria-hidden="true" />
-                            {text('progressStepper.goToPreviousStepLabel')}
+                            {text('@ui.progressStepper.goToPreviousStepLabel')}
                         </Link>
                     </BodyShort>
                 </Box>
