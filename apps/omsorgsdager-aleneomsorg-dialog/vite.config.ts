@@ -13,6 +13,10 @@ export default defineConfig({
     ],
     resolve: {},
     build: {
+        manifest: true,
+        rollupOptions: {
+            external: ['./nais.js'],
+        },
         sourcemap: true,
     },
 });

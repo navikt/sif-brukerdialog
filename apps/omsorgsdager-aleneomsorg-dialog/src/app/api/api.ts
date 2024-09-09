@@ -1,3 +1,4 @@
+import { addCorrelationIdToAxionsConfig } from '@navikt/sif-common-core-ds';
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { getEnvVariableOrDefault } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import axios, { AxiosError, AxiosRequestConfig, RawAxiosRequestHeaders } from 'axios';
@@ -41,20 +42,24 @@ axios.interceptors.response.use((response) => {
 const api = {
     get: <ResponseType>(endpoint: ApiEndpoint, paramString?: string, config?: AxiosRequestConfig) => {
         const url = `${endpoint}${paramString ? `?${paramString}` : ''}`;
-        return axios.get<ResponseType>(url, config || axiosConfig);
+        return axios.get<ResponseType>(url, addCorrelationIdToAxionsConfig(config || axiosConfig));
     },
     post: <DataType = any, ResponseType = any>(
         endpoint: ApiEndpoint,
         data: DataType,
         headers?: RawAxiosRequestHeaders,
     ) => {
-        return axios.post<ResponseType>(endpoint, data, {
-            ...axiosConfig,
-            headers: { ...axiosConfig.headers, ...headers },
-        });
+        return axios.post<ResponseType>(
+            endpoint,
+            data,
+            addCorrelationIdToAxionsConfig({
+                ...axiosConfig,
+                headers: { ...axiosConfig.headers, ...headers },
+            }),
+        );
     },
 
-    deleteFile: (url: string) => axios.delete(url, axiosConfig),
+    deleteFile: (url: string) => axios.delete(url, addCorrelationIdToAxionsConfig(axiosConfig)),
 };
 
 export default api;

@@ -10,7 +10,6 @@ import SøknadRouter from './SøknadRouter';
 
 const Søknad = () => {
     const initialData = useSøknadInitialData();
-    // const intl = useIntl();
     const { text } = useAppIntl();
     const { status } = initialData;
 

@@ -2887,13 +2887,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@grafana/faro-core@npm:^1.9.1":
+"@grafana/faro-core@npm:^1.9.0, @grafana/faro-core@npm:^1.9.1":
   version: 1.9.1
   resolution: "@grafana/faro-core@npm:1.9.1"
   dependencies:
     "@opentelemetry/api": "npm:^1.9.0"
     "@opentelemetry/otlp-transformer": "npm:^0.52.0"
   checksum: 10/b9519680b37f86082b7e73aa0d437d2d930ff94f97baab7386a1b81f619a8ac22fbc5be1a24891f3a09c434ded6eff8a369a662c2a909c4d4dadcf471283d5c1
+  languageName: node
+  linkType: hard
+
+"@grafana/faro-web-sdk@npm:1.9.0":
+  version: 1.9.0
+  resolution: "@grafana/faro-web-sdk@npm:1.9.0"
+  dependencies:
+    "@grafana/faro-core": "npm:^1.9.0"
+    ua-parser-js: "npm:^1.0.32"
+    web-vitals: "npm:^4.0.1"
+  checksum: 10/1b5f0b84c7d96bc5099328b35423de8ad3ccd7d51d14e49e7df050c69d57ee6e80b35dd441e6d5eca2de9babc4845eb425ffcc39b6ca05587e9ce453350c61b1
   languageName: node
   linkType: hard
 
@@ -4244,6 +4255,7 @@ __metadata:
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
+    "@navikt/sif-common-faro": "workspace:*"
     "@navikt/sif-common-formik-ds": "workspace:*"
     "@navikt/sif-common-forms-ds": "workspace:*"
     "@navikt/sif-common-hooks": "workspace:*"
@@ -4785,6 +4797,7 @@ __metadata:
     "@babel/preset-env": "npm:7.25.4"
     "@babel/preset-react": "npm:7.24.7"
     "@babel/preset-typescript": "npm:7.24.7"
+    "@grafana/faro-web-sdk": "npm:1.9.0"
     "@navikt/appstatus-react-ds": "workspace:*"
     "@navikt/ds-css": "npm:6.16.3"
     "@navikt/ds-icons": "npm:3.4.3"
@@ -4838,6 +4851,17 @@ __metadata:
     vite: "npm:5.4.3"
     vite-plugin-checker: "npm:0.8.0"
     vitest: "npm:2.0.5"
+  languageName: unknown
+  linkType: soft
+
+"@navikt/sif-common-faro@workspace:*, @navikt/sif-common-faro@workspace:packages/sif-common-faro":
+  version: 0.0.0-use.local
+  resolution: "@navikt/sif-common-faro@workspace:packages/sif-common-faro"
+  dependencies:
+    "@grafana/faro-web-sdk": "npm:1.9.0"
+    constate: "npm:3.3.2"
+  peerDependencies:
+    react: 18.3.1
   languageName: unknown
   linkType: soft
 

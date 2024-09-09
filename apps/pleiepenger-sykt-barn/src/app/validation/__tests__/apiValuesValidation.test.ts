@@ -6,6 +6,7 @@ import { apiVedleggIsInvalid, isOmsorgstilbudApiDataValid } from '../apiValuesVa
 vi.mock('@navikt/sif-common-core-ds/src/utils/envUtils', () => {
     return {
         getEnvironmentVariable: () => 'http://localhost:8089',
+        getMaybeEnvironmentVariable: () => 'http://localhost:8089',
     };
 });
 
