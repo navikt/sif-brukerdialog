@@ -65,7 +65,7 @@ const MedlemskapSummary: React.FC<Props> = ({ medlemskap, onEdit }) => {
                 {medlemskap.skalBoIUtlandetNeste12Mnd === true && medlemskap.utenlandsoppholdNeste12Mnd.length > 0 && (
                     <FormSummary.Answer>
                         <FormSummary.Label>
-                            <MedlemskapFormText id="@forms.medlemskapForm.summary.utlandetSiste12.liste.header" />
+                            <MedlemskapFormText id="@forms.medlemskapForm.summary.utlandetNeste12.liste.header" />
                         </FormSummary.Label>
                         <FormSummary.Value>
                             <SummaryList
