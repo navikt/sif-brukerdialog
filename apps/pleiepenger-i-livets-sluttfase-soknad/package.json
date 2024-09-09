@@ -73,7 +73,7 @@
         "@types/react-router-dom": "5.3.3",
         "babel-polyfill": "6.26.0",
         "cross-env": "7.0.3",
-        "eslint": "9.9.1",
+        "eslint": "9.10.0",
         "eslint-plugin-storybook": "0.8.0",
         "playwright-core": "1.47.0",
         "postcss": "8.4.45",
