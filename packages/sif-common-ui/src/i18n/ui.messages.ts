@@ -7,8 +7,8 @@ import { durationWeekdaysInputMessages } from '../inputs/duration-weekdays-input
 import { tidFasteUkedagerInputMessages } from '../inputs/tid-faste-ukedager-input/tidFasteUkerdagerInput.messages';
 
 const nb = {
-    'ui.jaNeiSvar.Ja': 'Ja',
-    'ui.jaNeiSvar.Nei': 'Nei',
+    '@ui.jaNeiSvar.Ja': 'Ja',
+    '@ui.jaNeiSvar.Nei': 'Nei',
     ...daySelectorMessages.nb,
     ...durationTextMessages.nb,
     ...durationWeekdaysInputMessages.nb,
@@ -17,8 +17,8 @@ const nb = {
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    'ui.jaNeiSvar.Ja': 'Ja',
-    'ui.jaNeiSvar.Nei': 'Nei',
+    '@ui.jaNeiSvar.Ja': 'Ja',
+    '@ui.jaNeiSvar.Nei': 'Nei',
     ...daySelectorMessages.nn,
     ...durationTextMessages.nn,
     ...durationWeekdaysInputMessages.nn,

@@ -1,28 +1,28 @@
 const nb = {
-    'durationText.digital': '{hours}:{minutes}',
-    'durationText.decimal': '{time} t.',
-    'durationText.hours': '{hours} t.',
-    'durationText.minutes': '{minutes} m.',
-    'durationText.hoursAndMinutes': '{hours} t. {minutes} m.',
-    'durationText.full.digital': '{hours}:{minutes}',
-    'durationText.full.decimal': '{time}',
-    'durationText.full.hours': '{hours, plural, one {# time} other {# timer}}',
-    'durationText.full.minutes': '{minutes, plural, one {# minutt} other {# minutter}}',
-    'durationText.full.hoursAndMinutes':
+    '@ui.durationText.digital': '{hours}:{minutes}',
+    '@ui.durationText.decimal': '{time} t.',
+    '@ui.durationText.hours': '{hours} t.',
+    '@ui.durationText.minutes': '{minutes} m.',
+    '@ui.durationText.hoursAndMinutes': '{hours} t. {minutes} m.',
+    '@ui.durationText.full.digital': '{hours}:{minutes}',
+    '@ui.durationText.full.decimal': '{time}',
+    '@ui.durationText.full.hours': '{hours, plural, one {# time} other {# timer}}',
+    '@ui.durationText.full.minutes': '{minutes, plural, one {# minutt} other {# minutter}}',
+    '@ui.durationText.full.hoursAndMinutes':
         '{hours, plural, one {# time} other {# timer}} {minutes, plural, one {# minutt} other {# minutter}}',
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    'durationText.digital': '{hours}:{minutes}',
-    'durationText.decimal': '{time} t.',
-    'durationText.hours': '{hours} t.',
-    'durationText.minutes': '{minutes} m.',
-    'durationText.hoursAndMinutes': '{hours} t. {minutes} m.',
-    'durationText.full.digital': '{hours}:{minutes}',
-    'durationText.full.decimal': '{time}',
-    'durationText.full.hours': '{hours, plural, one {# time} other {# timar}}',
-    'durationText.full.minutes': '{minutes} minutt',
-    'durationText.full.hoursAndMinutes': '{hours, plural, one {# time} other {# timer}} {minutes} minutt',
+    '@ui.durationText.digital': '{hours}:{minutes}',
+    '@ui.durationText.decimal': '{time} t.',
+    '@ui.durationText.hours': '{hours} t.',
+    '@ui.durationText.minutes': '{minutes} m.',
+    '@ui.durationText.hoursAndMinutes': '{hours} t. {minutes} m.',
+    '@ui.durationText.full.digital': '{hours}:{minutes}',
+    '@ui.durationText.full.decimal': '{time}',
+    '@ui.durationText.full.hours': '{hours, plural, one {# time} other {# timar}}',
+    '@ui.durationText.full.minutes': '{minutes} minutt',
+    '@ui.durationText.full.hoursAndMinutes': '{hours, plural, one {# time} other {# timer}} {minutes} minutt',
 };
 
 export const durationTextMessages = {

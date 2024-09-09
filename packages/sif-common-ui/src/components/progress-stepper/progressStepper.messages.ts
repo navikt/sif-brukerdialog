@@ -1,9 +1,5 @@
 const nb = {
-    'progressStepper.showAllStepsLabel': 'Vis alle steg',
-    'progressStepper.goToPreviousStepLabel': 'Forrige steg',
-    'progressStepper.allStepsSectionAriaLabel': 'Alle steg',
-    'progressStepper.navigasjonAriaLabel': 'Navigasjon i søknaden',
-    'progressStepper.stegXavY': `Steg {currentStep} av {totalSteps}`,
+    '@ui.progressStepper.goToPreviousStepLabel': 'Forrige steg',
 };
 
 const nn: Record<keyof typeof nb, string> = {

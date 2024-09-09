@@ -3956,7 +3956,6 @@ __metadata:
     "@storybook/test": "npm:8.2.9"
     "@types/react": "npm:18.3.5"
     axios: "npm:1.7.7"
-    chromatic: "npm:11.7.1"
     classnames: "npm:2.5.1"
     date-fns: "npm:3.6.0"
     dayjs: "npm:1.11.13"
@@ -4468,7 +4467,6 @@ __metadata:
     axios: "npm:1.7.7"
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
-    chromatic: "npm:11.7.1"
     compression: "npm:1.7.4"
     cookie-parser: "npm:1.4.6"
     cross-env: "npm:7.0.3"
@@ -4826,7 +4824,6 @@ __metadata:
     "@vitejs/plugin-react": "npm:4.3.1"
     axios: "npm:1.7.7"
     browser-image-compression: "npm:2.0.2"
-    chromatic: "npm:11.7.1"
     classnames: "npm:2.5.1"
     config: "workspace:*"
     copyfiles: "npm:2.4.1"
@@ -5142,7 +5139,6 @@ __metadata:
     "@storybook/react": "npm:8.2.9"
     "@storybook/testing-library": "npm:0.2.2"
     "@types/react": "npm:18.3.5"
-    chromatic: "npm:11.7.1"
     classnames: "npm:2.5.1"
     copyfiles: "npm:2.4.1"
     date-fns: "npm:3.6.0"
@@ -11732,7 +11728,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromatic@npm:11.7.1, chromatic@npm:^11.4.0":
+"chromatic@npm:^11.4.0":
   version: 11.7.1
   resolution: "chromatic@npm:11.7.1"
   peerDependencies:

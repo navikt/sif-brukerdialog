@@ -33,16 +33,16 @@ export const SamtykkeFormPart = () => {
     const { text } = useSoknadIntl();
     return (
         <ConfirmationCheckbox
-            label={<span data-testid="bekreft-label">{text('scs.samtykkeForm.bekreftLabel')}</span>}
+            label={<span data-testid="bekreft-label">{text('@soknad.samtykkeForm.bekreftLabel')}</span>}
             name={SamtykkeFormFields.harForståttRettigheterOgPlikter}
             validate={getCheckedValidator()}>
             <Heading level="2" size="small">
-                {text('scs.samtykkeForm.ansvar.tittel')}
+                {text('@soknad.samtykkeForm.ansvar.tittel')}
             </Heading>
             <InfoList>
-                <li>{text('scs.samtykkeForm.ansvar.list.1')}</li>
+                <li>{text('@soknad.samtykkeForm.ansvar.list.1')}</li>
                 <li>
-                    {text('scs.samtykkeForm.ansvar.list.2', {
+                    {text('@soknad.samtykkeForm.ansvar.list.2', {
                         a: (msg) => (
                             <Link href={RettOgPliktURL} target="_blank">
                                 {msg}
@@ -80,9 +80,9 @@ const SamtykkeForm: React.FunctionComponent<Props> = ({ onValidSubmit, variant =
             renderForm={() => (
                 <Form
                     includeButtons={true}
-                    submitButtonLabel={submitButtonLabel || text('scs.samtykkeform.submitButtonLabel')}
+                    submitButtonLabel={submitButtonLabel || text('@soknad.samtykkeform.submitButtonLabel')}
                     includeValidationSummary={true}
-                    formErrorHandler={getIntlFormErrorHandler(intl, 'scs.samtykkeForm')}>
+                    formErrorHandler={getIntlFormErrorHandler(intl, '@soknad.samtykkeForm')}>
                     <VStack gap="4">{variant === 'vanlig' ? <SamtykkeFormPart /> : <SamtykkeFormPartEnkel />}</VStack>
                 </Form>
             )}

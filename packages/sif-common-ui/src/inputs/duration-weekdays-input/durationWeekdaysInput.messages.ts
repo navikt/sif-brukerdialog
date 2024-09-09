@@ -1,13 +1,13 @@
 const nb = {
-    'durationWeekdaysInput.uke': 'Uke',
-    'durationWeekdaysInput.timer': 'Timer',
-    'durationWeekdaysInput.minutter': 'Minutter',
+    '@ui.durationWeekdaysInput.uke': 'Uke',
+    '@ui.durationWeekdaysInput.timer': 'Timer',
+    '@ui.durationWeekdaysInput.minutter': 'Minutter',
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    'durationWeekdaysInput.uke': 'Veke',
-    'durationWeekdaysInput.minutter': 'Minutt',
-    'durationWeekdaysInput.timer': 'Timar',
+    '@ui.durationWeekdaysInput.uke': 'Veke',
+    '@ui.durationWeekdaysInput.minutter': 'Minutt',
+    '@ui.durationWeekdaysInput.timer': 'Timar',
 };
 
 export const durationWeekdaysInputMessages = {

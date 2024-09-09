@@ -60,7 +60,7 @@ const DurationWeekdaysWeek: React.FunctionComponent<Props> = ({
             <Fieldset
                 legend={
                     <Heading size="xsmall" level={headingLevel} className={bem.element('weekNumber')}>
-                        {text('durationWeekdaysInput.uke')} {isoWeek}
+                        {text('@ui.durationWeekdaysInput.uke')} {isoWeek}
                     </Heading>
                 }>
                 <div className={bem.element('daysWrapper')}>
@@ -96,8 +96,8 @@ const DurationWeekdaysWeek: React.FunctionComponent<Props> = ({
                                             compact: true,
                                         }}
                                         timeInputLabels={{
-                                            minutes: text('durationWeekdaysInput.minutter'),
-                                            hours: text('durationWeekdaysInput.timer'),
+                                            minutes: text('@ui.durationWeekdaysInput.minutter'),
+                                            hours: text('@ui.durationWeekdaysInput.timer'),
                                         }}
                                         validate={
                                             validateDate

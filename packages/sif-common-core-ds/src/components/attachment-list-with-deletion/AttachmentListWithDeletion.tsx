@@ -27,9 +27,9 @@ const AttachmentListWithDeletion = ({ attachments, onRemoveAttachmentClick }: Pr
                             ) : (
                                 <DeleteButton
                                     useTrashcan={false}
-                                    ariaLabel={text('common.vedleggsliste.fjernKnapp')}
+                                    ariaLabel={text('@core.common.vedleggsliste.fjernKnapp')}
                                     onClick={() => onRemoveAttachmentClick(attachment)}>
-                                    <CoreText id="common.vedleggsliste.fjernKnapp" />
+                                    <CoreText id="@core.common.vedleggsliste.fjernKnapp" />
                                 </DeleteButton>
                             )
                         }

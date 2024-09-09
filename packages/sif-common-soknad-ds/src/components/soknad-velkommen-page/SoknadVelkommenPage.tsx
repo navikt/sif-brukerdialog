@@ -44,7 +44,7 @@ const SoknadVelkommenPage = ({ title, onStartSøknad, guide, submitButtonLabel, 
                     </VStack>
                 </Stack>
 
-                <SoknadVelkommenGuide title={text('scs.velkommenGuide.tittel', { navn: guide.navn })}>
+                <SoknadVelkommenGuide title={text('@soknad.velkommenGuide.tittel', { navn: guide.navn })}>
                     {guide.content}
                 </SoknadVelkommenGuide>
 

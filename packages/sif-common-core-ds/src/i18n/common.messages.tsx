@@ -5,8 +5,8 @@ import { typedIntlHelper } from '../utils/intlUtils';
 const nb = {
     Ja: 'Ja',
     Nei: 'Nei',
-    'common.fileUploadError': 'Det har dessverre skjedd en feil under opplasting av følgende vedlegg:',
-    'common.vedleggsliste.fjernKnapp': 'Fjern',
+    '@core.common.fileUploadError': 'Det har dessverre skjedd en feil under opplasting av følgende vedlegg:',
+    '@core.common.vedleggsliste.fjernKnapp': 'Fjern',
     ...pictureScanningGuideMessages.nb,
 };
 
@@ -15,8 +15,8 @@ type MessageKeys = keyof typeof nb;
 const nn: Record<MessageKeys, string> = {
     Ja: 'Ja',
     Nei: 'Nei',
-    'common.fileUploadError': 'Det har dessverre skjedd ein feil under opplasting av følgjande vedlegg:',
-    'common.vedleggsliste.fjernKnapp': 'Fjern',
+    '@core.common.fileUploadError': 'Det har dessverre skjedd ein feil under opplasting av følgjande vedlegg:',
+    '@core.common.vedleggsliste.fjernKnapp': 'Fjern',
     ...pictureScanningGuideMessages.nn,
 };
 

@@ -1,5 +1,13 @@
 # @navikt/sif-common-ui
 
+## 0.8.8
+
+### Patch Changes
+
+-   ee7d9fd: Rydde i intl-tekstnøkler. Legge til scope i fellespakker for å se hvilken pakke teksten kommer fra.
+-   Updated dependencies [ee7d9fd]
+    -   @navikt/sif-common-core-ds@9.18.6
+
 ## 0.8.7
 
 ### Patch Changes

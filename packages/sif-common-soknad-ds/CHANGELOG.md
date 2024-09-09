@@ -1,5 +1,15 @@
 # @navikt/sif-common-soknad-ds
 
+## 14.0.1
+
+### Patch Changes
+
+-   ee7d9fd: Rydde i intl-tekstnøkler. Legge til scope i fellespakker for å se hvilken pakke teksten kommer fra.
+-   Updated dependencies [ee7d9fd]
+    -   @navikt/sif-common-core-ds@9.18.6
+    -   @navikt/sif-common-ui@0.8.8
+    -   @navikt/sif-common-forms-ds@10.1.1
+
 ## 14.0.0
 
 ### Patch Changes
