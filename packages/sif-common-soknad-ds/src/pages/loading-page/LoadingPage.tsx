@@ -11,7 +11,7 @@ const LoadingPage = ({ headerTitle }: Props) => {
     const { text } = useSoknadIntl();
     return (
         <Page
-            title={text('scs.loadingPage.henterInformasjon')}
+            title={text('@soknad.loadingPage.henterInformasjon')}
             topContentRenderer={headerTitle ? () => <SoknadHeader title={headerTitle} /> : undefined}>
             <div
                 style={{

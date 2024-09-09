@@ -13,13 +13,13 @@ const AvbrytSøknadDialog = (props: Props) => {
     return (
         <ConfirmationDialog
             open={synlig}
-            okLabel={text('scs.avbrytSøknadDialog.avbrytSøknadLabel')}
-            cancelLabel={text('scs.avbrytSøknadDialog.fortsettSøknadLabel')}
+            okLabel={text('@soknad.avbrytSøknadDialog.avbrytSøknadLabel')}
+            cancelLabel={text('@soknad.avbrytSøknadDialog.fortsettSøknadLabel')}
             onConfirm={onAvbrytSøknad}
             onCancel={onFortsettSøknad}
-            title={text('scs.avbrytSøknadDialog.tittel')}>
-            <p>{text('scs.avbrytSøknadDialog.intro')}</p>
-            <p>{text('scs.avbrytSøknadDialog.spørsmål')}</p>
+            title={text('@soknad.avbrytSøknadDialog.tittel')}>
+            <p>{text('@soknad.avbrytSøknadDialog.intro')}</p>
+            <p>{text('@soknad.avbrytSøknadDialog.spørsmål')}</p>
         </ConfirmationDialog>
     );
 };

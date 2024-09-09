@@ -30,7 +30,7 @@ function StepFooter({ onAvbrytOgFortsettSenere, onAvbrytOgSlett }: Props) {
                                 variant="tertiary"
                                 icon={<FloppydiskIcon aria-hidden={true} />}
                                 onClick={() => setVisFortsettSenereDialog(true)}>
-                                {text('scs.stepFooter.fortsettSenere')}
+                                {text('@soknad.stepFooter.fortsettSenere')}
                             </Button>
                         </Box>
                     )}
@@ -40,7 +40,7 @@ function StepFooter({ onAvbrytOgFortsettSenere, onAvbrytOgSlett }: Props) {
                             variant="tertiary"
                             onClick={() => setVisAvbrytDialog(true)}
                             icon={<TrashIcon aria-hidden={true} />}>
-                            {text('scs.stepFooter.avbryt')}
+                            {text('@soknad.stepFooter.avbryt')}
                         </Button>
                     )}
                 </div>
