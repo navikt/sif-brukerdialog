@@ -41,15 +41,15 @@ const SoknadErrorMessage = ({
 
 const GeneralApplicationError = () => (
     <SoknadErrorMessage
-        titleKey="@scs.soknadErrorMessages.defaultTitle"
-        contentKey="@scs.soknadErrorMessages.generalError.content"
+        titleKey="@soknad.soknadErrorMessages.defaultTitle"
+        contentKey="@soknad.soknadErrorMessages.generalError.content"
     />
 );
 
 const GeneralSoknadError = ({ soknadFrontpageUrl }: ErrorWithFrontpageUrlProps) => (
     <SoknadErrorMessage
-        titleKey="@scs.soknadErrorMessages.defaultTitle"
-        contentKey="@scs.soknadErrorMessages.generalSoknadError.content"
+        titleKey="@soknad.soknadErrorMessages.defaultTitle"
+        contentKey="@soknad.soknadErrorMessages.generalSoknadError.content"
         soknadFrontpageUrl={soknadFrontpageUrl}
     />
 );
@@ -63,14 +63,14 @@ const MissingSoknadDataError = ({
     const { text } = useSoknadIntl();
     return lastAvailableStep === undefined ? (
         <SoknadErrorMessage
-            titleKey="@scs.soknadErrorMessages.missingSoknadData.title"
-            contentKey="@scs.soknadErrorMessages.missingSoknadData.content"
+            titleKey="@soknad.soknadErrorMessages.missingSoknadData.title"
+            contentKey="@soknad.soknadErrorMessages.missingSoknadData.content"
             soknadFrontpageUrl={soknadFrontpageUrl}
         />
     ) : (
         <SoknadErrorMessage
-            titleKey="@scs.soknadErrorMessages.unavailableSoknadStep.title"
-            contentKey="@scs.soknadErrorMessages.unavailableSoknadStep.content">
+            titleKey="@soknad.soknadErrorMessages.unavailableSoknadStep.title"
+            contentKey="@soknad.soknadErrorMessages.unavailableSoknadStep.content">
             <Link to={lastAvailableStep.route}>
                 {text('@soknad.soknadErrorMessages.unavailableSoknadStep.linkText', { steg: lastAvailableStep.title })}
             </Link>
@@ -80,16 +80,16 @@ const MissingSoknadDataError = ({
 
 const MissingApiDataError = ({ soknadFrontpageUrl }: ErrorWithFrontpageUrlProps) => (
     <SoknadErrorMessage
-        titleKey="@scs.soknadErrorMessages.missingApiData.title"
-        contentKey="@scs.soknadErrorMessages.missingApiData.content"
+        titleKey="@soknad.soknadErrorMessages.missingApiData.title"
+        contentKey="@soknad.soknadErrorMessages.missingApiData.content"
         soknadFrontpageUrl={soknadFrontpageUrl}
     />
 );
 
 const ApplicationUnavailable = () => (
     <SoknadErrorMessage
-        titleKey="@scs.soknadErrorMessages.applicationUnavailable.title"
-        contentKey="@scs.soknadErrorMessages.applicationUnavailable.content"
+        titleKey="@soknad.soknadErrorMessages.applicationUnavailable.title"
+        contentKey="@soknad.soknadErrorMessages.applicationUnavailable.content"
     />
 );
 
@@ -97,8 +97,8 @@ const UnknownRoute = ({ onReset }: { onReset?: () => void }) => {
     const { text } = useSoknadIntl();
     return (
         <SoknadErrorMessage
-            titleKey="@scs.soknadErrorMessages.unknownRoute.title"
-            contentKey="@scs.soknadErrorMessages.unknownRoute.content">
+            titleKey="@soknad.soknadErrorMessages.unknownRoute.title"
+            contentKey="@soknad.soknadErrorMessages.unknownRoute.content">
             <p>{text('@soknad.soknadErrorMessages.unknownRoute.reset')}</p>
             {onReset && (
                 <Button type="button" onClick={onReset} variant="secondary" size="small">
