@@ -2703,6 +2703,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@eslint/js@npm:9.10.0":
+  version: 9.10.0
+  resolution: "@eslint/js@npm:9.10.0"
+  checksum: 10/cbda2bf268c8ac7a2b2493aaaa0113a78165a576ee5178b9fbdaf245c3d40ffaf41d006f75afab5718f68d816f00319e267b4c88ead100b19022fe491f9e0175
+  languageName: node
+  linkType: hard
+
 "@eslint/js@npm:9.9.1":
   version: 9.9.1
   resolution: "@eslint/js@npm:9.9.1"
@@ -7029,7 +7036,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sif/eslint-config@workspace:packages/eslint-config-sif"
   dependencies:
-    "@eslint/js": "npm:9.9.1"
+    "@eslint/js": "npm:9.10.0"
     eslint: "npm:9.9.1"
     eslint-config-prettier: "npm:9.1.0"
     eslint-plugin-jsx-a11y: "npm:6.10.0"
