@@ -2,7 +2,7 @@ import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { deltBostedMessages } from '../søknad/steps/delt-bosted/deltBostedMessages';
 import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerklæringMessages';
-import { omBarnetMessages } from '../søknad/steps/om-barnet/stegOmBarnetMessages';
+import { omBarnetMessages } from '../søknad/steps/om-barnet/omBarnetMessages';
 import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
 
 const nb = {

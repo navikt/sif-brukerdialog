@@ -1,16 +1,8 @@
-import { useEffect, useState } from 'react';
-import { useIntl } from 'react-intl';
-import { ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import innvilgetVedtakEndpoint from '../../../api/endpoints/innvilgetVedtakEndpoint';
+import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { AppText } from '../../../i18n';
 import { BarnSammeAdresse } from '../../../types/BarnSammeAdresse';
-import { HentSisteGyldigeVedtakResponseDto } from '../../../types/innvilgetVedtakApiData/HentSisteGyldigeVedtakResponseDto';
-import { RegistrertBarn } from '../../../types/RegistrertBarn';
 import { StepId } from '../../../types/StepId';
 import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
 import { SøknadContextState } from '../../../types/SøknadContextState';
@@ -20,21 +12,10 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
-import IkkeHøyereRisikoForFraværAlert from './alert/IkkeHøyereRisikoForFraværAlert';
-import IkkeKroniskEllerFunksjonshemningAlert from './alert/IkkeKroniskEllerFuksjonshemningAlert';
-import IkkeSammeAdresseAlert from './alert/IkkeSammeAdresseAlert';
-import TrengerIkkeSøkeForBarnAlert from './alert/TrengerIkkeSøkeForBarnAlert';
 import { getOmBarnetStepInitialValues, getOmBarnetSøknadsdataFromFormValues } from './omBarnetStepUtils';
-import AnnetBarnFnrSpørsmål from './spørsmål/AnnetBarnFnrSpørsmål';
-import AnnetBarnFødselsdatoSpørsmål from './spørsmål/AnnetBarnFødselsdatoSpørsmål';
-import AnnetBarnNavnSpørsmål from './spørsmål/AnnetBarnNavnSpørsmål';
-import AnnetBarnRelasjonSpørsmål from './spørsmål/AnnetBarnRelasjonSpørsmål';
-import BorSammenMedBarnetSpørsmål from './spørsmål/BorSammenMedBarnetSpørsmål';
-import HøyereRisikoForFraværBeskrivelseSpørsmål from './spørsmål/HøyereRisikoForFraværBeskrivelseSpørsmål';
-import HøyereRisikoForFraværSpørsmål from './spørsmål/HøyereRisikoForFraværSpørsmål';
-import KroniskEllerFunksjonshemningSpørsmål from './spørsmål/KroniskEllerFunksjonshemningSpørsmål';
-import RegistrertBarnSpørsmål from './spørsmål/RegistrertBarnSpørsmål';
-import { FormQuestionWithAlert, FormQuestions, FormSection, FormSetionHeading } from '@navikt/sif-common-ui';
+import OmBarnetForm from './OmBarnetForm';
+import { useInnvilgedeVedtakForRegistrerteBarn } from '../../../hooks/useInnvilgedeVedtakForRegistrerteBarn';
+import { omBarnetFormComponents } from './omBarnetFormComponents';
 
 export enum OmBarnetFormFields {
     barnetSøknadenGjelder = 'barnetSøknadenGjelder',
@@ -62,16 +43,13 @@ export interface OmBarnetFormValues {
     [OmBarnetFormFields.høyereRisikoForFraværBeskrivelse]?: string;
 }
 
-export const omBarnetFormElements = getTypedFormComponents<OmBarnetFormFields, OmBarnetFormValues, ValidationError>();
-
-const { FormikWrapper, Form } = omBarnetFormElements;
+const { FormikWrapper } = omBarnetFormComponents;
 
 const OmBarnetStep = () => {
-    const intl = useIntl();
-
     const {
         state: { søknadsdata, registrerteBarn, søker },
     } = useSøknadContext();
+    const innvilgedeVedtak = useInnvilgedeVedtakForRegistrerteBarn(registrerteBarn);
 
     const stepId = StepId.OM_BARNET;
     const step = getSøknadStepConfigForStep(søknadsdata, stepId);
@@ -97,114 +75,24 @@ const OmBarnetStep = () => {
         },
     );
 
-    const harIkkeBarn = registrerteBarn.length === 0;
-
-    const innvilgedeVedtak = useInnvilgedeVedtakForRegistrerteBarn(registrerteBarn);
-
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
                 initialValues={getOmBarnetStepInitialValues(søknadsdata, stepFormValues[stepId])}
                 onSubmit={handleSubmit}
-                renderForm={({
-                    values: {
-                        barnetSøknadenGjelder,
-                        søknadenGjelderEtAnnetBarn,
-                        kroniskEllerFunksjonshemming,
-                        sammeAdresse,
-                        søkersRelasjonTilBarnet,
-                        høyereRisikoForFravær,
-                    },
-                    setFieldValue,
-                }) => {
-                    const valgtBarn = registrerteBarn.find((barn) => barn.aktørId === barnetSøknadenGjelder);
-                    const vedtakForValgtBarn = innvilgedeVedtak[barnetSøknadenGjelder || ''];
-                    const harInnvilgetVedtakForValgtBarn = valgtBarn && vedtakForValgtBarn?.harInnvilgedeBehandlinger;
-
-                    const visIkkeSammeAdresseAlert =
-                        sammeAdresse === BarnSammeAdresse.NEI &&
-                        søkersRelasjonTilBarnet !== SøkersRelasjonTilBarnet.FOSTERFORELDER;
-
+                renderForm={({ values, setFieldValue }) => {
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
-                            <Form
-                                formErrorHandler={getIntlFormErrorHandler(intl, 'steg.omBarnet.validation')}
-                                includeValidationSummary={true}
-                                submitPending={isSubmitting}
+                            <OmBarnetForm
+                                values={values}
                                 onBack={goBack}
-                                runDelayedFormValidation={true}
-                                submitDisabled={harInnvilgetVedtakForValgtBarn}>
-                                <FormQuestions>
-                                    {harIkkeBarn === false && (
-                                        <FormQuestionWithAlert
-                                            alert={
-                                                harInnvilgetVedtakForValgtBarn && (
-                                                    <TrengerIkkeSøkeForBarnAlert barnetsFornavn={valgtBarn.fornavn} />
-                                                )
-                                            }>
-                                            <RegistrertBarnSpørsmål
-                                                registrerteBarn={registrerteBarn}
-                                                søknadenGjelderEtAnnetBarn={søknadenGjelderEtAnnetBarn}
-                                                onAnnetBarnSelected={() => {
-                                                    setFieldValue('barnetSøknadenGjelder', undefined);
-                                                }}
-                                            />
-                                        </FormQuestionWithAlert>
-                                    )}
-                                    {harInnvilgetVedtakForValgtBarn !== true && (
-                                        <>
-                                            {(søknadenGjelderEtAnnetBarn || harIkkeBarn) && (
-                                                <FormSection>
-                                                    <FormSetionHeading>
-                                                        <AppText id="steg.omBarnet.annetBarn.tittel" />
-                                                    </FormSetionHeading>
-                                                    <FormQuestions>
-                                                        <AnnetBarnFnrSpørsmål søkersFnr={søker.fødselsnummer} />
-                                                        <AnnetBarnNavnSpørsmål />
-                                                        <AnnetBarnFødselsdatoSpørsmål />
-                                                        <AnnetBarnRelasjonSpørsmål />
-                                                    </FormQuestions>
-                                                </FormSection>
-                                            )}
-                                            {(barnetSøknadenGjelder !== undefined ||
-                                                søknadenGjelderEtAnnetBarn ||
-                                                harIkkeBarn) && (
-                                                <FormQuestions>
-                                                    <FormQuestionWithAlert
-                                                        alert={visIkkeSammeAdresseAlert && <IkkeSammeAdresseAlert />}>
-                                                        <BorSammenMedBarnetSpørsmål />
-                                                    </FormQuestionWithAlert>
-                                                    <FormQuestionWithAlert
-                                                        alert={
-                                                            kroniskEllerFunksjonshemming === YesOrNo.NO && (
-                                                                <IkkeKroniskEllerFunksjonshemningAlert />
-                                                            )
-                                                        }>
-                                                        <KroniskEllerFunksjonshemningSpørsmål />
-                                                    </FormQuestionWithAlert>
-
-                                                    {kroniskEllerFunksjonshemming === YesOrNo.YES && (
-                                                        <>
-                                                            <FormQuestionWithAlert
-                                                                alert={
-                                                                    høyereRisikoForFravær === YesOrNo.NO && (
-                                                                        <IkkeHøyereRisikoForFraværAlert />
-                                                                    )
-                                                                }>
-                                                                <HøyereRisikoForFraværSpørsmål />
-                                                            </FormQuestionWithAlert>
-                                                            {høyereRisikoForFravær === YesOrNo.YES && (
-                                                                <HøyereRisikoForFraværBeskrivelseSpørsmål />
-                                                            )}
-                                                        </>
-                                                    )}
-                                                </FormQuestions>
-                                            )}
-                                        </>
-                                    )}
-                                </FormQuestions>
-                            </Form>
+                                isSubmitting={isSubmitting}
+                                søker={søker}
+                                registrerteBarn={registrerteBarn}
+                                onVelgAnnetBarn={() => setFieldValue('barnetSøknadenGjelder', undefined)}
+                                innvilgedeVedtak={innvilgedeVedtak}
+                            />
                         </>
                     );
                 }}
@@ -214,21 +102,3 @@ const OmBarnetStep = () => {
 };
 
 export default OmBarnetStep;
-
-const useInnvilgedeVedtakForRegistrerteBarn = (registrerteBarn: RegistrertBarn[]) => {
-    const [innvilgedeVedtak, setInnvilgedeVedtak] = useState<{ [key: string]: HentSisteGyldigeVedtakResponseDto }>({});
-    useEffect(() => {
-        async function getInnvilgedeVedtak() {
-            const vedtakPromises = registrerteBarn.map((barn) =>
-                innvilgetVedtakEndpoint.send({
-                    pleietrengendeAktørId: barn.aktørId,
-                }),
-            );
-            const responses = await Promise.all(vedtakPromises);
-            const vedtakEntries = registrerteBarn.map((barn, index) => [barn.aktørId, responses[index].data]);
-            setInnvilgedeVedtak(Object.fromEntries(vedtakEntries));
-        }
-        getInnvilgedeVedtak();
-    }, [registrerteBarn]);
-    return innvilgedeVedtak;
-};
