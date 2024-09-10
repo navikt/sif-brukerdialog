@@ -14,6 +14,7 @@ import { withRouterProvider } from '../../decorators/withRouter';
 import { withStepFormValuesContext } from '../../decorators/withStepFormValuesContext';
 import { mockInitialSøknadContextState } from '../../decorators/withSøknadContext';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { PlainMessageList } from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesList';
 
 export default {
     title: 'Steps/OmBarnetStep',
@@ -31,6 +32,7 @@ const Template: StoryFn<Props> = ({ context }: Props) => (
             <Tabs.List>
                 <Tabs.Tab value="steg" label="Steg" />
                 <Tabs.Tab value="tekster" label="Tekster" />
+                <Tabs.Tab value="stegOgTekst" label="Steg og tekst" />
             </Tabs.List>
             <Tabs.Panel value="steg">
                 <Block margin="xl">
@@ -45,6 +47,12 @@ const Template: StoryFn<Props> = ({ context }: Props) => (
                         showExplanation={false}
                         title="Om barnet"
                     />
+                </Block>
+            </Tabs.Panel>
+            <Tabs.Panel value="stegOgTekst">
+                <Block margin="xl">
+                    <OmBarnetStep />
+                    <PlainMessageList messages={omBarnetMessages} />
                 </Block>
             </Tabs.Panel>
         </Tabs>

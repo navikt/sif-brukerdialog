@@ -1,7 +1,6 @@
-import { BodyLong, Box, Heading, Tabs, VStack } from '@navikt/ds-react';
+import { BodyLong, Heading, Tabs, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
@@ -10,7 +9,7 @@ import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/typ
 import { getDate1YearAgo, getDate1YearFromNow, getDateToday } from '@navikt/sif-common-utils';
 import { flatten } from 'flat';
 import { FraværDag, fraværDagToFraværDateRange, fraværMessages, FraværPeriode, fraværPeriodeToDateRange } from '../';
-import MessagesPreview from '../../../../storybook/components/messages-preview/MessagesPreview';
+import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
 import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
 import FraværDagerListAndDialog from '../FraværDagerListAndDialog';
@@ -18,6 +17,7 @@ import FraværDagFormView, { FraværDagFormErrors } from '../FraværDagForm';
 import FraværPeriodeForm, { FraværPeriodeFormErrors } from '../FraværPeriodeForm';
 import FraværPerioderListAndDialog from '../FraværPerioderListAndDialog';
 import { FraværFieldValidationErrors, validateNoCollisions } from '../fraværValidationUtils';
+import StoryFormWrapper from '../../../../storybook/components/story-form-wrapper/StoryFormWrapper';
 
 enum FormField {
     perioder = 'perioder',
@@ -46,9 +46,10 @@ const FormikExample = () => {
             <VStack gap="4">
                 <Tabs.List>
                     <Tabs.Tab value="list" label="ListAndDialog" />
-                    <Tabs.Tab value="perioderForm" label="FraværPeriodeForm" />
-                    <Tabs.Tab value="dagerForm" label="FraværDagerForm" />
+                    <Tabs.Tab value="perioderForm" label="PerioderForm" />
+                    <Tabs.Tab value="dagerForm" label="DagerForm" />
                     <Tabs.Tab value="messages" label="Tekster" />
+                    <Tabs.Tab value="validationMessages" label="Valideringsmeldinger" />
                 </Tabs.List>
                 <Tabs.Panel value="list" style={{ maxWidth: '50rem' }}>
                     <TypedFormikWrapper<FormValues>
@@ -134,8 +135,8 @@ const FormikExample = () => {
                     />
                     <SubmitPreview values={listFormValues} />
                 </Tabs.Panel>
-                <Tabs.Panel value="perioderForm" style={{ maxWidth: '30rem' }}>
-                    <Box padding="6" borderWidth="1" borderRadius="medium">
+                <Tabs.Panel value="perioderForm">
+                    <StoryFormWrapper values={fraværPeriodeSingleFormValues}>
                         <FraværPeriodeForm
                             minDate={getDate1YearAgo()}
                             maxDate={getDate1YearFromNow()}
@@ -143,11 +144,10 @@ const FormikExample = () => {
                             onSubmit={setFraværPeriodeSingleFormValues}
                             onCancel={() => {}}
                         />
-                    </Box>
-                    <SubmitPreview values={fraværPeriodeSingleFormValues} />
+                    </StoryFormWrapper>
                 </Tabs.Panel>
-                <Tabs.Panel value="dagerForm" style={{ maxWidth: '30rem' }}>
-                    <Box padding="4" borderWidth="1" borderRadius="small">
+                <Tabs.Panel value="dagerForm">
+                    <StoryFormWrapper values={fraværDagSingleFormValues}>
                         <FraværDagFormView
                             minDate={getDate1YearAgo()}
                             maxDate={getDate1YearFromNow()}
@@ -155,21 +155,20 @@ const FormikExample = () => {
                             onSubmit={setFraværDagSingleFormValues}
                             onCancel={() => {}}
                         />
-                    </Box>
-                    <SubmitPreview values={fraværDagSingleFormValues} />
+                    </StoryFormWrapper>
                 </Tabs.Panel>
                 <Tabs.Panel value="messages">
-                    <Block margin="xxl" padBottom="l">
-                        <FormValidationErrorMessages
-                            validationErrorIntlKeys={{
-                                ...flatten(FraværDagFormErrors),
-                                ...flatten(FraværPeriodeFormErrors),
-                            }}
-                            formName={'Fosterbarn'}
-                            intlMessages={fraværMessages}
-                        />
-                        <MessagesPreview messages={fraværMessages} showExplanation={false} />
-                    </Block>
+                    <MessagesPreview messages={fraværMessages} showExplanation={false} />
+                </Tabs.Panel>
+                <Tabs.Panel value="validationMessages">
+                    <FormValidationErrorMessages
+                        validationErrorIntlKeys={{
+                            ...flatten(FraværDagFormErrors),
+                            ...flatten(FraværPeriodeFormErrors),
+                        }}
+                        formName={'Fosterbarn'}
+                        intlMessages={fraværMessages}
+                    />
                 </Tabs.Panel>
             </VStack>
         </Tabs>

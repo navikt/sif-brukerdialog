@@ -1,19 +1,19 @@
-import { Panel, Tabs, VStack } from '@navikt/ds-react';
+import { Tabs, VStack } from '@navikt/ds-react';
 /* eslint-disable no-console */
 import { useState } from 'react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { getDate4YearsAgo, getDateToday } from '@navikt/sif-common-utils';
-import { flatten } from 'flat';
-import MessagesPreview from '../../../../storybook/components/messages-preview/MessagesPreview';
 import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
-import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
 import AnnetBarnForm, { AnnetBarnFormErrors } from '../AnnetBarnForm';
 import AnnetBarnListAndDialog from '../AnnetBarnListAndDialog';
 import { annetBarnMessages, useAnnetBarnIntl } from '../annetBarnMessages';
 import { AnnetBarn } from '../types';
+import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
+import { flatten } from 'flat';
+import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
+import StoryFormWrapper from '../../../../storybook/components/story-form-wrapper/StoryFormWrapper';
 
 enum FormField {
     'annetBarn' = 'annetBarn',
@@ -37,41 +37,44 @@ const AnnetBarnExample = () => {
         <Tabs defaultValue="list">
             <VStack gap="4">
                 <Tabs.List>
-                    <Tabs.Tab value="list" label="AnnetBarnListAndDialog" />
-                    <Tabs.Tab value="form" label="AnnetBarnForm" />
+                    <Tabs.Tab value="list" label="ListAndDialog" />
+                    <Tabs.Tab value="form" label="Form" />
                     <Tabs.Tab value="messages" label="Tekster" />
+                    <Tabs.Tab value="validationMessages" label="Valideringsmeldinger" />
                 </Tabs.List>
                 <Tabs.Panel value="list" style={{ maxWidth: '50rem' }}>
-                    <TypedFormikWrapper<FormValues>
-                        initialValues={initialValues}
-                        onSubmit={setListFormValues}
-                        renderForm={() => {
-                            return (
-                                <TypedFormikForm<FormValues, ValidationError>
-                                    includeButtons={true}
-                                    submitButtonLabel="Valider skjema">
-                                    <AnnetBarnListAndDialog<FormField>
-                                        name={FormField.annetBarn}
-                                        validate={getListValidator({ required: true })}
-                                        labels={{
-                                            addLabel: text('@forms.annetBarn.dialog.title'),
-                                            listTitle: text('@forms.annetBarn.list.title'),
-                                            emptyListText: text('@forms.annetBarn.list.ingenLagtTil'),
-                                            modalTitle: text('@forms.annetBarn.dialog.title'),
-                                        }}
-                                        minDate={getDate4YearsAgo()}
-                                        maxDate={getDateToday()}
-                                        visBarnTypeValg={visBarnTypeValg}
-                                        disallowedFødselsnumre={disallowedFødselsnumre}
-                                    />
-                                </TypedFormikForm>
-                            );
-                        }}
-                    />
-                    <SubmitPreview values={listFormValues} />
+                    <VStack gap="6">
+                        <TypedFormikWrapper<FormValues>
+                            initialValues={initialValues}
+                            onSubmit={setListFormValues}
+                            renderForm={() => {
+                                return (
+                                    <TypedFormikForm<FormValues, ValidationError>
+                                        includeButtons={true}
+                                        submitButtonLabel="Valider skjema">
+                                        <AnnetBarnListAndDialog<FormField>
+                                            name={FormField.annetBarn}
+                                            validate={getListValidator({ required: true })}
+                                            labels={{
+                                                addLabel: text('@forms.annetBarn.dialog.title'),
+                                                listTitle: text('@forms.annetBarn.list.title'),
+                                                emptyListText: text('@forms.annetBarn.list.ingenLagtTil'),
+                                                modalTitle: text('@forms.annetBarn.dialog.title'),
+                                            }}
+                                            minDate={getDate4YearsAgo()}
+                                            maxDate={getDateToday()}
+                                            visBarnTypeValg={visBarnTypeValg}
+                                            disallowedFødselsnumre={disallowedFødselsnumre}
+                                        />
+                                    </TypedFormikForm>
+                                );
+                            }}
+                        />
+                        <SubmitPreview values={listFormValues} />
+                    </VStack>
                 </Tabs.Panel>
-                <Tabs.Panel value="form" style={{ maxWidth: '30rem' }}>
-                    <Panel border={true}>
+                <Tabs.Panel value="form">
+                    <StoryFormWrapper values={singleFormValues}>
                         <AnnetBarnForm
                             annetBarn={{}}
                             onSubmit={setSingleFormValues}
@@ -81,19 +84,17 @@ const AnnetBarnExample = () => {
                             minDate={getDate4YearsAgo()}
                             maxDate={getDateToday()}
                         />
-
-                        <SubmitPreview values={singleFormValues} />
-                    </Panel>
+                    </StoryFormWrapper>
                 </Tabs.Panel>
                 <Tabs.Panel value="messages">
-                    <Block margin="xxl" padBottom="l">
-                        <FormValidationErrorMessages
-                            validationErrorIntlKeys={flatten(AnnetBarnFormErrors)}
-                            formName={'annetBarn'}
-                            intlMessages={annetBarnMessages}
-                        />
-                        <MessagesPreview messages={annetBarnMessages} showExplanation={false} />
-                    </Block>
+                    <MessagesPreview messages={annetBarnMessages} showExplanation={false} />
+                </Tabs.Panel>
+                <Tabs.Panel value="validationMessages">
+                    <FormValidationErrorMessages
+                        validationErrorIntlKeys={flatten(AnnetBarnFormErrors)}
+                        formName={'annetBarn'}
+                        intlMessages={annetBarnMessages}
+                    />
                 </Tabs.Panel>
             </VStack>
         </Tabs>
