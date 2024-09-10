@@ -1,3 +1,6 @@
+import { ValidationError } from '@navikt/sif-common-formik-ds';
+import { ValidationErrorMessagesDocType } from './validation-error-messages/ValidationErrorMessages';
+
 interface KeyValue {
     [key: string]: string;
 }
@@ -45,4 +48,47 @@ export const getMissingMessageKeys = (messages: MultilocaleMessages): KeyValue |
     }
 
     return undefined;
+};
+
+export const createFieldErrorIntlKey = (error: ValidationError, fieldName: string, errorPrefix?: string): string =>
+    `${errorPrefix ? `${errorPrefix}.` : ''}${fieldName}.${error}`;
+
+export const getValidationErrorMessages = ({
+    intlMessages,
+    formName,
+    validationErrorIntlKeys,
+    validationErrors,
+}: {
+    intlMessages: MessageFileFormat;
+    formName?: string;
+    validationErrors?: ValidationErrorMessagesDocType;
+    validationErrorIntlKeys?: { [key: string]: string };
+}) => {
+    const validationMessages: MessageFileFormat = {
+        nb: {},
+        nn: {},
+    };
+
+    if (validationErrors) {
+        const fields = validationErrors.fields;
+
+        Object.keys(fields).forEach((field) =>
+            Object.keys(fields[field]).forEach((errorKey) => {
+                const error = fields[field][errorKey];
+                const intlKey = createFieldErrorIntlKey(error, field, formName);
+                validationMessages['nb'][intlKey] = intlMessages['nb'][intlKey];
+                validationMessages['nn'][intlKey] = intlMessages['nn'][intlKey];
+            }),
+        );
+    }
+
+    if (validationErrorIntlKeys) {
+        Object.keys(validationErrorIntlKeys).forEach((key) => {
+            const intlKey = validationErrorIntlKeys[key];
+            validationMessages['nb'][intlKey] = intlMessages['nb'][intlKey];
+            validationMessages['nn'][intlKey] = intlMessages['nn'][intlKey];
+        });
+    }
+
+    return validationMessages;
 };

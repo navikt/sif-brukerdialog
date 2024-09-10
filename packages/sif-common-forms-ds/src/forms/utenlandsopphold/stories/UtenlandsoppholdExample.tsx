@@ -1,20 +1,20 @@
-import { Box, Tabs, VStack } from '@navikt/ds-react';
+import { Tabs, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { getDate1YearAgo, getDate1YearFromNow } from '@navikt/sif-common-utils';
 import { flatten } from 'flat';
-import MessagesPreview from '../../../../storybook/components/messages-preview/MessagesPreview';
+import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
 import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
 import { Utenlandsopphold, UtenlandsoppholdVariant } from '../types';
 import UtenlandsoppholdForm, { UtlandsoppholdFormErrors } from '../UtenlandsoppholdForm';
 import UtenlandsoppholdListAndDialog from '../UtenlandsoppholdListAndDialog';
 import { utenlandsoppholdMessages } from '../utenlandsoppholdMessages';
+import StoryFormWrapper from '../../../../storybook/components/story-form-wrapper/StoryFormWrapper';
 
 enum FormField {
     'utenlandsopphold' = 'utenlandsopphold',
@@ -38,6 +38,7 @@ const UtenlandsoppholdExample = ({ variant }: { variant: UtenlandsoppholdVariant
                     <Tabs.Tab value="list" label="ListAndDialog" />
                     <Tabs.Tab value="form" label="Form" />
                     <Tabs.Tab value="messages" label="Tekster" />
+                    <Tabs.Tab value="validationMessages" label="Valideringsmeldinger" />
                 </Tabs.List>
                 <Tabs.Panel value="list" style={{ maxWidth: '50rem' }}>
                     <TypedFormikWrapper<FormValues>
@@ -68,8 +69,8 @@ const UtenlandsoppholdExample = ({ variant }: { variant: UtenlandsoppholdVariant
                     />
                     <SubmitPreview values={listFormValues} />
                 </Tabs.Panel>
-                <Tabs.Panel value="form" style={{ maxWidth: '30rem' }}>
-                    <Box padding="4" borderWidth="1" borderRadius="small">
+                <Tabs.Panel value="form">
+                    <StoryFormWrapper values={singleFormValues}>
                         <UtenlandsoppholdForm
                             opphold={initialValues.utenlandsopphold[0]}
                             minDate={getDate1YearAgo()}
@@ -78,18 +79,17 @@ const UtenlandsoppholdExample = ({ variant }: { variant: UtenlandsoppholdVariant
                             onSubmit={setSingleFormValues}
                             onCancel={() => null}
                         />
-                        <SubmitPreview values={singleFormValues} />
-                    </Box>
+                    </StoryFormWrapper>
                 </Tabs.Panel>
 
                 <Tabs.Panel value="messages">
-                    <Block margin="xxl" padBottom="l">
-                        <FormValidationErrorMessages
-                            validationErrorIntlKeys={flatten(UtlandsoppholdFormErrors)}
-                            intlMessages={utenlandsoppholdMessages}
-                        />
-                        <MessagesPreview messages={utenlandsoppholdMessages} showExplanation={false} />
-                    </Block>
+                    <MessagesPreview messages={utenlandsoppholdMessages} showExplanation={false} />
+                </Tabs.Panel>
+                <Tabs.Panel value="validationMessages">
+                    <FormValidationErrorMessages
+                        validationErrorIntlKeys={flatten(UtlandsoppholdFormErrors)}
+                        intlMessages={utenlandsoppholdMessages}
+                    />
                 </Tabs.Panel>
             </VStack>
         </Tabs>

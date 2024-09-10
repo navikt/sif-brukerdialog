@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
@@ -13,8 +12,9 @@ import SubmitPreview from '../../../../storybook/components/submit-preview/Submi
 import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
 import { opptjeningUtlandMessages } from '../opptjeningUtlandMessages';
 import OpptjeningUtlandForm, { OpptjeningUtlandFormErrors } from '../OpptjeningUtlandForm';
-import MessagesPreview from '../../../../storybook/components/messages-preview/MessagesPreview';
-import { Box, Tabs, VStack } from '@navikt/ds-react';
+import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
+import { Tabs, VStack } from '@navikt/ds-react';
+import StoryFormWrapper from '../../../../storybook/components/story-form-wrapper/StoryFormWrapper';
 
 enum FormField {
     'opptjeningUtland' = 'opptjeningUtland',
@@ -38,6 +38,7 @@ const OpptjeningUtlandExample = () => {
                     <Tabs.Tab value="list" label="ListAndDialog" />
                     <Tabs.Tab value="form" label="Form" />
                     <Tabs.Tab value="messages" label="Tekster" />
+                    <Tabs.Tab value="validationMessages" label="Valideringsmeldinger" />
                 </Tabs.List>
                 <Tabs.Panel value="list" style={{ maxWidth: '50rem' }}>
                     <TypedFormikWrapper<FormValues>
@@ -67,8 +68,8 @@ const OpptjeningUtlandExample = () => {
                     />
                     <SubmitPreview values={listFormValues} />
                 </Tabs.Panel>
-                <Tabs.Panel value="form" style={{ maxWidth: '30rem' }}>
-                    <Box padding="4" borderWidth="1" borderRadius="small">
+                <Tabs.Panel value="form">
+                    <StoryFormWrapper values={singleFormValues}>
                         <OpptjeningUtlandForm
                             opptjening={initialValues.opptjeningUtland[0]}
                             minDate={getDate1YearAgo()}
@@ -76,19 +77,18 @@ const OpptjeningUtlandExample = () => {
                             onSubmit={setSingleFormValues}
                             onCancel={() => null}
                         />
-                        <SubmitPreview values={singleFormValues} />
-                    </Box>
+                    </StoryFormWrapper>
                 </Tabs.Panel>
 
                 <Tabs.Panel value="messages">
-                    <Block margin="xxl" padBottom="l">
-                        <FormValidationErrorMessages
-                            validationErrorIntlKeys={flatten(OpptjeningUtlandFormErrors)}
-                            formName={'OpptjeningUtland'}
-                            intlMessages={opptjeningUtlandMessages}
-                        />
-                        <MessagesPreview messages={opptjeningUtlandMessages} showExplanation={false} />
-                    </Block>
+                    <MessagesPreview messages={opptjeningUtlandMessages} showExplanation={false} />
+                </Tabs.Panel>
+                <Tabs.Panel value="validationMessages">
+                    <FormValidationErrorMessages
+                        validationErrorIntlKeys={flatten(OpptjeningUtlandFormErrors)}
+                        formName={'OpptjeningUtland'}
+                        intlMessages={opptjeningUtlandMessages}
+                    />
                 </Tabs.Panel>
             </VStack>
         </Tabs>

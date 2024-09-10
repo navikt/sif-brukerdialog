@@ -1,13 +1,13 @@
-import { Box, Tabs, VStack } from '@navikt/ds-react';
+import { Tabs, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { flatten } from 'flat';
-import MessagesPreview from '../../../../storybook/components/messages-preview/MessagesPreview';
+import StoryFormWrapper from '../../../../storybook/components/story-form-wrapper/StoryFormWrapper';
 import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
 import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
 import { UtenlandskNæring } from '../types';
@@ -37,6 +37,7 @@ const UtenlandskNæringExample = () => {
                     <Tabs.Tab value="list" label="ListAndDialog" />
                     <Tabs.Tab value="form" label="Form" />
                     <Tabs.Tab value="messages" label="Tekster" />
+                    <Tabs.Tab value="validationMessages" label="Valideringsmeldinger" />
                 </Tabs.List>
                 <Tabs.Panel value="list" style={{ maxWidth: '50rem' }}>
                     <TypedFormikWrapper<FormValues>
@@ -65,26 +66,25 @@ const UtenlandskNæringExample = () => {
 
                     <SubmitPreview values={listFormValues} />
                 </Tabs.Panel>
-                <Tabs.Panel value="form" style={{ maxWidth: '30rem' }}>
-                    <Box padding="4" borderWidth="1" borderRadius="small">
+                <Tabs.Panel value="form">
+                    <StoryFormWrapper values={singleFormValues}>
                         <UtenlandskNæringForm
                             utenlandskNæring={initialValues.utenlandskNæring[0]}
                             onSubmit={setSingleFormValues}
                             onCancel={() => null}
                         />
-                        <SubmitPreview values={singleFormValues} />
-                    </Box>
+                    </StoryFormWrapper>
                 </Tabs.Panel>
 
                 <Tabs.Panel value="messages">
-                    <Block margin="xxl" padBottom="l">
-                        <FormValidationErrorMessages
-                            validationErrorIntlKeys={flatten(UtenlandskNæringFormErrors)}
-                            formName={'UtenlandskNæring'}
-                            intlMessages={utenlandskNæringMessages}
-                        />
-                        <MessagesPreview messages={utenlandskNæringMessages} showExplanation={false} />
-                    </Block>
+                    <MessagesPreview messages={utenlandskNæringMessages} showExplanation={false} />
+                </Tabs.Panel>
+                <Tabs.Panel value="validationMessages">
+                    <FormValidationErrorMessages
+                        validationErrorIntlKeys={flatten(UtenlandskNæringFormErrors)}
+                        formName={'UtenlandskNæring'}
+                        intlMessages={utenlandskNæringMessages}
+                    />
                 </Tabs.Panel>
             </VStack>
         </Tabs>
