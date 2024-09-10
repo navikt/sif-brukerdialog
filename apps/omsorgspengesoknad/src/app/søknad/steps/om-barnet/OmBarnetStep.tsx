@@ -1,20 +1,17 @@
-import { Alert, BodyShort, Heading, Link } from '@navikt/ds-react';
+import { Heading, VStack } from '@navikt/ds-react';
+import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
-import {
-    getRequiredFieldValidator,
-    getStringValidator,
-    getYesOrNoValidator,
-} from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import innvilgetVedtakEndpoint from '../../../api/endpoints/innvilgetVedtakEndpoint';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { useAppIntl } from '../../../i18n';
+import { AppText } from '../../../i18n';
 import { BarnSammeAdresse } from '../../../types/BarnSammeAdresse';
+import { HentSisteGyldigeVedtakResponseDto } from '../../../types/innvilgetVedtakApiData/HentSisteGyldigeVedtakResponseDto';
+import { RegistrertBarn } from '../../../types/RegistrertBarn';
 import { StepId } from '../../../types/StepId';
 import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
 import { SøknadContextState } from '../../../types/SøknadContextState';
@@ -24,14 +21,20 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
-import AnnetBarnpart from './form-parts/AnnetBarnPart';
-import VelgRegistrertBarn from './form-parts/VelgRegistrertBarn';
+import IkkeHøyereRisikoForFraværAlert from './info/IkkeHøyereRisikoForFraværAlert';
+import IkkeKroniskEllerFunksjonshemningAlert from './info/IkkeKroniskEllerFuksjonshemningAlert';
+import IkkeSammeAdresseAlert from './info/IkkeSammeAdresseAlert';
+import TrengerIkkeSøkeForBarnAlert from './info/TrengerIkkeSøkeForBarnAlert';
 import { getOmBarnetStepInitialValues, getOmBarnetSøknadsdataFromFormValues } from './omBarnetStepUtils';
-import { useEffect, useState } from 'react';
-import { HentSisteGyldigeVedtakResponseDto } from '../../../types/innvilgetVedtakApiData/HentSisteGyldigeVedtakResponseDto';
-import { RegistrertBarn } from '../../../types/RegistrertBarn';
-import innvilgetVedtakEndpoint from '../../../api/endpoints/innvilgetVedtakEndpoint';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
+import AnnetBarnFnrSpørsmål from './spørsmål/AnnetBarnFnrSpørsmål';
+import AnnetBarnFødselsdatoSpørsmål from './spørsmål/AnnetBarnFødselsdatoSpørsmål';
+import AnnetBarnNavnSpørsmål from './spørsmål/AnnetBarnNavnSpørsmål';
+import AnnetBarnRelasjonSpørsmål from './spørsmål/AnnetBarnRelasjonSpørsmål';
+import BorSammenMedBarnetSpørsmål from './spørsmål/BorSammenMedBarnetSpørsmål';
+import HøyereRisikoForFraværBeskrivelseSpørsmål from './spørsmål/HøyereRisikoForFraværBeskrivelseSpørsmål';
+import HøyereRisikoForFraværSpørsmål from './spørsmål/HøyereRisikoForFraværSpørsmål';
+import KroniskEllerFunksjonshemningSpørsmål from './spørsmål/KroniskEllerFunksjonshemningSpørsmål';
+import RegistrertBarnSpørsmål from './spørsmål/RegistrertBarnSpørsmål';
 
 export enum OmBarnetFormFields {
     barnetSøknadenGjelder = 'barnetSøknadenGjelder',
@@ -59,17 +62,15 @@ export interface OmBarnetFormValues {
     [OmBarnetFormFields.høyereRisikoForFraværBeskrivelse]?: string;
 }
 
-const { FormikWrapper, Form, YesOrNoQuestion, RadioGroup, Textarea } = getTypedFormComponents<
-    OmBarnetFormFields,
-    OmBarnetFormValues,
-    ValidationError
->();
+export const omBarnetFormElements = getTypedFormComponents<OmBarnetFormFields, OmBarnetFormValues, ValidationError>();
+
+const { FormikWrapper, Form } = omBarnetFormElements;
 
 const OmBarnetStep = () => {
     const intl = useIntl();
-    const { text } = useAppIntl();
+
     const {
-        state: { søknadsdata, registrerteBarn },
+        state: { søknadsdata, registrerteBarn, søker },
     } = useSøknadContext();
 
     const stepId = StepId.OM_BARNET;
@@ -130,147 +131,71 @@ const OmBarnetStep = () => {
                                 onBack={goBack}
                                 runDelayedFormValidation={true}
                                 submitDisabled={harInnvilgetVedtakForValgtBarn}>
-                                {harIkkeBarn === false && (
-                                    <VelgRegistrertBarn
-                                        registrerteBarn={registrerteBarn}
-                                        søknadenGjelderEtAnnetBarn={søknadenGjelderEtAnnetBarn}
-                                        onAnnetBarnSelected={() => {
-                                            setFieldValue('barnetSøknadenGjelder', undefined);
-                                        }}
-                                    />
-                                )}
-                                {harInnvilgetVedtakForValgtBarn ? (
-                                    <FormBlock margin="l">
-                                        <Alert variant="warning">
-                                            <Heading size="small" level="3">
-                                                Du trenger ikke søke for {valgtBarn.fornavn}
-                                            </Heading>
-                                            <BodyShort>
-                                                Du har allerede et gyldig vedtak som gjelder til og med det kalenderåret{' '}
-                                                {valgtBarn.fornavn} fyller 18 år. Du trenger derfor ikke å søke på nytt.{' '}
-                                                Du kan finne melding og dokumentasjon om vedtaket på{' '}
-                                                <Link href={getEnvironmentVariable('MINSIDE_URL')}>Min side</Link>.
-                                            </BodyShort>
-                                        </Alert>
-                                    </FormBlock>
-                                ) : (
-                                    <>
-                                        {(søknadenGjelderEtAnnetBarn || harIkkeBarn) && (
-                                            <FormBlock>
-                                                <AnnetBarnpart />
-                                            </FormBlock>
-                                        )}
-                                        {(barnetSøknadenGjelder !== undefined ||
-                                            søknadenGjelderEtAnnetBarn ||
-                                            harIkkeBarn) && (
-                                            <>
-                                                <FormBlock>
-                                                    <RadioGroup
-                                                        name={OmBarnetFormFields.sammeAdresse}
-                                                        legend={text('steg.omBarnet.spm.sammeAdresse')}
-                                                        radios={[
-                                                            {
-                                                                label: text('steg.omBarnet.spm.sammeAdresse.ja'),
-                                                                value: BarnSammeAdresse.JA,
-                                                            },
-                                                            {
-                                                                label: text(
-                                                                    'steg.omBarnet.spm.sammeAdresse.jaDeltBosted',
-                                                                ),
-                                                                value: BarnSammeAdresse.JA_DELT_BOSTED,
-                                                            },
-                                                            {
-                                                                label: text('steg.omBarnet.spm.sammeAdresse.nei'),
-                                                                value: BarnSammeAdresse.NEI,
-                                                            },
-                                                        ]}
-                                                        validate={getRequiredFieldValidator()}
-                                                        data-testid="sammeAdresse"
-                                                        description={
-                                                            <ExpandableInfo
-                                                                title={text(
-                                                                    'steg.omBarnet.spm.sammeAdresse.hvaBetyrDette',
-                                                                )}>
-                                                                {text(
-                                                                    'steg.omBarnet.spm.sammeAdresse.hvaBetyrDette.info',
-                                                                )}
-                                                            </ExpandableInfo>
-                                                        }
-                                                    />
-                                                </FormBlock>
-                                                {sammeAdresse === BarnSammeAdresse.NEI &&
-                                                    søkersRelasjonTilBarnet !==
-                                                        SøkersRelasjonTilBarnet.FOSTERFORELDER && (
-                                                        <FormBlock margin="l">
-                                                            <Alert variant="info">
-                                                                {text('steg.omBarnet.spm.sammeAdresse.neiAlert')}
-                                                            </Alert>
-                                                        </FormBlock>
-                                                    )}
-                                                <FormBlock>
-                                                    <YesOrNoQuestion
-                                                        name={OmBarnetFormFields.kroniskEllerFunksjonshemming}
-                                                        legend={text('steg.omBarnet.spm.kroniskEllerFunksjonshemmende')}
-                                                        validate={getYesOrNoValidator()}
-                                                    />
-                                                </FormBlock>
-                                                {kroniskEllerFunksjonshemming === YesOrNo.YES && (
-                                                    <>
-                                                        <FormBlock>
-                                                            <YesOrNoQuestion
-                                                                name={OmBarnetFormFields.høyereRisikoForFravær}
-                                                                legend={text('steg.omBarnet.spm.høyereRisikoForFravær')}
-                                                                data-testid="høyereRisikoForFravær"
-                                                                validate={getYesOrNoValidator()}
-                                                            />
-                                                        </FormBlock>
-                                                        {høyereRisikoForFravær === YesOrNo.YES && (
-                                                            <FormBlock>
-                                                                <Textarea
-                                                                    name={
-                                                                        OmBarnetFormFields.høyereRisikoForFraværBeskrivelse
-                                                                    }
-                                                                    validate={(value) => {
-                                                                        const error = getStringValidator({
-                                                                            minLength: 5,
-                                                                            maxLength: 1000,
-                                                                            required: true,
-                                                                        })(value);
+                                <VStack gap="8">
+                                    {harIkkeBarn === false && (
+                                        <RegistrertBarnSpørsmål
+                                            registrerteBarn={registrerteBarn}
+                                            søknadenGjelderEtAnnetBarn={søknadenGjelderEtAnnetBarn}
+                                            onAnnetBarnSelected={() => {
+                                                setFieldValue('barnetSøknadenGjelder', undefined);
+                                            }}
+                                        />
+                                    )}
+                                    {harInnvilgetVedtakForValgtBarn ? (
+                                        <TrengerIkkeSøkeForBarnAlert barnetsFornavn={valgtBarn.fornavn} />
+                                    ) : (
+                                        <>
+                                            {(søknadenGjelderEtAnnetBarn || harIkkeBarn) && (
+                                                <VStack gap="4">
+                                                    <Heading level="2" size="medium">
+                                                        <AppText id="steg.omBarnet.annetBarn.tittel" />
+                                                    </Heading>
+                                                    <VStack gap="8">
+                                                        <AnnetBarnFnrSpørsmål søkersFnr={søker.fødselsnummer} />
+                                                        <AnnetBarnNavnSpørsmål />
+                                                        <AnnetBarnFødselsdatoSpørsmål />
+                                                        <AnnetBarnRelasjonSpørsmål />
+                                                    </VStack>
+                                                </VStack>
+                                            )}
+                                            {(barnetSøknadenGjelder !== undefined ||
+                                                søknadenGjelderEtAnnetBarn ||
+                                                harIkkeBarn) && (
+                                                <VStack gap="8">
+                                                    <VStack gap="2">
+                                                        <BorSammenMedBarnetSpørsmål />
+                                                        {sammeAdresse === BarnSammeAdresse.NEI &&
+                                                            søkersRelasjonTilBarnet !==
+                                                                SøkersRelasjonTilBarnet.FOSTERFORELDER && (
+                                                                <IkkeSammeAdresseAlert />
+                                                            )}
+                                                    </VStack>
 
-                                                                        return error;
-                                                                    }}
-                                                                    maxLength={1000}
-                                                                    label={text(
-                                                                        'steg.omBarnet.spm.høyereRisikoForFraværBeskrivelse.tittel',
-                                                                    )}
-                                                                    data-testid="høyereRisikoForFraværBeskrivelse"
-                                                                />
-                                                            </FormBlock>
+                                                    <VStack gap="2">
+                                                        <KroniskEllerFunksjonshemningSpørsmål />
+                                                        {kroniskEllerFunksjonshemming === YesOrNo.NO && (
+                                                            <IkkeKroniskEllerFunksjonshemningAlert />
                                                         )}
-                                                        {høyereRisikoForFravær === YesOrNo.NO && (
-                                                            <FormBlock>
-                                                                <FormBlock margin="l">
-                                                                    <Alert variant="info">
-                                                                        {text(
-                                                                            'steg.omBarnet.spm.høyereRisikoForFravær.alert',
-                                                                        )}
-                                                                    </Alert>
-                                                                </FormBlock>
-                                                            </FormBlock>
-                                                        )}
-                                                    </>
-                                                )}
-                                                {kroniskEllerFunksjonshemming === YesOrNo.NO && (
-                                                    <FormBlock margin="l">
-                                                        <Alert variant="info">
-                                                            {text('steg.omBarnet.alert.ikkeKroniskSykdom')}
-                                                        </Alert>
-                                                    </FormBlock>
-                                                )}
-                                            </>
-                                        )}
-                                    </>
-                                )}
+                                                    </VStack>
+
+                                                    {kroniskEllerFunksjonshemming === YesOrNo.YES && (
+                                                        <>
+                                                            <VStack gap="2">
+                                                                <HøyereRisikoForFraværSpørsmål />
+                                                                {høyereRisikoForFravær === YesOrNo.NO && (
+                                                                    <IkkeHøyereRisikoForFraværAlert />
+                                                                )}
+                                                            </VStack>
+                                                            {høyereRisikoForFravær === YesOrNo.YES && (
+                                                                <HøyereRisikoForFraværBeskrivelseSpørsmål />
+                                                            )}
+                                                        </>
+                                                    )}
+                                                </VStack>
+                                            )}
+                                        </>
+                                    )}
+                                </VStack>
                             </Form>
                         </>
                     );

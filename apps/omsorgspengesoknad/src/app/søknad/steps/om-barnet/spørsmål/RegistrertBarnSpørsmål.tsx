@@ -1,12 +1,11 @@
-import { Heading } from '@navikt/ds-react';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
+import { Heading, VStack } from '@navikt/ds-react';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import React from 'react';
 import { useAppIntl } from '../../../../i18n';
 import { RegistrertBarn } from '../../../../types/RegistrertBarn';
-import { OmBarnetFormFields, OmBarnetFormValues } from '../OmBarnetStep';
+import { OmBarnetFormFields } from '../OmBarnetStep';
 import { mapBarnTilRadioProps } from '../omBarnetStepUtils';
+import { omBarnetFormComponents } from '../omBarnetFormComponents';
 
 interface Props {
     registrerteBarn: RegistrertBarn[];
@@ -14,9 +13,9 @@ interface Props {
     onAnnetBarnSelected: () => void;
 }
 
-const { RadioGroup, Checkbox } = getTypedFormComponents<OmBarnetFormFields, OmBarnetFormValues>();
+const { RadioGroup, Checkbox } = omBarnetFormComponents;
 
-const VelgRegistrertBarn: React.FunctionComponent<Props> = ({
+const RegistrertBarnSpørsmål: React.FunctionComponent<Props> = ({
     registrerteBarn,
     søknadenGjelderEtAnnetBarn,
     onAnnetBarnSelected,
@@ -24,11 +23,11 @@ const VelgRegistrertBarn: React.FunctionComponent<Props> = ({
     const { text } = useAppIntl();
 
     return (
-        <>
+        <VStack gap="4">
             <Heading level="2" size="medium">
                 {text('steg.omBarnet.hvilketBarn.spm')}
             </Heading>
-            <FormBlock margin="l">
+            <VStack gap="2">
                 <RadioGroup
                     legend={text('steg.omBarnet.hvilketBarn.registrerteBarn')}
                     description={text('steg.omBarnet.hvilketBarn.info')}
@@ -36,8 +35,6 @@ const VelgRegistrertBarn: React.FunctionComponent<Props> = ({
                     radios={registrerteBarn.map((barn) => mapBarnTilRadioProps(barn, søknadenGjelderEtAnnetBarn))}
                     validate={søknadenGjelderEtAnnetBarn ? undefined : getRequiredFieldValidator()}
                 />
-            </FormBlock>
-            <FormBlock margin="l">
                 <Checkbox
                     label={text('steg.omBarnet.gjelderAnnetBarn')}
                     name={OmBarnetFormFields.søknadenGjelderEtAnnetBarn}
@@ -47,9 +44,9 @@ const VelgRegistrertBarn: React.FunctionComponent<Props> = ({
                         }
                     }}
                 />
-            </FormBlock>
-        </>
+            </VStack>
+        </VStack>
     );
 };
 
-export default VelgRegistrertBarn;
+export default RegistrertBarnSpørsmål;
