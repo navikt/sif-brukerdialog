@@ -1,4 +1,3 @@
-import { Heading, VStack } from '@navikt/ds-react';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
@@ -35,6 +34,7 @@ import HøyereRisikoForFraværBeskrivelseSpørsmål from './spørsmål/HøyereRi
 import HøyereRisikoForFraværSpørsmål from './spørsmål/HøyereRisikoForFraværSpørsmål';
 import KroniskEllerFunksjonshemningSpørsmål from './spørsmål/KroniskEllerFunksjonshemningSpørsmål';
 import RegistrertBarnSpørsmål from './spørsmål/RegistrertBarnSpørsmål';
+import { FormQuestionWithAlert, FormQuestions, FormSection, FormSetionHeading } from '@navikt/sif-common-ui';
 
 export enum OmBarnetFormFields {
     barnetSøknadenGjelder = 'barnetSøknadenGjelder',
@@ -121,6 +121,10 @@ const OmBarnetStep = () => {
                     const vedtakForValgtBarn = innvilgedeVedtak[barnetSøknadenGjelder || ''];
                     const harInnvilgetVedtakForValgtBarn = valgtBarn && vedtakForValgtBarn?.harInnvilgedeBehandlinger;
 
+                    const visIkkeSammeAdresseAlert =
+                        sammeAdresse === BarnSammeAdresse.NEI &&
+                        søkersRelasjonTilBarnet !== SøkersRelasjonTilBarnet.FOSTERFORELDER;
+
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -131,71 +135,75 @@ const OmBarnetStep = () => {
                                 onBack={goBack}
                                 runDelayedFormValidation={true}
                                 submitDisabled={harInnvilgetVedtakForValgtBarn}>
-                                <VStack gap="8">
+                                <FormQuestions>
                                     {harIkkeBarn === false && (
-                                        <RegistrertBarnSpørsmål
-                                            registrerteBarn={registrerteBarn}
-                                            søknadenGjelderEtAnnetBarn={søknadenGjelderEtAnnetBarn}
-                                            onAnnetBarnSelected={() => {
-                                                setFieldValue('barnetSøknadenGjelder', undefined);
-                                            }}
-                                        />
+                                        <FormQuestionWithAlert
+                                            alert={
+                                                harInnvilgetVedtakForValgtBarn && (
+                                                    <TrengerIkkeSøkeForBarnAlert barnetsFornavn={valgtBarn.fornavn} />
+                                                )
+                                            }>
+                                            <RegistrertBarnSpørsmål
+                                                registrerteBarn={registrerteBarn}
+                                                søknadenGjelderEtAnnetBarn={søknadenGjelderEtAnnetBarn}
+                                                onAnnetBarnSelected={() => {
+                                                    setFieldValue('barnetSøknadenGjelder', undefined);
+                                                }}
+                                            />
+                                        </FormQuestionWithAlert>
                                     )}
-                                    {harInnvilgetVedtakForValgtBarn ? (
-                                        <TrengerIkkeSøkeForBarnAlert barnetsFornavn={valgtBarn.fornavn} />
-                                    ) : (
+                                    {harInnvilgetVedtakForValgtBarn !== true && (
                                         <>
                                             {(søknadenGjelderEtAnnetBarn || harIkkeBarn) && (
-                                                <VStack gap="4">
-                                                    <Heading level="2" size="medium">
+                                                <FormSection>
+                                                    <FormSetionHeading>
                                                         <AppText id="steg.omBarnet.annetBarn.tittel" />
-                                                    </Heading>
-                                                    <VStack gap="8">
+                                                    </FormSetionHeading>
+                                                    <FormQuestions>
                                                         <AnnetBarnFnrSpørsmål søkersFnr={søker.fødselsnummer} />
                                                         <AnnetBarnNavnSpørsmål />
                                                         <AnnetBarnFødselsdatoSpørsmål />
                                                         <AnnetBarnRelasjonSpørsmål />
-                                                    </VStack>
-                                                </VStack>
+                                                    </FormQuestions>
+                                                </FormSection>
                                             )}
                                             {(barnetSøknadenGjelder !== undefined ||
                                                 søknadenGjelderEtAnnetBarn ||
                                                 harIkkeBarn) && (
-                                                <VStack gap="8">
-                                                    <VStack gap="2">
+                                                <FormQuestions>
+                                                    <FormQuestionWithAlert
+                                                        alert={visIkkeSammeAdresseAlert && <IkkeSammeAdresseAlert />}>
                                                         <BorSammenMedBarnetSpørsmål />
-                                                        {sammeAdresse === BarnSammeAdresse.NEI &&
-                                                            søkersRelasjonTilBarnet !==
-                                                                SøkersRelasjonTilBarnet.FOSTERFORELDER && (
-                                                                <IkkeSammeAdresseAlert />
-                                                            )}
-                                                    </VStack>
-
-                                                    <VStack gap="2">
+                                                    </FormQuestionWithAlert>
+                                                    <FormQuestionWithAlert
+                                                        alert={
+                                                            kroniskEllerFunksjonshemming === YesOrNo.NO && (
+                                                                <IkkeKroniskEllerFunksjonshemningAlert />
+                                                            )
+                                                        }>
                                                         <KroniskEllerFunksjonshemningSpørsmål />
-                                                        {kroniskEllerFunksjonshemming === YesOrNo.NO && (
-                                                            <IkkeKroniskEllerFunksjonshemningAlert />
-                                                        )}
-                                                    </VStack>
+                                                    </FormQuestionWithAlert>
 
                                                     {kroniskEllerFunksjonshemming === YesOrNo.YES && (
                                                         <>
-                                                            <VStack gap="2">
+                                                            <FormQuestionWithAlert
+                                                                alert={
+                                                                    høyereRisikoForFravær === YesOrNo.NO && (
+                                                                        <IkkeHøyereRisikoForFraværAlert />
+                                                                    )
+                                                                }>
                                                                 <HøyereRisikoForFraværSpørsmål />
-                                                                {høyereRisikoForFravær === YesOrNo.NO && (
-                                                                    <IkkeHøyereRisikoForFraværAlert />
-                                                                )}
-                                                            </VStack>
+                                                            </FormQuestionWithAlert>
                                                             {høyereRisikoForFravær === YesOrNo.YES && (
                                                                 <HøyereRisikoForFraværBeskrivelseSpørsmål />
                                                             )}
                                                         </>
                                                     )}
-                                                </VStack>
+                                                </FormQuestions>
                                             )}
                                         </>
                                     )}
-                                </VStack>
+                                </FormQuestions>
                             </Form>
                         </>
                     );
