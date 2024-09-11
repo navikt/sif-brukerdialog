@@ -74,6 +74,9 @@ const nb = {
 const nn: Record<keyof typeof nb, string> = {
     ...nb,
 };
+
+export type OmBarnetMessageKeys = keyof typeof nb;
+
 export const omBarnetMessages = {
     nb,
     nn,

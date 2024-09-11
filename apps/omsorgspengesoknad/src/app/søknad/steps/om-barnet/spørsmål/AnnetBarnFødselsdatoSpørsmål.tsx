@@ -1,4 +1,4 @@
-import { getDateValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getDateValidator, ValidateDateErrorKeys } from '@navikt/sif-common-formik-ds/src/validation';
 import { dateFormatter, getDateToday } from '@navikt/sif-common-utils';
 import { useAppIntl } from '../../../../i18n';
 import { omBarnetFormComponents } from '../omBarnetFormComponents';
@@ -6,6 +6,10 @@ import { OmBarnetFormFields } from '../OmBarnetStep';
 import { getMinDatoForBarnetsFødselsdato, isBarnOver18år } from '../omBarnetStepUtils';
 
 const { DatePicker } = omBarnetFormComponents;
+
+const BarnOver18årErrorKey = 'barnOver18år';
+
+export const AnnetBarnFødselsdatoValidationErrorKeys = [...ValidateDateErrorKeys, BarnOver18årErrorKey];
 
 const AnnetBarnFødselsdatoSpørsmål = () => {
     const { text } = useAppIntl();
@@ -15,16 +19,16 @@ const AnnetBarnFødselsdatoSpørsmål = () => {
             name={OmBarnetFormFields.barnetsFødselsdato}
             label={text('steg.omBarnet.fødselsdato')}
             validate={(value) => {
-                const dateError = getDateValidator({
+                const dateValidationerror = getDateValidator({
                     required: true,
                     max: getDateToday(),
                 })(value);
-                if (dateError) {
-                    return dateError;
+                if (dateValidationerror) {
+                    return dateValidationerror;
                 }
                 if (isBarnOver18år(value)) {
                     return {
-                        key: 'barnOver18år',
+                        key: BarnOver18årErrorKey,
                     };
                 }
                 return undefined;

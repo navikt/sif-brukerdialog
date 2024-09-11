@@ -1,16 +1,18 @@
-import { getFødselsnummerValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getFødselsnummerValidator, ValidateFødselsnummerErrorKeys } from '@navikt/sif-common-formik-ds/src/validation';
 import { useAppIntl } from '../../../../i18n';
-import { OmBarnetFormFields } from '../OmBarnetStep';
-import { isDevMode } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { omBarnetFormComponents } from '../omBarnetFormComponents';
+import { OmBarnetFormFields } from '../OmBarnetStep';
 
 const { TextField } = omBarnetFormComponents;
 
 interface Props {
     søkersFnr: string;
+    allowHnr?: boolean;
 }
 
-const AnnetBarnFnrSpørsmål = ({ søkersFnr }: Props) => {
+export const AnnetBarnFnrValidationErrorKeys = [...ValidateFødselsnummerErrorKeys];
+
+const AnnetBarnFnrSpørsmål = ({ søkersFnr, allowHnr }: Props) => {
     const { text } = useAppIntl();
     return (
         <TextField
@@ -18,7 +20,7 @@ const AnnetBarnFnrSpørsmål = ({ søkersFnr }: Props) => {
             name={OmBarnetFormFields.barnetsFødselsnummer}
             validate={getFødselsnummerValidator({
                 required: true,
-                allowHnr: isDevMode,
+                allowHnr,
                 disallowedValues: [søkersFnr],
             })}
             width="xl"

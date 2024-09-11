@@ -1,6 +1,5 @@
 import { Heading, VStack } from '@navikt/ds-react';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import React from 'react';
 import { useAppIntl } from '../../../../i18n';
 import { RegistrertBarn } from '../../../../types/RegistrertBarn';
 import { OmBarnetFormFields } from '../OmBarnetStep';
@@ -15,11 +14,7 @@ interface Props {
 
 const { RadioGroup, Checkbox } = omBarnetFormComponents;
 
-const RegistrertBarnSpørsmål: React.FunctionComponent<Props> = ({
-    registrerteBarn,
-    søknadenGjelderEtAnnetBarn,
-    onAnnetBarnSelected,
-}) => {
+const RegistrertBarnSpørsmål = ({ registrerteBarn, søknadenGjelderEtAnnetBarn, onAnnetBarnSelected }: Props) => {
     const { text } = useAppIntl();
 
     return (

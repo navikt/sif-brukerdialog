@@ -1,4 +1,3 @@
-import * as React from 'react';
 import StoryIntlProvider from '../components/StoryIntlProvider';
 import './print.css';
 
