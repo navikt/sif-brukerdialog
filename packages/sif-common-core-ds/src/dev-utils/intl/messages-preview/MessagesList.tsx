@@ -45,7 +45,15 @@ export const PlainMessageList = ({ messages, nbOnly = true }: Props & { nbOnly?:
     );
 };
 
-export const MessagesTable = ({ messages, nbOnly = true }: { messages: MessageFileFormat; nbOnly?: boolean }) => {
+export const MessagesTable = ({
+    messages,
+    nbOnly = true,
+    keyStrip = '',
+}: {
+    messages: MessageFileFormat;
+    nbOnly?: boolean;
+    keyStrip?: string;
+}) => {
     const allMessages = createMultiLocaleObject(messages);
     return (
         <table className="messageList">
@@ -61,7 +69,7 @@ export const MessagesTable = ({ messages, nbOnly = true }: { messages: MessageFi
                     return (
                         <tr key={key}>
                             <th>
-                                <code>{key}</code>
+                                <code>{keyStrip ? key.replace(keyStrip, '') : key}</code>
                             </th>
                             <td key="nb" className={allMessages[key]['nb'] ? '' : 'missingText'}>
                                 {allMessages[key]['nb']}

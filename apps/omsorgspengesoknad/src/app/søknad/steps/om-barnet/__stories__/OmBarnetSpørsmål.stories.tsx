@@ -38,7 +38,6 @@ const Template: StoryFn<Props> = ({ context }: Props) => {
                     />
                     <AnnetBarnFnrSpørsmål søkersFnr="123" allowHnr={true} />
                     <AnnetBarnFødselsdatoSpørsmål />
-
                     <AnnetBarnNavnSpørsmål />
                     <AnnetBarnRelasjonSpørsmål />
                     <BorSammenMedBarnetSpørsmål />
