@@ -18,29 +18,29 @@ import { omBarnetFormComponents } from './omBarnetFormComponents';
 import { getOmBarnetStepInitialValues, getOmBarnetSøknadsdataFromFormValues } from './omBarnetStepUtils';
 
 export enum OmBarnetFormFields {
-    barnetSøknadenGjelder = 'barnetSøknadenGjelder',
-    søknadenGjelderEtAnnetBarn = 'søknadenGjelderEtAnnetBarn',
-    barnetsNavn = 'barnetsNavn',
-    barnetsFødselsnummer = 'barnetsFødselsnummer',
     barnetsFødselsdato = 'barnetsFødselsdato',
-    søkersRelasjonTilBarnet = 'søkersRelasjonTilBarnet',
-    sammeAdresse = 'sammeAdresse',
-    kroniskEllerFunksjonshemming = 'kroniskEllerFunksjonshemming',
+    barnetsFødselsnummer = 'barnetsFødselsnummer',
+    barnetsNavn = 'barnetsNavn',
+    barnetSøknadenGjelder = 'barnetSøknadenGjelder',
     høyereRisikoForFravær = 'høyereRisikoForFravær',
     høyereRisikoForFraværBeskrivelse = 'høyereRisikoForFraværBeskrivelse',
+    kroniskEllerFunksjonshemming = 'kroniskEllerFunksjonshemming',
+    sammeAdresse = 'sammeAdresse',
+    søkersRelasjonTilBarnet = 'søkersRelasjonTilBarnet',
+    søknadenGjelderEtAnnetBarn = 'søknadenGjelderEtAnnetBarn',
 }
 
 export interface OmBarnetFormValues {
-    [OmBarnetFormFields.barnetSøknadenGjelder]?: string;
-    [OmBarnetFormFields.søknadenGjelderEtAnnetBarn]?: boolean;
-    [OmBarnetFormFields.barnetsNavn]: string;
-    [OmBarnetFormFields.barnetsFødselsnummer]: string;
     [OmBarnetFormFields.barnetsFødselsdato]: string;
-    [OmBarnetFormFields.søkersRelasjonTilBarnet]?: SøkersRelasjonTilBarnet;
-    [OmBarnetFormFields.sammeAdresse]?: BarnSammeAdresse;
-    [OmBarnetFormFields.kroniskEllerFunksjonshemming]?: YesOrNo;
+    [OmBarnetFormFields.barnetsFødselsnummer]: string;
+    [OmBarnetFormFields.barnetsNavn]: string;
+    [OmBarnetFormFields.barnetSøknadenGjelder]?: string;
     [OmBarnetFormFields.høyereRisikoForFravær]?: YesOrNo;
     [OmBarnetFormFields.høyereRisikoForFraværBeskrivelse]?: string;
+    [OmBarnetFormFields.kroniskEllerFunksjonshemming]?: YesOrNo;
+    [OmBarnetFormFields.sammeAdresse]?: BarnSammeAdresse;
+    [OmBarnetFormFields.søkersRelasjonTilBarnet]?: SøkersRelasjonTilBarnet;
+    [OmBarnetFormFields.søknadenGjelderEtAnnetBarn]?: boolean;
 }
 
 const { FormikWrapper } = omBarnetFormComponents;

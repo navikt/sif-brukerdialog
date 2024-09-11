@@ -20,12 +20,12 @@ const RegistrertBarnSpørsmål = ({ registrerteBarn, søknadenGjelderEtAnnetBarn
     return (
         <VStack gap="4">
             <Heading level="2" size="medium">
-                {text('steg.omBarnet.spm.hvilketBarn.label')}
+                {text('steg.omBarnet.spm.barnetSøknadenGjelder.label')}
             </Heading>
             <VStack gap="2">
                 <RadioGroup
-                    legend={text('steg.omBarnet.spm.hvilketBarn.registrerteBarn.label')}
-                    description={text('steg.omBarnet.spm.hvilketBarn.info')}
+                    legend={text('steg.omBarnet.spm.barnetSøknadenGjelder.registrerteBarn.label')}
+                    description={text('steg.omBarnet.spm.barnetSøknadenGjelder.info')}
                     name={OmBarnetFormFields.barnetSøknadenGjelder}
                     radios={registrerteBarn.map((barn) => mapBarnTilRadioProps(barn, søknadenGjelderEtAnnetBarn))}
                     validate={søknadenGjelderEtAnnetBarn ? undefined : getRequiredFieldValidator()}

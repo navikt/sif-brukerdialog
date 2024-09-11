@@ -1,8 +1,9 @@
 const nb = {
-    'steg.omBarnet.spm.hvilketBarn.label': 'Hvilket barn gjelder søknaden?',
-    'steg.omBarnet.spm.hvilketBarn.registrerteBarn.label': 'Barn registrert på deg:',
-    'steg.omBarnet.spm.hvilketBarn.info': 'Hvis du skal søke for flere barn, må du sende én søknad for hvert barn.',
-    'steg.omBarnet.spm.hvilketBarn.født': 'Født {dato}',
+    'steg.omBarnet.spm.barnetSøknadenGjelder.label': 'Hvilket barn gjelder søknaden?',
+    'steg.omBarnet.spm.barnetSøknadenGjelder.registrerteBarn.label': 'Barn registrert på deg',
+    'steg.omBarnet.spm.barnetSøknadenGjelder.info':
+        'Hvis du skal søke for flere barn, må du sende én søknad for hvert barn.',
+    'steg.omBarnet.spm.barnetSøknadenGjelder.født': 'Født {dato}',
     'steg.omBarnet.spm.gjelderAnnetBarn.label': 'Søknaden gjelder et annet barn',
     'steg.omBarnet.annetBarn.tittel': 'Annet barn',
     'steg.omBarnet.spm.barnetsFødselsnummer.label': 'Barnets fødselsnummer/D-nummer',

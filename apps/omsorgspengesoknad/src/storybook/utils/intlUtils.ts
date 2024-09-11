@@ -21,3 +21,7 @@ export const getValidationIntlKeys = (keys: string[], intlKeyPath: string) => {
 export const getScopedIntlKeys = (scope: string): string[] => {
     return Object.keys(appMessages.nb).filter((key) => key.includes(scope));
 };
+
+export const includesString = (str: string, searchFor: string | string[]): boolean => {
+    return Array.isArray(searchFor) ? searchFor.some((subStr) => str.includes(subStr)) : str.includes(searchFor);
+};
