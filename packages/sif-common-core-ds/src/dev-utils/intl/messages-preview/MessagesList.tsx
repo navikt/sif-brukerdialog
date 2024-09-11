@@ -53,7 +53,7 @@ export const MessagesTable = ({ messages, nbOnly = true }: { messages: MessageFi
                 <tr>
                     <th>Kode</th>
                     <th>Bokmål</th>
-                    <th>Nynorsk</th>
+                    <th>Nynorsk (evt. bokmål som fallback)</th>
                 </tr>
             </thead>
             <tbody>
@@ -127,7 +127,15 @@ const MessagesList = ({ messages }: Props) => {
                     ) : (
                         <>
                             <Block margin="xl">
-                                <Button onClick={oversettAlle}>Foreslå oversetting til nynorsk</Button>
+                                <Button
+                                    type="button"
+                                    onClick={(evt) => {
+                                        oversettAlle();
+                                        evt.stopPropagation();
+                                        evt.preventDefault();
+                                    }}>
+                                    Foreslå oversetting til nynorsk
+                                </Button>
                             </Block>
                             {translation !== undefined ? (
                                 <Block margin="xl">

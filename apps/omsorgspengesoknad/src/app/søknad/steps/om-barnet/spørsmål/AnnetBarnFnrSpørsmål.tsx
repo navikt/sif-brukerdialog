@@ -2,6 +2,7 @@ import { getFødselsnummerValidator, ValidateFødselsnummerErrorKeys } from '@na
 import { useAppIntl } from '../../../../i18n';
 import { omBarnetFormComponents } from '../omBarnetFormComponents';
 import { OmBarnetFormFields } from '../OmBarnetStep';
+import { getValidationIntlKeys } from '../../../../../storybook/utils/intlUtils';
 
 const { TextField } = omBarnetFormComponents;
 
@@ -10,13 +11,16 @@ interface Props {
     allowHnr?: boolean;
 }
 
-export const AnnetBarnFnrValidationErrorKeys = [...ValidateFødselsnummerErrorKeys];
+export const AnnetBarnFnrValidationErrorKeys = getValidationIntlKeys(
+    ValidateFødselsnummerErrorKeys,
+    'steg.omBarnet.validation.barnetsFødselsnummer',
+);
 
 const AnnetBarnFnrSpørsmål = ({ søkersFnr, allowHnr }: Props) => {
     const { text } = useAppIntl();
     return (
         <TextField
-            label={text('steg.omBarnet.fnr.spm')}
+            label={text('steg.omBarnet.barnetsFødselsnummer.spm')}
             name={OmBarnetFormFields.barnetsFødselsnummer}
             validate={getFødselsnummerValidator({
                 required: true,

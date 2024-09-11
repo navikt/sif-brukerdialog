@@ -10,6 +10,8 @@ export enum ValidateStringError {
     stringContainsUnicodeChacters = 'stringContainsUnicodeChacters',
 }
 
+export const ValidateStringErrorKeys = Object.keys(ValidateStringError);
+
 type StringValidationResult =
     | undefined
     | ValidateStringError.stringHasNoValue

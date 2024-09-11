@@ -1,20 +1,14 @@
-import { VStack } from '@navikt/ds-react';
 import { StoryFn } from '@storybook/react';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { StoryFormikWrapper } from '../../../../../storybook/components/StoryFormikWrapper';
-import ValidationErrorsList from '../../../../../storybook/components/ValidationErrorsList';
 import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { withStepFormValuesContext } from '../../../../../storybook/decorators/withStepFormValuesContext';
 import { mockInitialSøknadContextState } from '../../../../../storybook/decorators/withSøknadContext';
 import { SøknadContextState } from '../../../../types/SøknadContextState';
 import { Søknadsdata } from '../../../../types/søknadsdata/Søknadsdata';
 import { SøknadContextProvider } from '../../../context/SøknadContext';
-import AnnetBarnFnrSpørsmål, {
-    AnnetBarnFnrValidationErrorKeys as AnnetBarnFnrValidationErrors,
-} from '../spørsmål/AnnetBarnFnrSpørsmål';
-import AnnetBarnFødselsdatoSpørsmål, {
-    AnnetBarnFødselsdatoValidationErrorKeys,
-} from '../spørsmål/AnnetBarnFødselsdatoSpørsmål';
+import AnnetBarnFnrSpørsmål from '../spørsmål/AnnetBarnFnrSpørsmål';
+import AnnetBarnFødselsdatoSpørsmål from '../spørsmål/AnnetBarnFødselsdatoSpørsmål';
 import AnnetBarnNavnSpørsmål from '../spørsmål/AnnetBarnNavnSpørsmål';
 import AnnetBarnRelasjonSpørsmål from '../spørsmål/AnnetBarnRelasjonSpørsmål';
 import BorSammenMedBarnetSpørsmål from '../spørsmål/BorSammenMedBarnetSpørsmål';
@@ -24,7 +18,7 @@ import KroniskEllerFunksjonshemningSpørsmål from '../spørsmål/KroniskEllerFu
 import RegistrertBarnSpørsmål from '../spørsmål/RegistrertBarnSpørsmål';
 
 export default {
-    title: 'Steps/OmBarnet/Spørsmål',
+    title: 'Questions/OmBarnet/Alle spørsmål',
     decorators: [withIntl, withStepFormValuesContext],
 };
 
@@ -42,20 +36,8 @@ const Template: StoryFn<Props> = ({ context }: Props) => {
                         onAnnetBarnSelected={() => null}
                         søknadenGjelderEtAnnetBarn={false}
                     />
-                    <VStack gap="2">
-                        <AnnetBarnFnrSpørsmål søkersFnr="123" allowHnr={true} />
-                        <ValidationErrorsList
-                            intlKeyPath="steg.omBarnet.validation.barnetsFødselsnummer"
-                            validationKeys={AnnetBarnFnrValidationErrors}
-                        />
-                    </VStack>
-                    <VStack gap="2">
-                        <AnnetBarnFødselsdatoSpørsmål />
-                        <ValidationErrorsList
-                            intlKeyPath="steg.omBarnet.validation.barnetsFødselsdato"
-                            validationKeys={AnnetBarnFødselsdatoValidationErrorKeys}
-                        />
-                    </VStack>
+                    <AnnetBarnFnrSpørsmål søkersFnr="123" allowHnr={true} />
+                    <AnnetBarnFødselsdatoSpørsmål />
 
                     <AnnetBarnNavnSpørsmål />
                     <AnnetBarnRelasjonSpørsmål />

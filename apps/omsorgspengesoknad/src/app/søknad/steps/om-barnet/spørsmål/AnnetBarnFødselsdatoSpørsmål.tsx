@@ -1,4 +1,8 @@
-import { getDateValidator, ValidateDateErrorKeys } from '@navikt/sif-common-formik-ds/src/validation';
+import {
+    getDateValidator,
+    ValidateDateError,
+    ValidateDateErrorKeys,
+} from '@navikt/sif-common-formik-ds/src/validation';
 import { dateFormatter, getDateToday } from '@navikt/sif-common-utils';
 import { useAppIntl } from '../../../../i18n';
 import { omBarnetFormComponents } from '../omBarnetFormComponents';
@@ -9,7 +13,10 @@ const { DatePicker } = omBarnetFormComponents;
 
 const BarnOver18årErrorKey = 'barnOver18år';
 
-export const AnnetBarnFødselsdatoValidationErrorKeys = [...ValidateDateErrorKeys, BarnOver18årErrorKey];
+export const AnnetBarnFødselsdatoValidationErrorKeys = [
+    ...ValidateDateErrorKeys.filter((key) => !key.includes(ValidateDateError.dateIsNotWeekday)),
+    BarnOver18årErrorKey,
+];
 
 const AnnetBarnFødselsdatoSpørsmål = () => {
     const { text } = useAppIntl();
@@ -17,7 +24,7 @@ const AnnetBarnFødselsdatoSpørsmål = () => {
     return (
         <DatePicker
             name={OmBarnetFormFields.barnetsFødselsdato}
-            label={text('steg.omBarnet.fødselsdato')}
+            label={text('steg.omBarnet.fødselsdato.spm')}
             validate={(value) => {
                 const dateValidationerror = getDateValidator({
                     required: true,
