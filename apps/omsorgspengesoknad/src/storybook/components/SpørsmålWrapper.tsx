@@ -7,14 +7,14 @@ import { StoryFormikWrapper } from './StoryFormikWrapper';
 import StoryIntlProvider from './StoryIntlProvider';
 import '@navikt/ds-css';
 
-interface Props {
+export interface SpørsmålWrapperProps {
     formErrorHandlerIntlKey: string;
     spørsmål: React.ReactNode;
     messageIntlKeys?: string[];
     validationErrorIntlKeys?: string[];
 }
 
-export const SpørsmålWrapper: React.FunctionComponent<Props> = (props) => {
+export const SpørsmålWrapper: React.FunctionComponent<SpørsmålWrapperProps> = (props) => {
     const { spørsmål, messageIntlKeys = [], validationErrorIntlKeys = [], formErrorHandlerIntlKey } = props;
     const infoMessages = getIntlMessagesFromKeys(messageIntlKeys);
     const validationMessages = getIntlMessagesFromKeys(validationErrorIntlKeys);

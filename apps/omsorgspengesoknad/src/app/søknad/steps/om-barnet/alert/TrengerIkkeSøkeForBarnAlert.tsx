@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Heading, Link } from '@navikt/ds-react';
+import { Alert, BodyLong, Heading, Link } from '@navikt/ds-react';
 import { ReactNode } from 'react';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { AppText } from '../../../../i18n';
@@ -11,17 +11,17 @@ const TrengerIkkeSøkeForBarnAlert = ({ barnetsFornavn }: Props) => {
     return (
         <Alert variant="warning">
             <Heading size="small" level="3">
-                <AppText id="steg.omBarnet.trengerIkkeSøke.tittel" values={{ barnetsFornavn }} />
+                <AppText id="steg.omBarnet.alert.trengerIkkeSøke.tittel" values={{ barnetsFornavn }} />
             </Heading>
-            <BodyShort>
+            <BodyLong>
                 <AppText
-                    id="steg.omBarnet.trengerIkkeSøke.tekst"
+                    id="steg.omBarnet.alert.trengerIkkeSøke.tekst"
                     values={{
                         barnetsFornavn,
                         Lenke: (child: ReactNode) => <Link href={getEnvironmentVariable('MINSIDE_URL')}>{child}</Link>,
                     }}
                 />
-            </BodyShort>
+            </BodyLong>
         </Alert>
     );
 };

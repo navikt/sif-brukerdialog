@@ -4,7 +4,7 @@ import { AppText } from '../../../../i18n';
 const IkkeHøyereRisikoForFraværAlert = () => {
     return (
         <Alert variant="info">
-            <AppText id="steg.omBarnet.spm.høyereRisikoForFravær.alert" />
+            <AppText id="steg.omBarnet.alert.ikkeHøyereRisikoForFravær" />
         </Alert>
     );
 };

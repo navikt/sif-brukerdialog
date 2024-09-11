@@ -47,7 +47,7 @@ export const PlainMessageList = ({ messages, nbOnly = true }: Props & { nbOnly?:
 
 export const MessagesTable = ({
     messages,
-    nbOnly = true,
+    nbOnly = false,
     keyStrip = '',
 }: {
     messages: MessageFileFormat;

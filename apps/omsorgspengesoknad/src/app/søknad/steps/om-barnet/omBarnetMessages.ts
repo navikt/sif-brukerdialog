@@ -18,7 +18,7 @@ const nb = {
     'steg.omBarnet.spm.sammeAdresse.hvaBetyrDette': 'Hva er delt fast bosted?',
     'steg.omBarnet.spm.sammeAdresse.hvaBetyrDette.info':
         'Hvis foreldrene til barnet ikke bor sammen, kan de inngå en avtale om delt fast bosted etter barneloven §36. Barnet bor da fast med begge sine foreldre.',
-    'steg.omBarnet.spm.sammeAdresse.neiAlert':
+    'steg.omBarnet.alert.sammeAdresse.nei':
         'Det er kun foreldre som bor sammen med barnet som kan få ekstra omsorgsdager fra NAV. Forelderen som bor sammen med barnet kan i noen tilfeller dele sine omsorgsdager.',
     'steg.omBarnet.spm.kroniskEllerFunksjonshemning.label':
         'Har barnet kronisk/langvarig sykdom eller funksjonshemning?',
@@ -26,7 +26,7 @@ const nb = {
         'Har du høyere risiko for fravær på jobb på grunn av barnets sykdom eller funksjonshemning? ',
     'steg.omBarnet.spm.høyereRisikoForFraværBeskrivelse.label':
         'Nå trenger vi en beskrivelse fra deg på hvordan barnets sykdom eller funksjonshemning gir markert høyere risiko for fravær fra jobb:',
-    'steg.omBarnet.spm.høyereRisikoForFravær.alert':
+    'steg.omBarnet.alert.ikkeHøyereRisikoForFravær':
         'For å ha rett til ekstra omsorgsdager på grunn av sykdom eller funksjonshemning, må det være en sammenheng mellom barnets sykdom/funksjonshemning og risikoen for høyere fravær fra jobb.',
     'steg.omBarnet.alert.ikkeKroniskSykdom':
         'Denne søknaden om ekstra omsorgsdager gjelder kun for de som har barn med kronisk/langvarig sykdom eller funksjonshemning.',
@@ -68,8 +68,8 @@ const nb = {
     'steg.omBarnet.validation.høyereRisikoForFraværBeskrivelse.stringIsTooShort':
         'Beskrivelse på hvordan barnets sykdom eller funksjonshemning gir høyere risiko for fravær fra jobb må være på minst 5 tegn.',
 
-    'steg.omBarnet.trengerIkkeSøke.tittel': 'Du trenger ikke søke for {barnetsFornavn}',
-    'steg.omBarnet.trengerIkkeSøke.tekst':
+    'steg.omBarnet.alert.trengerIkkeSøke.tittel': 'Du trenger ikke søke for {barnetsFornavn}',
+    'steg.omBarnet.alert.trengerIkkeSøke.tekst':
         'Du har allerede et gyldig vedtak som gjelder til og med det kalenderåret {barnetsFornavn} fyller 18 år. Du trenger derfor ikke å søke på nytt. Du kan finne melding og dokumentasjon om vedtaket på <Lenke>Min side</Lenke>.',
 };
 

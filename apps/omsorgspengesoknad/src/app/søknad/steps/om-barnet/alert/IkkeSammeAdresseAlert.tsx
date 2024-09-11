@@ -4,7 +4,7 @@ import { AppText } from '../../../../i18n';
 const IkkeSammeAdresseAlert = () => {
     return (
         <Alert variant="info">
-            <AppText id="steg.omBarnet.spm.sammeAdresse.neiAlert" />
+            <AppText id="steg.omBarnet.alert.sammeAdresse.nei" />
         </Alert>
     );
 };
