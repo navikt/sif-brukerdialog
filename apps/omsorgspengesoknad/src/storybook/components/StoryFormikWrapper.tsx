@@ -1,9 +1,9 @@
-import { Panel } from '@navikt/ds-react';
+import { Box } from '@navikt/ds-react';
 import * as React from 'react';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
-import '@navikt/ds-css';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { useAppIntl } from '../../app/i18n';
+import '@navikt/ds-css';
 
 interface Props {
     parameters?: {
@@ -13,11 +13,12 @@ interface Props {
         formErrorHandlerIntlKey: string;
     };
     children: React.ReactNode;
+    useBorder?: boolean;
 }
 
 export const StoryFormikWrapper: React.FunctionComponent<Props> = (props) => {
     const { intl } = useAppIntl();
-    const { children, parameters } = props;
+    const { children, parameters, useBorder } = props;
     const {
         formik,
         maxWidth = '800px',
@@ -41,9 +42,17 @@ export const StoryFormikWrapper: React.FunctionComponent<Props> = (props) => {
                         includeValidationSummary={true}
                         formErrorHandler={getIntlFormErrorHandler(intl, formErrorHandlerIntlKey)}
                         runDelayedFormValidation={true}>
-                        <Panel style={{ maxWidth: maxWidth }} border={true}>
+                        <Box
+                            {...(useBorder
+                                ? {
+                                      maxWidth,
+                                      borderColor: 'border-info',
+                                      borderRadius: 'medium',
+                                      borderWidth: '1',
+                                  }
+                                : {})}>
                             {children}
-                        </Panel>
+                        </Box>
                     </TypedFormikForm>
                 );
             }}

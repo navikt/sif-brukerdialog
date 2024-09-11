@@ -1,4 +1,3 @@
-import { VStack } from '@navikt/ds-react';
 import { StoryFn } from '@storybook/react';
 import { SpørsmålWrapper } from '../../../../../storybook/components/SpørsmålWrapper';
 import MessagesList from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesList';
@@ -20,12 +19,11 @@ const intlKeys = Object.keys(appMessages.nb).filter((key) => key.includes('steg.
 
 const Template: StoryFn = () => {
     return (
-        <SpørsmålWrapper parameters={{ formErrorHandlerIntlKey: 'steg.omBarnet.validation' }}>
-            <VStack gap="6">
-                <AnnetBarnNavnSpørsmål />
-                <MessagesList messages={getIntlMessagesFromKeys([...intlKeys, ...validationErrorIntlKeys])} />
-            </VStack>
-        </SpørsmålWrapper>
+        <SpørsmålWrapper
+            formErrorHandlerIntlKey="steg.omBarnet.validation"
+            spørsmål={<AnnetBarnNavnSpørsmål />}
+            messages={<MessagesList messages={getIntlMessagesFromKeys([...intlKeys, ...validationErrorIntlKeys])} />}
+        />
     );
 };
 

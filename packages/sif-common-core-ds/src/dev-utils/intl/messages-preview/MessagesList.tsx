@@ -100,7 +100,7 @@ const MessagesList = ({ messages }: Props) => {
             <Tabs defaultValue="messages" size="small">
                 <Tabs.List>
                     <Tabs.Tab value="messages" label="Alle tekster" />
-                    <Tabs.Tab value="kompakt" label="For oversettelse" />
+                    <Tabs.Tab value="kompakt" label="Nøkler og default" />
                     <Tabs.Tab value="json" label="JSON" />
                     <Tabs.Tab value="translate" label="Automatisk oversettelse" />
                 </Tabs.List>
@@ -128,6 +128,8 @@ const MessagesList = ({ messages }: Props) => {
                         <>
                             <Block margin="xl">
                                 <Button
+                                    variant="secondary"
+                                    size="small"
                                     type="button"
                                     onClick={(evt) => {
                                         oversettAlle();
