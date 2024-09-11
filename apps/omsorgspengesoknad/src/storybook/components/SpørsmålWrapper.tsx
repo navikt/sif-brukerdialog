@@ -1,30 +1,21 @@
 import { Box, Button, Heading, Tabs, VStack } from '@navikt/ds-react';
 import * as React from 'react';
+import { MessagesTable } from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesList';
 import ShadowBox from '../components/ShadowBox';
+import { getIntlMessagesFromKeys } from '../utils/intlUtils';
 import { StoryFormikWrapper } from './StoryFormikWrapper';
 import StoryIntlProvider from './StoryIntlProvider';
 import '@navikt/ds-css';
-import { MessagesTable } from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesList';
-import { getIntlMessagesFromKeys } from '../utils/intlUtils';
 
 interface Props {
     formErrorHandlerIntlKey: string;
     spørsmål: React.ReactNode;
     messageIntlKeys?: string[];
     validationErrorIntlKeys?: string[];
-    messageIntlPath?: string;
-    validationIntlPath?: string;
 }
 
 export const SpørsmålWrapper: React.FunctionComponent<Props> = (props) => {
-    const {
-        spørsmål,
-        messageIntlKeys,
-        validationErrorIntlKeys,
-        formErrorHandlerIntlKey,
-        messageIntlPath,
-        validationIntlPath,
-    } = props;
+    const { spørsmål, messageIntlKeys = [], validationErrorIntlKeys = [], formErrorHandlerIntlKey } = props;
     const infoMessages = getIntlMessagesFromKeys(messageIntlKeys);
     const validationMessages = getIntlMessagesFromKeys(validationErrorIntlKeys);
     const allMessages = getIntlMessagesFromKeys([...messageIntlKeys, ...validationErrorIntlKeys]);
