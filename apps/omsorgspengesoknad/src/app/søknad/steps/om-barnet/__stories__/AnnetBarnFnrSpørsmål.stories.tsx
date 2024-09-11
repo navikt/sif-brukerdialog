@@ -9,7 +9,7 @@ export default {
     title: 'Questions/OmBarnet/BarnetsFødselsnummer',
 };
 
-const intlKeys = Object.keys(appMessages.nb).filter((key) => key.includes('steg.omBarnet.spm.barnetsFødselsnummer'));
+const intlKeys = Object.keys(appMessages.nb).filter((key) => key.includes('steg.omBarnet.spm.barnetsFødselsnummer.'));
 
 const fieldIntlErrorKey = `steg.omBarnet.validation.${OmBarnetFormFields.barnetsFødselsnummer}`;
 const validationErrorIntlKeys = getValidationIntlKeys(AnnetBarnFnrValidationErrorKeys, fieldIntlErrorKey);

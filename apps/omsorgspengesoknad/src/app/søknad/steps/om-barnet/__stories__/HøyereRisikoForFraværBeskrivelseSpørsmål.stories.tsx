@@ -2,25 +2,29 @@ import { StoryFn } from '@storybook/react';
 import { SpørsmålWrapper } from '../../../../../storybook/components/SpørsmålWrapper';
 import { getValidationIntlKeys } from '../../../../../storybook/utils/intlUtils';
 import { appMessages } from '../../../../i18n/appMessages';
-import AnnetBarnNavnSpørsmål, { AnnetBarnNavnValidationErrorKeys } from '../spørsmål/AnnetBarnNavnSpørsmål';
 import { OmBarnetFormFields } from '../OmBarnetStep';
+import HøyereRisikoForFraværBeskrivelseSpørsmål, {
+    HøyereRisikoForFraværBeskrivelseValidationErrorKeys,
+} from '../spørsmål/HøyereRisikoForFraværBeskrivelseSpørsmål';
 
 export default {
-    title: 'Questions/OmBarnet/BarnetsNavn',
+    title: 'Questions/OmBarnet/HøyereRisikoForFraværBeskrivelse',
 };
 
-const intlKeys = Object.keys(appMessages.nb).filter((key) => key.includes('steg.omBarnet.spm.barnetsNavn.'));
+const intlKeys = Object.keys(appMessages.nb).filter((key) =>
+    key.includes('steg.omBarnet.spm.høyereRisikoForFraværBeskrivelse.'),
+);
 
 const validationErrorIntlKeys = getValidationIntlKeys(
-    AnnetBarnNavnValidationErrorKeys,
-    `steg.omBarnet.validation.${OmBarnetFormFields.barnetsNavn}`,
+    HøyereRisikoForFraværBeskrivelseValidationErrorKeys,
+    `steg.omBarnet.validation.${OmBarnetFormFields.høyereRisikoForFraværBeskrivelse}`,
 );
 
 const Template: StoryFn = () => {
     return (
         <SpørsmålWrapper
             formErrorHandlerIntlKey="steg.omBarnet.validation"
-            spørsmål={<AnnetBarnNavnSpørsmål />}
+            spørsmål={<HøyereRisikoForFraværBeskrivelseSpørsmål />}
             messageIntlKeys={intlKeys}
             validationErrorIntlKeys={validationErrorIntlKeys}
         />

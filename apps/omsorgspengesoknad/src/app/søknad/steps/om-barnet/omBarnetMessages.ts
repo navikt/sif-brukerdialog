@@ -19,10 +19,11 @@ const nb = {
         'Hvis foreldrene til barnet ikke bor sammen, kan de inngå en avtale om delt fast bosted etter barneloven §36. Barnet bor da fast med begge sine foreldre.',
     'steg.omBarnet.spm.sammeAdresse.neiAlert':
         'Det er kun foreldre som bor sammen med barnet som kan få ekstra omsorgsdager fra NAV. Forelderen som bor sammen med barnet kan i noen tilfeller dele sine omsorgsdager.',
-    'steg.omBarnet.spm.kroniskEllerFunksjonshemmende': 'Har barnet kronisk/langvarig sykdom eller funksjonshemning?',
-    'steg.omBarnet.spm.høyereRisikoForFravær':
+    'steg.omBarnet.spm.kroniskEllerFunksjonshemning.label':
+        'Har barnet kronisk/langvarig sykdom eller funksjonshemning?',
+    'steg.omBarnet.spm.høyereRisikoForFravær.label':
         'Har du høyere risiko for fravær på jobb på grunn av barnets sykdom eller funksjonshemning? ',
-    'steg.omBarnet.spm.høyereRisikoForFraværBeskrivelse.tittel':
+    'steg.omBarnet.spm.høyereRisikoForFraværBeskrivelse.label':
         'Nå trenger vi en beskrivelse fra deg på hvordan barnets sykdom eller funksjonshemning gir markert høyere risiko for fravær fra jobb:',
     'steg.omBarnet.spm.høyereRisikoForFravær.alert':
         'For å ha rett til ekstra omsorgsdager på grunn av sykdom eller funksjonshemning, må det være en sammenheng mellom barnets sykdom/funksjonshemning og risikoen for høyere fravær fra jobb.',

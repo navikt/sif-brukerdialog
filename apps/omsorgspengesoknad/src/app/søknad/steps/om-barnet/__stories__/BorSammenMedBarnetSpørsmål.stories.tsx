@@ -9,7 +9,7 @@ export default {
     title: 'Questions/OmBarnet/BorSammenMedBarnet',
 };
 
-const intlKeys = Object.keys(appMessages.nb).filter((key) => key.includes('steg.omBarnet.spm.sammeAdresse'));
+const intlKeys = Object.keys(appMessages.nb).filter((key) => key.includes('steg.omBarnet.spm.sammeAdresse.'));
 
 const fieldIntlErrorKey = `steg.omBarnet.validation.${OmBarnetFormFields.sammeAdresse}`;
 const validationErrorIntlKeys = getValidationIntlKeys(BorSammenMedBarnetErrorKeys, fieldIntlErrorKey);

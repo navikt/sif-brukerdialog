@@ -10,7 +10,7 @@ const KroniskEllerFunksjonshemningSpørsmål = () => {
     return (
         <YesOrNoQuestion
             name={OmBarnetFormFields.kroniskEllerFunksjonshemming}
-            legend={text('steg.omBarnet.spm.kroniskEllerFunksjonshemmende')}
+            legend={text('steg.omBarnet.spm.kroniskEllerFunksjonshemning.label')}
             validate={getYesOrNoValidator()}
         />
     );

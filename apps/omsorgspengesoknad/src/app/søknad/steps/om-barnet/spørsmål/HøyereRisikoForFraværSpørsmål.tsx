@@ -10,7 +10,7 @@ const HøyereRisikoForFraværSpørsmål = () => {
     return (
         <YesOrNoQuestion
             name={OmBarnetFormFields.høyereRisikoForFravær}
-            legend={text('steg.omBarnet.spm.høyereRisikoForFravær')}
+            legend={text('steg.omBarnet.spm.høyereRisikoForFravær.label')}
             data-testid="høyereRisikoForFravær"
             validate={getYesOrNoValidator()}
         />
