@@ -11,7 +11,7 @@ export default {
     title: 'Questions/OmBarnet/BarnetsFødselsdato',
 };
 
-const intlKeys = Object.keys(appMessages.nb).filter((key) => key.includes('steg.omBarnet.fødselsdato'));
+const intlKeys = Object.keys(appMessages.nb).filter((key) => key.includes('steg.omBarnet.spm.fødselsdato'));
 
 const validationErrorIntlKeys = getValidationIntlKeys(
     AnnetBarnFødselsdatoValidationErrorKeys,

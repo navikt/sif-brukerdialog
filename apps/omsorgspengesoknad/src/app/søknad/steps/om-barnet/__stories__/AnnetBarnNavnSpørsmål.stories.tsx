@@ -9,7 +9,7 @@ export default {
     title: 'Questions/OmBarnet/BarnetsNavn',
 };
 
-const intlKeys = Object.keys(appMessages.nb).filter((key) => key.includes('steg.omBarnet.barnetsNavn'));
+const intlKeys = Object.keys(appMessages.nb).filter((key) => key.includes('steg.omBarnet.spm.barnetsNavn'));
 
 const validationErrorIntlKeys = getValidationIntlKeys(
     AnnetBarnNavnValidationErrorKeys,

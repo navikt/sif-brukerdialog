@@ -11,7 +11,7 @@ const AnnetBarnRelasjonSpørsmål = () => {
     return (
         <Select
             style={{ maxWidth: '25rem' }}
-            label={text('steg.omBarnet.relasjon.spm')}
+            label={text('steg.omBarnet.spm.relasjon.label')}
             name={OmBarnetFormFields.søkersRelasjonTilBarnet}
             validate={getRequiredFieldValidator()}>
             <option />

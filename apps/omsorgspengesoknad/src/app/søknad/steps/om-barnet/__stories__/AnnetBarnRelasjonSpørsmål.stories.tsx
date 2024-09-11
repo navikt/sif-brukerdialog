@@ -10,7 +10,7 @@ export default {
     title: 'Questions/OmBarnet/RelasjonTilBarn',
 };
 
-const intlKeys = Object.keys(appMessages.nb).filter((key) => key.includes('steg.omBarnet.relasjon'));
+const intlKeys = Object.keys(appMessages.nb).filter((key) => key.includes('steg.omBarnet.spm.relasjon'));
 
 const validationErrorIntlKeys = getValidationIntlKeys(
     [ValidateRequiredFieldError.noValue],

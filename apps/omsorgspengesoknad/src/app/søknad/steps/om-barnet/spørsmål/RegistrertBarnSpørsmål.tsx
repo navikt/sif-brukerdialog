@@ -20,18 +20,18 @@ const RegistrertBarnSpørsmål = ({ registrerteBarn, søknadenGjelderEtAnnetBarn
     return (
         <VStack gap="4">
             <Heading level="2" size="medium">
-                {text('steg.omBarnet.hvilketBarn.spm')}
+                {text('steg.omBarnet.spm.hvilketBarn.label')}
             </Heading>
             <VStack gap="2">
                 <RadioGroup
-                    legend={text('steg.omBarnet.hvilketBarn.registrerteBarn')}
-                    description={text('steg.omBarnet.hvilketBarn.info')}
+                    legend={text('steg.omBarnet.spm.hvilketBarn.registrerteBarn.label')}
+                    description={text('steg.omBarnet.spm.hvilketBarn.info')}
                     name={OmBarnetFormFields.barnetSøknadenGjelder}
                     radios={registrerteBarn.map((barn) => mapBarnTilRadioProps(barn, søknadenGjelderEtAnnetBarn))}
                     validate={søknadenGjelderEtAnnetBarn ? undefined : getRequiredFieldValidator()}
                 />
                 <Checkbox
-                    label={text('steg.omBarnet.gjelderAnnetBarn')}
+                    label={text('steg.omBarnet.spm.gjelderAnnetBarn.label')}
                     name={OmBarnetFormFields.søknadenGjelderEtAnnetBarn}
                     afterOnChange={(isChecked) => {
                         if (isChecked) {

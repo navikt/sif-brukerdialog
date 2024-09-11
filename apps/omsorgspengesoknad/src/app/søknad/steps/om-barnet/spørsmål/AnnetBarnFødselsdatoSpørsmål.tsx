@@ -24,7 +24,7 @@ const AnnetBarnFødselsdatoSpørsmål = () => {
     return (
         <DatePicker
             name={OmBarnetFormFields.barnetsFødselsdato}
-            label={text('steg.omBarnet.fødselsdato.spm')}
+            label={text('steg.omBarnet.spm.fødselsdato.label')}
             validate={(value) => {
                 const dateValidationerror = getDateValidator({
                     required: true,
@@ -43,7 +43,7 @@ const AnnetBarnFødselsdatoSpørsmål = () => {
             minDate={minDatoForBarnetsFødselsdato}
             maxDate={getDateToday()}
             dropdownCaption={true}
-            description={text('steg.omBarnet.fødselsdato.info', {
+            description={text('steg.omBarnet.spm.fødselsdato.info', {
                 minFødselsdato: dateFormatter.full(minDatoForBarnetsFødselsdato),
             })}
         />

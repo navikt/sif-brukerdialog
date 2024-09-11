@@ -14,7 +14,7 @@ const AnnetBarnNavnSpørsmål = () => {
     const { text } = useAppIntl();
     return (
         <TextField
-            label={text('steg.omBarnet.barnetsNavn.spm')}
+            label={text('steg.omBarnet.spm.barnetsNavn.label')}
             name={OmBarnetFormFields.barnetsNavn}
             width="xl"
             validate={(value) => {

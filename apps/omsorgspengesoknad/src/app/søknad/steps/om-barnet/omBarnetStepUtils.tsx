@@ -126,7 +126,7 @@ export const mapBarnTilRadioProps = (barn: RegistrertBarn, disabled?: boolean): 
                 <div>{barnetsNavn}</div>
                 <div>
                     <AppText
-                        id="steg.omBarnet.hvilketBarn.født"
+                        id="steg.omBarnet.spm.hvilketBarn.født"
                         values={{ dato: dateFormatter.compact(fødselsdato) }}
                     />
                 </div>

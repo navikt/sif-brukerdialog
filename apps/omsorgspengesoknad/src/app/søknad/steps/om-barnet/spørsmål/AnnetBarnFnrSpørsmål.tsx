@@ -16,7 +16,7 @@ const AnnetBarnFnrSpørsmål = ({ søkersFnr, allowHnr }: Props) => {
     const { text } = useAppIntl();
     return (
         <TextField
-            label={text('steg.omBarnet.barnetsFødselsnummer.spm')}
+            label={text('steg.omBarnet.spm.barnetsFødselsnummer.label')}
             name={OmBarnetFormFields.barnetsFødselsnummer}
             validate={getFødselsnummerValidator({
                 required: true,
