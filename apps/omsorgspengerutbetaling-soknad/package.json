@@ -71,6 +71,7 @@
         "eslint": "9.10.0",
         "eslint-plugin-storybook": "0.8.0",
         "helmet": "7.1.0",
+        "mockdate": "3.0.5",
         "postcss": "8.4.45",
         "postcss-nesting": "13.0.0",
         "storybook": "8.2.9",

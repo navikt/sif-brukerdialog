@@ -94,7 +94,7 @@ const PeriodeSummary = ({ apiValues, søknadsperiode, onEdit }: Props) => {
                             {ferieuttakIPerioden.ferieuttak.length > 0 && (
                                 <FormSummary.Answer>
                                     <FormSummary.Label>
-                                        <AppText id="steg.oppsummering.utenlandsoppholdIPerioden.listTitle" />
+                                        <AppText id="steg.oppsummering.ferieuttakIPerioden.listTitle" />
                                     </FormSummary.Label>
                                     <FormSummary.Value>
                                         <SummaryList<PeriodeApiData>

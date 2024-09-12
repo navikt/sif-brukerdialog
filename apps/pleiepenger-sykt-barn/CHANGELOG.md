@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.1.3
+
+### Patch Changes
+
+-   Bugfix - det stod feil tittel på listen over ferieopphold i oppsummeringen.
+
 ## 4.1.2
 
 ### Patch Changes

@@ -32,6 +32,8 @@ export default defineConfig({
             VEDLEGG_API_URL: 'http://localhost:8089',
             APPSTATUS_PROJECT_ID: 'ryujtq87',
             APPSTATUS_DATASET: 'staging',
+            USE_MOCK_DATE: 'true',
+            MOCK_DATE: '2024-08-01',
         },
     },
 });
