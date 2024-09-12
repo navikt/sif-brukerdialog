@@ -15,7 +15,7 @@ import { mockInitialSøknadContextState } from './../../../../storybook/decorato
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 
 export default {
-    title: 'Steg/OmBarnet/Steg',
+    title: 'Steps/OmBarnet/Step',
     component: OmBarnetStep,
     decorators: [withIntl, withRouterProvider, withStepFormValuesContext, withEnvSettings, withAmplitudeProvider],
 } as Meta<typeof OmBarnetStep>;

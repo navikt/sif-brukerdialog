@@ -1,23 +1,22 @@
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import { Meta, StoryFn } from '@storybook/react';
-import * as React from 'react';
-import { SøknadContextProvider } from '../../../app/søknad/context/SøknadContext';
-import LegeerklæringStep from '../../../app/søknad/steps/legeerklæring/LegeerklæringStep';
-import { SøknadContextState } from '../../../app/types/SøknadContextState';
-import { Søknadsdata } from '../../../app/types/søknadsdata/Søknadsdata';
-import { withEnvSettings } from '../../decorators/withEnvSettings';
-import { withIntl } from '../../decorators/withIntl';
-import { withRouterProvider } from '../../decorators/withRouter';
-import { withStepFormValuesContext } from '../../decorators/withStepFormValuesContext';
-import { mockInitialSøknadContextState } from '../../decorators/withSøknadContext';
-import { søknadsdataMocks } from '../../mock-data/søknadsdataMocks';
-import { withAmplitudeProvider } from '../../decorators/withAmplitudeProvider';
+import { SøknadContextProvider } from '../../context/SøknadContext';
+import LegeerklæringStep from './LegeerklæringStep';
+import { SøknadContextState } from '../../../types/SøknadContextState';
+import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { withEnvSettings } from '../../../../storybook/decorators/withEnvSettings';
+import { withIntl } from '../../../../storybook/decorators/withIntl';
+import { withRouterProvider } from '../../../../storybook/decorators/withRouter';
+import { withStepFormValuesContext } from '../../../../storybook/decorators/withStepFormValuesContext';
+import { mockInitialSøknadContextState } from '../../../../storybook/decorators/withSøknadContext';
+import { søknadsdataMocks } from '../../../../storybook/mock-data/søknadsdataMocks';
+import { withAmplitudeProvider } from '../../../../storybook/decorators/withAmplitudeProvider';
 import { Tabs } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { legeerklæringMessages } from '../../../app/søknad/steps/legeerklæring/legeerklæringMessages';
+import { legeerklæringMessages } from './legeerklæringMessages';
 
 export default {
-    title: 'Steps/LegeerklæringStep',
+    title: 'Steps/Legeerklæring/Step',
     component: LegeerklæringStep,
     decorators: [withIntl, withRouterProvider, withStepFormValuesContext, withEnvSettings, withAmplitudeProvider],
 } as Meta<typeof LegeerklæringStep>;

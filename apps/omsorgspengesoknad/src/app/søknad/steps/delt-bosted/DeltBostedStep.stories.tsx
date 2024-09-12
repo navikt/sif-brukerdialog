@@ -1,23 +1,22 @@
 import { Tabs } from '@navikt/ds-react';
 import { Meta, StoryFn } from '@storybook/react';
-import * as React from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
-import { SøknadContextProvider } from '../../../app/søknad/context/SøknadContext';
-import { deltBostedMessages } from '../../../app/søknad/steps/delt-bosted/deltBostedMessages';
-import DeltBostedStep from '../../../app/søknad/steps/delt-bosted/DeltBostedStep';
-import { SøknadContextState } from '../../../app/types/SøknadContextState';
-import { Søknadsdata } from '../../../app/types/søknadsdata/Søknadsdata';
-import { withAmplitudeProvider } from '../../decorators/withAmplitudeProvider';
-import { withEnvSettings } from '../../decorators/withEnvSettings';
-import { withIntl } from '../../decorators/withIntl';
-import { withRouterProvider } from '../../decorators/withRouter';
-import { withStepFormValuesContext } from '../../decorators/withStepFormValuesContext';
-import { mockInitialSøknadContextState } from '../../decorators/withSøknadContext';
-import { søknadsdataMocks } from '../../mock-data/søknadsdataMocks';
+import { SøknadContextProvider } from '../../context/SøknadContext';
+import { deltBostedMessages } from './deltBostedMessages';
+import DeltBostedStep from './DeltBostedStep';
+import { SøknadContextState } from '../../../types/SøknadContextState';
+import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { withAmplitudeProvider } from '../../../../storybook/decorators/withAmplitudeProvider';
+import { withEnvSettings } from '../../../../storybook/decorators/withEnvSettings';
+import { withIntl } from '../../../../storybook/decorators/withIntl';
+import { withRouterProvider } from '../../../../storybook/decorators/withRouter';
+import { withStepFormValuesContext } from '../../../../storybook/decorators/withStepFormValuesContext';
+import { mockInitialSøknadContextState } from '../../../../storybook/decorators/withSøknadContext';
+import { søknadsdataMocks } from '../../../../storybook/mock-data/søknadsdataMocks';
 
 export default {
-    title: 'Steps/DeltBostedStep',
+    title: 'Steps/DeltBosted/Step',
     component: DeltBostedStep,
     decorators: [withIntl, withRouterProvider, withStepFormValuesContext, withEnvSettings, withAmplitudeProvider],
 } as Meta<typeof DeltBostedStep>;

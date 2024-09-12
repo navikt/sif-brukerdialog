@@ -2,7 +2,7 @@ import { Box, Button, Heading, Tabs, VStack } from '@navikt/ds-react';
 import * as React from 'react';
 import { MessagesTable } from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesList';
 import ShadowBox from '../components/ShadowBox';
-import { getIntlMessagesFromKeys } from '../utils/intlUtils';
+import { storybookIntlUtils } from '../utils/intlUtils';
 import { StoryFormikWrapper } from './StoryFormikWrapper';
 import StoryIntlProvider from './StoryIntlProvider';
 import '@navikt/ds-css';
@@ -13,6 +13,8 @@ export interface SpørsmålWrapperProps {
     messageIntlKeys?: string[];
     validationErrorIntlKeys?: string[];
 }
+
+const { getIntlMessagesFromKeys } = storybookIntlUtils;
 
 export const SpørsmålWrapper: React.FunctionComponent<SpørsmålWrapperProps> = (props) => {
     const { spørsmål, messageIntlKeys = [], validationErrorIntlKeys = [], formErrorHandlerIntlKey } = props;

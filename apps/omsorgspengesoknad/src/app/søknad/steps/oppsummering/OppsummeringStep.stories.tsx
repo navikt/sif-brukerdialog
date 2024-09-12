@@ -1,22 +1,21 @@
 import { Tabs } from '@navikt/ds-react';
 import { Meta, StoryFn } from '@storybook/react';
-import * as React from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
-import { SøknadContextProvider } from '../../../app/søknad/context/SøknadContext';
-import { oppsummeringMessages } from '../../../app/søknad/steps/oppsummering/oppsummeringMessages';
-import OppsummeringStep from '../../../app/søknad/steps/oppsummering/OppsummeringStep';
-import { SøknadContextState } from '../../../app/types/SøknadContextState';
-import { withAmplitudeProvider } from '../../decorators/withAmplitudeProvider';
-import { withEnvSettings } from '../../decorators/withEnvSettings';
-import { withIntl } from '../../decorators/withIntl';
-import { withRouterProvider } from '../../decorators/withRouter';
-import { withStepFormValuesContext } from '../../decorators/withStepFormValuesContext';
-import { mockInitialSøknadContextState } from '../../decorators/withSøknadContext';
-import { søknadsdataMocks } from '../../mock-data/søknadsdataMocks';
+import { SøknadContextProvider } from '../../context/SøknadContext';
+import { oppsummeringMessages } from './oppsummeringMessages';
+import OppsummeringStep from './OppsummeringStep';
+import { SøknadContextState } from '../../../types/SøknadContextState';
+import { withAmplitudeProvider } from '../../../../storybook/decorators/withAmplitudeProvider';
+import { withEnvSettings } from '../../../../storybook/decorators/withEnvSettings';
+import { withIntl } from '../../../../storybook/decorators/withIntl';
+import { withRouterProvider } from '../../../../storybook/decorators/withRouter';
+import { withStepFormValuesContext } from '../../../../storybook/decorators/withStepFormValuesContext';
+import { mockInitialSøknadContextState } from '../../../../storybook/decorators/withSøknadContext';
+import { søknadsdataMocks } from '../../../../storybook/mock-data/søknadsdataMocks';
 
 export default {
-    title: 'Steps/OppsummeringStep',
+    title: 'Steps/Oppsummering/Step',
     component: OppsummeringStep,
     decorators: [withIntl, withRouterProvider, withStepFormValuesContext, withEnvSettings, withAmplitudeProvider],
 } as Meta<typeof OppsummeringStep>;

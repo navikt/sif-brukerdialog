@@ -1,17 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { withIntl } from '../../../../../storybook/decorators/withIntl';
-import { SpørsmålWrapper } from '../../../../../storybook/components/SpørsmålWrapper';
-import AnnetBarnNavnSpørsmål, { AnnetBarnNavnValidationErrorKeys } from './AnnetBarnNavnSpørsmål';
-import { getScopedIntlKeys, getValidationIntlKeys } from '../../../../../storybook/utils/intlUtils';
-import { OmBarnetFormFields } from '../OmBarnetStep';
-import AnnetBarnFnrSpørsmål, { AnnetBarnFnrValidationErrorKeys } from './AnnetBarnFnrSpørsmål';
-import AnnetBarnFødselsdatoSpørsmål, { AnnetBarnFødselsdatoValidationErrorKeys } from './AnnetBarnFødselsdatoSpørsmål';
-import AnnetBarnRelasjonSpørsmål from './AnnetBarnRelasjonSpørsmål';
 import {
     ValidateRequiredFieldError,
     ValidateRequiredFieldErrorKeys,
     ValidateYesOrNoErrorKeys,
 } from '@navikt/sif-common-formik-ds/src/validation';
+import { SpørsmålWrapper } from '../../../../../storybook/components/SpørsmålWrapper';
+import { withIntl } from '../../../../../storybook/decorators/withIntl';
+import { RegistrerteBarnMock } from '../../../../../storybook/mock-data';
+import { storybookIntlUtils } from '../../../../../storybook/utils/intlUtils';
+import { OmBarnetFormFields } from '../OmBarnetStep';
+import AnnetBarnFnrSpørsmål, { AnnetBarnFnrValidationErrorKeys } from './AnnetBarnFnrSpørsmål';
+import AnnetBarnFødselsdatoSpørsmål, { AnnetBarnFødselsdatoValidationErrorKeys } from './AnnetBarnFødselsdatoSpørsmål';
+import AnnetBarnNavnSpørsmål, { AnnetBarnNavnValidationErrorKeys } from './AnnetBarnNavnSpørsmål';
+import AnnetBarnRelasjonSpørsmål from './AnnetBarnRelasjonSpørsmål';
 import BorSammenMedBarnetSpørsmål, { BorSammenMedBarnetErrorKeys } from './BorSammenMedBarnetSpørsmål';
 import HøyereRisikoForFraværBeskrivelseSpørsmål, {
     HøyereRisikoForFraværBeskrivelseValidationErrorKeys,
@@ -19,16 +20,17 @@ import HøyereRisikoForFraværBeskrivelseSpørsmål, {
 import HøyereRisikoForFraværSpørsmål from './HøyereRisikoForFraværSpørsmål';
 import KroniskEllerFunksjonshemningSpørsmål from './KroniskEllerFunksjonshemningSpørsmål';
 import RegistrertBarnSpørsmål from './RegistrertBarnSpørsmål';
-import { RegistrerteBarnMock } from '../../../../../storybook/mock-data';
 
 const meta: Meta = {
-    title: 'Steg/OmBarnet/Spørsmål',
+    title: 'Steps/OmBarnet/Spørsmål',
     decorators: [withIntl],
 };
 
 export default meta;
 
 type Story = StoryObj<any>;
+
+const { getValidationIntlKeys, getScopedIntlKeys } = storybookIntlUtils;
 
 export const AnnetBarnFnrSpørsmålStory: Story = {
     name: 'AnnetBarn.Fødselsnummer',

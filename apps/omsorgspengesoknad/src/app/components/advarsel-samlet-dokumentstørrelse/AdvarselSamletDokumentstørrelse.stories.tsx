@@ -1,10 +1,9 @@
 import { Meta, StoryFn } from '@storybook/react';
-import * as React from 'react';
-import AdvarselSamletDokumentstørrelse from '../../../app/components/advarsel-samlet-dokumentstørrelse/AdvarselSamletDokumentstørrelse';
-import { withIntl } from '../../decorators/withIntl';
+import AdvarselSamletDokumentstørrelse from './AdvarselSamletDokumentstørrelse';
+import { withIntl } from '../../../storybook/decorators/withIntl';
 
 export default {
-    title: 'Component/AdvarselSamletDokumentstørrelse',
+    title: 'Components/AdvarselSamletDokumentstørrelse',
     component: AdvarselSamletDokumentstørrelse,
     decorators: [withIntl],
 } as Meta<typeof AdvarselSamletDokumentstørrelse>;

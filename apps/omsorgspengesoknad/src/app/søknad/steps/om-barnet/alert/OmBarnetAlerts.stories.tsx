@@ -8,7 +8,7 @@ import TrengerIkkeSøkeForBarnAlert from './TrengerIkkeSøkeForBarnAlert';
 import AlertStoryWrapper from '../../../../../storybook/components/AlertStoryWrapper';
 
 export default {
-    title: 'Steg/OmBarnet/Alerts',
+    title: 'Steps/OmBarnet/Alerts',
     decorators: [withIntl],
 };
 
