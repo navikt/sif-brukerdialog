@@ -2,7 +2,7 @@ import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { deltBostedMessages } from '../søknad/steps/delt-bosted/deltBostedMessages';
 import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerklæringMessages';
-import { omBarnetMessages } from '../søknad/steps/om-barnet/stegOmBarnetMessages';
+import { omBarnetMessages } from '../søknad/steps/om-barnet/omBarnetMessages';
 import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
 
 const nb = {
@@ -48,13 +48,13 @@ const nb = {
 };
 
 const nn: Record<keyof typeof nb, string> = {
+    ...nb,
     ...kvitteringMessages.nn,
     ...velkommenPageMessages.nn,
     ...deltBostedMessages.nn,
     ...legeerklæringMessages.nn,
     ...omBarnetMessages.nn,
     ...oppsummeringMessages.nn,
-    ...nb,
 
     'application.title':
         'Søknad om ekstra omsorgsdagar for barn som har kronisk/langvarig sjukdom eller funksjonshemning',

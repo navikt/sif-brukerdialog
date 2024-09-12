@@ -70,7 +70,11 @@ const DeltBostedStep = () => {
                             }}
                         />
                         <PersistStepFormValues stepId={stepId} />
-                        <DeltBostedForm values={values} goBack={goBack} isSubmitting={isSubmitting} />
+                        <DeltBostedForm
+                            samværsavtaler={values[DeltBostedFormFields.samværsavtale]}
+                            goBack={goBack}
+                            isSubmitting={isSubmitting}
+                        />
                     </>
                 )}
             />

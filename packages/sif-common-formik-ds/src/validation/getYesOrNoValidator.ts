@@ -5,6 +5,8 @@ export enum ValidateYesOrNoError {
     'yesOrNoIsUnanswered' = 'yesOrNoIsUnanswered',
 }
 
+export const ValidateYesOrNoErrorKeys = Object.keys(ValidateYesOrNoError);
+
 type YesOrNoValidationResult = ValidateYesOrNoError.yesOrNoIsUnanswered | undefined;
 
 const getYesOrNoValidator = (): ValidationFunction<YesOrNoValidationResult> => (value: any) => {

@@ -14,7 +14,7 @@ export const getAttachmentURLBackend = (url: string): string => {
     return attachmentURLUtils.getAttachmentBackendURL(url, getEnvironmentVariable('VEDLEGG_API_URL'));
 };
 
-export const fixAttachmentURL = (a: Attachment) => {
+export const fixAttachmentURL = (a: Attachment): Attachment => {
     return {
         ...a,
         url: a.url

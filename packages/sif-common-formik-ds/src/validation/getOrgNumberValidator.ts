@@ -6,6 +6,8 @@ export enum ValidateOrgNumberError {
     orgNumberHasInvalidFormat = 'orgNumberHasInvalidFormat',
 }
 
+export const ValidateOrgNumberErrorKeys = Object.keys(ValidateOrgNumberError);
+
 type OrgNumberValidationResult =
     | undefined
     | ValidateOrgNumberError.orgNumberHasNoValue

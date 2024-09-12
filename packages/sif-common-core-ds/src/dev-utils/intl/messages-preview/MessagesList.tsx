@@ -45,7 +45,15 @@ export const PlainMessageList = ({ messages, nbOnly = true }: Props & { nbOnly?:
     );
 };
 
-export const MessagesTable = ({ messages, nbOnly = true }: { messages: MessageFileFormat; nbOnly?: boolean }) => {
+export const MessagesTable = ({
+    messages,
+    nbOnly = false,
+    keyStrip = '',
+}: {
+    messages: MessageFileFormat;
+    nbOnly?: boolean;
+    keyStrip?: string;
+}) => {
     const allMessages = createMultiLocaleObject(messages);
     return (
         <table className="messageList">
@@ -53,7 +61,7 @@ export const MessagesTable = ({ messages, nbOnly = true }: { messages: MessageFi
                 <tr>
                     <th>Kode</th>
                     <th>Bokmål</th>
-                    <th>Nynorsk</th>
+                    <th>Nynorsk (evt. bokmål som fallback)</th>
                 </tr>
             </thead>
             <tbody>
@@ -61,7 +69,7 @@ export const MessagesTable = ({ messages, nbOnly = true }: { messages: MessageFi
                     return (
                         <tr key={key}>
                             <th>
-                                <code>{key}</code>
+                                <code>{keyStrip ? key.replace(keyStrip, '') : key}</code>
                             </th>
                             <td key="nb" className={allMessages[key]['nb'] ? '' : 'missingText'}>
                                 {allMessages[key]['nb']}
@@ -100,7 +108,7 @@ const MessagesList = ({ messages }: Props) => {
             <Tabs defaultValue="messages" size="small">
                 <Tabs.List>
                     <Tabs.Tab value="messages" label="Alle tekster" />
-                    <Tabs.Tab value="kompakt" label="For oversettelse" />
+                    <Tabs.Tab value="kompakt" label="Nøkler og default" />
                     <Tabs.Tab value="json" label="JSON" />
                     <Tabs.Tab value="translate" label="Automatisk oversettelse" />
                 </Tabs.List>
@@ -127,7 +135,17 @@ const MessagesList = ({ messages }: Props) => {
                     ) : (
                         <>
                             <Block margin="xl">
-                                <Button onClick={oversettAlle}>Foreslå oversetting til nynorsk</Button>
+                                <Button
+                                    variant="secondary"
+                                    size="small"
+                                    type="button"
+                                    onClick={(evt) => {
+                                        oversettAlle();
+                                        evt.stopPropagation();
+                                        evt.preventDefault();
+                                    }}>
+                                    Foreslå oversetting til nynorsk
+                                </Button>
                             </Block>
                             {translation !== undefined ? (
                                 <Block margin="xl">

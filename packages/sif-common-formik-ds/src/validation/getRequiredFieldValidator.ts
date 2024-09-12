@@ -5,6 +5,8 @@ export enum ValidateRequiredFieldError {
     'noValue' = 'noValue',
 }
 
+export const ValidateRequiredFieldErrorKeys = Object.keys(ValidateRequiredFieldError);
+
 type RequiredFieldValidationResult = ValidateRequiredFieldError.noValue | undefined;
 
 const getRequiredFieldValidator = (): ValidationFunction<RequiredFieldValidationResult> => (value: any) => {

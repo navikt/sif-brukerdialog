@@ -29,6 +29,7 @@
     },
     "scripts": {
         "build": "turbo build",
+        "build-storybook": "turbo build-storybook",
         "clean-all": "turbo clean && rm -rf node_modules",
         "clean": "turbo clean",
         "format": "prettier --write \"**/*.{ts,tsx,md}\"",
