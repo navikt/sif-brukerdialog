@@ -1,7 +1,5 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import FileUploadErrors from '@navikt/sif-common-core-ds/src/components/file-upload-errors/FileUploadErrors';
 import FormikFileUploader from '@navikt/sif-common-core-ds/src/components/formik-file-uploader/FormikFileUploader';
 import PictureScanningGuide from '@navikt/sif-common-core-ds/src/components/picture-scanning-guide/PictureScanningGuide';
@@ -22,6 +20,8 @@ import { getAttachmentURLFrontend } from '../../../utils/attachmentUtils';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
 import { validateAttachments, ValidateAttachmentsErrors } from '../../../utils/validateAttachments';
 import DeltBostedAvtaleAttachmentList from './DeltBostedAvtaleAttachmentList';
+import { VStack } from '@navikt/ds-react';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 interface Props {
     values: Partial<DeltBostedFormValues>;
@@ -73,48 +73,46 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
             submitDisabled={hasPendingUploads || totalSizeOfAttachmentsOver24Mb}
             runDelayedFormValidation={true}
             onBack={goBack}>
-            <Block padBottom="xl">
+            <FormLayout.Questions>
                 <SifGuidePanel>
                     <p>
                         <AppText id={'steg.deltBosted.intro'} />
                     </p>
                 </SifGuidePanel>
-            </Block>
-            <Block margin={'l'}>
+
                 <PictureScanningGuide />
-            </Block>
-            {totalSize <= MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
-                <FormBlock>
-                    <FormikFileUploader
-                        attachments={samværsavtaleAttachments}
-                        name={DeltBostedFormFields.samværsavtale}
-                        buttonLabel={text('steg.deltBosted.vedlegg.knappLabel')}
-                        getAttachmentURLFrontend={getAttachmentURLFrontend}
-                        uploadFile={(file) => api.uploadFile(ApiEndpoint.vedlegg, file)}
-                        onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
-                        onFileInputClick={() => {
-                            setFilesThatDidntGetUploaded([]);
-                        }}
-                        validate={(attachments: Attachment[] = []) => {
-                            return validateAll<ValidateAttachmentsErrors | ValidationError>([
-                                () => validateAttachments([...attachments, ...andreVedlegg]),
-                            ]);
-                        }}
-                        onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
+
+                <VStack gap="2">
+                    {totalSize <= MAX_TOTAL_ATTACHMENT_SIZE_BYTES ? (
+                        <FormikFileUploader
+                            attachments={samværsavtaleAttachments}
+                            name={DeltBostedFormFields.samværsavtale}
+                            buttonLabel={text('steg.deltBosted.vedlegg.knappLabel')}
+                            getAttachmentURLFrontend={getAttachmentURLFrontend}
+                            uploadFile={(file) => api.uploadFile(ApiEndpoint.vedlegg, file)}
+                            onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
+                            onFileInputClick={() => {
+                                setFilesThatDidntGetUploaded([]);
+                            }}
+                            validate={(attachments: Attachment[] = []) => {
+                                return validateAll<ValidateAttachmentsErrors | ValidationError>([
+                                    () => validateAttachments([...attachments, ...andreVedlegg]),
+                                ]);
+                            }}
+                            onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
+                        />
+                    ) : (
+                        <AdvarselSamletDokumentstørrelse />
+                    )}
+
+                    <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
+
+                    <DeltBostedAvtaleAttachmentList
+                        wrapNoAttachmentsInBlock={true}
+                        includeDeletionFunctionality={true}
                     />
-                </FormBlock>
-            )}
-
-            {totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
-                <Block margin={'l'}>
-                    <AdvarselSamletDokumentstørrelse />
-                </Block>
-            )}
-            <Block margin={'l'}>
-                <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
-            </Block>
-
-            <DeltBostedAvtaleAttachmentList wrapNoAttachmentsInBlock={true} includeDeletionFunctionality={true} />
+                </VStack>
+            </FormLayout.Questions>
         </Form>
     );
 };

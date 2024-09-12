@@ -1,7 +1,5 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import FileUploadErrors from '@navikt/sif-common-core-ds/src/components/file-upload-errors/FileUploadErrors';
 import FormikFileUploader from '@navikt/sif-common-core-ds/src/components/formik-file-uploader/FormikFileUploader';
 import PictureScanningGuide from '@navikt/sif-common-core-ds/src/components/picture-scanning-guide/PictureScanningGuide';
@@ -22,6 +20,8 @@ import { getAttachmentURLFrontend } from '../../../utils/attachmentUtils';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
 import { validateAttachments, ValidateAttachmentsErrors } from '../../../utils/validateAttachments';
 import LegeerklæringAvtaleAttachmentList from './LegeerklæringAttachmentList';
+import { FormLayout } from '@navikt/sif-common-ui';
+import { VStack } from '@navikt/ds-react';
 
 interface Props {
     values: Partial<LegeerklæringFormValues>;
@@ -74,7 +74,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
             submitDisabled={hasPendingUploads || totalSizeOfAttachmentsOver24Mb}
             runDelayedFormValidation={true}
             onBack={goBack}>
-            <Block padBottom="xl">
+            <FormLayout.Questions>
                 <SifGuidePanel>
                     <p>
                         <AppText id={'steg.legeerklaering.counsellorpanel.1'} />
@@ -83,42 +83,40 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                         <AppText id={'steg.legeerklaering.counsellorpanel.2'} />
                     </p>
                 </SifGuidePanel>
-            </Block>
-            <Block margin={'l'}>
+
                 <PictureScanningGuide />
-            </Block>
-            {totalSize <= MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
-                <FormBlock>
-                    <FormikFileUploader
-                        attachments={legeerklæringAttachments}
-                        name={LegeerklæringFormFields.vedlegg}
-                        buttonLabel={text('steg.legeerklaering.vedlegg.knappLabel')}
-                        uploadFile={(file) => api.uploadFile(ApiEndpoint.vedlegg, file)}
-                        getAttachmentURLFrontend={getAttachmentURLFrontend}
-                        onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
-                        onFileInputClick={() => {
-                            setFilesThatDidntGetUploaded([]);
-                        }}
-                        validate={(attachments: Attachment[] = []) => {
-                            return validateAll<ValidateAttachmentsErrors | ValidationError>([
-                                () => validateAttachments([...attachments, ...andreVedlegg]),
-                            ]);
-                        }}
-                        onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
+
+                <VStack gap="2">
+                    {totalSize <= MAX_TOTAL_ATTACHMENT_SIZE_BYTES ? (
+                        <FormikFileUploader
+                            attachments={legeerklæringAttachments}
+                            name={LegeerklæringFormFields.vedlegg}
+                            buttonLabel={text('steg.legeerklaering.vedlegg.knappLabel')}
+                            uploadFile={(file) => api.uploadFile(ApiEndpoint.vedlegg, file)}
+                            getAttachmentURLFrontend={getAttachmentURLFrontend}
+                            onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
+                            onFileInputClick={() => {
+                                setFilesThatDidntGetUploaded([]);
+                            }}
+                            validate={(attachments: Attachment[] = []) => {
+                                return validateAll<ValidateAttachmentsErrors | ValidationError>([
+                                    () => validateAttachments([...attachments, ...andreVedlegg]),
+                                ]);
+                            }}
+                            onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
+                        />
+                    ) : (
+                        <AdvarselSamletDokumentstørrelse />
+                    )}
+
+                    <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
+
+                    <LegeerklæringAvtaleAttachmentList
+                        wrapNoAttachmentsInBlock={true}
+                        includeDeletionFunctionality={true}
                     />
-                </FormBlock>
-            )}
-
-            {totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
-                <Block margin={'l'}>
-                    <AdvarselSamletDokumentstørrelse />
-                </Block>
-            )}
-            <Block margin={'l'}>
-                <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
-            </Block>
-
-            <LegeerklæringAvtaleAttachmentList wrapNoAttachmentsInBlock={true} includeDeletionFunctionality={true} />
+                </VStack>
+            </FormLayout.Questions>
         </Form>
     );
 };
