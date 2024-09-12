@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.29.18
+
+### Patch Changes
+
+-   Bruke FormLayout og FormikAttachmentForm
+
 ## 1.29.17
 
 ### Patch Changes
