@@ -16,10 +16,6 @@ const fomDatoIUtlandet = date.startOf('isoWeek').subtract(3, 'weeks').add(2, 'da
 const tomDatoIUtlandet = date.startOf('isoWeek').subtract(3, 'weeks').add(4, 'day').format('DD.MM.YYYY');
 const frilansStartDato = date.startOf('isoWeek').subtract(10, 'weeks').format('DD.MM.YYYY');
 
-const selectRadioByNameAndValue = async (page: Page) => {
-    await page.locator('input[type="radio"][value="JORDBRUK_SKOGBRUK"]').check();
-};
-
 const virksomhet = {
     næringstype: 'JORDBRUK_SKOGBRUK',
     registrertINorge: 'yes',
