@@ -16,12 +16,12 @@ import { getTypedFormComponents, ValidationError, ValidationResult } from '@navi
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
 import api, { ApiEndpoint } from '../../../api/api';
+import AdvarselSamletDokumentstørrelse from '../../../components/alerts/AdvarselSamletDokumentstørrelse';
 import { AppText, useAppIntl } from '../../../i18n';
 import { getAttachmentURLFrontend } from '../../../utils/attachmentUtils';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
 import { validateAttachments, ValidateAttachmentsErrors } from '../../../utils/validateAttachments';
 import LegeerklæringAvtaleAttachmentList from './LegeerklæringAttachmentList';
-import AdvarselSamletDokumentstørrelse from '../../../components/advarsel-samlet-dokumentstørrelse/AdvarselSamletDokumentstørrelse';
 
 interface Props {
     values: Partial<LegeerklæringFormValues>;

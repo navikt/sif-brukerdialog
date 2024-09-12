@@ -1,5 +1,4 @@
 import { Alert, Link } from '@navikt/ds-react';
-import React from 'react';
 import { useIntl } from 'react-intl';
 import { AppText } from '../../i18n';
 import getLenker from '../../lenker';
