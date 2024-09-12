@@ -86,3 +86,9 @@ export async function compressImageFile(imageFile: File, { maxSizeMB, maxWidthOr
         return compressedFile;
     } else return imageFile;
 }
+
+export const hasPendingAttachments = (attachments: Attachment[]): boolean =>
+    attachments.find((a: any) => a.pending === true) !== undefined;
+
+export const hasExceededMaxTotalSizeOfAttachments = (attachments: Attachment[]): boolean =>
+    getTotalSizeOfAttachments(attachments) > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;

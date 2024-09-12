@@ -71,7 +71,12 @@ const LegeerklæringStep = () => {
                                 }}
                             />
                             <PersistStepFormValues stepId={stepId} />
-                            <LegeerklæringForm values={values} goBack={goBack} isSubmitting={isSubmitting} />
+                            <LegeerklæringForm
+                                legeerklæringer={values[LegeerklæringFormFields.vedlegg]}
+                                isSubmitting={isSubmitting}
+                                andreVedlegg={søknadsdata.deltBosted?.vedlegg}
+                                goBack={goBack}
+                            />
                         </>
                     );
                 }}
