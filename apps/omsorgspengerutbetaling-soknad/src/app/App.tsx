@@ -1,12 +1,13 @@
 import { createRoot } from 'react-dom/client';
 import { Navigate, Route } from 'react-router-dom';
 import { OmsorgspengerutbetalingSNFriApp } from '@navikt/sif-app-register';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
+import { getEnvironmentVariable, getMaybeEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import {
     ensureBaseNameForReactRouter,
-    SoknadApplicationCommonRoutes,
     SoknadApplication,
+    SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
+import MockDate from 'mockdate';
 import { applicationIntlMessages } from './i18n';
 import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
@@ -18,6 +19,13 @@ const container = document.getElementById('app');
 // eslint-disable-next-line
 const root = createRoot(container!);
 const publicPath = getEnvironmentVariable('PUBLIC_PATH');
+
+const envNow = getMaybeEnvironmentVariable('MOCK_DATE');
+if (envNow && getEnvironmentVariable('USE_MOCK_DATE') === 'true') {
+    // eslint-disable-next-line no-console
+    console.log(`setting time to: ${envNow}`);
+    MockDate.set(new Date(envNow));
+}
 
 ensureBaseNameForReactRouter(publicPath);
 

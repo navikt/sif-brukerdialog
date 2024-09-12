@@ -11,8 +11,10 @@ const getAppSettings = () => ({
     IMAGE: `${process.env.IMAGE}`,
     LOGIN_URL: `${process.env.LOGIN_URL}`,
     MINSIDE_URL: `${process.env.MINSIDE_URL}`,
+    MOCK_DATE: `${process.env.MOCK_DATE}`,
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
     SKIP_ORGNUM_VALIDATION: `${process.env.SKIP_ORGNUM_VALIDATION}`,
+    USE_MOCK_DATE: `${process.env.USE_MOCK_DATE}`,
     VEDLEGG_API_URL: `${process.env.VEDLEGG_API_URL}`,
 });
 
