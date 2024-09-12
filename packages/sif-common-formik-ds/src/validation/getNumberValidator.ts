@@ -9,6 +9,8 @@ export enum ValidateNumberError {
     numberHasDecimals = 'numberHasDecimals',
 }
 
+export const ValidateNumberErrorKeys = Object.keys(ValidateNumberError);
+
 type NumberValidationResult =
     | undefined
     | ValidateNumberError.numberHasNoValue

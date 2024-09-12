@@ -4,6 +4,8 @@ export enum ValidateCheckedError {
     'notChecked' = 'notChecked',
 }
 
+export const ValidateCheckedErrorKeys = Object.keys(ValidateCheckedError);
+
 type CheckedValidationResult = ValidateCheckedError | undefined;
 
 const getCheckedValidator = (): ValidationFunction<CheckedValidationResult> => (value: any) => {

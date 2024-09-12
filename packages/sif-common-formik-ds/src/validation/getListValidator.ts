@@ -6,6 +6,8 @@ export enum ValidateListError {
     listHasTooManyItems = 'listHastooManyItems',
 }
 
+export const ValidateListErrorKeys = Object.keys(ValidateListError);
+
 type ListValidationResult = undefined | ValidateListError;
 
 interface Options {
