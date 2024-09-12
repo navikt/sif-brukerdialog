@@ -4516,6 +4516,7 @@ __metadata:
     "@navikt/sif-common-utils": "workspace:*"
     "@playwright/test": "npm:1.47.0"
     "@sif/eslint-config": "workspace:*"
+    "@storybook/addon-a11y": "npm:8.2.9"
     "@storybook/addon-actions": "npm:8.2.9"
     "@storybook/addon-essentials": "npm:8.2.9"
     "@storybook/addon-interactions": "npm:8.2.9"
