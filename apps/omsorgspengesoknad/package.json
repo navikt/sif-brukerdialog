@@ -51,6 +51,7 @@
         "@babel/preset-typescript": "7.24.7",
         "@playwright/test": "1.47.0",
         "@sif/eslint-config": "workspace:*",
+        "@storybook/addon-a11y": "8.2.9",
         "@storybook/addon-actions": "8.2.9",
         "@storybook/addon-essentials": "8.2.9",
         "@storybook/addon-interactions": "8.2.9",

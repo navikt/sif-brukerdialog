@@ -73,11 +73,11 @@ const nb = {
         'Du har allerede et gyldig vedtak som gjelder til og med det kalenderåret {barnetsFornavn} fyller 18 år. Du trenger derfor ikke å søke på nytt. Du kan finne melding og dokumentasjon om vedtaket på <Lenke>Min side</Lenke>.',
 };
 
-const nn: Record<keyof typeof nb, string> = {
+export type OmBarnetMessageKeys = keyof typeof nb;
+
+const nn: Record<OmBarnetMessageKeys, string> = {
     ...nb,
 };
-
-export type OmBarnetMessageKeys = keyof typeof nb;
 
 export const omBarnetMessages = {
     nb,
