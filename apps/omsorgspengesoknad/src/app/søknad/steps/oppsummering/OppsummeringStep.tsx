@@ -13,18 +13,18 @@ import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
 import { AppText, useAppIntl } from '../../../i18n';
+import { isInvalidParameterErrorResponse } from '../../../types/InvalidParameter';
 import { StepId } from '../../../types/StepId';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfig, getSøknadStepConfigForStep, includeDeltBostedStep } from '../../søknadStepConfig';
-import InnsendingFeiletInformasjon from './InnsendingFeiletInformasjon';
-import { isInvalidParameterErrorResponse } from './invalidParameter';
-import OmBarnetOppsummering from './OmBarnetOppsummering';
-import OmSøkerOppsummering from './OmSøkerOppsummering';
+import InnsendingFeiletAlert from './alerts/InnsendingFeiletAlert';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
-import VedleggOppsummering from './VedleggOppsummering';
+import OmBarnetOppsummering from './parts/OmBarnetOppsummering';
+import OmSøkerOppsummering from './parts/OmSøkerOppsummering';
+import VedleggOppsummering from './parts/VedleggOppsummering';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -147,7 +147,7 @@ const OppsummeringStep = () => {
                                 </FormBlock>
                             )}
                             {sendSøknadError && invalidParameters && (
-                                <InnsendingFeiletInformasjon invalidParameter={invalidParameters} />
+                                <InnsendingFeiletAlert invalidParameter={invalidParameters} />
                             )}
                         </>
                     );

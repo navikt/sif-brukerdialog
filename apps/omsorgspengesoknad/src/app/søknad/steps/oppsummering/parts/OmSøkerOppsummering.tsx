@@ -1,7 +1,7 @@
 import React from 'react';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
-import { useAppIntl } from '../../../i18n';
-import { Søker } from '../../../types/Søker';
+import { useAppIntl } from '../../../../i18n';
+import { Søker } from '../../../../types/Søker';
 import { FormSummary } from '@navikt/ds-react';
 
 interface Props {

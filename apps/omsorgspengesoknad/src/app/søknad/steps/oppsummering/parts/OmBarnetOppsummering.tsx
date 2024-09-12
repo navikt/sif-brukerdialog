@@ -1,11 +1,11 @@
 import { FormSummary } from '@navikt/ds-react';
 import { JaNeiSvar, Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
-import { AppText, useAppIntl } from '../../../i18n';
-import { BarnSammeAdresse } from '../../../types/BarnSammeAdresse';
-import { BarnToSendToApi, OmBarnetApiData } from '../../../types/søknadApiData/SøknadApiData';
-import { getRelasjonTilBarnetIntlKey } from '../om-barnet/omBarnetStepUtils';
-import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
+import { AppText, useAppIntl } from '../../../../i18n';
+import { BarnSammeAdresse } from '../../../../types/BarnSammeAdresse';
+import { BarnToSendToApi, OmBarnetApiData } from '../../../../types/søknadApiData/SøknadApiData';
+import { getRelasjonTilBarnetIntlKey } from '../../om-barnet/omBarnetStepUtils';
+import { SøkersRelasjonTilBarnet } from '../../../../types/SøkersRelasjonTilBarnet';
 
 interface Props {
     apiData: OmBarnetApiData;

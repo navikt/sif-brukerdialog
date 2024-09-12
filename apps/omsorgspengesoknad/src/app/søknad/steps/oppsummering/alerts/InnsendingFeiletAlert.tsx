@@ -1,8 +1,8 @@
 import { Alert, List } from '@navikt/ds-react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import { InvalidParameter } from './invalidParameter';
-import { AppText } from '../../../i18n';
+import { InvalidParameter } from '../../../../types/InvalidParameter';
+import { AppText } from '../../../../i18n';
 
 interface Props {
     invalidParameter: InvalidParameter[];
@@ -48,7 +48,7 @@ const renderFeilmelding = (invalidParameter: InvalidParameter) => {
     );
 };
 
-const InnsendingFeiletInformasjon: React.FunctionComponent<Props> = ({ invalidParameter }) => {
+const InnsendingFeiletAlert: React.FunctionComponent<Props> = ({ invalidParameter }) => {
     return (
         <FormBlock>
             <Alert variant="error">
@@ -61,4 +61,4 @@ const InnsendingFeiletInformasjon: React.FunctionComponent<Props> = ({ invalidPa
     );
 };
 
-export default InnsendingFeiletInformasjon;
+export default InnsendingFeiletAlert;

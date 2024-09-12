@@ -1,11 +1,10 @@
 import { Alert, FormSummary } from '@navikt/ds-react';
-import React from 'react';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
-import { AppText } from '../../../i18n';
-import { SøknadApiData } from '../../../types/søknadApiData/SøknadApiData';
-import { DeltBostedSøknadsdata } from '../../../types/søknadsdata/DeltBostedSøknadsdata';
-import { LegeerklæringSøknadsdata } from '../../../types/søknadsdata/LegeerklæringSøknadsdata';
-import { fixAttachmentURL, getAttachmentURLBackend } from '../../../utils/attachmentUtils';
+import { AppText } from '../../../../i18n';
+import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
+import { DeltBostedSøknadsdata } from '../../../../types/søknadsdata/DeltBostedSøknadsdata';
+import { LegeerklæringSøknadsdata } from '../../../../types/søknadsdata/LegeerklæringSøknadsdata';
+import { fixAttachmentURL, getAttachmentURLBackend } from '../../../../utils/attachmentUtils';
 
 interface Props {
     apiData: SøknadApiData;
