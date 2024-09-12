@@ -30,7 +30,6 @@ const BorSammenMedBarnetSpørsmål = () => {
                 },
             ]}
             validate={getRequiredFieldValidator()}
-            data-testid="sammeAdresse"
             description={
                 <ExpandableInfo title={text('steg.omBarnet.spm.sammeAdresse.hvaBetyrDette')}>
                     {text('steg.omBarnet.spm.sammeAdresse.hvaBetyrDette.info')}

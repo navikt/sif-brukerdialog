@@ -29,7 +29,6 @@ const HøyereRisikoForFraværBeskrivelseSpørsmål = () => {
             }}
             maxLength={1000}
             label={text('steg.omBarnet.spm.høyereRisikoForFraværBeskrivelse.label')}
-            data-testid="høyereRisikoForFraværBeskrivelse"
         />
     );
 };

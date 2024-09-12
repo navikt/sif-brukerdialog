@@ -20,9 +20,10 @@ test('Fyll ut søknad med registrert barn', async ({ page }) => {
     /** Barn */
     await page.getByRole('heading', { level: 1, name: 'Barn' });
     await page.getByLabel('ALFABETISK FAGGOTTFødt 08.06.2019').check();
-    await page.getByTestId('sammeAdresse').getByLabel('Ja', { exact: true }).check();
+    await page.getByRole('group', { name: 'Bor du sammen med barnet?' }).getByLabel('Ja', { exact: true }).check();
     await page.getByRole('group', { name: 'Har barnet kronisk/langvarig' }).getByLabel('Ja').check();
-    await page.getByTestId('høyereRisikoForFravær_no').check();
+    await page.getByRole('group', { name: 'Har barnet kronisk/langvarig' }).getByLabel('Ja').check();
+    await page.getByRole('group', { name: 'Har du høyere risiko for frav' }).getByLabel('Nei').check();
     await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Legeerklæring */
