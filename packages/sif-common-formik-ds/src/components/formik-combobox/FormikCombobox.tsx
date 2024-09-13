@@ -32,8 +32,7 @@ function FormikCombobox<FieldName, ErrorType>({
                         {...restProps}
                         {...field}
                         shouldAutocomplete={true}
-                        error={getErrorPropForFormikInput({ field, form, context, error })}
-                        autoComplete="off">
+                        error={getErrorPropForFormikInput({ field, form, context, error })}>
                         {children}
                     </UNSAFE_Combobox>
                 );

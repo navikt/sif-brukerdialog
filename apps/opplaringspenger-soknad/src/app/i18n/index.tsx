@@ -10,11 +10,11 @@ import {
 } from '@navikt/sif-common-forms-ds';
 import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
-import { appMessages } from './appMessages';
-import { omBarnetMessages } from '../søknad/steps/om-barnet/stegOmBarnetMessages';
-import { kursperiodeMessages } from '../søknad/steps/kurs/kursperiode';
 import { arbeidstidMessages } from '../søknad/steps/arbeidstid/arbeidstidMessages';
 import { arbeidstidPeriodeMessages } from '../søknad/steps/arbeidstid/arbeidstidPeriodeMessages';
+import { kursperiodeMessages } from '../søknad/steps/kurs/kursperiode';
+import { omBarnetMessages } from '../søknad/steps/om-barnet/stegOmBarnetMessages';
+import { appMessages } from './appMessages';
 
 export const libMessages = {
     nb: {

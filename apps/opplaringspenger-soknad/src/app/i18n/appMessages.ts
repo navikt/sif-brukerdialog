@@ -4,19 +4,19 @@ import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { arbeidssituasjonMessages } from '../søknad/steps/arbeidssituasjon/arbeidssituasjonMessages';
 import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerklæringMessages';
-import { medlemskapMessages } from '../søknad/steps/medlemskap/medlemskapMessages';
 import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
 import { kursMessages } from '../søknad/steps/kurs/kursMessages';
 import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
 import { kursperiodeMessages } from '../søknad/steps/kurs/kursperiode';
 import { arbeidstidMessages } from '../søknad/steps/arbeidstid/arbeidstidMessages';
+import { medlemskapFormMessages } from '@navikt/sif-common-forms-ds/src';
 
 const nb = {
     ...velkommenPageMessages.nb,
     ...legeerklæringMessages.nb,
     ...kursMessages.nb,
     ...arbeidssituasjonMessages.nb,
-    ...medlemskapMessages.nb,
+    ...medlemskapFormMessages.nb,
     ...oppsummeringMessages.nb,
     ...kvitteringMessages.nb,
     ...validateApiDataMessages.nb,
