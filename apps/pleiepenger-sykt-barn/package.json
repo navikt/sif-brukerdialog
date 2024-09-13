@@ -9,9 +9,9 @@
     "type": "module",
     "dependencies": {
         "@navikt/appstatus-react-ds": "workspace:*",
-        "@navikt/ds-css": "6.16.3",
+        "@navikt/ds-css": "6.17.0",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "6.16.3",
+        "@navikt/ds-react": "6.17.0",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
@@ -52,7 +52,7 @@
         "@babel/plugin-transform-modules-commonjs": "7.24.8",
         "@babel/preset-env": "7.25.4",
         "@babel/preset-react": "7.24.7",
-        "@chromatic-com/storybook": "2.0.1",
+        "@chromatic-com/storybook": "2.0.2",
         "@playwright/test": "1.47.0",
         "@sentry/vite-plugin": "2.22.4",
         "@sif/eslint-config": "workspace:*",
@@ -88,7 +88,7 @@
         "typescript": "5.5.4",
         "vite": "5.4.4",
         "vite-plugin-checker": "0.8.0",
-        "vitest": "2.0.5"
+        "vitest": "2.1.0"
     },
     "scripts": {
         "build-storybook": "storybook build",
