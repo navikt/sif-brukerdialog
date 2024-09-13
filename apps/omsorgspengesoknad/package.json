@@ -4,14 +4,14 @@
     "license": "MIT",
     "name": "@navikt/omsorgspengesoknad",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "1.29.18",
+    "version": "1.29.19",
     "private": true,
     "type": "module",
     "dependencies": {
-        "@navikt/ds-css": "6.16.3",
+        "@navikt/ds-css": "6.17.0",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "6.16.3",
-        "@navikt/ds-tailwind": "6.16.3",
+        "@navikt/ds-react": "6.17.0",
+        "@navikt/ds-tailwind": "6.17.0",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
@@ -70,7 +70,7 @@
         "axe-core": "4.10.0",
         "babel-polyfill": "6.26.0",
         "busboy": "1.6.0",
-        "chromatic": "^11.8.0",
+        "chromatic": "^11.10.1",
         "cors": "2.8.5",
         "cross-env": "7.0.3",
         "helmet": "7.1.0",
@@ -81,7 +81,7 @@
         "typescript": "5.5.4",
         "vite": "5.4.4",
         "vite-plugin-checker": "0.8.0",
-        "vitest": "2.0.5"
+        "vitest": "2.1.0"
     },
     "scripts": {
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/omsorgspenger",

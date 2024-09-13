@@ -2,7 +2,7 @@
     "author": "navikt",
     "main": "src",
     "name": "@navikt/sif-common-core-ds",
-    "version": "9.18.8",
+    "version": "9.18.9",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -23,10 +23,10 @@
         "@babel/preset-react": "7.24.7",
         "@babel/preset-typescript": "7.24.7",
         "@navikt/appstatus-react-ds": "workspace:*",
-        "@navikt/ds-css": "6.16.3",
+        "@navikt/ds-css": "6.17.0",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "6.16.3",
-        "@navikt/ds-tailwind": "6.16.3",
+        "@navikt/ds-react": "6.17.0",
+        "@navikt/ds-tailwind": "6.17.0",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@originjs/vite-plugin-commonjs": "1.0.3",
         "@sif/eslint-config": "workspace:*",
@@ -65,7 +65,7 @@
         "uuid": "10.0.0",
         "vite": "5.4.4",
         "vite-plugin-checker": "0.8.0",
-        "vitest": "2.0.5"
+        "vitest": "2.1.0"
     },
     "overrides": {
         "react-refresh": "0.11.0"

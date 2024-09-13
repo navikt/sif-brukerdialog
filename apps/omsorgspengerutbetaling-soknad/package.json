@@ -4,14 +4,14 @@
     "license": "MIT",
     "name": "@navikt/omsorgspengerutbetaling-soknad",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "1.15.3",
+    "version": "1.15.4",
     "private": true,
     "type": "module",
     "dependencies": {
-        "@navikt/ds-css": "6.16.3",
+        "@navikt/ds-css": "6.17.0",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "6.16.3",
-        "@navikt/ds-tailwind": "6.16.3",
+        "@navikt/ds-react": "6.17.0",
+        "@navikt/ds-tailwind": "6.17.0",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
@@ -79,7 +79,7 @@
         "typescript": "5.5.4",
         "vite": "5.4.4",
         "vite-plugin-checker": "0.8.0",
-        "vitest": "2.0.5"
+        "vitest": "2.1.0"
     },
     "scripts": {
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling",
