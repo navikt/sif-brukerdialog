@@ -15,19 +15,16 @@ interface Props {
 
 const bem = bemUtils('messagesPreview');
 
-const MessagesPreview = ({
-    messages,
-    title = 'Tekster',
-    showMissingTextSummary = true,
-    showExplanation = true,
-}: Props) => {
+const MessagesPreview = ({ messages, title, showMissingTextSummary = true, showExplanation = true }: Props) => {
     const allMessages = createMultiLocaleObject(messages);
     const missingMessages = getMissingMessageKeys(allMessages);
     return (
         <div className={bem.block}>
-            <Heading level="3" size="medium" spacing={true}>
-                {title}
-            </Heading>
+            {title && (
+                <Heading level="3" size="medium" spacing={true}>
+                    {title}
+                </Heading>
+            )}
             {missingMessages && showMissingTextSummary && (
                 <Block margin="xl">
                     <Heading size="small" level="3">

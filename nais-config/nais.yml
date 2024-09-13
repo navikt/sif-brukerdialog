@@ -47,6 +47,11 @@ spec:
         min: {{ minReplicas }}
         max: {{ maxReplicas }}
         cpuThresholdPercentage: 90
+    {{#if faro}}
+    frontend:
+        generatedConfig:
+            mountPath: /apps/{{app}}/dist/assets/nais.js
+    {{/if}}
     prometheus:
         enabled: true
         path: /metrics

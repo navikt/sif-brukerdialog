@@ -1,0 +1,19 @@
+{
+    "name": "@navikt/sif-common-faro",
+    "main": "src/index.ts",
+    "version": "0.1.2",
+    "private": true,
+    "type": "module",
+    "dependencies": {
+        "@grafana/faro-web-sdk": "1.10.0",
+        "constate": "3.3.2"
+    },
+    "peerDependencies": {
+        "react": "18.3.1"
+    },
+    "scripts": {
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit"
+    }
+}

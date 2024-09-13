@@ -402,6 +402,7 @@ const nb = {
     'steg.oppsummering.utenlandsoppholdIPerioden.header': 'Skal du være i utlandet i perioden?',
     'steg.oppsummering.utenlandsoppholdIPerioden.listTitle': 'Utlandsopphold i perioden',
     'steg.oppsummering.ferieuttakIPerioden.header': 'Skal du ta ut ferie i perioden?',
+    'steg.oppsummering.ferieuttakIPerioden.listTitle': 'Ferie i perioden',
 
     'steg.oppsummering.omsorgstilbud.header': 'Omsorgstilbud i søknadsperioden',
     'steg.oppsummering.omsorgstilbud.fortid.spm':

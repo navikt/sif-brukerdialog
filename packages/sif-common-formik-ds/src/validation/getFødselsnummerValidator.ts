@@ -10,6 +10,8 @@ export enum ValidateFødselsnummerError {
     fødselsnummerIsNotAllowed = 'fødselsnummerIsNotAllowed',
 }
 
+export const ValidateFødselsnummerErrorKeys = Object.keys(ValidateFødselsnummerError);
+
 type FødselsnummerValidationResult =
     | ValidateFødselsnummerError.fødselsnummerHasNoValue
     | ValidateFødselsnummerError.fødselsnummerIsNotAllowed

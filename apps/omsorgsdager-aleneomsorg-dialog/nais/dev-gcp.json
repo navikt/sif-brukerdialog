@@ -10,6 +10,7 @@
     "cluster": "dev-gcp",
     "minReplicas": 1,
     "maxReplicas": 1,
+    "faro": true,
     "observabilityEnabled": "true",
     "env": {
         "DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://omsorgsdager-aleneomsorg-dialog.intern.dev.nav.no/oauth2/logout&redirectToApp=true",
@@ -23,6 +24,7 @@
         "APPSTATUS_DATASET": "staging",
         "API_TOKENX_AUDIENCE": "dev-gcp:dusseldorf:k9-brukerdialog-prosessering",
         "NPM_CONFIG_CACHE": "/tmp",
-        "APP_VERSION": "dev"
+        "APP_VERSION": "dev",
+        "USE_FARO": "true"
     }
 }

@@ -14,7 +14,7 @@ import { handleDateRangeValidationError } from '@navikt/sif-common-forms-ds/src/
 import { Kursperiode } from '../../../../types/Kursperiode';
 import { ISODate } from '@navikt/sif-common-utils';
 import { VStack } from '@navikt/ds-react';
-import { FormPanel } from '@navikt/sif-common-ui';
+import { FormLayout } from '@navikt/sif-common-ui';
 import dayjs from 'dayjs';
 export interface KursperiodeFormLabels {
     fromDate: string;
@@ -175,7 +175,7 @@ const KursperiodeForm = ({
                                             ) : null}
                                             {kursperiodeUtils.måBesvareBeskrivelseReisetidTil(formik.values) && (
                                                 <VStack gap={'2'}>
-                                                    <FormPanel>
+                                                    <FormLayout.Panel>
                                                         <Form.Textarea
                                                             name={KursperiodeFormFields.beskrivelseReisetidTil}
                                                             label="Beskrivelse av årsak reisetid til kurssted"
@@ -185,7 +185,7 @@ const KursperiodeForm = ({
                                                                 required: true,
                                                             })}
                                                         />
-                                                    </FormPanel>
+                                                    </FormLayout.Panel>
                                                 </VStack>
                                             )}
                                         </VStack>
@@ -206,19 +206,17 @@ const KursperiodeForm = ({
                                             ) : null}
 
                                             {kursperiodeUtils.måBesvareBeskrivelseReisetidHjem(formik.values) && (
-                                                <VStack gap={'2'}>
-                                                    <FormPanel>
-                                                        <Form.Textarea
-                                                            name={KursperiodeFormFields.beskrivelseReisetidHjem}
-                                                            label="Beskrivelse av årsak reisetid fra kurssted"
-                                                            description="På grunn av at det er mer enn én dag mellom sluttdato og hjemkomst, må du beskrive reisetiden fra kursstedet."
-                                                            validate={getStringValidator({
-                                                                minLength: 5,
-                                                                required: true,
-                                                            })}
-                                                        />
-                                                    </FormPanel>
-                                                </VStack>
+                                                <FormLayout.Panel>
+                                                    <Form.Textarea
+                                                        name={KursperiodeFormFields.beskrivelseReisetidHjem}
+                                                        label="Beskrivelse av årsak reisetid fra kurssted"
+                                                        description="På grunn av at det er mer enn én dag mellom sluttdato og hjemkomst, må du beskrive reisetiden fra kursstedet."
+                                                        validate={getStringValidator({
+                                                            minLength: 5,
+                                                            required: true,
+                                                        })}
+                                                    />
+                                                </FormLayout.Panel>
                                             )}
                                         </VStack>
                                     </VStack>

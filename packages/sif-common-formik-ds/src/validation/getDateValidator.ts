@@ -18,6 +18,8 @@ export enum ValidateDateError {
     dateIsNotWeekday = 'dateIsNotWeekday',
 }
 
+export const ValidateDateErrorKeys = Object.keys(ValidateDateError);
+
 export type DateValidationResult =
     | ValidateDateError.dateHasNoValue
     | ValidateDateError.dateHasInvalidFormat

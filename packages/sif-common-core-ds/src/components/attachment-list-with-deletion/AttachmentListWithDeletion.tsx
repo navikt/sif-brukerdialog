@@ -1,17 +1,17 @@
-import { Attachment } from '../../types/Attachment';
-
-import AttachmentListElement from '../attachment-list-element/AttachmentListElement';
 import DeleteButton from '../../atoms/delete-button/DeleteButton';
 import LoadingSpinner from '../../atoms/loading-spinner/LoadingSpinner';
-import UnstyledList from '../lists/unstyled-list/UnstyledList';
 import { CoreText, useCoreIntl } from '../../i18n/common.messages';
+import { Attachment } from '../../types/Attachment';
+import AttachmentListElement from '../attachment-list-element/AttachmentListElement';
+import UnstyledList from '../lists/unstyled-list/UnstyledList';
 
 interface Props {
     attachments: Attachment[];
+    showFileSize?: boolean;
     onRemoveAttachmentClick: (attachment: Attachment) => void;
 }
 
-const AttachmentListWithDeletion = ({ attachments, onRemoveAttachmentClick }: Props) => {
+const AttachmentListWithDeletion = ({ attachments, showFileSize, onRemoveAttachmentClick }: Props) => {
     const { text } = useCoreIntl();
     return (
         <UnstyledList>
@@ -20,6 +20,7 @@ const AttachmentListWithDeletion = ({ attachments, onRemoveAttachmentClick }: Pr
                 .map((attachment, index) => (
                     <AttachmentListElement
                         attachment={attachment}
+                        showFileSize={showFileSize}
                         key={attachment.file.name + index}
                         renderRightAlignedContent={() =>
                             attachment.pending ? (
@@ -27,9 +28,9 @@ const AttachmentListWithDeletion = ({ attachments, onRemoveAttachmentClick }: Pr
                             ) : (
                                 <DeleteButton
                                     useTrashcan={false}
-                                    ariaLabel={text('@core.common.vedleggsliste.fjernKnapp')}
+                                    ariaLabel={text('@core.formikAttachmentsList.delete')}
                                     onClick={() => onRemoveAttachmentClick(attachment)}>
-                                    <CoreText id="@core.common.vedleggsliste.fjernKnapp" />
+                                    <CoreText id="@core.formikAttachmentsList.delete" />
                                 </DeleteButton>
                             )
                         }

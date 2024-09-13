@@ -5,15 +5,15 @@
     "homepage": "https://navikt.github.io/sif-common-sentry",
     "license": "MIT",
     "main": "src/index.ts",
-    "version": "0.27.5",
+    "version": "0.27.7",
     "type": "module",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-sentry/issues"
     },
     "dependencies": {
-        "@sentry/browser": "8.28.0",
-        "@sentry/react": "8.28.0",
-        "@sentry/types": "8.28.0"
+        "@sentry/browser": "8.30.0",
+        "@sentry/react": "8.30.0",
+        "@sentry/types": "8.30.0"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",

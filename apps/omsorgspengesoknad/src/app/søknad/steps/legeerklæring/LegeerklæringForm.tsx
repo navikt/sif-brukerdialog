@@ -1,33 +1,29 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import FileUploadErrors from '@navikt/sif-common-core-ds/src/components/file-upload-errors/FileUploadErrors';
-import FormikFileUploader from '@navikt/sif-common-core-ds/src/components/formik-file-uploader/FormikFileUploader';
-import PictureScanningGuide from '@navikt/sif-common-core-ds/src/components/picture-scanning-guide/PictureScanningGuide';
+import { FormikAttachmentForm } from '@navikt/sif-common-core-ds';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import {
     attachmentHasBeenUploaded,
     getTotalSizeOfAttachments,
+    hasExceededMaxTotalSizeOfAttachments,
+    hasPendingAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { getTypedFormComponents, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
+import { FormLayout } from '@navikt/sif-common-ui';
 import api, { ApiEndpoint } from '../../../api/api';
 import { AppText, useAppIntl } from '../../../i18n';
-import { getAttachmentURLFrontend } from '../../../utils/attachmentUtils';
+import getLenker from '../../../lenker';
+import { fixAttachmentURL, getAttachmentURLFrontend } from '../../../utils/attachmentUtils';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
-import { validateAttachments, ValidateAttachmentsErrors } from '../../../utils/validateAttachments';
-import LegeerklæringAvtaleAttachmentList from './LegeerklæringAttachmentList';
-import AdvarselSamletDokumentstørrelse from '../../../components/advarsel-samlet-dokumentstørrelse/AdvarselSamletDokumentstørrelse';
 
 interface Props {
-    values: Partial<LegeerklæringFormValues>;
-    goBack?: () => void;
+    legeerklæringer?: Attachment[];
     isSubmitting?: boolean;
     andreVedlegg?: Attachment[];
+    goBack?: () => void;
 }
 
 export enum LegeerklæringFormFields {
@@ -55,26 +51,27 @@ export const validateDocuments = (attachments: Attachment[]): ValidationResult<V
     return undefined;
 };
 
-const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, andreVedlegg = [], isSubmitting }) => {
+const LegeerklæringForm: React.FunctionComponent<Props> = ({
+    legeerklæringer = [],
+    andreVedlegg = [],
+    isSubmitting,
+    goBack,
+}) => {
     const intl = useIntl();
     const { text } = useAppIntl();
-
-    const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
-
-    const hasPendingUploads: boolean = (values.vedlegg || []).find((a: any) => a.pending === true) !== undefined;
-    const legeerklæringAttachments = values.vedlegg ? values.vedlegg : [];
-    const totalSize = getTotalSizeOfAttachments([...legeerklæringAttachments, ...andreVedlegg]);
-    const totalSizeOfAttachmentsOver24Mb = totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
 
     return (
         <Form
             formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
             includeValidationSummary={true}
             submitPending={isSubmitting}
-            submitDisabled={hasPendingUploads || totalSizeOfAttachmentsOver24Mb}
+            submitDisabled={
+                hasPendingAttachments(legeerklæringer) ||
+                hasExceededMaxTotalSizeOfAttachments([...legeerklæringer, ...andreVedlegg])
+            }
             runDelayedFormValidation={true}
             onBack={goBack}>
-            <Block padBottom="xl">
+            <FormLayout.Questions>
                 <SifGuidePanel>
                     <p>
                         <AppText id={'steg.legeerklaering.counsellorpanel.1'} />
@@ -83,42 +80,24 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                         <AppText id={'steg.legeerklaering.counsellorpanel.2'} />
                     </p>
                 </SifGuidePanel>
-            </Block>
-            <Block margin={'l'}>
-                <PictureScanningGuide />
-            </Block>
-            {totalSize <= MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
-                <FormBlock>
-                    <FormikFileUploader
-                        attachments={legeerklæringAttachments}
-                        name={LegeerklæringFormFields.vedlegg}
-                        buttonLabel={text('steg.legeerklaering.vedlegg.knappLabel')}
-                        uploadFile={(file) => api.uploadFile(ApiEndpoint.vedlegg, file)}
-                        getAttachmentURLFrontend={getAttachmentURLFrontend}
-                        onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
-                        onFileInputClick={() => {
-                            setFilesThatDidntGetUploaded([]);
-                        }}
-                        validate={(attachments: Attachment[] = []) => {
-                            return validateAll<ValidateAttachmentsErrors | ValidationError>([
-                                () => validateAttachments([...attachments, ...andreVedlegg]),
-                            ]);
-                        }}
-                        onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
-                    />
-                </FormBlock>
-            )}
 
-            {totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
-                <Block margin={'l'}>
-                    <AdvarselSamletDokumentstørrelse />
-                </Block>
-            )}
-            <Block margin={'l'}>
-                <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
-            </Block>
-
-            <LegeerklæringAvtaleAttachmentList wrapNoAttachmentsInBlock={true} includeDeletionFunctionality={true} />
+                <FormikAttachmentForm
+                    fieldName={LegeerklæringFormFields.vedlegg}
+                    includeGuide={true}
+                    attachments={legeerklæringer}
+                    otherAttachments={andreVedlegg}
+                    fixAttachmentURL={fixAttachmentURL}
+                    uploadLaterURL={getLenker(intl.locale).ettersend}
+                    onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
+                    uploadFile={(file) => api.uploadFile(ApiEndpoint.vedlegg, file)}
+                    deleteFile={api.deleteFile}
+                    getAttachmentURLFrontend={getAttachmentURLFrontend}
+                    labels={{
+                        addLabel: text('steg.legeerklaering.vedlegg.knappLabel'),
+                        noAttachmentsText: text('vedleggsliste.ingenLegeerklæringLastetOpp'),
+                    }}
+                />
+            </FormLayout.Questions>
         </Form>
     );
 };

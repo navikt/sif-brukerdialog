@@ -13,6 +13,8 @@ export enum ValidateDateRangeError {
     fromDateIsAfterToDate = 'fromDateIsAfterToDate',
 }
 
+export const ValidateDateRangeErrorKeys = Object.keys(ValidateDateRangeError);
+
 type DateRangeValidationResult =
     | DateValidationResult
     | ValidateDateRangeError.fromDateIsAfterToDate

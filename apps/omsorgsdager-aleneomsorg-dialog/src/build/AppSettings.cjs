@@ -12,6 +12,8 @@ const getAppSettings = () => ({
     MINSIDE_URL: `${process.env.MINSIDE_URL}`,
     OMS_IKKE_TILSYN_URL: `${process.env.OMS_IKKE_TILSYN_URL}`,
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
+    USE_FARO: `${process.env.USE_FARO}`,
+    NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL: `${process.env.NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL}`,
 });
 
 module.exports = getAppSettings;

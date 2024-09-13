@@ -14,6 +14,8 @@ export enum ValidateTimeError {
     durationIsTooShort = 'durationIsTooShort',
 }
 
+export const ValidateTimeErrorKeys = Object.keys(ValidateTimeError);
+
 type TimeValidationResult =
     | undefined
     | ValidateTimeError.timeHasNoValue

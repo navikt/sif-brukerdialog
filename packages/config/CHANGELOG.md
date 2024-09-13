@@ -1,5 +1,23 @@
 # config
 
+## 0.10.8
+
+### Patch Changes
+
+-   Pakkeoppdatering - minor/patch
+
+## 0.10.7
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 0.10.6
+
+### Patch Changes
+
+-   799b512: Pakkeoppdateringer - minor/patch
+
 ## 0.10.5
 
 ### Patch Changes

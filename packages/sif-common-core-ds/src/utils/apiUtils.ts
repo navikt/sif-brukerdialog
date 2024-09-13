@@ -1,4 +1,4 @@
-import { AxiosError } from 'axios';
+import { AxiosError, AxiosRequestConfig } from 'axios';
 import HttpStatus, { StatusCodes } from 'http-status-codes';
 
 export const isForbidden = ({ response }: AxiosError) =>
@@ -17,11 +17,30 @@ export const getStartedSøknadRequestParam = (date?: Date): string | undefined =
     return date ? `startetSøknad=${date.toISOString()}` : undefined;
 };
 
+export const generateCorrlationId = () => `CallId_${new Date().getTime()}_${Math.floor(Math.random() * 1000000000)}`;
+
+export const getCorrelationIdHeader = () => ({
+    x_correlation_id: generateCorrlationId(),
+});
+
+export const addCorrelationIdToAxionsConfig = (config: AxiosRequestConfig): AxiosRequestConfig => {
+    return {
+        ...config,
+        headers: {
+            ...config.headers,
+            ...getCorrelationIdHeader(),
+        },
+    };
+};
+
 const apiUtils = {
     isForbidden,
     isUnauthorized,
     isUserLoggedOut,
     getStartedSøknadRequestParam,
+    generateCorrlationId,
+    getCorrelationIdHeader,
+    addCorrelationIdToAxionsConfig,
 };
 
 export default apiUtils;

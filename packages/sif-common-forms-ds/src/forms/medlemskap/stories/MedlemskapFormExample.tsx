@@ -1,8 +1,7 @@
 import { Box, Tabs, VStack } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { TypedFormikWrapper, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { flatten } from 'flat';
-import MessagesPreview from '../../../../storybook/components/messages-preview/MessagesPreview';
+import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
 import MedlemskapForm, { MedlemskapFormErrors, MedlemskapFormValues } from '../form/MedlemskapForm';
 import { medlemskapFormMessages } from '../i18n/medlemskapMessages';
@@ -52,6 +51,7 @@ const MedlemskapFormExample = () => {
                     <Tabs.Tab value="form" label="MedlemskapForm" />
                     <Tabs.Tab value="summary" label="MedlemskapSummary" />
                     <Tabs.Tab value="messages" label="Tekster" />
+                    <Tabs.Tab value="validationMessages" label="Valideringsmeldinger" />
                     <Tabs.Tab value="apiData" label="ApiData" />
                 </Tabs.List>
                 <Tabs.Panel value="form" style={{ maxWidth: '50rem' }}>
@@ -69,16 +69,16 @@ const MedlemskapFormExample = () => {
                     <MedlemskapSummary medlemskap={medlemskapApiData} />
                 </Tabs.Panel>
                 <Tabs.Panel value="messages">
-                    <Block margin="xxl" padBottom="l">
-                        <FormValidationErrorMessages
-                            validationErrorIntlKeys={{
-                                ...flatten(MedlemskapFormErrors),
-                            }}
-                            formName={'medlemskapForm'}
-                            intlMessages={medlemskapFormMessages}
-                        />
-                        <MessagesPreview messages={medlemskapFormMessages} showExplanation={false} />
-                    </Block>
+                    <MessagesPreview messages={medlemskapFormMessages} showExplanation={false} />
+                </Tabs.Panel>
+                <Tabs.Panel value="validationMessages">
+                    <FormValidationErrorMessages
+                        validationErrorIntlKeys={{
+                            ...flatten(MedlemskapFormErrors),
+                        }}
+                        formName={'medlemskapForm'}
+                        intlMessages={medlemskapFormMessages}
+                    />
                 </Tabs.Panel>
                 <Tabs.Panel value="apiData">
                     <JSONView

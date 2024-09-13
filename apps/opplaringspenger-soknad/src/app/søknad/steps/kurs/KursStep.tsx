@@ -7,7 +7,7 @@ import {
     getYesOrNoValidator,
 } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { FormPanel } from '@navikt/sif-common-ui';
+import { FormLayout } from '@navikt/sif-common-ui';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -123,7 +123,7 @@ const KursStep = () => {
                                         </Select>
 
                                         {values[KursFormFields.kursholder] === 'annen' && (
-                                            <FormPanel>
+                                            <FormLayout.Panel>
                                                 <VStack gap="6">
                                                     <Heading as="h2" size="small">
                                                         Annen helseinstitusjon/kompetansesenter
@@ -135,7 +135,7 @@ const KursStep = () => {
                                                         name={KursFormFields.kursholder_annen_beskrivelse}
                                                         label="Beskrivelse og kontaktinformasjon (telefon)"></Textarea>
                                                 </VStack>
-                                            </FormPanel>
+                                            </FormLayout.Panel>
                                         )}
                                     </VStack>
 
