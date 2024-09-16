@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.47.7
+
+### Patch Changes
+
+-   0fafe0e: Pakkeoppdateringer. Major Aksel og date-fns. Minor og patch på resten
+
 ## 3.47.6
 
 ### Patch Changes

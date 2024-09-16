@@ -1,5 +1,11 @@
 # @navikt/sif-app-register
 
+## 0.1.2
+
+### Patch Changes
+
+-   0fafe0e: Pakkeoppdateringer. Major Aksel og date-fns. Minor og patch på resten
+
 ## 0.1.1
 
 ### Patch Changes

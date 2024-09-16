@@ -1,5 +1,13 @@
 # @navikt/appstatus-react-ds
 
+## 2.19.7
+
+### Patch Changes
+
+-   0fafe0e: Pakkeoppdateringer. Major Aksel og date-fns. Minor og patch på resten
+-   Updated dependencies [0fafe0e]
+    -   @navikt/sif-common-hooks@0.2.2
+
 ## 2.19.6
 
 ### Patch Changes
