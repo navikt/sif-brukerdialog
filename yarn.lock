@@ -4214,7 +4214,7 @@ __metadata:
     formik: "npm:2.4.6"
     helmet: "npm:7.1.0"
     http-proxy-middleware: "npm:3.0.2"
-    jose: "npm:5.8.0"
+    jose: "npm:5.9.2"
     jsdom: "npm:25.0.0"
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
@@ -4297,7 +4297,7 @@ __metadata:
     formik: "npm:2.4.6"
     http-proxy-middleware: "npm:3.0.2"
     intl: "npm:1.2.5"
-    jose: "npm:5.8.0"
+    jose: "npm:5.9.2"
     jsdom: "npm:25.0.0"
     lodash: "npm:4.17.21"
     mockdate: "npm:3.0.5"
@@ -4413,7 +4413,7 @@ __metadata:
     formik: "npm:2.4.6"
     helmet: "npm:7.1.0"
     http-proxy-middleware: "npm:3.0.2"
-    jose: "npm:5.8.0"
+    jose: "npm:5.9.2"
     jsdom: "npm:25.0.0"
     less: "npm:4.2.0"
     mustache-express: "npm:1.3.2"
@@ -4528,7 +4528,7 @@ __metadata:
     helmet: "npm:7.1.0"
     history: "npm:5.3.0"
     http-proxy-middleware: "npm:3.0.2"
-    jose: "npm:5.8.0"
+    jose: "npm:5.9.2"
     jsdom: "npm:25.0.0"
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
@@ -4606,7 +4606,7 @@ __metadata:
     express-rate-limit: "npm:7.4.0"
     helmet: "npm:7.1.0"
     http-proxy-middleware: "npm:3.0.2"
-    jose: "npm:5.8.0"
+    jose: "npm:5.9.2"
     jsdom: "npm:25.0.0"
     lodash: "npm:4.17.21"
     mockdate: "npm:3.0.5"
@@ -4687,7 +4687,7 @@ __metadata:
     formik: "npm:2.4.6"
     helmet: "npm:7.1.0"
     http-proxy-middleware: "npm:3.0.2"
-    jose: "npm:5.8.0"
+    jose: "npm:5.9.2"
     jsdom: "npm:25.0.0"
     lodash: "npm:4.17.21"
     mustache-express: "npm:1.3.2"
@@ -4765,7 +4765,7 @@ __metadata:
     formik: "npm:2.4.6"
     helmet: "npm:7.1.0"
     http-proxy-middleware: "npm:3.0.2"
-    jose: "npm:5.8.0"
+    jose: "npm:5.9.2"
     jsdom: "npm:25.0.0"
     lodash: "npm:4.17.21"
     mustache-express: "npm:1.3.2"
@@ -4850,7 +4850,7 @@ __metadata:
     http-proxy-middleware: "npm:3.0.2"
     http-status-codes: "npm:2.3.0"
     intl: "npm:1.2.5"
-    jose: "npm:5.8.0"
+    jose: "npm:5.9.2"
     jsdom: "npm:25.0.0"
     less: "npm:4.2.0"
     lodash.debounce: "npm:4.0.8"
@@ -5368,7 +5368,7 @@ __metadata:
     globals: "npm:15.9.0"
     helmet: "npm:7.1.0"
     http-proxy-middleware: "npm:3.0.2"
-    jose: "npm:5.8.0"
+    jose: "npm:5.9.2"
     jsdom: "npm:25.0.0"
     lodash: "npm:4.17.21"
     mustache-express: "npm:1.3.2"
@@ -19124,10 +19124,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jose@npm:5.8.0, jose@npm:^5.2.3":
-  version: 5.8.0
-  resolution: "jose@npm:5.8.0"
-  checksum: 10/d5a11135754aeb7e3dcfbfb33ae1087541a081002cedb533e4705a9d71237a2c22f21085a291a0847939257a7b2f2374b589d306be17c3330049aefb62719c5e
+"jose@npm:5.9.2":
+  version: 5.9.2
+  resolution: "jose@npm:5.9.2"
+  checksum: 10/bbcad3bb2681424ee257f3eb561d70b69a082ceef628926ac20f8c1d3471fccfc039bc8d7b7507fa818f695fdafa2cfaab53c46dfd8e56d9b89262f7c83b8a25
   languageName: node
   linkType: hard
 
@@ -19135,6 +19135,13 @@ __metadata:
   version: 4.15.9
   resolution: "jose@npm:4.15.9"
   checksum: 10/256234b6f85cdc080b1331f2d475bd58c8ccf459cb20f70ac5e4200b271bce10002b1c2f8e5b96dd975d83065ae5a586d52cdf89d28471d56de5d297992f9905
+  languageName: node
+  linkType: hard
+
+"jose@npm:^5.2.3":
+  version: 5.8.0
+  resolution: "jose@npm:5.8.0"
+  checksum: 10/d5a11135754aeb7e3dcfbfb33ae1087541a081002cedb533e4705a9d71237a2c22f21085a291a0847939257a7b2f2374b589d306be17c3330049aefb62719c5e
   languageName: node
   linkType: hard
 
