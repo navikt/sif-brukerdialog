@@ -1,5 +1,16 @@
 # @navikt/sif-common-forms-ds
 
+## 10.1.5
+
+### Patch Changes
+
+-   0fafe0e: Pakkeoppdateringer. Major Aksel og date-fns. Minor og patch på resten
+-   Updated dependencies [0fafe0e]
+    -   @navikt/sif-common-formik-ds@1.12.10
+    -   @navikt/sif-common-core-ds@9.18.10
+    -   @navikt/sif-common-utils@3.47.7
+    -   @navikt/sif-common-ui@0.8.12
+
 ## 10.1.4
 
 ### Patch Changes

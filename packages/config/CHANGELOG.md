@@ -1,5 +1,11 @@
 # config
 
+## 0.10.9
+
+### Patch Changes
+
+-   0fafe0e: Pakkeoppdateringer. Major Aksel og date-fns. Minor og patch på resten
+
 ## 0.10.8
 
 ### Patch Changes

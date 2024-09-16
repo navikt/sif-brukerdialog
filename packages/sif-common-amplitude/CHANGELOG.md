@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.26.8
+
+### Patch Changes
+
+-   0fafe0e: Pakkeoppdateringer. Major Aksel og date-fns. Minor og patch på resten
+
 ## 2.26.7
 
 ### Patch Changes

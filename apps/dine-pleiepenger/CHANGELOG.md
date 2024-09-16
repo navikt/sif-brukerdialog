@@ -1,5 +1,18 @@
 # @navikt/dine-pleiepenger
 
+## 1.6.10
+
+### Patch Changes
+
+-   0fafe0e: Pakkeoppdateringer. Major Aksel og date-fns. Minor og patch på resten
+-   Updated dependencies [0fafe0e]
+    -   @navikt/sif-common-amplitude@2.26.8
+    -   @navikt/appstatus-react-ds@2.19.7
+    -   @navikt/sif-common-core-ds@9.18.10
+    -   @navikt/sif-common-sentry@0.27.8
+    -   @navikt/sif-app-register@0.1.2
+    -   @navikt/sif-common-utils@3.47.7
+
 ## 1.6.9
 
 ### Patch Changes
