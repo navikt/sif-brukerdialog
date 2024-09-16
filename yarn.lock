@@ -4022,10 +4022,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aksel-icons@npm:^6.17.0":
-  version: 6.17.0
-  resolution: "@navikt/aksel-icons@npm:6.17.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faksel-icons%2F6.17.0%2F92f12f06c26db3c2221908da599a113654942044"
-  checksum: 10/5a70f0705f71413f2ee397dd184c4b9bc3fc67d1206558885313727120aed52de592fe73f8e6333b76c81800bed60cc9a54af979aa8159d1de12d2e60c44cd2b
+"@navikt/aksel-icons@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "@navikt/aksel-icons@npm:7.0.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faksel-icons%2F7.0.0%2Fb696ad78e601b1088d346cea4cd29940e8991bcb"
+  checksum: 10/b6e52f785631d73a88a37b5eff22df071efb8e396ce6d83ba1b3016e9ca6536c0fbdc67c61f459dd35a01e3e8b1785ada434fe695adea2591bdc71d2114ea7e7
   languageName: node
   linkType: hard
 
@@ -4033,8 +4033,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/appstatus-react-ds@workspace:packages/appstatus-react-ds"
   dependencies:
-    "@navikt/ds-css": "npm:6.17.0"
-    "@navikt/ds-react": "npm:6.17.0"
+    "@navikt/ds-css": "npm:7.0.0"
+    "@navikt/ds-react": "npm:7.0.0"
     "@navikt/sif-common-hooks": "workspace:*"
     "@portabletext/react": "npm:3.1.0"
     "@sanity/client": "npm:6.21.3"
@@ -4061,10 +4061,10 @@ __metadata:
     "@grafana/faro-web-sdk": "npm:1.10.0"
     "@grafana/faro-web-tracing": "npm:1.10.0"
     "@navikt/appstatus-react-ds": "workspace: *"
-    "@navikt/ds-css": "npm:6.17.0"
+    "@navikt/ds-css": "npm:7.0.0"
     "@navikt/ds-icons": "npm:3.4.3"
-    "@navikt/ds-react": "npm:6.17.0"
-    "@navikt/ds-tailwind": "npm:6.17.0"
+    "@navikt/ds-react": "npm:7.0.0"
+    "@navikt/ds-tailwind": "npm:7.0.0"
     "@navikt/nav-dekoratoren-moduler": "npm:2.1.6"
     "@navikt/next-logger": "npm:1.31.0"
     "@navikt/oasis": "npm:3.4.0"
@@ -4121,10 +4121,10 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/ds-css@npm:6.17.0":
-  version: 6.17.0
-  resolution: "@navikt/ds-css@npm:6.17.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-css%2F6.17.0%2Fce84459723d9a8e88df82eb67dc77b05af5dd0de"
-  checksum: 10/a2b9a1bad27820e4ffa9cfcac0cb38ce1fca5a9f4f5327947123ae5246362f893722e93abcb7024a0bb1aaec51319430bb522568a94449633a8edae401ecd253
+"@navikt/ds-css@npm:7.0.0":
+  version: 7.0.0
+  resolution: "@navikt/ds-css@npm:7.0.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-css%2F7.0.0%2F24c8994367516a16e383a49d6940e34472ec9413"
+  checksum: 10/23e90e1bd15475c8c94a73e7f9b8af21bef101bfe21f7b4f69833b4399ac5978bd9a73a7b61fca84103db94913218d58a625ddb5c4588f026268a371afbbe9f3
   languageName: node
   linkType: hard
 
@@ -4138,35 +4138,35 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/ds-react@npm:6.17.0":
-  version: 6.17.0
-  resolution: "@navikt/ds-react@npm:6.17.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-react%2F6.17.0%2F5353e0239dc0387ba796a67a0e764bfb88f30a48"
+"@navikt/ds-react@npm:7.0.0":
+  version: 7.0.0
+  resolution: "@navikt/ds-react@npm:7.0.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-react%2F7.0.0%2F6bea7efb224bee86c8695f0e576365dd84af6d5d"
   dependencies:
     "@floating-ui/react": "npm:0.25.4"
     "@floating-ui/react-dom": "npm:^2.0.9"
-    "@navikt/aksel-icons": "npm:^6.17.0"
-    "@navikt/ds-tokens": "npm:^6.17.0"
+    "@navikt/aksel-icons": "npm:^7.0.0"
+    "@navikt/ds-tokens": "npm:^7.0.0"
     clsx: "npm:^2.1.0"
     date-fns: "npm:^3.0.0"
     react-day-picker: "npm:8.10.0"
   peerDependencies:
     "@types/react": ^17.0.30 || ^18.0.0
     react: ^17.0.0 || ^18.0.0
-  checksum: 10/f920e9cdc74a542537c043bd40c760722e5a32718f5fde5e4361642df251fac2efca5b8fb30cf4fa075ef5a9fcd1f64396043d540890f45150cd5ccf9366fb4b
+  checksum: 10/8f13f69a43f1a3736e26c366ad544964f4038adbb4a210ddc530a2357a9fc3175268579d750061e3c347588e17af26b1d9a441648437bffefdfd9c9dc5abba27
   languageName: node
   linkType: hard
 
-"@navikt/ds-tailwind@npm:6.17.0":
-  version: 6.17.0
-  resolution: "@navikt/ds-tailwind@npm:6.17.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-tailwind%2F6.17.0%2F2395e7f207705192d3b2adf6954f2a84ee1a7efb"
-  checksum: 10/8a85b689efadb638030c4859f4de9973c4bb2fb3f06831ecaa4313aead4e27da31fb909defc0173033af3fac19ad0796a4593641ceddb301937dbcd334130287
+"@navikt/ds-tailwind@npm:7.0.0":
+  version: 7.0.0
+  resolution: "@navikt/ds-tailwind@npm:7.0.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-tailwind%2F7.0.0%2F4c52cadcf6396250dee613fb5156ee2fd184880c"
+  checksum: 10/adc7c3fc7e1e09ea4a9b01bacaf0b2b182c056875315cd5e13af212c3dff400f6ab5e09bf1f24b1639fbffc954974f950ebc17ab65643060c681d8517a4b4e8d
   languageName: node
   linkType: hard
 
-"@navikt/ds-tokens@npm:^6.17.0":
-  version: 6.17.0
-  resolution: "@navikt/ds-tokens@npm:6.17.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-tokens%2F6.17.0%2Fe80eeb7c7d6f469d6704125b5835ea95995be327"
-  checksum: 10/12ea7c2c3711584f6c7d8b94287155919678ccb48b85b2c80ce73756f5b6a59b72d6c371958271b3deaba37757ba333cac1cb7bbac1c0bdc1ffed20d377c1985
+"@navikt/ds-tokens@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "@navikt/ds-tokens@npm:7.0.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-tokens%2F7.0.0%2F5364615e29a7dc9b687713e89056737a6897f504"
+  checksum: 10/23c584ea34b19e90d0f3a3a2d031b081dfc68cc4ac494e3396d3c1a07f633c2a32cc5edf84794ba99f07ce7c5cd626a6ab814f507d08073525a0b2b352155dd3
   languageName: node
   linkType: hard
 
@@ -4180,9 +4180,9 @@ __metadata:
     "@babel/plugin-transform-modules-commonjs": "npm:7.24.8"
     "@babel/preset-env": "npm:7.25.4"
     "@babel/preset-react": "npm:7.24.7"
-    "@navikt/ds-css": "npm:6.17.0"
-    "@navikt/ds-react": "npm:6.17.0"
-    "@navikt/ds-tailwind": "npm:6.17.0"
+    "@navikt/ds-css": "npm:7.0.0"
+    "@navikt/ds-react": "npm:7.0.0"
+    "@navikt/ds-tailwind": "npm:7.0.0"
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
@@ -4246,10 +4246,10 @@ __metadata:
     "@babel/preset-react": "npm:7.24.7"
     "@babel/preset-typescript": "npm:7.24.7"
     "@mswjs/data": "npm:0.16.2"
-    "@navikt/ds-css": "npm:6.17.0"
+    "@navikt/ds-css": "npm:7.0.0"
     "@navikt/ds-icons": "npm:3.4.3"
-    "@navikt/ds-react": "npm:6.17.0"
-    "@navikt/ds-tailwind": "npm:6.17.0"
+    "@navikt/ds-react": "npm:7.0.0"
+    "@navikt/ds-tailwind": "npm:7.0.0"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-formik-ds": "workspace:*"
@@ -4378,9 +4378,9 @@ __metadata:
     "@babel/plugin-transform-modules-commonjs": "npm:7.24.8"
     "@babel/preset-env": "npm:7.25.4"
     "@babel/preset-react": "npm:7.24.7"
-    "@navikt/ds-css": "npm:6.17.0"
-    "@navikt/ds-react": "npm:6.17.0"
-    "@navikt/ds-tailwind": "npm:6.17.0"
+    "@navikt/ds-css": "npm:7.0.0"
+    "@navikt/ds-react": "npm:7.0.0"
+    "@navikt/ds-tailwind": "npm:7.0.0"
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
@@ -4437,10 +4437,10 @@ __metadata:
   resolution: "@navikt/omsorgsdager-kalkulator@workspace:apps/omsorgsdager-kalkulator"
   dependencies:
     "@axe-core/playwright": "npm:4.10.0"
-    "@navikt/ds-css": "npm:6.17.0"
+    "@navikt/ds-css": "npm:7.0.0"
     "@navikt/ds-icons": "npm:3.4.3"
-    "@navikt/ds-react": "npm:6.17.0"
-    "@navikt/ds-tailwind": "npm:6.17.0"
+    "@navikt/ds-react": "npm:7.0.0"
+    "@navikt/ds-tailwind": "npm:7.0.0"
     "@navikt/nav-dekoratoren-moduler": "npm:2.1.6"
     "@playwright/test": "npm:1.47.0"
     "@types/node": "npm:22.5.4"
@@ -4480,10 +4480,10 @@ __metadata:
     "@babel/preset-react": "npm:7.24.7"
     "@babel/preset-typescript": "npm:7.24.7"
     "@chromatic-com/storybook": "npm:2.0.2"
-    "@navikt/ds-css": "npm:6.17.0"
+    "@navikt/ds-css": "npm:7.0.0"
     "@navikt/ds-icons": "npm:3.4.3"
-    "@navikt/ds-react": "npm:6.17.0"
-    "@navikt/ds-tailwind": "npm:6.17.0"
+    "@navikt/ds-react": "npm:7.0.0"
+    "@navikt/ds-tailwind": "npm:7.0.0"
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
@@ -4561,10 +4561,10 @@ __metadata:
     "@babel/preset-env": "npm:7.25.4"
     "@babel/preset-react": "npm:7.24.7"
     "@babel/preset-typescript": "npm:7.24.7"
-    "@navikt/ds-css": "npm:6.17.0"
+    "@navikt/ds-css": "npm:7.0.0"
     "@navikt/ds-icons": "npm:3.4.3"
-    "@navikt/ds-react": "npm:6.17.0"
-    "@navikt/ds-tailwind": "npm:6.17.0"
+    "@navikt/ds-react": "npm:7.0.0"
+    "@navikt/ds-tailwind": "npm:7.0.0"
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
@@ -4639,10 +4639,10 @@ __metadata:
     "@babel/preset-env": "npm:7.25.4"
     "@babel/preset-react": "npm:7.24.7"
     "@babel/preset-typescript": "npm:7.24.7"
-    "@navikt/ds-css": "npm:6.17.0"
+    "@navikt/ds-css": "npm:7.0.0"
     "@navikt/ds-icons": "npm:3.4.3"
-    "@navikt/ds-react": "npm:6.17.0"
-    "@navikt/ds-tailwind": "npm:6.17.0"
+    "@navikt/ds-react": "npm:7.0.0"
+    "@navikt/ds-tailwind": "npm:7.0.0"
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
@@ -4719,10 +4719,10 @@ __metadata:
     "@babel/preset-react": "npm:7.24.7"
     "@babel/preset-typescript": "npm:7.24.7"
     "@chromatic-com/storybook": "npm:2.0.2"
-    "@navikt/ds-css": "npm:6.17.0"
+    "@navikt/ds-css": "npm:7.0.0"
     "@navikt/ds-icons": "npm:3.4.3"
-    "@navikt/ds-react": "npm:6.17.0"
-    "@navikt/ds-tailwind": "npm:6.17.0"
+    "@navikt/ds-react": "npm:7.0.0"
+    "@navikt/ds-tailwind": "npm:7.0.0"
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
@@ -4800,9 +4800,9 @@ __metadata:
     "@babel/preset-react": "npm:7.24.7"
     "@chromatic-com/storybook": "npm:2.0.2"
     "@navikt/appstatus-react-ds": "workspace:*"
-    "@navikt/ds-css": "npm:6.17.0"
+    "@navikt/ds-css": "npm:7.0.0"
     "@navikt/ds-icons": "npm:3.4.3"
-    "@navikt/ds-react": "npm:6.17.0"
+    "@navikt/ds-react": "npm:7.0.0"
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
@@ -4931,10 +4931,10 @@ __metadata:
     "@babel/preset-typescript": "npm:7.24.7"
     "@grafana/faro-web-sdk": "npm:1.10.0"
     "@navikt/appstatus-react-ds": "workspace:*"
-    "@navikt/ds-css": "npm:6.17.0"
+    "@navikt/ds-css": "npm:7.0.0"
     "@navikt/ds-icons": "npm:3.4.3"
-    "@navikt/ds-react": "npm:6.17.0"
-    "@navikt/ds-tailwind": "npm:6.17.0"
+    "@navikt/ds-react": "npm:7.0.0"
+    "@navikt/ds-tailwind": "npm:7.0.0"
     "@navikt/sif-common-formik-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@originjs/vite-plugin-commonjs": "npm:1.0.3"
@@ -5005,9 +5005,9 @@ __metadata:
     "@babel/preset-env": "npm:7.25.4"
     "@babel/preset-react": "npm:7.24.7"
     "@babel/preset-typescript": "npm:7.24.7"
-    "@navikt/ds-css": "npm:6.17.0"
+    "@navikt/ds-css": "npm:7.0.0"
     "@navikt/ds-icons": "npm:3.4.3"
-    "@navikt/ds-react": "npm:6.17.0"
+    "@navikt/ds-react": "npm:7.0.0"
     "@navikt/fnrvalidator": "npm:2.1.2"
     "@originjs/vite-plugin-commonjs": "npm:1.0.3"
     "@sif/eslint-config": "workspace:*"
@@ -5076,8 +5076,8 @@ __metadata:
     "@babel/preset-react": "npm:7.24.7"
     "@babel/preset-typescript": "npm:7.24.7"
     "@formatjs/intl-pluralrules": "npm:5.2.14"
-    "@navikt/ds-css": "npm:6.17.0"
-    "@navikt/ds-react": "npm:6.17.0"
+    "@navikt/ds-css": "npm:7.0.0"
+    "@navikt/ds-react": "npm:7.0.0"
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-formik-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
@@ -5177,8 +5177,8 @@ __metadata:
     "@devexperts/remote-data-ts": "npm:2.1.1"
     "@formatjs/intl-pluralrules": "npm:5.2.14"
     "@navikt/appstatus-react-ds": "workspace:*"
-    "@navikt/ds-css": "npm:6.17.0"
-    "@navikt/ds-react": "npm:6.17.0"
+    "@navikt/ds-css": "npm:7.0.0"
+    "@navikt/ds-react": "npm:7.0.0"
     "@navikt/nav-dekoratoren-moduler": "npm:2.1.6"
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-formik-ds": "workspace:*"
@@ -5252,9 +5252,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-ui@workspace:packages/sif-common-ui"
   dependencies:
-    "@navikt/ds-css": "npm:6.17.0"
+    "@navikt/ds-css": "npm:7.0.0"
     "@navikt/ds-icons": "npm:3.4.3"
-    "@navikt/ds-react": "npm:6.17.0"
+    "@navikt/ds-react": "npm:7.0.0"
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-formik-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
@@ -5319,6 +5319,51 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@navikt/sif-common@workspace:packages/sif-common":
+  version: 0.0.0-use.local
+  resolution: "@navikt/sif-common@workspace:packages/sif-common"
+  dependencies:
+    "@navikt/ds-css": "npm:7.0.0"
+    "@navikt/ds-icons": "npm:3.4.3"
+    "@navikt/ds-react": "npm:7.0.0"
+    "@navikt/sif-common-core-ds": "workspace:*"
+    "@navikt/sif-common-formik-ds": "workspace:*"
+    "@navikt/sif-common-utils": "workspace:*"
+    "@sif/eslint-config": "workspace:*"
+    "@storybook/addon-a11y": "npm:8.3.0"
+    "@storybook/addon-actions": "npm:8.3.0"
+    "@storybook/addon-essentials": "npm:8.3.0"
+    "@storybook/addon-interactions": "npm:8.3.0"
+    "@storybook/addon-links": "npm:8.3.0"
+    "@storybook/addon-styling": "npm:1.3.7"
+    "@storybook/addon-toolbars": "npm:8.3.0"
+    "@storybook/node-logger": "npm:8.3.0"
+    "@storybook/preset-create-react-app": "npm:8.3.0"
+    "@storybook/react": "npm:8.3.0"
+    "@storybook/testing-library": "npm:0.2.2"
+    "@types/react": "npm:18.3.5"
+    axios: "npm:1.7.7"
+    classnames: "npm:2.5.1"
+    copyfiles: "npm:2.4.1"
+    date-fns: "npm:3.6.0"
+    dayjs: "npm:1.11.13"
+    globals: "npm:15.9.0"
+    intl: "npm:1.2.5"
+    less: "npm:4.2.0"
+    npm-run-all: "npm:4.1.5"
+    postcss: "npm:8.4.45"
+    react: "npm:18.3.1"
+    react-day-picker: "npm:8.10.1"
+    react-dom: "npm:18.3.1"
+    react-intl: "npm:6.6.8"
+    react-scripts: "npm:5.0.1"
+    storybook: "npm:8.3.0"
+    typescript: "npm:5.5.4"
+    webpack: "npm:5.94.0"
+    zod: "npm:3.23.8"
+  languageName: unknown
+  linkType: soft
+
 "@navikt/sif-ettersending@workspace:apps/sif-ettersending":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-ettersending@workspace:apps/sif-ettersending"
@@ -5327,10 +5372,10 @@ __metadata:
     "@babel/core": "npm:7.25.2"
     "@babel/preset-env": "npm:7.25.4"
     "@babel/preset-react": "npm:7.24.7"
-    "@navikt/ds-css": "npm:6.17.0"
+    "@navikt/ds-css": "npm:7.0.0"
     "@navikt/ds-icons": "npm:3.4.3"
-    "@navikt/ds-react": "npm:6.17.0"
-    "@navikt/ds-tailwind": "npm:6.17.0"
+    "@navikt/ds-react": "npm:7.0.0"
+    "@navikt/ds-tailwind": "npm:7.0.0"
     "@navikt/nav-dekoratoren-moduler": "npm:2.1.6"
     "@navikt/sif-app-register": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
