@@ -2,7 +2,10 @@
     "extends": "../../packages/config/tsconfig-apps.json",
     "compilerOptions": {
         "outDir": "build/dist",
-        "typeRoots": ["../../node_modules/@types", "./node_modules/@types"]
+        "typeRoots": ["../../node_modules/@types", "./node_modules/@types"],
+        "paths": {
+            "@navikt/sif-common/models": ["src/models"] // Path alias for importing types
+        }
     },
     "exclude": ["node_modules", "src/build", "**.js", "dist"],
     "include": ["./src/app/**/*", "./src/storybook/**/*"]

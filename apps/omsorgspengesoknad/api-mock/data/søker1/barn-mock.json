@@ -14,6 +14,6 @@
             "fødselsdato": "2020-04-20",
             "aktørId": "123"
         },
-        { "fødselsdato": "2015-01-02", "fornavn": "Mock", "etternavn": "Mocknes", "aktørId": "2" }
+        { "fødselsdato": "2015-01-02", "fornavn": "Mock", "etternavn": "Mocknes", "aktørId": "2", "mellomnavn": "" }
     ]
 }

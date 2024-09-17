@@ -1,5 +1,4 @@
-import { RegistrertBarn } from './RegistrertBarn';
-import { Søker } from './Søker';
+import { RegistrertBarn, Søker } from '@navikt/sif-common';
 import { SøknadRoutes } from './SøknadRoutes';
 import { Søknadsdata } from './søknadsdata/Søknadsdata';
 
