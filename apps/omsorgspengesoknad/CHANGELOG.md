@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.29.22
+
+### Patch Changes
+
+-   Fjerne unicode validering på beskrivelsefelt
+
 ## 1.29.21
 
 ### Patch Changes
