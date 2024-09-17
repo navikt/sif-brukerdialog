@@ -1,5 +1,25 @@
 # @navikt/sif-common-ui
 
+## 0.8.13
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.12.11
+    -   @navikt/sif-common-core-ds@9.18.11
+    -   @navikt/sif-common-utils@3.47.8
+
+## 0.8.12
+
+### Patch Changes
+
+-   0fafe0e: Pakkeoppdateringer. Major Aksel og date-fns. Minor og patch på resten
+-   Updated dependencies [0fafe0e]
+    -   @navikt/sif-common-formik-ds@1.12.10
+    -   @navikt/sif-common-core-ds@9.18.10
+    -   @navikt/sif-common-utils@3.47.7
+
 ## 0.8.11
 
 ### Patch Changes

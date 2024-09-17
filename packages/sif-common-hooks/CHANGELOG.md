@@ -1,5 +1,11 @@
 # @navikt/sif-common-hooks
 
+## 0.2.2
+
+### Patch Changes
+
+-   0fafe0e: Pakkeoppdateringer. Major Aksel og date-fns. Minor og patch på resten
+
 ## 0.2.1
 
 ### Patch Changes

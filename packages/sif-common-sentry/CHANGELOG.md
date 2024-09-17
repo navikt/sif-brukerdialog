@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.27.8
+
+### Patch Changes
+
+-   0fafe0e: Pakkeoppdateringer. Major Aksel og date-fns. Minor og patch på resten
+
 ## 0.27.7
 
 ### Patch Changes

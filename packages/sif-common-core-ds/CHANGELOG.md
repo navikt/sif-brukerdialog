@@ -1,5 +1,21 @@
 # @navikt/sif-common-core-ds
 
+## 9.18.11
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-utils@3.47.8
+
+## 9.18.10
+
+### Patch Changes
+
+-   0fafe0e: Pakkeoppdateringer. Major Aksel og date-fns. Minor og patch på resten
+-   Updated dependencies [0fafe0e]
+    -   @navikt/sif-common-utils@3.47.7
+
 ## 9.18.9
 
 ### Patch Changes

@@ -1,5 +1,17 @@
 # @sif/eslint-config
 
+## 1.1.8
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 1.1.7
+
+### Patch Changes
+
+-   0fafe0e: Pakkeoppdateringer. Major Aksel og date-fns. Minor og patch på resten
+
 ## 1.1.6
 
 ### Patch Changes

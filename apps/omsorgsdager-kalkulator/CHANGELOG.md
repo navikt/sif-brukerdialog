@@ -1,5 +1,17 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.8.9
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 3.8.8
+
+### Patch Changes
+
+-   0fafe0e: Pakkeoppdateringer. Major Aksel og date-fns. Minor og patch på resten
+
 ## 3.8.7
 
 ### Patch Changes
