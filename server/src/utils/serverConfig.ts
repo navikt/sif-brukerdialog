@@ -8,7 +8,7 @@ type Proxy = {
     apiUrl: string;
 };
 
-enum Service {
+export enum Service {
     innsyn = 'innsyn',
     k9SakInnsyn = 'k9SakInnsyn',
     k9BrukerdialogProsessering = 'k9BrukerdialogProsessering',

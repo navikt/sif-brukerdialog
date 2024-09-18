@@ -40,8 +40,9 @@
         "test": "turbo test"
     },
     "workspaces": [
-        "apps/*",
-        "packages/*"
+        "apps",
+        "packages/*",
+        "server"
     ],
     "overrides": {
         "glob-parent": ">=5.1.2"

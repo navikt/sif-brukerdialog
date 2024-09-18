@@ -1,7 +1,7 @@
 import { getToken, requestTokenxOboToken } from '@navikt/oasis';
 import { Express, NextFunction, Request, Response } from 'express';
 import { createProxyMiddleware } from 'http-proxy-middleware';
-import config, { verifyAllProxiesAreSet } from './serverConfig.js';
+import config, { Service, verifyAllProxiesAreSet } from './serverConfig.js';
 
 type ProxyOptions = {
     ingoingUrl: string;
@@ -17,7 +17,7 @@ export function configureReverseProxyApi(app: Express) {
     }
 
     Object.keys(config.proxies)
-        .map((key) => config.proxies[key])
+        .map((key) => config.proxies[key as Service])
         .forEach((proxy) => {
             addProxyHandler(app, {
                 ingoingUrl: proxy.frontendPath,
