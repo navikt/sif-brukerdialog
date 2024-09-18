@@ -1,6 +1,6 @@
 FROM node:20.12-alpine AS base
 
-ARG APP="demo-app"
+ARG APP="sif-demo-app"
 ARG SERVER="server"
 
 ENV SCOPE=@navikt/sif-demo-app
