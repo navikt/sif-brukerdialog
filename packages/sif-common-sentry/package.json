@@ -16,7 +16,7 @@
         "@sentry/types": "8.30.0"
     },
     "devDependencies": {
-        "@sif/eslint-config": "workspace:*",
+        "@sif/eslint-config": "*",
         "@types/node": "22.5.5",
         "axios": "1.7.7",
         "config": "*",
