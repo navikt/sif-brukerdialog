@@ -5,7 +5,6 @@ export default defineWorkspace([
     './apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/vitest.config.ts',
     './apps/endringsmelding-pleiepenger/vitest.config.ts',
     './apps/omsorgsdager-aleneomsorg-dialog/vite.config.ts',
-    './apps/omsorgsdager-kalkulator/vitest.config.ts',
     './apps/omsorgspengerutbetaling-arbeidstaker-soknad/vitest.config.ts',
     './apps/omsorgspengerutbetaling-soknad/vitest.config.ts',
     './apps/omsorgspengesoknad/vitest.config.ts',
@@ -15,5 +14,5 @@ export default defineWorkspace([
     './packages/sif-common-core-ds/vitest.config.ts',
     './packages/sif-common-forms-ds/vitest.config.ts',
     './packages/sif-common-formik-ds/vitest.config.ts',
-    './packages/sif-common-utils-ds/vitest.config.ts',
+    './packages/sif-common-utils/vitest.config.ts',
 ]);
