@@ -1,0 +1,29 @@
+{
+    "app": "sif-demo-app",
+    "namespace": "dusseldorf",
+    "team": "dusseldorf",
+    "ingresses": ["https://sif-demo-app.intern.dev.nav.no"],
+    "livenessPath": "/health/isAlive",
+    "readinessPath": "/health/isReady",
+    "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
+    "accessPolicyOutApps": ["k9-brukerdialog-prosessering"],
+    "minReplicas": 1,
+    "maxReplicas": 1,
+    "cluster": "dev-gcp",
+    "observabilityEnabled": "true",
+    "env": {
+        "APP_VERSION": "dev",
+        "ENV": "",
+        "INNSYN_FRONTEND_PATH": "",
+        "INNSYN_API_SCOPE": "",
+        "INNSYN_API_URL": "",
+        "K9_SAK_INNSYN_FRONTEND_PATH": "",
+        "K9_SAK_INNSYN_API_SCOPE": "",
+        "K9_SAK_INNSYN_API_URL": "",
+        "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "",
+        "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "",
+        "K9_BRUKERDIALOG_PROSESSERING_API_URL": "",
+        "NPM_CONFIG_CACHE": "/tmp",
+        "PUBLIC_PATH": "/"
+    }
+}
