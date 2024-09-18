@@ -7,10 +7,10 @@
     "private": true,
     "type": "module",
     "peerDependencies": {
-        "@navikt/sif-common-core-ds": "workspace:*",
-        "@navikt/sif-common-formik-ds": "workspace:*",
-        "@navikt/sif-common-ui": "workspace:*",
-        "@navikt/sif-common-utils": "workspace:*"
+        "@navikt/sif-common-core-ds": "*",
+        "@navikt/sif-common-formik-ds": "*",
+        "@navikt/sif-common-ui": "*",
+        "@navikt/sif-common-utils": "*"
     },
     "dependencies": {
         "date-fns": "4.1.0"
@@ -23,11 +23,11 @@
         "@formatjs/intl-pluralrules": "5.2.14",
         "@navikt/ds-css": "7.0.0",
         "@navikt/ds-react": "7.0.0",
-        "@navikt/sif-common-core-ds": "workspace:*",
-        "@navikt/sif-common-formik-ds": "workspace:*",
-        "@navikt/sif-common-utils": "workspace:*",
+        "@navikt/sif-common-core-ds": "*",
+        "@navikt/sif-common-formik-ds": "*",
+        "@navikt/sif-common-utils": "*",
         "@originjs/vite-plugin-commonjs": "1.0.3",
-        "@sif/eslint-config": "workspace:*",
+        "@sif/eslint-config": "*",
         "@storybook/addon-a11y": "8.3.1",
         "@storybook/addon-actions": "8.3.1",
         "@storybook/addon-essentials": "8.3.1",
@@ -46,7 +46,7 @@
         "@types/react-dom": "18.3.0",
         "@vitejs/plugin-react": "4.3.1",
         "axios": "1.7.7",
-        "config": "workspace:*",
+        "config": "*",
         "copyfiles": "2.4.1",
         "dayjs": "1.11.13",
         "flat": "6.0.1",

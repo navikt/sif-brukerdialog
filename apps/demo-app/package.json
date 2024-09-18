@@ -6,7 +6,7 @@
     "scripts": {
         "dev": "vite",
         "dev:debug": "vite --debug",
-        "build": "tsc && vite build --base=/familie/sykdom-i-familien/soknad/demo-app",
+        "build": "vite build --base=/familie/sykdom-i-familien/soknad/demo-app",
         "test:e2e": "playwright test",
         "test:e2e:ui": "playwright test --ui",
         "check:types": "tsc --noemit",

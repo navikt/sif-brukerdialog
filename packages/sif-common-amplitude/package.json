@@ -14,10 +14,10 @@
         "@amplitude/analytics-browser": "2.11.4"
     },
     "devDependencies": {
-        "@sif/eslint-config": "workspace:*",
+        "@sif/eslint-config": "*",
         "@types/node": "22.5.5",
         "@types/react": "18.3.6",
-        "config": "workspace:*",
+        "config": "*",
         "constate": "3.3.2",
         "gh-pages": "6.1.1",
         "react": "18.3.1",
