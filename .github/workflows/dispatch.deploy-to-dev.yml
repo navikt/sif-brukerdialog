@@ -8,6 +8,7 @@ on:
                 description: Choose application
                 type: choice
                 options:
+                    - sif-demo-app
                     - endringsmelding-pleiepenger
                     - ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
                     - omsorgspengesoknad
@@ -18,7 +19,6 @@ on:
                     - pleiepenger-sykt-barn
                     - sif-ettersending
                     - omsorgsdager-kalkulator
-                    - sif-demo-app
                 required: true
 
 jobs:

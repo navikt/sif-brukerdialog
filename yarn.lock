@@ -5357,9 +5357,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-demo-app@workspace:apps/demo-app":
+"@navikt/sif-demo-app@workspace:apps/sif-demo-app":
   version: 0.0.0-use.local
-  resolution: "@navikt/sif-demo-app@workspace:apps/demo-app"
+  resolution: "@navikt/sif-demo-app@workspace:apps/sif-demo-app"
   dependencies:
     "@eslint/eslintrc": "npm:3.1.0"
     "@eslint/js": "npm:9.10.0"
