@@ -8,14 +8,14 @@
         "@navikt/ds-css": "7.0.0",
         "@navikt/ds-icons": "3.4.3",
         "@navikt/ds-react": "7.0.0",
-        "@navikt/sif-common-core-ds": "workspace:*",
-        "@navikt/sif-common-formik-ds": "workspace:*",
-        "@navikt/sif-common-utils": "workspace:*",
+        "@navikt/sif-common-core-ds": "*",
+        "@navikt/sif-common-formik-ds": "*",
+        "@navikt/sif-common-utils": "*",
         "classnames": "2.5.1",
         "react-day-picker": "8.10.1"
     },
     "devDependencies": {
-        "@sif/eslint-config": "workspace:*",
+        "@sif/eslint-config": "*",
         "@storybook/addon-a11y": "8.3.1",
         "@storybook/addon-actions": "8.3.1",
         "@storybook/addon-essentials": "8.3.1",
