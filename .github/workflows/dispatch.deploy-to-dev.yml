@@ -18,12 +18,13 @@ on:
                     - pleiepenger-sykt-barn
                     - sif-ettersending
                     - omsorgsdager-kalkulator
+                    - sif-demo-app
                 required: true
 
 jobs:
     deploy-to-dev:
         name: Deploy ${{ inputs.app-name }} to dev
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@sif-server
         secrets: inherit
         permissions:
             id-token: write
