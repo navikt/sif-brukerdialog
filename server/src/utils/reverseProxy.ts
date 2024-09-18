@@ -12,19 +12,18 @@ type ProxyOptions = {
 export function configureReverseProxyApi(app: Express) {
     try {
         verifyAllProxiesAreSet();
+        Object.keys(config.proxies)
+            .map((key) => config.proxies[key as Service])
+            .forEach((proxy) => {
+                addProxyHandler(app, {
+                    ingoingUrl: proxy.frontendPath,
+                    outgoingUrl: proxy.apiUrl,
+                    scope: proxy.apiScope,
+                });
+            });
     } catch (e) {
         console.error('Error setting up reverse proxy', e);
     }
-
-    Object.keys(config.proxies)
-        .map((key) => config.proxies[key as Service])
-        .forEach((proxy) => {
-            addProxyHandler(app, {
-                ingoingUrl: proxy.frontendPath,
-                outgoingUrl: proxy.apiUrl,
-                scope: proxy.apiScope,
-            });
-        });
 }
 
 export function addProxyHandler(server: Express, { ingoingUrl, outgoingUrl, scope }: ProxyOptions) {
