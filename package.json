@@ -40,7 +40,7 @@
         "test": "turbo test"
     },
     "workspaces": [
-        "apps",
+        "apps/*",
         "packages/*",
         "server"
     ],
