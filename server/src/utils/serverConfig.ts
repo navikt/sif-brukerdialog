@@ -1,7 +1,3 @@
-import dotenv from 'dotenv';
-
-dotenv.config();
-
 type Proxy = {
     frontendPath: string;
     apiScope: string;

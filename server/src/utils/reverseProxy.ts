@@ -13,7 +13,7 @@ export function configureReverseProxyApi(app: Express) {
     try {
         verifyAllProxiesAreSet();
     } catch (e) {
-        console.log('Error setting up reverse proxy', e);
+        console.error('Error setting up reverse proxy', e);
     }
 
     Object.keys(config.proxies)

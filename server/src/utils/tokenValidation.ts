@@ -3,6 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 
 export const verifyToken = async (request: Request, response: Response, next: NextFunction) => {
     const token = getToken(request);
+
     if (!token) {
         return response.status(401).send();
     }
