@@ -76,8 +76,8 @@ spec:
          enabled: true
     idporten:
         enabled: true
-        autoLogin: true
-        autoLoginIgnorePaths:
-            - {{env.PUBLIC_PATH}}/assets/*
         sidecar:
+            autoLogin: true
+            autoLoginIgnorePaths:
+                - {{env.PUBLIC_PATH}}/assets/*
             enabled: true
