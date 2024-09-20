@@ -5,8 +5,10 @@ ARG SERVER="server"
 
 ENV SCOPE=@navikt/sif-demo-app
 
-RUN apk update && apk add git
-RUN apk add --no-cache libc6-compat
+RUN apk fix \
+    && apk add --no-cache --update libc6-compat tini \
+    && rm -rf /var/cache/apk/*
+
 RUN yarn global add turbo
 
 #########################################
@@ -63,13 +65,7 @@ RUN mv /app/apps/${APP}/dist /public
 FROM base AS server
 ARG SERVER
 WORKDIR /app
-
-RUN apk fix \
-    && apk add --no-cache --update libc6-compat tini \
-    && rm -rf /var/cache/apk/*
-
 COPY --from=server-build /app/${SERVER}/dist ./
-
 ENTRYPOINT ["/sbin/tini", "--"]
 
 #########################################
