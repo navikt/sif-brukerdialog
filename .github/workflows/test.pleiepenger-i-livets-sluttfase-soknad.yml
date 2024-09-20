@@ -18,6 +18,7 @@ env:
 
 jobs:
     run-script-tests:
+        if: '!contains(github.event.head_commit.message, "[ci skip]")'
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
@@ -45,6 +46,7 @@ jobs:
               run: yarn test --filter=@navikt/pleiepenger-i-livets-sluttfase-soknad
 
     run-playwright-test:
+        if: '!contains(github.event.head_commit.message, "[ci skip]")'
         timeout-minutes: 60
         runs-on: ubuntu-latest
         steps:
