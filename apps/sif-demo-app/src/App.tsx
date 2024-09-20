@@ -1,7 +1,7 @@
 import '@navikt/ds-css';
 
 const App = () => {
-    return <p>App test2</p>;
+    return <p>Demo app</p>;
 };
 
 export default App;

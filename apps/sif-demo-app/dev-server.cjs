@@ -50,8 +50,6 @@ const startServer = async () => {
         JSON.stringify({
             APP_VERSION: `${process.env.APP_VERSION}`,
             PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
-            INNSYN: `${process.env.INNSYN}`,
-            FEATURE_TEST_1JULI2024_REGLER: `${process.env.FEATURE_TEST_1JULI2024_REGLER}`,
         }),
     );
 
