@@ -7,7 +7,7 @@ import checker from 'vite-plugin-checker';
 export default defineConfig({
     plugins: [
         react({
-            include: '**/*.{jsx,tsx}',
+            include: '**/*.{tsx}',
         }),
         checker({ typescript: true }),
     ],

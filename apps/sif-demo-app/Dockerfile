@@ -29,7 +29,7 @@ RUN find ${SERVER} \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xarg
 # BUILDER IMAGE - INSTALL PACKAGES AND COPY SOURCE
 #########################################
 
-FROM prepare as installer
+FROM prepare AS installer
 COPY --from=prepare /app ./
 RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
     PACKAGES_AUTH_TOKEN=$(cat /run/secrets/PACKAGES_AUTH_TOKEN) yarn
@@ -50,7 +50,7 @@ RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
 # Client
 #########################################
 
-FROM installer as client-build
+FROM installer AS client-build
 WORKDIR /app
 RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
     PACKAGES_AUTH_TOKEN=$(cat /run/secrets/PACKAGES_AUTH_TOKEN) yarn turbo run build --filter=${SCOPE}

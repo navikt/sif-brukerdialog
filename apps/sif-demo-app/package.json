@@ -8,8 +8,6 @@
         "dev:vite": "vite",
         "dev:debug": "vite --debug",
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/sif-demo-app",
-        "test:e2e": "playwright test",
-        "test:e2e:ui": "playwright test --ui",
         "check:types": "tsc --noemit",
         "lint": "eslint",
         "lint:fix": "eslint --fix"
@@ -31,7 +29,6 @@
         "@eslint/eslintrc": "3.1.0",
         "@eslint/js": "9.10.0",
         "@navikt/nav-dekoratoren-moduler": "2.1.6",
-        "@playwright/test": "1.47.1",
         "@types/node": "22.5.5",
         "@types/react": "18.3.7",
         "@types/react-dom": "18.3.0",
