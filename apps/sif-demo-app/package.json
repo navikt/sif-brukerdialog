@@ -7,7 +7,7 @@
         "dev": "node ./dev-server.cjs",
         "dev:vite": "vite",
         "dev:debug": "vite --debug",
-        "build": "vite build --base=/familie/sykdom-i-familien/soknad/demo-app",
+        "build": "vite build",
         "test:e2e": "playwright test",
         "test:e2e:ui": "playwright test --ui",
         "check:types": "tsc --noemit",
