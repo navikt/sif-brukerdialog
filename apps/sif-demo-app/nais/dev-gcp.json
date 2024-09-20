@@ -24,6 +24,6 @@
         "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "dev-gcp:dusseldorf:k9-brukerdialog-prosessering",
         "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",
         "NPM_CONFIG_CACHE": "/tmp",
-        "PUBLIC_PATH": "/"
+        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/sif-demo-app"
     }
 }
