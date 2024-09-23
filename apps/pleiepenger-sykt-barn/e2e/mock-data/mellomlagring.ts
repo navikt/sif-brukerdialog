@@ -32,7 +32,7 @@ export const mellomlagringMock = {
         utenlandsoppholdIPerioden: [],
         skalTaUtFerieIPerioden: 'no',
         ferieuttakIPerioden: [],
-        omsorgstilbud: { erIOmsorgstilbudFremtid: 'no' },
+        omsorgstilbud: { erIOmsorgstilbudFortid: 'no' },
         harNattevåk: 'unanswered',
         harBeredskap: 'unanswered',
         frilans: { harHattInntektSomFrilanser: 'no' },
