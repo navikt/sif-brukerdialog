@@ -47,6 +47,7 @@ export const publicEnvSchema = z.object({
 });
 
 export type ServerEnv = z.infer<typeof serverEnvSchema>;
+
 export const serverEnvSchema = z.object({
     NEXT_PUBLIC_INNSYN_BACKEND_SCOPE: z.string(),
     NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE: z.string(),
