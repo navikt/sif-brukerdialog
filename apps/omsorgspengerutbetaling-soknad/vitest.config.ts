@@ -5,7 +5,7 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
     test: {
-        exclude: ['./e2e/**/*', './build/**/*', './dist/**/*', '**/*.spec.tsx', '**/*.spec.ts'],
+        exclude: ['./e2e/**/*', './build/**/*', './dist/**/*', '**/*.spec.tsx', '**/*.spec.ts', 'node_modules'],
         globals: true,
         environment: 'jsdom',
         css: false,
