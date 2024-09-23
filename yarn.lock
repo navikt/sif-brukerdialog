@@ -4088,7 +4088,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/appstatus-react-ds@npm:*, @navikt/appstatus-react-ds@workspace: *, @navikt/appstatus-react-ds@workspace:packages/appstatus-react-ds":
+"@navikt/appstatus-react-ds@npm:*, @navikt/appstatus-react-ds@workspace:packages/appstatus-react-ds":
   version: 0.0.0-use.local
   resolution: "@navikt/appstatus-react-ds@workspace:packages/appstatus-react-ds"
   dependencies:
@@ -4119,7 +4119,7 @@ __metadata:
     "@axe-core/playwright": "npm:4.10.0"
     "@grafana/faro-web-sdk": "npm:1.10.0"
     "@grafana/faro-web-tracing": "npm:1.10.0"
-    "@navikt/appstatus-react-ds": "workspace: *"
+    "@navikt/appstatus-react-ds": "npm:*"
     "@navikt/ds-css": "npm:7.0.1"
     "@navikt/ds-icons": "npm:3.4.3"
     "@navikt/ds-react": "npm:7.0.1"
@@ -4127,11 +4127,11 @@ __metadata:
     "@navikt/nav-dekoratoren-moduler": "npm:2.1.6"
     "@navikt/next-logger": "npm:1.32.0"
     "@navikt/oasis": "npm:3.4.0"
-    "@navikt/sif-app-register": "workspace: *"
-    "@navikt/sif-common-amplitude": "workspace: *"
-    "@navikt/sif-common-core-ds": "workspace: *"
-    "@navikt/sif-common-sentry": "workspace: *"
-    "@navikt/sif-common-utils": "workspace: *"
+    "@navikt/sif-app-register": "npm:*"
+    "@navikt/sif-common-amplitude": "npm:*"
+    "@navikt/sif-common-core-ds": "npm:*"
+    "@navikt/sif-common-sentry": "npm:*"
+    "@navikt/sif-common-utils": "npm:*"
     "@playwright/test": "npm:1.47.2"
     "@sif/eslint-config": "npm:*"
     "@storybook/addon-essentials": "npm:8.3.2"
@@ -4933,7 +4933,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-app-register@npm:*, @navikt/sif-app-register@workspace: *, @navikt/sif-app-register@workspace:packages/sif-app-register":
+"@navikt/sif-app-register@npm:*, @navikt/sif-app-register@workspace:packages/sif-app-register":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-app-register@workspace:packages/sif-app-register"
   dependencies:
@@ -4960,7 +4960,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-common-amplitude@npm:*, @navikt/sif-common-amplitude@workspace: *, @navikt/sif-common-amplitude@workspace:packages/sif-common-amplitude":
+"@navikt/sif-common-amplitude@npm:*, @navikt/sif-common-amplitude@workspace:packages/sif-common-amplitude":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-amplitude@workspace:packages/sif-common-amplitude"
   dependencies:
@@ -4980,7 +4980,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-common-core-ds@npm:*, @navikt/sif-common-core-ds@workspace: *, @navikt/sif-common-core-ds@workspace:packages/sif-common-core-ds":
+"@navikt/sif-common-core-ds@npm:*, @navikt/sif-common-core-ds@workspace:packages/sif-common-core-ds":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-core-ds@workspace:packages/sif-common-core-ds"
   dependencies:
@@ -5203,7 +5203,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-common-sentry@npm:*, @navikt/sif-common-sentry@workspace: *, @navikt/sif-common-sentry@workspace:packages/sif-common-sentry":
+"@navikt/sif-common-sentry@npm:*, @navikt/sif-common-sentry@workspace:packages/sif-common-sentry":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-sentry@workspace:packages/sif-common-sentry"
   dependencies:
@@ -5350,7 +5350,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-common-utils@npm:*, @navikt/sif-common-utils@workspace: *, @navikt/sif-common-utils@workspace:packages/sif-common-utils":
+"@navikt/sif-common-utils@npm:*, @navikt/sif-common-utils@workspace:packages/sif-common-utils":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-utils@workspace:packages/sif-common-utils"
   dependencies:
