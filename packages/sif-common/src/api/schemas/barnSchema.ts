@@ -7,7 +7,7 @@ export const barnSchema = z.object({
     etternavn: z.string(),
     mellomnavn: z
         .string()
-        // .optional()
+        .optional()
         .nullable()
         .transform((v) => (v === null ? undefined : v)),
     fødselsdato: z.preprocess(parseMaybeDateStringToDate, z.date()),

@@ -5,6 +5,7 @@
     "version": "0.1.0",
     "scripts": {
         "dev": "node ./dev-server.cjs",
+        "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",
         "dev:vite": "vite",
         "dev:debug": "vite --debug",
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/sif-demo-app",
@@ -18,6 +19,10 @@
         "@navikt/ds-react": "7.0.0",
         "@navikt/ds-tailwind": "7.0.0",
         "@navikt/nav-dekoratoren-moduler": "3.1.0",
+        "@navikt/sif-common": "*",
+        "@navikt/sif-common-core-ds": "*",
+        "@navikt/sif-common-soknad-ds": "*",
+        "@navikt/sif-common-ui": "*",
         "clsx": "2.1.1",
         "date-fns": "4.1.0",
         "react": "18.3.1",
