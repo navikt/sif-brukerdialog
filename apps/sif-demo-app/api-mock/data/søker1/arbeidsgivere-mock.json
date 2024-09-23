@@ -1,0 +1,28 @@
+{
+    "organisasjoner": [
+        { "navn": "SJOKKERENDE ELEKTRIKER", "organisasjonsnummer": "947064649", "ansattFom": "2002-04-20" }
+    ],
+    "frilansoppdrag": [
+        {
+            "type": "type oppdrag",
+            "organisasjonsnummer": "991012133",
+            "navn": "Hurdal frilanssenter",
+            "ansattFom": "2022-01-01",
+            "ansattTom": "2022-01-15"
+        },
+        {
+            "type": "type oppdrag",
+            "organisasjonsnummer": "991012134",
+            "navn": "Svandalen frilanssenter",
+            "ansattFom": "2022-01-01",
+            "ansattTom": "2022-01-15"
+        }
+    ],
+    "privatarbeidsgiver": [
+        {
+            "navn": "Jon Jonsen",
+            "ansattFom": "2021-01-01",
+            "ansattTom": "2021-12-31"
+        }
+    ]
+}

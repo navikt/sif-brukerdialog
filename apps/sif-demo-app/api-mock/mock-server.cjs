@@ -57,6 +57,7 @@ const soker = 'søker1';
 
 const søkerFileName = `søker-mock.json`;
 const barnFileName = `barn-mock.json`;
+const arbeidsgivereFileName = `arbeidsgivere-mock.json`;
 const innvilgetVedtakFileName = `innvilget-vedtak-mock.json`;
 const ikkeInnvilgetVedtakFileName = `ikke-innvilget-vedtak-mock.json`;
 
@@ -82,6 +83,12 @@ const startExpressServer = () => {
     server.get('/oppslag/barn', (req, res) => {
         setTimeout(() => {
             readMockFile(barnFileName, res);
+        }, 250);
+    });
+
+    server.get('/oppslag/arbeidsgiver', (req, res) => {
+        setTimeout(() => {
+            readMockFile(arbeidsgivereFileName, res);
         }, 250);
     });
 

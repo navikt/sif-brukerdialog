@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common';
+import { Arbeidsgivere, fetchArbeidsgivere, fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 
 type InitialData = {
     barn: RegistrertBarn[];
     søker: Søker;
+    arbeidsgivere: Arbeidsgivere;
 };
 
 export const useInitialData = () => {
@@ -12,11 +14,13 @@ export const useInitialData = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const fetchInitialData = async () => {
-        const s = await fetchSøker();
+        const søker = await fetchSøker();
         const barn = await fetchBarn();
-        setInitialData({ søker: s, barn: barn });
+        const arbeidsgivere = await fetchArbeidsgivere(ISODateRangeToDateRange('2020-01-01/2020-01-31'));
+        setInitialData({ søker, barn, arbeidsgivere });
         setIsLoading(false);
     };
+
     useEffectOnce(() => {
         fetchInitialData();
     });
