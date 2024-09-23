@@ -2,7 +2,7 @@ import { injectDecoratorServerSide } from '@navikt/nav-dekoratoren-moduler/ssr/i
 import cookieParser from 'cookie-parser';
 import { Express, Response } from 'express';
 import path from 'node:path';
-import config from './serverConfig.js';
+import config, { getPublicEnvVariables } from './serverConfig.js';
 
 export const setupAndServeHtml = async (app: Express) => {
     // When deployed, the built frontend is copied into the public directory. If running BFF locally the index.html will not exist.
@@ -23,6 +23,7 @@ export const setupAndServeHtml = async (app: Express) => {
             K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: `${process.env.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH}`,
             K9_SAK_INNSYN_FRONTEND_PATH: `${process.env.K9_SAK_INNSYN_FRONTEND_PATH}`,
             SIF_INNSYN_FRONTEND_PATH: `${process.env.SIF_INNSYN_FRONTEND_PATH}`,
+            ...getPublicEnvVariables(),
         }),
     );
 

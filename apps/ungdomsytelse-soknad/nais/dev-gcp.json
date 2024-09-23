@@ -25,6 +25,7 @@
         "K9_SAK_INNSYN_API_URL": "http://k9-sak-innsyn-api",
         "K9_SAK_INNSYN_FRONTEND_PATH": "/api/k9sak-innsyn",
         "NPM_CONFIG_CACHE": "/tmp",
-        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/ungdomsytelse-soknad"
+        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/ungdomsytelse-soknad",
+        "SIF_PUBLIC_SOME_ENV_KEY": "schlüssel"
     }
 }

@@ -50,6 +50,15 @@ export const verifyAllProxiesAreSet = () => {
     verifyProxyConfig(Service.k9BrukerdialogProsessering);
 };
 
+export const getPublicEnvVariables = () => {
+    const publicEnv: { [key: string]: string } = {};
+    for (const [key, value] of Object.entries(process.env)) {
+        if (key.startsWith('SIF_PUBLIC_' || key.startsWith('K9_')) && key && value) {
+            publicEnv[key] = value;
+        }
+    }
+    return publicEnv;
+};
 const app = {
     port: Number(process.env.PORT) || 8080,
     env: process.env.ENV as 'dev' | 'prod',
