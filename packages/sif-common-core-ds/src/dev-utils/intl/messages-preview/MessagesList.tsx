@@ -131,7 +131,7 @@ const MessagesList = ({ messages }: Props) => {
                     </Block>
                 </Tabs.Panel>
                 <Tabs.Panel value="translate" className="h-24 w-full bg-gray-50 p-4">
-                    {numMessages > 50 ? (
+                    {numMessages > 120 ? (
                         <Block margin="xl">
                             <Alert variant="info">Det er for mange tekster til at en kan foreslå oversettelse</Alert>
                         </Block>
