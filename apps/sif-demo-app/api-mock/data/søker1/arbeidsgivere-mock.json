@@ -22,7 +22,8 @@
         {
             "navn": "Jon Jonsen",
             "ansattFom": "2021-01-01",
-            "ansattTom": "2021-12-31"
+            "ansattTom": "2021-12-31",
+            "offentligIdent": "12345678910"
         }
     ]
 }
