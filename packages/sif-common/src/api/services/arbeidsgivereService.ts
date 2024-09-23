@@ -1,8 +1,8 @@
-/* eslint-disable no-console */
+import getSentryLoggerForApp from '@navikt/sif-common-sentry';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { k9BrukerdialogApiClient } from '../apiClient';
-import { Arbeidsgivere } from '../types';
 import { arbeidsgivereResponseSchema } from '../schemas/arbeidsgivereSchema';
+import { Arbeidsgivere } from '../types';
 
 export const fetchArbeidsgivere = async ({ from, to }: { from: Date; to: Date }): Promise<Arbeidsgivere> => {
     const response = await k9BrukerdialogApiClient.get(`/oppslag/arbeidsgiver`, {
@@ -11,7 +11,7 @@ export const fetchArbeidsgivere = async ({ from, to }: { from: Date; to: Date })
     try {
         return arbeidsgivereResponseSchema.parse(response.data);
     } catch (e) {
-        console.error('ZOD parse error', e);
+        getSentryLoggerForApp('sif-common', []).logError('ZOD parse error', e);
         return {
             organisasjoner: [],
             privatarbeidsgiver: [],
