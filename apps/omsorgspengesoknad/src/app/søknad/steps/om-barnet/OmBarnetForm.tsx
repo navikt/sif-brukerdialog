@@ -5,6 +5,8 @@ import { FormLayout } from '@navikt/sif-common-ui';
 import { InnvilgedeVedtak } from '../../../hooks/useInnvilgedeVedtakForRegistrerteBarn';
 import { AppText, useAppIntl } from '../../../i18n';
 import { BarnSammeAdresse } from '../../../types/BarnSammeAdresse';
+import { RegistrertBarn } from '../../../types/RegistrertBarn';
+import { Søker } from '../../../types/Søker';
 import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
 import IkkeHøyereRisikoForFraværAlert from './alert/IkkeHøyereRisikoForFraværAlert';
 import IkkeKroniskEllerFunksjonshemningAlert from './alert/IkkeKroniskEllerFuksjonshemningAlert';
@@ -21,8 +23,6 @@ import HøyereRisikoForFraværBeskrivelseSpørsmål from './spørsmål/HøyereRi
 import HøyereRisikoForFraværSpørsmål from './spørsmål/HøyereRisikoForFraværSpørsmål';
 import KroniskEllerFunksjonshemningSpørsmål from './spørsmål/KroniskEllerFunksjonshemningSpørsmål';
 import RegistrertBarnSpørsmål from './spørsmål/RegistrertBarnSpørsmål';
-import { RegistrertBarn } from '../../../types/RegistrertBarn';
-import { Søker } from '../../../types/Søker';
 
 interface Props {
     values: Partial<OmBarnetFormValues>;
