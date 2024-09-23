@@ -4728,7 +4728,7 @@ __metadata:
     "@navikt/ds-react": "npm:7.0.1"
     "@navikt/ds-tailwind": "npm:7.0.1"
     "@navikt/sif-app-register": "npm:*"
-    "@navikt/sif-common": "workspace:*"
+    "@navikt/sif-common": "npm:*"
     "@navikt/sif-common-amplitude": "npm:*"
     "@navikt/sif-common-core-ds": "npm:*"
     "@navikt/sif-common-formik-ds": "npm:*"
@@ -5404,7 +5404,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-common@workspace:*, @navikt/sif-common@workspace:packages/sif-common":
+"@navikt/sif-common@npm:*, @navikt/sif-common@workspace:packages/sif-common":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common@workspace:packages/sif-common"
   dependencies:
@@ -5461,6 +5461,10 @@ __metadata:
     "@navikt/ds-react": "npm:7.0.1"
     "@navikt/ds-tailwind": "npm:7.0.1"
     "@navikt/nav-dekoratoren-moduler": "npm:2.1.6"
+    "@navikt/sif-common": "npm:*"
+    "@navikt/sif-common-core-ds": "npm:*"
+    "@navikt/sif-common-soknad-ds": "npm:*"
+    "@navikt/sif-common-ui": "npm:*"
     "@types/node": "npm:22.5.5"
     "@types/react": "npm:18.3.8"
     "@types/react-dom": "npm:18.3.0"
