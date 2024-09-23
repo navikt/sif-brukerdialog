@@ -1,4 +1,3 @@
-import { RegistrertBarn, Søker } from '@navikt/sif-common';
 import { isDevMode } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
@@ -22,6 +21,8 @@ import HøyereRisikoForFraværBeskrivelseSpørsmål from './spørsmål/HøyereRi
 import HøyereRisikoForFraværSpørsmål from './spørsmål/HøyereRisikoForFraværSpørsmål';
 import KroniskEllerFunksjonshemningSpørsmål from './spørsmål/KroniskEllerFunksjonshemningSpørsmål';
 import RegistrertBarnSpørsmål from './spørsmål/RegistrertBarnSpørsmål';
+import { RegistrertBarn } from '../../../types/RegistrertBarn';
+import { Søker } from '../../../types/Søker';
 
 interface Props {
     values: Partial<OmBarnetFormValues>;

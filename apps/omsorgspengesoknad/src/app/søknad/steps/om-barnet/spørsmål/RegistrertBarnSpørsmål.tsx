@@ -4,7 +4,7 @@ import { useAppIntl } from '../../../../i18n';
 import { OmBarnetFormFields } from '../OmBarnetStep';
 import { mapBarnTilRadioProps } from '../omBarnetStepUtils';
 import { omBarnetFormComponents } from '../omBarnetFormComponents';
-import { RegistrertBarn } from '@navikt/sif-common';
+import { RegistrertBarn } from '../../../../types/RegistrertBarn';
 
 interface Props {
     registrerteBarn: RegistrertBarn[];

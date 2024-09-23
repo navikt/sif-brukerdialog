@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { fetchBarn, fetchSøker } from '@navikt/sif-common';
 import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { RegistrertBarn, Søker } from '@navikt/sif-common/api/types';
 import { SØKNAD_VERSJON } from '../constants/SØKNAD_VERSJON';
@@ -11,6 +10,8 @@ import søknadStateEndpoint, {
     isPersistedSøknadStateValid,
     SøknadStatePersistence,
 } from './endpoints/søknadStateEndpoint';
+import søkerEndpoint from './endpoints/søkerEndpoint';
+import barnEndpoint from './endpoints/barnEndpoint';
 
 export type SøknadInitialData = SøknadContextState;
 
@@ -67,8 +68,8 @@ function useSøknadInitialData(): SøknadInitialDataState {
 
     const fetch = async () => {
         try {
-            const søker = await fetchSøker();
-            const barn = await fetchBarn();
+            const søker = await søkerEndpoint.fetch();
+            const barn = await barnEndpoint.fetch();
             const lagretSøknadState = await søknadStateEndpoint.fetch();
             setInitialData({
                 status: RequestStatus.success,

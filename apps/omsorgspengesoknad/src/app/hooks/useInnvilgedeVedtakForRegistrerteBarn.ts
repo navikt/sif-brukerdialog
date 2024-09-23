@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import innvilgetVedtakEndpoint from '../api/endpoints/innvilgetVedtakEndpoint';
 import { HentSisteGyldigeVedtakResponseDto } from '../types/innvilgetVedtakApiData/HentSisteGyldigeVedtakResponseDto';
-import { RegistrertBarn } from '@navikt/sif-common';
+import { RegistrertBarn } from '../types/RegistrertBarn';
 
 export interface InnvilgedeVedtak {
     [key: string]: HentSisteGyldigeVedtakResponseDto;

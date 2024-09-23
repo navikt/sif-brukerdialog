@@ -9,8 +9,7 @@ import { SøknadContextState } from '../../../types/SøknadContextState';
 import { OmBarnetSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { OmBarnetFormValues } from './OmBarnetStep';
 import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
-import { RegistrertBarn } from '@navikt/sif-common';
-
+import { RegistrertBarn } from '../../../types/RegistrertBarn';
 export const getOmBarnetStepInitialValues = (
     søknadsdata: Søknadsdata,
     formValues?: OmBarnetFormValues,

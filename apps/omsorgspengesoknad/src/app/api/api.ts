@@ -4,6 +4,7 @@ import axios, { AxiosError, AxiosRequestConfig, RawAxiosRequestHeaders } from 'a
 import { relocateToLoginPage, relocateToNoAccessPage } from '../utils/navigationUtils';
 
 export enum ApiEndpoint {
+    'soker' = 'oppslag/soker',
     'barn' = 'oppslag/barn',
     'send_søknad' = 'omsorgspenger-utvidet-rett/innsending',
     'vedlegg' = 'vedlegg',

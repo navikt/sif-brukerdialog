@@ -1,5 +1,6 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { RegistrertBarn, Søker } from '@navikt/sif-common';
+import { Søker } from '../../app/types/Søker';
+import { RegistrertBarn } from '../../app/types/RegistrertBarn';
 
 export const SøkerMock: Søker = {
     fødselsnummer: '30086421581',
