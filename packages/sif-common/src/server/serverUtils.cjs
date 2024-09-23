@@ -7,13 +7,13 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 const { exchangeToken } = require('./tokenx.cjs');
 const mustacheExpress = require('mustache-express');
 const {
-    BRUKERDIALOG_PROSESSERING_FRONTEND_API_PATH,
+    BRUKERDIALOG_PROSESSERING_FRONTEND_PATH,
     BRUKERDIALOG_PROSESSERING_SERVER_URL,
     BRUKERDIALOG_PROSESSERING_TOKENX_AUDIENCE,
-    K9_SAK_INNSYN_FRONTEND_API_PATH,
+    K9_SAK_INNSYN_FRONTEND_PATH,
     K9_SAK_INNSYN_SERVER_URL,
     K9_SAK_INNSYN_TOKENX_AUDIENCE,
-    SIF_INNSYN_FRONTEND_API_PATH,
+    SIF_INNSYN_FRONTEND_PATH,
     SIF_INNSYN_SERVER_URL,
     SIF_INNSYN_TOKENX_AUDIENCE,
 } = require('./serverEnv.cjs');
@@ -74,19 +74,19 @@ const createProxyMiddlewareForService = (server, frontendPath, backendUrl, audie
 const createProxyMiddlewares = (server) => {
     createProxyMiddlewareForService(
         server,
-        BRUKERDIALOG_PROSESSERING_FRONTEND_API_PATH,
+        BRUKERDIALOG_PROSESSERING_FRONTEND_PATH,
         BRUKERDIALOG_PROSESSERING_SERVER_URL,
         BRUKERDIALOG_PROSESSERING_TOKENX_AUDIENCE,
     );
     createProxyMiddlewareForService(
         server,
-        K9_SAK_INNSYN_FRONTEND_API_PATH,
+        K9_SAK_INNSYN_FRONTEND_PATH,
         K9_SAK_INNSYN_SERVER_URL,
         K9_SAK_INNSYN_TOKENX_AUDIENCE,
     );
     createProxyMiddlewareForService(
         server,
-        SIF_INNSYN_FRONTEND_API_PATH,
+        SIF_INNSYN_FRONTEND_PATH,
         SIF_INNSYN_SERVER_URL,
         SIF_INNSYN_TOKENX_AUDIENCE,
     );
