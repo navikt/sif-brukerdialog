@@ -9,14 +9,14 @@ interface Props {
     messages: MessageFileFormat;
 }
 
-export const PlainMessageList = ({ messages, nbOnly = true }: Props & { nbOnly?: boolean }) => {
+export const PlainMessageList = ({ messages, locale }: Props & { locale: 'nb' | 'nn' }) => {
     const allMessages = createMultiLocaleObject(messages);
     return (
         <table>
             {Object.keys(allMessages).map((key) => (
                 <>
                     <tr>
-                        <th colSpan={2} style={{ textAlign: 'left' }}>
+                        <th style={{ textAlign: 'left' }}>
                             <code
                                 style={{
                                     marginTop: '1rem',
@@ -32,11 +32,8 @@ export const PlainMessageList = ({ messages, nbOnly = true }: Props & { nbOnly?:
                         </th>
                     </tr>
                     <tr style={{ border: '1px solid #e7e7e7' }}>
-                        <td style={{ width: '50%', border: '1px solid #e7e7e7', padding: '.4rem' }}>
-                            <BodyShort size="small">{allMessages[key]['nb']}</BodyShort>
-                        </td>
-                        <td style={{ width: '50%', border: '1px solid #e7e7e7' }}>
-                            {nbOnly ? <>&nbsp;</> : <BodyShort size="small">{allMessages[key]['nn']}</BodyShort>}
+                        <td style={{ border: '1px solid #e7e7e7', padding: '.4rem' }}>
+                            <BodyShort>{allMessages[key][locale]}</BodyShort>
                         </td>
                     </tr>
                 </>
@@ -108,7 +105,8 @@ const MessagesList = ({ messages }: Props) => {
             <Tabs defaultValue="messages" size="small">
                 <Tabs.List>
                     <Tabs.Tab value="messages" label="Alle tekster" />
-                    <Tabs.Tab value="kompakt" label="Nøkler og default" />
+                    <Tabs.Tab value="kompaktNB" label="Kun bokmål" />
+                    <Tabs.Tab value="kompaktNN" label="Kun nynorsk" />
                     <Tabs.Tab value="json" label="JSON" />
                     <Tabs.Tab value="translate" label="Automatisk oversettelse" />
                 </Tabs.List>
@@ -117,9 +115,14 @@ const MessagesList = ({ messages }: Props) => {
                         <MessagesTable messages={messages} nbOnly={false} />
                     </Block>
                 </Tabs.Panel>
-                <Tabs.Panel value="kompakt">
+                <Tabs.Panel value="kompaktNB">
                     <Block margin="xl">
-                        <PlainMessageList messages={messages} nbOnly={true} />
+                        <PlainMessageList messages={messages} locale="nb" />
+                    </Block>
+                </Tabs.Panel>
+                <Tabs.Panel value="kompaktNN">
+                    <Block margin="xl">
+                        <PlainMessageList messages={messages} locale="nn" />
                     </Block>
                 </Tabs.Panel>
                 <Tabs.Panel value="json" className="h-24 w-full bg-gray-50 p-4">

@@ -1,7 +1,7 @@
 import { StoryFn } from '@storybook/react';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import { withIntl } from '../../storybook/decorators/withIntl';
-import { commonMessages } from '@navikt/sif-common-core-ds/src/i18n/common.messages';
+import { componentMessages } from './componentMessages';
 
 export default {
     title: 'i18N/Komponent-tekster',
@@ -9,7 +9,7 @@ export default {
 };
 
 const Template: StoryFn = () => (
-    <MessagesPreview showExplanation={false} messages={commonMessages} showMissingTextSummary={true} />
+    <MessagesPreview showExplanation={false} messages={componentMessages} showMissingTextSummary={true} />
 );
 export const Default = Template.bind({});
 
