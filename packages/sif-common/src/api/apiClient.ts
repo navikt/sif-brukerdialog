@@ -10,5 +10,5 @@ export const axiosConfig: AxiosRequestConfig = {
 
 export const k9BrukerdialogApiClient = axios.create({
     ...axiosConfig,
-    baseURL: getEnvVariableOrDefault('BRUKERDIALOG_PROSESSERING_FRONTEND_PATH', defaultFrontendApiPath),
+    baseURL: getEnvVariableOrDefault('K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH', defaultFrontendApiPath),
 });
