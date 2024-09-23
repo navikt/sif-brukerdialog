@@ -20,6 +20,9 @@ export const setupAndServeHtml = async (app: Express) => {
         JSON.stringify({
             APP_VERSION: `${config.app.version}`,
             PUBLIC_PATH: `${config.app.publicPath}`,
+            BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: `${process.env.BRUKERDIALOG_PROSESSERING_FRONTEND_PATH}`,
+            K9_SAK_INNSYN_FRONTEND_PATH: `${process.env.K9_SAK_INNSYN_FRONTEND_PATH}`,
+            SIF_INNSYN_FRONTEND_PATH: `${process.env.SIF_INNSYN_FRONTEND_PATH}`,
         }),
     );
 
