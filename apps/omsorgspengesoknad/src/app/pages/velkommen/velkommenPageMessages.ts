@@ -40,7 +40,44 @@ const nb = {
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    ...nb,
+    'page.velkommen.sidetittel':
+        'Søknad om ekstra omsorgsdagar for barn som har kronisk/langvarig sjukdom eller funksjonshemning',
+    'page.velkommen.guide.tittel': 'Hei, {namn}',
+    'page.velkommen.guide.ingress':
+        'Velkommen til søknad om ekstra omsorgsdagar for barn som har kronisk/langvarig sjukdom eller funksjonshemning.',
+    'page.velkommen.guide.tekst.1':
+        'Denne søknaden bruker du for å søkja om ekstra omsorgsdagar, viss barnet ditt har ein sjukdom eller funksjonshemning som gjer at du må bruka fleire omsorgsdagar enn det som er vanleg. Det er berre foreldre/fosterforeldre som bur med barnet som kan få ekstra omsorgsdagar.',
+    'page.velkommen.guide.tekst.2':
+        'Viss fleire skal ha ekstra omsorgsdagar for same barn, må de senda kvar deira søknad til NAV.',
+    'page.velkommen.guide.tekst.3':
+        'Viss du har fått godkjent søknaden av NAV, treng du ikkje å søkja om ekstra omsorgsdagar igjen. Vedtak om ekstra dagar varer til barnet blir 18 år.',
+    'page.velkommen.omSøknaden.tittel': 'Om søknaden',
+    'page.velkommen.omSøknaden.1': 'Du får rettleiing undervegs i søknaden om kva du skal fylla ut, og korleis.',
+    'page.velkommen.omSøknaden.fremoverITid':
+        'Viss du søkjer frami tid, har me forståing for at du kan bli usikker på kva du skal svara på nokre spørsmål som handlar om tida framover. Då svarer du så godt du kan ut frå kva situasjonen er no, og så kan du melda frå om eventuelle endringar seinare.',
+    'page.velkommen.omSøknaden.2':
+        'Du må svara på alle spørsmåla for å kunna gå vidare. Viss du manglar etterspurd dokumentasjon, kan du ettersenda det så snart du kan.',
+    'page.velkommen.omSøknaden.3':
+        'Me tek vare på svara dine i 72 timar. Viss du innanfor den tida til dømes vil ta ein pause eller blir automatisk logga ut, seier du der du var når du kjem tilbake.',
+    'page.velkommen.personopplysninger.tittel': 'Om korleis me innhentar opplysningar om deg',
+    'page.velkommen.personopplysninger.behandler.tittel': 'Slik behandlar NAV personopplysningane dine',
+    'page.velkommen.personopplysninger.behandler.info':
+        'Vi innhentar og får opplysningar om deg for å behandla saka di. Det er nødvendig for at du skal få rett teneste. Delar av saka di blir behandla automatisk.',
+    'page.velkommen.personopplysninger.innhenter.tittel': 'Kva opplysningar innhentar me',
+    'page.velkommen.personopplysninger.innhenter':
+        'Opplysningane me innhentar kjem anten frå deg eller frå offentlege register:',
+    'page.velkommen.personopplysninger.innhenter.1': 'kva barn du er registrert som forelder til',
+    'page.velkommen.personopplysninger.innhenter.2': 'opplysningar om helsa til barnet',
+    'page.velkommen.personopplysninger.innhenter.3': 'arbeidsforholda dine og inntekta di',
+    'page.velkommen.personopplysninger.innhenter.4': 'ytingar du får frå NAV',
+    'page.velkommen.personopplysninger.innhenter.5': 'tilknytinga di til Noreg',
+    'page.velkommen.personopplysninger.innhenter.6':
+        'trygdeordningar du kan ha rett til i andre land. Me kan også senda opplysningar om deg til trygdestyresmakter i andre land.',
+    'page.velkommen.personopplysninger.5.1': 'Korleis me behandlar personopplysningar',
+    'page.velkommen.personopplysninger.5.2':
+        'Vi innhentar og får opplysningar om deg for å behandla saka di. Det er nødvendig for at du skal få rett teneste. Delar av saka di blir behandla automatisk.',
+    'page.velkommen.personopplysninger.5.3':
+        'Du har rett til innsyn i saka di. Vil du vita meir om korleis NAV behandlar personopplysningar? Sjå <Lenke>nav.no/personvern</Lenke>.',
 };
 export const velkommenPageMessages = {
     nb,
