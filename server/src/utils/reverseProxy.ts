@@ -30,6 +30,10 @@ export function addProxyHandler(server: Express, { ingoingUrl, outgoingUrl, scop
     server.use(
         ingoingUrl,
         async (request: Request, response: Response, next: NextFunction) => {
+            if (process.env.NAIS_CLIENT_ID !== undefined) {
+                request.headers['X-K9-Brukerdialog'] = process.env.NAIS_CLIENT_ID;
+            }
+
             const token = getToken(request);
             if (!token) {
                 return response.status(401).send();
