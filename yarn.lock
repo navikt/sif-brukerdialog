@@ -2901,6 +2901,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@eslint/js@npm:9.11.0":
+  version: 9.11.0
+  resolution: "@eslint/js@npm:9.11.0"
+  checksum: 10/4883e95d2668517ad8c7cd16107f86b45fb744b223116fb86e59483c888ba5477d901dcd8d5cebaa56a453093e7fd0fa919e30d01cb4d21c8d53a8d3c7c697af
+  languageName: node
+  linkType: hard
+
 "@eslint/object-schema@npm:^2.1.4":
   version: 2.1.4
   resolution: "@eslint/object-schema@npm:2.1.4"
@@ -2908,12 +2915,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/plugin-kit@npm:^0.1.0":
-  version: 0.1.0
-  resolution: "@eslint/plugin-kit@npm:0.1.0"
+"@eslint/plugin-kit@npm:^0.2.0":
+  version: 0.2.0
+  resolution: "@eslint/plugin-kit@npm:0.2.0"
   dependencies:
     levn: "npm:^0.4.1"
-  checksum: 10/3c6b10505f53c6e32b40572f780164b75389bbabd1bf80ab8742222710d90683a2cc9480468fca132da636f6a3053ae60b173181d14f4975fde2e6f8f9564c6d
+  checksum: 10/ebb363174397341dea47dc35fc206e24328083e4f0fa1c539687dbb7f94bef77e43faa12867d032e6eea5ac980ea8fbb6b1d844186e422d327c04088041b99f3
   languageName: node
   linkType: hard
 
@@ -4154,7 +4161,7 @@ __metadata:
     classnames: "npm:2.5.1"
     date-fns: "npm:4.1.0"
     dayjs: "npm:1.11.13"
-    eslint: "npm:9.10.0"
+    eslint: "npm:9.11.0"
     eslint-plugin-storybook: "npm:0.8.0"
     formik: "npm:2.4.6"
     jest: "npm:29.7.0"
@@ -4549,7 +4556,7 @@ __metadata:
     config: "npm:*"
     date-fns: "npm:4.1.0"
     dayjs: "npm:1.11.13"
-    eslint: "npm:9.10.0"
+    eslint: "npm:9.11.0"
     eslint-config-next: "npm:14.2.13"
     formik: "npm:2.4.6"
     jest: "npm:29.7.0"
@@ -4619,7 +4626,7 @@ __metadata:
     cross-env: "npm:7.0.3"
     dayjs: "npm:1.11.13"
     dotenv: "npm:16.4.5"
-    eslint: "npm:9.10.0"
+    eslint: "npm:9.11.0"
     eslint-plugin-storybook: "npm:0.8.0"
     express: "npm:4.21.0"
     express-rate-limit: "npm:7.4.0"
@@ -4698,7 +4705,7 @@ __metadata:
     cookie-parser: "npm:1.4.6"
     cross-env: "npm:7.0.3"
     dotenv: "npm:16.4.5"
-    eslint: "npm:9.10.0"
+    eslint: "npm:9.11.0"
     eslint-plugin-storybook: "npm:0.8.0"
     express: "npm:4.21.0"
     express-rate-limit: "npm:7.4.0"
@@ -4856,7 +4863,7 @@ __metadata:
     cross-env: "npm:7.0.3"
     dayjs: "npm:1.11.13"
     dotenv: "npm:16.4.5"
-    eslint: "npm:9.10.0"
+    eslint: "npm:9.11.0"
     eslint-plugin-storybook: "npm:0.8.0"
     express: "npm:4.21.0"
     express-rate-limit: "npm:7.4.0"
@@ -5437,7 +5444,7 @@ __metadata:
     clsx: "npm:2.1.1"
     compression: "npm:1.7.4"
     date-fns: "npm:4.1.0"
-    eslint: "npm:9.10.0"
+    eslint: "npm:9.11.0"
     eslint-plugin-prettier: "npm:5.2.1"
     eslint-plugin-react: "npm:7.36.1"
     eslint-plugin-simple-import-sort: "npm:12.1.1"
@@ -7298,7 +7305,7 @@ __metadata:
   resolution: "@sif/eslint-config@workspace:packages/eslint-config-sif"
   dependencies:
     "@eslint/js": "npm:9.10.0"
-    eslint: "npm:9.10.0"
+    eslint: "npm:9.11.0"
     eslint-config-prettier: "npm:9.1.0"
     eslint-plugin-jsx-a11y: "npm:6.10.0"
     eslint-plugin-react: "npm:7.36.1"
@@ -12221,7 +12228,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:8.6.0"
     "@typescript-eslint/parser": "npm:8.6.0"
     autoprefixer: "npm:10.4.20"
-    eslint: "npm:9.10.0"
+    eslint: "npm:9.11.0"
     eslint-config-prettier: "npm:9.1.0"
     eslint-plugin-jsx-a11y: "npm:6.10.0"
     eslint-plugin-prettier: "npm:5.2.1"
@@ -15012,16 +15019,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:9.10.0":
-  version: 9.10.0
-  resolution: "eslint@npm:9.10.0"
+"eslint@npm:9.11.0":
+  version: 9.11.0
+  resolution: "eslint@npm:9.11.0"
   dependencies:
     "@eslint-community/eslint-utils": "npm:^4.2.0"
     "@eslint-community/regexpp": "npm:^4.11.0"
     "@eslint/config-array": "npm:^0.18.0"
     "@eslint/eslintrc": "npm:^3.1.0"
-    "@eslint/js": "npm:9.10.0"
-    "@eslint/plugin-kit": "npm:^0.1.0"
+    "@eslint/js": "npm:9.11.0"
+    "@eslint/plugin-kit": "npm:^0.2.0"
     "@humanwhocodes/module-importer": "npm:^1.0.1"
     "@humanwhocodes/retry": "npm:^0.3.0"
     "@nodelib/fs.walk": "npm:^1.2.8"
@@ -15057,7 +15064,7 @@ __metadata:
       optional: true
   bin:
     eslint: bin/eslint.js
-  checksum: 10/bbb6da7db83f5182cff5a5e1681cf77be761e37bfbfedf66add9d3d2a216dbc336e787d02d05a2ea85179c51a10203713b2438b86adfd7666c29afd3ee008fe8
+  checksum: 10/f849d82ea0fcaac414f51bd62474a1dc9b4af4c698fcb1523fc90477c3fa3b31e928e4c8fe9e553489c47729930d167534e359a6067c0243b3bb68dc7d43e2bd
   languageName: node
   linkType: hard
 
