@@ -5,11 +5,12 @@ import { FormikRadioProp } from '@navikt/sif-common-formik-ds/src/components/for
 import { dateFormatter } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { AppMessageKeys, AppText } from '../../../i18n';
+import { RegistrertBarn } from '../../../types/RegistrertBarn';
+import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { OmBarnetSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { OmBarnetFormValues } from './OmBarnetStep';
-import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
-import { RegistrertBarn } from '../../../types/RegistrertBarn';
+
 export const getOmBarnetStepInitialValues = (
     søknadsdata: Søknadsdata,
     formValues?: OmBarnetFormValues,
