@@ -10,7 +10,7 @@ export const axiosConfig: AxiosRequestConfig = {
 
 export const k9BrukerdialogApiClient = axios.create({
     ...axiosConfig,
-    baseURL: getEnvVariableOrDefault('FRONTEND_API_PATH_K9_BRUKERDIALOG', defaultFrontendApiPath),
+    baseURL: getEnvVariableOrDefault('BRUKERDIALOG_PROSESSERING_FRONTEND_API_PATH', defaultFrontendApiPath),
 });
 
 // export const sifInnsynApiClient = axios.create({
