@@ -3058,9 +3058,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/intl@npm:2.10.5":
-  version: 2.10.5
-  resolution: "@formatjs/intl@npm:2.10.5"
+"@formatjs/intl@npm:2.10.4":
+  version: 2.10.4
+  resolution: "@formatjs/intl@npm:2.10.4"
   dependencies:
     "@formatjs/ecma402-abstract": "npm:2.0.0"
     "@formatjs/fast-memoize": "npm:2.2.0"
@@ -3074,7 +3074,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10/0e3507c81cba12f14ca87b0f7197c80b05793c0da8a16cccf75d7b924e3c71f9f8a829402b2421c3b695db19338a56c36fc18a4c2980bc00414e37f7c191562a
+  checksum: 10/1d4e60cfb3edecb51a5f8dd2c2b1c784c1a9bfcbc1b6240323d8009e5f375e5c526c9eb19149b42e0e50f6a473e9709378071658ed25a62dc3923dd7fc6a2843
   languageName: node
   linkType: hard
 
@@ -4167,7 +4167,7 @@ __metadata:
     react: "npm:18.3.1"
     react-day-picker: "npm:8.10.1"
     react-dom: "npm:18.3.1"
-    react-intl: "npm:6.7.0"
+    react-intl: "npm:6.6.8"
     react-loading-skeleton: "npm:3.5.0"
     storybook: "npm:8.3.2"
     swr: "npm:2.2.5"
@@ -4282,7 +4282,7 @@ __metadata:
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
     react-fast-compare: "npm:3.2.2"
-    react-intl: "npm:6.7.0"
+    react-intl: "npm:6.6.8"
     react-router-dom: "npm:6.26.2"
     rimraf: "npm:6.0.1"
     storybook: "npm:8.3.2"
@@ -4370,7 +4370,7 @@ __metadata:
     react: "npm:18.3.1"
     react-day-picker: "npm:8.10.1"
     react-dom: "npm:18.3.1"
-    react-intl: "npm:6.7.0"
+    react-intl: "npm:6.6.8"
     react-modal: "npm:3.16.1"
     react-responsive: "npm:10.0.0"
     react-router-dom: "npm:6.26.2"
@@ -4482,7 +4482,7 @@ __metadata:
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
     react-fast-compare: "npm:3.2.2"
-    react-intl: "npm:6.7.0"
+    react-intl: "npm:6.6.8"
     react-router-dom: "npm:6.26.2"
     typescript: "npm:5.6.2"
     uuid: "npm:10.0.0"
@@ -4523,7 +4523,7 @@ __metadata:
     react: "npm:18.3.1"
     react-day-picker: "npm:8.10.1"
     react-dom: "npm:18.3.1"
-    react-intl: "npm:6.7.0"
+    react-intl: "npm:6.6.8"
     tailwindcss: "npm:3.4.12"
     typescript: "npm:5.6.2"
     uuid: "npm:10.0.0"
@@ -4598,7 +4598,7 @@ __metadata:
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
     react-fast-compare: "npm:3.2.2"
-    react-intl: "npm:6.7.0"
+    react-intl: "npm:6.6.8"
     react-router-dom: "npm:6.26.2"
     storybook: "npm:8.3.2"
     storybook-addon-mock: "npm:5.0.0"
@@ -4677,7 +4677,7 @@ __metadata:
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
     react-fast-compare: "npm:3.2.2"
-    react-intl: "npm:6.7.0"
+    react-intl: "npm:6.6.8"
     react-router-dom: "npm:6.26.2"
     storybook: "npm:8.3.2"
     tailwindcss: "npm:3.4.12"
@@ -4757,7 +4757,7 @@ __metadata:
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
     react-fast-compare: "npm:3.2.2"
-    react-intl: "npm:6.7.0"
+    react-intl: "npm:6.6.8"
     react-router-dom: "npm:6.26.2"
     react-scripts: "npm:5.0.1"
     storybook: "npm:8.3.2"
@@ -4835,7 +4835,7 @@ __metadata:
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
     react-fast-compare: "npm:3.2.2"
-    react-intl: "npm:6.7.0"
+    react-intl: "npm:6.6.8"
     react-router-dom: "npm:6.26.2"
     storybook: "npm:8.3.2"
     storybook-addon-mock: "npm:5.0.0"
@@ -4921,7 +4921,7 @@ __metadata:
     react: "npm:18.3.1"
     react-day-picker: "npm:8.10.1"
     react-dom: "npm:18.3.1"
-    react-intl: "npm:6.7.0"
+    react-intl: "npm:6.6.8"
     react-router-dom: "npm:6.26.2"
     storybook: "npm:8.3.2"
     storybook-addon-mock: "npm:5.0.0"
@@ -5030,7 +5030,7 @@ __metadata:
     react: "npm:18.3.1"
     react-day-picker: "npm:8.10.1"
     react-dom: "npm:18.3.1"
-    react-intl: "npm:6.7.0"
+    react-intl: "npm:6.6.8"
     react-responsive: "npm:10.0.0"
     react-scripts: "npm:5.0.1"
     react-syntax-highlighter: "npm:15.5.0"
@@ -5107,7 +5107,7 @@ __metadata:
     react-dom: "npm:18.3.1"
     react-dropzone: "npm:14.2.3"
     react-fast-compare: "npm:3.2.2"
-    react-intl: "npm:6.7.0"
+    react-intl: "npm:6.6.8"
     react-scripts: "npm:5.0.1"
     react-syntax-highlighter: "npm:15.5.0"
     rimraf: "npm:6.0.1"
@@ -5172,7 +5172,7 @@ __metadata:
     react: "npm:18.3.1"
     react-day-picker: "npm:8.10.1"
     react-dom: "npm:18.3.1"
-    react-intl: "npm:6.7.0"
+    react-intl: "npm:6.6.8"
     react-json-view: "npm:1.21.3"
     react-modal: "npm:3.16.1"
     react-router-dom: "npm:6.26.2"
@@ -5284,7 +5284,7 @@ __metadata:
     react: "npm:18.3.1"
     react-day-picker: "npm:8.10.1"
     react-dom: "npm:18.3.1"
-    react-intl: "npm:6.7.0"
+    react-intl: "npm:6.6.8"
     react-router-dom: "npm:6.26.2"
     rimraf: "npm:6.0.1"
     sass-loader: "npm:16.0.2"
@@ -5342,7 +5342,7 @@ __metadata:
     react: "npm:18.3.1"
     react-day-picker: "npm:8.10.1"
     react-dom: "npm:18.3.1"
-    react-intl: "npm:6.7.0"
+    react-intl: "npm:6.6.8"
     react-scripts: "npm:5.0.1"
     storybook: "npm:8.3.2"
     typescript: "npm:5.6.2"
@@ -5371,7 +5371,7 @@ __metadata:
     npm-run-all: "npm:4.1.5"
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
-    react-intl: "npm:6.7.0"
+    react-intl: "npm:6.6.8"
     typescript: "npm:5.6.2"
     uuid: "npm:10.0.0"
     vitest: "npm:2.1.1"
@@ -5481,7 +5481,7 @@ __metadata:
     react: "npm:18.3.1"
     react-day-picker: "npm:8.10.1"
     react-dom: "npm:18.3.1"
-    react-intl: "npm:6.7.0"
+    react-intl: "npm:6.6.8"
     react-router-dom: "npm:6.26.2"
     tailwindcss: "npm:3.4.12"
     typescript: "npm:5.6.2"
@@ -23905,13 +23905,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-intl@npm:6.7.0":
-  version: 6.7.0
-  resolution: "react-intl@npm:6.7.0"
+"react-intl@npm:6.6.8":
+  version: 6.6.8
+  resolution: "react-intl@npm:6.6.8"
   dependencies:
     "@formatjs/ecma402-abstract": "npm:2.0.0"
     "@formatjs/icu-messageformat-parser": "npm:2.7.8"
-    "@formatjs/intl": "npm:2.10.5"
+    "@formatjs/intl": "npm:2.10.4"
     "@formatjs/intl-displaynames": "npm:6.6.8"
     "@formatjs/intl-listformat": "npm:7.5.7"
     "@types/hoist-non-react-statics": "npm:^3.3.1"
@@ -23925,7 +23925,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10/2bfc42140140754fae529a123330312ed537f1f62d1bd89c8c13869b9ad591583cad1972df2bdd9edc8eaf73e57511bef6b8f36966b3a42610a4bcd3c84c0e0f
+  checksum: 10/5233b57fb0376291b4ec0a880d034c6b3e9431b61f153641f567f16ae04449c5b0ee643af4e53511f9b15991228d6f2ccd089290c4b0221391f5a2b9f338d460
   languageName: node
   linkType: hard
 
