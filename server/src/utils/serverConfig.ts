@@ -53,8 +53,8 @@ export const verifyAllProxiesAreSet = () => {
 export const getPublicEnvVariables = () => {
     const publicEnv: { [key: string]: string } = {};
     for (const [key, value] of Object.entries(process.env)) {
-        if (key.startsWith('SIF_PUBLIC_' || key.startsWith('K9_')) && key && value) {
-            publicEnv[key] = value;
+        if (key.startsWith('SIF_PUBLIC_')) {
+            publicEnv[key] = value || '';
         }
     }
     return publicEnv;
