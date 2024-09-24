@@ -15,7 +15,7 @@ const ApiInfo = ({ søker, barn, arbeidsgivere }: Props) => {
             <Box marginBlock="8">
                 <ExpansionCard aria-label="Api data" size="small">
                     <ExpansionCard.Header>
-                        <ExpansionCard.Title>API data</ExpansionCard.Title>
+                        <ExpansionCard.Title>API oppslagsdata</ExpansionCard.Title>
                     </ExpansionCard.Header>
                     <ExpansionCard.Content>
                         <Box paddingBlock={'8 0'}>
