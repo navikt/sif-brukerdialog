@@ -5,24 +5,14 @@
     "version": "0.0.2",
     "private": true,
     "type": "module",
-    "directories": {
-        "lib": "lib"
-    },
-    "exports": {
-        ".": "./src/index.ts",
-        "./api": "./src/api/index.ts",
-        "./api/types": "./src/api/types/index.ts",
-        "./server/serverEnv": "./src/server/serverEnv.cjs",
-        "./server/serverUtils": "./src/server/serverUtils.cjs"
-    },
     "dependencies": {
         "@navikt/ds-css": "7.0.1",
         "@navikt/ds-icons": "3.4.3",
         "@navikt/ds-react": "7.0.1",
-        "@navikt/sif-common-core-ds": "workspace:*",
-        "@navikt/sif-common-formik-ds": "workspace:*",
-        "@navikt/sif-common-sentry": "workspace:*",
-        "@navikt/sif-common-utils": "workspace:*",
+        "@navikt/sif-common-core-ds": "*",
+        "@navikt/sif-common-formik-ds": "*",
+        "@navikt/sif-common-sentry": "*",
+        "@navikt/sif-common-utils": "*",
         "axios": "1.7.7",
         "classnames": "2.5.1",
         "dayjs": "1.11.13",
@@ -30,7 +20,7 @@
         "zod": "3.23.8"
     },
     "devDependencies": {
-        "@sif/eslint-config": "workspace:*",
+        "@sif/eslint-config": "*",
         "@storybook/addon-a11y": "8.3.2",
         "@storybook/addon-actions": "8.3.2",
         "@storybook/addon-essentials": "8.3.2",
