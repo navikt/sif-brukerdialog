@@ -29,7 +29,11 @@ const MVPFormPage = () => {
                 {søknadSendt ? (
                     <Kvittering tittel="Søknad sendt">
                         <VStack gap="8">
-                            <BodyShort>Du vil få mer informasjon etter hvert</BodyShort>
+                            <BodyShort>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat eum assumenda tempore
+                                pariatur quaerat aut nihil maiores recusandae similique. Et quisquam similique
+                                doloremque optio odit impedit temporibus ullam hic officiis.
+                            </BodyShort>
                             <Box>
                                 <Button type="button" onClick={() => resetSendSøknad()}>
                                     Start på nytt
@@ -45,7 +49,7 @@ const MVPFormPage = () => {
                         <VelkommenPageHeader title="Ungdomsytelse" />
                         <SoknadVelkommenGuide title={`Hei ${søker.fornavn}`}>
                             <VStack gap="8">
-                                Dette er en MVP-søknad for pending av data til søknad om ungdomsytelse.
+                                Dette er en MVP-app for innsending av data til søknad om ny ungdomsytelse.
                             </VStack>
                         </SoknadVelkommenGuide>
 
