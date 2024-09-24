@@ -9,6 +9,12 @@ type ProxyOptions = {
     scope: string;
 };
 
+const getCommitShaFromEnv = () => {
+    const image = process.env.IMAGE || '';
+    const parts = image.split('mono:');
+    return parts.length === 2 ? parts[1] : undefined;
+};
+
 export function configureReverseProxyApi(app: Express) {
     try {
         verifyAllProxiesAreSet();
@@ -33,6 +39,7 @@ export function addProxyHandler(server: Express, { ingoingUrl, outgoingUrl, scop
             if (process.env.NAIS_CLIENT_ID !== undefined) {
                 request.headers['X-K9-Brukerdialog'] = process.env.NAIS_CLIENT_ID;
             }
+            request.headers['X-Brukerdialog-Git-Sha'] = getCommitShaFromEnv();
 
             const token = getToken(request);
             if (!token) {
