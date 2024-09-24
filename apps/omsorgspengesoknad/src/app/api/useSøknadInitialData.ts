@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
-import { RegistrertBarn, Søker } from '@navikt/sif-common/api/types';
 import { SØKNAD_VERSJON } from '../constants/SØKNAD_VERSJON';
 import { RequestStatus } from '../types/RequestStatus';
 import { SøknadContextState } from '../types/SøknadContextState';
@@ -12,6 +11,8 @@ import søknadStateEndpoint, {
 } from './endpoints/søknadStateEndpoint';
 import søkerEndpoint from './endpoints/søkerEndpoint';
 import barnEndpoint from './endpoints/barnEndpoint';
+import { Søker } from '../types/Søker';
+import { RegistrertBarn } from '../types/RegistrertBarn';
 
 export type SøknadInitialData = SøknadContextState;
 
