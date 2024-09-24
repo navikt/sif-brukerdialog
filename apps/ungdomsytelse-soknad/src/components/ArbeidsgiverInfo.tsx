@@ -1,18 +1,46 @@
-import { Heading, VStack } from '@navikt/ds-react';
-import { Arbeidsgivere } from '@navikt/sif-common';
+import { Heading, Table, VStack } from '@navikt/ds-react';
+import { Arbeidsgivere, ArbeidsgiverOrganisasjon } from '@navikt/sif-common';
 import ShadowBox from './ShadowBox';
 
 interface Props {
     arbeidsgivere: Arbeidsgivere;
 }
 
-const Organisasjon = ({ organisasjon }: { organisasjon: Arbeidsgivere['organisasjoner'][0] }) => {
+const Organisasjon = ({ organisasjon }: { organisasjon: ArbeidsgiverOrganisasjon }) => {
     return (
         <ShadowBox>
             <VStack gap="2">
                 <Heading level="2" size="medium">
                     {organisasjon.navn}
                 </Heading>
+                <Table size="small">
+                    <Table.Header>
+                        <Table.HeaderCell style={{ width: '20%' }}>Felt</Table.HeaderCell>
+                        <Table.HeaderCell>Verdi</Table.HeaderCell>
+                    </Table.Header>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.HeaderCell>Navn</Table.HeaderCell>
+                            <Table.DataCell>{organisasjon.navn}</Table.DataCell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.HeaderCell>Orgnr</Table.HeaderCell>
+                            <Table.DataCell>{organisasjon.organisasjonsnummer}</Table.DataCell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.HeaderCell>Ansatt fra og med</Table.HeaderCell>
+                            <Table.DataCell>
+                                <>{organisasjon.ansattFom}</>
+                            </Table.DataCell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.HeaderCell>Navn</Table.HeaderCell>
+                            <Table.DataCell>
+                                <>{organisasjon.ansattTom}</>
+                            </Table.DataCell>
+                        </Table.Row>
+                    </Table.Body>
+                </Table>
             </VStack>
         </ShadowBox>
     );
