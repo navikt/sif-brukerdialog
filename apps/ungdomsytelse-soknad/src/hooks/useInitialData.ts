@@ -3,7 +3,7 @@ import { Arbeidsgivere, fetchArbeidsgivere, fetchBarn, fetchSøker, RegistrertBa
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 
-type InitialData = {
+export type InitialData = {
     barn: RegistrertBarn[];
     søker: Søker;
     arbeidsgivere: Arbeidsgivere;

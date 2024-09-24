@@ -1,51 +1,34 @@
-import { Box, Tabs } from '@navikt/ds-react';
-import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
-import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import SøkerInfo from './components/SøkerInfo';
-import { useInitialData } from './hooks/useInitialData';
+import { Navigate, Route } from 'react-router-dom';
+import { SoknadApplication, SoknadApplicationCommonRoutes } from '@navikt/sif-common-soknad-ds/src';
+import Søknad from './søknad/Søknad';
+import { browserEnv } from './types/browserEnv';
+import { SøknadRoutes } from './types/SøknadRoutes';
 import '@navikt/ds-css';
-import BarnInfo from './components/BarnInfo';
-import ArbeidsgiverInfo from './components/ArbeidsgiverInfo';
+import { applicationIntlMessages } from './i18n';
 
 const App = () => {
-    const { initialData, isLoading } = useInitialData();
-
-    if (isLoading || !initialData) {
-        return (
-            <Page title="Henter informasjon">
-                <center>
-                    <LoadingSpinner size="3xlarge" />
-                </center>
-            </Page>
-        );
-    }
-
-    const { søker, barn, arbeidsgivere } = initialData;
     return (
-        <Page title="Forside">
-            <Tabs defaultValue="arbeidsgivere">
-                <Tabs.List>
-                    <Tabs.Tab value="søker" label="Søker" />
-                    <Tabs.Tab value="barn" label="Barn" />
-                    <Tabs.Tab value="arbeidsgivere" label="Arbeidsgivere" />
-                </Tabs.List>
-                <Tabs.Panel value="søker">
-                    <Box paddingBlock="4">
-                        <SøkerInfo søker={søker} />
-                    </Box>
-                </Tabs.Panel>
-                <Tabs.Panel value="barn">
-                    <Box paddingBlock="4">
-                        <BarnInfo barn={barn} />
-                    </Box>
-                </Tabs.Panel>
-                <Tabs.Panel value="arbeidsgivere">
-                    <Box paddingBlock="4">
-                        <ArbeidsgiverInfo arbeidsgivere={arbeidsgivere} />
-                    </Box>
-                </Tabs.Panel>
-            </Tabs>
-        </Page>
+        <SoknadApplication
+            appKey="ungdomsytelse"
+            appName="Ungdomsytelse"
+            appTitle="Ungdomsytelse MVP"
+            publicPath={browserEnv.PUBLIC_PATH}
+            intlMessages={applicationIntlMessages}
+            appStatus={{
+                sanityConfig: {
+                    projectId: browserEnv.APPSTATUS_PROJECT_ID,
+                    dataset: browserEnv.APPSTATUS_DATASET,
+                },
+            }}>
+            <SoknadApplicationCommonRoutes
+                contentRoutes={[
+                    <Route index key="redirect" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
+                    <Route path={SøknadRoutes.SOKNAD_ROOT} key="soknad" element={<Søknad />} />,
+                    <Route path={SøknadRoutes.IKKE_TILGANG} key="ikke-tilgang" element={<>Ikke tilgang</>} />,
+                    <Route path="*" key="ukjent" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
+                ]}
+            />
+        </SoknadApplication>
     );
 };
 
