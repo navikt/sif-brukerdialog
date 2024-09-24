@@ -24,6 +24,7 @@ const App = () => {
                 contentRoutes={[
                     <Route index key="redirect" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
                     <Route path={SøknadRoutes.SOKNAD_ROOT} key="soknad" element={<Søknad />} />,
+                    <Route path={SøknadRoutes.VELKOMMEN} key="soknad" element={<Søknad />} />,
                     <Route path={SøknadRoutes.IKKE_TILGANG} key="ikke-tilgang" element={<>Ikke tilgang</>} />,
                     <Route path="*" key="ukjent" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
                 ]}
