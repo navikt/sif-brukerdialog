@@ -94,12 +94,12 @@ const startExpressServer = () => {
 
     /** --- Send søknad ---------- */
 
-    server.post('/omsorgspenger-utvidet-rett/innsending', (req, res) => {
+    server.post('/ungdomsytelse/soknad/innsending', (req, res) => {
         const body = req.body;
         console.log('[POST] body', body);
         setTimeout(() => {
             res.sendStatus(200);
-        }, 2500);
+        }, 500);
     });
 
     const errorResponse = {

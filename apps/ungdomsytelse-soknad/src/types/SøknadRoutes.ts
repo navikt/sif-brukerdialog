@@ -10,7 +10,7 @@ export const SøknadStepRoutePath = {
 export enum SøknadRoutes {
     SOKNAD_ROOT = '/soknad/*',
     VELKOMMEN = '/soknad/velkommen',
-    OM_BARNET = '/soknad/info',
+    INFO = '/soknad/info',
     OPPSUMMERING = '/soknad/oppsummering',
     SØKNAD_SENDT = '/soknad/soknad_sendt',
     UKJENT_STEG = '/soknad/ukjent-steg',

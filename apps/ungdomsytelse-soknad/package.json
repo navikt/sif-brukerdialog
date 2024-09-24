@@ -23,6 +23,7 @@
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-soknad-ds": "*",
         "@navikt/sif-common-ui": "*",
+        "axios": "1.7.7",
         "clsx": "2.1.1",
         "date-fns": "4.1.0",
         "react": "18.3.1",
@@ -30,6 +31,7 @@
         "react-hook-form": "7.53.0",
         "react-intl": "6.6.8",
         "react-router-dom": "6.26.2",
+        "uuid": "10.0.0",
         "zod": "3.23.8"
     },
     "devDependencies": {

@@ -21,7 +21,6 @@ const Søknad = () => {
     return (
         <SøknadContextProvider initialData={initialData}>
             <SøknadRouter />
-
             <ApiInfo søker={initialData.søker} barn={initialData.barn} />
         </SøknadContextProvider>
     );
