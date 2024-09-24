@@ -1,10 +1,16 @@
 import { Navigate, Route } from 'react-router-dom';
-import { SoknadApplication, SoknadApplicationCommonRoutes } from '@navikt/sif-common-soknad-ds/src';
+import {
+    ensureBaseNameForReactRouter,
+    SoknadApplication,
+    SoknadApplicationCommonRoutes,
+} from '@navikt/sif-common-soknad-ds/src';
+import { applicationIntlMessages } from './i18n';
 import Søknad from './søknad/Søknad';
 import { browserEnv } from './types/browserEnv';
 import { SøknadRoutes } from './types/SøknadRoutes';
 import '@navikt/ds-css';
-import { applicationIntlMessages } from './i18n';
+
+ensureBaseNameForReactRouter(browserEnv.PUBLIC_PATH);
 
 const App = () => {
     return (
