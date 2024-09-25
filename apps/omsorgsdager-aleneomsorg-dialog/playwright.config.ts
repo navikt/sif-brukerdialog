@@ -24,12 +24,12 @@ export default defineConfig({
         url: 'http://localhost:8080',
         reuseExistingServer: true,
         env: {
-            DEKORATOR_URL: 'https://www.nav.no/dekoratoren/?simple=true&chatbot=false',
             PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg',
             K9_BRUKERDIALOG_PROSESSERING_API_URL: 'http://localhost:8089',
             K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: 'http://localhost:8089',
-            APPSTATUS_PROJECT_ID: 'ryujtq87',
-            APPSTATUS_DATASET: 'staging',
+            SIF_PUBLIC_DEKORATOR_URL: 'https://www.nav.no/dekoratoren/?simple=true&chatbot=false',
+            SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
+            SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
         },
     },
 });
