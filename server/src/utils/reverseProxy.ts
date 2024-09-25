@@ -1,7 +1,7 @@
 import { getToken, requestTokenxOboToken } from '@navikt/oasis';
 import { Express, NextFunction, Request, Response } from 'express';
 import { createProxyMiddleware } from 'http-proxy-middleware';
-import config, { Service, verifyAllProxiesAreSet } from './serverConfig.js';
+import config, { Service, verifyProxyConfigIsSet } from './serverConfig.js';
 
 type ProxyOptions = {
     ingoingUrl: string;
@@ -16,20 +16,21 @@ const getCommitShaFromEnv = () => {
 };
 
 export function configureReverseProxyApi(app: Express) {
-    try {
-        verifyAllProxiesAreSet();
-        Object.keys(config.proxies)
-            .map((key) => config.proxies[key as Service])
-            .forEach((proxy) => {
+    Object.keys(config.proxies)
+        .map((key) => ({ key, proxy: config.proxies[key as Service] }))
+        .forEach(({ key, proxy }) => {
+            try {
+                verifyProxyConfigIsSet(key as Service);
                 addProxyHandler(app, {
                     ingoingUrl: proxy.frontendPath,
                     outgoingUrl: proxy.apiUrl,
                     scope: proxy.apiScope,
                 });
-            });
-    } catch (e) {
-        console.error('Error setting up reverse proxy', e);
-    }
+                console.info('Reverse proxyHandler added', proxy);
+            } catch (e) {
+                console.error('Error setting up reverse proxy for', key);
+            }
+        });
 }
 
 export function addProxyHandler(server: Express, { ingoingUrl, outgoingUrl, scope }: ProxyOptions) {
