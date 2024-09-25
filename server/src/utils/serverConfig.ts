@@ -66,4 +66,6 @@ const app = {
     publicPath: process.env.PUBLIC_PATH || '',
 };
 
+console.log('ServerConfig.app', app);
+
 export default { proxies, app };

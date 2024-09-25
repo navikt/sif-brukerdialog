@@ -26,7 +26,7 @@ export function configureReverseProxyApi(app: Express) {
                     outgoingUrl: proxy.apiUrl,
                     scope: proxy.apiScope,
                 });
-                console.log('Reverse proxyHandler added', proxy);
+                console.info('Reverse proxyHandler added', proxy);
             });
     } catch (e) {
         console.error('Error setting up reverse proxy', e);
