@@ -28,7 +28,7 @@ export function configureReverseProxyApi(app: Express) {
                 });
                 console.info('Reverse proxyHandler added', proxy);
             } catch (e) {
-                console.error('Error setting up reverse proxy', key, e);
+                console.error('Error setting up reverse proxy for', key);
             }
         });
 }
