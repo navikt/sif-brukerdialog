@@ -30,21 +30,17 @@ const proxies = {
 
 export const verifyProxyConfigIsSet = (service: Service) => {
     const proxy = proxies[service];
-    try {
-        if (!proxy) {
-            throw `Missing proxy ${service}`;
-        }
-        if (!proxy.apiScope) {
-            throw `Missing apiScope for ${service}`;
-        }
-        if (!proxy.apiUrl) {
-            throw `Missing apiUrl for ${service}`;
-        }
-        if (!proxy.frontendPath) {
-            throw `Missing frontendPath for ${service}`;
-        }
-    } catch {
-        console.log('Error setting up reverse proxy', service);
+    if (!proxy) {
+        throw `Missing proxy for ${service}`;
+    }
+    if (!proxy.apiScope) {
+        throw `Missing apiScope for ${service}`;
+    }
+    if (!proxy.apiUrl) {
+        throw `Missing apiUrl for ${service}`;
+    }
+    if (!proxy.frontendPath) {
+        throw `Missing frontendPath for ${service}`;
     }
 };
 
@@ -63,7 +59,5 @@ const app = {
     version: process.env.APP_VERSION,
     publicPath: process.env.PUBLIC_PATH || '',
 };
-
-console.log('ServerConfig.app', app);
 
 export default { proxies, app };
