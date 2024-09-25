@@ -70,7 +70,6 @@ const TidspunktForBarn = ({ barnMedAleneomsorg, aleneomsorgTidspunkt }: Props) =
                     return error
                         ? {
                               key: 'validation.tidspunktForAleneomsorg.noValue',
-                              values: { barnMedAleneomsorg },
                               keepKeyUnaltered: true,
                           }
                         : undefined;
@@ -96,7 +95,6 @@ const TidspunktForBarn = ({ barnMedAleneomsorg, aleneomsorgTidspunkt }: Props) =
                             return error
                                 ? {
                                       key: `validation.tidspunktForAleneomsorg.dato.${error}`,
-                                      values: { barnMedAleneomsorg },
                                       keepKeyUnaltered: true,
                                   }
                                 : undefined;
