@@ -28,26 +28,24 @@ const proxies = {
     },
 };
 
-const verifyProxyConfig = (service: Service) => {
+export const verifyProxyConfigIsSet = (service: Service) => {
     const proxy = proxies[service];
-    if (!proxy) {
-        throw `Missing proxy ${service}`;
+    try {
+        if (!proxy) {
+            throw `Missing proxy ${service}`;
+        }
+        if (!proxy.apiScope) {
+            throw `Missing apiScope for ${service}`;
+        }
+        if (!proxy.apiUrl) {
+            throw `Missing apiUrl for ${service}`;
+        }
+        if (!proxy.frontendPath) {
+            throw `Missing frontendPath for ${service}`;
+        }
+    } catch {
+        console.log('Error setting up reverse proxy', service);
     }
-    if (!proxy.apiScope) {
-        throw `Missing apiScope for ${service}`;
-    }
-    if (!proxy.apiUrl) {
-        throw `Missing apiUrl for ${service}`;
-    }
-    if (!proxy.frontendPath) {
-        throw `Missing frontendPath for ${service}`;
-    }
-};
-
-export const verifyAllProxiesAreSet = () => {
-    verifyProxyConfig(Service.innsyn);
-    verifyProxyConfig(Service.k9SakInnsyn);
-    verifyProxyConfig(Service.k9BrukerdialogProsessering);
 };
 
 export const getPublicEnvVariables = () => {
