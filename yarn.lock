@@ -4471,6 +4471,7 @@ __metadata:
     babel-polyfill: "npm:6.26.0"
     compression: "npm:1.7.4"
     cookie-parser: "npm:1.4.6"
+    cors: "npm:2.8.5"
     cross-env: "npm:7.0.3"
     dayjs: "npm:1.11.13"
     dotenv: "npm:16.4.5"
