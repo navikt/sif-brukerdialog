@@ -23,7 +23,6 @@
         "SIF_PUBLIC_DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://omsorgsdager-aleneomsorg-dialog.intern.dev.nav.no/oauth2/logout&redirectToApp=true",
         "SIF_PUBLIC_LOGIN_URL": "https://omsorgsdager-aleneomsorg-dialog.intern.dev.nav.no/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/soknad",
         "SIF_PUBLIC_MINSIDE_URL": "https://www.intern.dev.nav.no/minside",
-        "SIF_PUBLIC_NPM_CONFIG_CACHE": "/tmp",
         "SIF_PUBLIC_OMS_IKKE_TILSYN_URL": "https://ekstra-omsorgsdager-andre-forelder-ikke-tilsyn.intern.dev.nav.no/",
         "SIF_PUBLIC_USE_FARO": "true"
     }
