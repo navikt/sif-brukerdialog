@@ -1,5 +1,13 @@
 # @navikt/sif-common-core-ds
 
+## 9.18.15
+
+### Patch Changes
+
+-   Pakkeoppdatering - react-intl-6.7.0
+-   Updated dependencies
+    -   @navikt/sif-common-utils@3.47.12
+
 ## 9.18.14
 
 ### Patch Changes

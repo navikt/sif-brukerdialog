@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 2.19.12
+
+### Patch Changes
+
+-   Pakkeoppdatering - react-intl-6.7.0
+
 ## 2.19.11
 
 ### Patch Changes

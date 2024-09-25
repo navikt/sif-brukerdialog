@@ -1,6 +1,6 @@
 {
     "name": "@navikt/sif-server",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "license": "MIT",
     "private": true,
     "type": "module",
@@ -21,7 +21,7 @@
         "@types/cookie-parser": "1.4.7",
         "@types/express": "4.17.21",
         "@types/morgan": "1.9.9",
-        "@types/node": "22.6.1",
+        "@types/node": "22.7.0",
         "@vercel/ncc": "0.38.2",
         "axios": "1.7.7",
         "morgan": "1.10.0",

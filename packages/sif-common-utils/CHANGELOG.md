@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.47.12
+
+### Patch Changes
+
+-   Pakkeoppdatering - react-intl-6.7.0
+
 ## 3.47.11
 
 ### Patch Changes
