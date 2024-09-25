@@ -65,7 +65,7 @@
         "@storybook/react-vite": "8.3.3",
         "@storybook/test": "8.3.3",
         "@testing-library/dom": "10.4.0",
-        "@types/node": "22.6.1",
+        "@types/node": "22.7.0",
         "@types/object-hash": "3.0.6",
         "@types/react": "18.3.9",
         "@types/react-dom": "18.3.0",
