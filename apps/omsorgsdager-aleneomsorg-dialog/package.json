@@ -11,7 +11,7 @@
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg",
         "clean": "rm -rf node_modules .dist",
         "codegen": "playwright codegen",
-        "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",
+        "dev-api": "PORT=8089 node ./mock/mock-api-server.cjs",
         "dev": "node ./dev-server.cjs",
         "e2e": "playwright test",
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",

@@ -1,4 +1,5 @@
-const getAppSettings = require('./e2e/server/AppSettings.cjs');
+const { createProxyMiddleware, fixRequestBody } = require('http-proxy-middleware');
+const getAppSettings = require('./mock/AppSettings.cjs');
 const { injectDecoratorServerSide } = require('@navikt/nav-dekoratoren-moduler/ssr/index.js');
 const express = require('express');
 const server = express();
@@ -51,6 +52,18 @@ const startServer = async () => {
             APP_VERSION: `${process.env.APP_VERSION}`,
             PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
             ...getAppSettings(),
+        }),
+    );
+
+    server.use(
+        '/api/brukerdialog',
+        createProxyMiddleware({
+            target: 'http://localhost:8089/',
+            changeOrigin: true,
+            logger: console,
+            on: {
+                proxyReq: fixRequestBody,
+            },
         }),
     );
 
