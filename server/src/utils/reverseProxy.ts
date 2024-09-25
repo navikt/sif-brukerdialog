@@ -18,19 +18,20 @@ const getCommitShaFromEnv = () => {
 export function configureReverseProxyApi(app: Express) {
     try {
         verifyAllProxiesAreSet();
-        Object.keys(config.proxies)
-            .map((key) => config.proxies[key as Service])
-            .forEach((proxy) => {
-                addProxyHandler(app, {
-                    ingoingUrl: proxy.frontendPath,
-                    outgoingUrl: proxy.apiUrl,
-                    scope: proxy.apiScope,
-                });
-                console.info('Reverse proxyHandler added', proxy);
-            });
     } catch (e) {
         console.error('Error setting up reverse proxy', e);
     }
+
+    Object.keys(config.proxies)
+        .map((key) => config.proxies[key as Service])
+        .forEach((proxy) => {
+            addProxyHandler(app, {
+                ingoingUrl: proxy.frontendPath,
+                outgoingUrl: proxy.apiUrl,
+                scope: proxy.apiScope,
+            });
+            console.info('Reverse proxyHandler added', proxy);
+        });
 }
 
 export function addProxyHandler(server: Express, { ingoingUrl, outgoingUrl, scope }: ProxyOptions) {
