@@ -12,17 +12,17 @@
     "maxReplicas": 2,
     "observabilityEnabled": "true",
     "env": {
-        "API_TOKENX_AUDIENCE": "prod-gcp:dusseldorf:k9-brukerdialog-prosessering",
-        "API_URL": "http://k9-brukerdialog-prosessering",
         "APP_VERSION": "prod",
         "APPSTATUS_DATASET": "production",
         "APPSTATUS_PROJECT_ID": "ryujtq87",
         "DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=true&chatbot=false&logoutUrl=https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/oauth2/logout",
-        "FRONTEND_API_PATH": "/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/api",
+        "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "prod-gcp:dusseldorf:k9-brukerdialog-prosessering",
+        "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",
+        "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/api",
         "LOGIN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/soknad",
         "MINSIDE_URL": "https://www.nav.no/minside",
-        "OMS_IKKE_TILSYN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/soknad",
         "NPM_CONFIG_CACHE": "/tmp",
+        "OMS_IKKE_TILSYN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/soknad",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg",
         "USE_FARO": "true"
     }
