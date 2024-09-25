@@ -18,8 +18,7 @@
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
         "playwright-test": "playwright test",
-        "start-e2e-server": "node ./server-e2e.cjs",
-        "start-express": "node ./server.cjs"
+        "start-e2e-server": "node ./e2e/server/server.cjs"
     },
     "dependencies": {
         "@navikt/ds-css": "7.0.1",
