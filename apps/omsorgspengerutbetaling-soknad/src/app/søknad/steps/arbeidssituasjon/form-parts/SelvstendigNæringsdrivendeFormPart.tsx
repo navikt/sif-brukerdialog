@@ -24,7 +24,7 @@ interface Props {
 
 const SelvstendigNæringsdrivendeFormPart: React.FC<Props> = ({ values }) => {
     const { intl, text } = useAppIntl();
-    const skipOrgNumValidation = getEnvironmentVariable('SKIP_ORGNUM_VALIDATION') === 'true';
+    const skipOrgNumValidation = getEnvironmentVariable('SIF_PUBLIC_SKIP_ORGNUM_VALIDATION') === 'true';
     const { selvstendig_erSelvstendigNæringsdrivende, selvstendig_virksomhet, selvstendig_harFlereVirksomheter } =
         values;
     const erSelvstendigNæringsdrivende = selvstendig_erSelvstendigNæringsdrivende === YesOrNo.YES;
