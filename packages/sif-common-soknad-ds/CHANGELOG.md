@@ -1,5 +1,18 @@
 # @navikt/sif-common-soknad-ds
 
+## 14.0.10
+
+### Patch Changes
+
+-   Pakkeoppdatering - react-intl-6.7.0
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.12.15
+    -   @navikt/sif-common-forms-ds@10.1.10
+    -   @navikt/sif-common-core-ds@9.18.15
+    -   @navikt/sif-common-sentry@0.27.10
+    -   @navikt/sif-common-utils@3.47.12
+    -   @navikt/sif-common-ui@0.8.16
+
 ## 14.0.9
 
 ### Patch Changes

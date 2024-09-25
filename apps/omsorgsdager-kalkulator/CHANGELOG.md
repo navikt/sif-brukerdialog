@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.8.13
+
+### Patch Changes
+
+-   Pakkeoppdatering - react-intl-6.7.0
+
 ## 3.8.12
 
 ### Patch Changes

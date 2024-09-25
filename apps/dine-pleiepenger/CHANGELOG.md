@@ -1,5 +1,17 @@
 # @navikt/dine-pleiepenger
 
+## 1.6.15
+
+### Patch Changes
+
+-   Pakkeoppdatering - react-intl-6.7.0
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.26.12
+    -   @navikt/appstatus-react-ds@2.19.12
+    -   @navikt/sif-common-core-ds@9.18.15
+    -   @navikt/sif-common-sentry@0.27.10
+    -   @navikt/sif-common-utils@3.47.12
+
 ## 1.6.14
 
 ### Patch Changes
