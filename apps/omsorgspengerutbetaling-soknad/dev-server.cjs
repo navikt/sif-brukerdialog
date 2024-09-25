@@ -79,8 +79,15 @@ const startServer = async () => {
         },
     });
 
-    server.get(/^\/(?!.*dist).*$/, (req, _res, next) => {
-        const fullPath = path.resolve(__dirname, decodeURIComponent(req.path.substring(1)));
+    server.get(/^\/(?!.*dist).*$/, (req, res, next) => {
+        const ROOT_DIR = path.resolve(__dirname);
+        const fullPath = path.resolve(ROOT_DIR, decodeURIComponent(req.path.substring(1)));
+
+        if (!fullPath.startsWith(ROOT_DIR)) {
+            res.status(403).send('Forbidden');
+            return;
+        }
+
         const fileExists = fs.existsSync(fullPath);
 
         if ((!fileExists && !req.url.startsWith('/@')) || req.url === '/') {
