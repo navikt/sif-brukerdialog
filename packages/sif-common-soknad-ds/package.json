@@ -3,7 +3,7 @@
     "description": "Basis felleskomponenter for sykdom i familien søknadsskjema",
     "name": "@navikt/sif-common-soknad-ds",
     "main": "src",
-    "version": "14.0.10",
+    "version": "14.0.11",
     "private": true,
     "type": "module",
     "peerDependencies": {
@@ -30,8 +30,8 @@
         "@devexperts/remote-data-ts": "2.1.1",
         "@formatjs/intl-pluralrules": "5.2.14",
         "@navikt/appstatus-react-ds": "*",
-        "@navikt/ds-css": "7.0.1",
-        "@navikt/ds-react": "7.0.1",
+        "@navikt/ds-css": "7.1.0",
+        "@navikt/ds-react": "7.1.0",
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-hooks": "*",
@@ -54,7 +54,7 @@
         "@testing-library/react": "16.0.1",
         "@testing-library/user-event": "14.5.2",
         "@types/jest": "29.5.13",
-        "@types/node": "22.7.0",
+        "@types/node": "22.7.2",
         "@types/react": "18.3.9",
         "@types/react-dom": "18.3.0",
         "@types/react-modal": "3.16.3",
@@ -84,7 +84,7 @@
         "vite": "5.4.8",
         "vite-plugin-checker": "0.8.0",
         "vitest": "2.1.1",
-        "webpack": "5.94.0"
+        "webpack": "5.95.0"
     },
     "scripts": {
         "build-storybook": "storybook build",
