@@ -2,8 +2,8 @@
 const express = require('express');
 const path = require('path');
 const mustacheExpress = require('mustache-express');
-const getAppSettings = require('./src/build/AppSettings.cjs');
-const getDecorator = require('./src/build/decorator.cjs');
+const getAppSettings = require('./mock/AppSettings.cjs');
+const getDecorator = require('./e2e/server/decorator.cjs');
 const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const jose = require('jose');
@@ -104,12 +104,12 @@ const startServer = async (html) => {
     server.get(`${process.env.PUBLIC_PATH}/health/isReady`, (_req, res) => res.sendStatus(200));
 
     server.use(
-        process.env.FRONTEND_API_PATH,
+        process.env.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH,
         createProxyMiddleware({
-            target: process.env.API_URL,
+            target: process.env.K9_BRUKERDIALOG_PROSESSERING_API_URL,
             changeOrigin: true,
             pathRewrite: (path) => {
-                return path.replace(process.env.FRONTEND_API_PATH, '');
+                return path.replace(process.env.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH, '');
             },
             router: async (req) => getRouterConfig(req, false),
             secure: true,

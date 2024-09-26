@@ -14,5 +14,5 @@ export const relocateToWelcomePage = () => {
     relocateTo(getSøknadRouteURL(SøknadRoutes.VELKOMMEN));
 };
 export const relocateToNoAccessPage = (): void => relocateTo(getSøknadRouteURL(SøknadRoutes.IKKE_TILGANG));
-export const relocateToLoginPage = () => relocateTo(getEnvironmentVariable('LOGIN_URL'));
-export const relocateToMinSide = () => relocateTo(getEnvironmentVariable('MINSIDE_URL'));
+export const relocateToLoginPage = () => relocateTo(getEnvironmentVariable('SIF_PUBLIC_LOGIN_URL'));
+export const relocateToMinSide = () => relocateTo(getEnvironmentVariable('SIF_PUBLIC_MINSIDE_URL'));
