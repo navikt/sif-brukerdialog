@@ -28,26 +28,24 @@ const proxies = {
     },
 };
 
-const verifyProxyConfig = (service: Service) => {
+export const verifyProxyConfigIsSet = (service: Service) => {
     const proxy = proxies[service];
     if (!proxy) {
-        throw `Missing proxy ${service}`;
+        console.error(`Missing proxy for ${service}`);
+        throw `Missing proxy for ${service}`;
     }
     if (!proxy.apiScope) {
+        console.error(`Missing apiScope for ${service}`);
         throw `Missing apiScope for ${service}`;
     }
     if (!proxy.apiUrl) {
+        console.error(`Missing apiUrl for ${service}`);
         throw `Missing apiUrl for ${service}`;
     }
     if (!proxy.frontendPath) {
+        console.error(`Missing frontendPath for ${service}`);
         throw `Missing frontendPath for ${service}`;
     }
-};
-
-export const verifyAllProxiesAreSet = () => {
-    verifyProxyConfig(Service.innsyn);
-    verifyProxyConfig(Service.k9SakInnsyn);
-    verifyProxyConfig(Service.k9BrukerdialogProsessering);
 };
 
 export const getPublicEnvVariables = () => {

@@ -1,8 +1,9 @@
 const settingsNode = document.getElementById('nav:appSettings') as HTMLScriptElement;
 const appSettingsInline = settingsNode ? JSON.parse(settingsNode.text) : undefined;
 
-export const getEnvironmentVariable = (variableName: string): string => {
-    return (appSettingsInline || (window as any).appSettings || {})[variableName];
+export const getEnvironmentVariable = (envName: string): string => {
+    const envs = appSettingsInline || (window as any).appSettings || {};
+    return envs[envName] || envs[`SIF_PUBLIC_${envName}`];
 };
 
 export const getMaybeEnvironmentVariable = (variableName: string): string | undefined => {

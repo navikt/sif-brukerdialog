@@ -8,6 +8,11 @@ export const axiosConfig: AxiosRequestConfig = {
     headers: { 'Content-type': 'application/json; charset=utf-8' },
 };
 
+export const axiosMultipartConfig: AxiosRequestConfig = {
+    ...axiosConfig,
+    headers: { 'Content-Type': 'multipart/form-data' },
+};
+
 export const k9BrukerdialogApiClient = axios.create({
     ...axiosConfig,
     baseURL: getEnvVariableOrDefault('K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH', defaultFrontendApiPath),

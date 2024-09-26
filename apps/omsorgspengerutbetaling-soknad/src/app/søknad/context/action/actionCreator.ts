@@ -12,6 +12,7 @@ import { OppsummeringFormValues } from '../../steps/oppsummering/OppsummeringSte
 
 export enum SøknadContextActionKeys {
     RESET_SØKNAD = 'resetSøknad',
+    SET_IS_RELOADING_APP = 'setIsReloadingApp',
     START_SØKNAD = 'startSøknad',
     AVBRYT_SØKNAD = 'avbrytSøknad',
     FORTSETT_SØKNAD_SENERE = 'fortsettSøknadSenere',
@@ -32,6 +33,9 @@ export enum SøknadContextActionKeys {
 
 interface ResetSøknad {
     type: SøknadContextActionKeys.RESET_SØKNAD;
+}
+interface SetIsReloadingApp {
+    type: SøknadContextActionKeys.SET_IS_RELOADING_APP;
 }
 interface StartSøknad {
     type: SøknadContextActionKeys.START_SØKNAD;
@@ -94,6 +98,10 @@ interface SetSøknadHarBekreftetOpplysninger {
 
 const resetSøknad = (): ResetSøknad => ({
     type: SøknadContextActionKeys.RESET_SØKNAD,
+});
+
+const setIsReloadingApp = (): SetIsReloadingApp => ({
+    type: SøknadContextActionKeys.SET_IS_RELOADING_APP,
 });
 
 const startSøknad = (): StartSøknad => ({
@@ -163,6 +171,7 @@ export type SøknadContextAction =
     | StartSøknad
     | AvbrytSøknad
     | ResetSøknad
+    | SetIsReloadingApp
     | FortsettSøknadSenere
     | RequestLagreSøknad
     | SetSøknadLagret
@@ -179,6 +188,7 @@ export type SøknadContextAction =
 
 const actionsCreator = {
     resetSøknad,
+    setIsReloadingApp,
     startSøknad,
     avbrytSøknad,
     fortsettSøknadSenere,

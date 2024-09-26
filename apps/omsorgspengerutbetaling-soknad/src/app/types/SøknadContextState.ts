@@ -20,5 +20,7 @@ export interface SøknadContextState {
     tempFormData?: TempFormValues;
     søknadRoute?: SøknadRoutes;
     søknadSendt?: boolean;
+    /** Settes til true dersom appen/siden lastes på nytt */
+    isReloadingApp?: boolean;
     børMellomlagres?: boolean;
 }

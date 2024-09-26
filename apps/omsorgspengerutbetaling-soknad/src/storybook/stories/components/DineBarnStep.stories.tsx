@@ -8,7 +8,7 @@ import { withFormikWrapper } from '../../decorators/withFormikWrapper';
 import { Søker } from '../../../app/types/Søker';
 import { useFormikContext } from 'formik';
 import { DineBarnFormValues } from '../../../app/søknad/steps/dine-barn/DineBarnStep';
-import { barnMockData } from '../../../test-mock-data/barn';
+import { barnMockData } from '../../mock-data/barn';
 import { kanFortsetteFraDineBarnStep } from '../../../app/søknad/steps/dine-barn/dineBarnStepUtils';
 
 const meta: Meta<typeof DineBarnForm> = {
