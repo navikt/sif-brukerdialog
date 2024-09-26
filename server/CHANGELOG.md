@@ -1,5 +1,12 @@
 # @navikt/sif-server
 
+## 0.1.3
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   ad46a6b: Godta at reverseProxies ikke er satt, men logge til console
+
 ## 0.1.2
 
 ### Patch Changes
