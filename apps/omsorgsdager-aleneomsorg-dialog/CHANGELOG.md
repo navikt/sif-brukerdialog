@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.21.0
+
+### Minor Changes
+
+-   1e68dd1: Gå over til å bruke felles serveroppsett og nye env-variabler.
+
 ## 2.20.24
 
 ### Patch Changes
