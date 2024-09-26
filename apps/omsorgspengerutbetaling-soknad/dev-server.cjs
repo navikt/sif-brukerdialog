@@ -2,6 +2,7 @@ const { createProxyMiddleware, fixRequestBody } = require('http-proxy-middleware
 const getAppSettings = require('./mock/AppSettings.cjs');
 const { injectDecoratorServerSide } = require('@navikt/nav-dekoratoren-moduler/ssr/index.js');
 const express = require('express');
+const rateLimit = require('express-rate-limit');
 const server = express();
 server.use(express.json());
 const path = require('path');
@@ -16,6 +17,13 @@ require('dotenv').config();
 server.set('views', `${__dirname}`);
 server.set('view engine', 'mustache');
 server.engine('html', mustacheExpress());
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // limit each IP to 100 requests per windowMs
+});
+
+server.use(limiter);
 
 server.use((req, res, next) => {
     res.removeHeader('X-Powered-By');
