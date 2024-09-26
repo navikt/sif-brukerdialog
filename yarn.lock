@@ -4152,7 +4152,7 @@ __metadata:
     "@types/react": "npm:18.3.9"
     axios: "npm:1.7.7"
     classnames: "npm:2.5.1"
-    date-fns: "npm:3.6.0"
+    date-fns: "npm:4.1.0"
     dayjs: "npm:1.11.13"
     eslint: "npm:9.11.1"
     eslint-plugin-storybook: "npm:0.8.0"
@@ -4354,7 +4354,7 @@ __metadata:
     compression: "npm:1.7.4"
     cookie-parser: "npm:1.4.6"
     cross-env: "npm:7.0.3"
-    date-fns: "npm:3.6.0"
+    date-fns: "npm:4.1.0"
     dayjs: "npm:1.11.13"
     dotenv: "npm:16.4.5"
     express: "npm:4.21.0"
@@ -4515,7 +4515,7 @@ __metadata:
     "@types/uuid": "npm:10.0.0"
     classnames: "npm:2.5.1"
     config: "npm:*"
-    date-fns: "npm:3.6.0"
+    date-fns: "npm:4.1.0"
     dayjs: "npm:1.11.13"
     eslint: "npm:9.11.1"
     eslint-config-next: "npm:14.2.13"
@@ -4906,7 +4906,7 @@ __metadata:
     compression: "npm:1.7.4"
     cookie-parser: "npm:1.4.6"
     cross-env: "npm:7.0.3"
-    date-fns: "npm:3.6.0"
+    date-fns: "npm:4.1.0"
     dayjs: "npm:1.11.13"
     dotenv: "npm:16.4.5"
     express: "npm:4.21.0"
@@ -5025,7 +5025,7 @@ __metadata:
     classnames: "npm:2.5.1"
     config: "npm:*"
     copyfiles: "npm:2.4.1"
-    date-fns: "npm:3.6.0"
+    date-fns: "npm:4.1.0"
     dayjs: "npm:1.11.13"
     formik: "npm:2.4.6"
     http-status-codes: "npm:2.3.0"
@@ -5101,7 +5101,7 @@ __metadata:
     config: "npm:*"
     copyfiles: "npm:2.4.1"
     css-loader: "npm:7.1.2"
-    date-fns: "npm:3.6.0"
+    date-fns: "npm:4.1.0"
     dayjs: "npm:1.11.13"
     formik: "npm:2.4.6"
     i18n-iso-countries: "npm:7.12.0"
@@ -5169,7 +5169,7 @@ __metadata:
     axios: "npm:1.7.7"
     config: "npm:*"
     copyfiles: "npm:2.4.1"
-    date-fns: "npm:3.6.0"
+    date-fns: "npm:4.1.0"
     dayjs: "npm:1.11.13"
     flat: "npm:6.0.1"
     formik: "npm:2.4.6"
@@ -5276,7 +5276,7 @@ __metadata:
     axios: "npm:1.7.7"
     classnames: "npm:2.5.1"
     copyfiles: "npm:2.4.1"
-    date-fns: "npm:3.6.0"
+    date-fns: "npm:4.1.0"
     dayjs: "npm:1.11.13"
     formik: "npm:2.4.6"
     fp-ts: "npm:2.16.9"
@@ -5339,7 +5339,7 @@ __metadata:
     "@types/react": "npm:18.3.9"
     classnames: "npm:2.5.1"
     copyfiles: "npm:2.4.1"
-    date-fns: "npm:3.6.0"
+    date-fns: "npm:4.1.0"
     dayjs: "npm:1.11.13"
     globals: "npm:15.9.0"
     intl: "npm:1.2.5"
@@ -5412,7 +5412,7 @@ __metadata:
     axios: "npm:1.7.7"
     classnames: "npm:2.5.1"
     copyfiles: "npm:2.4.1"
-    date-fns: "npm:3.6.0"
+    date-fns: "npm:4.1.0"
     dayjs: "npm:1.11.13"
     globals: "npm:15.9.0"
     intl: "npm:1.2.5"
@@ -5454,7 +5454,7 @@ __metadata:
     autoprefixer: "npm:10.4.20"
     clsx: "npm:2.1.1"
     compression: "npm:1.7.4"
-    date-fns: "npm:3.6.0"
+    date-fns: "npm:4.1.0"
     eslint: "npm:9.11.1"
     eslint-plugin-prettier: "npm:5.2.1"
     eslint-plugin-react: "npm:7.36.1"
@@ -5519,7 +5519,7 @@ __metadata:
     compression: "npm:1.7.4"
     cookie-parser: "npm:1.4.6"
     cross-env: "npm:7.0.3"
-    date-fns: "npm:3.6.0"
+    date-fns: "npm:4.1.0"
     dayjs: "npm:1.11.13"
     dotenv: "npm:16.4.5"
     express: "npm:4.21.0"
@@ -5596,7 +5596,7 @@ __metadata:
     axios: "npm:1.7.7"
     clsx: "npm:2.1.1"
     compression: "npm:1.7.4"
-    date-fns: "npm:3.6.0"
+    date-fns: "npm:4.1.0"
     eslint: "npm:9.11.1"
     eslint-plugin-prettier: "npm:5.2.1"
     eslint-plugin-react: "npm:7.36.1"
@@ -13145,10 +13145,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"date-fns@npm:3.6.0, date-fns@npm:^3.0.0":
-  version: 3.6.0
-  resolution: "date-fns@npm:3.6.0"
-  checksum: 10/cac35c58926a3b5d577082ff2b253612ec1c79eb6754fddef46b6a8e826501ea2cb346ecbd211205f1ba382ddd1f9d8c3f00bf433ad63cc3063454d294e3a6b8
+"date-fns@npm:4.1.0":
+  version: 4.1.0
+  resolution: "date-fns@npm:4.1.0"
+  checksum: 10/d5f6e9de5bbc52310f786099e18609289ed5e30af60a71e0646784c8185ddd1d0eebcf7c96b7faaaefc4a8366f3a3a4244d099b6d0866ee2bec80d1361e64342
   languageName: node
   linkType: hard
 
@@ -13158,6 +13158,13 @@ __metadata:
   dependencies:
     "@babel/runtime": "npm:^7.21.0"
   checksum: 10/70b3e8ea7aaaaeaa2cd80bd889622a4bcb5d8028b4de9162cbcda359db06e16ff6e9309e54eead5341e71031818497f19aaf9839c87d1aba1e27bb4796e758a9
+  languageName: node
+  linkType: hard
+
+"date-fns@npm:^3.0.0":
+  version: 3.6.0
+  resolution: "date-fns@npm:3.6.0"
+  checksum: 10/cac35c58926a3b5d577082ff2b253612ec1c79eb6754fddef46b6a8e826501ea2cb346ecbd211205f1ba382ddd1f9d8c3f00bf433ad63cc3063454d294e3a6b8
   languageName: node
   linkType: hard
 

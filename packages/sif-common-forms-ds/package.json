@@ -13,7 +13,7 @@
         "@navikt/sif-common-utils": "*"
     },
     "dependencies": {
-        "date-fns": "3.6.0"
+        "date-fns": "4.1.0"
     },
     "devDependencies": {
         "@babel/core": "7.25.2",
