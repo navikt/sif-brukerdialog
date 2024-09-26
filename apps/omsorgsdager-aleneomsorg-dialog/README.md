@@ -18,7 +18,8 @@ For å kjøre enhetstester:
 
 For å kjøre Playwright tester:
 
-1.  `yarn e2e` i root omsorgsdager-aleneomsorg-dialog i egen terminal.
+1.  `yarn start-e2e-server`
+1.  `yarn e2e`
 
 ## Henvendelser
 
