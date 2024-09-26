@@ -1,5 +1,14 @@
 # @navikt/sif-common-core-ds
 
+## 9.18.16
+
+### Patch Changes
+
+-   ad46a6b: getEnvironmentVariable - default også sjekke for om env er satt med patternet SIF*PUBLIC*{envNavn}
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-utils@3.47.13
+
 ## 9.18.15
 
 ### Patch Changes
