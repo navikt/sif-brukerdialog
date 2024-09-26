@@ -49,7 +49,8 @@ test('Fyll ut og kontroller person med fødselsnummer', async ({ page }) => {
 test('Valider manglende navn', async ({ page }) => {
     await page.getByRole('textbox', { name: 'Navn på den du skal pleie' }).fill('');
     await page.getByRole('button', { name: 'Neste steg' }).click();
-    const errorMessages = await page.getByLabel('Feil i skjema');
+    await page.getByRole('button', { name: 'Neste steg' }).click();
+    const errorMessages = await page.getByRole('heading', { name: 'Feil i skjema' });
     expect(await errorMessages.isVisible()).toBeTruthy();
-    expect(await errorMessages.getByText('Du må skrive inn navnet til den du pleier.').isVisible()).toBeTruthy();
+    expect(await page.getByRole('link', { name: 'Du må skrive inn navnet til' }).isVisible()).toBeTruthy();
 });
