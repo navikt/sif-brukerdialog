@@ -8,7 +8,7 @@ export const vedleggService = {
         const formData = new FormData();
         formData.append('vedlegg', file);
         const response = await k9BrukerdialogApiClient.post(serviceUrl, formData, axiosMultipartConfig);
-        response.headers.vedleggId = getAttachmentId(response.headers.location);
+        response.headers.vedleggId = response.headers.location ? getAttachmentId(response.headers.location) : undefined;
         return response;
     },
     /**
