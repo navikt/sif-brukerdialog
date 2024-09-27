@@ -15,7 +15,7 @@ export const setupMockRoutes = async (page: Page, props?: { mellomlagring: any }
     await page.route('**/vedlegg', async (route) => {
         await route.fulfill({
             status: 200,
-            headers: { Location: '/vedlegg', 'access-control-expose-headers': 'Location' },
+            headers: { Location: '/vedlegg/123', 'access-control-expose-headers': 'Location' },
         });
     });
     await page.route('**/mellomlagring/OMSORGSPENGER_UTVIDET_RETT', async (route, request) => {
