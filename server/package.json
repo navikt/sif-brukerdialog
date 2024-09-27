@@ -6,7 +6,7 @@
     "type": "module",
     "scripts": {
         "start": "node ./server.js",
-        "dev": "node ./dist/server.js",
+        "dev": "node ./dist/index.js",
         "build": "ncc build ./src/index.ts -o dist -t --no-cache"
     },
     "dependencies": {
