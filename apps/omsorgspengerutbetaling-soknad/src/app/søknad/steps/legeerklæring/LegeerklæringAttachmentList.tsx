@@ -1,6 +1,6 @@
 import { BodyShort } from '@navikt/ds-react';
 import React from 'react';
-import { vedleggService } from '@navikt/sif-common';
+import { getAttachmentId, vedleggService } from '@navikt/sif-common';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import AttachmentListWithDeletion from '@navikt/sif-common-core-ds/src/components/attachment-list-with-deletion/AttachmentListWithDeletion';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
@@ -52,7 +52,7 @@ const LegeerklæringAvtaleAttachmentList: React.FunctionComponent<Props> = ({
                         setFieldValue(LegeerklæringFormFields.vedlegg, removeElementFromArray(attachment, avtale));
                     };
                     if (attachment.url) {
-                        vedleggService.delete(attachment.url).then(updateFieldValue, updateFieldValue);
+                        vedleggService.delete(getAttachmentId(attachment.url)).then(updateFieldValue, updateFieldValue);
                     }
                 }}
             />
