@@ -26,7 +26,7 @@ export const fixAttachmentURL = (a: Attachment) => {
         url: a.url
             ? attachmentURLUtils.fixInvalidPathInFrontendURL(
                   a.url,
-                  getEnvironmentVariable('SIF_PUBLIC_FRONTEND_VEDLEGG_URL'),
+                  getEnvironmentVariable('K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH'),
               )
             : undefined,
     };
