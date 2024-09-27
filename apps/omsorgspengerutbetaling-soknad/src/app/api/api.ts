@@ -47,12 +47,6 @@ const api = {
             headers: { ...axiosConfig.headers, ...headers },
         });
     },
-    uploadFile: (endpoint: ApiEndpoint, file: File) => {
-        const formData = new FormData();
-        formData.append('vedlegg', file);
-        return axios.post(endpoint, formData, axiosMultipartConfig);
-    },
-    deleteFile: (url: string) => axios.delete(url, axiosConfig),
 };
 
 export default api;

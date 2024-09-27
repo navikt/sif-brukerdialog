@@ -14,7 +14,7 @@ export interface MellomlagringInterface<StorageFormat> {
     purge: () => Promise<AxiosResponse>;
 }
 
-export function getMellomlagringService<StorageFormat>(
+export function getMellomlagringServiceForYtelse<StorageFormat>(
     ytelse: MellomlagringYtelse,
 ): MellomlagringInterface<StorageFormat> {
     const url = `/mellomlagring/${ytelse}`;

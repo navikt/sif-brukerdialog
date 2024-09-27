@@ -7,11 +7,17 @@ export const getUploadedAttachments = (attachments: Attachment[]): Attachment[] 
     attachments.filter((attachment) => attachmentHasBeenUploaded(attachment));
 
 export const getAttachmentURLFrontend = (url: string): string => {
-    return attachmentURLUtils.getAttachmentFrontendURL(url, getEnvironmentVariable('SIF_PUBLIC_FRONTEND_VEDLEGG_URL'));
+    return attachmentURLUtils.getAttachmentFrontendURL(
+        url,
+        getEnvironmentVariable('K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH'),
+    );
 };
 
 export const getAttachmentURLBackend = (url: string): string => {
-    return attachmentURLUtils.getAttachmentBackendURL(url, getEnvironmentVariable('SIF_PUBLIC_VEDLEGG_API_URL'));
+    return attachmentURLUtils.getAttachmentBackendURL(
+        url,
+        getEnvironmentVariable('K9_BRUKERDIALOG_PROSESSERING_API_URL'),
+    );
 };
 
 export const fixAttachmentURL = (a: Attachment) => {
