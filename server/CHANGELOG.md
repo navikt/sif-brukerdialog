@@ -1,5 +1,11 @@
 # @navikt/sif-server
 
+## 0.2.0
+
+### Minor Changes
+
+-   052ef4b: Vedleggservice i common, og ta denne i bruk i omsorgspengerutbetaling-sn-fl
+
 ## 0.1.3
 
 ### Patch Changes

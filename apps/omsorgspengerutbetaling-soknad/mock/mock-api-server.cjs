@@ -88,7 +88,12 @@ const startServer = () => {
         req.pipe(busboy);
     });
 
-    server.delete(`/vedlegg`, (req, res) => {
+    server.get(`/vedlegg/:id`, (req, res) => {
+        const { id } = req.params;
+        res.send({ id }).status(200);
+    });
+
+    server.delete(`/vedlegg/:id`, (req, res) => {
         res.sendStatus(200);
     });
 
@@ -106,7 +111,8 @@ const startServer = () => {
         const body = req.body;
         const jsBody = isJSON(body) ? JSON.parse(body) : body;
         writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify(jsBody, null, 2));
-        res.sendStatus(200);
+        res.set('location', 'http://localhost:8089/mellomlagring/vedlegg/OMSORGSPENGER_UTBETALING_SNF');
+        res.send(200);
     });
     server.put(`/mellomlagring/OMSORGSPENGER_UTBETALING_SNF`, (req, res) => {
         const body = req.body;

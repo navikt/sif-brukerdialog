@@ -1,5 +1,16 @@
 # @navikt/sif-common-ui
 
+## 0.1.0
+
+### Minor Changes
+
+-   052ef4b: Vedleggservice i common, og ta denne i bruk i omsorgspengerutbetaling-sn-fl
+
+### Patch Changes
+
+-   Updated dependencies [052ef4b]
+    -   @navikt/sif-common-core-ds@9.18.17
+
 ## 0.0.4
 
 ### Patch Changes

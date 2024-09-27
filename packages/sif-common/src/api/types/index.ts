@@ -8,6 +8,9 @@ import {
     søkerResponseSchema,
 } from '../schemas';
 
+export * from './mellomlagringYtelse';
+export * from './innsendingType';
+
 export type Søker = z.infer<typeof søkerResponseSchema>;
 
 export type RegistrertBarn = z.infer<typeof barnSchema>;

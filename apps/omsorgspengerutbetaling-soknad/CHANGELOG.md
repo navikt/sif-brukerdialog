@@ -1,5 +1,17 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.17.0
+
+### Minor Changes
+
+-   052ef4b: Vedleggservice i common, og ta denne i bruk i omsorgspengerutbetaling-sn-fl
+
+### Patch Changes
+
+-   Updated dependencies [052ef4b]
+    -   @navikt/sif-common-soknad-ds@14.0.12
+    -   @navikt/sif-common-core-ds@9.18.17
+
 ## 1.16.0
 
 ### Minor Changes

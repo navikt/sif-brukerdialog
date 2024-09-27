@@ -28,8 +28,6 @@ export default defineConfig({
             PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling',
             K9_BRUKERDIALOG_PROSESSERING_API_URL: 'http://localhost:8089',
             K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: 'http://localhost:8089',
-            SIF_PUBLIC_FRONTEND_VEDLEGG_URL: 'http://localhost:8089',
-            SIF_PUBLIC_VEDLEGG_API_URL: 'http://localhost:8089',
             SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
             SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
             USE_MOCK_DATE: 'true',
