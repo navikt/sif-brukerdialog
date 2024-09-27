@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 9.18.17
+
+### Patch Changes
+
+-   052ef4b: Vedleggservice i common, og ta denne i bruk i omsorgspengerutbetaling-sn-fl
+
 ## 9.18.16
 
 ### Patch Changes

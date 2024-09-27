@@ -1,5 +1,13 @@
 # @navikt/sif-common-soknad-ds
 
+## 14.0.12
+
+### Patch Changes
+
+-   052ef4b: Vedleggservice i common, og ta denne i bruk i omsorgspengerutbetaling-sn-fl
+-   Updated dependencies [052ef4b]
+    -   @navikt/sif-common-core-ds@9.18.17
+
 ## 14.0.11
 
 ### Patch Changes
