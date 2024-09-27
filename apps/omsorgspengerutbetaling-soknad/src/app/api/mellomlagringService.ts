@@ -1,9 +1,9 @@
 import { getMellomlagringService as getMellomlagringService, MellomlagringYtelse, Søker } from '@navikt/sif-common';
 import { jsonSort } from '@navikt/sif-common-utils';
 import hash from 'object-hash';
-import { SØKNAD_VERSJON } from '../../constants/SØKNAD_VERSJON';
-import { SøknadContextState } from '../../types/SøknadContextState';
-import { isValidSøknadRoute } from '../../utils/søknadRoutesUtils';
+import { SØKNAD_VERSJON } from '../constants/SØKNAD_VERSJON';
+import { SøknadContextState } from '../types/SøknadContextState';
+import { isValidSøknadRoute } from '../utils/søknadRoutesUtils';
 
 export type MellomlagringData = Omit<SøknadContextState, 'søker'> & {
     søknadHashString: string;

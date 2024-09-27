@@ -1,7 +1,7 @@
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { FormikValuesObserver } from '@navikt/sif-common-formik-ds';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
-import { mellomlagringService } from '../../../api/services/mellomlagringService';
+import { mellomlagringService } from '../../../api/mellomlagringService';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';

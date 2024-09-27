@@ -3,7 +3,7 @@ import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-
 import { fetchSøkerId } from '@navikt/sif-common';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds/src';
-import { mellomlagringService } from '../api/services/mellomlagringService';
+import { mellomlagringService } from '../api/mellomlagringService';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
 import { useResetSøknad } from '../hooks/useResetSøknad';
 import KvitteringPage from '../pages/kvittering/KvitteringPage';

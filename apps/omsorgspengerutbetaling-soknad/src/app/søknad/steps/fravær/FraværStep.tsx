@@ -16,7 +16,7 @@ import FraværPerioderListAndDialog from '@navikt/sif-common-forms-ds/src/forms/
 import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds/src/forms/fravær/types';
 import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
 import { getDate1YearAgo, getDateToday } from '@navikt/sif-common-utils';
-import { mellomlagringService } from '../../../api/services/mellomlagringService';
+import { mellomlagringService } from '../../../api/mellomlagringService';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { usePersistTempFormValues } from '../../../hooks/usePersistTempFormValues';

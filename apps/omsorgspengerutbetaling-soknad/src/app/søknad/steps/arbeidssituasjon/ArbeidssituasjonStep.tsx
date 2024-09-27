@@ -7,7 +7,7 @@ import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/compone
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { Virksomhet } from '@navikt/sif-common-forms-ds/src/forms/virksomhet/types';
-import { mellomlagringService } from '../../../api/services/mellomlagringService';
+import { mellomlagringService } from '../../../api/mellomlagringService';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';

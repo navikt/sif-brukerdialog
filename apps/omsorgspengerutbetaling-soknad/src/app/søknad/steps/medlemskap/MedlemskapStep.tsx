@@ -7,7 +7,7 @@ import {
     MedlemskapFormFields,
     MedlemskapFormValues,
 } from '@navikt/sif-common-forms-ds';
-import { mellomlagringService } from '../../../api/services/mellomlagringService';
+import { mellomlagringService } from '../../../api/mellomlagringService';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';

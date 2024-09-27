@@ -5,7 +5,7 @@ import getRequiredFieldValidator from '@navikt/sif-common-formik-ds/src/validati
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import dayjs from 'dayjs';
-import { mellomlagringService } from '../../../api/services/mellomlagringService';
+import { mellomlagringService } from '../../../api/mellomlagringService';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';

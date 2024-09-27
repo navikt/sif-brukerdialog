@@ -1,6 +1,6 @@
 import { Button } from '@navikt/ds-react';
 import { useState } from 'react';
-import { mellomlagringService } from '../../api/services/mellomlagringService';
+import { mellomlagringService } from '../../api/mellomlagringService';
 import { relocateToWelcomePage } from '../../utils/navigationUtils';
 
 interface Props {

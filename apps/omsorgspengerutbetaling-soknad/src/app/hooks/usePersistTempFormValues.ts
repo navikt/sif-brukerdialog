@@ -1,4 +1,4 @@
-import { mellomlagringService } from '../api/services/mellomlagringService';
+import { mellomlagringService } from '../api/mellomlagringService';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { TempFormValues } from '../types/SøknadContextState';
 
