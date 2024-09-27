@@ -1,16 +1,7 @@
+import { getAttachmentId } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { axiosMultipartConfig, k9BrukerdialogApiClient } from '../apiClient';
 
 const serviceUrl = '/vedlegg';
-
-const VEDLEGG_ID_SPLIT_KEY = 'vedlegg/';
-
-export const getAttachmentId = (url: string): string => {
-    const id = url.split(VEDLEGG_ID_SPLIT_KEY)[1];
-    if (!id || id.length === 0) {
-        throw new Error('Kunne ikke hente vedleggId fra url');
-    }
-    return id;
-};
 
 export const vedleggService = {
     post: async (file: File) => {

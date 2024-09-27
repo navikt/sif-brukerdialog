@@ -92,3 +92,13 @@ export const hasPendingAttachments = (attachments: Attachment[]): boolean =>
 
 export const hasExceededMaxTotalSizeOfAttachments = (attachments: Attachment[]): boolean =>
     getTotalSizeOfAttachments(attachments) > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
+
+const VEDLEGG_ID_SPLIT_KEY = 'vedlegg/';
+
+export const getAttachmentId = (url: string): string => {
+    const id = url.split(VEDLEGG_ID_SPLIT_KEY)[1];
+    if (!id || id.length === 0) {
+        throw new Error('Kunne ikke hente vedleggId fra url');
+    }
+    return id;
+};
