@@ -15,7 +15,8 @@ import FraværDagerListAndDialog from '@navikt/sif-common-forms-ds/src/forms/fra
 import FraværPerioderListAndDialog from '@navikt/sif-common-forms-ds/src/forms/fravær/FraværPerioderListAndDialog';
 import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds/src/forms/fravær/types';
 import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
-
+import { getDate1YearAgo, getDateToday } from '@navikt/sif-common-utils';
+import { mellomlagringService } from '../../../api/services/mellomlagringService';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { usePersistTempFormValues } from '../../../hooks/usePersistTempFormValues';
@@ -24,7 +25,6 @@ import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
 import { AppText, useAppIntl } from '../../../i18n';
 import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
-import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
@@ -35,7 +35,6 @@ import FraværStepInfo from './FraværStepInfo';
 import fraværStepUtils, { getFraværStepInitialValues, getFraværSøknadsdataFromFormValues } from './FraværStepUtils';
 import OmsorgsdagerInfo from './OmsorgsdagerInfo';
 import { useFraværsperiodeDetaljer } from './useFraværsperiodeDetaljer';
-import { getDate1YearAgo, getDateToday } from '@navikt/sif-common-utils';
 
 export enum FraværFormFields {
     harPerioderMedFravær = 'harPerioderMedFravær',
@@ -91,7 +90,7 @@ const FraværStep = () => {
         onValidSubmitHandler,
         stepId,
         (state: SøknadContextState) => {
-            return lagreSøknadState(state);
+            return mellomlagringService.update(state);
         },
     );
 

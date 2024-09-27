@@ -1,5 +1,5 @@
+import { RegistrertBarn } from '@navikt/sif-common';
 import { AnnetBarn, BarnType } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
-import { RegistrertBarn } from '../../app/types/RegistrertBarn';
 import dayjs from 'dayjs';
 
 const date2yearsAgo = dayjs().subtract(2, 'y').startOf('year').toDate();

@@ -5,6 +5,7 @@ import getRequiredFieldValidator from '@navikt/sif-common-formik-ds/src/validati
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import dayjs from 'dayjs';
+import { mellomlagringService } from '../../../api/services/mellomlagringService';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -12,7 +13,6 @@ import { AppText, useAppIntl } from '../../../i18n';
 import { Aktivitet, AktivitetFravær } from '../../../types/AktivitetFravær';
 import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
-import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
@@ -68,7 +68,7 @@ const FraværFraStep = () => {
         onValidSubmitHandler,
         stepId,
         (state: SøknadContextState) => {
-            return lagreSøknadState(state);
+            return mellomlagringService.update(state);
         },
     );
 

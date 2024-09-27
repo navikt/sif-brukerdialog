@@ -1,18 +1,13 @@
-import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { useEffect, useState } from 'react';
+import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common';
+import { isForbidden } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { SØKNAD_VERSJON } from '../constants/SØKNAD_VERSJON';
-import { RegistrertBarn } from '../types/RegistrertBarn';
 import { RequestStatus } from '../types/RequestStatus';
-import { Søker } from '../types/Søker';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import appSentryLogger from '../utils/appSentryLogger';
-import barnEndpoint from './endpoints/barnEndpoint';
-import søkerEndpoint from './endpoints/søkerEndpoint';
-import søknadStateEndpoint, {
-    isPersistedSøknadStateValid,
-    SøknadStatePersistence,
-} from './endpoints/søknadStateEndpoint';
+import { MellomlagringData, mellomlagringService } from './services/mellomlagringService';
+import { relocateToNoAccessPage } from '../utils/navigationUtils';
 
 export type SøknadInitialData = SøknadContextState;
 
@@ -47,12 +42,12 @@ export const defaultSøknadState: Partial<SøknadContextState> = {
 const getSøknadInitialData = async (
     søker: Søker,
     registrerteBarn: RegistrertBarn[],
-    lagretSøknadState: SøknadStatePersistence,
+    lagretSøknadState: MellomlagringData,
 ): Promise<SøknadInitialData> => {
-    const isValid = isPersistedSøknadStateValid(lagretSøknadState, { søker });
+    const isValid = mellomlagringService.isMellomlagringValid(lagretSøknadState, { søker });
 
     if (!isValid) {
-        await søknadStateEndpoint.purge();
+        await mellomlagringService.purge();
     }
     const lagretSøknadStateToUse = isValid ? lagretSøknadState : defaultSøknadState;
     return Promise.resolve({
@@ -69,19 +64,17 @@ function useSøknadInitialData(): SøknadInitialDataState {
 
     const fetch = async () => {
         try {
-            const søker = await søkerEndpoint.fetch();
-            const barn = await barnEndpoint.fetch();
-            const lagretSøknadState = await søknadStateEndpoint.fetch();
+            const søker = await fetchSøker();
+            const barn = await fetchBarn();
+            const lagretSøknadState = await mellomlagringService.fetch();
             const data = await getSøknadInitialData(søker, barn, lagretSøknadState);
             setInitialData({
                 status: RequestStatus.success,
                 data,
             });
         } catch (error: any) {
-            if (isUnauthorized(error)) {
-                setInitialData({
-                    status: RequestStatus.redirectingToLogin,
-                });
+            if (isForbidden(error)) {
+                relocateToNoAccessPage();
             } else {
                 appSentryLogger.logError('fetchInitialData', error);
                 setInitialData({

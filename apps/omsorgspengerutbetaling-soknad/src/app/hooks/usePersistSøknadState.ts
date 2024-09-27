@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
+import { mellomlagringService } from '../api/services/mellomlagringService';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
-import { lagreSøknadState } from '../utils/lagreSøknadState';
 
 export const usePersistSøknadState = () => {
     const { dispatch, state } = useSøknadContext();
@@ -10,7 +10,7 @@ export const usePersistSøknadState = () => {
     useEffect(() => {
         if (state.børMellomlagres) {
             setPending(true);
-            lagreSøknadState(state).then(() => {
+            mellomlagringService.update(state).then(() => {
                 dispatch(actionsCreator.setSøknadLagret());
                 setPending(false);
             });

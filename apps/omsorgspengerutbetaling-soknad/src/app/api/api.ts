@@ -4,11 +4,8 @@ import axios, { AxiosError, AxiosRequestConfig, RawAxiosRequestHeaders } from 'a
 import { relocateToLoginPage, relocateToNoAccessPage } from '../utils/navigationUtils';
 
 export enum ApiEndpoint {
-    'soker' = 'oppslag/soker',
-    'barn' = 'oppslag/barn',
     'send_søknad' = 'omsorgspenger-utbetaling-snf/innsending',
     'vedlegg' = 'vedlegg',
-    'mellomlagring' = 'mellomlagring/OMSORGSPENGER_UTBETALING_SNF',
 }
 
 const axiosConfigCommon: AxiosRequestConfig = {
@@ -40,10 +37,6 @@ axios.interceptors.response.use((response) => {
 }, handleAxiosError);
 
 const api = {
-    get: <ResponseType>(endpoint: ApiEndpoint, paramString?: string, config?: AxiosRequestConfig) => {
-        const url = `${endpoint}${paramString ? `?${paramString}` : ''}`;
-        return axios.get<ResponseType>(url, config || axiosConfig);
-    },
     post: <DataType = any, ResponseType = any>(
         endpoint: ApiEndpoint,
         data: DataType,

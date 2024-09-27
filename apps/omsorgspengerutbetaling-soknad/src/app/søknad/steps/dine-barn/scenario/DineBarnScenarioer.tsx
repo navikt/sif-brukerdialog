@@ -1,5 +1,5 @@
+import { RegistrertBarn } from '@navikt/sif-common';
 import { DineBarnScenario } from '../../../../types/DineBarnScenario';
-import { RegistrertBarn } from '../../../../types/RegistrertBarn';
 import { DineBarnFormValues } from '../DineBarnStep';
 import { getBarnAlderInfo, getDineBarnScenario, getHarUtvidetRett } from '../dineBarnStepUtils';
 import EttEllerToBarnUnder13 from './EttEllerToBarnUnder13';

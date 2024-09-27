@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { fetchSøkerId } from '@navikt/sif-common';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds/src';
-import søkerEndpoint from '../api/endpoints/søkerEndpoint';
-import { useMellomlagring } from '../hooks/useMellomlagring';
+import { mellomlagringService } from '../api/services/mellomlagringService';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
 import { useResetSøknad } from '../hooks/useResetSøknad';
 import KvitteringPage from '../pages/kvittering/KvitteringPage';
@@ -30,10 +30,9 @@ const SøknadRouter = () => {
     } = useSøknadContext();
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
-    const { slettMellomlagring } = useMellomlagring();
     const { setShouldResetSøknad, shouldResetSøknad } = useResetSøknad();
 
-    useVerifyUserOnWindowFocus(søker.fødselsnummer, søkerEndpoint.fetchId);
+    useVerifyUserOnWindowFocus(søker.fødselsnummer, fetchSøkerId);
     usePersistSøknadState();
 
     useEffect(() => {
@@ -47,9 +46,9 @@ const SøknadRouter = () => {
     }, [navigateTo, pathname, stateSøknadRoute, isFirstTimeLoadingApp, søknadSendt]);
 
     const restartSøknad = useCallback(async () => {
-        await slettMellomlagring();
+        await mellomlagringService.purge();
         relocateToWelcomePage();
-    }, [slettMellomlagring]);
+    }, []);
 
     useEffect(() => {
         if (shouldResetSøknad) {
@@ -95,7 +94,7 @@ const SøknadRouter = () => {
                     <UnknownRoutePage
                         pathName={pathname}
                         onReset={() => {
-                            slettMellomlagring().then(() => {
+                            mellomlagringService.purge().then(() => {
                                 dispatch(actionsCreator.resetSøknad());
                                 navigateTo(SøknadRoutes.VELKOMMEN);
                             });

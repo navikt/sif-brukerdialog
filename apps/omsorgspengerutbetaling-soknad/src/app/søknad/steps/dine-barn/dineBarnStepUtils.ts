@@ -1,15 +1,15 @@
+import { RegistrertBarn } from '@navikt/sif-common';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
+import { getDateToday } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { BarnAlderInfo } from '../../../types/BarnAlderInfo';
 import { DineBarnScenario } from '../../../types/DineBarnScenario';
-import { RegistrertBarn } from '../../../types/RegistrertBarn';
 import { StepId } from '../../../types/StepId';
 import { SøknadContextState, TempFormValues } from '../../../types/SøknadContextState';
 import { DineBarnSøknadsdata, DineBarnSøknadsdataType } from '../../../types/søknadsdata/DineBarnSøknadsdata';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { DineBarnFormValues } from './DineBarnStep';
-import { getDateToday } from '@navikt/sif-common-utils';
 
 export const nYearsAgo = (years: number): Date => {
     return dayjs(getDateToday()).subtract(years, 'y').startOf('year').toDate();
