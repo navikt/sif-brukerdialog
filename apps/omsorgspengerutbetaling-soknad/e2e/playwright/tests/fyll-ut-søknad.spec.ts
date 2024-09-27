@@ -21,7 +21,7 @@ test.describe('Fyller ut søknad', () => {
         await page.route('**/oppslag/barn', async (route) => {
             await route.fulfill({ status: 200, body: JSON.stringify(playwrightApiMockData.barnMock.toBarnUnder13) });
         });
-        await page.route('**/vedlegg', async (route) => {
+        await page.route('**/vedlegg/**/*', async (route) => {
             await route.fulfill({
                 status: 200,
                 headers: { Location: '/vedlegg', 'access-control-expose-headers': 'Location' },

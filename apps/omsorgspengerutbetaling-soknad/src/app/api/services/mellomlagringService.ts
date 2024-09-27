@@ -1,4 +1,4 @@
-import { getMellomlagringServiceForYtelse, MellomlagringYtelse, Søker } from '@navikt/sif-common';
+import { getMellomlagringService as getMellomlagringService, MellomlagringYtelse, Søker } from '@navikt/sif-common';
 import { jsonSort } from '@navikt/sif-common-utils';
 import hash from 'object-hash';
 import { SØKNAD_VERSJON } from '../../constants/SØKNAD_VERSJON';
@@ -26,7 +26,7 @@ const isMellomlagringValid = (søknadState: MellomlagringData, info: SøknadStat
     );
 };
 
-const service = getMellomlagringServiceForYtelse<MellomlagringData>(MellomlagringYtelse.OMSORGSPENGER_UTBETALING_SNF);
+const service = getMellomlagringService<MellomlagringData>(MellomlagringYtelse.OMSORGSPENGER_UTBETALING_SNF);
 
 export const mellomlagringService = {
     ...service,

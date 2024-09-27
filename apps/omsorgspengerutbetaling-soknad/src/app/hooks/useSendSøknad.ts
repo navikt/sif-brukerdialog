@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { OmsorgspengerutbetalingSNFriApp } from '@navikt/sif-app-register';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { AxiosError } from 'axios';
-import søknadEndpoint from '../api/endpoints/søknadEndpoint';
+import { innsendingService } from '../api/services/innsendingService';
 import { mellomlagringService } from '../api/services/mellomlagringService';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
@@ -20,7 +20,7 @@ export const useSendSøknad = () => {
 
     const sendSøknad = (apiData: SøknadApiData) => {
         setIsSubmitting(true);
-        søknadEndpoint
+        innsendingService
             .send(apiData)
             .then(onSøknadSendSuccess)
             .catch((error) => {
