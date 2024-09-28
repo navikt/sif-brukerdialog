@@ -23,7 +23,7 @@ const nn: SoknadMessagesType = {
     '@soknad.stepConfig.previousStepLinkText': 'Tilbake til {title}',
     '@soknad.loadingPage.henterInformasjon': 'Hentar informasjon',
     '@soknad.stepFooter.avbryt': 'Slett søknaden',
-    '@soknad.stepFooter.fortsettSenere': 'Fortsett seinere',
+    '@soknad.stepFooter.fortsettSenere': 'Fortsett seinare',
     '@soknad.velkommenGuide.tittel': 'Hei, {navn}',
 
     ...samtykkeFormMessages.nn,
