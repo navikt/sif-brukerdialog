@@ -39,11 +39,11 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.oppsummering.søker.header': 'Om deg',
     'steg.oppsummering.søker.fnr': 'Fødselsnummer',
     'steg.oppsummering.barnet.header': 'Om barnet',
-    'steg.oppsummering.barnet.navn': 'Navn',
+    'steg.oppsummering.barnet.navn': 'Namn',
     'steg.oppsummering.barnet.fødselsdato': 'Fødselsdato',
     'steg.oppsummering.barnet.fnr': 'Fødselsnummer',
     'steg.oppsummering.barnet.søkersRelasjonTilBarnet': 'Relasjonen din til barnet',
-    'steg.oppsummering.barnet.sammeAdresse.header': 'Bor du saman med barnet?',
+    'steg.oppsummering.barnet.sammeAdresse.header': 'Bur du saman med barnet?',
     'steg.oppsummering.barnet.sammeAdresse.ja': 'Ja',
     'steg.oppsummering.barnet.sammeAdresse.nei': 'Nei',
     'steg.oppsummering.barnet.sammeAdresse.jaDeltBosted': 'Ja, barnet har delt fast bustad',
@@ -52,7 +52,7 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.oppsummering.barnet.høyereRisikoForFravær.header':
         'Har du høgare risiko for fråvær på jobb på grunn av sjukdommen eller funksjonshemninga til barnet? ',
     'steg.oppsummering.barnet.høyereRisikoForFraværBeskrivelse.header':
-        'Skildring på korleis sjukdommen eller funksjonshemninga til barnet gir høgare risiko for fråvær frå jobb',
+        'Skildring av korleis barnet sin sjukdom eller funksjonshemming gjer det meir sannsynleg at du må vera borte frå jobb.',
     'steg.oppsummering.vedlegg.header': 'Vedlegg',
     'steg.oppsummering.legeerklæring.header': 'Legeerklæring',
     'steg.oppsummering.samværsavtale.header': 'Avtale om delt fast bustad',

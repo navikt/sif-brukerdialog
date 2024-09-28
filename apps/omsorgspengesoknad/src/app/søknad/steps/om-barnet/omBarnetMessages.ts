@@ -83,9 +83,9 @@ const nn: Record<OmBarnetMessageKeys, string> = {
         'Viss du skal søkja for fleire barn, må du senda éin søknad for kvart barn.',
     'steg.omBarnet.spm.barnetSøknadenGjelder.født': 'Fødd {dato}',
     'steg.omBarnet.spm.gjelderAnnetBarn.label': 'Søknaden gjeld eit anna barn',
-    'steg.omBarnet.annetBarn.tittel': 'Annet barn',
-    'steg.omBarnet.spm.barnetsFødselsnummer.label': 'Barnets fødselsnummer/D-nummer',
-    'steg.omBarnet.spm.fødselsdato.label': 'Barnets fødselsdato',
+    'steg.omBarnet.annetBarn.tittel': 'Anna barn',
+    'steg.omBarnet.spm.barnetsFødselsnummer.label': 'Barnet sitt fødselsnummer/D-nummer',
+    'steg.omBarnet.spm.fødselsdato.label': 'Barnet sin fødselsdato',
     'steg.omBarnet.spm.fødselsdato.info': 'Barnet må vera fødd etter {minFødselsdato}',
     'steg.omBarnet.spm.barnetsNavn.label': 'Barnets namn',
     'steg.omBarnet.spm.relasjon.label': 'Relasjonen min til barnet',
@@ -95,13 +95,13 @@ const nn: Record<OmBarnetMessageKeys, string> = {
     'steg.omBarnet.spm.sammeAdresse.nei': 'Nei',
     'steg.omBarnet.spm.sammeAdresse.hvaBetyrDette': 'Kva er delt fast bustad?',
     'steg.omBarnet.spm.sammeAdresse.hvaBetyrDette.info':
-        'Viss foreldra til barnet ikkje bur saman, kan dei inngå ein avtale om delt fast bustad etter barneloven §36. Barnet bur då fast med begge foreldra sine.',
+        'Viss foreldra til barnet ikkje bur saman, kan dei inngå ein avtale om delt fast bustad etter barnelova §36. Barnet bur då fast med begge foreldra sine.',
     'steg.omBarnet.spm.kroniskEllerFunksjonshemning.label':
         'Har barnet kronisk/langvarig sjukdom eller funksjonshemning?',
     'steg.omBarnet.spm.høyereRisikoForFravær.label':
-        'Har du høgare risiko for fråvær på jobb på grunn av sjukdommen eller funksjonshemninga til barnet? ',
+        'Har du auka risiko for å vera borte frå jobb på grunn av barnet sin sjukdom eller funksjonshemming?',
     'steg.omBarnet.spm.høyereRisikoForFraværBeskrivelse.label':
-        'No treng me ei skildring frå deg på korleis sjukdommen eller funksjonshemninga til barnet gir markert høgare risiko for fråvær frå jobb:',
+        'No treng me ei skildring frå deg på korleis sjukdommen eller funksjonshemninga til barnet gjer at du har markert høgare risiko for å vera borte frå jobb:',
     'steg.omBarnet.relasjonTilBarnet.mor': 'Mor',
     'steg.omBarnet.relasjonTilBarnet.far': 'Far',
     'steg.omBarnet.relasjonTilBarnet.adoptivforelder': 'Adoptivforelder',
@@ -119,7 +119,7 @@ const nn: Record<OmBarnetMessageKeys, string> = {
         'Du har oppgitt eit fødselsnummer som ikkje er tillate.',
     'steg.omBarnet.validation.barnetsFødselsdato.dateHasNoValue': 'Skriv inn fødselsdatoen til barnet.',
     'steg.omBarnet.validation.barnetsFødselsdato.dateHasInvalidFormat':
-        'Barnets fødselsdato er ugyldig. Gyldig format er dd.mm.åååå.',
+        'Barnet sin fødselsdato er ugyldig. Gyldig format er',
     'steg.omBarnet.validation.barnetsFødselsdato.dateIsAfterMax':
         'Fødselsdato kan ikkje vera etter dagens dato. Skriv inn eller vel dato frå datoveljaren.',
     'steg.omBarnet.validation.barnetsFødselsdato.barnOver18år': 'Det blir ikkje gitt omsorgsdagar til barn over 18 år.',
@@ -131,13 +131,13 @@ const nn: Record<OmBarnetMessageKeys, string> = {
     'steg.omBarnet.validation.kroniskEllerFunksjonshemming.yesOrNoIsUnanswered':
         'Du må svara ja eller nei på om barnet har ein kronisk/langvarig sjukdom eller funksjonshemning.',
     'steg.omBarnet.validation.høyereRisikoForFravær.yesOrNoIsUnanswered':
-        'Du må svara ja eller nei på om du har høgare risiko for fråvær på jobb på grunn av sjukdommen eller funksjonshemninga til barnet.',
+        'Du må svare ja eller nei på om du har auka risiko for å vere borte frå jobb på grunn av barnet sin sjukdom eller funksjonshemming.',
     'steg.omBarnet.validation.høyereRisikoForFraværBeskrivelse.stringHasNoValue':
-        'Skriv inn ei skildring på korleis sjukdommen eller funksjonshemninga til barnet gir høgare risiko for fråvær frå jobb.',
+        'Skriv inn ei skildring av korleis barnet sin sjukdom eller funksjonshemming gjer det meir sannsynleg at du må vera borte frå jobb.',
     'steg.omBarnet.validation.høyereRisikoForFraværBeskrivelse.stringIsTooLong':
-        'Skildring på korleis sjukdommen eller funksjonshemninga til barnet gir høgare risiko for fråvær frå jobb kan ikkje innehalda fleire enn 2000 teikn.',
+        'Skildringa av korleis barnet sin sjukdom eller funksjonshemming gjer at du har høgare risiko for å vera borte frå jobb, kan ikkje vera lengre enn 2000 teikn.',
     'steg.omBarnet.validation.høyereRisikoForFraværBeskrivelse.stringIsTooShort':
-        'Skildring på korleis sjukdommen eller funksjonshemninga til barnet gir høgare risiko for fråvær frå jobb må vera på minst 5 teikn.',
+        'Skildring på korleis barnet sin sjukdom eller funksjonshemming gjer at du har høgare risiko for å vera borte frå jobb, må vera minst 5 teikn lang.',
     'steg.omBarnet.alert.sammeAdresse.nei':
         'Det er berre foreldre som bur saman med barnet som kan få ekstra omsorgsdagar frå NAV. Forelderen som bur saman med barnet kan i nokre tilfelle dela sine omsorgsdagar.',
     'steg.omBarnet.alert.ikkeHøyereRisikoForFravær':

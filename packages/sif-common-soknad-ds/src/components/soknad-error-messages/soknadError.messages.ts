@@ -47,20 +47,20 @@ const nn: Record<keyof typeof nb, string> = {
 
     '@soknad.soknadErrorMessages.missingSoknadData.title': 'Det oppstod ein feil under visinga av sida',
     '@soknad.soknadErrorMessages.missingSoknadData.content':
-        'Noko gjekk gale under visinga av denne sida. Du må dessverre fylle ut søknaden på nytt. Vi beklagar ulempa dette fører med seg for deg.',
+        'Noke gjekk gale under visinga av denne sida. Vennlegst gå tilbake og sjå over søknaden på nytt. Vi beklagar ulempa dette fører med seg for deg.',
 
     '@soknad.soknadErrorMessages.unavailableSoknadStep.title': 'Det oppstod ein feil under visinga av sida',
     '@soknad.soknadErrorMessages.unavailableSoknadStep.content':
-        'Noko gjekk gale under visinga av denne sida. Du må dessverre fylle ut søknaden på nytt. Vi beklagar ulempa dette fører med seg for deg.',
+        'Noke gjekk gale under visinga av denne sida, vennlegst gå tilbake og sjå over søknaden. Dersom feilen vedvarar, prøv igjen seinare. Vi beklagar ulempa dette fører med seg for deg.',
     '@soknad.soknadErrorMessages.unavailableSoknadStep.linkText': 'Gå tilbake til {steg}',
 
     '@soknad.soknadErrorMessages.missingApiData.title': 'Det oppstod ein feil under visinga av sida',
     '@soknad.soknadErrorMessages.missingApiData.content':
-        'Det ser ut til at noko av informasjonen manglar på tidlegare steg. Ver vennleg og gå tilbake og korriger dette.',
+        'Det ser ut til at noko av informasjonen manglar på tidlegare steg. Ver vennleg og gå tilbake og rett opp i dette.',
 
     '@soknad.soknadErrorMessages.applicationUnavailable.title': 'Søknaden er dessverre ikkje tilgjengeleg',
     '@soknad.soknadErrorMessages.applicationUnavailable.content':
-        'Vi jobbar så raskt vi kan med å gjere han tilgjengeleg.',
+        'Vi jobber så raskt vi kan med å få den tilgjengelig.',
 
     '@soknad.soknadErrorMessages.unknownRoute.title': 'Du har kome til ei side som ikkje finst',
     '@soknad.soknadErrorMessages.unknownRoute.content': 'Ver vennleg og gå tilbake',

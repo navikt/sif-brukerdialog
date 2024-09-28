@@ -58,11 +58,11 @@ const nn: Record<keyof typeof nb, string> = {
     'page.velkommen.omSøknaden.2':
         'Du må svara på alle spørsmåla for å kunna gå vidare. Viss du manglar etterspurd dokumentasjon, kan du ettersenda det så snart du kan.',
     'page.velkommen.omSøknaden.3':
-        'Me tek vare på svara dine i 72 timar. Viss du innanfor den tida til dømes vil ta ein pause eller blir automatisk logga ut, seier du der du var når du kjem tilbake.',
-    'page.velkommen.personopplysninger.tittel': 'Om korleis me innhentar opplysningar om deg',
-    'page.velkommen.personopplysninger.behandler.tittel': 'Slik behandlar NAV personopplysningane dine',
+        'Me held på svara dine i 72 timar. Om du innanfor den tida til dømes vil ta ein pause eller blir automatisk logga ut, held du fram der du var då du kjem tilbake.',
+    'page.velkommen.personopplysninger.tittel': 'Om korleis me samlar inn opplysningar om deg',
+    'page.velkommen.personopplysninger.behandler.tittel': 'Slik handterer NAV personopplysningane dine',
     'page.velkommen.personopplysninger.behandler.info':
-        'Vi innhentar og får opplysningar om deg for å behandla saka di. Det er nødvendig for at du skal få rett teneste. Delar av saka di blir behandla automatisk.',
+        'Me samlar inn og mottek opplysningar om deg for å handsame saka di. Det er naudsynt for at du skal få rett teneste. Delar av saka di blir handsama automatisk.',
     'page.velkommen.personopplysninger.innhenter.tittel': 'Kva opplysningar innhentar me',
     'page.velkommen.personopplysninger.innhenter':
         'Opplysningane me innhentar kjem anten frå deg eller frå offentlege register:',
@@ -75,9 +75,9 @@ const nn: Record<keyof typeof nb, string> = {
         'trygdeordningar du kan ha rett til i andre land. Me kan også senda opplysningar om deg til trygdestyresmakter i andre land.',
     'page.velkommen.personopplysninger.5.1': 'Korleis me behandlar personopplysningar',
     'page.velkommen.personopplysninger.5.2':
-        'Vi innhentar og får opplysningar om deg for å behandla saka di. Det er nødvendig for at du skal få rett teneste. Delar av saka di blir behandla automatisk.',
+        'Me innhentar og får opplysningar om deg for å behandla saka di. Det er nødvendig for at du skal få rett teneste. Delar av saka di blir behandla automatisk.',
     'page.velkommen.personopplysninger.5.3':
-        'Du har rett til innsyn i saka di. Vil du vita meir om korleis NAV behandlar personopplysningar? Sjå <Lenke>nav.no/personvern</Lenke>.',
+        'Du har rett til å sjå saka di. Vil du vita meir om korleis NAV behandlar personopplysningar? Sjå <Lenke>nav.no/personvern</Lenke>.',
 };
 export const velkommenPageMessages = {
     nb,

@@ -8,7 +8,12 @@ const nb = {
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    ...nb,
+    '@soknad.avbrytSøknadDialog.tittel': 'Slett søknaden',
+    '@soknad.avbrytSøknadDialog.intro':
+        'Informasjonen du har fylt ut blir sletta, og du kjem tilbake til velkomstsida.',
+    '@soknad.avbrytSøknadDialog.spørsmål': 'Vil du slette?',
+    '@soknad.avbrytSøknadDialog.fortsettSøknadLabel': 'Nei',
+    '@soknad.avbrytSøknadDialog.avbrytSøknadLabel': 'Ja, slett',
 };
 
 export const avbrytSøknadDialogMessages = {

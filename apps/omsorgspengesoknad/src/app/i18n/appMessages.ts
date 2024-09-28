@@ -11,7 +11,7 @@ const nb = {
     'vedleggsliste.ingenBostedsavtaleLastetOpp': 'Ingen avtale er lastet opp',
 
     'dokumenter.advarsel.totalstørrelse':
-        'Du har totalt lastet opp mer enn grensen på 24 Mb. Det betyr at du må fjerne noe av det du har lastet opp. Hvis det betyr at du ikke får plass til alt du ønsker å sende nå, kan du <Lenke>ettersende flere dokumenter</Lenke>.',
+        'Du har lastet opp meir enn grensa på 24 Mb til saman. Det tyder på at du må fjerne noko av det du har lastet opp. Dersom du ikkje får plass til alt du vil sende no, kan du <Lenke>ettersende flere dokumenter</Lenke>.',
 
     'initialLoadError.pageTitle': 'Det oppstod en feil',
     'initialLoadError.text.1': 'Det oppstod en feil under oppstarten av søknaden. Vennligst prøv igjen senere.',
@@ -29,7 +29,7 @@ const nn: Record<keyof typeof nb, string> = {
     'step.omBarnet.stepTitle': 'Barn',
     'step.deltBosted.stepTitle': 'Delt fast bustad',
     'step.legeerklaering.stepTitle': 'Legeerklæring',
-    'step.oppsummering.stepTitle': 'Oppsummering',
+    'step.oppsummering.stepTitle': 'Samandrag',
     'vedleggsliste.ingenLegeerklæringLastetOpp': 'Ingen legeerklæring er lasta opp',
     'vedleggsliste.ingenBostedsavtaleLastetOpp': 'Ingen avtale er lasta opp',
     'dokumenter.advarsel.totalstørrelse':
