@@ -1,6 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { ISODateToDate, dateToISODate } from '@navikt/sif-common-utils';
-import { barnMockData } from '../../../../../test-mock-data/barn';
+import { barnMockData } from '../../../../../storybook/mock-data/barn';
 import {
     getAlderILøpetAvÅr,
     getBarnAlderInfo,

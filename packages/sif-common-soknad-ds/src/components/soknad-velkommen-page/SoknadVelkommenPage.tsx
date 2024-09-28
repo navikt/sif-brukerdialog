@@ -1,9 +1,9 @@
-import { Heading, Show, Stack, VStack } from '@navikt/ds-react';
+import { VStack } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { useSoknadIntl } from '../../hooks/useSoknadIntl';
 import SamtykkeForm from '../../modules/samtykke-form/SamtykkeForm';
-import { ApplicationPictogram } from '../application-pictogram/ApplicationPictogram';
 import SoknadVelkommenGuide from './SoknadVelkommenGuide';
+import VelkommenPageHeader from './VelkommenPageHeader';
 
 interface Props {
     /** Tittel på søknad/app */
@@ -28,21 +28,7 @@ const SoknadVelkommenPage = ({ title, onStartSøknad, guide, submitButtonLabel, 
     return (
         <Page title={title}>
             <VStack gap="8">
-                <Stack
-                    gap="6"
-                    direction={{ sm: 'row-reverse', md: 'row' }}
-                    justify={{ sm: 'space-between', md: 'start' }}
-                    align="center"
-                    wrap={false}>
-                    <Show above="sm">
-                        <ApplicationPictogram />
-                    </Show>
-                    <VStack gap="1">
-                        <Heading level="1" size="large">
-                            {title}
-                        </Heading>
-                    </VStack>
-                </Stack>
+                <VelkommenPageHeader title={title} />
 
                 <SoknadVelkommenGuide title={text('@soknad.velkommenGuide.tittel', { navn: guide.navn })}>
                     {guide.content}

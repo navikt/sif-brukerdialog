@@ -1,5 +1,66 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.17.0
+
+### Minor Changes
+
+-   052ef4b: Vedleggservice i common, og ta denne i bruk i omsorgspengerutbetaling-sn-fl
+
+### Patch Changes
+
+-   Updated dependencies [052ef4b]
+    -   @navikt/sif-common-soknad-ds@14.0.12
+    -   @navikt/sif-common-core-ds@9.18.17
+
+## 1.16.0
+
+### Minor Changes
+
+-   ad46a6b: Gå over til å bruke nytt serveroppsett
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies [ad46a6b]
+-   Updated dependencies
+    -   @navikt/sif-common-core-ds@9.18.16
+    -   @navikt/sif-common-amplitude@2.26.13
+    -   @navikt/sif-common-formik-ds@1.12.16
+    -   @navikt/sif-common-soknad-ds@14.0.11
+    -   @navikt/sif-common-forms-ds@10.1.11
+    -   @navikt/sif-common-sentry@0.27.11
+    -   @navikt/sif-common-utils@3.47.13
+    -   @navikt/sif-common-ui@0.8.17
+
+## 1.15.10
+
+### Patch Changes
+
+-   Pakkeoppdatering - react-intl-6.7.0
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.26.12
+    -   @navikt/sif-common-formik-ds@1.12.15
+    -   @navikt/sif-common-soknad-ds@14.0.10
+    -   @navikt/sif-common-forms-ds@10.1.10
+    -   @navikt/sif-common-core-ds@9.18.15
+    -   @navikt/sif-common-sentry@0.27.10
+    -   @navikt/sif-common-utils@3.47.12
+    -   @navikt/sif-common-ui@0.8.16
+
+## 1.15.9
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.26.11
+    -   @navikt/sif-common-formik-ds@1.12.14
+    -   @navikt/sif-common-soknad-ds@14.0.9
+    -   @navikt/sif-common-forms-ds@10.1.9
+    -   @navikt/sif-common-core-ds@9.18.14
+    -   @navikt/sif-common-sentry@0.27.9
+    -   @navikt/sif-common-utils@3.47.11
+
 ## 1.15.8
 
 ### Patch Changes

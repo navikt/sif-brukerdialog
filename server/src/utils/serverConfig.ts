@@ -28,28 +28,35 @@ const proxies = {
     },
 };
 
-const verifyProxyConfig = (service: Service) => {
+export const verifyProxyConfigIsSet = (service: Service) => {
     const proxy = proxies[service];
     if (!proxy) {
-        throw `Missing proxy ${service}`;
+        console.error(`Missing proxy for ${service}`);
+        throw `Missing proxy for ${service}`;
     }
     if (!proxy.apiScope) {
+        console.error(`Missing apiScope for ${service}`);
         throw `Missing apiScope for ${service}`;
     }
     if (!proxy.apiUrl) {
+        console.error(`Missing apiUrl for ${service}`);
         throw `Missing apiUrl for ${service}`;
     }
     if (!proxy.frontendPath) {
+        console.error(`Missing frontendPath for ${service}`);
         throw `Missing frontendPath for ${service}`;
     }
 };
 
-export const verifyAllProxiesAreSet = () => {
-    verifyProxyConfig(Service.innsyn);
-    verifyProxyConfig(Service.k9SakInnsyn);
-    verifyProxyConfig(Service.k9BrukerdialogProsessering);
+export const getPublicEnvVariables = () => {
+    const publicEnv: { [key: string]: string } = {};
+    for (const [key, value] of Object.entries(process.env)) {
+        if (key.startsWith('SIF_PUBLIC_')) {
+            publicEnv[key] = value || '';
+        }
+    }
+    return publicEnv;
 };
-
 const app = {
     port: Number(process.env.PORT) || 8080,
     env: process.env.ENV as 'dev' | 'prod',

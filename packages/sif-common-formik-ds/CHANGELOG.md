@@ -1,5 +1,23 @@
 # @navikt/sif-common-formik-ds
 
+## 1.12.16
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 1.12.15
+
+### Patch Changes
+
+-   Pakkeoppdatering - react-intl-6.7.0
+
+## 1.12.14
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
 ## 1.12.13
 
 ### Patch Changes

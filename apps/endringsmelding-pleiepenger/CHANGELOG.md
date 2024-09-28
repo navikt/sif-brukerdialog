@@ -1,5 +1,36 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.31.24
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies [ad46a6b]
+-   Updated dependencies
+    -   @navikt/sif-common-core-ds@9.18.16
+    -   @navikt/sif-common-amplitude@2.26.13
+    -   @navikt/sif-common-formik-ds@1.12.16
+    -   @navikt/sif-common-soknad-ds@14.0.11
+    -   @navikt/sif-common-forms-ds@10.1.11
+    -   @navikt/sif-common-sentry@0.27.11
+    -   @navikt/sif-common-utils@3.47.13
+    -   @navikt/sif-common-ui@0.8.17
+
+## 2.31.23
+
+### Patch Changes
+
+-   Pakkeoppdatering - react-intl-6.7.0
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.26.12
+    -   @navikt/sif-common-formik-ds@1.12.15
+    -   @navikt/sif-common-soknad-ds@14.0.10
+    -   @navikt/sif-common-forms-ds@10.1.10
+    -   @navikt/sif-common-core-ds@9.18.15
+    -   @navikt/sif-common-sentry@0.27.10
+    -   @navikt/sif-common-utils@3.47.12
+    -   @navikt/sif-common-ui@0.8.16
+
 ## 2.31.22
 
 ### Patch Changes

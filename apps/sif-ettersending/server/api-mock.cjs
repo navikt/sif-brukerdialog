@@ -105,7 +105,7 @@ const startServer = () => {
         res.set('Location', 'nav.no');
         const busboy = busboyCons({ headers: req.headers });
         busboy.on('finish', () => {
-            res.writeHead(200, { Location: '/vedlegg' });
+            res.writeHead(200, { Location: '/vedlegg/123' });
             res.end();
         });
         req.pipe(busboy);

@@ -1,7 +1,8 @@
 import { getToken, requestTokenxOboToken } from '@navikt/oasis';
 import { Express, NextFunction, Request, Response } from 'express';
 import { createProxyMiddleware } from 'http-proxy-middleware';
-import config, { Service, verifyAllProxiesAreSet } from './serverConfig.js';
+import config, { Service, verifyProxyConfigIsSet } from './serverConfig.js';
+import { v4 as uuid } from 'uuid';
 
 type ProxyOptions = {
     ingoingUrl: string;
@@ -9,27 +10,42 @@ type ProxyOptions = {
     scope: string;
 };
 
+const getCommitShaFromEnv = () => {
+    const image = process.env.IMAGE || '';
+    const parts = image.split('mono:');
+    return parts.length === 2 ? parts[1] : undefined;
+};
+
 export function configureReverseProxyApi(app: Express) {
-    try {
-        verifyAllProxiesAreSet();
-        Object.keys(config.proxies)
-            .map((key) => config.proxies[key as Service])
-            .forEach((proxy) => {
+    Object.keys(config.proxies)
+        .map((key) => ({ key, proxy: config.proxies[key as Service] }))
+        .forEach(({ key, proxy }) => {
+            try {
+                verifyProxyConfigIsSet(key as Service);
                 addProxyHandler(app, {
                     ingoingUrl: proxy.frontendPath,
                     outgoingUrl: proxy.apiUrl,
                     scope: proxy.apiScope,
                 });
-            });
-    } catch (e) {
-        console.error('Error setting up reverse proxy', e);
-    }
+                console.info('Reverse proxyHandler added', proxy);
+            } catch (e) {
+                console.error('Error setting up reverse proxy for', key);
+            }
+        });
 }
 
 export function addProxyHandler(server: Express, { ingoingUrl, outgoingUrl, scope }: ProxyOptions) {
     server.use(
         ingoingUrl,
         async (request: Request, response: Response, next: NextFunction) => {
+            if (process.env.NAIS_CLIENT_ID !== undefined) {
+                request.headers['X-K9-Brukerdialog'] = process.env.NAIS_CLIENT_ID;
+            }
+            if (request.headers['X-Correlation-ID'] === undefined) {
+                request.headers['X-Correlation-ID'] = uuid();
+            }
+            request.headers['X-Brukerdialog-Git-Sha'] = getCommitShaFromEnv();
+
             const token = getToken(request);
             if (!token) {
                 return response.status(401).send();

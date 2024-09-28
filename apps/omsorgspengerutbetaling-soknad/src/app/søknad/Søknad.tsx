@@ -1,6 +1,6 @@
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
-import useSøknadInitialData from '../api/useSøknadInitialData';
+import useSøknadInitialData from '../hooks/useSøknadInitialData';
 import ResetMellomagringButton from '../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { AppText, useAppIntl } from '../i18n';
 import { RequestStatus } from '../types/RequestStatus';
