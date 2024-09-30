@@ -12,16 +12,16 @@ import {
 } from '@navikt/sif-common-formik-ds/src/validation';
 import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
 import { useFormikContext } from 'formik';
-import { ApiEndpoint } from '../../../../api/api';
-import FormikFileUploader from '../../../../components/formik-file-uploader/FormikFileUploader';
 import { useAppIntl } from '../../../../i18n';
 import { Arbeidsforhold, Utbetalingsårsak, ÅrsakNyoppstartet } from '../../../../types/ArbeidsforholdTypes';
-import { fixAttachmentURL } from '../../../../utils/attachmentUtils';
+import { fixAttachmentURL, getAttachmentURLFrontend } from '../../../../utils/attachmentUtils';
 import { relocateToLoginPage } from '../../../../utils/navigationUtils';
 import { validateAttachments, ValidateAttachmentsErrors } from '../../../../utils/validateAttachments';
 import { AppFieldValidationErrors } from '../../../../utils/validations';
 import { ArbeidsforholdFormFields, SituasjonFormValues } from '../SituasjonStep';
 import ArbeidsforholdAttachmentList from './ArbeidsforholdAttachmentList';
+import FormikFileUploader from '@navikt/sif-common-core-ds/src/components/formik-file-uploader/FormikFileUploader';
+import { uploadVedlegg } from '@navikt/sif-common';
 
 const { RadioGroup, Textarea } = getTypedFormComponents<ArbeidsforholdFormFields, Arbeidsforhold, ValidationError>();
 
@@ -140,7 +140,8 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Pr
                             attachments={attachments}
                             name={getFieldName(ArbeidsforholdFormFields.dokumenter)}
                             buttonLabel={text('step.situasjon.arbeidsforhold.utbetalingsårsak.vedlegg')}
-                            apiEndpoint={ApiEndpoint.vedlegg}
+                            getAttachmentURLFrontend={getAttachmentURLFrontend}
+                            uploadFile={uploadVedlegg}
                             onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
                             onFileInputClick={() => {
                                 setFilesThatDidntGetUploaded([]);

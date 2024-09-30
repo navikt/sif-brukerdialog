@@ -1,8 +1,10 @@
 import { Alert, Link } from '@navikt/ds-react';
 import React from 'react';
+import { uploadVedlegg } from '@navikt/sif-common';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import FileUploadErrors from '@navikt/sif-common-core-ds/src/components/file-upload-errors/FileUploadErrors';
+import FormikFileUploader from '@navikt/sif-common-core-ds/src/components/formik-file-uploader/FormikFileUploader';
 import PictureScanningGuide from '@navikt/sif-common-core-ds/src/components/picture-scanning-guide/PictureScanningGuide';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
@@ -14,9 +16,8 @@ import {
 import { getTypedFormComponents, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
-import { ApiEndpoint } from '../../../api/api';
-import FormikFileUploader from '../../../components/formik-file-uploader/FormikFileUploader';
 import { AppText, useAppIntl } from '../../../i18n';
+import { getAttachmentURLFrontend } from '../../../utils/attachmentUtils';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
 import { validateAttachments, ValidateAttachmentsErrors } from '../../../utils/validateAttachments';
 import LegeerklæringAvtaleAttachmentList from './LegeerklæringAttachmentList';
@@ -89,7 +90,8 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                         attachments={legeerklæringAttachments}
                         name={LegeerklæringFormFields.vedlegg}
                         buttonLabel={text('step.legeerklæring.uploadBtn')}
-                        apiEndpoint={ApiEndpoint.vedlegg}
+                        uploadFile={uploadVedlegg}
+                        getAttachmentURLFrontend={getAttachmentURLFrontend}
                         onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
                         onFileInputClick={() => {
                             setFilesThatDidntGetUploaded([]);

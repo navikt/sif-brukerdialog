@@ -1,8 +1,10 @@
 import { Alert, Link } from '@navikt/ds-react';
 import React from 'react';
+import { uploadVedlegg } from '@navikt/sif-common';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import FileUploadErrors from '@navikt/sif-common-core-ds/src/components/file-upload-errors/FileUploadErrors';
+import FormikFileUploader from '@navikt/sif-common-core-ds/src/components/formik-file-uploader/FormikFileUploader';
 import PictureScanningGuide from '@navikt/sif-common-core-ds/src/components/picture-scanning-guide/PictureScanningGuide';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
@@ -14,13 +16,12 @@ import {
 import { getTypedFormComponents, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
-import { ApiEndpoint } from '../../../api/api';
-import FormikFileUploader from '../../../components/formik-file-uploader/FormikFileUploader';
 import { AppText, useAppIntl } from '../../../i18n';
+import getLenker from '../../../lenker';
+import { getAttachmentURLFrontend } from '../../../utils/attachmentUtils';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
 import { validateAttachments, ValidateAttachmentsErrors } from '../../../utils/validateAttachments';
 import DeltBostedAvtaleAttachmentList from './DeltBostedAttachmentList';
-import getLenker from '../../../lenker';
 
 interface Props {
     values: Partial<DeltBostedFormValues>;
@@ -105,7 +106,8 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
                         attachments={attachments}
                         name={DeltBostedFormFields.vedlegg}
                         buttonLabel={text('step.deltBosted.uploadBtn')}
-                        apiEndpoint={ApiEndpoint.vedlegg}
+                        uploadFile={uploadVedlegg}
+                        getAttachmentURLFrontend={getAttachmentURLFrontend}
                         onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
                         onFileInputClick={() => {
                             setFilesThatDidntGetUploaded([]);

@@ -1,10 +1,10 @@
+import { Alert, BodyShort, VStack } from '@navikt/ds-react';
 import React from 'react';
+import { RegistrertBarn } from '@navikt/sif-common';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
-import { RegistrertBarn } from '../../../../types/RegistrertBarn';
-import { dateFormatter } from '@navikt/sif-common-utils';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
-import { Alert, BodyShort, VStack } from '@navikt/ds-react';
+import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText } from '../../../../i18n';
 
 interface Props {
