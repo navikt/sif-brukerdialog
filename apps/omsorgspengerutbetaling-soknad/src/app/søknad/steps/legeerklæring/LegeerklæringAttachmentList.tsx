@@ -1,6 +1,6 @@
 import { BodyShort } from '@navikt/ds-react';
 import React from 'react';
-import { deleteVedlegg, fixAttachmentURL } from '@navikt/sif-common';
+import { deleteVedlegg } from '@navikt/sif-common';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import AttachmentListWithDeletion from '@navikt/sif-common-core-ds/src/components/attachment-list-with-deletion/AttachmentListWithDeletion';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
@@ -24,10 +24,7 @@ const LegeerklæringAvtaleAttachmentList: React.FunctionComponent<Props> = ({
     includeDeletionFunctionality,
 }) => {
     const { values, setFieldValue } = useFormikContext<LegeerklæringFormValues>();
-    const avtale: Attachment[] = values.vedlegg
-        .filter(({ file }: Attachment) => fileExtensionIsValid(file.name))
-        .map(fixAttachmentURL);
-
+    const avtale: Attachment[] = values.vedlegg.filter(({ file }: Attachment) => fileExtensionIsValid(file.name));
     if (!containsAnyUploadedAttachments(avtale)) {
         const noAttachmentsText = (
             <BodyShort>

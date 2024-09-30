@@ -3,6 +3,7 @@ export { default as FormikConfirmationCheckbox } from './components/formik-confi
 export { default as FormikCountrySelect } from './components/formik-country-select/FormikCountrySelect';
 export { default as FormikDatepicker } from './components/formik-datepicker/FormikDatepicker';
 export { default as FormikFileInput } from './components/formik-file-input/FormikFileInput';
+export { default as FormikFileDropInput } from './components/formik-file-drop-input/FormikFileDropInput';
 export { default as FormikTextField } from './components/formik-text-field/FormikTextField';
 export { default as FormikNumberInput } from './components/formik-number-input/FormikNumberInput';
 export { default as FormikInputGroup } from './components/formik-input-group/FormikInputGroup';

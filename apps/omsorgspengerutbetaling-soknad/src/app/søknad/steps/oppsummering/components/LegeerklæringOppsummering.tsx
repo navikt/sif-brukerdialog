@@ -1,6 +1,6 @@
 import { FormSummary } from '@navikt/ds-react';
 import React from 'react';
-import { fixAttachmentURL, getAttachmentURLBackend } from '@navikt/sif-common';
+import { getAttachmentURLBackend } from '@navikt/sif-common';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { AppText } from '../../../../i18n';
@@ -15,9 +15,9 @@ interface Props {
 
 const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringSøknadsdata, onEdit }) => {
     const legeerklæringer = legeerklæringSøknadsdata
-        ? legeerklæringSøknadsdata.vedlegg
-              .filter((v) => v.url && apiData.vedlegg.includes(getAttachmentURLBackend(v.url)))
-              .map(fixAttachmentURL)
+        ? legeerklæringSøknadsdata.vedlegg.filter(
+              (v) => v.url && apiData.vedlegg.includes(getAttachmentURLBackend(v.url)),
+          )
         : [];
 
     return (

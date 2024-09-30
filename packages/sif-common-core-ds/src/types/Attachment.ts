@@ -1,3 +1,4 @@
+/** Informasjon om mellomlagret vedlegg */
 export interface PersistedFile {
     isPersistedFile: boolean;
     name: string;
@@ -14,8 +15,4 @@ export interface Attachment {
     id?: string;
     /** Referanse til fil på server - verdi mottas fra server ved opplasting */
     url?: string;
-    // /** Referanse til fil i nettleser */
-    // urlFrontend?: string;
-    // /** Referanse til fil på server - verdi mottas fra server ved opplasting */
-    // urlBackend?: string;
 }
