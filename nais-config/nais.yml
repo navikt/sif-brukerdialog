@@ -77,9 +77,9 @@ spec:
     idporten:
         enabled: true
         sidecar:
-            {{#unless (eq SKIP_AUTOLOGIN "true")}}
+            {{#if autologin}}
             autoLogin: true
-            {{/unless}}
+            {{/if}}
             autoLoginIgnorePaths:
                 - {{env.PUBLIC_PATH}}/assets/*
             enabled: true
