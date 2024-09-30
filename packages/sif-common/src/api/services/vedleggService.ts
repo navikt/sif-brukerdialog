@@ -1,5 +1,6 @@
 import { getAttachmentId } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { axiosMultipartConfig, k9BrukerdialogApiClient } from '../apiClient';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types';
 
 const serviceUrl = '/vedlegg';
 
@@ -16,6 +17,11 @@ export const uploadVedlegg = async (file: File) => {
  * @param attachmentUrlBackend url som mottas fra backend ved opplasting
  * @returns AxiosResponse
  */
-export const deleteVedlegg = async (id: string) => {
-    return k9BrukerdialogApiClient.delete(`${serviceUrl}/${id}`);
+export const deleteVedlegg = async (attachment: Attachment) => {
+    const id = attachment.id || (attachment.url !== undefined && getAttachmentId(attachment.url));
+    if (id) {
+        const url = `${serviceUrl}/${attachment.id}`;
+        return k9BrukerdialogApiClient.delete(url);
+    }
+    throw new Error('Attachment has no id or url');
 };

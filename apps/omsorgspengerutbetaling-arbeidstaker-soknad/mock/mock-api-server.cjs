@@ -98,7 +98,7 @@ const startServer = () => {
         req.pipe(busboy);
     });
 
-    server.delete('/vedlegg', (req, res) => {
+    server.delete('/vedlegg/:id', (req, res) => {
         res.sendStatus(200);
     });
 

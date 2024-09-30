@@ -49,7 +49,7 @@ const DeltBostedAttachmentList: React.FunctionComponent<Props> = ({
                         setFieldValue(DeltBostedFormFields.vedlegg, removeElementFromArray(attachment, avtale));
                     };
                     if (attachment.url) {
-                        deleteVedlegg(attachment.url).then(updateFieldValue, updateFieldValue);
+                        deleteVedlegg(attachment).then(updateFieldValue, updateFieldValue);
                     }
                 }}
             />

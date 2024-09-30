@@ -49,7 +49,7 @@ const ArbeidsforholdAttachmentList: React.FunctionComponent<Props> = ({
                         setFieldValue(fieldName, removeElementFromArray(attachment, dokumenter));
                     };
                     if (attachment.url) {
-                        deleteVedlegg(attachment.url).then(updateFieldValue, updateFieldValue);
+                        deleteVedlegg(attachment).then(updateFieldValue, updateFieldValue);
                     }
                 }}
             />
