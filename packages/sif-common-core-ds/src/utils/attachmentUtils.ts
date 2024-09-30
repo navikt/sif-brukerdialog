@@ -7,6 +7,9 @@ export const MAX_FILESIZE_FOR_UPLOAD = 7999999;
 export const MAX_TOTAL_ATTACHMENT_SIZE_IN_MB = 24;
 export const MAX_TOTAL_ATTACHMENT_SIZE_BYTES = 1000 * 1000 * MAX_TOTAL_ATTACHMENT_SIZE_IN_MB;
 
+export const getUploadedAttachments = (attachments: Attachment[]): Attachment[] =>
+    attachments.filter((attachment) => attachmentHasBeenUploaded(attachment));
+
 export const getTotalSizeOfAttachments = (attachments: Attachment[]): number =>
     attachments
         .filter((attachment: Attachment) => attachment.uploaded)

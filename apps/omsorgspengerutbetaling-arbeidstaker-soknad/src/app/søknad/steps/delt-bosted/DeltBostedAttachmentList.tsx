@@ -1,5 +1,6 @@
 import { BodyShort } from '@navikt/ds-react';
 import React from 'react';
+import { deleteVedlegg } from '@navikt/sif-common';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import AttachmentListWithDeletion from '@navikt/sif-common-core-ds/src/components/attachment-list-with-deletion/AttachmentListWithDeletion';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
@@ -10,10 +11,8 @@ import {
 } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { removeElementFromArray } from '@navikt/sif-common-core-ds/src/utils/listUtils';
 import { useFormikContext } from 'formik';
-import api from '../../../api/api';
 import { AppText } from '../../../i18n';
 import { DeltBostedFormFields, DeltBostedFormValues } from './DeltBostedForm';
-import { fixAttachmentURL } from '../../../utils/attachmentUtils';
 
 interface Props {
     includeDeletionFunctionality: boolean;
@@ -25,9 +24,7 @@ const DeltBostedAttachmentList: React.FunctionComponent<Props> = ({
     includeDeletionFunctionality,
 }) => {
     const { values, setFieldValue } = useFormikContext<DeltBostedFormValues>();
-    const avtale: Attachment[] = values.vedlegg
-        .filter(({ file }: Attachment) => fileExtensionIsValid(file.name))
-        .map(fixAttachmentURL);
+    const avtale: Attachment[] = values.vedlegg.filter(({ file }: Attachment) => fileExtensionIsValid(file.name));
 
     if (!containsAnyUploadedAttachments(avtale)) {
         const noAttachmentsText = (
@@ -52,7 +49,7 @@ const DeltBostedAttachmentList: React.FunctionComponent<Props> = ({
                         setFieldValue(DeltBostedFormFields.vedlegg, removeElementFromArray(attachment, avtale));
                     };
                     if (attachment.url) {
-                        api.deleteFile(attachment.url).then(updateFieldValue, updateFieldValue);
+                        deleteVedlegg(attachment).then(updateFieldValue, updateFieldValue);
                     }
                 }}
             />

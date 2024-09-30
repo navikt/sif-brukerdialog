@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 9.18.19
+
+### Patch Changes
+
+-   70809d1: Justere common og attachment logikk
+
 ## 9.18.18
 
 ### Patch Changes

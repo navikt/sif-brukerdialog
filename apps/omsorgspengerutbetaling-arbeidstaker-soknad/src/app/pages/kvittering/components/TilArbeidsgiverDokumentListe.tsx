@@ -1,9 +1,9 @@
 import * as React from 'react';
-import TilArbeidsgiverDokument from './TilArbeidsgiverDokument';
-import { Søker } from '../../../types/Søker';
-import { ArbeidsgiverDetaljer } from '../../../types/søknadApiData/SøknadApiData';
+import { Søker } from '@navikt/sif-common';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
+import { ArbeidsgiverDetaljer } from '../../../types/søknadApiData/SøknadApiData';
+import TilArbeidsgiverDokument from './TilArbeidsgiverDokument';
 
 interface Props {
     søker: Søker;

@@ -1,25 +1,25 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import { useMellomlagring } from '../hooks/useMellomlagring';
+import { fetchSøkerId } from '@navikt/sif-common';
+import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
+import { useResetSøknad } from '../hooks/useResetSøknad';
+import KvitteringPage from '../pages/kvittering/KvitteringPage';
+import UnknownRoutePage from '../pages/unknown-route/UnknownRoutePage';
+import VelkommenPage from '../pages/velkommen/VelkommenPage';
 import { StepId } from '../types/StepId';
 import { SøknadRoutes, SøknadStepRoutePath } from '../types/SøknadRoutes';
 import { relocateToWelcomePage } from '../utils/navigationUtils';
 import actionsCreator from './context/action/actionCreator';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
-import UnknownRoutePage from '../pages/unknown-route/UnknownRoutePage';
-import VelkommenPage from '../pages/velkommen/VelkommenPage';
-import SituasjonStep from './steps/situasjon/SituasjonStep';
-import { useResetSøknad } from '../hooks/useResetSøknad';
+import DeltBostedStep from './steps/delt-bosted/DeltBostedStep';
+import DineBarnStep from './steps/dine-barn/DineBarnStep';
+import FraværStep from './steps/fravær/FraværStep';
 import LegeerklæringStep from './steps/legeerklæring/LegeerklæringStep';
 import MedlemskapStep from './steps/medlemskap/MedlemskapStep';
-import FraværStep from './steps/fravær/FraværStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
-import KvitteringPage from '../pages/kvittering/KvitteringPage';
-import DineBarnStep from './steps/dine-barn/DineBarnStep';
-import DeltBostedStep from './steps/delt-bosted/DeltBostedStep';
-import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds';
-import søkerEndpoint from '../api/endpoints/søkerEndpoint';
+import SituasjonStep from './steps/situasjon/SituasjonStep';
+import { mellomlagringService } from '../api/mellomlagringService';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
@@ -29,10 +29,9 @@ const SøknadRouter = () => {
     } = useSøknadContext();
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
-    const { slettMellomlagring } = useMellomlagring();
     const { setShouldResetSøknad, shouldResetSøknad } = useResetSøknad();
 
-    useVerifyUserOnWindowFocus(søker.fødselsnummer, søkerEndpoint.fetchId);
+    useVerifyUserOnWindowFocus(søker.fødselsnummer, fetchSøkerId);
     usePersistSøknadState();
 
     useEffect(() => {
@@ -46,9 +45,9 @@ const SøknadRouter = () => {
     }, [navigateTo, pathname, stateSøknadRoute, isFirstTimeLoadingApp]);
 
     const restartSøknad = useCallback(async () => {
-        await slettMellomlagring();
+        await mellomlagringService.purge();
         relocateToWelcomePage();
-    }, [slettMellomlagring]);
+    }, []);
 
     useEffect(() => {
         if (shouldResetSøknad) {
@@ -98,7 +97,7 @@ const SøknadRouter = () => {
                     <UnknownRoutePage
                         pathName={pathname}
                         onReset={() => {
-                            slettMellomlagring().then(() => {
+                            mellomlagringService.purge().then(() => {
                                 dispatch(actionsCreator.resetSøknad());
                                 navigateTo(SøknadRoutes.VELKOMMEN);
                             });

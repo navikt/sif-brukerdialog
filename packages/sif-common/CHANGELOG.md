@@ -1,5 +1,14 @@
 # @navikt/sif-common-ui
 
+## 0.1.2
+
+### Patch Changes
+
+-   70809d1: Justere common og attachment logikk
+-   Updated dependencies [70809d1]
+    -   @navikt/sif-common-formik-ds@1.12.18
+    -   @navikt/sif-common-core-ds@9.18.19
+
 ## 0.1.1
 
 ### Patch Changes

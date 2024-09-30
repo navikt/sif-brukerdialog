@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.12.18
+
+### Patch Changes
+
+-   70809d1: Justere common og attachment logikk
+
 ## 1.12.17
 
 ### Patch Changes

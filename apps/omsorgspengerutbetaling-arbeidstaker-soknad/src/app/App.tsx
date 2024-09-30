@@ -1,4 +1,3 @@
-import { createRoot } from 'react-dom/client';
 import { Navigate, Route } from 'react-router-dom';
 import { OmsorgspengerutbetalingArbeidstakerApp } from '@navikt/sif-app-register';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
@@ -14,8 +13,6 @@ import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.css';
 
-const container = document.getElementById('app');
-const root = createRoot(container!);
 const publicPath = getEnvironmentVariable('PUBLIC_PATH');
 
 ensureBaseNameForReactRouter(publicPath);
@@ -44,4 +41,4 @@ const App = () => (
     </SoknadApplication>
 );
 
-root.render(<App />);
+export default App;

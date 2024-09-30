@@ -1,5 +1,18 @@
 # @navikt/omsorgspengerutbetaling-arbeidstaker-soknad
 
+## 1.7.0
+
+### Minor Changes
+
+-   70809d1: Bruke common bibliotek for api kall
+
+### Patch Changes
+
+-   Updated dependencies [70809d1]
+    -   @navikt/sif-common-formik-ds@1.12.18
+    -   @navikt/sif-common-core-ds@9.18.19
+    -   @navikt/sif-common@0.1.2
+
 ## 1.6.12
 
 ### Patch Changes

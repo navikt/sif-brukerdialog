@@ -1,5 +1,6 @@
 import { Heading, VStack } from '@navikt/ds-react';
 import React from 'react';
+import { RegistrertBarn, Søker } from '@navikt/sif-common';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import {
@@ -12,8 +13,6 @@ import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
 import { AppText, useAppIntl } from '../../../i18n';
-import { RegistrertBarn } from '../../../types/RegistrertBarn';
-import { Søker } from '../../../types/Søker';
 import { DineBarnFormFields, DineBarnFormValues } from './DineBarnStep';
 import AndreBarnPart from './parts/AndreBarnPart';
 import DineBarnStepIntro from './parts/DineBarnStepIntro';

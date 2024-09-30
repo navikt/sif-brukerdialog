@@ -1,12 +1,12 @@
 import {
     FileDropAcceptImagesAndPdf,
+    FormikFileDropInput,
     TypedFormInputValidationProps,
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
 import { AxiosResponse } from 'axios';
 import { useFormikFileUploader } from '../../hooks/useFormikFileUploader';
 import { Attachment } from '../../types/Attachment';
-import FormikFileDropInput from '@navikt/sif-common-formik-ds/src/components/formik-file-drop-input/FormikFileDropInput';
 
 interface Props extends TypedFormInputValidationProps<any, ValidationError> {
     attachments: Attachment[];
