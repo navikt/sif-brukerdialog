@@ -77,7 +77,7 @@ spec:
     idporten:
         enabled: true
         sidecar:
-            {{#unless (eq SKIP_AUTOLOGIN "false"}}
+            {{#unless (eq SKIP_AUTOLOGIN "true"}}
             autoLogin: true
             {{/unless}}
             autoLoginIgnorePaths:
