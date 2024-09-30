@@ -72,12 +72,13 @@ spec:
        value: {{GITHUB_REF_NAME}}
      - name: NEXT_PUBLIC_GITHUB_REF_NAME
        value: {{GITHUB_REF_NAME}}
+       
     tokenx:
          enabled: true
     idporten:
         enabled: true
         sidecar:
-            {{#unless (eq SKIP_AUTOLOGIN true)}}
+            {{#unless skipAutologin}}
             autoLogin: true
             {{/unless}}
             autoLoginIgnorePaths:

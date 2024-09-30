@@ -13,7 +13,7 @@
     "env": {
         "NEXT_PUBLIC_DEKORATOR_ENV": "dev",
         "NEXT_PUBLIC_ENVIRONMENT": "dev",
-        "NPM_CONFIG_CACHE": "/tmp",
-        "SKIP_AUTOLOGIN": true
-    }
+        "NPM_CONFIG_CACHE": "/tmp"
+    },
+    "skipAutologin": true
 }
