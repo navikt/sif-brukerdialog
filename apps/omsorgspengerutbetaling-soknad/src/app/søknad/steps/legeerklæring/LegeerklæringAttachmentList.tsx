@@ -50,9 +50,7 @@ const LegeerklæringAvtaleAttachmentList: React.FunctionComponent<Props> = ({
                     const updateFieldValue = () => {
                         setFieldValue(LegeerklæringFormFields.vedlegg, removeElementFromArray(attachment, avtale));
                     };
-                    if (attachment.id) {
-                        deleteVedlegg(attachment.id).then(updateFieldValue, updateFieldValue);
-                    }
+                    deleteVedlegg(attachment).then(updateFieldValue, updateFieldValue);
                 }}
             />
         );
