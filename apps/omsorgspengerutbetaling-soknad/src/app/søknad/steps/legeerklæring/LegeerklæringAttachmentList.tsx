@@ -1,6 +1,6 @@
 import { BodyShort } from '@navikt/ds-react';
 import React from 'react';
-import { deleteVedlegg } from '@navikt/sif-common';
+import { deleteVedlegg, fixAttachmentURL } from '@navikt/sif-common';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import AttachmentListWithDeletion from '@navikt/sif-common-core-ds/src/components/attachment-list-with-deletion/AttachmentListWithDeletion';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
@@ -12,7 +12,6 @@ import {
 import { removeElementFromArray } from '@navikt/sif-common-core-ds/src/utils/listUtils';
 import { useFormikContext } from 'formik';
 import { AppText } from '../../../i18n';
-import { fixAttachmentURL } from '../../../utils/attachmentUtils';
 import { LegeerklæringFormFields, LegeerklæringFormValues } from './LegeerklæringForm';
 
 interface Props {

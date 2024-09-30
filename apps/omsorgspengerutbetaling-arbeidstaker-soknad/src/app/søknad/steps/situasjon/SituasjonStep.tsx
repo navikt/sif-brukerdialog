@@ -30,7 +30,6 @@ import {
     checkHarKlikketNeiElleJajaBlanding,
     checkHarKlikketNeiPåAlle,
 } from '../../../utils/arbeidsforholdValidations';
-import { valuesToAlleDokumenterISøknaden } from '../../../utils/attachmentUtils';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
@@ -43,6 +42,7 @@ import {
     getNMonthsAgo,
     getSituasjonStepInitialValues,
     getSituasjonSøknadsdataFromFormValues,
+    valuesToAlleDokumenterISøknaden,
 } from './SituasjonStepUtils';
 
 export enum ArbeidsforholdFormFields {

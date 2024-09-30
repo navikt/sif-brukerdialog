@@ -1,9 +1,9 @@
+import { getAttachmentURLBackend } from '@navikt/sif-common';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { AppIntlShape } from '../../i18n';
 import { SøknadApiData, YesNoSpørsmålOgSvar } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
-import { getAttachmentURLBackend } from '../attachmentUtils';
 import { getDineBarnApiDataFromSøknadsdata } from './getDineBarnApiDataFromSøknadsdata';
 import { getFrilansApiDataFromSøknadsdata } from './getFrilansApiDataFromSøknadsdata';
 import { getMedlemskapApiDataFromSøknadsdata } from './getMedlemskapApiDataFromSøknadsdata';

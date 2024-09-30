@@ -9,16 +9,16 @@ export type MellomlagringData = Omit<SøknadContextState, 'søker'> & {
     søknadHashString: string;
 };
 
-interface SøknadStateHashInfo {
+interface MellomlagringHashInfo {
     søker: Søker;
     registrerteBarn: RegistrertBarn[];
 }
 
-const createHashString = (info: SøknadStateHashInfo) => {
+const createHashString = (info: MellomlagringHashInfo) => {
     return hash(JSON.stringify(jsonSort(info)));
 };
 
-const isMellomlagringValid = (søknadState: MellomlagringData, info: SøknadStateHashInfo): boolean => {
+const isMellomlagringValid = (søknadState: MellomlagringData, info: MellomlagringHashInfo): boolean => {
     return (
         søknadState.versjon === SØKNAD_VERSJON &&
         søknadState.søknadsdata?.velkommen?.harForståttRettigheterOgPlikter === true &&

@@ -1,11 +1,11 @@
 import { FormSummary } from '@navikt/ds-react';
 import React from 'react';
+import { fixAttachmentURL, getAttachmentURLBackend } from '@navikt/sif-common';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { AppText } from '../../../../i18n';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { LegeerklæringSøknadsdata } from '../../../../types/søknadsdata/LegeerklæringSøknadsdata';
-import { fixAttachmentURL, getAttachmentURLBackend } from '../../../../utils/attachmentUtils';
 
 interface Props {
     apiData: SøknadApiData;

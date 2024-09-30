@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { getAttachmentURLFrontend, uploadVedlegg } from '@navikt/sif-common';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import FileUploadErrors from '@navikt/sif-common-core-ds/src/components/file-upload-errors/FileUploadErrors';
+import FormikFileUploader from '@navikt/sif-common-core-ds/src/components/formik-file-uploader/FormikFileUploader';
 import PictureScanningGuide from '@navikt/sif-common-core-ds/src/components/picture-scanning-guide/PictureScanningGuide';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
@@ -14,14 +16,11 @@ import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validat
 import { useFormikContext } from 'formik';
 import { useAppIntl } from '../../../../i18n';
 import { Arbeidsforhold, Utbetalingsårsak, ÅrsakNyoppstartet } from '../../../../types/ArbeidsforholdTypes';
-import { fixAttachmentURL, getAttachmentURLFrontend } from '../../../../utils/attachmentUtils';
 import { relocateToLoginPage } from '../../../../utils/navigationUtils';
 import { validateAttachments, ValidateAttachmentsErrors } from '../../../../utils/validateAttachments';
 import { AppFieldValidationErrors } from '../../../../utils/validations';
 import { ArbeidsforholdFormFields, SituasjonFormValues } from '../SituasjonStep';
 import ArbeidsforholdAttachmentList from './ArbeidsforholdAttachmentList';
-import FormikFileUploader from '@navikt/sif-common-core-ds/src/components/formik-file-uploader/FormikFileUploader';
-import { uploadVedlegg } from '@navikt/sif-common';
 
 const { RadioGroup, Textarea } = getTypedFormComponents<ArbeidsforholdFormFields, Arbeidsforhold, ValidationError>();
 
@@ -41,7 +40,7 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Pr
     const arbeidsgivernavn = arbeidsforhold.navn;
 
     const attachments: Attachment[] = useMemo(() => {
-        return arbeidsforhold ? arbeidsforhold.dokumenter.map(fixAttachmentURL) : [];
+        return arbeidsforhold ? arbeidsforhold.dokumenter : [];
     }, [arbeidsforhold]);
 
     const ref = useRef({ attachments });

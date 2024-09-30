@@ -1,5 +1,5 @@
-import { Søknadsdata, DeltBostedSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
-import { getUploadedAttachments } from '../../../utils/attachmentUtils';
+import { getUploadedAttachments } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import { DeltBostedSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { DeltBostedFormFields, DeltBostedFormValues } from './DeltBostedForm';
 
 export const getDeltBostedStepInitialValues = (

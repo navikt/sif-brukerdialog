@@ -1,6 +1,6 @@
 import { Alert, Link } from '@navikt/ds-react';
 import React from 'react';
-import { uploadVedlegg } from '@navikt/sif-common';
+import { getAttachmentURLFrontend, uploadVedlegg } from '@navikt/sif-common';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import FileUploadErrors from '@navikt/sif-common-core-ds/src/components/file-upload-errors/FileUploadErrors';
@@ -18,7 +18,6 @@ import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation
 import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
-import { getAttachmentURLFrontend } from '../../../utils/attachmentUtils';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
 import { validateAttachments, ValidateAttachmentsErrors } from '../../../utils/validateAttachments';
 import DeltBostedAvtaleAttachmentList from './DeltBostedAttachmentList';

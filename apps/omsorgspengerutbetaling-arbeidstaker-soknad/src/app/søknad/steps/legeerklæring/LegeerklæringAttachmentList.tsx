@@ -12,7 +12,6 @@ import {
 import { removeElementFromArray } from '@navikt/sif-common-core-ds/src/utils/listUtils';
 import { useFormikContext } from 'formik';
 import { AppText } from '../../../i18n';
-import { fixAttachmentURL } from '../../../utils/attachmentUtils';
 import { LegeerklæringFormFields, LegeerklæringFormValues } from './LegeerklæringForm';
 
 interface Props {
@@ -25,9 +24,7 @@ const LegeerklæringAvtaleAttachmentList: React.FunctionComponent<Props> = ({
     includeDeletionFunctionality,
 }) => {
     const { values, setFieldValue } = useFormikContext<LegeerklæringFormValues>();
-    const avtale: Attachment[] = values.vedlegg
-        .filter(({ file }: Attachment) => fileExtensionIsValid(file.name))
-        .map(fixAttachmentURL);
+    const avtale: Attachment[] = values.vedlegg.filter(({ file }: Attachment) => fileExtensionIsValid(file.name));
 
     if (!containsAnyUploadedAttachments(avtale)) {
         const noAttachmentsText = (

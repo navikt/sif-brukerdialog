@@ -1,8 +1,8 @@
+import { getAttachmentURLBackend } from '@navikt/sif-common';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types';
 import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { SituasjonSøknadsdata, Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
-import { getAttachmentURLBackend } from '../attachmentUtils';
 import { getArbeidsgivereApiDataFromSøknadsdata } from './getArbeidsgivereApiDataFromSøknadsdata';
 import { getDataBruktTilUtledning } from './getDataBruktTilUtledning';
 import { getDineBarnApiDataFromSøknadsdata } from './getDineBarnApiDataFromSøknadsdata';
