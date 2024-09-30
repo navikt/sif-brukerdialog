@@ -67,13 +67,7 @@ const startServer = () => {
     });
 
     server.get('/oppslag/arbeidsgiver', (req, res) => {
-        // Kan brukes for å se spinneren på arbeidstaker steget.
-        // setTimeout(() => {
-        //     res.send(arbeidsgivereMock);
-        // }, 5000)
         res.send(arbeidsgivereMock);
-        // res.send(arbeidsgiverMock);
-        // res.send(ingenArbeidsgivererMock);
     });
 
     /** --- Send søknad ---------- */
