@@ -26,6 +26,10 @@ const LegeerklæringStep = () => {
 
     const stepId = StepId.LEGEERKLÆRING;
     const step = getSøknadStepConfigForStep(søknadsdata, stepId);
+    const andreVedlegg =
+        søknadsdata.opplysningerOmPleietrengende?.type === 'pleietrengendeUtenFnr'
+            ? søknadsdata.opplysningerOmPleietrengende.pleietrengendeId
+            : [];
 
     const { goBack } = useStepNavigation(step);
 
@@ -71,7 +75,12 @@ const LegeerklæringStep = () => {
                                 }}
                             />
                             <PersistStepFormValues stepId={stepId} />
-                            <LegeerklæringForm values={values} goBack={goBack} isSubmitting={isSubmitting} />
+                            <LegeerklæringForm
+                                legeerklæringer={values[LegeerklæringFormFields.vedlegg]}
+                                andreVedlegg={andreVedlegg}
+                                goBack={goBack}
+                                isSubmitting={isSubmitting}
+                            />
                         </>
                     );
                 }}

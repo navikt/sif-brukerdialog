@@ -26,7 +26,7 @@ const AttachmentListV2 = ({ attachments, showFileSize, emptyListText, onDelete }
 
     return attachments.length === 0 ? (
         <Box marginBlock="2">
-            <BodyShort>{emptyListText || text('@core.vedleggList.ingenVedlegg')}</BodyShort>
+            <BodyShort>{emptyListText || text('@core.AttachmentListV2.ingenVedlegg')}</BodyShort>
         </Box>
     ) : (
         <List as="ul">
@@ -70,10 +70,10 @@ const AttachmentListV2 = ({ attachments, showFileSize, emptyListText, onDelete }
                                             e.preventDefault();
                                             onDelete(v);
                                         }}
-                                        aria-label={text('@core.vedleggList.fjernAriaLabel', {
+                                        aria-label={text('@core.AttachmentListV2.fjernAriaLabel', {
                                             filnavn: file.name,
                                         })}>
-                                        <CoreText id="@core.vedleggList.fjern" />
+                                        <CoreText id="@core.AttachmentListV2.fjern" />
                                     </Button>
                                 ) : undefined}
                             </HStack>

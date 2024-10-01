@@ -75,6 +75,7 @@ const OpplysningerOmPleietrengendeStep = () => {
 
     const stepId = StepId.OPPLYSNINGER_OM_PLEIETRENGENDE;
     const step = getSøknadStepConfigForStep(søknadsdata, stepId);
+    const andreVedlegg = søknadsdata.legeerklæring?.vedlegg || [];
 
     const { goBack } = useStepNavigation(step);
 
@@ -226,7 +227,10 @@ const OpplysningerOmPleietrengendeStep = () => {
                                                 <Block>
                                                     <AppText id="step.opplysningerOmPleietrengende.id.info" />
                                                 </Block>
-                                                <IdPart />
+                                                <IdPart
+                                                    pleietrengendeId={pleietrengendeId}
+                                                    andreVedlegg={andreVedlegg}
+                                                />
                                             </FormBlock>
                                         </>
                                     )}
