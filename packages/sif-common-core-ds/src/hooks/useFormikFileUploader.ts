@@ -14,9 +14,9 @@ import {
     mapFileToPersistedFile,
 } from '../utils/attachmentUtils';
 
-export type FieldArrayReplaceFn = (index: number, value: any) => void;
-export type FieldArrayPushFn = (obj: any) => void;
-export type FieldArrayRemoveFn = (index: number) => undefined;
+export type FormikFieldArrayReplaceFn = (index: number, value: any) => void;
+export type FormikFieldArrayPushFn = (obj: any) => void;
+export type FormikFieldArrayRemoveFn = (index: number) => undefined;
 
 export const useFormikFileUploader = ({
     value,
@@ -54,7 +54,7 @@ export const useFormikFileUploader = ({
     async function uploadAttachments(
         allAttachments: Attachment[],
         fileRejections: FileRejection[],
-        replaceFn: FieldArrayReplaceFn,
+        replaceFn: FormikFieldArrayReplaceFn,
     ) {
         const attachmentsToProcess = findAttachmentsToProcess(allAttachments);
         const attachmentsToUpload = findAttachmentsToUpload(attachmentsToProcess);
@@ -79,7 +79,7 @@ export const useFormikFileUploader = ({
     function updateFailedAttachments(
         allAttachments: Attachment[],
         failedAttachments: Attachment[],
-        replaceFn: FieldArrayReplaceFn,
+        replaceFn: FormikFieldArrayReplaceFn,
     ) {
         failedAttachments.forEach((attachment) => {
             attachment = setAttachmentPendingToFalse(attachment);
@@ -103,7 +103,7 @@ export const useFormikFileUploader = ({
     function updateAttachmentListElement(
         attachments: Attachment[],
         attachment: Attachment,
-        replaceFn: FieldArrayReplaceFn,
+        replaceFn: FormikFieldArrayReplaceFn,
     ) {
         replaceFn(attachments.indexOf(attachment), { ...attachment, file: mapFileToPersistedFile(attachment.file) });
     }
@@ -113,7 +113,7 @@ export const useFormikFileUploader = ({
         return attachment;
     }
 
-    function addPendingAttachmentToFieldArray(file: File, pushFn: FieldArrayPushFn) {
+    function addPendingAttachmentToFieldArray(file: File, pushFn: FormikFieldArrayPushFn) {
         const attachment = getPendingAttachmentFromFile(file);
         pushFn(attachment);
         return attachment;

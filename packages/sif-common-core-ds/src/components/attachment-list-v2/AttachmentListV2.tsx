@@ -52,15 +52,14 @@ const AttachmentListV2 = ({ attachments, showFileSize, emptyListText, onDelete }
                                 )
                             }>
                             <HStack gap="2" wrap={false} align="baseline">
-                                <Box flexGrow="2">
+                                <HStack flexGrow="2" gap="4" align="baseline">
                                     {uploaded && url ? <Link href={url}>{file.name}</Link> : <>{file.name}</>}
                                     {showFileSize && file.size ? (
                                         <BodyShort as="span" size="small" style={{ color: 'var(--a-text-subtle)' }}>
-                                            {' '}
                                             ({formatFileSize(file.size)})
                                         </BodyShort>
                                     ) : null}
-                                </Box>
+                                </HStack>
                                 {onDelete && uploaded ? (
                                     <Button
                                         type="button"

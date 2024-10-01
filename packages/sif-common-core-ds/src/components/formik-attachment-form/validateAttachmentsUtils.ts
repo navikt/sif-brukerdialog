@@ -7,11 +7,15 @@ import {
 import { ValidationResult } from '@navikt/sif-common-formik-ds';
 
 export enum ValidateAttachmentsErrors {
-    'samletStørrelseForHøy' = 'samletStørrelseForHøy',
     'forMangeFiler' = 'forMangeFiler',
+    'ingenFiler' = 'ingenFiler',
+    'samletStørrelseForHøy' = 'samletStørrelseForHøy',
 }
 
-export const validateAttachments = (attachments: Attachment[]): ValidationResult<ValidateAttachmentsErrors> => {
+export const validateAttachments = (
+    attachments: Attachment[],
+    required?: boolean,
+): ValidationResult<ValidateAttachmentsErrors> => {
     const uploadedAttachments = attachments.filter((attachment) => attachmentHasBeenUploaded(attachment));
     const totalSizeInBytes: number = getTotalSizeOfAttachments(uploadedAttachments);
     if (totalSizeInBytes > MAX_TOTAL_ATTACHMENT_SIZE_BYTES) {
@@ -19,6 +23,9 @@ export const validateAttachments = (attachments: Attachment[]): ValidationResult
     }
     if (uploadedAttachments.length > 100) {
         return ValidateAttachmentsErrors.forMangeFiler;
+    }
+    if (required && uploadedAttachments.length === 0) {
+        return ValidateAttachmentsErrors.ingenFiler;
     }
     return undefined;
 };
