@@ -8,9 +8,9 @@ import { hasExceededMaxTotalSizeOfAttachments } from '../../utils/attachmentUtil
 import FormikFileUploader from '../formik-file-uploader/FormikFileUploader';
 import AttachmentUploadErrors from './parts/AttachmentUploadErrors';
 import { validateAttachments, ValidateAttachmentsErrors } from './validateAttachmentsUtils';
-import FormikUploadedAttachments from './parts/FormikUploadedAttachments';
 import AttachmentTotalSizeAlert from './parts/AttachmentTotalSizeAlert';
 import PictureScanningGuide from '../picture-scanning-guide/PictureScanningGuide';
+import FormikAttachmentList from '../formik-attachment-list/FormikAttachmentList';
 
 interface Props {
     fieldName: string;
@@ -22,10 +22,9 @@ interface Props {
         noAttachmentsText?: string;
     };
     uploadLaterURL: string;
-    fixAttachmentURL: (a: Attachment) => Attachment;
     getAttachmentURLFrontend: (url: string) => string;
     uploadFile: (file: File) => Promise<AxiosResponse<any, any>>;
-    deleteFile: (url: string) => Promise<AxiosResponse<any, any>>;
+    deleteFile: (url: string) => Promise<any>;
     onUnauthorizedOrForbiddenUpload: () => void;
 }
 
@@ -38,15 +37,14 @@ const FormikAttachmentForm = ({
     uploadLaterURL,
     uploadFile,
     deleteFile,
-    fixAttachmentURL,
     getAttachmentURLFrontend,
     onUnauthorizedOrForbiddenUpload,
 }: Props) => {
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = useState<File[]>([]);
-
     const canUploadMore = !hasExceededMaxTotalSizeOfAttachments([...attachments, ...otherAttachments]);
+
     return (
-        <VStack gap="2">
+        <VStack gap="4">
             <Box marginBlock="0 4">{includeGuide && <PictureScanningGuide />}</Box>
             {canUploadMore ? (
                 <FormikFileUploader
@@ -69,17 +67,14 @@ const FormikAttachmentForm = ({
             ) : (
                 <AttachmentTotalSizeAlert uploadLaterURL={uploadLaterURL} />
             )}
-
             <AttachmentUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
 
-            <FormikUploadedAttachments
-                showFileSize={true}
-                fixAttachmentURL={fixAttachmentURL}
-                deleteFile={deleteFile}
-                attachments={attachments}
+            <FormikAttachmentList
                 fieldName={fieldName}
-                noAttachmentsText={labels.noAttachmentsText}
-                includeDeletionFunctionality={true}
+                attachments={attachments}
+                showFileSize={true}
+                onDelete={deleteFile ? (a: Attachment) => (a.url ? deleteFile(a.url) : Promise.resolve()) : undefined}
+                emptyListText={labels.noAttachmentsText}
             />
         </VStack>
     );

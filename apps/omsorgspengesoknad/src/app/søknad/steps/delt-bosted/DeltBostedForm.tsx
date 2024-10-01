@@ -13,7 +13,7 @@ import { FormLayout } from '@navikt/sif-common-ui';
 import api, { ApiEndpoint } from '../../../api/api';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
-import { fixAttachmentURL, getAttachmentURLFrontend } from '../../../utils/attachmentUtils';
+import { getAttachmentURLFrontend } from '../../../utils/attachmentUtils';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
 
 interface Props {
@@ -65,7 +65,6 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({
                     includeGuide={true}
                     attachments={samværsavtaler}
                     otherAttachments={andreVedlegg}
-                    fixAttachmentURL={fixAttachmentURL}
                     uploadLaterURL={getLenker(intl.locale).ettersend}
                     onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
                     uploadFile={(file) => api.uploadFile(ApiEndpoint.vedlegg, file)}

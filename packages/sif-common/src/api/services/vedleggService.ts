@@ -17,10 +17,13 @@ export const uploadVedlegg = async (file: File) => {
  * @param attachmentUrlBackend url som mottas fra backend ved opplasting
  * @returns AxiosResponse
  */
-export const deleteVedlegg = async (attachment: Attachment) => {
-    const id = attachment.id || (attachment.url !== undefined && getAttachmentId(attachment.url));
+export const deleteVedlegg = async (attachment: Attachment | string) => {
+    const id =
+        typeof attachment === 'string'
+            ? getAttachmentId(attachment)
+            : attachment.id || (attachment.url !== undefined && getAttachmentId(attachment.url));
     if (id) {
-        const url = `${serviceUrl}/${attachment.id}`;
+        const url = `${serviceUrl}/${id}`;
         return k9BrukerdialogApiClient.delete(url);
     }
     throw new Error('Attachment has no id or url');

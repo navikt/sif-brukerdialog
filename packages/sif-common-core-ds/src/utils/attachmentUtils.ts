@@ -2,10 +2,11 @@ import { Attachment, PersistedFile } from '../types/Attachment';
 import imageCompression from 'browser-image-compression';
 
 export const VALID_EXTENSIONS = ['.pdf', '.jpeg', '.jpg', '.png'];
-
 export const MAX_FILESIZE_FOR_UPLOAD = 7999999;
 export const MAX_TOTAL_ATTACHMENT_SIZE_IN_MB = 24;
 export const MAX_TOTAL_ATTACHMENT_SIZE_BYTES = 1000 * 1000 * MAX_TOTAL_ATTACHMENT_SIZE_IN_MB;
+
+const VEDLEGG_ID_SPLIT_KEY = 'vedlegg/';
 
 export const getUploadedAttachments = (attachments: Attachment[]): Attachment[] =>
     attachments.filter((attachment) => attachmentHasBeenUploaded(attachment));
@@ -64,9 +65,7 @@ export const attachmentIsUploadedAndIsValidFileFormat = (attachment: Attachment)
     attachmentHasBeenUploaded(attachment) && fileExtensionIsValid(attachment.file.name);
 
 export const containsAnyUploadedAttachments = (attachmentList: Attachment[]) =>
-    attachmentList &&
-    attachmentList.length > 0 &&
-    attachmentList.length !== attachmentList.filter(attachmentUploadHasFailed).length;
+    attachmentList.length > 0 && attachmentList.length !== attachmentList.filter(attachmentUploadHasFailed).length;
 
 export type CompressOptions = {
     maxSizeMB: number;
@@ -95,8 +94,6 @@ export const hasPendingAttachments = (attachments: Attachment[]): boolean =>
 
 export const hasExceededMaxTotalSizeOfAttachments = (attachments: Attachment[]): boolean =>
     getTotalSizeOfAttachments(attachments) > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
-
-const VEDLEGG_ID_SPLIT_KEY = 'vedlegg/';
 
 export const getAttachmentId = (url: string = ''): string => {
     const id = url.split(VEDLEGG_ID_SPLIT_KEY)[1];

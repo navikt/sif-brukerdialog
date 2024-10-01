@@ -1,11 +1,7 @@
-import { Alert, Link } from '@navikt/ds-react';
+import { Link } from '@navikt/ds-react';
 import React from 'react';
-import { getAttachmentURLFrontend, uploadVedlegg } from '@navikt/sif-common';
+import { deleteVedlegg, getAttachmentURLFrontend, uploadVedlegg } from '@navikt/sif-common';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import FileUploadErrors from '@navikt/sif-common-core-ds/src/components/file-upload-errors/FileUploadErrors';
-import FormikFileUploader from '@navikt/sif-common-core-ds/src/components/formik-file-uploader/FormikFileUploader';
-import PictureScanningGuide from '@navikt/sif-common-core-ds/src/components/picture-scanning-guide/PictureScanningGuide';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import {
@@ -15,12 +11,10 @@ import {
 } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { getTypedFormComponents, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
-import { validateAttachments, ValidateAttachmentsErrors } from '../../../utils/validateAttachments';
-import DeltBostedAvtaleAttachmentList from './DeltBostedAttachmentList';
+import { FormikAttachmentForm } from '@navikt/sif-common-core-ds/src';
 
 interface Props {
     values: Partial<DeltBostedFormValues>;
@@ -56,7 +50,6 @@ export const validateDocuments = (attachments: Attachment[]): ValidationResult<V
 
 const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreVedlegg = [], isSubmitting }) => {
     const { text, intl } = useAppIntl();
-    const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
 
     const hasPendingUploads: boolean = (values.vedlegg || []).find((a: any) => a.pending === true) !== undefined;
     const attachments = values.vedlegg ? values.vedlegg : [];
@@ -96,52 +89,21 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
                     </p>
                 </SifGuidePanel>
             </Block>
-            <Block margin={'l'}>
-                <PictureScanningGuide />
-            </Block>
-            {totalSize <= MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
-                <FormBlock>
-                    <FormikFileUploader
-                        attachments={attachments}
-                        name={DeltBostedFormFields.vedlegg}
-                        buttonLabel={text('step.deltBosted.uploadBtn')}
-                        uploadFile={uploadVedlegg}
-                        getAttachmentURLFrontend={getAttachmentURLFrontend}
-                        onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
-                        onFileInputClick={() => {
-                            setFilesThatDidntGetUploaded([]);
-                        }}
-                        validate={(a: Attachment[] = []) => {
-                            return validateAll<ValidateAttachmentsErrors | ValidationError>([
-                                () => validateAttachments([...a, ...andreVedlegg]),
-                            ]);
-                        }}
-                        onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
-                    />
-                </FormBlock>
-            )}
-
-            {totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
-                <Block margin={'l'}>
-                    <Alert variant="warning">
-                        <AppText id={'dokumenter.advarsel.totalstørrelse.1'} />
-                        <Link
-                            target={'_blank'}
-                            rel={'noopener noreferrer'}
-                            href={
-                                'https://www.nav.no/soknader/nb/person/familie/omsorgspenger/NAV%2009-35.01/ettersendelse'
-                            }>
-                            <AppText id="dokumenter.advarsel.totalstørrelse.2" />
-                        </Link>
-                    </Alert>
-                </Block>
-            )}
-            <Block margin={'l'}>
-                <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
-            </Block>
-            <div data-testid="delt-bosted-liste">
-                <DeltBostedAvtaleAttachmentList wrapNoAttachmentsInBlock={true} includeDeletionFunctionality={true} />
-            </div>
+            <FormikAttachmentForm
+                fieldName={DeltBostedFormFields.vedlegg}
+                attachments={attachments}
+                includeGuide={true}
+                deleteFile={deleteVedlegg}
+                labels={{
+                    addLabel: text('step.deltBosted.uploadBtn'),
+                    noAttachmentsText: text('vedleggsliste.ingenAvtaleLastetOpp'),
+                }}
+                uploadFile={uploadVedlegg}
+                uploadLaterURL={getLenker(intl.locale).ettersending}
+                getAttachmentURLFrontend={getAttachmentURLFrontend}
+                onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
+                otherAttachments={andreVedlegg}
+            />
         </Form>
     );
 };

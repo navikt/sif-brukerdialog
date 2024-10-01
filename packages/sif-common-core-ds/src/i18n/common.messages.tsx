@@ -7,6 +7,9 @@ const nb = {
     Nei: 'Nei',
     '@core.common.fileUploadError': 'Det har dessverre skjedd en feil under opplasting av følgende vedlegg:',
     '@core.formikAttachmentsList.delete': 'Fjern',
+    '@core.vedleggList.fjern': 'Fjern',
+    '@core.vedleggList.fjernAriaLabel': 'Fjern {filnavn}',
+    '@core.vedleggList.ingenVedlegg': 'Ingen dokumenter er lastet opp',
     '@core.formikAttachmentsList.noFilesUploaded': 'Ingen dokumenter er lastet opp',
     '@core.formik-attachment-form.alert.totalSize':
         'Du har totalt lastet opp mer enn grensen på 24 Mb. Det betyr at du må fjerne noe av det du har lastet opp. Hvis det betyr at du ikke får plass til alt du ønsker å sende nå, kan du <Lenke>ettersende flere dokumenter</Lenke>.',
