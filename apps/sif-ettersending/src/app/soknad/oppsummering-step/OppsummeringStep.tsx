@@ -1,4 +1,4 @@
-import AttachmentListV2 from '@navikt/sif-common-core-ds/src/components/attachment-list-v2/AttachmentListV2';
+import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
 import { Alert, FormSummary, VStack } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import { isFailure, isPending } from '@devexperts/remote-data-ts';
@@ -150,7 +150,7 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
                                     </FormSummary.Label>
                                     <FormSummary.Value>
                                         <div data-testid="vedlegg-liste">
-                                            <AttachmentListV2 attachments={values.dokumenter} />
+                                            <AttachmentList attachments={values.dokumenter} />
                                         </div>
                                     </FormSummary.Value>
                                 </FormSummary.Answer>

@@ -8,7 +8,7 @@ enum Variant {
     'border' = 'border',
     'zebra' = 'zebra',
 }
-export interface AttachmentListV2Props {
+export interface AttachmentListProps {
     attachments: Attachment[];
     emptyListText?: string;
     showDeleteButton?: boolean;
@@ -51,18 +51,18 @@ const getVariantStyle = (variant: Variant, index: number): React.CSSProperties =
     }
 };
 
-const AttachmentListV2 = ({
+const AttachmentList = ({
     attachments,
     showFileSize,
     emptyListText,
     onDelete,
     variant = Variant.plain,
-}: AttachmentListV2Props) => {
+}: AttachmentListProps) => {
     const { text } = useCoreIntl();
 
     return attachments.length === 0 ? (
         <Box marginBlock="2">
-            <BodyShort>{emptyListText || text('@core.AttachmentListV2.ingenVedlegg')}</BodyShort>
+            <BodyShort>{emptyListText || text('@core.AttachmentList.ingenVedlegg')}</BodyShort>
         </Box>
     ) : (
         <List as="ul">
@@ -100,10 +100,10 @@ const AttachmentListV2 = ({
                                             e.preventDefault();
                                             onDelete(v);
                                         }}
-                                        aria-label={text('@core.AttachmentListV2.fjernAriaLabel', {
+                                        aria-label={text('@core.AttachmentList.fjernAriaLabel', {
                                             filnavn: file.name,
                                         })}>
-                                        <CoreText id="@core.AttachmentListV2.fjern" />
+                                        <CoreText id="@core.AttachmentList.fjern" />
                                     </Button>
                                 ) : undefined}
                             </HStack>
@@ -114,4 +114,4 @@ const AttachmentListV2 = ({
     );
 };
 
-export default AttachmentListV2;
+export default AttachmentList;

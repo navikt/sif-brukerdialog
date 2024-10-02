@@ -5,7 +5,7 @@ import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { AppText } from '../../../../i18n';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { LegeerklæringSøknadsdata } from '../../../../types/søknadsdata/LegeerklæringSøknadsdata';
-import AttachmentListV2 from '@navikt/sif-common-core-ds/src/components/attachment-list-v2/AttachmentListV2';
+import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
 
 interface Props {
     apiData: SøknadApiData;
@@ -35,7 +35,7 @@ const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringS�
                             <AppText id="step.oppsummering.legeerklæring.ingenVedlegg" />
                         ) : (
                             <div data-testid="legeerklæring-liste">
-                                <AttachmentListV2 attachments={legeerklæringer} />
+                                <AttachmentList attachments={legeerklæringer} />
                             </div>
                         )}
                     </FormSummary.Value>

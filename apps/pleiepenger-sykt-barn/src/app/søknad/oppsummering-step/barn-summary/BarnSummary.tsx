@@ -8,7 +8,7 @@ import { AppText } from '../../../i18n';
 import { BarnRelasjon, RegistrerteBarn, ÅrsakManglerIdentitetsnummer } from '../../../types';
 import { SøknadApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
-import AttachmentListV2 from '@navikt/sif-common-core-ds/src/components/attachment-list-v2/AttachmentListV2';
+import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types';
 
 interface Props {
@@ -81,7 +81,7 @@ const annetBarnSummary = (apiValues: SøknadApiData, fødselsattester: Attachmen
                     </FormSummary.Label>
                     <FormSummary.Value>
                         <div data-testid={'oppsummering-omBarn-fødselsattest'}>
-                            <AttachmentListV2 attachments={fødselsattester} />
+                            <AttachmentList attachments={fødselsattester} />
                         </div>
                         {apiValues.fødselsattestVedleggUrls.length === 0 && (
                             <AppText id="step.oppsummering.omBarn.ingenFødselsattest" />

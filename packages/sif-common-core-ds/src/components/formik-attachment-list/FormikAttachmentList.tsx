@@ -1,9 +1,9 @@
 import { useFormikContext } from 'formik';
 import { Attachment } from '../../types';
-import AttachmentListV2, { AttachmentListV2Props } from '../attachment-list-v2/AttachmentListV2';
+import AttachmentList, { AttachmentListProps } from '../attachment-list/AttachmentList';
 import { removeElementFromArray } from '../../utils/listUtils';
 
-interface Props extends Omit<AttachmentListV2Props, 'onDelete'> {
+interface Props extends Omit<AttachmentListProps, 'onDelete'> {
     fieldName: string;
     onDelete?: (attachment: Attachment) => Promise<any>;
 }
@@ -12,7 +12,7 @@ const FormikAttachmentList = ({ fieldName, attachments, emptyListText, showFileS
     const { setFieldValue } = useFormikContext();
 
     return (
-        <AttachmentListV2
+        <AttachmentList
             attachments={attachments}
             emptyListText={emptyListText}
             showFileSize={showFileSize}

@@ -5,7 +5,7 @@ import { FødselsnummerSvar } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils';
 import { AppText } from '../../../../i18n';
 import { FlereSokereApiData, PleietrengendeApi } from '../../../../types/søknadApiData/SøknadApiData';
-import AttachmentListV2 from '@navikt/sif-common-core-ds/src/components/attachment-list-v2/AttachmentListV2';
+import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
 
 interface Props {
     pleietrengende: PleietrengendeApi;
@@ -66,7 +66,7 @@ const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId, flereS�
                             </FormSummary.Label>
                             <FormSummary.Value>
                                 {pleietrengendeId.filter(({ pending, uploaded }) => uploaded || pending).length > 0 && (
-                                    <AttachmentListV2 attachments={pleietrengendeId} />
+                                    <AttachmentList attachments={pleietrengendeId} />
                                 )}
 
                                 {pleietrengendeId.filter(({ pending, uploaded }) => uploaded || pending).length ===

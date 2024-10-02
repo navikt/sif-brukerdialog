@@ -1,12 +1,12 @@
 import { Meta, StoryFn } from '@storybook/react';
 import { useState } from 'react';
-import AttachmentListV2 from '../../../src/components/attachment-list-v2/AttachmentListV2';
+import AttachmentList from '../../../src/components/attachment-list/AttachmentList';
 import { Attachment, PersistedFile } from '../../../src/types/Attachment';
 import StoryWrapper from '../../decorators/StoryWrapper';
 
 export default {
-    title: 'Component/AttachmentListV2',
-    component: AttachmentListV2,
+    title: 'Component/AttachmentList',
+    component: AttachmentList,
     decorators: [
         (Story) => (
             <StoryWrapper>
@@ -14,7 +14,7 @@ export default {
             </StoryWrapper>
         ),
     ],
-} as Meta<typeof AttachmentListV2>;
+} as Meta<typeof AttachmentList>;
 
 const file1: PersistedFile = {
     isPersistedFile: true,
@@ -31,7 +31,7 @@ const file2: PersistedFile = {
     lastModified: 123,
 };
 
-const Template: StoryFn<typeof AttachmentListV2> = () => {
+const Template: StoryFn<typeof AttachmentList> = () => {
     const [vedlegg, setVedlegg] = useState<Attachment[]>([
         { file: file1, pending: false, uploaded: true, url: 'url1' },
         { file: file2, pending: true, uploaded: false, url: 'url2' },
@@ -42,7 +42,7 @@ const Template: StoryFn<typeof AttachmentListV2> = () => {
         setVedlegg(vedlegg.filter((i) => i.url !== attachment.url));
     };
 
-    return <AttachmentListV2 attachments={vedlegg} showFileSize={true} onDelete={onDelete} />;
+    return <AttachmentList attachments={vedlegg} showFileSize={true} onDelete={onDelete} />;
 };
 
 export const Default = Template.bind({});

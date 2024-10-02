@@ -4,7 +4,7 @@ import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData'
 import { DeltBostedSøknadsdata } from '../../../../types/søknadsdata/DeltBostedSøknadsdata';
 import { LegeerklæringSøknadsdata } from '../../../../types/søknadsdata/LegeerklæringSøknadsdata';
 import { fixAttachmentURL, getAttachmentURLBackend } from '../../../../utils/attachmentUtils';
-import AttachmentListV2 from '@navikt/sif-common-core-ds/src/components/attachment-list-v2/AttachmentListV2';
+import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
 
 interface Props {
     apiData: SøknadApiData;
@@ -51,7 +51,7 @@ const VedleggOppsummering: React.FunctionComponent<Props> = ({
                                 <AppText id="vedleggsliste.ingenLegeerklæringLastetOpp" />
                             </Alert>
                         ) : (
-                            <AttachmentListV2 attachments={legeerklæringer} />
+                            <AttachmentList attachments={legeerklæringer} />
                         )}
                     </FormSummary.Value>
                 </FormSummary.Answer>
@@ -62,7 +62,7 @@ const VedleggOppsummering: React.FunctionComponent<Props> = ({
                         </FormSummary.Label>
                         <FormSummary.Value>
                             {samværsavtaler.length > 0 ? (
-                                <AttachmentListV2 attachments={samværsavtaler} />
+                                <AttachmentList attachments={samværsavtaler} />
                             ) : (
                                 <Alert inline={true} variant="warning">
                                     <AppText id="vedleggsliste.ingenBostedsavtaleLastetOpp" />
