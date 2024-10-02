@@ -24,6 +24,10 @@
         "API_TOKENX_AUDIENCE": "dev-gcp:dusseldorf:k9-brukerdialog-prosessering",
         "NPM_CONFIG_CACHE": "/tmp",
         "APP_VERSION": "dev",
-        "MINSIDE_URL": "https://www.intern.dev.nav.no/minside"
+        "MINSIDE_URL": "https://www.intern.dev.nav.no/minside",
+
+        "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "dev-gcp:dusseldorf:k9-brukerdialog-prosessering",
+        "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",
+        "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/api"
     }
 }

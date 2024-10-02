@@ -13,6 +13,8 @@ const getAppSettings = () => ({
     MINSIDE_URL: `${process.env.MINSIDE_URL}`,
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
     VEDLEGG_API_URL: `${process.env.VEDLEGG_API_URL}`,
+    K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: `${process.env.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH}`,
+    K9_BRUKERDIALOG_PROSESSERING_API_URL: `${process.env.K9_BRUKERDIALOG_PROSESSERING_API_URL}`,
 });
 
 module.exports = getAppSettings;
