@@ -25,7 +25,7 @@ export default defineConfig({
         reuseExistingServer: true,
         env: {
             SIF_PUBLIC_DEKORATOR_URL: 'https://www.nav.no/dekoratoren/?simple=true&chatbot=false',
-            PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling',
+            PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn',
             K9_BRUKERDIALOG_PROSESSERING_API_URL: 'http://localhost:8089',
             K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: 'http://localhost:8089',
             SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
