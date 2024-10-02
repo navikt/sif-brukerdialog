@@ -11,7 +11,7 @@ import { connect, useFormikContext } from 'formik';
 import { deleteFile } from '../../api/api';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { AppText } from '../../i18n';
-import { fixAttachmentURL } from '../../utils/appAttachmentUtils';
+import { fixAttachmentURL } from '@navikt/sif-common';
 
 interface LegeerklæringAttachmentListProps {
     includeDeletionFunctionality: boolean;

@@ -19,6 +19,9 @@ const getAppSettings = () => ({
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
     VEDLEGG_API_URL: `${process.env.VEDLEGG_API_URL}`,
     USE_AMPLITUDE: `${process.env.USE_AMPLITUDE}`,
+
+    K9_BRUKERDIALOG_PROSESSERING_API_URL: `${process.env.K9_BRUKERDIALOG_PROSESSERING_API_URL}`,
+    K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: `${process.env.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH}`,
 });
 
 module.exports = getAppSettings;

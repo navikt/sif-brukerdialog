@@ -46,7 +46,7 @@ server.use((req, res, next) => {
     res.set('X-Content-Type-Options', 'nosniff');
     res.set('Access-Control-Allow-Headers', 'content-type');
     res.set('Access-Control-Allow-Methods', ['GET', 'POST', 'DELETE', 'PUT']);
-    res.set('Access-Control-Allow-Headers', ['content-type', 'X-Brukerdialog-Git-Sha', 'x_correlation_id']);
+    res.set('Access-Control-Allow-Headers', ['content-type', 'X-Brukerdialog-Git-Sha', 'x-correlation-id']);
     res.set('Access-Control-Allow-Credentials', true);
     next();
 });
@@ -150,11 +150,11 @@ const startExpressServer = () => {
 
     server.post('/vedlegg', (req, res) => {
         res.set('Access-Control-Expose-Headers', 'Location');
-        res.set('Location', 'nav.no');
+        res.set('Location', 'nav.no/vedlegg/123');
         const busboy = busboyCons({ headers: req.headers });
         busboy.on('finish', () => {
             res.writeHead(200, {
-                Location: `http://localhost:8083/vedlegg/${uuidv4()}`,
+                Location: `http://localhost:8089/vedlegg/${uuidv4()}`,
             });
             res.end();
         });

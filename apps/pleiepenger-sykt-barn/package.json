@@ -13,6 +13,7 @@
         "@navikt/ds-icons": "3.4.3",
         "@navikt/ds-react": "7.1.0",
         "@navikt/sif-app-register": "*",
+        "@navikt/sif-common": "*",
         "@navikt/sif-common-amplitude": "*",
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",

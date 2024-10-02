@@ -26,6 +26,7 @@ interface Props {
     uploadFile: (file: File) => Promise<AxiosResponse<any, any>>;
     deleteFile: (url: string) => Promise<any>;
     onUnauthorizedOrForbiddenUpload: () => void;
+    onFilesUploaded?: (antall: number, antallFeilet: number) => void;
 }
 
 const FormikAttachmentForm = ({
@@ -39,6 +40,7 @@ const FormikAttachmentForm = ({
     deleteFile,
     getAttachmentURLFrontend,
     onUnauthorizedOrForbiddenUpload,
+    onFilesUploaded,
 }: Props) => {
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = useState<File[]>([]);
     const canUploadMore = !hasExceededMaxTotalSizeOfAttachments([...attachments, ...otherAttachments]);
@@ -62,6 +64,7 @@ const FormikAttachmentForm = ({
                             () => validateAttachments([...a, ...otherAttachments]),
                         ]);
                     }}
+                    onFilesUploaded={onFilesUploaded}
                     onUnauthorizedOrForbiddenUpload={onUnauthorizedOrForbiddenUpload}
                 />
             ) : (

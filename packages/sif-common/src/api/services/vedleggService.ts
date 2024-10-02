@@ -1,15 +1,21 @@
+import { Attachment } from '@navikt/sif-common-core-ds/src/types';
 import { getAttachmentId } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { axiosMultipartConfig, k9BrukerdialogApiClient } from '../apiClient';
-import { Attachment } from '@navikt/sif-common-core-ds/src/types';
 
 const serviceUrl = '/vedlegg';
 
 export const uploadVedlegg = async (file: File) => {
     const formData = new FormData();
     formData.append('vedlegg', file);
-    const response = await k9BrukerdialogApiClient.post(serviceUrl, formData, axiosMultipartConfig);
-    response.headers.vedleggId = response.headers.location ? getAttachmentId(response.headers.location) : undefined;
-    return response;
+    try {
+        const response = await k9BrukerdialogApiClient.post(serviceUrl, formData, axiosMultipartConfig);
+        response.headers.vedleggId = response.headers.location ? getAttachmentId(response.headers.location) : undefined;
+        return response;
+    } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+        throw e;
+    }
 };
 
 /**
