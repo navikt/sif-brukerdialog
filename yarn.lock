@@ -5496,6 +5496,7 @@ __metadata:
     "@navikt/ds-tailwind": "npm:7.1.0"
     "@navikt/nav-dekoratoren-moduler": "npm:2.1.6"
     "@navikt/sif-app-register": "npm:*"
+    "@navikt/sif-common": "npm:*"
     "@navikt/sif-common-amplitude": "npm:*"
     "@navikt/sif-common-core-ds": "npm:*"
     "@navikt/sif-common-formik-ds": "npm:*"

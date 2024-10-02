@@ -3,12 +3,13 @@ import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { TextareaSvar } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils';
-import UploadedDocumentsList from '../../../components/fødselsattest-file-list/UploadedDocumentsList';
 import Sitat from '../../../components/sitat/Sitat';
 import { AppText } from '../../../i18n';
 import { BarnRelasjon, RegistrerteBarn, ÅrsakManglerIdentitetsnummer } from '../../../types';
 import { SøknadApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
+import AttachmentListV2 from '@navikt/sif-common-core-ds/src/components/attachment-list-v2/AttachmentListV2';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types';
 
 interface Props {
     barn: RegistrerteBarn[];
@@ -34,7 +35,7 @@ const apiBarnSummary = (apiBarn: RegistrerteBarn) => (
     </>
 );
 
-const annetBarnSummary = (apiValues: SøknadApiData) => (
+const annetBarnSummary = (apiValues: SøknadApiData, fødselsattester: Attachment[]) => (
     <>
         {apiValues.barn.fødselsdato ? (
             <FormSummary.Answer>
@@ -80,7 +81,7 @@ const annetBarnSummary = (apiValues: SøknadApiData) => (
                     </FormSummary.Label>
                     <FormSummary.Value>
                         <div data-testid={'oppsummering-omBarn-fødselsattest'}>
-                            <UploadedDocumentsList includeDeletionFunctionality={false} />
+                            <AttachmentListV2 attachments={fødselsattester} />
                         </div>
                         {apiValues.fødselsattestVedleggUrls.length === 0 && (
                             <AppText id="step.oppsummering.omBarn.ingenFødselsattest" />
@@ -127,7 +128,7 @@ const BarnSummary = ({ formValues, apiValues, barn, onEdit }: Props) => {
                 </FormSummary.Header>
                 <FormSummary.Answers>
                     {useApiBarn && apiBarn && apiBarnSummary(apiBarn)}
-                    {!useApiBarn && annetBarnSummary(apiValues)}
+                    {!useApiBarn && annetBarnSummary(apiValues, formValues.fødselsattest)}
                     {!useApiBarn && relasjonTilBarnetSummary(apiValues)}
                 </FormSummary.Answers>
             </FormSummary>

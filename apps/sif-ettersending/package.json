@@ -14,6 +14,7 @@
         "@navikt/ds-tailwind": "7.1.0",
         "@navikt/nav-dekoratoren-moduler": "2.1.6",
         "@navikt/sif-app-register": "*",
+        "@navikt/sif-common": "*",
         "@navikt/sif-common-amplitude": "*",
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",

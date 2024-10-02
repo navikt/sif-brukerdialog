@@ -82,6 +82,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                     addLabel: text('step.legeerklæring.uploadBtn'),
                     noAttachmentsText: text('vedleggsliste.ingenLegeerklæringLastetOpp'),
                 }}
+                validation={{ required: false }}
                 uploadFile={uploadVedlegg}
                 uploadLaterURL={getLenker(intl.locale).ettersending}
                 getAttachmentURLFrontend={getAttachmentURLFrontend}

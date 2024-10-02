@@ -21,7 +21,10 @@ interface Props {
         addLabel: string;
         noAttachmentsText?: string;
     };
-    uploadLaterURL: string;
+    validation: {
+        required: boolean;
+    };
+    uploadLaterURL?: string;
     getAttachmentURLFrontend: (url: string) => string;
     uploadFile: (file: File) => Promise<AxiosResponse<any, any>>;
     deleteFile: (url: string) => Promise<any>;
@@ -36,6 +39,7 @@ const FormikAttachmentForm = ({
     otherAttachments = [],
     labels,
     uploadLaterURL,
+    validation: { required },
     uploadFile,
     deleteFile,
     getAttachmentURLFrontend,
@@ -61,7 +65,7 @@ const FormikAttachmentForm = ({
                     }}
                     validate={(a: Attachment[] = []) => {
                         return validateAll<ValidateAttachmentsErrors | ValidationError>([
-                            () => validateAttachments([...a, ...otherAttachments]),
+                            () => validateAttachments([...a, ...otherAttachments], required),
                         ]);
                     }}
                     onFilesUploaded={onFilesUploaded}

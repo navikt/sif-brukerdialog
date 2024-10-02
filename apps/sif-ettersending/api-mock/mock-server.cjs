@@ -18,7 +18,12 @@ server.use(
 server.use((req, res, next) => {
     res.set('Access-Control-Allow-Origin', 'http://localhost:8080');
     res.set('Access-Control-Allow-Methods', ['GET', 'POST', 'DELETE', 'PUT']);
-    res.set('Access-Control-Allow-Headers', ['content-type', 'X-Brukerdialog-Git-Sha', 'x_correlation_id']);
+    res.set('Access-Control-Allow-Headers', [
+        'content-type',
+        'X-Brukerdialog-Git-Sha',
+        'x-correlation-id',
+        'x_correlation_id',
+    ]);
 
     next();
 });

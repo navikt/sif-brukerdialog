@@ -70,6 +70,7 @@ const FødselsattestPart: React.FC<Props> = ({ attachments }) => {
                     addLabel: text('steg.omBarnet.fødselsattest.vedlegg'),
                     noAttachmentsText: text('step.oppsummering.omBarn.ingenFødselsattest'),
                 }}
+                validation={{ required: false }}
                 deleteFile={deleteVedlegg}
                 uploadFile={uploadVedlegg}
                 uploadLaterURL={getLenker(intl.locale).ettersend}

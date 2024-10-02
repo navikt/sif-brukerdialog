@@ -98,6 +98,7 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
                     addLabel: text('step.deltBosted.uploadBtn'),
                     noAttachmentsText: text('vedleggsliste.ingenAvtaleLastetOpp'),
                 }}
+                validation={{ required: false }}
                 uploadFile={uploadVedlegg}
                 uploadLaterURL={getLenker(intl.locale).ettersending}
                 getAttachmentURLFrontend={getAttachmentURLFrontend}

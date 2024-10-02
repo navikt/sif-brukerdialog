@@ -25,6 +25,7 @@ const IdPart = ({ pleietrengendeId = [], andreVedlegg = [] }: Props) => {
             uploadFile={(file) => api.uploadFile(ApiEndpoint.vedlegg, file)}
             deleteFile={api.deleteFile}
             getAttachmentURLFrontend={getAttachmentURLFrontend}
+            validation={{ required: false }}
             labels={{
                 addLabel: text('step.opplysningerOmPleietrengende.id.uploadButtonLabel'),
                 noAttachmentsText: text('vedleggsliste.ingenDokumenter'),

@@ -3,11 +3,17 @@ import { Attachment as DSAttachment } from '@navikt/ds-icons';
 import { CoreText, useCoreIntl } from '../../i18n/common.messages';
 import { Attachment } from '../../types';
 
+enum Variant {
+    'plain' = 'plain',
+    'border' = 'border',
+    'zebra' = 'zebra',
+}
 export interface AttachmentListV2Props {
     attachments: Attachment[];
     emptyListText?: string;
     showDeleteButton?: boolean;
     showFileSize?: boolean;
+    variant?: Variant;
     onDelete?: (attachment: Attachment) => void;
 }
 
@@ -21,7 +27,37 @@ const formatFileSize = (sizeInBytes: number): string => {
     }
 };
 
-const AttachmentListV2 = ({ attachments, showFileSize, emptyListText, onDelete }: AttachmentListV2Props) => {
+const getVariantStyle = (variant: Variant, index: number): React.CSSProperties => {
+    switch (variant) {
+        case Variant.border:
+            return {
+                borderBottom: '1px solid var(--a-border-subtle)',
+                borderTop: index === 0 ? '1px solid var(--a-border-subtle)' : 'none',
+                paddingBlockEnd: '.5rem',
+                paddingBlockStart: '.5rem',
+                margin: 0,
+            };
+        case Variant.zebra:
+            return {
+                padding: '.5rem',
+                margin: 0,
+                backgroundColor: index % 2 === 0 ? 'var(--ac-table-row-zebra,var(--a-surface-subtle))' : 'none',
+            };
+        default:
+            return {
+                margin: 0,
+                padding: '.25rem',
+            };
+    }
+};
+
+const AttachmentListV2 = ({
+    attachments,
+    showFileSize,
+    emptyListText,
+    onDelete,
+    variant = Variant.plain,
+}: AttachmentListV2Props) => {
     const { text } = useCoreIntl();
 
     return attachments.length === 0 ? (
@@ -36,13 +72,7 @@ const AttachmentListV2 = ({ attachments, showFileSize, emptyListText, onDelete }
                     const { file, uploaded, pending, url } = v;
                     return (
                         <List.Item
-                            style={{
-                                borderBottom: '1px solid var(--a-border-subtle)',
-                                borderTop: index === 0 ? '1px solid var(--a-border-subtle)' : 'none',
-                                paddingBlockEnd: '.5rem',
-                                paddingBlockStart: '.5rem',
-                                margin: 0,
-                            }}
+                            style={getVariantStyle(variant, index)}
                             key={file.name + index}
                             icon={
                                 pending && 1 / 1 === 2 ? (
@@ -52,7 +82,7 @@ const AttachmentListV2 = ({ attachments, showFileSize, emptyListText, onDelete }
                                 )
                             }>
                             <HStack gap="2" wrap={false} align="baseline">
-                                <HStack flexGrow="2" gap="4" align="baseline">
+                                <HStack flexGrow="2" gap="0 4" align="baseline">
                                     {uploaded && url ? <Link href={url}>{file.name}</Link> : <>{file.name}</>}
                                     {showFileSize && file.size ? (
                                         <BodyShort as="span" size="small" style={{ color: 'var(--a-text-subtle)' }}>

@@ -178,6 +178,7 @@ const nb = {
     'validation.registrertBarnAktørId.ANNET.noValue': 'Du må velge hvilket barn dokumentasjonen gjelder',
     'validation.registrertBarnAktørId.LEGEERKLÆRING.noValue': 'Du må velge hvilket barn legeerklæringen gjelder',
     'validation.ingen_dokumenter': 'Ingen dokumenter er lastet opp',
+    'validation.dokumenter.ingenFiler': 'Ingen dokumenter er lastet opp',
     'validation.for_mange_dokumenter': 'For mange dokumenter er lastet opp',
     'validation.samlet_storrelse_for_hoy':
         'Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24Mb.',

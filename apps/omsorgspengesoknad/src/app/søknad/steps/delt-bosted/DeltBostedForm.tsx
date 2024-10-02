@@ -70,6 +70,7 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({
                     uploadFile={(file) => api.uploadFile(ApiEndpoint.vedlegg, file)}
                     deleteFile={api.deleteFile}
                     getAttachmentURLFrontend={getAttachmentURLFrontend}
+                    validation={{ required: false }}
                     labels={{
                         addLabel: text('steg.deltBosted.vedlegg.knappLabel'),
                         noAttachmentsText: text('vedleggsliste.ingenBostedsavtaleLastetOpp'),

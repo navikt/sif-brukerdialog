@@ -1,13 +1,18 @@
 import { FormSummary } from '@navikt/ds-react';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
-import LegeerklæringAttachmentList from '../../../components/legeerklæring-file-list/LegeerklæringFileList';
 import { AppText } from '../../../i18n';
+import AttachmentListV2 from '@navikt/sif-common-core-ds/src/components/attachment-list-v2/AttachmentListV2';
+import { useFormikContext } from 'formik';
+import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 
 export interface Props {
     onEdit?: () => void;
 }
 
 const LegeerklæringSummary = ({ onEdit }: Props) => {
+    const {
+        values: { legeerklæring },
+    } = useFormikContext<SøknadFormValues>();
     return (
         <FormSummary>
             <FormSummary.Header>
@@ -22,7 +27,7 @@ const LegeerklæringSummary = ({ onEdit }: Props) => {
                         <AppText id="steg.oppsummering.vedlegg.listTitle" />
                     </FormSummary.Label>
                     <FormSummary.Value>
-                        <LegeerklæringAttachmentList includeDeletionFunctionality={false} />
+                        <AttachmentListV2 attachments={legeerklæring} />
                     </FormSummary.Value>
                 </FormSummary.Answer>
             </FormSummary.Answers>

@@ -69,6 +69,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({
                     uploadFile={(file) => api.uploadFile(ApiEndpoint.vedlegg, file)}
                     deleteFile={api.deleteFile}
                     getAttachmentURLFrontend={getAttachmentURLFrontend}
+                    validation={{ required: false }}
                     labels={{
                         addLabel: text('step.legeerklæring.vedlegg.knappLabel'),
                         noAttachmentsText: text('vedleggsliste.ingenLegeerklæringLastetOpp'),

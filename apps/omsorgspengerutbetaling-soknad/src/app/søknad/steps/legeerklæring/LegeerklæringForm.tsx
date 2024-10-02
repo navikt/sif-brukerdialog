@@ -67,6 +67,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                 labels={{
                     addLabel: text('steg.legeerklæring.vedlegg.knappLabel'),
                 }}
+                validation={{ required: false }}
                 onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
                 otherAttachments={andreVedlegg}
                 uploadFile={uploadVedlegg}
