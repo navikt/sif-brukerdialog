@@ -15,6 +15,7 @@ export const useResetSøknad = () => {
     useEffect(() => {
         if (shouldResetSøknad) {
             dispatch(actionsCreator.resetSøknad());
+            dispatch(actionsCreator.setIsReloadingApp());
             setTimeout(() => {
                 relocateToWelcomePage();
             });
