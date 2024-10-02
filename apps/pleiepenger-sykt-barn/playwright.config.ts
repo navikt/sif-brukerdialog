@@ -44,6 +44,9 @@ export default defineConfig({
             USE_AMPLITUDE: 'false',
             USE_MOCK_DATE: 'true',
             MOCK_DATE: '2023-01-01',
+            K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: 'dev-gcp:dusseldorf:k9-brukerdialog-prosessering',
+            K9_BRUKERDIALOG_PROSESSERING_API_URL: 'http://localhost:8089',
+            K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: '/api',
         },
     },
 });
