@@ -1,5 +1,5 @@
 import { FormSummary, Heading } from '@navikt/ds-react';
-import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
+import AttachmentListV2 from '@navikt/sif-common-core-ds/src/components/attachment-list-v2/AttachmentListV2';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
@@ -140,7 +140,7 @@ const ArbeidsforholdSummaryView = ({ listeAvArbeidsforhold, søknadsdata, onEdit
                                                     </FormSummary.Label>
                                                     <FormSummary.Value>
                                                         {maybeListOfAttachments && maybeListOfAttachments.length > 0 ? (
-                                                            <AttachmentList attachments={maybeListOfAttachments} />
+                                                            <AttachmentListV2 attachments={maybeListOfAttachments} />
                                                         ) : (
                                                             <i>
                                                                 {text(

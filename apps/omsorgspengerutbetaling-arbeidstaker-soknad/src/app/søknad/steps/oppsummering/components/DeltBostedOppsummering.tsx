@@ -1,10 +1,10 @@
 import { FormSummary } from '@navikt/ds-react';
 import React from 'react';
-import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
+import { getAttachmentURLBackend } from '@navikt/sif-common';
+import AttachmentListV2 from '@navikt/sif-common-core-ds/src/components/attachment-list-v2/AttachmentListV2';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { AppText } from '../../../../i18n';
 import { DeltBostedSøknadsdata } from '../../../../types/søknadsdata/DeltBostedSøknadsdata';
-import { getAttachmentURLBackend } from '@navikt/sif-common';
 
 interface Props {
     vedlegg: string[];
@@ -34,7 +34,7 @@ const DeltBostedOppsummering: React.FC<Props> = ({ vedlegg, deltBostedSøknadsda
                         {deltBostedSøknadsdata?.vedlegg.length === 0 ? (
                             <AppText id="step.oppsummering.deltBosted.ingenVedlegg" />
                         ) : (
-                            <AttachmentList attachments={delteBosteder} />
+                            <AttachmentListV2 attachments={delteBosteder} />
                         )}
                     </FormSummary.Value>
                 </FormSummary.Answer>

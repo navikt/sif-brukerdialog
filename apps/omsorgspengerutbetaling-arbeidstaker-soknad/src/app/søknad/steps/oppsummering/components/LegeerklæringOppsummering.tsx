@@ -1,9 +1,9 @@
 import { FormSummary } from '@navikt/ds-react';
-import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { AppText } from '../../../../i18n';
 import { LegeerklæringSøknadsdata } from '../../../../types/søknadsdata/LegeerklæringSøknadsdata';
 import { getAttachmentURLBackend } from '@navikt/sif-common';
+import AttachmentListV2 from '@navikt/sif-common-core-ds/src/components/attachment-list-v2/AttachmentListV2';
 
 interface Props {
     vedlegg: string[];
@@ -33,7 +33,7 @@ const LegeerklæringOppsummering = ({ vedlegg, legeerklæringSøknadsdata, onEdi
                         {legeerklæringSøknadsdata?.vedlegg.length === 0 ? (
                             <AppText id="step.oppsummering.legeerklæring.ingenVedlegg" />
                         ) : (
-                            <AttachmentList attachments={legeerklæringer} />
+                            <AttachmentListV2 attachments={legeerklæringer} />
                         )}
                     </FormSummary.Value>
                 </FormSummary.Answer>

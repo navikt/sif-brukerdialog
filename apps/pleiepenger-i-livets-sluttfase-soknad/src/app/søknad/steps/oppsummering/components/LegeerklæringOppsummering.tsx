@@ -1,11 +1,11 @@
 import { FormSummary } from '@navikt/ds-react';
 import React from 'react';
-import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
 import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
 import { AppText } from '../../../../i18n';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { LegeerklæringSøknadsdata } from '../../../../types/søknadsdata/LegeerklæringSøknadsdata';
 import { fixAttachmentURL, getAttachmentURLBackend } from '../../../../utils/attachmentUtils';
+import AttachmentListV2 from '@navikt/sif-common-core-ds/src/components/attachment-list-v2/AttachmentListV2';
 
 interface Props {
     apiData: SøknadApiData;
@@ -38,7 +38,7 @@ const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringS�
                             <AppText id="step.oppsummering.legeerklæring.ingenVedlegg" />
                         ) : (
                             <div data-testid="legeerklæring-liste">
-                                <AttachmentList attachments={legeerklæringer} />
+                                <AttachmentListV2 attachments={legeerklæringer} />
                             </div>
                         )}
                     </FormSummary.Value>

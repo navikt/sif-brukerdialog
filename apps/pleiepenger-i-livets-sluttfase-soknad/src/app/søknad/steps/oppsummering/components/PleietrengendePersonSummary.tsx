@@ -1,11 +1,11 @@
 import { FormSummary } from '@navikt/ds-react';
-import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
 import { FødselsnummerSvar } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils';
 import { AppText } from '../../../../i18n';
 import { FlereSokereApiData, PleietrengendeApi } from '../../../../types/søknadApiData/SøknadApiData';
+import AttachmentListV2 from '@navikt/sif-common-core-ds/src/components/attachment-list-v2/AttachmentListV2';
 
 interface Props {
     pleietrengende: PleietrengendeApi;
@@ -66,7 +66,7 @@ const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId, flereS�
                             </FormSummary.Label>
                             <FormSummary.Value>
                                 {pleietrengendeId.filter(({ pending, uploaded }) => uploaded || pending).length > 0 && (
-                                    <AttachmentList attachments={pleietrengendeId} />
+                                    <AttachmentListV2 attachments={pleietrengendeId} />
                                 )}
 
                                 {pleietrengendeId.filter(({ pending, uploaded }) => uploaded || pending).length ===

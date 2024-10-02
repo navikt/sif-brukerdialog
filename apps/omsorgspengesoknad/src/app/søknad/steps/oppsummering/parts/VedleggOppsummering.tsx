@@ -1,10 +1,10 @@
 import { Alert, FormSummary } from '@navikt/ds-react';
-import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
 import { AppText } from '../../../../i18n';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { DeltBostedSøknadsdata } from '../../../../types/søknadsdata/DeltBostedSøknadsdata';
 import { LegeerklæringSøknadsdata } from '../../../../types/søknadsdata/LegeerklæringSøknadsdata';
 import { fixAttachmentURL, getAttachmentURLBackend } from '../../../../utils/attachmentUtils';
+import AttachmentListV2 from '@navikt/sif-common-core-ds/src/components/attachment-list-v2/AttachmentListV2';
 
 interface Props {
     apiData: SøknadApiData;
@@ -51,7 +51,7 @@ const VedleggOppsummering: React.FunctionComponent<Props> = ({
                                 <AppText id="vedleggsliste.ingenLegeerklæringLastetOpp" />
                             </Alert>
                         ) : (
-                            <AttachmentList attachments={legeerklæringer} />
+                            <AttachmentListV2 attachments={legeerklæringer} />
                         )}
                     </FormSummary.Value>
                 </FormSummary.Answer>
@@ -62,7 +62,7 @@ const VedleggOppsummering: React.FunctionComponent<Props> = ({
                         </FormSummary.Label>
                         <FormSummary.Value>
                             {samværsavtaler.length > 0 ? (
-                                <AttachmentList attachments={samværsavtaler} />
+                                <AttachmentListV2 attachments={samværsavtaler} />
                             ) : (
                                 <Alert inline={true} variant="warning">
                                     <AppText id="vedleggsliste.ingenBostedsavtaleLastetOpp" />
