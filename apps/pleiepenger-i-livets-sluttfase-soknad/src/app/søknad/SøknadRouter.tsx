@@ -20,12 +20,13 @@ import MedlemskapStep from './steps/medlemskap/MedlemskapStep';
 import OpplysningerOmPleietrengendeStep from './steps/opplysninger-om-pleietrengende/OpplysningerOmPleietrengendeStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
 import TidsromStep from './steps/tidsrom/TidsromStep';
+import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
     const {
         dispatch,
-        state: { søknadSendt, søknadsdata, kvitteringInfo, søker, søknadRoute: stateSøknadRoute },
+        state: { søknadSendt, søknadsdata, kvitteringInfo, søker, søknadRoute: stateSøknadRoute, isReloadingApp },
     } = useSøknadContext();
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
@@ -43,6 +44,10 @@ const SøknadRouter = () => {
             navigateTo(stateSøknadRoute); // Send til sider hvis bruker kommer til velkommen via annen navigasjon
         }
     }, [navigateTo, pathname, stateSøknadRoute, isFirstTimeLoadingApp]);
+
+    if (isReloadingApp) {
+        return <LoadingSpinner size="3xlarge" style="block" />;
+    }
 
     const restartSøknad = useCallback(async () => {
         await mellomlagringService.purge();

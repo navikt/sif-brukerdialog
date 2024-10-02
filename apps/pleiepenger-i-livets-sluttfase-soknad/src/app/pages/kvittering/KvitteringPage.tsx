@@ -15,12 +15,6 @@ interface Props {
 const KvitteringPage = ({ kvitteringInfo }: Props) => {
     const { text, intl } = useAppIntl();
 
-    // useEffect(() => {
-    //     return () => {
-    //         onUnmount();
-    //     };
-    // });
-
     return (
         <Page title={text('page.kvittering.sidetittel')}>
             <div data-testid="kvittering-page">
