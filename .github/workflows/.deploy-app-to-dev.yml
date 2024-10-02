@@ -60,14 +60,11 @@ jobs:
                   team: dusseldorf
                   push_image: true
                   pull: true
-                  dockerfile: ./Dockerfile
+                  dockerfile: apps/${{inputs.app-name}}/Dockerfile
                   docker_context: .
                   image_suffix: ${{inputs.app-name}}-mono
                   project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
                   identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
-                  build_args: |
-                      APP=${{inputs.app-name}}
-                      SCOPE=@navikt/${{inputs.app-name}}
 
             - name: Deploy to dev
               uses: nais/deploy/actions/deploy@v2
