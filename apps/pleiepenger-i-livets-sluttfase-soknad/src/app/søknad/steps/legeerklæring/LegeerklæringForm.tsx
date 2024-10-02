@@ -19,8 +19,7 @@ import { relocateToLoginPage } from '../../../utils/navigationUtils';
 import { validateAttachments, ValidateAttachmentsErrors } from '../../../utils/validateAttachments';
 import LegeerklæringAvtaleAttachmentList from './LegeerklæringAttachmentList';
 import { AppText, useAppIntl } from '../../../i18n';
-import { getAttachmentURLFrontend } from '../../../utils/attachmentUtils';
-import { uploadVedlegg } from '@navikt/sif-common';
+import { getAttachmentURLFrontend, uploadVedlegg } from '@navikt/sif-common';
 
 interface Props {
     values: Partial<LegeerklæringFormValues>;

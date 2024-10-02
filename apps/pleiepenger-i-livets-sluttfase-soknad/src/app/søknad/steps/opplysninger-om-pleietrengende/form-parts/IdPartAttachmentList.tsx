@@ -1,8 +1,9 @@
 import { BodyShort } from '@navikt/ds-react';
 import React from 'react';
+import { deleteVedlegg } from '@navikt/sif-common';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import AttachmentListWithDeletion from '@navikt/sif-common-core-ds/src/components/attachment-list-with-deletion/AttachmentListWithDeletion';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import {
     containsAnyUploadedAttachments,
@@ -10,13 +11,11 @@ import {
 } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { removeElementFromArray } from '@navikt/sif-common-core-ds/src/utils/listUtils';
 import { useFormikContext } from 'formik';
+import { AppText } from '../../../../i18n';
 import {
     OpplysningerOmPleietrengendeFormFields,
     OpplysningerOmPleietrengendeFormValues,
 } from '../OpplysningerOmPleietrengendeStep';
-import { AppText } from '../../../../i18n';
-import { fixAttachmentURL } from '../../../../utils/attachmentUtils';
-import { deleteVedlegg } from '@navikt/sif-common';
 
 interface Props {
     includeDeletionFunctionality: boolean;
@@ -25,9 +24,9 @@ interface Props {
 
 const IdPartAttachmentList: React.FC<Props> = ({ wrapNoAttachmentsInBlock, includeDeletionFunctionality }) => {
     const { values, setFieldValue } = useFormikContext<OpplysningerOmPleietrengendeFormValues>();
-    const idDokumenter: Attachment[] = values.pleietrengendeId
-        .filter(({ file }: Attachment) => fileExtensionIsValid(file.name))
-        .map(fixAttachmentURL);
+    const idDokumenter: Attachment[] = values.pleietrengendeId.filter(({ file }: Attachment) =>
+        fileExtensionIsValid(file.name),
+    );
 
     if (!containsAnyUploadedAttachments(idDokumenter)) {
         const noAttachmentsText = (

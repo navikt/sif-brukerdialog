@@ -18,7 +18,6 @@ const createHashString = (info: MellomlagringHashInfo) => {
 };
 
 const isMellomlagringValid = (søknadState: MellomlagringData, info: MellomlagringHashInfo): boolean => {
-    console.log(createHashString(info));
     return (
         søknadState.versjon === SØKNAD_VERSJON &&
         søknadState.søknadsdata?.velkommen?.harForståttRettigheterOgPlikter === true &&

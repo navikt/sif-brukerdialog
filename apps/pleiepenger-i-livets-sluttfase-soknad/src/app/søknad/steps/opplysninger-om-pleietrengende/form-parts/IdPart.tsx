@@ -15,8 +15,7 @@ import {
 } from '../OpplysningerOmPleietrengendeStep';
 import IdPartAttachmentList from './IdPartAttachmentList';
 import { useAppIntl } from '../../../../i18n';
-import { getAttachmentURLFrontend } from '../../../../utils/attachmentUtils';
-import { uploadVedlegg } from '@navikt/sif-common';
+import { getAttachmentURLFrontend, uploadVedlegg } from '@navikt/sif-common';
 
 //TODO VALIDATE  alleDokumenterISøknaden: Attachment[];
 const IdPart = () => {
