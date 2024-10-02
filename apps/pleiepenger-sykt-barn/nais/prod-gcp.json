@@ -20,7 +20,6 @@
         "DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=true&chatbot=false&logoutUrl=https://www.nav.no/familie/sykdom-i-familien/soknad/pleiepenger/oauth2/logout",
         "FRONTEND_API_PATH": "/familie/sykdom-i-familien/soknad/pleiepenger/api",
         "FRONTEND_INNSYN_API_PATH": "/familie/sykdom-i-familien/soknad/pleiepenger/innsynapi",
-        "FRONTEND_VEDLEGG_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/pleiepenger/api",
         "INNSYN_API_TOKENX_AUDIENCE": "prod-gcp:dusseldorf:sif-innsyn-api",
         "INNSYN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/innsyn/",
         "LOGIN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/pleiepenger/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/pleiepenger/soknad",
@@ -28,7 +27,10 @@
         "NPM_CONFIG_CACHE": "/tmp",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/pleiepenger",
         "TOGGLE_BEKREFT_OMSORG": "off",
-        "VEDLEGG_API_URL": "https://k9-brukerdialog-prosessering",
-        "USE_AMPLITUDE": "true"
+        "USE_AMPLITUDE": "true",
+
+        "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "prod-gcp:dusseldorf:k9-brukerdialog-prosessering",
+        "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",
+        "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/familie/sykdom-i-familien/soknad/pleiepenger/api"
     }
 }

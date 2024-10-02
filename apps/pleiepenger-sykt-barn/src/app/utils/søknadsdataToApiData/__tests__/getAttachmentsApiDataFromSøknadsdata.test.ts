@@ -34,7 +34,7 @@ describe('getAttachmentsApiDataFromSøknadsdata', () => {
     };
 
     it('returns an array with strings when all attachments has url', () => {
-        (window as any).appSettings = { FRONTEND_VEDLEGG_URL: 'http://localhost:8080/api' };
+        (window as any).appSettings = { K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: 'http://localhost:8080/api' };
         const result = getAttachmentsApiDataFromSøknadsdata([uploadedAttachment]);
         expect(result.length).toBe(1);
         expect(result[0]).toEqual(uploadedAttachmentUrl);
