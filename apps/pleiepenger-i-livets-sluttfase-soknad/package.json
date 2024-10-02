@@ -13,6 +13,7 @@
         "@navikt/ds-react": "7.1.0",
         "@navikt/ds-tailwind": "7.1.0",
         "@navikt/sif-app-register": "*",
+        "@navikt/sif-common": "*",
         "@navikt/sif-common-amplitude": "*",
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
@@ -85,19 +86,17 @@
         "vitest": "2.1.1"
     },
     "scripts": {
-        "build": "vite build --base=/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase",
         "build-storybook": "storybook build",
+        "build": "vite build --base=/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase",
         "clean": "rm -rf node_modules .dist",
         "codegen": "playwright codegen",
-        "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",
+        "dev-api": "PORT=8089 node ./mock/mock-server.cjs",
+        "dev": "node ./dev-server.cjs",
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
         "playwright-test": "playwright test",
-        "e2e": "playwright test",
-        "dev": "cross-env NODE_ENV=development node ./server.cjs",
-        "start-e2e-server": "node ./server-e2e.cjs",
-        "start-express": "node ./server.cjs",
+        "start-e2e-server": "node ./e2e/server/server.cjs",
         "storybook": "storybook dev -p 6006"
     },
     "eslintConfig": {

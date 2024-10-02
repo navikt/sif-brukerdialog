@@ -15,12 +15,12 @@ import {
 import { getTypedFormComponents, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
-import api, { ApiEndpoint } from '../../../api/api';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
 import { validateAttachments, ValidateAttachmentsErrors } from '../../../utils/validateAttachments';
 import LegeerklæringAvtaleAttachmentList from './LegeerklæringAttachmentList';
 import { AppText, useAppIntl } from '../../../i18n';
 import { getAttachmentURLFrontend } from '../../../utils/attachmentUtils';
+import { uploadVedlegg } from '@navikt/sif-common';
 
 interface Props {
     values: Partial<LegeerklæringFormValues>;
@@ -88,7 +88,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                         name={LegeerklæringFormFields.vedlegg}
                         buttonLabel={text('step.legeerklæring.vedlegg.knappLabel')}
                         onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
-                        uploadFile={(file: File) => api.uploadFile(ApiEndpoint.vedlegg, file)}
+                        uploadFile={uploadVedlegg}
                         getAttachmentURLFrontend={getAttachmentURLFrontend}
                         onFileInputClick={() => {
                             setFilesThatDidntGetUploaded([]);

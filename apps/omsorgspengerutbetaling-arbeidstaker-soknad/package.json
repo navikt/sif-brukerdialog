@@ -88,19 +88,18 @@
         "vitest": "2.1.1"
     },
     "scripts": {
+        "build-storybook": "storybook build",
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker",
         "clean": "rm -rf node_modules .dist",
-        "playwright-test": "playwright test",
         "dev-api": "PORT=8089 node ./mock/mock-server.cjs",
         "dev": "node ./dev-server.cjs",
-        "start-express": "node ./server.cjs",
-        "start-e2e-server": "node ./e2e/server/server.cjs",
-        "storybook": "storybook dev -p 6006",
-        "test": "vitest run",
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
-        "build-storybook": "storybook build"
+        "playwright-test": "playwright test",
+        "start-e2e-server": "node ./e2e/server/server.cjs",
+        "storybook": "storybook dev -p 6006",
+        "test": "vitest run"
     },
     "eslintConfig": {
         "overrides": [

@@ -10,13 +10,13 @@ import {
 } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { removeElementFromArray } from '@navikt/sif-common-core-ds/src/utils/listUtils';
 import { useFormikContext } from 'formik';
-import api from '../../../../api/api';
 import {
     OpplysningerOmPleietrengendeFormFields,
     OpplysningerOmPleietrengendeFormValues,
 } from '../OpplysningerOmPleietrengendeStep';
 import { AppText } from '../../../../i18n';
 import { fixAttachmentURL } from '../../../../utils/attachmentUtils';
+import { deleteVedlegg } from '@navikt/sif-common';
 
 interface Props {
     includeDeletionFunctionality: boolean;
@@ -55,7 +55,7 @@ const IdPartAttachmentList: React.FC<Props> = ({ wrapNoAttachmentsInBlock, inclu
                         );
                     };
                     if (attachment.url) {
-                        api.deleteFile(attachment.url).then(updateFieldValue, updateFieldValue);
+                        deleteVedlegg(attachment).then(updateFieldValue, updateFieldValue);
                     }
                 }}
             />
