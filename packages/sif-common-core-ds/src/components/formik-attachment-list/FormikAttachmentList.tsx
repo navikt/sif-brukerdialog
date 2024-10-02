@@ -8,21 +8,19 @@ interface Props extends Omit<AttachmentListProps, 'onDelete'> {
     onDelete?: (attachment: Attachment) => Promise<any>;
 }
 
-const FormikAttachmentList = ({ fieldName, attachments, emptyListText, showFileSize, onDelete }: Props) => {
+const FormikAttachmentList = ({ fieldName, onDelete, ...props }: Props) => {
     const { setFieldValue } = useFormikContext();
 
     return (
         <AttachmentList
-            attachments={attachments}
-            emptyListText={emptyListText}
-            showFileSize={showFileSize}
+            {...props}
             onDelete={
                 onDelete
                     ? async (attachment: Attachment) => {
                           attachment.pending = true;
-                          setFieldValue(fieldName, attachments);
+                          setFieldValue(fieldName, props.attachments);
                           onDelete(attachment).finally(() => {
-                              setFieldValue(fieldName, removeElementFromArray(attachment, attachments));
+                              setFieldValue(fieldName, removeElementFromArray(attachment, props.attachments));
                           });
                       }
                     : undefined

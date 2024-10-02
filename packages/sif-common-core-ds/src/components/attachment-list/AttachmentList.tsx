@@ -3,11 +3,7 @@ import { Attachment as DSAttachment } from '@navikt/ds-icons';
 import { CoreText, useCoreIntl } from '../../i18n/common.messages';
 import { Attachment } from '../../types';
 
-enum Variant {
-    'plain' = 'plain',
-    'border' = 'border',
-    'zebra' = 'zebra',
-}
+type Variant = 'plain' | 'border' | 'zebra';
 export interface AttachmentListProps {
     attachments: Attachment[];
     emptyListText?: string;
@@ -29,7 +25,7 @@ const formatFileSize = (sizeInBytes: number): string => {
 
 const getVariantStyle = (variant: Variant, index: number): React.CSSProperties => {
     switch (variant) {
-        case Variant.border:
+        case 'border':
             return {
                 borderBottom: '1px solid var(--a-border-subtle)',
                 borderTop: index === 0 ? '1px solid var(--a-border-subtle)' : 'none',
@@ -37,7 +33,7 @@ const getVariantStyle = (variant: Variant, index: number): React.CSSProperties =
                 paddingBlockStart: '.5rem',
                 margin: 0,
             };
-        case Variant.zebra:
+        case 'zebra':
             return {
                 padding: '.5rem',
                 margin: 0,
@@ -46,7 +42,7 @@ const getVariantStyle = (variant: Variant, index: number): React.CSSProperties =
         default:
             return {
                 margin: 0,
-                padding: '.25rem',
+                padding: '.25rem 0',
             };
     }
 };
@@ -56,7 +52,7 @@ const AttachmentList = ({
     showFileSize,
     emptyListText,
     onDelete,
-    variant = Variant.plain,
+    variant = 'plain',
 }: AttachmentListProps) => {
     const { text } = useCoreIntl();
 
@@ -83,7 +79,13 @@ const AttachmentList = ({
                             }>
                             <HStack gap="2" wrap={false} align="baseline">
                                 <HStack flexGrow="2" gap="0 4" align="baseline">
-                                    {uploaded && url ? <Link href={url}>{file.name}</Link> : <>{file.name}</>}
+                                    {uploaded && url ? (
+                                        <Link href={url} style={{ wordBreak: 'break-word' }}>
+                                            {file.name}
+                                        </Link>
+                                    ) : (
+                                        <span style={{ wordBreak: 'break-word' }}>{file.name}</span>
+                                    )}
                                     {showFileSize && file.size ? (
                                         <BodyShort as="span" size="small" style={{ color: 'var(--a-text-subtle)' }}>
                                             ({formatFileSize(file.size)})
@@ -91,20 +93,22 @@ const AttachmentList = ({
                                     ) : null}
                                 </HStack>
                                 {onDelete && uploaded ? (
-                                    <Button
-                                        type="button"
-                                        size="small"
-                                        variant="tertiary"
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            e.preventDefault();
-                                            onDelete(v);
-                                        }}
-                                        aria-label={text('@core.AttachmentList.fjernAriaLabel', {
-                                            filnavn: file.name,
-                                        })}>
-                                        <CoreText id="@core.AttachmentList.fjern" />
-                                    </Button>
+                                    <Box flexGrow="0">
+                                        <Button
+                                            type="button"
+                                            size="small"
+                                            variant="tertiary"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                e.preventDefault();
+                                                onDelete(v);
+                                            }}
+                                            aria-label={text('@core.AttachmentList.fjernAriaLabel', {
+                                                filnavn: file.name,
+                                            })}>
+                                            <CoreText id="@core.AttachmentList.fjern" />
+                                        </Button>
+                                    </Box>
                                 ) : undefined}
                             </HStack>
                         </List.Item>

@@ -80,6 +80,7 @@ const FormikAttachmentForm = ({
                 fieldName={fieldName}
                 attachments={attachments}
                 showFileSize={true}
+                variant="border"
                 onDelete={deleteFile ? (a: Attachment) => (a.url ? deleteFile(a.url) : Promise.resolve()) : undefined}
                 emptyListText={labels.noAttachmentsText}
             />
