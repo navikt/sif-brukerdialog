@@ -2,7 +2,6 @@ import { Box, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
-import { AxiosResponse } from 'axios';
 import { Attachment } from '../../types';
 import { hasExceededMaxTotalSizeOfAttachments } from '../../utils/attachmentUtils';
 import FormikFileUploader from '../formik-file-uploader/FormikFileUploader';
@@ -11,6 +10,7 @@ import { validateAttachments, ValidateAttachmentsErrors } from './validateAttach
 import AttachmentTotalSizeAlert from './parts/AttachmentTotalSizeAlert';
 import PictureScanningGuide from '../picture-scanning-guide/PictureScanningGuide';
 import FormikAttachmentList from '../formik-attachment-list/FormikAttachmentList';
+import { deleteVedlegg } from '@navikt/sif-common';
 
 interface Props {
     fieldName: string;
@@ -25,9 +25,6 @@ interface Props {
         required: boolean;
     };
     uploadLaterURL?: string;
-    getAttachmentURLFrontend: (url: string) => string;
-    uploadFile: (file: File) => Promise<AxiosResponse<any, any>>;
-    deleteFile: (url: string) => Promise<any>;
     onUnauthorizedOrForbiddenUpload: () => void;
     onFilesUploaded?: (antall: number, antallFeilet: number) => void;
 }
@@ -40,9 +37,6 @@ const FormikAttachmentForm = ({
     labels,
     uploadLaterURL,
     validation: { required },
-    uploadFile,
-    deleteFile,
-    getAttachmentURLFrontend,
     onUnauthorizedOrForbiddenUpload,
     onFilesUploaded,
 }: Props) => {
@@ -57,8 +51,6 @@ const FormikAttachmentForm = ({
                     attachments={attachments}
                     name={fieldName}
                     buttonLabel={labels.addLabel}
-                    uploadFile={uploadFile}
-                    getAttachmentURLFrontend={getAttachmentURLFrontend}
                     onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
                     onFileInputClick={() => {
                         setFilesThatDidntGetUploaded([]);
@@ -81,7 +73,7 @@ const FormikAttachmentForm = ({
                 attachments={attachments}
                 showFileSize={true}
                 variant="border"
-                onDelete={deleteFile ? (a: Attachment) => (a.url ? deleteFile(a.url) : Promise.resolve()) : undefined}
+                onDelete={(a: Attachment) => (a.info ? deleteVedlegg(a.info.id) : Promise.resolve())}
                 emptyListText={labels.noAttachmentsText}
             />
         </VStack>

@@ -1,6 +1,5 @@
 import { Link } from '@navikt/ds-react';
 import React from 'react';
-import { deleteVedlegg, getAttachmentURLFrontend, uploadVedlegg } from '@navikt/sif-common';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
@@ -93,15 +92,12 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
                 fieldName={DeltBostedFormFields.vedlegg}
                 attachments={attachments}
                 includeGuide={true}
-                deleteFile={deleteVedlegg}
                 labels={{
                     addLabel: text('step.deltBosted.uploadBtn'),
                     noAttachmentsText: text('vedleggsliste.ingenAvtaleLastetOpp'),
                 }}
                 validation={{ required: false }}
-                uploadFile={uploadVedlegg}
                 uploadLaterURL={getLenker(intl.locale).ettersending}
-                getAttachmentURLFrontend={getAttachmentURLFrontend}
                 onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
                 otherAttachments={andreVedlegg}
             />

@@ -4,7 +4,6 @@ import { dateToISODate } from '@navikt/sif-common-utils';
 import { FlereSokereApiData, SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { YesOrNoDontKnow } from '../../types/YesOrNoDontKnow';
-import { getAttachmentURLBackend } from '../attachmentUtils';
 import { getDataBruktTilUtledning } from '../getDataBruktTilUtledning';
 import { getArbeidsgivereApiDataFromSøknadsdata } from './getArbeidsgivereApiDataFromSøknadsdata';
 import { getFrilansApiDataFromSøknadsdata } from './getFrilansApiDataFromSøknadsdata';
@@ -19,9 +18,7 @@ const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
     if (!vedlegg || vedlegg.length === 0) {
         return [];
     }
-    return vedlegg
-        .filter(attachmentIsUploadedAndIsValidFileFormat)
-        .map(({ url }) => (url ? getAttachmentURLBackend(url) : ''));
+    return vedlegg.filter(attachmentIsUploadedAndIsValidFileFormat).map(({ info }) => (info ? info.location : ''));
 };
 
 export const getFlereSokereApiData = (flereSokereSvar: YesOrNoDontKnow): FlereSokereApiData => {

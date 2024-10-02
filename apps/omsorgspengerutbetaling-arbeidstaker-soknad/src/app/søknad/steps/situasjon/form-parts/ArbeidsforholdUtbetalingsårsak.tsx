@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useRef } from 'react';
-import { deleteVedlegg, getAttachmentURLFrontend, uploadVedlegg } from '@navikt/sif-common';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
@@ -138,10 +137,7 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Pr
                                 noAttachmentsText: text('step.situasjon.vedleggsliste.ingenDokumenterLastetOpp'),
                             }}
                             validation={{ required: false }}
-                            deleteFile={deleteVedlegg}
-                            uploadFile={uploadVedlegg}
                             uploadLaterURL={getLenker(intl.locale).ettersending}
-                            getAttachmentURLFrontend={getAttachmentURLFrontend}
                             onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
                         />
                     </FormBlock>

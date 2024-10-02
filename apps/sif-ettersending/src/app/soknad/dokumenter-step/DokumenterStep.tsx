@@ -1,4 +1,4 @@
-import { deleteVedlegg, getAttachmentURLFrontend, uploadVedlegg } from '@navikt/sif-common';
+import { VStack } from '@navikt/ds-react';
 import React from 'react';
 import { SIFCommonGeneralEvents, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { FormikAttachmentForm } from '@navikt/sif-common-core-ds';
@@ -18,7 +18,6 @@ import { navigateToLoginPage } from '../../utils/navigationUtils';
 import SoknadFormStep from '../SoknadFormStep';
 import { StepID } from '../soknadStepsConfig';
 import SøknadTempStorage from '../soknadTempStorage';
-import { VStack } from '@navikt/ds-react';
 
 interface Props {
     søknadstype: Søknadstype;
@@ -93,9 +92,6 @@ const DokumenterStep = ({ søknadstype, søker, soknadId }: Props) => {
                         noAttachmentsText: text('vedleggsliste.ingenVedleggLastetOpp'),
                     }}
                     validation={{ required: true }}
-                    deleteFile={deleteVedlegg}
-                    uploadFile={uploadVedlegg}
-                    getAttachmentURLFrontend={getAttachmentURLFrontend}
                     onUnauthorizedOrForbiddenUpload={userLoggedOut}
                     onFilesUploaded={(antall, antallFeilet) => {
                         logEvent(SIFCommonGeneralEvents.vedleggLastetOpp, { antall, antallFeilet });

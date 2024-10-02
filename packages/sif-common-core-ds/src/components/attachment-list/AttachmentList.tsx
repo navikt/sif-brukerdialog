@@ -65,7 +65,7 @@ const AttachmentList = ({
             {attachments
                 .filter((v) => v.pending || v.uploaded)
                 .map((v, index) => {
-                    const { file, uploaded, pending, url } = v;
+                    const { file, uploaded, pending, info } = v;
                     return (
                         <List.Item
                             style={getVariantStyle(variant, index)}
@@ -79,8 +79,8 @@ const AttachmentList = ({
                             }>
                             <HStack gap="2" wrap={false} align="baseline">
                                 <HStack flexGrow="2" gap="0 4" align="baseline">
-                                    {uploaded && url ? (
-                                        <Link href={url} style={{ wordBreak: 'break-word' }}>
+                                    {uploaded && info ? (
+                                        <Link href={info.frontendUrl} style={{ wordBreak: 'break-word' }}>
                                             {file.name}
                                         </Link>
                                     ) : (

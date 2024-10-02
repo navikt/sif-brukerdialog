@@ -13,10 +13,8 @@ import {
 import { getTypedFormComponents, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { FormLayout } from '@navikt/sif-common-ui';
-import api, { ApiEndpoint } from '../../../api/api';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
-import { getAttachmentURLFrontend } from '../../../utils/attachmentUtils';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
 
 interface Props {
@@ -88,9 +86,6 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({
                     otherAttachments={andreVedlegg}
                     uploadLaterURL={getLenker(intl.locale).ettersend}
                     onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
-                    uploadFile={(file) => api.uploadFile(ApiEndpoint.vedlegg, file)}
-                    deleteFile={api.deleteFile}
-                    getAttachmentURLFrontend={getAttachmentURLFrontend}
                     validation={{ required: false }}
                     labels={{
                         addLabel: text('steg.legeerklaering.vedlegg.knappLabel'),

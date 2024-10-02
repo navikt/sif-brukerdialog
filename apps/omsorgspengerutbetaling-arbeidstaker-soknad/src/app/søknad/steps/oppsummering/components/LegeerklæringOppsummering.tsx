@@ -2,8 +2,8 @@ import { FormSummary } from '@navikt/ds-react';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { AppText } from '../../../../i18n';
 import { LegeerklæringSøknadsdata } from '../../../../types/søknadsdata/LegeerklæringSøknadsdata';
-import { getAttachmentURLBackend } from '@navikt/sif-common';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
+import { getAttachmentsInIdArray } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 
 interface Props {
     vedlegg: string[];
@@ -12,9 +12,10 @@ interface Props {
 }
 
 const LegeerklæringOppsummering = ({ vedlegg, legeerklæringSøknadsdata, onEdit }: Props) => {
-    const legeerklæringer = legeerklæringSøknadsdata
-        ? legeerklæringSøknadsdata.vedlegg.filter((v) => v.url && vedlegg.includes(getAttachmentURLBackend(v.url)))
-        : [];
+    const legeerklæringer = getAttachmentsInIdArray({
+        ids: vedlegg,
+        attachments: legeerklæringSøknadsdata?.vedlegg,
+    });
 
     return (
         <FormSummary>

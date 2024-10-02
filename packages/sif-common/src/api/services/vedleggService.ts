@@ -1,16 +1,13 @@
-import { Attachment } from '@navikt/sif-common-core-ds/src/types';
-import { getAttachmentId } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { axiosMultipartConfig, k9BrukerdialogApiClient } from '../apiClient';
+import { AxiosResponse } from 'axios';
 
-const serviceUrl = '/vedlegg';
+const servicePath = '/vedlegg';
 
-export const uploadVedlegg = async (file: File) => {
+export const uploadVedlegg = async (file: File): Promise<AxiosResponse<any, any>> => {
     const formData = new FormData();
     formData.append('vedlegg', file);
     try {
-        const response = await k9BrukerdialogApiClient.post(serviceUrl, formData, axiosMultipartConfig);
-        response.headers.vedleggId = response.headers.location ? getAttachmentId(response.headers.location) : undefined;
-        return response;
+        return k9BrukerdialogApiClient.post(servicePath, formData, axiosMultipartConfig);
     } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e);
@@ -23,14 +20,17 @@ export const uploadVedlegg = async (file: File) => {
  * @param attachmentUrlBackend url som mottas fra backend ved opplasting
  * @returns AxiosResponse
  */
-export const deleteVedlegg = async (attachment: Attachment | string) => {
-    const id =
-        typeof attachment === 'string'
-            ? getAttachmentId(attachment)
-            : attachment.id || (attachment.url !== undefined && getAttachmentId(attachment.url));
-    if (id) {
-        const url = `${serviceUrl}/${id}`;
-        return k9BrukerdialogApiClient.delete(url);
-    }
-    throw new Error('Attachment has no id or url');
+export const deleteVedlegg = async (id: string): Promise<AxiosResponse<any, any>> => {
+    const url = `${servicePath}/${id}`;
+    return k9BrukerdialogApiClient.delete(url);
+};
+
+/**
+ *
+ * @param id vedlegg-id
+ * @param appPublicPath public path til applikasjon
+ * @returns url til frontend for å hente vedlegg
+ */
+export const getVedleggFrontendUrl = ({ appPublicPath, id }: { appPublicPath: string; id: string }): string => {
+    return `${appPublicPath}${servicePath}/${id}`;
 };

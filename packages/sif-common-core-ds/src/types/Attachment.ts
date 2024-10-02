@@ -11,6 +11,9 @@ export interface Attachment {
     file: File | PersistedFile;
     pending: boolean;
     uploaded: boolean;
-    id?: string;
-    url?: string;
+    info?: {
+        id: string;
+        location: string;
+        frontendUrl: string;
+    };
 }

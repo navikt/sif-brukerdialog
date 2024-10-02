@@ -3,8 +3,8 @@ import { AppText } from '../../../../i18n';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { DeltBostedSøknadsdata } from '../../../../types/søknadsdata/DeltBostedSøknadsdata';
 import { LegeerklæringSøknadsdata } from '../../../../types/søknadsdata/LegeerklæringSøknadsdata';
-import { fixAttachmentURL, getAttachmentURLBackend } from '../../../../utils/attachmentUtils';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
+import { getAttachmentsInIdArray } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 
 interface Props {
     apiData: SøknadApiData;
@@ -17,22 +17,14 @@ const VedleggOppsummering: React.FunctionComponent<Props> = ({
     legeerklæringSøknadsdata,
     samværsavtaleSøknadsdata,
 }) => {
-    const legeerklæringer = legeerklæringSøknadsdata
-        ? legeerklæringSøknadsdata.vedlegg
-              .filter((v) => v.url && apiData.legeerklæring.includes(getAttachmentURLBackend(v.url)))
-              .map(fixAttachmentURL)
-        : [];
-
-    const samværsavtaler = samværsavtaleSøknadsdata
-        ? samværsavtaleSøknadsdata.vedlegg
-              .filter((v) => {
-                  return (
-                      v.url && apiData.samværsavtale && apiData.samværsavtale.includes(getAttachmentURLBackend(v.url))
-                  );
-              })
-              .map(fixAttachmentURL)
-        : undefined;
-
+    const legeerklæringer = getAttachmentsInIdArray({
+        ids: apiData.legeerklæring,
+        attachments: legeerklæringSøknadsdata?.vedlegg,
+    });
+    const samværsavtaler = getAttachmentsInIdArray({
+        ids: apiData.samværsavtale,
+        attachments: samværsavtaleSøknadsdata?.vedlegg,
+    });
     return (
         <FormSummary>
             <FormSummary.Header>

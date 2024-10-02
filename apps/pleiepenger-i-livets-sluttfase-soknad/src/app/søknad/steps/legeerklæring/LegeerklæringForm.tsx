@@ -10,10 +10,8 @@ import {
 } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import api, { ApiEndpoint } from '../../../api/api';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
-import { getAttachmentURLFrontend } from '../../../utils/attachmentUtils';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
 
 interface Props {
@@ -66,9 +64,6 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({
                     otherAttachments={andreVedlegg}
                     uploadLaterURL={getLenker(intl.locale).ettersend}
                     onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
-                    uploadFile={(file) => api.uploadFile(ApiEndpoint.vedlegg, file)}
-                    deleteFile={api.deleteFile}
-                    getAttachmentURLFrontend={getAttachmentURLFrontend}
                     validation={{ required: false }}
                     labels={{
                         addLabel: text('step.legeerklæring.vedlegg.knappLabel'),

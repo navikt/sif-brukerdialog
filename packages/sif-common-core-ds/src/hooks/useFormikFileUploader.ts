@@ -1,5 +1,5 @@
 import { FileRejection } from 'react-dropzone';
-import { AxiosResponse } from 'axios';
+import { uploadVedlegg, getVedleggFrontendUrl, getEnvironmentVariable } from '@navikt/sif-common';
 import { ArrayHelpers } from 'formik';
 import { Attachment, PersistedFile } from '../types';
 import { isForbidden, isUnauthorized } from '../utils/apiUtils';
@@ -18,29 +18,34 @@ export type FormikFieldArrayReplaceFn = (index: number, value: any) => void;
 export type FormikFieldArrayPushFn = (obj: any) => void;
 export type FormikFieldArrayRemoveFn = (index: number) => undefined;
 
-export const useFormikFileUploader = ({
-    value,
-    uploadFile,
-    onFilesUploaded,
-    onErrorUploadingAttachments,
-    onUnauthorizedOrForbiddenUpload,
-    getAttachmentURLFrontend,
-}: {
+interface Props {
     value: Attachment[];
-    uploadFile: (file: File) => Promise<AxiosResponse<any, any>>;
     onFilesUploaded?: (antall: number, antallFeilet: number) => void;
     onUnauthorizedOrForbiddenUpload: () => void;
     onErrorUploadingAttachments: (files: File[]) => void;
-    getAttachmentURLFrontend: (url: string) => string;
-}) => {
+}
+export const useFormikFileUploader = ({
+    value,
+    onFilesUploaded,
+    onErrorUploadingAttachments,
+    onUnauthorizedOrForbiddenUpload,
+}: Props) => {
     async function uploadAttachment(attachment: Attachment) {
         const { file } = attachment;
         if (isFileObject(file)) {
             try {
-                const response = await uploadFile(file);
+                const response = await uploadVedlegg(file);
+                const location = response.headers.location;
+                const id = getAttachmentId(location);
                 attachment = setAttachmentPendingToFalse(attachment);
-                attachment.id = getAttachmentId(response.headers.location);
-                attachment.url = getAttachmentURLFrontend(response.headers.location);
+                attachment.info = {
+                    location,
+                    id,
+                    frontendUrl: getVedleggFrontendUrl({
+                        id,
+                        appPublicPath: getEnvironmentVariable('PUBLIC_PATH'),
+                    }),
+                };
                 attachment.uploaded = true;
             } catch (error) {
                 if (isForbidden(error) || isUnauthorized(error)) {

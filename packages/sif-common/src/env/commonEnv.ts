@@ -34,3 +34,12 @@ export const getApiEnv = (key: API_ENV): string => {
     }
     return env;
 };
+
+export const commonEnv = () => {
+    return {
+        PUBLIC_PATH: getCommonEnv(COMMON_ENV.PUBLIC_PATH),
+        SIF_PUBLIC_DEKORATOR_URL: getCommonEnv(COMMON_ENV.SIF_PUBLIC_DEKORATOR_URL),
+        SIF_PUBLIC_LOGIN_URL: getCommonEnv(COMMON_ENV.SIF_PUBLIC_LOGIN_URL),
+        SIF_PUBLIC_NO_ACCESS_URL: getCommonEnv(COMMON_ENV.SIF_PUBLIC_NO_ACCESS_URL),
+    };
+};

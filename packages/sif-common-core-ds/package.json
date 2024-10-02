@@ -7,6 +7,7 @@
     "type": "module",
     "dependencies": {
         "@grafana/faro-web-sdk": "1.10.1",
+        "@navikt/sif-common": "*",
         "@navikt/sif-common-utils": "*",
         "browser-image-compression": "2.0.2",
         "classnames": "2.5.1",

@@ -1,4 +1,3 @@
-import { getAttachmentURLBackend } from '@navikt/sif-common';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types';
 import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
@@ -13,9 +12,7 @@ const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
     if (!vedlegg || vedlegg.length === 0) {
         return [];
     }
-    return vedlegg
-        .filter(attachmentIsUploadedAndIsValidFileFormat)
-        .map(({ url }) => (url ? getAttachmentURLBackend(url) : ''));
+    return vedlegg.filter(attachmentIsUploadedAndIsValidFileFormat).map(({ info }) => info?.location || '');
 };
 
 const getArbeidsforholdDokumenter = (situasjon: SituasjonSøknadsdata): Attachment[] => {

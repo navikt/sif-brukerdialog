@@ -27,7 +27,6 @@ import ArbeidIPeriodenSummary from './arbeid-i-perioden-summary/ArbeidIPeriodenS
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { AppText, useAppIntl } from '../../../i18n';
 import { useNavigate } from 'react-router-dom';
-import { fixAttachmentURL } from '../../../utils/attachmentUtils';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -92,7 +91,7 @@ const OppsummeringStep = () => {
 
     const pleietrengendeId =
         søknadsdata.opplysningerOmPleietrengende?.type === 'pleietrengendeUtenFnr'
-            ? søknadsdata.opplysningerOmPleietrengende.pleietrengendeId.map(fixAttachmentURL)
+            ? søknadsdata.opplysningerOmPleietrengende.pleietrengendeId
             : [];
 
     return (

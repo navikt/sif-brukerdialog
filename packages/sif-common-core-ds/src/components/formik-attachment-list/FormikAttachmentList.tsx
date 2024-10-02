@@ -1,7 +1,7 @@
 import { useFormikContext } from 'formik';
 import { Attachment } from '../../types';
-import AttachmentList, { AttachmentListProps } from '../attachment-list/AttachmentList';
 import { removeElementFromArray } from '../../utils/listUtils';
+import AttachmentList, { AttachmentListProps } from '../attachment-list/AttachmentList';
 
 interface Props extends Omit<AttachmentListProps, 'onDelete'> {
     fieldName: string;

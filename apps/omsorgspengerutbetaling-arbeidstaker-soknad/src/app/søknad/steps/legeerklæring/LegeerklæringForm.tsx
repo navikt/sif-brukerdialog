@@ -1,5 +1,4 @@
 import React from 'react';
-import { deleteVedlegg, getAttachmentURLFrontend, uploadVedlegg } from '@navikt/sif-common';
 import { FormikAttachmentForm } from '@navikt/sif-common-core-ds/src';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
@@ -77,15 +76,12 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                 fieldName={LegeerklæringFormFields.vedlegg}
                 attachments={attachments}
                 includeGuide={true}
-                deleteFile={deleteVedlegg}
                 labels={{
                     addLabel: text('step.legeerklæring.uploadBtn'),
                     noAttachmentsText: text('vedleggsliste.ingenLegeerklæringLastetOpp'),
                 }}
                 validation={{ required: false }}
-                uploadFile={uploadVedlegg}
                 uploadLaterURL={getLenker(intl.locale).ettersending}
-                getAttachmentURLFrontend={getAttachmentURLFrontend}
                 onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
                 otherAttachments={andreVedlegg}
             />

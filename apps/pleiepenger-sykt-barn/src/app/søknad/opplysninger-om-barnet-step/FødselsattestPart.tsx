@@ -1,7 +1,6 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import { useAppIntl } from '@i18n/index';
-import { deleteVedlegg, getAttachmentURLFrontend, uploadVedlegg } from '@navikt/sif-common';
 import { SIFCommonGeneralEvents, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { FormikAttachmentForm } from '@navikt/sif-common-core-ds/src';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
@@ -71,10 +70,7 @@ const FødselsattestPart: React.FC<Props> = ({ attachments }) => {
                     noAttachmentsText: text('step.oppsummering.omBarn.ingenFødselsattest'),
                 }}
                 validation={{ required: false }}
-                deleteFile={deleteVedlegg}
-                uploadFile={uploadVedlegg}
                 uploadLaterURL={getLenker(intl.locale).ettersend}
-                getAttachmentURLFrontend={getAttachmentURLFrontend}
                 onUnauthorizedOrForbiddenUpload={userNotLoggedIn}
                 otherAttachments={andreVedlegg}
                 onFilesUploaded={(antall, antallFeilet) => {

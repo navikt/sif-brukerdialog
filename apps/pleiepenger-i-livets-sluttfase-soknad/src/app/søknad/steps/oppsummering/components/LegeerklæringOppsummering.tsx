@@ -1,11 +1,11 @@
 import { FormSummary } from '@navikt/ds-react';
 import React from 'react';
+import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
+import { getAttachmentsInIdArray } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
 import { AppText } from '../../../../i18n';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { LegeerklæringSøknadsdata } from '../../../../types/søknadsdata/LegeerklæringSøknadsdata';
-import { fixAttachmentURL, getAttachmentURLBackend } from '../../../../utils/attachmentUtils';
-import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
 
 interface Props {
     apiData: SøknadApiData;
@@ -14,11 +14,10 @@ interface Props {
 }
 
 const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringSøknadsdata, onEdit }) => {
-    const legeerklæringer = legeerklæringSøknadsdata
-        ? legeerklæringSøknadsdata.vedlegg
-              .filter((v) => v.url && apiData.vedleggUrls.includes(getAttachmentURLBackend(v.url)))
-              .map(fixAttachmentURL)
-        : [];
+    const legeerklæringer = getAttachmentsInIdArray({
+        ids: apiData.vedleggUrls,
+        attachments: legeerklæringSøknadsdata?.vedlegg,
+    });
 
     return (
         <FormSummary>
