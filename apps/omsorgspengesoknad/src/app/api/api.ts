@@ -9,7 +9,7 @@ export enum ApiEndpoint {
     'send_søknad' = 'omsorgspenger-utvidet-rett/innsending',
     'vedlegg' = 'vedlegg',
     'mellomlagring' = 'mellomlagring/OMSORGSPENGER_UTVIDET_RETT',
-    'innvilget_vedtak' = 'k9sak/omsorgsdager-kronisk-sykt-barn/har-gyldig-vedtak',
+    'innvilget_vedtak' = 'k9-sak-innsyn/omsorgsdager-kronisk-sykt-barn/har-gyldig-vedtak',
 }
 
 const axiosConfigCommon: AxiosRequestConfig = {
@@ -21,12 +21,12 @@ export const axiosConfig = (apiPath?: ApiEndpoint): AxiosRequestConfig => {
     if (apiPath === ApiEndpoint.innvilget_vedtak) {
         return {
             ...axiosConfigCommon,
-            baseURL: getEnvVariableOrDefault('K9_SAK_INNSYN_API_PATH', 'http://localhost:8080'),
+            baseURL: getEnvVariableOrDefault('K9_SAK_INNSYN_FRONTEND_PATH', 'http://localhost:8080'),
         };
     }
     return {
         ...axiosConfigCommon,
-        baseURL: getEnvVariableOrDefault('FRONTEND_API_PATH', 'http://localhost:8089'),
+        baseURL: getEnvVariableOrDefault('K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH', 'http://localhost:8089'),
     };
 };
 

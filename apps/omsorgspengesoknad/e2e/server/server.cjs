@@ -3,8 +3,8 @@ const express = require('express');
 const server = express();
 const path = require('path');
 const mustacheExpress = require('mustache-express');
-const getAppSettings = require('./src/build/AppSettings.cjs');
-const getDecorator = require('./src/build/decorator.cjs');
+const getAppSettings = require('../../mock/AppSettings.cjs');
+const getDecorator = require('./decorator.cjs');
 const compression = require('compression');
 
 require('dotenv').config();
