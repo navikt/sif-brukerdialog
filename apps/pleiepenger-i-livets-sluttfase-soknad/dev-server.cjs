@@ -56,7 +56,7 @@ const startServer = async () => {
     );
 
     server.use(
-        `${process.env.PUBLIC_PATH}/api`,
+        `${process.env.PUBLIC_PATH}/api/k9-brukerdialog`,
         // limiter,
         createProxyMiddleware({
             target: 'http://localhost:8089/',
