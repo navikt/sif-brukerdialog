@@ -3,7 +3,7 @@ const express = require('express');
 const server = express();
 const path = require('path');
 const mustacheExpress = require('mustache-express');
-const getAppSettings = require('./src/build/AppSettings.cjs');
+const getAppSettings = require('../../mock/AppSettings.cjs');
 const getDecorator = require('./src/build/decorator.cjs');
 const compression = require('compression');
 
