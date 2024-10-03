@@ -165,7 +165,7 @@ const startExpressServer = () => {
 
     /** --- Sjekk tidligere innvilget vedtak ---------- */
 
-    server.post('/k9-sak-innsyn/omsorgsdager-kronisk-sykt-barn/har-gyldig-vedtak', (req, res) => {
+    server.post('/k9-sak-innsyn-api/omsorgsdager-kronisk-sykt-barn/har-gyldig-vedtak', (req, res) => {
         const body = req.body;
         console.log('[POST] body', body);
         setTimeout(() => {
