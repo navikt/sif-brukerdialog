@@ -4,7 +4,7 @@ import { AppText } from '../../../../i18n';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { DeltBostedSøknadsdata } from '../../../../types/søknadsdata/DeltBostedSøknadsdata';
 import { LegeerklæringSøknadsdata } from '../../../../types/søknadsdata/LegeerklæringSøknadsdata';
-import { fixAttachmentURL, getAttachmentURLBackend } from '../../../../utils/attachmentUtils';
+import { fixAttachmentURL, getAttachmentURLBackend } from '@navikt/sif-common';
 
 interface Props {
     apiData: SøknadApiData;

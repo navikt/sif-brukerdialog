@@ -1,5 +1,4 @@
 import { Heading, Link } from '@navikt/ds-react';
-import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import CheckmarkIcon from '@navikt/sif-common-core-ds/src/atoms/checkmark-icon/CheckmarkIcon';
@@ -8,18 +7,9 @@ import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { AppText, useAppIntl } from '../../i18n';
 import getLenker from '../../lenker';
 
-interface Props {
-    onUnmount: () => void;
-}
-const KvitteringPage = ({ onUnmount }: Props) => {
+const KvitteringPage = () => {
     const { locale } = useIntl();
     const { text } = useAppIntl();
-
-    useEffect(() => {
-        return () => {
-            onUnmount();
-        };
-    });
 
     return (
         <Page title={text('page.kvittering.sidetittel')}>
