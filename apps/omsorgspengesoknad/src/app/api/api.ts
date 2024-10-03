@@ -9,7 +9,7 @@ export enum ApiEndpoint {
     'send_søknad' = 'omsorgspenger-utvidet-rett/innsending',
     'vedlegg' = 'vedlegg',
     'mellomlagring' = 'mellomlagring/OMSORGSPENGER_UTVIDET_RETT',
-    'innvilget_vedtak' = 'omsorgsdager-kronisk-sykt-barn/har-gyldig-vedtak',
+    'innvilget_vedtak' = 'k9sak/omsorgsdager-kronisk-sykt-barn/har-gyldig-vedtak',
 }
 
 const axiosConfigCommon: AxiosRequestConfig = {
