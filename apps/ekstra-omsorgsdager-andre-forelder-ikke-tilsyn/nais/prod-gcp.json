@@ -3,8 +3,8 @@
     "namespace": "dusseldorf",
     "team": "dusseldorf",
     "ingresses": ["https://www.nav.no/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"],
-    "livenessPath": "/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/health/isAlive",
-    "readinessPath": "/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/health/isReady",
+    "livenessPath": "/internal/health/isAlive",
+    "readinessPath": "/internal/health/isReady",
     "externalHosts": ["www.nav.no"],
     "accessPolicyOutApps": ["k9-brukerdialog-prosessering"],
     "minReplicas": 2,
@@ -19,7 +19,7 @@
 
         "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "prod-gcp:dusseldorf:k9-brukerdialog-prosessering",
         "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",
-        "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling/api",
+        "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/api",
 
         "SIF_PUBLIC_APPSTATUS_DATASET": "production",
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
