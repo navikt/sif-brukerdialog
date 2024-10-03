@@ -56,7 +56,20 @@ const startServer = async () => {
     );
 
     server.use(
-        `${process.env.PUBLIC_PATH}/api`,
+        `${process.env.PUBLIC_PATH}/api/k9-sak-innsyn`,
+        // limiter,
+        createProxyMiddleware({
+            target: 'http://localhost:8089/k9-sak-innsyn',
+            changeOrigin: true,
+            logger: console,
+            on: {
+                proxyReq: fixRequestBody,
+            },
+        }),
+    );
+
+    server.use(
+        `${process.env.PUBLIC_PATH}/api/k9-brukerdialog`,
         // limiter,
         createProxyMiddleware({
             target: 'http://localhost:8089/',
