@@ -1,5 +1,5 @@
 const { createProxyMiddleware, fixRequestBody } = require('http-proxy-middleware');
-const getAppSettings = require('./mock/AppSettings.cjs');
+const getAppSettings = require('./AppSettings.cjs');
 const { injectDecoratorServerSide } = require('@navikt/nav-dekoratoren-moduler/ssr/index.js');
 const express = require('express');
 const server = express();
@@ -42,7 +42,7 @@ const startServer = async () => {
     server.get('/health/isAlive', (req, res) => res.sendStatus(200));
     server.get('/health/isReady', (req, res) => res.sendStatus(200));
 
-    const indexHtmlPath = path.resolve(__dirname, 'index.html');
+    const indexHtmlPath = path.resolve(__dirname, '../index.html');
 
     const htmlWithDecoratorInjected = await injectDecorator(indexHtmlPath);
 

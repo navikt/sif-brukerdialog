@@ -79,13 +79,12 @@
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/ettersending",
         "clean": "rm -rf node_modules .dist",
         "dev-api": "PORT=8089 node ./mock/mock-api-server.cjs",
-        "dev": "node ./dev-server.cjs",
+        "dev": "node ./dev/server.cjs",
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
         "playwright-test": "playwright test",
         "start-e2e-server": "node ./e2e/server/server.cjs",
-        "start-express": "node ./server.cjs",
         "test": "vitest run"
     },
     "resolutions": {
