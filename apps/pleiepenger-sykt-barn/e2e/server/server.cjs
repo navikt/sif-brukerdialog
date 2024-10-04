@@ -3,8 +3,8 @@ const express = require('express');
 const server = express();
 const path = require('path');
 const mustacheExpress = require('mustache-express');
-const getAppSettings = require('./src/build/AppSettings.cjs');
-const getDecorator = require('./src/build/decorator.cjs');
+const getAppSettings = require('../../mock/AppSettings.cjs');
+const getDecorator = require('./decorator.cjs');
 const compression = require('compression');
 
 require('dotenv').config();
@@ -13,7 +13,7 @@ server.use(express.json());
 server.disable('x-powered-by');
 server.use(compression());
 
-server.set('views', path.resolve(`${__dirname}/dist`));
+server.set('views', path.resolve(`${__dirname}../../dist`));
 
 server.set('view engine', 'mustache');
 server.engine('html', mustacheExpress());
@@ -30,7 +30,7 @@ server.use((_req, res, next) => {
 
 const renderApp = (decoratorFragments) =>
     new Promise((resolve, reject) => {
-        server.render('index.html', decoratorFragments, (err, html) => {
+        server.render('../../index.html', decoratorFragments, (err, html) => {
             if (err) {
                 reject(err);
             } else {
