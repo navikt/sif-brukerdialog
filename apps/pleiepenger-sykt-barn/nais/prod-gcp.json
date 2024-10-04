@@ -24,7 +24,7 @@
         "INNSYN_API_TOKENX_AUDIENCE": "prod-gcp:dusseldorf:sif-innsyn-api",
         "INNSYN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/innsyn/",
         "LOGIN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/pleiepenger/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/pleiepenger/soknad",
-        "MIN_SIDE_URL": "https://www.nav.no/minside",
+        "MINSIDE_URL": "https://www.nav.no/minside",
         "NPM_CONFIG_CACHE": "/tmp",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/pleiepenger",
         "TOGGLE_BEKREFT_OMSORG": "off",

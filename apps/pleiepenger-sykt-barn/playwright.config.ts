@@ -38,7 +38,7 @@ export default defineConfig({
             INNSYN_URL: 'https://www.nav.no/familie/sykdom-i-familien/soknad/innsyn/',
             LOGIN_URL:
                 'http://localhost:8081/auth-mock/cookie?subject=mockSubject&redirect_location=http://localhost:8080',
-            MIN_SIDE_URL: 'https://www.intern.dev.nav.no/minside',
+            MINSIDE_URL: 'https://www.intern.dev.nav.no/minside',
             NODE_ENV: 'development',
             PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/pleiepenger',
             USE_AMPLITUDE: 'false',
