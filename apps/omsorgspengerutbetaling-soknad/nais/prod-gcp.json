@@ -12,6 +12,7 @@
     "maxReplicas": 2,
     "observabilityEnabled": "true",
     "env": {
+        "ENV": "prod",
         "APP_VERSION": "prod",
         "NODE_ENV": "production",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling",
