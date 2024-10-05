@@ -1,4 +1,4 @@
-import { Bleed, Heading, VStack } from '@navikt/ds-react';
+import { Bleed, Box, Heading, VStack } from '@navikt/ds-react';
 
 /**
  * FormSection
@@ -47,9 +47,23 @@ export const Questions = ({ children }: { children: React.ReactNode }) => {
     return <VStack gap="8">{children}</VStack>;
 };
 
+/**
+ * Box med bakgrunsfarge og avrundede hjørner
+ * @param param0
+ * @returns
+ */
+const Panel = ({ children }: { children: React.ReactNode }) => {
+    return (
+        <Box padding="4" paddingBlock="4 6" background="bg-subtle" borderRadius="medium">
+            {children}
+        </Box>
+    );
+};
+
 export const FormLayout = {
     QuestionRelatedMessage,
     Questions,
     Section,
     SectionHeading,
+    Panel,
 };

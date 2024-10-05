@@ -1,0 +1,16 @@
+{
+    "kursholdere": [
+        {
+            "id": "1",
+            "navn": "Hurdal syn- og mestringssenter"
+        },
+        {
+            "id": "2",
+            "navn": "Solvik syn- og mestringssenter"
+        },
+        {
+            "id": "3",
+            "navn": "Evenes syn- og mestringssenter"
+        }
+    ]
+}

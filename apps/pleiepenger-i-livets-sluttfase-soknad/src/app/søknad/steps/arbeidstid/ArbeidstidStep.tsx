@@ -48,18 +48,6 @@ export interface AnsattArbeidstid {
     arbeidIPeriode?: ArbeidIPeriode;
 }
 
-export enum SelvstendigArbeidstidFormFields {
-    'type' = 'selvstendigArbeidstid.type',
-    'jobberNormaltTimer' = 'selvstendigArbeidstid.jobberNormaltTimer',
-    'arbeidIPeriode' = 'selvstendigArbeidstid.arbeidIPeriode',
-}
-
-export enum FrilansArbeidstidFormFields {
-    'type' = 'frilansArbeidstid.type',
-    'jobberNormaltTimer' = 'frilansArbeidstid.jobberNormaltTimer',
-    'arbeidIPeriode' = 'frilansArbeidstid.arbeidIPeriode',
-}
-
 export interface FrilansSNArbeidstid {
     type: ArbeidsaktivitetType;
     jobberNormaltTimer: number;
