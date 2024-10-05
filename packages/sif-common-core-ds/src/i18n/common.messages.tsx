@@ -16,7 +16,13 @@ const nb = {
 type MessageKeys = keyof typeof nb;
 
 const nn: Record<MessageKeys, string> = {
-    ...nb,
+    Ja: 'Ja',
+    Nei: 'Nei',
+    '@core.common.fileUploadError': 'Det har dessverre skjedd ein feil under opplasting av følgjande vedlegg:',
+    '@core.formikAttachmentsList.delete': 'Fjern',
+    '@core.formikAttachmentsList.noFilesUploaded': 'Ingen dokument er lasta opp.',
+    '@core.formik-attachment-form.alert.totalSize':
+        'Du har lastet opp meir enn grensa på 24 Mb. Det betyr at du må fjerne noko av det du har lastet opp. Om det betyr at du ikkje får plass til alt du vil sende no, kan du <Lenke>ettersende fleire dokument</Lenke>.',
     ...pictureScanningGuideMessages.nn,
 };
 

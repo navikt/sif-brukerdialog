@@ -37,7 +37,7 @@ import {
 import { FormikProps } from 'formik';
 import { handleDateRangeValidationError } from '../../utils';
 import { isVirksomhet, Næringstype, Virksomhet, VirksomhetFormField, VirksomhetFormValues } from './types';
-import { useVirksomhetIntl } from './virksomhetMessages';
+import { useVirksomhetIntl } from './i18n';
 import {
     cleanupVirksomhetFormValues,
     erFiskerNæringstype,
@@ -77,6 +77,7 @@ export const VirksomhetFormErrors = {
     [VirksomhetFormField.organisasjonsnummer]: {
         [ValidateOrgNumberError.orgNumberHasInvalidFormat]:
             '@forms.virksomhetForm.organisasjonsnummer.orgNumberHasInvalidFormat',
+        [ValidateOrgNumberError.orgNumberHasNoValue]: '@forms.virksomhetForm.organisasjonsnummer.orgNumberHasNoValue',
     },
     [VirksomhetFormField.fom]: {
         [ValidateDateError.dateHasNoValue]: '@forms.virksomhetForm.fom.dateHasNoValue',
@@ -95,6 +96,8 @@ export const VirksomhetFormErrors = {
         [ValidateNumberError.numberHasInvalidFormat]: '@forms.virksomhetForm.næringsinntekt.numberHasInvalidFormat',
         [ValidateNumberError.numberIsTooSmall]: '@forms.virksomhetForm.næringsinntekt.numberIsTooSmall',
         [ValidateNumberError.numberIsTooLarge]: '@forms.virksomhetForm.næringsinntekt.numberIsTooLarge',
+        [ValidateNumberError.numberHasNoValue]: '@forms.virksomhetForm.næringsinntekt.numberHasNoValue',
+        [ValidateNumberError.numberHasDecimals]: '@forms.virksomhetForm.næringsinntekt.numberHasDecimals',
     },
     [VirksomhetFormField.harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene]: {
         [ValidateYesOrNoError.yesOrNoIsUnanswered]:
@@ -126,6 +129,8 @@ export const VirksomhetFormErrors = {
             '@forms.virksomhetForm.varigEndringINæringsinntekt_inntektEtterEndring.numberIsTooLarge',
         [ValidateNumberError.numberIsTooSmall]:
             '@forms.virksomhetForm.varigEndringINæringsinntekt_inntektEtterEndring.numberIsTooSmall',
+        [ValidateNumberError.numberHasDecimals]:
+            '@forms.virksomhetForm.varigEndringINæringsinntekt_inntektEtterEndring.numberHasDecimals',
     },
     [VirksomhetFormField.varigEndringINæringsinntekt_forklaring]: {
         [ValidateStringError.stringHasNoValue]:

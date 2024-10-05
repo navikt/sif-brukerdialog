@@ -1,4 +1,4 @@
-import { appMessages } from '../../app/i18n/appMessages';
+import { applicationIntlMessages } from '../../app/i18n';
 import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types';
 
 const getIntlMessagesFromKeys = (keys: string[]): MessageFileFormat => {
@@ -7,8 +7,8 @@ const getIntlMessagesFromKeys = (keys: string[]): MessageFileFormat => {
         nn: {},
     };
     keys.map((k) => {
-        messages.nb[k] = appMessages.nb[k];
-        messages.nn[k] = appMessages.nn[k];
+        messages.nb[k] = applicationIntlMessages.nb[k];
+        messages.nn[k] = applicationIntlMessages.nn[k];
     });
 
     return messages;
@@ -19,7 +19,7 @@ const getValidationIntlKeys = (keys: string[], intlKeyPath: string) => {
 };
 
 const getScopedIntlKeys = (scope: string): string[] => {
-    return Object.keys(appMessages.nb).filter((key) => key.includes(scope));
+    return Object.keys(applicationIntlMessages.nb).filter((key) => key.includes(scope));
 };
 
 const getScopedMessages = (scope: string): MessageFileFormat => {

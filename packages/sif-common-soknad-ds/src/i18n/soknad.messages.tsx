@@ -19,7 +19,13 @@ const nb = {
 };
 
 const nn: SoknadMessagesType = {
-    ...nb,
+    'application.title': 'Applikasjonen', // Kun fallback - skal overstyres i hver app
+    '@soknad.stepConfig.previousStepLinkText': 'Tilbake til {title}',
+    '@soknad.loadingPage.henterInformasjon': 'Hentar informasjon',
+    '@soknad.stepFooter.avbryt': 'Slett søknaden',
+    '@soknad.stepFooter.fortsettSenere': 'Fortsett seinare',
+    '@soknad.velkommenGuide.tittel': 'Hei, {navn}',
+
     ...samtykkeFormMessages.nn,
     ...soknadErrorMessages.nn,
     ...avbrytSøknadDialogMessages.nn,

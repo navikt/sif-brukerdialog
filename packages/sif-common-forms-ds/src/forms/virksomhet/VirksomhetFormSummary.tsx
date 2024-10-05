@@ -3,7 +3,7 @@ import React from 'react';
 import { DatoSvar, JaNeiSvar, Sitat, TallSvar, TextareaSvar } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyApiDate } from '@navikt/sif-common-utils';
 import { Næringstype, VirksomhetApiData } from './types';
-import { useVirksomhetIntl, VirksomhetIntlShape } from './virksomhetMessages';
+import { useVirksomhetIntl, VirksomhetIntlShape } from './i18n';
 import { erVirksomhetRegnetSomNyoppstartet } from './virksomhetUtils';
 
 interface Props {
