@@ -4,14 +4,14 @@
     "license": "MIT",
     "name": "@navikt/omsorgspengerutbetaling-soknad",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "1.17.1",
+    "version": "1.17.2",
     "private": true,
     "type": "module",
     "dependencies": {
-        "@navikt/ds-css": "7.1.0",
+        "@navikt/ds-css": "7.1.1",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "7.1.0",
-        "@navikt/ds-tailwind": "7.1.0",
+        "@navikt/ds-react": "7.1.1",
+        "@navikt/ds-tailwind": "7.1.1",
         "@navikt/sif-app-register": "*",
         "@navikt/sif-common-amplitude": "*",
         "@navikt/sif-common-core-ds": "*",
@@ -43,10 +43,10 @@
         "uuid": "10.0.0"
     },
     "devDependencies": {
-        "@babel/core": "7.25.2",
-        "@babel/preset-env": "7.25.4",
-        "@babel/preset-react": "7.24.7",
-        "@babel/preset-typescript": "7.24.7",
+        "@babel/core": "7.25.7",
+        "@babel/preset-env": "7.25.7",
+        "@babel/preset-react": "7.25.7",
+        "@babel/preset-typescript": "7.25.7",
         "@playwright/test": "1.47.2",
         "@sif/eslint-config": "*",
         "@storybook/addon-essentials": "8.3.4",
@@ -61,7 +61,7 @@
         "@testing-library/react": "16.0.1",
         "@types/node": "22.7.4",
         "@types/object-hash": "3.0.6",
-        "@types/react": "18.3.10",
+        "@types/react": "18.3.11",
         "@types/react-dom": "18.3.0",
         "@types/react-router-dom": "5.3.3",
         "@vitejs/plugin-react": "4.3.2",
@@ -79,7 +79,7 @@
         "typescript": "5.6.2",
         "vite": "5.4.8",
         "vite-plugin-checker": "0.8.0",
-        "vitest": "2.1.1"
+        "vitest": "2.1.2"
     },
     "scripts": {
         "build-storybook": "storybook build",
