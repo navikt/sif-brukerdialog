@@ -1,17 +1,17 @@
+import { getAttachmentURLBackend } from '@navikt/sif-common';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types';
 import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { FlereSokereApiData, SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { YesOrNoDontKnow } from '../../types/YesOrNoDontKnow';
-import { getAttachmentURLBackend } from '../attachmentUtils';
 import { getArbeidsgivereApiDataFromSøknadsdata } from './getArbeidsgivereApiDataFromSøknadsdata';
 import { getFrilansApiDataFromSøknadsdata } from './getFrilansApiDataFromSøknadsdata';
 import { getMedlemskapApiDataFromSøknadsdata } from './getMedlemskapApiDataFromSøknadsdata';
+import { getOmBarnetApiDataFromSøknadsdata } from './getOmBarnetApiDataFromSøknadsdata';
 import { getOpptjeningUtlandApiDataFromSøknadsdata } from './getOpptjeningUtlandApiDataFromSøknadsdata';
 import { getSelvstendigApiDataFromSøknadsdata } from './getSelvstendigApiDataFromSøknadsdata';
 import { getUtenlandskNæringApiDataFromSøknadsdata } from './getUtenlandskNæringApiDataFromSøknadsdata';
-import { getOmBarnetApiDataFromSøknadsdata } from './getOmBarnetApiDataFromSøknadsdata';
 
 const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
     if (!vedlegg || vedlegg.length === 0) {

@@ -6092,6 +6092,7 @@ __metadata:
     "@navikt/ds-react": "npm:6.16.2"
     "@navikt/ds-tailwind": "npm:6.16.2"
     "@navikt/sif-app-register": "workspace:*"
+    "@navikt/sif-common": "workspace:*"
     "@navikt/sif-common-amplitude": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-formik-ds": "workspace:*"
@@ -6762,7 +6763,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-common@npm:*, @navikt/sif-common@workspace:packages/sif-common":
+"@navikt/sif-common@npm:*, @navikt/sif-common@workspace:*, @navikt/sif-common@workspace:packages/sif-common":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common@workspace:packages/sif-common"
   dependencies:

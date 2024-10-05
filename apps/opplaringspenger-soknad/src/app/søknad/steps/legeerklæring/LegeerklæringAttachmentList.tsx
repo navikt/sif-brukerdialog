@@ -13,7 +13,6 @@ import { useFormikContext } from 'formik';
 import api from '../../../api/api';
 import { LegeerklæringFormFields, LegeerklæringFormValues } from './LegeerklæringForm';
 import { AppText } from '../../../i18n';
-import { fixAttachmentURL } from '../../../utils/attachmentUtils';
 
 interface Props {
     includeDeletionFunctionality: boolean;
@@ -25,9 +24,7 @@ const LegeerklæringAvtaleAttachmentList: React.FunctionComponent<Props> = ({
     includeDeletionFunctionality,
 }) => {
     const { values, setFieldValue } = useFormikContext<LegeerklæringFormValues>();
-    const avtale: Attachment[] = values.vedlegg
-        .filter(({ file }: Attachment) => fileExtensionIsValid(file.name))
-        .map(fixAttachmentURL);
+    const avtale: Attachment[] = values.vedlegg.filter(({ file }: Attachment) => fileExtensionIsValid(file.name));
 
     if (!containsAnyUploadedAttachments(avtale)) {
         const noAttachmentsText = (
