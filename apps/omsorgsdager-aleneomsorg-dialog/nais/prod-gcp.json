@@ -3,8 +3,8 @@
     "namespace": "dusseldorf",
     "team": "dusseldorf",
     "ingresses": ["https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg"],
-    "livenessPath": "/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/health/isAlive",
-    "readinessPath": "/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/health/isReady",
+    "livenessPath": "/internal/health/isAlive",
+    "readinessPath": "/internal/health/isReady",
     "externalHosts": ["www.nav.no"],
     "accessPolicyOutApps": ["k9-brukerdialog-prosessering"],
     "cluster": "prod-gcp",
@@ -12,18 +12,21 @@
     "maxReplicas": 2,
     "observabilityEnabled": "true",
     "env": {
-        "API_TOKENX_AUDIENCE": "prod-gcp:dusseldorf:k9-brukerdialog-prosessering",
-        "API_URL": "http://k9-brukerdialog-prosessering",
+        "ENV": "prod",
         "APP_VERSION": "prod",
-        "APPSTATUS_DATASET": "production",
-        "APPSTATUS_PROJECT_ID": "ryujtq87",
-        "DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=true&chatbot=false&logoutUrl=https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/oauth2/logout",
-        "FRONTEND_API_PATH": "/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/api",
-        "LOGIN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/soknad",
-        "MINSIDE_URL": "https://www.nav.no/minside",
-        "OMS_IKKE_TILSYN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/soknad",
         "NPM_CONFIG_CACHE": "/tmp",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg",
-        "USE_FARO": "true"
+
+        "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "prod-gcp:dusseldorf:k9-brukerdialog-prosessering",
+        "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",
+        "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/api",
+
+        "SIF_PUBLIC_APPSTATUS_DATASET": "production",
+        "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
+        "SIF_PUBLIC_DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=true&chatbot=false&logoutUrl=https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/oauth2/logout",
+        "SIF_PUBLIC_LOGIN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/soknad",
+        "SIF_PUBLIC_MINSIDE_URL": "https://www.nav.no/minside",
+        "SIF_PUBLIC_OMS_IKKE_TILSYN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/soknad",
+        "SIF_PUBLIC_USE_FARO": "true"
     }
 }

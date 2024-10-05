@@ -9,6 +9,8 @@ on:
                 type: choice
                 options:
                     - opplaringspenger-soknad
+                    - ungdomsytelse-soknad
+                    - sif-demo-app
                     - endringsmelding-pleiepenger
                     - ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
                     - omsorgspengesoknad

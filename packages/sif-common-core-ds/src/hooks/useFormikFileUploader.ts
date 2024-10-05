@@ -8,6 +8,7 @@ import {
     attachmentShouldBeUploaded,
     attachmentUploadHasFailed,
     getAttachmentFromFile,
+    getAttachmentId,
     getPendingAttachmentFromFile,
     isFileObject,
     mapFileToPersistedFile,
@@ -38,6 +39,7 @@ export const useFormikFileUploader = ({
             try {
                 const response = await uploadFile(file);
                 attachment = setAttachmentPendingToFalse(attachment);
+                attachment.id = getAttachmentId(response.headers.location);
                 attachment.url = getAttachmentURLFrontend(response.headers.location);
                 attachment.uploaded = true;
             } catch (error) {

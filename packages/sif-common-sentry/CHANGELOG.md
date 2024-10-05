@@ -1,5 +1,35 @@
 # @navikt/sif-common-sentry
 
+## 0.27.13
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 0.27.12
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 0.27.11
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 0.27.10
+
+### Patch Changes
+
+-   Pakkeoppdatering - react-intl-6.7.0
+
+## 0.27.9
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
 ## 0.27.8
 
 ### Patch Changes

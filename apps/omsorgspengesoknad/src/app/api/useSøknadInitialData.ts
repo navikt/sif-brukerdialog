@@ -1,18 +1,18 @@
-import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { useEffect, useState } from 'react';
+import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { SØKNAD_VERSJON } from '../constants/SØKNAD_VERSJON';
-import { RegistrertBarn } from '../types/RegistrertBarn';
 import { RequestStatus } from '../types/RequestStatus';
-import { Søker } from '../types/Søker';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import appSentryLogger from '../utils/appSentryLogger';
-import barnEndpoint from './endpoints/barnEndpoint';
-import søkerEndpoint from './endpoints/søkerEndpoint';
 import søknadStateEndpoint, {
     isPersistedSøknadStateValid,
     SøknadStatePersistence,
 } from './endpoints/søknadStateEndpoint';
+import søkerEndpoint from './endpoints/søkerEndpoint';
+import barnEndpoint from './endpoints/barnEndpoint';
+import { Søker } from '../types/Søker';
+import { RegistrertBarn } from '../types/RegistrertBarn';
 
 export type SøknadInitialData = SøknadContextState;
 

@@ -7,6 +7,9 @@ export const MAX_FILESIZE_FOR_UPLOAD = 7999999;
 export const MAX_TOTAL_ATTACHMENT_SIZE_IN_MB = 24;
 export const MAX_TOTAL_ATTACHMENT_SIZE_BYTES = 1000 * 1000 * MAX_TOTAL_ATTACHMENT_SIZE_IN_MB;
 
+export const getUploadedAttachments = (attachments: Attachment[]): Attachment[] =>
+    attachments.filter((attachment) => attachmentHasBeenUploaded(attachment));
+
 export const getTotalSizeOfAttachments = (attachments: Attachment[]): number =>
     attachments
         .filter((attachment: Attachment) => attachment.uploaded)
@@ -92,3 +95,13 @@ export const hasPendingAttachments = (attachments: Attachment[]): boolean =>
 
 export const hasExceededMaxTotalSizeOfAttachments = (attachments: Attachment[]): boolean =>
     getTotalSizeOfAttachments(attachments) > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
+
+const VEDLEGG_ID_SPLIT_KEY = 'vedlegg/';
+
+export const getAttachmentId = (url: string = ''): string => {
+    const id = url.split(VEDLEGG_ID_SPLIT_KEY)[1];
+    if (!id || id.length === 0) {
+        throw new Error('Kunne ikke hente vedleggId fra url');
+    }
+    return id;
+};

@@ -1,11 +1,11 @@
 import { Alert } from '@navikt/ds-react';
 import React from 'react';
+import { RegistrertBarn } from '@navikt/sif-common';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText } from '../../../../i18n';
-import { RegistrertBarn } from '../../../../types/RegistrertBarn';
 
 interface Props {
     registrerteBarn: RegistrertBarn[];

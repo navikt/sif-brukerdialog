@@ -1,9 +1,9 @@
+import { RegistrertBarn } from '@navikt/sif-common';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { AnnetBarn, BarnType } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
+import { dateToISODate } from '@navikt/sif-common-utils';
 import { ApiBarn, DineBarnApiData, RegistrertBarnTypeApi } from '../../types/søknadApiData/SøknadApiData';
 import { DineBarnSøknadsdata } from '../../types/søknadsdata/DineBarnSøknadsdata';
-import { dateToISODate } from '@navikt/sif-common-utils';
-import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
-import { RegistrertBarn } from '../../types/RegistrertBarn';
 
 export const mapRegistrertBarnToApiBarn = (registrertBarn: RegistrertBarn): ApiBarn => {
     return {

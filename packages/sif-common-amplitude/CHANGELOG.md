@@ -1,5 +1,41 @@
 # @navikt/sif-common-amplitude
 
+## 2.26.15
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 2.26.14
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 2.26.13
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 2.26.12
+
+### Patch Changes
+
+-   Pakkeoppdatering - react-intl-6.7.0
+
+## 2.26.11
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 2.26.10
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
 ## 2.26.9
 
 ### Patch Changes

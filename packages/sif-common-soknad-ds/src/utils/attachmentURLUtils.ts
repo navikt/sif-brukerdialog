@@ -1,12 +1,12 @@
-const SPLIT_KEY = 'vedlegg/';
+const VEDLEGG_ID_SPLIT_KEY = 'vedlegg/';
 
 /**
  * Henter ut ID til et opplastet dokument ut fra URL som kommer i response header ved opplasting, eller som er generert fra frontend-url
  * @param url string
  * @returns string
  */
-export const getAttachmentId = (url: string): string => {
-    const id = url.split(SPLIT_KEY)[1];
+export const getAttachmentId = (url: string = ''): string => {
+    const id = url.split(VEDLEGG_ID_SPLIT_KEY)[1];
     if (!id || id.length === 0) {
         throw new Error('Kunne ikke hente vedleggId fra url');
     }
@@ -22,7 +22,7 @@ export const getAttachmentId = (url: string): string => {
 export const getAttachmentFrontendURL = (url: string, frontendAttachmentURL: string): string => {
     try {
         const vedleggId = getAttachmentId(url);
-        return `${frontendAttachmentURL}/${SPLIT_KEY}${vedleggId}`;
+        return `${frontendAttachmentURL}/${VEDLEGG_ID_SPLIT_KEY}${vedleggId}`;
     } catch {
         return url;
     }
@@ -37,7 +37,7 @@ export const getAttachmentFrontendURL = (url: string, frontendAttachmentURL: str
 export const getAttachmentBackendURL = (url: string, backendAttachmentURL: string): string => {
     try {
         const vedleggId = getAttachmentId(url);
-        return `${backendAttachmentURL}/${SPLIT_KEY}${vedleggId}`;
+        return `${backendAttachmentURL}/${VEDLEGG_ID_SPLIT_KEY}${vedleggId}`;
     } catch {
         return url;
     }

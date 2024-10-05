@@ -72,9 +72,15 @@ spec:
        value: {{GITHUB_REF_NAME}}
      - name: NEXT_PUBLIC_GITHUB_REF_NAME
        value: {{GITHUB_REF_NAME}}
+       
     tokenx:
          enabled: true
     idporten:
         enabled: true
         sidecar:
+            {{#unless skipAutologin}}
+            autoLogin: true
+            {{/unless}}
+            autoLoginIgnorePaths:
+                - {{env.PUBLIC_PATH}}/assets/*
             enabled: true

@@ -1,8 +1,10 @@
+import { PrimitiveType } from 'react-intl';
+
 export interface IntlErrorObject {
     /** If passed in, the key is not transformed with field name and error */
     key: string;
     /** Values passed through to intl formatMessage */
-    values?: { [key: string]: any };
+    values?: Record<string, PrimitiveType>;
     /** Set if error key is not to be altered by fieldErrorHandler */
     keepKeyUnaltered?: boolean;
 }

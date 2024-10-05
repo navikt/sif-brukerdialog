@@ -1,11 +1,11 @@
 import { Alert, Button, Heading, Panel } from '@navikt/ds-react';
 import { useEffect } from 'react';
+import { Søker } from '@navikt/sif-common';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import CheckmarkIcon from '@navikt/sif-common-core-ds/src/atoms/checkmark-icon/CheckmarkIcon';
 import Checklist from '@navikt/sif-common-core-ds/src/components/lists/checklist/Checklist';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { AppText, useAppIntl } from '../../i18n';
-import { Søker } from '../../types/Søker';
 import { ArbeidsgiverDetaljer } from '../../types/søknadApiData/SøknadApiData';
 import TilArbeidsgiverDokumentListe from './components/TilArbeidsgiverDokumentListe';
 import './kvitteringPage.css';

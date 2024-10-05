@@ -1,5 +1,47 @@
 # @navikt/sif-common-utils
 
+## 3.47.15
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 3.47.14
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 3.47.13
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 3.47.12
+
+### Patch Changes
+
+-   Pakkeoppdatering - react-intl-6.7.0
+
+## 3.47.11
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 3.47.10
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor-patch
+
+## 3.47.9
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
 ## 3.47.8
 
 ### Patch Changes

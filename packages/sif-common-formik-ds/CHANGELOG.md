@@ -1,5 +1,53 @@
 # @navikt/sif-common-formik-ds
 
+## 1.12.19
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 1.12.18
+
+### Patch Changes
+
+-   70809d1: Justere common og attachment logikk
+
+## 1.12.17
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 1.12.16
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 1.12.15
+
+### Patch Changes
+
+-   Pakkeoppdatering - react-intl-6.7.0
+
+## 1.12.14
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 1.12.13
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor-patch
+
+## 1.12.12
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
 ## 1.12.11
 
 ### Patch Changes

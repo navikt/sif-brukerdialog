@@ -1,5 +1,74 @@
 # @navikt/sif-common-core-ds
 
+## 9.18.20
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-utils@3.47.15
+
+## 9.18.19
+
+### Patch Changes
+
+-   70809d1: Justere common og attachment logikk
+
+## 9.18.18
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-utils@3.47.14
+
+## 9.18.17
+
+### Patch Changes
+
+-   052ef4b: Vedleggservice i common, og ta denne i bruk i omsorgspengerutbetaling-sn-fl
+
+## 9.18.16
+
+### Patch Changes
+
+-   ad46a6b: getEnvironmentVariable - default også sjekke for om env er satt med patternet SIF*PUBLIC*{envNavn}
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-utils@3.47.13
+
+## 9.18.15
+
+### Patch Changes
+
+-   Pakkeoppdatering - react-intl-6.7.0
+-   Updated dependencies
+    -   @navikt/sif-common-utils@3.47.12
+
+## 9.18.14
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-utils@3.47.11
+
+## 9.18.13
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor-patch
+-   Updated dependencies
+    -   @navikt/sif-common-utils@3.47.10
+
+## 9.18.12
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-utils@3.47.9
+
 ## 9.18.11
 
 ### Patch Changes

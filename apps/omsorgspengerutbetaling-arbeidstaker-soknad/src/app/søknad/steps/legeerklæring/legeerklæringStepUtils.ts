@@ -1,6 +1,6 @@
-import { Søknadsdata, LegeerklæringSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { getUploadedAttachments } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import { LegeerklæringSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { LegeerklæringFormFields, LegeerklæringFormValues } from './LegeerklæringForm';
-import { getUploadedAttachments } from '../../../utils/attachmentUtils';
 
 export const getLegeerklæringStepInitialValues = (
     søknadsdata: Søknadsdata,

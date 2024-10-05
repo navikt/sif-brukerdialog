@@ -10,7 +10,6 @@ import { ArbeidsgiverDetaljer } from '../../../../types/søknadApiData/SøknadAp
 import { ArbeidforholdSøknadsdata, SituasjonSøknadsdata } from '../../../../types/søknadsdata/SituasjonSøknadsdata';
 import { Søknadsdata } from '../../../../types/søknadsdata/Søknadsdata';
 import UtbetalingsperioderSummaryView from './UtbetalingsperioderSummaryView';
-import { fixAttachmentURL } from '../../../../utils/attachmentUtils';
 
 const getArbeidsforholdAttachments = (organisasjonsnummer: string, situasjon?: SituasjonSøknadsdata) => {
     if (!situasjon) {
@@ -19,7 +18,7 @@ const getArbeidsforholdAttachments = (organisasjonsnummer: string, situasjon?: S
     const forhold = situasjon[organisasjonsnummer];
 
     if (forhold.type === 'harHattFraværUtenLønnKonfliktMedArbeidsgiver') {
-        return forhold.dokumenter.map(fixAttachmentURL);
+        return forhold.dokumenter;
     }
 
     return undefined;

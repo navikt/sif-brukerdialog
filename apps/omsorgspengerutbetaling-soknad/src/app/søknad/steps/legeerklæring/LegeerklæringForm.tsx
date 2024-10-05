@@ -1,5 +1,6 @@
 import { Alert, Link } from '@navikt/ds-react';
 import React from 'react';
+import { getAttachmentURLFrontend, uploadVedlegg } from '@navikt/sif-common';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import FileUploadErrors from '@navikt/sif-common-core-ds/src/components/file-upload-errors/FileUploadErrors';
@@ -15,12 +16,10 @@ import {
 import { getTypedFormComponents, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
-import api, { ApiEndpoint } from '../../../api/api';
 import { AppText, useAppIntl } from '../../../i18n';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
 import { validateAttachments, ValidateAttachmentsErrors } from '../../../utils/validateAttachments';
 import LegeerklæringAvtaleAttachmentList from './LegeerklæringAttachmentList';
-import { getAttachmentURLFrontend } from '../../../utils/attachmentUtils';
 
 interface Props {
     values: Partial<LegeerklæringFormValues>;
@@ -91,7 +90,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                         name={LegeerklæringFormFields.vedlegg}
                         buttonLabel={text('steg.legeerklæring.vedlegg.knappLabel')}
                         getAttachmentURLFrontend={getAttachmentURLFrontend}
-                        uploadFile={(file) => api.uploadFile(ApiEndpoint.vedlegg, file)}
+                        uploadFile={(file) => uploadVedlegg(file)}
                         onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
                         onFileInputClick={() => {
                             setFilesThatDidntGetUploaded([]);
