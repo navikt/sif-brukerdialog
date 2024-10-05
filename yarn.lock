@@ -6586,7 +6586,6 @@ __metadata:
     "@navikt/ds-css": "npm:7.1.1"
     "@navikt/ds-icons": "npm:3.4.3"
     "@navikt/ds-react": "npm:7.1.1"
-    "@navikt/sif-common-core-ds": "npm:*"
     "@navikt/sif-common-formik-ds": "npm:*"
     "@navikt/sif-common-sentry": "npm:*"
     "@navikt/sif-common-utils": "npm:*"
