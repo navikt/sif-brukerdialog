@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.11.15
+
+### Patch Changes
+
+-   Legge til manglende APP_VERSION env i prod.gcp
+
 ## 2.11.14
 
 ### Patch Changes
