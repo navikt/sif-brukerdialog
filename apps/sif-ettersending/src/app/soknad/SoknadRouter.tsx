@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { ErrorPage, LastAvailableStepInfo, SoknadErrorMessages, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
 import { useFormikContext } from 'formik';
 import { APPLICATION_SENDT_PAGE } from '../config/routeConfig';
-import ConfirmationPage from '../pages/confirmation-page/ConfirmationPage';
+import KvitteringPage from '../pages/kvittering-page/KvitteringPage';
 import VelkommenPage from '../pages/velkommen-page/VelkommenPage';
 import { Person } from '../types/Person';
 import { SoknadFormData, SoknadFormField } from '../types/SoknadFormData';
@@ -92,7 +92,7 @@ const SoknadRouter = ({ søker, barn, søknadstype, soknadId, onKvitteringUnmoun
             <Route
                 path={APPLICATION_SENDT_PAGE}
                 element={
-                    <ConfirmationPage
+                    <KvitteringPage
                         søknadstype={søknadstype}
                         dokumenttype={dokumenttype}
                         onUnmount={onKvitteringUnmount}

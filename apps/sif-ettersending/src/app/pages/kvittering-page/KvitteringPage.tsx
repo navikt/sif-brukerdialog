@@ -8,7 +8,7 @@ import { AppText, useAppIntl } from '../../i18n';
 import getLenker from '../../lenker';
 import { DokumentType } from '../../types/DokumentType';
 import { Søknadstype } from '../../types/Søknadstype';
-import './confirmationPage.css';
+import './kvitteringPage.css';
 
 interface Props {
     søknadstype: Søknadstype;
@@ -16,9 +16,9 @@ interface Props {
     onUnmount?: () => void;
 }
 
-const bem = bemUtils('confirmationPage');
+const bem = bemUtils('kvitteringPage');
 
-const ConfirmationPage = ({ søknadstype, dokumenttype, onUnmount }: Props) => {
+const KvitteringPage = ({ søknadstype, dokumenttype, onUnmount }: Props) => {
     const { text } = useAppIntl();
 
     useEffect(() => {
@@ -82,4 +82,4 @@ const ConfirmationPage = ({ søknadstype, dokumenttype, onUnmount }: Props) => {
     );
 };
 
-export default ConfirmationPage;
+export default KvitteringPage;

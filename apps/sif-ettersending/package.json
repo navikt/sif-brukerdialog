@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/sif-ettersending",
     "repository": "https://github.com/navikt/sif-ettersending",
-    "version": "3.37.24",
+    "version": "3.38.0",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -14,6 +14,7 @@
         "@navikt/ds-tailwind": "7.1.2",
         "@navikt/nav-dekoratoren-moduler": "2.1.6",
         "@navikt/sif-app-register": "*",
+        "@navikt/sif-common": "*",
         "@navikt/sif-common-amplitude": "*",
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
@@ -77,14 +78,13 @@
     "scripts": {
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/ettersending",
         "clean": "rm -rf node_modules .dist",
-        "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",
-        "dev": "cross-env NODE_ENV=development node ./server.cjs",
+        "dev-api": "PORT=8089 node ./dev/dev-api-server.cjs",
+        "dev": "node ./dev-server.cjs",
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
         "playwright-test": "playwright test",
-        "start-e2e-server": "node ./server-e2e.cjs",
-        "start-express": "node ./server.cjs",
+        "start-e2e-server": "node ./e2e/server/server.cjs",
         "test": "vitest run"
     },
     "resolutions": {
