@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.38.0
+
+### Minor Changes
+
+-   765aabe: Bruke common server-oppsett
+
 ## 3.37.24
 
 ### Patch Changes
