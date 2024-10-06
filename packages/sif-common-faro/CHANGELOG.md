@@ -1,5 +1,11 @@
 # @navikt/sif-common-faro
 
+## 0.1.4
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
 ## 0.1.3
 
 ### Patch Changes
