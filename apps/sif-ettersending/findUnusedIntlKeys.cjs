@@ -8,7 +8,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Path to your messages.json and source directory
-const MESSAGES_PATH = './src/i18n/messages.json';
+const MESSAGES_PATH = './src/app/i18n/messages.json';
 const SOURCE_PATH = './src';
 
 // Read the messages file
@@ -18,7 +18,7 @@ const keys = Object.keys(messages);
 // Function to recursively search through files
 function searchFiles(dir, key) {
     const files = fs.readdirSync(dir);
-    if (dir === 'src/i18n') {
+    if (dir === 'src/app/i18n') {
         return;
     }
 

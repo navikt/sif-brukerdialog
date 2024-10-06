@@ -39,13 +39,6 @@ async function injectDecorator(filePath) {
     });
 }
 
-const limiter = RateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 500, // max 100 requests per windowMs
-    standardHeaders: 'draft-7',
-    legacyHeaders: false,
-});
-
 const startServer = async () => {
     server.get('/health/isAlive', (req, res) => res.sendStatus(200));
     server.get('/health/isReady', (req, res) => res.sendStatus(200));
@@ -87,7 +80,7 @@ const startServer = async () => {
         },
     });
 
-    server.get(/^\/(?!.*dist).*$/, limiter, (req, res, next) => {
+    server.get(/^\/(?!.*dist).*$/, (req, res, next) => {
         const ROOT_DIR = path.resolve(__dirname);
         const fullPath = path.resolve(ROOT_DIR, decodeURIComponent(req.path.substring(1)));
 

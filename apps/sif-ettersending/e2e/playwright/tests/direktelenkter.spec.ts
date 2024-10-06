@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { Søknadstype } from '../../../src/types/Søknadstype';
+import { Søknadstype } from '../../../src/app/types/Søknadstype';
 import { playwrightApiMockData } from '../mock-data/playwrightApiMockData';
 import { startUrl } from '../utils/utfyllingUtils';
 

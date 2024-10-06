@@ -4,7 +4,6 @@ const express = require('express');
 const server = express();
 const path = require('path');
 const mustacheExpress = require('mustache-express');
-const getAppSettings = require('../../mock/getAppSettings.cjs');
 const compression = require('compression');
 const getAppSettings = require('../../dev/AppSettings.cjs');
 
