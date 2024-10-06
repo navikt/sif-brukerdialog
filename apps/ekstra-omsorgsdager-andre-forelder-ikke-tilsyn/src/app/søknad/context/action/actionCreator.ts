@@ -5,19 +5,20 @@ import { OmBarnaSøknadsdata } from '../../../types/søknadsdata/OmBarnaSøknads
 import { OmAnnenForelderSøknadsdata } from '../../../types/søknadsdata/OmAnnenForelderSøknadsdata';
 
 export enum SøknadContextActionKeys {
-    RESET_SØKNAD = 'resetSøknad',
-    START_SØKNAD = 'startSøknad',
     AVBRYT_SØKNAD = 'avbrytSøknad',
     FORTSETT_SØKNAD_SENERE = 'fortsettSøknadSenere',
-    SET_SØKNAD_ROUTE = 'setSøknadRoute',
-    SET_SØKNAD_OM_ANNEN_FORELDER = 'setSøknadOmAnnenForelder',
-    SET_SØKNAD_ANNEN_FORELDEREN_SITUASJON = 'setAnnenForelderenSituasjon',
-    SET_SØKNAD_OM_BARNA = 'setSøknadOmBarna',
-    SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER = 'setSøknadHarBekreftetOpplysninger',
     REQUEST_LAGRE_SØKNAD = 'requestLargeSøknad',
+    RESET_SØKNAD = 'resetSøknad',
+    SET_IS_RELOADING_APP = 'setIsReloadingApp',
+    SET_SØKNAD_ANNEN_FORELDEREN_SITUASJON = 'setAnnenForelderenSituasjon',
+    SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER = 'setSøknadHarBekreftetOpplysninger',
     SET_SØKNAD_LAGRET = 'setSøknadLagret',
+    SET_SØKNAD_OM_ANNEN_FORELDER = 'setSøknadOmAnnenForelder',
+    SET_SØKNAD_OM_BARNA = 'setSøknadOmBarna',
+    SET_SØKNAD_ROUTE = 'setSøknadRoute',
     SET_SØKNAD_SENDT = 'setSøknadSendt',
     SET_UNSUBMITTED_STEP_FORM_VALUES = 'setUnsubmittedStepFormValues',
+    START_SØKNAD = 'startSøknad',
 }
 
 interface ResetSøknad {
@@ -35,6 +36,10 @@ interface FortsettSøknadSenere {
 interface RequestLagreSøknad {
     type: SøknadContextActionKeys.REQUEST_LAGRE_SØKNAD;
 }
+interface SetIsReloadingApp {
+    type: SøknadContextActionKeys.SET_IS_RELOADING_APP;
+}
+
 interface SetSøknadLagret {
     type: SøknadContextActionKeys.SET_SØKNAD_LAGRET;
 }
@@ -85,6 +90,10 @@ const requestLagreSøknad = (): RequestLagreSøknad => ({
     type: SøknadContextActionKeys.REQUEST_LAGRE_SØKNAD,
 });
 
+const setIsReloadingApp = (): SetIsReloadingApp => ({
+    type: SøknadContextActionKeys.SET_IS_RELOADING_APP,
+});
+
 const setSøknadLagret = (): SetSøknadLagret => ({
     type: SøknadContextActionKeys.SET_SØKNAD_LAGRET,
 });
@@ -123,6 +132,7 @@ export type SøknadContextAction =
     | ResetSøknad
     | FortsettSøknadSenere
     | RequestLagreSøknad
+    | SetIsReloadingApp
     | SetSøknadLagret
     | SetSøknadSendt
     | SetSøknadOmAnnenForelder
@@ -137,6 +147,7 @@ const actionsCreator = {
     avbrytSøknad,
     fortsettSøknadSenere,
     requestLagreSøknad,
+    setIsReloadingApp,
     setSøknadRoute,
     setSøknadOmAnnenForelder,
     setSøknadAnnenForelderenSituasjon,

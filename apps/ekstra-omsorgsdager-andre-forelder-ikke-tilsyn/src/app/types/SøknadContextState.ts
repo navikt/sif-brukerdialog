@@ -11,4 +11,5 @@ export interface SøknadContextState {
     søknadRoute?: SøknadRoutes;
     søknadSendt?: boolean;
     børMellomlagres?: boolean;
+    isReloadingApp?: boolean;
 }
