@@ -1,6 +1,6 @@
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import AttachmentListWithDeletion from '@navikt/sif-common-core-ds/src/components/attachment-list-with-deletion/AttachmentListWithDeletion';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import {
     containsAnyUploadedAttachments,
@@ -9,9 +9,8 @@ import {
 import { removeElementFromArray } from '@navikt/sif-common-core-ds/src/utils/listUtils';
 import { connect, useFormikContext } from 'formik';
 import { deleteFile } from '../../api/api';
-import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { AppText } from '../../i18n';
-import { fixAttachmentURL } from '../../utils/appAttachmentUtils';
+import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 
 interface LegeerklæringAttachmentListProps {
     includeDeletionFunctionality: boolean;
@@ -22,9 +21,9 @@ type Props = LegeerklæringAttachmentListProps;
 
 const LegeerklæringAttachmentList = ({ wrapNoAttachmentsInBox, includeDeletionFunctionality }: Props) => {
     const { values, setFieldValue } = useFormikContext<SøknadFormValues>();
-    const legeerklæring: Attachment[] = values[SøknadFormField.legeerklæring]
-        .filter(({ file }: Attachment) => fileExtensionIsValid(file.name))
-        .map(fixAttachmentURL);
+    const legeerklæring: Attachment[] = values[SøknadFormField.legeerklæring].filter(({ file }: Attachment) =>
+        fileExtensionIsValid(file.name),
+    );
 
     if (!containsAnyUploadedAttachments(legeerklæring)) {
         const noAttachmentsText = (

@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.2.0
+
+### Minor Changes
+
+-   Bruke common server-oppsett
+
 ## 4.1.14
 
 ### Patch Changes

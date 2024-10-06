@@ -1,5 +1,15 @@
 import { Attachment, PersistedFile } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { getAttachmentsApiDataFromSøknadsdata } from '../getAttachmentsApiDataFromSøknadsdata';
+import { vi } from 'vitest';
+
+vi.mock('@navikt/sif-common/src/env/commonEnv', () => {
+    return {
+        getEnvironmentVariable: () => 'mockedApiUrl',
+        getEnvVariableOrDefault: () => 'mockedApiUrl',
+        getApiEnv: () => 'string',
+        API_ENV: {},
+    };
+});
 
 describe('getAttachmentsApiDataFromSøknadsdata', () => {
     const persistedFile: PersistedFile = {
