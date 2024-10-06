@@ -18,8 +18,6 @@ const getAppSettings = () => ({
 
     MOCK_DATE: `${process.env.MOCK_DATE}`,
     USE_MOCK_DATE: `${process.env.USE_MOCK_DATE}`,
-
-    MINSIDE_URL: `${process.env.MINSIDE_URL}`,
 });
 
 module.exports = getAppSettings;
