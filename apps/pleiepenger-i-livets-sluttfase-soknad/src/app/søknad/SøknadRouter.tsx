@@ -91,9 +91,7 @@ const SøknadRouter = () => {
             <Route path={SøknadStepRoutePath[StepId.OPPSUMMERING]} element={<OppsummeringStep />} />
             <Route
                 path={SøknadStepRoutePath[StepId.KVITTERING]}
-                element={
-                    <KvitteringPage kvitteringInfo={kvitteringInfo} onUnmount={() => setShouldResetSøknad(true)} />
-                }
+                element={<KvitteringPage kvitteringInfo={kvitteringInfo} />}
             />
             <Route
                 path="*"

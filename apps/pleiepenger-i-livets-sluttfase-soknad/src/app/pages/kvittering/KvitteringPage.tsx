@@ -9,7 +9,6 @@ import { AppText, useAppIntl } from '../../i18n';
 
 interface Props {
     kvitteringInfo?: KvitteringInfo;
-    onUnmount: () => void;
 }
 
 const KvitteringPage = ({ kvitteringInfo }: Props) => {
