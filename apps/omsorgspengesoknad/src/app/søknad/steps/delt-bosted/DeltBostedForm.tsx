@@ -13,8 +13,8 @@ import { FormLayout } from '@navikt/sif-common-ui';
 import api, { ApiEndpoint } from '../../../api/api';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
-import { fixAttachmentURL, getAttachmentURLFrontend } from '../../../utils/attachmentUtils';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
+import { fixAttachmentURL, getAttachmentURLFrontend } from '@navikt/sif-common';
 
 interface Props {
     samværsavtaler?: Attachment[];

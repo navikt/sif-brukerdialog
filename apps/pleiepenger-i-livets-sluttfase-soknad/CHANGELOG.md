@@ -1,5 +1,23 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.11.15
+
+### Patch Changes
+
+-   Legge til manglende APP_VERSION env i prod.gcp
+
+## 2.11.14
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.12.20
+    -   @navikt/sif-common-soknad-ds@14.0.15
+    -   @navikt/sif-common-forms-ds@10.1.14
+    -   @navikt/sif-common-core-ds@9.18.21
+    -   @navikt/sif-common-ui@0.8.20
+
 ## 2.11.13
 
 ### Patch Changes
