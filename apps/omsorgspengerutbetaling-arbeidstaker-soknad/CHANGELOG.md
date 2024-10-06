@@ -1,5 +1,9 @@
 # @navikt/omsorgspengerutbetaling-arbeidstaker-soknad
 
+### Patch Changes
+
+-   Korrigere appStatus dataset
+
 ## 1.7.2
 
 ### Patch Changes
