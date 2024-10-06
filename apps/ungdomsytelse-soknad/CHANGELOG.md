@@ -1,5 +1,27 @@
 # @navikt/ungdomsytelse-søknad
 
+## 0.1.6
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-soknad-ds@14.0.15
+    -   @navikt/sif-common-core-ds@9.18.21
+    -   @navikt/sif-common-ui@0.8.20
+    -   @navikt/sif-common@0.1.4
+
+## 0.1.5
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-soknad-ds@14.0.14
+    -   @navikt/sif-common-core-ds@9.18.20
+    -   @navikt/sif-common-ui@0.8.19
+    -   @navikt/sif-common@0.1.3
+
 ## 0.1.4
 
 ### Patch Changes

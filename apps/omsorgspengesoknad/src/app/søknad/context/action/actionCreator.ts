@@ -8,6 +8,7 @@ export enum SøknadContextActionKeys {
     START_SØKNAD = 'startSøknad',
     AVBRYT_SØKNAD = 'avbrytSøknad',
     FORTSETT_SØKNAD_SENERE = 'fortsettSøknadSenere',
+    SET_IS_RELOADING_APP = 'setIsReloadingApp',
     SET_SØKNAD_ROUTE = 'setSøknadRoute',
     SET_SØKNAD_OM_BARNET = 'setSøknadOmBarnet',
     SET_SØKNAD_DELT_BOSTED = 'setSøknadDeltBosted',
@@ -22,6 +23,10 @@ export enum SøknadContextActionKeys {
 interface ResetSøknad {
     type: SøknadContextActionKeys.RESET_SØKNAD;
 }
+interface SetIsReloadingApp {
+    type: SøknadContextActionKeys.SET_IS_RELOADING_APP;
+}
+
 interface StartSøknad {
     type: SøknadContextActionKeys.START_SØKNAD;
 }
@@ -81,6 +86,10 @@ const requestLagreSøknad = (): RequestLagreSøknad => ({
     type: SøknadContextActionKeys.REQUEST_LAGRE_SØKNAD,
 });
 
+const setIsReloadingApp = (): SetIsReloadingApp => ({
+    type: SøknadContextActionKeys.SET_IS_RELOADING_APP,
+});
+
 const setSøknadLagret = (): SetSøknadLagret => ({
     type: SøknadContextActionKeys.SET_SØKNAD_LAGRET,
 });
@@ -115,6 +124,7 @@ export type SøknadContextAction =
     | ResetSøknad
     | FortsettSøknadSenere
     | RequestLagreSøknad
+    | SetIsReloadingApp
     | SetSøknadLagret
     | SetSøknadSendt
     | SetSøknadOmBarnet
@@ -129,6 +139,7 @@ const actionsCreator = {
     avbrytSøknad,
     fortsettSøknadSenere,
     requestLagreSøknad,
+    setIsReloadingApp,
     setSøknadRoute,
     setSøknadOmBarnet,
     setSøknadDeltBosted,
