@@ -1,5 +1,11 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.27.0
+
+### Minor Changes
+
+-   Gå over til å bruke common server oppsett
+
 ## 1.26.27
 
 ### Patch Changes
