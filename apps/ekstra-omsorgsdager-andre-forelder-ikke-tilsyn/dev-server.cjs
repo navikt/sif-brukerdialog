@@ -1,5 +1,5 @@
 const { createProxyMiddleware, fixRequestBody } = require('http-proxy-middleware');
-const getAppSettings = require('./mock/AppSettings.cjs');
+const getAppSettings = require('./mock/getAppSettings.cjs');
 const { injectDecoratorServerSide } = require('@navikt/nav-dekoratoren-moduler/ssr/index.js');
 const express = require('express');
 const server = express();

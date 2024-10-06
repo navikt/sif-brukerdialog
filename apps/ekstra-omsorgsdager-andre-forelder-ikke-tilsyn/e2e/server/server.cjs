@@ -3,7 +3,7 @@ const express = require('express');
 const server = express();
 const path = require('path');
 const mustacheExpress = require('mustache-express');
-const getAppSettings = require('../../mock/AppSettings.cjs');
+const getAppSettings = require('../../mock/getAppSettings.cjs');
 const getDecorator = require('./decorator.cjs');
 const compression = require('compression');
 
@@ -40,9 +40,6 @@ const renderApp = (decoratorFragments) =>
     });
 
 const startServer = async (html) => {
-    console.log(process.env.PUBLIC_PATH);
-    server.get(`${process.env.PUBLIC_PATH}/health/isAlive`, (_req, res) => res.sendStatus(200));
-    server.get(`${process.env.PUBLIC_PATH}/health/isReady`, (_req, res) => res.sendStatus(200));
     server.use(`${process.env.PUBLIC_PATH}/assets`, express.static(path.resolve(__dirname, '../../dist/assets')));
 
     server.get(/^\/(?!.*api)(?!.*dist).*$/, (req, res) => {

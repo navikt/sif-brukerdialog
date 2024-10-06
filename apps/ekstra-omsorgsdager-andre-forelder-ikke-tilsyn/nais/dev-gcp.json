@@ -12,6 +12,7 @@
     "cluster": "dev-gcp",
     "observabilityEnabled": "true",
     "env": {
+        "ENV": "dev",
         "APP_VERSION": "dev",
         "NODE_ENV": "development",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",
