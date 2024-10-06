@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.30.0
+
+### Minor Changes
+
+-   Bruke common serveroppsett
+
 ## 1.29.29
 
 ### Patch Changes

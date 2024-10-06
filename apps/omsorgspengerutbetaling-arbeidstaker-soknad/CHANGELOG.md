@@ -1,11 +1,5 @@
 # @navikt/omsorgspengerutbetaling-arbeidstaker-soknad
 
-## 1.8.0
-
-### Minor Changes
-
--   Bruke common server oppsett
-
 ### Patch Changes
 
 -   Korrigere appStatus dataset
