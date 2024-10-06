@@ -1,22 +1,11 @@
 import { Link } from '@navikt/ds-react';
-import { useEffect } from 'react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { Kvittering } from '@navikt/sif-common-soknad-ds';
 import { AppText, useAppIntl } from '../../i18n';
 import getLenker from '../../lenker';
 
-interface Props {
-    onUnmount: () => void;
-}
-
-const KvitteringPage = ({ onUnmount }: Props) => {
+const KvitteringPage = () => {
     const { text, intl } = useAppIntl();
-
-    useEffect(() => {
-        return () => {
-            onUnmount();
-        };
-    });
 
     return (
         <Page title={text('application.title')}>

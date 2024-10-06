@@ -2,8 +2,8 @@
     "app": "omsorgspengesoknad",
     "namespace": "dusseldorf",
     "team": "dusseldorf",
-    "livenessPath": "/familie/sykdom-i-familien/soknad/omsorgspenger/health/isAlive",
-    "readinessPath": "/familie/sykdom-i-familien/soknad/omsorgspenger/health/isReady",
+    "livenessPath": "/internal/health/isAlive",
+    "readinessPath": "/internal/health/isReady",
     "externalHosts": ["www.nav.no"],
     "accessPolicyOutApps": ["k9-brukerdialog-prosessering"],
     "ingresses": ["https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspenger"],
@@ -12,22 +12,23 @@
     "maxReplicas": 2,
     "observabilityEnabled": "true",
     "env": {
-        "API_TOKENX_AUDIENCE": "prod-gcp:dusseldorf:k9-brukerdialog-prosessering",
-        "API_URL": "http://k9-brukerdialog-prosessering",
-        "K9_SAK_INNSYN_API_URL": "http://k9-sak-innsyn-api",
-        "K9_SAK_INNSYN_API_PATH": "/familie/sykdom-i-familien/soknad/omsorgspenger/k9-sak-innsyn-api",
-        "K9_SAK_INNSYN_API_TOKENX_AUDIENCE": "prod-gcp:dusseldorf:k9-sak-innsyn-api",
         "APP_VERSION": "prod",
-        "APPSTATUS_DATASET": "production",
-        "APPSTATUS_PROJECT_ID": "ryujtq87",
-        "DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=true&chatbot=false&logoutUrl=https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspenger/oauth2/logout",
-        "FEATURE_NYNORSK": "off",
-        "FRONTEND_API_PATH": "/familie/sykdom-i-familien/soknad/omsorgspenger/api",
-        "FRONTEND_VEDLEGG_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspenger/api",
-        "LOGIN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspenger/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/omsorgspenger/soknad",
-        "MINSIDE_URL": "https://www.nav.no/minside",
-        "NPM_CONFIG_CACHE": "/tmp",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgspenger",
-        "VEDLEGG_API_URL": "https://k9-brukerdialog-prosessering"
+        "NPM_CONFIG_CACHE": "/tmp",
+
+        "K9_SAK_INNSYN_API_SCOPE": "prod-gcp:dusseldorf:k9-sak-innsyn-api",
+        "K9_SAK_INNSYN_API_URL": "http://k9-sak-innsyn-api",
+        "K9_SAK_INNSYN_FRONTEND_PATH": "/familie/sykdom-i-familien/soknad/omsorgspenger/api/k9-sak-innsyn",
+
+        "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "prod-gcp:dusseldorf:k9-brukerdialog-prosessering",
+        "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",
+        "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/familie/sykdom-i-familien/soknad/omsorgspenger/api/k9-brukerdialog",
+
+        "SIF_PUBLIC_APPSTATUS_DATASET": "production",
+        "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
+        "SIF_PUBLIC_DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=true&chatbot=false&logoutUrl=https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspenger/oauth2/logout",
+        "SIF_PUBLIC_FEATURE_NYNORSK": "off",
+        "SIF_PUBLIC_LOGIN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspenger/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/omsorgspenger/soknad",
+        "SIF_PUBLIC_MINSIDE_URL": "https://www.nav.no/minside"
     }
 }
