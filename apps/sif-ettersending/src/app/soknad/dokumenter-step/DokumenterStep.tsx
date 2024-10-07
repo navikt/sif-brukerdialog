@@ -38,8 +38,9 @@ const DokumenterStep = ({ søknadstype, søker, soknadId }: Props) => {
         );
     };
 
-    const { hasPendingUploads, attachments, sizeOver24Mb } = useAttachmentsHelper(
+    const { hasPendingUploads, attachments, maxTotalSizeExceeded } = useAttachmentsHelper(
         values[SoknadFormField.dokumenter],
+        [],
         onAttachmentsChange,
     );
 
@@ -54,7 +55,7 @@ const DokumenterStep = ({ søknadstype, søker, soknadId }: Props) => {
         <SoknadFormStep
             id={StepID.DOKUMENTER}
             søknadstype={søknadstype}
-            buttonDisabled={hasPendingUploads || sizeOver24Mb}>
+            buttonDisabled={hasPendingUploads || maxTotalSizeExceeded}>
             <VStack gap="8">
                 <SifGuidePanel>
                     <p>

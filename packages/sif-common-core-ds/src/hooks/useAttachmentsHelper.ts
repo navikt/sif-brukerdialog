@@ -9,19 +9,20 @@ import {
 
 const useAttachmentsHelper = (
     attachments: Attachment[] | undefined = [],
-    onChange: (attachments: Attachment[]) => void,
+    otherAttachments: Attachment[] | undefined = [],
+    onChange?: (attachments: Attachment[]) => void,
 ) => {
     const dokumenter: Attachment[] = useMemo(() => {
         return attachments || [];
     }, [attachments]);
 
     const hasPendingUploads: boolean = hasPendingAttachments(attachments);
-    const totalSize = getTotalSizeOfAttachments(attachments);
-    const sizeOver24Mb = totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
+    const totalSize = getTotalSizeOfAttachments([...attachments, ...otherAttachments]);
+    const maxTotalSizeExceeded = totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
 
     const ref = useRef({ dokumenter });
     useEffect(() => {
-        if (hasPendingUploads) {
+        if (hasPendingUploads || !onChange) {
             return;
         }
         const doks = dokumenter.filter(attachmentIsUploadedAndIsValidFileFormat);
@@ -37,7 +38,7 @@ const useAttachmentsHelper = (
         attachments: dokumenter,
         hasPendingUploads,
         totalSize,
-        sizeOver24Mb,
+        maxTotalSizeExceeded,
     };
 };
 

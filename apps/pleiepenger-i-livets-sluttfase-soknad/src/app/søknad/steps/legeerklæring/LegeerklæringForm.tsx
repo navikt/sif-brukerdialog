@@ -2,12 +2,8 @@ import { VStack } from '@navikt/ds-react';
 import React from 'react';
 import { FormikAttachmentForm } from '@navikt/sif-common-core-ds';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import useAttachmentsHelper from '@navikt/sif-common-core-ds/src/hooks/useAttachmentsHelper';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
-import {
-    getTotalSizeOfAttachments,
-    hasPendingAttachments,
-    MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
-} from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { AppText, useAppIntl } from '../../../i18n';
@@ -38,17 +34,16 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({
     isSubmitting,
 }) => {
     const { text, intl } = useAppIntl();
-
-    const hasPendingUploads: boolean = hasPendingAttachments(legeerklæringer);
-    const totalSize = getTotalSizeOfAttachments([...legeerklæringer, ...andreVedlegg]);
-    const totalSizeOfAttachmentsOver24Mb = totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
-
+    const { hasPendingUploads, maxTotalSizeExceeded: totalSizeExceeded } = useAttachmentsHelper(
+        legeerklæringer,
+        andreVedlegg,
+    );
     return (
         <Form
             formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
             includeValidationSummary={true}
             submitPending={isSubmitting}
-            submitDisabled={hasPendingUploads || totalSizeOfAttachmentsOver24Mb}
+            submitDisabled={hasPendingUploads || totalSizeExceeded}
             runDelayedFormValidation={true}
             onBack={goBack}>
             <VStack gap="6">
