@@ -59,9 +59,11 @@ const startServer = async (html) => {
 
 const logError = (errorMessage, details) => console.log(errorMessage, details);
 
-console.log('Getting decorator...', process.env.SIF_PUBLIC_DEKORATOR_URL);
+const appSettings = getAppSettings(true);
+print(appSettings);
+console.log('appSettings', appSettings);
 
-getDecorator(getAppSettings(true))
+getDecorator(appSettings)
     .then(renderApp, (error) => {
         logError('Failed to get decorator', error);
         process.exit(1);

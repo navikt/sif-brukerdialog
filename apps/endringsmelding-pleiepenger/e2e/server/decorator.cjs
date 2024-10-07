@@ -27,10 +27,7 @@ const decoratorParams = new URLSearchParams({
 
 const getDecorator = (appSettings) =>
     new Promise((resolve, reject) => {
-        const url =
-            process.env.SIF_PUBLIC_DEKORATOR_URL ||
-            'https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://endringsmelding-pleiepenger.intern.dev.nav.no/oauth2/logout';
-        fetch(url, decoratorParams)
+        fetch(`${process.env.SIF_PUBLIC_DEKORATOR_URL}`, decoratorParams)
             .then((response) => response.text())
             .then((html) => {
                 if (html) {
