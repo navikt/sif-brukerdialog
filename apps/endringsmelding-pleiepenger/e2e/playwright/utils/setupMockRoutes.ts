@@ -10,7 +10,7 @@ export const setupScenarioMockRoutes = async (page: Page, scenario: ScenarioType
     await page.route('**/oppslag/arbeidsgiver**', async (route) => {
         await route.fulfill({ status: 200, body: JSON.stringify(mockData.arbeidsgiver) });
     });
-    await page.route('**/api/innsyn/sak', async (route) => {
+    await page.route('**/innsyn/sak', async (route) => {
         await route.fulfill({ status: 200, body: JSON.stringify(mockData.sak) });
     });
 };

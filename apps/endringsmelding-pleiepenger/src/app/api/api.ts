@@ -14,13 +14,13 @@ const axiosConfigCommon: AxiosRequestConfig = {
 
 export const axiosConfigPsb: AxiosRequestConfig = {
     ...axiosConfigCommon,
-    baseURL: getEnvVariableOrDefault('FRONTEND_API_PATH', 'http://localhost:8080'),
+    baseURL: getEnvVariableOrDefault('K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH', 'http://localhost:8080'),
 };
 
 const axiosConfigInnsyn: AxiosRequestConfig = {
     ...axiosConfigCommon,
     transformResponse: storageParser,
-    baseURL: getEnvVariableOrDefault('FRONTEND_INNSYN_API_PATH', 'http://localhost:8082'),
+    baseURL: getEnvVariableOrDefault('K9_SAK_INNSYN_FRONTEND_PATH', 'http://localhost:8082'),
 };
 
 axios.interceptors.request.use((config) => {
