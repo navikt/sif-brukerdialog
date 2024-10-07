@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
+const { injectDecoratorServerSide } = require('@navikt/nav-dekoratoren-moduler/ssr/index.js');
 const express = require('express');
 const server = express();
 const path = require('path');
 const mustacheExpress = require('mustache-express');
-const getAppSettings = require('./src/build/AppSettings.cjs');
-const getDecorator = require('./src/build/decorator.cjs');
 const compression = require('compression');
+const getAppSettings = require('../../dev/AppSettings.cjs');
 
 require('dotenv').config();
 
@@ -13,7 +13,7 @@ server.use(express.json());
 server.disable('x-powered-by');
 server.use(compression());
 
-server.set('views', path.resolve(`${__dirname}/dist`));
+server.set('views', path.resolve(`${__dirname}/../../dist`));
 
 server.set('view engine', 'mustache');
 server.engine('html', mustacheExpress());
@@ -28,24 +28,37 @@ server.use((_req, res, next) => {
     next();
 });
 
-const renderApp = (decoratorFragments) =>
-    new Promise((resolve, reject) => {
-        server.render('index.html', decoratorFragments, (err, html) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(html);
-            }
-        });
+async function injectDecorator(filePath) {
+    return injectDecoratorServerSide({
+        env: 'dev',
+        filePath,
+        params: {
+            enforceLogin: false,
+            simple: true,
+        },
     });
+}
 
-const startServer = async (html) => {
+const startServer = async () => {
     server.get(`${process.env.PUBLIC_PATH}/health/isAlive`, (_req, res) => res.sendStatus(200));
     server.get(`${process.env.PUBLIC_PATH}/health/isReady`, (_req, res) => res.sendStatus(200));
-    server.use(`${process.env.PUBLIC_PATH}/assets`, express.static(path.resolve(__dirname, 'dist/assets')));
+    server.use(`${process.env.PUBLIC_PATH}/assets`, express.static(path.resolve(__dirname, '../../dist/assets')));
+
+    const indexHtmlPath = path.resolve(__dirname, '../../dist/index.html');
+
+    const htmlWithDecoratorInjected = await injectDecorator(indexHtmlPath);
+
+    const renderedHtml = htmlWithDecoratorInjected.replaceAll(
+        '{{{APP_SETTINGS}}}',
+        JSON.stringify({
+            APP_VERSION: `${process.env.APP_VERSION}`,
+            PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
+            ...getAppSettings(),
+        }),
+    );
 
     server.get(/^\/(?!.*api)(?!.*dist).*$/, (req, res) => {
-        res.send(html);
+        res.send(renderedHtml);
     });
 
     const port = process.env.PORT || 8080;
@@ -54,11 +67,4 @@ const startServer = async (html) => {
     });
 };
 
-const logError = (errorMessage, details) => console.log(errorMessage, details);
-
-getDecorator(getAppSettings())
-    .then(renderApp, (error) => {
-        logError('Failed to get decorator', error);
-        process.exit(1);
-    })
-    .then(startServer, (error) => logError('Failed to render app', error));
+startServer();

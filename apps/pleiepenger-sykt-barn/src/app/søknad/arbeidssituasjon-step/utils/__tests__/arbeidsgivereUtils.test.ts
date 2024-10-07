@@ -60,6 +60,13 @@ vi.mock('@navikt/sif-common-core-ds/src/utils/envUtils', () => {
     };
 });
 
+vi.mock('@navikt/sif-common/src/env/commonEnv', () => {
+    return {
+        getEnvironmentVariable: () => 'mockedApiUrl',
+        getEnvVariableOrDefault: () => 'mockedApiUrl',
+    };
+});
+
 describe('syncArbeidsforholdWithArbeidsgivere', () => {
     it('should replace all arbeidsforhold if none present in arbeidsgivere', () => {
         const result = syncAnsattArbeidsforhold(organisasjoner, arbeidsforhold);

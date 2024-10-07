@@ -10,7 +10,7 @@ import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/src/forms/ferie
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/types';
 import { UtenlandsoppholdUtvidet } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
 import UtenlandsoppholdListAndDialog from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/UtenlandsoppholdListAndDialog';
-import { getDate1YearAgo, getDate1YearFromNow, getDate3YearsAgo, DateRange } from '@navikt/sif-common-utils';
+import { getDate1YearAgo, getDate1YearFromNow, DateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
 import { useFormikContext } from 'formik';
@@ -22,6 +22,8 @@ import { StepID } from '../../types/StepID';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { søkerKunHelgedager } from '../../utils/formValuesUtils';
 import {
+    getPeriodeMaksDato,
+    getPeriodeMinDato,
     validateFerieuttakIPerioden,
     validateFradato,
     validateTildato,
@@ -42,8 +44,8 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
         : undefined;
 
     const periodeFra = datepickerUtils.getDateFromDateString(values.periodeFra);
-
     const periodeTil = datepickerUtils.getDateFromDateString(values.periodeTil);
+
     const periode: DateRange = {
         from: periodeFra || getDate1YearAgo(),
         to: periodeTil || getDate1YearFromNow(),
@@ -84,16 +86,8 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
                         </p>
                     </ExpandableInfo>
                 }
-                minDate={
-                    barnetSøknadenGjelder?.fødselsdato
-                        ? dayjs
-                              .max(
-                                  dayjs(getDate3YearsAgo()).endOf('day'),
-                                  dayjs(barnetSøknadenGjelder?.fødselsdato).endOf('day'),
-                              )!
-                              .toDate()
-                        : getDate3YearsAgo()
-                }
+                minDate={getPeriodeMinDato(barnetSøknadenGjelder?.fødselsdato)}
+                maxDate={getPeriodeMaksDato(values.periodeFra)}
                 fromInputProps={{
                     label: text('steg.tidsrom.hvilketTidsrom.fom'),
                     validate: validateFraDatoField,
@@ -103,7 +97,7 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
                     label: text('steg.tidsrom.hvilketTidsrom.tom'),
                     validate: validateTilDatoField,
                     name: SøknadFormField.periodeTil,
-                    defaultMonth: periodeFra ? new Date(periodeFra) : undefined,
+                    defaultMonth: periodeFra,
                 }}
             />
             {søkerKunHelgedager(values.periodeFra, values.periodeTil) && (

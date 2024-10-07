@@ -96,7 +96,6 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
                                     name={getFieldName(ArbeidIPeriodeFormField.erLiktHverUke)}
                                     legend={spørsmål.erLiktHverUke}
                                     validate={getArbeidIPeriodeErLiktHverUkeValidator(intlValues)}
-                                    renderHorizontal={false}
                                     labels={{
                                         yes: text(`arbeidIPeriode.erLiktHverUke.ja`),
                                         no: text(`arbeidIPeriode.erLiktHverUke.nei`),

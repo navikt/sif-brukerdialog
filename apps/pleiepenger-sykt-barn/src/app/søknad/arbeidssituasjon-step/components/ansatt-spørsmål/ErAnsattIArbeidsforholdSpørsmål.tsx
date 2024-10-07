@@ -26,7 +26,6 @@ const ErAnsattIArbeidsforholdSpørsmål: React.FunctionComponent<Props> = ({ arb
                 navn: arbeidsforhold.arbeidsgiver.navn,
             })}
             data-testid="er-ansatt"
-            renderHorizontal={true}
             name={fieldName}
             value={arbeidsforhold.erAnsatt}
             validate={(value) => {

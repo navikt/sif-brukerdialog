@@ -1,5 +1,6 @@
 import { Alert } from '@navikt/ds-react';
 import React from 'react';
+import { getAttachmentURLFrontend } from '@navikt/sif-common';
 import { SIFCommonGeneralEvents, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
@@ -20,7 +21,6 @@ import { ApiEndpoint } from '../../types/ApiEndpoint';
 import { Person } from '../../types/Person';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import { Søknadstype } from '../../types/Søknadstype';
-import { getAttachmentURLFrontend } from '../../utils/appAttachmentUtils';
 import { navigateToLoginPage } from '../../utils/navigationUtils';
 import { validateDocuments } from '../../validation/fieldValidations';
 import SoknadFormStep from '../SoknadFormStep';

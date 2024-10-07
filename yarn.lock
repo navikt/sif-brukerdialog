@@ -5627,6 +5627,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@navikt/nav-dekoratoren-moduler@npm:3.1.0":
+  version: 3.1.0
+  resolution: "@navikt/nav-dekoratoren-moduler@npm:3.1.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fnav-dekoratoren-moduler%2F3.1.0%2Fd0731ed243140296e5d363ecaba39da3e314031e"
+  peerDependencies:
+    csp-header: ">=5.x"
+    html-react-parser: ">=5.x"
+    jsdom: ">=16.x"
+    react: ">=17.x"
+  checksum: 10/f464bbefafcf9fdc1c98c7fb8d531efa3834f187a22217615d6ad44f699e4b4b08ddc03660edf312fde9dea229f5bbbeedc275cf67bf9a78cefb3005319e1038
+  languageName: node
+  linkType: hard
+
 "@navikt/next-logger@npm:1.32.0":
   version: 1.32.0
   resolution: "@navikt/next-logger@npm:1.32.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fnext-logger%2F1.32.0%2Fa1044dc4fa417a599f4805ea449c3a1ffebc4910"
@@ -6087,7 +6099,9 @@ __metadata:
     "@navikt/ds-css": "npm:7.1.2"
     "@navikt/ds-icons": "npm:3.4.3"
     "@navikt/ds-react": "npm:7.1.2"
+    "@navikt/nav-dekoratoren-moduler": "npm:3.1.0"
     "@navikt/sif-app-register": "npm:*"
+    "@navikt/sif-common": "npm:*"
     "@navikt/sif-common-amplitude": "npm:*"
     "@navikt/sif-common-core-ds": "npm:*"
     "@navikt/sif-common-formik-ds": "npm:*"
@@ -6711,6 +6725,7 @@ __metadata:
     "@navikt/ds-tailwind": "npm:7.1.2"
     "@navikt/nav-dekoratoren-moduler": "npm:2.1.6"
     "@navikt/sif-app-register": "npm:*"
+    "@navikt/sif-common": "npm:*"
     "@navikt/sif-common-amplitude": "npm:*"
     "@navikt/sif-common-core-ds": "npm:*"
     "@navikt/sif-common-formik-ds": "npm:*"

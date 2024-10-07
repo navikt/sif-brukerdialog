@@ -1,6 +1,7 @@
 import { Alert, Link } from '@navikt/ds-react';
 import React from 'react';
 import { useAppIntl } from '@i18n/index';
+import { getAttachmentURLFrontend } from '@navikt/sif-common';
 import { ApplikasjonHendelse, SIFCommonGeneralEvents, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FileUploadErrors from '@navikt/sif-common-core-ds/src/components/file-upload-errors/FileUploadErrors';
@@ -22,7 +23,6 @@ import getLenker from '../../lenker';
 import { StepCommonProps } from '../../types/StepCommonProps';
 import { StepID } from '../../types/StepID';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
-import { getAttachmentURLFrontend } from '../../utils/appAttachmentUtils';
 import { relocateToLoginPage } from '../../utils/navigationUtils';
 import { validateLegeerklæring } from '../../validation/fieldValidations';
 import SøknadFormStep from '../SøknadFormStep';
