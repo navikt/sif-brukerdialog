@@ -1,7 +1,7 @@
 import { YesOrNoDontKnow } from '../../../src/app/types/YesOrNoDontKnow';
 
 export const mellomlagring = {
-    søknadHashString: '01eb5f48e0cf2ce54a6d8ca6b9e3bc22427e3b91',
+    søknadHashString: '2cc7804fe085530d3864aa8e71c92f08a39d2716',
     søknadsdata: {
         id: '3f673283-3c81-41b2-ab8c-1eed2d78e4bd',
         velkommen: {

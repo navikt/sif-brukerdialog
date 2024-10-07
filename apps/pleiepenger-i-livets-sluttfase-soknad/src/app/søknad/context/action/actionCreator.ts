@@ -3,12 +3,12 @@ import { KvitteringInfo } from '../../../types/KvitteringInfo';
 import { TempFormValues } from '../../../types/SøknadContextState';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import {
-    OpplysningerOmPleietrengendeSøknadsdata,
-    LegeerklæringSøknadsdata,
-    TidsromSøknadsdata,
     ArbeidssituasjonSøknadsdata,
     ArbeidstidSøknadsdata,
+    LegeerklæringSøknadsdata,
     MedlemskapSøknadsdata,
+    OpplysningerOmPleietrengendeSøknadsdata,
+    TidsromSøknadsdata,
 } from '../../../types/søknadsdata/Søknadsdata';
 import { OppsummeringFormValues } from '../../steps/oppsummering/OppsummeringStep';
 
@@ -17,6 +17,7 @@ export enum SøknadContextActionKeys {
     START_SØKNAD = 'startSøknad',
     AVBRYT_SØKNAD = 'avbrytSøknad',
     FORTSETT_SØKNAD_SENERE = 'fortsettSøknadSenere',
+    SET_IS_RELOADING_APP = 'setIsReloadingApp',
     SET_SØKNAD_ROUTE = 'setSøknadRoute',
     SET_SØKNAD_TEMP_FORM_DATA = 'setSøknadTempFormData',
     SET_SØKNAD_OPPLYSNINGER_OM_PLEIETRENGENDE = 'setSøknadOpplysningerOmPleietrengende',
@@ -50,6 +51,10 @@ interface FortsettSøknadSenere {
 interface RequestLagreSøknad {
     type: SøknadContextActionKeys.REQUEST_LAGRE_SØKNAD;
 }
+interface SetIsReloadingApp {
+    type: SøknadContextActionKeys.SET_IS_RELOADING_APP;
+}
+
 interface SetSøknadLagret {
     type: SøknadContextActionKeys.SET_SØKNAD_LAGRET;
 }
@@ -134,6 +139,10 @@ const requestLagreSøknad = (): RequestLagreSøknad => ({
     type: SøknadContextActionKeys.REQUEST_LAGRE_SØKNAD,
 });
 
+const setIsReloadingApp = (): SetIsReloadingApp => ({
+    type: SøknadContextActionKeys.SET_IS_RELOADING_APP,
+});
+
 const setSøknadLagret = (): SetSøknadLagret => ({
     type: SøknadContextActionKeys.SET_SØKNAD_LAGRET,
 });
@@ -207,6 +216,7 @@ export type SøknadContextAction =
     | ResetSøknad
     | FortsettSøknadSenere
     | RequestLagreSøknad
+    | SetIsReloadingApp
     | SetSøknadLagret
     | SetSøknadSendt
     | SetSøknadTempFormData
@@ -228,6 +238,7 @@ const actionsCreator = {
     avbrytSøknad,
     fortsettSøknadSenere,
     requestLagreSøknad,
+    setIsReloadingApp,
     setSøknadRoute,
     setSøknadTempFormData,
     setSøknadOpplysningerOmPleietrengende,
