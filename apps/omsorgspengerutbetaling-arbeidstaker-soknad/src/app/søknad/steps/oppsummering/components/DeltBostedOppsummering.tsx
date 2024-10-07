@@ -4,7 +4,7 @@ import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { AppText } from '../../../../i18n';
 import { DeltBostedSøknadsdata } from '../../../../types/søknadsdata/DeltBostedSøknadsdata';
-import { getAttachmentsInIdArray } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import { getAttachmentsInLocationArray } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 
 interface Props {
     vedlegg: string[];
@@ -13,8 +13,8 @@ interface Props {
 }
 
 const DeltBostedOppsummering: React.FC<Props> = ({ vedlegg, deltBostedSøknadsdata, onEdit }) => {
-    const delteBosteder = getAttachmentsInIdArray({
-        ids: vedlegg,
+    const delteBosteder = getAttachmentsInLocationArray({
+        locations: vedlegg,
         attachments: deltBostedSøknadsdata?.vedlegg,
     });
 

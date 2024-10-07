@@ -10,7 +10,7 @@ const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
     if (!vedlegg || vedlegg.length === 0) {
         return [];
     }
-    return vedlegg.filter(attachmentIsUploadedAndIsValidFileFormat).map(({ info }) => info?.frontendUrl || '');
+    return vedlegg.filter(attachmentIsUploadedAndIsValidFileFormat).map(({ info }) => info?.location || '');
 };
 
 export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadApiData | undefined => {

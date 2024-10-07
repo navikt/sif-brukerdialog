@@ -5,7 +5,7 @@ import { AppText } from '../../../../i18n';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { LegeerklæringSøknadsdata } from '../../../../types/søknadsdata/LegeerklæringSøknadsdata';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
-import { getAttachmentsInIdArray } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import { getAttachmentsInLocationArray } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 
 interface Props {
     apiData: SøknadApiData;
@@ -14,8 +14,8 @@ interface Props {
 }
 
 const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringSøknadsdata, onEdit }) => {
-    const legeerklæringer = getAttachmentsInIdArray({
-        ids: apiData.vedlegg,
+    const legeerklæringer = getAttachmentsInLocationArray({
+        locations: apiData.vedlegg,
         attachments: legeerklæringSøknadsdata?.vedlegg,
     });
 

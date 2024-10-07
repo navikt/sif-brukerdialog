@@ -8,17 +8,17 @@ export const MAX_TOTAL_ATTACHMENT_SIZE_BYTES = 1000 * 1000 * MAX_TOTAL_ATTACHMEN
 
 const VEDLEGG_ID_SPLIT_KEY = 'vedlegg/';
 
-export const getAttachmentsInIdArray = ({
-    ids,
+export const getAttachmentsInLocationArray = ({
+    locations,
     attachments,
 }: {
-    ids: string[] | undefined;
+    locations: string[] | undefined;
     attachments: Attachment[] | undefined;
 }) => {
-    if (!attachments || !ids) {
+    if (!attachments || !locations) {
         return [];
     }
-    return (attachments || []).filter((a) => a.info && ids.includes(a.info.location));
+    return (attachments || []).filter((a) => a.info && locations.includes(a.info.location));
 };
 
 export const getAttachmentsApiData = (attachments: Attachment[]): string[] => {

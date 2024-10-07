@@ -1,6 +1,6 @@
 import { Alert, FormSummary } from '@navikt/ds-react';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
-import { getAttachmentsInIdArray } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import { getAttachmentsInLocationArray } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { AppText } from '../../../../i18n';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { DeltBostedSøknadsdata } from '../../../../types/søknadsdata/DeltBostedSøknadsdata';
@@ -17,12 +17,12 @@ const VedleggOppsummering: React.FunctionComponent<Props> = ({
     legeerklæringSøknadsdata,
     samværsavtaleSøknadsdata,
 }) => {
-    const legeerklæringer = getAttachmentsInIdArray({
-        ids: apiData.legeerklæring,
+    const legeerklæringer = getAttachmentsInLocationArray({
+        locations: apiData.legeerklæring,
         attachments: legeerklæringSøknadsdata?.vedlegg,
     });
-    const samværsavtaler = getAttachmentsInIdArray({
-        ids: apiData.samværsavtale,
+    const samværsavtaler = getAttachmentsInLocationArray({
+        locations: apiData.samværsavtale,
         attachments: samværsavtaleSøknadsdata?.vedlegg,
     });
     return (

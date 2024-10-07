@@ -3,7 +3,7 @@ import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { AppText } from '../../../../i18n';
 import { LegeerklæringSøknadsdata } from '../../../../types/søknadsdata/LegeerklæringSøknadsdata';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
-import { getAttachmentsInIdArray } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import { getAttachmentsInLocationArray } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 
 interface Props {
     vedlegg: string[];
@@ -12,8 +12,8 @@ interface Props {
 }
 
 const LegeerklæringOppsummering = ({ vedlegg, legeerklæringSøknadsdata, onEdit }: Props) => {
-    const legeerklæringer = getAttachmentsInIdArray({
-        ids: vedlegg,
+    const legeerklæringer = getAttachmentsInLocationArray({
+        locations: vedlegg,
         attachments: legeerklæringSøknadsdata?.vedlegg,
     });
 
