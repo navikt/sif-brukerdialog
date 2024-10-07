@@ -1,6 +1,6 @@
 {
     "$schema": "https://turborepo.org/schema.json",
-    "globalEnv": ["PACKAGES_AUTH_TOKEN"],
+    "globalEnv": ["PACKAGES_AUTH_TOKEN", "SIF_PUBLIC_DEKORATOR_URL"],
     "tasks": {
         "build": {
             "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
