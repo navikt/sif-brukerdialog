@@ -3,8 +3,8 @@ const express = require('express');
 const server = express();
 const path = require('path');
 const mustacheExpress = require('mustache-express');
-const getAppSettings = require('./src/build/AppSettings.cjs');
-const getDecorator = require('./src/build/decorator.cjs');
+const getAppSettings = require('./e2e/server/AppSettings.cjs');
+const getDecorator = require('./e2e/server/decorator.cjs');
 const compression = require('compression');
 
 require('dotenv').config();
@@ -40,12 +40,14 @@ const renderApp = (decoratorFragments) =>
     });
 
 const startServer = async (html) => {
-    server.get(`${process.env.PUBLIC_PATH}/health/isAlive`, (_req, res) => res.sendStatus(200));
-    server.get(`${process.env.PUBLIC_PATH}/health/isReady`, (_req, res) => res.sendStatus(200));
-    server.use(`${process.env.PUBLIC_PATH}/assets`, express.static(path.resolve(__dirname, 'dist/assets')));
-    server.use(`**/assets`, express.static(path.resolve(__dirname, 'dist/assets')));
+    server.use(`${process.env.PUBLIC_PATH}/assets`, express.static(path.resolve(__dirname, './dist/assets')));
 
-    server.get(/^\/(?!.*api)(?!.*innsynapi)(?!.*dist).*$/, (req, res) => {
+    server.get('/mockServiceWorker.js', (req, res) => {
+        const filePath = path.join(__dirname, 'mockServiceWorker.js');
+        res.sendFile(filePath);
+    });
+
+    server.get(/^\/(?!.*api)(?!.*dist).*$/, (req, res) => {
         res.send(html);
     });
 

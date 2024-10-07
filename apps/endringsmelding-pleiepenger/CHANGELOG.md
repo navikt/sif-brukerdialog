@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.32.0
+
+### Minor Changes
+
+-   Bruke common server-oppsett
+
 ## 2.31.27
 
 ### Patch Changes
