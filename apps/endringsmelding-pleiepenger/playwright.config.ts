@@ -32,6 +32,7 @@ export default defineConfig({
             GITHUB_REF_NAME: 'some_branch_name',
             NODE_ENV: 'development',
             PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger',
+
             SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
             SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
             SIF_PUBLIC_DEKORATOR_URL:
@@ -47,9 +48,10 @@ export default defineConfig({
                 '/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/api/k9-brukerdialog',
             K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: 'dev-gcp:dusseldorf:k9-brukerdialog-prosessering',
             K9_BRUKERDIALOG_PROSESSERING_API_URL: 'http://k9-brukerdialog-prosessering',
+
             K9_SAK_INNSYN_FRONTEND_PATH: '/familie/sykdom-i-familien/soknad/endringsmelding/api/k9-sak-innsyn',
             K9_SAK_INNSYN_API_URL: 'http://k9-sak-innsyn-api',
-            K9_SAK_INNSYN_TOKENX_AUDIENCE: 'dev-gcp:dusseldorf:k9-sak-innsyn-api',
+            K9_SAK_INNSYN_API_SCOPE: 'dev-gcp:dusseldorf:k9-sak-innsyn-api',
         },
     },
 });
