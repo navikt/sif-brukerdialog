@@ -17,8 +17,8 @@ const getAppSettings = (isTest) => {
 
         K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: `${process.env.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH}`,
         K9_BRUKERDIALOG_PROSESSERING_API_URL: `${process.env.K9_BRUKERDIALOG_PROSESSERING_API_URL}`,
-        K9_SAK_INNSYN_FRONTEND_PATH: `${process.env.K9_SAK_INNSYN_FRONTEND_PATH}`,
-        K9_SAK_INNSYN_API_URL: `${process.env.K9_SAK_INNSYN_API_URL}`,
+        SIF_INNSYN_APIFRONTEND_PATH: `${process.env.SIF_INNSYN_APIFRONTEND_PATH}`,
+        SIF_INNSYN_API_URL: `${process.env.SIF_INNSYN_API_URL}`,
 
         DOMAIN_URL: `${process.env.DOMAIN_URL}`,
         MSW: isTest ? 'off' : `${process.env.MSW}`,
