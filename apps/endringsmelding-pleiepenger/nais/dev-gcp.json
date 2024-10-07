@@ -14,7 +14,6 @@
     "env": {
         "APP_VERSION": "dev",
         "ENV": "dev",
-        "GITHUB_REF_NAME": "some_branch_name",
         "NODE_ENV": "development",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
 
@@ -25,7 +24,6 @@
         "SIF_PUBLIC_LOGIN_URL": "http://localhost:8081/auth-mock/cookie?subject=mockSubject&redirect_location=http://localhost:8080",
         "SIF_PUBLIC_INNSYN_URL": "https://dine-pleiepenger.intern.dev.nav.no/innsyn",
         "SIF_PUBLIC_MINSIDE_URL": "https://www.nav.no/minside",
-        "SIF_PUBLIC_FEATURE_NYNORSK": "on",
         "SIF_PUBLIC_FEATURE_VELG_SCENARIO": "on",
 
         "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/api/k9-brukerdialog",
