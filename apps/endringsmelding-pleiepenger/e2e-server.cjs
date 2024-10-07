@@ -60,8 +60,8 @@ const startServer = async (html) => {
 const logError = (errorMessage, details) => console.log(errorMessage, details);
 
 const appSettings = getAppSettings(true);
-print(appSettings);
 console.log('appSettings', appSettings);
+console.info(appSettings);
 
 getDecorator(appSettings)
     .then(renderApp, (error) => {
