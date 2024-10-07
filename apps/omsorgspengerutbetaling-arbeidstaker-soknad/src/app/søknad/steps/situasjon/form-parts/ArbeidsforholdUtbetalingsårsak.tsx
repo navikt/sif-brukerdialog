@@ -26,7 +26,6 @@ interface Props {
 const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Props) => {
     const { text, intl } = useAppIntl();
     const { values, setFieldValue } = useFormikContext<SituasjonFormValues>();
-    // const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = useState<File[]>([]);
 
     const getFieldName = (field: ArbeidsforholdFormFields) => `${parentFieldName}.${field}` as ArbeidsforholdFormFields;
 

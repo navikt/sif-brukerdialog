@@ -37,7 +37,7 @@ export const useFormikFileUploader = ({
                 const response = await uploadVedlegg(file);
                 const location = response.headers.location;
                 const id = getAttachmentId(location);
-                attachment = setAttachmentPendingToFalse(attachment);
+                attachment.pending = false;
                 attachment.info = {
                     location,
                     id,
@@ -48,7 +48,7 @@ export const useFormikFileUploader = ({
                 if (isForbidden(error) || isUnauthorized(error)) {
                     onUnauthorizedOrForbiddenUpload();
                 }
-                setAttachmentPendingToFalse(attachment);
+                attachment.pending = false;
             }
         }
     }
@@ -84,7 +84,7 @@ export const useFormikFileUploader = ({
         replaceFn: FormikFieldArrayReplaceFn,
     ) {
         failedAttachments.forEach((attachment) => {
-            attachment = setAttachmentPendingToFalse(attachment);
+            attachment.pending = false;
             updateAttachmentListElement(allAttachments, attachment, replaceFn);
         });
         const failedFiles: File[] = failedAttachments
@@ -108,11 +108,6 @@ export const useFormikFileUploader = ({
         replaceFn: FormikFieldArrayReplaceFn,
     ) {
         replaceFn(attachments.indexOf(attachment), { ...attachment, file: mapFileToPersistedFile(attachment.file) });
-    }
-
-    function setAttachmentPendingToFalse(attachment: Attachment) {
-        attachment.pending = false;
-        return attachment;
     }
 
     function addPendingAttachmentToFieldArray(file: File, pushFn: FormikFieldArrayPushFn) {

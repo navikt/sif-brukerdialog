@@ -51,7 +51,9 @@ const FormikAttachmentForm = ({
                     attachments={attachments}
                     name={fieldName}
                     buttonLabel={labels.addLabel}
-                    onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
+                    onErrorUploadingAttachments={(att) => {
+                        setFilesThatDidntGetUploaded(att);
+                    }}
                     onFileInputClick={() => {
                         setFilesThatDidntGetUploaded([]);
                     }}

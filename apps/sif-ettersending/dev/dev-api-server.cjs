@@ -106,17 +106,19 @@ const startServer = () => {
     });
 
     server.post('/vedlegg', (req, res) => {
-        res.set('Access-Control-Expose-Headers', 'Location');
-        res.set('Location', 'nav.no');
-        const busboy = busboyCons({ headers: req.headers });
-        busboy.on('finish', () => {
-            res.writeHead(200, { Location: '/vedlegg/123' });
-            res.end();
-        });
-        req.pipe(busboy);
+        setTimeout(() => {
+            res.set('Access-Control-Expose-Headers', 'Location');
+            res.set('Location', 'nav.no');
+            const busboy = busboyCons({ headers: req.headers });
+            busboy.on('finish', () => {
+                res.writeHead(200, { Location: '/vedlegg/123' });
+                res.end();
+            });
+            req.pipe(busboy);
+        }, 2000);
     });
 
-    server.delete('/vedlegg', (req, res) => {
+    server.delete('/vedlegg/**', (req, res) => {
         res.sendStatus(200);
     });
 

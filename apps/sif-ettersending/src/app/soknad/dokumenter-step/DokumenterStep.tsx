@@ -1,14 +1,9 @@
 import { VStack } from '@navikt/ds-react';
-import React from 'react';
 import { SIFCommonGeneralEvents, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { FormikAttachmentForm } from '@navikt/sif-common-core-ds';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import useAttachmentsHelper from '@navikt/sif-common-core-ds/src/hooks/useAttachmentsHelper';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
-import {
-    getTotalSizeOfAttachments,
-    hasPendingAttachments,
-    MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
-} from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { useFormikContext } from 'formik';
 import { AppText, useAppIntl } from '../../i18n';
 import { Person } from '../../types/Person';
@@ -28,13 +23,25 @@ interface Props {
 const DokumenterStep = ({ søknadstype, søker, soknadId }: Props) => {
     const { text } = useAppIntl();
     const { values, setFieldValue } = useFormikContext<SoknadFormData>();
-    const dokumenter: Attachment[] = React.useMemo(() => {
-        return values ? values[SoknadFormField.dokumenter] : [];
-    }, [values]);
-    const hasPendingUploads: boolean = hasPendingAttachments(dokumenter);
-    const totalSize = getTotalSizeOfAttachments(values.dokumenter);
-    const sizeOver24Mb = totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
-    const ref = React.useRef({ dokumenter });
+
+    const onAttachmentsChange = (attachments: Attachment[]) => {
+        const formValues = { ...values, dokumenter: attachments };
+        setFieldValue(SoknadFormField.dokumenter, attachments);
+        SøknadTempStorage.update(
+            soknadId,
+            formValues,
+            StepID.DOKUMENTER,
+            {
+                søker,
+            },
+            søknadstype,
+        );
+    };
+
+    const { hasPendingUploads, attachments, sizeOver24Mb } = useAttachmentsHelper(
+        values[SoknadFormField.dokumenter],
+        onAttachmentsChange,
+    );
 
     const { logUserLoggedOut, logEvent } = useAmplitudeInstance();
 
@@ -42,28 +49,6 @@ const DokumenterStep = ({ søknadstype, søker, soknadId }: Props) => {
         await logUserLoggedOut('Ved opplasting av vedlegg');
         navigateToLoginPage(søknadstype);
     };
-
-    React.useEffect(() => {
-        if (hasPendingAttachments(dokumenter)) {
-            return;
-        }
-        if (dokumenter.length !== ref.current.dokumenter.length) {
-            const formValues = { ...values, dokumenter: dokumenter };
-            setFieldValue(SoknadFormField.dokumenter, dokumenter);
-            SøknadTempStorage.update(
-                soknadId,
-                formValues,
-                StepID.DOKUMENTER,
-                {
-                    søker,
-                },
-                søknadstype,
-            );
-        }
-        ref.current = {
-            dokumenter,
-        };
-    }, [dokumenter, setFieldValue, soknadId, søker, søknadstype, values]);
 
     return (
         <SoknadFormStep
@@ -85,7 +70,7 @@ const DokumenterStep = ({ søknadstype, søker, soknadId }: Props) => {
 
                 <FormikAttachmentForm
                     fieldName={SoknadFormField.dokumenter}
-                    attachments={dokumenter}
+                    attachments={attachments}
                     includeGuide={true}
                     labels={{
                         addLabel: text('steg.dokumenter.vedlegg'),
