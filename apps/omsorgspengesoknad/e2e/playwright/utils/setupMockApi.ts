@@ -38,9 +38,7 @@ export const setupMockRoutes = async (page: Page, props?: { mellomlagring: any }
         await route.fulfill({
             status: 200,
             body: JSON.stringify({
-                harInnvilgedeBehandlinger: true,
-                saksnummer: 'ABC123',
-                vedtaksdato: '2022-01-01',
+                harInnvilgedeBehandlinger: false,
             }),
         });
     });
