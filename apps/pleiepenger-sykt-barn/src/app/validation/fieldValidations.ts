@@ -25,6 +25,8 @@ import {
     getDurationsInDateRange,
     getValidDurations,
     summarizeDateDurationMap,
+    getDate1YearFromNow,
+    dateUtils,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
@@ -108,11 +110,27 @@ export const validateFradato = (
         : undefined;
 };
 
+export const getPeriodeMinDato = (fødselsdato?: Date) => {
+    return fødselsdato
+        ? dayjs.max(dayjs(getDate3YearsAgo()).endOf('day'), dayjs(fødselsdato).endOf('day'))!.toDate()
+        : getDate3YearsAgo();
+};
+
+export const getPeriodeMaksDato = (fraDatoString?: string) => {
+    if (fraDatoString && dayjs(fraDatoString).isValid()) {
+        return dateUtils.getFirstOfTwoDates(
+            dayjs(fraDatoString).endOf('day').add(1, 'year').toDate(),
+            getDate1YearFromNow(),
+        );
+    }
+    return getDate1YearFromNow();
+};
+
 export const validateTildato = (tilDatoString?: string, fraDatoString?: string): ValidationResult<ValidationError> => {
     return getDateRangeValidator({
         required: true,
-        min: getDate3YearsAgo(),
-        max: fraDatoString ? dayjs(fraDatoString).endOf('day').add(1, 'year').toDate() : undefined,
+        min: getPeriodeMinDato(),
+        max: getPeriodeMaksDato(fraDatoString),
         fromDate: datepickerUtils.getDateFromDateString(fraDatoString),
         onlyWeekdays: false,
     }).validateToDate(tilDatoString);

@@ -1,5 +1,13 @@
-import { hasValue } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
 import { vi } from 'vitest';
+import { getPeriodeMaksDato, getPeriodeMinDato } from '../fieldValidations';
+import {
+    dateToISODate,
+    dateUtils,
+    getDate1YearFromNow,
+    getDate3YearsAgo,
+    getDateToday,
+} from '@navikt/sif-common-utils';
+import dayjs from 'dayjs';
 
 vi.mock('@navikt/sif-common-core-ds/src/utils/envUtils', () => {
     return {
@@ -15,21 +23,39 @@ vi.mock('@navikt/sif-common/src/env/commonEnv', () => {
 });
 
 describe('fieldValidations', () => {
-    describe('hasValue', () => {
-        it('should return true if provided value is not undefined, null or empty string', () => {
-            expect(hasValue('someValue')).toBe(true);
-            expect(hasValue(1234)).toBe(true);
-            expect(hasValue([])).toBe(true);
-            expect(hasValue({})).toBe(true);
-            expect(hasValue(true)).toBe(true);
-            expect(hasValue(false)).toBe(true);
+    describe('getPeriodeMinDato', () => {
+        it('Min dato skal være tre å bak i tid hvis vi ikke har barnets fødselsdato', () => {
+            const periodeMinDato = getPeriodeMinDato();
+            expect(dateToISODate(periodeMinDato)).toEqual(dateToISODate(getDate3YearsAgo()));
         });
-
-        it('should return false if the provided value is undefined, null or empty string', () => {
-            expect(hasValue('')).toBe(false);
-
-            expect(hasValue(null)).toBe(false);
-            expect(hasValue(undefined)).toBe(false);
+        it('Min dato skal være tre å bak i tid hvis barnet er født før dette', () => {
+            const fødselsdato = dayjs(getDate3YearsAgo()).subtract(1, 'day').toDate();
+            const periodeMinDato = getPeriodeMinDato(fødselsdato);
+            expect(dateToISODate(periodeMinDato)).toEqual(dateToISODate(getDate3YearsAgo()));
+        });
+        it('Min dato skal være barnets fødselsdato hvis barnet er født innen siste tre år', () => {
+            const fødselsdato = dayjs(getDate3YearsAgo()).add(1, 'day').toDate();
+            const periodeMinDato = getPeriodeMinDato(fødselsdato);
+            expect(dateToISODate(periodeMinDato)).toEqual(dateToISODate(fødselsdato));
+        });
+    });
+    describe('getPeriodeMaksDato', () => {
+        it('Maks dato skal være ett år frem i tid hvis fraDato er gyldig, og fra dato er i dag', () => {
+            const fraDato = dateUtils.dateToISODate(getDateToday());
+            const maksDato = getPeriodeMaksDato(fraDato);
+            expect(dateToISODate(maksDato)).toEqual(dateToISODate(getDate1YearFromNow()));
+        });
+        it('Maks dato skal være ett år frem i tid hvis fraDato er gyldig, og fra dato er frem i tid', () => {
+            const fraDato = dateUtils.dateToISODate(dayjs(getDateToday()).add(2, 'week').toDate());
+            const maksDato = getPeriodeMaksDato(fraDato);
+            expect(dateToISODate(maksDato)).toEqual(dateToISODate(getDate1YearFromNow()));
+        });
+        it('Maks dato skal være ett år fra "fra"-dato hvis "fra"-dato er i fortid', () => {
+            const fraDato = dateUtils.dateToISODate(dayjs(getDateToday()).subtract(2, 'week').toDate());
+            const maksDato = getPeriodeMaksDato(fraDato);
+            expect(dateToISODate(maksDato)).toEqual(
+                dateToISODate(dayjs(getDate1YearFromNow()).subtract(2, 'week').toDate()),
+            );
         });
     });
 });
