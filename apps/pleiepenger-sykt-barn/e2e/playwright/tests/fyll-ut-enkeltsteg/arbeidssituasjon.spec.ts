@@ -92,11 +92,11 @@ test.describe('Arbeidssituasjon', () => {
         await page.getByRole('button', { name: 'Ok' }).click();
         await page.getByTestId('arbeidssituasjonSelvstendig').getByLabel('Hvor mange timer jobber du').click();
         await page.getByTestId('arbeidssituasjonSelvstendig').getByLabel('Hvor mange timer jobber du').fill('5');
-        await page.getByTestId('arbeidssituasjonOpptjeningUtland').getByLabel('Ja').check();
+        await page.getByTestId('arbeidssituasjonOpptjeningUtland').getByText('Ja').check();
     });
     test('Jobb i annet EØS land', async ({ page }) => {
         /** Jobb i annet EØS land */
-        await page.getByTestId('arbeidssituasjonOpptjeningUtland').getByLabel('Ja').click();
+        await page.getByTestId('arbeidssituasjonOpptjeningUtland').getByText('Ja').click();
         await page.getByRole('button', { name: 'Legg til jobb i et annet EØS-' }).click();
         await page
             .locator('div')
