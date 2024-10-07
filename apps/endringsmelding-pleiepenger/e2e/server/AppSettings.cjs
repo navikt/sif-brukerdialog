@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const getAppSettings = () => {
+const getAppSettings = (isTest) => {
     return {
         APP_VERSION: `${process.env.APP_VERSION}`,
         NODE_ENV: `${process.env.NODE_ENV}`,
