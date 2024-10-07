@@ -1,5 +1,23 @@
 # @navikt/sif-ettersending
 
+## 3.38.0
+
+### Minor Changes
+
+-   765aabe: Bruke common server-oppsett
+
+## 3.37.24
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.12.20
+    -   @navikt/sif-common-soknad-ds@14.0.15
+    -   @navikt/sif-common-forms-ds@10.1.14
+    -   @navikt/sif-common-core-ds@9.18.21
+    -   @navikt/sif-common-ui@0.8.20
+
 ## 3.37.23
 
 ### Patch Changes

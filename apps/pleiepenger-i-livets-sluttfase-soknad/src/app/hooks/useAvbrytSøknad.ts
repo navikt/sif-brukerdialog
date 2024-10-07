@@ -2,23 +2,22 @@ import { useNavigate } from 'react-router-dom';
 import { useCallback } from 'react';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import actionsCreator from '../søknad/context/action/actionCreator';
-import { useMellomlagring } from './useMellomlagring';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import { useStepFormValuesContext } from '../søknad/context/StepFormValuesContext';
 import { relocateToMinSide } from '../utils/navigationUtils';
+import { mellomlagringService } from '../api/mellomlagringService';
 
 const useAvbrytEllerFortsettSenere = () => {
     const navigate = useNavigate();
     const { dispatch } = useSøknadContext();
-    const { slettMellomlagring } = useMellomlagring();
     const { clearAllSteps } = useStepFormValuesContext();
 
     const avbrytSøknad = useCallback(async () => {
-        await slettMellomlagring();
+        await mellomlagringService.purge();
         clearAllSteps();
         dispatch(actionsCreator.avbrytSøknad());
         navigate(SøknadRoutes.VELKOMMEN);
-    }, [navigate, slettMellomlagring, clearAllSteps, dispatch]);
+    }, [navigate, clearAllSteps, dispatch]);
 
     const fortsettSøknadSenere = useCallback(() => {
         clearAllSteps();

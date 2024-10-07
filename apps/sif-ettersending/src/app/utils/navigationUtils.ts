@@ -26,4 +26,4 @@ export const userIsCurrentlyOnErrorPage = (søknadstype: Søknadstype) =>
 
 export const relocateToNavFrontpage = (): void => redirectTo('https://www.nav.no/');
 
-export const relocateToMinSide = () => redirectTo(getEnvironmentVariable('MIN_SIDE_URL'));
+export const relocateToMinSide = () => redirectTo(getEnvironmentVariable('MINSIDE_URL'));

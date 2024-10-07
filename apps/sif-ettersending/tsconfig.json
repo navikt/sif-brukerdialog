@@ -4,6 +4,6 @@
         "outDir": "build/dist",
         "typeRoots": ["../../node_modules/@types", "./node_modules/@types"]
     },
-    "exclude": ["node_modules", "src/build", "**.js", "dist"],
-    "include": ["./src/app/**/*"]
+    "exclude": ["node_modules", "**.js", "dist"],
+    "include": ["./src/**/*"]
 }

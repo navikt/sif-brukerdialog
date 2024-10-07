@@ -10,11 +10,11 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
-import { getDeltBostedStepInitialValues, getDeltBostedSøknadsdataFromFormValues } from './deltBostedStepUtils';
 import DeltBostedForm, { DeltBostedFormFields, DeltBostedFormValues } from './DeltBostedForm';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { FormikValuesObserver } from '@navikt/sif-common-formik-ds';
 import { getUploadedAttachments } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import { getDeltBostedStepInitialValues, getDeltBostedSøknadsdataFromFormValues } from './deltBostedStepUtils';
 
 const { FormikWrapper } = getTypedFormComponents<DeltBostedFormFields, DeltBostedFormValues>();
 

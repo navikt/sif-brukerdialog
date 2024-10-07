@@ -168,6 +168,12 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                             : undefined,
                     },
                 };
+            case SøknadContextActionKeys.SET_IS_RELOADING_APP:
+                return {
+                    ...state,
+                    isReloadingApp: true,
+                };
+
             default:
                 // eslint-disable-next-line no-console
                 console.error(`Missing handler for ${action.type}`);

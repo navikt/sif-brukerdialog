@@ -15,7 +15,7 @@ import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 
 dayjs.extend(isoWeek);
 
-const container = document.getElementById('app');
+const container = document.getElementById('root');
 // eslint-disable-next-line
 const root = createRoot(container!);
 const publicPath = getEnvironmentVariable('PUBLIC_PATH');
@@ -29,11 +29,11 @@ function prepare() {
         if (envNow && getEnvironmentVariable('APP_VERSION') === 'dev') {
             MockDate.set(new Date(envNow));
         }
-        if (getEnvironmentVariable('MSW') === 'on' && (window as any).isE2E === undefined) {
+        if (getEnvironmentVariable('MSW') === 'on' && isE2E !== undefined) {
             return import('../mocks/msw/browser').then(({ worker }) => {
                 worker.start({
                     onUnhandledRequest: 'bypass',
-                    quiet: true,
+                    quiet: false,
                 });
             });
         }

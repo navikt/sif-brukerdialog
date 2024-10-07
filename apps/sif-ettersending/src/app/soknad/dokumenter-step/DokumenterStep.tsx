@@ -1,5 +1,6 @@
 import { VStack } from '@navikt/ds-react';
 import React from 'react';
+import { getAttachmentURLFrontend } from '@navikt/sif-common';
 import { SIFCommonGeneralEvents, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { FormikAttachmentForm } from '@navikt/sif-common-core-ds';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';

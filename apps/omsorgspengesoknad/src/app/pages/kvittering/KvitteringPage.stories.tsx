@@ -22,7 +22,7 @@ const Template: StoryFn = () => (
         </Tabs.List>
         <Tabs.Panel value="steg">
             <Block margin="xl">
-                <KvitteringPage onUnmount={() => null} />
+                <KvitteringPage />
             </Block>
         </Tabs.Panel>
         <Tabs.Panel value="tekster">

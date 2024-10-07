@@ -1,32 +1,32 @@
+import { ErrorSummary, VStack } from '@navikt/ds-react';
+import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import { ErrorPage } from '@navikt/sif-common-soknad-ds';
+import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { MedlemskapSummary } from '@navikt/sif-common-forms-ds';
+import { usePrevious } from '@navikt/sif-common-hooks';
+import { ErrorPage } from '@navikt/sif-common-soknad-ds';
+import { ISODateToDate } from '@navikt/sif-common-utils';
+import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
+import { AppText, useAppIntl } from '../../../i18n';
 import { useSøknadContext } from '../../../søknad/context/hooks/useSøknadContext';
+import SøknadStep from '../../../søknad/SøknadStep';
 import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../../søknad/søknadStepConfig';
 import { StepId } from '../../../types/StepId';
-import OmSøkerOppsummering from './components/OmSøkerOppsummering';
-import { usePrevious } from '@navikt/sif-common-hooks';
-import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
-import SøknadStep from '../../../søknad/SøknadStep';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { ErrorSummary, VStack } from '@navikt/ds-react';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
+import ArbeidIPeriodenSummary from './arbeid-i-perioden-summary/ArbeidIPeriodenSummary';
+import ArbeidssituasjonSummary from './arbeidssituasjon-summary/ArbeidssituasjonSummary';
 import LegeerklæringOppsummering from './components/LegeerklæringOppsummering';
+import OmSøkerOppsummering from './components/OmSøkerOppsummering';
 import PleietrengendePersonSummary from './components/PleietrengendePersonSummary';
 import TidsromOppsummering from './components/TidsromOppsummering';
-import ArbeidssituasjonSummary from './arbeidssituasjon-summary/ArbeidssituasjonSummary';
-import { ISODateToDate } from '@navikt/sif-common-utils';
-import ArbeidIPeriodenSummary from './arbeid-i-perioden-summary/ArbeidIPeriodenSummary';
-import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
-import { AppText, useAppIntl } from '../../../i18n';
-import { useNavigate } from 'react-router-dom';
+import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
