@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 const { JSDOM } = require('jsdom');
-require('dotenv').config();
 
 const extractDecoratorFragments = (html, appSettings) => {
     const { document } = new JSDOM(html).window;
@@ -42,6 +41,11 @@ const getDecorator = (appSettings) =>
                         reject(err);
                     }
                 }
+            })
+            .catch((err) => {
+                console.log('Failed to get decorator. Exiting node.');
+                console.log(process.env);
+                process.exit(1);
             });
     });
 
