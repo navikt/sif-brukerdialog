@@ -20,7 +20,7 @@ export const axiosConfigPsb: AxiosRequestConfig = {
 const axiosConfigInnsyn: AxiosRequestConfig = {
     ...axiosConfigCommon,
     transformResponse: storageParser,
-    baseURL: getEnvVariableOrDefault('SIF_INNSYN_APIFRONTEND_PATH', 'http://localhost:8082'),
+    baseURL: getEnvVariableOrDefault('SIF_INNSYN_API_FRONTEND_PATH', 'http://localhost:8082'),
 };
 
 axios.interceptors.request.use((config) => {

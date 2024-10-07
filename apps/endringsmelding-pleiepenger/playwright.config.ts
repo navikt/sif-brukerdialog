@@ -49,7 +49,7 @@ export default defineConfig({
             K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: 'dev-gcp:dusseldorf:k9-brukerdialog-prosessering',
             K9_BRUKERDIALOG_PROSESSERING_API_URL: 'http://k9-brukerdialog-prosessering',
 
-            SIF_INNSYN_APIFRONTEND_PATH: '/familie/sykdom-i-familien/soknad/endringsmelding/api/sif-innsyn',
+            SIF_INNSYN_API_FRONTEND_PATH: '/familie/sykdom-i-familien/soknad/endringsmelding/api/sif-innsyn',
             SIF_INNSYN_API_URL: 'http://sif-innsyn-api',
             SIF_INNSYN_API_SCOPE: 'dev-gcp:dusseldorf:sif-innsyn-api',
         },
