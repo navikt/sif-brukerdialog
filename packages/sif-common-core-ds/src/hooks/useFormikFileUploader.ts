@@ -1,5 +1,5 @@
 import { FileRejection } from 'react-dropzone';
-import { uploadVedlegg, getVedleggFrontendUrl, getEnvironmentVariable } from '@navikt/sif-common';
+import { uploadVedlegg, getVedleggFrontendUrl } from '@navikt/sif-common';
 import { ArrayHelpers } from 'formik';
 import { Attachment, PersistedFile } from '../types';
 import { isForbidden, isUnauthorized } from '../utils/apiUtils';
@@ -41,10 +41,7 @@ export const useFormikFileUploader = ({
                 attachment.info = {
                     location,
                     id,
-                    frontendUrl: getVedleggFrontendUrl({
-                        id,
-                        appPublicPath: getEnvironmentVariable('PUBLIC_PATH'),
-                    }),
+                    frontendUrl: getVedleggFrontendUrl(id),
                 };
                 attachment.uploaded = true;
             } catch (error) {

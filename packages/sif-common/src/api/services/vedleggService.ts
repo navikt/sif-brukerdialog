@@ -1,3 +1,4 @@
+import { API_ENV, getApiEnv } from '../../env/commonEnv';
 import { axiosMultipartConfig, k9BrukerdialogApiClient } from '../apiClient';
 import { AxiosResponse } from 'axios';
 
@@ -28,9 +29,8 @@ export const deleteVedlegg = async (id: string): Promise<AxiosResponse<any, any>
 /**
  *
  * @param id vedlegg-id
- * @param appPublicPath public path til applikasjon
  * @returns url til frontend for å hente vedlegg
  */
-export const getVedleggFrontendUrl = ({ appPublicPath, id }: { appPublicPath: string; id: string }): string => {
-    return `${appPublicPath}${servicePath}/${id}`;
+export const getVedleggFrontendUrl = (id: string): string => {
+    return `${getApiEnv(API_ENV.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH)}${servicePath}/${id}`;
 };
