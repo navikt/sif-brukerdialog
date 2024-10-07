@@ -1,4 +1,3 @@
-import { getAttachmentURLBackend } from '@navikt/sif-common';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types';
 import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { getMedlemskapApiDataFromSøknadsdata } from '@navikt/sif-common-forms-ds/src';

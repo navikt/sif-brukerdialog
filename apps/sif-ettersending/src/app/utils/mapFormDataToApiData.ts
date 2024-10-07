@@ -5,7 +5,6 @@ import { getLocaleForApi } from '@navikt/sif-common-core-ds/src/utils/localeUtil
 import { BarnetLegeerklæringGjelderApiData, SoknadApiData, YtelseTypeApi } from '../types/SoknadApiData';
 import { RegistrertBarnFormData, SoknadFormData } from '../types/SoknadFormData';
 import { DokumentType } from '../types/DokumentType';
-import { getAttachmentURLBackend } from '@navikt/sif-common';
 
 const getYtelseTypeApiKey = (ytelse: YtelseKey): YtelseTypeApi => {
     switch (ytelse) {
