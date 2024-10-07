@@ -51,8 +51,8 @@ const AttachmentList = ({
     attachments,
     showFileSize,
     emptyListText,
-    onDelete,
     variant = 'plain',
+    onDelete,
 }: AttachmentListProps) => {
     const { text } = useCoreIntl();
 
@@ -63,24 +63,21 @@ const AttachmentList = ({
     ) : (
         <List as="ul">
             {attachments
-                .filter((v) => v.pending || v.uploaded)
+                // .filter((v) => v.pending || v.uploaded)
                 .map((v, index) => {
                     const { file, uploaded, pending, info } = v;
                     return (
                         <List.Item
                             style={getVariantStyle(variant, index)}
                             key={file.name + index}
-                            icon={
-                                pending && 1 / 1 === 2 ? (
-                                    <Loader size="xsmall" />
-                                ) : (
-                                    <DSAttachment title="Ikon" aria-hidden />
-                                )
-                            }>
+                            icon={pending ? <Loader size="xsmall" /> : <DSAttachment title="Ikon" aria-hidden />}>
                             <HStack gap="2" wrap={false} align="baseline">
                                 <HStack flexGrow="2" gap="0 4" align="baseline">
                                     {uploaded && info ? (
-                                        <Link href={info.frontendUrl} style={{ wordBreak: 'break-word' }}>
+                                        <Link
+                                            href={info.frontendUrl}
+                                            style={{ wordBreak: 'break-word' }}
+                                            target="_blank">
                                             {file.name}
                                         </Link>
                                     ) : (
