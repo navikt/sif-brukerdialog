@@ -24,7 +24,7 @@
         "SIF_INNSYN_API_URL": "http://sif-innsyn-api",
         "SIF_INNSYN_API_SCOPE": "prod-gcp:dusseldorf:sif-innsyn-api"
     },
-    "externalHosts": ["www.nav.no"],
+    "externalHosts": ["www.nav.no", "amplitude.nav.no"],
     "accessPolicyOutApps": ["k9-brukerdialog-prosessering", "sif-innsyn-api"],
     "minReplicas": 2,
     "maxReplicas": 2,

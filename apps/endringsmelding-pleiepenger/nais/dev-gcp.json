@@ -3,7 +3,7 @@
     "team": "dusseldorf",
     "cluster": "dev-gcp",
     "observabilityEnabled": "true",
-    "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
+    "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no", "amplitude.nav.no"],
     "accessPolicyOutApps": ["k9-brukerdialog-prosessering", "sif-innsyn-api"],
     "ingresses": ["https://endringsmelding-pleiepenger.intern.dev.nav.no"],
     "readinessPath": "/internal/health/isReady",
