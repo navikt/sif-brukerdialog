@@ -27,6 +27,8 @@ const decoratorParams = new URLSearchParams({
 
 const getDecorator = (appSettings) =>
     new Promise((resolve, reject) => {
+        console.log('Fetching decorator from', process.env.SIF_PUBLIC_DEKORATOR_URL);
+        console.log('Fetching decorator from', process.env.DEKORATOR_URL);
         fetch(`${process.env.SIF_PUBLIC_DEKORATOR_URL}`, decoratorParams)
             .then((response) => response.text())
             .then((html) => {
