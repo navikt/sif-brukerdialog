@@ -1,6 +1,6 @@
-import søknadStateEndpoint from '../api/endpoints/søknadStateEndpoint';
+import { mellomlagringService } from '../api/mellomlagringService';
 import { SøknadContextState } from '../types/SøknadContextState';
 
 export const lagreSøknadState = (state: SøknadContextState) => {
-    return søknadStateEndpoint.update(state);
+    return mellomlagringService.update(state);
 };

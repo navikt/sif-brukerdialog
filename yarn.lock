@@ -6020,6 +6020,7 @@ __metadata:
     "@navikt/ds-react": "npm:7.1.2"
     "@navikt/ds-tailwind": "npm:7.1.2"
     "@navikt/sif-app-register": "npm:*"
+    "@navikt/sif-common": "npm:*"
     "@navikt/sif-common-amplitude": "npm:*"
     "@navikt/sif-common-core-ds": "npm:*"
     "@navikt/sif-common-formik-ds": "npm:*"

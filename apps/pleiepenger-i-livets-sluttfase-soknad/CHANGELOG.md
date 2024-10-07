@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.12.0
+
+### Minor Changes
+
+-   Bruke common server-oppsett og common api endepunkter
+
 ## 2.11.15
 
 ### Patch Changes

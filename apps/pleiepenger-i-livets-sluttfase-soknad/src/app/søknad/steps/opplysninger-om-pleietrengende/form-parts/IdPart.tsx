@@ -7,7 +7,6 @@ import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
 import { useFormikContext } from 'formik';
-import api, { ApiEndpoint } from '../../../../api/api';
 import { relocateToLoginPage } from '../../../../utils/navigationUtils';
 import { validateAttachments, ValidateAttachmentsErrors } from '../../../../utils/validateAttachments';
 import {
@@ -16,7 +15,7 @@ import {
 } from '../OpplysningerOmPleietrengendeStep';
 import IdPartAttachmentList from './IdPartAttachmentList';
 import { useAppIntl } from '../../../../i18n';
-import { getAttachmentURLFrontend } from '../../../../utils/attachmentUtils';
+import { getAttachmentURLFrontend, uploadVedlegg } from '@navikt/sif-common';
 
 //TODO VALIDATE  alleDokumenterISøknaden: Attachment[];
 const IdPart = () => {
@@ -55,7 +54,7 @@ const IdPart = () => {
                 name={OpplysningerOmPleietrengendeFormFields.pleietrengendeId}
                 buttonLabel={text('step.opplysningerOmPleietrengende.id.uploadButtonLabel')}
                 onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
-                uploadFile={(file: File) => api.uploadFile(ApiEndpoint.vedlegg, file)}
+                uploadFile={uploadVedlegg}
                 getAttachmentURLFrontend={getAttachmentURLFrontend}
                 onFileInputClick={() => {
                     setFilesThatDidntGetUploaded([]);
