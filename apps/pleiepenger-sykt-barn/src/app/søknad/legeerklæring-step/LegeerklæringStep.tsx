@@ -3,14 +3,10 @@ import { SIFCommonGeneralEvents, useAmplitudeInstance } from '@navikt/sif-common
 import { FormikAttachmentForm } from '@navikt/sif-common-core-ds';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import useAttachmentsHelper from '@navikt/sif-common-core-ds/src/hooks/useAttachmentsHelper';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
-import {
-    getTotalSizeOfAttachments,
-    hasPendingAttachments,
-    MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
-} from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { useFormikContext } from 'formik';
-import usePersistOnChange from '../../hooks/usePersistOnChange';
+import { persist } from '../../api/api';
 import { AppText } from '../../i18n';
 import getLenker from '../../lenker';
 import { StepCommonProps } from '../../types/StepCommonProps';
@@ -18,16 +14,26 @@ import { StepID } from '../../types/StepID';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { relocateToLoginPage } from '../../utils/navigationUtils';
 import SøknadFormStep from '../SøknadFormStep';
+import usePersistOnChange from '../../hooks/usePersistOnChange';
 
 const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
-    const { values } = useFormikContext<SøknadFormValues>();
+    const { values, setFieldValue } = useFormikContext<SøknadFormValues>();
     const { intl, text } = useAppIntl();
 
-    const attachments: Attachment[] = values ? values[SøknadFormField.legeerklæring] : [];
+    const attachments = values[SøknadFormField.legeerklæring] || [];
     const andreVedlegg: Attachment[] = values[SøknadFormField.fødselsattest] || [];
-    const hasPendingUploads: boolean = hasPendingAttachments(attachments);
-    const totalSize = getTotalSizeOfAttachments(attachments);
-    const attachmentsSizeOver24Mb = totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
+
+    const onAttachmentsChange = (changedAttachments: Attachment[]) => {
+        const valuesToPersist: SøknadFormValues = { ...values, legeerklæring: changedAttachments };
+        setFieldValue(SøknadFormField.legeerklæring, changedAttachments);
+        persist({ formValues: valuesToPersist, lastStepID: StepID.LEGEERKLÆRING });
+    };
+
+    const { hasPendingUploads, maxTotalSizeExceeded } = useAttachmentsHelper(
+        attachments,
+        andreVedlegg,
+        onAttachmentsChange,
+    );
 
     usePersistOnChange(attachments, true, StepID.LEGEERKLÆRING);
 
@@ -46,7 +52,7 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
             }}
             useValidationErrorSummary={false}
             skipValidation={true}
-            buttonDisabled={hasPendingUploads || attachmentsSizeOver24Mb}>
+            buttonDisabled={hasPendingUploads || maxTotalSizeExceeded}>
             <Block padBottom="xl">
                 <SifGuidePanel compact={true}>
                     <p>

@@ -5,7 +5,6 @@ import { SIFCommonGeneralEvents, useAmplitudeInstance } from '@navikt/sif-common
 import { FormikAttachmentForm } from '@navikt/sif-common-core-ds/src';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
-import { mapFileToPersistedFile } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { useFormikContext } from 'formik';
 import { persist } from '../../api/api';
 import { AppText } from '../../i18n';
@@ -13,16 +12,16 @@ import getLenker from '../../lenker';
 import { StepID } from '../../types/StepID';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { relocateToLoginPage } from '../../utils/navigationUtils';
+import useAttachmentsHelper from '@navikt/sif-common-core-ds/src/hooks/useAttachmentsHelper';
 
 interface Props {
-    attachments: Attachment[];
+    fødselsattester: Attachment[];
 }
 
-const FødselsattestPart: React.FC<Props> = ({ attachments }) => {
+const FødselsattestPart: React.FC<Props> = ({ fødselsattester }) => {
     const { text, intl } = useAppIntl();
     const { values, setFieldValue } = useFormikContext<SøknadFormValues>();
     const andreVedlegg: Attachment[] = values[SøknadFormField.legeerklæring] || [];
-    const ref = React.useRef({ attachments });
 
     const { logUserLoggedOut, logEvent } = useAmplitudeInstance();
 
@@ -31,27 +30,13 @@ const FødselsattestPart: React.FC<Props> = ({ attachments }) => {
         relocateToLoginPage();
     };
 
-    React.useEffect(() => {
-        const hasPendingAttachments = attachments.find((a) => a.pending === true);
-        if (hasPendingAttachments) {
-            return;
-        }
-        if (attachments.length !== ref.current.attachments.length) {
-            const newValues = attachments.map((a) => {
-                const persistedFile = mapFileToPersistedFile(a.file);
-                return {
-                    ...a,
-                    file: persistedFile,
-                };
-            });
-            const valuesToPersist = { ...values, fødselsattest: newValues };
-            setFieldValue(SøknadFormField.fødselsattest, newValues);
-            persist({ formValues: valuesToPersist, lastStepID: StepID.OPPLYSNINGER_OM_BARNET });
-        }
-        ref.current = {
-            attachments,
-        };
-    }, [attachments, setFieldValue, values]);
+    const onAttachmentsChange = (changedAttachments: Attachment[]) => {
+        const valuesToPersist: SøknadFormValues = { ...values, fødselsattest: changedAttachments };
+        setFieldValue(SøknadFormField.fødselsattest, changedAttachments);
+        persist({ formValues: valuesToPersist, lastStepID: StepID.LEGEERKLÆRING });
+    };
+
+    useAttachmentsHelper(fødselsattester, andreVedlegg, onAttachmentsChange);
 
     return (
         <>
@@ -63,7 +48,7 @@ const FødselsattestPart: React.FC<Props> = ({ attachments }) => {
             </Block>
             <FormikAttachmentForm
                 fieldName={SøknadFormField.fødselsattest}
-                attachments={attachments}
+                attachments={fødselsattester}
                 includeGuide={true}
                 labels={{
                     addLabel: text('steg.omBarnet.fødselsattest.vedlegg'),

@@ -161,6 +161,10 @@ const startExpressServer = () => {
         req.pipe(busboy);
     });
 
+    server.delete('/vedlegg/**', (req, res) => {
+        res.sendStatus(200);
+    });
+
     server.get('/oppslag/barn', (req, res) => res.send(barnMock));
 
     //Test uten barn

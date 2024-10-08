@@ -38,7 +38,7 @@ const DokumenterStep = ({ søknadstype, søker, soknadId }: Props) => {
         );
     };
 
-    const { hasPendingUploads, attachments, maxTotalSizeExceeded } = useAttachmentsHelper(
+    const { hasPendingUploads, maxTotalSizeExceeded } = useAttachmentsHelper(
         values[SoknadFormField.dokumenter],
         [],
         onAttachmentsChange,
@@ -71,7 +71,7 @@ const DokumenterStep = ({ søknadstype, søker, soknadId }: Props) => {
 
                 <FormikAttachmentForm
                     fieldName={SoknadFormField.dokumenter}
-                    attachments={attachments}
+                    attachments={values[SoknadFormField.dokumenter]}
                     includeGuide={true}
                     labels={{
                         addLabel: text('steg.dokumenter.vedlegg'),

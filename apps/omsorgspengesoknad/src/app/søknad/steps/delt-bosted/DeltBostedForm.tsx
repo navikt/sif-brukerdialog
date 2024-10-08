@@ -3,16 +3,13 @@ import { useIntl } from 'react-intl';
 import { FormikAttachmentForm } from '@navikt/sif-common-core-ds/src';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
-import {
-    hasExceededMaxTotalSizeOfAttachments,
-    hasPendingAttachments,
-} from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
+import useAttachmentsHelper from '@navikt/sif-common-core-ds/src/hooks/useAttachmentsHelper';
 
 interface Props {
     samværsavtaler?: Attachment[];
@@ -40,15 +37,14 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({
     const intl = useIntl();
     const { text } = useAppIntl();
 
+    const { hasPendingUploads, maxTotalSizeExceeded } = useAttachmentsHelper(samværsavtaler, andreVedlegg);
+
     return (
         <Form
             formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
             includeValidationSummary={true}
             submitPending={isSubmitting}
-            submitDisabled={
-                hasPendingAttachments(samværsavtaler) ||
-                hasExceededMaxTotalSizeOfAttachments([...samværsavtaler, ...andreVedlegg])
-            }
+            submitDisabled={hasPendingUploads || maxTotalSizeExceeded}
             runDelayedFormValidation={true}
             onBack={goBack}>
             <FormLayout.Questions>
