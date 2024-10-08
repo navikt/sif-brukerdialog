@@ -8,14 +8,15 @@ import { usePersistTempFormValues } from '../../../hooks/usePersistTempFormValue
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
-import { getDineBarnStepInitialValues, getDineBarnSøknadsdataFromFormValues } from './dineBarnStepUtils';
 import DineBarnForm from './DineBarnForm';
+import { getDineBarnStepInitialValues, getDineBarnSøknadsdataFromFormValues } from './dineBarnStepUtils';
 
 export enum DineBarnFormFields {
     andreBarn = 'andreBarn',
@@ -51,6 +52,9 @@ const DineBarnStep = () => {
             }
             return [
                 actionsCreator.setSøknadDineBarn(dineBarnSøknadsdata),
+                actionsCreator.setSøknadRoute(
+                    dineBarnSøknadsdata.harDeltBosted ? SøknadRoutes.DELT_BOSTED : SøknadRoutes.SITUASJON,
+                ),
                 actionsCreator.setSøknadTempFormValues(undefined),
             ];
         }
