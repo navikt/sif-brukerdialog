@@ -21,7 +21,7 @@ export const getAttachmentsInLocationArray = ({
     return (attachments || []).filter((a) => a.info && locations.includes(a.info.location));
 };
 
-export const getAttachmentsApiData = (attachments: Attachment[]): string[] => {
+export const getAttachmentsApiData = (attachments: Attachment[] = []): string[] => {
     const apiData: string[] = [];
     attachments.forEach(({ info }) => {
         if (info) {
@@ -85,7 +85,7 @@ export const attachmentHasBeenUploaded = ({ pending, uploaded, file: { name } }:
     !pending && uploaded && fileExtensionIsValid(name);
 
 export const attachmentIsUploadedAndIsValidFileFormat = (attachment: Attachment): boolean =>
-    attachmentHasBeenUploaded(attachment) && fileExtensionIsValid(attachment.file.name);
+    attachmentHasBeenUploaded(attachment) && fileExtensionIsValid(attachment.file?.name);
 
 export const containsAnyUploadedAttachments = (attachmentList: Attachment[]) =>
     attachmentList.length > 0 && attachmentList.length !== attachmentList.filter(attachmentUploadHasFailed).length;

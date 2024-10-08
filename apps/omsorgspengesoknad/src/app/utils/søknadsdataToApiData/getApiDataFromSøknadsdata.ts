@@ -1,17 +1,9 @@
-import { Attachment } from '@navikt/sif-common-core-ds/src/types';
-import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import { getAttachmentsApiData } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { includeDeltBostedStep } from '../../søknad/søknadStepConfig';
 import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { getDataBruktTilUtledning } from './getDataBruktTilUtledning';
 import { getOmBarnetApiDataFromSøknadsdata } from './getOmBarnetApiDataFromSøknadsdata';
-
-const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
-    if (!vedlegg || vedlegg.length === 0) {
-        return [];
-    }
-    return vedlegg.filter(attachmentIsUploadedAndIsValidFileFormat).map(({ info }) => info?.location || '');
-};
 
 export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadApiData | undefined => {
     const { omBarnet } = søknadsdata;
@@ -26,8 +18,8 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadA
         harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true,
         harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true,
         ...getOmBarnetApiDataFromSøknadsdata(omBarnet),
-        legeerklæring: getVedleggApiData(søknadsdata.legeerklaering?.vedlegg),
-        samværsavtale: inkluderDeltBosted ? getVedleggApiData(søknadsdata.deltBosted?.vedlegg) : undefined,
+        legeerklæring: getAttachmentsApiData(søknadsdata.legeerklaering?.vedlegg),
+        samværsavtale: inkluderDeltBosted ? getAttachmentsApiData(søknadsdata.deltBosted?.vedlegg) : undefined,
         dataBruktTilUtledningAnnetData: JSON.stringify(getDataBruktTilUtledning(søknadsdata)),
     };
 };

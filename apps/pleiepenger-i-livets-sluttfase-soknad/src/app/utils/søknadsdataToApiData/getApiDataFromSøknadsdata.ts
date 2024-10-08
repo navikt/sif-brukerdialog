@@ -1,5 +1,4 @@
-import { Attachment } from '@navikt/sif-common-core-ds/src/types';
-import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import { getAttachmentsApiData } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { getMedlemskapApiDataFromSøknadsdata } from '@navikt/sif-common-forms-ds/src';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { FlereSokereApiData, SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
@@ -13,13 +12,6 @@ import { getPleietrengendeApiDataFromSøknadsdata } from './getPleietrengendeApi
 import { getSelvstendigApiDataFromSøknadsdata } from './getSelvstendigApiDataFromSøknadsdata';
 import { getUtenlandskNæringApiDataFromSøknadsdata } from './getUtenlandskNæringApiDataFromSøknadsdata';
 import { getUtenlansoppholdApiDataFromSøknadsdata } from './getUtenlandsoppholdApiDataFromSøknadsdata';
-
-const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
-    if (!vedlegg || vedlegg.length === 0) {
-        return [];
-    }
-    return vedlegg.filter(attachmentIsUploadedAndIsValidFileFormat).map(({ info }) => (info ? info.location : ''));
-};
 
 export const getFlereSokereApiData = (flereSokereSvar: YesOrNoDontKnow): FlereSokereApiData => {
     switch (flereSokereSvar) {
@@ -82,9 +74,9 @@ export const getApiDataFromSøknadsdata = (
         pleietrengende: getPleietrengendeApiDataFromSøknadsdata(opplysningerOmPleietrengende),
         opplastetIdVedleggUrls:
             opplysningerOmPleietrengende.type === 'pleietrengendeUtenFnr'
-                ? getVedleggApiData(opplysningerOmPleietrengende.pleietrengendeId)
+                ? getAttachmentsApiData(opplysningerOmPleietrengende.pleietrengendeId)
                 : [],
-        vedleggUrls: getVedleggApiData(legeerklæring.vedlegg),
+        vedleggUrls: getAttachmentsApiData(legeerklæring.vedlegg),
         pleierDuDenSykeHjemme: true,
         dagerMedPleie: getDagerMedPleieApiData(søknadsdata),
         flereSokere: getFlereSokereApiData(opplysningerOmPleietrengende.flereSokere),
