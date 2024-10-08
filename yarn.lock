@@ -6535,7 +6535,6 @@ __metadata:
     uuid: "npm:10.0.0"
     vite: "npm:5.4.8"
     vite-plugin-checker: "npm:0.8.0"
-    vitest: "npm:2.1.2"
     webpack: "npm:5.95.0"
   peerDependencies:
     "@navikt/sif-common-core-ds": "*"

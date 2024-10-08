@@ -83,7 +83,6 @@
         "uuid": "10.0.0",
         "vite": "5.4.8",
         "vite-plugin-checker": "0.8.0",
-        "vitest": "2.1.2",
         "webpack": "5.95.0"
     },
     "scripts": {
@@ -91,7 +90,6 @@
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
-        "storybook": "storybook dev -p 6006",
-        "test": "vitest run"
+        "storybook": "storybook dev -p 6006"
     }
 }
