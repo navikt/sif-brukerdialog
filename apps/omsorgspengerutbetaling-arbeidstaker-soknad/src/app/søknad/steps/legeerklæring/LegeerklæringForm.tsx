@@ -13,6 +13,7 @@ import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
+import useAttachmentsHelper from '@navikt/sif-common-core-ds/src/hooks/useAttachmentsHelper';
 
 interface Props {
     values: Partial<LegeerklæringFormValues>;
@@ -48,17 +49,16 @@ export const validateDocuments = (attachments: Attachment[]): ValidationResult<V
 
 const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, andreVedlegg = [], isSubmitting }) => {
     const { text, intl } = useAppIntl();
-    const hasPendingUploads: boolean = (values.vedlegg || []).find((a: any) => a.pending === true) !== undefined;
+
     const attachments = values.vedlegg ? values.vedlegg : [];
-    const totalSize = getTotalSizeOfAttachments([...attachments, ...andreVedlegg]);
-    const totalSizeOfAttachmentsOver24Mb = totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
+    const { hasPendingUploads, maxTotalSizeExceeded } = useAttachmentsHelper(attachments, andreVedlegg);
 
     return (
         <Form
             formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
             includeValidationSummary={true}
             submitPending={isSubmitting}
-            submitDisabled={hasPendingUploads || totalSizeOfAttachmentsOver24Mb}
+            submitDisabled={hasPendingUploads || maxTotalSizeExceeded}
             runDelayedFormValidation={true}
             onBack={goBack}>
             <Block padBottom="xl">

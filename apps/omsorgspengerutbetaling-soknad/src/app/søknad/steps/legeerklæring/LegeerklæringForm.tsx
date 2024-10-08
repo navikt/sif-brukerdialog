@@ -3,15 +3,12 @@ import { FormikAttachmentForm } from '@navikt/sif-common-core-ds/src';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
-import {
-    getTotalSizeOfAttachments,
-    MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
-} from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
+import useAttachmentsHelper from '@navikt/sif-common-core-ds/src/hooks/useAttachmentsHelper';
 
 interface Props {
     values: Partial<LegeerklæringFormValues>;
@@ -33,17 +30,15 @@ const { Form } = getTypedFormComponents<LegeerklæringFormFields, Legeerklæring
 const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, andreVedlegg = [], isSubmitting }) => {
     const { text, intl } = useAppIntl();
 
-    const hasPendingUploads: boolean = (values.vedlegg || []).find((a: any) => a.pending === true) !== undefined;
-    const legeerklæringAttachments = values.vedlegg ? values.vedlegg : [];
-    const totalSize = getTotalSizeOfAttachments([...legeerklæringAttachments, ...andreVedlegg]);
-    const totalSizeOfAttachmentsOver24Mb = totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
+    const legeerklæringer = values[LegeerklæringFormFields.vedlegg] || [];
+    const { hasPendingUploads, maxTotalSizeExceeded } = useAttachmentsHelper(legeerklæringer, andreVedlegg);
 
     return (
         <Form
             formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
             includeValidationSummary={true}
             submitPending={isSubmitting}
-            submitDisabled={hasPendingUploads || totalSizeOfAttachmentsOver24Mb}
+            submitDisabled={hasPendingUploads || maxTotalSizeExceeded}
             runDelayedFormValidation={true}
             onBack={goBack}>
             <Block padBottom="xl">
@@ -58,7 +53,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
             </Block>
 
             <FormikAttachmentForm
-                attachments={legeerklæringAttachments}
+                attachments={legeerklæringer}
                 fieldName={LegeerklæringFormFields.vedlegg}
                 includeGuide={true}
                 labels={{

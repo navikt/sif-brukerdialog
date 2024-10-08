@@ -1,6 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import {
     getRequiredFieldValidator,
@@ -15,6 +13,7 @@ import { AppFieldValidationErrors } from '../../../../utils/validations';
 import { ArbeidsforholdFormFields, SituasjonFormValues } from '../SituasjonStep';
 import { FormikAttachmentForm } from '@navikt/sif-common-core-ds/src';
 import getLenker from '../../../../lenker';
+import useAttachmentsHelper from '@navikt/sif-common-core-ds/src/hooks/useAttachmentsHelper';
 
 const { RadioGroup, Textarea } = getTypedFormComponents<ArbeidsforholdFormFields, Arbeidsforhold, ValidationError>();
 
@@ -25,34 +24,20 @@ interface Props {
 
 const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Props) => {
     const { text, intl } = useAppIntl();
-    const { values, setFieldValue } = useFormikContext<SituasjonFormValues>();
+    const { setFieldValue } = useFormikContext<SituasjonFormValues>();
 
     const getFieldName = (field: ArbeidsforholdFormFields) => `${parentFieldName}.${field}` as ArbeidsforholdFormFields;
 
     const utbetalingsårsak: Utbetalingsårsak | undefined = arbeidsforhold.utbetalingsårsak;
     const arbeidsgivernavn = arbeidsforhold.navn;
 
-    const attachments: Attachment[] = useMemo(() => {
-        return arbeidsforhold ? arbeidsforhold.dokumenter : [];
-    }, [arbeidsforhold]);
-
-    const ref = useRef({ attachments });
-
-    useEffect(() => {
-        const hasPendingAttachments = attachments.find((a) => a.pending === true);
-        if (hasPendingAttachments) {
-            return;
-        }
-        if (attachments.length !== ref.current.attachments.length) {
-            setFieldValue(
-                `arbeidsforhold.${parentFieldName}.${ArbeidsforholdFormFields.dokumenter}` as ArbeidsforholdFormFields,
-                attachments,
-            );
-        }
-        ref.current = {
-            attachments,
-        };
-    }, [attachments, setFieldValue, values, parentFieldName]);
+    const attachments = arbeidsforhold.dokumenter || [];
+    useAttachmentsHelper(attachments, [], (att) => {
+        setFieldValue(
+            `arbeidsforhold.${parentFieldName}.${ArbeidsforholdFormFields.dokumenter}` as ArbeidsforholdFormFields,
+            att,
+        );
+    });
 
     return (
         <>

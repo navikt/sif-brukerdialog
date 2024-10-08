@@ -12,7 +12,7 @@ const useAttachmentsHelper = (
     otherAttachments: Attachment[] | undefined = [],
     onChange?: (attachments: Attachment[]) => void,
 ) => {
-    const dokumenter: Attachment[] = useMemo(() => {
+    const memoizedAttachments: Attachment[] = useMemo(() => {
         return attachments || [];
     }, [attachments]);
 
@@ -20,22 +20,24 @@ const useAttachmentsHelper = (
     const totalSize = getTotalSizeOfAttachments([...attachments, ...otherAttachments]);
     const maxTotalSizeExceeded = totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
 
-    const ref = useRef({ dokumenter });
+    const ref = useRef({ memoizedAttachments });
     useEffect(() => {
         if (hasPendingUploads || !onChange) {
             return;
         }
-        const doks = dokumenter.filter(attachmentIsUploadedAndIsValidFileFormat);
-        if (doks.length !== ref.current.dokumenter.length || doks.length !== dokumenter.length) {
-            onChange(doks);
+        const uploadedAndValidAttachments = memoizedAttachments.filter(attachmentIsUploadedAndIsValidFileFormat);
+        if (
+            uploadedAndValidAttachments.length !== ref.current.memoizedAttachments.length ||
+            uploadedAndValidAttachments.length !== memoizedAttachments.length
+        ) {
+            onChange(uploadedAndValidAttachments);
         }
         ref.current = {
-            dokumenter,
+            memoizedAttachments,
         };
-    }, [dokumenter]);
+    }, [memoizedAttachments]);
 
     return {
-        attachments: dokumenter,
         hasPendingUploads,
         totalSize,
         maxTotalSizeExceeded,
