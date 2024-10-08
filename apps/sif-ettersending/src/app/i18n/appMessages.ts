@@ -113,8 +113,6 @@ const nb = {
         'Du kan laste opp disse filtypene: JPG, JPEG, PDF og PNG. Det er ikke mulig å laste opp andre filtyper enn disse.',
     'steg.dokumenter.infopanel.3':
         'Du kan laste opp så mange dokumenter du vil, men den totale størrelsen på alle dokumentene kan ikke overstige 24 Mb. Vi varsler deg hvis du når denne grensen.',
-    'steg.dokumenter.advarsel.totalstørrelse':
-        'Du har totalt lastet opp mer enn grensen på 24 Mb. Det betyr at du må fjerne noe av det du har lastet opp. Hvis det betyr at du ikke får plass til alt du ønsker å sende nå, kan du sende inn en ny ettersendelse når du er ferdig med denne.',
 
     'step.oppsummering.pageTitle': 'Oppsummering',
     'step.oppsummering.stepTitle': 'Oppsummering',

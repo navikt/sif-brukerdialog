@@ -44,9 +44,6 @@ const nb = {
 
     'vedleggsliste.ingenLegeerklæringLastetOpp': 'Ingen vedlegg er lastet opp',
 
-    'dokumenter.advarsel.totalstørrelse':
-        'Du har totalt lastet opp mer enn grensen på 24 Mb. Det betyr at du må fjerne noe av det du har lastet opp. Hvis det betyr at du ikke får plass til alt du ønsker å sende nå, kan du <Lenke>ettersende flere dokumenter</Lenke>.',
-
     'step.arbeidssituasjon.stepTitle': 'Arbeidssituasjon',
 
     'step.fravaerFra.stepTitle': 'Fravær fra arbeid som selvstendig næringsdrivende og/eller frilanser',
