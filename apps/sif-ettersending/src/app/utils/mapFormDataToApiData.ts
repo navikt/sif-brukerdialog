@@ -1,10 +1,10 @@
 import { IntlShape } from 'react-intl';
-import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { YtelseKey, Ytelser } from '@navikt/sif-common-core-ds/src/types/Ytelser';
+import { getAttachmentsApiData } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { getLocaleForApi } from '@navikt/sif-common-core-ds/src/utils/localeUtils';
+import { DokumentType } from '../types/DokumentType';
 import { BarnetLegeerklæringGjelderApiData, SoknadApiData, YtelseTypeApi } from '../types/SoknadApiData';
 import { RegistrertBarnFormData, SoknadFormData } from '../types/SoknadFormData';
-import { DokumentType } from '../types/DokumentType';
 
 const getYtelseTypeApiKey = (ytelse: YtelseKey): YtelseTypeApi => {
     switch (ytelse) {
@@ -21,16 +21,6 @@ const getYtelseTypeApiKey = (ytelse: YtelseKey): YtelseTypeApi => {
         case YtelseKey.omsorgsdagerAnnenForelderIkkeTilsyn:
             return YtelseTypeApi.OMP_UTV_MA;
     }
-};
-
-const getVedleggUrlFromAttachments = (attachments: Attachment[]): string[] => {
-    const vedleggUrl: string[] = [];
-    attachments.forEach((s) => {
-        if (s.info) {
-            vedleggUrl.push(s.info.location);
-        }
-    });
-    return vedleggUrl;
 };
 
 const mapBarnFormDataToApiData = (
@@ -90,7 +80,7 @@ export const mapFormDataToApiData = (
                 ? mapBarnFormDataToApiData(gjelderEtAnnetBarn, barnetsFødselsnummer, valgteRegistrertBarn)
                 : undefined,
         beskrivelse,
-        vedlegg: getVedleggUrlFromAttachments(dokumenter),
+        vedlegg: getAttachmentsApiData(dokumenter),
         ytelseTittel: Ytelser[ytelse].søknadstittel.nb,
     };
     return apiData;
