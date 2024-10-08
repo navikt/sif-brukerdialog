@@ -3,7 +3,7 @@ import { Attachment } from '@navikt/sif-common-core-ds/src/types';
 import { useAppIntl } from '../../../../i18n';
 import getLenker from '../../../../lenker';
 import { relocateToLoginPage } from '../../../../utils/navigationUtils';
-import { OpplysningerOmPleietrengendeFormFields } from '../OpplysningerOmPleietrengendeStep';
+import { OpplysningerOmPleietrengendeFormFields } from '../OpplysningerOmPleietrengendeForm';
 
 interface Props {
     pleietrengendeId?: Attachment[];

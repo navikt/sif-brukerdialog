@@ -100,7 +100,7 @@ const startExpressServer = () => {
         req.pipe(busboy);
     });
 
-    server.delete('/vedlegg', (req, res) => {
+    server.delete('/vedlegg/**', (req, res) => {
         res.sendStatus(200);
     });
 
