@@ -20,7 +20,6 @@ const IdPart = ({ pleietrengendeId = [], andreVedlegg = [] }: Props) => {
             otherAttachments={andreVedlegg}
             uploadLaterURL={getLenker(intl.locale).ettersend}
             onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
-            validation={{ required: false }}
             labels={{
                 addLabel: text('step.opplysningerOmPleietrengende.id.uploadButtonLabel'),
                 noAttachmentsText: text('vedleggsliste.ingenDokumenter'),

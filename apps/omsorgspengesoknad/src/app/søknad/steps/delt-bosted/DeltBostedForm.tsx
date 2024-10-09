@@ -61,7 +61,6 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({
                     otherAttachments={andreVedlegg}
                     uploadLaterURL={getLenker(intl.locale).ettersend}
                     onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
-                    validation={{ required: false }}
                     labels={{
                         addLabel: text('steg.deltBosted.vedlegg.knappLabel'),
                         noAttachmentsText: text('vedleggsliste.ingenBostedsavtaleLastetOpp'),

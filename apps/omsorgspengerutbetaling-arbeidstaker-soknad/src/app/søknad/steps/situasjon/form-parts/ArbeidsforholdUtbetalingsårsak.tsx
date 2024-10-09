@@ -120,7 +120,6 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Pr
                                 addLabel: text('step.situasjon.arbeidsforhold.utbetalingsårsak.vedlegg'),
                                 noAttachmentsText: text('step.situasjon.vedleggsliste.ingenDokumenterLastetOpp'),
                             }}
-                            validation={{ required: false }}
                             uploadLaterURL={getLenker(intl.locale).ettersending}
                             onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
                         />

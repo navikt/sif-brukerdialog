@@ -61,31 +61,26 @@ const FormikAttachmentForm = ({
     return (
         <VStack gap="4">
             <Box marginBlock="0 4">{includeGuide && <PictureScanningGuide />}</Box>
-            {canUploadMore ? (
-                <FormikFileUploader
-                    legend={legend}
-                    attachments={attachments}
-                    name={fieldName}
-                    buttonLabel={labels.addLabel}
-                    onErrorUploadingAttachments={(att) => {
-                        setFilesThatDidntGetUploaded(att);
-                    }}
-                    onFileInputClick={() => {
-                        setFilesThatDidntGetUploaded([]);
-                    }}
-                    onFilesUploaded={onFilesUploaded}
-                    onUnauthorizedOrForbiddenUpload={onUnauthorizedOrForbiddenUpload}
-                    validate={validation ? getValidateProp(validation) : undefined}
-                />
-            ) : (
-                <AttachmentTotalSizeAlert uploadLaterURL={uploadLaterURL} />
-            )}
-            <AttachmentUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
-            {/* <FormikInputGroup
-                name={`${fieldName}_group`}
-                hideLegend={true}
+            <FormikFileUploader
                 legend={legend}
-                validate={validation ? getValidateProp(validation) : undefined}> */}
+                attachments={attachments}
+                name={fieldName}
+                buttonLabel={labels.addLabel}
+                onErrorUploadingAttachments={(att) => {
+                    setFilesThatDidntGetUploaded(att);
+                }}
+                onFileInputClick={() => {
+                    setFilesThatDidntGetUploaded([]);
+                }}
+                onFilesUploaded={onFilesUploaded}
+                onUnauthorizedOrForbiddenUpload={onUnauthorizedOrForbiddenUpload}
+                validate={validation ? getValidateProp(validation) : undefined}
+            />
+
+            {!canUploadMore && <AttachmentTotalSizeAlert uploadLaterURL={uploadLaterURL} />}
+
+            <AttachmentUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
+
             <FormikAttachmentList
                 fieldName={fieldName}
                 attachments={attachments}
@@ -94,7 +89,6 @@ const FormikAttachmentForm = ({
                 onDelete={(a: Attachment) => (a.info ? deleteVedlegg(a.info.id) : Promise.resolve())}
                 emptyListText={labels.noAttachmentsText}
             />
-            {/* </FormikInputGroup> */}
         </VStack>
     );
 };

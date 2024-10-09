@@ -3,12 +3,7 @@ import { FormikAttachmentForm } from '@navikt/sif-common-core-ds/src';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
-import {
-    attachmentHasBeenUploaded,
-    getTotalSizeOfAttachments,
-    MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
-} from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
-import { getTypedFormComponents, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
+import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
@@ -31,21 +26,6 @@ export interface LegeerklæringFormValues {
 }
 
 const { Form } = getTypedFormComponents<LegeerklæringFormFields, LegeerklæringFormValues>();
-
-export const validateDocuments = (attachments: Attachment[]): ValidationResult<ValidationError> => {
-    const uploadedAttachments = attachments.filter((attachment) => attachmentHasBeenUploaded(attachment));
-    const totalSizeInBytes: number = getTotalSizeOfAttachments(attachments);
-    if (totalSizeInBytes > MAX_TOTAL_ATTACHMENT_SIZE_BYTES) {
-        return '{ key: AppFieldValidationErrors.samlet_storrelse_for_hoy, keepKeyUnaltered: true }';
-    }
-    if (uploadedAttachments.length === 0) {
-        return '{ key: AppFieldValidationErrors.ingen_dokumenter, keepKeyUnaltered: true }';
-    }
-    if (uploadedAttachments.length > 100) {
-        return '{ key: AppFieldValidationErrors.for_mange_dokumenter, keepKeyUnaltered: true }';
-    }
-    return undefined;
-};
 
 const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, andreVedlegg = [], isSubmitting }) => {
     const { text, intl } = useAppIntl();
@@ -80,7 +60,6 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                     addLabel: text('step.legeerklæring.uploadBtn'),
                     noAttachmentsText: text('vedleggsliste.ingenLegeerklæringLastetOpp'),
                 }}
-                validation={{ required: false }}
                 uploadLaterURL={getLenker(intl.locale).ettersending}
                 onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
                 otherAttachments={andreVedlegg}

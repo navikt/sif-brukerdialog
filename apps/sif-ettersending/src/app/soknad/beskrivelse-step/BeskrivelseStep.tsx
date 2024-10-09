@@ -4,7 +4,6 @@ import { getStringValidator } from '@navikt/sif-common-formik-ds/src/validation'
 import { AppText, useAppIntl } from '../../i18n';
 import { SoknadFormField } from '../../types/SoknadFormData';
 import { Søknadstype } from '../../types/Søknadstype';
-import { MAX_BESKRIVELSE_LENGTH, MIN_BESKRIVELSE_LENGTH } from '../../validation/fieldValidations';
 import SoknadFormComponents from '../SoknadFormComponents';
 import SoknadFormStep from '../SoknadFormStep';
 import { StepID } from '../soknadStepsConfig';
@@ -12,6 +11,9 @@ import { StepID } from '../soknadStepsConfig';
 interface Props {
     søknadstype: Søknadstype;
 }
+
+export const MAX_BESKRIVELSE_LENGTH = 250;
+export const MIN_BESKRIVELSE_LENGTH = 5;
 
 const BeskrivelseStep = ({ søknadstype }: Props) => {
     const { text } = useAppIntl();
