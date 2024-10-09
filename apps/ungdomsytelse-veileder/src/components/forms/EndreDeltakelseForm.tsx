@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Heading, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Box, Button, Heading, VStack } from '@navikt/ds-react';
 import { FormikDatepicker, TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { useState } from 'react';
 import { Deltakelse } from '../../api/types';
@@ -15,10 +15,12 @@ type DeltakelseFormValues = {
 
 interface Props {
     deltakelse?: Deltakelse;
+    onDeltakelseSlettet: () => void;
 }
 
-const EndreDeltakelseForm = ({ deltakelse }: Props) => {
+const EndreDeltakelseForm = ({ deltakelse, onDeltakelseSlettet }: Props) => {
     const [pending, setIsPending] = useState(false);
+    const [deletePending, setDeletePending] = useState(false);
     const [error, setError] = useState<string>();
 
     const [endretDeltakelse, setEndretDeltakelse] = useState<Deltakelse>();
@@ -54,6 +56,21 @@ const EndreDeltakelseForm = ({ deltakelse }: Props) => {
             tom: d.tilOgMed ? dateToISODate(d.tilOgMed) : '',
         };
     };
+
+    const slettDeltakelse = async (id: string) => {
+        setDeletePending(true);
+        veilederService
+            .deleteDeltakelse(id)
+            .then(() => {
+                onDeltakelseSlettet();
+            })
+            .catch((e) => {
+                console.log(e);
+            })
+            .finally(() => {
+                setDeletePending(false);
+            });
+    };
     return (
         <TypedFormikWrapper<DeltakelseFormValues>
             initialValues={deltakelse ? getInitialValues(deltakelse) : {}}
@@ -64,6 +81,22 @@ const EndreDeltakelseForm = ({ deltakelse }: Props) => {
                         <Heading level="2" size="small" spacing={true}>
                             Endre deltakelse {deltakelse ? deltakelse.id : undefined}
                         </Heading>
+                        {deltakelse && (
+                            <Box>
+                                <Button
+                                    type="button"
+                                    loading={deletePending}
+                                    variant="secondary"
+                                    size="small"
+                                    onClick={(evt) => {
+                                        evt.stopPropagation();
+                                        evt.preventDefault();
+                                        slettDeltakelse(deltakelse.id);
+                                    }}>
+                                    Slett
+                                </Button>
+                            </Box>
+                        )}
                         {deltakelse === undefined ? (
                             <Alert variant="info">Hent deltakelse først</Alert>
                         ) : (

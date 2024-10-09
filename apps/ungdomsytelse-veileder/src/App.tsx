@@ -80,7 +80,12 @@ const App = () => {
                         <Tabs.Panel value="endre">
                             <Box paddingBlock="4">
                                 <ShadowBox>
-                                    <EndreDeltakelseForm deltakelse={deltakelse} />
+                                    <EndreDeltakelseForm
+                                        deltakelse={deltakelse}
+                                        onDeltakelseSlettet={() => {
+                                            setDeltakelse(undefined);
+                                        }}
+                                    />
                                 </ShadowBox>
                             </Box>
                         </Tabs.Panel>
