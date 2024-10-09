@@ -26,17 +26,17 @@ const HentDeltakelserForm = ({ deltakerFnr, velgDeltakelse }: Props) => {
         fnr: deltakerFnr,
     });
 
-    const hentDeltakelser = async (values) => {
+    const hentDeltakelser = async () => {
         setIsPending(true);
         setDeltakelser(undefined);
-        const d = await veilederService.getDeltakelser(values.fnr);
+        const d = await veilederService.getDeltakelser(deltakerFnr);
         setDeltakelser(d);
         setIsPending(false);
     };
 
     useEffectOnce(() => {
         if (!deltakelser || (deltakelser?.length > 0 && deltakelser[0].deltakerIdent !== deltakerFnr)) {
-            hentDeltakelser(deltakerFnr);
+            hentDeltakelser();
         }
     });
 
