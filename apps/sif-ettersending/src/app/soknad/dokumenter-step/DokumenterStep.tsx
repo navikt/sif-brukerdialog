@@ -70,7 +70,7 @@ const DokumenterStep = ({ søknadstype, søker, soknadId }: Props) => {
                         addLabel: text('steg.dokumenter.vedlegg'),
                         noAttachmentsText: text('vedleggsliste.ingenVedleggLastetOpp'),
                     }}
-                    validation={{ options: { required: true } }}
+                    validation={{ required: true }}
                     onUnauthorizedOrForbiddenUpload={userLoggedOut}
                     onFilesUploaded={(antall, antallFeilet) => {
                         logEvent(SIFCommonGeneralEvents.vedleggLastetOpp, { antall, antallFeilet });

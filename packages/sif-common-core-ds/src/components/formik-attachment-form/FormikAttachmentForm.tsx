@@ -6,7 +6,7 @@ import { hasExceededMaxTotalSizeOfAttachments } from '../../utils/attachmentUtil
 import FormikAttachmentList from '../formik-attachment-list/FormikAttachmentList';
 import FormikFileUploader from '../formik-file-uploader/FormikFileUploader';
 import PictureScanningGuide from '../picture-scanning-guide/PictureScanningGuide';
-import getAttachmentsValidator, { AttachmentsValidator } from './getAttachmentsValidator';
+import getAttachmentsValidator, { AttachmentsValidator, AttachmentsValidatorOptions } from './getAttachmentsValidator';
 import AttachmentTotalSizeAlert from './parts/AttachmentTotalSizeAlert';
 import AttachmentUploadErrors from './parts/AttachmentUploadErrors';
 
@@ -20,25 +20,30 @@ interface Props {
         addLabel: string;
         noAttachmentsText?: string;
     };
-    validation?: AttachmentsValidatorProp;
+    validation?: AttachmentsValidationProp;
     uploadLaterURL?: string;
     onUnauthorizedOrForbiddenUpload: () => void;
     onFilesUploaded?: (antall: number, antallFeilet: number) => void;
 }
 
-type AttachmentsValidatorProp = {
-    validator?: AttachmentsValidator;
-    options?: {
-        required?: boolean;
-    };
-};
+type AttachmentsValidationProp = AttachmentsValidator | AttachmentsValidatorOptions;
 
-const getValidateProp = (validation: AttachmentsValidatorProp): AttachmentsValidator | undefined => {
-    if (validation.validator) {
-        return validation.validator;
+// Type guard for AttachmentsValidatorOptions
+function isAttachmentsValidatorOptions(obj: any): obj is AttachmentsValidatorOptions {
+    return 'required' in obj || 'maxTotalSize' in obj;
+}
+
+// Type guard for AttachmentsValidator
+function isAttachmentsValidator(obj: any): obj is AttachmentsValidator {
+    return 'validate' in obj && typeof obj.validate === 'function';
+}
+
+const getFormikValidator = (validation: AttachmentsValidationProp): AttachmentsValidator | undefined => {
+    if (isAttachmentsValidatorOptions(validation)) {
+        return getAttachmentsValidator(validation);
     }
-    if (validation.options) {
-        return getAttachmentsValidator({ required: validation.options.required });
+    if (isAttachmentsValidator(validation)) {
+        return validation;
     }
     return undefined;
 };
@@ -74,7 +79,7 @@ const FormikAttachmentForm = ({
                 }}
                 onFilesUploaded={onFilesUploaded}
                 onUnauthorizedOrForbiddenUpload={onUnauthorizedOrForbiddenUpload}
-                validate={validation ? getValidateProp(validation) : undefined}
+                validate={validation ? getFormikValidator(validation) : undefined}
             />
 
             {!canUploadMore && <AttachmentTotalSizeAlert uploadLaterURL={uploadLaterURL} />}

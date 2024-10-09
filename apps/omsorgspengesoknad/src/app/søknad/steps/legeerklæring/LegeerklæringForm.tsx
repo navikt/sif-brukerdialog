@@ -63,7 +63,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({
                     otherAttachments={andreVedlegg}
                     uploadLaterURL={getLenker(intl.locale).ettersend}
                     onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
-                    validation={{ options: { required: true } }}
+                    validation={{ required: true }}
                     labels={{
                         addLabel: text('steg.legeerklaering.vedlegg.knappLabel'),
                         noAttachmentsText: text('vedleggsliste.ingenLegeerklæringLastetOpp'),

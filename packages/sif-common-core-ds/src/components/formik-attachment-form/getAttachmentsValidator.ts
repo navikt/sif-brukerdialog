@@ -20,28 +20,30 @@ type AttachmentsValidationResult =
     | ValidateAttachmentsError.noAttachmentsUploaded
     | ValidateAttachmentsError.maxTotalSizeExceeded;
 
-interface Options {
+export type AttachmentsValidatorOptions = {
     required?: boolean;
     maxTotalSize?: number;
-    otherAttachments?: Attachment[];
-}
+};
+
+export type AttachmentsValidator = ReturnType<typeof getAttachmentsValidator>;
 
 const getAttachmentsValidator =
-    (options: Options = {}): ValidationFunction<AttachmentsValidationResult> =>
+    (
+        options: AttachmentsValidatorOptions = {},
+        otherAttachments?: Attachment[],
+    ): ValidationFunction<AttachmentsValidationResult> =>
     (attachments: Attachment[] = []) => {
-        const { required, maxTotalSize = MAX_TOTAL_ATTACHMENT_SIZE_BYTES, otherAttachments = [] } = options;
+        const { required, maxTotalSize = MAX_TOTAL_ATTACHMENT_SIZE_BYTES } = options;
         const uploadedAttachments = attachments.filter((attachment) => attachmentHasBeenUploaded(attachment));
         const totalSizeInBytes: number = getTotalSizeOfAttachments([
             ...uploadedAttachments,
             ...(otherAttachments || []),
         ]);
-
         if (required) {
             if (attachments.length === 0) {
                 return ValidateAttachmentsError.noAttachmentsUploaded;
             }
         }
-
         if (totalSizeInBytes > maxTotalSize) {
             return ValidateAttachmentsError.maxTotalSizeExceeded;
         }
@@ -53,7 +55,5 @@ const getAttachmentsValidator =
         }
         return undefined;
     };
-
-export type AttachmentsValidator = ReturnType<typeof getAttachmentsValidator>;
 
 export default getAttachmentsValidator;
