@@ -56,7 +56,7 @@ const startServer = async () => {
     );
 
     server.use(
-        '/api',
+        '/api/ung-deltakelse-opplyser',
         createProxyMiddleware({
             target: 'http://localhost:8089/',
             changeOrigin: true,
