@@ -177,7 +177,7 @@ const nb = {
     'validation.registrertBarnAktørId.LEGEERKLÆRING.noValue': 'Du må velge hvilket barn legeerklæringen gjelder',
     'validation.dokumenter.noAttachmentsUploaded': 'Ingen dokumenter er lastet opp',
     'validation.dokumenter.tooManyAttachments': 'For mange dokumenter er lastet opp',
-    'validation.dokumenter.totalSizeExceeded':
+    'validation.dokumenter.maxTotalSizeExceeded':
         'Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24Mb.',
     'validation.beskrivelse.stringHasNoValue': 'Beskriv ettersendelsen',
     'validation.beskrivelse.stringIsTooLong': 'Beskrivelsen kan ikke inneholde mer enn {maks} tegn',

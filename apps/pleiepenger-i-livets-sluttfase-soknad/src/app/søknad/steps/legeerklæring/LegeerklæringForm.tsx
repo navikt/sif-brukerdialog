@@ -34,16 +34,13 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({
     isSubmitting,
 }) => {
     const { text, intl } = useAppIntl();
-    const { hasPendingUploads, maxTotalSizeExceeded: totalSizeExceeded } = useAttachmentsHelper(
-        legeerklæringer,
-        andreVedlegg,
-    );
+    const { hasPendingUploads, maxTotalSizeExceeded } = useAttachmentsHelper(legeerklæringer, andreVedlegg);
     return (
         <Form
             formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
             includeValidationSummary={true}
             submitPending={isSubmitting}
-            submitDisabled={hasPendingUploads || totalSizeExceeded}
+            submitDisabled={hasPendingUploads || maxTotalSizeExceeded}
             runDelayedFormValidation={true}
             onBack={goBack}>
             <VStack gap="6">

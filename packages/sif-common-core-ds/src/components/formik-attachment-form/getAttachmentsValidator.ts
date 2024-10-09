@@ -9,7 +9,7 @@ import {
 export enum ValidateAttachmentsError {
     noAttachmentsUploaded = 'noAttachmentsUploaded',
     tooManyAttachments = 'tooManyAttachments',
-    totalSizeExceeded = 'totalSizeExceeded',
+    maxTotalSizeExceeded = 'maxTotalSizeExceeded',
 }
 
 export const ValidateAttachmentsErrorKeys = Object.keys(ValidateAttachmentsError);
@@ -18,7 +18,7 @@ type AttachmentsValidationResult =
     | undefined
     | ValidateAttachmentsError.tooManyAttachments
     | ValidateAttachmentsError.noAttachmentsUploaded
-    | ValidateAttachmentsError.totalSizeExceeded;
+    | ValidateAttachmentsError.maxTotalSizeExceeded;
 
 interface Options {
     required?: boolean;
@@ -43,7 +43,7 @@ const getAttachmentsValidator =
         }
 
         if (totalSizeInBytes > maxTotalSize) {
-            return ValidateAttachmentsError.totalSizeExceeded;
+            return ValidateAttachmentsError.maxTotalSizeExceeded;
         }
         if (uploadedAttachments.length > 100) {
             return ValidateAttachmentsError.tooManyAttachments;
