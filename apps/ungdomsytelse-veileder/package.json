@@ -1,5 +1,8 @@
 {
+    "author": "NAV",
     "name": "@navikt/ungdomsytelse-veileder",
+    "description": "Midlertidig app for veileder på ungdomsytelsen",
+    "license": "MIT",
     "type": "module",
     "private": true,
     "version": "0.1.7",
