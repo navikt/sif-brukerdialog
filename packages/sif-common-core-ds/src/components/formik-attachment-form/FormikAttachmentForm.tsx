@@ -1,18 +1,17 @@
 import { Box, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
-import { ValidationError } from '@navikt/sif-common-formik-ds';
-import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
+import { deleteVedlegg } from '@navikt/sif-common';
 import { Attachment } from '../../types';
 import { hasExceededMaxTotalSizeOfAttachments } from '../../utils/attachmentUtils';
-import FormikFileUploader from '../formik-file-uploader/FormikFileUploader';
-import AttachmentUploadErrors from './parts/AttachmentUploadErrors';
-import { validateAttachments, ValidateAttachmentsErrors } from './validateAttachmentsUtils';
-import AttachmentTotalSizeAlert from './parts/AttachmentTotalSizeAlert';
-import PictureScanningGuide from '../picture-scanning-guide/PictureScanningGuide';
 import FormikAttachmentList from '../formik-attachment-list/FormikAttachmentList';
-import { deleteVedlegg } from '@navikt/sif-common';
+import FormikFileUploader from '../formik-file-uploader/FormikFileUploader';
+import PictureScanningGuide from '../picture-scanning-guide/PictureScanningGuide';
+import getAttachmentsValidator, { AttachmentsValidator } from './getAttachmentsValidator';
+import AttachmentTotalSizeAlert from './parts/AttachmentTotalSizeAlert';
+import AttachmentUploadErrors from './parts/AttachmentUploadErrors';
 
 interface Props {
+    legend?: string;
     fieldName: string;
     includeGuide?: boolean;
     attachments?: Attachment[];
@@ -21,13 +20,28 @@ interface Props {
         addLabel: string;
         noAttachmentsText?: string;
     };
-    validation: {
-        required: boolean;
-    };
+    validation?: AttachmentsValidatorProp;
     uploadLaterURL?: string;
     onUnauthorizedOrForbiddenUpload: () => void;
     onFilesUploaded?: (antall: number, antallFeilet: number) => void;
 }
+
+type AttachmentsValidatorProp = {
+    validator?: AttachmentsValidator;
+    options?: {
+        required?: boolean;
+    };
+};
+
+const getValidateProp = (validation: AttachmentsValidatorProp): AttachmentsValidator | undefined => {
+    if (validation.validator) {
+        return validation.validator;
+    }
+    if (validation.options) {
+        return getAttachmentsValidator({ required: validation.options.required });
+    }
+    return undefined;
+};
 
 const FormikAttachmentForm = ({
     fieldName,
@@ -36,7 +50,8 @@ const FormikAttachmentForm = ({
     otherAttachments = [],
     labels,
     uploadLaterURL,
-    validation: { required },
+    validation,
+    legend = 'Dokumenter',
     onUnauthorizedOrForbiddenUpload,
     onFilesUploaded,
 }: Props) => {
@@ -48,6 +63,7 @@ const FormikAttachmentForm = ({
             <Box marginBlock="0 4">{includeGuide && <PictureScanningGuide />}</Box>
             {canUploadMore ? (
                 <FormikFileUploader
+                    legend={legend}
                     attachments={attachments}
                     name={fieldName}
                     buttonLabel={labels.addLabel}
@@ -57,19 +73,19 @@ const FormikAttachmentForm = ({
                     onFileInputClick={() => {
                         setFilesThatDidntGetUploaded([]);
                     }}
-                    validate={(a: Attachment[] = []) => {
-                        return validateAll<ValidateAttachmentsErrors | ValidationError>([
-                            () => validateAttachments([...a, ...otherAttachments], required),
-                        ]);
-                    }}
                     onFilesUploaded={onFilesUploaded}
                     onUnauthorizedOrForbiddenUpload={onUnauthorizedOrForbiddenUpload}
+                    validate={validation ? getValidateProp(validation) : undefined}
                 />
             ) : (
                 <AttachmentTotalSizeAlert uploadLaterURL={uploadLaterURL} />
             )}
             <AttachmentUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
-
+            {/* <FormikInputGroup
+                name={`${fieldName}_group`}
+                hideLegend={true}
+                legend={legend}
+                validate={validation ? getValidateProp(validation) : undefined}> */}
             <FormikAttachmentList
                 fieldName={fieldName}
                 attachments={attachments}
@@ -78,6 +94,7 @@ const FormikAttachmentForm = ({
                 onDelete={(a: Attachment) => (a.info ? deleteVedlegg(a.info.id) : Promise.resolve())}
                 emptyListText={labels.noAttachmentsText}
             />
+            {/* </FormikInputGroup> */}
         </VStack>
     );
 };

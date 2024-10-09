@@ -38,11 +38,7 @@ const DokumenterStep = ({ søknadstype, søker, soknadId }: Props) => {
         );
     };
 
-    const { hasPendingUploads, maxTotalSizeExceeded } = useAttachmentsHelper(
-        values[SoknadFormField.dokumenter],
-        [],
-        onAttachmentsChange,
-    );
+    const { hasPendingUploads } = useAttachmentsHelper(values[SoknadFormField.dokumenter], [], onAttachmentsChange);
 
     const { logUserLoggedOut, logEvent } = useAmplitudeInstance();
 
@@ -52,10 +48,7 @@ const DokumenterStep = ({ søknadstype, søker, soknadId }: Props) => {
     };
 
     return (
-        <SoknadFormStep
-            id={StepID.DOKUMENTER}
-            søknadstype={søknadstype}
-            buttonDisabled={hasPendingUploads || maxTotalSizeExceeded}>
+        <SoknadFormStep id={StepID.DOKUMENTER} søknadstype={søknadstype} buttonDisabled={hasPendingUploads}>
             <VStack gap="8">
                 <SifGuidePanel>
                     <p>
@@ -77,7 +70,7 @@ const DokumenterStep = ({ søknadstype, søker, soknadId }: Props) => {
                         addLabel: text('steg.dokumenter.vedlegg'),
                         noAttachmentsText: text('vedleggsliste.ingenVedleggLastetOpp'),
                     }}
-                    validation={{ required: true }}
+                    validation={{ options: { required: true } }}
                     onUnauthorizedOrForbiddenUpload={userLoggedOut}
                     onFilesUploaded={(antall, antallFeilet) => {
                         logEvent(SIFCommonGeneralEvents.vedleggLastetOpp, { antall, antallFeilet });

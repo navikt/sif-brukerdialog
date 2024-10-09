@@ -115,7 +115,7 @@ const startServer = () => {
                 res.end();
             });
             req.pipe(busboy);
-        }, 2000);
+        }, 250);
     });
 
     server.delete('/vedlegg/**', (req, res) => {

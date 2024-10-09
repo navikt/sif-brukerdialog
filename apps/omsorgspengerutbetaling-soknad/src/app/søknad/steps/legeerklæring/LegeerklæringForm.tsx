@@ -31,6 +31,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
     const { text, intl } = useAppIntl();
 
     const legeerklæringer = values[LegeerklæringFormFields.vedlegg] || [];
+
     const { hasPendingUploads, maxTotalSizeExceeded } = useAttachmentsHelper(legeerklæringer, andreVedlegg);
 
     return (
@@ -59,7 +60,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                 labels={{
                     addLabel: text('steg.legeerklæring.vedlegg.knappLabel'),
                 }}
-                validation={{ required: false }}
+                validation={{ options: { required: true } }}
                 onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
                 otherAttachments={andreVedlegg}
                 uploadLaterURL={getLenker(intl.locale).ettersending}

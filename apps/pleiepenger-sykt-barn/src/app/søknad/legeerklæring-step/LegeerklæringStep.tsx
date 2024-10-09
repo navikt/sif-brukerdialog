@@ -71,7 +71,6 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
                     addLabel: text('steg.lege.vedlegg'),
                     noAttachmentsText: text('vedleggsliste.ingenLegeerklæringLastetOpp'),
                 }}
-                validation={{ required: false }}
                 uploadLaterURL={getLenker(intl.locale).ettersend}
                 onUnauthorizedOrForbiddenUpload={userNotLoggedIn}
                 otherAttachments={andreVedlegg}
