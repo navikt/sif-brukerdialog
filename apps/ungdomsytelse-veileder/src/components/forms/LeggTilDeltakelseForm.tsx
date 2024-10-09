@@ -18,16 +18,27 @@ const LeggTilDeltakelseForm = () => {
         fom: '2025-07-01',
     });
     const [deltakelse, setDeltakelse] = useState<Deltakelse | undefined>();
+    const [error, setError] = useState<string>();
 
     const leggTilDeltakelse = async (values: DeltakelseFormValues) => {
+        setError(undefined);
+        setDeltakelse(undefined);
         setIsPending(true);
-        const deltakelseResponse = await veilederService.createDeltakelse({
-            deltakerIdent: values.fnr,
-            fraOgMed: values.fom,
-            tilOgMed: values.tom,
-        });
-        setIsPending(false);
-        setDeltakelse(deltakelseResponse);
+        await veilederService
+            .createDeltakelse({
+                deltakerIdent: values.fnr,
+                fraOgMed: values.fom,
+                tilOgMed: values.tom,
+            })
+            .catch((e) => {
+                setError(e.message);
+            })
+            .then((deltakelseResponse) => {
+                setIsPending(false);
+                if (deltakelseResponse) {
+                    setDeltakelse(deltakelseResponse);
+                }
+            });
     };
 
     return (
@@ -37,11 +48,7 @@ const LeggTilDeltakelseForm = () => {
             renderForm={({ setValues }) => {
                 return (
                     <VStack gap="6">
-                        <TypedFormikForm
-                            includeButtons={true}
-                            submitPending={pending}
-                            submitButtonLabel="Legg til"
-                            showButtonArrows={false}>
+                        <TypedFormikForm submitPending={pending} submitButtonLabel="Legg til" showButtonArrows={false}>
                             <Heading level="2" size="small" spacing={true}>
                                 Legg til deltakelse
                             </Heading>
@@ -71,12 +78,14 @@ const LeggTilDeltakelseForm = () => {
                                         evt.stopPropagation();
                                         evt.preventDefault();
                                         setValues({});
+                                        setError(undefined);
                                         setDeltakelse(undefined);
                                     }}>
                                     Reset
                                 </Button>
                             </Alert>
                         )}
+                        {error && <Alert variant="error">{error}</Alert>}
                     </VStack>
                 );
             }}

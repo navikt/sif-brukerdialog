@@ -6,6 +6,7 @@ import './app.css';
 import { BodyShort, Box, Heading, Tabs, VStack } from '@navikt/ds-react';
 import LeggTilDeltakelseForm from './components/forms/LeggTilDeltakelseForm';
 import ShadowBox from './components/ShadowBox';
+import EndreDeltakelseForm from './components/forms/EndreDeltakelseForm';
 
 const App = () => {
     const { initialData, isLoading } = useInitialData();
@@ -28,21 +29,23 @@ const App = () => {
                     <BodyShort>Applikasjon for å teste ut informasjon om ungdomsytelsen.</BodyShort>
                 </Box>
 
-                <Tabs defaultValue="create">
+                <Tabs defaultValue="endre">
                     <Tabs.List>
-                        <Tabs.Tab value="create" label="Legg til deltakelse" />
-                        <Tabs.Tab value="modify" label="Endre deltakelse" />
+                        <Tabs.Tab value="leggTil" label="Legg til deltakelse" />
+                        <Tabs.Tab value="endre" label="Endre deltakelse" />
                     </Tabs.List>
-                    <Tabs.Panel value="create">
+                    <Tabs.Panel value="leggTil">
                         <Box paddingBlock="4">
                             <ShadowBox>
                                 <LeggTilDeltakelseForm />
                             </ShadowBox>
                         </Box>
                     </Tabs.Panel>
-                    <Tabs.Panel value="modify">
+                    <Tabs.Panel value="endre">
                         <Box paddingBlock="4">
-                            <ShadowBox>TODO</ShadowBox>
+                            <ShadowBox>
+                                <EndreDeltakelseForm />
+                            </ShadowBox>
                         </Box>
                     </Tabs.Panel>
                 </Tabs>
