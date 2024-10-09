@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.39.0
+
+### Minor Changes
+
+-   5fa2f8b: La til mulighet for brukere å ettersende uten fnr av barn i PP sykt barn
+
 ## 3.38.0
 
 ### Minor Changes
