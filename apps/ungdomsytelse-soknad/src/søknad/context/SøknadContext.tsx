@@ -9,6 +9,7 @@ interface SøknadContextType {
 
 interface SøknadContextData {
     søker: Søker;
+    alleDeltakelser: Deltakelse[];
     deltakelserSøktFor: Deltakelse[];
     deltakelserIkkeSøktFor: Deltakelse[];
 }
@@ -34,6 +35,7 @@ export const SøknadContextProvider = ({ children, initialData }: Props) => {
     const updateDeltakelse = (deltakelser: Deltakelse[]) => {
         setData({
             ...data,
+            alleDeltakelser: deltakelser,
             deltakelserSøktFor: deltakelser.filter((d) => d.søktFor),
             deltakelserIkkeSøktFor: deltakelser.filter((d) => !d.søktFor),
         });

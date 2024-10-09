@@ -6,6 +6,7 @@ import { deltakerService } from '../api/services/deltakerService';
 
 export type InitialData = {
     søker: Søker;
+    alleDeltakelser: Deltakelse[];
     deltakelserSøktFor: Deltakelse[];
     deltakelserIkkeSøktFor: Deltakelse[];
 };
@@ -19,6 +20,7 @@ export const useInitialData = () => {
         const deltakelser = await deltakerService.getDeltakelser(søker.fødselsnummer);
         setState({
             søker,
+            alleDeltakelser: deltakelser,
             deltakelserSøktFor: deltakelser.filter((d) => d.søktFor),
             deltakelserIkkeSøktFor: deltakelser.filter((d) => !d.søktFor),
         });

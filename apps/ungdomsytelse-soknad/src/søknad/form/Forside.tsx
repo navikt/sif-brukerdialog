@@ -9,7 +9,7 @@ import { deltakerService } from '../../api/services/deltakerService';
 
 const Forside = () => {
     const {
-        data: { søker, deltakelserSøktFor, deltakelserIkkeSøktFor },
+        data: { søker, deltakelserSøktFor, deltakelserIkkeSøktFor, alleDeltakelser },
         updateDeltakelse,
     } = useSøknadContext();
 
@@ -26,7 +26,7 @@ const Forside = () => {
 
                     <SoknadVelkommenGuide title={`Hei ${søker.fornavn}`}>
                         <VStack gap="8">
-                            {deltakelserSøktFor.length === 0 ? (
+                            {alleDeltakelser.length === 0 ? (
                                 <Alert variant="info">
                                     Vi kan ikke se at du er registrert for å kunne delta i dette programmet. Hvis du
                                     mener dette ikke stemmer, ta kontakt med din NAV veileder.
