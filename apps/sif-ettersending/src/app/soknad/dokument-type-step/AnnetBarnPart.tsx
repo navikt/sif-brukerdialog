@@ -1,12 +1,13 @@
 import { Heading } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds/src';
-import { getFødselsnummerValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { useAppIntl } from '../../i18n';
-import { SoknadFormField } from '../../types/SoknadFormData';
-import SoknadFormComponents from '../SoknadFormComponents';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { isDevMode } from '@navikt/sif-common-core-ds/src/utils/envUtils';
-
+import { resetFieldValue, SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds/src';
+import { getFødselsnummerValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { useFormikContext } from 'formik';
+import { useAppIntl } from '../../i18n';
+import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
+import SoknadFormComponents from '../SoknadFormComponents';
 interface Props {
     søkersFødselsnummer: string;
     harRegistrerteBarn: boolean;
@@ -14,6 +15,11 @@ interface Props {
 
 const AnnetBarnPart = ({ søkersFødselsnummer, harRegistrerteBarn }: Props) => {
     const { text } = useAppIntl();
+
+    const {
+        values: { barnetHarIkkeFnr },
+        setFieldValue,
+    } = useFormikContext<SoknadFormData>();
 
     return (
         <Block margin="xl">
@@ -32,16 +38,32 @@ const AnnetBarnPart = ({ søkersFødselsnummer, harRegistrerteBarn }: Props) => 
                             !harRegistrerteBarn ? text('step.dokumentType.annetBarn.fnr.spm.description') : undefined
                         }
                         name={SoknadFormField.barnetsFødselsnummer}
-                        validate={getFødselsnummerValidator({
-                            required: true,
-                            allowHnr: isDevMode,
-                            disallowedValues: [søkersFødselsnummer],
-                        })}
+                        validate={
+                            !barnetHarIkkeFnr
+                                ? getFødselsnummerValidator({
+                                      required: true,
+                                      allowHnr: isDevMode,
+                                      disallowedValues: [søkersFødselsnummer],
+                                  })
+                                : undefined
+                        }
                         width="xl"
                         type="tel"
                         maxLength={11}
+                        disabled={barnetHarIkkeFnr}
                     />
                 </div>
+                <FormBlock margin="l">
+                    <SoknadFormComponents.Checkbox
+                        label={text('steg.dokumentType.annetBarn.fnr.barnHarIkkeFnr')}
+                        name={SoknadFormField.barnetHarIkkeFnr}
+                        afterOnChange={(newValue) => {
+                            if (newValue) {
+                                resetFieldValue(SoknadFormField.barnetsFødselsnummer, setFieldValue, '');
+                            }
+                        }}
+                    />
+                </FormBlock>
             </SkjemagruppeQuestion>
         </Block>
     );
