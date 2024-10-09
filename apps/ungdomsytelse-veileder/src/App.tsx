@@ -5,15 +5,18 @@ import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import EndreDeltakelseForm from './components/forms/EndreDeltakelseForm';
 import HentDeltakelserForm from './components/forms/HentDeltakelseForm';
 import LeggTilDeltakelseForm from './components/forms/LeggTilDeltakelseForm';
-import ShadowBox from './components/ShadowBox';
+import ShadowBox from './components/shadow-box/ShadowBox';
 import VelgDeltaker from './components/velg-deltaker/VelgDeltaker';
 import { useInitialData } from './hooks/useInitialData';
 import '@navikt/ds-css';
 import './app.css';
+import { Deltakelse } from './api/types';
 
 const App = () => {
     const { initialData, isLoading } = useInitialData();
     const [deltakerFnr, setDeltakerFnr] = useState<string | undefined>('03867198392');
+    const [deltakelse, setDeltakelse] = useState<Deltakelse | undefined>();
+    const [activeTab, setActiveTab] = useState<string>();
 
     if (isLoading || !initialData) {
         return (
@@ -22,6 +25,11 @@ const App = () => {
             </center>
         );
     }
+
+    const handleVelgDeltakelse = (d: Deltakelse) => {
+        setDeltakelse(d);
+        setActiveTab('endre');
+    };
 
     return (
         <Page title="Forside">
@@ -38,11 +46,19 @@ const App = () => {
                 </ShadowBox>
 
                 {deltakerFnr && (
-                    <Tabs defaultValue="leggTil">
+                    <Tabs
+                        defaultValue="leggTil"
+                        value={activeTab}
+                        onChange={(tab) => {
+                            if (tab !== 'endre') {
+                                setDeltakelse(undefined);
+                            }
+                            setActiveTab(tab);
+                        }}>
                         <Tabs.List>
                             <Tabs.Tab value="leggTil" label="Legg til deltakelse" />
                             <Tabs.Tab value="hent" label="Hent deltakelser" />
-                            <Tabs.Tab value="endre" label="Endre deltakelse" />
+                            {deltakelse && <Tabs.Tab value="endre" label="Endre deltakelse" />}
                         </Tabs.List>
                         <Tabs.Panel value="leggTil">
                             <Box paddingBlock="4">
@@ -54,14 +70,17 @@ const App = () => {
                         <Tabs.Panel value="hent">
                             <Box paddingBlock="4">
                                 <ShadowBox>
-                                    <HentDeltakelserForm deltakerFnr={deltakerFnr} />
+                                    <HentDeltakelserForm
+                                        deltakerFnr={deltakerFnr}
+                                        velgDeltakelse={handleVelgDeltakelse}
+                                    />
                                 </ShadowBox>
                             </Box>
                         </Tabs.Panel>
                         <Tabs.Panel value="endre">
                             <Box paddingBlock="4">
                                 <ShadowBox>
-                                    <EndreDeltakelseForm deltakerFnr={deltakerFnr} />
+                                    <EndreDeltakelseForm deltakelse={deltakelse} />
                                 </ShadowBox>
                             </Box>
                         </Tabs.Panel>

@@ -1,10 +1,13 @@
-import { Box, Button, Heading, HStack, Table, VStack } from '@navikt/ds-react';
+/* eslint-disable no-constant-binary-expression */
+import { Box, Button, Heading, HStack, VStack } from '@navikt/ds-react';
 import { FormikTextField, TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { useState } from 'react';
 import { Deltakelse } from '../../api/types';
 import { getFødselsnummerValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { veilederService } from '../../api/services/veilederService';
-import { dateFormatter } from '@navikt/sif-common-utils';
+import DeltakelseTable from '../deltakelse-table/DeltakelseTable';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
+import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 
 type DeltakerFormValues = {
     fnr: string;
@@ -12,9 +15,10 @@ type DeltakerFormValues = {
 
 interface Props {
     deltakerFnr: string;
+    velgDeltakelse?: (deltakelse: Deltakelse) => void;
 }
 
-const HentDeltakelserForm = ({ deltakerFnr }: Props) => {
+const HentDeltakelserForm = ({ deltakerFnr, velgDeltakelse }: Props) => {
     const [pending, setIsPending] = useState(false);
     const [deltakelser, setDeltakelser] = useState<Deltakelse[] | undefined>();
 
@@ -30,6 +34,12 @@ const HentDeltakelserForm = ({ deltakerFnr }: Props) => {
         setIsPending(false);
     };
 
+    useEffectOnce(() => {
+        if (!deltakelser || (deltakelser?.length > 0 && deltakelser[0].deltakerIdent !== deltakerFnr)) {
+            hentDeltakelser(deltakerFnr);
+        }
+    });
+
     return (
         <TypedFormikWrapper<DeltakerFormValues>
             initialValues={initialValues}
@@ -37,54 +47,42 @@ const HentDeltakelserForm = ({ deltakerFnr }: Props) => {
             renderForm={({ values }) => {
                 return (
                     <VStack gap="6">
-                        <TypedFormikForm showSubmitButton={false} submitPending={pending} submitButtonLabel="Hent">
-                            <Heading level="2" size="small" spacing={true}>
-                                Hent deltakelser
-                            </Heading>
-                            <VStack gap="6" justify={'start'} flexBasis={'1'}>
-                                <HStack gap="2" align={'end'}>
-                                    <FormikTextField
-                                        name="fnr"
-                                        label="Fødselsnummer"
-                                        type="text"
-                                        disabled={true}
-                                        width="m"
-                                        validate={getFødselsnummerValidator({ required: true })}
-                                    />
-                                </HStack>
-                                <Box>
-                                    <Button type="submit" variant="secondary">
-                                        Hent
-                                    </Button>
-                                </Box>
-                            </VStack>
-                        </TypedFormikForm>
-
+                        {1 + 1 === 3 && (
+                            <TypedFormikForm showSubmitButton={false} submitPending={pending} submitButtonLabel="Hent">
+                                <Heading level="2" size="small" spacing={true}>
+                                    Hent deltakelser
+                                </Heading>
+                                <VStack gap="6" justify={'start'} flexBasis={'1'}>
+                                    <HStack gap="2" align={'end'}>
+                                        <FormikTextField
+                                            name="fnr"
+                                            label="Fødselsnummer"
+                                            type="text"
+                                            disabled={true}
+                                            width="m"
+                                            validate={getFødselsnummerValidator({ required: true })}
+                                        />
+                                    </HStack>
+                                    <Box>
+                                        <Button type="submit" variant="secondary">
+                                            Hent
+                                        </Button>
+                                    </Box>
+                                </VStack>
+                            </TypedFormikForm>
+                        )}
                         {deltakelser && (
                             <>
                                 <Heading level="2" size="small">
                                     Deltakelser for {values.fnr}
                                 </Heading>
-                                <Table>
-                                    <Table.Header>
-                                        <Table.Row>
-                                            <Table.HeaderCell>ID</Table.HeaderCell>
-                                            <Table.HeaderCell>Fra og med</Table.HeaderCell>
-                                            <Table.HeaderCell>Til og med</Table.HeaderCell>
-                                        </Table.Row>
-                                    </Table.Header>
-                                    <Table.Body>
-                                        {deltakelser.map((d) => (
-                                            <Table.Row key={d.id}>
-                                                <Table.DataCell>{d.id}</Table.DataCell>
-                                                <Table.DataCell>{dateFormatter.compact(d.fraOgMed)}</Table.DataCell>
-                                                <Table.DataCell>
-                                                    {d.tilOgMed ? dateFormatter.compact(d.tilOgMed) : null}
-                                                </Table.DataCell>
-                                            </Table.Row>
-                                        ))}
-                                    </Table.Body>
-                                </Table>
+                                {pending ? (
+                                    <VStack align={'center'} paddingBlock={'4'}>
+                                        <LoadingSpinner size="3xlarge" />
+                                    </VStack>
+                                ) : (
+                                    <DeltakelseTable deltakelser={deltakelser} velgDeltakelse={velgDeltakelse} />
+                                )}
                             </>
                         )}
                     </VStack>
