@@ -82,7 +82,7 @@
         "helmet": "8.0.0",
         "intl": "1.2.5",
         "less": "4.2.0",
-        "playwright-core": "1.47.2",
+        "playwright-core": "1.48.0",
         "react-dom": "18.3.1",
         "react-intl": "6.7.0",
         "storybook": "8.3.5",

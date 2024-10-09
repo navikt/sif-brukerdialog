@@ -5382,7 +5382,7 @@ __metadata:
     node-fetch: "npm:3.3.2"
     node-jose: "npm:2.2.0"
     pino: "npm:9.4.0"
-    playwright-core: "npm:1.47.2"
+    playwright-core: "npm:1.48.0"
     postcss: "npm:8.4.47"
     postcss-import: "npm:16.1.0"
     react: "npm:18.3.1"
@@ -5499,7 +5499,7 @@ __metadata:
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
     openid-client: "npm:5.7.0"
-    playwright-core: "npm:1.47.2"
+    playwright-core: "npm:1.48.0"
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
     react-fast-compare: "npm:3.2.2"
@@ -5586,7 +5586,7 @@ __metadata:
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
     openid-client: "npm:5.7.0"
-    playwright-core: "npm:1.47.2"
+    playwright-core: "npm:1.48.0"
     postcss: "npm:8.4.47"
     postcss-import: "npm:16.1.0"
     react: "npm:18.3.1"
@@ -5713,7 +5713,7 @@ __metadata:
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
     openid-client: "npm:5.7.0"
-    playwright-core: "npm:1.47.2"
+    playwright-core: "npm:1.48.0"
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
     react-fast-compare: "npm:3.2.2"
@@ -5753,7 +5753,7 @@ __metadata:
     jsdom: "npm:25.0.1"
     next: "npm:14.2.14"
     node-fetch: "npm:3.3.2"
-    playwright-core: "npm:1.47.2"
+    playwright-core: "npm:1.48.0"
     postcss: "npm:8.4.47"
     react: "npm:18.3.1"
     react-day-picker: "npm:8.10.1"
@@ -5989,7 +5989,7 @@ __metadata:
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
     openid-client: "npm:5.7.0"
-    playwright-core: "npm:1.47.2"
+    playwright-core: "npm:1.48.0"
     postcss: "npm:8.4.47"
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
@@ -6068,7 +6068,7 @@ __metadata:
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
     openid-client: "npm:5.7.0"
-    playwright-core: "npm:1.47.2"
+    playwright-core: "npm:1.48.0"
     postcss: "npm:8.4.47"
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
@@ -6157,7 +6157,7 @@ __metadata:
     mockdate: "npm:3.0.5"
     mustache-express: "npm:1.3.2"
     openid-client: "npm:5.7.0"
-    playwright-core: "npm:1.47.2"
+    playwright-core: "npm:1.48.0"
     react: "npm:18.3.1"
     react-day-picker: "npm:8.10.1"
     react-dom: "npm:18.3.1"
@@ -6767,7 +6767,7 @@ __metadata:
     lodash: "npm:4.17.21"
     mustache-express: "npm:1.3.2"
     openid-client: "npm:5.7.0"
-    playwright-core: "npm:1.47.2"
+    playwright-core: "npm:1.48.0"
     postcss: "npm:8.4.47"
     react: "npm:18.3.1"
     react-day-picker: "npm:8.10.1"
@@ -23917,6 +23917,15 @@ __metadata:
   bin:
     playwright-core: cli.js
   checksum: 10/2a2b28b2f1d01bc447f4f1cb4b5248ed053fde38429484c909efa17226e692a79cd5e6d4c337e9040eaaf311b6cb4a36027d6d14f1f44c482c5fb3feb081f913
+  languageName: node
+  linkType: hard
+
+"playwright-core@npm:1.48.0":
+  version: 1.48.0
+  resolution: "playwright-core@npm:1.48.0"
+  bin:
+    playwright-core: cli.js
+  checksum: 10/644489b4de9cc181e83eb639a283d3c4f8e4c3b1b1759d7c93b72fd0373b5a66ba376ee6a5ee3eca67f1b773bf15c5e01b6aeedd43c94c355bf4fc0d110713bc
   languageName: node
   linkType: hard
 
