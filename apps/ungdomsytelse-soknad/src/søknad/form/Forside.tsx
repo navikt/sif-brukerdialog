@@ -9,7 +9,7 @@ import { deltakerService } from '../../api/services/deltakerService';
 
 const Forside = () => {
     const {
-        data: { søker, deltakelserSøktFor, deltakelserIkkeSøktFor, alleDeltakelser },
+        data: { søker, deltakelserIkkeSøktFor, alleDeltakelser },
         updateDeltakelse,
     } = useSøknadContext();
 
@@ -38,18 +38,23 @@ const Forside = () => {
                     </SoknadVelkommenGuide>
 
                     {deltakelserIkkeSøktFor.length > 0 && (
-                        <DeltakelseForm
-                            søker={søker}
-                            deltakelse={deltakelserIkkeSøktFor[0]}
-                            onSøknadSendt={handleSøknadSendt}
-                        />
+                        <VStack gap="4">
+                            <Heading level="2" size="medium">
+                                Søk om deltakelse (1 av {deltakelserIkkeSøktFor.length})
+                            </Heading>
+                            <DeltakelseForm
+                                søker={søker}
+                                deltakelse={deltakelserIkkeSøktFor[0]}
+                                onSøknadSendt={handleSøknadSendt}
+                            />
+                        </VStack>
                     )}
-                    {deltakelserSøktFor.length > 0 && (
+                    {alleDeltakelser.length > 0 && (
                         <>
                             <Heading level="2" size="medium">
-                                Deltakelsesperiode det allerede er søkt for
+                                Alle deltakelser
                             </Heading>
-                            <DeltakelseTable deltakelser={deltakelserSøktFor} />
+                            <DeltakelseTable deltakelser={alleDeltakelser} />
                         </>
                     )}
                 </>
