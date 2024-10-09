@@ -7,6 +7,7 @@ import { BodyShort, Box, Heading, Tabs, VStack } from '@navikt/ds-react';
 import LeggTilDeltakelseForm from './components/forms/LeggTilDeltakelseForm';
 import ShadowBox from './components/ShadowBox';
 import EndreDeltakelseForm from './components/forms/EndreDeltakelseForm';
+import HentDeltakelserForm from './components/forms/HentDeltakelseForm';
 
 const App = () => {
     const { initialData, isLoading } = useInitialData();
@@ -32,12 +33,20 @@ const App = () => {
                 <Tabs defaultValue="endre">
                     <Tabs.List>
                         <Tabs.Tab value="leggTil" label="Legg til deltakelse" />
+                        <Tabs.Tab value="hent" label="Hent deltakelser" />
                         <Tabs.Tab value="endre" label="Endre deltakelse" />
                     </Tabs.List>
                     <Tabs.Panel value="leggTil">
                         <Box paddingBlock="4">
                             <ShadowBox>
                                 <LeggTilDeltakelseForm />
+                            </ShadowBox>
+                        </Box>
+                    </Tabs.Panel>
+                    <Tabs.Panel value="hent">
+                        <Box paddingBlock="4">
+                            <ShadowBox>
+                                <HentDeltakelserForm />
                             </ShadowBox>
                         </Box>
                     </Tabs.Panel>

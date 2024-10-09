@@ -27,25 +27,6 @@ server.use(
 );
 server.options('*', cors());
 
-const MELLOMLAGRING_JSON = `${os.tmpdir()}/omsorgspengesoknad-mellomlagring.json`;
-
-const isJSON = (str) => {
-    try {
-        return JSON.parse(str) && !!str;
-    } catch (e) {
-        return false;
-    }
-};
-
-const writeFileAsync = async (path, text) => {
-    return new Promise((resolve, reject) => {
-        fs.writeFile(path, text, 'utf8', (err) => {
-            if (err) reject(err);
-            else resolve();
-        });
-    });
-};
-
 const readFileSync = (path) => {
     return fs.readFileSync(path, 'utf8');
 };
@@ -53,7 +34,7 @@ const readFileSync = (path) => {
 const existsSync = (path) => fs.existsSync(path);
 
 const mockPath = `${__dirname}/data`;
-const deltaker = 'deltaker';
+const deltakelser = 'deltaker';
 
 const readMockFile = (file, responseObject) => {
     const filePath = `${mockPath}/${soker}/${file}`;
@@ -68,10 +49,17 @@ const readMockFile = (file, responseObject) => {
 const startExpressServer = () => {
     const port = process.env.PORT || 8099;
 
-    server.get('/veileder/register/hent/alle', (req, res) => {
+    server.post('/veileder/register/hent/alle', (req, res) => {
+        const response = [
+            {
+                id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0',
+                deltakerIdent: '56857102105',
+                fraOgMed: '2025-07-01',
+            },
+        ];
         setTimeout(() => {
-            readMockFile(deltakelser, res);
-        }, 250);
+            res.status(200).send(response);
+        }, 50);
     });
 
     server.post('/veileder/register/legg-til', (req, res) => {

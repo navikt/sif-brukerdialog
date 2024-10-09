@@ -1,8 +1,16 @@
-import { Heading, VStack } from '@navikt/ds-react';
-import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
+import { Alert, BodyShort, Button, Heading, VStack } from '@navikt/ds-react';
+import { FormikDatepicker, FormikTextField, TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
+import {
+    getDateValidator,
+    getFødselsnummerValidator,
+    getRequiredFieldValidator,
+} from '@navikt/sif-common-formik-ds/src/validation';
+import { veilederService } from '../../api/services/veilederService';
 import { useState } from 'react';
+import { Deltakelse } from '../../api/types';
 
 type DeltakelseFormValues = {
+    id: string;
     fnr: string;
     fom: string;
     tom?: string;
@@ -10,28 +18,82 @@ type DeltakelseFormValues = {
 
 const EndreDeltakelseForm = () => {
     const [pending, setIsPending] = useState(false);
-    const [initialValues] = useState<Partial<DeltakelseFormValues>>({
-        fnr: '56857102105',
-        fom: '2025-07-01',
-    });
+    const [initialValues] = useState<Partial<DeltakelseFormValues>>({});
+    const [deltakelse, setDeltakelse] = useState<Deltakelse | undefined>();
+    const [error, setError] = useState<string>();
 
-    const endreDeltakelse = async () => {
+    const leggTilDeltakelse = async (values: DeltakelseFormValues) => {
+        setError(undefined);
+        setDeltakelse(undefined);
         setIsPending(true);
-        setIsPending(false);
+        await veilederService
+            .createDeltakelse({
+                deltakerIdent: values.fnr,
+                fraOgMed: values.fom,
+                tilOgMed: values.tom,
+            })
+            .catch((e) => {
+                setError(e.message);
+            })
+            .then((deltakelseResponse) => {
+                setIsPending(false);
+                if (deltakelseResponse) {
+                    setDeltakelse(deltakelseResponse);
+                }
+            });
     };
 
     return (
         <TypedFormikWrapper<DeltakelseFormValues>
             initialValues={initialValues}
-            onSubmit={endreDeltakelse}
-            renderForm={() => {
+            onSubmit={leggTilDeltakelse}
+            renderForm={({ setValues }) => {
                 return (
                     <VStack gap="6">
-                        <TypedFormikForm submitPending={pending} submitButtonLabel="Legg til" showButtonArrows={false}>
+                        <TypedFormikForm submitPending={pending} submitButtonLabel="Endre" showButtonArrows={false}>
                             <Heading level="2" size="small" spacing={true}>
                                 Endre deltakelse
                             </Heading>
+                            <VStack gap="6">
+                                <FormikTextField
+                                    width="m"
+                                    name="id"
+                                    label="Deltakelse ID"
+                                    validate={getRequiredFieldValidator()}
+                                />
+                                <FormikTextField
+                                    width="m"
+                                    name="fnr"
+                                    label="Fødselsnummer"
+                                    validate={getFødselsnummerValidator({ required: true })}
+                                />
+                                <FormikDatepicker
+                                    name="fom"
+                                    label="Fra og med"
+                                    validate={getDateValidator({ required: true })}
+                                />
+                                <FormikDatepicker name="tom" label="Til og med" />
+                            </VStack>
                         </TypedFormikForm>
+
+                        {deltakelse && (
+                            <Alert variant="info">
+                                <BodyShort>Respons</BodyShort>
+                                <pre style={{ fontSize: '.8rem' }}>{JSON.stringify(deltakelse, null, 2)}</pre>
+                                <Button
+                                    type="button"
+                                    onClick={(evt) => {
+                                        evt.stopPropagation();
+                                        evt.preventDefault();
+                                        setValues({});
+                                        setError(undefined);
+                                        setDeltakelse(undefined);
+                                    }}>
+                                    Reset
+                                </Button>
+                            </Alert>
+                        )}
+                        {error && <Alert variant="error">{error}</Alert>}
                     </VStack>
                 );
             }}
