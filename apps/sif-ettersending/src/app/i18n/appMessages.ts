@@ -95,6 +95,7 @@ const nb = {
     'step.dokumentType.annetBarn.fnr.spm.description': 'Vi må vite dette for å koble dokumentet til rett sak',
     'steg.dokumentType.annetBarn.fnr.barnHarIkkeFnr': 'Barnet har ikke fødselsnummer/D-nummer',
     'step.dokumentType.dokumentType.ANNET': 'Annet',
+
     'step.dokumentType.annet.info.1': 'Har vi etterspurt mer dokumentasjon fra deg?',
     'step.dokumentType.annet.info.2':
         'Ved siden av legeerklæring, er det kun nødvendig å ettersende mer dokumentasjon hvis en saksbehandler har spurt om noe konkret fra deg.',
