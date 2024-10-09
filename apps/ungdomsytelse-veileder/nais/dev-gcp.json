@@ -23,6 +23,6 @@
 
         "UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH": "/api/ung-deltakelse-opplyser",
         "UNG_DELTAKELSE_OPPLYSER_API_SCOPE": "dev-gcp:k9saksbehandling:ung-deltakelse-opplyser",
-        "UNG_DELTAKELSE_OPPLYSER_API_URL": "http://k9saksbehandling.ung-deltakelse-opplyser"
+        "UNG_DELTAKELSE_OPPLYSER_API_URL": "http://ung-deltakelse-opplyser"
     }
 }
