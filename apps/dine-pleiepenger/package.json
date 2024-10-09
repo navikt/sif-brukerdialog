@@ -51,7 +51,7 @@
         "@navikt/ds-icons": "3.4.3",
         "@navikt/ds-react": "7.1.2",
         "@navikt/ds-tailwind": "7.1.2",
-        "@playwright/test": "1.47.2",
+        "@playwright/test": "1.48.0",
         "@sif/eslint-config": "*",
         "@storybook/addon-essentials": "8.3.5",
         "@storybook/addon-interactions": "8.3.5",
