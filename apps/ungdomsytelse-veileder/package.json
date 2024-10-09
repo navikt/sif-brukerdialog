@@ -1,5 +1,5 @@
 {
-    "name": "@navikt/sif-ungdomsytelse-veileder",
+    "name": "@navikt/ungdomsytelse-veileder",
     "type": "module",
     "private": true,
     "version": "0.1.7",
