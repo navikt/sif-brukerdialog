@@ -12,7 +12,7 @@ import './app.css';
 import LeggTilDeltakelseForm from './components/forms/LeggTilDeltakelseForm';
 
 const App = () => {
-    const [deltakerFnr, setDeltakerFnr] = useState<string | undefined>('03867198392');
+    const [deltakerFnr, setDeltakerFnr] = useState<string | undefined>('10457231682');
 
     const { hentDeltakelserPending, hentDeltakelser, deltakelser } = useHentDeltakelser();
     useEffectOnce(() => {
@@ -43,29 +43,28 @@ const App = () => {
                 </ShadowBox>
 
                 {deltakerFnr && (
-                    <>
-                        <Box>
-                            <Heading level="2" size="medium" spacing={true}>
-                                Deltakelser
-                            </Heading>
-                            {hentDeltakelserPending ? (
-                                <center>
-                                    <LoadingSpinner size="3xlarge" />
-                                </center>
-                            ) : (
-                                <VStack gap="8">
-                                    {deltakelser ? (
-                                        <DeltakelseTable
-                                            deltakelser={deltakelser}
-                                            onDeltakelseEndret={() => hentDeltakelser}
-                                            onDeltakelseSlettet={() => hentDeltakelser}
-                                        />
-                                    ) : null}
-                                    <LeggTilDeltakelseForm deltakerFnr={deltakerFnr} />
-                                </VStack>
-                            )}
-                        </Box>
-                    </>
+                    <ShadowBox>
+                        <Heading level="2" size="medium" spacing={true}>
+                            Deltakelser
+                        </Heading>
+                        {hentDeltakelserPending ? (
+                            <center>
+                                <LoadingSpinner size="3xlarge" />
+                            </center>
+                        ) : (
+                            <VStack gap="8">
+                                {deltakelser ? (
+                                    <DeltakelseTable
+                                        deltakelser={deltakelser}
+                                        onDeltakelseEndret={() => hentDeltakelser}
+                                        onDeltakelseSlettet={() => hentDeltakelser}
+                                    />
+                                ) : null}
+
+                                <LeggTilDeltakelseForm deltakerFnr={deltakerFnr} />
+                            </VStack>
+                        )}
+                    </ShadowBox>
                 )}
             </VStack>
         </Page>

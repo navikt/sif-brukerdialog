@@ -1,3 +1,4 @@
+import { PersonIcon } from '@navikt/aksel-icons';
 import { Button, Fieldset, Heading, HStack, TextField } from '@navikt/ds-react';
 import { getFødselsnummerValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { useState } from 'react';
@@ -10,8 +11,7 @@ interface Props {
 const VelgDeltaker = ({ onDeltakerValgt, valgtFnr }: Props) => {
     const [validationError, setValidationError] = useState<string | undefined>(undefined);
     const [fnr, setFnr] = useState<string | undefined>(valgtFnr);
-    const fnrValidator = getFødselsnummerValidator({ required: true });
-    // const fnrRef = useRef<HTMLInputElement>(null);
+    const fnrValidator = getFødselsnummerValidator({ required: true, allowHnr: true });
 
     const hentSøker = async () => {
         // const fnr = fnrRef.current?.value;
@@ -28,7 +28,10 @@ const VelgDeltaker = ({ onDeltakerValgt, valgtFnr }: Props) => {
     return (
         <>
             <Heading level="2" size="medium" spacing={true}>
-                Deltaker
+                <HStack align={'center'} gap="2">
+                    <PersonIcon width="2.5rem" height={'2.5rem'} />
+                    Deltaker
+                </HStack>
             </Heading>
             <form
                 onSubmit={(evt) => {
