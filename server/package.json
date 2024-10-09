@@ -13,7 +13,7 @@
         "@navikt/nav-dekoratoren-moduler": "2.1.6",
         "@navikt/oasis": "3.4.0",
         "cookie-parser": "1.4.6",
-        "express": "4.21.0",
+        "express": "5.0.1",
         "http-proxy-middleware": "3.0.2"
     },
     "devDependencies": {
