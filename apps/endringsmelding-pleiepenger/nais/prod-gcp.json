@@ -1,7 +1,16 @@
 {
     "app": "endringsmelding-pleiepenger",
+    "team": "dusseldorf",
     "cluster": "prod-gcp",
     "observabilityEnabled": "true",
+    "externalHosts": ["www.nav.no", "amplitude.nav.no"],
+    "accessPolicyOutApps": ["k9-brukerdialog-prosessering", "sif-innsyn-api"],
+    "ingresses": ["https://www.nav.no/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger"],
+    "livenessPath": "/internal/health/isAlive",
+    "readinessPath": "/internal/health/isReady",
+    "namespace": "dusseldorf",
+    "minReplicas": 2,
+    "maxReplicas": 2,
     "env": {
         "APP_VERSION": "prod",
         "ENV": "prod",
@@ -22,14 +31,5 @@
         "SIF_INNSYN_FRONTEND_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/api/sif-innsyn",
         "SIF_INNSYN_API_URL": "http://sif-innsyn-api",
         "SIF_INNSYN_API_SCOPE": "prod-gcp:dusseldorf:sif-innsyn-api"
-    },
-    "externalHosts": ["www.nav.no", "amplitude.nav.no"],
-    "accessPolicyOutApps": ["k9-brukerdialog-prosessering", "sif-innsyn-api"],
-    "minReplicas": 2,
-    "maxReplicas": 2,
-    "ingresses": ["https://www.nav.no/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger"],
-    "livenessPath": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/health/isAlive",
-    "namespace": "dusseldorf",
-    "readinessPath": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/health/isReady",
-    "team": "dusseldorf"
+    }
 }
