@@ -64,8 +64,6 @@ const DokumenterStep = ({ søknadstype, søker, soknadId }: Props) => {
 
                 <FormikAttachmentForm
                     fieldName={SoknadFormField.dokumenter}
-                    attachments={values[SoknadFormField.dokumenter]}
-                    includeGuide={true}
                     labels={{
                         addLabel: text('steg.dokumenter.vedlegg'),
                         noAttachmentsText: text('vedleggsliste.ingenVedleggLastetOpp'),

@@ -54,8 +54,6 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
 
             <FormikAttachmentForm
                 fieldName={LegeerklæringFormFields.vedlegg}
-                attachments={attachments}
-                includeGuide={true}
                 labels={{
                     addLabel: text('step.legeerklæring.uploadBtn'),
                     noAttachmentsText: text('vedleggsliste.ingenLegeerklæringLastetOpp'),

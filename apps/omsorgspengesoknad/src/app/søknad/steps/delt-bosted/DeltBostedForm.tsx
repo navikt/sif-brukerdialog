@@ -56,8 +56,6 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({
 
                 <FormikAttachmentForm
                     fieldName={DeltBostedFormFields.samværsavtale}
-                    includeGuide={true}
-                    attachments={samværsavtaler}
                     otherAttachments={andreVedlegg}
                     uploadLaterURL={getLenker(intl.locale).ettersend}
                     onUnauthorizedOrForbiddenUpload={relocateToLoginPage}

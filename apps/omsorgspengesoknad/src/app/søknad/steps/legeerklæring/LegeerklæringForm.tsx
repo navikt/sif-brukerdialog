@@ -58,8 +58,6 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({
 
                 <FormikAttachmentForm
                     fieldName={LegeerklæringFormFields.vedlegg}
-                    includeGuide={true}
-                    attachments={legeerklæringer}
                     otherAttachments={andreVedlegg}
                     uploadLaterURL={getLenker(intl.locale).ettersend}
                     onUnauthorizedOrForbiddenUpload={relocateToLoginPage}

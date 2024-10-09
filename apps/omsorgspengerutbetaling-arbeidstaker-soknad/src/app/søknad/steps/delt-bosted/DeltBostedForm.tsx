@@ -69,8 +69,6 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
             </Block>
             <FormikAttachmentForm
                 fieldName={DeltBostedFormFields.vedlegg}
-                attachments={attachments}
-                includeGuide={true}
                 labels={{
                     addLabel: text('step.deltBosted.uploadBtn'),
                     noAttachmentsText: text('vedleggsliste.ingenAvtaleLastetOpp'),

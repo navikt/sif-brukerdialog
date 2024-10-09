@@ -114,8 +114,6 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Pr
                     <FormBlock>
                         <FormikAttachmentForm
                             fieldName={getFieldName(ArbeidsforholdFormFields.dokumenter)}
-                            attachments={attachments}
-                            includeGuide={true}
                             labels={{
                                 addLabel: text('step.situasjon.arbeidsforhold.utbetalingsårsak.vedlegg'),
                                 noAttachmentsText: text('step.situasjon.vedleggsliste.ingenDokumenterLastetOpp'),

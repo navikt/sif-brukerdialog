@@ -9,14 +9,12 @@ interface Props {
     pleietrengendeId?: Attachment[];
     andreVedlegg?: Attachment[];
 }
-const IdPart = ({ pleietrengendeId = [], andreVedlegg = [] }: Props) => {
+const IdPart = ({ andreVedlegg = [] }: Props) => {
     const { text, intl } = useAppIntl();
 
     return (
         <FormikAttachmentForm
             fieldName={OpplysningerOmPleietrengendeFormFields.pleietrengendeId}
-            includeGuide={true}
-            attachments={pleietrengendeId}
             otherAttachments={andreVedlegg}
             uploadLaterURL={getLenker(intl.locale).ettersend}
             onUnauthorizedOrForbiddenUpload={relocateToLoginPage}

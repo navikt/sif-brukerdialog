@@ -65,8 +65,6 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
             </Block>
             <FormikAttachmentForm
                 fieldName={SøknadFormField.legeerklæring}
-                attachments={attachments}
-                includeGuide={true}
                 labels={{
                     addLabel: text('steg.lege.vedlegg'),
                     noAttachmentsText: text('vedleggsliste.ingenLegeerklæringLastetOpp'),

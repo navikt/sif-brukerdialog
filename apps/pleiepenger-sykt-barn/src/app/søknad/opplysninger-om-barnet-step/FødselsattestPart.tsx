@@ -48,8 +48,6 @@ const FødselsattestPart: React.FC<Props> = ({ fødselsattester }) => {
             </Block>
             <FormikAttachmentForm
                 fieldName={SøknadFormField.fødselsattest}
-                attachments={fødselsattester}
-                includeGuide={true}
                 labels={{
                     addLabel: text('steg.omBarnet.fødselsattest.vedlegg'),
                     noAttachmentsText: text('step.oppsummering.omBarn.ingenFødselsattest'),
