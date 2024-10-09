@@ -16,9 +16,15 @@ type DeltakelseFormValues = {
     tom?: string;
 };
 
-const EndreDeltakelseForm = () => {
+interface Props {
+    deltakerFnr: string;
+}
+
+const EndreDeltakelseForm = ({ deltakerFnr }: Props) => {
     const [pending, setIsPending] = useState(false);
-    const [initialValues] = useState<Partial<DeltakelseFormValues>>({});
+    const [initialValues] = useState<Partial<DeltakelseFormValues>>({
+        fnr: deltakerFnr,
+    });
     const [deltakelse, setDeltakelse] = useState<Deltakelse | undefined>();
     const [error, setError] = useState<string>();
 
@@ -57,15 +63,16 @@ const EndreDeltakelseForm = () => {
                             <VStack gap="6">
                                 <FormikTextField
                                     width="m"
-                                    name="id"
-                                    label="Deltakelse ID"
-                                    validate={getRequiredFieldValidator()}
+                                    name="fnr"
+                                    disabled={true}
+                                    label="Fødselsnummer"
+                                    validate={getFødselsnummerValidator({ required: true })}
                                 />
                                 <FormikTextField
                                     width="m"
-                                    name="fnr"
-                                    label="Fødselsnummer"
-                                    validate={getFødselsnummerValidator({ required: true })}
+                                    name="id"
+                                    label="Deltakelse ID"
+                                    validate={getRequiredFieldValidator()}
                                 />
                                 <FormikDatepicker
                                     name="fom"

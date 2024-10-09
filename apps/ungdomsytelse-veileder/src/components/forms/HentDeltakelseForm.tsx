@@ -10,12 +10,16 @@ type DeltakerFormValues = {
     fnr: string;
 };
 
-const HentDeltakelserForm = () => {
+interface Props {
+    deltakerFnr: string;
+}
+
+const HentDeltakelserForm = ({ deltakerFnr }: Props) => {
     const [pending, setIsPending] = useState(false);
     const [deltakelser, setDeltakelser] = useState<Deltakelse[] | undefined>();
 
     const [initialValues] = useState<Partial<DeltakerFormValues>>({
-        fnr: '56857102105',
+        fnr: deltakerFnr,
     });
 
     const hentDeltakelser = async (values) => {
@@ -43,13 +47,14 @@ const HentDeltakelserForm = () => {
                                         name="fnr"
                                         label="Fødselsnummer"
                                         type="text"
+                                        disabled={true}
                                         width="m"
                                         validate={getFødselsnummerValidator({ required: true })}
                                     />
                                 </HStack>
                                 <Box>
                                     <Button type="submit" variant="secondary">
-                                        Hent deltakelser
+                                        Hent
                                     </Button>
                                 </Box>
                             </VStack>

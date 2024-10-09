@@ -11,10 +11,14 @@ type DeltakelseFormValues = {
     tom?: string;
 };
 
-const LeggTilDeltakelseForm = () => {
+interface Props {
+    deltakerFnr: string;
+}
+
+const LeggTilDeltakelseForm = ({ deltakerFnr }: Props) => {
     const [pending, setIsPending] = useState(false);
     const [initialValues] = useState<Partial<DeltakelseFormValues>>({
-        fnr: '56857102105',
+        fnr: deltakerFnr,
         fom: '2025-07-01',
     });
     const [deltakelse, setDeltakelse] = useState<Deltakelse | undefined>();
@@ -56,6 +60,7 @@ const LeggTilDeltakelseForm = () => {
                                 <FormikTextField
                                     width="m"
                                     name="fnr"
+                                    disabled={true}
                                     label="Fødselsnummer"
                                     validate={getFødselsnummerValidator({ required: true })}
                                 />
