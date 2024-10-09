@@ -40,7 +40,7 @@ const updateDeltakelse = async (data: {
     fraOgMed: string;
     tilOgMed?: string;
 }): Promise<Deltakelse> => {
-    const response = await ungDeltakelseOpplyserApiClient.post(`/veileder/register/oppdater`, data);
+    const response = await ungDeltakelseOpplyserApiClient.put(`/veileder/register/oppdater/${data.id}`, data);
     try {
         const deltakelse = deltakelseSchema.parse(response.data);
         return deltakelse;
