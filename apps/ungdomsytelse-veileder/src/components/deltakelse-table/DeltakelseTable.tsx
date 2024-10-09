@@ -1,45 +1,40 @@
-import { Button, Table } from '@navikt/ds-react';
+import { Table } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { Deltakelse } from '../../api/types';
+import EndreDeltakelseForm from '../forms/EndreDeltakelseForm';
 
 interface Props {
     deltakelser: Deltakelse[];
-    velgDeltakelse?: (deltakelse: Deltakelse) => void;
+    onDeltakelseSlettet: (deltakelse: Deltakelse) => void;
+    onDeltakelseEndret: (deltakelse: Deltakelse) => void;
 }
 
-const DeltakelseTable = ({ deltakelser, velgDeltakelse }: Props) => {
+const DeltakelseTable = ({ deltakelser, onDeltakelseSlettet, onDeltakelseEndret }: Props) => {
     return (
         <Table>
             <Table.Header>
                 <Table.Row>
+                    <Table.HeaderCell></Table.HeaderCell>
                     <Table.HeaderCell>ID</Table.HeaderCell>
                     <Table.HeaderCell>Fra og med</Table.HeaderCell>
                     <Table.HeaderCell>Til og med</Table.HeaderCell>
-                    {velgDeltakelse && <Table.HeaderCell></Table.HeaderCell>}
                 </Table.Row>
             </Table.Header>
             <Table.Body>
                 {deltakelser.map((d) => (
-                    <Table.Row key={d.id}>
+                    <Table.ExpandableRow
+                        key={d.id}
+                        content={
+                            <EndreDeltakelseForm
+                                deltakelse={d}
+                                onDeltakelseSlettet={onDeltakelseSlettet}
+                                onDeltakelseEndret={onDeltakelseEndret}
+                            />
+                        }>
                         <Table.DataCell>{d.id}</Table.DataCell>
                         <Table.DataCell>{dateFormatter.compact(d.fraOgMed)}</Table.DataCell>
                         <Table.DataCell>{d.tilOgMed ? dateFormatter.compact(d.tilOgMed) : null}</Table.DataCell>
-                        {velgDeltakelse && (
-                            <Table.DataCell>
-                                <Button
-                                    type="button"
-                                    onClick={(evt) => {
-                                        evt.stopPropagation();
-                                        evt.preventDefault();
-                                        velgDeltakelse(d);
-                                    }}
-                                    variant="secondary"
-                                    size="small">
-                                    Velg
-                                </Button>
-                            </Table.DataCell>
-                        )}
-                    </Table.Row>
+                    </Table.ExpandableRow>
                 ))}
             </Table.Body>
         </Table>

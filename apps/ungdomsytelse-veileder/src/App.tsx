@@ -1,34 +1,31 @@
-import { BodyShort, Box, Heading, Tabs, VStack } from '@navikt/ds-react';
+import { BodyShort, Box, Heading, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import EndreDeltakelseForm from './components/forms/EndreDeltakelseForm';
-import HentDeltakelserForm from './components/forms/HentDeltakelseForm';
-import LeggTilDeltakelseForm from './components/forms/LeggTilDeltakelseForm';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
+import DeltakelseTable from './components/deltakelse-table/DeltakelseTable';
 import ShadowBox from './components/shadow-box/ShadowBox';
 import VelgDeltaker from './components/velg-deltaker/VelgDeltaker';
-import { useInitialData } from './hooks/useInitialData';
+import { useHentDeltakelser } from './hooks/useHentDeltakelser';
 import '@navikt/ds-css';
 import './app.css';
-import { Deltakelse } from './api/types';
+import LeggTilDeltakelseForm from './components/forms/LeggTilDeltakelseForm';
 
 const App = () => {
-    const { initialData, isLoading } = useInitialData();
     const [deltakerFnr, setDeltakerFnr] = useState<string | undefined>('03867198392');
-    const [deltakelse, setDeltakelse] = useState<Deltakelse | undefined>();
-    const [activeTab, setActiveTab] = useState<string>();
 
-    if (isLoading || !initialData) {
-        return (
-            <center>
-                <LoadingSpinner size="3xlarge" />
-            </center>
-        );
-    }
+    const { hentDeltakelserPending, hentDeltakelser, deltakelser } = useHentDeltakelser();
+    useEffectOnce(() => {
+        if (deltakerFnr) {
+            hentDeltakelser(deltakerFnr);
+        }
+    });
 
-    const handleVelgDeltakelse = (d: Deltakelse) => {
-        setDeltakelse(d);
-        setActiveTab('endre');
+    const handleDeltakerValgt = (fnr: string) => {
+        setDeltakerFnr(fnr);
+        if (fnr) {
+            hentDeltakelser(fnr);
+        }
     };
 
     return (
@@ -42,54 +39,33 @@ const App = () => {
                 </Box>
 
                 <ShadowBox>
-                    <VelgDeltaker onDeltakerValgt={setDeltakerFnr} valgtFnr={deltakerFnr} />
+                    <VelgDeltaker onDeltakerValgt={handleDeltakerValgt} valgtFnr={deltakerFnr} />
                 </ShadowBox>
 
                 {deltakerFnr && (
-                    <Tabs
-                        defaultValue="leggTil"
-                        value={activeTab}
-                        onChange={(tab) => {
-                            if (tab !== 'endre') {
-                                setDeltakelse(undefined);
-                            }
-                            setActiveTab(tab);
-                        }}>
-                        <Tabs.List>
-                            <Tabs.Tab value="leggTil" label="Legg til deltakelse" />
-                            <Tabs.Tab value="hent" label="Hent deltakelser" />
-                            {deltakelse && <Tabs.Tab value="endre" label="Endre deltakelse" />}
-                        </Tabs.List>
-                        <Tabs.Panel value="leggTil">
-                            <Box paddingBlock="4">
-                                <ShadowBox>
+                    <>
+                        <Box>
+                            <Heading level="2" size="medium" spacing={true}>
+                                Deltakelser
+                            </Heading>
+                            {hentDeltakelserPending ? (
+                                <center>
+                                    <LoadingSpinner size="3xlarge" />
+                                </center>
+                            ) : (
+                                <VStack gap="8">
+                                    {deltakelser ? (
+                                        <DeltakelseTable
+                                            deltakelser={deltakelser}
+                                            onDeltakelseEndret={() => hentDeltakelser}
+                                            onDeltakelseSlettet={() => hentDeltakelser}
+                                        />
+                                    ) : null}
                                     <LeggTilDeltakelseForm deltakerFnr={deltakerFnr} />
-                                </ShadowBox>
-                            </Box>
-                        </Tabs.Panel>
-                        <Tabs.Panel value="hent">
-                            <Box paddingBlock="4">
-                                <ShadowBox>
-                                    <HentDeltakelserForm
-                                        deltakerFnr={deltakerFnr}
-                                        velgDeltakelse={handleVelgDeltakelse}
-                                    />
-                                </ShadowBox>
-                            </Box>
-                        </Tabs.Panel>
-                        <Tabs.Panel value="endre">
-                            <Box paddingBlock="4">
-                                <ShadowBox>
-                                    <EndreDeltakelseForm
-                                        deltakelse={deltakelse}
-                                        onDeltakelseSlettet={() => {
-                                            setDeltakelse(undefined);
-                                        }}
-                                    />
-                                </ShadowBox>
-                            </Box>
-                        </Tabs.Panel>
-                    </Tabs>
+                                </VStack>
+                            )}
+                        </Box>
+                    </>
                 )}
             </VStack>
         </Page>
