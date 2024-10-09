@@ -54,7 +54,7 @@ const startExpressServer = () => {
             {
                 id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0',
                 deltakerIdent: '56857102105',
-                fraOgMed: '2025-07-01',
+                fraOgMed: '2025-09-01',
             },
         ];
         setTimeout(() => {

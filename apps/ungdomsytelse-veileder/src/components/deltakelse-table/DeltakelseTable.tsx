@@ -27,6 +27,7 @@ const DeltakelseTable = ({ deltakelser, onDeltakelseSlettet, onDeltakelseEndret 
                         content={
                             <EndreDeltakelseForm
                                 deltakelse={d}
+                                deltakelser={deltakelser}
                                 onDeltakelseSlettet={onDeltakelseSlettet}
                                 onDeltakelseEndret={onDeltakelseEndret}
                             />

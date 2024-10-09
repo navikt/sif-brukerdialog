@@ -4,17 +4,18 @@ import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import DeltakelseTable from './components/deltakelse-table/DeltakelseTable';
+import LeggTilDeltakelseForm from './components/forms/LeggTilDeltakelseForm';
 import ShadowBox from './components/shadow-box/ShadowBox';
 import VelgDeltaker from './components/velg-deltaker/VelgDeltaker';
 import { useHentDeltakelser } from './hooks/useHentDeltakelser';
 import '@navikt/ds-css';
 import './app.css';
-import LeggTilDeltakelseForm from './components/forms/LeggTilDeltakelseForm';
 
 const App = () => {
     const [deltakerFnr, setDeltakerFnr] = useState<string | undefined>('10457231682');
 
     const { hentDeltakelserPending, hentDeltakelser, deltakelser } = useHentDeltakelser();
+
     useEffectOnce(() => {
         if (deltakerFnr) {
             hentDeltakelser(deltakerFnr);
@@ -53,15 +54,18 @@ const App = () => {
                             </center>
                         ) : (
                             <VStack gap="8">
-                                {deltakelser ? (
+                                {deltakelser && (
                                     <DeltakelseTable
                                         deltakelser={deltakelser}
-                                        onDeltakelseEndret={() => hentDeltakelser}
-                                        onDeltakelseSlettet={() => hentDeltakelser}
+                                        onDeltakelseEndret={() => hentDeltakelser(deltakerFnr)}
+                                        onDeltakelseSlettet={() => hentDeltakelser(deltakerFnr)}
                                     />
-                                ) : null}
-
-                                <LeggTilDeltakelseForm deltakerFnr={deltakerFnr} />
+                                )}
+                                <LeggTilDeltakelseForm
+                                    deltakerFnr={deltakerFnr}
+                                    deltakelser={deltakelser || []}
+                                    onDeltakelseLagtTil={() => hentDeltakelser(deltakerFnr)}
+                                />
                             </VStack>
                         )}
                     </ShadowBox>
