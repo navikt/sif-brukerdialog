@@ -6,7 +6,7 @@
     "livenessPath": "/internal/health/isAlive",
     "readinessPath": "/internal/health/isReady",
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
-    "accessPolicyOutApps": ["k9-brukerdialog-prosessering", "ung-deltakelse-opplyser"],
+    "accessPolicyOutApps": ["k9-brukerdialog-prosessering", "k9saksbehandling.ung-deltakelse-opplyser"],
     "minReplicas": 1,
     "maxReplicas": 1,
     "cluster": "dev-gcp",
