@@ -1,4 +1,4 @@
-import { Alert, Heading, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Heading, VStack } from '@navikt/ds-react';
 import { FormikDatepicker, TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { useState } from 'react';
 import { Deltakelse } from '../../api/types';
@@ -21,6 +21,8 @@ const EndreDeltakelseForm = ({ deltakelse }: Props) => {
     const [pending, setIsPending] = useState(false);
     const [error, setError] = useState<string>();
 
+    const [endretDeltakelse, setEndretDeltakelse] = useState<Deltakelse>();
+
     const endreDeltakelse = async (values: DeltakelseFormValues) => {
         setError(undefined);
         setIsPending(true);
@@ -35,7 +37,10 @@ const EndreDeltakelseForm = ({ deltakelse }: Props) => {
                 .catch((e) => {
                     setError(e.message);
                 })
-                .then(() => {
+                .then((r) => {
+                    if (r) {
+                        setEndretDeltakelse(r);
+                    }
                     setIsPending(false);
                 });
         }
@@ -72,6 +77,12 @@ const EndreDeltakelseForm = ({ deltakelse }: Props) => {
                                     <FormikDatepicker name="tom" label="Til og med" />
                                 </VStack>
                             </TypedFormikForm>
+                        )}
+                        {endretDeltakelse && (
+                            <Alert variant="info">
+                                <BodyShort>Respons</BodyShort>
+                                <pre style={{ fontSize: '.8rem' }}>{JSON.stringify(deltakelse, null, 2)}</pre>
+                            </Alert>
                         )}
                         {error && <Alert variant="error">{error}</Alert>}
                     </VStack>

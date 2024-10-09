@@ -68,7 +68,6 @@ const startExpressServer = () => {
         const response = {
             ...req.body,
         };
-        console.log(response);
         setTimeout(() => {
             res.status(200).send(response);
         }, 50);
@@ -76,10 +75,13 @@ const startExpressServer = () => {
 
     server.put('/veileder/register/oppdater/:id', (req, res) => {
         const body = req.body;
-        console.log('[POST] body', body);
+        console.log('[put] body', body);
+        const response = {
+            ...req.body,
+        };
         setTimeout(() => {
-            res.sendStatus(200);
-        }, 2500);
+            res.status(200).send(response);
+        }, 50);
     });
 
     server.delete('/veileder/register/fjern/:id', (req, res) => {
