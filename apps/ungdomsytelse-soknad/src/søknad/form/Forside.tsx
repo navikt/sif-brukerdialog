@@ -5,11 +5,18 @@ import VelkommenPageHeader from '../../pages/velkommen/VelkommenPageHeader';
 import { useSøknadContext } from '../hooks/useSøknadContext';
 import DeltakelseTable from '../../components/deltakelse-table/DeltakelseTable';
 import DeltakelseForm from './DeltakelseForm';
+import { deltakerService } from '../../api/services/deltakerService';
 
 const Forside = () => {
-    const { søker, deltakelserSøktFor, deltakelserIkkeSøktFor } = useSøknadContext();
+    const {
+        data: { søker, deltakelserSøktFor, deltakelserIkkeSøktFor },
+        updateDeltakelse,
+    } = useSøknadContext();
 
-    const handleSøknadSendt = () => {};
+    const handleSøknadSendt = async () => {
+        const deltakelser = await deltakerService.getDeltakelser(søker.fødselsnummer);
+        updateDeltakelse(deltakelser);
+    };
 
     return (
         <Page title="Ungdomsytelse">
