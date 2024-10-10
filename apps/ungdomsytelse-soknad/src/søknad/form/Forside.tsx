@@ -1,20 +1,33 @@
 import { Alert, Box, Heading, VStack } from '@navikt/ds-react';
+import { useState } from 'react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { SoknadVelkommenGuide } from '@navikt/sif-common-soknad-ds/src';
+import { deltakerService } from '../../api/services/deltakerService';
+import { Deltakelse } from '../../api/types';
+import DeltakelseTable from '../../components/deltakelse-table/DeltakelseTable';
 import VelkommenPageHeader from '../../pages/velkommen/VelkommenPageHeader';
 import { useSøknadContext } from '../hooks/useSøknadContext';
-import DeltakelseTable from '../../components/deltakelse-table/DeltakelseTable';
 import DeltakelseForm from './DeltakelseForm';
-import { deltakerService } from '../../api/services/deltakerService';
 
 const Forside = () => {
     const {
-        data: { søker, deltakelserIkkeSøktFor, alleDeltakelser },
+        data: { søker, deltakelserIkkeSøktFor, deltakelserSøktFor, alleDeltakelser },
         updateDeltakelse,
     } = useSøknadContext();
 
-    const handleSøknadSendt = async () => {
-        const deltakelser = await deltakerService.getDeltakelser(søker.fødselsnummer);
+    const [søktFor, setSøktFor] = useState<string[]>(deltakelserSøktFor.map((d) => d.id));
+
+    const handleSøknadSendt = async (deltakelse: Deltakelse) => {
+        setSøktFor([...søktFor, deltakelse.id]);
+    };
+
+    const erSøktFor = (deltakelse: Deltakelse): boolean => {
+        return søktFor.includes(deltakelse.id);
+    };
+
+    const handleOnClose = async () => {
+        const data = await deltakerService.getDeltakelser(søker.fødselsnummer);
+        const deltakelser = data.map((d) => ({ ...d, søktFor: erSøktFor(d) }));
         updateDeltakelse(deltakelser);
     };
 
@@ -45,8 +58,8 @@ const Forside = () => {
                                         <DeltakelseForm
                                             søker={søker}
                                             deltakelse={deltakelse}
+                                            onClose={handleOnClose}
                                             onSøknadSendt={handleSøknadSendt}
-                                            onClose={handleSøknadSendt}
                                         />
                                     </Box>
                                 );

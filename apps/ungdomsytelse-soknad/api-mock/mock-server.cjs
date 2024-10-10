@@ -88,14 +88,14 @@ const startExpressServer = () => {
                 søktFor: true,
             },
             {
-                id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0',
+                id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab2',
                 deltakerIdent: '56857102105',
                 fraOgMed: '2026-01-01',
                 tilOgMed: '2026-04-01',
                 søktFor: false,
             },
             {
-                id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0',
+                id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab4',
                 deltakerIdent: '56857102105',
                 fraOgMed: '2026-05-01',
                 tilOgMed: '2026-08-14',

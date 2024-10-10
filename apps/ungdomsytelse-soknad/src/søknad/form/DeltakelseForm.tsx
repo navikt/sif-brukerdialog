@@ -1,4 +1,3 @@
-/* eslint-disable no-constant-condition */
 import { Alert, BodyShort, Box, Button, HStack, VStack } from '@navikt/ds-react';
 import {
     DateRange,
@@ -6,7 +5,7 @@ import {
     TypedFormikForm,
     TypedFormikWrapper,
 } from '@navikt/sif-common-formik-ds';
-import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { dateRangeFormatter, dateToISODate } from '@navikt/sif-common-utils';
@@ -26,13 +25,13 @@ export interface FormValues {
 interface Props {
     søker: Søker;
     deltakelse: Deltakelse;
-    onSøknadSendt: () => void;
-    onClose: () => void;
+    onSøknadSendt: (deltakelse: Deltakelse) => void;
+    onClose: (deltakelse: Deltakelse) => void;
 }
 
 const initialValues: Partial<FormValues> = {};
 
-const DeltakelseForm = ({ deltakelse, søker, onSøknadSendt, onClose }: Props) => {
+const DeltakelseForm = ({ deltakelse, søker, onClose, onSøknadSendt }: Props) => {
     const { intl } = useAppIntl();
     const periode: DateRange = {
         from: deltakelse.fraOgMed,
@@ -45,14 +44,14 @@ const DeltakelseForm = ({ deltakelse, søker, onSøknadSendt, onClose }: Props) 
         <>
             <Alert variant="success">
                 <Kvittering tittel="Søknad mottatt">
-                    <VStack gap="8">
+                    <VStack gap="6">
                         <BodyShort>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat eum assumenda tempore
                             pariatur quaerat aut nihil maiores recusandae similique. Et quisquam similique doloremque
                             optio odit impedit temporibus ullam hic officiis.
                         </BodyShort>
                         <HStack align="center" justify="center">
-                            <Button onClick={onClose}>Ok</Button>
+                            <Button onClick={() => onClose(deltakelse)}>Ok</Button>
                         </HStack>
                     </VStack>
                 </Kvittering>
@@ -71,9 +70,8 @@ const DeltakelseForm = ({ deltakelse, søker, onSøknadSendt, onClose }: Props) 
                     språk: 'nb',
                     søkerNorskIdent: søker.fødselsnummer,
                 };
-                // setApiData(data);
                 await sendSøknad(data);
-                onSøknadSendt();
+                onSøknadSendt(deltakelse);
             }}
             renderForm={() => {
                 return (
@@ -100,7 +98,7 @@ const DeltakelseForm = ({ deltakelse, søker, onSøknadSendt, onClose }: Props) 
                                     <FormikConfirmationCheckbox
                                         name="harBekreftetOpplysninger"
                                         label="Jeg bekrefter at jeg vil være med"
-                                        validate={getRequiredFieldValidator()}>
+                                        validate={getCheckedValidator()}>
                                         Du må bekrefte at du ønsker å være med i programmet for perioden {periodeTekst}.
                                     </FormikConfirmationCheckbox>
 
