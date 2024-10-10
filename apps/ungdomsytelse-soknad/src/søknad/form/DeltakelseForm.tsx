@@ -1,14 +1,9 @@
 import { Alert, BodyShort, Box, Button, HStack, VStack } from '@navikt/ds-react';
-import {
-    DateRange,
-    FormikConfirmationCheckbox,
-    TypedFormikForm,
-    TypedFormikWrapper,
-} from '@navikt/sif-common-formik-ds';
+import { FormikConfirmationCheckbox, TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { dateRangeFormatter, dateToISODate } from '@navikt/sif-common-utils';
+import { dateToISODate } from '@navikt/sif-common-utils';
 import ShadowBox from '@navikt/sif-common/src/api/dev-info-components/ShadowBox';
 import { Deltakelse, SøknadApiData } from '../../api/types';
 import { useAppIntl } from '../../i18n';
@@ -33,12 +28,7 @@ const initialValues: Partial<FormValues> = {};
 
 const DeltakelseForm = ({ deltakelse, søker, onClose, onSøknadSendt }: Props) => {
     const { intl } = useAppIntl();
-    const periode: DateRange = {
-        from: deltakelse.fraOgMed,
-        to: deltakelse.tilOgMed,
-    };
     const { isSubmitting, sendSøknad, sendSøknadError, søknadSendt } = useSendSøknad();
-    const periodeTekst = dateRangeFormatter.getDateRangeText(periode, 'nb');
 
     return søknadSendt ? (
         <>
@@ -64,7 +54,7 @@ const DeltakelseForm = ({ deltakelse, søker, onClose, onSøknadSendt }: Props) 
                 const data: SøknadApiData = {
                     søknadId: deltakelse.id,
                     fraOgMed: dateToISODate(deltakelse.fraOgMed),
-                    tilOgMed: dateToISODate(deltakelse.tilOgMed),
+                    tilOgMed: deltakelse.tilOgMed ? dateToISODate(deltakelse.tilOgMed) : undefined,
                     harBekreftetOpplysninger: values.harBekreftetOpplysninger,
                     harForståttRettigheterOgPlikter: true,
                     språk: 'nb',
@@ -84,9 +74,7 @@ const DeltakelseForm = ({ deltakelse, søker, onClose, onSøknadSendt }: Props) 
                             showSubmitButton={false}>
                             <ShadowBox>
                                 <FormLayout.Questions>
-                                    <FormLayout.SectionHeading>
-                                        Delta i perioden {periodeTekst}
-                                    </FormLayout.SectionHeading>
+                                    <FormLayout.SectionHeading>Delta i perioden</FormLayout.SectionHeading>
 
                                     <BodyShort>
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet asperiores
@@ -99,7 +87,7 @@ const DeltakelseForm = ({ deltakelse, søker, onClose, onSøknadSendt }: Props) 
                                         name="harBekreftetOpplysninger"
                                         label="Jeg bekrefter at jeg vil være med"
                                         validate={getCheckedValidator()}>
-                                        Du må bekrefte at du ønsker å være med i programmet for perioden {periodeTekst}.
+                                        Du må bekrefte at du ønsker å være med i programmet i denne perioden
                                     </FormikConfirmationCheckbox>
 
                                     <Box>
