@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.12.22
+
+### Patch Changes
+
+-   Bytte til debounce fra ds-react
+
 ## 1.12.21
 
 ### Patch Changes

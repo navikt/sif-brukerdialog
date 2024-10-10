@@ -1,5 +1,11 @@
 # @navikt/sif-app-register
 
+## 0.1.4
+
+### Patch Changes
+
+-   Bytte til debounce fra ds-react
+
 ## 0.1.3
 
 ### Patch Changes

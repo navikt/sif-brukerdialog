@@ -1,5 +1,11 @@
 # @navikt/sif-server
 
+## 0.2.4
+
+### Patch Changes
+
+-   Bytte til debounce fra ds-react
+
 ## 0.2.3
 
 ### Patch Changes

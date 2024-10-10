@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.47.17
+
+### Patch Changes
+
+-   Bytte til debounce fra ds-react
+
 ## 3.47.16
 
 ### Patch Changes

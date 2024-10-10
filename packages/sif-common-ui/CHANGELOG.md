@@ -1,5 +1,15 @@
 # @navikt/sif-common-ui
 
+## 0.8.22
+
+### Patch Changes
+
+-   Bytte til debounce fra ds-react
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.12.22
+    -   @navikt/sif-common-core-ds@9.18.23
+    -   @navikt/sif-common-utils@3.47.17
+
 ## 0.8.21
 
 ### Patch Changes

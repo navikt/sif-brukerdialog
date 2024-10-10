@@ -1,5 +1,16 @@
 # @navikt/ungdomsytelse-søknad
 
+## 0.1.8
+
+### Patch Changes
+
+-   Bytte til debounce fra ds-react
+-   Updated dependencies
+    -   @navikt/sif-common@0.1.6
+    -   @navikt/sif-common-core-ds@9.18.23
+    -   @navikt/sif-common-soknad-ds@14.0.17
+    -   @navikt/sif-common-ui@0.8.22
+
 ## 0.1.7
 
 ### Patch Changes

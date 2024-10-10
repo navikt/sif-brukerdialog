@@ -1,5 +1,11 @@
 # @navikt/sif-common-faro
 
+## 0.1.5
+
+### Patch Changes
+
+-   Bytte til debounce fra ds-react
+
 ## 0.1.4
 
 ### Patch Changes
