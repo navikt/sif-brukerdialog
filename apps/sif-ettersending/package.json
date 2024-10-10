@@ -64,7 +64,7 @@
         "babel-polyfill": "6.26.0",
         "busboy": "1.6.0",
         "cross-env": "7.0.3",
-        "globals": "15.10.0",
+        "globals": "15.11.0",
         "playwright-core": "1.47.2",
         "postcss": "8.4.47",
         "react-dom": "18.3.1",
