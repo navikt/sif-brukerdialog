@@ -9,7 +9,7 @@ import { FormLayout } from '@navikt/sif-common-ui';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
-import useAttachmentsHelper from '@navikt/sif-common-core-ds/src/hooks/useAttachmentsHelper';
+import { useAttachmentsHelper } from '@navikt/sif-common-core-ds';
 
 interface Props {
     samværsavtaler?: Attachment[];

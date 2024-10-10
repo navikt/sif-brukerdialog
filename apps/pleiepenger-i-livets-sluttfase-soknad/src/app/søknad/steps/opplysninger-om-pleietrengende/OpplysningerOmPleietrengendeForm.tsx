@@ -4,7 +4,7 @@ import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import useAttachmentsHelper from '@navikt/sif-common-core-ds/src/hooks/useAttachmentsHelper';
+import { useAttachmentsHelper } from '@navikt/sif-common-core-ds';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { isDevMode } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import {

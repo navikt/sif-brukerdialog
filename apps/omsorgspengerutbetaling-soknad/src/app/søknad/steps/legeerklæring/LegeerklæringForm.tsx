@@ -8,7 +8,7 @@ import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
-import useAttachmentsHelper from '@navikt/sif-common-core-ds/src/hooks/useAttachmentsHelper';
+import { useAttachmentsHelper } from '@navikt/sif-common-core-ds';
 
 interface Props {
     values: Partial<LegeerklæringFormValues>;
@@ -59,7 +59,6 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                 labels={{
                     addLabel: text('steg.legeerklæring.vedlegg.knappLabel'),
                 }}
-                validation={{ required: true }}
                 onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
                 otherAttachments={andreVedlegg}
                 uploadLaterURL={getLenker(intl.locale).ettersending}

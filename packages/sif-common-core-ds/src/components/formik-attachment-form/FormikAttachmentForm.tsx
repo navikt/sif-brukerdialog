@@ -1,16 +1,16 @@
 import { Box, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { deleteVedlegg } from '@navikt/sif-common';
+import { TypedFormInputValidationProps, ValidationError } from '@navikt/sif-common-formik-ds';
 import { Attachment } from '../../types';
 import { hasExceededMaxTotalSizeOfAttachments } from '../../utils/attachmentUtils';
 import FormikAttachmentList from '../formik-attachment-list/FormikAttachmentList';
 import FormikFileUploader from '../formik-file-uploader/FormikFileUploader';
 import PictureScanningGuide from '../picture-scanning-guide/PictureScanningGuide';
-import getAttachmentsValidator, { AttachmentsValidator, AttachmentsValidatorOptions } from './getAttachmentsValidator';
 import AttachmentTotalSizeAlert from './parts/AttachmentTotalSizeAlert';
 import AttachmentUploadErrors from './parts/AttachmentUploadErrors';
 
-interface Props {
+interface Props extends TypedFormInputValidationProps<string, ValidationError> {
     legend?: string;
     fieldName: string;
     attachments: Attachment[];
@@ -20,33 +20,10 @@ interface Props {
         addLabel: string;
         noAttachmentsText?: string;
     };
-    validation?: AttachmentsValidationProp;
     uploadLaterURL?: string;
     onUnauthorizedOrForbiddenUpload: () => void;
     onFilesUploaded?: (antall: number, antallFeilet: number) => void;
 }
-
-type AttachmentsValidationProp = AttachmentsValidator | AttachmentsValidatorOptions;
-
-// Type guard for AttachmentsValidatorOptions
-function isAttachmentsValidatorOptions(obj: any): obj is AttachmentsValidatorOptions {
-    return 'required' in obj || 'maxTotalSize' in obj;
-}
-
-// Type guard for AttachmentsValidator
-function isAttachmentsValidator(obj: any): obj is AttachmentsValidator {
-    return 'validate' in obj && typeof obj.validate === 'function';
-}
-
-const getValidatorToUse = (validation: AttachmentsValidationProp): AttachmentsValidator | undefined => {
-    if (isAttachmentsValidatorOptions(validation)) {
-        return getAttachmentsValidator(validation);
-    }
-    if (isAttachmentsValidator(validation)) {
-        return validation;
-    }
-    return undefined;
-};
 
 const FormikAttachmentForm = ({
     fieldName,
@@ -54,8 +31,8 @@ const FormikAttachmentForm = ({
     otherAttachments = [],
     labels,
     uploadLaterURL,
-    validation,
     legend = 'Dokumenter',
+    validate,
     includeGuide = true,
     onUnauthorizedOrForbiddenUpload,
     onFilesUploaded,
@@ -79,7 +56,7 @@ const FormikAttachmentForm = ({
                 }}
                 onFilesUploaded={onFilesUploaded}
                 onUnauthorizedOrForbiddenUpload={onUnauthorizedOrForbiddenUpload}
-                validate={validation ? getValidatorToUse(validation) : undefined}
+                validate={validate}
             />
 
             {!canUploadMore && <AttachmentTotalSizeAlert uploadLaterURL={uploadLaterURL} />}

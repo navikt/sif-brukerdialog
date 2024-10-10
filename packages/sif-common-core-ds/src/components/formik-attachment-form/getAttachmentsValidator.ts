@@ -1,4 +1,4 @@
-import { ValidationFunction } from '@navikt/sif-common-formik-ds';
+import { IntlErrorObject, ValidationFunction } from '@navikt/sif-common-formik-ds';
 import { Attachment } from '../../types';
 import {
     attachmentHasBeenUploaded,
@@ -20,40 +20,67 @@ type AttachmentsValidationResult =
     | ValidateAttachmentsError.noAttachmentsUploaded
     | ValidateAttachmentsError.maxTotalSizeExceeded;
 
+type AttachmentErrorsProp = Omit<IntlErrorObject, 'key'> & {
+    keyPrefix: string;
+};
+
 export type AttachmentsValidatorOptions = {
     required?: boolean;
     maxTotalSize?: number;
+    errors?: {
+        [ValidateAttachmentsError.noAttachmentsUploaded]?: AttachmentErrorsProp;
+        [ValidateAttachmentsError.tooManyAttachments]?: AttachmentErrorsProp;
+        [ValidateAttachmentsError.maxTotalSizeExceeded]?: AttachmentErrorsProp;
+    };
+    intlErrorObject?: IntlErrorObject;
 };
 
 export type AttachmentsValidator = ReturnType<typeof getAttachmentsValidator>;
 
-const getAttachmentsValidator =
+export const getAttachmentsValidator =
     (
         options: AttachmentsValidatorOptions = {},
         otherAttachments?: Attachment[],
-    ): ValidationFunction<AttachmentsValidationResult> =>
+    ): ValidationFunction<AttachmentsValidationResult | IntlErrorObject> =>
     (attachments: Attachment[] = []) => {
-        const { required, maxTotalSize = MAX_TOTAL_ATTACHMENT_SIZE_BYTES } = options;
+        const { required, maxTotalSize = MAX_TOTAL_ATTACHMENT_SIZE_BYTES, errors, intlErrorObject } = options;
         const uploadedAttachments = attachments.filter((attachment) => attachmentHasBeenUploaded(attachment));
         const totalSizeInBytes: number = getTotalSizeOfAttachments([
             ...uploadedAttachments,
             ...(otherAttachments || []),
         ]);
+
+        const getErrorKey = (error: ValidateAttachmentsError) => {
+            if (errors && errors[error]) {
+                const errObj: IntlErrorObject = {
+                    ...errors[error],
+                    key: `${errors[error].keyPrefix}.${error}`,
+                };
+                return errObj;
+            }
+            if (intlErrorObject) {
+                const errObj: IntlErrorObject = {
+                    ...intlErrorObject,
+                    key: `${intlErrorObject.key}.${error}`,
+                };
+                return errObj;
+            }
+            return error;
+        };
+
         if (required) {
             if (attachments.length === 0) {
-                return ValidateAttachmentsError.noAttachmentsUploaded;
+                return getErrorKey(ValidateAttachmentsError.noAttachmentsUploaded);
             }
         }
         if (totalSizeInBytes > maxTotalSize) {
-            return ValidateAttachmentsError.maxTotalSizeExceeded;
+            return getErrorKey(ValidateAttachmentsError.maxTotalSizeExceeded);
         }
         if (uploadedAttachments.length > 100) {
-            return ValidateAttachmentsError.tooManyAttachments;
+            return getErrorKey(ValidateAttachmentsError.tooManyAttachments);
         }
         if (required && uploadedAttachments.length === 0) {
-            return ValidateAttachmentsError.noAttachmentsUploaded;
+            return getErrorKey(ValidateAttachmentsError.noAttachmentsUploaded);
         }
         return undefined;
     };
-
-export default getAttachmentsValidator;

@@ -1,3 +1,5 @@
+import { getAttachmentsValidator, useAttachmentsHelper } from '@navikt/sif-common-core-ds';
+import { FormikAttachmentForm } from '@navikt/sif-common-core-ds/src';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import {
@@ -7,13 +9,11 @@ import {
 } from '@navikt/sif-common-formik-ds/src/validation';
 import { useFormikContext } from 'formik';
 import { useAppIntl } from '../../../../i18n';
+import getLenker from '../../../../lenker';
 import { Arbeidsforhold, Utbetalingsårsak, ÅrsakNyoppstartet } from '../../../../types/ArbeidsforholdTypes';
 import { relocateToLoginPage } from '../../../../utils/navigationUtils';
 import { AppFieldValidationErrors } from '../../../../utils/validations';
 import { ArbeidsforholdFormFields, SituasjonFormValues } from '../SituasjonStep';
-import { FormikAttachmentForm } from '@navikt/sif-common-core-ds/src';
-import getLenker from '../../../../lenker';
-import useAttachmentsHelper from '@navikt/sif-common-core-ds/src/hooks/useAttachmentsHelper';
 
 const { RadioGroup, Textarea } = getTypedFormComponents<ArbeidsforholdFormFields, Arbeidsforhold, ValidationError>();
 
@@ -119,6 +119,24 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Pr
                                 addLabel: text('step.situasjon.arbeidsforhold.utbetalingsårsak.vedlegg'),
                                 noAttachmentsText: text('step.situasjon.vedleggsliste.ingenDokumenterLastetOpp'),
                             }}
+                            validate={getAttachmentsValidator({
+                                required: true,
+                                errors: {
+                                    noAttachmentsUploaded: {
+                                        keyPrefix: 'validation.arbeidsforhold.utbetalingsårsak.vedlegg',
+                                        keepKeyUnaltered: true,
+                                        values: { arbeidsgivernavn },
+                                    },
+                                    tooManyAttachments: {
+                                        keyPrefix: 'validation.vedlegg',
+                                        keepKeyUnaltered: true,
+                                    },
+                                    maxTotalSizeExceeded: {
+                                        keyPrefix: 'validation.vedlegg',
+                                        keepKeyUnaltered: true,
+                                    },
+                                },
+                            })}
                             uploadLaterURL={getLenker(intl.locale).ettersending}
                             onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
                         />

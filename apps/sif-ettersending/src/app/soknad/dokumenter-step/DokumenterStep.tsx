@@ -1,8 +1,7 @@
 import { VStack } from '@navikt/ds-react';
 import { SIFCommonGeneralEvents, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
-import { FormikAttachmentForm } from '@navikt/sif-common-core-ds';
+import { FormikAttachmentForm, getAttachmentsValidator, useAttachmentsHelper } from '@navikt/sif-common-core-ds';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import useAttachmentsHelper from '@navikt/sif-common-core-ds/src/hooks/useAttachmentsHelper';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { useFormikContext } from 'formik';
 import { AppText, useAppIntl } from '../../i18n';
@@ -69,7 +68,7 @@ const DokumenterStep = ({ søknadstype, søker, soknadId }: Props) => {
                         addLabel: text('steg.dokumenter.vedlegg'),
                         noAttachmentsText: text('vedleggsliste.ingenVedleggLastetOpp'),
                     }}
-                    validation={{ required: true }}
+                    validate={getAttachmentsValidator({ required: true })}
                     onUnauthorizedOrForbiddenUpload={userLoggedOut}
                     onFilesUploaded={(antall, antallFeilet) => {
                         logEvent(SIFCommonGeneralEvents.vedleggLastetOpp, { antall, antallFeilet });

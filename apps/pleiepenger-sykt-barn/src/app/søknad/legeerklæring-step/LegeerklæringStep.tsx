@@ -1,12 +1,12 @@
 import { useAppIntl } from '@i18n/index';
 import { SIFCommonGeneralEvents, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
-import { FormikAttachmentForm } from '@navikt/sif-common-core-ds';
+import { FormikAttachmentForm, useAttachmentsHelper } from '@navikt/sif-common-core-ds';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import useAttachmentsHelper from '@navikt/sif-common-core-ds/src/hooks/useAttachmentsHelper';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { useFormikContext } from 'formik';
 import { persist } from '../../api/api';
+import usePersistOnChange from '../../hooks/usePersistOnChange';
 import { AppText } from '../../i18n';
 import getLenker from '../../lenker';
 import { StepCommonProps } from '../../types/StepCommonProps';
@@ -14,7 +14,6 @@ import { StepID } from '../../types/StepID';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { relocateToLoginPage } from '../../utils/navigationUtils';
 import SøknadFormStep from '../SøknadFormStep';
-import usePersistOnChange from '../../hooks/usePersistOnChange';
 
 const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
     const { values, setFieldValue } = useFormikContext<SøknadFormValues>();

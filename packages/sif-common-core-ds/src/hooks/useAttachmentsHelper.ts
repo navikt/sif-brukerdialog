@@ -7,7 +7,7 @@ import {
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '../utils/attachmentUtils';
 
-const useAttachmentsHelper = (
+export const useAttachmentsHelper = (
     attachments: Attachment[] | undefined = [],
     otherAttachments: Attachment[] | undefined = [],
     onChange?: (attachments: Attachment[]) => void,
@@ -43,5 +43,3 @@ const useAttachmentsHelper = (
         maxTotalSizeExceeded,
     };
 };
-
-export default useAttachmentsHelper;
