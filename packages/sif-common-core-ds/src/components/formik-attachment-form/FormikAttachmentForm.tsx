@@ -1,7 +1,6 @@
 import { Box, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { deleteVedlegg } from '@navikt/sif-common';
-import { useFormikContext } from 'formik';
 import { Attachment } from '../../types';
 import { hasExceededMaxTotalSizeOfAttachments } from '../../utils/attachmentUtils';
 import FormikAttachmentList from '../formik-attachment-list/FormikAttachmentList';
@@ -14,6 +13,7 @@ import AttachmentUploadErrors from './parts/AttachmentUploadErrors';
 interface Props {
     legend?: string;
     fieldName: string;
+    attachments: Attachment[];
     includeGuide?: boolean;
     otherAttachments?: Attachment[];
     labels: {
@@ -50,17 +50,17 @@ const getValidatorToUse = (validation: AttachmentsValidationProp): AttachmentsVa
 
 const FormikAttachmentForm = ({
     fieldName,
-    includeGuide = true,
+    attachments,
     otherAttachments = [],
     labels,
     uploadLaterURL,
     validation,
     legend = 'Dokumenter',
+    includeGuide = true,
     onUnauthorizedOrForbiddenUpload,
     onFilesUploaded,
 }: Props) => {
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = useState<File[]>([]);
-    const attachments = (useFormikContext<any>().values[fieldName] as Attachment[]) || [];
     const canUploadMore = !hasExceededMaxTotalSizeOfAttachments([...attachments, ...otherAttachments]);
 
     return (

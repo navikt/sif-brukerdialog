@@ -53,6 +53,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
             </Block>
 
             <FormikAttachmentForm
+                attachments={attachments}
                 fieldName={LegeerklæringFormFields.vedlegg}
                 labels={{
                     addLabel: text('step.legeerklæring.uploadBtn'),
