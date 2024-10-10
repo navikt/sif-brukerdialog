@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.8.19
+
+### Patch Changes
+
+-   Bytte til debounce fra ds-react
+
 ## 3.8.18
 
 ### Patch Changes

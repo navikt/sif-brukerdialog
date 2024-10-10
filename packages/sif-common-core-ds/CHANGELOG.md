@@ -1,5 +1,13 @@
 # @navikt/sif-common-core-ds
 
+## 9.18.23
+
+### Patch Changes
+
+-   Bytte til debounce fra ds-react
+-   Updated dependencies
+    -   @navikt/sif-common-utils@3.47.17
+
 ## 9.18.22
 
 ### Patch Changes

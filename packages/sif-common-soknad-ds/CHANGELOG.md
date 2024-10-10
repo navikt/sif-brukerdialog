@@ -1,5 +1,19 @@
 # @navikt/sif-common-soknad-ds
 
+## 14.0.17
+
+### Patch Changes
+
+-   Bytte til debounce fra ds-react
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.12.22
+    -   @navikt/sif-common-core-ds@9.18.23
+    -   @navikt/sif-common-forms-ds@10.1.16
+    -   @navikt/sif-common-hooks@0.2.4
+    -   @navikt/sif-common-sentry@0.27.15
+    -   @navikt/sif-common-ui@0.8.22
+    -   @navikt/sif-common-utils@3.47.17
+
 ## 14.0.16
 
 ### Patch Changes
