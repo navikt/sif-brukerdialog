@@ -38,7 +38,7 @@ function isAttachmentsValidator(obj: any): obj is AttachmentsValidator {
     return 'validate' in obj && typeof obj.validate === 'function';
 }
 
-const getFormikValidator = (validation: AttachmentsValidationProp): AttachmentsValidator | undefined => {
+const getValidatorToUse = (validation: AttachmentsValidationProp): AttachmentsValidator | undefined => {
     if (isAttachmentsValidatorOptions(validation)) {
         return getAttachmentsValidator(validation);
     }
@@ -79,7 +79,7 @@ const FormikAttachmentForm = ({
                 }}
                 onFilesUploaded={onFilesUploaded}
                 onUnauthorizedOrForbiddenUpload={onUnauthorizedOrForbiddenUpload}
-                validate={validation ? getFormikValidator(validation) : undefined}
+                validate={validation ? getValidatorToUse(validation) : undefined}
             />
 
             {!canUploadMore && <AttachmentTotalSizeAlert uploadLaterURL={uploadLaterURL} />}
