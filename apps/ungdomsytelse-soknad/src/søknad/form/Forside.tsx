@@ -1,4 +1,4 @@
-import { Alert, Heading, VStack } from '@navikt/ds-react';
+import { Alert, Box, Heading, VStack } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { SoknadVelkommenGuide } from '@navikt/sif-common-soknad-ds/src';
 import VelkommenPageHeader from '../../pages/velkommen/VelkommenPageHeader';
@@ -39,14 +39,18 @@ const Forside = () => {
 
                     {deltakelserIkkeSøktFor.length > 0 && (
                         <VStack gap="4">
-                            <Heading level="2" size="medium">
-                                Søk om deltakelse (1 av {deltakelserIkkeSøktFor.length})
-                            </Heading>
-                            <DeltakelseForm
-                                søker={søker}
-                                deltakelse={deltakelserIkkeSøktFor[0]}
-                                onSøknadSendt={handleSøknadSendt}
-                            />
+                            {deltakelserIkkeSøktFor.map((deltakelse) => {
+                                return (
+                                    <Box key={deltakelse.id}>
+                                        <DeltakelseForm
+                                            søker={søker}
+                                            deltakelse={deltakelse}
+                                            onSøknadSendt={handleSøknadSendt}
+                                            onClose={handleSøknadSendt}
+                                        />
+                                    </Box>
+                                );
+                            })}
                         </VStack>
                     )}
                     {alleDeltakelser.length > 0 && (

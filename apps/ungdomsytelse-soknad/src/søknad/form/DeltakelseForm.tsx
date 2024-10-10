@@ -1,4 +1,5 @@
-import { Alert, BodyShort, Box, Button, VStack } from '@navikt/ds-react';
+/* eslint-disable no-constant-condition */
+import { Alert, BodyShort, Box, Button, HStack, VStack } from '@navikt/ds-react';
 import {
     DateRange,
     FormikConfirmationCheckbox,
@@ -26,11 +27,12 @@ interface Props {
     søker: Søker;
     deltakelse: Deltakelse;
     onSøknadSendt: () => void;
+    onClose: () => void;
 }
 
 const initialValues: Partial<FormValues> = {};
 
-const DeltakelseForm = ({ deltakelse, søker, onSøknadSendt }: Props) => {
+const DeltakelseForm = ({ deltakelse, søker, onSøknadSendt, onClose }: Props) => {
     const { intl } = useAppIntl();
     const periode: DateRange = {
         from: deltakelse.fraOgMed,
@@ -40,15 +42,22 @@ const DeltakelseForm = ({ deltakelse, søker, onSøknadSendt }: Props) => {
     const periodeTekst = dateRangeFormatter.getDateRangeText(periode, 'nb');
 
     return søknadSendt ? (
-        <Kvittering tittel="Søknad sendt">
-            <VStack gap="8">
-                <BodyShort>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat eum assumenda tempore pariatur
-                    quaerat aut nihil maiores recusandae similique. Et quisquam similique doloremque optio odit impedit
-                    temporibus ullam hic officiis.
-                </BodyShort>
-            </VStack>
-        </Kvittering>
+        <>
+            <Alert variant="success">
+                <Kvittering tittel="Søknad mottatt">
+                    <VStack gap="8">
+                        <BodyShort>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat eum assumenda tempore
+                            pariatur quaerat aut nihil maiores recusandae similique. Et quisquam similique doloremque
+                            optio odit impedit temporibus ullam hic officiis.
+                        </BodyShort>
+                        <HStack align="center" justify="center">
+                            <Button onClick={onClose}>Ok</Button>
+                        </HStack>
+                    </VStack>
+                </Kvittering>
+            </Alert>
+        </>
     ) : (
         <TypedFormikWrapper
             initialValues={initialValues}
