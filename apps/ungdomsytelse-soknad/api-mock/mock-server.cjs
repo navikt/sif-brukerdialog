@@ -98,7 +98,6 @@ const startExpressServer = () => {
                 id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab4',
                 deltakerIdent: '56857102105',
                 fraOgMed: '2026-05-01',
-                tilOgMed: '2026-08-14',
                 søktFor: false,
             },
         ];

@@ -3,7 +3,7 @@ import { FormikConfirmationCheckbox, TypedFormikForm, TypedFormikWrapper } from 
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { dateToISODate } from '@navikt/sif-common-utils';
+import { dateFormatter, dateRangeFormatter, dateToISODate } from '@navikt/sif-common-utils';
 import ShadowBox from '@navikt/sif-common/src/api/dev-info-components/ShadowBox';
 import { Deltakelse, SøknadApiData } from '../../api/types';
 import { useAppIntl } from '../../i18n';
@@ -28,6 +28,7 @@ const initialValues: Partial<FormValues> = {};
 
 const DeltakelseForm = ({ deltakelse, søker, onClose, onSøknadSendt }: Props) => {
     const { intl } = useAppIntl();
+    const { fraOgMed, tilOgMed } = deltakelse;
     const { isSubmitting, sendSøknad, sendSøknadError, søknadSendt } = useSendSøknad();
 
     return søknadSendt ? (
@@ -74,7 +75,11 @@ const DeltakelseForm = ({ deltakelse, søker, onClose, onSøknadSendt }: Props) 
                             showSubmitButton={false}>
                             <ShadowBox>
                                 <FormLayout.Questions>
-                                    <FormLayout.SectionHeading>Delta i perioden</FormLayout.SectionHeading>
+                                    <FormLayout.SectionHeading>
+                                        {tilOgMed
+                                            ? `Delta i perioden ${dateRangeFormatter.getDateRangeText({ from: fraOgMed, to: tilOgMed }, 'nb')}`
+                                            : `Delta fra ${dateFormatter.compact(fraOgMed)}`}
+                                    </FormLayout.SectionHeading>
 
                                     <BodyShort>
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet asperiores
