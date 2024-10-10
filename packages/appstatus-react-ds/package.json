@@ -13,10 +13,10 @@
         "@sanity/client": "6.22.1"
     },
     "devDependencies": {
-        "@navikt/ds-css": "7.1.2",
-        "@navikt/ds-react": "7.1.2",
+        "@navikt/ds-css": "7.2.0",
+        "@navikt/ds-react": "7.2.0",
         "@sif/eslint-config": "*",
-        "@types/node": "22.7.4",
+        "@types/node": "22.7.5",
         "@types/react": "18.3.11",
         "@types/react-dom": "18.3.0",
         "config": "*",
