@@ -1,85 +1,75 @@
 import { Box, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
-import { ValidationError } from '@navikt/sif-common-formik-ds';
-import { validateAll } from '@navikt/sif-common-formik-ds/src/validation/validationUtils';
-import { AxiosResponse } from 'axios';
+import { deleteVedlegg } from '@navikt/sif-common';
+import { TypedFormInputValidationProps, ValidationError } from '@navikt/sif-common-formik-ds';
 import { Attachment } from '../../types';
 import { hasExceededMaxTotalSizeOfAttachments } from '../../utils/attachmentUtils';
+import FormikAttachmentList from '../formik-attachment-list/FormikAttachmentList';
 import FormikFileUploader from '../formik-file-uploader/FormikFileUploader';
-import AttachmentUploadErrors from './parts/AttachmentUploadErrors';
-import { validateAttachments, ValidateAttachmentsErrors } from './validateAttachmentsUtils';
-import FormikUploadedAttachments from './parts/FormikUploadedAttachments';
-import AttachmentTotalSizeAlert from './parts/AttachmentTotalSizeAlert';
 import PictureScanningGuide from '../picture-scanning-guide/PictureScanningGuide';
+import AttachmentTotalSizeAlert from './parts/AttachmentTotalSizeAlert';
+import AttachmentUploadErrors from './parts/AttachmentUploadErrors';
 
-interface Props {
+interface Props extends TypedFormInputValidationProps<string, ValidationError> {
+    legend?: string;
     fieldName: string;
+    attachments: Attachment[];
     includeGuide?: boolean;
-    attachments?: Attachment[];
     otherAttachments?: Attachment[];
     labels: {
         addLabel: string;
         noAttachmentsText?: string;
     };
-    uploadLaterURL: string;
-    fixAttachmentURL: (a: Attachment) => Attachment;
-    getAttachmentURLFrontend: (url: string) => string;
-    uploadFile: (file: File) => Promise<AxiosResponse<any, any>>;
-    deleteFile: (url: string) => Promise<AxiosResponse<any, any>>;
+    uploadLaterURL?: string;
     onUnauthorizedOrForbiddenUpload: () => void;
+    onFilesUploaded?: (antall: number, antallFeilet: number) => void;
 }
 
 const FormikAttachmentForm = ({
     fieldName,
-    includeGuide,
-    attachments = [],
+    attachments,
     otherAttachments = [],
     labels,
     uploadLaterURL,
-    uploadFile,
-    deleteFile,
-    fixAttachmentURL,
-    getAttachmentURLFrontend,
+    legend = 'Dokumenter',
+    validate,
+    includeGuide = true,
     onUnauthorizedOrForbiddenUpload,
+    onFilesUploaded,
 }: Props) => {
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = useState<File[]>([]);
-
     const canUploadMore = !hasExceededMaxTotalSizeOfAttachments([...attachments, ...otherAttachments]);
+
     return (
-        <VStack gap="2">
+        <VStack gap="4">
             <Box marginBlock="0 4">{includeGuide && <PictureScanningGuide />}</Box>
-            {canUploadMore ? (
-                <FormikFileUploader
-                    attachments={attachments}
-                    name={fieldName}
-                    buttonLabel={labels.addLabel}
-                    uploadFile={uploadFile}
-                    getAttachmentURLFrontend={getAttachmentURLFrontend}
-                    onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
-                    onFileInputClick={() => {
-                        setFilesThatDidntGetUploaded([]);
-                    }}
-                    validate={(a: Attachment[] = []) => {
-                        return validateAll<ValidateAttachmentsErrors | ValidationError>([
-                            () => validateAttachments([...a, ...otherAttachments]),
-                        ]);
-                    }}
-                    onUnauthorizedOrForbiddenUpload={onUnauthorizedOrForbiddenUpload}
-                />
-            ) : (
-                <AttachmentTotalSizeAlert uploadLaterURL={uploadLaterURL} />
-            )}
+            <FormikFileUploader
+                legend={legend}
+                attachments={attachments}
+                name={fieldName}
+                buttonLabel={labels.addLabel}
+                onErrorUploadingAttachments={(att) => {
+                    setFilesThatDidntGetUploaded(att);
+                }}
+                onFileInputClick={() => {
+                    setFilesThatDidntGetUploaded([]);
+                }}
+                onFilesUploaded={onFilesUploaded}
+                onUnauthorizedOrForbiddenUpload={onUnauthorizedOrForbiddenUpload}
+                validate={validate}
+            />
+
+            {!canUploadMore && <AttachmentTotalSizeAlert uploadLaterURL={uploadLaterURL} />}
 
             <AttachmentUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
 
-            <FormikUploadedAttachments
-                showFileSize={true}
-                fixAttachmentURL={fixAttachmentURL}
-                deleteFile={deleteFile}
-                attachments={attachments}
+            <FormikAttachmentList
                 fieldName={fieldName}
-                noAttachmentsText={labels.noAttachmentsText}
-                includeDeletionFunctionality={true}
+                attachments={attachments}
+                showFileSize={true}
+                variant="border"
+                onDelete={(a: Attachment) => (a.info ? deleteVedlegg(a.info.id) : Promise.resolve())}
+                emptyListText={labels.noAttachmentsText}
             />
         </VStack>
     );

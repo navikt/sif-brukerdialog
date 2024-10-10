@@ -1,5 +1,5 @@
 import { FileRejection } from 'react-dropzone';
-import { AxiosResponse } from 'axios';
+import { uploadVedlegg, getVedleggFrontendUrl } from '@navikt/sif-common';
 import { ArrayHelpers } from 'formik';
 import { Attachment, PersistedFile } from '../types';
 import { isForbidden, isUnauthorized } from '../utils/apiUtils';
@@ -14,39 +14,41 @@ import {
     mapFileToPersistedFile,
 } from '../utils/attachmentUtils';
 
-export type FieldArrayReplaceFn = (index: number, value: any) => void;
-export type FieldArrayPushFn = (obj: any) => void;
-export type FieldArrayRemoveFn = (index: number) => undefined;
+export type FormikFieldArrayReplaceFn = (index: number, value: any) => void;
+export type FormikFieldArrayPushFn = (obj: any) => void;
+export type FormikFieldArrayRemoveFn = (index: number) => undefined;
 
-export const useFormikFileUploader = ({
-    value,
-    uploadFile,
-    onFilesUploaded,
-    onErrorUploadingAttachments,
-    onUnauthorizedOrForbiddenUpload,
-    getAttachmentURLFrontend,
-}: {
+interface Props {
     value: Attachment[];
-    uploadFile: (file: File) => Promise<AxiosResponse<any, any>>;
     onFilesUploaded?: (antall: number, antallFeilet: number) => void;
     onUnauthorizedOrForbiddenUpload: () => void;
     onErrorUploadingAttachments: (files: File[]) => void;
-    getAttachmentURLFrontend: (url: string) => string;
-}) => {
+}
+export const useFormikFileUploader = ({
+    value,
+    onFilesUploaded,
+    onErrorUploadingAttachments,
+    onUnauthorizedOrForbiddenUpload,
+}: Props) => {
     async function uploadAttachment(attachment: Attachment) {
         const { file } = attachment;
         if (isFileObject(file)) {
             try {
-                const response = await uploadFile(file);
-                attachment = setAttachmentPendingToFalse(attachment);
-                attachment.id = getAttachmentId(response.headers.location);
-                attachment.url = getAttachmentURLFrontend(response.headers.location);
+                const response = await uploadVedlegg(file);
+                const location = response.headers.location;
+                const id = getAttachmentId(location);
+                attachment.pending = false;
+                attachment.info = {
+                    location,
+                    id,
+                    frontendUrl: getVedleggFrontendUrl(id),
+                };
                 attachment.uploaded = true;
             } catch (error) {
                 if (isForbidden(error) || isUnauthorized(error)) {
                     onUnauthorizedOrForbiddenUpload();
                 }
-                setAttachmentPendingToFalse(attachment);
+                attachment.pending = false;
             }
         }
     }
@@ -54,7 +56,7 @@ export const useFormikFileUploader = ({
     async function uploadAttachments(
         allAttachments: Attachment[],
         fileRejections: FileRejection[],
-        replaceFn: FieldArrayReplaceFn,
+        replaceFn: FormikFieldArrayReplaceFn,
     ) {
         const attachmentsToProcess = findAttachmentsToProcess(allAttachments);
         const attachmentsToUpload = findAttachmentsToUpload(attachmentsToProcess);
@@ -79,10 +81,10 @@ export const useFormikFileUploader = ({
     function updateFailedAttachments(
         allAttachments: Attachment[],
         failedAttachments: Attachment[],
-        replaceFn: FieldArrayReplaceFn,
+        replaceFn: FormikFieldArrayReplaceFn,
     ) {
         failedAttachments.forEach((attachment) => {
-            attachment = setAttachmentPendingToFalse(attachment);
+            attachment.pending = false;
             updateAttachmentListElement(allAttachments, attachment, replaceFn);
         });
         const failedFiles: File[] = failedAttachments
@@ -103,17 +105,12 @@ export const useFormikFileUploader = ({
     function updateAttachmentListElement(
         attachments: Attachment[],
         attachment: Attachment,
-        replaceFn: FieldArrayReplaceFn,
+        replaceFn: FormikFieldArrayReplaceFn,
     ) {
         replaceFn(attachments.indexOf(attachment), { ...attachment, file: mapFileToPersistedFile(attachment.file) });
     }
 
-    function setAttachmentPendingToFalse(attachment: Attachment) {
-        attachment.pending = false;
-        return attachment;
-    }
-
-    function addPendingAttachmentToFieldArray(file: File, pushFn: FieldArrayPushFn) {
+    function addPendingAttachmentToFieldArray(file: File, pushFn: FormikFieldArrayPushFn) {
         const attachment = getPendingAttachmentFromFile(file);
         pushFn(attachment);
         return attachment;

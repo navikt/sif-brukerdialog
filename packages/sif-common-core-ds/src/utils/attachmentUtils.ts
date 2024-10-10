@@ -2,10 +2,34 @@ import { Attachment, PersistedFile } from '../types/Attachment';
 import imageCompression from 'browser-image-compression';
 
 export const VALID_EXTENSIONS = ['.pdf', '.jpeg', '.jpg', '.png'];
-
 export const MAX_FILESIZE_FOR_UPLOAD = 7999999;
 export const MAX_TOTAL_ATTACHMENT_SIZE_IN_MB = 24;
 export const MAX_TOTAL_ATTACHMENT_SIZE_BYTES = 1000 * 1000 * MAX_TOTAL_ATTACHMENT_SIZE_IN_MB;
+
+const VEDLEGG_ID_SPLIT_KEY = 'vedlegg/';
+
+export const getAttachmentsInLocationArray = ({
+    locations,
+    attachments,
+}: {
+    locations: string[] | undefined;
+    attachments: Attachment[] | undefined;
+}) => {
+    if (!attachments || !locations) {
+        return [];
+    }
+    return (attachments || []).filter((a) => a.info && locations.includes(a.info.location));
+};
+
+export const getAttachmentsApiData = (attachments: Attachment[] = []): string[] => {
+    const apiData: string[] = [];
+    attachments.forEach(({ info }) => {
+        if (info) {
+            apiData.push(info.location);
+        }
+    });
+    return apiData;
+};
 
 export const getUploadedAttachments = (attachments: Attachment[]): Attachment[] =>
     attachments.filter((attachment) => attachmentHasBeenUploaded(attachment));
@@ -61,12 +85,10 @@ export const attachmentHasBeenUploaded = ({ pending, uploaded, file: { name } }:
     !pending && uploaded && fileExtensionIsValid(name);
 
 export const attachmentIsUploadedAndIsValidFileFormat = (attachment: Attachment): boolean =>
-    attachmentHasBeenUploaded(attachment) && fileExtensionIsValid(attachment.file.name);
+    attachmentHasBeenUploaded(attachment) && fileExtensionIsValid(attachment.file?.name);
 
 export const containsAnyUploadedAttachments = (attachmentList: Attachment[]) =>
-    attachmentList &&
-    attachmentList.length > 0 &&
-    attachmentList.length !== attachmentList.filter(attachmentUploadHasFailed).length;
+    attachmentList.length > 0 && attachmentList.length !== attachmentList.filter(attachmentUploadHasFailed).length;
 
 export type CompressOptions = {
     maxSizeMB: number;
@@ -91,12 +113,10 @@ export async function compressImageFile(imageFile: File, { maxSizeMB, maxWidthOr
 }
 
 export const hasPendingAttachments = (attachments: Attachment[]): boolean =>
-    attachments.find((a: any) => a.pending === true) !== undefined;
+    (attachments || []).find((a: any) => a.pending === true) !== undefined;
 
 export const hasExceededMaxTotalSizeOfAttachments = (attachments: Attachment[]): boolean =>
     getTotalSizeOfAttachments(attachments) > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
-
-const VEDLEGG_ID_SPLIT_KEY = 'vedlegg/';
 
 export const getAttachmentId = (url: string = ''): string => {
     const id = url.split(VEDLEGG_ID_SPLIT_KEY)[1];

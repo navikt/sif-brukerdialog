@@ -10,6 +10,7 @@ interface Lenker {
     veiledningEttersendelse: string;
     skatteetaten: string;
     skatteetatenSN: string;
+    ettersending: string;
 }
 
 const LenkerBokmål: Lenker = {
@@ -28,6 +29,7 @@ const LenkerBokmål: Lenker = {
     skatteetaten: 'https://www.skatteetaten.no/skjema/mine-inntekter-og-arbeidsforhold/',
     skatteetatenSN:
         'https://www.skatteetaten.no/person/skatt/hjelp-til-riktig-skatt/arbeid-trygd-og-pensjon/hobby-ekstrainntekt-og-smajobber/lonnsarbeid-i-hjemmet/lonn-betalt-over-60-000/naringsdrivende-oppdragstakere',
+    ettersending: 'https://www.nav.no/soknader/nb/person/familie/omsorgspenger/NAV%2009-35.01/ettersendelse',
 };
 
 const LenkerNynorsk: Partial<Lenker> = {

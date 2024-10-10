@@ -6,12 +6,7 @@ import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import {
-    getTotalSizeOfAttachments,
-    MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
-} from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
@@ -42,7 +37,6 @@ import {
     getNMonthsAgo,
     getSituasjonStepInitialValues,
     getSituasjonSøknadsdataFromFormValues,
-    valuesToAlleDokumenterISøknaden,
 } from './SituasjonStepUtils';
 
 export enum ArbeidsforholdFormFields {
@@ -139,11 +133,6 @@ const SituasjonStep = () => {
                         harKlikketNeiPåAlle === false &&
                         harKlikketNeiElleJajaBlanding === false;
 
-                    const alleDokumenterISøknaden: Attachment[] = valuesToAlleDokumenterISøknaden(arbeidsforhold);
-
-                    const attachmentsSizeOver24Mb =
-                        getTotalSizeOfAttachments(alleDokumenterISøknaden) > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
-
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -151,9 +140,7 @@ const SituasjonStep = () => {
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
                                 includeValidationSummary={true}
                                 submitPending={isSubmitting}
-                                submitDisabled={
-                                    isSubmitting || !harIkkeMottatLønnHosEnEllerFlere || attachmentsSizeOver24Mb
-                                }
+                                submitDisabled={isSubmitting || !harIkkeMottatLønnHosEnEllerFlere}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
                                 <SifGuidePanel>

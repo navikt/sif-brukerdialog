@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import { UnansweredQuestionsInfo } from '@navikt/sif-common-formik-ds';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { soknadStepUtils, Step } from '@navikt/sif-common-soknad-ds';
 import { ProgressStep } from '@navikt/sif-common-ui';
 import { AppText, useAppIntl } from '../i18n';
@@ -11,6 +10,7 @@ import { Søknadstype } from '../types/Søknadstype';
 import { useSoknadContext } from './SoknadContext';
 import SoknadFormComponents from './SoknadFormComponents';
 import { StepID } from './soknadStepsConfig';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 
 interface Props {
     id: StepID;
@@ -71,7 +71,7 @@ const SoknadFormStep = ({
             <SoknadFormComponents.Form
                 includeButtons={true}
                 includeValidationSummary={includeValidationSummary}
-                formErrorHandler={getFormErrorHandler(intl, 'validation')}
+                formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
                 submitPending={showButtonSpinner || pending}
                 backButtonDisabled={pending || showButtonSpinner}
                 submitDisabled={buttonDisabled}

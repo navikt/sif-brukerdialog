@@ -1,11 +1,11 @@
 import { FormSummary } from '@navikt/ds-react';
 import React from 'react';
 import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
+import { getAttachmentsInLocationArray } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
 import { AppText } from '../../../../i18n';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { LegeerklæringSøknadsdata } from '../../../../types/søknadsdata/LegeerklæringSøknadsdata';
-import { getAttachmentURLBackend } from '@navikt/sif-common';
 
 interface Props {
     apiData: SøknadApiData;
@@ -14,11 +14,10 @@ interface Props {
 }
 
 const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringSøknadsdata, onEdit }) => {
-    const legeerklæringer = legeerklæringSøknadsdata
-        ? legeerklæringSøknadsdata.vedlegg.filter(
-              (v) => v.url && apiData.vedleggUrls.includes(getAttachmentURLBackend(v.url)),
-          )
-        : [];
+    const legeerklæringer = getAttachmentsInLocationArray({
+        locations: apiData.vedleggUrls,
+        attachments: legeerklæringSøknadsdata?.vedlegg,
+    });
 
     return (
         <FormSummary>

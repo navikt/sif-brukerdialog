@@ -19,7 +19,14 @@ const komplett_annetBarnFarDeltBosted: Søknadsdata = {
         barnetsFødselsdato: '2020-01-01',
     },
     deltBosted: {
-        vedlegg: [{ file: { name: 'file.jpg' } as any, url: '/vedlegg', uploaded: true, pending: false }],
+        vedlegg: [
+            {
+                file: { name: 'file.jpg' } as any,
+                info: { location: '/vedlegg/123', id: '123', frontendUrl: 'http://localhost:8080/vedlegg/123' },
+                uploaded: true,
+                pending: false,
+            },
+        ],
     },
     legeerklaering: { vedlegg: [] },
     velkommen: {

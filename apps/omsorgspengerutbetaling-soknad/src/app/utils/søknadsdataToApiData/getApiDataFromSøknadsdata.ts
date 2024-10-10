@@ -1,6 +1,4 @@
-import { getAttachmentURLBackend } from '@navikt/sif-common';
-import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
-import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import { getAttachmentsApiData } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { AppIntlShape } from '../../i18n';
 import { SøknadApiData, YesNoSpørsmålOgSvar } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
@@ -10,15 +8,6 @@ import { getMedlemskapApiDataFromSøknadsdata } from './getMedlemskapApiDataFrom
 import { getSelvstendigApiDataFromSøknadsdata } from './getSelvstendigApiDataFromSøknadsdata';
 import { getUtbetalingsperioderApiDataFromSøknadsdata } from './getUtbetalingsperioderApiDataFromSøknadsdata';
 import { getUtenlansoppholdApiDataFromSøknadsdata } from './getUtenlandsoppholdApiDataFromSøknadsdata';
-
-const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
-    if (!vedlegg || vedlegg.length === 0) {
-        return [];
-    }
-    return vedlegg
-        .filter(attachmentIsUploadedAndIsValidFileFormat)
-        .map(({ url }) => (url ? getAttachmentURLBackend(url) : ''));
-};
 
 export const getApiDataFromSøknadsdata = (
     søkerNorskIdent: string,
@@ -67,7 +56,7 @@ export const getApiDataFromSøknadsdata = (
         frilans: getFrilansApiDataFromSøknadsdata(frilans),
         selvstendigNæringsdrivende: getSelvstendigApiDataFromSøknadsdata(selvstendig),
         utbetalingsperioder: getUtbetalingsperioderApiDataFromSøknadsdata(søknadsdata),
-        vedlegg: getVedleggApiData(legeerklæring?.vedlegg),
+        vedlegg: getAttachmentsApiData(legeerklæring?.vedlegg),
         bosteder: getMedlemskapApiDataFromSøknadsdata(språk, medlemskap),
     };
 };
