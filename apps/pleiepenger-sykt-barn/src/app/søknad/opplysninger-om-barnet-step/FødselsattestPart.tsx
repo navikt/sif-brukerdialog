@@ -2,7 +2,7 @@ import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import { useAppIntl } from '@i18n/index';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
-import { useAttachmentsHelper } from '@navikt/sif-common-core-ds';
+import { getAttachmentsValidator, useAttachmentsHelper } from '@navikt/sif-common-core-ds';
 import { FormikAttachmentForm } from '@navikt/sif-common-core-ds/src';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
@@ -53,6 +53,7 @@ const FødselsattestPart: React.FC<Props> = ({ fødselsattester }) => {
                     addLabel: text('steg.omBarnet.fødselsattest.vedlegg'),
                     noAttachmentsText: text('step.oppsummering.omBarn.ingenFødselsattest'),
                 }}
+                validate={getAttachmentsValidator({ useDefaultMessages: true }, andreVedlegg)}
                 uploadLaterURL={getLenker(intl.locale).ettersend}
                 onUnauthorizedOrForbiddenUpload={userNotLoggedIn}
                 otherAttachments={andreVedlegg}

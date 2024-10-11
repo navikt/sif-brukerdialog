@@ -1,6 +1,6 @@
 import { useAppIntl } from '@i18n/index';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
-import { FormikAttachmentForm, useAttachmentsHelper } from '@navikt/sif-common-core-ds';
+import { FormikAttachmentForm, getAttachmentsValidator, useAttachmentsHelper } from '@navikt/sif-common-core-ds';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
@@ -28,11 +28,7 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
         persist({ formValues: valuesToPersist, lastStepID: StepID.LEGEERKLÆRING });
     };
 
-    const { hasPendingUploads, maxTotalSizeExceeded } = useAttachmentsHelper(
-        attachments,
-        andreVedlegg,
-        onAttachmentsChange,
-    );
+    const { hasPendingUploads } = useAttachmentsHelper(attachments, andreVedlegg, onAttachmentsChange);
 
     usePersistOnChange(attachments, true, StepID.LEGEERKLÆRING);
 
@@ -51,7 +47,7 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
             }}
             useValidationErrorSummary={false}
             skipValidation={true}
-            buttonDisabled={hasPendingUploads || maxTotalSizeExceeded}>
+            buttonDisabled={hasPendingUploads}>
             <Block padBottom="xl">
                 <SifGuidePanel compact={true}>
                     <p>
@@ -69,6 +65,7 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
                     addLabel: text('steg.lege.vedlegg'),
                     noAttachmentsText: text('vedleggsliste.ingenLegeerklæringLastetOpp'),
                 }}
+                validate={getAttachmentsValidator({ useDefaultMessages: true }, andreVedlegg)}
                 uploadLaterURL={getLenker(intl.locale).ettersend}
                 onUnauthorizedOrForbiddenUpload={userNotLoggedIn}
                 otherAttachments={andreVedlegg}
