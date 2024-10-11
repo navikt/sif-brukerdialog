@@ -59,10 +59,6 @@ const nb = {
     'page.confirmation.sidetittel': 'Vi har mottatt søknaden din',
     'page.confirmation.tittel': 'Vi har mottatt søknad om utbetaling av omsorgspenger',
 
-    'validation.vedlegg.noAttachmentsUploaded': 'Ingen vedlegg er lastet opp.',
-    'validation.vedlegg.tooManyAttachments': 'For mange dokumenter er lastet opp.',
-    'validation.vedlegg.maxTotalSizeExceeded':
-        'Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24Mb.',
     'validation.periode_ingenDagerEllerPerioder': 'Du må spesifisere minst én periode for arbeidsforholdet.',
     'validation.fraværDagIkkeSammeÅrstall':
         'Du har lagt inn fravær som går over flere år. Du kan kun legge inn fravær for ett år.',

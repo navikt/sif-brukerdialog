@@ -1,7 +1,7 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import { useAppIntl } from '@i18n/index';
-import { SIFCommonGeneralEvents, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { useAttachmentsHelper } from '@navikt/sif-common-core-ds';
 import { FormikAttachmentForm } from '@navikt/sif-common-core-ds/src';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
@@ -23,7 +23,7 @@ const FødselsattestPart: React.FC<Props> = ({ fødselsattester }) => {
     const { values, setFieldValue } = useFormikContext<SøknadFormValues>();
     const andreVedlegg: Attachment[] = values[SøknadFormField.legeerklæring] || [];
 
-    const { logUserLoggedOut, logEvent } = useAmplitudeInstance();
+    const { logUserLoggedOut } = useAmplitudeInstance();
 
     const userNotLoggedIn = async () => {
         await logUserLoggedOut('Opplasting av dokument');
@@ -56,9 +56,6 @@ const FødselsattestPart: React.FC<Props> = ({ fødselsattester }) => {
                 uploadLaterURL={getLenker(intl.locale).ettersend}
                 onUnauthorizedOrForbiddenUpload={userNotLoggedIn}
                 otherAttachments={andreVedlegg}
-                onFilesUploaded={(antall, antallFeilet) => {
-                    logEvent(SIFCommonGeneralEvents.vedleggLastetOpp, { antall, antallFeilet });
-                }}
             />
         </>
     );

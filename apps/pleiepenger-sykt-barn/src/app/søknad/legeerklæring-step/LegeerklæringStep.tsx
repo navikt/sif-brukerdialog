@@ -1,5 +1,5 @@
 import { useAppIntl } from '@i18n/index';
-import { SIFCommonGeneralEvents, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { FormikAttachmentForm, useAttachmentsHelper } from '@navikt/sif-common-core-ds';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
@@ -36,7 +36,7 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
 
     usePersistOnChange(attachments, true, StepID.LEGEERKLÆRING);
 
-    const { logUserLoggedOut, logEvent } = useAmplitudeInstance();
+    const { logUserLoggedOut } = useAmplitudeInstance();
 
     const userNotLoggedIn = async () => {
         await logUserLoggedOut('Opplasting av dokument');
@@ -72,9 +72,6 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
                 uploadLaterURL={getLenker(intl.locale).ettersend}
                 onUnauthorizedOrForbiddenUpload={userNotLoggedIn}
                 otherAttachments={andreVedlegg}
-                onFilesUploaded={(antall, antallFeilet) => {
-                    logEvent(SIFCommonGeneralEvents.vedleggLastetOpp, { antall, antallFeilet });
-                }}
             />
         </SøknadFormStep>
     );

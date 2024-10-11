@@ -14,15 +14,17 @@ import { Arbeidsforhold, Utbetalingsårsak, ÅrsakNyoppstartet } from '../../../
 import { relocateToLoginPage } from '../../../../utils/navigationUtils';
 import { AppFieldValidationErrors } from '../../../../utils/validations';
 import { ArbeidsforholdFormFields, SituasjonFormValues } from '../SituasjonStep';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types';
 
 const { RadioGroup, Textarea } = getTypedFormComponents<ArbeidsforholdFormFields, Arbeidsforhold, ValidationError>();
 
 interface Props {
     arbeidsforhold: Arbeidsforhold;
     parentFieldName: string;
+    andreVedlegg: Attachment[];
 }
 
-const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Props) => {
+const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName, andreVedlegg }: Props) => {
     const { text, intl } = useAppIntl();
     const { setFieldValue } = useFormikContext<SituasjonFormValues>();
 
@@ -32,7 +34,8 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Pr
     const arbeidsgivernavn = arbeidsforhold.navn;
 
     const attachments = arbeidsforhold.dokumenter || [];
-    useAttachmentsHelper(attachments, [], (att) => {
+
+    useAttachmentsHelper(attachments, andreVedlegg, (att) => {
         setFieldValue(
             `arbeidsforhold.${parentFieldName}.${ArbeidsforholdFormFields.dokumenter}` as ArbeidsforholdFormFields,
             att,
@@ -114,29 +117,25 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Pr
                     <FormBlock>
                         <FormikAttachmentForm
                             attachments={attachments}
+                            otherAttachments={andreVedlegg}
                             fieldName={getFieldName(ArbeidsforholdFormFields.dokumenter)}
                             labels={{
                                 addLabel: text('step.situasjon.arbeidsforhold.utbetalingsårsak.vedlegg'),
                                 noAttachmentsText: text('step.situasjon.vedleggsliste.ingenDokumenterLastetOpp'),
                             }}
-                            validate={getAttachmentsValidator({
-                                required: true,
-                                errors: {
-                                    noAttachmentsUploaded: {
-                                        keyPrefix: 'validation.arbeidsforhold.utbetalingsårsak.vedlegg',
-                                        keepKeyUnaltered: true,
-                                        values: { arbeidsgivernavn },
+                            validate={getAttachmentsValidator(
+                                {
+                                    errors: {
+                                        noAttachmentsUploaded: {
+                                            keyPrefix: 'validation.arbeidsforhold.utbetalingsårsak.vedlegg',
+                                            keepKeyUnaltered: true,
+                                            values: { arbeidsgivernavn },
+                                        },
                                     },
-                                    tooManyAttachments: {
-                                        keyPrefix: 'validation.vedlegg',
-                                        keepKeyUnaltered: true,
-                                    },
-                                    maxTotalSizeExceeded: {
-                                        keyPrefix: 'validation.vedlegg',
-                                        keepKeyUnaltered: true,
-                                    },
+                                    useDefaultMessages: true,
                                 },
-                            })}
+                                andreVedlegg,
+                            )}
                             uploadLaterURL={getLenker(intl.locale).ettersending}
                             onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
                         />

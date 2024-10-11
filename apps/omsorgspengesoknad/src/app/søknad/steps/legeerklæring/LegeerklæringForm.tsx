@@ -35,14 +35,14 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({
 }) => {
     const intl = useIntl();
     const { text } = useAppIntl();
-    const { hasPendingUploads, maxTotalSizeExceeded } = useAttachmentsHelper(legeerklæringer, andreVedlegg);
+    const { hasPendingUploads } = useAttachmentsHelper(legeerklæringer, andreVedlegg);
 
     return (
         <Form
             formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
             includeValidationSummary={true}
             submitPending={isSubmitting}
-            submitDisabled={hasPendingUploads || maxTotalSizeExceeded}
+            submitDisabled={hasPendingUploads}
             runDelayedFormValidation={true}
             onBack={goBack}>
             <FormLayout.Questions>
@@ -61,7 +61,13 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({
                     otherAttachments={andreVedlegg}
                     uploadLaterURL={getLenker(intl.locale).ettersend}
                     onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
-                    validate={getAttachmentsValidator({ required: true })}
+                    validate={getAttachmentsValidator(
+                        {
+                            required: false,
+                            useDefaultMessages: true,
+                        },
+                        andreVedlegg,
+                    )}
                     labels={{
                         addLabel: text('steg.legeerklaering.vedlegg.knappLabel'),
                         noAttachmentsText: text('vedleggsliste.ingenLegeerklæringLastetOpp'),

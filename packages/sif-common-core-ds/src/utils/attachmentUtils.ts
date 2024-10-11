@@ -3,7 +3,7 @@ import imageCompression from 'browser-image-compression';
 
 export const VALID_EXTENSIONS = ['.pdf', '.jpeg', '.jpg', '.png'];
 export const MAX_FILESIZE_FOR_UPLOAD = 7999999;
-export const MAX_TOTAL_ATTACHMENT_SIZE_IN_MB = 24;
+export const MAX_TOTAL_ATTACHMENT_SIZE_IN_MB = 4;
 export const MAX_TOTAL_ATTACHMENT_SIZE_BYTES = 1000 * 1000 * MAX_TOTAL_ATTACHMENT_SIZE_IN_MB;
 
 const VEDLEGG_ID_SPLIT_KEY = 'vedlegg/';
@@ -33,6 +33,9 @@ export const getAttachmentsApiData = (attachments: Attachment[] = []): string[] 
 
 export const getUploadedAttachments = (attachments: Attachment[]): Attachment[] =>
     attachments.filter((attachment) => attachmentHasBeenUploaded(attachment));
+
+export const getUploadedOrPendingAttachments = (attachments: Attachment[]): Attachment[] =>
+    attachments.filter((attachment) => attachmentHasBeenUploaded(attachment) || attachmentIsPending(attachment));
 
 export const getTotalSizeOfAttachments = (attachments: Attachment[]): number =>
     attachments
@@ -83,6 +86,9 @@ export const attachmentUploadHasFailed = ({ pending, uploaded, file: { name } }:
 
 export const attachmentHasBeenUploaded = ({ pending, uploaded, file: { name } }: Attachment): boolean =>
     !pending && uploaded && fileExtensionIsValid(name);
+
+export const attachmentIsPending = ({ pending, file: { name } }: Attachment): boolean =>
+    pending && fileExtensionIsValid(name);
 
 export const attachmentIsUploadedAndIsValidFileFormat = (attachment: Attachment): boolean =>
     attachmentHasBeenUploaded(attachment) && fileExtensionIsValid(attachment.file?.name);

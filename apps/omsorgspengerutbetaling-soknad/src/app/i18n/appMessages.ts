@@ -72,10 +72,6 @@ const nb = {
     'validation.harDekketTiFørsteDagerSelv.notAnswered': 'Du må svare på om du har dekket de 10 første dagene i år.',
     'validation.harDekketTiFørsteDagerSelv.yesOrNoIsUnanswered':
         'Du må svare på om du har dekket de 10 første dagene i år.',
-    'validation.vedlegg.noAttachmentsUploaded': 'Ingen vedlegg er lastet opp.',
-    'validation.vedlegg.tooManyAttachments': 'For mange dokumenter er lastet opp.',
-    'validation.vedlegg.maxTotalSizeExceeded':
-        'Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24Mb.',
     'validation.harPerioderMedFravær.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om du har hatt hele dager med fravær fra jobb.',
     'validation.fraværPerioder.listIsEmpty': 'Du har ikke lagt til dager med fullt fravær.',

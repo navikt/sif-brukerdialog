@@ -14,6 +14,8 @@ export enum ValidateAttachmentsError {
 
 export const ValidateAttachmentsErrorKeys = Object.keys(ValidateAttachmentsError);
 
+const INTL_ERROR_PREFIX = '@core.formikAttachmentsList.validation';
+
 type AttachmentsValidationResult =
     | undefined
     | ValidateAttachmentsError.tooManyAttachments
@@ -32,7 +34,11 @@ export type AttachmentsValidatorOptions = {
         [ValidateAttachmentsError.tooManyAttachments]?: AttachmentErrorsProp;
         [ValidateAttachmentsError.maxTotalSizeExceeded]?: AttachmentErrorsProp;
     };
-    intlErrorObject?: IntlErrorObject;
+    /**
+     * Fixed intl keys are used if set. Overridden by errors
+     */
+    intlErrorPrefix?: string;
+    useDefaultMessages?: boolean;
 };
 
 export type AttachmentsValidator = ReturnType<typeof getAttachmentsValidator>;
@@ -43,7 +49,13 @@ export const getAttachmentsValidator =
         otherAttachments?: Attachment[],
     ): ValidationFunction<AttachmentsValidationResult | IntlErrorObject> =>
     (attachments: Attachment[] = []) => {
-        const { required, maxTotalSize = MAX_TOTAL_ATTACHMENT_SIZE_BYTES, errors, intlErrorObject } = options;
+        const {
+            required,
+            maxTotalSize = MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
+            errors,
+            intlErrorPrefix,
+            useDefaultMessages,
+        } = options;
         const uploadedAttachments = attachments.filter((attachment) => attachmentHasBeenUploaded(attachment));
         const totalSizeInBytes: number = getTotalSizeOfAttachments([
             ...uploadedAttachments,
@@ -58,10 +70,10 @@ export const getAttachmentsValidator =
                 };
                 return errObj;
             }
-            if (intlErrorObject) {
+            if (intlErrorPrefix || useDefaultMessages) {
                 const errObj: IntlErrorObject = {
-                    ...intlErrorObject,
-                    key: `${intlErrorObject.key}.${error}`,
+                    key: `${intlErrorPrefix || INTL_ERROR_PREFIX}.${error}`,
+                    keepKeyUnaltered: true,
                 };
                 return errObj;
             }

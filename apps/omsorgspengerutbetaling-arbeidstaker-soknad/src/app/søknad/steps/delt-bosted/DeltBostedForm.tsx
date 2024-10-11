@@ -1,6 +1,6 @@
 import { Link } from '@navikt/ds-react';
 import React from 'react';
-import { useAttachmentsHelper } from '@navikt/sif-common-core-ds';
+import { getAttachmentsValidator, useAttachmentsHelper } from '@navikt/sif-common-core-ds';
 import { FormikAttachmentForm } from '@navikt/sif-common-core-ds/src';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
@@ -32,14 +32,14 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
     const { text, intl } = useAppIntl();
 
     const attachments = values.vedlegg ? values.vedlegg : [];
-    const { hasPendingUploads, maxTotalSizeExceeded } = useAttachmentsHelper(attachments, andreVedlegg);
+    const { hasPendingUploads } = useAttachmentsHelper(attachments, andreVedlegg);
 
     return (
         <Form
             formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
             includeValidationSummary={true}
             submitPending={isSubmitting}
-            submitDisabled={hasPendingUploads || maxTotalSizeExceeded}
+            submitDisabled={hasPendingUploads}
             runDelayedFormValidation={true}
             onBack={goBack}>
             <Block padBottom="xl">
@@ -74,6 +74,7 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
                     addLabel: text('step.deltBosted.uploadBtn'),
                     noAttachmentsText: text('vedleggsliste.ingenAvtaleLastetOpp'),
                 }}
+                validate={getAttachmentsValidator({ useDefaultMessages: true }, andreVedlegg)}
                 uploadLaterURL={getLenker(intl.locale).ettersending}
                 onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
                 otherAttachments={andreVedlegg}

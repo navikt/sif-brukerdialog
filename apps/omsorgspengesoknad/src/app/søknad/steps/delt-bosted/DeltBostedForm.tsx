@@ -1,6 +1,6 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import { FormikAttachmentForm } from '@navikt/sif-common-core-ds/src';
+import { FormikAttachmentForm, getAttachmentsValidator } from '@navikt/sif-common-core-ds/src';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
@@ -60,6 +60,13 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({
                     otherAttachments={andreVedlegg}
                     uploadLaterURL={getLenker(intl.locale).ettersend}
                     onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
+                    validate={getAttachmentsValidator(
+                        {
+                            required: false,
+                            useDefaultMessages: true,
+                        },
+                        andreVedlegg,
+                    )}
                     labels={{
                         addLabel: text('steg.deltBosted.vedlegg.knappLabel'),
                         noAttachmentsText: text('vedleggsliste.ingenBostedsavtaleLastetOpp'),

@@ -1,5 +1,5 @@
 import { VStack } from '@navikt/ds-react';
-import { SIFCommonGeneralEvents, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { FormikAttachmentForm, getAttachmentsValidator, useAttachmentsHelper } from '@navikt/sif-common-core-ds';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
@@ -39,7 +39,7 @@ const DokumenterStep = ({ søknadstype, søker, soknadId }: Props) => {
 
     const { hasPendingUploads } = useAttachmentsHelper(values[SoknadFormField.dokumenter], [], onAttachmentsChange);
 
-    const { logUserLoggedOut, logEvent } = useAmplitudeInstance();
+    const { logUserLoggedOut } = useAmplitudeInstance();
 
     const userLoggedOut = async () => {
         await logUserLoggedOut('Ved opplasting av vedlegg');
@@ -70,9 +70,6 @@ const DokumenterStep = ({ søknadstype, søker, soknadId }: Props) => {
                     }}
                     validate={getAttachmentsValidator({ required: true })}
                     onUnauthorizedOrForbiddenUpload={userLoggedOut}
-                    onFilesUploaded={(antall, antallFeilet) => {
-                        logEvent(SIFCommonGeneralEvents.vedleggLastetOpp, { antall, antallFeilet });
-                    }}
                 />
             </VStack>
         </SoknadFormStep>

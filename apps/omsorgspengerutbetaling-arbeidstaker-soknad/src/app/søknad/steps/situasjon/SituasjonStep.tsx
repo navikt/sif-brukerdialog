@@ -38,6 +38,7 @@ import {
     getSituasjonStepInitialValues,
     getSituasjonSøknadsdataFromFormValues,
 } from './SituasjonStepUtils';
+import { getAlleVedleggFraSituasjonFormValues, getAlleVedleggFraSøknadsdata } from '../../../utils/attachmentsUtils';
 
 export enum ArbeidsforholdFormFields {
     navn = 'navn',
@@ -73,6 +74,7 @@ const SituasjonStep = () => {
 
     const [arbeidsgivere, setArbeidsgivere] = useState<Arbeidsgiver[]>([]);
     const [loadState, setLoadState] = useState<LoadState>({ isLoading: false, isLoaded: false });
+    const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const { isLoading, isLoaded } = loadState;
 
@@ -93,7 +95,7 @@ const SituasjonStep = () => {
 
     const { goBack } = useStepNavigation(step);
 
-    const { clearStepFormValues } = useStepFormValuesContext();
+    const { bostedVedlegg, legeerklæringer } = getAlleVedleggFraSøknadsdata(søknadsdata);
 
     const onValidSubmitHandler = (values: SituasjonFormValues) => {
         const situasjonSøknadsdata = getSituasjonSøknadsdataFromFormValues(values);
@@ -120,7 +122,7 @@ const SituasjonStep = () => {
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
-                initialValues={getSituasjonStepInitialValues(søknadsdata, arbeidsgivere)}
+                initialValues={getSituasjonStepInitialValues(søknadsdata, arbeidsgivere, stepFormValues[stepId])}
                 onSubmit={handleSubmit}
                 renderForm={({ values }) => {
                     const arbeidsforhold: Arbeidsforhold[] = values[SituasjonFormFields.arbeidsforhold] || [];
@@ -132,6 +134,12 @@ const SituasjonStep = () => {
                         harKlikketJaJaPåAlle === false &&
                         harKlikketNeiPåAlle === false &&
                         harKlikketNeiElleJajaBlanding === false;
+
+                    const andreVedlegg = [
+                        ...bostedVedlegg,
+                        ...legeerklæringer,
+                        ...getAlleVedleggFraSituasjonFormValues(values),
+                    ];
 
                     return (
                         <>
@@ -171,6 +179,7 @@ const SituasjonStep = () => {
                                                             forhold.arbeidsgiverHarUtbetaltLønn === YesOrNo.NO && (
                                                                 <ArbeidsforholdUtbetalingsårsak
                                                                     arbeidsforhold={forhold}
+                                                                    andreVedlegg={andreVedlegg}
                                                                     parentFieldName={`${SituasjonFormFields.arbeidsforhold}.${index}`}
                                                                 />
                                                             )}
