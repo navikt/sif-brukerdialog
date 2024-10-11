@@ -37,14 +37,14 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({
     const intl = useIntl();
     const { text } = useAppIntl();
 
-    const { hasPendingUploads, maxTotalSizeExceeded } = useAttachmentsHelper(samværsavtaler, andreVedlegg);
+    const { hasPendingUploads } = useAttachmentsHelper(samværsavtaler, andreVedlegg);
 
     return (
         <Form
             formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
             includeValidationSummary={true}
             submitPending={isSubmitting}
-            submitDisabled={hasPendingUploads || maxTotalSizeExceeded}
+            submitDisabled={hasPendingUploads}
             runDelayedFormValidation={true}
             onBack={goBack}>
             <FormLayout.Questions>

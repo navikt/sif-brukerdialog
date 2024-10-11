@@ -74,6 +74,7 @@ const DeltBostedStep = () => {
                             samværsavtaler={values[DeltBostedFormFields.samværsavtale]}
                             goBack={goBack}
                             isSubmitting={isSubmitting}
+                            andreVedlegg={søknadsdata.legeerklaering?.vedlegg}
                         />
                     </>
                 )}
