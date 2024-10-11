@@ -34,7 +34,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
     const { hasPendingUploads } = useAttachmentsHelper(attachments, andreVedlegg);
 
     return (
-        <Form03867198392
+        <Form
             formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
             includeValidationSummary={true}
             submitPending={isSubmitting}
@@ -64,7 +64,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                 onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
                 otherAttachments={andreVedlegg}
             />
-        </Form03867198392>
+        </Form>
     );
 };
 
