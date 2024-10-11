@@ -43,6 +43,18 @@ export type AttachmentsValidatorOptions = {
 
 export type AttachmentsValidator = ReturnType<typeof getAttachmentsValidator>;
 
+const removeDuplicateAttachments = (attachments: Attachment[]): Attachment[] => {
+    const uniqueAttachments: Attachment[] = [];
+    attachments.forEach((attachment) => {
+        if (attachment.info) {
+            if (!uniqueAttachments.some((ua) => ua.info?.id === attachment.info?.id)) {
+                uniqueAttachments.push(attachment);
+            }
+        }
+    });
+    return uniqueAttachments;
+};
+
 export const getAttachmentsValidator =
     (
         options: AttachmentsValidatorOptions = {},
@@ -57,10 +69,8 @@ export const getAttachmentsValidator =
             useDefaultMessages,
         } = options;
         const uploadedAttachments = attachments.filter((attachment) => attachmentHasBeenUploaded(attachment));
-        const totalSizeInBytes: number = getTotalSizeOfAttachments([
-            ...uploadedAttachments,
-            ...(otherAttachments || []),
-        ]);
+        const allAttachments = removeDuplicateAttachments([...uploadedAttachments, ...(otherAttachments || [])]);
+        const totalSizeInBytes: number = getTotalSizeOfAttachments(allAttachments);
 
         const getErrorKey = (error: ValidateAttachmentsError) => {
             if (errors && errors[error]) {
