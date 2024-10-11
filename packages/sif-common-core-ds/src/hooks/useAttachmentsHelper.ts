@@ -5,6 +5,7 @@ import {
     getTotalSizeOfAttachments,
     hasPendingAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
+    removeDuplicateAttachments,
 } from '../utils/attachmentUtils';
 
 export const useAttachmentsHelper = (
@@ -17,7 +18,7 @@ export const useAttachmentsHelper = (
     }, [attachments]);
 
     const hasPendingUploads: boolean = hasPendingAttachments(attachments);
-    const totalSize = getTotalSizeOfAttachments([...attachments, ...otherAttachments]);
+    const totalSize = getTotalSizeOfAttachments(removeDuplicateAttachments([...attachments, ...otherAttachments]));
     const maxTotalSizeExceeded = totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
 
     const ref = useRef({ memoizedAttachments });

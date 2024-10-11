@@ -4,6 +4,7 @@ import {
     attachmentHasBeenUploaded,
     getTotalSizeOfAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
+    removeDuplicateAttachments,
 } from '../../utils/attachmentUtils';
 
 export enum ValidateAttachmentsError {
@@ -42,18 +43,6 @@ export type AttachmentsValidatorOptions = {
 };
 
 export type AttachmentsValidator = ReturnType<typeof getAttachmentsValidator>;
-
-const removeDuplicateAttachments = (attachments: Attachment[]): Attachment[] => {
-    const uniqueAttachments: Attachment[] = [];
-    attachments.forEach((attachment) => {
-        if (attachment.info) {
-            if (!uniqueAttachments.some((ua) => ua.info?.id === attachment.info?.id)) {
-                uniqueAttachments.push(attachment);
-            }
-        }
-    });
-    return uniqueAttachments;
-};
 
 export const getAttachmentsValidator =
     (

@@ -131,3 +131,15 @@ export const getAttachmentId = (url: string = ''): string => {
     }
     return id;
 };
+
+export const removeDuplicateAttachments = (attachments: Attachment[]): Attachment[] => {
+    const uniqueAttachments: Attachment[] = [];
+    attachments.forEach((attachment) => {
+        if (attachment.info) {
+            if (!uniqueAttachments.some((ua) => ua.info?.id === attachment.info?.id)) {
+                uniqueAttachments.push(attachment);
+            }
+        }
+    });
+    return uniqueAttachments;
+};

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormikAttachmentForm } from '@navikt/sif-common-core-ds/src';
+import { FormikAttachmentForm, getAttachmentsValidator } from '@navikt/sif-common-core-ds/src';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
@@ -32,14 +32,14 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
 
     const legeerklæringer = values[LegeerklæringFormFields.vedlegg] || [];
 
-    const { hasPendingUploads, maxTotalSizeExceeded } = useAttachmentsHelper(legeerklæringer, andreVedlegg);
+    const { hasPendingUploads } = useAttachmentsHelper(legeerklæringer, andreVedlegg);
 
     return (
         <Form
             formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
             includeValidationSummary={true}
             submitPending={isSubmitting}
-            submitDisabled={hasPendingUploads || maxTotalSizeExceeded}
+            submitDisabled={hasPendingUploads}
             runDelayedFormValidation={true}
             onBack={goBack}>
             <Block padBottom="xl">
@@ -61,6 +61,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                 }}
                 onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
                 otherAttachments={andreVedlegg}
+                validate={getAttachmentsValidator({ useDefaultMessages: true })}
                 uploadLaterURL={getLenker(intl.locale).ettersending}
             />
         </Form>
