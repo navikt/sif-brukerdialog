@@ -1,3 +1,7 @@
-import { DateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils';
+import { DateRange } from '@navikt/sif-common-utils';
+import { add, endOfMonth, startOfMonth, sub } from 'date-fns';
 
-export const GYLDIG_PERIODE: DateRange = ISODateRangeToDateRange('2025-08-15/2026-08-15');
+export const GYLDIG_PERIODE: DateRange = {
+    from: startOfMonth(sub(new Date(), { months: 3 })),
+    to: endOfMonth(add(new Date(), { months: 12 })),
+};

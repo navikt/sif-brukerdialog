@@ -24,7 +24,7 @@ const PeriodeFormPart = ({ fomDate, tomDate, deltakelser = [], deltakelseId }: P
                 label="Fra og med"
                 minDate={GYLDIG_PERIODE.from}
                 maxDate={min([tomDate ? tomDate : GYLDIG_PERIODE.to, GYLDIG_PERIODE.to])}
-                defaultMonth={fomDate || GYLDIG_PERIODE.from}
+                defaultMonth={fomDate || new Date()}
                 disabledDateRanges={periodeSomIkkeKanVelges}
                 validate={getDateValidator({
                     required: true,
@@ -37,7 +37,7 @@ const PeriodeFormPart = ({ fomDate, tomDate, deltakelser = [], deltakelseId }: P
                 minDate={max([fomDate || GYLDIG_PERIODE.from, GYLDIG_PERIODE.from])}
                 maxDate={GYLDIG_PERIODE.to}
                 disabledDateRanges={periodeSomIkkeKanVelges}
-                defaultMonth={tomDate || fomDate || GYLDIG_PERIODE.from}
+                defaultMonth={tomDate || fomDate || new Date()}
                 validate={getDateValidator({
                     min: fomDate || GYLDIG_PERIODE.from,
                 })}
