@@ -33,10 +33,6 @@ dayjs.extend(minMax);
 dayjs.extend(isoWeek);
 
 export enum AppFieldValidationErrors {
-    // 'samlet_storrelse_for_hoy' = 'validation.samlet_storrelse_for_hoy',
-    // 'legeerklæring_mangler' = 'legeerklæring.mangler',
-    // 'legeerklæring_forMangeFiler' = 'legeerklæring.forMangeFiler',
-
     'arbeidsforhold_timerUgyldig_under_1_prosent' = 'timerUgyldig_under_1_prosent',
     'arbeidsforhold_timerUgyldig_under_0_prosent' = 'timerUgyldig_under_0_prosent',
     'arbeidsforhold_timerUgyldig_over_99_prosent' = 'timerUgyldig_over_99_prosent',
@@ -166,18 +162,6 @@ export const validateFerieuttakIPerioden = (
     }
     return undefined;
 };
-
-// export const validateLegeerklæring = (attachments: Attachment[]): ValidationResult<ValidationError> => {
-//     const uploadedAttachments = attachments.filter((attachment) => attachmentHasBeenUploaded(attachment));
-//     const totalSizeInBytes: number = getTotalSizeOfAttachments(attachments);
-//     if (totalSizeInBytes > MAX_TOTAL_ATTACHMENT_SIZE_BYTES) {
-//         return AppFieldValidationErrors.samlet_storrelse_for_hoy;
-//     }
-//     if (uploadedAttachments.length > 100) {
-//         return AppFieldValidationErrors.legeerklæring_forMangeFiler;
-//     }
-//     return undefined;
-// };
 
 export const validateOmsorgstilbudEnkeltdagerIPeriode = (tidIOmsorgstilbud: DateDurationMap, periode: DateRange) => {
     const tidIPerioden = getDurationsInDateRange(tidIOmsorgstilbud, periode);
