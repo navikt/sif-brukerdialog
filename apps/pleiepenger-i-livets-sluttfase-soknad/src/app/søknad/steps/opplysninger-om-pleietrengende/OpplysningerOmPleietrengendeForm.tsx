@@ -66,7 +66,7 @@ const OpplysningerOmPleietrengendeForm = ({ andreVedlegg, søker, isSubmitting, 
 
     const { setFieldValue, values } = useFormikContext<OpplysningerOmPleietrengendeFormValues>();
 
-    const { hasPendingUploads, maxTotalSizeExceeded } = useAttachmentsHelper(
+    const { hasPendingUploads } = useAttachmentsHelper(
         values[OpplysningerOmPleietrengendeFormFields.pleietrengendeId],
         andreVedlegg,
     );
@@ -77,7 +77,7 @@ const OpplysningerOmPleietrengendeForm = ({ andreVedlegg, søker, isSubmitting, 
             formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
             includeValidationSummary={true}
             submitPending={isSubmitting}
-            submitDisabled={hasPendingUploads || isSubmitting || maxTotalSizeExceeded}
+            submitDisabled={hasPendingUploads || isSubmitting}
             onBack={goBack}
             runDelayedFormValidation={true}>
             <SifGuidePanel>
