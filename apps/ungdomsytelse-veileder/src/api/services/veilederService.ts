@@ -37,7 +37,7 @@ const createDeltakelse = async (data: {
 const updateDeltakelse = async (data: {
     id: string;
     deltakerIdent: string;
-    fraOgMed: string;
+    fraOgMed?: string;
     tilOgMed?: string;
 }): Promise<Deltakelse> => {
     const response = await ungDeltakelseOpplyserApiClient.put(`/veileder/register/oppdater/${data.id}`, data);

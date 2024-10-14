@@ -27,7 +27,7 @@ const PeriodeFormPart = ({ fomDate, tomDate, deltakelser = [], deltakelseId }: P
                 defaultMonth={fomDate || new Date()}
                 disabledDateRanges={periodeSomIkkeKanVelges}
                 validate={getDateValidator({
-                    required: true,
+                    required: false,
                     max: tomDate || GYLDIG_PERIODE.to,
                 })}
             />
