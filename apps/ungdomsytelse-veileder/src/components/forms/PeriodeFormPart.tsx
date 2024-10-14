@@ -22,12 +22,13 @@ const PeriodeFormPart = ({ fomDate, tomDate, deltakelser = [], deltakelseId }: P
             <FormikDatepicker
                 name="fom"
                 label="Fra og med"
+                description="Pga status på appen nå, kreves fra og med, selv om en kun skal sende inn til og med"
                 minDate={GYLDIG_PERIODE.from}
                 maxDate={min([tomDate ? tomDate : GYLDIG_PERIODE.to, GYLDIG_PERIODE.to])}
                 defaultMonth={fomDate || new Date()}
                 disabledDateRanges={periodeSomIkkeKanVelges}
                 validate={getDateValidator({
-                    required: false,
+                    required: true,
                     max: tomDate || GYLDIG_PERIODE.to,
                 })}
             />
