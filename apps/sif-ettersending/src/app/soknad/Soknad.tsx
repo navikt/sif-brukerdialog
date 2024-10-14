@@ -4,7 +4,7 @@ import { failure, pending, success } from '@devexperts/remote-data-ts';
 import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { YtelseKey } from '@navikt/sif-common-core-ds/src/types/Ytelser';
 import { isUserLoggedOut } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { useEffectOnce } from '@navikt/sif-common/src/hooks';
 import { LoadingPage, useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds';
 import { v4 as uuid } from 'uuid';
 import { sendSoknad } from '../api/sendSoknad';

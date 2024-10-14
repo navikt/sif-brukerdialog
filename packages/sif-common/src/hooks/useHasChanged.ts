@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { usePrevious } from './usePrevious';
+import { usePrevious } from '../../../sif-common/src/hooks';
 
 export const useHasChanged = (value: any, callback: (value: any) => void) => {
     const previous = usePrevious(value);

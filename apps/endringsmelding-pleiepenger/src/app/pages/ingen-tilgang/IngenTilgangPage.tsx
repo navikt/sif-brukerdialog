@@ -4,7 +4,7 @@ import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { useEffectOnce } from '@navikt/sif-common/src/hooks';
 import { IngenTilgangÅrsak, Søker } from '@types';
 import DevFooter from '../../dev/DevFooter';
 import { AppText, useAppIntl } from '../../i18n';

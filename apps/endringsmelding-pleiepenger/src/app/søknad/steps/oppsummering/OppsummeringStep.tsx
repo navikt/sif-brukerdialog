@@ -9,7 +9,7 @@ import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-p
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { usePrevious } from '@navikt/sif-common-hooks';
+import { usePrevious } from '@navikt/sif-common/src/hooks';
 import { DurationText, JaNeiSvar, SummaryBlock, SummarySection } from '@navikt/sif-common-ui';
 import { ISODurationToDuration } from '@navikt/sif-common-utils';
 import { getApiDataFromSøknadsdata } from '@utils';

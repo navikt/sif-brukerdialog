@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { usePrevious } from '@navikt/sif-common-hooks';
+import { usePrevious } from '@navikt/sif-common/src/hooks';
 import { SanityConfig, SanityError, Status, TeamStatus } from '../types';
 import { SanityStatusMessage } from '../types/sanityObjects';
 import { getMessage, sanityConfigIsValid } from '../utils';

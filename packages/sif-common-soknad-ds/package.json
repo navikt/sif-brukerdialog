@@ -10,7 +10,6 @@
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-forms-ds": "*",
-        "@navikt/sif-common-hooks": "*",
         "@navikt/sif-common-sentry": "*",
         "@navikt/sif-common-ui": "*",
         "@navikt/sif-common-utils": "*"
@@ -34,7 +33,6 @@
         "@navikt/ds-react": "7.2.1",
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
-        "@navikt/sif-common-hooks": "*",
         "@navikt/sif-common-sentry": "*",
         "@navikt/sif-common-utils": "*",
         "@originjs/vite-plugin-commonjs": "1.0.3",

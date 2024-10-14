@@ -7,7 +7,7 @@ import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
 import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { useEffectOnce } from '@navikt/sif-common/src/hooks';
 import { useFormikContext } from 'formik';
 import FormSection from '../../components/form-section/FormSection';
 import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';

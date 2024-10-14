@@ -1,8 +1,0 @@
-{
-    "extends": "../config/tsconfig-packages.json",
-    "compilerOptions": {
-        "outDir": "./lib"
-    },
-    "exclude": ["node_modules", "src/**/*.spec.*", "src/**/*.test.*", "src/**/*.stories.*"],
-    "include": ["src"]
-}

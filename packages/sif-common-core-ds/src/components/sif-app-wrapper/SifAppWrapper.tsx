@@ -1,4 +1,4 @@
-import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { useEffectOnce } from '@navikt/sif-common/src/hooks';
 import React from 'react';
 
 interface Props {

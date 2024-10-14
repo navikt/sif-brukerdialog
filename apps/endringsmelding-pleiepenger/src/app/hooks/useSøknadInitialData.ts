@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { useEffectOnce } from '@navikt/sif-common/src/hooks';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { DateRange } from '@navikt/sif-common-utils';
 import {

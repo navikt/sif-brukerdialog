@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useHasChanged } from '@navikt/sif-common-hooks';
+import { useHasChanged } from '@navikt/sif-common/src/hooks';
 import { StepID } from '../types/StepID';
 import usePersistSoknad from './usePersistSoknad';
 

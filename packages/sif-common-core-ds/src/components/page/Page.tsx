@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDocumentTitle } from '@navikt/sif-common-hooks';
+import { useDocumentTitle } from '@navikt/sif-common/src/hooks';
 import PageBoundary from '../page-boundary/PageBoundary';
 import './page.scss';
 

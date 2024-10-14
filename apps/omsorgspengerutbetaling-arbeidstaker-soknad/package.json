@@ -18,7 +18,6 @@
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-forms-ds": "*",
-        "@navikt/sif-common-hooks": "*",
         "@navikt/sif-common-sentry": "*",
         "@navikt/sif-common-soknad-ds": "*",
         "@navikt/sif-common-ui": "*",

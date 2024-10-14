@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { useEffectOnce } from '@navikt/sif-common/src/hooks';
 
 export type InitialData = {
     barn: RegistrertBarn[];

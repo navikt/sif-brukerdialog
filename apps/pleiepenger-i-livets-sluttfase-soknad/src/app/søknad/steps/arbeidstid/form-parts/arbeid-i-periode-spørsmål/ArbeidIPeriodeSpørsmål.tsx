@@ -9,7 +9,7 @@ import {
     getTypedFormComponents,
 } from '@navikt/sif-common-formik-ds';
 import getTimeValidator from '@navikt/sif-common-formik-ds/src/validation/getTimeValidator';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { useEffectOnce } from '@navikt/sif-common/src/hooks';
 import { DurationWeekdaysInput } from '@navikt/sif-common-ui';
 import {
     dateFormatter,

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { useEffectOnce } from '@navikt/sif-common/src/hooks';
 import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 import { extractSøknadsdataFromFormValues } from '../utils/formValuesToSøknadsdata/extractSøknadsdataFromFormValues';

@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { useEffectOnce } from '@navikt/sif-common/src/hooks';
 import { DateRange } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 import { getArbeidsgivereRemoteData } from '../../api/getArbeidsgivereRemoteData';

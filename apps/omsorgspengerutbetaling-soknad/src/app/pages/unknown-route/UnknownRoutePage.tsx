@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { useEffectOnce } from '@navikt/sif-common/src/hooks';
 import { ErrorPage, SoknadErrorMessages } from '@navikt/sif-common-soknad-ds';
 import appSentryLogger from '../../utils/appSentryLogger';
 

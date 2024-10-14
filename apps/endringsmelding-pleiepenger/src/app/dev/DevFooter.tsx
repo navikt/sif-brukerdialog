@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useSøknadContext } from '@hooks';
 import { Settings } from '@navikt/ds-icons';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { useEffectOnce } from '@navikt/sif-common/src/hooks';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { relocateToWelcomePage } from '../utils/navigationUtils';
