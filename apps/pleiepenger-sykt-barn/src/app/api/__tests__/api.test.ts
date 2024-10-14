@@ -23,6 +23,13 @@ vi.mock('@navikt/sif-common-core-ds/src/utils/envUtils', () => {
     };
 });
 
+vi.mock('@navikt/sif-common/src/env/commonEnv', () => {
+    return {
+        getEnvironmentVariable: () => 'mockedApiUrl',
+        getEnvVariableOrDefault: () => 'mockedApiUrl',
+    };
+});
+
 const mockedApiUrl = 'nav.no/api';
 
 vi.mock('../utils/apiUtils', () => {

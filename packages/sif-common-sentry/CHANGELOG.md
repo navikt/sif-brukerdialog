@@ -1,5 +1,23 @@
 # @navikt/sif-common-sentry
 
+## 0.27.16
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 0.27.15
+
+### Patch Changes
+
+-   Bytte til debounce fra ds-react
+
+## 0.27.14
+
+### Patch Changes
+
+-   Pakkeoppdateringer -minor/patch
+
 ## 0.27.13
 
 ### Patch Changes

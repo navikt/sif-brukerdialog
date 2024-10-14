@@ -1,5 +1,23 @@
 # config
 
+## 0.10.17
+
+### Patch Changes
+
+-   Bytte til debounce fra ds-react
+
+## 0.10.16
+
+### Patch Changes
+
+-   Pakkeoppdateringer -minor/patch
+
+## 0.10.15
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
 ## 0.10.14
 
 ### Patch Changes

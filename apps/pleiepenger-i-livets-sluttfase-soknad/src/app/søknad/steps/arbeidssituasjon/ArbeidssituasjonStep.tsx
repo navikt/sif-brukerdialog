@@ -14,7 +14,6 @@ import { UtenlandskNæring } from '@navikt/sif-common-forms-ds/src/forms/utenlan
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { getDate1YearAgo, getDate1YearFromNow, getDateToday } from '@navikt/sif-common-utils';
 import { useState } from 'react';
-import { arbeidsgivereEndpoint } from '../../../api/endpoints/arbeidsgiverEndpoint';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -38,6 +37,7 @@ import ArbeidssituasjonArbeidsgivere from './form-parts/ArbeidssituasjonArbeidsg
 import ArbeidssituasjonFrilans, { FrilansFormData } from './form-parts/ArbeidssituasjonFrilans';
 import ArbeidssituasjonSN, { SelvstendigFormData } from './form-parts/ArbeidssituasjonSN';
 import { AppText, useAppIntl } from '../../../i18n';
+import { appArbeidsgivereService } from '../../../api/appArbeidsgiverService';
 
 export enum ArbeidssituasjonFormFields {
     ansatt_arbeidsforhold = 'ansatt_arbeidsforhold',
@@ -90,7 +90,7 @@ const ArbeidssituasjonStep = () => {
         const fetchData = async () => {
             if (søknadsperiode) {
                 try {
-                    const arbeidsgivere = await arbeidsgivereEndpoint.fetch(søknadsperiode);
+                    const arbeidsgivere = await appArbeidsgivereService.fetch(søknadsperiode);
                     setArbeidsgivereIPerioden(arbeidsgivere);
                     setLoadState({ isLoading: false, isLoaded: true });
                 } catch {

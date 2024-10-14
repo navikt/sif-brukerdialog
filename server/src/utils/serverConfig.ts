@@ -5,16 +5,16 @@ type Proxy = {
 };
 
 export enum Service {
-    innsyn = 'innsyn',
+    sifInnsyn = 'sifInnsyn',
     k9SakInnsyn = 'k9SakInnsyn',
     k9BrukerdialogProsessering = 'k9BrukerdialogProsessering',
 }
 
 const proxies = {
-    [Service.innsyn]: <Proxy>{
-        frontendPath: process.env.INNSYN_FRONTEND_PATH,
-        apiScope: process.env.INNSYN_API_SCOPE,
-        apiUrl: process.env.INNSYN_API_URL,
+    [Service.sifInnsyn]: <Proxy>{
+        frontendPath: process.env.SIF_INNSYN_FRONTEND_PATH,
+        apiScope: process.env.SIF_INNSYN_API_SCOPE,
+        apiUrl: process.env.SIF_INNSYN_API_URL,
     },
     [Service.k9SakInnsyn]: <Proxy>{
         frontendPath: process.env.K9_SAK_INNSYN_FRONTEND_PATH,

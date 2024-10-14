@@ -14,7 +14,7 @@ const relocateTo = (url: string): void => {
 export const relocateToLoginPage = (): void => relocateTo(getEnvironmentVariable('LOGIN_URL'));
 export const relocateToNavFrontpage = (): void => relocateTo('https://www.nav.no/');
 export const relocateToSoknad = (): void => relocateTo(getRouteUrl(RouteConfig.SØKNAD_ROUTE_PREFIX));
-export const relocateToMinSide = () => relocateTo(getEnvironmentVariable('MIN_SIDE_URL'));
+export const relocateToMinSide = () => relocateTo(getEnvironmentVariable('MINSIDE_URL'));
 
 export const navigateToErrorPage = (navigate: NavigateFunction): void => {
     navigate(RouteConfig.ERROR_PAGE_ROUTE);

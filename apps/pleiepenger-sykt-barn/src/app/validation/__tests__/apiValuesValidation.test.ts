@@ -10,6 +10,15 @@ vi.mock('@navikt/sif-common-core-ds/src/utils/envUtils', () => {
     };
 });
 
+vi.mock('@navikt/sif-common/src/env/commonEnv', () => {
+    return {
+        getEnvironmentVariable: () => 'mockedApiUrl',
+        getEnvVariableOrDefault: () => 'mockedApiUrl',
+        getApiEnv: () => 'string',
+        API_ENV: {},
+    };
+});
+
 const files: Attachment[] = [
     {
         file: {

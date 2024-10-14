@@ -1,5 +1,23 @@
 # @sif/eslint-config
 
+## 1.1.15
+
+### Patch Changes
+
+-   Bytte til debounce fra ds-react
+
+## 1.1.14
+
+### Patch Changes
+
+-   Pakkeoppdateringer -minor/patch
+
+## 1.1.13
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
 ## 1.1.12
 
 ### Patch Changes
