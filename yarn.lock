@@ -3462,7 +3462,6 @@ __metadata:
   dependencies:
     "@navikt/ds-css": "npm:7.2.1"
     "@navikt/ds-react": "npm:7.2.1"
-    "@navikt/sif-common-hooks": "npm:*"
     "@portabletext/react": "npm:3.1.0"
     "@sanity/client": "npm:6.22.1"
     "@sif/eslint-config": "npm:*"
@@ -3615,7 +3614,6 @@ __metadata:
     "@navikt/sif-common-core-ds": "npm:*"
     "@navikt/sif-common-formik-ds": "npm:*"
     "@navikt/sif-common-forms-ds": "npm:*"
-    "@navikt/sif-common-hooks": "npm:*"
     "@navikt/sif-common-sentry": "npm:*"
     "@navikt/sif-common-soknad-ds": "npm:*"
     "@navikt/sif-common-ui": "npm:*"
@@ -3682,7 +3680,6 @@ __metadata:
     "@navikt/sif-common-core-ds": "npm:*"
     "@navikt/sif-common-formik-ds": "npm:*"
     "@navikt/sif-common-forms-ds": "npm:*"
-    "@navikt/sif-common-hooks": "npm:*"
     "@navikt/sif-common-sentry": "npm:*"
     "@navikt/sif-common-soknad-ds": "npm:*"
     "@navikt/sif-common-ui": "npm:*"
@@ -3826,7 +3823,6 @@ __metadata:
     "@navikt/sif-common-faro": "npm:*"
     "@navikt/sif-common-formik-ds": "npm:*"
     "@navikt/sif-common-forms-ds": "npm:*"
-    "@navikt/sif-common-hooks": "npm:*"
     "@navikt/sif-common-sentry": "npm:*"
     "@navikt/sif-common-soknad-ds": "npm:*"
     "@navikt/sif-common-ui": "npm:*"
@@ -3930,7 +3926,6 @@ __metadata:
     "@navikt/sif-common-core-ds": "npm:*"
     "@navikt/sif-common-formik-ds": "npm:*"
     "@navikt/sif-common-forms-ds": "npm:*"
-    "@navikt/sif-common-hooks": "npm:*"
     "@navikt/sif-common-sentry": "npm:*"
     "@navikt/sif-common-soknad-ds": "npm:*"
     "@navikt/sif-common-ui": "npm:*"
@@ -4011,7 +4006,6 @@ __metadata:
     "@navikt/sif-common-core-ds": "npm:*"
     "@navikt/sif-common-formik-ds": "npm:*"
     "@navikt/sif-common-forms-ds": "npm:*"
-    "@navikt/sif-common-hooks": "npm:*"
     "@navikt/sif-common-sentry": "npm:*"
     "@navikt/sif-common-soknad-ds": "npm:*"
     "@navikt/sif-common-ui": "npm:*"
@@ -4091,7 +4085,6 @@ __metadata:
     "@navikt/sif-common-core-ds": "npm:*"
     "@navikt/sif-common-formik-ds": "npm:*"
     "@navikt/sif-common-forms-ds": "npm:*"
-    "@navikt/sif-common-hooks": "npm:*"
     "@navikt/sif-common-sentry": "npm:*"
     "@navikt/sif-common-soknad-ds": "npm:*"
     "@navikt/sif-common-ui": "npm:*"
@@ -4171,7 +4164,6 @@ __metadata:
     "@navikt/sif-common-core-ds": "npm:*"
     "@navikt/sif-common-formik-ds": "npm:*"
     "@navikt/sif-common-forms-ds": "npm:*"
-    "@navikt/sif-common-hooks": "npm:*"
     "@navikt/sif-common-sentry": "npm:*"
     "@navikt/sif-common-soknad-ds": "npm:*"
     "@navikt/sif-common-ui": "npm:*"
@@ -4253,7 +4245,6 @@ __metadata:
     "@navikt/sif-common-core-ds": "npm:*"
     "@navikt/sif-common-formik-ds": "npm:*"
     "@navikt/sif-common-forms-ds": "npm:*"
-    "@navikt/sif-common-hooks": "npm:*"
     "@navikt/sif-common-sentry": "npm:*"
     "@navikt/sif-common-soknad-ds": "npm:*"
     "@navikt/sif-common-ui": "npm:*"
@@ -4574,18 +4565,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-common-hooks@npm:*, @navikt/sif-common-hooks@workspace:packages/sif-common-hooks":
-  version: 0.0.0-use.local
-  resolution: "@navikt/sif-common-hooks@workspace:packages/sif-common-hooks"
-  dependencies:
-    "@sif/eslint-config": "npm:*"
-    copyfiles: "npm:2.4.1"
-    npm-run-all: "npm:4.1.5"
-    react: "npm:18.3.1"
-    typescript: "npm:5.6.3"
-  languageName: unknown
-  linkType: soft
-
 "@navikt/sif-common-sentry@npm:*, @navikt/sif-common-sentry@workspace:packages/sif-common-sentry":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-sentry@workspace:packages/sif-common-sentry"
@@ -4624,7 +4603,6 @@ __metadata:
     "@navikt/nav-dekoratoren-moduler": "npm:2.1.6"
     "@navikt/sif-common-core-ds": "npm:*"
     "@navikt/sif-common-formik-ds": "npm:*"
-    "@navikt/sif-common-hooks": "npm:*"
     "@navikt/sif-common-sentry": "npm:*"
     "@navikt/sif-common-utils": "npm:*"
     "@originjs/vite-plugin-commonjs": "npm:1.0.3"
@@ -4682,7 +4660,6 @@ __metadata:
     "@navikt/sif-common-core-ds": "*"
     "@navikt/sif-common-formik-ds": "*"
     "@navikt/sif-common-forms-ds": "*"
-    "@navikt/sif-common-hooks": "*"
     "@navikt/sif-common-sentry": "*"
     "@navikt/sif-common-ui": "*"
     "@navikt/sif-common-utils": "*"
@@ -4870,7 +4847,6 @@ __metadata:
     "@navikt/sif-common-core-ds": "npm:*"
     "@navikt/sif-common-formik-ds": "npm:*"
     "@navikt/sif-common-forms-ds": "npm:*"
-    "@navikt/sif-common-hooks": "npm:*"
     "@navikt/sif-common-sentry": "npm:*"
     "@navikt/sif-common-soknad-ds": "npm:*"
     "@navikt/sif-common-ui": "npm:*"
