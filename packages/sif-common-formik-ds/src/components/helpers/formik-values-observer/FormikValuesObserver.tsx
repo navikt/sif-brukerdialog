@@ -1,5 +1,5 @@
+import { debounce } from '@navikt/ds-react';
 import { useFormikContext } from 'formik';
-import debounce from 'lodash.debounce';
 import { useEffect, useRef, useState } from 'react';
 import isEqual from 'react-fast-compare';
 

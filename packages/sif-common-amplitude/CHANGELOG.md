@@ -1,5 +1,23 @@
 # @navikt/sif-common-amplitude
 
+## 2.26.18
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 2.26.17
+
+### Patch Changes
+
+-   Bytte til debounce fra ds-react
+
+## 2.26.16
+
+### Patch Changes
+
+-   Pakkeoppdateringer -minor/patch
+
 ## 2.26.15
 
 ### Patch Changes
