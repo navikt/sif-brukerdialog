@@ -1,5 +1,6 @@
 const nb = {
     'steg.oppsummering.søker.header': 'Om deg',
+    'steg.oppsummering.søker.navn': 'Navn',
     'steg.oppsummering.søker.fnr': 'Fødselsnummer',
     'steg.oppsummering.barnet.header': 'Om barnet',
     'steg.oppsummering.barnet.navn': 'Navn',
@@ -37,6 +38,7 @@ const nb = {
 
 const nn: Record<keyof typeof nb, string> = {
     'steg.oppsummering.søker.header': 'Om deg',
+    'steg.oppsummering.søker.navn': 'Namn',
     'steg.oppsummering.søker.fnr': 'Fødselsnummer',
     'steg.oppsummering.barnet.header': 'Om barnet',
     'steg.oppsummering.barnet.navn': 'Namn',
