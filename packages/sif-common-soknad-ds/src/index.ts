@@ -1,11 +1,9 @@
 export { default as EditStepLink } from './components/edit-step-link/EditStepLink';
 export { default as ErrorPage } from './pages/error-page/ErrorPage';
-export { default as FormQuestion } from './components/form-question/FormQuestion';
 export { default as Kvittering } from './components/kvittering/Kvittering';
 export { default as LoadingPage } from './pages/loading-page/LoadingPage';
 export { default as SoknadVelkommenPage } from './components/soknad-velkommen-page/SoknadVelkommenPage';
 export { default as SoknadVelkommenGuide } from './components/soknad-velkommen-page/SoknadVelkommenGuide';
-export { default as QuestionVisibilityBlock } from './modules/question-visibility/QuestionVisibilityBlock';
 export { default as SamtykkeForm, SamtykkeFormPart } from './modules/samtykke-form/SamtykkeForm';
 export { default as SoknadApplication } from './setup/SoknadApplication';
 export { default as SoknadApplicationCommonRoutes } from './setup/SoknadApplicationCommonRoutes';
@@ -17,7 +15,6 @@ export { ensureBaseNameForReactRouter } from './utils/ensureBaseNameForReactRout
 export { EnsureCorrectSøknadRouteErrorType } from './hooks/useEnsureCorrectSøknadRoute';
 export { useVerifyUserOnWindowFocus } from './hooks/useVerifyUserOnWindowFocus';
 export { GlobalSoknadApplicationRoutes } from './setup/SoknadApplicationCommonRoutes';
-export { QuestionVisibilityContext } from './modules/question-visibility/QuestionVisibilityContext';
 export { SoknadApplicationType } from './modules/soknad-step/soknadStepTypes';
 export { soknadMessages, type SoknadMessagesType } from './i18n/soknad.messages';
 export { useEnsureCorrectSøknadRoute } from './hooks/useEnsureCorrectSøknadRoute';
