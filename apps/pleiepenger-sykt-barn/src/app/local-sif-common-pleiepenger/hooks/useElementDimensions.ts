@@ -1,5 +1,5 @@
+import { debounce } from '@navikt/ds-react';
 import { useEffect, useLayoutEffect, useState } from 'react';
-import debounce from 'lodash.debounce';
 
 export const useElementDimensions = (
     ref: React.RefObject<HTMLElement>,

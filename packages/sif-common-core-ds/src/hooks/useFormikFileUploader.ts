@@ -39,8 +39,8 @@ export const useFormikFileUploader = ({
             try {
                 const response = await uploadFile(file);
                 attachment = setAttachmentPendingToFalse(attachment);
-                attachment.url = getAttachmentURLFrontend(response.headers.location);
                 attachment.id = getAttachmentId(response.headers.location);
+                attachment.url = getAttachmentURLFrontend(response.headers.location);
                 attachment.uploaded = true;
             } catch (error) {
                 if (isForbidden(error) || isUnauthorized(error)) {

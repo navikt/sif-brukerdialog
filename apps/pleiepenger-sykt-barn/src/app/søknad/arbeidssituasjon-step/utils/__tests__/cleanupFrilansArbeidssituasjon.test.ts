@@ -3,6 +3,14 @@ import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
 import { FrilansFormValues, Frilanstype } from '../../../../types/søknad-form-values/FrilansFormValues';
 import { cleanupFrilansArbeidssituasjon } from '../cleanupArbeidssituasjonStep';
 import { ISODateRangeToDateRange } from '@navikt/sif-common-utils';
+import { vi } from 'vitest';
+
+vi.mock('@navikt/sif-common/src/env/commonEnv', () => {
+    return {
+        getEnvironmentVariable: () => 'mockedApiUrl',
+        getEnvVariableOrDefault: () => 'mockedApiUrl',
+    };
+});
 
 const søknadsperiode = ISODateRangeToDateRange('2021-01-02/2022-01-01');
 

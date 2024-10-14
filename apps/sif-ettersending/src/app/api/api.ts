@@ -13,7 +13,7 @@ const sendMultipartPostRequest = (url: string, formData: FormData) => {
     return axios.post(url, formData, axiosMultipartConfig);
 };
 
-axios.defaults.baseURL = getEnvironmentVariable('FRONTEND_API_PATH');
+axios.defaults.baseURL = getEnvironmentVariable('K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH');
 axios.defaults.withCredentials = false;
 axios.interceptors.request.use((config) => {
     return config;

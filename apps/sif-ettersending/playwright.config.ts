@@ -24,14 +24,13 @@ export default defineConfig({
         url: 'http://localhost:8080',
         reuseExistingServer: true,
         env: {
-            DEKORATOR_URL: 'https://www.nav.no/dekoratoren/?simple=true&chatbot=false',
+            K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH:
+                '/familie/sykdom-i-familien/soknad/ettersending/api/k9-brukerdialog',
+            K9_BRUKERDIALOG_PROSESSERING_API_URL: 'http://k9-brukerdialog-prosessering',
             PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/ettersending',
-            API_URL: 'http://localhost:8089',
-            FRONTEND_API_PATH: 'http://localhost:8089',
-            FRONTEND_VEDLEGG_URL: 'http://localhost:8089',
-            VEDLEGG_API_URL: 'http://localhost:8089',
-            APPSTATUS_PROJECT_ID: 'ryujtq87',
-            APPSTATUS_DATASET: 'staging',
+            SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
+            SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
+            SIF_PUBLIC_DEKORATOR_URL: 'https://www.nav.no/dekoratoren/?simple=true&chatbot=false',
         },
     },
 });

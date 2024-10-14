@@ -26,6 +26,6 @@ export const arbeidsgiverFrilansoppdragSchema = z.object({
 
 export const arbeidsgivereResponseSchema = z.object({
     organisasjoner: z.array(arbeidsgiverOrganisasjonSchema),
-    privateArbeidsgivere: z.array(arbeidsgiverPrivatSchema),
-    frilansoppdrag: z.array(arbeidsgiverFrilansoppdragSchema),
+    privateArbeidsgivere: z.array(arbeidsgiverPrivatSchema).optional(),
+    frilansoppdrag: z.array(arbeidsgiverFrilansoppdragSchema).optional(),
 });

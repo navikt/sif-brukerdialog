@@ -1,5 +1,45 @@
 # @navikt/appstatus-react-ds
 
+## 2.19.19
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 2.19.18
+
+### Patch Changes
+
+-   Bytte til debounce fra ds-react
+-   Updated dependencies
+    -   @navikt/sif-common-hooks@0.2.4
+
+## 2.19.17
+
+### Patch Changes
+
+-   Pakkeoppdateringer -minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-hooks@0.2.3
+
+## 2.19.16
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 2.19.15
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 2.19.14
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
 ## 2.19.13
 
 ### Patch Changes

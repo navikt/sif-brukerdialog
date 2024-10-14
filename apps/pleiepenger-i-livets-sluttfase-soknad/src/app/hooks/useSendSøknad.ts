@@ -3,28 +3,27 @@ import { useNavigate } from 'react-router-dom';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { AxiosError } from 'axios';
 import { PleiepengerLivetsSluttApp } from '@navikt/sif-app-register';
-import { useMellomlagring } from '../hooks/useMellomlagring';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
-import søknadEndpoint from '../api/endpoints/søknadEndpoint';
 import { getKvitteringInfoFromApiData } from '../utils/kvitteringUtils';
 import { Søker } from '../types/Søker';
 import { KvitteringInfo } from '../types/KvitteringInfo';
+import { mellomlagringService } from '../api/mellomlagringService';
+import { getInnsendingService, InnsendingType } from '@navikt/sif-common';
 
 export const useSendSøknad = () => {
     const { dispatch } = useSøknadContext();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [sendSøknadError, setSendSøknadError] = useState<AxiosError | undefined>();
-    const { slettMellomlagring } = useMellomlagring();
     const navigateTo = useNavigate();
 
     const { logSoknadSent } = useAmplitudeInstance();
 
     const sendSøknad = (apiData: SøknadApiData, søker: Søker) => {
         setIsSubmitting(true);
-        søknadEndpoint
+        getInnsendingService(InnsendingType['pleiepenger-i-livets-sluttfase'])
             .send(apiData)
             .then(() => {
                 const kvitteringInfo = getKvitteringInfoFromApiData(apiData, søker);
@@ -38,7 +37,7 @@ export const useSendSøknad = () => {
 
     const onSøknadSendSuccess = async (kvitteringInfo?: KvitteringInfo) => {
         await logSoknadSent(PleiepengerLivetsSluttApp.key);
-        slettMellomlagring();
+        mellomlagringService.purge();
         setIsSubmitting(false);
         if (kvitteringInfo) {
             dispatch(actionsCreator.setSøknadKvitteringInfo(kvitteringInfo));

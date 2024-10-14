@@ -760,7 +760,8 @@ const nb = {
         'Du kan ikke søke om pleiepenger for en periode som er lenger enn 3 år tilbake i tid.',
     'validation.periodeTil.dateIsNotWeekday':
         'Periodens til-dato må være en ukedag, det kan ikke være en lørdag eller søndag. Skriv inn eller velg dato fra kalenderen.',
-    'validation.periodeTil.dateIsAfterMax': 'Du kan kun søke pleiepenger for opptil ett år av gangen.',
+    'validation.periodeTil.dateIsAfterMax':
+        'Du kan kun søke pleiepenger for opptil ett år av gangen, og ett år frem i tid.',
     'validation.periodeTil.toDateIsBeforeFromDate':
         'Til-datoen kan ikke være før fra-datoen. Skriv inn eller velg dato fra kalenderen.',
     'validation.skalOppholdeSegIUtlandetIPerioden.yesOrNoIsUnanswered':

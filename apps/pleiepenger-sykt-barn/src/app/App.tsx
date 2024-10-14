@@ -1,5 +1,4 @@
 import { SanityConfig } from '@navikt/appstatus-react-ds';
-import { createRoot } from 'react-dom/client';
 import { Navigate, Route } from 'react-router-dom';
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
 import { getEnvironmentVariable, getMaybeEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
@@ -73,8 +72,4 @@ const App = () => {
     );
 };
 
-const container = document.getElementById('app');
-const root = createRoot(container!);
-ensureBaseNameForReactRouter(publicPath);
-
-root.render(<App />);
+export default App;

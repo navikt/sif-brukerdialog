@@ -6,24 +6,26 @@
     "ingresses": ["https://pleiepenger-i-livets-sluttfase.intern.dev.nav.no"],
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
     "accessPolicyOutApps": ["k9-brukerdialog-prosessering"],
-    "livenessPath": "/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/health/isAlive",
-    "readinessPath": "/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/health/isReady",
+    "livenessPath": "/internal/health/isAlive",
+    "readinessPath": "/internal/health/isReady",
     "minReplicas": 1,
     "maxReplicas": 1,
     "observabilityEnabled": "true",
     "env": {
-        "DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://pleiepenger-i-livets-sluttfase.intern.dev.nav.no/oauth2/logout",
-        "API_URL": "http://k9-brukerdialog-prosessering",
-        "VEDLEGG_API_URL": "https://k9-brukerdialog-prosessering",
-        "FRONTEND_VEDLEGG_URL": "https://pleiepenger-i-livets-sluttfase.intern.dev.nav.no/api",
-        "FRONTEND_API_PATH": "/api",
-        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase",
-        "LOGIN_URL": "https://pleiepenger-i-livets-sluttfase.intern.dev.nav.no/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/soknad",
-        "APPSTATUS_PROJECT_ID": "ryujtq87",
-        "APPSTATUS_DATASET": "staging",
-        "API_TOKENX_AUDIENCE": "dev-gcp:dusseldorf:k9-brukerdialog-prosessering",
-        "NPM_CONFIG_CACHE": "/tmp",
+        "ENV": "dev",
         "APP_VERSION": "dev",
-        "MINSIDE_URL": "https://www.intern.dev.nav.no/minside"
+        "NODE_ENV": "development",
+        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase",
+        "NPM_CONFIG_CACHE": "/tmp",
+
+        "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "dev-gcp:dusseldorf:k9-brukerdialog-prosessering",
+        "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",
+        "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/api/k9-brukerdialog",
+
+        "SIF_PUBLIC_APPSTATUS_DATASET": "staging",
+        "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
+        "SIF_PUBLIC_DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://pleiepenger-i-livets-sluttfase.intern.dev.nav.no/oauth2/logout",
+        "SIF_PUBLIC_LOGIN_URL": "https://pleiepenger-i-livets-sluttfase.intern.dev.nav.no/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/soknad",
+        "SIF_PUBLIC_MINSIDE_URL": "https://www.intern.dev.nav.no/minside"
     }
 }

@@ -13,7 +13,7 @@ const isISODateString = (value: any): value is string => {
     }
 };
 
-export const getDateFromString = (value?: string): Date | undefined => {
+const getDateFromString = (value?: string): Date | undefined => {
     if (typeof value === 'string') {
         if (isISODateString(value)) {
             return dayjs.utc(value, 'YYYY-MM-DD').toDate();

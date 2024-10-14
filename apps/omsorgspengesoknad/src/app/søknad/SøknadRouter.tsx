@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds/src';
@@ -17,12 +17,13 @@ import DeltBostedStep from './steps/delt-bosted/DeltBostedStep';
 import LegeerklæringStep from './steps/legeerklæring/LegeerklæringStep';
 import OmBarnetStep from './steps/om-barnet/OmBarnetStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
+import { relocateToWelcomePage } from '../utils/navigationUtils';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
     const {
         dispatch,
-        state: { søknadsdata, søknadRoute: stateSøknadRoute, søker },
+        state: { søknadsdata, søknadRoute: stateSøknadRoute, søker, søknadSendt, isReloadingApp },
     } = useSøknadContext();
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
@@ -42,8 +43,25 @@ const SøknadRouter = () => {
         }
     }, [navigateTo, pathname, stateSøknadRoute, isFirstTimeLoadingApp]);
 
-    if (shouldResetSøknad) {
+    const restartSøknad = useCallback(async () => {
+        await slettMellomlagring;
+        relocateToWelcomePage();
+    }, []);
+
+    useEffect(() => {
+        if (shouldResetSøknad) {
+            dispatch(actionsCreator.resetSøknad());
+            dispatch(actionsCreator.setIsReloadingApp());
+            setTimeout(restartSøknad);
+        }
+    }, [shouldResetSøknad, dispatch, restartSøknad]);
+
+    if (isReloadingApp) {
         return <LoadingSpinner size="3xlarge" style="block" />;
+    }
+
+    if (søknadSendt && pathname !== SøknadRoutes.SØKNAD_SENDT && !shouldResetSøknad) {
+        setShouldResetSøknad(true);
     }
 
     if (søknadsdata.velkommen !== undefined && søknadsdata.velkommen.harForståttRettigheterOgPlikter !== true) {
@@ -63,10 +81,7 @@ const SøknadRouter = () => {
             <Route path={SøknadStepRoutePath[StepId.DELT_BOSTED]} element={<DeltBostedStep />} />
             <Route path={SøknadStepRoutePath[StepId.LEGEERKLÆRING]} element={<LegeerklæringStep />} />
             <Route path={SøknadStepRoutePath[StepId.OPPSUMMERING]} element={<OppsummeringStep />} />
-            <Route
-                path={SøknadStepRoutePath[StepId.KVITTERING]}
-                element={<KvitteringPage onUnmount={() => setShouldResetSøknad(true)} />}
-            />
+            <Route path={SøknadStepRoutePath[StepId.KVITTERING]} element={<KvitteringPage />} />
             <Route
                 path="*"
                 element={

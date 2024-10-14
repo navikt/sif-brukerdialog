@@ -1,11 +1,10 @@
-import { createRoot } from 'react-dom/client';
 import { Navigate, Route } from 'react-router-dom';
 import { EttersendelseApp } from '@navikt/sif-app-register';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import {
     ensureBaseNameForReactRouter,
-    SoknadApplicationCommonRoutes,
     SoknadApplication,
+    SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
 import { applicationIntlMessages } from './i18n';
 import GeneralErrorPage from './pages/general-error-page/GeneralErrorPage';
@@ -15,9 +14,6 @@ import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.css';
 
-const container = document.getElementById('app');
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const root = createRoot(container!);
 const publicPath = getEnvironmentVariable('PUBLIC_PATH');
 
 ensureBaseNameForReactRouter(publicPath);
@@ -49,4 +45,4 @@ const App = () => {
     );
 };
 
-root.render(<App />);
+export default App;

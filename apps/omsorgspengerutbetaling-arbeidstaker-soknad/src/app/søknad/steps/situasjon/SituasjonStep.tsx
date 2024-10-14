@@ -1,44 +1,49 @@
+import { Alert } from '@navikt/ds-react';
+import { useState } from 'react';
+import { Office1 } from '@navikt/ds-icons';
+import { fetchArbeidsgivere } from '@navikt/sif-common';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import {
     getTotalSizeOfAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
-import { Arbeidsforhold } from '../../../types/ArbeidsforholdTypes';
-import { ValidationError, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import { useSøknadContext } from '../../context/hooks/useSøknadContext';
-import { StepId } from '../../../types/StepId';
-import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
-import actionsCreator from '../../context/action/actionCreator';
-import { SøknadContextState } from '../../../types/SøknadContextState';
-import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
-import SøknadStep from '../../SøknadStep';
+import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { getDateToday } from '@navikt/sif-common-utils';
+import FormSection from '../../../components/form-section/FormSection';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { Office1 } from '@navikt/ds-icons';
-import { Alert } from '@navikt/ds-react';
-import { getSituasjonStepInitialValues, getSituasjonSøknadsdataFromFormValues } from './SituasjonStepUtils';
+import { AppText, useAppIntl } from '../../../i18n';
+import { Arbeidsforhold } from '../../../types/ArbeidsforholdTypes';
+import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
+import { StepId } from '../../../types/StepId';
+import { SøknadContextState } from '../../../types/SøknadContextState';
 import {
     checkHarKlikketJaJaPåAlle,
     checkHarKlikketNeiElleJajaBlanding,
     checkHarKlikketNeiPåAlle,
 } from '../../../utils/arbeidsforholdValidations';
-import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import actionsCreator from '../../context/action/actionCreator';
+import { useSøknadContext } from '../../context/hooks/useSøknadContext';
+import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
+import SøknadStep from '../../SøknadStep';
+import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import ArbeidsforholdSituasjon from './form-parts/ArbeidsforholdSituasjon';
 import ArbeidsforholdUtbetalingsårsak from './form-parts/ArbeidsforholdUtbetalingsårsak';
-import { valuesToAlleDokumenterISøknaden } from '../../../utils/attachmentUtils';
-import FormSection from '../../../components/form-section/FormSection';
-import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
-import { useState } from 'react';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
-import arbeidsgivereEndpoint from '../../../api/endpoints/arbeidsgivereEndpoint';
-import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
-import { AppText, useAppIntl } from '../../../i18n';
+import {
+    getNMonthsAgo,
+    getSituasjonStepInitialValues,
+    getSituasjonSøknadsdataFromFormValues,
+    valuesToAlleDokumenterISøknaden,
+} from './SituasjonStepUtils';
 
 export enum ArbeidsforholdFormFields {
     navn = 'navn',
@@ -79,8 +84,8 @@ const SituasjonStep = () => {
 
     useEffectOnce(() => {
         const fetchData = async () => {
-            const a = await arbeidsgivereEndpoint.fetch();
-            setArbeidsgivere(a);
+            const a = await fetchArbeidsgivere({ from: getNMonthsAgo(3), to: getDateToday() });
+            setArbeidsgivere(a.organisasjoner);
             setLoadState({ isLoading: false, isLoaded: true });
         };
         if (!isLoaded && !isLoading) {

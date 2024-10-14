@@ -1,5 +1,83 @@
 # @navikt/sif-common-soknad-ds
 
+## 14.0.18
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.12.23
+    -   @navikt/sif-common-forms-ds@10.1.17
+    -   @navikt/sif-common-core-ds@9.18.24
+    -   @navikt/sif-common-sentry@0.27.16
+    -   @navikt/sif-common-utils@3.47.18
+    -   @navikt/sif-common-ui@0.8.23
+
+## 14.0.17
+
+### Patch Changes
+
+-   Bytte til debounce fra ds-react
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.12.22
+    -   @navikt/sif-common-core-ds@9.18.23
+    -   @navikt/sif-common-forms-ds@10.1.16
+    -   @navikt/sif-common-hooks@0.2.4
+    -   @navikt/sif-common-sentry@0.27.15
+    -   @navikt/sif-common-ui@0.8.22
+    -   @navikt/sif-common-utils@3.47.17
+
+## 14.0.16
+
+### Patch Changes
+
+-   Pakkeoppdateringer -minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.12.21
+    -   @navikt/sif-common-forms-ds@10.1.15
+    -   @navikt/sif-common-core-ds@9.18.22
+    -   @navikt/sif-common-sentry@0.27.14
+    -   @navikt/sif-common-hooks@0.2.3
+    -   @navikt/sif-common-utils@3.47.16
+    -   @navikt/sif-common-ui@0.8.21
+
+## 14.0.15
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.12.20
+    -   @navikt/sif-common-forms-ds@10.1.14
+    -   @navikt/sif-common-core-ds@9.18.21
+    -   @navikt/sif-common-ui@0.8.20
+
+## 14.0.14
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.12.19
+    -   @navikt/sif-common-forms-ds@10.1.13
+    -   @navikt/sif-common-core-ds@9.18.20
+    -   @navikt/sif-common-sentry@0.27.13
+    -   @navikt/sif-common-utils@3.47.15
+    -   @navikt/sif-common-ui@0.8.19
+
+## 14.0.13
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.12.17
+    -   @navikt/sif-common-forms-ds@10.1.12
+    -   @navikt/sif-common-core-ds@9.18.18
+    -   @navikt/sif-common-sentry@0.27.12
+    -   @navikt/sif-common-utils@3.47.14
+    -   @navikt/sif-common-ui@0.8.18
+
 ## 14.0.12
 
 ### Patch Changes

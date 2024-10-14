@@ -1,12 +1,12 @@
+import { FormSummary } from '@navikt/ds-react';
+import { RegistrertBarn } from '@navikt/sif-common';
 import { BarnType } from '@navikt/sif-common-forms-ds';
+import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { JaNeiSvar, SummaryList } from '@navikt/sif-common-ui';
-import { ISODateToDate, dateFormatter } from '@navikt/sif-common-utils';
+import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '../../../../i18n';
-import { RegistrertBarn } from '../../../../types/RegistrertBarn';
 import { ApiBarn } from '../../../../types/søknadApiData/SøknadApiData';
 import { mapRegistrertBarnToApiBarn } from '../../../../utils/søknadsdataToApiData/getDineBarnApiDataFromSøknadsdata';
-import { FormSummary } from '@navikt/ds-react';
-import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 
 interface Props {
     barn: ApiBarn[];

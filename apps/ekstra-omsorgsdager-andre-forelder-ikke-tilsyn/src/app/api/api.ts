@@ -17,7 +17,7 @@ const axiosConfigCommon: AxiosRequestConfig = {
 
 export const axiosConfig: AxiosRequestConfig = {
     ...axiosConfigCommon,
-    baseURL: getEnvVariableOrDefault('FRONTEND_API_PATH', 'http://localhost:8089'),
+    baseURL: getEnvVariableOrDefault('K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH', 'http://localhost:8089'),
 };
 
 export const axiosMultipartConfig: AxiosRequestConfig = {

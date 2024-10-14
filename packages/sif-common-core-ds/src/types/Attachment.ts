@@ -1,3 +1,4 @@
+/** Informasjon om mellomlagret vedlegg */
 export interface PersistedFile {
     isPersistedFile: boolean;
     name: string;

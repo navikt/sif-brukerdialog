@@ -65,7 +65,7 @@ export interface SøknadApiData extends DineBarnApiData {
     utbetalingsperioder: UtbetalingsperiodeApi[]; // perioder
     opphold: UtenlandsoppholdApiData[]; // perioder utenlandsopphold
 
-    vedlegg: string[]; // legeerklæring
+    vedlegg: string[]; // legeerklæring url
 
     frilans?: FrilansApiData; // arbeidssituasjon frilans
     selvstendigNæringsdrivende?: VirksomhetApiData; // arbeidssituasjon

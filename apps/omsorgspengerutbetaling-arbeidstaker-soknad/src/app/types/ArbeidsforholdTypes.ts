@@ -1,5 +1,5 @@
+import { Attachment } from '@navikt/sif-common-core-ds/src/types';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/src/types';
-import { Attachment } from '../components/formik-file-uploader/useFormikFileUploader';
 
 export enum Utbetalingsårsak {
     nyoppstartetHosArbeidsgiver = 'NYOPPSTARTET_HOS_ARBEIDSGIVER',

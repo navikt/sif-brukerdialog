@@ -16,6 +16,7 @@ export enum SoknadFormField {
     valgteRegistrertBarn = 'valgteRegistrertBarn',
     gjelderEtAnnetBarn = 'gjelderEtAnnetBarn',
     barnetsFødselsnummer = 'barnetsFødselsnummer',
+    barnetHarIkkeFnr = 'barnetHarIkkeFnr',
     beskrivelse = 'beskrivelse',
     ytelse = 'ytelse',
     dokumenter = 'dokumenter',
@@ -29,6 +30,7 @@ export interface SoknadFormData {
     [SoknadFormField.valgteRegistrertBarn]?: RegistrertBarnFormData;
     [SoknadFormField.gjelderEtAnnetBarn]?: boolean;
     [SoknadFormField.barnetsFødselsnummer]?: string;
+    [SoknadFormField.barnetHarIkkeFnr]?: boolean;
     [SoknadFormField.beskrivelse]?: string;
     [SoknadFormField.ytelse]?: YtelseKey;
     [SoknadFormField.dokumenter]: Attachment[];

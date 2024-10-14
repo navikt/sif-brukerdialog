@@ -1,5 +1,70 @@
 # @navikt/sif-common-forms-ds
 
+## 10.1.17
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.12.23
+    -   @navikt/sif-common-core-ds@9.18.24
+    -   @navikt/sif-common-utils@3.47.18
+    -   @navikt/sif-common-ui@0.8.23
+
+## 10.1.16
+
+### Patch Changes
+
+-   Bytte til debounce fra ds-react
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.12.22
+    -   @navikt/sif-common-core-ds@9.18.23
+    -   @navikt/sif-common-ui@0.8.22
+    -   @navikt/sif-common-utils@3.47.17
+
+## 10.1.15
+
+### Patch Changes
+
+-   Pakkeoppdateringer -minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.12.21
+    -   @navikt/sif-common-core-ds@9.18.22
+    -   @navikt/sif-common-utils@3.47.16
+    -   @navikt/sif-common-ui@0.8.21
+
+## 10.1.14
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.12.20
+    -   @navikt/sif-common-core-ds@9.18.21
+    -   @navikt/sif-common-ui@0.8.20
+
+## 10.1.13
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.12.19
+    -   @navikt/sif-common-core-ds@9.18.20
+    -   @navikt/sif-common-utils@3.47.15
+    -   @navikt/sif-common-ui@0.8.19
+
+## 10.1.12
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.12.17
+    -   @navikt/sif-common-core-ds@9.18.18
+    -   @navikt/sif-common-utils@3.47.14
+    -   @navikt/sif-common-ui@0.8.18
+
 ## 10.1.11
 
 ### Patch Changes

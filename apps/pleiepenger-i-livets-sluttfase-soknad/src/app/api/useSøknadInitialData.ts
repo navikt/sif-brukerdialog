@@ -6,11 +6,8 @@ import { Søker } from '../types/Søker';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import appSentryLogger from '../utils/appSentryLogger';
-import søkerEndpoint from './endpoints/søkerEndpoint';
-import søknadStateEndpoint, {
-    isPersistedSøknadStateValid,
-    SøknadStatePersistence,
-} from './endpoints/søknadStateEndpoint';
+import { fetchSøker } from '@navikt/sif-common';
+import { MellomlagringData, mellomlagringService } from './mellomlagringService';
 
 export type SøknadInitialData = SøknadContextState;
 
@@ -42,14 +39,10 @@ export const defaultSøknadState: Partial<SøknadContextState> = {
     søknadRoute: SøknadRoutes.VELKOMMEN,
 };
 
-const getSøknadInitialData = async (
-    søker: Søker,
-    lagretSøknadState: SøknadStatePersistence,
-): Promise<SøknadInitialData> => {
-    const isValid = isPersistedSøknadStateValid(lagretSøknadState, { søker });
-
+const getSøknadInitialData = async (søker: Søker, lagretSøknadState: MellomlagringData): Promise<SøknadInitialData> => {
+    const isValid = mellomlagringService.isMellomlagringValid(lagretSøknadState, { søker });
     if (!isValid) {
-        await søknadStateEndpoint.purge();
+        await mellomlagringService.purge();
     }
     const lagretSøknadStateToUse = isValid ? lagretSøknadState : defaultSøknadState;
     return Promise.resolve({
@@ -65,8 +58,8 @@ function useSøknadInitialData(): SøknadInitialDataState {
 
     const fetch = async () => {
         try {
-            const søker = await søkerEndpoint.fetch();
-            const lagretSøknadState = await søknadStateEndpoint.fetch();
+            const søker = await fetchSøker();
+            const lagretSøknadState = await mellomlagringService.fetch();
             setInitialData({
                 status: RequestStatus.success,
                 data: await getSøknadInitialData(søker, lagretSøknadState),

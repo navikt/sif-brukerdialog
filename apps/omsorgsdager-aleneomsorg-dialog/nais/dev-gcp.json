@@ -13,6 +13,7 @@
     "faro": true,
     "observabilityEnabled": "true",
     "env": {
+        "ENV": "dev",
         "APP_VERSION": "dev",
         "NPM_CONFIG_CACHE": "/tmp/",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg",

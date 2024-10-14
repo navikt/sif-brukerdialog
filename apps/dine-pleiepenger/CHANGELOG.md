@@ -1,5 +1,76 @@
 # @navikt/dine-pleiepenger
 
+## 1.6.22
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.26.18
+    -   @navikt/appstatus-react-ds@2.19.19
+    -   @navikt/sif-common-core-ds@9.18.24
+    -   @navikt/sif-common-sentry@0.27.16
+    -   @navikt/sif-common-utils@3.47.18
+
+## 1.6.21
+
+### Patch Changes
+
+-   Bytte til debounce fra ds-react
+-   Updated dependencies
+    -   @navikt/appstatus-react-ds@2.19.18
+    -   @navikt/sif-app-register@0.1.4
+    -   @navikt/sif-common-amplitude@2.26.17
+    -   @navikt/sif-common-core-ds@9.18.23
+    -   @navikt/sif-common-sentry@0.27.15
+    -   @navikt/sif-common-utils@3.47.17
+
+## 1.6.20
+
+### Patch Changes
+
+-   Pakkeoppdateringer -minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.26.16
+    -   @navikt/appstatus-react-ds@2.19.17
+    -   @navikt/sif-common-core-ds@9.18.22
+    -   @navikt/sif-common-sentry@0.27.14
+    -   @navikt/sif-app-register@0.1.3
+    -   @navikt/sif-common-utils@3.47.16
+
+## 1.6.19
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/appstatus-react-ds@2.19.16
+    -   @navikt/sif-common-core-ds@9.18.21
+
+## 1.6.18
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.26.15
+    -   @navikt/appstatus-react-ds@2.19.15
+    -   @navikt/sif-common-core-ds@9.18.20
+    -   @navikt/sif-common-sentry@0.27.13
+    -   @navikt/sif-common-utils@3.47.15
+
+## 1.6.17
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.26.14
+    -   @navikt/appstatus-react-ds@2.19.14
+    -   @navikt/sif-common-core-ds@9.18.18
+    -   @navikt/sif-common-sentry@0.27.12
+    -   @navikt/sif-common-utils@3.47.14
+
 ## 1.6.16
 
 ### Patch Changes
