@@ -1,5 +1,14 @@
 # @navikt/dine-pleiepenger
 
+## 1.6.23
+
+### Patch Changes
+
+-   Rydde i deps og noen minor/patch oppdateringer
+-   Updated dependencies
+    -   @navikt/sif-common-core-ds@9.18.25
+    -   @navikt/sif-common-utils@3.47.19
+
 ## 1.6.22
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @sif/eslint-config
 
+## 1.1.16
+
+### Patch Changes
+
+-   Rydde i deps og noen minor/patch oppdateringer
+
 ## 1.1.15
 
 ### Patch Changes
