@@ -46,7 +46,7 @@
         "@babel/preset-typescript": "7.25.7",
         "@mswjs/data": "0.16.2",
         "@navikt/ds-tailwind": "7.2.1",
-        "@navikt/nav-dekoratoren-moduler": "3.1.0",
+        "@navikt/nav-dekoratoren-moduler": "2.1.6",
         "@playwright/test": "1.48.0",
         "@sentry/vite-plugin": "2.22.5",
         "@sif/eslint-config": "*",
