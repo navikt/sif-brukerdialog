@@ -59,7 +59,6 @@
         "react-dom": "18.3.1",
         "react-intl": "6.8.0",
         "react-json-view": "1.21.3",
-        "react-modal": "3.16.1",
         "react-router-dom": "6.27.0",
         "rimraf": "6.0.1",
         "storybook": "8.3.5",
