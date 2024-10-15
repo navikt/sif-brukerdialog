@@ -1,5 +1,11 @@
 # config
 
+## 0.10.18
+
+### Patch Changes
+
+-   Rydde i deps og noen minor/patch oppdateringer
+
 ## 0.10.17
 
 ### Patch Changes

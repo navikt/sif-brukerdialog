@@ -5,7 +5,6 @@ const express = require('express');
 const getAppSettings = require('./dev/AppSettings.cjs');
 const mustacheExpress = require('mustache-express');
 const path = require('path');
-const RateLimit = require('express-rate-limit');
 const server = express();
 
 server.use(express.json());
