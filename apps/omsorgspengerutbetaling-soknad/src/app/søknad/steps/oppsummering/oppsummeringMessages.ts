@@ -24,7 +24,7 @@ const nb = {
     'step.oppsummering.utlandetNeste12.bosteder': 'Bosteder i utlandet de neste 12 månedene',
     'step.oppsummering.utlandetSiste12.liste.header': 'Utenlandsopphold siste 12 måneder',
     'step.oppsummering.utlandetNeste12.liste.header': 'Utenlandsopphold neste 12 måneder',
-    'step.oppsummering.samværsavtale.header': 'Avtale om delt bosted',
+
     'step.oppsummering.bekrefterOpplysninger':
         'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til omsorgspenger.',
     'step.oppsummering.bekrefterOpplysninger.ikkeBekreftet': 'Du må bekrefte opplysningene',
