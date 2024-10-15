@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.47.19
+
+### Patch Changes
+
+-   Rydde i deps og noen minor/patch oppdateringer
+
 ## 3.47.18
 
 ### Patch Changes
