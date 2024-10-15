@@ -1,5 +1,17 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.2.4
+
+### Patch Changes
+
+-   Rydde i deps og noen minor/patch oppdateringer
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.12.24
+    -   @navikt/sif-common-soknad-ds@14.0.19
+    -   @navikt/sif-common-forms-ds@10.1.18
+    -   @navikt/sif-common-core-ds@9.18.25
+    -   @navikt/sif-common-utils@3.47.19
+
 ## 4.2.3
 
 ### Patch Changes

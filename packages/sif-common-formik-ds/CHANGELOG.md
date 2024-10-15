@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.12.24
+
+### Patch Changes
+
+-   Rydde i deps og noen minor/patch oppdateringer
+
 ## 1.12.23
 
 ### Patch Changes
