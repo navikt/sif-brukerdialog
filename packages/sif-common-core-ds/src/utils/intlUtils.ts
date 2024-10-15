@@ -1,5 +1,6 @@
 import { FormatNumberOptions, IntlShape } from 'react-intl';
 import { IntlDateFormat, intlDateFormats } from '@navikt/sif-common-utils/src/intlDateFormats';
+import { Locale } from '../types';
 
 const intlHelper = (
     intl: IntlShape,
@@ -17,7 +18,16 @@ export function typedIntlHelper<Keys extends string>(intl: IntlShape) {
         date: (date: Date, format: IntlDateFormat) => {
             return intl.formatDate(date, intlDateFormats[format]);
         },
+        locale: getLocaleFromIntl(intl),
     };
 }
 
+const getLocaleFromIntl = (intl: IntlShape): Locale => {
+    switch (intl.locale) {
+        case 'no-NN':
+            return 'nn';
+        default:
+            return 'nb';
+    }
+};
 export default intlHelper;
