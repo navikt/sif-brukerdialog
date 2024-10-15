@@ -1,6 +1,6 @@
 import React from 'react';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
-import { useAppIntl } from '../../../../i18n';
+import { AppText, useAppIntl } from '../../../../i18n';
 import { Søker } from '../../../../types/Søker';
 import { FormSummary } from '@navikt/ds-react';
 
@@ -17,13 +17,17 @@ const OmSøkerOppsummering: React.FunctionComponent<Props> = ({ søker }) => {
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>
-                    <FormSummary.Label>Navn</FormSummary.Label>
+                    <FormSummary.Label>
+                        <AppText id="steg.oppsummering.søker.navn" />
+                    </FormSummary.Label>
                     <FormSummary.Value>
                         {formatName(søker.fornavn, søker.etternavn, søker.mellomnavn)}
                     </FormSummary.Value>
                 </FormSummary.Answer>
                 <FormSummary.Answer>
-                    <FormSummary.Label>Fødselsnummer</FormSummary.Label>
+                    <FormSummary.Label>
+                        <AppText id="steg.oppsummering.søker.fnr" />
+                    </FormSummary.Label>
                     <FormSummary.Value>{søker.fødselsnummer}</FormSummary.Value>
                 </FormSummary.Answer>
             </FormSummary.Answers>

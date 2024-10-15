@@ -9,7 +9,6 @@ export const withIntl = (Story, context) => {
         locale === 'nb'
             ? { ...applicationIntlMessages.nb, ...uiMessages.nb }
             : { ...applicationIntlMessages.nn, ...uiMessages.nn };
-    console.log(messages);
 
     return (
         <IntlProvider locale={locale} messages={messages}>

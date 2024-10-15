@@ -1,11 +1,11 @@
-import { Attachment } from '@navikt/sif-common-core-ds/src/types';
+import { getAttachmentURLBackend } from '@navikt/sif-common';
+import { Attachment, Locale } from '@navikt/sif-common-core-ds/src/types';
 import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { includeDeltBostedStep } from '../../søknad/søknadStepConfig';
 import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { getDataBruktTilUtledning } from './getDataBruktTilUtledning';
 import { getOmBarnetApiDataFromSøknadsdata } from './getOmBarnetApiDataFromSøknadsdata';
-import { getAttachmentURLBackend } from '@navikt/sif-common';
 
 const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
     if (!vedlegg || vedlegg.length === 0) {
@@ -16,7 +16,7 @@ const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
         .map(({ url }) => (url ? getAttachmentURLBackend(url) : ''));
 };
 
-export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadApiData | undefined => {
+export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata, locale: Locale): SøknadApiData | undefined => {
     const { omBarnet } = søknadsdata;
     if (!omBarnet) {
         return undefined;
@@ -25,7 +25,7 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadA
     const inkluderDeltBosted = includeDeltBostedStep(søknadsdata.omBarnet);
 
     return {
-        språk: 'nb',
+        språk: locale,
         harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true,
         harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true,
         ...getOmBarnetApiDataFromSøknadsdata(omBarnet),

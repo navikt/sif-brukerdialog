@@ -1,5 +1,7 @@
 {
-    "author": "NAV",
+    "author": {
+        "name": "NAV"
+    },
     "description": "Søknad om omsorgspengesoknad",
     "license": "MIT",
     "name": "@navikt/omsorgspengesoknad",
@@ -92,7 +94,8 @@
         "playwright-test": "playwright test",
         "start-e2e-server": "node ./e2e/server/server.cjs",
         "storybook": "storybook dev -p 6006",
-        "test": "vitest run"
+        "test": "vitest run",
+        "chromatic": "npx chromatic --project-token"
     },
     "eslintConfig": {
         "overrides": [
@@ -105,5 +108,9 @@
                 }
             }
         ]
-    }
+    },
+    "bugs": {
+        "url": "https://github.com/navikt/sif-brukerdialog/issues"
+    },
+    "homepage": "https://github.com/navikt/sif-brukerdialog#readme"
 }
