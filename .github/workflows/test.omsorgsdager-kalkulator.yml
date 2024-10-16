@@ -8,8 +8,6 @@ on:
             - 'apps/omsorgsdager-kalkulator/**/*'
             - 'nais-config/**/*'
             - 'packages/**/*'
-            - '!packages/appstatus-sanity-config/**/*'
-            - .github/workflows/app.omsorgsdager-kalkulator.yml
             - .github/workflows/test.omsorgsdager-kalkulator.yml
             - yarn.lock
 

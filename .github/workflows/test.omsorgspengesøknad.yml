@@ -8,8 +8,6 @@ on:
             - 'apps/omsorgspengesoknad/**/*'
             - 'nais-config/**/*'
             - 'packages/**/*'
-            - '!packages/appstatus-sanity-config/**/*'
-            - .github/workflows/app.omsorgspengesøknad.yml
             - .github/workflows/test.omsorgspengesøknad.yml
             - yarn.lock
 

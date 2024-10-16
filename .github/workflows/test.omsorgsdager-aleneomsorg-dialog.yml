@@ -8,8 +8,6 @@ on:
             - 'apps/omsorgsdager-aleneomsorg-dialog/**/*'
             - 'nais-config/**/*'
             - 'packages/**/*'
-            - '!packages/appstatus-sanity-config/**/*'
-            - .github/workflows/app.omsorgsdager-aleneomsorg-dialog.yml
             - .github/workflows/test.omsorgsdager-aleneomsorg-dialog.yml
             - yarn.lock
 

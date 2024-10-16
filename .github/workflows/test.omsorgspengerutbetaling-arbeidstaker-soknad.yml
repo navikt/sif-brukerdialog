@@ -8,8 +8,6 @@ on:
             - 'apps/omsorgspengerutbetaling-arbeidstaker-soknad/**/*'
             - 'nais-config/**/*'
             - 'packages/**/*'
-            - '!packages/appstatus-sanity-config/**/*'
-            - .github/workflows/app.omsorgspengerutbetaling-arbeidstaker-soknad.yml
             - .github/workflows/test.omsorgspengerutbetaling-arbeidstaker-soknad.yml
             - yarn.lock
 
