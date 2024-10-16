@@ -8,11 +8,11 @@ on:
             - 'apps/endringsmelding-pleiepenger/**/*'
             - 'nais-config/**/*'
             - 'packages/**/*'
+            - '!packages/appstatus-sanity-config/**/*'
             - .github/workflows/app.endringsmelding-pleiepenger.yml
             - .github/workflows/test.endringsmelding-pleiepenger.yml
             - yarn.lock
-        paths-ignore:
-            - 'packages/appstatus-sanity-config/**/*'
+
     workflow_call:
 
 env:

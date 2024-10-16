@@ -8,11 +8,10 @@ on:
             - 'apps/omsorgspengerutbetaling-soknad/**/*'
             - 'nais-config/**/*'
             - 'packages/**/*'
+            - '!packages/appstatus-sanity-config/**/*'
             - .github/workflows/app.omsorgspengerutbetaling-soknad.yml
             - .github/workflows/test.omsorgspengerutbetaling-soknad.yml
             - yarn.lock
-        paths-ignore:
-            - 'packages/appstatus-sanity-config/**/*'
 
     workflow_call:
 

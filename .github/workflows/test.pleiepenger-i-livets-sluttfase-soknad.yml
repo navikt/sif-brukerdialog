@@ -8,11 +8,10 @@ on:
             - 'apps/pleiepenger-i-livets-sluttfase-soknad/**/*'
             - 'nais-config/**/*'
             - 'packages/**/*'
+            - '!packages/appstatus-sanity-config/**/*'
             - .github/workflows/app.pleiepenger-i-livets-sluttfase-soknad.yml
             - .github/workflows/test.pleiepenger-i-livets-sluttfase-soknad.yml
             - yarn.lock
-        paths-ignore:
-            - 'packages/appstatus-sanity-config/**/*'
 
     workflow_call:
 
