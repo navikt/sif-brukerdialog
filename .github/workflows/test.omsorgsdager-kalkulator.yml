@@ -11,6 +11,9 @@ on:
             - .github/workflows/app.omsorgsdager-kalkulator.yml
             - .github/workflows/test.omsorgsdager-kalkulator.yml
             - yarn.lock
+        paths-ignore:
+            - 'packages/appstatus-sanity-config/**/*'
+
     workflow_call:
 
 env:

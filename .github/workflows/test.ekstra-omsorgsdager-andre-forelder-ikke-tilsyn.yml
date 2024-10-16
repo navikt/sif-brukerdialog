@@ -11,7 +11,9 @@ on:
             - .github/workflows/app.ekstra-omsorgsdager-andre-forelder-ikke-tilsyn.yml
             - .github/workflows/test.ekstra-omsorgsdager-andre-forelder-ikke-tilsyn.yml
             - yarn.lock
-    workflow_call:
+        paths-ignore:
+            - 'packages/appstatus-sanity-config/**/*'
+      workflow_call:
 
 env:
     APP_NAME: 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn'

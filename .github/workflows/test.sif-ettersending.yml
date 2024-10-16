@@ -11,6 +11,9 @@ on:
             - .github/workflows/app.sif-ettersending.yml
             - .github/workflows/test.sif-ettersending.yml
             - yarn.lock
+        paths-ignore:
+            - 'packages/appstatus-sanity-config/**/*'
+
     workflow_call:
 
 env:

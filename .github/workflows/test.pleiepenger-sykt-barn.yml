@@ -10,6 +10,9 @@ on:
             - 'packages/**/*'
             - '.github/workflows/test.pleiepenger-sykt-barn.yml'
             - yarn.lock
+        paths-ignore:
+            - 'packages/appstatus-sanity-config/**/*'
+
     workflow_call:
 
 env:

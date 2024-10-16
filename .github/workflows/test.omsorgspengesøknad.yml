@@ -11,6 +11,9 @@ on:
             - .github/workflows/app.omsorgspengesøknad.yml
             - .github/workflows/test.omsorgspengesøknad.yml
             - yarn.lock
+        paths-ignore:
+            - 'packages/appstatus-sanity-config/**/*'
+
     workflow_call:
 
 env:

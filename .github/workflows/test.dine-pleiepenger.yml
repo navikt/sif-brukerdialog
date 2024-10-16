@@ -11,6 +11,9 @@ on:
             - .github/workflows/app.dine-pleiepenger.yml
             - .github/workflows/test.dine-pleiepenger.yml
             - yarn.lock
+        paths-ignore:
+            - 'packages/appstatus-sanity-config/**/*'
+
     workflow_call:
 
 env:
