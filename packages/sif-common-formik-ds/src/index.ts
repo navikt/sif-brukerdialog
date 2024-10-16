@@ -33,5 +33,3 @@ export * from './components/formik-modal-form/types';
 export * from './utils/numberInputUtils';
 
 export { ISOStringToDate, dateToISOString } from './components/formik-datepicker/datepickerUtils';
-
-export * from './question-config';
