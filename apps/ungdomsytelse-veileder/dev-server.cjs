@@ -56,18 +56,6 @@ const startServer = async () => {
     );
 
     server.use(
-        '/api/brukerdialog',
-        createProxyMiddleware({
-            target: 'http://localhost:8089/',
-            changeOrigin: true,
-            logger: console,
-            on: {
-                proxyReq: fixRequestBody,
-            },
-        }),
-    );
-
-    server.use(
         '/api/ung-deltakelse-opplyser',
         createProxyMiddleware({
             target: 'http://localhost:8089/',
@@ -78,6 +66,7 @@ const startServer = async () => {
             },
         }),
     );
+
     const fs = require('fs');
     fs.writeFileSync(path.resolve(__dirname, 'index-decorated.html'), renderedHtml);
 
