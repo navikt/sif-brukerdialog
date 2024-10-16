@@ -33,7 +33,7 @@
         "jsdom": "25.0.1",
         "lodash": "4.17.21",
         "react": "18.3.1",
-        "react-day-picker": "8.10.1",
+        "react-day-picker": "9.1.4",
         "react-intl": "6.8.0",
         "react-router-dom": "6.27.0"
     },
