@@ -8,8 +8,9 @@ on:
             - 'apps/pleiepenger-sykt-barn/**/*'
             - 'nais-config/**/*'
             - 'packages/**/*'
-            - '.github/workflows/test.pleiepenger-sykt-barn.yml'
+            - .github/workflows/test.pleiepenger-sykt-barn.yml
             - yarn.lock
+
     workflow_call:
 
 env:

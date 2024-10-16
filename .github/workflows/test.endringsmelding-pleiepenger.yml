@@ -8,9 +8,9 @@ on:
             - 'apps/endringsmelding-pleiepenger/**/*'
             - 'nais-config/**/*'
             - 'packages/**/*'
-            - .github/workflows/app.endringsmelding-pleiepenger.yml
             - .github/workflows/test.endringsmelding-pleiepenger.yml
             - yarn.lock
+
     workflow_call:
 
 env:
