@@ -10873,9 +10873,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"appstatus-sanity-config@workspace:packages/appstatus-sanity-setup":
+"appstatus-sanity-config@workspace:packages/appstatus-sanity-config":
   version: 0.0.0-use.local
-  resolution: "appstatus-sanity-config@workspace:packages/appstatus-sanity-setup"
+  resolution: "appstatus-sanity-config@workspace:packages/appstatus-sanity-config"
   dependencies:
     "@sanity/eslint-config-studio": "npm:4.0.0"
     "@sanity/vision": "npm:3.60.0"
