@@ -17,10 +17,10 @@
         "lint:fix": "eslint --fix"
     },
     "dependencies": {
-        "@navikt/aksel-icons": "7.1.2",
-        "@navikt/ds-css": "7.1.2",
-        "@navikt/ds-react": "7.1.2",
-        "@navikt/ds-tailwind": "7.1.2",
+        "@navikt/aksel-icons": "7.2.1",
+        "@navikt/ds-css": "7.2.1",
+        "@navikt/ds-react": "7.2.1",
+        "@navikt/ds-tailwind": "7.2.1",
         "@navikt/nav-dekoratoren-moduler": "3.1.0",
         "@navikt/sif-common": "*",
         "@navikt/sif-common-core-ds": "*",

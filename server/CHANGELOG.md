@@ -1,5 +1,11 @@
 # @navikt/sif-server
 
+## 0.2.5
+
+### Patch Changes
+
+-   Oppdatere aksel-pakker
+
 ## 0.2.4
 
 ### Patch Changes

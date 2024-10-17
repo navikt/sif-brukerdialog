@@ -1,5 +1,11 @@
 # @navikt/sif-common-faro
 
+## 0.1.6
+
+### Patch Changes
+
+-   Oppdatere aksel-pakker
+
 ## 0.1.5
 
 ### Patch Changes

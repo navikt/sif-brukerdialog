@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.12.25
+
+### Patch Changes
+
+-   Oppdatere aksel-pakker
+
 ## 1.12.24
 
 ### Patch Changes
