@@ -1,5 +1,11 @@
 # config
 
+## 0.10.19
+
+### Patch Changes
+
+-   Oppdatere aksel-pakker
+
 ## 0.10.18
 
 ### Patch Changes
