@@ -12,7 +12,7 @@
         "@navikt/ds-css": "7.2.1",
         "@navikt/ds-icons": "3.4.3",
         "@navikt/ds-react": "7.2.1",
-        "@navikt/nav-dekoratoren-moduler": "3.1.0",
+        "@navikt/nav-dekoratoren-moduler": "2.1.6",
         "@navikt/sif-app-register": "*",
         "@navikt/sif-common": "*",
         "@navikt/sif-common-amplitude": "*",

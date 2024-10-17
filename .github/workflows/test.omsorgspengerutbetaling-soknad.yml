@@ -8,9 +8,9 @@ on:
             - 'apps/omsorgspengerutbetaling-soknad/**/*'
             - 'nais-config/**/*'
             - 'packages/**/*'
-            - .github/workflows/app.omsorgspengerutbetaling-soknad.yml
             - .github/workflows/test.omsorgspengerutbetaling-soknad.yml
             - yarn.lock
+
     workflow_call:
 
 env:

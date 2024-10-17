@@ -8,9 +8,9 @@ on:
             - 'apps/dine-pleiepenger/**/*'
             - 'nais-config/**/*'
             - 'packages/**/*'
-            - .github/workflows/app.dine-pleiepenger.yml
             - .github/workflows/test.dine-pleiepenger.yml
             - yarn.lock
+
     workflow_call:
 
 env:

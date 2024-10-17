@@ -1,0 +1,28 @@
+{
+    "app": "ungdomsytelse-veileder",
+    "namespace": "dusseldorf",
+    "team": "dusseldorf",
+    "ingresses": ["https://ungdomsytelse-veileder.intern.dev.nav.no"],
+    "livenessPath": "/internal/health/isAlive",
+    "readinessPath": "/internal/health/isReady",
+    "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
+    "accessPolicyOutApps": [],
+    "minReplicas": 1,
+    "maxReplicas": 1,
+    "cluster": "dev-gcp",
+    "observabilityEnabled": "true",
+    "env": {
+        "APP_VERSION": "dev",
+        "ENV": "{path}",
+        "NPM_CONFIG_CACHE": "/tmp",
+        "PUBLIC_PATH": "/",
+
+        "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/api/brukerdialog",
+        "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "dev-gcp:dusseldorf:k9-brukerdialog-prosessering",
+        "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",
+
+        "UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH": "/api/ung-deltakelse-opplyser",
+        "UNG_DELTAKELSE_OPPLYSER_API_SCOPE": "dev-gcp:k9saksbehandling:ung-deltakelse-opplyser",
+        "UNG_DELTAKELSE_OPPLYSER_API_URL": "http://ung-deltakelse-opplyser.k9saksbehandling"
+    }
+}

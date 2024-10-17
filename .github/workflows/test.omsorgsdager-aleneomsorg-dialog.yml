@@ -8,9 +8,9 @@ on:
             - 'apps/omsorgsdager-aleneomsorg-dialog/**/*'
             - 'nais-config/**/*'
             - 'packages/**/*'
-            - .github/workflows/app.omsorgsdager-aleneomsorg-dialog.yml
             - .github/workflows/test.omsorgsdager-aleneomsorg-dialog.yml
             - yarn.lock
+
     workflow_call:
 
 env:

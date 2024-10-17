@@ -6,7 +6,6 @@ import { fraværFraMessages } from '../søknad/steps/fravær-fra/fraværFraMessa
 import { fraværStepMessages } from '../søknad/steps/fravær/fraværStepMessages';
 import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerklæringMessages';
 import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
-import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
 
 const nb = {
     ...velkommenPageMessages.nb,
@@ -17,7 +16,6 @@ const nb = {
     ...legeerklæringMessages.nb,
     ...oppsummeringMessages.nb,
     ...kvitteringMessages.nb,
-    ...validateApiDataMessages.nb,
 
     'application.title': 'Søknad om utbetaling av omsorgspenger til selvstendig næringsdrivende eller frilansere',
 
@@ -119,6 +117,8 @@ const nb = {
     'validation.aktivitetFravær.noValue': 'Du må velge hvilket arbeid du hadde fravær fra {dato}.',
     'validation.harBekreftetOpplysninger.notChecked': 'Du må bekrefte at opplysningene er riktige.',
     'validation.harForståttRettigheterOgPlikter.notChecked': 'Du må bekrefte at du har lest og forstått dine plikter.',
+
+    'apiDataValidation.undefined': 'Det oppstod en feil ved visningen av siden.',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };

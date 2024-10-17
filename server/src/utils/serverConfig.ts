@@ -8,6 +8,7 @@ export enum Service {
     sifInnsyn = 'sifInnsyn',
     k9SakInnsyn = 'k9SakInnsyn',
     k9BrukerdialogProsessering = 'k9BrukerdialogProsessering',
+    ungDeltakelseOpplyser = 'ungDeltakelseOpplyser',
 }
 
 const proxies = {
@@ -25,6 +26,11 @@ const proxies = {
         frontendPath: process.env.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH,
         apiScope: process.env.K9_BRUKERDIALOG_PROSESSERING_API_SCOPE,
         apiUrl: process.env.K9_BRUKERDIALOG_PROSESSERING_API_URL,
+    },
+    [Service.ungDeltakelseOpplyser]: <Proxy>{
+        frontendPath: process.env.UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH,
+        apiScope: process.env.UNG_DELTAKELSE_OPPLYSER_API_SCOPE,
+        apiUrl: process.env.UNG_DELTAKELSE_OPPLYSER_API_URL,
     },
 };
 
