@@ -1,3 +1,4 @@
+import { API_ENV, getApiEnv } from '@navikt/sif-common/src/env/commonEnv';
 import { Attachment, PersistedFile } from '../types/Attachment';
 import imageCompression from 'browser-image-compression';
 
@@ -7,6 +8,45 @@ export const MAX_TOTAL_ATTACHMENT_SIZE_IN_MB = 24;
 export const MAX_TOTAL_ATTACHMENT_SIZE_BYTES = 1000 * 1000 * MAX_TOTAL_ATTACHMENT_SIZE_IN_MB;
 
 const VEDLEGG_ID_SPLIT_KEY = 'vedlegg/';
+
+/** Kode for å håndtere gammel mellomlagring */
+
+export interface DeprAttachment {
+    file: File | PersistedFile;
+    pending: boolean;
+    uploaded: boolean;
+    /** id - hentes ut fra URL som mottas fra backend ved opplasting (response.headers.location) */
+    id?: string;
+    /** Referanse til fil på server - verdi mottas fra server ved opplasting */
+    url?: string;
+}
+
+const isDeprAttachment = (attachment: Attachment | DeprAttachment): attachment is DeprAttachment => {
+    return Object.prototype.hasOwnProperty.call(attachment, 'info') === false;
+};
+
+const isAttachment = (attachment: Attachment | DeprAttachment): attachment is Attachment => {
+    return Object.prototype.hasOwnProperty.call(attachment, 'info') === true;
+};
+
+/** Kode for å håndtere ny og gammel struktur på attachment. Finner URl som backend bruker for å identifisere vedlegg */
+export const getBackendLocationFromAttachment = (attachment: Attachment | DeprAttachment): string | undefined => {
+    if (isAttachment(attachment)) {
+        return attachment.info?.location;
+    }
+    if (isDeprAttachment(attachment)) {
+        const vedleggId = getAttachmentId(attachment.url);
+        return `${getApiEnv(API_ENV.K9_BRUKERDIALOG_PROSESSERING_API_URL)}/${VEDLEGG_ID_SPLIT_KEY}${vedleggId}`;
+    }
+};
+export const getFrontendUrlFromAttachment = (attachment: Attachment | DeprAttachment): string | undefined => {
+    if (isAttachment(attachment)) {
+        return attachment.info?.url;
+    }
+    if (isDeprAttachment(attachment)) {
+        return attachment.url;
+    }
+};
 
 export const getAttachmentsInLocationArray = ({
     locations,
@@ -23,9 +63,10 @@ export const getAttachmentsInLocationArray = ({
 
 export const getAttachmentsApiData = (attachments: Attachment[] = []): string[] => {
     const apiData: string[] = [];
-    attachments.forEach(({ info }) => {
-        if (info) {
-            apiData.push(info.location);
+    attachments.forEach((a) => {
+        const location = getBackendLocationFromAttachment(a);
+        if (location) {
+            apiData.push(location);
         }
     });
     return apiData;

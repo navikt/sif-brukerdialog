@@ -2,6 +2,7 @@ import { BodyShort, Box, Button, HStack, Link, List, Loader } from '@navikt/ds-r
 import { Attachment as DSAttachment } from '@navikt/ds-icons';
 import { CoreText, useCoreIntl } from '../../i18n/common.messages';
 import { Attachment } from '../../types';
+import { getFrontendUrlFromAttachment } from '../../utils/attachmentUtils';
 
 type Variant = 'plain' | 'border' | 'zebra';
 export interface AttachmentListProps {
@@ -64,8 +65,9 @@ const AttachmentList = ({
         <List as="ul">
             {attachments
                 // .filter((v) => v.pending || v.uploaded)
-                .map((v, index) => {
-                    const { file, uploaded, pending, info } = v;
+                .map((a, index) => {
+                    const { file, uploaded, pending } = a;
+                    const url = getFrontendUrlFromAttachment(a);
                     return (
                         <List.Item
                             style={getVariantStyle(variant, index)}
@@ -73,8 +75,8 @@ const AttachmentList = ({
                             icon={pending ? <Loader size="xsmall" /> : <DSAttachment title="Ikon" aria-hidden />}>
                             <HStack gap="2" wrap={false} align="baseline">
                                 <HStack flexGrow="2" gap="0 4" align="baseline">
-                                    {uploaded && info ? (
-                                        <Link href={info.url} style={{ wordBreak: 'break-word' }} target="_blank">
+                                    {uploaded && url ? (
+                                        <Link href={url} style={{ wordBreak: 'break-word' }} target="_blank">
                                             {file.name}
                                         </Link>
                                     ) : (
@@ -95,7 +97,7 @@ const AttachmentList = ({
                                             onClick={(e) => {
                                                 e.stopPropagation();
                                                 e.preventDefault();
-                                                onDelete(v);
+                                                onDelete(a);
                                             }}
                                             aria-label={text('@core.AttachmentList.fjernAriaLabel', {
                                                 filnavn: file.name,
