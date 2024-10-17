@@ -4,7 +4,10 @@
     "cluster": "prod-gcp",
     "observabilityEnabled": "true",
     "externalHosts": ["www.nav.no", "amplitude.nav.no"],
-    "accessPolicyOutApps": ["k9-brukerdialog-prosessering", "sif-innsyn-api"],
+    "accessPolicyOutApps": [
+        { "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" },
+        { "application": "sif-innsyn-api", "namespace": "dusseldorf" }
+    ],
     "ingresses": ["https://www.nav.no/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger"],
     "livenessPath": "/internal/health/isAlive",
     "readinessPath": "/internal/health/isReady",

@@ -5,7 +5,7 @@
     "livenessPath": "/internal/health/isAlive",
     "readinessPath": "/internal/health/isReady",
     "externalHosts": ["www.nav.no"],
-    "accessPolicyOutApps": ["k9-brukerdialog-prosessering"],
+    "accessPolicyOutApps": [{ "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" }],
     "ingresses": ["https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling"],
     "cluster": "prod-gcp",
     "minReplicas": 2,

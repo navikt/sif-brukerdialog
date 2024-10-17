@@ -32,7 +32,7 @@ spec:
             rules:
             {{#each accessPolicyOutApps as |rule|}}
              - application: {{rule.application}}
-               namespace: {{#if rule.namespace}}{{rule.namespace}}{{else}}dusseldorf{{/if}}
+               namespace: {{rule.namespace}}
             {{/each}}
              - application: nav-dekoratoren
                namespace: personbruker

@@ -4,7 +4,10 @@
     "cluster": "dev-gcp",
     "observabilityEnabled": "true",
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no", "amplitude.nav.no"],
-    "accessPolicyOutApps": ["k9-brukerdialog-prosessering", "sif-innsyn-api"],
+    "accessPolicyOutApps": [
+        { "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" },
+        { "application": "sif-innsyn-api", "namespace": "dusseldorf" }
+    ],
     "ingresses": ["https://endringsmelding-pleiepenger.intern.dev.nav.no"],
     "readinessPath": "/internal/health/isReady",
     "livenessPath": "/internal/health/isAlive",
