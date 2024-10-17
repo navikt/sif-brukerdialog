@@ -30,11 +30,10 @@ spec:
     accessPolicy:
         outbound:
             rules:
-            {{#each accessPolicyOutApps as |application|}}
-             - application: {{application}}
+            {{#each accessPolicyOutApps as |rule|}}
+             - application: {{rule.application}}
+               namespace: {{rule.namespace}}
             {{/each}} 
-             - application: ung-deltakelse-opplyser
-               namespace: k9saksbehandling
              - application: nav-dekoratoren
                namespace: personbruker
             external:
