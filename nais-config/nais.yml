@@ -37,6 +37,9 @@ spec:
              - application: {{application}}
                namespace: k9saksbehandling
             {{/each}} 
+            {{#if accessPolicyOutApp_ungDeltakelseOpplyser}}
+             - application: ung-deltakelse-opplyser
+            {{/if}}
              - application: nav-dekoratoren
                namespace: personbruker
             external:
