@@ -1,3 +1,4 @@
+import { API_ENV, getApiEnv } from '@navikt/sif-common/src/env/commonEnv';
 import { Attachment, PersistedFile } from '../types/Attachment';
 import imageCompression from 'browser-image-compression';
 
@@ -7,6 +8,7 @@ export const MAX_TOTAL_ATTACHMENT_SIZE_IN_MB = 24;
 export const MAX_TOTAL_ATTACHMENT_SIZE_BYTES = 1000 * 1000 * MAX_TOTAL_ATTACHMENT_SIZE_IN_MB;
 
 const VEDLEGG_ID_SPLIT_KEY = 'vedlegg/';
+const BACKEND_VEDLEGG_PREFIX = '/vedlegg';
 
 /** Kode for å håndtere gammel mellomlagring */
 
@@ -31,7 +33,7 @@ const isAttachment = (attachment: any): attachment is Attachment => {
 /** Kode for å håndtere ny og gammel struktur på attachment. Finner URl som backend bruker for å identifisere vedlegg */
 export const getBackendLocationFromAttachment = (attachment: Attachment | DeprAttachment): string | undefined => {
     const id = isAttachment(attachment) ? attachment.info?.id : attachment.id;
-    return `/${VEDLEGG_ID_SPLIT_KEY}${id}`;
+    return `${getApiEnv(API_ENV.K9_BRUKERDIALOG_PROSESSERING_API_URL)}${BACKEND_VEDLEGG_PREFIX}${id}`;
 };
 export const getFrontendUrlFromAttachment = (attachment: Attachment | DeprAttachment): string | undefined => {
     return isAttachment(attachment) ? attachment.info?.url : attachment.url;
