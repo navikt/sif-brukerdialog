@@ -7,7 +7,6 @@
     "readinessPath": "/internal/health/isReady",
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
     "accessPolicyOutApps": [],
-    "accessPolicyOutApp_ungDeltakelseOpplyser": "true",
     "minReplicas": 1,
     "maxReplicas": 1,
     "cluster": "dev-gcp",
