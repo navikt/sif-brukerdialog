@@ -5294,7 +5294,7 @@ __metadata:
     "@types/node": "npm:22.7.4"
     "@types/react": "npm:18.3.11"
     "@types/react-dom": "npm:18.3.0"
-    "@typescript-eslint/parser": "npm:8.8.0"
+    "@typescript-eslint/parser": "npm:8.9.0"
     "@vitejs/plugin-react": "npm:4.3.2"
     autoprefixer: "npm:10.4.20"
     clsx: "npm:2.1.1"
