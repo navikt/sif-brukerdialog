@@ -13,7 +13,6 @@ export interface Attachment {
     uploaded: boolean;
     info?: {
         id: string;
-        location: string;
         url: string;
     };
 }

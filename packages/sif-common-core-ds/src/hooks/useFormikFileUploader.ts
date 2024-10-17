@@ -29,11 +29,9 @@ export const useFormikFileUploader = ({ value, onErrorUploadingFiles, onUnauthor
         if (isFileObject(file)) {
             try {
                 const response = await uploadVedlegg(file);
-                const location = response.headers.location;
-                const id = getAttachmentId(location);
+                const id = getAttachmentId(response.headers.location);
                 attachment.pending = false;
                 attachment.info = {
-                    location,
                     id,
                     url: getVedleggFrontendUrl(id),
                 };
