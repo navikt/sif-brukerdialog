@@ -22,7 +22,7 @@ const komplett_annetBarnFarDeltBosted: Søknadsdata = {
         vedlegg: [
             {
                 file: { name: 'file.jpg' } as any,
-                info: { location: '/vedlegg/123', id: '123', url: 'http://localhost:8080/vedlegg/123' },
+                info: { id: '123', url: 'http://localhost:8080/vedlegg/123' },
                 uploaded: true,
                 pending: false,
             },
