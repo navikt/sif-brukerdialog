@@ -14,6 +14,6 @@ export interface Attachment {
     info?: {
         id: string;
         location: string;
-        frontendUrl: string;
+        url: string;
     };
 }

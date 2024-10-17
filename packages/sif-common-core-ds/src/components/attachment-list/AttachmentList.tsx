@@ -74,10 +74,7 @@ const AttachmentList = ({
                             <HStack gap="2" wrap={false} align="baseline">
                                 <HStack flexGrow="2" gap="0 4" align="baseline">
                                     {uploaded && info ? (
-                                        <Link
-                                            href={info.frontendUrl}
-                                            style={{ wordBreak: 'break-word' }}
-                                            target="_blank">
+                                        <Link href={info.url} style={{ wordBreak: 'break-word' }} target="_blank">
                                             {file.name}
                                         </Link>
                                     ) : (

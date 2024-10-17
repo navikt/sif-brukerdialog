@@ -35,7 +35,7 @@ export const useFormikFileUploader = ({ value, onErrorUploadingFiles, onUnauthor
                 attachment.info = {
                     location,
                     id,
-                    frontendUrl: getVedleggFrontendUrl(id),
+                    url: getVedleggFrontendUrl(id),
                 };
                 attachment.uploaded = true;
             } catch (error) {
