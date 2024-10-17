@@ -1,5 +1,11 @@
 # @navikt/sif-server
 
+## 0.2.5
+
+### Patch Changes
+
+-   Legge til K9_BRUKERDIALOG_PROSESSERING_API_URL i appSettings
+
 ## 0.2.4
 
 ### Patch Changes
