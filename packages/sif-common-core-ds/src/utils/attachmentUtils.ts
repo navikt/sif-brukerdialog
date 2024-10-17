@@ -21,11 +21,11 @@ export interface DeprAttachment {
     url?: string;
 }
 
-const isDeprAttachment = (attachment: Attachment | DeprAttachment): attachment is DeprAttachment => {
+const isDeprAttachment = (attachment: any): attachment is DeprAttachment => {
     return Object.prototype.hasOwnProperty.call(attachment, 'info') === false;
 };
 
-const isAttachment = (attachment: Attachment | DeprAttachment): attachment is Attachment => {
+const isAttachment = (attachment: any): attachment is Attachment => {
     return Object.prototype.hasOwnProperty.call(attachment, 'info') === true;
 };
 
@@ -53,12 +53,15 @@ export const getAttachmentsInLocationArray = ({
     attachments,
 }: {
     locations: string[] | undefined;
-    attachments: Attachment[] | undefined;
+    attachments: Array<Attachment | DeprAttachment> | undefined;
 }) => {
     if (!attachments || !locations) {
         return [];
     }
-    return (attachments || []).filter((a) => a.info && locations.includes(a.info.location));
+    return (attachments || []).filter((a) => {
+        const id = isDeprAttachment(a) ? a.id : a.info?.id;
+        return id ? locations.some((l) => l.indexOf(id) >= 0) : false;
+    });
 };
 
 export const getAttachmentsApiData = (attachments: Attachment[] = []): string[] => {
