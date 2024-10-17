@@ -5,7 +5,7 @@
     "livenessPath": "/internal/health/isAlive",
     "readinessPath": "/internal/health/isReady",
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
-    "accessPolicyOutApps": ["k9-brukerdialog-prosessering", "k9-sak-innsyn-api"],
+    "accessPolicyOutApps": [{ "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" }],
     "ingresses": ["https://omsorgspengesoknad.intern.dev.nav.no"],
     "cluster": "dev-gcp",
     "minReplicas": 1,

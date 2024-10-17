@@ -7,7 +7,7 @@
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
     "livenessPath": "/internal/health/isAlive",
     "readinessPath": "/internal/health/isReady",
-    "accessPolicyOutApps": ["k9-brukerdialog-prosessering"],
+    "accessPolicyOutApps": [{ "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" }],
     "minReplicas": 1,
     "maxReplicas": 1,
     "observabilityEnabled": "true",
