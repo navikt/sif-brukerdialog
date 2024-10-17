@@ -33,10 +33,10 @@ spec:
             {{#each accessPolicyOutApps as |application|}}
              - application: {{application}}
             {{/each}} 
-            {{#if accessPolicyOutApp_ungDeltakelseOpplyser}}
-             - application: ung-deltakelse-opplyser
+            {{#each accessPolicyOutAppsK9Saksbehandling as |application|}}
+             - application: {{application}}
                namespace: k9saksbehandling
-            {{/if}}
+            {{/each}} 
              - application: nav-dekoratoren
                namespace: personbruker
             external:
