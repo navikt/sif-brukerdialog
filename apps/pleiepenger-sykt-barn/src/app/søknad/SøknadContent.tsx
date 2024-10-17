@@ -305,10 +305,16 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
                         path={StepID.LEGEERKLÆRING}
                         element={
                             <LegeerklæringStep
-                                onValidSubmit={() => {
+                                onValidSubmit={async () => {
+                                    const cleanedValues = await cleanupAndSetFormikValues(
+                                        StepID.LEGEERKLÆRING,
+                                        values,
+                                        søknadsdata,
+                                        setValues,
+                                    );
                                     setTimeout(() => {
-                                        setSøknadsdata(extractSøknadsdataFromFormValues(values));
-                                        navigateToNextStepFrom(StepID.LEGEERKLÆRING, values);
+                                        setSøknadsdata(extractSøknadsdataFromFormValues(cleanedValues));
+                                        navigateToNextStepFrom(StepID.LEGEERKLÆRING, cleanedValues);
                                     });
                                 }}
                             />

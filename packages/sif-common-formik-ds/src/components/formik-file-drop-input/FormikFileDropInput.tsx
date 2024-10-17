@@ -18,7 +18,6 @@ interface OwnProps<FieldName> {
     multiple?: boolean;
     error?: FormError;
     onFilesSelect: (files: File[], rejectedFiles: FileRejection[], arrayHelpers: ArrayHelpers) => void;
-    onClick?: () => void;
 }
 
 export type FormikFileDropInputProps<FieldName> = OwnProps<FieldName> & Omit<TextFieldProps, 'label' | 'accept'>;
@@ -35,7 +34,6 @@ function FormikFileDropInput<FieldName, ErrorType>({
     validate,
     onFilesSelect,
     error,
-    onClick,
 }: FormikFileDropInputProps<FieldName> & TypedFormInputValidationProps<FieldName, ErrorType>) {
     const context = React.useContext(TypedFormikFormContext);
 
@@ -54,7 +52,6 @@ function FormikFileDropInput<FieldName, ErrorType>({
                                 buttonLabel={buttonLabel}
                                 acceptLabel={acceptLabel}
                                 rejectLabel={rejectLabel}
-                                onClick={onClick}
                                 onFilesSelect={(files, rejectedFiled) =>
                                     onFilesSelect(files, rejectedFiled, arrayHelpers)
                                 }

@@ -1,5 +1,5 @@
 import { OpplysningerOmPleietrengendeSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
-import { OpplysningerOmPleietrengendeFormValues } from './OpplysningerOmPleietrengendeStep';
+import { OpplysningerOmPleietrengendeFormValues } from './OpplysningerOmPleietrengendeForm';
 
 export const opplysningerOmPleietrengendeDefaultValues: OpplysningerOmPleietrengendeFormValues = {
     navn: '',

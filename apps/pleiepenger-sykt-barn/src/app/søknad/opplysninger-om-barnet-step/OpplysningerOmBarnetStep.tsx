@@ -1,9 +1,5 @@
 import React from 'react';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
-import {
-    getTotalSizeOfAttachments,
-    MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
-} from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { useFormikContext } from 'formik';
 import { SøkerdataContext } from '../../context/SøkerdataContext';
 import { StepCommonProps } from '../../types/StepCommonProps';
@@ -28,14 +24,12 @@ const OpplysningerOmBarnetStep = ({ onValidSubmit }: StepCommonProps) => {
         return values && values.fødselsattest ? values[SøknadFormField.fødselsattest] : [];
     }, [values]);
     const hasPendingUploads: boolean = attachments.find((a) => a.pending === true) !== undefined;
-    const totalSize = getTotalSizeOfAttachments([...attachments, ...values.legeerklæring]);
-    const attachmentsSizeOver24Mb = totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
 
     return (
         <SøknadFormStep
             stepId={StepID.OPPLYSNINGER_OM_BARNET}
             onValidFormSubmit={onValidSubmit}
-            buttonDisabled={hasPendingUploads || attachmentsSizeOver24Mb}>
+            buttonDisabled={hasPendingUploads}>
             {søkerdata && (
                 <div data-testid="opplysninger-om-barnet">
                     {harRegistrerteBarn(søkerdata) && <RegistrertBarnPart søkersBarn={søkerdata.barn} />}

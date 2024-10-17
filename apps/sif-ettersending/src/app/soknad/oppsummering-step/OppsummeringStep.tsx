@@ -1,3 +1,4 @@
+import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
 import { Alert, FormSummary, VStack } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import { isFailure, isPending } from '@devexperts/remote-data-ts';
@@ -10,7 +11,6 @@ import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 import { prettifyDate } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
-import UploadedDocumentsList from '../../components/uploaded-documents-list/UploadedDocumentsList';
 import { AppText, useAppIntl } from '../../i18n';
 import { DokumentType } from '../../types/DokumentType';
 import { Person } from '../../types/Person';
@@ -150,7 +150,7 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
                                     </FormSummary.Label>
                                     <FormSummary.Value>
                                         <div data-testid="vedlegg-liste">
-                                            <UploadedDocumentsList includeDeletionFunctionality={false} />
+                                            <AttachmentList attachments={values.dokumenter} />
                                         </div>
                                     </FormSummary.Value>
                                 </FormSummary.Answer>

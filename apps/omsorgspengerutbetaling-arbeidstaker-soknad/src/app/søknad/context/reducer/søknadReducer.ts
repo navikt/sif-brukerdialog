@@ -49,6 +49,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                 const { harDeltBosted } = action.payload;
                 return {
                     ...state,
+                    søknadRoute: harDeltBosted ? SøknadRoutes.DELT_BOSTED : SøknadRoutes.SITUASJON,
                     søknadsdata: {
                         ...state.søknadsdata,
                         dineBarn: action.payload,
@@ -144,6 +145,11 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     søknadsdata: {},
                     søknadSendt: false,
                     søknadRoute: SøknadRoutes.VELKOMMEN,
+                };
+            case SøknadContextActionKeys.SET_IS_RELOADING_APP:
+                return {
+                    ...state,
+                    isReloadingApp: true,
                 };
             default:
                 // eslint-disable-next-line no-console

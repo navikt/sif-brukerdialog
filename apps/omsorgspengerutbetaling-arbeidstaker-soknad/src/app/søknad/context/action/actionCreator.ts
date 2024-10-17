@@ -16,6 +16,7 @@ export enum SøknadContextActionKeys {
     START_SØKNAD = 'startSøknad',
     AVBRYT_SØKNAD = 'avbrytSøknad',
     FORTSETT_SØKNAD_SENERE = 'fortsettSøknadSenere',
+    SET_IS_RELOADING_APP = 'setIsReloadingApp',
     SET_SØKNAD_ROUTE = 'setSøknadRoute',
     SET_SØKNAD_DINE_BARN = 'setSøknadDineBarn',
     SET_SØKNAD_DELT_BOSTED = 'setSøknadDeltBosted',
@@ -47,6 +48,10 @@ interface FortsettSøknadSenere {
 interface RequestLagreSøknad {
     type: SøknadContextActionKeys.REQUEST_LAGRE_SØKNAD;
 }
+interface SetIsReloadingApp {
+    type: SøknadContextActionKeys.SET_IS_RELOADING_APP;
+}
+
 interface SetSøknadLagret {
     type: SøknadContextActionKeys.SET_SØKNAD_LAGRET;
 }
@@ -123,9 +128,14 @@ const requestLagreSøknad = (): RequestLagreSøknad => ({
     type: SøknadContextActionKeys.REQUEST_LAGRE_SØKNAD,
 });
 
+const setIsReloadingApp = (): SetIsReloadingApp => ({
+    type: SøknadContextActionKeys.SET_IS_RELOADING_APP,
+});
+
 const setSøknadLagret = (): SetSøknadLagret => ({
     type: SøknadContextActionKeys.SET_SØKNAD_LAGRET,
 });
+
 const setSøknadSendt = (): SetSøknadSendt => ({
     type: SøknadContextActionKeys.SET_SØKNAD_SENDT,
 });
@@ -136,6 +146,7 @@ const setSøknadSituasjon = (payload: SituasjonSøknadsdata): SetSøknadSituasjo
         payload,
     };
 };
+
 const setSøknadDineBarn = (payload: DineBarnSøknadsdata): SetSøknadDineBarn => ({
     type: SøknadContextActionKeys.SET_SØKNAD_DINE_BARN,
     payload,
@@ -187,6 +198,7 @@ export type SøknadContextAction =
     | ResetSøknad
     | FortsettSøknadSenere
     | RequestLagreSøknad
+    | SetIsReloadingApp
     | SetSøknadLagret
     | SetSøknadDineBarn
     | SetSøknadDeltBosted
@@ -206,6 +218,7 @@ const actionsCreator = {
     avbrytSøknad,
     fortsettSøknadSenere,
     requestLagreSøknad,
+    setIsReloadingApp,
     setSøknadRoute,
     setSøknadDineBarn,
     setSøknadDeltBosted,

@@ -42,9 +42,6 @@ const nb = {
 
     'vedleggsliste.ingenLegeerklæringLastetOpp': 'Ingen vedlegg er lastet opp',
 
-    'dokumenter.advarsel.totalstørrelse':
-        'Du har totalt lastet opp mer enn grensen på 24 Mb. Det betyr at du må fjerne noe av det du har lastet opp. Hvis det betyr at du ikke får plass til alt du ønsker å sende nå, kan du <Lenke>ettersende flere dokumenter</Lenke>.',
-
     'step.arbeidssituasjon.stepTitle': 'Arbeidssituasjon',
 
     'step.fravaerFra.stepTitle': 'Fravær fra arbeid som selvstendig næringsdrivende og/eller frilanser',
@@ -73,10 +70,6 @@ const nb = {
     'validation.harDekketTiFørsteDagerSelv.notAnswered': 'Du må svare på om du har dekket de 10 første dagene i år.',
     'validation.harDekketTiFørsteDagerSelv.yesOrNoIsUnanswered':
         'Du må svare på om du har dekket de 10 første dagene i år.',
-    'validation.ingen_dokumenter': 'Ingen vedlegg er lastet opp.',
-    'validation.for_mange_dokumenter': 'For mange dokumenter er lastet opp.',
-    'validation.samlet_storrelse_for_hoy':
-        'Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24Mb.',
     'validation.harPerioderMedFravær.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om du har hatt hele dager med fravær fra jobb.',
     'validation.fraværPerioder.listIsEmpty': 'Du har ikke lagt til dager med fullt fravær.',

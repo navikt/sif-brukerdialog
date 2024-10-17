@@ -6,12 +6,7 @@ import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import {
-    getTotalSizeOfAttachments,
-    MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
-} from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
@@ -42,8 +37,8 @@ import {
     getNMonthsAgo,
     getSituasjonStepInitialValues,
     getSituasjonSøknadsdataFromFormValues,
-    valuesToAlleDokumenterISøknaden,
 } from './SituasjonStepUtils';
+import { getAlleVedleggFraSituasjonFormValues, getAlleVedleggFraSøknadsdata } from '../../../utils/attachmentsUtils';
 
 export enum ArbeidsforholdFormFields {
     navn = 'navn',
@@ -79,6 +74,7 @@ const SituasjonStep = () => {
 
     const [arbeidsgivere, setArbeidsgivere] = useState<Arbeidsgiver[]>([]);
     const [loadState, setLoadState] = useState<LoadState>({ isLoading: false, isLoaded: false });
+    const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const { isLoading, isLoaded } = loadState;
 
@@ -99,7 +95,7 @@ const SituasjonStep = () => {
 
     const { goBack } = useStepNavigation(step);
 
-    const { clearStepFormValues } = useStepFormValuesContext();
+    const { bostedVedlegg, legeerklæringer } = getAlleVedleggFraSøknadsdata(søknadsdata);
 
     const onValidSubmitHandler = (values: SituasjonFormValues) => {
         const situasjonSøknadsdata = getSituasjonSøknadsdataFromFormValues(values);
@@ -126,7 +122,7 @@ const SituasjonStep = () => {
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
-                initialValues={getSituasjonStepInitialValues(søknadsdata, arbeidsgivere)}
+                initialValues={getSituasjonStepInitialValues(søknadsdata, arbeidsgivere, stepFormValues[stepId])}
                 onSubmit={handleSubmit}
                 renderForm={({ values }) => {
                     const arbeidsforhold: Arbeidsforhold[] = values[SituasjonFormFields.arbeidsforhold] || [];
@@ -139,10 +135,11 @@ const SituasjonStep = () => {
                         harKlikketNeiPåAlle === false &&
                         harKlikketNeiElleJajaBlanding === false;
 
-                    const alleDokumenterISøknaden: Attachment[] = valuesToAlleDokumenterISøknaden(arbeidsforhold);
-
-                    const attachmentsSizeOver24Mb =
-                        getTotalSizeOfAttachments(alleDokumenterISøknaden) > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
+                    const andreVedlegg = [
+                        ...bostedVedlegg,
+                        ...legeerklæringer,
+                        ...getAlleVedleggFraSituasjonFormValues(values),
+                    ];
 
                     return (
                         <>
@@ -151,9 +148,7 @@ const SituasjonStep = () => {
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
                                 includeValidationSummary={true}
                                 submitPending={isSubmitting}
-                                submitDisabled={
-                                    isSubmitting || !harIkkeMottatLønnHosEnEllerFlere || attachmentsSizeOver24Mb
-                                }
+                                submitDisabled={isSubmitting || !harIkkeMottatLønnHosEnEllerFlere}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
                                 <SifGuidePanel>
@@ -184,6 +179,7 @@ const SituasjonStep = () => {
                                                             forhold.arbeidsgiverHarUtbetaltLønn === YesOrNo.NO && (
                                                                 <ArbeidsforholdUtbetalingsårsak
                                                                     arbeidsforhold={forhold}
+                                                                    andreVedlegg={andreVedlegg}
                                                                     parentFieldName={`${SituasjonFormFields.arbeidsforhold}.${index}`}
                                                                 />
                                                             )}

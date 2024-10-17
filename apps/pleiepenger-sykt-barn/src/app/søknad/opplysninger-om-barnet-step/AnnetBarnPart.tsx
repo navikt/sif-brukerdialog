@@ -198,7 +198,7 @@ const AnnetBarnPart: React.FC<Props> = ({ formValues, søkersFødselsnummer, att
                     {barnetHarIkkeFnr &&
                         årsakManglerIdentitetsnummer === ÅrsakManglerIdentitetsnummer.BARNET_BOR_I_UTLANDET && (
                             <FormBlock>
-                                <FødselsattestPart attachments={attachments} />
+                                <FødselsattestPart fødselsattester={attachments} />
                             </FormBlock>
                         )}
                 </div>

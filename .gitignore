@@ -14,6 +14,8 @@ storybook-static
 coverage
 index-decorated.html
 .idea
+.sanity
+
 
 server/dist
 public/dist

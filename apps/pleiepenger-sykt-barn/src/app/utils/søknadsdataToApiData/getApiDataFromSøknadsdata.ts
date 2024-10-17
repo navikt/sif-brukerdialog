@@ -1,4 +1,6 @@
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
+import { getAttachmentsApiData } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import { getMedlemskapApiDataFromSøknadsdata } from '@navikt/sif-common-forms-ds/src';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { RegistrerteBarn, ÅrsakManglerIdentitetsnummer } from '../../types';
 import {
@@ -10,7 +12,6 @@ import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import appSentryLogger from '../appSentryLogger';
 import { getValidSpråk } from '../sprakUtils';
 import { getArbeidsgivereApiDataFromSøknadsdata } from './getArbeidsgivereApiDataFromSøknadsdata';
-import { getAttachmentsApiDataFromSøknadsdata } from './getAttachmentsApiDataFromSøknadsdata';
 import { getBarnApiDataFromSøknadsdata } from './getBarnApiDataFromSøknadsdata';
 import { getBeredskapApiDataFromSøknadsdata } from './getBeredskapApiDataFromSøknadsdata';
 import { getFerieuttakIPeriodenApiDataFromSøknadsdata } from './getFerieuttakIPeriodenApiDataFromSøknadsdata';
@@ -22,7 +23,6 @@ import { getSelvstendigApiDataFromSøknadsdata } from './getSelvstendigApiDataFr
 import { getStønadGodtgjørelseApiDataFromSøknadsdata } from './getStønadGodtgjørelseApiDataFromSøknadsdata';
 import { getUtenlandskNæringSøknadsdata } from './getUtenlandskNæringSøknadsdata';
 import { getUtenlandsoppholdIPeriodenApiDataFromSøknadsdata } from './getUtenlandsoppholdIPeriodenFromSøknadsdata';
-import { getMedlemskapApiDataFromSøknadsdata } from '@navikt/sif-common-forms-ds/src';
 
 export const getApiDataFromSøknadsdata = (
     søkerNorskIdent: string,
@@ -51,7 +51,7 @@ export const getApiDataFromSøknadsdata = (
                     søknadsdata.barn.årsakManglerIdentitetsnummer ===
                         ÅrsakManglerIdentitetsnummer.BARNET_BOR_I_UTLANDET &&
                     søknadsdata.barn.fødselsattest
-                        ? getAttachmentsApiDataFromSøknadsdata(søknadsdata.barn.fødselsattest)
+                        ? getAttachmentsApiData(søknadsdata.barn.fødselsattest)
                         : [],
                 fraOgMed: dateToISODate(søknadsperiode.from),
                 tilOgMed: dateToISODate(søknadsperiode.to),
@@ -82,9 +82,7 @@ export const getApiDataFromSøknadsdata = (
                 ...getBeredskapApiDataFromSøknadsdata(søknadsdata.beredskap),
                 medlemskap: getMedlemskapApiDataFromSøknadsdata(sprak, søknadsdata.medlemskap),
                 vedlegg:
-                    søknadsdata.legeerklæring !== undefined
-                        ? getAttachmentsApiDataFromSøknadsdata(søknadsdata.legeerklæring)
-                        : [],
+                    søknadsdata.legeerklæring !== undefined ? getAttachmentsApiData(søknadsdata.legeerklæring) : [],
                 dataBruktTilUtledning: JSON.stringify(dataBruktTilUtledningAnnetData),
             };
 

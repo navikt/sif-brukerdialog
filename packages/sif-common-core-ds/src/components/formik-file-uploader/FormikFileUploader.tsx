@@ -4,7 +4,6 @@ import {
     TypedFormInputValidationProps,
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
-import { AxiosResponse } from 'axios';
 import { useFormikFileUploader } from '../../hooks/useFormikFileUploader';
 import { Attachment } from '../../types/Attachment';
 
@@ -13,11 +12,8 @@ interface Props extends TypedFormInputValidationProps<any, ValidationError> {
     name: string;
     legend?: string;
     buttonLabel: string;
-    getAttachmentURLFrontend: (url: string) => string;
-    uploadFile: (file: File) => Promise<AxiosResponse<any, any>>;
-    onFilesUploaded?: (antall: number, antallFeilet: number) => void;
-    onFileInputClick?: () => void;
-    onErrorUploadingAttachments: (files: File[]) => void;
+    onFilesSelected?: () => void;
+    onErrorUploadingFiles: (files: File[]) => void;
     onUnauthorizedOrForbiddenUpload: () => void;
 }
 
@@ -25,21 +21,15 @@ function FormikFileUploader({
     attachments,
     name,
     legend,
-    getAttachmentURLFrontend,
-    uploadFile,
-    onFileInputClick,
-    onFilesUploaded,
-    onErrorUploadingAttachments,
+    onFilesSelected,
+    onErrorUploadingFiles,
     onUnauthorizedOrForbiddenUpload,
     ...otherProps
 }: Props) {
     const { onFilesSelect } = useFormikFileUploader({
         value: attachments,
-        getAttachmentURLFrontend,
-        uploadFile,
         onUnauthorizedOrForbiddenUpload,
-        onErrorUploadingAttachments,
-        onFilesUploaded,
+        onErrorUploadingFiles,
     });
 
     return (
@@ -47,8 +37,12 @@ function FormikFileUploader({
             name={name}
             legend={legend || 'Dokumenter'}
             accept={FileDropAcceptImagesAndPdf}
-            onFilesSelect={onFilesSelect}
-            onClick={onFileInputClick}
+            onFilesSelect={(...args) => {
+                if (onFilesSelected) {
+                    onFilesSelected();
+                }
+                onFilesSelect(...args);
+            }}
             {...otherProps}
         />
     );

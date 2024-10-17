@@ -1,5 +1,4 @@
 import { Alert, Button, Heading, Panel } from '@navikt/ds-react';
-import { useEffect } from 'react';
 import { Søker } from '@navikt/sif-common';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import CheckmarkIcon from '@navikt/sif-common-core-ds/src/atoms/checkmark-icon/CheckmarkIcon';
@@ -13,16 +12,9 @@ import './kvitteringPage.css';
 interface Props {
     søker: Søker | undefined;
     kvitteringInfo?: ArbeidsgiverDetaljer[];
-    onUnmount: () => void;
 }
-const KvitteringPage = ({ søker, kvitteringInfo, onUnmount }: Props) => {
+const KvitteringPage = ({ søker, kvitteringInfo }: Props) => {
     const { text } = useAppIntl();
-
-    useEffect(() => {
-        return () => {
-            onUnmount();
-        };
-    });
 
     return (
         <Page title={text('page.confirmation.sidetittel')}>

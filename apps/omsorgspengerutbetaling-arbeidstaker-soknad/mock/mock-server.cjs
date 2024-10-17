@@ -8,6 +8,7 @@ const busboyCons = require('busboy');
 const søkerMock = require('./mock-data/soker.json');
 const barnMock = require('./mock-data/barn.json');
 const arbeidsgivereMock = require('./mock-data/arbeidsgiver.json');
+const { v4: uuidv4 } = require('uuid');
 
 const server = express();
 
@@ -91,14 +92,14 @@ const startServer = () => {
         const busboy = busboyCons({ headers: req.headers });
         busboy.on('finish', () => {
             res.writeHead(200, {
-                Location: 'http://localhost:8089/vedlegg/eyJraWQiOiIxIiwidHlwIjoiSldUIiwiYWxnIjoibm9uZSJ9.eyJqdG',
+                Location: `http://localhost:8089/vedlegg/${uuidv4()}`,
             });
             res.end();
         });
         req.pipe(busboy);
     });
 
-    server.delete('/vedlegg', (req, res) => {
+    server.delete('/vedlegg/**', (req, res) => {
         res.sendStatus(200);
     });
 
