@@ -4,7 +4,7 @@ import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { dateFormatter, dateRangeFormatter, dateToISODate } from '@navikt/sif-common-utils';
-import ShadowBox from '@navikt/sif-common/src/api/dev-info-components/ShadowBox';
+import ShadowBox from '@navikt/sif-common-api/src/api/dev-info-components/ShadowBox';
 import { Deltakelse, SøknadApiData } from '../../api/types';
 import { useAppIntl } from '../../i18n';
 import { useSendSøknad } from '../hooks/useSendSøknad';

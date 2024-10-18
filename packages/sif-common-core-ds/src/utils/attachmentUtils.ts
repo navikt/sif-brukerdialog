@@ -1,4 +1,4 @@
-import { API_ENV, getApiEnv } from '@navikt/sif-common/src/env/commonEnv';
+import { API_ENV, getApiEnv } from '@navikt/sif-common-api/src/env/commonEnv';
 import { Attachment, PersistedFile } from '../types/Attachment';
 import imageCompression from 'browser-image-compression';
 
