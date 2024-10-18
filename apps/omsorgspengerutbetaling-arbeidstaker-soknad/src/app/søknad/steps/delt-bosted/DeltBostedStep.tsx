@@ -7,6 +7,7 @@ import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import { getAlleVedleggFraSøknadsdata } from '../../../utils/attachmentsUtils';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
@@ -26,6 +27,8 @@ const DeltBostedStep = () => {
 
     const stepId = StepId.DELT_BOSTED;
     const step = getSøknadStepConfigForStep(søknadsdata, stepId);
+    const { legeerklæringer, situasjonVedlegg } = getAlleVedleggFraSøknadsdata(søknadsdata);
+    const andreVedlegg = [...legeerklæringer, ...situasjonVedlegg];
 
     const { goBack } = useStepNavigation(step);
 
@@ -71,7 +74,12 @@ const DeltBostedStep = () => {
                                 }}
                             />
                             <PersistStepFormValues stepId={stepId} />
-                            <DeltBostedForm values={values} goBack={goBack} isSubmitting={isSubmitting} />
+                            <DeltBostedForm
+                                values={values}
+                                goBack={goBack}
+                                andreVedlegg={andreVedlegg}
+                                isSubmitting={isSubmitting}
+                            />
                         </>
                     );
                 }}

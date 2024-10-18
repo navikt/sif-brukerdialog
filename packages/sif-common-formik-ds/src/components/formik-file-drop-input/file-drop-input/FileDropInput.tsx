@@ -19,7 +19,7 @@ interface Props {
     accept?: Accept;
     error?: FormError;
     onFilesSelect: (acceptedFiles: File[], rejectedFiles: FileRejection[]) => void;
-    onClick?: () => void;
+    onFileDialogOpen?: () => void;
 }
 
 const bem = bemUtils('fileDropInput');
@@ -36,6 +36,7 @@ const FileDropInput: React.FunctionComponent<Props> = (props) => {
         accept,
         multiple,
         onDrop,
+        onFileDialogOpen: props.onFileDialogOpen,
     });
 
     const className = useMemo(

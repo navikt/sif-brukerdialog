@@ -1,20 +1,11 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import { fixAttachmentURL, getAttachmentURLFrontend } from '@navikt/sif-common';
-import { FormikAttachmentForm } from '@navikt/sif-common-core-ds';
+import { FormikAttachmentForm, getAttachmentsValidator, useAttachmentsHelper } from '@navikt/sif-common-core-ds';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
-import {
-    attachmentHasBeenUploaded,
-    getTotalSizeOfAttachments,
-    hasExceededMaxTotalSizeOfAttachments,
-    hasPendingAttachments,
-    MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
-} from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
-import { getTypedFormComponents, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
+import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { FormLayout } from '@navikt/sif-common-ui';
-import api, { ApiEndpoint } from '../../../api/api';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
@@ -36,21 +27,6 @@ export interface LegeerklæringFormValues {
 
 const { Form } = getTypedFormComponents<LegeerklæringFormFields, LegeerklæringFormValues>();
 
-export const validateDocuments = (attachments: Attachment[]): ValidationResult<ValidationError> => {
-    const uploadedAttachments = attachments.filter((attachment) => attachmentHasBeenUploaded(attachment));
-    const totalSizeInBytes: number = getTotalSizeOfAttachments(attachments);
-    if (totalSizeInBytes > MAX_TOTAL_ATTACHMENT_SIZE_BYTES) {
-        return '{ key: AppFieldValidationErrors.samlet_storrelse_for_hoy, keepKeyUnaltered: true }';
-    }
-    if (uploadedAttachments.length === 0) {
-        return '{ key: AppFieldValidationErrors.ingen_dokumenter, keepKeyUnaltered: true }';
-    }
-    if (uploadedAttachments.length > 100) {
-        return '{ key: AppFieldValidationErrors.for_mange_dokumenter, keepKeyUnaltered: true }';
-    }
-    return undefined;
-};
-
 const LegeerklæringForm: React.FunctionComponent<Props> = ({
     legeerklæringer = [],
     andreVedlegg = [],
@@ -59,16 +35,14 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({
 }) => {
     const intl = useIntl();
     const { text } = useAppIntl();
+    const { hasPendingUploads } = useAttachmentsHelper(legeerklæringer, andreVedlegg);
 
     return (
         <Form
             formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
             includeValidationSummary={true}
             submitPending={isSubmitting}
-            submitDisabled={
-                hasPendingAttachments(legeerklæringer) ||
-                hasExceededMaxTotalSizeOfAttachments([...legeerklæringer, ...andreVedlegg])
-            }
+            submitDisabled={hasPendingUploads}
             runDelayedFormValidation={true}
             onBack={goBack}>
             <FormLayout.Questions>
@@ -83,15 +57,17 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({
 
                 <FormikAttachmentForm
                     fieldName={LegeerklæringFormFields.vedlegg}
-                    includeGuide={true}
                     attachments={legeerklæringer}
                     otherAttachments={andreVedlegg}
-                    fixAttachmentURL={fixAttachmentURL}
                     uploadLaterURL={getLenker(intl.locale).ettersend}
                     onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
-                    uploadFile={(file) => api.uploadFile(ApiEndpoint.vedlegg, file)}
-                    deleteFile={api.deleteFile}
-                    getAttachmentURLFrontend={getAttachmentURLFrontend}
+                    validate={getAttachmentsValidator(
+                        {
+                            required: false,
+                            useDefaultMessages: true,
+                        },
+                        andreVedlegg,
+                    )}
                     labels={{
                         addLabel: text('steg.legeerklaering.vedlegg.knappLabel'),
                         noAttachmentsText: text('vedleggsliste.ingenLegeerklæringLastetOpp'),

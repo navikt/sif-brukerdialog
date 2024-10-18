@@ -1,13 +1,12 @@
 import { Meta, StoryFn } from '@storybook/react';
-import * as React from 'react';
 import { useState } from 'react';
-import AttachmentListWithDeletion from '../../../src/components/attachment-list-with-deletion/AttachmentListWithDeletion';
+import AttachmentList from '../../../src/components/attachment-list/AttachmentList';
 import { Attachment, PersistedFile } from '../../../src/types/Attachment';
 import StoryWrapper from '../../decorators/StoryWrapper';
 
 export default {
-    title: 'Component/AttachmentListWithDeletion',
-    component: AttachmentListWithDeletion,
+    title: 'Component/AttachmentList',
+    component: AttachmentList,
     decorators: [
         (Story) => (
             <StoryWrapper>
@@ -15,13 +14,13 @@ export default {
             </StoryWrapper>
         ),
     ],
-} as Meta<typeof AttachmentListWithDeletion>;
+} as Meta<typeof AttachmentList>;
 
 const file1: PersistedFile = {
     isPersistedFile: true,
     name: 'Name of file',
     type: 'jpg',
-    size: 0,
+    size: 12301,
     lastModified: 123,
 };
 const file2: PersistedFile = {
@@ -32,21 +31,18 @@ const file2: PersistedFile = {
     lastModified: 123,
 };
 
-const Template: StoryFn<typeof AttachmentListWithDeletion> = () => {
-    const [attachments, setAttachments] = useState<Attachment[]>([
+const Template: StoryFn<typeof AttachmentList> = () => {
+    const [vedlegg, setVedlegg] = useState<Attachment[]>([
         { file: file1, pending: false, uploaded: true, url: 'url1' },
+        { file: file2, pending: true, uploaded: false, url: 'url2' },
         { file: file2, pending: false, uploaded: true, url: 'url2' },
     ]);
 
     const onDelete = (attachment: Attachment) => {
-        setAttachments(attachments.filter((i) => i.url !== attachment.url));
+        setVedlegg(vedlegg.filter((i) => i.url !== attachment.url));
     };
 
-    return (
-        <>
-            <AttachmentListWithDeletion attachments={attachments} onRemoveAttachmentClick={onDelete} />
-        </>
-    );
+    return <AttachmentList attachments={vedlegg} showFileSize={true} onDelete={onDelete} />;
 };
 
 export const Default = Template.bind({});

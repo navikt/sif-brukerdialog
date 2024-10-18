@@ -54,7 +54,7 @@ const fyllUtDokumenterSteg = async (page: Page) => {
         await page.locator('#dokumenter-input').dispatchEvent('click'),
     ]);
     await fileChooser.setFiles('./e2e/playwright/files/navlogopng.png');
-    const listItems = await page.locator('.attachmentListElement');
+    const listItems = await page.getByText('navlogopng.png(2.31 KB)');
     await expect(listItems).toHaveCount(1);
     await page.getByRole('button').getByText('Neste').click();
 };
