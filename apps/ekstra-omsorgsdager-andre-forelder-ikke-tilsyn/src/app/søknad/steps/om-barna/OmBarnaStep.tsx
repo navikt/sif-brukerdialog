@@ -1,5 +1,4 @@
-import { Alert } from '@navikt/ds-react';
-import ContentWithHeader from '@navikt/sif-common-core-ds/src/components/content-with-header/ContentWithHeader';
+import { Alert, Heading } from '@navikt/ds-react';
 import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
 import BarnListAndDialog from '../../../pre-common/forms/barn/BarnListAndDialog';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
@@ -91,26 +90,25 @@ const OmBarnaStep = () => {
                                 runDelayedFormValidation={true}>
                                 {registrerteBarn.length > 0 && (
                                     <Block margin="xl">
-                                        <ContentWithHeader header={text('step.omBarna.listHeader.registrerteBarn')}>
-                                            <ItemList<RegistrertBarn>
-                                                getItemId={(b): string => b.aktørId}
-                                                getItemTitle={(b): string => b.etternavn}
-                                                labelRenderer={(barnet) => barnItemLabelRenderer(barnet, appIntl)}
-                                                items={registrerteBarn}
-                                            />
-                                        </ContentWithHeader>
+                                        <Heading level="3" size="xsmall" spacing={true}>
+                                            {text('step.omBarna.listHeader.registrerteBarn')}
+                                        </Heading>
+                                        <ItemList<RegistrertBarn>
+                                            getItemId={(b): string => b.aktørId}
+                                            getItemTitle={(b): string => b.etternavn}
+                                            labelRenderer={(barnet) => barnItemLabelRenderer(barnet, appIntl)}
+                                            items={registrerteBarn}
+                                        />
                                     </Block>
                                 )}
 
                                 <Block margin="xl">
-                                    <ContentWithHeader
-                                        header={
-                                            andreBarn && andreBarn.length === 0
-                                                ? text('step.omBarna.spm.andreBarn')
-                                                : text('step.omBarna.spm.flereBarn')
-                                        }>
-                                        {text('step.omBarna.info.spm.text')}
-                                    </ContentWithHeader>
+                                    <Heading level="3" size="xsmall" spacing={true}>
+                                        {andreBarn && andreBarn.length === 0
+                                            ? text('step.omBarna.spm.andreBarn')
+                                            : text('step.omBarna.spm.flereBarn')}
+                                    </Heading>
+                                    {text('step.omBarna.info.spm.text')}
                                 </Block>
                                 <Block margin="l">
                                     <BarnListAndDialog<OmBarnaFormFields>
