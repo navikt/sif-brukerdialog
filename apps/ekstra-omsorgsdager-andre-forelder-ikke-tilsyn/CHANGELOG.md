@@ -1,5 +1,11 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.27.5
+
+### Patch Changes
+
+-   Legge til K9_BRUKERDIALOG_PROSESSERING_API_URL i appSettings
+
 ## 1.27.4
 
 ### Patch Changes

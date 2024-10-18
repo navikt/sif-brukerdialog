@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.17.8
+
+### Patch Changes
+
+-   Legge til K9_BRUKERDIALOG_PROSESSERING_API_URL i appSettings
+
 ## 1.17.7
 
 ### Patch Changes

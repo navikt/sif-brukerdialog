@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.32.5
+
+### Patch Changes
+
+-   Legge til K9_BRUKERDIALOG_PROSESSERING_API_URL i appSettings
+
 ## 2.32.4
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.21.8
+
+### Patch Changes
+
+-   Legge til K9_BRUKERDIALOG_PROSESSERING_API_URL i appSettings
+
 ## 2.21.7
 
 ### Patch Changes
