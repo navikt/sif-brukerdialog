@@ -12,6 +12,7 @@
     "maxReplicas": 1,
     "observabilityEnabled": "true",
     "env": {
+        "ENV": "dev",
         "APP_VERSION": "dev",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgspenger",
         "NPM_CONFIG_CACHE": "/tmp",
