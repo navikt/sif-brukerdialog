@@ -12,8 +12,8 @@
     "maxReplicas": 1,
     "observabilityEnabled": "true",
     "env": {
-        "APP_VERSION": "dev",
         "ENV": "dev",
+        "APP_VERSION": "dev",
         "NODE_ENV": "development",
         "NPM_CONFIG_CACHE": "/tmp",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/pleiepenger",
