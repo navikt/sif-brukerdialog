@@ -17,7 +17,7 @@
         "http-proxy-middleware": "3.0.3"
     },
     "devDependencies": {
-        "@navikt/sif-common": "*",
+        "@navikt/sif-common-api": "*",
         "@types/cookie-parser": "1.4.7",
         "@types/express": "5.0.0",
         "@types/morgan": "1.9.9",

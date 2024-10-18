@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
 import { Deltakelse } from '../../api/types';
-import { Søker } from '@navikt/sif-common';
+import { Søker } from '@navikt/sif-common-api';
 
 interface SøknadContextType {
     data: SøknadContextData;

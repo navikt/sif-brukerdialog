@@ -1,6 +1,6 @@
 import { Heading, VStack } from '@navikt/ds-react';
 import React from 'react';
-import { RegistrertBarn, Søker } from '@navikt/sif-common';
+import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import {

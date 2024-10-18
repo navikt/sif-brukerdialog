@@ -1,5 +1,12 @@
 import { useState } from 'react';
-import { Arbeidsgivere, fetchArbeidsgivere, fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common';
+import {
+    Arbeidsgivere,
+    fetchArbeidsgivere,
+    fetchBarn,
+    fetchSøker,
+    RegistrertBarn,
+    Søker,
+} from '@navikt/sif-common-api';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 

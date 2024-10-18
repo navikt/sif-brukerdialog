@@ -8,7 +8,7 @@ import ShadowBox from '@navikt/sif-common/src/api/dev-info-components/ShadowBox'
 import { Deltakelse, SøknadApiData } from '../../api/types';
 import { useAppIntl } from '../../i18n';
 import { useSendSøknad } from '../hooks/useSendSøknad';
-import { Søker } from '@navikt/sif-common';
+import { Søker } from '@navikt/sif-common-api';
 import { Kvittering } from '@navikt/sif-common-soknad-ds/src';
 
 export interface FormValues {

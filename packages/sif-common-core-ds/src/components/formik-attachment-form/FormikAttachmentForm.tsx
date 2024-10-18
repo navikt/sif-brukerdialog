@@ -1,6 +1,6 @@
 import { Box, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
-import { deleteVedlegg } from '@navikt/sif-common';
+import { deleteVedlegg } from '@navikt/sif-common-api';
 import { TypedFormInputValidationProps, ValidationError } from '@navikt/sif-common-formik-ds';
 import { useFormikContext } from 'formik';
 import { Attachment } from '../../types';

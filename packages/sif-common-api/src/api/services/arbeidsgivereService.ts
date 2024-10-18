@@ -11,7 +11,7 @@ export const fetchArbeidsgivere = async ({ from, to }: { from: Date; to: Date })
     try {
         return arbeidsgivereResponseSchema.parse(response.data);
     } catch (e) {
-        getSentryLoggerForApp('sif-common', []).logError('ZOD parse error', e);
+        getSentryLoggerForApp('sif-common-api', []).logError('ZOD parse error', e);
         return {
             organisasjoner: [],
             privateArbeidsgivere: [],

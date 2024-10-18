@@ -11,7 +11,7 @@ import { getKvitteringInfoFromApiData } from '../utils/kvitteringUtils';
 import { Søker } from '../types/Søker';
 import { KvitteringInfo } from '../types/KvitteringInfo';
 import { mellomlagringService } from '../api/mellomlagringService';
-import { getInnsendingService, InnsendingType } from '@navikt/sif-common';
+import { getInnsendingService, InnsendingType } from '@navikt/sif-common-api';
 
 export const useSendSøknad = () => {
     const { dispatch } = useSøknadContext();

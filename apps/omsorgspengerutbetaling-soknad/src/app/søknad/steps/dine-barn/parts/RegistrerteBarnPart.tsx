@@ -1,6 +1,6 @@
 import { Alert } from '@navikt/ds-react';
 import React from 'react';
-import { RegistrertBarn } from '@navikt/sif-common';
+import { RegistrertBarn } from '@navikt/sif-common-api';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';

@@ -6,7 +6,7 @@ import { Søker } from '../types/Søker';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import appSentryLogger from '../utils/appSentryLogger';
-import { fetchSøker } from '@navikt/sif-common';
+import { fetchSøker } from '@navikt/sif-common-api';
 import { MellomlagringData, mellomlagringService } from './mellomlagringService';
 
 export type SøknadInitialData = SøknadContextState;

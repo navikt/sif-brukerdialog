@@ -22,7 +22,7 @@
         "@navikt/ds-react": "7.2.1",
         "@navikt/ds-tailwind": "7.2.1",
         "@navikt/nav-dekoratoren-moduler": "2.1.6",
-        "@navikt/sif-common": "*",
+        "@navikt/sif-common-api": "*",
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-ui": "*",

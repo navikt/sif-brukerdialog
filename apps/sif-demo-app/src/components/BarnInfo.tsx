@@ -1,5 +1,5 @@
 import { Heading, Table, VStack } from '@navikt/ds-react';
-import { RegistrertBarn } from '@navikt/sif-common';
+import { RegistrertBarn } from '@navikt/sif-common-api';
 import ShadowBox from './ShadowBox';
 import { dateFormatter } from '@navikt/sif-common-utils';
 
