@@ -12,6 +12,7 @@
     "maxReplicas": 2,
     "observabilityEnabled": "true",
     "env": {
+        "ENV": "prod",
         "APP_VERSION": "prod",
         "DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=true&chatbot=false&logoutUrl=https://www.nav.no/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/oauth2/logout",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase",

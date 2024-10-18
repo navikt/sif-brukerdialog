@@ -15,8 +15,8 @@
     "minReplicas": 1,
     "maxReplicas": 1,
     "env": {
-        "APP_VERSION": "dev",
         "ENV": "dev",
+        "APP_VERSION": "dev",
         "NODE_ENV": "development",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
 
