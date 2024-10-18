@@ -8,18 +8,7 @@ import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValue
 import { MELLOMLAGRING_VERSION, SøknadTempStorageData } from '../types/SøknadTempStorageData';
 import { AAregArbeidsgiverRemoteData } from './getArbeidsgivereRemoteData';
 import { Søker } from '../types';
-import { getGitShaRequestHeader } from '@navikt/sif-common-core-ds/src/utils/gitShaHeaderUtils';
-
-export const multipartConfig = { ...axiosConfigPsb, headers: { 'Content-Type': 'multipart/form-data' } };
-
-export const axiosJsonConfig = {
-    ...axiosConfigPsb,
-    headers: { 'Content-type': 'application/json; charset=utf-8', ...getGitShaRequestHeader() },
-};
-
-export const sendMultipartPostRequest = (url: string, formData: FormData) => {
-    return axios.post(url, formData, multipartConfig);
-};
+import { axiosJsonConfig, sendMultipartPostRequest } from './utils/apiUtils';
 
 export const getPersistUrl = (stepID?: StepID) =>
     stepID ? `${ResourceType.MELLOMLAGRING}?lastStepID=${encodeURI(stepID)}` : ResourceType.MELLOMLAGRING;
