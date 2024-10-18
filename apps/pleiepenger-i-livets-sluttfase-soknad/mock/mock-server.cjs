@@ -57,6 +57,7 @@ const existsSync = (path) => fs.existsSync(path);
 
 const søkerMock = require('./data/søker-mock.json');
 const arbeidsgivereMock = require('./data/arbeidsgiver-mock.json');
+const { v4: uuidv4 } = require('uuid');
 // const frilansoppdragMock = require('./data/frilansoppdrag-mock.json');
 
 const startExpressServer = () => {
@@ -93,14 +94,14 @@ const startExpressServer = () => {
         const busboy = busboyCons({ headers: req.headers });
         busboy.on('finish', () => {
             res.writeHead(200, {
-                Location: 'http://localhost:8089/vedlegg/eyJraWQiOiIxIiwidHlwIjoiSldUIiwiYWxnIjoibm9uZSJ9.eyJqdG',
+                Location: `http://localhost:8089/vedlegg/${uuidv4()}`,
             });
             res.end();
         });
         req.pipe(busboy);
     });
 
-    server.delete('/vedlegg', (req, res) => {
+    server.delete('/vedlegg/**', (req, res) => {
         res.sendStatus(200);
     });
 

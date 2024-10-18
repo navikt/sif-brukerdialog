@@ -1,5 +1,23 @@
 # @navikt/dine-pleiepenger
 
+## 1.6.25
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.26.19
+    -   @navikt/appstatus-react-ds@2.19.20
+    -   @navikt/sif-common-core-ds@9.18.26
+    -   @navikt/sif-common-sentry@0.27.17
+    -   @navikt/sif-common-utils@3.47.20
+
+## 1.6.24
+
+### Patch Changes
+
+-   Legge til K9_BRUKERDIALOG_PROSESSERING_API_URL i appSettings
+
 ## 1.6.23
 
 ### Patch Changes

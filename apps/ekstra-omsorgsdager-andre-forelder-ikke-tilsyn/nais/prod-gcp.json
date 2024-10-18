@@ -6,7 +6,7 @@
     "livenessPath": "/internal/health/isAlive",
     "readinessPath": "/internal/health/isReady",
     "externalHosts": ["www.nav.no"],
-    "accessPolicyOutApps": ["k9-brukerdialog-prosessering"],
+    "accessPolicyOutApps": [{ "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" }],
     "minReplicas": 2,
     "maxReplicas": 2,
     "cluster": "prod-gcp",

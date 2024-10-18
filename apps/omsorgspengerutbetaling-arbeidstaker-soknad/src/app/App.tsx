@@ -12,10 +12,17 @@ import { SøknadRoutes } from './types/SøknadRoutes';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.css';
+import { mellomlagringService } from './api/mellomlagringService';
+import { relocateToWelcomePage } from './utils/navigationUtils';
 
 const publicPath = getEnvironmentVariable('PUBLIC_PATH');
 
 ensureBaseNameForReactRouter(publicPath);
+
+const handleResetSoknad = async () => {
+    await mellomlagringService.purge();
+    relocateToWelcomePage();
+};
 
 const App = () => (
     <SoknadApplication
@@ -23,6 +30,7 @@ const App = () => (
         appName={OmsorgspengerutbetalingArbeidstakerApp.navn}
         appTitle={OmsorgspengerutbetalingArbeidstakerApp.tittel.nb}
         intlMessages={applicationIntlMessages}
+        onResetSoknad={handleResetSoknad}
         appStatus={{
             sanityConfig: {
                 projectId: getEnvironmentVariable('APPSTATUS_PROJECT_ID'),

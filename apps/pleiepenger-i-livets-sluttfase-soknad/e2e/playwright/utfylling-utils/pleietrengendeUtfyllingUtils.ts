@@ -20,10 +20,8 @@ export const fyllUtPleietrengendeUtenFnr = async (page: Page) => {
     await page.getByLabel('Mandag 4').click();
     await page.getByText('Annet').click();
     await page.getByRole('button', { name: 'Last opp ID' }).click();
-
-    await expect(page.locator('.attachmentListElement')).toHaveCount(0);
+    await expect(page.getByText('Ingen dokumenter er lastet opp')).toHaveCount(1);
     await page.locator('input[name="pleietrengendeId"]').setInputFiles('./e2e/playwright/files/navlogopng.png');
-    await expect(page.locator('.attachmentListElement')).toHaveCount(1);
     await expect(page.getByText('navlogopng.png').isVisible()).toBeTruthy();
 };
 

@@ -34,4 +34,12 @@ export const setupMockRoutes = async (page: Page, props?: { mellomlagring: any }
     await page.route('**/innsending', async (route) => {
         await route.fulfill({ status: 200 });
     });
+    await page.route('**/har-gyldig-vedtak', async (route) => {
+        await route.fulfill({
+            status: 200,
+            body: JSON.stringify({
+                harInnvilgedeBehandlinger: false,
+            }),
+        });
+    });
 };

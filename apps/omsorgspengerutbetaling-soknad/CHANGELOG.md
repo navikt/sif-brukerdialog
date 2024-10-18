@@ -1,5 +1,41 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.18.0
+
+### Minor Changes
+
+-   989373a: - Gå over til å bruke noen få felleskomponenter og utils for filopplasting.
+    -   Legge på validering av vedlegg på tvers av en søknad
+    -   Fjerne sperre for bruker på å gå videre hvis det var for mange vedlegg. Erstattet med validering.
+
+### Patch Changes
+
+-   Updated dependencies [989373a]
+    -   @navikt/sif-common-formik-ds@1.13.0
+    -   @navikt/sif-common-soknad-ds@15.0.0
+    -   @navikt/sif-common-core-ds@9.19.0
+    -   @navikt/sif-common-forms-ds@11.0.0
+
+## 1.17.9
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.26.19
+    -   @navikt/sif-common-formik-ds@1.12.25
+    -   @navikt/sif-common-soknad-ds@14.0.20
+    -   @navikt/sif-common-forms-ds@10.1.19
+    -   @navikt/sif-common-core-ds@9.18.26
+    -   @navikt/sif-common-sentry@0.27.17
+    -   @navikt/sif-common-utils@3.47.20
+
+## 1.17.8
+
+### Patch Changes
+
+-   Legge til K9_BRUKERDIALOG_PROSESSERING_API_URL i appSettings
+
 ## 1.17.7
 
 ### Patch Changes

@@ -15,6 +15,7 @@ import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import LegeerklæringForm, { LegeerklæringFormFields, LegeerklæringFormValues } from './LegeerklæringForm';
 import { getLegeerklæringStepInitialValues, getLegeerklæringSøknadsdataFromFormValues } from './legeerklæringStepUtils';
+import { getAlleVedleggFraSøknadsdata } from '../../../utils/attachmentsUtils';
 
 const { FormikWrapper } = getTypedFormComponents<LegeerklæringFormFields, LegeerklæringFormValues>();
 
@@ -26,6 +27,9 @@ const LegeerklæringStep = () => {
 
     const stepId = StepId.LEGEERKLÆRING;
     const step = getSøknadStepConfigForStep(søknadsdata, stepId);
+
+    const { bostedVedlegg, situasjonVedlegg } = getAlleVedleggFraSøknadsdata(søknadsdata);
+    const andreVedlegg = [...bostedVedlegg, ...situasjonVedlegg];
 
     const { goBack } = useStepNavigation(step);
 
@@ -71,7 +75,12 @@ const LegeerklæringStep = () => {
                                 }}
                             />
                             <PersistStepFormValues stepId={stepId} />
-                            <LegeerklæringForm values={values} goBack={goBack} isSubmitting={isSubmitting} />
+                            <LegeerklæringForm
+                                values={values}
+                                goBack={goBack}
+                                isSubmitting={isSubmitting}
+                                andreVedlegg={andreVedlegg}
+                            />
                         </>
                     );
                 }}

@@ -1,5 +1,29 @@
 # @navikt/ungdomsytelse-søknad
 
+## 0.2.0
+
+### Minor Changes
+
+-   989373a: - Gå over til å bruke noen få felleskomponenter og utils for filopplasting.
+    -   Legge på validering av vedlegg på tvers av en søknad
+    -   Fjerne sperre for bruker på å gå videre hvis det var for mange vedlegg. Erstattet med validering.
+
+### Patch Changes
+
+-   Updated dependencies [989373a]
+    -   @navikt/sif-common-soknad-ds@15.0.0
+    -   @navikt/sif-common-core-ds@9.19.0
+    -   @navikt/sif-common@0.2.0
+
+## 0.1.11
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-soknad-ds@14.0.20
+    -   @navikt/sif-common-core-ds@9.18.26
+
 ## 0.1.10
 
 ### Patch Changes

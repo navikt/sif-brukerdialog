@@ -1,15 +1,19 @@
-import { getAttachmentId } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import { API_ENV, getApiEnv } from '../../env/commonEnv';
 import { axiosMultipartConfig, k9BrukerdialogApiClient } from '../apiClient';
-import { Attachment } from '@navikt/sif-common-core-ds/src/types';
+import { AxiosResponse } from 'axios';
 
-const serviceUrl = '/vedlegg';
+const servicePath = '/vedlegg';
 
-export const uploadVedlegg = async (file: File) => {
+export const uploadVedlegg = async (file: File): Promise<AxiosResponse<any, any>> => {
     const formData = new FormData();
     formData.append('vedlegg', file);
-    const response = await k9BrukerdialogApiClient.post(serviceUrl, formData, axiosMultipartConfig);
-    response.headers.vedleggId = response.headers.location ? getAttachmentId(response.headers.location) : undefined;
-    return response;
+    try {
+        return k9BrukerdialogApiClient.post(servicePath, formData, axiosMultipartConfig);
+    } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+        throw e;
+    }
 };
 
 /**
@@ -17,11 +21,16 @@ export const uploadVedlegg = async (file: File) => {
  * @param attachmentUrlBackend url som mottas fra backend ved opplasting
  * @returns AxiosResponse
  */
-export const deleteVedlegg = async (attachment: Attachment) => {
-    const id = attachment.id || (attachment.url !== undefined && getAttachmentId(attachment.url));
-    if (id) {
-        const url = `${serviceUrl}/${attachment.id}`;
-        return k9BrukerdialogApiClient.delete(url);
-    }
-    throw new Error('Attachment has no id or url');
+export const deleteVedlegg = async (id: string): Promise<AxiosResponse<any, any>> => {
+    const url = `${servicePath}/${id}`;
+    return k9BrukerdialogApiClient.delete(url);
+};
+
+/**
+ *
+ * @param id vedlegg-id
+ * @returns url til frontend for å hente vedlegg
+ */
+export const getVedleggFrontendUrl = (id: string): string => {
+    return `${getApiEnv(API_ENV.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH)}${servicePath}/${id}`;
 };

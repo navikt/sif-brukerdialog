@@ -493,9 +493,6 @@ const nb = {
     'page.ikkeTilgang.lastNed': 'Her kan du laste ned papirsøknaden',
 
     'vedleggsliste.ingenLegeerklæringLastetOpp': 'Ingen legeerklæring er lastet opp',
-    'dokumenter.advarsel.totalstørrelse.1':
-        'Du har totalt lastet opp mer enn grensen på 24 Mb. Det betyr at du må fjerne noe av det du har lastet opp. Hvis det betyr at du ikke får plass til alt du ønsker å sende nå, kan du ',
-    'dokumenter.advarsel.totalstørrelse.2': 'ettersende flere dokumenter.',
 
     'arbeidsforhold.ikkeAnsatt.info':
         'Når du ikke er ansatt her lenger, må du be denne arbeidsgiveren om å sende en ny A-melding med sluttdato. Dette gjør de enten via eget lønns- og personalsystem, eller via Altinn.',
@@ -705,11 +702,6 @@ const nb = {
     'selvstendig.infoDialog.fjernKnapp': 'Fjern virksomhet',
     'selvstendig.infoDialog.tittel.en': 'Opplysninger om virksomheten din',
     'selvstendig.infoDialog.tittel.flere': 'Opplysninger om den eldste virksomheten din',
-
-    'validation.samlet_storrelse_for_hoy':
-        'Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24Mb.',
-    'validation.legeerklæring.mangler': 'Du må laste opp en legeerklæring.',
-    'validation.legeerklæring.forMangeFiler': 'Du har lastet opp for mange vedlegg.',
 
     'validation.harForståttRettigheterOgPlikter.notChecked': 'Du må bekrefte at du har lest og forstått dine plikter.',
     'validation.barnetSøknadenGjelder.noValue': 'Du må velge hvilket barn søknaden gjelder.',
