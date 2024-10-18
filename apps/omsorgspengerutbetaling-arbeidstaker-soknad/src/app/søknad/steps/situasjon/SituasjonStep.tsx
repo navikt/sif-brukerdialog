@@ -1,7 +1,7 @@
 import { Alert } from '@navikt/ds-react';
 import { useState } from 'react';
 import { Office1 } from '@navikt/ds-icons';
-import { fetchArbeidsgivere } from '@navikt/sif-common';
+import { fetchArbeidsgivere } from '@navikt/sif-common-api';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';

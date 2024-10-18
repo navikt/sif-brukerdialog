@@ -1,10 +1,10 @@
 import { IntlShape } from 'react-intl';
-import { YtelseKey, Ytelser } from '@navikt/sif-common-core-ds/src/types/Ytelser';
 import { getAttachmentsApiData } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { getLocaleForApi } from '@navikt/sif-common-core-ds/src/utils/localeUtils';
 import { DokumentType } from '../types/DokumentType';
 import { BarnetLegeerklæringGjelderApiData, SoknadApiData, YtelseTypeApi } from '../types/SoknadApiData';
 import { RegistrertBarnFormData, SoknadFormData } from '../types/SoknadFormData';
+import { YtelseKey, Ytelser } from '../types/Ytelser';
 
 const getYtelseTypeApiKey = (ytelse: YtelseKey): YtelseTypeApi => {
     switch (ytelse) {

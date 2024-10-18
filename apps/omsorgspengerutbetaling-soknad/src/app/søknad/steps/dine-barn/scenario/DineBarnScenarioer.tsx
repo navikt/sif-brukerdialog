@@ -1,4 +1,4 @@
-import { RegistrertBarn } from '@navikt/sif-common';
+import { RegistrertBarn } from '@navikt/sif-common-api';
 import { DineBarnScenario } from '../../../../types/DineBarnScenario';
 import { DineBarnFormValues } from '../DineBarnStep';
 import { getBarnAlderInfo, getDineBarnScenario, getHarUtvidetRett } from '../dineBarnStepUtils';

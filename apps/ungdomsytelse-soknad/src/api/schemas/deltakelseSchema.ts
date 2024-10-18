@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { parseMaybeDateStringToDate } from '@navikt/sif-common/src/utils/jsonParseUtils';
+import { parseMaybeDateStringToDate } from '@navikt/sif-common-api/src/utils/jsonParseUtils';
 
 export const deltakelseSchema = z.object({
     id: z.string(),

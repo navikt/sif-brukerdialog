@@ -1,4 +1,4 @@
-import { getEnvironmentVariable } from '@navikt/sif-common';
+import { getEnvironmentVariable } from '@navikt/sif-common-api';
 import axios, { AxiosRequestConfig } from 'axios';
 
 const axiosConfig: AxiosRequestConfig = {

@@ -7,7 +7,6 @@ export { default as FødselsnummerSvar } from './components/summary-answers/Fød
 export { default as JaNeiSvar } from './components/summary-answers/JaNeiSvar';
 export { default as KronerSvar } from './components/summary-answers/KronerSvar';
 export { default as Sitat } from './components/summary-answers/Sitat';
-export { default as SummaryBlock } from './components/summary-block/SummaryBlock';
 export { default as SummaryList } from './components/summary-list/SummaryList';
 export { default as SummarySection } from './components/summary-section/SummarySection';
 export { default as TallSvar } from './components/summary-answers/TallSvar';

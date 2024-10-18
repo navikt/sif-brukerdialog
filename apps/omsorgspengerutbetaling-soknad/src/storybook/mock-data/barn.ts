@@ -1,4 +1,4 @@
-import { RegistrertBarn } from '@navikt/sif-common';
+import { RegistrertBarn } from '@navikt/sif-common-api';
 import { AnnetBarn, BarnType } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
 import dayjs from 'dayjs';
 

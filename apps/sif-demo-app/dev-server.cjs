@@ -1,17 +1,18 @@
 const { createProxyMiddleware, fixRequestBody } = require('http-proxy-middleware');
 const { injectDecoratorServerSide } = require('@navikt/nav-dekoratoren-moduler/ssr/index.js');
 const express = require('express');
-const server = express();
-server.use(express.json());
 const path = require('path');
 const mustacheExpress = require('mustache-express');
 const compression = require('compression');
+const getAppSettings = require('./getAppSettings.cjs');
 
+const server = express();
 server.disable('x-powered-by');
-
+server.use(express.json());
 server.use(compression());
 
 require('dotenv').config();
+
 server.set('views', `${__dirname}`);
 server.set('view engine', 'mustache');
 server.engine('html', mustacheExpress());
@@ -50,13 +51,14 @@ const startServer = async () => {
         JSON.stringify({
             APP_VERSION: `${process.env.APP_VERSION}`,
             PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
+            ...getAppSettings(),
         }),
     );
 
     server.use(
-        '/rest',
+        '/api/brukerdialog',
         createProxyMiddleware({
-            target: 'http://localhost:8888/rest',
+            target: 'http://localhost:8089/',
             changeOrigin: true,
             logger: console,
             on: {

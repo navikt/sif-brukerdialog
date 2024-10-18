@@ -26,10 +26,6 @@ const getScopedMessages = (scope: string): MessageFileFormat => {
     return getIntlMessagesFromKeys(getScopedIntlKeys(scope));
 };
 
-// const includesString = (str: string, searchFor: string | string[]): boolean => {
-//     return Array.isArray(searchFor) ? searchFor.some((subStr) => str.includes(subStr)) : str.includes(searchFor);
-// };
-
 export const storybookIntlUtils = {
     getIntlMessagesFromKeys,
     getScopedIntlKeys,

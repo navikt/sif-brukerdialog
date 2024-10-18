@@ -9,7 +9,7 @@ export const fetchBarn = async (): Promise<RegistrertBarn[]> => {
         const barn = barnResponseSchema.parse(response.data).barn;
         return barn;
     } catch (e) {
-        getSentryLoggerForApp('sif-common', []).logError('ZOD parse error', e);
+        getSentryLoggerForApp('sif-common-api', []).logError('ZOD parse error', e);
         throw e;
     }
 };

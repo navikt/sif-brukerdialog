@@ -1,7 +1,6 @@
 import { Alert, Heading } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import ContentWithHeader from '@navikt/sif-common-core-ds/src/components/content-with-header/ContentWithHeader';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
 import { ValidationError, YesOrNo, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
@@ -146,14 +145,12 @@ const OmOmsorgenForBarnStep = () => {
                                         </Block>
                                     )}
                                     <FormBlock>
-                                        <ContentWithHeader
-                                            header={
-                                                annetBarn.length === 0
-                                                    ? text('steg.omOmsorgenForBarn.info.spm.andreBarn')
-                                                    : text('steg.omOmsorgenForBarn.info.spm.flereBarn')
-                                            }>
-                                            {text('steg.omOmsorgenForBarn.info.spm.text')}
-                                        </ContentWithHeader>
+                                        <Heading level="3" size="xsmall" spacing={true}>
+                                            {annetBarn.length === 0
+                                                ? text('steg.omOmsorgenForBarn.info.spm.andreBarn')
+                                                : text('steg.omOmsorgenForBarn.info.spm.flereBarn')}
+                                        </Heading>
+                                        {text('steg.omOmsorgenForBarn.info.spm.text')}
                                     </FormBlock>
                                     <Block margin="l">
                                         <AnnetBarnListAndDialog<OmOmsorgenForBarnFormFields>

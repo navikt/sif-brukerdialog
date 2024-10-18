@@ -1,5 +1,5 @@
 import { FileRejection } from 'react-dropzone';
-import { getVedleggFrontendUrl, uploadVedlegg } from '@navikt/sif-common';
+import { getVedleggFrontendUrl, uploadVedlegg } from '@navikt/sif-common-api';
 import { ArrayHelpers } from 'formik';
 import { Attachment, PersistedFile } from '../types';
 import { isForbidden, isUnauthorized } from '../utils/apiUtils';

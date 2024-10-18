@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { fetchSøker, Søker } from '@navikt/sif-common';
+import { fetchSøker, Søker } from '@navikt/sif-common-api';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { Deltakelse } from '../api/types';
 import { deltakerService } from '../api/services/deltakerService';

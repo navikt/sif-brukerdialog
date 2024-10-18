@@ -5,7 +5,7 @@ import { cleanupFrilansArbeidssituasjon } from '../cleanupArbeidssituasjonStep';
 import { ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 import { vi } from 'vitest';
 
-vi.mock('@navikt/sif-common/src/env/commonEnv', () => {
+vi.mock('@navikt/sif-common-api/src/env/commonEnv', () => {
     return {
         getEnvironmentVariable: () => 'mockedApiUrl',
         getEnvVariableOrDefault: () => 'mockedApiUrl',

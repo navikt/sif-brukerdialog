@@ -1,5 +1,5 @@
 import { FormSummary } from '@navikt/ds-react';
-import { RegistrertBarn } from '@navikt/sif-common';
+import { RegistrertBarn } from '@navikt/sif-common-api';
 import { BarnType } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { JaNeiSvar, SummaryList } from '@navikt/sif-common-ui';

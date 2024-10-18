@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import { fetchSøkerId } from '@navikt/sif-common';
+import { fetchSøkerId } from '@navikt/sif-common-api';
 import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
 import { useResetSøknad } from '../hooks/useResetSøknad';

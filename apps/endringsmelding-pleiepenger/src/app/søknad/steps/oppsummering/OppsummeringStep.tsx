@@ -10,18 +10,18 @@ import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/compone
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { usePrevious } from '@navikt/sif-common-hooks';
-import { DurationText, JaNeiSvar, SummaryBlock, SummarySection } from '@navikt/sif-common-ui';
+import { DurationText, JaNeiSvar, SummarySection } from '@navikt/sif-common-ui';
 import { ISODurationToDuration } from '@navikt/sif-common-utils';
 import { getApiDataFromSøknadsdata } from '@utils';
 import IkkeAnsattMelding from '../../../components/ikke-ansatt-melding/IkkeAnsattMelding';
 import { useStepConfig } from '../../../hooks/useStepConfig';
+import { AppText, useAppIntl } from '../../../i18n';
 import { StepId } from '../../config/StepId';
 import SøknadStep from '../../SøknadStep';
 import ArbeidstidOppsummering from './ArbeidstidOppsummering';
 import LovbestemtFerieOppsummering from './LovbestemtFerieOppsummering';
 import { getOppsummeringStepInitialValues, oppsummeringStepUtils } from './oppsummeringStepUtils';
 import './oppsummering.css';
-import { AppText, useAppIntl } from '../../../i18n';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -98,35 +98,36 @@ const OppsummeringStep = () => {
                                     <Heading level="3" size="small">
                                         {arbeidsgiver.navn}
                                     </Heading>
-                                    <SummaryBlock
-                                        level="4"
-                                        header={text('oppsummeringStep.arbeidsgiver.erAnsatt', {
-                                            arbeidsgivernavn: arbeidsgiver.navn,
-                                        })}>
-                                        <div data-testid={getTestKey('erAnsatt')}>
-                                            <JaNeiSvar harSvartJa={arbeidsforhold.erAnsatt} />
-                                        </div>
-                                        {arbeidsforhold.erAnsatt === false && (
-                                            <Block>
-                                                <IkkeAnsattMelding />
-                                            </Block>
-                                        )}
-                                    </SummaryBlock>
+                                    <Heading level="4" size="xsmall" spacing={true}>
+                                        <AppText
+                                            id="oppsummeringStep.arbeidsgiver.erAnsatt"
+                                            values={{ arbeidsgivernavn: arbeidsgiver.navn }}
+                                        />
+                                    </Heading>
+                                    <div data-testid={getTestKey('erAnsatt')}>
+                                        <JaNeiSvar harSvartJa={arbeidsforhold.erAnsatt} />
+                                    </div>
+                                    {arbeidsforhold.erAnsatt === false && (
+                                        <Block>
+                                            <IkkeAnsattMelding />
+                                        </Block>
+                                    )}
                                     {arbeidsforhold.erAnsatt && (
                                         <>
-                                            <SummaryBlock
-                                                level="4"
-                                                header={text('oppsummeringStep.arbeidsgiver.normalarbeidstid', {
-                                                    arbeidsgivernavn: arbeidsgiver.navn,
-                                                })}>
-                                                <div data-testid={getTestKey('timerPerUke')}>
-                                                    <DurationText
-                                                        duration={ISODurationToDuration(
-                                                            arbeidsforhold.normalarbeidstid.timerPerUke,
-                                                        )}
-                                                    />
-                                                </div>
-                                            </SummaryBlock>
+                                            <Heading level="4" size="xsmall" spacing={true}>
+                                                <AppText
+                                                    id="oppsummeringStep.arbeidsgiver.normalarbeidstid"
+                                                    values={{ arbeidsgivernavn: arbeidsgiver.navn }}
+                                                />
+                                            </Heading>
+
+                                            <div data-testid={getTestKey('timerPerUke')}>
+                                                <DurationText
+                                                    duration={ISODurationToDuration(
+                                                        arbeidsforhold.normalarbeidstid.timerPerUke,
+                                                    )}
+                                                />
+                                            </div>
                                         </>
                                     )}
                                 </Block>

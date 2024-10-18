@@ -1,11 +1,12 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { DatoSvar, JaNeiSvar, Sitat, SummaryBlock, TallSvar, TextareaSvar } from '@navikt/sif-common-ui';
+import { DatoSvar, JaNeiSvar, Sitat, TallSvar, TextareaSvar } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyApiDate } from '@navikt/sif-common-utils';
 import { Næringstype, VirksomhetApiData } from './types';
 import { useVirksomhetIntl, VirksomhetIntlShape } from './virksomhetMessages';
 import { erVirksomhetRegnetSomNyoppstartet } from './virksomhetUtils';
+import SummaryBlock from './SummaryBlock';
 
 interface Props {
     virksomhet: VirksomhetApiData;

@@ -1,4 +1,4 @@
-import { k9BrukerdialogApiClient } from '@navikt/sif-common/src/api/apiClient';
+import { k9BrukerdialogApiClient } from '@navikt/sif-common-api/src/api/apiClient';
 import { SøknadApiData } from '../types';
 import { søknadApiDataSchema } from '../schemas/søknadApiDataSchema';
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common';
+import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { isForbidden } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { SØKNAD_VERSJON } from '../constants/SØKNAD_VERSJON';
 import { RequestStatus } from '../types/RequestStatus';

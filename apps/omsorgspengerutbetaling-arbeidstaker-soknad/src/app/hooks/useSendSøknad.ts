@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { OmsorgspengerutbetalingArbeidstakerApp } from '@navikt/sif-app-register';
-import { getInnsendingService, InnsendingType } from '@navikt/sif-common';
+import { getInnsendingService, InnsendingType } from '@navikt/sif-common-api';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { AxiosError } from 'axios';
 import actionsCreator from '../søknad/context/action/actionCreator';

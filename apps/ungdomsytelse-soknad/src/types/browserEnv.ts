@@ -1,4 +1,4 @@
-import { getEnvironmentVariable } from '@navikt/sif-common/src/utils/envUtils';
+import { getEnvironmentVariable } from '@navikt/sif-common-api/src/utils/envUtils';
 
 export const getBrowserEnv = () => ({
     PUBLIC_PATH: getEnvironmentVariable('PUBLIC_PATH'),

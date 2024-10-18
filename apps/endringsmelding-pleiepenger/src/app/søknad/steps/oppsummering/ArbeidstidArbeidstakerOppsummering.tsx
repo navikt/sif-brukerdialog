@@ -1,11 +1,10 @@
 import { Heading } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { SummaryBlock } from '@navikt/sif-common-ui';
 import { ArbeiderIPeriodenSvar, Arbeidsgiver, ArbeidstakerApiData } from '@types';
+import { AppText } from '../../../i18n';
 import ArbeidstidUker from '../../../modules/arbeidstid-uker/ArbeidstidUker';
-import { oppsummeringStepUtils } from './oppsummeringStepUtils';
 import { ArbeiderIPeriodenSvarIntlKey } from '../arbeidstid/arbeidsaktivitet-form-part/components/ArbeiderIPeriodenSpørsmål';
-import { AppText, useAppIntl } from '../../../i18n';
+import { oppsummeringStepUtils } from './oppsummeringStepUtils';
 
 type Props = {
     arbeidstaker: ArbeidstakerApiData;
@@ -14,7 +13,6 @@ type Props = {
 };
 
 const ArbeidstidArbeidstakerOppsummering = ({ arbeidsgivere, arbeidstaker, arbeidstidKolonneTittel }: Props) => {
-    const { text } = useAppIntl();
     const { organisasjonsnummer, arbeidstidInfo } = arbeidstaker;
     const arbeidsgiver = arbeidsgivere.find((a) => a.organisasjonsnummer === organisasjonsnummer);
 
@@ -28,9 +26,12 @@ const ArbeidstidArbeidstakerOppsummering = ({ arbeidsgivere, arbeidstaker, arbei
                 {arbeidsgiver.navn}
             </Heading>
             {arbeidstaker._erUkjentArbeidsforhold && arbeidstaker._arbeiderIPerioden && (
-                <SummaryBlock header={text('arbeidstidStep.arbeiderIPeriodenSpm.legend', { navn: arbeidsgiver.navn })}>
+                <>
+                    <Heading level="3" size="xsmall">
+                        <AppText id="arbeidstidStep.arbeiderIPeriodenSpm.legend" values={{ navn: arbeidsgiver.navn }} />
+                    </Heading>
                     <AppText id={ArbeiderIPeriodenSvarIntlKey[arbeidstaker._arbeiderIPerioden]} />
-                </SummaryBlock>
+                </>
             )}
             {(arbeidstaker._erUkjentArbeidsforhold === false ||
                 (arbeidstaker._erUkjentArbeidsforhold === true &&

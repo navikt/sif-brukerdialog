@@ -1,5 +1,4 @@
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { YtelseKey, Ytelser } from '@navikt/sif-common-core-ds/src/types/Ytelser';
 import { FormikRadioProp } from '@navikt/sif-common-formik-ds/src/components/formik-radio-group/FormikRadioGroup';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { useAppIntl } from '../../i18n';
@@ -8,6 +7,7 @@ import { Søknadstype } from '../../types/Søknadstype';
 import SoknadFormComponents from '../SoknadFormComponents';
 import SoknadFormStep from '../SoknadFormStep';
 import { StepID } from '../soknadStepsConfig';
+import { YtelseKey, Ytelser } from '../../types/Ytelser';
 
 interface Props {
     søknadstype: Søknadstype;

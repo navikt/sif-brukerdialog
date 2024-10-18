@@ -1,4 +1,4 @@
-import { parseMaybeDateStringToDate } from '@navikt/sif-common/src/utils/jsonParseUtils';
+import { parseMaybeDateStringToDate } from '@navikt/sif-common-api/src/utils/jsonParseUtils';
 import { z } from 'zod';
 
 export const søkerSchema = z.object({

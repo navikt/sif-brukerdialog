@@ -1,6 +1,6 @@
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
-import { YtelseKey } from '@navikt/sif-common-core-ds/src/types/Ytelser';
 import { DokumentType } from './DokumentType';
+import { YtelseKey } from './Ytelser';
 
 export interface RegistrertBarnFormData {
     aktørId: string;

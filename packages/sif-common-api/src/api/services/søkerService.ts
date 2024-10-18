@@ -8,7 +8,7 @@ export const fetchSøker = async (): Promise<Søker> => {
     try {
         return søkerResponseSchema.parse(response.data);
     } catch (e) {
-        getSentryLoggerForApp('sif-common', []).logError('ZOD parse error', e);
+        getSentryLoggerForApp('sif-common-api', []).logError('ZOD parse error', e);
         throw e;
     }
 };

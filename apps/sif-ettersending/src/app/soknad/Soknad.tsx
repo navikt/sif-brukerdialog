@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { failure, pending, success } from '@devexperts/remote-data-ts';
 import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
-import { YtelseKey } from '@navikt/sif-common-core-ds/src/types/Ytelser';
 import { isUserLoggedOut } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { LoadingPage, useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds';
@@ -29,6 +28,7 @@ import SoknadRouter from './SoknadRouter';
 import { getFirstStep, getSoknadStepsConfig, StepID } from './soknadStepsConfig';
 import soknadTempStorage, { isStorageDataValid } from './soknadTempStorage';
 import { getSokerId } from '../api/getSoker';
+import { YtelseKey } from '../types/Ytelser';
 
 interface Props {
     søker: Person;
