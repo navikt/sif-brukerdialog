@@ -1,7 +1,8 @@
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
-import { getEnvVariableOrDefault } from '@navikt/sif-common-core-ds/src/utils/envUtils';
+
 import axios, { AxiosError, AxiosRequestConfig, RawAxiosRequestHeaders } from 'axios';
 import { relocateToLoginPage, relocateToNoAccessPage } from '../utils/navigationUtils';
+import { commonEnv } from '@navikt/sif-common-env';
 
 export enum ApiEndpoint {
     'soker' = 'oppslag/soker',
@@ -17,7 +18,7 @@ const axiosConfigCommon: AxiosRequestConfig = {
 
 export const axiosConfig: AxiosRequestConfig = {
     ...axiosConfigCommon,
-    baseURL: getEnvVariableOrDefault('K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH', 'http://localhost:8089'),
+    baseURL: commonEnv.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH,
 };
 
 export const axiosMultipartConfig: AxiosRequestConfig = {

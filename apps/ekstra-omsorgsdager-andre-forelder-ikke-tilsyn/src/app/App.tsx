@@ -1,6 +1,6 @@
 import { Navigate, Route } from 'react-router-dom';
 import { OmsorgsdagerAnnenForelderIkkeTilsynApp } from '@navikt/sif-app-register';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
+import { commonEnv } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
@@ -13,7 +13,7 @@ import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.css';
 
-const publicPath = getEnvironmentVariable('PUBLIC_PATH');
+const publicPath = commonEnv.PUBLIC_PATH;
 
 ensureBaseNameForReactRouter(publicPath);
 
@@ -27,8 +27,8 @@ const App = () => (
         useLanguageSelector={false}
         appStatus={{
             sanityConfig: {
-                projectId: getEnvironmentVariable('APPSTATUS_PROJECT_ID'),
-                dataset: getEnvironmentVariable('APPSTATUS_DATASET'),
+                projectId: commonEnv.APPSTATUS_PROJECT_ID,
+                dataset: commonEnv.APPSTATUS_DATASET,
             },
         }}>
         <SoknadApplicationCommonRoutes

@@ -4725,6 +4725,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@navikt/sif-common-env@workspace:packages/sif-common-env":
+  version: 0.0.0-use.local
+  resolution: "@navikt/sif-common-env@workspace:packages/sif-common-env"
+  dependencies:
+    typescript: "npm:5.6.3"
+  languageName: unknown
+  linkType: soft
+
 "@navikt/sif-common-faro@npm:*, @navikt/sif-common-faro@workspace:packages/sif-common-faro":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-faro@workspace:packages/sif-common-faro"

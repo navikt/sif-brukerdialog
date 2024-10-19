@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const getAppSettings = () => ({
+    ENV: `${process.env.ENV}`,
     APP_VERSION: `${process.env.APP_VERSION}`,
     NODE_ENV: `${process.env.NODE_ENV}`,
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
