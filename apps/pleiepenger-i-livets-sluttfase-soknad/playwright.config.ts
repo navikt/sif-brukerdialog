@@ -32,9 +32,11 @@ export default defineConfig({
             K9_BRUKERDIALOG_PROSESSERING_API_URL: 'http://localhost:8089',
             K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: '/api',
 
+            SIF_PUBLIC_USE_AMPLITUDE: 'false',
             SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
             SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
             SIF_PUBLIC_DEKORATOR_URL: 'https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false',
+            SIF_PUBLIC_LOGIN_URL: 'login',
             SIF_PUBLIC_MINSIDE_URL: 'https://www.intern.dev.nav.no/minside',
         },
     },
