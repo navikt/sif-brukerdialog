@@ -6,7 +6,6 @@ import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { useAttachmentsHelper } from '@navikt/sif-common-core-ds';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
-import { isDevMode } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import {
     getTypedFormComponents,
     resetFieldValue,
@@ -27,6 +26,7 @@ import { YesOrNoDontKnow } from '../../../types/YesOrNoDontKnow';
 import { ÅrsakManglerIdentitetsnummer } from '../../../types/ÅrsakManglerIdentitetsnummer';
 import IdPart from './form-parts/IdPart';
 import { opplysningerOmPleietrengendeDefaultValues } from './opplysningerOmPleietrengendeStepUtils';
+import { isDevMode } from '@navikt/sif-common-env';
 
 export enum OpplysningerOmPleietrengendeFormFields {
     navn = 'navn',

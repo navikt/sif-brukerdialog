@@ -1,5 +1,10 @@
+import { vi } from 'vitest';
 import { OmsorgstilbudApiData, OmsorgstilbudSvarApi } from '../../types/søknad-api-data/SøknadApiData';
 import { isOmsorgstilbudApiDataValid } from '../apiValuesValidation';
+
+vi.mock('@navikt/sif-common-env', () => {
+    return { getRequiredEnv: () => '', commonEnv: {}, getEnv: () => '' };
+});
 
 describe('OmsorgstilbudApiDataValid', () => {
     const omsorgstilbud: OmsorgstilbudApiData = {

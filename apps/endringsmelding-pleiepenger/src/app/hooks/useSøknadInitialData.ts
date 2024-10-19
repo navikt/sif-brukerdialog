@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { DateRange } from '@navikt/sif-common-utils';
 import {
     Arbeidsgiver,
@@ -14,6 +13,7 @@ import {
     TimerEllerProsent,
 } from '@types';
 import { appSentryLogger } from '@utils';
+import { getEnv } from '../../../../../packages/sif-common-env/src';
 import { SøknadStatePersistence } from '../api/endpoints/søknadStateEndpoint';
 import { fetchInitialData } from '../api/fetchInitialData';
 import { APP_VERSJON } from '../constants/APP_VERSJON';
@@ -64,7 +64,7 @@ const prepInitialData = (
         }
         if (k9saker.length === 1) {
             const sak = getSakFromK9Sak(k9saker[0], arbeidsgivere, tillattEndringsperiode);
-            if (getEnvironmentVariable('DEBUG') === 'true') {
+            if (getEnv('DEBUG') === 'true') {
                 appSentryLogger.logInfo(
                     'debug.maskedSakInfo',
                     JSON.stringify(

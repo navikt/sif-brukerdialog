@@ -1,4 +1,4 @@
-import { isDevMode } from '@navikt/sif-common-core-ds/src/utils/envUtils';
+import { isDevMode } from '@navikt/sif-common-env';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { FormLayout } from '@navikt/sif-common-ui';

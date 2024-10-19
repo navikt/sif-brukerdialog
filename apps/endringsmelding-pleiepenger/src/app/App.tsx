@@ -1,11 +1,11 @@
 import { createRoot } from 'react-dom/client';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
-import { getEnvironmentVariable, getMaybeEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { ensureBaseNameForReactRouter, SoknadApplication } from '@navikt/sif-common-soknad-ds';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import MockDate from 'mockdate';
+import { commonEnv, getEnv, isDevMode } from '../../../../packages/sif-common-env/src';
 import DevPage from './dev/DevPage';
 import { applicationIntlMessages } from './i18n';
 import { SøknadRoutes } from './søknad/config/SøknadRoutes';
@@ -15,21 +15,21 @@ import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 
 dayjs.extend(isoWeek);
 
+const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID } = commonEnv;
 const container = document.getElementById('root');
 // eslint-disable-next-line
 const root = createRoot(container!);
-const publicPath = getEnvironmentVariable('PUBLIC_PATH');
-const isE2E = getEnvironmentVariable('E2E_TEST') === 'true';
+const isE2E = getEnv('E2E_TEST') === 'true';
 
-ensureBaseNameForReactRouter(publicPath);
+ensureBaseNameForReactRouter(PUBLIC_PATH);
 
 function prepare() {
-    if (getEnvironmentVariable('APP_VERSION') !== 'production') {
-        const envNow = getMaybeEnvironmentVariable('NOW');
-        if (envNow && getEnvironmentVariable('APP_VERSION') === 'dev') {
+    if (isDevMode) {
+        const envNow = getEnv('NOW');
+        if (envNow) {
             MockDate.set(new Date(envNow));
         }
-        if (getEnvironmentVariable('MSW') === 'on' && isE2E !== undefined) {
+        if (getEnv('MSW') === 'on' && isE2E !== undefined) {
             return import('../mocks/msw/browser').then(({ worker }) => {
                 worker.start({
                     onUnhandledRequest: 'bypass',
@@ -50,11 +50,11 @@ const App = () => (
         useAmplitude={!isE2E}
         appStatus={{
             sanityConfig: {
-                projectId: getEnvironmentVariable('APPSTATUS_PROJECT_ID'),
-                dataset: getEnvironmentVariable('APPSTATUS_DATASET'),
+                projectId: SIF_PUBLIC_APPSTATUS_PROJECT_ID,
+                dataset: SIF_PUBLIC_APPSTATUS_DATASET,
             },
         }}
-        publicPath={publicPath}>
+        publicPath={PUBLIC_PATH}>
         <Routes>
             <Route key="dev" path="/dev" element={<DevPage />} />,
             <Route

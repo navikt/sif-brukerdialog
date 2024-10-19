@@ -1,23 +1,23 @@
 import { Navigate, Route } from 'react-router-dom';
 import { OmsorgspengerutbetalingArbeidstakerApp } from '@navikt/sif-app-register';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
+import { commonEnv } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
+import { mellomlagringService } from './api/mellomlagringService';
 import { applicationIntlMessages } from './i18n';
 import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
+import { relocateToWelcomePage } from './utils/navigationUtils';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.css';
-import { mellomlagringService } from './api/mellomlagringService';
-import { relocateToWelcomePage } from './utils/navigationUtils';
 
-const publicPath = getEnvironmentVariable('PUBLIC_PATH');
+const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID } = commonEnv;
 
-ensureBaseNameForReactRouter(publicPath);
+ensureBaseNameForReactRouter(PUBLIC_PATH);
 
 const handleResetSoknad = async () => {
     await mellomlagringService.purge();
@@ -33,11 +33,11 @@ const App = () => (
         onResetSoknad={handleResetSoknad}
         appStatus={{
             sanityConfig: {
-                projectId: getEnvironmentVariable('APPSTATUS_PROJECT_ID'),
-                dataset: getEnvironmentVariable('APPSTATUS_DATASET'),
+                projectId: SIF_PUBLIC_APPSTATUS_PROJECT_ID,
+                dataset: SIF_PUBLIC_APPSTATUS_DATASET,
             },
         }}
-        publicPath={publicPath}>
+        publicPath={PUBLIC_PATH}>
         <SoknadApplicationCommonRoutes
             contentRoutes={[
                 <Route index key="redirect" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,

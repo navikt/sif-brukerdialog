@@ -1,6 +1,5 @@
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { isDevMode } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import {
     getDateValidator,
@@ -15,6 +14,7 @@ import {
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { prettifyDate } from '@navikt/sif-common-utils';
+import { isDevMode } from '../../../../sif-common-env/src';
 import { AnnetBarnMessageKeys, useAnnetBarnIntl } from './';
 import annetBarnUtils from './annetBarnUtils';
 import { AnnetBarn, AnnetBarnFormValues, BarnType } from './types';

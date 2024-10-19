@@ -1,3 +1,4 @@
+import { isDevMode } from '@navikt/sif-common-env';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
 import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
 import {
@@ -10,24 +11,23 @@ import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/
 import { UtenlandsoppholdUtvidet } from '@navikt/sif-common-forms-ds/src';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/types';
 import {
-    getDate3YearsAgo,
     DateDurationMap,
     DateRange,
     dateRangesCollide,
     dateRangesExceedsRange,
+    dateUtils,
     durationToDecimalDuration,
+    getDate1YearFromNow,
+    getDate3YearsAgo,
     getDurationsInDateRange,
     getValidDurations,
     summarizeDateDurationMap,
-    getDate1YearFromNow,
-    dateUtils,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import minMax from 'dayjs/plugin/minMax';
 import { StønadGodtgjørelseFormValues } from '../types/søknad-form-values/StønadGodtgjørelseFormValues';
 import { YesOrNoOrDoNotKnow } from '../types/YesOrNoOrDoNotKnow';
-import { isDevMode } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 
 dayjs.extend(minMax);
 dayjs.extend(isoWeek);

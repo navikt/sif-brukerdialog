@@ -15,7 +15,7 @@ import { vi } from 'vitest';
 
 const commitSha = 'abc';
 
-vi.mock('@navikt/sif-common-core-ds/src/utils/envUtils', () => ({
+vi.mock('@navikt/sif-common-env', () => ({
     getCommitShaFromEnv: () => {
         return commitSha;
     },

@@ -4,6 +4,11 @@ import { DateDurationMap, ISODateToDate } from '@navikt/sif-common-utils';
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import { cleanupOmsorgstilbudStep } from '../omsorgstilbudStepUtils';
 import { YesOrNoOrDoNotKnow } from '../../../types/YesOrNoOrDoNotKnow';
+import { vi } from 'vitest';
+
+vi.mock('@navikt/sif-common-env', () => {
+    return { getRequiredEnv: () => '', commonEnv: {}, getEnv: () => '' };
+});
 
 const søknadsperiode: DateRange = {
     from: ISODateToDate('2021-06-02'),

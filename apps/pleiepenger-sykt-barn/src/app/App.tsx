@@ -1,7 +1,7 @@
 import { SanityConfig } from '@navikt/appstatus-react-ds';
 import { Navigate, Route } from 'react-router-dom';
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
-import { getEnvironmentVariable, getMaybeEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
+import { commonEnv, getEnv } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
@@ -19,11 +19,11 @@ import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.less';
 
-const publicPath = getEnvironmentVariable('PUBLIC_PATH');
-ensureBaseNameForReactRouter(publicPath);
+const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID } = commonEnv;
+ensureBaseNameForReactRouter(PUBLIC_PATH);
 
-const envNow = getMaybeEnvironmentVariable('MOCK_DATE');
-if (envNow && getEnvironmentVariable('USE_MOCK_DATE') === 'true') {
+const envNow = getEnv('MOCK_DATE');
+if (envNow && getEnv('USE_MOCK_DATE') === 'true') {
     // eslint-disable-next-line no-console
     console.log(`setting time to: ${envNow}`);
     MockDate.set(new Date(envNow));
@@ -32,11 +32,11 @@ if (envNow && getEnvironmentVariable('USE_MOCK_DATE') === 'true') {
 appSentryLogger.init();
 
 const App = () => {
-    const useAmplitude = getEnvironmentVariable('USE_AMPLITUDE') === 'true';
+    const useAmplitude = commonEnv.SIF_PUBLIC_USE_AMPLITUDE === 'true';
 
     const sanityConfig: SanityConfig = {
-        projectId: getEnvironmentVariable('APPSTATUS_PROJECT_ID'),
-        dataset: getEnvironmentVariable('APPSTATUS_DATASET'),
+        projectId: SIF_PUBLIC_APPSTATUS_PROJECT_ID,
+        dataset: SIF_PUBLIC_APPSTATUS_DATASET,
     };
 
     const handleResetSoknad = async () => {
@@ -52,7 +52,7 @@ const App = () => {
             appStatus={{ sanityConfig: sanityConfig }}
             intlMessages={applicationIntlMessages}
             useAmplitude={useAmplitude}
-            publicPath={publicPath}
+            publicPath={PUBLIC_PATH}
             onResetSoknad={handleResetSoknad}>
             <SoknadApplicationCommonRoutes
                 onReset={() => {

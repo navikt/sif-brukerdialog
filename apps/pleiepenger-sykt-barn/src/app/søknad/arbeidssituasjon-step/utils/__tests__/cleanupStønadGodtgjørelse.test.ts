@@ -1,6 +1,7 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { StønadGodtgjørelseFormValues } from '../../../../types/søknad-form-values/StønadGodtgjørelseFormValues';
 import { cleanupStønadGodtgjørelse } from '../cleanupArbeidssituasjonStep';
+import { vi } from 'vitest';
 
 const ISOStartdato = '2021-01-01';
 const ISOSluttdato = '2022-01-01';
@@ -13,6 +14,10 @@ const formValues: StønadGodtgjørelseFormValues = {
     slutterUnderveis: YesOrNo.YES,
     starterUndeveis: YesOrNo.YES,
 };
+
+vi.mock('@navikt/sif-common-env', () => {
+    return { getRequiredEnv: () => '', commonEnv: {}, getEnv: () => '' };
+});
 
 describe('cleanupStønadGodtgjørelse', () => {
     it('mottar ikke omsorgsstønad eller fosterhjemsgodgjørelse', () => {

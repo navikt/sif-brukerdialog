@@ -1,4 +1,4 @@
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
+import { appEnv } from './utils/appEnv';
 
 interface Lenker {
     medlemskap: string;
@@ -23,11 +23,11 @@ const LenkerBokmål: Lenker = {
         'https://www.nav.no/no/NAV+og+samfunn/Om+NAV/personvern-i-arbeids-og-velferdsetaten/personvernerkl%C3%A6ring-for-arbeids-og-velferdsetaten',
     rettOgPlikt: 'https://nav.no/rettOgPlikt',
     saksbehandlingstider: 'https://www.nav.no/no/NAV+og+samfunn/Om+NAV/Saksbehandlingstider+i+NAV',
-    dittNAV: getEnvironmentVariable('DITT_NAV_URL'),
-    INNSYN_PP: getEnvironmentVariable('INNSYN_PP'),
-    pleiepengerSyktBarn: getEnvironmentVariable('PLEIEPENGER_SYKT_BARN_URL'),
+    dittNAV: appEnv.DITT_NAV_URL,
+    INNSYN_PP: appEnv.INNSYN_PP,
+    pleiepengerSyktBarn: appEnv.PLEIEPENGER_SYKT_BARN_URL,
     skrivTilOss: 'https://www.nav.no/skriv-til-oss',
-    endringsmelding: getEnvironmentVariable('ENDRINGSMELDING_PP'),
+    endringsmelding: appEnv.ENDRINGSMELDING_PP,
 };
 
 const LenkerNynorsk: Partial<Lenker> = {

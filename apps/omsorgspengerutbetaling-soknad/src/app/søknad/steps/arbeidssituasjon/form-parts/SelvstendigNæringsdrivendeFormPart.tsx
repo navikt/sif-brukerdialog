@@ -3,7 +3,6 @@ import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
 import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
@@ -11,6 +10,7 @@ import VirksomhetInfoAndDialog from '@navikt/sif-common-forms-ds/src/forms/virks
 import { AppText, useAppIntl } from '../../../../i18n';
 import getLenker from '../../../../lenker';
 import { ArbeidssituasjonFormFields, ArbeidssituasjonFormValues } from '../ArbeidssituasjonStep';
+import { appEnv } from '../../../../utils/appEnv';
 
 const { YesOrNoQuestion } = getTypedFormComponents<
     ArbeidssituasjonFormFields,
@@ -24,7 +24,7 @@ interface Props {
 
 const SelvstendigNæringsdrivendeFormPart: React.FC<Props> = ({ values }) => {
     const { intl, text } = useAppIntl();
-    const skipOrgNumValidation = getEnvironmentVariable('SIF_PUBLIC_SKIP_ORGNUM_VALIDATION') === 'true';
+    const skipOrgNumValidation = appEnv.SIF_PUBLIC_SKIP_ORGNUM_VALIDATION === 'true';
     const { selvstendig_erSelvstendigNæringsdrivende, selvstendig_virksomhet, selvstendig_harFlereVirksomheter } =
         values;
     const erSelvstendigNæringsdrivende = selvstendig_erSelvstendigNæringsdrivende === YesOrNo.YES;

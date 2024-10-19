@@ -2,6 +2,7 @@ import { visVernepliktSpørsmål } from '../visVernepliktSpørsmål';
 import { ArbeidsgiverType } from '../../../../types/Arbeidsgiver';
 import { ArbeidsforholdFormValues } from '../../../../types/søknad-form-values/ArbeidsforholdFormValues';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
+import { vi } from 'vitest';
 
 const defaultAnsattArbeidsforhold: ArbeidsforholdFormValues = {
     arbeidsgiver: {
@@ -11,6 +12,10 @@ const defaultAnsattArbeidsforhold: ArbeidsforholdFormValues = {
     },
     normalarbeidstid: {},
 };
+
+vi.mock('@navikt/sif-common-env', () => {
+    return { getRequiredEnv: () => '', commonEnv: {}, getEnv: () => '' };
+});
 
 describe('visVernepliktSpørsmål', () => {
     describe('skjuler spørsmål om verneplikt dersom', () => {

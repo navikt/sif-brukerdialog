@@ -2,10 +2,11 @@ import { Alert } from '@navikt/ds-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import { RequestStatus } from '@types';
 import { appSentryLogger } from '@utils';
+import { isAxiosError } from 'axios';
+import { getEnv } from '../../../../../packages/sif-common-env/src';
 import DevFooter from '../dev/DevFooter';
 import useSøknadInitialData from '../hooks/useSøknadInitialData';
 import IngenTilgangPage from '../pages/ingen-tilgang/IngenTilgangPage';
@@ -13,7 +14,6 @@ import { SøknadRoutes } from './config/SøknadRoutes';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import { SøknadContextProvider } from './context/SøknadContext';
 import SøknadRouter from './SøknadRouter';
-import { isAxiosError } from 'axios';
 
 const Søknad = () => {
     const location = useLocation();
@@ -75,7 +75,7 @@ const Søknad = () => {
         <SøknadContextProvider initialData={initialData.data}>
             <StepFormValuesContextProvider>
                 <SøknadRouter />
-                {getEnvironmentVariable('SIF_PUBLIC_FEATURE_VELG_SCENARIO') === 'on' && <DevFooter />}
+                {getEnv('SIF_PUBLIC_FEATURE_VELG_SCENARIO') === 'on' && <DevFooter />}
             </StepFormValuesContextProvider>
         </SøknadContextProvider>
     );

@@ -1,6 +1,5 @@
 import { Navigate, Route } from 'react-router-dom';
 import { OmsorgsdagerAnnenForelderIkkeTilsynApp } from '@navikt/sif-app-register';
-import { commonEnv } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
@@ -9,13 +8,14 @@ import {
 import { applicationIntlMessages } from './i18n';
 import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
+import { appEnv } from './utils/appEnv';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.css';
 
-const publicPath = commonEnv.PUBLIC_PATH;
+const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID } = appEnv;
 
-ensureBaseNameForReactRouter(publicPath);
+ensureBaseNameForReactRouter(PUBLIC_PATH);
 
 const App = () => (
     <SoknadApplication
@@ -23,12 +23,12 @@ const App = () => (
         appName={OmsorgsdagerAnnenForelderIkkeTilsynApp.navn}
         appTitle={OmsorgsdagerAnnenForelderIkkeTilsynApp.tittel.nb}
         intlMessages={applicationIntlMessages}
-        publicPath={publicPath}
+        publicPath={PUBLIC_PATH}
         useLanguageSelector={false}
         appStatus={{
             sanityConfig: {
-                projectId: commonEnv.APPSTATUS_PROJECT_ID,
-                dataset: commonEnv.APPSTATUS_DATASET,
+                projectId: SIF_PUBLIC_APPSTATUS_PROJECT_ID,
+                dataset: SIF_PUBLIC_APPSTATUS_DATASET,
             },
         }}>
         <SoknadApplicationCommonRoutes

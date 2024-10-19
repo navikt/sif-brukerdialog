@@ -13,6 +13,10 @@ import {
 const fileMock = new File([''], 'filename.png', { type: 'text/png' });
 const invalidFileMock = new File([''], 'filename.docx', { type: 'text/png' });
 
+vi.mock('@navikt/sif-common-env', () => ({
+    commonEnv: {},
+}));
+
 describe('attachmentUtils', () => {
     describe('fileExtensionIsValid', () => {
         it('should only accept file extensions specified by VALID_EXTENSIONS', () => {

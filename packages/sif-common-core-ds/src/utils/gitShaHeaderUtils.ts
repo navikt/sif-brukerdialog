@@ -1,5 +1,5 @@
+import { getCommitShaFromEnv } from '@navikt/sif-common-env';
 import { RawAxiosRequestHeaders } from 'axios';
-import { getCommitShaFromEnv } from './envUtils';
 
 const GitShaHeaderKey = 'X-Brukerdialog-Git-Sha';
 

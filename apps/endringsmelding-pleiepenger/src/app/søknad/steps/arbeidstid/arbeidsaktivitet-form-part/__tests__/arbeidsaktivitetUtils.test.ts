@@ -1,6 +1,11 @@
 import { ISODateRange } from '@navikt/sif-common-utils';
 import { ArbeidstidEndringMap, Arbeidsuke, TimerEllerProsent } from '@types';
 import { getEndringerForArbeidsukeForm } from '../arbeidsaktivitetUtils';
+import { vi } from 'vitest';
+
+vi.mock('@navikt/sif-common-env', () => {
+    return { getRequiredEnv: () => '', commonEnv: {} };
+});
 
 describe('arbeidsaktivitetUtils', () => {
     describe('getEndringerForArbeidsukeForm', () => {
