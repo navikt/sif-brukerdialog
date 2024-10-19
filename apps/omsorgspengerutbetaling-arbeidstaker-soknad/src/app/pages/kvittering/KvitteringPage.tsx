@@ -1,5 +1,5 @@
 import { Alert, Button, Heading, Panel } from '@navikt/ds-react';
-import { Søker } from '@navikt/sif-common';
+import { Søker } from '@navikt/sif-common-api';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import CheckmarkIcon from '@navikt/sif-common-core-ds/src/atoms/checkmark-icon/CheckmarkIcon';
 import Checklist from '@navikt/sif-common-core-ds/src/components/lists/checklist/Checklist';

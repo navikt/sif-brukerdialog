@@ -1,4 +1,4 @@
-import { Box, Tabs } from '@navikt/ds-react';
+import { Box, Tabs, VStack } from '@navikt/ds-react';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SøkerInfo from './components/SøkerInfo';
@@ -6,6 +6,7 @@ import { useInitialData } from './hooks/useInitialData';
 import '@navikt/ds-css';
 import BarnInfo from './components/BarnInfo';
 import ArbeidsgiverInfo from './components/ArbeidsgiverInfo';
+import DemoForm from './forms/DemoForm';
 
 const App = () => {
     const { initialData, isLoading } = useInitialData();
@@ -23,28 +24,31 @@ const App = () => {
     const { søker, barn, arbeidsgivere } = initialData;
     return (
         <Page title="Forside">
-            <Tabs defaultValue="arbeidsgivere">
-                <Tabs.List>
-                    <Tabs.Tab value="søker" label="Søker" />
-                    <Tabs.Tab value="barn" label="Barn" />
-                    <Tabs.Tab value="arbeidsgivere" label="Arbeidsgivere" />
-                </Tabs.List>
-                <Tabs.Panel value="søker">
-                    <Box paddingBlock="4">
-                        <SøkerInfo søker={søker} />
-                    </Box>
-                </Tabs.Panel>
-                <Tabs.Panel value="barn">
-                    <Box paddingBlock="4">
-                        <BarnInfo barn={barn} />
-                    </Box>
-                </Tabs.Panel>
-                <Tabs.Panel value="arbeidsgivere">
-                    <Box paddingBlock="4">
-                        <ArbeidsgiverInfo arbeidsgivere={arbeidsgivere} />
-                    </Box>
-                </Tabs.Panel>
-            </Tabs>
+            <VStack gap="10">
+                <DemoForm />
+                <Tabs defaultValue="arbeidsgivere">
+                    <Tabs.List>
+                        <Tabs.Tab value="søker" label="Søker" />
+                        <Tabs.Tab value="barn" label="Barn" />
+                        <Tabs.Tab value="arbeidsgivere" label="Arbeidsgivere" />
+                    </Tabs.List>
+                    <Tabs.Panel value="søker">
+                        <Box paddingBlock="4">
+                            <SøkerInfo søker={søker} />
+                        </Box>
+                    </Tabs.Panel>
+                    <Tabs.Panel value="barn">
+                        <Box paddingBlock="4">
+                            <BarnInfo barn={barn} />
+                        </Box>
+                    </Tabs.Panel>
+                    <Tabs.Panel value="arbeidsgivere">
+                        <Box paddingBlock="4">
+                            <ArbeidsgiverInfo arbeidsgivere={arbeidsgivere} />
+                        </Box>
+                    </Tabs.Panel>
+                </Tabs>
+            </VStack>
         </Page>
     );
 };
