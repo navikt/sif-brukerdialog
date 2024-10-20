@@ -25,6 +25,8 @@ COPY ${SERVER} ${SERVER}
 RUN find apps \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xargs rm -rf
 RUN find packages \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xargs rm -rf
 RUN find ${SERVER} \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xargs rm -rf
+COPY apps/${APP}/env.schema.ts ${SERVER}/envSchema.ts
+
 
 #########################################
 # BUILDER IMAGE - INSTALL PACKAGES AND COPY SOURCE
@@ -43,7 +45,6 @@ COPY . .
 FROM installer AS server-build
 ARG SERVER
 WORKDIR /app/${SERVER}
-COPY --from=prepare /app/apps/${APP}/env.schema.ts ./
 RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
     PACKAGES_AUTH_TOKEN=$(cat /run/secrets/PACKAGES_AUTH_TOKEN) yarn build
 
@@ -56,7 +57,6 @@ FROM installer AS client-build
 WORKDIR /app
 RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
     PACKAGES_AUTH_TOKEN=$(cat /run/secrets/PACKAGES_AUTH_TOKEN) yarn turbo run build --filter=${SCOPE}
-RUN yarn workspace ${SCOPE} run build-env-schema
 RUN mv /app/apps/${APP}/dist /public
 
 
