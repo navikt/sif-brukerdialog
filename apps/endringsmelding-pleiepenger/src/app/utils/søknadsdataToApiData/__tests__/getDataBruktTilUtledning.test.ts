@@ -11,15 +11,6 @@ import {
     getUkjentArbeidsforholdApiDataFromSøknadsdata,
     mapArbeidsforholdToArbeidsforholdApiData,
 } from '../getDataBruktTilUtledning';
-import { vi } from 'vitest';
-
-const commitSha = 'abc';
-
-vi.mock('@navikt/sif-common-env', () => ({
-    getCommitShaFromEnv: () => {
-        return commitSha;
-    },
-}));
 
 describe('getDataBruktTilUtledningAnnetData', () => {
     it('returnerer riktig valgte endringer når kun ferie er valgt', () => {

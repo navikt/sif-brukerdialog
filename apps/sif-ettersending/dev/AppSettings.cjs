@@ -4,7 +4,6 @@ const getAppSettings = () => ({
     ENV: `${process.env.ENV}`,
     APP_VERSION: `${process.env.APP_VERSION}`,
     GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
-    IMAGE: `${process.env.IMAGE}`,
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
     SIF_PUBLIC_DEKORATOR_URL: `${process.env.SIF_PUBLIC_DEKORATOR_URL}`,
     SIF_PUBLIC_USE_AMPLITUDE: `${process.env.SIF_PUBLIC_USE_AMPLITUDE}`,

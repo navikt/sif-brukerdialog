@@ -24,6 +24,8 @@ export default defineConfig({
         url: 'http://localhost:8080',
         reuseExistingServer: true,
         env: {
+            ENV: 'dev',
+            SIF_PUBLIC_USE_AMPLITUDE: 'true',
             K9_BRUKERDIALOG_PROSESSERING_API_URL: 'http://localhost:8089',
             K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: 'http://localhost:8089',
             PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/omsorgspenger',

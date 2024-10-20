@@ -5,7 +5,6 @@ const getAppSettings = () => ({
     APP_VERSION: `${process.env.APP_VERSION}`,
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
     GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
-    IMAGE: `${process.env.IMAGE}`,
 
     SIF_PUBLIC_APPSTATUS_DATASET: `${process.env.SIF_PUBLIC_APPSTATUS_DATASET}`,
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: `${process.env.SIF_PUBLIC_APPSTATUS_PROJECT_ID}`,

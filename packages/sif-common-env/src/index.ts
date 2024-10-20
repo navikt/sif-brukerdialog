@@ -53,12 +53,6 @@ export const getEnv = (key: BASE_ENV | string): string | undefined => {
     return env;
 };
 
-export const getCommitShaFromEnv = () => {
-    const image = getRequiredEnv('IMAGE') || '';
-    const parts = image.split('mono:');
-    return parts.length === 2 ? parts[1] : undefined;
-};
-
 interface CommonEnv {
     ENV: string;
     APP_VERSION: string;
