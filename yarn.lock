@@ -5188,7 +5188,6 @@ __metadata:
   dependencies:
     "@navikt/nav-dekoratoren-moduler": "npm:2.1.6"
     "@navikt/oasis": "npm:3.4.0"
-    "@navikt/sif-common-api": "npm:*"
     "@types/cookie-parser": "npm:1.4.7"
     "@types/express": "npm:5.0.0"
     "@types/morgan": "npm:1.9.9"
