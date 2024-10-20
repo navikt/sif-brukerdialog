@@ -24,22 +24,23 @@ export default defineConfig({
         url: 'http://localhost:8080',
         reuseExistingServer: true,
         env: {
+            ENV: 'dev',
             APP_VERSION: 'dev',
             NODE_ENV: 'development',
             PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker',
-            NPM_CONFIG_CACHE: '/tmp',
-
-            K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: 'dev-gcp:dusseldorf:k9-brukerdialog-prosessering',
-            K9_BRUKERDIALOG_PROSESSERING_API_URL: 'http://localhost:8089',
-            K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: '/api',
-
+            GITHUB_REF_NAME: 'branch-name',
             SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
             SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
             SIF_PUBLIC_DEKORATOR_URL:
-                'https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://omsorgspengerutbetaling-soknad.intern.dev.nav.no/oauth2/logout&redirectToApp=true',
+                'https://www.nav.no/dekoratoren/?simple=true&chatbot=false&logoutUrl=https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling/oauth2/logout',
             SIF_PUBLIC_LOGIN_URL:
-                'https://omsorgspengerutbetaling-soknad.intern.dev.nav.no/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling/soknad',
+                'http://localhost:8081/auth-mock/cookie?subject=mockSubject&redirect_location=http://localhost:8080',
             SIF_PUBLIC_MINSIDE_URL: 'https://www.intern.dev.nav.no/minside',
+            SIF_PUBLIC_USE_AMPLITUDE: 'false',
+            K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH:
+                '/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker/api',
+            K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: 'dev-gcp:dusseldorf:k9-brukerdialog-prosessering',
+            K9_BRUKERDIALOG_PROSESSERING_API_URL: 'http://k9-brukerdialog-prosessering',
         },
     },
 });

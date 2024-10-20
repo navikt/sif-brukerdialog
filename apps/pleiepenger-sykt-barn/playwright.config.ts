@@ -26,6 +26,7 @@ export default defineConfig({
         reuseExistingServer: true,
         timeout: 60000,
         env: {
+            ENV: 'dev',
             APP_VERSION: 'dev',
             NODE_ENV: 'development',
             PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/pleiepenger',
