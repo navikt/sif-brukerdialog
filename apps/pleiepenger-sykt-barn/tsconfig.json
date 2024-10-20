@@ -11,5 +11,5 @@
     },
     "sourceMap": true,
     "exclude": ["node_modules", "src/build", "**.js", "dist"],
-    "include": ["./src/app/**/*", "./src/mocks/**/*", "envSchema.ts"]
+    "include": ["./src/app/**/*", "./src/mocks/**/*"]
 }

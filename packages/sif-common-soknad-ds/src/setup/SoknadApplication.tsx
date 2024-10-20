@@ -16,11 +16,11 @@ import {
     getNynorskLocale,
     setLocaleInSessionStorage,
 } from '@navikt/sif-common-core-ds/src/utils/localeUtils';
+import { commonEnv, getEnv, isProd } from '@navikt/sif-common-env';
 import { FaroProvider } from '@navikt/sif-common-faro';
 import dayjs from 'dayjs';
 import 'dayjs/locale/nb';
 import 'dayjs/locale/nn';
-import { commonEnv, getEnv, isProd } from '../../../sif-common-env/src';
 import DevBranchInfo from '../components/dev-branch-info/DevBranchInfo';
 import ErrorBoundary from '../components/errorBoundary/ErrorBoundary';
 import SoknadErrorMessages from '../components/soknad-error-messages/SoknadErrorMessages';

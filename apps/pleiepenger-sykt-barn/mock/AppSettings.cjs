@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const envSchema = require('../envSchema.cjs');
+const envSchema = require('./envSchema.cjs');
 
 const getAppSettings = () => {
     const result = envSchema.safeParse({

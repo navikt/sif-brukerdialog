@@ -1,7 +1,7 @@
 import { SanityConfig } from '@navikt/appstatus-react-ds';
 import { Navigate, Route } from 'react-router-dom';
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
-import { commonEnv, getEnv } from '@navikt/sif-common-env';
+import { getEnv } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
@@ -10,6 +10,7 @@ import {
 import MockDate from 'mockdate';
 import { purge } from './api/api';
 import RouteConfig from './config/routeConfig';
+import { appEnv } from './env/appEnv';
 import { applicationIntlMessages } from './i18n';
 import GeneralErrorPage from './pages/general-error-page/GeneralErrorPage';
 import Søknad from './søknad/Søknad';
@@ -19,7 +20,7 @@ import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.less';
 
-const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID } = commonEnv;
+const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID } = appEnv;
 ensureBaseNameForReactRouter(PUBLIC_PATH);
 
 const envNow = getEnv('MOCK_DATE');
@@ -32,7 +33,7 @@ if (envNow && getEnv('USE_MOCK_DATE') === 'true') {
 appSentryLogger.init();
 
 const App = () => {
-    const useAmplitude = commonEnv.SIF_PUBLIC_USE_AMPLITUDE === 'true';
+    const useAmplitude = appEnv.SIF_PUBLIC_USE_AMPLITUDE === 'true';
 
     const sanityConfig: SanityConfig = {
         projectId: SIF_PUBLIC_APPSTATUS_PROJECT_ID,

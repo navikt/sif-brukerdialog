@@ -1,4 +1,4 @@
-import { commonEnv } from '@navikt/sif-common-env';
+import { appEnv } from '../env/appEnv';
 
 enum RouteConfig {
     UTILGJENGELIG_ROUTE = '/utilgjengelig',
@@ -9,7 +9,7 @@ enum RouteConfig {
 }
 
 export const getRouteUrl = (route: RouteConfig): string => {
-    const publicPath = commonEnv.PUBLIC_PATH;
+    const publicPath = appEnv.PUBLIC_PATH;
     return `${publicPath}${route}`;
 };
 

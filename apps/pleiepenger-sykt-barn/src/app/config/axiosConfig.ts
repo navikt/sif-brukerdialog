@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import { commonEnv } from '@navikt/sif-common-env';
+import { appEnv } from '../env/appEnv';
 
 const axiosConfigCommon: AxiosRequestConfig = {
     withCredentials: false,
@@ -8,5 +8,5 @@ const axiosConfigCommon: AxiosRequestConfig = {
 
 export const axiosConfigPsb: AxiosRequestConfig = {
     ...axiosConfigCommon,
-    baseURL: commonEnv.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH,
+    baseURL: appEnv.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH,
 };
