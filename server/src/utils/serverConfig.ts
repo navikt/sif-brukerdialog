@@ -63,6 +63,7 @@ export const getPublicEnvVariables = () => {
     }
     return publicEnv;
 };
+
 const app = {
     port: Number(process.env.PORT) || 8080,
     env: process.env.ENV as 'dev' | 'prod',
