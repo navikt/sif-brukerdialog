@@ -3,7 +3,7 @@ import { ArbeiderIPeriodenSvar, TimerEllerProsent } from '../../../../types';
 import { getArbeidstidSøknadsdataFromFormValues } from '../arbeidstidStepUtils';
 
 vi.mock('@navikt/sif-common-env', () => {
-    return { getRequiredEnv: () => '', commonEnv: {} };
+    return { getRequiredEnv: () => '', getEnv: () => '', commonEnv: {} };
 });
 
 describe('arbeidstidStepUtils', () => {
