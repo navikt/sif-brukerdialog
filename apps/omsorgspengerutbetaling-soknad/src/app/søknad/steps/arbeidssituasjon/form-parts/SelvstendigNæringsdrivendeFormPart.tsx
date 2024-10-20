@@ -10,7 +10,6 @@ import VirksomhetInfoAndDialog from '@navikt/sif-common-forms-ds/src/forms/virks
 import { AppText, useAppIntl } from '../../../../i18n';
 import getLenker from '../../../../lenker';
 import { ArbeidssituasjonFormFields, ArbeidssituasjonFormValues } from '../ArbeidssituasjonStep';
-import { appEnv } from '../../../../utils/appEnv';
 
 const { YesOrNoQuestion } = getTypedFormComponents<
     ArbeidssituasjonFormFields,
@@ -24,7 +23,6 @@ interface Props {
 
 const SelvstendigNæringsdrivendeFormPart: React.FC<Props> = ({ values }) => {
     const { intl, text } = useAppIntl();
-    const skipOrgNumValidation = appEnv.SIF_PUBLIC_SKIP_ORGNUM_VALIDATION === 'true';
     const { selvstendig_erSelvstendigNæringsdrivende, selvstendig_virksomhet, selvstendig_harFlereVirksomheter } =
         values;
     const erSelvstendigNæringsdrivende = selvstendig_erSelvstendigNæringsdrivende === YesOrNo.YES;
@@ -84,7 +82,6 @@ const SelvstendigNæringsdrivendeFormPart: React.FC<Props> = ({ values }) => {
                                 ? text('selvstendig.infoDialog.tittel.flere')
                                 : text('selvstendig.infoDialog.tittel.en'),
                         }}
-                        skipOrgNumValidation={skipOrgNumValidation}
                         validate={getRequiredFieldValidator()}
                     />
                 </FormBlock>

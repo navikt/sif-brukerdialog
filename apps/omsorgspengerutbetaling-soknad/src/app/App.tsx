@@ -1,6 +1,6 @@
 import { Navigate, Route } from 'react-router-dom';
 import { OmsorgspengerutbetalingSNFriApp } from '@navikt/sif-app-register';
-import { getEnv } from '@navikt/sif-common-env';
+import { commonEnv, getEnv } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
@@ -11,7 +11,6 @@ import { applicationIntlMessages } from './i18n';
 import IkkeTilgangPage from './pages/ikke-tilgang-page/IkkeTilgangPage';
 import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
-import { appEnv } from './utils/appEnv';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.css';
@@ -20,7 +19,7 @@ const {
     PUBLIC_PATH,
     SIF_PUBLIC_APPSTATUS_DATASET: SIF_PUBLIC_APPSTATUS_DATASET,
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: SIF_PUBLIC_APPSTATUS_PROJECT_ID,
-} = appEnv;
+} = commonEnv;
 
 const envNow = getEnv('MOCK_DATE');
 if (envNow && getEnv('USE_MOCK_DATE') === 'true') {
