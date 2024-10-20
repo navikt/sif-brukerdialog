@@ -18,6 +18,7 @@ export const setupAndServeHtml = async (app: Express) => {
     const renderedHtml = html.replaceAll(
         '{{{APP_SETTINGS}}}',
         JSON.stringify({
+            ENV: `${config.app.env}`,
             APP_VERSION: `${config.app.version}`,
             PUBLIC_PATH: `${config.app.publicPath}`,
             GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
