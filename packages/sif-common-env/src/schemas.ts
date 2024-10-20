@@ -13,7 +13,6 @@ export const commonEnvSchema = z.object({
     [SIF_ENV.SIF_PUBLIC_APPSTATUS_DATASET]: z.string(),
     [SIF_ENV.SIF_PUBLIC_APPSTATUS_PROJECT_ID]: z.string(),
     [SIF_ENV.SIF_PUBLIC_DEKORATOR_URL]: z.string(),
-    [SIF_ENV.SIF_PUBLIC_INNSYN_URL]: z.string(),
     [SIF_ENV.SIF_PUBLIC_LOGIN_URL]: z.string(),
     [SIF_ENV.SIF_PUBLIC_MINSIDE_URL]: z.string(),
     [SIF_ENV.SIF_PUBLIC_USE_AMPLITUDE]: z.string().optional(),
