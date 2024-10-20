@@ -3,8 +3,10 @@ import { SIF_ENV_KEY } from './types';
 let appSettingsInline;
 
 const extractAppSettings = () => {
-    const settingsNode = document.getElementById('nav:appSettings') as HTMLScriptElement;
-    appSettingsInline = settingsNode ? JSON.parse(settingsNode.text) : undefined;
+    if (typeof document !== 'undefined') {
+        const settingsNode = document.getElementById('nav:appSettings') as HTMLScriptElement;
+        appSettingsInline = settingsNode ? JSON.parse(settingsNode.text) : undefined;
+    }
 };
 
 const getEnvFromAppSettings = (envName: string): string | undefined => {
