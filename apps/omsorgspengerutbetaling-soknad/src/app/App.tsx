@@ -1,6 +1,6 @@
 import { Navigate, Route } from 'react-router-dom';
 import { OmsorgspengerutbetalingSNFriApp } from '@navikt/sif-app-register';
-import { getEnvironmentVariable, getMaybeEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
+import { commonEnv, getEnv } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
@@ -15,16 +15,20 @@ import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.css';
 
-const publicPath = getEnvironmentVariable('PUBLIC_PATH');
+const {
+    PUBLIC_PATH,
+    SIF_PUBLIC_APPSTATUS_DATASET: SIF_PUBLIC_APPSTATUS_DATASET,
+    SIF_PUBLIC_APPSTATUS_PROJECT_ID: SIF_PUBLIC_APPSTATUS_PROJECT_ID,
+} = commonEnv;
 
-const envNow = getMaybeEnvironmentVariable('MOCK_DATE');
-if (envNow && getEnvironmentVariable('USE_MOCK_DATE') === 'true') {
+const envNow = getEnv('MOCK_DATE');
+if (envNow && getEnv('USE_MOCK_DATE') === 'true') {
     // eslint-disable-next-line no-console
     console.log(`setting time to: ${envNow}`);
     MockDate.set(new Date(envNow));
 }
 
-ensureBaseNameForReactRouter(publicPath);
+ensureBaseNameForReactRouter(PUBLIC_PATH);
 
 const App = () => (
     <SoknadApplication
@@ -34,11 +38,11 @@ const App = () => (
         intlMessages={applicationIntlMessages}
         appStatus={{
             sanityConfig: {
-                projectId: getEnvironmentVariable('SIF_PUBLIC_APPSTATUS_PROJECT_ID'),
-                dataset: getEnvironmentVariable('SIF_PUBLIC_APPSTATUS_DATASET'),
+                projectId: SIF_PUBLIC_APPSTATUS_PROJECT_ID,
+                dataset: SIF_PUBLIC_APPSTATUS_DATASET,
             },
         }}
-        publicPath={publicPath}>
+        publicPath={PUBLIC_PATH}>
         <SoknadApplicationCommonRoutes
             contentRoutes={[
                 <Route index key="redirect" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,

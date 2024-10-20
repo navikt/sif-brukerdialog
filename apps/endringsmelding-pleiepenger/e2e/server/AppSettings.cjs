@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const getAppSettings = (isTest) => {
     return {
+        ENV: `${process.env.ENV}`,
         APP_VERSION: `${process.env.APP_VERSION}`,
         NODE_ENV: `${process.env.NODE_ENV}`,
         PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
@@ -13,7 +14,8 @@ const getAppSettings = (isTest) => {
         SIF_PUBLIC_LOGIN_URL: `${process.env.SIF_PUBLIC_LOGIN_URL}`,
         SIF_PUBLIC_MINSIDE_URL: `${process.env.SIF_PUBLIC_MINSIDE_URL}`,
         SIF_PUBLIC_FEATURE_NYNORSK: `${process.env.SIF_PUBLIC_FEATURE_NYNORSK}`,
-        SIF_PUBLIC_INNSYN_URL: `${process.env.INNSYN_URL}`,
+        SIF_PUBLIC_INNSYN_URL: `${process.env.SIF_PUBLIC_INNSYN_URL}`,
+        SIF_PUBLIC_USE_AMPLITUDE: `${process.env.SIF_PUBLIC_USE_AMPLITUDE}`,
 
         K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: `${process.env.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH}`,
         K9_BRUKERDIALOG_PROSESSERING_API_URL: `${process.env.K9_BRUKERDIALOG_PROSESSERING_API_URL}`,
@@ -23,7 +25,7 @@ const getAppSettings = (isTest) => {
         DOMAIN_URL: `${process.env.DOMAIN_URL}`,
         MSW: isTest ? 'off' : `${process.env.MSW}`,
         E2E_TEST: isTest ? 'true' : false,
-        SIF_PUBLIC_FEATURE_VELG_SCENARIO: isTest ? 'on' : `${process.env.SIF_PUBLIC_FEATURE_VELG_SCENARIO}`,
+        VELG_SCENARIO: isTest ? 'on' : `${process.env.VELG_SCENARIO}`,
         NOW: `${process.env.NOW}`,
     };
 };

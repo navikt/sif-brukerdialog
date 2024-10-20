@@ -1,5 +1,5 @@
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { Søknadstype } from '../types/Søknadstype';
+import { appEnv } from '../utils/appEnv';
 
 interface RouteConfig {
     UTILGJENGELIG_ROUTE: string;
@@ -28,4 +28,4 @@ export const getRouteConfig = (søknadstype: Søknadstype): RouteConfig => {
     };
 };
 
-export const getAbsoluteUrlForRoute = (route: string): string => `${getEnvironmentVariable('PUBLIC_PATH')}${route}`;
+export const getAbsoluteUrlForRoute = (route: string): string => `${appEnv.PUBLIC_PATH}${route}`;

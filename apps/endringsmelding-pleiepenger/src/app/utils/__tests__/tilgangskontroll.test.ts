@@ -10,8 +10,8 @@ const arbeidsgiver3: Arbeidsgiver = { key: 'a_3', organisasjonsnummer: '3' } as 
 const arbeidstaker1: K9SakArbeidstaker = { organisasjonsnummer: '1' } as K9SakArbeidstaker;
 const arbeidstaker2: K9SakArbeidstaker = { organisasjonsnummer: '2' } as K9SakArbeidstaker;
 
-vi.mock('@navikt/sif-common-core-ds/src/utils/envUtils', () => ({
-    getEnvironmentVariable: () => {
+vi.mock('@navikt/sif-common-env', () => ({
+    getRequiredEnv: () => {
         return false;
     },
 }));

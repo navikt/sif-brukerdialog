@@ -1,8 +1,8 @@
 import { BodyLong, Heading, Link, List } from '@navikt/ds-react';
 import { ListItem } from '@navikt/ds-react/List';
 import React from 'react';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { AppText } from '../../i18n';
+import { appEnv } from '../../utils/appEnv';
 
 const VelkommenGuideContent = () => (
     <>
@@ -16,7 +16,7 @@ const VelkommenGuideContent = () => (
                     id="page.velkommen.guide.tekst.1.1"
                     values={{
                         Lenke: (children: React.ReactNode) => (
-                            <Link href={getEnvironmentVariable('OMS_IKKE_TILSYN_URL')} inlineText={true}>
+                            <Link href={appEnv.OMS_IKKE_TILSYN_URL} inlineText={true}>
                                 {children}
                             </Link>
                         ),
@@ -45,7 +45,7 @@ const VelkommenGuideContent = () => (
                     id="page.velkommen.guide.tekst.1.2"
                     values={{
                         Lenke: (children: React.ReactNode) => (
-                            <Link href={getEnvironmentVariable('OMS_IKKE_TILSYN_URL')} inlineText={true}>
+                            <Link href={appEnv.OMS_IKKE_TILSYN_URL} inlineText={true}>
                                 {children}
                             </Link>
                         ),

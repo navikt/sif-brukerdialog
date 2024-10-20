@@ -1,6 +1,6 @@
 import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
-import { getEnvVariableOrDefault } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { storageParser } from '@navikt/sif-common-core-ds/src/utils/persistence/storageParser';
+import { commonEnv } from '@navikt/sif-common-env';
 import { RequestStatus } from '@types';
 import axios, { AxiosError, AxiosRequestConfig, RawAxiosRequestHeaders } from 'axios';
 import { relocateToLoginPage } from '../utils/navigationUtils';
@@ -14,13 +14,13 @@ const axiosConfigCommon: AxiosRequestConfig = {
 
 export const axiosConfigPsb: AxiosRequestConfig = {
     ...axiosConfigCommon,
-    baseURL: getEnvVariableOrDefault('K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH', 'http://localhost:8080'),
+    baseURL: commonEnv.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH,
 };
 
 const axiosConfigInnsyn: AxiosRequestConfig = {
     ...axiosConfigCommon,
     transformResponse: storageParser,
-    baseURL: getEnvVariableOrDefault('SIF_INNSYN_FRONTEND_PATH', 'http://localhost:8082'),
+    baseURL: commonEnv.SIF_INNSYN_FRONTEND_PATH,
 };
 
 axios.interceptors.request.use((config) => {

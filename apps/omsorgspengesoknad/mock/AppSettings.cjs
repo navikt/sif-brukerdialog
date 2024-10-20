@@ -1,11 +1,13 @@
 require('dotenv').config();
 
 const getAppSettings = () => ({
+    ENV: `${process.env.ENV}`,
     APP_VERSION: `${process.env.APP_VERSION}`,
     NODE_ENV: `${process.env.NODE_ENV}`,
     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
     GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
 
+    SIF_PUBLIC_USE_AMPLITUDE: `${process.env.SIF_PUBLIC_USE_AMPLITUDE}`,
     SIF_PUBLIC_APPSTATUS_DATASET: `${process.env.SIF_PUBLIC_APPSTATUS_DATASET}`,
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: `${process.env.SIF_PUBLIC_APPSTATUS_PROJECT_ID}`,
     SIF_PUBLIC_DEKORATOR_URL: `${process.env.SIF_PUBLIC_DEKORATOR_URL}`,

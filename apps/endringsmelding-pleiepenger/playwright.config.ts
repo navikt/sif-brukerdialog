@@ -25,7 +25,7 @@ export default defineConfig({
         reuseExistingServer: true,
         timeout: 60000,
         env: {
-            SIF_PUBLIC_FEATURE_VELG_SCENARIO: 'on',
+            VELG_SCENARIO: 'on',
             NOW: '2023-01-01',
             APP_VERSION: 'dev',
             ENV: 'dev',

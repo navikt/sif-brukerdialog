@@ -1,5 +1,5 @@
-import { getEnvironmentVariable } from '@navikt/sif-common-api';
 import axios, { AxiosRequestConfig } from 'axios';
+import { appEnv } from '../types/appEnv';
 
 const axiosConfig: AxiosRequestConfig = {
     withCredentials: false,
@@ -8,5 +8,5 @@ const axiosConfig: AxiosRequestConfig = {
 
 export const ungDeltakelseOpplyserApiClient = axios.create({
     ...axiosConfig,
-    baseURL: getEnvironmentVariable('UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH'),
+    baseURL: appEnv.UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH,
 });

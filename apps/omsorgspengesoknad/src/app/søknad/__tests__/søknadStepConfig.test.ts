@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { BarnSammeAdresse } from '../../types/BarnSammeAdresse';
 import { RegistrertBarn } from '../../types/RegistrertBarn';
 import { SøkersRelasjonTilBarnet } from '../../types/SøkersRelasjonTilBarnet';
@@ -10,6 +11,10 @@ const registrertBarn: RegistrertBarn = {
     fornavn: 'A',
     fødselsdato: new Date(),
 };
+
+vi.mock('@navikt/sif-common-env', () => {
+    return { getRequiredEnv: () => '', commonEnv: {}, getEnv: () => '' };
+});
 
 describe('søknadStepConfig', () => {
     describe('includeDeltBostedStep', () => {

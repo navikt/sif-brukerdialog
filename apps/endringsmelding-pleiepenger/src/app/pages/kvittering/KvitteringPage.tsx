@@ -1,9 +1,9 @@
 import { Link } from '@navikt/ds-react';
 import { useEffect } from 'react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { Kvittering } from '@navikt/sif-common-soknad-ds';
 import { AppText, useAppIntl } from '../../i18n';
+import { appEnv } from '../../utils/appEnv';
 
 interface Props {
     onUnmount: () => void;
@@ -22,7 +22,7 @@ const KvitteringPage = ({ onUnmount }: Props) => {
                 <AppText
                     id="kvitteringPage.info.1"
                     values={{
-                        Lenke: (children) => <Link href={getEnvironmentVariable('INNSYN_URL')}>{children}</Link>,
+                        Lenke: (children) => <Link href={appEnv.INNSYN_URL}>{children}</Link>,
                     }}
                 />
             </Kvittering>

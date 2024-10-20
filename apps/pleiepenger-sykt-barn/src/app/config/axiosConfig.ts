@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import { getEnvVariableOrDefault } from '@navikt/sif-common-core-ds/src/utils/envUtils';
+import { commonEnv } from '@navikt/sif-common-env';
 
 const axiosConfigCommon: AxiosRequestConfig = {
     withCredentials: false,
@@ -8,5 +8,5 @@ const axiosConfigCommon: AxiosRequestConfig = {
 
 export const axiosConfigPsb: AxiosRequestConfig = {
     ...axiosConfigCommon,
-    baseURL: getEnvVariableOrDefault('K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH', 'http://localhost:8089'),
+    baseURL: commonEnv.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH,
 };
