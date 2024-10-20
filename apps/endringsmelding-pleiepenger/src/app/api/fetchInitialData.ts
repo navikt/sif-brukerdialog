@@ -1,4 +1,5 @@
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
+import { getEnv } from '@navikt/sif-common-env';
 import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
 import {
     Arbeidsgiver,
@@ -24,7 +25,6 @@ import søknadStateEndpoint, {
     isPersistedSøknadStateValid,
     SøknadStatePersistence,
 } from './endpoints/søknadStateEndpoint';
-import { getEnv } from '../../../../../packages/sif-common-env/src';
 
 export const fetchInitialData = async (
     tillattEndringsperiode: DateRange,

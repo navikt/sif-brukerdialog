@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { getEnv } from '@navikt/sif-common-env';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { DateRange } from '@navikt/sif-common-utils';
 import {
@@ -13,7 +14,6 @@ import {
     TimerEllerProsent,
 } from '@types';
 import { appSentryLogger } from '@utils';
-import { getEnv } from '../../../../../packages/sif-common-env/src';
 import { SøknadStatePersistence } from '../api/endpoints/søknadStateEndpoint';
 import { fetchInitialData } from '../api/fetchInitialData';
 import { APP_VERSJON } from '../constants/APP_VERSJON';

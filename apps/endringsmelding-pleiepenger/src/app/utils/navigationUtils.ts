@@ -1,4 +1,4 @@
-import { commonEnv } from '../../../../../packages/sif-common-env/src';
+import { commonEnv } from '@navikt/sif-common-env';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import { appEnv } from './appEnv';
 

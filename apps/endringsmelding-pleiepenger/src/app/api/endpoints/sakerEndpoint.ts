@@ -1,4 +1,5 @@
 import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
+import { getEnv } from '@navikt/sif-common-env';
 import { isK9FormatError, K9Format, K9FormatArbeidstid, K9Sak, UgyldigK9SakFormat } from '@types';
 import {
     appSentryLogger,
@@ -9,7 +10,6 @@ import {
     parseK9Format,
 } from '@utils';
 import { isAxiosError } from 'axios';
-import { getEnv } from '../../../../../../packages/sif-common-env/src';
 import { verifyK9Format } from '../../utils/verifyk9Format';
 import api from '../api';
 import { ApiEndpointInnsyn } from './';

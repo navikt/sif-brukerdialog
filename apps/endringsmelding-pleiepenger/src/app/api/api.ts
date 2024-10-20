@@ -1,8 +1,8 @@
 import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { storageParser } from '@navikt/sif-common-core-ds/src/utils/persistence/storageParser';
+import { commonEnv } from '@navikt/sif-common-env';
 import { RequestStatus } from '@types';
 import axios, { AxiosError, AxiosRequestConfig, RawAxiosRequestHeaders } from 'axios';
-import { commonEnv } from '../../../../../packages/sif-common-env/src';
 import { relocateToLoginPage } from '../utils/navigationUtils';
 import { ApiEndpointInnsyn, ApiEndpointPsb } from './endpoints';
 

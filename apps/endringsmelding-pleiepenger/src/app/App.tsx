@@ -5,7 +5,7 @@ import { ensureBaseNameForReactRouter, SoknadApplication } from '@navikt/sif-com
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import MockDate from 'mockdate';
-import { commonEnv, getEnv, isDevMode } from '../../../../packages/sif-common-env/src';
+import { commonEnv, getEnv, isDevMode } from '@navikt/sif-common-env';
 import DevPage from './dev/DevPage';
 import { applicationIntlMessages } from './i18n';
 import { SøknadRoutes } from './søknad/config/SøknadRoutes';
