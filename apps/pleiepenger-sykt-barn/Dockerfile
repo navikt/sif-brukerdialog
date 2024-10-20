@@ -35,7 +35,8 @@ COPY --from=prepare /app ./
 RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
     PACKAGES_AUTH_TOKEN=$(cat /run/secrets/PACKAGES_AUTH_TOKEN) yarn
 COPY . .
-COPY apps/${APP}/env.schema.ts ${SERVER}/envSchema.ts
+# Overskriv envSchema.ts i server med env.schema.ts fra app
+COPY apps/${APP}/env.schema.ts ${SERVER}/src/envSchema.ts
 
 #########################################
 # BUILD SERVER
