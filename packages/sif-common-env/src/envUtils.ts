@@ -1,9 +1,16 @@
 import { SIF_ENV_KEY } from './types';
 
-const settingsNode = document.getElementById('nav:appSettings') as HTMLScriptElement;
-const appSettingsInline = settingsNode ? JSON.parse(settingsNode.text) : undefined;
+let appSettingsInline;
+
+const extractAppSettings = () => {
+    const settingsNode = document.getElementById('nav:appSettings') as HTMLScriptElement;
+    appSettingsInline = settingsNode ? JSON.parse(settingsNode.text) : undefined;
+};
 
 const getEnvFromAppSettings = (envName: string): string | undefined => {
+    if (!appSettingsInline) {
+        extractAppSettings();
+    }
     const envs = appSettingsInline || (window as any).appSettings || {};
     const envValue = envs[envName] || envs[`SIF_PUBLIC_${envName}`];
     return envValue === undefined || envValue === 'undefined' ? undefined : envValue;
