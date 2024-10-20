@@ -21,7 +21,6 @@
         "SIF_PUBLIC_APPSTATUS_DATASET": "staging",
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
         "SIF_PUBLIC_DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&logoutUrl=https://k9-ettersending-soknad.intern.dev.nav.no/oauth2/logout&redirectToApp=true",
-        "SIF_PUBLIC_DITT_NAV_URL": "https://www.dev.nav.no/person/dittnav/",
         "SIF_PUBLIC_ENDRINGSMELDING_PP": "https://endringsmelding-pleiepenger.intern.dev.nav.no",
         "SIF_PUBLIC_INNSYN_PP": "https://https://dine-pleiepenger.intern.dev.nav.no/",
         "SIF_PUBLIC_LOGIN_URL": "https://k9-ettersending-soknad.intern.dev.nav.no/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/ettersending",
