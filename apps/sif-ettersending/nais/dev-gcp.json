@@ -14,8 +14,8 @@
     "env": {
         "ENV": "dev",
         "APP_VERSION": "dev",
-        "NODE_ENV": "development",
         "NPM_CONFIG_CACHE": "/tmp",
+        "NODE_ENV": "development",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/ettersending",
 
         "SIF_PUBLIC_APPSTATUS_DATASET": "staging",

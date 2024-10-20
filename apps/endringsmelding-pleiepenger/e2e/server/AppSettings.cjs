@@ -25,7 +25,7 @@ const getAppSettings = (isTest) => {
         DOMAIN_URL: `${process.env.DOMAIN_URL}`,
         MSW: isTest ? 'off' : `${process.env.MSW}`,
         E2E_TEST: isTest ? 'true' : false,
-        SIF_PUBLIC_FEATURE_VELG_SCENARIO: isTest ? 'on' : `${process.env.SIF_PUBLIC_FEATURE_VELG_SCENARIO}`,
+        VELG_SCENARIO: isTest ? 'on' : `${process.env.VELG_SCENARIO}`,
         NOW: `${process.env.NOW}`,
     };
 };

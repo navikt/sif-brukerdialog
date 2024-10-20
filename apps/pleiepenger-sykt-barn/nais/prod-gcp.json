@@ -15,8 +15,8 @@
         "ENV": "prod",
         "APP_VERSION": "prod",
         "NODE_ENV": "production",
-        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/pleiepenger",
         "NPM_CONFIG_CACHE": "/tmp",
+        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/pleiepenger",
 
         "SIF_PUBLIC_APPSTATUS_DATASET": "production",
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",

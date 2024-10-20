@@ -75,7 +75,7 @@ const Søknad = () => {
         <SøknadContextProvider initialData={initialData.data}>
             <StepFormValuesContextProvider>
                 <SøknadRouter />
-                {getEnv('SIF_PUBLIC_FEATURE_VELG_SCENARIO') === 'on' && <DevFooter />}
+                {getEnv('VELG_SCENARIO') === 'on' && <DevFooter />}
             </StepFormValuesContextProvider>
         </SøknadContextProvider>
     );
