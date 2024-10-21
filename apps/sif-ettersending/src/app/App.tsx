@@ -1,6 +1,5 @@
 import { Navigate, Route } from 'react-router-dom';
 import { EttersendelseApp } from '@navikt/sif-app-register';
-import { commonEnv } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
@@ -10,11 +9,12 @@ import { applicationIntlMessages } from './i18n';
 import GeneralErrorPage from './pages/general-error-page/GeneralErrorPage';
 import IntroPage from './pages/intro-page/IntroPage';
 import SoknadRemoteDataFetcher from './soknad/SoknadRemoteDataFetcher';
+import { appEnv } from './utils/appEnv';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.css';
 
-const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_PROJECT_ID, SIF_PUBLIC_APPSTATUS_DATASET } = commonEnv;
+const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_PROJECT_ID, SIF_PUBLIC_APPSTATUS_DATASET } = appEnv;
 
 ensureBaseNameForReactRouter(PUBLIC_PATH);
 
