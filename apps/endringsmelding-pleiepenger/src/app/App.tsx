@@ -1,21 +1,22 @@
 import { createRoot } from 'react-dom/client';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
+import { getEnv, isDevMode } from '@navikt/sif-common-env';
 import { ensureBaseNameForReactRouter, SoknadApplication } from '@navikt/sif-common-soknad-ds';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import MockDate from 'mockdate';
-import { getCommonEnv, getEnv, isDevMode } from '@navikt/sif-common-env';
 import DevPage from './dev/DevPage';
 import { applicationIntlMessages } from './i18n';
 import { SøknadRoutes } from './søknad/config/SøknadRoutes';
 import Søknad from './søknad/Søknad';
+import { appEnv } from './utils/appEnv';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 
 dayjs.extend(isoWeek);
 
-const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID } = getCommonEnv();
+const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID } = appEnv;
 const container = document.getElementById('root');
 // eslint-disable-next-line
 const root = createRoot(container!);

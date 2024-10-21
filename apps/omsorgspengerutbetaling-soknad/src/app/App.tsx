@@ -1,6 +1,6 @@
 import { Navigate, Route } from 'react-router-dom';
 import { OmsorgspengerutbetalingSNFriApp } from '@navikt/sif-app-register';
-import { getCommonEnv, getEnv } from '@navikt/sif-common-env';
+import { getEnv } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
@@ -14,12 +14,13 @@ import { SøknadRoutes } from './types/SøknadRoutes';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.css';
+import { appEnv } from './utils/appEnv';
 
 const {
     PUBLIC_PATH,
     SIF_PUBLIC_APPSTATUS_DATASET: SIF_PUBLIC_APPSTATUS_DATASET,
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: SIF_PUBLIC_APPSTATUS_PROJECT_ID,
-} = getCommonEnv();
+} = appEnv;
 
 const envNow = getEnv('MOCK_DATE');
 if (envNow && getEnv('USE_MOCK_DATE') === 'true') {

@@ -6,11 +6,14 @@ import {
     UngDeltakelseOpplyserBrowserEnv,
 } from './schemas';
 
-const settingsNode = document.getElementById('nav:appSettings') as HTMLScriptElement;
-const appSettingsInline = settingsNode ? JSON.parse(settingsNode.text) : undefined;
+let envs;
 
 const getEnvFromAppSettings = (envName: string): string | undefined => {
-    const envs = appSettingsInline || (window as any).appSettings || {};
+    if (!envs) {
+        const settingsNode = document.getElementById('nav:appSettings') as HTMLScriptElement;
+        const appSettingsInline = settingsNode ? JSON.parse(settingsNode.text) : undefined;
+        envs = appSettingsInline || (window as any).appSettings || {};
+    }
     const envValue = envs[envName] || envs[`SIF_PUBLIC_${envName}`];
     return envValue === undefined || envValue === 'undefined' ? undefined : envValue;
 };

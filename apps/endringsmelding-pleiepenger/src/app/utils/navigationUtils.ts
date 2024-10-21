@@ -1,6 +1,7 @@
-import { getCommonEnv } from '@navikt/sif-common-env';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import { appEnv } from './appEnv';
+
+const { DOMAIN_URL, PUBLIC_PATH, INNSYN_URL, SIF_PUBLIC_MINSIDE_URL, SIF_PUBLIC_LOGIN_URL } = appEnv;
 
 const relocateTo = (url: string): void => {
     /** Hard redirect enforcing page reload */
@@ -8,13 +9,11 @@ const relocateTo = (url: string): void => {
 };
 
 const getSøknadRouteURL = (route: SøknadRoutes) => {
-    const DOMAIN_URL = appEnv.DOMAIN_URL || '';
-    const publicPath = getCommonEnv().PUBLIC_PATH;
-    return `${DOMAIN_URL}${publicPath}${route}`;
+    return `${DOMAIN_URL}${PUBLIC_PATH}${route}`;
 };
 
 export const relocateToWelcomePage = () => relocateTo(getSøknadRouteURL(SøknadRoutes.VELKOMMEN));
-export const relocateToLoginPage = () => relocateTo(getCommonEnv().SIF_PUBLIC_LOGIN_URL);
+export const relocateToLoginPage = () => relocateTo(SIF_PUBLIC_LOGIN_URL);
 export const relocateToNoAccessPage = (): void => relocateTo(getSøknadRouteURL(SøknadRoutes.IKKE_TILGANG));
-export const relocateToDinePleiepenger = (): void => relocateTo(appEnv.INNSYN_URL);
-export const relocateToMinSide = (): void => relocateTo(appEnv.SIF_PUBLIC_MINSIDE_URL);
+export const relocateToDinePleiepenger = (): void => relocateTo(INNSYN_URL);
+export const relocateToMinSide = (): void => relocateTo(SIF_PUBLIC_MINSIDE_URL);
