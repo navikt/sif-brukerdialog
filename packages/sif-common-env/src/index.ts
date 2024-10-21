@@ -6,6 +6,8 @@ export * from './envUtils';
 export * from './schemas';
 export * from './types';
 
+const isBrowser = typeof document !== 'undefined';
+
 export const getCommonEnv = (): CommonEnv => {
     return {
         ENV: getRequiredEnv(SIF_ENV.ENV),
@@ -42,4 +44,5 @@ export const getUngDeltakelseOpplyserBrowserEnv = (): UngDeltakelseOpplyserBrows
         UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH: getEnv(API_BROWSER_ENV.UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH) || '',
     };
 };
-export const commonEnv = getCommonEnv();
+
+export const commonEnv = isBrowser ? getCommonEnv() : {};

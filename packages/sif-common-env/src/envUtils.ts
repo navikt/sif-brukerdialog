@@ -2,8 +2,10 @@ import { SIF_ENV_KEY } from './types';
 
 let envs;
 
+const isBrowser = typeof document !== 'undefined';
+
 const extractAppSettings = () => {
-    if (typeof document !== 'undefined') {
+    if (isBrowser) {
         const settingsNode = document.getElementById('nav:appSettings') as HTMLScriptElement;
         const appSettingsInline = settingsNode ? JSON.parse(settingsNode.text) : undefined;
         envs = appSettingsInline || (window as any).appSettings || {};
