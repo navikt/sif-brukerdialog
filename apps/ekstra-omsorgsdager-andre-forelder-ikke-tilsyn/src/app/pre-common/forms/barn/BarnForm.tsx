@@ -98,7 +98,7 @@ const BarnForm = ({
                                 label={formLabels.fnr}
                                 validate={getFødselsnummerValidator({
                                     required: true,
-                                    allowHnr: isDevMode,
+                                    allowHnr: isDevMode(),
                                     disallowedValues: disallowedFødselsnumre,
                                 })}
                                 inputMode="numeric"

@@ -1,12 +1,12 @@
 import { Tag } from '@navikt/ds-react';
 import { useRef } from 'react';
-import { getEnv, isDevMode } from '../../../../sif-common-env/src';
+import { getEnv, isDevMode } from '@navikt/sif-common-env';
 
 const DevBranchInfo = () => {
     const tagRef = useRef<HTMLDivElement>(null);
     const devBranchName = getEnv('GITHUB_REF_NAME');
 
-    if (!devBranchName || devBranchName === 'undefined' || !isDevMode) {
+    if (!devBranchName || devBranchName === 'undefined' || !isDevMode()) {
         return null;
     }
 

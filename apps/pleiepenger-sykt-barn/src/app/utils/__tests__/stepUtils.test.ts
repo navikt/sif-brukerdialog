@@ -16,7 +16,7 @@ vi.mock('./../../validation/stepValidations', () => {
 });
 
 vi.mock('@navikt/sif-common-env', () => {
-    return { getRequiredEnv: () => '', getSifInnsynBrowserEnv: () => {}, commonEnv: {}, getEnv: () => '' };
+    return { getRequiredEnv: () => '', getSifInnsynBrowserEnv: () => {}, getCommonEnv: () => {}, getEnv: () => '' };
 });
 
 const formValues: Partial<SøknadFormValues> = {};

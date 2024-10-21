@@ -1,7 +1,7 @@
-import { commonEnv } from '@navikt/sif-common-env';
+import { getCommonEnv } from '@navikt/sif-common-env';
 
 const getAppEnv = () => ({
-    ...commonEnv,
+    ...getCommonEnv(),
 });
 
 export const appEnv = getAppEnv();

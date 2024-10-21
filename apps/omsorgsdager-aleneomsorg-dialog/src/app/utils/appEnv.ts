@@ -1,7 +1,7 @@
-import { commonEnv, getRequiredEnv } from '@navikt/sif-common-env';
+import { getCommonEnv, getRequiredEnv } from '@navikt/sif-common-env';
 
 const getAppEnv = () => ({
-    ...commonEnv,
+    ...getCommonEnv(),
     OMS_IKKE_TILSYN_URL: getRequiredEnv('OMS_IKKE_TILSYN_URL'),
 });
 

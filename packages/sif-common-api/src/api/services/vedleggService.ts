@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { axiosMultipartConfig, k9BrukerdialogApiClient } from '../apiClient';
-import { commonEnv } from '@navikt/sif-common-env';
+import { getCommonEnv } from '@navikt/sif-common-env';
 
 const servicePath = '/vedlegg';
 
@@ -32,5 +32,5 @@ export const deleteVedlegg = async (id: string): Promise<AxiosResponse<any, any>
  * @returns url til frontend for å hente vedlegg
  */
 export const getVedleggFrontendUrl = (id: string): string => {
-    return `${commonEnv.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH}${servicePath}/${id}`;
+    return `${getCommonEnv().K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH}${servicePath}/${id}`;
 };

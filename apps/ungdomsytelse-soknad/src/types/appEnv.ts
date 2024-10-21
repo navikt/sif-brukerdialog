@@ -1,7 +1,7 @@
-import { commonEnv, getRequiredEnv } from '@navikt/sif-common-env';
+import { getCommonEnv, getRequiredEnv } from '@navikt/sif-common-env';
 
 const getAppEnv = () => ({
-    ...commonEnv,
+    ...getCommonEnv(),
     UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH: getRequiredEnv('UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH'),
 });
 

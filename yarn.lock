@@ -4874,6 +4874,7 @@ __metadata:
     vitest: "npm:2.1.3"
   peerDependencies:
     "@navikt/sif-common-core-ds": "*"
+    "@navikt/sif-common-env": "*"
     "@navikt/sif-common-formik-ds": "*"
     "@navikt/sif-common-ui": "*"
     "@navikt/sif-common-utils": "*"

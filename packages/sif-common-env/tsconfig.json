@@ -4,5 +4,5 @@
         "outDir": "./lib"
     },
     "exclude": ["src/**/*.spec.*", "src/**/*.test.*", "src/**/*.stories.*"],
-    "include": ["src"]
+    "include": ["src", "envUtils.ts"]
 }

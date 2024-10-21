@@ -14,7 +14,7 @@ const defaultAnsattArbeidsforhold: ArbeidsforholdFormValues = {
 };
 
 vi.mock('@navikt/sif-common-env', () => {
-    return { getRequiredEnv: () => '', commonEnv: {}, getEnv: () => '' };
+    return { getRequiredEnv: () => '', getCommonEnv: () => {}, getEnv: () => '' };
 });
 
 describe('visVernepliktSpørsmål', () => {

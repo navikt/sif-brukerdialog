@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosRequestConfig, HttpStatusCode } from 'axios';
 import { v4 } from 'uuid';
-import { commonEnv } from '@navikt/sif-common-env';
+import { getCommonEnv } from '@navikt/sif-common-env';
 
 export const isUnauthorized = (error: AxiosError): boolean =>
     error !== undefined && error.response !== undefined && error.response.status === HttpStatusCode.Unauthorized;
@@ -17,7 +17,7 @@ export const axiosMultipartConfig: AxiosRequestConfig = {
 
 export const k9BrukerdialogApiClient = axios.create({
     ...axiosConfig,
-    baseURL: commonEnv.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH,
+    baseURL: getCommonEnv().K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH,
 });
 
 /**
@@ -27,7 +27,7 @@ k9BrukerdialogApiClient.interceptors.response.use(
     (response) => response,
     (error) => {
         if (isUnauthorized(error)) {
-            window.location.assign(commonEnv.SIF_PUBLIC_LOGIN_URL);
+            window.location.assign(getCommonEnv().SIF_PUBLIC_LOGIN_URL);
         }
         return Promise.reject(error);
     },

@@ -102,7 +102,7 @@ const OpplysningerOmPleietrengendeForm = ({ andreVedlegg, søker, isSubmitting, 
                                 ? undefined
                                 : getFødselsnummerValidator({
                                       required: true,
-                                      allowHnr: isDevMode,
+                                      allowHnr: isDevMode(),
                                       disallowedValues: søker.fødselsnummer ? [søker.fødselsnummer] : [],
                                   })
                         }

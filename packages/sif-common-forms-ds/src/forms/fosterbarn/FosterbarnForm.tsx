@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import { isDevMode } from '@navikt/sif-common-env';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import {
     getFødselsnummerValidator,
@@ -10,7 +11,6 @@ import {
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { guid } from '@navikt/sif-common-utils';
-import { isDevMode } from '../../../../sif-common-env/src';
 import { FosterbarnMessageKeys, useFosterbarnIntl } from './fosterbarnMessages';
 import { Fosterbarn, isFosterbarn } from './types';
 
@@ -99,7 +99,7 @@ const FosterbarnForm = ({
                                 label={txt.form_fødselsnummer_label}
                                 validate={getFødselsnummerValidator({
                                     required: true,
-                                    allowHnr: isDevMode,
+                                    allowHnr: isDevMode(),
                                     disallowedValues: disallowedFødselsnumre?.filter(
                                         (f) => f !== initialValues.fødselsnummer,
                                     ),

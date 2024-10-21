@@ -43,7 +43,7 @@ const AnnetBarnPart = ({ søkersFødselsnummer, harRegistrerteBarn }: Props) => 
                             !barnetHarIkkeFnr
                                 ? getFødselsnummerValidator({
                                       required: true,
-                                      allowHnr: isDevMode,
+                                      allowHnr: isDevMode(),
                                       disallowedValues: [søkersFødselsnummer],
                                   })
                                 : undefined

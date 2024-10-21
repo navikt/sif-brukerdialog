@@ -63,7 +63,7 @@ const AnnetBarnPart: React.FC<Props> = ({ formValues, søkersFødselsnummer, att
                                 ? undefined
                                 : getFødselsnummerValidator({
                                       required: true,
-                                      allowHnr: isDevMode,
+                                      allowHnr: isDevMode(),
                                       disallowedValues: [søkersFødselsnummer],
                                   })
                         }

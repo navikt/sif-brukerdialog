@@ -96,7 +96,7 @@ const OmAnnenForelderStep = () => {
                                         label={text('step.omAnnenForelder.fnr.spm')}
                                         validate={getFødselsnummerValidator({
                                             required: true,
-                                            allowHnr: isDevMode,
+                                            allowHnr: isDevMode(),
                                             disallowedValues: [søker.fødselsnummer],
                                         })}
                                         inputMode="numeric"

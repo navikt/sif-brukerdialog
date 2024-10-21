@@ -1,7 +1,7 @@
-import { commonEnv, getRequiredEnv } from '@navikt/sif-common-env';
+import { getCommonEnv, getRequiredEnv } from '@navikt/sif-common-env';
 
 export const getAppEnv = () => ({
-    ...commonEnv,
+    ...getCommonEnv(),
     SIF_PUBLIC_FEATURE_NYNORSK: getRequiredEnv('SIF_PUBLIC_FEATURE_NYNORSK'),
 });
 

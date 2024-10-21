@@ -95,7 +95,7 @@ const OmBarnetForm = ({
                                     <AppText id="steg.omBarnet.annetBarn.tittel" />
                                 </FormLayout.SectionHeading>
                                 <FormLayout.Questions>
-                                    <AnnetBarnFnrSpørsmål søkersFnr={søker.fødselsnummer} allowHnr={isDevMode} />
+                                    <AnnetBarnFnrSpørsmål søkersFnr={søker.fødselsnummer} allowHnr={isDevMode()} />
                                     <AnnetBarnNavnSpørsmål />
                                     <AnnetBarnFødselsdatoSpørsmål />
                                     <AnnetBarnRelasjonSpørsmål />

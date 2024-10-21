@@ -71,7 +71,7 @@ export const validateNavn = (value: string): ValidationResult<ValidationError> =
 };
 
 export const validateFødselsnummer = (value: string): ValidationResult<ValidationError> => {
-    return getFødselsnummerValidator({ required: true, allowHnr: isDevMode })(value);
+    return getFødselsnummerValidator({ required: true, allowHnr: isDevMode() })(value);
 };
 
 export const validateFradato = (

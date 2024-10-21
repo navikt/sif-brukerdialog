@@ -1,7 +1,7 @@
-import { commonEnvSchema, sifInnsynBrowserEnvSchema } from '@navikt/sif-common-env';
+import { commonEnvSchema, sifInnsynEnvSchema } from '@navikt/sif-common-env';
 import * as z from 'zod';
 
-export const appEnvSchema = commonEnvSchema.merge(sifInnsynBrowserEnvSchema).extend({
+export const appEnvSchema = commonEnvSchema.merge(sifInnsynEnvSchema).extend({
     SIF_PUBLIC_INNSYN_URL: z.string(),
     MOCK_DATE: z.string().optional(),
     USE_MOCK_DATE: z.string().optional(),
