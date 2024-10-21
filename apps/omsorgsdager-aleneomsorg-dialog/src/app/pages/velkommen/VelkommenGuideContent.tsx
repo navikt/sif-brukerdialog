@@ -16,7 +16,7 @@ const VelkommenGuideContent = () => (
                     id="page.velkommen.guide.tekst.1.1"
                     values={{
                         Lenke: (children: React.ReactNode) => (
-                            <Link href={appEnv.OMS_IKKE_TILSYN_URL} inlineText={true}>
+                            <Link href={appEnv.SIF_PUBLIC_OMS_IKKE_TILSYN_URL} inlineText={true}>
                                 {children}
                             </Link>
                         ),
@@ -45,7 +45,7 @@ const VelkommenGuideContent = () => (
                     id="page.velkommen.guide.tekst.1.2"
                     values={{
                         Lenke: (children: React.ReactNode) => (
-                            <Link href={appEnv.OMS_IKKE_TILSYN_URL} inlineText={true}>
+                            <Link href={appEnv.SIF_PUBLIC_OMS_IKKE_TILSYN_URL} inlineText={true}>
                                 {children}
                             </Link>
                         ),

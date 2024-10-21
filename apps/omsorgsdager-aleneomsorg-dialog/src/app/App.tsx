@@ -1,6 +1,5 @@
 import { Navigate, Route } from 'react-router-dom';
 import { OmsorgsdagerAleneomsorgApp } from '@navikt/sif-app-register';
-import { commonEnv } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
@@ -12,8 +11,9 @@ import { SøknadRoutes } from './types/SøknadRoutes';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.css';
+import { appEnv } from './utils/appEnv';
 
-const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID } = commonEnv;
+const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID } = appEnv;
 
 ensureBaseNameForReactRouter(PUBLIC_PATH);
 

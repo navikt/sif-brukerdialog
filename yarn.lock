@@ -4103,6 +4103,7 @@ __metadata:
     "@navikt/sif-app-register": "npm:*"
     "@navikt/sif-common-amplitude": "npm:*"
     "@navikt/sif-common-core-ds": "npm:*"
+    "@navikt/sif-common-env": "npm:*"
     "@navikt/sif-common-faro": "npm:*"
     "@navikt/sif-common-formik-ds": "npm:*"
     "@navikt/sif-common-forms-ds": "npm:*"

@@ -27,6 +27,7 @@
         "@navikt/sif-app-register": "*",
         "@navikt/sif-common-amplitude": "*",
         "@navikt/sif-common-core-ds": "*",
+        "@navikt/sif-common-env": "*",
         "@navikt/sif-common-faro": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-forms-ds": "*",
