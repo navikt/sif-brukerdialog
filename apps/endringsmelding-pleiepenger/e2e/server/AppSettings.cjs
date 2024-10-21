@@ -16,16 +16,19 @@ const getAppSettings = (isTest) => {
         SIF_PUBLIC_FEATURE_NYNORSK: `${process.env.SIF_PUBLIC_FEATURE_NYNORSK}`,
         SIF_PUBLIC_INNSYN_URL: `${process.env.SIF_PUBLIC_INNSYN_URL}`,
         SIF_PUBLIC_USE_AMPLITUDE: `${process.env.SIF_PUBLIC_USE_AMPLITUDE}`,
+        SIF_PUBLIC_DOMAIN_URL: `${process.env.SIF_PUBLIC_DOMAIN_URL}`,
 
         K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: `${process.env.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH}`,
+        K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: `${process.env.K9_BRUKERDIALOG_PROSESSERING_API_SCOPE}`,
         K9_BRUKERDIALOG_PROSESSERING_API_URL: `${process.env.K9_BRUKERDIALOG_PROSESSERING_API_URL}`,
         SIF_INNSYN_FRONTEND_PATH: `${process.env.SIF_INNSYN_FRONTEND_PATH}`,
+        SIF_INNSYN_API_SCOPE: `${process.env.SIF_INNSYN_API_SCOPE}`,
         SIF_INNSYN_API_URL: `${process.env.SIF_INNSYN_API_URL}`,
 
-        DOMAIN_URL: `${process.env.DOMAIN_URL}`,
+        VELG_SCENARIO: isTest ? 'on' : `${process.env.VELG_SCENARIO}`,
+
         MSW: isTest ? 'off' : `${process.env.MSW}`,
         E2E_TEST: isTest ? 'true' : false,
-        VELG_SCENARIO: isTest ? 'on' : `${process.env.VELG_SCENARIO}`,
         NOW: `${process.env.NOW}`,
     };
 };

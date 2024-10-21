@@ -1,9 +1,11 @@
-import { getCommonEnv, getEnv, getRequiredEnv } from '@navikt/sif-common-env';
+import { getCommonEnv, getRequiredEnv, getSifInnsynBrowserEnv } from '@navikt/sif-common-env';
+import { AppEnv } from '../../../env.schema';
 
-const getAppEnv = () => ({
+const getAppEnv = (): AppEnv => ({
     ...getCommonEnv(),
-    INNSYN_URL: getRequiredEnv('SIF_PUBLIC_INNSYN_URL'),
-    DOMAIN_URL: getEnv('DOMAIN_URL'),
+    ...getSifInnsynBrowserEnv(),
+    SIF_PUBLIC_INNSYN_URL: getRequiredEnv('SIF_PUBLIC_INNSYN_URL'),
+    SIF_PUBLIC_DOMAIN_URL: getRequiredEnv('SIF_PUBLIC_DOMAIN_URL'),
 });
 
 export const appEnv = getAppEnv();
