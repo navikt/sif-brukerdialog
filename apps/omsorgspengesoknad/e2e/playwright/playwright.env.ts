@@ -19,5 +19,6 @@ export const playwrightEnv: AppEnv = {
     K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: 'dev-gcp:dusseldorf:k9-brukerdialog-prosessering',
     K9_BRUKERDIALOG_PROSESSERING_API_URL: 'http://k9-brukerdialog-prosessering',
     K9_SAK_INNSYN_FRONTEND_PATH: '/familie/sykdom-i-familien/soknad/omsorgspenger/api/k9-sak-innsyn',
+    K9_SAK_INNSYN_API_SCOPE: 'dev-gcp:dusseldorf:k9-sak-innsyn-api',
     K9_SAK_INNSYN_API_URL: 'http://k9-sak-innsyn-api',
 };
