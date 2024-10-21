@@ -30,7 +30,7 @@ export enum SIF_ENV {
  */
 
 export const commonEnvSchema = z.object({
-    [SIF_ENV.ENV]: z.string().min(1),
+    [SIF_ENV.ENV]: z.string(), //.min(1),
     [SIF_ENV.APP_VERSION]: z.string().min(1),
     [SIF_ENV.PUBLIC_PATH]: z.string().min(1),
     [SIF_ENV.GITHUB_REF_NAME]: z.string().min(1),
