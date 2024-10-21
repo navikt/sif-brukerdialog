@@ -4,5 +4,5 @@
         "outDir": "./lib"
     },
     "exclude": ["node_modules", "src/**/*.spec.*", "src/**/*.test.*", "src/**/*.stories.*"],
-    "include": ["src"]
+    "include": ["src", "./env.schema.ts", "./playwright-config.ts"]
 }
