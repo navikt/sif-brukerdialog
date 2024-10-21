@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.31.1
+
+### Patch Changes
+
+-   aeef241: Legge til manglende outbound rule
+
 ## 1.31.0
 
 ### Minor Changes
