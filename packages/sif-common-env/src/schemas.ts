@@ -30,19 +30,19 @@ export enum SIF_ENV {
  */
 
 export const commonEnvSchema = z.object({
-    [SIF_ENV.ENV]: z.string(),
-    [SIF_ENV.APP_VERSION]: z.string(),
-    [SIF_ENV.PUBLIC_PATH]: z.string(),
-    [SIF_ENV.GITHUB_REF_NAME]: z.string(),
-    [SIF_ENV.SIF_PUBLIC_APPSTATUS_DATASET]: z.string(),
-    [SIF_ENV.SIF_PUBLIC_APPSTATUS_PROJECT_ID]: z.string(),
-    [SIF_ENV.SIF_PUBLIC_DEKORATOR_URL]: z.string(),
-    [SIF_ENV.SIF_PUBLIC_LOGIN_URL]: z.string(),
-    [SIF_ENV.SIF_PUBLIC_MINSIDE_URL]: z.string(),
+    [SIF_ENV.ENV]: z.string().min(1),
+    [SIF_ENV.APP_VERSION]: z.string().min(1),
+    [SIF_ENV.PUBLIC_PATH]: z.string().min(1),
+    [SIF_ENV.GITHUB_REF_NAME]: z.string().min(1),
+    [SIF_ENV.SIF_PUBLIC_APPSTATUS_DATASET]: z.string().min(1),
+    [SIF_ENV.SIF_PUBLIC_APPSTATUS_PROJECT_ID]: z.string().min(1),
+    [SIF_ENV.SIF_PUBLIC_DEKORATOR_URL]: z.string().min(1),
+    [SIF_ENV.SIF_PUBLIC_LOGIN_URL]: z.string().min(1),
+    [SIF_ENV.SIF_PUBLIC_MINSIDE_URL]: z.string().min(1),
     [SIF_ENV.SIF_PUBLIC_USE_AMPLITUDE]: z.string().optional(),
-    [SIF_ENV.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH]: z.string(),
+    [SIF_ENV.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH]: z.string().min(1),
     [SIF_ENV.K9_BRUKERDIALOG_PROSESSERING_API_SCOPE]: z.string().min(1),
-    [SIF_ENV.K9_BRUKERDIALOG_PROSESSERING_API_URL]: z.string(),
+    [SIF_ENV.K9_BRUKERDIALOG_PROSESSERING_API_URL]: z.string().min(1),
 });
 
 export type CommonEnv = z.infer<typeof commonEnvSchema>;
