@@ -2,7 +2,7 @@ import { injectDecoratorServerSide } from '@navikt/nav-dekoratoren-moduler/ssr/i
 import cookieParser from 'cookie-parser';
 import { Express, Response } from 'express';
 import path from 'node:path';
-import { envSchema } from '../env.schema.js';
+import { appEnvSchema } from '../env.schema.js';
 import config, { getApiEnvVariables, getSifPublicEnvVariables } from './serverConfig.js';
 
 export const setupAndServeHtml = async (app: Express) => {
@@ -16,7 +16,7 @@ export const setupAndServeHtml = async (app: Express) => {
 
     const html = await injectDecorator(spaFilePath);
 
-    const envs = envSchema.safeParse({
+    const envs = appEnvSchema.safeParse({
         ENV: `${config.app.env}`,
         APP_VERSION: `${config.app.version}`,
         PUBLIC_PATH: `${config.app.publicPath}`,

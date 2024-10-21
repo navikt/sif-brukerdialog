@@ -5,6 +5,6 @@
 
 import { z } from 'zod';
 
-export const envSchema = z.object({
+export const appEnvSchema = z.object({
     someEnv: z.string(),
 });
