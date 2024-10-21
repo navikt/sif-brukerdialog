@@ -12,7 +12,7 @@ export const playwrightEnv: AppDevEnv = {
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
     SIF_PUBLIC_DEKORATOR_URL:
         'https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://endringsmelding-pleiepenger.intern.dev.nav.no/oauth2/logout',
-    SIF_PUBLIC_DOMAIN_URL: 'https://endringsmelding-pleiepenger.intern.dev.nav.no',
+    SIF_PUBLIC_DOMAIN_URL: 'http://localhost:8080',
     SIF_PUBLIC_LOGIN_URL:
         'http://localhost:8081/auth-mock/cookie?subject=mockSubject&redirect_location=http://localhost:8080',
     SIF_PUBLIC_INNSYN_URL: 'https://dine-pleiepenger.intern.dev.nav.no/innsyn',
