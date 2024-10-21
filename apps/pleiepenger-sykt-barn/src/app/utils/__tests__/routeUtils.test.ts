@@ -26,7 +26,7 @@ vi.mock('./../stepUtils', () => {
 });
 
 vi.mock('@navikt/sif-common-env', () => {
-    return { getRequiredEnv: () => '', getCommonEnv: () => {}, getEnv: () => '' };
+    return { getRequiredEnv: () => '', getCommonEnv: () => ({}), getEnv: () => '' };
 });
 
 const formValues = {} as any;
