@@ -5,6 +5,7 @@ import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import { isDevMode } from '@navikt/sif-common-env';
 import { resetFieldValue, resetFieldValues } from '@navikt/sif-common-formik-ds';
 import { SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds/src';
 import {
@@ -24,7 +25,6 @@ import { validateNavn } from '../../validation/fieldValidations';
 import SøknadFormComponents from '../SøknadFormComponents';
 import FødselsattestPart from './FødselsattestPart';
 import InfoForFarVedNyttBarn from './info/InfoForFarVedNyttBarn';
-import { isDevMode } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 
 interface Props {
     formValues: SøknadFormValues;
@@ -63,7 +63,7 @@ const AnnetBarnPart: React.FC<Props> = ({ formValues, søkersFødselsnummer, att
                                 ? undefined
                                 : getFødselsnummerValidator({
                                       required: true,
-                                      allowHnr: isDevMode,
+                                      allowHnr: isDevMode(),
                                       disallowedValues: [søkersFødselsnummer],
                                   })
                         }

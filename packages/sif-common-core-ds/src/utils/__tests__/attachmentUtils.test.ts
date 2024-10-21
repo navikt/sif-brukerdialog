@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { Attachment } from '../../types/Attachment';
 import {
     attachmentShouldBeProcessed,
@@ -12,6 +13,10 @@ import {
 
 const fileMock = new File([''], 'filename.png', { type: 'text/png' });
 const invalidFileMock = new File([''], 'filename.docx', { type: 'text/png' });
+
+vi.mock('@navikt/sif-common-env', () => ({
+    getCommonEnv: () => ({}),
+}));
 
 describe('attachmentUtils', () => {
     describe('fileExtensionIsValid', () => {

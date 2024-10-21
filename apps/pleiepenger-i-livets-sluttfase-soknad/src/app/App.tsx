@@ -1,6 +1,6 @@
 import { Navigate, Route } from 'react-router-dom';
 import { PleiepengerLivetsSluttApp } from '@navikt/sif-app-register';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
+
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
@@ -12,10 +12,11 @@ import { SøknadRoutes } from './types/SøknadRoutes';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.css';
+import { appEnv } from './utils/appEnv';
 
-const publicPath = getEnvironmentVariable('PUBLIC_PATH');
+const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID } = appEnv;
 
-ensureBaseNameForReactRouter(publicPath);
+ensureBaseNameForReactRouter(PUBLIC_PATH);
 
 const App = () => (
     <SoknadApplication
@@ -25,11 +26,11 @@ const App = () => (
         intlMessages={applicationIntlMessages}
         appStatus={{
             sanityConfig: {
-                projectId: getEnvironmentVariable('APPSTATUS_PROJECT_ID'),
-                dataset: getEnvironmentVariable('APPSTATUS_DATASET'),
+                projectId: SIF_PUBLIC_APPSTATUS_PROJECT_ID,
+                dataset: SIF_PUBLIC_APPSTATUS_DATASET,
             },
         }}
-        publicPath={publicPath}>
+        publicPath={PUBLIC_PATH}>
         <SoknadApplicationCommonRoutes
             contentRoutes={[
                 <Route index key="redirect" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,

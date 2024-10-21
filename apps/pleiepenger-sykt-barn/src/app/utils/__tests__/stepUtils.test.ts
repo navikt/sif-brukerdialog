@@ -15,6 +15,10 @@ vi.mock('./../../validation/stepValidations', () => {
     };
 });
 
+vi.mock('@navikt/sif-common-env', () => {
+    return { getRequiredEnv: () => '', getCommonEnv: () => ({}), getEnv: () => '' };
+});
+
 const formValues: Partial<SøknadFormValues> = {};
 
 describe('stepUtils', () => {

@@ -1,6 +1,6 @@
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import axios, { AxiosRequestConfig, RawAxiosRequestHeaders } from 'axios';
 import { ApiEndpoint } from '../types/ApiEndpoint';
+import { appEnv } from '../utils/appEnv';
 
 const axiosConfig: AxiosRequestConfig = {
     withCredentials: false,
@@ -13,7 +13,7 @@ const sendMultipartPostRequest = (url: string, formData: FormData) => {
     return axios.post(url, formData, axiosMultipartConfig);
 };
 
-axios.defaults.baseURL = getEnvironmentVariable('K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH');
+axios.defaults.baseURL = appEnv.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH;
 axios.defaults.withCredentials = false;
 axios.interceptors.request.use((config) => {
     return config;

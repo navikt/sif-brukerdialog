@@ -22,8 +22,8 @@ env:
     FRONTEND_VEDLEGG_URL: http://localhost:8089
     VEDLEGG_API_URL: http://localhost:8089
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    APPSTATUS_PROJECT_ID: ryujtq87
-    APPSTATUS_DATASET: staging
+    SIF_PUBLIC_APPSTATUS_PROJECT_ID: ryujtq87
+    SIF_PUBLIC_APPSTATUS_DATASET: staging
 
 jobs:
     run-script-tests:

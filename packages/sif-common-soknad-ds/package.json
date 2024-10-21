@@ -8,6 +8,7 @@
     "type": "module",
     "peerDependencies": {
         "@navikt/sif-common-core-ds": "*",
+        "@navikt/sif-common-env": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-forms-ds": "*",
         "@navikt/sif-common-hooks": "*",

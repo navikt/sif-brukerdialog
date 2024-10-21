@@ -22,6 +22,7 @@
         "@navikt/nav-dekoratoren-moduler": "2.1.6",
         "@navikt/sif-common-api": "*",
         "@navikt/sif-common-core-ds": "*",
+        "@navikt/sif-common-env": "*",
         "@navikt/sif-common-soknad-ds": "*",
         "@navikt/sif-common-ui": "*",
         "clsx": "2.1.1",

@@ -7,6 +7,15 @@ import { cleanupArbeidIPeriode, cleanupArbeidsuker } from '../cleanupArbeidstidS
 import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
 import { ArbeiderIPeriodenSvar } from '../../../../local-sif-common-pleiepenger';
 import { TimerEllerProsent } from '../../../../types';
+import { vi } from 'vitest';
+
+vi.mock('@navikt/sif-common-env', () => {
+    return {
+        getRequiredEnv: () => '',
+        getCommonEnv: () => ({}),
+        getEnv: () => '',
+    };
+});
 
 describe('cleanupArbeidstidStepUtils', () => {
     describe('cleanupArbeidIPeriode', () => {
