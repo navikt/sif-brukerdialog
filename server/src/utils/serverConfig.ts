@@ -55,28 +55,28 @@ export const verifyProxyConfigIsSet = (service: Service) => {
 };
 
 export const getSifPublicEnvVariables = () => {
-    const publicEnv: { [key: string]: string } = {};
+    const publicEnv: { [key: string]: string | undefined } = {};
     for (const [key, value] of Object.entries(process.env)) {
         if (key.startsWith('SIF_PUBLIC_')) {
-            publicEnv[key] = value || '';
+            publicEnv[key] = value;
         }
     }
     return publicEnv;
 };
 
 export const getApiEnvVariables = () => ({
-    K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: `${process.env.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH}`,
-    K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: `${process.env.K9_BRUKERDIALOG_PROSESSERING_API_SCOPE}`,
-    K9_BRUKERDIALOG_PROSESSERING_API_URL: `${process.env.K9_BRUKERDIALOG_PROSESSERING_API_URL}`,
-    K9_SAK_INNSYN_FRONTEND_PATH: `${process.env.K9_SAK_INNSYN_FRONTEND_PATH}`,
-    K9_SAK_INNSYN_API_SCOPE: `${process.env.K9_SAK_INNSYN_API_SCOPE}`,
-    K9_SAK_INNSYN_API_URL: `${process.env.K9_SAK_INNSYN_API_URL}`,
-    SIF_INNSYN_FRONTEND_PATH: `${process.env.SIF_INNSYN_FRONTEND_PATH}`,
-    SIF_INNSYN_API_SCOPE: `${process.env.SIF_INNSYN_API_SCOPE}`,
-    SIF_INNSYN_API_URL: `${process.env.SIF_INNSYN_API_URL}`,
-    UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH: `${process.env.UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH}`,
-    UNG_DELTAKELSE_OPPLYSER_API_SCOPE: `${process.env.UNG_DELTAKELSE_OPPLYSER_API_SCOPE}`,
-    UNG_DELTAKELSE_OPPLYSER_API_URL: `${process.env.UNG_DELTAKELSE_OPPLYSER_API_URL}`,
+    K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: process.env.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH,
+    K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: process.env.K9_BRUKERDIALOG_PROSESSERING_API_SCOPE,
+    K9_BRUKERDIALOG_PROSESSERING_API_URL: process.env.K9_BRUKERDIALOG_PROSESSERING_API_URL,
+    K9_SAK_INNSYN_FRONTEND_PATH: process.env.K9_SAK_INNSYN_FRONTEND_PATH,
+    K9_SAK_INNSYN_API_SCOPE: process.env.K9_SAK_INNSYN_API_SCOPE,
+    K9_SAK_INNSYN_API_URL: process.env.K9_SAK_INNSYN_API_URL,
+    SIF_INNSYN_FRONTEND_PATH: process.env.SIF_INNSYN_FRONTEND_PATH,
+    SIF_INNSYN_API_SCOPE: process.env.SIF_INNSYN_API_SCOPE,
+    SIF_INNSYN_API_URL: process.env.SIF_INNSYN_API_URL,
+    UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH: process.env.UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH,
+    UNG_DELTAKELSE_OPPLYSER_API_SCOPE: process.env.UNG_DELTAKELSE_OPPLYSER_API_SCOPE,
+    UNG_DELTAKELSE_OPPLYSER_API_URL: process.env.UNG_DELTAKELSE_OPPLYSER_API_URL,
 });
 
 const app = {

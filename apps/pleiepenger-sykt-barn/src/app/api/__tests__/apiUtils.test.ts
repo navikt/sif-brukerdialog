@@ -8,7 +8,7 @@ vi.mock('@navikt/sif-common-env', () => {
         getRequiredEnv: () => 'mockedApiUrl',
         getEnv: () => 'mockedApiUrl',
         getCommitShaFromEnv: () => 'mockedCommitSha',
-        getSifInnsynBrowserEnv: () => {},
+
         getCommonEnv: () => {},
     };
 });
