@@ -13,7 +13,7 @@ const registrertBarn: RegistrertBarn = {
 };
 
 vi.mock('@navikt/sif-common-env', () => {
-    return { getRequiredEnv: () => '', commonEnv: {}, getEnv: () => '' };
+    return { getRequiredEnv: () => '', getCommonEnv: () => ({}), getEnv: () => '' };
 });
 
 describe('søknadStepConfig', () => {
