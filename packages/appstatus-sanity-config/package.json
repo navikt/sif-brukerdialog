@@ -1,6 +1,6 @@
 {
     "name": "appstatus-sanity-config",
-    "version": "1.1.2",
+    "version": "1.1.3",
     "description": "",
     "main": "package.json",
     "author": "frodehansen2 <frode.hansen@bekk.no>",
@@ -26,7 +26,7 @@
         "@sanity/eslint-config-studio": "4.0.0",
         "@types/react": "18.3.11",
         "dayjs": "1.11.13",
-        "eslint": "9.12.0",
+        "eslint": "9.13.0",
         "prettier": "3.3.3",
         "react-is": "18.3.1",
         "typescript": "5.6.3"

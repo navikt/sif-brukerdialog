@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/omsorgsdager-aleneomsorg-dialog",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "2.21.9",
+    "version": "2.21.10",
     "private": true,
     "type": "module",
     "scripts": {
@@ -21,9 +21,9 @@
         "start-e2e-server": "node ./e2e/server/server.cjs"
     },
     "dependencies": {
-        "@navikt/ds-css": "7.2.1",
-        "@navikt/ds-react": "7.2.1",
-        "@navikt/ds-tailwind": "7.2.1",
+        "@navikt/ds-css": "7.3.1",
+        "@navikt/ds-react": "7.3.1",
+        "@navikt/ds-tailwind": "7.3.1",
         "@navikt/sif-app-register": "*",
         "@navikt/sif-common-amplitude": "*",
         "@navikt/sif-common-core-ds": "*",
@@ -44,7 +44,7 @@
         "react": "18.3.1",
         "react-dom": "18.3.1",
         "react-fast-compare": "3.2.2",
-        "react-intl": "6.8.0",
+        "react-intl": "6.8.1",
         "react-router-dom": "6.27.0",
         "uuid": "10.0.0"
     },
@@ -62,7 +62,7 @@
         "@types/react": "18.3.11",
         "@types/react-dom": "18.3.1",
         "@types/react-router-dom": "5.3.3",
-        "@vitejs/plugin-react": "4.3.2",
+        "@vitejs/plugin-react": "4.3.3",
         "babel-polyfill": "6.26.0",
         "compression": "1.7.4",
         "cors": "2.8.5",

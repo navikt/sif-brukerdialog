@@ -1,5 +1,11 @@
 # @sif/eslint-config
 
+## 1.1.18
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
 ## 1.1.17
 
 ### Patch Changes
