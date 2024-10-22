@@ -4383,7 +4383,7 @@ __metadata:
     axios: "npm:1.7.7"
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
-    chromatic: "npm:11.12.6"
+    chromatic: "npm:11.14.0"
     compression: "npm:1.7.4"
     cors: "npm:2.8.5"
     cross-env: "npm:7.0.3"
@@ -11954,7 +11954,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromatic@npm:11.12.6, chromatic@npm:^11.4.0":
+"chromatic@npm:11.14.0":
+  version: 11.14.0
+  resolution: "chromatic@npm:11.14.0"
+  peerDependencies:
+    "@chromatic-com/cypress": ^0.*.* || ^1.0.0
+    "@chromatic-com/playwright": ^0.*.* || ^1.0.0
+  peerDependenciesMeta:
+    "@chromatic-com/cypress":
+      optional: true
+    "@chromatic-com/playwright":
+      optional: true
+  bin:
+    chroma: dist/bin.js
+    chromatic: dist/bin.js
+    chromatic-cli: dist/bin.js
+  checksum: 10/3e26a6e2df9273662a01322aee719d7d0aca0ed313df440c0182cdf1d4b1c4350143f0fd52a161396f1dc599b486586e5de99a0b1900ed2875c9f3b22ff8b182
+  languageName: node
+  linkType: hard
+
+"chromatic@npm:^11.4.0":
   version: 11.12.6
   resolution: "chromatic@npm:11.12.6"
   peerDependencies:

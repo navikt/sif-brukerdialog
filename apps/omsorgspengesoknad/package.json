@@ -62,7 +62,7 @@
         "axe-core": "4.10.1",
         "babel-polyfill": "6.26.0",
         "busboy": "1.6.0",
-        "chromatic": "11.12.6",
+        "chromatic": "11.14.0",
         "compression": "1.7.4",
         "cors": "2.8.5",
         "cross-env": "7.0.3",
