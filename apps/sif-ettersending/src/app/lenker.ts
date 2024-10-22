@@ -1,5 +1,7 @@
 import { appEnv } from './utils/appEnv';
 
+const { INNSYN_PP, PLEIEPENGER_SYKT_BARN_URL, ENDRINGSMELDING_PP } = appEnv;
+
 interface Lenker {
     medlemskap: string;
     papirskjemaPrivat: string;
@@ -22,10 +24,10 @@ const LenkerBokmål: Lenker = {
         'https://www.nav.no/no/NAV+og+samfunn/Om+NAV/personvern-i-arbeids-og-velferdsetaten/personvernerkl%C3%A6ring-for-arbeids-og-velferdsetaten',
     rettOgPlikt: 'https://nav.no/rettOgPlikt',
     saksbehandlingstider: 'https://www.nav.no/no/NAV+og+samfunn/Om+NAV/Saksbehandlingstider+i+NAV',
-    INNSYN_PP: appEnv.INNSYN_PP,
-    pleiepengerSyktBarn: appEnv.PLEIEPENGER_SYKT_BARN_URL,
+    INNSYN_PP: INNSYN_PP,
+    pleiepengerSyktBarn: PLEIEPENGER_SYKT_BARN_URL,
     skrivTilOss: 'https://www.nav.no/skriv-til-oss',
-    endringsmelding: appEnv.ENDRINGSMELDING_PP,
+    endringsmelding: ENDRINGSMELDING_PP,
 };
 
 const LenkerNynorsk: Partial<Lenker> = {

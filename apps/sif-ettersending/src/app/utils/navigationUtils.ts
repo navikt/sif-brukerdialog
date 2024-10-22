@@ -3,7 +3,9 @@ import { getAbsoluteUrlForRoute, getRouteConfig } from '../config/routeConfig';
 import { Søknadstype } from '../types/Søknadstype';
 import { appEnv } from './appEnv';
 
-const getLoginUrl = (søknadstype: Søknadstype) => `${appEnv.SIF_PUBLIC_LOGIN_URL}/${søknadstype}`;
+const { SIF_PUBLIC_LOGIN_URL, SIF_PUBLIC_MINSIDE_URL } = appEnv;
+
+const getLoginUrl = (søknadstype: Søknadstype) => `${SIF_PUBLIC_LOGIN_URL}/${søknadstype}`;
 
 export const redirectTo = (route: string) => window.location.assign(route);
 export const navigateToErrorPage = (søknadstype: Søknadstype, navigate?: NavigateFunction) => {
@@ -28,4 +30,4 @@ export const userIsCurrentlyOnErrorPage = (søknadstype: Søknadstype) => {
 
 export const relocateToNavFrontpage = (): void => redirectTo('https://www.nav.no/');
 
-export const relocateToMinSide = () => redirectTo(appEnv.SIF_PUBLIC_MINSIDE_URL);
+export const relocateToMinSide = () => redirectTo(SIF_PUBLIC_MINSIDE_URL);

@@ -10,7 +10,9 @@ import { appEnv } from './types/appEnv';
 import { SøknadRoutes } from './types/SøknadRoutes';
 import '@navikt/ds-css';
 
-ensureBaseNameForReactRouter(appEnv.PUBLIC_PATH);
+const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_PROJECT_ID, SIF_PUBLIC_APPSTATUS_DATASET } = appEnv;
+
+ensureBaseNameForReactRouter(PUBLIC_PATH);
 
 const App = () => {
     return (
@@ -18,12 +20,12 @@ const App = () => {
             appKey="ungdomsytelse"
             appName="Ungdomsytelse"
             appTitle="Ungdomsytelse MVP"
-            publicPath={appEnv.PUBLIC_PATH}
+            publicPath={PUBLIC_PATH}
             intlMessages={applicationIntlMessages}
             appStatus={{
                 sanityConfig: {
-                    projectId: appEnv.SIF_PUBLIC_APPSTATUS_PROJECT_ID,
-                    dataset: appEnv.SIF_PUBLIC_APPSTATUS_DATASET,
+                    projectId: SIF_PUBLIC_APPSTATUS_PROJECT_ID,
+                    dataset: SIF_PUBLIC_APPSTATUS_DATASET,
                 },
             }}>
             <SoknadApplicationCommonRoutes

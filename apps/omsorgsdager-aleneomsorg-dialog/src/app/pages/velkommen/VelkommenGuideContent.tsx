@@ -4,6 +4,8 @@ import React from 'react';
 import { AppText } from '../../i18n';
 import { appEnv } from '../../utils/appEnv';
 
+const { SIF_PUBLIC_OMS_IKKE_TILSYN_URL } = appEnv;
+
 const VelkommenGuideContent = () => (
     <>
         <BodyLong as="div">
@@ -16,7 +18,7 @@ const VelkommenGuideContent = () => (
                     id="page.velkommen.guide.tekst.1.1"
                     values={{
                         Lenke: (children: React.ReactNode) => (
-                            <Link href={appEnv.SIF_PUBLIC_OMS_IKKE_TILSYN_URL} inlineText={true}>
+                            <Link href={SIF_PUBLIC_OMS_IKKE_TILSYN_URL} inlineText={true}>
                                 {children}
                             </Link>
                         ),
@@ -45,7 +47,7 @@ const VelkommenGuideContent = () => (
                     id="page.velkommen.guide.tekst.1.2"
                     values={{
                         Lenke: (children: React.ReactNode) => (
-                            <Link href={appEnv.SIF_PUBLIC_OMS_IKKE_TILSYN_URL} inlineText={true}>
+                            <Link href={SIF_PUBLIC_OMS_IKKE_TILSYN_URL} inlineText={true}>
                                 {children}
                             </Link>
                         ),
