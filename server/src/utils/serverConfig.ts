@@ -52,33 +52,6 @@ const proxies = {
     },
 };
 
-const proxyEnvs = {
-    [Service.SIF_INNSYN]: <EnvVariables>{
-        [ProxyEnvKey.SIF_INNSYN_FRONTEND_PATH]: process.env[ProxyEnvKey.SIF_INNSYN_FRONTEND_PATH],
-        [ProxyEnvKey.SIF_INNSYN_API_SCOPE]: process.env[ProxyEnvKey.SIF_INNSYN_API_SCOPE],
-        [ProxyEnvKey.SIF_INNSYN_API_URL]: process.env[ProxyEnvKey.SIF_INNSYN_API_URL],
-    },
-    [Service.K9_SAK_INNSYN]: <EnvVariables>{
-        [ProxyEnvKey.K9_SAK_INNSYN_FRONTEND_PATH]: process.env[ProxyEnvKey.K9_SAK_INNSYN_FRONTEND_PATH],
-        [ProxyEnvKey.K9_SAK_INNSYN_API_SCOPE]: process.env[ProxyEnvKey.K9_SAK_INNSYN_API_SCOPE],
-        [ProxyEnvKey.K9_SAK_INNSYN_API_URL]: process.env[ProxyEnvKey.K9_SAK_INNSYN_API_URL],
-    },
-    [Service.K9_BRUKERDIALOG_PROSESSERING]: <EnvVariables>{
-        [ProxyEnvKey.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH]:
-            process.env[ProxyEnvKey.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH],
-        [ProxyEnvKey.K9_BRUKERDIALOG_PROSESSERING_API_SCOPE]:
-            process.env[ProxyEnvKey.K9_BRUKERDIALOG_PROSESSERING_API_SCOPE],
-        [ProxyEnvKey.K9_BRUKERDIALOG_PROSESSERING_API_URL]:
-            process.env[ProxyEnvKey.K9_BRUKERDIALOG_PROSESSERING_API_URL],
-    },
-    [Service.UNG_DELTAKELSE_OPPLYSER]: <EnvVariables>{
-        [ProxyEnvKey.UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH]:
-            process.env[ProxyEnvKey.UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH],
-        [ProxyEnvKey.UNG_DELTAKELSE_OPPLYSER_API_SCOPE]: process.env[ProxyEnvKey.UNG_DELTAKELSE_OPPLYSER_API_SCOPE],
-        [ProxyEnvKey.UNG_DELTAKELSE_OPPLYSER_API_URL]: process.env[ProxyEnvKey.UNG_DELTAKELSE_OPPLYSER_API_URL],
-    },
-};
-
 export const getPublicEnvVariables = () => {
     const publicEnv: EnvVariables = {};
     for (const [key, value] of Object.entries(process.env)) {
@@ -89,10 +62,24 @@ export const getPublicEnvVariables = () => {
     return publicEnv;
 };
 
+export const getProxyEnvVariablesForService = (service: Service): Partial<ProxyEnvVariables> | undefined => {
+    try {
+        const proxy = proxies[service];
+        verifyProxyConfigIsSet(service);
+        return {
+            [`${service}_FRONTEND_PATH`]: proxy.frontendPath,
+            [`${service}_API_SCOPE`]: proxy.apiScope,
+            [`${service}_API_URL`]: proxy.apiUrl,
+        };
+    } catch {
+        return undefined;
+    }
+};
+
 export const getProxyEnvVariables = (): Partial<ProxyEnvVariables> => {
     let env: Partial<ProxyEnvVariables> = {};
-    Object.keys(proxyEnvs).forEach((service) => {
-        env = { ...env, ...proxyEnvs[service as Service] };
+    Object.keys(proxies).forEach((service) => {
+        env = { ...env, ...getProxyEnvVariablesForService(service as Service) };
     });
     return env;
 };
@@ -100,19 +87,15 @@ export const getProxyEnvVariables = (): Partial<ProxyEnvVariables> => {
 export const verifyProxyConfigIsSet = (service: Service) => {
     const proxy = proxies[service];
     if (!proxy) {
-        console.error(`Missing proxy for ${service}`);
         throw `Missing proxy for ${service}`;
     }
     if (!proxy.apiScope) {
-        console.error(`Missing apiScope for ${service}`);
         throw `Missing apiScope for ${service}`;
     }
     if (!proxy.apiUrl) {
-        console.error(`Missing apiUrl for ${service}`);
         throw `Missing apiUrl for ${service}`;
     }
     if (!proxy.frontendPath) {
-        console.error(`Missing frontendPath for ${service}`);
         throw `Missing frontendPath for ${service}`;
     }
 };
