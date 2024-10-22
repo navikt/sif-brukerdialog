@@ -15,16 +15,17 @@ export const setupAndServeHtml = async (app: Express) => {
 
     const html = await injectDecorator(spaFilePath);
 
-    const renderedHtml = html.replaceAll(
-        '{{{APP_SETTINGS}}}',
-        JSON.stringify({
-            APP_VERSION: `${config.app.version}`,
-            PUBLIC_PATH: `${config.app.publicPath}`,
-            GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
-            ...getProxyEnvVariables(),
-            ...getPublicEnvVariables(),
-        }),
-    );
+    const appSettings = {
+        APP_VERSION: `${config.app.version}`,
+        PUBLIC_PATH: `${config.app.publicPath}`,
+        GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
+        ...getProxyEnvVariables(),
+        ...getPublicEnvVariables(),
+    };
+
+    const renderedHtml = html.replaceAll('{{{APP_SETTINGS}}}', JSON.stringify(appSettings));
+
+    console.log('AppSettings', appSettings);
 
     app.get(/^\/(?!.*dist).*$/, async (_request, response) => {
         return response.send(renderedHtml);
