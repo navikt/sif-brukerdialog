@@ -3,7 +3,7 @@ import cookieParser from 'cookie-parser';
 import { Express, Response } from 'express';
 import path from 'node:path';
 import { appEnvSchema } from '../env.schema.js';
-import config, { getApiEnvVariables, getSifPublicEnvVariables } from './serverConfig.js';
+import config from './serverConfig.js';
 
 export const setupAndServeHtml = async (app: Express) => {
     // When deployed, the built frontend is copied into the public directory. If running BFF locally the index.html will not exist.
@@ -21,8 +21,8 @@ export const setupAndServeHtml = async (app: Express) => {
         APP_VERSION: `${config.app.version}`,
         PUBLIC_PATH: `${config.app.publicPath}`,
         GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
-        ...getApiEnvVariables(),
-        ...getSifPublicEnvVariables(),
+        ...config.app.proxyEnvVariables,
+        ...config.app.publicEnvVariables,
     });
 
     if (!envs.success) {
