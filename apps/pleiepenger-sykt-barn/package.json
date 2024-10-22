@@ -17,6 +17,7 @@
         "@navikt/sif-common-amplitude": "*",
         "@navikt/sif-common-api": "*",
         "@navikt/sif-common-core-ds": "*",
+        "@navikt/sif-common-env": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-forms-ds": "*",
         "@navikt/sif-common-hooks": "*",
@@ -100,6 +101,7 @@
         "pw": "playwright test --ui",
         "start-e2e-server": "node ./e2e/server/server.cjs",
         "storybook": "storybook dev -p 6006",
-        "test": "vitest run"
+        "test": "vitest run",
+        "build-env-schema": "npx esbuild env.schema.ts --bundle --outfile=dist/env.schema.js --platform=node --target=es2020"
     }
 }

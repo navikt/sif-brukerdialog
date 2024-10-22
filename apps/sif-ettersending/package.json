@@ -17,6 +17,7 @@
         "@navikt/sif-common-amplitude": "*",
         "@navikt/sif-common-api": "*",
         "@navikt/sif-common-core-ds": "*",
+        "@navikt/sif-common-env": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-forms-ds": "*",
         "@navikt/sif-common-hooks": "*",
@@ -69,7 +70,8 @@
         "uuid": "10.0.0",
         "vite": "5.4.9",
         "vite-plugin-checker": "0.8.0",
-        "vitest": "2.1.3"
+        "vitest": "2.1.3",
+        "zod": "3.23.8"
     },
     "scripts": {
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/ettersending",

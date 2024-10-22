@@ -1,6 +1,10 @@
 import { getMinDatoForBarnetsFødselsdato, isBarnOver18år } from '../omBarnetStepUtils';
 import { vi } from 'vitest';
 
+vi.mock('@navikt/sif-common-env', () => {
+    return { getRequiredEnv: () => '', getCommonEnv: () => ({}), getMaybeEnv: () => '' };
+});
+
 describe('isBarnOver18år', () => {
     it('should return false if the person is 18 years old and today is before April 1 of the following year', () => {
         vi.useFakeTimers().setSystemTime(new Date('2023-03-31'));

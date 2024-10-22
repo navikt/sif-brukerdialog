@@ -1,4 +1,4 @@
-import { getEnvironmentVariable } from '@navikt/sif-common-api';
+import { getMaybeEnv } from '@navikt/sif-common-env';
 import axios, { AxiosRequestConfig } from 'axios';
 
 const axiosConfig: AxiosRequestConfig = {
@@ -8,5 +8,5 @@ const axiosConfig: AxiosRequestConfig = {
 
 export const ungDeltakelseOpplyserApiClient = axios.create({
     ...axiosConfig,
-    baseURL: getEnvironmentVariable('UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH'),
+    baseURL: getMaybeEnv('UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH'),
 });

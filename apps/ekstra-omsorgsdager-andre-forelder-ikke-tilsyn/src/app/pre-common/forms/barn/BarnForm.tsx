@@ -1,13 +1,13 @@
+import { isDevMode } from '@navikt/sif-common-env';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import { guid } from '@navikt/sif-common-utils';
-import { AndreBarn } from './types';
-import barnUtils from './barnUtils';
 import { getFødselsnummerValidator, getStringValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { guid } from '@navikt/sif-common-utils';
 import { useAppIntl } from '../../../i18n';
-import { isDevMode } from '@navikt/sif-common-core-ds/src/utils/envUtils';
+import barnUtils from './barnUtils';
+import { AndreBarn } from './types';
 
 interface BarnFormLabels {
     title: string;
@@ -98,7 +98,7 @@ const BarnForm = ({
                                 label={formLabels.fnr}
                                 validate={getFødselsnummerValidator({
                                     required: true,
-                                    allowHnr: isDevMode,
+                                    allowHnr: isDevMode(),
                                     disallowedValues: disallowedFødselsnumre,
                                 })}
                                 inputMode="numeric"

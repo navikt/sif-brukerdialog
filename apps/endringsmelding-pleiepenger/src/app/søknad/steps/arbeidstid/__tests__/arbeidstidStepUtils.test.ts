@@ -1,5 +1,15 @@
+import { vi } from 'vitest';
 import { ArbeiderIPeriodenSvar, TimerEllerProsent } from '../../../../types';
 import { getArbeidstidSøknadsdataFromFormValues } from '../arbeidstidStepUtils';
+
+vi.mock('@navikt/sif-common-env', () => {
+    return {
+        getRequiredEnv: () => '',
+        getMaybeEnv: () => '',
+        getCommonEnv: () => ({}),
+        getSifInnsynBrowserEnv: () => ({}),
+    };
+});
 
 describe('arbeidstidStepUtils', () => {
     describe('getArbeidstidSøknadsdataFromFormValues', () => {

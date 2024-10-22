@@ -1,7 +1,9 @@
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
-import { getEnvVariableOrDefault } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import axios, { AxiosError, AxiosRequestConfig, RawAxiosRequestHeaders } from 'axios';
+import { appEnv } from '../utils/appEnv';
 import { relocateToLoginPage, relocateToNoAccessPage } from '../utils/navigationUtils';
+
+const { K9_SAK_INNSYN_FRONTEND_PATH, K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH } = appEnv;
 
 export enum ApiEndpoint {
     'soker' = 'oppslag/soker',
@@ -21,12 +23,12 @@ export const axiosConfig = (apiPath?: ApiEndpoint): AxiosRequestConfig => {
     if (apiPath === ApiEndpoint.innvilget_vedtak) {
         return {
             ...axiosConfigCommon,
-            baseURL: getEnvVariableOrDefault('K9_SAK_INNSYN_FRONTEND_PATH', 'http://localhost:8089'),
+            baseURL: K9_SAK_INNSYN_FRONTEND_PATH,
         };
     }
     return {
         ...axiosConfigCommon,
-        baseURL: getEnvVariableOrDefault('K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH', 'http://localhost:8089'),
+        baseURL: K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH,
     };
 };
 

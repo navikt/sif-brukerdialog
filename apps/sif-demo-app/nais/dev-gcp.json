@@ -8,8 +8,7 @@
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
     "accessPolicyOutApps": [
         { "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" },
-        { "application": "k9-sak-innsyn-api", "namespace": "dusseldorf" },
-        { "application": "sif-innsyn-api", "namespace": "dusseldorf" }
+        { "application": "k9-sak-innsyn-api", "namespace": "dusseldorf" }
     ],
     "minReplicas": 1,
     "maxReplicas": 1,
@@ -18,9 +17,6 @@
     "env": {
         "APP_VERSION": "dev",
         "ENV": "{path}",
-        "INNSYN_FRONTEND_PATH": "/api/sif-innsyn",
-        "INNSYN_API_SCOPE": "dev-gcp:dusseldorf:sif-innsyn-api",
-        "INNSYN_API_URL": "http://sif-innsyn-api",
         "K9_SAK_INNSYN_FRONTEND_PATH": "/api/k9sak-innsyn",
         "K9_SAK_INNSYN_API_SCOPE": "dev-gcp:dusseldorf:k9-sak-innsyn-api",
         "K9_SAK_INNSYN_API_URL": "http://k9-sak-innsyn-api",

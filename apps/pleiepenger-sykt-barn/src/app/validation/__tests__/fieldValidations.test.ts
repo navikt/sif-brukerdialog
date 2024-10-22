@@ -9,16 +9,10 @@ import {
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 
-vi.mock('@navikt/sif-common-core-ds/src/utils/envUtils', () => {
+vi.mock('@navikt/sif-common-env', () => {
     return {
-        getEnvironmentVariable: () => 'someEnvVar',
-    };
-});
-
-vi.mock('@navikt/sif-common-api/src/env/commonEnv', () => {
-    return {
-        getEnvironmentVariable: () => 'mockedApiUrl',
-        getEnvVariableOrDefault: () => 'mockedApiUrl',
+        getRequiredEnv: () => 'mockedApiUrl',
+        getMaybeEnv: () => 'mockedApiUrl',
     };
 });
 

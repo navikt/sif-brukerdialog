@@ -1,13 +1,14 @@
 import { Heading } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { isDevMode } from '@navikt/sif-common-core-ds/src/utils/envUtils';
+import { isDevMode } from '@navikt/sif-common-env';
 import { resetFieldValue, SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds/src';
 import { getFødselsnummerValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { useFormikContext } from 'formik';
 import { useAppIntl } from '../../i18n';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import SoknadFormComponents from '../SoknadFormComponents';
+
 interface Props {
     søkersFødselsnummer: string;
     harRegistrerteBarn: boolean;
@@ -42,7 +43,7 @@ const AnnetBarnPart = ({ søkersFødselsnummer, harRegistrerteBarn }: Props) => 
                             !barnetHarIkkeFnr
                                 ? getFødselsnummerValidator({
                                       required: true,
-                                      allowHnr: isDevMode,
+                                      allowHnr: isDevMode(),
                                       disallowedValues: [søkersFødselsnummer],
                                   })
                                 : undefined

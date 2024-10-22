@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
+import { playwrightEnv } from './e2e/playwright/playwright.env';
 
 export default defineConfig({
     testDir: './e2e/playwright/tests',
@@ -23,13 +24,6 @@ export default defineConfig({
         command: 'yarn start-e2e-server',
         url: 'http://localhost:8080',
         reuseExistingServer: true,
-        env: {
-            PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg',
-            K9_BRUKERDIALOG_PROSESSERING_API_URL: 'http://localhost:8089',
-            K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: 'http://localhost:8089',
-            SIF_PUBLIC_DEKORATOR_URL: 'https://www.nav.no/dekoratoren/?simple=true&chatbot=false',
-            SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
-            SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
-        },
+        env: playwrightEnv,
     },
 });
