@@ -28,7 +28,7 @@ export const getRequiredEnv = (key: SIF_ENV | string): string => {
 
 export const getEnv = (key: SIF_ENV | string): string | undefined => {
     const env = getEnvFromAppSettings(key);
-    if (!env) {
+    if (!env && !isProd()) {
         // eslint-disable-next-line no-console
         console.warn(`Mangler miljøvariabel ${key}`);
     }

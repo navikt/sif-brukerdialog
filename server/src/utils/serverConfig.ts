@@ -83,7 +83,7 @@ const getProxyEnvVariables = (): Partial<ProxyEnvVariables> => {
     return env;
 };
 
-const verifyProxyConfigIsSet = (service: Service) => {
+export const verifyProxyConfigIsSet = (service: Service) => {
     const proxy = proxies[service];
     if (!proxy) {
         throw `Missing proxy for ${service}`;
