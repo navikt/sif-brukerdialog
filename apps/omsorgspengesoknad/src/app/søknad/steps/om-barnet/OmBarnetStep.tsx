@@ -1,6 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
-import { useInnvilgedeVedtakForRegistrerteBarn } from '../../../hooks/useInnvilgedeVedtakForRegistrerteBarn';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { BarnSammeAdresse } from '../../../types/BarnSammeAdresse';
@@ -49,7 +48,9 @@ const OmBarnetStep = () => {
     const {
         state: { søknadsdata, registrerteBarn, søker },
     } = useSøknadContext();
-    const innvilgedeVedtak = useInnvilgedeVedtakForRegistrerteBarn(registrerteBarn);
+
+    /** Midlertidig ikke aktiv pga feil backend */
+    const innvilgedeVedtak = {}; //: useInnvilgedeVedtakForRegistrerteBarn(registrerteBarn);
 
     const stepId = StepId.OM_BARNET;
     const step = getSøknadStepConfigForStep(søknadsdata, stepId);
