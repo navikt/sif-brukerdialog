@@ -26,3 +26,10 @@ Flytter all env-logikk til egen pakke.
 -   appEnv der det er behov, som ekstender commonEnv og legger til egne
 -   kaster exception når påkrevde env ikke finnes
 -   prefixe noen common envs med SIF_PUBLIC
+
+Innføre env.schema.ts i alle søknadsdialoger
+
+-   definerer hvilke envs som er påkrevd
+-   under bygg kopieres denne over og brukes ved oppstart av server for å kontrollere at alle envs er satt
+
+Refactoring av proxy setup i server
