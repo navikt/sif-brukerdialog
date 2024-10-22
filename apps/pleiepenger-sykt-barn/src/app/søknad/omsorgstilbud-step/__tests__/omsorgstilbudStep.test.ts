@@ -7,7 +7,7 @@ import { YesOrNoOrDoNotKnow } from '../../../types/YesOrNoOrDoNotKnow';
 import { vi } from 'vitest';
 
 vi.mock('@navikt/sif-common-env', () => {
-    return { getRequiredEnv: () => '', getCommonEnv: () => ({}), getEnv: () => '' };
+    return { getRequiredEnv: () => '', getCommonEnv: () => ({}), getMaybeEnv: () => '' };
 });
 
 const søknadsperiode: DateRange = {

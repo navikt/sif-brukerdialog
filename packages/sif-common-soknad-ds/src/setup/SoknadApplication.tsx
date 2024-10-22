@@ -16,7 +16,7 @@ import {
     getNynorskLocale,
     setLocaleInSessionStorage,
 } from '@navikt/sif-common-core-ds/src/utils/localeUtils';
-import { getCommonEnv, getEnv, isProd } from '@navikt/sif-common-env';
+import { getCommonEnv, getMaybeEnv, isProd } from '@navikt/sif-common-env';
 import { FaroProvider } from '@navikt/sif-common-faro';
 import dayjs from 'dayjs';
 import 'dayjs/locale/nb';
@@ -52,9 +52,9 @@ interface Props {
     onResetSoknad?: () => void;
 }
 
-const telemetryCollectorURL = getEnv('NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL');
+const telemetryCollectorURL = getMaybeEnv('NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL');
 const { APP_VERSION } = getCommonEnv();
-const useFaro = getEnv('USE_FARO') === 'true';
+const useFaro = getMaybeEnv('USE_FARO') === 'true';
 
 const localeFromSessionStorage = getLocaleFromSessionStorage();
 dayjs.locale(localeFromSessionStorage);

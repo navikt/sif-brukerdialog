@@ -6,7 +6,7 @@ import { vi } from 'vitest';
 vi.mock('@navikt/sif-common-env', () => {
     return {
         getRequiredEnv: () => 'mockedApiUrl',
-        getEnv: () => 'mockedApiUrl',
+        getMaybeEnv: () => 'mockedApiUrl',
         getCommitShaFromEnv: () => 'mockedCommitSha',
 
         getCommonEnv: () => ({}),

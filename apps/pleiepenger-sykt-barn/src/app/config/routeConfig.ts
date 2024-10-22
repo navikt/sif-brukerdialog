@@ -9,8 +9,7 @@ enum RouteConfig {
 }
 
 export const getRouteUrl = (route: RouteConfig): string => {
-    const publicPath = appEnv.PUBLIC_PATH;
-    return `${publicPath}${route}`;
+    return `${appEnv.PUBLIC_PATH}${route}`;
 };
 
 export default RouteConfig;

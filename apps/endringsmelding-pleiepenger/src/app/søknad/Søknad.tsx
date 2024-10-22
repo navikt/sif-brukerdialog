@@ -2,7 +2,7 @@ import { Alert } from '@navikt/ds-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { getEnv } from '@navikt/sif-common-env';
+import { getMaybeEnv } from '@navikt/sif-common-env';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import { RequestStatus } from '@types';
 import { appSentryLogger } from '@utils';
@@ -75,7 +75,7 @@ const Søknad = () => {
         <SøknadContextProvider initialData={initialData.data}>
             <StepFormValuesContextProvider>
                 <SøknadRouter />
-                {getEnv('VELG_SCENARIO') === 'on' && <DevFooter />}
+                {getMaybeEnv('VELG_SCENARIO') === 'on' && <DevFooter />}
             </StepFormValuesContextProvider>
         </SøknadContextProvider>
     );

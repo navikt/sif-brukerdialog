@@ -12,7 +12,7 @@ import dayjs from 'dayjs';
 vi.mock('@navikt/sif-common-env', () => {
     return {
         getRequiredEnv: () => 'mockedApiUrl',
-        getEnv: () => 'mockedApiUrl',
+        getMaybeEnv: () => 'mockedApiUrl',
     };
 });
 

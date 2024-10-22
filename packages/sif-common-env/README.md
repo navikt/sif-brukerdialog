@@ -1,3 +1,3 @@
-# sif-common
+# sif-common-env
 
-Pakke for samling av komponenter som i dag ligger spredd i flere common pakker. Formål er å forenkle og forbedre struktur og kode.
+Kode for felles håndtering og validering av envs i sif søknadsdialoger

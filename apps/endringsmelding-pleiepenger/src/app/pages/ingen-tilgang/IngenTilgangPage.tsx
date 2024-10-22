@@ -3,7 +3,7 @@ import { IngenTilgangMeta } from '@hooks';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { getEnv } from '@navikt/sif-common-env';
+import { getMaybeEnv } from '@navikt/sif-common-env';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { IngenTilgangÅrsak, Søker } from '@types';
 import DevFooter from '../../dev/DevFooter';
@@ -125,7 +125,7 @@ const IngenTilgangPage = ({ årsak = [], søker, ingenTilgangMeta }: IngenTilgan
                     </Heading>
                     {getÅrsakMelding(årsak[0])}
                 </SifGuidePanel>
-                {getEnv('MSW') === 'on' && <DevFooter />}
+                {getMaybeEnv('MSW') === 'on' && <DevFooter />}
             </Page>
         </SøknadContextProvider>
     );

@@ -27,7 +27,7 @@ const ansattArbeidsforhold: ArbeidsforholdFormValues = {
 };
 
 vi.mock('@navikt/sif-common-env', () => {
-    return { getRequiredEnv: () => '', getCommonEnv: () => ({}), getEnv: () => '' };
+    return { getRequiredEnv: () => '', getCommonEnv: () => ({}), getMaybeEnv: () => '' };
 });
 
 describe('cleanupAnsattArbeidsforhold', () => {

@@ -1,7 +1,7 @@
 import { SanityConfig } from '@navikt/appstatus-react-ds';
 import { Navigate, Route } from 'react-router-dom';
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
-import { getEnv } from '@navikt/sif-common-env';
+import { getMaybeEnv } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
@@ -23,8 +23,8 @@ import './app.less';
 const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID } = appEnv;
 ensureBaseNameForReactRouter(PUBLIC_PATH);
 
-const envNow = getEnv('MOCK_DATE');
-if (envNow && getEnv('USE_MOCK_DATE') === 'true') {
+const envNow = getMaybeEnv('MOCK_DATE');
+if (envNow && getMaybeEnv('USE_MOCK_DATE') === 'true') {
     // eslint-disable-next-line no-console
     console.log(`setting time to: ${envNow}`);
     MockDate.set(new Date(envNow));

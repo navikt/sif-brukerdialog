@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
-import { getEnv, isDevMode } from '@navikt/sif-common-env';
+import { getMaybeEnv, isDevMode } from '@navikt/sif-common-env';
 import { ensureBaseNameForReactRouter, SoknadApplication } from '@navikt/sif-common-soknad-ds';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
@@ -20,17 +20,17 @@ const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_
 const container = document.getElementById('root');
 // eslint-disable-next-line
 const root = createRoot(container!);
-const isE2E = getEnv('E2E_TEST') === 'true';
+const isE2E = getMaybeEnv('E2E_TEST') === 'true';
 
 ensureBaseNameForReactRouter(PUBLIC_PATH);
 
 function prepare() {
     if (isDevMode()) {
-        const envNow = getEnv('NOW');
+        const envNow = getMaybeEnv('NOW');
         if (envNow) {
             MockDate.set(new Date(envNow));
         }
-        if (getEnv('MSW') === 'on' && isE2E !== undefined) {
+        if (getMaybeEnv('MSW') === 'on' && isE2E !== undefined) {
             return import('../mocks/msw/browser').then(({ worker }) => {
                 worker.start({
                     onUnhandledRequest: 'bypass',

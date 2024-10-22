@@ -1,6 +1,6 @@
 import { Navigate, Route } from 'react-router-dom';
 import { OmsorgspengerutbetalingSNFriApp } from '@navikt/sif-app-register';
-import { getEnv } from '@navikt/sif-common-env';
+import { getMaybeEnv } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
@@ -22,8 +22,8 @@ const {
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: SIF_PUBLIC_APPSTATUS_PROJECT_ID,
 } = appEnv;
 
-const envNow = getEnv('MOCK_DATE');
-if (envNow && getEnv('USE_MOCK_DATE') === 'true') {
+const envNow = getMaybeEnv('MOCK_DATE');
+if (envNow && getMaybeEnv('USE_MOCK_DATE') === 'true') {
     // eslint-disable-next-line no-console
     console.log(`setting time to: ${envNow}`);
     MockDate.set(new Date(envNow));

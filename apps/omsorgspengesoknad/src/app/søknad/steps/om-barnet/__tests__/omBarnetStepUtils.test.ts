@@ -2,7 +2,7 @@ import { getMinDatoForBarnetsFødselsdato, isBarnOver18år } from '../omBarnetSt
 import { vi } from 'vitest';
 
 vi.mock('@navikt/sif-common-env', () => {
-    return { getRequiredEnv: () => '', getCommonEnv: () => ({}), getEnv: () => '' };
+    return { getRequiredEnv: () => '', getCommonEnv: () => ({}), getMaybeEnv: () => '' };
 });
 
 describe('isBarnOver18år', () => {

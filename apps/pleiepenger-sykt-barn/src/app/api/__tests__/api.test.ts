@@ -18,7 +18,7 @@ import { axiosJsonConfig, sendMultipartPostRequest } from '../utils/apiUtils';
 vi.mock('@navikt/sif-common-env', () => {
     return {
         getRequiredEnv: () => 'mockedApiUrl',
-        getEnv: () => 'mockedApiUrl',
+        getMaybeEnv: () => 'mockedApiUrl',
 
         getCommonEnv: () => ({}),
     };

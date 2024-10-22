@@ -56,7 +56,7 @@ const arbeidsforhold: ArbeidsforholdFormValues[] = [arbeidsforholdErAnsatt, arbe
 
 vi.mock('@navikt/sif-common-env', () => {
     return {
-        getEnv: () => 'someEnvVar',
+        getMaybeEnv: () => 'someEnvVar',
         getRequiredEnv: () => 'mockedApiUrl',
     };
 });
