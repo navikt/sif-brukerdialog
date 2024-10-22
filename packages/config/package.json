@@ -1,7 +1,7 @@
 {
     "main": "index.js",
     "name": "config",
-    "version": "0.10.19",
+    "version": "0.10.20",
     "private": true,
     "dependencies": {
         "@typescript-eslint/eslint-plugin": "8.11.0",
