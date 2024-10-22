@@ -8,10 +8,10 @@
     "private": true,
     "type": "module",
     "dependencies": {
-        "@navikt/ds-css": "7.2.1",
+        "@navikt/ds-css": "7.3.1",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "7.2.1",
-        "@navikt/ds-tailwind": "7.2.1",
+        "@navikt/ds-react": "7.3.1",
+        "@navikt/ds-tailwind": "7.3.1",
         "@navikt/nav-dekoratoren-moduler": "2.1.6",
         "@navikt/sif-app-register": "*",
         "@navikt/sif-common-amplitude": "*",
@@ -34,7 +34,7 @@
         "lodash": "4.17.21",
         "react": "18.3.1",
         "react-day-picker": "8.10.1",
-        "react-intl": "6.8.0",
+        "react-intl": "6.8.1",
         "react-router-dom": "6.27.0"
     },
     "devDependencies": {
@@ -49,7 +49,7 @@
         "@types/react-dom": "18.3.1",
         "@types/react-router-dom": "5.3.3",
         "@types/uuid": "10.0.0",
-        "@vitejs/plugin-react": "4.3.2",
+        "@vitejs/plugin-react": "4.3.3",
         "axe-core": "4.10.1",
         "babel-polyfill": "6.26.0",
         "busboy": "1.6.0",

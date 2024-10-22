@@ -11,11 +11,11 @@
         "url": "https://github.com/navikt/sif-common-amplitude/issues"
     },
     "dependencies": {
-        "@amplitude/analytics-browser": "2.11.7"
+        "@amplitude/analytics-browser": "2.11.8"
     },
     "devDependencies": {
         "@sif/eslint-config": "*",
-        "@types/node": "22.7.6",
+        "@types/node": "22.7.8",
         "@types/react": "18.3.11",
         "config": "*",
         "constate": "3.3.2",
