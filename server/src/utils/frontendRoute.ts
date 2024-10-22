@@ -2,7 +2,7 @@ import { injectDecoratorServerSide } from '@navikt/nav-dekoratoren-moduler/ssr/i
 import cookieParser from 'cookie-parser';
 import { Express, Response } from 'express';
 import path from 'node:path';
-import config, { getProxyEnvVariables, getPublicEnvVariables } from './serverConfig.js';
+import config from './serverConfig.js';
 
 export const setupAndServeHtml = async (app: Express) => {
     // When deployed, the built frontend is copied into the public directory. If running BFF locally the index.html will not exist.
@@ -16,11 +16,12 @@ export const setupAndServeHtml = async (app: Express) => {
     const html = await injectDecorator(spaFilePath);
 
     const appSettings = {
+        GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
+        ENV: `${config.app.env}`,
         APP_VERSION: `${config.app.version}`,
         PUBLIC_PATH: `${config.app.publicPath}`,
-        GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
-        ...getProxyEnvVariables(),
-        ...getPublicEnvVariables(),
+        ...config.app.proxyEnvVariables,
+        ...config.app.publicEnvVariables,
     };
 
     const renderedHtml = html.replaceAll('{{{APP_SETTINGS}}}', JSON.stringify(appSettings));
