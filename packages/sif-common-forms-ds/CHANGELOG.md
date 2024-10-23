@@ -1,5 +1,14 @@
 # @navikt/sif-common-forms-ds
 
+## 12.0.1
+
+### Patch Changes
+
+-   a8b850b: Nynorsk tekster i omsorgspenger-kronisk + tilhørende komponenter i sif-common pakker
+-   Updated dependencies [a8b850b]
+    -   @navikt/sif-common-core-ds@9.20.1
+    -   @navikt/sif-common-ui@0.8.26
+
 ## 12.0.0
 
 ### Minor Changes

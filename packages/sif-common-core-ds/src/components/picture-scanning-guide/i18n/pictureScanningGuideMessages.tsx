@@ -31,17 +31,15 @@ const nb = {
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    ...nb,
-
     '@core.psg.expandable.tittel': 'Tips til deg som skal ta bilete av dokumentet:',
     '@core.psg.section1.tittel': 'Trygg bruk når du tek bilete:',
     '@core.psg.section1.liste.1':
-        'Bruk kamerafunksjonen på mobilen din for å ta biletet, ikkje bruk Snapchat eller andre apper.',
+        'Bruk kamerafunksjonen på mobilen din til å ta biletet, ikkje bruk Snapchat eller andre appar.',
     '@core.psg.section1.liste.2':
-        'Ver obs på kvar du lagrar biletet, til dømes skytenester, og gjer deg kjent med risiko for at andre får tilgang til biletet.',
+        'Ver merksam på kvar du lagrar biletet, til dømes skytenester, og gjer deg kjent med risiko for at andre får tilgang til biletet.',
     '@core.psg.section1.liste.3': 'Vurder om du bør sletta biletet etter at du har lasta det opp til søknaden.',
     '@core.psg.section2.tittel': 'Slik tek du eit godt bilete:',
-    '@core.psg.section2.liste.1': 'Hald mobilen eller kameraet direkte over dokumentet.',
+    '@core.psg.section2.liste.1': 'Hald mobilen eller kameraet rett over dokumentet.',
     '@core.psg.section2.liste.2':
         'Dokumentet skal fylle heile biletet. Biletet skal ikkje innehalde annan dokumentasjon eller gjenstandar.',
     '@core.psg.section2.liste.3':
@@ -50,11 +48,11 @@ const nn: Record<keyof typeof nb, string> = {
     '@core.psg.section3.liste.1': 'Dokumentet har rett retning.',
     '@core.psg.section3.liste.2': 'Teksten til dokumentet er godt leseleg.',
     '@core.psg.section3.liste.3': 'Biletet er godt opplyst, utan skuggar.',
-    '@core.psg.icon.heading': 'Bra og dårlige eksempler på bilder av dokument',
+    '@core.psg.icon.heading': 'Gode og dårlege døme på bilete av dokument',
     '@core.psg.good': 'Bra',
-    '@core.psg.bad': 'Dårlig',
+    '@core.psg.bad': 'Dårleg',
     '@core.psg.icon.label.good': 'Dokumentet fyller heile biletet',
-    '@core.psg.icon.label.keystone': 'Biletet er ikkje tatt ovanfrå',
+    '@core.psg.icon.label.keystone': 'Biletet er ikkje teke ovanfrå.',
     '@core.psg.icon.label.horizontal': 'Biletet har ikkje rett retning',
     '@core.psg.icon.label.shadow': 'Biletet har skugge oppå dokumentet',
     '@core.psg.lenkepanel.url': 'https://www.nav.no/brukerstotte#sende-soknad-pa-nett',

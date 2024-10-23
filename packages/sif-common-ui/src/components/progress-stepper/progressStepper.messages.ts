@@ -3,7 +3,7 @@ const nb = {
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    ...nb,
+    '@ui.progressStepper.goToPreviousStepLabel': 'Føregåande steg',
 };
 
 export const progressStepperMessages = {

@@ -13,9 +13,12 @@ import { mapVirksomhetToVirksomhetApiData } from '../mapVirksomhetToApiData';
 import { isVirksomhet, Næringstype, Virksomhet } from '../types';
 import VirksomhetForm, { VirksomhetFormErrors } from '../VirksomhetForm';
 import VirksomhetInfoAndDialog from '../VirksomhetInfoAndDialog';
-import { useVirksomhetIntl, virksomhetMessages } from '../virksomhetMessages';
+import { useVirksomhetIntl, virksomhetMessages } from '../i18n';
 import VirksomhetSummary from '../VirksomhetSummary';
 import StoryFormWrapper from '../../../../storybook/components/story-form-wrapper/StoryFormWrapper';
+import { virksomhetValidationMessages } from '../i18n/virksomhetValidationMessages';
+import { virksomhetSummaryMessages } from '../i18n/virksomhetSummaryMessages';
+import { virksomhetFormMessages } from '../i18n/virksomhetFormMessages';
 
 enum FormField {
     'virksomhet' = 'virksomhet',
@@ -66,6 +69,9 @@ const VirksomhetExample = () => {
                     <Tabs.Tab value="list" label="ListAndDialog" />
                     <Tabs.Tab value="form" label="Form" />
                     <Tabs.Tab value="messages" label="Tekster" />
+                    <Tabs.Tab value="formMessages" label="Skjema" />
+                    <Tabs.Tab value="validationMessages" label="Validering" />
+                    <Tabs.Tab value="summaryMessages" label="Oppsummering" />
                     <Tabs.Tab value="validationMessages" label="Valideringsmeldinger" />
                 </Tabs.List>
                 <Tabs.Panel value="list" style={{ maxWidth: '50rem' }}>
@@ -131,8 +137,14 @@ const VirksomhetExample = () => {
                     </StoryFormWrapper>
                 </Tabs.Panel>
 
-                <Tabs.Panel value="messages">
-                    <MessagesPreview messages={virksomhetMessages} showExplanation={false} />
+                <Tabs.Panel value="formMessages">
+                    <MessagesPreview messages={virksomhetFormMessages} showExplanation={false} />
+                </Tabs.Panel>
+                <Tabs.Panel value="summaryMessages">
+                    <MessagesPreview messages={virksomhetSummaryMessages} showExplanation={false} />
+                </Tabs.Panel>
+                <Tabs.Panel value="validationMessages">
+                    <MessagesPreview messages={virksomhetValidationMessages} showExplanation={false} />
                 </Tabs.Panel>
                 <Tabs.Panel value="validationMessages">
                     <FormValidationErrorMessages
