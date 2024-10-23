@@ -13,14 +13,22 @@ import { appEnv } from './utils/appEnv';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.css';
+import { isProd } from '@navikt/sif-common-env';
 
-const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_PROJECT_ID, SIF_PUBLIC_APPSTATUS_DATASET } = appEnv;
+const {
+    PUBLIC_PATH,
+    SIF_PUBLIC_APPSTATUS_PROJECT_ID,
+    SIF_PUBLIC_APPSTATUS_DATASET,
+    APP_VERSION,
+    SIF_PUBLIC_USE_AMPLITUDE,
+} = appEnv;
 
 ensureBaseNameForReactRouter(PUBLIC_PATH);
 
 const App = () => {
     return (
         <SoknadApplication
+            appVersion={APP_VERSION}
             appKey={EttersendelseApp.key}
             appName={EttersendelseApp.navn}
             appTitle={EttersendelseApp.tittel.nb}
@@ -31,7 +39,8 @@ const App = () => {
                     dataset: SIF_PUBLIC_APPSTATUS_DATASET,
                 },
             }}
-            publicPath={PUBLIC_PATH}>
+            publicPath={PUBLIC_PATH}
+            useAmplitude={SIF_PUBLIC_USE_AMPLITUDE ? SIF_PUBLIC_USE_AMPLITUDE === 'true' : isProd()}>
             <SoknadApplicationCommonRoutes
                 contentRoutes={[
                     <Route path={'/:soknadstype/melding/*'} key="soknad" element={<SoknadRemoteDataFetcher />} />,

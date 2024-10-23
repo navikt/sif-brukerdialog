@@ -3905,6 +3905,7 @@ __metadata:
     "@navikt/sif-app-register": "npm:*"
     "@navikt/sif-common-amplitude": "npm:*"
     "@navikt/sif-common-core-ds": "npm:*"
+    "@navikt/sif-common-env": "npm:*"
     "@navikt/sif-common-formik-ds": "npm:*"
     "@navikt/sif-common-forms-ds": "npm:*"
     "@navikt/sif-common-hooks": "npm:*"
@@ -3968,6 +3969,7 @@ __metadata:
     "@navikt/nav-dekoratoren-moduler": "npm:2.1.6"
     "@navikt/sif-common-amplitude": "npm:*"
     "@navikt/sif-common-core-ds": "npm:*"
+    "@navikt/sif-common-env": "npm:*"
     "@navikt/sif-common-formik-ds": "npm:*"
     "@navikt/sif-common-forms-ds": "npm:*"
     "@navikt/sif-common-hooks": "npm:*"
@@ -4270,7 +4272,9 @@ __metadata:
     "@navikt/ds-tailwind": "npm:7.3.1"
     "@navikt/sif-app-register": "npm:*"
     "@navikt/sif-common-amplitude": "npm:*"
+    "@navikt/sif-common-api": "npm:*"
     "@navikt/sif-common-core-ds": "npm:*"
+    "@navikt/sif-common-env": "npm:*"
     "@navikt/sif-common-formik-ds": "npm:*"
     "@navikt/sif-common-forms-ds": "npm:*"
     "@navikt/sif-common-hooks": "npm:*"
@@ -4344,7 +4348,6 @@ __metadata:
     "@navikt/ds-tailwind": "npm:7.3.1"
     "@navikt/sif-app-register": "npm:*"
     "@navikt/sif-common-amplitude": "npm:*"
-    "@navikt/sif-common-api": "npm:*"
     "@navikt/sif-common-core-ds": "npm:*"
     "@navikt/sif-common-env": "npm:*"
     "@navikt/sif-common-formik-ds": "npm:*"
@@ -4417,19 +4420,18 @@ __metadata:
     "@navikt/ds-icons": "npm:3.4.3"
     "@navikt/ds-react": "npm:7.3.1"
     "@navikt/ds-tailwind": "npm:7.3.1"
-    "@navikt/sif-app-register": "workspace:*"
-    "@navikt/sif-common-amplitude": "workspace:*"
-    "@navikt/sif-common-api": "workspace:*"
-    "@navikt/sif-common-core-ds": "workspace:*"
-    "@navikt/sif-common-env": "workspace:*"
-    "@navikt/sif-common-formik-ds": "workspace:*"
-    "@navikt/sif-common-forms-ds": "workspace:*"
-    "@navikt/sif-common-hooks": "workspace:*"
-    "@navikt/sif-common-sentry": "workspace:*"
-    "@navikt/sif-common-soknad-ds": "workspace:*"
-    "@navikt/sif-common-utils": "workspace:*"
+    "@navikt/sif-app-register": "npm:*"
+    "@navikt/sif-common-amplitude": "npm:*"
+    "@navikt/sif-common-core-ds": "npm:*"
+    "@navikt/sif-common-env": "npm:*"
+    "@navikt/sif-common-formik-ds": "npm:*"
+    "@navikt/sif-common-forms-ds": "npm:*"
+    "@navikt/sif-common-hooks": "npm:*"
+    "@navikt/sif-common-sentry": "npm:*"
+    "@navikt/sif-common-soknad-ds": "npm:*"
+    "@navikt/sif-common-utils": "npm:*"
     "@playwright/test": "npm:1.48.1"
-    "@sif/eslint-config": "workspace:*"
+    "@sif/eslint-config": "npm:*"
     "@storybook/addon-essentials": "npm:8.3.6"
     "@storybook/addon-interactions": "npm:8.3.6"
     "@storybook/addon-links": "npm:8.3.6"
@@ -4576,7 +4578,6 @@ __metadata:
     "@navikt/nav-dekoratoren-moduler": "npm:2.1.6"
     "@navikt/sif-app-register": "npm:*"
     "@navikt/sif-common-amplitude": "npm:*"
-    "@navikt/sif-common-api": "npm:*"
     "@navikt/sif-common-core-ds": "npm:*"
     "@navikt/sif-common-env": "npm:*"
     "@navikt/sif-common-formik-ds": "npm:*"
@@ -4641,7 +4642,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-app-register@npm:*, @navikt/sif-app-register@workspace:*, @navikt/sif-app-register@workspace:packages/sif-app-register":
+"@navikt/sif-app-register@npm:*, @navikt/sif-app-register@workspace:packages/sif-app-register":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-app-register@workspace:packages/sif-app-register"
   dependencies:
@@ -4668,7 +4669,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-common-amplitude@npm:*, @navikt/sif-common-amplitude@workspace:*, @navikt/sif-common-amplitude@workspace:packages/sif-common-amplitude":
+"@navikt/sif-common-amplitude@npm:*, @navikt/sif-common-amplitude@workspace:packages/sif-common-amplitude":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-amplitude@workspace:packages/sif-common-amplitude"
   dependencies:
@@ -4688,7 +4689,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-common-api@npm:*, @navikt/sif-common-api@workspace:*, @navikt/sif-common-api@workspace:packages/sif-common-api":
+"@navikt/sif-common-api@npm:*, @navikt/sif-common-api@workspace:packages/sif-common-api":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-api@workspace:packages/sif-common-api"
   dependencies:
@@ -4731,7 +4732,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-common-core-ds@npm:*, @navikt/sif-common-core-ds@workspace:*, @navikt/sif-common-core-ds@workspace:packages/sif-common-core-ds":
+"@navikt/sif-common-core-ds@npm:*, @navikt/sif-common-core-ds@workspace:packages/sif-common-core-ds":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-core-ds@workspace:packages/sif-common-core-ds"
   dependencies:
@@ -4797,7 +4798,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-common-env@npm:*, @navikt/sif-common-env@workspace:*, @navikt/sif-common-env@workspace:packages/sif-common-env":
+"@navikt/sif-common-env@npm:*, @navikt/sif-common-env@workspace:packages/sif-common-env":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-env@workspace:packages/sif-common-env"
   dependencies:
@@ -4816,7 +4817,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-common-formik-ds@npm:*, @navikt/sif-common-formik-ds@workspace:*, @navikt/sif-common-formik-ds@workspace:packages/sif-common-formik-ds":
+"@navikt/sif-common-formik-ds@npm:*, @navikt/sif-common-formik-ds@workspace:packages/sif-common-formik-ds":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-formik-ds@workspace:packages/sif-common-formik-ds"
   dependencies:
@@ -4884,7 +4885,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-common-forms-ds@npm:*, @navikt/sif-common-forms-ds@workspace:*, @navikt/sif-common-forms-ds@workspace:packages/sif-common-forms-ds":
+"@navikt/sif-common-forms-ds@npm:*, @navikt/sif-common-forms-ds@workspace:packages/sif-common-forms-ds":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-forms-ds@workspace:packages/sif-common-forms-ds"
   dependencies:
@@ -4948,7 +4949,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-common-hooks@npm:*, @navikt/sif-common-hooks@workspace:*, @navikt/sif-common-hooks@workspace:packages/sif-common-hooks":
+"@navikt/sif-common-hooks@npm:*, @navikt/sif-common-hooks@workspace:packages/sif-common-hooks":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-hooks@workspace:packages/sif-common-hooks"
   dependencies:
@@ -4960,7 +4961,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-common-sentry@npm:*, @navikt/sif-common-sentry@workspace:*, @navikt/sif-common-sentry@workspace:packages/sif-common-sentry":
+"@navikt/sif-common-sentry@npm:*, @navikt/sif-common-sentry@workspace:packages/sif-common-sentry":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-sentry@workspace:packages/sif-common-sentry"
   dependencies:
@@ -4982,7 +4983,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-common-soknad-ds@npm:*, @navikt/sif-common-soknad-ds@workspace:*, @navikt/sif-common-soknad-ds@workspace:packages/sif-common-soknad-ds":
+"@navikt/sif-common-soknad-ds@npm:*, @navikt/sif-common-soknad-ds@workspace:packages/sif-common-soknad-ds":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-soknad-ds@workspace:packages/sif-common-soknad-ds"
   dependencies:
@@ -5104,7 +5105,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-common-utils@npm:*, @navikt/sif-common-utils@workspace:*, @navikt/sif-common-utils@workspace:packages/sif-common-utils":
+"@navikt/sif-common-utils@npm:*, @navikt/sif-common-utils@workspace:packages/sif-common-utils":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-utils@workspace:packages/sif-common-utils"
   dependencies:
@@ -5197,7 +5198,6 @@ __metadata:
     "@navikt/nav-dekoratoren-moduler": "npm:2.1.6"
     "@navikt/sif-app-register": "npm:*"
     "@navikt/sif-common-amplitude": "npm:*"
-    "@navikt/sif-common-api": "npm:*"
     "@navikt/sif-common-core-ds": "npm:*"
     "@navikt/sif-common-env": "npm:*"
     "@navikt/sif-common-formik-ds": "npm:*"
@@ -5350,6 +5350,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:8.11.0"
     "@vitejs/plugin-react": "npm:4.3.3"
     autoprefixer: "npm:10.4.20"
+    axios: "npm:1.7.7"
     clsx: "npm:2.1.1"
     compression: "npm:1.7.4"
     date-fns: "npm:3.6.0"
@@ -7698,7 +7699,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sif/eslint-config@npm:*, @sif/eslint-config@workspace:*, @sif/eslint-config@workspace:packages/eslint-config-sif":
+"@sif/eslint-config@npm:*, @sif/eslint-config@workspace:packages/eslint-config-sif":
   version: 0.0.0-use.local
   resolution: "@sif/eslint-config@workspace:packages/eslint-config-sif"
   dependencies:

@@ -1,6 +1,6 @@
 import { Navigate, Route } from 'react-router-dom';
 import { PleiepengerLivetsSluttApp } from '@navikt/sif-app-register';
-
+import { isProd } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
@@ -9,17 +9,24 @@ import {
 import { applicationIntlMessages } from './i18n';
 import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
+import { appEnv } from './utils/appEnv';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.css';
-import { appEnv } from './utils/appEnv';
 
-const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID } = appEnv;
+const {
+    PUBLIC_PATH,
+    SIF_PUBLIC_APPSTATUS_DATASET,
+    SIF_PUBLIC_APPSTATUS_PROJECT_ID,
+    SIF_PUBLIC_USE_AMPLITUDE,
+    APP_VERSION,
+} = appEnv;
 
 ensureBaseNameForReactRouter(PUBLIC_PATH);
 
 const App = () => (
     <SoknadApplication
+        appVersion={APP_VERSION}
         appKey={PleiepengerLivetsSluttApp.key}
         appName={PleiepengerLivetsSluttApp.navn}
         appTitle={PleiepengerLivetsSluttApp.tittel.nb}
@@ -30,7 +37,8 @@ const App = () => (
                 dataset: SIF_PUBLIC_APPSTATUS_DATASET,
             },
         }}
-        publicPath={PUBLIC_PATH}>
+        publicPath={PUBLIC_PATH}
+        useAmplitude={SIF_PUBLIC_USE_AMPLITUDE ? SIF_PUBLIC_USE_AMPLITUDE === 'true' : isProd()}>
         <SoknadApplicationCommonRoutes
             contentRoutes={[
                 <Route index key="redirect" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
