@@ -16,7 +16,6 @@ import {
     getNynorskLocale,
     setLocaleInSessionStorage,
 } from '@navikt/sif-common-core-ds/src/utils/localeUtils';
-import { getCommonEnv, getMaybeEnv, isProd } from '@navikt/sif-common-env';
 import { FaroProvider } from '@navikt/sif-common-faro';
 import dayjs from 'dayjs';
 import 'dayjs/locale/nb';
@@ -28,6 +27,7 @@ import useDecoratorLanguageSelector from '../hooks/useDecoratorLanguageSelector'
 import ErrorPage from '../pages/error-page/ErrorPage';
 
 interface Props {
+    appVersion: string;
     /** Key used in amplitude and sentry logs */
     appKey: string;
     /** App name - not visual to user */
@@ -40,8 +40,11 @@ interface Props {
     intlMessages: MessageFileFormat;
     /** Toggle on/off languageselector in decorator */
     useLanguageSelector?: boolean;
-    /** If amplitude logging is active or not - default true*/
-    useAmplitude?: boolean;
+    /** If amplitude logging is active or not*/
+    useAmplitude: boolean;
+    /** Faro logging */
+    useFaro?: boolean;
+    naisFrontendTelemetryCollectorUrl?: string;
     /** Config for connecting to the appStatus sanity project */
     appStatus: {
         sanityConfig: SanityConfig;
@@ -52,19 +55,8 @@ interface Props {
     onResetSoknad?: () => void;
 }
 
-const telemetryCollectorURL = getMaybeEnv('NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL');
-const { APP_VERSION } = getCommonEnv();
-const useFaro = getMaybeEnv('USE_FARO') === 'true';
-
 const localeFromSessionStorage = getLocaleFromSessionStorage();
 dayjs.locale(localeFromSessionStorage);
-
-const getUseAmplitude = (useAmplitude: boolean | undefined): boolean => {
-    if (useAmplitude === undefined) {
-        return isProd();
-    }
-    return useAmplitude;
-};
 
 const SoknadApplication = ({
     intlMessages,
@@ -75,6 +67,9 @@ const SoknadApplication = ({
     useLanguageSelector,
     children,
     appTitle,
+    appVersion,
+    naisFrontendTelemetryCollectorUrl,
+    useFaro,
     onResetSoknad,
 }: Props) => {
     const [locale, setLocale] = React.useState<Locale>(localeFromSessionStorage);
@@ -90,11 +85,11 @@ const SoknadApplication = ({
         <SifAppWrapper>
             <FaroProvider
                 applicationKey={appKey}
-                telemetryCollectorURL={telemetryCollectorURL}
-                appVersion={APP_VERSION}
+                telemetryCollectorURL={naisFrontendTelemetryCollectorUrl}
+                appVersion={appVersion}
                 isActive={useFaro}>
                 <ErrorBoundary appKey={appKey} onResetSoknad={onResetSoknad} appTitle={appTitle}>
-                    <AmplitudeProvider applicationKey={appKey} isActive={getUseAmplitude(useAmplitude)}>
+                    <AmplitudeProvider applicationKey={appKey} isActive={useAmplitude}>
                         <IntlProvider
                             locale={locale === 'nb' ? getBokmålLocale() : getNynorskLocale()}
                             messages={localeMessages}>
