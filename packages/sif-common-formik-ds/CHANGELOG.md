@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.13.2
+
+### Patch Changes
+
+-   Bytte compiler av scss, pakkeoppdateringer minor/patch
+
 ## 1.13.1
 
 ### Patch Changes
