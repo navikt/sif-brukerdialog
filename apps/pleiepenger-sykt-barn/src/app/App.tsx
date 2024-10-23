@@ -1,7 +1,7 @@
 import { SanityConfig } from '@navikt/appstatus-react-ds';
 import { Navigate, Route } from 'react-router-dom';
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
-import { getMaybeEnv } from '@navikt/sif-common-env';
+import { getMaybeEnv, isProd } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
@@ -20,7 +20,13 @@ import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.less';
 
-const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID } = appEnv;
+const {
+    PUBLIC_PATH,
+    SIF_PUBLIC_APPSTATUS_DATASET,
+    SIF_PUBLIC_APPSTATUS_PROJECT_ID,
+    APP_VERSION,
+    SIF_PUBLIC_USE_AMPLITUDE,
+} = appEnv;
 ensureBaseNameForReactRouter(PUBLIC_PATH);
 
 const envNow = getMaybeEnv('MOCK_DATE');
@@ -33,8 +39,6 @@ if (envNow && getMaybeEnv('USE_MOCK_DATE') === 'true') {
 appSentryLogger.init();
 
 const App = () => {
-    const useAmplitude = appEnv.SIF_PUBLIC_USE_AMPLITUDE === 'true';
-
     const sanityConfig: SanityConfig = {
         projectId: SIF_PUBLIC_APPSTATUS_PROJECT_ID,
         dataset: SIF_PUBLIC_APPSTATUS_DATASET,
@@ -47,12 +51,13 @@ const App = () => {
 
     return (
         <SoknadApplication
+            appVersion={APP_VERSION}
             appKey={PleiepengerSyktBarnApp.key}
             appName={PleiepengerSyktBarnApp.navn}
             appTitle={PleiepengerSyktBarnApp.tittel.nb}
             appStatus={{ sanityConfig: sanityConfig }}
             intlMessages={applicationIntlMessages}
-            useAmplitude={useAmplitude}
+            useAmplitude={SIF_PUBLIC_USE_AMPLITUDE ? SIF_PUBLIC_USE_AMPLITUDE === 'true' : isProd()}
             publicPath={PUBLIC_PATH}
             onResetSoknad={handleResetSoknad}>
             <SoknadApplicationCommonRoutes

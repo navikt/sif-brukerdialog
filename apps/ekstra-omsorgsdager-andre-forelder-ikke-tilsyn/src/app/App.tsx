@@ -1,5 +1,6 @@
 import { Navigate, Route } from 'react-router-dom';
 import { OmsorgsdagerAnnenForelderIkkeTilsynApp } from '@navikt/sif-app-register';
+import { isProd } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
@@ -13,18 +14,26 @@ import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.css';
 
-const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID } = appEnv;
+const {
+    PUBLIC_PATH,
+    SIF_PUBLIC_APPSTATUS_DATASET,
+    SIF_PUBLIC_APPSTATUS_PROJECT_ID,
+    APP_VERSION,
+    SIF_PUBLIC_USE_AMPLITUDE,
+} = appEnv;
 
 ensureBaseNameForReactRouter(PUBLIC_PATH);
 
 const App = () => (
     <SoknadApplication
+        appVersion={APP_VERSION}
         appKey={OmsorgsdagerAnnenForelderIkkeTilsynApp.key}
         appName={OmsorgsdagerAnnenForelderIkkeTilsynApp.navn}
         appTitle={OmsorgsdagerAnnenForelderIkkeTilsynApp.tittel.nb}
         intlMessages={applicationIntlMessages}
         publicPath={PUBLIC_PATH}
         useLanguageSelector={false}
+        useAmplitude={SIF_PUBLIC_USE_AMPLITUDE ? SIF_PUBLIC_USE_AMPLITUDE === 'true' : isProd()}
         appStatus={{
             sanityConfig: {
                 projectId: SIF_PUBLIC_APPSTATUS_PROJECT_ID,

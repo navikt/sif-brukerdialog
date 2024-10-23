@@ -16,7 +16,7 @@ import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 
 dayjs.extend(isoWeek);
 
-const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID } = appEnv;
+const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID, APP_VERSION } = appEnv;
 const container = document.getElementById('root');
 // eslint-disable-next-line
 const root = createRoot(container!);
@@ -44,6 +44,7 @@ function prepare() {
 
 const App = () => (
     <SoknadApplication
+        appVersion={APP_VERSION}
         appKey={EndringsmeldingPsbApp.key}
         appName={EndringsmeldingPsbApp.navn}
         appTitle={EndringsmeldingPsbApp.tittel.nb}

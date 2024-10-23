@@ -12,13 +12,21 @@ import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.css';
 import { appEnv } from './utils/appEnv';
+import { isProd } from '@navikt/sif-common-env';
 
-const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID } = appEnv;
+const {
+    PUBLIC_PATH,
+    SIF_PUBLIC_APPSTATUS_DATASET,
+    SIF_PUBLIC_APPSTATUS_PROJECT_ID,
+    APP_VERSION,
+    SIF_PUBLIC_USE_AMPLITUDE,
+} = appEnv;
 
 ensureBaseNameForReactRouter(PUBLIC_PATH);
 
 const App = () => (
     <SoknadApplication
+        appVersion={APP_VERSION}
         appKey={OmsorgsdagerAleneomsorgApp.key}
         appName={OmsorgsdagerAleneomsorgApp.navn}
         appTitle={OmsorgsdagerAleneomsorgApp.tittel.nb}
@@ -29,6 +37,7 @@ const App = () => (
                 dataset: SIF_PUBLIC_APPSTATUS_DATASET,
             },
         }}
+        useAmplitude={SIF_PUBLIC_USE_AMPLITUDE ? SIF_PUBLIC_USE_AMPLITUDE === 'true' : isProd()}
         publicPath={PUBLIC_PATH}>
         <SoknadApplicationCommonRoutes
             contentRoutes={[

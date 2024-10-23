@@ -1,6 +1,6 @@
 import { Navigate, Route } from 'react-router-dom';
 import { OmsorgspengerutbetalingSNFriApp } from '@navikt/sif-app-register';
-import { getMaybeEnv } from '@navikt/sif-common-env';
+import { getMaybeEnv, isProd } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
@@ -11,15 +11,17 @@ import { applicationIntlMessages } from './i18n';
 import IkkeTilgangPage from './pages/ikke-tilgang-page/IkkeTilgangPage';
 import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
+import { appEnv } from './utils/appEnv';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.css';
-import { appEnv } from './utils/appEnv';
 
 const {
     PUBLIC_PATH,
     SIF_PUBLIC_APPSTATUS_DATASET: SIF_PUBLIC_APPSTATUS_DATASET,
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: SIF_PUBLIC_APPSTATUS_PROJECT_ID,
+    APP_VERSION,
+    SIF_PUBLIC_USE_AMPLITUDE,
 } = appEnv;
 
 const envNow = getMaybeEnv('MOCK_DATE');
@@ -33,6 +35,7 @@ ensureBaseNameForReactRouter(PUBLIC_PATH);
 
 const App = () => (
     <SoknadApplication
+        appVersion={APP_VERSION}
         appKey={OmsorgspengerutbetalingSNFriApp.key}
         appName={OmsorgspengerutbetalingSNFriApp.navn}
         appTitle={OmsorgspengerutbetalingSNFriApp.tittel.nb}
@@ -43,7 +46,8 @@ const App = () => (
                 dataset: SIF_PUBLIC_APPSTATUS_DATASET,
             },
         }}
-        publicPath={PUBLIC_PATH}>
+        publicPath={PUBLIC_PATH}
+        useAmplitude={SIF_PUBLIC_USE_AMPLITUDE ? SIF_PUBLIC_USE_AMPLITUDE === 'true' : isProd()}>
         <SoknadApplicationCommonRoutes
             contentRoutes={[
                 <Route index key="redirect" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,

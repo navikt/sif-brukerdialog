@@ -1,4 +1,5 @@
 import { Navigate, Route } from 'react-router-dom';
+import { isProd } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
@@ -10,13 +11,20 @@ import { appEnv } from './types/appEnv';
 import { SøknadRoutes } from './types/SøknadRoutes';
 import '@navikt/ds-css';
 
-const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_PROJECT_ID, SIF_PUBLIC_APPSTATUS_DATASET } = appEnv;
+const {
+    PUBLIC_PATH,
+    SIF_PUBLIC_APPSTATUS_PROJECT_ID,
+    SIF_PUBLIC_APPSTATUS_DATASET,
+    APP_VERSION,
+    SIF_PUBLIC_USE_AMPLITUDE,
+} = appEnv;
 
 ensureBaseNameForReactRouter(PUBLIC_PATH);
 
 const App = () => {
     return (
         <SoknadApplication
+            appVersion={APP_VERSION}
             appKey="ungdomsytelse"
             appName="Ungdomsytelse"
             appTitle="Ungdomsytelse MVP"
@@ -27,7 +35,8 @@ const App = () => {
                     projectId: SIF_PUBLIC_APPSTATUS_PROJECT_ID,
                     dataset: SIF_PUBLIC_APPSTATUS_DATASET,
                 },
-            }}>
+            }}
+            useAmplitude={SIF_PUBLIC_USE_AMPLITUDE ? SIF_PUBLIC_USE_AMPLITUDE === 'true' : isProd()}>
             <SoknadApplicationCommonRoutes
                 contentRoutes={[
                     <Route index key="redirect" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
