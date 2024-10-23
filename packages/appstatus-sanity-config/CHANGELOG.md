@@ -1,5 +1,11 @@
 # appstatus-sanity-config
 
+## 1.1.4
+
+### Patch Changes
+
+-   Bytte compiler av scss, pakkeoppdateringer minor/patch
+
 ## 1.1.3
 
 ### Patch Changes

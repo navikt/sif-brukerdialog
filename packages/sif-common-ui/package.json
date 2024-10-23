@@ -1,7 +1,7 @@
 {
     "name": "@navikt/sif-common-ui",
     "main": "src/index.ts",
-    "version": "0.8.24",
+    "version": "0.8.25",
     "private": true,
     "type": "module",
     "dependencies": {
@@ -27,7 +27,7 @@
         "@storybook/preset-create-react-app": "8.3.6",
         "@storybook/react": "8.3.6",
         "@storybook/testing-library": "0.2.2",
-        "@types/react": "18.3.11",
+        "@types/react": "18.3.12",
         "copyfiles": "2.4.1",
         "date-fns": "3.6.0",
         "dayjs": "1.11.13",
