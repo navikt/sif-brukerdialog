@@ -15,6 +15,7 @@ import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import OmBarnetForm from './OmBarnetForm';
 import { omBarnetFormComponents } from './omBarnetFormComponents';
 import { getOmBarnetStepInitialValues, getOmBarnetSøknadsdataFromFormValues } from './omBarnetStepUtils';
+import { useInnvilgedeVedtakForRegistrerteBarn } from '../../../hooks/useInnvilgedeVedtakForRegistrerteBarn';
 
 export enum OmBarnetFormFields {
     barnetsFødselsdato = 'barnetsFødselsdato',
@@ -49,8 +50,7 @@ const OmBarnetStep = () => {
         state: { søknadsdata, registrerteBarn, søker },
     } = useSøknadContext();
 
-    /** Midlertidig ikke aktiv pga feil backend */
-    const innvilgedeVedtak = {}; //: useInnvilgedeVedtakForRegistrerteBarn(registrerteBarn);
+    const innvilgedeVedtak = useInnvilgedeVedtakForRegistrerteBarn(registrerteBarn);
 
     const stepId = StepId.OM_BARNET;
     const step = getSøknadStepConfigForStep(søknadsdata, stepId);
