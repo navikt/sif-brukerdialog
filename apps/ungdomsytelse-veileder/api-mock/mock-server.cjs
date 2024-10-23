@@ -73,6 +73,23 @@ const startExpressServer = () => {
         }, 50);
     });
 
+    server.post('/veileder/register/legg-til-error', (req, res) => {
+        const body = req.body;
+        console.log('[POST] body', body);
+        const response = {
+            ...req.body,
+        };
+        setTimeout(() => {
+            res.status(409).send({
+                type: '/problem-details/deltaker-med-overlappende-periode',
+                title: 'Deltaker er allerede i programmet for oppgitt periode',
+                status: 409,
+                detail: 'Key (deltaker_ident, periode)=(02499435811, [2024-10-08,)) conflicts with existing key (deltaker_ident, periode)=(02499435811, [2024-10-01,)).',
+                instance: 'https://ungdomsytelse-veileder.intern.dev.nav.no/veileder/register/legg-til',
+            });
+        }, 50);
+    });
+
     server.put('/veileder/register/oppdater/:id', (req, res) => {
         const body = req.body;
         console.log('[put] body', body);

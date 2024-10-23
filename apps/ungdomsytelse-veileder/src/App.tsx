@@ -12,7 +12,7 @@ import '@navikt/ds-css';
 import './app.css';
 
 const App = () => {
-    const [deltakerFnr, setDeltakerFnr] = useState<string | undefined>();
+    const [deltakerFnr, setDeltakerFnr] = useState<string | undefined>('56857102105');
 
     const { hentDeltakelserPending, hentDeltakelser, deltakelser } = useHentDeltakelser();
 
