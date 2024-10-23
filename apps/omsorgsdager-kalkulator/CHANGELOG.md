@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.8.24
+
+### Patch Changes
+
+-   Bytte compiler av scss, pakkeoppdateringer minor/patch
+
 ## 3.8.23
 
 ### Patch Changes

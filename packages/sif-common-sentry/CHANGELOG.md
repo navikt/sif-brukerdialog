@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.27.19
+
+### Patch Changes
+
+-   Bytte compiler av scss, pakkeoppdateringer minor/patch
+
 ## 0.27.18
 
 ### Patch Changes
