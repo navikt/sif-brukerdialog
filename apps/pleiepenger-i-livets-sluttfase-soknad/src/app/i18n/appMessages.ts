@@ -1,4 +1,3 @@
-import { calendarGridMessages } from '../components/calendar-grid/calendarGridMessages';
 import { dagerMedTidMessages } from '../components/dager-med-tid-liste/dagerMedTidMessages';
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
@@ -22,7 +21,6 @@ const nb = {
     ...kvitteringMessages.nb,
     ...validateApiDataMessages.nb,
     ...arbeidstidPeriodeMessages.nb,
-    ...calendarGridMessages.nb,
     ...dagerMedTidMessages.nb,
 
     'application.title': 'Søknad om pleiepenger i livets sluttfase',

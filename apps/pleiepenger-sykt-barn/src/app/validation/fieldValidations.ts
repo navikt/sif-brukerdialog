@@ -1,9 +1,4 @@
-import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
-import {
-    attachmentHasBeenUploaded,
-    getTotalSizeOfAttachments,
-    MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
-} from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import { isDevMode } from '@navikt/sif-common-env';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/src';
 import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
 import {
@@ -16,33 +11,28 @@ import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/
 import { UtenlandsoppholdUtvidet } from '@navikt/sif-common-forms-ds/src';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/types';
 import {
-    getDate3YearsAgo,
     DateDurationMap,
     DateRange,
     dateRangesCollide,
     dateRangesExceedsRange,
+    dateUtils,
     durationToDecimalDuration,
+    getDate1YearFromNow,
+    getDate3YearsAgo,
     getDurationsInDateRange,
     getValidDurations,
     summarizeDateDurationMap,
-    getDate1YearFromNow,
-    dateUtils,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import minMax from 'dayjs/plugin/minMax';
 import { StønadGodtgjørelseFormValues } from '../types/søknad-form-values/StønadGodtgjørelseFormValues';
 import { YesOrNoOrDoNotKnow } from '../types/YesOrNoOrDoNotKnow';
-import { isDevMode } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 
 dayjs.extend(minMax);
 dayjs.extend(isoWeek);
 
 export enum AppFieldValidationErrors {
-    'samlet_storrelse_for_hoy' = 'validation.samlet_storrelse_for_hoy',
-    'legeerklæring_mangler' = 'legeerklæring.mangler',
-    'legeerklæring_forMangeFiler' = 'legeerklæring.forMangeFiler',
-
     'arbeidsforhold_timerUgyldig_under_1_prosent' = 'timerUgyldig_under_1_prosent',
     'arbeidsforhold_timerUgyldig_under_0_prosent' = 'timerUgyldig_under_0_prosent',
     'arbeidsforhold_timerUgyldig_over_99_prosent' = 'timerUgyldig_over_99_prosent',
@@ -81,7 +71,7 @@ export const validateNavn = (value: string): ValidationResult<ValidationError> =
 };
 
 export const validateFødselsnummer = (value: string): ValidationResult<ValidationError> => {
-    return getFødselsnummerValidator({ required: true, allowHnr: isDevMode })(value);
+    return getFødselsnummerValidator({ required: true, allowHnr: isDevMode() })(value);
 };
 
 export const validateFradato = (
@@ -169,18 +159,6 @@ export const validateFerieuttakIPerioden = (
     }
     if (dateRangesExceedsRange(dateRanges, periode)) {
         return AppFieldValidationErrors.ferieuttak_utenfor_periode;
-    }
-    return undefined;
-};
-
-export const validateLegeerklæring = (attachments: Attachment[]): ValidationResult<ValidationError> => {
-    const uploadedAttachments = attachments.filter((attachment) => attachmentHasBeenUploaded(attachment));
-    const totalSizeInBytes: number = getTotalSizeOfAttachments(attachments);
-    if (totalSizeInBytes > MAX_TOTAL_ATTACHMENT_SIZE_BYTES) {
-        return AppFieldValidationErrors.samlet_storrelse_for_hoy;
-    }
-    if (uploadedAttachments.length > 100) {
-        return AppFieldValidationErrors.legeerklæring_forMangeFiler;
     }
     return undefined;
 };

@@ -8,22 +8,13 @@ on:
             - 'apps/omsorgspengerutbetaling-arbeidstaker-soknad/**/*'
             - 'nais-config/**/*'
             - 'packages/**/*'
-            - .github/workflows/app.omsorgspengerutbetaling-arbeidstaker-soknad.yml
             - .github/workflows/test.omsorgspengerutbetaling-arbeidstaker-soknad.yml
             - yarn.lock
+
     workflow_call:
 
 env:
     APP_NAME: 'omsorgspengerutbetaling-arbeidstaker-soknad'
-    DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
-    PUBLIC_PATH: /familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker
-    API_URL: http://localhost:8089
-    FRONTEND_API_PATH: http://localhost:8089
-    FRONTEND_VEDLEGG_URL: http://localhost:8089
-    VEDLEGG_API_URL: http://localhost:8089
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    APPSTATUS_PROJECT_ID: ryujtq87
-    APPSTATUS_DATASET: staging
 
 jobs:
     run-script-tests:

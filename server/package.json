@@ -1,6 +1,6 @@
 {
     "name": "@navikt/sif-server",
-    "version": "0.2.4",
+    "version": "0.3.0",
     "license": "MIT",
     "private": true,
     "type": "module",
@@ -12,16 +12,17 @@
     "dependencies": {
         "@navikt/nav-dekoratoren-moduler": "2.1.6",
         "@navikt/oasis": "3.4.0",
+        "@navikt/sif-common-env": "*",
         "cookie-parser": "1.4.7",
         "express": "4.21.1",
-        "http-proxy-middleware": "3.0.3"
+        "http-proxy-middleware": "3.0.3",
+        "zod": "3.23.8"
     },
     "devDependencies": {
-        "@navikt/sif-common": "*",
         "@types/cookie-parser": "1.4.7",
         "@types/express": "5.0.0",
         "@types/morgan": "1.9.9",
-        "@types/node": "22.7.5",
+        "@types/node": "22.7.9",
         "@vercel/ncc": "0.38.2",
         "axios": "1.7.7",
         "morgan": "1.10.0",

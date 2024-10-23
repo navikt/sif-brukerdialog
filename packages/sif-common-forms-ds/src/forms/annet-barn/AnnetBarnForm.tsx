@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { isDevMode } from '@navikt/sif-common-core-ds/src/utils/envUtils';
+import { isDevMode } from '@navikt/sif-common-env';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import {
     getDateValidator,
@@ -154,7 +154,7 @@ const AnnetBarnForm = ({
                             label={formLabels.fnr}
                             validate={getFødselsnummerValidator({
                                 required: true,
-                                allowHnr: isDevMode,
+                                allowHnr: isDevMode(),
                                 disallowedValues: disallowedFødselsnumre,
                             })}
                             inputMode="numeric"

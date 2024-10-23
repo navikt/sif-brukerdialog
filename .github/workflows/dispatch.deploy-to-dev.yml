@@ -8,18 +8,20 @@ on:
                 description: Choose application
                 type: choice
                 options:
-                    - ungdomsytelse-soknad
-                    - sif-demo-app
-                    - endringsmelding-pleiepenger
                     - ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
-                    - omsorgspengesoknad
+                    - endringsmelding-pleiepenger
                     - omsorgsdager-aleneomsorg-dialog
-                    - omsorgspengerutbetaling-soknad
+                    - omsorgsdager-kalkulator
                     - omsorgspengerutbetaling-arbeidstaker-soknad
+                    - omsorgspengerutbetaling-soknad
+                    - omsorgspengesoknad
+                    - opplaringspenger-soknad
                     - pleiepenger-i-livets-sluttfase-soknad
                     - pleiepenger-sykt-barn
+                    - sif-demo-app
                     - sif-ettersending
-                    - omsorgsdager-kalkulator
+                    - ungdomsytelse-soknad
+                    - ungdomsytelse-veileder
                 required: true
 
 jobs:

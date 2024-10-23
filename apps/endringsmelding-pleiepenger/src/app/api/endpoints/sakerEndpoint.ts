@@ -1,5 +1,5 @@
 import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
+import { getMaybeEnv } from '@navikt/sif-common-env';
 import { isK9FormatError, K9Format, K9FormatArbeidstid, K9Sak, UgyldigK9SakFormat } from '@types';
 import {
     appSentryLogger,
@@ -52,7 +52,7 @@ const sakerEndpoint = {
                         } else {
                             eldreSaker.push(parsedSak);
                         }
-                        if (getEnvironmentVariable('DEBUG') === 'true') {
+                        if (getMaybeEnv('DEBUG') === 'true') {
                             appSentryLogger.logInfo('debug.k9format.gyldig', JSON.stringify(maskK9FormatSak(sak)));
                         }
                     } else {

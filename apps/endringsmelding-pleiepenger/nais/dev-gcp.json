@@ -4,7 +4,10 @@
     "cluster": "dev-gcp",
     "observabilityEnabled": "true",
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no", "amplitude.nav.no"],
-    "accessPolicyOutApps": ["k9-brukerdialog-prosessering", "sif-innsyn-api"],
+    "accessPolicyOutApps": [
+        { "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" },
+        { "application": "sif-innsyn-api", "namespace": "dusseldorf" }
+    ],
     "ingresses": ["https://endringsmelding-pleiepenger.intern.dev.nav.no"],
     "readinessPath": "/internal/health/isReady",
     "livenessPath": "/internal/health/isAlive",
@@ -12,8 +15,8 @@
     "minReplicas": 1,
     "maxReplicas": 1,
     "env": {
-        "APP_VERSION": "dev",
         "ENV": "dev",
+        "APP_VERSION": "dev",
         "NODE_ENV": "development",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
 
@@ -24,7 +27,6 @@
         "SIF_PUBLIC_LOGIN_URL": "http://localhost:8081/auth-mock/cookie?subject=mockSubject&redirect_location=http://localhost:8080",
         "SIF_PUBLIC_INNSYN_URL": "https://dine-pleiepenger.intern.dev.nav.no/innsyn",
         "SIF_PUBLIC_MINSIDE_URL": "https://www.nav.no/minside",
-        "SIF_PUBLIC_FEATURE_VELG_SCENARIO": "on",
 
         "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/api/k9-brukerdialog",
         "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "dev-gcp:dusseldorf:k9-brukerdialog-prosessering",
@@ -33,6 +35,8 @@
         "SIF_INNSYN_FRONTEND_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/api/sif-innsyn",
         "SIF_INNSYN_API_URL": "http://sif-innsyn-api",
         "SIF_INNSYN_API_SCOPE": "dev-gcp:dusseldorf:sif-innsyn-api",
-        "DEBUG": "true"
+
+        "DEBUG": "true",
+        "VELG_SCENARIO": "on"
     }
 }

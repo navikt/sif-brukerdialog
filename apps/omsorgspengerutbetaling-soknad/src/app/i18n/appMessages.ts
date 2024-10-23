@@ -6,7 +6,6 @@ import { fraværFraMessages } from '../søknad/steps/fravær-fra/fraværFraMessa
 import { fraværStepMessages } from '../søknad/steps/fravær/fraværStepMessages';
 import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerklæringMessages';
 import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
-import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
 
 const nb = {
     ...velkommenPageMessages.nb,
@@ -17,7 +16,6 @@ const nb = {
     ...legeerklæringMessages.nb,
     ...oppsummeringMessages.nb,
     ...kvitteringMessages.nb,
-    ...validateApiDataMessages.nb,
 
     'application.title': 'Søknad om utbetaling av omsorgspenger til selvstendig næringsdrivende eller frilansere',
 
@@ -43,9 +41,6 @@ const nb = {
     'step.legeerklæring.nextButtonLabel': 'Fortsett',
 
     'vedleggsliste.ingenLegeerklæringLastetOpp': 'Ingen vedlegg er lastet opp',
-
-    'dokumenter.advarsel.totalstørrelse':
-        'Du har totalt lastet opp mer enn grensen på 24 Mb. Det betyr at du må fjerne noe av det du har lastet opp. Hvis det betyr at du ikke får plass til alt du ønsker å sende nå, kan du <Lenke>ettersende flere dokumenter</Lenke>.',
 
     'step.arbeidssituasjon.stepTitle': 'Arbeidssituasjon',
 
@@ -75,10 +70,6 @@ const nb = {
     'validation.harDekketTiFørsteDagerSelv.notAnswered': 'Du må svare på om du har dekket de 10 første dagene i år.',
     'validation.harDekketTiFørsteDagerSelv.yesOrNoIsUnanswered':
         'Du må svare på om du har dekket de 10 første dagene i år.',
-    'validation.ingen_dokumenter': 'Ingen vedlegg er lastet opp.',
-    'validation.for_mange_dokumenter': 'For mange dokumenter er lastet opp.',
-    'validation.samlet_storrelse_for_hoy':
-        'Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24Mb.',
     'validation.harPerioderMedFravær.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om du har hatt hele dager med fravær fra jobb.',
     'validation.fraværPerioder.listIsEmpty': 'Du har ikke lagt til dager med fullt fravær.',
@@ -126,6 +117,8 @@ const nb = {
     'validation.aktivitetFravær.noValue': 'Du må velge hvilket arbeid du hadde fravær fra {dato}.',
     'validation.harBekreftetOpplysninger.notChecked': 'Du må bekrefte at opplysningene er riktige.',
     'validation.harForståttRettigheterOgPlikter.notChecked': 'Du må bekrefte at du har lest og forstått dine plikter.',
+
+    'apiDataValidation.undefined': 'Det oppstod en feil ved visningen av siden.',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };

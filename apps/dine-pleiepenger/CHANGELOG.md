@@ -1,5 +1,48 @@
 # @navikt/dine-pleiepenger
 
+## 1.6.27
+
+### Patch Changes
+
+-   Bytte compiler av scss, pakkeoppdateringer minor/patch
+-   Updated dependencies
+-   Updated dependencies [e1dfb2e]
+    -   @navikt/sif-common-amplitude@2.26.21
+    -   @navikt/appstatus-react-ds@2.19.22
+    -   @navikt/sif-common-core-ds@9.20.0
+    -   @navikt/sif-common-sentry@0.27.19
+    -   @navikt/sif-common-utils@3.47.22
+
+## 1.6.26
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.26.20
+    -   @navikt/appstatus-react-ds@2.19.21
+    -   @navikt/sif-common-core-ds@9.19.1
+    -   @navikt/sif-common-sentry@0.27.18
+    -   @navikt/sif-common-utils@3.47.21
+
+## 1.6.25
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.26.19
+    -   @navikt/appstatus-react-ds@2.19.20
+    -   @navikt/sif-common-core-ds@9.18.26
+    -   @navikt/sif-common-sentry@0.27.17
+    -   @navikt/sif-common-utils@3.47.20
+
+## 1.6.24
+
+### Patch Changes
+
+-   Legge til K9_BRUKERDIALOG_PROSESSERING_API_URL i appSettings
+
 ## 1.6.23
 
 ### Patch Changes

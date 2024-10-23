@@ -35,7 +35,7 @@ test.describe('Fyll ut legeerklæring', () => {
             await page.locator('#legeerklæring-input').dispatchEvent('click'),
         ]);
         await fileChooser.setFiles('./e2e/playwright/files/navlogopng.png');
-        const listItems = await page.locator('.attachmentListElement');
+        const listItems = await page.getByText('navlogopng.png(2.31 KB)');
         await expect(listItems).toHaveCount(1);
 
         await page.getByTestId('typedFormikForm-submitButton').click();
@@ -51,7 +51,7 @@ test.describe('Fyll ut legeerklæring', () => {
         const fileChooser2 = await fileChooserPromise;
         await fileChooser2.setFiles('./e2e/playwright/files/navlogopng.png');
 
-        const listItems = await page.locator('.attachmentListElement');
+        const listItems = await page.getByText('navlogopng.png(2.31 KB)');
         await expect(listItems).toHaveCount(2);
 
         await page.getByTestId('typedFormikForm-submitButton').click();

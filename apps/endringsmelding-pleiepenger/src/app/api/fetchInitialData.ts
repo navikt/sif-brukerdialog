@@ -1,5 +1,5 @@
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
+import { getMaybeEnv } from '@navikt/sif-common-env';
 import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
 import {
     Arbeidsgiver,
@@ -157,7 +157,7 @@ const kontrollerTilgang = async (k9saker: K9Sak[], tillattEndringsperiode: DateR
     if (resultat.kanBrukeSøknad) {
         return Promise.resolve(true);
     }
-    if (getEnvironmentVariable('DEBUG') === 'true') {
+    if (getMaybeEnv('DEBUG') === 'true') {
         if (k9saker.length === 1) {
             appSentryLogger.logInfo(
                 'IkkeTilgangSakInfo',

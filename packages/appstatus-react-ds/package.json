@@ -4,20 +4,20 @@
     "license": "MIT",
     "main": "src",
     "name": "@navikt/appstatus-react-ds",
-    "version": "2.19.19",
+    "version": "2.19.22",
     "private": true,
     "type": "module",
     "dependencies": {
         "@navikt/sif-common-hooks": "*",
         "@portabletext/react": "3.1.0",
-        "@sanity/client": "6.22.1"
+        "@sanity/client": "6.22.2"
     },
     "devDependencies": {
-        "@navikt/ds-css": "7.2.1",
-        "@navikt/ds-react": "7.2.1",
+        "@navikt/ds-css": "7.3.1",
+        "@navikt/ds-react": "7.3.1",
         "@sif/eslint-config": "*",
-        "@types/node": "22.7.5",
-        "@types/react": "18.3.11",
+        "@types/node": "22.7.9",
+        "@types/react": "18.3.12",
         "@types/react-dom": "18.3.1",
         "config": "*",
         "copyfiles": "2.4.1",
@@ -26,7 +26,7 @@
         "react": "18.3.1",
         "react-dom": "18.3.1",
         "rimraf": "6.0.1",
-        "sass": "1.79.5"
+        "sass": "1.80.3"
     },
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",

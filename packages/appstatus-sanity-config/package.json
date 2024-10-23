@@ -1,0 +1,45 @@
+{
+    "name": "appstatus-sanity-config",
+    "version": "1.1.4",
+    "description": "",
+    "main": "package.json",
+    "author": "frodehansen2 <frode.hansen@bekk.no>",
+    "license": "UNLICENSED",
+    "scripts": {
+        "dev": "sanity dev",
+        "start": "sanity start",
+        "build": "sanity build",
+        "deploy": "sanity deploy",
+        "deploy-graphql": "sanity graphql deploy"
+    },
+    "keywords": [
+        "sanity"
+    ],
+    "dependencies": {
+        "@sanity/vision": "3.62.0",
+        "react": "18.3.1",
+        "react-dom": "18.3.1",
+        "sanity": "3.62.0",
+        "styled-components": "6.1.13"
+    },
+    "devDependencies": {
+        "@sanity/eslint-config-studio": "4.0.0",
+        "@types/react": "18.3.12",
+        "dayjs": "1.11.13",
+        "eslint": "9.13.0",
+        "prettier": "3.3.3",
+        "react-is": "18.3.1",
+        "typescript": "5.6.3"
+    },
+    "prettier": {
+        "useTabs": false,
+        "bracketSpacing": true,
+        "bracketSameLine": true,
+        "tabWidth": 4,
+        "arrowParens": "always",
+        "singleQuote": true,
+        "printWidth": 120,
+        "ordered-imports": false
+    },
+    "packageManager": "yarn@4.3.1"
+}

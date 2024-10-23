@@ -13,7 +13,7 @@ export default {
 } as Meta<typeof KvitteringPage>;
 
 const Template: StoryFn<typeof KvitteringPage> = () => (
-    <KvitteringPage søker={søkerStorybookMock} kvitteringInfo={kvitteringInfoStorybookMock} onUnmount={() => null} />
+    <KvitteringPage søker={søkerStorybookMock} kvitteringInfo={kvitteringInfoStorybookMock} />
 );
 
 export const Default = Template.bind({});

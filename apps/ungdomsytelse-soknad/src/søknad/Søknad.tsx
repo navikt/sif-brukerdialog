@@ -2,7 +2,6 @@ import { useInitialData } from '../hooks/useInitialData';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { SøknadContextProvider } from './context/SøknadContext';
 import SøknadRouter from './SøknadRouter';
-import ApiInfo from '../dev/ApiInfo';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 
 const Søknad = () => {
@@ -21,7 +20,6 @@ const Søknad = () => {
     return (
         <SøknadContextProvider initialData={initialData}>
             <SøknadRouter />
-            <ApiInfo søker={initialData.søker} barn={initialData.barn} />
         </SøknadContextProvider>
     );
 };

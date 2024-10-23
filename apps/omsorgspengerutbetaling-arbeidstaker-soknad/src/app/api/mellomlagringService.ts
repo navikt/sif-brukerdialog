@@ -1,4 +1,4 @@
-import { getMellomlagringService, MellomlagringYtelse, RegistrertBarn, Søker } from '@navikt/sif-common';
+import { getMellomlagringService, MellomlagringYtelse, RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { jsonSort } from '@navikt/sif-common-utils';
 import hash from 'object-hash';
 import { SØKNAD_VERSJON } from '../constants/SØKNAD_VERSJON';

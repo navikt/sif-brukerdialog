@@ -10,13 +10,13 @@ import AppStatusWrapper from '@navikt/sif-common-core-ds/src/components/app-stat
 import SifAppWrapper from '@navikt/sif-common-core-ds/src/components/sif-app-wrapper/SifAppWrapper';
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types/MessageFileFormat';
-import { getEnvironmentVariable, getMaybeEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import {
     getBokmålLocale,
     getLocaleFromSessionStorage,
     getNynorskLocale,
     setLocaleInSessionStorage,
 } from '@navikt/sif-common-core-ds/src/utils/localeUtils';
+import { getCommonEnv, getMaybeEnv, isProd } from '@navikt/sif-common-env';
 import { FaroProvider } from '@navikt/sif-common-faro';
 import dayjs from 'dayjs';
 import 'dayjs/locale/nb';
@@ -52,16 +52,16 @@ interface Props {
     onResetSoknad?: () => void;
 }
 
-const telemetryCollectorURL = getMaybeEnvironmentVariable('NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL');
-const appVersion = getEnvironmentVariable('APP_VERSION');
-const useFaro = getMaybeEnvironmentVariable('USE_FARO') === 'true';
+const telemetryCollectorURL = getMaybeEnv('NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL');
+const { APP_VERSION } = getCommonEnv();
+const useFaro = getMaybeEnv('USE_FARO') === 'true';
 
 const localeFromSessionStorage = getLocaleFromSessionStorage();
 dayjs.locale(localeFromSessionStorage);
 
 const getUseAmplitude = (useAmplitude: boolean | undefined): boolean => {
     if (useAmplitude === undefined) {
-        return getEnvironmentVariable('APP_VERSION') === 'prod';
+        return isProd();
     }
     return useAmplitude;
 };
@@ -91,7 +91,7 @@ const SoknadApplication = ({
             <FaroProvider
                 applicationKey={appKey}
                 telemetryCollectorURL={telemetryCollectorURL}
-                appVersion={appVersion}
+                appVersion={APP_VERSION}
                 isActive={useFaro}>
                 <ErrorBoundary appKey={appKey} onResetSoknad={onResetSoknad} appTitle={appTitle}>
                     <AmplitudeProvider applicationKey={appKey} isActive={getUseAmplitude(useAmplitude)}>

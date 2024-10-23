@@ -1,20 +1,29 @@
 import { useState } from 'react';
-import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common';
+import { fetchSøker, Søker } from '@navikt/sif-common-api';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { Deltakelse } from '../api/types';
+import { deltakerService } from '../api/services/deltakerService';
 
 export type InitialData = {
-    barn: RegistrertBarn[];
     søker: Søker;
+    alleDeltakelser: Deltakelse[];
+    deltakelserSøktFor: Deltakelse[];
+    deltakelserIkkeSøktFor: Deltakelse[];
 };
 
 export const useInitialData = () => {
-    const [initialData, setInitialData] = useState<InitialData>();
+    const [state, setState] = useState<InitialData>();
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const fetchInitialData = async () => {
         const søker = await fetchSøker();
-        const barn = await fetchBarn();
-        setInitialData({ søker, barn });
+        const deltakelser = await deltakerService.getDeltakelser(søker.fødselsnummer);
+        setState({
+            søker,
+            alleDeltakelser: deltakelser,
+            deltakelserSøktFor: deltakelser.filter((d) => d.søktFor),
+            deltakelserIkkeSøktFor: deltakelser.filter((d) => !d.søktFor),
+        });
         setIsLoading(false);
     };
 
@@ -22,5 +31,5 @@ export const useInitialData = () => {
         fetchInitialData();
     });
 
-    return { initialData, isLoading };
+    return { initialData: state, isLoading };
 };

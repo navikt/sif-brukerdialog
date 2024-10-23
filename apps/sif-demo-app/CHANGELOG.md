@@ -1,5 +1,70 @@
 # @navikt/sif-demo-app
 
+## 0.3.0
+
+### Minor Changes
+
+-   e1dfb2e: Flytter all env-logikk til egen pakke.
+
+    -   Sletter getGitShaRequestHeader fra request headers i browser (settes av server)
+    -   commonEnv som inneholder alle standard env variabler
+    -   appEnv der det er behov, som ekstender commonEnv og legger til egne
+    -   kaster exception når påkrevde env ikke finnes
+    -   prefixe noen common envs med SIF_PUBLIC
+
+    Innføre env.schema.ts i alle søknadsdialoger
+
+    -   definerer hvilke envs som er påkrevd
+    -   under bygg kopieres denne over og brukes ved oppstart av server for å kontrollere at alle envs er satt
+
+    Refactoring av proxy setup i server
+
+### Patch Changes
+
+-   Bytte compiler av scss, pakkeoppdateringer minor/patch
+-   Updated dependencies
+-   Updated dependencies [e1dfb2e]
+    -   @navikt/sif-common-soknad-ds@16.0.0
+    -   @navikt/sif-common-core-ds@9.20.0
+    -   @navikt/sif-common-api@0.3.0
+    -   @navikt/sif-common-ui@0.8.25
+    -   @navikt/sif-common-env@0.1.0
+
+## 0.2.1
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-soknad-ds@15.0.1
+    -   @navikt/sif-common-core-ds@9.19.1
+    -   @navikt/sif-common-api@0.2.1
+    -   @navikt/sif-common-ui@0.8.24
+
+## 0.2.0
+
+### Minor Changes
+
+-   989373a: - Gå over til å bruke noen få felleskomponenter og utils for filopplasting.
+    -   Legge på validering av vedlegg på tvers av en søknad
+    -   Fjerne sperre for bruker på å gå videre hvis det var for mange vedlegg. Erstattet med validering.
+
+### Patch Changes
+
+-   Updated dependencies [989373a]
+    -   @navikt/sif-common-soknad-ds@15.0.0
+    -   @navikt/sif-common-core-ds@9.19.0
+    -   @navikt/sif-common@0.2.0
+
+## 0.1.12
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-soknad-ds@14.0.20
+    -   @navikt/sif-common-core-ds@9.18.26
+
 ## 0.1.11
 
 ### Patch Changes

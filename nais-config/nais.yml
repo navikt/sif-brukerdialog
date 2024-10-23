@@ -30,9 +30,10 @@ spec:
     accessPolicy:
         outbound:
             rules:
-            {{#each accessPolicyOutApps as |application|}}
-             - application: {{application}}
-            {{/each}} 
+            {{#each accessPolicyOutApps as |rule|}}
+             - application: {{rule.application}}
+               namespace: {{rule.namespace}}
+            {{/each}}
              - application: nav-dekoratoren
                namespace: personbruker
             external:

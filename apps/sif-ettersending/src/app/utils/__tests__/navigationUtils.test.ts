@@ -6,8 +6,8 @@ import { navigateToErrorPage, userIsCurrentlyOnErrorPage } from '../navigationUt
 
 const navigate: NavigateFunction = vi.fn().mockImplementation(() => {});
 
-vi.mock('@navikt/sif-common-core-ds/src/utils/envUtils', () => {
-    return { getEnvironmentVariable: () => '' };
+vi.mock('@navikt/sif-common-env', () => {
+    return { getRequiredEnv: () => '', getCommonEnv: () => ({ PUBLIC_PATH: '', SIF_PUBLIC_LOGIN_URL: '' }) };
 });
 
 const søknadstype = Søknadstype.omsorgspenger;

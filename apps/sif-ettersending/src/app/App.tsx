@@ -1,6 +1,5 @@
 import { Navigate, Route } from 'react-router-dom';
 import { EttersendelseApp } from '@navikt/sif-app-register';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
@@ -10,13 +9,14 @@ import { applicationIntlMessages } from './i18n';
 import GeneralErrorPage from './pages/general-error-page/GeneralErrorPage';
 import IntroPage from './pages/intro-page/IntroPage';
 import SoknadRemoteDataFetcher from './soknad/SoknadRemoteDataFetcher';
+import { appEnv } from './utils/appEnv';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.css';
 
-const publicPath = getEnvironmentVariable('PUBLIC_PATH');
+const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_PROJECT_ID, SIF_PUBLIC_APPSTATUS_DATASET } = appEnv;
 
-ensureBaseNameForReactRouter(publicPath);
+ensureBaseNameForReactRouter(PUBLIC_PATH);
 
 const App = () => {
     return (
@@ -27,11 +27,11 @@ const App = () => {
             intlMessages={applicationIntlMessages}
             appStatus={{
                 sanityConfig: {
-                    projectId: getEnvironmentVariable('APPSTATUS_PROJECT_ID'),
-                    dataset: getEnvironmentVariable('APPSTATUS_DATASET'),
+                    projectId: SIF_PUBLIC_APPSTATUS_PROJECT_ID,
+                    dataset: SIF_PUBLIC_APPSTATUS_DATASET,
                 },
             }}
-            publicPath={publicPath}>
+            publicPath={PUBLIC_PATH}>
             <SoknadApplicationCommonRoutes
                 contentRoutes={[
                     <Route path={'/:soknadstype/melding/*'} key="soknad" element={<SoknadRemoteDataFetcher />} />,

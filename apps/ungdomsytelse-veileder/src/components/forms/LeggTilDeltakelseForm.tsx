@@ -1,0 +1,113 @@
+import { Alert, Box, Button, Heading, HStack, VStack } from '@navikt/ds-react';
+import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
+import { veilederService } from '../../api/services/veilederService';
+import { useState } from 'react';
+import { PlusCircleIcon } from '@navikt/aksel-icons';
+import { ISODateToDate } from '@navikt/sif-common-utils';
+import PeriodeFormPart from './PeriodeFormPart';
+import { Deltakelse } from '../../api/types';
+
+type DeltakelseFormValues = {
+    fnr: string;
+    fom: string;
+    tom?: string;
+};
+
+interface Props {
+    deltakerFnr: string;
+    deltakelser: Deltakelse[];
+    onDeltakelseLagtTil: () => void;
+}
+
+const LeggTilDeltakelseForm = ({ deltakerFnr, deltakelser, onDeltakelseLagtTil }: Props) => {
+    const [showForm, setShowForm] = useState(false);
+    const [pending, setPending] = useState(false);
+    const [initialValues] = useState<Partial<DeltakelseFormValues>>({
+        fnr: deltakerFnr,
+    });
+    const [error, setError] = useState<string>();
+
+    const leggTilDeltakelse = async (values: DeltakelseFormValues) => {
+        setError(undefined);
+        setPending(true);
+        await veilederService
+            .createDeltakelse({
+                deltakerIdent: deltakerFnr,
+                fraOgMed: values.fom,
+                tilOgMed: values.tom,
+            })
+            .catch((e) => {
+                setError(e.message);
+            })
+            .then(() => {
+                setPending(false);
+                onDeltakelseLagtTil();
+            });
+    };
+
+    if (showForm === false) {
+        return (
+            <Box>
+                <Button
+                    type="button"
+                    variant="tertiary"
+                    icon={<PlusCircleIcon />}
+                    onClick={() => {
+                        setShowForm(true);
+                    }}>
+                    Legg til ny
+                </Button>
+            </Box>
+        );
+    }
+
+    return (
+        <Box borderRadius="large" background="bg-subtle" padding="6">
+            <TypedFormikWrapper<DeltakelseFormValues>
+                initialValues={initialValues}
+                onSubmit={leggTilDeltakelse}
+                renderForm={({ setValues, values }) => {
+                    const fomDate = values.fom ? ISODateToDate(values.fom) : undefined;
+                    const tomDate = values.tom ? ISODateToDate(values.tom) : undefined;
+
+                    return (
+                        <VStack gap="6">
+                            <TypedFormikForm
+                                submitPending={pending}
+                                submitButtonLabel="Legg til"
+                                showSubmitButton={false}>
+                                <Heading level="2" size="small" spacing={true}>
+                                    Legg til deltakelse
+                                </Heading>
+
+                                <VStack gap="6">
+                                    <PeriodeFormPart fomDate={fomDate} tomDate={tomDate} deltakelser={deltakelser} />
+                                    <HStack gap="6">
+                                        <Button type="submit" loading={pending} icon={<PlusCircleIcon />}>
+                                            Legg til
+                                        </Button>
+                                        <Button
+                                            type="button"
+                                            variant="secondary"
+                                            onClick={(evt) => {
+                                                evt.stopPropagation();
+                                                evt.preventDefault();
+                                                setValues({});
+                                                setShowForm(false);
+                                            }}>
+                                            Avbryt
+                                        </Button>
+                                    </HStack>
+                                </VStack>
+                            </TypedFormikForm>
+
+                            {error && <Alert variant="error">{error}</Alert>}
+                        </VStack>
+                    );
+                }}
+            />
+        </Box>
+    );
+};
+
+export default LeggTilDeltakelseForm;

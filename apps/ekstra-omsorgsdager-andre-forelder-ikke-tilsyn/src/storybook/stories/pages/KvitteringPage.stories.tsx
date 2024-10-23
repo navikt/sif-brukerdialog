@@ -11,7 +11,7 @@ export default {
     decorators: [withIntl, withRouterProvider, withAmplitudeProvider],
 } as Meta<typeof KvitteringPage>;
 
-const Template: StoryFn<typeof KvitteringPage> = () => <KvitteringPage onUnmount={() => null} />;
+const Template: StoryFn<typeof KvitteringPage> = () => <KvitteringPage />;
 
 export const Default = Template.bind({});
 

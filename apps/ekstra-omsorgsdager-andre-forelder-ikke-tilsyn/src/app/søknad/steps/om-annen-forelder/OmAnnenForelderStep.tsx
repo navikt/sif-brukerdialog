@@ -1,3 +1,4 @@
+import { isDevMode } from '@navikt/sif-common-env';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
@@ -19,7 +20,6 @@ import {
     getOmAnnenForelderStepInitialValues,
     getOmAnnenForelderSøknadsdataFromFormValues,
 } from './omAnnenForelderStepUtils';
-import { isDevMode } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 
 export enum OmAnnenForelderFormFields {
     annenForelderNavn = 'annenForelderNavn',
@@ -96,7 +96,7 @@ const OmAnnenForelderStep = () => {
                                         label={text('step.omAnnenForelder.fnr.spm')}
                                         validate={getFødselsnummerValidator({
                                             required: true,
-                                            allowHnr: isDevMode,
+                                            allowHnr: isDevMode(),
                                             disallowedValues: [søker.fødselsnummer],
                                         })}
                                         inputMode="numeric"

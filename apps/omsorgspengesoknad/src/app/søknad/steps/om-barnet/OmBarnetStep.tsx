@@ -1,6 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
-import { useInnvilgedeVedtakForRegistrerteBarn } from '../../../hooks/useInnvilgedeVedtakForRegistrerteBarn';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { BarnSammeAdresse } from '../../../types/BarnSammeAdresse';
@@ -16,6 +15,7 @@ import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import OmBarnetForm from './OmBarnetForm';
 import { omBarnetFormComponents } from './omBarnetFormComponents';
 import { getOmBarnetStepInitialValues, getOmBarnetSøknadsdataFromFormValues } from './omBarnetStepUtils';
+import { useInnvilgedeVedtakForRegistrerteBarn } from '../../../hooks/useInnvilgedeVedtakForRegistrerteBarn';
 
 export enum OmBarnetFormFields {
     barnetsFødselsdato = 'barnetsFødselsdato',
@@ -49,6 +49,7 @@ const OmBarnetStep = () => {
     const {
         state: { søknadsdata, registrerteBarn, søker },
     } = useSøknadContext();
+
     const innvilgedeVedtak = useInnvilgedeVedtakForRegistrerteBarn(registrerteBarn);
 
     const stepId = StepId.OM_BARNET;

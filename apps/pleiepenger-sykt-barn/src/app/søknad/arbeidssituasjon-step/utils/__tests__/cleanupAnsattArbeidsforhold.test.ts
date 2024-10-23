@@ -4,6 +4,7 @@ import { ArbeiderIPeriodenSvar } from '../../../../local-sif-common-pleiepenger'
 import { ArbeidsgiverType, TimerEllerProsent } from '../../../../types';
 import { ArbeidsforholdFormValues } from '../../../../types/søknad-form-values/ArbeidsforholdFormValues';
 import { cleanupAnsattArbeidsforhold } from '../cleanupArbeidssituasjonStep';
+import { vi } from 'vitest';
 
 const ansattArbeidsforhold: ArbeidsforholdFormValues = {
     arbeidsgiver: {
@@ -24,6 +25,10 @@ const ansattArbeidsforhold: ArbeidsforholdFormValues = {
     },
     sluttetFørSøknadsperiode: YesOrNo.NO,
 };
+
+vi.mock('@navikt/sif-common-env', () => {
+    return { getRequiredEnv: () => '', getCommonEnv: () => ({}), getMaybeEnv: () => '' };
+});
 
 describe('cleanupAnsattArbeidsforhold', () => {
     describe('Når søker sier at en har sluttet før søknadsperiode', () => {

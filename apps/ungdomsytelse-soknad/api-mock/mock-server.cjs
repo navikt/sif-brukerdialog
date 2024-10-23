@@ -5,6 +5,7 @@ const busboyCons = require('busboy');
 const os = require('os');
 const fs = require('fs');
 const cors = require('cors');
+const { v4: uuidv4 } = require('uuid');
 
 const server = express();
 
@@ -56,8 +57,6 @@ const mockPath = `${__dirname}/data`;
 const soker = 'søker1';
 
 const søkerFileName = `søker-mock.json`;
-const barnFileName = `barn-mock.json`;
-const arbeidsgivereFileName = `arbeidsgivere-mock.json`;
 const innvilgetVedtakFileName = `innvilget-vedtak-mock.json`;
 const ikkeInnvilgetVedtakFileName = `ikke-innvilget-vedtak-mock.json`;
 
@@ -80,16 +79,32 @@ const startExpressServer = () => {
         }, 250);
     });
 
-    server.get('/oppslag/barn', (req, res) => {
+    server.post('/veileder/register/hent/alle', (req, res) => {
+        const response = [
+            {
+                id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0',
+                deltakerIdent: '56857102105',
+                fraOgMed: '2025-08-15',
+                tilOgMed: '2025-12-31',
+                søktFor: true,
+            },
+            {
+                id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab2',
+                deltakerIdent: '56857102105',
+                fraOgMed: '2026-01-01',
+                tilOgMed: '2026-04-01',
+                søktFor: true,
+            },
+            {
+                id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab4',
+                deltakerIdent: '56857102105',
+                fraOgMed: '2026-05-01',
+                søktFor: false,
+            },
+        ];
         setTimeout(() => {
-            readMockFile(barnFileName, res);
-        }, 250);
-    });
-
-    server.get('/oppslag/arbeidsgiver', (req, res) => {
-        setTimeout(() => {
-            readMockFile(arbeidsgivereFileName, res);
-        }, 250);
+            res.status(200).send(response);
+        }, 50);
     });
 
     /** --- Send søknad ---------- */
@@ -128,14 +143,14 @@ const startExpressServer = () => {
         const busboy = busboyCons({ headers: req.headers });
         busboy.on('finish', () => {
             res.writeHead(200, {
-                Location: 'http://localhost:8089/vedlegg/eyJraWQiOiIxIiwidHlwIjoiSldUIiwiYWxnIjoibm9uZSJ9.eyJqdG',
+                Location: `http://localhost:8089/vedlegg/${uuidv4()}`,
             });
             res.end();
         });
         req.pipe(busboy);
     });
 
-    server.delete('/vedlegg', (req, res) => {
+    server.delete('/vedlegg/**', (req, res) => {
         res.sendStatus(200);
     });
 

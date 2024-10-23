@@ -7,6 +7,7 @@ on:
             - main
         paths:
             - 'apps/omsorgsdager-aleneomsorg-dialog/**/*'
+            - 'server/**/*'
     workflow_dispatch:
 
 jobs:

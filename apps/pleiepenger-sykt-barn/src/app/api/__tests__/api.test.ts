@@ -15,18 +15,12 @@ import {
 } from '../api';
 import { axiosJsonConfig, sendMultipartPostRequest } from '../utils/apiUtils';
 
-vi.mock('@navikt/sif-common-core-ds/src/utils/envUtils', () => {
+vi.mock('@navikt/sif-common-env', () => {
     return {
-        getEnvironmentVariable: () => 'mockedApiUrl',
-        getEnvVariableOrDefault: () => 'mockedApiUrl',
-        getCommitShaFromEnv: () => 'mockedCommitSha',
-    };
-});
+        getRequiredEnv: () => 'mockedApiUrl',
+        getMaybeEnv: () => 'mockedApiUrl',
 
-vi.mock('@navikt/sif-common/src/env/commonEnv', () => {
-    return {
-        getEnvironmentVariable: () => 'mockedApiUrl',
-        getEnvVariableOrDefault: () => 'mockedApiUrl',
+        getCommonEnv: () => ({}),
     };
 });
 
@@ -34,7 +28,6 @@ const mockedApiUrl = 'nav.no/api';
 
 vi.mock('../utils/apiUtils', () => {
     return {
-        getApiUrlByResourceType: vi.fn(() => mockedApiUrl),
         getInnsynApiUrlByResourceType: vi.fn(() => mockedApiUrl),
         sendMultipartPostRequest: vi.fn(),
         axiosJsonConfig: {},

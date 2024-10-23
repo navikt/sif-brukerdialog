@@ -5,13 +5,17 @@
     "livenessPath": "/internal/health/isAlive",
     "readinessPath": "/internal/health/isReady",
     "externalHosts": ["www.nav.no"],
-    "accessPolicyOutApps": ["k9-brukerdialog-prosessering"],
+    "accessPolicyOutApps": [
+        { "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" },
+        { "application": "k9-sak-innsyn-api", "namespace": "dusseldorf" }
+    ],
     "ingresses": ["https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspenger"],
     "cluster": "prod-gcp",
     "minReplicas": 2,
     "maxReplicas": 2,
     "observabilityEnabled": "true",
     "env": {
+        "ENV": "prod",
         "APP_VERSION": "prod",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgspenger",
         "NPM_CONFIG_CACHE": "/tmp",

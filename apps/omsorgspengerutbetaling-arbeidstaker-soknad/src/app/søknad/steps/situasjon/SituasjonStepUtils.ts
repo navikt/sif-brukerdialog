@@ -172,8 +172,13 @@ const getDefaultForhold = (forhold?: ArbeidforholdSøknadsdata) => {
 export const getSituasjonStepInitialValues = (
     søknadsdata: Søknadsdata,
     arbeidsgivere: Arbeidsgiver[],
+    formValues?: SituasjonFormValues,
 ): SituasjonFormValues => {
     const { situasjon } = søknadsdata;
+
+    if (formValues) {
+        return formValues;
+    }
 
     const arbeidsforhold = arbeidsgivere.map((arbeidsgiver) => {
         const forhold = situasjon ? situasjon[arbeidsgiver.organisasjonsnummer] : undefined;

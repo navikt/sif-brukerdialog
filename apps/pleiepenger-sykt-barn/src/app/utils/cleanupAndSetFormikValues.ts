@@ -8,6 +8,7 @@ import { StepID } from '../types/StepID';
 import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 import { getSøknadsperiodeFromFormValues } from './formValuesUtils';
+import { cleanupLegeerklæringStep } from '../søknad/legeerklæring-step/cleanupLegeerklæringStep';
 
 export const cleanupSøknadStepValues = (
     step: StepID,
@@ -28,6 +29,8 @@ export const cleanupSøknadStepValues = (
             return cleanupOmsorgstilbudStep(values, søknadsperiode);
         case StepID.NATTEVÅK_OG_BEREDSKAP:
             return cleanupNattevåkOgBeredskapStep(values);
+        case StepID.LEGEERKLÆRING:
+            return cleanupLegeerklæringStep(values);
         default:
             return values;
     }

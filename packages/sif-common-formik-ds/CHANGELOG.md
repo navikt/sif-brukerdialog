@@ -1,5 +1,31 @@
 # @navikt/sif-common-formik-ds
 
+## 1.13.2
+
+### Patch Changes
+
+-   Bytte compiler av scss, pakkeoppdateringer minor/patch
+
+## 1.13.1
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 1.13.0
+
+### Minor Changes
+
+-   989373a: - Gå over til å bruke noen få felleskomponenter og utils for filopplasting.
+    -   Legge på validering av vedlegg på tvers av en søknad
+    -   Fjerne sperre for bruker på å gå videre hvis det var for mange vedlegg. Erstattet med validering.
+
+## 1.12.25
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
 ## 1.12.24
 
 ### Patch Changes

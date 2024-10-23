@@ -6,6 +6,7 @@ server.use(express.json());
 const path = require('path');
 const mustacheExpress = require('mustache-express');
 const compression = require('compression');
+const getAppSettings = require('./getAppSettings.cjs');
 
 server.disable('x-powered-by');
 
@@ -50,13 +51,14 @@ const startServer = async () => {
         JSON.stringify({
             APP_VERSION: `${process.env.APP_VERSION}`,
             PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
+            ...getAppSettings(),
         }),
     );
 
     server.use(
-        '/rest',
+        '/api/brukerdialog',
         createProxyMiddleware({
-            target: 'http://localhost:8888/rest',
+            target: 'http://localhost:8089/',
             changeOrigin: true,
             logger: console,
             on: {
@@ -65,6 +67,17 @@ const startServer = async () => {
         }),
     );
 
+    server.use(
+        '/api/ung-deltakelse-opplyser',
+        createProxyMiddleware({
+            target: 'http://localhost:8089/',
+            changeOrigin: true,
+            logger: console,
+            on: {
+                proxyReq: fixRequestBody,
+            },
+        }),
+    );
     const fs = require('fs');
     fs.writeFileSync(path.resolve(__dirname, 'index-decorated.html'), renderedHtml);
 

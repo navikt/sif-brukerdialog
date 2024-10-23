@@ -1,5 +1,63 @@
 # @navikt/sif-common-core-ds
 
+## 9.20.0
+
+### Minor Changes
+
+-   e1dfb2e: Flytter all env-logikk til egen pakke.
+
+    -   Sletter getGitShaRequestHeader fra request headers i browser (settes av server)
+    -   commonEnv som inneholder alle standard env variabler
+    -   appEnv der det er behov, som ekstender commonEnv og legger til egne
+    -   kaster exception når påkrevde env ikke finnes
+    -   prefixe noen common envs med SIF_PUBLIC
+
+    Innføre env.schema.ts i alle søknadsdialoger
+
+    -   definerer hvilke envs som er påkrevd
+    -   under bygg kopieres denne over og brukes ved oppstart av server for å kontrollere at alle envs er satt
+
+    Refactoring av proxy setup i server
+
+### Patch Changes
+
+-   Bytte compiler av scss, pakkeoppdateringer minor/patch
+-   Updated dependencies
+-   Updated dependencies [e1dfb2e]
+    -   @navikt/sif-common-utils@3.47.22
+    -   @navikt/sif-common-api@0.3.0
+    -   @navikt/sif-common-env@0.1.0
+
+## 9.19.1
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-utils@3.47.21
+    -   @navikt/sif-common-api@0.2.1
+
+## 9.19.0
+
+### Minor Changes
+
+-   989373a: - Gå over til å bruke noen få felleskomponenter og utils for filopplasting.
+    -   Legge på validering av vedlegg på tvers av en søknad
+    -   Fjerne sperre for bruker på å gå videre hvis det var for mange vedlegg. Erstattet med validering.
+
+### Patch Changes
+
+-   Updated dependencies [989373a]
+    -   @navikt/sif-common@0.2.0
+
+## 9.18.26
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-utils@3.47.20
+
 ## 9.18.25
 
 ### Patch Changes

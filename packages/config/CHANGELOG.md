@@ -1,5 +1,23 @@
 # config
 
+## 0.10.21
+
+### Patch Changes
+
+-   Bytte compiler av scss, pakkeoppdateringer minor/patch
+
+## 0.10.20
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 0.10.19
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
 ## 0.10.18
 
 ### Patch Changes

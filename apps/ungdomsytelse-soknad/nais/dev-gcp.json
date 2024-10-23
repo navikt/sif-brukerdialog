@@ -6,26 +6,29 @@
     "livenessPath": "/internal/health/isAlive",
     "readinessPath": "/internal/health/isReady",
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
-    "accessPolicyOutApps": ["k9-brukerdialog-prosessering"],
+    "accessPolicyOutApps": [
+        { "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" },
+        { "application": "ung-deltakelse-opplyser", "namespace": "k9saksbehandling" }
+    ],
     "minReplicas": 1,
     "maxReplicas": 1,
     "cluster": "dev-gcp",
     "observabilityEnabled": "true",
     "env": {
+        "ENV": "dev",
         "APP_VERSION": "dev",
-        "DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://pleiepengesoknad.intern.dev.nav.no/oauth2/logout",
         "NODE_ENV": "development",
-        "INNSYN_API_SCOPE": "dev-gcp:dusseldorf:sif-innsyn-api",
-        "INNSYN_API_URL": "http://sif-innsyn-api",
-        "INNSYN_FRONTEND_PATH": "/api/sif-innsyn",
+        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/ungdomsytelse-soknad",
+        "NPM_CONFIG_CACHE": "/tmp",
+
+        "SIF_PUBLIC_DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://ungdomsytelse-soknad.intern.dev.nav.no//oauth2/logout",
+
+        "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/api/brukerdialog",
         "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "dev-gcp:dusseldorf:k9-brukerdialog-prosessering",
         "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",
-        "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/api/brukerdialog",
-        "K9_SAK_INNSYN_API_SCOPE": "dev-gcp:dusseldorf:k9-sak-innsyn-api",
-        "K9_SAK_INNSYN_API_URL": "http://k9-sak-innsyn-api",
-        "K9_SAK_INNSYN_FRONTEND_PATH": "/api/k9sak-innsyn",
-        "NPM_CONFIG_CACHE": "/tmp",
-        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/ungdomsytelse-soknad",
-        "SIF_PUBLIC_SOME_ENV_KEY": "schlüssel"
+
+        "UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH": "/api/ung-deltakelse-opplyser",
+        "UNG_DELTAKELSE_OPPLYSER_API_SCOPE": "dev-gcp:k9saksbehandling:ung-deltakelse-opplyser",
+        "UNG_DELTAKELSE_OPPLYSER_API_URL": "http://ung-deltakelse-opplyser.k9saksbehandling"
     }
 }

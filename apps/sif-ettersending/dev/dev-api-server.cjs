@@ -18,7 +18,12 @@ server.use(
 server.use((req, res, next) => {
     res.set('Access-Control-Allow-Origin', 'http://localhost:8080');
     res.set('Access-Control-Allow-Methods', ['GET', 'POST', 'DELETE', 'PUT']);
-    res.set('Access-Control-Allow-Headers', ['content-type', 'X-Brukerdialog-Git-Sha', 'x_correlation_id']);
+    res.set('Access-Control-Allow-Headers', [
+        'content-type',
+        'X-Brukerdialog-Git-Sha',
+        'x-correlation-id',
+        'x_correlation_id',
+    ]);
 
     next();
 });
@@ -101,17 +106,19 @@ const startServer = () => {
     });
 
     server.post('/vedlegg', (req, res) => {
-        res.set('Access-Control-Expose-Headers', 'Location');
-        res.set('Location', 'nav.no');
-        const busboy = busboyCons({ headers: req.headers });
-        busboy.on('finish', () => {
-            res.writeHead(200, { Location: '/vedlegg/123' });
-            res.end();
-        });
-        req.pipe(busboy);
+        setTimeout(() => {
+            res.set('Access-Control-Expose-Headers', 'Location');
+            res.set('Location', 'nav.no');
+            const busboy = busboyCons({ headers: req.headers });
+            busboy.on('finish', () => {
+                res.writeHead(200, { Location: '/vedlegg/123' });
+                res.end();
+            });
+            req.pipe(busboy);
+        }, 250);
     });
 
-    server.delete('/vedlegg', (req, res) => {
+    server.delete('/vedlegg/**', (req, res) => {
         res.sendStatus(200);
     });
 

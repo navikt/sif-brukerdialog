@@ -1,6 +1,6 @@
 import { useState } from 'react';
+import { getMaybeEnv } from '@navikt/sif-common-env';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { DateRange } from '@navikt/sif-common-utils';
 import {
     Arbeidsgiver,
@@ -64,7 +64,7 @@ const prepInitialData = (
         }
         if (k9saker.length === 1) {
             const sak = getSakFromK9Sak(k9saker[0], arbeidsgivere, tillattEndringsperiode);
-            if (getEnvironmentVariable('DEBUG') === 'true') {
+            if (getMaybeEnv('DEBUG') === 'true') {
                 appSentryLogger.logInfo(
                     'debug.maskedSakInfo',
                     JSON.stringify(

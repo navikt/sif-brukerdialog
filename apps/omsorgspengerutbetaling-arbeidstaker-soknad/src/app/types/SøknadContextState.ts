@@ -1,4 +1,4 @@
-import { RegistrertBarn, Søker } from '@navikt/sif-common';
+import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { DineBarnFormValues } from '../søknad/steps/dine-barn/DineBarnStep';
 import { SituasjonFormValues } from '../søknad/steps/situasjon/SituasjonStep';
 import { StepId } from './StepId';
@@ -28,4 +28,5 @@ export interface SøknadContextState {
     søknadRoute?: SøknadRoutes;
     søknadSendt?: boolean;
     børMellomlagres?: boolean;
+    isReloadingApp?: boolean;
 }

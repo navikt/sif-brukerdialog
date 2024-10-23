@@ -1,5 +1,29 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.8.24
+
+### Patch Changes
+
+-   Bytte compiler av scss, pakkeoppdateringer minor/patch
+
+## 3.8.23
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 3.8.22
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 3.8.21
+
+### Patch Changes
+
+-   Legge til K9_BRUKERDIALOG_PROSESSERING_API_URL i appSettings
+
 ## 3.8.20
 
 ### Patch Changes

@@ -1,5 +1,23 @@
 # @navikt/sif-common-amplitude
 
+## 2.26.21
+
+### Patch Changes
+
+-   Bytte compiler av scss, pakkeoppdateringer minor/patch
+
+## 2.26.20
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 2.26.19
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
 ## 2.26.18
 
 ### Patch Changes

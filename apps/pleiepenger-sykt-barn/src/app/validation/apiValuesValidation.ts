@@ -6,11 +6,11 @@ import { StepID } from '../types/StepID';
 import { OmsorgstilbudApiData, SøknadApiData, TimerFasteDagerApiData } from '../types/søknad-api-data/SøknadApiData';
 import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import { søkerKunHelgedager } from '../utils/formValuesUtils';
-import { getAttachmentsApiDataFromSøknadsdata } from '../utils/søknadsdataToApiData/getAttachmentsApiDataFromSøknadsdata';
 import { AppIntlShape } from '../i18n';
+import { getAttachmentsApiData } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 
 export const apiVedleggIsInvalid = (apiVedlegg: string[], vedlegg: Attachment[]) => {
-    const apiVedleggFromSøknadsdata = vedlegg ? getAttachmentsApiDataFromSøknadsdata(vedlegg) : [];
+    const apiVedleggFromSøknadsdata = vedlegg ? getAttachmentsApiData(vedlegg) : [];
     return !isEqual(apiVedleggFromSøknadsdata.sort(), apiVedlegg.sort());
 };
 export interface ApiValidationError {

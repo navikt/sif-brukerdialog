@@ -59,12 +59,6 @@ const nb = {
     'page.confirmation.sidetittel': 'Vi har mottatt søknaden din',
     'page.confirmation.tittel': 'Vi har mottatt søknad om utbetaling av omsorgspenger',
 
-    'validation.for_mange_dokumenter': 'Du har lastet opp for mange dokumenter.',
-    'validation.samlet_storrelse_for_hoy':
-        'Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24Mb.',
-    'dokumenter.advarsel.totalstørrelse.1':
-        'Du har totalt lastet opp mer enn grensen på 24 Mb. Det betyr at du må fjerne noe av det du har lastet opp. Hvis det betyr at du ikke får plass til alt du ønsker å sende nå, kan du ',
-    'dokumenter.advarsel.totalstørrelse.2': 'ettersende flere dokumenter.',
     'validation.periode_ingenDagerEllerPerioder': 'Du må spesifisere minst én periode for arbeidsforholdet.',
     'validation.fraværDagIkkeSammeÅrstall':
         'Du har lagt inn fravær som går over flere år. Du kan kun legge inn fravær for ett år.',
@@ -119,6 +113,8 @@ const nb = {
         'Forklaringen må være på minst {min} tegn.',
     'validation.arbeidsforhold.utbetalingsårsak.konfliktForklaring.stringIsTooLong':
         'Forklaringn kan være på maks {maks} tegn.',
+    'validation.arbeidsforhold.utbetalingsårsak.vedlegg.noAttachmentsUploaded':
+        'Ingen dokumenter lastet opp for {arbeidsgivernavn}.',
     'validation.barn.ingenBarn': 'Du må legge til minst ett barn du har omsorg for',
 };
 

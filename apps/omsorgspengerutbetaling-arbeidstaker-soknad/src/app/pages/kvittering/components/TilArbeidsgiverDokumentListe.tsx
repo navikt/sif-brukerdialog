@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Søker } from '@navikt/sif-common';
+import { Søker } from '@navikt/sif-common-api';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { ArbeidsgiverDetaljer } from '../../../types/søknadApiData/SøknadApiData';

@@ -4,7 +4,10 @@
     "cluster": "prod-gcp",
     "observabilityEnabled": "true",
     "externalHosts": ["www.nav.no", "amplitude.nav.no"],
-    "accessPolicyOutApps": ["k9-brukerdialog-prosessering", "sif-innsyn-api"],
+    "accessPolicyOutApps": [
+        { "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" },
+        { "application": "sif-innsyn-api", "namespace": "dusseldorf" }
+    ],
     "ingresses": ["https://www.nav.no/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger"],
     "livenessPath": "/internal/health/isAlive",
     "readinessPath": "/internal/health/isReady",
@@ -12,10 +15,11 @@
     "minReplicas": 2,
     "maxReplicas": 2,
     "env": {
-        "APP_VERSION": "prod",
         "ENV": "prod",
+        "APP_VERSION": "prod",
         "NODE_ENV": "production",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
+
         "SIF_PUBLIC_APPSTATUS_DATASET": "production",
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
         "SIF_PUBLIC_DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=true&chatbot=false&logoutUrl=https://www.nav.no/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/oauth2/logout",

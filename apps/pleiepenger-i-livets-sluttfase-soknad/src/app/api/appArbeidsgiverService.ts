@@ -1,4 +1,4 @@
-import { fetchArbeidsgivere } from '@navikt/sif-common';
+import { fetchArbeidsgivere } from '@navikt/sif-common-api';
 import { Arbeidsgiver, ArbeidsgiverType } from '../types/Arbeidsgiver';
 import { DateRange } from '@navikt/sif-common-utils';
 

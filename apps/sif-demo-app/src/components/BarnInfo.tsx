@@ -1,5 +1,5 @@
 import { Heading, Table, VStack } from '@navikt/ds-react';
-import { RegistrertBarn } from '@navikt/sif-common';
+import { RegistrertBarn } from '@navikt/sif-common-api';
 import ShadowBox from './ShadowBox';
 import { dateFormatter } from '@navikt/sif-common-utils';
 
@@ -18,8 +18,10 @@ const BarnInfo = ({ barn: registrerteBarn }: Props) => {
                         </Heading>
                         <Table size="small">
                             <Table.Header>
-                                <Table.HeaderCell style={{ width: '20%' }}>Felt</Table.HeaderCell>
-                                <Table.HeaderCell>Verdi</Table.HeaderCell>
+                                <Table.Row>
+                                    <Table.HeaderCell style={{ width: '20%' }}>Felt</Table.HeaderCell>
+                                    <Table.HeaderCell>Verdi</Table.HeaderCell>
+                                </Table.Row>
                             </Table.Header>
                             <Table.Body>
                                 <Table.Row>

@@ -1,5 +1,23 @@
 # @navikt/sif-common-utils
 
+## 3.47.22
+
+### Patch Changes
+
+-   Bytte compiler av scss, pakkeoppdateringer minor/patch
+
+## 3.47.21
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
+## 3.47.20
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+
 ## 3.47.19
 
 ### Patch Changes

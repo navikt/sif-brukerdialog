@@ -1,4 +1,4 @@
-import { RegistrertBarn, Søker } from '@navikt/sif-common';
+import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { DineBarnFormValues } from '../søknad/steps/dine-barn/DineBarnStep';
 import { StepId } from './StepId';
 import { SøknadRoutes } from './SøknadRoutes';

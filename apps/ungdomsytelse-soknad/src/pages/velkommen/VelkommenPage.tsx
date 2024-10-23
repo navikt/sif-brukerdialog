@@ -1,5 +1,5 @@
 import { BodyLong, Heading } from '@navikt/ds-react';
-import { Søker } from '@navikt/sif-common';
+import { Søker } from '@navikt/sif-common-api';
 import { SoknadVelkommenPage } from '@navikt/sif-common-soknad-ds/src';
 
 interface Props {
