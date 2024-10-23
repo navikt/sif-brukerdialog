@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 9.20.1
+
+### Patch Changes
+
+-   a8b850b: Nynorsk tekster i omsorgspenger-kronisk + tilhørende komponenter i sif-common pakker
+
 ## 9.20.0
 
 ### Minor Changes
