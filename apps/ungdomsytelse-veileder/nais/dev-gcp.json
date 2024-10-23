@@ -6,16 +6,26 @@
     "livenessPath": "/internal/health/isAlive",
     "readinessPath": "/internal/health/isReady",
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
-    "accessPolicyOutApps": [{ "application": "ung-deltakelse-opplyser", "namespace": "k9saksbehandling" }],
+    "accessPolicyOutApps": [
+        { "application": "ung-deltakelse-opplyser", "namespace": "k9saksbehandling" },
+        { "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" }
+    ],
     "minReplicas": 1,
     "maxReplicas": 1,
     "cluster": "dev-gcp",
     "observabilityEnabled": "true",
     "env": {
+        "ENV": "dev",
         "APP_VERSION": "dev",
-        "ENV": "{path}",
         "NPM_CONFIG_CACHE": "/tmp",
         "PUBLIC_PATH": "/",
+
+        "SIF_PUBLIC_APPSTATUS_DATASET": "staging",
+        "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
+        "SIF_PUBLIC_DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false",
+        "SIF_PUBLIC_FEATURE_NYNORSK": "on",
+        "SIF_PUBLIC_LOGIN_URL": "https://ungdomsytelse-veileder.intern.dev.nav.no//oauth2/login?redirect=/",
+        "SIF_PUBLIC_MINSIDE_URL": "https://www.intern.dev.nav.no/minside",
 
         "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/api/brukerdialog",
         "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "dev-gcp:dusseldorf:k9-brukerdialog-prosessering",
