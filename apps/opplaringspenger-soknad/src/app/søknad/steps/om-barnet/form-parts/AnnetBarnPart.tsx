@@ -12,8 +12,8 @@ import { AppText, useAppIntl } from '../../../../i18n';
 import { useSøknadContext } from '../../../context/hooks/useSøknadContext';
 import { OmBarnetFormFields, OmBarnetFormValues } from '../OmBarnetStep';
 import { getMinDatoForBarnetsFødselsdato, isBarnOver18år } from '../omBarnetStepUtils';
-import { isDevMode } from '@navikt/sif-common-core-ds/src/utils/envUtils';
 import { SøkersRelasjonTilBarnet } from '../../../../types/SøkersRelasjonTilBarnet';
+import { isDevMode } from '@navikt/sif-common-env';
 
 const { TextField, DatePicker, Select } = getTypedFormComponents<
     OmBarnetFormFields,
@@ -40,7 +40,7 @@ const AnnetBarnpart = () => {
                     name={OmBarnetFormFields.barnetsFødselsnummer}
                     validate={getFødselsnummerValidator({
                         required: true,
-                        allowHnr: isDevMode,
+                        allowHnr: isDevMode(),
                         disallowedValues: [søker.fødselsnummer],
                     })}
                     width="xl"

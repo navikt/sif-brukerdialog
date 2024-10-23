@@ -1,6 +1,4 @@
-import { getAttachmentURLBackend } from '@navikt/sif-common';
-import { Attachment } from '@navikt/sif-common-core-ds/src/types';
-import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import { getAttachmentsApiData } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { FlereSokereApiData, SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
@@ -13,14 +11,14 @@ import { getOpptjeningUtlandApiDataFromSøknadsdata } from './getOpptjeningUtlan
 import { getSelvstendigApiDataFromSøknadsdata } from './getSelvstendigApiDataFromSøknadsdata';
 import { getUtenlandskNæringApiDataFromSøknadsdata } from './getUtenlandskNæringApiDataFromSøknadsdata';
 
-const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
-    if (!vedlegg || vedlegg.length === 0) {
-        return [];
-    }
-    return vedlegg
-        .filter(attachmentIsUploadedAndIsValidFileFormat)
-        .map(({ url }) => (url ? getAttachmentURLBackend(url) : ''));
-};
+// const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
+//     if (!vedlegg || vedlegg.length === 0) {
+//         return [];
+//     }
+//     return vedlegg
+//         .filter(attachmentIsUploadedAndIsValidFileFormat)
+//         .map(({ url }) => (url ? getAttachmentURLBackend(url) : ''));
+// };
 
 export const getFlereSokereApiData = (flereSokereSvar: YesOrNoDontKnow): FlereSokereApiData => {
     switch (flereSokereSvar) {
@@ -60,7 +58,7 @@ export const getApiDataFromSøknadsdata = (
         språk,
         harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true,
         omBarnet: getOmBarnetApiDataFromSøknadsdata(omBarnet),
-        vedleggUrls: getVedleggApiData(legeerklæring.vedlegg),
+        vedleggUrls: getAttachmentsApiData(legeerklæring.vedlegg),
         søknadsperiode: {
             fraOgMed: dateToISODate(søknadsperiode.from),
             tilOgMed: dateToISODate(søknadsperiode.to),
