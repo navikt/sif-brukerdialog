@@ -1,5 +1,4 @@
-import { Kursholder } from '../../types/Kursholder';
-import api, { ApiEndpoint } from '../api';
+import { Kursholder } from '../types/Kursholder';
 
 const mockKursholder = {
     kursholdere: [
@@ -218,11 +217,10 @@ const mockKursholder = {
     ],
 };
 
-export const kursholderEndpoint = {
+export const kursholderService = {
     fetch: async (): Promise<Kursholder[]> => {
         try {
-            const { data } = await api.get<{ kursholdere: Kursholder[] }>(ApiEndpoint.kursholder);
-            return Promise.resolve(data.kursholdere.sort((a, b) => a.navn.localeCompare(b.navn)));
+            return Promise.resolve(mockKursholder.kursholdere.sort((a, b) => a.navn.localeCompare(b.navn)));
         } catch {
             return Promise.resolve(mockKursholder.kursholdere);
         }
