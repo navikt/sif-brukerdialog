@@ -1,7 +1,6 @@
 import { ErrorSummary, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { useEffect, useRef } from 'react';
-import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
@@ -40,8 +39,7 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 >();
 
 const OppsummeringStep = () => {
-    const intl = useIntl();
-    const { text } = useAppIntl();
+    const { text, intl, locale } = useAppIntl();
 
     const {
         state: { søknadsdata, søker },
@@ -77,7 +75,7 @@ const OppsummeringStep = () => {
         }
     });
 
-    const apiData = getApiDataFromSøknadsdata(søknadsdata);
+    const apiData = getApiDataFromSøknadsdata(søknadsdata, locale);
 
     if (!apiData) {
         return (

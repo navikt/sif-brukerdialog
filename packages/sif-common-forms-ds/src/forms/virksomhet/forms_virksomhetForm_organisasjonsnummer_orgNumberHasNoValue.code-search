@@ -1,0 +1,14 @@
+# Query: forms.virksomhetForm.organisasjonsnummer.orgNumberHasNoValue
+# ContextLines: 1
+
+2 results - 2 files
+
+src/forms/virksomhet/VirksomhetForm.tsx:
+  80          [ValidateOrgNumberError.orgNumberHasNoValue]:
+  81:             '@forms.virksomhetForm.organisasjonsnummer.orgNumberHasNoValue',
+  82      },
+
+src/forms/virksomhet/i18n/virksomhetValidationMessages.ts:
+  11          'Du må velge hvilket land virksomheten din er registrert i. Velg land fra listen.',
+  12:     '@forms.virksomhetForm.organisasjonsnummer.orgNumberHasNoValue':
+  13          'Skriv inn organisasjonsnummeret. Et gyldig organsisasjonsnummer inneholder 9 siffer',

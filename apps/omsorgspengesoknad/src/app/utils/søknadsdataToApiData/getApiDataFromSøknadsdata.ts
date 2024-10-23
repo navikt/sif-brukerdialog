@@ -1,3 +1,4 @@
+import { Locale } from '@navikt/sif-common-core-ds/src/types';
 import { getAttachmentsApiData } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { includeDeltBostedStep } from '../../søknad/søknadStepConfig';
 import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
@@ -5,7 +6,7 @@ import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { getDataBruktTilUtledning } from './getDataBruktTilUtledning';
 import { getOmBarnetApiDataFromSøknadsdata } from './getOmBarnetApiDataFromSøknadsdata';
 
-export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadApiData | undefined => {
+export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata, locale: Locale): SøknadApiData | undefined => {
     const { omBarnet } = søknadsdata;
     if (!omBarnet) {
         return undefined;
@@ -14,7 +15,7 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadA
     const inkluderDeltBosted = includeDeltBostedStep(søknadsdata.omBarnet);
 
     return {
-        språk: 'nb',
+        språk: locale,
         harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true,
         harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true,
         ...getOmBarnetApiDataFromSøknadsdata(omBarnet),
