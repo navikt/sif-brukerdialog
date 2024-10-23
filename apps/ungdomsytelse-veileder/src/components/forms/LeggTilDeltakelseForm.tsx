@@ -1,4 +1,4 @@
-import { Alert, Box, Button, Heading, HStack, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Box, Button, Heading, HStack, VStack } from '@navikt/ds-react';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { veilederService } from '../../api/services/veilederService';
 import { useState } from 'react';
@@ -6,6 +6,7 @@ import { PlusCircleIcon } from '@navikt/aksel-icons';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import PeriodeFormPart from './PeriodeFormPart';
 import { Deltakelse } from '../../api/types';
+import { AxiosError, isAxiosError } from 'axios';
 
 type DeltakelseFormValues = {
     fnr: string;
@@ -25,24 +26,29 @@ const LeggTilDeltakelseForm = ({ deltakerFnr, deltakelser, onDeltakelseLagtTil }
     const [initialValues] = useState<Partial<DeltakelseFormValues>>({
         fnr: deltakerFnr,
     });
-    const [error, setError] = useState<string>();
+    const [error, setError] = useState<string | AxiosError>();
 
     const leggTilDeltakelse = async (values: DeltakelseFormValues) => {
         setError(undefined);
         setPending(true);
-        await veilederService
+        const deltakelse = await veilederService
             .createDeltakelse({
                 deltakerIdent: deltakerFnr,
                 fraOgMed: values.fom,
                 tilOgMed: values.tom,
             })
             .catch((e) => {
-                setError(e.message);
-            })
-            .then(() => {
+                if (isAxiosError(e)) {
+                    setError(e);
+                } else {
+                    setError(e.message);
+                }
                 setPending(false);
-                onDeltakelseLagtTil();
             });
+        if (deltakelse) {
+            setPending(false);
+            onDeltakelseLagtTil();
+        }
     };
 
     if (showForm === false) {
@@ -101,7 +107,22 @@ const LeggTilDeltakelseForm = ({ deltakerFnr, deltakelser, onDeltakelseLagtTil }
                                 </VStack>
                             </TypedFormikForm>
 
-                            {error && <Alert variant="error">{error}</Alert>}
+                            {error && (
+                                <Alert variant="error">
+                                    {isAxiosError(error) ? (
+                                        <>
+                                            <Heading level="3" size="xsmall">
+                                                {error.message}
+                                            </Heading>
+                                            <BodyShort size="small">
+                                                <p>{JSON.stringify(error.response?.data, undefined, 2)}</p>
+                                            </BodyShort>
+                                        </>
+                                    ) : (
+                                        error
+                                    )}
+                                </Alert>
+                            )}
                         </VStack>
                     );
                 }}

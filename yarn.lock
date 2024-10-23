@@ -5350,6 +5350,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:8.11.0"
     "@vitejs/plugin-react": "npm:4.3.3"
     autoprefixer: "npm:10.4.20"
+    axios: "npm:1.7.7"
     clsx: "npm:2.1.1"
     compression: "npm:1.7.4"
     date-fns: "npm:3.6.0"
