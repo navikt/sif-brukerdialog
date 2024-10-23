@@ -29,7 +29,7 @@ server.use((req, res, next) => {
 
 async function injectDecorator(filePath) {
     return injectDecoratorServerSide({
-        env: 'localhost',
+        env: 'dev',
         filePath,
         params: {
             enforceLogin: false,
