@@ -50,9 +50,9 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.oppsummering.barnet.sammeAdresse.nei': 'Nei',
     'steg.oppsummering.barnet.sammeAdresse.jaDeltBosted': 'Ja, barnet har delt fast bustad',
     'steg.oppsummering.barnet.kroniskEllerFunksjonshemmende.header':
-        'Har barnet kronisk/langvarig sjukdom eller funksjonshemning?',
+        'Har barnet kronisk/langvarig sjukdom eller funksjonshemming?',
     'steg.oppsummering.barnet.høyereRisikoForFravær.header':
-        'Har du høgare risiko for fråvær på jobb på grunn av sjukdommen eller funksjonshemninga til barnet? ',
+        'Har du høgare risiko for fråvær på jobb på grunn av sjukdommen eller funksjonshemminga til barnet? ',
     'steg.oppsummering.barnet.høyereRisikoForFraværBeskrivelse.header':
         'Skildring av korleis barnet sin sjukdom eller funksjonshemming gjer det meir sannsynleg at du må vera borte frå jobb.',
     'steg.oppsummering.vedlegg.header': 'Vedlegg',
@@ -64,7 +64,7 @@ const nn: Record<keyof typeof nb, string> = {
     'validation.harBekreftetOpplysninger.notChecked': 'Du må stadfesta opplysningane.',
     'innsendingFeilet.tittel': 'Oops, noko gjekk gale.',
     'innsendingFeilet.tekst.høyereRisikoForFraværBeskrivelseFeil':
-        'Skildringa på korleis sjukdommen eller funksjonshemninga til barnet gir markert høgare risiko for fråvær frå jobb inneheld teikn som ikkje er tillate. Gå tilbake til steig éin og sjå over teksten.',
+        'Skildringa på korleis sjukdommen eller funksjonshemminga til barnet gir markert høgare risiko for fråvær frå jobb inneheld teikn som ikkje er tillate. Gå tilbake til steig éin og sjå over teksten.',
     'innsendingFeilet.tekst.generell.1': 'Søknaden din inneheld ugyldig informasjon.',
     'innsendingFeilet.tekst.generell.2':
         'Når du sjølv skriv inn tekst i eit felt i søknaden, kan nokre teikn vera ugyldige ut frå informasjonen me ber om. Dette skjer vanlegvis viss du kopierer og limer inn tekst frå andre stader. Du fiksar dette ved å skriva inn teksten på ny, utan å kopiera den frå ein annan stad.',

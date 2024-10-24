@@ -41,12 +41,12 @@ const nb = {
 
 const nn: Record<keyof typeof nb, string> = {
     'page.velkommen.sidetittel':
-        'Søknad om ekstra omsorgsdagar for barn som har kronisk/langvarig sjukdom eller funksjonshemning',
+        'Søknad om ekstra omsorgsdagar for barn som har kronisk/langvarig sjukdom eller funksjonshemming',
     'page.velkommen.guide.tittel': 'Hei, {namn}',
     'page.velkommen.guide.ingress':
-        'Velkommen til søknad om ekstra omsorgsdagar for barn som har kronisk/langvarig sjukdom eller funksjonshemning.',
+        'Velkommen til søknad om ekstra omsorgsdagar for barn som har kronisk/langvarig sjukdom eller funksjonshemming.',
     'page.velkommen.guide.tekst.1':
-        'Denne søknaden bruker du for å søkja om ekstra omsorgsdagar, viss barnet ditt har ein sjukdom eller funksjonshemning som gjer at du må bruka fleire omsorgsdagar enn det som er vanleg. Det er berre foreldre/fosterforeldre som bur med barnet som kan få ekstra omsorgsdagar.',
+        'Denne søknaden bruker du for å søkja om ekstra omsorgsdagar, viss barnet ditt har ein sjukdom eller funksjonshemming som gjer at du må bruka fleire omsorgsdagar enn det som er vanleg. Det er berre foreldre/fosterforeldre som bur med barnet som kan få ekstra omsorgsdagar.',
     'page.velkommen.guide.tekst.2':
         'Viss fleire skal ha ekstra omsorgsdagar for same barn, må de senda kvar deira søknad til NAV.',
     'page.velkommen.guide.tekst.3':

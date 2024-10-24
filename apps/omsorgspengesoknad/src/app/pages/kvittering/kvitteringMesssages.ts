@@ -13,7 +13,7 @@ const nb = {
 const nn: Record<keyof typeof nb, string> = {
     'page.kvittering.sidetittel': 'Me har motteke søknaden din',
     'page.kvittering.tittel':
-        'Me har fått søknad om ekstra omsorgsdagar for barn som har kronisk/langvarig sjukdom eller funksjonshemning',
+        'Me har fått søknad om ekstra omsorgsdagar for barn som har kronisk/langvarig sjukdom eller funksjonshemming',
     'page.kvittering.info.tittel': 'Kva skjer vidare no?',
     'page.kvittering.info.1': 'Me behandlar søknaden din.',
     'page.kvittering.info.2': 'Viss du ikkje har lasta opp legeerklæring, må du ettersenda han så snart som mogleg. ',
