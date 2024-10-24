@@ -1,7 +1,7 @@
 import { getAttachmentsApiData } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { FlereSokereApiData, SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
-import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
+import { KursSøknadsdata, Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { YesOrNoDontKnow } from '../../types/YesOrNoDontKnow';
 import { getArbeidsgivereApiDataFromSøknadsdata } from './getArbeidsgivereApiDataFromSøknadsdata';
 import { getFrilansApiDataFromSøknadsdata } from './getFrilansApiDataFromSøknadsdata';
@@ -10,15 +10,8 @@ import { getOmBarnetApiDataFromSøknadsdata } from './getOmBarnetApiDataFromSøk
 import { getOpptjeningUtlandApiDataFromSøknadsdata } from './getOpptjeningUtlandApiDataFromSøknadsdata';
 import { getSelvstendigApiDataFromSøknadsdata } from './getSelvstendigApiDataFromSøknadsdata';
 import { getUtenlandskNæringApiDataFromSøknadsdata } from './getUtenlandskNæringApiDataFromSøknadsdata';
-
-// const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
-//     if (!vedlegg || vedlegg.length === 0) {
-//         return [];
-//     }
-//     return vedlegg
-//         .filter(attachmentIsUploadedAndIsValidFileFormat)
-//         .map(({ url }) => (url ? getAttachmentURLBackend(url) : ''));
-// };
+import { getKursApiDataFromSøknadsdata } from './getKursApiDataFromSøknadsdata';
+import { DataBruktTilUtledning } from '../../types/DataBruktTilUtledning';
 
 export const getFlereSokereApiData = (flereSokereSvar: YesOrNoDontKnow): FlereSokereApiData => {
     switch (flereSokereSvar) {
@@ -29,6 +22,13 @@ export const getFlereSokereApiData = (flereSokereSvar: YesOrNoDontKnow): FlereSo
         default:
             return FlereSokereApiData.USIKKER;
     }
+};
+
+export const getDataBruktTilUtledningApiData = (kurs: KursSøknadsdata): DataBruktTilUtledning => {
+    const { søknadsdatoer } = kurs;
+    return {
+        kursdager: søknadsdatoer.map((dato) => dateToISODate(dato)),
+    };
 };
 
 export const getApiDataFromSøknadsdata = (
@@ -63,6 +63,7 @@ export const getApiDataFromSøknadsdata = (
             fraOgMed: dateToISODate(søknadsperiode.from),
             tilOgMed: dateToISODate(søknadsperiode.to),
         },
+        kurs: getKursApiDataFromSøknadsdata(kurs),
         arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(
             søknadsperiode,
             valgteDatoer,
@@ -79,5 +80,8 @@ export const getApiDataFromSøknadsdata = (
             : undefined,
         medlemskap: getMedlemskapApiDataFromSøknadsdata(språk, medlemskap),
         harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true,
+        dataBruktTilUtledning: søknadsdata.kurs
+            ? JSON.stringify(getDataBruktTilUtledningApiData(søknadsdata.kurs))
+            : '',
     };
 };

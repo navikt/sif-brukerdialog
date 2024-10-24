@@ -1,8 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds/src';
-import søkerEndpoint from '../api/endpoints/søkerEndpoint';
-import { useMellomlagring } from '../hooks/useMellomlagring';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
 import { useResetSøknad } from '../hooks/useResetSøknad';
 import KvitteringPage from '../pages/kvittering/KvitteringPage';
@@ -20,6 +18,8 @@ import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
 import KursStep from './steps/kurs/KursStep';
 import OmBarnetStep from './steps/om-barnet/OmBarnetStep';
 import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
+import { fetchSøkerId } from '@navikt/sif-common-api';
+import { mellomlagringService } from '../api/mellomlagringService';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
@@ -29,11 +29,11 @@ const SøknadRouter = () => {
     } = useSøknadContext();
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
-    const { slettMellomlagring } = useMellomlagring();
+
     const { setShouldResetSøknad, shouldResetSøknad } = useResetSøknad();
 
     usePersistSøknadState();
-    useVerifyUserOnWindowFocus(søker.fødselsnummer, søkerEndpoint.fetchId);
+    useVerifyUserOnWindowFocus(søker.fødselsnummer, fetchSøkerId);
 
     useEffect(() => {
         if (stateSøknadRoute && isFirstTimeLoadingApp) {
@@ -46,9 +46,9 @@ const SøknadRouter = () => {
     }, [navigateTo, pathname, stateSøknadRoute, isFirstTimeLoadingApp]);
 
     const restartSøknad = useCallback(async () => {
-        await slettMellomlagring();
+        await mellomlagringService.purge();
         relocateToWelcomePage();
-    }, [slettMellomlagring]);
+    }, []);
 
     useEffect(() => {
         if (shouldResetSøknad) {
@@ -94,7 +94,7 @@ const SøknadRouter = () => {
                     <UnknownRoutePage
                         pathName={pathname}
                         onReset={() => {
-                            slettMellomlagring().then(() => {
+                            mellomlagringService.purge().then(() => {
                                 dispatch(actionsCreator.resetSøknad());
                                 navigateTo(SøknadRoutes.VELKOMMEN);
                             });

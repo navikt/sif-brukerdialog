@@ -1,20 +1,16 @@
-import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { useEffect, useState } from 'react';
+import { fetchBarn, fetchSøker } from '@navikt/sif-common-api';
+import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { SØKNAD_VERSJON } from '../constants/SØKNAD_VERSJON';
+import { Kursholder } from '../types/Kursholder';
+import { RegistrertBarn } from '../types/RegistrertBarn';
 import { RequestStatus } from '../types/RequestStatus';
 import { Søker } from '../types/Søker';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import appSentryLogger from '../utils/appSentryLogger';
-import søkerEndpoint from './endpoints/søkerEndpoint';
-import søknadStateEndpoint, {
-    isPersistedSøknadStateValid,
-    SøknadStatePersistence,
-} from './endpoints/søknadStateEndpoint';
-import barnEndpoint from './endpoints/barnEndpoint';
-import { RegistrertBarn } from '../types/RegistrertBarn';
-import { kursholderEndpoint } from './endpoints/kursholderEndpoint';
-import { Kursholder } from '../types/Kursholder';
+import { kursholderService } from './kursholderService';
+import { MellomlagringData, mellomlagringService } from './mellomlagringService';
 
 export type SøknadInitialData = SøknadContextState;
 
@@ -50,12 +46,11 @@ const getSøknadInitialData = async (
     søker: Søker,
     registrerteBarn: RegistrertBarn[],
     kursholdere: Kursholder[],
-    lagretSøknadState: SøknadStatePersistence,
+    lagretSøknadState: MellomlagringData,
 ): Promise<SøknadInitialData> => {
-    const isValid = isPersistedSøknadStateValid(lagretSøknadState, { søker });
-
+    const isValid = mellomlagringService.isMellomlagringValid(lagretSøknadState, { søker });
     if (!isValid) {
-        await søknadStateEndpoint.purge();
+        await mellomlagringService.purge();
     }
     const lagretSøknadStateToUse = isValid ? lagretSøknadState : defaultSøknadState;
     return Promise.resolve({
@@ -73,10 +68,12 @@ function useSøknadInitialData(): SøknadInitialDataState {
 
     const fetch = async () => {
         try {
-            const søker = await søkerEndpoint.fetch();
-            const registrerteBarn = await barnEndpoint.fetch();
-            const kursholdere = await kursholderEndpoint.fetch();
-            const lagretSøknadState = await søknadStateEndpoint.fetch();
+            const [søker, registrerteBarn, kursholdere, lagretSøknadState] = await Promise.all([
+                fetchSøker(),
+                fetchBarn(),
+                kursholderService.fetch(),
+                mellomlagringService.fetch(),
+            ]);
             setInitialData({
                 status: RequestStatus.success,
                 data: await getSøknadInitialData(søker, registrerteBarn, kursholdere, lagretSøknadState),

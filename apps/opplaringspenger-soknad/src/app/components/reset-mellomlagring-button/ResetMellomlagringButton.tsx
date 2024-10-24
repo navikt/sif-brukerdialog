@@ -1,6 +1,6 @@
 import { Button } from '@navikt/ds-react';
 import { useState } from 'react';
-import { useMellomlagring } from '../../hooks/useMellomlagring';
+import { mellomlagringService } from '../../api/mellomlagringService';
 import { relocateToWelcomePage } from '../../utils/navigationUtils';
 
 interface Props {
@@ -9,7 +9,6 @@ interface Props {
 
 const ResetMellomagringButton = ({ label }: Props) => {
     const [pending, setPending] = useState(false);
-    const { slettMellomlagring } = useMellomlagring();
 
     return (
         <Button
@@ -19,7 +18,7 @@ const ResetMellomagringButton = ({ label }: Props) => {
             size="small"
             onClick={() => {
                 setPending(true);
-                slettMellomlagring().then(() => {
+                mellomlagringService.purge().then(() => {
                     setPending(false);
                     relocateToWelcomePage();
                 });

@@ -1,4 +1,4 @@
-import { Heading, VStack } from '@navikt/ds-react';
+import { Alert, VStack } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import {
@@ -7,12 +7,10 @@ import {
     getYesOrNoValidator,
 } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { FormLayout } from '@navikt/sif-common-ui';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
-import { Kursholder } from '../../../types/Kursholder';
 import { Kursperiode } from '../../../types/Kursperiode';
 import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
@@ -26,22 +24,18 @@ import KursperiodeListAndDialog from './kursperiode/KursperiodeListAndDialog';
 import { getKursStepInitialValues, getKursSøknadsdataFromFormValues } from './kursStepUtils';
 
 export enum KursFormFields {
-    kursholder = 'kursholder',
-    kursholder_annen_navn = 'kursholder_annen_navn',
-    kursholder_annen_beskrivelse = 'kursholder_annen_beskrivelse',
+    kursholderId = 'kursholderId',
     kursperioder = 'kursperioder',
     arbeiderIKursperiode = 'arbeiderIKursperiode',
 }
 
 export interface KursFormValues {
-    [KursFormFields.kursholder]?: Kursholder | 'annen';
-    [KursFormFields.kursholder_annen_navn]?: string;
-    [KursFormFields.kursholder_annen_beskrivelse]?: string;
+    [KursFormFields.kursholderId]?: string;
     [KursFormFields.kursperioder]?: Kursperiode[];
     [KursFormFields.arbeiderIKursperiode]?: YesOrNo;
 }
 
-const { FormikWrapper, Form, Select, TextField, Textarea, YesOrNoQuestion } = getTypedFormComponents<
+const { FormikWrapper, Form, Select, YesOrNoQuestion } = getTypedFormComponents<
     KursFormFields,
     KursFormValues,
     ValidationError
@@ -62,7 +56,7 @@ const KursStep = () => {
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const onValidSubmitHandler = (values) => {
-        const kursSøknadsdata = getKursSøknadsdataFromFormValues(values);
+        const kursSøknadsdata = getKursSøknadsdataFromFormValues(values, kursholdere);
         if (kursSøknadsdata) {
             clearStepFormValues(stepId);
             return [
@@ -107,7 +101,7 @@ const KursStep = () => {
                                     <VStack gap={'4'}>
                                         <Select
                                             label="Velg helseinstitusjon/kompetansesenter"
-                                            name={KursFormFields.kursholder}
+                                            name={KursFormFields.kursholderId}
                                             validate={getRequiredFieldValidator()}>
                                             <option value="">Velg</option>
                                             <optgroup label="Godkjente helseinstitusjoner">
@@ -118,24 +112,14 @@ const KursStep = () => {
                                                 ))}
                                             </optgroup>
                                             <optgroup label="Annen helseinstitusjon">
-                                                <option value={'annen'}>Legg til annen helseinstitusjon</option>
+                                                <option value={'annen'}>Annen helseinstitusjon</option>
                                             </optgroup>
                                         </Select>
 
-                                        {values[KursFormFields.kursholder] === 'annen' && (
-                                            <FormLayout.Panel>
-                                                <VStack gap="6">
-                                                    <Heading as="h2" size="small">
-                                                        Annen helseinstitusjon/kompetansesenter
-                                                    </Heading>
-                                                    <TextField
-                                                        name={KursFormFields.kursholder_annen_navn}
-                                                        label="Navn på helseinstitusjon"></TextField>
-                                                    <Textarea
-                                                        name={KursFormFields.kursholder_annen_beskrivelse}
-                                                        label="Beskrivelse og kontaktinformasjon (telefon)"></Textarea>
-                                                </VStack>
-                                            </FormLayout.Panel>
+                                        {values[KursFormFields.kursholderId] === 'annen' && (
+                                            <Alert variant="info">
+                                                Hvis du ikke finner institusjonen i listen over, må ...
+                                            </Alert>
                                         )}
                                     </VStack>
 

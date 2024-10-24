@@ -17,8 +17,8 @@ export interface OmBarnetApiData {
 }
 
 export interface KursholderApiData {
-    holder: string;
-    institusjonUuid: string;
+    navn: string;
+    id: string;
 }
 
 export interface KursperiodeApiData {
@@ -30,7 +30,7 @@ export interface KursperiodeApiData {
 }
 
 export interface KursApiData {
-    kursholder: KursholderApiData;
+    kursholder: KursholderApiData | 'annen';
     perioder: KursperiodeApiData[];
 }
 
@@ -144,7 +144,7 @@ export interface SøknadApiData {
     språk: string;
     harForståttRettigheterOgPlikter: boolean;
     omBarnet: OmBarnetApiData;
-    kurs?: KursApiData;
+    kurs: KursApiData;
     søknadsperiode: PeriodeApiData;
     arbeidsgivere?: ArbeidsgiverApiData[];
     frilans?: FrilansApiData;
@@ -154,5 +154,6 @@ export interface SøknadApiData {
     opptjeningIUtlandet: OpptjeningIUtlandetApi[];
     utenlandskNæring: UtenlandskNæringApi[];
     vedleggUrls: string[];
+    dataBruktTilUtledning: DataBruktTilUtledningAnnetDataJsonString;
     harBekreftetOpplysninger: boolean;
 }
