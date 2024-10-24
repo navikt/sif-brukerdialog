@@ -1,9 +1,17 @@
 import { Locale } from '../types/Locale';
-
+import cookies from 'js-cookie';
 const LocaleSessionKey = 'selectedLocale';
 
+export const getLocaleFromDecoratorCookie = (): Locale | undefined => {
+    const value = cookies.get('decorator-language');
+    if (value === 'nb' || value === 'nn') {
+        return value;
+    }
+    return undefined;
+};
+
 export const getLocaleFromSessionStorage = (): Locale => {
-    return (sessionStorage.getItem(LocaleSessionKey) as Locale) || 'nb';
+    return (sessionStorage.getItem(LocaleSessionKey) as Locale) || getLocaleFromDecoratorCookie() || 'nb';
 };
 
 export const setLocaleInSessionStorage = (locale: Locale): void => {
