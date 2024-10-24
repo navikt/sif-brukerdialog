@@ -79,7 +79,7 @@ const startExpressServer = () => {
         }, 250);
     });
 
-    server.post('/deltakelse/register/hent/alle', (req, res) => {
+    server.get('/deltakelse/register/hent/alle', (req, res) => {
         const response = [
             {
                 id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0',

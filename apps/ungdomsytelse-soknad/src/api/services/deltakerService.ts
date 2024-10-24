@@ -3,8 +3,8 @@ import { ungDeltakelseOpplyserApiClient } from '../apiClient';
 import { deltakelserResponseSchema } from '../schemas/deltakelserSchema';
 import { Deltakelse } from '../types';
 
-const getDeltakelser = async (deltakerIdent: string): Promise<Deltakelse[]> => {
-    const response = await ungDeltakelseOpplyserApiClient.post(`/deltakelse/register/hent/alle`, { deltakerIdent });
+const getDeltakelser = async (): Promise<Deltakelse[]> => {
+    const response = await ungDeltakelseOpplyserApiClient.get(`/deltakelse/register/hent/alle`);
     try {
         const deltakelse = deltakelserResponseSchema.parse(response.data);
         return deltakelse;
