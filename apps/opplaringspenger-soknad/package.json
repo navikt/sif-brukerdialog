@@ -67,7 +67,7 @@
         "@vitejs/plugin-react": "4.3.3",
         "babel-polyfill": "6.26.0",
         "busboy": "1.6.0",
-        "chromatic": "11.14.0",
+        "chromatic": "11.15.0",
         "cross-env": "7.0.3",
         "eslint-plugin-storybook": "0.10.1",
         "helmet": "8.0.0",
