@@ -1882,16 +1882,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chromatic-com/storybook@npm:2.0.2":
-  version: 2.0.2
-  resolution: "@chromatic-com/storybook@npm:2.0.2"
+"@chromatic-com/storybook@npm:3.0.0":
+  version: 3.0.0
+  resolution: "@chromatic-com/storybook@npm:3.0.0"
   dependencies:
+    "@storybook/channels": "npm:^8.3.0"
+    "@storybook/telemetry": "npm:^8.3.0"
+    "@storybook/types": "npm:^8.3.0"
     chromatic: "npm:^11.4.0"
     filesize: "npm:^10.0.12"
     jsonfile: "npm:^6.1.0"
     react-confetti: "npm:^6.1.0"
     strip-ansi: "npm:^7.1.0"
-  checksum: 10/acd23f87072aaec2a4db174ec19b2479d9a0a4390f10ca804198f6453dce0c35055861bc19a4905fee97f8fd87e43b6c51fda7ce3e30bb355a2729af85f53440
+  peerDependencies:
+    storybook: ^8.3.0
+  checksum: 10/6a64122b3b895767593aa7e0acc0561425d88e4eb1efbf4db6e26be66317aab289f73b259c5f2fa4e3c9657d9ff569e89c1da740a3b4fdfc4e39cf145774de35
   languageName: node
   linkType: hard
 
@@ -4188,7 +4193,7 @@ __metadata:
     "@babel/preset-env": "npm:7.25.9"
     "@babel/preset-react": "npm:7.25.9"
     "@babel/preset-typescript": "npm:7.25.9"
-    "@chromatic-com/storybook": "npm:2.0.2"
+    "@chromatic-com/storybook": "npm:3.0.0"
     "@navikt/ds-css": "npm:7.3.1"
     "@navikt/ds-icons": "npm:3.4.3"
     "@navikt/ds-react": "npm:7.3.1"
@@ -4492,7 +4497,7 @@ __metadata:
     "@babel/preset-env": "npm:7.25.9"
     "@babel/preset-react": "npm:7.25.9"
     "@babel/preset-typescript": "npm:7.25.9"
-    "@chromatic-com/storybook": "npm:2.0.2"
+    "@chromatic-com/storybook": "npm:3.0.0"
     "@navikt/ds-css": "npm:7.3.1"
     "@navikt/ds-icons": "npm:3.4.3"
     "@navikt/ds-react": "npm:7.3.1"
@@ -4570,7 +4575,7 @@ __metadata:
     "@babel/plugin-transform-modules-commonjs": "npm:7.25.9"
     "@babel/preset-env": "npm:7.25.9"
     "@babel/preset-react": "npm:7.25.9"
-    "@chromatic-com/storybook": "npm:2.0.2"
+    "@chromatic-com/storybook": "npm:3.0.0"
     "@navikt/appstatus-react-ds": "npm:*"
     "@navikt/ds-css": "npm:7.3.1"
     "@navikt/ds-icons": "npm:3.4.3"
@@ -8112,7 +8117,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/channels@npm:^8.0.8":
+"@storybook/channels@npm:^8.0.8, @storybook/channels@npm:^8.3.0":
   version: 8.3.6
   resolution: "@storybook/channels@npm:8.3.6"
   peerDependencies:
@@ -8627,6 +8632,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@storybook/telemetry@npm:^8.3.0":
+  version: 8.3.6
+  resolution: "@storybook/telemetry@npm:8.3.6"
+  peerDependencies:
+    storybook: ^8.3.6
+  checksum: 10/26876685d5bc9e10c969af3ae7e7938a18ea653bd0a8caf0ff88159ea1f0bb2748f0f1399042a50f2d91dd3dc5ab9e2edac9fb5334bd45836dae35a54a3cff85
+  languageName: node
+  linkType: hard
+
 "@storybook/test-runner@npm:0.19.1":
   version: 0.19.1
   resolution: "@storybook/test-runner@npm:0.19.1"
@@ -8722,6 +8736,15 @@ __metadata:
     "@types/express": "npm:^4.7.0"
     file-system-cache: "npm:2.3.0"
   checksum: 10/8da9513f1f34f606b114026af5fad5a7658ce5e2fa7af3363d9f3d481e5e22ed9ae6343f28aa9d14208bff07f489cb7f5ae3adcad5a603f8181e952b2ee29f3f
+  languageName: node
+  linkType: hard
+
+"@storybook/types@npm:^8.3.0":
+  version: 8.3.6
+  resolution: "@storybook/types@npm:8.3.6"
+  peerDependencies:
+    storybook: ^8.3.6
+  checksum: 10/7122388d848cf1d8b7d95c81b8a601d82a455d764f7a625372f344dc0402bbd398db22e1c6cedd66ca3987d61b0f8204ff757e0ff5fc2a77745094dc7b882a2a
   languageName: node
   linkType: hard
 
