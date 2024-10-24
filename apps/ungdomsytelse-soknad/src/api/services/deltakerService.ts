@@ -4,7 +4,7 @@ import { deltakelserResponseSchema } from '../schemas/deltakelserSchema';
 import { Deltakelse } from '../types';
 
 const getDeltakelser = async (deltakerIdent: string): Promise<Deltakelse[]> => {
-    const response = await ungDeltakelseOpplyserApiClient.post(`/veileder/register/hent/alle`, { deltakerIdent });
+    const response = await ungDeltakelseOpplyserApiClient.post(`/deltakelse/register/hent/alle`, { deltakerIdent });
     try {
         const deltakelse = deltakelserResponseSchema.parse(response.data);
         return deltakelse;
@@ -14,6 +14,11 @@ const getDeltakelser = async (deltakerIdent: string): Promise<Deltakelse[]> => {
     }
 };
 
+const markerSomSøkt = async (deltakelseId: string): Promise<void> => {
+    return await ungDeltakelseOpplyserApiClient.put(`/deltakelse/register/${deltakelseId}/marker-har-sokt`);
+};
+
 export const deltakerService = {
     getDeltakelser,
+    markerSomSøkt,
 };

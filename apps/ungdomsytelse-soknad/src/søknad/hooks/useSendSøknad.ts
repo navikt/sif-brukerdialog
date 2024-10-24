@@ -2,15 +2,16 @@ import { useState } from 'react';
 import { AxiosError } from 'axios';
 import { sendSøknadService } from '../../api/services/sendSøknadService';
 import { SøknadApiData } from '../../api/types';
+import { deltakerService } from '../../api/services/deltakerService';
 
 export const useSendSøknad = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [sendSøknadError, setSendSøknadError] = useState<AxiosError | undefined>();
     const [søknadSendt, setSøknadSendt] = useState(false);
 
-    const sendSøknad = (apiData: SøknadApiData) => {
+    const sendSøknad = async (apiData: SøknadApiData) => {
         setIsSubmitting(true);
-        sendSøknadService
+        await sendSøknadService
             .sendSøknad(apiData)
             .then(onSøknadSendSuccess)
             .catch((error) => {
@@ -18,6 +19,7 @@ export const useSendSøknad = () => {
                 setSendSøknadError(error);
                 setIsSubmitting(false);
             });
+        await deltakerService.markerSomSøkt(apiData.søknadId);
     };
 
     const onSøknadSendSuccess = async () => {

@@ -6,5 +6,5 @@ export const deltakelseSchema = z.object({
     deltakerIdent: z.string(),
     fraOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
     tilOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date().optional()),
-    søktFor: z.boolean().nullable().optional(),
+    harSøkt: z.boolean().nullable().optional(),
 });
