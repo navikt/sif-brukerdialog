@@ -22,7 +22,7 @@ const nb = {
 
 const nn: Record<keyof typeof nb, string> = {
     'application.title':
-        'Søknad om ekstra omsorgsdagar for barn som har kronisk/langvarig sjukdom eller funksjonshemning',
+        'Søknad om ekstra omsorgsdagar for barn som har kronisk/langvarig sjukdom eller funksjonshemming',
     'step.omBarnet.stepTitle': 'Barn',
     'step.deltBosted.stepTitle': 'Delt fast bustad',
     'step.legeerklaering.stepTitle': 'Legeerklæring',

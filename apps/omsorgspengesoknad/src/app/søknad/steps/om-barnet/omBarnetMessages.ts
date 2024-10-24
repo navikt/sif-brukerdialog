@@ -97,11 +97,11 @@ const nn: Record<OmBarnetMessageKeys, string> = {
     'steg.omBarnet.spm.sammeAdresse.hvaBetyrDette.info':
         'Viss foreldra til barnet ikkje bur saman, kan dei inngå ein avtale om delt fast bustad etter barnelova §36. Barnet bur då fast med begge foreldra sine.',
     'steg.omBarnet.spm.kroniskEllerFunksjonshemning.label':
-        'Har barnet kronisk/langvarig sjukdom eller funksjonshemning?',
+        'Har barnet kronisk/langvarig sjukdom eller funksjonshemming?',
     'steg.omBarnet.spm.høyereRisikoForFravær.label':
         'Har du auka risiko for å vera borte frå jobb på grunn av barnet sin sjukdom eller funksjonshemming?',
     'steg.omBarnet.spm.høyereRisikoForFraværBeskrivelse.label':
-        'No treng me ei skildring frå deg på korleis sjukdommen eller funksjonshemninga til barnet gjer at du har markert høgare risiko for å vera borte frå jobb:',
+        'No treng me ei skildring frå deg på korleis sjukdommen eller funksjonshemminga til barnet gjer at du har markert høgare risiko for å vera borte frå jobb:',
     'steg.omBarnet.relasjonTilBarnet.mor': 'Mor',
     'steg.omBarnet.relasjonTilBarnet.far': 'Far',
     'steg.omBarnet.relasjonTilBarnet.adoptivforelder': 'Adoptivforelder',
@@ -129,7 +129,7 @@ const nn: Record<OmBarnetMessageKeys, string> = {
     'steg.omBarnet.validation.søkersRelasjonTilBarnet.noValue': 'Du må velja relasjonen din til barnet.',
     'steg.omBarnet.validation.sammeAdresse.noValue': 'Du må svara ja eller nei på om du bur saman med barnet.',
     'steg.omBarnet.validation.kroniskEllerFunksjonshemming.yesOrNoIsUnanswered':
-        'Du må svara ja eller nei på om barnet har ein kronisk/langvarig sjukdom eller funksjonshemning.',
+        'Du må svara ja eller nei på om barnet har ein kronisk/langvarig sjukdom eller funksjonshemming.',
     'steg.omBarnet.validation.høyereRisikoForFravær.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om du har auka risiko for å vere borte frå jobb på grunn av barnet sin sjukdom eller funksjonshemming.',
     'steg.omBarnet.validation.høyereRisikoForFraværBeskrivelse.stringHasNoValue':
@@ -137,13 +137,13 @@ const nn: Record<OmBarnetMessageKeys, string> = {
     'steg.omBarnet.validation.høyereRisikoForFraværBeskrivelse.stringIsTooLong':
         'Skildringa av korleis barnet sin sjukdom eller funksjonshemming gjer at du har høgare risiko for å vera borte frå jobb, kan ikkje vera lengre enn 2000 teikn.',
     'steg.omBarnet.validation.høyereRisikoForFraværBeskrivelse.stringIsTooShort':
-        'Skildring på korleis barnet sin sjukdom eller funksjonshemming gjer at du har høgare risiko for å vera borte frå jobb, må vera minst 5 teikn lang.',
+        'Skildringa på korleis barnet sin sjukdom eller funksjonshemming gjer at du har høgare risiko for å vera borte frå jobb, må vera minst 5 teikn lang.',
     'steg.omBarnet.alert.sammeAdresse.nei':
         'Det er berre foreldre som bur saman med barnet som kan få ekstra omsorgsdagar frå NAV. Forelderen som bur saman med barnet kan i nokre tilfelle dela sine omsorgsdagar.',
     'steg.omBarnet.alert.ikkeHøyereRisikoForFravær':
-        'For å ha rett til ekstra omsorgsdagar på grunn av sjukdom eller funksjonshemning, må det vera ein samanheng mellom sjukdommen til barnet/funksjonshemning og risikoen for høgare fråvær frå jobb.',
+        'For å ha rett til ekstra omsorgsdagar på grunn av sjukdom eller funksjonshemming, må det vera ein samanheng mellom sjukdommen til barnet/funksjonshemming og risikoen for høgare fråvær frå jobb.',
     'steg.omBarnet.alert.ikkeKroniskSykdom':
-        'Denne søknaden om ekstra omsorgsdagar gjeld berre for dei som har barn med kronisk/langvarig sjukdom eller funksjonshemning.',
+        'Denne søknaden om ekstra omsorgsdagar gjeld berre for dei som har barn med kronisk/langvarig sjukdom eller funksjonshemming.',
     'steg.omBarnet.alert.trengerIkkeSøke.tittel': 'Du treng ikkje søkja for {barnetsFornavn}',
     'steg.omBarnet.alert.trengerIkkeSøke.tekst':
         'Du har allereie eit gyldig vedtak som gjeld til og med det kalenderåret {barnetsFornavn} fyller 18 år. Du treng derfor ikkje å søkja på nytt. Du kan finna melding og dokumentasjon om vedtaket på <Lenke>Mi side</Lenke>.',
