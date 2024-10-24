@@ -36,8 +36,8 @@ export const SøknadContextProvider = ({ children, initialData }: Props) => {
         setData({
             ...data,
             alleDeltakelser: deltakelser,
-            deltakelserSøktFor: deltakelser.filter((d) => d.søktFor),
-            deltakelserIkkeSøktFor: deltakelser.filter((d) => !d.søktFor),
+            deltakelserSøktFor: deltakelser.filter((d) => d.harSøkt),
+            deltakelserIkkeSøktFor: deltakelser.filter((d) => !d.harSøkt),
         });
     };
 

@@ -26,7 +26,7 @@ const Forside = () => {
     };
 
     const handleOnClose = async () => {
-        const data = await deltakerService.getDeltakelser(søker.fødselsnummer);
+        const data = await deltakerService.getDeltakelser();
         const deltakelser = data.map((d) => ({ ...d, søktFor: erSøktFor(d) }));
         updateDeltakelse(deltakelser);
     };

@@ -79,27 +79,27 @@ const startExpressServer = () => {
         }, 250);
     });
 
-    server.post('/veileder/register/hent/alle', (req, res) => {
+    server.get('/deltakelse/register/hent/alle', (req, res) => {
         const response = [
             {
                 id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0',
                 deltakerIdent: '56857102105',
                 fraOgMed: '2025-08-15',
                 tilOgMed: '2025-12-31',
-                søktFor: true,
+                harSøkt: true,
             },
             {
                 id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab2',
                 deltakerIdent: '56857102105',
                 fraOgMed: '2026-01-01',
                 tilOgMed: '2026-04-01',
-                søktFor: true,
+                harSøkt: true,
             },
             {
                 id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab4',
                 deltakerIdent: '56857102105',
                 fraOgMed: '2026-05-01',
-                søktFor: false,
+                harSøkt: false,
             },
         ];
         setTimeout(() => {
@@ -110,6 +110,14 @@ const startExpressServer = () => {
     /** --- Send søknad ---------- */
 
     server.post('/ungdomsytelse/soknad/innsending', (req, res) => {
+        const body = req.body;
+        console.log('[POST] body', body);
+        setTimeout(() => {
+            res.sendStatus(200);
+        }, 500);
+    });
+
+    server.put('/deltakelse/register/{:id}/marker-har-søkt', (req, res) => {
         const body = req.body;
         console.log('[POST] body', body);
         setTimeout(() => {

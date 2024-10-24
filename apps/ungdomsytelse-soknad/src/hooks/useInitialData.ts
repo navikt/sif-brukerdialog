@@ -17,12 +17,12 @@ export const useInitialData = () => {
 
     const fetchInitialData = async () => {
         const søker = await fetchSøker();
-        const deltakelser = await deltakerService.getDeltakelser(søker.fødselsnummer);
+        const deltakelser = await deltakerService.getDeltakelser();
         setState({
             søker,
             alleDeltakelser: deltakelser,
-            deltakelserSøktFor: deltakelser.filter((d) => d.søktFor),
-            deltakelserIkkeSøktFor: deltakelser.filter((d) => !d.søktFor),
+            deltakelserSøktFor: deltakelser.filter((d) => d.harSøkt),
+            deltakelserIkkeSøktFor: deltakelser.filter((d) => !d.harSøkt),
         });
         setIsLoading(false);
     };

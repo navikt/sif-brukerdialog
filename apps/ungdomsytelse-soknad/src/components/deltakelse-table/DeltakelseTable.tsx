@@ -21,7 +21,7 @@ const DeltakelseTable = ({ deltakelser }: Props) => {
                     <Table.Row key={d.id}>
                         <Table.DataCell>{dateFormatter.compact(d.fraOgMed)}</Table.DataCell>
                         <Table.DataCell>{d.tilOgMed ? dateFormatter.compact(d.tilOgMed) : null}</Table.DataCell>
-                        <Table.DataCell>{d.søktFor ? 'Ja' : 'Nei'}</Table.DataCell>
+                        <Table.DataCell>{d.harSøkt ? 'Ja' : 'Nei'}</Table.DataCell>
                     </Table.Row>
                 ))}
             </Table.Body>
