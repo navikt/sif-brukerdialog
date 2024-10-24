@@ -17,7 +17,7 @@ export const useInitialData = () => {
 
     const fetchInitialData = async () => {
         const søker = await fetchSøker();
-        const deltakelser = await deltakerService.getDeltakelser(søker.fødselsnummer);
+        const deltakelser = await deltakerService.getDeltakelser();
         setState({
             søker,
             alleDeltakelser: deltakelser,
