@@ -6,8 +6,7 @@ const nb = {
     'steg.oppsummering.søker.navn': 'Navn',
     'steg.oppsummering.søker.fnr': 'Fødselsnummer',
 
-    'steg.oppsummeringkurs.header': 'Dagene du søker opplæringspenger for',
-    'steg.oppsummeringkurs.valgteDager.header': '{dager} {dager, plural, one {dag} other {dager}} med opplæringspenger',
+    'steg.oppsummeringkurs.header': 'Om kurs',
     'steg.oppsummeringarbeidssituasjon.header': 'Din arbeidssituasjon',
 
     'arbeidsgiver.tittel': '{navn} (organisasjonsnummer {organisasjonsnummer})',

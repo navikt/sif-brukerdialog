@@ -1,14 +1,18 @@
-import { FormSummary } from '@navikt/ds-react';
+import { Box, FormSummary, List, VStack } from '@navikt/ds-react';
 import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
-import { AppText } from '../../../../i18n';
-import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
+import { AppText, useAppIntl } from '../../../../i18n';
+import { KursApiData } from '../../../../types/søknadApiData/SøknadApiData';
+import { dateFormatter, dateRangeFormatter, ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils';
+import { Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 
 interface Props {
-    apiData: SøknadApiData;
+    kurs: KursApiData;
     onEdit?: () => void;
 }
 
-const KursOppsummering = ({ onEdit }: Props) => {
+const KursOppsummering = ({ onEdit, kurs }: Props) => {
+    const { kursholder, perioder } = kurs;
+    const { locale } = useAppIntl();
     return (
         <>
             <FormSummary>
@@ -20,10 +24,55 @@ const KursOppsummering = ({ onEdit }: Props) => {
                 </FormSummary.Header>
                 <FormSummary.Answers>
                     <FormSummary.Answer>
-                        <FormSummary.Label>
-                            <AppText id="steg.oppsummeringkurs.valgteDager.header" />
-                        </FormSummary.Label>
-                        <FormSummary.Value>Verdi</FormSummary.Value>
+                        <FormSummary.Label>Kursholder</FormSummary.Label>
+                        <FormSummary.Value>{kursholder === 'annen' ? 'Annen' : kursholder.navn}</FormSummary.Value>
+                    </FormSummary.Answer>
+                    <FormSummary.Answer>
+                        <FormSummary.Label>Kursperioder</FormSummary.Label>
+                        <FormSummary.Value>
+                            <List>
+                                {perioder.map((periode) => {
+                                    const periodeString = dateRangeFormatter.getDateRangeText(
+                                        ISODateRangeToDateRange(periode.kursperiode),
+                                        locale,
+                                    );
+                                    const kursperiode = ISODateRangeToDateRange(periode.kursperiode);
+                                    const avreise = periode.avreise ? ISODateToDate(periode.avreise) : kursperiode.from;
+                                    const hjemkomst = periode.hjemkomst
+                                        ? ISODateToDate(periode.hjemkomst)
+                                        : kursperiode.to;
+
+                                    return (
+                                        <List.Item title={periodeString} key={periodeString}>
+                                            <VStack gap="1">
+                                                <Box>
+                                                    Avreise: {dateFormatter.compact(avreise)}.
+                                                    {periode.BeskrivelseReisetidTil ? (
+                                                        <Sitat>
+                                                            <TextareaSvar
+                                                                text={periode.BeskrivelseReisetidTil}
+                                                                spacing={false}
+                                                            />
+                                                        </Sitat>
+                                                    ) : null}
+                                                </Box>
+                                                <Box>
+                                                    Hjemkomst: {dateFormatter.compact(hjemkomst)}.<br />
+                                                    {periode.beskrivelseReisetidHjem ? (
+                                                        <Sitat>
+                                                            <TextareaSvar
+                                                                text={periode.beskrivelseReisetidHjem}
+                                                                spacing={false}
+                                                            />
+                                                        </Sitat>
+                                                    ) : null}
+                                                </Box>
+                                            </VStack>
+                                        </List.Item>
+                                    );
+                                })}
+                            </List>
+                        </FormSummary.Value>
                     </FormSummary.Answer>
                 </FormSummary.Answers>
             </FormSummary>

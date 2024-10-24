@@ -121,7 +121,7 @@ const OppsummeringStep = () => {
                                     <OmSøkerOppsummering søker={søker} />
 
                                     <KursOppsummering
-                                        apiData={apiData}
+                                        kurs={apiData.kurs}
                                         onEdit={() => navigate(stepConfig[StepId.KURS].route)}
                                     />
 

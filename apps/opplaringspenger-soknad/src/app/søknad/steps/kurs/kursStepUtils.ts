@@ -9,6 +9,8 @@ import { INKLUDER_REISEDAGER_I_PERIODE, KursSøknadsdata } from '../../../types/
 import { KursFormValues } from './KursStep';
 import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 import { Kursperiode } from '../../../types/Kursperiode';
+import { Kursholder } from '../../../types/Kursholder';
+import { getKursholderFromId } from '../../../utils/kursholderUtils';
 
 dayjs.extend(isoWeek);
 
@@ -45,13 +47,21 @@ export const getDatoerIKursperioderInkludertReisedager = (perioder: Kursperiode[
     return dateRangeUtils.getDatesInDateRanges(perioder.map((p) => p.periodeMedReise));
 };
 
-export const getKursSøknadsdataFromFormValues = ({
-    kursholder,
-    arbeiderIKursperiode,
-    kursperioder,
-}: KursFormValues): KursSøknadsdata | undefined => {
-    if (!kursholder || !kursperioder || !kursholder || !arbeiderIKursperiode) {
+const sortKursperiode = (a: Kursperiode, b: Kursperiode) => {
+    return dayjs(a.periode.from).isBefore(dayjs(b.periode.from)) ? -1 : 1;
+};
+
+export const getKursSøknadsdataFromFormValues = (
+    { kursholderId, arbeiderIKursperiode, kursperioder }: KursFormValues,
+    kursholdere: Kursholder[],
+): KursSøknadsdata | undefined => {
+    if (!kursholderId || !kursperioder || !arbeiderIKursperiode) {
         throw 'Kursholder eller kursperioder er ikke definert';
+    }
+
+    const kursholder = kursholderId === 'annen' ? 'annen' : getKursholderFromId(kursholderId, kursholdere);
+    if (!kursholder) {
+        throw `Kursholder finnes ikke, ${kursholderId}`;
     }
 
     const søknadsperiodeUtenReisedager = dateRangeUtils.getDateRangeFromDateRanges(kursperioder.map((p) => p.periode));
@@ -65,7 +75,7 @@ export const getKursSøknadsdataFromFormValues = ({
             ? getDatoerIKursperioderInkludertReisedager(kursperioder)
             : getDatoerIKursperioderUtenReisedager(kursperioder),
         kursholder,
-        kursperioder,
+        kursperioder: kursperioder.sort(sortKursperiode),
         arbeiderIKursperiode: arbeiderIKursperiode === YesOrNo.YES,
     };
 };
@@ -82,7 +92,7 @@ export const getKursStepInitialValues = (søknadsdata: Søknadsdata, formValues?
     if (kurs) {
         return {
             ...defaultValues,
-            kursholder: kurs.kursholder,
+            kursholderId: kurs.kursholder === 'annen' ? 'annen' : kurs.kursholder.id,
             kursperioder: kurs.kursperioder,
             arbeiderIKursperiode: getYesOrNoFromBoolean(kurs.arbeiderIKursperiode),
         };

@@ -11,7 +11,6 @@ import PersistStepFormValues from '../../../components/persist-step-form-values/
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
-import { Kursholder } from '../../../types/Kursholder';
 import { Kursperiode } from '../../../types/Kursperiode';
 import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
@@ -25,13 +24,13 @@ import KursperiodeListAndDialog from './kursperiode/KursperiodeListAndDialog';
 import { getKursStepInitialValues, getKursSøknadsdataFromFormValues } from './kursStepUtils';
 
 export enum KursFormFields {
-    kursholder = 'kursholder',
+    kursholderId = 'kursholderId',
     kursperioder = 'kursperioder',
     arbeiderIKursperiode = 'arbeiderIKursperiode',
 }
 
 export interface KursFormValues {
-    [KursFormFields.kursholder]?: Kursholder | 'annen';
+    [KursFormFields.kursholderId]?: string;
     [KursFormFields.kursperioder]?: Kursperiode[];
     [KursFormFields.arbeiderIKursperiode]?: YesOrNo;
 }
@@ -57,7 +56,7 @@ const KursStep = () => {
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const onValidSubmitHandler = (values) => {
-        const kursSøknadsdata = getKursSøknadsdataFromFormValues(values);
+        const kursSøknadsdata = getKursSøknadsdataFromFormValues(values, kursholdere);
         if (kursSøknadsdata) {
             clearStepFormValues(stepId);
             return [
@@ -102,7 +101,7 @@ const KursStep = () => {
                                     <VStack gap={'4'}>
                                         <Select
                                             label="Velg helseinstitusjon/kompetansesenter"
-                                            name={KursFormFields.kursholder}
+                                            name={KursFormFields.kursholderId}
                                             validate={getRequiredFieldValidator()}>
                                             <option value="">Velg</option>
                                             <optgroup label="Godkjente helseinstitusjoner">
@@ -117,7 +116,7 @@ const KursStep = () => {
                                             </optgroup>
                                         </Select>
 
-                                        {values[KursFormFields.kursholder] === 'annen' && (
+                                        {values[KursFormFields.kursholderId] === 'annen' && (
                                             <Alert variant="info">
                                                 Hvis du ikke finner institusjonen i listen over, må ...
                                             </Alert>
