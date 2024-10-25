@@ -1882,21 +1882,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chromatic-com/storybook@npm:3.0.0":
-  version: 3.0.0
-  resolution: "@chromatic-com/storybook@npm:3.0.0"
+"@chromatic-com/storybook@npm:3.1.0":
+  version: 3.1.0
+  resolution: "@chromatic-com/storybook@npm:3.1.0"
   dependencies:
     "@storybook/channels": "npm:^8.3.0"
     "@storybook/telemetry": "npm:^8.3.0"
     "@storybook/types": "npm:^8.3.0"
-    chromatic: "npm:^11.4.0"
+    chromatic: "npm:^11.15.0"
     filesize: "npm:^10.0.12"
     jsonfile: "npm:^6.1.0"
     react-confetti: "npm:^6.1.0"
     strip-ansi: "npm:^7.1.0"
   peerDependencies:
     storybook: ^8.3.0
-  checksum: 10/6a64122b3b895767593aa7e0acc0561425d88e4eb1efbf4db6e26be66317aab289f73b259c5f2fa4e3c9657d9ff569e89c1da740a3b4fdfc4e39cf145774de35
+  checksum: 10/fd2041c76029c1ff17377fb5e65edbafc045f675c84dfa4e19bb0dae0b0fc5df57ab99ee1d05b8f8dcb6c74bbaf58b3db1edc8855f66781f93f3dc099999f054
   languageName: node
   linkType: hard
 
@@ -4193,7 +4193,7 @@ __metadata:
     "@babel/preset-env": "npm:7.25.9"
     "@babel/preset-react": "npm:7.25.9"
     "@babel/preset-typescript": "npm:7.25.9"
-    "@chromatic-com/storybook": "npm:3.0.0"
+    "@chromatic-com/storybook": "npm:3.1.0"
     "@navikt/ds-css": "npm:7.3.1"
     "@navikt/ds-icons": "npm:3.4.3"
     "@navikt/ds-react": "npm:7.3.1"
@@ -4497,7 +4497,7 @@ __metadata:
     "@babel/preset-env": "npm:7.25.9"
     "@babel/preset-react": "npm:7.25.9"
     "@babel/preset-typescript": "npm:7.25.9"
-    "@chromatic-com/storybook": "npm:3.0.0"
+    "@chromatic-com/storybook": "npm:3.1.0"
     "@navikt/ds-css": "npm:7.3.1"
     "@navikt/ds-icons": "npm:3.4.3"
     "@navikt/ds-react": "npm:7.3.1"
@@ -4575,7 +4575,7 @@ __metadata:
     "@babel/plugin-transform-modules-commonjs": "npm:7.25.9"
     "@babel/preset-env": "npm:7.25.9"
     "@babel/preset-react": "npm:7.25.9"
-    "@chromatic-com/storybook": "npm:3.0.0"
+    "@chromatic-com/storybook": "npm:3.1.0"
     "@navikt/appstatus-react-ds": "npm:*"
     "@navikt/ds-css": "npm:7.3.1"
     "@navikt/ds-icons": "npm:3.4.3"
@@ -12002,7 +12002,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromatic@npm:11.15.0":
+"chromatic@npm:11.15.0, chromatic@npm:^11.15.0":
   version: 11.15.0
   resolution: "chromatic@npm:11.15.0"
   peerDependencies:
@@ -12018,25 +12018,6 @@ __metadata:
     chromatic: dist/bin.js
     chromatic-cli: dist/bin.js
   checksum: 10/3d4b5702d562158b3a5144c23939dd49713d13d6437d76b77b37eed7cbaf32e15c8d67599bf82b4cfd75eb9cddced9cef15289c57a97a127a6b52e2aa26cfaa5
-  languageName: node
-  linkType: hard
-
-"chromatic@npm:^11.4.0":
-  version: 11.14.0
-  resolution: "chromatic@npm:11.14.0"
-  peerDependencies:
-    "@chromatic-com/cypress": ^0.*.* || ^1.0.0
-    "@chromatic-com/playwright": ^0.*.* || ^1.0.0
-  peerDependenciesMeta:
-    "@chromatic-com/cypress":
-      optional: true
-    "@chromatic-com/playwright":
-      optional: true
-  bin:
-    chroma: dist/bin.js
-    chromatic: dist/bin.js
-    chromatic-cli: dist/bin.js
-  checksum: 10/3e26a6e2df9273662a01322aee719d7d0aca0ed313df440c0182cdf1d4b1c4350143f0fd52a161396f1dc599b486586e5de99a0b1900ed2875c9f3b22ff8b182
   languageName: node
   linkType: hard
 
