@@ -12,11 +12,13 @@ import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import { getKvitteringInfoFromApiData } from '../utils/kvitteringUtils';
 import { mellomlagringService } from '../api/mellomlagringService';
+import { useAppIntl } from '../i18n';
 
 export const useSendSøknad = () => {
     const { dispatch } = useSøknadContext();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [sendSøknadError, setSendSøknadError] = useState<AxiosError | undefined>();
+    const { locale } = useAppIntl();
     const navigateTo = useNavigate();
 
     const { logSoknadSent } = useAmplitudeInstance();
@@ -36,7 +38,7 @@ export const useSendSøknad = () => {
     };
 
     const onSøknadSendSuccess = async (kvitteringInfo?: KvitteringInfo) => {
-        await logSoknadSent(OpplæringspengerApp.key);
+        await logSoknadSent(OpplæringspengerApp.key, locale);
         await mellomlagringService.purge();
         setIsSubmitting(false);
         if (kvitteringInfo) {

@@ -9,11 +9,13 @@ import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { ArbeidsgiverDetaljer, SøknadApiData } from '../types/søknadApiData/SøknadApiData';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import { mellomlagringService } from '../api/mellomlagringService';
+import { useAppIntl } from '../i18n';
 
 export const useSendSøknad = () => {
     const { dispatch } = useSøknadContext();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [sendSøknadError, setSendSøknadError] = useState<AxiosError | undefined>();
+    const { locale } = useAppIntl();
     const navigateTo = useNavigate();
 
     const { logSoknadSent } = useAmplitudeInstance();
@@ -30,7 +32,7 @@ export const useSendSøknad = () => {
     };
 
     const onSøknadSendSuccess = async (arbeidsgivere: ArbeidsgiverDetaljer[]) => {
-        await logSoknadSent(OmsorgspengerutbetalingArbeidstakerApp.navn);
+        await logSoknadSent(OmsorgspengerutbetalingArbeidstakerApp.navn, locale);
         mellomlagringService.purge();
         setIsSubmitting(false);
         dispatch(actionsCreator.setSøknadKvitteringInfo(arbeidsgivere));

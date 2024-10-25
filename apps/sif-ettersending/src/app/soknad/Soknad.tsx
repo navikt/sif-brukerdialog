@@ -29,6 +29,7 @@ import { getFirstStep, getSoknadStepsConfig, StepID } from './soknadStepsConfig'
 import soknadTempStorage, { isStorageDataValid } from './soknadTempStorage';
 import { getSokerId } from '../api/getSoker';
 import { YtelseKey } from '../types/Ytelser';
+import { useAppIntl } from '../i18n';
 
 interface Props {
     søker: Person;
@@ -73,6 +74,7 @@ const Soknad = ({ søker, barn, søknadstype, soknadTempStorage: tempStorage }: 
     });
     const [sendSoknadStatus, setSendSoknadStatus] = useState<SendSoknadStatus>(initialSendSoknadState);
     const [soknadId, setSoknadId] = useState<string | undefined>();
+    const { locale } = useAppIntl();
     const { logSoknadSent, logSoknadStartet, logSoknadFailed, logHendelse, logUserLoggedOut, logInfo } =
         useAmplitudeInstance();
 
@@ -163,7 +165,7 @@ const Soknad = ({ søker, barn, søknadstype, soknadTempStorage: tempStorage }: 
         try {
             await sendSoknad(apiValues);
             await soknadTempStorage.purge(søknadstype);
-            await logSoknadSent(søknadstype);
+            await logSoknadSent(søknadstype, locale);
             await logInfo({
                 type: 'Søknad sendt',
                 'Antall vedlegg sendt': apiValues.vedlegg.length,

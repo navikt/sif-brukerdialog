@@ -57,7 +57,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
     const [invalidParameters, setInvalidParameters] = useState<InvalidParameter[] | undefined>();
 
     const appIntl = useAppIntl();
-    const { text, intl } = appIntl;
+    const { text, intl, locale } = appIntl;
     const navigate = useNavigate();
 
     const søknadStepConfig = getSøknadStepConfig(values);
@@ -78,7 +78,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
         setSendingInProgress(true);
         try {
             await sendApplication(apiValues);
-            await logSoknadSent(PleiepengerSyktBarnApp.navn);
+            await logSoknadSent(PleiepengerSyktBarnApp.navn, locale);
             if (harArbeidMenIngenFravær) {
                 await logSenderInnSøknadMedIngenFravær();
             }
