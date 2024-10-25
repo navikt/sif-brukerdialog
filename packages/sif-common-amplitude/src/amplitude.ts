@@ -104,10 +104,11 @@ export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props)
         });
     }
 
-    async function logSoknadSent(skjemanavn: string) {
+    async function logSoknadSent(skjemanavn: string, locale?: string) {
         return logEvent(AmplitudeEvents.søknadSendt, {
             skjemanavn,
             skjemaId: applicationKey,
+            locale,
         });
     }
 
