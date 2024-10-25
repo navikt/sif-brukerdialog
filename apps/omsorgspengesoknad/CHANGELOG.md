@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.33.0
+
+### Minor Changes
+
+-   Nynorsk i omsorgspengesøknad kronisk
+
 ## 1.32.1
 
 ### Patch Changes
