@@ -2,7 +2,7 @@
     "name": "@navikt/ungdomsytelse-soknad",
     "type": "module",
     "private": true,
-    "version": "0.3.0",
+    "version": "0.3.1",
     "scripts": {
         "dev": "node ./dev-server.cjs",
         "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",
@@ -14,10 +14,10 @@
         "lint:fix": "eslint --fix"
     },
     "dependencies": {
-        "@navikt/aksel-icons": "7.3.1",
-        "@navikt/ds-css": "7.3.1",
-        "@navikt/ds-react": "7.3.1",
-        "@navikt/ds-tailwind": "7.3.1",
+        "@navikt/aksel-icons": "7.4.0",
+        "@navikt/ds-css": "7.4.0",
+        "@navikt/ds-react": "7.4.0",
+        "@navikt/ds-tailwind": "7.4.0",
         "@navikt/nav-dekoratoren-moduler": "2.1.6",
         "@navikt/sif-common-api": "*",
         "@navikt/sif-common-core-ds": "*",
@@ -30,7 +30,7 @@
         "react": "18.3.1",
         "react-dom": "18.3.1",
         "react-hook-form": "7.53.1",
-        "react-intl": "6.8.1",
+        "react-intl": "6.8.4",
         "react-router-dom": "6.27.0",
         "uuid": "10.0.0",
         "zod": "3.23.8"
