@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { OmsorgsdagerKroniskApp } from '@navikt/sif-app-register';
+import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { AxiosError } from 'axios';
 import søknadEndpoint from '../api/endpoints/søknadEndpoint';
 import { useMellomlagring } from '../hooks/useMellomlagring';
+import { useAppIntl } from '../i18n';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
@@ -14,6 +15,7 @@ export const useSendSøknad = () => {
     const { dispatch } = useSøknadContext();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [sendSøknadError, setSendSøknadError] = useState<AxiosError | undefined>();
+    const { locale } = useAppIntl();
     const { slettMellomlagring } = useMellomlagring();
     const navigateTo = useNavigate();
 
@@ -31,7 +33,7 @@ export const useSendSøknad = () => {
     };
 
     const onSøknadSendSuccess = async () => {
-        await logSoknadSent(OmsorgsdagerKroniskApp.navn);
+        await logSoknadSent(OmsorgsdagerKroniskApp.navn, locale);
         slettMellomlagring();
         setIsSubmitting(false);
         dispatch(actionsCreator.setSøknadSendt());
