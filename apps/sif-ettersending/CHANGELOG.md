@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.41.2
+
+### Patch Changes
+
+-   Sende med locale ved logg av søknad sendt til amplitude
+
 ## 3.41.1
 
 ### Patch Changes

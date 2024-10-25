@@ -1,5 +1,11 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.14.13
+
+### Patch Changes
+
+-   Sende med locale ved logg av søknad sendt til amplitude
+
 ## 1.14.12
 
 ### Patch Changes
