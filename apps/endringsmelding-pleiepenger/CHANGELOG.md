@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.33.2
+
+### Patch Changes
+
+-   Sende med locale ved logg av søknad sendt til amplitude
+
 ## 2.33.1
 
 ### Patch Changes

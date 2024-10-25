@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.22.2
+
+### Patch Changes
+
+-   Sende med locale ved logg av søknad sendt til amplitude
+
 ## 2.22.1
 
 ### Patch Changes

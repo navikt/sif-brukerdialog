@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.14.2
+
+### Patch Changes
+
+-   Sende med locale ved logg av søknad sendt til amplitude
+
 ## 2.14.1
 
 ### Patch Changes

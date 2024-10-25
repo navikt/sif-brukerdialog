@@ -11,6 +11,7 @@ import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { getSøknadApiDataMetadata, SøknadApiDataMetadata } from '../utils/oppsummeringUtils';
 import { useMellomlagring } from './useMellomlagring';
+import { useAppIntl } from '../i18n';
 
 export const useSendSøknad = () => {
     const {
@@ -20,6 +21,7 @@ export const useSendSøknad = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [sendSøknadError, setSendSøknadError] = useState<AxiosError | undefined>();
     const { slettMellomlagring } = useMellomlagring();
+    const { locale } = useAppIntl();
     const navigateTo = useNavigate();
 
     const { logSoknadSent, logSoknadFailed, logInfo } = useAmplitudeInstance();
@@ -40,7 +42,7 @@ export const useSendSøknad = () => {
     };
 
     const onSøknadSendSuccess = async (metadata: SøknadApiDataMetadata) => {
-        await logSoknadSent(EndringsmeldingPsbApp.navn);
+        await logSoknadSent(EndringsmeldingPsbApp.navn, locale);
         await logInfo(metadata);
         slettMellomlagring();
         setIsSubmitting(false);

@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.19.2
+
+### Patch Changes
+
+-   Sende med locale ved logg av søknad sendt til amplitude
+
 ## 1.19.1
 
 ### Patch Changes

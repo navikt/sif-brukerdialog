@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.33.2
+
+### Patch Changes
+
+-   Sende med locale ved logg av søknad sendt til amplitude
+
 ## 1.33.1
 
 ### Patch Changes
