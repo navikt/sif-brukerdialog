@@ -48,7 +48,7 @@ const nn: Record<keyof typeof nb, string> = {
     'page.velkommen.guide.tekst.1':
         'Denne søknaden bruker du for å søkja om ekstra omsorgsdagar, viss barnet ditt har ein sjukdom eller funksjonshemming som gjer at du må bruka fleire omsorgsdagar enn det som er vanleg. Det er berre foreldre/fosterforeldre som bur med barnet som kan få ekstra omsorgsdagar.',
     'page.velkommen.guide.tekst.2':
-        'Viss fleire skal ha ekstra omsorgsdagar for same barn, må de senda kvar deira søknad til NAV.',
+        'Viss fleire skal ha ekstra omsorgsdagar for same barn, må de senda kvar dykkar søknad til NAV.',
     'page.velkommen.guide.tekst.3':
         'Viss du har fått godkjent søknaden av NAV, treng du ikkje å søkja om ekstra omsorgsdagar igjen. Vedtak om ekstra dagar varer til barnet blir 18 år.',
     'page.velkommen.omSøknaden.tittel': 'Om søknaden',
