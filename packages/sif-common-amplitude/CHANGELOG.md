@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.26.22
+
+### Patch Changes
+
+-   48e9ecc: Sende med spesifikk apiKey for amplitude
+
 ## 2.26.21
 
 ### Patch Changes

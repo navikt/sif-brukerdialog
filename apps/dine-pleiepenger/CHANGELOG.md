@@ -1,5 +1,13 @@
 # @navikt/dine-pleiepenger
 
+## 1.6.29
+
+### Patch Changes
+
+-   48e9ecc: Sende med spesifikk apiKey for amplitude
+-   Updated dependencies [48e9ecc]
+    -   @navikt/sif-common-amplitude@2.26.22
+
 ## 1.6.28
 
 ### Patch Changes

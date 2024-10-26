@@ -1,5 +1,15 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.14.14
+
+### Patch Changes
+
+-   48e9ecc: Sende med spesifikk apiKey for amplitude
+-   Updated dependencies [48e9ecc]
+    -   @navikt/sif-common-amplitude@2.26.22
+    -   @navikt/sif-common-soknad-ds@16.0.3
+    -   @navikt/sif-common-env@0.1.1
+
 ## 1.14.13
 
 ### Patch Changes

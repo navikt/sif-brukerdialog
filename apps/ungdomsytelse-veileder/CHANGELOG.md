@@ -1,5 +1,14 @@
 # @navikt/sif-demo-app
 
+## 0.2.2
+
+### Patch Changes
+
+-   48e9ecc: Sende med spesifikk apiKey for amplitude
+-   Updated dependencies [48e9ecc]
+    -   @navikt/sif-common-env@0.1.1
+    -   @navikt/sif-common-ui@0.8.28
+
 ## 0.2.1
 
 ### Patch Changes
