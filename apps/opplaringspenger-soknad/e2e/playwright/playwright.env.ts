@@ -6,6 +6,7 @@ export const playwrightEnv: AppEnv = {
 
     PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/omsorgspenger',
     GITHUB_REF_NAME: 'branch-name',
+    SIF_PUBLIC_AMPLITUDE_API_KEY: 'default',
     SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
     SIF_PUBLIC_DEKORATOR_URL:
