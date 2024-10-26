@@ -11,7 +11,6 @@ export const playwrightEnv: AppDevEnv = {
     SIF_PUBLIC_AMPLITUDE_API_KEY: 'default',
     SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
-    SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
     SIF_PUBLIC_DEKORATOR_URL:
         'https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://endringsmelding-pleiepenger.intern.dev.nav.no/oauth2/logout',
     SIF_PUBLIC_DOMAIN_URL: 'http://localhost:8080',
