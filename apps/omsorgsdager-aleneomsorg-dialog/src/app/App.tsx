@@ -20,6 +20,7 @@ const {
     SIF_PUBLIC_APPSTATUS_PROJECT_ID,
     APP_VERSION,
     SIF_PUBLIC_USE_AMPLITUDE,
+    SIF_PUBLIC_AMPLITUDE_API_KEY,
 } = appEnv;
 
 ensureBaseNameForReactRouter(PUBLIC_PATH);
@@ -38,6 +39,7 @@ const App = () => (
             },
         }}
         useAmplitude={SIF_PUBLIC_USE_AMPLITUDE ? SIF_PUBLIC_USE_AMPLITUDE === 'true' : isProd()}
+        amplitudeApiKey={SIF_PUBLIC_AMPLITUDE_API_KEY}
         publicPath={PUBLIC_PATH}>
         <SoknadApplicationCommonRoutes
             contentRoutes={[

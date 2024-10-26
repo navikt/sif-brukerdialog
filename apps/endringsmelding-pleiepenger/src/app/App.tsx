@@ -16,7 +16,13 @@ import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 
 dayjs.extend(isoWeek);
 
-const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID, APP_VERSION } = appEnv;
+const {
+    PUBLIC_PATH,
+    SIF_PUBLIC_APPSTATUS_DATASET,
+    SIF_PUBLIC_APPSTATUS_PROJECT_ID,
+    APP_VERSION,
+    SIF_PUBLIC_AMPLITUDE_API_KEY,
+} = appEnv;
 const container = document.getElementById('root');
 const root = createRoot(container!);
 const isE2E = getMaybeEnv('E2E_TEST') === 'true';
@@ -49,6 +55,7 @@ const App = () => (
         appTitle={EndringsmeldingPsbApp.tittel.nb}
         intlMessages={applicationIntlMessages}
         useAmplitude={!isE2E}
+        amplitudeApiKey={SIF_PUBLIC_AMPLITUDE_API_KEY}
         appStatus={{
             sanityConfig: {
                 projectId: SIF_PUBLIC_APPSTATUS_PROJECT_ID,

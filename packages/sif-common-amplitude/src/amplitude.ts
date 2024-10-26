@@ -49,6 +49,7 @@ export enum ApiError {
 
 interface Props {
     applicationKey: string;
+    apiKey: string;
     logToConsoleOnly?: boolean;
     isActive?: boolean;
     children: React.ReactNode;

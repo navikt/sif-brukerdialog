@@ -42,6 +42,8 @@ interface Props {
     useLanguageSelector?: boolean;
     /** If amplitude logging is active or not*/
     useAmplitude: boolean;
+    /** Amplitude project api key */
+    amplitudeApiKey: string;
     /** Faro logging */
     useFaro?: boolean;
     naisFrontendTelemetryCollectorUrl?: string;
@@ -64,6 +66,7 @@ const SoknadApplication = ({
     publicPath,
     appKey,
     useAmplitude,
+    amplitudeApiKey,
     useLanguageSelector,
     children,
     appTitle,
@@ -89,7 +92,7 @@ const SoknadApplication = ({
                 appVersion={appVersion}
                 isActive={useFaro}>
                 <ErrorBoundary appKey={appKey} onResetSoknad={onResetSoknad} appTitle={appTitle}>
-                    <AmplitudeProvider applicationKey={appKey} isActive={useAmplitude}>
+                    <AmplitudeProvider apiKey={amplitudeApiKey} applicationKey={appKey} isActive={useAmplitude}>
                         <IntlProvider
                             locale={locale === 'nb' ? getBokmålLocale() : getNynorskLocale()}
                             messages={localeMessages}>

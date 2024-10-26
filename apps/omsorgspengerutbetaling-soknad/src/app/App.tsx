@@ -22,6 +22,7 @@ const {
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: SIF_PUBLIC_APPSTATUS_PROJECT_ID,
     APP_VERSION,
     SIF_PUBLIC_USE_AMPLITUDE,
+    SIF_PUBLIC_AMPLITUDE_API_KEY,
 } = appEnv;
 
 const envNow = getMaybeEnv('MOCK_DATE');
@@ -47,7 +48,8 @@ const App = () => (
             },
         }}
         publicPath={PUBLIC_PATH}
-        useAmplitude={SIF_PUBLIC_USE_AMPLITUDE ? SIF_PUBLIC_USE_AMPLITUDE === 'true' : isProd()}>
+        useAmplitude={SIF_PUBLIC_USE_AMPLITUDE ? SIF_PUBLIC_USE_AMPLITUDE === 'true' : isProd()}
+        amplitudeApiKey={SIF_PUBLIC_AMPLITUDE_API_KEY}>
         <SoknadApplicationCommonRoutes
             contentRoutes={[
                 <Route index key="redirect" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
