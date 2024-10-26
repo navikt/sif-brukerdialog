@@ -74,6 +74,7 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
         <ErrorBoundary>
             <AmplitudeProvider
                 applicationKey={InnsynPsbApp.key}
+                apiKey={browserEnv.NEXT_PUBLIC_AMPLITUDE_API_KEY}
                 isActive={browserEnv.NEXT_PUBLIC_RUNTIME_ENVIRONMENT === 'production'}>
                 {data.appStatus?.status === Status.unavailable ? (
                     <UnavailablePage />

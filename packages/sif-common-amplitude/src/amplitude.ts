@@ -49,6 +49,7 @@ export enum ApiError {
 
 interface Props {
     applicationKey: string;
+    apiKey: string;
     logToConsoleOnly?: boolean;
     isActive?: boolean;
     children: React.ReactNode;
@@ -59,8 +60,8 @@ type EventProperties = {
     [key: string]: any;
 };
 
-export const initAmplitude = () => {
-    amplitude.init('default', undefined, {
+export const initAmplitude = (apiKey = 'default') => {
+    amplitude.init(apiKey, undefined, {
         serverUrl: 'https://amplitude.nav.no/collect-auto',
         defaultTracking: false,
         useBatch: false,
@@ -71,11 +72,11 @@ export const initAmplitude = () => {
 };
 
 export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props) => {
-    const { applicationKey, isActive = true, maxAwaitTime = MAX_AWAIT_TIME, logToConsoleOnly } = props;
+    const { applicationKey, isActive = true, maxAwaitTime = MAX_AWAIT_TIME, logToConsoleOnly, apiKey } = props;
 
     useEffect(() => {
         if (isActive) {
-            initAmplitude();
+            initAmplitude(apiKey);
         }
     }, [isActive]);
 

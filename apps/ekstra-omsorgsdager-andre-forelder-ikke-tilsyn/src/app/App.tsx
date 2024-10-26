@@ -20,6 +20,7 @@ const {
     SIF_PUBLIC_APPSTATUS_PROJECT_ID,
     APP_VERSION,
     SIF_PUBLIC_USE_AMPLITUDE,
+    SIF_PUBLIC_AMPLITUDE_API_KEY,
 } = appEnv;
 
 ensureBaseNameForReactRouter(PUBLIC_PATH);
@@ -34,6 +35,7 @@ const App = () => (
         publicPath={PUBLIC_PATH}
         useLanguageSelector={false}
         useAmplitude={SIF_PUBLIC_USE_AMPLITUDE ? SIF_PUBLIC_USE_AMPLITUDE === 'true' : isProd()}
+        amplitudeApiKey={SIF_PUBLIC_AMPLITUDE_API_KEY}
         appStatus={{
             sanityConfig: {
                 projectId: SIF_PUBLIC_APPSTATUS_PROJECT_ID,

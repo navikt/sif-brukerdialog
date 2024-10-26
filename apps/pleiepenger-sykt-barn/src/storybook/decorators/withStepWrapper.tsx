@@ -12,7 +12,7 @@ import { søknadsdata } from '../data/søknadsdata';
 export const withStepWrapper = (Story: any) => (
     <BrowserRouter>
         <StoryIntlProvider locale="nb">
-            <AmplitudeProvider applicationKey={'ab'} isActive={false}>
+            <AmplitudeProvider applicationKey={'ab'} isActive={false} apiKey="default">
                 <SøkerdataContextProvider value={{ søker: søkerMock, barn: barnMock }}>
                     <StoryFormikWrapper parameters={{ initialValues: formikValues }}>
                         <SøknadsdataContextProvider

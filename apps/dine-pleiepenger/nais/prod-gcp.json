@@ -27,6 +27,7 @@
         "NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE": "prod-gcp:dusseldorf:k9-brukerdialog-prosessering",
         "NEXT_PUBLIC_APPSTATUS_DATASET": "production",
         "NEXT_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
+        "NEXT_PUBLIC_AMPLITUDE_API_KEY": "10798841ebeba333b8ece6c046322d76",
         "NPM_CONFIG_CACHE": "/tmp",
 
         "NEXT_PUBLIC_SKJEMA_PLEIEPENGER_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/pleiepenger/soknad/",

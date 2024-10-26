@@ -8,6 +8,7 @@ export const playwrightEnv: AppDevEnv = {
     GITHUB_REF_NAME: 'some_branch_name',
     PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger',
 
+    SIF_PUBLIC_AMPLITUDE_API_KEY: 'default',
     SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
     SIF_PUBLIC_DEKORATOR_URL:

@@ -28,7 +28,9 @@
         "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",
         "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/familie/sykdom-i-familien/soknad/omsorgspenger/api/k9-brukerdialog",
 
+        "SIF_PUBLIC_AMPLITUDE_API_KEY": "default",
         "SIF_PUBLIC_APPSTATUS_DATASET": "staging",
+
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
         "SIF_PUBLIC_DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://omsorgspengesoknad.intern.dev.nav.no/oauth2/logout&redirectToApp=true",
         "SIF_PUBLIC_FEATURE_NYNORSK": "on",

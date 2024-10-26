@@ -17,6 +17,7 @@ const {
     SIF_PUBLIC_APPSTATUS_DATASET,
     APP_VERSION,
     SIF_PUBLIC_USE_AMPLITUDE,
+    SIF_PUBLIC_AMPLITUDE_API_KEY,
 } = appEnv;
 
 ensureBaseNameForReactRouter(PUBLIC_PATH);
@@ -36,7 +37,8 @@ const App = () => {
                     dataset: SIF_PUBLIC_APPSTATUS_DATASET,
                 },
             }}
-            useAmplitude={SIF_PUBLIC_USE_AMPLITUDE ? SIF_PUBLIC_USE_AMPLITUDE === 'true' : isProd()}>
+            useAmplitude={SIF_PUBLIC_USE_AMPLITUDE ? SIF_PUBLIC_USE_AMPLITUDE === 'true' : isProd()}
+            amplitudeApiKey={SIF_PUBLIC_AMPLITUDE_API_KEY}>
             <SoknadApplicationCommonRoutes
                 contentRoutes={[
                     <Route index key="redirect" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,

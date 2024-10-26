@@ -1,5 +1,11 @@
 # @navikt/sif-common-ui
 
+## 0.8.28
+
+### Patch Changes
+
+-   48e9ecc: Sende med spesifikk apiKey for amplitude
+
 ## 0.8.27
 
 ### Patch Changes
