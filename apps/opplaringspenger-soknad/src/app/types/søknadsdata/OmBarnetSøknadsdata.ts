@@ -1,18 +1,34 @@
-import { RegistrertBarn } from '../RegistrertBarn';
-import { SøkersRelasjonTilBarnet } from '../SøkersRelasjonTilBarnet';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import { BarnRelasjon } from '../BarnRelasjon';
+import { ÅrsakManglerIdentitetsnummer } from '../ÅrsakManglerIdentitetsnummer';
+import { RegistrertBarn } from '@navikt/sif-common-api';
 
-interface OmBarnetSøknadsdata_registrertBarn {
-    type: 'registrertBarn';
+export interface OmBarnetRegistrerteSøknadsdata {
+    type: 'registrerteBarn';
+    aktørId: string;
     registrertBarn: RegistrertBarn;
 }
 
-interface OmBarnetSøknadsdata_annetBarn {
-    type: 'annetBarn';
-    søknadenGjelderEtAnnetBarn: true;
-    barnetsFødselsnummer: string;
-    barnetsFødselsdato: string;
-    barnetsNavn: string;
-    søkersRelasjonTilBarnet: SøkersRelasjonTilBarnet;
+export interface BarnRelasjonSøknadsdata {
+    relasjonTilBarnet?: BarnRelasjon;
+    relasjonTilBarnetBeskrivelse?: string;
 }
 
-export type OmBarnetSøknadsdata = OmBarnetSøknadsdata_annetBarn | OmBarnetSøknadsdata_registrertBarn;
+export interface OmBarnetAnnetSøknadsdata extends BarnRelasjonSøknadsdata {
+    type: 'annetBarn';
+    barnetsNavn: string;
+    barnetsFødselsnummer: string;
+}
+
+export interface OmBarnetAnnetUtenFnrSøknadsdata extends BarnRelasjonSøknadsdata {
+    type: 'annetBarnUtenFnr';
+    barnetsNavn: string;
+    årsakManglerIdentitetsnummer: ÅrsakManglerIdentitetsnummer;
+    barnetsFødselsdato: string;
+    fødselsattest: Attachment[];
+}
+
+export type OmBarnetSøknadsdata =
+    | OmBarnetRegistrerteSøknadsdata
+    | OmBarnetAnnetSøknadsdata
+    | OmBarnetAnnetUtenFnrSøknadsdata;

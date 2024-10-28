@@ -3,11 +3,11 @@ import { FormikRadioProp } from '@navikt/sif-common-formik-ds/src/components/for
 import { dateFormatter } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { AppMessageKeys, AppText } from '../../../i18n';
+import { BarnRelasjon } from '../../../types/BarnRelasjon';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
-import { SøknadContextState } from '../../../types/SøknadContextState';
 import { OmBarnetSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { ÅrsakManglerIdentitetsnummer } from '../../../types/ÅrsakManglerIdentitetsnummer';
 import { OmBarnetFormValues } from './OmBarnetStep';
-import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
 
 export const getOmBarnetStepInitialValues = (
     søknadsdata: Søknadsdata,
@@ -23,17 +23,17 @@ export const getOmBarnetStepInitialValues = (
         barnetsFødselsnummer: '',
         barnetsNavn: '',
         barnetsFødselsdato: '',
-        søkersRelasjonTilBarnet: undefined,
+        relasjonTilBarnet: undefined,
     };
 
     const { omBarnet } = søknadsdata;
     if (omBarnet) {
         switch (omBarnet.type) {
-            case 'registrertBarn':
+            case 'registrerteBarn':
                 return {
                     ...defaultValues,
                     søknadenGjelderEtAnnetBarn: false,
-                    barnetSøknadenGjelder: omBarnet.registrertBarn.aktørId,
+                    barnetSøknadenGjelder: omBarnet.aktørId,
                 };
             case 'annetBarn':
                 return {
@@ -41,8 +41,20 @@ export const getOmBarnetStepInitialValues = (
                     søknadenGjelderEtAnnetBarn: true,
                     barnetsFødselsnummer: omBarnet.barnetsFødselsnummer,
                     barnetsNavn: omBarnet.barnetsNavn,
+                    relasjonTilBarnet: omBarnet.relasjonTilBarnet,
+                    relasjonTilBarnetBeskrivelse: omBarnet.relasjonTilBarnetBeskrivelse,
+                };
+            case 'annetBarnUtenFnr':
+                return {
+                    ...defaultValues,
+                    barnetHarIkkeFnr: true,
+                    årsakManglerIdentitetsnummer: omBarnet.årsakManglerIdentitetsnummer,
+                    søknadenGjelderEtAnnetBarn: true,
+                    barnetsNavn: omBarnet.barnetsNavn,
                     barnetsFødselsdato: omBarnet.barnetsFødselsdato,
-                    søkersRelasjonTilBarnet: omBarnet.søkersRelasjonTilBarnet,
+                    relasjonTilBarnet: omBarnet.relasjonTilBarnet,
+                    fødselsattest: omBarnet.fødselsattest || [],
+                    relasjonTilBarnetBeskrivelse: omBarnet.relasjonTilBarnetBeskrivelse,
                 };
         }
     }
@@ -51,33 +63,45 @@ export const getOmBarnetStepInitialValues = (
 
 export const getOmBarnetSøknadsdataFromFormValues = (
     values: OmBarnetFormValues,
-    { registrerteBarn = [] }: Partial<SøknadContextState>,
+    registrerteBarn: RegistrertBarn[],
 ): OmBarnetSøknadsdata | undefined => {
-    if (values.søknadenGjelderEtAnnetBarn || registrerteBarn.length === 0) {
-        if (values.søkersRelasjonTilBarnet === undefined) {
-            return undefined;
-        }
+    if (values.barnetSøknadenGjelder) {
         return {
-            type: 'annetBarn',
-            søknadenGjelderEtAnnetBarn: true,
-            barnetsFødselsnummer: values.barnetsFødselsnummer,
-            barnetsFødselsdato: values.barnetsFødselsdato,
-            barnetsNavn: values.barnetsNavn,
-            søkersRelasjonTilBarnet: values.søkersRelasjonTilBarnet,
+            type: 'registrerteBarn',
+            aktørId: values.barnetSøknadenGjelder,
+            registrertBarn: registrerteBarn.find((barn) => barn.aktørId === values.barnetSøknadenGjelder)!,
         };
     }
-    const barn = values.barnetSøknadenGjelder
-        ? registrerteBarn.find((b) => b.aktørId === values.barnetSøknadenGjelder)
-        : undefined;
 
-    if (!barn) {
+    if (!values.barnetSøknadenGjelder) {
+        if (values.barnetsFødselsnummer) {
+            return {
+                type: 'annetBarn',
+                barnetsNavn: values.barnetsNavn,
+                barnetsFødselsnummer: values.barnetsFødselsnummer,
+                relasjonTilBarnet: values.relasjonTilBarnet,
+                relasjonTilBarnetBeskrivelse:
+                    values.relasjonTilBarnet === BarnRelasjon.ANNET ? values.relasjonTilBarnetBeskrivelse : undefined,
+            };
+        } else if (values.barnetsFødselsdato && values.årsakManglerIdentitetsnummer) {
+            return {
+                type: 'annetBarnUtenFnr',
+                barnetsNavn: values.barnetsNavn,
+                årsakManglerIdentitetsnummer: values.årsakManglerIdentitetsnummer,
+                barnetsFødselsdato: values.barnetsFødselsdato,
+                relasjonTilBarnet: values.relasjonTilBarnet,
+                relasjonTilBarnetBeskrivelse:
+                    values.relasjonTilBarnet === BarnRelasjon.ANNET ? values.relasjonTilBarnetBeskrivelse : undefined,
+                fødselsattest:
+                    values.årsakManglerIdentitetsnummer === ÅrsakManglerIdentitetsnummer.BARNET_BOR_I_UTLANDET
+                        ? values.fødselsattest || []
+                        : [],
+            };
+        }
         return undefined;
     }
 
-    return {
-        type: 'registrertBarn',
-        registrertBarn: barn,
-    };
+    return undefined;
 };
 
 export const mapBarnTilRadioProps = (barn: RegistrertBarn, disabled?: boolean): FormikRadioProp => {
@@ -119,15 +143,17 @@ export const getMinDatoForBarnetsFødselsdato = (): Date => {
         : today.subtract(18, 'year').startOf('year').toDate();
 };
 
-export const getRelasjonTilBarnetIntlKey = (relasjonTilBarnet: SøkersRelasjonTilBarnet): AppMessageKeys => {
+export const getRelasjonTilBarnetIntlKey = (relasjonTilBarnet: BarnRelasjon): AppMessageKeys => {
     switch (relasjonTilBarnet) {
-        case SøkersRelasjonTilBarnet.MOR:
-            return 'steg.omBarnet.relasjonTilBarnet.mor';
-        case SøkersRelasjonTilBarnet.FAR:
-            return 'steg.omBarnet.relasjonTilBarnet.far';
-        case SøkersRelasjonTilBarnet.FOSTERFORELDER:
-            return 'steg.omBarnet.relasjonTilBarnet.fosterforelder';
-        case SøkersRelasjonTilBarnet.ADOPTIVFORELDER:
-            return 'steg.omBarnet.relasjonTilBarnet.adoptivforelder';
+        case BarnRelasjon.MOR:
+            return 'steg.omBarnet.relasjonTilBarnet.MOR';
+        case BarnRelasjon.FAR:
+            return 'steg.omBarnet.relasjonTilBarnet.FAR';
+        case BarnRelasjon.FOSTERFORELDER:
+            return 'steg.omBarnet.relasjonTilBarnet.FOSTERFORELDER';
+        case BarnRelasjon.MEDMOR:
+            return 'steg.omBarnet.relasjonTilBarnet.MEDMOR';
+        case BarnRelasjon.ANNET:
+            return 'steg.omBarnet.relasjonTilBarnet.ANNET';
     }
 };

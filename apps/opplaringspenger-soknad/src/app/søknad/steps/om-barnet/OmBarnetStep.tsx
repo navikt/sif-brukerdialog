@@ -7,17 +7,19 @@ import PersistStepFormValues from '../../../components/persist-step-form-values/
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { StepId } from '../../../types/StepId';
-import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import { ÅrsakManglerIdentitetsnummer } from '../../../types/ÅrsakManglerIdentitetsnummer';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
-import AnnetBarnpart from './form-parts/AnnetBarnPart';
+import AnnetBarnPart from './form-parts/AnnetBarnPart';
 import VelgRegistrertBarn from './form-parts/VelgRegistrertBarn';
 import { getOmBarnetStepInitialValues, getOmBarnetSøknadsdataFromFormValues } from './omBarnetStepUtils';
+import { BarnRelasjon } from '../../../types/BarnRelasjon';
+import { Attachment } from '@navikt/sif-common-core-ds/src/types';
 
 export enum OmBarnetFormFields {
     barnetSøknadenGjelder = 'barnetSøknadenGjelder',
@@ -25,7 +27,11 @@ export enum OmBarnetFormFields {
     barnetsNavn = 'barnetsNavn',
     barnetsFødselsnummer = 'barnetsFødselsnummer',
     barnetsFødselsdato = 'barnetsFødselsdato',
-    søkersRelasjonTilBarnet = 'søkersRelasjonTilBarnet',
+    barnetHarIkkeFnr = 'barnetHarIkkeFnr',
+    årsakManglerIdentitetsnummer = 'årsakManglerIdentitetsnummer',
+    relasjonTilBarnet = 'relasjonTilBarnet',
+    relasjonTilBarnetBeskrivelse = 'relasjonTilBarnetBeskrivelse',
+    fødselsattest = 'fødselsattest',
 }
 
 export interface OmBarnetFormValues {
@@ -34,7 +40,11 @@ export interface OmBarnetFormValues {
     [OmBarnetFormFields.barnetsNavn]: string;
     [OmBarnetFormFields.barnetsFødselsnummer]: string;
     [OmBarnetFormFields.barnetsFødselsdato]: string;
-    [OmBarnetFormFields.søkersRelasjonTilBarnet]?: SøkersRelasjonTilBarnet;
+    [OmBarnetFormFields.barnetHarIkkeFnr]?: boolean;
+    [OmBarnetFormFields.relasjonTilBarnet]?: BarnRelasjon;
+    [OmBarnetFormFields.relasjonTilBarnetBeskrivelse]?: string;
+    [OmBarnetFormFields.årsakManglerIdentitetsnummer]?: ÅrsakManglerIdentitetsnummer;
+    [OmBarnetFormFields.fødselsattest]?: Attachment[];
 }
 
 const { FormikWrapper, Form } = getTypedFormComponents<OmBarnetFormFields, OmBarnetFormValues, ValidationError>();
@@ -42,7 +52,7 @@ const { FormikWrapper, Form } = getTypedFormComponents<OmBarnetFormFields, OmBar
 const OmBarnetStep = () => {
     const intl = useIntl();
     const {
-        state: { søknadsdata, registrerteBarn },
+        state: { søknadsdata, registrerteBarn, søker },
     } = useSøknadContext();
 
     const stepId = StepId.OM_BARNET;
@@ -53,7 +63,7 @@ const OmBarnetStep = () => {
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const onValidSubmitHandler = (values: OmBarnetFormValues) => {
-        const OmBarnetSøknadsdata = getOmBarnetSøknadsdataFromFormValues(values, { registrerteBarn });
+        const OmBarnetSøknadsdata = getOmBarnetSøknadsdataFromFormValues(values, registrerteBarn);
         if (OmBarnetSøknadsdata) {
             clearStepFormValues(stepId);
             return [actionsCreator.setSøknadOmBarnet(OmBarnetSøknadsdata)];
@@ -70,13 +80,14 @@ const OmBarnetStep = () => {
     );
 
     const harIkkeBarn = registrerteBarn.length === 0;
-
+    const initialValues = getOmBarnetStepInitialValues(søknadsdata, stepFormValues[stepId]);
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
-                initialValues={getOmBarnetStepInitialValues(søknadsdata, stepFormValues[stepId])}
+                initialValues={initialValues}
                 onSubmit={handleSubmit}
-                renderForm={({ values: { søknadenGjelderEtAnnetBarn }, setFieldValue }) => {
+                renderForm={({ values, setFieldValue }) => {
+                    const { søknadenGjelderEtAnnetBarn } = values;
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -98,7 +109,12 @@ const OmBarnetStep = () => {
 
                                 {(søknadenGjelderEtAnnetBarn || harIkkeBarn) && (
                                     <FormBlock>
-                                        <AnnetBarnpart />
+                                        <AnnetBarnPart
+                                            formValues={values}
+                                            søkersFødselsnummer={søker.fødselsnummer}
+                                            harRegistrerteBarn={harIkkeBarn === false}
+                                            initialValues={initialValues}
+                                        />
                                     </FormBlock>
                                 )}
                             </Form>

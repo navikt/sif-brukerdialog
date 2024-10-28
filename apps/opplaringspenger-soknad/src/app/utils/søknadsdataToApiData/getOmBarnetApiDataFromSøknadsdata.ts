@@ -1,11 +1,11 @@
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
+import { dateToISODate } from '@navikt/sif-common-utils';
 import { OmBarnetApiData } from '../../types/søknadApiData/SøknadApiData';
 import { OmBarnetSøknadsdata } from '../../types/søknadsdata/OmBarnetSøknadsdata';
-import { dateToISODate } from '@navikt/sif-common-utils';
 
 export const getOmBarnetApiDataFromSøknadsdata = (omBarnet: OmBarnetSøknadsdata): OmBarnetApiData => {
     switch (omBarnet.type) {
-        case 'registrertBarn': {
+        case 'registrerteBarn': {
             const { aktørId, fornavn, etternavn, mellomnavn } = omBarnet.registrertBarn;
             return {
                 barn: {
@@ -22,9 +22,18 @@ export const getOmBarnetApiDataFromSøknadsdata = (omBarnet: OmBarnetSøknadsdat
                     aktørId: null,
                     navn: omBarnet.barnetsNavn,
                     norskIdentifikator: omBarnet.barnetsFødselsnummer,
+                },
+                relasjonTilBarnet: omBarnet.relasjonTilBarnet,
+            };
+        case 'annetBarnUtenFnr':
+            return {
+                barn: {
+                    aktørId: null,
+                    navn: omBarnet.barnetsNavn,
+                    norskIdentifikator: null,
                     fødselsdato: omBarnet.barnetsFødselsdato,
                 },
-                relasjonTilBarnet: omBarnet.søkersRelasjonTilBarnet,
+                relasjonTilBarnet: omBarnet.relasjonTilBarnet,
             };
     }
 };
