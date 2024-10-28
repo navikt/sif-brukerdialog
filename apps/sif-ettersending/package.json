@@ -39,8 +39,8 @@
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.0",
-        "@babel/core": "7.25.9",
-        "@babel/preset-env": "7.25.9",
+        "@babel/core": "7.26.0",
+        "@babel/preset-env": "7.26.0",
         "@babel/preset-react": "7.25.9",
         "@playwright/test": "1.48.1",
         "@sif/eslint-config": "*",

@@ -39,10 +39,10 @@
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.0",
-        "@babel/core": "7.25.9",
+        "@babel/core": "7.26.0",
         "@babel/plugin-proposal-object-rest-spread": "7.20.7",
         "@babel/plugin-transform-modules-commonjs": "7.25.9",
-        "@babel/preset-env": "7.25.9",
+        "@babel/preset-env": "7.26.0",
         "@babel/preset-react": "7.25.9",
         "@chromatic-com/storybook": "3.1.0",
         "@playwright/test": "1.48.1",
