@@ -25,10 +25,10 @@
         "js-cookie": "3.0.5"
     },
     "devDependencies": {
-        "@babel/core": "7.25.9",
-        "@babel/preset-env": "7.25.9",
+        "@babel/core": "7.26.0",
+        "@babel/preset-env": "7.26.0",
         "@babel/preset-react": "7.25.9",
-        "@babel/preset-typescript": "7.25.9",
+        "@babel/preset-typescript": "7.26.0",
         "@devexperts/remote-data-ts": "2.1.1",
         "@formatjs/intl-pluralrules": "5.3.1",
         "@navikt/appstatus-react-ds": "*",
@@ -56,7 +56,7 @@
         "@testing-library/react": "16.0.1",
         "@testing-library/user-event": "14.5.2",
         "@types/jest": "29.5.14",
-        "@types/node": "22.7.9",
+        "@types/node": "22.8.1",
         "@types/react": "18.3.12",
         "@types/react-dom": "18.3.1",
         "@vitejs/plugin-react": "4.3.3",
@@ -81,7 +81,7 @@
         "storybook": "8.3.6",
         "style-loader": "4.0.0",
         "typescript": "5.6.3",
-        "uuid": "10.0.0",
+        "uuid": "11.0.1",
         "vite": "5.4.10",
         "vite-plugin-checker": "0.8.0",
         "vitest": "2.1.3"

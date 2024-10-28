@@ -16,13 +16,13 @@
         "lodash": "4.17.21",
         "react-dropzone": "14.2.10",
         "react-fast-compare": "3.2.2",
-        "uuid": "10.0.0"
+        "uuid": "11.0.1"
     },
     "devDependencies": {
-        "@babel/core": "7.25.9",
-        "@babel/preset-env": "7.25.9",
+        "@babel/core": "7.26.0",
+        "@babel/preset-env": "7.26.0",
         "@babel/preset-react": "7.25.9",
-        "@babel/preset-typescript": "7.25.9",
+        "@babel/preset-typescript": "7.26.0",
         "@navikt/ds-css": "7.4.0",
         "@navikt/ds-react": "7.4.0",
         "@navikt/fnrvalidator": "2.1.2",
@@ -43,7 +43,7 @@
         "@storybook/test-runner": "0.19.1",
         "@storybook/testing-library": "0.2.2",
         "@types/jest": "29.5.14",
-        "@types/node": "22.7.9",
+        "@types/node": "22.8.1",
         "@types/react": "18.3.12",
         "@types/react-dom": "18.3.1",
         "@types/uuid": "10.0.0",
