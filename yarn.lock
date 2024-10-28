@@ -4747,6 +4747,7 @@ __metadata:
     eslint-plugin-storybook: "npm:0.10.1"
     express: "npm:4.21.1"
     express-rate-limit: "npm:7.4.1"
+    formik: "npm:2.4.6"
     helmet: "npm:8.0.0"
     http-proxy-middleware: "npm:3.0.3"
     jose: "npm:5.9.6"

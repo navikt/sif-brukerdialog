@@ -1,4 +1,4 @@
-export enum BarnRelasjon {
+export enum RelasjonTilBarnet {
     MOR = 'MOR',
     FAR = 'FAR',
     MEDMOR = 'MEDMOR',

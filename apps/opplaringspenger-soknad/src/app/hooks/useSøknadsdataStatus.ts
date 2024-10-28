@@ -12,12 +12,12 @@ import { getKursSøknadsdataFromFormValues } from '../søknad/steps/kurs/kursSte
 import { LegeerklæringFormValues } from '../søknad/steps/legeerklæring/LegeerklæringForm';
 import { getLegeerklæringSøknadsdataFromFormValues } from '../søknad/steps/legeerklæring/legeerklæringStepUtils';
 import { MedlemskapFormValues } from '../søknad/steps/medlemskap/MedlemskapStep';
-import { OmBarnetFormValues } from '../søknad/steps/om-barnet/OmBarnetStep';
-import { getOmBarnetSøknadsdataFromFormValues } from '../søknad/steps/om-barnet/omBarnetStepUtils';
+import { OmBarnetFormValues } from '../søknad/steps/om-barnet/om-barnet-form/types';
 import { StepFormValues } from '../types/StepFormValues';
 import { StepId } from '../types/StepId';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
+import { getOmBarnetSøknadsdataFromFormValues } from '../søknad/steps/om-barnet/om-barnet-form/utils/omBarnetFormUtils';
 
 const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConfig<StepId>): StepId[] => {
     return Object.keys(stepConfig).filter((_key, idx) => idx < currentStepIndex) as StepId[];

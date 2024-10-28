@@ -10,6 +10,7 @@ import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validate
 import { kursperiodeMessages } from '../søknad/steps/kurs/kursperiode';
 import { arbeidstidMessages } from '../søknad/steps/arbeidstid/arbeidstidMessages';
 import { medlemskapFormMessages } from '@navikt/sif-common-forms-ds/src';
+import { omBarnetFormIntlMessages } from '../søknad/steps/om-barnet/om-barnet-form/omBarnetFormMessages';
 
 const nb = {
     ...velkommenPageMessages.nb,
@@ -24,6 +25,7 @@ const nb = {
     ...dagerMedTidMessages.nb,
     ...kursperiodeMessages.nb,
     ...arbeidstidMessages.nb,
+    ...omBarnetFormIntlMessages.nb,
 
     'application.title': 'Søknad om opplæringspenger',
 

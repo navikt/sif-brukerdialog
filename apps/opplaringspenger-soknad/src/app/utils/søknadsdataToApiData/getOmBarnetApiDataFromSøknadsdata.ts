@@ -1,9 +1,9 @@
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { OmBarnetApiData } from '../../types/søknadApiData/SøknadApiData';
-import { OmBarnetSøknadsdata } from '../../types/søknadsdata/OmBarnetSøknadsdata';
+import { OmBarnetFormSøknadsdata } from '../../søknad/steps/om-barnet/om-barnet-form/types/OmBarnetFormSøknadsdata';
 
-export const getOmBarnetApiDataFromSøknadsdata = (omBarnet: OmBarnetSøknadsdata): OmBarnetApiData => {
+export const getOmBarnetApiDataFromSøknadsdata = (omBarnet: OmBarnetFormSøknadsdata): OmBarnetApiData => {
     switch (omBarnet.type) {
         case 'registrerteBarn': {
             const { aktørId, fornavn, etternavn, mellomnavn } = omBarnet.registrertBarn;

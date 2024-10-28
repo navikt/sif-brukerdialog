@@ -1,11 +1,11 @@
 import { SamtykkeFormValues } from '@navikt/sif-common-soknad-ds';
-import { LegeerklæringFormValues } from '../søknad/steps/legeerklæring/LegeerklæringForm';
-import { KursFormValues } from '../søknad/steps/kurs/KursStep';
 import { ArbeidssituasjonFormValues } from '../søknad/steps/arbeidssituasjon/ArbeidssituasjonStep';
+import { KursFormValues } from '../søknad/steps/kurs/KursStep';
+import { LegeerklæringFormValues } from '../søknad/steps/legeerklæring/LegeerklæringForm';
 import { MedlemskapFormValues } from '../søknad/steps/medlemskap/MedlemskapStep';
+import { OmBarnetFormValues } from '../søknad/steps/om-barnet/om-barnet-form/types';
 import { OppsummeringFormValues } from '../søknad/steps/oppsummering/OppsummeringStep';
 import { StepId } from './StepId';
-import { OmBarnetFormValues } from '../søknad/steps/om-barnet/OmBarnetStep';
 
 export interface StepFormValues {
     [StepId.VELKOMMEN]?: SamtykkeFormValues;

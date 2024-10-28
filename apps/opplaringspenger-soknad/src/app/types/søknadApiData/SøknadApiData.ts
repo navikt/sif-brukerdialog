@@ -2,7 +2,7 @@ import { OpptjeningAktivitet, UtenlandskNæringstype, VirksomhetApiData } from '
 import { ISODate, ISODateRange, ISODuration } from '@navikt/sif-common-utils';
 import { ArbeidsgiverType } from '../Arbeidsgiver';
 import { JobberIPeriodeSvar } from '../../søknad/steps/arbeidstid/ArbeidstidTypes';
-import { BarnRelasjon } from '../BarnRelasjon';
+import { RelasjonTilBarnet } from '../../søknad/steps/om-barnet/om-barnet-form/types';
 
 export interface BarnToSendToApi {
     navn: string;
@@ -13,7 +13,7 @@ export interface BarnToSendToApi {
 
 export interface OmBarnetApiData {
     barn: BarnToSendToApi;
-    relasjonTilBarnet?: BarnRelasjon;
+    relasjonTilBarnet?: RelasjonTilBarnet;
 }
 
 export interface KursholderApiData {
