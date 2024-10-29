@@ -22,7 +22,7 @@ import { useFormikContext } from 'formik';
 import InfoForFarVedNyttBarn from './InfoForFarVedNyttBarn';
 import { OmBarnetFormText as Text, useOmBarnetFormIntl } from '../omBarnetFormMessages';
 import { OmBarnetFormFields, OmBarnetFormValues, RelasjonTilBarnet } from '../types';
-import { ÅrsakBarnetManglerIdentitetsnummer } from '../types/ÅrsakManglerIdentitetsnummer';
+import { ÅrsakBarnetManglerIdentitetsnummer } from '../types/ÅrsakBarnetManglerIdentitetsnummer';
 import FødselsattestPart from './FødselsattestPart';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { nYearsAgo } from '../utils/omBarnetFormUtils';

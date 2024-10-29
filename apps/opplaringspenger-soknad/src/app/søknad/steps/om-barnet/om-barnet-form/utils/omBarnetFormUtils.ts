@@ -74,7 +74,7 @@ export const getOmBarnetSøknadsdataFromFormValues = (
         };
     }
 
-    if (!values.barnetSøknadenGjelder && values.barnetsNavn) {
+    if (!values.barnetSøknadenGjelder && values.barnetsNavn && values.relasjonTilBarnet) {
         const relasjonTilBarnetSøknadsdata: RelasjonTilBarnetSøknadsdataBase = {
             relasjonTilBarnet: values.relasjonTilBarnet,
             relasjonTilBarnetBeskrivelse:

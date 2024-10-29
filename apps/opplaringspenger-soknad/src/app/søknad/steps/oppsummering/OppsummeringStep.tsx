@@ -26,7 +26,7 @@ import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { AppText, useAppIntl } from '../../../i18n';
 import { useNavigate } from 'react-router-dom';
 import ArbeidIPeriodenSummary from './arbeid-i-perioden-summary/ArbeidIPeriodenSummary';
-import OmBarnetOppsummering from './om-barnet-summary/OmBarnetSummary';
+import OmBarnetSummary from './om-barnet-summary/OmBarnetSummary';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -121,9 +121,9 @@ const OppsummeringStep = () => {
                                 <VStack gap="8">
                                     <OmSøkerOppsummering søker={søker} />
 
-                                    <OmBarnetOppsummering
+                                    <OmBarnetSummary
                                         søknadsdata={søknadsdata.omBarnet!}
-                                        apiValues={apiData.omBarnet}
+                                        apiData={apiData.omBarnet}
                                         onEdit={() => navigate(stepConfig[StepId.OM_BARNET].route)}
                                     />
 

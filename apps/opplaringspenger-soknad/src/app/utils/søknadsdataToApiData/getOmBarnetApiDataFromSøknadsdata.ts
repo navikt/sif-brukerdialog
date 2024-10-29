@@ -14,6 +14,7 @@ const getRegistrertBarnApiData = (
         throw Error('barnChosenFromList undefined');
     }
     return {
+        _type: 'registrertBarn',
         aktørId: valgtBarn.aktørId,
         navn: formatName(valgtBarn.fornavn, valgtBarn.etternavn, valgtBarn.mellomnavn),
         fødselsdato: dateToISODate(valgtBarn.fødselsdato),
@@ -33,6 +34,8 @@ export const getOmBarnetApiDataFromSøknadsdata = (
             return getRegistrertBarnApiData(omBarnetSøknadsdata, registrerteBarn);
         case 'annetBarn':
             return {
+                _type: 'annetBarn',
+                _harFødselsnummer: true,
                 navn: omBarnetSøknadsdata.barnetsNavn,
                 norskIdentifikator: omBarnetSøknadsdata.barnetsFødselsnummer,
                 relasjonTilBarnet: omBarnetSøknadsdata.relasjonTilBarnet,
@@ -41,6 +44,8 @@ export const getOmBarnetApiDataFromSøknadsdata = (
 
         case 'annetBarnUtenFnr':
             return {
+                _type: 'annetBarn',
+                _harFødselsnummer: false,
                 navn: omBarnetSøknadsdata.barnetsNavn,
                 årsakManglerIdentitetsnummer: omBarnetSøknadsdata.årsakManglerIdentitetsnummer,
                 fødselsdato: omBarnetSøknadsdata.barnetsFødselsdato,

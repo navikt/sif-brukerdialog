@@ -3,7 +3,7 @@ import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { RelasjonTilBarnet, ÅrsakBarnetManglerIdentitetsnummer } from './';
 
 export interface RelasjonTilBarnetSøknadsdataBase {
-    relasjonTilBarnet?: RelasjonTilBarnet;
+    relasjonTilBarnet: RelasjonTilBarnet;
     relasjonTilBarnetBeskrivelse?: string;
 }
 

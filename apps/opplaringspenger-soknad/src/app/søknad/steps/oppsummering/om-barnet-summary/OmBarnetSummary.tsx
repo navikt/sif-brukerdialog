@@ -6,102 +6,114 @@ import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils';
-import { OmBarnetFormSøknadsdata } from '../../om-barnet/om-barnet-form/types/OmBarnetFormSøknadsdata';
 import { AppText } from '../../../../i18n';
-import { OmBarnetApiData } from '../../../../types/søknadApiData/SøknadApiData';
+import {
+    AnnetBarnApiData,
+    isAnnetBarnApiData,
+    isRegistrertBarnApiData,
+    OmBarnetApiData,
+} from '../../../../types/søknadApiData/SøknadApiData';
 import { RelasjonTilBarnet, ÅrsakBarnetManglerIdentitetsnummer } from '../../om-barnet/om-barnet-form/types';
+import { OmBarnetFormSøknadsdata } from '../../om-barnet/om-barnet-form/types/OmBarnetFormSøknadsdata';
 
 interface Props {
     søknadsdata: OmBarnetFormSøknadsdata;
-    apiValues: OmBarnetApiData;
+    apiData: OmBarnetApiData;
     onEdit?: () => void;
 }
 
-const registrertBarn = (apiBarn: RegistrertBarn) => (
+const RegistrertBarn = ({ barn }: { barn: RegistrertBarn }) => (
     <>
         <FormSummary.Answer>
             <FormSummary.Label>
                 <AppText id="steg.oppsummering.barnet.navn" />
             </FormSummary.Label>
-            <FormSummary.Value>{formatName(apiBarn.fornavn, apiBarn.etternavn, apiBarn.mellomnavn)}</FormSummary.Value>
+            <FormSummary.Value>{formatName(barn.fornavn, barn.etternavn, barn.mellomnavn)}</FormSummary.Value>
         </FormSummary.Answer>
         <FormSummary.Answer>
             <FormSummary.Label>
                 <AppText id="steg.oppsummering.barnet.fødselsdato" />
             </FormSummary.Label>
-            <FormSummary.Value>{prettifyDate(apiBarn.fødselsdato)}</FormSummary.Value>
+            <FormSummary.Value>{prettifyDate(barn.fødselsdato)}</FormSummary.Value>
         </FormSummary.Answer>
     </>
 );
 
-const annetBarnSummary = (apiValues: OmBarnetApiData, fødselsattester: Attachment[]) => (
+const AnnetBarnSummary = ({
+    apiData,
+    fødselsattester,
+}: {
+    apiData: AnnetBarnApiData;
+    fødselsattester: Attachment[];
+}) => (
     <>
-        {apiValues.fødselsdato ? (
+        {!apiData._harFødselsnummer ? (
             <FormSummary.Answer>
                 <FormSummary.Label>
                     <AppText id="steg.oppsummering.barnet.fødselsdato" />
                 </FormSummary.Label>
-                <FormSummary.Value>{prettifyDate(ISODateToDate(apiValues.fødselsdato))}</FormSummary.Value>
+                <FormSummary.Value>{prettifyDate(ISODateToDate(apiData.fødselsdato))}</FormSummary.Value>
             </FormSummary.Answer>
         ) : null}
-        {!apiValues.fødselsdato ? (
+        {apiData._harFødselsnummer ? (
             <FormSummary.Answer>
                 <FormSummary.Label>
                     <AppText id="steg.oppsummering.barnet.fnr" />
                 </FormSummary.Label>
-                <FormSummary.Value>{apiValues.fødselsnummer}</FormSummary.Value>
+                <FormSummary.Value>{apiData.norskIdentifikator}</FormSummary.Value>
             </FormSummary.Answer>
         ) : null}
-        {apiValues.navn ? (
+        {apiData.navn ? (
             <FormSummary.Answer>
                 <FormSummary.Label>
                     <AppText id="steg.oppsummering.barnet.navn" />
                 </FormSummary.Label>
-                <FormSummary.Value>{apiValues.navn}</FormSummary.Value>
+                <FormSummary.Value>{apiData.navn}</FormSummary.Value>
             </FormSummary.Answer>
         ) : null}
-        {apiValues.årsakManglerIdentitetsnummer && (
+        {!apiData._harFødselsnummer && apiData.årsakManglerIdentitetsnummer && (
             <FormSummary.Answer>
                 <FormSummary.Label>
                     <AppText id="steg.oppsummering.barnet.barnetHarIkkeFnr" />
                 </FormSummary.Label>
                 <FormSummary.Value>
                     <AppText
-                        id={`steg.oppsummering.barnet.årsakManglerIdentitetsnummer.${apiValues.årsakManglerIdentitetsnummer}`}
+                        id={`steg.oppsummering.barnet.årsakManglerIdentitetsnummer.${apiData.årsakManglerIdentitetsnummer}`}
                     />
                 </FormSummary.Value>
             </FormSummary.Answer>
         )}
-        {apiValues.årsakManglerIdentitetsnummer === ÅrsakBarnetManglerIdentitetsnummer.BARNET_BOR_I_UTLANDET && (
-            <FormSummary.Answer>
-                <FormSummary.Label>
-                    <AppText id="steg.oppsummering.omBarn.fødselsattest.tittel" />
-                </FormSummary.Label>
-                <FormSummary.Value>
-                    <div data-testid={'oppsummering-omBarn-fødselsattest'}>
-                        <AttachmentList attachments={fødselsattester} />
-                    </div>
-                    {fødselsattester.length === 0 && <AppText id="step.oppsummering.omBarn.ingenFødselsattest" />}
-                </FormSummary.Value>
-            </FormSummary.Answer>
-        )}
+        {!apiData._harFødselsnummer &&
+            apiData.årsakManglerIdentitetsnummer === ÅrsakBarnetManglerIdentitetsnummer.BARNET_BOR_I_UTLANDET && (
+                <FormSummary.Answer>
+                    <FormSummary.Label>
+                        <AppText id="steg.oppsummering.omBarn.fødselsattest.tittel" />
+                    </FormSummary.Label>
+                    <FormSummary.Value>
+                        <div data-testid={'oppsummering-omBarn-fødselsattest'}>
+                            <AttachmentList attachments={fødselsattester} />
+                        </div>
+                        {fødselsattester.length === 0 && <AppText id="step.oppsummering.omBarn.ingenFødselsattest" />}
+                    </FormSummary.Value>
+                </FormSummary.Answer>
+            )}
     </>
 );
 
-const relasjonTilBarnetSummary = (apiValues: OmBarnetApiData) => (
+const RelasjonTilBarnetSummary = ({ apiValues: apiData }: { apiValues: AnnetBarnApiData }) => (
     <FormSummary.Answer>
         <FormSummary.Label>
             <AppText id="steg.oppsummering.relasjonTilBarnet.header" />
         </FormSummary.Label>
         <FormSummary.Value>
-            {apiValues.relasjonTilBarnet && apiValues.relasjonTilBarnet !== RelasjonTilBarnet.ANNET && (
-                <AppText id={`omBarnetForm.relasjonTilBarnet.${apiValues.relasjonTilBarnet}`} />
+            {apiData.relasjonTilBarnet && apiData.relasjonTilBarnet !== RelasjonTilBarnet.ANNET && (
+                <AppText id={`omBarnetForm.relasjonTilBarnet.${apiData.relasjonTilBarnet}`} />
             )}
-            {apiValues.relasjonTilBarnet === RelasjonTilBarnet.ANNET && (
+            {apiData.relasjonTilBarnet === RelasjonTilBarnet.ANNET && (
                 <>
                     <AppText id="steg.oppsummering.relasjonTilBarnetBeskrivelse" />
                     <Sitat>
-                        <TextareaSvar text={apiValues.relasjonTilBarnetBeskrivelse} />
+                        <TextareaSvar text={apiData.relasjonTilBarnetBeskrivelse} />
                     </Sitat>
                 </>
             )}
@@ -109,7 +121,7 @@ const relasjonTilBarnetSummary = (apiValues: OmBarnetApiData) => (
     </FormSummary.Answer>
 );
 
-const OmBarnetOppsummering = ({ søknadsdata, apiValues, onEdit }: Props) => {
+const OmBarnetSummary = ({ søknadsdata, apiData, onEdit }: Props) => {
     return (
         <FormSummary>
             <FormSummary.Header>
@@ -119,15 +131,16 @@ const OmBarnetOppsummering = ({ søknadsdata, apiValues, onEdit }: Props) => {
                 {onEdit && <EditStepLink onEdit={onEdit} />}
             </FormSummary.Header>
             <FormSummary.Answers>
-                {søknadsdata.type === 'registrerteBarn' ? (
-                    registrertBarn(søknadsdata.registrertBarn)
-                ) : (
+                {isRegistrertBarnApiData(apiData) && søknadsdata.type === 'registrerteBarn' && (
+                    <RegistrertBarn barn={søknadsdata.registrertBarn} />
+                )}
+                {isAnnetBarnApiData(apiData) && (
                     <>
-                        {annetBarnSummary(
-                            apiValues,
-                            søknadsdata.type === 'annetBarnUtenFnr' ? søknadsdata.fødselsattest : [],
-                        )}
-                        {relasjonTilBarnetSummary(apiValues)}
+                        <AnnetBarnSummary
+                            apiData={apiData}
+                            fødselsattester={søknadsdata.type === 'annetBarnUtenFnr' ? søknadsdata.fødselsattest : []}
+                        />
+                        <RelasjonTilBarnetSummary apiValues={apiData} />
                     </>
                 )}
             </FormSummary.Answers>
@@ -135,4 +148,4 @@ const OmBarnetOppsummering = ({ søknadsdata, apiValues, onEdit }: Props) => {
     );
 };
 
-export default OmBarnetOppsummering;
+export default OmBarnetSummary;
