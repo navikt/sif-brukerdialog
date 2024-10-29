@@ -5,6 +5,15 @@ import { OmBarnetFormMessageKeys } from '../omBarnetFormMessages';
 import { OmBarnetFormValues, RelasjonTilBarnet, ÅrsakBarnetManglerIdentitetsnummer } from '../types';
 import { OmBarnetFormSøknadsdata, RelasjonTilBarnetSøknadsdataBase } from '../types/OmBarnetFormSøknadsdata';
 
+export const omBarnetFormDefaultValues: OmBarnetFormValues = {
+    barnetSøknadenGjelder: undefined,
+    søknadenGjelderEtAnnetBarn: undefined,
+    barnetsFødselsnummer: '',
+    barnetsNavn: '',
+    barnetsFødselsdato: '',
+    relasjonTilBarnet: undefined,
+};
+
 export const getOmBarnetFormInitialValues = (
     søknadsdata?: OmBarnetFormSøknadsdata,
     formValues?: OmBarnetFormValues,
@@ -13,35 +22,29 @@ export const getOmBarnetFormInitialValues = (
         return formValues;
     }
 
-    const defaultValues: OmBarnetFormValues = {
-        barnetSøknadenGjelder: undefined,
-        søknadenGjelderEtAnnetBarn: undefined,
-        barnetsFødselsnummer: '',
-        barnetsNavn: '',
-        barnetsFødselsdato: '',
-        relasjonTilBarnet: undefined,
-    };
-
     if (søknadsdata) {
         switch (søknadsdata.type) {
             case 'registrerteBarn':
                 return {
-                    ...defaultValues,
-                    søknadenGjelderEtAnnetBarn: false,
+                    ...omBarnetFormDefaultValues,
+                    søknadenGjelderEtAnnetBarn: undefined,
                     barnetSøknadenGjelder: søknadsdata.aktørId,
                 };
             case 'annetBarn':
                 return {
-                    ...defaultValues,
+                    ...omBarnetFormDefaultValues,
                     søknadenGjelderEtAnnetBarn: true,
                     barnetsFødselsnummer: søknadsdata.barnetsFødselsnummer,
                     barnetsNavn: søknadsdata.barnetsNavn,
                     relasjonTilBarnet: søknadsdata.relasjonTilBarnet,
-                    relasjonTilBarnetBeskrivelse: søknadsdata.relasjonTilBarnetBeskrivelse,
+                    relasjonTilBarnetBeskrivelse:
+                        søknadsdata.relasjonTilBarnet === RelasjonTilBarnet.ANNET
+                            ? søknadsdata.relasjonTilBarnetBeskrivelse
+                            : undefined,
                 };
             case 'annetBarnUtenFnr':
                 return {
-                    ...defaultValues,
+                    ...omBarnetFormDefaultValues,
                     barnetHarIkkeFnr: true,
                     årsakManglerIdentitetsnummer: søknadsdata.årsakManglerIdentitetsnummer,
                     søknadenGjelderEtAnnetBarn: true,
@@ -53,7 +56,7 @@ export const getOmBarnetFormInitialValues = (
                 };
         }
     }
-    return defaultValues;
+    return omBarnetFormDefaultValues;
 };
 
 export const getOmBarnetSøknadsdataFromFormValues = (
