@@ -2120,9 +2120,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chromatic-com/storybook@npm:3.1.0":
-  version: 3.1.0
-  resolution: "@chromatic-com/storybook@npm:3.1.0"
+"@chromatic-com/storybook@npm:3.2.0":
+  version: 3.2.0
+  resolution: "@chromatic-com/storybook@npm:3.2.0"
   dependencies:
     "@storybook/channels": "npm:^8.3.0"
     "@storybook/telemetry": "npm:^8.3.0"
@@ -2133,8 +2133,8 @@ __metadata:
     react-confetti: "npm:^6.1.0"
     strip-ansi: "npm:^7.1.0"
   peerDependencies:
-    storybook: ^8.3.0
-  checksum: 10/fd2041c76029c1ff17377fb5e65edbafc045f675c84dfa4e19bb0dae0b0fc5df57ab99ee1d05b8f8dcb6c74bbaf58b3db1edc8855f66781f93f3dc099999f054
+    storybook: "*"
+  checksum: 10/a88f71d5998d9830c3ece9183eabb8769cf80cfe06b4db95f3c681d5e8ae7dbdc417efc5c8469dcd5cb47953e347d389d0fdb3a9a7b4aa7a27bec33475d2d7ce
   languageName: node
   linkType: hard
 
@@ -4476,7 +4476,7 @@ __metadata:
     "@babel/preset-env": "npm:7.26.0"
     "@babel/preset-react": "npm:7.25.9"
     "@babel/preset-typescript": "npm:7.26.0"
-    "@chromatic-com/storybook": "npm:3.1.0"
+    "@chromatic-com/storybook": "npm:3.2.0"
     "@navikt/ds-css": "npm:7.4.0"
     "@navikt/ds-icons": "npm:3.4.3"
     "@navikt/ds-react": "npm:7.4.0"
@@ -4780,7 +4780,7 @@ __metadata:
     "@babel/preset-env": "npm:7.26.0"
     "@babel/preset-react": "npm:7.25.9"
     "@babel/preset-typescript": "npm:7.26.0"
-    "@chromatic-com/storybook": "npm:3.1.0"
+    "@chromatic-com/storybook": "npm:3.2.0"
     "@navikt/ds-css": "npm:7.4.0"
     "@navikt/ds-icons": "npm:3.4.3"
     "@navikt/ds-react": "npm:7.4.0"
@@ -4858,7 +4858,7 @@ __metadata:
     "@babel/plugin-transform-modules-commonjs": "npm:7.25.9"
     "@babel/preset-env": "npm:7.26.0"
     "@babel/preset-react": "npm:7.25.9"
-    "@chromatic-com/storybook": "npm:3.1.0"
+    "@chromatic-com/storybook": "npm:3.2.0"
     "@navikt/appstatus-react-ds": "npm:*"
     "@navikt/ds-css": "npm:7.4.0"
     "@navikt/ds-icons": "npm:3.4.3"
