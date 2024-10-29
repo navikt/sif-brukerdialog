@@ -81,9 +81,7 @@ const annetBarnSummary = (apiValues: OmBarnetApiData, fødselsattester: Attachme
                     <div data-testid={'oppsummering-omBarn-fødselsattest'}>
                         <AttachmentList attachments={fødselsattester} />
                     </div>
-                    {(apiValues.fødselsattestVedleggUrls || []).length === 0 && (
-                        <AppText id="step.oppsummering.omBarn.ingenFødselsattest" />
-                    )}
+                    {fødselsattester.length === 0 && <AppText id="step.oppsummering.omBarn.ingenFødselsattest" />}
                 </FormSummary.Value>
             </FormSummary.Answer>
         )}

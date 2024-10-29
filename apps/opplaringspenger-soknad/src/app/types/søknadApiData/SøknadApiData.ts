@@ -16,7 +16,7 @@ export interface OmBarnetApiData {
     relasjonTilBarnet?: RelasjonTilBarnet;
     relasjonTilBarnetBeskrivelse?: string;
     årsakManglerIdentitetsnummer?: ÅrsakBarnetManglerIdentitetsnummer;
-    fødselsattestVedleggUrls?: [];
+    fødselsattestVedleggUrls?: string[];
 }
 
 export interface KursholderApiData {

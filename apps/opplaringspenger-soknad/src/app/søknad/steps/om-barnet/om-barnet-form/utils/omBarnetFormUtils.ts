@@ -80,14 +80,17 @@ export const getOmBarnetSøknadsdataFromFormValues = (
             relasjonTilBarnetBeskrivelse:
                 values.relasjonTilBarnet === RelasjonTilBarnet.ANNET ? values.relasjonTilBarnetBeskrivelse : undefined,
         };
-        if (values.barnetsFødselsnummer) {
+        if (
+            (values.barnetHarIkkeFnr === undefined || values.barnetHarIkkeFnr === false) &&
+            values.barnetsFødselsnummer
+        ) {
             return {
                 type: 'annetBarn',
                 barnetsNavn: values.barnetsNavn,
                 barnetsFødselsnummer: values.barnetsFødselsnummer,
                 ...relasjonTilBarnetSøknadsdata,
             };
-        } else if (values.barnetsFødselsdato && values.årsakManglerIdentitetsnummer) {
+        } else if (values.barnetHarIkkeFnr && values.barnetsFødselsdato && values.årsakManglerIdentitetsnummer) {
             return {
                 type: 'annetBarnUtenFnr',
                 barnetsNavn: values.barnetsNavn,
