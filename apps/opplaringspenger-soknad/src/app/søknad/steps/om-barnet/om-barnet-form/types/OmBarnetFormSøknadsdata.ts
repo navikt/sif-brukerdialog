@@ -2,7 +2,7 @@ import { RegistrertBarn } from '@navikt/sif-common-api';
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { RelasjonTilBarnet, ÅrsakBarnetManglerIdentitetsnummer } from './';
 
-interface RelasjonTilBarnetSøknadsdataBase {
+export interface RelasjonTilBarnetSøknadsdataBase {
     relasjonTilBarnet?: RelasjonTilBarnet;
     relasjonTilBarnetBeskrivelse?: string;
 }

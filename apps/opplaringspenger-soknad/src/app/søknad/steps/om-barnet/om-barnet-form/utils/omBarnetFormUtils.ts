@@ -2,9 +2,8 @@ import { RegistrertBarn } from '@navikt/sif-common-api';
 import { getDateToday } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { OmBarnetFormMessageKeys } from '../omBarnetFormMessages';
-import { OmBarnetFormValues, RelasjonTilBarnet } from '../types';
-import { OmBarnetFormSøknadsdata } from '../types/OmBarnetFormSøknadsdata';
-import { ÅrsakBarnetManglerIdentitetsnummer } from '../types/ÅrsakManglerIdentitetsnummer';
+import { OmBarnetFormValues, RelasjonTilBarnet, ÅrsakBarnetManglerIdentitetsnummer } from '../types';
+import { OmBarnetFormSøknadsdata, RelasjonTilBarnetSøknadsdataBase } from '../types/OmBarnetFormSøknadsdata';
 
 export const getOmBarnetFormInitialValues = (
     søknadsdata?: OmBarnetFormSøknadsdata,
@@ -69,17 +68,18 @@ export const getOmBarnetSøknadsdataFromFormValues = (
         };
     }
 
-    if (!values.barnetSøknadenGjelder) {
+    if (!values.barnetSøknadenGjelder && values.barnetsNavn) {
+        const relasjonTilBarnetSøknadsdata: RelasjonTilBarnetSøknadsdataBase = {
+            relasjonTilBarnet: values.relasjonTilBarnet,
+            relasjonTilBarnetBeskrivelse:
+                values.relasjonTilBarnet === RelasjonTilBarnet.ANNET ? values.relasjonTilBarnetBeskrivelse : undefined,
+        };
         if (values.barnetsFødselsnummer) {
             return {
                 type: 'annetBarn',
                 barnetsNavn: values.barnetsNavn,
                 barnetsFødselsnummer: values.barnetsFødselsnummer,
-                relasjonTilBarnet: values.relasjonTilBarnet,
-                relasjonTilBarnetBeskrivelse:
-                    values.relasjonTilBarnet === RelasjonTilBarnet.ANNET
-                        ? values.relasjonTilBarnetBeskrivelse
-                        : undefined,
+                ...relasjonTilBarnetSøknadsdata,
             };
         } else if (values.barnetsFødselsdato && values.årsakManglerIdentitetsnummer) {
             return {
@@ -87,11 +87,7 @@ export const getOmBarnetSøknadsdataFromFormValues = (
                 barnetsNavn: values.barnetsNavn,
                 årsakManglerIdentitetsnummer: values.årsakManglerIdentitetsnummer,
                 barnetsFødselsdato: values.barnetsFødselsdato,
-                relasjonTilBarnet: values.relasjonTilBarnet,
-                relasjonTilBarnetBeskrivelse:
-                    values.relasjonTilBarnet === RelasjonTilBarnet.ANNET
-                        ? values.relasjonTilBarnetBeskrivelse
-                        : undefined,
+                ...relasjonTilBarnetSøknadsdata,
                 fødselsattest:
                     values.årsakManglerIdentitetsnummer === ÅrsakBarnetManglerIdentitetsnummer.BARNET_BOR_I_UTLANDET
                         ? values.fødselsattest || []
@@ -100,7 +96,6 @@ export const getOmBarnetSøknadsdataFromFormValues = (
         }
         return undefined;
     }
-
     return undefined;
 };
 
