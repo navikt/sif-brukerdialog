@@ -62,7 +62,7 @@ export const Questions = ({ children }: { children: React.ReactNode }) => {
  */
 const Panel = ({ children }: { children: React.ReactNode }) => {
     return (
-        <Box padding="4" paddingBlock="4 6" background="bg-subtle" borderRadius="medium">
+        <Box padding="6" paddingBlock="6" style={{ backgroundColor: 'var(--a-gray-50)' }} borderRadius="medium">
             {children}
         </Box>
     );

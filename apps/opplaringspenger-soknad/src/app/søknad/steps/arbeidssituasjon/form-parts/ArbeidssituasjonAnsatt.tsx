@@ -4,10 +4,11 @@ import { DateRange, ValidationError, YesOrNo, getTypedFormComponents } from '@na
 import { prettifyDateExtended } from '@navikt/sif-common-utils';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import { Alert, Heading } from '@navikt/ds-react';
+import { Alert, Box, Heading, HStack } from '@navikt/ds-react';
 import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { getJobberNormaltTimerValidator } from '../../../../utils/jobberNormaltTimerValidator';
 import { AppText, useAppIntl } from '../../../../i18n';
+import { Buildings3Icon } from '@navikt/aksel-icons';
 
 export enum AnsattFormFields {
     arbeidsgiver = 'arbeidsgiver',
@@ -46,12 +47,14 @@ const ArbeidssituasjonAnsatt = ({ arbeidsforhold, parentFieldName, søknadsperio
 
     return (
         <>
-            <FormBlock>
-                <Block padBottom="m">
-                    <Heading level="3" size="medium">
-                        {arbeidsforhold.arbeidsgiver.navn}
-                    </Heading>
-                </Block>
+            <>
+                <Heading level="3" size="medium">
+                    <HStack gap="3" align={'center'}>
+                        <Buildings3Icon height="1.8rem" width="1.5rem" />
+                        <Box>{arbeidsforhold.arbeidsgiver.navn}</Box>
+                    </HStack>
+                </Heading>
+
                 <Block>
                     <YesOrNoQuestion
                         legend={text('arbeidsforhold.erAnsatt.spm', {
@@ -69,7 +72,7 @@ const ArbeidssituasjonAnsatt = ({ arbeidsforhold, parentFieldName, søknadsperio
                         }}
                     />
                 </Block>
-            </FormBlock>
+            </>
             {(arbeidsforhold.erAnsatt === YesOrNo.YES || arbeidsforhold.erAnsatt === YesOrNo.NO) && (
                 <FormBlock margin="l">
                     {erAvsluttet && (

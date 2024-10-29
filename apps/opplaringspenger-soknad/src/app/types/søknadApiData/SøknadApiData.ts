@@ -2,18 +2,21 @@ import { OpptjeningAktivitet, UtenlandskNæringstype, VirksomhetApiData } from '
 import { ISODate, ISODateRange, ISODuration } from '@navikt/sif-common-utils';
 import { ArbeidsgiverType } from '../Arbeidsgiver';
 import { JobberIPeriodeSvar } from '../../søknad/steps/arbeidstid/ArbeidstidTypes';
-import { RelasjonTilBarnet } from '../../søknad/steps/om-barnet/om-barnet-form/types';
-
-export interface BarnToSendToApi {
-    navn: string;
-    norskIdentifikator: string | null;
-    aktørId: string | null;
-    fødselsdato?: ISODate;
-}
+import {
+    RelasjonTilBarnet,
+    ÅrsakBarnetManglerIdentitetsnummer,
+} from '../../søknad/steps/om-barnet/om-barnet-form/types';
 
 export interface OmBarnetApiData {
-    barn: BarnToSendToApi;
+    navn: string;
+    norskIdentifikator?: string;
+    aktørId?: string;
+    fødselsdato?: ISODate;
+    fødselsnummer?: string;
     relasjonTilBarnet?: RelasjonTilBarnet;
+    relasjonTilBarnetBeskrivelse?: string;
+    årsakManglerIdentitetsnummer?: ÅrsakBarnetManglerIdentitetsnummer;
+    fødselsattestVedleggUrls?: [];
 }
 
 export interface KursholderApiData {

@@ -6,12 +6,13 @@ import { YesOrNoDontKnow } from '../../types/YesOrNoDontKnow';
 import { getArbeidsgivereApiDataFromSøknadsdata } from './getArbeidsgivereApiDataFromSøknadsdata';
 import { getFrilansApiDataFromSøknadsdata } from './getFrilansApiDataFromSøknadsdata';
 import { getMedlemskapApiDataFromSøknadsdata } from './getMedlemskapApiDataFromSøknadsdata';
-import { getOmBarnetApiDataFromSøknadsdata } from './getOmBarnetApiDataFromSøknadsdata';
 import { getOpptjeningUtlandApiDataFromSøknadsdata } from './getOpptjeningUtlandApiDataFromSøknadsdata';
 import { getSelvstendigApiDataFromSøknadsdata } from './getSelvstendigApiDataFromSøknadsdata';
 import { getUtenlandskNæringApiDataFromSøknadsdata } from './getUtenlandskNæringApiDataFromSøknadsdata';
 import { getKursApiDataFromSøknadsdata } from './getKursApiDataFromSøknadsdata';
 import { DataBruktTilUtledning } from '../../types/DataBruktTilUtledning';
+import { getOmBarnetApiDataFromSøknadsdata } from './getOmBarnetApiDataFromSøknadsdata';
+import { RegistrertBarn } from '@navikt/sif-common-api';
 
 export const getFlereSokereApiData = (flereSokereSvar: YesOrNoDontKnow): FlereSokereApiData => {
     switch (flereSokereSvar) {
@@ -34,6 +35,7 @@ export const getDataBruktTilUtledningApiData = (kurs: KursSøknadsdata): DataBru
 export const getApiDataFromSøknadsdata = (
     søkerNorskIdent: string,
     søknadsdata: Søknadsdata,
+    registrerteBarn: RegistrertBarn[],
 ): SøknadApiData | undefined => {
     const { id, omBarnet, legeerklæring, kurs, arbeidssituasjon, medlemskap, arbeidstid } = søknadsdata;
 
@@ -57,7 +59,7 @@ export const getApiDataFromSøknadsdata = (
         id,
         språk,
         harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true,
-        omBarnet: getOmBarnetApiDataFromSøknadsdata(omBarnet),
+        omBarnet: getOmBarnetApiDataFromSøknadsdata(registrerteBarn, omBarnet),
         vedleggUrls: getAttachmentsApiData(legeerklæring.vedlegg),
         søknadsperiode: {
             fraOgMed: dateToISODate(søknadsperiode.from),

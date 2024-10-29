@@ -26,6 +26,7 @@ import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { AppText, useAppIntl } from '../../../i18n';
 import { useNavigate } from 'react-router-dom';
 import ArbeidIPeriodenSummary from './arbeid-i-perioden-summary/ArbeidIPeriodenSummary';
+import OmBarnetOppsummering from './om-barnet-summary/OmBarnetSummary';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -43,7 +44,7 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 const OppsummeringStep = () => {
     const { text, intl } = useAppIntl();
     const {
-        state: { søknadsdata, søker, frilansoppdrag },
+        state: { søknadsdata, søker, frilansoppdrag, registrerteBarn },
     } = useSøknadContext();
 
     const stepId = StepId.OPPSUMMERING;
@@ -66,7 +67,7 @@ const OppsummeringStep = () => {
         }
     }, [previousSøknadError, sendSøknadError]);
 
-    const apiData = getApiDataFromSøknadsdata(søker.fødselsnummer, søknadsdata);
+    const apiData = getApiDataFromSøknadsdata(søker.fødselsnummer, søknadsdata, registrerteBarn);
 
     if (!apiData) {
         return (
@@ -119,6 +120,12 @@ const OppsummeringStep = () => {
                                 onBack={goBack}>
                                 <VStack gap="8">
                                     <OmSøkerOppsummering søker={søker} />
+
+                                    <OmBarnetOppsummering
+                                        søknadsdata={søknadsdata.omBarnet!}
+                                        apiValues={apiData.omBarnet}
+                                        onEdit={() => navigate(stepConfig[StepId.OM_BARNET].route)}
+                                    />
 
                                     <KursOppsummering
                                         kurs={apiData.kurs}

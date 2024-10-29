@@ -108,6 +108,25 @@ const nb = {
 
     'opptjeningIUtlandetSummaryItem.periode': 'Periode: {periode}',
     'opptjeningIUtlandetSummaryItem.info': 'Jobbet i {landnavn} som {hva} hos {hvor}',
+
+    'steg.oppsummering.barnet.header': 'Om barnet',
+    'steg.oppsummering.barnet.navn': 'Navn',
+    'steg.oppsummering.barnet.fødselsdato': 'Fødselsdato',
+    'steg.oppsummering.barnet.fnr': 'Fødselsnummer',
+    'steg.oppsummering.barnet.barnetHarIkkeFnr': 'Uten fødselsnummer/D-nummer',
+    'steg.oppsummering.barnet.årsakManglerIdentitetsnummer.NYFØDT':
+        'Barnet er nyfødt, og har ikke fått fødselsnummer enda',
+    'steg.oppsummering.barnet.årsakManglerIdentitetsnummer.BARNET_BOR_I_UTLANDET': 'Barnet bor i utlandet',
+    'steg.oppsummering.barnet.årsakManglerIdentitetsnummer.ANNET': 'Annet',
+    'steg.oppsummering.omBarn.fødselsattest.tittel': 'Fødselsattest',
+    'step.oppsummering.omBarn.ingenFødselsattest': 'Ingen fødselsattest er lastet opp',
+    'steg.oppsummering.relasjonTilBarnet.header': 'Relasjon til barnet',
+    'steg.oppsummering.relasjonTilBarnetBeskrivelse': 'Din beskrivelse av relasjon og tilsynsrolle for barnet:',
+    'steg.oppsummering.barnRelasjon.MOR': 'Du er mor til barnet',
+    'steg.oppsummering.barnRelasjon.MEDMOR': 'Du er medmor til barnet',
+    'steg.oppsummering.barnRelasjon.FOSTERFORELDER': 'Du er fosterforelder til barnet',
+    'steg.oppsummering.barnRelasjon.FAR': 'Du er far til barnet',
+    'steg.oppsummering.barnRelasjon.ANNET': 'Annet',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };
