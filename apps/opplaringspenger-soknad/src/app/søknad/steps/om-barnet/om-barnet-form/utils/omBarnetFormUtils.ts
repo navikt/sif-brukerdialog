@@ -50,9 +50,12 @@ export const getOmBarnetFormInitialValues = (
                     søknadenGjelderEtAnnetBarn: true,
                     barnetsNavn: søknadsdata.barnetsNavn,
                     barnetsFødselsdato: søknadsdata.barnetsFødselsdato,
-                    relasjonTilBarnet: søknadsdata.relasjonTilBarnet,
                     fødselsattest: søknadsdata.fødselsattest || [],
-                    relasjonTilBarnetBeskrivelse: søknadsdata.relasjonTilBarnetBeskrivelse,
+                    relasjonTilBarnet: søknadsdata.relasjonTilBarnet,
+                    relasjonTilBarnetBeskrivelse:
+                        søknadsdata.relasjonTilBarnet === RelasjonTilBarnet.ANNET
+                            ? søknadsdata.relasjonTilBarnetBeskrivelse
+                            : undefined,
                 };
         }
     }
