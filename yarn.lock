@@ -5564,9 +5564,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/ungdomsytelse-soknad@workspace:apps/ungdomsytelse-soknad":
+"@navikt/ungdomsytelse-deltaker@workspace:apps/ungdomsytelse-deltaker":
   version: 0.0.0-use.local
-  resolution: "@navikt/ungdomsytelse-soknad@workspace:apps/ungdomsytelse-soknad"
+  resolution: "@navikt/ungdomsytelse-deltaker@workspace:apps/ungdomsytelse-deltaker"
   dependencies:
     "@eslint/eslintrc": "npm:3.1.0"
     "@eslint/js": "npm:9.13.0"
