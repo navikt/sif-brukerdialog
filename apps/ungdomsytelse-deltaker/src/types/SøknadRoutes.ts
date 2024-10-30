@@ -1,3 +1,3 @@
 export enum SøknadRoutes {
-    SOKNAD_ROOT = '/ungdomsytelse-deltaker',
+    SOKNAD_ROOT = '',
 }

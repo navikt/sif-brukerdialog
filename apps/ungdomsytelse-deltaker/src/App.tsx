@@ -1,14 +1,8 @@
-import { Navigate, Route } from 'react-router-dom';
 import { isProd } from '@navikt/sif-common-env';
-import {
-    ensureBaseNameForReactRouter,
-    SoknadApplication,
-    SoknadApplicationCommonRoutes,
-} from '@navikt/sif-common-soknad-ds/src';
+import { ensureBaseNameForReactRouter, SoknadApplication } from '@navikt/sif-common-soknad-ds/src';
 import { applicationIntlMessages } from './i18n';
 import Søknad from './søknad/Søknad';
 import { appEnv } from './types/appEnv';
-import { SøknadRoutes } from './types/SøknadRoutes';
 import '@navikt/ds-css';
 
 const {
@@ -39,12 +33,7 @@ const App = () => {
             }}
             useAmplitude={SIF_PUBLIC_USE_AMPLITUDE ? SIF_PUBLIC_USE_AMPLITUDE === 'true' : isProd()}
             amplitudeApiKey={SIF_PUBLIC_AMPLITUDE_API_KEY}>
-            <SoknadApplicationCommonRoutes
-                contentRoutes={[
-                    <Route index key="redirect" element={<Navigate to={SøknadRoutes.SOKNAD_ROOT} />} />,
-                    <Route path={SøknadRoutes.SOKNAD_ROOT} key="soknad" element={<Søknad />} />,
-                ]}
-            />
+            <Søknad />
         </SoknadApplication>
     );
 };
