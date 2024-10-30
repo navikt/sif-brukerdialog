@@ -8,7 +8,7 @@
         "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",
         "dev:vite": "vite",
         "dev:debug": "vite --debug",
-        "build": "vite build --base=/familie/sykdom-i-familien/soknad/ungdomsytelse-soknad",
+        "build": "vite build --base=/ungdomsytelse-deltaker",
         "check:types": "tsc --noemit",
         "build-storybook": "storybook build",
         "lint": "eslint",
