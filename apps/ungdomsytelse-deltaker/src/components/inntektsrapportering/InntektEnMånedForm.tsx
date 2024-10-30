@@ -1,8 +1,8 @@
 import { Deltakelse } from '../../api/types';
-import { DateRange, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import { DateRange, dateToISOString, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 
 import { capsFirstCharacter, dateFormatter } from '@navikt/sif-common-utils';
-import { Alert, Box, Button, HStack } from '@navikt/ds-react';
+import { Alert, Box, Button, Heading, HStack } from '@navikt/ds-react';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { useAppIntl } from '../../i18n';
 import { getNumberValidator } from '@navikt/sif-common-formik-ds/src/validation';
@@ -37,6 +37,7 @@ const InntektEnMånedForm = ({ deltakelse, måned }: Props) => {
     };
     const { intl } = useAppIntl();
     const månedNavn = `${dateFormatter.monthFullYear(måned.from)}`;
+    const headingId = `heading_${dateToISOString(måned.from)}`;
     return (
         <FormikWrapper
             initialValues={{
@@ -50,8 +51,13 @@ const InntektEnMånedForm = ({ deltakelse, måned }: Props) => {
                         includeButtons={false}
                         isFinalSubmit={true}
                         submitPending={isSubmitting}>
+                        <Heading level="3" size="xsmall" id={headingId} spacing={true}>
+                            {capsFirstCharacter(dateFormatter.monthFullYear(måned.from))}
+                        </Heading>
                         <HStack gap="3" align="start">
                             <TextField
+                                hideLabel={true}
+                                aria-labelledby={headingId}
                                 name={InntektFormFields.inntekt}
                                 label={capsFirstCharacter(dateFormatter.monthFullYear(måned.from))}
                                 type="text"
@@ -66,7 +72,7 @@ const InntektEnMånedForm = ({ deltakelse, måned }: Props) => {
                                 }}
                             />
                             <Box>
-                                <HStack gap="2" style={{ marginTop: '2rem' }} align={'center'}>
+                                <HStack gap="2" align={'center'}>
                                     <Button loading={isSubmitting} type="submit" aria-label={`Send for ${månedNavn}`}>
                                         Send
                                     </Button>
