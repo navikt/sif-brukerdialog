@@ -2,7 +2,7 @@
     "name": "@sif/eslint-config",
     "main": "eslint.config.mjs",
     "type": "module",
-    "version": "1.1.19",
+    "version": "1.1.20",
     "dependencies": {
         "@eslint/js": "9.13.0",
         "eslint": "9.13.0",
@@ -13,7 +13,7 @@
         "eslint-plugin-vitest": "0.5.4",
         "globals": "15.11.0",
         "typescript": "5.6.3",
-        "typescript-eslint": "8.12.1"
+        "typescript-eslint": "8.12.2"
     },
     "packageManager": "yarn@4.3.1"
 }
