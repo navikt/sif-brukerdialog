@@ -29,6 +29,7 @@
         "dotenv": "16.4.5",
         "express": "4.21.1",
         "express-rate-limit": "7.4.1",
+        "formik": "2.4.6",
         "http-proxy-middleware": "3.0.3",
         "jose": "5.9.6",
         "jsdom": "25.0.1",

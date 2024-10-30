@@ -23,7 +23,7 @@ export const StoryFormikWrapper: React.FunctionComponent<Props> = (props) => {
             renderForm={() => {
                 return (
                     <TypedFormikForm includeButtons={includeButtons}>
-                        <BodyLong size="large" style={{ maxWidth: maxWidth }}>
+                        <BodyLong size="large" style={{ maxWidth: maxWidth }} as="div">
                             {children}
                         </BodyLong>
                     </TypedFormikForm>
