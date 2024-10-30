@@ -29,7 +29,8 @@ const { TextField, Form, FormikWrapper } = getTypedFormComponents<
 >();
 
 const InntektEnMånedForm = ({ deltakelse, måned }: Props) => {
-    const { rapporterInntekt, resetInntektLagret, inntektLagret, isSubmitting } = useRapporterInntekt();
+    const { rapporterInntekt, resetInntektLagret, inntektLagret, error, resetError, isSubmitting } =
+        useRapporterInntekt();
 
     const onSubmit = (data: InntektFormValues) => {
         rapporterInntekt(deltakelse.id, måned, parseInt(data.inntekt, 10));
@@ -59,7 +60,10 @@ const InntektEnMånedForm = ({ deltakelse, måned }: Props) => {
                                 })}
                                 required
                                 min={0}
-                                onFocus={resetInntektLagret}
+                                onFocus={() => {
+                                    resetInntektLagret();
+                                    resetError();
+                                }}
                             />
                             <Box>
                                 <HStack gap="2" style={{ marginTop: '2rem' }} align={'center'}>
@@ -74,6 +78,13 @@ const InntektEnMånedForm = ({ deltakelse, måned }: Props) => {
                                                 </Alert>
                                             </Box>
                                         </TimedContent>
+                                    ) : null}
+                                    {error ? (
+                                        <Box>
+                                            <Alert variant="error" inline={true}>
+                                                {error}
+                                            </Alert>
+                                        </Box>
                                     ) : null}
                                 </HStack>
                             </Box>

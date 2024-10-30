@@ -20,7 +20,7 @@ const putMarkerHarSøkt = async (deltakelseId: string): Promise<void> => {
 
 const rapporterInntekt = async (deltakelseId: string, periodeMedInntekt: PeriodeMedInntekt): Promise<void> => {
     return await ungDeltakelseOpplyserApiClient.post(
-        `/deltakelse/register/${deltakelseId}/periode-med-inntekt`,
+        `/deltakelse/register/${deltakelseId}/registrer-inntekt-i-periode`,
         periodeMedInntekt,
     );
 };

@@ -121,7 +121,7 @@ const startExpressServer = () => {
 
     /** --- Rapporter inntekt for en måned -------------- */
 
-    server.post('/deltakelse/register/:id/periode-med-inntekt', (req, res) => {
+    server.post('/deltakelse/register/:id/registrer-inntekt-i-periode', (req, res) => {
         const body = req.body;
         console.log('[POST] body', body);
         setTimeout(() => {
