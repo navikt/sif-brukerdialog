@@ -5,6 +5,8 @@ import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { SøknadRoutes } from '../../app/types/SøknadRoutes';
 import { getDatoerIKursperioderInkludertReisedager } from '../../app/søknad/steps/kurs/kursStepUtils';
 import { Kursperiode } from '../../app/types/Kursperiode';
+import { RegistrertBarn } from '@navikt/sif-common-api';
+import { ISODateToDate } from '@navikt/sif-common-utils';
 
 const kursperioder: Kursperiode[] = [
     {
@@ -19,6 +21,24 @@ const kursperioder: Kursperiode[] = [
         },
     },
 ];
+
+const barn1: RegistrertBarn = {
+    fornavn: 'ALFABETISK',
+    etternavn: 'FAGGOTT',
+    aktørId: '2811762539343',
+    fødselsdato: ISODateToDate('2019-06-08'),
+};
+
+const barn2: RegistrertBarn = {
+    fornavn: 'Barn',
+    mellomnavn: 'Barne',
+    etternavn: 'Barnesen',
+    fødselsdato: ISODateToDate('2020-04-20'),
+    aktørId: '123',
+};
+
+const registrerteBarn: RegistrertBarn[] = [barn1, barn2];
+
 export const søknadContextMock: SøknadContextState = {
     versjon: '2.0.0',
     søker: {
@@ -30,7 +50,7 @@ export const søknadContextMock: SøknadContextState = {
         etternavn: 'HOFTE',
     },
     kursholdere: [],
-    registrerteBarn: [],
+    registrerteBarn,
     søknadsdata: {
         id: '8525bf3f-ab0a-495e-90bc-759efd2723b9',
         velkommen: {

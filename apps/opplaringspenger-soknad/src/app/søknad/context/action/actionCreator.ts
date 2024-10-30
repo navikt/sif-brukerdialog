@@ -8,7 +8,7 @@ import {
     KursSøknadsdata,
     ArbeidssituasjonSøknadsdata,
     MedlemskapSøknadsdata,
-    OmBarnetSøknadsdata,
+    OmBarnetFormSøknadsdata,
 } from '../../../types/søknadsdata/Søknadsdata';
 import { OppsummeringFormValues } from '../../steps/oppsummering/OppsummeringStep';
 
@@ -58,7 +58,7 @@ interface SetSøknadSendt {
 }
 interface SetSøknadOmBarnet {
     type: SøknadContextActionKeys.SET_SØKNAD_OM_BARNET;
-    payload: OmBarnetSøknadsdata;
+    payload: OmBarnetFormSøknadsdata;
 }
 interface SetSøknadRoute {
     type: SøknadContextActionKeys.SET_SØKNAD_ROUTE;
@@ -157,7 +157,7 @@ const setSøknadKurs = (payload: KursSøknadsdata): SetSøknadKurs => ({
     payload,
 });
 
-const setSøknadOmBarnet = (payload: OmBarnetSøknadsdata): SetSøknadOmBarnet => ({
+const setSøknadOmBarnet = (payload: OmBarnetFormSøknadsdata): SetSøknadOmBarnet => ({
     type: SøknadContextActionKeys.SET_SØKNAD_OM_BARNET,
     payload,
 });

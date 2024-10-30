@@ -6,16 +6,13 @@ import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import OpptjeningUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/opptjening-utland/OpptjeningUtlandListAndDialog';
 import { OpptjeningUtland } from '@navikt/sif-common-forms-ds/src/forms/opptjening-utland/types';
 import { UtenlandskNæring } from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring/types';
-import UtenlandskNæringListAndDialog from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring/UtenlandskNæringListAndDialog';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { getDate1YearAgo, getDate1YearFromNow, getDateToday } from '@navikt/sif-common-utils';
+import { getDateToday } from '@navikt/sif-common-utils';
 import { appArbeidsgivereService } from '../../../api/appArbeidsgiverService';
-// import { arbeidsgivereEndpoint } from '../../../api/endpoints/arbeidsgiverEndpoint';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -39,6 +36,7 @@ import { AnsattFormData } from './form-parts/ArbeidssituasjonAnsatt';
 import ArbeidssituasjonArbeidsgivere from './form-parts/ArbeidssituasjonArbeidsgivere';
 import ArbeidssituasjonFrilans, { FrilansFormData } from './form-parts/ArbeidssituasjonFrilans';
 import ArbeidssituasjonSN, { SelvstendigFormData } from './form-parts/ArbeidssituasjonSN';
+import { ArbeidssituasjonUtland } from './form-parts/ArbeidssituasjonUtland';
 
 export enum ArbeidssituasjonFormFields {
     ansatt_arbeidsforhold = 'ansatt_arbeidsforhold',
@@ -203,65 +201,14 @@ const ArbeidssituasjonStep = () => {
                                         søknadsperiode={søknadsperiode}
                                     />
                                 </FormBlock>
+
                                 <FormBlock>
-                                    <Heading level="2" size="medium">
-                                        <AppText id="steg.arbeidssituasjon.opptjeningUtland.tittel" />
-                                    </Heading>
-                                    <Block margin="l">
-                                        <YesOrNoQuestion
-                                            legend={text('steg.arbeidssituasjon.opptjeningUtland.spm')}
-                                            name={ArbeidssituasjonFormFields.harOpptjeningUtland}
-                                            validate={getYesOrNoValidator()}
-                                        />
-                                        {harOpptjeningUtland === YesOrNo.YES && (
-                                            <FormBlock>
-                                                <OpptjeningUtlandListAndDialog
-                                                    minDate={getDate1YearAgo()}
-                                                    maxDate={getDate1YearFromNow()}
-                                                    name={ArbeidssituasjonFormFields.opptjeningUtland}
-                                                    validate={getListValidator({ required: true })}
-                                                    labels={{
-                                                        addLabel: text(
-                                                            'steg.arbeidssituasjon.opptjeningUtland.addLabel',
-                                                        ),
-                                                        listTitle: text(
-                                                            'steg.arbeidssituasjon.opptjeningUtland.listTitle',
-                                                        ),
-                                                        modalTitle: text(
-                                                            'steg.arbeidssituasjon.opptjeningUtland.modalTitle',
-                                                        ),
-                                                    }}
-                                                />
-                                            </FormBlock>
-                                        )}
-                                        <FormBlock>
-                                            <YesOrNoQuestion
-                                                legend={text('steg.arbeidssituasjon.utenlandskNæring.spm')}
-                                                name={ArbeidssituasjonFormFields.harUtenlandskNæring}
-                                                validate={getYesOrNoValidator()}
-                                            />
-                                            {harUtenlandskNæring === YesOrNo.YES && (
-                                                <FormBlock>
-                                                    <UtenlandskNæringListAndDialog
-                                                        name={ArbeidssituasjonFormFields.utenlandskNæring}
-                                                        validate={getListValidator({ required: true })}
-                                                        labels={{
-                                                            addLabel: text(
-                                                                'steg.arbeidssituasjon.utenlandskNæring.addLabel',
-                                                            ),
-                                                            listTitle: text(
-                                                                'steg.arbeidssituasjon.utenlandskNæring.listTitle',
-                                                            ),
-                                                            modalTitle: text(
-                                                                'steg.arbeidssituasjon.utenlandskNæring.modalTitle',
-                                                            ),
-                                                        }}
-                                                    />
-                                                </FormBlock>
-                                            )}
-                                        </FormBlock>
-                                    </Block>
+                                    <ArbeidssituasjonUtland
+                                        harOpptjeningUtland={harOpptjeningUtland}
+                                        harUtenlandskNæring={harUtenlandskNæring}
+                                    />
                                 </FormBlock>
+
                                 {visVernepliktSpørsmål(
                                     søknadsperiode,
                                     ansatt_arbeidsforhold,

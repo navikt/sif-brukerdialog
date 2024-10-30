@@ -1,9 +1,9 @@
-import { BodyLong, Heading } from '@navikt/ds-react';
+import { BodyLong, Heading, VStack } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import ArbeidssituasjonAnsatt, { AnsattFormData } from './ArbeidssituasjonAnsatt';
 import { AppText } from '../../../../i18n';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 interface Props {
     ansatt_arbeidsforhold: AnsattFormData[];
@@ -35,17 +35,17 @@ const ArbeidssituasjonArbeidsgivere = ({ ansatt_arbeidsforhold, søknadsperiode,
             </BodyLong>
         </Block>
         {ansatt_arbeidsforhold.length > 0 && (
-            <>
+            <VStack gap="6">
                 {ansatt_arbeidsforhold.map((forhold, index) => (
-                    <FormBlock key={forhold.arbeidsgiver.id}>
+                    <FormLayout.Panel key={forhold.arbeidsgiver.id}>
                         <ArbeidssituasjonAnsatt
                             arbeidsforhold={forhold}
                             parentFieldName={`${parentFieldName}.${index}`}
                             søknadsperiode={søknadsperiode}
                         />
-                    </FormBlock>
+                    </FormLayout.Panel>
                 ))}
-            </>
+            </VStack>
         )}
     </>
 );

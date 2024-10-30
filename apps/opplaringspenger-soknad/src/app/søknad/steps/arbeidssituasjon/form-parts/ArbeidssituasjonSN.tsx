@@ -1,15 +1,14 @@
 import InfoJobberNormaltTimerSN from './info/InfoJobberNormaltTimerSN';
 import { Virksomhet } from '@navikt/sif-common-forms-ds';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { DateRange, ValidationError, YesOrNo, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import { Alert, Heading, Link } from '@navikt/ds-react';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
+import { Alert, Heading, Link, VStack } from '@navikt/ds-react';
 import VirksomhetInfoAndDialog from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetInfoAndDialog';
 import { getJobberNormaltTimerValidator } from '../../../../utils/jobberNormaltTimerValidator';
 import { getSelvstendigIPeriodeValidator } from '../../../../utils/selvstendigValidator';
 import { AppText, useAppIntl } from '../../../../i18n';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 export enum SelvstendigFormFields {
     harHattInntektSomSN = 'selvstendig.harHattInntektSomSN',
@@ -52,7 +51,7 @@ const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN, søknadsperiode }: 
             <Heading level="2" size="medium">
                 <AppText id="steg.arbeidssituasjon.sn.tittel" />
             </Heading>
-            <Block margin="l">
+            <VStack gap="3">
                 <YesOrNoQuestion
                     name={SelvstendigFormFields.harHattInntektSomSN}
                     legend={text('selvstendig.harDuHattInntekt.spm')}
@@ -68,47 +67,44 @@ const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN, søknadsperiode }: 
                         </ExpandableInfo>
                     }
                 />
-            </Block>
-            {harHattInntektSomSN === YesOrNo.YES && (
-                <FormBlock margin="l">
-                    <YesOrNoQuestion
-                        name={SelvstendigFormFields.harFlereVirksomheter}
-                        legend={text('selvstendig.harFlereVirksomheter.spm')}
-                        validate={getYesOrNoValidator()}
-                    />
 
-                    {søkerHarFlereVirksomheter && (
-                        <FormBlock>
-                            <Alert variant="info">
-                                <AppText id="selvstendig.veileder.flereAktiveVirksomheter" />
-                            </Alert>
-                        </FormBlock>
-                    )}
-
-                    {(harFlereVirksomheter === YesOrNo.YES || harFlereVirksomheter === YesOrNo.NO) && (
-                        <FormBlock>
-                            <VirksomhetInfoAndDialog
-                                name={SelvstendigFormFields.virksomhet}
-                                harFlereVirksomheter={søkerHarFlereVirksomheter}
-                                labels={{
-                                    infoTitle: virksomhet ? text('selvstendig.infoDialog.infoTittel') : undefined,
-                                    editLabel: text('selvstendig.infoDialog.endreKnapp'),
-                                    deleteLabel: text('selvstendig.infoDialog.fjernKnapp'),
-                                    addLabel: text('selvstendig.infoDialog.registrerKnapp'),
-                                    modalTitle: text('selvstendig.infoDialog.tittel'),
-                                }}
-                                validate={(value) => {
-                                    if (getRequiredFieldValidator()(value) !== undefined) {
-                                        return getRequiredFieldValidator()(value);
-                                    }
-                                    return getSelvstendigIPeriodeValidator(søknadsperiode, virksomhet);
-                                }}
+                {harHattInntektSomSN === YesOrNo.YES && (
+                    <FormLayout.Panel>
+                        <FormLayout.Questions>
+                            <YesOrNoQuestion
+                                name={SelvstendigFormFields.harFlereVirksomheter}
+                                legend={text('selvstendig.harFlereVirksomheter.spm')}
+                                validate={getYesOrNoValidator()}
                             />
-                        </FormBlock>
-                    )}
-                    {virksomhet !== undefined && (
-                        <FormBlock>
-                            <FormBlock>
+
+                            {søkerHarFlereVirksomheter && (
+                                <FormLayout.QuestionRelatedMessage>
+                                    <Alert variant="info">
+                                        <AppText id="selvstendig.veileder.flereAktiveVirksomheter" />
+                                    </Alert>
+                                </FormLayout.QuestionRelatedMessage>
+                            )}
+
+                            {(harFlereVirksomheter === YesOrNo.YES || harFlereVirksomheter === YesOrNo.NO) && (
+                                <VirksomhetInfoAndDialog
+                                    name={SelvstendigFormFields.virksomhet}
+                                    harFlereVirksomheter={søkerHarFlereVirksomheter}
+                                    labels={{
+                                        infoTitle: virksomhet ? text('selvstendig.infoDialog.infoTittel') : undefined,
+                                        editLabel: text('selvstendig.infoDialog.endreKnapp'),
+                                        deleteLabel: text('selvstendig.infoDialog.fjernKnapp'),
+                                        addLabel: text('selvstendig.infoDialog.registrerKnapp'),
+                                        modalTitle: text('selvstendig.infoDialog.tittel'),
+                                    }}
+                                    validate={(value) => {
+                                        if (getRequiredFieldValidator()(value) !== undefined) {
+                                            return getRequiredFieldValidator()(value);
+                                        }
+                                        return getSelvstendigIPeriodeValidator(søknadsperiode, virksomhet);
+                                    }}
+                                />
+                            )}
+                            {virksomhet !== undefined && (
                                 <NumberInput
                                     label={text(`sn.arbeidsforhold.spm`)}
                                     name={SelvstendigFormFields.jobberNormaltTimer}
@@ -117,11 +113,11 @@ const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN, søknadsperiode }: 
                                     maxLength={5}
                                     value={jobberNormaltTimer ? jobberNormaltTimer || '' : ''}
                                 />
-                            </FormBlock>
-                        </FormBlock>
-                    )}
-                </FormBlock>
-            )}
+                            )}
+                        </FormLayout.Questions>{' '}
+                    </FormLayout.Panel>
+                )}
+            </VStack>
         </>
     );
 };

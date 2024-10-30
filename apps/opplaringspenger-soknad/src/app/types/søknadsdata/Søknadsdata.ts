@@ -3,7 +3,7 @@ import { LegeerklæringSøknadsdata } from './LegeerklæringSøknadsdata';
 import { KursSøknadsdata } from './KursSøknadsdata';
 import { ArbeidssituasjonSøknadsdata } from './ArbeidssituasjonSøknadsdata';
 import { MedlemskapSøknadsdata } from './MedlemskapSøknadsdata';
-import { OmBarnetSøknadsdata } from './OmBarnetSøknadsdata';
+import { OmBarnetFormSøknadsdata } from '../../søknad/steps/om-barnet/om-barnet-form/types/OmBarnetFormSøknadsdata';
 import { ArbeidstidSøknadsdata } from './ArbeidstidSøknadsdata';
 
 export * from './LegeerklæringSøknadsdata';
@@ -11,14 +11,14 @@ export * from './KursSøknadsdata';
 export * from './ArbeidssituasjonSøknadsdata';
 export * from './ArbeidstidSøknadsdata';
 export * from './MedlemskapSøknadsdata';
-export * from './OmBarnetSøknadsdata';
+export * from '../../søknad/steps/om-barnet/om-barnet-form/types/OmBarnetFormSøknadsdata';
 
 export interface Søknadsdata {
     id?: string;
     [StepId.VELKOMMEN]?: {
         harForståttRettigheterOgPlikter?: boolean;
     };
-    [StepId.OM_BARNET]?: OmBarnetSøknadsdata;
+    [StepId.OM_BARNET]?: OmBarnetFormSøknadsdata;
     [StepId.KURS]?: KursSøknadsdata;
     [StepId.ARBEIDSSITUASJON]?: ArbeidssituasjonSøknadsdata;
     [StepId.ARBEIDSTID]?: ArbeidstidSøknadsdata;

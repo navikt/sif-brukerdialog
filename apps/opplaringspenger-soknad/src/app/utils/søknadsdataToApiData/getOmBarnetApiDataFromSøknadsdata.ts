@@ -1,30 +1,57 @@
+import { RegistrertBarn } from '@navikt/sif-common-api';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
-import { OmBarnetApiData } from '../../types/søknadApiData/SøknadApiData';
-import { OmBarnetSøknadsdata } from '../../types/søknadsdata/OmBarnetSøknadsdata';
 import { dateToISODate } from '@navikt/sif-common-utils';
+import { OmBarnetApiData } from '../../types/søknadApiData/SøknadApiData';
+import { OmBarnetFormSøknadsdata, OmBarnetFormSøknadsdata_RegistrertBarn } from '../../types/søknadsdata/Søknadsdata';
+import { getAttachmentsApiData } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 
-export const getOmBarnetApiDataFromSøknadsdata = (omBarnet: OmBarnetSøknadsdata): OmBarnetApiData => {
-    switch (omBarnet.type) {
-        case 'registrertBarn': {
-            const { aktørId, fornavn, etternavn, mellomnavn } = omBarnet.registrertBarn;
-            return {
-                barn: {
-                    aktørId,
-                    navn: formatName(fornavn, etternavn, mellomnavn),
-                    norskIdentifikator: null,
-                    fødselsdato: dateToISODate(omBarnet.registrertBarn.fødselsdato),
-                },
-            };
-        }
+const getRegistrertBarnApiData = (
+    omBarnetSøknadsdata: OmBarnetFormSøknadsdata_RegistrertBarn,
+    registrerteBarn: RegistrertBarn[],
+): OmBarnetApiData => {
+    const valgtBarn = registrerteBarn.find((currentBarn) => currentBarn.aktørId === omBarnetSøknadsdata.aktørId);
+    if (valgtBarn === undefined) {
+        throw Error('barnChosenFromList undefined');
+    }
+    return {
+        _type: 'registrertBarn',
+        aktørId: valgtBarn.aktørId,
+        navn: formatName(valgtBarn.fornavn, valgtBarn.etternavn, valgtBarn.mellomnavn),
+        fødselsdato: dateToISODate(valgtBarn.fødselsdato),
+    };
+};
+
+export const getOmBarnetApiDataFromSøknadsdata = (
+    registrerteBarn: RegistrertBarn[],
+    omBarnetSøknadsdata?: OmBarnetFormSøknadsdata,
+): OmBarnetApiData => {
+    if (omBarnetSøknadsdata === undefined) {
+        throw Error('omBarnetSøknadsdata undefined');
+    }
+
+    switch (omBarnetSøknadsdata?.type) {
+        case 'registrerteBarn':
+            return getRegistrertBarnApiData(omBarnetSøknadsdata, registrerteBarn);
         case 'annetBarn':
             return {
-                barn: {
-                    aktørId: null,
-                    navn: omBarnet.barnetsNavn,
-                    norskIdentifikator: omBarnet.barnetsFødselsnummer,
-                    fødselsdato: omBarnet.barnetsFødselsdato,
-                },
-                relasjonTilBarnet: omBarnet.søkersRelasjonTilBarnet,
+                _type: 'annetBarn',
+                _harFødselsnummer: true,
+                navn: omBarnetSøknadsdata.barnetsNavn,
+                norskIdentifikator: omBarnetSøknadsdata.barnetsFødselsnummer,
+                relasjonTilBarnet: omBarnetSøknadsdata.relasjonTilBarnet,
+                relasjonTilBarnetBeskrivelse: omBarnetSøknadsdata.relasjonTilBarnetBeskrivelse,
+            };
+
+        case 'annetBarnUtenFnr':
+            return {
+                _type: 'annetBarn',
+                _harFødselsnummer: false,
+                navn: omBarnetSøknadsdata.barnetsNavn,
+                årsakManglerIdentitetsnummer: omBarnetSøknadsdata.årsakManglerIdentitetsnummer,
+                fødselsdato: omBarnetSøknadsdata.barnetsFødselsdato,
+                relasjonTilBarnet: omBarnetSøknadsdata.relasjonTilBarnet,
+                relasjonTilBarnetBeskrivelse: omBarnetSøknadsdata.relasjonTilBarnetBeskrivelse,
+                fødselsattestVedleggUrls: getAttachmentsApiData(omBarnetSøknadsdata.fødselsattest),
             };
     }
 };
