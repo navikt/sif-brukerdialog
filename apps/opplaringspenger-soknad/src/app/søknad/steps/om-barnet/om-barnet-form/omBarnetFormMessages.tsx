@@ -57,6 +57,8 @@ const nb = {
     'omBarnetForm.validation.barnetsNavn.stringHasNoValue': 'Skriv inn barnets navn.',
     'omBarnetForm.validation.barnetsNavn.stringIsTooLong': 'Navnet på barnet kan ikke inneholde flere enn {maks} tegn.',
     'omBarnetForm.validation.relasjonTilBarnet.noValue': 'Du må velge din relasjon til barnet.',
+    'omBarnetForm.validation.relasjonTilBarnetBeskrivelse.stringHasNoValue':
+        'Du må beskrive hvem du er i forhold til barnet, og hvilken tilsynsrolle du har i perioden du søker for.',
     'omBarnetForm.validation.sammeAdresse.noValue': 'Du må svare ja eller nei på om du bor sammen med barnet.',
     'omBarnetForm.validation.kroniskEllerFunksjonshemming.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om barnet har en kronisk/langvarig sykdom eller funksjonshemning.',
