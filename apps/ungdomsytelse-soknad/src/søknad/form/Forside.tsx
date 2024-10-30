@@ -5,13 +5,14 @@ import { SoknadVelkommenGuide } from '@navikt/sif-common-soknad-ds/src';
 import { deltakerService } from '../../api/services/deltakerService';
 import { Deltakelse } from '../../api/types';
 import DeltakelseTable from '../../components/deltakelse-table/DeltakelseTable';
-import VelkommenPageHeader from '../../pages/velkommen/VelkommenPageHeader';
+import VelkommenPageHeader from '../../components/velkommen-page-header/VelkommenPageHeader';
 import { useSøknadContext } from '../hooks/useSøknadContext';
 import DeltakelseForm from './DeltakelseForm';
+import Inntektsrapportering from '../../components/inntektsrapportering/Inntektsrapportering';
 
 const Forside = () => {
     const {
-        data: { søker, deltakelserIkkeSøktFor, deltakelserSøktFor, alleDeltakelser },
+        data: { søker, deltakelserIkkeSøktFor, deltakelserSøktFor, alleDeltakelser, deltakelserÅpenForRapportering },
         updateDeltakelse,
     } = useSøknadContext();
 
@@ -66,7 +67,12 @@ const Forside = () => {
                             })}
                         </VStack>
                     )}
-                    {alleDeltakelser.length > 0 && (
+                    {deltakelserÅpenForRapportering.length === 1 && (
+                        <>
+                            <Inntektsrapportering deltakelse={deltakelserÅpenForRapportering[0]} />
+                        </>
+                    )}
+                    {alleDeltakelser.length > 1 && (
                         <>
                             <Heading level="2" size="medium">
                                 Alle deltakelser

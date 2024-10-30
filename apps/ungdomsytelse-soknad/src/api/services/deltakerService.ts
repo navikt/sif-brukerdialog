@@ -1,7 +1,7 @@
 import getSentryLoggerForApp from '@navikt/sif-common-sentry';
 import { ungDeltakelseOpplyserApiClient } from '../apiClient';
 import { deltakelserResponseSchema } from '../schemas/deltakelserSchema';
-import { Deltakelse } from '../types';
+import { Deltakelse, PeriodeMedInntekt } from '../types';
 
 const getDeltakelser = async (): Promise<Deltakelse[]> => {
     const response = await ungDeltakelseOpplyserApiClient.get(`/deltakelse/register/hent/alle`);
@@ -14,11 +14,19 @@ const getDeltakelser = async (): Promise<Deltakelse[]> => {
     }
 };
 
-const markerSomSøkt = async (deltakelseId: string): Promise<void> => {
+const putMarkerHarSøkt = async (deltakelseId: string): Promise<void> => {
     return await ungDeltakelseOpplyserApiClient.put(`/deltakelse/register/${deltakelseId}/marker-har-sokt`);
+};
+
+const rapporterInntekt = async (deltakelseId: string, periodeMedInntekt: PeriodeMedInntekt): Promise<void> => {
+    return await ungDeltakelseOpplyserApiClient.post(
+        `/deltakelse/register/${deltakelseId}/periode-med-inntekt`,
+        periodeMedInntekt,
+    );
 };
 
 export const deltakerService = {
     getDeltakelser,
-    markerSomSøkt,
+    putMarkerHarSøkt,
+    rapporterInntekt,
 };

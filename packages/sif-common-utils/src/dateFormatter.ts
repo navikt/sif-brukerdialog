@@ -98,6 +98,12 @@ export const dateFormatter = {
     /**
      *
      * @param date: Date
+     * @return Måned
+     */
+    month: (date: Date, locale?: string) => dayjs(date).locale(getValidLocale(locale)).format('MMMM'),
+    /**
+     *
+     * @param date: Date
      * @return Måned årstall
      */
     MonthFullYear: (date: Date, locale?: string) =>

@@ -84,22 +84,16 @@ const startExpressServer = () => {
             {
                 id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0',
                 deltakerIdent: '56857102105',
-                fraOgMed: '2025-08-15',
-                tilOgMed: '2025-12-31',
+                fraOgMed: '2024-08-15',
+                tilOgMed: '2024-12-31',
                 harSøkt: true,
             },
             {
                 id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab2',
                 deltakerIdent: '56857102105',
-                fraOgMed: '2026-01-01',
-                tilOgMed: '2026-04-01',
+                fraOgMed: '2025-01-01',
+                tilOgMed: '2025-04-01',
                 harSøkt: true,
-            },
-            {
-                id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab4',
-                deltakerIdent: '56857102105',
-                fraOgMed: '2026-05-01',
-                harSøkt: false,
             },
         ];
         setTimeout(() => {
@@ -117,7 +111,17 @@ const startExpressServer = () => {
         }, 500);
     });
 
-    server.put('/deltakelse/register/{:id}/marker-har-søkt', (req, res) => {
+    server.put('/deltakelse/register/:id/marker-har-søkt', (req, res) => {
+        const body = req.body;
+        console.log('[POST] body', body);
+        setTimeout(() => {
+            res.sendStatus(200);
+        }, 500);
+    });
+
+    /** --- Rapporter inntekt for en måned -------------- */
+
+    server.post('/deltakelse/register/:id/periode-med-inntekt', (req, res) => {
         const body = req.body;
         console.log('[POST] body', body);
         setTimeout(() => {

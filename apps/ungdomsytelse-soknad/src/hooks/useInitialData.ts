@@ -1,15 +1,11 @@
 import { useState } from 'react';
-import { fetchSøker, Søker } from '@navikt/sif-common-api';
+import { fetchSøker } from '@navikt/sif-common-api';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { Deltakelse } from '../api/types';
 import { deltakerService } from '../api/services/deltakerService';
+import { SøknadContextData } from '../søknad/context/SøknadContext';
+import { deltakelseErÅpenForRapportering, isDeltakelseSøktFor } from '../utils/deltakelserUtils';
 
-export type InitialData = {
-    søker: Søker;
-    alleDeltakelser: Deltakelse[];
-    deltakelserSøktFor: Deltakelse[];
-    deltakelserIkkeSøktFor: Deltakelse[];
-};
+export type InitialData = SøknadContextData;
 
 export const useInitialData = () => {
     const [state, setState] = useState<InitialData>();
@@ -18,10 +14,13 @@ export const useInitialData = () => {
     const fetchInitialData = async () => {
         const søker = await fetchSøker();
         const deltakelser = await deltakerService.getDeltakelser();
+        const deltakelserSøktFor = deltakelser.filter(isDeltakelseSøktFor);
+
         setState({
             søker,
             alleDeltakelser: deltakelser,
-            deltakelserSøktFor: deltakelser.filter((d) => d.harSøkt),
+            deltakelserSøktFor,
+            deltakelserÅpenForRapportering: deltakelserSøktFor.filter(deltakelseErÅpenForRapportering),
             deltakelserIkkeSøktFor: deltakelser.filter((d) => !d.harSøkt),
         });
         setIsLoading(false);

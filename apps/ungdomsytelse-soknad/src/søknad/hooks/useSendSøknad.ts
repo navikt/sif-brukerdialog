@@ -19,7 +19,7 @@ export const useSendSøknad = () => {
                 setSendSøknadError(error);
                 setIsSubmitting(false);
             });
-        await deltakerService.markerSomSøkt(apiData.søknadId);
+        await deltakerService.putMarkerHarSøkt(apiData.søknadId);
     };
 
     const onSøknadSendSuccess = async () => {
