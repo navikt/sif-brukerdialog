@@ -1,9 +1,9 @@
 FROM node:20.12-alpine AS base
 
-ARG APP="ungdomsytelse-soknad"
+ARG APP="ungdomsytelse-deltaker"
 ARG SERVER="server"
 
-ENV SCOPE=@navikt/ungdomsytelse-soknad
+ENV SCOPE=@navikt/ungdomsytelse-deltaker
 
 RUN apk fix \
     && apk add --no-cache --update libc6-compat tini \

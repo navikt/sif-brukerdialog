@@ -1,8 +1,8 @@
 {
-    "app": "ungdomsytelse-soknad",
+    "app": "ungdomsytelse-deltaker",
     "namespace": "dusseldorf",
     "team": "dusseldorf",
-    "ingresses": ["https://ungdomsytelse-soknad.intern.dev.nav.no"],
+    "ingresses": ["https://ungdomsytelse-deltaker.intern.dev.nav.no"],
     "livenessPath": "/internal/health/isAlive",
     "readinessPath": "/internal/health/isReady",
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
@@ -27,7 +27,7 @@
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
         "SIF_PUBLIC_DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false",
         "SIF_PUBLIC_FEATURE_NYNORSK": "on",
-        "SIF_PUBLIC_LOGIN_URL": "https://ungdomsytelse-soknad.intern.dev.nav.no/oauth2/login?redirect=/ungdomsytelse-deltaker",
+        "SIF_PUBLIC_LOGIN_URL": "https://ungdomsytelse-deltaker.intern.dev.nav.no/oauth2/login?redirect=/ungdomsytelse-deltaker",
         "SIF_PUBLIC_MINSIDE_URL": "https://www.intern.dev.nav.no/minside",
 
         "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/api/brukerdialog",

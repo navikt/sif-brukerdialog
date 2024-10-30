@@ -1,5 +1,5 @@
 {
-    "name": "@navikt/ungdomsytelse-soknad",
+    "name": "@navikt/ungdomsytelse-deltaker",
     "type": "module",
     "private": true,
     "version": "0.3.2",
