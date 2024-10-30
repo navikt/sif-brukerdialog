@@ -20,7 +20,7 @@ on:
                     - pleiepenger-sykt-barn
                     - sif-demo-app
                     - sif-ettersending
-                    - ungdomsytelse-soknad
+                    - ungdomsytelse-deltaker
                     - ungdomsytelse-veileder
                 required: true
 
