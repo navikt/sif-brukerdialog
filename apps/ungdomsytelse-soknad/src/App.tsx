@@ -41,11 +41,8 @@ const App = () => {
             amplitudeApiKey={SIF_PUBLIC_AMPLITUDE_API_KEY}>
             <SoknadApplicationCommonRoutes
                 contentRoutes={[
-                    <Route index key="redirect" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
+                    <Route index key="redirect" element={<Navigate to={SøknadRoutes.SOKNAD_ROOT} />} />,
                     <Route path={SøknadRoutes.SOKNAD_ROOT} key="soknad" element={<Søknad />} />,
-                    <Route path={SøknadRoutes.VELKOMMEN} key="soknad" element={<Søknad />} />,
-                    <Route path={SøknadRoutes.IKKE_TILGANG} key="ikke-tilgang" element={<>Ikke tilgang</>} />,
-                    <Route path="*" key="ukjent" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
                 ]}
             />
         </SoknadApplication>
