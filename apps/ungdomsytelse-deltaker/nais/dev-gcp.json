@@ -18,7 +18,7 @@
         "ENV": "dev",
         "APP_VERSION": "dev",
         "NODE_ENV": "development",
-        "PUBLIC_PATH": "/",
+        "PUBLIC_PATH": "/ungdomsytelse-deltaker",
         "NPM_CONFIG_CACHE": "/tmp",
 
         "SIF_PUBLIC_AMPLITUDE_API_KEY": "default",
