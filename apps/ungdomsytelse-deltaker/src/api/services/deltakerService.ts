@@ -1,16 +1,15 @@
 import getSentryLoggerForApp from '@navikt/sif-common-sentry';
 import { ungDeltakelseOpplyserApiClient } from '../apiClient';
-import { deltakelserResponseSchema } from '../schemas/deltakelserSchema';
+import { deltakelserSchema } from '../schemas/deltakelserSchema';
 import { Deltakelse, PeriodeMedInntekt } from '../types';
 
 const getDeltakelser = async (): Promise<Deltakelse[]> => {
     const response = await ungDeltakelseOpplyserApiClient.get(`/deltakelse/register/hent/alle`);
     try {
-        const deltakelse = deltakelserResponseSchema.parse(response.data);
-        return deltakelse;
+        return deltakelserSchema.parse(response.data);
     } catch (e) {
         getSentryLoggerForApp('sif-common', []).logError('ZOD parse error', e);
-        throw e;
+        return Promise.reject(e);
     }
 };
 

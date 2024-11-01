@@ -1,11 +1,11 @@
 import { z } from 'zod';
-import { søknadApiDataSchema } from '../schemas/søknadApiDataSchema';
-import { deltakelseSchema, deltakelseSøktForSchema } from '../schemas/deltakelseSchema';
-import { deltakelserResponseSchema } from '../schemas/deltakelserSchema';
+import { deltakelserSchema } from '../schemas/deltakelserSchema';
+import { deltakelseSchema, rapporteringsperiodeSchema } from '../schemas/deltakelseSchema';
 import { periodeMedInntektSchema } from '../schemas/periodeMedInntektSchema';
+import { søknadApiDataSchema } from '../schemas/søknadApiDataSchema';
 
-export type SøknadApiData = z.infer<typeof søknadApiDataSchema>;
 export type Deltakelse = z.infer<typeof deltakelseSchema>;
-export type DeltakelseSøktFor = z.infer<typeof deltakelseSøktForSchema>;
-export type Deltakelser = z.infer<typeof deltakelserResponseSchema>;
+export type Deltakelser = z.infer<typeof deltakelserSchema>;
 export type PeriodeMedInntekt = z.infer<typeof periodeMedInntektSchema>;
+export type Rapporteringsperiode = z.infer<typeof rapporteringsperiodeSchema>;
+export type SøknadApiData = z.infer<typeof søknadApiDataSchema>;

@@ -1,20 +1,16 @@
 import { Alert, BodyShort, Box, Heading, VStack } from '@navikt/ds-react';
-import { DeltakelseSøktFor } from '../../api/types';
-import { dateRangeFormatter } from '@navikt/sif-common-utils';
+import { dateFormatter, dateRangeFormatter } from '@navikt/sif-common-utils';
+import { Deltakelse } from '../../api/types';
 import { useAppIntl } from '../../i18n';
-import { DateRange } from '@navikt/sif-common-formik-ds';
-import InntektsrapporteringForm from './InnteksrapporteringForm';
 import { getMånederForInnteksrapportering } from '../../utils/deltakelserUtils';
+import InntektsrapporteringForm from './InnteksrapporteringForm';
 
 interface Props {
-    deltakelse: DeltakelseSøktFor;
+    deltakelse: Deltakelse;
 }
 
 const Inntektsrapportering = ({ deltakelse }: Props) => {
-    const periode: DateRange = {
-        from: deltakelse.fraOgMed,
-        to: deltakelse.tilOgMed,
-    };
+    const { from, to } = deltakelse.programPeriode;
     const { locale } = useAppIntl();
     const månederEnKanRapportereFor = getMånederForInnteksrapportering(deltakelse);
     return (
@@ -23,7 +19,13 @@ const Inntektsrapportering = ({ deltakelse }: Props) => {
                 Inntektsrapportering
             </Heading>
             <VStack gap="6">
-                <BodyShort>Periode {dateRangeFormatter.getDateRangeText(periode, locale)}</BodyShort>
+                <BodyShort>
+                    {to ? (
+                        <>Periode {dateRangeFormatter.getDateRangeText({ from, to }, locale)}</>
+                    ) : (
+                        <>Fra {dateFormatter.compact(from)}</>
+                    )}
+                </BodyShort>
                 {månederEnKanRapportereFor.length > 0 ? (
                     <InntektsrapporteringForm deltakelse={deltakelse} />
                 ) : (

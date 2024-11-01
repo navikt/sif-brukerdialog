@@ -28,7 +28,7 @@ const initialValues: Partial<FormValues> = {};
 
 const DeltakelseForm = ({ deltakelse, søker, onClose, onSøknadSendt }: Props) => {
     const { intl } = useAppIntl();
-    const { fraOgMed, tilOgMed } = deltakelse;
+    const { programPeriode } = deltakelse;
     const { isSubmitting, sendSøknad, sendSøknadError, søknadSendt } = useSendSøknad();
 
     return søknadSendt ? (
@@ -54,8 +54,8 @@ const DeltakelseForm = ({ deltakelse, søker, onClose, onSøknadSendt }: Props) 
             onSubmit={async (values) => {
                 const data: SøknadApiData = {
                     søknadId: deltakelse.id,
-                    fraOgMed: dateToISODate(deltakelse.fraOgMed),
-                    tilOgMed: deltakelse.tilOgMed ? dateToISODate(deltakelse.tilOgMed) : undefined,
+                    fraOgMed: dateToISODate(deltakelse.programPeriode.from),
+                    tilOgMed: deltakelse.programPeriode.to ? dateToISODate(deltakelse.programPeriode.to) : undefined,
                     harBekreftetOpplysninger: values.harBekreftetOpplysninger,
                     harForståttRettigheterOgPlikter: true,
                     språk: 'nb',
@@ -76,9 +76,9 @@ const DeltakelseForm = ({ deltakelse, søker, onClose, onSøknadSendt }: Props) 
                             <ShadowBox>
                                 <FormLayout.Questions>
                                     <FormLayout.SectionHeading>
-                                        {tilOgMed
-                                            ? `Delta i perioden ${dateRangeFormatter.getDateRangeText({ from: fraOgMed, to: tilOgMed }, 'nb')}`
-                                            : `Delta fra ${dateFormatter.compact(fraOgMed)}`}
+                                        {programPeriode.to
+                                            ? `Delta i perioden ${dateRangeFormatter.getDateRangeText({ from: programPeriode.from, to: programPeriode.to }, 'nb')}`
+                                            : `Delta fra ${dateFormatter.compact(programPeriode.from)}`}
                                     </FormLayout.SectionHeading>
 
                                     <BodyShort>

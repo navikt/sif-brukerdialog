@@ -84,16 +84,37 @@ const startExpressServer = () => {
             {
                 id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0',
                 deltakerIdent: '56857102105',
-                fraOgMed: '2024-08-15',
-                tilOgMed: '2024-12-31',
+                programperiodeFraOgMed: '2024-08-15',
+                programperiodeTilOgMed: '2024-12-31',
                 harSøkt: true,
+                rapporteringsPerioder: [
+                    {
+                        fraOgMed: '2024-08-15',
+                        tilOgMed: '2024-08-31',
+                        harSøkt: true,
+                        inntekt: 50,
+                    },
+                    {
+                        fraOgMed: '2024-09-01',
+                        tilOgMed: '2024-09-30',
+                        harSøkt: true,
+                        inntekt: 20000,
+                    },
+                    {
+                        fraOgMed: '2024-10-01',
+                        tilOgMed: '2024-10-31',
+                        harSøkt: false,
+                        inntekt: undefined,
+                    },
+                ],
             },
             {
                 id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab2',
                 deltakerIdent: '56857102105',
-                fraOgMed: '2025-01-01',
-                tilOgMed: '2025-04-01',
-                harSøkt: true,
+                programperiodeFraOgMed: '2025-01-01',
+                programperiodeTilOgMed: '2025-04-01',
+                harSøkt: false,
+                rapporteringsPerioder: [],
             },
         ];
         setTimeout(() => {

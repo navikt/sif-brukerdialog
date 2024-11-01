@@ -1,11 +1,11 @@
 import { Box, Heading, VStack } from '@navikt/ds-react';
-import { DeltakelseSøktFor } from '../../api/types';
 import { getMånederForInnteksrapportering } from '../../utils/deltakelserUtils';
 import InntektEnMånedForm from './InntektEnMånedForm';
 import { FormLayout } from '@navikt/sif-common-ui';
+import { Deltakelse } from '../../api/types';
 
 interface Props {
-    deltakelse: DeltakelseSøktFor;
+    deltakelse: Deltakelse;
 }
 
 const InntektsrapporteringForm = ({ deltakelse }: Props) => {
