@@ -21,7 +21,7 @@ import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import KursperiodeListAndDialog from './kursperiode/KursperiodeListAndDialog';
-import { getKursStepInitialValues, getKursSøknadsdataFromFormValues } from './kursStepUtils';
+import { getKursholderById, getKursStepInitialValues, getKursSøknadsdataFromFormValues } from './kursStepUtils';
 
 export enum KursFormFields {
     kursholderId = 'kursholderId',
@@ -81,6 +81,7 @@ const KursStep = () => {
                 initialValues={getKursStepInitialValues(søknadsdata, stepFormValues[stepId])}
                 onSubmit={handleSubmit}
                 renderForm={({ values }) => {
+                    const valgtKursholder = getKursholderById(kursholdere, values[KursFormFields.kursholderId]);
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -115,6 +116,12 @@ const KursStep = () => {
                                                 <option value={'annen'}>Annen helseinstitusjon</option>
                                             </optgroup>
                                         </Select>
+
+                                        {valgtKursholder && !valgtKursholder.godkjent && (
+                                            <Alert variant="info">
+                                                {valgtKursholder.navn} er ikke godkjent. Mer informasjon følger ...
+                                            </Alert>
+                                        )}
 
                                         {values[KursFormFields.kursholderId] === 'annen' && (
                                             <Alert variant="info">

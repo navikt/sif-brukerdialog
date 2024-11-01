@@ -51,6 +51,10 @@ const sortKursperiode = (a: Kursperiode, b: Kursperiode) => {
     return dayjs(a.periode.from).isBefore(dayjs(b.periode.from)) ? -1 : 1;
 };
 
+export const getKursholderById = (kursholdere: Kursholder[], id?: string): Kursholder | undefined => {
+    return id ? kursholdere.find((k) => k.id === id) : undefined;
+};
+
 export const getKursSøknadsdataFromFormValues = (
     { kursholderId, arbeiderIKursperiode, kursperioder }: KursFormValues,
     kursholdere: Kursholder[],
