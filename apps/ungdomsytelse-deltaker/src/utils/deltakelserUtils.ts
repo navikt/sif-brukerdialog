@@ -22,7 +22,7 @@ export const getMånederForInnteksrapportering = (deltakelse: Deltakelse): DateR
         .map((periode) => {
             return {
                 from: periode.from,
-                to: dayjs.min([dayjs(periode.to), dayjs()]).toDate(),
+                to: dayjs(periode.to).endOf('month').toDate(),
             };
         });
 };
