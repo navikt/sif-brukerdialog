@@ -53,7 +53,7 @@ const DeltakelseForm = ({ deltakelse, søker, onClose, onSøknadSendt }: Props) 
             initialValues={initialValues}
             onSubmit={async (values) => {
                 const data: SøknadApiData = {
-                    søknadId: deltakelse.id,
+                    deltakelseId: deltakelse.deltakelseId,
                     fraOgMed: dateToISODate(deltakelse.programPeriode.from),
                     tilOgMed: deltakelse.programPeriode.to ? dateToISODate(deltakelse.programPeriode.to) : undefined,
                     harBekreftetOpplysninger: values.harBekreftetOpplysninger,

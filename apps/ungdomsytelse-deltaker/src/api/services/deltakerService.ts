@@ -17,9 +17,9 @@ const putMarkerHarSøkt = async (deltakelseId: string): Promise<void> => {
     return await ungDeltakelseOpplyserApiClient.put(`/deltakelse/register/${deltakelseId}/marker-har-sokt`);
 };
 
-const rapporterInntekt = async (deltakelseId: string, periodeMedInntekt: PeriodeMedInntekt): Promise<void> => {
+const rapporterInntekt = async (periodeMedInntekt: PeriodeMedInntekt): Promise<void> => {
     return await ungDeltakelseOpplyserApiClient.post(
-        `/deltakelse/register/${deltakelseId}/registrer-inntekt-i-periode`,
+        `/deltakelse/register/registrer-inntekt-i-periode`,
         periodeMedInntekt,
     );
 };

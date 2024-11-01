@@ -1,10 +1,10 @@
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { getDateToday } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
-import { Deltakelse, Rapporteringsperiode } from '../api/types';
+import { Deltakelse } from '../api/types';
 
-export const periodeKanRapporteresFor = ({ harSøkt, periode }: Rapporteringsperiode): boolean => {
-    return harSøkt && dayjs(periode.from).isBefore(getDateToday());
+export const periodeKanRapporteresFor = (periode: DateRange): boolean => {
+    return dayjs(periode.from).isBefore(getDateToday());
 };
 
 export const deltakelseErÅpenForRapportering = (deltakelse: Deltakelse) => {
@@ -17,12 +17,10 @@ export const getMånederForInnteksrapportering = (deltakelse: Deltakelse): DateR
         return [];
     }
     const perioder: DateRange[] = rapporteringsPerioder.map((r) => r.periode);
-    return perioder
-        .filter((periode) => periodeKanRapporteresFor({ harSøkt: true, periode }))
-        .map((periode) => {
-            return {
-                from: periode.from,
-                to: dayjs(periode.to).endOf('month').toDate(),
-            };
-        });
+    return perioder.filter(periodeKanRapporteresFor).map((periode) => {
+        return {
+            from: periode.from,
+            to: dayjs(periode.to).endOf('month').toDate(),
+        };
+    });
 };

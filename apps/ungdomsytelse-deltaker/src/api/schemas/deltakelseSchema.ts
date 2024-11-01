@@ -7,13 +7,12 @@ import { Rapporteringsperiode } from '../types';
 const rapporteringsperiodeDTOSchema = z.object({
     fraOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
     tilOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
-    harSøkt: z.boolean(),
-    inntekt: z.number().optional(),
+    harRapportert: z.boolean(),
+    inntekt: z.number().optional().nullable(),
 });
 
 const deltakelseDTOSchema = z.object({
-    id: z.string(),
-    deltakerIdent: z.string(),
+    deltakelseId: z.string(),
     programperiodeFraOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
     programperiodeTilOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date().optional()),
     harSøkt: z.boolean(),

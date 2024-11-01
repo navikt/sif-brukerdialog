@@ -16,14 +16,14 @@ const Forside = () => {
         updateDeltakelse,
     } = useSøknadContext();
 
-    const [søktFor, setSøktFor] = useState<string[]>(deltakelserSøktFor.map((d) => d.id));
+    const [søktFor, setSøktFor] = useState<string[]>(deltakelserSøktFor.map((d) => d.deltakelseId));
 
     const handleSøknadSendt = async (deltakelse: Deltakelse) => {
-        setSøktFor([...søktFor, deltakelse.id]);
+        setSøktFor([...søktFor, deltakelse.deltakelseId]);
     };
 
     const erSøktFor = (deltakelse: Deltakelse): boolean => {
-        return søktFor.includes(deltakelse.id);
+        return søktFor.includes(deltakelse.deltakelseId);
     };
 
     const handleOnClose = async () => {
@@ -55,7 +55,7 @@ const Forside = () => {
                         <VStack gap="4">
                             {deltakelserIkkeSøktFor.map((deltakelse) => {
                                 return (
-                                    <Box key={deltakelse.id}>
+                                    <Box key={deltakelse.deltakelseId}>
                                         <DeltakelseForm
                                             søker={søker}
                                             deltakelse={deltakelse}
