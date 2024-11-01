@@ -3,32 +3,41 @@ import { fetchSøker } from '@navikt/sif-common-api';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { deltakerService } from '../api/services/deltakerService';
 import { SøknadContextData } from '../søknad/context/SøknadContext';
-import { deltakelseErÅpenForRapportering, isDeltakelseSøktFor } from '../utils/deltakelserUtils';
+import { deltakelseErÅpenForRapportering } from '../utils/deltakelserUtils';
 
 export type InitialData = SøknadContextData;
 
 export const useInitialData = () => {
-    const [state, setState] = useState<InitialData>();
+    const [initialData, setInitialData] = useState<InitialData>();
     const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [error, setError] = useState<any>();
 
     const fetchInitialData = async () => {
-        const søker = await fetchSøker();
-        const deltakelser = await deltakerService.getDeltakelser();
-        const deltakelserSøktFor = deltakelser.filter(isDeltakelseSøktFor);
+        setError(undefined);
+        try {
+            const søker = await fetchSøker();
+            const alleDeltakelser = await deltakerService.getDeltakelser();
+            const deltakelserSøktFor = alleDeltakelser.filter((d) => d.harSøkt);
+            const deltakelserIkkeSøktFor = alleDeltakelser.filter((d) => !d.harSøkt);
+            const deltakelserÅpenForRapportering = deltakelserSøktFor.filter(deltakelseErÅpenForRapportering);
 
-        setState({
-            søker,
-            alleDeltakelser: deltakelser,
-            deltakelserSøktFor,
-            deltakelserÅpenForRapportering: deltakelserSøktFor.filter(deltakelseErÅpenForRapportering),
-            deltakelserIkkeSøktFor: deltakelser.filter((d) => !d.harSøkt),
-        });
-        setIsLoading(false);
+            setInitialData({
+                søker,
+                alleDeltakelser,
+                deltakelserSøktFor,
+                deltakelserIkkeSøktFor,
+                deltakelserÅpenForRapportering,
+            });
+            setIsLoading(false);
+        } catch (e) {
+            setError(e);
+            setIsLoading(false);
+        }
     };
 
     useEffectOnce(() => {
         fetchInitialData();
     });
 
-    return { initialData: state, isLoading };
+    return { initialData, error, isLoading };
 };

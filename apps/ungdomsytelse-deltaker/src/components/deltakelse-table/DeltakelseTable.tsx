@@ -2,7 +2,6 @@ import { Table } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { Deltakelse } from '../../api/types';
 import Inntektsrapportering from '../inntektsrapportering/Inntektsrapportering';
-import { isDeltakelseSøktFor } from '../../utils/deltakelserUtils';
 
 interface Props {
     deltakelser: Deltakelse[];
@@ -21,16 +20,22 @@ const DeltakelseTable = ({ deltakelser }: Props) => {
             </Table.Header>
             <Table.Body>
                 {deltakelser.map((d) => {
-                    return isDeltakelseSøktFor(d) ? (
-                        <Table.ExpandableRow key={d.id} content={<Inntektsrapportering deltakelse={d} />}>
-                            <Table.DataCell>{dateFormatter.compact(d.fraOgMed)}</Table.DataCell>
-                            <Table.DataCell>{d.tilOgMed ? dateFormatter.compact(d.tilOgMed) : null}</Table.DataCell>
+                    const key = JSON.stringify(d.programPeriode);
+                    return d.harSøkt ? (
+                        <Table.ExpandableRow key={key} content={<Inntektsrapportering deltakelse={d} />}>
+                            <Table.DataCell>{dateFormatter.compact(d.programPeriode.from)}</Table.DataCell>
+                            <Table.DataCell>
+                                {d.programPeriode.to ? dateFormatter.compact(d.programPeriode.to) : null}
+                            </Table.DataCell>
                             <Table.DataCell>{d.harSøkt ? 'Ja' : 'Nei'}</Table.DataCell>
                         </Table.ExpandableRow>
                     ) : (
-                        <Table.Row key={d.id}>
-                            <Table.DataCell>{dateFormatter.compact(d.fraOgMed)}</Table.DataCell>
-                            <Table.DataCell>{d.tilOgMed ? dateFormatter.compact(d.tilOgMed) : null}</Table.DataCell>
+                        <Table.Row key={key}>
+                            <Table.DataCell></Table.DataCell>
+                            <Table.DataCell>{dateFormatter.compact(d.programPeriode.from)}</Table.DataCell>
+                            <Table.DataCell>
+                                {d.programPeriode.to ? dateFormatter.compact(d.programPeriode.to) : null}
+                            </Table.DataCell>
                             <Table.DataCell>{d.harSøkt ? 'Ja' : 'Nei'}</Table.DataCell>
                         </Table.Row>
                     );

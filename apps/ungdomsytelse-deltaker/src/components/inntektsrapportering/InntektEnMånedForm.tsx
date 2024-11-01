@@ -28,12 +28,12 @@ const { TextField, Form, FormikWrapper } = getTypedFormComponents<
     ValidationError
 >();
 
-const InntektEnMånedForm = ({ deltakelse, måned }: Props) => {
+const InntektEnMånedForm = ({ måned }: Props) => {
     const { rapporterInntekt, resetInntektLagret, inntektLagret, error, resetError, isSubmitting } =
         useRapporterInntekt();
 
     const onSubmit = (data: InntektFormValues) => {
-        rapporterInntekt(deltakelse.id, måned, parseInt(data.inntekt, 10));
+        rapporterInntekt(måned, parseInt(data.inntekt, 10));
     };
     const { intl } = useAppIntl();
     const månedNavn = `${dateFormatter.monthFullYear(måned.from)}`;

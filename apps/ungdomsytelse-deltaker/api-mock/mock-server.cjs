@@ -82,18 +82,84 @@ const startExpressServer = () => {
     server.get('/deltakelse/register/hent/alle', (req, res) => {
         const response = [
             {
-                id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0',
-                deltakerIdent: '56857102105',
-                fraOgMed: '2024-08-15',
-                tilOgMed: '2024-12-31',
+                id: '123',
+                programperiodeFraOgMed: '2024-07-01',
+                programperiodeTilOgMed: '2025-06-30',
                 harSøkt: true,
-            },
-            {
-                id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab2',
-                deltakerIdent: '56857102105',
-                fraOgMed: '2025-01-01',
-                tilOgMed: '2025-04-01',
-                harSøkt: true,
+                rapporteringsPerioder: [
+                    {
+                        fraOgMed: '2024-07-01',
+                        tilOgMed: '2024-07-31',
+                        harRapportert: false,
+                        inntekt: null,
+                    },
+                    {
+                        fraOgMed: '2024-08-01',
+                        tilOgMed: '2024-08-31',
+                        harRapportert: false,
+                        inntekt: null,
+                    },
+                    {
+                        fraOgMed: '2024-09-01',
+                        tilOgMed: '2024-09-30',
+                        harRapportert: false,
+                        inntekt: null,
+                    },
+                    {
+                        fraOgMed: '2024-10-01',
+                        tilOgMed: '2024-10-31',
+                        harRapportert: false,
+                        inntekt: null,
+                    },
+                    {
+                        fraOgMed: '2024-11-01',
+                        tilOgMed: '2024-11-30',
+                        harRapportert: false,
+                        inntekt: null,
+                    },
+                    {
+                        fraOgMed: '2024-12-01',
+                        tilOgMed: '2024-12-31',
+                        harRapportert: false,
+                        inntekt: null,
+                    },
+                    {
+                        fraOgMed: '2025-01-01',
+                        tilOgMed: '2025-01-31',
+                        harRapportert: false,
+                        inntekt: null,
+                    },
+                    {
+                        fraOgMed: '2025-02-01',
+                        tilOgMed: '2025-02-28',
+                        harRapportert: false,
+                        inntekt: null,
+                    },
+                    {
+                        fraOgMed: '2025-03-01',
+                        tilOgMed: '2025-03-31',
+                        harRapportert: false,
+                        inntekt: null,
+                    },
+                    {
+                        fraOgMed: '2025-04-01',
+                        tilOgMed: '2025-04-30',
+                        harRapportert: false,
+                        inntekt: null,
+                    },
+                    {
+                        fraOgMed: '2025-05-01',
+                        tilOgMed: '2025-05-31',
+                        harRapportert: false,
+                        inntekt: null,
+                    },
+                    {
+                        fraOgMed: '2025-06-01',
+                        tilOgMed: '2025-06-30',
+                        harRapportert: false,
+                        inntekt: null,
+                    },
+                ],
             },
         ];
         setTimeout(() => {

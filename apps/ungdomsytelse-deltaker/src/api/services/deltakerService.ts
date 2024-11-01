@@ -1,26 +1,25 @@
 import getSentryLoggerForApp from '@navikt/sif-common-sentry';
 import { ungDeltakelseOpplyserApiClient } from '../apiClient';
-import { deltakelserResponseSchema } from '../schemas/deltakelserSchema';
+import { deltakelserSchema } from '../schemas/deltakelserSchema';
 import { Deltakelse, PeriodeMedInntekt } from '../types';
 
 const getDeltakelser = async (): Promise<Deltakelse[]> => {
     const response = await ungDeltakelseOpplyserApiClient.get(`/deltakelse/register/hent/alle`);
     try {
-        const deltakelse = deltakelserResponseSchema.parse(response.data);
-        return deltakelse;
+        return deltakelserSchema.parse(response.data);
     } catch (e) {
         getSentryLoggerForApp('sif-common', []).logError('ZOD parse error', e);
-        throw e;
+        return Promise.reject(e);
     }
 };
 
-const putMarkerHarSøkt = async (deltakelseId: string): Promise<void> => {
-    return await ungDeltakelseOpplyserApiClient.put(`/deltakelse/register/${deltakelseId}/marker-har-sokt`);
+const putMarkerHarSøkt = async (id: string): Promise<void> => {
+    return await ungDeltakelseOpplyserApiClient.put(`/deltakelse/register/${id}/marker-har-sokt`);
 };
 
-const rapporterInntekt = async (deltakelseId: string, periodeMedInntekt: PeriodeMedInntekt): Promise<void> => {
+const rapporterInntekt = async (periodeMedInntekt: PeriodeMedInntekt): Promise<void> => {
     return await ungDeltakelseOpplyserApiClient.post(
-        `/deltakelse/register/${deltakelseId}/registrer-inntekt-i-periode`,
+        `/deltakelse/register/registrer-inntekt-i-periode`,
         periodeMedInntekt,
     );
 };

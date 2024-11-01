@@ -9,12 +9,12 @@ export const useRapporterInntekt = () => {
     const [inntektLagret, setInntektLagret] = useState(false);
     const [error, setError] = useState<string>();
 
-    const rapporterInntekt = async (deltakelseId: string, periode: DateRange, inntekt: number) => {
+    const rapporterInntekt = async (periode: DateRange, inntekt: number) => {
         setError(undefined);
         setIsSubmitting(true);
         setInntektLagret(false);
         return await deltakerService
-            .rapporterInntekt(deltakelseId, {
+            .rapporterInntekt({
                 fraOgMed: dateToISODate(periode.from),
                 tilOgMed: dateToISODate(periode.to),
                 inntekt: inntekt,

@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
-import { Deltakelse, DeltakelseSøktFor } from '../../api/types';
 import { Søker } from '@navikt/sif-common-api';
-import { isDeltakelseSøktFor, getDeltakelserÅpenForRapportering } from '../../utils/deltakelserUtils';
+import { Deltakelse } from '../../api/types';
+import { deltakelseErÅpenForRapportering } from '../../utils/deltakelserUtils';
 
 interface SøknadContextType {
     data: SøknadContextData;
@@ -11,12 +11,11 @@ interface SøknadContextType {
 export interface SøknadContextData {
     søker: Søker;
     alleDeltakelser: Deltakelse[];
-    deltakelserSøktFor: DeltakelseSøktFor[];
+    deltakelserSøktFor: Deltakelse[];
     deltakelserIkkeSøktFor: Deltakelse[];
-    deltakelserÅpenForRapportering: DeltakelseSøktFor[];
+    deltakelserÅpenForRapportering: Deltakelse[];
 }
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 export const SøknadContext = createContext<SøknadContextType>(null!);
 
 export const useSøknadContext = (): SøknadContextType => {
@@ -38,9 +37,9 @@ export const SøknadContextProvider = ({ children, initialData }: Props) => {
         setData({
             ...data,
             alleDeltakelser: deltakelser,
-            deltakelserSøktFor: deltakelser.filter(isDeltakelseSøktFor),
-            deltakelserIkkeSøktFor: deltakelser.filter((d) => !isDeltakelseSøktFor(d)),
-            deltakelserÅpenForRapportering: getDeltakelserÅpenForRapportering(deltakelser),
+            deltakelserSøktFor: deltakelser.filter((d) => d.harSøkt),
+            deltakelserIkkeSøktFor: deltakelser.filter((d) => !d.harSøkt),
+            deltakelserÅpenForRapportering: deltakelser.filter(deltakelseErÅpenForRapportering),
         });
     };
 
