@@ -13,8 +13,8 @@ const getDeltakelser = async (): Promise<Deltakelse[]> => {
     }
 };
 
-const putMarkerHarSøkt = async (deltakelseId: string): Promise<void> => {
-    return await ungDeltakelseOpplyserApiClient.put(`/deltakelse/register/${deltakelseId}/marker-har-sokt`);
+const putMarkerHarSøkt = async (id: string): Promise<void> => {
+    return await ungDeltakelseOpplyserApiClient.put(`/deltakelse/register/${id}/marker-har-sokt`);
 };
 
 const rapporterInntekt = async (periodeMedInntekt: PeriodeMedInntekt): Promise<void> => {

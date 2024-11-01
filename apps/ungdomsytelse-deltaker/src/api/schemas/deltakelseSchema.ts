@@ -12,7 +12,7 @@ const rapporteringsperiodeDTOSchema = z.object({
 });
 
 const deltakelseDTOSchema = z.object({
-    deltakelseId: z.string(),
+    id: z.string(),
     programperiodeFraOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date()),
     programperiodeTilOgMed: z.preprocess((val) => parseMaybeDateStringToDate(val), z.date().optional()),
     harSøkt: z.boolean(),

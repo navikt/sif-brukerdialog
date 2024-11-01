@@ -82,7 +82,7 @@ const startExpressServer = () => {
     server.get('/deltakelse/register/hent/alle', (req, res) => {
         const response = [
             {
-                deltakelseId: '123',
+                id: '123',
                 programperiodeFraOgMed: '2024-07-01',
                 programperiodeTilOgMed: '2025-06-30',
                 harSøkt: true,
