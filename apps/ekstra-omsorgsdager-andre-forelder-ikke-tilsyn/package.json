@@ -59,7 +59,7 @@
         "@babel/preset-react": "7.25.9",
         "@playwright/test": "1.48.2",
         "@sif/eslint-config": "*",
-        "@storybook/react-vite": "8.3.6",
+        "@storybook/react-vite": "8.4.0",
         "@testing-library/dom": "10.4.0",
         "@testing-library/react": "16.0.1",
         "@types/object-hash": "3.0.6",
