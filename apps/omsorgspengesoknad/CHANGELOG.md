@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.33.5
+
+### Patch Changes
+
+-   Kun bruke key når en logger søknadSendt til amplitude
+
 ## 1.33.4
 
 ### Patch Changes

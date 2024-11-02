@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.19.5
+
+### Patch Changes
+
+-   Kun bruke key når en logger søknadSendt til amplitude
+
 ## 1.19.4
 
 ### Patch Changes

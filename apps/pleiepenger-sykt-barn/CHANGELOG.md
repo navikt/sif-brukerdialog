@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.4.5
+
+### Patch Changes
+
+-   Kun bruke key når en logger søknadSendt til amplitude
+
 ## 4.4.4
 
 ### Patch Changes

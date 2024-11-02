@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.22.5
+
+### Patch Changes
+
+-   Kun bruke key når en logger søknadSendt til amplitude
+
 ## 2.22.4
 
 ### Patch Changes
