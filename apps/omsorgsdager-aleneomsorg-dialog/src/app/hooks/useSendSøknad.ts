@@ -33,7 +33,7 @@ export const useSendSøknad = () => {
     };
 
     const onSøknadSendSuccess = async () => {
-        await logSoknadSent(OmsorgsdagerAleneomsorgApp.navn, locale);
+        await logSoknadSent(OmsorgsdagerAleneomsorgApp.key, locale);
         slettMellomlagring();
         setIsSubmitting(false);
         dispatch(actionsCreator.setSøknadSendt());

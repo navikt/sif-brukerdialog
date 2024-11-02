@@ -32,7 +32,7 @@ export const useSendSøknad = () => {
     };
 
     const onSøknadSendSuccess = async (arbeidsgivere: ArbeidsgiverDetaljer[]) => {
-        await logSoknadSent(OmsorgspengerutbetalingArbeidstakerApp.navn, locale);
+        await logSoknadSent(OmsorgspengerutbetalingArbeidstakerApp.key, locale);
         mellomlagringService.purge();
         setIsSubmitting(false);
         dispatch(actionsCreator.setSøknadKvitteringInfo(arbeidsgivere));
