@@ -78,7 +78,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
         setSendingInProgress(true);
         try {
             await sendApplication(apiValues);
-            await logSoknadSent(PleiepengerSyktBarnApp.navn, locale);
+            await logSoknadSent(PleiepengerSyktBarnApp.key, locale);
             if (harArbeidMenIngenFravær) {
                 await logSenderInnSøknadMedIngenFravær();
             }
