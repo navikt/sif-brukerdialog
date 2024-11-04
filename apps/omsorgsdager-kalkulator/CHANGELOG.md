@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.9.0
+
+### Minor Changes
+
+-   Oppdatere image til gcr.io/distroless/nodejs18-debian12:nonroot
+
 ## 3.8.27
 
 ### Patch Changes

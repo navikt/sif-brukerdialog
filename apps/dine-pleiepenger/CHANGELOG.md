@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 1.7.0
+
+### Minor Changes
+
+-   Oppdatere image til gcr.io/distroless/nodejs18-debian12:nonroot
+
 ## 1.6.31
 
 ### Patch Changes
