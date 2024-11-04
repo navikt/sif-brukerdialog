@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.4.7
+
+### Patch Changes
+
+-   Oppdatere node image til node:20.18-alpine
+
 ## 4.4.6
 
 ### Patch Changes
