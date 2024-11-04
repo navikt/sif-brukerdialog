@@ -165,7 +165,7 @@ const Soknad = ({ søker, barn, søknadstype, soknadTempStorage: tempStorage }: 
         try {
             await sendSoknad(apiValues);
             await soknadTempStorage.purge(søknadstype);
-            await logSoknadSent(søknadstype, locale);
+            await logSoknadSent(`ettersendelse_${søknadstype}`, locale);
             await logInfo({
                 type: 'Søknad sendt',
                 'Antall vedlegg sendt': apiValues.vedlegg.length,
