@@ -2,7 +2,7 @@
     "name": "@navikt/ungdomsytelse-deltaker",
     "type": "module",
     "private": true,
-    "version": "0.3.3",
+    "version": "0.3.4",
     "scripts": {
         "dev": "node ./dev-server.cjs",
         "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",

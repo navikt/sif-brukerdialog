@@ -3,7 +3,7 @@
     "description": "Fellesskjema for sykdom i familien",
     "main": "src",
     "name": "@navikt/sif-common-forms-ds",
-    "version": "12.0.3",
+    "version": "12.0.4",
     "private": true,
     "type": "module",
     "peerDependencies": {
