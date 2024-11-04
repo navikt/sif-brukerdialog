@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.19.7
+
+### Patch Changes
+
+-   Oppdatere node image til node:20.18-alpine
+
 ## 1.19.6
 
 ### Patch Changes

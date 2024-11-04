@@ -1,5 +1,11 @@
 # @navikt/sif-demo-app
 
+## 0.2.5
+
+### Patch Changes
+
+-   Oppdatere node image til node:20.18-alpine
+
 ## 0.2.4
 
 ### Patch Changes

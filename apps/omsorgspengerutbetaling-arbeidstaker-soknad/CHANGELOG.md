@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-arbeidstaker-soknad
 
+## 1.9.7
+
+### Patch Changes
+
+-   Oppdatere node image til node:20.18-alpine
+
 ## 1.9.6
 
 ### Patch Changes

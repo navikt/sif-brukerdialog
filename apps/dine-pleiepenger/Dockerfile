@@ -1,4 +1,4 @@
-FROM gcr.io/distroless/nodejs18-debian11:nonroot
+FROM gcr.io/distroless/nodejs18-debian12:nonroot
 WORKDIR /app
 
 COPY /apps/dine-pleiepenger/next.config.js .

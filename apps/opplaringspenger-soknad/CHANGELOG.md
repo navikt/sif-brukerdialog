@@ -1,5 +1,11 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.14.17
+
+### Patch Changes
+
+-   Oppdatere node image til node:20.18-alpine
+
 ## 1.14.16
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/ungdomsytelse-søknad
 
+## 0.3.5
+
+### Patch Changes
+
+-   Oppdatere node image til node:20.18-alpine
+
 ## 0.3.4
 
 ### Patch Changes

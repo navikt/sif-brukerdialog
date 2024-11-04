@@ -1,5 +1,11 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.29.6
+
+### Patch Changes
+
+-   Oppdatere node image til node:20.18-alpine
+
 ## 1.29.5
 
 ### Patch Changes

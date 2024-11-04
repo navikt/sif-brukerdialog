@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.14.6
+
+### Patch Changes
+
+-   Oppdatere node image til node:20.18-alpine
+
 ## 2.14.5
 
 ### Patch Changes
