@@ -21,17 +21,21 @@ import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import KursperiodeListAndDialog from './kursperiode/KursperiodeListAndDialog';
-import { getKursholderById, getKursStepInitialValues, getKursSøknadsdataFromFormValues } from './kursStepUtils';
+import {
+    getOpplæringsinstitusjonById,
+    getKursStepInitialValues,
+    getKursSøknadsdataFromFormValues,
+} from './kursStepUtils';
 import { dateRangeFormatter } from '@navikt/sif-common-utils';
 
 export enum KursFormFields {
-    kursholderId = 'kursholderId',
+    opplæringsinstitusjonId = 'opplæringsinstitusjonId',
     kursperioder = 'kursperioder',
     arbeiderIKursperiode = 'arbeiderIKursperiode',
 }
 
 export interface KursFormValues {
-    [KursFormFields.kursholderId]?: string;
+    [KursFormFields.opplæringsinstitusjonId]?: string;
     [KursFormFields.kursperioder]?: Kursperiode[];
     [KursFormFields.arbeiderIKursperiode]?: YesOrNo;
 }
@@ -46,7 +50,7 @@ const KursStep = () => {
     const { intl, locale } = useAppIntl();
 
     const {
-        state: { søknadsdata, kursholdere },
+        state: { søknadsdata, opplæringsinstitusjoner },
     } = useSøknadContext();
 
     const stepId = StepId.KURS;
@@ -57,7 +61,7 @@ const KursStep = () => {
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const onValidSubmitHandler = (values) => {
-        const kursSøknadsdata = getKursSøknadsdataFromFormValues(values, kursholdere);
+        const kursSøknadsdata = getKursSøknadsdataFromFormValues(values, opplæringsinstitusjoner);
         if (kursSøknadsdata) {
             clearStepFormValues(stepId);
             return [
@@ -82,7 +86,10 @@ const KursStep = () => {
                 initialValues={getKursStepInitialValues(søknadsdata, stepFormValues[stepId])}
                 onSubmit={handleSubmit}
                 renderForm={({ values }) => {
-                    const valgtKursholder = getKursholderById(kursholdere, values[KursFormFields.kursholderId]);
+                    const valgOpplæringsinstitusjon = getOpplæringsinstitusjonById(
+                        opplæringsinstitusjoner,
+                        values[KursFormFields.opplæringsinstitusjonId],
+                    );
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -103,13 +110,15 @@ const KursStep = () => {
                                     <VStack gap={'4'}>
                                         <Select
                                             label="Velg helseinstitusjon/kompetansesenter"
-                                            name={KursFormFields.kursholderId}
+                                            name={KursFormFields.opplæringsinstitusjonId}
                                             validate={getRequiredFieldValidator()}>
                                             <option value="">Velg</option>
                                             <optgroup label="Godkjente helseinstitusjoner">
-                                                {kursholdere.map((kursholder) => (
-                                                    <option value={kursholder.id} key={kursholder.id}>
-                                                        {kursholder.navn}
+                                                {opplæringsinstitusjoner.map((opplæringsinstitusjon) => (
+                                                    <option
+                                                        value={opplæringsinstitusjon.uuid}
+                                                        key={opplæringsinstitusjon.uuid}>
+                                                        {opplæringsinstitusjon.navn}
                                                     </option>
                                                 ))}
                                             </optgroup>
@@ -118,11 +127,11 @@ const KursStep = () => {
                                             </optgroup>
                                         </Select>
 
-                                        {valgtKursholder && (
+                                        {valgOpplæringsinstitusjon && (
                                             <Alert variant="info">
-                                                {valgtKursholder.navn} er godkjent for følgende perioder:
+                                                {valgOpplæringsinstitusjon.navn} er godkjent for følgende perioder:
                                                 <List>
-                                                    {valgtKursholder.periode.map((periode, index) => (
+                                                    {valgOpplæringsinstitusjon.periode.map((periode, index) => (
                                                         <List.Item key={index}>
                                                             {dateRangeFormatter.getDateRangeText(periode, locale)}
                                                         </List.Item>
@@ -131,7 +140,7 @@ const KursStep = () => {
                                             </Alert>
                                         )}
 
-                                        {values[KursFormFields.kursholderId] === 'annen' && (
+                                        {values[KursFormFields.opplæringsinstitusjonId] === 'annen' && (
                                             <Alert variant="info">
                                                 Hvis du ikke finner institusjonen i listen over, må ...
                                             </Alert>

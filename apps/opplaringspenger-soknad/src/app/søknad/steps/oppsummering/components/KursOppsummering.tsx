@@ -11,7 +11,7 @@ interface Props {
 }
 
 const KursOppsummering = ({ onEdit, kurs }: Props) => {
-    const { kursholder, perioder } = kurs;
+    const { opplæringsinstitusjon, perioder } = kurs;
     const { locale } = useAppIntl();
     return (
         <>
@@ -25,7 +25,9 @@ const KursOppsummering = ({ onEdit, kurs }: Props) => {
                 <FormSummary.Answers>
                     <FormSummary.Answer>
                         <FormSummary.Label>Kursholder</FormSummary.Label>
-                        <FormSummary.Value>{kursholder === 'annen' ? 'Annen' : kursholder.navn}</FormSummary.Value>
+                        <FormSummary.Value>
+                            {opplæringsinstitusjon === 'annen' ? 'Annen' : opplæringsinstitusjon.navn}
+                        </FormSummary.Value>
                     </FormSummary.Answer>
                     <FormSummary.Answer>
                         <FormSummary.Label>Kursperioder</FormSummary.Label>

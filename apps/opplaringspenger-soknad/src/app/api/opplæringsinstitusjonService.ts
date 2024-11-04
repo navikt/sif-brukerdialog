@@ -1,5 +1,5 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { Kursholder } from '../types/Kursholder';
+import { Opplæringsinstitusjon } from '../types/Opplæringsinstitusjon';
 import dayjs from 'dayjs';
 
 const generateRandomPeriod = (startDate: Date, months: number) => {
@@ -7,10 +7,10 @@ const generateRandomPeriod = (startDate: Date, months: number) => {
     return { from: startDate, to: endDate };
 };
 
-const mockKursholder = {
-    kursholdere: <Kursholder[]>[
+const mockOpplæringsinstitusjon = {
+    opplæringsinstitusjoner: <Opplæringsinstitusjon[]>[
         {
-            id: '1',
+            uuid: '1',
             navn: 'Hurdal syn- og mestringssenter',
             periode: [
                 generateRandomPeriod(ISODateToDate('2021-01-01'), 12),
@@ -18,13 +18,13 @@ const mockKursholder = {
             ],
         },
         {
-            id: '2',
+            uuid: '2',
             navn: 'Solvik syn- og mestringssenter',
             godkjent: true,
             periode: [generateRandomPeriod(ISODateToDate('2022-01-01'), 6)],
         },
         {
-            id: '3',
+            uuid: '3',
             navn: 'Evenes syn- og mestringssenter',
             godkjent: true,
             periode: [
@@ -33,13 +33,13 @@ const mockKursholder = {
             ],
         },
         {
-            id: '4',
+            uuid: '4',
             navn: 'Oslo læringssenter',
             godkjent: true,
             periode: [generateRandomPeriod(ISODateToDate('2021-06-01'), 12)],
         },
         {
-            id: '5',
+            uuid: '5',
             navn: 'Bergen utviklingssenter',
             godkjent: true,
             periode: [
@@ -48,13 +48,13 @@ const mockKursholder = {
             ],
         },
         {
-            id: '6',
+            uuid: '6',
             navn: 'Trondheim kompetansesenter',
             godkjent: true,
             periode: [generateRandomPeriod(ISODateToDate('2021-09-01'), 12)],
         },
         {
-            id: '7',
+            uuid: '7',
             navn: 'Stavanger helsesenter',
             godkjent: true,
             periode: [
@@ -63,13 +63,13 @@ const mockKursholder = {
             ],
         },
         {
-            id: '8',
+            uuid: '8',
             navn: 'Drammen veiledningssenter',
             godkjent: true,
             periode: [generateRandomPeriod(ISODateToDate('2021-11-01'), 12)],
         },
         {
-            id: '9',
+            uuid: '9',
             navn: 'Kristiansand opplæringssenter',
             godkjent: true,
             periode: [
@@ -78,21 +78,22 @@ const mockKursholder = {
             ],
         },
         {
-            id: '10',
+            uuid: '10',
             navn: 'Tromsø mestringssenter',
             godkjent: true,
             periode: [generateRandomPeriod(ISODateToDate('2021-02-01'), 12)],
         },
-        // Add more kursholdere as needed
     ],
 };
 
-export const kursholderService = {
-    fetch: async (): Promise<Kursholder[]> => {
+export const opplæringsinstitusjonService = {
+    fetch: async (): Promise<Opplæringsinstitusjon[]> => {
         try {
-            return Promise.resolve(mockKursholder.kursholdere.sort((a, b) => a.navn.localeCompare(b.navn)));
+            return Promise.resolve(
+                mockOpplæringsinstitusjon.opplæringsinstitusjoner.sort((a, b) => a.navn.localeCompare(b.navn)),
+            );
         } catch {
-            return Promise.resolve(mockKursholder.kursholdere);
+            return Promise.resolve(mockOpplæringsinstitusjon.opplæringsinstitusjoner);
         }
     },
 };

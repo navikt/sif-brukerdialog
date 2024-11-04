@@ -1,6 +1,6 @@
 import { ArbeidstidFormValues } from '../søknad/steps/arbeidstid/ArbeidstidStep';
 import { Arbeidsgiver } from './Arbeidsgiver';
-import { Kursholder } from './Kursholder';
+import { Opplæringsinstitusjon } from './Opplæringsinstitusjon';
 import { KvitteringInfo } from './KvitteringInfo';
 import { RegistrertBarn } from './RegistrertBarn';
 import { StepId } from './StepId';
@@ -19,7 +19,7 @@ export interface SøknadContextState {
     versjon: string;
     søker: Søker;
     registrerteBarn: RegistrertBarn[];
-    kursholdere: Kursholder[];
+    opplæringsinstitusjoner: Opplæringsinstitusjon[];
     frilansoppdrag?: Arbeidsgiver[];
     søknadsdata: Søknadsdata;
     tempFormData?: TempFormValues;

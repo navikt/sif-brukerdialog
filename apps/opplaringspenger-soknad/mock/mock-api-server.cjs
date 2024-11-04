@@ -53,7 +53,7 @@ const existsSync = (path) => fs.existsSync(path);
 const søkerMock = require('./data/søker-mock.json');
 const barnMock = require('./data/barn-mock.json');
 const arbeidsgivereMock = require('./data/arbeidsgiver-mock.json');
-const kursholderMock = require('./data/kursholder-mock.json');
+const opplæringsinstitusjonMock = require('./data/opplæringsinstitusjon-mock.json');
 
 const startExpressServer = () => {
     const port = process.env.PORT || 8099;
@@ -79,7 +79,7 @@ const startExpressServer = () => {
 
     server.get('/oppslag/kursholder', (req, res) => {
         setTimeout(() => {
-            res.send(kursholderMock);
+            res.send(opplæringsinstitusjonMock);
         }, 200);
     });
 

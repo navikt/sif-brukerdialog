@@ -45,7 +45,7 @@ export const mellomlagringService = {
             frilansoppdrag,
             søknadRoute,
             søknadSendt,
-            kursholdere: [],
+            opplæringsinstitusjoner: [],
             registrerteBarn: [],
             versjon: SØKNAD_VERSJON,
         });

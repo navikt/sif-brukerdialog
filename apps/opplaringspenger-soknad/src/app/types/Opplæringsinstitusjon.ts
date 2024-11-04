@@ -5,10 +5,10 @@ export const DateRangeSchema = z.object({
     to: z.date(),
 });
 
-export const KursholderSchema = z.object({
-    id: z.string(),
+export const OpplæringsinstitusjonSchema = z.object({
+    uuid: z.string(),
     navn: z.string(),
     periode: z.array(DateRangeSchema),
 });
 
-export type Kursholder = z.infer<typeof KursholderSchema>;
+export type Opplæringsinstitusjon = z.infer<typeof OpplæringsinstitusjonSchema>;

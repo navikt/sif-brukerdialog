@@ -2,9 +2,12 @@ import { dateRangeToISODateRange, dateToISODate } from '@navikt/sif-common-utils
 import { KursApiData } from '../../types/søknadApiData/SøknadApiData';
 import { KursSøknadsdata } from '../../types/søknadsdata/KursSøknadsdata';
 
-export const getKursApiDataFromSøknadsdata = ({ kursholder, kursperioder }: KursSøknadsdata): KursApiData => {
+export const getKursApiDataFromSøknadsdata = ({
+    opplæringsinstitusjon,
+    kursperioder,
+}: KursSøknadsdata): KursApiData => {
     const apiData: KursApiData = {
-        kursholder: kursholder === 'annen' ? 'annen' : { ...kursholder },
+        opplæringsinstitusjon: opplæringsinstitusjon === 'annen' ? 'annen' : { ...opplæringsinstitusjon },
         perioder: kursperioder.map((p) => ({
             fraOgMed: p.periode.from,
             tilOgMed: p.periode.to,
