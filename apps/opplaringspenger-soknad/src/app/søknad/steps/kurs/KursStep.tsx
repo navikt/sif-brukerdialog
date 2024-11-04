@@ -1,4 +1,4 @@
-import { Alert, List, VStack } from '@navikt/ds-react';
+import { Alert, VStack } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import {
@@ -26,7 +26,6 @@ import {
     getKursStepInitialValues,
     getKursSøknadsdataFromFormValues,
 } from './kursStepUtils';
-import { dateRangeFormatter } from '@navikt/sif-common-utils';
 
 export enum KursFormFields {
     opplæringsinstitusjonId = 'opplæringsinstitusjonId',
@@ -47,7 +46,7 @@ const { FormikWrapper, Form, Select, YesOrNoQuestion } = getTypedFormComponents<
 >();
 
 const KursStep = () => {
-    const { intl, locale } = useAppIntl();
+    const { intl } = useAppIntl();
 
     const {
         state: { søknadsdata, opplæringsinstitusjoner },
@@ -127,18 +126,13 @@ const KursStep = () => {
                                             </optgroup>
                                         </Select>
 
-                                        {valgOpplæringsinstitusjon && (
-                                            <Alert variant="info">
-                                                {valgOpplæringsinstitusjon.navn} er godkjent for følgende perioder:
-                                                <List>
-                                                    {valgOpplæringsinstitusjon.periode.map((periode, index) => (
-                                                        <List.Item key={index}>
-                                                            {dateRangeFormatter.getDateRangeText(periode, locale)}
-                                                        </List.Item>
-                                                    ))}
-                                                </List>
-                                            </Alert>
-                                        )}
+                                        {valgOpplæringsinstitusjon &&
+                                            valgOpplæringsinstitusjon.periode.length === 0 && (
+                                                <Alert variant="info">
+                                                    {valgOpplæringsinstitusjon.navn} er ikke en godkjent for kursholder
+                                                    for perioden du kan søke for
+                                                </Alert>
+                                            )}
 
                                         {values[KursFormFields.opplæringsinstitusjonId] === 'annen' && (
                                             <Alert variant="info">

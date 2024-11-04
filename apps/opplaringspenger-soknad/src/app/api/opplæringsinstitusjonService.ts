@@ -21,7 +21,7 @@ const mockOpplæringsinstitusjon = {
             uuid: '2',
             navn: 'Solvik syn- og mestringssenter',
             godkjent: true,
-            periode: [generateRandomPeriod(ISODateToDate('2022-01-01'), 6)],
+            periode: [],
         },
         {
             uuid: '3',
