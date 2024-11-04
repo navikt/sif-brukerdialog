@@ -13,13 +13,13 @@ export const k9SakApiClient = axios.create({
 export const opplæringsinstitusjonService = {
     fetch: async (): Promise<Opplæringsinstitusjon[]> => {
         const gyldigSøknadsperiode = getTillattSøknadsperiode();
-        const response = await k9SakApiClient.get(`/k9sak/opplaringsinstitusjoner`);
+        const response = await k9SakApiClient.get<Opplæringsinstitusjon[]>(`/k9sak/opplaringsinstitusjoner`);
         return response.data
             .map((institusjon) => {
                 return {
                     ...institusjon,
                     ugyldigePerioder: getPerioderISøknadsperiodeHvorInstitusjonIkkeErGyldig(
-                        institusjon.periode!,
+                        institusjon.perioder,
                         gyldigSøknadsperiode,
                     ),
                 };
