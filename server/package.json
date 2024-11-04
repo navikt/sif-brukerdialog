@@ -22,13 +22,13 @@
         "@types/cookie-parser": "1.4.7",
         "@types/express": "5.0.0",
         "@types/morgan": "1.9.9",
-        "@types/node": "22.8.4",
+        "@types/node": "22.8.7",
         "@vercel/ncc": "0.38.2",
         "axios": "1.7.7",
         "morgan": "1.10.0",
         "prettier": "3.3.3",
         "typescript": "5.6.3",
-        "winston": "3.15.0"
+        "winston": "3.16.0"
     },
     "packageManager": "yarn@4.5.0"
 }
