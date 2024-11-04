@@ -1,4 +1,4 @@
-import { Alert, VStack } from '@navikt/ds-react';
+import { Alert, List, VStack } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import {
@@ -26,6 +26,8 @@ import {
     getKursStepInitialValues,
     getKursSøknadsdataFromFormValues,
 } from './kursStepUtils';
+import { getTillattSøknadsperiode } from '../../../utils/søknadsperiodeUtils';
+import { dateRangesCollide } from '@navikt/sif-common-utils';
 
 export enum KursFormFields {
     opplæringsinstitusjonId = 'opplæringsinstitusjonId',
@@ -54,6 +56,7 @@ const KursStep = () => {
 
     const stepId = StepId.KURS;
     const step = getSøknadStepConfigForStep(søknadsdata, stepId);
+    const gyldigSøknadsperiode = getTillattSøknadsperiode();
 
     const { goBack } = useStepNavigation(step);
 
@@ -85,10 +88,14 @@ const KursStep = () => {
                 initialValues={getKursStepInitialValues(søknadsdata, stepFormValues[stepId])}
                 onSubmit={handleSubmit}
                 renderForm={({ values }) => {
-                    const valgOpplæringsinstitusjon = getOpplæringsinstitusjonById(
+                    const valgtOpplæringsinstitusjon = getOpplæringsinstitusjonById(
                         opplæringsinstitusjoner,
                         values[KursFormFields.opplæringsinstitusjonId],
                     );
+                    const valgtePerioder = values[KursFormFields.kursperioder]?.map((p) => p.periode) || [];
+                    const harValgtUgyldigPeriode = valgtOpplæringsinstitusjon
+                        ? dateRangesCollide([...valgtOpplæringsinstitusjon.ugyldigePerioder, ...valgtePerioder])
+                        : false;
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -126,13 +133,13 @@ const KursStep = () => {
                                             </optgroup>
                                         </Select>
 
-                                        {valgOpplæringsinstitusjon &&
-                                            valgOpplæringsinstitusjon.periode.length === 0 && (
+                                        {/* {valgtOpplæringsinstitusjon &&
+                                            valgtOpplæringsinstitusjon.periode.length === 0 && (
                                                 <Alert variant="info">
-                                                    {valgOpplæringsinstitusjon.navn} er ikke en godkjent for kursholder
+                                                    {valgtOpplæringsinstitusjon.navn} er ikke en godkjent for kursholder
                                                     for perioden du kan søke for
                                                 </Alert>
-                                            )}
+                                            )} */}
 
                                         {values[KursFormFields.opplæringsinstitusjonId] === 'annen' && (
                                             <Alert variant="info">
@@ -148,8 +155,28 @@ const KursStep = () => {
                                             modalTitle: 'Legg til kursperiode',
                                             listTitle: 'Kursperioder',
                                         }}
+                                        minDate={gyldigSøknadsperiode.from}
+                                        maxDate={gyldigSøknadsperiode.to}
                                         validate={getListValidator({ minItems: 1, required: true })}
                                     />
+
+                                    {harValgtUgyldigPeriode ? (
+                                        <>
+                                            <Alert variant="warning">
+                                                {valgtOpplæringsinstitusjon?.navn} er ikke godkjent for de dagene du har
+                                                valgt. Godkjente perioder for {valgtOpplæringsinstitusjon?.navn} er:
+                                                <List>
+                                                    {valgtOpplæringsinstitusjon?.periode.map((periode) => (
+                                                        <List.Item key={periode.from.toISOString()}>
+                                                            {intl.formatDate(periode.from)} -{' '}
+                                                            {intl.formatDate(periode.to)}
+                                                        </List.Item>
+                                                    ))}
+                                                </List>
+                                            </Alert>
+                                        </>
+                                    ) : null}
+
                                     <YesOrNoQuestion
                                         name={KursFormFields.arbeiderIKursperiode}
                                         legend="Jobber du noe på de dagene du er på er på kurs, eller reiser til og fra kurs?"

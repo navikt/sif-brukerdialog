@@ -77,7 +77,7 @@ const startExpressServer = () => {
         }, 200);
     });
 
-    server.get('/oppslag/kursholder', (req, res) => {
+    server.get('/k9sak/opplaringsinstitusjoner', (req, res) => {
         setTimeout(() => {
             res.send(opplæringsinstitusjonMock);
         }, 200);

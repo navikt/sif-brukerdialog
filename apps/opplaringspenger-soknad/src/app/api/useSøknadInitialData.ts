@@ -74,6 +74,7 @@ function useSøknadInitialData(): SøknadInitialDataState {
                 opplæringsinstitusjonService.fetch(),
                 mellomlagringService.fetch(),
             ]);
+            console.log(opplæringsinstitusjoner);
             setInitialData({
                 status: RequestStatus.success,
                 data: await getSøknadInitialData(søker, registrerteBarn, opplæringsinstitusjoner, lagretSøknadState),

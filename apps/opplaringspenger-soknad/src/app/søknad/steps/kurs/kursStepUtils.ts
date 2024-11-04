@@ -1,7 +1,7 @@
 import { ValidationError, ValidationResult, YesOrNo } from '@navikt/sif-common-formik-ds';
 import datepickerUtils from '@navikt/sif-common-formik-ds/src/components/formik-datepicker/datepickerUtils';
 import { getDateRangeValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { getDate1YearFromNow, getDate3YearsAgo, dateRangeUtils } from '@navikt/sif-common-utils';
+import { getDate1YearFromNow, getDate3YearsAgo, dateRangeUtils, DateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
@@ -110,3 +110,32 @@ export const getKursStepInitialValues = (søknadsdata: Søknadsdata, formValues?
 
     return defaultValues;
 };
+
+export const getPerioderISøknadsperiodeHvorInstitusjonIkkeErGyldig = (
+    gyldigePerioder: DateRange[],
+    gyldigSøknadsperiode: DateRange,
+): DateRange[] => {
+    /** Før og etterperioder brukes for å fange opp ugyldige perioder hvis gyldig perioder ikke dekker hele søkandsperioden */
+    const periodeFørSøknadsperiode: DateRange = {
+        from: dayjs(gyldigSøknadsperiode.from).subtract(2, 'day').toDate(),
+        to: dayjs(gyldigSøknadsperiode.from).subtract(1, 'day').toDate(),
+    };
+    const periodeEtterSøknadsperiode: DateRange = {
+        from: dayjs(gyldigSøknadsperiode.to).add(1, 'day').toDate(),
+        to: dayjs(gyldigSøknadsperiode.to).add(2, 'day').toDate(),
+    };
+    return dateRangeUtils.getDateRangesBetweenDateRanges([
+        periodeFørSøknadsperiode,
+        ...gyldigePerioder,
+        periodeEtterSøknadsperiode,
+    ]);
+};
+
+// export const ugyldigePerioderForInstitusjonOgOpphold = (
+//     gyldigePerioder: DateRange[],
+//     valgtePerioder: DateRange[],
+// ): boolean => {
+//     const ugyldigePerioder: DateRange[] = [];
+//     // return dateRangeUtils.dateRangesCollide(gyldigePerioder);
+//     return false;
+// };
