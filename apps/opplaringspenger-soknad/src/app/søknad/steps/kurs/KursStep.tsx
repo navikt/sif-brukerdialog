@@ -1,4 +1,4 @@
-import { Alert, List, VStack } from '@navikt/ds-react';
+import { Alert, VStack } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import {
@@ -21,13 +21,8 @@ import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import KursperiodeListAndDialog from './kursperiode/KursperiodeListAndDialog';
-import {
-    getOpplæringsinstitusjonById,
-    getKursStepInitialValues,
-    getKursSøknadsdataFromFormValues,
-} from './kursStepUtils';
+import { getKursStepInitialValues, getKursSøknadsdataFromFormValues } from './kursStepUtils';
 import { getTillattSøknadsperiode } from '../../../utils/søknadsperiodeUtils';
-import { dateRangesCollide } from '@navikt/sif-common-utils';
 
 export enum KursFormFields {
     opplæringsinstitusjonId = 'opplæringsinstitusjonId',
@@ -88,14 +83,6 @@ const KursStep = () => {
                 initialValues={getKursStepInitialValues(søknadsdata, stepFormValues[stepId])}
                 onSubmit={handleSubmit}
                 renderForm={({ values }) => {
-                    const valgtOpplæringsinstitusjon = getOpplæringsinstitusjonById(
-                        opplæringsinstitusjoner,
-                        values[KursFormFields.opplæringsinstitusjonId],
-                    );
-                    const valgtePerioder = values[KursFormFields.kursperioder]?.map((p) => p.periode) || [];
-                    const harValgtUgyldigPeriode = valgtOpplæringsinstitusjon
-                        ? dateRangesCollide([...valgtOpplæringsinstitusjon.ugyldigePerioder, ...valgtePerioder])
-                        : false;
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -159,23 +146,6 @@ const KursStep = () => {
                                         maxDate={gyldigSøknadsperiode.to}
                                         validate={getListValidator({ minItems: 1, required: true })}
                                     />
-
-                                    {harValgtUgyldigPeriode ? (
-                                        <>
-                                            <Alert variant="warning">
-                                                {valgtOpplæringsinstitusjon?.navn} er ikke godkjent for de dagene du har
-                                                valgt. Godkjente perioder for {valgtOpplæringsinstitusjon?.navn} er:
-                                                <List>
-                                                    {valgtOpplæringsinstitusjon?.periode.map((periode) => (
-                                                        <List.Item key={periode.from.toISOString()}>
-                                                            {intl.formatDate(periode.from)} -{' '}
-                                                            {intl.formatDate(periode.to)}
-                                                        </List.Item>
-                                                    ))}
-                                                </List>
-                                            </Alert>
-                                        </>
-                                    ) : null}
 
                                     <YesOrNoQuestion
                                         name={KursFormFields.arbeiderIKursperiode}
