@@ -1,4 +1,4 @@
-import { Alert, VStack } from '@navikt/ds-react';
+import { Alert, List, VStack } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import {
@@ -22,6 +22,7 @@ import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import KursperiodeListAndDialog from './kursperiode/KursperiodeListAndDialog';
 import { getKursholderById, getKursStepInitialValues, getKursSøknadsdataFromFormValues } from './kursStepUtils';
+import { dateRangeFormatter } from '@navikt/sif-common-utils';
 
 export enum KursFormFields {
     kursholderId = 'kursholderId',
@@ -42,7 +43,7 @@ const { FormikWrapper, Form, Select, YesOrNoQuestion } = getTypedFormComponents<
 >();
 
 const KursStep = () => {
-    const { intl } = useAppIntl();
+    const { intl, locale } = useAppIntl();
 
     const {
         state: { søknadsdata, kursholdere },
@@ -117,9 +118,16 @@ const KursStep = () => {
                                             </optgroup>
                                         </Select>
 
-                                        {valgtKursholder && !valgtKursholder.godkjent && (
+                                        {valgtKursholder && (
                                             <Alert variant="info">
-                                                {valgtKursholder.navn} er ikke godkjent. Mer informasjon følger ...
+                                                {valgtKursholder.navn} er godkjent for følgende perioder:
+                                                <List>
+                                                    {valgtKursholder.periode.map((periode, index) => (
+                                                        <List.Item key={index}>
+                                                            {dateRangeFormatter.getDateRangeText(periode, locale)}
+                                                        </List.Item>
+                                                    ))}
+                                                </List>
                                             </Alert>
                                         )}
 
