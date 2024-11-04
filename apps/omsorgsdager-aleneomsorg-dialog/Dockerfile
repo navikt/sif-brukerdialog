@@ -1,5 +1,5 @@
 
-FROM node:20.12-alpine AS base
+FROM node:20.18-alpine AS base
 
 ENV APP="omsorgsdager-aleneomsorg-dialog"
 ENV SERVER="server"
