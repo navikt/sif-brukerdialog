@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.41.5
+
+### Patch Changes
+
+-   Kun bruke key når en logger søknadSendt til amplitude
+
 ## 3.41.4
 
 ### Patch Changes

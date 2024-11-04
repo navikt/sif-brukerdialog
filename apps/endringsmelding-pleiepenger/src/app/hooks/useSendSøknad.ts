@@ -42,7 +42,7 @@ export const useSendSøknad = () => {
     };
 
     const onSøknadSendSuccess = async (metadata: SøknadApiDataMetadata) => {
-        await logSoknadSent(EndringsmeldingPsbApp.navn, locale);
+        await logSoknadSent(EndringsmeldingPsbApp.key, locale);
         await logInfo(metadata);
         slettMellomlagring();
         setIsSubmitting(false);

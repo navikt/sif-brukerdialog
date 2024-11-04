@@ -34,7 +34,7 @@ export const useSendSøknad = () => {
     };
 
     const onSøknadSendSuccess = async () => {
-        await logSoknadSent(OmsorgspengerutbetalingSNFriApp.navn, locale);
+        await logSoknadSent(OmsorgspengerutbetalingSNFriApp.key, locale);
         await mellomlagringService.purge();
         setIsSubmitting(false);
         dispatch(actionsCreator.setSøknadSendt());
