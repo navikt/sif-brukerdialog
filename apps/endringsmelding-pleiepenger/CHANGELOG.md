@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.33.7
+
+### Patch Changes
+
+-   Oppdatere node image til node:20.18-alpine
+
 ## 2.33.6
 
 ### Patch Changes

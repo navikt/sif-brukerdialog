@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.33.7
+
+### Patch Changes
+
+-   Oppdatere node image til node:20.18-alpine
+
 ## 1.33.6
 
 ### Patch Changes
