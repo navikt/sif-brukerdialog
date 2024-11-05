@@ -35,7 +35,7 @@ const nn: Record<keyof typeof nb, string> = {
     '@forms.virksomhet.summary.yrkesaktiv.jaStartetDato': 'Ja, vart yrkesaktiv {dato}',
     '@forms.virksomhet.summary.næringsinntekst': 'Næringsinntekt:',
     '@forms.virksomhet.summary.regnskapsfører.header': 'Rekneskapsførar',
-    '@forms.virksomhet.summary.regnskapsfører.info': 'Ja, {namn}, telefon {telefon}',
+    '@forms.virksomhet.summary.regnskapsfører.info': 'Ja, {navn}, telefon {telefon}',
 };
 
 export const virksomhetSummaryMessages = {

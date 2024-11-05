@@ -80,7 +80,7 @@ const nn: Record<keyof typeof nb, string> = {
     '@forms.medlemskapForm.summary.utlandetNeste12.header': 'Skal bu i utlandet i dei neste 12 månadene',
     '@forms.medlemskapForm.summary.utlandetSiste12.liste.header': 'Utanlandsopphald siste 12 månader',
     '@forms.medlemskapForm.summary.utlandetNeste12.liste.header': 'Utanlandsopphald neste 12 månader',
-    '@forms.medlemskapForm.summary.tidsperiode': '{fraOgMed} - {tilOgMed}: {landsnamn}',
+    '@forms.medlemskapForm.summary.tidsperiode': '{fraOgMed} - {tilOgMed}: {landnavn}',
 };
 
 export type MedlemskapFormMessageKeys = keyof typeof nb;
