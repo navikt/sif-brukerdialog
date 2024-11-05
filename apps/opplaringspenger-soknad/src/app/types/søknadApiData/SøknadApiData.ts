@@ -5,9 +5,9 @@ import { ArbeidsgiverType } from '../Arbeidsgiver';
 import { OmBarnetApiData } from './OmBarnetApiData';
 
 export * from './OmBarnetApiData';
-export interface KursholderApiData {
+export interface OpplæringsinstitusjonApiData {
+    uuid: string;
     navn: string;
-    id: string;
 }
 
 export interface KursperiodeApiData {
@@ -19,7 +19,7 @@ export interface KursperiodeApiData {
 }
 
 export interface KursApiData {
-    kursholder: KursholderApiData | 'annen';
+    opplæringsinstitusjon: OpplæringsinstitusjonApiData | 'annen';
     perioder: KursperiodeApiData[];
 }
 

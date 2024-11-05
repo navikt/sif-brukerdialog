@@ -49,7 +49,7 @@ export const søknadContextMock: SøknadContextState = {
         mellomnavn: undefined,
         etternavn: 'HOFTE',
     },
-    kursholdere: [],
+    opplæringsinstitusjoner: [],
     registrerteBarn,
     søknadsdata: {
         id: '8525bf3f-ab0a-495e-90bc-759efd2723b9',
@@ -64,7 +64,7 @@ export const søknadContextMock: SøknadContextState = {
                 to: new Date('2024-05-30T22:00:00.000Z'),
             },
             søknadsdatoer: getDatoerIKursperioderInkludertReisedager(kursperioder),
-            kursholder: 'annen',
+            opplæringsinstitusjon: 'annen',
             kursperioder,
             arbeiderIKursperiode: true,
         },

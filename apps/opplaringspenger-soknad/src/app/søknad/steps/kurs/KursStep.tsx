@@ -22,15 +22,16 @@ import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import KursperiodeListAndDialog from './kursperiode/KursperiodeListAndDialog';
 import { getKursStepInitialValues, getKursSøknadsdataFromFormValues } from './kursStepUtils';
+import { getTillattSøknadsperiode } from '../../../utils/søknadsperiodeUtils';
 
 export enum KursFormFields {
-    kursholderId = 'kursholderId',
+    opplæringsinstitusjonId = 'opplæringsinstitusjonId',
     kursperioder = 'kursperioder',
     arbeiderIKursperiode = 'arbeiderIKursperiode',
 }
 
 export interface KursFormValues {
-    [KursFormFields.kursholderId]?: string;
+    [KursFormFields.opplæringsinstitusjonId]?: string;
     [KursFormFields.kursperioder]?: Kursperiode[];
     [KursFormFields.arbeiderIKursperiode]?: YesOrNo;
 }
@@ -45,18 +46,19 @@ const KursStep = () => {
     const { intl } = useAppIntl();
 
     const {
-        state: { søknadsdata, kursholdere },
+        state: { søknadsdata, opplæringsinstitusjoner },
     } = useSøknadContext();
 
     const stepId = StepId.KURS;
     const step = getSøknadStepConfigForStep(søknadsdata, stepId);
+    const gyldigSøknadsperiode = getTillattSøknadsperiode();
 
     const { goBack } = useStepNavigation(step);
 
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const onValidSubmitHandler = (values) => {
-        const kursSøknadsdata = getKursSøknadsdataFromFormValues(values, kursholdere);
+        const kursSøknadsdata = getKursSøknadsdataFromFormValues(values, opplæringsinstitusjoner);
         if (kursSøknadsdata) {
             clearStepFormValues(stepId);
             return [
@@ -101,13 +103,15 @@ const KursStep = () => {
                                     <VStack gap={'4'}>
                                         <Select
                                             label="Velg helseinstitusjon/kompetansesenter"
-                                            name={KursFormFields.kursholderId}
+                                            name={KursFormFields.opplæringsinstitusjonId}
                                             validate={getRequiredFieldValidator()}>
                                             <option value="">Velg</option>
                                             <optgroup label="Godkjente helseinstitusjoner">
-                                                {kursholdere.map((kursholder) => (
-                                                    <option value={kursholder.id} key={kursholder.id}>
-                                                        {kursholder.navn}
+                                                {opplæringsinstitusjoner.map((opplæringsinstitusjon) => (
+                                                    <option
+                                                        value={opplæringsinstitusjon.uuid}
+                                                        key={opplæringsinstitusjon.uuid}>
+                                                        {opplæringsinstitusjon.navn}
                                                     </option>
                                                 ))}
                                             </optgroup>
@@ -116,7 +120,15 @@ const KursStep = () => {
                                             </optgroup>
                                         </Select>
 
-                                        {values[KursFormFields.kursholderId] === 'annen' && (
+                                        {/* {valgtOpplæringsinstitusjon &&
+                                            valgtOpplæringsinstitusjon.periode.length === 0 && (
+                                                <Alert variant="info">
+                                                    {valgtOpplæringsinstitusjon.navn} er ikke en godkjent for kursholder
+                                                    for perioden du kan søke for
+                                                </Alert>
+                                            )} */}
+
+                                        {values[KursFormFields.opplæringsinstitusjonId] === 'annen' && (
                                             <Alert variant="info">
                                                 Hvis du ikke finner institusjonen i listen over, må ...
                                             </Alert>
@@ -130,8 +142,11 @@ const KursStep = () => {
                                             modalTitle: 'Legg til kursperiode',
                                             listTitle: 'Kursperioder',
                                         }}
+                                        minDate={gyldigSøknadsperiode.from}
+                                        maxDate={gyldigSøknadsperiode.to}
                                         validate={getListValidator({ minItems: 1, required: true })}
                                     />
+
                                     <YesOrNoQuestion
                                         name={KursFormFields.arbeiderIKursperiode}
                                         legend="Jobber du noe på de dagene du er på er på kurs, eller reiser til og fra kurs?"
