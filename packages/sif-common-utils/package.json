@@ -3,7 +3,7 @@
     "author": "navikt",
     "description": "Diverse utils for Sykdom i familien teamet",
     "main": "src/index.ts",
-    "version": "3.47.25",
+    "version": "3.47.26",
     "private": true,
     "type": "module",
     "dependencies": {
