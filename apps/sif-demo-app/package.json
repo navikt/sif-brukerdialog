@@ -36,7 +36,7 @@
         "@eslint/eslintrc": "3.1.0",
         "@eslint/js": "9.14.0",
         "@navikt/nav-dekoratoren-moduler": "2.1.6",
-        "@types/node": "22.8.7",
+        "@types/node": "22.9.0",
         "@types/react": "18.3.12",
         "@types/react-dom": "18.3.1",
         "@typescript-eslint/parser": "8.12.2",
