@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.33.9
+
+### Patch Changes
+
+-   Bruke korrigerte tekster i oms-kronisk
+
 ## 1.33.8
 
 ### Patch Changes
