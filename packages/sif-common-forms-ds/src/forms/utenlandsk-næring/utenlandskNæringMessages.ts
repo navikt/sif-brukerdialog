@@ -36,7 +36,7 @@ const nb = {
     '@forms.utenlandskNæringForm.fraOgMed.dateIsAfterMax':
         'Startdatoen for når du startet virksomheten må være før dagens dato. Skriv inn eller velg startdato fra datovelgeren.',
     '@forms.utenlandskNæringForm.fraOgMed.dateHasInvalidFormat':
-        'Du må oppgi startdato for virksomheten i et gyldig format. Gyldig format er dd.mm.ååå.',
+        'Du må oppgi startdato for virksomheten i et gyldig format. Gyldig format er dd.mm.åååå.',
     '@forms.utenlandskNæringForm.fraOgMed.fromDateIsAfterToDate':
         'Startdatoen for når du startet virksomheten må være før sluttdatoen, eller på samme dag som sluttdatoen. Skriv inn eller velg dato fra datovelgeren.',
     '@forms.utenlandskNæringForm.tilOgMed.dateHasNoValue':
@@ -52,22 +52,22 @@ const nb = {
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    '@forms.utenlandskNæringForm.næringstype_FISKE': 'Fisker',
-    '@forms.utenlandskNæringForm.næringstype_JORDBRUK_SKOGBRUK': 'Jordbruker',
+    '@forms.utenlandskNæringForm.næringstype_FISKE': 'Fiskar',
+    '@forms.utenlandskNæringForm.næringstype_JORDBRUK_SKOGBRUK': 'Jordbrukar',
     '@forms.utenlandskNæringForm.næringstype_DAGMAMMA': 'Dagmamma eller familiebarnehage i eigen heim',
-    '@forms.utenlandskNæringForm.næringstype_ANNEN': 'Annet',
-    '@forms.utenlandskNæringForm.form_title': 'Opplysninger om verksemda',
+    '@forms.utenlandskNæringForm.næringstype_ANNEN': 'Anna',
+    '@forms.utenlandskNæringForm.form_title': 'Opplysningar om verksemda',
     '@forms.utenlandskNæringForm.hvilken_type_virksomhet': 'Kva type verksemd hadde du?',
     '@forms.utenlandskNæringForm.hva_heter_virksomheten': 'Skriv inn namnet på verksemda',
-    '@forms.utenlandskNæringForm.registert_i_hvilket_land': 'I kva for eit land var {navnPåVirksomheten} registrert i?',
+    '@forms.utenlandskNæringForm.registert_i_hvilket_land': 'I kva for eit land var {navnPåVirksomheten} registrert?',
     '@forms.utenlandskNæringForm.organisasjonsnummer':
-        'Skriv inn organisasjonsnummeret/identifikasjonsnummer for verksemda',
+        'Skriv inn organisasjonsnummeret/identifikasjonsnummeret for verksemda',
     '@forms.utenlandskNæringForm.startdato': 'Når starta du {navnPåVirksomheten}?',
     '@forms.utenlandskNæringForm.kalender_fom': 'Startdato',
     '@forms.utenlandskNæringForm.kalender_tom': 'Sluttdato',
-    '@forms.utenlandskNæringForm.kalender_pågående': 'Er pågåande ',
-    '@forms.utenlandskNæringForm.summary.tittel': 'Næringsvirksomhet som du har lagt inn',
-    '@forms.utenlandskNæringForm.summary.navn': 'Navn',
+    '@forms.utenlandskNæringForm.kalender_pågående': 'Er pågåande',
+    '@forms.utenlandskNæringForm.summary.tittel': 'Næringsverksemd som du har lagt inn',
+    '@forms.utenlandskNæringForm.summary.navn': 'Namn',
     '@forms.utenlandskNæringForm.summary.næringstype': 'Næringstype',
     '@forms.utenlandskNæringForm.summary.tidsinfo.avsluttet': 'Starta {fraOgMed}, avslutta {tilOgMed}',
     '@forms.utenlandskNæringForm.summary.tidsinfo.pågående': 'Starta {fraOgMed} (pågåande)',
@@ -83,7 +83,7 @@ const nn: Record<keyof typeof nb, string> = {
     '@forms.utenlandskNæringForm.fraOgMed.dateIsAfterMax':
         'Startdatoen for når du starta verksemda må vera før dagens dato. Skriv inn eller vel startdato frå datoveljaren.',
     '@forms.utenlandskNæringForm.fraOgMed.dateHasInvalidFormat':
-        'Du må oppgi startdato for verksemda i eit gyldig format. Gyldig format er dd.mm.ååå.',
+        'Du må oppgi startdato for verksemda i eit gyldig format. Gyldig format er dd.mm.åååå.',
     '@forms.utenlandskNæringForm.fraOgMed.fromDateIsAfterToDate':
         'Startdatoen for når du starta verksemda må vera før sluttdatoen, eller på same dag som sluttdatoen. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.utenlandskNæringForm.tilOgMed.dateHasNoValue':

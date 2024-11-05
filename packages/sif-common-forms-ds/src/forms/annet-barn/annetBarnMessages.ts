@@ -24,7 +24,7 @@ const nb = {
         'Barnets fødselsdato kan ikke være før {dato}. Skriv inn eller velg startdato fra datovelgeren.',
     '@forms.annetBarnForm.fødselsdato.dateIsAfterMax': 'Barnets fødselsdato kan ikke være etter dagens dato',
     '@forms.annetBarnForm.fødselsdato.dateHasInvalidFormat':
-        'Du må oppgi barnets fødselsdato i et gyldig format. Gyldig format er dd.mm.ååå.',
+        'Du må oppgi barnets fødselsdato i et gyldig format. Gyldig format er dd.mm.åååå.',
     '@forms.annetBarnForm.fnr.fødselsnummerHasNoValue': 'Skriv inn barnets fødselsnummer',
     '@forms.annetBarnForm.fnr.fødselsnummerIsInvalid':
         'Du har oppgitt et ugyldig fødselsnummer. Kontroller at du har tastet inn riktig.',
@@ -58,7 +58,7 @@ const nn: Record<keyof typeof nb, string> = {
         'Barnets fødselsdato kan ikkje vera før {dato}. Skriv inn eller vel startdato frå datoveljaren.',
     '@forms.annetBarnForm.fødselsdato.dateIsAfterMax': 'Barnets fødselsdato kan ikkje vera etter dagens dato',
     '@forms.annetBarnForm.fødselsdato.dateHasInvalidFormat':
-        'Du må oppgi fødselsdatoen til barnet i eit gyldig format. Gyldig format er dd.mm.ååå.',
+        'Du må oppgi fødselsdatoen til barnet i eit gyldig format. Gyldig format er dd.mm.åååå.',
     '@forms.annetBarnForm.fnr.fødselsnummerHasNoValue': 'Skriv inn fødselsnummeret til barnet',
     '@forms.annetBarnForm.fnr.fødselsnummerIsInvalid':
         'Du har oppgitt eit ugyldig fødselsnummer. Kontroller at du har tasta inn rett.',

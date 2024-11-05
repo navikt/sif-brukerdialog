@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 
-const nb = {
+const nb: Record<string, string> = {
     '@forms.fravær.form.validation.dateOutsideRange': 'Første gyldige dato er {fom}, og siste gyldige dato er {tom}',
     '@forms.fravær.form.validation.fromDateAfterToDate': 'Fra-dato må være lik eller før til-dato',
     '@forms.fravær.form.validation.toDateBeforeFromDate': 'Til-dato må være lik eller etter fra-dato',
@@ -71,7 +71,7 @@ const nb = {
         'Én eller flere dager med fravær overlapper med andre dager med fravær.',
 };
 
-const nn: Record<keyof typeof nb, string> = {
+const nn: Record<string, string> = {
     '@forms.fravær.form.validation.dateOutsideRange': 'Første gyldige dato er {fom}, og siste gyldige dato er {tom}',
     '@forms.fravær.form.validation.fromDateAfterToDate': 'Frå-dato må vera lik eller før til-dato',
     '@forms.fravær.form.validation.toDateBeforeFromDate': 'Til-dato må vera lik eller etter frå-dato',
@@ -90,7 +90,7 @@ const nn: Record<keyof typeof nb, string> = {
     '@forms.fravær.form.dag.antallArbeidstimer': 'Talet på timar du skulle ha jobba denne dagen',
     '@forms.fravær.form.dag.timerFravær': 'Talet på timar du var borte frå jobb denne dagen',
     '@forms.fraværDagerList.itemTitle':
-        '{dato}: Skulle jobba {timeirarbeid} {arbeidFlertall, select, true {timar} other {timar}}. Borte frå jobb {timeirfråvær} {fråværsfleirtal, select, true {timar} other {time}}.',
+        '{dato}: Skulle jobba {timerArbeid} {arbeidFlertall, select, true {timer} other {timer}}. Borte frå jobb {timerFravær} {fraværFlertall, select, true {timer} other {time}}.',
     '@forms.fraværDagForm.dato.dateHasNoValue': 'Du må oppgi dato for når du hadde delvis fråvær.',
     '@forms.fraværDagForm.dato.dateHasInvalidFormat':
         'Du må oppgi dato for når du hadde delvis fråvær i eit gyldig format. Gyldig format er dd.mm.åååå.',
@@ -105,8 +105,8 @@ const nn: Record<keyof typeof nb, string> = {
     '@forms.fraværDagForm.timerArbeidsdag.noValue': 'Du må velja talet på timar du skulle ha jobba denne dagen.',
     '@forms.fraværDagForm.timerFravær.noValue': 'Du må velja talet på timar du var borte frå jobb denne dagen',
     '@forms.fraværDagForm.timerFravær.fravær_timer_mer_enn_arbeidstimer':
-        'Fravær kan ikkje vera høgare enn arbeidstimar',
-    '@forms.fraværDagForm.timerOption': '{tid} {fleirtal, select, trua {timar} other {time}}',
+        'Fråvær kan ikkje vera høgare enn arbeidstimar',
+    '@forms.fraværDagForm.timerOption': '{tid} {flertall, select, true {timer} other {time}}',
     '@forms.fraværPeriodeForm.fraOgMed.dateHasNoValue':
         'Du må oppgi når perioden starta. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.fraværPeriodeForm.fraOgMed.dateIsAfterMax':

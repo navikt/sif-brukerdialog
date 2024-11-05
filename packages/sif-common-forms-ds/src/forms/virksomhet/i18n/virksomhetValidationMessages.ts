@@ -18,7 +18,7 @@ const nb = {
     '@forms.virksomhetForm.fom.dateIsAfterMax':
         'Startdatoen for når du startet {navn} må være før dagens dato. Skriv inn eller velg startdato fra datovelgeren.',
     '@forms.virksomhetForm.fom.dateHasInvalidFormat':
-        'Du må oppgi startdato for virksomheten i et gyldig format. Gyldig format er dd.mm.ååå.',
+        'Du må oppgi startdato for virksomheten i et gyldig format. Gyldig format er dd.mm.åååå.',
     '@forms.virksomhetForm.fom.fromDateIsAfterToDate':
         'Startdatoen for når du startet {navn} må være før sluttdatoen, eller på samme dag som sluttdatoen. Skriv inn eller velg dato fra datovelgeren.',
     '@forms.virksomhetForm.tom.dateHasNoValue':
@@ -116,7 +116,7 @@ const nn: Record<keyof typeof nb, string> = {
     '@forms.virksomhetForm.fom.dateIsAfterMax':
         'Startdatoen for når du starta {namn} må vera før dagens dato. Skriv inn eller vel startdato frå datoveljaren.',
     '@forms.virksomhetForm.fom.dateHasInvalidFormat':
-        'Du må oppgi startdato for verksemda i eit gyldig format. Gyldig format er dd.mm.ååå.',
+        'Du må oppgi startdato for verksemda i eit gyldig format. Gyldig format er dd.mm.åååå.',
     '@forms.virksomhetForm.fom.fromDateIsAfterToDate':
         'Startdatoen for når du starta {namn} må vera før sluttdatoen, eller på same dag som sluttdatoen. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.virksomhetForm.tom.dateHasNoValue':
