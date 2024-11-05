@@ -55,7 +55,7 @@ const DeltakelseForm = ({ deltakelse, søker, onClose, onSøknadSendt }: Props) 
                 const data: SøknadApiData = {
                     id: deltakelse.id,
                     fraOgMed: dateToISODate(deltakelse.programPeriode.from),
-                    tilOgMed: deltakelse.programPeriode.to ? dateToISODate(deltakelse.programPeriode.to) : undefined,
+                    tilOgMed: dateToISODate(deltakelse.programPeriode.to || new Date()),
                     harBekreftetOpplysninger: values.harBekreftetOpplysninger,
                     harForståttRettigheterOgPlikter: true,
                     språk: 'nb',
