@@ -64,7 +64,16 @@ const RegistrertBarnPart = ({ registrertBarn }: Props) => {
             <SoknadFormComponents.RadioGroup
                 name={SoknadFormField.registrertBarnAktørId}
                 legend={text('step.dokumentType.registrertBarnPart.spm')}
-                description={text('step.dokumentType.registrertBarnPart.spm.description')}
+                description={
+                    <>
+                        <p>
+                            <AppText id="step.dokumentType.registrertBarnPart.kilde" />
+                        </p>
+                        <p>
+                            <AppText id="step.dokumentType.registrertBarnPart.spm.description" />
+                        </p>
+                    </>
+                }
                 radios={registrertBarn.map((barn) => {
                     const { fornavn, mellomnavn, etternavn, fødselsdato, aktørId } = barn;
                     const barnetsNavn = formatName(fornavn, etternavn, mellomnavn);
