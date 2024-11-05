@@ -1,4 +1,4 @@
-import { BodyShort } from '@navikt/ds-react';
+import { BodyShort, Box, VStack } from '@navikt/ds-react';
 import { useAppIntl } from '@i18n/index';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
@@ -29,17 +29,23 @@ const RegistrertBarnPart = ({ søkersBarn }: Props) => {
                 name={SøknadFormField.barnetSøknadenGjelder}
                 legend={text('steg.omBarnet.hvilketBarn.spm')}
                 description={
-                    <ExpandableInfo title={text('steg.omBarnet.hvilketBarn.description.tittel')}>
-                        <p>
-                            <AppText id={'steg.omBarnet.hvilketBarn.description.info.1'} />
-                        </p>
-                        <p>
-                            <AppText id={'steg.omBarnet.hvilketBarn.description.info.2'} />
-                        </p>
-                        <p>
-                            <AppText id={'steg.omBarnet.hvilketBarn.description.info.3'} />
-                        </p>
-                    </ExpandableInfo>
+                    <VStack gap="0">
+                        <Box marginBlock="2 2">
+                            <AppText id={'steg.omBarnet.registrertBarnKildeInfo'} />
+                        </Box>
+
+                        <ExpandableInfo title={text('steg.omBarnet.hvilketBarn.description.tittel')}>
+                            <p>
+                                <AppText id={'steg.omBarnet.hvilketBarn.description.info.1'} />
+                            </p>
+                            <p>
+                                <AppText id={'steg.omBarnet.hvilketBarn.description.info.2'} />
+                            </p>
+                            <p>
+                                <AppText id={'steg.omBarnet.hvilketBarn.description.info.3'} />
+                            </p>
+                        </ExpandableInfo>
+                    </VStack>
                 }
                 radios={søkersBarn.map((barn) => {
                     const { fornavn, mellomnavn, etternavn, fødselsdato, aktørId } = barn;
