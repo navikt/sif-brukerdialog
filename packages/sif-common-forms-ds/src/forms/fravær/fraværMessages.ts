@@ -73,8 +73,8 @@ const nb = {
 
 const nn: Record<keyof typeof nb, string> = {
     '@forms.fravær.form.validation.dateOutsideRange': 'Første gyldige dato er {fom}, og siste gyldige dato er {tom}',
-    '@forms.fravær.form.validation.fromDateAfterToDate': 'Fra-dato må vera lik eller før til-dato',
-    '@forms.fravær.form.validation.toDateBeforeFromDate': 'Til-dato må vera lik eller etter fra-dato',
+    '@forms.fravær.form.validation.fromDateAfterToDate': 'Frå-dato må vera lik eller før til-dato',
+    '@forms.fravær.form.validation.toDateBeforeFromDate': 'Til-dato må vera lik eller etter frå-dato',
     '@forms.fravær.form.validation.fra_og_til_er_ulike_år': 'Frå og til dato må vera i same år',
     '@forms.fravær.form.validation.timer_mer_enn_arbeidstimer':
         'Talet på timar med fråvær kan ikkje vera meir enn talet på timar du skulle ha jobba denne dagen',
@@ -90,7 +90,7 @@ const nn: Record<keyof typeof nb, string> = {
     '@forms.fravær.form.dag.antallArbeidstimer': 'Talet på timar du skulle ha jobba denne dagen',
     '@forms.fravær.form.dag.timerFravær': 'Talet på timar du var borte frå jobb denne dagen',
     '@forms.fraværDagerList.itemTitle':
-        '{dato}: Skulle jobba {timeirarbeid} {arbeidFlertall, select, tru {timar} other {timar}}. Borte frå jobb {timeirfråvær} {fråværsfleirtal, select, tru {timar} other {time}}.',
+        '{dato}: Skulle jobba {timeirarbeid} {arbeidFlertall, select, true {timar} other {timar}}. Borte frå jobb {timeirfråvær} {fråværsfleirtal, select, true {timar} other {time}}.',
     '@forms.fraværDagForm.dato.dateHasNoValue': 'Du må oppgi dato for når du hadde delvis fråvær.',
     '@forms.fraværDagForm.dato.dateHasInvalidFormat':
         'Du må oppgi dato for når du hadde delvis fråvær i eit gyldig format. Gyldig format er dd.mm.åååå.',
@@ -128,7 +128,7 @@ const nn: Record<keyof typeof nb, string> = {
     '@forms.fraværPeriodeForm.tilOgMed.toDateIsBeforeFromDate':
         'Sluttdatoen for perioden kan ikkje vera før startdatoen. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.fraværPeriodeForm.fraOgMed.er_helg':
-        'Periodens fra-dato må vera ein vekedag, det kan ikkje vera laurdag eller søndag. Viss perioden starta ein laurdag eller søndag må du velja måndagen etter som startdato.',
+        'Periodens frå-dato må vera ein vekedag, det kan ikkje vera laurdag eller søndag. Viss perioden starta ein laurdag eller søndag må du velja måndagen etter som startdato.',
     '@forms.fraværPeriodeForm.fraOgMed.fra_og_til_er_ulike_år': 'Frå og til dato må vera i same år',
     '@forms.fraværPeriodeForm.fraOgMed.fra_dato_kolliderer_med_annet_fravær':
         'Frå og med datoen overlappar med allereie registrert fråværsdag.',

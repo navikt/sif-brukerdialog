@@ -61,65 +61,66 @@ const nb = {
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    '@forms.virksomhet.næringstype_FISKE': 'Fisker',
-    '@forms.virksomhet.næringstype_JORDBRUK_SKOGBRUK': 'Jordbruker',
+    '@forms.virksomhet.næringstype_FISKE': 'Fiskar',
+    '@forms.virksomhet.næringstype_JORDBRUK_SKOGBRUK': 'Jordbrukar',
     '@forms.virksomhet.næringstype_DAGMAMMA': 'Dagmamma eller familiebarnehage i eigen heim',
-    '@forms.virksomhet.næringstype_ANNEN': 'Annet',
-    '@forms.virksomhet.form_title': 'Opplysninger om verksemda di',
-    '@forms.virksomhet.form_title.flere': 'Opplysninger om den eldste verksemda din',
+    '@forms.virksomhet.næringstype_ANNEN': 'Anna',
+    '@forms.virksomhet.form_title': 'Opplysningar om verksemda di',
+    '@forms.virksomhet.form_title.flere': 'Opplysningar om den eldste verksemda di',
     '@forms.virksomhet.hvilken_type_virksomhet': 'Kva type verksemd har du?',
-    '@forms.virksomhet.hvilken_type_virksomhet.flere': 'Kva type verksemd er den eldste verksemda din?',
+    '@forms.virksomhet.hvilken_type_virksomhet.flere': 'Kva type verksemd er den eldste verksemda di?',
     '@forms.virksomhet.hva_heter_virksomheten': 'Kva heiter verksemda?',
     '@forms.virksomhet.fisker_blad_b': 'Er du fiskar på blad B?',
-    '@forms.virksomhet.veileder_fisker.tittel': 'Viss du ikkje har organiasjonsnummer',
+    '@forms.virksomhet.veileder_fisker.tittel': 'Viss du ikkje har organisasjonsnummer',
     '@forms.virksomhet.veileder_fisker':
-        'Viss du ikkje har organisasjonsnummer, svarer du nei på spørsmålet "Er {navnPåVirksomheten} registrert i Noreg?" I nedtrekklista vel du at verksemda er registrert i Noreg.',
-    '@forms.virksomhet.registert_i_norge': 'Er {navnPåVirksomheten} registert i Noreg?',
-    '@forms.virksomhet.registert_i_hvilket_land': 'I kva land er {navnPåVirksomheten} registrert i?',
+        'Viss du ikkje har organisasjonsnummer, svarer du nei på spørsmålet "Er {navnPåVirksomheten} registrert i Noreg?" I nedtrekkslista vel du at verksemda er registrert i Noreg.',
+    '@forms.virksomhet.registert_i_norge': 'Er {navnPåVirksomheten} registrert i Noreg?',
+    '@forms.virksomhet.registert_i_hvilket_land': 'I kva land er {navnPåVirksomheten} registrert?',
     '@forms.virksomhet.organisasjonsnummer': 'Kva er organisasjonsnummeret?',
     '@forms.virksomhet.startdato': 'Når starta du {navnPåVirksomheten}?',
     '@forms.virksomhet.kalender_fom': 'Startdato',
     '@forms.virksomhet.kalender_tom': 'Eventuell sluttdato',
-    '@forms.virksomhet.kalender_pågående': 'Er ',
-    '@forms.virksomhet.nyoppstartet.næringsinntektFlere.header': 'pågåande',
-    '@forms.virksomhet.nyoppstartet.næringsinntektFlere.info': 'Næringsresultat for alle verksemdene dine',
-    '@forms.virksomhet.ikkeNyoppstartet.næringsinntektFlere.header':
-        'Du har opplyst at du har fleire næringsverksemder. Her skal du leggja inn næringsresultatet totalt for alle verksemdene du har.',
-    '@forms.virksomhet.ikkeNyoppstartet.næringsinntektFlere.info': 'Næringsverksemdene dine',
-    '@forms.virksomhet.næringsinntekt':
-        'Du har opplyst at du har fleire næringsverksemder som sjølvstendig næringsdrivande. No skal du svara på spørsmål som gjeld alle verksemdene dine.',
-    '@forms.virksomhet.næringsinntekt.enVirksomhet.spm': 'Næringsinntekt',
-    '@forms.virksomhet.næringsinntekt.enVirksomhet.spm.description':
+    '@forms.virksomhet.kalender_pågående': 'Er pågåande',
+    '@forms.virksomhet.nyoppstartet.næringsinntektFlere.header': 'Næringsresultat for alle verksemdene dine',
+    '@forms.virksomhet.nyoppstartet.næringsinntektFlere.info':
+        'Du har opplyst at du har fleire næringsverksemder. Her skal du leggje inn næringsresultatet totalt for alle verksemdene du har.',
+    '@forms.virksomhet.ikkeNyoppstartet.næringsinntektFlere.header': 'Næringsverksemdene dine',
+    '@forms.virksomhet.ikkeNyoppstartet.næringsinntektFlere.info':
+        'Du har opplyst at du har fleire næringsverksemder som sjølvstendig næringsdrivande. No skal du svare på spørsmål som gjeld alle verksemdene dine.',
+    '@forms.virksomhet.næringsinntekt': 'Næringsinntekt',
+    '@forms.virksomhet.næringsinntekt.enVirksomhet.spm':
         'Kva har du hatt i næringsresultat før skatt dei siste 12 månadene?',
+    '@forms.virksomhet.næringsinntekt.enVirksomhet.spm.description':
+        'Viss verksemda har vart i kortare tid enn 12 månader, kan du bruke denne perioden og rekne om til årsinntekt. Oppgi beløpet i heile kroner.',
     '@forms.virksomhet.næringsinntekt.flereVirksomheter.spm':
-        'Viss verksemda har vart i kortare tid enn 12 månader, kan du bruka denne perioden og rekna om til årsinntekt. Oppgi beløpet i heile kroner.',
-    '@forms.virksomhet.næringsinntekt.flereVirksomheter.spm.description':
         'Kva har du hatt totalt i næringsresultat før skatt dei siste 12 månadene?',
+    '@forms.virksomhet.næringsinntekt.flereVirksomheter.spm.description':
+        'Viss verksemdene har vart i kortare tid enn 12 månader, kan du bruke denne perioden og rekne om til årsinntekt. Oppgi beløpet i heile kroner.',
     '@forms.virksomhet.hvaErNæringsresultat.enVirksomhet.text':
-        'Viss verksemdene har vart i kortare tid enn 12 månader, kan du bruka denne perioden og rekna om til årsinntekt. Oppgi beløpet i heile kroner.',
-    '@forms.virksomhet.hvaErNæringsresultat.flereVirksomheter.text':
         'Næringsresultatet er inntekter du har i næringa di, minus utgifter og avskrivingar.',
-    '@forms.virksomhet.hvaErNæringsresultat.title':
-        'Næringsresultatet er inntekter du har i næringane din, minus utgifter og avskrivingar.',
-    '@forms.virksomhet.har_blitt_yrkesaktiv': 'Kva er næringsresultatet?',
-    '@forms.virksomhet.har_blitt_yrkesaktiv_info_title': 'Har du byrja i arbeidslivet  dei 3 siste ferdiglikna åra?',
-    '@forms.virksomhet.har_blitt_yrkesaktiv_info': 'Kva betyr dette?',
-    '@forms.virksomhet.har_blitt_yrkesaktiv_dato':
-        'Du skal svara ja på spørsmålet viss du før oppstart av næringsverksemda di hadde låg eller inga inntekt.',
-    '@forms.virksomhet.varig_endring_spm': 'Oppgi dato for når du byrja i arbeidslivet',
-    '@forms.virksomhet.varig_endring_dato':
+    '@forms.virksomhet.hvaErNæringsresultat.flereVirksomheter.text':
+        'Næringsresultatet er inntekter du har i næringane dine, minus utgifter og avskrivingar.',
+    '@forms.virksomhet.hvaErNæringsresultat.title': 'Kva er næringsresultatet?',
+    '@forms.virksomhet.har_blitt_yrkesaktiv': 'Har du byrja i arbeidslivet dei 3 siste ferdiglikna åra?',
+    '@forms.virksomhet.har_blitt_yrkesaktiv_info_title': 'Kva betyr dette?',
+    '@forms.virksomhet.har_blitt_yrkesaktiv_info':
+        'Du skal svare ja på spørsmålet viss du før oppstart av næringsverksemda di hadde låg eller inga inntekt.',
+    '@forms.virksomhet.har_blitt_yrkesaktiv_dato': 'Oppgi dato for når du byrja i arbeidslivet',
+    '@forms.virksomhet.varig_endring_spm':
         'Har du hatt ei varig endring i nokon av arbeidsforholda, verksemdene eller arbeidssituasjonen din dei siste fire åra?',
-    '@forms.virksomhet.varig_endring_inntekt': 'Oppgi dato for endringa',
-    '@forms.virksomhet.varig_endring_tekst':
+    '@forms.virksomhet.varig_endring_dato': 'Oppgi dato for endringa',
+    '@forms.virksomhet.varig_endring_inntekt':
         'Oppgi næringsinntekta di etter endringa. Oppgi årsinntekta i heile kroner.',
-    '@forms.virksomhet.regnskapsfører_spm':
-        'Her kan du skriva kort kva som har endra seg i arbeidsforholda, verksemdene eller arbeidssituasjonen din',
-    '@forms.virksomhet.regnskapsfører_navn': 'Har du rekneskapsførar?',
-    '@forms.virksomhet.regnskapsfører_telefon': 'Oppgi namnet til rekneskapsførar',
-    '@forms.virksomhet.veileder_innhenter_info.1': 'Oppgi telefonnummeret til rekneskapsførar',
-    '@forms.virksomhet.veileder_innhenter_info.2':
+    '@forms.virksomhet.varig_endring_tekst':
+        'Her kan du skrive kort kva som har endra seg i arbeidsforholda, verksemdene eller arbeidssituasjonen din',
+    '@forms.virksomhet.regnskapsfører_spm': 'Har du rekneskapsførar?',
+    '@forms.virksomhet.regnskapsfører_navn': 'Oppgi namnet til rekneskapsføraren',
+    '@forms.virksomhet.regnskapsfører_telefon': 'Oppgi telefonnummeret til rekneskapsføraren',
+    '@forms.virksomhet.veileder_innhenter_info.1':
         'Vi hentar inn opplysningar om verksemda og inntekta di frå offentlege register.',
-    '@forms.virksomhet.regnskapsfører_telefon_info': 'Me tek kontakt med deg viss me treng fleire opplysningar.',
+    '@forms.virksomhet.veileder_innhenter_info.2': 'Vi tek kontakt med deg viss vi treng fleire opplysningar.',
+    '@forms.virksomhet.regnskapsfører_telefon_info':
+        'Skriv inn telefonnummeret i staden for å kopiere og lime det inn frå ein annan stad.',
 };
 
 export const virksomhetFormMessages = {
