@@ -6,7 +6,7 @@ import { withSøknadContextProvider } from '../../../../storybook/decorators/wit
 import LegeerklæringStep from './LegeerklæringStep';
 
 const meta: Meta<typeof LegeerklæringStep> = {
-    title: 'Step/Legeerklæring',
+    title: 'Steps/Legeerklæring',
     component: LegeerklæringStep,
     decorators: [withIntl, (Story) => withSøknadContextProvider(Story), withAmplitudeProvider, withRouterProvider],
 };

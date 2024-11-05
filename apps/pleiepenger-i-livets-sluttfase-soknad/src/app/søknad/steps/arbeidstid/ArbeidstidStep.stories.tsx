@@ -6,7 +6,7 @@ import { withSøknadContextProvider } from '../../../../storybook/decorators/wit
 import ArbeidstidStep from './ArbeidstidStep';
 
 const meta: Meta<typeof ArbeidstidStep> = {
-    title: 'Step/Arbeidstid',
+    title: 'Steps/Arbeidstid',
     component: ArbeidstidStep,
     decorators: [withIntl, (Story) => withSøknadContextProvider(Story), withAmplitudeProvider, withRouterProvider],
 };

@@ -1,22 +1,18 @@
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
-import { Meta, StoryObj } from '@storybook/react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { StoryFn } from '@storybook/react';
 import { withIntl } from '../../storybook/decorators/withIntl';
-import { appMessages } from './appMessages';
+import { applicationIntlMessages } from '.';
 
-const meta: Meta = {
-    title: 'i18n/Messages',
+export default {
+    title: 'i18N/Alle tekster',
     decorators: [withIntl],
 };
 
-export default meta;
+const Template: StoryFn = () => (
+    <MessagesPreview showExplanation={false} messages={applicationIntlMessages} showMissingTextSummary={true} />
+);
+export const Default = Template.bind({});
 
-type Story = StoryObj<any>;
+Default.args = {};
 
-export const Default: Story = {
-    render: () => (
-        <Block margin="xxl" padBottom="l">
-            <MessagesPreview messages={appMessages} showExplanation={false} />
-        </Block>
-    ),
-};
+Default.parameters = {};
