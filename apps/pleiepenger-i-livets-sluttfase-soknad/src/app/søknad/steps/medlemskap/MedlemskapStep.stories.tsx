@@ -6,7 +6,7 @@ import { withSøknadContextProvider } from '../../../../storybook/decorators/wit
 import MedlemskapStep from './MedlemskapStep';
 
 const meta: Meta<typeof MedlemskapStep> = {
-    title: 'Step/Medlemskap',
+    title: 'Steps/Medlemskap',
     component: MedlemskapStep,
     decorators: [withIntl, (Story) => withSøknadContextProvider(Story), withAmplitudeProvider, withRouterProvider],
 };

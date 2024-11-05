@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 
 const nb = {
-    '@forms.utenlandsopphold.list.add': '+ Legg til opphold',
+    '@forms.utenlandsopphold.list.add': 'Legg til opphold',
     '@forms.utenlandsopphold.form.tittel': 'Utenlandsopphold',
     '@forms.utenlandsopphold.form.tidsperiode.spm': 'Velg tidsperiode for oppholdet',
     '@forms.utenlandsopphold.form.tidsperiode.fraDato': 'Fra og med',
@@ -53,7 +53,7 @@ const nb = {
 
 const nn: Record<keyof typeof nb, string> = {
     '@forms.utenlandsopphold.list.add': 'Legg til opphald',
-    '@forms.utenlandsopphold.form.tittel': 'Utenlandsopphold',
+    '@forms.utenlandsopphold.form.tittel': 'Utenlandsopphald',
     '@forms.utenlandsopphold.form.tidsperiode.spm': 'Vel tidsperiode for opphaldet',
     '@forms.utenlandsopphold.form.tidsperiode.fraDato': 'Frå og med',
     '@forms.utenlandsopphold.form.tidsperiode.tilDato': 'Til og med',

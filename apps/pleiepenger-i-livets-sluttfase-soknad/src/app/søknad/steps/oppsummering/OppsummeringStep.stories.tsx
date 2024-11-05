@@ -6,7 +6,7 @@ import { withSøknadContextProvider } from '../../../../storybook/decorators/wit
 import OppsummeringStep from './OppsummeringStep';
 
 const meta: Meta<typeof OppsummeringStep> = {
-    title: 'Step/Oppsummering',
+    title: 'Steps/Oppsummering',
     component: OppsummeringStep,
     decorators: [withIntl, (Story) => withSøknadContextProvider(Story), withAmplitudeProvider, withRouterProvider],
 };

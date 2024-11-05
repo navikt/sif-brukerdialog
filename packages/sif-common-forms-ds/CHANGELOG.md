@@ -1,5 +1,17 @@
 # @navikt/sif-common-forms-ds
 
+## 12.1.1
+
+### Patch Changes
+
+-   Korrigere nynorsktekster i sif-common-forms
+
+## 12.1.0
+
+### Minor Changes
+
+-   Korrigere feil nynorsktekster - tekstnøkler hadde forskjøvet seg + dårlig nynorsk/feilstavelser
+
 ## 12.0.5
 
 ### Patch Changes

@@ -6,7 +6,7 @@ import { withSøknadContextProvider } from '../../../../storybook/decorators/wit
 import TidsromStep from './TidsromStep';
 
 const meta: Meta<typeof TidsromStep> = {
-    title: 'Step/Tidsrom',
+    title: 'Steps/Tidsrom',
     component: TidsromStep,
     decorators: [withIntl, (Story) => withSøknadContextProvider(Story), withAmplitudeProvider, withRouterProvider],
 };

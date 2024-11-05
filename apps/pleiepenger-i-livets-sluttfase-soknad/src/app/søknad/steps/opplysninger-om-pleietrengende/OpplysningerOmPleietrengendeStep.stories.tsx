@@ -6,7 +6,7 @@ import { withSøknadContextProvider } from '../../../../storybook/decorators/wit
 import OpplysningerOmPleietrengendeStep from './OpplysningerOmPleietrengendeStep';
 
 const meta: Meta<typeof OpplysningerOmPleietrengendeStep> = {
-    title: 'Step/Opplysninger om pleietrengende',
+    title: 'Steps/Opplysninger om pleietrengende',
     component: OpplysningerOmPleietrengendeStep,
     decorators: [withIntl, (Story) => withSøknadContextProvider(Story), withAmplitudeProvider, withRouterProvider],
 };

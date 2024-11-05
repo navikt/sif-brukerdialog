@@ -18,7 +18,7 @@ const nb = {
     '@forms.virksomhetForm.fom.dateIsAfterMax':
         'Startdatoen for når du startet {navn} må være før dagens dato. Skriv inn eller velg startdato fra datovelgeren.',
     '@forms.virksomhetForm.fom.dateHasInvalidFormat':
-        'Du må oppgi startdato for virksomheten i et gyldig format. Gyldig format er dd.mm.ååå.',
+        'Du må oppgi startdato for virksomheten i et gyldig format. Gyldig format er dd.mm.åååå.',
     '@forms.virksomhetForm.fom.fromDateIsAfterToDate':
         'Startdatoen for når du startet {navn} må være før sluttdatoen, eller på samme dag som sluttdatoen. Skriv inn eller velg dato fra datovelgeren.',
     '@forms.virksomhetForm.tom.dateHasNoValue':
@@ -114,11 +114,11 @@ const nn: Record<keyof typeof nb, string> = {
     '@forms.virksomhetForm.fom.dateHasNoValue':
         'Du må oppgi kva dato du starta verksemda. Skriv inn eller vel startdato frå datoveljaren.',
     '@forms.virksomhetForm.fom.dateIsAfterMax':
-        'Startdatoen for når du starta {namn} må vera før dagens dato. Skriv inn eller vel startdato frå datoveljaren.',
+        'Startdatoen for når du starta {navn} må vera før dagens dato. Skriv inn eller vel startdato frå datoveljaren.',
     '@forms.virksomhetForm.fom.dateHasInvalidFormat':
-        'Du må oppgi startdato for verksemda i eit gyldig format. Gyldig format er dd.mm.ååå.',
+        'Du må oppgi startdato for verksemda i eit gyldig format. Gyldig format er dd.mm.åååå.',
     '@forms.virksomhetForm.fom.fromDateIsAfterToDate':
-        'Startdatoen for når du starta {namn} må vera før sluttdatoen, eller på same dag som sluttdatoen. Skriv inn eller vel dato frå datoveljaren.',
+        'Startdatoen for når du starta {navn} må vera før sluttdatoen, eller på same dag som sluttdatoen. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.virksomhetForm.tom.dateHasNoValue':
         'Du må oppgi kva dato du avslutta verksemda. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.virksomhetForm.tom.dateIsBeforeMin':
@@ -130,13 +130,13 @@ const nn: Record<keyof typeof nb, string> = {
     '@forms.virksomhetForm.tom.toDateIsBeforeFromDate':
         'Sluttdatoen for når du avslutta verksemda kan ikkje vera før startdatoen. Skriv inn eller vel sluttdato frå datoveljaren.',
     '@forms.virksomhetForm.næringsinntekt.numberHasInvalidFormat':
-        'Du må oppgi eit gyldig tal for næringsinntekta i {namn}. Eit gyldig tal inneheld berre siffer.',
+        'Du må oppgi eit gyldig tal for næringsinntekta i {navn}. Eit gyldig tal inneheld berre siffer.',
     '@forms.virksomhetForm.næringsinntekt.numberIsTooSmall':
-        'Talet du har oppgitt som næringsinntekt for {namn} er for lågt. Talet kan ikkje vera lågare enn {min}.',
+        'Talet du har oppgitt som næringsinntekt for {navn} er for lågt. Talet kan ikkje vera lågare enn {min}.',
     '@forms.virksomhetForm.næringsinntekt.numberIsTooLarge':
-        'Talet du har oppgitt som næringsinntekt for {namn} er for høgt. Talet kan ikkje vera høgare enn {maks}.',
-    '@forms.virksomhetForm.næringsinntekt.numberHasNoValue': 'Du må oppgi næringsinntekta i {namn}.',
-    '@forms.virksomhetForm.næringsinntekt.numberHasDecimals': 'Du må oppgi næringsinntekta i {namn} utan desimalar.',
+        'Talet du har oppgitt som næringsinntekt for {navn} er for høgt. Talet kan ikkje vera høgare enn {maks}.',
+    '@forms.virksomhetForm.næringsinntekt.numberHasNoValue': 'Du må oppgi næringsinntekta i {navn}.',
+    '@forms.virksomhetForm.næringsinntekt.numberHasDecimals': 'Du må oppgi næringsinntekta i {navn} utan desimalar.',
     '@forms.virksomhetForm.harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene.yesOrNoIsUnanswered':
         'Du må svara ja eller nei på spørsmålet om du har byrja arbeidslivet  dei 3 siste ferdiglikna åra.',
     '@forms.virksomhetForm.blittYrkesaktivDato.dateHasNoValue':
@@ -150,25 +150,25 @@ const nn: Record<keyof typeof nb, string> = {
     '@forms.virksomhetForm.hattVarigEndringAvNæringsinntektSiste4Kalenderår.yesOrNoIsUnanswered':
         'Du må svara ja eller nei på spørsmålet om du har hatt varig endring i næringsinntekta i dei siste 4 kalenderåra.',
     '@forms.virksomhetForm.varigEndringINæringsinntekt_dato.dateHasNoValue':
-        'Du må oppgi frå kva dato du fekk ei varig endring i næringsinntekta i {namn}. Skriv inn eller vel dato frå datoveljaren.',
+        'Du må oppgi frå kva dato du fekk ei varig endring i næringsinntekta i {navn}. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.virksomhetForm.varigEndringINæringsinntekt_dato.dateHasInvalidFormat':
-        'Du må oppgi dato for når du fekk varig endring i næringsinntekt i {namn} i eit gyldig format. Gyldig format er dd.mm.åååå.',
+        'Du må oppgi dato for når du fekk varig endring i næringsinntekt i {navn} i eit gyldig format. Gyldig format er dd.mm.åååå.',
     '@forms.virksomhetForm.varigEndringINæringsinntekt_dato.dateIsAfterMax':
         'Datoen for når du fekk varig endring i næringsinntekt kan ikkje vera etter {dato}. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.virksomhetForm.varigEndringINæringsinntekt_dato.dateIsBeforeMin':
         'Datoen for når du fekk varig endring i næringsinntekt kan ikkje vera før {dato}. Skriv inn eller vel dato frå datoveljaren.',
     '@forms.virksomhetForm.varigEndringINæringsinntekt_inntektEtterEndring.numberHasNoValue':
-        'Du må oppgi inntekt etter inntektsendring for {namn}.',
+        'Du må oppgi inntekt etter inntektsendring for {navn}.',
     '@forms.virksomhetForm.varigEndringINæringsinntekt_inntektEtterEndring.numberHasInvalidFormat':
-        'Du må oppgi eit gyldig tal for ny inntekt etter inntektsendring i {namn}. Eit gyldig tal inneheld berre siffer.',
+        'Du må oppgi eit gyldig tal for ny inntekt etter inntektsendring i {navn}. Eit gyldig tal inneheld berre siffer.',
     '@forms.virksomhetForm.varigEndringINæringsinntekt_inntektEtterEndring.numberIsTooLarge':
-        'Talet du har oppgitt som ny inntekt etter inntektsendring for {namn} er for høgt. Talet kan ikkje vera høgare enn {maks}.',
+        'Talet du har oppgitt som ny inntekt etter inntektsendring for {navn} er for høgt. Talet kan ikkje vera høgare enn {maks}.',
     '@forms.virksomhetForm.varigEndringINæringsinntekt_inntektEtterEndring.numberIsTooSmall':
-        'Talet du har oppgitt som ny inntekt etter inntektsendring for {namn} er for lågt. Talet kan ikkje vera lågare enn {min}.',
+        'Talet du har oppgitt som ny inntekt etter inntektsendring for {navn} er for lågt. Talet kan ikkje vera lågare enn {min}.',
     '@forms.virksomhetForm.varigEndringINæringsinntekt_inntektEtterEndring.numberHasDecimals':
-        'Du må oppgi inntekt etter inntektsendring for {namn} utan desimalar.',
+        'Du må oppgi inntekt etter inntektsendring for {navn} utan desimalar.',
     '@forms.virksomhetForm.varigEndringINæringsinntekt_forklaring.stringHasNoValue':
-        'Skriv ei forklaring på kvifor du har hatt ei varig endring i næringsinntekta for {namn}.',
+        'Skriv ei forklaring på kvifor du har hatt ei varig endring i næringsinntekta for {navn}.',
     '@forms.virksomhetForm.varigEndringINæringsinntekt_forklaring.stringIsTooLong':
         'Du har brukt for mange teikn i forklaringa di. Teksten kan ikkje innehalda fleire enn {maks} teikn.',
     '@forms.virksomhetForm.varigEndringINæringsinntekt_forklaring.stringIsTooShort':

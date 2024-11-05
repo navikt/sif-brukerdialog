@@ -6,7 +6,7 @@ import { withSøknadContextProvider } from '../../../../storybook/decorators/wit
 import ArbeidssituasjonStep from './ArbeidssituasjonStep';
 
 const meta: Meta<typeof ArbeidssituasjonStep> = {
-    title: 'Step/Arbeidssituasjon',
+    title: 'Steps/Arbeidssituasjon',
     component: ArbeidssituasjonStep,
     decorators: [withIntl, (Story) => withSøknadContextProvider(Story), withAmplitudeProvider, withRouterProvider],
     parameters: {

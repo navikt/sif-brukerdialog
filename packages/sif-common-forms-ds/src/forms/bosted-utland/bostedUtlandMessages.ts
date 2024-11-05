@@ -35,7 +35,7 @@ const nb = {
 
 const nn: Record<keyof typeof nb, string> = {
     '@forms.bostedUtland.list.add': 'Legg til opphald',
-    '@forms.bostedUtland.form.tittel': 'Utenlandsopphold',
+    '@forms.bostedUtland.form.tittel': 'Utanlandsopphald',
     '@forms.bostedUtland.form.tidsperiode.spm': 'Tidsperiode',
     '@forms.bostedUtland.form.tidsperiode.fraDato': 'Frå og med',
     '@forms.bostedUtland.form.tidsperiode.tilDato': 'Til og med',

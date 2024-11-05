@@ -51,10 +51,10 @@ const nn: Record<keyof typeof nb, string> = {
         'Du svarer ja berre viss du har opphalde deg fast i eit anna land enn Noreg. Korte utlandsturar i samband med til dømes ferie blir ikkje rekna med.',
     '@forms.medlemskapForm.annetLandSiste12.listeTittel': 'Utanlandsopphald siste 12 månader',
     '@forms.medlemskapForm.annetLandNeste12.hjelp':
-        'Du svarer ja berre viss du planlegg å opphalda deg fast i eit anna land enn Noreg. Korte utlandsturar i samband med til dømes ferie blir ikkje rekna med.',
+        'Du svarer ja berre viss du planlegg å opphalde deg fast i eit anna land enn Noreg. Korte utlandsturar i samband med til dømes ferie blir ikkje rekna med.',
     '@forms.medlemskapForm.annetLandNeste12.listeTittel': 'Utanlandsopphald neste 12 månader',
     '@forms.medlemskapForm.annetLandSisteOgNeste12.listeTittel':
-        'Utenlandsopphold siste 12 månader og neste 12 månader',
+        'Utanlandsopphald siste 12 månader og neste 12 månader',
     '@forms.medlemskapForm.info':
         'Medlemskap i folketrygda er nøkkelen til rettar frå NAV. Viss du bur eller jobbar i Noreg er du vanlegvis medlem. Du kan lesa meir om medlemskap på <Lenke>nav.no</Lenke>.',
     '@forms.medlemskapForm.hvaBetyrDette': 'Kva betyr dette?',
@@ -78,9 +78,9 @@ const nn: Record<keyof typeof nb, string> = {
     '@forms.medlemskapForm.summary.header': 'Medlemskap i folketrygda',
     '@forms.medlemskapForm.summary.utlandetSiste12.header': 'Har budd i utlandet i dei siste 12 månadene',
     '@forms.medlemskapForm.summary.utlandetNeste12.header': 'Skal bu i utlandet i dei neste 12 månadene',
-    '@forms.medlemskapForm.summary.utlandetSiste12.liste.header': 'Utenlandsopphold siste 12 månader',
-    '@forms.medlemskapForm.summary.utlandetNeste12.liste.header': 'Utenlandsopphold neste 12 månader',
-    '@forms.medlemskapForm.summary.tidsperiode': '{fraOgMed} - {tilOgMed}: {landsnamn}',
+    '@forms.medlemskapForm.summary.utlandetSiste12.liste.header': 'Utanlandsopphald siste 12 månader',
+    '@forms.medlemskapForm.summary.utlandetNeste12.liste.header': 'Utanlandsopphald neste 12 månader',
+    '@forms.medlemskapForm.summary.tidsperiode': '{fraOgMed} - {tilOgMed}: {landnavn}',
 };
 
 export type MedlemskapFormMessageKeys = keyof typeof nb;

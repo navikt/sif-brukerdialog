@@ -43,14 +43,14 @@ const nb = {
 
 const nn: Record<keyof typeof nb, string> = {
     '@forms.opptjeningUtland.list.add': 'Legg til jobb',
-    '@forms.opptjeningUtland.form.tittel': 'Jobbet i eit anna EØS-land',
+    '@forms.opptjeningUtland.form.tittel': 'Jobba i eit anna EØS-land',
     '@forms.opptjeningUtland.form.tidsperiode.spm': 'Vel tidsperiode for jobb',
     '@forms.opptjeningUtland.form.tidsperiode.fraDato': 'Frå og med',
     '@forms.opptjeningUtland.form.tidsperiode.tilDato': 'Til og med',
     '@forms.opptjeningUtland.form.land.spm': 'Vel land',
     '@forms.opptjeningUtland.form.opptjeningAktivitet.spm': 'Kva jobba du som?',
     '@forms.opptjeningUtland.form.opptjeningAktivitet.FRILANSER': 'Frilansar',
-    '@forms.opptjeningUtland.form.opptjeningAktivitet.ARBEIDSTAKER': 'Arbeidstaker',
+    '@forms.opptjeningUtland.form.opptjeningAktivitet.ARBEIDSTAKER': 'Arbeidstakar',
     '@forms.opptjeningUtland.form.arbeidsgiversNavn': 'Skriv inn namnet på arbeidsgivaren',
     '@forms.opptjeningUtland.form.oppdragsgiverNavn': 'Skriv inn namnet på oppdragsgivaren',
     '@forms.opptjeningUtland.form.ok': 'Legg til',
