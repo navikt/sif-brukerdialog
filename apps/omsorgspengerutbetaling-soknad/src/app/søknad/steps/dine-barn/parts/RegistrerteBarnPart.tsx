@@ -1,4 +1,4 @@
-import { Alert } from '@navikt/ds-react';
+import { Alert, BodyShort } from '@navikt/ds-react';
 import React from 'react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
@@ -26,6 +26,9 @@ const RegistrerteBarnPart: React.FunctionComponent<Props> = ({ registrerteBarn }
 
     return (
         <Block>
+            <BodyShort spacing={true}>
+                <AppText id="step.dineBarn.registrerteBarn.tekst" />
+            </BodyShort>
             <ItemList<RegistrertBarn>
                 getItemId={(barn): string => barn.aktørId}
                 getItemTitle={(barn): string => barn.etternavn}

@@ -1,4 +1,4 @@
-import { Alert, Heading } from '@navikt/ds-react';
+import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
 import BarnListAndDialog from '../../../pre-common/forms/barn/BarnListAndDialog';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
@@ -22,7 +22,7 @@ import {
     getOmBarnaStepInitialValues,
     getOmBarnaSøknadsdataFromFormValues,
 } from './OmBarnaStepUtils';
-import { useAppIntl } from '../../../i18n';
+import { AppText, useAppIntl } from '../../../i18n';
 
 export enum OmBarnaFormFields {
     andreBarn = 'andreBarn',
@@ -93,6 +93,9 @@ const OmBarnaStep = () => {
                                         <Heading level="3" size="xsmall" spacing={true}>
                                             {text('step.omBarna.listHeader.registrerteBarn')}
                                         </Heading>
+                                        <BodyLong spacing={true}>
+                                            <AppText id="step.omBarna.registrerteBarn.kilde" />
+                                        </BodyLong>
                                         <ItemList<RegistrertBarn>
                                             getItemId={(b): string => b.aktørId}
                                             getItemTitle={(b): string => b.etternavn}

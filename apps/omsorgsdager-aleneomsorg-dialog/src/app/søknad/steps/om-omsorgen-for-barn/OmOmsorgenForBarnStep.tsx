@@ -1,4 +1,4 @@
-import { Alert, Heading } from '@navikt/ds-react';
+import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
@@ -136,6 +136,9 @@ const OmOmsorgenForBarnStep = () => {
 
                                     {registrertBarn.length > 0 && (
                                         <Block margin="l">
+                                            <BodyLong spacing={true}>
+                                                <AppText id="steg.omOmsorgenForBarn.registrerteBarn.kilde" />
+                                            </BodyLong>
                                             <ItemList<RegistrertBarn>
                                                 getItemId={(barn): string => barn.aktørId}
                                                 getItemTitle={(barn): string => barn.etternavn}
