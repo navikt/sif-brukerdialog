@@ -1,5 +1,17 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.15.0
+
+### Minor Changes
+
+-   Korrigere feil nynorsktekster - tekstnøkler hadde forskjøvet seg + dårlig nynorsk/feilstavelser
+
+### Patch Changes
+
+-   Updated dependencies
+    -   @navikt/sif-common-forms-ds@12.1.0
+    -   @navikt/sif-common-soknad-ds@17.0.0
+
 ## 2.14.7
 
 ### Patch Changes
