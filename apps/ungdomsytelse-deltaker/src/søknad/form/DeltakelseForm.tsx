@@ -10,6 +10,7 @@ import { useSendSøknad } from '../hooks/useSendSøknad';
 import { Søker } from '@navikt/sif-common-api';
 import { Kvittering } from '@navikt/sif-common-soknad-ds/src';
 import ShadowBox from '../../components/shadow-box/ShadowBox';
+import dayjs from 'dayjs';
 
 export interface FormValues {
     fom: string;
@@ -55,7 +56,9 @@ const DeltakelseForm = ({ deltakelse, søker, onClose, onSøknadSendt }: Props) 
                 const data: SøknadApiData = {
                     id: deltakelse.id,
                     fraOgMed: dateToISODate(deltakelse.programPeriode.from),
-                    tilOgMed: dateToISODate(deltakelse.programPeriode.to || new Date()),
+                    tilOgMed: dateToISODate(
+                        deltakelse.programPeriode.to || dayjs(deltakelse.programPeriode.from).add(1, 'month').toDate(),
+                    ),
                     harBekreftetOpplysninger: values.harBekreftetOpplysninger,
                     harForståttRettigheterOgPlikter: true,
                     språk: 'nb',
