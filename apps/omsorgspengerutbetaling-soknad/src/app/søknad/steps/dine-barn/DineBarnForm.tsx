@@ -1,16 +1,15 @@
-import { Heading } from '@navikt/ds-react';
+import { Box, Heading } from '@navikt/ds-react';
 import React from 'react';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { FormikInputGroup, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
+import { RegistrerteBarnListe } from '@navikt/sif-common-ui';
 import { AppText, useAppIntl } from '../../../i18n';
 import { DineBarnFormFields, DineBarnFormValues } from './DineBarnStep';
 import AndreBarnPart from './parts/AndreBarnPart';
 import DineBarnStepIntro from './parts/DineBarnStepIntro';
-import RegistrerteBarnPart from './parts/RegistrerteBarnPart';
 import DineBarnScenarioer from './scenario/DineBarnScenarioer';
 
 const { Form } = getTypedFormComponents<DineBarnFormFields, DineBarnFormValues, ValidationError>();
@@ -72,9 +71,9 @@ const DineBarnForm: React.FunctionComponent<DineBarnFormProps> = ({
                         return 'ingenBarn';
                     }
                 }}>
-                <Block padBottom="xl">
-                    <RegistrerteBarnPart registrerteBarn={registrerteBarn} />
-                </Block>
+                <Box paddingBlock={'4 6'}>
+                    <RegistrerteBarnListe registrerteBarn={registrerteBarn} />
+                </Box>
 
                 <AndreBarnPart
                     harRegistrerteBarn={registrerteBarn.length > 0}

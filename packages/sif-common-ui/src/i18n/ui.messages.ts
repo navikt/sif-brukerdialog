@@ -5,6 +5,7 @@ import { progressStepperMessages } from '../components/progress-stepper/progress
 import { daySelectorMessages } from '../inputs/day-selector/daySelector.messages';
 import { durationWeekdaysInputMessages } from '../inputs/duration-weekdays-input/durationWeekdaysInput.messages';
 import { tidFasteUkedagerInputMessages } from '../inputs/tid-faste-ukedager-input/tidFasteUkerdagerInput.messages';
+import { registrerteBarnMessages } from '../components/registrerte-barn-liste/registrerteBarnListe.messages';
 
 const nb = {
     '@ui.jaNeiSvar.Ja': 'Ja',
@@ -14,6 +15,7 @@ const nb = {
     ...durationWeekdaysInputMessages.nb,
     ...progressStepperMessages.nb,
     ...tidFasteUkedagerInputMessages.nb,
+    ...registrerteBarnMessages.nb,
 };
 
 const nn: Record<keyof typeof nb, string> = {
@@ -24,6 +26,7 @@ const nn: Record<keyof typeof nb, string> = {
     ...durationWeekdaysInputMessages.nn,
     ...progressStepperMessages.nn,
     ...tidFasteUkedagerInputMessages.nn,
+    ...registrerteBarnMessages.nn,
 };
 
 export const getUiIntl = (intl: IntlShape) => {

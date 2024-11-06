@@ -47,10 +47,6 @@ const nb = {
     'step.dineBarn.bekrefterDektTiDagerSelv.info.tekst':
         'Du skal dekke de 10 første omsorgsdagene selv, og kan søke om utbetaling fra NAV fra den 11. dagen du er hjemme med sykt barn.',
 
-    'step.dineBarn.info.ingenbarn': 'Vi fant ikke noen barn registrert på deg.',
-    'step.dineBarn.registrerteBarn.tekst':
-        'Nedenfor ser du barn som er registrert på deg hos Folkeregisteret. Hvis noe ikke stemmer, kan du legge til barn, eller kontakte Skatteetaten.',
-
     'step.dineBarn.info.spm.text':
         'Hvis du har barn som ikke er registrert her, kan du legge inn disse selv. Det kan for eksempel være fosterbarn.',
     'step.dineBarn.formLeggTilBarn.aldersGrenseInfo': '(Du kan ikke legge til barn som er 19 år eller eldre)',

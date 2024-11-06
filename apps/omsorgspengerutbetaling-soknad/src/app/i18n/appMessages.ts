@@ -6,6 +6,7 @@ import { fraværFraMessages } from '../søknad/steps/fravær-fra/fraværFraMessa
 import { fraværStepMessages } from '../søknad/steps/fravær/fraværStepMessages';
 import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerklæringMessages';
 import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
+import { uiMessages } from '@navikt/sif-common-ui/src/i18n/ui.messages';
 
 const nb = {
     ...velkommenPageMessages.nb,
@@ -16,6 +17,7 @@ const nb = {
     ...legeerklæringMessages.nb,
     ...oppsummeringMessages.nb,
     ...kvitteringMessages.nb,
+    ...uiMessages.nb,
 
     'application.title': 'Søknad om utbetaling av omsorgspenger til selvstendig næringsdrivende eller frilansere',
 
