@@ -10,7 +10,10 @@ const nb = {
 type MessageKeys = keyof typeof nb;
 
 const nn: Record<MessageKeys, string> = {
-    ...nb,
+    'registrerteBarnListe.ingenbarn': 'Vi fann ikkje nokon barn registrert på deg.',
+    'registrerteBarnListe.kilde':
+        'Lista viser barn registrert på deg hos Folkeregisteret. Viss dette ikkje stemmer, kan du kontakte Skatteetaten.',
+    'registrertBarnListe.barn.født': 'Fødd {dato}',
 };
 
 export function ComponentText<Keys extends string>(props: { id: Keys; values?: any }) {
