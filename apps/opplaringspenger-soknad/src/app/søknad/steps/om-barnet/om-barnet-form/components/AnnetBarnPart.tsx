@@ -59,7 +59,7 @@ const AnnetBarnPart: React.FC<Props> = ({
         <SkjemagruppeQuestion
             legend={
                 harRegistrerteBarn ? (
-                    <Heading level="2" size="small" spacing={true}>
+                    <Heading level="3" size="small" spacing={true}>
                         {text('omBarnetForm.annetBarn.tittel')}
                     </Heading>
                 ) : undefined
