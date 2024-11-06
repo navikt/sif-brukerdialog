@@ -1,7 +1,5 @@
-import { Alert, BodyLong, Heading } from '@navikt/ds-react';
-import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
+import { Alert, Heading } from '@navikt/ds-react';
 import BarnListAndDialog from '../../../pre-common/forms/barn/BarnListAndDialog';
-import { RegistrertBarn } from '../../../types/RegistrertBarn';
 import { AndreBarn } from '../../../pre-common/forms/barn';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
@@ -17,12 +15,9 @@ import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import {
-    barnItemLabelRenderer,
-    getOmBarnaStepInitialValues,
-    getOmBarnaSøknadsdataFromFormValues,
-} from './OmBarnaStepUtils';
-import { AppText, useAppIntl } from '../../../i18n';
+import { getOmBarnaStepInitialValues, getOmBarnaSøknadsdataFromFormValues } from './OmBarnaStepUtils';
+import { useAppIntl } from '../../../i18n';
+import { RegistrerteBarnListe } from '@navikt/sif-common-ui';
 
 export enum OmBarnaFormFields {
     andreBarn = 'andreBarn',
@@ -90,35 +85,30 @@ const OmBarnaStep = () => {
                                 runDelayedFormValidation={true}>
                                 {registrerteBarn.length > 0 && (
                                     <Block margin="xl">
-                                        <Heading level="3" size="xsmall" spacing={true}>
+                                        <RegistrerteBarnListe.Heading level="2" size="small" spacing={true}>
                                             {text('step.omBarna.listHeader.registrerteBarn')}
-                                        </Heading>
-                                        <BodyLong spacing={true}>
-                                            <AppText id="step.omBarna.registrerteBarn.kilde" />
-                                        </BodyLong>
-                                        <ItemList<RegistrertBarn>
-                                            getItemId={(b): string => b.aktørId}
-                                            getItemTitle={(b): string => b.etternavn}
-                                            labelRenderer={(barnet) => barnItemLabelRenderer(barnet, appIntl)}
-                                            items={registrerteBarn}
-                                        />
+                                        </RegistrerteBarnListe.Heading>
+                                        <RegistrerteBarnListe registrerteBarn={registrerteBarn} />
                                     </Block>
                                 )}
 
                                 <Block margin="xl">
-                                    <Heading level="3" size="xsmall" spacing={true}>
+                                    <Heading level="2" size="small" spacing={true}>
                                         {andreBarn && andreBarn.length === 0
                                             ? text('step.omBarna.spm.andreBarn')
                                             : text('step.omBarna.spm.flereBarn')}
                                     </Heading>
                                     {text('step.omBarna.info.spm.text')}
                                 </Block>
-                                <Block margin="l">
+                                <Block margin={andreBarn && andreBarn.length === 0 ? 'm' : 'l'}>
                                     <BarnListAndDialog<OmBarnaFormFields>
                                         name={OmBarnaFormFields.andreBarn}
                                         labels={{
                                             addLabel: text('step.omBarna.listDialog.knapplabel'),
-                                            listTitle: text('step.omBarna.listDialog.listTitle'),
+                                            listTitle:
+                                                andreBarn && andreBarn.length > 0
+                                                    ? text('step.omBarna.listDialog.listTitle')
+                                                    : undefined,
                                             modalTitle: text('step.omBarna.listDialog.modalTitle'),
                                         }}
                                         disallowedFødselsnumre={[

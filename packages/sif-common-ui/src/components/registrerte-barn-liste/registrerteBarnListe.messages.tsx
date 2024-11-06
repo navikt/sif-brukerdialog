@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl';
 const nb = {
     'registrerteBarnListe.ingenbarn': 'Vi fant ikke noen barn registrert på deg.',
     'registrerteBarnListe.kilde':
-        'Listen viser barna som er registrert på deg hos Folkeregisteret. Hvis dette ikke stemmer, kan du kontakte Skatteetaten.',
+        'Listen viser barn registrert på deg hos Folkeregisteret. Hvis dette ikke stemmer, kan du kontakte Skatteetaten.',
     'registrertBarnListe.barn.født': 'Født {dato}',
 };
 

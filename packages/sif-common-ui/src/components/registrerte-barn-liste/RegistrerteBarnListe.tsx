@@ -1,25 +1,22 @@
-import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
 import { Alert, Box, HStack, VStack } from '@navikt/ds-react';
 import React from 'react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
+import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { RegistrerteBarnListText as Text } from './registrerteBarnListe.messages';
+import RegistrerteBarnListeHeading, { RegistrerteBarnListeHeadingProps } from './RegistrerteBarnListeHeading';
 
 interface Props {
     registrerteBarn: RegistrertBarn[];
 }
 
-const RegistrerteBarnListe: React.FunctionComponent<Props> = ({ registrerteBarn }) => {
-    if (registrerteBarn.length === 0) {
-        return (
-            <Alert variant="info">
-                <Text id="registrerteBarnListe.ingenbarn" />
-            </Alert>
-        );
-    }
-
-    return (
+const RegistrerteBarnListe = ({ registrerteBarn }: Props) => {
+    return registrerteBarn.length === 0 ? (
+        <Alert variant="info">
+            <Text id="registrerteBarnListe.ingenbarn" />
+        </Alert>
+    ) : (
         <VStack gap="4">
             <ItemList<RegistrertBarn>
                 getItemId={(barn): string => barn.aktørId}
@@ -37,11 +34,12 @@ const RegistrerteBarnListe: React.FunctionComponent<Props> = ({ registrerteBarn 
                 )}
                 items={registrerteBarn}
             />
-            <Alert inline={true} size="small" variant="info">
-                <Text id="registrerteBarnListe.kilde" />
-            </Alert>
         </VStack>
     );
 };
 
+RegistrerteBarnListe.Heading = RegistrerteBarnListeHeading;
+
 export default RegistrerteBarnListe;
+
+export type { RegistrerteBarnListeHeadingProps };

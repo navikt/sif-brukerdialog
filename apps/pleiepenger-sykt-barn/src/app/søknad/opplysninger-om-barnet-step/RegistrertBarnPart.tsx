@@ -1,4 +1,4 @@
-import { BodyShort, Box, VStack } from '@navikt/ds-react';
+import { BodyShort, VStack } from '@navikt/ds-react';
 import { useAppIntl } from '@i18n/index';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
@@ -11,6 +11,7 @@ import { AppText } from '../../i18n';
 import { RegistrerteBarn } from '../../types';
 import { initialValues, SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import SøknadFormComponents from '../SøknadFormComponents';
+import RegistrerteBarnListeHeading from '@navikt/sif-common-ui/src/components/registrerte-barn-liste/RegistrerteBarnListeHeading';
 
 interface Props {
     søkersBarn: RegistrerteBarn[];
@@ -27,13 +28,13 @@ const RegistrertBarnPart = ({ søkersBarn }: Props) => {
         <SkjemagruppeQuestion legend="Barn" hideLegend={true}>
             <SøknadFormComponents.RadioGroup
                 name={SøknadFormField.barnetSøknadenGjelder}
-                legend={text('steg.omBarnet.hvilketBarn.spm')}
+                legend={
+                    <RegistrerteBarnListeHeading level="2" size="xsmall">
+                        {text('steg.omBarnet.hvilketBarn.spm')}
+                    </RegistrerteBarnListeHeading>
+                }
                 description={
                     <VStack gap="0">
-                        <Box marginBlock="2 2">
-                            <AppText id={'steg.omBarnet.registrertBarnKildeInfo'} />
-                        </Box>
-
                         <ExpandableInfo title={text('steg.omBarnet.hvilketBarn.description.tittel')}>
                             <p>
                                 <AppText id={'steg.omBarnet.hvilketBarn.description.info.1'} />

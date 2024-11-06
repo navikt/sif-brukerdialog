@@ -18,6 +18,7 @@ const nb = {
 
     'step.dineBarn.annetBarnListAndDialog.addLabel': 'Legg til barn',
     'step.dineBarn.annetBarnListAndDialog.listTitle': 'Har du barn som ikke er registrert her?',
+    'step.dineBarn.annetBarnListAndDialog.listTitle.lagtTilBarn': 'Barn du har lagt til',
     'step.dineBarn.annetBarnListAndDialog.listTitle.ingenRegistrerteBarn': 'Har du andre barn?',
     'step.dineBarn.annetBarnListAndDialog.modalTitle': 'Legg til barn',
 
