@@ -141,8 +141,6 @@ const nb = {
         'Hvis barna har forskjellig pleiebehov krysser du av for det barnet som har lengst pleiebehov. Hvis barna har samme pleiebehov, eller du ikke vet, krysser du bare av for ett av barna.',
     'steg.omBarnet.hvilketBarn.description.info.3':
         'Hvis du senere skal søke om forlengelse, eller det er andre som skal søke pleiepenger i samme sak, er det viktig at det krysses av for det samme barnet som i denne søknaden.',
-    'steg.omBarnet.registrertBarnKildeInfo':
-        'Nedenfor ser du barn som er registrert på deg hos Folkeregisteret. Hvis noe ikke stemmer, kan du velge at søknaden gjelder et annet barn, eller kontakte Skatteetaten.',
     'steg.omBarnet.hvilketBarn.født': 'Født {dato}',
     'steg.omBarnet.gjelderAnnetBarn': 'Søknaden gjelder et annet barn',
     'steg.omBarnet.annetBarn.tittel': 'Annet barn',

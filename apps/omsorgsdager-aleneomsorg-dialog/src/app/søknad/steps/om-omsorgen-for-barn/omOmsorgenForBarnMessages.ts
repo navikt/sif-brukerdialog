@@ -2,8 +2,6 @@
 const nb = {
     'steg.omOmsorgenForBarn.dineBarn.seksjonsTittel': 'Dine barn',
 
-    'steg.omOmsorgenForBarn.registrerteBarn.kilde':
-        'Nedenfor ser du barn som er registrert på deg hos Folkeregisteret. Hvis noe ikke stemmer, kan du legge til barn, eller kontakte Skatteetaten.',
     'steg.omOmsorgenForBarn.info.spm.andreBarn': 'Har du barn som ikke er registrert her?',
     'steg.omOmsorgenForBarn.info.spm.flereBarn': 'Har du flere barn som ikke er registrert her?',
     'steg.omOmsorgenForBarn.info.spm.text':

@@ -1,4 +1,4 @@
-import { Alert, BodyLong, Heading } from '@navikt/ds-react';
+import { Alert, Heading } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
@@ -31,6 +31,7 @@ import {
     getOmOmsorgenForBarnStepInitialValues,
     getOmOmsorgenForBarnSøknadsdataFromFormValues,
 } from './omOmsorgenForBarnStepUtils';
+import RegistrerteBarnListeHeading from '@navikt/sif-common-ui/src/components/registrerte-barn-liste/RegistrerteBarnListeHeading';
 
 export enum OmOmsorgenForBarnFormFields {
     annetBarn = 'annetBarn',
@@ -130,15 +131,12 @@ const OmOmsorgenForBarnStep = () => {
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
                                 <Block margin="xxl">
-                                    <Heading level="2" size="medium">
-                                        <AppText id="steg.omOmsorgenForBarn.dineBarn.seksjonsTittel" />
-                                    </Heading>
+                                    <RegistrerteBarnListeHeading level="2" size="medium">
+                                        {text('steg.omOmsorgenForBarn.dineBarn.seksjonsTittel')}
+                                    </RegistrerteBarnListeHeading>
 
                                     {registrertBarn.length > 0 && (
                                         <Block margin="l">
-                                            <BodyLong spacing={true}>
-                                                <AppText id="steg.omOmsorgenForBarn.registrerteBarn.kilde" />
-                                            </BodyLong>
                                             <ItemList<RegistrertBarn>
                                                 getItemId={(barn): string => barn.aktørId}
                                                 getItemTitle={(barn): string => barn.etternavn}
