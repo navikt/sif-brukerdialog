@@ -82,7 +82,7 @@ const nb = {
     'step.dokumentType.info.3': 'For andre henvendelser send oss en melding via <Lenke>skriv til oss</Lenke>.',
     'step.dokumentType.dokumentType.spm': 'Hva skal du ettersende?',
     'step.dokumentType.dokumentType.LEGEERKLÆRING': 'Legeerklæring og andre medisinske opplysninger',
-    'step.dokumentType.registrertBarnPart.spm': 'Hvilket barn gjelder ettersendelsen?',
+    'step.dokumentType.registrertBarnPart.spm': 'Velg hvilket barn ettersendelsen gjelder',
     'step.dokumentType.registrertBarnPart.spm.description':
         'Vi må vite hvilket barn ettersendelsen gjelder, for å kunne koble dokumentet til rett sak',
     'step.dokumentType.registrertBarnPart.hvilketBarn.født': 'Født {dato}',
