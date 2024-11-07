@@ -1,5 +1,13 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.4.9
+
+### Patch Changes
+
+-   Oppdatere informasjon om hvor informasjon om barn kommer fra
+-   Updated dependencies
+    -   @navikt/sif-common-ui@0.8.32
+
 ## 4.4.8
 
 ### Patch Changes

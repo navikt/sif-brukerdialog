@@ -1,5 +1,13 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.22.9
+
+### Patch Changes
+
+-   Oppdatere informasjon om hvor informasjon om barn kommer fra
+-   Updated dependencies
+    -   @navikt/sif-common-ui@0.8.32
+
 ## 2.22.8
 
 ### Patch Changes

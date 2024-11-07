@@ -1,5 +1,13 @@
 # @navikt/sif-ettersending
 
+## 3.41.9
+
+### Patch Changes
+
+-   Oppdatere informasjon om hvor informasjon om barn kommer fra
+-   Updated dependencies
+    -   @navikt/sif-common-ui@0.8.32
+
 ## 3.41.8
 
 ### Patch Changes
