@@ -49,10 +49,10 @@ const KursOppsummering = ({ onEdit, kurs }: Props) => {
                                             <VStack gap="1">
                                                 <Box>
                                                     Avreise: {dateFormatter.compact(avreise)}.
-                                                    {periode.BeskrivelseReisetidTil ? (
+                                                    {periode.beskrivelseReisetidTil ? (
                                                         <Sitat>
                                                             <TextareaSvar
-                                                                text={periode.BeskrivelseReisetidTil}
+                                                                text={periode.beskrivelseReisetidTil}
                                                                 spacing={false}
                                                             />
                                                         </Sitat>

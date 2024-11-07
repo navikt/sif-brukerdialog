@@ -5,6 +5,7 @@ import { ArbeidsgiverType } from '../Arbeidsgiver';
 import { OmBarnetApiData } from './OmBarnetApiData';
 
 export * from './OmBarnetApiData';
+
 export interface OpplæringsinstitusjonApiData {
     uuid: string;
     navn: string;
@@ -14,12 +15,12 @@ export interface KursperiodeApiData {
     kursperiode: ISODateRange;
     avreise: ISODate;
     hjemkomst: ISODate;
-    BeskrivelseReisetidTil?: string;
+    beskrivelseReisetidTil?: string;
     beskrivelseReisetidHjem?: string;
 }
 
 export interface KursApiData {
-    opplæringsinstitusjon: OpplæringsinstitusjonApiData | 'annen';
+    kursholder: OpplæringsinstitusjonApiData | 'annen';
     perioder: KursperiodeApiData[];
 }
 

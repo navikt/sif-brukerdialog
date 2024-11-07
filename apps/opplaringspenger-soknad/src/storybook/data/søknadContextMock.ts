@@ -64,7 +64,7 @@ export const søknadContextMock: SøknadContextState = {
                 to: new Date('2024-05-30T22:00:00.000Z'),
             },
             søknadsdatoer: getDatoerIKursperioderInkludertReisedager(kursperioder),
-            opplæringsinstitusjon: 'annen',
+            kursholder: 'annen',
             kursperioder,
             arbeiderIKursperiode: true,
         },
