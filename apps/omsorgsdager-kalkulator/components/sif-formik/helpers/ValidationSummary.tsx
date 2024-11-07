@@ -16,20 +16,21 @@ const ValidationSummary: React.FunctionComponent<Props> = ({ errors, heading, he
     return (
         <ErrorSummary ref={summaryRef} heading={heading || 'Feil i skjema'} headingTag={headingTag}>
             {errors.map((error, idx) => (
-                <ValidationErrorLink
-                    key={`validation_error_key_${idx}`}
-                    className={'lenke'}
-                    onClick={() => {
-                        const elementById = document.getElementById(error.fieldName);
-                        const elementByName = document.getElementsByName(error.fieldName)[0];
-                        if (elementById) {
-                            elementById.focus();
-                        } else if (elementByName) {
-                            elementByName.focus();
-                        }
-                    }}>
-                    {error.errorMessage}
-                </ValidationErrorLink>
+                <ErrorSummary.Item key={`validation_error_key_${idx}`}>
+                    <ValidationErrorLink
+                        className={'lenke'}
+                        onClick={() => {
+                            const elementById = document.getElementById(error.fieldName);
+                            const elementByName = document.getElementsByName(error.fieldName)[0];
+                            if (elementById) {
+                                elementById.focus();
+                            } else if (elementByName) {
+                                elementByName.focus();
+                            }
+                        }}>
+                        {error.errorMessage}
+                    </ValidationErrorLink>
+                </ErrorSummary.Item>
             ))}
         </ErrorSummary>
     );
