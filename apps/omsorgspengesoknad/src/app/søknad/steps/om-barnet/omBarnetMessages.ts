@@ -1,8 +1,6 @@
 const nb = {
     'steg.omBarnet.spm.barnetSøknadenGjelder.label': 'Hvilket barn gjelder søknaden?',
     'steg.omBarnet.spm.barnetSøknadenGjelder.registrerteBarn.label': 'Barn registrert på deg',
-    'steg.omBarnet.spm.barnetSøknadenGjelder.kilde':
-        'Listen viser barn registrert på deg hos Folkeregisteret. Hvis dette ikke stemmer, kan du kontakte Skatteetaten.',
     'steg.omBarnet.spm.barnetSøknadenGjelder.info':
         'Hvis du skal søke for flere barn, må du sende én søknad for hvert barn.',
     'steg.omBarnet.spm.barnetSøknadenGjelder.født': 'Født {dato}',
@@ -81,8 +79,6 @@ export type OmBarnetMessageKeys = keyof typeof nb;
 const nn: Record<OmBarnetMessageKeys, string> = {
     'steg.omBarnet.spm.barnetSøknadenGjelder.label': 'Kva barn gjeld søknaden?',
     'steg.omBarnet.spm.barnetSøknadenGjelder.registrerteBarn.label': 'Barn registrert på deg',
-    'steg.omBarnet.spm.barnetSøknadenGjelder.kilde':
-        'Listen viser barn registrert på deg hos Folkeregisteret. Hvis dette ikke stemmer, kan du kontakte Skatteetaten.',
     'steg.omBarnet.spm.barnetSøknadenGjelder.info':
         'Viss du skal søkja for fleire barn, må du senda éin søknad for kvart barn.',
     'steg.omBarnet.spm.barnetSøknadenGjelder.født': 'Fødd {dato}',

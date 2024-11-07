@@ -1,10 +1,11 @@
-import { Heading, HelpText, HStack, VStack } from '@navikt/ds-react';
+import { Heading, HStack, VStack } from '@navikt/ds-react';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { AppText, useAppIntl } from '../../../../i18n';
 import { RegistrertBarn } from '../../../../types/RegistrertBarn';
 import { OmBarnetFormFields } from '../OmBarnetStep';
 import { mapBarnTilRadioProps } from '../omBarnetStepUtils';
 import { omBarnetFormComponents } from '../omBarnetFormComponents';
+import RegistrerteBarnHelpText from '@navikt/sif-common-ui/src/components/registrerte-barn-liste/RegistrerteBarnHelpText';
 
 interface Props {
     registrerteBarn: RegistrertBarn[];
@@ -28,9 +29,7 @@ const RegistrertBarnSpørsmål = ({ registrerteBarn, søknadenGjelderEtAnnetBarn
                         <>
                             <HStack gap="2" marginBlock={'2 2'}>
                                 {text('steg.omBarnet.spm.barnetSøknadenGjelder.registrerteBarn.label')}
-                                <HelpText title="Hvor kommer dette fra?">
-                                    <AppText id="steg.omBarnet.spm.barnetSøknadenGjelder.kilde" />
-                                </HelpText>
+                                <RegistrerteBarnHelpText />
                             </HStack>
                         </>
                     }
