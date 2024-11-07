@@ -1,5 +1,11 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.29.8
+
+### Patch Changes
+
+-   Legge til informasjon om hvor barn hentes fra
+
 ## 1.29.7
 
 ### Patch Changes
