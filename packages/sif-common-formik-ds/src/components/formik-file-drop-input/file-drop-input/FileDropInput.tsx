@@ -19,7 +19,6 @@ interface Props {
     accept?: Accept;
     error?: FormError;
     onFilesSelect: (acceptedFiles: File[], rejectedFiles: FileRejection[]) => void;
-    onFileDialogOpen?: () => void;
 }
 
 const bem = bemUtils('fileDropInput');
@@ -36,7 +35,6 @@ const FileDropInput: React.FunctionComponent<Props> = (props) => {
         accept,
         multiple,
         onDrop,
-        onFileDialogOpen: props.onFileDialogOpen,
     });
 
     const className = useMemo(
@@ -60,7 +58,7 @@ const FileDropInput: React.FunctionComponent<Props> = (props) => {
         return buttonLabel;
     };
     return (
-        <SkjemagruppeQuestion error={error} legend={legend} description={description} id="abc">
+        <SkjemagruppeQuestion error={error} legend={legend} description={description}>
             <div {...getRootProps({ className })} role="button">
                 <div className={bem.element('icon')}>
                     <UploadIcon role="presentation" />

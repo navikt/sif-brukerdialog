@@ -18,7 +18,8 @@ const nb = {
     '@core.formikAttachmentsList.validation.noAttachmentsUploaded': 'Ingen dokumenter er lastet opp',
     '@core.formikAttachmentsList.validation.tooManyAttachments': 'For mange dokumenter er lastet opp',
     '@core.formikAttachmentsList.validation.maxTotalSizeExceeded':
-        'Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24Mb.',
+        'Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24 Mb.',
+    '@core.formikAttachmentsList.listHeading': 'Dokumenter lastet opp ({antallDokumenter})',
 
     ...pictureScanningGuideMessages.nb,
 };
@@ -41,7 +42,8 @@ const nn: Record<MessageKeys, string> = {
     '@core.formikAttachmentsList.validation.noAttachmentsUploaded': 'Ingen dokument er lastet opp',
     '@core.formikAttachmentsList.validation.tooManyAttachments': 'For mange dokument er lastet opp',
     '@core.formikAttachmentsList.validation.maxTotalSizeExceeded':
-        'Total samla størrelse for dokumenta du har lastet opp overstig grensa på 24Mb.',
+        'Total samla størrelse for dokumenta du har lastet opp overstig grensa på 24 Mb.',
+    '@core.formikAttachmentsList.listHeading': 'Dokument lastet opp ({antallDokumenter})',
 
     ...pictureScanningGuideMessages.nn,
 };

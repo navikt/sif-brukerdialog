@@ -10,10 +10,11 @@ import { Attachment } from '../../types/Attachment';
 interface Props extends TypedFormInputValidationProps<any, ValidationError> {
     attachments: Attachment[];
     name: string;
-    legend?: string;
+    legend: string;
     buttonLabel: string;
     onFilesSelected?: () => void;
     onErrorUploadingFiles: (files: File[]) => void;
+    onAttachmentsUploaded?: (attachments: Attachment[]) => void;
     onUnauthorizedOrForbiddenUpload: () => void;
 }
 
@@ -24,18 +25,20 @@ function FormikFileUploader({
     onFilesSelected,
     onErrorUploadingFiles,
     onUnauthorizedOrForbiddenUpload,
+    onAttachmentsUploaded,
     ...otherProps
 }: Props) {
     const { onFilesSelect } = useFormikFileUploader({
         value: attachments,
         onUnauthorizedOrForbiddenUpload,
         onErrorUploadingFiles,
+        onAttachmentsUploaded,
     });
 
     return (
         <FormikFileDropInput
             name={name}
-            legend={legend || 'Dokumenter'}
+            legend={legend}
             accept={FileDropAcceptImagesAndPdf}
             onFilesSelect={(...args) => {
                 if (onFilesSelected) {
