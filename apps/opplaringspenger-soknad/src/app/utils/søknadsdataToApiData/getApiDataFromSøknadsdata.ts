@@ -64,6 +64,7 @@ export const getApiDataFromSøknadsdata = (
         fraOgMed: dateToISODate(søknadsperiode.from),
         tilOgMed: dateToISODate(søknadsperiode.to),
         kurs: getKursApiDataFromSøknadsdata(kurs),
+        utenlandsoppholdIPerioden: [],
         arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(
             søknadsperiode,
             valgteDatoer,
