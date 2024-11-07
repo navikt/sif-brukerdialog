@@ -133,9 +133,11 @@ export interface SøknadApiData {
     søkerNorskIdent: string;
     språk: string;
     harForståttRettigheterOgPlikter: boolean;
-    omBarnet: OmBarnetApiData;
+    harBekreftetOpplysninger: boolean;
+    fraOgMed: ISODate;
+    tilOgMed: ISODate;
+    barn: OmBarnetApiData;
     kurs: KursApiData;
-    søknadsperiode: PeriodeApiData;
     arbeidsgivere?: ArbeidsgiverApiData[];
     frilans?: FrilansApiData;
     selvstendigNæringsdrivende?: SelvstendigNæringsdrivendeApiData;
@@ -143,7 +145,6 @@ export interface SøknadApiData {
     medlemskap: MedlemskapApiData;
     opptjeningIUtlandet: OpptjeningIUtlandetApi[];
     utenlandskNæring: UtenlandskNæringApi[];
-    vedleggUrls: string[];
-    dataBruktTilUtledning: DataBruktTilUtledningAnnetDataJsonString;
-    harBekreftetOpplysninger: boolean;
+    vedlegg: string[];
+    dataBruktTilUtledningAnnetData: DataBruktTilUtledningAnnetDataJsonString;
 }
