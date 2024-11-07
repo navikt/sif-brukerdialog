@@ -6,8 +6,8 @@ import { OmBarnetApiData } from './OmBarnetApiData';
 
 export * from './OmBarnetApiData';
 
-export interface OpplæringsinstitusjonApiData {
-    uuid: string;
+export interface KursholderApiData {
+    id: string;
     navn: string;
 }
 
@@ -20,7 +20,7 @@ export interface KursperiodeApiData {
 }
 
 export interface KursApiData {
-    kursholder: OpplæringsinstitusjonApiData | 'annen';
+    kursholder: KursholderApiData | 'annen';
     perioder: KursperiodeApiData[];
 }
 

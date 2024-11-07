@@ -9,10 +9,13 @@ export const getKursApiDataFromSøknadsdata = ({
     const apiData: KursApiData = {
         kursholder:
             kursholder === 'annen'
-                ? 'annen'
+                ? {
+                      navn: 'Annen',
+                      id: 'annen',
+                  }
                 : {
                       navn: kursholder.navn,
-                      uuid: kursholder.uuid,
+                      id: kursholder.uuid,
                   },
         perioder: kursperioder.map(
             (p) =>
