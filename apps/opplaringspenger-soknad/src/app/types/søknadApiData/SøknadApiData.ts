@@ -109,6 +109,7 @@ export interface OpptjeningIUtlandetApi {
 
 export interface UtenlandsoppholdIPeriodenApi {
     skalOppholdeSegIUtlandetIPerioden: boolean;
+    opphold: UtenlandsoppholdIPeriodenApiData[];
 }
 
 export interface UtenlandskNæringApi {
@@ -146,6 +147,6 @@ export interface SøknadApiData {
     opptjeningIUtlandet: OpptjeningIUtlandetApi[];
     utenlandskNæring: UtenlandskNæringApi[];
     vedlegg: string[];
-    utenlandsoppholdIPerioden: UtenlandsoppholdIPeriodenApi[];
+    utenlandsoppholdIPerioden: UtenlandsoppholdIPeriodenApi;
     dataBruktTilUtledningAnnetData: DataBruktTilUtledningAnnetDataJsonString;
 }
