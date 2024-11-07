@@ -133,7 +133,7 @@ const nb = {
     'page.velkommen.tittel': 'Søknad om pleiepenger for sykt barn',
     'page.velkommen.startSøknad': 'Start søknad',
 
-    'steg.omBarnet.hvilketBarn.spm': 'Hvilket barn gjelder søknaden?',
+    'steg.omBarnet.hvilketBarn.spm': 'Velg hvilket barn søknaden gjelder',
     'steg.omBarnet.hvilketBarn.description.tittel': 'Hva gjør jeg når jeg pleier flere barn samtidig?',
     'steg.omBarnet.hvilketBarn.description.info.1':
         'Når du pleier flere barn samtidig, skal du sende én søknad som gjelder samlet for barna du pleier. Vi registrerer og behandler søknaden din basert kun på ett av barna, selv om du pleier flere. Derfor kan du kun krysse av for ett av barna her.',

@@ -23,6 +23,7 @@ const AndreBarnPart: React.FunctionComponent<Props> = ({
 }) => {
     const { text } = useAppIntl();
     const andreBarnFnr = andreBarn.map((barn) => barn.fnr);
+    const harLagtTilAndreBarn = andreBarn.length > 0;
     return (
         <FormBlock>
             <AnnetBarnListAndDialog<DineBarnFormFields>
@@ -30,7 +31,11 @@ const AndreBarnPart: React.FunctionComponent<Props> = ({
                 labels={{
                     addLabel: text('step.dineBarn.annetBarnListAndDialog.addLabel'),
                     listTitle: harRegistrerteBarn
-                        ? text('step.dineBarn.annetBarnListAndDialog.listTitle')
+                        ? text(
+                              harLagtTilAndreBarn
+                                  ? 'step.dineBarn.annetBarnListAndDialog.listTitle.lagtTilBarn'
+                                  : 'step.dineBarn.annetBarnListAndDialog.listTitle',
+                          )
                         : text('step.dineBarn.annetBarnListAndDialog.listTitle.ingenRegistrerteBarn'),
 
                     modalTitle: text('step.dineBarn.annetBarnListAndDialog.modalTitle'),

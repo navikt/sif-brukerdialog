@@ -20,6 +20,7 @@ const getAppSettings = () => ({
     SIF_PUBLIC_MINSIDE_URL: `${process.env.SIF_PUBLIC_MINSIDE_URL}`,
     SIF_PUBLIC_SKIP_ORGNUM_VALIDATION: `${process.env.SIF_PUBLIC_SKIP_ORGNUM_VALIDATION}`,
     SIF_PUBLIC_USE_AMPLITUDE: `${process.env.SIF_PUBLIC_USE_AMPLITUDE}`,
+    SIF_PUBLIC_AMPLITUDE_API_KEY: `${process.env.SIF_PUBLIC_AMPLITUDE_API_KEY}`,
 });
 
 module.exports = getAppSettings;

@@ -3,7 +3,7 @@ import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils'
 
 const nb = {
     'omBarnetForm.hvilketBarn.spm': 'Hvilket barn gjelder søknaden?',
-    'omBarnetForm.hvilketBarn.registrerteBarn': 'Barn registrert på deg:',
+    'omBarnetForm.hvilketBarn.registrerteBarn': 'Barn registrert på deg',
     'omBarnetForm.hvilketBarn.info': 'Hvis du skal søke for flere barn, må du sende én søknad for hvert barn.',
     'omBarnetForm.gjelderAnnetBarn': 'Søknaden gjelder et annet barn',
     'omBarnetForm.hvilketBarn.født': 'Født {dato}',

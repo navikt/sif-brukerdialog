@@ -1,5 +1,11 @@
 # @navikt/sif-common-ui
 
+## 0.8.32
+
+### Patch Changes
+
+-   Oppdatere informasjon om hvor informasjon om barn kommer fra
+
 ## 0.8.31
 
 ### Patch Changes

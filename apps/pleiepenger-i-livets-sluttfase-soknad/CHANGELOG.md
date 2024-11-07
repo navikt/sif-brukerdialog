@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.15.1
+
+### Patch Changes
+
+-   Legge til informasjon om hvor barn hentes fra
+
 ## 2.15.0
 
 ### Minor Changes
