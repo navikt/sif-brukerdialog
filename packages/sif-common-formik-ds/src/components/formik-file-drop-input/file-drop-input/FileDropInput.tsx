@@ -60,16 +60,15 @@ const FileDropInput: React.FunctionComponent<Props> = (props) => {
         return buttonLabel;
     };
     return (
-        <SkjemagruppeQuestion error={error} legend={legend} description={description}>
+        <SkjemagruppeQuestion error={error} legend={legend} description={description} id="abc">
             <div {...getRootProps({ className })} role="button">
                 <div className={bem.element('icon')}>
                     <UploadIcon role="presentation" />
                 </div>
-                <BodyShort as="div" className={bem.element('label')}>
+                <BodyShort as="label" className={bem.element('label')} htmlFor={inputId}>
                     {getLabel()}
                 </BodyShort>
-
-                <input id={inputId} name={name} {...getInputProps()} />
+                <input type="file" id={inputId} name={name} {...getInputProps()} />
             </div>
         </SkjemagruppeQuestion>
     );
