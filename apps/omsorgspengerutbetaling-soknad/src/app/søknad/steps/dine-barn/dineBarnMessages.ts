@@ -18,6 +18,7 @@ const nb = {
 
     'step.dineBarn.annetBarnListAndDialog.addLabel': 'Legg til barn',
     'step.dineBarn.annetBarnListAndDialog.listTitle': 'Har du barn som ikke er registrert her?',
+    'step.dineBarn.annetBarnListAndDialog.listTitle.lagtTilBarn': 'Barn du har lagt til',
     'step.dineBarn.annetBarnListAndDialog.listTitle.ingenRegistrerteBarn': 'Har du andre barn?',
     'step.dineBarn.annetBarnListAndDialog.modalTitle': 'Legg til barn',
 
@@ -46,8 +47,6 @@ const nb = {
     'step.dineBarn.bekrefterDektTiDagerSelv.info.tittel': 'Hvorfor spør vi om dette?',
     'step.dineBarn.bekrefterDektTiDagerSelv.info.tekst':
         'Du skal dekke de 10 første omsorgsdagene selv, og kan søke om utbetaling fra NAV fra den 11. dagen du er hjemme med sykt barn.',
-
-    'step.dineBarn.info.ingenbarn': 'Vi fant ikke noen barn registrert på deg.',
 
     'step.dineBarn.info.spm.text':
         'Hvis du har barn som ikke er registrert her, kan du legge inn disse selv. Det kan for eksempel være fosterbarn.',

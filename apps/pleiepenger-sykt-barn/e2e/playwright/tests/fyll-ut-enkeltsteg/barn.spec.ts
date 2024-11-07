@@ -22,7 +22,7 @@ test.describe('Barn steg', () => {
         await page.getByTestId('typedFormikForm-submitButton').click();
     });
     test('Annet barn - utlandet', async ({ page }) => {
-        await page.getByText('Søknaden gjelder et annet barn').click();
+        await page.getByText('Søknaden gjelder et annet barn', { exact: true }).click();
         await page.getByText('Barnet har ikke fødselsnummer').click();
         await page.getByText('Barnet bor i utlandet').click();
         await page.getByLabel('Barnets navn').fill('Tore');
@@ -44,7 +44,7 @@ test.describe('Barn steg', () => {
         await page.getByTestId('typedFormikForm-submitButton').click();
     });
     test('Annet barn', async ({ page }) => {
-        await page.getByText('Søknaden gjelder et annet barn').click();
+        await page.getByText('Søknaden gjelder et annet barn', { exact: true }).click();
         await page.getByLabel('Barnets fødselsnummer/D-nummer').click();
         await page.getByLabel('Barnets fødselsnummer/D-nummer').fill('02869599258');
         await page.getByLabel('Barnets navn').click();

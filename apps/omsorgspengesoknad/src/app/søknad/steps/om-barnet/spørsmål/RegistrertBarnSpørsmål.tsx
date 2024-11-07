@@ -1,10 +1,11 @@
-import { Heading, VStack } from '@navikt/ds-react';
+import { Heading, HStack, VStack } from '@navikt/ds-react';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { useAppIntl } from '../../../../i18n';
+import { AppText, useAppIntl } from '../../../../i18n';
 import { RegistrertBarn } from '../../../../types/RegistrertBarn';
 import { OmBarnetFormFields } from '../OmBarnetStep';
 import { mapBarnTilRadioProps } from '../omBarnetStepUtils';
 import { omBarnetFormComponents } from '../omBarnetFormComponents';
+import RegistrerteBarnHelpText from '@navikt/sif-common-ui/src/components/registrerte-barn-liste/RegistrerteBarnHelpText';
 
 interface Props {
     registrerteBarn: RegistrertBarn[];
@@ -24,8 +25,15 @@ const RegistrertBarnSpørsmål = ({ registrerteBarn, søknadenGjelderEtAnnetBarn
             </Heading>
             <VStack gap="2">
                 <RadioGroup
-                    legend={text('steg.omBarnet.spm.barnetSøknadenGjelder.registrerteBarn.label')}
-                    description={text('steg.omBarnet.spm.barnetSøknadenGjelder.info')}
+                    legend={
+                        <>
+                            <HStack gap="2" marginBlock={'2 2'}>
+                                {text('steg.omBarnet.spm.barnetSøknadenGjelder.registrerteBarn.label')}
+                                <RegistrerteBarnHelpText />
+                            </HStack>
+                        </>
+                    }
+                    description={<AppText id="steg.omBarnet.spm.barnetSøknadenGjelder.info" />}
                     name={OmBarnetFormFields.barnetSøknadenGjelder}
                     radios={registrerteBarn.map((barn) => mapBarnTilRadioProps(barn, søknadenGjelderEtAnnetBarn))}
                     validate={søknadenGjelderEtAnnetBarn ? undefined : getRequiredFieldValidator()}

@@ -8,6 +8,7 @@ import { AppText, useAppIntl } from '../../i18n';
 import { RegistrertBarn } from '../../types/RegistrertBarn';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import SoknadFormComponents from '../SoknadFormComponents';
+import RegistrerteBarnListeHeading from '@navikt/sif-common-ui/src/components/registrerte-barn-liste/RegistrerteBarnListeHeading';
 
 interface Props {
     registrertBarn: RegistrertBarn[];
@@ -63,8 +64,16 @@ const RegistrertBarnPart = ({ registrertBarn }: Props) => {
         <>
             <SoknadFormComponents.RadioGroup
                 name={SoknadFormField.registrertBarnAktørId}
-                legend={text('step.dokumentType.registrertBarnPart.spm')}
-                description={text('step.dokumentType.registrertBarnPart.spm.description')}
+                legend={
+                    <RegistrerteBarnListeHeading level="2" size="xsmall">
+                        {text('step.dokumentType.registrertBarnPart.spm')}
+                    </RegistrerteBarnListeHeading>
+                }
+                description={
+                    <p>
+                        <AppText id="step.dokumentType.registrertBarnPart.spm.description" />
+                    </p>
+                }
                 radios={registrertBarn.map((barn) => {
                     const { fornavn, mellomnavn, etternavn, fødselsdato, aktørId } = barn;
                     const barnetsNavn = formatName(fornavn, etternavn, mellomnavn);

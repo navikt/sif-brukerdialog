@@ -31,6 +31,7 @@ import {
     getOmOmsorgenForBarnStepInitialValues,
     getOmOmsorgenForBarnSøknadsdataFromFormValues,
 } from './omOmsorgenForBarnStepUtils';
+import RegistrerteBarnListeHeading from '@navikt/sif-common-ui/src/components/registrerte-barn-liste/RegistrerteBarnListeHeading';
 
 export enum OmOmsorgenForBarnFormFields {
     annetBarn = 'annetBarn',
@@ -130,9 +131,9 @@ const OmOmsorgenForBarnStep = () => {
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
                                 <Block margin="xxl">
-                                    <Heading level="2" size="medium">
-                                        <AppText id="steg.omOmsorgenForBarn.dineBarn.seksjonsTittel" />
-                                    </Heading>
+                                    <RegistrerteBarnListeHeading level="2" size="medium">
+                                        {text('steg.omOmsorgenForBarn.dineBarn.seksjonsTittel')}
+                                    </RegistrerteBarnListeHeading>
 
                                     {registrertBarn.length > 0 && (
                                         <Block margin="l">

@@ -1,5 +1,5 @@
 const nb = {
-    'step.omBarna.listHeader.registrerteBarn': 'Registrerte barn',
+    'step.omBarna.listHeader.registrerteBarn': 'Dine barn',
     'step.omBarna.spm.andreBarn': 'Har du andre barn?',
     'step.omBarna.spm.flereBarn': 'Har du flere barn?',
     'step.omBarna.info.ingenbarn.2': 'Du må legge til minst ett barn for å kunne gå videre.',

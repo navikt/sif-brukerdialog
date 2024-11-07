@@ -1,16 +1,14 @@
-import { Heading } from '@navikt/ds-react';
+import { Box } from '@navikt/ds-react';
 import React from 'react';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { FormikInputGroup, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn/types';
-import { AppText, useAppIntl } from '../../../i18n';
+import { RegistrerteBarnListe } from '@navikt/sif-common-ui';
+import { useAppIntl } from '../../../i18n';
 import { DineBarnFormFields, DineBarnFormValues } from './DineBarnStep';
 import AndreBarnPart from './parts/AndreBarnPart';
 import DineBarnStepIntro from './parts/DineBarnStepIntro';
-import RegistrerteBarnPart from './parts/RegistrerteBarnPart';
 import DineBarnScenarioer from './scenario/DineBarnScenarioer';
 
 const { Form } = getTypedFormComponents<DineBarnFormFields, DineBarnFormValues, ValidationError>();
@@ -34,7 +32,7 @@ const DineBarnForm: React.FunctionComponent<DineBarnFormProps> = ({
     goBack,
     onAndreBarnChanged,
 }) => {
-    const { intl } = useAppIntl();
+    const { intl, text } = useAppIntl();
 
     const { andreBarn = [], harSyktBarn, harDekketTiFørsteDagerSelv } = values;
 
@@ -56,14 +54,14 @@ const DineBarnForm: React.FunctionComponent<DineBarnFormProps> = ({
             runDelayedFormValidation={true}>
             <DineBarnStepIntro />
 
-            <FormBlock margin="xxl">
-                <Heading level="2" size="medium">
-                    <AppText id="step.dineBarn.seksjonsTittel" />
-                </Heading>
-            </FormBlock>
+            <Box paddingBlock={'8 0'}>
+                <RegistrerteBarnListe.Heading level="2" size="medium">
+                    {text('step.dineBarn.seksjonsTittel')}
+                </RegistrerteBarnListe.Heading>
+            </Box>
 
             <FormikInputGroup
-                legend={'Barn'}
+                legend={text('step.dineBarn.seksjonsTittel')}
                 hideLegend={true}
                 name="barn"
                 validate={() => {
@@ -72,9 +70,9 @@ const DineBarnForm: React.FunctionComponent<DineBarnFormProps> = ({
                         return 'ingenBarn';
                     }
                 }}>
-                <Block padBottom="xl">
-                    <RegistrerteBarnPart registrerteBarn={registrerteBarn} />
-                </Block>
+                <Box paddingBlock={'4 6'}>
+                    <RegistrerteBarnListe registrerteBarn={registrerteBarn} />
+                </Box>
 
                 <AndreBarnPart
                     harRegistrerteBarn={registrerteBarn.length > 0}

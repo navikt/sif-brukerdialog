@@ -8,6 +8,7 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import { OmBarnetFormText, useOmBarnetFormIntl } from '../omBarnetFormMessages';
 import { OmBarnetFormFields } from '../types';
 import { OmBarnetFormComponents } from './OmBarnetFormComponents';
+import RegistrerteBarnListeHeading from '@navikt/sif-common-ui/src/components/registrerte-barn-liste/RegistrerteBarnListeHeading';
 
 interface Props {
     registrerteBarn: RegistrertBarn[];
@@ -31,7 +32,11 @@ const VelgRegistrertBarn: React.FunctionComponent<Props> = ({
             </Heading>
             <FormLayout.Questions>
                 <RadioGroup
-                    legend={text('omBarnetForm.hvilketBarn.registrerteBarn')}
+                    legend={
+                        <RegistrerteBarnListeHeading level="3" size="xsmall">
+                            {text('omBarnetForm.hvilketBarn.registrerteBarn')}
+                        </RegistrerteBarnListeHeading>
+                    }
                     description={text('omBarnetForm.hvilketBarn.info')}
                     name={OmBarnetFormFields.barnetSøknadenGjelder}
                     radios={registrerteBarn.map((barn) => mapBarnTilRadioProps(barn, søknadenGjelderEtAnnetBarn))}
