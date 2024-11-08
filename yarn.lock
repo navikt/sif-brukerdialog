@@ -4868,7 +4868,7 @@ __metadata:
     axios: "npm:1.7.7"
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
-    chromatic: "npm:11.16.5"
+    chromatic: "npm:11.18.0"
     compression: "npm:1.7.5"
     cors: "npm:2.8.5"
     cross-env: "npm:7.0.3"
@@ -4939,7 +4939,7 @@ __metadata:
     axios: "npm:1.7.7"
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
-    chromatic: "npm:11.16.5"
+    chromatic: "npm:11.18.0"
     compression: "npm:1.7.5"
     cookie-parser: "npm:1.4.7"
     cross-env: "npm:7.0.3"
@@ -12805,9 +12805,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromatic@npm:11.16.5":
-  version: 11.16.5
-  resolution: "chromatic@npm:11.16.5"
+"chromatic@npm:11.18.0":
+  version: 11.18.0
+  resolution: "chromatic@npm:11.18.0"
   peerDependencies:
     "@chromatic-com/cypress": ^0.*.* || ^1.0.0
     "@chromatic-com/playwright": ^0.*.* || ^1.0.0
@@ -12820,7 +12820,7 @@ __metadata:
     chroma: dist/bin.js
     chromatic: dist/bin.js
     chromatic-cli: dist/bin.js
-  checksum: 10/df200f3900be2b5bf662f2308b15693730d55380085636c20ccd7a78913b3b7e5401d32706098462e020542dc47997021ce894e17fb4bbf771a48b73378884c2
+  checksum: 10/bcb12db038587d41f5f29e799980ebd5cc27c6412271104b200792b48d9666c85e4240385d5958f4a537111dcef17074b5e33f6c1fe67596c7d4a0b5febaf9ee
   languageName: node
   linkType: hard
 
