@@ -11,7 +11,7 @@ interface Props {
 }
 
 const KursOppsummering = ({ onEdit, kurs }: Props) => {
-    const { opplæringsinstitusjon, perioder } = kurs;
+    const { kursholder, perioder } = kurs;
     const { locale } = useAppIntl();
     return (
         <>
@@ -25,9 +25,7 @@ const KursOppsummering = ({ onEdit, kurs }: Props) => {
                 <FormSummary.Answers>
                     <FormSummary.Answer>
                         <FormSummary.Label>Kursholder</FormSummary.Label>
-                        <FormSummary.Value>
-                            {opplæringsinstitusjon === 'annen' ? 'Annen' : opplæringsinstitusjon.navn}
-                        </FormSummary.Value>
+                        <FormSummary.Value>{kursholder === 'annen' ? 'Annen' : kursholder.navn}</FormSummary.Value>
                     </FormSummary.Answer>
                     <FormSummary.Answer>
                         <FormSummary.Label>Kursperioder</FormSummary.Label>
@@ -49,10 +47,10 @@ const KursOppsummering = ({ onEdit, kurs }: Props) => {
                                             <VStack gap="1">
                                                 <Box>
                                                     Avreise: {dateFormatter.compact(avreise)}.
-                                                    {periode.BeskrivelseReisetidTil ? (
+                                                    {periode.beskrivelseReisetidTil ? (
                                                         <Sitat>
                                                             <TextareaSvar
-                                                                text={periode.BeskrivelseReisetidTil}
+                                                                text={periode.beskrivelseReisetidTil}
                                                                 spacing={false}
                                                             />
                                                         </Sitat>

@@ -25,7 +25,7 @@ export const useSendSøknad = () => {
 
     const sendSøknad = (apiData: SøknadApiData, søker: Søker) => {
         setIsSubmitting(true);
-        getInnsendingService(InnsendingType['pleiepenger-i-livets-sluttfase'])
+        getInnsendingService(InnsendingType.pleiepenger_i_livets_sluttfase)
             .send(apiData)
             .then(() => {
                 const kvitteringInfo = getKvitteringInfoFromApiData(apiData, søker);

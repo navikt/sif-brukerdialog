@@ -5,8 +5,9 @@ import { ArbeidsgiverType } from '../Arbeidsgiver';
 import { OmBarnetApiData } from './OmBarnetApiData';
 
 export * from './OmBarnetApiData';
-export interface OpplæringsinstitusjonApiData {
-    uuid: string;
+
+export interface KursholderApiData {
+    id: string;
     navn: string;
 }
 
@@ -14,12 +15,12 @@ export interface KursperiodeApiData {
     kursperiode: ISODateRange;
     avreise: ISODate;
     hjemkomst: ISODate;
-    BeskrivelseReisetidTil?: string;
+    beskrivelseReisetidTil?: string;
     beskrivelseReisetidHjem?: string;
 }
 
 export interface KursApiData {
-    opplæringsinstitusjon: OpplæringsinstitusjonApiData | 'annen';
+    kursholder: KursholderApiData | 'annen';
     perioder: KursperiodeApiData[];
 }
 
@@ -108,6 +109,7 @@ export interface OpptjeningIUtlandetApi {
 
 export interface UtenlandsoppholdIPeriodenApi {
     skalOppholdeSegIUtlandetIPerioden: boolean;
+    opphold: UtenlandsoppholdIPeriodenApiData[];
 }
 
 export interface UtenlandskNæringApi {
@@ -132,9 +134,11 @@ export interface SøknadApiData {
     søkerNorskIdent: string;
     språk: string;
     harForståttRettigheterOgPlikter: boolean;
-    omBarnet: OmBarnetApiData;
+    harBekreftetOpplysninger: boolean;
+    fraOgMed: ISODate;
+    tilOgMed: ISODate;
+    barn: OmBarnetApiData;
     kurs: KursApiData;
-    søknadsperiode: PeriodeApiData;
     arbeidsgivere?: ArbeidsgiverApiData[];
     frilans?: FrilansApiData;
     selvstendigNæringsdrivende?: SelvstendigNæringsdrivendeApiData;
@@ -142,7 +146,7 @@ export interface SøknadApiData {
     medlemskap: MedlemskapApiData;
     opptjeningIUtlandet: OpptjeningIUtlandetApi[];
     utenlandskNæring: UtenlandskNæringApi[];
-    vedleggUrls: string[];
-    dataBruktTilUtledning: DataBruktTilUtledningAnnetDataJsonString;
-    harBekreftetOpplysninger: boolean;
+    vedlegg: string[];
+    utenlandsoppholdIPerioden: UtenlandsoppholdIPeriodenApi;
+    dataBruktTilUtledningAnnetData: DataBruktTilUtledningAnnetDataJsonString;
 }

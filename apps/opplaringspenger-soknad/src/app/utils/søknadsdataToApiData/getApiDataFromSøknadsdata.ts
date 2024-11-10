@@ -59,13 +59,12 @@ export const getApiDataFromSøknadsdata = (
         id,
         språk,
         harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true,
-        omBarnet: getOmBarnetApiDataFromSøknadsdata(registrerteBarn, omBarnet),
-        vedleggUrls: getAttachmentsApiData(legeerklæring.vedlegg),
-        søknadsperiode: {
-            fraOgMed: dateToISODate(søknadsperiode.from),
-            tilOgMed: dateToISODate(søknadsperiode.to),
-        },
+        barn: getOmBarnetApiDataFromSøknadsdata(registrerteBarn, omBarnet),
+        vedlegg: getAttachmentsApiData(legeerklæring.vedlegg),
+        fraOgMed: dateToISODate(søknadsperiode.from),
+        tilOgMed: dateToISODate(søknadsperiode.to),
         kurs: getKursApiDataFromSøknadsdata(kurs),
+        utenlandsoppholdIPerioden: { skalOppholdeSegIUtlandetIPerioden: false, opphold: [] },
         arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(
             søknadsperiode,
             valgteDatoer,
@@ -82,7 +81,7 @@ export const getApiDataFromSøknadsdata = (
             : undefined,
         medlemskap: getMedlemskapApiDataFromSøknadsdata(språk, medlemskap),
         harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true,
-        dataBruktTilUtledning: søknadsdata.kurs
+        dataBruktTilUtledningAnnetData: søknadsdata.kurs
             ? JSON.stringify(getDataBruktTilUtledningApiData(søknadsdata.kurs))
             : '',
     };

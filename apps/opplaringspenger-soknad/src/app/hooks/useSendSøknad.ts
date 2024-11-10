@@ -25,7 +25,7 @@ export const useSendSøknad = () => {
 
     const sendSøknad = (apiData: SøknadApiData, søker: Søker) => {
         setIsSubmitting(true);
-        getInnsendingService(InnsendingType['opplaringspenger'])
+        getInnsendingService(InnsendingType.opplaringspenger)
             .send(apiData)
             .then(() => {
                 const kvitteringInfo = getKvitteringInfoFromApiData(apiData, søker);

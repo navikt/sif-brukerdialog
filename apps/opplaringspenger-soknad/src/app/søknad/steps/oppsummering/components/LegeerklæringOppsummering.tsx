@@ -15,7 +15,7 @@ interface Props {
 
 const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringSøknadsdata, onEdit }) => {
     const legeerklæringer = getAttachmentsInLocationArray({
-        locations: apiData.vedleggUrls,
+        locations: apiData.vedlegg,
         attachments: legeerklæringSøknadsdata?.vedlegg,
     });
 

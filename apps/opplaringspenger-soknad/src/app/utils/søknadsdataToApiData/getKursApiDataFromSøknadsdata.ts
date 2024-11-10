@@ -1,22 +1,32 @@
 import { dateRangeToISODateRange, dateToISODate } from '@navikt/sif-common-utils';
-import { KursApiData } from '../../types/søknadApiData/SøknadApiData';
+import { KursApiData, KursperiodeApiData } from '../../types/søknadApiData/SøknadApiData';
 import { KursSøknadsdata } from '../../types/søknadsdata/KursSøknadsdata';
 
 export const getKursApiDataFromSøknadsdata = ({
-    opplæringsinstitusjon,
+    kursholder: kursholder,
     kursperioder,
 }: KursSøknadsdata): KursApiData => {
     const apiData: KursApiData = {
-        opplæringsinstitusjon: opplæringsinstitusjon === 'annen' ? 'annen' : { ...opplæringsinstitusjon },
-        perioder: kursperioder.map((p) => ({
-            fraOgMed: p.periode.from,
-            tilOgMed: p.periode.to,
-            avreise: dateToISODate(p.avreise || p.periode.from),
-            hjemkomst: dateToISODate(p.hjemkomst || p.periode.to),
-            kursperiode: dateRangeToISODateRange(p.periode),
-            beskrivelseReisetidHjem: p.beskrivelseReisetidHjem,
-            BeskrivelseReisetidTil: p.beskrivelseReisetidTil,
-        })),
+        kursholder:
+            kursholder === 'annen'
+                ? {
+                      navn: 'Annen',
+                      id: 'annen',
+                  }
+                : {
+                      navn: kursholder.navn,
+                      id: kursholder.uuid,
+                  },
+        perioder: kursperioder.map(
+            (p) =>
+                <KursperiodeApiData>{
+                    avreise: dateToISODate(p.avreise || p.periode.from),
+                    hjemkomst: dateToISODate(p.hjemkomst || p.periode.to),
+                    kursperiode: dateRangeToISODateRange(p.periode),
+                    beskrivelseReisetidHjem: p.beskrivelseReisetidHjem,
+                    beskrivelseReisetidTil: p.beskrivelseReisetidTil,
+                },
+        ),
     };
     return apiData;
 };

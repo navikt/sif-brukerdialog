@@ -84,7 +84,7 @@ export const getKursSøknadsdataFromFormValues = (
         søknadsdatoer: INKLUDER_REISEDAGER_I_PERIODE
             ? getDatoerIKursperioderInkludertReisedager(kursperioder)
             : getDatoerIKursperioderUtenReisedager(kursperioder),
-        opplæringsinstitusjon: opplæringsinstitusjon,
+        kursholder: opplæringsinstitusjon,
         kursperioder: kursperioder.sort(sortKursperiode),
         arbeiderIKursperiode: arbeiderIKursperiode === YesOrNo.YES,
     };
@@ -102,7 +102,7 @@ export const getKursStepInitialValues = (søknadsdata: Søknadsdata, formValues?
     if (kurs) {
         return {
             ...defaultValues,
-            opplæringsinstitusjonId: kurs.opplæringsinstitusjon === 'annen' ? 'annen' : kurs.opplæringsinstitusjon.uuid,
+            opplæringsinstitusjonId: kurs.kursholder === 'annen' ? 'annen' : kurs.kursholder.uuid,
             kursperioder: kurs.kursperioder,
             arbeiderIKursperiode: getYesOrNoFromBoolean(kurs.arbeiderIKursperiode),
         };

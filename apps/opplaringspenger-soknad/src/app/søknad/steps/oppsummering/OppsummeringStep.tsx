@@ -123,7 +123,7 @@ const OppsummeringStep = () => {
 
                                     <OmBarnetSummary
                                         søknadsdata={søknadsdata.omBarnet!}
-                                        apiData={apiData.omBarnet}
+                                        apiData={apiData.barn}
                                         onEdit={() => navigate(stepConfig[StepId.OM_BARNET].route)}
                                     />
 
@@ -135,8 +135,8 @@ const OppsummeringStep = () => {
                                     <ArbeidssituasjonSummary
                                         apiData={apiData}
                                         søknadsperiode={{
-                                            from: ISODateToDate(apiData.søknadsperiode.fraOgMed),
-                                            to: ISODateToDate(apiData.søknadsperiode.tilOgMed),
+                                            from: ISODateToDate(apiData.fraOgMed),
+                                            to: ISODateToDate(apiData.tilOgMed),
                                         }}
                                         frilansoppdrag={frilansoppdrag}
                                         onEdit={() => navigate(stepConfig[StepId.ARBEIDSSITUASJON].route)}
@@ -146,8 +146,8 @@ const OppsummeringStep = () => {
                                         apiValues={apiData}
                                         valgteDatoer={valgteDatoer}
                                         søknadsperiode={{
-                                            from: ISODateToDate(apiData.søknadsperiode.fraOgMed),
-                                            to: ISODateToDate(apiData.søknadsperiode.tilOgMed),
+                                            from: ISODateToDate(apiData.fraOgMed),
+                                            to: ISODateToDate(apiData.tilOgMed),
                                         }}
                                         onEdit={
                                             stepConfig[StepId.ARBEIDSTID]

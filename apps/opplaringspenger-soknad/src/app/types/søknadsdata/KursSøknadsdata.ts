@@ -7,7 +7,7 @@ export const INKLUDER_REISEDAGER_I_PERIODE = true;
 export interface KursSøknadsdata {
     søknadsperiode: DateRange;
     søknadsdatoer: Date[];
-    opplæringsinstitusjon: Opplæringsinstitusjon | 'annen';
+    kursholder: Opplæringsinstitusjon | 'annen';
     kursperioder: Kursperiode[];
     arbeiderIKursperiode: boolean;
 }
