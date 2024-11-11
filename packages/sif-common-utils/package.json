@@ -3,14 +3,14 @@
     "author": "navikt",
     "description": "Diverse utils for Sykdom i familien teamet",
     "main": "src/index.ts",
-    "version": "3.47.26",
+    "version": "3.47.27",
     "private": true,
     "type": "module",
     "dependencies": {
         "dayjs": "1.11.13",
         "iso8601-duration": "2.1.2",
         "lodash": "4.17.21",
-        "uuid": "11.0.2"
+        "uuid": "11.0.3"
     },
     "devDependencies": {
         "@babel/core": "7.26.0",

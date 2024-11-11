@@ -2,7 +2,7 @@
     "name": "@navikt/ungdomsytelse-deltaker",
     "type": "module",
     "private": true,
-    "version": "0.3.6",
+    "version": "0.3.7",
     "scripts": {
         "dev": "node ./dev-server.cjs",
         "dev-api": "PORT=8089 node ./api-mock/mock-server.cjs",
@@ -17,10 +17,10 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "@navikt/aksel-icons": "7.4.3",
-        "@navikt/ds-css": "7.4.3",
-        "@navikt/ds-react": "7.4.3",
-        "@navikt/ds-tailwind": "7.4.3",
+        "@navikt/aksel-icons": "7.5.1",
+        "@navikt/ds-css": "7.5.1",
+        "@navikt/ds-react": "7.5.1",
+        "@navikt/ds-tailwind": "7.5.1",
         "@navikt/nav-dekoratoren-moduler": "2.1.6",
         "@navikt/sif-common-api": "*",
         "@navikt/sif-common-core-ds": "*",
@@ -32,10 +32,10 @@
         "dayjs": "1.11.13",
         "react": "18.3.1",
         "react-dom": "18.3.1",
-        "react-hook-form": "7.53.1",
+        "react-hook-form": "7.53.2",
         "react-intl": "6.8.7",
         "react-router-dom": "6.28.0",
-        "uuid": "11.0.2",
+        "uuid": "11.0.3",
         "zod": "3.23.8"
     },
     "devDependencies": {

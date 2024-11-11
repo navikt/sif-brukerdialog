@@ -1,5 +1,17 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.14.19
+
+### Patch Changes
+
+-   Pakkeoppdateringer - minor/patch
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.13.7
+    -   @navikt/sif-common-soknad-ds@17.0.1
+    -   @navikt/sif-common-forms-ds@12.1.2
+    -   @navikt/sif-common-core-ds@9.20.6
+    -   @navikt/sif-common-utils@3.47.27
+
 ## 1.14.18
 
 ### Patch Changes
