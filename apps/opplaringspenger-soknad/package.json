@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/opplaringspenger-soknad",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "1.14.18",
+    "version": "1.14.19",
     "private": true,
     "type": "module",
     "dependencies": {
