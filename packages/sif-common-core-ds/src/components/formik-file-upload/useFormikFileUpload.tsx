@@ -1,33 +1,50 @@
 import { FileObject } from '@navikt/ds-react';
 import { useState } from 'react';
-import { uploadVedlegg } from '@navikt/sif-common-api';
+import { getVedleggFrontendUrl, uploadVedlegg } from '@navikt/sif-common-api';
+import { Attachment } from '../../types';
+import { getAttachmentId } from '../../utils/attachmentUtils';
 
-// export type Vedlegg = FileObject & {
-//     id: string;
-//     url: string;
-//     pending: boolean;
-//     uploaded: boolean;
-// };
+export type Vedlegg = FileObject & Attachment;
 
 export const useFormikFileUpload = () => {
-    const [pendingFiles, setPendingFiles] = useState<FileObject[]>([]);
-    const [files, setFiles] = useState<FileObject[]>([]);
+    const [files, setFiles] = useState<Vedlegg[]>([]);
 
     const uploadFile = async (file: FileObject) => {
         try {
-            await uploadVedlegg(file.file);
-            setFiles((prevAcceptedFiles) => [...prevAcceptedFiles, file]);
+            const response = await uploadVedlegg(file.file);
+            const id = getAttachmentId(response.headers.location);
+            const vedlegg: Vedlegg = {
+                ...file,
+                pending: false,
+                uploaded: true,
+                info: {
+                    id,
+                    url: getVedleggFrontendUrl(id),
+                },
+            };
+            setFiles((prevFiles) => [
+                ...prevFiles.map((prevFile) => (prevFile.file === file.file ? vedlegg : prevFile)),
+            ]);
         } catch {
-            setFiles((prevAcceptedFiles) => [...prevAcceptedFiles, { ...file, error: true, reasons: ['uploadError'] }]);
+            setFiles((prevFiles) => [
+                ...prevFiles.map((prevFile) =>
+                    prevFile.file === file.file
+                        ? { ...prevFile, error: true, reasons: ['uploadError'], pending: false }
+                        : prevFile,
+                ),
+            ]);
         }
-        setPendingFiles((prevPendingFiles) => prevPendingFiles.filter((pendingFile) => pendingFile !== file));
     };
 
     const onSelect = (newFiles: FileObject[]) => {
-        const filesWithErrors = newFiles.filter((file) => file.error);
-        const filesToUpload = newFiles.filter((file) => !file.error);
-        setFiles((prevAcceptedFiles) => [...prevAcceptedFiles, ...filesWithErrors]);
-        setPendingFiles((prevPendingFiles) => [...prevPendingFiles, ...filesToUpload]);
+        const filesWithErrors = newFiles
+            .filter((file) => file.error)
+            .map((file) => ({ ...file, pending: false, uploaded: false }));
+        const filesToUpload = newFiles
+            .filter((file) => !file.error)
+            .map((file) => ({ ...file, pending: true, uploaded: false }));
+
+        setFiles((prevFiles) => [...prevFiles, ...filesToUpload, ...filesWithErrors]);
         filesToUpload.forEach((file) => {
             uploadFile(file);
         });
@@ -40,8 +57,8 @@ export const useFormikFileUpload = () => {
     return {
         onSelect,
         removeFile,
-        acceptedFiles: files.filter((file) => !file.error),
-        pendingFiles,
+        acceptedFiles: files.filter((file) => !file.error && !file.pending),
+        pendingFiles: files.filter((file) => file.pending),
         rejectedFiles: files.filter((file) => file.error),
     };
 };

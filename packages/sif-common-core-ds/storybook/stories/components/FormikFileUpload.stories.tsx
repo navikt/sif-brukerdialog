@@ -35,7 +35,7 @@ export const Default: Story = {
                 http.post(
                     'http://localhost:6006/familie/sykdom-i-familien/soknad/omsorgspenger/api/k9-brukerdialog/vedlegg',
                     async () => {
-                        await delay(500);
+                        await delay(1500);
                         return HttpResponse.json({}, { headers: { location: `vedlegg/${uuidv4()}` } });
                     },
                 ),
