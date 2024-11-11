@@ -5,12 +5,22 @@ import { v4 as uuidv4 } from 'uuid';
 import FormikFileUpload from '../../../src/components/formik-file-upload/FormikFileUpload';
 import StoryWrapper from '../../decorators/StoryWrapper';
 import { withFormikWrapper } from '../../decorators/withFormikWrapper';
+import { Vedlegg } from '../../../src/components/formik-file-upload/useFileUploader';
 
 const meta: Meta<typeof FormikFileUpload> = {
     component: FormikFileUpload,
     title: 'Component/FormikFileUpload',
     decorators: [
-        withFormikWrapper,
+        (Story) =>
+            withFormikWrapper(Story, {
+                parameters: {
+                    formik: {
+                        initialValues: {
+                            vedlegg: exampleFiles,
+                        },
+                    },
+                },
+            }),
         (Story) => (
             <StoryWrapper>
                 <Story />
@@ -28,7 +38,7 @@ function delay(ms: number) {
 }
 
 export const Default: Story = {
-    render: () => <FormikFileUpload fieldName="abc" />,
+    render: () => <FormikFileUpload fieldName="vedlegg" />,
     parameters: {
         msw: {
             handlers: [
@@ -43,3 +53,10 @@ export const Default: Story = {
         },
     },
 };
+
+const filePdf = new File(['abc'.repeat(100000)], 'document.pdf');
+const fileJpg = new File(['abc'.repeat(500000)], 'picture.jpg');
+const exampleFiles: Vedlegg[] = [
+    { file: filePdf, error: false, pending: false, uploaded: true },
+    { file: fileJpg, error: true, reasons: ['fileType'], uploaded: false, pending: false },
+];

@@ -1,15 +1,29 @@
 import { FileRejectionReason, FileUpload, Heading, VStack } from '@navikt/ds-react';
-import { useFormikFileUpload } from './useFormikFileUpload';
+import { useFileUploader, Vedlegg } from './useFileUploader';
+import { useFormikContext } from 'formik';
+import { useCallback } from 'react';
 
 interface Props {
     fieldName: string;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const FormikFileUpload = ({ fieldName }: Props) => {
-    const { onSelect, removeFile, acceptedFiles, pendingFiles, rejectedFiles } = useFormikFileUpload();
+const FormikFileUpload = ({ fieldName = 'vedlegg' }: Props) => {
+    const { values, setFieldValue } = useFormikContext<any>();
 
-    const filesAcceptedOrPending = [...acceptedFiles, ...pendingFiles];
+    const updateFiles = useCallback(
+        (files: Vedlegg[]) => {
+            setFieldValue(fieldName, files, false);
+        },
+        [setFieldValue, fieldName],
+    );
+
+    const { onSelect, removeFile, uploadedFiles, pendingFiles, rejectedFiles } = useFileUploader(
+        values[fieldName],
+        updateFiles,
+    );
+
+    const acceptedFiles = [...uploadedFiles, ...pendingFiles];
 
     return (
         <VStack gap="6">
@@ -22,13 +36,13 @@ const FormikFileUpload = ({ fieldName }: Props) => {
                 onSelect={onSelect}
             />
 
-            {filesAcceptedOrPending.length > 0 && (
+            {acceptedFiles.length > 0 && (
                 <VStack gap="2">
                     <Heading level="3" size="xsmall">
-                        {`Dokumenter (${filesAcceptedOrPending.length})`}
+                        {`Dokumenter (${acceptedFiles.length})`}
                     </Heading>
                     <VStack as="ul" gap="3">
-                        {filesAcceptedOrPending.map((file, index) => (
+                        {acceptedFiles.map((file, index) => (
                             <FileUpload.Item
                                 as="li"
                                 key={index}
@@ -76,12 +90,5 @@ const errors: Record<FileRejectionReason, string> = {
     fileType: 'Filformatet støttes ikke',
     fileSize: `Filen er større enn ${MAX_SIZE_MB} MB`,
 };
-
-// const filePdf = new File(['abc'.repeat(100000)], 'document.pdf');
-// const fileJpg = new File(['abc'.repeat(500000)], 'picture.jpg');
-// const exampleFiles: FileObject[] = [
-//     { file: filePdf, error: false },
-//     { file: fileJpg, error: true, reasons: ['fileType'] },
-// ];
 
 export default FormikFileUpload;

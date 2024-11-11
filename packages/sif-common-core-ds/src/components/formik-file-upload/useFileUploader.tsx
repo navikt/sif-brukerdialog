@@ -1,13 +1,19 @@
 import { FileObject } from '@navikt/ds-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getVedleggFrontendUrl, uploadVedlegg } from '@navikt/sif-common-api';
 import { Attachment } from '../../types';
 import { getAttachmentId } from '../../utils/attachmentUtils';
 
 export type Vedlegg = FileObject & Attachment;
 
-export const useFormikFileUpload = () => {
-    const [files, setFiles] = useState<Vedlegg[]>([]);
+export const useFileUploader = (addedFiles: Vedlegg[] = [], onFilesChanged?: (files: Vedlegg[]) => void) => {
+    const [files, setFiles] = useState<Vedlegg[]>(addedFiles);
+
+    useEffect(() => {
+        if (onFilesChanged) {
+            onFilesChanged(files);
+        }
+    }, [files, onFilesChanged]);
 
     const uploadFile = async (file: FileObject) => {
         try {
@@ -34,6 +40,9 @@ export const useFormikFileUpload = () => {
                 ),
             ]);
         }
+        if (onFilesChanged) {
+            onFilesChanged(files);
+        }
     };
 
     const onSelect = (newFiles: FileObject[]) => {
@@ -48,6 +57,9 @@ export const useFormikFileUpload = () => {
         filesToUpload.forEach((file) => {
             uploadFile(file);
         });
+        if (onFilesChanged) {
+            onFilesChanged(files);
+        }
     };
 
     function removeFile(fileToRemove: FileObject) {
@@ -57,7 +69,7 @@ export const useFormikFileUpload = () => {
     return {
         onSelect,
         removeFile,
-        acceptedFiles: files.filter((file) => !file.error && !file.pending),
+        uploadedFiles: files.filter((file) => !file.error && !file.pending),
         pendingFiles: files.filter((file) => file.pending),
         rejectedFiles: files.filter((file) => file.error),
     };
