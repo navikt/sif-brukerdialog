@@ -55,18 +55,31 @@ export const getTidspunktForAleneomsorgSøknadsdataFromFormValues = (
 
 export const mapRegistrertBarnToBarnMedAleneomsorg = (registrertBarn: RegistrertBarn): BarnMedAleneomsorg => {
     return {
-        idFnr: registrertBarn.aktørId,
+        idFnr: prefixBarnIdFnr(registrertBarn.aktørId),
         navn: formatName(registrertBarn.fornavn, registrertBarn.etternavn, registrertBarn.mellomnavn),
     };
 };
 
 export const mapAnnetBarnToBarnMedAleneomsorg = (annetBarn: AnnetBarn): BarnMedAleneomsorg => {
     return {
-        idFnr: annetBarn.fnr,
+        idFnr: prefixBarnIdFnr(annetBarn.fnr),
         navn: annetBarn.navn,
     };
 };
 export const getYear = (yearsToSubtract: number): string => (dayjs().year() - yearsToSubtract).toString();
+
+/**
+ *
+ * @param idFnr Legger på 'idFnr_' før nummer, slik at en unngår at formik bruker fnr eller id som index i errorArray
+ * @returns
+ */
+export const prefixBarnIdFnr = (idFnr: string): string => `idFnr_${idFnr}`;
+/**
+ *
+ * @param idFnr Fjerner på 'idFnr_' for å bruke originalt fnr eller id
+ * @returns
+ */
+export const unprefixBarnIdFnr = (prefixedIdFnr: string): string => prefixedIdFnr.replace('idFnr_', '');
 
 export const getMinDateYearAgo = (): Date => {
     dayjs.extend(dayOfYear);

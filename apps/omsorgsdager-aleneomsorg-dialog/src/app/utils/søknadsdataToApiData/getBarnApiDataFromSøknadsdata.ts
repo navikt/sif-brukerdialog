@@ -8,6 +8,7 @@ import {
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { AnnetBarn, BarnType } from '@navikt/sif-common-forms-ds/src/forms/annet-barn';
 import { dateToISODate } from '@navikt/sif-common-utils';
+import { prefixBarnIdFnr } from '../../søknad/steps/tidspunkt-for-aleneomsorg/tidspunktForAleneomsorgStepUtils';
 
 export const mapRegistrertBarnToApiBarn = (
     registrertBarn: RegistrertBarn,
@@ -15,16 +16,20 @@ export const mapRegistrertBarnToApiBarn = (
 ): ApiBarn => {
     const { fornavn, etternavn, mellomnavn, aktørId } = registrertBarn;
 
+    const aleneomsorgTidspunkt = aleneomsorgTidspunkter[prefixBarnIdFnr(aktørId)];
+    if (!aleneomsorgTidspunkt) {
+        throw new Error('Aleneomsorgstidspunkt mangler for registrert barn');
+    }
     return {
         navn: formatName(fornavn, etternavn, mellomnavn),
         aktørId,
         tidspunktForAleneomsorg:
-            aleneomsorgTidspunkter[aktørId].tidspunktForAleneomsorg === TidspunktForAleneomsorg.SISTE_2_ÅRENE
+            aleneomsorgTidspunkt.tidspunktForAleneomsorg === TidspunktForAleneomsorg.SISTE_2_ÅRENE
                 ? TidspunktForAleneomsorg.SISTE_2_ÅRENE
                 : TidspunktForAleneomsorg.TIDLIGERE,
         dato:
-            aleneomsorgTidspunkter[aktørId].tidspunktForAleneomsorg === TidspunktForAleneomsorg.SISTE_2_ÅRENE
-                ? aleneomsorgTidspunkter[aktørId].dato
+            aleneomsorgTidspunkt.tidspunktForAleneomsorg === TidspunktForAleneomsorg.SISTE_2_ÅRENE
+                ? aleneomsorgTidspunkt.dato
                 : undefined,
         type: RegisterteBarnTypeApi.fraOppslag,
     };
@@ -33,17 +38,22 @@ export const mapRegistrertBarnToApiBarn = (
 export const mapAnnetBarnToApiBarn = (annetBarn: AnnetBarn, aleneomsorgTidspunkter: AleneomsorgTidspunkt): ApiBarn => {
     const { navn, fnr, fødselsdato, type } = annetBarn;
 
+    const aleneomsorgTidspunkt = aleneomsorgTidspunkter[prefixBarnIdFnr(fnr)];
+    if (!aleneomsorgTidspunkt) {
+        throw new Error('Aleneomsorgstidspunkt mangler for registrert barn');
+    }
+
     return {
         navn: navn,
         identitetsnummer: fnr,
         fødselsdato: dateToISODate(fødselsdato),
         tidspunktForAleneomsorg:
-            aleneomsorgTidspunkter[fnr].tidspunktForAleneomsorg === TidspunktForAleneomsorg.SISTE_2_ÅRENE
+            aleneomsorgTidspunkt.tidspunktForAleneomsorg === TidspunktForAleneomsorg.SISTE_2_ÅRENE
                 ? TidspunktForAleneomsorg.SISTE_2_ÅRENE
                 : TidspunktForAleneomsorg.TIDLIGERE,
         dato:
-            aleneomsorgTidspunkter[fnr].tidspunktForAleneomsorg === TidspunktForAleneomsorg.SISTE_2_ÅRENE
-                ? aleneomsorgTidspunkter[fnr].dato
+            aleneomsorgTidspunkt.tidspunktForAleneomsorg === TidspunktForAleneomsorg.SISTE_2_ÅRENE
+                ? aleneomsorgTidspunkt.dato
                 : undefined,
         type: type ? type : BarnType.annet,
     };

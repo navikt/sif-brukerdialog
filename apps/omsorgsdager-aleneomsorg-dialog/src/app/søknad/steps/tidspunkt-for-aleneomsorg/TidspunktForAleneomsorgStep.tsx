@@ -30,12 +30,13 @@ export enum TidspunktForAleneomsorg {
     TIDLIGERE = 'TIDLIGERE',
 }
 
-export type AleneomsorgTidspunkt = {
-    [fnr: string]: {
+export type AleneomsorgTidspunkt = Record<
+    string,
+    {
         tidspunktForAleneomsorg?: TidspunktForAleneomsorg;
         dato?: string;
-    };
-};
+    }
+>;
 
 export enum AleneomsorgTidspunktField {
     tidspunktForAleneomsorg = 'tidspunktForAleneomsorg',
