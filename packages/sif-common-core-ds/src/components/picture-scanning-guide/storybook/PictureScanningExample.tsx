@@ -1,4 +1,4 @@
-import { BodyLong, Heading } from '@navikt/ds-react';
+import { BodyLong, Box, Heading } from '@navikt/ds-react';
 import React from 'react';
 import StatusIkon, { StatusIconStatusKey } from '../status-icon/StatusIcon';
 
@@ -11,7 +11,7 @@ interface Props {
 
 const PictureScanningExample = ({ image, status, statusText, description }: Props) => (
     <BodyLong as="div">
-        <div>{image}</div>
+        <Box marginBlock="0 4">{image}</Box>
         <Heading size="xsmall" level="4" spacing={true} style={{ display: 'flex', gap: '.25rem' }}>
             <StatusIkon status={status} />
             <span>{statusText}</span>
