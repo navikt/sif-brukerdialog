@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.33.12
+
+### Patch Changes
+
+-   Bugfix. Ikke vise melding om manglende avtale for delt bosted når bruker ikke har delt bosted.
+
 ## 1.33.11
 
 ### Patch Changes
