@@ -180,7 +180,7 @@ const nb = {
     'validation.dokumenter.noAttachmentsUploaded': 'Ingen dokumenter er lastet opp',
     'validation.dokumenter.tooManyAttachments': 'For mange dokumenter er lastet opp',
     'validation.dokumenter.maxTotalSizeExceeded':
-        'Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24Mb.',
+        'Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24 Mb.',
     'validation.beskrivelse.stringHasNoValue': 'Beskriv ettersendelsen',
     'validation.beskrivelse.stringIsTooLong': 'Beskrivelsen kan ikke inneholde mer enn {maks} tegn',
     'validation.beskrivelse.stringIsTooShort': 'Beskrivelsen må inneholde minst {min} tegn',
