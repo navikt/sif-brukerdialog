@@ -1,4 +1,4 @@
-import { Box, Heading } from '@navikt/ds-react';
+import { Box, Heading, List } from '@navikt/ds-react';
 import { AppText } from '../../../i18n';
 import { Dokument } from '../../../server/api-models/DokumenetSchema';
 import { getDokumentFrontendUrl, getSøknadDokumentFilnavn } from '../../../utils/dokumentUtils';
@@ -11,12 +11,12 @@ interface Props {
 
 const mapDokumenter = (dokument: Dokument) => {
     return (
-        <li key={dokument.dokumentInfoId}>
+        <List.Item key={dokument.dokumentInfoId}>
             <PdfLenke
                 href={`${getDokumentFrontendUrl(dokument.url)}?dokumentTittel=${getSøknadDokumentFilnavn(dokument)}`}
                 tittel={dokument.tittel}
             />
-        </li>
+        </List.Item>
     );
 };
 
@@ -35,7 +35,9 @@ const Dokumenter = ({ dokumenter, tittel }: Props) => {
                     {tittel}
                 </Heading>
             ) : null}
-            {dokumenter && dokumenter.length > 0 && <ul>{dokumenter.map((dokument) => mapDokumenter(dokument))}</ul>}
+            {dokumenter && dokumenter.length > 0 && (
+                <List>{dokumenter.map((dokument) => mapDokumenter(dokument))}</List>
+            )}
             {(dokumenter === undefined || dokumenter.length === 0) && (
                 <p>
                     <AppText id="dokumenter.ingenDokumenter" />

@@ -1,4 +1,4 @@
-import { BodyLong, Link } from '@navikt/ds-react';
+import { BodyLong, Link, List } from '@navikt/ds-react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { getStringValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { AppText, useAppIntl } from '../../i18n';
@@ -47,14 +47,14 @@ const BeskrivelseStep = ({ søknadstype }: Props) => {
                             <p>
                                 <AppText id="step.beskrivelse.intro.1" />
                             </p>
-                            <ul>
-                                <li>
+                            <List>
+                                <List.Item>
                                     <AppText id="step.beskrivelse.intro.li.1" />
-                                </li>
-                                <li>
+                                </List.Item>
+                                <List.Item>
                                     <AppText id="step.beskrivelse.intro.li.2" />
-                                </li>
-                            </ul>
+                                </List.Item>
+                            </List>
                             <p>
                                 <AppText
                                     id="step.beskrivelse.intro.2"

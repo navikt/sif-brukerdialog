@@ -1,6 +1,7 @@
-import { isDevMode } from '@navikt/sif-common-env';
+import { List } from '@navikt/ds-react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import { isDevMode } from '@navikt/sif-common-env';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { getFødselsnummerValidator, getStringValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
@@ -84,10 +85,10 @@ const OmAnnenForelderStep = () => {
                                 runDelayedFormValidation={true}>
                                 <SifGuidePanel>
                                     {text('step.omAnnenForelder.sifGuidePanel')}
-                                    <ul>
-                                        <li>{text('step.omAnnenForelder.sifGuidePanel.list.1')}</li>
-                                        <li>{text('step.omAnnenForelder.sifGuidePanel.list.2')}</li>
-                                    </ul>
+                                    <List>
+                                        <List.Item>{text('step.omAnnenForelder.sifGuidePanel.list.1')}</List.Item>
+                                        <List.Item>{text('step.omAnnenForelder.sifGuidePanel.list.2')}</List.Item>
+                                    </List>
                                 </SifGuidePanel>
 
                                 <FormBlock>

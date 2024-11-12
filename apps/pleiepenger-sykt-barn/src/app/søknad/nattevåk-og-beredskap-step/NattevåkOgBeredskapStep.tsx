@@ -1,4 +1,4 @@
-import { BodyLong } from '@navikt/ds-react';
+import { BodyLong, List } from '@navikt/ds-react';
 import { useState } from 'react';
 import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
@@ -13,7 +13,6 @@ import FormSection from '../../components/form-section/FormSection';
 import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 import usePersistOnChange from '../../hooks/usePersistOnChange';
 import { AppText } from '../../i18n';
-import InfoList from '../../pages/velkommen-page/components/info-list/InfoList';
 import { StepCommonProps } from '../../types/StepCommonProps';
 import { StepID } from '../../types/StepID';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
@@ -84,17 +83,17 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
                                     <Block>
                                         <BodyLong as="div">
                                             <AppText id="steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.tittel" />
-                                            <InfoList>
-                                                <li>
+                                            <List>
+                                                <List.Item>
                                                     <AppText id="steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.1" />
-                                                </li>
-                                                <li>
+                                                </List.Item>
+                                                <List.Item>
                                                     <AppText id="steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.2" />
-                                                </li>
-                                                <li>
+                                                </List.Item>
+                                                <List.Item>
                                                     <AppText id="steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.3" />
-                                                </li>
-                                            </InfoList>
+                                                </List.Item>
+                                            </List>
                                         </BodyLong>
                                     </Block>
                                 }
@@ -130,17 +129,17 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
                                     <Block>
                                         <BodyLong as="div">
                                             <AppText id="steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.liste.tittel" />
-                                            <InfoList>
-                                                <li>
+                                            <List>
+                                                <List.Item>
                                                     <AppText id="steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.liste.1" />
-                                                </li>
-                                                <li>
+                                                </List.Item>
+                                                <List.Item>
                                                     <AppText id="steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.liste.2" />
-                                                </li>
-                                                <li>
+                                                </List.Item>
+                                                <List.Item>
                                                     <AppText id="steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.liste.3" />
-                                                </li>
-                                            </InfoList>
+                                                </List.Item>
+                                            </List>
                                         </BodyLong>
                                     </Block>
                                 }

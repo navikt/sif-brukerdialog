@@ -1,6 +1,7 @@
 import React from 'react';
 import { dateFormatter, dateRangeToISODateRange, getDateRangesFromDates } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import { List } from '@navikt/ds-react';
 
 interface Props {
     dates: Date[];
@@ -10,9 +11,9 @@ interface Props {
 const SelectedDatesList: React.FunctionComponent<Props> = ({ dates, groupDates }) => {
     const dateRanges = groupDates ? getDateRangesFromDates(dates) : dates.map((d) => ({ from: d, to: d }));
     return (
-        <ul>
+        <List>
             {dateRanges.map((dr) => (
-                <li key={dateRangeToISODateRange(dr)} className="capitalize">
+                <List.Item key={dateRangeToISODateRange(dr)} className="capitalize">
                     {dayjs(dr.from).isSame(dr.to, 'day') ? (
                         <>{dateFormatter.dayCompactDate(dr.from)}</>
                     ) : (
@@ -20,9 +21,9 @@ const SelectedDatesList: React.FunctionComponent<Props> = ({ dates, groupDates }
                             {dateFormatter.dayCompactDate(dr.from)} - {dateFormatter.dayCompactDate(dr.to)}
                         </>
                     )}
-                </li>
+                </List.Item>
             ))}
-        </ul>
+        </List>
     );
 };
 

@@ -1,4 +1,4 @@
-import { Alert } from '@navikt/ds-react';
+import { Alert, List } from '@navikt/ds-react';
 import React from 'react';
 import { AppHtml, useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
@@ -13,26 +13,26 @@ const OmsorgstilbudStepInfo = () => {
             <p>
                 <AppText id="steg.omsorgstilbud.veileder.1" />
             </p>
-            <ul>
-                <li>
+            <List>
+                <List.Item>
                     <AppText id="steg.omsorgstilbud.veileder.1.1" />
-                </li>
-                <li>
+                </List.Item>
+                <List.Item>
                     <AppText id="steg.omsorgstilbud.veileder.1.2" />
-                </li>
-                <li>
+                </List.Item>
+                <List.Item>
                     <AppText id="steg.omsorgstilbud.veileder.1.3" />
-                </li>
-                <li>
+                </List.Item>
+                <List.Item>
                     <AppText id="steg.omsorgstilbud.veileder.1.4" />
-                </li>
-                <li>
+                </List.Item>
+                <List.Item>
                     <AppText id="steg.omsorgstilbud.veileder.1.5" />
-                </li>
-                <li>
+                </List.Item>
+                <List.Item>
                     <AppText id="steg.omsorgstilbud.veileder.1.6" />
-                </li>
-            </ul>
+                </List.Item>
+            </List>
             <p>
                 <strong>
                     <AppText id="steg.omsorgstilbud.veileder.2" />

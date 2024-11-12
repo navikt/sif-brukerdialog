@@ -1,5 +1,6 @@
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { AppText, useAppIntl } from '../../../../../i18n';
+import { List } from '@navikt/ds-react';
 
 const InfoJobberNormaltTimerAnsatt = () => {
     const { text } = useAppIntl();
@@ -7,14 +8,14 @@ const InfoJobberNormaltTimerAnsatt = () => {
         <ExpandableInfo title={text('arbeidsforhold.normalTimer.info.tittel')}>
             <AppText id={`arbeidsforhold.ansatt.normalTimer.info`} />
 
-            <ul style={{ paddingInlineStart: '20px' }}>
-                <li>
+            <List style={{ paddingInlineStart: '20px' }}>
+                <List.Item>
                     <AppText id={'arbeidsforhold.normalTimer.info.list.item.1'} />
-                </li>
-                <li>
+                </List.Item>
+                <List.Item>
                     <AppText id={'arbeidsforhold.normalTimer.info.list.item.2'} />
-                </li>
-            </ul>
+                </List.Item>
+            </List>
             <ExpandableInfo title={text('arbeidsforhold.normalTimer.info.turnus.tittel')}>
                 <AppText id={'arbeidsforhold.normalTimer.info.turnus.avsnitt.1'} />
 

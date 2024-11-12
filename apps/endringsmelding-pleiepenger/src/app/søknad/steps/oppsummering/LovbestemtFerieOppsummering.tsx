@@ -1,8 +1,7 @@
-import { Heading } from '@navikt/ds-react';
+import { Heading, List } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import InfoList from '@navikt/sif-common-core-ds/src/components/lists/info-list/InfoList';
 import { dateRangeToISODateRange, getDateRangeText } from '@navikt/sif-common-utils';
 import { LovbestemtFerieApiData } from '@types';
 import { getLovbestemtFerieOppsummeringInfo } from '@utils';
@@ -22,18 +21,18 @@ const LovbestemtFerieOppsummering: React.FunctionComponent<Props> = ({ lovbestem
                     <Heading level="3" size="small">
                         <AppText id="oppsummeringStep.ferie.lagtTil" />
                     </Heading>
-                    <InfoList>
+                    <List>
                         {perioderLagtTil.map((periode) => (
-                            <li key={dateRangeToISODateRange(periode)}>
+                            <List.Item key={dateRangeToISODateRange(periode)}>
                                 <div className="capsFirstChar">
                                     {getDateRangeText(periode, locale, {
                                         compact: true,
                                         includeDayName: true,
                                     })}
                                 </div>
-                            </li>
+                            </List.Item>
                         ))}
-                    </InfoList>
+                    </List>
                 </Block>
             )}
             {perioderFjernet.length > 0 && (
@@ -41,18 +40,18 @@ const LovbestemtFerieOppsummering: React.FunctionComponent<Props> = ({ lovbestem
                     <Heading level="3" size="small">
                         <AppText id="oppsummeringStep.ferie.fjernet" />
                     </Heading>
-                    <InfoList>
+                    <List>
                         {perioderFjernet.map((periode) => (
-                            <li key={dateRangeToISODateRange(periode)}>
+                            <List.Item key={dateRangeToISODateRange(periode)}>
                                 <div className="capsFirstChar">
                                     {getDateRangeText(periode, locale, {
                                         compact: true,
                                         includeDayName: true,
                                     })}
                                 </div>
-                            </li>
+                            </List.Item>
                         ))}
-                    </InfoList>
+                    </List>
                 </Block>
             )}
         </>

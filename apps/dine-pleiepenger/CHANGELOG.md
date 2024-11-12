@@ -1,5 +1,13 @@
 # @navikt/dine-pleiepenger
 
+## 1.7.3
+
+### Patch Changes
+
+-   Erstatte alle generelle lister med List-komponenten fra Aksel
+-   Updated dependencies
+    -   @navikt/sif-common-core-ds@9.20.8
+
 ## 1.7.2
 
 ### Patch Changes
