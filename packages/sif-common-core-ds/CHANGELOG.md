@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 9.20.7
+
+### Patch Changes
+
+-   Diverse uu-justeringer
+
 ## 9.20.6
 
 ### Patch Changes

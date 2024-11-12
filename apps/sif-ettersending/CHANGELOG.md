@@ -1,5 +1,14 @@
 # @navikt/sif-ettersending
 
+## 3.41.11
+
+### Patch Changes
+
+-   Diverse uu-justeringer
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.13.8
+    -   @navikt/sif-common-core-ds@9.20.7
+
 ## 3.41.10
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.13.8
+
+### Patch Changes
+
+-   Diverse uu-justeringer
+
 ## 1.13.7
 
 ### Patch Changes
