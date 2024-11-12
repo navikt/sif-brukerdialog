@@ -21,10 +21,12 @@ const VedleggOppsummering: React.FunctionComponent<Props> = ({
         locations: apiData.legeerklæring,
         attachments: legeerklæringSøknadsdata?.vedlegg,
     });
-    const samværsavtaler = getAttachmentsInLocationArray({
-        locations: apiData.samværsavtale,
-        attachments: samværsavtaleSøknadsdata?.vedlegg,
-    });
+    const samværsavtaler = samværsavtaleSøknadsdata
+        ? getAttachmentsInLocationArray({
+              locations: apiData.samværsavtale,
+              attachments: samværsavtaleSøknadsdata?.vedlegg,
+          })
+        : undefined;
     return (
         <FormSummary>
             <FormSummary.Header>
