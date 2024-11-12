@@ -114,7 +114,7 @@ const nb = {
     'steg.dokumenter.infopanel.2':
         'Du kan laste opp disse filtypene: JPG, JPEG, PNG og PDF. Det er ikke mulig å laste opp andre filtyper enn disse.',
     'steg.dokumenter.infopanel.3':
-        'Du kan laste opp så mange dokumenter du vil, men den totale størrelsen på alle dokumentene kan ikke overstige 24 Mb. Vi varsler deg hvis du når denne grensen.',
+        'Du kan laste opp så mange dokumenter du vil, men den totale størrelsen på alle dokumentene kan ikke overstige 24 MB. Vi varsler deg hvis du når denne grensen.',
 
     'step.oppsummering.pageTitle': 'Oppsummering',
     'step.oppsummering.stepTitle': 'Oppsummering',
@@ -180,7 +180,7 @@ const nb = {
     'validation.dokumenter.noAttachmentsUploaded': 'Ingen dokumenter er lastet opp',
     'validation.dokumenter.tooManyAttachments': 'For mange dokumenter er lastet opp',
     'validation.dokumenter.maxTotalSizeExceeded':
-        'Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24 Mb.',
+        'Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24 MB.',
     'validation.beskrivelse.stringHasNoValue': 'Beskriv ettersendelsen',
     'validation.beskrivelse.stringIsTooLong': 'Beskrivelsen kan ikke inneholde mer enn {maks} tegn',
     'validation.beskrivelse.stringIsTooShort': 'Beskrivelsen må inneholde minst {min} tegn',
@@ -213,7 +213,6 @@ const nb = {
 
 const nn: Record<keyof typeof nb, string> = {
     ...nb,
-    'validation.dokumenter.noAttachmentsUploaded': 'Ingen dokument er lasta opp',
 };
 
 export const appMessages = {

@@ -1,4 +1,4 @@
-import { FileRejectionReason, FileUpload, Heading, VStack } from '@navikt/ds-react';
+import { FileUpload, Heading, VStack } from '@navikt/ds-react';
 import { useCallback, useContext } from 'react';
 import {
     getErrorPropForFormikInput,
@@ -7,18 +7,13 @@ import {
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
 import { Field, FieldProps, useFormikContext } from 'formik';
-import { CoreIntlShape, CoreText, useCoreIntl } from '../../i18n/common.messages';
+import { CoreText, useCoreIntl } from '../../i18n/common.messages';
+import { getRejectedFileError } from './vedleggUtils';
 import { useFileUploader, Vedlegg } from './useFileUploader';
-
-type FileUploadLimits = {
-    MAX_FILES: number;
-    MAX_SIZE_MB: number;
-};
 
 interface Props extends TypedFormInputValidationProps<string, ValidationError> {
     fieldName: string;
     label: string;
-    description?: string;
     headingLevel?: '2' | '3' | '4';
     limits?: {
         MAX_FILES: number;
@@ -29,19 +24,18 @@ interface Props extends TypedFormInputValidationProps<string, ValidationError> {
 const FormikFileUpload = ({
     label,
     fieldName,
+    headingLevel = '2',
     limits = {
-        MAX_FILES: 10,
+        MAX_FILES: 100,
         MAX_SIZE_MB: 10,
     },
-    headingLevel = '2',
     validate,
 }: Props) => {
-    const MAX_SIZE = limits.MAX_SIZE_MB * 1024 * 1024;
     const { values, setFieldValue } = useFormikContext<any>();
     const intl = useCoreIntl();
+    const typedFormikContext = useContext(TypedFormikFormContext);
 
-    const context = useContext(TypedFormikFormContext);
-    if (!context) {
+    if (!typedFormikContext) {
         throw new Error('TypedFormikFormContext is required');
     }
 
@@ -61,13 +55,18 @@ const FormikFileUpload = ({
         <VStack gap="6">
             <Field validate={validate ? (value: any) => validate(value, fieldName) : undefined} name={fieldName}>
                 {({ field, form }: FieldProps) => {
-                    const error = getErrorPropForFormikInput({ field, form, context, error: undefined });
+                    const error = getErrorPropForFormikInput({
+                        field,
+                        form,
+                        context: typedFormikContext,
+                        error: undefined,
+                    });
                     return (
                         <FileUpload.Dropzone
                             id={error ? fieldName : undefined} // Denne vil feile hvis det er flere med samme fieldName på samme side
                             label={label}
                             description={intl.text('@core.formikFileUpload.description', limits)}
-                            maxSizeInBytes={MAX_SIZE}
+                            maxSizeInBytes={limits.MAX_SIZE_MB * 1024 * 1024}
                             accept=".pdf, .png, .jpg, .jpeg"
                             fileLimit={{ max: limits.MAX_FILES, current: acceptedFiles.length }}
                             onSelect={onSelect}
@@ -105,6 +104,7 @@ const FormikFileUpload = ({
                     </VStack>
                 </VStack>
             )}
+
             {rejectedFiles.length > 0 && (
                 <VStack gap="2">
                     <Heading level={headingLevel} size="xsmall">
@@ -116,7 +116,7 @@ const FormikFileUpload = ({
                                 as="li"
                                 key={index}
                                 file={rejected.file}
-                                error={getRejectedError(intl, rejected.reasons[0], limits)}
+                                error={getRejectedFileError(intl, rejected.reasons[0], limits)}
                                 button={{
                                     action: 'delete',
                                     onClick: () => removeFile(rejected),
@@ -131,18 +131,3 @@ const FormikFileUpload = ({
 };
 
 export default FormikFileUpload;
-
-const getRejectedError = (
-    { text }: CoreIntlShape,
-    reason: FileRejectionReason | string,
-    limits: FileUploadLimits,
-): string => {
-    switch (reason) {
-        case 'fileType':
-            return text('@core.formikFileUpload.file-upload.error.fileType', limits);
-        case 'fileSize':
-            return text('@core.formikFileUpload.file-upload.error.fileSize', limits);
-        default:
-            throw new Error(`Ukjent feil: ${reason}`);
-    }
-};

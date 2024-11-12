@@ -1,8 +1,10 @@
 import { FileAccepted, FileObject, FileRejected } from '@navikt/ds-react';
 import { useEffect, useState } from 'react';
 import { deleteVedlegg, getVedleggFrontendUrl, uploadVedlegg } from '@navikt/sif-common-api';
-import { getAttachmentId, mapFileToPersistedFile } from '../../utils/attachmentUtils';
 import { PersistedFile } from '../../types';
+import { mapFileToPersistedFile } from '../../utils/attachmentUtils';
+import { getVedleggIdFromResponseHeader } from './vedleggUtils';
+import { isAxiosError } from 'axios';
 
 export type Vedlegg = (Omit<FileRejected, 'file'> | Omit<FileAccepted, 'file'>) & {
     file: File | PersistedFile;
@@ -31,7 +33,7 @@ export const useFileUploader = ({ addedFiles = [], onFilesChanged }: Props) => {
     const uploadFile = async (file: FileObject) => {
         try {
             const response = await uploadVedlegg(file.file);
-            const id = getAttachmentId(response.headers.location);
+            const id = getVedleggIdFromResponseHeader(response.headers.location);
             const vedlegg: Vedlegg = {
                 ...file,
                 file: mapFileToPersistedFile(file.file),
@@ -45,21 +47,22 @@ export const useFileUploader = ({ addedFiles = [], onFilesChanged }: Props) => {
             setFiles((prevFiles) => [
                 ...prevFiles.map((prevFile) => (prevFile.file === file.file ? vedlegg : prevFile)),
             ]);
-        } catch {
+            return Promise.resolve();
+        } catch (e) {
+            const reason = isAxiosError(e) ? e.message : 'uploadError';
             setFiles((prevFiles) => [
-                ...prevFiles.map((prevFile) =>
-                    prevFile.file === file.file
-                        ? { ...prevFile, error: true, reasons: ['uploadError'], pending: false }
-                        : prevFile,
-                ),
+                ...prevFiles.map((prevFile) => {
+                    if (prevFile.file === file.file) {
+                        return { ...prevFile, error: true, reasons: [reason], pending: false };
+                    }
+                    return prevFile;
+                }),
             ]);
-        }
-        if (onFilesChanged) {
-            onFilesChanged(files);
+            return Promise.reject();
         }
     };
 
-    const onSelect = (newFiles: FileObject[]) => {
+    const onSelect = async (newFiles: FileObject[]) => {
         const filesWithErrors = newFiles
             .filter((file) => file.error)
             .map((file) => ({ ...file, pending: false, uploaded: false }));
@@ -68,12 +71,12 @@ export const useFileUploader = ({ addedFiles = [], onFilesChanged }: Props) => {
             .map((file) => ({ ...file, pending: true, uploaded: false }));
 
         setFiles((prevFiles) => [...prevFiles, ...filesToUpload, ...filesWithErrors]);
-        filesToUpload.forEach((file) => {
-            uploadFile(file);
+
+        Promise.allSettled(filesToUpload.map((file) => uploadFile(file))).finally(() => {
+            if (onFilesChanged) {
+                onFilesChanged(files);
+            }
         });
-        if (onFilesChanged) {
-            onFilesChanged(files);
-        }
     };
 
     const removeFile = async (fileToRemove: Vedlegg) => {

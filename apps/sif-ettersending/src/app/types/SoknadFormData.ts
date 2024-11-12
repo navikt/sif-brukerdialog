@@ -1,7 +1,6 @@
 import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { DokumentType } from './DokumentType';
 import { YtelseKey } from './Ytelser';
-import { Vedlegg } from '@navikt/sif-common-core-ds/src/components/formik-file-upload/useFileUploader';
 
 export interface RegistrertBarnFormData {
     aktørId: string;
@@ -21,7 +20,6 @@ export enum SoknadFormField {
     beskrivelse = 'beskrivelse',
     ytelse = 'ytelse',
     dokumenter = 'dokumenter',
-    vedlegg = 'vedlegg',
 }
 
 export interface SoknadFormData {
@@ -36,12 +34,10 @@ export interface SoknadFormData {
     [SoknadFormField.beskrivelse]?: string;
     [SoknadFormField.ytelse]?: YtelseKey;
     [SoknadFormField.dokumenter]: Attachment[];
-    [SoknadFormField.vedlegg]: Vedlegg[];
 }
 
 export const initialSoknadFormData: SoknadFormData = {
     [SoknadFormField.harForståttRettigheterOgPlikter]: false,
     [SoknadFormField.harBekreftetOpplysninger]: false,
     [SoknadFormField.dokumenter]: [],
-    [SoknadFormField.vedlegg]: [],
 };

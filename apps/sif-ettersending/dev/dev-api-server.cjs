@@ -105,6 +105,12 @@ const startServer = () => {
         }, RESPONSE_DELAY);
     });
 
+    server.post('/vedlegg-feil', (req, res) => {
+        setTimeout(() => {
+            res.sendStatus(500);
+        }, 50);
+    });
+
     server.post('/vedlegg', (req, res) => {
         setTimeout(() => {
             res.set('Access-Control-Expose-Headers', 'Location');
