@@ -1,10 +1,14 @@
 import { FileAccepted, FileObject, FileRejected } from '@navikt/ds-react';
 import { useEffect, useState } from 'react';
-import { deleteVedlegg, getVedleggFrontendUrl, uploadVedlegg } from '@navikt/sif-common-api';
+import {
+    deleteVedlegg,
+    getVedleggFrontendUrl,
+    getVedleggIdFromResponseHeaderLocation,
+    uploadVedlegg,
+} from '@navikt/sif-common-api';
+import { isAxiosError } from 'axios';
 import { PersistedFile } from '../../types';
 import { mapFileToPersistedFile } from '../../utils/attachmentUtils';
-import { getVedleggIdFromResponseHeader } from './vedleggUtils';
-import { isAxiosError } from 'axios';
 
 export type Vedlegg = (Omit<FileRejected, 'file'> | Omit<FileAccepted, 'file'>) & {
     file: File | PersistedFile;
@@ -33,7 +37,7 @@ export const useFileUploader = ({ addedFiles = [], onFilesChanged }: Props) => {
     const uploadFile = async (file: FileObject) => {
         try {
             const response = await uploadVedlegg(file.file);
-            const id = getVedleggIdFromResponseHeader(response.headers.location);
+            const id = getVedleggIdFromResponseHeaderLocation(response.headers.location);
             const vedlegg: Vedlegg = {
                 ...file,
                 file: mapFileToPersistedFile(file.file),

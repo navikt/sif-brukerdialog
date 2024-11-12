@@ -1,4 +1,4 @@
-import { FileUpload, Heading, VStack } from '@navikt/ds-react';
+import { FileRejectionReason, FileUpload, Heading, VStack } from '@navikt/ds-react';
 import { useCallback, useContext } from 'react';
 import {
     getErrorPropForFormikInput,
@@ -7,8 +7,7 @@ import {
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
 import { Field, FieldProps, useFormikContext } from 'formik';
-import { CoreText, useCoreIntl } from '../../i18n/common.messages';
-import { getRejectedFileError } from './vedleggUtils';
+import { CoreIntlShape, CoreText, useCoreIntl } from '../../i18n/common.messages';
 import { useFileUploader, Vedlegg } from './useFileUploader';
 
 interface Props extends TypedFormInputValidationProps<string, ValidationError> {
@@ -131,3 +130,21 @@ const FormikFileUpload = ({
 };
 
 export default FormikFileUpload;
+
+const getRejectedFileError = (
+    { text }: CoreIntlShape,
+    reason: FileRejectionReason | string,
+    limits: {
+        MAX_FILES: number;
+        MAX_SIZE_MB: number;
+    },
+): string => {
+    switch (reason) {
+        case 'fileType':
+            return text('@core.formikFileUpload.file-upload.error.fileType', limits);
+        case 'fileSize':
+            return text('@core.formikFileUpload.file-upload.error.fileSize', limits);
+        default:
+            return reason;
+    }
+};

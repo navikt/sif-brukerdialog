@@ -18,8 +18,8 @@ export const uploadVedlegg = async (file: File): Promise<AxiosResponse<any, any>
 
 /**
  *
- * @param attachmentUrlBackend url som mottas fra backend ved opplasting
- * @returns AxiosResponse
+ * @param id id til vedlegg som skal slettes - referanse til backend
+ * @returns axios promise
  */
 export const deleteVedlegg = async (id: string): Promise<AxiosResponse<any, any>> => {
     const url = `${servicePath}/${id}`;
@@ -33,4 +33,18 @@ export const deleteVedlegg = async (id: string): Promise<AxiosResponse<any, any>
  */
 export const getVedleggFrontendUrl = (id: string): string => {
     return `${getCommonEnv().K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH}${servicePath}/${id}`;
+};
+
+/**
+ *
+ * @param url url som mottas fra backend ved opplasting. URL settes som location i response.headers
+ * @returns vedlegg-id
+ */
+
+export const getVedleggIdFromResponseHeaderLocation = (url: string) => {
+    const id = url.split('vedlegg/')[1];
+    if (!id || id.length === 0) {
+        throw new Error('Kunne ikke hente vedleggId fra url');
+    }
+    return id;
 };
