@@ -1,15 +1,37 @@
 import { FileRejectionReason, FileUpload, Heading, VStack } from '@navikt/ds-react';
-import { useFileUploader, Vedlegg } from './useFileUploader';
-import { useFormikContext } from 'formik';
 import { useCallback } from 'react';
+import { FormikInputGroup, TypedFormInputValidationProps, ValidationError } from '@navikt/sif-common-formik-ds';
+import { useFormikContext } from 'formik';
+import { CoreIntlShape, useCoreIntl } from '../../i18n/common.messages';
+import { useFileUploader, Vedlegg } from './useFileUploader';
 
-interface Props {
+type FileUploadLimits = {
+    MAX_FILES: number;
+    MAX_SIZE_MB: number;
+};
+
+interface Props extends TypedFormInputValidationProps<string, ValidationError> {
     fieldName: string;
+    label: string;
+    description?: string;
+    limits?: {
+        MAX_FILES: number;
+        MAX_SIZE_MB: number;
+    };
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const FormikFileUpload = ({ fieldName = 'vedlegg' }: Props) => {
+const FormikFileUpload = ({
+    label,
+    fieldName,
+    limits = {
+        MAX_FILES: 10,
+        MAX_SIZE_MB: 10,
+    },
+    validate,
+}: Props) => {
+    const MAX_SIZE = limits.MAX_SIZE_MB * 1024 * 1024;
     const { values, setFieldValue } = useFormikContext<any>();
+    const intl = useCoreIntl();
 
     const updateFiles = useCallback(
         (files: Vedlegg[]) => {
@@ -18,23 +40,25 @@ const FormikFileUpload = ({ fieldName = 'vedlegg' }: Props) => {
         [setFieldValue, fieldName],
     );
 
-    const { onSelect, removeFile, uploadedFiles, pendingFiles, rejectedFiles } = useFileUploader(
-        values[fieldName],
-        updateFiles,
-    );
+    const { onSelect, removeFile, uploadedFiles, pendingFiles, rejectedFiles } = useFileUploader({
+        addedFiles: values[fieldName],
+        onFilesChanged: updateFiles,
+    });
 
     const acceptedFiles = [...uploadedFiles, ...pendingFiles];
 
     return (
         <VStack gap="6">
-            <FileUpload.Dropzone
-                label="Last opp filer til søknaden"
-                description={`Du kan laste opp JPG-, PNG- og PDF-filer.  Maks størrelse per fil er ${MAX_SIZE_MB} MB.`}
-                maxSizeInBytes={MAX_SIZE}
-                accept=".pdf, .png, .jpg, .jpeg"
-                fileLimit={{ max: MAX_FILES, current: acceptedFiles.length }}
-                onSelect={onSelect}
-            />
+            <FormikInputGroup name={fieldName} validate={validate} legend="Vedlegg" hideLegend={true} id="vedlegg">
+                <FileUpload.Dropzone
+                    label={label}
+                    description={intl.text('@core.formikFileUpload.description', limits)}
+                    maxSizeInBytes={MAX_SIZE}
+                    accept=".pdf, .png, .jpg, .jpeg"
+                    fileLimit={{ max: limits.MAX_FILES, current: acceptedFiles.length }}
+                    onSelect={onSelect}
+                />
+            </FormikInputGroup>
 
             {acceptedFiles.length > 0 && (
                 <VStack gap="2">
@@ -68,7 +92,7 @@ const FormikFileUpload = ({ fieldName = 'vedlegg' }: Props) => {
                                 as="li"
                                 key={index}
                                 file={rejected.file}
-                                error={errors[rejected.reasons[0]]}
+                                error={getRejectedError(intl, rejected.reasons[0], limits)}
                                 button={{
                                     action: 'delete',
                                     onClick: () => removeFile(rejected),
@@ -82,13 +106,19 @@ const FormikFileUpload = ({ fieldName = 'vedlegg' }: Props) => {
     );
 };
 
-const MAX_FILES = 10;
-const MAX_SIZE_MB = 9;
-const MAX_SIZE = MAX_SIZE_MB * 1024 * 1024;
-
-const errors: Record<FileRejectionReason, string> = {
-    fileType: 'Filformatet støttes ikke',
-    fileSize: `Filen er større enn ${MAX_SIZE_MB} MB`,
-};
-
 export default FormikFileUpload;
+
+const getRejectedError = (
+    { text }: CoreIntlShape,
+    reason: FileRejectionReason | string,
+    limits: FileUploadLimits,
+): string => {
+    switch (reason) {
+        case 'fileType':
+            return text('@core.formikFileUpload.file-upload.error.fileType', limits);
+        case 'fileSize':
+            return text('@core.formikFileUpload.file-upload.error.fileSize', limits);
+        default:
+            throw new Error(`Ukjent feil: ${reason}`);
+    }
+};

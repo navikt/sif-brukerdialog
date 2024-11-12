@@ -6,7 +6,12 @@ import { getAttachmentId } from '../../utils/attachmentUtils';
 
 export type Vedlegg = FileObject & Attachment;
 
-export const useFileUploader = (addedFiles: Vedlegg[] = [], onFilesChanged?: (files: Vedlegg[]) => void) => {
+interface Props {
+    addedFiles: Vedlegg[];
+    onFilesChanged?: (files: Vedlegg[]) => void;
+}
+
+export const useFileUploader = ({ addedFiles = [], onFilesChanged }: Props) => {
     const [files, setFiles] = useState<Vedlegg[]>(addedFiles);
 
     useEffect(() => {
