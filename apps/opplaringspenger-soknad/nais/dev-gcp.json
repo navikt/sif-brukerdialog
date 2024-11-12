@@ -29,6 +29,7 @@
         "K9_SAK_INNSYN_API_URL": "http://k9-sak-innsyn-api",
 
         "SIF_PUBLIC_AMPLITUDE_API_KEY": "default",
+        "SIF_PUBLIC_USE_AMPLITUDE": "false",
         "SIF_PUBLIC_APPSTATUS_DATASET": "staging",
 
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",

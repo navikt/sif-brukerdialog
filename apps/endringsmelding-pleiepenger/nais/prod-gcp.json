@@ -21,6 +21,7 @@
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
 
         "SIF_PUBLIC_AMPLITUDE_API_KEY": "10798841ebeba333b8ece6c046322d76",
+        "SIF_PUBLIC_USE_AMPLITUDE": "true",
         "SIF_PUBLIC_APPSTATUS_DATASET": "production",
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
         "SIF_PUBLIC_DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=true&chatbot=false&logoutUrl=https://www.nav.no/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/oauth2/logout",
