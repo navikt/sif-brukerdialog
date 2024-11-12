@@ -20,7 +20,6 @@ export type FormikFieldArrayRemoveFn = (index: number) => undefined;
 
 interface Props {
     value: Attachment[];
-
     onUnauthorizedOrForbiddenUpload: () => void;
     onErrorUploadingFiles: (files: File[]) => void;
 }
