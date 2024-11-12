@@ -67,14 +67,14 @@ export const useFileUploader = ({ addedFiles = [], onFilesChanged }: Props) => {
     };
 
     const onSelect = async (newFiles: FileObject[]) => {
-        const filesWithErrors = newFiles
+        const filesWithError = newFiles
             .filter((file) => file.error)
             .map((file) => ({ ...file, pending: false, uploaded: false }));
         const filesToUpload = newFiles
             .filter((file) => !file.error)
             .map((file) => ({ ...file, pending: true, uploaded: false }));
 
-        setFiles((prevFiles) => [...prevFiles, ...filesToUpload, ...filesWithErrors]);
+        setFiles((prevFiles) => [...prevFiles, ...filesToUpload, ...filesWithError]);
 
         Promise.allSettled(filesToUpload.map((file) => uploadFile(file))).finally(() => {
             if (onFilesChanged) {

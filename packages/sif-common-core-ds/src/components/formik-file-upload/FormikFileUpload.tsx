@@ -62,7 +62,8 @@ const FormikFileUpload = ({
                     });
                     return (
                         <FileUpload.Dropzone
-                            id={error ? fieldName : undefined} // Denne vil feile hvis det er flere med samme fieldName på samme side
+                            // ID trengs for at komponenten får fokus når feilmeldingen klikkes på i ErrorSummary
+                            id={error ? fieldName : undefined}
                             label={label}
                             description={intl.text('@core.formikFileUpload.description', limits)}
                             maxSizeInBytes={limits.MAX_SIZE_MB * 1024 * 1024}
