@@ -1,4 +1,4 @@
-import { Alert, Heading } from '@navikt/ds-react';
+import { Alert, Heading, List } from '@navikt/ds-react';
 import React from 'react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
@@ -31,16 +31,16 @@ const ArbeidsaktiviteterMedUkjentArbeidsgiver: React.FunctionComponent<Props> = 
                 <Heading level="3" size="small">
                     <AppText id="arbeidsaktiviteterMedUkjentArbeidsgiver.tittel" />
                 </Heading>
-                <ul>
+                <List>
                     {arbeidsaktivitetMedUkjentArbeidsgiver.map((a) => (
-                        <li key={a.organisasjonsnummer}>
+                        <List.Item key={a.organisasjonsnummer}>
                             <AppText
                                 id="arbeidsaktiviteterMedUkjentArbeidsgiver.orgnummer"
                                 values={{ orgnr: a.organisasjonsnummer }}
                             />
-                        </li>
+                        </List.Item>
                     ))}
-                </ul>
+                </List>
                 <p>
                     <AppText
                         id="arbeidsaktiviteterMedUkjentArbeidsgiver.aaRegisteret"

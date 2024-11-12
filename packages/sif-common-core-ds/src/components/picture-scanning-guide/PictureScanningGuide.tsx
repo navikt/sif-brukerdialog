@@ -1,4 +1,4 @@
-import { BodyLong, Heading, Link } from '@navikt/ds-react';
+import { BodyLong, Heading, Link, List } from '@navikt/ds-react';
 import { ExternalLink } from '@navikt/ds-icons';
 import Block from '../../atoms/block/Block';
 import ExpandableInfo from '../../components/expandable-info/ExpandableInfo';
@@ -22,50 +22,50 @@ const PictureScanningGuide = () => {
                     </Heading>
                 </Block>
                 <BodyLong as="div">
-                    <ul>
-                        <li>
+                    <List>
+                        <List.Item>
                             <CoreText id="@core.psg.section1.liste.1" />
-                        </li>
-                        <li>
+                        </List.Item>
+                        <List.Item>
                             <CoreText id="@core.psg.section1.liste.2" />
-                        </li>
-                        <li>
+                        </List.Item>
+                        <List.Item>
                             <CoreText id="@core.psg.section1.liste.3" />
-                        </li>
-                    </ul>
+                        </List.Item>
+                    </List>
                 </BodyLong>
 
                 <div>
                     <Heading level="3" size="xsmall" spacing={true}>
                         <CoreText id="@core.psg.section2.tittel" />
                     </Heading>
-                    <ul>
-                        <li>
+                    <List>
+                        <List.Item>
                             <CoreText id="@core.psg.section2.liste.1" />
-                        </li>
-                        <li>
+                        </List.Item>
+                        <List.Item>
                             <CoreText id="@core.psg.section2.liste.2" />
-                        </li>
-                        <li>
+                        </List.Item>
+                        <List.Item>
                             <CoreText id="@core.psg.section2.liste.3" />
-                        </li>
-                    </ul>
+                        </List.Item>
+                    </List>
                 </div>
                 <div>
                     <Heading level="3" size="xsmall" spacing={true}>
                         <CoreText id="@core.psg.section3.tittel" />
                     </Heading>
-                    <ul>
-                        <li>
+                    <List>
+                        <List.Item>
                             <CoreText id="@core.psg.section3.liste.1" />
-                        </li>
-                        <li>
+                        </List.Item>
+                        <List.Item>
                             <CoreText id="@core.psg.section3.liste.2" />
-                        </li>
-                        <li>
+                        </List.Item>
+                        <List.Item>
                             <CoreText id="@core.psg.section3.liste.3" />
-                        </li>
-                    </ul>
+                        </List.Item>
+                    </List>
                 </div>
                 <div>
                     <Heading level="3" size="xsmall" spacing={true}>

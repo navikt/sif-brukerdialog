@@ -1,4 +1,4 @@
-import { Alert, BodyLong, Heading, Link } from '@navikt/ds-react';
+import { Alert, BodyLong, Heading, Link, List } from '@navikt/ds-react';
 import { useEffect } from 'react';
 import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
@@ -50,14 +50,14 @@ const ConfirmationPage = ({ kvitteringInfo, onUnmount }: Props) => {
                 <Block margin="xl">
                     <Alert variant="warning">
                         <AppText id="page.confirmation.tittel.advarsel.list.tittel" />
-                        <ul style={{ marginTop: '0rem', marginBottom: '0rem' }}>
-                            <li>
+                        <List style={{ marginTop: '0rem', marginBottom: '0rem' }}>
+                            <List.Item>
                                 <AppText id="page.confirmation.tittel.advarsel.list.item.1" />
-                            </li>
-                            <li>
+                            </List.Item>
+                            <List.Item>
                                 <AppText id="page.confirmation.tittel.advarsel.list.item.2" />
-                            </li>
-                        </ul>
+                            </List.Item>
+                        </List>
                     </Alert>
                 </Block>
             )}
@@ -70,22 +70,22 @@ const ConfirmationPage = ({ kvitteringInfo, onUnmount }: Props) => {
                     <BodyLong>
                         <AppText id="page.confirmation.dinePP.info.1" />
                     </BodyLong>
-                    <ul>
+                    <List>
                         {kvitteringInfo?.arbeidsgivere && (
-                            <li>
+                            <List.Item>
                                 <AppText id="page.confirmation.dinePP.list.item.1" />
-                            </li>
+                            </List.Item>
                         )}
-                        <li>
+                        <List.Item>
                             <AppText id="page.confirmation.dinePP.list.item.2" />
-                        </li>
-                        <li>
+                        </List.Item>
+                        <List.Item>
                             <AppText id="page.confirmation.dinePP.list.item.3" />
-                        </li>
-                        <li>
+                        </List.Item>
+                        <List.Item>
                             <AppText id="page.confirmation.dinePP.list.item.4" />
-                        </li>
-                    </ul>
+                        </List.Item>
+                    </List>
                     <Block margin="xl">
                         <Link href={lenker.innsynSIF} target="_blank" className="knapp knapp--hoved">
                             <AppText id="page.confirmation.dinePP.lenke" />

@@ -84,11 +84,11 @@ const InnsendingFeiletInformasjon: React.FunctionComponent<Props> = ({ invalidPa
             <Alert variant="error">
                 <p style={{ marginTop: '.2em' }}>Oops, noe gikk galt.</p>
                 {visFlereMeldinger ? (
-                    <ul>
+                    <List>
                         {invalidParameter.map((ip, index) => (
                             <List.Item key={index}>{renderFeilmelding(ip)}</List.Item>
                         ))}
-                    </ul>
+                    </List>
                 ) : (
                     renderFeilmelding(invalidParameter[0])
                 )}

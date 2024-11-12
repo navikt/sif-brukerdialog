@@ -1,7 +1,7 @@
 import React from 'react';
 import { getArbeidsgivermeldingApiUrlBySoknadIdOgOrgnummer } from '../../../utils/dokumentUtils';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { Box, Heading } from '@navikt/ds-react';
+import { Box, Heading, List } from '@navikt/ds-react';
 import PdfLenke from '../../pdf-lenke/PdfLenke';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 import { Organisasjon } from '../../../types/Organisasjon';
@@ -23,9 +23,9 @@ const ArbeidsgivereISøknad: React.FunctionComponent<Props> = ({ søknadId, arbe
                 <FormattedMessage id="bekreftelseTilArbeidsgiver.info" />
             </p>
 
-            <ul className="mt-4">
+            <List className="mt-4">
                 {arbeidsgivere.map((organisasjon) => (
-                    <li key={organisasjon.organisasjonsnummer}>
+                    <List.Item key={organisasjon.organisasjonsnummer}>
                         <PdfLenke
                             href={getArbeidsgivermeldingApiUrlBySoknadIdOgOrgnummer(
                                 søknadId,
@@ -35,9 +35,9 @@ const ArbeidsgivereISøknad: React.FunctionComponent<Props> = ({ søknadId, arbe
                                 organisasjonsnavn: getOrganisasjonsnavnEllerOrgNummer(organisasjon),
                             })}
                         />
-                    </li>
+                    </List.Item>
                 ))}
-            </ul>
+            </List>
         </Box>
     );
 };

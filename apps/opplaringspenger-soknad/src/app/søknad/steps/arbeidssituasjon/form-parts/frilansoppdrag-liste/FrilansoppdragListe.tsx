@@ -1,4 +1,4 @@
-import { BodyLong } from '@navikt/ds-react';
+import { BodyLong, List } from '@navikt/ds-react';
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { prettifyDateExtended } from '@navikt/sif-common-utils';
@@ -27,22 +27,22 @@ const renderKurs = ({ ansattFom, ansattTom }: Arbeidsgiver) => {
 
 const FrilansoppdragListe: React.FC<Props> = ({ frilansoppdrag, kompakt }) =>
     kompakt ? (
-        <ul style={{ margin: 0, padding: '0 0 0 1rem' }}>
+        <List style={{ margin: 0, padding: '0 0 0 1rem' }}>
             {frilansoppdrag.map((oppdrag) => (
-                <li key={oppdrag.id}>{oppdrag.navn}</li>
+                <List.Item key={oppdrag.id}>{oppdrag.navn}</List.Item>
             ))}
-        </ul>
+        </List>
     ) : (
-        <ul style={{ margin: 0, padding: '1rem 0 0 1rem' }}>
+        <List style={{ margin: 0, padding: '1rem 0 0 1rem' }}>
             {frilansoppdrag.map((oppdrag) => (
-                <li key={oppdrag.id}>
+                <List.Item key={oppdrag.id}>
                     <BodyLong size="large">{oppdrag.navn}</BodyLong>
                     <Block padBottom="l">
                         <AppText id="frilansoppdragListe.oppdrag" values={{ kurs: renderKurs(oppdrag) }} />
                     </Block>
-                </li>
+                </List.Item>
             ))}
-        </ul>
+        </List>
     );
 
 export default FrilansoppdragListe;

@@ -1,4 +1,4 @@
-import { Alert, Heading, Link } from '@navikt/ds-react';
+import { Alert, Heading, Link, List } from '@navikt/ds-react';
 import { ReactNode, useEffect } from 'react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
@@ -41,11 +41,11 @@ const DokumentTypeStep = ({ søknadstype, søkersFødselsnummer, registrertBarn 
         <SoknadFormStep id={StepID.DOKUMENT_TYPE} søknadstype={søknadstype}>
             <SifGuidePanel>
                 <AppText id="step.dokumentType.info" />
-                <ul>
-                    <li>
+                <List>
+                    <List.Item>
                         <AppText id="step.dokumentType.info.1" />
-                    </li>
-                    <li>
+                    </List.Item>
+                    <List.Item>
                         <AppText
                             id="step.dokumentType.info.2"
                             values={{
@@ -56,8 +56,8 @@ const DokumentTypeStep = ({ søknadstype, søkersFødselsnummer, registrertBarn 
                                 ),
                             }}
                         />
-                    </li>
-                    <li>
+                    </List.Item>
+                    <List.Item>
                         <AppText
                             id="step.dokumentType.info.3"
                             values={{
@@ -68,8 +68,8 @@ const DokumentTypeStep = ({ søknadstype, søkersFødselsnummer, registrertBarn 
                                 ),
                             }}
                         />
-                    </li>
-                </ul>
+                    </List.Item>
+                </List>
             </SifGuidePanel>
 
             <FormBlock>

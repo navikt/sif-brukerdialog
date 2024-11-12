@@ -1,4 +1,4 @@
-import { Alert, Heading, Panel } from '@navikt/ds-react';
+import { Alert, Heading, List, Panel } from '@navikt/ds-react';
 import * as React from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import {
@@ -65,13 +65,13 @@ const TilArbeidsgiverDokument: React.FC<Props> = ({ arbeidsgiverDetaljer, søker
                     </b>
                 </p>
                 {arbeidsgiverDetaljer.perioder.length > 0 && (
-                    <ul>
+                    <List>
                         {arbeidsgiverDetaljer.perioder.map((periode: Utbetalingsperiode, i: number) => {
                             const maybePlanlagt: Time | undefined = isoDurationToMaybeTime(periode.antallTimerPlanlagt);
                             const maybeBorte: Time | undefined = isoDurationToMaybeTime(periode.antallTimerBorte);
 
                             return maybePlanlagt && maybeBorte ? (
-                                <li key={`delvisDag-${i}`}>
+                                <List.Item key={`delvisDag-${i}`}>
                                     {utbetalingsperiodeDagToDagSummaryStringView({
                                         dato: periode.fraOgMed,
                                         antallTimerPlanlagt: maybePlanlagt,
@@ -79,15 +79,15 @@ const TilArbeidsgiverDokument: React.FC<Props> = ({ arbeidsgiverDetaljer, søker
                                         årsak: periode.årsak,
                                         aktivitetFravær: [ApiAktivitet.ARBEIDSTAKER],
                                     })}
-                                </li>
+                                </List.Item>
                             ) : (
-                                <li key={`periode-${i}`}>
+                                <List.Item key={`periode-${i}`}>
                                     {prettifyDateExtended(ISODateToDate(periode.fraOgMed))} -{' '}
                                     {prettifyDateExtended(ISODateToDate(periode.tilOgMed))}
-                                </li>
+                                </List.Item>
                             );
                         })}
-                    </ul>
+                    </List>
                 )}
 
                 <Panel border={true} className={'luftOver'}>
