@@ -1,6 +1,5 @@
-import { Heading, Link, VStack } from '@navikt/ds-react';
+import { Heading, Link, List, VStack } from '@navikt/ds-react';
 import React from 'react';
-import InfoList from '@navikt/sif-common-core-ds/src/components/lists/info-list/InfoList';
 import { AppText } from '../../i18n';
 import getLenker from '../../lenker';
 
@@ -22,26 +21,26 @@ const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
                 <p>
                     <AppText id="personopplysninger.4" />
                 </p>
-                <InfoList>
-                    <li>
+                <List>
+                    <List.Item>
                         <AppText id="personopplysninger.4.1" />
-                    </li>
-                    <li>
+                    </List.Item>
+                    <List.Item>
                         <AppText id="personopplysninger.4.2" />
-                    </li>
-                    <li>
+                    </List.Item>
+                    <List.Item>
                         <AppText id="personopplysninger.4.3" />
-                    </li>
-                    <li>
+                    </List.Item>
+                    <List.Item>
                         <AppText id="personopplysninger.4.4" />
-                    </li>
-                    <li>
+                    </List.Item>
+                    <List.Item>
                         <AppText id="personopplysninger.4.5" />
-                    </li>
-                    <li>
+                    </List.Item>
+                    <List.Item>
                         <AppText id="personopplysninger.4.6" />
-                    </li>
-                </InfoList>
+                    </List.Item>
+                </List>
             </div>
             <div>
                 <AppText

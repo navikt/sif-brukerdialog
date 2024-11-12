@@ -1,8 +1,7 @@
 import { useOnValidSubmit, useSøknadContext } from '@hooks';
-import { Alert, Heading } from '@navikt/ds-react';
+import { Alert, Heading, List } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import InfoList from '@navikt/sif-common-core-ds/src/components/lists/info-list/InfoList';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
@@ -90,14 +89,14 @@ const LovbestemtFerieStep = () => {
                 <Heading level="2" size="xsmall" spacing={true}>
                     <AppText id="lovbestemtFerieStep.guide.tittel" />
                 </Heading>
-                <InfoList>
-                    <li>
+                <List>
+                    <List.Item>
                         <AppText id="lovbestemtFerieStep.guide.tekst.1" />
-                    </li>
-                    <li>
+                    </List.Item>
+                    <List.Item>
                         <AppText id="lovbestemtFerieStep.guide.tekst.2" />
-                    </li>
-                </InfoList>
+                    </List.Item>
+                </List>
             </SifGuidePanel>
 
             <FormikWrapper

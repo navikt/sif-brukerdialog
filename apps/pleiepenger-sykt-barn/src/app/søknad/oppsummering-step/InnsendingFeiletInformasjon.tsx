@@ -1,8 +1,7 @@
-import { Alert } from '@navikt/ds-react';
+import { Alert, List } from '@navikt/ds-react';
 import React from 'react';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import InfoList from '../../pages/velkommen-page/components/info-list/InfoList';
 import { InvalidParameter, K9Valideringsfeil } from './invalidParameter';
 
 const visFlereMeldinger = false;
@@ -32,10 +31,12 @@ const renderFeilmelding = (invalidParameter: InvalidParameter) => {
         const kjentFeltMelding = getInvalidPatternMelding(invalidParameter);
         if (kjentFeltMelding) {
             return (
-                <InfoList>
-                    <li>
-                        <p>{kjentFeltMelding}</p>
-                    </li>
+                <>
+                    <List>
+                        <List.Item>
+                            <p>{kjentFeltMelding}</p>
+                        </List.Item>
+                    </List>
                     <p>
                         Dette kan skje hvis du kopierer telefonnummeret fra et annet sted og limer det inn i søknaden,
                         da kan det komme med tegn som ikke er den del av telefonnummeret.
@@ -44,27 +45,27 @@ const renderFeilmelding = (invalidParameter: InvalidParameter) => {
                         Gå tilbake til steg 3 i søknaden, og skriv inn telefonnummeret uten å kopiere det fra et annet
                         sted.
                     </p>
-                </InfoList>
+                </>
             );
         }
     }
     return (
         <>
             <p>Søknaden din inneholder ugyldig informasjon.</p>
-            <InfoList>
-                <li>
+            <List>
+                <List.Item>
                     Når du selv skriver inn tekst i et felt i søknaden, kan noen tegn være ugyldige ut fra informasjonen
                     vi ber om. Dette skjer vanligvis hvis du kopierer og limer inn tekst fra andre steder, da kan det
                     komme med tegn som ikke hører til teksten. Du fikser dette ved å skrive inn teksten på ny, uten å
                     kopiere den fra et annet sted.
-                </li>
-                <li>
+                </List.Item>
+                <List.Item>
                     Hvis du har brukt tilbakeknappen i nettleseren, kan du ha gitt svar som ikke lar seg kombinere. Du
                     fikser dette ved å gå tilbake i søknaden og bruke den blå &quot;fortsett&quot;-knappen gjennom de
                     ulike stegene i søknaden. Da vil du få en feilmelding hvis svarene dine ikke lar seg kombinere, og
                     kan rette opp feilen.
-                </li>
-            </InfoList>
+                </List.Item>
+            </List>
             <p>
                 Hvis du har sjekket dette, og fortsatt ikke kommer videre, ber vi deg kontakte oss på{' '}
                 <span style={{ whiteSpace: 'nowrap' }}>55 55 33 33</span> for videre veiledning.
@@ -85,7 +86,7 @@ const InnsendingFeiletInformasjon: React.FunctionComponent<Props> = ({ invalidPa
                 {visFlereMeldinger ? (
                     <ul>
                         {invalidParameter.map((ip, index) => (
-                            <li key={index}>{renderFeilmelding(ip)}</li>
+                            <List.Item key={index}>{renderFeilmelding(ip)}</List.Item>
                         ))}
                     </ul>
                 ) : (
