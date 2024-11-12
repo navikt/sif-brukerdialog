@@ -40,7 +40,7 @@ export const mapAnnetBarnToApiBarn = (annetBarn: AnnetBarn, aleneomsorgTidspunkt
 
     const aleneomsorgTidspunkt = aleneomsorgTidspunkter[prefixBarnIdFnr(fnr)];
     if (!aleneomsorgTidspunkt) {
-        throw new Error('Aleneomsorgstidspunkt mangler for registrert barn');
+        throw new Error('Aleneomsorgstidspunkt mangler for annet barn');
     }
 
     return {
