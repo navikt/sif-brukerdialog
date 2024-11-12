@@ -17,9 +17,8 @@ const ValidationSummary: React.FunctionComponent<Props> = ({ errors, heading, he
             {errors.map((error, idx) => (
                 <ErrorSummary.Item
                     key={`validation_error_key_${idx}`}
-                    className={'lenke'}
                     href="#"
-                    style={{ cursor: 'hand' }}
+                    style={{ cursor: 'pointer' }}
                     onClick={() => {
                         const elementById = document.getElementById(error.fieldName);
                         const elementByName = document.getElementsByName(error.fieldName)[0];

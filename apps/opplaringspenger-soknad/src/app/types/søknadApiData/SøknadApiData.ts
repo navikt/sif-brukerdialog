@@ -9,6 +9,10 @@ export * from './OmBarnetApiData';
 export interface KursholderApiData {
     id: string;
     navn: string;
+    erAnnen: false;
+}
+export interface KursholderApiDataAnnen {
+    erAnnen: true;
 }
 
 export interface KursperiodeApiData {
@@ -20,7 +24,7 @@ export interface KursperiodeApiData {
 }
 
 export interface KursApiData {
-    kursholder: KursholderApiData | 'annen';
+    kursholder: KursholderApiData | KursholderApiDataAnnen;
     perioder: KursperiodeApiData[];
 }
 

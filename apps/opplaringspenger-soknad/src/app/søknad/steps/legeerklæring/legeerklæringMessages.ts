@@ -6,7 +6,7 @@ const nb = {
     'vedleggsliste.ingenLegeerklæringLastetOpp': 'Ingen legeerklæring er lastet opp',
 
     'dokumenter.advarsel.totalstørrelse.1':
-        'Du har totalt lastet opp mer enn grensen på 24 MB Det betyr at du må fjerne noe av det du har lastet opp. Hvis det betyr at du ikke får plass til alt du ønsker å sende nå, kan du ',
+        'Du har totalt lastet opp mer enn grensen på 24 MB. Det betyr at du må fjerne noe av det du har lastet opp. Hvis det betyr at du ikke får plass til alt du ønsker å sende nå, kan du ',
     'dokumenter.advarsel.totalstørrelse.2': 'ettersende flere dokumenter.',
 };
 
