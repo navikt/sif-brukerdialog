@@ -55,7 +55,7 @@ export const Default: Story = {
 };
 
 const filePdf = new File(['abc'.repeat(100000)], 'document.pdf');
-const fileJpg = new File(['abc'.repeat(500000)], 'picture.jpg');
+const fileJpg = new File(['abc'.repeat(500000)], 'document.doc');
 const exampleFiles: Vedlegg[] = [
     { file: filePdf, error: false, pending: false, uploaded: true },
     { file: fileJpg, error: true, reasons: ['fileType'], uploaded: false, pending: false },
