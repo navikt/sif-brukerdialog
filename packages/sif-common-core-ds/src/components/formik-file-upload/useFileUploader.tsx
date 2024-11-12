@@ -1,10 +1,18 @@
-import { FileObject } from '@navikt/ds-react';
+import { FileAccepted, FileObject, FileRejected } from '@navikt/ds-react';
 import { useEffect, useState } from 'react';
 import { getVedleggFrontendUrl, uploadVedlegg } from '@navikt/sif-common-api';
-import { Attachment } from '../../types';
-import { getAttachmentId } from '../../utils/attachmentUtils';
+import { getAttachmentId, mapFileToPersistedFile } from '../../utils/attachmentUtils';
+import { PersistedFile } from '../../types';
 
-export type Vedlegg = FileObject & Attachment;
+export type Vedlegg = (Omit<FileRejected, 'file'> | Omit<FileAccepted, 'file'>) & {
+    file: File | PersistedFile;
+    pending: boolean;
+    uploaded: boolean;
+    info?: {
+        id: string;
+        url: string;
+    };
+};
 
 interface Props {
     addedFiles: Vedlegg[];
@@ -26,6 +34,7 @@ export const useFileUploader = ({ addedFiles = [], onFilesChanged }: Props) => {
             const id = getAttachmentId(response.headers.location);
             const vedlegg: Vedlegg = {
                 ...file,
+                file: mapFileToPersistedFile(file.file),
                 pending: false,
                 uploaded: true,
                 info: {
@@ -67,7 +76,7 @@ export const useFileUploader = ({ addedFiles = [], onFilesChanged }: Props) => {
         }
     };
 
-    function removeFile(fileToRemove: FileObject) {
+    function removeFile(fileToRemove: Vedlegg) {
         setFiles((prevAcceptedFiles) => prevAcceptedFiles.filter((file) => file !== fileToRemove));
     }
 

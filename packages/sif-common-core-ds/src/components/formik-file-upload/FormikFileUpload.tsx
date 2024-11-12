@@ -2,7 +2,7 @@ import { FileRejectionReason, FileUpload, Heading, VStack } from '@navikt/ds-rea
 import { useCallback } from 'react';
 import { FormikInputGroup, TypedFormInputValidationProps, ValidationError } from '@navikt/sif-common-formik-ds';
 import { useFormikContext } from 'formik';
-import { CoreIntlShape, useCoreIntl } from '../../i18n/common.messages';
+import { CoreIntlShape, CoreText, useCoreIntl } from '../../i18n/common.messages';
 import { useFileUploader, Vedlegg } from './useFileUploader';
 
 type FileUploadLimits = {
@@ -63,7 +63,10 @@ const FormikFileUpload = ({
             {acceptedFiles.length > 0 && (
                 <VStack gap="2">
                     <Heading level="3" size="xsmall">
-                        {`Dokumenter (${acceptedFiles.length})`}
+                        <CoreText
+                            id="@core.formikFileUpload.dokumenterLastetOpp.tittel"
+                            values={{ antall: acceptedFiles.length }}
+                        />
                     </Heading>
                     <VStack as="ul" gap="3">
                         {acceptedFiles.map((file, index) => (
@@ -84,7 +87,7 @@ const FormikFileUpload = ({
             {rejectedFiles.length > 0 && (
                 <VStack gap="2">
                     <Heading level="3" size="xsmall">
-                        Dokumenter med feil
+                        <CoreText id="@core.formikFileUpload.dokumenterAvvist.tittel" />
                     </Heading>
                     <VStack as="ul" gap="3">
                         {rejectedFiles.map((rejected, index) => (
