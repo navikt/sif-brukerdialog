@@ -1,6 +1,6 @@
 import { FileAccepted, FileObject, FileRejected } from '@navikt/ds-react';
 import { useEffect, useState } from 'react';
-import { getVedleggFrontendUrl, uploadVedlegg } from '@navikt/sif-common-api';
+import { deleteVedlegg, getVedleggFrontendUrl, uploadVedlegg } from '@navikt/sif-common-api';
 import { getAttachmentId, mapFileToPersistedFile } from '../../utils/attachmentUtils';
 import { PersistedFile } from '../../types';
 
@@ -76,9 +76,12 @@ export const useFileUploader = ({ addedFiles = [], onFilesChanged }: Props) => {
         }
     };
 
-    function removeFile(fileToRemove: Vedlegg) {
+    const removeFile = async (fileToRemove: Vedlegg) => {
+        if (fileToRemove.info) {
+            await deleteVedlegg(fileToRemove.info.id);
+        }
         setFiles((prevAcceptedFiles) => prevAcceptedFiles.filter((file) => file !== fileToRemove));
-    }
+    };
 
     return {
         onSelect,

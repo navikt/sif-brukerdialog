@@ -14,6 +14,7 @@ interface Props extends TypedFormInputValidationProps<string, ValidationError> {
     fieldName: string;
     label: string;
     description?: string;
+    headingLevel?: '2' | '3' | '4';
     limits?: {
         MAX_FILES: number;
         MAX_SIZE_MB: number;
@@ -27,6 +28,7 @@ const FormikFileUpload = ({
         MAX_FILES: 10,
         MAX_SIZE_MB: 10,
     },
+    headingLevel = '2',
     validate,
 }: Props) => {
     const MAX_SIZE = limits.MAX_SIZE_MB * 1024 * 1024;
@@ -62,7 +64,7 @@ const FormikFileUpload = ({
 
             {acceptedFiles.length > 0 && (
                 <VStack gap="2">
-                    <Heading level="3" size="xsmall">
+                    <Heading level={headingLevel} size="xsmall">
                         <CoreText
                             id="@core.formikFileUpload.dokumenterLastetOpp.tittel"
                             values={{ antall: acceptedFiles.length }}
@@ -86,7 +88,7 @@ const FormikFileUpload = ({
             )}
             {rejectedFiles.length > 0 && (
                 <VStack gap="2">
-                    <Heading level="3" size="xsmall">
+                    <Heading level={headingLevel} size="xsmall">
                         <CoreText id="@core.formikFileUpload.dokumenterAvvist.tittel" />
                     </Heading>
                     <VStack as="ul" gap="3">
