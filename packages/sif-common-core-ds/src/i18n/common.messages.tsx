@@ -26,7 +26,7 @@ const nb = {
     '@core.formikFileUpload.dokumenterLastetOpp.lasterOpp': 'Laster opp ...',
     '@core.formikFileUpload.dokumenterAvvist.tittel': 'Dokumenter med feil',
     '@core.formikFileUpload.file-upload.error.fileType':
-        'Filformatet støttes ikke. Tillatte filformater er: {fileTypes}',
+        'Filformatet støttes ikke. Tillatte filformater er JPG, JPEG, PNG og PDF.',
     '@core.formikFileUpload.file-upload.error.fileSize': 'Filen er større enn {MAX_SIZE_MB} MB',
 
     ...pictureScanningGuideMessages.nb,
@@ -58,7 +58,7 @@ const nn: Record<MessageKeys, string> = {
     '@core.formikFileUpload.dokumenterLastetOpp.lasterOpp': 'Laster opp ...',
     '@core.formikFileUpload.dokumenterAvvist.tittel': 'Dokument med feil',
     '@core.formikFileUpload.file-upload.error.fileType':
-        'Filformatet er ikkje støtta. Filformater du kan laste opp er: {fileTypes}',
+        'Filformatet er ikkje støtta. Filformater du kan laste opp er JPG, JPEG, PNG og PDF.',
     '@core.formikFileUpload.file-upload.error.fileSize': 'Fila er større enn ${MAX_SIZE_MB} MB',
 
     ...pictureScanningGuideMessages.nn,
