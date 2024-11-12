@@ -1,5 +1,14 @@
 # @navikt/sif-demo-app
 
+## 0.2.8
+
+### Patch Changes
+
+-   Erstatte alle generelle lister med List-komponenten fra Aksel
+-   Updated dependencies
+    -   @navikt/sif-common-core-ds@9.20.8
+    -   @navikt/sif-common-ui@0.8.34
+
 ## 0.2.7
 
 ### Patch Changes

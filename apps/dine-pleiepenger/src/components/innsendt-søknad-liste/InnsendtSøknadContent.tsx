@@ -1,4 +1,4 @@
-import { Box, Heading, Link } from '@navikt/ds-react';
+import { Box, Heading, Link, List } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { File } from '@navikt/ds-icons';
@@ -40,7 +40,7 @@ const InnsendtSøknadContent: React.FunctionComponent<Props> = ({ søknad }) => 
 
     const mapOrganisasjoner = (organisasjon: Organisasjon | InnsendtSøknadArbeidsgiver) => {
         return (
-            <li key={organisasjon.organisasjonsnummer}>
+            <List.Item key={organisasjon.organisasjonsnummer}>
                 <Link
                     target="_blank"
                     href={getArbeidsgivermeldingApiUrlBySoknadIdOgOrgnummer(
@@ -55,13 +55,13 @@ const InnsendtSøknadContent: React.FunctionComponent<Props> = ({ søknad }) => 
                         }}
                     />
                 </Link>
-            </li>
+            </List.Item>
         );
     };
 
     const mapDokumenter = (dokument: InnsendtSøknadDokument) => {
         return (
-            <li key={dokument.dokumentInfoId}>
+            <List.Item key={dokument.dokumentInfoId}>
                 <Link
                     target="_blank"
                     href={`${getDokumentFrontendUrl(dokument.url)}?dokumentTittel=${getSøknadDokumentFilnavn(
@@ -70,7 +70,7 @@ const InnsendtSøknadContent: React.FunctionComponent<Props> = ({ søknad }) => 
                     <File title="Dokumentikon" />
                     <span>{`${dokument.tittel} (PDF)`}</span>
                 </Link>
-            </li>
+            </List.Item>
         );
     };
 
@@ -81,7 +81,7 @@ const InnsendtSøknadContent: React.FunctionComponent<Props> = ({ søknad }) => 
                     <AppText id={`dokumenterTittel.${søknad.søknadstype}`} />
                 </Heading>
                 {søknad.dokumenter && søknad.dokumenter.length > 0 && (
-                    <ul>{søknad.dokumenter.map((dokument) => mapDokumenter(dokument))}</ul>
+                    <List>{søknad.dokumenter.map((dokument) => mapDokumenter(dokument))}</List>
                 )}
                 {(søknad.dokumenter === undefined || søknad.dokumenter.length === 0) && (
                     <p>{intlHelper(intl, 'dokumenter.ingenDokumenter')}</p>
@@ -99,21 +99,21 @@ const InnsendtSøknadContent: React.FunctionComponent<Props> = ({ søknad }) => 
                     {'arbeidsgivere' in søknad.søknad &&
                         'organisasjoner' in søknad.søknad.arbeidsgivere &&
                         søknad.søknad.arbeidsgivere.organisasjoner.length > 0 && (
-                            <ul className="mt-4">
+                            <List className="mt-4">
                                 {søknad.søknad.arbeidsgivere.organisasjoner.map((organisasjon) =>
                                     mapOrganisasjoner(organisasjon),
                                 )}
-                            </ul>
+                            </List>
                         )}
                     {'arbeidsgivere' in søknad.søknad &&
                         Array.isArray(søknad.søknad.arbeidsgivere) &&
                         søknad.søknad.arbeidsgivere.length > 0 && (
-                            <ul className="mt-4">
+                            <List className="mt-4">
                                 {søknad.søknad.arbeidsgivere.map(
                                     (organisasjon) =>
                                         !organisasjon.sluttetFørSøknadsperiode && mapOrganisasjoner(organisasjon),
                                 )}
-                            </ul>
+                            </List>
                         )}
                 </Box>
             )}

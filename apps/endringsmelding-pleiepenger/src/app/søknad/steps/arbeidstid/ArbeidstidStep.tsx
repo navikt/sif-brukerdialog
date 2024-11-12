@@ -1,6 +1,5 @@
-import { Alert, Heading } from '@navikt/ds-react';
+import { Alert, Heading, List } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import InfoList from '@navikt/sif-common-core-ds/src/components/lists/info-list/InfoList';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import ArbeidsaktiviteterMedUkjentArbeidsgiver from '../../../components/arbeidsaktiviteter-med-ukjent-arbeidsgiver/ArbeidsaktiviteterMedUkjentArbeidsgiver';
 import { useSøknadContext } from '../../../hooks';
@@ -30,17 +29,17 @@ const ArbeidstidStep = () => {
                 <Heading level="2" size="xsmall" spacing={true}>
                     <AppText id="arbeidstidStep.title" />
                 </Heading>
-                <InfoList>
-                    <li>
+                <List>
+                    <List.Item>
                         <AppText id="arbeidstidStep.info.1" />
-                    </li>
-                    <li>
+                    </List.Item>
+                    <List.Item>
                         <AppText id="arbeidstidStep.info.2" />
-                    </li>
-                    <li>
+                    </List.Item>
+                    <List.Item>
                         <AppText id="arbeidstidStep.info.3" />
-                    </li>
-                </InfoList>
+                    </List.Item>
+                </List>
             </SifGuidePanel>
 
             {harFjernetFerie && (

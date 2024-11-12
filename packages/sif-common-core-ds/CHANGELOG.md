@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 9.20.8
+
+### Patch Changes
+
+-   Erstatte alle generelle lister med List-komponenten fra Aksel
+
 ## 9.20.7
 
 ### Patch Changes

@@ -1,4 +1,4 @@
-import { BodyLong, Heading, Link } from '@navikt/ds-react';
+import { BodyLong, Heading, Link, List } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import getLenker from '../../../lenker';
@@ -28,36 +28,36 @@ const BehandlingAvPersonopplysningerContent = ({ søknadstype }: Props) => {
                         <AppText id="modal.personopplysninger.4" />
                     </p>
 
-                    <ul>
+                    <List>
                         {søknadstype === Søknadstype.pleiepengerLivetsSluttfase && (
-                            <li>
+                            <List.Item>
                                 <AppText id="modal.personopplysninger.4.1.pleiepengerLivetsSluttfase" />
-                            </li>
+                            </List.Item>
                         )}
                         {søknadstype !== Søknadstype.pleiepengerLivetsSluttfase && (
                             <>
-                                <li>
+                                <List.Item>
                                     <AppText id="modal.personopplysninger.4.1" />
-                                </li>
-                                <li>
+                                </List.Item>
+                                <List.Item>
                                     <AppText id="modal.personopplysninger.4.2" />
-                                </li>
+                                </List.Item>
                             </>
                         )}
 
-                        <li>
+                        <List.Item>
                             <AppText id="modal.personopplysninger.4.3" />
-                        </li>
-                        <li>
+                        </List.Item>
+                        <List.Item>
                             <AppText id="modal.personopplysninger.4.4" />
-                        </li>
-                        <li>
+                        </List.Item>
+                        <List.Item>
                             <AppText id="modal.personopplysninger.4.5" />
-                        </li>
-                        <li>
+                        </List.Item>
+                        <List.Item>
                             <AppText id="modal.personopplysninger.4.6" />
-                        </li>
-                    </ul>
+                        </List.Item>
+                    </List>
                 </Block>
                 {søknadstype === Søknadstype.pleiepengerLivetsSluttfase && (
                     <Block margin="xl">

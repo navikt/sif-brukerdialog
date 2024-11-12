@@ -1,7 +1,6 @@
-import { BodyLong, Heading, Link, VStack } from '@navikt/ds-react';
+import { BodyLong, Heading, Link, List, VStack } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
-import InfoList from '@navikt/sif-common-core-ds/src/components/lists/info-list/InfoList';
 import { FormikCheckbox, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
@@ -39,9 +38,9 @@ export const SamtykkeFormPart = () => {
             <Heading level="2" size="small">
                 {text('@soknad.samtykkeForm.ansvar.tittel')}
             </Heading>
-            <InfoList>
-                <li>{text('@soknad.samtykkeForm.ansvar.list.1')}</li>
-                <li>
+            <List>
+                <List.Item>{text('@soknad.samtykkeForm.ansvar.list.1')}</List.Item>
+                <List.Item>
                     {text('@soknad.samtykkeForm.ansvar.list.2', {
                         a: (msg) => (
                             <Link href={RettOgPliktURL} target="_blank">
@@ -49,8 +48,8 @@ export const SamtykkeFormPart = () => {
                             </Link>
                         ),
                     })}
-                </li>
-            </InfoList>
+                </List.Item>
+            </List>
         </ConfirmationCheckbox>
     );
 };

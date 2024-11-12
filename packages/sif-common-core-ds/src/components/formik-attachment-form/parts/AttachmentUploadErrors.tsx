@@ -1,4 +1,4 @@
-import { Alert, BodyShort } from '@navikt/ds-react';
+import { Alert, BodyShort, List } from '@navikt/ds-react';
 import { FormattedMessage } from 'react-intl';
 import { FileDropAcceptImagesAndPdf } from '@navikt/sif-common-formik-ds';
 import prettyBytes from 'pretty-bytes';
@@ -21,10 +21,10 @@ const AttachmentUploadErrors = ({ filesThatDidntGetUploaded }: Props) => {
     return (
         <Alert variant="warning">
             <FormattedMessage id="@core.common.fileUploadError" />
-            <ul>
+            <List>
                 {filesThatDidntGetUploaded.map(({ name, size, type }) => {
                     return (
-                        <li key={name} style={{ marginBottom: '.5rem' }}>
+                        <List.Item key={name} style={{ marginBottom: '.5rem' }}>
                             {name}
                             {isValidType(type) === false && (
                                 <BodyShort size="small">
@@ -38,10 +38,10 @@ const AttachmentUploadErrors = ({ filesThatDidntGetUploaded }: Props) => {
                                     .
                                 </BodyShort>
                             )}
-                        </li>
+                        </List.Item>
                     );
                 })}
-            </ul>
+            </List>
         </Alert>
     );
 };

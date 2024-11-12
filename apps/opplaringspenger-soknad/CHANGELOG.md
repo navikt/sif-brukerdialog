@@ -1,5 +1,14 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.14.20
+
+### Patch Changes
+
+-   Erstatte alle generelle lister med List-komponenten fra Aksel
+-   Updated dependencies
+    -   @navikt/sif-common-soknad-ds@17.0.2
+    -   @navikt/sif-common-core-ds@9.20.8
+
 ## 1.14.19
 
 ### Patch Changes

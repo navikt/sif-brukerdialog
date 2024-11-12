@@ -1,5 +1,15 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.4.11
+
+### Patch Changes
+
+-   Erstatte alle generelle lister med List-komponenten fra Aksel
+-   Updated dependencies
+    -   @navikt/sif-common-soknad-ds@17.0.2
+    -   @navikt/sif-common-core-ds@9.20.8
+    -   @navikt/sif-common-ui@0.8.34
+
 ## 4.4.10
 
 ### Patch Changes
