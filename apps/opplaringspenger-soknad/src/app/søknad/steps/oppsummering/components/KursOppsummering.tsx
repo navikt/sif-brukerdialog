@@ -25,7 +25,7 @@ const KursOppsummering = ({ onEdit, kurs }: Props) => {
                 <FormSummary.Answers>
                     <FormSummary.Answer>
                         <FormSummary.Label>Kursholder</FormSummary.Label>
-                        <FormSummary.Value>{kursholder === 'annen' ? 'Annen' : kursholder.navn}</FormSummary.Value>
+                        <FormSummary.Value>{kursholder.erAnnen ? 'Annen' : kursholder.navn}</FormSummary.Value>
                     </FormSummary.Answer>
                     <FormSummary.Answer>
                         <FormSummary.Label>Kursperioder</FormSummary.Label>
