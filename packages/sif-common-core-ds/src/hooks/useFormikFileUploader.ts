@@ -20,16 +20,11 @@ export type FormikFieldArrayRemoveFn = (index: number) => undefined;
 
 interface Props {
     value: Attachment[];
-    onAttachmentsUploaded?: (attachments: Attachment[]) => void;
+
     onUnauthorizedOrForbiddenUpload: () => void;
     onErrorUploadingFiles: (files: File[]) => void;
 }
-export const useFormikFileUploader = ({
-    value,
-    onErrorUploadingFiles,
-    onUnauthorizedOrForbiddenUpload,
-    onAttachmentsUploaded,
-}: Props) => {
+export const useFormikFileUploader = ({ value, onErrorUploadingFiles, onUnauthorizedOrForbiddenUpload }: Props) => {
     async function uploadAttachment(attachment: Attachment) {
         const { file } = attachment;
         if (isFileObject(file)) {
@@ -67,9 +62,6 @@ export const useFormikFileUploader = ({
         for (const attachment of attachmentsToUpload) {
             await uploadAttachment(attachment);
             updateAttachmentListElement(allAttachments, attachment, replaceFn);
-        }
-        if (onAttachmentsUploaded) {
-            onAttachmentsUploaded(attachmentsToUpload.filter((a) => attachmentUploadHasFailed(a) === false));
         }
 
         const failedAttachments = [...attachmentsNotToUpload, ...attachmentsToUpload.filter(attachmentUploadHasFailed)];
