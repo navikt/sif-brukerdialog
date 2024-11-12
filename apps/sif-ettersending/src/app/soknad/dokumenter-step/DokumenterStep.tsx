@@ -10,6 +10,7 @@ import { Søknadstype } from '../../types/Søknadstype';
 import SoknadFormStep from '../SoknadFormStep';
 import { StepID } from '../soknadStepsConfig';
 import SøknadTempStorage from '../soknadTempStorage';
+import PictureScanningGuide from '@navikt/sif-common-core-ds/src/components/picture-scanning-guide/PictureScanningGuide';
 
 interface Props {
     søknadstype: Søknadstype;
@@ -51,6 +52,7 @@ const DokumenterStep = ({ søknadstype, søker, soknadId }: Props) => {
                         <AppText id={'steg.dokumenter.infopanel.3'} />
                     </p>
                 </SifGuidePanel>
+                <PictureScanningGuide />
                 <FormikFileUpload
                     label={text('steg.dokumenter.vedlegg')}
                     fieldName={SoknadFormField.dokumenter}

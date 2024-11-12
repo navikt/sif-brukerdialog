@@ -1,4 +1,4 @@
-import { Button, Heading, Link } from '@navikt/ds-react';
+import { Button, Heading, Link, List } from '@navikt/ds-react';
 import { useAppIntl } from '@i18n/index';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import bemHelper from '@navikt/sif-common-core-ds/src/utils/bemUtils';
@@ -8,7 +8,6 @@ import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import getLenker from '../../lenker';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
-import InfoList from './components/info-list/InfoList';
 import { AppText } from '../../i18n';
 
 interface Props {
@@ -35,12 +34,11 @@ const SamtykkeForm = ({ onConfirm }: Props) => {
                         <Heading level="2" size="small" spacing={true}>
                             <AppText id="page.velkommen.form.ansvar.tittel" />
                         </Heading>
-
-                        <InfoList>
-                            <li>
+                        <List>
+                            <List.Item>
                                 <AppText id="page.velkommen.form.ansvar.list.1" />
-                            </li>
-                            <li>
+                            </List.Item>
+                            <List.Item>
                                 <AppText
                                     id="page.velkommen.form.ansvar.list.2"
                                     values={{
@@ -51,8 +49,8 @@ const SamtykkeForm = ({ onConfirm }: Props) => {
                                         ),
                                     }}
                                 />
-                            </li>
-                        </InfoList>
+                            </List.Item>
+                        </List>
                     </AppForm.ConfirmationCheckbox>
                 </div>
             </FormBlock>
