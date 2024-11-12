@@ -91,7 +91,7 @@ const FormikFileUpload = ({
                                 as="li"
                                 key={index}
                                 file={file.file}
-                                href={file.pending || !file.info ? undefined : file.info.url}
+                                onFileClick={file.info ? () => window.open(file.info?.url, '_blank') : undefined}
                                 status={file.pending ? 'uploading' : undefined}
                                 button={{
                                     action: 'delete',
