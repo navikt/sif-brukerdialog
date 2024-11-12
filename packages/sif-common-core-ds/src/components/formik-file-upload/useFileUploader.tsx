@@ -86,8 +86,7 @@ export const useFileUploader = ({ addedFiles = [], onFilesChanged }: Props) => {
     return {
         onSelect,
         removeFile,
-        uploadedFiles: files.filter((file) => !file.error && !file.pending),
-        pendingFiles: files.filter((file) => file.pending),
+        acceptedFiles: files.filter((file) => !file.error),
         rejectedFiles: files.filter((file) => file.error),
     };
 };
