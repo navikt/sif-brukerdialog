@@ -4,7 +4,6 @@ import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-d
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { useCoreIntl } from '../../src/i18n/common.messages';
 import '@navikt/ds-css';
-import '../storybook.styles.css';
 
 interface Props {
     parameters?: {
