@@ -7,7 +7,7 @@ const nb = {
     Nei: 'Nei',
     '@core.common.fileUploadError': 'Det har dessverre skjedd en feil under opplasting av følgende vedlegg:',
     '@core.formikAttachmentsList.delete': 'Fjern',
-    '@core.AttachmentList.fjern': 'Fjern',
+    '@core.AttachmentList.fjern': 'Fjern {filnavn}',
     '@core.AttachmentList.fjernAriaLabel': 'Fjern {filnavn}',
     '@core.AttachmentList.ingenVedlegg': 'Ingen dokumenter er lastet opp',
     '@core.formikAttachmentsList.noFilesUploaded': 'Ingen dokumenter er lastet opp',
