@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import FormikFileUpload from '../../../src/components/formik-file-upload/FormikFileUpload';
 import StoryWrapper from '../../decorators/StoryWrapper';
 import { withFormikWrapper } from '../../decorators/withFormikWrapper';
-import { Vedlegg } from '../../../src/components/formik-file-upload/useFileUploader';
+import { Vedlegg } from '../../../src/types/Vedlegg';
 
 const meta: Meta<typeof FormikFileUpload> = {
     component: FormikFileUpload,
