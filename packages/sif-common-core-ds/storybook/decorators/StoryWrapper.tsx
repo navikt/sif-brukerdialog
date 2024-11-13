@@ -2,7 +2,7 @@ import * as React from 'react';
 import { IntlProvider } from 'react-intl';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { commonMessages } from '../../src/i18n/common.messages';
-import '@navikt/ds-css';
+import '../storybook.css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 
 export interface IntlProviderProps {
