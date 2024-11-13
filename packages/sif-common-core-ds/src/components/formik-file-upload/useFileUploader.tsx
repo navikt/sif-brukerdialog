@@ -72,11 +72,7 @@ export const useFileUploader = ({ initialFiles = [], onFilesChanged }: Props) =>
 
         setFiles((prevFiles) => [...prevFiles, ...filesToUpload, ...filesWithError]);
 
-        Promise.allSettled(filesToUpload.map((file) => uploadFile(file))).finally(() => {
-            if (onFilesChanged) {
-                onFilesChanged(files);
-            }
-        });
+        filesToUpload.map((file) => uploadFile(file));
     };
 
     const removeFile = async (fileToRemove: Vedlegg) => {

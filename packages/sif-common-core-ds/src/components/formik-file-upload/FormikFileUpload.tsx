@@ -44,7 +44,11 @@ const FormikFileUpload = ({
 
     const updateFiles = useCallback(
         (files: Vedlegg[]) => {
-            setFieldValue(fieldName, files, false);
+            setFieldValue(
+                fieldName,
+                files.filter((file) => file.uploaded && !file.error),
+                false,
+            );
         },
         [setFieldValue, fieldName],
     );
