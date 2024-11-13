@@ -1,0 +1,7 @@
+ul.navds-stack {
+    list-style: none;
+    padding: 0;
+}
+ul.navds-stack:marker {
+    display: none;
+}
