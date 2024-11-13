@@ -108,7 +108,7 @@ const nb = {
     'step.dokumenter.stepTitle': 'Nå skal du laste opp dokumentene dine',
     'step.dokumenter.stepIndicatorLabel': 'Last opp dokumenter',
     'step.dokumenter.nextButtonLabel': 'Fortsett',
-    'steg.dokumenter.vedlegg': 'Last opp vedlegg',
+    'steg.dokumenter.vedlegg': 'Last opp dokument',
     'steg.dokumenter.infopanel.1':
         'Når du skal laste opp dokumenter må du enten ta bilde av dokumentene, eller scanne dem.',
     'steg.dokumenter.infopanel.2':
