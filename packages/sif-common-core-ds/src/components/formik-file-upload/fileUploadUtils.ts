@@ -9,7 +9,7 @@ export enum FileUploadErrorReason {
 
 export const getRejectedFileError = (
     { text }: CoreIntlShape,
-    reason: FileRejectionReason | FileUploadErrorReason | string,
+    reason: FileRejectionReason | FileUploadErrorReason | string | undefined,
     limits: {
         MAX_FILES: number;
         MAX_SIZE_MB: number;

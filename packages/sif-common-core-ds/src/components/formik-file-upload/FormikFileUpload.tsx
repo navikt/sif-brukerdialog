@@ -124,7 +124,11 @@ const FormikFileUpload = ({
                                 as="li"
                                 key={index}
                                 file={rejected.file}
-                                error={getRejectedFileError(intl, rejected.reasons[0], limits)}
+                                error={getRejectedFileError(
+                                    intl,
+                                    rejected.reasons.length > 0 ? rejected.reasons[0] : undefined,
+                                    limits,
+                                )}
                                 button={
                                     retryEnabled && rejected.canRetry
                                         ? {
