@@ -76,10 +76,10 @@ export const useFileUploader = ({ initialFiles = [], onFilesChanged }: Props) =>
     };
 
     const removeFile = async (fileToRemove: Vedlegg) => {
+        setFiles((prevFiles) => prevFiles.filter((file) => file !== fileToRemove));
         if (fileToRemove.info) {
             await deleteVedlegg(fileToRemove.info.id);
         }
-        setFiles((prevFiles) => prevFiles.filter((file) => file !== fileToRemove));
     };
 
     const retryFileUpload = async (fileToRetry: Vedlegg) => {
