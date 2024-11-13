@@ -20,6 +20,7 @@ interface Props extends TypedFormInputValidationProps<string, ValidationError> {
         MAX_FILES: number;
         MAX_SIZE_MB: number;
     };
+    useDefaultDescription?: boolean;
     retryEnabled?: boolean;
 }
 
@@ -31,6 +32,7 @@ const FormikFileUpload = ({
         MAX_FILES: 100,
         MAX_SIZE_MB: 10,
     },
+    useDefaultDescription,
     retryEnabled,
     validate,
 }: Props) => {
@@ -73,7 +75,11 @@ const FormikFileUpload = ({
                             // ID trengs for at komponenten får fokus når feilmeldingen klikkes på i ErrorSummary
                             id={error ? fieldName : undefined}
                             label={label}
-                            description={intl.text('@core.formikFileUpload.description', limits)}
+                            description={
+                                useDefaultDescription
+                                    ? intl.text('@core.formikFileUpload.description', limits)
+                                    : undefined
+                            }
                             maxSizeInBytes={limits.MAX_SIZE_MB * 1024 * 1024}
                             accept=".pdf, .png, .jpg, .jpeg"
                             fileLimit={{ max: limits.MAX_FILES, current: acceptedFiles.length }}
