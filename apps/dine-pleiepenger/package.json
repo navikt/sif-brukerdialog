@@ -1,6 +1,6 @@
 {
     "name": "@navikt/dine-pleiepenger",
-    "version": "1.7.3",
+    "version": "1.7.4",
     "private": true,
     "scripts": {
         "build-storybook": "storybook build",
@@ -44,7 +44,7 @@
         "zod": "3.23.8"
     },
     "devDependencies": {
-        "@axe-core/playwright": "4.10.0",
+        "@axe-core/playwright": "4.10.1",
         "@navikt/ds-css": "7.5.1",
         "@navikt/ds-icons": "3.4.3",
         "@navikt/ds-react": "7.5.1",
@@ -70,7 +70,7 @@
         "next": "15.0.3",
         "node-fetch": "3.3.2",
         "playwright-core": "1.48.2",
-        "postcss": "8.4.48",
+        "postcss": "8.4.49",
         "postcss-import": "16.1.0",
         "react": "18.3.1",
         "react-day-picker": "8.10.1",
