@@ -112,7 +112,7 @@ const nb = {
     'steg.dokumenter.infopanel.1':
         'Når du skal laste opp dokumenter må du enten ta bilde av dokumentene, eller scanne dem.',
     'steg.dokumenter.infopanel.2':
-        'Du kan laste opp disse filtypene: JPG, JPEG, PDF og PNG. Det er ikke mulig å laste opp andre filtyper enn disse.',
+        'Du kan laste opp disse filtypene: JPG, JPEG, PNG og PDF. Det er ikke mulig å laste opp andre filtyper enn disse.',
     'steg.dokumenter.infopanel.3':
         'Du kan laste opp så mange dokumenter du vil, men den totale størrelsen på alle dokumentene kan ikke overstige 24 MB. Vi varsler deg hvis du når denne grensen.',
 
@@ -180,7 +180,7 @@ const nb = {
     'validation.dokumenter.noAttachmentsUploaded': 'Ingen dokumenter er lastet opp',
     'validation.dokumenter.tooManyAttachments': 'For mange dokumenter er lastet opp',
     'validation.dokumenter.maxTotalSizeExceeded':
-        'Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24Mb.',
+        'Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24 MB.',
     'validation.beskrivelse.stringHasNoValue': 'Beskriv ettersendelsen',
     'validation.beskrivelse.stringIsTooLong': 'Beskrivelsen kan ikke inneholde mer enn {maks} tegn',
     'validation.beskrivelse.stringIsTooShort': 'Beskrivelsen må inneholde minst {min} tegn',
