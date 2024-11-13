@@ -20,6 +20,7 @@ interface Props extends TypedFormInputValidationProps<string, ValidationError> {
         MAX_FILES: number;
         MAX_SIZE_MB: number;
     };
+    retryEnabled?: boolean;
 }
 
 const FormikFileUpload = ({
@@ -30,6 +31,7 @@ const FormikFileUpload = ({
         MAX_FILES: 100,
         MAX_SIZE_MB: 10,
     },
+    retryEnabled,
     validate,
 }: Props) => {
     const { values, setFieldValue } = useFormikContext<any>();
@@ -120,7 +122,7 @@ const FormikFileUpload = ({
                                 file={rejected.file}
                                 error={getRejectedFileError(intl, rejected.reasons[0], limits)}
                                 button={
-                                    rejected.canRetry
+                                    retryEnabled && rejected.canRetry
                                         ? {
                                               action: 'retry',
                                               onClick: () => retryFileUpload(rejected),
