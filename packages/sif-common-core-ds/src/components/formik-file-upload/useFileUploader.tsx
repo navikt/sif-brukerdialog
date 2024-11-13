@@ -8,7 +8,7 @@ import {
 } from '@navikt/sif-common-api';
 import { Vedlegg } from '../../types/Vedlegg';
 import { mapFileToPersistedFile } from '../../utils/attachmentUtils';
-import { getFileUploadErrorReason } from './fileUploadUtils';
+import { canRetryFileUpload, getFileUploadErrorReason } from './fileUploadUtils';
 
 interface Props {
     initialFiles: Vedlegg[];
@@ -47,7 +47,13 @@ export const useFileUploader = ({ initialFiles = [], onFilesChanged }: Props) =>
             setFiles((prevFiles) => [
                 ...prevFiles.map((prevFile) => {
                     if (prevFile.file === file.file) {
-                        return { ...prevFile, error: true, reasons: [reason], pending: false };
+                        return {
+                            ...prevFile,
+                            error: true,
+                            reasons: [reason],
+                            canRetry: canRetryFileUpload(reason),
+                            pending: false,
+                        };
                     }
                     return prevFile;
                 }),
@@ -77,12 +83,24 @@ export const useFileUploader = ({ initialFiles = [], onFilesChanged }: Props) =>
         if (fileToRemove.info) {
             await deleteVedlegg(fileToRemove.info.id);
         }
-        setFiles((prevAcceptedFiles) => prevAcceptedFiles.filter((file) => file !== fileToRemove));
+        setFiles((prevFiles) => prevFiles.filter((file) => file !== fileToRemove));
+    };
+
+    const retryFileUpload = async (fileToRetry: Vedlegg) => {
+        setFiles(
+            files.map((file) =>
+                file.file === fileToRetry.file
+                    ? { ...file, pending: true, uploaded: false, error: false, reasons: [], canRetry: false }
+                    : file,
+            ),
+        );
+        uploadFile(fileToRetry as FileObject);
     };
 
     return {
         onSelect,
         removeFile,
+        retryFileUpload,
         acceptedFiles: files.filter((file) => !file.error),
         rejectedFiles: files.filter((file) => file.error),
     };

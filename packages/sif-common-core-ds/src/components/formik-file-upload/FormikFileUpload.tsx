@@ -47,7 +47,7 @@ const FormikFileUpload = ({
         [setFieldValue, fieldName],
     );
 
-    const { onSelect, removeFile, acceptedFiles, rejectedFiles } = useFileUploader({
+    const { onSelect, removeFile, retryFileUpload, acceptedFiles, rejectedFiles } = useFileUploader({
         initialFiles: values[fieldName],
         onFilesChanged: updateFiles,
     });
@@ -119,10 +119,17 @@ const FormikFileUpload = ({
                                 key={index}
                                 file={rejected.file}
                                 error={getRejectedFileError(intl, rejected.reasons[0], limits)}
-                                button={{
-                                    action: 'delete',
-                                    onClick: () => removeFile(rejected),
-                                }}
+                                button={
+                                    rejected.canRetry
+                                        ? {
+                                              action: 'retry',
+                                              onClick: () => retryFileUpload(rejected),
+                                          }
+                                        : {
+                                              action: 'delete',
+                                              onClick: () => removeFile(rejected),
+                                          }
+                                }
                             />
                         ))}
                     </VStack>

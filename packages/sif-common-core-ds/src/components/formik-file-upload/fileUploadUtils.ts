@@ -20,6 +20,8 @@ export const getRejectedFileError = (
             return text('@core.formikFileUpload.file-upload.error.fileType', limits);
         case 'fileSize':
             return text('@core.formikFileUpload.file-upload.error.fileSize', limits);
+        case FileUploadErrorReason.ECONNABORTED:
+            return text('@core.formikFileUpload.file-upload.error.retry');
         default:
             return text('@core.formikFileUpload.file-upload.error.unknown', { reason });
     }
@@ -34,4 +36,8 @@ export const getFileUploadErrorReason = (e: unknown): string => {
         return e.code ? e.code : e.message;
     }
     return FileUploadErrorReason.UNKNOWN;
+};
+
+export const canRetryFileUpload = (reason: string): boolean => {
+    return reason === FileUploadErrorReason.ECONNABORTED;
 };

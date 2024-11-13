@@ -8,7 +8,7 @@ export const uploadVedlegg = async (file: File): Promise<AxiosResponse<any, any>
     const formData = new FormData();
     formData.append('vedlegg', file);
     try {
-        return k9BrukerdialogApiClient.post(servicePath, formData, axiosMultipartConfig);
+        return k9BrukerdialogApiClient.post(servicePath, formData, { ...axiosMultipartConfig, timeout: 2500 });
     } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e);
