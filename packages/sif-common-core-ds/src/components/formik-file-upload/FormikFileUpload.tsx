@@ -9,7 +9,8 @@ import {
 import { Field, FieldProps, useFormikContext } from 'formik';
 import { CoreText, useCoreIntl } from '../../i18n/common.messages';
 import { getRejectedFileError } from './fileUploadUtils';
-import { useFileUploader, Vedlegg } from './useFileUploader';
+import { useFileUploader } from './useFileUploader';
+import { Vedlegg } from '../../types/Vedlegg';
 
 interface Props extends TypedFormInputValidationProps<string, ValidationError> {
     fieldName: string;
@@ -47,7 +48,7 @@ const FormikFileUpload = ({
     );
 
     const { onSelect, removeFile, acceptedFiles, rejectedFiles } = useFileUploader({
-        addedFiles: values[fieldName],
+        initialFiles: values[fieldName],
         onFilesChanged: updateFiles,
     });
 

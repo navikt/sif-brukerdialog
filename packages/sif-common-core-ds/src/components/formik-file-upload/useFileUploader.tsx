@@ -1,4 +1,4 @@
-import { FileAccepted, FileObject, FileRejected } from '@navikt/ds-react';
+import { FileObject } from '@navikt/ds-react';
 import { useEffect, useState } from 'react';
 import {
     deleteVedlegg,
@@ -6,27 +6,17 @@ import {
     getVedleggIdFromResponseHeaderLocation,
     uploadVedlegg,
 } from '@navikt/sif-common-api';
-import { PersistedFile } from '../../types';
+import { Vedlegg } from '../../types/Vedlegg';
 import { mapFileToPersistedFile } from '../../utils/attachmentUtils';
 import { getFileUploadErrorReason } from './fileUploadUtils';
 
-export type Vedlegg = (Omit<FileRejected, 'file'> | Omit<FileAccepted, 'file'>) & {
-    file: File | PersistedFile;
-    pending: boolean;
-    uploaded: boolean;
-    info?: {
-        id: string;
-        url: string;
-    };
-};
-
 interface Props {
-    addedFiles: Vedlegg[];
+    initialFiles: Vedlegg[];
     onFilesChanged?: (files: Vedlegg[]) => void;
 }
 
-export const useFileUploader = ({ addedFiles = [], onFilesChanged }: Props) => {
-    const [files, setFiles] = useState<Vedlegg[]>(addedFiles);
+export const useFileUploader = ({ initialFiles = [], onFilesChanged }: Props) => {
+    const [files, setFiles] = useState<Vedlegg[]>(initialFiles);
 
     useEffect(() => {
         if (onFilesChanged) {

@@ -35,5 +35,3 @@ export const getFileUploadErrorReason = (e: unknown): string => {
     }
     return FileUploadErrorReason.UNKNOWN;
 };
-
-export const fileUploadRetryReasons = [FileUploadErrorReason.ECONNABORTED];
