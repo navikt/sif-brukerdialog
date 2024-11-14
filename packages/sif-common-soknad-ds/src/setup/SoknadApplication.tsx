@@ -97,16 +97,21 @@ const SoknadApplication = ({
                             locale={locale === 'nb' ? getBokmålLocale() : getNynorskLocale()}
                             messages={localeMessages}>
                             <BrowserRouter basename={publicPath}>
-                                <AppStatusWrapper
-                                    applicationKey={appKey}
-                                    sanityConfig={appStatus.sanityConfig}
-                                    contentRenderer={() => <>{children}</>}
-                                    unavailableContentRenderer={() => (
-                                        <ErrorPage
-                                            contentRenderer={() => <SoknadErrorMessages.ApplicationUnavailable />}
-                                        />
-                                    )}
-                                />
+                                {/* Staging-datasettet er slettet på grunn av økonomi */}
+                                {appStatus.sanityConfig.dataset === 'staging' ? (
+                                    children
+                                ) : (
+                                    <AppStatusWrapper
+                                        applicationKey={appKey}
+                                        sanityConfig={appStatus.sanityConfig}
+                                        contentRenderer={() => <>{children}</>}
+                                        unavailableContentRenderer={() => (
+                                            <ErrorPage
+                                                contentRenderer={() => <SoknadErrorMessages.ApplicationUnavailable />}
+                                            />
+                                        )}
+                                    />
+                                )}
                                 <DevBranchInfo />
                             </BrowserRouter>
                         </IntlProvider>
