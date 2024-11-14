@@ -59,7 +59,13 @@ const FormikFileUpload = ({
         [setFieldValue, fieldName],
     );
 
-    const { onSelect, removeFile, retryFileUpload, acceptedFiles, rejectedFiles } = useFileUploader({
+    const {
+        onSelect,
+        onRemove,
+        onRetryUpload: retryFileUpload,
+        acceptedFiles,
+        rejectedFiles,
+    } = useFileUploader({
         initialFiles,
         onFilesChanged,
     });
@@ -112,7 +118,7 @@ const FormikFileUpload = ({
                                 status={file.pending ? 'uploading' : undefined}
                                 button={{
                                     action: 'delete',
-                                    onClick: () => removeFile(file),
+                                    onClick: () => onRemove(file),
                                 }}
                                 translations={{
                                     uploading: intl.text('@core.formikFileUpload.dokumenterLastetOpp.lasterOpp'),
@@ -147,7 +153,7 @@ const FormikFileUpload = ({
                                           }
                                         : {
                                               action: 'delete',
-                                              onClick: () => removeFile(rejected),
+                                              onClick: () => onRemove(rejected),
                                           }
                                 }
                             />

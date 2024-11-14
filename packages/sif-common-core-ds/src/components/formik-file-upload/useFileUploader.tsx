@@ -1,5 +1,5 @@
 import { FileObject } from '@navikt/ds-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
     deleteVedlegg,
     getVedleggFrontendUrl,
@@ -75,14 +75,14 @@ export const useFileUploader = ({ initialFiles = [], onFilesChanged }: Props) =>
         filesToUpload.map((file) => uploadFile(file));
     };
 
-    const removeFile = async (fileToRemove: Vedlegg) => {
+    const onRemove = async (fileToRemove: Vedlegg) => {
         if (fileToRemove.info) {
             await deleteVedlegg(fileToRemove.info.id);
         }
         setFiles((prevFiles) => prevFiles.filter((file) => file !== fileToRemove));
     };
 
-    const retryFileUpload = async (fileToRetry: Vedlegg) => {
+    const onRetryUpload = async (fileToRetry: Vedlegg) => {
         setFiles(
             files.map((file) =>
                 file.file === fileToRetry.file
@@ -93,11 +93,14 @@ export const useFileUploader = ({ initialFiles = [], onFilesChanged }: Props) =>
         uploadFile(fileToRetry as FileObject);
     };
 
+    const acceptedFiles = useMemo(() => files.filter((file) => !file.error), [files]);
+    const rejectedFiles = useMemo(() => files.filter((file) => file.error), [files]);
+
     return {
         onSelect,
-        removeFile,
-        retryFileUpload,
-        acceptedFiles: files.filter((file) => !file.error),
-        rejectedFiles: files.filter((file) => file.error),
+        onRemove,
+        onRetryUpload,
+        acceptedFiles,
+        rejectedFiles,
     };
 };
