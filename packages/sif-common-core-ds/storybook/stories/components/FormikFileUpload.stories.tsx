@@ -48,6 +48,7 @@ const Example = () => {
                 fieldName="vedlegg"
                 label="Last opp dokumenter"
                 useDefaultDescription={true}
+                initialFiles={values.vedlegg}
                 validate={getAttachmentsValidator(
                     {
                         errors: {
