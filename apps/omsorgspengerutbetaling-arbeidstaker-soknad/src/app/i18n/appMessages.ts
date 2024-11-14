@@ -114,7 +114,7 @@ const nb = {
     'validation.arbeidsforhold.utbetalingsårsak.konfliktForklaring.stringIsTooLong':
         'Forklaringn kan være på maks {maks} tegn.',
     'validation.arbeidsforhold.utbetalingsårsak.vedlegg.noAttachmentsUploaded':
-        'Ingen dokumenter lastet opp for {arbeidsgivernavn}.',
+        'Ingen dokumenter med forklaring fra {arbeidsgivernavn} er lastet opp.',
     'validation.barn.ingenBarn': 'Du må legge til minst ett barn du har omsorg for',
 };
 

@@ -18,6 +18,7 @@ interface Props extends TypedFormInputValidationProps<string, ValidationError> {
     description?: string;
     useDefaultDescription?: boolean;
     headingLevel?: '2' | '3' | '4';
+    initialFiles: Vedlegg[];
     limits?: {
         MAX_FILES: number;
         MAX_SIZE_MB: number;
@@ -36,9 +37,10 @@ const FormikFileUpload = ({
         MAX_SIZE_MB: 10,
     },
     retryEnabled,
+    initialFiles,
     validate,
 }: Props) => {
-    const { values, setFieldValue } = useFormikContext<any>();
+    const { setFieldValue } = useFormikContext<any>();
     const intl = useCoreIntl();
     const typedFormikContext = useContext(TypedFormikFormContext);
 
@@ -46,11 +48,11 @@ const FormikFileUpload = ({
         throw new Error('TypedFormikFormContext is required');
     }
 
-    const updateFiles = useCallback(
+    const onFilesChanged = useCallback(
         (files: Vedlegg[]) => {
             setFieldValue(
                 fieldName,
-                files.filter((file) => file.uploaded && !file.error),
+                files.filter((file) => (file.uploaded || file.pending) && !file.error),
                 false,
             );
         },
@@ -58,8 +60,8 @@ const FormikFileUpload = ({
     );
 
     const { onSelect, removeFile, retryFileUpload, acceptedFiles, rejectedFiles } = useFileUploader({
-        initialFiles: values[fieldName],
-        onFilesChanged: updateFiles,
+        initialFiles,
+        onFilesChanged,
     });
 
     return (
