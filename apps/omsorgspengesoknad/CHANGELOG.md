@@ -1,5 +1,13 @@
 # @navikt/omsorgspengesoknad
 
+## 1.33.15
+
+### Patch Changes
+
+-   Fikser at bruker kommer til toppen av vindu ved klikk på feilmelding i feiloppsummeringen
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.13.11
+
 ## 1.33.14
 
 ### Patch Changes

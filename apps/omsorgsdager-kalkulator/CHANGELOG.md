@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.9.5
+
+### Patch Changes
+
+-   Fikser at bruker kommer til toppen av vindu ved klikk på feilmelding i feiloppsummeringen
+
 ## 3.9.4
 
 ### Patch Changes

@@ -19,7 +19,9 @@ const ValidationSummary: React.FunctionComponent<Props> = ({ errors, heading, he
                     key={`validation_error_key_${idx}`}
                     href="#"
                     style={{ cursor: 'pointer' }}
-                    onClick={() => {
+                    onClick={(evt) => {
+                        evt.preventDefault();
+                        evt.stopPropagation();
                         const elementById = document.getElementById(error.fieldName);
                         const elementByName = document.getElementsByName(error.fieldName)[0];
                         if (elementById) {
