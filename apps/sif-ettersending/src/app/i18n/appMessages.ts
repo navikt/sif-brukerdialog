@@ -177,8 +177,8 @@ const nb = {
     'validation.harForståttRettigheterOgPlikter.notChecked': 'Du må bekrefte at du har lest og forstått dine plikter',
     'validation.registrertBarnAktørId.ANNET.noValue': 'Du må velge hvilket barn dokumentasjonen gjelder',
     'validation.registrertBarnAktørId.LEGEERKLÆRING.noValue': 'Du må velge hvilket barn legeerklæringen gjelder',
-    'validation.dokumenter.noAttachmentsUploaded': 'Ingen dokumenter er lastet opp',
-    'validation.dokumenter.tooManyAttachments': 'For mange dokumenter er lastet opp',
+    'validation.dokumenter.noVedleggUploaded': 'Ingen dokumenter er lastet opp',
+    'validation.dokumenter.tooManyVedlegg': 'For mange dokumenter er lastet opp',
     'validation.dokumenter.maxTotalSizeExceeded':
         'Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24 MB.',
     'validation.beskrivelse.stringHasNoValue': 'Beskriv ettersendelsen',
