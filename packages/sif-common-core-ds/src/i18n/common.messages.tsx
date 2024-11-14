@@ -20,6 +20,7 @@ const nb = {
     '@core.formikAttachmentsList.validation.maxTotalSizeExceeded':
         'Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24 MB.',
     '@core.formikAttachmentsList.listHeading': 'Dokumenter lastet opp ({antallDokumenter})',
+    '@core.formikFileUpload.label': 'Last opp dokumenter',
     '@core.formikFileUpload.description':
         'Du kan laste opp filtypene JPG, JPEG, PNG og PDF. Maks størrelse per fil er {MAX_SIZE_MB} MB.',
     '@core.formikFileUpload.dokumenterLastetOpp.tittel': 'Dokumenter lastet opp ({antall})',
@@ -54,6 +55,7 @@ const nn: Record<MessageKeys, string> = {
     '@core.formikAttachmentsList.validation.maxTotalSizeExceeded':
         'Total samla størrelse for dokumenta du har lastet opp overstig grensa på 24 MB.',
     '@core.formikAttachmentsList.listHeading': 'Dokumenter lastet opp ({antallDokumenter})',
+    '@core.formikFileUpload.label': 'Last opp dokument',
     '@core.formikFileUpload.description':
         'Du kan laste opp filtypene JPG, JPEG, PNG og PDF. Maks størrelse per fil er {MAX_SIZE_MB} MB.',
     '@core.formikFileUpload.dokumenterLastetOpp.tittel': 'Dokument lasta opp ({antall})',

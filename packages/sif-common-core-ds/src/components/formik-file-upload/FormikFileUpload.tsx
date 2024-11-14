@@ -14,7 +14,9 @@ import { Vedlegg } from '../../types/Vedlegg';
 
 interface Props extends TypedFormInputValidationProps<string, ValidationError> {
     fieldName: string;
-    label: string;
+    label?: string;
+    description?: string;
+    useDefaultDescription?: boolean;
     headingLevel?: '2' | '3' | '4';
     limits?: {
         MAX_FILES: number;
@@ -25,6 +27,8 @@ interface Props extends TypedFormInputValidationProps<string, ValidationError> {
 
 const FormikFileUpload = ({
     label,
+    description,
+    useDefaultDescription,
     fieldName,
     headingLevel = '2',
     limits = {
@@ -72,8 +76,12 @@ const FormikFileUpload = ({
                         <FileUpload.Dropzone
                             // ID trengs for at komponenten får fokus når feilmeldingen klikkes på i ErrorSummary
                             id={error ? fieldName : undefined}
-                            label={label}
-                            description={intl.text('@core.formikFileUpload.description', limits)}
+                            label={label || intl.text('@core.formikFileUpload.label', limits)}
+                            description={
+                                useDefaultDescription
+                                    ? intl.text('@core.formikFileUpload.description', limits)
+                                    : description
+                            }
                             maxSizeInBytes={limits.MAX_SIZE_MB * 1024 * 1024}
                             accept=".pdf, .png, .jpg, .jpeg"
                             fileLimit={{ max: limits.MAX_FILES, current: acceptedFiles.length }}

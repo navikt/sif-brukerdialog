@@ -43,7 +43,7 @@ const Example = () => {
     const { values } = useFormikContext<any>();
     return (
         <VStack gap="6">
-            <FormikFileUpload fieldName="vedlegg" label="Last opp dokumenter" />
+            <FormikFileUpload fieldName="vedlegg" label="Last opp dokumenter" useDefaultDescription={true} />
             <Box>
                 <Heading level="2" size="xsmall">
                     FormikValues
