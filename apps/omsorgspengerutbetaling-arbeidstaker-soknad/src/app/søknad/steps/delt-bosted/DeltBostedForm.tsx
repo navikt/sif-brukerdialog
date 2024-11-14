@@ -1,20 +1,20 @@
 import { Link } from '@navikt/ds-react';
 import React from 'react';
-import { FormikFileUpload, getAttachmentsValidator, useAttachmentsHelper } from '@navikt/sif-common-core-ds';
+import { FormikFileUpload, useVedleggHelper } from '@navikt/sif-common-core-ds';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
-import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
+import { getVedleggValidator } from '@navikt/sif-common-core-ds/src/components/formik-file-upload/getVedleggValidator';
 
 interface Props {
     values: Partial<DeltBostedFormValues>;
     goBack?: () => void;
     isSubmitting?: boolean;
-    andreVedlegg?: Attachment[];
+    andreVedlegg?: Vedlegg[];
 }
 
 export enum DeltBostedFormFields {
@@ -22,7 +22,7 @@ export enum DeltBostedFormFields {
 }
 
 export interface DeltBostedFormValues {
-    [DeltBostedFormFields.vedlegg]: Attachment[];
+    [DeltBostedFormFields.vedlegg]: Vedlegg[];
 }
 
 const { Form } = getTypedFormComponents<DeltBostedFormFields, DeltBostedFormValues>();
@@ -30,7 +30,7 @@ const { Form } = getTypedFormComponents<DeltBostedFormFields, DeltBostedFormValu
 const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreVedlegg = [], isSubmitting }) => {
     const { text, intl } = useAppIntl();
     const vedlegg = values.vedlegg ? values.vedlegg : [];
-    const { hasPendingUploads } = useAttachmentsHelper(vedlegg, andreVedlegg);
+    const { hasPendingUploads } = useVedleggHelper(vedlegg, andreVedlegg);
 
     return (
         <Form
@@ -67,9 +67,9 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
             </Block>
             <FormikFileUpload
                 label={text('step.deltBosted.vedleggsliste.tittel')}
-                initialFiles={vedlegg as Vedlegg[]}
+                initialFiles={vedlegg}
                 fieldName={DeltBostedFormFields.vedlegg}
-                validate={getAttachmentsValidator({ useDefaultMessages: true }, andreVedlegg)}
+                validate={getVedleggValidator({ useDefaultMessages: true }, andreVedlegg)}
             />
         </Form>
     );

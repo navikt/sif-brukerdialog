@@ -1,6 +1,6 @@
-import { FormikFileUpload, getAttachmentsValidator, useAttachmentsHelper } from '@navikt/sif-common-core-ds';
+import { FormikFileUpload, useVedleggHelper } from '@navikt/sif-common-core-ds';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { Attachment } from '@navikt/sif-common-core-ds/src/types';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import {
     getRequiredFieldValidator,
@@ -12,14 +12,14 @@ import { useAppIntl } from '../../../../i18n';
 import { Arbeidsforhold, Utbetalingsårsak, ÅrsakNyoppstartet } from '../../../../types/ArbeidsforholdTypes';
 import { AppFieldValidationErrors } from '../../../../utils/validations';
 import { ArbeidsforholdFormFields, SituasjonFormValues } from '../SituasjonStep';
-import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
+import { getVedleggValidator } from '@navikt/sif-common-core-ds/src/components/formik-file-upload/getVedleggValidator';
 
 const { RadioGroup, Textarea } = getTypedFormComponents<ArbeidsforholdFormFields, Arbeidsforhold, ValidationError>();
 
 interface Props {
     arbeidsforhold: Arbeidsforhold;
     parentFieldName: string;
-    andreVedlegg: Attachment[];
+    andreVedlegg: Vedlegg[];
 }
 
 const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName, andreVedlegg }: Props) => {
@@ -31,9 +31,9 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName, andr
     const utbetalingsårsak: Utbetalingsårsak | undefined = arbeidsforhold.utbetalingsårsak;
     const arbeidsgivernavn = arbeidsforhold.navn;
 
-    const attachments = arbeidsforhold.dokumenter || [];
+    const vedlegg = arbeidsforhold.dokumenter || [];
 
-    useAttachmentsHelper(attachments, andreVedlegg, (att) => {
+    useVedleggHelper(vedlegg, andreVedlegg, (att) => {
         setFieldValue(
             `arbeidsforhold.${parentFieldName}.${ArbeidsforholdFormFields.dokumenter}` as ArbeidsforholdFormFields,
             att,
@@ -117,11 +117,11 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName, andr
                             headingLevel="3"
                             label={text('step.situasjon.arbeidsforhold.utbetalingsårsak.vedlegg')}
                             fieldName={getFieldName(ArbeidsforholdFormFields.dokumenter)}
-                            initialFiles={attachments as Vedlegg[]}
-                            validate={getAttachmentsValidator(
+                            initialFiles={vedlegg}
+                            validate={getVedleggValidator(
                                 {
                                     errors: {
-                                        noAttachmentsUploaded: {
+                                        noVedleggUploaded: {
                                             keyPrefix: 'validation.arbeidsforhold.utbetalingsårsak.vedlegg',
                                             keepKeyUnaltered: true,
                                             values: { arbeidsgivernavn },
@@ -133,31 +133,6 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName, andr
                                 andreVedlegg,
                             )}
                         />
-                        {/* <FormikAttachmentForm
-                            attachments={attachments}
-                            otherAttachments={andreVedlegg}
-                            fieldName={getFieldName(ArbeidsforholdFormFields.dokumenter)}
-                            labels={{
-                                addLabel: text('step.situasjon.arbeidsforhold.utbetalingsårsak.vedlegg'),
-                                noAttachmentsText: text('step.situasjon.vedleggsliste.ingenDokumenterLastetOpp'),
-                            }}
-                            validate={getAttachmentsValidator(
-                                {
-                                    errors: {
-                                        noAttachmentsUploaded: {
-                                            keyPrefix: 'validation.arbeidsforhold.utbetalingsårsak.vedlegg',
-                                            keepKeyUnaltered: true,
-                                            values: { arbeidsgivernavn },
-                                        },
-                                    },
-                                    // required: true,
-                                    useDefaultMessages: true,
-                                },
-                                andreVedlegg,
-                            )}
-                            uploadLaterURL={getLenker(intl.locale).ettersending}
-                            onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
-                        /> */}
                     </FormBlock>
                 </>
             )}

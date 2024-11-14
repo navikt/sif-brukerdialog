@@ -1,5 +1,5 @@
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { Utbetalingsårsak, ÅrsakNyoppstartet } from '../ArbeidsforholdTypes';
-import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { Arbeidsgiver } from '../Arbeidsgiver';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/src/types';
 
@@ -36,7 +36,7 @@ export interface ArbeidforholdSøknadsdataHarHattFraværUtenLønnKonfliktMedArbe
     type: 'harHattFraværUtenLønnKonfliktMedArbeidsgiver';
     utbetalingsårsak: Utbetalingsårsak.konfliktMedArbeidsgiver;
     konfliktForklaring: string;
-    dokumenter: Attachment[];
+    dokumenter: Vedlegg[];
 }
 
 export type ArbeidforholdSøknadsdata =

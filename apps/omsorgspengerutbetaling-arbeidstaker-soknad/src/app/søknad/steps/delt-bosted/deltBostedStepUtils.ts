@@ -1,4 +1,4 @@
-import { getUploadedAttachments } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import { getUploadedVedlegg, vedleggIsUploadedAndValid } from '@navikt/sif-common-core-ds/src';
 import { DeltBostedSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { DeltBostedFormFields, DeltBostedFormValues } from './DeltBostedForm';
 
@@ -9,14 +9,13 @@ export const getDeltBostedStepInitialValues = (
     if (formValues) {
         return formValues;
     }
-
     return {
-        vedlegg: [...(søknadsdata.deltBosted?.vedlegg || [])],
+        vedlegg: [...(søknadsdata.deltBosted?.vedlegg || [])].filter(vedleggIsUploadedAndValid),
     };
 };
 
 export const getDeltBostedSøknadsdataFromFormValues = (values: DeltBostedFormValues): DeltBostedSøknadsdata => {
     return {
-        vedlegg: getUploadedAttachments(values[DeltBostedFormFields.vedlegg] || []),
+        vedlegg: getUploadedVedlegg(values[DeltBostedFormFields.vedlegg] || []),
     };
 };

@@ -38,7 +38,7 @@ import {
     getSituasjonStepInitialValues,
     getSituasjonSøknadsdataFromFormValues,
 } from './SituasjonStepUtils';
-import { getAlleVedleggFraSituasjonFormValues, getAlleVedleggFraSøknadsdata } from '../../../utils/attachmentsUtils';
+import { getAlleVedleggFraSituasjonFormValues, getAlleVedleggFraSøknadsdata } from '../../../utils/søknadVedleggUtils';
 
 export enum ArbeidsforholdFormFields {
     navn = 'navn',

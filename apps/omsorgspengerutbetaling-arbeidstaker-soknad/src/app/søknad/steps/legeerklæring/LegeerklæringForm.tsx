@@ -1,9 +1,9 @@
 import React from 'react';
-import { useAttachmentsHelper } from '@navikt/sif-common-core-ds';
-import { FormikFileUpload, getAttachmentsValidator } from '@navikt/sif-common-core-ds/src';
+import { useVedleggHelper } from '@navikt/sif-common-core-ds';
+import { FormikFileUpload } from '@navikt/sif-common-core-ds/src';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { getVedleggValidator } from '@navikt/sif-common-core-ds/src/components/formik-file-upload/getVedleggValidator';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
@@ -13,7 +13,7 @@ interface Props {
     values: Partial<LegeerklæringFormValues>;
     goBack?: () => void;
     isSubmitting?: boolean;
-    andreVedlegg?: Attachment[];
+    andreVedlegg?: Vedlegg[];
 }
 
 export enum LegeerklæringFormFields {
@@ -21,7 +21,7 @@ export enum LegeerklæringFormFields {
 }
 
 export interface LegeerklæringFormValues {
-    [LegeerklæringFormFields.vedlegg]: Attachment[];
+    [LegeerklæringFormFields.vedlegg]: Vedlegg[];
 }
 
 const { Form } = getTypedFormComponents<LegeerklæringFormFields, LegeerklæringFormValues>();
@@ -30,7 +30,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
     const { text, intl } = useAppIntl();
 
     const vedlegg = values.vedlegg ? values.vedlegg : [];
-    const { hasPendingUploads } = useAttachmentsHelper(vedlegg, andreVedlegg);
+    const { hasPendingUploads } = useVedleggHelper(vedlegg, andreVedlegg);
 
     return (
         <Form
@@ -53,9 +53,9 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
 
             <FormikFileUpload
                 label={text('step.legeerklæring.vedleggsliste.tittel')}
-                initialFiles={vedlegg as Vedlegg[]}
+                initialFiles={vedlegg}
                 fieldName={LegeerklæringFormFields.vedlegg}
-                validate={getAttachmentsValidator({ useDefaultMessages: true }, andreVedlegg)}
+                validate={getVedleggValidator({ useDefaultMessages: true }, andreVedlegg)}
             />
         </Form>
     );
