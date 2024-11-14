@@ -31,6 +31,7 @@ const nb = {
     '@core.formikFileUpload.file-upload.error.fileSize': 'Filen er større enn {MAX_SIZE_MB} MB.',
     '@core.formikFileUpload.file-upload.error.retry': 'Det oppstod en feil under opplastingen.',
     '@core.formikFileUpload.file-upload.error.unknown': 'Det oppstod en feil under opplastingen ({reason})',
+    '@core.vedleggSummaryList.ingenVedlegg': 'Ingen dokumenter er lastet opp',
     '@core.formikVedleggList.validation.noVedleggUploaded': 'Ingen dokumenter er lastet opp',
     '@core.formikVedleggList.validation.tooManyVedlegg': 'For mange dokumenter er lastet opp',
     '@core.formikVedleggList.validation.maxTotalSizeExceeded':
@@ -70,6 +71,7 @@ const nn: Record<MessageKeys, string> = {
     '@core.formikFileUpload.file-upload.error.fileSize': 'Fila er større enn ${MAX_SIZE_MB} MB.',
     '@core.formikFileUpload.file-upload.error.retry': 'Det oppstod ein feil under opplastinga..',
     '@core.formikFileUpload.file-upload.error.unknown': 'Det oppstod en feil under opplastingen ({reason})',
+    '@core.vedleggSummaryList.ingenVedlegg': 'Ingen dokument er lasta opp',
     '@core.formikVedleggList.validation.noVedleggUploaded': 'Ingen dokument er lasta opp',
     '@core.formikVedleggList.validation.tooManyVedlegg': 'For mange dokument er lasta opp',
     '@core.formikVedleggList.validation.maxTotalSizeExceeded':
