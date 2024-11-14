@@ -1,5 +1,5 @@
 import { Box, FormSummary, Heading } from '@navikt/ds-react';
-import VedleggList from '@navikt/sif-common-core-ds/src/components/vedlegg-list/VedleggList';
+import VedleggSummaryList from '@navikt/sif-common-core-ds/src/components/vedlegg-summary-list/VedleggSummaryList';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
@@ -141,7 +141,7 @@ const ArbeidsforholdSummaryView = ({ listeAvArbeidsforhold, søknadsdata, onEdit
                                                     <FormSummary.Value>
                                                         {maybeListOfVedlegg && maybeListOfVedlegg.length > 0 ? (
                                                             <Box marginBlock="2">
-                                                                <VedleggList vedlegg={maybeListOfVedlegg} />
+                                                                <VedleggSummaryList vedlegg={maybeListOfVedlegg} />
                                                             </Box>
                                                         ) : (
                                                             <i>
