@@ -18,6 +18,7 @@ interface Props extends TypedFormInputValidationProps<string, ValidationError> {
     description?: string;
     useDefaultDescription?: boolean;
     headingLevel?: '2' | '3' | '4';
+    initialFiles: Vedlegg[];
     limits?: {
         MAX_FILES: number;
         MAX_SIZE_MB: number;
@@ -36,9 +37,10 @@ const FormikFileUpload = ({
         MAX_SIZE_MB: 10,
     },
     retryEnabled,
+    initialFiles,
     validate,
 }: Props) => {
-    const { values, setFieldValue } = useFormikContext<any>();
+    const { setFieldValue } = useFormikContext<any>();
     const intl = useCoreIntl();
     const typedFormikContext = useContext(TypedFormikFormContext);
 
@@ -46,20 +48,17 @@ const FormikFileUpload = ({
         throw new Error('TypedFormikFormContext is required');
     }
 
-    const updateFiles = useCallback(
+    const onFilesChanged = useCallback(
         (files: Vedlegg[]) => {
-            setFieldValue(
-                fieldName,
-                files.filter((file) => file.uploaded && !file.error),
-                false,
-            );
+            const newFiles = files.filter((file) => (file.uploaded || file.pending) && !file.error);
+            setFieldValue(fieldName, newFiles, true);
         },
         [setFieldValue, fieldName],
     );
 
-    const { onSelect, removeFile, retryFileUpload, acceptedFiles, rejectedFiles } = useFileUploader({
-        initialFiles: values[fieldName],
-        onFilesChanged: updateFiles,
+    const { onSelect, onRemove, onRetryUpload, acceptedFiles, rejectedFiles } = useFileUploader({
+        initialFiles,
+        onFilesChanged,
     });
 
     return (
@@ -110,7 +109,7 @@ const FormikFileUpload = ({
                                 status={file.pending ? 'uploading' : undefined}
                                 button={{
                                     action: 'delete',
-                                    onClick: () => removeFile(file),
+                                    onClick: () => onRemove(file),
                                 }}
                                 translations={{
                                     uploading: intl.text('@core.formikFileUpload.dokumenterLastetOpp.lasterOpp'),
@@ -141,11 +140,11 @@ const FormikFileUpload = ({
                                     retryEnabled && rejected.canRetry
                                         ? {
                                               action: 'retry',
-                                              onClick: () => retryFileUpload(rejected),
+                                              onClick: () => onRetryUpload(rejected),
                                           }
                                         : {
                                               action: 'delete',
-                                              onClick: () => removeFile(rejected),
+                                              onClick: () => onRemove(rejected),
                                           }
                                 }
                             />
