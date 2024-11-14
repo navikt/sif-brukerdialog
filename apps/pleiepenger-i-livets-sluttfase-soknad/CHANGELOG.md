@@ -1,5 +1,13 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.15.5
+
+### Patch Changes
+
+-   Fikser at bruker kommer til toppen av vindu ved klikk på feilmelding i feiloppsummeringen
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.13.11
+
 ## 2.15.4
 
 ### Patch Changes
