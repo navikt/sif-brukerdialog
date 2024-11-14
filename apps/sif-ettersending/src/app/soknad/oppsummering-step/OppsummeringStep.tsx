@@ -4,7 +4,7 @@ import { isFailure, isPending } from '@devexperts/remote-data-ts';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import VedleggList from '@navikt/sif-common-core-ds/src/components/vedlegg-list/VedleggList';
+import VedleggSummaryList from '@navikt/sif-common-core-ds/src/components/vedlegg-summary-list/VedleggSummaryList';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
@@ -150,7 +150,7 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
                                     </FormSummary.Label>
                                     <FormSummary.Value>
                                         <div data-testid="vedlegg-liste">
-                                            <VedleggList vedlegg={values.dokumenter} />
+                                            <VedleggSummaryList vedlegg={values.dokumenter} />
                                         </div>
                                     </FormSummary.Value>
                                 </FormSummary.Answer>
