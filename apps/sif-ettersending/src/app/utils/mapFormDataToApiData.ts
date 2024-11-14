@@ -1,5 +1,5 @@
 import { IntlShape } from 'react-intl';
-import { getAttachmentsApiData } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
 import { getLocaleForApi } from '@navikt/sif-common-core-ds/src/utils/localeUtils';
 import { DokumentType } from '../types/DokumentType';
 import { BarnetLegeerklæringGjelderApiData, SoknadApiData, YtelseTypeApi } from '../types/SoknadApiData';
@@ -80,7 +80,7 @@ export const mapFormDataToApiData = (
                 ? mapBarnFormDataToApiData(gjelderEtAnnetBarn, barnetsFødselsnummer, valgteRegistrertBarn)
                 : undefined,
         beskrivelse,
-        vedlegg: getAttachmentsApiData(dokumenter),
+        vedlegg: getVedleggApiData(dokumenter),
         ytelseTittel: Ytelser[ytelse].søknadstittel.nb,
     };
     return apiData;

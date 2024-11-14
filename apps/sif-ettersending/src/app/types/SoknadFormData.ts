@@ -1,4 +1,4 @@
-import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { DokumentType } from './DokumentType';
 import { YtelseKey } from './Ytelser';
 
@@ -33,7 +33,7 @@ export interface SoknadFormData {
     [SoknadFormField.barnetHarIkkeFnr]?: boolean;
     [SoknadFormField.beskrivelse]?: string;
     [SoknadFormField.ytelse]?: YtelseKey;
-    [SoknadFormField.dokumenter]: Attachment[];
+    [SoknadFormField.dokumenter]: Vedlegg[];
 }
 
 export const initialSoknadFormData: SoknadFormData = {
