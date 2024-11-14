@@ -4,7 +4,8 @@ import { getTotalSizeOfVedlegg, removeDuplicateVedlegg, vedleggIsUploadedAndVali
 
 export const MAX_FILESIZE_FOR_UPLOAD = 7999999;
 export const MAX_TOTAL_VEDLEGG_SIZE_IN_MB = 24;
-export const MAX_TOTAL_VEDLEGG_SIZE_BYTES = 1000 * 1000 * MAX_TOTAL_VEDLEGG_SIZE_IN_MB;
+export const BYTES_PER_MB = 1024 * 1024;
+export const MAX_TOTAL_VEDLEGG_SIZE_BYTES = MAX_TOTAL_VEDLEGG_SIZE_IN_MB * BYTES_PER_MB;
 
 export enum ValidateVedleggError {
     noVedleggUploaded = 'noVedleggUploaded',
