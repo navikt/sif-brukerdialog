@@ -59,13 +59,7 @@ const FormikFileUpload = ({
         [setFieldValue, fieldName],
     );
 
-    const {
-        onSelect,
-        onRemove,
-        onRetryUpload: retryFileUpload,
-        acceptedFiles,
-        rejectedFiles,
-    } = useFileUploader({
+    const { onSelect, onRemove, onRetryUpload, acceptedFiles, rejectedFiles } = useFileUploader({
         initialFiles,
         onFilesChanged,
     });
@@ -149,7 +143,7 @@ const FormikFileUpload = ({
                                     retryEnabled && rejected.canRetry
                                         ? {
                                               action: 'retry',
-                                              onClick: () => retryFileUpload(rejected),
+                                              onClick: () => onRetryUpload(rejected),
                                           }
                                         : {
                                               action: 'delete',
