@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.13.11
+
+### Patch Changes
+
+-   Fikser at bruker kommer til toppen av vindu ved klikk på feilmelding i feiloppsummeringen
+
 ## 1.13.9
 
 ### Patch Changes

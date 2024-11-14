@@ -1,5 +1,5 @@
 import { FileObject } from '@navikt/ds-react';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
     deleteVedlegg,
     getVedleggFrontendUrl,
@@ -62,42 +62,52 @@ export const useFileUploader = ({ initialFiles = [], onFilesChanged }: Props) =>
         }
     };
 
-    const onSelect = async (newFiles: FileObject[]) => {
-        const filesWithError = newFiles
-            .filter((file) => file.error)
-            .map((file) => ({ ...file, pending: false, uploaded: false }));
-        const filesToUpload = newFiles
-            .filter((file) => !file.error)
-            .map((file) => ({ ...file, pending: true, uploaded: false }));
+    const onSelect = useCallback(
+        async (selectedFiles: FileObject[]) => {
+            const filesWithError = selectedFiles
+                .filter((file) => file.error)
+                .map((file) => ({ ...file, pending: false, uploaded: false }));
+            const filesToUpload = selectedFiles
+                .filter((file) => !file.error)
+                .map((file) => ({ ...file, pending: true, uploaded: false }));
+            setFiles((prevFiles) => [...prevFiles, ...filesToUpload, ...filesWithError]);
+            await filesToUpload.map((file) => uploadFile(file));
+        },
+        [files],
+    );
 
-        setFiles((prevFiles) => [...prevFiles, ...filesToUpload, ...filesWithError]);
+    const onRemove = useCallback(
+        async (fileToRemove: Vedlegg) => {
+            if (fileToRemove.info) {
+                await deleteVedlegg(fileToRemove.info.id);
+            }
+            setFiles((prevFiles) => prevFiles.filter((file) => file !== fileToRemove));
+        },
+        [files],
+    );
 
-        filesToUpload.map((file) => uploadFile(file));
-    };
+    const onRetryUpload = useCallback(
+        async (fileToRetry: Vedlegg) => {
+            setFiles(
+                files.map((file) =>
+                    file.file === fileToRetry.file
+                        ? { ...file, pending: true, uploaded: false, error: false, reasons: [], canRetry: false }
+                        : file,
+                ),
+            );
+            await uploadFile(fileToRetry as FileObject);
+        },
+        [files],
+    );
 
-    const removeFile = async (fileToRemove: Vedlegg) => {
-        setFiles((prevFiles) => prevFiles.filter((file) => file !== fileToRemove));
-        if (fileToRemove.info) {
-            await deleteVedlegg(fileToRemove.info.id);
-        }
-    };
-
-    const retryFileUpload = async (fileToRetry: Vedlegg) => {
-        setFiles(
-            files.map((file) =>
-                file.file === fileToRetry.file
-                    ? { ...file, pending: true, uploaded: false, error: false, reasons: [], canRetry: false }
-                    : file,
-            ),
-        );
-        uploadFile(fileToRetry as FileObject);
-    };
+    const acceptedFiles = useMemo(() => files.filter((file) => !file.error), [files]);
+    const rejectedFiles = useMemo(() => files.filter((file) => file.error), [files]);
 
     return {
         onSelect,
-        removeFile,
-        retryFileUpload,
-        acceptedFiles: files.filter((file) => !file.error),
-        rejectedFiles: files.filter((file) => file.error),
+        onRemove,
+        onRetryUpload,
+        acceptedFiles,
+        rejectedFiles,
     };
 };

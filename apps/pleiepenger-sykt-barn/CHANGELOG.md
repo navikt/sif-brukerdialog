@@ -1,5 +1,13 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.4.13
+
+### Patch Changes
+
+-   Fikser at bruker kommer til toppen av vindu ved klikk på feilmelding i feiloppsummeringen
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.13.11
+
 ## 4.4.12
 
 ### Patch Changes

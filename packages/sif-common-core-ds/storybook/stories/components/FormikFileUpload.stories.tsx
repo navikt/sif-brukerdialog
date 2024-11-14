@@ -1,6 +1,7 @@
 import { Box, Heading, VStack } from '@navikt/ds-react';
 import { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
+import { getAttachmentsValidator } from '@navikt/sif-common-core-ds';
 import { useFormikContext } from 'formik';
 import { http, HttpResponse } from 'msw';
 import { v4 as uuidv4 } from 'uuid';
@@ -43,7 +44,26 @@ const Example = () => {
     const { values } = useFormikContext<any>();
     return (
         <VStack gap="6">
-            <FormikFileUpload fieldName="vedlegg" label="Last opp dokumenter" />
+            <FormikFileUpload
+                fieldName="vedlegg"
+                label="Last opp dokumenter"
+                useDefaultDescription={true}
+                initialFiles={values.vedlegg}
+                validate={getAttachmentsValidator(
+                    {
+                        errors: {
+                            noAttachmentsUploaded: {
+                                keyPrefix: 'validation.arbeidsforhold.utbetalingsårsak.vedlegg',
+                                keepKeyUnaltered: true,
+                                values: { arbeidsgivernavn: 'abc' },
+                            },
+                        },
+                        required: true,
+                        useDefaultMessages: true,
+                    },
+                    [],
+                )}
+            />
             <Box>
                 <Heading level="2" size="xsmall">
                     FormikValues

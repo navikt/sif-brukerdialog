@@ -1,4 +1,4 @@
-import { FileUpload, Heading, VStack } from '@navikt/ds-react';
+import { Box, FileUpload, Heading, VStack } from '@navikt/ds-react';
 import { useCallback, useContext } from 'react';
 import {
     getErrorPropForFormikInput,
@@ -11,53 +11,63 @@ import { CoreText, useCoreIntl } from '../../i18n/common.messages';
 import { getRejectedFileError } from './fileUploadUtils';
 import { useFileUploader } from './useFileUploader';
 import { Vedlegg } from '../../types/Vedlegg';
+import FileUploadSizeProgress from './FileUploadSizeProgress';
+import { getTotalSizeOfVedlegg } from '../../utils/vedleggUtils';
+import { MAX_TOTAL_VEDLEGG_SIZE_BYTES } from './getVedleggValidator';
 
 interface Props extends TypedFormInputValidationProps<string, ValidationError> {
     fieldName: string;
-    label: string;
+    label?: string;
+    description?: string;
+    useDefaultDescription?: boolean;
     headingLevel?: '2' | '3' | '4';
+    initialFiles: Vedlegg[];
+    otherFiles?: Vedlegg[];
+    showSizeProgress?: boolean;
     limits?: {
         MAX_FILES: number;
         MAX_SIZE_MB: number;
     };
-    useDefaultDescription?: boolean;
     retryEnabled?: boolean;
 }
 
 const FormikFileUpload = ({
     label,
+    description,
+    useDefaultDescription,
     fieldName,
     headingLevel = '2',
     limits = {
         MAX_FILES: 100,
         MAX_SIZE_MB: 10,
     },
-    useDefaultDescription,
     retryEnabled,
+    initialFiles = [],
+    otherFiles = [],
+    showSizeProgress,
     validate,
 }: Props) => {
-    const { values, setFieldValue } = useFormikContext<any>();
+    const { setFieldValue } = useFormikContext<any>();
     const intl = useCoreIntl();
     const typedFormikContext = useContext(TypedFormikFormContext);
+
+    const totalSize = getTotalSizeOfVedlegg([...initialFiles, ...otherFiles]);
 
     if (!typedFormikContext) {
         throw new Error('TypedFormikFormContext is required');
     }
 
-    const updateFiles = useCallback(
+    const onFilesChanged = useCallback(
         (files: Vedlegg[]) => {
-            setFieldValue(
-                fieldName,
-                files.filter((file) => file.uploaded && !file.error),
-                false,
-            );
+            const newFiles = files.filter((file) => (file.uploaded || file.pending) && !file.error);
+            setFieldValue(fieldName, newFiles, true);
         },
         [setFieldValue, fieldName],
     );
 
-    const { onSelect, removeFile, retryFileUpload, acceptedFiles, rejectedFiles } = useFileUploader({
-        initialFiles: values[fieldName],
-        onFilesChanged: updateFiles,
+    const { onSelect, onRemove, onRetryUpload, acceptedFiles, rejectedFiles } = useFileUploader({
+        initialFiles,
+        onFilesChanged,
     });
 
     return (
@@ -74,11 +84,11 @@ const FormikFileUpload = ({
                         <FileUpload.Dropzone
                             // ID trengs for at komponenten får fokus når feilmeldingen klikkes på i ErrorSummary
                             id={error ? fieldName : undefined}
-                            label={label}
+                            label={label || intl.text('@core.formikFileUpload.label', limits)}
                             description={
                                 useDefaultDescription
                                     ? intl.text('@core.formikFileUpload.description', limits)
-                                    : undefined
+                                    : description
                             }
                             maxSizeInBytes={limits.MAX_SIZE_MB * 1024 * 1024}
                             accept=".pdf, .png, .jpg, .jpeg"
@@ -98,6 +108,11 @@ const FormikFileUpload = ({
                             values={{ antall: acceptedFiles.length }}
                         />
                     </Heading>
+                    {showSizeProgress && (
+                        <Box marginBlock="0 4">
+                            <FileUploadSizeProgress maxSize={MAX_TOTAL_VEDLEGG_SIZE_BYTES} usedSize={totalSize} />
+                        </Box>
+                    )}
                     <VStack as="ul" gap="3">
                         {acceptedFiles.map((file, index) => (
                             <FileUpload.Item
@@ -108,7 +123,7 @@ const FormikFileUpload = ({
                                 status={file.pending ? 'uploading' : undefined}
                                 button={{
                                     action: 'delete',
-                                    onClick: () => removeFile(file),
+                                    onClick: () => onRemove(file),
                                 }}
                                 translations={{
                                     uploading: intl.text('@core.formikFileUpload.dokumenterLastetOpp.lasterOpp'),
@@ -139,11 +154,11 @@ const FormikFileUpload = ({
                                     retryEnabled && rejected.canRetry
                                         ? {
                                               action: 'retry',
-                                              onClick: () => retryFileUpload(rejected),
+                                              onClick: () => onRetryUpload(rejected),
                                           }
                                         : {
                                               action: 'delete',
-                                              onClick: () => removeFile(rejected),
+                                              onClick: () => onRemove(rejected),
                                           }
                                 }
                             />
