@@ -12,6 +12,7 @@ const formatFileSize = (sizeInBytes: number) => {
     const sizeText = sizeInMB % 1 === 0 ? Math.floor(sizeInMB) : sizeInMB.toFixed(2);
     return <span style={{ whiteSpace: 'nowrap' }}>{sizeText} MB</span>;
 };
+
 const FileUploadSizeProgress = ({ maxSize, usedSize }: Props) => {
     const id = useMemo(() => guid(), []);
     return (
