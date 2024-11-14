@@ -2,6 +2,7 @@ import { BodyShort, Box, HStack, Link, List } from '@navikt/ds-react';
 import { Attachment as DSAttachment } from '@navikt/ds-icons';
 import { useCoreIntl } from '../../i18n/common.messages';
 import { Vedlegg } from '../../types/Vedlegg';
+import { formatFileSize } from '../../utils/formatFileSize';
 
 type Variant = 'plain' | 'border' | 'zebra';
 
@@ -11,12 +12,6 @@ export interface VedleggSummaryListProps {
     variant?: Variant;
     showFileSize?: boolean;
 }
-
-const formatFileSize = (sizeInBytes: number) => {
-    const sizeInMB = sizeInBytes / 1048576;
-    const sizeText = sizeInMB % 1 === 0 ? Math.floor(sizeInMB) : sizeInMB.toFixed(2);
-    return <span style={{ whiteSpace: 'nowrap' }}>{sizeText} MB</span>;
-};
 
 const getVariantStyle = (variant: Variant, index: number): React.CSSProperties => {
     switch (variant) {
