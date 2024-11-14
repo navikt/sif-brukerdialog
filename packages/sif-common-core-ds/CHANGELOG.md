@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 9.21.0
+
+### Minor Changes
+
+-   ae41ee1: Dropper å bruke AppStatus hvis sanity dataset er "staging". Dette datasetter er slettet pga økonomi.
+
 ## 9.20.9
 
 ### Patch Changes
