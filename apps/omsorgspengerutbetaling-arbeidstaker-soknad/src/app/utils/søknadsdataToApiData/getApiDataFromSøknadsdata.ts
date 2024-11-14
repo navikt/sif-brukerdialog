@@ -1,5 +1,5 @@
-import { Attachment } from '@navikt/sif-common-core-ds/src/types';
-import { getAttachmentsApiData } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { SituasjonSøknadsdata, Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { getArbeidsgivereApiDataFromSøknadsdata } from './getArbeidsgivereApiDataFromSøknadsdata';
@@ -8,8 +8,8 @@ import { getDineBarnApiDataFromSøknadsdata } from './getDineBarnApiDataFromSøk
 import { getMedlemskapApiDataFromSøknadsdata } from './getMedlemskapApiDataFromSøknadsdata';
 import { getUtenlansoppholdApiDataFromSøknadsdata } from './getUtenlandsoppholdApiDataFromSøknadsdata';
 
-const getArbeidsforholdDokumenter = (situasjon: SituasjonSøknadsdata): Attachment[] => {
-    const dokumenter: Attachment[] = [];
+const getArbeidsforholdDokumenter = (situasjon: SituasjonSøknadsdata): Vedlegg[] => {
+    const dokumenter: Vedlegg[] = [];
     Object.values(situasjon).forEach((forhold) => {
         if (forhold.type === 'harHattFraværUtenLønnKonfliktMedArbeidsgiver') {
             dokumenter.push(...forhold.dokumenter);
@@ -41,9 +41,9 @@ export const getApiDataFromSøknadsdata = (
         opphold: getUtenlansoppholdApiDataFromSøknadsdata(språk, fravær),
         bosteder: getMedlemskapApiDataFromSøknadsdata(språk, medlemskap),
         vedlegg: [
-            ...getAttachmentsApiData(deltBosted?.vedlegg),
-            ...getAttachmentsApiData(legeerklæring?.vedlegg),
-            ...getAttachmentsApiData(getArbeidsforholdDokumenter(situasjon)),
+            ...getVedleggApiData(deltBosted?.vedlegg),
+            ...getVedleggApiData(legeerklæring?.vedlegg),
+            ...getVedleggApiData(getArbeidsforholdDokumenter(situasjon)),
         ],
         dataBruktTilUtledningAnnetData: JSON.stringify(getDataBruktTilUtledning(søknadsdata)),
     };

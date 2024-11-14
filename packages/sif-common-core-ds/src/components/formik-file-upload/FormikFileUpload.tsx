@@ -50,11 +50,8 @@ const FormikFileUpload = ({
 
     const onFilesChanged = useCallback(
         (files: Vedlegg[]) => {
-            setFieldValue(
-                fieldName,
-                files.filter((file) => (file.uploaded || file.pending) && !file.error),
-                false,
-            );
+            const newFiles = files.filter((file) => (file.uploaded || file.pending) && !file.error);
+            setFieldValue(fieldName, newFiles, true);
         },
         [setFieldValue, fieldName],
     );
