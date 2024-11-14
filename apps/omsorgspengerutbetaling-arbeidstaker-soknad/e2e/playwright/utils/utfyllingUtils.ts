@@ -63,7 +63,11 @@ const fyllUtFraværSteg = async (page: Page) => {
 
 const lastOppLegeerklæring = async (page: Page) => {
     await page.getByRole('heading', { name: 'Last opp legeerklæring' });
-    await page.locator('input[name="vedlegg"]').setInputFiles('./e2e/playwright/files/navlogopng.png');
+    const [fileChooser] = await Promise.all([
+        page.waitForEvent('filechooser'),
+        await page.locator('input[type="file"]').dispatchEvent('click'),
+    ]);
+    await fileChooser.setFiles('./e2e/playwright/files/navlogopng.png');
     const listItems = await page.getByText('navlogopng.png(2.31 KB)');
     await expect(listItems).toHaveCount(1);
     await page.getByTestId('typedFormikForm-submitButton').click();
