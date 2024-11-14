@@ -20,7 +20,8 @@ const AppStatusWrapper = ({ applicationKey, contentRenderer, sanityConfig, unava
         return contentRenderer();
     };
 
-    if (sanityConfigIsValid(sanityConfig) === false) {
+    /** Staging datasettet er fjernet */
+    if (sanityConfigIsValid(sanityConfig) === false || sanityConfig.dataset === 'staging') {
         return renderContent();
     }
 
