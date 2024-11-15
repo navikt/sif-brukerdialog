@@ -65,6 +65,7 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({
                         },
                         andreVedlegg,
                     )}
+                    showPictureScanningGuide={true}
                 />
             </FormLayout.Questions>
         </Form>

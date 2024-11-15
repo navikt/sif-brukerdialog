@@ -9,14 +9,13 @@ import {
 import { Field, FieldProps, useFormikContext } from 'formik';
 import { CoreText, useCoreIntl } from '../../i18n/common.messages';
 import { Vedlegg } from '../../types/Vedlegg';
-import { getChildHeadingLevel } from '../../utils/headingLevelUtils';
 import { getTotalSizeOfVedlegg } from '../../utils/vedleggUtils';
-import PictureScanningGuide from '../picture-scanning-guide/PictureScanningGuide';
 import FileUploadSizeProgress from './FileUploadSizeProgress';
 import { getRejectedFileError } from './fileUploadUtils';
 import { MAX_TOTAL_VEDLEGG_SIZE_BYTES } from './getVedleggValidator';
 import { useFileUploader } from './useFileUploader';
 import VedleggTotalSizeAlert from './VedleggTotalSizeAlert';
+import PictureScanningGuide from '../picture-scanning-guide/PictureScanningGuide';
 
 interface Props extends TypedFormInputValidationProps<string, ValidationError> {
     fieldName: string;
@@ -80,10 +79,7 @@ const FormikFileUpload = ({
     });
 
     return (
-        <VStack gap="6">
-            {showPictureScanningGuide ? (
-                <PictureScanningGuide headingLevel={getChildHeadingLevel(headingLevel)} />
-            ) : null}
+        <VStack gap="4">
             <Field validate={validate ? (value: any) => validate(value, fieldName) : undefined} name={fieldName}>
                 {({ field, form }: FieldProps) => {
                     const error = getErrorPropForFormikInput({
@@ -180,6 +176,7 @@ const FormikFileUpload = ({
                     </VStack>
                 </VStack>
             )}
+            {showPictureScanningGuide ? <PictureScanningGuide headingLevel={headingLevel} /> : null}
         </VStack>
     );
 };

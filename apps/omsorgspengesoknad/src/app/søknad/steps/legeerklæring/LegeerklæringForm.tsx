@@ -68,6 +68,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({
                         },
                         andreVedlegg,
                     )}
+                    showPictureScanningGuide={true}
                 />
             </FormLayout.Questions>
         </Form>

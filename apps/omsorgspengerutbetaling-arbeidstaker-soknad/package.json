@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/omsorgspengerutbetaling-arbeidstaker-soknad",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "1.10.1",
+    "version": "1.10.2",
     "private": true,
     "type": "module",
     "dependencies": {
