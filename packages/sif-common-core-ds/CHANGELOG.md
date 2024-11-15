@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 9.21.1
+
+### Patch Changes
+
+-   Vise melding ved for store vedlegg totalt
+
 ## 9.21.0
 
 ### Minor Changes
