@@ -5,7 +5,7 @@
     "private": true,
     "type": "module",
     "dependencies": {
-        "@grafana/faro-web-sdk": "1.11.0",
+        "@grafana/faro-web-sdk": "1.12.0",
         "constate": "3.3.2"
     },
     "peerDependencies": {
