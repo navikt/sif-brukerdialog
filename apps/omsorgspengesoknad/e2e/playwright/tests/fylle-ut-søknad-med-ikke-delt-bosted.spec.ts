@@ -26,16 +26,10 @@ test('Fyll ut søknad med ikke delt bosted', async ({ page }) => {
     await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Legeerklæring */
-    await page.getByRole('heading', { level: 1, name: 'Legeerklæring' });
-    await page.locator('input[name="vedlegg"]').setInputFiles('./e2e/playwright/files/navlogopng.png');
-    await expect(await page.getByText('Fjern').count()).toEqual(1);
-    await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
+    await fyllUtLegeerklæring(page);
 
     /** Delt bosted */
-    await page.getByRole('heading', { level: 1, name: 'Delt bosted' });
-    await page.locator('input[name="samværsavtale"]').setInputFiles('./e2e/playwright/files/avtale.png');
-    await expect(await page.getByText('Fjern').count()).toEqual(1);
-    await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
+    await fyllUtDeltBosted(page);
 
     /** Oppsummering */
     await page.getByRole('heading', { level: 1, name: 'Oppsummering' });
@@ -69,3 +63,27 @@ test('Fyll ut søknad med ikke delt bosted', async ({ page }) => {
         }),
     ).toBeVisible();
 });
+
+const fyllUtLegeerklæring = async (page: any) => {
+    await page.getByRole('heading', { level: 1, name: 'Legeerklæring' });
+    const [fileChooser] = await Promise.all([
+        page.waitForEvent('filechooser'),
+        await page.locator('input[type="file"]').dispatchEvent('click'),
+    ]);
+    await fileChooser.setFiles('./e2e/playwright/files/navlogopng.png');
+    const listItems = await page.getByText('navlogopng.png');
+    await expect(listItems).toHaveCount(1);
+    await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
+};
+
+const fyllUtDeltBosted = async (page: any) => {
+    await page.getByRole('heading', { level: 1, name: 'Delt bosted' });
+    const [fileChooser] = await Promise.all([
+        page.waitForEvent('filechooser'),
+        await page.locator('input[type="file"]').dispatchEvent('click'),
+    ]);
+    await fileChooser.setFiles('./e2e/playwright/files/avtale.png');
+    const listItems = await page.getByText('avtale.png');
+    await expect(listItems).toHaveCount(1);
+    await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
+};

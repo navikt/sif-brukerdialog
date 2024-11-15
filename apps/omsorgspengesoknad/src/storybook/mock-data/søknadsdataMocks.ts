@@ -25,6 +25,7 @@ const komplett_annetBarnFarDeltBosted: Søknadsdata = {
                 info: { id: '123', url: 'http://localhost:8080/vedlegg/123' },
                 uploaded: true,
                 pending: false,
+                error: false,
             },
         ],
     },

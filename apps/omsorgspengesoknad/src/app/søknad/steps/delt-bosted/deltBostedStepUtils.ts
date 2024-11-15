@@ -1,4 +1,4 @@
-import { getUploadedAttachments } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import { getUploadedVedlegg } from '@navikt/sif-common-core-ds/src';
 import { DeltBostedSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { DeltBostedFormFields, DeltBostedFormValues } from './DeltBostedForm';
 
@@ -15,5 +15,5 @@ export const getDeltBostedStepInitialValues = (
 };
 
 export const getDeltBostedSøknadsdataFromFormValues = (values: DeltBostedFormValues): DeltBostedSøknadsdata => {
-    return { vedlegg: getUploadedAttachments(values[DeltBostedFormFields.samværsavtale]) };
+    return { vedlegg: getUploadedVedlegg(values[DeltBostedFormFields.samværsavtale]) };
 };

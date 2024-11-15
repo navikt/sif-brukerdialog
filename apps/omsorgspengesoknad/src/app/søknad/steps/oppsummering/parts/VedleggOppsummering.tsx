@@ -1,6 +1,5 @@
 import { Alert, FormSummary } from '@navikt/ds-react';
-import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
-import { getAttachmentsInLocationArray } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import { getVedleggInLocationArray, VedleggSummaryList } from '@navikt/sif-common-core-ds';
 import { AppText } from '../../../../i18n';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { DeltBostedSøknadsdata } from '../../../../types/søknadsdata/DeltBostedSøknadsdata';
@@ -17,14 +16,14 @@ const VedleggOppsummering: React.FunctionComponent<Props> = ({
     legeerklæringSøknadsdata,
     samværsavtaleSøknadsdata,
 }) => {
-    const legeerklæringer = getAttachmentsInLocationArray({
+    const legeerklæringer = getVedleggInLocationArray({
         locations: apiData.legeerklæring,
-        attachments: legeerklæringSøknadsdata?.vedlegg,
+        vedlegg: legeerklæringSøknadsdata?.vedlegg,
     });
     const samværsavtaler = samværsavtaleSøknadsdata
-        ? getAttachmentsInLocationArray({
+        ? getVedleggInLocationArray({
               locations: apiData.samværsavtale,
-              attachments: samværsavtaleSøknadsdata?.vedlegg,
+              vedlegg: samværsavtaleSøknadsdata?.vedlegg,
           })
         : undefined;
     return (
@@ -45,7 +44,7 @@ const VedleggOppsummering: React.FunctionComponent<Props> = ({
                                 <AppText id="vedleggsliste.ingenLegeerklæringLastetOpp" />
                             </Alert>
                         ) : (
-                            <AttachmentList attachments={legeerklæringer} />
+                            <VedleggSummaryList vedlegg={legeerklæringer} />
                         )}
                     </FormSummary.Value>
                 </FormSummary.Answer>
@@ -56,7 +55,7 @@ const VedleggOppsummering: React.FunctionComponent<Props> = ({
                         </FormSummary.Label>
                         <FormSummary.Value>
                             {samværsavtaler.length > 0 ? (
-                                <AttachmentList attachments={samværsavtaler} />
+                                <VedleggSummaryList vedlegg={samværsavtaler} />
                             ) : (
                                 <Alert inline={true} variant="warning">
                                     <AppText id="vedleggsliste.ingenBostedsavtaleLastetOpp" />
