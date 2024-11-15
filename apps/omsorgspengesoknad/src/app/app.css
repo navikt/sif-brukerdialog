@@ -2,3 +2,4 @@
 @import '@navikt/ds-css';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
