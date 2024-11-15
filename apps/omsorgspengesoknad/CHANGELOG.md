@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.34.0
+
+### Minor Changes
+
+-   Ta i bruk FormikFileUpload komponent
+
 ## 1.33.15
 
 ### Patch Changes

@@ -1,5 +1,4 @@
-import { Locale } from '@navikt/sif-common-core-ds/src/types';
-import { getAttachmentsApiData } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import { getVedleggApiData, Locale } from '@navikt/sif-common-core-ds';
 import { includeDeltBostedStep } from '../../søknad/søknadStepConfig';
 import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
@@ -19,8 +18,8 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata, locale: L
         harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true,
         harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true,
         ...getOmBarnetApiDataFromSøknadsdata(omBarnet),
-        legeerklæring: getAttachmentsApiData(søknadsdata.legeerklaering?.vedlegg),
-        samværsavtale: inkluderDeltBosted ? getAttachmentsApiData(søknadsdata.deltBosted?.vedlegg) : undefined,
+        legeerklæring: getVedleggApiData(søknadsdata.legeerklaering?.vedlegg),
+        samværsavtale: inkluderDeltBosted ? getVedleggApiData(søknadsdata.deltBosted?.vedlegg) : undefined,
         dataBruktTilUtledningAnnetData: JSON.stringify(getDataBruktTilUtledning(søknadsdata)),
     };
 };

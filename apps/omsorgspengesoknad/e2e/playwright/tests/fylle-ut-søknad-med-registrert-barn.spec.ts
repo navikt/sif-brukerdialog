@@ -28,8 +28,13 @@ test('Fyll ut søknad med registrert barn', async ({ page }) => {
 
     /** Legeerklæring */
     await page.getByRole('heading', { level: 1, name: 'Legeerklæring' });
-    await page.locator('input[name="vedlegg"]').setInputFiles('./e2e/playwright/files/navlogopng.png');
-    await expect(await page.getByText('Fjern').count()).toEqual(1);
+    const [fileChooser] = await Promise.all([
+        page.waitForEvent('filechooser'),
+        await page.locator('input[type="file"]').dispatchEvent('click'),
+    ]);
+    await fileChooser.setFiles('./e2e/playwright/files/navlogopng.png');
+    const listItems = await page.getByText('navlogopng.png');
+    await expect(listItems).toHaveCount(1);
     await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Oppsummering */

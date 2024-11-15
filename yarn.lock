@@ -4899,6 +4899,7 @@ __metadata:
     react-intl: "npm:6.8.7"
     react-router-dom: "npm:6.28.0"
     storybook: "npm:8.4.4"
+    tailwindcss: "npm:3.4.15"
     typescript: "npm:5.6.3"
     vite: "npm:5.4.11"
     vite-plugin-checker: "npm:0.8.0"

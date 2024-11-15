@@ -1,19 +1,19 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import { FormikAttachmentForm, getAttachmentsValidator, useAttachmentsHelper } from '@navikt/sif-common-core-ds';
+import { FormikFileUpload, useVedleggHelper } from '@navikt/sif-common-core-ds';
+import { getVedleggValidator } from '@navikt/sif-common-core-ds/src/components/formik-file-upload/getVedleggValidator';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
-import { relocateToLoginPage } from '../../../utils/navigationUtils';
 
 interface Props {
-    legeerklæringer?: Attachment[];
+    legeerklæringer?: Vedlegg[];
     isSubmitting?: boolean;
-    andreVedlegg?: Attachment[];
+    andreVedlegg?: Vedlegg[];
     goBack?: () => void;
 }
 
@@ -22,7 +22,7 @@ export enum LegeerklæringFormFields {
 }
 
 export interface LegeerklæringFormValues {
-    [LegeerklæringFormFields.vedlegg]: Attachment[];
+    [LegeerklæringFormFields.vedlegg]: Vedlegg[];
 }
 
 const { Form } = getTypedFormComponents<LegeerklæringFormFields, LegeerklæringFormValues>();
@@ -35,7 +35,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({
 }) => {
     const intl = useIntl();
     const { text } = useAppIntl();
-    const { hasPendingUploads } = useAttachmentsHelper(legeerklæringer, andreVedlegg);
+    const { hasPendingUploads } = useVedleggHelper(legeerklæringer, andreVedlegg);
 
     return (
         <Form
@@ -55,23 +55,19 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({
                     </p>
                 </SifGuidePanel>
 
-                <FormikAttachmentForm
+                <FormikFileUpload
                     fieldName={LegeerklæringFormFields.vedlegg}
-                    attachments={legeerklæringer}
-                    otherAttachments={andreVedlegg}
+                    label={text('steg.legeerklaering.vedlegg.knappLabel')}
+                    initialFiles={legeerklæringer}
+                    otherFiles={andreVedlegg}
                     uploadLaterURL={getLenker(intl.locale).ettersend}
-                    onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
-                    validate={getAttachmentsValidator(
+                    validate={getVedleggValidator(
                         {
                             required: false,
                             useDefaultMessages: true,
                         },
                         andreVedlegg,
                     )}
-                    labels={{
-                        addLabel: text('steg.legeerklaering.vedlegg.knappLabel'),
-                        noAttachmentsText: text('vedleggsliste.ingenLegeerklæringLastetOpp'),
-                    }}
                 />
             </FormLayout.Questions>
         </Form>
