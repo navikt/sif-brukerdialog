@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.20.0
+
+### Minor Changes
+
+-   Ta i bruk FormikFileUpload
+
 ## 1.19.13
 
 ### Patch Changes
