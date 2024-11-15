@@ -16,7 +16,6 @@ import { MAX_TOTAL_VEDLEGG_SIZE_BYTES } from './getVedleggValidator';
 import { useFileUploader } from './useFileUploader';
 import VedleggTotalSizeAlert from './VedleggTotalSizeAlert';
 import PictureScanningGuide from '../picture-scanning-guide/PictureScanningGuide';
-import { getChildHeadingLevel } from '../../utils/headingLevelUtils';
 
 interface Props extends TypedFormInputValidationProps<string, ValidationError> {
     fieldName: string;
@@ -177,9 +176,7 @@ const FormikFileUpload = ({
                     </VStack>
                 </VStack>
             )}
-            {showPictureScanningGuide ? (
-                <PictureScanningGuide headingLevel={getChildHeadingLevel(headingLevel)} />
-            ) : null}
+            {showPictureScanningGuide ? <PictureScanningGuide headingLevel={headingLevel} /> : null}
         </VStack>
     );
 };
