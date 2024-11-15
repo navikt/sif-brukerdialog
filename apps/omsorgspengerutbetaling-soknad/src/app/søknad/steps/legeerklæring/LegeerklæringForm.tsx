@@ -58,6 +58,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, is
                 label={text('steg.legeerklæring.vedlegg.knappLabel')}
                 validate={getVedleggValidator({ useDefaultMessages: true })}
                 uploadLaterURL={getLenker(intl.locale).ettersending}
+                showPictureScanningGuide={true}
             />
         </Form>
     );
