@@ -1,5 +1,13 @@
 # @navikt/omsorgspengerutbetaling-arbeidstaker-soknad
 
+## 1.10.1
+
+### Patch Changes
+
+-   Vise melding ved for store vedlegg totalt
+-   Updated dependencies
+    -   @navikt/sif-common-core-ds@9.21.1
+
 ## 1.10.0
 
 ### Minor Changes

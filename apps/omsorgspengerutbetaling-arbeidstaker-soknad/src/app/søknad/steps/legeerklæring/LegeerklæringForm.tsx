@@ -8,6 +8,7 @@ import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { AppText, useAppIntl } from '../../../i18n';
+import getLenker from '../../../lenker';
 
 interface Props {
     values: Partial<LegeerklæringFormValues>;
@@ -56,6 +57,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                 initialFiles={vedlegg}
                 fieldName={LegeerklæringFormFields.vedlegg}
                 validate={getVedleggValidator({ useDefaultMessages: true }, andreVedlegg)}
+                uploadLaterURL={getLenker(intl.locale).ettersending}
             />
         </Form>
     );

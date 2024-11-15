@@ -8,12 +8,13 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { Field, FieldProps, useFormikContext } from 'formik';
 import { CoreText, useCoreIntl } from '../../i18n/common.messages';
-import { getRejectedFileError } from './fileUploadUtils';
-import { useFileUploader } from './useFileUploader';
 import { Vedlegg } from '../../types/Vedlegg';
-import FileUploadSizeProgress from './FileUploadSizeProgress';
 import { getTotalSizeOfVedlegg } from '../../utils/vedleggUtils';
+import FileUploadSizeProgress from './FileUploadSizeProgress';
+import { getRejectedFileError } from './fileUploadUtils';
 import { MAX_TOTAL_VEDLEGG_SIZE_BYTES } from './getVedleggValidator';
+import { useFileUploader } from './useFileUploader';
+import VedleggTotalSizeAlert from './VedleggTotalSizeAlert';
 
 interface Props extends TypedFormInputValidationProps<string, ValidationError> {
     fieldName: string;
@@ -28,6 +29,7 @@ interface Props extends TypedFormInputValidationProps<string, ValidationError> {
         MAX_FILES: number;
         MAX_SIZE_MB: number;
     };
+    uploadLaterURL?: string;
     retryEnabled?: boolean;
 }
 
@@ -44,6 +46,7 @@ const FormikFileUpload = ({
     retryEnabled,
     initialFiles = [],
     otherFiles = [],
+    uploadLaterURL,
     showSizeProgress,
     validate,
 }: Props) => {
@@ -52,6 +55,8 @@ const FormikFileUpload = ({
     const typedFormikContext = useContext(TypedFormikFormContext);
 
     const totalSize = getTotalSizeOfVedlegg([...initialFiles, ...otherFiles]);
+
+    const totalSizeExceedsLimit = totalSize > MAX_TOTAL_VEDLEGG_SIZE_BYTES;
 
     if (!typedFormikContext) {
         throw new Error('TypedFormikFormContext is required');
@@ -99,6 +104,8 @@ const FormikFileUpload = ({
                     );
                 }}
             </Field>
+
+            {totalSizeExceedsLimit ? <VedleggTotalSizeAlert uploadLaterURL={uploadLaterURL} /> : null}
 
             {acceptedFiles.length > 0 && (
                 <VStack gap="2">

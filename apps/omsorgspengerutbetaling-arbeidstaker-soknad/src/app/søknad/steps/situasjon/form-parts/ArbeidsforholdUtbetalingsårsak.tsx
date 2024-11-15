@@ -13,6 +13,7 @@ import { Arbeidsforhold, Utbetalingsårsak, ÅrsakNyoppstartet } from '../../../
 import { AppFieldValidationErrors } from '../../../../utils/validations';
 import { ArbeidsforholdFormFields, SituasjonFormValues } from '../SituasjonStep';
 import { getVedleggValidator } from '@navikt/sif-common-core-ds/src/components/formik-file-upload/getVedleggValidator';
+import getLenker from '../../../../lenker';
 
 const { RadioGroup, Textarea } = getTypedFormComponents<ArbeidsforholdFormFields, Arbeidsforhold, ValidationError>();
 
@@ -23,7 +24,7 @@ interface Props {
 }
 
 const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName, andreVedlegg }: Props) => {
-    const { text } = useAppIntl();
+    const { text, intl } = useAppIntl();
     const { setFieldValue } = useFormikContext<SituasjonFormValues>();
 
     const getFieldName = (field: ArbeidsforholdFormFields) => `${parentFieldName}.${field}` as ArbeidsforholdFormFields;
@@ -132,6 +133,7 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName, andr
                                 },
                                 andreVedlegg,
                             )}
+                            uploadLaterURL={getLenker(intl.locale).ettersending}
                         />
                     </FormBlock>
                 </>
