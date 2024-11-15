@@ -1,4 +1,4 @@
-import { getAttachmentsApiData } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
 import { AppIntlShape } from '../../i18n';
 import { SøknadApiData, YesNoSpørsmålOgSvar } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
@@ -56,7 +56,7 @@ export const getApiDataFromSøknadsdata = (
         frilans: getFrilansApiDataFromSøknadsdata(frilans),
         selvstendigNæringsdrivende: getSelvstendigApiDataFromSøknadsdata(selvstendig),
         utbetalingsperioder: getUtbetalingsperioderApiDataFromSøknadsdata(søknadsdata),
-        vedlegg: getAttachmentsApiData(legeerklæring?.vedlegg),
+        vedlegg: getVedleggApiData(legeerklæring?.vedlegg),
         bosteder: getMedlemskapApiDataFromSøknadsdata(språk, medlemskap),
     };
 };

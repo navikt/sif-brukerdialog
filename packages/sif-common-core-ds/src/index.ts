@@ -2,6 +2,7 @@ export { default as FormikAttachmentForm } from './components/formik-attachment-
 export { default as FormikFileUpload } from './components/formik-file-upload/FormikFileUpload';
 export * from './components/formik-attachment-form/getAttachmentsValidator';
 export * from './components/vedlegg-list/VedleggList';
+export * from './components/vedlegg-summary-list/VedleggSummaryList';
 export * from './hooks';
 export * from './utils/apiUtils';
 export * from './utils/localeUtils';
