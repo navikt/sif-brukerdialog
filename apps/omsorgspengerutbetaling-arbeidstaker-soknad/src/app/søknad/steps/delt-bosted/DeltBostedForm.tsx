@@ -1,21 +1,20 @@
 import { Link } from '@navikt/ds-react';
 import React from 'react';
-import { getAttachmentsValidator, useAttachmentsHelper } from '@navikt/sif-common-core-ds';
-import { FormikAttachmentForm } from '@navikt/sif-common-core-ds/src';
+import { FormikFileUpload, useVedleggHelper } from '@navikt/sif-common-core-ds';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
-import { relocateToLoginPage } from '../../../utils/navigationUtils';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
+import { getVedleggValidator } from '@navikt/sif-common-core-ds/src/components/formik-file-upload/getVedleggValidator';
 
 interface Props {
     values: Partial<DeltBostedFormValues>;
     goBack?: () => void;
     isSubmitting?: boolean;
-    andreVedlegg?: Attachment[];
+    andreVedlegg?: Vedlegg[];
 }
 
 export enum DeltBostedFormFields {
@@ -23,16 +22,15 @@ export enum DeltBostedFormFields {
 }
 
 export interface DeltBostedFormValues {
-    [DeltBostedFormFields.vedlegg]: Attachment[];
+    [DeltBostedFormFields.vedlegg]: Vedlegg[];
 }
 
 const { Form } = getTypedFormComponents<DeltBostedFormFields, DeltBostedFormValues>();
 
 const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreVedlegg = [], isSubmitting }) => {
     const { text, intl } = useAppIntl();
-
-    const attachments = values.vedlegg ? values.vedlegg : [];
-    const { hasPendingUploads } = useAttachmentsHelper(attachments, andreVedlegg);
+    const vedlegg = values.vedlegg ? values.vedlegg : [];
+    const { hasPendingUploads } = useVedleggHelper(vedlegg, andreVedlegg);
 
     return (
         <Form
@@ -67,17 +65,11 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
                     </p>
                 </SifGuidePanel>
             </Block>
-            <FormikAttachmentForm
+            <FormikFileUpload
+                label={text('step.deltBosted.vedleggsliste.tittel')}
+                initialFiles={vedlegg}
                 fieldName={DeltBostedFormFields.vedlegg}
-                attachments={attachments}
-                labels={{
-                    addLabel: text('step.deltBosted.uploadBtn'),
-                    noAttachmentsText: text('vedleggsliste.ingenAvtaleLastetOpp'),
-                }}
-                validate={getAttachmentsValidator({ useDefaultMessages: true }, andreVedlegg)}
-                uploadLaterURL={getLenker(intl.locale).ettersending}
-                onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
-                otherAttachments={andreVedlegg}
+                validate={getVedleggValidator({ useDefaultMessages: true }, andreVedlegg)}
             />
         </Form>
     );

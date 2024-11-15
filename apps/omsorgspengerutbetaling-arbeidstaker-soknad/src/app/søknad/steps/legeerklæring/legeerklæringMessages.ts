@@ -8,7 +8,7 @@ const nb = {
         'Hvis du søker for mer enn 3 sammenhengende dager, men ikke har legeerklæring tilgjengelig nå,',
     'step.legeerklæring.counsellorpanel.3.lenkeEttersending': 'kan du ettersende den her.',
 
-    'step.legeerklæring.uploadBtn': 'Last opp legeerklæring',
+    'step.legeerklæring.vedleggsliste.tittel': 'Last opp legeerklæring',
 
     'vedleggsliste.ingenLegeerklæringLastetOpp': 'Ingen legeerklæring er lastet opp',
 };

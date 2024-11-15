@@ -7,7 +7,8 @@ const nb = {
 
     'step.deltBosted.uploadBtn': 'Last opp avtale',
 
-    'vedleggsliste.ingenAvtaleLastetOpp': 'Ingen avtale er lastet opp',
+    'step.deltBosted.vedleggsliste.tittel': 'Last opp dokumenter',
+    'step.deltBosted.vedleggsliste.ingenAvtaleLastetOpp': 'Ingen avtale er lastet opp',
 };
 
 export const deltBostedMessages = { nb };

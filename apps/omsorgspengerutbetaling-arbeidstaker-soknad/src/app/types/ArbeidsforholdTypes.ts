@@ -1,4 +1,4 @@
-import { Attachment } from '@navikt/sif-common-core-ds/src/types';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/src/types';
 
 export enum Utbetalingsårsak {
@@ -26,5 +26,5 @@ export type Arbeidsforhold = {
     utbetalingsårsak: Utbetalingsårsak;
     årsakNyoppstartet?: ÅrsakNyoppstartet;
     konfliktForklaring?: string;
-    dokumenter: Attachment[];
+    dokumenter: Vedlegg[];
 };

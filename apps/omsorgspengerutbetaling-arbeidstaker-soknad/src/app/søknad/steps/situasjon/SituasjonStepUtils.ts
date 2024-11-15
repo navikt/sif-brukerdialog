@@ -1,4 +1,3 @@
-import { Attachment } from '@navikt/sif-common-core-ds/src/types';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/src/types';
 import dayjs from 'dayjs';
 import { Arbeidsforhold, Utbetalingsårsak } from '../../../types/ArbeidsforholdTypes';
@@ -6,6 +5,7 @@ import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
 import { ArbeidforholdSøknadsdata, SituasjonSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import appSentryLogger from '../../../utils/appSentryLogger';
 import { SituasjonFormValues } from './SituasjonStep';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 
 export const getNMonthsAgo = (numberOfMonths: number) => {
     return dayjs().subtract(numberOfMonths, 'month').startOf('month').toDate();
@@ -192,7 +192,7 @@ export const getSituasjonStepInitialValues = (
     return { arbeidsforhold };
 };
 
-export const valuesToAlleDokumenterISøknaden = (arbeidsforhold: Arbeidsforhold[]): Attachment[] => [
+export const valuesToAlleDokumenterISøknaden = (arbeidsforhold: Arbeidsforhold[]): Vedlegg[] => [
     ...arbeidsforhold.map((a) => a.dokumenter).flat(),
     //TODO ENDRE NAVN, LEGG til Legeelklaring
 ];

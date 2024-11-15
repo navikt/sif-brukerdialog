@@ -1,6 +1,6 @@
-import { FormSummary, Heading } from '@navikt/ds-react';
-import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
-import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import { Box, FormSummary, Heading } from '@navikt/ds-react';
+import VedleggSummaryList from '@navikt/sif-common-core-ds/src/components/vedlegg-summary-list/VedleggSummaryList';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { JaNeiSvar, Sitat, TextareaSvar } from '@navikt/sif-common-ui';
@@ -11,7 +11,7 @@ import { ArbeidforholdSøknadsdata, SituasjonSøknadsdata } from '../../../../ty
 import { Søknadsdata } from '../../../../types/søknadsdata/Søknadsdata';
 import UtbetalingsperioderSummaryView from './UtbetalingsperioderSummaryView';
 
-const getArbeidsforholdAttachments = (organisasjonsnummer: string, situasjon?: SituasjonSøknadsdata) => {
+const getArbeidsforholdVedlegg = (organisasjonsnummer: string, situasjon?: SituasjonSøknadsdata) => {
     if (!situasjon) {
         return undefined;
     }
@@ -55,7 +55,7 @@ const ArbeidsforholdSummaryView = ({ listeAvArbeidsforhold, søknadsdata, onEdit
                         organisasjonsnummer: arbeidsforhold.organisasjonsnummer,
                     };
 
-                    const maybeListOfAttachments: Attachment[] | undefined = getArbeidsforholdAttachments(
+                    const maybeListOfVedlegg: Vedlegg[] | undefined = getArbeidsforholdVedlegg(
                         arbeidsforhold.organisasjonsnummer,
                         søknadsdata.situasjon,
                     );
@@ -139,8 +139,10 @@ const ArbeidsforholdSummaryView = ({ listeAvArbeidsforhold, søknadsdata, onEdit
                                                         <AppText id="step.oppsummering.arbeidsforhold.konflikt.dokumenter.header" />
                                                     </FormSummary.Label>
                                                     <FormSummary.Value>
-                                                        {maybeListOfAttachments && maybeListOfAttachments.length > 0 ? (
-                                                            <AttachmentList attachments={maybeListOfAttachments} />
+                                                        {maybeListOfVedlegg && maybeListOfVedlegg.length > 0 ? (
+                                                            <Box marginBlock="2">
+                                                                <VedleggSummaryList vedlegg={maybeListOfVedlegg} />
+                                                            </Box>
                                                         ) : (
                                                             <i>
                                                                 {text(

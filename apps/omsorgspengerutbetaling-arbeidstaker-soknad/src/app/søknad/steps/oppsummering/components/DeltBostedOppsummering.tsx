@@ -1,10 +1,10 @@
 import { FormSummary } from '@navikt/ds-react';
 import React from 'react';
-import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
+import { getVedleggInLocationArray } from '@navikt/sif-common-core-ds/src';
+import VedleggSummaryList from '@navikt/sif-common-core-ds/src/components/vedlegg-summary-list/VedleggSummaryList';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { AppText } from '../../../../i18n';
 import { DeltBostedSøknadsdata } from '../../../../types/søknadsdata/DeltBostedSøknadsdata';
-import { getAttachmentsInLocationArray } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 
 interface Props {
     vedlegg: string[];
@@ -13,9 +13,9 @@ interface Props {
 }
 
 const DeltBostedOppsummering: React.FC<Props> = ({ vedlegg, deltBostedSøknadsdata, onEdit }) => {
-    const delteBosteder = getAttachmentsInLocationArray({
+    const delteBosteder = getVedleggInLocationArray({
         locations: vedlegg,
-        attachments: deltBostedSøknadsdata?.vedlegg,
+        vedlegg: deltBostedSøknadsdata?.vedlegg,
     });
 
     return (
@@ -35,7 +35,7 @@ const DeltBostedOppsummering: React.FC<Props> = ({ vedlegg, deltBostedSøknadsda
                         {deltBostedSøknadsdata?.vedlegg.length === 0 ? (
                             <AppText id="step.oppsummering.deltBosted.ingenVedlegg" />
                         ) : (
-                            <AttachmentList attachments={delteBosteder} />
+                            <VedleggSummaryList vedlegg={delteBosteder} />
                         )}
                     </FormSummary.Value>
                 </FormSummary.Answer>

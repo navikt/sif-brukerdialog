@@ -1,12 +1,12 @@
-import { Attachment } from '@navikt/sif-common-core-ds/src/types';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 import { SituasjonFormFields, SituasjonFormValues } from '../søknad/steps/situasjon/SituasjonStep';
 import { Utbetalingsårsak } from '../types/ArbeidsforholdTypes';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 
 export const getAlleVedleggFraSøknadsdata = (søknadsdata: Søknadsdata) => {
     const bostedVedlegg = søknadsdata.deltBosted?.vedlegg ?? [];
     const legeerklæringer = søknadsdata.legeerklæring?.vedlegg ?? [];
-    const situasjonVedlegg: Attachment[] = [];
+    const situasjonVedlegg: Vedlegg[] = [];
 
     const { situasjon } = søknadsdata;
     if (situasjon) {
@@ -25,8 +25,8 @@ export const getAlleVedleggFraSøknadsdata = (søknadsdata: Søknadsdata) => {
     };
 };
 
-export const getAlleVedleggFraSituasjonFormValues = (formValues: Partial<SituasjonFormValues>): Attachment[] => {
-    const situasjonVedlegg: Attachment[] = [];
+export const getAlleVedleggFraSituasjonFormValues = (formValues: Partial<SituasjonFormValues>): Vedlegg[] => {
+    const situasjonVedlegg: Vedlegg[] = [];
     const arbeidsforhold = formValues[SituasjonFormFields.arbeidsforhold] || [];
     arbeidsforhold.forEach((a) => {
         if (a.dokumenter && a.utbetalingsårsak === Utbetalingsårsak.konfliktMedArbeidsgiver) {
