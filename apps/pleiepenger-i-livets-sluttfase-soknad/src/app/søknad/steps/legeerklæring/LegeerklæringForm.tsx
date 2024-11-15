@@ -52,6 +52,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({
                     fieldName={LegeerklæringFormFields.vedlegg}
                     initialFiles={legeerklæringer}
                     otherFiles={andreVedlegg}
+                    showPictureScanningGuide={true}
                     uploadLaterURL={getLenker(intl.locale).ettersend}
                     validate={getVedleggValidator(
                         {
