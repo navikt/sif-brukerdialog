@@ -1,5 +1,11 @@
 # @navikt/omsorgspengerutbetaling-arbeidstaker-soknad
 
+## 1.10.0
+
+### Minor Changes
+
+-   Tak i bruk FormikFileUpload komponent
+
 ## 1.9.12
 
 ### Patch Changes
