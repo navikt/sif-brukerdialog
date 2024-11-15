@@ -36,6 +36,10 @@ const nb = {
     '@core.formikVedleggList.validation.tooManyVedlegg': 'For mange dokumenter er lastet opp',
     '@core.formikVedleggList.validation.maxTotalSizeExceeded':
         'Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24 MB.',
+    '@core.formik-vedlegg-form.alert.totalSize':
+        'Du har totalt lastet opp mer enn grensen på 24 MB. Det betyr at du må fjerne noe av det du har lastet opp. Hvis det betyr at du ikke får plass til alt du ønsker å sende nå, kan du <Lenke>ettersende flere dokumenter</Lenke>.',
+    '@core.formik-vedlegg-form.alert.totalSize.noLink':
+        'Du har totalt lastet opp mer enn grensen på 24 MB. Det betyr at du må fjerne noe av det du har lastet opp.',
 
     ...pictureScanningGuideMessages.nb,
 };
@@ -76,6 +80,10 @@ const nn: Record<MessageKeys, string> = {
     '@core.formikVedleggList.validation.tooManyVedlegg': 'For mange dokument er lasta opp',
     '@core.formikVedleggList.validation.maxTotalSizeExceeded':
         'Total samla storleik for dokumenta du har lasta opp overstig grensa på 24 MB.',
+    '@core.formik-vedlegg-form.alert.totalSize':
+        'Du har lastet opp meir enn grensa på 24 MB. Det betyr at du må fjerne noko av det du har lastet opp. Om det betyr at du ikkje får plass til alt du vil sende no, kan du <Lenke>ettersende fleire dokument</Lenke>.',
+    '@core.formik-vedlegg-form.alert.totalSize.noLink':
+        'Du har totalt lastet opp meir enn grensa på 24 MB. Det betyr at du må fjerne noko av det du har lastet opp.',
 
     ...pictureScanningGuideMessages.nn,
 };
