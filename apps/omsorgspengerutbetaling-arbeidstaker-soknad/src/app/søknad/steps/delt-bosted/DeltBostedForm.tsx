@@ -70,6 +70,7 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
                 initialFiles={vedlegg}
                 fieldName={DeltBostedFormFields.vedlegg}
                 validate={getVedleggValidator({ useDefaultMessages: true }, andreVedlegg)}
+                uploadLaterURL={getLenker(intl.locale).ettersending}
             />
         </Form>
     );
