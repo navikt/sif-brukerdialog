@@ -1,11 +1,11 @@
 import { FormSummary } from '@navikt/ds-react';
 import React from 'react';
+import { getVedleggInLocationArray } from '@navikt/sif-common-core-ds/src';
+import VedleggSummaryList from '@navikt/sif-common-core-ds/src/components/vedlegg-summary-list/VedleggSummaryList';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { AppText } from '../../../../i18n';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { LegeerklæringSøknadsdata } from '../../../../types/søknadsdata/LegeerklæringSøknadsdata';
-import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
-import { getAttachmentsInLocationArray } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 
 interface Props {
     apiData: SøknadApiData;
@@ -14,9 +14,9 @@ interface Props {
 }
 
 const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringSøknadsdata, onEdit }) => {
-    const legeerklæringer = getAttachmentsInLocationArray({
+    const legeerklæringer = getVedleggInLocationArray({
         locations: apiData.vedlegg,
-        attachments: legeerklæringSøknadsdata?.vedlegg,
+        vedlegg: legeerklæringSøknadsdata?.vedlegg,
     });
 
     return (
@@ -34,7 +34,7 @@ const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringS�
                             <AppText id="step.oppsummering.legeerklæring.ingenVedlegg" />
                         ) : (
                             <div data-testid="legeerklæring-liste">
-                                <AttachmentList attachments={legeerklæringer} />
+                                <VedleggSummaryList vedlegg={legeerklæringer} />
                             </div>
                         )}
                     </FormSummary.Value>
