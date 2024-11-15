@@ -12,8 +12,6 @@ import IkkeTilgangPage from './pages/ikke-tilgang-page/IkkeTilgangPage';
 import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
 import { appEnv } from './utils/appEnv';
-import '@navikt/ds-css';
-import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.css';
 
 const {
