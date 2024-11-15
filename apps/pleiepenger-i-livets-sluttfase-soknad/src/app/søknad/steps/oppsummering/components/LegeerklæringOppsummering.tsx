@@ -1,7 +1,6 @@
 import { FormSummary } from '@navikt/ds-react';
 import React from 'react';
-import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
-import { getAttachmentsInLocationArray } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import { getVedleggInLocationArray, VedleggSummaryList } from '@navikt/sif-common-core-ds/src';
 import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
 import { AppText } from '../../../../i18n';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
@@ -14,9 +13,9 @@ interface Props {
 }
 
 const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringSøknadsdata, onEdit }) => {
-    const legeerklæringer = getAttachmentsInLocationArray({
+    const legeerklæringer = getVedleggInLocationArray({
         locations: apiData.vedleggUrls,
-        attachments: legeerklæringSøknadsdata?.vedlegg,
+        vedlegg: legeerklæringSøknadsdata?.vedlegg,
     });
 
     return (
@@ -37,7 +36,7 @@ const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringS�
                             <AppText id="step.oppsummering.legeerklæring.ingenVedlegg" />
                         ) : (
                             <div data-testid="legeerklæring-liste">
-                                <AttachmentList attachments={legeerklæringer} />
+                                <VedleggSummaryList vedlegg={legeerklæringer} />
                             </div>
                         )}
                     </FormSummary.Value>

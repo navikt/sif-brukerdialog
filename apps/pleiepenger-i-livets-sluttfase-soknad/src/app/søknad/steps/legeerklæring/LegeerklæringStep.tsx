@@ -1,3 +1,6 @@
+import { getUploadedVedlegg } from '@navikt/sif-common-core-ds/src';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
+import { FormikValuesObserver } from '@navikt/sif-common-formik-ds';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
@@ -12,9 +15,6 @@ import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import LegeerklæringForm, { LegeerklæringFormFields, LegeerklæringFormValues } from './LegeerklæringForm';
 import { getLegeerklæringStepInitialValues, getLegeerklæringSøknadsdataFromFormValues } from './legeerklæringStepUtils';
-import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
-import { FormikValuesObserver } from '@navikt/sif-common-formik-ds';
-import { getUploadedAttachments } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 
 const { FormikWrapper } = getTypedFormComponents<LegeerklæringFormFields, LegeerklæringFormValues>();
 
@@ -52,10 +52,10 @@ const LegeerklæringStep = () => {
         },
     );
 
-    const syncVedleggState = (vedlegg: Attachment[] = []) => {
+    const syncVedleggState = (vedlegg: Vedlegg[] = []) => {
         dispatch(
             actionsCreator.setSøknadLegeerklæring({
-                vedlegg: getUploadedAttachments(vedlegg),
+                vedlegg: getUploadedVedlegg(vedlegg),
             }),
         );
         dispatch(actionsCreator.requestLagreSøknad());

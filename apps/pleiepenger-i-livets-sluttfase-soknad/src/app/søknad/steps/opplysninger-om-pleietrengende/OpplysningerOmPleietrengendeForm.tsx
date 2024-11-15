@@ -1,11 +1,12 @@
 import { Heading } from '@navikt/ds-react';
 import { Søker } from '@navikt/sif-common-api';
+import { useVedleggHelper } from '@navikt/sif-common-core-ds';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { useAttachmentsHelper } from '@navikt/sif-common-core-ds';
-import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
+import { isDevMode } from '@navikt/sif-common-env';
 import {
     getTypedFormComponents,
     resetFieldValue,
@@ -26,7 +27,6 @@ import { YesOrNoDontKnow } from '../../../types/YesOrNoDontKnow';
 import { ÅrsakManglerIdentitetsnummer } from '../../../types/ÅrsakManglerIdentitetsnummer';
 import IdPart from './form-parts/IdPart';
 import { opplysningerOmPleietrengendeDefaultValues } from './opplysningerOmPleietrengendeStepUtils';
-import { isDevMode } from '@navikt/sif-common-env';
 
 export enum OpplysningerOmPleietrengendeFormFields {
     navn = 'navn',
@@ -45,7 +45,7 @@ export interface OpplysningerOmPleietrengendeFormValues {
     [OpplysningerOmPleietrengendeFormFields.harIkkeFnr]: boolean;
     [OpplysningerOmPleietrengendeFormFields.årsakManglerIdentitetsnummer]?: ÅrsakManglerIdentitetsnummer;
     [OpplysningerOmPleietrengendeFormFields.fødselsdato]?: string;
-    [OpplysningerOmPleietrengendeFormFields.pleietrengendeId]: Attachment[];
+    [OpplysningerOmPleietrengendeFormFields.pleietrengendeId]: Vedlegg[];
 }
 
 const { Form, DatePicker, TextField, RadioGroup, Checkbox } = getTypedFormComponents<
@@ -56,7 +56,7 @@ const { Form, DatePicker, TextField, RadioGroup, Checkbox } = getTypedFormCompon
 
 interface Props {
     søker: Søker;
-    andreVedlegg: Attachment[];
+    andreVedlegg: Vedlegg[];
     goBack?: () => void;
     isSubmitting: boolean;
 }
@@ -66,7 +66,7 @@ const OpplysningerOmPleietrengendeForm = ({ andreVedlegg, søker, isSubmitting, 
 
     const { setFieldValue, values } = useFormikContext<OpplysningerOmPleietrengendeFormValues>();
 
-    const { hasPendingUploads } = useAttachmentsHelper(
+    const { hasPendingUploads } = useVedleggHelper(
         values[OpplysningerOmPleietrengendeFormFields.pleietrengendeId],
         andreVedlegg,
     );
@@ -184,7 +184,9 @@ const OpplysningerOmPleietrengendeForm = ({ andreVedlegg, søker, isSubmitting, 
                             <Block>
                                 <AppText id="step.opplysningerOmPleietrengende.id.info" />
                             </Block>
-                            <IdPart pleietrengendeId={pleietrengendeId} andreVedlegg={andreVedlegg} />
+                            <Block>
+                                <IdPart pleietrengendeId={pleietrengendeId} andreVedlegg={andreVedlegg} />
+                            </Block>
                         </FormBlock>
                     </>
                 )}
