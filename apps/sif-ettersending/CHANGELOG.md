@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.42.0
+
+### Minor Changes
+
+-   Ta i bruk FormikFileUpload komponenten
+
 ## 3.41.14
 
 ### Patch Changes

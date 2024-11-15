@@ -108,13 +108,13 @@ const nb = {
     'step.dokumenter.stepTitle': 'Nå skal du laste opp dokumentene dine',
     'step.dokumenter.stepIndicatorLabel': 'Last opp dokumenter',
     'step.dokumenter.nextButtonLabel': 'Fortsett',
-    'steg.dokumenter.vedlegg': 'Last opp vedlegg',
+    'steg.dokumenter.vedlegg': 'Last opp dokument',
     'steg.dokumenter.infopanel.1':
         'Når du skal laste opp dokumenter må du enten ta bilde av dokumentene, eller scanne dem.',
     'steg.dokumenter.infopanel.2':
-        'Du kan laste opp disse filtypene: JPG, JPEG, PDF og PNG. Det er ikke mulig å laste opp andre filtyper enn disse.',
+        'Du kan laste opp disse filtypene: JPG, JPEG, PNG og PDF. Det er ikke mulig å laste opp andre filtyper enn disse.',
     'steg.dokumenter.infopanel.3':
-        'Du kan laste opp så mange dokumenter du vil, men den totale størrelsen på alle dokumentene kan ikke overstige 24 MB. Vi varsler deg hvis du når denne grensen.',
+        'Du kan laste opp så mange dokumenter du vil, men hvert dokument kan ikke være større enn 10 MB, og den totale størrelsen på alle dokumentene kan ikke overstige 24 MB. Vi varsler deg hvis du når denne grensen.',
 
     'step.oppsummering.pageTitle': 'Oppsummering',
     'step.oppsummering.stepTitle': 'Oppsummering',
@@ -177,10 +177,10 @@ const nb = {
     'validation.harForståttRettigheterOgPlikter.notChecked': 'Du må bekrefte at du har lest og forstått dine plikter',
     'validation.registrertBarnAktørId.ANNET.noValue': 'Du må velge hvilket barn dokumentasjonen gjelder',
     'validation.registrertBarnAktørId.LEGEERKLÆRING.noValue': 'Du må velge hvilket barn legeerklæringen gjelder',
-    'validation.dokumenter.noAttachmentsUploaded': 'Ingen dokumenter er lastet opp',
-    'validation.dokumenter.tooManyAttachments': 'For mange dokumenter er lastet opp',
+    'validation.dokumenter.noVedleggUploaded': 'Ingen dokumenter er lastet opp',
+    'validation.dokumenter.tooManyVedlegg': 'For mange dokumenter er lastet opp',
     'validation.dokumenter.maxTotalSizeExceeded':
-        'Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24Mb.',
+        'Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24 MB.',
     'validation.beskrivelse.stringHasNoValue': 'Beskriv ettersendelsen',
     'validation.beskrivelse.stringIsTooLong': 'Beskrivelsen kan ikke inneholde mer enn {maks} tegn',
     'validation.beskrivelse.stringIsTooShort': 'Beskrivelsen må inneholde minst {min} tegn',

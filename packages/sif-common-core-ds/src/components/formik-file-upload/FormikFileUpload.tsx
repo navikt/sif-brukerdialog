@@ -105,7 +105,7 @@ const FormikFileUpload = ({
                     <Heading level={headingLevel} size="xsmall">
                         <CoreText
                             id="@core.formikFileUpload.dokumenterLastetOpp.tittel"
-                            values={{ antall: acceptedFiles.length }}
+                            values={{ antall: acceptedFiles.filter((a) => a.uploaded).length }}
                         />
                     </Heading>
                     {showSizeProgress && (

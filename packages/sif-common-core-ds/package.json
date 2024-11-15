@@ -6,7 +6,7 @@
     "private": true,
     "type": "module",
     "dependencies": {
-        "@grafana/faro-web-sdk": "1.11.0",
+        "@grafana/faro-web-sdk": "1.12.0",
         "@navikt/sif-common-api": "*",
         "@navikt/sif-common-env": "*",
         "@navikt/sif-common-utils": "*",
@@ -17,7 +17,7 @@
         "http-status-codes": "2.3.0",
         "i18n-iso-countries": "7.13.0",
         "pretty-bytes": "6.1.1",
-        "tailwindcss": "3.4.14"
+        "tailwindcss": "3.4.15"
     },
     "devDependencies": {
         "@babel/core": "7.26.0",
@@ -32,16 +32,16 @@
         "@navikt/sif-common-formik-ds": "*",
         "@originjs/vite-plugin-commonjs": "1.0.3",
         "@sif/eslint-config": "*",
-        "@storybook/addon-a11y": "8.4.2",
-        "@storybook/addon-actions": "8.4.2",
-        "@storybook/addon-essentials": "8.4.2",
-        "@storybook/addon-interactions": "8.4.2",
-        "@storybook/addon-links": "8.4.2",
-        "@storybook/builder-vite": "8.4.2",
-        "@storybook/node-logger": "8.4.2",
-        "@storybook/preset-create-react-app": "8.4.2",
-        "@storybook/react": "8.4.2",
-        "@storybook/react-vite": "8.4.2",
+        "@storybook/addon-a11y": "8.4.4",
+        "@storybook/addon-actions": "8.4.4",
+        "@storybook/addon-essentials": "8.4.4",
+        "@storybook/addon-interactions": "8.4.4",
+        "@storybook/addon-links": "8.4.4",
+        "@storybook/builder-vite": "8.4.4",
+        "@storybook/node-logger": "8.4.4",
+        "@storybook/preset-create-react-app": "8.4.4",
+        "@storybook/react": "8.4.4",
+        "@storybook/react-vite": "8.4.4",
         "@storybook/testing-library": "0.2.2",
         "@types/node": "22.9.0",
         "@types/react": "18.3.12",
@@ -63,12 +63,12 @@
         "react-responsive": "10.0.0",
         "react-syntax-highlighter": "15.6.1",
         "rimraf": "6.0.1",
-        "storybook": "8.4.2",
+        "storybook": "8.4.4",
         "typescript": "5.6.3",
         "uuid": "11.0.3",
         "vite": "5.4.11",
         "vite-plugin-checker": "0.8.0",
-        "vitest": "2.1.4"
+        "vitest": "2.1.5"
     },
     "overrides": {
         "react-refresh": "0.11.0"
