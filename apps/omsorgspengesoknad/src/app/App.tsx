@@ -11,6 +11,7 @@ import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
 import { appEnv } from './utils/appEnv';
 import './app.css';
+import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 
 const {
     PUBLIC_PATH,
