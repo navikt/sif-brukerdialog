@@ -4,7 +4,7 @@ import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { isDevMode } from '@navikt/sif-common-env';
 import { resetFieldValue, resetFieldValues } from '@navikt/sif-common-formik-ds';
 import { SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds/src';
@@ -29,7 +29,7 @@ import InfoForFarVedNyttBarn from './info/InfoForFarVedNyttBarn';
 interface Props {
     formValues: SøknadFormValues;
     søkersFødselsnummer: string;
-    attachments: Attachment[];
+    attachments: Vedlegg[];
     harRegistrerteBarn: boolean;
 }
 

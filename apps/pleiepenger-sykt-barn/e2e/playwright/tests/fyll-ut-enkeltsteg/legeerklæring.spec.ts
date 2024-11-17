@@ -32,10 +32,10 @@ test.describe('Fyll ut legeerklæring', () => {
     test('Ett vedlegg', async ({ page }) => {
         const [fileChooser] = await Promise.all([
             page.waitForEvent('filechooser'),
-            await page.locator('#legeerklæring-input').dispatchEvent('click'),
+            await page.locator('input[type="file"]').dispatchEvent('click'),
         ]);
         await fileChooser.setFiles('./e2e/playwright/files/navlogopng.png');
-        const listItems = await page.getByText('navlogopng.png(2.31 KB)');
+        const listItems = await page.getByText('navlogopng.png');
         await expect(listItems).toHaveCount(1);
 
         await page.getByTestId('typedFormikForm-submitButton').click();
@@ -43,15 +43,15 @@ test.describe('Fyll ut legeerklæring', () => {
     test('Flere vedlegg', async ({ page }) => {
         const fileChooserPromise = page.waitForEvent('filechooser');
 
-        await page.locator('#legeerklæring-input').dispatchEvent('click');
+        await page.locator('input[type="file"]').dispatchEvent('click');
         const fileChooser1 = await fileChooserPromise;
         await fileChooser1.setFiles('./e2e/playwright/files/navlogopng.png');
 
-        await page.locator('#legeerklæring-input').dispatchEvent('click');
+        await page.locator('input[type="file"]').dispatchEvent('click');
         const fileChooser2 = await fileChooserPromise;
         await fileChooser2.setFiles('./e2e/playwright/files/navlogopng.png');
 
-        const listItems = await page.getByText('navlogopng.png(2.31 KB)');
+        const listItems = await page.getByText('navlogopng.png');
         await expect(listItems).toHaveCount(2);
 
         await page.getByTestId('typedFormikForm-submitButton').click();

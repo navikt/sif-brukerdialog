@@ -1,5 +1,5 @@
+import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
-import { getAttachmentsApiData } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { getMedlemskapApiDataFromSøknadsdata } from '@navikt/sif-common-forms-ds/src';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { RegistrerteBarn, ÅrsakManglerIdentitetsnummer } from '../../types';
@@ -51,7 +51,7 @@ export const getApiDataFromSøknadsdata = (
                     søknadsdata.barn.årsakManglerIdentitetsnummer ===
                         ÅrsakManglerIdentitetsnummer.BARNET_BOR_I_UTLANDET &&
                     søknadsdata.barn.fødselsattest
-                        ? getAttachmentsApiData(søknadsdata.barn.fødselsattest)
+                        ? getVedleggApiData(søknadsdata.barn.fødselsattest)
                         : [],
                 fraOgMed: dateToISODate(søknadsperiode.from),
                 tilOgMed: dateToISODate(søknadsperiode.to),
@@ -81,8 +81,7 @@ export const getApiDataFromSøknadsdata = (
                 ...getNattevåkApiDataFromSøknadsdata(søknadsdata.nattevåk),
                 ...getBeredskapApiDataFromSøknadsdata(søknadsdata.beredskap),
                 medlemskap: getMedlemskapApiDataFromSøknadsdata(sprak, søknadsdata.medlemskap),
-                vedlegg:
-                    søknadsdata.legeerklæring !== undefined ? getAttachmentsApiData(søknadsdata.legeerklæring) : [],
+                vedlegg: søknadsdata.legeerklæring !== undefined ? getVedleggApiData(søknadsdata.legeerklæring) : [],
                 dataBruktTilUtledning: JSON.stringify(dataBruktTilUtledningAnnetData),
             };
 

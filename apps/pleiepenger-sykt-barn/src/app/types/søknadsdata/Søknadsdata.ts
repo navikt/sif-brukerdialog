@@ -1,4 +1,4 @@
-import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { DateRange } from '@navikt/sif-common-formik-ds/src';
 import { ArbeidssituasjonSøknadsdata } from './ArbeidssituasjonSøknadsdata';
 import { ArbeidstidSøknadsdata } from './ArbeidstidSøknadsdata';
@@ -38,6 +38,6 @@ export interface Søknadsdata {
     nattevåk?: NattevåkSøknadsdata;
     beredskap?: BeredskapSøknadsdata;
     medlemskap?: MedlemskapSøknadsdata;
-    legeerklæring?: Attachment[];
+    legeerklæring?: Vedlegg[];
     stønadGodtgjørelse?: StønadGodtgjørelseSøknadsdata;
 }

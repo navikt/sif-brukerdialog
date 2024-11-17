@@ -1,4 +1,4 @@
-import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { BarnRelasjon } from '../BarnRelasjon';
 import { ÅrsakManglerIdentitetsnummer } from '../ÅrsakManglerIdentitetsnummer';
 
@@ -23,7 +23,7 @@ export interface OmBarnetAnnetUtenFnrSøknadsdata extends BarnRelasjonSøknadsda
     barnetsNavn: string;
     årsakManglerIdentitetsnummer: ÅrsakManglerIdentitetsnummer;
     barnetsFødselsdato: string;
-    fødselsattest: Attachment[];
+    fødselsattest: Vedlegg[];
 }
 
 export type OmBarnetSøknadsdata =

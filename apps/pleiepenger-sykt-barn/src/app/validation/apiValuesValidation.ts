@@ -1,16 +1,16 @@
-import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { VirksomhetApiData } from '@navikt/sif-common-forms-ds/src/forms/virksomhet/types';
 import { durationToDecimalDuration, ISODurationToDuration, summarizeDurations } from '@navikt/sif-common-utils';
 import { isEqual } from 'lodash';
+import { AppIntlShape } from '../i18n';
 import { StepID } from '../types/StepID';
 import { OmsorgstilbudApiData, SøknadApiData, TimerFasteDagerApiData } from '../types/søknad-api-data/SøknadApiData';
 import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import { søkerKunHelgedager } from '../utils/formValuesUtils';
-import { AppIntlShape } from '../i18n';
-import { getAttachmentsApiData } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 
-export const apiVedleggIsInvalid = (apiVedlegg: string[], vedlegg: Attachment[]) => {
-    const apiVedleggFromSøknadsdata = vedlegg ? getAttachmentsApiData(vedlegg) : [];
+export const apiVedleggIsInvalid = (apiVedlegg: string[], vedlegg: Vedlegg[]) => {
+    const apiVedleggFromSøknadsdata = vedlegg ? getVedleggApiData(vedlegg) : [];
     return !isEqual(apiVedleggFromSøknadsdata.sort(), apiVedlegg.sort());
 };
 export interface ApiValidationError {

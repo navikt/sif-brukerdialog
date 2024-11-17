@@ -1,4 +1,6 @@
 import { FormSummary } from '@navikt/ds-react';
+import { VedleggSummaryList } from '@navikt/sif-common-core-ds/src';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { TextareaSvar } from '@navikt/sif-common-ui';
@@ -8,8 +10,6 @@ import { AppText } from '../../../i18n';
 import { BarnRelasjon, RegistrerteBarn, ÅrsakManglerIdentitetsnummer } from '../../../types';
 import { SøknadApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
-import AttachmentList from '@navikt/sif-common-core-ds/src/components/attachment-list/AttachmentList';
-import { Attachment } from '@navikt/sif-common-core-ds/src/types';
 
 interface Props {
     barn: RegistrerteBarn[];
@@ -35,7 +35,7 @@ const apiBarnSummary = (apiBarn: RegistrerteBarn) => (
     </>
 );
 
-const annetBarnSummary = (apiValues: SøknadApiData, fødselsattester: Attachment[]) => (
+const annetBarnSummary = (apiValues: SøknadApiData, fødselsattester: Vedlegg[]) => (
     <>
         {apiValues.barn.fødselsdato ? (
             <FormSummary.Answer>
@@ -81,7 +81,7 @@ const annetBarnSummary = (apiValues: SøknadApiData, fødselsattester: Attachmen
                     </FormSummary.Label>
                     <FormSummary.Value>
                         <div data-testid={'oppsummering-omBarn-fødselsattest'}>
-                            <AttachmentList attachments={fødselsattester} />
+                            <VedleggSummaryList vedlegg={fødselsattester} />
                         </div>
                         {apiValues.fødselsattestVedleggUrls.length === 0 && (
                             <AppText id="step.oppsummering.omBarn.ingenFødselsattest" />
