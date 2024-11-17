@@ -1,7 +1,6 @@
 import { VStack } from '@navikt/ds-react';
 import { FormikFileUpload, useVedleggHelper } from '@navikt/sif-common-core-ds';
 import { getVedleggValidator } from '@navikt/sif-common-core-ds/src/components/formik-file-upload/getVedleggValidator';
-import PictureScanningGuide from '@navikt/sif-common-core-ds/src/components/picture-scanning-guide/PictureScanningGuide';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { useFormikContext } from 'formik';
@@ -53,12 +52,13 @@ const DokumenterStep = ({ søknadstype, søker, soknadId }: Props) => {
                         <AppText id={'steg.dokumenter.infopanel.3'} />
                     </p>
                 </SifGuidePanel>
-                <PictureScanningGuide />
+
                 <FormikFileUpload
                     label={text('steg.dokumenter.vedlegg')}
                     initialFiles={values[SoknadFormField.dokumenter]}
                     fieldName={SoknadFormField.dokumenter}
                     validate={getVedleggValidator({ required: true })}
+                    showPictureScanningGuide={true}
                 />
             </VStack>
         </SoknadFormStep>

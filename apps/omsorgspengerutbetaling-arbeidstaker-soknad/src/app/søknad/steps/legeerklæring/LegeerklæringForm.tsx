@@ -1,7 +1,6 @@
 import React from 'react';
 import { useVedleggHelper } from '@navikt/sif-common-core-ds';
 import { FormikFileUpload } from '@navikt/sif-common-core-ds/src';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { getVedleggValidator } from '@navikt/sif-common-core-ds/src/components/formik-file-upload/getVedleggValidator';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
@@ -9,6 +8,7 @@ import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
+import { VStack } from '@navikt/ds-react';
 
 interface Props {
     values: Partial<LegeerklæringFormValues>;
@@ -41,7 +41,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
             submitDisabled={hasPendingUploads}
             runDelayedFormValidation={true}
             onBack={goBack}>
-            <Block padBottom="xl">
+            <VStack gap="6">
                 <SifGuidePanel>
                     <p style={{ marginTop: 0 }}>
                         <AppText id={'step.legeerklæring.counsellorpanel.1'} />
@@ -50,15 +50,15 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                         <AppText id={'step.legeerklæring.counsellorpanel.2'} />
                     </p>
                 </SifGuidePanel>
-            </Block>
-
-            <FormikFileUpload
-                label={text('step.legeerklæring.vedleggsliste.tittel')}
-                initialFiles={vedlegg}
-                fieldName={LegeerklæringFormFields.vedlegg}
-                validate={getVedleggValidator({ useDefaultMessages: true }, andreVedlegg)}
-                uploadLaterURL={getLenker(intl.locale).ettersending}
-            />
+                <FormikFileUpload
+                    label={text('step.legeerklæring.vedleggsliste.tittel')}
+                    initialFiles={vedlegg}
+                    fieldName={LegeerklæringFormFields.vedlegg}
+                    validate={getVedleggValidator({ useDefaultMessages: true }, andreVedlegg)}
+                    uploadLaterURL={getLenker(intl.locale).ettersending}
+                    showPictureScanningGuide={true}
+                />
+            </VStack>
         </Form>
     );
 };

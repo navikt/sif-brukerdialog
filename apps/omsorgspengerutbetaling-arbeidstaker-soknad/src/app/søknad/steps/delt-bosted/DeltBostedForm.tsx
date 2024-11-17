@@ -1,4 +1,4 @@
-import { Link } from '@navikt/ds-react';
+import { Link, VStack } from '@navikt/ds-react';
 import React from 'react';
 import { FormikFileUpload, useVedleggHelper } from '@navikt/sif-common-core-ds';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
@@ -65,13 +65,16 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
                     </p>
                 </SifGuidePanel>
             </Block>
-            <FormikFileUpload
-                label={text('step.deltBosted.vedleggsliste.tittel')}
-                initialFiles={vedlegg}
-                fieldName={DeltBostedFormFields.vedlegg}
-                validate={getVedleggValidator({ useDefaultMessages: true }, andreVedlegg)}
-                uploadLaterURL={getLenker(intl.locale).ettersending}
-            />
+            <VStack gap="4">
+                <FormikFileUpload
+                    label={text('step.deltBosted.vedleggsliste.tittel')}
+                    initialFiles={vedlegg}
+                    fieldName={DeltBostedFormFields.vedlegg}
+                    validate={getVedleggValidator({ useDefaultMessages: true }, andreVedlegg)}
+                    uploadLaterURL={getLenker(intl.locale).ettersending}
+                    showPictureScanningGuide={true}
+                />
+            </VStack>
         </Form>
     );
 };

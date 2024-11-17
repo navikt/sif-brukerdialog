@@ -42,7 +42,7 @@
         "@types/react-dom": "18.3.1",
         "@types/uuid": "10.0.0",
         "config": "*",
-        "eslint": "9.14.0",
+        "eslint": "9.15.0",
         "eslint-config-next": "15.0.3",
         "jest": "29.7.0",
         "jest-environment-jsdom": "29.7.0",

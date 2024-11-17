@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 9.21.2
+
+### Patch Changes
+
+-   Ta i bruk showPictureScanningGuide prop. Sette den til true for alle dialoger som bruker FormikFileUpload
+
 ## 9.21.1
 
 ### Patch Changes

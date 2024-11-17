@@ -63,6 +63,7 @@ const Example = () => {
                     },
                     [],
                 )}
+                showPictureScanningGuide={true}
             />
             <Box>
                 <Heading level="2" size="xsmall">

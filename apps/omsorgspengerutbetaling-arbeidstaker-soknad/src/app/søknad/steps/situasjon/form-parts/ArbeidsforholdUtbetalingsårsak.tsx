@@ -14,6 +14,7 @@ import { AppFieldValidationErrors } from '../../../../utils/validations';
 import { ArbeidsforholdFormFields, SituasjonFormValues } from '../SituasjonStep';
 import { getVedleggValidator } from '@navikt/sif-common-core-ds/src/components/formik-file-upload/getVedleggValidator';
 import getLenker from '../../../../lenker';
+import { VStack } from '@navikt/ds-react';
 
 const { RadioGroup, Textarea } = getTypedFormComponents<ArbeidsforholdFormFields, Arbeidsforhold, ValidationError>();
 
@@ -114,27 +115,30 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName, andr
                         />
                     </FormBlock>
                     <FormBlock>
-                        <FormikFileUpload
-                            headingLevel="3"
-                            label={text('step.situasjon.arbeidsforhold.utbetalingsårsak.vedlegg')}
-                            fieldName={getFieldName(ArbeidsforholdFormFields.dokumenter)}
-                            initialFiles={vedlegg}
-                            validate={getVedleggValidator(
-                                {
-                                    errors: {
-                                        noVedleggUploaded: {
-                                            keyPrefix: 'validation.arbeidsforhold.utbetalingsårsak.vedlegg',
-                                            keepKeyUnaltered: true,
-                                            values: { arbeidsgivernavn },
+                        <VStack gap={'4'}>
+                            <FormikFileUpload
+                                headingLevel="3"
+                                label={text('step.situasjon.arbeidsforhold.utbetalingsårsak.vedlegg')}
+                                fieldName={getFieldName(ArbeidsforholdFormFields.dokumenter)}
+                                initialFiles={vedlegg}
+                                validate={getVedleggValidator(
+                                    {
+                                        errors: {
+                                            noVedleggUploaded: {
+                                                keyPrefix: 'validation.arbeidsforhold.utbetalingsårsak.vedlegg',
+                                                keepKeyUnaltered: true,
+                                                values: { arbeidsgivernavn },
+                                            },
                                         },
+                                        required: true,
+                                        useDefaultMessages: true,
                                     },
-                                    required: true,
-                                    useDefaultMessages: true,
-                                },
-                                andreVedlegg,
-                            )}
-                            uploadLaterURL={getLenker(intl.locale).ettersending}
-                        />
+                                    andreVedlegg,
+                                )}
+                                uploadLaterURL={getLenker(intl.locale).ettersending}
+                                showPictureScanningGuide={true}
+                            />
+                        </VStack>
                     </FormBlock>
                 </>
             )}

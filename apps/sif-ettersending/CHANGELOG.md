@@ -1,5 +1,13 @@
 # @navikt/sif-ettersending
 
+## 3.42.1
+
+### Patch Changes
+
+-   Ta i bruk showPictureScanningGuide prop. Sette den til true for alle dialoger som bruker FormikFileUpload
+-   Updated dependencies
+    -   @navikt/sif-common-core-ds@9.21.2
+
 ## 3.42.0
 
 ### Minor Changes
