@@ -37,7 +37,7 @@ const OpplysningerOmBarnetStep = ({ onValidSubmit }: StepCommonProps) => {
                         <AnnetBarnPart
                             formValues={values}
                             søkersFødselsnummer={søkerdata.søker.fødselsnummer}
-                            attachments={fødselsattester}
+                            fødselsattester={fødselsattester}
                             harRegistrerteBarn={harRegistrerteBarn(søkerdata)}
                         />
                     )}

@@ -29,7 +29,7 @@ import InfoForFarVedNyttBarn from './info/InfoForFarVedNyttBarn';
 interface Props {
     formValues: SøknadFormValues;
     søkersFødselsnummer: string;
-    attachments: Vedlegg[];
+    fødselsattester: Vedlegg[];
     harRegistrerteBarn: boolean;
 }
 
@@ -37,7 +37,7 @@ const nYearsAgo = (years: number): Date => {
     return dayjs(getDateToday()).subtract(years, 'y').startOf('year').toDate();
 };
 
-const AnnetBarnPart: React.FC<Props> = ({ formValues, søkersFødselsnummer, attachments, harRegistrerteBarn }) => {
+const AnnetBarnPart: React.FC<Props> = ({ formValues, søkersFødselsnummer, fødselsattester, harRegistrerteBarn }) => {
     const { text } = useAppIntl();
     const {
         values: { barnetHarIkkeFnr, årsakManglerIdentitetsnummer },
@@ -198,7 +198,7 @@ const AnnetBarnPart: React.FC<Props> = ({ formValues, søkersFødselsnummer, att
                     {barnetHarIkkeFnr &&
                         årsakManglerIdentitetsnummer === ÅrsakManglerIdentitetsnummer.BARNET_BOR_I_UTLANDET && (
                             <FormBlock>
-                                <FødselsattestPart fødselsattester={attachments} />
+                                <FødselsattestPart fødselsattester={fødselsattester} />
                             </FormBlock>
                         )}
                 </div>

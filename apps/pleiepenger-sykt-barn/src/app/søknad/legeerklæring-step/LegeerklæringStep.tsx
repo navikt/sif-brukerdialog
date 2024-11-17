@@ -17,18 +17,18 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
     const { values, setFieldValue } = useFormikContext<SøknadFormValues>();
     const { intl, text } = useAppIntl();
 
-    const attachments = values[SøknadFormField.legeerklæring] || [];
+    const vedlegg = values[SøknadFormField.legeerklæring] || [];
     const andreVedlegg: Vedlegg[] = values[SøknadFormField.fødselsattest] || [];
 
-    const onAttachmentsChange = (changedAttachments: Vedlegg[]) => {
-        const valuesToPersist: SøknadFormValues = { ...values, legeerklæring: changedAttachments };
-        setFieldValue(SøknadFormField.legeerklæring, changedAttachments);
+    const onVedleggChange = (changedVedlegg: Vedlegg[]) => {
+        const valuesToPersist: SøknadFormValues = { ...values, legeerklæring: changedVedlegg };
+        setFieldValue(SøknadFormField.legeerklæring, changedVedlegg);
         persist({ formValues: valuesToPersist, lastStepID: StepID.LEGEERKLÆRING });
     };
 
-    const { hasPendingUploads } = useVedleggHelper(attachments, andreVedlegg, onAttachmentsChange);
+    const { hasPendingUploads } = useVedleggHelper(vedlegg, andreVedlegg, onVedleggChange);
 
-    usePersistOnChange(attachments, true, StepID.LEGEERKLÆRING);
+    usePersistOnChange(vedlegg, true, StepID.LEGEERKLÆRING);
 
     return (
         <SøknadFormStep
@@ -52,7 +52,7 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
             <FormikFileUpload
                 label={text('steg.lege.vedlegg')}
                 fieldName={SøknadFormField.legeerklæring}
-                initialFiles={attachments}
+                initialFiles={vedlegg}
                 validate={getVedleggValidator({ useDefaultMessages: true }, andreVedlegg)}
                 uploadLaterURL={getLenker(intl.locale).ettersend}
                 otherFiles={andreVedlegg}
