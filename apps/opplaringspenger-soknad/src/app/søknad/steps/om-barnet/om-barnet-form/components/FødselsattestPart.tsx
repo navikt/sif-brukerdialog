@@ -1,18 +1,15 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
-import { getAttachmentsValidator, useAttachmentsHelper } from '@navikt/sif-common-core-ds';
-import { FormikAttachmentForm } from '@navikt/sif-common-core-ds/src';
-import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import { FormikFileUpload, getVedleggValidator, useVedleggHelper } from '@navikt/sif-common-core-ds';
 import { useFormikContext } from 'formik';
-import { relocateToLoginPage } from '../../../../../utils/navigationUtils';
 import actionsCreator from '../../../../context/action/actionCreator';
 import { useSøknadContext } from '../../../../context/hooks/useSøknadContext';
 import { OmBarnetFormText as Text, useOmBarnetFormIntl } from '../omBarnetFormMessages';
 import { OmBarnetFormFields, OmBarnetFormValues } from '../types';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 
 interface Props {
-    fødselsattester: Attachment[];
-    andreVedlegg: Attachment[];
+    fødselsattester: Vedlegg[];
+    andreVedlegg: Vedlegg[];
     ettersendelseURL: string;
 }
 
@@ -21,19 +18,12 @@ const FødselsattestPart: React.FC<Props> = ({ fødselsattester, andreVedlegg, e
     const { setFieldValue } = useFormikContext<OmBarnetFormValues>();
     const { dispatch } = useSøknadContext();
 
-    const { logUserLoggedOut } = useAmplitudeInstance();
-
-    const userNotLoggedIn = async () => {
-        await logUserLoggedOut('Opplasting av dokument');
-        relocateToLoginPage();
-    };
-
-    const onAttachmentsChange = (changedAttachments: Attachment[]) => {
-        setFieldValue(OmBarnetFormFields.fødselsattest, changedAttachments);
+    const onVedleggChange = (changedVedlegg: Vedlegg[]) => {
+        setFieldValue(OmBarnetFormFields.fødselsattest, changedVedlegg);
         dispatch(actionsCreator.requestLagreSøknad());
     };
 
-    useAttachmentsHelper(fødselsattester, andreVedlegg, onAttachmentsChange);
+    useVedleggHelper(fødselsattester, andreVedlegg, onVedleggChange);
 
     return (
         <VStack gap="6">
@@ -41,17 +31,14 @@ const FødselsattestPart: React.FC<Props> = ({ fødselsattester, andreVedlegg, e
                 {text('omBarnetForm.fødselsattest.tittel')}
             </Heading>
             <Text id="omBarnetForm.fødselsattest.info" />
-            <FormikAttachmentForm
+            <FormikFileUpload
                 fieldName={OmBarnetFormFields.fødselsattest}
-                attachments={fødselsattester}
-                labels={{
-                    addLabel: text('omBarnetForm.fødselsattest.vedlegg'),
-                    noAttachmentsText: text('omBarnetForm.fødselsattest.ingenVedlegg'),
-                }}
-                validate={getAttachmentsValidator({ useDefaultMessages: true }, andreVedlegg)}
+                initialFiles={fødselsattester}
+                label={text('omBarnetForm.fødselsattest.vedlegg')}
+                validate={getVedleggValidator({ useDefaultMessages: true }, andreVedlegg)}
                 uploadLaterURL={ettersendelseURL}
-                onUnauthorizedOrForbiddenUpload={userNotLoggedIn}
-                otherAttachments={andreVedlegg}
+                otherFiles={andreVedlegg}
+                showPictureScanningGuide={true}
             />
         </VStack>
     );

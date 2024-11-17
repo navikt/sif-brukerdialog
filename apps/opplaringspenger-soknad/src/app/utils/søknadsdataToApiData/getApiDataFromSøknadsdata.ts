@@ -1,4 +1,3 @@
-import { getAttachmentsApiData } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { FlereSokereApiData, SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { KursSøknadsdata, Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
@@ -13,6 +12,7 @@ import { getKursApiDataFromSøknadsdata } from './getKursApiDataFromSøknadsdata
 import { DataBruktTilUtledning } from '../../types/DataBruktTilUtledning';
 import { getOmBarnetApiDataFromSøknadsdata } from './getOmBarnetApiDataFromSøknadsdata';
 import { RegistrertBarn } from '@navikt/sif-common-api';
+import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
 
 export const getFlereSokereApiData = (flereSokereSvar: YesOrNoDontKnow): FlereSokereApiData => {
     switch (flereSokereSvar) {
@@ -60,7 +60,7 @@ export const getApiDataFromSøknadsdata = (
         språk,
         harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true,
         barn: getOmBarnetApiDataFromSøknadsdata(registrerteBarn, omBarnet),
-        vedlegg: getAttachmentsApiData(legeerklæring.vedlegg),
+        vedlegg: getVedleggApiData(legeerklæring.vedlegg),
         fraOgMed: dateToISODate(søknadsperiode.from),
         tilOgMed: dateToISODate(søknadsperiode.to),
         kurs: getKursApiDataFromSøknadsdata(kurs),

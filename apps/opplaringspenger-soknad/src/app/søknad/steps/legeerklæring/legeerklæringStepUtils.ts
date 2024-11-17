@@ -1,6 +1,6 @@
-import { getUploadedAttachments } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
 import { LegeerklæringSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { LegeerklæringFormFields, LegeerklæringFormValues } from './LegeerklæringForm';
+import { getUploadedVedlegg } from '@navikt/sif-common-core-ds/src';
 
 export const getLegeerklæringStepInitialValues = (
     søknadsdata: Søknadsdata,
@@ -18,6 +18,6 @@ export const getLegeerklæringSøknadsdataFromFormValues = (
     values: LegeerklæringFormValues,
 ): LegeerklæringSøknadsdata => {
     return {
-        vedlegg: getUploadedAttachments(values[LegeerklæringFormFields.vedlegg] || []),
+        vedlegg: getUploadedVedlegg(values[LegeerklæringFormFields.vedlegg] || []),
     };
 };

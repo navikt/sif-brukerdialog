@@ -1,6 +1,6 @@
 import { RegistrertBarn } from '@navikt/sif-common-api';
-import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
 import { RelasjonTilBarnet, ÅrsakBarnetManglerIdentitetsnummer } from './';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 
 export interface RelasjonTilBarnetSøknadsdataBase {
     relasjonTilBarnet: RelasjonTilBarnet;
@@ -18,7 +18,7 @@ interface OmBarnetFormSøknadsdata_BarnUtenFnr extends RelasjonTilBarnetSøknads
     barnetsNavn: string;
     årsakManglerIdentitetsnummer: ÅrsakBarnetManglerIdentitetsnummer;
     barnetsFødselsdato: string;
-    fødselsattest: Attachment[];
+    fødselsattest: Vedlegg[];
 }
 
 export interface OmBarnetFormSøknadsdata_RegistrertBarn {
