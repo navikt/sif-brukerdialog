@@ -1,6 +1,6 @@
-import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
-import { ÅrsakManglerIdentitetsnummer } from '../ÅrsakManglerIdentitetsnummer';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { YesOrNoDontKnow } from '../YesOrNoDontKnow';
+import { ÅrsakManglerIdentitetsnummer } from '../ÅrsakManglerIdentitetsnummer';
 
 interface PleietrengendeMedFnr {
     type: 'pleietrengendeMedFnr';
@@ -15,7 +15,7 @@ interface PleietrengendeUtenFnr {
     årsakManglerIdentitetsnummer: ÅrsakManglerIdentitetsnummer;
     flereSokere: YesOrNoDontKnow;
     fødselsdato: string;
-    pleietrengendeId: Attachment[];
+    pleietrengendeId: Vedlegg[];
 }
 
 export type OpplysningerOmPleietrengendeSøknadsdata = PleietrengendeMedFnr | PleietrengendeUtenFnr;

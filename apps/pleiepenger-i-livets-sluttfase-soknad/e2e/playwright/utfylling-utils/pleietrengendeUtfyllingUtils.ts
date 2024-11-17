@@ -19,10 +19,13 @@ export const fyllUtPleietrengendeUtenFnr = async (page: Page) => {
     await page.getByLabel('Måned', { exact: true }).selectOption('3');
     await page.getByLabel('Mandag 4').click();
     await page.getByText('Annet').click();
-    await page.getByRole('button', { name: 'Last opp ID' }).click();
-    await expect(page.getByText('Ingen dokumenter er lastet opp')).toHaveCount(1);
-    await page.locator('input[name="pleietrengendeId"]').setInputFiles('./e2e/playwright/files/navlogopng.png');
-    await expect(page.getByText('navlogopng.png').isVisible()).toBeTruthy();
+    const [fileChooser] = await Promise.all([
+        page.waitForEvent('filechooser'),
+        await page.locator('input[type="file"]').dispatchEvent('click'),
+    ]);
+    await fileChooser.setFiles('./e2e/playwright/files/navlogopng.png');
+    const listItems = await page.getByText('navlogopng.png');
+    await expect(listItems).toHaveCount(1);
 };
 
 export const kontrollerPleietrengendeUtenFnr = async (page: Page) => {

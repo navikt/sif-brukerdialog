@@ -1,4 +1,4 @@
-import { getAttachmentsApiData } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
 import { getMedlemskapApiDataFromSøknadsdata } from '@navikt/sif-common-forms-ds/src';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { FlereSokereApiData, SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
@@ -74,9 +74,9 @@ export const getApiDataFromSøknadsdata = (
         pleietrengende: getPleietrengendeApiDataFromSøknadsdata(opplysningerOmPleietrengende),
         opplastetIdVedleggUrls:
             opplysningerOmPleietrengende.type === 'pleietrengendeUtenFnr'
-                ? getAttachmentsApiData(opplysningerOmPleietrengende.pleietrengendeId)
+                ? getVedleggApiData(opplysningerOmPleietrengende.pleietrengendeId)
                 : [],
-        vedleggUrls: getAttachmentsApiData(legeerklæring.vedlegg),
+        vedleggUrls: getVedleggApiData(legeerklæring.vedlegg),
         pleierDuDenSykeHjemme: true,
         dagerMedPleie: getDagerMedPleieApiData(søknadsdata),
         flereSokere: getFlereSokereApiData(opplysningerOmPleietrengende.flereSokere),

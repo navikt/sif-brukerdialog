@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.16.0
+
+### Minor Changes
+
+-   Ta i bruk ny FormikFileUpload komponent
+
 ## 2.15.5
 
 ### Patch Changes
