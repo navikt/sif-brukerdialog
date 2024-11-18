@@ -16,7 +16,7 @@ import GeneralErrorPage from './pages/general-error-page/GeneralErrorPage';
 import Søknad from './søknad/Søknad';
 import appSentryLogger from './utils/appSentryLogger';
 import { relocateToSoknad } from './utils/navigationUtils';
-import './app.less';
+import './app.css';
 
 const {
     PUBLIC_PATH,
