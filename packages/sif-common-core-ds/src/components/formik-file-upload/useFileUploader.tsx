@@ -7,8 +7,7 @@ import {
     uploadVedlegg,
 } from '@navikt/sif-common-api';
 import { Vedlegg } from '../../types/Vedlegg';
-import { mapFileToPersistedFile } from '../../utils/attachmentUtils';
-import { canRetryFileUpload, getFileUploadErrorReason } from './fileUploadUtils';
+import { canRetryFileUpload, getFileUploadErrorReason, mapFileToPersistedFile } from './fileUploadUtils';
 
 interface Props {
     initialFiles: Vedlegg[];

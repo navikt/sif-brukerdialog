@@ -1,6 +1,7 @@
 import { isAxiosError } from 'axios';
 import { CoreIntlShape } from '../../i18n/common.messages';
 import { FileRejectionReason } from '@navikt/ds-react';
+import { PersistedFile } from '../../types';
 
 export enum FileUploadErrorReason {
     'ECONNABORTED' = 'ECONNABORTED',
@@ -41,3 +42,11 @@ export const getFileUploadErrorReason = (e: unknown): string => {
 export const canRetryFileUpload = (reason: string): boolean => {
     return reason === FileUploadErrorReason.ECONNABORTED;
 };
+
+export const mapFileToPersistedFile = ({ name, lastModified, type, size }: File | PersistedFile): PersistedFile => ({
+    isPersistedFile: true,
+    name,
+    lastModified,
+    type,
+    size,
+});
