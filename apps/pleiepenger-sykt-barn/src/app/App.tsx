@@ -16,8 +16,6 @@ import GeneralErrorPage from './pages/general-error-page/GeneralErrorPage';
 import Søknad from './søknad/Søknad';
 import appSentryLogger from './utils/appSentryLogger';
 import { relocateToSoknad } from './utils/navigationUtils';
-import '@navikt/ds-css';
-import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.less';
 
 const {

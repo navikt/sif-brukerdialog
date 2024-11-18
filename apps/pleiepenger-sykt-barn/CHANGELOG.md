@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.5.0
+
+### Minor Changes
+
+-   Ta i bruke FormikFileUpload
+
 ## 4.4.13
 
 ### Patch Changes

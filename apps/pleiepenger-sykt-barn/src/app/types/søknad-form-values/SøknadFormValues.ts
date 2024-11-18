@@ -1,4 +1,4 @@
-import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/types';
 import { OpptjeningUtland } from '@navikt/sif-common-forms-ds/src/forms/opptjening-utland';
@@ -71,7 +71,7 @@ export interface SøknadFormValues {
     [SøknadFormField.barnetsFødselsnummer]: string;
     [SøknadFormField.barnetsFødselsdato]?: string;
     [SøknadFormField.årsakManglerIdentitetsnummer]?: ÅrsakManglerIdentitetsnummer;
-    [SøknadFormField.fødselsattest]: Attachment[];
+    [SøknadFormField.fødselsattest]: Vedlegg[];
     [SøknadFormField.søknadenGjelderEtAnnetBarn]: boolean;
     [SøknadFormField.barnetHarIkkeFnr]: boolean;
     [SøknadFormField.barnetSøknadenGjelder]: string;
@@ -81,7 +81,7 @@ export interface SøknadFormValues {
     [SøknadFormField.periodeTil]?: string;
     [SøknadFormField.skalPassePåBarnetIHelePerioden]?: YesOrNo;
     [SøknadFormField.beskrivelseOmsorgsrolleIPerioden]?: string;
-    [SøknadFormField.legeerklæring]: Attachment[];
+    [SøknadFormField.legeerklæring]: Vedlegg[];
     [SøknadFormField.harBoddUtenforNorgeSiste12Mnd]: YesOrNo;
     [SøknadFormField.utenlandsoppholdSiste12Mnd]: UtenlandsoppholdEnkel[];
     [SøknadFormField.skalBoUtenforNorgeNeste12Mnd]: YesOrNo;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import * as apiUtils from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds';
 import { AxiosError, AxiosResponse } from 'axios';
@@ -31,8 +31,8 @@ interface State {
     harIkkeTilgang: boolean;
 }
 
-const getValidAttachments = (attachments: Attachment[] = []): Attachment[] => {
-    return attachments.filter((a) => {
+const getValidVedlegg = (vedlegg: Vedlegg[] = []): Vedlegg[] => {
+    return vedlegg.filter((a) => {
         return a.file?.name !== undefined;
     });
 };
@@ -100,7 +100,7 @@ class SøknadEssentialsLoader extends React.Component<Props, State> {
         const formValuesToUse = mellomlagring
             ? {
                   ...mellomlagring.formValues,
-                  [SøknadFormField.legeerklæring]: getValidAttachments(mellomlagring.formValues.legeerklæring),
+                  [SøknadFormField.legeerklæring]: getValidVedlegg(mellomlagring.formValues.legeerklæring),
               }
             : { ...initialValues };
 

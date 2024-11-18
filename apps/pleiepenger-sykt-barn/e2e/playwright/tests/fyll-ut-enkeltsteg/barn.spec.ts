@@ -35,10 +35,10 @@ test.describe('Barn steg', () => {
         await page.getByTestId('opplysninger-om-barnet-relasjonAnnetBeskrivelse').fill('Beskrivelse');
         const [fileChooser] = await Promise.all([
             page.waitForEvent('filechooser'),
-            await page.locator('#fødselsattest-input').dispatchEvent('click'),
+            await page.locator('input[type="file"]').dispatchEvent('click'),
         ]);
         await fileChooser.setFiles('./e2e/playwright/files/navlogopng.png');
-        const listItems = await page.getByText('navlogopng.png(2.31 KB)');
+        const listItems = await page.getByText('navlogopng.png');
         await expect(listItems).toHaveCount(1);
 
         await page.getByTestId('typedFormikForm-submitButton').click();

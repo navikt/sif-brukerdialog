@@ -1,5 +1,5 @@
 import React from 'react';
-import { Attachment } from '@navikt/sif-common-core-ds/src/types/Attachment';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { useFormikContext } from 'formik';
 import { SøkerdataContext } from '../../context/SøkerdataContext';
 import { StepCommonProps } from '../../types/StepCommonProps';
@@ -20,10 +20,10 @@ const OpplysningerOmBarnetStep = ({ onValidSubmit }: StepCommonProps) => {
     const { søknadenGjelderEtAnnetBarn } = values;
     const søkerdata = React.useContext(SøkerdataContext);
 
-    const attachments: Attachment[] = React.useMemo(() => {
+    const fødselsattester: Vedlegg[] = React.useMemo(() => {
         return values && values.fødselsattest ? values[SøknadFormField.fødselsattest] : [];
     }, [values]);
-    const hasPendingUploads: boolean = attachments.find((a) => a.pending === true) !== undefined;
+    const hasPendingUploads: boolean = fødselsattester.find((a) => a.pending === true) !== undefined;
 
     return (
         <SøknadFormStep
@@ -37,7 +37,7 @@ const OpplysningerOmBarnetStep = ({ onValidSubmit }: StepCommonProps) => {
                         <AnnetBarnPart
                             formValues={values}
                             søkersFødselsnummer={søkerdata.søker.fødselsnummer}
-                            attachments={attachments}
+                            fødselsattester={fødselsattester}
                             harRegistrerteBarn={harRegistrerteBarn(søkerdata)}
                         />
                     )}
