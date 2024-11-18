@@ -20,7 +20,7 @@ enum Fields {
     checkboxes = 'checkboxes',
     confirmation = 'confirmation',
     country = 'country',
-    attachments = 'attachments',
+    vedlegg = 'vedlegg',
     name = 'name',
     group = 'group',
     radio = 'radio',
@@ -38,7 +38,7 @@ interface FieldValues {
     [Fields.checkboxes]?: string[];
     [Fields.confirmation]?: boolean;
     [Fields.country]?: string;
-    [Fields.attachments]?: string[];
+    [Fields.vedlegg]?: string[];
     [Fields.name]?: string;
     [Fields.group]?: string;
     [Fields.radio]?: MockAnimals;
@@ -107,26 +107,6 @@ const ExampleForm: React.FunctionComponent = () => {
                             </FormBlock>
                             <FormBlock>
                                 <Form.CountrySelect name={Fields.country} label="Which country is the best for cats?" />
-                            </FormBlock>
-                            <FormBlock>
-                                <Form.FileInput
-                                    legend="Velg filer"
-                                    name={Fields.attachments}
-                                    buttonLabel="Choose picture"
-                                    onFilesSelect={(evt) => console.log(evt)}
-                                    accept={'.pdf'}
-                                    description="Dette er en liten tekst som trengs her"
-                                />
-                            </FormBlock>
-                            <FormBlock>
-                                <Form.FileDropInput
-                                    legend="Velg filer"
-                                    name={Fields.attachments}
-                                    buttonLabel="Choose picture"
-                                    onFilesSelect={(evt) => console.log(evt)}
-                                    accept={accept}
-                                    description="Dette er en liten tekst som trengs her"
-                                />
                             </FormBlock>
                             <FormBlock>
                                 <Form.TextField
