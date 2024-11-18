@@ -3,7 +3,7 @@ import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { OmBarnetApiData } from '../../types/søknadApiData/SøknadApiData';
 import { OmBarnetFormSøknadsdata, OmBarnetFormSøknadsdata_RegistrertBarn } from '../../types/søknadsdata/Søknadsdata';
-import { getAttachmentsApiData } from '@navikt/sif-common-core-ds/src/utils/attachmentUtils';
+import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
 
 const getRegistrertBarnApiData = (
     omBarnetSøknadsdata: OmBarnetFormSøknadsdata_RegistrertBarn,
@@ -51,7 +51,7 @@ export const getOmBarnetApiDataFromSøknadsdata = (
                 fødselsdato: omBarnetSøknadsdata.barnetsFødselsdato,
                 relasjonTilBarnet: omBarnetSøknadsdata.relasjonTilBarnet,
                 relasjonTilBarnetBeskrivelse: omBarnetSøknadsdata.relasjonTilBarnetBeskrivelse,
-                fødselsattestVedleggUrls: getAttachmentsApiData(omBarnetSøknadsdata.fødselsattest),
+                fødselsattestVedleggUrls: getVedleggApiData(omBarnetSøknadsdata.fødselsattest),
             };
     }
 };

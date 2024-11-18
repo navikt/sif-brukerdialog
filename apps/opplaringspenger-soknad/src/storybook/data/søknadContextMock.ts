@@ -171,6 +171,7 @@ export const søknadContextMock: SøknadContextState = {
                     },
                     pending: false,
                     uploaded: true,
+                    error: false,
                     info: {
                         id: 'eyJraWQiOiIxIiwidHlwIjoiSldUIiwiYWxnIjoibm9uZSJ9.eyJqdG',
                         url: 'http://localhost:8080/api/vedlegg/eyJraWQiOiIxIiwidHlwIjoiSldUIiwiYWxnIjoibm9uZSJ9.eyJqdG',

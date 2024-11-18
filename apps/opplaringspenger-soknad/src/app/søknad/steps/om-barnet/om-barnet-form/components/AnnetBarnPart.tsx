@@ -1,7 +1,6 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import { Attachment } from '@navikt/sif-common-core-ds/src/types';
 import { isDevMode } from '@navikt/sif-common-env';
 import {
     getTypedFormComponents,
@@ -26,13 +25,14 @@ import { ÅrsakBarnetManglerIdentitetsnummer } from '../types/ÅrsakBarnetMangle
 import FødselsattestPart from './FødselsattestPart';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { nYearsAgo } from '../utils/omBarnetFormUtils';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 
 interface Props {
     formValues: Partial<OmBarnetFormValues>;
     søkersFødselsnummer: string;
     harRegistrerteBarn: boolean;
     ettersendelseURL: string;
-    andreVedlegg: Attachment[];
+    andreVedlegg: Vedlegg[];
     initialValues: Partial<OmBarnetFormValues>;
 }
 

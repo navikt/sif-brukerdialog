@@ -6,8 +6,8 @@ import AnnetBarnPart from './components/AnnetBarnPart';
 import { OmBarnetFormComponents } from './components/OmBarnetFormComponents';
 import VelgRegistrertBarn from './components/VelgRegistrertBarn';
 import { OmBarnetFormValues } from './types';
-import { Attachment } from '@navikt/sif-common-core-ds/src/types';
 import { useOmBarnetFormIntl } from './omBarnetFormMessages';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 
 interface Props {
     søkersFødselsnummer: string;
@@ -15,7 +15,7 @@ interface Props {
     registrerteBarn: RegistrertBarn[];
     initialValues: Partial<OmBarnetFormValues>;
     ettersendelseURL: string;
-    andreVedlegg: Attachment[];
+    andreVedlegg: Vedlegg[];
     goBack?: () => void;
 }
 

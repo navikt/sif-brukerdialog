@@ -1,4 +1,4 @@
-import { Attachment } from '@navikt/sif-common-core-ds/src/types';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { OmBarnetFormFields, RelasjonTilBarnet, ÅrsakBarnetManglerIdentitetsnummer } from '.';
 
 export interface OmBarnetFormValues {
@@ -11,5 +11,5 @@ export interface OmBarnetFormValues {
     [OmBarnetFormFields.relasjonTilBarnet]?: RelasjonTilBarnet;
     [OmBarnetFormFields.relasjonTilBarnetBeskrivelse]?: string;
     [OmBarnetFormFields.årsakManglerIdentitetsnummer]?: ÅrsakBarnetManglerIdentitetsnummer;
-    [OmBarnetFormFields.fødselsattest]?: Attachment[];
+    [OmBarnetFormFields.fødselsattest]?: Vedlegg[];
 }
