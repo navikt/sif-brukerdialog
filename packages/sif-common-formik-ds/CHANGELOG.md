@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 2.0.0
+
+### Major Changes
+
+-   Slette all kode og komponenter from er erstattet av ny Vedlegg-kode (FormikFileUpload)
+
 ## 1.13.11
 
 ### Patch Changes

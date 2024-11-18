@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 10.0.0
+
+### Major Changes
+
+-   Slette all kode og komponenter from er erstattet av ny Vedlegg-kode (FormikFileUpload)
+
 ## 9.21.2
 
 ### Patch Changes
