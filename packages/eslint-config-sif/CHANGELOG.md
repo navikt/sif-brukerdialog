@@ -1,5 +1,11 @@
 # @sif/eslint-config
 
+## 1.1.24
+
+### Patch Changes
+
+-   Disabled changeset/cli
+
 ## 1.1.23
 
 ### Patch Changes

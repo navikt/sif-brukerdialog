@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.9.6
+
+### Patch Changes
+
+-   Disabled changeset/cli
+
 ## 3.9.5
 
 ### Patch Changes

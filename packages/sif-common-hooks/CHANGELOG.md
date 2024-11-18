@@ -1,5 +1,11 @@
 # @navikt/sif-common-hooks
 
+## 0.2.5
+
+### Patch Changes
+
+-   Disabled changeset/cli
+
 ## 0.2.4
 
 ### Patch Changes

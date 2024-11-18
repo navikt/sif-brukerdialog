@@ -1,5 +1,11 @@
 # @navikt/sif-common-faro
 
+## 0.1.7
+
+### Patch Changes
+
+-   Disabled changeset/cli
+
 ## 0.1.6
 
 ### Patch Changes

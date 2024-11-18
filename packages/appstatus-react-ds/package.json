@@ -4,7 +4,7 @@
     "license": "MIT",
     "main": "src",
     "name": "@navikt/appstatus-react-ds",
-    "version": "2.19.28",
+    "version": "2.19.29",
     "private": true,
     "type": "module",
     "dependencies": {
