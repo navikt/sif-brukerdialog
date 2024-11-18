@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 2.0.1
+
+### Patch Changes
+
+-   Disabled changeset/cli
+
 ## 2.0.0
 
 ### Major Changes

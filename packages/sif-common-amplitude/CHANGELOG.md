@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.26.26
+
+### Patch Changes
+
+-   Disabled changeset/cli
+
 ## 2.26.25
 
 ### Patch Changes

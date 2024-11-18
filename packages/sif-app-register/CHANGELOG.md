@@ -1,5 +1,11 @@
 # @navikt/sif-app-register
 
+## 0.1.5
+
+### Patch Changes
+
+-   Disabled changeset/cli
+
 ## 0.1.4
 
 ### Patch Changes

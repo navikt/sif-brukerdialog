@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.27.24
+
+### Patch Changes
+
+-   Disabled changeset/cli
+
 ## 0.27.23
 
 ### Patch Changes

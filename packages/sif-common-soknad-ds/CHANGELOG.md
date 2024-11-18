@@ -1,5 +1,20 @@
 # @navikt/sif-common-soknad-ds
 
+## 19.0.1
+
+### Patch Changes
+
+-   Disabled changeset/cli
+-   Updated dependencies
+    -   @navikt/sif-common-core-ds@10.0.1
+    -   @navikt/sif-common-env@0.1.2
+    -   @navikt/sif-common-formik-ds@2.0.1
+    -   @navikt/sif-common-forms-ds@14.0.1
+    -   @navikt/sif-common-hooks@0.2.5
+    -   @navikt/sif-common-sentry@0.27.24
+    -   @navikt/sif-common-ui@0.8.36
+    -   @navikt/sif-common-utils@3.47.28
+
 ## 19.0.0
 
 ### Patch Changes

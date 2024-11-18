@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.47.28
+
+### Patch Changes
+
+-   Disabled changeset/cli
+
 ## 3.47.27
 
 ### Patch Changes

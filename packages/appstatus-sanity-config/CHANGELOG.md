@@ -1,5 +1,11 @@
 # appstatus-sanity-config
 
+## 1.1.9
+
+### Patch Changes
+
+-   Disabled changeset/cli
+
 ## 1.1.8
 
 ### Patch Changes

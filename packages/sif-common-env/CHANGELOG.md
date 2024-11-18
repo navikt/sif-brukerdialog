@@ -1,5 +1,11 @@
 # @navikt/sif-common-ui
 
+## 0.1.2
+
+### Patch Changes
+
+-   Disabled changeset/cli
+
 ## 0.1.1
 
 ### Patch Changes

@@ -18,7 +18,7 @@ Samling av kode for søknadsdialoger under Sykdom i familien
 
 ## Utvikling, endringer og publisering
 
--   Vi bruker @changesets/cli for å holde orden på versjoner. Se https://www.npmjs.com/package/@changesets/cli for mer informasjon om hvordan det brukes.
+-   -Vi bruker @changesets/cli for å holde orden på versjoner. Se https://www.npmjs.com/package/@changesets/cli for mer informasjon om hvordan det brukes-.
 
 ## Produksjonssetting av applikasjoner
 

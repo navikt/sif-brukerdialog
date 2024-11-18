@@ -2,7 +2,7 @@
     "name": "@navikt/sif-common-env",
     "main": "src/index.ts",
     "types": "src/index.ts",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "private": true,
     "type": "module",
     "devDependencies": {

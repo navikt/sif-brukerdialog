@@ -1,5 +1,11 @@
 # config
 
+## 0.10.27
+
+### Patch Changes
+
+-   Disabled changeset/cli
+
 ## 0.10.26
 
 ### Patch Changes

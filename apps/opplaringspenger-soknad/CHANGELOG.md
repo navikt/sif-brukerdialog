@@ -1,5 +1,22 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.14.22
+
+### Patch Changes
+
+-   Disabled changeset/cli
+-   Updated dependencies
+    -   @navikt/sif-app-register@0.1.5
+    -   @navikt/sif-common-amplitude@2.26.26
+    -   @navikt/sif-common-core-ds@10.0.1
+    -   @navikt/sif-common-env@0.1.2
+    -   @navikt/sif-common-formik-ds@2.0.1
+    -   @navikt/sif-common-forms-ds@14.0.1
+    -   @navikt/sif-common-hooks@0.2.5
+    -   @navikt/sif-common-sentry@0.27.24
+    -   @navikt/sif-common-soknad-ds@19.0.1
+    -   @navikt/sif-common-utils@3.47.28
+
 ## 1.14.21
 
 ### Patch Changes
