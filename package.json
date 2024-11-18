@@ -11,9 +11,6 @@
     "dependencies": {
         "turbo": "2.3.0"
     },
-    "peerDependencies": {
-        "@changesets/cli": "2.27.9"
-    },
     "devDependencies": {
         "@sif/eslint-config": "*",
         "config": "*",
