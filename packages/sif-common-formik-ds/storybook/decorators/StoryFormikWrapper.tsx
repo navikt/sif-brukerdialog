@@ -31,7 +31,6 @@ export const StoryFormikWrapper: React.FunctionComponent<Props> = (props) => {
                 // eslint-disable-next-line no-console
             }}
             renderForm={({ values }) => {
-                console.log(values);
                 return (
                     <TypedFormikForm
                         includeButtons={includeButtons}

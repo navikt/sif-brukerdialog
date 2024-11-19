@@ -11,11 +11,11 @@ interface OwnProps<FieldName> extends Omit<TextFieldProps, 'name' | 'children' |
     name: FieldName;
     integerValue?: boolean;
     width?: TextFieldWidths;
+    formatter?: (value?: string) => string;
 }
 
 export type FormikNumberInputProps<FieldName, ErrorType> = OwnProps<FieldName> &
     TypedFormInputValidationProps<FieldName, ErrorType> &
-    // InputWithSuffix &
     TestProps;
 
 function FormikNumberInput<FieldName, ErrorType>({
@@ -28,7 +28,6 @@ function FormikNumberInput<FieldName, ErrorType>({
     ...restProps
 }: FormikNumberInputProps<FieldName, ErrorType>) {
     const context = React.useContext(TypedFormikFormContext);
-
     return (
         <Field validate={validate ? (value: any) => validate(value, name) : undefined} name={name}>
             {({ field, form }: FieldProps) => {
@@ -42,7 +41,6 @@ function FormikNumberInput<FieldName, ErrorType>({
                         inputMode={integerValue ? 'numeric' : 'text'}
                         pattern={integerValue ? '[0-9]*' : undefined}
                         error={getErrorPropForFormikInput({ field, form, context, error })}
-                        value={field.value === undefined ? '' : field.value}
                     />
                 );
             }}

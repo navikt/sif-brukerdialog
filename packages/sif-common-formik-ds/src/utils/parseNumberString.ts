@@ -88,6 +88,12 @@ export const parseNumberString = (value: string | number = '', valueIsBelow1000:
         // Only one separator of the same type
         const fractionalPart = parts[parts.length - 1];
 
+        // If the integer part is more than 3 digits, it's probably a thousands separator
+        if (parts.length === 2 && parts[0].length > 3) {
+            const normalizedValue = cleanedValue.replace(separator, '.');
+            return Number(normalizedValue);
+        }
+
         // It's a decimal separator since the fractional part has 2 or less digits,
         // or more than 3 digits
         // 100.0, 100.00, 100.1231

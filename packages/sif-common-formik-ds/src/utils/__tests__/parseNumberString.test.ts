@@ -14,6 +14,11 @@ describe('parseNumberString', () => {
         const result = parseNumberString(value, true);
         expect(result).toBe(1);
     });
+    it("should convert '52000.120' to 52000.120", () => {
+        const value = '52000.120';
+        const result = parseNumberString(value);
+        expect(result).toBe(52000.12);
+    });
     it("should convert '1,000' to 1 if value is to be below 1000", () => {
         const value = '1,000';
         const result = parseNumberString(value, true);
@@ -143,15 +148,10 @@ describe('parseNumberString', () => {
         const value = '-0,001';
         expect(() => parseNumberString(value)).toThrow(ParseNumberStringError.INDECISIVE_NUMBER_STRING);
     });
-    it("should throw an error for '1000.500'", () => {
-        const value = '1000.500';
-        expect(() => parseNumberString(value)).toThrow(ParseNumberStringError.INDECISIVE_NUMBER_STRING);
-    });
     it("should throw an error for '100.000'", () => {
         const value = '100.000';
         expect(() => parseNumberString(value)).toThrow(ParseNumberStringError.INDECISIVE_NUMBER_STRING);
     });
-
     it("should throw an error for '100,000'", () => {
         const value = '100,000';
         expect(() => parseNumberString(value)).toThrow(ParseNumberStringError.INDECISIVE_NUMBER_STRING);

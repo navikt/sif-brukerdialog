@@ -1,5 +1,5 @@
 import { TextField, TextFieldProps } from '@navikt/ds-react';
-import React from 'react';
+import React, { useState } from 'react';
 import { FastField, Field, FieldProps } from 'formik';
 import { TestProps, TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
@@ -10,6 +10,7 @@ import './formikTextField.css';
 interface OwnProps<FieldName> extends Omit<TextFieldProps, 'name' | 'children' | 'width'> {
     name: FieldName;
     width?: TextFieldWidths;
+    formatter?: (value?: string) => string;
 }
 
 export type FormikTextFieldProps<FieldName, ErrorType> = OwnProps<FieldName> &
@@ -26,10 +27,13 @@ function FormikTextField<FieldName, ErrorType>({
     autoComplete = 'off',
     useFastField,
     label,
+    value,
+    formatter = (value: string) => value,
     ...restProps
 }: FormikTextFieldProps<FieldName, ErrorType>) {
     const context = React.useContext(TypedFormikFormContext);
     const FieldComponent = useFastField ? FastField : Field;
+    const [hasFocus, setHasFocus] = useState(false);
 
     return (
         <FieldComponent validate={validate ? (value: any) => validate(value, name) : undefined} name={name}>
@@ -42,7 +46,13 @@ function FormikTextField<FieldName, ErrorType>({
                         autoComplete={autoComplete}
                         className={getTextFieldWidthClassName(width, className)}
                         error={getErrorPropForFormikInput({ field, form, context, error })}
-                        value={field.value === undefined ? '' : field.value}
+                        value={hasFocus ? field.value : formatter(field.value || '')}
+                        onFocus={() => {
+                            setHasFocus(true);
+                        }}
+                        onBlur={() => {
+                            setHasFocus(false);
+                        }}
                     />
                 );
             }}
