@@ -3,7 +3,7 @@ export enum NormalizeNumberStringError {
     INDECISIVE_NUMBER_STRING = 'INDECISIVE_NUMBER_STRING',
 }
 
-export const normalizeNumberString = (value: string | number = ''): string => {
+export const normalizeNumberString = (value: string | number = '', valueIsBelow1000: boolean = false): string => {
     if (typeof value === 'number') {
         return value.toString();
     }
@@ -81,6 +81,10 @@ export const normalizeNumberString = (value: string | number = ''): string => {
         // or more than 3 digits
         // 100.0, 100.00, 100.1231
         if (fractionalPart.length <= 2 || fractionalPart.length > 3) {
+            const normalizedValue = cleanedValue.replace(separator, '.');
+            return normalizedValue;
+        }
+        if (fractionalPart.length === 3 && valueIsBelow1000) {
             const normalizedValue = cleanedValue.replace(separator, '.');
             return normalizedValue;
         }

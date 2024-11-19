@@ -1,6 +1,16 @@
 import { normalizeNumberString, NormalizeNumberStringError } from '../normalizeNumberString';
 
 describe('normalizeNumberString', () => {
+    it("should convert '1.000' to 1 if value is to be below 1000", () => {
+        const value = '1.000';
+        const result = normalizeNumberString(value, true);
+        expect(Number(result)).toBe(1);
+    });
+    it("should convert '1,000' to 1 if value is to be below 1000", () => {
+        const value = '1,000';
+        const result = normalizeNumberString(value, true);
+        expect(Number(result)).toBe(1);
+    });
     it("should convert '100.000,50' to 100000.50", () => {
         const value = '100.000,50';
         const result = normalizeNumberString(value);
