@@ -11,6 +11,7 @@ interface OwnProps<FieldName> extends Omit<TextFieldProps, 'name' | 'children' |
     name: FieldName;
     width?: TextFieldWidths;
     formatter?: (value?: string) => string;
+    valueCleaner?: (value: string) => string;
 }
 
 export type FormikTextFieldProps<FieldName, ErrorType> = OwnProps<FieldName> &
@@ -29,6 +30,7 @@ function FormikTextField<FieldName, ErrorType>({
     label,
     value,
     formatter = (value: string) => value,
+    valueCleaner = (value: string) => value,
     ...restProps
 }: FormikTextFieldProps<FieldName, ErrorType>) {
     const context = React.useContext(TypedFormikFormContext);
@@ -52,6 +54,7 @@ function FormikTextField<FieldName, ErrorType>({
                         }}
                         onBlur={() => {
                             setHasFocus(false);
+                            form.setFieldValue(name as string, valueCleaner(field.value));
                         }}
                     />
                 );

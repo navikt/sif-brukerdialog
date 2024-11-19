@@ -6,6 +6,7 @@ import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import FormikTextField from '../formik-text-field/FormikTextField';
 import { TextFieldWidths } from '../formik-text-field/FormikTextFieldUtils';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
+import { parseNumberString } from '../../utils/parseNumberString';
 
 interface OwnProps<FieldName> extends Omit<TextFieldProps, 'name' | 'children' | 'width'> {
     name: FieldName;
@@ -41,6 +42,13 @@ function FormikNumberInput<FieldName, ErrorType>({
                         inputMode={integerValue ? 'numeric' : 'text'}
                         pattern={integerValue ? '[0-9]*' : undefined}
                         error={getErrorPropForFormikInput({ field, form, context, error })}
+                        valueCleaner={(value: string) => {
+                            try {
+                                const number = parseNumberString(value);
+                                return number.toString();
+                            } catch {}
+                            return value;
+                        }}
                     />
                 );
             }}

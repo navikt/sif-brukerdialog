@@ -23,7 +23,7 @@ const FormikNumberInputExample = (args: any) => {
             formatter={(value) => getNumberFormatter(intl)(value, true)}
             validate={getNumberValidator({
                 min: 0,
-                max: 200000,
+                max: 2000,
                 allowDecimals: true,
             })}
         />
