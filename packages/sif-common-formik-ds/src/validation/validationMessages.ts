@@ -66,6 +66,8 @@ export const validationMessages = {
     [ValidateNumberError.numberHasNoValue]: ({ hva }: { hva: string }) => `Skriv inn ${hva}.`,
     [ValidateNumberError.numberHasInvalidFormat]: ({ hva }: { hva: string }) =>
         `Du må oppgi et gyldig tall for ${hva}. Et gyldig tall inneholder kun siffer.`,
+    [ValidateNumberError.indecisiveNumberFormat]: ({ hva }: { hva: string }) =>
+        `Du må oppgi et gyldig tall for ${hva}. Et gyldig tall inneholder kun siffer.`,
     [ValidateNumberError.numberIsTooSmall]: ({ hva }: { hva: string }) =>
         `Tallet du har oppgitt for ${hva} er for lavt. Tallet kan ikke være lavere enn {min}.`,
     [ValidateNumberError.numberIsTooLarge]: ({ hva }: { hva: string }) =>

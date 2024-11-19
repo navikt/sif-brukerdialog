@@ -1,5 +1,6 @@
 import { getNumberFromStringInput, hasValue } from './validationUtils';
 import { ValidationFunction } from './types';
+import { NormalizeNumberStringError } from './normalizeNumberString';
 
 export enum ValidateNumberError {
     numberHasNoValue = 'numberHasNoValue',
@@ -7,6 +8,7 @@ export enum ValidateNumberError {
     numberIsTooSmall = 'numberIsTooSmall',
     numberIsTooLarge = 'numberIsTooLarge',
     numberHasDecimals = 'numberHasDecimals',
+    indecisiveNumberFormat = 'indecisiveNumberFormat',
 }
 
 export const ValidateNumberErrorKeys = Object.keys(ValidateNumberError);
@@ -17,7 +19,8 @@ type NumberValidationResult =
     | ValidateNumberError.numberHasInvalidFormat
     | ValidateNumberError.numberIsTooLarge
     | ValidateNumberError.numberIsTooSmall
-    | ValidateNumberError.numberHasDecimals;
+    | ValidateNumberError.numberHasDecimals
+    | ValidateNumberError.indecisiveNumberFormat;
 
 interface Options {
     required?: boolean;
@@ -52,7 +55,10 @@ const getNumberValidator =
                     return ValidateNumberError.numberIsTooLarge;
                 }
             }
-        } catch {
+        } catch (e: any) {
+            if (e && e.message === NormalizeNumberStringError.INDECISIVE_NUMBER_STRING) {
+                return ValidateNumberError.indecisiveNumberFormat;
+            }
             return ValidateNumberError.numberHasInvalidFormat;
         }
         return undefined;
