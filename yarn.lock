@@ -2653,28 +2653,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/intl-displaynames@npm:6.8.5":
-  version: 6.8.5
-  resolution: "@formatjs/intl-displaynames@npm:6.8.5"
-  dependencies:
-    "@formatjs/ecma402-abstract": "npm:2.2.4"
-    "@formatjs/intl-localematcher": "npm:0.5.8"
-    tslib: "npm:2"
-  checksum: 10/59a9794096138f98afd6e234d697368f995a9208ff02d9db09a525dbd4c57be9c3aaecdd3d4ec7ac1286f06bc81e681d848a1b476c9466ccb1524f39285e2b8b
-  languageName: node
-  linkType: hard
-
-"@formatjs/intl-listformat@npm:7.7.5":
-  version: 7.7.5
-  resolution: "@formatjs/intl-listformat@npm:7.7.5"
-  dependencies:
-    "@formatjs/ecma402-abstract": "npm:2.2.4"
-    "@formatjs/intl-localematcher": "npm:0.5.8"
-    tslib: "npm:2"
-  checksum: 10/278f573dde36be2074bee4ac2d4359627f5318473e609a9e68c007a68788fab14bc46d54dc25f43b98a31855997a1bd7460b7fc24add6128a6fd9757b677bda8
-  languageName: node
-  linkType: hard
-
 "@formatjs/intl-localematcher@npm:0.5.8":
   version: 0.5.8
   resolution: "@formatjs/intl-localematcher@npm:0.5.8"
@@ -2695,23 +2673,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/intl@npm:2.10.15":
-  version: 2.10.15
-  resolution: "@formatjs/intl@npm:2.10.15"
+"@formatjs/intl@npm:3.0.1":
+  version: 3.0.1
+  resolution: "@formatjs/intl@npm:3.0.1"
   dependencies:
-    "@formatjs/ecma402-abstract": "npm:2.2.4"
     "@formatjs/fast-memoize": "npm:2.2.3"
     "@formatjs/icu-messageformat-parser": "npm:2.9.4"
-    "@formatjs/intl-displaynames": "npm:6.8.5"
-    "@formatjs/intl-listformat": "npm:7.7.5"
     intl-messageformat: "npm:10.7.7"
     tslib: "npm:2"
   peerDependencies:
-    typescript: ^4.7 || 5
+    typescript: 5
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10/b9f128d5f07f2837d62da9467efac35b03514e39b0e3f21c93f6459a7e227b3ef0d9c7168b853ecb2701a229898221f2dc3cdb2705a5d50d7c01f2742e4a56fe
+  checksum: 10/a8a685cca322b001f612ca05cb4ed0b9ba275277108ae8d780bab949d2025d87a0505829ca7f595ff256a70a70a76a919b58b3b6596330f98d55004de4825ab3
   languageName: node
   linkType: hard
 
@@ -3591,7 +3566,7 @@ __metadata:
     react: "npm:18.3.1"
     react-day-picker: "npm:8.10.1"
     react-dom: "npm:18.3.1"
-    react-intl: "npm:6.8.9"
+    react-intl: "npm:7.0.1"
     react-loading-skeleton: "npm:3.5.0"
     storybook: "npm:8.4.4"
     swr: "npm:2.2.5"
@@ -3702,7 +3677,7 @@ __metadata:
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
     react-fast-compare: "npm:3.2.2"
-    react-intl: "npm:6.8.9"
+    react-intl: "npm:7.0.1"
     react-router-dom: "npm:6.28.0"
     rimraf: "npm:6.0.1"
     storybook: "npm:8.4.4"
@@ -3787,7 +3762,7 @@ __metadata:
     react: "npm:18.3.1"
     react-day-picker: "npm:8.10.1"
     react-dom: "npm:18.3.1"
-    react-intl: "npm:6.8.9"
+    react-intl: "npm:7.0.1"
     react-responsive: "npm:10.0.0"
     react-router-dom: "npm:6.28.0"
     storybook: "npm:8.4.4"
@@ -3895,7 +3870,7 @@ __metadata:
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
     react-fast-compare: "npm:3.2.2"
-    react-intl: "npm:6.8.9"
+    react-intl: "npm:7.0.1"
     react-router-dom: "npm:6.28.0"
     typescript: "npm:5.6.3"
     uuid: "npm:11.0.3"
@@ -3936,7 +3911,7 @@ __metadata:
     react: "npm:18.3.1"
     react-day-picker: "npm:8.10.1"
     react-dom: "npm:18.3.1"
-    react-intl: "npm:6.8.9"
+    react-intl: "npm:7.0.1"
     tailwindcss: "npm:3.4.15"
     typescript: "npm:5.6.3"
     uuid: "npm:11.0.3"
@@ -4007,7 +3982,7 @@ __metadata:
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
     react-fast-compare: "npm:3.2.2"
-    react-intl: "npm:6.8.9"
+    react-intl: "npm:7.0.1"
     react-router-dom: "npm:6.28.0"
     storybook: "npm:8.4.4"
     storybook-addon-mock: "npm:5.0.0"
@@ -4084,7 +4059,7 @@ __metadata:
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
     react-fast-compare: "npm:3.2.2"
-    react-intl: "npm:6.8.9"
+    react-intl: "npm:7.0.1"
     react-router-dom: "npm:6.28.0"
     storybook: "npm:8.4.4"
     tailwindcss: "npm:3.4.15"
@@ -4161,7 +4136,7 @@ __metadata:
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
     react-fast-compare: "npm:3.2.2"
-    react-intl: "npm:6.8.9"
+    react-intl: "npm:7.0.1"
     react-router-dom: "npm:6.28.0"
     storybook: "npm:8.4.4"
     tailwindcss: "npm:3.4.15"
@@ -4236,7 +4211,7 @@ __metadata:
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
     react-fast-compare: "npm:3.2.2"
-    react-intl: "npm:6.8.9"
+    react-intl: "npm:7.0.1"
     react-router-dom: "npm:6.28.0"
     storybook: "npm:8.4.4"
     tailwindcss: "npm:3.4.15"
@@ -4314,7 +4289,7 @@ __metadata:
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
     react-fast-compare: "npm:3.2.2"
-    react-intl: "npm:6.8.9"
+    react-intl: "npm:7.0.1"
     react-router-dom: "npm:6.28.0"
     storybook: "npm:8.4.4"
     storybook-addon-mock: "npm:5.0.0"
@@ -4396,7 +4371,7 @@ __metadata:
     react: "npm:18.3.1"
     react-day-picker: "npm:8.10.1"
     react-dom: "npm:18.3.1"
-    react-intl: "npm:6.8.9"
+    react-intl: "npm:7.0.1"
     react-router-dom: "npm:6.28.0"
     storybook: "npm:8.4.4"
     storybook-addon-mock: "npm:5.0.0"
@@ -4487,7 +4462,7 @@ __metadata:
     react: "npm:18.3.1"
     react-day-picker: "npm:8.10.1"
     react-dom: "npm:18.3.1"
-    react-intl: "npm:6.8.9"
+    react-intl: "npm:7.0.1"
     storybook: "npm:8.4.4"
     typescript: "npm:5.6.3"
     zod: "npm:3.23.8"
@@ -4547,7 +4522,7 @@ __metadata:
     react: "npm:18.3.1"
     react-day-picker: "npm:8.10.1"
     react-dom: "npm:18.3.1"
-    react-intl: "npm:6.8.9"
+    react-intl: "npm:7.0.1"
     react-responsive: "npm:10.0.0"
     react-syntax-highlighter: "npm:15.6.1"
     rimraf: "npm:6.0.1"
@@ -4630,7 +4605,7 @@ __metadata:
     react-dom: "npm:18.3.1"
     react-dropzone: "npm:14.3.5"
     react-fast-compare: "npm:3.2.2"
-    react-intl: "npm:6.8.9"
+    react-intl: "npm:7.0.1"
     react-syntax-highlighter: "npm:15.6.1"
     rimraf: "npm:6.0.1"
     sass-loader: "npm:16.0.3"
@@ -4693,7 +4668,7 @@ __metadata:
     react: "npm:18.3.1"
     react-day-picker: "npm:8.10.1"
     react-dom: "npm:18.3.1"
-    react-intl: "npm:6.8.9"
+    react-intl: "npm:7.0.1"
     react-json-view: "npm:1.21.3"
     react-router-dom: "npm:6.28.0"
     rimraf: "npm:6.0.1"
@@ -4803,7 +4778,7 @@ __metadata:
     react: "npm:18.3.1"
     react-day-picker: "npm:8.10.1"
     react-dom: "npm:18.3.1"
-    react-intl: "npm:6.8.9"
+    react-intl: "npm:7.0.1"
     react-router-dom: "npm:6.28.0"
     rimraf: "npm:6.0.1"
     sass-loader: "npm:16.0.3"
@@ -4860,7 +4835,7 @@ __metadata:
     react: "npm:18.3.1"
     react-day-picker: "npm:8.10.1"
     react-dom: "npm:18.3.1"
-    react-intl: "npm:6.8.9"
+    react-intl: "npm:7.0.1"
     storybook: "npm:8.4.4"
     typescript: "npm:5.6.3"
   languageName: unknown
@@ -4886,7 +4861,7 @@ __metadata:
     lodash: "npm:4.17.21"
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
-    react-intl: "npm:6.8.9"
+    react-intl: "npm:7.0.1"
     typescript: "npm:5.6.3"
     uuid: "npm:11.0.3"
     vitest: "npm:2.1.5"
@@ -4999,7 +4974,7 @@ __metadata:
     react: "npm:18.3.1"
     react-day-picker: "npm:8.10.1"
     react-dom: "npm:18.3.1"
-    react-intl: "npm:6.8.9"
+    react-intl: "npm:7.0.1"
     react-router-dom: "npm:6.28.0"
     tailwindcss: "npm:3.4.15"
     typescript: "npm:5.6.3"
@@ -5084,7 +5059,7 @@ __metadata:
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
     react-hook-form: "npm:7.53.2"
-    react-intl: "npm:6.8.9"
+    react-intl: "npm:7.0.1"
     react-router-dom: "npm:6.28.0"
     storybook: "npm:8.4.4"
     stylelint: "npm:16.10.0"
@@ -22458,15 +22433,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-intl@npm:6.8.9":
-  version: 6.8.9
-  resolution: "react-intl@npm:6.8.9"
+"react-intl@npm:7.0.1":
+  version: 7.0.1
+  resolution: "react-intl@npm:7.0.1"
   dependencies:
-    "@formatjs/ecma402-abstract": "npm:2.2.4"
     "@formatjs/icu-messageformat-parser": "npm:2.9.4"
-    "@formatjs/intl": "npm:2.10.15"
-    "@formatjs/intl-displaynames": "npm:6.8.5"
-    "@formatjs/intl-listformat": "npm:7.7.5"
+    "@formatjs/intl": "npm:3.0.1"
     "@types/hoist-non-react-statics": "npm:3"
     "@types/react": "npm:16 || 17 || 18"
     hoist-non-react-statics: "npm:3"
@@ -22474,11 +22446,11 @@ __metadata:
     tslib: "npm:2"
   peerDependencies:
     react: ^16.6.0 || 17 || 18
-    typescript: ^4.7 || 5
+    typescript: 5
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10/4792603acd2119992f195342110f989b7b40bceca34e3d15767edf45daa13eee2f01bb2013001e85063471d9bd6000e3fe2c17b5e9992bfd0ea4495e436ec5a1
+  checksum: 10/a978bb28b45645ecc8b8cdee689e0270d84a81646b0db20c5439b24af6925295453fcb739a82635af1df4a8d7c4ef947cd6ec49e9966bc720dfbf5185ba496d6
   languageName: node
   linkType: hard
 
