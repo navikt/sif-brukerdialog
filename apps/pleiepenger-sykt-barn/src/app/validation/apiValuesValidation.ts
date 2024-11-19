@@ -4,6 +4,7 @@ import { VirksomhetApiData } from '@navikt/sif-common-forms-ds/src/forms/virksom
 import { durationToDecimalDuration, ISODurationToDuration, summarizeDurations } from '@navikt/sif-common-utils';
 import { isEqual } from 'lodash';
 import { AppIntlShape } from '../i18n';
+import { ÅrsakManglerIdentitetsnummer } from '../types';
 import { StepID } from '../types/StepID';
 import { OmsorgstilbudApiData, SøknadApiData, TimerFasteDagerApiData } from '../types/søknad-api-data/SøknadApiData';
 import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
@@ -75,12 +76,14 @@ export const validateApiValues = (
             });
         }
 
-        if (apiVedleggIsInvalid(values.fødselsattestVedleggUrls, formValues.fødselsattest)) {
-            errors.push({
-                skjemaelementId: 'fødselsattest',
-                feilmelding: text('steg.oppsummering.validering.fødselsattest'),
-                stepId: StepID.OPPLYSNINGER_OM_BARNET,
-            });
+        if (values.barn.årsakManglerIdentitetsnummer === ÅrsakManglerIdentitetsnummer.BARNET_BOR_I_UTLANDET) {
+            if (apiVedleggIsInvalid(values.fødselsattestVedleggUrls, formValues.fødselsattest)) {
+                errors.push({
+                    skjemaelementId: 'fødselsattest',
+                    feilmelding: text('steg.oppsummering.validering.fødselsattest'),
+                    stepId: StepID.OPPLYSNINGER_OM_BARNET,
+                });
+            }
         }
 
         if (søkerKunHelgedager(values.fraOgMed, values.tilOgMed)) {
