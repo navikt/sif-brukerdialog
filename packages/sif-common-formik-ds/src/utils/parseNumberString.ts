@@ -3,6 +3,16 @@ export enum ParseNumberStringError {
     INDECISIVE_NUMBER_STRING = 'INDECISIVE_NUMBER_STRING',
 }
 
+/**
+ *
+ * Parses a numberString to determine the number it represents. Handles the variations in which decimals and
+ * thousands separators are used. The function will throw an error if the numberString is not in a valid format
+ * or the string has a indesicive format.
+ *
+ * @param value numberString
+ * @param valueIsBelow1000 Inidiates if the value is below 1000, which opens possibility for more logic
+ * @returns number of the parsed value
+ */
 export const parseNumberString = (value: string | number = '', valueIsBelow1000: boolean = false): number => {
     if (typeof value === 'number') {
         return value;
