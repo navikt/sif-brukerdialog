@@ -1,18 +1,19 @@
-export enum NormalizeNumberStringError {
+export enum ParseNumberStringError {
     INVALID_NUMBER_FORMAT = 'INVALID_NUMBER_FORMAT',
     INDECISIVE_NUMBER_STRING = 'INDECISIVE_NUMBER_STRING',
 }
 
-export const normalizeNumberString = (value: string | number = '', valueIsBelow1000: boolean = false): string => {
+export const parseNumberString = (value: string | number = '', valueIsBelow1000: boolean = false): number => {
     if (typeof value === 'number') {
-        return value.toString();
+        return value;
     }
+
     // Remove leading and trailing space
     let cleanedValue = value.trim(); //.replace(/\s+/g, '');
 
     // Contains other characters than digits, commas, spaces and dots
     if (/[^0-9.,\s\-]/.test(cleanedValue)) {
-        throw new Error(NormalizeNumberStringError.INVALID_NUMBER_FORMAT);
+        throw new Error(ParseNumberStringError.INVALID_NUMBER_FORMAT);
     }
 
     // Determine if both separators are used
@@ -30,14 +31,14 @@ export const normalizeNumberString = (value: string | number = '', valueIsBelow1
 
         if (hasSpace) {
             if (!verifyThousandsSeparatorIsValid(integerValue, ' ')) {
-                throw new Error(NormalizeNumberStringError.INVALID_NUMBER_FORMAT);
+                throw new Error(ParseNumberStringError.INVALID_NUMBER_FORMAT);
             }
             cleanedValue = cleanedValue.replace(/\s+/g, '');
         }
 
         // Verify that all the thousands separators are in the right place
         if (!verifyThousandsSeparatorIsValid(integerValue, thousandSeparator)) {
-            throw new Error(NormalizeNumberStringError.INVALID_NUMBER_FORMAT);
+            throw new Error(ParseNumberStringError.INVALID_NUMBER_FORMAT);
         }
 
         // Replace the thousands separators and convert to number
@@ -45,7 +46,7 @@ export const normalizeNumberString = (value: string | number = '', valueIsBelow1
             .replace(new RegExp(`\\${thousandSeparator}`, 'g'), '')
             .replace(decimalSeparator, '.');
 
-        return normalizedValue;
+        return Number(normalizedValue);
     }
 
     // If only one separator is present
@@ -62,16 +63,16 @@ export const normalizeNumberString = (value: string | number = '', valueIsBelow1
                 : cleanedValue;
 
         if (cleanedValue.includes(' ')) {
-            throw new Error(NormalizeNumberStringError.INVALID_NUMBER_FORMAT);
+            throw new Error(ParseNumberStringError.INVALID_NUMBER_FORMAT);
         }
 
         // More than one separator of the same type, it's probaly a thousands separator
         if (parts.length > 2) {
             if (!verifyThousandsSeparatorIsValid(cleanedValue, separator)) {
-                throw new Error(NormalizeNumberStringError.INVALID_NUMBER_FORMAT);
+                throw new Error(ParseNumberStringError.INVALID_NUMBER_FORMAT);
             }
             const normalizedValue = cleanedValue.replace(new RegExp(`\\${separator}`, 'g'), '');
-            return normalizedValue;
+            return Number(normalizedValue);
         }
 
         // Only one separator of the same type
@@ -82,27 +83,27 @@ export const normalizeNumberString = (value: string | number = '', valueIsBelow1
         // 100.0, 100.00, 100.1231
         if (fractionalPart.length <= 2 || fractionalPart.length > 3) {
             const normalizedValue = cleanedValue.replace(separator, '.');
-            return normalizedValue;
+            return Number(normalizedValue);
         }
         if (fractionalPart.length === 3 && valueIsBelow1000) {
             const normalizedValue = cleanedValue.replace(separator, '.');
-            return normalizedValue;
+            return Number(normalizedValue);
         }
         // When the deciaml has 3 digits is indecisive if it's a decimal
         // separator or a thousands separator
-        throw new Error(NormalizeNumberStringError.INDECISIVE_NUMBER_STRING);
+        throw new Error(ParseNumberStringError.INDECISIVE_NUMBER_STRING);
     }
 
     // Check if space is used as thoursands separator
     if (cleanedValue.includes(' ')) {
         if (!verifyThousandsSeparatorIsValid(cleanedValue, ' ')) {
-            throw new Error(NormalizeNumberStringError.INVALID_NUMBER_FORMAT);
+            throw new Error(ParseNumberStringError.INVALID_NUMBER_FORMAT);
         }
         cleanedValue = cleanedValue.replace(/\s+/g, '');
     }
 
     // If no separators are present, just convert to number
-    return cleanedValue;
+    return Number(cleanedValue);
 };
 
 /**

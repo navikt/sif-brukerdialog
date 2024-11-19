@@ -1,4 +1,3 @@
-import { normalizeNumberString } from './normalizeNumberString';
 import { ValidationError, ValidationResult } from './types';
 
 export const hasValue = (value: any): boolean => value !== '' && value !== undefined && value !== null;
@@ -16,19 +15,4 @@ export const validateAll = <ErrorType = ValidationError>(
         return false;
     });
     return result;
-};
-
-export const getNumberFromStringInput = (inputValue: string | undefined): number | undefined => {
-    if (inputValue === undefined || inputValue === '' || Array.isArray(inputValue)) {
-        return undefined;
-    }
-    if (typeof inputValue === 'number' && isNaN(inputValue)) {
-        return undefined;
-    }
-    const value = normalizeNumberString(inputValue);
-    const numValue = Number(value);
-    if (isNaN(numValue)) {
-        return undefined;
-    }
-    return numValue;
 };

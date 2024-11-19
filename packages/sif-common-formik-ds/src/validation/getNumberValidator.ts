@@ -1,6 +1,7 @@
-import { getNumberFromStringInput, hasValue } from './validationUtils';
+import { hasValue } from './validationUtils';
 import { ValidationFunction } from './types';
-import { NormalizeNumberStringError } from './normalizeNumberString';
+import { ParseNumberStringError } from '../utils/parseNumberString';
+import { getNumberFromStringInput } from '../utils/getNumberFromStringInput';
 
 export enum ValidateNumberError {
     numberHasNoValue = 'numberHasNoValue',
@@ -40,7 +41,7 @@ const getNumberValidator =
                     return ValidateNumberError.numberHasNoValue;
                 }
             }
-            const numberValue = getNumberFromStringInput(value);
+            const numberValue = getNumberFromStringInput(value, max !== undefined && max < 1000);
             if (hasValue(value)) {
                 if (numberValue === undefined) {
                     return ValidateNumberError.numberHasInvalidFormat;
@@ -56,7 +57,7 @@ const getNumberValidator =
                 }
             }
         } catch (e: any) {
-            if (e && e.message === NormalizeNumberStringError.INDECISIVE_NUMBER_STRING) {
+            if (e && e.message === ParseNumberStringError.INDECISIVE_NUMBER_STRING) {
                 return ValidateNumberError.indecisiveNumberFormat;
             }
             return ValidateNumberError.numberHasInvalidFormat;

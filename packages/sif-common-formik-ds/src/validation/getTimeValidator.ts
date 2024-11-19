@@ -1,6 +1,7 @@
 import { InputTime } from '../types';
+import { getNumberFromStringInput } from '../utils/getNumberFromStringInput';
 import { ValidationFunction } from './types';
-import { getNumberFromStringInput, hasValue } from './validationUtils';
+import { hasValue } from './validationUtils';
 
 export enum ValidateTimeError {
     timeHasNoValue = 'timeHasNoValue',
