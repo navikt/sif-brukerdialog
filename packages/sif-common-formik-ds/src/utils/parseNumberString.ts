@@ -66,7 +66,7 @@ export const parseNumberString = (value: string | number = '', valueIsBelow1000:
             throw new Error(ParseNumberStringError.INVALID_NUMBER_FORMAT);
         }
 
-        // More than one separator of the same type, it's probaly a thousands separator
+        // More than one separator of the same type, it's probably a thousands separator
         if (parts.length > 2) {
             if (!verifyThousandsSeparatorIsValid(cleanedValue, separator)) {
                 throw new Error(ParseNumberStringError.INVALID_NUMBER_FORMAT);
@@ -89,12 +89,12 @@ export const parseNumberString = (value: string | number = '', valueIsBelow1000:
             const normalizedValue = cleanedValue.replace(separator, '.');
             return Number(normalizedValue);
         }
-        // When the deciaml has 3 digits is indecisive if it's a decimal
+        // When the decimal has 3 digits is indecisive if it's a decimal
         // separator or a thousands separator
         throw new Error(ParseNumberStringError.INDECISIVE_NUMBER_STRING);
     }
 
-    // Check if space is used as thoursands separator
+    // Check if space is used as thousands separator
     if (cleanedValue.includes(' ')) {
         if (!verifyThousandsSeparatorIsValid(cleanedValue, ' ')) {
             throw new Error(ParseNumberStringError.INVALID_NUMBER_FORMAT);
