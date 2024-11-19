@@ -27,13 +27,17 @@ export const StoryFormikWrapper: React.FunctionComponent<Props> = (props) => {
     return (
         <TypedFormikWrapper
             initialValues={initialValues}
-            onSubmit={(values) => {
+            onSubmit={() => {
                 // eslint-disable-next-line no-console
-                console.log('StoryFormikProvider', values);
             }}
-            renderForm={() => {
+            renderForm={({ values }) => {
+                console.log(values);
                 return (
-                    <TypedFormikForm includeButtons={includeButtons}>
+                    <TypedFormikForm
+                        includeButtons={includeButtons}
+                        onValidSubmit={() => {
+                            console.log('Valid submit');
+                        }}>
                         <Panel style={{ maxWidth: maxWidth }} border={true}>
                             {children}
                         </Panel>

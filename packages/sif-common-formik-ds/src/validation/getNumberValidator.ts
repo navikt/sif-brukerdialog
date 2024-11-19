@@ -7,6 +7,7 @@ export enum ValidateNumberError {
     numberIsTooSmall = 'numberIsTooSmall',
     numberIsTooLarge = 'numberIsTooLarge',
     numberHasDecimals = 'numberHasDecimals',
+    numberContainsPunctuation = 'numberContainsPunctuation',
 }
 
 export const ValidateNumberErrorKeys = Object.keys(ValidateNumberError);
@@ -17,7 +18,8 @@ type NumberValidationResult =
     | ValidateNumberError.numberHasInvalidFormat
     | ValidateNumberError.numberIsTooLarge
     | ValidateNumberError.numberIsTooSmall
-    | ValidateNumberError.numberHasDecimals;
+    | ValidateNumberError.numberHasDecimals
+    | ValidateNumberError.numberContainsPunctuation;
 
 interface Options {
     required?: boolean;
@@ -30,27 +32,30 @@ const getNumberValidator =
     (options: Options = {}): ValidationFunction<NumberValidationResult> =>
     (value: any) => {
         const { required, min, max, allowDecimals = true } = options;
-        const numberValue = getNumberFromStringInput(value);
 
-        if (required) {
-            if (hasValue(value) === false || (typeof value === 'string' && value.trim().length === 0)) {
-                return ValidateNumberError.numberHasNoValue;
+        try {
+            if (required) {
+                if (hasValue(value) === false || (typeof value === 'string' && value.trim().length === 0)) {
+                    return ValidateNumberError.numberHasNoValue;
+                }
             }
-        }
-
-        if (hasValue(value)) {
-            if (numberValue === undefined) {
-                return ValidateNumberError.numberHasInvalidFormat;
+            const numberValue = getNumberFromStringInput(value);
+            if (hasValue(value)) {
+                if (numberValue === undefined) {
+                    return ValidateNumberError.numberHasInvalidFormat;
+                }
+                if (allowDecimals === false && Math.round(numberValue) !== numberValue) {
+                    return ValidateNumberError.numberHasDecimals;
+                }
+                if (min !== undefined && numberValue < min) {
+                    return ValidateNumberError.numberIsTooSmall;
+                }
+                if (max !== undefined && numberValue > max) {
+                    return ValidateNumberError.numberIsTooLarge;
+                }
             }
-            if (allowDecimals === false && Math.round(numberValue) !== numberValue) {
-                return ValidateNumberError.numberHasDecimals;
-            }
-            if (min !== undefined && numberValue < min) {
-                return ValidateNumberError.numberIsTooSmall;
-            }
-            if (max !== undefined && numberValue > max) {
-                return ValidateNumberError.numberIsTooLarge;
-            }
+        } catch {
+            return ValidateNumberError.numberHasInvalidFormat;
         }
         return undefined;
     };

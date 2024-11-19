@@ -22,9 +22,13 @@ describe(`validateNumber`, () => {
         expect(getNumberValidator({ required: true })(' ')).toEqual(ValidateNumberError.numberHasNoValue);
         expect(getNumberValidator({ required: true })('    ')).toEqual(ValidateNumberError.numberHasNoValue);
     });
-    it(`returns ${ValidateNumberError.numberHasInvalidFormat} when hasValue and value has invalid format`, () => {
+    it(`returns ${ValidateNumberError.numberHasInvalidFormat} when hasValue and value has invalid format "1.2.3"`, () => {
         expect(getNumberValidator()('1.2.3')).toEqual(ValidateNumberError.numberHasInvalidFormat);
+    });
+    it(`returns ${ValidateNumberError.numberHasInvalidFormat} when hasValue and value has invalid format "1 3"`, () => {
         expect(getNumberValidator()('1 3')).toEqual(ValidateNumberError.numberHasInvalidFormat);
+    });
+    it(`returns ${ValidateNumberError.numberHasInvalidFormat} when hasValue and value has invalid format "[1]"`, () => {
         expect(getNumberValidator()([1])).toEqual(ValidateNumberError.numberHasInvalidFormat);
     });
     it(`returns ${ValidateNumberError.numberIsTooSmall} if number is valid and too small`, () => {

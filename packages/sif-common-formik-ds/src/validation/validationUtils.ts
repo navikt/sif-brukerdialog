@@ -1,3 +1,4 @@
+import { normalizeNumberString } from './normalizeNumberString';
 import { ValidationError, ValidationResult } from './types';
 
 export const hasValue = (value: any): boolean => value !== '' && value !== undefined && value !== null;
@@ -24,7 +25,7 @@ export const getNumberFromStringInput = (inputValue: string | undefined): number
     if (typeof inputValue === 'number' && isNaN(inputValue)) {
         return undefined;
     }
-    const value = `${inputValue}`.replace(/,/g, '.').trim();
+    const value = normalizeNumberString(inputValue);
     const numValue = Number(value);
     if (isNaN(numValue)) {
         return undefined;
