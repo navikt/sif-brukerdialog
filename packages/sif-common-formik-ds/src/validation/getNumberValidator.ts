@@ -7,7 +7,6 @@ export enum ValidateNumberError {
     numberIsTooSmall = 'numberIsTooSmall',
     numberIsTooLarge = 'numberIsTooLarge',
     numberHasDecimals = 'numberHasDecimals',
-    numberContainsPunctuation = 'numberContainsPunctuation',
 }
 
 export const ValidateNumberErrorKeys = Object.keys(ValidateNumberError);
@@ -18,8 +17,7 @@ type NumberValidationResult =
     | ValidateNumberError.numberHasInvalidFormat
     | ValidateNumberError.numberIsTooLarge
     | ValidateNumberError.numberIsTooSmall
-    | ValidateNumberError.numberHasDecimals
-    | ValidateNumberError.numberContainsPunctuation;
+    | ValidateNumberError.numberHasDecimals;
 
 interface Options {
     required?: boolean;
