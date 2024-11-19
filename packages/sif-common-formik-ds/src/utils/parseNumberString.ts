@@ -95,12 +95,13 @@ export const parseNumberString = (value: string | number = '', valueIsBelow1000:
             const normalizedValue = cleanedValue.replace(separator, '.');
             return Number(normalizedValue);
         }
+        /** Allow decimal to have three digits if the values is supposed to be below 1000 */
         if (fractionalPart.length === 3 && valueIsBelow1000) {
             const normalizedValue = cleanedValue.replace(separator, '.');
             return Number(normalizedValue);
         }
-        // When the decimal has 3 digits is indecisive if it's a decimal
-        // separator or a thousands separator
+        // When the decimal has 3 digits and the value is not set to be below 1000, it is indecisive if it
+        // separator is a a decimal-separator or a thousands-separator
         throw new Error(ParseNumberStringError.INDECISIVE_NUMBER_STRING);
     }
 
