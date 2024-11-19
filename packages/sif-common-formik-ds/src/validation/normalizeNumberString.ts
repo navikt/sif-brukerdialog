@@ -7,7 +7,7 @@ export const normalizeNumberString = (value: string | number = ''): string => {
     // Remove leading and trailing space
     let cleanedValue = value.trim(); //.replace(/\s+/g, '');
 
-    // Contains other characters than digits, commas and dots
+    // Contains other characters than digits, commas, spaces and dots
     if (/[^0-9.,\s\-]/.test(cleanedValue)) {
         throw new Error(INVALID_NUMBER_FORMAT);
     }
