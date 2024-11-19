@@ -100,4 +100,22 @@ describe('normalizeNumberString', () => {
         const value = '1.2.3';
         expect(() => normalizeNumberString(value)).toThrow('Invalid number format');
     });
+    it("should throw an error for '1.2.300'", () => {
+        const value = '1.2.300';
+        expect(() => normalizeNumberString(value)).toThrow('Invalid number format');
+    });
+    it("should throw an error for '100.20.300'", () => {
+        const value = '100.20.300';
+        expect(() => normalizeNumberString(value)).toThrow('Invalid number format');
+    });
+    it("should convert '100,20.300' to 10020.3", () => {
+        const value = '100,20.300';
+        const result = normalizeNumberString(value);
+        expect(Number(result)).toBe(10020.3);
+    });
+    it("should convert '100.20,300' to 10020.3", () => {
+        const value = '100.20,300';
+        const result = normalizeNumberString(value);
+        expect(Number(result)).toBe(10020.3);
+    });
 });
