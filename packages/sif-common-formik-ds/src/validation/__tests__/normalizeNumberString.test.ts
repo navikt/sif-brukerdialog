@@ -146,6 +146,14 @@ describe('normalizeNumberString', () => {
     });
     it("should throw an error for '12 100.000,50'", () => {
         const value = '12 100.000.50';
-        expect(() => normalizeNumberString('value')).toThrow('Invalid number format');
+        expect(() => normalizeNumberString(value)).toThrow('Invalid number format');
+    });
+    it("should throw an error for '1.100.000 50'", () => {
+        const value = '1.100.000 50';
+        expect(() => normalizeNumberString(value)).toThrow('Invalid number format');
+    });
+    it("should throw an error for '1,100 50'", () => {
+        const value = '1,000 50';
+        expect(() => normalizeNumberString(value)).toThrow('Invalid number format');
     });
 });

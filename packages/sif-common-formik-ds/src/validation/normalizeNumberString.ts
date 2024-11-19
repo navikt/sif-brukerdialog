@@ -51,7 +51,14 @@ export const normalizeNumberString = (value: string | number = ''): string => {
         const parts = cleanedValue.split(separator);
 
         // If space is present, and parts length === 2 it's probably a thousands separator - remove it
-        cleanedValue = parts.length === 2 ? cleanedValue.replace(/\s+/g, '') : cleanedValue;
+        cleanedValue =
+            parts.length === 2 && cleanedValue.indexOf(' ') < cleanedValue.indexOf(separator)
+                ? cleanedValue.replace(/\s+/g, '')
+                : cleanedValue;
+
+        if (cleanedValue.includes(' ')) {
+            throw new Error(INVALID_NUMBER_FORMAT);
+        }
 
         // More than one separator of the same type, it's probaly a thousands separator
         if (parts.length > 2) {
