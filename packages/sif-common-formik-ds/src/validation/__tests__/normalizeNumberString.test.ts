@@ -18,7 +18,16 @@ describe('normalizeNumberString', () => {
         const result = normalizeNumberString(value);
         expect(Number(result)).toBe(100000.5);
     });
-
+    it("should convert '100 000,50' to 100000.50", () => {
+        const value = '100 000.50';
+        const result = normalizeNumberString(value);
+        expect(Number(result)).toBe(100000.5);
+    });
+    it("should convert '12 100 000,50' to 12100000.50", () => {
+        const value = '12 100 000.50';
+        const result = normalizeNumberString(value);
+        expect(Number(result)).toBe(12100000.5);
+    });
     it("should convert '50.000.000' to 50000000", () => {
         const value = '50.000.000';
         const result = normalizeNumberString(value);
@@ -77,6 +86,22 @@ describe('normalizeNumberString', () => {
         const result = normalizeNumberString(value);
         expect(Number(result)).toBe(-0.2);
     });
+    it("should throw an error for '100.20,300'", () => {
+        const value = '100.20,300';
+        expect(() => normalizeNumberString(value)).toThrow('Invalid number format');
+    });
+    it("should throw an error for '100 20,300'", () => {
+        const value = '100 20,300';
+        expect(() => normalizeNumberString(value)).toThrow('Invalid number format');
+    });
+    it("should throw an error for '100 20.300'", () => {
+        const value = '100 20.300';
+        expect(() => normalizeNumberString(value)).toThrow('Invalid number format');
+    });
+    it("should throw an error for '100 20,300'", () => {
+        const value = '100 20,300';
+        expect(() => normalizeNumberString(value)).toThrow('Invalid number format');
+    });
     it("should throw an error for '-0,001' (indecisive)", () => {
         const value = '-0,001';
         expect(() => normalizeNumberString(value)).toThrow('Invalid number format');
@@ -95,7 +120,6 @@ describe('normalizeNumberString', () => {
         const value = '100,000';
         expect(() => normalizeNumberString(value)).toThrow('Invalid number format');
     });
-
     it("should throw an error for '1.2.3'", () => {
         const value = '1.2.3';
         expect(() => normalizeNumberString(value)).toThrow('Invalid number format');
@@ -108,14 +132,20 @@ describe('normalizeNumberString', () => {
         const value = '100.20.300';
         expect(() => normalizeNumberString(value)).toThrow('Invalid number format');
     });
-    it("should convert '100,20.300' to 10020.3", () => {
-        const value = '100,20.300';
-        const result = normalizeNumberString(value);
-        expect(Number(result)).toBe(10020.3);
+    it("should throw an error for '2e9'", () => {
+        const value = '2e9';
+        expect(() => normalizeNumberString(value)).toThrow('Invalid number format');
     });
-    it("should convert '100.20,300' to 10020.3", () => {
-        const value = '100.20,300';
-        const result = normalizeNumberString(value);
-        expect(Number(result)).toBe(10020.3);
+    it("should throw an error for '2E9'", () => {
+        const value = '2E9';
+        expect(() => normalizeNumberString(value)).toThrow('Invalid number format');
+    });
+    it("should throw an error for '1 2'", () => {
+        const value = '1 2';
+        expect(() => normalizeNumberString(value)).toThrow('Invalid number format');
+    });
+    it("should throw an error for '12 100.000,50'", () => {
+        const value = '12 100.000.50';
+        expect(() => normalizeNumberString('value')).toThrow('Invalid number format');
     });
 });

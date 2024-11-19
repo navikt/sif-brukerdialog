@@ -1,13 +1,21 @@
+const INVALID_NUMBER_FORMAT = 'Invalid number format';
+
 export const normalizeNumberString = (value: string | number = ''): string => {
     if (typeof value === 'number') {
         return value.toString();
     }
-    // Remove all non-digit characters except for commas and dots
-    const cleanedValue = value.trim();
+    // Remove leading and trailing space
+    let cleanedValue = value.trim(); //.replace(/\s+/g, '');
+
+    // Contains other characters than digits, commas and dots
+    if (/[^0-9.,\s\-]/.test(cleanedValue)) {
+        throw new Error(INVALID_NUMBER_FORMAT);
+    }
 
     // Determine if both separators are used
     const hasComma = cleanedValue.includes(',');
     const hasDot = cleanedValue.includes('.');
+    const hasSpace = cleanedValue.includes(' ');
 
     if (hasComma && hasDot) {
         // Determine which character is the decimal separator
@@ -15,6 +23,19 @@ export const normalizeNumberString = (value: string | number = ''): string => {
         const lastDotIndex = cleanedValue.lastIndexOf('.');
         const decimalSeparator = lastCommaIndex > lastDotIndex ? ',' : '.';
         const thousandSeparator = decimalSeparator === ',' ? '.' : ',';
+        const integerValue = cleanedValue.split(decimalSeparator)[0];
+
+        if (hasSpace) {
+            if (!verifyThousandsSeparatorIsValid(integerValue, ' ')) {
+                throw new Error(INVALID_NUMBER_FORMAT);
+            }
+            cleanedValue = cleanedValue.replace(/\s+/g, '');
+        }
+
+        // Verify that all the thousands separators are in the right place
+        if (!verifyThousandsSeparatorIsValid(integerValue, thousandSeparator)) {
+            throw new Error(INVALID_NUMBER_FORMAT);
+        }
 
         // Replace the thousands separators and convert to number
         const normalizedValue = cleanedValue
@@ -29,16 +50,13 @@ export const normalizeNumberString = (value: string | number = ''): string => {
         const separator = hasComma ? ',' : '.';
         const parts = cleanedValue.split(separator);
 
+        // If space is present, and parts length === 2 it's probably a thousands separator - remove it
+        cleanedValue = parts.length === 2 ? cleanedValue.replace(/\s+/g, '') : cleanedValue;
+
         // More than one separator of the same type, it's probaly a thousands separator
         if (parts.length > 2) {
-            if (parts[0].length > 3) {
-                // ex: 1000,000.0
-                throw new Error('Invalid number format');
-            }
-            for (let i = 1; i < parts.length; i++) {
-                if (parts[i].length !== 3) {
-                    throw new Error('Invalid number format');
-                }
+            if (!verifyThousandsSeparatorIsValid(cleanedValue, separator)) {
+                throw new Error(INVALID_NUMBER_FORMAT);
             }
             const normalizedValue = cleanedValue.replace(new RegExp(`\\${separator}`, 'g'), '');
             return normalizedValue;
@@ -56,9 +74,25 @@ export const normalizeNumberString = (value: string | number = ''): string => {
         }
         // When the deciaml has 3 digits is indecisive if it's a decimal
         // separator or a thousands separator
-        throw new Error('Invalid number format');
+        throw new Error(INVALID_NUMBER_FORMAT);
+    }
+
+    // Check if space is used as thoursands separator
+    if (cleanedValue.includes(' ')) {
+        if (!verifyThousandsSeparatorIsValid(cleanedValue, ' ')) {
+            throw new Error(INVALID_NUMBER_FORMAT);
+        }
+        cleanedValue = cleanedValue.replace(/\s+/g, '');
     }
 
     // If no separators are present, just convert to number
     return cleanedValue;
+};
+
+const verifyThousandsSeparatorIsValid = (value: string, separator: string): boolean => {
+    const parts = value.split(separator);
+    if (parts[0].length > 3) {
+        return false;
+    }
+    return parts.slice(1).every((part) => part.length === 3);
 };
