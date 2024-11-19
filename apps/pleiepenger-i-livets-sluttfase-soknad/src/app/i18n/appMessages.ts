@@ -159,6 +159,8 @@ const nb = {
         'Du må oppgi hvor mange timer per uke du {jobber} {hvor} i perioden.',
     'validation.arbeidsforhold.jobberNormaltTimer.numberHasInvalidFormat':
         'Antall timer du {jobber} per uke {hvor} kan kun bestå av tall.',
+    'validation.arbeidsforhold.jobberNormaltTimer.indecisiveNumberFormat':
+        'Antall timer du {jobber} per uke {hvor} kan kun bestå av tall.',
     'validation.arbeidIPeriode.jobber': 'Du må svare hvilken situasjon som gjelder for deg hos {hvor} i perioden.',
 
     'validation.arbeidsforhold.jobberNormaltTimer.numberIsTooSmall':

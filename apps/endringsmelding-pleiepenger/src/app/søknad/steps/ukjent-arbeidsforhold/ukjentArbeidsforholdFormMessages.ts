@@ -9,6 +9,8 @@ const nb = {
         'Du kan ikke oppgi mer enn {maksTimer} timer for hvor mye du jobber normalt per uke hos {navn}.',
     'ukjentArbeidsforhold.validation.timerPerUke.numberHasInvalidFormat':
         'Oppgitt timer for hvor mye du jobber normalt per uke hos {navn} er ikke et gyldig tall.',
+    'ukjentArbeidsforhold.validation.timerPerUke.indecisiveNumberFormat':
+        'Oppgitt timer for hvor mye du jobber normalt per uke hos {navn} er ikke et gyldig tall.',
     'ukjentArbeidsforhold.validation.arbeider.noValue':
         'Du må velge hvilken situasjon som gjelder for deg hos {navn} i perioden med pleiepenger.',
 };

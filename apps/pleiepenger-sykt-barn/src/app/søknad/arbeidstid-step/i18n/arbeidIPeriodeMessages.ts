@@ -10,12 +10,16 @@ const arbeidIPeriodeValideringMessages = {
             'Du må oppgi hvor mange prosent du jobber {hvor}.',
         'arbeidIPeriode.validation.prosentAvNormalt.numberHasInvalidFormat':
             'Antall prosent du jobber {hvor} kan kun bestå av tall.',
+        'arbeidIPeriode.validation.prosentAvNormalt.indecisiveNumberFormat':
+            'Antall prosent du jobber {hvor} kan kun bestå av tall.',
         'arbeidIPeriode.validation.prosentAvNormalt.numberIsTooSmall':
             'Antall prosent du jobber {hvor} kan ikke være mindre enn {min}.',
         'arbeidIPeriode.validation.prosentAvNormalt.numberIsTooLarge':
             'Antall prosent du jobber {hvor} kan ikke være mer enn {max}.',
         'arbeidIPeriode.validation.snittTimerPerUke.numberHasNoValue': 'Du må oppgi hvor mange timer du jobber {hvor}.',
         'arbeidIPeriode.validation.snittTimerPerUke.numberHasInvalidFormat':
+            'Antall timer du jobber {hvor} kan kun bestå av tall.',
+        'arbeidIPeriode.validation.snittTimerPerUke.indecisiveNumberFormat':
             'Antall timer du jobber {hvor} kan kun bestå av tall.',
         'arbeidIPeriode.validation.snittTimerPerUke.numberIsTooSmall':
             'Antall timer du jobber {hvor} kan ikke være mindre enn {min}.',
@@ -24,6 +28,8 @@ const arbeidIPeriodeValideringMessages = {
         'arbeidIPeriode.validation.snittTimerPerUke.UKE.numberHasNoValue':
             'Du må oppgi hvor mange timer du jobber i uke {ukenummer} {hvor}.',
         'arbeidIPeriode.validation.snittTimerPerUke.UKE.numberHasInvalidFormat':
+            'Antall timer du jobber i uke {ukenummer} {hvor} kan kun bestå av tall.',
+        'arbeidIPeriode.validation.snittTimerPerUke.UKE.indecisiveNumberFormat':
             'Antall timer du jobber i uke {ukenummer} {hvor} kan kun bestå av tall.',
         'arbeidIPeriode.validation.snittTimerPerUke.UKE.numberIsTooSmall':
             'Antall timer du jobber i uke {ukenummer} {hvor} kan ikke være mindre enn {min}.',

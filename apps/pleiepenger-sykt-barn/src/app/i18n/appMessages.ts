@@ -785,6 +785,8 @@ const nb = {
         'Du må oppgi hvor mange timer du {jobber} per uke {hvor} i perioden når du ikke har fravær på grunn av pleiepenger.',
     'validation.arbeidsforhold.arbeiderNormaltTimerPerUke.numberHasInvalidFormat':
         'Antall timer du normalt {jobber} per uke {hvor} kan kun bestå av tall.',
+    'validation.arbeidsforhold.arbeiderNormaltTimerPerUke.indecisiveNumberFormat':
+        'Antall timer du normalt {jobber} per uke {hvor} kan kun bestå av tall.',
     'validation.arbeidsforhold.arbeiderNormaltTimerPerUke.numberIsTooSmall':
         'Antall timer du normalt {jobber} per uke {hvor} kan ikke være mindre enn {min}.',
     'validation.arbeidsforhold.arbeiderNormaltTimerPerUke.numberIsTooLarge':

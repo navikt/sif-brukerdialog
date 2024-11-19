@@ -35,6 +35,8 @@ const nb = {
     '@forms.virksomhetForm.næringsinntekt.numberHasDecimals': 'Du må oppgi næringsinntekten i {navn} uten desimaler.',
     '@forms.virksomhetForm.næringsinntekt.numberHasInvalidFormat':
         'Du må oppgi et gyldig tall for næringsinntekten i {navn}. Et gyldig tall inneholder kun siffer.',
+    '@forms.virksomhetForm.næringsinntekt.indecisiveNumberFormat':
+        'Du må oppgi et gyldig tall for næringsinntekten i {navn}. Et gyldig tall inneholder kun siffer.',
     '@forms.virksomhetForm.næringsinntekt.numberIsTooSmall':
         'Tallet du har oppgitt som næringsinntekt for {navn} er for lavt. Tallet kan ikke være lavere enn {min}.',
     '@forms.virksomhetForm.næringsinntekt.numberIsTooLarge':
@@ -64,6 +66,8 @@ const nb = {
     '@forms.virksomhetForm.varigEndringINæringsinntekt_inntektEtterEndring.numberHasDecimals':
         'Du må oppgi inntekt etter inntektsendring for {navn} uten desimaler.',
     '@forms.virksomhetForm.varigEndringINæringsinntekt_inntektEtterEndring.numberHasInvalidFormat':
+        'Du må oppgi et gyldig tall for ny inntekt etter inntektsendring i {navn}. Et gyldig tall inneholder kun siffer.',
+    '@forms.virksomhetForm.varigEndringINæringsinntekt_inntektEtterEndring.indecisiveNumberFormat':
         'Du må oppgi et gyldig tall for ny inntekt etter inntektsendring i {navn}. Et gyldig tall inneholder kun siffer.',
     '@forms.virksomhetForm.varigEndringINæringsinntekt_inntektEtterEndring.numberIsTooLarge':
         'Tallet du har oppgitt som ny inntekt etter inntektsendring for {navn} er for høyt. Tallet kan ikke være høyere enn {maks}.',
@@ -131,6 +135,8 @@ const nn: Record<keyof typeof nb, string> = {
         'Sluttdatoen for når du avslutta verksemda kan ikkje vera før startdatoen. Skriv inn eller vel sluttdato frå datoveljaren.',
     '@forms.virksomhetForm.næringsinntekt.numberHasInvalidFormat':
         'Du må oppgi eit gyldig tal for næringsinntekta i {navn}. Eit gyldig tal inneheld berre siffer.',
+    '@forms.virksomhetForm.næringsinntekt.indecisiveNumberFormat':
+        'Du må oppgi eit gyldig tal for næringsinntekta i {navn}. Eit gyldig tal inneheld berre siffer.',
     '@forms.virksomhetForm.næringsinntekt.numberIsTooSmall':
         'Talet du har oppgitt som næringsinntekt for {navn} er for lågt. Talet kan ikkje vera lågare enn {min}.',
     '@forms.virksomhetForm.næringsinntekt.numberIsTooLarge':
@@ -160,6 +166,8 @@ const nn: Record<keyof typeof nb, string> = {
     '@forms.virksomhetForm.varigEndringINæringsinntekt_inntektEtterEndring.numberHasNoValue':
         'Du må oppgi inntekt etter inntektsendring for {navn}.',
     '@forms.virksomhetForm.varigEndringINæringsinntekt_inntektEtterEndring.numberHasInvalidFormat':
+        'Du må oppgi eit gyldig tal for ny inntekt etter inntektsendring i {navn}. Eit gyldig tal inneheld berre siffer.',
+    '@forms.virksomhetForm.varigEndringINæringsinntekt_inntektEtterEndring.indecisiveNumberFormat':
         'Du må oppgi eit gyldig tal for ny inntekt etter inntektsendring i {navn}. Eit gyldig tal inneheld berre siffer.',
     '@forms.virksomhetForm.varigEndringINæringsinntekt_inntektEtterEndring.numberIsTooLarge':
         'Talet du har oppgitt som ny inntekt etter inntektsendring for {navn} er for høgt. Talet kan ikkje vera høgare enn {maks}.',

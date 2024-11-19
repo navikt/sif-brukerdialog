@@ -14,11 +14,13 @@ const nb = {
     'endreArbeidstidForm.prosentAvNormalt.numberIsTooSmall': 'Du kan ikke oppgi mindre enn 0 prosent',
     'endreArbeidstidForm.prosentAvNormalt.numberIsTooLarge': 'Du kan ikke oppgi med enn 100 prosent',
     'endreArbeidstidForm.prosentAvNormalt.numberHasInvalidFormat': 'Oppgitt prosent er ikke et gyldig tall',
+    'endreArbeidstidForm.prosentAvNormalt.indecisiveNumberFormat': 'Oppgitt prosent er ikke et gyldig tall',
 
     'endreArbeidstidForm.antallTimer.numberHasNoValue': 'Du må oppgi hvor mange timer du jobber',
     'endreArbeidstidForm.antallTimer.numberIsTooSmall': 'Du kan ikke oppgi mindre enn 0 timer',
     'endreArbeidstidForm.antallTimer.numberIsTooLarge': 'Du kan ikke oppgi mer enn {maksTimer} timer',
     'endreArbeidstidForm.antallTimer.numberHasInvalidFormat': 'Oppgitt timer er ikke et gyldig tall',
+    'endreArbeidstidForm.antallTimer.indecisiveNumberFormat': 'Oppgitt timer er ikke et gyldig tall',
 
     'endreArbeidstidForm.heading.endreForEnUke': 'Endre jobb for uke {ukenummer}',
     'endreArbeidstidForm.heading.endreForFlereUker': 'Endre jobb for flere uker',
