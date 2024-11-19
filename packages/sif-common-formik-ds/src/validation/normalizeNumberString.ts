@@ -1,4 +1,5 @@
-const INVALID_NUMBER_FORMAT = 'Invalid number format';
+export const INVALID_NUMBER_FORMAT = 'Invalid number format';
+export const INDECISIVE_NUMBER_STRING = 'Indecisive number string';
 
 export const normalizeNumberString = (value: string | number = ''): string => {
     if (typeof value === 'number') {
@@ -50,9 +51,11 @@ export const normalizeNumberString = (value: string | number = ''): string => {
         const separator = hasComma ? ',' : '.';
         const parts = cleanedValue.split(separator);
 
-        // If space is present, and parts length === 2 it's probably a thousands separator - remove it
+        // Remove space from cleanedValue if it's used as a thousands separator
         cleanedValue =
-            parts.length === 2 && cleanedValue.indexOf(' ') < cleanedValue.indexOf(separator)
+            parts.length === 2 && // only two parts
+            cleanedValue.indexOf(' ') < cleanedValue.indexOf(separator) && // Space is before the separator
+            verifyThousandsSeparatorIsValid(cleanedValue.split(separator)[0], ' ') // Space is a thousands separator
                 ? cleanedValue.replace(/\s+/g, '')
                 : cleanedValue;
 
@@ -81,7 +84,7 @@ export const normalizeNumberString = (value: string | number = ''): string => {
         }
         // When the deciaml has 3 digits is indecisive if it's a decimal
         // separator or a thousands separator
-        throw new Error(INVALID_NUMBER_FORMAT);
+        throw new Error(INDECISIVE_NUMBER_STRING);
     }
 
     // Check if space is used as thoursands separator
@@ -96,6 +99,12 @@ export const normalizeNumberString = (value: string | number = ''): string => {
     return cleanedValue;
 };
 
+/**
+ * Verifies the format for the numberString is valid formatted where all separated number groups are 3 digits long except the first one
+ * @param value numberString
+ * @param separator
+ * @returns
+ */
 const verifyThousandsSeparatorIsValid = (value: string, separator: string): boolean => {
     const parts = value.split(separator);
     if (parts[0].length > 3) {
