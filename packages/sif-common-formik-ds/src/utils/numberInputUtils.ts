@@ -7,14 +7,31 @@ export const getNumberFromNumberInputValue = (inputValue: string | undefined): n
     if (typeof inputValue === 'number' && isNaN(inputValue)) {
         return undefined;
     }
-    const hasCommas = inputValue.includes(',');
-    const hasDots = inputValue.includes('.');
+    if (typeof inputValue === 'number') {
+        return inputValue;
+    }
+
+    const cleanedValue = (inputValue || '').trim();
+
+    const hasCommas = cleanedValue.includes(',');
+    const hasDots = cleanedValue.includes('.');
 
     if (hasCommas && hasDots) {
         return undefined;
     }
 
-    const value = `${inputValue}`.replace(/,/g, '.').replace(/\s/g, '');
+    if (cleanedValue.includes(' ')) {
+        const parts = cleanedValue.split(' ');
+        if (parts[0].length > 3) {
+            return undefined;
+        }
+        const rest = parts.slice(1);
+        if (rest.some((part) => part.length !== 3)) {
+            return undefined;
+        }
+    }
+
+    const value = `${cleanedValue}`.replace(/,/g, '.').replace(/\s/g, '');
     const numValue = Number(value);
     if (isNaN(numValue)) {
         return undefined;
