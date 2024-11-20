@@ -6,7 +6,6 @@ describe(`validateNumber`, () => {
     });
     it('returns undefined when value is a valid number or number string', () => {
         expect(getNumberValidator()('1')).toBeUndefined();
-        // expect(getNumberValidator()('1.2')).toBeUndefined();
         expect(getNumberValidator()('1,2')).toBeUndefined();
         expect(getNumberValidator()('-1')).toBeUndefined();
         expect(getNumberValidator()(' 1')).toBeUndefined();
