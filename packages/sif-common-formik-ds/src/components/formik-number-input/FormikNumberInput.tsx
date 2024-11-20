@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { useIntl } from 'react-intl';
 import { Field, FieldProps } from 'formik';
 import { TestProps, TypedFormInputValidationProps } from '../../types';
-import { getNumberInputFormatter, getNumberInputUnformatter } from '../../utils/numberInputUtils';
+import { getNumberInputFormatter } from '../../utils/numberInputUtils';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import FormikTextField from '../formik-text-field/FormikTextField';
 import { TextFieldWidths } from '../formik-text-field/FormikTextFieldUtils';
@@ -32,9 +32,6 @@ function FormikNumberInput<FieldName, ErrorType>({
 }: FormikNumberInputProps<FieldName, ErrorType>) {
     const context = useContext(TypedFormikFormContext);
     const intl = useIntl();
-    const formatter = useFormatting ? getNumberInputFormatter(intl) : undefined;
-    const unformatter = useFormatting ? getNumberInputUnformatter() : undefined;
-
     return (
         <Field validate={validate ? (value: any) => validate(value, name) : undefined} name={name}>
             {({ field, form }: FieldProps) => {
@@ -48,8 +45,7 @@ function FormikNumberInput<FieldName, ErrorType>({
                         inputMode={integerValue ? 'numeric' : 'text'}
                         pattern={integerValue ? '[0-9]*' : undefined}
                         error={getErrorPropForFormikInput({ field, form, context, error })}
-                        formatter={formatter}
-                        unformatter={unformatter}
+                        formatter={getNumberInputFormatter(intl)}
                     />
                 );
             }}

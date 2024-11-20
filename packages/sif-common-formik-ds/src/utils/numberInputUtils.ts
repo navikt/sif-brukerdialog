@@ -1,4 +1,5 @@
 import { IntlShape } from 'react-intl';
+import { TextFieldFormatter } from '../components/formik-text-field/FormikTextField';
 
 export const getNumberFromNumberInputValue = (inputValue: string | undefined): number | undefined => {
     if (inputValue === undefined || inputValue === '' || Array.isArray(inputValue)) {
@@ -43,17 +44,13 @@ export const getStringForNumberInputValue = (value?: number): string => {
     return value === undefined ? '' : `${value}`.replace(/\./g, ',');
 };
 
-export const getNumberInputFormatter =
-    (intl: IntlShape) =>
-    (value: string): string => {
+export const getNumberInputFormatter = (intl: IntlShape): TextFieldFormatter => ({
+    applyFormatting: (value: string): string => {
         const numValue = getNumberFromNumberInputValue(value);
         return numValue !== undefined ? intl.formatNumber(numValue) : value;
-    };
-
-export const getNumberInputUnformatter =
-    () =>
-    (value: string): string => {
-        console.log('sdf');
+    },
+    clearFormatting: (value: string): string => {
         const numValue = getNumberFromNumberInputValue(value);
-        return numValue !== undefined ? `${numValue}`.replace('.', ',').replace(' ', '') : value;
-    };
+        return numValue !== undefined ? getStringForNumberInputValue(numValue) : value;
+    },
+});

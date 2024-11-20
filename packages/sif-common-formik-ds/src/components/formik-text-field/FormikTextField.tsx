@@ -10,9 +10,13 @@ import './formikTextField.css';
 interface OwnProps<FieldName> extends Omit<TextFieldProps, 'name' | 'children' | 'width'> {
     name: FieldName;
     width?: TextFieldWidths;
-    formatter?: (value: string) => string;
-    unformatter?: (value: string) => string;
+    formatter?: TextFieldFormatter;
 }
+
+export type TextFieldFormatter = {
+    applyFormatting: (value: string) => string;
+    clearFormatting: (value: string) => string;
+};
 
 export type FormikTextFieldProps<FieldName, ErrorType> = OwnProps<FieldName> &
     TypedFormInputValidationProps<FieldName, ErrorType> &
@@ -29,19 +33,12 @@ function FormikTextField<FieldName, ErrorType>({
     useFastField,
     label,
     formatter,
-    unformatter,
     ...restProps
 }: FormikTextFieldProps<FieldName, ErrorType>) {
     const context = React.useContext(TypedFormikFormContext);
     const FieldComponent = useFastField ? FastField : Field;
     const [hasFocus, setHasFocus] = useState(false);
 
-    const getValue = (value: string = '') => {
-        if (!hasFocus && formatter) {
-            return formatter(value);
-        }
-        return value;
-    };
     return (
         <FieldComponent validate={validate ? (value: any) => validate(value, name) : undefined} name={name}>
             {({ field, form }: FieldProps) => {
@@ -53,17 +50,17 @@ function FormikTextField<FieldName, ErrorType>({
                         autoComplete={autoComplete}
                         className={getTextFieldWidthClassName(width, className)}
                         error={getErrorPropForFormikInput({ field, form, context, error })}
-                        value={getValue(field.value)}
+                        value={!hasFocus && formatter ? formatter.applyFormatting(field.value) : field.value}
                         onBlur={() => {
                             setHasFocus(false);
                             if (formatter) {
-                                form.setFieldValue(field.name, formatter(field.value));
+                                form.setFieldValue(field.name, formatter.applyFormatting(field.value));
                             }
                         }}
                         onFocus={() => {
                             setHasFocus(true);
-                            if (unformatter) {
-                                form.setFieldValue(field.name, unformatter(field.value));
+                            if (formatter) {
+                                form.setFieldValue(field.name, formatter?.clearFormatting(field.value));
                             }
                         }}
                     />
