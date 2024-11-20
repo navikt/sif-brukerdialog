@@ -27,7 +27,7 @@ function FormikNumberInput<FieldName, ErrorType>({
     autoComplete,
     width = 's',
     integerValue = false,
-    useFormatting,
+    useFormatting = true,
     ...restProps
 }: FormikNumberInputProps<FieldName, ErrorType>) {
     const context = useContext(TypedFormikFormContext);
@@ -48,7 +48,6 @@ function FormikNumberInput<FieldName, ErrorType>({
                         inputMode={integerValue ? 'numeric' : 'text'}
                         pattern={integerValue ? '[0-9]*' : undefined}
                         error={getErrorPropForFormikInput({ field, form, context, error })}
-                        value={field.value === undefined ? '' : field.value}
                         formatter={formatter}
                         unformatter={unformatter}
                     />

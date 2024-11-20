@@ -1,5 +1,5 @@
 import { TextField, TextFieldProps } from '@navikt/ds-react';
-import React from 'react';
+import React, { useState } from 'react';
 import { FastField, Field, FieldProps } from 'formik';
 import { TestProps, TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
@@ -34,7 +34,14 @@ function FormikTextField<FieldName, ErrorType>({
 }: FormikTextFieldProps<FieldName, ErrorType>) {
     const context = React.useContext(TypedFormikFormContext);
     const FieldComponent = useFastField ? FastField : Field;
+    const [hasFocus, setHasFocus] = useState(false);
 
+    const getValue = (value: string = '') => {
+        if (!hasFocus && formatter) {
+            return formatter(value);
+        }
+        return value;
+    };
     return (
         <FieldComponent validate={validate ? (value: any) => validate(value, name) : undefined} name={name}>
             {({ field, form }: FieldProps) => {
@@ -46,13 +53,15 @@ function FormikTextField<FieldName, ErrorType>({
                         autoComplete={autoComplete}
                         className={getTextFieldWidthClassName(width, className)}
                         error={getErrorPropForFormikInput({ field, form, context, error })}
-                        value={field.value || ''}
+                        value={getValue(field.value)}
                         onBlur={() => {
+                            setHasFocus(false);
                             if (formatter) {
                                 form.setFieldValue(field.name, formatter(field.value));
                             }
                         }}
                         onFocus={() => {
+                            setHasFocus(true);
                             if (unformatter) {
                                 form.setFieldValue(field.name, unformatter(field.value));
                             }

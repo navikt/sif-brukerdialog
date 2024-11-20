@@ -26,7 +26,7 @@ Default.args = {
 Default.parameters = {
     formik: {
         initialValues: {
-            FormikNumberInput: '1 232,23',
+            FormikNumberInput: '2123.12',
         },
     },
 };

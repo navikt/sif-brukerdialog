@@ -7,9 +7,13 @@ export const getNumberFromNumberInputValue = (inputValue: string | undefined): n
     if (typeof inputValue === 'number' && isNaN(inputValue)) {
         return undefined;
     }
-    if (inputValue.includes('.')) {
+    const hasCommas = inputValue.includes(',');
+    const hasDots = inputValue.includes('.');
+
+    if (hasCommas && hasDots) {
         return undefined;
     }
+
     const value = `${inputValue}`.replace(/,/g, '.').replace(/\s/g, '');
     const numValue = Number(value);
     if (isNaN(numValue)) {
