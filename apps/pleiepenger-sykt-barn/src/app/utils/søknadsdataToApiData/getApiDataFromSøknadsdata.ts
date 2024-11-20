@@ -70,7 +70,7 @@ export const getApiDataFromSøknadsdata = (
                     søknadsdata.arbeidstidIPerioden?.selvstendig,
                     locale,
                 ),
-                ...getStønadGodtgjørelseApiDataFromSøknadsdata(søknadsperiode, søknadsdata.stønadGodtgjørelse),
+                ...getStønadGodtgjørelseApiDataFromSøknadsdata(søknadsdata.stønadGodtgjørelse),
                 opptjeningIUtlandet: getOpptjeningIUtlandetSøknadsdata(
                     sprak,
                     søknadsdata.arbeidssituasjon?.opptjeningUtland,
