@@ -1,7 +1,9 @@
 import { TextFieldProps } from '@navikt/ds-react';
-import React from 'react';
+import { useContext } from 'react';
+import { useIntl } from 'react-intl';
 import { Field, FieldProps } from 'formik';
 import { TestProps, TypedFormInputValidationProps } from '../../types';
+import { getNumberInputFormatter, getNumberInputUnformatter } from '../../utils/numberInputUtils';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import FormikTextField from '../formik-text-field/FormikTextField';
 import { TextFieldWidths } from '../formik-text-field/FormikTextFieldUtils';
@@ -11,11 +13,11 @@ interface OwnProps<FieldName> extends Omit<TextFieldProps, 'name' | 'children' |
     name: FieldName;
     integerValue?: boolean;
     width?: TextFieldWidths;
+    useFormatting?: boolean;
 }
 
 export type FormikNumberInputProps<FieldName, ErrorType> = OwnProps<FieldName> &
     TypedFormInputValidationProps<FieldName, ErrorType> &
-    // InputWithSuffix &
     TestProps;
 
 function FormikNumberInput<FieldName, ErrorType>({
@@ -25,9 +27,13 @@ function FormikNumberInput<FieldName, ErrorType>({
     autoComplete,
     width = 's',
     integerValue = false,
+    useFormatting,
     ...restProps
 }: FormikNumberInputProps<FieldName, ErrorType>) {
-    const context = React.useContext(TypedFormikFormContext);
+    const context = useContext(TypedFormikFormContext);
+    const intl = useIntl();
+    const formatter = useFormatting ? getNumberInputFormatter(intl) : undefined;
+    const unformatter = useFormatting ? getNumberInputUnformatter() : undefined;
 
     return (
         <Field validate={validate ? (value: any) => validate(value, name) : undefined} name={name}>
@@ -43,6 +49,8 @@ function FormikNumberInput<FieldName, ErrorType>({
                         pattern={integerValue ? '[0-9]*' : undefined}
                         error={getErrorPropForFormikInput({ field, form, context, error })}
                         value={field.value === undefined ? '' : field.value}
+                        formatter={formatter}
+                        unformatter={unformatter}
                     />
                 );
             }}

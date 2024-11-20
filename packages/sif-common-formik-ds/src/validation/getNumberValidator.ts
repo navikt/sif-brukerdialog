@@ -1,5 +1,6 @@
-import { getNumberFromStringInput, hasValue } from './validationUtils';
+import { hasValue } from './validationUtils';
 import { ValidationFunction } from './types';
+import { getNumberFromNumberInputValue } from '../utils/numberInputUtils';
 
 export enum ValidateNumberError {
     numberHasNoValue = 'numberHasNoValue',
@@ -30,7 +31,7 @@ const getNumberValidator =
     (options: Options = {}): ValidationFunction<NumberValidationResult> =>
     (value: any) => {
         const { required, min, max, allowDecimals = true } = options;
-        const numberValue = getNumberFromStringInput(value);
+        const numberValue = getNumberFromNumberInputValue(value);
 
         if (required) {
             if (hasValue(value) === false || (typeof value === 'string' && value.trim().length === 0)) {

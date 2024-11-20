@@ -10,6 +10,8 @@ import './formikTextField.css';
 interface OwnProps<FieldName> extends Omit<TextFieldProps, 'name' | 'children' | 'width'> {
     name: FieldName;
     width?: TextFieldWidths;
+    formatter?: (value: string) => string;
+    unformatter?: (value: string) => string;
 }
 
 export type FormikTextFieldProps<FieldName, ErrorType> = OwnProps<FieldName> &
@@ -26,6 +28,8 @@ function FormikTextField<FieldName, ErrorType>({
     autoComplete = 'off',
     useFastField,
     label,
+    formatter,
+    unformatter,
     ...restProps
 }: FormikTextFieldProps<FieldName, ErrorType>) {
     const context = React.useContext(TypedFormikFormContext);
@@ -42,7 +46,17 @@ function FormikTextField<FieldName, ErrorType>({
                         autoComplete={autoComplete}
                         className={getTextFieldWidthClassName(width, className)}
                         error={getErrorPropForFormikInput({ field, form, context, error })}
-                        value={field.value === undefined ? '' : field.value}
+                        value={field.value}
+                        onBlur={() => {
+                            if (formatter) {
+                                form.setFieldValue(field.name, formatter(field.value));
+                            }
+                        }}
+                        onFocus={() => {
+                            if (unformatter) {
+                                form.setFieldValue(field.name, unformatter(field.value));
+                            }
+                        }}
                     />
                 );
             }}
