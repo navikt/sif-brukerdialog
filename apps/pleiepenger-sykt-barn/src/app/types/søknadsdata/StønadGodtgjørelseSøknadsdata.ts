@@ -1,28 +1,35 @@
-import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { ISODate } from '@navikt/sif-common-utils';
+import { MottarStønadGodtgjørelseVariant } from '../søknad-form-values/StønadGodtgjørelseFormValues';
 
 export interface MottarIkkeStønadGodtgjørelse {
-    type: 'mottarIkke';
-    mottarStønadGodtgjørelse: YesOrNo.NO;
+    mottarStønadGodtgjørelse: false;
 }
 
-export interface MottarStønadGodtgjørelseIHelePeroden {
-    type: 'mottarIHelePeroden';
-    mottarStønadGodtgjørelse: YesOrNo.YES;
-    mottarStønadGodtgjørelseIHelePerioden: YesOrNo.YES;
+export interface MottarStønadGodtgjørelseSomVanligIPerioden {
+    mottarStønadGodtgjørelse: true;
+    mottarStønadGodtgjørelseVariant: MottarStønadGodtgjørelseVariant.somVanlig;
 }
 
-export interface MottarStønadGodtgjørelseIDelerAvPeroden {
-    type: 'mottarIDelerAvPeroden';
-    mottarStønadGodtgjørelse: YesOrNo.YES;
-    mottarStønadGodtgjørelseIHelePerioden: YesOrNo.NO;
-    starterUndeveis: YesOrNo;
-    startdato?: ISODate;
-    slutterUnderveis: YesOrNo;
-    sluttdato?: ISODate;
+export interface MottarStønadGodtgjørelseStarterIPerioden {
+    mottarStønadGodtgjørelse: true;
+    mottarStønadGodtgjørelseVariant: MottarStønadGodtgjørelseVariant.starterIPerioden;
+    startdato: ISODate;
+}
+export interface MottarStønadGodtgjørelseSlutterIPerioden {
+    mottarStønadGodtgjørelse: true;
+    mottarStønadGodtgjørelseVariant: MottarStønadGodtgjørelseVariant.slutterIPerioden;
+    sluttdato: ISODate;
+}
+export interface MottarStønadGodtgjørelseStarterOgSlutterIPerioden {
+    mottarStønadGodtgjørelse: true;
+    mottarStønadGodtgjørelseVariant: MottarStønadGodtgjørelseVariant.starterOgSlutterIPerioden;
+    startdato: ISODate;
+    sluttdato: ISODate;
 }
 
 export type StønadGodtgjørelseSøknadsdata =
-    | MottarStønadGodtgjørelseIHelePeroden
     | MottarIkkeStønadGodtgjørelse
-    | MottarStønadGodtgjørelseIDelerAvPeroden;
+    | MottarStønadGodtgjørelseSomVanligIPerioden
+    | MottarStønadGodtgjørelseStarterIPerioden
+    | MottarStønadGodtgjørelseSlutterIPerioden
+    | MottarStønadGodtgjørelseStarterOgSlutterIPerioden;

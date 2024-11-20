@@ -1,6 +1,7 @@
 import { SøknadApiData } from '../../types/søknad-api-data/SøknadApiData';
+import { MottarStønadGodtgjørelseVariant } from '../../types/søknad-form-values/StønadGodtgjørelseFormValues';
 import { StønadGodtgjørelseSøknadsdata } from '../../types/søknadsdata/StønadGodtgjørelseSøknadsdata';
-import { DateRange, YesOrNo } from '@navikt/sif-common-formik-ds/src';
+import { DateRange } from '@navikt/sif-common-formik-ds/src';
 import { dateToISODate } from '@navikt/sif-common-utils';
 
 type StønadGodtgjørelseApiData = Pick<SøknadApiData, 'stønadGodtgjørelse'>;
@@ -15,37 +16,48 @@ export const getStønadGodtgjørelseApiDataFromSøknadsdata = (
     const fraOgMed = dateToISODate(søknadsperiode.from);
     const tilOgMed = dateToISODate(søknadsperiode.to);
 
-    switch (stønadGodtgjørelse?.type) {
-        case 'mottarIkke':
-            return {
-                stønadGodtgjørelse: {
-                    mottarStønadGodtgjørelse: false,
-                },
-            };
+    if (stønadGodtgjørelse.mottarStønadGodtgjørelse === false) {
+        return {
+            stønadGodtgjørelse: {
+                mottarStønadGodtgjørelse: false,
+            },
+        };
+    }
 
-        case 'mottarIHelePeroden':
+    switch (stønadGodtgjørelse.mottarStønadGodtgjørelseVariant) {
+        case MottarStønadGodtgjørelseVariant.somVanlig:
             return {
                 stønadGodtgjørelse: {
                     mottarStønadGodtgjørelse: true,
-                    _mottarStønadGodtgjørelseIHelePeroden: true,
                     startdato: fraOgMed,
                     sluttdato: tilOgMed,
                 },
             };
-
-        case 'mottarIDelerAvPeroden':
+        case MottarStønadGodtgjørelseVariant.starterIPerioden:
             return {
                 stønadGodtgjørelse: {
                     mottarStønadGodtgjørelse: true,
-                    _mottarStønadGodtgjørelseIHelePeroden: false,
-
-                    _starterUndeveis: stønadGodtgjørelse.starterUndeveis === YesOrNo.YES ? true : false,
-                    startdato:
-                        stønadGodtgjørelse.starterUndeveis === YesOrNo.YES ? stønadGodtgjørelse.startdato : fraOgMed,
-
-                    _slutterUnderveis: stønadGodtgjørelse.slutterUnderveis === YesOrNo.YES ? true : false,
-                    sluttdato:
-                        stønadGodtgjørelse.slutterUnderveis === YesOrNo.YES ? stønadGodtgjørelse.sluttdato : tilOgMed,
+                    startdato: stønadGodtgjørelse.startdato,
+                    sluttdato: tilOgMed,
+                    _variant: stønadGodtgjørelse.mottarStønadGodtgjørelseVariant,
+                },
+            };
+        case MottarStønadGodtgjørelseVariant.slutterIPerioden:
+            return {
+                stønadGodtgjørelse: {
+                    mottarStønadGodtgjørelse: true,
+                    startdato: fraOgMed,
+                    sluttdato: stønadGodtgjørelse.sluttdato,
+                    _variant: stønadGodtgjørelse.mottarStønadGodtgjørelseVariant,
+                },
+            };
+        case MottarStønadGodtgjørelseVariant.starterOgSlutterIPerioden:
+            return {
+                stønadGodtgjørelse: {
+                    mottarStønadGodtgjørelse: true,
+                    startdato: stønadGodtgjørelse.startdato,
+                    sluttdato: stønadGodtgjørelse.sluttdato,
+                    _variant: stønadGodtgjørelse.mottarStønadGodtgjørelseVariant,
                 },
             };
     }

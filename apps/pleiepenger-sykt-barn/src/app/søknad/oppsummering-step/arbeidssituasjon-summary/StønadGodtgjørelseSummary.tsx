@@ -2,20 +2,14 @@ import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
 import { StønadGodtgjørelseApiData } from '../../../types/søknad-api-data/StønadGodtgjørelseApiData';
 import { FormSummary, Heading, List } from '@navikt/ds-react';
 import { AppText } from '../../../i18n';
+import { MottarStønadGodtgjørelseVariant } from '../../../types/søknad-form-values/StønadGodtgjørelseFormValues';
 
 interface Props {
     stønadGodtgjørelse: StønadGodtgjørelseApiData;
 }
 
 const StønadGodtgjørelseSummary = ({ stønadGodtgjørelse }: Props) => {
-    const {
-        mottarStønadGodtgjørelse,
-        _mottarStønadGodtgjørelseIHelePeroden: mottarStønadGodtgjørelseIHelePerioden,
-        _starterUndeveis,
-        startdato,
-        _slutterUnderveis,
-        sluttdato,
-    } = stønadGodtgjørelse;
+    const { mottarStønadGodtgjørelse, _variant, startdato, sluttdato } = stønadGodtgjørelse;
 
     if (mottarStønadGodtgjørelse === false) {
         return (
@@ -36,6 +30,14 @@ const StønadGodtgjørelseSummary = ({ stønadGodtgjørelse }: Props) => {
         );
     }
 
+    const starterIPerioden =
+        _variant === MottarStønadGodtgjørelseVariant.starterIPerioden ||
+        _variant === MottarStønadGodtgjørelseVariant.starterOgSlutterIPerioden;
+
+    const slutterIPerioden =
+        _variant === MottarStønadGodtgjørelseVariant.slutterIPerioden ||
+        _variant === MottarStønadGodtgjørelseVariant.starterOgSlutterIPerioden;
+
     return (
         <FormSummary.Answer>
             <FormSummary.Label>
@@ -43,21 +45,35 @@ const StønadGodtgjørelseSummary = ({ stønadGodtgjørelse }: Props) => {
                     <AppText id="steg.oppsummering.arbeidssituasjon.omsfost.title" />
                 </Heading>
             </FormSummary.Label>
-            <FormSummary.Value>
-                <List>
-                    {mottarStønadGodtgjørelseIHelePerioden ? (
-                        <List.Item>Mottar stønad eller godtgjørelsen gjennom hele perioden jeg søker om</List.Item>
-                    ) : (
-                        <List.Item>Mottar stønad eller godtgjørelsen i deler av perioden jeg søker om</List.Item>
-                    )}
-                    {mottarStønadGodtgjørelseIHelePerioden === false && _starterUndeveis && startdato && (
-                        <List.Item>{`Startet ${dateFormatter.full(ISODateToDate(startdato))}`}</List.Item>
-                    )}
-                    {mottarStønadGodtgjørelseIHelePerioden === false && _slutterUnderveis && sluttdato && (
-                        <List.Item>{`Sluttet ${dateFormatter.full(ISODateToDate(sluttdato))}`}</List.Item>
-                    )}
-                </List>
-            </FormSummary.Value>
+            {_variant && (
+                <FormSummary.Value>
+                    <List>
+                        <List.Item>
+                            {_variant === MottarStønadGodtgjørelseVariant.somVanlig ? (
+                                <AppText id="steg.oppsummering.arbeidssituasjon.omsfost.helePerioden" />
+                            ) : (
+                                <AppText id="steg.oppsummering.arbeidssituasjon.omsfost.delerAvPerioden" />
+                            )}
+                        </List.Item>
+                        {starterIPerioden && startdato && (
+                            <List.Item>
+                                <AppText
+                                    id="steg.oppsummering.arbeidssituasjon.omsfost.startdato"
+                                    values={{ startdato: dateFormatter.full(ISODateToDate(startdato)) }}
+                                />
+                            </List.Item>
+                        )}
+                        {slutterIPerioden && sluttdato && (
+                            <List.Item>
+                                <AppText
+                                    id="steg.oppsummering.arbeidssituasjon.omsfost.sluttdato"
+                                    values={{ sluttdato: dateFormatter.full(ISODateToDate(sluttdato)) }}
+                                />
+                            </List.Item>
+                        )}
+                    </List>
+                </FormSummary.Value>
+            )}
         </FormSummary.Answer>
     );
 };

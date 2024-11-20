@@ -3,7 +3,10 @@ import { DateRange } from '@navikt/sif-common-formik-ds/src';
 import { ArbeidsforholdFormValues } from '../../../types/søknad-form-values/ArbeidsforholdFormValues';
 import { FrilansFormValues, Frilanstype } from '../../../types/søknad-form-values/FrilansFormValues';
 import { SelvstendigFormValues } from '../../../types/søknad-form-values/SelvstendigFormValues';
-import { StønadGodtgjørelseFormValues } from '../../../types/søknad-form-values/StønadGodtgjørelseFormValues';
+import {
+    MottarStønadGodtgjørelseVariant,
+    StønadGodtgjørelseFormValues,
+} from '../../../types/søknad-form-values/StønadGodtgjørelseFormValues';
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import { visVernepliktSpørsmål } from './visVernepliktSpørsmål';
 import { erFrilanserISøknadsperiode } from '../../../utils/frilanserUtils';
@@ -79,25 +82,21 @@ export const cleanupSelvstendigArbeidssituasjon = (values: SelvstendigFormValues
 export const cleanupStønadGodtgjørelse = (values: StønadGodtgjørelseFormValues): StønadGodtgjørelseFormValues => {
     const stønadGodtgjørelse: StønadGodtgjørelseFormValues = { ...values };
     if (stønadGodtgjørelse.mottarStønadGodtgjørelse === YesOrNo.NO) {
-        stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePerioden = undefined;
-        stønadGodtgjørelse.starterUndeveis = undefined;
+        stønadGodtgjørelse.mottarStønadGodtgjørelseVariant = undefined;
         stønadGodtgjørelse.startdato = undefined;
-        stønadGodtgjørelse.slutterUnderveis = undefined;
         stønadGodtgjørelse.sluttdato = undefined;
     }
 
-    if (stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePerioden === YesOrNo.YES) {
-        stønadGodtgjørelse.starterUndeveis = undefined;
+    if (stønadGodtgjørelse.mottarStønadGodtgjørelseVariant === MottarStønadGodtgjørelseVariant.somVanlig) {
         stønadGodtgjørelse.startdato = undefined;
-        stønadGodtgjørelse.slutterUnderveis = undefined;
         stønadGodtgjørelse.sluttdato = undefined;
     }
 
-    if (stønadGodtgjørelse.starterUndeveis === YesOrNo.NO) {
+    if (stønadGodtgjørelse.mottarStønadGodtgjørelseVariant === MottarStønadGodtgjørelseVariant.slutterIPerioden) {
         stønadGodtgjørelse.startdato = undefined;
     }
 
-    if (stønadGodtgjørelse.slutterUnderveis === YesOrNo.NO) {
+    if (stønadGodtgjørelse.mottarStønadGodtgjørelseVariant === MottarStønadGodtgjørelseVariant.starterIPerioden) {
         stønadGodtgjørelse.sluttdato = undefined;
     }
 

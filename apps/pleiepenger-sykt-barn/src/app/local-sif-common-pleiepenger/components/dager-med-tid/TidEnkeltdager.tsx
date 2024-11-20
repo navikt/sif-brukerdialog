@@ -46,12 +46,12 @@ const TidEnkeltdager: React.FunctionComponent<Props> = ({ dager }) => {
                     return ingenDagerRegistrertMelding;
                 }
                 return (
-                    <>
+                    <div key={key}>
                         <Heading level="3" size="xsmall" className="m-caps" spacing={false}>
                             {capsFirstCharacter(dayjs(dagerMedTid[0].dato).format('MMMM YYYY'))}
                         </Heading>
                         <DagerMedTidListe dagerMedTid={dagerMedTid} viseUke={true} />
-                    </>
+                    </div>
                 );
             })}
         </VStack>

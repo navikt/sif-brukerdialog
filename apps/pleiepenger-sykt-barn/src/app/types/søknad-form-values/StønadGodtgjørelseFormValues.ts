@@ -3,18 +3,21 @@ import { ISODate } from '@navikt/sif-common-utils';
 
 export enum StønadGodtgjørelseFormField {
     mottarStønadGodtgjørelse = 'stønadGodtgjørelse.mottarStønadGodtgjørelse',
-    mottarStønadGodtgjørelseIHelePerioden = 'stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePerioden',
-    starterUndeveis = 'stønadGodtgjørelse.starterUndeveis',
+    mottarStønadGodtgjørelseVariant = 'stønadGodtgjørelse.mottarStønadGodtgjørelseVariant',
     startdato = 'stønadGodtgjørelse.startdato',
-    slutterUnderveis = 'stønadGodtgjørelse.slutterUnderveis',
     sluttdato = 'stønadGodtgjørelse.sluttdato',
+}
+
+export enum MottarStønadGodtgjørelseVariant {
+    somVanlig = 'somVanlig',
+    starterIPerioden = 'starterIPerioden',
+    slutterIPerioden = 'slutterIPerioden',
+    starterOgSlutterIPerioden = 'starterOgSlutterIPerioden',
 }
 
 export interface StønadGodtgjørelseFormValues {
     mottarStønadGodtgjørelse: YesOrNo;
-    mottarStønadGodtgjørelseIHelePerioden?: YesOrNo;
-    starterUndeveis?: YesOrNo;
+    mottarStønadGodtgjørelseVariant?: MottarStønadGodtgjørelseVariant;
     startdato?: ISODate;
-    slutterUnderveis?: YesOrNo;
     sluttdato?: ISODate;
 }

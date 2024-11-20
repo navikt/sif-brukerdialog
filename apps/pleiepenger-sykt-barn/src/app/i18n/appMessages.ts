@@ -198,14 +198,19 @@ const nb = {
     'steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelse.spm.description.tittel': 'Hva betyr dette?',
     'steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelse.spm.description':
         'Fosterhjemsgodtgjørelse og omsorgsstønad regnes som et frilansinntekt, og kan påvirke hvor mye du får i pleiepenger. ',
-    'steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePerioden.spm':
-        'Mottar du denne stønaden eller godtgjørelsen gjennom hele perioden du søker om?',
-    'steg.arbeidssituasjon.stønadGodtgjørelse.starterUndeveis.spm':
-        'Starter stønaden eller godtgjørelsen underveis i pleiepengeperioden din?',
-    'steg.arbeidssituasjon.stønadGodtgjørelse.starterUndeveis.startdato': 'Startdato:',
-    'steg.arbeidssituasjon.stønadGodtgjørelse.slutterUndeveis.spm':
-        'Stopper stønaden eller godtgjørelsen underveis i pleiepengeperioden din?',
-    'steg.arbeidssituasjon.stønadGodtgjørelse.starterUndeveis.sluttdato': 'Sluttdato:',
+    'steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelseVariant.spm':
+        'Skal du få utbetalt omsorgsstønaden eller fosterhjemsgodtgjørelsen som vanlig i perioden ({periode})?',
+    'steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelseVariant.variant.somVanlig': 'Ja',
+    'steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelseVariant.variant.starterIPerioden':
+        'Nei, jeg får første utbetaling i perioden jeg søker pleiepenger',
+    'steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelseVariant.variant.slutterIPerioden':
+        'Nei, jeg får siste utbetaling i perioden jeg søker pleiepenger',
+    'steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelseVariant.variant.starterOgSlutterIPerioden':
+        'Nei, jeg får første og siste utbetaling i perioden jeg søker pleiepenger',
+    'steg.arbeidssituasjon.stønadGodtgjørelse.starterUndeveis.startdato':
+        'Fra hvilken dato har du fått innvilget omsorgsstønad eller fosterhjemsgodtgjørelse?',
+    'steg.arbeidssituasjon.stønadGodtgjørelse.starterUndeveis.sluttdato':
+        'Hvilken dato er siste dag med utbetaling av omsorgsstønad eller fosterhjemsgodtgjørelse:',
 
     'steg.arbeidssituasjon.frilanser.tittel': 'Frilans og oppdrag som regnes som frilansoppdrag',
     'steg.arbeidssituasjon.sn.tittel': 'Selvstendig næringsdrivende',
@@ -437,6 +442,13 @@ const nb = {
 
     'steg.oppsummering.arbeidssituasjon.header': 'Arbeidssituasjonen din',
     'steg.oppsummering.arbeidssituasjon.omsfost.title': 'Omsorgsstønad eller fosterhjemsgodtgjørelse',
+    'steg.oppsummering.arbeidssituasjon.omsfost.helePerioden':
+        'Mottar stønad eller godtgjørelsen gjennom hele perioden jeg søker om',
+    'steg.oppsummering.arbeidssituasjon.omsfost.delerAvPerioden':
+        'Mottar stønad eller godtgjørelsen i deler av perioden jeg søker om',
+    'steg.oppsummering.arbeidssituasjon.omsfost.startdato': 'Startdato: {startdato}',
+    'steg.oppsummering.arbeidssituasjon.omsfost.sluttdato': 'Sluttdato: {sluttdato}',
+
     'steg.oppsummering.arbeidssituasjon.omsfost.mottarIkke':
         'Mottar ikke fosterhjemgodtgjørelse, eller omsorgsstønad fra kommunen',
     'steg.oppsummering.vedlegg.header': 'Legeerklæring',
@@ -897,7 +909,7 @@ const nb = {
         'Ett eller flere av utenlandsoppholdene du har lagt inn for de neste 12 månedene, har datoer som ikke er innenfor neste 12 måneder.',
     'validation.harBekreftetOpplysninger.notChecked': 'Du må bekrefte at opplysningene du har gitt er riktige.',
 
-    'validation.stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePerioden.noValue':
+    'validation.stønadGodtgjørelse.mottarStønadGodtgjørelseVariant.noValue':
         'Du må svare ja eller nei på om du mottar stønad/godtgjørelse i hele perioden du søker for.',
 
     'validation.stønadGodtgjørelse.starterUndeveis.noValue':

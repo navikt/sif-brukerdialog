@@ -1,4 +1,3 @@
-import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { ArbeidIPeriodeSøknadsdata, Søknadsdata } from '../../app/types/søknadsdata/Søknadsdata';
 import { YesOrNoOrDoNotKnow } from '../../app/types/YesOrNoOrDoNotKnow';
 import { ArbeidIPeriodeType } from '../../app/types/ArbeidIPeriodeType';
@@ -96,8 +95,7 @@ export const søknadsdata: Søknadsdata = {
         },
     },
     stønadGodtgjørelse: {
-        type: 'mottarIkke',
-        mottarStønadGodtgjørelse: YesOrNo.NO,
+        mottarStønadGodtgjørelse: false,
     },
     omsorgstibud: {
         type: 'erIOmsorgstilbudFasteDager',
