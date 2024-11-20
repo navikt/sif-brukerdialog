@@ -50,19 +50,27 @@ function FormikTextField<FieldName, ErrorType>({
                         autoComplete={autoComplete}
                         className={getTextFieldWidthClassName(width, className)}
                         error={getErrorPropForFormikInput({ field, form, context, error })}
-                        value={!hasFocus && formatter ? formatter.applyFormatting(field.value) : field.value}
-                        onBlur={() => {
-                            setHasFocus(false);
-                            if (formatter) {
-                                form.setFieldValue(field.name, formatter.applyFormatting(field.value));
-                            }
-                        }}
-                        onFocus={() => {
-                            setHasFocus(true);
-                            if (formatter) {
-                                form.setFieldValue(field.name, formatter?.clearFormatting(field.value));
-                            }
-                        }}
+                        value={formatter && !hasFocus ? formatter.applyFormatting(field.value) : field.value}
+                        onBlur={
+                            formatter
+                                ? () => {
+                                      setHasFocus(false);
+                                      if (formatter) {
+                                          form.setFieldValue(field.name, formatter.applyFormatting(field.value));
+                                      }
+                                  }
+                                : undefined
+                        }
+                        onFocus={
+                            formatter
+                                ? () => {
+                                      setHasFocus(true);
+                                      if (formatter) {
+                                          form.setFieldValue(field.name, formatter?.clearFormatting(field.value));
+                                      }
+                                  }
+                                : undefined
+                        }
                     />
                 );
             }}

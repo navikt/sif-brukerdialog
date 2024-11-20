@@ -8,6 +8,9 @@ export const getNumberFromNumberInputValue = (inputValue: string | undefined): n
     if (typeof inputValue === 'number' && isNaN(inputValue)) {
         return undefined;
     }
+    if (inputValue.includes('e')) {
+        return undefined;
+    }
     if (typeof inputValue === 'number') {
         return inputValue;
     }
