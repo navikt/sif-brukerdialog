@@ -46,7 +46,7 @@ function FormikTextField<FieldName, ErrorType>({
                         autoComplete={autoComplete}
                         className={getTextFieldWidthClassName(width, className)}
                         error={getErrorPropForFormikInput({ field, form, context, error })}
-                        value={field.value}
+                        value={field.value || ''}
                         onBlur={() => {
                             if (formatter) {
                                 form.setFieldValue(field.name, formatter(field.value));
