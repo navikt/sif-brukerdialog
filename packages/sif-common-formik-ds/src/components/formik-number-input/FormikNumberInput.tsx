@@ -1,6 +1,5 @@
 import { TextFieldProps } from '@navikt/ds-react';
 import { useContext } from 'react';
-import { useIntl } from 'react-intl';
 import { Field, FieldProps } from 'formik';
 import { TestProps, TypedFormInputValidationProps } from '../../types';
 import { getNumberInputFormatter } from '../../utils/numberInputUtils';
@@ -8,12 +7,14 @@ import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import FormikTextField from '../formik-text-field/FormikTextField';
 import { TextFieldWidths } from '../formik-text-field/FormikTextFieldUtils';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
+import { useIntl } from 'react-intl';
 
 interface OwnProps<FieldName> extends Omit<TextFieldProps, 'name' | 'children' | 'width'> {
     name: FieldName;
     integerValue?: boolean;
     width?: TextFieldWidths;
     useFormatting?: boolean;
+    useIntlFormatting?: boolean;
 }
 
 export type FormikNumberInputProps<FieldName, ErrorType> = OwnProps<FieldName> &
@@ -28,6 +29,7 @@ function FormikNumberInput<FieldName, ErrorType>({
     width = 's',
     integerValue = false,
     useFormatting = true,
+    useIntlFormatting = false,
     ...restProps
 }: FormikNumberInputProps<FieldName, ErrorType>) {
     const context = useContext(TypedFormikFormContext);
@@ -44,8 +46,12 @@ function FormikNumberInput<FieldName, ErrorType>({
                         autoComplete={autoComplete || 'off'}
                         inputMode={integerValue ? 'numeric' : 'text'}
                         pattern={integerValue ? '[0-9]*' : undefined}
+                        formatter={
+                            useFormatting
+                                ? getNumberInputFormatter(integerValue, useIntlFormatting ? intl : undefined)
+                                : undefined
+                        }
                         error={getErrorPropForFormikInput({ field, form, context, error })}
-                        formatter={useFormatting ? getNumberInputFormatter(intl, integerValue) : undefined}
                     />
                 );
             }}

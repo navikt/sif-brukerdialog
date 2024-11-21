@@ -61,15 +61,21 @@ export const getStringForNumberInputValue = (value?: number): string => {
     return value === undefined ? '' : `${value}`.replace(/\./g, ',');
 };
 
-export const getNumberInputFormatter = (intl: IntlShape, integerValue?: boolean): TextFieldFormatter => ({
+export const getNumberInputFormatter = (isIntegerValue: boolean, intl?: IntlShape): TextFieldFormatter => ({
     /** Formats a number string value to norwegian format 1 000 000,0 */
     applyFormatting: (value: string): string => {
-        const numValue = getNumberFromNumberInputValue(value, integerValue);
-        return numValue !== undefined ? intl.formatNumber(numValue) : value;
+        const numValue = getNumberFromNumberInputValue(value, isIntegerValue);
+        /** intl formatting */
+        if (intl) {
+            return numValue !== undefined ? intl.formatNumber(numValue).replace(' ', '') : value;
+        } else {
+            /** plain formatting with , as desimalseparator */
+            return numValue !== undefined ? `${numValue}`.replace(/\./g, ',') : value;
+        }
     },
     /** Removes all formatting from a number string value */
     clearFormatting: (value: string): string => {
-        const numValue = getNumberFromNumberInputValue(value, integerValue);
+        const numValue = getNumberFromNumberInputValue(value, isIntegerValue);
         return numValue !== undefined ? getStringForNumberInputValue(numValue) : value;
     },
 });
