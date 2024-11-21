@@ -45,7 +45,7 @@ function FormikNumberInput<FieldName, ErrorType>({
                         inputMode={integerValue ? 'numeric' : 'text'}
                         pattern={integerValue ? '[0-9]*' : undefined}
                         error={getErrorPropForFormikInput({ field, form, context, error })}
-                        formatter={getNumberInputFormatter(intl)}
+                        formatter={useFormatting ? getNumberInputFormatter(intl, integerValue) : undefined}
                     />
                 );
             }}

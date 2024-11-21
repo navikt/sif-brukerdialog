@@ -13,8 +13,8 @@ const meta: Meta<typeof FormikNumberInput> = {
 
 export default meta;
 
-const Template: StoryFn<typeof FormikNumberInput> = (args) => (
-    <FormikNumberInput {...args} validate={getNumberValidator()} useFormatting={true} />
+const Template: StoryFn<typeof FormikNumberInput> = (args, x) => (
+    <FormikNumberInput {...args} validate={getNumberValidator({ allowDecimals: false })} />
 );
 
 export const Default = Template.bind({});
@@ -26,7 +26,7 @@ Default.args = {
 Default.parameters = {
     formik: {
         initialValues: {
-            FormikNumberInput: '2123.12',
+            FormikNumberInput: '12123.12',
         },
     },
 };

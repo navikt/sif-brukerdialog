@@ -2,7 +2,10 @@ import { IntlShape } from 'react-intl';
 import { TextFieldFormatter } from '../components/formik-text-field/FormikTextField';
 
 /* Returns a number from a string value, if the string value is a valid number */
-export const getNumberFromNumberInputValue = (inputValue: string | undefined): number | undefined => {
+export const getNumberFromNumberInputValue = (
+    inputValue: string | undefined,
+    integerValue?: boolean,
+): number | undefined => {
     if (inputValue === undefined || inputValue === '' || Array.isArray(inputValue)) {
         return undefined;
     }
@@ -17,9 +20,16 @@ export const getNumberFromNumberInputValue = (inputValue: string | undefined): n
     }
 
     const cleanedValue = (inputValue || '').trim();
+    const containsCommas = cleanedValue.includes(',');
+    const containsDots = cleanedValue.includes('.');
 
     /** Return undefined if both comma and dots are present  */
-    if (cleanedValue.includes(',') && cleanedValue.includes('.')) {
+    if (containsCommas && containsDots) {
+        return undefined;
+    }
+
+    /** Return undefined if value contains dots or commas and expected input is an integerValue  */
+    if (integerValue && (containsDots || containsCommas)) {
         return undefined;
     }
 
@@ -51,15 +61,15 @@ export const getStringForNumberInputValue = (value?: number): string => {
     return value === undefined ? '' : `${value}`.replace(/\./g, ',');
 };
 
-export const getNumberInputFormatter = (intl: IntlShape): TextFieldFormatter => ({
+export const getNumberInputFormatter = (intl: IntlShape, integerValue?: boolean): TextFieldFormatter => ({
     /** Formats a number string value to norwegian format 1 000 000,0 */
     applyFormatting: (value: string): string => {
-        const numValue = getNumberFromNumberInputValue(value);
+        const numValue = getNumberFromNumberInputValue(value, integerValue);
         return numValue !== undefined ? intl.formatNumber(numValue) : value;
     },
     /** Removes all formatting from a number string value */
     clearFormatting: (value: string): string => {
-        const numValue = getNumberFromNumberInputValue(value);
+        const numValue = getNumberFromNumberInputValue(value, integerValue);
         return numValue !== undefined ? getStringForNumberInputValue(numValue) : value;
     },
 });
