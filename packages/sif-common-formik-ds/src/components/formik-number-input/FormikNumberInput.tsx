@@ -29,7 +29,7 @@ function FormikNumberInput<FieldName, ErrorType>({
     width = 's',
     integerValue = false,
     useFormatting = true,
-    useIntlFormatting = false,
+    useIntlFormatting = true,
     ...restProps
 }: FormikNumberInputProps<FieldName, ErrorType>) {
     const context = useContext(TypedFormikFormContext);

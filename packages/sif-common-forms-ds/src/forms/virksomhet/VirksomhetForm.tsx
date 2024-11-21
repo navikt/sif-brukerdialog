@@ -407,7 +407,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                               key: error,
                                                               values: {
                                                                   navn: navnPåVirksomheten,
-                                                                  maks: MAKS_INNTEKT,
+                                                                  maks: intl.formatNumber(MAKS_INNTEKT),
                                                                   min: 0,
                                                               },
                                                           }
