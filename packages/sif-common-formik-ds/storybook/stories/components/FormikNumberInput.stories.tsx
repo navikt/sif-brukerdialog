@@ -13,9 +13,10 @@ const meta: Meta<typeof FormikNumberInput> = {
 
 export default meta;
 
-const Template: StoryFn<typeof FormikNumberInput> = (args, x) => (
-    <FormikNumberInput {...args} validate={getNumberValidator({ allowDecimals: false })} />
-);
+const Template: StoryFn<typeof FormikNumberInput> = (args, x) => {
+    const allowDecimals = args.integerValue === true ? false : true;
+    return <FormikNumberInput {...args} validate={getNumberValidator({ allowDecimals })} />;
+};
 
 export const Default = Template.bind({});
 Default.args = {
