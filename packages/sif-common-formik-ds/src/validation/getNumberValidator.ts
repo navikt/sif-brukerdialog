@@ -31,7 +31,7 @@ const getNumberValidator =
     (options: Options = {}): ValidationFunction<NumberValidationResult> =>
     (value: any) => {
         const { required, min, max, allowDecimals = true } = options;
-        const numberValue = getNumberFromNumberInputValue(value);
+        const numberValue = getNumberFromNumberInputValue(value, allowDecimals === false);
 
         if (required) {
             if (hasValue(value) === false || (typeof value === 'string' && value.trim().length === 0)) {
