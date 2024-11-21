@@ -31,6 +31,22 @@ const getNumberValidator =
     (options: Options = {}): ValidationFunction<NumberValidationResult> =>
     (value: any) => {
         const { required, min, max, allowDecimals = true } = options;
+
+        /**
+         * Hvis desimaler ikke er tillat, prøv først å hente ut tallverdi og så se om verdien inneholder desimaler.
+         * Dette gjøres i egen test i og med getNumberFromNumberInputValue med integerValue === true
+         * returnerer undefined hvis det er desimaler i verdien.
+         */
+        if (allowDecimals === false) {
+            const numberValueWithDecimals = getNumberFromNumberInputValue(value);
+            if (
+                numberValueWithDecimals !== undefined &&
+                Math.round(numberValueWithDecimals) !== numberValueWithDecimals // inneholder desimaler
+            ) {
+                return ValidateNumberError.numberHasDecimals;
+            }
+        }
+
         const numberValue = getNumberFromNumberInputValue(value, allowDecimals === false);
 
         if (required) {

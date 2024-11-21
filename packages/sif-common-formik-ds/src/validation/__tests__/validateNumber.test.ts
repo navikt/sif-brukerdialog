@@ -41,8 +41,8 @@ describe(`validateNumber`, () => {
         expect(getNumberValidator({ max: 2 })(3)).toEqual(ValidateNumberError.numberIsTooLarge);
     });
     it(`returns ${ValidateNumberError.numberHasInvalidFormat} if number has decimals and allowDecimals === false`, () => {
-        expect(getNumberValidator({ allowDecimals: false })('2.1')).toEqual(ValidateNumberError.numberHasInvalidFormat);
-        expect(getNumberValidator({ allowDecimals: false })('2,1')).toEqual(ValidateNumberError.numberHasInvalidFormat);
+        expect(getNumberValidator({ allowDecimals: false })('2.1')).toEqual(ValidateNumberError.numberHasDecimals);
+        expect(getNumberValidator({ allowDecimals: false })('2,1')).toEqual(ValidateNumberError.numberHasDecimals);
     });
     it(`returns undefined if number has decimals and allowDecimals === true`, () => {
         expect(getNumberValidator({ allowDecimals: true })('2.1')).toBeUndefined();
