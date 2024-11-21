@@ -392,6 +392,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                         ? text('@forms.virksomhet.næringsinntekt.flereVirksomheter.spm')
                                                         : text('@forms.virksomhet.næringsinntekt.enVirksomhet.spm')
                                                 }
+                                                integerValue={true}
                                                 maxLength={10}
                                                 style={{ maxWidth: '10rem' }}
                                                 validate={(value) => {
@@ -520,6 +521,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                         }
                                                         label={text('@forms.virksomhet.varig_endring_inntekt')}
                                                         maxLength={10}
+                                                        integerValue={true}
                                                         style={{ maxWidth: '10rem' }}
                                                         validate={(value) => {
                                                             const error = getNumberValidator({
