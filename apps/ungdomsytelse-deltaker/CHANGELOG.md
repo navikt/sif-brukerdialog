@@ -1,5 +1,19 @@
 # @navikt/ungdomsytelse-søknad
 
+## 0.4.0
+
+### Minor Changes
+
+-   Endre i NumberInput
+
+    -   Formatere verdi i NumberInput ved blur/fokus
+    -   Kun tillate komma som desimalskille
+    -   Ta i bruk integerValue=true på inntekt i SN
+
+### Patch Changes
+
+-   @navikt/sif-common-soknad-ds@20.0.0
+
 ## 0.3.10
 
 ### Patch Changes

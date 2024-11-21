@@ -1,5 +1,22 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.30.0
+
+### Minor Changes
+
+-   Endre i NumberInput
+
+    -   Formatere verdi i NumberInput ved blur/fokus
+    -   Kun tillate komma som desimalskille
+    -   Ta i bruk integerValue=true på inntekt i SN
+
+### Patch Changes
+
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@2.1.0
+    -   @navikt/sif-common-forms-ds@15.0.0
+    -   @navikt/sif-common-soknad-ds@20.0.0
+
 ## 1.29.13
 
 ### Patch Changes
