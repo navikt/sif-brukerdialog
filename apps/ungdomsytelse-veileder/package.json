@@ -17,10 +17,10 @@
         "lint:fix": "eslint --fix"
     },
     "dependencies": {
-        "@navikt/aksel-icons": "7.5.1",
-        "@navikt/ds-css": "7.5.1",
-        "@navikt/ds-react": "7.5.1",
-        "@navikt/ds-tailwind": "7.5.1",
+        "@navikt/aksel-icons": "7.5.3",
+        "@navikt/ds-css": "7.5.3",
+        "@navikt/ds-react": "7.5.3",
+        "@navikt/ds-tailwind": "7.5.3",
         "@navikt/nav-dekoratoren-moduler": "2.1.6",
         "@navikt/sif-common-api": "*",
         "@navikt/sif-common-core-ds": "*",
@@ -40,7 +40,7 @@
         "@eslint/eslintrc": "3.2.0",
         "@eslint/js": "9.15.0",
         "@navikt/nav-dekoratoren-moduler": "2.1.6",
-        "@types/node": "22.9.0",
+        "@types/node": "22.9.1",
         "@types/react": "18.3.12",
         "@types/react-dom": "18.3.1",
         "@typescript-eslint/parser": "8.15.0",
