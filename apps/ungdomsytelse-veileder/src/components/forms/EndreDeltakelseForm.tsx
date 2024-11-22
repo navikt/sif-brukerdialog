@@ -18,15 +18,15 @@ export type DeltakelseFormValues = {
 interface Props {
     deltakelse: Deltakelse;
     deltakelser: Deltakelse[];
-    onDeltakelseSlettet: (deltakelse: Deltakelse) => void;
-    onDeltakelseEndret: (deltakelse: Deltakelse) => void;
+    onDeltakelseSlettet?: (deltakelse: Deltakelse) => void;
+    onDeltakelseEndret?: (deltakelse: Deltakelse) => void;
 }
 
 const EndreDeltakelseForm = ({ deltakelse, deltakelser, onDeltakelseEndret, onDeltakelseSlettet }: Props) => {
     const [confirmationDialogVisible, setConfirmationDialogVisible] = useState(false);
 
-    const { pending: slettDeltakelsePending, slettDeltakelse } = useSlettDeltakelse(onDeltakelseSlettet);
-    const { pending: endreDeltakelsePending, endreDeltakelse } = useEndreDeltakelse(onDeltakelseEndret);
+    const { pending: slettDeltakelsePending, slettDeltakelse } = useSlettDeltakelse(onDeltakelseSlettet || (() => {}));
+    const { pending: endreDeltakelsePending, endreDeltakelse } = useEndreDeltakelse(onDeltakelseEndret || (() => {}));
 
     const getInitialValues = (d: Deltakelse): DeltakelseFormValues => {
         return {

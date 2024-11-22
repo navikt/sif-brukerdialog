@@ -1,15 +1,16 @@
-import { Table } from '@navikt/ds-react';
+import { Alert, Table } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { Deltakelse } from '../../api/types';
 import EndreDeltakelseForm from '../forms/EndreDeltakelseForm';
 
 interface Props {
     deltakelser: Deltakelse[];
-    onDeltakelseSlettet: (deltakelse: Deltakelse) => void;
-    onDeltakelseEndret: (deltakelse: Deltakelse) => void;
+    editable?: boolean;
+    onDeltakelseSlettet?: (deltakelse: Deltakelse) => void;
+    onDeltakelseEndret?: (deltakelse: Deltakelse) => void;
 }
 
-const DeltakelseTable = ({ deltakelser, onDeltakelseSlettet, onDeltakelseEndret }: Props) => {
+const DeltakelseTable = ({ deltakelser, editable, onDeltakelseSlettet, onDeltakelseEndret }: Props) => {
     return (
         <Table>
             <Table.Header>
@@ -23,14 +24,19 @@ const DeltakelseTable = ({ deltakelser, onDeltakelseSlettet, onDeltakelseEndret 
             <Table.Body>
                 {deltakelser.map((d) => (
                     <Table.ExpandableRow
+                        expansionDisabled={!editable}
                         key={d.id}
                         content={
-                            <EndreDeltakelseForm
-                                deltakelse={d}
-                                deltakelser={deltakelser}
-                                onDeltakelseSlettet={onDeltakelseSlettet}
-                                onDeltakelseEndret={onDeltakelseEndret}
-                            />
+                            onDeltakelseSlettet && onDeltakelseEndret ? (
+                                <EndreDeltakelseForm
+                                    deltakelse={d}
+                                    deltakelser={deltakelser}
+                                    onDeltakelseSlettet={onDeltakelseSlettet}
+                                    onDeltakelseEndret={onDeltakelseEndret}
+                                />
+                            ) : (
+                                <Alert variant="error">Missing props</Alert>
+                            )
                         }>
                         <Table.DataCell>{d.id}</Table.DataCell>
                         <Table.DataCell>{dateFormatter.compact(d.fraOgMed)}</Table.DataCell>
