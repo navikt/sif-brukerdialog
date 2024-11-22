@@ -2,7 +2,8 @@ const nb = {
     'page.velkommen.sidetittel': 'Søknad om opplæringspenger',
     'page.velkommen.guide.tittel': 'Hei {navn}',
     'page.velkommen.guide.ingress': 'Velkommen til søknad om opplæringspenger.',
-    'page.velkommen.guide.tekst.1': 'TODO.',
+    'page.velkommen.guide.tekst.1':
+        'Denne søknaden er for deg som må være borte fra jobb for å ta opplæring som er nødvendig for å kunne ta deg av et barn med langvarig sykdom eller funksjonshemning.',
 
     'page.velkommen.omSøknaden.tittel': 'Om søknaden',
     'page.velkommen.omSøknaden.1': 'Du får veiledning underveis i søknaden om hva du skal fylle ut, og hvordan.',

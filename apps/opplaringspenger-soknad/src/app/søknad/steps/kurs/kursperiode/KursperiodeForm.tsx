@@ -1,4 +1,3 @@
-import { useIntl } from 'react-intl';
 import { getTypedFormComponents, ISOStringToDate, YesOrNo } from '@navikt/sif-common-formik-ds';
 import {
     getDateRangeValidator,
@@ -9,27 +8,19 @@ import {
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import kursperiodeUtils from './kursperiodeUtils';
-import { useKursperiodeIntl } from './kursperiodeMessages';
 import { handleDateRangeValidationError } from '@navikt/sif-common-forms-ds/src/utils';
 import { Kursperiode } from '../../../../types/Kursperiode';
 import { ISODate } from '@navikt/sif-common-utils';
 import { VStack } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 import dayjs from 'dayjs';
-export interface KursperiodeFormLabels {
-    fromDate: string;
-    toDate: string;
-    intervalTitle: string;
-    okButton: string;
-    cancelButton: string;
-}
+import { useKursperiodeIntl } from './kursperiodeMessages';
 
 interface Props {
     minDate?: Date;
     maxDate?: Date;
     kursperiode?: Kursperiode;
     alleKursperioder?: Kursperiode[];
-    formLabels?: Partial<KursperiodeFormLabels>;
     onSubmit: (kursperiode: Kursperiode) => void;
     onCancel: () => void;
 }
@@ -58,17 +49,8 @@ export interface KursperiodeFormValues {
 
 const Form = getTypedFormComponents<KursperiodeFormFields, KursperiodeFormValues, ValidationError>();
 
-const KursperiodeForm = ({
-    maxDate,
-    minDate,
-    formLabels,
-    kursperiode,
-    alleKursperioder = [],
-    onSubmit,
-    onCancel,
-}: Props) => {
-    const intl = useIntl();
-    const { text } = useKursperiodeIntl();
+const KursperiodeForm = ({ maxDate, minDate, kursperiode, alleKursperioder = [], onSubmit, onCancel }: Props) => {
+    const { intl, text } = useKursperiodeIntl();
 
     const onFormikSubmit = (formValues: KursperiodeFormValues) => {
         const dateKursperiodeToSubmit = kursperiodeUtils.mapFormValuesToKursperiode(formValues, kursperiode?.id);
@@ -78,16 +60,6 @@ const KursperiodeForm = ({
             throw new Error('KursperiodeForm: Formvalues is not a valid Kursperiode on submit.');
         }
     };
-
-    const defaultLabels: KursperiodeFormLabels = {
-        intervalTitle: text('kursperiode.form.title'),
-        fromDate: text('kursperiode.form.fromDate'),
-        toDate: text('kursperiode.form.toDate'),
-        okButton: text('kursperiode.form.okButton'),
-        cancelButton: text('kursperiode.form.cancelButton'),
-    };
-
-    const inlineLabels: KursperiodeFormLabels = { ...defaultLabels, ...formLabels };
 
     return (
         <>
@@ -115,13 +87,12 @@ const KursperiodeForm = ({
                             showButtonArrows={false}>
                             <VStack gap={'6'} maxWidth={'30rem'}>
                                 <Form.DateRangePicker
-                                    legend={inlineLabels.intervalTitle}
-                                    description={<p>Når starter og slutter denne perioden?</p>}
+                                    legend={text('kursperiode.form.periode.label')}
                                     minDate={minDate}
                                     maxDate={maxDate}
                                     disabledDateRanges={disabledDateRanges}
                                     fromInputProps={{
-                                        label: inlineLabels.fromDate,
+                                        label: text('kursperiode.form.fromDate'),
                                         name: KursperiodeFormFields.fom,
                                         validate: (value) => {
                                             const error = getDateRangeValidator({
@@ -139,7 +110,7 @@ const KursperiodeForm = ({
                                         },
                                     }}
                                     toInputProps={{
-                                        label: inlineLabels.toDate,
+                                        label: text('kursperiode.form.toDate'),
                                         name: KursperiodeFormFields.tom,
                                         validate: (value) => {
                                             const error = getDateRangeValidator({
@@ -162,15 +133,15 @@ const KursperiodeForm = ({
                                         <VStack gap="4">
                                             <Form.YesOrNoQuestion
                                                 name={KursperiodeFormFields.avreiseSammeDag}
-                                                legend="Reiser du til kursstedet på samme dag som kurset starter?"
+                                                legend={text('kursperiode.form.avreiseSammeDag.label')}
                                                 validate={getYesOrNoValidator()}
                                             />
                                             {harIkkeAvreiseSammeDag ? (
                                                 <Form.DatePicker
                                                     name={KursperiodeFormFields.avreise}
-                                                    label="Hvilken dato reiser du til kursstedet"
+                                                    label={text('kursperiode.form.avreise.label')}
                                                     maxDate={dayjs(startdato).subtract(1, 'day').toDate()}
-                                                    validate={getDateValidator({ max: startdato })}
+                                                    validate={getDateValidator({ required: true, max: startdato })}
                                                 />
                                             ) : null}
                                             {kursperiodeUtils.måBesvareBeskrivelseReisetidTil(formik.values) && (
@@ -178,11 +149,16 @@ const KursperiodeForm = ({
                                                     <FormLayout.Panel>
                                                         <Form.Textarea
                                                             name={KursperiodeFormFields.beskrivelseReisetidTil}
-                                                            label="Beskrivelse av årsak reisetid til kurssted"
-                                                            description="På grunn av at det er mer enn én dag mellom avreise og startdato, må du beskrive reisetiden til kursstedet."
+                                                            label={text(
+                                                                'kursperiode.form.beskrivelseReisetidTil.label',
+                                                            )}
+                                                            description={text(
+                                                                'kursperiode.form.beskrivelseReisetidTil.description',
+                                                            )}
                                                             validate={getStringValidator({
                                                                 minLength: 5,
                                                                 required: true,
+                                                                maxLength: 500,
                                                             })}
                                                         />
                                                     </FormLayout.Panel>
@@ -193,15 +169,15 @@ const KursperiodeForm = ({
                                         <VStack gap="4">
                                             <Form.YesOrNoQuestion
                                                 name={KursperiodeFormFields.hjemkomstSammeDag}
-                                                legend="Kommer du hjem fra kursstedet på samme dag som kurset slutter?"
+                                                legend={text('kursperiode.form.hjemkomstSammeDag.label')}
                                                 validate={getYesOrNoValidator()}
                                             />
                                             {harIkkeHjemkomstSammeDag ? (
                                                 <Form.DatePicker
                                                     name={KursperiodeFormFields.hjemkomst}
-                                                    label="Hvilken dato kommer du hjem fra kursstedet"
+                                                    label={text('kursperiode.form.hjemkomst.label')}
                                                     minDate={dayjs(sluttdato).add(1, 'day').toDate()}
-                                                    validate={getDateValidator({ min: sluttdato })}
+                                                    validate={getDateValidator({ required: true, min: sluttdato })}
                                                 />
                                             ) : null}
 
@@ -209,11 +185,14 @@ const KursperiodeForm = ({
                                                 <FormLayout.Panel>
                                                     <Form.Textarea
                                                         name={KursperiodeFormFields.beskrivelseReisetidHjem}
-                                                        label="Beskrivelse av årsak reisetid fra kurssted"
-                                                        description="På grunn av at det er mer enn én dag mellom sluttdato og hjemkomst, må du beskrive reisetiden fra kursstedet."
+                                                        label={text('kursperiode.form.beskrivelseReisetidHjem.label')}
+                                                        description={text(
+                                                            'kursperiode.form.beskrivelseReisetidHjem.description',
+                                                        )}
                                                         validate={getStringValidator({
                                                             minLength: 5,
                                                             required: true,
+                                                            maxLength: 500,
                                                         })}
                                                     />
                                                 </FormLayout.Panel>
