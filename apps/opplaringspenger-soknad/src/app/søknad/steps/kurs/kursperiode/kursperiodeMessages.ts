@@ -8,6 +8,18 @@ const nb = {
     'kursperiode.form.toDate': 'Til og med',
     'kursperiode.form.okButton': 'Ok',
     'kursperiode.form.cancelButton': 'Avbryt',
+    'kursperiode.form.periode.label': 'Når starter og slutter opplæringen?',
+    'kursperiode.form.avreiseSammeDag.label': 'Reiser du til kursstedet på samme dag som kurset starter?',
+    'kursperiode.form.avreise.label': 'Hvilken dato reiser du til kursstedet?',
+    'kursperiode.form.beskrivelseReisetidTil.label': 'Beskrivelse av årsaken til reisetiden til kurssted',
+    'kursperiode.form.beskrivelseReisetidTil.description':
+        'Fordi det er mer enn én dag mellom avreise og startdato, må du beskrive reisetiden til kursstedet.',
+    'kursperiode.form.hjemkomstSammeDag.label': 'Kommer du hjem fra kursstedet på samme dag som kurset slutter?',
+    'kursperiode.form.hjemkomst.label': 'Hvilken dato kommer du hjem fra kursstedet',
+    'kursperiode.form.beskrivelseReisetidHjem.label': 'Beskrivelse av årsaken til reisetiden fra kurssted',
+    'kursperiode.form.beskrivelseReisetidHjem.description':
+        'Fordi det er mer enn én dag mellom sluttdato og hjemkomst, må du beskrive reisetiden fra kursstedet.',
+
     'kursperiodeForm.fom.dateHasNoValue':
         'Du må oppgi når perioden startet. Skriv inn eller velg dato fra datovelgeren.',
     'kursperiodeForm.fom.dateIsAfterMax':
@@ -51,22 +63,22 @@ const nb = {
         'Du må svare ja eller nei på om du kommer hjem samme dag som kurset slutter.',
 
     'kursperiodeForm.begrunnelseReisetidFra.stringHasNoValue':
-        'Du må oppgi en beskrivelse av årsak til at avreisedato er over én dag etter sluttdato.',
+        'Du må oppgi en beskrivelse av årsaken til at avreisedatoen er over én dag etter sluttdato.',
     'kursperiodeForm.begrunnelseReisetidFra.stringIsTooLong':
-        'Beskrivelsen av årsak til avreisedato kan ikke være lengre enn 500 tegn.',
+        'Beskrivelsen av årsaken til avreisedatoen kan ikke være lengre enn 500 tegn.',
     'kursperiodeForm.begrunnelseReisetidFra.stringIsTooShort':
-        'Beskrivelsen av årsak til avreisedato må være minst 5 tegn.',
+        'Beskrivelsen av årsaken til avreisedatoen må være minst 5 tegn.',
     'kursperiodeForm.begrunnelseReisetidFra.stringContainsUnicodeChacters':
-        'Beskrivelsen årsak til avreisedato kan ikke inneholde spesialtegn.',
+        'Beskrivelsen årsaken til avreisedatoen kan ikke inneholde spesialtegn.',
 
     'kursperiodeForm.beskrivelseReisetidTil.stringHasNoValue':
-        'Du må oppgi en beskrivelse av årsak til at hjemkomstdato er over én dag etter sluttdato.',
+        'Du må oppgi en beskrivelse av årsaken til aten hjemkomstdato er over én dag etter sluttdato.',
     'kursperiodeForm.beskrivelseReisetidTil.stringIsTooLong':
-        'Beskrivelsen av årsak til hjemkomstdato kan ikke være lengre enn 500 tegn.',
+        'Beskrivelsen av årsaken til hjemkomstdatoen kan ikke være lengre enn 500 tegn.',
     'kursperiodeForm.beskrivelseReisetidTil.stringIsTooShort':
-        'Beskrivelsen av årsak til hjemkomstdato må være minst 5 tegn.',
+        'Beskrivelsen av årsaken til hjemkomstdatoen må være minst 5 tegn.',
     'kursperiodeForm.beskrivelseReisetidTil.stringContainsUnicodeChacters':
-        'Beskrivelsen årsak til hjemkomstdato kan ikke inneholde spesialtegn.',
+        'Beskrivelsen årsaken til hjemkomstdatoen kan ikke inneholde spesialtegn.',
 };
 
 const nn: Record<keyof typeof nb, string> = {

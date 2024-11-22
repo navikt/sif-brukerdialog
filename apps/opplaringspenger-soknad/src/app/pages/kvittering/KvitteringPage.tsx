@@ -52,7 +52,12 @@ const KvitteringPage = ({ kvitteringInfo, onUnmount }: Props) => {
                             <AppText
                                 id="page.kvittering.list.item.3"
                                 values={{
-                                    Lenke: (children) => (
+                                    MinSideLenke: (children) => (
+                                        <Link href={getLenker(intl.locale).minSide} target="_blank">
+                                            {children}
+                                        </Link>
+                                    ),
+                                    SaksbehandlingstidLenke: (children) => (
                                         <Link href={getLenker(intl.locale).saksbehandlingstider} target="_blank">
                                             {children}
                                         </Link>

@@ -6,6 +6,7 @@ import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
+import { VStack } from '@navikt/ds-react';
 
 interface Props {
     values: Partial<LegeerklæringFormValues>;
@@ -37,27 +38,29 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
             submitDisabled={hasPendingUploads}
             runDelayedFormValidation={true}
             onBack={goBack}>
-            <SifGuidePanel>
-                <p>
-                    <AppText id={'steg.legeerklæring.counsellorPanel.info'} />
-                </p>
-            </SifGuidePanel>
+            <VStack gap="6">
+                <SifGuidePanel>
+                    <p>
+                        <AppText id={'steg.legeerklæring.counsellorPanel.info'} />
+                    </p>
+                </SifGuidePanel>
 
-            <FormikFileUpload
-                fieldName={LegeerklæringFormFields.vedlegg}
-                initialFiles={legeerklæringer}
-                otherFiles={andreVedlegg}
-                uploadLaterURL={getLenker(intl.locale).ettersend}
-                validate={getVedleggValidator(
-                    {
-                        required: false,
-                        useDefaultMessages: true,
-                    },
-                    andreVedlegg,
-                )}
-                label={text('steg.legeerklæring.vedlegg.knappLabel')}
-                showPictureScanningGuide={true}
-            />
+                <FormikFileUpload
+                    fieldName={LegeerklæringFormFields.vedlegg}
+                    initialFiles={legeerklæringer}
+                    otherFiles={andreVedlegg}
+                    uploadLaterURL={getLenker(intl.locale).ettersend}
+                    validate={getVedleggValidator(
+                        {
+                            required: false,
+                            useDefaultMessages: true,
+                        },
+                        andreVedlegg,
+                    )}
+                    label={text('steg.legeerklæring.vedlegg.knappLabel')}
+                    showPictureScanningGuide={true}
+                />
+            </VStack>
         </Form>
     );
 };
