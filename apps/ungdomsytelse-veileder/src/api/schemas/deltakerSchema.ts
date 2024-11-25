@@ -1,7 +1,7 @@
 import { parseMaybeDateStringToDate } from '@navikt/sif-common-api/src/utils/jsonParseUtils';
 import { z } from 'zod';
 
-export const søkerSchema = z.object({
+export const deltakerSchema = z.object({
     aktørId: z.string(),
     fødselsnummer: z.string(),
     fornavn: z.string(),

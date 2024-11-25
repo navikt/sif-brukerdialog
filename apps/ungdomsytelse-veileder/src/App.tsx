@@ -1,8 +1,7 @@
-import Versjon1 from './versjoner/versjon-1/Versjon1';
-
-import './app.css';
 import { Tabs } from '@navikt/ds-react';
 import Versjon0 from './versjoner/versjon-0/Versjon0';
+import Versjon1 from './versjoner/versjon-1/Versjon1';
+import './app.css';
 
 const App = () => {
     return (

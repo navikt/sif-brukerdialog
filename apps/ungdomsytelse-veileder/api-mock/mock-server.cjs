@@ -46,17 +46,47 @@ const readMockFile = (file, responseObject) => {
     }
 };
 
+const nyDeltaker = {
+    aktørId: '2320509955297',
+    fødselsdato: '1995-06-02',
+    fødselsnummer: '56857102105',
+    fornavn: 'GLORETE',
+    mellomnavn: null,
+    etternavn: 'TØFFEL',
+};
+
+const registrertDeltaker = {
+    aktørId: '2320509955297',
+    fødselsdato: '1995-06-02',
+    fødselsnummer: '03867198392',
+    fornavn: 'PRESENTABEL',
+    mellomnavn: null,
+    etternavn: 'HOFTE',
+};
+
 const startExpressServer = () => {
     const port = process.env.PORT || 8099;
 
+    server.post('/oppslag/deltaker', (req, res) => {
+        const id = req.body.deltakerIdent;
+        const response = id === nyDeltaker.fødselsnummer ? nyDeltaker : registrertDeltaker;
+        setTimeout(() => {
+            res.status(200).send(response);
+        }, 50);
+    });
+
     server.post('/veileder/register/hent/alle', (req, res) => {
-        const response = [
-            {
-                id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0',
-                deltakerIdent: '56857102105',
-                fraOgMed: '2025-09-01',
-            },
-        ];
+        const id = req.body.deltakerIdent;
+        const response =
+            id === registrertDeltaker.fødselsnummer
+                ? [
+                      {
+                          id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0',
+                          deltakerIdent: '56857102105',
+                          fraOgMed: '2025-09-01',
+                      },
+                  ]
+                : [];
         setTimeout(() => {
             res.status(200).send(response);
         }, 50);
