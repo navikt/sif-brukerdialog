@@ -7,7 +7,7 @@
     "devDependencies": {
         "@sif/eslint-config": "*",
         "copyfiles": "2.4.1",
-        "typescript": "5.7.2"
+        "typescript": "5.6.3"
     },
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
