@@ -3831,7 +3831,7 @@ __metadata:
     storybook: "npm:8.4.5"
     swr: "npm:2.2.5"
     tailwindcss: "npm:3.4.15"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
     uuid: "npm:11.0.3"
     vitest: "npm:2.1.5"
     zod: "npm:3.23.8"
@@ -3941,7 +3941,7 @@ __metadata:
     react-router-dom: "npm:6.28.0"
     rimraf: "npm:6.0.1"
     storybook: "npm:8.4.5"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
     vite: "npm:5.4.11"
     vite-plugin-checker: "npm:0.8.0"
     vitest: "npm:2.1.5"
@@ -4028,7 +4028,7 @@ __metadata:
     storybook: "npm:8.4.5"
     storybook-addon-mock: "npm:5.0.0"
     tailwindcss: "npm:3.4.15"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
     vite: "npm:5.4.11"
     vite-plugin-checker: "npm:0.8.0"
     vitest: "npm:2.1.5"
@@ -4132,7 +4132,7 @@ __metadata:
     react-fast-compare: "npm:3.2.2"
     react-intl: "npm:7.0.1"
     react-router-dom: "npm:6.28.0"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
     uuid: "npm:11.0.3"
     vite: "npm:5.4.11"
     vite-plugin-checker: "npm:0.8.0"
@@ -4173,7 +4173,7 @@ __metadata:
     react-dom: "npm:18.3.1"
     react-intl: "npm:7.0.1"
     tailwindcss: "npm:3.4.15"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
     uuid: "npm:11.0.3"
   languageName: unknown
   linkType: soft
@@ -4247,7 +4247,7 @@ __metadata:
     storybook: "npm:8.4.5"
     storybook-addon-mock: "npm:5.0.0"
     tailwindcss: "npm:3.4.15"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
     ulid: "npm:2.3.0"
     uuid: "npm:11.0.3"
     vite: "npm:5.4.11"
@@ -4323,7 +4323,7 @@ __metadata:
     react-router-dom: "npm:6.28.0"
     storybook: "npm:8.4.5"
     tailwindcss: "npm:3.4.15"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
     uuid: "npm:11.0.3"
     vite: "npm:5.4.11"
     vite-plugin-checker: "npm:0.8.0"
@@ -4400,7 +4400,7 @@ __metadata:
     react-router-dom: "npm:6.28.0"
     storybook: "npm:8.4.5"
     tailwindcss: "npm:3.4.15"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
     vite: "npm:5.4.11"
     vite-plugin-checker: "npm:0.8.0"
     vitest: "npm:2.1.5"
@@ -4475,7 +4475,7 @@ __metadata:
     react-router-dom: "npm:6.28.0"
     storybook: "npm:8.4.5"
     tailwindcss: "npm:3.4.15"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
     uuid: "npm:11.0.3"
     vite: "npm:5.4.11"
     vite-plugin-checker: "npm:0.8.0"
@@ -4553,7 +4553,7 @@ __metadata:
     react-router-dom: "npm:6.28.0"
     storybook: "npm:8.4.5"
     storybook-addon-mock: "npm:5.0.0"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
     uuid: "npm:11.0.3"
     vite: "npm:5.4.11"
     vite-plugin-checker: "npm:0.8.0"
@@ -4635,7 +4635,7 @@ __metadata:
     react-router-dom: "npm:6.28.0"
     storybook: "npm:8.4.5"
     storybook-addon-mock: "npm:5.0.0"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
     uuid: "npm:11.0.3"
     vite: "npm:5.4.11"
     vite-plugin-checker: "npm:0.8.0"
@@ -4649,7 +4649,7 @@ __metadata:
   dependencies:
     "@sif/eslint-config": "npm:*"
     copyfiles: "npm:2.4.1"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
   languageName: unknown
   linkType: soft
 
@@ -4664,7 +4664,7 @@ __metadata:
     lint-staged: "npm:15.2.10"
     prettier: "npm:3.3.3"
     turbo: "npm:2.3.1"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
   languageName: unknown
   linkType: soft
 
@@ -4681,7 +4681,7 @@ __metadata:
     gh-pages: "npm:6.2.0"
     react: "npm:18.3.1"
     rimraf: "npm:6.0.1"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
   peerDependencies:
     constate: 3.3.x
     react: 18.x
@@ -4725,7 +4725,7 @@ __metadata:
     react-dom: "npm:18.3.1"
     react-intl: "npm:7.0.1"
     storybook: "npm:8.4.5"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
     zod: "npm:3.23.8"
   languageName: unknown
   linkType: soft
@@ -4789,7 +4789,7 @@ __metadata:
     rimraf: "npm:6.0.1"
     storybook: "npm:8.4.5"
     tailwindcss: "npm:3.4.15"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
     uuid: "npm:11.0.3"
     vite: "npm:5.4.11"
     vite-plugin-checker: "npm:0.8.0"
@@ -4801,7 +4801,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-env@workspace:packages/sif-common-env"
   dependencies:
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
   languageName: unknown
   linkType: soft
 
@@ -4872,7 +4872,7 @@ __metadata:
     sass-loader: "npm:16.0.3"
     storybook: "npm:8.4.5"
     style-loader: "npm:4.0.0"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
     uuid: "npm:11.0.3"
     vite: "npm:5.4.11"
     vite-plugin-checker: "npm:0.8.0"
@@ -4934,7 +4934,7 @@ __metadata:
     react-router-dom: "npm:6.28.0"
     rimraf: "npm:6.0.1"
     storybook: "npm:8.4.5"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
     vite: "npm:5.4.11"
     vite-plugin-checker: "npm:0.8.0"
     vitest: "npm:2.1.5"
@@ -4954,7 +4954,7 @@ __metadata:
     "@sif/eslint-config": "npm:*"
     copyfiles: "npm:2.4.1"
     react: "npm:18.3.1"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
   languageName: unknown
   linkType: soft
 
@@ -4974,7 +4974,7 @@ __metadata:
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
     rimraf: "npm:6.0.1"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
   peerDependencies:
     axios: ">=1.3.4"
   languageName: unknown
@@ -5045,7 +5045,7 @@ __metadata:
     sass-loader: "npm:16.0.3"
     storybook: "npm:8.4.5"
     style-loader: "npm:4.0.0"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
     uuid: "npm:11.0.3"
     vite: "npm:5.4.11"
     vite-plugin-checker: "npm:0.8.0"
@@ -5098,7 +5098,7 @@ __metadata:
     react-dom: "npm:18.3.1"
     react-intl: "npm:7.0.1"
     storybook: "npm:8.4.5"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
   languageName: unknown
   linkType: soft
 
@@ -5123,7 +5123,7 @@ __metadata:
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
     react-intl: "npm:7.0.1"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
     uuid: "npm:11.0.3"
     vitest: "npm:2.1.5"
   languageName: unknown
@@ -5171,7 +5171,7 @@ __metadata:
     react-hook-form: "npm:7.53.2"
     stylelint: "npm:16.10.0"
     tailwindcss: "npm:3.4.15"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
     typescript-eslint: "npm:8.15.0"
     vite: "npm:5.4.11"
     vite-plugin-checker: "npm:0.8.0"
@@ -5238,7 +5238,7 @@ __metadata:
     react-intl: "npm:7.0.1"
     react-router-dom: "npm:6.28.0"
     tailwindcss: "npm:3.4.15"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
     uuid: "npm:11.0.3"
     vite: "npm:5.4.11"
     vite-plugin-checker: "npm:0.8.0"
@@ -5265,7 +5265,7 @@ __metadata:
     http-proxy-middleware: "npm:3.0.3"
     morgan: "npm:1.10.0"
     prettier: "npm:3.3.3"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
     winston: "npm:3.17.0"
     zod: "npm:3.23.8"
   languageName: unknown
@@ -5325,7 +5325,7 @@ __metadata:
     storybook: "npm:8.4.5"
     stylelint: "npm:16.10.0"
     tailwindcss: "npm:3.4.15"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
     typescript-eslint: "npm:8.15.0"
     uuid: "npm:11.0.3"
     vite: "npm:5.4.11"
@@ -5378,7 +5378,7 @@ __metadata:
     react-hook-form: "npm:7.53.2"
     stylelint: "npm:16.10.0"
     tailwindcss: "npm:3.4.15"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
     typescript-eslint: "npm:8.15.0"
     vite: "npm:5.4.11"
     vite-plugin-checker: "npm:0.8.0"
@@ -7788,7 +7788,7 @@ __metadata:
     eslint-plugin-react-hooks: "npm:5.0.0"
     eslint-plugin-vitest: "npm:0.5.4"
     globals: "npm:15.12.0"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
     typescript-eslint: "npm:8.15.0"
   languageName: unknown
   linkType: soft
@@ -10733,7 +10733,7 @@ __metadata:
     react-is: "npm:18.3.1"
     sanity: "npm:3.64.3"
     styled-components: "npm:6.1.13"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
   languageName: unknown
   linkType: soft
 
@@ -12452,7 +12452,7 @@ __metadata:
     eslint-plugin-storybook: "npm:0.11.1"
     postcss: "npm:8.4.49"
     prettier: "npm:3.3.3"
-    typescript: "npm:5.7.2"
+    typescript: "npm:5.6.3"
   languageName: unknown
   linkType: soft
 
@@ -26075,7 +26075,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:5.7.2, typescript@npm:^5.6.3":
+"typescript@npm:5.6.3":
+  version: 5.6.3
+  resolution: "typescript@npm:5.6.3"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 10/c328e418e124b500908781d9f7b9b93cf08b66bf5936d94332b463822eea2f4e62973bfb3b8a745fdc038785cb66cf59d1092bac3ec2ac6a3e5854687f7833f1
+  languageName: node
+  linkType: hard
+
+"typescript@npm:^5.6.3":
   version: 5.7.2
   resolution: "typescript@npm:5.7.2"
   bin:
@@ -26085,7 +26095,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A5.7.2#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.6.3#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A5.6.3#optional!builtin<compat/typescript>":
+  version: 5.6.3
+  resolution: "typescript@patch:typescript@npm%3A5.6.3#optional!builtin<compat/typescript>::version=5.6.3&hash=8c6c40"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 10/00504c01ee42d470c23495426af07512e25e6546bce7e24572e72a9ca2e6b2e9bea63de4286c3cfea644874da1467dcfca23f4f98f7caf20f8b03c0213bb6837
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@npm%3A^5.6.3#optional!builtin<compat/typescript>":
   version: 5.7.2
   resolution: "typescript@patch:typescript@npm%3A5.7.2#optional!builtin<compat/typescript>::version=5.7.2&hash=8c6c40"
   bin:
