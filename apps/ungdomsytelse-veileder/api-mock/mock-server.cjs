@@ -34,6 +34,11 @@ const nyDeltaker = {
     },
 };
 
+const nyDeltakerRegistrert = {
+    ...nyDeltaker,
+    id: 'd-n',
+};
+
 const registrertDeltaker = {
     id: 'd-r',
     deltakerIdent: '03867198392',
@@ -70,6 +75,8 @@ const getDeltaker = ({ fnr, deltakerId }) => {
         switch (deltakerId) {
             case registrertDeltaker.id:
                 return registrertDeltaker;
+            case nyDeltakerRegistrert.id:
+                return nyDeltakerRegistrert;
             default:
                 console.log('fant ikke deltaker med id', deltakerId);
                 return null;
@@ -88,7 +95,7 @@ const startExpressServer = () => {
         const response = getDeltaker(req.body);
         setTimeout(() => {
             res.status(200).send(response);
-        }, 250);
+        }, 350);
     });
 
     server.post('/veileder/register/hent/alle', (req, res) => {
@@ -109,6 +116,18 @@ const startExpressServer = () => {
         setTimeout(() => {
             res.status(200).send(response);
         }, 50);
+    });
+
+    server.post('/veileder/register/registrer-ny', (req, res) => {
+        const body = req.body;
+        console.log('[POST] body', body);
+        const response = {
+            ...registrertDeltaker,
+            id: 'd-n',
+        };
+        setTimeout(() => {
+            res.status(200).send(response);
+        }, 1500);
     });
 
     server.post('/veileder/register/legg-til-error', (req, res) => {

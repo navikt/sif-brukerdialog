@@ -5360,7 +5360,8 @@ __metadata:
     axios: "npm:1.7.7"
     clsx: "npm:2.1.1"
     compression: "npm:1.7.5"
-    date-fns: "npm:3.6.0"
+    date-fns: "npm:^4.1.0"
+    dayjs: "npm:^1.11.13"
     eslint: "npm:9.15.0"
     eslint-plugin-prettier: "npm:5.2.1"
     eslint-plugin-react: "npm:7.37.2"
@@ -5376,6 +5377,8 @@ __metadata:
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
     react-hook-form: "npm:7.53.2"
+    react-intl: "npm:^7.0.1"
+    react-loading-skeleton: "npm:^3.5.0"
     react-router-dom: "npm:^7.0.1"
     stylelint: "npm:16.10.0"
     tailwindcss: "npm:3.4.15"
@@ -13397,6 +13400,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"date-fns@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "date-fns@npm:4.1.0"
+  checksum: 10/d5f6e9de5bbc52310f786099e18609289ed5e30af60a71e0646784c8185ddd1d0eebcf7c96b7faaaefc4a8366f3a3a4244d099b6d0866ee2bec80d1361e64342
+  languageName: node
+  linkType: hard
+
 "date-now@npm:1.0.1":
   version: 1.0.1
   resolution: "date-now@npm:1.0.1"
@@ -13404,7 +13414,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dayjs@npm:1.11.13":
+"dayjs@npm:1.11.13, dayjs@npm:^1.11.13":
   version: 1.11.13
   resolution: "dayjs@npm:1.11.13"
   checksum: 10/7374d63ab179b8d909a95e74790def25c8986e329ae989840bacb8b1888be116d20e1c4eee75a69ea0dfbae13172efc50ef85619d304ee7ca3c01d5878b704f5
@@ -22924,7 +22934,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-intl@npm:7.0.1":
+"react-intl@npm:7.0.1, react-intl@npm:^7.0.1":
   version: 7.0.1
   resolution: "react-intl@npm:7.0.1"
   dependencies:
@@ -22988,7 +22998,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-loading-skeleton@npm:3.5.0":
+"react-loading-skeleton@npm:3.5.0, react-loading-skeleton@npm:^3.5.0":
   version: 3.5.0
   resolution: "react-loading-skeleton@npm:3.5.0"
   peerDependencies:

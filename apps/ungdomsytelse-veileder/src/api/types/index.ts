@@ -11,15 +11,15 @@ export type DeltakelseRequestDTO = z.infer<typeof deltakelseRequestSchema>;
 export type Deltaker = z.infer<typeof deltakerSchema>;
 export type NyDeltaker = z.infer<typeof nyDeltakerSchema>;
 
-export const isNyDeltaker = (deltaker: Deltaker | NyDeltaker): deltaker is NyDeltaker => {
-    if ('id' in deltaker && deltaker.id !== null && deltaker.id !== undefined) {
+export const isNyDeltaker = (deltaker: any): deltaker is NyDeltaker => {
+    if (deltaker && 'id' in deltaker && deltaker.id !== null && deltaker.id !== undefined) {
         return false;
     }
     return true;
 };
 
 export const isDeltaker = (deltaker: any): deltaker is Deltaker => {
-    if ('id' in deltaker && deltaker.id !== null && deltaker.id !== undefined) {
+    if (deltaker && 'id' in deltaker && deltaker.id !== null && deltaker.id !== undefined) {
         return true;
     }
     return false;

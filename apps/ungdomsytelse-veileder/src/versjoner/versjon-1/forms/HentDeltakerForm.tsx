@@ -1,22 +1,27 @@
-import { Box, Button, Fieldset, HStack, TextField, VStack } from '@navikt/ds-react';
+import { Box, Button, Checkbox, Fieldset, HStack, TextField, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { getFødselsnummerValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { veilederService } from '../../../api/services/veilederService';
-import { Deltaker, isDeltaker } from '../../../api/types';
+import { Deltaker, isDeltaker, NyDeltaker } from '../../../api/types';
 import { useTextFieldFormatter } from '../hooks/useTextFieldFormatter';
 import { fnrFormatter } from '../utils/fnrFormatter';
-import { getZodErrorsInfo } from '../utils/zodUtils';
+import DeltakerKort from '../components/DeltakerKort';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
+import NyDeltakerForm from './ny-deltaker-form/NyDeltakerForm';
 
 interface Props {
     onDeltakerFetched: (deltaker: Deltaker) => void;
+    onNyDeltaker: (deltaker: NyDeltaker) => void;
 }
 
 const fnrValidator = getFødselsnummerValidator({ required: true, allowHnr: true });
 
 const HentDeltakerForm = ({ onDeltakerFetched }: Props) => {
     const [validationError, setValidationError] = useState<string | undefined>(undefined);
-    const [fnrValue, setFnrValue] = useState<string | undefined>();
+    const [fnrValue, setFnrValue] = useState<string | undefined>('56857102105');
     const [pending, setPending] = useState<boolean>(false);
+    const [nyDeltaker, setNyDeltaker] = useState<NyDeltaker | undefined>();
+    const [registrerNy, setRegistrerNy] = useState<boolean>(false);
 
     const textFieldFormatter = useTextFieldFormatter(fnrFormatter);
 
@@ -25,6 +30,7 @@ const HentDeltakerForm = ({ onDeltakerFetched }: Props) => {
         setValidationError(error);
         if (fnrValue && error === undefined) {
             setPending(true);
+            setNyDeltaker(undefined);
             try {
                 const deltaker = await veilederService.getDeltakerByFnr(fnrValue);
                 if (isDeltaker(deltaker)) {
@@ -32,24 +38,34 @@ const HentDeltakerForm = ({ onDeltakerFetched }: Props) => {
                     onDeltakerFetched(deltaker);
                 } else {
                     setPending(false);
-                    setValidationError('Deltaker ikke funnet');
+                    setNyDeltaker(deltaker);
+                    // onNyDeltaker(deltaker);
                 }
             } catch (e) {
-                setValidationError('Deltaker ikke funnet');
-                getZodErrorsInfo(e);
+                setPending(false);
+                setValidationError('Det oppstod en feil');
             }
         }
     };
 
-    const quickFetch = (fnr: string) => {
-        setValidationError(undefined);
-        setFnrValue(fnr);
-    };
+    useEffectOnce(() => {
+        fetchDeltaker();
+    });
+    // const quickFetch = (fnr: string) => {
+    //     setNyDeltaker(undefined);
+    //     setValidationError(undefined);
+    //     setFnrValue(fnr);
+    // };
 
     const { hasFocus, ...textFieldFormatterProps } = textFieldFormatter;
 
+    // const resetForm = () => {
+    //     setNyDeltaker(undefined);
+    //     setFnrValue(undefined);
+    //     setValidationError(undefined);
+    // };
     return (
-        <VStack gap="3" className="hentDeltakerForm">
+        <VStack gap="3" className="hentDeltakerForm w-full">
             <form
                 onSubmit={(evt) => {
                     evt.stopPropagation();
@@ -58,16 +74,16 @@ const HentDeltakerForm = ({ onDeltakerFetched }: Props) => {
                 }}>
                 <Fieldset error={validationError} legend="Finn deltaker" hideLegend={false}>
                     <HStack gap="2" align={'end'} paddingBlock="2 0">
-                        <HStack gap="1" align={'end'} paddingBlock="2 0">
+                        <HStack gap="2" align={'end'} paddingBlock="2 0">
                             <TextField
                                 name="fnr"
                                 value={hasFocus ? fnrValue || '' : fnrFormatter.applyFormat(fnrValue)}
-                                label="Deltakers fødselsnumer"
+                                label="Deltakers fødselsnummer"
                                 onChange={(evt) => {
                                     setFnrValue(evt.target.value);
+                                    setNyDeltaker(undefined);
                                 }}
                                 size="medium"
-                                style={{ width: '11rem' }}
                                 maxLength={11}
                                 {...textFieldFormatterProps}
                             />
@@ -80,7 +96,28 @@ const HentDeltakerForm = ({ onDeltakerFetched }: Props) => {
                     </HStack>
                 </Fieldset>
             </form>
-            <VStack gap="2">
+            {nyDeltaker ? (
+                <VStack gap="2">
+                    <Box className="rounded-md bg-surface-default p-4 items-center w-full">
+                        <DeltakerKort deltaker={nyDeltaker} />
+                    </Box>
+                    <Checkbox checked={registrerNy} onChange={(evt) => setRegistrerNy(evt.target.checked)}>
+                        Registrer som ny deltaker
+                    </Checkbox>
+                </VStack>
+            ) : (
+                <Box height={'1rem'} />
+            )}
+            {registrerNy && nyDeltaker ? (
+                <Box marginBlock="2 0">
+                    <NyDeltakerForm
+                        deltaker={nyDeltaker}
+                        onCancel={() => setRegistrerNy(false)}
+                        onDeltakerRegistrert={onDeltakerFetched}
+                    />
+                </Box>
+            ) : null}
+            {/* <VStack gap="2">
                 Testbrukere lokalt:
                 <Box>
                     <Button variant="secondary" size="xsmall" onClick={() => quickFetch('03867198392')}>
@@ -92,7 +129,7 @@ const HentDeltakerForm = ({ onDeltakerFetched }: Props) => {
                         56857102105 (ny)
                     </Button>
                 </Box>
-            </VStack>
+            </VStack> */}
         </VStack>
     );
 };

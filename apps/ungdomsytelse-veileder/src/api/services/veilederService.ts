@@ -41,6 +41,26 @@ const getDeltakelser = async (deltakerId: string): Promise<Deltakelse[]> => {
     }
 };
 
+const registrerDeltaker = async ({
+    deltakerIdent,
+    fraOgMed,
+}: {
+    deltakerIdent: string;
+    fraOgMed: string;
+}): Promise<Deltaker> => {
+    const response = await ungDeltakelseOpplyserApiClient.post(`/veileder/register/registrer-ny`, {
+        deltakerIdent,
+        fraOgMed,
+    });
+    try {
+        const deltaker = await deltakerSchema.parse(response.data);
+        return deltaker;
+    } catch (e) {
+        getSentryLoggerForApp('sif-common', []).logError('ZOD parse error', e);
+        throw e;
+    }
+};
+
 const createDeltakelse = async (data: {
     deltakerId: string;
     fraOgMed: string;
@@ -86,4 +106,5 @@ export const veilederService = {
     createDeltakelse,
     updateDeltakelse,
     deleteDeltakelse,
+    registrerDeltaker,
 };
