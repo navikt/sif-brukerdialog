@@ -53,8 +53,8 @@ const NyDeltakerForm = ({ deltaker, onCancel, onDeltakerRegistrert }: Props) => 
                         formErrorHandler={getIntlFormErrorHandler(intl, 'nyDeltakerForm')}>
                         <VStack gap="6">
                             <VStack gap="4">
-                                <Heading level="2" size="medium" spacing={true}>
-                                    Registrer {navn} som ny deltaker
+                                <Heading level="2" size="medium" spacing={false}>
+                                    Registrer ny deltaker
                                 </Heading>
                                 <FormikDatepicker
                                     name="startDato"
@@ -72,7 +72,7 @@ const NyDeltakerForm = ({ deltaker, onCancel, onDeltakerRegistrert }: Props) => 
                                 <FormikConfirmationCheckbox
                                     label={
                                         <>
-                                            <BodyShort>Bekreft deltakelse for {navn}</BodyShort>
+                                            <BodyShort>Bekreft deltakelse</BodyShort>
                                         </>
                                     }
                                     name="bekreftRegistrering"

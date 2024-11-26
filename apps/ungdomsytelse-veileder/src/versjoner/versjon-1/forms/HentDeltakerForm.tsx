@@ -109,7 +109,7 @@ const HentDeltakerForm = ({ onDeltakerFetched }: Props) => {
                 <Box height={'1rem'} />
             )}
             {registrerNy && nyDeltaker ? (
-                <Box marginBlock="2 0">
+                <Box marginBlock="4 0">
                     <NyDeltakerForm
                         deltaker={nyDeltaker}
                         onCancel={() => setRegistrerNy(false)}
