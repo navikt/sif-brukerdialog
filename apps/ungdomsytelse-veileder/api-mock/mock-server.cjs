@@ -25,43 +25,38 @@ server.use(
 server.options('*', cors());
 
 const nyDeltaker = {
-    deltaker: {
-        deltakerId: 'd-n',
-        fødselsdato: '1995-06-02',
-        fødselsnummer: '56857102105',
-        fornavn: 'GLORETE',
-        mellomnavn: null,
-        etternavn: 'TØFFEL',
-    },
-    deltakelser: [],
+    deltakerId: null,
+    fødselsdato: '1995-06-02',
+    fødselsnummer: '56857102105',
+    fornavn: 'GLORETE',
+    mellomnavn: null,
+    etternavn: 'TØFFEL',
 };
 
 const registrertDeltaker = {
-    deltaker: {
-        deltakerId: 'd-r',
-        fødselsdato: '1995-06-02',
-        fødselsnummer: '03867198392',
-        fornavn: 'PRESENTABEL',
-        mellomnavn: null,
-        etternavn: 'HOFTE',
-    },
-    deltakelser: [
-        {
-            id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0',
-            deltakerId: '56857102105',
-            fraOgMed: '2025-09-01',
-        },
-    ],
+    deltakerId: 'd-r',
+    fødselsdato: '1995-06-02',
+    fødselsnummer: '03867198392',
+    fornavn: 'PRESENTABEL',
+    mellomnavn: null,
+    etternavn: 'HOFTE',
 };
 
-const getDeltakerOgDeltakelser = (body) => {
-    const { fnr, deltakerId } = body;
+const deltakelser = [
+    {
+        deltakerId: 'd-r',
+        id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0',
+        fraOgMed: '2025-09-01',
+    },
+];
+
+const getDeltaker = ({ fnr, deltakerId }) => {
     if (fnr) {
-        console.log('Henter deltaker med fnr', fnr);
+        console.log('henter deltaker med fnr', fnr);
         switch (fnr) {
-            case nyDeltaker.deltaker.fødselsnummer:
+            case nyDeltaker.fødselsnummer:
                 return nyDeltaker;
-            case registrertDeltaker.deltaker.fødselsnummer:
+            case registrertDeltaker.fødselsnummer:
                 return registrertDeltaker;
             default:
                 console.log('fant ikke deltaker med fnr', fnr);
@@ -69,36 +64,38 @@ const getDeltakerOgDeltakelser = (body) => {
         }
     }
     if (deltakerId) {
-        console.log('Henter deltaker med deltakerId', deltakerId);
+        console.log('henter deltaker med id', deltakerId);
         switch (deltakerId) {
-            case nyDeltaker.deltaker.deltakerId:
-                return nyDeltaker;
-            case registrertDeltaker.deltaker.deltakerId:
+            case registrertDeltaker.deltakerId:
                 return registrertDeltaker;
             default:
-                console.log('Fant ikke deltaker med deltakerId', deltakerId);
+                console.log('fant ikke deltaker med id', deltakerIdfnr);
                 return null;
         }
     }
+};
+
+const getDeltakelser = (deltakerId) => {
+    return deltakelser;
 };
 
 const startExpressServer = () => {
     const port = process.env.PORT || 8099;
 
     server.post('/oppslag/deltaker', (req, res) => {
-        const response = getDeltakerOgDeltakelser(req.body);
-        console.log(response);
+        const response = getDeltaker(req.body);
         setTimeout(() => {
             res.status(200).send(response);
         }, 1000);
     });
 
     server.post('/veileder/register/hent/alle', (req, res) => {
-        const id = req.body.deltakerId;
-        const response = id === registrertDeltaker.fødselsnummer ? delt : [];
+        console.log('/oppslag/deltakelser', req.body);
+        const response = getDeltakelser(req.body.deltakerId);
+        console.log(response);
         setTimeout(() => {
             res.status(200).send(response);
-        }, 50);
+        }, 1000);
     });
 
     server.post('/veileder/register/legg-til', (req, res) => {

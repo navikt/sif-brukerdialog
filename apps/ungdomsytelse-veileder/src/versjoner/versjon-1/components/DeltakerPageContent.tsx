@@ -5,10 +5,9 @@ import DeltakelseTable from '../../../components/deltakelse-table/DeltakelseTabl
 import MeldeUtDeltakerForm from '../forms/MeldeUtDeltakerForm';
 import MeldeInnDeltakerPåNyttForm from '../forms/MeldeInnDeltakerPåNyttForm';
 import EndreDeltakelseperiode from '../forms/EndreDeltakelseperiode';
-import MeldeInnDeltakerForm from '../forms/MeldeInnDeltakerForm';
 
 const DeltakerPageContent = () => {
-    const { deltaker } = useDeltaker();
+    const { deltaker, deltakelser } = useDeltaker();
 
     if (!deltaker) {
         return (
@@ -18,7 +17,6 @@ const DeltakerPageContent = () => {
         );
     }
 
-    const { deltakelser } = deltaker;
     return (
         <VStack gap="4" paddingBlock={'10'} paddingInline={'6'}>
             {deltakelser ? (
@@ -41,13 +39,13 @@ const DeltakerPageContent = () => {
                             <Accordion.Item>
                                 <Accordion.Header>1. Melde ut deltaker</Accordion.Header>
                                 <Accordion.Content>
-                                    <MeldeUtDeltakerForm deltakerFnr={deltaker.deltaker.fødselsnummer} />
+                                    <MeldeUtDeltakerForm deltakerId={deltaker.deltakerId} />
                                 </Accordion.Content>
                             </Accordion.Item>
                             <Accordion.Item>
                                 <Accordion.Header>2. Melde inn deltaker på nytt</Accordion.Header>
                                 <Accordion.Content>
-                                    <MeldeInnDeltakerPåNyttForm deltakerFnr={deltaker.deltaker.fødselsnummer} />
+                                    <MeldeInnDeltakerPåNyttForm deltakerFnr={deltaker.fødselsnummer} />
                                 </Accordion.Content>
                             </Accordion.Item>
                             <Accordion.Item>
@@ -55,18 +53,8 @@ const DeltakerPageContent = () => {
                                 <Accordion.Content>
                                     <EndreDeltakelseperiode
                                         deltakelser={deltakelser}
-                                        deltakerFnr={deltaker.deltaker.fødselsnummer}
+                                        deltakerFnr={deltaker.fødselsnummer}
                                     />
-                                </Accordion.Content>
-                            </Accordion.Item>
-                        </Accordion>
-                    )}
-                    {deltakelser.length === 0 && (
-                        <Accordion>
-                            <Accordion.Item>
-                                <Accordion.Header>1. Melde inn deltaker</Accordion.Header>
-                                <Accordion.Content>
-                                    <MeldeInnDeltakerForm />
                                 </Accordion.Content>
                             </Accordion.Item>
                         </Accordion>

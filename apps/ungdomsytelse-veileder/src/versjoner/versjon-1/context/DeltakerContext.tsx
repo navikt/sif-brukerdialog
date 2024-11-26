@@ -1,11 +1,12 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { veilederService } from '../../../api/services/veilederService';
-import { DeltakerOgDeltakelser } from '../../../api/types';
+import { Deltakelser, Deltaker } from '../../../api/types';
 
 interface DeltakerContextProps {
-    deltaker?: DeltakerOgDeltakelser;
-    setDeltaker: (deltaker: DeltakerOgDeltakelser) => void;
+    deltaker?: Deltaker;
+    deltakelser?: Deltakelser;
+    setDeltaker: (deltaker: Deltaker) => void;
     closeDeltaker: () => void;
 }
 
@@ -16,16 +17,22 @@ interface DeltakerProviderProps {
     deltakerId?: string;
 }
 export const DeltakerProvider = ({ children, deltakerId }: DeltakerProviderProps) => {
-    const [deltaker, setDeltaker] = useState<DeltakerOgDeltakelser>();
+    const [deltaker, setDeltaker] = useState<Deltaker>();
+    const [deltakelser, setDeltakelser] = useState<Deltakelser>([]);
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchDeltaker = async (deltakerId: string) => {
-            const deltaker = await veilederService.getDeltakerOgDeltakelser({ deltakerId });
+            const deltaker = await veilederService.getDeltaker({ deltakerId });
             setDeltaker(deltaker);
         };
-        if (deltakerId && deltakerId !== deltaker?.deltaker.deltakerId) {
+        const fetchDeltakelser = async (deltakerId: string) => {
+            const deltakelser = await veilederService.getDeltakelser(deltakerId);
+            setDeltakelser(deltakelser);
+        };
+        if (deltakerId && deltakerId !== deltaker?.deltakerId) {
             fetchDeltaker(deltakerId);
+            fetchDeltakelser(deltakerId);
         }
     }, [deltakerId]);
 
@@ -34,7 +41,9 @@ export const DeltakerProvider = ({ children, deltakerId }: DeltakerProviderProps
         navigate('/');
     };
     return (
-        <DeltakerContext.Provider value={{ deltaker, setDeltaker, closeDeltaker }}>{children}</DeltakerContext.Provider>
+        <DeltakerContext.Provider value={{ deltaker, deltakelser, setDeltaker, closeDeltaker }}>
+            {children}
+        </DeltakerContext.Provider>
     );
 };
 

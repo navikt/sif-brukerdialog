@@ -3,19 +3,13 @@ import { v4 } from 'uuid';
 import { ungDeltakelseOpplyserApiClient } from '../apiClient';
 import { deltakelserSchema } from '../schemas/deltakelserSchema';
 import { deltakelseSchema } from '../schemas/deltakelseSchema';
-import { deltakerOgDeltakelserSchema } from '../schemas/deltakerOgDeltakelserSchema';
-import { Deltakelse, DeltakerOgDeltakelser } from '../types';
+import { Deltakelse, Deltaker } from '../types';
+import { deltakerSchema } from '../schemas/deltakerSchema';
 
-const getDeltaker = async ({
-    fnr,
-    deltakerId,
-}: {
-    fnr?: string;
-    deltakerId?: string;
-}): Promise<DeltakerOgDeltakelser> => {
+const getDeltaker = async ({ fnr, deltakerId }: { fnr?: string; deltakerId?: string }): Promise<Deltaker> => {
     const response = await ungDeltakelseOpplyserApiClient.post(`/oppslag/deltaker`, { fnr, deltakerId });
     try {
-        return await deltakerOgDeltakelserSchema.parse(response.data);
+        return await deltakerSchema.parse(response.data);
     } catch (e) {
         getSentryLoggerForApp('sif-common', []).logError('ZOD parse error', e);
         throw e;
@@ -71,7 +65,7 @@ const deleteDeltakelse = async (id: string): Promise<any> => {
 };
 
 export const veilederService = {
-    getDeltakerOgDeltakelser: getDeltaker,
+    getDeltaker,
     getDeltakelser,
     createDeltakelse,
     updateDeltakelse,

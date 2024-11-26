@@ -2,12 +2,12 @@ import { Box, Button, Fieldset, HStack, TextField, VStack } from '@navikt/ds-rea
 import { useState } from 'react';
 import { getFødselsnummerValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { veilederService } from '../../../api/services/veilederService';
-import { DeltakerOgDeltakelser } from '../../../api/types';
+import { Deltaker } from '../../../api/types';
 import { useTextFieldFormatter } from '../hooks/useTextFieldFormatter';
 import { fnrFormatter } from '../utils/fnrFormatter';
 
 interface Props {
-    onDeltakerFetched: (deltaker: DeltakerOgDeltakelser) => void;
+    onDeltakerFetched: (deltaker: Deltaker) => void;
 }
 
 const fnrValidator = getFødselsnummerValidator({ required: true, allowHnr: true });
@@ -24,7 +24,7 @@ const HentDeltakerForm = ({ onDeltakerFetched }: Props) => {
         setValidationError(error);
         if (fnrValue && error === undefined) {
             setPending(true);
-            const deltaker = await veilederService.getDeltakerOgDeltakelser({ fnr: fnrValue });
+            const deltaker = await veilederService.getDeltaker({ fnr: fnrValue });
             if (deltaker) {
                 setPending(false);
                 onDeltakerFetched(deltaker);
@@ -49,7 +49,7 @@ const HentDeltakerForm = ({ onDeltakerFetched }: Props) => {
                     evt.preventDefault();
                     fetchDeltaker();
                 }}>
-                <Fieldset error={validationError} legend="Finn deltakelse" hideLegend={false}>
+                <Fieldset error={validationError} legend="Finn deltaker" hideLegend={false}>
                     <HStack gap="2" align={'end'} paddingBlock="2 0">
                         <HStack gap="1" align={'end'} paddingBlock="2 0">
                             <TextField

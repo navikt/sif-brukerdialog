@@ -6,7 +6,7 @@ const DeltakerPageHeader = () => {
     if (!deltaker) {
         return null;
     }
-    return <DeltakerHeader deltakerOgDeltakelser={deltaker} onLukkDeltaker={() => lukkDeltaker()} />;
+    return <DeltakerHeader deltaker={deltaker} onLukkDeltaker={() => lukkDeltaker()} />;
 };
 
 export default DeltakerPageHeader;
