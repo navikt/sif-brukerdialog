@@ -1,11 +1,11 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
-import { veilederService } from '../../../api/services/veilederService';
-import { Deltaker } from '../types/Deltaker';
 import { useNavigate } from 'react-router-dom';
+import { veilederService } from '../../../api/services/veilederService';
+import { DeltakerOgDeltakelser } from '../../../api/types';
 
 interface DeltakerContextProps {
-    deltaker?: Deltaker;
-    setDeltaker: (deltaker: Deltaker) => void;
+    deltaker?: DeltakerOgDeltakelser;
+    setDeltaker: (deltaker: DeltakerOgDeltakelser) => void;
     closeDeltaker: () => void;
 }
 
@@ -16,15 +16,15 @@ interface DeltakerProviderProps {
     deltakerId?: string;
 }
 export const DeltakerProvider = ({ children, deltakerId }: DeltakerProviderProps) => {
-    const [deltaker, setDeltaker] = useState<Deltaker>();
+    const [deltaker, setDeltaker] = useState<DeltakerOgDeltakelser>();
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchDeltaker = async (id: string) => {
-            const deltaker = await veilederService.getDeltaker(id);
+        const fetchDeltaker = async (deltakerId: string) => {
+            const deltaker = await veilederService.getDeltakerOgDeltakelser({ deltakerId });
             setDeltaker(deltaker);
         };
-        if (deltakerId && deltakerId !== deltaker?.deltakerIdent) {
+        if (deltakerId && deltakerId !== deltaker?.deltaker.deltakerId) {
             fetchDeltaker(deltakerId);
         }
     }, [deltakerId]);

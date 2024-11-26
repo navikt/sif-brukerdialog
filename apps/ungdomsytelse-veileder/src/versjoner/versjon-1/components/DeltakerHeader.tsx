@@ -1,16 +1,16 @@
 import { BodyShort, Box, Button, HStack } from '@navikt/ds-react';
 import PersonNøytral from '../illustrations/PersonNøytral';
-import { Deltaker } from '../types/Deltaker';
 import Fødselsnummer from './Fødselsnummer';
+import { DeltakerOgDeltakelser } from '../../../api/types';
 
 interface Props {
-    deltaker: Deltaker;
+    deltakerOgDeltakelser: DeltakerOgDeltakelser;
     onLukkDeltaker: () => void;
 }
 
 const DeltakerHeader = ({
-    deltaker: {
-        person: { fornavn, etternavn, fødselsnummer },
+    deltakerOgDeltakelser: {
+        deltaker: { fornavn, etternavn, fødselsnummer },
         deltakelser = [],
     },
     onLukkDeltaker,

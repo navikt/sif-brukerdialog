@@ -2,12 +2,12 @@ import { Box, Button, Fieldset, HStack, TextField, VStack } from '@navikt/ds-rea
 import { useState } from 'react';
 import { getFødselsnummerValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { veilederService } from '../../../api/services/veilederService';
+import { DeltakerOgDeltakelser } from '../../../api/types';
 import { useTextFieldFormatter } from '../hooks/useTextFieldFormatter';
-import { Deltaker } from '../types/Deltaker';
 import { fnrFormatter } from '../utils/fnrFormatter';
 
 interface Props {
-    onDeltakerFetched: (deltaker: Deltaker) => void;
+    onDeltakerFetched: (deltaker: DeltakerOgDeltakelser) => void;
 }
 
 const fnrValidator = getFødselsnummerValidator({ required: true, allowHnr: true });
@@ -24,7 +24,7 @@ const HentDeltakerForm = ({ onDeltakerFetched }: Props) => {
         setValidationError(error);
         if (fnrValue && error === undefined) {
             setPending(true);
-            const deltaker = await veilederService.getDeltaker(fnrValue);
+            const deltaker = await veilederService.getDeltakerOgDeltakelser({ fnr: fnrValue });
             if (deltaker) {
                 setPending(false);
                 onDeltakerFetched(deltaker);

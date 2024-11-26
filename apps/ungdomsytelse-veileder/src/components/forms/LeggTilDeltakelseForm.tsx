@@ -33,7 +33,7 @@ const LeggTilDeltakelseForm = ({ deltakerFnr, deltakelser, onDeltakelseLagtTil }
         setPending(true);
         const deltakelse = await veilederService
             .createDeltakelse({
-                deltakerIdent: deltakerFnr,
+                deltakerId: deltakerFnr,
                 fraOgMed: values.fom,
                 tilOgMed: values.tom,
             })
