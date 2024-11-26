@@ -51,14 +51,14 @@ const NyDeltakerForm = ({ deltaker, onCancel, onDeltakerRegistrert }: Props) => 
                     <TypedFormikForm
                         showSubmitButton={false}
                         formErrorHandler={getIntlFormErrorHandler(intl, 'nyDeltakerForm')}>
-                        <VStack gap="4">
-                            <VStack gap="6">
-                                <Heading level="2" size="medium">
-                                    Registrer {navn} som deltaker
+                        <VStack gap="6">
+                            <VStack gap="4">
+                                <Heading level="2" size="medium" spacing={true}>
+                                    Registrer {navn} som ny deltaker
                                 </Heading>
                                 <FormikDatepicker
                                     name="startDato"
-                                    label={`Hva er første dag ${navn} skal være med i programmet?`}
+                                    label={`Hva er første dato i programmet for ${navn}?`}
                                     disableWeekends={true}
                                     minDate={minDate}
                                     maxDate={maxDate}
@@ -69,7 +69,6 @@ const NyDeltakerForm = ({ deltaker, onCancel, onDeltakerRegistrert }: Props) => 
                                         onlyWeekdays: true,
                                     })}
                                 />
-
                                 <FormikConfirmationCheckbox
                                     label={
                                         <>

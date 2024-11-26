@@ -59,11 +59,11 @@ const HentDeltakerForm = ({ onDeltakerFetched }: Props) => {
 
     const { hasFocus, ...textFieldFormatterProps } = textFieldFormatter;
 
-    // const resetForm = () => {
-    //     setNyDeltaker(undefined);
-    //     setFnrValue(undefined);
-    //     setValidationError(undefined);
-    // };
+    const resetForm = () => {
+        setNyDeltaker(undefined);
+        setFnrValue(undefined);
+        setValidationError(undefined);
+    };
     return (
         <VStack gap="3" className="hentDeltakerForm w-full">
             <form
@@ -99,7 +99,7 @@ const HentDeltakerForm = ({ onDeltakerFetched }: Props) => {
             {nyDeltaker ? (
                 <VStack gap="2">
                     <Box className="rounded-md bg-surface-default p-4 items-center w-full">
-                        <DeltakerKort deltaker={nyDeltaker} />
+                        <DeltakerKort deltaker={nyDeltaker} onClose={resetForm} />
                     </Box>
                     <Checkbox checked={registrerNy} onChange={(evt) => setRegistrerNy(evt.target.checked)}>
                         Registrer som ny deltaker
