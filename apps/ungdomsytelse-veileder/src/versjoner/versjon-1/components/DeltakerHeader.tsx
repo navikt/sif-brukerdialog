@@ -10,7 +10,10 @@ interface Props {
 }
 
 const DeltakerHeader = ({
-    deltaker: { fornavn, etternavn, fødselsnummer },
+    deltaker: {
+        navn: { fornavn, etternavn },
+        deltakerIdent: fødselsnummer,
+    },
     deltakelser = [],
     onLukkDeltaker,
 }: Props) => {

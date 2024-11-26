@@ -39,13 +39,13 @@ const DeltakerPageContent = () => {
                             <Accordion.Item>
                                 <Accordion.Header>1. Melde ut deltaker</Accordion.Header>
                                 <Accordion.Content>
-                                    <MeldeUtDeltakerForm deltakerId={deltaker.deltakerId} />
+                                    <MeldeUtDeltakerForm deltakerId={deltaker.id} />
                                 </Accordion.Content>
                             </Accordion.Item>
                             <Accordion.Item>
                                 <Accordion.Header>2. Melde inn deltaker på nytt</Accordion.Header>
                                 <Accordion.Content>
-                                    <MeldeInnDeltakerPåNyttForm deltakerFnr={deltaker.fødselsnummer} />
+                                    <MeldeInnDeltakerPåNyttForm deltakerFnr={deltaker.deltakerIdent} />
                                 </Accordion.Content>
                             </Accordion.Item>
                             <Accordion.Item>
@@ -53,7 +53,7 @@ const DeltakerPageContent = () => {
                                 <Accordion.Content>
                                     <EndreDeltakelseperiode
                                         deltakelser={deltakelser}
-                                        deltakerFnr={deltaker.fødselsnummer}
+                                        deltakerFnr={deltaker.deltakerIdent}
                                     />
                                 </Accordion.Content>
                             </Accordion.Item>

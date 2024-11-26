@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-export const deltakerSchema = z.object({
-    id: z.string(),
+export const nyDeltakerSchema = z.object({
+    id: z.null().optional(),
     deltakerIdent: z.string(),
     navn: z.object({
         fornavn: z.string(),

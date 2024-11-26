@@ -25,21 +25,23 @@ server.use(
 server.options('*', cors());
 
 const nyDeltaker = {
-    deltakerId: null,
-    fødselsdato: '1995-06-02',
-    fødselsnummer: '56857102105',
-    fornavn: 'GLORETE',
-    mellomnavn: null,
-    etternavn: 'TØFFEL',
+    id: null,
+    deltakerIdent: '56857102105',
+    navn: {
+        fornavn: 'GLORETE',
+        mellomnavn: null,
+        etternavn: 'TØFFEL',
+    },
 };
 
 const registrertDeltaker = {
-    deltakerId: 'd-r',
-    fødselsdato: '1995-06-02',
-    fødselsnummer: '03867198392',
-    fornavn: 'PRESENTABEL',
-    mellomnavn: null,
-    etternavn: 'HOFTE',
+    id: 'd-r',
+    deltakerIdent: '03867198392',
+    navn: {
+        fornavn: 'PRESENTABEL',
+        mellomnavn: null,
+        etternavn: 'HOFTE',
+    },
 };
 
 const deltakelser = [
@@ -54,9 +56,9 @@ const getDeltaker = ({ fnr, deltakerId }) => {
     if (fnr) {
         console.log('henter deltaker med fnr', fnr);
         switch (fnr) {
-            case nyDeltaker.fødselsnummer:
+            case nyDeltaker.deltakerIdent:
                 return nyDeltaker;
-            case registrertDeltaker.fødselsnummer:
+            case registrertDeltaker.deltakerIdent:
                 return registrertDeltaker;
             default:
                 console.log('fant ikke deltaker med fnr', fnr);
@@ -66,16 +68,16 @@ const getDeltaker = ({ fnr, deltakerId }) => {
     if (deltakerId) {
         console.log('henter deltaker med id', deltakerId);
         switch (deltakerId) {
-            case registrertDeltaker.deltakerId:
+            case registrertDeltaker.id:
                 return registrertDeltaker;
             default:
-                console.log('fant ikke deltaker med id', deltakerIdfnr);
+                console.log('fant ikke deltaker med id', deltakerId);
                 return null;
         }
     }
 };
 
-const getDeltakelser = (deltakerId) => {
+const getDeltakelser = (id) => {
     return deltakelser;
 };
 
@@ -86,16 +88,16 @@ const startExpressServer = () => {
         const response = getDeltaker(req.body);
         setTimeout(() => {
             res.status(200).send(response);
-        }, 1000);
+        }, 250);
     });
 
     server.post('/veileder/register/hent/alle', (req, res) => {
         console.log('/oppslag/deltakelser', req.body);
-        const response = getDeltakelser(req.body.deltakerId);
+        const response = getDeltakelser(req.body.id);
         console.log(response);
         setTimeout(() => {
             res.status(200).send(response);
-        }, 1000);
+        }, 250);
     });
 
     server.post('/veileder/register/legg-til', (req, res) => {

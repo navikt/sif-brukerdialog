@@ -2,9 +2,10 @@ import { Box, Button, Fieldset, HStack, TextField, VStack } from '@navikt/ds-rea
 import { useState } from 'react';
 import { getFødselsnummerValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { veilederService } from '../../../api/services/veilederService';
-import { Deltaker } from '../../../api/types';
+import { Deltaker, isDeltaker } from '../../../api/types';
 import { useTextFieldFormatter } from '../hooks/useTextFieldFormatter';
 import { fnrFormatter } from '../utils/fnrFormatter';
+import { getZodErrorsInfo } from '../utils/zodUtils';
 
 interface Props {
     onDeltakerFetched: (deltaker: Deltaker) => void;
@@ -24,12 +25,18 @@ const HentDeltakerForm = ({ onDeltakerFetched }: Props) => {
         setValidationError(error);
         if (fnrValue && error === undefined) {
             setPending(true);
-            const deltaker = await veilederService.getDeltaker({ fnr: fnrValue });
-            if (deltaker) {
-                setPending(false);
-                onDeltakerFetched(deltaker);
-            } else {
+            try {
+                const deltaker = await veilederService.getDeltakerByFnr(fnrValue);
+                if (isDeltaker(deltaker)) {
+                    setPending(false);
+                    onDeltakerFetched(deltaker);
+                } else {
+                    setPending(false);
+                    setValidationError('Deltaker ikke funnet');
+                }
+            } catch (e) {
                 setValidationError('Deltaker ikke funnet');
+                getZodErrorsInfo(e);
             }
         }
     };

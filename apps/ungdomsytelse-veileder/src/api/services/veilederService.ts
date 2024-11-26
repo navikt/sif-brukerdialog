@@ -3,11 +3,25 @@ import { v4 } from 'uuid';
 import { ungDeltakelseOpplyserApiClient } from '../apiClient';
 import { deltakelserSchema } from '../schemas/deltakelserSchema';
 import { deltakelseSchema } from '../schemas/deltakelseSchema';
-import { Deltakelse, Deltaker } from '../types';
+import { Deltakelse, Deltaker, isNyDeltaker, NyDeltaker } from '../types';
 import { deltakerSchema } from '../schemas/deltakerSchema';
+import { nyDeltakerSchema } from '../schemas/nyDeltakerSchema';
 
-const getDeltaker = async ({ fnr, deltakerId }: { fnr?: string; deltakerId?: string }): Promise<Deltaker> => {
-    const response = await ungDeltakelseOpplyserApiClient.post(`/oppslag/deltaker`, { fnr, deltakerId });
+const getDeltakerByFnr = async (fnr: string): Promise<Deltaker | NyDeltaker> => {
+    const response = await ungDeltakelseOpplyserApiClient.post(`/oppslag/deltaker`, { fnr });
+    try {
+        const deltaker = isNyDeltaker(response.data)
+            ? await nyDeltakerSchema.parse(response.data)
+            : await deltakerSchema.parse(response.data);
+        return deltaker;
+    } catch (e) {
+        getSentryLoggerForApp('sif-common', []).logError('ZOD parse error', e);
+        throw e;
+    }
+};
+
+const getDeltaker = async (deltakerId: string): Promise<Deltaker> => {
+    const response = await ungDeltakelseOpplyserApiClient.post(`/oppslag/deltaker`, { deltakerId });
     try {
         return await deltakerSchema.parse(response.data);
     } catch (e) {
@@ -15,6 +29,7 @@ const getDeltaker = async ({ fnr, deltakerId }: { fnr?: string; deltakerId?: str
         throw e;
     }
 };
+
 const getDeltakelser = async (deltakerId: string): Promise<Deltakelse[]> => {
     const response = await ungDeltakelseOpplyserApiClient.post(`/veileder/register/hent/alle`, { deltakerId });
     try {
@@ -65,6 +80,7 @@ const deleteDeltakelse = async (id: string): Promise<any> => {
 };
 
 export const veilederService = {
+    getDeltakerByFnr,
     getDeltaker,
     getDeltakelser,
     createDeltakelse,

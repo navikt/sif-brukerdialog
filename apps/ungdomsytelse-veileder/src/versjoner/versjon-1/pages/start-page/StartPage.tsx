@@ -7,7 +7,7 @@ const StartPage = () => {
     const navigate = useNavigate();
 
     const handleDeltakerFetched = (deltaker: Deltaker) => {
-        navigate(`/deltaker/${deltaker.deltakerId}`);
+        navigate(`/deltaker/${deltaker.id}`);
     };
 
     return (

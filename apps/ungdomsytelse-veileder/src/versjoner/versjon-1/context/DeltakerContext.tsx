@@ -2,6 +2,7 @@ import { createContext, ReactNode, useContext, useEffect, useState } from 'react
 import { useNavigate } from 'react-router-dom';
 import { veilederService } from '../../../api/services/veilederService';
 import { Deltakelser, Deltaker } from '../../../api/types';
+import { getZodErrorsInfo } from '../utils/zodUtils';
 
 interface DeltakerContextProps {
     deltaker?: Deltaker;
@@ -23,14 +24,19 @@ export const DeltakerProvider = ({ children, deltakerId }: DeltakerProviderProps
 
     useEffect(() => {
         const fetchDeltaker = async (deltakerId: string) => {
-            const deltaker = await veilederService.getDeltaker({ deltakerId });
-            setDeltaker(deltaker);
+            try {
+                const deltaker = await veilederService.getDeltaker(deltakerId);
+                setDeltaker(deltaker);
+            } catch (e) {
+                getZodErrorsInfo(e);
+            }
         };
         const fetchDeltakelser = async (deltakerId: string) => {
             const deltakelser = await veilederService.getDeltakelser(deltakerId);
             setDeltakelser(deltakelser);
         };
-        if (deltakerId && deltakerId !== deltaker?.deltakerId) {
+
+        if (deltakerId && deltakerId !== deltaker?.id) {
             fetchDeltaker(deltakerId);
             fetchDeltakelser(deltakerId);
         }
