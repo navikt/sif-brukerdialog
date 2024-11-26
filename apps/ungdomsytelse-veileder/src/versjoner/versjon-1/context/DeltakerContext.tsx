@@ -24,10 +24,10 @@ export const DeltakerProvider = ({ children, deltakerId }: DeltakerProviderProps
             const deltaker = await veilederService.getDeltaker(id);
             setDeltaker(deltaker);
         };
-        if (deltakerId) {
+        if (deltakerId && deltakerId !== deltaker?.deltakerIdent) {
             fetchDeltaker(deltakerId);
         }
-    });
+    }, [deltakerId]);
 
     const closeDeltaker = () => {
         setDeltaker(undefined);
