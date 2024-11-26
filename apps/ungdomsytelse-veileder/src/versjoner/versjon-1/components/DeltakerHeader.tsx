@@ -1,14 +1,20 @@
 import { BodyShort, Box, Button, HStack } from '@navikt/ds-react';
-import PersonNøytral from '../illustrasjoner/PersonNøytral';
+import PersonNøytral from '../illustrations/PersonNøytral';
 import { Deltaker } from '../types/Deltaker';
 import Fødselsnummer from './Fødselsnummer';
 
 interface Props {
     deltaker: Deltaker;
-    onByttDeltaker: () => void;
+    onLukkDeltaker: () => void;
 }
 
-const DeltaksleHeader = ({ deltaker, onByttDeltaker }: Props) => {
+const DeltakerHeader = ({
+    deltaker: {
+        person: { fornavn, etternavn, fødselsnummer },
+        deltakelser = [],
+    },
+    onLukkDeltaker,
+}: Props) => {
     return (
         <Box className="bg-gray-300">
             <Box className="p-3 bg-gray-100 border-b-2 border-b-gray-500  w-full">
@@ -16,18 +22,18 @@ const DeltaksleHeader = ({ deltaker, onByttDeltaker }: Props) => {
                     <HStack align={'center'} gap="4">
                         <PersonNøytral width="2rem" height={'2rem'} />
                         <BodyShort size="medium" weight="semibold">
-                            {deltaker.fornavn} {deltaker.etternavn}
+                            {fornavn} {etternavn}
                         </BodyShort>
-                        <Fødselsnummer fnr={deltaker.fødselsnummer} />
+                        <Fødselsnummer fnr={fødselsnummer} />
                     </HStack>
-                    {deltaker.deltakelser && deltaker.deltakelser?.length > 1 ? (
+                    {deltakelser && deltakelser?.length > 1 ? (
                         <>
-                            |<BodyShort>Deltakelser: {deltaker.deltakelser.length}</BodyShort>
+                            |<BodyShort>Deltakelser: {deltakelser.length}</BodyShort>
                         </>
                     ) : null}
                     |
-                    <Button variant="tertiary" size="xsmall" onClick={onByttDeltaker}>
-                        Lukk deltakelse
+                    <Button variant="tertiary" size="xsmall" onClick={onLukkDeltaker}>
+                        Lukk deltaker
                     </Button>
                 </HStack>
             </Box>
@@ -35,4 +41,4 @@ const DeltaksleHeader = ({ deltaker, onByttDeltaker }: Props) => {
     );
 };
 
-export default DeltaksleHeader;
+export default DeltakerHeader;

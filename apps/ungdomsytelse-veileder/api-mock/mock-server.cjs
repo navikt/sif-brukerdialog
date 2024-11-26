@@ -1,9 +1,6 @@
 /* eslint-disable no-console */
 const express = require('express');
 const helmet = require('helmet');
-const busboyCons = require('busboy');
-const os = require('os');
-const fs = require('fs');
 const cors = require('cors');
 
 const server = express();
@@ -27,26 +24,7 @@ server.use(
 );
 server.options('*', cors());
 
-const readFileSync = (path) => {
-    return fs.readFileSync(path, 'utf8');
-};
-
-const existsSync = (path) => fs.existsSync(path);
-
-const mockPath = `${__dirname}/data`;
-const deltakelser = 'deltaker';
-
-const readMockFile = (file, responseObject) => {
-    const filePath = `${mockPath}/${soker}/${file}`;
-    if (existsSync(filePath)) {
-        const body = readFileSync(filePath);
-        responseObject.send(JSON.parse(body));
-    } else {
-        responseObject.send({});
-    }
-};
-
-const nyDeltaker = {
+const person1 = {
     aktørId: '2320509955297',
     fødselsdato: '1995-06-02',
     fødselsnummer: '56857102105',
@@ -55,13 +33,33 @@ const nyDeltaker = {
     etternavn: 'TØFFEL',
 };
 
-const registrertDeltaker = {
+const person2 = {
     aktørId: '2320509955297',
     fødselsdato: '1995-06-02',
     fødselsnummer: '03867198392',
     fornavn: 'PRESENTABEL',
     mellomnavn: null,
     etternavn: 'HOFTE',
+};
+
+const deltakelser = [
+    {
+        id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0',
+        deltakerIdent: '56857102105',
+        fraOgMed: '2025-09-01',
+    },
+];
+
+const nyDeltaker = {
+    deltakerIdent: 'd-0001',
+    person: person2,
+    deltakelser: [],
+};
+
+const registrertDeltaker = {
+    deltakerIdent: 'd-0002',
+    person: person2,
+    deltakelser,
 };
 
 const startExpressServer = () => {
@@ -72,21 +70,12 @@ const startExpressServer = () => {
         const response = id === nyDeltaker.fødselsnummer ? nyDeltaker : registrertDeltaker;
         setTimeout(() => {
             res.status(200).send(response);
-        }, 50);
+        }, 1000);
     });
 
     server.post('/veileder/register/hent/alle', (req, res) => {
         const id = req.body.deltakerIdent;
-        const response =
-            id === registrertDeltaker.fødselsnummer
-                ? [
-                      {
-                          id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0',
-                          deltakerIdent: '56857102105',
-                          fraOgMed: '2025-09-01',
-                      },
-                  ]
-                : [];
+        const response = id === registrertDeltaker.fødselsnummer ? delt : [];
         setTimeout(() => {
             res.status(200).send(response);
         }, 50);

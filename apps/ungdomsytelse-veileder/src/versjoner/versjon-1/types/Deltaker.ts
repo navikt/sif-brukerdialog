@@ -1,5 +1,7 @@
-import { Deltakelse, Søker } from '../../../api/types';
+import { Deltakelse, Person } from '../../../api/types';
 
-export interface Deltaker extends Søker {
+export interface Deltaker {
+    deltakerIdent: string;
+    person: Person;
     deltakelser?: Deltakelse[];
 }
