@@ -53,7 +53,7 @@ const NyDeltakerForm = ({ deltaker, onCancel, onDeltakerRegistrert }: Props) => 
                         formErrorHandler={getIntlFormErrorHandler(intl, 'nyDeltakerForm')}>
                         <VStack gap="6">
                             <VStack gap="4">
-                                <Heading level="2" size="medium" spacing={false}>
+                                <Heading level="2" size="small" spacing={false}>
                                     Registrer ny deltaker
                                 </Heading>
                                 <FormikDatepicker

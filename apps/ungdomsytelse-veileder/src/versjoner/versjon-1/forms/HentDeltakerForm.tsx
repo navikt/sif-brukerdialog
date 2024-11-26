@@ -39,7 +39,6 @@ const HentDeltakerForm = ({ onDeltakerFetched }: Props) => {
                 } else {
                     setPending(false);
                     setNyDeltaker(deltaker);
-                    // onNyDeltaker(deltaker);
                 }
             } catch (e) {
                 setPending(false);
@@ -51,11 +50,6 @@ const HentDeltakerForm = ({ onDeltakerFetched }: Props) => {
     useEffectOnce(() => {
         fetchDeltaker();
     });
-    // const quickFetch = (fnr: string) => {
-    //     setNyDeltaker(undefined);
-    //     setValidationError(undefined);
-    //     setFnrValue(fnr);
-    // };
 
     const { hasFocus, ...textFieldFormatterProps } = textFieldFormatter;
 
