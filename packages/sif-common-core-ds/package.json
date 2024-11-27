@@ -43,11 +43,11 @@
         "@storybook/react": "8.4.5",
         "@storybook/react-vite": "8.4.5",
         "@storybook/testing-library": "0.2.2",
-        "@types/node": "22.9.3",
+        "@types/node": "22.10.0",
         "@types/react": "18.3.12",
         "@types/react-dom": "18.3.1",
-        "@vitejs/plugin-react": "4.3.3",
-        "axios": "1.7.7",
+        "@vitejs/plugin-react": "4.3.4",
+        "axios": "1.7.8",
         "config": "*",
         "copyfiles": "2.4.1",
         "formik": "2.4.6",
@@ -67,7 +67,7 @@
         "uuid": "11.0.3",
         "vite": "5.4.11",
         "vite-plugin-checker": "0.8.0",
-        "vitest": "2.1.5"
+        "vitest": "2.1.6"
     },
     "overrides": {
         "react-refresh": "0.11.0"
