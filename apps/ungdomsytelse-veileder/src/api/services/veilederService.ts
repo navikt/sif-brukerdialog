@@ -7,8 +7,8 @@ import { Deltakelse, Deltaker, isNyDeltaker, NyDeltaker } from '../types';
 import { deltakerSchema } from '../schemas/deltakerSchema';
 import { nyDeltakerSchema } from '../schemas/nyDeltakerSchema';
 
-const getDeltakerByFnr = async (fnr: string): Promise<Deltaker | NyDeltaker> => {
-    const response = await ungDeltakelseOpplyserApiClient.post(`/oppslag/deltaker`, { fnr });
+const getDeltakerByFnr = async (deltakerIdent: string): Promise<Deltaker | NyDeltaker> => {
+    const response = await ungDeltakelseOpplyserApiClient.post(`/oppslag/deltaker`, { deltakerIdent });
     try {
         const deltaker = isNyDeltaker(response.data)
             ? await nyDeltakerSchema.parse(response.data)
