@@ -25,7 +25,7 @@ export const DeltakerProvider = ({ children, deltakerId }: DeltakerProviderProps
     useEffect(() => {
         const fetchDeltaker = async (deltakerId: string) => {
             try {
-                const deltaker = await veilederService.getDeltaker(deltakerId);
+                const deltaker = await veilederService.getDeltakerByDeltakerId(deltakerId);
                 setDeltaker(deltaker);
             } catch (e) {
                 getZodErrorsInfo(e);

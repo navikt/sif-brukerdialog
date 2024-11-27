@@ -23,19 +23,19 @@ interface Props {
 const maxDate = dayjs().add(1, 'month').endOf('month').toDate();
 const minDate = dayjs().subtract(3, 'months').startOf('month').toDate();
 
-interface NyDeltakerFormValues {
+interface FormValues {
     startDato: string;
     bekreftRegistrering: boolean;
 }
 
-const NyDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert: onDeltakerRegistrert }: Props) => {
-    const navn = deltaker.navn.fornavn; //formaterNavn(deltaker.navn);
+const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert: onDeltakerRegistrert }: Props) => {
+    const navn = deltaker.navn.fornavn;
     const [submitPending, setSubmitPending] = useState(false);
     const intl = useIntl();
 
-    const handleOnSubmit = async (values: NyDeltakerFormValues) => {
+    const handleOnSubmit = async (values: FormValues) => {
         setSubmitPending(true);
-        const deltakelse = await veilederService.registrerDeltaker({
+        const deltakelse = await veilederService.meldInnDeltaker({
             deltakerIdent: deltaker.deltakerIdent,
             fraOgMed: values.startDato,
         });
@@ -44,14 +44,14 @@ const NyDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert: onDeltaker
     };
 
     return (
-        <TypedFormikWrapper<NyDeltakerFormValues>
+        <TypedFormikWrapper<FormValues>
             initialValues={{}}
             onSubmit={handleOnSubmit}
             renderForm={() => {
                 return (
                     <TypedFormikForm
                         showSubmitButton={false}
-                        formErrorHandler={getIntlFormErrorHandler(intl, 'nyDeltakerForm')}>
+                        formErrorHandler={getIntlFormErrorHandler(intl, 'meldInnDeltakerForm')}>
                         <VStack gap="6">
                             <VStack gap="4">
                                 <Heading level="2" size="small" spacing={false}>
@@ -102,4 +102,4 @@ const NyDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert: onDeltaker
     );
 };
 
-export default NyDeltakerForm;
+export default MeldInnDeltakerForm;

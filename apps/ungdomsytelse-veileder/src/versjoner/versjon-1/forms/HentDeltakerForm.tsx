@@ -7,7 +7,7 @@ import { useTextFieldFormatter } from '../hooks/useTextFieldFormatter';
 import { fnrFormatter } from '../utils/fnrFormatter';
 import DeltakerKort from '../components/DeltakerKort';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import NyDeltakerForm from './ny-deltaker-form/NyDeltakerForm';
+import MeldInnDeltakerForm from './meld-inn-deltaker-form/MeldInnDeltakerForm';
 import { isAxiosError } from 'axios';
 
 interface Props {
@@ -125,7 +125,7 @@ const HentDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
             )}
             {registrerNy && nyDeltaker ? (
                 <Box marginBlock="4 0">
-                    <NyDeltakerForm
+                    <MeldInnDeltakerForm
                         deltaker={nyDeltaker}
                         onCancel={() => setRegistrerNy(false)}
                         onDeltakelseRegistrert={onDeltakelseRegistrert}

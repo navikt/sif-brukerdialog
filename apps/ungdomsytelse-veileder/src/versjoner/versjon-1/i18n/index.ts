@@ -1,7 +1,7 @@
-import { nyDeltakerFormMessages } from '../forms/ny-deltaker-form/nyDeltakerFormMessages';
+import { meldInnDeltakerFormMessages } from '../forms/meld-inn-deltaker-form/meldInnDeltakerMessages';
 
 const nb = {
-    ...nyDeltakerFormMessages.nb,
+    ...meldInnDeltakerFormMessages.nb,
 };
 
 export const appMessages = {

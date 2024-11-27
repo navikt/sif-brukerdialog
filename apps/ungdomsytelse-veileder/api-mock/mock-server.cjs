@@ -149,6 +149,26 @@ const startExpressServer = () => {
         }, 1500);
     });
 
+    server.put('/veileder/register/utmelding/:deltakerId', (req, res) => {
+        const body = req.body;
+        console.log('[POST] body', body);
+        console.log('[POST] params', req.params);
+        const response = {
+            id: req.params.deltakerId,
+            deltakerIdent: req.body.deltakerIdent,
+            deltaker: {
+                id: 'd-n',
+                deltakerIdent: req.body.deltakerIdent,
+            },
+            harSøkt: false,
+            fraOgMed: req.body.fraOgMed,
+            tilOgMed: req.body.utmeldingsdato,
+        };
+        setTimeout(() => {
+            res.status(200).send(response);
+        }, 1500);
+    });
+
     server.post('/veileder/register/legg-til-error', (req, res) => {
         const body = req.body;
         console.log('[POST] body', body);
