@@ -1,11 +1,12 @@
 import { Button, HStack, VStack } from '@navikt/ds-react';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { useState } from 'react';
-import { Deltakelse } from '../../api/types';
+
 import { dateToISODate, ISODateToDate } from '@navikt/sif-common-utils';
 import ConfirmationDialog from '@navikt/sif-common-formik-ds/src/components/helpers/confirmation-dialog/ConfirmationDialog';
-import { useSlettDeltakelse } from '../../hooks/useSlettDeltakelse';
-import { useEndreDeltakelse } from '../../hooks/useEndreDeltakelse';
+import { Deltakelse } from '../../../../api/types';
+import { useSlettDeltakelse } from '../../../hooks/useSlettDeltakelse';
+import { useEndreDeltakelse } from '../../../hooks/useEndreDeltakelse';
 import PeriodeFormPart from './PeriodeFormPart';
 
 export type DeltakelseFormValues = {

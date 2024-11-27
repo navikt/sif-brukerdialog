@@ -1,10 +1,10 @@
 import { HStack } from '@navikt/ds-react';
 import { FormikDatepicker } from '@navikt/sif-common-formik-ds';
-import { GYLDIG_PERIODE } from '../../settings';
 import { getDateValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { max, min } from 'date-fns';
-import { Deltakelse } from '../../api/types';
 import { DateRange } from '@navikt/sif-common-utils';
+import { max, min } from 'date-fns';
+import { Deltakelse } from '../../../../api/types';
+import { GYLDIG_PERIODE } from '../../../../settings';
 
 interface Props {
     tomDate?: Date;

@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { veilederService } from '../../../api/services/veilederService';
-import { Deltakelser, Deltaker } from '../../../api/types';
+import { veilederService } from '../api/services/veilederService';
+import { Deltakelser, Deltaker } from '../api/types';
 import { getZodErrorsInfo } from '../utils/zodUtils';
 
 interface DeltakerContextProps {
@@ -44,7 +44,7 @@ export const DeltakerProvider = ({ children, deltakerId }: DeltakerProviderProps
 
     const closeDeltaker = () => {
         setDeltaker(undefined);
-        navigate('/v1');
+        navigate('/');
     };
     return (
         <DeltakerContext.Provider value={{ deltaker, deltakelser, setDeltaker, closeDeltaker }}>

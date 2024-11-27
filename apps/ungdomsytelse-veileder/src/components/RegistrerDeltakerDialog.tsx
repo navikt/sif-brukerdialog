@@ -1,5 +1,5 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { NyDeltaker } from '../../../api/types';
+import { NyDeltaker } from '../api/types';
 
 interface Props {
     nyDeltaker: NyDeltaker;

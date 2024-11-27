@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { veilederService } from '../api/services/veilederService';
-import { Deltakelse } from '../api/types';
+import { Deltakelse } from '../../api/types';
+import { veilederService } from '../../api/services/veilederService';
 
 export const useSlettDeltakelse = (onDeltakelseSlettet: (deltakelse: Deltakelse) => void) => {
     const [pending, setPending] = useState(false);

@@ -1,17 +1,17 @@
 import { HStack, Page, VStack } from '@navikt/ds-react';
 import { useNavigate } from 'react-router-dom';
-import { Deltakelse, Deltaker } from '../../../../api/types';
+import { Deltakelse, Deltaker } from '../../api/types';
 import HentDeltakerForm from '../../forms/HentDeltakerForm';
 
 const StartPage = () => {
     const navigate = useNavigate();
 
     const handleDeltakerFetched = (deltaker: Deltaker) => {
-        navigate(`/v1/deltaker/${deltaker.id}`);
+        navigate(`/deltaker/${deltaker.id}`);
     };
 
     const handleDeltakelseRegistrert = (deltakelse: Deltakelse) => {
-        navigate(`/v1/deltaker/${deltakelse.deltaker.id}`);
+        navigate(`/deltaker/${deltakelse.deltaker.id}`);
     };
 
     return (

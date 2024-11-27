@@ -1,7 +1,7 @@
 import { BodyShort, Box, Button, HStack } from '@navikt/ds-react';
+import { Deltakelse, Deltaker } from '../api/types';
 import PersonNøytral from '../illustrations/PersonNøytral';
 import Fødselsnummer from './Fødselsnummer';
-import { Deltakelse, Deltaker } from '../../../api/types';
 
 interface Props {
     deltaker: Deltaker;

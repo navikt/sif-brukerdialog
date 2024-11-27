@@ -1,12 +1,11 @@
 import { Alert, BodyShort, Box, Button, Heading, HStack, VStack } from '@navikt/ds-react';
-import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
-import { veilederService } from '../../api/services/veilederService';
 import { useState } from 'react';
 import { PlusCircleIcon } from '@navikt/aksel-icons';
+import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import PeriodeFormPart from './PeriodeFormPart';
-import { Deltakelse } from '../../api/types';
 import { AxiosError, isAxiosError } from 'axios';
+import { Deltakelse } from '../../../../api/types';
+import PeriodeFormPart from './PeriodeFormPart';
 
 type DeltakelseFormValues = {
     fnr: string;
@@ -20,7 +19,7 @@ interface Props {
     onDeltakelseLagtTil: () => void;
 }
 
-const LeggTilDeltakelseForm = ({ deltakerFnr, deltakelser, onDeltakelseLagtTil }: Props) => {
+const LeggTilDeltakelseForm = ({ deltakerFnr, deltakelser }: Props) => {
     const [showForm, setShowForm] = useState(false);
     const [pending, setPending] = useState(false);
     const [initialValues] = useState<Partial<DeltakelseFormValues>>({
@@ -28,27 +27,27 @@ const LeggTilDeltakelseForm = ({ deltakerFnr, deltakelser, onDeltakelseLagtTil }
     });
     const [error, setError] = useState<string | AxiosError>();
 
-    const leggTilDeltakelse = async (values: DeltakelseFormValues) => {
+    const leggTilDeltakelse = async () => {
         setError(undefined);
         setPending(true);
-        const deltakelse = await veilederService
-            .createDeltakelse({
-                deltakerId: deltakerFnr,
-                fraOgMed: values.fom,
-                tilOgMed: values.tom,
-            })
-            .catch((e) => {
-                if (isAxiosError(e)) {
-                    setError(e);
-                } else {
-                    setError(e.message);
-                }
-                setPending(false);
-            });
-        if (deltakelse) {
-            setPending(false);
-            onDeltakelseLagtTil();
-        }
+        // const deltakelse = await veilederService;
+        // .createDeltakelse({
+        //     deltakerId: deltakerFnr,
+        //     fraOgMed: values.fom,
+        //     tilOgMed: values.tom,
+        // })
+        // .catch((e) => {
+        //     if (isAxiosError(e)) {
+        //         setError(e);
+        //     } else {
+        //         setError(e.message);
+        //     }
+        //     setPending(false);
+        // });
+        setPending(false);
+        // if (deltakelse) {
+        //     onDeltakelseLagtTil();
+        // }
     };
 
     if (showForm === false) {

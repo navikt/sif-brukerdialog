@@ -1,9 +1,9 @@
 import { Bleed, BodyShort, Box, Button, HStack, Tag, VStack } from '@navikt/ds-react';
-import { Deltaker, NyDeltaker } from '../../../api/types';
-import PersonNøytral from '../illustrations/PersonNøytral';
-import Fødselsnummer from './Fødselsnummer';
 import Skeleton from 'react-loading-skeleton';
 import { XMarkIcon } from '@navikt/aksel-icons';
+import { Deltaker, NyDeltaker } from '../api/types';
+import PersonNøytral from '../illustrations/PersonNøytral';
+import Fødselsnummer from './Fødselsnummer';
 
 interface Props {
     deltaker: Deltaker | NyDeltaker;

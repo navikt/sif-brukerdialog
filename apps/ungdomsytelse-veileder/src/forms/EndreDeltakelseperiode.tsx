@@ -1,6 +1,6 @@
 import { Heading, List } from '@navikt/ds-react';
-import { Deltakelse } from '../../../api/types';
-import DeltakelseTable from '../../../components/deltakelse-table/DeltakelseTable';
+import { Deltakelse } from '../api/types';
+import DeltakelseTable from '../components/deltakelse-table/DeltakelseTable';
 
 interface Props {
     deltakerFnr: string;

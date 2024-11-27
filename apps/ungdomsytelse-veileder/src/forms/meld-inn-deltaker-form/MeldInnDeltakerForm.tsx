@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { Deltakelse, NyDeltaker } from '../../../../api/types';
+import { Deltakelse, NyDeltaker } from '../../api/types';
 import { useState } from 'react';
 import {
     FormikConfirmationCheckbox,
@@ -11,8 +11,8 @@ import { BodyShort, Button, Heading, HStack, VStack } from '@navikt/ds-react';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { useIntl } from 'react-intl';
 import { getCheckedValidator, getDateValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { veilederService } from '../../../../api/services/veilederService';
 import { PaperplaneIcon } from '@navikt/aksel-icons';
+import { veilederService } from '../../api/services/veilederService';
 
 interface Props {
     deltaker: NyDeltaker;

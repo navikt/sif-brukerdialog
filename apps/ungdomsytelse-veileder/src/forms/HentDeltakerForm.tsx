@@ -12,15 +12,15 @@ import {
 } from '@navikt/ds-react';
 import { useState } from 'react';
 import { getFødselsnummerValidator } from '@navikt/sif-common-formik-ds/src/validation';
-import { veilederService } from '../../../api/services/veilederService';
-import { Deltakelse, Deltaker, isDeltaker, NyDeltaker } from '../../../api/types';
-import { useTextFieldFormatter } from '../hooks/useTextFieldFormatter';
-import { fnrFormatter } from '../utils/fnrFormatter';
-import DeltakerKort from '../components/DeltakerKort';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import MeldInnDeltakerForm from './meld-inn-deltaker-form/MeldInnDeltakerForm';
 import { isAxiosError } from 'axios';
-import { getAppEnv } from '../../../utils/appEnv';
+import { veilederService } from '../api/services/veilederService';
+import { Deltakelse, Deltaker, isDeltaker, NyDeltaker } from '../api/types';
+import DeltakerKort from '../components/DeltakerKort';
+import { useTextFieldFormatter } from '../hooks/useTextFieldFormatter';
+import { getAppEnv } from '../utils/appEnv';
+import { fnrFormatter } from '../utils/fnrFormatter';
+import MeldInnDeltakerForm from './meld-inn-deltaker-form/MeldInnDeltakerForm';
 
 interface Props {
     onDeltakerFetched: (deltaker: Deltaker) => void;

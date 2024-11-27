@@ -1,7 +1,7 @@
 import { Alert, Table } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { Deltakelse } from '../../api/types';
-import EndreDeltakelseForm from '../forms/EndreDeltakelseForm';
+import EndreDeltakelseForm from '../../depr/components/forms/old/EndreDeltakelseForm';
 
 interface Props {
     deltakelser: Deltakelse[];

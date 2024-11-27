@@ -119,27 +119,15 @@ const startExpressServer = () => {
         }, 350);
     });
 
-    server.post('/veileder/register/hent/alle', (req, res) => {
-        console.log('/oppslag/deltakelser', req.body);
-        const response = getDeltakelser(req.body.deltakerId);
+    server.post('/veileder/register/deltaker/:deltakerId/deltakelser', (req, res) => {
+        const response = getDeltakelser(req.params.deltakerId);
         console.log(response);
         setTimeout(() => {
             res.status(200).send(response);
         }, 250);
     });
 
-    server.post('/veileder/register/legg-til', (req, res) => {
-        const body = req.body;
-        console.log('[POST] body', body);
-        const response = {
-            ...req.body,
-        };
-        setTimeout(() => {
-            res.status(200).send(response);
-        }, 50);
-    });
-
-    server.post('/veileder/register/innmelding', (req, res) => {
+    server.post('/veileder/register/deltaker/innmelding', (req, res) => {
         const body = req.body;
         console.log('[POST] body', body);
         const response = {
@@ -157,12 +145,12 @@ const startExpressServer = () => {
         }, 1500);
     });
 
-    server.put('/veileder/register/utmelding/:deltakerId', (req, res) => {
+    server.put('/veileder/register/deltakelse/:id/avslutt', (req, res) => {
         const body = req.body;
         console.log('[POST] body', body);
         console.log('[POST] params', req.params);
         const response = {
-            id: req.params.deltakerId,
+            id: req.params.id,
             deltakerIdent: req.body.deltakerIdent,
             deltaker: {
                 id: 'd-n',
@@ -177,24 +165,7 @@ const startExpressServer = () => {
         }, 1500);
     });
 
-    server.post('/veileder/register/legg-til-error', (req, res) => {
-        const body = req.body;
-        console.log('[POST] body', body);
-        const response = {
-            ...req.body,
-        };
-        setTimeout(() => {
-            res.status(409).send({
-                type: '/problem-details/deltaker-med-overlappende-periode',
-                title: 'Deltaker er allerede i programmet for oppgitt periode',
-                status: 409,
-                detail: 'Key (deltaker_ident, periode)=(02499435811, [2024-10-08,)) conflicts with existing key (deltaker_ident, periode)=(02499435811, [2024-10-01,)).',
-                instance: 'https://ungdomsytelse-veileder.intern.dev.nav.no/veileder/register/legg-til',
-            });
-        }, 50);
-    });
-
-    server.put('/veileder/register/oppdater/:id', (req, res) => {
+    server.put('/veileder/register/deltakelse/:id/oppdater', (req, res) => {
         const body = req.body;
         console.log('[put] body', body);
         const response = {
@@ -205,7 +176,7 @@ const startExpressServer = () => {
         }, 50);
     });
 
-    server.delete('/veileder/register/fjern/:id', (req, res) => {
+    server.delete('/veileder/register/deltakelse/:id/fjern', (req, res) => {
         res.sendStatus(200);
     });
 

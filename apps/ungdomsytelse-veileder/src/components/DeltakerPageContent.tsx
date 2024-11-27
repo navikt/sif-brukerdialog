@@ -1,10 +1,10 @@
+import { Accordion, Alert, Heading, HStack, VStack } from '@navikt/ds-react';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { useDeltaker } from '../context/DeltakerContext';
-import { Accordion, Alert, Heading, HStack, VStack } from '@navikt/ds-react';
-import DeltakelseTable from '../../../components/deltakelse-table/DeltakelseTable';
-import MeldeUtDeltakerForm from '../forms/MeldeUtDeltakerForm';
-import MeldeInnDeltakerPåNyttForm from '../forms/MeldeInnDeltakerPåNyttForm';
 import EndreDeltakelseperiode from '../forms/EndreDeltakelseperiode';
+import MeldeInnDeltakerPåNyttForm from '../forms/MeldeInnDeltakerPåNyttForm';
+import MeldeUtDeltakerForm from '../forms/MeldeUtDeltakerForm';
+import DeltakelseTable from './deltakelse-table/DeltakelseTable';
 
 const DeltakerPageContent = () => {
     const { deltaker, deltakelser } = useDeltaker();
