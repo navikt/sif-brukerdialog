@@ -37,7 +37,7 @@ const MeldInnDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert: onDel
         setSubmitPending(true);
         const deltakelse = await veilederService.meldInnDeltaker({
             deltakerIdent: deltaker.deltakerIdent,
-            fraOgMed: values.startDato,
+            startdato: values.startDato,
         });
         setSubmitPending(false);
         onDeltakerRegistrert(deltakelse);

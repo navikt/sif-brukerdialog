@@ -8,6 +8,12 @@ import { deltakerSchema } from '../schemas/deltakerSchema';
 import { nyDeltakerSchema } from '../schemas/nyDeltakerSchema';
 import { z } from 'zod';
 
+/**
+ * -----------------------------
+ * Finn deltaker med fnr/dnr
+ * -----------------------------
+ */
+
 const findDeltakerRequestSchema = z.object({
     deltakerIdent: z.string().optional(),
 });
@@ -26,6 +32,12 @@ const findDeltaker = async (deltakerIdent: string): Promise<Deltaker | NyDeltake
         throw e;
     }
 };
+
+/**
+ * -----------------------------
+ * Hent deltaker med deltakerId
+ * -----------------------------
+ */
 
 const getDeltakerByDeltakerId = async (deltakerId: string): Promise<Deltaker> => {
     const response = await ungDeltakelseOpplyserApiClient.get(`/oppslag/deltaker/${deltakerId}`);
@@ -48,17 +60,30 @@ const getDeltakelser = async (deltakerId: string): Promise<Deltakelse[]> => {
     }
 };
 
+/**
+ * -----------------------------
+ * Innmelding av ny deltaker
+ * -----------------------------
+ */
+
+const innmeldingRequestSchema = z.object({
+    deltakerIdent: z.string(),
+    startdato: z.string(),
+});
+type InnmeldingRequestPayload = z.infer<typeof innmeldingRequestSchema>;
+
 const meldInnDeltaker = async ({
     deltakerIdent,
-    fraOgMed,
+    startdato,
 }: {
     deltakerIdent: string;
-    fraOgMed: string;
+    startdato: string;
 }): Promise<Deltakelse> => {
-    const response = await ungDeltakelseOpplyserApiClient.post(`/veileder/register/innmelding`, {
+    const payload: InnmeldingRequestPayload = {
         deltakerIdent,
-        fraOgMed,
-    });
+        startdato,
+    };
+    const response = await ungDeltakelseOpplyserApiClient.post(`/veileder/register/innmelding`, payload);
     try {
         const deltakelse = await deltakelseSchema.parse(response.data);
         return deltakelse;
@@ -67,6 +92,18 @@ const meldInnDeltaker = async ({
         throw e;
     }
 };
+
+/**
+ * -----------------------------
+ * Utmelding av deltaker
+ * -----------------------------
+ */
+
+const utmeldingRequestSchema = z.object({
+    utmeldingsdato: z.string(),
+});
+type UtmeldingRequestPayload = z.infer<typeof utmeldingRequestSchema>;
+
 const meldUtDeltaker = async ({
     deltakerId,
     utmeldingsdato,
@@ -74,9 +111,10 @@ const meldUtDeltaker = async ({
     deltakerId: string;
     utmeldingsdato: string;
 }): Promise<Deltakelse> => {
-    const response = await ungDeltakelseOpplyserApiClient.put(`/veileder/register/utmelding/${deltakerId}`, {
+    const payload: UtmeldingRequestPayload = {
         utmeldingsdato,
-    });
+    };
+    const response = await ungDeltakelseOpplyserApiClient.put(`/veileder/register/utmelding/${deltakerId}`, payload);
     try {
         const deltakelse = await deltakelseSchema.parse(response.data);
         return deltakelse;
@@ -104,13 +142,26 @@ const createDeltakelse = async (data: {
     }
 };
 
-const updateDeltakelse = async (data: {
-    id: string;
-    deltakerId: string;
-    fraOgMed?: string;
-    tilOgMed?: string;
-}): Promise<Deltakelse> => {
-    const response = await ungDeltakelseOpplyserApiClient.put(`/veileder/register/oppdater/${data.id}`, data);
+/**
+ * -----------------------------
+ * Oppdater en deltakelse
+ * -----------------------------
+ */
+
+const oppdaterDeltakelseRequestSchema = z.object({
+    id: z.string().optional(),
+    deltakerIdent: z.string(),
+    harSøkt: z.boolean(),
+    fraOgMed: z.string(),
+    tilOgMed: z.string().optional(),
+});
+type OppdaterDeltakelseRequestPayload = z.infer<typeof oppdaterDeltakelseRequestSchema>;
+
+const updateDeltakelse = async (data: OppdaterDeltakelseRequestPayload): Promise<Deltakelse> => {
+    const payload: OppdaterDeltakelseRequestPayload = {
+        ...data,
+    };
+    const response = await ungDeltakelseOpplyserApiClient.put(`/veileder/register/oppdater/${data.id}`, payload);
     try {
         const deltakelse = deltakelseSchema.parse(response.data);
         return deltakelse;
@@ -119,6 +170,12 @@ const updateDeltakelse = async (data: {
         throw e;
     }
 };
+
+/**
+ * -----------------------------
+ * Slett deltakelse
+ * -----------------------------
+ */
 
 const deleteDeltakelse = async (id: string): Promise<any> => {
     return await ungDeltakelseOpplyserApiClient.delete(`/veileder/register/fjern/${id}`);
