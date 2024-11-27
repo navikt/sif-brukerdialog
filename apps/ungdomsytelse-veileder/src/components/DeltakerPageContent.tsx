@@ -7,9 +7,13 @@ import DeltakelseTable from './deltakelse-table/DeltakelseTable';
 import AktivDeltakelse from './aktiv-deltakelse/AktivDeltakelse';
 
 const DeltakerPageContent = () => {
-    const { deltaker, deltakelser = [] } = useDeltaker();
+    const { deltaker, deltakelser = [], refetchDeltakelser } = useDeltaker();
     const aktivDeltakelse = deltakelser?.find((d) => d.erAktiv);
     const aktiveDeltakelser = deltakelser?.filter((d) => d.erAktiv);
+
+    const handleOnDeltakelseChange = () => {
+        refetchDeltakelser();
+    };
 
     if (aktiveDeltakelser && aktiveDeltakelser.length > 1) {
         return (
@@ -31,7 +35,14 @@ const DeltakerPageContent = () => {
     }
 
     if (aktivDeltakelse) {
-        return <AktivDeltakelse deltakelse={aktivDeltakelse} deltaker={deltaker} alleDeltakelser={deltakelser} />;
+        return (
+            <AktivDeltakelse
+                deltakelse={aktivDeltakelse}
+                deltaker={deltaker}
+                alleDeltakelser={deltakelser}
+                onChange={handleOnDeltakelseChange}
+            />
+        );
     }
 
     return (

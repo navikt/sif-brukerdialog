@@ -7,8 +7,9 @@ interface Props {
     deltaker: Deltaker;
     deltakelse: Deltakelse;
     alleDeltakelser: Deltakelse[];
+    onChange: () => void;
 }
-const AktivDeltakelse = ({ deltakelse, alleDeltakelser }: Props) => {
+const AktivDeltakelse = ({ deltakelse, alleDeltakelser, onChange }: Props) => {
     return (
         <HGrid columns={'auto 1fr'} gap="4" padding="4">
             <Box className="rounded bg-surface-action-subtle p-6 pr-12">
@@ -42,7 +43,7 @@ const AktivDeltakelse = ({ deltakelse, alleDeltakelser }: Props) => {
                                     width={'100%'}>
                                     <AvsluttDeltakelseForm
                                         deltakelse={deltakelse}
-                                        onDeltakelseAvsluttet={() => console.log('avsluttet')}
+                                        onDeltakelseAvsluttet={onChange}
                                         onCancel={() => console.log('avbryt')}
                                     />
                                 </Box>

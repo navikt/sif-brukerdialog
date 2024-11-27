@@ -49,18 +49,17 @@ const registrertDeltaker = {
     },
 };
 
-const deltakelser = [
-    {
-        id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0',
+const deltakelse1 = {
+    id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0',
+    deltakerIdent: '03867198392',
+    deltaker: {
+        id: 'd-r',
         deltakerIdent: '03867198392',
-        deltaker: {
-            id: 'd-r',
-            deltakerIdent: '03867198392',
-        },
-        fraOgMed: '2025-09-01',
-        harSøkt: false,
     },
-];
+    fraOgMed: '2025-09-01',
+    harSøkt: false,
+};
+const deltakelser = [deltakelse1];
 
 const getDeltaker = ({ deltakerIdent, deltakerId }) => {
     if (deltakerIdent) {
@@ -147,17 +146,8 @@ const startExpressServer = () => {
 
     server.put('/veileder/register/deltakelse/:id/avslutt', (req, res) => {
         const body = req.body;
-        console.log('[POST] body', body);
-        console.log('[POST] params', req.params);
         const response = {
-            id: req.params.id,
-            deltakerIdent: req.body.deltakerIdent,
-            deltaker: {
-                id: 'd-n',
-                deltakerIdent: req.body.deltakerIdent,
-            },
-            harSøkt: false,
-            fraOgMed: req.body.fraOgMed,
+            ...deltakelse1,
             tilOgMed: req.body.utmeldingsdato,
         };
         setTimeout(() => {

@@ -40,6 +40,7 @@ const AvsluttDeltakelseForm = ({ deltakelse, onDeltakelseAvsluttet, onCancel }: 
                 deltakelseId: deltakelse.id,
                 utmeldingsdato: values.utmeldingsdato,
             });
+            reset();
             setSubmitPending(false);
             onDeltakelseAvsluttet(avsluttetDeltakelse);
         } catch (e) {

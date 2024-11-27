@@ -9,6 +9,7 @@ interface DeltakerContextProps {
     deltakelser?: Deltakelser;
     setDeltaker: (deltaker: Deltaker) => void;
     closeDeltaker: () => void;
+    refetchDeltakelser: () => void;
 }
 
 const DeltakerContext = createContext<DeltakerContextProps | undefined>(undefined);
@@ -22,6 +23,11 @@ export const DeltakerProvider = ({ children, deltakerId }: DeltakerProviderProps
     const [deltakelser, setDeltakelser] = useState<Deltakelser>([]);
     const navigate = useNavigate();
 
+    const fetchDeltakelser = async (deltakerId: string) => {
+        const deltakelser = await veilederService.getDeltakelser(deltakerId);
+        setDeltakelser(deltakelser);
+    };
+
     useEffect(() => {
         const fetchDeltaker = async (deltakerId: string) => {
             try {
@@ -31,10 +37,6 @@ export const DeltakerProvider = ({ children, deltakerId }: DeltakerProviderProps
                 getZodErrorsInfo(e);
             }
         };
-        const fetchDeltakelser = async (deltakerId: string) => {
-            const deltakelser = await veilederService.getDeltakelser(deltakerId);
-            setDeltakelser(deltakelser);
-        };
 
         if (deltakerId && deltakerId !== deltaker?.id) {
             fetchDeltaker(deltakerId);
@@ -42,12 +44,19 @@ export const DeltakerProvider = ({ children, deltakerId }: DeltakerProviderProps
         }
     }, [deltakerId]);
 
+    const refetchDeltakelser = async () => {
+        if (deltaker) {
+            await fetchDeltakelser(deltaker.id);
+            setDeltakelser(deltakelser);
+        }
+    };
+
     const closeDeltaker = () => {
         setDeltaker(undefined);
         navigate('/');
     };
     return (
-        <DeltakerContext.Provider value={{ deltaker, deltakelser, setDeltaker, closeDeltaker }}>
+        <DeltakerContext.Provider value={{ deltaker, deltakelser, setDeltaker, closeDeltaker, refetchDeltakelser }}>
             {children}
         </DeltakerContext.Provider>
     );
