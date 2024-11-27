@@ -1,4 +1,15 @@
-import { Alert, BodyShort, Box, Button, Checkbox, Fieldset, HStack, TextField, VStack } from '@navikt/ds-react';
+import {
+    Alert,
+    BodyShort,
+    Box,
+    Button,
+    Checkbox,
+    CopyButton,
+    Fieldset,
+    HStack,
+    TextField,
+    VStack,
+} from '@navikt/ds-react';
 import { useState } from 'react';
 import { getFødselsnummerValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { veilederService } from '../../../api/services/veilederService';
@@ -9,6 +20,7 @@ import DeltakerKort from '../components/DeltakerKort';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import MeldInnDeltakerForm from './meld-inn-deltaker-form/MeldInnDeltakerForm';
 import { isAxiosError } from 'axios';
+import { getAppEnv } from '../../../utils/appEnv';
 
 interface Props {
     onDeltakerFetched: (deltaker: Deltaker) => void;
@@ -35,7 +47,7 @@ const HentDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
             setPending(true);
             setNyDeltaker(undefined);
             try {
-                const deltaker = await veilederService.getDeltakerByFnr(fnrValue);
+                const deltaker = await veilederService.findDeltaker(fnrValue);
                 if (isDeltaker(deltaker)) {
                     setPending(false);
                     onDeltakerFetched(deltaker);
@@ -132,19 +144,17 @@ const HentDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) 
                     />
                 </Box>
             ) : null}
-            {/* <VStack gap="2">
-                Testbrukere lokalt:
-                <Box>
-                    <Button variant="secondary" size="xsmall" onClick={() => quickFetch('03867198392')}>
-                        03867198392
-                    </Button>
-                </Box>
-                <Box>
-                    <Button variant="secondary" size="xsmall" onClick={() => quickFetch('56857102105')}>
-                        56857102105 (ny)
-                    </Button>
-                </Box>
-            </VStack> */}
+            {getAppEnv().isLocal ? (
+                <VStack>
+                    Testbrukere lokalt:
+                    <HStack gap="2" align={'center'}>
+                        <CopyButton copyText="03867198392" size="small" /> 03867198392
+                    </HStack>
+                    <HStack gap="2" align={'center'}>
+                        <CopyButton copyText="56857102105" size="small" /> 56857102105
+                    </HStack>
+                </VStack>
+            ) : null}
         </VStack>
     );
 };

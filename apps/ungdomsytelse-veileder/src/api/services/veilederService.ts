@@ -6,9 +6,16 @@ import { deltakelseSchema } from '../schemas/deltakelseSchema';
 import { Deltakelse, Deltaker, isNyDeltaker, NyDeltaker } from '../types';
 import { deltakerSchema } from '../schemas/deltakerSchema';
 import { nyDeltakerSchema } from '../schemas/nyDeltakerSchema';
+import { z } from 'zod';
 
-const getDeltakerByFnr = async (deltakerIdent: string): Promise<Deltaker | NyDeltaker> => {
-    const response = await ungDeltakelseOpplyserApiClient.post(`/oppslag/deltaker`, { deltakerIdent });
+const findDeltakerRequestSchema = z.object({
+    deltakerIdent: z.string().optional(),
+});
+type OppslagDeltakerRequestPayload = z.infer<typeof findDeltakerRequestSchema>;
+
+const findDeltaker = async (deltakerIdent: string): Promise<Deltaker | NyDeltaker> => {
+    const payload: OppslagDeltakerRequestPayload = { deltakerIdent };
+    const response = await ungDeltakelseOpplyserApiClient.post(`/oppslag/deltaker`, payload);
     try {
         const deltaker = isNyDeltaker(response.data)
             ? await nyDeltakerSchema.parse(response.data)
@@ -21,7 +28,7 @@ const getDeltakerByFnr = async (deltakerIdent: string): Promise<Deltaker | NyDel
 };
 
 const getDeltakerByDeltakerId = async (deltakerId: string): Promise<Deltaker> => {
-    const response = await ungDeltakelseOpplyserApiClient.post(`/oppslag/deltaker`, { deltakerId });
+    const response = await ungDeltakelseOpplyserApiClient.get(`/oppslag/deltaker/${deltakerId}`);
     try {
         return await deltakerSchema.parse(response.data);
     } catch (e) {
@@ -118,7 +125,7 @@ const deleteDeltakelse = async (id: string): Promise<any> => {
 };
 
 export const veilederService = {
-    getDeltakerByFnr,
+    findDeltaker,
     getDeltakerByDeltakerId,
     getDeltakelser,
     createDeltakelse,

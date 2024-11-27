@@ -62,16 +62,16 @@ const deltakelser = [
     },
 ];
 
-const getDeltaker = ({ fnr, deltakerId }) => {
-    if (fnr) {
-        console.log('henter deltaker med fnr', fnr);
-        switch (fnr) {
+const getDeltaker = ({ deltakerIdent, deltakerId }) => {
+    if (deltakerIdent) {
+        console.log('henter deltaker med deltakerIdent', deltakerIdent);
+        switch (deltakerIdent) {
             case nyDeltaker.deltakerIdent:
                 return nyDeltaker;
             case registrertDeltaker.deltakerIdent:
                 return registrertDeltaker;
             default:
-                console.log('fant ikke deltaker med fnr', fnr);
+                console.log('fant ikke deltaker med deltakerIdent', deltakerIdent);
                 return null;
         }
     }
@@ -97,8 +97,16 @@ const getDeltakelser = (id) => {
 const startExpressServer = () => {
     const port = process.env.PORT || 8099;
 
+    server.get('/oppslag/deltaker/:id', (req, res) => {
+        console.log('/oppslag/deltaker', req.params);
+        const response = getDeltaker({ deltakerId: req.params.id });
+        setTimeout(() => {
+            res.status(200).send(response);
+        }, 350);
+    });
+
     server.post('/oppslag/deltaker', (req, res) => {
-        const response = getDeltaker(req.body);
+        const response = getDeltaker({ deltakerIdent: req.body.deltakerIdent });
         setTimeout(() => {
             res.status(200).send(response);
         }, 350);

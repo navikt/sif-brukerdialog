@@ -19,6 +19,7 @@ const App = () => {
                 </Tabs.List>
             </Tabs>
             <Routes>
+                <Route index element={<Versjon0 />} />
                 <Route path="v0" element={<Versjon0 />} />
                 <Route path="v1" element={<Versjon1 />}>
                     <Route path="" element={<StartPage />}></Route>
