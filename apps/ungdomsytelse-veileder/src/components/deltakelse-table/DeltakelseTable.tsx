@@ -10,7 +10,7 @@ interface Props {
     onDeltakelseEndret?: (deltakelse: Deltakelse) => void;
 }
 
-const DeltakelseTable = ({ deltakelser, editable, onDeltakelseSlettet, onDeltakelseEndret }: Props) => {
+const DeltakelseTable = ({ deltakelser, onDeltakelseSlettet, onDeltakelseEndret }: Props) => {
     return (
         <Table>
             <Table.Header>
@@ -24,7 +24,6 @@ const DeltakelseTable = ({ deltakelser, editable, onDeltakelseSlettet, onDeltake
             <Table.Body>
                 {deltakelser.map((d) => (
                     <Table.ExpandableRow
-                        expansionDisabled={!editable}
                         key={d.id}
                         content={
                             onDeltakelseSlettet && onDeltakelseEndret ? (

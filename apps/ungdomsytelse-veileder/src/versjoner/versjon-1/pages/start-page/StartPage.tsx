@@ -1,32 +1,30 @@
-import { HStack, Page } from '@navikt/ds-react';
+import { HStack, Page, VStack } from '@navikt/ds-react';
 import { useNavigate } from 'react-router-dom';
-import { Deltaker, NyDeltaker } from '../../../../api/types';
-import { useState } from 'react';
-import HentDeltakerDialog from '../../components/HentDeltakerDialog';
-import RegistrerDeltakerDialog from '../../components/RegistrerDeltakerDialog';
+import { Deltakelse, Deltaker } from '../../../../api/types';
+import HentDeltakerForm from '../../forms/HentDeltakerForm';
 
 const StartPage = () => {
     const navigate = useNavigate();
-    const [nyDeltaker, setNyDeltaker] = useState<NyDeltaker | null>(null);
 
     const handleDeltakerFetched = (deltaker: Deltaker) => {
-        navigate(`/deltaker/${deltaker.id}`);
+        navigate(`/v1/deltaker/${deltaker.id}`);
     };
 
-    const handleOnNyDeltaker = (deltaker: NyDeltaker) => {
-        setNyDeltaker(deltaker);
-        console.log(deltaker);
-        // navigate(`/deltaker/ny`);
+    const handleDeltakelseRegistrert = (deltakelse: Deltakelse) => {
+        navigate(`/v1/deltaker/${deltakelse.deltaker.id}`);
     };
 
     return (
         <Page className="bg-gray-300">
             <HStack align={'center'} justify={'center'} paddingBlock="20">
-                {nyDeltaker ? (
-                    <RegistrerDeltakerDialog nyDeltaker={nyDeltaker} />
-                ) : (
-                    <HentDeltakerDialog onDeltakerFetched={handleDeltakerFetched} onNyDeltaker={handleOnNyDeltaker} />
-                )}
+                <VStack className="rounded-md bg-gray-100 p-8 pt-8 pb-8 items-center w-full" maxWidth={'30rem'}>
+                    <VStack gap="8" className="w-full">
+                        <HentDeltakerForm
+                            onDeltakerFetched={handleDeltakerFetched}
+                            onDeltakelseRegistrert={handleDeltakelseRegistrert}
+                        />
+                    </VStack>
+                </VStack>
             </HStack>
         </Page>
     );

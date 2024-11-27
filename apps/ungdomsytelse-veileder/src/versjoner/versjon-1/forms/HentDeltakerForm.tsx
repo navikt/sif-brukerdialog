@@ -1,24 +1,26 @@
-import { Box, Button, Checkbox, Fieldset, HStack, TextField, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Box, Button, Checkbox, Fieldset, HStack, TextField, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { getFødselsnummerValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { veilederService } from '../../../api/services/veilederService';
-import { Deltaker, isDeltaker, NyDeltaker } from '../../../api/types';
+import { Deltakelse, Deltaker, isDeltaker, NyDeltaker } from '../../../api/types';
 import { useTextFieldFormatter } from '../hooks/useTextFieldFormatter';
 import { fnrFormatter } from '../utils/fnrFormatter';
 import DeltakerKort from '../components/DeltakerKort';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import NyDeltakerForm from './ny-deltaker-form/NyDeltakerForm';
+import { isAxiosError } from 'axios';
 
 interface Props {
     onDeltakerFetched: (deltaker: Deltaker) => void;
-    onNyDeltaker: (deltaker: NyDeltaker) => void;
+    onDeltakelseRegistrert: (deltakelse: Deltakelse) => void;
 }
 
 const fnrValidator = getFødselsnummerValidator({ required: true, allowHnr: true });
 
-const HentDeltakerForm = ({ onDeltakerFetched }: Props) => {
+const HentDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) => {
     const [validationError, setValidationError] = useState<string | undefined>(undefined);
-    const [fnrValue, setFnrValue] = useState<string | undefined>('56857102105');
+    const [error, setError] = useState<string | JSX.Element | undefined>(undefined);
+    const [fnrValue, setFnrValue] = useState<string | undefined>();
     const [pending, setPending] = useState<boolean>(false);
     const [nyDeltaker, setNyDeltaker] = useState<NyDeltaker | undefined>();
     const [registrerNy, setRegistrerNy] = useState<boolean>(false);
@@ -26,9 +28,10 @@ const HentDeltakerForm = ({ onDeltakerFetched }: Props) => {
     const textFieldFormatter = useTextFieldFormatter(fnrFormatter);
 
     const fetchDeltaker = async () => {
-        const error = fnrValidator(fnrValue);
-        setValidationError(error);
-        if (fnrValue && error === undefined) {
+        setError(undefined);
+        const fnrError = fnrValidator(fnrValue);
+        setValidationError(fnrError);
+        if (fnrValue && fnrError === undefined) {
             setPending(true);
             setNyDeltaker(undefined);
             try {
@@ -42,13 +45,28 @@ const HentDeltakerForm = ({ onDeltakerFetched }: Props) => {
                 }
             } catch (e) {
                 setPending(false);
-                setValidationError('Det oppstod en feil');
+                if (isAxiosError(e)) {
+                    setError(
+                        <VStack gap="6">
+                            <BodyShort>En feil oppstod ved henting av deltaker. Vennligst prøv på nytt</BodyShort>
+                            <BodyShort size="small">
+                                {e.code}: {e.message}
+                            </BodyShort>
+                        </VStack>,
+                    );
+                    console.error(e);
+                } else {
+                    console.error(e);
+                    setError('En feil oppstod ved henting av deltaker');
+                }
             }
         }
     };
 
     useEffectOnce(() => {
-        fetchDeltaker();
+        if (fnrValue) {
+            fetchDeltaker();
+        }
     });
 
     const { hasFocus, ...textFieldFormatterProps } = textFieldFormatter;
@@ -57,7 +75,9 @@ const HentDeltakerForm = ({ onDeltakerFetched }: Props) => {
         setNyDeltaker(undefined);
         setFnrValue(undefined);
         setValidationError(undefined);
+        setError(undefined);
     };
+
     return (
         <VStack gap="3" className="hentDeltakerForm w-full">
             <form
@@ -72,7 +92,7 @@ const HentDeltakerForm = ({ onDeltakerFetched }: Props) => {
                             <TextField
                                 name="fnr"
                                 value={hasFocus ? fnrValue || '' : fnrFormatter.applyFormat(fnrValue)}
-                                label="Deltakers fødselsnummer"
+                                label="Fødselsnummer/d-nummer:"
                                 onChange={(evt) => {
                                     setFnrValue(evt.target.value);
                                     setNyDeltaker(undefined);
@@ -90,6 +110,7 @@ const HentDeltakerForm = ({ onDeltakerFetched }: Props) => {
                     </HStack>
                 </Fieldset>
             </form>
+            {error ? <Alert variant="error">{error}</Alert> : null}
             {nyDeltaker ? (
                 <VStack gap="2">
                     <Box className="rounded-md bg-surface-default p-4 items-center w-full">
@@ -107,7 +128,7 @@ const HentDeltakerForm = ({ onDeltakerFetched }: Props) => {
                     <NyDeltakerForm
                         deltaker={nyDeltaker}
                         onCancel={() => setRegistrerNy(false)}
-                        onDeltakerRegistrert={onDeltakerFetched}
+                        onDeltakelseRegistrert={onDeltakelseRegistrert}
                     />
                 </Box>
             ) : null}

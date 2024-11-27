@@ -41,20 +41,20 @@ const getDeltakelser = async (deltakerId: string): Promise<Deltakelse[]> => {
     }
 };
 
-const registrerDeltaker = async ({
+const meldInnDeltaker = async ({
     deltakerIdent,
     fraOgMed,
 }: {
     deltakerIdent: string;
     fraOgMed: string;
-}): Promise<Deltaker> => {
-    const response = await ungDeltakelseOpplyserApiClient.post(`/veileder/register/registrer-ny`, {
+}): Promise<Deltakelse> => {
+    const response = await ungDeltakelseOpplyserApiClient.post(`/veileder/register/innmelding`, {
         deltakerIdent,
         fraOgMed,
     });
     try {
-        const deltaker = await deltakerSchema.parse(response.data);
-        return deltaker;
+        const deltakelse = await deltakelseSchema.parse(response.data);
+        return deltakelse;
     } catch (e) {
         getSentryLoggerForApp('sif-common', []).logError('ZOD parse error', e);
         throw e;
@@ -106,5 +106,5 @@ export const veilederService = {
     createDeltakelse,
     updateDeltakelse,
     deleteDeltakelse,
-    registrerDeltaker,
+    registrerDeltaker: meldInnDeltaker,
 };

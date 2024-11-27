@@ -51,9 +51,14 @@ const registrertDeltaker = {
 
 const deltakelser = [
     {
-        deltakerId: 'd-r',
         id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0',
+        deltakerIdent: '03867198392',
+        deltaker: {
+            id: 'd-r',
+            deltakerIdent: '03867198392',
+        },
         fraOgMed: '2025-09-01',
+        harSøkt: false,
     },
 ];
 
@@ -85,7 +90,8 @@ const getDeltaker = ({ fnr, deltakerId }) => {
 };
 
 const getDeltakelser = (id) => {
-    return deltakelser;
+    console.log('getDeltakelser', id);
+    return id === 'd-n' ? [] : deltakelser;
 };
 
 const startExpressServer = () => {
@@ -98,9 +104,16 @@ const startExpressServer = () => {
         }, 350);
     });
 
+    server.post('/oppslag/deltaker-500', (req, res) => {
+        const response = getDeltaker(req.body);
+        setTimeout(() => {
+            res.status(500).send(response);
+        }, 350);
+    });
+
     server.post('/veileder/register/hent/alle', (req, res) => {
         console.log('/oppslag/deltakelser', req.body);
-        const response = getDeltakelser(req.body.id);
+        const response = getDeltakelser(req.body.deltakerId);
         console.log(response);
         setTimeout(() => {
             res.status(200).send(response);
@@ -118,12 +131,18 @@ const startExpressServer = () => {
         }, 50);
     });
 
-    server.post('/veileder/register/registrer-ny', (req, res) => {
+    server.post('/veileder/register/innmelding', (req, res) => {
         const body = req.body;
         console.log('[POST] body', body);
         const response = {
-            ...registrertDeltaker,
             id: 'd-n',
+            deltakerIdent: req.body.deltakerIdent,
+            deltaker: {
+                id: 'd-n',
+                deltakerIdent: req.body.deltakerIdent,
+            },
+            harSøkt: false,
+            fraOgMed: req.body.fraOgMed,
         };
         setTimeout(() => {
             res.status(200).send(response);

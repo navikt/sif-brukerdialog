@@ -30,7 +30,7 @@ const EndreDeltakelseForm = ({ deltakelse, deltakelser, onDeltakelseEndret, onDe
 
     const getInitialValues = (d: Deltakelse): DeltakelseFormValues => {
         return {
-            fnr: d.deltakerId,
+            fnr: d.deltakerIdent,
             id: d.id,
             fom: dateToISODate(d.fraOgMed),
             tom: d.tilOgMed ? dateToISODate(d.tilOgMed) : '',

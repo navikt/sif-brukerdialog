@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { Deltaker, NyDeltaker } from '../../../../api/types';
+import { Deltakelse, NyDeltaker } from '../../../../api/types';
 import { useState } from 'react';
 import {
     FormikConfirmationCheckbox,
@@ -12,10 +12,11 @@ import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation
 import { useIntl } from 'react-intl';
 import { getCheckedValidator, getDateValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { veilederService } from '../../../../api/services/veilederService';
+import { PaperplaneIcon } from '@navikt/aksel-icons';
 
 interface Props {
     deltaker: NyDeltaker;
-    onDeltakerRegistrert: (deltaker: Deltaker) => void;
+    onDeltakelseRegistrert: (deltakelse: Deltakelse) => void;
     onCancel: () => void;
 }
 
@@ -27,19 +28,19 @@ interface NyDeltakerFormValues {
     bekreftRegistrering: boolean;
 }
 
-const NyDeltakerForm = ({ deltaker, onCancel, onDeltakerRegistrert }: Props) => {
+const NyDeltakerForm = ({ deltaker, onCancel, onDeltakelseRegistrert: onDeltakerRegistrert }: Props) => {
     const navn = deltaker.navn.fornavn; //formaterNavn(deltaker.navn);
     const [submitPending, setSubmitPending] = useState(false);
     const intl = useIntl();
 
     const handleOnSubmit = async (values: NyDeltakerFormValues) => {
         setSubmitPending(true);
-        const nyDeltaker = await veilederService.registrerDeltaker({
+        const deltakelse = await veilederService.registrerDeltaker({
             deltakerIdent: deltaker.deltakerIdent,
             fraOgMed: values.startDato,
         });
         setSubmitPending(false);
-        onDeltakerRegistrert(nyDeltaker);
+        onDeltakerRegistrert(deltakelse);
     };
 
     return (
@@ -81,8 +82,13 @@ const NyDeltakerForm = ({ deltaker, onCancel, onDeltakerRegistrert }: Props) => 
                             </VStack>
 
                             <HStack gap="2">
-                                <Button type="submit" variant="primary" loading={submitPending}>
-                                    Registrer deltakelse
+                                <Button
+                                    type="submit"
+                                    variant="primary"
+                                    loading={submitPending}
+                                    iconPosition="right"
+                                    icon={<PaperplaneIcon aria-hidden />}>
+                                    Registrer
                                 </Button>
                                 <Button type="button" variant="tertiary" onClick={onCancel}>
                                     Avbryt

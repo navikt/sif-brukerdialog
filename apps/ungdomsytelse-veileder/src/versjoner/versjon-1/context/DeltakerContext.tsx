@@ -44,7 +44,7 @@ export const DeltakerProvider = ({ children, deltakerId }: DeltakerProviderProps
 
     const closeDeltaker = () => {
         setDeltaker(undefined);
-        navigate('/');
+        navigate('/v1');
     };
     return (
         <DeltakerContext.Provider value={{ deltaker, deltakelser, setDeltaker, closeDeltaker }}>
