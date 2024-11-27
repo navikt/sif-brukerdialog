@@ -3,12 +3,21 @@ import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner
 import { useDeltaker } from '../context/DeltakerContext';
 import EndreDeltakelseperiode from '../forms/EndreDeltakelseperiode';
 import MeldeInnDeltakerPåNyttForm from '../forms/MeldeInnDeltakerPåNyttForm';
-import MeldeUtDeltakerForm from '../forms/MeldeUtDeltakerForm';
 import DeltakelseTable from './deltakelse-table/DeltakelseTable';
+import AktivDeltakelse from './aktiv-deltakelse/AktivDeltakelse';
 
 const DeltakerPageContent = () => {
-    const { deltaker, deltakelser } = useDeltaker();
+    const { deltaker, deltakelser = [] } = useDeltaker();
+    const aktivDeltakelse = deltakelser?.find((d) => d.erAktiv);
+    const aktiveDeltakelser = deltakelser?.filter((d) => d.erAktiv);
 
+    if (aktiveDeltakelser && aktiveDeltakelser.length > 1) {
+        return (
+            <VStack maxWidth={'30rem'}>
+                <Alert variant="warning">Deltaker har flere aktive perioder</Alert>
+            </VStack>
+        );
+    }
     if (!deltaker) {
         return (
             <HStack paddingBlock={'10'} paddingInline={'6'} justify="center">
@@ -17,51 +26,50 @@ const DeltakerPageContent = () => {
         );
     }
 
+    if (!deltakelser) {
+        return <p>Ingen deltakelser funnet</p>;
+    }
+
+    if (aktivDeltakelse) {
+        return <AktivDeltakelse deltakelse={aktivDeltakelse} deltaker={deltaker} alleDeltakelser={deltakelser} />;
+    }
+
     return (
-        <VStack gap="4" paddingBlock={'10'} paddingInline={'6'}>
-            {deltakelser ? (
-                <VStack gap="8">
-                    <VStack gap="2">
-                        <Heading level="2" size="medium">
-                            Registrerte perioder
-                        </Heading>
-                        {deltakelser.length === 0 ? (
-                            <Alert variant="info">Ingen deltakelser registrert</Alert>
-                        ) : (
-                            <DeltakelseTable deltakelser={deltakelser} />
-                        )}
-                    </VStack>
-                    <Heading level="2" size="medium">
-                        Handlinger
-                    </Heading>
-                    {deltakelser.length > 0 && (
-                        <Accordion>
-                            <Accordion.Item>
-                                <Accordion.Header>1. Melde ut deltaker</Accordion.Header>
-                                <Accordion.Content>
-                                    <MeldeUtDeltakerForm deltakerId={deltaker.id} />
-                                </Accordion.Content>
-                            </Accordion.Item>
-                            <Accordion.Item>
-                                <Accordion.Header>2. Melde inn deltaker på nytt</Accordion.Header>
-                                <Accordion.Content>
-                                    <MeldeInnDeltakerPåNyttForm deltakerFnr={deltaker.deltakerIdent} />
-                                </Accordion.Content>
-                            </Accordion.Item>
-                            <Accordion.Item>
-                                <Accordion.Header>3. Endre eksisterende periode</Accordion.Header>
-                                <Accordion.Content>
-                                    <EndreDeltakelseperiode
-                                        deltakelser={deltakelser}
-                                        deltakerFnr={deltaker.deltakerIdent}
-                                    />
-                                </Accordion.Content>
-                            </Accordion.Item>
-                        </Accordion>
-                    )}
-                </VStack>
-            ) : (
-                <>Ingen deltakelser funnet</>
+        <VStack gap="8">
+            <VStack gap="2">
+                <Heading level="2" size="medium">
+                    Deltakelseperioder
+                </Heading>
+                {deltakelser.length === 0 ? (
+                    <Alert variant="info">Ingen deltakelser registrert</Alert>
+                ) : (
+                    <DeltakelseTable deltakelser={deltakelser} />
+                )}
+            </VStack>
+            <Heading level="2" size="medium">
+                Testoperasjoner
+            </Heading>
+            {deltakelser.length > 0 && (
+                <Accordion>
+                    {/* <Accordion.Item>
+                        <Accordion.Header>1. Avslutt deltakelse</Accordion.Header>
+                        <Accordion.Content>
+                            <AvsluttDeltakelseForm onDeltakelseAvsluttet={() => console.log('avsluttet')} />
+                        </Accordion.Content>
+                    </Accordion.Item> */}
+                    <Accordion.Item>
+                        <Accordion.Header>2. Melde inn deltaker på nytt</Accordion.Header>
+                        <Accordion.Content>
+                            <MeldeInnDeltakerPåNyttForm deltakerFnr={deltaker.deltakerIdent} />
+                        </Accordion.Content>
+                    </Accordion.Item>
+                    <Accordion.Item>
+                        <Accordion.Header>3. Oppdater deltakelse</Accordion.Header>
+                        <Accordion.Content>
+                            <EndreDeltakelseperiode deltakelser={deltakelser} deltakerFnr={deltaker.deltakerIdent} />
+                        </Accordion.Content>
+                    </Accordion.Item>
+                </Accordion>
             )}
         </VStack>
     );

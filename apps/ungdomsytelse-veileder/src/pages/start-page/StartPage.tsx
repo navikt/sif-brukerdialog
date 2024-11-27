@@ -18,12 +18,10 @@ const StartPage = () => {
         <Page className="bg-gray-300">
             <HStack align={'center'} justify={'center'} paddingBlock="20">
                 <VStack className="rounded-md bg-gray-100 p-8 pt-8 pb-8 items-center w-full" maxWidth={'30rem'}>
-                    <VStack gap="8" className="w-full">
-                        <HentDeltakerForm
-                            onDeltakerFetched={handleDeltakerFetched}
-                            onDeltakelseRegistrert={handleDeltakelseRegistrert}
-                        />
-                    </VStack>
+                    <HentDeltakerForm
+                        onDeltakerFetched={handleDeltakerFetched}
+                        onDeltakelseRegistrert={handleDeltakelseRegistrert}
+                    />
                 </VStack>
             </HStack>
         </Page>
