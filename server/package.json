@@ -22,7 +22,7 @@
         "@types/cookie-parser": "1.4.7",
         "@types/express": "5.0.0",
         "@types/morgan": "1.9.9",
-        "@types/node": "22.9.3",
+        "@types/node": "22.10.0",
         "@vercel/ncc": "0.38.3",
         "axios": "1.7.7",
         "morgan": "1.10.0",
