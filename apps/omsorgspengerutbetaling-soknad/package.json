@@ -24,7 +24,7 @@
         "@navikt/sif-common-soknad-ds": "*",
         "@navikt/sif-common-ui": "*",
         "@navikt/sif-common-utils": "*",
-        "axios": "1.7.7",
+        "axios": "1.7.8",
         "jsdom": "25.0.1",
         "lodash": "4.17.21",
         "object-hash": "3.0.0",
@@ -52,12 +52,12 @@
         "@storybook/test": "8.4.5",
         "@testing-library/dom": "10.4.0",
         "@testing-library/react": "16.0.1",
-        "@types/node": "22.9.3",
+        "@types/node": "22.10.0",
         "@types/object-hash": "3.0.6",
         "@types/react": "18.3.12",
         "@types/react-dom": "18.3.1",
         "@types/react-router-dom": "5.3.3",
-        "@vitejs/plugin-react": "4.3.3",
+        "@vitejs/plugin-react": "4.3.4",
         "babel-polyfill": "6.26.0",
         "busboy": "1.6.0",
         "compression": "1.7.5",
@@ -77,7 +77,7 @@
         "typescript": "5.6.3",
         "vite": "5.4.11",
         "vite-plugin-checker": "0.8.0",
-        "vitest": "2.1.5"
+        "vitest": "2.1.6"
     },
     "scripts": {
         "build-storybook": "storybook build",
