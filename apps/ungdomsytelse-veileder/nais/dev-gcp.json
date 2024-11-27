@@ -17,6 +17,8 @@
         "NPM_CONFIG_CACHE": "/tmp",
         "PUBLIC_PATH": "/",
 
+        "SKIP_DECORATOR": "true",
+
         "SIF_PUBLIC_AMPLITUDE_API_KEY": "default",
         "SIF_PUBLIC_USE_AMPLITUDE": "false",
         "SIF_PUBLIC_APPSTATUS_DATASET": "staging",

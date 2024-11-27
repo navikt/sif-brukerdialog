@@ -119,7 +119,7 @@ const startExpressServer = () => {
         }, 350);
     });
 
-    server.post('/veileder/register/deltaker/:deltakerId/deltakelser', (req, res) => {
+    server.get('/veileder/register/deltaker/:deltakerId/deltakelser', (req, res) => {
         const response = getDeltakelser(req.params.deltakerId);
         console.log(response);
         setTimeout(() => {
