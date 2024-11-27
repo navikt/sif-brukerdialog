@@ -38,7 +38,7 @@ const findDeltaker = async (deltakerIdent: string): Promise<Deltaker | NyDeltake
  * -----------------------------
  */
 
-const getDeltakerByDeltakerId = async (deltakerId: string): Promise<Deltaker> => {
+const getDeltaker = async (deltakerId: string): Promise<Deltaker> => {
     const response = await ungDeltakelseOpplyserApiClient.get(`/oppslag/deltaker/${deltakerId}`);
     try {
         return await deltakerSchema.parse(response.data);
@@ -108,18 +108,18 @@ const utmeldingRequestSchema = z.object({
 });
 type UtmeldingRequestPayload = z.infer<typeof utmeldingRequestSchema>;
 
-const meldUtDeltaker = async ({
-    deltakerId,
+const avsluttDeltakelse = async ({
+    deltakelseId,
     utmeldingsdato,
 }: {
-    deltakerId: string;
+    deltakelseId: string;
     utmeldingsdato: string;
 }): Promise<Deltakelse> => {
     const payload: UtmeldingRequestPayload = {
         utmeldingsdato,
     };
     const response = await ungDeltakelseOpplyserApiClient.put(
-        `/veileder/register/deltakelse/${deltakerId}/avslutt`,
+        `/veileder/register/deltakelse/${deltakelseId}/avslutt`,
         payload,
     );
     try {
@@ -172,10 +172,10 @@ const deleteDeltakelse = async (id: string): Promise<any> => {
 
 export const veilederService = {
     findDeltaker,
-    getDeltakerByDeltakerId,
+    getDeltaker,
     getDeltakelser,
-    updateDeltakelse,
-    deleteDeltakelse,
     meldInnDeltaker,
-    meldUtDeltaker,
+    updateDeltakelse,
+    avsluttDeltakelse,
+    deleteDeltakelse,
 };
