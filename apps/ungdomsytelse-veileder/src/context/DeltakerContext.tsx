@@ -25,8 +25,8 @@ export const DeltakerProvider = ({ children, deltakerId }: DeltakerProviderProps
     const [deltakelser, setDeltakelser] = useState<Deltakelser>([]);
 
     const fetchDeltakelser = async (deltakerId: string) => {
-        const deltakelser = await veilederService.getDeltakelser(deltakerId);
-        setDeltakelser(deltakelser);
+        const oppdaterteDeltakelser = await veilederService.getDeltakelser(deltakerId);
+        setDeltakelser(oppdaterteDeltakelser);
     };
 
     useEffect(() => {
@@ -47,8 +47,8 @@ export const DeltakerProvider = ({ children, deltakerId }: DeltakerProviderProps
 
     const refetchDeltakelser = async () => {
         if (deltaker) {
-            await fetchDeltakelser(deltaker.id);
-            setDeltakelser(deltakelser);
+            const oppdaterteDeltakelser = await veilederService.getDeltakelser(deltaker.id);
+            setDeltakelser(oppdaterteDeltakelser);
         }
     };
 
