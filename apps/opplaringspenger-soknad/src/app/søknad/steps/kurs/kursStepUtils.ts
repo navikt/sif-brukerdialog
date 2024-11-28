@@ -9,8 +9,6 @@ import { INKLUDER_REISEDAGER_I_PERIODE, KursSøknadsdata } from '../../../types/
 import { KursFormValues } from './KursStep';
 import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 import { Kursperiode } from '../../../types/Kursperiode';
-import { Opplæringsinstitusjon } from '../../../types/Opplæringsinstitusjon';
-import { getOpplæringsinstitusjonFromId } from '../../../utils/opplæringsinstitusjonUtils';
 
 dayjs.extend(isoWeek);
 
@@ -51,27 +49,15 @@ const sortKursperiode = (a: Kursperiode, b: Kursperiode) => {
     return dayjs(a.periode.from).isBefore(dayjs(b.periode.from)) ? -1 : 1;
 };
 
-export const getOpplæringsinstitusjonById = (
-    opplæringsinstitusjoner: Opplæringsinstitusjon[],
-    id?: string,
-): Opplæringsinstitusjon | undefined => {
-    return id ? opplæringsinstitusjoner.find((k) => k.uuid === id) : undefined;
-};
-
-export const getKursSøknadsdataFromFormValues = (
-    { opplæringsinstitusjonId, arbeiderIKursperiode, kursperioder }: KursFormValues,
-    opplæringsinstitusjoner: Opplæringsinstitusjon[],
-): KursSøknadsdata | undefined => {
-    if (!opplæringsinstitusjonId || !kursperioder || !arbeiderIKursperiode) {
+export const getKursSøknadsdataFromFormValues = ({
+    opplæringsinstitusjon,
+    arbeiderIKursperiode,
+    kursperioder,
+    ferieuttak,
+    harFerieIPerioden,
+}: KursFormValues): KursSøknadsdata | undefined => {
+    if (!opplæringsinstitusjon || !kursperioder || !arbeiderIKursperiode) {
         throw 'Opplæringsinstitusjon eller kursperioder er ikke definert';
-    }
-
-    const opplæringsinstitusjon =
-        opplæringsinstitusjonId === 'annen'
-            ? 'annen'
-            : getOpplæringsinstitusjonFromId(opplæringsinstitusjonId, opplæringsinstitusjoner);
-    if (!opplæringsinstitusjon) {
-        throw `Opplæringsinstitusjon finnes ikke, ${opplæringsinstitusjonId}`;
     }
 
     const søknadsperiodeUtenReisedager = dateRangeUtils.getDateRangeFromDateRanges(kursperioder.map((p) => p.periode));
@@ -87,6 +73,8 @@ export const getKursSøknadsdataFromFormValues = (
         kursholder: opplæringsinstitusjon,
         kursperioder: kursperioder.sort(sortKursperiode),
         arbeiderIKursperiode: arbeiderIKursperiode === YesOrNo.YES,
+        harFerieIPerioden: harFerieIPerioden === YesOrNo.YES,
+        ferieuttak: harFerieIPerioden === YesOrNo.YES ? ferieuttak : undefined,
     };
 };
 
@@ -102,9 +90,11 @@ export const getKursStepInitialValues = (søknadsdata: Søknadsdata, formValues?
     if (kurs) {
         return {
             ...defaultValues,
-            opplæringsinstitusjonId: kurs.kursholder === 'annen' ? 'annen' : kurs.kursholder.uuid,
+            opplæringsinstitusjon: kurs.kursholder,
             kursperioder: kurs.kursperioder,
             arbeiderIKursperiode: getYesOrNoFromBoolean(kurs.arbeiderIKursperiode),
+            harFerieIPerioden: getYesOrNoFromBoolean(kurs.harFerieIPerioden),
+            ferieuttak: kurs.ferieuttak,
         };
     }
 
@@ -130,12 +120,3 @@ export const getPerioderISøknadsperiodeHvorInstitusjonIkkeErGyldig = (
         periodeEtterSøknadsperiode,
     ]);
 };
-
-// export const ugyldigePerioderForInstitusjonOgOpphold = (
-//     gyldigePerioder: DateRange[],
-//     valgtePerioder: DateRange[],
-// ): boolean => {
-//     const ugyldigePerioder: DateRange[] = [];
-//     // return dateRangeUtils.dateRangesCollide(gyldigePerioder);
-//     return false;
-// };

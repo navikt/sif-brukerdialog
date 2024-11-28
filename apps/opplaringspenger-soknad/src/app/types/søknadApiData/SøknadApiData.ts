@@ -6,15 +6,6 @@ import { OmBarnetApiData } from './OmBarnetApiData';
 
 export * from './OmBarnetApiData';
 
-export interface KursholderApiData {
-    id: string;
-    navn: string;
-    erAnnen: false;
-}
-export interface KursholderApiDataAnnen {
-    erAnnen: true;
-}
-
 export interface KursperiodeApiData {
     kursperiode: ISODateRange;
     avreise: ISODate;
@@ -24,7 +15,7 @@ export interface KursperiodeApiData {
 }
 
 export interface KursApiData {
-    kursholder: KursholderApiData | KursholderApiDataAnnen;
+    kursholder: string;
     perioder: KursperiodeApiData[];
 }
 

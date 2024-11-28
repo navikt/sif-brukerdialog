@@ -7,16 +7,7 @@ export const getKursApiDataFromSøknadsdata = ({
     kursperioder,
 }: KursSøknadsdata): KursApiData => {
     const apiData: KursApiData = {
-        kursholder:
-            kursholder === 'annen'
-                ? {
-                      erAnnen: true,
-                  }
-                : {
-                      navn: kursholder.navn,
-                      id: kursholder.uuid,
-                      erAnnen: false,
-                  },
+        kursholder,
         perioder: kursperioder.map(
             (p) =>
                 <KursperiodeApiData>{
