@@ -1,4 +1,4 @@
-import { Accordion, Alert, Heading, HStack, VStack } from '@navikt/ds-react';
+import { Accordion, Alert, Heading, HStack, Page, VStack } from '@navikt/ds-react';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { useDeltaker } from '../context/DeltakerContext';
 import EndreDeltakelseperiode from '../forms/EndreDeltakelseperiode';
@@ -36,12 +36,14 @@ const DeltakerPageContent = () => {
 
     if (aktivDeltakelse || deltakelser.length === 1) {
         return (
-            <AktivDeltakelse
-                deltakelse={aktivDeltakelse || deltakelser[0]}
-                deltaker={deltaker}
-                alleDeltakelser={deltakelser}
-                onChange={handleOnDeltakelseChange}
-            />
+            <Page.Block width="xl" gutters={true}>
+                <AktivDeltakelse
+                    deltakelse={aktivDeltakelse || deltakelser[0]}
+                    deltaker={deltaker}
+                    alleDeltakelser={deltakelser}
+                    onChange={handleOnDeltakelseChange}
+                />
+            </Page.Block>
         );
     }
 

@@ -1,7 +1,8 @@
-import { BodyShort, Box, Button, HStack } from '@navikt/ds-react';
+import { BodyShort, Box, Button, HStack, Page } from '@navikt/ds-react';
 import { Deltakelse, Deltaker } from '../api/types';
 import PersonNøytral from '../illustrations/PersonNøytral';
 import Fødselsnummer from './Fødselsnummer';
+import { XMarkIcon } from '@navikt/aksel-icons';
 
 interface Props {
     deltaker: Deltaker;
@@ -18,11 +19,11 @@ const DeltakerHeader = ({
     onLukkDeltaker,
 }: Props) => {
     return (
-        <Box className="bg-gray-300">
-            <Box className="p-3 bg-gray-100 border-b-2 border-b-gray-500  w-full">
-                <HStack gap="6" align="center">
+        <Page.Block width="xl" gutters={true}>
+            <Box className="p-3 bg-gray-100 w-full rounded-md mt-4">
+                <HStack gap="6" align="center" justify={'space-between'}>
                     <HStack align={'center'} gap="4">
-                        <PersonNøytral width="2rem" height={'2rem'} />
+                        <PersonNøytral width="1.75rem" height={'1.75rem'} />
                         <BodyShort size="medium" weight="semibold">
                             {fornavn} {etternavn}
                         </BodyShort>
@@ -33,13 +34,18 @@ const DeltakerHeader = ({
                             |<BodyShort>Deltakelser: {deltakelser.length}</BodyShort>
                         </>
                     ) : null}
-                    |
-                    <Button variant="tertiary" size="xsmall" onClick={onLukkDeltaker}>
+
+                    <Button
+                        variant="tertiary-neutral"
+                        size="small"
+                        onClick={onLukkDeltaker}
+                        iconPosition="right"
+                        icon={<XMarkIcon aria-hidden={true} />}>
                         Lukk deltaker
                     </Button>
                 </HStack>
             </Box>
-        </Box>
+        </Page.Block>
     );
 };
 

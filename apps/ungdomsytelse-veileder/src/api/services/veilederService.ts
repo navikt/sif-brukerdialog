@@ -151,7 +151,10 @@ const updateDeltakelse = async (data: OppdaterDeltakelseRequestPayload): Promise
     const payload: OppdaterDeltakelseRequestPayload = {
         ...data,
     };
-    const response = await ungDeltakelseOpplyserApiClient.put(`/veileder/register/oppdater/${data.id}`, payload);
+    const response = await ungDeltakelseOpplyserApiClient.put(
+        `/veileder/register/deltakelse/${data.id}/oppdater`,
+        payload,
+    );
     try {
         const deltakelse = deltakelseSchema.parse(response.data);
         return deltakelse;

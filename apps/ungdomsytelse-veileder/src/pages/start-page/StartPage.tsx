@@ -1,4 +1,4 @@
-import { HStack, Page, VStack } from '@navikt/ds-react';
+import { HStack, VStack } from '@navikt/ds-react';
 import { useNavigate } from 'react-router-dom';
 import { Deltakelse, Deltaker } from '../../api/types';
 import HentDeltakerForm from '../../forms/HentDeltakerForm';
@@ -15,16 +15,18 @@ const StartPage = () => {
     };
 
     return (
-        <Page className="bg-gray-300">
+        <>
             <HStack align={'center'} justify={'center'} paddingBlock="20">
-                <VStack className="rounded-md bg-gray-100 p-8 pt-8 pb-8 items-center w-full" maxWidth={'30rem'}>
+                <VStack
+                    className="rounded-md bg-gray-50 p-8 pt-8 pb-8 items-center w-full drop-shadow-2xl"
+                    maxWidth={'30rem'}>
                     <HentDeltakerForm
                         onDeltakerFetched={handleDeltakerFetched}
                         onDeltakelseRegistrert={handleDeltakelseRegistrert}
                     />
                 </VStack>
             </HStack>
-        </Page>
+        </>
     );
 };
 

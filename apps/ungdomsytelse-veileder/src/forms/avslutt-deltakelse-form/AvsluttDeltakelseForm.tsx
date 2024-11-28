@@ -1,7 +1,7 @@
 import { Deltakelse } from '../../api/types';
 import { useState } from 'react';
 import { FormikDatepicker, TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
-import { Alert, BodyShort, Button, HStack, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Button, Heading, HStack, VStack } from '@navikt/ds-react';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { useIntl } from 'react-intl';
 import {
@@ -74,6 +74,9 @@ const AvsluttDeltakelseForm = ({ deltakelse, onDeltakelseAvsluttet, onCancel }: 
                         includeButtons={false}
                         formErrorHandler={getIntlFormErrorHandler(intl, 'avsluttDeltakelseForm')}>
                         <VStack gap="4" maxWidth={'30rem'} width={'100%'}>
+                            <Heading level="2" size="medium">
+                                Avslutt deltakerperiode
+                            </Heading>
                             <FormikDatepicker
                                 name="utmeldingsdato"
                                 label={`Hvilken dag er siste dag i programmet?`}
@@ -114,7 +117,7 @@ const AvsluttDeltakelseForm = ({ deltakelse, onDeltakelseAvsluttet, onCancel }: 
                                     loading={submitPending}
                                     iconPosition="right"
                                     icon={<PaperplaneIcon aria-hidden />}>
-                                    Avslutt deltakelse
+                                    Avslutt periode
                                 </Button>
                                 <Button
                                     type="reset"
