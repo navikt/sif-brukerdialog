@@ -51,13 +51,13 @@ const nb = {
         'Du må oppgi dato for avreise i et gyldig format. Gyldig format er dd.mm.åååå{harFlerePerioder, select, true { (periode {index})} other{}}.',
 
     'kursperiode.form.hjemkomst.validation.dateHasNoValue':
-        'Du må oppgi når avreise til kurset er. Skriv inn eller velg dato fra datovelgeren{harFlerePerioder, select, true { (periode {index})} other{}}.',
+        'Du må oppgi når du kommer hjem fra kurset. Skriv inn eller velg dato fra datovelgeren{harFlerePerioder, select, true { (periode {index})} other{}}.',
     'kursperiode.form.hjemkomst.validation.dateIsAfterMax':
-        'Datoen for avreise kan ikke være etter {dato}. Skriv inn eller velg dato fra datovelgeren{harFlerePerioder, select, true { (periode {index})} other{}}.',
+        'Datoen for når du kommer hjem fra kurset kan ikke være etter {dato}. Skriv inn eller velg dato fra datovelgeren{harFlerePerioder, select, true { (periode {index})} other{}}.',
     'kursperiode.form.hjemkomst.validation.dateIsBeforeMin':
-        'Datoen for avreise kan ikke være før {dato}. Skriv inn eller velg dato fra datovelgeren{harFlerePerioder, select, true { (periode {index})} other{}}.',
+        'Datoen for når du kommer hjem fra kurset kan ikke være før {dato}. Skriv inn eller velg dato fra datovelgeren{harFlerePerioder, select, true { (periode {index})} other{}}.',
     'kursperiode.form.hjemkomst.validation.dateHasInvalidFormat':
-        'Du må oppgi dato for avreise i et gyldig format. Gyldig format er dd.mm.åååå{harFlerePerioder, select, true { (periode {index})} other{}}.',
+        'Du må oppgi dato for når du kommer hjem fra kurset i et gyldig format. Gyldig format er dd.mm.åååå{harFlerePerioder, select, true { (periode {index})} other{}}.',
 
     'kursperiode.form.harTaptArbeidstid.validation.yesOrNoIsUnanswered':
         'Du må svare på om du har tapt arbeidstid på grunn av reise til eller fra opplæringsstedet{harFlerePerioder, select, true { (periode {index})} other{}}.',
