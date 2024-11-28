@@ -2,7 +2,7 @@ import { DateRange, dateToISOString, ISOStringToDate, YesOrNo } from '@navikt/si
 import { guid } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { Kursperiode } from '../../../types/Kursperiode';
-import { KursperiodeFormValues } from './kursperioder-form-part/KursperiodeQuestions';
+import { KursperiodeFormFields, KursperiodeFormValues } from './kursperioder-form-part/KursperiodeQuestions';
 
 const isValidKursperiode = (kursperiode: Partial<Kursperiode>): kursperiode is Kursperiode => {
     return kursperiode.periode?.from !== undefined && kursperiode.periode.to !== undefined;
@@ -30,12 +30,14 @@ const mapFormValuesToKursperiode = (formValues: KursperiodeFormValues, id: strin
               }
             : periode;
 
+    const harTaptArbeidstid = formValues.harTaptArbeidstid === YesOrNo.YES;
     return {
         id: id || guid(),
         periode,
         periodeMedReise,
-        avreise,
-        hjemkomst,
+        harTaptArbeidstid,
+        avreise: harTaptArbeidstid ? avreise : undefined,
+        hjemkomst: harTaptArbeidstid ? hjemkomst : undefined,
         beskrivelseReisetid: måBesvareBeskrivelseReisetid(formValues) ? formValues.beskrivelseReisetid : undefined,
     };
 };
@@ -50,10 +52,10 @@ const mapKursperiodeToFormValues = ({
     return {
         fom: dateToISOString(periode?.from),
         tom: dateToISOString(periode?.to),
-        avreise: dateToISOString(avreise),
-        hjemkomst: dateToISOString(hjemkomst),
-        beskrivelseReisetid,
         harTaptArbeidstid: harTaptArbeidstid ? YesOrNo.YES : YesOrNo.NO,
+        avreise: harTaptArbeidstid ? dateToISOString(avreise) : undefined,
+        hjemkomst: harTaptArbeidstid ? dateToISOString(hjemkomst) : undefined,
+        beskrivelseReisetid: harTaptArbeidstid ? beskrivelseReisetid : undefined,
     };
 };
 
@@ -75,15 +77,16 @@ const getDagerMellomSluttdatoOgHjemkomst = ({ hjemkomst, tom }: Partial<Kursperi
 };
 
 const måBesvareBeskrivelseReisetidHjem = (values: Partial<KursperiodeFormValues>): boolean => {
-    return getDagerMellomSluttdatoOgHjemkomst(values) >= 1;
-    // return (
-    //     values[KursperiodeFormFields.hjemkomstSammeDag] === YesOrNo.NO && getDagerMellomSluttdatoOgHjemkomst(values) > 1
-    // );
+    return (
+        values[KursperiodeFormFields.harTaptArbeidstid] === YesOrNo.YES &&
+        getDagerMellomSluttdatoOgHjemkomst(values) >= 1
+    );
 };
 
 const måBesvareBeskrivelseReisetidTil = (values: Partial<KursperiodeFormValues>): boolean => {
-    return getDagerMellomAvreiseOgStartdato(values) >= 1;
-    // return values[KursperiodeFormFields.avreiseSammeDag] === YesOrNo.NO && getDagerMellomAvreiseOgStartdato(values) > 1;
+    return (
+        values[KursperiodeFormFields.harTaptArbeidstid] === YesOrNo.YES && getDagerMellomAvreiseOgStartdato(values) >= 1
+    );
 };
 
 const måBesvareBeskrivelseReisetid = (values: Partial<KursperiodeFormValues>): boolean => {

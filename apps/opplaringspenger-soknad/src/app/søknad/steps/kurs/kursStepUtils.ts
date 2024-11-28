@@ -98,7 +98,7 @@ export const getKursStepInitialValues = (søknadsdata: Søknadsdata, formValues?
         return {
             ...defaultValues,
             opplæringsinstitusjon: kurs.kursholder,
-            kursperioder: [], // TODO kurs.kursperioder,
+            kursperioder: kurs.kursperioder.map((periode) => kursperiodeUtils.mapKursperiodeToFormValues(periode)),
             arbeiderIKursperiode: getYesOrNoFromBoolean(kurs.arbeiderIKursperiode),
             harFerieIPerioden: getYesOrNoFromBoolean(kurs.harFerieIPerioden),
             ferieuttak: kurs.ferieuttak,
