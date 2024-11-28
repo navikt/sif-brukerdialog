@@ -26,7 +26,7 @@ const nb = {
     'steg.kurs.ferie.addLabel': 'Legg til ferie',
     'steg.kurs.ferie.modalTitle': 'Legg til ferie',
     'steg.kurs.ferie.listTitle': 'Ferie i perioden',
-    'steg.kurs.validation.ferie.listIsEmpty':
+    'steg.kurs.validation.ferieuttak.listIsEmpty':
         'Du har krysset av for at du har ferie i søknadsperioden, da må du legge til minst én ferie.',
 };
 
