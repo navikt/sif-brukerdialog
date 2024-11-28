@@ -1,4 +1,4 @@
-import { Box, Button, VStack } from '@navikt/ds-react';
+import { Box, Button } from '@navikt/ds-react';
 import { getTypedFormComponents, ISOStringToDate, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { ISODate } from '@navikt/sif-common-utils';
 import { useAppIntl } from '../../../../i18n';
@@ -14,6 +14,7 @@ import { KursFormFields } from '../KursStep';
 import { Delete } from '@navikt/ds-icons';
 import kursperiodeUtils from '../kursperiodeUtils';
 import { handleDateRangeValidationError } from '@navikt/sif-common-forms-ds/src/utils';
+import { FormLayout } from '@navikt/sif-common-ui';
 
 export enum KursperiodeFormFields {
     tom = 'tom',
@@ -63,7 +64,7 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, onRemove }: Pro
     const harTaptArbeidstid = values[KursperiodeFormFields.harTaptArbeidstid] === YesOrNo.YES;
 
     return (
-        <VStack gap={'6'}>
+        <FormLayout.Questions>
             <Form.DateRangePicker
                 legend={text('kursperiode.form.periode.label', { index: index + 1 })}
                 hideLegend={harFlerePerioder === false}
@@ -150,7 +151,7 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, onRemove }: Pro
                 }}
             />
             {harTaptArbeidstid ? (
-                <VStack gap="6">
+                <>
                     <Form.DatePicker
                         name={getFieldName(KursperiodeFormFields.avreise)}
                         label={text('kursperiode.form.avreise.label')}
@@ -204,7 +205,7 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, onRemove }: Pro
                             }}
                         />
                     )}
-                </VStack>
+                </>
             ) : null}
             {harFlerePerioder && onRemove && (
                 <Box>
@@ -219,7 +220,7 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, onRemove }: Pro
                     </Button>
                 </Box>
             )}
-        </VStack>
+        </FormLayout.Questions>
     );
 };
 

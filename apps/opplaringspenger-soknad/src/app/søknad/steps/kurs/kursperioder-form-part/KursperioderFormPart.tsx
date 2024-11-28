@@ -4,10 +4,7 @@ import { FieldArray, useFormikContext } from 'formik';
 import { KursFormValues } from '../KursStep';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { Add } from '@navikt/ds-icons';
-
-// interface Props {
-//     gyldigSøknadsperiode: DateRange;
-// }
+import { AppText } from '../../../../i18n';
 
 const KursperioderFormPart = () => {
     const { values, validateForm } = useFormikContext<KursFormValues>();
@@ -15,8 +12,8 @@ const KursperioderFormPart = () => {
     const harFlerePerioder = kursperioder && kursperioder.length > 1;
     return (
         <VStack gap="4">
-            <Heading level="2" size="xsmall">
-                Hvilken dag eller periode er opplæringen?
+            <Heading level="2" size="small">
+                <AppText id="steg.kurs.kursperioder.tittel" />
             </Heading>
             <FieldArray
                 name="kursperioder"

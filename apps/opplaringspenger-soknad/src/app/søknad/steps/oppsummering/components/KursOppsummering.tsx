@@ -25,12 +25,14 @@ const KursOppsummering = ({ onEdit, kurs }: Props) => {
                 <FormSummary.Answers>
                     <FormSummary.Answer>
                         <FormSummary.Label>
-                            Helseinstitusjon eller kompetansesenter som er ansvarlig for kurs eller opplæring
+                            <AppText id="oppsummering.kurs.institusjon" />
                         </FormSummary.Label>
                         <FormSummary.Value>{kursholder}</FormSummary.Value>
                     </FormSummary.Answer>
                     <FormSummary.Answer>
-                        <FormSummary.Label>Perioder med opplæring</FormSummary.Label>
+                        <FormSummary.Label>
+                            <AppText id="oppsummering.kurs.perioder" values={{ perioder: perioder.length }} />
+                        </FormSummary.Label>
                         <FormSummary.Value>
                             <List>
                                 {perioder.map((periode) => {
@@ -50,18 +52,25 @@ const KursOppsummering = ({ onEdit, kurs }: Props) => {
                                                 {periode.harTaptArbeidstid ? (
                                                     <>
                                                         <Box>
-                                                            Har tapt arbeidstid på grunn av reise til eller fra
-                                                            opplæringsstedet
+                                                            <AppText id="oppsummering.kurs.kursperiode.harTaptArbeidsinntekt" />
                                                         </Box>
-                                                        <Box>Avreise: {dateFormatter.compact(avreise)}.</Box>
                                                         <Box>
-                                                            Hjemkomst: {dateFormatter.compact(hjemkomst)}.<br />
+                                                            <AppText
+                                                                id="oppsummering.kurs.kursperiode.avreise"
+                                                                values={{ dato: dateFormatter.compact(avreise) }}
+                                                            />
+                                                        </Box>
+                                                        <Box>
+                                                            <AppText
+                                                                id="oppsummering.kurs.kursperiode.hjemkomst"
+                                                                values={{ dato: dateFormatter.compact(hjemkomst) }}
+                                                            />
                                                         </Box>
                                                         <Box>
                                                             {periode.beskrivelseReisetid ? (
                                                                 <>
                                                                     <Box>
-                                                                        Årsaken til at reisetiden er mer enn én dag:
+                                                                        <AppText id="oppsummering.kurs.kursperiode.årsakReisetid" />
                                                                     </Box>
                                                                     <Sitat>
                                                                         <TextareaSvar
@@ -75,8 +84,7 @@ const KursOppsummering = ({ onEdit, kurs }: Props) => {
                                                     </>
                                                 ) : (
                                                     <Box>
-                                                        Har ikke tapt arbeidstid på grunn av reise til eller fra
-                                                        opplæringsstedet
+                                                        <AppText id="oppsummering.kurs.kursperiode.harIkkeTaptArbeidsinntekt" />
                                                     </Box>
                                                 )}
                                             </VStack>

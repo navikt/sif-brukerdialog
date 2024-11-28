@@ -123,10 +123,7 @@ const KursStep = () => {
                                         />
                                     </VStack>
 
-                                    <KursperioderFormPart
-                                    // kursperioder={values[KursFormFields.kursperioder]}
-                                    // gyldigSøknadsperiode={gyldigSøknadsperiode}
-                                    />
+                                    <KursperioderFormPart />
 
                                     <YesOrNoQuestion
                                         name={KursFormFields.arbeiderIKursperiode}

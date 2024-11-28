@@ -6,7 +6,7 @@ const nb = {
     'steg.oppsummering.søker.navn': 'Navn',
     'steg.oppsummering.søker.fnr': 'Fødselsnummer',
 
-    'steg.oppsummeringkurs.header': 'Om kurs',
+    'steg.oppsummeringkurs.header': 'Om opplæringen',
     'steg.oppsummeringarbeidssituasjon.header': 'Din arbeidssituasjon',
 
     'arbeidsgiver.tittel': '{navn} (organisasjonsnummer {organisasjonsnummer})',
@@ -15,6 +15,18 @@ const nb = {
     'frilans.tittel.slutt': 'Frilanser hos {hvor} (sluttet {sluttdato})',
     'frilans.tittel.startOgSlutt': 'Frilanser hos {hvor} (startet {startdato}, sluttet {sluttdato})',
     'selvstendigNæringsdrivende.tittel': 'Selvstendig næringsdrivende',
+
+    'oppsummering.kurs.header': 'Om opplæringen',
+    'oppsummering.kurs.institusjon':
+        'Helseinstitusjon eller kompetansesenter som er ansvarlig for kurs eller opplæring',
+    'oppsummering.kurs.perioder': '{perioder, plural, one{Periode} other{Perioder}} med opplæring',
+    'oppsummering.kurs.kursperiode.harTaptArbeidsinntekt':
+        'Har tapt arbeidstid på grunn av reise til eller fra opplæringsstedet',
+    'oppsummering.kurs.kursperiode.harIkkeTaptArbeidsinntekt':
+        'Har ikke tapt arbeidstid på grunn av reise til eller fra opplæringsstedet',
+    'oppsummering.kurs.kursperiode.årsakReisetid': 'Årsak til at reisetiden er mer enn én dag:',
+    'oppsummering.kurs.kursperiode.avreise': 'Avreise til opplæringstedet: {dato}',
+    'oppsummering.kurs.kursperiode.hjemkomst': 'Hjemkomst fra opplæringstedet: {dato}',
 
     'oppsummering.arbeidssituasjon.arbeidsgiver.ansatt': 'Er ansatt i perioden',
     'oppsummering.arbeidssituasjon.avsluttet.arbeidsgiver.ansatt': 'Er ikke lenger ansatt',
