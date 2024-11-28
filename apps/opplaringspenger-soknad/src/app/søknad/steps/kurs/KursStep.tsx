@@ -7,7 +7,6 @@ import PersistStepFormValues from '../../../components/persist-step-form-values/
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
-import { Kursperiode } from '../../../types/Kursperiode';
 import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
@@ -22,6 +21,7 @@ import KursperioderFormPart from './kursperioder-form-part/KursperioderFormPart'
 import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/FerieuttakListAndDialog';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/src';
 import { FormLayout } from '@navikt/sif-common-ui';
+import { KursperiodeFormValues } from './kursperiode';
 
 export enum KursFormFields {
     opplæringsinstitusjon = 'opplæringsinstitusjon',
@@ -33,7 +33,7 @@ export enum KursFormFields {
 
 export interface KursFormValues {
     [KursFormFields.opplæringsinstitusjon]?: string;
-    [KursFormFields.kursperioder]?: Kursperiode[];
+    [KursFormFields.kursperioder]: Partial<KursperiodeFormValues>[];
     [KursFormFields.arbeiderIKursperiode]?: YesOrNo;
     [KursFormFields.harFerieIPerioden]?: YesOrNo;
     [KursFormFields.ferieuttak]?: Ferieuttak[];
@@ -124,8 +124,8 @@ const KursStep = () => {
                                     </VStack>
 
                                     <KursperioderFormPart
-                                        kursperioder={values[KursFormFields.kursperioder]}
-                                        gyldigSøknadsperiode={gyldigSøknadsperiode}
+                                    // kursperioder={values[KursFormFields.kursperioder]}
+                                    // gyldigSøknadsperiode={gyldigSøknadsperiode}
                                     />
 
                                     <YesOrNoQuestion

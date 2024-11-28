@@ -10,6 +10,7 @@ import './dateRangePicker.scss';
 
 interface OwnProps<FieldName, ErrorType> {
     legend: string;
+    hideLegend?: boolean;
     description?: React.ReactNode;
     locale?: string;
     allowRangesToStartAndStopOnSameDate?: boolean;
@@ -35,6 +36,7 @@ function FormikDateRangePicker<FieldName, ErrorType>({
     allowRangesToStartAndStopOnSameDate,
     useFastField,
     dropdownCaption,
+    hideLegend,
     validate,
     locale,
 }: FormikDateRangePickerProps<FieldName, ErrorType>) {
@@ -59,6 +61,7 @@ function FormikDateRangePicker<FieldName, ErrorType>({
         <FormikInputGroup
             name={name}
             legend={legend}
+            hideLegend={hideLegend}
             description={description}
             className="dateRangePicker"
             validate={validate ? (value: any) => validate(value, name) : undefined}>

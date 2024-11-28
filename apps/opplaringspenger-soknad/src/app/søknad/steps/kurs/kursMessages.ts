@@ -14,6 +14,35 @@ const nb = {
     'steg.kurs.kursperiode.addLabel': 'Legg til kursperiode',
     'steg.kurs.kursperiode.modalTitle': 'Legg til kursperiode',
     'steg.kurs.kursperiode.listTitle': 'Kursperioder',
+    'steg.kurs.kursperioder.validation.harTaptArbeidstid.yesOrNoIsUnanswered':
+        'Du må svare på om du har tapt arbeidstid på grunn av reise til eller fra opplæringsstedet{harFlerePerioder, select, true { (periode {index})} other{}}.',
+
+    'steg.kurs.kursperioder.validation.avreise.dateHasNoValue':
+        'Du må oppgi når avreise til kurset er. Skriv inn eller velg dato fra datovelgeren.',
+    'steg.kurs.kursperioder.validation.avreise.dateIsAfterMax':
+        'Datoen for avreise kan ikke være etter {dato}. Skriv inn eller velg dato fra datovelgeren.',
+    'steg.kurs.kursperioder.validation.avreise.dateIsBeforeMin':
+        'Datoen for avreise kan ikke være før {dato}. Skriv inn eller velg dato fra datovelgeren.',
+    'steg.kurs.kursperioder.validation.avreise.dateHasInvalidFormat':
+        'Du må oppgi dato for avreise i et gyldig format. Gyldig format er dd.mm.åååå.',
+
+    'steg.kurs.kursperioder.validation.hjemkomst.dateHasNoValue':
+        'Du må oppgi når avreise til kurset er. Skriv inn eller velg dato fra datovelgeren.',
+    'steg.kurs.kursperioder.validation.hjemkomst.dateIsAfterMax':
+        'Datoen for avreise kan ikke være etter {dato}. Skriv inn eller velg dato fra datovelgeren.',
+    'steg.kurs.kursperioder.validation.hjemkomst.dateIsBeforeMin':
+        'Datoen for avreise kan ikke være før {dato}. Skriv inn eller velg dato fra datovelgeren.',
+    'steg.kurs.kursperioder.validation.hjemkomst.dateHasInvalidFormat':
+        'Du må oppgi dato for avreise i et gyldig format. Gyldig format er dd.mm.åååå.',
+
+    'steg.kurs.begrunnelseReisetid.stringHasNoValue':
+        'Du må oppgi en beskrivelse av årsaken til at reisetiden er over én dag etter sluttdato.',
+    'steg.kurs.begrunnelseReisetid.stringIsTooLong':
+        'Beskrivelsen av årsaken til reisetiden kan ikke være lengre enn 500 tegn.',
+    'steg.kurs.begrunnelseReisetid.stringIsTooShort': 'Beskrivelsen av årsaken til reisetiden må være minst 5 tegn.',
+    'steg.kurs.begrunnelseReisetid.stringContainsUnicodeChacters':
+        'Beskrivelsen årsaken til reisetiden kan ikke inneholde spesialtegn.',
+
     'steg.kurs.arbeiderIKursperiode.label': 'Jobber du noe de dagene du er på opplæring eller reiser?',
     'steg.kurs.validation.opplæringsinstitusjon.stringIsToShort':
         'Du må beskrive hvor opplæringer foregår med en lengre.',

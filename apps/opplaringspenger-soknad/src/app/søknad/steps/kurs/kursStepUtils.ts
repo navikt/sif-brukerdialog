@@ -9,6 +9,8 @@ import { INKLUDER_REISEDAGER_I_PERIODE, KursSøknadsdata } from '../../../types/
 import { KursFormValues } from './KursStep';
 import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 import { Kursperiode } from '../../../types/Kursperiode';
+import kursperiodeUtils from './kursperiode/kursperiodeUtils';
+import { KursperiodeFormValues } from './kursperiode';
 
 dayjs.extend(isoWeek);
 
@@ -52,13 +54,16 @@ const sortKursperiode = (a: Kursperiode, b: Kursperiode) => {
 export const getKursSøknadsdataFromFormValues = ({
     opplæringsinstitusjon,
     arbeiderIKursperiode,
-    kursperioder,
+    kursperioder: kursperioderValues,
     ferieuttak,
     harFerieIPerioden,
 }: KursFormValues): KursSøknadsdata | undefined => {
-    if (!opplæringsinstitusjon || !kursperioder || !arbeiderIKursperiode) {
+    if (!opplæringsinstitusjon || !kursperioderValues || !arbeiderIKursperiode) {
         throw 'Opplæringsinstitusjon eller kursperioder er ikke definert';
     }
+    const kursperioder = kursperioderValues.map((periode, index) =>
+        kursperiodeUtils.mapFormValuesToKursperiode(periode as KursperiodeFormValues, `${index}`),
+    );
 
     const søknadsperiodeUtenReisedager = dateRangeUtils.getDateRangeFromDateRanges(kursperioder.map((p) => p.periode));
     const søknadsperiodeMedReisedager = dateRangeUtils.getDateRangeFromDateRanges(
@@ -83,7 +88,9 @@ export const getKursStepInitialValues = (søknadsdata: Søknadsdata, formValues?
         return formValues;
     }
 
-    const defaultValues: KursFormValues = {};
+    const defaultValues: KursFormValues = {
+        kursperioder: [{}],
+    };
 
     const { kurs } = søknadsdata;
 
@@ -91,7 +98,7 @@ export const getKursStepInitialValues = (søknadsdata: Søknadsdata, formValues?
         return {
             ...defaultValues,
             opplæringsinstitusjon: kurs.kursholder,
-            kursperioder: kurs.kursperioder,
+            kursperioder: [], // TODO kurs.kursperioder,
             arbeiderIKursperiode: getYesOrNoFromBoolean(kurs.arbeiderIKursperiode),
             harFerieIPerioden: getYesOrNoFromBoolean(kurs.harFerieIPerioden),
             ferieuttak: kurs.ferieuttak,

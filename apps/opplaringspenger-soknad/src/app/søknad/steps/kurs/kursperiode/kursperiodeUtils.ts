@@ -2,7 +2,7 @@ import { DateRange, dateToISOString, ISOStringToDate, YesOrNo } from '@navikt/si
 import { guid } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { Kursperiode } from '../../../../types/Kursperiode';
-import { KursperiodeFormFields, KursperiodeFormValues } from './KursperiodeForm';
+import { KursperiodeFormValues } from './KursperiodeForm';
 
 const isValidKursperiode = (kursperiode: Partial<Kursperiode>): kursperiode is Kursperiode => {
     return kursperiode.periode?.from !== undefined && kursperiode.periode.to !== undefined;
@@ -82,13 +82,19 @@ const getDagerMellomSluttdatoOgHjemkomst = ({ hjemkomst, tom }: Partial<Kursperi
 };
 
 const måBesvareBeskrivelseReisetidHjem = (values: Partial<KursperiodeFormValues>): boolean => {
-    return (
-        values[KursperiodeFormFields.hjemkomstSammeDag] === YesOrNo.NO && getDagerMellomSluttdatoOgHjemkomst(values) > 1
-    );
+    return getDagerMellomSluttdatoOgHjemkomst(values) >= 1;
+    // return (
+    //     values[KursperiodeFormFields.hjemkomstSammeDag] === YesOrNo.NO && getDagerMellomSluttdatoOgHjemkomst(values) > 1
+    // );
 };
 
 const måBesvareBeskrivelseReisetidTil = (values: Partial<KursperiodeFormValues>): boolean => {
-    return values[KursperiodeFormFields.avreiseSammeDag] === YesOrNo.NO && getDagerMellomAvreiseOgStartdato(values) > 1;
+    return getDagerMellomAvreiseOgStartdato(values) >= 1;
+    // return values[KursperiodeFormFields.avreiseSammeDag] === YesOrNo.NO && getDagerMellomAvreiseOgStartdato(values) > 1;
+};
+
+const måBesvareBeskrivelseReisetid = (values: Partial<KursperiodeFormValues>): boolean => {
+    return måBesvareBeskrivelseReisetidHjem(values) || måBesvareBeskrivelseReisetidTil(values);
 };
 
 const kursperiodeUtils = {
@@ -99,6 +105,7 @@ const kursperiodeUtils = {
     getDagerMellomSluttdatoOgHjemkomst,
     måBesvareBeskrivelseReisetidHjem,
     måBesvareBeskrivelseReisetidTil,
+    måBesvareBeskrivelseReisetid,
 };
 
 export default kursperiodeUtils;
