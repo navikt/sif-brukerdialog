@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { dateToISODate, ISODateToDate } from '@navikt/sif-common-utils';
 import ConfirmationDialog from '@navikt/sif-common-formik-ds/src/components/helpers/confirmation-dialog/ConfirmationDialog';
 import { Deltakelse } from '../../../../api/types';
-import { useSlettDeltakelse } from '../../../hooks/useSlettDeltakelse';
+import { useSlettDeltakelse } from '../../../../hooks/useSlettDeltakelse';
 import { useEndreDeltakelse } from '../../../hooks/useEndreDeltakelse';
 import PeriodeFormPart from './PeriodeFormPart';
 

@@ -13,6 +13,7 @@ const DeltakerPageContent = () => {
 
     const handleOnDeltakelseChange = () => {
         refetchDeltakelser();
+        console.log('changed');
     };
 
     if (aktiveDeltakelser && aktiveDeltakelser.length > 1) {

@@ -63,7 +63,11 @@ const AktivDeltakelse = ({ deltaker, deltakelse, alleDeltakelser, onChange }: Pr
                     </Tabs.Panel>
                     <Tabs.Panel value="endre">
                         <Box padding="5" paddingBlock="8 8">
-                            <EndreDeltakelseForm deltakelse={deltakelse} deltakelser={alleDeltakelser} />
+                            <EndreDeltakelseForm
+                                deltakelse={deltakelse}
+                                deltakelser={alleDeltakelser}
+                                onChange={onChange}
+                            />
                         </Box>
                     </Tabs.Panel>
                     <Tabs.Panel value="avslutt">
@@ -77,7 +81,7 @@ const AktivDeltakelse = ({ deltaker, deltakelse, alleDeltakelser, onChange }: Pr
                     </Tabs.Panel>
                     <Tabs.Panel value="slett">
                         <Box padding="5" paddingBlock="8 8">
-                            <SlettDeltakelseForm deltakelse={deltakelse} />
+                            <SlettDeltakelseForm deltakelse={deltakelse} onDeltakelseSlettet={onChange} />
                         </Box>
                     </Tabs.Panel>
                 </Tabs>

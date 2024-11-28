@@ -1,11 +1,8 @@
 import { Box, Button, Heading, HStack, VStack } from '@navikt/ds-react';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
-import { useState } from 'react';
 
 import { dateToISODate, ISODateToDate } from '@navikt/sif-common-utils';
-import ConfirmationDialog from '@navikt/sif-common-formik-ds/src/components/helpers/confirmation-dialog/ConfirmationDialog';
 import { Deltakelse } from '../../api/types';
-import { useSlettDeltakelse } from '../../depr/hooks/useSlettDeltakelse';
 import PeriodeFormPart from '../../depr/components/forms/old/PeriodeFormPart';
 import { useEndreDeltakelse } from '../../depr/hooks/useEndreDeltakelse';
 import { PaperplaneIcon } from '@navikt/aksel-icons';
@@ -20,15 +17,11 @@ export type DeltakelseFormValues = {
 interface Props {
     deltakelse: Deltakelse;
     deltakelser: Deltakelse[];
-    onDeltakelseSlettet?: (deltakelse: Deltakelse) => void;
-    onDeltakelseEndret?: (deltakelse: Deltakelse) => void;
+    onChange: () => void;
 }
 
-const EndreDeltakelseForm = ({ deltakelse, deltakelser, onDeltakelseEndret, onDeltakelseSlettet }: Props) => {
-    const [confirmationDialogVisible, setConfirmationDialogVisible] = useState(false);
-
-    const { pending: slettDeltakelsePending, slettDeltakelse } = useSlettDeltakelse(onDeltakelseSlettet || (() => {}));
-    const { pending: endreDeltakelsePending, endreDeltakelse } = useEndreDeltakelse(onDeltakelseEndret || (() => {}));
+const EndreDeltakelseForm = ({ deltakelse, deltakelser, onChange }: Props) => {
+    const { pending: endreDeltakelsePending, endreDeltakelse } = useEndreDeltakelse(onChange || (() => {}));
 
     const getInitialValues = (d: Deltakelse): DeltakelseFormValues => {
         return {
@@ -73,17 +66,6 @@ const EndreDeltakelseForm = ({ deltakelse, deltakelser, onDeltakelseEndret, onDe
                                             icon={<PaperplaneIcon aria-hidden />}>
                                             Oppdater periode
                                         </Button>
-                                        <Button
-                                            type="button"
-                                            loading={slettDeltakelsePending}
-                                            variant="tertiary"
-                                            onClick={(evt) => {
-                                                evt.stopPropagation();
-                                                evt.preventDefault();
-                                                setConfirmationDialogVisible(true);
-                                            }}>
-                                            Slett
-                                        </Button>
                                     </HStack>
                                 </VStack>
                             </TypedFormikForm>
@@ -91,18 +73,6 @@ const EndreDeltakelseForm = ({ deltakelse, deltakelser, onDeltakelseEndret, onDe
                     );
                 }}
             />
-            <ConfirmationDialog
-                okLabel="Ja, slett"
-                onCancel={() => {
-                    setConfirmationDialogVisible(false);
-                }}
-                onConfirm={() => {
-                    slettDeltakelse(deltakelse);
-                }}
-                open={confirmationDialogVisible}
-                title="Bekreft slett periode">
-                Bekreft at du ønsker å slette deltakelsesperioden
-            </ConfirmationDialog>
         </Box>
     );
 };

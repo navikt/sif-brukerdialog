@@ -171,7 +171,7 @@ const updateDeltakelse = async (data: OppdaterDeltakelseRequestPayload): Promise
  */
 
 const deleteDeltakelse = async (id: string): Promise<any> => {
-    return await ungDeltakelseOpplyserApiClient.delete(`/veileder/register/fjern/${id}`);
+    return await ungDeltakelseOpplyserApiClient.delete(`/veileder/register/deltakelse/${id}/fjern`);
 };
 
 /**

@@ -145,7 +145,6 @@ const startExpressServer = () => {
     });
 
     server.put('/veileder/register/deltakelse/:id/avslutt', (req, res) => {
-        const body = req.body;
         const response = {
             ...deltakelse1,
             tilOgMed: req.body.utmeldingsdato,
@@ -157,9 +156,9 @@ const startExpressServer = () => {
 
     server.put('/veileder/register/deltakelse/:id/oppdater', (req, res) => {
         const body = req.body;
-        console.log('[put] body', body);
         const response = {
-            ...req.body,
+            ...deltakelse1,
+            ...body,
         };
         setTimeout(() => {
             res.status(200).send(response);

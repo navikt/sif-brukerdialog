@@ -18,11 +18,11 @@ const DeltakelseStatusContent = ({ deltakelse }: Props) => {
                     <VStack gap="4">
                         <Box>
                             {deltakelse.harSøkt ? (
-                                <Tag variant="success" size="small">
+                                <Tag variant="success-moderate" size="small">
                                     Ja
                                 </Tag>
                             ) : (
-                                <Tag variant="warning" size="small">
+                                <Tag variant="warning-moderate" size="small">
                                     Nei
                                 </Tag>
                             )}
