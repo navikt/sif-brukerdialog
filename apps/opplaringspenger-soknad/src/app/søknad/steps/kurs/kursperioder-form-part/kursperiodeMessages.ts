@@ -10,6 +10,12 @@ const nb = {
     'kursperiode.form.beskrivelseReisetid.label': 'Årsak for reisetid over en dag',
     'kursperiode.form.beskrivelseReisetid.description':
         'Fordi du har oppgitt mer enn én dag med reise, må du beskrive årsaken til dette.',
+    'kursperiode.form.beskrivelseReisetid.validation.stringIsTooShort':
+        'Du må du beskrive årsaken til at reisetiden er over en dag.',
+    'kursperiode.form.beskrivelseReisetid.validation.stringHasNoValue':
+        'Du må du beskrive årsaken til at reisetiden er over en dag.',
+    'kursperiode.form.beskrivelseReisetid.validation.stringIsTooLong':
+        'For mange tegn. Du kan bruke maks {maxLength} tegn for å beskrive årsaken til at reisetiden er over en dag.',
 
     'kursperiode.form.fom.label': 'Fra og med',
     'kursperiode.form.fom.validation.dateHasNoValue':

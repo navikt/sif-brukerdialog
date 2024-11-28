@@ -198,7 +198,7 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, onRemove }: Pro
                                     return {
                                         key: getValidationErrorKey(KursperiodeFormFields.beskrivelseReisetid, error),
                                         keepKeyUnaltered: true,
-                                        values: { index: index + 1, harFlerePerioder },
+                                        values: { index: index + 1, harFlerePerioder, maxLength: 500 },
                                     };
                                 }
                             }}

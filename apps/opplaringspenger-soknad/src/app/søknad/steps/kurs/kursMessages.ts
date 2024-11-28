@@ -14,7 +14,7 @@ const nb = {
     'steg.kurs.kursperiode.listTitle': 'Kursperioder',
 
     'steg.kurs.arbeiderIKursperiode.label': 'Jobber du noe de dagene du er på opplæring eller reiser?',
-    'steg.kurs.validation.opplæringsinstitusjon.stringIsToShort':
+    'steg.kurs.validation.opplæringsinstitusjon.stringIsTooShort':
         'Du må beskrive hvor opplæringer foregår med en lengre.',
     'steg.kurs.validation.opplæringsinstitusjon.stringHasNoValue': 'Du må fylle ut hvor opplæringen foregår.',
     'steg.kurs.validation.kursperioder.listIsEmpty': 'Du må legge til minst én kursperiode.',
