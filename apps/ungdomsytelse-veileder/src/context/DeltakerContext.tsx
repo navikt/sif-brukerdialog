@@ -10,6 +10,7 @@ interface DeltakerContextProps {
     setDeltaker: (deltaker: Deltaker) => void;
     closeDeltaker: () => void;
     refetchDeltakelser: () => void;
+    // setRefetchDeltakelser: () => void;
 }
 
 const DeltakerContext = createContext<DeltakerContextProps | undefined>(undefined);
@@ -19,9 +20,11 @@ interface DeltakerProviderProps {
     deltakerId?: string;
 }
 export const DeltakerProvider = ({ children, deltakerId }: DeltakerProviderProps) => {
+    const navigate = useNavigate();
+
     const [deltaker, setDeltaker] = useState<Deltaker>();
     const [deltakelser, setDeltakelser] = useState<Deltakelser>([]);
-    const navigate = useNavigate();
+    const [doRefetchDeltakelser, setDoRefetchDeltakelser] = useState(false);
 
     const fetchDeltakelser = async (deltakerId: string) => {
         const deltakelser = await veilederService.getDeltakelser(deltakerId);
@@ -44,7 +47,14 @@ export const DeltakerProvider = ({ children, deltakerId }: DeltakerProviderProps
         }
     }, [deltakerId]);
 
+    useEffect(() => {
+        if (doRefetchDeltakelser) {
+            refetchDeltakelser();
+        }
+    }, [doRefetchDeltakelser]);
+
     const refetchDeltakelser = async () => {
+        setDoRefetchDeltakelser(false);
         if (deltaker) {
             await fetchDeltakelser(deltaker.id);
             setDeltakelser(deltakelser);
@@ -56,7 +66,14 @@ export const DeltakerProvider = ({ children, deltakerId }: DeltakerProviderProps
         navigate('/');
     };
     return (
-        <DeltakerContext.Provider value={{ deltaker, deltakelser, setDeltaker, closeDeltaker, refetchDeltakelser }}>
+        <DeltakerContext.Provider
+            value={{
+                deltaker,
+                deltakelser,
+                setDeltaker,
+                closeDeltaker,
+                refetchDeltakelser: () => setDoRefetchDeltakelser(true),
+            }}>
             {children}
         </DeltakerContext.Provider>
     );
