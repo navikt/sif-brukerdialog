@@ -36,6 +36,7 @@ const DeltakelseStatusContent = ({ deltakelse }: Props) => {
                 <List.Item title="Sluttdato">
                     {deltakelse.tilOgMed ? dateFormatter.compact(deltakelse.tilOgMed) : '-'}
                 </List.Item>
+                <List.Item title="Antall dager brukt av ytelsen">0</List.Item>
             </List>
         </Box>
     );

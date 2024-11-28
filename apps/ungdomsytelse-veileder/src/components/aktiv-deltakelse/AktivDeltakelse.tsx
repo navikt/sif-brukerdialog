@@ -6,6 +6,7 @@ import DeltakelseStatusContent from '../deltakelse-status-content/DeltakelseStat
 import DeltakelseStatusTag from '../deltakelse-status-tag/DeltakelseStatusTag';
 import EndreDeltakelseForm from '../../forms/endre-deltakelse-form/EndreDeltakelseForm';
 import SlettDeltakelseForm from '../../forms/slett-deltakelse-form/SlettDeltakelseForm';
+import DeltakelseDeltakerInfo from '../deltakelse-deltaker-info/DeltakelseDeltakerInfo';
 
 interface Props {
     deltaker: Deltaker;
@@ -38,6 +39,7 @@ const AktivDeltakelse = ({ deltaker, deltakelse, alleDeltakelser, onChange }: Pr
                 <Tabs defaultValue="status">
                     <Tabs.List>
                         <Tabs.Tab value="status" label="Status" />
+                        <Tabs.Tab value="deltaker" label="Informasjon fra deltaker" />
                         <Tabs.Tab value="endre" label="Endre periode" />
                         <Tabs.Tab value="avslutt" label="Avslutt periode" />
                         <Tabs.Tab value="slett" label="Slett periode" />
@@ -45,6 +47,11 @@ const AktivDeltakelse = ({ deltaker, deltakelse, alleDeltakelser, onChange }: Pr
                     <Tabs.Panel value="status">
                         <Box padding="5" paddingBlock="8 8">
                             <DeltakelseStatusContent deltakelse={deltakelse} deltaker={deltaker} />
+                        </Box>
+                    </Tabs.Panel>
+                    <Tabs.Panel value="deltaker">
+                        <Box padding="5" paddingBlock="8 8">
+                            <DeltakelseDeltakerInfo deltakelse={deltakelse} deltaker={deltaker} />
                         </Box>
                     </Tabs.Panel>
                     <Tabs.Panel value="endre">
@@ -67,28 +74,6 @@ const AktivDeltakelse = ({ deltaker, deltakelse, alleDeltakelser, onChange }: Pr
                         </Box>
                     </Tabs.Panel>
                 </Tabs>
-                {/* <VStack>
-                    <Heading level="2" size="small">
-                        Handlinger
-                    </Heading>
-                    <Accordion>
-                        <Accordion.Item>
-                            <Accordion.Header>1. Avslutt deltakelse</Accordion.Header>
-                            <Accordion.Content>
-                                <Box
-                                    className="rounded-md bg-gray-100 p-8 items-center w-full"
-                                    maxWidth={'30rem'}
-                                    width={'100%'}>
-                                    <AvsluttDeltakelseForm
-                                        deltakelse={deltakelse}
-                                        onDeltakelseAvsluttet={onChange}
-                                        onCancel={() => console.log('avbryt')}
-                                    />
-                                </Box>
-                            </Accordion.Content>
-                        </Accordion.Item>
-                    </Accordion>
-                </VStack> */}
             </Box>
         </Box>
     );
