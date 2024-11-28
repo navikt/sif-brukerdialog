@@ -15,7 +15,7 @@ const AktivDeltakelse = ({ deltakelse, alleDeltakelser, onChange }: Props) => {
             <Box className="rounded bg-surface-action-subtle p-6 pr-12">
                 <VStack gap="4">
                     <Heading level="2" size="small">
-                        Aktiv deltakelse
+                        Deltakelse
                     </Heading>
                     <List size="small">
                         <List.Item>Startdato: {dateFormatter.compact(deltakelse.fraOgMed)}</List.Item>

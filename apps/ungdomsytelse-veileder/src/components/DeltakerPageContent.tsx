@@ -34,10 +34,10 @@ const DeltakerPageContent = () => {
         return <p>Ingen deltakelser funnet</p>;
     }
 
-    if (aktivDeltakelse) {
+    if (aktivDeltakelse || deltakelser.length === 1) {
         return (
             <AktivDeltakelse
-                deltakelse={aktivDeltakelse}
+                deltakelse={aktivDeltakelse || deltakelser[0]}
                 deltaker={deltaker}
                 alleDeltakelser={deltakelser}
                 onChange={handleOnDeltakelseChange}
