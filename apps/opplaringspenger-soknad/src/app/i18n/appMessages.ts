@@ -78,9 +78,9 @@ const nb = {
     'step.omBarnet.stepTitle': 'Om barnet',
     'step.omBarnet.stepIndicatorLabel': 'Om barnet',
 
-    'step.kurs.pageTitle': 'Opplæring',
-    'step.kurs.stepTitle': 'Opplæring',
-    'step.kurs.stepIndicatorLabel': 'Opplæring',
+    'step.kurs.pageTitle': 'Om opplæringen',
+    'step.kurs.stepTitle': 'Om opplæringen',
+    'step.kurs.stepIndicatorLabel': 'Om opplæringen',
 
     'step.arbeidssituasjon.stepTitle': 'Arbeidssituasjon',
     'step.arbeidssituasjon.pageTitle': 'Arbeidssituasjon',
@@ -94,10 +94,9 @@ const nb = {
     'step.medlemskap.stepTitle': 'Medlemskap i folketrygden',
     'step.medlemskap.stepIndicatorLabel': 'Om medlemskap i folketrygden',
 
-    'step.legeerklæring.stepTitle': 'Legeerklæring',
-    'step.legeerklæring.pageTitle': 'Legeerklæring',
-    'step.legeerklæring.stepIndicatorLabel': 'Legeerklæring',
-    'step.legeerklæring.nextButtonLabel': 'Fortsett',
+    'step.legeerklæring.stepTitle': 'Dokumentasjon på nødvendig opplæring',
+    'step.legeerklæring.pageTitle': 'Dokumentasjon på nødvendig opplæring',
+    'step.legeerklæring.stepIndicatorLabel': 'Dokumentasjon på nødvendig opplæring',
 
     'step.oppsummering.pageTitle': 'Oppsummering',
     'step.oppsummering.stepTitle': 'Oppsummering',

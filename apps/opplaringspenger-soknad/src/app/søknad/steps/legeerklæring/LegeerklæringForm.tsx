@@ -38,10 +38,16 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
             submitDisabled={hasPendingUploads}
             runDelayedFormValidation={true}
             onBack={goBack}>
-            <VStack gap="6">
+            <VStack gap="8">
                 <SifGuidePanel>
                     <p>
-                        <AppText id={'steg.legeerklæring.counsellorPanel.info'} />
+                        <AppText id={'steg.legeerklæring.counsellorPanel.info.1'} />
+                    </p>
+                    <p>
+                        <AppText id={'steg.legeerklæring.counsellorPanel.info.2'} />
+                    </p>
+                    <p>
+                        <AppText id={'steg.legeerklæring.counsellorPanel.info.3'} />
                     </p>
                 </SifGuidePanel>
 
@@ -57,7 +63,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                         },
                         andreVedlegg,
                     )}
-                    label={text('steg.legeerklæring.vedlegg.knappLabel')}
+                    label={text('steg.legeerklæring.vedlegg.label')}
                     showPictureScanningGuide={true}
                 />
             </VStack>

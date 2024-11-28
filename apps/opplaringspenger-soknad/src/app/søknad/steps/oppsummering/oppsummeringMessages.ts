@@ -103,9 +103,8 @@ const nb = {
     'steg.oppsummering.utlandetNeste12.header': 'Skal du bo i utlandet i de neste 12 månedene?',
     'steg.oppsummering.utlandetSiste12.liste.header': 'Utenlandsopphold siste 12 måneder',
     'steg.oppsummering.utlandetNeste12.liste.header': 'Utenlandsopphold neste 12 måneder',
-    'steg.oppsummering.legeerklæring.header': 'Legeerklæring',
+    'steg.oppsummering.legeerklæring.header': 'Dokumentasjon på nødvendig opplæring',
     'steg.oppsummering.legeerklæring.label': 'Dokumenter som er lastet opp',
-    'steg.oppsummering.samværsavtale.header': 'Avtale om delt bosted',
 
     'steg.oppsummering.fravær.aktivitet.1': 'Fravær som {aktivitet}.',
     'steg.oppsummering.fravær.aktivitet.2': 'Fravær som {aktivitet1} og {aktivitet2}.',

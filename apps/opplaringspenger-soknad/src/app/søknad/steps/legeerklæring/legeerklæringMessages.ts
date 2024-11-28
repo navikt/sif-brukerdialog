@@ -1,7 +1,12 @@
 const nb = {
-    'steg.legeerklæring.counsellorPanel.info': 'Her skal du laste opp en legeerklæring som bekrefter at ...',
+    'steg.legeerklæring.counsellorPanel.info.1':
+        'Her skal du laste opp legeerklæring og kursbekreftelse, dette får du fra lege og/eller kursstedet.',
+    'steg.legeerklæring.counsellorPanel.info.2':
+        'For å vurdere om opplæringen er nødvendig, må en lege bekrefte at opplæringen er nødvendig for at du skal kunne ta deg av barnet. Vi må også ha informasjon om innhold og tidspunkt for opplæring.',
+    'steg.legeerklæring.counsellorPanel.info.3':
+        'Vi vurderer dokumentasjonen du laster opp, og kontakter deg hvis vi trenger flere opplysninger.',
 
-    'steg.legeerklæring.vedlegg.knappLabel': 'Last opp legeerklæringen',
+    'steg.legeerklæring.vedlegg.label': 'Last opp dokumentasjon på nødvendig opplæring',
 
     'vedleggsliste.ingenLegeerklæringLastetOpp': 'Ingen legeerklæring er lastet opp',
 
