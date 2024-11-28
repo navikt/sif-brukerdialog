@@ -24,11 +24,13 @@ const KursOppsummering = ({ onEdit, kurs }: Props) => {
                 </FormSummary.Header>
                 <FormSummary.Answers>
                     <FormSummary.Answer>
-                        <FormSummary.Label>Kursholder</FormSummary.Label>
+                        <FormSummary.Label>
+                            Helseinstitusjon eller kompetansesenter som er ansvarlig for kurs eller opplæring
+                        </FormSummary.Label>
                         <FormSummary.Value>{kursholder}</FormSummary.Value>
                     </FormSummary.Answer>
                     <FormSummary.Answer>
-                        <FormSummary.Label>Kursperioder</FormSummary.Label>
+                        <FormSummary.Label>Perioder med opplæring</FormSummary.Label>
                         <FormSummary.Value>
                             <List>
                                 {perioder.map((periode) => {
@@ -45,20 +47,38 @@ const KursOppsummering = ({ onEdit, kurs }: Props) => {
                                     return (
                                         <List.Item title={periodeString} key={periodeString}>
                                             <VStack gap="1">
-                                                <Box>Avreise: {dateFormatter.compact(avreise)}.</Box>
-                                                <Box>
-                                                    Hjemkomst: {dateFormatter.compact(hjemkomst)}.<br />
-                                                </Box>
-                                                <Box>
-                                                    {periode.beskrivelseReisetid ? (
-                                                        <Sitat>
-                                                            <TextareaSvar
-                                                                text={periode.beskrivelseReisetid}
-                                                                spacing={false}
-                                                            />
-                                                        </Sitat>
-                                                    ) : null}
-                                                </Box>
+                                                {periode.harTaptArbeidstid ? (
+                                                    <>
+                                                        <Box>
+                                                            Har tapt arbeidstid på grunn av reise til eller fra
+                                                            opplæringsstedet
+                                                        </Box>
+                                                        <Box>Avreise: {dateFormatter.compact(avreise)}.</Box>
+                                                        <Box>
+                                                            Hjemkomst: {dateFormatter.compact(hjemkomst)}.<br />
+                                                        </Box>
+                                                        <Box>
+                                                            {periode.beskrivelseReisetid ? (
+                                                                <>
+                                                                    <Box>
+                                                                        Årsaken til at reisetiden er mer enn én dag:
+                                                                    </Box>
+                                                                    <Sitat>
+                                                                        <TextareaSvar
+                                                                            text={periode.beskrivelseReisetid}
+                                                                            spacing={false}
+                                                                        />
+                                                                    </Sitat>
+                                                                </>
+                                                            ) : null}
+                                                        </Box>
+                                                    </>
+                                                ) : (
+                                                    <Box>
+                                                        Har ikke tapt arbeidstid på grunn av reise til eller fra
+                                                        opplæringsstedet
+                                                    </Box>
+                                                )}
                                             </VStack>
                                         </List.Item>
                                     );
