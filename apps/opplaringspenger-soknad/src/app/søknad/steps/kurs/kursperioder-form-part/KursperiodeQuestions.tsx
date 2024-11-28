@@ -9,11 +9,11 @@ import {
     getYesOrNoValidator,
 } from '@navikt/sif-common-formik-ds/src/validation';
 import { getTillattSøknadsperiode } from '../../../../utils/søknadsperiodeUtils';
-import { handleDateRangeValidationError } from '@navikt/sif-common-forms-ds/src/utils';
 import { useFormikContext } from 'formik';
 import { KursFormFields } from '../KursStep';
 import { Delete } from '@navikt/ds-icons';
 import kursperiodeUtils from '../kursperiodeUtils';
+import { handleDateRangeValidationError } from '@navikt/sif-common-forms-ds/src/utils';
 
 export enum KursperiodeFormFields {
     tom = 'tom',
@@ -42,7 +42,7 @@ interface Props {
 }
 
 const getValidationErrorKey = (field: KursperiodeFormFields, error: string) => {
-    return `steg.kurs.${KursFormFields.kursperioder}.validation.${field}.${error}`;
+    return `kursperiode.form.${field}.validation.${error}`;
 };
 const KursperiodeQuestions = ({ values, index, harFlerePerioder, onRemove }: Props) => {
     const { text } = useAppIntl();
@@ -69,9 +69,11 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, onRemove }: Pro
                 hideLegend={harFlerePerioder === false}
                 minDate={minDate}
                 maxDate={maxDate}
+                fieldFromDate={startdato}
+                fieldToDate={sluttdato}
                 // disabledDateRanges={disabledDateRanges}
                 fromInputProps={{
-                    label: text('kursperiode.form.fromDate'),
+                    label: text('kursperiode.form.fom.label'),
                     name: getFieldName(KursperiodeFormFields.fom),
                     validate: (value) => {
                         const error = getDateRangeValidator({
@@ -80,12 +82,19 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, onRemove }: Pro
                             max: maxDate,
                             toDate: ISOStringToDate(values.tom),
                         }).validateFromDate(value);
-                        if (error) {
-                            return {
-                                key: getValidationErrorKey(KursperiodeFormFields.fom, error),
-                                keepKeyUnaltered: true,
-                                values: { index: index + 1, harFlerePerioder },
-                            };
+                        const dateRangeError = handleDateRangeValidationError(error, minDate, maxDate);
+                        if (dateRangeError) {
+                            return typeof dateRangeError === 'string'
+                                ? {
+                                      key: getValidationErrorKey(KursperiodeFormFields.fom, dateRangeError),
+                                      keepKeyUnaltered: true,
+                                      values: { index: index + 1, harFlerePerioder },
+                                  }
+                                : {
+                                      key: getValidationErrorKey(KursperiodeFormFields.fom, dateRangeError.key),
+                                      keepKeyUnaltered: true,
+                                      values: { index: index + 1, harFlerePerioder, ...dateRangeError.values },
+                                  };
                         }
                     },
                     onChange: () => {
@@ -95,7 +104,7 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, onRemove }: Pro
                     },
                 }}
                 toInputProps={{
-                    label: text('kursperiode.form.toDate'),
+                    label: text('kursperiode.form.tom.label'),
                     name: getFieldName(KursperiodeFormFields.tom),
                     validate: (value) => {
                         const error = getDateRangeValidator({
@@ -104,7 +113,20 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, onRemove }: Pro
                             max: maxDate,
                             fromDate: ISOStringToDate(values.fom),
                         }).validateToDate(value);
-                        return handleDateRangeValidationError(error, minDate, maxDate);
+                        const dateRangeError = handleDateRangeValidationError(error, minDate, maxDate);
+                        if (dateRangeError) {
+                            return typeof dateRangeError === 'string'
+                                ? {
+                                      key: getValidationErrorKey(KursperiodeFormFields.tom, dateRangeError),
+                                      keepKeyUnaltered: true,
+                                      values: { index: index + 1, harFlerePerioder },
+                                  }
+                                : {
+                                      key: getValidationErrorKey(KursperiodeFormFields.tom, dateRangeError.key),
+                                      keepKeyUnaltered: true,
+                                      values: { index: index + 1, harFlerePerioder, ...dateRangeError.values },
+                                  };
+                        }
                     },
                     onChange: () => {
                         setTimeout(() => {

@@ -2,90 +2,68 @@ import { useIntl } from 'react-intl';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
 
 const nb = {
-    'kursperiode.form.title': 'Kursperiode',
-    'kursperiode.form.intervalTitle': 'Velg fra og til tidsrom',
-    'kursperiode.form.fromDate': 'Fra og med',
-    'kursperiode.form.toDate': 'Til og med',
-    'kursperiode.form.okButton': 'Ok',
-    'kursperiode.form.cancelButton': 'Avbryt',
     'kursperiode.form.periode.label': 'Periode {index}',
     'kursperiode.form.harTaptArbeidstid.label':
         'Har du tapt arbeidstid på grunn av reise til eller fra opplæringsstedet?',
-    'kursperiode.form.avreiseSammeDag.label': 'Reiser du til kursstedet på samme dag som kurset starter?',
     'kursperiode.form.avreise.label': 'Når reiser du til opplæringsstedet?',
-    'kursperiode.form.beskrivelseReisetidTil.label': 'Beskrivelse av årsaken til reisetiden til kurssted',
-    'kursperiode.form.beskrivelseReisetidTil.description':
-        'Fordi det er mer enn én dag mellom avreise og startdato, må du beskrive reisetiden til kursstedet.',
-    'kursperiode.form.hjemkomstSammeDag.label': 'Kommer du hjem fra kursstedet på samme dag som kurset slutter?',
     'kursperiode.form.hjemkomst.label': 'Når er du hjemme fra opplæringsstedet?',
-    'kursperiode.form.beskrivelseReisetidHjem.label': 'Beskrivelse av årsaken til reisetiden fra kurssted',
-    'kursperiode.form.beskrivelseReisetidHjem.description':
-        'Fordi det er mer enn én dag mellom sluttdato og hjemkomst, må du beskrive reisetiden fra kursstedet.',
     'kursperiode.form.beskrivelseReisetid.label': 'Årsak for reisetid over en dag',
     'kursperiode.form.beskrivelseReisetid.description':
         'Fordi du har oppgitt mer enn én dag med reise, må du beskrive årsaken til dette.',
 
-    'kursperiode.form.fom.dateHasNoValue':
+    'kursperiode.form.fom.label': 'Fra og med',
+    'kursperiode.form.fom.validation.dateHasNoValue':
         'Du må oppgi når perioden startet. Skriv inn eller velg dato fra datovelgeren.',
-    'kursperiode.form.fom.dateIsAfterMax':
+    'kursperiode.form.fom.validation.dateIsAfterMax':
         'Datoen for når perioden startet kan ikke være etter {dato}. Skriv inn eller velg dato fra datovelgeren.',
-    'kursperiode.form.fom.dateIsBeforeMin':
+    'kursperiode.form.fom.validation.dateIsBeforeMin':
         'Datoen for når perioden startet kan ikke være før {dato}. Skriv inn eller velg sluttdato fra datovelgeren.',
-    'kursperiode.form.fom.dateHasInvalidFormat':
+    'kursperiode.form.fom.validation.dateHasInvalidFormat':
         'Du må oppgi dato for når perioden startet i et gyldig format. Gyldig format er dd.mm.åååå.',
-    'kursperiode.form.fom.fromDateIsAfterToDate':
+    'kursperiode.form.fom.validation.fromDateIsAfterToDate':
         'Startdatoen for perioden må være før sluttdatoen, eller på samme dag som sluttdatoen. Skriv inn eller velg dato fra datovelgeren.',
-    'kursperiode.form.tom.dateHasNoValue':
+
+    'kursperiode.form.tom.label': 'Til og med',
+    'kursperiode.form.tom.validation.dateHasNoValue':
         'Du må oppgi når perioden sluttet. Skriv inn eller velg dato fra datovelgeren.',
-    'kursperiode.form.tom.dateIsAfterMax':
+    'kursperiode.form.tom.validation.dateIsAfterMax':
         'Datoen for når perioden sluttet kan ikke være etter {dato}. Skriv inn eller velg dato fra datovelgeren.',
-    'kursperiode.form.tom.dateIsBeforeMin':
+    'kursperiode.form.tom.validation.dateIsBeforeMin':
         'Datoen for når perioden sluttet kan ikke være før {dato}. Skriv inn eller velg dato fra datovelgeren.',
-    'kursperiode.form.tom.dateHasInvalidFormat':
+    'kursperiode.form.tom.validation.dateHasInvalidFormat':
         'Du må oppgi dato for når perioden sluttet i et gyldig format. Gyldig format er dd.mm.åååå.',
-    'kursperiode.form.tom.toDateIsBeforeFromDate':
+    'kursperiode.form.tom.validation.toDateIsBeforeFromDate':
         'Sluttdatoen for perioden kan ikke være før startdatoen. Skriv inn eller velg dato fra datovelgeren.',
 
-    'kursperiode.form.avreise.dateHasNoValue':
+    'kursperiode.form.avreise.validation.dateHasNoValue':
         'Du må oppgi når avreise til kurset er. Skriv inn eller velg dato fra datovelgeren.',
-    'kursperiode.form.avreise.dateIsAfterMax':
+    'kursperiode.form.avreise.validation.dateIsAfterMax':
         'Datoen for avreise kan ikke være etter {dato}. Skriv inn eller velg dato fra datovelgeren.',
-    'kursperiode.form.avreise.dateIsBeforeMin':
+    'kursperiode.form.avreise.validation.dateIsBeforeMin':
         'Datoen for avreise kan ikke være før {dato}. Skriv inn eller velg dato fra datovelgeren.',
-    'kursperiode.form.avreise.dateHasInvalidFormat':
+    'kursperiode.form.avreise.validation.dateHasInvalidFormat':
         'Du må oppgi dato for avreise i et gyldig format. Gyldig format er dd.mm.åååå.',
 
-    'kursperiode.form.hjemkomst.dateHasNoValue':
+    'kursperiode.form.hjemkomst.validation.dateHasNoValue':
         'Du må oppgi når avreise til kurset er. Skriv inn eller velg dato fra datovelgeren.',
-    'kursperiode.form.hjemkomst.dateIsAfterMax':
+    'kursperiode.form.hjemkomst.validation.dateIsAfterMax':
         'Datoen for avreise kan ikke være etter {dato}. Skriv inn eller velg dato fra datovelgeren.',
-    'kursperiode.form.hjemkomst.dateIsBeforeMin':
+    'kursperiode.form.hjemkomst.validation.dateIsBeforeMin':
         'Datoen for avreise kan ikke være før {dato}. Skriv inn eller velg dato fra datovelgeren.',
-    'kursperiode.form.hjemkomst.dateHasInvalidFormat':
+    'kursperiode.form.hjemkomst.validation.dateHasInvalidFormat':
         'Du må oppgi dato for avreise i et gyldig format. Gyldig format er dd.mm.åååå.',
 
-    'kursperiode.form.avreiseSammeDag.yesOrNoIsUnanswered':
-        'Du må svare ja eller nei på om du reiser samme dag som kurset starter.',
-    'kursperiode.form.hjemkomstSammeDag.yesOrNoIsUnanswered':
-        'Du må svare ja eller nei på om du kommer hjem samme dag som kurset slutter.',
+    'kursperiode.form.harTaptArbeidstid.validation.yesOrNoIsUnanswered':
+        'Du må svare på om du har tapt arbeidstid på grunn av reise til eller fra opplæringsstedet{harFlerePerioder, select, true { (periode {index})} other{}}.',
 
-    'kursperiode.form.begrunnelseReisetidFra.stringHasNoValue':
-        'Du må oppgi en beskrivelse av årsaken til at avreisedatoen er over én dag etter sluttdato.',
-    'kursperiode.form.begrunnelseReisetidFra.stringIsTooLong':
-        'Beskrivelsen av årsaken til avreisedatoen kan ikke være lengre enn 500 tegn.',
-    'kursperiode.form.begrunnelseReisetidFra.stringIsTooShort':
-        'Beskrivelsen av årsaken til avreisedatoen må være minst 5 tegn.',
-    'kursperiode.form.begrunnelseReisetidFra.stringContainsUnicodeChacters':
-        'Beskrivelsen årsaken til avreisedatoen kan ikke inneholde spesialtegn.',
-
-    'kursperiode.form.beskrivelseReisetidTil.stringHasNoValue':
-        'Du må oppgi en beskrivelse av årsaken til aten hjemkomstdato er over én dag etter sluttdato.',
-    'kursperiode.form.beskrivelseReisetidTil.stringIsTooLong':
-        'Beskrivelsen av årsaken til hjemkomstdatoen kan ikke være lengre enn 500 tegn.',
-    'kursperiode.form.beskrivelseReisetidTil.stringIsTooShort':
-        'Beskrivelsen av årsaken til hjemkomstdatoen må være minst 5 tegn.',
-    'kursperiode.form.beskrivelseReisetidTil.stringContainsUnicodeChacters':
-        'Beskrivelsen årsaken til hjemkomstdatoen kan ikke inneholde spesialtegn.',
+    'kursperiode.form.beskrivelseReisetid.stringHasNoValue':
+        'Du må oppgi en beskrivelse av årsaken til at reisetiden er over én dag etter sluttdato.',
+    'kursperiode.form.beskrivelseReisetid.stringIsTooLong':
+        'Beskrivelsen av årsaken til reisetiden kan ikke være lengre enn 500 tegn.',
+    'kursperiode.form.beskrivelseReisetid.stringIsTooShort':
+        'Beskrivelsen av årsaken til reisetiden må være minst 5 tegn.',
+    'kursperiode.form.beskrivelseReisetid.stringContainsUnicodeChacters':
+        'Beskrivelsen årsaken til reisetiden kan ikke inneholde spesialtegn.',
 };
 
 const nn: Record<keyof typeof nb, string> = {

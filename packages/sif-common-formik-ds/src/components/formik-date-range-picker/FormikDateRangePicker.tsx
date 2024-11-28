@@ -16,6 +16,9 @@ interface OwnProps<FieldName, ErrorType> {
     allowRangesToStartAndStopOnSameDate?: boolean;
     fromInputProps: DatePickerBaseProps<FieldName, ErrorType>;
     toInputProps: DatePickerBaseProps<FieldName, ErrorType>;
+    /** Used if field is part of an fieldArray */
+    fieldFromDate?: Date;
+    fieldToDate?: Date;
 }
 
 export type FormikDateRangePickerProps<FieldName, ErrorType> = OwnProps<FieldName, ErrorType> &
@@ -37,13 +40,15 @@ function FormikDateRangePicker<FieldName, ErrorType>({
     useFastField,
     dropdownCaption,
     hideLegend,
+    fieldFromDate,
+    fieldToDate,
     validate,
     locale,
 }: FormikDateRangePickerProps<FieldName, ErrorType>) {
     const { values } = useFormikContext<any>();
 
-    const fromDate = ISOStringToDate(values[fromInputProps.name]);
-    const toDate = ISOStringToDate(values[toInputProps.name]);
+    const fromDate = fieldFromDate || ISOStringToDate(values[fromInputProps.name]);
+    const toDate = fieldToDate || ISOStringToDate(values[toInputProps.name]);
 
     const { fromDateLimitations, toDateLimitations } = getDateRangePickerLimitations({
         fromDate,

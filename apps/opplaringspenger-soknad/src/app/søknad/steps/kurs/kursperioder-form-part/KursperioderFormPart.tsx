@@ -33,7 +33,9 @@ const KursperioderFormPart = () => {
                                                 harFlerePerioder={harFlerePerioder}
                                                 onRemove={() => {
                                                     arrayHelpers.remove(index);
-                                                    validateForm();
+                                                    setTimeout(() => {
+                                                        validateForm();
+                                                    });
                                                 }}
                                             />
                                         </VStack>
