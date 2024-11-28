@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Deltakelse } from '../../api/types';
-import { DeltakelseFormValues } from '../components/forms/old/EndreDeltakelseForm';
 import { veilederService } from '../../api/services/veilederService';
+import { Deltakelse } from '../../api/types';
+import { DeltakelseFormValues } from '../../forms/endre-deltakelse-form/EndreDeltakelseForm';
 
 export const useEndreDeltakelse = (onDeltakelseEndret: (deltakelse: Deltakelse) => void) => {
     const [pending, setPending] = useState<boolean>(false);

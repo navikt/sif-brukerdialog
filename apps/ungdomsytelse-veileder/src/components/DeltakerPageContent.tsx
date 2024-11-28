@@ -1,9 +1,6 @@
-import { Accordion, Alert, Heading, HStack, Page, VStack } from '@navikt/ds-react';
+import { Alert, Box, HStack, Page, VStack } from '@navikt/ds-react';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { useDeltaker } from '../context/DeltakerContext';
-import EndreDeltakelseperiode from '../forms/EndreDeltakelseperiode';
-import MeldeInnDeltakerPåNyttForm from '../forms/MeldeInnDeltakerPåNyttForm';
-import DeltakelseTable from './deltakelse-table/DeltakelseTable';
 import AktivDeltakelse from './aktiv-deltakelse/AktivDeltakelse';
 
 const DeltakerPageContent = () => {
@@ -31,7 +28,7 @@ const DeltakerPageContent = () => {
     }
 
     if (!deltakelser) {
-        return <p>Ingen deltakelser funnet</p>;
+        return <Box>Ingen deltakelser funnet</Box>;
     }
 
     if (aktivDeltakelse || deltakelser.length === 1) {
@@ -47,45 +44,7 @@ const DeltakerPageContent = () => {
         );
     }
 
-    return (
-        <VStack gap="8">
-            <VStack gap="2">
-                <Heading level="2" size="medium">
-                    Deltakelseperioder
-                </Heading>
-                {deltakelser.length === 0 ? (
-                    <Alert variant="info">Ingen deltakelser registrert</Alert>
-                ) : (
-                    <DeltakelseTable deltakelser={deltakelser} />
-                )}
-            </VStack>
-            <Heading level="2" size="medium">
-                Testoperasjoner
-            </Heading>
-            {deltakelser.length > 0 && (
-                <Accordion>
-                    {/* <Accordion.Item>
-                        <Accordion.Header>1. Avslutt deltakelse</Accordion.Header>
-                        <Accordion.Content>
-                            <AvsluttDeltakelseForm onDeltakelseAvsluttet={() => console.log('avsluttet')} />
-                        </Accordion.Content>
-                    </Accordion.Item> */}
-                    <Accordion.Item>
-                        <Accordion.Header>2. Melde inn deltaker på nytt</Accordion.Header>
-                        <Accordion.Content>
-                            <MeldeInnDeltakerPåNyttForm deltakerFnr={deltaker.deltakerIdent} />
-                        </Accordion.Content>
-                    </Accordion.Item>
-                    <Accordion.Item>
-                        <Accordion.Header>3. Oppdater deltakelse</Accordion.Header>
-                        <Accordion.Content>
-                            <EndreDeltakelseperiode deltakelser={deltakelser} deltakerFnr={deltaker.deltakerIdent} />
-                        </Accordion.Content>
-                    </Accordion.Item>
-                </Accordion>
-            )}
-        </VStack>
-    );
+    return <Box>Flere deltakelser er registrert</Box>;
 };
 
 export default DeltakerPageContent;

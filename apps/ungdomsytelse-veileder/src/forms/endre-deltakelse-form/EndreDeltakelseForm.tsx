@@ -3,9 +3,8 @@ import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-d
 
 import { dateToISODate, ISODateToDate } from '@navikt/sif-common-utils';
 import { Deltakelse } from '../../api/types';
-import PeriodeFormPart from '../../depr/components/forms/old/PeriodeFormPart';
+import PeriodeFormPart from './PeriodeFormPart';
 import { useEndreDeltakelse } from '../../depr/hooks/useEndreDeltakelse';
-import { PaperplaneIcon } from '@navikt/aksel-icons';
 
 export type DeltakelseFormValues = {
     id: string;
@@ -58,12 +57,7 @@ const EndreDeltakelseForm = ({ deltakelse, deltakelser, onChange }: Props) => {
                                         deltakelseId={deltakelse.id}
                                     />
                                     <HStack gap="2">
-                                        <Button
-                                            type="submit"
-                                            loading={endreDeltakelsePending}
-                                            variant="primary"
-                                            iconPosition="right"
-                                            icon={<PaperplaneIcon aria-hidden />}>
+                                        <Button type="submit" loading={endreDeltakelsePending} variant="primary">
                                             Oppdater periode
                                         </Button>
                                     </HStack>

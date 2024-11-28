@@ -9,11 +9,11 @@ import {
     getCheckedValidator,
     getDateValidator,
 } from '@navikt/sif-common-formik-ds/src/validation';
-import { PaperplaneIcon } from '@navikt/aksel-icons';
 import { veilederService } from '../../api/services/veilederService';
 import dayjs from 'dayjs';
 import FormikCheckboxGroup from '@navikt/sif-common-formik-ds/src/components/formik-checkbox-group/FormikCheckboxGroup';
 import { isAxiosError } from 'axios';
+import ConfirmationDialog from '@navikt/sif-common-formik-ds/src/components/helpers/confirmation-dialog/ConfirmationDialog';
 
 interface Props {
     deltakelse: Deltakelse;
@@ -27,18 +27,24 @@ interface FormValues {
 }
 
 const AvsluttDeltakelseForm = ({ deltakelse, onDeltakelseAvsluttet, onCancel }: Props) => {
+    const [confirmationDialogVisible, setConfirmationDialogVisible] = useState(false);
     const [submitPending, setSubmitPending] = useState(false);
     const [error, setError] = useState<string | JSX.Element | undefined>(undefined);
     const intl = useIntl();
 
-    const handleOnSubmit = async (values: FormValues) => {
+    const avsluttDeltakelse = async (values: Partial<FormValues>) => {
         reset();
+        const { utmeldingsdato } = values;
+        if (typeof utmeldingsdato !== 'string') {
+            setError('Du må velge en utmeldingsdato');
+            return;
+        }
         setSubmitPending(true);
 
         try {
             const avsluttetDeltakelse = await veilederService.avsluttDeltakelse({
                 deltakelseId: deltakelse.id,
-                utmeldingsdato: values.utmeldingsdato,
+                utmeldingsdato,
             });
             reset();
             setSubmitPending(false);
@@ -62,79 +68,89 @@ const AvsluttDeltakelseForm = ({ deltakelse, onDeltakelseAvsluttet, onCancel }: 
 
     const reset = () => {
         setError(undefined);
+        setConfirmationDialogVisible(false);
     };
 
     return (
         <TypedFormikWrapper<FormValues>
             initialValues={{}}
-            onSubmit={handleOnSubmit}
-            renderForm={({ resetForm }) => {
+            onSubmit={() => setConfirmationDialogVisible(true)}
+            renderForm={({ resetForm, values }) => {
                 return (
-                    <TypedFormikForm
-                        includeButtons={false}
-                        formErrorHandler={getIntlFormErrorHandler(intl, 'avsluttDeltakelseForm')}>
-                        <VStack gap="4" maxWidth={'30rem'} width={'100%'}>
-                            <Heading level="2" size="medium">
-                                Avslutt deltakerperiode
-                            </Heading>
-                            <FormikDatepicker
-                                name="utmeldingsdato"
-                                label={`Hvilken dag er siste dag i programmet?`}
-                                disableWeekends={true}
-                                defaultMonth={dayjs.max(dayjs(deltakelse.fraOgMed), dayjs()).toDate()}
-                                minDate={deltakelse.fraOgMed}
-                                maxDate={deltakelse.tilOgMed}
-                                validate={(value) => {
-                                    const options: DateValidationOptions = {
-                                        required: true,
-                                        min: deltakelse.fraOgMed,
-                                        max: deltakelse.tilOgMed,
-                                        onlyWeekdays: true,
-                                    };
-                                    const error = getDateValidator(options)(value);
-                                    if (error) {
-                                        return error ? { key: error, values: { ...options } } : undefined;
-                                    }
-                                }}
-                            />
-                            <FormikCheckboxGroup
-                                name={'bekreftRegistrering'}
-                                legend="Bekreft avslutning"
-                                hideLegend={true}
-                                validate={getCheckedValidator()}
-                                checkboxes={[
-                                    {
-                                        label: 'Jeg bekrefter at deltakelsen skal avsluttes denne datoen. Deltakeren vil ikke lenger være en del av programmet.',
-                                        value: 'bekreftRegistrering',
-                                    },
-                                ]}
-                            />
-
-                            <HStack gap="2">
-                                <Button
-                                    type="submit"
-                                    variant="primary"
-                                    loading={submitPending}
-                                    iconPosition="right"
-                                    icon={<PaperplaneIcon aria-hidden />}>
-                                    Avslutt periode
-                                </Button>
-                                <Button
-                                    type="reset"
-                                    variant="tertiary"
-                                    onClick={() => {
-                                        resetForm();
-                                        reset();
-                                        if (onCancel) {
-                                            onCancel();
+                    <>
+                        <TypedFormikForm
+                            includeButtons={false}
+                            formErrorHandler={getIntlFormErrorHandler(intl, 'avsluttDeltakelseForm')}>
+                            <VStack gap="4" maxWidth={'30rem'} width={'100%'}>
+                                <Heading level="2" size="medium">
+                                    Avslutt deltakerperiode
+                                </Heading>
+                                <FormikDatepicker
+                                    name="utmeldingsdato"
+                                    label={`Hvilken dag er siste dag i programmet?`}
+                                    disableWeekends={true}
+                                    defaultMonth={dayjs.max(dayjs(deltakelse.fraOgMed), dayjs()).toDate()}
+                                    minDate={deltakelse.fraOgMed}
+                                    maxDate={deltakelse.tilOgMed}
+                                    validate={(value) => {
+                                        const options: DateValidationOptions = {
+                                            required: true,
+                                            min: deltakelse.fraOgMed,
+                                            max: deltakelse.tilOgMed,
+                                            onlyWeekdays: true,
+                                        };
+                                        const error = getDateValidator(options)(value);
+                                        if (error) {
+                                            return error ? { key: error, values: { ...options } } : undefined;
                                         }
-                                    }}>
-                                    Avbryt
-                                </Button>
-                            </HStack>
-                            {error ? <Alert variant="error">{error}</Alert> : null}
-                        </VStack>
-                    </TypedFormikForm>
+                                    }}
+                                />
+                                <FormikCheckboxGroup
+                                    name={'bekreftRegistrering'}
+                                    legend="Bekreft avslutning"
+                                    hideLegend={true}
+                                    validate={getCheckedValidator()}
+                                    checkboxes={[
+                                        {
+                                            label: 'Jeg har opplyst deltaker om A, B, C, og avslutter deltakelsen i samråd med deltakeren. Eller hva en nå må skrive her.',
+                                            value: 'bekreftRegistrering',
+                                        },
+                                    ]}
+                                />
+
+                                <HStack gap="2">
+                                    <Button type="submit" variant="primary" loading={submitPending}>
+                                        Avslutt periode
+                                    </Button>
+                                    <Button
+                                        type="reset"
+                                        variant="tertiary"
+                                        onClick={() => {
+                                            resetForm();
+                                            reset();
+                                            if (onCancel) {
+                                                onCancel();
+                                            }
+                                        }}>
+                                        Avbryt
+                                    </Button>
+                                </HStack>
+                                {error ? <Alert variant="error">{error}</Alert> : null}
+                            </VStack>
+                        </TypedFormikForm>
+                        <ConfirmationDialog
+                            okLabel="Ja, avslutt deltakelse"
+                            onCancel={() => {
+                                setConfirmationDialogVisible(false);
+                            }}
+                            onConfirm={() => {
+                                avsluttDeltakelse(values);
+                            }}
+                            open={confirmationDialogVisible}
+                            title="Bekreft slett periode">
+                            Bekreft at du ønsker å slette deltakelsesperioden
+                        </ConfirmationDialog>
+                    </>
                 );
             }}
         />

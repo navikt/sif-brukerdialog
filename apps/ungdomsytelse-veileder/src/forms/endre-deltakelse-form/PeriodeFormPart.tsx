@@ -3,8 +3,8 @@ import { FormikDatepicker } from '@navikt/sif-common-formik-ds';
 import { getDateValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { DateRange } from '@navikt/sif-common-utils';
 import { max, min } from 'date-fns';
-import { Deltakelse } from '../../../../api/types';
-import { GYLDIG_PERIODE } from '../../../../settings';
+import { Deltakelse } from '../../api/types';
+import { GYLDIG_PERIODE } from '../../settings';
 
 interface Props {
     tomDate?: Date;
@@ -22,7 +22,6 @@ const PeriodeFormPart = ({ fomDate, tomDate, deltakelser = [], deltakelseId }: P
             <FormikDatepicker
                 name="fom"
                 label="Fra og med"
-                description="Pga status på appen nå, kreves fra og med, selv om en kun skal sende inn til og med"
                 minDate={GYLDIG_PERIODE.from}
                 maxDate={min([tomDate ? tomDate : GYLDIG_PERIODE.to, GYLDIG_PERIODE.to])}
                 defaultMonth={fomDate || new Date()}
