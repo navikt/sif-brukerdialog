@@ -1,4 +1,4 @@
-import { Box, Heading, HStack, Tabs, VStack } from '@navikt/ds-react';
+import { Box, Heading, HStack, Tabs, Tag, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { Deltakelse, Deltaker } from '../../api/types';
 import AvsluttDeltakelseForm from '../../forms/avslutt-deltakelse-form/AvsluttDeltakelseForm';
@@ -16,15 +16,22 @@ interface Props {
 }
 const AktivDeltakelse = ({ deltaker, deltakelse, alleDeltakelser, onChange }: Props) => {
     return (
-        <Box className="rounded bg-gray-100">
+        <Box className="rounded bg-gray-100 pb-10">
             <Box className=" p-3 pr-6 pl-6 border-b-2 border-b-gray-300">
                 <VStack gap="4">
                     <HStack gap="4" justify={'space-between'} align="center">
-                        <HStack gap="4" align="center">
+                        <HStack gap="6" align="center">
                             <Heading level="2" size="medium">
                                 Deltakerperiode
                             </Heading>
-                            <DeltakelseStatusTag deltakelse={deltakelse} />
+                            <HStack gap="2">
+                                <DeltakelseStatusTag deltakelse={deltakelse} />
+                                {deltakelse.harSøkt === false ? (
+                                    <Tag variant="warning-moderate" size="small">
+                                        Ikke søkt for
+                                    </Tag>
+                                ) : null}
+                            </HStack>
                         </HStack>
                         <HStack gap="4">
                             <Box>Startdato: {dateFormatter.compact(deltakelse.fraOgMed)}</Box>
