@@ -14,8 +14,8 @@ export const getKursApiDataFromSøknadsdata = ({
                     avreise: dateToISODate(p.avreise || p.periode.from),
                     hjemkomst: dateToISODate(p.hjemkomst || p.periode.to),
                     kursperiode: dateRangeToISODateRange(p.periode),
-                    beskrivelseReisetidHjem: p.beskrivelseReisetidHjem,
-                    beskrivelseReisetidTil: p.beskrivelseReisetidTil,
+                    harTaptArbeidstid: p.harTaptArbeidstid,
+                    beskrivelseReisetid: p.beskrivelseReisetid,
                 },
         ),
     };

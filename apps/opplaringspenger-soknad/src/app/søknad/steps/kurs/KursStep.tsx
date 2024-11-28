@@ -21,7 +21,7 @@ import KursperioderFormPart from './kursperioder-form-part/KursperioderFormPart'
 import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/FerieuttakListAndDialog';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/src';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { KursperiodeFormValues } from './kursperiode';
+import { KursperiodeFormValues } from './kursperioder-form-part/KursperiodeQuestions';
 
 export enum KursFormFields {
     opplæringsinstitusjon = 'opplæringsinstitusjon',

@@ -45,23 +45,15 @@ const KursOppsummering = ({ onEdit, kurs }: Props) => {
                                     return (
                                         <List.Item title={periodeString} key={periodeString}>
                                             <VStack gap="1">
-                                                <Box>
-                                                    Avreise: {dateFormatter.compact(avreise)}.
-                                                    {periode.beskrivelseReisetidTil ? (
-                                                        <Sitat>
-                                                            <TextareaSvar
-                                                                text={periode.beskrivelseReisetidTil}
-                                                                spacing={false}
-                                                            />
-                                                        </Sitat>
-                                                    ) : null}
-                                                </Box>
+                                                <Box>Avreise: {dateFormatter.compact(avreise)}.</Box>
                                                 <Box>
                                                     Hjemkomst: {dateFormatter.compact(hjemkomst)}.<br />
-                                                    {periode.beskrivelseReisetidHjem ? (
+                                                </Box>
+                                                <Box>
+                                                    {periode.beskrivelseReisetid ? (
                                                         <Sitat>
                                                             <TextareaSvar
-                                                                text={periode.beskrivelseReisetidHjem}
+                                                                text={periode.beskrivelseReisetid}
                                                                 spacing={false}
                                                             />
                                                         </Sitat>

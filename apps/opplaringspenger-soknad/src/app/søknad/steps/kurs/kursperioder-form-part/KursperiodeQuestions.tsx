@@ -10,12 +10,12 @@ import {
 } from '@navikt/sif-common-formik-ds/src/validation';
 import { getTillattSøknadsperiode } from '../../../../utils/søknadsperiodeUtils';
 import { handleDateRangeValidationError } from '@navikt/sif-common-forms-ds/src/utils';
-import kursperiodeUtils from '../kursperiode/kursperiodeUtils';
 import { useFormikContext } from 'formik';
 import { KursFormFields } from '../KursStep';
 import { Delete } from '@navikt/ds-icons';
+import kursperiodeUtils from '../kursperiodeUtils';
 
-enum KursperiodeFormFields {
+export enum KursperiodeFormFields {
     tom = 'tom',
     fom = 'fom',
     harTaptArbeidstid = 'harTaptArbeidstid',
@@ -24,7 +24,7 @@ enum KursperiodeFormFields {
     beskrivelseReisetid = 'beskrivelseReisetid',
 }
 
-interface KursperiodeFormValues {
+export interface KursperiodeFormValues {
     [KursperiodeFormFields.fom]: ISODate;
     [KursperiodeFormFields.tom]: ISODate;
     [KursperiodeFormFields.harTaptArbeidstid]: YesOrNo;
@@ -80,7 +80,13 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, onRemove }: Pro
                             max: maxDate,
                             toDate: ISOStringToDate(values.tom),
                         }).validateFromDate(value);
-                        return handleDateRangeValidationError(error, minDate, maxDate);
+                        if (error) {
+                            return {
+                                key: getValidationErrorKey(KursperiodeFormFields.fom, error),
+                                keepKeyUnaltered: true,
+                                values: { index: index + 1, harFlerePerioder },
+                            };
+                        }
                     },
                     onChange: () => {
                         setTimeout(() => {

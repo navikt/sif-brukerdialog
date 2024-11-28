@@ -1,8 +1,8 @@
 import { DateRange, dateToISOString, ISOStringToDate, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { guid } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
-import { Kursperiode } from '../../../../types/Kursperiode';
-import { KursperiodeFormValues } from './KursperiodeForm';
+import { KursperiodeFormValues } from '../KursperiodeForm';
+import { Kursperiode } from '../types/Kursperiode';
 
 const isValidKursperiode = (kursperiode: Partial<Kursperiode>): kursperiode is Kursperiode => {
     return kursperiode.periode?.from !== undefined && kursperiode.periode.to !== undefined;

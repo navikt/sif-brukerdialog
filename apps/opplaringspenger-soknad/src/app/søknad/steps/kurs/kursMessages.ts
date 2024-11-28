@@ -8,9 +8,6 @@ const nb = {
     'steg.kurs.opplæringsinstitusjon.label': 'Hvor foregår opplæringen?',
     'steg.kurs.opplæringsinstitusjon.description':
         'Skriv inn helseinstitusjon eller kompetansesenter som er ansvarlig for kurs eller opplæring',
-    'steg.kurs.validation.opplæringsinstitusjon.stringHasNoValue': 'Du må fylle ut hvor opplæringen foregår.',
-    'steg.kurs.validation.opplæringsinstitusjon.stringIsTooShort':
-        'Du må si hvor opplæringen foregår med minst 5 tegn.',
     'steg.kurs.kursperiode.addLabel': 'Legg til kursperiode',
     'steg.kurs.kursperiode.modalTitle': 'Legg til kursperiode',
     'steg.kurs.kursperiode.listTitle': 'Kursperioder',

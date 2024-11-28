@@ -9,8 +9,8 @@ import { INKLUDER_REISEDAGER_I_PERIODE, KursSøknadsdata } from '../../../types/
 import { KursFormValues } from './KursStep';
 import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 import { Kursperiode } from '../../../types/Kursperiode';
-import kursperiodeUtils from './kursperiode/kursperiodeUtils';
-import { KursperiodeFormValues } from './kursperiode';
+import kursperiodeUtils from './kursperiodeUtils';
+import { KursperiodeFormValues } from './kursperioder-form-part/KursperiodeQuestions';
 
 dayjs.extend(isoWeek);
 

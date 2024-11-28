@@ -7,10 +7,10 @@ import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerkl
 import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
 import { kursMessages } from '../søknad/steps/kurs/kursMessages';
 import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
-import { kursperiodeMessages } from '../søknad/steps/kurs/kursperiode';
 import { arbeidstidMessages } from '../søknad/steps/arbeidstid/arbeidstidMessages';
 import { medlemskapFormMessages } from '@navikt/sif-common-forms-ds/src';
 import { omBarnetFormIntlMessages } from '../søknad/steps/om-barnet/om-barnet-form/omBarnetFormMessages';
+import { kursperiodeMessages } from '../søknad/steps/kurs/kursperioder-form-part/kursperiodeMessages';
 
 const nb = {
     ...velkommenPageMessages.nb,
