@@ -1,5 +1,20 @@
 # @navikt/sif-demo-app
 
+## 0.3.0
+
+### Minor Changes
+
+-   Endre i NumberInput
+
+    -   Formatere verdi i NumberInput ved blur/fokus
+    -   Kun tillate komma som desimalskille
+    -   Ta i bruk integerValue=true på inntekt i SN
+
+### Patch Changes
+
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@2.1.0
+
 ## 0.2.10
 
 ### Patch Changes

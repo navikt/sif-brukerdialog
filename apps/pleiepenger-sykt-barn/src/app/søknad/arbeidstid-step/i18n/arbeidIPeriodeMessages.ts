@@ -9,14 +9,14 @@ const arbeidIPeriodeValideringMessages = {
         'arbeidIPeriode.validation.prosentAvNormalt.numberHasNoValue':
             'Du må oppgi hvor mange prosent du jobber {hvor}.',
         'arbeidIPeriode.validation.prosentAvNormalt.numberHasInvalidFormat':
-            'Antall prosent du jobber {hvor} kan kun bestå av tall.',
+            'Antall prosent du jobber {hvor} har ikke gyldig format. Et gyldig tall inneholder kun siffer og komma som desimaltegn.',
         'arbeidIPeriode.validation.prosentAvNormalt.numberIsTooSmall':
             'Antall prosent du jobber {hvor} kan ikke være mindre enn {min}.',
         'arbeidIPeriode.validation.prosentAvNormalt.numberIsTooLarge':
             'Antall prosent du jobber {hvor} kan ikke være mer enn {max}.',
         'arbeidIPeriode.validation.snittTimerPerUke.numberHasNoValue': 'Du må oppgi hvor mange timer du jobber {hvor}.',
         'arbeidIPeriode.validation.snittTimerPerUke.numberHasInvalidFormat':
-            'Antall timer du jobber {hvor} kan kun bestå av tall.',
+            'Antall timer du jobber {hvor} har ikke gyldig format. Et gyldig tall inneholder kun siffer og komma som desimaltegn.',
         'arbeidIPeriode.validation.snittTimerPerUke.numberIsTooSmall':
             'Antall timer du jobber {hvor} kan ikke være mindre enn {min}.',
         'arbeidIPeriode.validation.snittTimerPerUke.numberIsTooLarge':
@@ -24,7 +24,7 @@ const arbeidIPeriodeValideringMessages = {
         'arbeidIPeriode.validation.snittTimerPerUke.UKE.numberHasNoValue':
             'Du må oppgi hvor mange timer du jobber i uke {ukenummer} {hvor}.',
         'arbeidIPeriode.validation.snittTimerPerUke.UKE.numberHasInvalidFormat':
-            'Antall timer du jobber i uke {ukenummer} {hvor} kan kun bestå av tall.',
+            'Antall timer du jobber i uke {ukenummer} {hvor} har ikke gyldig format. Et gyldig tall inneholder kun siffer og komma som desimaltegn.',
         'arbeidIPeriode.validation.snittTimerPerUke.UKE.numberIsTooSmall':
             'Antall timer du jobber i uke {ukenummer} {hvor} kan ikke være mindre enn {min}.',
         'arbeidIPeriode.validation.snittTimerPerUke.UKE.numberIsTooLarge':

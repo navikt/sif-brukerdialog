@@ -1,5 +1,15 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.10.0
+
+### Minor Changes
+
+-   Endre i NumberInput
+
+    -   Formatere verdi i NumberInput ved blur/fokus
+    -   Kun tillate komma som desimalskille
+    -   Ta i bruk integerValue=true på inntekt i SN
+
 ## 3.9.6
 
 ### Patch Changes
