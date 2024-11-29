@@ -1,5 +1,22 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.6.0
+
+### Minor Changes
+
+-   Endre i NumberInput
+
+    -   Formatere verdi i NumberInput ved blur/fokus
+    -   Kun tillate komma som desimalskille
+    -   Ta i bruk integerValue=true på inntekt i SN
+
+### Patch Changes
+
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@2.1.0
+    -   @navikt/sif-common-forms-ds@15.0.0
+    -   @navikt/sif-common-soknad-ds@20.0.0
+
 ## 4.5.1
 
 ### Patch Changes

@@ -1,5 +1,5 @@
 import { TextField, TextFieldProps } from '@navikt/ds-react';
-import React from 'react';
+import React, { useState } from 'react';
 import { FastField, Field, FieldProps } from 'formik';
 import { TestProps, TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
@@ -10,7 +10,13 @@ import './formikTextField.css';
 interface OwnProps<FieldName> extends Omit<TextFieldProps, 'name' | 'children' | 'width'> {
     name: FieldName;
     width?: TextFieldWidths;
+    formatter?: TextFieldFormatter;
 }
+
+export type TextFieldFormatter = {
+    applyFormatting: (value: string) => string;
+    clearFormatting: (value: string) => string;
+};
 
 export type FormikTextFieldProps<FieldName, ErrorType> = OwnProps<FieldName> &
     TypedFormInputValidationProps<FieldName, ErrorType> &
@@ -26,10 +32,12 @@ function FormikTextField<FieldName, ErrorType>({
     autoComplete = 'off',
     useFastField,
     label,
+    formatter,
     ...restProps
 }: FormikTextFieldProps<FieldName, ErrorType>) {
     const context = React.useContext(TypedFormikFormContext);
     const FieldComponent = useFastField ? FastField : Field;
+    const [hasFocus, setHasFocus] = useState(false);
 
     return (
         <FieldComponent validate={validate ? (value: any) => validate(value, name) : undefined} name={name}>
@@ -42,7 +50,27 @@ function FormikTextField<FieldName, ErrorType>({
                         autoComplete={autoComplete}
                         className={getTextFieldWidthClassName(width, className)}
                         error={getErrorPropForFormikInput({ field, form, context, error })}
-                        value={field.value === undefined ? '' : field.value}
+                        value={formatter && !hasFocus ? formatter.applyFormatting(field.value) : field.value}
+                        onBlur={
+                            formatter
+                                ? () => {
+                                      setHasFocus(false);
+                                      if (formatter) {
+                                          form.setFieldValue(field.name, formatter.applyFormatting(field.value));
+                                      }
+                                  }
+                                : undefined
+                        }
+                        onFocus={
+                            formatter
+                                ? () => {
+                                      setHasFocus(true);
+                                      if (formatter) {
+                                          form.setFieldValue(field.name, formatter?.clearFormatting(field.value));
+                                      }
+                                  }
+                                : undefined
+                        }
                     />
                 );
             }}

@@ -170,7 +170,7 @@ const nb = {
     'validation.arbeidsforhold.jobberNormaltTimer.numberHasNoValue':
         'Du må oppgi hvor mange timer per uke du {jobber} {hvor} i perioden.',
     'validation.arbeidsforhold.jobberNormaltTimer.numberHasInvalidFormat':
-        'Antall timer du {jobber} per uke {hvor} kan kun bestå av tall.',
+        'Antall timer du {jobber} per uke {hvor} har ikke gyldig format. Et gyldig tall inneholder kun siffer og komma som desimaltegn.',
 
     'validation.arbeidsforhold.jobberNormaltTimer.numberIsTooSmall':
         'Antall timer du {jobber} per uke {hvor} kan ikke være mindre enn {min}.',
