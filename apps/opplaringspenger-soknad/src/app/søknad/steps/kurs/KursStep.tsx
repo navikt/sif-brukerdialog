@@ -1,4 +1,4 @@
-import { Alert, VStack } from '@navikt/ds-react';
+import { VStack } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import {
@@ -43,7 +43,7 @@ const { FormikWrapper, Form, Select, YesOrNoQuestion } = getTypedFormComponents<
 >();
 
 const KursStep = () => {
-    const { intl } = useAppIntl();
+    const { intl, text } = useAppIntl();
 
     const {
         state: { søknadsdata, opplæringsinstitusjoner },
@@ -82,12 +82,12 @@ const KursStep = () => {
             <FormikWrapper
                 initialValues={getKursStepInitialValues(søknadsdata, stepFormValues[stepId])}
                 onSubmit={handleSubmit}
-                renderForm={({ values }) => {
+                renderForm={() => {
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
                             <Form
-                                formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
+                                formErrorHandler={getIntlFormErrorHandler(intl, 'steg.kurs.validation')}
                                 includeValidationSummary={true}
                                 submitPending={isSubmitting}
                                 submitDisabled={isSubmitting}
@@ -98,15 +98,20 @@ const KursStep = () => {
                                         <p>
                                             <AppText id="steg.kurs.counsellorPanel.avsnitt.1" />
                                         </p>
+                                        <p>
+                                            <AppText id="steg.kurs.counsellorPanel.avsnitt.2" />
+                                        </p>
                                     </SifGuidePanel>
 
                                     <VStack gap={'4'}>
                                         <Select
-                                            label="Velg helseinstitusjon/kompetansesenter"
+                                            label={text('steg.kurs.opplæringsinstitusjonId.label')}
                                             name={KursFormFields.opplæringsinstitusjonId}
                                             validate={getRequiredFieldValidator()}>
-                                            <option value="">Velg</option>
-                                            <optgroup label="Godkjente helseinstitusjoner">
+                                            <option value="">
+                                                <AppText id="steg.kurs.opplæringsinstitusjoner.velg" />
+                                            </option>
+                                            <optgroup label={text('steg.kurs.opplæringsinstitusjoner.godkjente.group')}>
                                                 {opplæringsinstitusjoner.map((opplæringsinstitusjon) => (
                                                     <option
                                                         value={opplæringsinstitusjon.uuid}
@@ -115,32 +120,20 @@ const KursStep = () => {
                                                     </option>
                                                 ))}
                                             </optgroup>
-                                            <optgroup label="Annen helseinstitusjon">
-                                                <option value={'annen'}>Annen helseinstitusjon</option>
+                                            <optgroup label={text('steg.kurs.opplæringsinstitusjoner.annen.group')}>
+                                                <option value={'annen'}>
+                                                    {text('steg.kurs.opplæringsinstitusjoner.annen.option')}
+                                                </option>
                                             </optgroup>
                                         </Select>
-
-                                        {/* {valgtOpplæringsinstitusjon &&
-                                            valgtOpplæringsinstitusjon.periode.length === 0 && (
-                                                <Alert variant="info">
-                                                    {valgtOpplæringsinstitusjon.navn} er ikke en godkjent for kursholder
-                                                    for perioden du kan søke for
-                                                </Alert>
-                                            )} */}
-
-                                        {values[KursFormFields.opplæringsinstitusjonId] === 'annen' && (
-                                            <Alert variant="info">
-                                                Hvis du ikke finner institusjonen i listen over, må ...
-                                            </Alert>
-                                        )}
                                     </VStack>
 
                                     <KursperiodeListAndDialog
                                         name={KursFormFields.kursperioder}
                                         labels={{
-                                            addLabel: 'Legg til kursperiode',
-                                            modalTitle: 'Legg til kursperiode',
-                                            listTitle: 'Kursperioder',
+                                            addLabel: text('steg.kurs.kursperiode.addLabel'),
+                                            modalTitle: text('steg.kurs.kursperiode.modalTitle'),
+                                            listTitle: text('steg.kurs.kursperiode.listTitle'),
                                         }}
                                         minDate={gyldigSøknadsperiode.from}
                                         maxDate={gyldigSøknadsperiode.to}
@@ -149,7 +142,7 @@ const KursStep = () => {
 
                                     <YesOrNoQuestion
                                         name={KursFormFields.arbeiderIKursperiode}
-                                        legend="Jobber du noe på de dagene du er på er på kurs, eller reiser til og fra kurs?"
+                                        legend={text('steg.kurs.arbeiderIKursperiode.label')}
                                         validate={getYesOrNoValidator()}
                                     />
                                 </VStack>

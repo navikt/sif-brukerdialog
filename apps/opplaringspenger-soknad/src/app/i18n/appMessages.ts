@@ -78,9 +78,9 @@ const nb = {
     'step.omBarnet.stepTitle': 'Om barnet',
     'step.omBarnet.stepIndicatorLabel': 'Om barnet',
 
-    'step.kurs.pageTitle': 'Om kurs',
-    'step.kurs.stepTitle': 'Om kurs',
-    'step.kurs.stepIndicatorLabel': 'Om kurs',
+    'step.kurs.pageTitle': 'Opplæring',
+    'step.kurs.stepTitle': 'Opplæring',
+    'step.kurs.stepIndicatorLabel': 'Opplæring',
 
     'step.arbeidssituasjon.stepTitle': 'Arbeidssituasjon',
     'step.arbeidssituasjon.pageTitle': 'Arbeidssituasjon',

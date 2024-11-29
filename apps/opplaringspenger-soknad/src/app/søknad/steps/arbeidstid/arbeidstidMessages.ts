@@ -1,7 +1,7 @@
 export const arbeidstidMessages = {
     nb: {
         'arbeidIPeriode.StepInfo.1':
-            'Du har fortalt oss at du skal jobbe noe de dagene du skal delta på opplæring. Så, nå må du legge inn i kalenderen hvor mye du skal jobbe.',
+            'Du har fortalt oss at du skal jobbe i perioden du søker opplæringspenger. Her skal du oppgi hvor mye du faktisk jobber.',
         'arbeidIPeriode.FrilansLabel': 'Frilans',
         'arbeidIPeriode.SNLabel': 'Selvstendig næringsdrivende',
         'arbeidIPeriode.jobberIPerioden.spm': 'I dagene du søker for, hvilken situasjon gjelder for deg {hvor}?',

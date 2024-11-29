@@ -176,9 +176,6 @@ const AnnetBarnPart: React.FC<Props> = ({
                                     <p>
                                         <Text id="omBarnetForm.relasjonAnnet.info.hjelpetekst.2" />
                                     </p>
-                                    <p>
-                                        <Text id="omBarnetForm.relasjonAnnet.info.hjelpetekst.3" />
-                                    </p>
                                 </ExpandableInfo>
                             </>
                         }
