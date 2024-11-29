@@ -22,7 +22,7 @@
         "@navikt/appstatus-react-ds": "*",
         "@navikt/nav-dekoratoren-moduler": "2.1.6",
         "@navikt/next-logger": "1.35.0",
-        "@navikt/oasis": "3.4.0",
+        "@navikt/oasis": "3.5.1",
         "@navikt/sif-app-register": "*",
         "@navikt/sif-common-amplitude": "*",
         "@navikt/sif-common-core-ds": "*",
@@ -78,7 +78,7 @@
         "react-intl": "7.0.1",
         "storybook": "8.4.5",
         "tailwindcss": "3.4.15",
-        "typescript": "5.6.3",
+        "typescript": "5.7.2",
         "uuid": "11.0.3",
         "vitest": "2.1.6"
     },
