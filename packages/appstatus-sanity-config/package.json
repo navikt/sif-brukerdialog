@@ -16,10 +16,10 @@
         "sanity"
     ],
     "dependencies": {
-        "@sanity/vision": "3.65.0",
+        "@sanity/vision": "3.65.1",
         "react": "18.3.1",
         "react-dom": "18.3.1",
-        "sanity": "3.65.0",
+        "sanity": "3.65.1",
         "styled-components": "6.1.13"
     },
     "devDependencies": {
@@ -29,7 +29,7 @@
         "eslint": "9.15.0",
         "prettier": "3.4.1",
         "react-is": "18.3.1",
-        "typescript": "5.6.3"
+        "typescript": "5.7.2"
     },
     "prettier": {
         "useTabs": false,
