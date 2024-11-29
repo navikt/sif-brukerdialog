@@ -1,7 +1,7 @@
 import { Box, Button } from '@navikt/ds-react';
 import { getTypedFormComponents, ISOStringToDate, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { ISODate } from '@navikt/sif-common-utils';
-import { useAppIntl } from '../../../../i18n';
+import { AppText, useAppIntl } from '../../../../i18n';
 import {
     getDateRangeValidator,
     getDateValidator,
@@ -62,11 +62,12 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, onRemove }: Pro
     const startdato = ISOStringToDate(values[KursperiodeFormFields.fom]);
     const sluttdato = ISOStringToDate(values[KursperiodeFormFields.tom]);
     const harTaptArbeidstid = values[KursperiodeFormFields.harTaptArbeidstid] === YesOrNo.YES;
+    const periodeNr = index + 1;
 
     return (
         <FormLayout.Questions>
             <Form.DateRangePicker
-                legend={text('kursperiode.form.periode.label', { index: index + 1 })}
+                legend={text('kursperiode.form.periode.label', { periodeNr })}
                 hideLegend={harFlerePerioder === false}
                 minDate={minDate}
                 maxDate={maxDate}
@@ -89,12 +90,12 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, onRemove }: Pro
                                 ? {
                                       key: getValidationErrorKey(KursperiodeFormFields.fom, dateRangeError),
                                       keepKeyUnaltered: true,
-                                      values: { index: index + 1, harFlerePerioder },
+                                      values: { periodeNr, harFlerePerioder },
                                   }
                                 : {
                                       key: getValidationErrorKey(KursperiodeFormFields.fom, dateRangeError.key),
                                       keepKeyUnaltered: true,
-                                      values: { index: index + 1, harFlerePerioder, ...dateRangeError.values },
+                                      values: { periodeNr, harFlerePerioder, ...dateRangeError.values },
                                   };
                         }
                     },
@@ -120,12 +121,12 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, onRemove }: Pro
                                 ? {
                                       key: getValidationErrorKey(KursperiodeFormFields.tom, dateRangeError),
                                       keepKeyUnaltered: true,
-                                      values: { index: index + 1, harFlerePerioder },
+                                      values: { periodeNr, harFlerePerioder },
                                   }
                                 : {
                                       key: getValidationErrorKey(KursperiodeFormFields.tom, dateRangeError.key),
                                       keepKeyUnaltered: true,
-                                      values: { index: index + 1, harFlerePerioder, ...dateRangeError.values },
+                                      values: { periodeNr, harFlerePerioder, ...dateRangeError.values },
                                   };
                         }
                     },
@@ -145,7 +146,7 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, onRemove }: Pro
                         return {
                             key: getValidationErrorKey(KursperiodeFormFields.harTaptArbeidstid, error),
                             keepKeyUnaltered: true,
-                            values: { index: index + 1, harFlerePerioder },
+                            values: { periodeNr, harFlerePerioder },
                         };
                     }
                 }}
@@ -162,7 +163,7 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, onRemove }: Pro
                                 return {
                                     key: getValidationErrorKey(KursperiodeFormFields.avreise, error),
                                     keepKeyUnaltered: true,
-                                    values: { index: index + 1, harFlerePerioder },
+                                    values: { periodeNr, harFlerePerioder },
                                 };
                             }
                         }}
@@ -178,7 +179,7 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, onRemove }: Pro
                                 return {
                                     key: getValidationErrorKey(KursperiodeFormFields.hjemkomst, error),
                                     keepKeyUnaltered: true,
-                                    values: { index: index + 1, harFlerePerioder },
+                                    values: { periodeNr, harFlerePerioder },
                                 };
                             }
                         }}
@@ -199,7 +200,7 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, onRemove }: Pro
                                     return {
                                         key: getValidationErrorKey(KursperiodeFormFields.beskrivelseReisetid, error),
                                         keepKeyUnaltered: true,
-                                        values: { index: index + 1, harFlerePerioder, maxLength: 500 },
+                                        values: { periodeNr, harFlerePerioder, maxLength: 500 },
                                     };
                                 }
                             }}
@@ -216,7 +217,7 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, onRemove }: Pro
                         icon={<Delete aria-hidden={true} />}
                         onClick={onRemove}
                         size="small">
-                        Fjern periode
+                        <AppText id="kursperiode.fjern.label" values={{ periodeNr, harFlerePerioder }} />
                     </Button>
                 </Box>
             )}

@@ -21,6 +21,8 @@ const nb = {
         'Du må beskrive hvor opplæringer foregår med en lengre.',
     'steg.kurs.validation.opplæringsinstitusjon.stringHasNoValue': 'Du må fylle ut hvor opplæringen foregår.',
     'steg.kurs.validation.kursperioder.listIsEmpty': 'Du må legge til minst én kursperiode.',
+    'steg.kurs.validation.kursperioder.kursperioderOverlapper':
+        'Noen av periodene du har lagt til overlapper hverandre. Se over fra og til datoene og korriger. Hvis periodene overlapper, må du slå disse periodene sammen til én.',
     'steg.kurs.validation.arbeiderIKursperiode.yesOrNoIsUnanswered':
         'Du må svare på om du jobber noe på de dagene du er på er på kurs, eller reiser til og fra kurs.',
     'steg.kurs.skalTaUtFerieIPerioden.label': 'Skal du ha ferie i løpet av søknadsperioden?',

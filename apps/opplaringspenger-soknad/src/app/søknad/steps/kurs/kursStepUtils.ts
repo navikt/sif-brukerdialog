@@ -152,3 +152,24 @@ export const extractFerieuttakIPeriodenSøknadsdata = ({
 
     return undefined;
 };
+
+export const getSøknadsperiodeFromKursperioderFormValues = (
+    kursperioderValues?: Partial<KursperiodeFormValues>[],
+): DateRange | undefined => {
+    if (!kursperioderValues) {
+        return undefined;
+    }
+    const kursperioder = kursperioderValues
+        .map((periode, index) => {
+            try {
+                return kursperiodeUtils.mapFormValuesToKursperiode(periode as KursperiodeFormValues, `${index}`);
+            } catch {
+                return undefined;
+            }
+        })
+        .filter((p) => p && p.periode.from && p.periode.to) as Kursperiode[];
+
+    return INKLUDER_REISEDAGER_I_PERIODE
+        ? dateRangeUtils.getDateRangeFromDateRanges(kursperioder.map((p) => p.periode))
+        : dateRangeUtils.getDateRangeFromDateRanges(kursperioder.map((p) => p.periodeMedReise));
+};

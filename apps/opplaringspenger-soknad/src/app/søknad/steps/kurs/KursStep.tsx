@@ -1,6 +1,12 @@
 import { VStack } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
+import {
+    DateRange,
+    FormikInputGroup,
+    getTypedFormComponents,
+    ValidationError,
+    YesOrNo,
+} from '@navikt/sif-common-formik-ds';
 import { getListValidator, getStringValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
@@ -15,13 +21,18 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
-import { getKursStepInitialValues, getKursSøknadsdataFromFormValues } from './kursStepUtils';
+import {
+    getKursStepInitialValues,
+    getKursSøknadsdataFromFormValues,
+    getSøknadsperiodeFromKursperioderFormValues,
+} from './kursStepUtils';
 import { getTillattSøknadsperiode } from '../../../utils/søknadsperiodeUtils';
 import KursperioderFormPart from './kursperioder-form-part/KursperioderFormPart';
 import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/FerieuttakListAndDialog';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/src';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { KursperiodeFormValues } from './kursperioder-form-part/KursperiodeQuestions';
+import { dateRangeUtils, ISODateToDate } from '@navikt/sif-common-utils';
 
 export enum KursFormFields {
     opplæringsinstitusjon = 'opplæringsinstitusjon',
@@ -86,6 +97,7 @@ const KursStep = () => {
                 initialValues={getKursStepInitialValues(søknadsdata, stepFormValues[stepId])}
                 onSubmit={handleSubmit}
                 renderForm={({ values }) => {
+                    const søknadsperiode = getSøknadsperiodeFromKursperioderFormValues(values.kursperioder);
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -123,7 +135,26 @@ const KursStep = () => {
                                         />
                                     </VStack>
 
-                                    <KursperioderFormPart />
+                                    <FormikInputGroup
+                                        id="kursperioder"
+                                        legend="Kursperioder"
+                                        hideLegend={false}
+                                        name={KursFormFields.kursperioder}
+                                        errorPropagation={false}
+                                        validate={(perioder: KursperiodeFormValues[]) => {
+                                            const ranges = perioder
+                                                .map((periode) => {
+                                                    const from = ISODateToDate(periode.fom);
+                                                    const to = ISODateToDate(periode.tom);
+                                                    return from && to ? { from, to } : undefined;
+                                                })
+                                                .filter((range) => range !== undefined) as DateRange[];
+                                            return dateRangeUtils.dateRangesCollide(ranges)
+                                                ? 'kursperioderOverlapper'
+                                                : undefined;
+                                        }}>
+                                        <KursperioderFormPart />
+                                    </FormikInputGroup>
 
                                     <YesOrNoQuestion
                                         name={KursFormFields.arbeiderIKursperiode}
@@ -147,8 +178,8 @@ const KursStep = () => {
                                                         listTitle: text('steg.kurs.ferie.listTitle'),
                                                     }}
                                                     name={KursFormFields.ferieuttak}
-                                                    minDate={gyldigSøknadsperiode.from}
-                                                    maxDate={gyldigSøknadsperiode.to}
+                                                    minDate={søknadsperiode?.from || gyldigSøknadsperiode.from}
+                                                    maxDate={søknadsperiode?.to || gyldigSøknadsperiode.to}
                                                     validate={getListValidator({ required: true })}
                                                 />
                                             </FormLayout.Panel>
