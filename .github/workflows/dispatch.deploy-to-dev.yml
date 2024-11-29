@@ -8,6 +8,7 @@ on:
                 description: Choose application
                 type: choice
                 options:
+                    - dine-pleiepenger
                     - ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
                     - endringsmelding-pleiepenger
                     - omsorgsdager-aleneomsorg-dialog
