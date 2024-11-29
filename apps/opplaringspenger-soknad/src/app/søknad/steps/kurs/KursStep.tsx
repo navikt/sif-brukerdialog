@@ -1,12 +1,6 @@
 import { VStack } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import {
-    DateRange,
-    FormikInputGroup,
-    getTypedFormComponents,
-    ValidationError,
-    YesOrNo,
-} from '@navikt/sif-common-formik-ds';
+import { FormikInputGroup, getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { getListValidator, getStringValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
@@ -148,8 +142,10 @@ const KursStep = () => {
                                                     const to = ISODateToDate(periode.tom);
                                                     return from && to ? { from, to } : undefined;
                                                 })
-                                                .filter((range) => range !== undefined) as DateRange[];
-                                            return dateRangeUtils.dateRangesCollide(ranges)
+                                                .filter((range) => dateRangeUtils.isDateRange(range));
+                                            return ranges &&
+                                                ranges.length > 1 &&
+                                                dateRangeUtils.dateRangesCollide(ranges)
                                                 ? 'kursperioderOverlapper'
                                                 : undefined;
                                         }}>

@@ -147,7 +147,14 @@ function TypedFormikForm<FormValues, ErrorType>({
                 if (errorsIsVisible) {
                     const error = getErrorForField(field.name, form.errors);
                     if (error) {
-                        return formErrorHandler ? formErrorHandler.fieldErrorHandler(error, field.name) : error;
+                        const errorToReturn = formErrorHandler
+                            ? formErrorHandler.fieldErrorHandler(error, field.name)
+                            : error;
+                        /** Enkel sjekk for å unngå at child errors returneres */
+                        if (typeof errorToReturn === 'string' && errorToReturn.includes('[object Object]')) {
+                            return undefined;
+                        }
+                        return errorToReturn;
                     }
                 }
                 return undefined;

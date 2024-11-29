@@ -89,6 +89,7 @@ export const getKursStepInitialValues = (søknadsdata: Søknadsdata, formValues?
     }
 
     const defaultValues: KursFormValues = {
+        opplæringsinstitusjon: '',
         kursperioder: [{}],
     };
 
