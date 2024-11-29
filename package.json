@@ -49,7 +49,7 @@
         "glob-parent": ">=5.1.2"
     },
     "private": true,
-    "packageManager": "yarn@4.5.0",
+    "packageManager": "yarn@4.5.3",
     "resolutions": {
         "@swc/core": "1.5.7"
     }
