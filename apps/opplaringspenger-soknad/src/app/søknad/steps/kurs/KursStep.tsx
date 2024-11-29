@@ -138,7 +138,7 @@ const KursStep = () => {
                                     <FormikInputGroup
                                         id="kursperioder"
                                         legend="Kursperioder"
-                                        hideLegend={false}
+                                        hideLegend={true}
                                         name={KursFormFields.kursperioder}
                                         errorPropagation={false}
                                         validate={(perioder: KursperiodeFormValues[]) => {
