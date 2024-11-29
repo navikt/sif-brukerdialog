@@ -23,8 +23,8 @@ const nb = {
     'steg.kurs.validation.kursperioder.listIsEmpty': 'Du må legge til minst én kursperiode.',
     'steg.kurs.validation.arbeiderIKursperiode.yesOrNoIsUnanswered':
         'Du må svare på om du jobber noe på de dagene du er på er på kurs, eller reiser til og fra kurs.',
-    'steg.kurs.harFerieIPerioden.label': 'Skal du ha ferie i løpet av søknadsperioden?',
-    'steg.kurs.validation.harFerieIPerioden.yesOrNoIsUnanswered':
+    'steg.kurs.skalTaUtFerieIPerioden.label': 'Skal du ha ferie i løpet av søknadsperioden?',
+    'steg.kurs.validation.skalTaUtFerieIPerioden.yesOrNoIsUnanswered':
         'Du må svare på om du skal ha ferie i søknadsperioden.',
     'steg.kurs.ferie.addLabel': 'Legg til ferie',
     'steg.kurs.ferie.modalTitle': 'Legg til ferie',

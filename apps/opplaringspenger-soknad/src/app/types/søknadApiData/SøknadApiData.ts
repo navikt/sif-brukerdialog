@@ -107,6 +107,11 @@ export interface UtenlandsoppholdIPeriodenApi {
     opphold: UtenlandsoppholdIPeriodenApiData[];
 }
 
+export interface FerieuttakIPeriodenApiData {
+    skalTaUtFerieIPerioden: boolean;
+    ferieuttak: PeriodeApiData[];
+}
+
 export interface UtenlandskNæringApi {
     næringstype: UtenlandskNæringstype;
     navnPåVirksomheten: string;
@@ -143,5 +148,6 @@ export interface SøknadApiData {
     utenlandskNæring: UtenlandskNæringApi[];
     vedlegg: string[];
     utenlandsoppholdIPerioden: UtenlandsoppholdIPeriodenApi;
+    ferieuttakIPerioden: FerieuttakIPeriodenApiData;
     dataBruktTilUtledningAnnetData: DataBruktTilUtledningAnnetDataJsonString;
 }

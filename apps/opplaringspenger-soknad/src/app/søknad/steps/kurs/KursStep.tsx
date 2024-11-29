@@ -27,7 +27,7 @@ export enum KursFormFields {
     opplæringsinstitusjon = 'opplæringsinstitusjon',
     kursperioder = 'kursperioder',
     arbeiderIKursperiode = 'arbeiderIKursperiode',
-    harFerieIPerioden = 'harFerieIPerioden',
+    skalTaUtFerieIPerioden = 'skalTaUtFerieIPerioden',
     ferieuttak = 'ferieuttak',
 }
 
@@ -35,7 +35,7 @@ export interface KursFormValues {
     [KursFormFields.opplæringsinstitusjon]?: string;
     [KursFormFields.kursperioder]: Partial<KursperiodeFormValues>[];
     [KursFormFields.arbeiderIKursperiode]?: YesOrNo;
-    [KursFormFields.harFerieIPerioden]?: YesOrNo;
+    [KursFormFields.skalTaUtFerieIPerioden]?: YesOrNo;
     [KursFormFields.ferieuttak]?: Ferieuttak[];
 }
 
@@ -132,12 +132,12 @@ const KursStep = () => {
                                     />
 
                                     <YesOrNoQuestion
-                                        name={KursFormFields.harFerieIPerioden}
-                                        legend={text('steg.kurs.harFerieIPerioden.label')}
+                                        name={KursFormFields.skalTaUtFerieIPerioden}
+                                        legend={text('steg.kurs.skalTaUtFerieIPerioden.label')}
                                         validate={getYesOrNoValidator()}
                                     />
 
-                                    {values[KursFormFields.harFerieIPerioden] === YesOrNo.YES && (
+                                    {values[KursFormFields.skalTaUtFerieIPerioden] === YesOrNo.YES && (
                                         <FormLayout.QuestionBleedTop>
                                             <FormLayout.Panel>
                                                 <FerieuttakListAndDialog

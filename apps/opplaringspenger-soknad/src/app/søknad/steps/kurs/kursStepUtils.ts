@@ -11,6 +11,7 @@ import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesO
 import { Kursperiode } from '../../../types/Kursperiode';
 import kursperiodeUtils from './kursperiodeUtils';
 import { KursperiodeFormValues } from './kursperioder-form-part/KursperiodeQuestions';
+import { FerieuttakIPeriodenSøknadsdata } from '../../../types/søknadsdata/FerieuttakIPeriodenSøknadsdata';
 
 dayjs.extend(isoWeek);
 
@@ -56,7 +57,7 @@ export const getKursSøknadsdataFromFormValues = ({
     arbeiderIKursperiode,
     kursperioder: kursperioderValues,
     ferieuttak,
-    harFerieIPerioden,
+    skalTaUtFerieIPerioden,
 }: KursFormValues): KursSøknadsdata | undefined => {
     if (!opplæringsinstitusjon || !kursperioderValues || !arbeiderIKursperiode) {
         throw 'Opplæringsinstitusjon eller kursperioder er ikke definert';
@@ -78,8 +79,7 @@ export const getKursSøknadsdataFromFormValues = ({
         kursholder: opplæringsinstitusjon,
         kursperioder: kursperioder.sort(sortKursperiode),
         arbeiderIKursperiode: arbeiderIKursperiode === YesOrNo.YES,
-        harFerieIPerioden: harFerieIPerioden === YesOrNo.YES,
-        ferieuttak: harFerieIPerioden === YesOrNo.YES ? ferieuttak : undefined,
+        ferieuttakIPerioden: extractFerieuttakIPeriodenSøknadsdata({ skalTaUtFerieIPerioden, ferieuttak }),
     };
 };
 
@@ -100,8 +100,11 @@ export const getKursStepInitialValues = (søknadsdata: Søknadsdata, formValues?
             opplæringsinstitusjon: kurs.kursholder,
             kursperioder: kurs.kursperioder.map((periode) => kursperiodeUtils.mapKursperiodeToFormValues(periode)),
             arbeiderIKursperiode: getYesOrNoFromBoolean(kurs.arbeiderIKursperiode),
-            harFerieIPerioden: getYesOrNoFromBoolean(kurs.harFerieIPerioden),
-            ferieuttak: kurs.ferieuttak,
+            skalTaUtFerieIPerioden: getYesOrNoFromBoolean(kurs.ferieuttakIPerioden?.skalTaUtFerieIPerioden),
+            ferieuttak:
+                kurs.ferieuttakIPerioden?.type === 'skalTaUtFerieSøknadsdata'
+                    ? kurs.ferieuttakIPerioden.ferieuttak
+                    : undefined,
         };
     }
 
@@ -126,4 +129,26 @@ export const getPerioderISøknadsperiodeHvorInstitusjonIkkeErGyldig = (
         ...gyldigePerioder,
         periodeEtterSøknadsperiode,
     ]);
+};
+
+export const extractFerieuttakIPeriodenSøknadsdata = ({
+    skalTaUtFerieIPerioden,
+    ferieuttak,
+}: Partial<KursFormValues>): FerieuttakIPeriodenSøknadsdata | undefined => {
+    if (skalTaUtFerieIPerioden && skalTaUtFerieIPerioden === YesOrNo.YES && ferieuttak) {
+        return {
+            type: 'skalTaUtFerieSøknadsdata',
+            skalTaUtFerieIPerioden: true,
+            ferieuttak: ferieuttak,
+        };
+    }
+
+    if (skalTaUtFerieIPerioden && skalTaUtFerieIPerioden === YesOrNo.NO) {
+        return {
+            type: 'skalIkkeTaUtFerieSøknadsdata',
+            skalTaUtFerieIPerioden: false,
+        };
+    }
+
+    return undefined;
 };

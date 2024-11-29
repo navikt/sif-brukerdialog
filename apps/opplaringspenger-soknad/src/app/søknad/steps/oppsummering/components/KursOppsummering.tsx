@@ -1,16 +1,23 @@
 import { Box, FormSummary, List, VStack } from '@navikt/ds-react';
 import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
 import { AppText, useAppIntl } from '../../../../i18n';
-import { KursApiData } from '../../../../types/søknadApiData/SøknadApiData';
-import { dateFormatter, dateRangeFormatter, ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils';
+import { FerieuttakIPeriodenApiData, KursApiData } from '../../../../types/søknadApiData/SøknadApiData';
+import {
+    dateFormatter,
+    dateRangeFormatter,
+    ISODateRangeToDateRange,
+    ISODateToDate,
+    prettifyDateExtended,
+} from '@navikt/sif-common-utils';
 import { Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 
 interface Props {
     kurs: KursApiData;
+    ferieuttakIPerioden: FerieuttakIPeriodenApiData;
     onEdit?: () => void;
 }
 
-const KursOppsummering = ({ onEdit, kurs }: Props) => {
+const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden }: Props) => {
     const { kursholder, perioder } = kurs;
     const { locale } = useAppIntl();
     return (
@@ -94,6 +101,36 @@ const KursOppsummering = ({ onEdit, kurs }: Props) => {
                             </List>
                         </FormSummary.Value>
                     </FormSummary.Answer>
+                    {ferieuttakIPerioden && (
+                        <>
+                            <FormSummary.Answer>
+                                <FormSummary.Label>
+                                    <AppText id="oppsummering.kurs.ferieuttakIPerioden.header" />
+                                </FormSummary.Label>
+                                <FormSummary.Value>
+                                    <AppText id={ferieuttakIPerioden.skalTaUtFerieIPerioden ? 'Ja' : 'Nei'} />
+                                </FormSummary.Value>
+                            </FormSummary.Answer>
+
+                            {ferieuttakIPerioden.ferieuttak.length > 0 && (
+                                <FormSummary.Answer>
+                                    <FormSummary.Label>
+                                        <AppText id="oppsummering.kurs.ferieuttakIPerioden.listTitle" />
+                                    </FormSummary.Label>
+                                    <FormSummary.Value>
+                                        <List>
+                                            {ferieuttakIPerioden.ferieuttak.map((ferieuttak) => (
+                                                <List.Item key={ferieuttak.fraOgMed}>
+                                                    {prettifyDateExtended(ISODateToDate(ferieuttak.fraOgMed))} -{' '}
+                                                    {prettifyDateExtended(ISODateToDate(ferieuttak.tilOgMed))}
+                                                </List.Item>
+                                            ))}
+                                        </List>
+                                    </FormSummary.Value>
+                                </FormSummary.Answer>
+                            )}
+                        </>
+                    )}
                 </FormSummary.Answers>
             </FormSummary>
         </>

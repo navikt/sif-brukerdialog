@@ -67,7 +67,6 @@ export const søknadContextMock: SøknadContextState = {
             kursholder: 'annen',
             kursperioder,
             arbeiderIKursperiode: true,
-            harFerieIPerioden: false,
         },
         arbeidssituasjon: {
             arbeidsgivere: {

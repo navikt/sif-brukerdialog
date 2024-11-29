@@ -28,6 +28,9 @@ const nb = {
     'oppsummering.kurs.kursperiode.avreise': 'Avreise til opplæringstedet: {dato}',
     'oppsummering.kurs.kursperiode.hjemkomst': 'Hjemkomst fra opplæringstedet: {dato}',
 
+    'oppsummering.kurs.ferieuttakIPerioden.header': 'Skal du ta ut ferie i perioden?',
+    'oppsummering.kurs.ferieuttakIPerioden.listTitle': 'Ferie i perioden',
+
     'oppsummering.arbeidssituasjon.arbeidsgiver.ansatt': 'Er ansatt i perioden',
     'oppsummering.arbeidssituasjon.avsluttet.arbeidsgiver.ansatt': 'Er ikke lenger ansatt',
     'oppsummering.arbeidssituasjon.tid': 'Jobber normalt {timer, plural, one {# time} other {# timer}} per uke',

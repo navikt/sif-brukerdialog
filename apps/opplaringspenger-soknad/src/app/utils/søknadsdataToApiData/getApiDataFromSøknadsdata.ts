@@ -13,6 +13,7 @@ import { DataBruktTilUtledning } from '../../types/DataBruktTilUtledning';
 import { getOmBarnetApiDataFromSøknadsdata } from './getOmBarnetApiDataFromSøknadsdata';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
+import { getFerieuttakIPeriodenApiDataFromSøknadsdata } from './getFerieuttakIPeriodenApiDataFromSøknadsdata';
 
 export const getFlereSokereApiData = (flereSokereSvar: YesOrNoDontKnow): FlereSokereApiData => {
     switch (flereSokereSvar) {
@@ -26,9 +27,8 @@ export const getFlereSokereApiData = (flereSokereSvar: YesOrNoDontKnow): FlereSo
 };
 
 export const getDataBruktTilUtledningApiData = (kurs: KursSøknadsdata): DataBruktTilUtledning => {
-    const { søknadsdatoer } = kurs;
     return {
-        kursdager: søknadsdatoer.map((dato) => dateToISODate(dato)),
+        arbeiderIKursperiode: kurs.arbeiderIKursperiode,
     };
 };
 
@@ -64,6 +64,7 @@ export const getApiDataFromSøknadsdata = (
         fraOgMed: dateToISODate(søknadsperiode.from),
         tilOgMed: dateToISODate(søknadsperiode.to),
         kurs: getKursApiDataFromSøknadsdata(kurs),
+        ferieuttakIPerioden: getFerieuttakIPeriodenApiDataFromSøknadsdata(kurs.ferieuttakIPerioden),
         utenlandsoppholdIPerioden: { skalOppholdeSegIUtlandetIPerioden: false, opphold: [] },
         arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(
             søknadsperiode,
