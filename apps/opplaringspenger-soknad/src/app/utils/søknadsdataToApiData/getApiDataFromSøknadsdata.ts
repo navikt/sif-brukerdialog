@@ -65,7 +65,7 @@ export const getApiDataFromSøknadsdata = (
         tilOgMed: dateToISODate(søknadsperiode.to),
         kurs: getKursApiDataFromSøknadsdata(kurs),
         ferieuttakIPerioden: getFerieuttakIPeriodenApiDataFromSøknadsdata(kurs.ferieuttakIPerioden),
-        utenlandsoppholdIPerioden: { skalOppholdeSegIUtlandetIPerioden: false, opphold: [] },
+        // utenlandsoppholdIPerioden: { skalOppholdeSegIUtlandetIPerioden: false, opphold: [] },
         arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(
             søknadsperiode,
             valgteDatoer,

@@ -147,7 +147,7 @@ export interface SøknadApiData {
     opptjeningIUtlandet: OpptjeningIUtlandetApi[];
     utenlandskNæring: UtenlandskNæringApi[];
     vedlegg: string[];
-    utenlandsoppholdIPerioden: UtenlandsoppholdIPeriodenApi;
+    // utenlandsoppholdIPerioden: UtenlandsoppholdIPeriodenApi;
     ferieuttakIPerioden: FerieuttakIPeriodenApiData;
     dataBruktTilUtledningAnnetData: DataBruktTilUtledningAnnetDataJsonString;
 }
