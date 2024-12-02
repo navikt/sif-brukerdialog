@@ -6,10 +6,18 @@ import Checklist from '@navikt/sif-common-core-ds/src/components/lists/checklist
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { AppText, useAppIntl } from '../../i18n';
 import getLenker from '../../lenker';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
+import actionsCreator from '../../søknad/context/action/actionCreator';
 
 const KvitteringPage = () => {
     const { locale } = useIntl();
     const { text } = useAppIntl();
+    const { dispatch } = useSøknadContext();
+
+    useEffectOnce(() => {
+        dispatch(actionsCreator.setSøknadSendt());
+    });
 
     return (
         <Page title={text('page.kvittering.sidetittel')}>
