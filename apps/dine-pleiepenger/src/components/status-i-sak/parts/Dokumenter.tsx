@@ -11,12 +11,12 @@ interface Props {
 
 const mapDokumenter = (dokument: Dokument) => {
     return (
-        <List.Item key={dokument.dokumentInfoId}>
+        <li key={dokument.dokumentInfoId}>
             <PdfLenke
                 href={`${getDokumentFrontendUrl(dokument.url)}?dokumentTittel=${getSøknadDokumentFilnavn(dokument)}`}
                 tittel={dokument.tittel}
             />
-        </List.Item>
+        </li>
     );
 };
 

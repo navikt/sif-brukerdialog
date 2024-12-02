@@ -1,4 +1,4 @@
-import { BodyShort, Box, HStack, Heading, VStack } from '@navikt/ds-react';
+import { BodyShort, HStack, Heading, VStack } from '@navikt/ds-react';
 import PleiepengerSVG from '../../../svg/pleiepenger';
 import Head from 'next/head';
 
@@ -23,24 +23,26 @@ const PageHeader: React.FunctionComponent<Props> = ({
                 </Head>
             ) : null}
             <div className="text-left">
-                <Heading size="large" level="1">
-                    <HStack gap={'6'} align={'center'}>
-                        <div className="hidden md:block">
-                            <PleiepengerSVG />
-                        </div>
-                        <VStack gap="2">
-                            {titleTag ? (
-                                <HStack align={'center'}>
-                                    <Box className="text-deepblue-800 mr-4">{title}</Box>
-                                    <BodyShort as="div">{titleTag}</BodyShort>
-                                </HStack>
-                            ) : (
-                                <Box className="text-deepblue-800">{title}</Box>
-                            )}
-                            {byline}
-                        </VStack>
-                    </HStack>
-                </Heading>
+                <HStack gap="6" align="center">
+                    <div className="hidden md:block">
+                        <PleiepengerSVG />
+                    </div>
+                    <VStack gap="2">
+                        {titleTag ? (
+                            <HStack align="center">
+                                <Heading size="large" level="1" className="text-deepblue-800 mr-4">
+                                    {title}
+                                </Heading>
+                                <BodyShort as="div">{titleTag}</BodyShort>
+                            </HStack>
+                        ) : (
+                            <Heading size="large" level="1" className="text-deepblue-800">
+                                {title}
+                            </Heading>
+                        )}
+                        {byline}
+                    </VStack>
+                </HStack>
             </div>
         </div>
     );
