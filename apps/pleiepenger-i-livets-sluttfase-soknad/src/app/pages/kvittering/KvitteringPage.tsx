@@ -6,6 +6,9 @@ import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import getLenker from '../../lenker';
 import { KvitteringInfo } from '../../types/KvitteringInfo';
 import { AppText, useAppIntl } from '../../i18n';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
+import actionsCreator from '../../søknad/context/action/actionCreator';
 
 interface Props {
     kvitteringInfo?: KvitteringInfo;
@@ -13,6 +16,11 @@ interface Props {
 
 const KvitteringPage = ({ kvitteringInfo }: Props) => {
     const { text, intl } = useAppIntl();
+    const { dispatch } = useSøknadContext();
+
+    useEffectOnce(() => {
+        dispatch(actionsCreator.setSøknadSendt());
+    });
 
     return (
         <Page title={text('page.kvittering.sidetittel')}>
