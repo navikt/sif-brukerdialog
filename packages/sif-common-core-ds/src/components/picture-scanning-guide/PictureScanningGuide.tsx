@@ -106,7 +106,7 @@ const PictureScanningGuide = ({ headingLevel = '2' }: Props) => {
                             </div>
                             <Link target="_blank" href={text('@core.psg.lenkepanel.url')}>
                                 <CoreText id="@core.psg.lenkepanel.text" />
-                                <ExternalLink />
+                                <ExternalLink role="presentation" aria-hidden={true} />
                             </Link>
                         </div>
                     </VStack>
