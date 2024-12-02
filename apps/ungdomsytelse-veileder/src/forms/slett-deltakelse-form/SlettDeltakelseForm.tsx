@@ -20,6 +20,7 @@ const SlettDeltakelseForm = ({ deltakelse, onDeltakelseSlettet }: Props) => {
                     Slett deltakerperiode
                 </Heading>
 
+                <BodyShort>Frem til deltaker har søkt, kan du slette denne deltakerperioden.</BodyShort>
                 <BodyShort>
                     Nulla ullamcorper sed eros quis dictum. Aenean pharetra lorem risus, et tincidunt nisl porttitor
                     vel. Curabitur vitae accumsan est, eget rutrum ante. Proin vulputate erat et lorem tincidunt

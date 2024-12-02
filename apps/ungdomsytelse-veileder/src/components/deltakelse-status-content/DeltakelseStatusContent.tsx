@@ -1,7 +1,6 @@
 import { Box, Heading, List, Tag, VStack } from '@navikt/ds-react';
 import { Deltakelse, Deltaker } from '../../api/types';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import DeltakelseStatusTag from '../deltakelse-status-tag/DeltakelseStatusTag';
 
 interface Props {
     deltaker: Deltaker;
@@ -29,9 +28,9 @@ const DeltakelseStatusContent = ({ deltakelse }: Props) => {
                         </Box>
                     </VStack>
                 </List.Item>
-                <List.Item title="Status">
+                {/* <List.Item title="Status">
                     <DeltakelseStatusTag deltakelse={deltakelse} />
-                </List.Item>
+                </List.Item> */}
                 <List.Item title="Startdato">{dateFormatter.compact(deltakelse.fraOgMed)}</List.Item>
                 <List.Item title="Sluttdato">
                     {deltakelse.tilOgMed ? dateFormatter.compact(deltakelse.tilOgMed) : '-'}

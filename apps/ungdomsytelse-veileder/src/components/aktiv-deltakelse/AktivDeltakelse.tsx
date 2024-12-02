@@ -3,10 +3,8 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import { Deltakelse, Deltaker } from '../../api/types';
 import AvsluttDeltakelseForm from '../../forms/avslutt-deltakelse-form/AvsluttDeltakelseForm';
 import DeltakelseStatusContent from '../deltakelse-status-content/DeltakelseStatusContent';
-import DeltakelseStatusTag from '../deltakelse-status-tag/DeltakelseStatusTag';
 import EndreDeltakelseForm from '../../forms/endre-deltakelse-form/EndreDeltakelseForm';
 import SlettDeltakelseForm from '../../forms/slett-deltakelse-form/SlettDeltakelseForm';
-import DeltakelseDeltakerInfo from '../deltakelse-deltaker-info/DeltakelseDeltakerInfo';
 
 interface Props {
     deltaker: Deltaker;
@@ -25,7 +23,6 @@ const AktivDeltakelse = ({ deltaker, deltakelse, alleDeltakelser, onChange }: Pr
                                 Deltakerperiode
                             </Heading>
                             <HStack gap="2">
-                                <DeltakelseStatusTag deltakelse={deltakelse} />
                                 {deltakelse.harSøkt === false ? (
                                     <Tag variant="warning-moderate" size="small">
                                         Ikke søkt for
@@ -46,19 +43,13 @@ const AktivDeltakelse = ({ deltaker, deltakelse, alleDeltakelser, onChange }: Pr
                 <Tabs defaultValue="status">
                     <Tabs.List>
                         <Tabs.Tab value="status" label="Status" />
-                        <Tabs.Tab value="deltaker" label="Informasjon fra deltaker" />
                         <Tabs.Tab value="endre" label="Endre periode" />
                         <Tabs.Tab value="avslutt" label="Avslutt periode" />
-                        <Tabs.Tab value="slett" label="Slett periode" />
+                        {deltakelse.harSøkt === false ? <Tabs.Tab value="slett" label="Slett periode" /> : null}
                     </Tabs.List>
                     <Tabs.Panel value="status">
                         <Box padding="5" paddingBlock="8 8">
                             <DeltakelseStatusContent deltakelse={deltakelse} deltaker={deltaker} />
-                        </Box>
-                    </Tabs.Panel>
-                    <Tabs.Panel value="deltaker">
-                        <Box padding="5" paddingBlock="8 8">
-                            <DeltakelseDeltakerInfo deltakelse={deltakelse} deltaker={deltaker} />
                         </Box>
                     </Tabs.Panel>
                     <Tabs.Panel value="endre">
