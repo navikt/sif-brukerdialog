@@ -25,13 +25,13 @@ const KvitteringPage = ({ kvitteringInfo }: Props) => {
     return (
         <Page title={text('page.kvittering.sidetittel')}>
             <div data-testid="kvittering-page">
-                <HStack justify="center" marginBlock="0 8" role="presentation" aria-hidden="true">
+                <HStack justify="center" gap="8" marginBlock="0 8" role="presentation" aria-hidden="true">
                     <CheckmarkIcon />
+                    <Heading level="1" size="large">
+                        <AppText id="page.kvittering.tittel" />
+                    </Heading>
                 </HStack>
 
-                <Heading level="1" size="large">
-                    <AppText id="page.kvittering.tittel" />
-                </Heading>
                 <Block margin="xl">
                     <Heading size="medium" level="2">
                         <AppText id="page.kvittering.info.tittel" />
