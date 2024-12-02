@@ -17,6 +17,7 @@ const SakPageHeader: React.FunctionComponent<Props> = ({ tittel, titleTag, saksn
     return (
         <PageHeader
             documentTitle={tittel || text('sakPageHeader.defaultTittel')}
+            title={tittel || text('sakPageHeader.defaultTittel')}
             titleTag={titleTag}
             byline={
                 <BodyShort as="div">
