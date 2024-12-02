@@ -38,7 +38,7 @@
     },
     "devDependencies": {
         "@eslint/eslintrc": "3.2.0",
-        "@eslint/js": "9.15.0",
+        "@eslint/js": "9.16.0",
         "@navikt/nav-dekoratoren-moduler": "2.1.6",
         "@types/node": "22.10.1",
         "@types/react": "18.3.12",
