@@ -20,8 +20,10 @@ interface Props {
     onCancel: () => void;
 }
 
-const maxDate = dayjs().add(1, 'month').endOf('month').toDate();
-const minDate = dayjs().subtract(3, 'months').startOf('month').toDate();
+const maxDate = dayjs().add(2, 'years').endOf('month').toDate();
+const minDate = dayjs().subtract(2, 'years').startOf('month').toDate();
+// const maxDate = dayjs().add(1, 'month').endOf('month').toDate();
+// const minDate = dayjs().subtract(3, 'months').startOf('month').toDate();
 
 interface FormValues {
     startDato: string;
