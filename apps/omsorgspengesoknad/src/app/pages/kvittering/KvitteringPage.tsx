@@ -1,4 +1,4 @@
-import { Heading, Link } from '@navikt/ds-react';
+import { Heading, HStack, Link } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import CheckmarkIcon from '@navikt/sif-common-core-ds/src/atoms/checkmark-icon/CheckmarkIcon';
@@ -22,9 +22,9 @@ const KvitteringPage = () => {
     return (
         <Page title={text('page.kvittering.sidetittel')}>
             <div>
-                <div role="presentation" aria-hidden="true" style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                <HStack justify="center" marginBlock="0 8" role="presentation" aria-hidden="true">
                     <CheckmarkIcon />
-                </div>
+                </HStack>
 
                 <Heading level="1" size="large">
                     <AppText id="page.kvittering.tittel" />

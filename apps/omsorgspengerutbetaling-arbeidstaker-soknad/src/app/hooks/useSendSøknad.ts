@@ -36,7 +36,6 @@ export const useSendSøknad = () => {
         mellomlagringService.purge();
         setIsSubmitting(false);
         dispatch(actionsCreator.setSøknadKvitteringInfo(arbeidsgivere));
-        dispatch(actionsCreator.setSøknadSendt());
         navigateTo(SøknadRoutes.SØKNAD_SENDT);
     };
 
