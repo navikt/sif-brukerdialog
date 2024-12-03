@@ -69,9 +69,7 @@ const StatusISak: React.FunctionComponent<Props> = ({ sak, visAlleHendelser, tit
                                 key={idx}
                                 completed={step.completed}
                                 current={step.current}
-                                aria-labelledby={headingId}
                                 isLastStep={step.isLastStep}
-                                headingId={headingId}
                                 isContinuation={finnnesFlereHendelser && idx === 0}>
                                 <Heading size="small" level="3" id={headingId} aria-hidden={true}>
                                     {step.title}{' '}
