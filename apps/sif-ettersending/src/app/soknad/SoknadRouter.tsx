@@ -23,10 +23,9 @@ interface Props {
     barn?: RegistrertBarn[];
     søknadstype: Søknadstype;
     soknadId?: string;
-    onKvitteringUnmount?: () => void;
 }
 
-const SoknadRouter = ({ søker, barn, søknadstype, soknadId, onKvitteringUnmount }: Props) => {
+const SoknadRouter = ({ søker, barn, søknadstype, soknadId }: Props) => {
     const intl = useIntl();
     const { values } = useFormikContext<SoknadFormData>();
     const { soknadStepsConfig } = useSoknadContext();
@@ -88,16 +87,9 @@ const SoknadRouter = ({ søker, barn, søknadstype, soknadId, onKvitteringUnmoun
                     />
                 </>
             )}
-
             <Route
                 path={APPLICATION_SENDT_PAGE}
-                element={
-                    <KvitteringPage
-                        søknadstype={søknadstype}
-                        dokumenttype={dokumenttype}
-                        onUnmount={onKvitteringUnmount}
-                    />
-                }
+                element={<KvitteringPage søknadstype={søknadstype} dokumenttype={dokumenttype} />}
             />
             <Route path="*" element={soknadId === undefined ? <Navigate replace={true} to="velkommen" /> : undefined} />
         </Routes>

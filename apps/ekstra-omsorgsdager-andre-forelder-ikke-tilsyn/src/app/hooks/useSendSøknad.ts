@@ -5,14 +5,11 @@ import { OmsorgsdagerAnnenForelderIkkeTilsynApp } from '@navikt/sif-app-register
 import { AxiosError } from 'axios';
 import søknadEndpoint from '../api/endpoints/søknadEndpoint';
 import { useMellomlagring } from '../hooks/useMellomlagring';
-import actionsCreator from '../søknad/context/action/actionCreator';
-import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import { useAppIntl } from '../i18n';
 
 export const useSendSøknad = () => {
-    const { dispatch } = useSøknadContext();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [sendSøknadError, setSendSøknadError] = useState<AxiosError | undefined>();
     const { slettMellomlagring } = useMellomlagring();
@@ -36,7 +33,6 @@ export const useSendSøknad = () => {
         await logSoknadSent(OmsorgsdagerAnnenForelderIkkeTilsynApp.key, locale);
         slettMellomlagring();
         setIsSubmitting(false);
-        dispatch(actionsCreator.setSøknadSendt());
         navigateTo(SøknadRoutes.SØKNAD_SENDT);
     };
 

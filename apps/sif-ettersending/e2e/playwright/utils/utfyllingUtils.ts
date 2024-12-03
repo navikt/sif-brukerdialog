@@ -85,12 +85,12 @@ const sendInnDokumenter = async (page: Page) => {
 
 const kontrollerKvittering = async (page: Page) => {
     await page.waitForURL('**/dokumenter-sendt');
-    await expect(page.getByRole('heading', { name: 'Vi har mottatt ettersendingen av dokumenter' })).toBeVisible();
+    await expect(page.getByText('Vi har mottatt ettersendingen av dokumenter')).toBeVisible();
 };
 
 const kontrollerKvitteringLegeerklæring = async (page: Page) => {
     await page.waitForURL('**/dokumenter-sendt');
-    await expect(page.getByRole('heading', { name: 'Vi har mottatt legeerklæring' })).toBeVisible();
+    await expect(page.getByText('Vi har mottatt legeerklæring')).toBeVisible();
 };
 
 export const utfyllingUtils = {
