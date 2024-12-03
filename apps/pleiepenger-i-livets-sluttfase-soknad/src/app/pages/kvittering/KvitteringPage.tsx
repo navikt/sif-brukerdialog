@@ -1,4 +1,4 @@
-import { Heading, Link } from '@navikt/ds-react';
+import { Heading, HStack, Link } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import CheckmarkIcon from '@navikt/sif-common-core-ds/src/atoms/checkmark-icon/CheckmarkIcon';
 import Checklist from '@navikt/sif-common-core-ds/src/components/lists/checklist/Checklist';
@@ -6,6 +6,9 @@ import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import getLenker from '../../lenker';
 import { KvitteringInfo } from '../../types/KvitteringInfo';
 import { AppText, useAppIntl } from '../../i18n';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
+import actionsCreator from '../../søknad/context/action/actionCreator';
 
 interface Props {
     kvitteringInfo?: KvitteringInfo;
@@ -13,17 +16,22 @@ interface Props {
 
 const KvitteringPage = ({ kvitteringInfo }: Props) => {
     const { text, intl } = useAppIntl();
+    const { dispatch } = useSøknadContext();
+
+    useEffectOnce(() => {
+        dispatch(actionsCreator.setSøknadSendt());
+    });
 
     return (
         <Page title={text('page.kvittering.sidetittel')}>
             <div data-testid="kvittering-page">
-                <div role="presentation" aria-hidden="true" style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                <HStack justify="center" gap="8" marginBlock="0 8" role="presentation" aria-hidden="true">
                     <CheckmarkIcon />
-                </div>
+                    <Heading level="1" size="large">
+                        <AppText id="page.kvittering.tittel" />
+                    </Heading>
+                </HStack>
 
-                <Heading level="1" size="large">
-                    <AppText id="page.kvittering.tittel" />
-                </Heading>
                 <Block margin="xl">
                     <Heading size="medium" level="2">
                         <AppText id="page.kvittering.info.tittel" />

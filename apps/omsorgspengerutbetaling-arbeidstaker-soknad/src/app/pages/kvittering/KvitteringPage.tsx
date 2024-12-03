@@ -1,10 +1,13 @@
-import { Alert, Button, Heading, Panel } from '@navikt/ds-react';
+import { Alert, Button, Heading, HStack, Panel } from '@navikt/ds-react';
 import { Søker } from '@navikt/sif-common-api';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import CheckmarkIcon from '@navikt/sif-common-core-ds/src/atoms/checkmark-icon/CheckmarkIcon';
 import Checklist from '@navikt/sif-common-core-ds/src/components/lists/checklist/Checklist';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { AppText, useAppIntl } from '../../i18n';
+import actionsCreator from '../../søknad/context/action/actionCreator';
+import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 import { ArbeidsgiverDetaljer } from '../../types/søknadApiData/SøknadApiData';
 import TilArbeidsgiverDokumentListe from './components/TilArbeidsgiverDokumentListe';
 import './kvitteringPage.css';
@@ -15,13 +18,18 @@ interface Props {
 }
 const KvitteringPage = ({ søker, kvitteringInfo }: Props) => {
     const { text } = useAppIntl();
+    const { dispatch } = useSøknadContext();
+
+    useEffectOnce(() => {
+        dispatch(actionsCreator.setSøknadSendt());
+    });
 
     return (
         <Page title={text('page.confirmation.sidetittel')}>
             <div data-testid="kvittering-page">
-                <div role="presentation" aria-hidden="true" style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                <HStack justify="center" marginBlock="0 8" role="presentation" aria-hidden="true">
                     <CheckmarkIcon />
-                </div>
+                </HStack>
 
                 <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
                     <Heading level="1" size="large">

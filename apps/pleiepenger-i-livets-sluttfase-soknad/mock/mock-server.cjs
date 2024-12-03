@@ -83,7 +83,7 @@ const startExpressServer = () => {
         console.log('[POST] body', body);
         setTimeout(() => {
             res.sendStatus(200);
-        }, 2500);
+        }, 200);
     });
 
     /** --- Vedlegg ---------- */
