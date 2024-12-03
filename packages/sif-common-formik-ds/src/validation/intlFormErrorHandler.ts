@@ -26,7 +26,7 @@ const getFieldErrorHandler =
 
 const getIntlFormErrorHandler = (intl: IntlShape, errorPrefix?: string): CustomFormErrorHandler<ValidationError> => ({
     fieldErrorHandler: getFieldErrorHandler(intl, '.', errorPrefix),
-    isHandledErrorTypeFunc: isIntlErrorObject,
+    isHandledErrorTypeFunc: (error) => isIntlErrorObject(error) || typeof error === 'string',
 });
 
 export const getIntlFormErrorHandler_underscoreKeys = (
