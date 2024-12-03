@@ -10,7 +10,19 @@ export interface IntlErrorObject {
 }
 
 export const isIntlErrorObject = (error: any): error is IntlErrorObject => {
-    return typeof error === 'object' && typeof error.key === 'string';
+    if (typeof error !== 'object' || error === null) {
+        return false;
+    }
+    if (typeof error.key !== 'string') {
+        return false;
+    }
+    if (error.values !== undefined && typeof error.values !== 'object') {
+        return false;
+    }
+    if (error.keepKeyUnaltered !== undefined && typeof error.keepKeyUnaltered !== 'boolean') {
+        return false;
+    }
+    return true;
 };
 
 export type ValidationError = string | IntlErrorObject;
