@@ -1,5 +1,4 @@
 import { BodyLong, Heading, Link, VStack } from '@navikt/ds-react';
-import { useEffect } from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { AppText, useAppIntl } from '../../i18n';
@@ -12,19 +11,10 @@ import CheckmarkIcon from '@navikt/sif-common-core-ds/src/atoms/checkmark-icon/C
 interface Props {
     søknadstype: Søknadstype;
     dokumenttype?: DokumentType;
-    onUnmount?: () => void;
 }
 
-const KvitteringPage = ({ søknadstype, dokumenttype, onUnmount }: Props) => {
+const KvitteringPage = ({ søknadstype, dokumenttype }: Props) => {
     const { text } = useAppIntl();
-
-    useEffect(() => {
-        return () => {
-            if (onUnmount) {
-                onUnmount();
-            }
-        };
-    }, [onUnmount]);
 
     const erLegeerklæringPSB =
         søknadstype === Søknadstype.pleiepengerSyktBarn && dokumenttype === DokumentType.legeerklæring;

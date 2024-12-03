@@ -30,6 +30,7 @@ import soknadTempStorage, { isStorageDataValid } from './soknadTempStorage';
 import { getSokerId } from '../api/getSoker';
 import { YtelseKey } from '../types/Ytelser';
 import { useAppIntl } from '../i18n';
+import useResetSøknadAfterDokumenterSendt from '../hooks/useResetSøknadAfterDokumenterSendt';
 
 interface Props {
     søker: Person;
@@ -77,6 +78,12 @@ const Soknad = ({ søker, barn, søknadstype, soknadTempStorage: tempStorage }: 
     const { locale } = useAppIntl();
     const { logSoknadSent, logSoknadStartet, logSoknadFailed, logHendelse, logUserLoggedOut, logInfo } =
         useAmplitudeInstance();
+
+    useResetSøknadAfterDokumenterSendt(async () => {
+        setInitializing(true);
+        setSoknadId(undefined);
+        navigateToWelcomePage(søknadstype);
+    });
 
     useEffectOnce(() => {
         if (tempStorage && isStorageDataValid(tempStorage, { søker })) {
@@ -203,11 +210,11 @@ const Soknad = ({ søker, barn, søknadstype, soknadTempStorage: tempStorage }: 
         });
     };
 
-    const handleOnKvitteringUnmount = async () => {
-        setInitializing(true);
-        setSoknadId(undefined);
-        navigateToWelcomePage(søknadstype);
-    };
+    // const handleOnResetAfterDokumenterSendt = async () => {
+    //     setInitializing(true);
+    //     setSoknadId(undefined);
+    //     navigateToWelcomePage(søknadstype);
+    // };
 
     if (initializing) {
         return <LoadingPage />;
@@ -266,15 +273,7 @@ const Soknad = ({ søker, barn, søknadstype, soknadTempStorage: tempStorage }: 
                                 navigateToNextStepFromStep(stepID);
                             },
                         }}>
-                        <SoknadRouter
-                            søker={søker}
-                            barn={barn}
-                            søknadstype={søknadstype}
-                            soknadId={soknadId}
-                            onKvitteringUnmount={() => {
-                                handleOnKvitteringUnmount();
-                            }}
-                        />
+                        <SoknadRouter søker={søker} barn={barn} søknadstype={søknadstype} soknadId={soknadId} />
                     </SoknadContextProvider>
                 );
             }}
