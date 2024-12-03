@@ -11,7 +11,7 @@ export const getErrorPropForFormikInput = ({
     error: FormError;
     field: FieldInputProps<any>;
     form: FormikProps<any>;
-    context?: TypedFormikFormContextType | undefined;
+    context?: TypedFormikFormContextType;
 }): FormError | undefined => {
     if (error) {
         return error;
