@@ -13,7 +13,19 @@ export const getErrorPropForFormikInput = ({
     form: FormikProps<any>;
     context?: TypedFormikFormContextType;
 }): FormError | undefined => {
-    return error || (context ? context.getAndRenderFieldErrorMessage(field, form) : undefined);
+    if (error) {
+        return error;
+    }
+    if (context) {
+        if (
+            context.isHandledErrorTypeChecker &&
+            !context.isHandledErrorTypeChecker(getErrorForField(field.name, form.errors))
+        ) {
+            return undefined;
+        }
+        return context.getAndRenderFieldErrorMessage(field, form);
+    }
+    return undefined;
 };
 
 export const getErrorForField = <FormValues>(
