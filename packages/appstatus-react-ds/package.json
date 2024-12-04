@@ -10,7 +10,7 @@
     "dependencies": {
         "@navikt/sif-common-hooks": "*",
         "@portabletext/react": "3.1.0",
-        "@sanity/client": "6.22.5"
+        "@sanity/client": "6.24.1"
     },
     "devDependencies": {
         "@navikt/ds-css": "7.6.0",
@@ -26,7 +26,7 @@
         "react": "18.3.1",
         "react-dom": "18.3.1",
         "rimraf": "6.0.1",
-        "sass": "1.81.0"
+        "sass": "1.82.0"
     },
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",

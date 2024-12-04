@@ -35,7 +35,7 @@
         "react-dom": "18.3.1",
         "react-fast-compare": "3.2.2",
         "react-intl": "7.0.1",
-        "react-router-dom": "7.0.1"
+        "react-router-dom": "7.0.2"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.1",
@@ -64,11 +64,11 @@
         "axe-core": "4.10.2",
         "babel-polyfill": "6.26.0",
         "busboy": "1.6.0",
-        "chromatic": "11.19.0",
+        "chromatic": "11.20.0",
         "compression": "1.7.5",
         "cors": "2.8.5",
         "cross-env": "7.0.3",
-        "dotenv": "16.4.5",
+        "dotenv": "16.4.7",
         "express": "4.21.1",
         "helmet": "8.0.0",
         "http-proxy-middleware": "3.0.3",
@@ -76,11 +76,11 @@
         "playwright-core": "1.49.0",
         "postcss": "8.4.49",
         "storybook": "8.4.6",
-        "tailwindcss": "3.4.15",
+        "tailwindcss": "3.4.16",
         "typescript": "5.7.2",
-        "vite": "6.0.1",
+        "vite": "6.0.2",
         "vite-plugin-checker": "0.8.0",
-        "vitest": "2.1.6"
+        "vitest": "2.1.8"
     },
     "scripts": {
         "build-storybook": "storybook build",
