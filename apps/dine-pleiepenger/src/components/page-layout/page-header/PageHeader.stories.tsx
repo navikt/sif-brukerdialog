@@ -19,7 +19,7 @@ type Story = StoryObj<typeof PageHeader>;
 
 export const Default: Story = {
     args: {
-        title: 'Tittel på side',
+        documentTitle: 'Tittel på side',
         titleTag: <StatusTag status={Behandlingsstatus.AVSLUTTET} />,
     },
 };

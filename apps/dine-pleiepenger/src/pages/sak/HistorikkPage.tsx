@@ -1,4 +1,4 @@
-import { Box, Link, VStack } from '@navikt/ds-react';
+import { Box, Heading, Link, VStack } from '@navikt/ds-react';
 import React from 'react';
 import { ChevronLeftIcon } from '@navikt/aksel-icons';
 import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
@@ -48,6 +48,9 @@ const HistorikkPage: React.FunctionComponent<Props> = ({ sak, harFlereSaker, ple
             <VStack gap="12">
                 <Box className="md:flex md:gap-6 mb-10">
                     <div className="md:grow mb-10 md:mb-0">
+                        <Heading level="2" size="medium" className="mb-2">
+                            Historikk
+                        </Heading>
                         <StatusISak sak={sak} visAlleHendelser={true} />
                         <Box className="ml-4 mt-4">
                             <Link as={NextLink} href={`/sak/${sak.saksnummer}`}>
