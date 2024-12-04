@@ -5,7 +5,7 @@ on:
         branches-ignore:
             - 'main'
         paths:
-            - 'apps/opplaringspenger/**/*'
+            - 'apps/opplaringspenger-soknad/**/*'
             - 'nais-config/**/*'
             - 'packages/**/*'
             - .github/workflows/test.opplæringpenger-soknad.yml
@@ -14,7 +14,7 @@ on:
     workflow_call:
 
 env:
-    APP_NAME: 'opplaringspenger'
+    APP_NAME: 'opplaringspenger-soknad'
 
 jobs:
     run-script-tests:
@@ -43,7 +43,7 @@ jobs:
               run: yarn
 
             - name: Run code tests
-              run: yarn test --filter=@navikt/opplaringspenger
+              run: yarn test --filter=@navikt/opplaringspenger-soknad
 
     run-playwright-test:
         if: "!contains(github.event.head_commit.message, '[ci skip]')"
@@ -75,7 +75,7 @@ jobs:
               run: npx playwright install chromium
 
             - name: Build application
-              run: yarn build --filter=@navikt/opplaringspenger
+              run: yarn build --filter=@navikt/opplaringspenger-soknad
 
             - name: Run tests
-              run: yarn turbo playwright-test --filter=@navikt/opplaringspenger
+              run: yarn turbo playwright-test --filter=@navikt/opplaringspenger-soknad
