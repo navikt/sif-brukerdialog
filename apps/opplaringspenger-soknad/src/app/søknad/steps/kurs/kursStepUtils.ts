@@ -170,9 +170,9 @@ export const getSøknadsperiodeFromKursperioderFormValues = (
         })
         .filter((p) => p && p.periode.from && p.periode.to) as Kursperiode[];
 
-    if (kursperioder.length <= 2) {
-        return undefined;
-    }
+    // if (kursperioder.length <= 2) {
+    //     return undefined;
+    // }
     return INKLUDER_REISEDAGER_I_PERIODE
         ? dateRangeUtils.getDateRangeFromDateRanges(kursperioder.map((p) => p.periode))
         : dateRangeUtils.getDateRangeFromDateRanges(kursperioder.map((p) => p.periodeMedReise));
