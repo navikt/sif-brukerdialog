@@ -45,7 +45,7 @@ export const mellomlagringMock = {
                     harTaptArbeidstid: true,
                     avreise: '2024-12-02T00:00:00.000Z',
                     hjemkomst: '2024-12-09T00:00:00.000Z',
-                    beskrivelseReisetid: 'En forklaring',
+                    beskrivelseReisetid: 'kombinerer med ferie',
                 },
             ],
             arbeiderIKursperiode: true,

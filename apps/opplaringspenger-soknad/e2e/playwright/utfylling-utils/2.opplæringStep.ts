@@ -69,7 +69,7 @@ export const kontrollerOpplæringOppsummering = async (page: Page) => {
     await expect(page.getByText('Er borte fra jobb på grunn av reise til eller fra opplæringstedet: Ja')).toBeVisible();
     await expect(page.getByText('Avreise: 02.12.2024')).toBeVisible();
     await expect(page.getByText('Hjemkomst: 09.12.2024')).toBeVisible();
-    await expect(page.getByText('Beskrivelse av reisetid:En')).toBeVisible();
+    await expect(page.getByText('Beskrivelse av reisetid:kombinerer med ferie')).toBeVisible();
     await expect(page.getByText('Skal du ta ut ferie i perioden?Ja')).toBeVisible();
     await expect(page.getByText('Ferie i perioden04.12.2024 - 05.12.2024')).toBeVisible();
 };

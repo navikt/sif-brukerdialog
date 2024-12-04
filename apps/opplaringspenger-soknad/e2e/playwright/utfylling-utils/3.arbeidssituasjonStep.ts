@@ -47,7 +47,7 @@ export const kontrollerArbeidssituasjonOppsummering = async (page: Page) => {
         page.getByText('Arbeids- og velferdsetaten (organisasjonsnummer 123451234) Er ansatt i'),
     ).toBeVisible();
     await expect(page.getByText('Jobber normalt 20 timer per')).toBeVisible();
-    await expect(page.getByText('FrilanserStartet som frilanser 02.12.2022')).toBeVisible();
+    await expect(page.getByText('FrilanserStartet som frilanser 06.12.2022')).toBeVisible();
     // await expect(page.).toBeVisible();
     // await expect(page.).toBeVisible();
     // await expect(page.).toBeVisible();
