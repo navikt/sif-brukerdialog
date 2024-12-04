@@ -79,7 +79,7 @@ export const mellomlagringMock = {
                 type: 'pågående',
                 erFrilanser: true,
                 jobberFortsattSomFrilans: true,
-                startdato: '2022-12-02',
+                startdato: '2021-12-06',
                 jobberNormaltTimer: 10,
             },
             selvstendig: {
