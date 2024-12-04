@@ -16,5 +16,5 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('Fyll ut arbeidstid steg', async ({ page }) => {
-    fyllUtArbeidstid(page);
+    await fyllUtArbeidstid(page);
 });

@@ -16,5 +16,5 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('Fyll ut dokumentasjon', async ({ page }) => {
-    fyllUtDokumentasjon(page);
+    await fyllUtDokumentasjon(page);
 });
