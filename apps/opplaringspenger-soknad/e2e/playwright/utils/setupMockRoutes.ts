@@ -1,6 +1,7 @@
 import { Page } from '@playwright/test';
 import { StepId } from '../../../src/app/types/StepId';
 import { playwrightApiMockData } from '../mock-data/playwrightApiMockData';
+import { barnMock } from '../mock-data/barnMock';
 
 export const setupMockRoutes = async (page: Page, props?: { mellomlagring: any; lastStep?: StepId }) => {
     await page.route('**hotjar**', async (route) => {
@@ -11,6 +12,9 @@ export const setupMockRoutes = async (page: Page, props?: { mellomlagring: any; 
     });
     await page.route('https://login.ekstern.dev.nav.no/**', async (route) => {
         await route.fulfill({ status: 200 });
+    });
+    await page.route('**/oppslag/barn**', async (route) => {
+        await route.fulfill({ status: 200, body: JSON.stringify(barnMock) });
     });
     await page.route('https://www.nav.no/person/nav-dekoratoren-api/auth', async (route) => {
         await route.fulfill({ status: 200 });
