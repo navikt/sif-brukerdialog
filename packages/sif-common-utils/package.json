@@ -28,7 +28,7 @@
         "react-dom": "18.3.1",
         "react-intl": "7.0.1",
         "typescript": "5.7.2",
-        "vitest": "2.1.6"
+        "vitest": "2.1.8"
     },
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
