@@ -1,24 +1,6 @@
-import { test, expect, Page } from '@playwright/test';
-import { mellomlagringMock } from '../mock-data/mellomlagringMock';
-import { setNow } from '../utils/setNow';
-import { setupMockRoutes } from '../utils/setupMockRoutes';
-import { routeUtils } from '../utils/routeUtils';
-import { SøknadRoutes } from '../../../src/app/types/SøknadRoutes';
+import { expect, Page } from '@playwright/test';
 
-test.beforeEach(async ({ page }) => {
-    await setNow(page);
-    await setupMockRoutes(page, {
-        mellomlagring: mellomlagringMock,
-    });
-    await routeUtils.resumeFromRoute(page, SøknadRoutes.ARBEIDSSITUASJON);
-    await expect(page.getByRole('heading', { name: 'Arbeidssituasjon' })).toBeVisible();
-});
-
-test('Fyll ut arbeidssituasjon steg', async ({ page }) => {
-    await fyllUtArbeidssituasjonStep(page);
-});
-
-const fyllUtArbeidssituasjonStep = async (page: Page) => {
+export const fyllUtArbeidssituasjonStep = async (page: Page) => {
     await expect(page.getByRole('heading', { level: 1, name: 'Arbeidssituasjon' })).toBeVisible();
     await page
         .getByRole('group', {
@@ -32,7 +14,15 @@ const fyllUtArbeidssituasjonStep = async (page: Page) => {
     await page
         .getByLabel('Hvor mange timer jobber du normalt per uke hos Arbeids- og velferdsetaten når du ikke har fravær?')
         .fill('37,5');
-    await page.getByRole('group', { name: 'Er du frilanser i perioden du søker for?' }).getByLabel('Nei').check();
+    await page.getByRole('group', { name: 'Er du frilanser i perioden du' }).getByLabel('Ja').check();
+    await page.getByRole('button', { name: 'Åpne datovelger' }).click();
+    await page.getByLabel('År', { exact: true }).selectOption('2021');
+    await page.getByLabel('mandag 6').click();
+    await page.getByRole('group', { name: 'Jobber du fortsatt som' }).getByLabel('Ja').check();
+    await page.getByLabel('Hvor mange timer jobber du normalt per uke som frilanser når du ikke har fravær?').click();
+    await page
+        .getByLabel('Hvor mange timer jobber du normalt per uke som frilanser når du ikke har fravær?')
+        .fill('20');
     await page
         .getByRole('group', { name: 'Er du selvstendig næringsdrivende i perioden du søker for?' })
         .getByLabel('Nei')
@@ -49,5 +39,5 @@ const fyllUtArbeidssituasjonStep = async (page: Page) => {
         })
         .getByLabel('Nei')
         .check();
-    await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
+    await page.getByTestId('typedFormikForm-submitButton').click();
 };

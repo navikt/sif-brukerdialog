@@ -38,7 +38,7 @@ export const setupMockRoutes = async (page: Page, props?: { mellomlagring: any; 
     await page.route('**/oppslag/arbeidsgiver**', async (route) => {
         await route.fulfill({ status: 200, body: JSON.stringify(playwrightApiMockData.arbeidsgiverMock) });
     });
-    await page.route('**/vedlegg', async (route) => {
+    await page.route('**/vedlegg/*', async (route) => {
         await route.fulfill({
             status: 200,
             headers: { Location: '/vedlegg', 'access-control-expose-headers': 'Location' },

@@ -1,11 +1,11 @@
 import { test, expect } from '@playwright/test';
-import { StepId } from '../../../src/app/types/StepId';
-import { mellomlagringMock } from '../mock-data/mellomlagringMock';
-import { fyllUtBarnStep } from '../utfylling-utils/barnStep';
-import { setNow } from '../utils/setNow';
-import { setupMockRoutes } from '../utils/setupMockRoutes';
-import { routeUtils } from '../utils/routeUtils';
-import { SøknadRoutes } from '../../../src/app/types/SøknadRoutes';
+import { StepId } from '../../../../src/app/types/StepId';
+import { mellomlagringMock } from '../../mock-data/mellomlagringMock';
+import { fyllUtBarnStep } from '../../utfylling-utils/1.barnStep';
+import { setNow } from '../../utils/setNow';
+import { setupMockRoutes } from '../../utils/setupMockRoutes';
+import { routeUtils } from '../../utils/routeUtils';
+import { SøknadRoutes } from '../../../../src/app/types/SøknadRoutes';
 
 test.beforeEach(async ({ page }) => {
     await setNow(page);
