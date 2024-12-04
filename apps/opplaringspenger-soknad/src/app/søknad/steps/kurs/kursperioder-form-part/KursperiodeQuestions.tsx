@@ -12,7 +12,7 @@ import { getTillattSøknadsperiode } from '../../../../utils/søknadsperiodeUtil
 import { useFormikContext } from 'formik';
 import { KursFormFields } from '../KursStep';
 import { Delete } from '@navikt/ds-icons';
-import kursperiodeUtils from '../kursperiodeUtils';
+import kursperiodeUtils, { getPerioderFromKursperiodeFormValue } from '../kursperiodeUtils';
 import { handleDateRangeValidationError } from '@navikt/sif-common-forms-ds/src/utils';
 import { FormLayout } from '@navikt/sif-common-ui';
 
@@ -39,13 +39,14 @@ interface Props {
     values: Partial<KursperiodeFormValues>;
     index: number;
     harFlerePerioder?: boolean;
+    allePerioder: Partial<KursperiodeFormValues>[];
     onRemove?: () => void;
 }
 
 const getValidationErrorKey = (field: KursperiodeFormFields, error: string) => {
     return `kursperiode.form.${field}.validation.${error}`;
 };
-const KursperiodeQuestions = ({ values, index, harFlerePerioder, onRemove }: Props) => {
+const KursperiodeQuestions = ({ values, index, harFlerePerioder, allePerioder, onRemove }: Props) => {
     const { text } = useAppIntl();
     const gyldigSøknadsperiode = getTillattSøknadsperiode();
     const { validateField } = useFormikContext<KursperiodeFormValues>();
@@ -54,10 +55,12 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, onRemove }: Pro
 
     const getFieldName = (field: KursperiodeFormFields) =>
         `${KursFormFields.kursperioder}.${index}.${field}` as KursperiodeFormFields;
-    // const disabledDateRanges =
-    //     kursperiode === undefined
-    //         ? alleKursperioder.map((k) => k.periode)
-    //         : alleKursperioder.filter((t) => t.id !== kursperiode.id).map((k) => k.periode);
+
+    const disabledDateRanges = allePerioder
+        .filter((p) => p !== values)
+        .map(getPerioderFromKursperiodeFormValue)
+        .filter((p) => p !== undefined)
+        .map((periode) => periode.periodeMedReise);
 
     const startdato = ISOStringToDate(values[KursperiodeFormFields.fom]);
     const sluttdato = ISOStringToDate(values[KursperiodeFormFields.tom]);
@@ -73,7 +76,7 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, onRemove }: Pro
                 maxDate={maxDate}
                 fieldFromDate={startdato}
                 fieldToDate={sluttdato}
-                // disabledDateRanges={disabledDateRanges}
+                disabledDateRanges={disabledDateRanges}
                 fromInputProps={{
                     label: text('kursperiode.form.fom.label'),
                     name: getFieldName(KursperiodeFormFields.fom),

@@ -154,26 +154,29 @@ export const extractFerieuttakIPeriodenSøknadsdata = ({
     return undefined;
 };
 
-export const getSøknadsperiodeFromKursperioderFormValues = (
+export const getDateRangesFromKursperiodeFormValues = (
     kursperioderValues?: Partial<KursperiodeFormValues>[],
-): DateRange | undefined => {
+): DateRange[] => {
     if (!kursperioderValues) {
-        return undefined;
+        return [];
     }
-    const kursperioder = kursperioderValues
+    return kursperioderValues
         .map((periode, index) => {
             try {
-                return kursperiodeUtils.mapFormValuesToKursperiode(periode as KursperiodeFormValues, `${index}`);
+                const kursperiode = kursperiodeUtils.mapFormValuesToKursperiode(
+                    periode as KursperiodeFormValues,
+                    `${index}`,
+                );
+                return INKLUDER_REISEDAGER_I_PERIODE ? kursperiode.periodeMedReise : kursperiode.periode;
             } catch {
                 return undefined;
             }
         })
-        .filter((p) => p && p.periode.from && p.periode.to) as Kursperiode[];
+        .filter((p) => p && p.from && p.to) as DateRange[];
+};
 
-    // if (kursperioder.length <= 2) {
-    //     return undefined;
-    // }
-    return INKLUDER_REISEDAGER_I_PERIODE
-        ? dateRangeUtils.getDateRangeFromDateRanges(kursperioder.map((p) => p.periode))
-        : dateRangeUtils.getDateRangeFromDateRanges(kursperioder.map((p) => p.periodeMedReise));
+export const getSøknadsperiodeFromKursperioderFormValues = (
+    kursperioderValues?: Partial<KursperiodeFormValues>[],
+): DateRange | undefined => {
+    return dateRangeUtils.getDateRangeFromDateRanges(getDateRangesFromKursperiodeFormValues(kursperioderValues));
 };

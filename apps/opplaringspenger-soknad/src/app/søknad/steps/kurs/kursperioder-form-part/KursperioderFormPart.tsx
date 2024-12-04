@@ -10,6 +10,7 @@ const KursperioderFormPart = () => {
     const { values, validateForm } = useFormikContext<KursFormValues>();
     const { kursperioder } = values;
     const harFlerePerioder = kursperioder && kursperioder.length > 1;
+
     return (
         <VStack gap="4">
             <Heading level="2" size="small">
@@ -25,6 +26,7 @@ const KursperioderFormPart = () => {
                                     <FormLayout.Panel key={index}>
                                         <VStack gap="4">
                                             <KursperiodeQuestions
+                                                allePerioder={kursperioder}
                                                 values={kursperiode || {}}
                                                 index={index}
                                                 harFlerePerioder={harFlerePerioder}

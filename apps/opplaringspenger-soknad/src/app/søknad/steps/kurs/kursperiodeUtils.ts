@@ -8,16 +8,22 @@ const isValidKursperiode = (kursperiode: Partial<Kursperiode>): kursperiode is K
     return kursperiode.periode?.from !== undefined && kursperiode.periode.to !== undefined;
 };
 
-const mapFormValuesToKursperiode = (formValues: KursperiodeFormValues, id: string | undefined): Kursperiode => {
+export const getPerioderFromKursperiodeFormValue = (
+    formValues: Partial<KursperiodeFormValues>,
+):
+    | {
+          periode: DateRange;
+          periodeMedReise: DateRange;
+      }
+    | undefined => {
     const from = ISOStringToDate(formValues.fom);
     const to = ISOStringToDate(formValues.tom);
     const avreise = ISOStringToDate(formValues.avreise);
     const hjemkomst = ISOStringToDate(formValues.hjemkomst);
 
     if (!from || !to) {
-        throw new Error('Kan ikke mappe form values til kursperiode: Fom og tom må være satt');
+        return undefined;
     }
-
     const periode: DateRange = {
         from,
         to,
@@ -25,10 +31,22 @@ const mapFormValuesToKursperiode = (formValues: KursperiodeFormValues, id: strin
     const periodeMedReise: DateRange =
         avreise || hjemkomst
             ? {
-                  from: dayjs.min(dayjs(from), dayjs(avreise)).toDate(),
-                  to: dayjs.max(dayjs(to), dayjs(hjemkomst)).toDate(),
+                  from: avreise ? dayjs.min(dayjs(from), dayjs(avreise)).toDate() : from,
+                  to: hjemkomst ? dayjs.max(dayjs(to), dayjs(hjemkomst)).toDate() : to,
               }
             : periode;
+
+    return { periode, periodeMedReise };
+};
+
+const mapFormValuesToKursperiode = (formValues: KursperiodeFormValues, id: string | undefined): Kursperiode => {
+    const perioder = getPerioderFromKursperiodeFormValue(formValues);
+
+    if (!perioder) {
+        throw new Error('Kan ikke mappe form values til kursperiode: Fom og tom må være satt');
+    }
+
+    const { periode, periodeMedReise } = perioder;
 
     const harTaptArbeidstid = formValues.harTaptArbeidstid === YesOrNo.YES;
     return {
@@ -36,8 +54,8 @@ const mapFormValuesToKursperiode = (formValues: KursperiodeFormValues, id: strin
         periode,
         periodeMedReise,
         harTaptArbeidstid,
-        avreise: harTaptArbeidstid ? avreise : undefined,
-        hjemkomst: harTaptArbeidstid ? hjemkomst : undefined,
+        avreise: harTaptArbeidstid ? periodeMedReise.from : undefined,
+        hjemkomst: harTaptArbeidstid ? periodeMedReise.to : undefined,
         beskrivelseReisetid: måBesvareBeskrivelseReisetid(formValues) ? formValues.beskrivelseReisetid : undefined,
     };
 };
