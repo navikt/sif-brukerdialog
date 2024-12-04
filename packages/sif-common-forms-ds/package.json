@@ -60,13 +60,13 @@
         "react-dom": "18.3.1",
         "react-intl": "7.0.1",
         "react-json-view": "1.21.3",
-        "react-router-dom": "7.0.1",
+        "react-router-dom": "7.0.2",
         "rimraf": "6.0.1",
         "storybook": "8.4.6",
         "typescript": "5.7.2",
-        "vite": "6.0.1",
+        "vite": "6.0.2",
         "vite-plugin-checker": "0.8.0",
-        "vitest": "2.1.6"
+        "vitest": "2.1.8"
     },
     "scripts": {
         "build-storybook": "storybook build",

@@ -77,10 +77,10 @@
         "react-dom": "18.3.1",
         "react-intl": "7.0.1",
         "storybook": "8.4.6",
-        "tailwindcss": "3.4.15",
+        "tailwindcss": "3.4.16",
         "typescript": "5.7.2",
         "uuid": "11.0.3",
-        "vitest": "2.1.6"
+        "vitest": "2.1.8"
     },
     "_id": "@navikt/dine-pleiepenger@0.3.1"
 }
