@@ -1,10 +1,10 @@
 const nb = {
     'steg.kurs.counsellorPanel.avsnitt.1':
-        'Her trenger vi informasjon om hvor og når du har vært, eller skal, på opplæring.',
+        'Her trenger vi informasjon om hvor og når du har vært, eller skal, på opplæring. ',
     'steg.kurs.counsellorPanel.avsnitt.2':
         'For å få opplæringspenger må kurset eller opplæringen være ved en godkjent helseinstitusjon eller et offentlig spesialpedagogisk kompetansenter.',
     'steg.kurs.counsellorPanel.avsnitt.3':
-        'Har du hatt tapt arbeidstid på grunn av reise til eller fra opplæringsstedet kan du søke om kompensasjon for dette.',
+        'Du kan få opplæringspenger for perioder du er på opplæring, og eventuell reisetid til og fra opplæringen.',
     'steg.kurs.opplæringsinstitusjon.label': 'Hvor foregår opplæringen?',
     'steg.kurs.opplæringsinstitusjon.description':
         'Skriv inn helseinstitusjon eller kompetansesenter som er ansvarlig for kurs eller opplæring',
@@ -18,14 +18,14 @@ const nb = {
 
     'steg.kurs.arbeiderIKursperiode.label': 'Jobber du noe de dagene du er på opplæring eller reiser?',
     'steg.kurs.validation.opplæringsinstitusjon.stringIsTooShort':
-        'Du må beskrive hvor opplæringer foregår med en lengre.',
+        'Du må beskrive hvor opplæringen foregår med minst 2 tegn.',
     'steg.kurs.validation.opplæringsinstitusjon.stringHasNoValue': 'Du må fylle ut hvor opplæringen foregår.',
     'steg.kurs.validation.kursperioder.listIsEmpty': 'Du må legge til minst én kursperiode.',
     'steg.kurs.validation.kursperioder.kursperioderOverlapper':
         'Noen av periodene du har lagt til overlapper hverandre. Se over fra og til datoene og korriger. Hvis periodene overlapper, må du slå disse periodene sammen til én.',
     'steg.kurs.validation.arbeiderIKursperiode.yesOrNoIsUnanswered':
         'Du må svare på om du jobber noe på de dagene du er på er på kurs, eller reiser til og fra kurs.',
-    'steg.kurs.skalTaUtFerieIPerioden.label': 'Skal du ha ferie i løpet av søknadsperioden?',
+    'steg.kurs.skalTaUtFerieIPerioden.label': 'Skal du ha ferie når du er på opplæring eller reise?',
     'steg.kurs.validation.skalTaUtFerieIPerioden.yesOrNoIsUnanswered':
         'Du må svare på om du skal ha ferie i søknadsperioden.',
     'steg.kurs.ferie.addLabel': 'Legg til ferie',

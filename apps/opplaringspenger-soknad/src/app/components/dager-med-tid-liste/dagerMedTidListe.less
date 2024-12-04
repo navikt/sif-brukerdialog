@@ -1,20 +1,17 @@
 .dagerMedTidListe {
-    ol.dagerMedTidListe__dager {
-        margin: 0;
-        list-style: disc;
-        li > {
-            margin: 0;
-            padding: 0;
-        }
-        li:first-child {
-            border-top: 1px solid rgba(0, 0, 0, 0.15);
+    .dagerMedTidListe__dager {
+        li {
+            border-bottom: 1px dotted var(--a-border-subtle);
+            &:last-child {
+                border-bottom: none;
+            }
         }
     }
+
     &__dag {
         display: flex;
         flex-wrap: wrap;
         padding: 0.5rem 0;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
         &__dato {
             margin-right: 1rem;
             flex: 1 1 8rem;

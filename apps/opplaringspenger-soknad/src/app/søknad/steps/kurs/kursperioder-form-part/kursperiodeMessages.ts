@@ -4,18 +4,17 @@ import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils'
 const nb = {
     'kursperiode.form.periode.label': 'Periode {periodeNr}',
     'kursperiode.form.harTaptArbeidstid.label':
-        'Har du tapt arbeidstid på grunn av reise til eller fra opplæringsstedet?',
+        'Må du være borte fra jobb på grunn av reise til eller fra opplæringstedet?',
     'kursperiode.form.avreise.label': 'Når reiser du til opplæringsstedet?',
     'kursperiode.form.hjemkomst.label': 'Når er du hjemme fra opplæringsstedet?',
-    'kursperiode.form.beskrivelseReisetid.label': 'Årsak for reisetid over en dag',
+    'kursperiode.form.beskrivelseReisetid.label': 'Beskrivelse av reisetid',
     'kursperiode.form.beskrivelseReisetid.description':
-        'Fordi du har oppgitt mer enn én dag med reise, må du beskrive årsaken til dette.',
+        'Du oppgir at du reiser på en annen dag enn når du har opplæring. Beskriv hvorfor du ikke kan reise samme dag som du har opplæring.',
+    'kursperiode.form.beskrivelseReisetid.validation.stringHasNoValue': 'Du må du fylle ut beskrivelse av reisetid.',
     'kursperiode.form.beskrivelseReisetid.validation.stringIsTooShort':
-        'Du må du beskrive årsaken til at reisetiden er over en dag.',
-    'kursperiode.form.beskrivelseReisetid.validation.stringHasNoValue':
-        'Du må du beskrive årsaken til at reisetiden er over en dag.',
+        'For få tegn. Du må du fylle ut beskrivelse av reisetid med minst 5 tegn.',
     'kursperiode.form.beskrivelseReisetid.validation.stringIsTooLong':
-        'For mange tegn. Du kan bruke maks {maxLength} tegn for å beskrive årsaken til at reisetiden er over en dag.',
+        'For mange tegn. Du kan bruke maks {maxLength} tegn for å beskrive reisetid.',
 
     'kursperiode.form.fom.label': 'Fra og med',
     'kursperiode.form.fom.validation.dateHasNoValue':

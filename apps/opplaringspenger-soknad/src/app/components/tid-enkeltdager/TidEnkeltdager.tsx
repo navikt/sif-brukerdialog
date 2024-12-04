@@ -4,9 +4,9 @@ import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { ISODate, ISODateToDate, ISODuration, ISODurationToDuration } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { groupBy } from 'lodash';
+import { AppText } from '../../i18n';
 import { DagMedTid } from '../../types/DagMedTid';
 import DagerMedTidListe from '../dager-med-tid-liste/DagerMedTidListe';
-import { AppText } from '../../i18n';
 
 interface ISODagMedTid {
     dato: ISODate;

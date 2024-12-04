@@ -120,10 +120,11 @@ const KursStep = () => {
                                             label={text('steg.kurs.opplæringsinstitusjon.label')}
                                             name={KursFormFields.opplæringsinstitusjon}
                                             description={text('steg.kurs.opplæringsinstitusjon.description')}
+                                            min={2}
                                             max={50}
                                             validate={getStringValidator({
                                                 required: true,
-                                                minLength: 5,
+                                                minLength: 2,
                                                 maxLength: 50,
                                             })}
                                         />

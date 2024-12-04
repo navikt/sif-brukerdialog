@@ -65,7 +65,6 @@ export const getApiDataFromSøknadsdata = (
         tilOgMed: dateToISODate(søknadsperiode.to),
         kurs: getKursApiDataFromSøknadsdata(kurs),
         ferieuttakIPerioden: getFerieuttakIPeriodenApiDataFromSøknadsdata(kurs.ferieuttakIPerioden),
-        // utenlandsoppholdIPerioden: { skalOppholdeSegIUtlandetIPerioden: false, opphold: [] },
         arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(
             søknadsperiode,
             valgteDatoer,
@@ -73,8 +72,20 @@ export const getApiDataFromSøknadsdata = (
             arbeidsgivere,
             arbeidstid?.arbeidsgivere,
         ),
-        frilans: getFrilansApiDataFromSøknadsdata(frilans),
-        selvstendigNæringsdrivende: getSelvstendigApiDataFromSøknadsdata(selvstendig),
+        frilans: getFrilansApiDataFromSøknadsdata({
+            søknadsperiode,
+            dagerMedOpplæring: valgteDatoer,
+            skalJobbeIPerioden: kurs.arbeiderIKursperiode,
+            frilans,
+            arbeidIPeriode: arbeidstid?.frilans,
+        }),
+        selvstendigNæringsdrivende: getSelvstendigApiDataFromSøknadsdata({
+            søknadsperiode,
+            dagerMedOpplæring: valgteDatoer,
+            skalJobbeIPerioden: kurs.arbeiderIKursperiode,
+            selvstendig,
+            arbeidIperiode: arbeidstid?.selvstendig,
+        }),
         opptjeningIUtlandet: getOpptjeningUtlandApiDataFromSøknadsdata(språk, arbeidssituasjon.opptjeningUtland),
         utenlandskNæring: getUtenlandskNæringApiDataFromSøknadsdata(språk, arbeidssituasjon.utenlandskNæring),
         harVærtEllerErVernepliktig: arbeidssituasjon.vernepliktig

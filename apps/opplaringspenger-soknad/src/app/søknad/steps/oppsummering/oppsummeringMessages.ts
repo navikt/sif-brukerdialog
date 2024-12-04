@@ -17,16 +17,15 @@ const nb = {
     'selvstendigNæringsdrivende.tittel': 'Selvstendig næringsdrivende',
 
     'oppsummering.kurs.header': 'Om opplæringen',
-    'oppsummering.kurs.institusjon':
-        'Helseinstitusjon eller kompetansesenter som er ansvarlig for kurs eller opplæring',
-    'oppsummering.kurs.perioder': '{perioder, plural, one{Periode} other{Perioder}} med opplæring',
+    'oppsummering.kurs.institusjon': 'Hvor foregår opplæringen?',
+    'oppsummering.kurs.perioder': 'Hvilken dager er opplæringen?',
     'oppsummering.kurs.kursperiode.harTaptArbeidsinntekt':
-        'Har tapt arbeidstid på grunn av reise til eller fra opplæringsstedet',
+        'Er borte fra jobb på grunn av reise til eller fra opplæringstedet: Ja',
     'oppsummering.kurs.kursperiode.harIkkeTaptArbeidsinntekt':
-        'Har ikke tapt arbeidstid på grunn av reise til eller fra opplæringsstedet',
-    'oppsummering.kurs.kursperiode.årsakReisetid': 'Årsak til at reisetiden er mer enn én dag:',
-    'oppsummering.kurs.kursperiode.avreise': 'Avreise til opplæringstedet: {dato}',
-    'oppsummering.kurs.kursperiode.hjemkomst': 'Hjemkomst fra opplæringstedet: {dato}',
+        'Er borte fra jobb på grunn av reise til eller fra opplæringstedet: Nei',
+    'oppsummering.kurs.kursperiode.årsakReisetid': 'Beskrivelse av reisetid:',
+    'oppsummering.kurs.kursperiode.avreise': 'Avreise: {dato}',
+    'oppsummering.kurs.kursperiode.hjemkomst': 'Hjemkomst: {dato}',
 
     'oppsummering.kurs.ferieuttakIPerioden.header': 'Skal du ta ut ferie i perioden?',
     'oppsummering.kurs.ferieuttakIPerioden.listTitle': 'Ferie i perioden',
@@ -78,8 +77,7 @@ const nb = {
     'oppsummering.arbeidssituasjon.utenlandskNæring.næringer': 'Næringsvirksomheter i andre EØS-land',
     'oppsummering.arbeidssituasjon.utenlandskNæring.næring': 'Næringsvirksomhet i annet EØS-land',
 
-    'oppsummering.arbeidIPeriode.jobbIPerioden.header': 'Jobb i søknadsperioden',
-    'oppsummering.arbeidIPeriode.jobbIPerioden': 'Jobb i søknadsperioden',
+    'oppsummering.arbeidIPeriode.jobbIPerioden.header': 'Jobb i perioden',
     'oppsummering.arbeidIPeriode.jobberIPerioden.ja': 'jobber',
     'oppsummering.arbeidIPeriode.jobberIPerioden.HELT_FRAVÆR': 'Jeg jobber ikke her de dagene jeg søker for',
     'oppsummering.arbeidIPeriode.jobberIPerioden.REDUSERT': 'Jeg jobber noe de dagene jeg søker for',
@@ -87,8 +85,7 @@ const nb = {
     'oppsummering.arbeidIPeriode.jobberIPerioden.liktHverUke': 'Jeg jobber likt hver uke',
     'oppsummering.arbeidIPeriode.jobberIPerioden.prosent': 'Jeg jobber {prosent} prosent, i snitt {timer} hver ukedag',
     'oppsummering.arbeidIPeriode.jobberIPerioden.informasjonMangler': 'Informasjon om arbeid i perioden mangler',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading':
-        'Dager med opplæringspenger hvor jeg skal jobbe',
+    'oppsummering.arbeidIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading': 'Dager jeg skal jobbe',
 
     'summary.virksomhet.virksomhetInfo.tittel': 'Næringsvirksomhet som du har lagt inn',
 

@@ -90,7 +90,7 @@ const startExpressServer = () => {
         console.log('[POST] body', body);
         setTimeout(() => {
             res.sendStatus(200);
-        }, 2500);
+        }, 200);
     });
 
     /** --- Vedlegg ---------- */
@@ -108,7 +108,7 @@ const startExpressServer = () => {
         req.pipe(busboy);
     });
 
-    server.delete('/vedlegg', (req, res) => {
+    server.delete('/vedlegg/*', (req, res) => {
         res.sendStatus(200);
     });
 

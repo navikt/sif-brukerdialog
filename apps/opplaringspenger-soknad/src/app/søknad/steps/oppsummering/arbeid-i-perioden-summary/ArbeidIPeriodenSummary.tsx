@@ -128,6 +128,7 @@ const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
                                         </FormSummary.Label>
                                         <FormSummary.Value>
                                             <ArbeidIPeriodeSummaryItem
+                                                harFlereArbeidsforhold={aktiveArbeidsforhold.length > 1}
                                                 periode={søknadsperiode}
                                                 valgteDatoer={valgteDatoer}
                                                 arbeidIPeriode={forhold.arbeidIPeriode}

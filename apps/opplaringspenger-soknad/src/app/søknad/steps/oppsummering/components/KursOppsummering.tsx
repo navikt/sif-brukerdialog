@@ -2,13 +2,7 @@ import { Box, FormSummary, List, VStack } from '@navikt/ds-react';
 import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
 import { AppText, useAppIntl } from '../../../../i18n';
 import { FerieuttakIPeriodenApiData, KursApiData } from '../../../../types/søknadApiData/SøknadApiData';
-import {
-    dateFormatter,
-    dateRangeFormatter,
-    ISODateRangeToDateRange,
-    ISODateToDate,
-    prettifyDateExtended,
-} from '@navikt/sif-common-utils';
+import { dateFormatter, dateRangeFormatter, ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils';
 import { Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 
 interface Props {
@@ -121,8 +115,8 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden }: Props) => {
                                         <List>
                                             {ferieuttakIPerioden.ferieuttak.map((ferieuttak) => (
                                                 <List.Item key={ferieuttak.fraOgMed}>
-                                                    {prettifyDateExtended(ISODateToDate(ferieuttak.fraOgMed))} -{' '}
-                                                    {prettifyDateExtended(ISODateToDate(ferieuttak.tilOgMed))}
+                                                    {dateFormatter.compact(ISODateToDate(ferieuttak.fraOgMed))} -{' '}
+                                                    {dateFormatter.compact(ISODateToDate(ferieuttak.tilOgMed))}
                                                 </List.Item>
                                             ))}
                                         </List>

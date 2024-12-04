@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Page } from '@playwright/test';
 import { SøknadRoutes } from '../../../src/app/types/SøknadRoutes';
-import { mellomlagring } from '../mock-data/mellomlagring';
+import { mellomlagringMock } from '../mock-data/mellomlagringMock';
 import { setupMockRoutes } from './setupMockRoutes';
 
 const rootUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/opplaringspenger/';
@@ -16,10 +16,10 @@ const getRouteUrl = (route: SøknadRoutes): string => {
 
 const resumeFromRoute = async (page: Page, route: SøknadRoutes, søknadsdata?: any) => {
     const mellomlagringToUse = {
-        ...mellomlagring,
+        ...mellomlagringMock,
         søknadRoute: route,
         søknadsdata: {
-            ...mellomlagring.søknadsdata,
+            ...mellomlagringMock.søknadsdata,
             ...søknadsdata,
         },
     };
