@@ -178,5 +178,12 @@ export const getDateRangesFromKursperiodeFormValues = (
 export const getSøknadsperiodeFromKursperioderFormValues = (
     kursperioderValues?: Partial<KursperiodeFormValues>[],
 ): DateRange | undefined => {
+    const ranges = getDateRangesFromKursperiodeFormValues(kursperioderValues);
+    if (ranges.length === 0) {
+        return undefined;
+    }
+    if (ranges.length === 1) {
+        return ranges[0];
+    }
     return dateRangeUtils.getDateRangeFromDateRanges(getDateRangesFromKursperiodeFormValues(kursperioderValues));
 };
