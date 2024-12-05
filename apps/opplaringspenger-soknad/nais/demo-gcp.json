@@ -1,5 +1,5 @@
 {
-    "app": "opplaringspenger-soknad",
+    "app": "demo-opplaringspenger-soknad",
     "namespace": "dusseldorf",
     "team": "dusseldorf",
     "livenessPath": "/internal/health/isAlive",
