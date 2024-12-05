@@ -9,13 +9,13 @@
         { "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" },
         { "application": "k9-sak-innsyn-api", "namespace": "dusseldorf" }
     ],
-    "ingresses": ["https://opplaringspenger-soknad.demo.ekstern.dev.nav.no"],
+    "ingresses": ["https://demo.ekstern.dev.nav.no/opplaringspenger-soknad"],
     "cluster": "dev-gcp",
     "minReplicas": 1,
     "maxReplicas": 1,
     "env": {
-        "ENV": "dev",
-        "APP_VERSION": "dev",
+        "ENV": "demo",
+        "APP_VERSION": "demo",
         "NODE_ENV": "development",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/opplaringspenger",
         "NPM_CONFIG_CACHE": "/tmp",
