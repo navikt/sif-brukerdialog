@@ -7,7 +7,7 @@ import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/typ
 import { sortMaybeDateRange } from '@navikt/sif-common-utils';
 import KursperiodeForm from './KursperiodeForm';
 import KursperiodeList from './KursperiodeList';
-import { Kursperiode } from '../../../../types/Kursperiode';
+import { Kursperiode } from './types/Kursperiode';
 
 interface Props<FieldNames> extends TypedFormInputValidationProps<FieldNames, ValidationError> {
     name: FieldNames;

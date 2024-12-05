@@ -20,12 +20,13 @@ import OmBarnetStep from './steps/om-barnet/OmBarnetStep';
 import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
 import { fetchSøkerId } from '@navikt/sif-common-api';
 import { mellomlagringService } from '../api/mellomlagringService';
+import useResetSøknadAfterDokumenterSendt from '../hooks/useResetSøknadAfterDokumenterSendt';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
     const {
         dispatch,
-        state: { søknadSendt, søknadsdata, kvitteringInfo, søker, søknadRoute: stateSøknadRoute },
+        state: { søknadsdata, kvitteringInfo, søker, søknadRoute: stateSøknadRoute },
     } = useSøknadContext();
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
@@ -34,6 +35,7 @@ const SøknadRouter = () => {
 
     usePersistSøknadState();
     useVerifyUserOnWindowFocus(søker.fødselsnummer, fetchSøkerId);
+    useResetSøknadAfterDokumenterSendt(() => restartSøknad());
 
     useEffect(() => {
         if (stateSøknadRoute && isFirstTimeLoadingApp) {
@@ -56,10 +58,6 @@ const SøknadRouter = () => {
             setTimeout(restartSøknad);
         }
     }, [shouldResetSøknad, dispatch, restartSøknad]);
-
-    if (søknadSendt && pathname !== SøknadRoutes.SØKNAD_SENDT && !shouldResetSøknad) {
-        setShouldResetSøknad(true);
-    }
 
     if (søknadsdata.velkommen !== undefined && søknadsdata.velkommen.harForståttRettigheterOgPlikter !== true) {
         setShouldResetSøknad(true);
@@ -84,9 +82,7 @@ const SøknadRouter = () => {
             <Route path={SøknadStepRoutePath[StepId.OPPSUMMERING]} element={<OppsummeringStep />} />
             <Route
                 path={SøknadStepRoutePath[StepId.KVITTERING]}
-                element={
-                    <KvitteringPage kvitteringInfo={kvitteringInfo} onUnmount={() => setShouldResetSøknad(true)} />
-                }
+                element={<KvitteringPage kvitteringInfo={kvitteringInfo} />}
             />
             <Route
                 path="*"

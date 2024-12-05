@@ -1,23 +1,29 @@
 import { DateRange, dateToISOString, ISOStringToDate, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { guid } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
-import { Kursperiode } from '../../../../types/Kursperiode';
-import { KursperiodeFormFields, KursperiodeFormValues } from './KursperiodeForm';
+import { Kursperiode } from '../../../types/Kursperiode';
+import { KursperiodeFormFields, KursperiodeFormValues } from './kursperioder-form-part/KursperiodeQuestions';
 
 const isValidKursperiode = (kursperiode: Partial<Kursperiode>): kursperiode is Kursperiode => {
     return kursperiode.periode?.from !== undefined && kursperiode.periode.to !== undefined;
 };
 
-const mapFormValuesToKursperiode = (formValues: KursperiodeFormValues, id: string | undefined): Kursperiode => {
+export const getPerioderFromKursperiodeFormValue = (
+    formValues: Partial<KursperiodeFormValues>,
+):
+    | {
+          periode: DateRange;
+          periodeMedReise: DateRange;
+      }
+    | undefined => {
     const from = ISOStringToDate(formValues.fom);
     const to = ISOStringToDate(formValues.tom);
     const avreise = ISOStringToDate(formValues.avreise);
     const hjemkomst = ISOStringToDate(formValues.hjemkomst);
 
     if (!from || !to) {
-        throw new Error('Kan ikke mappe form values til kursperiode: Fom og tom må være satt');
+        return undefined;
     }
-
     const periode: DateRange = {
         from,
         to,
@@ -25,42 +31,49 @@ const mapFormValuesToKursperiode = (formValues: KursperiodeFormValues, id: strin
     const periodeMedReise: DateRange =
         avreise || hjemkomst
             ? {
-                  from: dayjs.min(dayjs(from), dayjs(avreise)).toDate(),
-                  to: dayjs.max(dayjs(to), dayjs(hjemkomst)).toDate(),
+                  from: avreise ? dayjs.min(dayjs(from), dayjs(avreise)).toDate() : from,
+                  to: hjemkomst ? dayjs.max(dayjs(to), dayjs(hjemkomst)).toDate() : to,
               }
             : periode;
 
+    return { periode, periodeMedReise };
+};
+
+const mapFormValuesToKursperiode = (formValues: KursperiodeFormValues, id: string | undefined): Kursperiode => {
+    const perioder = getPerioderFromKursperiodeFormValue(formValues);
+
+    if (!perioder) {
+        throw new Error('Kan ikke mappe form values til kursperiode: Fom og tom må være satt');
+    }
+
+    const { periode, periodeMedReise } = perioder;
+
+    const harTaptArbeidstid = formValues.harTaptArbeidstid === YesOrNo.YES;
     return {
         id: id || guid(),
         periode,
         periodeMedReise,
-        avreise,
-        hjemkomst,
-        beskrivelseReisetidTil: måBesvareBeskrivelseReisetidTil(formValues)
-            ? formValues.beskrivelseReisetidTil
-            : undefined,
-        beskrivelseReisetidHjem: måBesvareBeskrivelseReisetidHjem(formValues)
-            ? formValues.beskrivelseReisetidHjem
-            : undefined,
+        harTaptArbeidstid,
+        avreise: harTaptArbeidstid ? periodeMedReise.from : undefined,
+        hjemkomst: harTaptArbeidstid ? periodeMedReise.to : undefined,
+        beskrivelseReisetid: måBesvareBeskrivelseReisetid(formValues) ? formValues.beskrivelseReisetid : undefined,
     };
 };
 
 const mapKursperiodeToFormValues = ({
     periode,
     avreise,
-    beskrivelseReisetidHjem,
-    beskrivelseReisetidTil,
+    harTaptArbeidstid,
+    beskrivelseReisetid,
     hjemkomst,
 }: Partial<Kursperiode>): KursperiodeFormValues => {
     return {
         fom: dateToISOString(periode?.from),
         tom: dateToISOString(periode?.to),
-        avreise: dateToISOString(avreise),
-        hjemkomst: dateToISOString(hjemkomst),
-        avreiseSammeDag: avreise ? YesOrNo.NO : periode ? YesOrNo.YES : YesOrNo.UNANSWERED,
-        hjemkomstSammeDag: hjemkomst ? YesOrNo.NO : periode ? YesOrNo.YES : YesOrNo.UNANSWERED,
-        beskrivelseReisetidHjem,
-        beskrivelseReisetidTil,
+        harTaptArbeidstid: harTaptArbeidstid ? YesOrNo.YES : YesOrNo.NO,
+        avreise: harTaptArbeidstid ? dateToISOString(avreise) : undefined,
+        hjemkomst: harTaptArbeidstid ? dateToISOString(hjemkomst) : undefined,
+        beskrivelseReisetid: harTaptArbeidstid ? beskrivelseReisetid : undefined,
     };
 };
 
@@ -83,12 +96,19 @@ const getDagerMellomSluttdatoOgHjemkomst = ({ hjemkomst, tom }: Partial<Kursperi
 
 const måBesvareBeskrivelseReisetidHjem = (values: Partial<KursperiodeFormValues>): boolean => {
     return (
-        values[KursperiodeFormFields.hjemkomstSammeDag] === YesOrNo.NO && getDagerMellomSluttdatoOgHjemkomst(values) > 1
+        values[KursperiodeFormFields.harTaptArbeidstid] === YesOrNo.YES &&
+        getDagerMellomSluttdatoOgHjemkomst(values) >= 1
     );
 };
 
 const måBesvareBeskrivelseReisetidTil = (values: Partial<KursperiodeFormValues>): boolean => {
-    return values[KursperiodeFormFields.avreiseSammeDag] === YesOrNo.NO && getDagerMellomAvreiseOgStartdato(values) > 1;
+    return (
+        values[KursperiodeFormFields.harTaptArbeidstid] === YesOrNo.YES && getDagerMellomAvreiseOgStartdato(values) >= 1
+    );
+};
+
+const måBesvareBeskrivelseReisetid = (values: Partial<KursperiodeFormValues>): boolean => {
+    return måBesvareBeskrivelseReisetidHjem(values) || måBesvareBeskrivelseReisetidTil(values);
 };
 
 const kursperiodeUtils = {
@@ -99,6 +119,7 @@ const kursperiodeUtils = {
     getDagerMellomSluttdatoOgHjemkomst,
     måBesvareBeskrivelseReisetidHjem,
     måBesvareBeskrivelseReisetidTil,
+    måBesvareBeskrivelseReisetid,
 };
 
 export default kursperiodeUtils;

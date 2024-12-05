@@ -6,7 +6,7 @@ const nb = {
     'steg.oppsummering.søker.navn': 'Navn',
     'steg.oppsummering.søker.fnr': 'Fødselsnummer',
 
-    'steg.oppsummeringkurs.header': 'Om kurs',
+    'steg.oppsummeringkurs.header': 'Om opplæringen',
     'steg.oppsummeringarbeidssituasjon.header': 'Din arbeidssituasjon',
 
     'arbeidsgiver.tittel': '{navn} (organisasjonsnummer {organisasjonsnummer})',
@@ -15,6 +15,20 @@ const nb = {
     'frilans.tittel.slutt': 'Frilanser hos {hvor} (sluttet {sluttdato})',
     'frilans.tittel.startOgSlutt': 'Frilanser hos {hvor} (startet {startdato}, sluttet {sluttdato})',
     'selvstendigNæringsdrivende.tittel': 'Selvstendig næringsdrivende',
+
+    'oppsummering.kurs.header': 'Om opplæringen',
+    'oppsummering.kurs.institusjon': 'Hvor foregår opplæringen?',
+    'oppsummering.kurs.perioder': 'Hvilken dager er opplæringen?',
+    'oppsummering.kurs.kursperiode.harTaptArbeidsinntekt':
+        'Er borte fra jobb på grunn av reise til eller fra opplæringstedet: Ja',
+    'oppsummering.kurs.kursperiode.harIkkeTaptArbeidsinntekt':
+        'Er borte fra jobb på grunn av reise til eller fra opplæringstedet: Nei',
+    'oppsummering.kurs.kursperiode.årsakReisetid': 'Beskrivelse av reisetid:',
+    'oppsummering.kurs.kursperiode.avreise': 'Avreise: {dato}',
+    'oppsummering.kurs.kursperiode.hjemkomst': 'Hjemkomst: {dato}',
+
+    'oppsummering.kurs.ferieuttakIPerioden.header': 'Skal du ta ut ferie i perioden?',
+    'oppsummering.kurs.ferieuttakIPerioden.listTitle': 'Ferie i perioden',
 
     'oppsummering.arbeidssituasjon.arbeidsgiver.ansatt': 'Er ansatt i perioden',
     'oppsummering.arbeidssituasjon.avsluttet.arbeidsgiver.ansatt': 'Er ikke lenger ansatt',
@@ -63,8 +77,7 @@ const nb = {
     'oppsummering.arbeidssituasjon.utenlandskNæring.næringer': 'Næringsvirksomheter i andre EØS-land',
     'oppsummering.arbeidssituasjon.utenlandskNæring.næring': 'Næringsvirksomhet i annet EØS-land',
 
-    'oppsummering.arbeidIPeriode.jobbIPerioden.header': 'Jobb i søknadsperioden',
-    'oppsummering.arbeidIPeriode.jobbIPerioden': 'Jobb i søknadsperioden',
+    'oppsummering.arbeidIPeriode.jobbIPerioden.header': 'Jobb i perioden',
     'oppsummering.arbeidIPeriode.jobberIPerioden.ja': 'jobber',
     'oppsummering.arbeidIPeriode.jobberIPerioden.HELT_FRAVÆR': 'Jeg jobber ikke her de dagene jeg søker for',
     'oppsummering.arbeidIPeriode.jobberIPerioden.REDUSERT': 'Jeg jobber noe de dagene jeg søker for',
@@ -72,8 +85,7 @@ const nb = {
     'oppsummering.arbeidIPeriode.jobberIPerioden.liktHverUke': 'Jeg jobber likt hver uke',
     'oppsummering.arbeidIPeriode.jobberIPerioden.prosent': 'Jeg jobber {prosent} prosent, i snitt {timer} hver ukedag',
     'oppsummering.arbeidIPeriode.jobberIPerioden.informasjonMangler': 'Informasjon om arbeid i perioden mangler',
-    'oppsummering.arbeidIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading':
-        'Dager med opplæringspenger hvor jeg skal jobbe',
+    'oppsummering.arbeidIPeriode.jobberIPerioden.dagerJegSkalJobbe.heading': 'Dager jeg skal jobbe',
 
     'summary.virksomhet.virksomhetInfo.tittel': 'Næringsvirksomhet som du har lagt inn',
 
@@ -91,9 +103,8 @@ const nb = {
     'steg.oppsummering.utlandetNeste12.header': 'Skal du bo i utlandet i de neste 12 månedene?',
     'steg.oppsummering.utlandetSiste12.liste.header': 'Utenlandsopphold siste 12 måneder',
     'steg.oppsummering.utlandetNeste12.liste.header': 'Utenlandsopphold neste 12 måneder',
-    'steg.oppsummering.legeerklæring.header': 'Legeerklæring',
+    'steg.oppsummering.legeerklæring.header': 'Dokumentasjon på nødvendig opplæring',
     'steg.oppsummering.legeerklæring.label': 'Dokumenter som er lastet opp',
-    'steg.oppsummering.samværsavtale.header': 'Avtale om delt bosted',
 
     'steg.oppsummering.fravær.aktivitet.1': 'Fravær som {aktivitet}.',
     'steg.oppsummering.fravær.aktivitet.2': 'Fravær som {aktivitet1} og {aktivitet2}.',

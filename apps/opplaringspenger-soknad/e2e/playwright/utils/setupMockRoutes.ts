@@ -1,22 +1,40 @@
 import { Page } from '@playwright/test';
+import { StepId } from '../../../src/app/types/StepId';
 import { playwrightApiMockData } from '../mock-data/playwrightApiMockData';
+import { barnMock } from '../mock-data/barnMock';
 
-export const setupMockRoutes = async (page: Page, props?: { mellomlagring: any }) => {
+export const setupMockRoutes = async (page: Page, props?: { mellomlagring: any; lastStep?: StepId }) => {
     await page.route('**hotjar**', async (route) => {
         await route.fulfill({ status: 200 });
     });
     await page.route('https://login.nav.no/**', async (route) => {
         await route.fulfill({ status: 200 });
     });
+    await page.route('https://login.ekstern.dev.nav.no/**', async (route) => {
+        await route.fulfill({ status: 200 });
+    });
+    await page.route('**/oppslag/barn**', async (route) => {
+        await route.fulfill({ status: 200, body: JSON.stringify(barnMock) });
+    });
     await page.route('https://www.nav.no/person/nav-dekoratoren-api/auth', async (route) => {
         await route.fulfill({ status: 200 });
     });
     await page.route('**/mellomlagring/OPPLARINGSPENGER', async (route, request) => {
+        let body: any = {};
+
         if (request.method() === 'GET') {
-            await route.fulfill({ status: 200, body: JSON.stringify(props?.mellomlagring || {}) });
+            body = props?.mellomlagring || {};
+            if (props?.lastStep) {
+                body.metadata = {
+                    ...body.metadata,
+                    lastStepID: props.lastStep,
+                };
+            }
+            await route.fulfill({ status: 200, body: JSON.stringify(body) });
             return;
         }
-        await route.fulfill({ status: 200, body: '{}' });
+
+        await route.fulfill({ status: 200 });
     });
     await page.route('**/oppslag/soker', async (route) => {
         await route.fulfill({ status: 200, body: JSON.stringify(playwrightApiMockData.søkerMock) });
@@ -27,7 +45,10 @@ export const setupMockRoutes = async (page: Page, props?: { mellomlagring: any }
     await page.route('**/vedlegg', async (route) => {
         await route.fulfill({
             status: 200,
-            headers: { Location: '/vedlegg', 'access-control-expose-headers': 'Location' },
+            headers: {
+                Location: '/vedlegg/123',
+                'access-control-expose-headers': 'Location',
+            },
         });
     });
     await page.route('**/innsending', async (route) => {

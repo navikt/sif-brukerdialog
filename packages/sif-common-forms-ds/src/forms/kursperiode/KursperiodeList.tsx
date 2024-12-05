@@ -1,8 +1,8 @@
 import ActionLink from '@navikt/sif-common-core-ds/src/atoms/action-link/ActionLink';
 import ItemList from '@navikt/sif-common-core-ds/src/components/lists/item-list/ItemList';
 import { prettifyDateExtended } from '@navikt/sif-common-utils';
-import { Kursperiode } from '../../../../types/Kursperiode';
 import { BodyShort, HStack, VStack } from '@navikt/ds-react';
+import { Kursperiode } from './types/Kursperiode';
 
 interface Props {
     kursperioder: Kursperiode[];

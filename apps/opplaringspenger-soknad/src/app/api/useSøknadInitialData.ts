@@ -2,14 +2,12 @@ import { useEffect, useState } from 'react';
 import { fetchBarn, fetchSøker } from '@navikt/sif-common-api';
 import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { SØKNAD_VERSJON } from '../constants/SØKNAD_VERSJON';
-import { Opplæringsinstitusjon } from '../types/Opplæringsinstitusjon';
 import { RegistrertBarn } from '../types/RegistrertBarn';
 import { RequestStatus } from '../types/RequestStatus';
 import { Søker } from '../types/Søker';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import appSentryLogger from '../utils/appSentryLogger';
-import { opplæringsinstitusjonService } from './opplæringsinstitusjonService';
 import { MellomlagringData, mellomlagringService } from './mellomlagringService';
 
 export type SøknadInitialData = SøknadContextState;
@@ -45,7 +43,6 @@ export const defaultSøknadState: Partial<SøknadContextState> = {
 const getSøknadInitialData = async (
     søker: Søker,
     registrerteBarn: RegistrertBarn[],
-    opplæringsinstitusjoner: Opplæringsinstitusjon[],
     lagretSøknadState: MellomlagringData,
 ): Promise<SøknadInitialData> => {
     const isValid = mellomlagringService.isMellomlagringValid(lagretSøknadState, { søker });
@@ -58,7 +55,6 @@ const getSøknadInitialData = async (
         søknadsdata: {},
         ...lagretSøknadStateToUse,
         søker,
-        opplæringsinstitusjoner,
         registrerteBarn,
     });
 };
@@ -68,15 +64,14 @@ function useSøknadInitialData(): SøknadInitialDataState {
 
     const fetch = async () => {
         try {
-            const [søker, registrerteBarn, opplæringsinstitusjoner, lagretSøknadState] = await Promise.all([
+            const [søker, registrerteBarn, lagretSøknadState] = await Promise.all([
                 fetchSøker(),
                 fetchBarn(),
-                opplæringsinstitusjonService.fetch(),
                 mellomlagringService.fetch(),
             ]);
             setInitialData({
                 status: RequestStatus.success,
-                data: await getSøknadInitialData(søker, registrerteBarn, opplæringsinstitusjoner, lagretSøknadState),
+                data: await getSøknadInitialData(søker, registrerteBarn, lagretSøknadState),
             });
         } catch (error: any) {
             if (isUnauthorized(error)) {

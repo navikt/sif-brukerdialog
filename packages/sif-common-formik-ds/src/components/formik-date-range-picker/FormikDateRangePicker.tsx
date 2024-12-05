@@ -10,11 +10,15 @@ import './dateRangePicker.scss';
 
 interface OwnProps<FieldName, ErrorType> {
     legend: string;
+    hideLegend?: boolean;
     description?: React.ReactNode;
     locale?: string;
     allowRangesToStartAndStopOnSameDate?: boolean;
     fromInputProps: DatePickerBaseProps<FieldName, ErrorType>;
     toInputProps: DatePickerBaseProps<FieldName, ErrorType>;
+    /** Used if field is part of an fieldArray */
+    fieldFromDate?: Date;
+    fieldToDate?: Date;
 }
 
 export type FormikDateRangePickerProps<FieldName, ErrorType> = OwnProps<FieldName, ErrorType> &
@@ -35,13 +39,16 @@ function FormikDateRangePicker<FieldName, ErrorType>({
     allowRangesToStartAndStopOnSameDate,
     useFastField,
     dropdownCaption,
+    hideLegend,
+    fieldFromDate,
+    fieldToDate,
     validate,
     locale,
 }: FormikDateRangePickerProps<FieldName, ErrorType>) {
     const { values } = useFormikContext<any>();
 
-    const fromDate = ISOStringToDate(values[fromInputProps.name]);
-    const toDate = ISOStringToDate(values[toInputProps.name]);
+    const fromDate = fieldFromDate || ISOStringToDate(values[fromInputProps.name]);
+    const toDate = fieldToDate || ISOStringToDate(values[toInputProps.name]);
 
     const { fromDateLimitations, toDateLimitations } = getDateRangePickerLimitations({
         fromDate,
@@ -59,6 +66,7 @@ function FormikDateRangePicker<FieldName, ErrorType>({
         <FormikInputGroup
             name={name}
             legend={legend}
+            hideLegend={hideLegend}
             description={description}
             className="dateRangePicker"
             validate={validate ? (value: any) => validate(value, name) : undefined}>

@@ -6,25 +6,16 @@ import { OmBarnetApiData } from './OmBarnetApiData';
 
 export * from './OmBarnetApiData';
 
-export interface KursholderApiData {
-    id: string;
-    navn: string;
-    erAnnen: false;
-}
-export interface KursholderApiDataAnnen {
-    erAnnen: true;
-}
-
 export interface KursperiodeApiData {
     kursperiode: ISODateRange;
+    harTaptArbeidstid: boolean;
     avreise: ISODate;
     hjemkomst: ISODate;
-    beskrivelseReisetidTil?: string;
-    beskrivelseReisetidHjem?: string;
+    beskrivelseReisetid?: string;
 }
 
 export interface KursApiData {
-    kursholder: KursholderApiData | KursholderApiDataAnnen;
+    kursholder: string;
     perioder: KursperiodeApiData[];
 }
 
@@ -116,6 +107,11 @@ export interface UtenlandsoppholdIPeriodenApi {
     opphold: UtenlandsoppholdIPeriodenApiData[];
 }
 
+export interface FerieuttakIPeriodenApiData {
+    skalTaUtFerieIPerioden: boolean;
+    ferieuttak: PeriodeApiData[];
+}
+
 export interface UtenlandskNæringApi {
     næringstype: UtenlandskNæringstype;
     navnPåVirksomheten: string;
@@ -151,6 +147,7 @@ export interface SøknadApiData {
     opptjeningIUtlandet: OpptjeningIUtlandetApi[];
     utenlandskNæring: UtenlandskNæringApi[];
     vedlegg: string[];
-    utenlandsoppholdIPerioden: UtenlandsoppholdIPeriodenApi;
+    // utenlandsoppholdIPerioden: UtenlandsoppholdIPeriodenApi;
+    ferieuttakIPerioden: FerieuttakIPeriodenApiData;
     dataBruktTilUtledningAnnetData: DataBruktTilUtledningAnnetDataJsonString;
 }

@@ -129,6 +129,7 @@ const OppsummeringStep = () => {
 
                                     <KursOppsummering
                                         kurs={apiData.kurs}
+                                        ferieuttakIPerioden={apiData.ferieuttakIPerioden}
                                         onEdit={() => navigate(stepConfig[StepId.KURS].route)}
                                     />
 

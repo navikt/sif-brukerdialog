@@ -17,6 +17,7 @@ interface Props {
     valgteDatoer: Date[];
     arbeidIPeriode: ArbeidIPeriodeApiData;
     normaltimerUke: number;
+    harFlereArbeidsforhold: boolean;
 }
 
 export interface ArbeidIPeriodenSummaryItemType extends ArbeidsforholdApiData {
@@ -30,22 +31,28 @@ const fjernDagerIkkeSøktForOgUtenArbeidstid = (enkeltdager: TidEnkeltdagApiData
     });
 };
 
-const ArbeidIPeriodeSummaryItem: React.FC<Props> = ({ arbeidIPeriode, valgteDatoer }) => {
+const ArbeidIPeriodeSummaryItem: React.FC<Props> = ({ arbeidIPeriode, valgteDatoer, harFlereArbeidsforhold }) => {
     return (
         <>
-            {(arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.heltFravær ||
-                arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.somVanlig) && (
-                <p style={{ marginTop: 0 }}>
-                    <AppText id={`oppsummering.arbeidIPeriode.jobberIPerioden.${arbeidIPeriode.jobberIPerioden}`} />
-                </p>
+            {harFlereArbeidsforhold && (
+                <>
+                    {(arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.heltFravær ||
+                        arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.somVanlig) && (
+                        <p style={{ marginTop: 0 }}>
+                            <AppText
+                                id={`oppsummering.arbeidIPeriode.jobberIPerioden.${arbeidIPeriode.jobberIPerioden}`}
+                            />
+                        </p>
+                    )}
+                    {arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.redusert && (
+                        <p style={{ marginTop: 0 }}>
+                            <AppText
+                                id={`oppsummering.arbeidIPeriode.jobberIPerioden.${arbeidIPeriode.jobberIPerioden}`}
+                            />
+                        </p>
+                    )}
+                </>
             )}
-
-            {arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.redusert && (
-                <p style={{ marginTop: 0 }}>
-                    <AppText id={`oppsummering.arbeidIPeriode.jobberIPerioden.${arbeidIPeriode.jobberIPerioden}`} />
-                </p>
-            )}
-
             {arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.redusert && arbeidIPeriode.enkeltdager && (
                 <Block margin="xl">
                     <Heading size="xsmall" level="4" spacing={true}>

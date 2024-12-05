@@ -1,17 +1,12 @@
 import { VStack } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
-import {
-    getListValidator,
-    getRequiredFieldValidator,
-    getYesOrNoValidator,
-} from '@navikt/sif-common-formik-ds/src/validation';
+import { FormikInputGroup, getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
+import { getListValidator, getStringValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
-import { Kursperiode } from '../../../types/Kursperiode';
 import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
@@ -20,23 +15,36 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
-import KursperiodeListAndDialog from './kursperiode/KursperiodeListAndDialog';
-import { getKursStepInitialValues, getKursSøknadsdataFromFormValues } from './kursStepUtils';
+import {
+    getKursStepInitialValues,
+    getKursSøknadsdataFromFormValues,
+    getSøknadsperiodeFromKursperioderFormValues,
+} from './kursStepUtils';
 import { getTillattSøknadsperiode } from '../../../utils/søknadsperiodeUtils';
+import KursperioderFormPart from './kursperioder-form-part/KursperioderFormPart';
+import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/FerieuttakListAndDialog';
+import { Ferieuttak } from '@navikt/sif-common-forms-ds/src';
+import { FormLayout } from '@navikt/sif-common-ui';
+import { KursperiodeFormValues } from './kursperioder-form-part/KursperiodeQuestions';
+import { dateRangeUtils, ISODateToDate } from '@navikt/sif-common-utils';
 
 export enum KursFormFields {
-    opplæringsinstitusjonId = 'opplæringsinstitusjonId',
+    opplæringsinstitusjon = 'opplæringsinstitusjon',
     kursperioder = 'kursperioder',
     arbeiderIKursperiode = 'arbeiderIKursperiode',
+    skalTaUtFerieIPerioden = 'skalTaUtFerieIPerioden',
+    ferieuttak = 'ferieuttak',
 }
 
 export interface KursFormValues {
-    [KursFormFields.opplæringsinstitusjonId]?: string;
-    [KursFormFields.kursperioder]?: Kursperiode[];
+    [KursFormFields.opplæringsinstitusjon]?: string;
+    [KursFormFields.kursperioder]: Partial<KursperiodeFormValues>[];
     [KursFormFields.arbeiderIKursperiode]?: YesOrNo;
+    [KursFormFields.skalTaUtFerieIPerioden]?: YesOrNo;
+    [KursFormFields.ferieuttak]?: Ferieuttak[];
 }
 
-const { FormikWrapper, Form, Select, YesOrNoQuestion } = getTypedFormComponents<
+const { FormikWrapper, Form, TextField, YesOrNoQuestion } = getTypedFormComponents<
     KursFormFields,
     KursFormValues,
     ValidationError
@@ -46,7 +54,7 @@ const KursStep = () => {
     const { intl, text } = useAppIntl();
 
     const {
-        state: { søknadsdata, opplæringsinstitusjoner },
+        state: { søknadsdata },
     } = useSøknadContext();
 
     const stepId = StepId.KURS;
@@ -58,7 +66,7 @@ const KursStep = () => {
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const onValidSubmitHandler = (values) => {
-        const kursSøknadsdata = getKursSøknadsdataFromFormValues(values, opplæringsinstitusjoner);
+        const kursSøknadsdata = getKursSøknadsdataFromFormValues(values);
         if (kursSøknadsdata) {
             clearStepFormValues(stepId);
             return [
@@ -82,7 +90,8 @@ const KursStep = () => {
             <FormikWrapper
                 initialValues={getKursStepInitialValues(søknadsdata, stepFormValues[stepId])}
                 onSubmit={handleSubmit}
-                renderForm={() => {
+                renderForm={({ values }) => {
+                    const søknadsperiode = getSøknadsperiodeFromKursperioderFormValues(values.kursperioder);
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -101,50 +110,78 @@ const KursStep = () => {
                                         <p>
                                             <AppText id="steg.kurs.counsellorPanel.avsnitt.2" />
                                         </p>
+                                        <p>
+                                            <AppText id="steg.kurs.counsellorPanel.avsnitt.3" />
+                                        </p>
                                     </SifGuidePanel>
 
                                     <VStack gap={'4'}>
-                                        <Select
-                                            label={text('steg.kurs.opplæringsinstitusjonId.label')}
-                                            name={KursFormFields.opplæringsinstitusjonId}
-                                            validate={getRequiredFieldValidator()}>
-                                            <option value="">
-                                                <AppText id="steg.kurs.opplæringsinstitusjoner.velg" />
-                                            </option>
-                                            <optgroup label={text('steg.kurs.opplæringsinstitusjoner.godkjente.group')}>
-                                                {opplæringsinstitusjoner.map((opplæringsinstitusjon) => (
-                                                    <option
-                                                        value={opplæringsinstitusjon.uuid}
-                                                        key={opplæringsinstitusjon.uuid}>
-                                                        {opplæringsinstitusjon.navn}
-                                                    </option>
-                                                ))}
-                                            </optgroup>
-                                            <optgroup label={text('steg.kurs.opplæringsinstitusjoner.annen.group')}>
-                                                <option value={'annen'}>
-                                                    {text('steg.kurs.opplæringsinstitusjoner.annen.option')}
-                                                </option>
-                                            </optgroup>
-                                        </Select>
+                                        <TextField
+                                            label={text('steg.kurs.opplæringsinstitusjon.label')}
+                                            name={KursFormFields.opplæringsinstitusjon}
+                                            description={text('steg.kurs.opplæringsinstitusjon.description')}
+                                            min={2}
+                                            max={50}
+                                            validate={getStringValidator({
+                                                required: true,
+                                                minLength: 2,
+                                                maxLength: 50,
+                                            })}
+                                        />
                                     </VStack>
 
-                                    <KursperiodeListAndDialog
+                                    <FormikInputGroup
+                                        id="kursperioder"
+                                        legend="Kursperioder"
+                                        hideLegend={true}
                                         name={KursFormFields.kursperioder}
-                                        labels={{
-                                            addLabel: text('steg.kurs.kursperiode.addLabel'),
-                                            modalTitle: text('steg.kurs.kursperiode.modalTitle'),
-                                            listTitle: text('steg.kurs.kursperiode.listTitle'),
-                                        }}
-                                        minDate={gyldigSøknadsperiode.from}
-                                        maxDate={gyldigSøknadsperiode.to}
-                                        validate={getListValidator({ minItems: 1, required: true })}
-                                    />
+                                        errorPropagation={false}
+                                        validate={(perioder: KursperiodeFormValues[]) => {
+                                            const ranges = perioder
+                                                .map((periode) => {
+                                                    const from = ISODateToDate(periode.fom);
+                                                    const to = ISODateToDate(periode.tom);
+                                                    return from && to ? { from, to } : undefined;
+                                                })
+                                                .filter((range) => dateRangeUtils.isDateRange(range));
+                                            return ranges &&
+                                                ranges.length > 1 &&
+                                                dateRangeUtils.dateRangesCollide(ranges)
+                                                ? 'kursperioderOverlapper'
+                                                : undefined;
+                                        }}>
+                                        <KursperioderFormPart />
+                                    </FormikInputGroup>
 
                                     <YesOrNoQuestion
                                         name={KursFormFields.arbeiderIKursperiode}
                                         legend={text('steg.kurs.arbeiderIKursperiode.label')}
                                         validate={getYesOrNoValidator()}
                                     />
+
+                                    <YesOrNoQuestion
+                                        name={KursFormFields.skalTaUtFerieIPerioden}
+                                        legend={text('steg.kurs.skalTaUtFerieIPerioden.label')}
+                                        validate={getYesOrNoValidator()}
+                                    />
+
+                                    {values[KursFormFields.skalTaUtFerieIPerioden] === YesOrNo.YES && (
+                                        <FormLayout.QuestionBleedTop>
+                                            <FormLayout.Panel>
+                                                <FerieuttakListAndDialog
+                                                    labels={{
+                                                        addLabel: text('steg.kurs.ferie.addLabel'),
+                                                        modalTitle: text('steg.kurs.ferie.modalTitle'),
+                                                        listTitle: text('steg.kurs.ferie.listTitle'),
+                                                    }}
+                                                    name={KursFormFields.ferieuttak}
+                                                    minDate={søknadsperiode?.from || gyldigSøknadsperiode.from}
+                                                    maxDate={søknadsperiode?.to || gyldigSøknadsperiode.to}
+                                                    validate={getListValidator({ required: true })}
+                                                />
+                                            </FormLayout.Panel>
+                                        </FormLayout.QuestionBleedTop>
+                                    )}
                                 </VStack>
                             </Form>
                         </>

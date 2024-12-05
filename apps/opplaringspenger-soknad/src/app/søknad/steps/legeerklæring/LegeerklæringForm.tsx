@@ -6,7 +6,7 @@ import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
-import { VStack } from '@navikt/ds-react';
+import { List, VStack } from '@navikt/ds-react';
 
 interface Props {
     values: Partial<LegeerklæringFormValues>;
@@ -38,10 +38,24 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
             submitDisabled={hasPendingUploads}
             runDelayedFormValidation={true}
             onBack={goBack}>
-            <VStack gap="6">
+            <VStack gap="8">
                 <SifGuidePanel>
                     <p>
-                        <AppText id={'steg.legeerklæring.counsellorPanel.info'} />
+                        <AppText id={'steg.legeerklæring.counsellorPanel.info.1'} />
+                    </p>
+                    <p>
+                        <AppText id={'steg.legeerklæring.counsellorPanel.info.2.tittel'} />
+                    </p>
+                    <List>
+                        <List.Item>
+                            <AppText id={'steg.legeerklæring.counsellorPanel.info.2.1'} />
+                        </List.Item>
+                        <List.Item>
+                            <AppText id={'steg.legeerklæring.counsellorPanel.info.2.2'} />
+                        </List.Item>
+                    </List>
+                    <p>
+                        <AppText id={'steg.legeerklæring.counsellorPanel.info.3'} />
                     </p>
                 </SifGuidePanel>
 
@@ -57,7 +71,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                         },
                         andreVedlegg,
                     )}
-                    label={text('steg.legeerklæring.vedlegg.knappLabel')}
+                    label={text('steg.legeerklæring.vedlegg.label')}
                     showPictureScanningGuide={true}
                 />
             </VStack>

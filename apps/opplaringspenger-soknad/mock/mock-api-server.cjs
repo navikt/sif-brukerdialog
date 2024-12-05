@@ -72,7 +72,6 @@ const startExpressServer = () => {
 
     server.get('/oppslag/arbeidsgiver', (req, res) => {
         setTimeout(() => {
-            // res.send({ ...arbeidsgivereMock, ...frilansoppdragMock, privatarbeidsgiver: [] });
             res.send({ ...arbeidsgivereMock, frilansoppdrag: [], privatarbeidsgiver: [] });
         }, 200);
     });
@@ -90,7 +89,7 @@ const startExpressServer = () => {
         console.log('[POST] body', body);
         setTimeout(() => {
             res.sendStatus(200);
-        }, 2500);
+        }, 200);
     });
 
     /** --- Vedlegg ---------- */
@@ -108,7 +107,7 @@ const startExpressServer = () => {
         req.pipe(busboy);
     });
 
-    server.delete('/vedlegg', (req, res) => {
+    server.delete('/vedlegg/*', (req, res) => {
         res.sendStatus(200);
     });
 

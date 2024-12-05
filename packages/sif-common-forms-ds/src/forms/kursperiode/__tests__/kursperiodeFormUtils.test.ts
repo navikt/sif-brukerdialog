@@ -1,4 +1,4 @@
-import kursperiodeUtils from '../kursperiodeUtils';
+import kursperiodeUtils from '../utils/kursperiodeUtils';
 
 describe('kursperiodeUtils', () => {
     describe('getDagerMellomAvreiseOgStartdato', () => {

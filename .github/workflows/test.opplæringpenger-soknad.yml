@@ -1,0 +1,81 @@
+name: test.opplæringspenger-søknad
+
+on:
+    push:
+        branches-ignore:
+            - 'main'
+        paths:
+            - 'apps/opplaringspenger-soknad/**/*'
+            - 'nais-config/**/*'
+            - 'packages/**/*'
+            - .github/workflows/test.opplæringpenger-soknad.yml
+            - yarn.lock
+
+    workflow_call:
+
+env:
+    APP_NAME: 'opplaringspenger-soknad'
+
+jobs:
+    run-script-tests:
+        if: "!contains(github.event.head_commit.message, '[ci skip]')"
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Setup .yarnrc.yml
+              run: |
+                  yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
+                  yarn config set npmScopes.navikt.npmAlwaysAuth true
+                  yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 18
+                  cache: 'yarn'
+            - run: yarn set version 4.x
+
+            - name: Install dependencies (yarn)
+              run: yarn
+
+            - name: Run code tests
+              run: yarn test --filter=@navikt/opplaringspenger-soknad
+
+    run-playwright-test:
+        if: "!contains(github.event.head_commit.message, '[ci skip]')"
+        timeout-minutes: 60
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Setup .yarnrc.yml
+              run: |
+                  yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
+                  yarn config set npmScopes.navikt.npmAlwaysAuth true
+                  yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 18
+                  cache: 'yarn'
+            - run: yarn set version 4.x
+
+            - name: Install dependencies
+              run: yarn
+
+            - name: Install Playwright Browsers
+              run: npx playwright install chromium
+
+            - name: Build application
+              run: yarn build --filter=@navikt/opplaringspenger-soknad
+
+            - name: Run tests
+              run: yarn turbo playwright-test --filter=@navikt/opplaringspenger-soknad

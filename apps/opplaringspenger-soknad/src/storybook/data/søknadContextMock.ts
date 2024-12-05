@@ -49,7 +49,7 @@ export const søknadContextMock: SøknadContextState = {
         mellomnavn: undefined,
         etternavn: 'HOFTE',
     },
-    opplæringsinstitusjoner: [],
+
     registrerteBarn,
     søknadsdata: {
         id: '8525bf3f-ab0a-495e-90bc-759efd2723b9',

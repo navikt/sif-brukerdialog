@@ -5,16 +5,9 @@ import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
 import { getDate1YearAgo, getDate1YearFromNow, getDateToday } from '@navikt/sif-common-utils';
-import { Kursperiode } from '../../../../../types/Kursperiode';
-import KursperiodeListAndDialog from '../KursperiodeListAndDialog';
 import KursperiodeForm from '../KursperiodeForm';
-// import MessagesPreview from '../../../../storybook/components/messages-preview/MessagesPreview';
-// import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
-// import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
-// import TidsperiodeForm, { TidsperiodeFormErrors } from '../TidsperiodeForm';
-// import TidsperiodeListAndDialog from '../TidsperiodeListAndDialog';
-// import { tidsperiodeMessages } from '../tidsperiodeMessages';
-// import { Kursperiode } from '../types';
+import KursperiodeListAndDialog from '../KursperiodeListAndDialog';
+import { Kursperiode } from '../types/Kursperiode';
 
 enum FormField {
     'tidsperiode' = 'tidsperiode',

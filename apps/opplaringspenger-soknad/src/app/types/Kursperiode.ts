@@ -4,8 +4,8 @@ export interface Kursperiode {
     id: string;
     periode: DateRange;
     periodeMedReise: DateRange;
+    harTaptArbeidstid?: boolean;
     avreise?: Date;
     hjemkomst?: Date;
-    beskrivelseReisetidTil?: string;
-    beskrivelseReisetidHjem?: string;
+    beskrivelseReisetid?: string;
 }

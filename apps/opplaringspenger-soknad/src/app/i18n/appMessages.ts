@@ -7,10 +7,10 @@ import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerkl
 import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
 import { kursMessages } from '../søknad/steps/kurs/kursMessages';
 import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
-import { kursperiodeMessages } from '../søknad/steps/kurs/kursperiode';
 import { arbeidstidMessages } from '../søknad/steps/arbeidstid/arbeidstidMessages';
 import { medlemskapFormMessages } from '@navikt/sif-common-forms-ds/src';
 import { omBarnetFormIntlMessages } from '../søknad/steps/om-barnet/om-barnet-form/omBarnetFormMessages';
+import { kursperiodeMessages } from '../søknad/steps/kurs/kursperioder-form-part/kursperiodeMessages';
 
 const nb = {
     ...velkommenPageMessages.nb,
@@ -78,26 +78,25 @@ const nb = {
     'step.omBarnet.stepTitle': 'Om barnet',
     'step.omBarnet.stepIndicatorLabel': 'Om barnet',
 
-    'step.kurs.pageTitle': 'Opplæring',
-    'step.kurs.stepTitle': 'Opplæring',
-    'step.kurs.stepIndicatorLabel': 'Opplæring',
+    'step.kurs.pageTitle': 'Om opplæringen',
+    'step.kurs.stepTitle': 'Om opplæringen',
+    'step.kurs.stepIndicatorLabel': 'Om opplæringen',
 
     'step.arbeidssituasjon.stepTitle': 'Arbeidssituasjon',
     'step.arbeidssituasjon.pageTitle': 'Arbeidssituasjon',
     'step.arbeidssituasjon.stepIndicatorLabel': 'Arbeidssituasjon',
 
-    'step.arbeidstid.stepTitle': 'Arbeidstid',
-    'step.arbeidstid.pageTitle': 'Arbeidstid',
-    'step.arbeidstid.stepIndicatorLabel': 'Arbeidstid',
+    'step.arbeidstid.stepTitle': 'Jobb i perioden',
+    'step.arbeidstid.pageTitle': 'Jobb i perioden',
+    'step.arbeidstid.stepIndicatorLabel': 'Jobb i perioden',
 
     'step.medlemskap.pageTitle': 'Medlemskap i folketrygden',
     'step.medlemskap.stepTitle': 'Medlemskap i folketrygden',
     'step.medlemskap.stepIndicatorLabel': 'Om medlemskap i folketrygden',
 
-    'step.legeerklæring.stepTitle': 'Legeerklæring',
-    'step.legeerklæring.pageTitle': 'Legeerklæring',
-    'step.legeerklæring.stepIndicatorLabel': 'Legeerklæring',
-    'step.legeerklæring.nextButtonLabel': 'Fortsett',
+    'step.legeerklæring.stepTitle': 'Dokumentasjon på nødvendig opplæring',
+    'step.legeerklæring.pageTitle': 'Dokumentasjon på nødvendig opplæring',
+    'step.legeerklæring.stepIndicatorLabel': 'Dokumentasjon på nødvendig opplæring',
 
     'step.oppsummering.pageTitle': 'Oppsummering',
     'step.oppsummering.stepTitle': 'Oppsummering',

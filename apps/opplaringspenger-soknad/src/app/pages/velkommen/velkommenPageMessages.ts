@@ -21,7 +21,7 @@ const nb = {
     'page.velkommen.harForståttRettigheterOgPlikter.notChecked': 'Du må velge at du har forstått ditt ansvar som søker',
     'personopplysninger.1': 'Slik behandler NAV personopplysningene dine',
     'personopplysninger.2':
-        'Vi innhenter og mottar opplysninger om deg for å behandle saken din. Det er nødvendig for at du skal få riktig tjeneste. Deler av saken din behandles automatisk.',
+        'Vi innhenter og mottar opplysninger om deg for å behandle saken din. Det er nødvendig for at du skal få riktig tjeneste.',
     'personopplysninger.3': 'Hvilke opplysninger innhenter vi?',
     'personopplysninger.4': 'Opplysningene vi innhenter kommer enten fra deg eller fra offentlige registre:',
     'personopplysninger.4.1': 'opplysninger om helsen til den du skal søke opplæringspenger for',

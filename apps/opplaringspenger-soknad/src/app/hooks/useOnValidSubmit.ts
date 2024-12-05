@@ -56,14 +56,19 @@ export const useOnValidSubmit = <T>(
     };
 
     const handleSubmit = (values: T) => {
-        setIsSubmitting(true);
-        const actions = [
-            nextStep === undefined || nextStep === StepId.KVITTERING
-                ? undefined
-                : dispatch(actionsCreator.setSøknadRoute(getSøknadStepRoute(nextStep))),
-            ...submitHandler(values),
-        ];
-        Promise.all([...actions.map(dispatchAction)]).then(() => setSubmitted(true));
+        try {
+            setIsSubmitting(true);
+            const actions = [
+                nextStep === undefined || nextStep === StepId.KVITTERING
+                    ? undefined
+                    : dispatch(actionsCreator.setSøknadRoute(getSøknadStepRoute(nextStep))),
+                ...submitHandler(values),
+            ];
+            Promise.all([...actions.map(dispatchAction)]).then(() => setSubmitted(true));
+        } catch (e) {
+            setIsSubmitting(false);
+            console.error(e);
+        }
     };
 
     return { handleSubmit, isSubmitting };

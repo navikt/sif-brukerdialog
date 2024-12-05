@@ -97,12 +97,7 @@ const ArbeidstidStep = () => {
                         cancelLabel: text('ingenFraværConfirmation.cancelLabel'),
                         content: (
                             <div style={{ maxWidth: '35rem' }}>
-                                <Heading level="1" size="medium">
-                                    <AppText id="ingenFraværConfirmation.heading" />
-                                </Heading>
-                                <p>
-                                    <AppText id="ingenFraværConfirmation.content" />
-                                </p>
+                                <AppText id="ingenFraværConfirmation.content" />
                             </div>
                         ),
                         onCancel: () => {

@@ -1,3 +1,4 @@
+import { VStack } from '@navikt/ds-react';
 import { getTypedFormComponents, ISOStringToDate, YesOrNo } from '@navikt/sif-common-formik-ds';
 import {
     getDateRangeValidator,
@@ -7,14 +8,13 @@ import {
 } from '@navikt/sif-common-formik-ds/src/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import kursperiodeUtils from './kursperiodeUtils';
 import { handleDateRangeValidationError } from '@navikt/sif-common-forms-ds/src/utils';
-import { Kursperiode } from '../../../../types/Kursperiode';
-import { ISODate } from '@navikt/sif-common-utils';
-import { VStack } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
+import { ISODate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { useKursperiodeIntl } from './kursperiodeMessages';
+import { Kursperiode } from './types/Kursperiode';
+import kursperiodeUtils from './utils/kursperiodeUtils';
 
 interface Props {
     minDate?: Date;

@@ -3,24 +3,16 @@ import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import CheckmarkIcon from '@navikt/sif-common-core-ds/src/atoms/checkmark-icon/CheckmarkIcon';
 import Checklist from '@navikt/sif-common-core-ds/src/components/lists/checklist/Checklist';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import getLenker from '../../lenker';
-import { useEffect } from 'react';
-import { KvitteringInfo } from '../../types/KvitteringInfo';
 import { AppText, useAppIntl } from '../../i18n';
+import getLenker from '../../lenker';
+import { KvitteringInfo } from '../../types/KvitteringInfo';
 
 interface Props {
     kvitteringInfo?: KvitteringInfo;
-    onUnmount: () => void;
 }
 
-const KvitteringPage = ({ kvitteringInfo, onUnmount }: Props) => {
+const KvitteringPage = ({ kvitteringInfo }: Props) => {
     const { text, intl } = useAppIntl();
-
-    useEffect(() => {
-        return () => {
-            onUnmount();
-        };
-    });
 
     return (
         <Page title={text('page.kvittering.sidetittel')}>
