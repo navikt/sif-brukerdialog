@@ -41,7 +41,7 @@ jobs:
                   NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
             - name: Build application
-              run: yarn turbo run build --filter=@navikt/${{ inputs.app-name }}
+              run: yarn turbo run build-demo --filter=@navikt/${{ inputs.app-name }}
 
             - name: Build and publish docker image
               uses: nais/docker-build-push@v0
