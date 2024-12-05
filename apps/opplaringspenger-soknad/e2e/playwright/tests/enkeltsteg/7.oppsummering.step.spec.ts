@@ -15,7 +15,6 @@ test.beforeEach(async ({ page }) => {
     await expect(page.getByRole('heading', { name: 'Oppsummering' })).toBeVisible();
 });
 
-test('Kontroller og fyll ut oppsummering', async ({ page }) => {
+test('Kontroller oppsummering', async ({ page }) => {
     await kontrollerOppsummering(page);
-    // await sendInSøknad(page);
 });

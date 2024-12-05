@@ -48,9 +48,11 @@ export const kontrollerArbeidssituasjonOppsummering = async (page: Page) => {
     ).toBeVisible();
     await expect(page.getByText('Jobber normalt 20 timer per')).toBeVisible();
     await expect(page.getByText('FrilanserStartet som frilanser 06.12.2021')).toBeVisible();
-    // await expect(page.).toBeVisible();
-    // await expect(page.).toBeVisible();
-    // await expect(page.).toBeVisible();
-    // await expect(page.).toBeVisible();
-    // await expect(page.).toBeVisible();
+    await expect(page.getByText('Er ikke selvstendig næ')).toBeVisible();
+    await expect(
+        page.getByText('Har ikke jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av'),
+    ).toBeVisible();
+    await expect(
+        page.getByText('Har ikke jobbet som selvstendig næringsdrivende i et annet EØS-land i løpet av'),
+    ).toBeVisible();
 };
