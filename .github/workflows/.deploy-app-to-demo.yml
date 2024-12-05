@@ -11,7 +11,7 @@ on:
                 required: true
 
 jobs:
-    deploy-to-dev:
+    deploy-to-demo:
         name: Deploy ${{ inputs.app-name }} to demo (${{github.ref_name}})
         runs-on: ubuntu-latest
         permissions:
