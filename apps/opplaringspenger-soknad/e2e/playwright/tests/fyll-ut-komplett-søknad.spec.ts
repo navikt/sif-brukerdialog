@@ -1,8 +1,8 @@
 import { test } from '@playwright/test';
 import { setNow } from '../utils/setNow';
 import { setupMockRoutes } from '../utils/setupMockRoutes';
-import { fyllUtBarnStep } from '../utfylling-utils/1.barnStep';
-import { fyllUtOpplæringStep } from '../utfylling-utils/2.opplæringStep';
+import { fyllUtRegistrertBarn } from '../utfylling-utils/1.barnStep';
+import { fyllUtOpplæringEnPeriode } from '../utfylling-utils/2.opplæringStep';
 import { fyllUtArbeidssituasjonStep } from '../utfylling-utils/3.arbeidssituasjonStep';
 import { fyllUtArbeidstid } from '../utfylling-utils/4.arbeidstidStep';
 import { fyllUtMedlemskap } from '../utfylling-utils/5.medlemskapStep';
@@ -23,8 +23,8 @@ test('Fyll ut komplett søknad', async ({ page }) => {
     await page.getByTestId('bekreft-label').click();
     await page.getByTestId('typedFormikForm-submitButton').click();
 
-    await fyllUtBarnStep(page);
-    await fyllUtOpplæringStep(page);
+    await fyllUtRegistrertBarn(page);
+    await fyllUtOpplæringEnPeriode(page);
     await fyllUtArbeidssituasjonStep(page);
     await fyllUtArbeidstid(page);
     await fyllUtMedlemskap(page);

@@ -1,7 +1,11 @@
 import { test, expect } from '@playwright/test';
 import { StepId } from '../../../../src/app/types/StepId';
 import { mellomlagringMock } from '../../mock-data/mellomlagringMock';
-import { fyllUtBarnStep } from '../../utfylling-utils/1.barnStep';
+import {
+    fyllUtAnnetBarn,
+    fyllUtRegistrertBarn,
+    kontrollerAnnetBarnOppsummering,
+} from '../../utfylling-utils/1.barnStep';
 import { setNow } from '../../utils/setNow';
 import { setupMockRoutes } from '../../utils/setupMockRoutes';
 import { routeUtils } from '../../utils/routeUtils';
@@ -17,6 +21,17 @@ test.beforeEach(async ({ page }) => {
     await expect(page.getByRole('heading', { name: 'Om barnet' })).toBeVisible();
 });
 
-test('Fyll ut barn-steg', async ({ page }) => {
-    await fyllUtBarnStep(page);
+test.describe('Barn-steg', () => {
+    test('Fyll ut registrert barn', async ({ page }) => {
+        await fyllUtRegistrertBarn(page);
+    });
+    test('Fyll ut annet barn', async ({ page }) => {
+        await fyllUtAnnetBarn(page);
+        await page.getByTestId('typedFormikForm-submitButton').click();
+        await page.getByTestId('typedFormikForm-submitButton').click();
+        await page.getByTestId('typedFormikForm-submitButton').click();
+        await page.getByTestId('typedFormikForm-submitButton').click();
+        await page.getByTestId('typedFormikForm-submitButton').click();
+        await kontrollerAnnetBarnOppsummering(page);
+    });
 });

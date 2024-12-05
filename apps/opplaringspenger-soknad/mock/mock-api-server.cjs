@@ -72,7 +72,6 @@ const startExpressServer = () => {
 
     server.get('/oppslag/arbeidsgiver', (req, res) => {
         setTimeout(() => {
-            // res.send({ ...arbeidsgivereMock, ...frilansoppdragMock, privatarbeidsgiver: [] });
             res.send({ ...arbeidsgivereMock, frilansoppdrag: [], privatarbeidsgiver: [] });
         }, 200);
     });

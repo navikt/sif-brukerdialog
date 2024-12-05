@@ -4,7 +4,7 @@ import { setNow } from '../../utils/setNow';
 import { setupMockRoutes } from '../../utils/setupMockRoutes';
 import { routeUtils } from '../../utils/routeUtils';
 import { SøknadRoutes } from '../../../../src/app/types/SøknadRoutes';
-import { fyllUtOpplæringStep } from '../../utfylling-utils/2.opplæringStep';
+import { fyllUtOpplæringEnPeriode, fyllUtOpplæringFlerePerioder } from '../../utfylling-utils/2.opplæringStep';
 
 test.beforeEach(async ({ page }) => {
     await setNow(page);
@@ -15,6 +15,11 @@ test.beforeEach(async ({ page }) => {
     await expect(page.getByRole('heading', { name: 'Om opplæringen' })).toBeVisible();
 });
 
-test('Fyll ut opplæring steg', async ({ page }) => {
-    await fyllUtOpplæringStep(page);
+test.describe('Opplæring-steg', () => {
+    test('Opplæring med én periode', async ({ page }) => {
+        await fyllUtOpplæringEnPeriode(page);
+    });
+    test('Opplæring med flere perioder', async ({ page }) => {
+        await fyllUtOpplæringFlerePerioder(page);
+    });
 });
