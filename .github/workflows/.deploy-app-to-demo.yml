@@ -1,0 +1,68 @@
+name: .Deploy application to demo
+
+on:
+    workflow_call:
+        inputs:
+            working-directory:
+                type: string
+                required: true
+            app-name:
+                type: string
+                required: true
+
+jobs:
+    deploy-to-dev:
+        name: Deploy ${{ inputs.app-name }} to demo (${{github.ref_name}})
+        runs-on: ubuntu-latest
+        permissions:
+            id-token: write # required: nais/docker-build-push
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Setup .yarnrc.yml
+              run: |
+                  yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
+                  yarn config set npmScopes.navikt.npmAlwaysAuth true
+                  yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 18
+                  cache: 'yarn'
+            - run: yarn set version 4.x
+
+            - name: Install dependencies (yarn)
+              run: yarn install
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+
+            - name: Build application
+              run: yarn turbo run build --filter=@navikt/${{ inputs.app-name }}
+
+            - name: Build and publish docker image
+              uses: nais/docker-build-push@v0
+              id: docker-push
+              with:
+                  team: dusseldorf
+                  push_image: true
+                  pull: true
+                  dockerfile: apps/${{inputs.app-name}}/Dockerfile
+                  docker_context: .
+                  image_suffix: ${{inputs.app-name}}-mono
+                  project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+                  identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+
+            - name: Deploy to demo
+              uses: nais/deploy/actions/deploy@v2
+              env:
+                  CLUSTER: dev-gcp
+                  RESOURCE: nais-config/nais.yml
+                  VARS: apps/${{ inputs.app-name }}/nais/demo-gcp.json
+                  VAR: GITHUB_REF_NAME=${{ github.ref_name }} # brukes i applikasjonerna
+                  APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+                  IMAGE: ${{ steps.docker-push.outputs.image }}
+                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
