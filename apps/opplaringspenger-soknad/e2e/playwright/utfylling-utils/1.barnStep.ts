@@ -17,6 +17,7 @@ export const fyllUtAnnetBarn = async (page: Page) => {
     await page.getByLabel('onsdag 4').click();
     await page.getByText('Fosterforelder').click();
     await lastOppDokument(page, page.locator('input[type="file"]'), './e2e/playwright/files/navlogopng.png');
+    await expect(page.getByRole('heading', { name: 'Dokumenter lastet opp (1)' })).toBeVisible();
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
@@ -25,6 +26,7 @@ export const kontrollerRegistrertBarnOppsummering = async (page: Page) => {
     await expect(page.getByText('NavnALFABETISK FAGGOTT')).toBeVisible();
     await expect(page.getByText('Fødselsdato08.06.2019')).toBeVisible();
 };
+
 export const kontrollerAnnetBarnOppsummering = async (page: Page) => {
     await expect(page.getByRole('heading', { name: 'Om barnet' })).toBeVisible();
     await expect(page.getByText('Fødselsdato04.12.2024')).toBeVisible();
