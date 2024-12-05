@@ -9,7 +9,7 @@ export const fyllUtOpplæringEnPeriode = async (page: Page) => {
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
-export const fyllUtOpplæringFlerePerioder = async (page: Page) => {
+export const fyllUtOpplæringToPerioder = async (page: Page) => {
     await page.getByRole('heading', { name: 'Om opplæringen' }).isVisible();
     await page.getByLabel('Hvor foregår opplæringen?').fill('AHus avdeling 1');
     await page.getByRole('button', { name: 'Legg til ny periode' }).click();
@@ -18,18 +18,20 @@ export const fyllUtOpplæringFlerePerioder = async (page: Page) => {
     await page.getByRole('group', { name: 'Jobber du noe de dagene du er på opplæring' }).getByLabel('Ja').check();
     await leggTilFerie(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
-
-    await page.getByTestId('typedFormikForm-submitButton').click();
-    await page.getByTestId('typedFormikForm-submitButton').click();
-    await page.getByTestId('typedFormikForm-submitButton').click();
-    await page.getByTestId('typedFormikForm-submitButton').click();
-    await kontrollerOpplæringFlerePerioderOppsummering(page);
 };
 
+// export const testOverlappendePerioder = async (page: Page) => {
+//     await fyllUtOpplæringToPerioder(page);
+//     /** Endre periode 2 til å overlappe periode 1 */
+//     await page.getByRole('group', { name: 'Periode 2' }).getByRole('button').nth(0).click();
+//     await page.getByRole('button', { name: 'mandag 2', exact: true }).click();
+//     await page.getByTestId('typedFormikForm-submitButton').click();
+// };
+
 const leggTilPeriode1 = async (page: Page) => {
-    page.getByRole('button', { name: 'Åpne datovelger' }).nth(0).click();
+    await page.getByRole('button', { name: 'Åpne datovelger' }).nth(0).click();
     await page.getByRole('button', { name: 'mandag 2', exact: true }).click();
-    page.getByRole('button', { name: 'Åpne datovelger' }).nth(1).click();
+    await page.getByRole('button', { name: 'Åpne datovelger' }).nth(1).click();
     await page.getByRole('button', { name: 'søndag 8' }).click();
     await page.getByRole('group', { name: 'Må du være borte fra jobb på' }).nth(0).getByLabel('Ja').check();
     await page.getByLabel('Når reiser du til opplæringsstedet').fill('02.12.2024');
@@ -99,11 +101,8 @@ export const kontrollerOpplæringFlerePerioderOppsummering = async (page: Page) 
     await expect(page.getByText('Skal du ta ut ferie i perioden?Ja')).toBeVisible();
     await expect(page.getByText('Ferie i perioden04.12.2024 - 05.12.2024')).toBeVisible();
     await expect(
-        page
-            .locator('li')
-            .filter({
-                hasText:
-                    '16.12.2024 - 17.12.2024Er borte fra jobb på grunn av reise til eller fra opplæringstedet: Nei',
-            }),
+        page.locator('li').filter({
+            hasText: '16.12.2024 - 17.12.2024Er borte fra jobb på grunn av reise til eller fra opplæringstedet: Nei',
+        }),
     ).toBeVisible();
 };

@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import { setNow } from '../utils/setNow';
 import { setupMockRoutes } from '../utils/setupMockRoutes';
 import { fyllUtRegistrertBarn } from '../utfylling-utils/1.barnStep';
@@ -24,9 +24,13 @@ test('Fyll ut komplett søknad', async ({ page }) => {
     await page.getByTestId('typedFormikForm-submitButton').click();
 
     await fyllUtRegistrertBarn(page);
+    await expect(page.getByText('Oops, dette stemmer ikke helt')).not.toBeVisible();
     await fyllUtOpplæringEnPeriode(page);
+    await expect(page.getByText('Oops, dette stemmer ikke helt')).not.toBeVisible();
     await fyllUtArbeidssituasjonStep(page);
+    await expect(page.getByText('Oops, dette stemmer ikke helt')).not.toBeVisible();
     await fyllUtArbeidstid(page);
+    await expect(page.getByText('Oops, dette stemmer ikke helt')).not.toBeVisible();
     await fyllUtMedlemskap(page);
     await fyllUtDokumentasjon(page);
     await kontrollerOppsummering(page);

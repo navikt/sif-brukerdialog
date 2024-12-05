@@ -4,7 +4,11 @@ import { setNow } from '../../utils/setNow';
 import { setupMockRoutes } from '../../utils/setupMockRoutes';
 import { routeUtils } from '../../utils/routeUtils';
 import { SøknadRoutes } from '../../../../src/app/types/SøknadRoutes';
-import { fyllUtOpplæringEnPeriode, fyllUtOpplæringFlerePerioder } from '../../utfylling-utils/2.opplæringStep';
+import {
+    fyllUtOpplæringEnPeriode,
+    fyllUtOpplæringToPerioder,
+    kontrollerOpplæringFlerePerioderOppsummering,
+} from '../../utfylling-utils/2.opplæringStep';
 
 test.beforeEach(async ({ page }) => {
     await setNow(page);
@@ -18,8 +22,16 @@ test.beforeEach(async ({ page }) => {
 test.describe('Opplæring-steg', () => {
     test('Opplæring med én periode', async ({ page }) => {
         await fyllUtOpplæringEnPeriode(page);
+        await page.getByTestId('typedFormikForm-submitButton').click();
+        await page.getByRole('heading', { name: 'Arbeidssituasjon' }).isVisible();
     });
     test('Opplæring med flere perioder', async ({ page }) => {
-        await fyllUtOpplæringFlerePerioder(page);
+        await fyllUtOpplæringToPerioder(page);
+        await page.getByTestId('typedFormikForm-submitButton').click();
+        await page.getByTestId('typedFormikForm-submitButton').click();
+        await page.getByTestId('typedFormikForm-submitButton').click();
+        await page.getByTestId('typedFormikForm-submitButton').click();
+        await page.getByTestId('typedFormikForm-submitButton').click();
+        await kontrollerOpplæringFlerePerioderOppsummering(page);
     });
 });
