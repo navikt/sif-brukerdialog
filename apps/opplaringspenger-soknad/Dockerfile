@@ -26,6 +26,7 @@ COPY ${SERVER} ${SERVER}
 RUN find apps \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xargs rm -rf
 RUN find packages \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xargs rm -rf
 RUN find ${SERVER} \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xargs rm -rf
+COPY apps/${APP}/mockServiceWorker.js apps/${APP}/mockServiceWorker.js
 
 #########################################
 # BUILDER IMAGE - INSTALL PACKAGES AND COPY SOURCE
@@ -59,6 +60,7 @@ WORKDIR /app
 RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
     PACKAGES_AUTH_TOKEN=$(cat /run/secrets/PACKAGES_AUTH_TOKEN) yarn turbo run build --filter=${SCOPE}
 RUN mv /app/apps/${APP}/dist /public
+COPY /app/apps/${APP}/mockServiceWorker.js /public/mockServiceWorker.js
 
 
 #########################################
