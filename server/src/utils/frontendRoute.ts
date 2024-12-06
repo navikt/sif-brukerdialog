@@ -43,7 +43,6 @@ async function injectDecorator(filePath: string) {
         filePath,
         params: {
             simple: true,
-            enforceLogin: false,
         },
     });
 }
