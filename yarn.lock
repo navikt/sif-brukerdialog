@@ -1017,7 +1017,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-transform-modules-commonjs@npm:7.25.9, @babel/plugin-transform-modules-commonjs@npm:^7.25.9":
+"@babel/plugin-transform-modules-commonjs@npm:7.26.3":
+  version: 7.26.3
+  resolution: "@babel/plugin-transform-modules-commonjs@npm:7.26.3"
+  dependencies:
+    "@babel/helper-module-transforms": "npm:^7.26.0"
+    "@babel/helper-plugin-utils": "npm:^7.25.9"
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: 10/f817f02fa04d13f1578f3026239b57f1003bebcf9f9b8d854714bed76a0e4986c79bd6d2e0ac14282c5d309454a8dab683c179709ca753b0152a69c69f3a78e3
+  languageName: node
+  linkType: hard
+
+"@babel/plugin-transform-modules-commonjs@npm:^7.25.9":
   version: 7.25.9
   resolution: "@babel/plugin-transform-modules-commonjs@npm:7.25.9"
   dependencies:
@@ -1528,7 +1540,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/preset-react@npm:7.25.9, @babel/preset-react@npm:^7.23.3, @babel/preset-react@npm:^7.24.1":
+"@babel/preset-react@npm:7.26.3":
+  version: 7.26.3
+  resolution: "@babel/preset-react@npm:7.26.3"
+  dependencies:
+    "@babel/helper-plugin-utils": "npm:^7.25.9"
+    "@babel/helper-validator-option": "npm:^7.25.9"
+    "@babel/plugin-transform-react-display-name": "npm:^7.25.9"
+    "@babel/plugin-transform-react-jsx": "npm:^7.25.9"
+    "@babel/plugin-transform-react-jsx-development": "npm:^7.25.9"
+    "@babel/plugin-transform-react-pure-annotations": "npm:^7.25.9"
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: 10/88cb78c402b79f32389ee06451da51698d5b1da7641d9a47482883f537fe5441a138bd4c077d8533fd6d557406b08911c47b94402cea843db598e020bdd9a373
+  languageName: node
+  linkType: hard
+
+"@babel/preset-react@npm:^7.23.3, @babel/preset-react@npm:^7.24.1":
   version: 7.25.9
   resolution: "@babel/preset-react@npm:7.25.9"
   dependencies:
@@ -3883,9 +3911,9 @@ __metadata:
     "@axe-core/playwright": "npm:4.10.1"
     "@babel/core": "npm:7.26.0"
     "@babel/plugin-proposal-object-rest-spread": "npm:7.20.7"
-    "@babel/plugin-transform-modules-commonjs": "npm:7.25.9"
+    "@babel/plugin-transform-modules-commonjs": "npm:7.26.3"
     "@babel/preset-env": "npm:7.26.0"
-    "@babel/preset-react": "npm:7.25.9"
+    "@babel/preset-react": "npm:7.26.3"
     "@navikt/ds-css": "npm:7.6.0"
     "@navikt/ds-react": "npm:7.6.0"
     "@navikt/ds-tailwind": "npm:7.6.0"
@@ -3944,9 +3972,9 @@ __metadata:
     "@axe-core/playwright": "npm:4.10.1"
     "@babel/core": "npm:7.26.0"
     "@babel/plugin-proposal-object-rest-spread": "npm:7.20.7"
-    "@babel/plugin-transform-modules-commonjs": "npm:7.25.9"
+    "@babel/plugin-transform-modules-commonjs": "npm:7.26.3"
     "@babel/preset-env": "npm:7.26.0"
-    "@babel/preset-react": "npm:7.25.9"
+    "@babel/preset-react": "npm:7.26.3"
     "@babel/preset-typescript": "npm:7.26.0"
     "@mswjs/data": "npm:0.16.2"
     "@navikt/ds-css": "npm:7.6.0"
@@ -4073,9 +4101,9 @@ __metadata:
     "@axe-core/playwright": "npm:4.10.1"
     "@babel/core": "npm:7.26.0"
     "@babel/plugin-proposal-object-rest-spread": "npm:7.20.7"
-    "@babel/plugin-transform-modules-commonjs": "npm:7.25.9"
+    "@babel/plugin-transform-modules-commonjs": "npm:7.26.3"
     "@babel/preset-env": "npm:7.26.0"
-    "@babel/preset-react": "npm:7.25.9"
+    "@babel/preset-react": "npm:7.26.3"
     "@navikt/ds-css": "npm:7.6.0"
     "@navikt/ds-react": "npm:7.6.0"
     "@navikt/ds-tailwind": "npm:7.6.0"
@@ -4173,7 +4201,7 @@ __metadata:
   dependencies:
     "@babel/core": "npm:7.26.0"
     "@babel/preset-env": "npm:7.26.0"
-    "@babel/preset-react": "npm:7.25.9"
+    "@babel/preset-react": "npm:7.26.3"
     "@babel/preset-typescript": "npm:7.26.0"
     "@chromatic-com/storybook": "npm:3.2.2"
     "@navikt/ds-css": "npm:7.6.0"
@@ -4251,7 +4279,7 @@ __metadata:
   dependencies:
     "@babel/core": "npm:7.26.0"
     "@babel/preset-env": "npm:7.26.0"
-    "@babel/preset-react": "npm:7.25.9"
+    "@babel/preset-react": "npm:7.26.3"
     "@babel/preset-typescript": "npm:7.26.0"
     "@navikt/ds-css": "npm:7.6.0"
     "@navikt/ds-icons": "npm:3.4.3"
@@ -4327,7 +4355,7 @@ __metadata:
     "@axe-core/playwright": "npm:4.10.1"
     "@babel/core": "npm:7.26.0"
     "@babel/preset-env": "npm:7.26.0"
-    "@babel/preset-react": "npm:7.25.9"
+    "@babel/preset-react": "npm:7.26.3"
     "@babel/preset-typescript": "npm:7.26.0"
     "@navikt/ds-css": "npm:7.6.0"
     "@navikt/ds-icons": "npm:3.4.3"
@@ -4402,7 +4430,7 @@ __metadata:
   dependencies:
     "@babel/core": "npm:7.26.0"
     "@babel/preset-env": "npm:7.26.0"
-    "@babel/preset-react": "npm:7.25.9"
+    "@babel/preset-react": "npm:7.26.3"
     "@babel/preset-typescript": "npm:7.26.0"
     "@navikt/ds-css": "npm:7.6.0"
     "@navikt/ds-icons": "npm:3.4.3"
@@ -4480,7 +4508,7 @@ __metadata:
     "@axe-core/playwright": "npm:4.10.1"
     "@babel/core": "npm:7.26.0"
     "@babel/preset-env": "npm:7.26.0"
-    "@babel/preset-react": "npm:7.25.9"
+    "@babel/preset-react": "npm:7.26.3"
     "@babel/preset-typescript": "npm:7.26.0"
     "@chromatic-com/storybook": "npm:3.2.2"
     "@navikt/ds-css": "npm:7.6.0"
@@ -4557,9 +4585,9 @@ __metadata:
     "@axe-core/playwright": "npm:4.10.1"
     "@babel/core": "npm:7.26.0"
     "@babel/plugin-proposal-object-rest-spread": "npm:7.20.7"
-    "@babel/plugin-transform-modules-commonjs": "npm:7.25.9"
+    "@babel/plugin-transform-modules-commonjs": "npm:7.26.3"
     "@babel/preset-env": "npm:7.26.0"
-    "@babel/preset-react": "npm:7.25.9"
+    "@babel/preset-react": "npm:7.26.3"
     "@chromatic-com/storybook": "npm:3.2.2"
     "@navikt/appstatus-react-ds": "npm:*"
     "@navikt/ds-css": "npm:7.6.0"
@@ -4725,7 +4753,7 @@ __metadata:
   dependencies:
     "@babel/core": "npm:7.26.0"
     "@babel/preset-env": "npm:7.26.0"
-    "@babel/preset-react": "npm:7.25.9"
+    "@babel/preset-react": "npm:7.26.3"
     "@babel/preset-typescript": "npm:7.26.0"
     "@grafana/faro-web-sdk": "npm:1.12.2"
     "@navikt/appstatus-react-ds": "npm:*"
@@ -4811,7 +4839,7 @@ __metadata:
   dependencies:
     "@babel/core": "npm:7.26.0"
     "@babel/preset-env": "npm:7.26.0"
-    "@babel/preset-react": "npm:7.25.9"
+    "@babel/preset-react": "npm:7.26.3"
     "@babel/preset-typescript": "npm:7.26.0"
     "@navikt/ds-css": "npm:7.6.0"
     "@navikt/ds-icons": "npm:3.4.3"
@@ -4878,7 +4906,7 @@ __metadata:
   dependencies:
     "@babel/core": "npm:7.26.0"
     "@babel/preset-env": "npm:7.26.0"
-    "@babel/preset-react": "npm:7.25.9"
+    "@babel/preset-react": "npm:7.26.3"
     "@babel/preset-typescript": "npm:7.26.0"
     "@formatjs/intl-pluralrules": "npm:5.3.5"
     "@navikt/ds-css": "npm:7.6.0"
@@ -4975,7 +5003,7 @@ __metadata:
   dependencies:
     "@babel/core": "npm:7.26.0"
     "@babel/preset-env": "npm:7.26.0"
-    "@babel/preset-react": "npm:7.25.9"
+    "@babel/preset-react": "npm:7.26.3"
     "@babel/preset-typescript": "npm:7.26.0"
     "@devexperts/remote-data-ts": "npm:2.1.1"
     "@formatjs/intl-pluralrules": "npm:5.3.5"
@@ -5097,7 +5125,7 @@ __metadata:
   dependencies:
     "@babel/core": "npm:7.26.0"
     "@babel/preset-env": "npm:7.26.0"
-    "@babel/preset-react": "npm:7.25.9"
+    "@babel/preset-react": "npm:7.26.3"
     "@sif/eslint-config": "npm:*"
     "@types/node": "npm:22.10.1"
     "@types/react": "npm:18.3.12"
@@ -5175,7 +5203,7 @@ __metadata:
     "@axe-core/playwright": "npm:4.10.1"
     "@babel/core": "npm:7.26.0"
     "@babel/preset-env": "npm:7.26.0"
-    "@babel/preset-react": "npm:7.25.9"
+    "@babel/preset-react": "npm:7.26.3"
     "@navikt/ds-css": "npm:7.6.0"
     "@navikt/ds-icons": "npm:3.4.3"
     "@navikt/ds-react": "npm:7.6.0"
