@@ -1,5 +1,13 @@
 # @navikt/sif-ettersending
 
+## 3.43.3
+
+### Patch Changes
+
+- Oppdatere til nav-dekoratoren-moduler 3
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@21.0.2
+
 ## 3.43.2
 
 ### Patch Changes

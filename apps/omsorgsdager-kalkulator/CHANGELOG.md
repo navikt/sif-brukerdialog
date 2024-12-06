@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.10.2
+
+### Patch Changes
+
+- Oppdatere til nav-dekoratoren-moduler 3
+
 ## 3.10.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 21.0.2
+
+### Patch Changes
+
+- Oppdatere til nav-dekoratoren-moduler 3
+
 ## 21.0.1
 
 ### Patch Changes
