@@ -4,11 +4,8 @@
     "team": "dusseldorf",
     "livenessPath": "/internal/health/isAlive",
     "readinessPath": "/internal/health/isReady",
-    "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
-    "accessPolicyOutApps": [
-        { "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" },
-        { "application": "k9-sak-innsyn-api", "namespace": "dusseldorf" }
-    ],
+    "externalHosts": ["www.nav.no"],
+    "accessPolicyOutApps": [],
     "ingresses": ["https://demo.ekstern.dev.nav.no/familie/sykdom-i-familien/soknad/opplaringspenger"],
     "cluster": "dev-gcp",
     "minReplicas": 1,
