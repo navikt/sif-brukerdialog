@@ -85,7 +85,9 @@
     "scripts": {
         "build-storybook": "storybook build",
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/opplaringspenger",
-        "build-demo": "vite build --base=/",
+        "build-demo": "npm run build-demo:vite && npm run build-demo:copy-service-worker",
+        "build-demo:vite": "vite build --base=/ --outDir=demo",
+        "build-demo:copy-service-worker": "cp ./mockServiceWorker.js ./demo/mockServiceWorker.js",
         "clean": "rm -rf node_modules .dist",
         "dev-api": "PORT=8089 node ./mock/mock-api-server.cjs",
         "dev": "node ./dev-server.cjs",

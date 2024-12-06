@@ -11,11 +11,7 @@ async function enableMocking() {
     const { worker } = await import('../msw/browser');
     // `worker.start()` returns a Promise that resolves
     // once the Service Worker is up and ready to intercept requests.
-    return worker.start({
-        serviceWorker: {
-            url: '/assets/mockServiceWorker.js',
-        },
-    });
+    return worker.start();
 }
 enableMocking().then(() =>
     createRoot(document.getElementById('root')!).render(
