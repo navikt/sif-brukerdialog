@@ -17,7 +17,7 @@
         "ENV": "demo",
         "APP_VERSION": "demo",
         "NODE_ENV": "development",
-        "PUBLIC_PATH": "/opplaringspenger-soknad",
+        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/opplaringspenger",
         "NPM_CONFIG_CACHE": "/tmp",
 
         "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "dev-gcp:dusseldorf:k9-brukerdialog-prosessering",
