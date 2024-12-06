@@ -7,7 +7,7 @@
     "exclude": ["node_modules", "**.js", "dist"],
     "include": [
         "./src/app/**/*",
-        "./src/mocks/**/*",
+        "./src/msw/**/*",
         "./e2e/playwright/**/*",
         "./playwright-config.ts",
         "./env.schema.ts"
