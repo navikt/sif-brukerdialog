@@ -26,7 +26,7 @@ COPY ${SERVER} ${SERVER}
 RUN find apps \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xargs rm -rf
 RUN find packages \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xargs rm -rf
 RUN find ${SERVER} \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xargs rm -rf
-COPY apps/${APP}/mockServiceWorker.js apps/${APP}/mockServiceWorker.js
+COPY /app/apps/${APP}/mockServiceWorker.js apps/${APP}/mockServiceWorker.js
 
 #########################################
 # BUILDER IMAGE - INSTALL PACKAGES AND COPY SOURCE
