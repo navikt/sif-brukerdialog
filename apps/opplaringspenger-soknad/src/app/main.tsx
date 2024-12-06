@@ -14,6 +14,9 @@ async function enableMocking() {
     return worker.start({
         serviceWorker: {
             url: '/familie/sykdom-i-familien/soknad/opplaringspenger/assets/mockServiceWorker.js',
+            options: {
+                scope: '/familie/sykdom-i-familien/soknad/opplaringspenger/',
+            },
         },
     });
 }
