@@ -59,7 +59,6 @@ WORKDIR /app
 RUN --mount=type=secret,id=PACKAGES_AUTH_TOKEN \
     PACKAGES_AUTH_TOKEN=$(cat /run/secrets/PACKAGES_AUTH_TOKEN) yarn turbo run build --filter=${SCOPE}
 RUN mv /app/apps/${APP}/dist /public
-COPY /app/apps/${APP}/mockServiceWorker.js /public
 
 
 #########################################
