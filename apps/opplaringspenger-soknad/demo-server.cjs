@@ -55,6 +55,9 @@ const setupAndServeHtml = async (app) => {
 
     const renderedHtml = html.replaceAll('{{{APP_SETTINGS}}}', JSON.stringify(envs));
 
+    const fs = require('fs');
+    fs.writeFileSync(path.resolve('./demo', 'index-decorated.html'), renderedHtml);
+
     app.get(/^\/(?!.*dist).*$/, async (_request, response) => {
         return response.send(renderedHtml);
     });
