@@ -6,7 +6,7 @@
     "readinessPath": "/internal/health/isReady",
     "externalHosts": ["www.nav.no"],
     "accessPolicyOutApps": [],
-    "ingresses": ["https://demo.ekstern.dev.nav.no/familie/sykdom-i-familien/soknad/opplaringspenger"],
+    "ingresses": ["https://demo-opplaringspenger-soknad.ekstern.dev.nav.no"],
     "cluster": "dev-gcp",
     "minReplicas": 1,
     "maxReplicas": 1,
@@ -14,7 +14,7 @@
         "ENV": "demo",
         "APP_VERSION": "demo",
         "NODE_ENV": "development",
-        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/opplaringspenger",
+        "PUBLIC_PATH": "/",
         "NPM_CONFIG_CACHE": "/tmp",
 
         "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "dev-gcp:dusseldorf:k9-brukerdialog-prosessering",
