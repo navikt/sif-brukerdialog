@@ -1,5 +1,13 @@
 # @navikt/opplaringspenger-soknad
 
+## 1.15.2
+
+### Patch Changes
+
+- Oppdatere til nav-dekoratoren-moduler 3
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@21.0.2
+
 ## 1.15.1
 
 ### Patch Changes

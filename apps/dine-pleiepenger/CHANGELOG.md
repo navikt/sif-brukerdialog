@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 1.7.7
+
+### Patch Changes
+
+- Oppdatere til nav-dekoratoren-moduler 3
+
 ## 1.7.6
 
 ### Patch Changes

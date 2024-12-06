@@ -1,5 +1,13 @@
 # @navikt/omsorgspengesoknad
 
+## 1.35.3
+
+### Patch Changes
+
+- Oppdatere til nav-dekoratoren-moduler 3
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@21.0.2
+
 ## 1.35.2
 
 ### Patch Changes

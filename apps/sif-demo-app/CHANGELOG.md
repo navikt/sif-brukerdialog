@@ -1,5 +1,13 @@
 # @navikt/sif-demo-app
 
+## 0.3.12
+
+### Patch Changes
+
+- Oppdatere til nav-dekoratoren-moduler 3
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@21.0.2
+
 ## 0.3.11
 
 ### Patch Changes

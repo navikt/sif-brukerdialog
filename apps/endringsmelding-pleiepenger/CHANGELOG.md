@@ -1,5 +1,13 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.34.3
+
+### Patch Changes
+
+- Oppdatere til nav-dekoratoren-moduler 3
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@21.0.2
+
 ## 2.34.2
 
 ### Patch Changes
