@@ -36,5 +36,6 @@
         "SIF_PUBLIC_DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://opplaringspenger-soknad.intern.dev.nav.no/oauth2/logout&redirectToApp=true",
         "SIF_PUBLIC_LOGIN_URL": "https://opplaringspenger-soknad.intern.dev.nav.no/oauth2/login?redirect=/opplaringspenger-soknad/soknad",
         "SIF_PUBLIC_MINSIDE_URL": "https://www.intern.dev.nav.no/minside"
-    }
+    },
+    "skipAutologin": true
 }
