@@ -9,7 +9,7 @@
         { "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" },
         { "application": "k9-sak-innsyn-api", "namespace": "dusseldorf" }
     ],
-    "ingresses": ["https://demo.ekstern.dev.nav.no/opplaringspenger-soknad"],
+    "ingresses": ["https://demo.ekstern.dev.nav.no/familie/sykdom-i-familien/soknad/opplaringspenger"],
     "cluster": "dev-gcp",
     "minReplicas": 1,
     "maxReplicas": 1,
