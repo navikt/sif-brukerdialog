@@ -24,7 +24,7 @@
         "@navikt/sif-common-soknad-ds": "*",
         "@navikt/sif-common-ui": "*",
         "@navikt/sif-common-utils": "*",
-        "@testing-library/react": "16.0.1",
+        "@testing-library/react": "16.1.0",
         "axios": "1.7.8",
         "busboy": "1.6.0",
         "dayjs": "1.11.13",
