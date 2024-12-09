@@ -1,5 +1,30 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.17.3
+
+### Patch Changes
+
+- Oppdatere til nav-dekoratoren-moduler 3
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@21.0.2
+
+## 2.17.2
+
+### Patch Changes
+
+- 67856dc: Pakkeoppdateringer - minor/patch
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies [67856dc]
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.2.1
+    - @navikt/sif-common-soknad-ds@21.0.1
+    - @navikt/sif-common-forms-ds@16.0.1
+    - @navikt/sif-common-core-ds@10.0.2
+    - @navikt/sif-common-sentry@0.27.25
+    - @navikt/sif-common-utils@3.47.29
+    - @navikt/sif-common-api@0.3.8
+    - @navikt/sif-common-ui@0.8.37
+
 ## 2.17.1
 
 ### Patch Changes

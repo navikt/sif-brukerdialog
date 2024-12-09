@@ -1,4 +1,4 @@
-import { DecoratorComponents, fetchDecoratorReact, DecoratorEnvProps } from '@navikt/nav-dekoratoren-moduler/ssr';
+import { DecoratorComponentsReact, fetchDecoratorReact, DecoratorEnvProps } from '@navikt/nav-dekoratoren-moduler/ssr';
 import Document, { DocumentContext, DocumentInitialProps, Head, Html, Main, NextScript } from 'next/document';
 import 'node-fetch';
 
@@ -13,7 +13,7 @@ const getDocumentParameter = (initialProps: DocumentInitialProps, name: string) 
 };
 
 interface Props {
-    Decorator: DecoratorComponents;
+    Decorator: DecoratorComponentsReact;
     language: string;
 }
 
@@ -26,7 +26,6 @@ class MyDocument extends Document<Props> {
                 simple: false,
                 chatbot: true,
                 feedback: true,
-                urlLookupTable: false,
                 context: 'privatperson',
             },
         });
@@ -41,7 +40,7 @@ class MyDocument extends Document<Props> {
         const showDecorator = true;
         return (
             <Html lang={language || 'no'}>
-                <Head>{showDecorator && <Decorator.Styles />}</Head>
+                <Head>{showDecorator && <Decorator.HeadAssets />}</Head>
                 <body>
                     {showDecorator && <Decorator.Header />}
                     <Main />

@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { DecoratorComponents, fetchDecoratorReact } from '@navikt/nav-dekoratoren-moduler/ssr';
+import { DecoratorComponentsReact, fetchDecoratorReact } from '@navikt/nav-dekoratoren-moduler/ssr';
 // This is imported to allow the Output File Tracing feature of Next.js to work correctly with the log patcher
 import 'next-logger';
 import Document, { DocumentContext, DocumentInitialProps, Head, Html, Main, NextScript } from 'next/document';
@@ -33,7 +33,7 @@ function createDecoratorEnv(ctx: DocumentContext): 'dev' | 'prod' {
 }
 
 interface Props {
-    Decorator: DecoratorComponents;
+    Decorator: DecoratorComponentsReact;
     language: string;
 }
 
@@ -64,7 +64,7 @@ class MyDocument extends Document<Props> {
         return (
             <Html lang={language || 'no'}>
                 <Head>
-                    <Decorator.Styles />
+                    <Decorator.HeadAssets />
                     <link
                         rel="preload"
                         href="https://cdn.nav.no/aksel/fonts/SourceSans3-normal.woff2"
