@@ -21,10 +21,9 @@
         "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",
         "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/familie/sykdom-i-familien/soknad/opplaringspenger/api/k9-brukerdialog",
 
-        "SIF_PUBLIC_AMPLITUDE_API_KEY": "default",
-        "SIF_PUBLIC_USE_AMPLITUDE": "false",
-        "SIF_PUBLIC_APPSTATUS_DATASET": "staging",
-
+        "SIF_PUBLIC_AMPLITUDE_API_KEY": "10798841ebeba333b8ece6c046322d76",
+        "SIF_PUBLIC_USE_AMPLITUDE": "true",
+        "SIF_PUBLIC_APPSTATUS_DATASET": "production",
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
         "SIF_PUBLIC_DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=true&chatbot=false&logoutUrl=https://www.nav.no/familie/sykdom-i-familien/soknad/opplaringspenger/oauth2/logout",
         "SIF_PUBLIC_LOGIN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/opplaringspenger/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/opplaringspenger/soknad",
