@@ -16,7 +16,6 @@
         "lodash": "4.17.21",
         "react-dropzone": "14.3.5",
         "react-fast-compare": "3.2.2",
-        "react-scripts": "5.0.1",
         "uuid": "11.0.3"
     },
     "devDependencies": {
@@ -37,7 +36,6 @@
         "@storybook/builder-vite": "8.4.7",
         "@storybook/jest": "0.2.3",
         "@storybook/node-logger": "8.4.7",
-        "@storybook/preset-create-react-app": "8.4.7",
         "@storybook/preset-scss": "1.0.3",
         "@storybook/react": "8.4.7",
         "@storybook/react-vite": "8.4.7",
