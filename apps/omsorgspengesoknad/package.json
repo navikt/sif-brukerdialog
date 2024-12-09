@@ -10,10 +10,10 @@
     "private": true,
     "type": "module",
     "dependencies": {
-        "@navikt/ds-css": "7.6.0",
+        "@navikt/ds-css": "7.7.0",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "7.6.0",
-        "@navikt/ds-tailwind": "7.6.0",
+        "@navikt/ds-react": "7.7.0",
+        "@navikt/ds-tailwind": "7.7.0",
         "@navikt/sif-app-register": "*",
         "@navikt/sif-common-amplitude": "*",
         "@navikt/sif-common-core-ds": "*",
@@ -36,7 +36,7 @@
         "react": "18.3.1",
         "react-dom": "18.3.1",
         "react-fast-compare": "3.2.2",
-        "react-intl": "7.0.1",
+        "react-intl": "7.0.4",
         "react-router-dom": "7.0.2"
     },
     "devDependencies": {
