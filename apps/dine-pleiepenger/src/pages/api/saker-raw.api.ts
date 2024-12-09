@@ -11,7 +11,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     } catch (err) {
         if (isAxiosError(err)) {
             getLogger(req).error(
-                `Hent saker-raw feilet: ${{ message: err.message, name: err.name, cause: err.cause, code: err.code, status: err.status }}`,
+                `Hent saker-raw feilet: ${JSON.stringify({ message: err.message, name: err.name, cause: err.cause, code: err.code, status: err.status })}`,
             );
         }
         res.status(500).json({
