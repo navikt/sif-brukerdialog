@@ -3,7 +3,6 @@ import { AppEnv } from '../../env.schema';
 export const playwrightEnv: AppEnv = {
     ENV: 'dev',
     APP_VERSION: 'dev',
-
     PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/opplaringspenger',
     GITHUB_REF_NAME: 'branch-name',
     SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
