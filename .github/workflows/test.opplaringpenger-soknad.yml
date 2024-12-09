@@ -8,7 +8,7 @@ on:
             - 'apps/opplaringspenger-soknad/**/*'
             - 'nais-config/**/*'
             - 'packages/**/*'
-            - .github/workflows/test.opplæringpenger-soknad.yml
+            - .github/workflows/test.opplaringpenger-soknad.yml
             - yarn.lock
 
     workflow_call:
