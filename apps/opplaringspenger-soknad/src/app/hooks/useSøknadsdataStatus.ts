@@ -37,7 +37,7 @@ const getStepSøknadsdataFromStepFormValues = (
         case StepId.OM_BARNET:
             return getOmBarnetSøknadsdataFromFormValues(formValues as OmBarnetFormValues, [] as any /*todo*/);
         case StepId.KURS:
-            return getKursSøknadsdataFromFormValues(formValues as KursFormValues, state.opplæringsinstitusjoner);
+            return getKursSøknadsdataFromFormValues(formValues as KursFormValues);
         case StepId.LEGEERKLÆRING:
             return getLegeerklæringSøknadsdataFromFormValues(formValues as LegeerklæringFormValues);
         case StepId.ARBEIDSSITUASJON:

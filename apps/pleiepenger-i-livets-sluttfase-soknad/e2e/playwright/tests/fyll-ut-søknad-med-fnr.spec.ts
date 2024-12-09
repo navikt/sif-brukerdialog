@@ -132,7 +132,5 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     await page.getByRole('button', { name: 'Send søknad', exact: true }).click();
 
     /** Kvittering */
-    await expect(
-        page.getByRole('heading', { level: 1, name: 'Vi har mottatt søknad om pleiepenger i livets sluttfase' }),
-    ).toBeVisible();
+    await expect(page.getByText('Vi har mottatt søknad om pleiepenger i livets sluttfase')).toBeVisible();
 });

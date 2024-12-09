@@ -5,8 +5,6 @@ import { getInnsendingService, InnsendingType } from '@navikt/sif-common-api';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { AxiosError } from 'axios';
 import { mellomlagringService } from '../api/mellomlagringService';
-import actionsCreator from '../søknad/context/action/actionCreator';
-import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import { useAppIntl } from '../i18n';
@@ -14,7 +12,6 @@ import { useAppIntl } from '../i18n';
 const innsendingService = getInnsendingService<SøknadApiData>(InnsendingType.omsorgspenger_utbetaling_snf);
 
 export const useSendSøknad = () => {
-    const { dispatch } = useSøknadContext();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [sendSøknadError, setSendSøknadError] = useState<AxiosError | undefined>();
     const { locale } = useAppIntl();
@@ -37,7 +34,7 @@ export const useSendSøknad = () => {
         await logSoknadSent(OmsorgspengerutbetalingSNFriApp.key, locale);
         await mellomlagringService.purge();
         setIsSubmitting(false);
-        dispatch(actionsCreator.setSøknadSendt());
+
         navigateTo(SøknadRoutes.SØKNAD_SENDT);
     };
 

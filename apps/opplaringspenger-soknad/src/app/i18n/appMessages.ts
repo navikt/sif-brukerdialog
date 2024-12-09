@@ -7,10 +7,10 @@ import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerkl
 import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
 import { kursMessages } from '../søknad/steps/kurs/kursMessages';
 import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
-import { kursperiodeMessages } from '../søknad/steps/kurs/kursperiode';
 import { arbeidstidMessages } from '../søknad/steps/arbeidstid/arbeidstidMessages';
 import { medlemskapFormMessages } from '@navikt/sif-common-forms-ds/src';
 import { omBarnetFormIntlMessages } from '../søknad/steps/om-barnet/om-barnet-form/omBarnetFormMessages';
+import { kursperiodeMessages } from '../søknad/steps/kurs/kursperioder-form-part/kursperiodeMessages';
 
 const nb = {
     ...velkommenPageMessages.nb,
@@ -78,26 +78,25 @@ const nb = {
     'step.omBarnet.stepTitle': 'Om barnet',
     'step.omBarnet.stepIndicatorLabel': 'Om barnet',
 
-    'step.kurs.pageTitle': 'Om kurs',
-    'step.kurs.stepTitle': 'Om kurs',
-    'step.kurs.stepIndicatorLabel': 'Om kurs',
+    'step.kurs.pageTitle': 'Om opplæringen',
+    'step.kurs.stepTitle': 'Om opplæringen',
+    'step.kurs.stepIndicatorLabel': 'Om opplæringen',
 
     'step.arbeidssituasjon.stepTitle': 'Arbeidssituasjon',
     'step.arbeidssituasjon.pageTitle': 'Arbeidssituasjon',
     'step.arbeidssituasjon.stepIndicatorLabel': 'Arbeidssituasjon',
 
-    'step.arbeidstid.stepTitle': 'Arbeidstid',
-    'step.arbeidstid.pageTitle': 'Arbeidstid',
-    'step.arbeidstid.stepIndicatorLabel': 'Arbeidstid',
+    'step.arbeidstid.stepTitle': 'Jobb i perioden',
+    'step.arbeidstid.pageTitle': 'Jobb i perioden',
+    'step.arbeidstid.stepIndicatorLabel': 'Jobb i perioden',
 
     'step.medlemskap.pageTitle': 'Medlemskap i folketrygden',
     'step.medlemskap.stepTitle': 'Medlemskap i folketrygden',
     'step.medlemskap.stepIndicatorLabel': 'Om medlemskap i folketrygden',
 
-    'step.legeerklæring.stepTitle': 'Legeerklæring',
-    'step.legeerklæring.pageTitle': 'Legeerklæring',
-    'step.legeerklæring.stepIndicatorLabel': 'Legeerklæring',
-    'step.legeerklæring.nextButtonLabel': 'Fortsett',
+    'step.legeerklæring.stepTitle': 'Dokumentasjon på nødvendig opplæring',
+    'step.legeerklæring.pageTitle': 'Dokumentasjon på nødvendig opplæring',
+    'step.legeerklæring.stepIndicatorLabel': 'Dokumentasjon på nødvendig opplæring',
 
     'step.oppsummering.pageTitle': 'Oppsummering',
     'step.oppsummering.stepTitle': 'Oppsummering',
@@ -171,7 +170,7 @@ const nb = {
     'validation.arbeidsforhold.jobberNormaltTimer.numberHasNoValue':
         'Du må oppgi hvor mange timer per uke du {jobber} {hvor} i perioden.',
     'validation.arbeidsforhold.jobberNormaltTimer.numberHasInvalidFormat':
-        'Antall timer du {jobber} per uke {hvor} kan kun bestå av tall.',
+        'Antall timer du {jobber} per uke {hvor} har ikke gyldig format. Et gyldig tall inneholder kun siffer og komma som desimaltegn.',
 
     'validation.arbeidsforhold.jobberNormaltTimer.numberIsTooSmall':
         'Antall timer du {jobber} per uke {hvor} kan ikke være mindre enn {min}.',

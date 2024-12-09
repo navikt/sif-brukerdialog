@@ -5,5 +5,11 @@
         "typeRoots": ["../../node_modules/@types", "./node_modules/@types"]
     },
     "exclude": ["node_modules", "**.js", "dist"],
-    "include": ["./src/app/**/*"]
+    "include": [
+        "./src/app/**/*",
+        "./src/msw/**/*",
+        "./e2e/playwright/**/*",
+        "./playwright-config.ts",
+        "./env.schema.ts"
+    ]
 }

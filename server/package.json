@@ -1,6 +1,6 @@
 {
     "name": "@navikt/sif-server",
-    "version": "0.3.5",
+    "version": "0.3.7",
     "license": "MIT",
     "private": true,
     "type": "module",
@@ -10,24 +10,28 @@
         "build": "ncc build ./src/index.ts -o dist -t --no-cache"
     },
     "dependencies": {
-        "@navikt/nav-dekoratoren-moduler": "2.1.6",
-        "@navikt/oasis": "3.4.0",
+        "@navikt/nav-dekoratoren-moduler": "3.1.1",
+        "@navikt/oasis": "3.6.0",
         "@navikt/sif-common-env": "*",
         "cookie-parser": "1.4.7",
-        "express": "4.21.1",
+        "csp-header": "6.0.0",
+        "express": "4.21.2",
+        "html-react-parser": "5.2.0",
         "http-proxy-middleware": "3.0.3",
+        "jsdom": "25.0.1",
+        "react": "18.3.1",
         "zod": "3.23.8"
     },
     "devDependencies": {
-        "@types/cookie-parser": "1.4.7",
+        "@types/cookie-parser": "1.4.8",
         "@types/express": "5.0.0",
         "@types/morgan": "1.9.9",
-        "@types/node": "22.9.1",
+        "@types/node": "22.10.1",
         "@vercel/ncc": "0.38.3",
-        "axios": "1.7.7",
+        "axios": "1.7.9",
         "morgan": "1.10.0",
-        "prettier": "3.3.3",
-        "typescript": "5.6.3",
+        "prettier": "3.4.2",
+        "typescript": "5.7.2",
         "winston": "3.17.0"
     },
     "packageManager": "yarn@4.5.0"

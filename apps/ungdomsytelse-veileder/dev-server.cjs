@@ -27,6 +27,16 @@ server.use((req, res, next) => {
     next();
 });
 
+async function injectDecorator(filePath) {
+    return injectDecoratorServerSide({
+        env: 'dev',
+        filePath,
+        params: {
+            simple: true,
+        },
+    });
+}
+
 const startServer = async () => {
     server.get('/health/isAlive', (req, res) => res.sendStatus(200));
     server.get('/health/isReady', (req, res) => res.sendStatus(200));

@@ -49,13 +49,7 @@ export const useSendSøknad = () => {
         navigateTo(SøknadRoutes.SØKNAD_SENDT);
     };
 
-    const resetSendSøknad = () => {
-        setIsSubmitting(false);
-        setSendSøknadError(undefined);
-    };
-
     return {
-        resetSendSøknad,
         sendSøknad,
         isSubmitting,
         sendSøknadError,

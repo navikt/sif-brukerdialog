@@ -65,7 +65,7 @@ export const validationMessages = {
         `Du har lagt til for mange ${hva}. Maks antall elementer er {maksAntall}.`,
     [ValidateNumberError.numberHasNoValue]: ({ hva }: { hva: string }) => `Skriv inn ${hva}.`,
     [ValidateNumberError.numberHasInvalidFormat]: ({ hva }: { hva: string }) =>
-        `Du må oppgi et gyldig tall for ${hva}. Et gyldig tall inneholder kun siffer.`,
+        `Du må oppgi et gyldig tall for ${hva}. Et gyldig tall inneholder kun siffer og komma som desimaltegn.`,
     [ValidateNumberError.numberIsTooSmall]: ({ hva }: { hva: string }) =>
         `Tallet du har oppgitt for ${hva} er for lavt. Tallet kan ikke være lavere enn {min}.`,
     [ValidateNumberError.numberIsTooLarge]: ({ hva }: { hva: string }) =>

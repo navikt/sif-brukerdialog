@@ -1,18 +1,18 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
-import { AxiosError } from 'axios';
 import { PleiepengerLivetsSluttApp } from '@navikt/sif-app-register';
+import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { getInnsendingService, InnsendingType } from '@navikt/sif-common-api';
+import { AxiosError } from 'axios';
+import { mellomlagringService } from '../api/mellomlagringService';
+import { useAppIntl } from '../i18n';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
-import { SøknadRoutes } from '../types/SøknadRoutes';
-import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
-import { getKvitteringInfoFromApiData } from '../utils/kvitteringUtils';
-import { Søker } from '../types/Søker';
 import { KvitteringInfo } from '../types/KvitteringInfo';
-import { mellomlagringService } from '../api/mellomlagringService';
-import { getInnsendingService, InnsendingType } from '@navikt/sif-common-api';
-import { useAppIntl } from '../i18n';
+import { Søker } from '../types/Søker';
+import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
+import { SøknadRoutes } from '../types/SøknadRoutes';
+import { getKvitteringInfoFromApiData } from '../utils/kvitteringUtils';
 
 export const useSendSøknad = () => {
     const { dispatch } = useSøknadContext();
@@ -44,8 +44,6 @@ export const useSendSøknad = () => {
         if (kvitteringInfo) {
             dispatch(actionsCreator.setSøknadKvitteringInfo(kvitteringInfo));
         }
-
-        dispatch(actionsCreator.setSøknadSendt());
         navigateTo(SøknadRoutes.SØKNAD_SENDT);
     };
 

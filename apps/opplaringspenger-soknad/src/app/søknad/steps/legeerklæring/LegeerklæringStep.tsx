@@ -70,6 +70,7 @@ const LegeerklæringStep = () => {
                                     syncVedleggState(formValues[LegeerklæringFormFields.vedlegg]);
                                 }}
                             />
+
                             <PersistStepFormValues stepId={stepId} />
                             <LegeerklæringForm values={values} goBack={goBack} isSubmitting={isSubmitting} />
                         </>

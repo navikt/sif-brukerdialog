@@ -18,14 +18,12 @@ const nb = {
     'omBarnetForm.fødselsdato': 'Barnets fødselsdato',
     'omBarnetForm.relasjon.spm': 'Hvilken relasjon har du til barnet?',
     'omBarnetForm.relasjonAnnet.spm':
-        'Beskriv hvem du er i forhold til barnet, og hvilken tilsynsrolle du har i perioden du søker for',
+        'Beskriv hvem du er i forhold til barnet, og i hvilke situasjoner du tar deg av og pleier barnet',
     'omBarnetForm.relasjonAnnet.info.tittel': 'Hva betyr dette?',
     'omBarnetForm.relasjonAnnet.info.hjelpetekst.1':
-        'I noen tilfeller kan ikke den eller de som har den daglige omsorgen for barnet ha tilsyn med barn som trenger tilsyn og pleie hele tiden. Da kan andre personer hjelpe til med dette. Andre personer kan for eksempel være en besteforelder, venn, nabo, tante eller onkel.',
+        'For å få opplæringspenger må det være nødvendig med opplæring for at du skal kunne ta deg av og pleie barnet. Dette kan være andre omsorgspersoner enn barnets foreldre, så lenge du i perioder tar deg av barnet.',
     'omBarnetForm.relasjonAnnet.info.hjelpetekst.2':
-        'Eksempel 1: Mor/far kan ikke selv følge barnet til sykehuset for utredning eller behandling. Da kan andre personer følge barnet til sykehuset, og ha tilsyn med barnet så lenge oppholdet på sykehuset varer.',
-    'omBarnetForm.relasjonAnnet.info.hjelpetekst.3':
-        'Eksempel 2: Hverken mor eller far har mulighet til å pleie barnet hjemme, da kan andre personer gjøre dette og ha tilsyn med barnet i perioden det gjelder. ',
+        'Vi må derfor vite mer om hvilken rolle du har overfor barnet, for å vurdere om det er nødvendig at du får denne opplæringen.',
     'omBarnetForm.relasjonTilBarnet.MOR': 'Mor',
     'omBarnetForm.relasjonTilBarnet.FAR': 'Far',
     'omBarnetForm.relasjonTilBarnet.ANNET': 'Annet',

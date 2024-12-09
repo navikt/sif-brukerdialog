@@ -181,7 +181,7 @@ export const OmsorgsdagerKalkulator: AppInfo = {
 };
 
 export const OpplæringspengerApp: AppInfo = {
-    key: 'opplæringspenger-soknad',
+    key: 'opplaringspenger-soknad',
     navn: 'Søknad om opplæringspenger',
     tittel: {
         nb: 'Søknad om opplæringspenger',

@@ -32,7 +32,6 @@ async function injectDecorator(filePath) {
         env: 'dev',
         filePath,
         params: {
-            enforceLogin: false,
             simple: true,
         },
     });
@@ -57,19 +56,6 @@ const startServer = async () => {
 
     server.use(
         `${process.env.PUBLIC_PATH}/api/k9-brukerdialog`,
-        // limiter,
-        createProxyMiddleware({
-            target: 'http://localhost:8089/',
-            changeOrigin: true,
-            logger: console,
-            on: {
-                proxyReq: fixRequestBody,
-            },
-        }),
-    );
-
-    server.use(
-        `${process.env.PUBLIC_PATH}/api/k9-sak-innsyn`,
         // limiter,
         createProxyMiddleware({
             target: 'http://localhost:8089/',

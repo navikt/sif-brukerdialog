@@ -25,7 +25,7 @@ const ArbeidsgivereISøknad: React.FunctionComponent<Props> = ({ søknadId, arbe
 
             <List className="mt-4">
                 {arbeidsgivere.map((organisasjon) => (
-                    <List.Item key={organisasjon.organisasjonsnummer}>
+                    <li key={organisasjon.organisasjonsnummer}>
                         <PdfLenke
                             href={getArbeidsgivermeldingApiUrlBySoknadIdOgOrgnummer(
                                 søknadId,
@@ -35,7 +35,7 @@ const ArbeidsgivereISøknad: React.FunctionComponent<Props> = ({ søknadId, arbe
                                 organisasjonsnavn: getOrganisasjonsnavnEllerOrgNummer(organisasjon),
                             })}
                         />
-                    </List.Item>
+                    </li>
                 ))}
             </List>
         </Box>

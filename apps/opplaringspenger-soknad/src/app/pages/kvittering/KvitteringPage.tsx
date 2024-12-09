@@ -1,33 +1,25 @@
-import { Heading, Link } from '@navikt/ds-react';
+import { Heading, HStack, Link } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import CheckmarkIcon from '@navikt/sif-common-core-ds/src/atoms/checkmark-icon/CheckmarkIcon';
 import Checklist from '@navikt/sif-common-core-ds/src/components/lists/checklist/Checklist';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import getLenker from '../../lenker';
-import { useEffect } from 'react';
-import { KvitteringInfo } from '../../types/KvitteringInfo';
 import { AppText, useAppIntl } from '../../i18n';
+import getLenker from '../../lenker';
+import { KvitteringInfo } from '../../types/KvitteringInfo';
 
 interface Props {
     kvitteringInfo?: KvitteringInfo;
-    onUnmount: () => void;
 }
 
-const KvitteringPage = ({ kvitteringInfo, onUnmount }: Props) => {
+const KvitteringPage = ({ kvitteringInfo }: Props) => {
     const { text, intl } = useAppIntl();
-
-    useEffect(() => {
-        return () => {
-            onUnmount();
-        };
-    });
 
     return (
         <Page title={text('page.kvittering.sidetittel')}>
             <div data-testid="kvittering-page">
-                <div role="presentation" aria-hidden="true" style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                <HStack justify="center" marginBlock="0 8" role="presentation" aria-hidden="true">
                     <CheckmarkIcon />
-                </div>
+                </HStack>
 
                 <Heading level="1" size="large">
                     <AppText id="page.kvittering.tittel" />
@@ -52,7 +44,12 @@ const KvitteringPage = ({ kvitteringInfo, onUnmount }: Props) => {
                             <AppText
                                 id="page.kvittering.list.item.3"
                                 values={{
-                                    Lenke: (children) => (
+                                    MinSideLenke: (children) => (
+                                        <Link href={getLenker(intl.locale).minSide} target="_blank">
+                                            {children}
+                                        </Link>
+                                    ),
+                                    SaksbehandlingstidLenke: (children) => (
                                         <Link href={getLenker(intl.locale).saksbehandlingstider} target="_blank">
                                             {children}
                                         </Link>
