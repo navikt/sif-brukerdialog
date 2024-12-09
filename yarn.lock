@@ -2108,9 +2108,11 @@ __metadata:
   linkType: hard
 
 "@codemirror/state@npm:^6.0.0, @codemirror/state@npm:^6.1.1, @codemirror/state@npm:^6.4.0":
-  version: 6.4.1
-  resolution: "@codemirror/state@npm:6.4.1"
-  checksum: 10/a9ec56c7d7d52034ce8ebea3a9a4d216b9e972d701b32b5000e56c97790d0d46af129aeba0b80bed36648b4024b3ba3e4910cf5bfed11de4a9e89252e0707a70
+  version: 6.5.0
+  resolution: "@codemirror/state@npm:6.5.0"
+  dependencies:
+    "@marijn/find-cluster-break": "npm:^1.0.0"
+  checksum: 10/7d29461ee05851b03aadd84fed5ce55430b396097954cf47f464840a0b9af3f896375c0fc52726c50039e58bb25755e9a55ad63c6ba65646ac49e62af9cc35b6
   languageName: node
   linkType: hard
 
@@ -4259,6 +4261,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@marijn/find-cluster-break@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@marijn/find-cluster-break@npm:1.0.0"
+  checksum: 10/e95ea0ac74ee12c5f46c8113333fad65eecd78bee81ab476d93078ff7f2699f5c5a574439350bd12579897e9826ba4b7a0eac98957eb6a77e41d83eada1bc867
+  languageName: node
+  linkType: hard
+
 "@mdx-js/react@npm:^3.0.0":
   version: 3.1.0
   resolution: "@mdx-js/react@npm:3.1.0"
@@ -5054,7 +5063,7 @@ __metadata:
     jose: "npm:5.9.6"
     jsdom: "npm:25.0.1"
     lodash: "npm:4.17.21"
-    msw: "npm:^2.6.7"
+    msw: "npm:2.6.8"
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
     openid-client: "npm:6.1.7"
@@ -6652,8 +6661,8 @@ __metadata:
   linkType: hard
 
 "@portabletext/editor@npm:^1.13.0":
-  version: 1.15.1
-  resolution: "@portabletext/editor@npm:1.15.1"
+  version: 1.15.2
+  resolution: "@portabletext/editor@npm:1.15.2"
   dependencies:
     "@portabletext/patches": "npm:1.1.0"
     "@xstate/react": "npm:^5.0.0"
@@ -6661,7 +6670,7 @@ __metadata:
     get-random-values-esm: "npm:^1.0.2"
     lodash: "npm:^4.17.21"
     lodash.startcase: "npm:^4.4.0"
-    react-compiler-runtime: "npm:19.0.0-beta-df7b47d-20241124"
+    react-compiler-runtime: "npm:19.0.0-beta-37ed2a7-20241206"
     slate: "npm:0.112.0"
     slate-dom: "npm:^0.111.0"
     slate-react: "npm:0.112.0"
@@ -6674,7 +6683,7 @@ __metadata:
     react: ^16.9 || ^17 || ^18 || ^19
     rxjs: ^7.8.1
     styled-components: ^6.1.13
-  checksum: 10/b3a0875716d3c179bc7ad07b608ea41008521da4124a0d539b5bce23640d0b8a77af0217b0f49b6ed50aefc72c6147f76865531806d2a74c8a14d9280b281bcf
+  checksum: 10/d3455f71174bb6d878050d36d974ac406520f2ad4e935da211b417d849ff133dff7cb113d5ec7525d0ab11c6931c47d94eec540d9b64cc178641d8135188bc42
   languageName: node
   linkType: hard
 
@@ -8145,15 +8154,15 @@ __metadata:
   linkType: hard
 
 "@sanity/ui@npm:^2.9.0, @sanity/ui@npm:^2.9.1":
-  version: 2.10.1
-  resolution: "@sanity/ui@npm:2.10.1"
+  version: 2.10.2
+  resolution: "@sanity/ui@npm:2.10.2"
   dependencies:
     "@floating-ui/react-dom": "npm:^2.1.2"
     "@sanity/color": "npm:^3.0.6"
     "@sanity/icons": "npm:^3.5.0"
     csstype: "npm:^3.1.3"
     framer-motion: "npm:^11.13.1"
-    react-compiler-runtime: "npm:19.0.0-beta-df7b47d-20241124"
+    react-compiler-runtime: "npm:19.0.0-beta-37ed2a7-20241206"
     react-refractor: "npm:^2.2.0"
     use-effect-event: "npm:^1.0.2"
   peerDependencies:
@@ -8161,7 +8170,7 @@ __metadata:
     react-dom: ^18 || >=19.0.0-0
     react-is: ^18 || >=19.0.0-0
     styled-components: ^5.2 || ^6
-  checksum: 10/e9c94f921c3d26032d69a17cefbe357a7379dc4870ba0048eec155adbbb5c55a4874be7f637bd2029518b540c844ea7df6eda781b00e8dc9ec4545d886baeb37
+  checksum: 10/3a54c42fa26df64fcbb91446705afc924a62c3b8b908f2ee2d9d507bd5ff651783d28af890b82351e14f13a90b68b8761241386f445c97eff4417a3f794bf97b
   languageName: node
   linkType: hard
 
@@ -18695,11 +18704,11 @@ __metadata:
   linkType: hard
 
 "groq-js@npm:^1.14.1":
-  version: 1.14.1
-  resolution: "groq-js@npm:1.14.1"
+  version: 1.14.2
+  resolution: "groq-js@npm:1.14.2"
   dependencies:
     debug: "npm:^4.3.4"
-  checksum: 10/00b6b0da349ed2a963b7c06ce7b0b7d4ee9ac7e1e3b4ecebefd8849aa6d8b62e2c6eb966e55f65e4f4cd188a2b8cb835eff2992844b8ab0cb7554e0dfd4280fb
+  checksum: 10/273cee1ef85333769e85f08348f1a559b99926de28b7e577e37cec62bd9ba20031d30ba6517ecfdcca8a61a8c8934fb383ae1c1ea45f51bffbfa38d31959573e
   languageName: node
   linkType: hard
 
@@ -23221,7 +23230,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw@npm:2.6.8, msw@npm:^2.0.8, msw@npm:^2.6.7":
+"msw@npm:2.6.8, msw@npm:^2.0.8":
   version: 2.6.8
   resolution: "msw@npm:2.6.8"
   dependencies:
@@ -26321,6 +26330,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-compiler-runtime@npm:19.0.0-beta-37ed2a7-20241206":
+  version: 19.0.0-beta-37ed2a7-20241206
+  resolution: "react-compiler-runtime@npm:19.0.0-beta-37ed2a7-20241206"
+  peerDependencies:
+    react: ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10/d95b8f2f6897174911ebe77fd0247e85f06a5791c6e759cae0d961df217d6af5b822621e4dbab41acb0c69c006dbeec89cd874fe2af076bbade066f5ab4a741d
+  languageName: node
+  linkType: hard
+
 "react-compiler-runtime@npm:19.0.0-beta-df7b47d-20241124":
   version: 19.0.0-beta-df7b47d-20241124
   resolution: "react-compiler-runtime@npm:19.0.0-beta-df7b47d-20241124"
@@ -26703,16 +26721,16 @@ __metadata:
   linkType: hard
 
 "react-rx@npm:^4.1.7":
-  version: 4.1.7
-  resolution: "react-rx@npm:4.1.7"
+  version: 4.1.8
+  resolution: "react-rx@npm:4.1.8"
   dependencies:
     observable-callback: "npm:^1.0.3"
-    react-compiler-runtime: "npm:19.0.0-beta-df7b47d-20241124"
+    react-compiler-runtime: "npm:19.0.0-beta-37ed2a7-20241206"
     use-effect-event: "npm:^1.0.2"
   peerDependencies:
     react: ^18.3 || >=19.0.0-0
     rxjs: ^7
-  checksum: 10/5501197e034247637d4dace1e0882adfcd5fa3c13c4e0b5d08049c1a07eae4fd94039c5a5ad7e91306d855724d03b2db64b0cc5503e16f294dab818ea2a7190c
+  checksum: 10/abe8923515df9f1baac2415e24bf56e0198f7cd3c72e0e54f0f8f7fcfe2137e5f68e62c5a81f0987877e449dea0d71d3fd5abde194505caef806325670e76b05
   languageName: node
   linkType: hard
 
@@ -26826,15 +26844,15 @@ __metadata:
   linkType: hard
 
 "react-textarea-autosize@npm:^8.3.2":
-  version: 8.5.5
-  resolution: "react-textarea-autosize@npm:8.5.5"
+  version: 8.5.6
+  resolution: "react-textarea-autosize@npm:8.5.6"
   dependencies:
     "@babel/runtime": "npm:^7.20.13"
     use-composed-ref: "npm:^1.3.0"
     use-latest: "npm:^1.2.1"
   peerDependencies:
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 10/07b8085d6d4b6e12939bc40a415410f3309f2afdd0aeb0990523c209a98df3a347f8708046879525394048a6a31825f35f5856e1566bb47f794f6cdc4b994c32
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10/7e57b45b23ed466d80beea78ea83448c4ca8410145999cbaa7e98c8d41074fc36960c48bd8cdb5833aa7647a9bba50d7c182aa1083cf2e8719ca726c65344f5a
   languageName: node
   linkType: hard
 

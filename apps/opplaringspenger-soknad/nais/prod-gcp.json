@@ -1,13 +1,13 @@
 {
     "app": "opplaringspenger-soknad",
+    "cluster": "prod-gcp",
     "namespace": "dusseldorf",
     "team": "dusseldorf",
-    "livenessPath": "/familie/sykdom-i-familien/soknad/opplaringspenger/health/isAlive",
-    "readinessPath": "/familie/sykdom-i-familien/soknad/opplaringspenger/health/isReady",
-    "externalHosts": ["www.nav.no"],
-    "accessPolicyOutApps": ["k9-brukerdialog-prosessering"],
     "ingresses": ["https://www.nav.no/familie/sykdom-i-familien/soknad/opplaringspenger"],
-    "cluster": "prod-gcp",
+    "externalHosts": ["www.nav.no"],
+    "accessPolicyOutApps": [{ "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" }],
+    "livenessPath": "/internal/health/isAlive",
+    "readinessPath": "/internal/health/isReady",
     "minReplicas": 2,
     "maxReplicas": 2,
     "env": {

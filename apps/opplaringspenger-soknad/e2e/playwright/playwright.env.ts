@@ -3,7 +3,6 @@ import { AppEnv } from '../../env.schema';
 export const playwrightEnv: AppEnv = {
     ENV: 'dev',
     APP_VERSION: 'dev',
-
     PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/opplaringspenger',
     GITHUB_REF_NAME: 'branch-name',
     SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
@@ -19,7 +18,4 @@ export const playwrightEnv: AppEnv = {
         '/familie/sykdom-i-familien/soknad/opplaringspenger/api/k9-brukerdialog',
     K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: 'dev-gcp:dusseldorf:k9-brukerdialog-prosessering',
     K9_BRUKERDIALOG_PROSESSERING_API_URL: 'http://k9-brukerdialog-prosessering',
-    K9_SAK_INNSYN_FRONTEND_PATH: '/familie/sykdom-i-familien/soknad/opplaringspenger/api/k9-sak-innsyn',
-    K9_SAK_INNSYN_API_SCOPE: 'dev-gcp:dusseldorf:k9-sak-innsyn-api',
-    K9_SAK_INNSYN_API_URL: 'http://k9-sak-innsyn-api',
 };
