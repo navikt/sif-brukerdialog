@@ -1,5 +1,4 @@
 const { createProxyMiddleware, fixRequestBody } = require('http-proxy-middleware');
-const { injectDecoratorServerSide } = require('@navikt/nav-dekoratoren-moduler/ssr/index.js');
 const express = require('express');
 const server = express();
 server.use(express.json());
@@ -7,6 +6,7 @@ const path = require('path');
 const mustacheExpress = require('mustache-express');
 const compression = require('compression');
 const getAppSettings = require('./getAppSettings.cjs');
+const fs = require('fs');
 
 server.disable('x-powered-by');
 
@@ -43,9 +43,9 @@ const startServer = async () => {
 
     const indexHtmlPath = path.resolve(__dirname, 'index.html');
 
-    const htmlWithDecoratorInjected = await injectDecorator(indexHtmlPath);
+    const html = fs.readFileSync(indexHtmlPath, 'utf-8');
 
-    const renderedHtml = htmlWithDecoratorInjected.replaceAll(
+    const renderedHtml = html.replaceAll(
         '{{{APP_SETTINGS}}}',
         JSON.stringify({
             APP_VERSION: `${process.env.APP_VERSION}`,
@@ -66,7 +66,6 @@ const startServer = async () => {
         }),
     );
 
-    const fs = require('fs');
     fs.writeFileSync(path.resolve(__dirname, 'index-decorated.html'), renderedHtml);
 
     const vite = await require('vite').createServer({

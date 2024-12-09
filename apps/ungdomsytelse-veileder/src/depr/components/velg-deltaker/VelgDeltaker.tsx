@@ -14,7 +14,6 @@ const VelgDeltaker = ({ onDeltakerValgt, valgtFnr }: Props) => {
     const fnrValidator = getFødselsnummerValidator({ required: true, allowHnr: true });
 
     const hentSøker = async () => {
-        // const fnr = fnrRef.current?.value;
         const error = fnrValidator(fnr);
         setValidationError(error);
         if (fnr && error === undefined) {

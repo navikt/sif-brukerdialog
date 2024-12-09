@@ -1,3 +1,16 @@
+@import 'tailwindcss/base';
+@import '@navikt/ds-css';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
+@import 'react-loading-skeleton/dist/skeleton.css';
+
 .page {
     margin-top: 1rem;
+}
+
+.hentDeltakerForm {
+    legend {
+        font-size: 1.4rem;
+    }
 }
