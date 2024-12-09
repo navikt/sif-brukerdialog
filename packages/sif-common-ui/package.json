@@ -12,7 +12,7 @@
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-utils": "*",
         "classnames": "2.5.1",
-        "react-day-picker": "8.10.1"
+        "react-day-picker": "9.4.2"
     },
     "devDependencies": {
         "@sif/eslint-config": "*",
