@@ -12,7 +12,8 @@
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-utils": "*",
         "classnames": "2.5.1",
-        "react-day-picker": "8.10.1"
+        "react-day-picker": "8.10.1",
+        "react-scripts": "5.0.1"
     },
     "devDependencies": {
         "@sif/eslint-config": "*",
@@ -39,7 +40,8 @@
         "react-dom": "18.3.1",
         "react-intl": "7.0.4",
         "storybook": "8.4.7",
-        "typescript": "5.7.2"
+        "typescript": "5.7.2",
+        "webpack": "5.97.1"
     },
     "scripts": {
         "build-storybook": "storybook build ",

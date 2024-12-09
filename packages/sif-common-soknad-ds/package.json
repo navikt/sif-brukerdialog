@@ -19,10 +19,15 @@
     "dependencies": {
         "@navikt/nav-dekoratoren-moduler": "3.1.1",
         "classnames": "2.5.1",
+        "csp-header": "6.0.0",
         "date-fns": "3.6.0",
         "fp-ts": "2.16.9",
+        "html-react-parser": "5.2.0",
         "io-ts": "2.2.21",
-        "js-cookie": "3.0.5"
+        "js-cookie": "3.0.5",
+        "jsdom": "25.0.1",
+        "postcss": "8.4.49",
+        "webpack": "5.97.1"
     },
     "devDependencies": {
         "@babel/core": "7.26.0",
