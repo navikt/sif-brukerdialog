@@ -75,6 +75,7 @@
         "cross-env": "7.0.3",
         "eslint-plugin-storybook": "0.11.1",
         "helmet": "8.0.0",
+        "msw": "^2.6.7",
         "postcss-nesting": "13.0.1",
         "storybook": "8.4.7",
         "tailwindcss": "3.4.16",
@@ -86,9 +87,13 @@
     "scripts": {
         "build-storybook": "storybook build",
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/opplaringspenger",
+        "build-demo": "npm run build-demo:vite && npm run build-demo:copy-service-worker",
+        "build-demo:vite": "vite build --base=/ --outDir=demo",
+        "build-demo:copy-service-worker": "cp ./mockServiceWorker.js ./demo/mockServiceWorker.js",
         "clean": "rm -rf node_modules .dist",
         "dev-api": "PORT=8089 node ./mock/mock-api-server.cjs",
         "dev": "node ./dev-server.cjs",
+        "demo": "node ./demo-server.cjs",
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit",
@@ -107,6 +112,11 @@
                     "import/no-anonymous-default-export": "off"
                 }
             }
+        ]
+    },
+    "msw": {
+        "workerDirectory": [
+            "dist"
         ]
     }
 }
