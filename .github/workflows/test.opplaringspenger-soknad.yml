@@ -1,4 +1,4 @@
-name: test.opplæringspenger-søknad
+name: test.opplaringspenger-søknad
 
 on:
     push:
