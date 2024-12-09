@@ -17,10 +17,10 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "@navikt/aksel-icons": "7.6.0",
-        "@navikt/ds-css": "7.6.0",
-        "@navikt/ds-react": "7.6.0",
-        "@navikt/ds-tailwind": "7.6.0",
+        "@navikt/aksel-icons": "7.7.0",
+        "@navikt/ds-css": "7.7.0",
+        "@navikt/ds-react": "7.7.0",
+        "@navikt/ds-tailwind": "7.7.0",
         "@navikt/nav-dekoratoren-moduler": "3.1.1",
         "@navikt/sif-common-api": "*",
         "@navikt/sif-common-core-ds": "*",
@@ -34,8 +34,8 @@
         "html-react-parser": "5.2.0",
         "react": "18.3.1",
         "react-dom": "18.3.1",
-        "react-hook-form": "7.53.2",
-        "react-intl": "7.0.1",
+        "react-hook-form": "7.54.0",
+        "react-intl": "7.0.4",
         "react-router-dom": "7.0.2",
         "uuid": "11.0.3",
         "zod": "3.23.8"
