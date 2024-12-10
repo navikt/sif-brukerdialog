@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.28.0
+
+### Minor Changes
+
+- Oppdatere til React19
+
 ## 0.27.25
 
 ### Patch Changes

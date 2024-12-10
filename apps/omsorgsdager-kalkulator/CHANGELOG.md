@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.11.0
+
+### Minor Changes
+
+- Oppdatere til React19
+
 ## 3.10.2
 
 ### Patch Changes

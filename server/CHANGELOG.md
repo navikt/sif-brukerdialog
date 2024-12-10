@@ -1,5 +1,11 @@
 # @navikt/sif-server
 
+## 0.4.0
+
+### Minor Changes
+
+- Oppdatere til React19
+
 ## 0.3.7
 
 ### Patch Changes

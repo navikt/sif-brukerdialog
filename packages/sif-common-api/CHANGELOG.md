@@ -1,5 +1,18 @@
 # @navikt/sif-common-ui
 
+## 0.4.0
+
+### Minor Changes
+
+- Oppdatere til React19
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.3.0
+    - @navikt/sif-common-sentry@0.28.0
+    - @navikt/sif-common-utils@3.48.0
+
 ## 0.3.8
 
 ### Patch Changes

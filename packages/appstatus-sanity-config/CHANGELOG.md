@@ -1,5 +1,11 @@
 # appstatus-sanity-config
 
+## 1.2.0
+
+### Minor Changes
+
+- Oppdatere til React19
+
 ## 1.1.10
 
 ### Patch Changes
