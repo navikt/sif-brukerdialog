@@ -16,10 +16,10 @@
         "test": "jest"
     },
     "dependencies": {
-        "@navikt/ds-css": "7.7.0",
+        "@navikt/ds-css": "7.8.0",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "7.7.0",
-        "@navikt/ds-tailwind": "7.7.0",
+        "@navikt/ds-react": "7.8.0",
+        "@navikt/ds-tailwind": "7.8.0",
         "@navikt/nav-dekoratoren-moduler": "3.1.1",
         "classnames": "2.5.1",
         "csp-header": "6.0.0",
@@ -38,7 +38,7 @@
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.1",
-        "@playwright/test": "1.49.0",
+        "@playwright/test": "1.49.1",
         "@types/node": "22.10.1",
         "@types/react": "18.3.12",
         "@types/react-dom": "18.3.1",
@@ -48,7 +48,7 @@
         "eslint-config-next": "15.0.4",
         "jest": "29.7.0",
         "jest-environment-jsdom": "29.7.0",
-        "playwright-core": "1.49.0",
+        "playwright-core": "1.49.1",
         "postcss": "8.4.49",
         "tailwindcss": "3.4.16",
         "typescript": "5.7.2"
