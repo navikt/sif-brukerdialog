@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.48.0
+
+### Minor Changes
+
+- Oppdatere til React19
+
 ## 3.47.29
 
 ### Patch Changes

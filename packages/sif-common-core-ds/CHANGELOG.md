@@ -1,5 +1,17 @@
 # @navikt/sif-common-core-ds
 
+## 10.1.0
+
+### Minor Changes
+
+- Oppdatere til React19
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-utils@3.48.0
+    - @navikt/sif-common-api@0.4.0
+
 ## 10.0.2
 
 ### Patch Changes

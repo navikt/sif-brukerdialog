@@ -1,5 +1,20 @@
 # @navikt/sif-demo-app
 
+## 0.4.0
+
+### Minor Changes
+
+- Oppdatere til React19
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-soknad-ds@22.0.0
+    - @navikt/sif-common-forms-ds@17.0.0
+    - @navikt/sif-common-core-ds@10.1.0
+    - @navikt/sif-common-api@0.4.0
+    - @navikt/sif-common-ui@0.9.0
+
 ## 0.3.12
 
 ### Patch Changes
