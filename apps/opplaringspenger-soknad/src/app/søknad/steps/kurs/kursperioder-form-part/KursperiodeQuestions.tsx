@@ -160,6 +160,7 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, allePerioder, o
                         name={getFieldName(KursperiodeFormFields.avreise)}
                         label={text('kursperiode.form.avreise.label')}
                         maxDate={startdato}
+                        defaultMonth={startdato}
                         validate={(value) => {
                             const error = getDateValidator({ required: true, max: startdato })(value);
                             if (error) {
@@ -176,6 +177,7 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, allePerioder, o
                         name={getFieldName(KursperiodeFormFields.hjemkomst)}
                         label={text('kursperiode.form.hjemkomst.label')}
                         minDate={sluttdato}
+                        defaultMonth={sluttdato}
                         validate={(value) => {
                             const error = getDateValidator({ required: true, min: sluttdato })(value);
                             if (error) {
