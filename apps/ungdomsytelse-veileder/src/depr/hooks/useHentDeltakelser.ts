@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { veilederService } from '../api/services/veilederService';
-import { Deltakelse } from '../api/types';
+import { veilederService } from '../../api/services/veilederService';
+import { Deltakelse } from '../../api/types';
 
 export const useHentDeltakelser = () => {
     const [pending, setIsPending] = useState(false);
