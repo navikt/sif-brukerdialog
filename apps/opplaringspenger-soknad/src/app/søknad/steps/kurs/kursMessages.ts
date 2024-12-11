@@ -10,7 +10,7 @@ const nb = {
         'Skriv inn helseinstitusjon eller kompetansesenter som er ansvarlig for kurs eller opplæring',
     'steg.kurs.opplæringsinstitusjon.stringHasNoValue': '',
 
-    'steg.kurs.kursperioder.tittel': 'Hvilken dager er opplæringen?',
+    'steg.kurs.kursperioder.tittel': 'Hvilke dager er opplæringen?',
 
     'steg.kurs.kursperiode.addLabel': 'Legg til kursperiode',
     'steg.kurs.kursperiode.modalTitle': 'Legg til kursperiode',
