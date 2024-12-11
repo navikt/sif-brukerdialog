@@ -62,7 +62,7 @@
         "@sif/eslint-config": "*",
         "@testing-library/dom": "10.4.0",
         "@types/object-hash": "3.0.6",
-        "@types/react": "18.3.16",
+        "@types/react": "19.0.1",
         "@types/react-dom": "18.3.5",
         "@types/react-router-dom": "5.3.3",
         "@vitejs/plugin-react": "4.3.4",
