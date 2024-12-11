@@ -18,7 +18,7 @@
         "@sif/eslint-config": "*",
         "@types/node": "22.10.1",
         "@types/react": "18.3.14",
-        "@types/react-dom": "18.3.3",
+        "@types/react-dom": "19.0.2",
         "config": "*",
         "copyfiles": "2.4.1",
         "postcss": "8.4.49",
