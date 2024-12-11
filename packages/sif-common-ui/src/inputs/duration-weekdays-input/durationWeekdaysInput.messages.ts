@@ -1,7 +1,7 @@
 const nb = {
     '@ui.durationWeekdaysInput.uke': 'Uke',
     '@ui.durationWeekdaysInput.timer': 'Timer',
-    '@ui.durationWeekdaysInput.minutter': 'Minutter',
+    '@ui.durationWeekdaysInput.minutter': 'Minutt',
 };
 
 const nn: Record<keyof typeof nb, string> = {
