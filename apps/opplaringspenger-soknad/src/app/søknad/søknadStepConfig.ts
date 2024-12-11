@@ -1,7 +1,7 @@
 import { SoknadApplicationType, SoknadStepsConfig, soknadStepUtils, StepConfig } from '@navikt/sif-common-soknad-ds';
 import { StepId } from '../types/StepId';
 import { getSøknadStepRoute } from '../utils/søknadRoutesUtils';
-import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
+import { ArbeidssituasjonSøknadsdata, Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 
 const getSøknadSteps = (søknadsdata: Søknadsdata): StepId[] => {
     return [
@@ -16,7 +16,10 @@ const getSøknadSteps = (søknadsdata: Søknadsdata): StepId[] => {
 };
 
 const skalArbeidstidStegBesvares = (søknadsdata: Søknadsdata): boolean => {
-    return søknadsdata.kurs?.arbeiderIKursperiode === true;
+    return (
+        søknadsdata.kurs?.arbeiderIKursperiode === true &&
+        erAnsattFrilanserEllerSelvstendigNæringsdrivende(søknadsdata.arbeidssituasjon)
+    );
 };
 
 export const getSøknadStepConfig = (søknadsdata: Søknadsdata): SoknadStepsConfig<StepId> =>
@@ -30,4 +33,21 @@ export const getSøknadStepConfigForStep = (søknadsdata: Søknadsdata, stepId: 
         throw `Missing step config ${stepId}`;
     }
     return config;
+};
+
+export const erAnsattFrilanserEllerSelvstendigNæringsdrivende = (
+    arbeidssituasjon?: ArbeidssituasjonSøknadsdata,
+): boolean => {
+    if (!arbeidssituasjon) {
+        return false;
+    }
+    const { frilans, selvstendig, arbeidsgivere } = arbeidssituasjon;
+    if (frilans.erFrilanser || selvstendig.erSelvstendigNæringsdrivende) {
+        return true;
+    }
+    return arbeidsgivere === undefined
+        ? false
+        : Object.keys(arbeidsgivere)
+              .map((key) => arbeidsgivere[key])
+              .some(({ erAnsattISøknadsperiode }) => erAnsattISøknadsperiode);
 };

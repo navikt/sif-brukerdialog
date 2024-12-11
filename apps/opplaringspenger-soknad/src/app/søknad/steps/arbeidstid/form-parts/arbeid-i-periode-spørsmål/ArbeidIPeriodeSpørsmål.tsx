@@ -28,6 +28,7 @@ import { ArbeidIPeriode, ArbeidIPeriodeField, JobberIPeriodeSvar } from '../../A
 import { ArbeidsforholdType, ArbeidstidRegistrertLogProps } from '../types';
 import { getJobberIPeriodenValidator } from '../validation/jobberIPeriodenSpørsmål';
 import { AppIntlShape, useAppIntl } from '../../../../../i18n';
+import { begrensPeriodeTilPeriodeEnSkalOppgiTimerFor } from '../../arbeidstidStepUtils';
 
 const { RadioGroup, InputGroup } = getTypedFormComponents<
     ArbeidstidFormFields,
@@ -179,7 +180,7 @@ const ArbeidIPeriodeSpørsmål = ({
                         }>
                         <div style={{ marginTop: '1.5rem' }}>
                             <DurationWeekdaysInput
-                                dateRange={periode}
+                                dateRange={begrensPeriodeTilPeriodeEnSkalOppgiTimerFor(periode)}
                                 disabledDates={getDagerSomSkalDisables(periode, valgteDatoer)}
                                 formikFieldName={fieldName}
                                 useAccordion={useAccordion}

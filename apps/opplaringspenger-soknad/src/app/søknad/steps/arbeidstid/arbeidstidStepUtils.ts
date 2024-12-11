@@ -1,6 +1,10 @@
+import { DateRange } from '@navikt/sif-common-formik-ds';
 import { DateDurationMap, dateToISODate } from '@navikt/sif-common-utils';
-
+import dayjs from 'dayjs';
+import isoWeek from 'dayjs/plugin/isoWeek';
+import { ArbeidIPeriodeType } from '../../../types/ArbeidIPeriodeType';
 import { ArbeidFrilansSøknadsdata } from '../../../types/søknadsdata/ArbeidFrilansSøknadsdata';
+import { ArbeidIPeriodeSøknadsdata } from '../../../types/søknadsdata/ArbeidIPeriodeSøknadsdata';
 import { ArbeidSelvstendigSøknadsdata } from '../../../types/søknadsdata/ArbeidSelvstendigSøknadsdata';
 import { ArbeidsgivereSøknadsdata } from '../../../types/søknadsdata/ArbeidsgivereSøknadsdata';
 import { ArbeidstidArbeidsgivereSøknadsdata } from '../../../types/søknadsdata/ArbeidstidArbeidsgivereSøknadsdata';
@@ -11,8 +15,8 @@ import {
 } from '../../../types/søknadsdata/Søknadsdata';
 import { AnsattArbeidstid, ArbeidsaktivitetType, ArbeidstidFormValues, FrilansSNArbeidstid } from './ArbeidstidStep';
 import { ArbeidIPeriode, JobberIPeriodeSvar } from './ArbeidstidTypes';
-import { ArbeidIPeriodeSøknadsdata } from '../../../types/søknadsdata/ArbeidIPeriodeSøknadsdata';
-import { ArbeidIPeriodeType } from '../../../types/ArbeidIPeriodeType';
+
+dayjs.extend(isoWeek);
 
 export const getAntallArbeidsforhold = (arbeidssituasjon: ArbeidssituasjonSøknadsdata): number => {
     let antall = 0;
@@ -283,4 +287,17 @@ export const cleanupDateDurationMapWithValidDates = (enkeltdager: DateDurationMa
         }
     });
     return cleanedMap;
+};
+
+export const begrensPeriodeTilPeriodeEnSkalOppgiTimerFor = (periode: DateRange): DateRange => {
+    const fromDate = dayjs(periode.from);
+
+    // Hvis perioden starter på en helgedag, flytt startdato til påfølgende mandag
+    if (fromDate.isoWeekday() > 5) {
+        return {
+            from: dayjs(periode.from).add(1, 'week').startOf('isoWeek').toDate(),
+            to: periode.to,
+        };
+    }
+    return periode;
 };
