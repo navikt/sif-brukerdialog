@@ -6,10 +6,12 @@ import {
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
+import { mellomlagringService } from './api/mellomlagringService';
 import { applicationIntlMessages } from './i18n';
 import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
 import { appEnv } from './utils/appEnv';
+import { relocateToWelcomePage } from './utils/navigationUtils';
 import './app.css';
 
 const {
@@ -37,6 +39,10 @@ const App = () => (
             },
         }}
         publicPath={PUBLIC_PATH}
+        onResetSoknad={async () => {
+            await mellomlagringService.purge();
+            relocateToWelcomePage();
+        }}
         useAmplitude={SIF_PUBLIC_USE_AMPLITUDE ? SIF_PUBLIC_USE_AMPLITUDE === 'true' : isProd()}
         amplitudeApiKey={SIF_PUBLIC_AMPLITUDE_API_KEY}>
         <SoknadApplicationCommonRoutes

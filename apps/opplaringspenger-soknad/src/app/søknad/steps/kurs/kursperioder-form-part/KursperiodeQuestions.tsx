@@ -217,7 +217,7 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, allePerioder, o
                 <Box>
                     <Button
                         type="button"
-                        variant="secondary"
+                        variant="tertiary"
                         iconPosition="left"
                         icon={<Delete aria-hidden={true} />}
                         onClick={onRemove}
