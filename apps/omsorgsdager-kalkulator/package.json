@@ -41,7 +41,7 @@
         "@playwright/test": "1.49.1",
         "@types/node": "22.10.1",
         "@types/react": "18.3.14",
-        "@types/react-dom": "18.3.3",
+        "@types/react-dom": "19.0.2",
         "@types/uuid": "10.0.0",
         "config": "*",
         "eslint": "9.16.0",

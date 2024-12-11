@@ -63,7 +63,7 @@
         "@types/jest": "29.5.14",
         "@types/node": "22.10.1",
         "@types/react": "18.3.14",
-        "@types/react-dom": "18.3.3",
+        "@types/react-dom": "19.0.2",
         "@vitejs/plugin-react": "4.3.4",
         "axios": "1.7.9",
         "copyfiles": "2.4.1",
