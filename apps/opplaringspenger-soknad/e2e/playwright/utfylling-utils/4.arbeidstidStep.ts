@@ -10,8 +10,8 @@ export const fyllUtArbeidstid = async (page: Page) => {
     await page.getByRole('group', { name: 'mandag 2. desember' }).getByLabel('Timer').fill('5');
     await page.getByRole('group', { name: 'Uke 50' }).getByLabel('Timer').click();
     await page.getByRole('group', { name: 'Uke 50' }).getByLabel('Timer').fill('5');
-    await page.getByRole('group', { name: 'fredag 6. desember' }).getByLabel('Minutter').click();
-    await page.getByRole('group', { name: 'fredag 6. desember' }).getByLabel('Minutter').fill('30');
+    await page.getByRole('group', { name: 'fredag 6. desember' }).getByLabel('Minutt').click();
+    await page.getByRole('group', { name: 'fredag 6. desember' }).getByLabel('Minutt').fill('30');
     await page
         .getByRole('group', { name: 'I dagene du søker for, hvilken situasjon gjelder for deg som frilanser?' })
         .getByLabel('Jeg jobber som normalt, og')

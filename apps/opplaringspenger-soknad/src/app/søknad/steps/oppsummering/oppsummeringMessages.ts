@@ -18,7 +18,7 @@ const nb = {
 
     'oppsummering.kurs.header': 'Om opplæringen',
     'oppsummering.kurs.institusjon': 'Hvor foregår opplæringen?',
-    'oppsummering.kurs.perioder': 'Hvilken dager er opplæringen?',
+    'oppsummering.kurs.perioder': 'Hvilke dager er opplæringen?',
     'oppsummering.kurs.kursperiode.harTaptArbeidsinntekt':
         'Er borte fra jobb på grunn av reise til eller fra opplæringstedet: Ja',
     'oppsummering.kurs.kursperiode.harIkkeTaptArbeidsinntekt':

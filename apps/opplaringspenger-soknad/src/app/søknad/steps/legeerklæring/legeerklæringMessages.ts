@@ -5,7 +5,7 @@ const nb = {
     'steg.legeerklæring.counsellorPanel.info.2.1':
         'Bekreftelse fra lege om at opplæringen er nødvendig for at du skal kunne ta deg av barnet.',
     'steg.legeerklæring.counsellorPanel.info.2.2': 'Informasjon om innhold og tidspunkt for opplæring.',
-    'steg.legeerklæring.counsellorPanel.info.3': 'Vi kontakter vi deg hvis vi trenger flere opplysninger. ',
+    'steg.legeerklæring.counsellorPanel.info.3': 'Vi kontakter deg hvis vi trenger flere opplysninger. ',
 
     'steg.legeerklæring.vedlegg.label': 'Last opp dokumentasjon på nødvendig opplæring',
 
