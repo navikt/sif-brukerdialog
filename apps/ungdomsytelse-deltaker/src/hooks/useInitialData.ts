@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { fetchSøker } from '@navikt/sif-common-api';
+import { fetchBarn, fetchSøker } from '@navikt/sif-common-api';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { deltakerService } from '../api/services/deltakerService';
 import { SøknadContextData } from '../søknad/context/SøknadContext';
@@ -17,6 +17,9 @@ export const useInitialData = () => {
         try {
             const søker = await fetchSøker();
             const alleDeltakelser = await deltakerService.getDeltakelser();
+            const barn = await fetchBarn();
+            console.log('barn', barn);
+
             const deltakelserSøktFor = alleDeltakelser.filter((d) => d.harSøkt);
             const deltakelserIkkeSøktFor = alleDeltakelser.filter((d) => !d.harSøkt);
             const deltakelserÅpenForRapportering = deltakelserSøktFor.filter(deltakelseErÅpenForRapportering);
