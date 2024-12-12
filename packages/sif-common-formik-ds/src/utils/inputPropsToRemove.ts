@@ -4,5 +4,5 @@
  *
  */
 export const inputPropsToRemove = {
-    // required: undefined,
+    required: undefined,
 };
