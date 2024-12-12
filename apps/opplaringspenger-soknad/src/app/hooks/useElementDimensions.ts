@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useState } from 'react';
 import debounce from 'lodash.debounce';
 
 export const useElementDimensions = (
-    ref: React.RefObject<HTMLElement>,
+    ref: React.RefObject<HTMLElement | null>,
     listenToResize: boolean,
     debounceTimeout?: number,
 ) => {

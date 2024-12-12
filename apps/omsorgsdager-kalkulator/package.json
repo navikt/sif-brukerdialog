@@ -39,9 +39,9 @@
     "devDependencies": {
         "@axe-core/playwright": "4.10.1",
         "@playwright/test": "1.49.1",
-        "@types/node": "22.10.1",
-        "@types/react": "18.3.16",
-        "@types/react-dom": "18.3.5",
+        "@types/node": "22.10.2",
+        "@types/react": "19.0.1",
+        "@types/react-dom": "19.0.2",
         "@types/uuid": "10.0.0",
         "config": "*",
         "eslint": "9.16.0",

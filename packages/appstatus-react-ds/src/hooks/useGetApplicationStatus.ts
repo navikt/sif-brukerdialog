@@ -57,7 +57,7 @@ function useGetApplicationStatus(applicationKey: string, sanityConfig: SanityCon
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [error, setError] = useState<SanityError>();
 
-    const subscription = useRef<any>();
+    const subscription = useRef<any>(null);
 
     async function fetch(key: string, config: SanityConfig) {
         setIsLoading(true);
