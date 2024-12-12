@@ -30,7 +30,7 @@
         "@storybook/node-logger": "8.4.7",
         "@storybook/react": "8.4.7",
         "@storybook/testing-library": "0.2.2",
-        "@types/react": "18.3.16",
+        "@types/react": "19.0.1",
         "copyfiles": "2.4.1",
         "date-fns": "3.6.0",
         "dayjs": "1.11.13",

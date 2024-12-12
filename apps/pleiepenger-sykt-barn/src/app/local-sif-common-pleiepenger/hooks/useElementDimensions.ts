@@ -2,7 +2,7 @@ import { debounce } from '@navikt/ds-react';
 import { useEffect, useLayoutEffect, useState } from 'react';
 
 export const useElementDimensions = (
-    ref: React.RefObject<HTMLElement>,
+    ref: React.RefObject<HTMLElement | null>,
     listenToResize: boolean,
     debounceTimeout?: number,
 ) => {

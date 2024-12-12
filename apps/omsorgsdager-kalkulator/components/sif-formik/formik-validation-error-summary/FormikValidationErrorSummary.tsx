@@ -6,7 +6,7 @@ import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
 
 interface Props {
     heading?: string;
-    summaryRef?: RefObject<HTMLDivElement>;
+    summaryRef?: RefObject<HTMLDivElement | null>;
     wrapper?: (errorSummary: JSX.Element) => JSX.Element;
 }
 
