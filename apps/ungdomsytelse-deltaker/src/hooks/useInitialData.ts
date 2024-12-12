@@ -18,13 +18,13 @@ export const useInitialData = () => {
             const søker = await fetchSøker();
             const alleDeltakelser = await deltakerService.getDeltakelser();
             const barn = await fetchBarn();
-            console.log('barn', barn);
 
             const deltakelserSøktFor = alleDeltakelser.filter((d) => d.harSøkt);
             const deltakelserIkkeSøktFor = alleDeltakelser.filter((d) => !d.harSøkt);
             const deltakelserÅpenForRapportering = deltakelserSøktFor.filter(deltakelseErÅpenForRapportering);
 
             setInitialData({
+                barn,
                 søker,
                 alleDeltakelser,
                 deltakelserSøktFor,

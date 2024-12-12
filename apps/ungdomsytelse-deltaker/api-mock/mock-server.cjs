@@ -92,7 +92,7 @@ const startExpressServer = () => {
                 id: '123',
                 programperiodeFraOgMed: '2024-07-01',
                 programperiodeTilOgMed: '2025-06-30',
-                harSøkt: true,
+                harSøkt: false,
                 rapporteringsPerioder: [
                     {
                         fraOgMed: '2024-07-01',
