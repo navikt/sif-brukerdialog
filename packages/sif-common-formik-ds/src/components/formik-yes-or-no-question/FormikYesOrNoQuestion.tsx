@@ -1,4 +1,5 @@
 import { TestProps, TypedFormInputValidationProps, YesOrNo } from '../../types';
+import { inputPropsToRemove } from '../../utils/inputPropsToRemove';
 import FormikRadioGroup, { FormikRadioGroupProps } from '../formik-radio-group/FormikRadioGroup';
 
 export interface FormikYesOrNoQuestionProps<FieldName, ErrorType>
@@ -24,6 +25,7 @@ function FormikYesOrNoQuestion<FieldName, ErrorType>({
         <FormikRadioGroup<FieldName, ErrorType>
             data-testid={testKey}
             {...restProps}
+            {...inputPropsToRemove}
             renderHorizontal={renderHorizontal}
             radios={[
                 { label: yesLabel, value: YesOrNo.YES, ['data-testid']: testKey ? `${testKey}_yes` : undefined },

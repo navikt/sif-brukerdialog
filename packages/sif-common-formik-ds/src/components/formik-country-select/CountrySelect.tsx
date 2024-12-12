@@ -2,6 +2,7 @@ import React from 'react';
 import { getCountries } from '../../utils/countryUtils';
 import { TestProps } from '../../types';
 import { Select, SelectProps } from '@navikt/ds-react';
+import { inputPropsToRemove } from '../../utils/inputPropsToRemove';
 
 interface Props extends TestProps, Omit<SelectProps, 'onChange' | 'children'> {
     label: React.ReactNode;
@@ -56,7 +57,12 @@ class CountrySelect extends React.Component<Props> {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { onChange, name, showOnlyEuAndEftaCountries, locale, ...restProps } = this.props;
         return (
-            <Select name={name} {...restProps} onChange={(e) => onChange(e.target.value)} autoComplete="off">
+            <Select
+                name={name}
+                {...restProps}
+                {...inputPropsToRemove}
+                onChange={(e) => onChange(e.target.value)}
+                autoComplete="off">
                 <option value="" />
                 {this.getCountryOptions(locale || 'nb')}
             </Select>

@@ -4,6 +4,7 @@ import { FastField, Field, FieldProps } from 'formik';
 import { TestProps, TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
+import { inputPropsToRemove } from '../../utils/inputPropsToRemove';
 
 interface OwnProps<FieldName> extends Omit<TextareaProps, 'name' | 'defaultValue'> {
     name: FieldName;
@@ -30,6 +31,7 @@ function FormikTextarea<FieldName, ErrorType>({
                     <Textarea
                         {...restProps}
                         {...field}
+                        {...inputPropsToRemove}
                         error={getErrorPropForFormikInput({ field, form, context, error })}
                         onChange={(evt) => {
                             form.setFieldValue(field.name, evt.target.value);
