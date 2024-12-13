@@ -1,5 +1,13 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.24.1
+
+### Patch Changes
+
+- Fjerne required-props på inputs etter anbefaling fra Aksel
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.3.1
+
 ## 2.24.0
 
 ### Minor Changes

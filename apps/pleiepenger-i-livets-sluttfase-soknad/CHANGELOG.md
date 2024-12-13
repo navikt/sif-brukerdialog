@@ -1,5 +1,13 @@
 # @navikt/pleiepenger-i-livets-sluttfase-soknad
 
+## 2.18.1
+
+### Patch Changes
+
+- Fjerne required-props på inputs etter anbefaling fra Aksel
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.3.1
+
 ## 2.18.0
 
 ### Minor Changes
