@@ -18,6 +18,7 @@ Default.args = {
     label: 'FormikTextField',
     name: 'FormikTextField',
     description: 'Some description i appropriate',
+    required: true,
 };
 Default.parameters = {
     formik: {

@@ -1,5 +1,13 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.7.1
+
+### Patch Changes
+
+- Fjerne required-props på inputs etter anbefaling fra Aksel
+- Updated dependencies
+    - @navikt/sif-common-formik-ds@2.3.1
+
 ## 4.7.0
 
 ### Minor Changes

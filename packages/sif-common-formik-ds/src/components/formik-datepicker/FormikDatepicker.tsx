@@ -7,6 +7,7 @@ import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
 import DateInputAndPicker from './date-input-and-picker/DateInputAndPicker';
 import { ISODateString } from './dateFormatUtils';
+import { inputPropsToRemove } from '../../utils/inputPropsToRemove';
 
 export type DatepickerLimitations = {
     minDate?: Date;
@@ -72,6 +73,7 @@ function FormikDatepicker<FieldName, ErrorType>({
                         value={field.value}
                         error={getErrorPropForFormikInput({ field, form, context, error })}
                         {...restProps}
+                        {...inputPropsToRemove}
                     />
                 );
             }}

@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 2.3.1
+
+### Patch Changes
+
+- Fjerne required-props på inputs etter anbefaling fra Aksel
+
 ## 2.3.0
 
 ### Minor Changes

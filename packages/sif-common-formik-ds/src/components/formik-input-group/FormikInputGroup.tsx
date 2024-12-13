@@ -4,6 +4,7 @@ import { FastField, Field, FieldProps } from 'formik';
 import { TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
+import { inputPropsToRemove } from '../../utils/inputPropsToRemove';
 
 interface OwnProps<FieldName> extends Omit<FieldsetProps, 'name'> {
     name: FieldName;
@@ -29,6 +30,7 @@ function FormikInputGroup<ErrorType, FieldName>({
                 return (
                     <Fieldset
                         {...restProps}
+                        {...inputPropsToRemove}
                         error={getErrorPropForFormikInput({ field, form, context, error })}
                         id={id}
                         tabIndex={id ? -1 : undefined}
