@@ -57,7 +57,7 @@ const deltakelse1 = {
         deltakerIdent: '03867198392',
     },
     fraOgMed: '2025-09-01',
-    harSøkt: false,
+    harSøkt: true,
 };
 const deltakelser = [deltakelse1];
 
@@ -136,7 +136,7 @@ const startExpressServer = () => {
                 id: 'd-n',
                 deltakerIdent: req.body.deltakerIdent,
             },
-            harSøkt: false,
+            harSøkt: true,
             fraOgMed: req.body.fraOgMed,
         };
         setTimeout(() => {
