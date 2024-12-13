@@ -31,7 +31,6 @@ import {
 export enum KursFormFields {
     opplæringsinstitusjon = 'opplæringsinstitusjon',
     kursperioder = 'kursperioder',
-    arbeiderIKursperiode = 'arbeiderIKursperiode',
     skalTaUtFerieIPerioden = 'skalTaUtFerieIPerioden',
     ferieuttak = 'ferieuttak',
 }
@@ -39,7 +38,6 @@ export enum KursFormFields {
 export interface KursFormValues {
     [KursFormFields.opplæringsinstitusjon]?: string;
     [KursFormFields.kursperioder]: Partial<KursperiodeFormValues>[];
-    [KursFormFields.arbeiderIKursperiode]?: YesOrNo;
     [KursFormFields.skalTaUtFerieIPerioden]?: YesOrNo;
     [KursFormFields.ferieuttak]?: Ferieuttak[];
 }
@@ -58,7 +56,7 @@ const KursStep = () => {
     } = useSøknadContext();
 
     const stepId = StepId.KURS;
-    const step = getSøknadStepConfigForStep(søknadsdata, stepId);
+    const step = getSøknadStepConfigForStep(stepId);
 
     const { goBack } = useStepNavigation(step);
 
@@ -153,12 +151,6 @@ const KursStep = () => {
                                         }}>
                                         <KursperioderFormPart gyldigSøknadsperiode={gyldigSøknadsperiode} />
                                     </FormikInputGroup>
-
-                                    <YesOrNoQuestion
-                                        name={KursFormFields.arbeiderIKursperiode}
-                                        legend={text('steg.kurs.arbeiderIKursperiode.label')}
-                                        validate={getYesOrNoValidator()}
-                                    />
 
                                     <YesOrNoQuestion
                                         name={KursFormFields.skalTaUtFerieIPerioden}

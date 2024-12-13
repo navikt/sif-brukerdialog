@@ -66,7 +66,6 @@ export const søknadContextMock: SøknadContextState = {
             søknadsdatoer: getDatoerIKursperioderInkludertReisedager(kursperioder),
             kursholder: 'annen',
             kursperioder,
-            arbeiderIKursperiode: true,
         },
         arbeidssituasjon: {
             arbeidsgivere: {

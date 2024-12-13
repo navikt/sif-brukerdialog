@@ -1,3 +1,1 @@
-export type DataBruktTilUtledning = {
-    arbeiderIKursperiode: boolean;
-};
+export type DataBruktTilUtledning = {};

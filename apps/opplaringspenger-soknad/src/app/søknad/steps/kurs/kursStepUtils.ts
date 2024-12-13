@@ -54,12 +54,11 @@ const sortKursperiode = (a: Kursperiode, b: Kursperiode) => {
 
 export const getKursSøknadsdataFromFormValues = ({
     opplæringsinstitusjon,
-    arbeiderIKursperiode,
     kursperioder: kursperioderValues,
     ferieuttak,
     skalTaUtFerieIPerioden,
 }: KursFormValues): KursSøknadsdata | undefined => {
-    if (!opplæringsinstitusjon || !kursperioderValues || !arbeiderIKursperiode) {
+    if (!opplæringsinstitusjon || !kursperioderValues) {
         throw 'Opplæringsinstitusjon eller kursperioder er ikke definert';
     }
     const kursperioder = kursperioderValues.map((periode, index) =>
@@ -78,7 +77,6 @@ export const getKursSøknadsdataFromFormValues = ({
             : getDatoerIKursperioderUtenReisedager(kursperioder),
         kursholder: opplæringsinstitusjon,
         kursperioder: kursperioder.sort(sortKursperiode),
-        arbeiderIKursperiode: arbeiderIKursperiode === YesOrNo.YES,
         ferieuttakIPerioden: extractFerieuttakIPeriodenSøknadsdata({ skalTaUtFerieIPerioden, ferieuttak }),
     };
 };
@@ -100,7 +98,6 @@ export const getKursStepInitialValues = (søknadsdata: Søknadsdata, formValues?
             ...defaultValues,
             opplæringsinstitusjon: kurs.kursholder,
             kursperioder: kurs.kursperioder.map((periode) => kursperiodeUtils.mapKursperiodeToFormValues(periode)),
-            arbeiderIKursperiode: getYesOrNoFromBoolean(kurs.arbeiderIKursperiode),
             skalTaUtFerieIPerioden: getYesOrNoFromBoolean(kurs.ferieuttakIPerioden?.skalTaUtFerieIPerioden),
             ferieuttak:
                 kurs.ferieuttakIPerioden?.type === 'skalTaUtFerieSøknadsdata'

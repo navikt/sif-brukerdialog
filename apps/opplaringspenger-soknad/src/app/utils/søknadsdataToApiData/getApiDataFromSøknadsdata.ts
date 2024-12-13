@@ -1,6 +1,6 @@
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { FlereSokereApiData, SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
-import { KursSøknadsdata, Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
+import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { YesOrNoDontKnow } from '../../types/YesOrNoDontKnow';
 import { getArbeidsgivereApiDataFromSøknadsdata } from './getArbeidsgivereApiDataFromSøknadsdata';
 import { getFrilansApiDataFromSøknadsdata } from './getFrilansApiDataFromSøknadsdata';
@@ -26,10 +26,8 @@ export const getFlereSokereApiData = (flereSokereSvar: YesOrNoDontKnow): FlereSo
     }
 };
 
-export const getDataBruktTilUtledningApiData = (kurs: KursSøknadsdata): DataBruktTilUtledning => {
-    return {
-        arbeiderIKursperiode: kurs.arbeiderIKursperiode,
-    };
+export const getDataBruktTilUtledningApiData = (): DataBruktTilUtledning => {
+    return {};
 };
 
 export const getApiDataFromSøknadsdata = (
@@ -68,21 +66,19 @@ export const getApiDataFromSøknadsdata = (
         arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(
             søknadsperiode,
             valgteDatoer,
-            kurs.arbeiderIKursperiode,
+            // kurs.arbeiderIKursperiode,
             arbeidsgivere,
             arbeidstid?.arbeidsgivere,
         ),
         frilans: getFrilansApiDataFromSøknadsdata({
             søknadsperiode,
             dagerMedOpplæring: valgteDatoer,
-            skalJobbeIPerioden: kurs.arbeiderIKursperiode,
             frilans,
             arbeidIPeriode: arbeidstid?.frilans,
         }),
         selvstendigNæringsdrivende: getSelvstendigApiDataFromSøknadsdata({
             søknadsperiode,
             dagerMedOpplæring: valgteDatoer,
-            skalJobbeIPerioden: kurs.arbeiderIKursperiode,
             selvstendig,
             arbeidIperiode: arbeidstid?.selvstendig,
         }),
@@ -93,8 +89,6 @@ export const getApiDataFromSøknadsdata = (
             : undefined,
         medlemskap: getMedlemskapApiDataFromSøknadsdata(språk, medlemskap),
         harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true,
-        dataBruktTilUtledningAnnetData: søknadsdata.kurs
-            ? JSON.stringify(getDataBruktTilUtledningApiData(søknadsdata.kurs))
-            : '',
+        dataBruktTilUtledningAnnetData: søknadsdata.kurs ? JSON.stringify(getDataBruktTilUtledningApiData()) : '',
     };
 };

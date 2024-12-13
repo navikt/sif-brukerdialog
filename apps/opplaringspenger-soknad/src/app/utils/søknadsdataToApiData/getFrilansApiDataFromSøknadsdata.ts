@@ -7,11 +7,10 @@ import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/ArbeidIPeri
 export const getFrilansApiDataFromSøknadsdata = (props: {
     søknadsperiode: DateRange;
     dagerMedOpplæring: Date[];
-    skalJobbeIPerioden: boolean;
-    frilans?: ArbeidFrilansSøknadsdata;
+    frilans?: ArbeidFrilansSøknadsdata | undefined;
     arbeidIPeriode: ArbeidIPeriodeSøknadsdata | undefined;
 }): FrilansApiData | undefined => {
-    const { søknadsperiode, dagerMedOpplæring, skalJobbeIPerioden, frilans, arbeidIPeriode } = props;
+    const { søknadsperiode, dagerMedOpplæring, frilans, arbeidIPeriode } = props;
     if (!frilans) {
         return undefined;
     }
@@ -29,7 +28,6 @@ export const getFrilansApiDataFromSøknadsdata = (props: {
                     arbeidsforhold: {
                         jobberNormaltTimer: frilans.jobberNormaltTimer,
                         arbeidIPeriode: getArbeidIPeriodeApiDataFromSøknadsdata(
-                            skalJobbeIPerioden,
                             arbeidIPeriode,
                             søknadsperiode,
                             frilans.jobberNormaltTimer,
@@ -47,7 +45,6 @@ export const getFrilansApiDataFromSøknadsdata = (props: {
                 arbeidsforhold: {
                     jobberNormaltTimer: frilans.jobberNormaltTimer,
                     arbeidIPeriode: getArbeidIPeriodeApiDataFromSøknadsdata(
-                        skalJobbeIPerioden,
                         arbeidIPeriode,
                         søknadsperiode,
                         frilans.jobberNormaltTimer,

@@ -1,7 +1,7 @@
 import { expect, Page } from '@playwright/test';
 
 export const fyllUtArbeidstid = async (page: Page) => {
-    await expect(page.getByRole('heading', { level: 1, name: 'Jobb i perioden' })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1, name: 'Jobb de dagene du søker for' })).toBeVisible();
     await page
         .getByRole('group', { name: 'I dagene du søker for, hvilken situasjon gjelder for deg hos Arbeids- og' })
         .getByLabel('Jeg jobber noe de dagene jeg')
@@ -20,7 +20,7 @@ export const fyllUtArbeidstid = async (page: Page) => {
 };
 
 export const kontrollerArbeidstidOppsummering = async (page: Page) => {
-    await expect(page.getByRole('heading', { name: 'Jobb i perioden' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Jobb de dagene du søker for' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Arbeids- og velferdsetaten (' }).nth(1)).toBeVisible();
     await expect(page.getByText('Jeg jobber noe de dagene jeg')).toBeVisible();
     await expect(page.getByText('Jeg jobber noe de dagene jeg')).toBeVisible();

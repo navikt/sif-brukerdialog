@@ -80,7 +80,7 @@ const ArbeidstidStep = () => {
         useLogSøknadInfo();
 
     const stepId = StepId.ARBEIDSTID;
-    const step = getSøknadStepConfigForStep(søknadsdata, stepId);
+    const step = getSøknadStepConfigForStep(stepId);
 
     const { goBack } = useStepNavigation(step);
 
@@ -237,7 +237,6 @@ const ArbeidstidStep = () => {
                                                                 onArbeidstidEnkeltdagRegistrert={
                                                                     logArbeidEnkeltdagRegistrert
                                                                 }
-                                                                skjulJobberNormaltValg={antallArbeidsforhold === 1}
                                                             />
                                                         </Block>
                                                     </FormBlock>

@@ -9,6 +9,5 @@ export interface KursSøknadsdata {
     søknadsdatoer: Date[];
     kursholder: string;
     kursperioder: Kursperiode[];
-    arbeiderIKursperiode: boolean;
     ferieuttakIPerioden?: FerieuttakIPeriodenSøknadsdata;
 }
