@@ -20,14 +20,6 @@ export const fyllUtOpplæringToPerioder = async (page: Page) => {
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
-// export const testOverlappendePerioder = async (page: Page) => {
-//     await fyllUtOpplæringToPerioder(page);
-//     /** Endre periode 2 til å overlappe periode 1 */
-//     await page.getByRole('group', { name: 'Periode 2' }).getByRole('button').nth(0).click();
-//     await page.getByRole('button', { name: 'mandag 2', exact: true }).click();
-//     await page.getByTestId('typedFormikForm-submitButton').click();
-// };
-
 const leggTilPeriode1 = async (page: Page) => {
     await page.getByRole('button', { name: 'Åpne datovelger' }).nth(0).click();
     await page.getByRole('button', { name: 'mandag 2', exact: true }).click();

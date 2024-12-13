@@ -1,6 +1,6 @@
 import { Box, Button } from '@navikt/ds-react';
 import { getTypedFormComponents, ISOStringToDate, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { ISODate } from '@navikt/sif-common-utils';
+import { DateRange, ISODate } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '../../../../i18n';
 import {
     getDateRangeValidator,
@@ -8,7 +8,6 @@ import {
     getStringValidator,
     getYesOrNoValidator,
 } from '@navikt/sif-common-formik-ds/src/validation';
-import { getTillattSøknadsperiode } from '../../../../utils/søknadsperiodeUtils';
 import { useFormikContext } from 'formik';
 import { KursFormFields } from '../KursStep';
 import { Delete } from '@navikt/ds-icons';
@@ -40,15 +39,22 @@ interface Props {
     index: number;
     harFlerePerioder?: boolean;
     allePerioder: Partial<KursperiodeFormValues>[];
+    gyldigSøknadsperiode: DateRange;
     onRemove?: () => void;
 }
 
 const getValidationErrorKey = (field: KursperiodeFormFields, error: string) => {
     return `kursperiode.form.${field}.validation.${error}`;
 };
-const KursperiodeQuestions = ({ values, index, harFlerePerioder, allePerioder, onRemove }: Props) => {
+const KursperiodeQuestions = ({
+    values,
+    index,
+    harFlerePerioder,
+    allePerioder,
+    gyldigSøknadsperiode,
+    onRemove,
+}: Props) => {
     const { text } = useAppIntl();
-    const gyldigSøknadsperiode = getTillattSøknadsperiode();
     const { validateField } = useFormikContext<KursperiodeFormValues>();
     const minDate = gyldigSøknadsperiode.from;
     const maxDate = gyldigSøknadsperiode.to;
