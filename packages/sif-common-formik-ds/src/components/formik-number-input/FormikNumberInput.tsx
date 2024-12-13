@@ -8,6 +8,7 @@ import FormikTextField from '../formik-text-field/FormikTextField';
 import { TextFieldWidths } from '../formik-text-field/FormikTextFieldUtils';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
 import { useIntl } from 'react-intl';
+import { inputPropsToRemove } from '../../utils/inputPropsToRemove';
 
 interface OwnProps<FieldName> extends Omit<TextFieldProps, 'name' | 'children' | 'width'> {
     name: FieldName;
@@ -41,6 +42,7 @@ function FormikNumberInput<FieldName, ErrorType>({
                     <FormikTextField
                         {...restProps}
                         {...field}
+                        {...inputPropsToRemove}
                         type="text"
                         width={width}
                         autoComplete={autoComplete || 'off'}

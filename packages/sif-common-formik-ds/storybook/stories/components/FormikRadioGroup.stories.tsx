@@ -20,6 +20,7 @@ const defaultArgs: FormikRadioGroupProps<any, any> = {
     description: 'Choose any animal except the catty one',
     name: 'animals',
     radios: mockAnimalOptions,
+    required: true,
 };
 
 Default.args = {
