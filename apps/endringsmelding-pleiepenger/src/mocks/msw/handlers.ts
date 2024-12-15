@@ -11,6 +11,7 @@ export const getHandlers = () => {
     const { sak, arbeidsgiver, søker } = getScenarioMockData(scenario.value);
 
     const handlers = [
+        http.post('*amplitude*', () => new HttpResponse(null, { status: 200 })),
         http.get(`${baseUrl}/health/isAlive`, () => new HttpResponse(null, { status: 200 })),
         http.get(`${baseUrl}/health/isReady`, () => new HttpResponse(null, { status: 200 })),
         http.get(`${baseUrl}/oppslag/soker`, () => {

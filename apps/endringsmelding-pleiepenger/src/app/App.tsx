@@ -29,18 +29,25 @@ const isE2E = getMaybeEnv('E2E_TEST') === 'true';
 
 ensureBaseNameForReactRouter(PUBLIC_PATH);
 
-function prepare() {
+// async function prepare() {
+//     if (process.env.NODE_ENV !== 'development') {
+//         return Promise.resolve();
+//     }
+//     const { worker } = await import('../mocks/msw/browser');
+//     return worker.start();
+// }
+
+async function prepare() {
     if (isDevMode()) {
         const envNow = getMaybeEnv('NOW');
         if (envNow) {
             MockDate.set(new Date(envNow));
         }
         if (getMaybeEnv('MSW') === 'on' && isE2E !== undefined) {
-            return import('../mocks/msw/browser').then(({ worker }) => {
-                worker.start({
-                    onUnhandledRequest: 'bypass',
-                    quiet: false,
-                });
+            const { worker } = await import('../mocks/msw/browser');
+            return worker.start({
+                onUnhandledRequest: 'bypass',
+                quiet: false,
             });
         }
     }
@@ -54,7 +61,7 @@ const App = () => (
         appName={EndringsmeldingPsbApp.navn}
         appTitle={EndringsmeldingPsbApp.tittel.nb}
         intlMessages={applicationIntlMessages}
-        useAmplitude={!isE2E}
+        useAmplitude={false}
         amplitudeApiKey={SIF_PUBLIC_AMPLITUDE_API_KEY}
         appStatus={{
             sanityConfig: {
