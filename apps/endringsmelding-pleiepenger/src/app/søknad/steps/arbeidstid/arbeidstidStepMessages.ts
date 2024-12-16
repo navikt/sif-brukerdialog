@@ -12,6 +12,9 @@ const nb = {
     'arbeidstidStep.arbeiderIPeriodenSpm.legend':
         'I perioden med pleiepenger, hvilken situasjon gjelder for deg hos {navn}?',
 
+    'arbeidstidStep.ingenArbeidsaktiviteter':
+        'Ingen arbeidsforhold med registrert arbeidstid er tilgjengelig for endring. Du kan melde om endringer ved å <Lenke>skrive en beskjed til Nav</Lenke>.',
+
     'arbeidstidForm.arbeidsaktivitet.noValue':
         'Det er ikke registrert noen endring for {arbeidsaktivitetNavn}. Hvis du ikke ønsker å registrere noen endringer, kan du gå tilbake til forrige steg og velge bort {arbeidsaktivitetNavn}.',
     'arbeidstid.faktisk.mangler':
