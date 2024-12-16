@@ -2,6 +2,7 @@ import { expect, Page } from '@playwright/test';
 
 export const fyllUtArbeidstid = async (page: Page) => {
     await expect(page.getByRole('heading', { level: 1, name: 'Jobb de dagene du søker for' })).toBeVisible();
+    await page.getByRole('group', { name: 'Skal du jobbe noe de dagene' }).getByText('Ja').click();
     await page
         .getByRole('group', { name: 'I dagene du søker for, hvilken situasjon gjelder for deg hos Arbeids- og' })
         .getByLabel('Jeg jobber noe de dagene jeg')
