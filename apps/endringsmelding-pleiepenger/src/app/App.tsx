@@ -53,7 +53,7 @@ const App = () => (
         appName={EndringsmeldingPsbApp.navn}
         appTitle={EndringsmeldingPsbApp.tittel.nb}
         intlMessages={applicationIntlMessages}
-        useAmplitude={false}
+        useAmplitude={!isE2E}
         amplitudeApiKey={SIF_PUBLIC_AMPLITUDE_API_KEY}
         appStatus={{
             sanityConfig: {
