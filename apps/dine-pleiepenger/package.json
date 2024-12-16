@@ -75,7 +75,7 @@
         "postcss": "8.4.49",
         "postcss-import": "16.1.0",
         "react": "19.0.0",
-        "react-day-picker": "8.10.1",
+        "react-day-picker": "9.4.4",
         "react-dom": "19.0.0",
         "react-intl": "7.0.4",
         "storybook": "8.4.7",
