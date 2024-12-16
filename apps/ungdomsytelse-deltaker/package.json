@@ -45,7 +45,7 @@
     },
     "devDependencies": {
         "@eslint/eslintrc": "3.2.0",
-        "@eslint/js": "9.16.0",
+        "@eslint/js": "9.17.0",
         "@navikt/nav-dekoratoren-moduler": "3.1.1",
         "@storybook/addon-essentials": "8.4.7",
         "@storybook/addon-interactions": "8.4.7",
