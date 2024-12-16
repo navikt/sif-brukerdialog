@@ -32,7 +32,7 @@ ensureBaseNameForReactRouter(PUBLIC_PATH);
 async function prepare() {
     if (isDevMode()) {
         const envNow = getMaybeEnv('NOW');
-        if (envNow && 1 + 1 === 3) {
+        if (envNow) {
             MockDate.set(new Date(envNow));
         }
         if (getMaybeEnv('MSW') === 'on' && isE2E !== undefined) {
