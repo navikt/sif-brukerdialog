@@ -20,7 +20,7 @@ describe('countryUtils', () => {
         });
     });
     describe('ensureValidCodeForIsoCountries', () => {
-        it('mapper om NAV-kode for Kosovo til riktig alpha3 kode for bruk mot ios-countries', () => {
+        it('mapper om Nav-kode for Kosovo til riktig alpha3 kode for bruk mot ios-countries', () => {
             expect(ensureValidAlpha3CodeForIsoCountries(NAV_KOSOVO_ALPHA3_CODE)).toEqual(
                 ISO_COUNTRIES_KOSOVO_ALPHA3_CODE,
             );
@@ -35,16 +35,16 @@ describe('countryUtils', () => {
         });
     });
     describe('ensureValid3AlphaCodeForNAV', () => {
-        it('mapper ugyldig iso-countries kode for Kosovo til riktig alpha3 kode for bruk mot NAV', () => {
+        it('mapper ugyldig iso-countries kode for Kosovo til riktig alpha3 kode for bruk mot Nav', () => {
             expect(ensureValid3AlphaCodeForNAV(INVALID_ISO_COUNTRIES_KOSOVO_ALPHA3_CODE)).toEqual(
                 NAV_KOSOVO_ALPHA3_CODE,
             );
         });
-        it('mapper iso-countries kode for Kosovo til riktig alpha3 kode for bruk mot NAV', () => {
+        it('mapper iso-countries kode for Kosovo til riktig alpha3 kode for bruk mot Nav', () => {
             expect(ensureValid3AlphaCodeForNAV('XK')).toEqual(NAV_KOSOVO_ALPHA3_CODE);
             expect(ensureValid3AlphaCodeForNAV(ISO_COUNTRIES_KOSOVO_ALPHA3_CODE)).toEqual(NAV_KOSOVO_ALPHA3_CODE);
         });
-        it('mapper andre koder til riktig alpha3 kode for bruk mot NAV', () => {
+        it('mapper andre koder til riktig alpha3 kode for bruk mot Nav', () => {
             expect(ensureValid3AlphaCodeForNAV('NO')).toEqual('NOR');
             expect(ensureValid3AlphaCodeForNAV('NOR')).toEqual('NOR');
             expect(ensureValid3AlphaCodeForNAV('SE')).toEqual('SWE');

@@ -43,7 +43,7 @@ const Forside = () => {
                             {alleDeltakelser.length === 0 ? (
                                 <Alert variant="info">
                                     Vi kan ikke se at du er registrert for å kunne delta i dette programmet. Hvis du
-                                    mener dette ikke stemmer, ta kontakt med din NAV veileder.
+                                    mener dette ikke stemmer, ta kontakt med din Nav veileder.
                                 </Alert>
                             ) : (
                                 <>Dette er en MVP-app for innsending av data til søknad om ny ungdomsytelse.</>

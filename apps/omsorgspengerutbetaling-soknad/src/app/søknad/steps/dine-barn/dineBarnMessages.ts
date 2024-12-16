@@ -1,7 +1,7 @@
 const nb = {
     'step.dineBarn.nextButtonLabel': 'Fortsett',
     'step.dineBarn.intro.1':
-        'Selvstendig næringsdrivende og frilansere må som hovedregel selv dekke 10 omsorgsdager hvert kalenderår. Hvis du har rett til mer enn 10 omsorgsdager, kan du søke om utbetaling fra NAV fra den 11. dagen du er hjemme med sykt barn.',
+        'Selvstendig næringsdrivende og frilansere må som hovedregel selv dekke 10 omsorgsdager hvert kalenderår. Hvis du har rett til mer enn 10 omsorgsdager, kan du søke om utbetaling fra Nav fra den 11. dagen du er hjemme med sykt barn.',
     'step.dineBarn.intro.info.tittel': 'Har det yngste barnet ditt fylt 12 år?',
     'step.dineBarn.intro.info.tekst.1':
         'Retten til omsorgsdager varer som hovedregel til og med det kalenderåret barnet fyller 12 år.  ',
@@ -28,7 +28,7 @@ const nb = {
     'step.dineBarn.utvidetRettSykdom.info.1':
         'Hvis barnet har en kronisk/langvarig sykdom eller funksjonshemning som gir høyere risiko for at du må være borte fra jobb, kan du ha rett til ekstra omsorgsdager. Du vil da ha rett til omsorgsdager ut  året barnet fyller 18 år.',
     'step.dineBarn.utvidetRettSykdom.info.2':
-        'Du svarer ja hvis du har fått vedtak fra NAV om ekstra omsorgsdager på grunn av sykdom. Hvis du har sendt inn søknad og venter på svar, skal du også svare ja på dette spørsmålet.  ',
+        'Du svarer ja hvis du har fått vedtak fra Nav om ekstra omsorgsdager på grunn av sykdom. Hvis du har sendt inn søknad og venter på svar, skal du også svare ja på dette spørsmålet.  ',
 
     'step.dineBarn.utvidetRettAleneomsorg.spm': 'Har du fått ekstra omsorgsdager fordi du er alene om omsorgen?',
     'step.dineBarn.utvidetRettAleneomsorg.info.tittel': 'Hva betyr dette?',
@@ -37,7 +37,7 @@ const nb = {
     'step.dineBarn.utvidetRettAleneomsorg.info.tekst.2':
         'Du kan også regnes som alene om omsorgen hvis den andre forelderen ikke kan ha tilsyn med barnet i minst 6 måneder, for eksempel på grunn av egen sykdom eller fengselsopphold. ',
     'step.dineBarn.utvidetRettAleneomsorg.info.tekst.3':
-        'Du kan svare ja på dette spørsmålet hvis du har fått vedtak fra NAV om ekstra omsorgsdager på grunn av aleneomsorg. Hvis du har sendt inn søknad og venter på svar, skal du også svare ja på dette spørsmålet.',
+        'Du kan svare ja på dette spørsmålet hvis du har fått vedtak fra Nav om ekstra omsorgsdager på grunn av aleneomsorg. Hvis du har sendt inn søknad og venter på svar, skal du også svare ja på dette spørsmålet.',
 
     'step.dineBarn.utvidetRettSykdom.nei.alertStripe':
         'Når du kun har barn som er 13 år i år eller eldre, må du ha søkt om eller fått ekstra omsorgsdager for å kunne søke om utbetaling.',
@@ -46,7 +46,7 @@ const nb = {
     'step.dineBarn.bekrefterDektTiDagerSelv.spm': 'Har du dekket de 10 første omsorgsdagene i år?',
     'step.dineBarn.bekrefterDektTiDagerSelv.info.tittel': 'Hvorfor spør vi om dette?',
     'step.dineBarn.bekrefterDektTiDagerSelv.info.tekst':
-        'Du skal dekke de 10 første omsorgsdagene selv, og kan søke om utbetaling fra NAV fra den 11. dagen du er hjemme med sykt barn.',
+        'Du skal dekke de 10 første omsorgsdagene selv, og kan søke om utbetaling fra Nav fra den 11. dagen du er hjemme med sykt barn.',
 
     'step.dineBarn.info.spm.text':
         'Hvis du har barn som ikke er registrert her, kan du legge inn disse selv. Det kan for eksempel være fosterbarn.',
@@ -59,11 +59,11 @@ const nb = {
 
     'step.dineBarn.ettEllerToBarnUnder13.ingenRett.tittel': 'Du må selv dekke omsorgsdagene dine',
     'step.dineBarn.ettEllerToBarnUnder13.ingenRett.tekst.1':
-        'Ut fra svarene dine har du ikke mer enn to barn som du kan bruke omsorgsdager for, og du har ikke ekstra omsorgsdager fra NAV. Du har da rett til 10 omsorgsdager.',
+        'Ut fra svarene dine har du ikke mer enn to barn som du kan bruke omsorgsdager for, og du har ikke ekstra omsorgsdager fra Nav. Du har da rett til 10 omsorgsdager.',
     'step.dineBarn.ettEllerToBarnUnder13.ingenRett.tekst.2':
         'Fordi du er selvstendig næringsdrivende eller frilanser, må du selv dekke disse 10 omsorgsdagene.',
     'step.dineBarn.kunBarnOver13.ingenRett.tekst':
-        'For å ha rett til omsorgspenger fra det året barnet fyller 13 år, må du ha fått ekstra omsorgsdager fra NAV fordi barnet har en kronisk/langvarig sykdom eller en funksjonshemning.',
+        'For å ha rett til omsorgspenger fra det året barnet fyller 13 år, må du ha fått ekstra omsorgsdager fra Nav fordi barnet har en kronisk/langvarig sykdom eller en funksjonshemning.',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };

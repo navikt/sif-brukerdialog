@@ -16,7 +16,7 @@ const nb = {
     'page.conformation.skrivUtKnapp': 'Skriv ut denne siden nå',
     'page.conformation.skrivUt.info':
         'Hvis du ikke kan skrive ut denne informasjonssiden, kan du ta bilde av den. Husk også å ta bilde av informasjonen som kommer under, som du kan gi til arbeidsgiver.',
-    'page.conformation.tilArbeidsgiverDokument.tittel': 'NAV har mottatt følgende opplysninger:',
+    'page.conformation.tilArbeidsgiverDokument.tittel': 'Nav har mottatt følgende opplysninger:',
     'page.conformation.tilArbeidsgiverDokument.1': '{søkersNavn} er ansatt hos {arbeidsgiversNavn}',
     'page.conformation.tilArbeidsgiverDokument.2': '{søkersNavn} søker om {søknadNavn} for periodene:',
     'page.conformation.tilArbeidsgiverDokument.alert.1':
@@ -27,7 +27,7 @@ const nb = {
         'Hvis inntektsmeldingen allerede er sendt, kan du se bort fra denne meldingen.',
     'page.conformation.tilArbeidsgiverDokument.info.tittel': 'Slik sender du inntektsmeldingen',
     'page.conformation.tilArbeidsgiverDokument.info.1':
-        'Inntektsmeldingen sendes fra arbeidsgivers eget lønns- og personalsystem eller fra altinn.no. Meldingen inneholder inntektsopplysninger og annen informasjon NAV må ha for å behandle søknaden arbeidstaker har sendt. Husk å velge riktig inntektsmelding.',
+        'Inntektsmeldingen sendes fra arbeidsgivers eget lønns- og personalsystem eller fra altinn.no. Meldingen inneholder inntektsopplysninger og annen informasjon Nav må ha for å behandle søknaden arbeidstaker har sendt. Husk å velge riktig inntektsmelding.',
     'page.conformation.tilArbeidsgiverDokument.info.2':
         'Fyll inn alle dager og/eller perioder som samsvarer med arbeidstakers søknad. Hvis søknaden ikke stemmer med hva dere har avtalt, må dere avklare dette dere imellom før du sender inntektsmeldingen.',
     'page.conformation.tilArbeidsgiverDokument.info.3': 'Du får mer informasjon om inntektsmeldingen på',

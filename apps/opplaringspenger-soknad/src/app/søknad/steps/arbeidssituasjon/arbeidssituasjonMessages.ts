@@ -102,9 +102,9 @@ const nb = {
     'arbeidsforhold.normalTimer.info.varierende.avsnitt.6':
         'Da deler du antall timer med antall uker du har jobbet. Hvis du for eksempel har jobbet i 7 uker, så deler du antall timer du har jobbet med 7.',
 
-    'arbeidsforhold.normalTimer.info.utbetalingFraNAV.tittel': 'Hva om jeg får utbetaling fra NAV nå?',
+    'arbeidsforhold.normalTimer.info.utbetalingFraNAV.tittel': 'Hva om jeg får utbetaling fra Nav nå?',
     'arbeidsforhold.normalTimer.info.utbetalingFraNAV.avsnitt.1':
-        'Hvis du for dette arbeidsforholdet for eksempel får foreldrepenger, sykepenger eller annet fra NAV nå, registrerer du det som var normalarbeidstiden din før du begynte å få denne utbetalingen fra NAV.',
+        'Hvis du for dette arbeidsforholdet for eksempel får foreldrepenger, sykepenger eller annet fra Nav nå, registrerer du det som var normalarbeidstiden din før du begynte å få denne utbetalingen fra Nav.',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };
