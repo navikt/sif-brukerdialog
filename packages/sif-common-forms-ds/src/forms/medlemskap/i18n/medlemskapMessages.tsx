@@ -14,7 +14,7 @@ const nb = {
     '@forms.medlemskapForm.annetLandSisteOgNeste12.listeTittel':
         'Utenlandsopphold siste 12 måneder og neste 12 måneder',
     '@forms.medlemskapForm.info':
-        'Medlemskap i folketrygden er nøkkelen til rettigheter fra NAV. Hvis du bor eller jobber i Norge er du vanligvis medlem. Du kan lese mer om medlemskap på <Lenke>nav.no</Lenke>.',
+        'Medlemskap i folketrygden er nøkkelen til rettigheter fra Nav. Hvis du bor eller jobber i Norge er du vanligvis medlem. Du kan lese mer om medlemskap på <Lenke>nav.no</Lenke>.',
     '@forms.medlemskapForm.hvaBetyrDette': 'Hva betyr dette?',
     '@forms.medlemskapForm.utenlandsopphold.leggTilLabel': 'Legg til utenlandsopphold',
     '@forms.medlemskapForm.validation.harBoddUtenforNorgeSiste12Mnd.yesOrNoIsUnanswered':
@@ -56,7 +56,7 @@ const nn: Record<keyof typeof nb, string> = {
     '@forms.medlemskapForm.annetLandSisteOgNeste12.listeTittel':
         'Utanlandsopphald siste 12 månader og neste 12 månader',
     '@forms.medlemskapForm.info':
-        'Medlemskap i folketrygda er nøkkelen til rettar frå NAV. Viss du bur eller jobbar i Noreg er du vanlegvis medlem. Du kan lesa meir om medlemskap på <Lenke>nav.no</Lenke>.',
+        'Medlemskap i folketrygda er nøkkelen til rettar frå Nav. Viss du bur eller jobbar i Noreg er du vanlegvis medlem. Du kan lesa meir om medlemskap på <Lenke>nav.no</Lenke>.',
     '@forms.medlemskapForm.hvaBetyrDette': 'Kva betyr dette?',
     '@forms.medlemskapForm.utenlandsopphold.leggTilLabel': 'Legg til utanlandsopphald',
     '@forms.medlemskapForm.validation.harBoddUtenforNorgeSiste12Mnd.yesOrNoIsUnanswered':

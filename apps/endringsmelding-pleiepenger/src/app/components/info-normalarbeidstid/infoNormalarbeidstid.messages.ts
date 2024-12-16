@@ -3,7 +3,7 @@ const nb = {
     'info.normalarbeidstid.tekst.1':
         'Med <q>normalt</q> mener vi hvor mye du jobber når du ikke har fravær på grunn av pleiepenger. Det er altså normalarbeidstiden din før du starter med pleiepenger som vi er ute etter.',
     'info.normalarbeidstid.tekst.2':
-        'Hvis du mottar ytelse fra NAV (for eksempel foreldrepenger eller sykepenger) opplyser du om det som var din normale arbeidstid før du startet å motta ytelsen.',
+        'Hvis du mottar ytelse fra Nav (for eksempel foreldrepenger eller sykepenger) opplyser du om det som var din normale arbeidstid før du startet å motta ytelsen.',
 
     'arbeidsforhold.normalTimer.info.tittel': 'Hva om jeg jobber turnus eller varierende?',
     'arbeidsforhold.normalTimer.info.turnus':
@@ -21,13 +21,13 @@ const nb = {
     'arbeidsforhold.normalTimer.info.turnus.avsnitt.5':
         'Du jobber altså i snitt 25 timer per uke, og det er dette tallet du oppgir.',
 
-    'arbeidsforhold.frilanser.normalTimer.info.utbetalingNav.tittel': 'Jeg har en ytelse fra NAV som frilanser nå',
+    'arbeidsforhold.frilanser.normalTimer.info.utbetalingNav.tittel': 'Jeg har en ytelse fra Nav som frilanser nå',
     'arbeidsforhold.frilanser.normalTimer.info.utbetalingNav.info':
-        'Når du har en ytelse fra NAV som frilanser nå, oppgir du det som var den normale arbeidstiden din før du begynte med ytelsen. En ytelse kan for eksempel være foreldrepenger eller sykepenger.',
+        'Når du har en ytelse fra Nav som frilanser nå, oppgir du det som var den normale arbeidstiden din før du begynte med ytelsen. En ytelse kan for eksempel være foreldrepenger eller sykepenger.',
     'arbeidsforhold.sn.normalTimer.info.utbetalingNav.tittel':
-        'Jeg har en ytelse fra NAV som selvstendig næringsdrivende nå',
+        'Jeg har en ytelse fra Nav som selvstendig næringsdrivende nå',
     'arbeidsforhold.sn.normalTimer.info.utbetalingNav.info':
-        'Når du har en ytelse fra NAV som selvstendig næringsdrivende nå, oppgir du det som var den normale arbeidstiden din før du begynte med ytelsen. En ytelse kan for eksempel være foreldrepenger eller sykepenger.',
+        'Når du har en ytelse fra Nav som selvstendig næringsdrivende nå, oppgir du det som var den normale arbeidstiden din før du begynte med ytelsen. En ytelse kan for eksempel være foreldrepenger eller sykepenger.',
 
     'arbeidsforhold.normalTimer.info.varierende.tittel': 'Slik regner du ut et snitt ved varierende arbeidstid',
     'arbeidsforhold.normalTimer.info.varierende.avsnitt.1':
@@ -43,9 +43,9 @@ const nb = {
     'arbeidsforhold.normalTimer.info.varierende.avsnitt.6':
         'Da deler du antall timer med antall uker du har jobbet. Hvis du for eksempel har jobbet i 7 uker, så deler du antall timer du har jobbet med 7.',
 
-    'arbeidsforhold.normalTimer.info.utbetalingFraNAV.tittel': 'Hva om jeg får utbetaling fra NAV nå?',
+    'arbeidsforhold.normalTimer.info.utbetalingFraNAV.tittel': 'Hva om jeg får utbetaling fra Nav nå?',
     'arbeidsforhold.normalTimer.info.utbetalingFraNAV.avsnitt.1':
-        'Hvis du for eksempel får foreldrepenger eller sykepenger i dette arbeidsforholdet nå, registrerer du det om var den normale arbeidstiden din før du begynte å få denne utbetalingen fra NAV.',
+        'Hvis du for eksempel får foreldrepenger eller sykepenger i dette arbeidsforholdet nå, registrerer du det om var den normale arbeidstiden din før du begynte å få denne utbetalingen fra Nav.',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };

@@ -24,8 +24,8 @@ const nb = {
     time: 'time',
     timer: 'timer',
 
-    'step.dineBarn.stepTitle': 'Barn og rett til omsorgspenger fra NAV',
-    'step.dineBarn.stepIndicatorLabel': 'Barn og rett til omsorgspenger fra NAV',
+    'step.dineBarn.stepTitle': 'Barn og rett til omsorgspenger fra Nav',
+    'step.dineBarn.stepIndicatorLabel': 'Barn og rett til omsorgspenger fra Nav',
 
     'step.fravaer.stepTitle': 'Dager du søker om utbetaling for',
 

@@ -7,9 +7,9 @@ const nb = {
     'page.velkommen.guide.tekst.1':
         'Denne søknaden bruker du for å søke om ekstra omsorgsdager, hvis barnet ditt har en sykdom eller funksjonshemning som gjør at du må bruke flere omsorgsdager enn det som er vanlig. Det er kun foreldre/fosterforeldre som bor med barnet som kan få ekstra omsorgsdager.',
     'page.velkommen.guide.tekst.2':
-        'Hvis flere skal ha ekstra omsorgsdager for samme barn, må dere sende hver deres søknad til NAV.',
+        'Hvis flere skal ha ekstra omsorgsdager for samme barn, må dere sende hver deres søknad til Nav.',
     'page.velkommen.guide.tekst.3':
-        'Hvis du har fått godkjent søknaden av NAV, trenger du ikke å søke om ekstra omsorgsdager igjen. Vedtak om ekstra dager varer til barnet blir 18 år.',
+        'Hvis du har fått godkjent søknaden av Nav, trenger du ikke å søke om ekstra omsorgsdager igjen. Vedtak om ekstra dager varer til barnet blir 18 år.',
     'page.velkommen.omSøknaden.tittel': 'Om søknaden',
     'page.velkommen.omSøknaden.1': 'Du får veiledning underveis i søknaden om hva du skal fylle ut, og hvordan.',
     'page.velkommen.omSøknaden.fremoverITid':
@@ -19,7 +19,7 @@ const nb = {
     'page.velkommen.omSøknaden.3':
         'Vi tar vare på svarene dine i 72 timer. Hvis du innenfor den tiden for eksempel vil ta en pause eller blir automatisk logget ut, fortsetter du der du var når du kommer tilbake.',
     'page.velkommen.personopplysninger.tittel': 'Om hvordan vi innhenter opplysninger om deg',
-    'page.velkommen.personopplysninger.behandler.tittel': 'Slik behandler NAV personopplysningene dine',
+    'page.velkommen.personopplysninger.behandler.tittel': 'Slik behandler Nav personopplysningene dine',
     'page.velkommen.personopplysninger.behandler.info':
         'Vi innhenter og mottar opplysninger om deg for å behandle saken din. Det er nødvendig for at du skal få riktig tjeneste. Deler av saken din behandles automatisk.',
     'page.velkommen.personopplysninger.innhenter.tittel': 'Hvilke opplysninger innhenter vi',
@@ -28,7 +28,7 @@ const nb = {
     'page.velkommen.personopplysninger.innhenter.1': 'hvilke barn du er registrert som forelder til',
     'page.velkommen.personopplysninger.innhenter.2': 'opplysninger om barnets helse',
     'page.velkommen.personopplysninger.innhenter.3': 'arbeidsforholdene dine og inntekten din',
-    'page.velkommen.personopplysninger.innhenter.4': 'ytelser du mottar fra NAV',
+    'page.velkommen.personopplysninger.innhenter.4': 'ytelser du mottar fra Nav',
     'page.velkommen.personopplysninger.innhenter.5': 'tilknytningen din til Norge',
     'page.velkommen.personopplysninger.innhenter.6':
         'trygdeordninger du kan ha rett til i andre land. Vi kan også sende opplysninger om deg til trygdemyndigheter i andre land.',
@@ -36,7 +36,7 @@ const nb = {
     'page.velkommen.personopplysninger.5.2':
         'Vi innhenter og mottar opplysninger om deg for å behandle saken din. Det er nødvendig for at du skal få riktig tjeneste. Deler av saken din behandles automatisk.',
     'page.velkommen.personopplysninger.5.3':
-        'Du har rett til innsyn i saken din. Vil du vite mer om hvordan NAV behandler personopplysninger? Se <Lenke>nav.no/personvern</Lenke>.',
+        'Du har rett til innsyn i saken din. Vil du vite mer om hvordan Nav behandler personopplysninger? Se <Lenke>nav.no/personvern</Lenke>.',
 };
 
 const nn: Record<keyof typeof nb, string> = {
@@ -48,9 +48,9 @@ const nn: Record<keyof typeof nb, string> = {
     'page.velkommen.guide.tekst.1':
         'Denne søknaden bruker du for å søkja om ekstra omsorgsdagar, viss barnet ditt har ein sjukdom eller funksjonshemming som gjer at du må bruka fleire omsorgsdagar enn det som er vanleg. Det er berre foreldre/fosterforeldre som bur med barnet som kan få ekstra omsorgsdagar.',
     'page.velkommen.guide.tekst.2':
-        'Viss fleire skal ha ekstra omsorgsdagar for same barn, må de senda kvar dykkar søknad til NAV.',
+        'Viss fleire skal ha ekstra omsorgsdagar for same barn, må de senda kvar dykkar søknad til Nav.',
     'page.velkommen.guide.tekst.3':
-        'Viss du har fått godkjent søknaden av NAV, treng du ikkje å søkja om ekstra omsorgsdagar igjen. Vedtak om ekstra dagar varer til barnet blir 18 år.',
+        'Viss du har fått godkjent søknaden av Nav, treng du ikkje å søkja om ekstra omsorgsdagar igjen. Vedtak om ekstra dagar varer til barnet blir 18 år.',
     'page.velkommen.omSøknaden.tittel': 'Om søknaden',
     'page.velkommen.omSøknaden.1': 'Du får rettleiing undervegs i søknaden om kva du skal fylla ut, og korleis.',
     'page.velkommen.omSøknaden.fremoverITid':
@@ -60,7 +60,7 @@ const nn: Record<keyof typeof nb, string> = {
     'page.velkommen.omSøknaden.3':
         'Me held på svara dine i 72 timar. Om du innanfor den tida til dømes vil ta ein pause eller blir automatisk logga ut, held du fram der du var då du kjem tilbake.',
     'page.velkommen.personopplysninger.tittel': 'Om korleis me samlar inn opplysningar om deg',
-    'page.velkommen.personopplysninger.behandler.tittel': 'Slik handterer NAV personopplysningane dine',
+    'page.velkommen.personopplysninger.behandler.tittel': 'Slik handterer Nav personopplysningane dine',
     'page.velkommen.personopplysninger.behandler.info':
         'Me samlar inn og mottek opplysningar om deg for å handsame saka di. Det er naudsynt for at du skal få rett teneste. Delar av saka di blir handsama automatisk.',
     'page.velkommen.personopplysninger.innhenter.tittel': 'Kva opplysningar innhentar me',
@@ -69,7 +69,7 @@ const nn: Record<keyof typeof nb, string> = {
     'page.velkommen.personopplysninger.innhenter.1': 'kva barn du er registrert som forelder til',
     'page.velkommen.personopplysninger.innhenter.2': 'opplysningar om helsa til barnet',
     'page.velkommen.personopplysninger.innhenter.3': 'arbeidsforholda dine og inntekta di',
-    'page.velkommen.personopplysninger.innhenter.4': 'ytingar du får frå NAV',
+    'page.velkommen.personopplysninger.innhenter.4': 'ytingar du får frå Nav',
     'page.velkommen.personopplysninger.innhenter.5': 'tilknytinga di til Noreg',
     'page.velkommen.personopplysninger.innhenter.6':
         'trygdeordningar du kan ha rett til i andre land. Me kan også senda opplysningar om deg til trygdestyresmakter i andre land.',
@@ -77,7 +77,7 @@ const nn: Record<keyof typeof nb, string> = {
     'page.velkommen.personopplysninger.5.2':
         'Me innhentar og får opplysningar om deg for å behandla saka di. Det er nødvendig for at du skal få rett teneste. Delar av saka di blir behandla automatisk.',
     'page.velkommen.personopplysninger.5.3':
-        'Du har rett til å sjå saka di. Vil du vita meir om korleis NAV behandlar personopplysningar? Sjå <Lenke>nav.no/personvern</Lenke>.',
+        'Du har rett til å sjå saka di. Vil du vita meir om korleis Nav behandlar personopplysningar? Sjå <Lenke>nav.no/personvern</Lenke>.',
 };
 export const velkommenPageMessages = {
     nb,
