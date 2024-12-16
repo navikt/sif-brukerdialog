@@ -41,7 +41,7 @@
         "csp-header": "6.0.0",
         "dayjs": "1.11.13",
         "formik": "2.4.6",
-        "html-react-parser": "5.2.0",
+        "html-react-parser": "5.2.1",
         "jsdom": "25.0.1",
         "object-hash": "3.0.0",
         "react": "19.0.0",
