@@ -29,14 +29,6 @@ const isE2E = getMaybeEnv('E2E_TEST') === 'true';
 
 ensureBaseNameForReactRouter(PUBLIC_PATH);
 
-// async function prepare() {
-//     if (process.env.NODE_ENV !== 'development') {
-//         return Promise.resolve();
-//     }
-//     const { worker } = await import('../mocks/msw/browser');
-//     return worker.start();
-// }
-
 async function prepare() {
     if (isDevMode()) {
         const envNow = getMaybeEnv('NOW');
