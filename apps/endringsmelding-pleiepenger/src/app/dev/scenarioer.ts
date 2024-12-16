@@ -66,6 +66,11 @@ export const scenarioer: Scenario[] = [
         harTilgang: false,
     },
     {
+        name: 'Debug',
+        value: 'debug',
+        harTilgang: true,
+    },
+    {
         name: 'Arbeidsaktivitet uten arbeidsgiver',
         value: 'arbeidsaktivitet-uten-arbeidsgiver',
         harTilgang: true,
