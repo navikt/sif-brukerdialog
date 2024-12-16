@@ -23,7 +23,7 @@ const nb = {
     'page.velkommen.omSøknaden.4': 'Om hvordan vi innhenter opplysninger om deg',
     'page.velkommen.harForståttRettigheterOgPlikter.notChecked': 'Du må velge at du har forstått ditt ansvar som søker',
     'personopplysninger.dialogtittel': 'Om behandling av personopplysninger',
-    'personopplysninger.1': 'Slik behandler NAV personopplysningene dine',
+    'personopplysninger.1': 'Slik behandler Nav personopplysningene dine',
     'personopplysninger.2':
         'Vi innhenter og mottar opplysninger om deg når vi skal behandle saken din. Det er nødvendig for at du skal få riktig tjeneste. Saken din kan behandles automatisk.',
     'personopplysninger.3': 'Hvilke opplysninger innhenter vi?',
@@ -38,7 +38,7 @@ const nb = {
         'hvis du søker i forbindelse med at den andre forelderen er innlagt i helseinstitusjon, avtjener verneplikt eller soner fengselsstraff, kan vi sjekke dette mot offentlige registre ved behov.',
 
     'personopplysninger.5':
-        'Du har rett til innsyn i saken din. Vil du vite mer om hvordan NAV behandler personopplysninger? Se <Lenke>nav.no/personvern</Lenke>.',
+        'Du har rett til innsyn i saken din. Vil du vite mer om hvordan Nav behandler personopplysninger? Se <Lenke>nav.no/personvern</Lenke>.',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };

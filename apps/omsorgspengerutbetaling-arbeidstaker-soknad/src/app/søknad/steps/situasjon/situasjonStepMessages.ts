@@ -10,7 +10,7 @@ const nb = {
     'step.situasjon.arbeidsforhold.harArbeidsgiverUtbetaltDegLønnForOmsorgsdagene.spm':
         'Har arbeidsgiveren utbetalt deg lønn for de dagene du har brukt omsorgsdager?',
     'step.situasjon.arbeidsforhold.utbetalingsårsak.spm':
-        'Hva er grunnen til at du søker om utbetaling av omsorgspenger fra NAV?',
+        'Hva er grunnen til at du søker om utbetaling av omsorgspenger fra Nav?',
     'step.situasjon.arbeidsforhold.utbetalingsårsak.nyoppstartetHosArbeidsgiver':
         'Jeg har jobbet mindre enn 4 uker hos denne arbeidsgiveren',
     'step.situasjon.arbeidsforhold.utbetalingsårsak.arbeidsgiverKonkurs': 'Arbeidsgiver er konkurs',
@@ -33,7 +33,7 @@ const nb = {
     'step.situasjon.arbeidsforhold.årsakMinde4Uker.utøvdeVerneplikt': 'Jeg utøvde verneplikt',
     'step.situasjon.arbeidsforhold.årsakMinde4Uker.annet': 'Annet',
     'step.situasjon.arbeidsforhold.harUtbetalingLønn.alertstripe':
-        'NAV utbetaler ikke for omsorgsdager som arbeidsgiver allerede har utbetalt for.',
+        'Nav utbetaler ikke for omsorgsdager som arbeidsgiver allerede har utbetalt for.',
     'step.situasjon.arbeidsforhold.ingen.info.text': 'Vi finner ingen registrerte arbeidsgivere.',
     'step.situasjon.arbeidsforhold.ingenGjeldende.info.text.nei':
         'Du må ha hatt fravær fra minst én arbeidsgiver for å gå videre i søknaden.',

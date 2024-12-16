@@ -25,7 +25,7 @@ const nb = {
     'page.velkommen.harForståttRettigheterOgPlikter.notChecked': 'Du må velge at du har forstått ditt ansvar som søker',
 
     'page.velkommen.personopplysninger.dialogtittel': 'Om behandling av personopplysninger',
-    'page.velkommen.personopplysninger.1': 'Slik behandler NAV personopplysningene dine',
+    'page.velkommen.personopplysninger.1': 'Slik behandler Nav personopplysningene dine',
     'page.velkommen.personopplysninger.2':
         'Vi innhenter og mottar opplysninger om deg når vi skal behandle saken din. Det er nødvendig for at du skal få riktig tjeneste. Saken din kan behandles automatisk.',
     'page.velkommen.personopplysninger.3': 'Hvilke opplysninger innhenter vi?',
@@ -39,7 +39,7 @@ const nb = {
         'trygdeordninger du kan ha rett til i andre land. Vi kan også sende opplysninger om deg til trygdemyndigheter i andre land.',
 
     'page.velkommen.personopplysninger.5':
-        'Du har rett til innsyn i saken din. Vil du vite mer om hvordan NAV behandler personopplysninger? Se <Lenke>nav.no/personvern</Lenke>.',
+        'Du har rett til innsyn i saken din. Vil du vite mer om hvordan Nav behandler personopplysninger? Se <Lenke>nav.no/personvern</Lenke>.',
 };
 
 const nn: Record<keyof typeof nb, string> = {

@@ -104,7 +104,7 @@ const nb = {
     'validation.harForståttRettigheterOgPlikter.notChecked': 'Du må bekrefte at du har lest og forstått dine plikter.',
     'validation.harBekreftetOpplysninger.notChecked': 'Du må bekrefte at opplysningene du har gitt er riktige.',
     'validation.situasjon.arbeidsforhold.utbetalingsårsak.noValue':
-        'Du må svare på hva som er grunnen til at du søker om utbetaling av omsorgspenger fra NAV.',
+        'Du må svare på hva som er grunnen til at du søker om utbetaling av omsorgspenger fra Nav.',
     'validation.situasjon.arbeidsforhold.ÅrsakMindre4Uker.noValue':
         'Du må svare på hva som var situasjonen din rett før du startet hos {arbeidsgivernavn}.',
     'validation.arbeidsforhold.utbetalingsårsak.konfliktForklaring.stringHasNoValue':

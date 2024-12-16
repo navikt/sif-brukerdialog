@@ -7,7 +7,7 @@ const nb = {
         'Har du vært i utlandet noen av dagene du søker omsorgspenger for?',
 
     'step.fravaer.info.1':
-        'Du kan få utbetalt omsorgspenger for bruk av omsorgsdager i opptil tre måneder tilbake i tid, regnet fra måneden før NAV mottok søknad fra deg.',
+        'Du kan få utbetalt omsorgspenger for bruk av omsorgsdager i opptil tre måneder tilbake i tid, regnet fra måneden før Nav mottok søknad fra deg.',
     'step.fravaer.info.2':
         'Du kan kun søke om utbetaling fra ett og samme år. Det betyr at hvis du skal søke om utbetaling for {forrigeÅr} i tillegg til {inneværendeÅr}, må du sende to søknader.',
 

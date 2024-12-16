@@ -64,7 +64,7 @@ const nb = {
         'Beskrivelse på hvordan barnets sykdom eller funksjonshemning gir høyere risiko for fravær fra jobb må være på minst 5 tegn.',
     /** Alerts */
     'steg.omBarnet.alert.sammeAdresse.nei':
-        'Det er kun foreldre som bor sammen med barnet som kan få ekstra omsorgsdager fra NAV. Forelderen som bor sammen med barnet kan i noen tilfeller dele sine omsorgsdager.',
+        'Det er kun foreldre som bor sammen med barnet som kan få ekstra omsorgsdager fra Nav. Forelderen som bor sammen med barnet kan i noen tilfeller dele sine omsorgsdager.',
     'steg.omBarnet.alert.ikkeHøyereRisikoForFravær':
         'For å ha rett til ekstra omsorgsdager på grunn av sykdom eller funksjonshemning, må det være en sammenheng mellom barnets sykdom/funksjonshemning og risikoen for høyere fravær fra jobb.',
     'steg.omBarnet.alert.ikkeKroniskSykdom':
@@ -139,7 +139,7 @@ const nn: Record<OmBarnetMessageKeys, string> = {
     'steg.omBarnet.validation.høyereRisikoForFraværBeskrivelse.stringIsTooShort':
         'Skildringa på korleis barnet sin sjukdom eller funksjonshemming gjer at du har høgare risiko for å vera borte frå jobb, må vera minst 5 teikn lang.',
     'steg.omBarnet.alert.sammeAdresse.nei':
-        'Det er berre foreldre som bur saman med barnet som kan få ekstra omsorgsdagar frå NAV. Forelderen som bur saman med barnet kan i nokre tilfelle dela sine omsorgsdagar.',
+        'Det er berre foreldre som bur saman med barnet som kan få ekstra omsorgsdagar frå Nav. Forelderen som bur saman med barnet kan i nokre tilfelle dela sine omsorgsdagar.',
     'steg.omBarnet.alert.ikkeHøyereRisikoForFravær':
         'For å ha rett til ekstra omsorgsdagar på grunn av sjukdom eller funksjonshemming, må det vera ein samanheng mellom sjukdommen til barnet/funksjonshemming og risikoen for høgare fråvær frå jobb.',
     'steg.omBarnet.alert.ikkeKroniskSykdom':
