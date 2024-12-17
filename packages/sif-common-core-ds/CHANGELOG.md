@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 10.2.0
+
+### Minor Changes
+
+- f423337: Samkjøre alle kvitteringssider til å bruke de samme komponentene for å få samme layout og oppsett.
+
 ## 10.1.0
 
 ### Minor Changes
