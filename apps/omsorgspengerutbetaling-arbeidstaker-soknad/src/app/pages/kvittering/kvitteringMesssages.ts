@@ -6,8 +6,8 @@ const nb = {
         'Obs! Denne informasjonen forsvinner når du lukker den. Det er derfor viktig at du leser gjennom før du går videre.',
     'page.conformation.alert.infoPrint':
         'Du kan skrive ut denne informasjonssiden, og gi utskriften til arbeidsgiveren din.',
-    'page.conformation.alert.info.1.1': 'Dette er en bekreftelse på at vi har mottatt søknaden din.',
-    'page.conformation.alert.info.1.2': 'Når søknaden din er ferdigbehandlet, får du et svar fra oss.',
+    'page.conformation.alert.info.1':
+        'Dette er en bekreftelse på at vi har mottatt søknaden din. Når søknaden din er ferdigbehandlet, får du et svar fra oss.',
     'page.conformation.alert.info.2':
         'Du må be arbeidsgiver om å sende inntektsmelding til oss. Det er viktig at arbeidsgiver krysser av for at inntektsmeldingen gjelder omsorgspenger.',
     'page.conformation.alert.info.3': 'Vi kontakter deg hvis vi trenger flere opplysninger.',

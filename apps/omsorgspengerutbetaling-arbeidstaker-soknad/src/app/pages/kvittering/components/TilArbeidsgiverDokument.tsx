@@ -1,4 +1,4 @@
-import { Alert, Heading, List, Panel } from '@navikt/ds-react';
+import { Alert, Box, Heading, List } from '@navikt/ds-react';
 import * as React from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import {
@@ -32,8 +32,8 @@ const isoDurationToMaybeTime = (value: string | null): Time | undefined => {
 
 const TilArbeidsgiverDokument: React.FC<Props> = ({ arbeidsgiverDetaljer, søkersNavn, søknadNavn }: Props) => {
     return (
-        <div className={'pagebreak tilArbeidsgiverPanel'}>
-            <Panel border={true} className={'luftOver'}>
+        <div className={'pagebreak'}>
+            <Box borderWidth="1" borderColor="border-default" borderRadius="small" padding="5" marginBlock="0 10">
                 <Heading level="2" size="medium">
                     Til {arbeidsgiverDetaljer.navn}
                 </Heading>
@@ -43,7 +43,7 @@ const TilArbeidsgiverDokument: React.FC<Props> = ({ arbeidsgiverDetaljer, søker
                 </p>
 
                 <p>
-                    <b>
+                    <strong>
                         <AppText
                             id="page.conformation.tilArbeidsgiverDokument.1"
                             values={{
@@ -51,10 +51,10 @@ const TilArbeidsgiverDokument: React.FC<Props> = ({ arbeidsgiverDetaljer, søker
                                 arbeidsgiversNavn: arbeidsgiverDetaljer.navn,
                             }}
                         />
-                    </b>
+                    </strong>
                 </p>
                 <p>
-                    <b>
+                    <strong>
                         <AppText
                             id="page.conformation.tilArbeidsgiverDokument.2"
                             values={{
@@ -62,7 +62,7 @@ const TilArbeidsgiverDokument: React.FC<Props> = ({ arbeidsgiverDetaljer, søker
                                 søknadNavn: søknadNavn,
                             }}
                         />
-                    </b>
+                    </strong>
                 </p>
                 {arbeidsgiverDetaljer.perioder.length > 0 && (
                     <List>
@@ -90,30 +90,29 @@ const TilArbeidsgiverDokument: React.FC<Props> = ({ arbeidsgiverDetaljer, søker
                     </List>
                 )}
 
-                <Panel border={true} className={'luftOver'}>
+                <Box borderWidth="1" borderColor="border-default" borderRadius="small" padding="5" marginBlock="0 10">
                     <Alert variant="warning" inline={true}>
                         <AppText id="page.conformation.tilArbeidsgiverDokument.alert.1" />
-
                         <Block padBottom={'l'}>
-                            <b>
+                            <strong>
                                 <AppText
                                     id="page.conformation.tilArbeidsgiverDokument.alert.2"
                                     values={{
                                         søknadNavn: søknadNavn,
                                     }}
                                 />
-                            </b>
+                            </strong>
                         </Block>
                         <Block>
                             <AppText id="page.conformation.tilArbeidsgiverDokument.alert.3" />
                         </Block>
                     </Alert>
-                </Panel>
+                </Box>
 
                 <div>
-                    <h3>
+                    <Heading level="3" size="small">
                         <AppText id="page.conformation.tilArbeidsgiverDokument.info.tittel" />
-                    </h3>
+                    </Heading>
 
                     <p>
                         <AppText id="page.conformation.tilArbeidsgiverDokument.info.1" />
@@ -134,7 +133,7 @@ const TilArbeidsgiverDokument: React.FC<Props> = ({ arbeidsgiverDetaljer, søker
                         </a>
                     </p>
                 </div>
-            </Panel>
+            </Box>
         </div>
     );
 };

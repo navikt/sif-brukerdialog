@@ -57,4 +57,5 @@ test('endringsmelding om ferie og arbeid', async ({ page }) => {
 
     await page.getByText('Jeg bekrefter at').click();
     await page.getByTestId('typedFormikForm-submitButton').click();
+    await expect(page.getByRole('heading', { name: 'Melding om endring er lagt til saken din' })).toBeVisible();
 });

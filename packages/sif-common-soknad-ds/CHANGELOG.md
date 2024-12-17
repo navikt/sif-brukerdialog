@@ -1,5 +1,17 @@
 # @navikt/sif-common-soknad-ds
 
+## 23.0.0
+
+### Minor Changes
+
+- f423337: Samkjøre alle kvitteringssider til å bruke de samme komponentene for å få samme layout og oppsett.
+
+### Patch Changes
+
+- Updated dependencies [f423337]
+    - @navikt/sif-common-core-ds@10.2.0
+    - @navikt/sif-common-forms-ds@18.0.0
+
 ## 22.0.0
 
 ### Minor Changes

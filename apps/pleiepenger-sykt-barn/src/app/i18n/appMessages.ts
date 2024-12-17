@@ -460,8 +460,7 @@ const nb = {
         'Oops, nå ser vi at inntekten du har oppgitt for virksomheten din er for høy.',
 
     'page.confirmation.sidetittel': 'Vi har mottatt søknaden din',
-    'page.confirmation.tittel.1': 'Takk!',
-    'page.confirmation.tittel.2': 'Vi har mottatt søknaden din om pleiepenger for sykt barn',
+    'page.confirmation.tittel.1': 'Vi har mottatt søknaden din om pleiepenger for sykt barn',
 
     'page.confirmation.tittel.advarsel.list.tittel':
         'Husk å be arbeidsgiver(e) å sende inntektsmelding så snart som mulig hvis:',
