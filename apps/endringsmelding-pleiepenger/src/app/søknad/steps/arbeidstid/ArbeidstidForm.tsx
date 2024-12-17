@@ -1,11 +1,14 @@
+import { Alert, Box, Link } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { useOnValidSubmit, useSøknadContext } from '@hooks';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
-import { ArbeidsaktivitetType, ArbeiderIPeriodenSvar, ArbeidstidEndringMap, SøknadContextState } from '@types';
+import { ArbeiderIPeriodenSvar, ArbeidsaktivitetType, ArbeidstidEndringMap, SøknadContextState } from '@types';
 import { getArbeidsaktiviteterForUkjenteArbeidsforhold } from '@utils';
+import { AppText } from '../../../i18n';
+import { getLenker } from '../../../lenker';
 import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { StepId } from '../../config/StepId';
@@ -107,6 +110,24 @@ const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
                     ),
                     ...getAktiviteterSomSkalEndres(sak.arbeidsaktiviteter),
                 ];
+
+                if (arbeidsaktiviteter.length === 0) {
+                    return (
+                        <Box marginBlock={'10 0'}>
+                            <Alert variant="warning">
+                                <AppText
+                                    id="arbeidstidStep.ingenArbeidsaktiviteter"
+                                    values={{
+                                        Lenke: (txt: string) => (
+                                            <Link href={getLenker(intl.locale).beskjedOmFamilie}>{txt}</Link>
+                                        ),
+                                    }}
+                                />
+                            </Alert>
+                        </Box>
+                    );
+                }
+
                 return (
                     <>
                         <PersistStepFormValues stepId={stepId} />
