@@ -1,7 +1,7 @@
 import { Alert, Button, VStack } from '@navikt/ds-react';
 import { Søker } from '@navikt/sif-common-api';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
-import Checklist from '@navikt/sif-common-core-ds/src/components/lists/checklist/Checklist';
+import Infolist from '@navikt/sif-common-core-ds/src/components/lists/infolist/Infolist';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { Kvittering } from '@navikt/sif-common-soknad-ds/src';
@@ -34,7 +34,7 @@ const KvitteringPage = ({ søker, kvitteringInfo }: Props) => {
                     </Block>
                 </Alert>
                 <VStack gap="8">
-                    <Checklist heading={text('page.confirmation.undertittel')}>
+                    <Infolist heading={text('page.confirmation.undertittel')}>
                         <li>
                             <AppText id="page.conformation.alert.info.1" />
                         </li>
@@ -47,7 +47,7 @@ const KvitteringPage = ({ søker, kvitteringInfo }: Props) => {
                         <li>
                             <AppText id="page.conformation.alert.info.4" />
                         </li>
-                    </Checklist>
+                    </Infolist>
 
                     <VStack align="center" className="kvittering-print-button">
                         <Button

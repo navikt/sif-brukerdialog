@@ -1,5 +1,5 @@
 import { Link } from '@navikt/ds-react';
-import Checklist from '@navikt/sif-common-core-ds/src/components/lists/checklist/Checklist';
+import Infolist from '@navikt/sif-common-core-ds/src/components/lists/infolist/Infolist';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { Kvittering } from '@navikt/sif-common-soknad-ds/src';
@@ -24,7 +24,7 @@ const KvitteringPage = ({ kvitteringInfo }: Props) => {
     return (
         <Page title={text('page.kvittering.sidetittel')}>
             <Kvittering tittel={text('page.kvittering.tittel')}>
-                <Checklist heading={text('page.kvittering.info.tittel')}>
+                <Infolist heading={text('page.kvittering.info.tittel')}>
                     {kvitteringInfo?.arbeidsgivere && (
                         <li>
                             <AppText
@@ -48,7 +48,7 @@ const KvitteringPage = ({ kvitteringInfo }: Props) => {
                             }}
                         />
                     </li>
-                </Checklist>
+                </Infolist>
             </Kvittering>
         </Page>
     );

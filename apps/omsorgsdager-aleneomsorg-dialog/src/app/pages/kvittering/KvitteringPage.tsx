@@ -1,6 +1,6 @@
 import { Link } from '@navikt/ds-react';
 import React from 'react';
-import { Checklist } from '@navikt/sif-common-core-ds';
+import { Infolist } from '@navikt/sif-common-core-ds';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { Kvittering } from '@navikt/sif-common-soknad-ds';
@@ -19,7 +19,7 @@ const KvitteringPage = () => {
     return (
         <Page title={text('application.title')}>
             <Kvittering tittel={text('kvittering.tittel')}>
-                <Checklist heading={text('kvittering.info.tittel')}>
+                <Infolist heading={text('kvittering.info.tittel')}>
                     <li>
                         <AppText id="kvittering.info.1" />
                     </li>
@@ -38,7 +38,7 @@ const KvitteringPage = () => {
                             }}
                         />
                     </li>
-                </Checklist>
+                </Infolist>
             </Kvittering>
         </Page>
     );

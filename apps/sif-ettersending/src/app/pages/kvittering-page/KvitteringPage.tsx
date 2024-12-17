@@ -1,5 +1,5 @@
 import { Link } from '@navikt/ds-react';
-import { Checklist } from '@navikt/sif-common-core-ds/src';
+import { InfoList } from '@navikt/sif-common-core-ds/src';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { Kvittering } from '@navikt/sif-common-soknad-ds/src';
 import { AppText, useAppIntl } from '../../i18n';
@@ -31,7 +31,7 @@ const KvitteringPage = ({ søknadstype, dokumenttype }: Props) => {
                         ? 'page.confirmation.psb.legeerklæring.tittel'
                         : 'page.confirmation.generell.tittel',
                 )}>
-                <Checklist>
+                <Infolist
                     <li>
                         <AppText
                             id={
@@ -48,7 +48,7 @@ const KvitteringPage = ({ søknadstype, dokumenttype }: Props) => {
                             }}
                         />
                     </li>
-                </Checklist>
+                </Infolist
             </Kvittering>
         </Page>
     );

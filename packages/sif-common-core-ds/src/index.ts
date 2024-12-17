@@ -1,4 +1,4 @@
-export { default as Checklist } from './components/lists/checklist/Checklist';
+export { default as Infolist } from './components/lists/infolist/Infolist';
 export { default as FormikFileUpload } from './components/formik-file-upload/FormikFileUpload';
 export { default as VedleggList } from './components/vedlegg-list/VedleggList';
 export { default as VedleggSummaryList } from './components/vedlegg-summary-list/VedleggSummaryList';
