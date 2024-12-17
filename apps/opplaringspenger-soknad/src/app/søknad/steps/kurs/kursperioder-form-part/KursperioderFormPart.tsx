@@ -1,12 +1,17 @@
-import KursperiodeQuestions from './KursperiodeQuestions';
 import { Box, Button, Heading, VStack } from '@navikt/ds-react';
-import { FieldArray, useFormikContext } from 'formik';
-import { KursFormValues } from '../KursStep';
-import { FormLayout } from '@navikt/sif-common-ui';
 import { Add } from '@navikt/ds-icons';
+import { DateRange } from '@navikt/sif-common-formik-ds';
+import { FormLayout } from '@navikt/sif-common-ui';
+import { FieldArray, useFormikContext } from 'formik';
 import { AppText } from '../../../../i18n';
+import { KursFormValues } from '../KursStep';
+import KursperiodeQuestions from './KursperiodeQuestions';
 
-const KursperioderFormPart = () => {
+interface Props {
+    gyldigSøknadsperiode: DateRange;
+}
+
+const KursperioderFormPart = ({ gyldigSøknadsperiode }: Props) => {
     const { values, validateForm } = useFormikContext<KursFormValues>();
     const { kursperioder } = values;
     const harFlerePerioder = kursperioder && kursperioder.length > 1;
@@ -29,6 +34,7 @@ const KursperioderFormPart = () => {
                                                 allePerioder={kursperioder}
                                                 values={kursperiode || {}}
                                                 index={index}
+                                                gyldigSøknadsperiode={gyldigSøknadsperiode}
                                                 harFlerePerioder={harFlerePerioder}
                                                 onRemove={() => {
                                                     arrayHelpers.remove(index);

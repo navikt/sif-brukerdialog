@@ -26,7 +26,7 @@ const OmBarnetStep = () => {
     } = useSøknadContext();
     const { intl } = useAppIntl();
 
-    const step = getSøknadStepConfigForStep(søknadsdata, stepId);
+    const step = getSøknadStepConfigForStep(stepId);
     const { goBack } = useStepNavigation(step);
     const andreVedlegg = søknadsdata.legeerklæring?.vedlegg || [];
 

@@ -47,7 +47,7 @@ const MedlemskapStep = () => {
         state: { søknadsdata },
     } = useSøknadContext();
     const stepId = StepId.MEDLEMSKAP;
-    const step = getSøknadStepConfigForStep(søknadsdata, stepId);
+    const step = getSøknadStepConfigForStep(stepId);
 
     const { goBack } = useStepNavigation(step);
 

@@ -1,7 +1,7 @@
 import { expect, Page } from '@playwright/test';
 
 export const fyllUtArbeidssituasjonStep = async (page: Page) => {
-    await expect(page.getByRole('heading', { level: 1, name: 'Arbeidssituasjon' })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1, name: 'Din arbeidssituasjon' })).toBeVisible();
     await page
         .getByRole('group', {
             name: 'Stemmer det at du er ansatt hos Arbeids- og velferdsetaten i perioden du søker for?',

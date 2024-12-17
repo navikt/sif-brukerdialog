@@ -8,11 +8,10 @@ import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidIPeriodeApi
 export const getSelvstendigApiDataFromSøknadsdata = (props: {
     søknadsperiode: DateRange;
     dagerMedOpplæring: Date[];
-    skalJobbeIPerioden: boolean;
     selvstendig?: ArbeidSelvstendigSøknadsdata;
     arbeidIperiode: ArbeidIPeriodeSøknadsdata | undefined;
 }): SelvstendigNæringsdrivendeApiData | undefined => {
-    const { søknadsperiode, dagerMedOpplæring, skalJobbeIPerioden, selvstendig, arbeidIperiode } = props;
+    const { søknadsperiode, dagerMedOpplæring, selvstendig, arbeidIperiode } = props;
     if (!selvstendig) {
         return undefined;
     }
@@ -27,7 +26,6 @@ export const getSelvstendigApiDataFromSøknadsdata = (props: {
             const arbeidsforhold: ArbeidsforholdApiData = {
                 jobberNormaltTimer,
                 arbeidIPeriode: getArbeidIPeriodeApiDataFromSøknadsdata(
-                    skalJobbeIPerioden,
                     arbeidIperiode,
                     søknadsperiode,
                     jobberNormaltTimer,

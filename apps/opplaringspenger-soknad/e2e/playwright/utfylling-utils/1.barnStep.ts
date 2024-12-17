@@ -14,7 +14,8 @@ export const fyllUtAnnetBarn = async (page: Page) => {
     await page.locator('label').filter({ hasText: 'Barnet bor i utlandet' }).click();
     await page.getByLabel('Barnets navn').fill('Erik');
     await page.getByRole('button', { name: 'Åpne datovelger' }).click();
-    await page.getByLabel('onsdag 4').click();
+    await page.getByLabel('År', { exact: true }).selectOption('2022');
+    await page.getByLabel('torsdag 8').click();
     await page.getByText('Fosterforelder').click();
     await lastOppDokument(page, page.locator('input[type="file"]'), './e2e/playwright/files/navlogopng.png');
     await expect(page.getByRole('heading', { name: 'Dokumenter lastet opp (1)' })).toBeVisible();
@@ -29,7 +30,7 @@ export const kontrollerRegistrertBarnOppsummering = async (page: Page) => {
 
 export const kontrollerAnnetBarnOppsummering = async (page: Page) => {
     await expect(page.getByRole('heading', { name: 'Om barnet' })).toBeVisible();
-    await expect(page.getByText('Fødselsdato04.12.2024')).toBeVisible();
+    await expect(page.getByText('Fødselsdato08.12.2022')).toBeVisible();
     await expect(page.getByText('NavnErik')).toBeVisible();
     await expect(page.getByText('Uten fødselsnummer/D-nummerBarnet bor i utlandet')).toBeVisible();
     await expect(page.getByText('FødselsattestIkonnavlogopng.')).toBeVisible();

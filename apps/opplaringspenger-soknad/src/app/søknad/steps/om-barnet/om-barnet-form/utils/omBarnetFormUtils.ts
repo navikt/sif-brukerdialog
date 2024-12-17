@@ -1,5 +1,5 @@
 import { RegistrertBarn } from '@navikt/sif-common-api';
-import { getDateToday } from '@navikt/sif-common-utils';
+import { dateToISODate, getDateToday, ISODateToDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { OmBarnetFormMessageKeys } from '../omBarnetFormMessages';
 import { OmBarnetFormValues, RelasjonTilBarnet, ÅrsakBarnetManglerIdentitetsnummer } from '../types';
@@ -49,7 +49,7 @@ export const getOmBarnetFormInitialValues = (
                     årsakManglerIdentitetsnummer: søknadsdata.årsakManglerIdentitetsnummer,
                     søknadenGjelderEtAnnetBarn: true,
                     barnetsNavn: søknadsdata.barnetsNavn,
-                    barnetsFødselsdato: søknadsdata.barnetsFødselsdato,
+                    barnetsFødselsdato: dateToISODate(søknadsdata.barnetsFødselsdato),
                     fødselsattest: søknadsdata.fødselsattest || [],
                     relasjonTilBarnet: søknadsdata.relasjonTilBarnet,
                     relasjonTilBarnetBeskrivelse:
@@ -95,7 +95,7 @@ export const getOmBarnetSøknadsdataFromFormValues = (
                 type: 'annetBarnUtenFnr',
                 barnetsNavn: values.barnetsNavn,
                 årsakManglerIdentitetsnummer: values.årsakManglerIdentitetsnummer,
-                barnetsFødselsdato: values.barnetsFødselsdato,
+                barnetsFødselsdato: ISODateToDate(values.barnetsFødselsdato),
                 ...relasjonTilBarnetSøknadsdata,
                 fødselsattest:
                     values.årsakManglerIdentitetsnummer === ÅrsakBarnetManglerIdentitetsnummer.BARNET_BOR_I_UTLANDET

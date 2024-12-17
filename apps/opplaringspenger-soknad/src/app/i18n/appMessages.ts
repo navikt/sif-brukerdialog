@@ -82,13 +82,13 @@ const nb = {
     'step.kurs.stepTitle': 'Om opplæringen',
     'step.kurs.stepIndicatorLabel': 'Om opplæringen',
 
-    'step.arbeidssituasjon.stepTitle': 'Arbeidssituasjon',
-    'step.arbeidssituasjon.pageTitle': 'Arbeidssituasjon',
-    'step.arbeidssituasjon.stepIndicatorLabel': 'Arbeidssituasjon',
+    'step.arbeidssituasjon.stepTitle': 'Din arbeidssituasjon',
+    'step.arbeidssituasjon.pageTitle': 'Din arbeidssituasjon',
+    'step.arbeidssituasjon.stepIndicatorLabel': 'Din arbeidssituasjon',
 
-    'step.arbeidstid.stepTitle': 'Jobb i perioden',
-    'step.arbeidstid.pageTitle': 'Jobb i perioden',
-    'step.arbeidstid.stepIndicatorLabel': 'Jobb i perioden',
+    'step.arbeidstid.stepTitle': 'Jobb de dagene du søker for',
+    'step.arbeidstid.pageTitle': 'Jobb de dagene du søker for',
+    'step.arbeidstid.stepIndicatorLabel': 'Jobb de dagene du søker for',
 
     'step.medlemskap.pageTitle': 'Medlemskap i folketrygden',
     'step.medlemskap.stepTitle': 'Medlemskap i folketrygden',
@@ -203,7 +203,7 @@ const nb = {
     'ingenFraværConfirmation.okLabel': 'Ja, det stemmer',
     'ingenFraværConfirmation.cancelLabel': 'Nei, det stemmer ikke',
     'ingenFraværConfirmation.content':
-        'Du har oppgitt at du jobber som normalt og ikke har fravær i dagene du søker for. For å ha rett til opplæringspenger må du ha fravær fra jobb fordi du skal delta på opplæring. Stemmer det at du ikke har fravær fra jobb i dagene du søker for?',
+        'Du har oppgitt at du jobber som normalt og ikke har fravær i dagene du søker for. For å ha rett til opplæringspenger må du ha fravær fra jobb fordi du skal delta på opplæring, eller er borte fra jobb på grunn av reise til opplæringsstedet. Stemmer det at du ikke har fravær fra jobb i dagene du søker for?',
     'ingenFraværConfirmation.heading': 'Fravær fra jobb',
 };
 

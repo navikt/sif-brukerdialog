@@ -1,6 +1,5 @@
 import { BodyLong, Button, Modal, ModalProps } from '@navikt/ds-react';
 import React from 'react';
-import ButtonRow from '../button-row/ButtonRow';
 import './confirmationDialog.scss';
 
 export interface Props extends Omit<ModalProps, 'onClose'> {
@@ -28,18 +27,17 @@ const ConfirmationDialog: React.FunctionComponent<Props> = (props: Props) => {
                 <BodyLong as="div" className="confirmationDialog__content">
                     {children}
                 </BodyLong>
-
-                <ButtonRow align="left">
-                    <Button variant="primary" onClick={() => onOk()} className="ConfirmationDialog__bekreftKnapp">
-                        {okLabel || 'Ok'}
-                    </Button>
-                    {onCancel && (
-                        <Button variant="tertiary" onClick={onCancel} className="ConfirmationDialog__avbrytKnapp">
-                            {cancelLabel || 'Avbryt'}
-                        </Button>
-                    )}
-                </ButtonRow>
             </Modal.Body>
+            <Modal.Footer>
+                {onCancel && (
+                    <Button variant="secondary" onClick={onCancel} className="ConfirmationDialog__avbrytKnapp">
+                        {cancelLabel || 'Avbryt'}
+                    </Button>
+                )}
+                <Button variant="primary" onClick={() => onOk()} className="ConfirmationDialog__bekreftKnapp">
+                    {okLabel || 'Ok'}
+                </Button>
+            </Modal.Footer>
         </Modal>
     ) : null;
 };
