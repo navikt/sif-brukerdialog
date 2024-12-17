@@ -1,42 +1,21 @@
-import { BodyShort, Heading } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { Heading, VStack } from '@navikt/ds-react';
 import CheckmarkIcon from '@navikt/sif-common-core-ds/src/atoms/checkmark-icon/CheckmarkIcon';
-import './kvittering.scss';
-
 interface Props {
     tittel: string;
-    liste?: {
-        tittel: string;
-        punkter: React.ReactNode[];
-    };
     children?: React.ReactNode;
 }
 
-const Kvittering = ({ tittel, liste, children }: Props) => {
+const Kvittering = ({ tittel, children }: Props) => {
     return (
-        <div className="kvittering">
-            <Block textAlignCenter={true} margin="none">
+        <VStack gap="10">
+            <VStack align="center" gap="10">
                 <CheckmarkIcon />
-                <Block margin="xl">
-                    <Heading level="1" size="medium" data-testid="kvittering-heading">
-                        {tittel}
-                    </Heading>
-                </Block>
-            </Block>
-            {liste && (
-                <Block margin="xl">
-                    <BodyShort size="large" as="div">
-                        {liste.tittel}
-                    </BodyShort>
-                    <ul className="checklist">
-                        {liste.punkter.map((p, idx) => (
-                            <li key={idx}>{p}</li>
-                        ))}
-                    </ul>
-                </Block>
-            )}
-            {children && <Block margin="xl">{children}</Block>}
-        </div>
+                <Heading level="1" size="large">
+                    {tittel}
+                </Heading>
+            </VStack>
+            {children}
+        </VStack>
     );
 };
 

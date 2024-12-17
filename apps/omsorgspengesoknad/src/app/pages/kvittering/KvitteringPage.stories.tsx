@@ -2,16 +2,17 @@ import { Tabs } from '@navikt/ds-react';
 import { Meta, StoryFn } from '@storybook/react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
-import { kvitteringMessages } from './kvitteringMesssages';
-import KvitteringPage from './KvitteringPage';
 import { withAmplitudeProvider } from '../../../storybook/decorators/withAmplitudeProvider';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import { withRouterProvider } from '../../../storybook/decorators/withRouter';
+import { withSøknadContextProvider } from '../../../storybook/decorators/withSøknadContext';
+import { kvitteringMessages } from './kvitteringMesssages';
+import KvitteringPage from './KvitteringPage';
 
 export default {
     title: 'Pages/Kvittering',
     component: KvitteringPage,
-    decorators: [withIntl, withRouterProvider, withAmplitudeProvider],
+    decorators: [withIntl, withRouterProvider, withAmplitudeProvider, withSøknadContextProvider],
 } as Meta<typeof KvitteringPage>;
 
 const Template: StoryFn = () => (

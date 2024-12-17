@@ -21,6 +21,7 @@
         "start-api-mock": "PORT=8089 node ./server/api-mock.js",
         "start-e2e-server": "node ./e2e/server/server.cjs",
         "start-express": "node ./server.cjs",
+        "storybook": "storybook dev -p 6006",
         "test": "vitest run"
     },
     "dependencies": {

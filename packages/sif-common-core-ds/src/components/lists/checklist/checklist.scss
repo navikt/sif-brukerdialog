@@ -1,5 +1,5 @@
 ul.checklist {
-    margin: 1.5rem 0;
+    margin: 0.5rem 0;
     padding: 0 0 0 1.5rem;
 }
 ul.checklist li {
@@ -7,6 +7,9 @@ ul.checklist li {
     margin-bottom: 1rem;
     padding-left: 1.5rem;
     margin-bottom: 1.5rem;
+}
+ul.checklist li:last-child {
+    margin-bottom: 0;
 }
 ul.checklist li:before {
     content: '';
