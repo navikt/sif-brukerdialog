@@ -16,7 +16,7 @@ const nb = {
     'step.oppsummering.arbeidsforhold.harArbeidsgiverUtbetaltDegLønnForOmsorgsdagene.spm':
         'Har arbeidsgiveren utbetalt deg lønn for de dagene du har brukt omsorgsdager?',
     'step.oppsummering.arbeidsforhold.utbetalingsårsak.spm':
-        'Hva er grunnen til at du søker om utbetaling av omsorgspenger fra NAV?',
+        'Hva er grunnen til at du søker om utbetaling av omsorgspenger fra Nav?',
     'step.oppsummering.arbeidsforhold.utbetalingsårsak.IKKE_BESVART': 'Ikke besvart',
     'step.oppsummering.arbeidsforhold.utbetalingsårsak.NYOPPSTARTET_HOS_ARBEIDSGIVER':
         'Jeg har jobbet mindre enn 4 uker hos denne arbeidsgiveren',

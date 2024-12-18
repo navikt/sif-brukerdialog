@@ -1,4 +1,4 @@
-import { Link } from '@navikt/ds-react';
+import { BodyShort, Link } from '@navikt/ds-react';
 import { useEffect } from 'react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { Kvittering } from '@navikt/sif-common-soknad-ds';
@@ -19,12 +19,14 @@ const KvitteringPage = ({ onUnmount }: Props) => {
     return (
         <Page title={text('kvitteringPage.pageTitle')}>
             <Kvittering tittel={text('kvitteringPage.title')}>
-                <AppText
-                    id="kvitteringPage.info.1"
-                    values={{
-                        Lenke: (children) => <Link href={appEnv.SIF_PUBLIC_INNSYN_URL}>{children}</Link>,
-                    }}
-                />
+                <BodyShort>
+                    <AppText
+                        id="kvitteringPage.info.1"
+                        values={{
+                            Lenke: (children) => <Link href={appEnv.SIF_PUBLIC_INNSYN_URL}>{children}</Link>,
+                        }}
+                    />
+                </BodyShort>
             </Kvittering>
         </Page>
     );

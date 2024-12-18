@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.36.0
+
+### Minor Changes
+
+- Vise informasjon til bruker i de tilfellene hvor bruker kun har arbeidsforhold med 0 timer som normalarbeidstid.
+
 ## 2.35.1
 
 ### Patch Changes

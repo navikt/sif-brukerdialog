@@ -29,7 +29,7 @@ const nb = {
         'Ettersendelse av dokumentasjon - Søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn',
 
     'modal.personopplysninger.dialogtittel': 'Om behandling av personopplysninger',
-    'modal.personopplysninger.1': 'Slik behandler NAV personopplysningene dine',
+    'modal.personopplysninger.1': 'Slik behandler Nav personopplysningene dine',
     'modal.personopplysninger.2':
         'Vi innhenter og mottar opplysninger om deg for å behandle saken din. Det er nødvendig for at du skal få riktig tjeneste.',
     'modal.personopplysninger.3': 'Hvilke opplysninger innhenter vi?',
@@ -38,13 +38,13 @@ const nb = {
     'modal.personopplysninger.4.1.pleiepengerLivetsSluttfase': 'opplysninger om helsen til den du skal pleie',
     'modal.personopplysninger.4.2': 'opplysninger om barnets helse',
     'modal.personopplysninger.4.3': 'arbeidsforholdene dine og inntekten din',
-    'modal.personopplysninger.4.4': 'ytelser du mottar fra NAV',
+    'modal.personopplysninger.4.4': 'ytelser du mottar fra Nav',
     'modal.personopplysninger.4.5': 'tilknytningen din til Norge',
     'modal.personopplysninger.4.6':
         'trygdeordninger du kan ha rett til i andre land. Vi kan også sende opplysninger om deg til trygdemyndigheter i andre land.',
     'modal.personopplysninger.4.7':
         'Vi lagrer opplysninger vi får inn om personen du søker pleiepenger for. Dette gjør vi for å kunne gjenbruke opplysningene hvis andre søker pleiepenger for samme person.',
-    'modal.personopplysninger.5.1': 'Vil du vite mer om hvordan NAV behandler personopplysninger? Se ',
+    'modal.personopplysninger.5.1': 'Vil du vite mer om hvordan Nav behandler personopplysninger? Se ',
     'modal.personopplysninger.5.2': 'nav.no/personvern',
     'modal.personopplysninger.5.3': '.',
 
@@ -208,7 +208,7 @@ const nb = {
     'page.velkommen.omSøknaden.3': 'Du må svare på alle spørsmålene for å kunne gå videre.',
 
     'page.velkommen.omSøknaden.4':
-        'Du har rett til innsyn i saken din. Vil du vite mer om hvordan NAV behandler personopplysninger? Se <Lenke>nav.no/personvern</Lenke>.',
+        'Du har rett til innsyn i saken din. Vil du vite mer om hvordan Nav behandler personopplysninger? Se <Lenke>nav.no/personvern</Lenke>.',
 };
 
 const nn: Record<keyof typeof nb, string> = {

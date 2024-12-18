@@ -108,7 +108,7 @@ const nb = {
     'step.medlemskap.pageTitle': 'Pleiepengesøknad - medlemskap',
     'step.medlemskap.stepTitle': 'Medlemskap',
     'step.medlemskap.veileder':
-        'Medlemskap i folketrygden er nøkkelen til rettigheter fra NAV. Hvis du bor eller jobber i Norge er du vanligvis medlem. Du kan lese mer om medlemskap på',
+        'Medlemskap i folketrygden er nøkkelen til rettigheter fra Nav. Hvis du bor eller jobber i Norge er du vanligvis medlem. Du kan lese mer om medlemskap på',
     'step.medlemskap.stepIndicatorLabel': 'Om medlemskap i folketrygden',
     'step.medlemskap.leggTilKnapp': 'Legg til nytt utenlandsopphold',
     'step.medlemskap.utenlandsoppholdSiste12': 'Utenlandsopphold siste 12 måneder',
@@ -184,7 +184,7 @@ const nb = {
     'steg.arbeidssituasjon.veileder.2':
         'Det er normalarbeidstiden din <strong>før</strong> du starter med pleiepenger som vi er ute etter her, uavhengig av om du søker for første gang, eller om du søker forlengelse.',
     'steg.arbeidssituasjon.veileder.3':
-        'Hvis du mottar ytelse fra NAV (for eksempel foreldrepenger eller sykepenger) opplyser du om det som var din normale arbeidstid før du startet å motta ytelsen.',
+        'Hvis du mottar ytelse fra Nav (for eksempel foreldrepenger eller sykepenger) opplyser du om det som var din normale arbeidstid før du startet å motta ytelsen.',
     'steg.arbeidssituasjon.veileder.medArbeidsgiver':
         'Nedenfor ser du {antall, plural, one {arbeidsgiveren} other {arbeidsgivere}} du er registrert ansatt hos i AA-registeret i perioden du søker om pleiepenger. For at vi skal være sikre på at opplysningene er riktige må du bekrefte om du er, eller har vært, ansatt der.',
     'steg.arbeidssituasjon.veileder.ingenArbeidsgiverFunnet':
@@ -460,8 +460,7 @@ const nb = {
         'Oops, nå ser vi at inntekten du har oppgitt for virksomheten din er for høy.',
 
     'page.confirmation.sidetittel': 'Vi har mottatt søknaden din',
-    'page.confirmation.tittel.1': 'Takk!',
-    'page.confirmation.tittel.2': 'Vi har mottatt søknaden din om pleiepenger for sykt barn',
+    'page.confirmation.tittel.1': 'Vi har mottatt søknaden din om pleiepenger for sykt barn',
 
     'page.confirmation.tittel.advarsel.list.tittel':
         'Husk å be arbeidsgiver(e) å sende inntektsmelding så snart som mulig hvis:',

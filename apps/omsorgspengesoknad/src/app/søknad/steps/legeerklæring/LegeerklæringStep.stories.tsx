@@ -1,19 +1,19 @@
-import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
+import { Tabs } from '@navikt/ds-react';
 import { Meta, StoryFn } from '@storybook/react';
-import { SøknadContextProvider } from '../../context/SøknadContext';
-import LegeerklæringStep from './LegeerklæringStep';
-import { SøknadContextState } from '../../../types/SøknadContextState';
-import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
+import { withAmplitudeProvider } from '../../../../storybook/decorators/withAmplitudeProvider';
 import { withEnvSettings } from '../../../../storybook/decorators/withEnvSettings';
 import { withIntl } from '../../../../storybook/decorators/withIntl';
 import { withRouterProvider } from '../../../../storybook/decorators/withRouter';
 import { withStepFormValuesContext } from '../../../../storybook/decorators/withStepFormValuesContext';
 import { mockInitialSøknadContextState } from '../../../../storybook/decorators/withSøknadContext';
 import { søknadsdataMocks } from '../../../../storybook/mock-data/søknadsdataMocks';
-import { withAmplitudeProvider } from '../../../../storybook/decorators/withAmplitudeProvider';
-import { Tabs } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
+import { SøknadContextState } from '../../../types/SøknadContextState';
+import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { SøknadContextProvider } from '../../context/SøknadContext';
 import { legeerklæringMessages } from './legeerklæringMessages';
+import LegeerklæringStep from './LegeerklæringStep';
 
 export default {
     title: 'Steps/Legeerklæring/Step',
