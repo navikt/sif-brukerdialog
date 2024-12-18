@@ -1,4 +1,4 @@
-import { Alert, Box, Heading, VStack } from '@navikt/ds-react';
+import { Alert, Box, Heading, List, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { SoknadVelkommenGuide } from '@navikt/sif-common-soknad-ds/src';
@@ -12,7 +12,14 @@ import Inntektsrapportering from '../../components/inntektsrapportering/Inntekts
 
 const Forside = () => {
     const {
-        data: { søker, deltakelserIkkeSøktFor, deltakelserSøktFor, alleDeltakelser, deltakelserÅpenForRapportering },
+        data: {
+            søker,
+            barn,
+            deltakelserIkkeSøktFor,
+            deltakelserSøktFor,
+            alleDeltakelser,
+            deltakelserÅpenForRapportering,
+        },
         updateDeltakelse,
     } = useSøknadContext();
 
@@ -53,6 +60,20 @@ const Forside = () => {
 
                     {deltakelserIkkeSøktFor.length > 0 && (
                         <VStack gap="4">
+                            {barn.length > 0 && (
+                                <Box>
+                                    <Heading level="2" size="medium">
+                                        Barn vi har registrert på deg:
+                                    </Heading>
+                                    <List>
+                                        {barn.map((b) => (
+                                            <List.Item key={b.aktørId}>
+                                                {b.fornavn} {b.etternavn}
+                                            </List.Item>
+                                        ))}
+                                    </List>
+                                </Box>
+                            )}
                             {deltakelserIkkeSøktFor.map((deltakelse) => {
                                 return (
                                     <Box key={deltakelse.id}>

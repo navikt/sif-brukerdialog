@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
-import { Søker } from '@navikt/sif-common-api';
+import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { Deltakelse } from '../../api/types';
 import { deltakelseErÅpenForRapportering } from '../../utils/deltakelserUtils';
 
@@ -10,6 +10,7 @@ interface SøknadContextType {
 
 export interface SøknadContextData {
     søker: Søker;
+    barn: RegistrertBarn[];
     alleDeltakelser: Deltakelse[];
     deltakelserSøktFor: Deltakelse[];
     deltakelserIkkeSøktFor: Deltakelse[];

@@ -1,7 +1,6 @@
 import { Box, Heading, HStack, Tabs, Tag, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { Deltakelse, Deltaker } from '../../api/types';
-import AvsluttDeltakelseForm from '../../forms/avslutt-deltakelse-form/AvsluttDeltakelseForm';
 import DeltakelseStatusContent from '../deltakelse-status-content/DeltakelseStatusContent';
 import EndreDeltakelseForm from '../../forms/endre-deltakelse-form/EndreDeltakelseForm';
 import SlettDeltakelseForm from '../../forms/slett-deltakelse-form/SlettDeltakelseForm';
@@ -44,7 +43,6 @@ const AktivDeltakelse = ({ deltaker, deltakelse, alleDeltakelser, onChange }: Pr
                     <Tabs.List>
                         <Tabs.Tab value="status" label="Status" />
                         <Tabs.Tab value="endre" label="Endre periode" />
-                        <Tabs.Tab value="avslutt" label="Avslutt periode" />
                         {deltakelse.harSøkt === false ? <Tabs.Tab value="slett" label="Slett periode" /> : null}
                     </Tabs.List>
                     <Tabs.Panel value="status">
@@ -58,15 +56,6 @@ const AktivDeltakelse = ({ deltaker, deltakelse, alleDeltakelser, onChange }: Pr
                                 deltakelse={deltakelse}
                                 deltakelser={alleDeltakelser}
                                 onChange={onChange}
-                            />
-                        </Box>
-                    </Tabs.Panel>
-                    <Tabs.Panel value="avslutt">
-                        <Box padding="5" paddingBlock="8 8">
-                            <AvsluttDeltakelseForm
-                                deltakelse={deltakelse}
-                                onDeltakelseAvsluttet={onChange}
-                                onCancel={() => console.log('avbryt')}
                             />
                         </Box>
                     </Tabs.Panel>

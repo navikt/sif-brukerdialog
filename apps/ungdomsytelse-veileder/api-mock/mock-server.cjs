@@ -50,7 +50,18 @@ const registrertDeltaker = {
 };
 
 const deltakelse1 = {
-    id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0',
+    id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0-1',
+    deltakerIdent: '03867198392',
+    deltaker: {
+        id: 'd-r',
+        deltakerIdent: '03867198392',
+    },
+    fraOgMed: '2025-01-01',
+    tilOgMed: '2025-05-01',
+    harSøkt: true,
+};
+const deltakelse2 = {
+    id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0-2',
     deltakerIdent: '03867198392',
     deltaker: {
         id: 'd-r',
@@ -59,7 +70,7 @@ const deltakelse1 = {
     fraOgMed: '2025-09-01',
     harSøkt: false,
 };
-const deltakelser = [deltakelse1];
+const deltakelser = [deltakelse1, deltakelse2];
 
 const getDeltaker = ({ deltakerIdent, deltakerId }) => {
     if (deltakerIdent) {
@@ -136,7 +147,7 @@ const startExpressServer = () => {
                 id: 'd-n',
                 deltakerIdent: req.body.deltakerIdent,
             },
-            harSøkt: false,
+            harSøkt: true,
             fraOgMed: req.body.fraOgMed,
         };
         setTimeout(() => {

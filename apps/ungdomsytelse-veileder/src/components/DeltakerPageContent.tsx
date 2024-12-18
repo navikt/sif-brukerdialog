@@ -5,7 +5,6 @@ import AktivDeltakelse from './aktiv-deltakelse/AktivDeltakelse';
 
 const DeltakerPageContent = () => {
     const { deltaker, deltakelser = [], refetchDeltakelser } = useDeltaker();
-    const aktivDeltakelse = deltakelser?.find((d) => d.erAktiv);
     const aktiveDeltakelser = deltakelser?.filter((d) => d.erAktiv);
 
     const handleOnDeltakelseChange = () => {
@@ -31,11 +30,11 @@ const DeltakerPageContent = () => {
         return <Box>Ingen deltakelser funnet</Box>;
     }
 
-    if (aktivDeltakelse || deltakelser.length === 1) {
+    if (deltakelser.length === 1) {
         return (
             <Page.Block width="xl" gutters={true}>
                 <AktivDeltakelse
-                    deltakelse={aktivDeltakelse || deltakelser[0]}
+                    deltakelse={deltakelser[0]}
                     deltaker={deltaker}
                     alleDeltakelser={deltakelser}
                     onChange={handleOnDeltakelseChange}
@@ -43,6 +42,21 @@ const DeltakerPageContent = () => {
             </Page.Block>
         );
     }
+    return (
+        <Page.Block width="xl" gutters={true}>
+            <VStack gap="10">
+                {deltakelser.map((deltakelse) => (
+                    <AktivDeltakelse
+                        key={deltakelse.id}
+                        deltakelse={deltakelse}
+                        deltaker={deltaker}
+                        alleDeltakelser={deltakelser}
+                        onChange={handleOnDeltakelseChange}
+                    />
+                ))}
+            </VStack>
+        </Page.Block>
+    );
 
     return <Box>Flere deltakelser er registrert</Box>;
 };
