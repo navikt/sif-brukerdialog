@@ -4,7 +4,7 @@ import { PersonaliaApiData } from '../types';
 export const personaliaService = {
     fetch: async (): Promise<PersonaliaApiData | undefined> => {
         try {
-            const response = await fetch(`person/personopplysninger-api/personalia`);
+            const response = await fetch(`/person/personopplysninger-api/personalia`);
             if (!response.ok) {
                 throw new Error(`Failed to fetch personalia: ${response.status}`);
             }
