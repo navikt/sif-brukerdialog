@@ -1,6 +1,7 @@
 import { delay, http, HttpResponse } from 'msw';
 import { søker1Mock } from '../mocks/soker1';
-import { hentAlleResponse } from '../mocks/soker1/hentAlle';
+import { deltakelserIkkeSøkt } from '../mocks/soker1/deltakelser/ikkeSøkt';
+import { deltakelserHarSøkt } from '../mocks/soker1/deltakelser/harSøkt';
 
 const MellomlagringStorageKey = 'mellomlagring-ungdomsytelse-deltaker-soknad';
 
@@ -20,7 +21,11 @@ export const handlers = [
         return HttpResponse.json({});
     }),
     http.get('**/deltakelse/register/hent/alle', () => {
-        return HttpResponse.json(hentAlleResponse);
+        const harSøkt = false;
+        return HttpResponse.json(harSøkt ? deltakelserHarSøkt : deltakelserIkkeSøkt);
+    }),
+    http.get('**/person/personopplysninger-api/personalia', () => {
+        return HttpResponse.json(søker1Mock.personalia);
     }),
     http.get(`**/mellomlagring/UNGDOMSYTELSE_DELTAKER_SOKNAD`, async () => {
         const data = localStorage.getItem(MellomlagringStorageKey);

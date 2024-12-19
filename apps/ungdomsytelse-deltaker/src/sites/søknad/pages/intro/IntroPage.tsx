@@ -4,7 +4,7 @@ import VelkommenPageHeader from '@components/velkommen-page-header/VelkommenPage
 import { useDeltakerContext } from '@context/DeltakerContext';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import KortOmUngdomsytelsen from '../../components/KortOmUngdomsytelsen';
+import KortOmUngdomsprogrammet from '../../components/KortOmUngdomsprogrammet';
 import { SøknadRoutes } from '../../types/SøknadRoutes';
 
 const IntroPage = () => {
@@ -15,9 +15,9 @@ const IntroPage = () => {
 
     if (deltakelserIkkeSøktFor.length !== 1) {
         return (
-            <Page title="Ungdomsytelse">
+            <Page title="Ungdomsprogrammet">
                 <VStack gap="8">
-                    <VelkommenPageHeader title="Ungdomsytelse" />
+                    <VelkommenPageHeader title="Ungdomsprogrammet" />
                     <Alert variant="error">
                         <Heading level="1" size="small" spacing={true}>
                             Scenario som ikke støttes
@@ -38,15 +38,15 @@ const IntroPage = () => {
     };
 
     return (
-        <Page title="Ungdomsytelse">
+        <Page title="Ungdomsprogrammet">
             <VStack gap="8">
-                <VelkommenPageHeader title="Ungdomsytelsen" />
+                <VelkommenPageHeader title="Ungdomsprogrammet" />
                 <Box className="bg-deepblue-50 p-8 rounded-md">
                     <Heading level="1" size="medium" spacing={true}>
                         Hei {søker.fornavn}
                     </Heading>
                     <BodyLong>
-                        Du er meldt på av din veileder til å være med i ungdomsytelse-programmet fra og med{' '}
+                        Du er meldt på av din veileder til å være med i Ungdomsprogrammet fra og med{' '}
                         <strong>{dateFormatter.dateShortMonthYear(programPeriode.from)}</strong>. For å starte
                         programmet, må du sende inn en kort søknad.
                     </BodyLong>
@@ -56,7 +56,7 @@ const IntroPage = () => {
                         </Button>
                     </Box>
                 </Box>
-                <KortOmUngdomsytelsen />
+                <KortOmUngdomsprogrammet />
             </VStack>
         </Page>
     );

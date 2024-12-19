@@ -18,16 +18,21 @@ const KvitteringPage = () => {
     });
     return (
         <Page title={text('application.title')}>
-            <VStack gap="8">
-                <Alert variant="success">
-                    <Heading level="1" size="small">
-                        Vi har mottat din søknad
+            <VStack gap="10">
+                <VStack gap="4">
+                    <Heading level="1" size="large">
+                        Kvittering
                     </Heading>
-                    <BodyLong>
-                        Vivero eos et accusamus et iusto odio dignis simos ducimus qui blanditiis praesentium
-                        voluptatum.
-                    </BodyLong>
-                </Alert>
+                    <Alert variant="success">
+                        <Heading level="1" size="small">
+                            Vi har mottatt din søknad
+                        </Heading>
+                        <BodyLong>
+                            Vivero eos et accusamus et iusto odio dignis simos ducimus qui blanditiis praesentium
+                            voluptatum.
+                        </BodyLong>
+                    </Alert>
+                </VStack>
 
                 <Infolist heading={text('kvittering.info.tittel')}>
                     <li>

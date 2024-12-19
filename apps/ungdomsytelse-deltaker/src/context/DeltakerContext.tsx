@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
-import { Deltakelse } from '@api/types';
+import { Deltakelse, KontonummerInfo } from '@api/types';
 import { deltakelseErÅpenForRapportering } from '@utils/deltakelserUtils';
 
 interface DeltakerContextType {
@@ -11,6 +11,7 @@ interface DeltakerContextType {
 export interface DeltakerContextData {
     søker: Søker;
     barn: RegistrertBarn[];
+    kontonummerInfo?: KontonummerInfo;
     alleDeltakelser: Deltakelse[];
     deltakelserSøktFor: Deltakelse[];
     deltakelserIkkeSøktFor: Deltakelse[];

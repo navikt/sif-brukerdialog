@@ -4,6 +4,7 @@ import { DeltakerContextData } from '@context/DeltakerContext';
 import { fetchBarn, fetchSøker } from '@navikt/sif-common-api';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { deltakelseErÅpenForRapportering } from '@utils/deltakelserUtils';
+import { personaliaService } from '../api/services/personaliaService';
 
 export type InitialData = DeltakerContextData;
 
@@ -18,6 +19,7 @@ export const useInitialData = () => {
             const søker = await fetchSøker();
             const alleDeltakelser = await deltakerService.getDeltakelser();
             const barn = await fetchBarn();
+            const personalia = await personaliaService.fetch();
 
             const deltakelserSøktFor = alleDeltakelser.filter((d) => d.harSøkt);
             const deltakelserIkkeSøktFor = alleDeltakelser.filter((d) => !d.harSøkt);
@@ -27,6 +29,7 @@ export const useInitialData = () => {
             setInitialData({
                 barn,
                 søker,
+                kontonummerInfo: personalia?.personalia,
                 alleDeltakelser,
                 deltakelserSøktFor,
                 deltakelserIkkeSøktFor,
