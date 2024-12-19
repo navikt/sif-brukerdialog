@@ -1,11 +1,11 @@
 import { useState } from 'react';
+import { deltakerService } from '@api/services/deltakerService';
+import { DeltakerContextData } from '@context/DeltakerContext';
 import { fetchBarn, fetchSøker } from '@navikt/sif-common-api';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { deltakerService } from '../api/services/deltakerService';
-import { SøknadContextData } from '../søknad/context/SøknadContext';
-import { deltakelseErÅpenForRapportering } from '../utils/deltakelserUtils';
+import { deltakelseErÅpenForRapportering } from '@utils/deltakelserUtils';
 
-export type InitialData = SøknadContextData;
+export type InitialData = DeltakerContextData;
 
 export const useInitialData = () => {
     const [initialData, setInitialData] = useState<InitialData>();
@@ -22,6 +22,7 @@ export const useInitialData = () => {
             const deltakelserSøktFor = alleDeltakelser.filter((d) => d.harSøkt);
             const deltakelserIkkeSøktFor = alleDeltakelser.filter((d) => !d.harSøkt);
             const deltakelserÅpenForRapportering = deltakelserSøktFor.filter(deltakelseErÅpenForRapportering);
+            const site = deltakelserIkkeSøktFor.length > 0 ? 'soknad' : 'innsyn';
 
             setInitialData({
                 barn,
@@ -30,6 +31,7 @@ export const useInitialData = () => {
                 deltakelserSøktFor,
                 deltakelserIkkeSøktFor,
                 deltakelserÅpenForRapportering,
+                site,
             });
             setIsLoading(false);
         } catch (e) {
