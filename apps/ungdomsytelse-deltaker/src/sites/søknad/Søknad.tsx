@@ -1,4 +1,3 @@
-import { Alert } from '@navikt/ds-react';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { guid } from '@navikt/sif-common-utils';
 import useSWR from 'swr';
@@ -58,13 +57,13 @@ const Søknad = () => {
         );
     }
 
-    if (error) {
-        return (
-            <Page title="Det oppstod en feil">
-                <Alert variant="error">Feil: {JSON.stringify(error)}</Alert>
-            </Page>
-        );
-    }
+    // if (error) {
+    //     return (
+    //         <Page title="Det oppstod en feil">
+    //             <Alert variant="error">Feil: {JSON.stringify(error)}</Alert>
+    //         </Page>
+    //     );
+    // }
 
     return (
         <SøknadContextProvider
