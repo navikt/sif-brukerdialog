@@ -6924,17 +6924,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rexxars/react-split-pane@npm:^0.1.93":
-  version: 0.1.93
-  resolution: "@rexxars/react-split-pane@npm:0.1.93"
+"@rexxars/react-json-inspector@npm:^9.0.1":
+  version: 9.0.1
+  resolution: "@rexxars/react-json-inspector@npm:9.0.1"
   dependencies:
-    prop-types: "npm:^15.7.2"
-    react-lifecycles-compat: "npm:^3.0.4"
-    react-style-proptype: "npm:^3.2.2"
+    debounce: "npm:^1.0.0"
+    md5-o-matic: "npm:^0.1.1"
   peerDependencies:
-    react: ^18
-    react-dom: ^18
-  checksum: 10/2ca1aa628225cb6c48012be8a004b41477d8e847263f415bc5905b16a0aaccd4569081ff38a4e914cce28e8ed458cd348608fbdba87cb2c462b237c8b4cdc3f1
+    react: ^18 || ^19
+  checksum: 10/7bd8275d8b5a2c90478307d6459d5e15cc40ee0b7b8c3b8c60bb21d814ab31ed51e13404389932eaec5373b4c663768ccc122af350b1865a253661b7aee55909
+  languageName: node
+  linkType: hard
+
+"@rexxars/react-split-pane@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@rexxars/react-split-pane@npm:1.0.0"
+  peerDependencies:
+    react: ^18 || ^19
+    react-dom: ^18 || ^19
+  checksum: 10/60094d230fd0fabc3511f4e861618deda51e448533e7cb037606b0cc33ee5487db03dc5ab06a3f95b9b9fbdf0c269aca84ca08aed95783408cea9d346810ad79
   languageName: node
   linkType: hard
 
@@ -7294,6 +7302,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sanity/icons@npm:^3.5.3, @sanity/icons@npm:^3.5.5":
+  version: 3.5.5
+  resolution: "@sanity/icons@npm:3.5.5"
+  dependencies:
+    react-compiler-runtime: "npm:19.0.0-beta-201e55d-20241215"
+  peerDependencies:
+    react: ^18.3 || ^19.0.0-0
+  checksum: 10/12bc00428ab63a302e10eccad9f47536ff3bb1daa1654a85cf79b936d93de29ad538f25819a0e84ed9bf36d69e026ef34de5e0281c02ad95e51047cb83f8d650
+  languageName: node
+  linkType: hard
+
 "@sanity/image-url@npm:^1.0.2":
   version: 1.1.0
   resolution: "@sanity/image-url@npm:1.1.0"
@@ -7488,6 +7507,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sanity/ui@npm:^2.10.11":
+  version: 2.10.12
+  resolution: "@sanity/ui@npm:2.10.12"
+  dependencies:
+    "@floating-ui/react-dom": "npm:^2.1.2"
+    "@sanity/color": "npm:^3.0.6"
+    "@sanity/icons": "npm:^3.5.5"
+    csstype: "npm:^3.1.3"
+    framer-motion: "npm:^11.15.0"
+    react-compiler-runtime: "npm:19.0.0-beta-201e55d-20241215"
+    react-refractor: "npm:^2.2.0"
+    use-effect-event: "npm:^1.0.2"
+  peerDependencies:
+    react: ^18 || >=19.0.0-0
+    react-dom: ^18 || >=19.0.0-0
+    react-is: ^18 || >=19.0.0-0
+    styled-components: ^5.2 || ^6
+  checksum: 10/3f74186584214d57f01fd35e3ab23772d5c867f9b0cb2500d3e7ed9ed73cc57c2d2355d1f8e5f0dd6ffdd4471d0f3252b38fecd05e5c2ee701c5abd64768f2db
+  languageName: node
+  linkType: hard
+
 "@sanity/ui@npm:^2.10.7, @sanity/ui@npm:^2.9.0, @sanity/ui@npm:^2.9.1":
   version: 2.10.9
   resolution: "@sanity/ui@npm:2.10.9"
@@ -7545,9 +7585,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/vision@npm:3.67.1":
-  version: 3.67.1
-  resolution: "@sanity/vision@npm:3.67.1"
+"@sanity/vision@npm:3.68.1":
+  version: 3.68.1
+  resolution: "@sanity/vision@npm:3.68.1"
   dependencies:
     "@codemirror/autocomplete": "npm:^6.1.0"
     "@codemirror/commands": "npm:^6.0.1"
@@ -7558,22 +7598,22 @@ __metadata:
     "@codemirror/view": "npm:^6.1.1"
     "@juggle/resize-observer": "npm:^3.3.1"
     "@lezer/highlight": "npm:^1.0.0"
-    "@rexxars/react-json-inspector": "npm:^8.0.1"
-    "@rexxars/react-split-pane": "npm:^0.1.93"
+    "@rexxars/react-json-inspector": "npm:^9.0.1"
+    "@rexxars/react-split-pane": "npm:^1.0.0"
     "@sanity/color": "npm:^3.0.0"
-    "@sanity/icons": "npm:^3.5.2"
-    "@sanity/ui": "npm:^2.10.7"
+    "@sanity/icons": "npm:^3.5.3"
+    "@sanity/ui": "npm:^2.10.11"
     "@uiw/react-codemirror": "npm:^4.11.4"
     is-hotkey-esm: "npm:^1.0.0"
     json-2-csv: "npm:^5.5.1"
     json5: "npm:^2.2.3"
     lodash: "npm:^4.17.21"
     quick-lru: "npm:^5.1.1"
-    react-compiler-runtime: "npm:19.0.0-beta-37ed2a7-20241206"
+    react-compiler-runtime: "npm:19.0.0-beta-201e55d-20241215"
   peerDependencies:
     react: ^18 || ^19.0.0
     styled-components: ^6.1
-  checksum: 10/2dbf6943735f085aa98ca5782fac6b447ff34db3a8ada209de0d9989afe594a4d15c3dee18a5cbc811e5fdb895e52648a018b291d961463d4bd1d8beb037ca0f
+  checksum: 10/f1aea16de46b0c0528c93939c78aeb2a3b1ca540bdb4d3cc39fef00f8565983378f78e06207ed4a4e9bcc5a0644f3f2062c87a3b6c195c0d87331e5c5d88b02c
   languageName: node
   linkType: hard
 
@@ -10625,7 +10665,7 @@ __metadata:
   resolution: "appstatus-sanity-config@workspace:packages/appstatus-sanity-config"
   dependencies:
     "@sanity/eslint-config-studio": "npm:5.0.0"
-    "@sanity/vision": "npm:3.67.1"
+    "@sanity/vision": "npm:3.68.1"
     "@types/react": "npm:19.0.1"
     dayjs: "npm:1.11.13"
     eslint: "npm:9.17.0"
@@ -13085,6 +13125,13 @@ __metadata:
   dependencies:
     date-now: "npm:1.0.1"
   checksum: 10/d12be7d1a35df0cc8213bf40c4c88c32c52b2726c2bad15e44045ec6f72d6970350ec1067439f8d0d95bd6d640cd4b615fd9c621c7fabfd4b9c3a9a2f557e044
+  languageName: node
+  linkType: hard
+
+"debounce@npm:^1.0.0":
+  version: 1.2.1
+  resolution: "debounce@npm:1.2.1"
+  checksum: 10/0b95b2a9d80ed69117d890f8dab8c0f2d6066f8d20edd1d810ae51f8f366a6d4c8b1d56e97dcb9304e93d57de4d5db440d34a03def7dad50403fc3f22bf16808
   languageName: node
   linkType: hard
 
@@ -15969,6 +16016,28 @@ __metadata:
     react-dom:
       optional: true
   checksum: 10/303e996fb309bddf7b3fc220d0d4c07186b397a38589ed7d35175e03c1ea96243a2182780403d0dd7f5a510720ab9f08955b45b7ef5913ad05915ffea388219e
+  languageName: node
+  linkType: hard
+
+"framer-motion@npm:^11.15.0":
+  version: 11.15.0
+  resolution: "framer-motion@npm:11.15.0"
+  dependencies:
+    motion-dom: "npm:^11.14.3"
+    motion-utils: "npm:^11.14.3"
+    tslib: "npm:^2.4.0"
+  peerDependencies:
+    "@emotion/is-prop-valid": "*"
+    react: ^18.0.0 || ^19.0.0
+    react-dom: ^18.0.0 || ^19.0.0
+  peerDependenciesMeta:
+    "@emotion/is-prop-valid":
+      optional: true
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 10/e31b03fb5c91095279452a8aff2c483d8a379c79a05c2c5d38520923d083168d1f21507185f47b3372adf6b5e2043dd1ccf08d747734747453b1754c7da7a3b1
   languageName: node
   linkType: hard
 
@@ -22110,7 +22179,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:15.8.1, prop-types@npm:^15.5.4, prop-types@npm:^15.6.1, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
+"prop-types@npm:15.8.1, prop-types@npm:^15.6.1, prop-types@npm:^15.6.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -22406,6 +22475,15 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
   checksum: 10/26598e2793683f537ca5aec7e7abe387fb6284376e25496d9b4ada048d53abcca449e3baa8633142e9cee8bc2c646eeef70e0d591e9a68ce3532dcdb665c0c58
+  languageName: node
+  linkType: hard
+
+"react-compiler-runtime@npm:19.0.0-beta-201e55d-20241215":
+  version: 19.0.0-beta-201e55d-20241215
+  resolution: "react-compiler-runtime@npm:19.0.0-beta-201e55d-20241215"
+  peerDependencies:
+    react: ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10/66af1f9cc0d81d616ab12b6f5f84b1e1161142df3c65427398aac7b223aeaa90dec9a0fd217676385115f58aead07d91cba403e43f5bbd4876e22e022402a9c6
   languageName: node
   linkType: hard
 
@@ -22773,15 +22851,6 @@ __metadata:
     react: ^18.3 || >=19.0.0-0
     rxjs: ^7
   checksum: 10/abe8923515df9f1baac2415e24bf56e0198f7cd3c72e0e54f0f8f7fcfe2137e5f68e62c5a81f0987877e449dea0d71d3fd5abde194505caef806325670e76b05
-  languageName: node
-  linkType: hard
-
-"react-style-proptype@npm:^3.2.2":
-  version: 3.2.2
-  resolution: "react-style-proptype@npm:3.2.2"
-  dependencies:
-    prop-types: "npm:^15.5.4"
-  checksum: 10/c068f10a639f743b311b3a6dd8bdd1b87436ab8d30a10ff4f30840a89decdd2e2eea33a2cefb504274ff58b624680d27f29daefece0f7435cfc8efae070d4e8d
   languageName: node
   linkType: hard
 
