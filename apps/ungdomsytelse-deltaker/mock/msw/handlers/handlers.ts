@@ -22,7 +22,10 @@ export const handlers = [
     }),
     http.get('**/deltakelse/register/hent/alle', () => {
         const harSøkt = true;
-        return HttpResponse.json(harSøkt ? deltakelserHarSøkt : deltakelserIkkeSøkt);
+        if (1 + 1 === 3) {
+            return HttpResponse.json(harSøkt ? deltakelserHarSøkt : deltakelserIkkeSøkt);
+        }
+        return HttpResponse.json([]);
     }),
     http.get('**/person/personopplysninger-api/personalia', () => {
         return HttpResponse.json(søker1Mock.personalia);

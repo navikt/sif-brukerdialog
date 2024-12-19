@@ -41,6 +41,14 @@ const InitialDataLoader = () => {
         );
     }
 
+    if (initialData.alleDeltakelser.length === 0) {
+        return (
+            <Page title="Du har ikke tilgang til denne tjenesten">
+                <center>Ingen deltakelser funnet</center>
+            </Page>
+        );
+    }
+
     return (
         <DeltakerContextProvider initialData={initialData}>
             {initialData.deltakelserIkkeSøktFor.length === 1 ? <Søknad /> : <InnsynRouter />}

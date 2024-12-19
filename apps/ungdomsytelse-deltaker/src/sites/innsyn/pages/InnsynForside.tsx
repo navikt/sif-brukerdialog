@@ -38,7 +38,7 @@ const InnsynForside = () => {
                         <strong>{dateFormatter.dateShortMonthYear(programPeriode.from)}</strong>.
                     </BodyLong>
                 </Box> */}
-                {kontonummerInfo && kontonummerInfo.kontoregisterStatus === 'FAILURE' ? (
+                {kontonummerInfo && !kontonummerInfo.kontonr ? (
                     <ManglendeKontonummer kontonummerInfo={kontonummerInfo} />
                 ) : null}
 

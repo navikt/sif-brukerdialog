@@ -12,14 +12,14 @@ const KontonummerStatusTekst = ({ kontonummerInfo }: Props) => {
     const { kontonr, kontoregisterStatus } = kontonummerInfo;
     if (kontoregisterStatus === 'SUCCESS' && kontonr) {
         return `${kontonr}`;
+    } else if ((kontoregisterStatus === 'SUCCESS' && !kontonr) || (kontoregisterStatus === 'FAILURE' && !kontonr)) {
+        return `${kontonr}`;
     } else if (kontoregisterStatus === 'FAILURE' && kontonr) {
         return (
             <Alert variant="warning" inline={true}>
                 Ugyldig kontonummer - {kontonr}
             </Alert>
         );
-    } else if (kontoregisterStatus === 'FAILURE' && !kontonr) {
-        return `Kontonummer mangler`;
     }
 
     return null;
