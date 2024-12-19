@@ -6,7 +6,7 @@ import { SøknadContextState } from '../../sites/søknad/context/SøknadContextS
 import { SOKNAD_VERSJON } from '../../sites/søknad/utils/søknadUtils';
 import { Deltakelse } from '../types';
 
-export const mellomlagringEndpointUrl = `/mellomlagring/UNGDOMSYTELSE_DELTAKER_SOKNAD`;
+export const mellomlagringEndpointUrl = `/mellomlagring/UNGDOMSYTELSE`;
 
 export type MellomlagringData = Omit<SøknadContextState, 'søker'> & {
     søknadHashString: string;

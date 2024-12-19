@@ -41,11 +41,10 @@ const Søknad = () => {
         data: { barn, deltakelserIkkeSøktFor, søker },
     } = useDeltakerContext();
 
-    const {
-        data: mellomlagring,
-        error,
-        isLoading,
-    } = useSWR<MellomlagringData>(mellomlagringEndpointUrl, mellomlagringService.fetcher);
+    const { data: mellomlagring, isLoading } = useSWR<MellomlagringData>(
+        mellomlagringEndpointUrl,
+        mellomlagringService.fetcher,
+    );
 
     if (isLoading) {
         return (

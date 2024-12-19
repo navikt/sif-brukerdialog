@@ -30,23 +30,23 @@ export const handlers = [
     http.get('**/person/personopplysninger-api/personalia', () => {
         return HttpResponse.json(søker1Mock.personalia);
     }),
-    http.get(`**/mellomlagring/UNGDOMSYTELSE_DELTAKER_SOKNAD`, async () => {
+    http.get(`**/mellomlagring/UNGDOMSYTELSE`, async () => {
         const data = localStorage.getItem(MellomlagringStorageKey);
         const jsonData = JSON.parse(JSON.stringify(data) || '{}');
         await delay(350);
         return new HttpResponse(jsonData, { status: 200 });
     }),
-    http.post(`**/mellomlagring/UNGDOMSYTELSE_DELTAKER_SOKNAD`, async ({ request }) => {
+    http.post(`**/mellomlagring/UNGDOMSYTELSE`, async ({ request }) => {
         const data = await request.text();
         localStorage.setItem(MellomlagringStorageKey, data);
         return new HttpResponse(null, { status: 200 });
     }),
-    http.put(`**/mellomlagring/UNGDOMSYTELSE_DELTAKER_SOKNAD`, async ({ request }) => {
+    http.put(`**/mellomlagring/UNGDOMSYTELSE`, async ({ request }) => {
         const data = await request.text();
         localStorage.setItem(MellomlagringStorageKey, data);
         return new HttpResponse(null, { status: 200 });
     }),
-    http.delete(`**/mellomlagring/UNGDOMSYTELSE_DELTAKER_SOKNAD`, () => {
+    http.delete(`**/mellomlagring/UNGDOMSYTELSE`, () => {
         localStorage.setItem(MellomlagringStorageKey, '');
         return new HttpResponse(null, { status: 200 });
     }),
