@@ -4846,7 +4846,7 @@ __metadata:
     "@storybook/preset-scss": "npm:1.0.3"
     "@storybook/react": "npm:8.4.7"
     "@storybook/react-vite": "npm:8.4.7"
-    "@storybook/test-runner": "npm:0.20.1"
+    "@storybook/test-runner": "npm:0.21.0"
     "@storybook/testing-library": "npm:0.2.2"
     "@types/jest": "npm:29.5.14"
     "@types/node": "npm:22.10.2"
@@ -8644,9 +8644,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/test-runner@npm:0.20.1":
-  version: 0.20.1
-  resolution: "@storybook/test-runner@npm:0.20.1"
+"@storybook/test-runner@npm:0.21.0":
+  version: 0.21.0
+  resolution: "@storybook/test-runner@npm:0.21.0"
   dependencies:
     "@babel/core": "npm:^7.22.5"
     "@babel/generator": "npm:^7.22.5"
@@ -8671,7 +8671,7 @@ __metadata:
     storybook: ^8.2.0 || ^8.3.0-0 || ^8.4.0-0 || ^8.5.0-0 || ^8.6.0-0
   bin:
     test-storybook: dist/test-storybook.js
-  checksum: 10/f48f37de8360fdabb6007694ccff843d0334421b9606b5af5fbecff071e2f502c0ed95bded50673f3b890dff0a91e7cc3d17654372d66532844402bfa0c72970
+  checksum: 10/45c008b7c3bbd687c674e5c1fd3f90dd4efec5c6627beeb836030c9454f22de995da358200bc0271c5ddc5d561478f3f0fe8cf0564b7febbdfda1eda76b3a3de
   languageName: node
   linkType: hard
 
