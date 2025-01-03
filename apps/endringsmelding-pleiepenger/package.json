@@ -36,7 +36,7 @@
         "react": "19.0.0",
         "react-day-picker": "8.10.1",
         "react-dom": "19.0.0",
-        "react-intl": "7.0.4",
+        "react-intl": "7.1.0",
         "react-router-dom": "7.0.2"
     },
     "devDependencies": {
