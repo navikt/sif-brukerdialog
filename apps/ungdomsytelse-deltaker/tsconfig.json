@@ -14,6 +14,6 @@
             "@utils/*": ["./src/utils/*"]
         }
     },
-    "exclude": ["node_modules", "src/build", "**.js", "dist"],
-    "include": ["./src/**/*", "./mock/msw/**/*"]
+    "exclude": ["node_modules", "src/build", "./src/**/*", "**.js", "dist"],
+    "include": ["./src2/**/*", "./mock/msw/**/*"]
 }

@@ -41,7 +41,7 @@ const InitialDataLoader = () => {
         );
     }
 
-    if (initialData.alleDeltakelser.length === 0) {
+    if (initialData.deltakelser.length === 0) {
         return (
             <Page title="Du har ikke tilgang til denne tjenesten">
                 <center>Ingen deltakelser funnet</center>

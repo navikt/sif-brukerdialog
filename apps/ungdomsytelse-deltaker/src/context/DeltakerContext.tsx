@@ -12,7 +12,7 @@ export interface DeltakerContextData {
     søker: Søker;
     barn: RegistrertBarn[];
     kontonummerInfo?: KontonummerInfo;
-    alleDeltakelser: Deltakelse[];
+    deltakelser: Deltakelse[];
     deltakelserSøktFor: Deltakelse[];
     deltakelserIkkeSøktFor: Deltakelse[];
     deltakelserÅpenForRapportering: Deltakelse[];
@@ -39,7 +39,7 @@ export const DeltakerContextProvider = ({ children, initialData }: Props) => {
     const updateDeltakelse = (deltakelser: Deltakelse[]) => {
         setData({
             ...data,
-            alleDeltakelser: deltakelser,
+            deltakelser: deltakelser,
             deltakelserSøktFor: deltakelser.filter((d) => d.harSøkt),
             deltakelserIkkeSøktFor: deltakelser.filter((d) => !d.harSøkt),
             deltakelserÅpenForRapportering: deltakelser.filter(deltakelseErÅpenForRapportering),
