@@ -21,6 +21,9 @@ const getAppSettings = () => ({
     SIF_PUBLIC_SKIP_ORGNUM_VALIDATION: `${process.env.SIF_PUBLIC_SKIP_ORGNUM_VALIDATION}`,
     SIF_PUBLIC_USE_AMPLITUDE: `${process.env.SIF_PUBLIC_USE_AMPLITUDE}`,
     SIF_PUBLIC_AMPLITUDE_API_KEY: `${process.env.SIF_PUBLIC_AMPLITUDE_API_KEY}`,
+
+    MOCK_DATE: `${process.env.MOCK_DATE}`,
+    USE_MOCK_DATE: `${process.env.USE_MOCK_DATE}`,
 });
 
 module.exports = getAppSettings;

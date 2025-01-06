@@ -1,11 +1,12 @@
 import { Navigate, Route } from 'react-router-dom';
 import { OmsorgspengerutbetalingArbeidstakerApp } from '@navikt/sif-app-register';
-import { isProd } from '@navikt/sif-common-env';
+import { getMaybeEnv, isProd } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
+import MockDate from 'mockdate';
 import { mellomlagringService } from './api/mellomlagringService';
 import { applicationIntlMessages } from './i18n';
 import Søknad from './søknad/Søknad';
@@ -24,6 +25,13 @@ const {
 } = appEnv;
 
 ensureBaseNameForReactRouter(PUBLIC_PATH);
+
+const envNow = getMaybeEnv('MOCK_DATE');
+if (envNow && getMaybeEnv('USE_MOCK_DATE') === 'true') {
+    // eslint-disable-next-line no-console
+    console.log(`setting time to: ${envNow}`);
+    MockDate.set(new Date(envNow));
+}
 
 const handleResetSoknad = async () => {
     await mellomlagringService.purge();
