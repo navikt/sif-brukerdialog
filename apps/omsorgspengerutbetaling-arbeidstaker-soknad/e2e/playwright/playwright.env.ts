@@ -18,4 +18,6 @@ export const playwrightEnv: AppEnv = {
         '/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker/api',
     K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: 'dev-gcp:dusseldorf:k9-brukerdialog-prosessering',
     K9_BRUKERDIALOG_PROSESSERING_API_URL: 'http://k9-brukerdialog-prosessering',
+    MOCK_DATE: '2024-08-01',
+    USE_MOCK_DATE: 'true',
 };

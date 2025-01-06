@@ -1,7 +1,8 @@
 import dayjs from 'dayjs';
+import { testDate } from '../utils/setNow';
 
 const getDateNYearsAgo = (years: number): Date => {
-    return dayjs().subtract(years, 'year').toDate();
+    return dayjs(testDate).subtract(years, 'year').toDate();
 };
 
 const søkerMock = {

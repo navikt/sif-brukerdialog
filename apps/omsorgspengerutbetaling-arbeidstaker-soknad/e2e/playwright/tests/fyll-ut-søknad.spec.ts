@@ -1,6 +1,11 @@
 import { test } from '@playwright/test';
 import { playwrightApiMockData } from '../mock-data/playwrightApiMockData';
+import { setNow } from '../utils/setNow';
 import { utfyllingUtils } from '../utils/utfyllingUtils';
+
+test.beforeEach(async ({ page }) => {
+    await setNow(page);
+});
 
 test.describe('Fyller ut søknad', () => {
     test.beforeEach(async ({ page }) => {
