@@ -12,7 +12,7 @@ interface Props {
     alleDeltakelser: Deltakelse[];
     onChange: () => void;
 }
-const AktivDeltakelse = ({ deltaker, deltakelse, alleDeltakelser, onChange }: Props) => {
+const DeltakelseContent = ({ deltaker, deltakelse, alleDeltakelser, onChange }: Props) => {
     return (
         <Box className="rounded bg-gray-100 pb-10">
             <Box className=" p-3 pr-6 pl-6 border-b-2 border-b-gray-300">
@@ -26,6 +26,16 @@ const AktivDeltakelse = ({ deltaker, deltakelse, alleDeltakelser, onChange }: Pr
                                 {deltakelse.harSøkt === false ? (
                                     <Tag variant="warning-moderate" size="small">
                                         Ikke søkt for
+                                    </Tag>
+                                ) : null}
+                                {deltakelse.erAvsluttet ? (
+                                    <Tag variant="warning-moderate" size="small">
+                                        Avsluttet
+                                    </Tag>
+                                ) : null}
+                                {deltakelse.erAktiv ? (
+                                    <Tag variant="success-moderate" size="small">
+                                        Aktiv
                                     </Tag>
                                 ) : null}
                             </HStack>
@@ -80,4 +90,4 @@ const AktivDeltakelse = ({ deltaker, deltakelse, alleDeltakelser, onChange }: Pr
     );
 };
 
-export default AktivDeltakelse;
+export default DeltakelseContent;

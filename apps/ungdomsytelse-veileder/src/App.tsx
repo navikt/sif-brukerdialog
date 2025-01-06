@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import AppHeader from './components/AppHeader';
 import { appMessages } from './i18n';
 import StartPage from './pages/start-page/StartPage';
-import DeltakerPage from './versjoner/versjon-1/pages/deltaker-page/DeltakerPage';
+import DeltakerPage from './components/DeltakerPage';
 import './app.css';
 import { Page } from '@navikt/ds-react';
 

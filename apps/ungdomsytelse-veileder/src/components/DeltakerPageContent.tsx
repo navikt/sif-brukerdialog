@@ -1,11 +1,11 @@
 import { Alert, Box, HStack, Page, VStack } from '@navikt/ds-react';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { useDeltaker } from '../context/DeltakerContext';
-import AktivDeltakelse from './aktiv-deltakelse/AktivDeltakelse';
+import DeltakelseContent from './deltakelse-content/DeltakelseContent';
 
 const DeltakerPageContent = () => {
     const { deltaker, deltakelser = [], refetchDeltakelser } = useDeltaker();
-    const aktivDeltakelse = deltakelser?.find((d) => d.erAktiv);
+    // const aktivDeltakelse = deltakelser?.find((d) => d.erAktiv);
     const aktiveDeltakelser = deltakelser?.filter((d) => d.erAktiv);
 
     const handleOnDeltakelseChange = () => {
@@ -31,20 +31,21 @@ const DeltakerPageContent = () => {
         return <Box>Ingen deltakelser funnet</Box>;
     }
 
-    if (aktivDeltakelse || deltakelser.length === 1) {
-        return (
-            <Page.Block width="xl" gutters={true}>
-                <AktivDeltakelse
-                    deltakelse={aktivDeltakelse || deltakelser[0]}
-                    deltaker={deltaker}
-                    alleDeltakelser={deltakelser}
-                    onChange={handleOnDeltakelseChange}
-                />
-            </Page.Block>
-        );
-    }
-
-    return <Box>Flere deltakelser er registrert</Box>;
+    return (
+        <Page.Block width="xl" gutters={true}>
+            <VStack gap="4">
+                {deltakelser.map((deltakelse) => (
+                    <DeltakelseContent
+                        key={deltakelse.id}
+                        deltakelse={deltakelse}
+                        deltaker={deltaker}
+                        alleDeltakelser={deltakelser}
+                        onChange={handleOnDeltakelseChange}
+                    />
+                ))}
+            </VStack>
+        </Page.Block>
+    );
 };
 
 export default DeltakerPageContent;
