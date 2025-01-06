@@ -5,7 +5,6 @@ import { utfyllingUtils } from '../utils/utfyllingUtils';
 
 test.beforeEach(async ({ page }) => {
     await setNow(page);
-    console.log('Now is set to', new Date());
 });
 
 test.describe('Fyller ut søknad', () => {
@@ -40,7 +39,6 @@ test.describe('Fyller ut søknad', () => {
     });
 
     test('Fyller ut søknad enkelt', async ({ page }) => {
-        console.log(new Date());
         await utfyllingUtils.startSøknad(page);
         await utfyllingUtils.fyllUtDineBarnSteg(page);
         await utfyllingUtils.fyllUtDinArbeidssituasjonSteg(page);
