@@ -57,12 +57,11 @@ export default defineConfig({
             NEXT_PUBLIC_REGELVERK_INFO_URL: 'https://lovdata.no/nav/folketrygdloven/kap9',
             NEXT_PUBLIC_SAKSBEHANDLINGSTID_INFO_URL:
                 'https://www.intern.dev.nav.no/saksbehandlingstider#pleiepenger-for-sykt-barn',
-            NEXT_PUBLIC_SAKSOVERSIKT_URL: 'https://person.nav.no/mine-saker',
             NEXT_PUBLIC_SKRIV_TIL_OSS_URL: 'https://www.nav.no/skriv-til-oss',
             NEXT_PUBLIC_SYKDOM_I_FAMILIEN_INFO_URL:
                 'https://www.nav.no/familie/sykdom-i-familien/nb/pleiepenger-for-sykt-barn',
             NEXT_PUBLIC_ARBEIDSGIVER_PLEIEPENGER_URL: 'https://www.nav.no/arbeidsgiver/pleiepenger-barn',
-            NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL: 'https://person.dev.nav.no/mine-saker',
+            NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL: 'https://www.dev.nav.no/dokumentarkiv/tema/OMS',
             NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL: 'https://tjenester.nav.no/utbetalingsoversikt',
             NEXT_PUBLIC_FEATURE_HENT_SAKER: 'on',
             NEXT_PUBLIC_FEATURE_HENT_MELLOMLAGRING: 'off',
