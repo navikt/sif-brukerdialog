@@ -44,7 +44,6 @@ const AktivDeltakelse = ({ deltaker, deltakelse, alleDeltakelser, onChange }: Pr
                     <Tabs.List>
                         <Tabs.Tab value="status" label="Status" />
                         <Tabs.Tab value="endre" label="Endre periode" />
-                        <Tabs.Tab value="avslutt" label="Avslutt periode" />
                         {deltakelse.harSøkt === false ? <Tabs.Tab value="slett" label="Slett periode" /> : null}
                     </Tabs.List>
                     <Tabs.Panel value="status">

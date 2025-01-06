@@ -58,7 +58,7 @@ const EndreDeltakelseForm = ({ deltakelse, deltakelser, onChange }: Props) => {
                                     />
                                     <HStack gap="2">
                                         <Button type="submit" loading={endreDeltakelsePending} variant="primary">
-                                            Oppdater periode
+                                            Lagre endring
                                         </Button>
                                     </HStack>
                                 </VStack>
