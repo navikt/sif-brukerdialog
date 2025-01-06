@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 1.8.1
+
+### Patch Changes
+
+- Endre lenke til dokumentoversikten
+
 ## 1.8.0
 
 ### Minor Changes
