@@ -149,7 +149,7 @@ const startExpressServer = () => {
                 deltakerIdent: req.body.deltakerIdent,
             },
             harSøkt: false,
-            fraOgMed: req.body.fraOgMed,
+            fraOgMed: req.body.startdato,
         };
         setTimeout(() => {
             res.status(200).send(response);

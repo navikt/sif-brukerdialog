@@ -3,7 +3,7 @@ import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-d
 
 import { dateToISODate, ISODateToDate } from '@navikt/sif-common-utils';
 import { Deltakelse } from '../../api/types';
-import PeriodeFormPart from './PeriodeFormPart';
+import PeriodeFormPart from '../periode-form-part/PeriodeFormPart';
 import { useEndreDeltakelse } from '../../depr/hooks/useEndreDeltakelse';
 
 export type DeltakelseFormValues = {
@@ -41,7 +41,7 @@ const EndreDeltakelseForm = ({ deltakelse, deltakelser, onChange }: Props) => {
                     const tomDate = values.tom ? ISODateToDate(values.tom) : undefined;
                     return (
                         <VStack gap="4" maxWidth={'30rem'} width={'100%'}>
-                            <Heading level="2" size="medium">
+                            <Heading level="2" size="small">
                                 Endre deltakerperiode
                             </Heading>
                             <TypedFormikForm

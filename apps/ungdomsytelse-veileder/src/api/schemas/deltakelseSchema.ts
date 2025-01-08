@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { parseMaybeDateStringToDate } from '@navikt/sif-common-api/src/utils/jsonParseUtils';
-import { dateRangeUtils } from '@navikt/sif-common-utils';
+import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
 import { isBefore } from 'date-fns';
 
 const erDeltakelseAktiv = (harSøkt: boolean, fraOgMed: Date, tilOgMed: Date | undefined): boolean => {
@@ -46,4 +46,10 @@ export const deltakelseSchema = z
         ...data,
         erAktiv: erDeltakelseAktiv(data.harSøkt, data.fraOgMed, data.tilOgMed),
         erAvsluttet: erDeltakelseAvsluttet(data.harSøkt, data.tilOgMed),
+        periode: data.tilOgMed
+            ? ({
+                  from: data.fraOgMed,
+                  to: data.tilOgMed,
+              } as DateRange)
+            : undefined,
     }));
