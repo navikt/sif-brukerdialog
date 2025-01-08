@@ -69,7 +69,7 @@ const deltakelse2 = {
     },
     fraOgMed: '2025-01-02',
     tilOgMed: '2025-02-04',
-    harSøkt: true,
+    harSøkt: false,
 };
 const deltakelser = [deltakelse1, deltakelse2];
 
