@@ -1,6 +1,6 @@
 import { Box, Button } from '@navikt/ds-react';
 import { Deltakelse, Deltaker } from '../../api/types';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import MeldInnDeltakerForm from '../../forms/meld-inn-deltaker-form/MeldInnDeltakerForm';
 import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
 
@@ -18,8 +18,6 @@ const NyDeltakelse = ({ alleDeltakelser, deltaker, onDeltakelseRegistrert }: Pro
         return null;
     }
 
-    const minStartDato = useMemo(() => getMinFraOgMedDato(alleDeltakelser), [alleDeltakelser]);
-
     return !showForm ? (
         <Box>
             <Button type="button" variant="secondary" size="small" onClick={() => setShowForm(true)}>
@@ -31,7 +29,7 @@ const NyDeltakelse = ({ alleDeltakelser, deltaker, onDeltakelseRegistrert }: Pro
             <Box className=" p-3 pr-6 pl-6 border-b-2 border-b-gray-300 max-w-lg">
                 <MeldInnDeltakerForm
                     deltaker={deltaker}
-                    minStartDato={minStartDato}
+                    minStartDato={getMinFraOgMedDato(alleDeltakelser)}
                     onCancel={() => setShowForm(false)}
                     onDeltakelseRegistrert={onDeltakelseRegistrert}
                 />
@@ -40,11 +38,11 @@ const NyDeltakelse = ({ alleDeltakelser, deltaker, onDeltakelseRegistrert }: Pro
     );
 };
 
-const getMinFraOgMedDato = (alleDeltakelser: Deltakelse[]): Date => {
+const getMinFraOgMedDato = (alleDeltakelser: Deltakelse[]): Date | undefined => {
     const perioder = (alleDeltakelser.map((d) => d.periode).filter((p) => p !== undefined) as DateRange[]).sort(
         dateRangeUtils.sortDateRangeByToDate,
     );
-    return perioder[perioder.length - 1].to;
+    return perioder.length === 0 ? undefined : perioder[perioder.length - 1].to;
 };
 
 export default NyDeltakelse;
