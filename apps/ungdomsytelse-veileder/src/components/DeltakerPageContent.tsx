@@ -41,7 +41,7 @@ const DeltakerPageContent = () => {
                     </Heading>
                     <Accordion>
                         {deltakelser.map((deltakelse) => (
-                            <Accordion.Item>
+                            <Accordion.Item key={deltakelse.id}>
                                 <Accordion.Header>
                                     <DeltakelseHeader deltakelse={deltakelse} />
                                 </Accordion.Header>
