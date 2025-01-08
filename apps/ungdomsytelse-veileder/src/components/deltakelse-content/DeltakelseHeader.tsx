@@ -10,14 +10,14 @@ const DeltakelseHeader = ({ deltakelse }: Props) => (
     <HStack gap="4">
         <Box>{dateFormatter.compact(deltakelse.fraOgMed)}</Box>
         <>-</>
-        <Box>{deltakelse.tilOgMed ? dateFormatter.compact(deltakelse.tilOgMed) : <>-</>}</Box>
+        <Box>{deltakelse.tilOgMed ? dateFormatter.compact(deltakelse.tilOgMed) : <></>}</Box>
         {deltakelse.harSøkt ? (
             <Tag variant="success-moderate" size="small">
                 Deltaker har søkt
             </Tag>
         ) : (
             <Tag variant="warning-moderate" size="small">
-                Deltaker har søkt
+                Deltaker har ikke søkt enda
             </Tag>
         )}
     </HStack>
