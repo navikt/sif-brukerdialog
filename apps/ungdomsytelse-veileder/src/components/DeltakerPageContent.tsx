@@ -1,11 +1,12 @@
-import { Alert, Box, HStack, Page, VStack } from '@navikt/ds-react';
+import { Accordion, Alert, Box, Heading, HStack, VStack } from '@navikt/ds-react';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { useDeltaker } from '../context/DeltakerContext';
-import AktivDeltakelse from './aktiv-deltakelse/AktivDeltakelse';
+import DeltakelseContent from './deltakelse-content/DeltakelseContent';
+import NyDeltakelse from './ny-deltakelse/NyDeltakelse';
+import DeltakelseHeader from './deltakelse-content/DeltakelseHeader';
 
 const DeltakerPageContent = () => {
     const { deltaker, deltakelser = [], refetchDeltakelser } = useDeltaker();
-    const aktivDeltakelse = deltakelser?.find((d) => d.erAktiv);
     const aktiveDeltakelser = deltakelser?.filter((d) => d.erAktiv);
 
     const handleOnDeltakelseChange = () => {
@@ -31,20 +32,41 @@ const DeltakerPageContent = () => {
         return <Box>Ingen deltakelser funnet</Box>;
     }
 
-    if (aktivDeltakelse || deltakelser.length === 1) {
-        return (
-            <Page.Block width="xl" gutters={true}>
-                <AktivDeltakelse
-                    deltakelse={aktivDeltakelse || deltakelser[0]}
-                    deltaker={deltaker}
-                    alleDeltakelser={deltakelser}
-                    onChange={handleOnDeltakelseChange}
-                />
-            </Page.Block>
-        );
-    }
+    return (
+        <Box className="rounded bg-gray-100 pb-10">
+            <Box className=" p-3 pr-6 pl-6">
+                <VStack gap="4" marginBlock="4 0">
+                    <Heading level="2" size="medium">
+                        Deltakelseperioder
+                    </Heading>
+                    <Accordion>
+                        {deltakelser.map((deltakelse) => (
+                            <Accordion.Item key={deltakelse.id}>
+                                <Accordion.Header>
+                                    <DeltakelseHeader deltakelse={deltakelse} />
+                                </Accordion.Header>
+                                <Accordion.Content>
+                                    <DeltakelseContent
+                                        key={deltakelse.id}
+                                        deltakelse={deltakelse}
+                                        deltaker={deltaker}
+                                        alleDeltakelser={deltakelser}
+                                        onChange={handleOnDeltakelseChange}
+                                    />
+                                </Accordion.Content>
+                            </Accordion.Item>
+                        ))}
+                    </Accordion>
 
-    return <Box>Flere deltakelser er registrert</Box>;
+                    <NyDeltakelse
+                        deltaker={deltaker}
+                        alleDeltakelser={deltakelser}
+                        onDeltakelseRegistrert={handleOnDeltakelseChange}
+                    />
+                </VStack>
+            </Box>
+        </Box>
+    );
 };
 
 export default DeltakerPageContent;
