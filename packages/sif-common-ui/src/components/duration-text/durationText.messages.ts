@@ -21,8 +21,9 @@ const nn: Record<keyof typeof nb, string> = {
     '@ui.durationText.full.digital': '{hours}:{minutes}',
     '@ui.durationText.full.decimal': '{time}',
     '@ui.durationText.full.hours': '{hours, plural, one {# time} other {# timar}}',
-    '@ui.durationText.full.minutes': '{minutes} minutt',
-    '@ui.durationText.full.hoursAndMinutes': '{hours, plural, one {# time} other {# timer}} {minutes} minutt',
+    '@ui.durationText.full.minutes': '{minutes, plural, one {# minutt} other {# minutt}}',
+    '@ui.durationText.full.hoursAndMinutes':
+        '{hours, plural, one {# time} other {# timer}} {minutes, plural, one {# minutt} other {# minutt}}',
 };
 
 export const durationTextMessages = {
