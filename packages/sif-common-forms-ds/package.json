@@ -54,7 +54,7 @@
         "formik": "2.4.6",
         "gh-pages": "6.3.0",
         "intl": "1.2.5",
-        "jsdom": "25.0.1",
+        "jsdom": "26.0.0",
         "react": "19.0.0",
         "react-day-picker": "8.10.1",
         "react-dom": "19.0.0",
