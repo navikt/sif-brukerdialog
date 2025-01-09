@@ -46,7 +46,7 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.omOmsorgenForBarn.info.spm.andreBarn': 'Har du barn som ikkje er registrert her?',
     'steg.omOmsorgenForBarn.info.spm.flereBarn': 'Har du fleire barn som ikkje er registrert her?',
     'steg.omOmsorgenForBarn.info.spm.text':
-        'Om du har barn som ikkje er registrert her, kan du legge inn desse sjølv. Det kan for eksempel vere fosterbarn.',
+        'Om du har barn som ikkje er registrert her, kan du legge inn desse sjølv. Det kan til dømes vere fosterbarn.',
 
     'steg.omOmsorgenForBarn.annetBarnListAndDialog.addLabel': 'Legg til barn',
     'steg.omOmsorgenForBarn.annetBarnListAndDialog.listTitle': 'Barn du har lagt til',

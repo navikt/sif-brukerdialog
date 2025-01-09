@@ -33,7 +33,7 @@ const nn: Record<keyof typeof nb, string> = {
         'Du vart aleine om omsorga for over 2 år sidan.',
 
     'step.oppsummering.bekrefterOpplysninger':
-        'Eg stadfestar at opplysningane eg har gitt er riktige, og at eg ikkje har halde tilbake opplysningar som har betydning for min rett til omsorgsdagar.',
+        'Eg stadfestar at opplysningane eg har gitt er riktige, og at eg ikkje har halde tilbake opplysningar som har tyding for min rett til omsorgsdagar.',
 
     'step.oppsummering.sendMelding.feilmelding.førsteGang':
         'Det oppstod ein feil under innsending. Venlegst prøv på nytt.',

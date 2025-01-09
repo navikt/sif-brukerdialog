@@ -23,7 +23,7 @@ const nn: Record<keyof typeof nb, string> = {
     '@ui.durationText.full.hours': '{hours, plural, one {# time} other {# timar}}',
     '@ui.durationText.full.minutes': '{minutes, plural, one {# minutt} other {# minutt}}',
     '@ui.durationText.full.hoursAndMinutes':
-        '{hours, plural, one {# time} other {# timer}} {minutes, plural, one {# minutt} other {# minutt}}',
+        '{hours, plural, one {# time} other {# timar}} {minutes, plural, one {# minutt} other {# minutt}}',
 };
 
 export const durationTextMessages = {

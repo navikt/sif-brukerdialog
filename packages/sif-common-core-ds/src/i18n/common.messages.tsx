@@ -45,7 +45,7 @@ const nn: Record<MessageKeys, string> = {
     '@core.formikFileUpload.file-upload.error.fileType':
         'Filformatet er ikkje støtta. Filformater du kan laste opp er JPG, JPEG, PNG og PDF.',
     '@core.formikFileUpload.file-upload.error.fileSize': 'Fila er større enn ${MAX_SIZE_MB} MB.',
-    '@core.formikFileUpload.file-upload.error.retry': 'Det oppstod ein feil under opplastinga..',
+    '@core.formikFileUpload.file-upload.error.retry': 'Det oppstod ein feil under opplastinga.',
     '@core.formikFileUpload.file-upload.error.unknown': 'Det oppstod en feil under opplastingen ({reason})',
     '@core.vedleggSummaryList.ingenVedlegg': 'Ingen dokument er lasta opp',
     '@core.formikVedleggList.validation.noVedleggUploaded': 'Ingen dokument er lasta opp',
