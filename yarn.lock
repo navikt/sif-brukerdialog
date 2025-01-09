@@ -8385,6 +8385,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sanity/ui@npm:^2.11.1":
+  version: 2.11.1
+  resolution: "@sanity/ui@npm:2.11.1"
+  dependencies:
+    "@floating-ui/react-dom": "npm:^2.1.2"
+    "@sanity/color": "npm:^3.0.6"
+    "@sanity/icons": "npm:^3.5.7"
+    csstype: "npm:^3.1.3"
+    framer-motion: "npm:^11.16.0"
+    react-compiler-runtime: "npm:19.0.0-beta-55955c9-20241229"
+    react-refractor: "npm:^2.2.0"
+    use-effect-event: "npm:^1.0.2"
+  peerDependencies:
+    react: ^18 || >=19.0.0-0
+    react-dom: ^18 || >=19.0.0-0
+    react-is: ^18 || >=19.0.0-0
+    styled-components: ^5.2 || ^6
+  checksum: 10/b3275c393b86b842dcde7e728edea5832eadfe85b52fb8e27e88c16f4cc19ed588dbcede375dc9c0e9539863dd179b59ff301c2fae62aaaa84dfb3109bb2d5e0
+  languageName: node
+  linkType: hard
+
 "@sanity/ui@npm:^2.9.0":
   version: 2.10.9
   resolution: "@sanity/ui@npm:2.10.9"
@@ -8442,9 +8463,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/vision@npm:3.68.3":
-  version: 3.68.3
-  resolution: "@sanity/vision@npm:3.68.3"
+"@sanity/vision@npm:3.69.0":
+  version: 3.69.0
+  resolution: "@sanity/vision@npm:3.69.0"
   dependencies:
     "@codemirror/autocomplete": "npm:^6.1.0"
     "@codemirror/commands": "npm:^6.0.1"
@@ -8458,19 +8479,19 @@ __metadata:
     "@rexxars/react-json-inspector": "npm:^9.0.1"
     "@rexxars/react-split-pane": "npm:^1.0.0"
     "@sanity/color": "npm:^3.0.0"
-    "@sanity/icons": "npm:^3.5.3"
-    "@sanity/ui": "npm:^2.10.11"
+    "@sanity/icons": "npm:^3.5.7"
+    "@sanity/ui": "npm:^2.11.1"
     "@uiw/react-codemirror": "npm:^4.11.4"
     is-hotkey-esm: "npm:^1.0.0"
     json-2-csv: "npm:^5.5.1"
     json5: "npm:^2.2.3"
     lodash: "npm:^4.17.21"
     quick-lru: "npm:^5.1.1"
-    react-compiler-runtime: "npm:19.0.0-beta-201e55d-20241215"
+    react-compiler-runtime: "npm:19.0.0-beta-55955c9-20241229"
   peerDependencies:
     react: ^18 || ^19.0.0
     styled-components: ^6.1
-  checksum: 10/ccbbe7fe05aad2e11cb62091fc1d9373eafcab5f1381a86c48f880a6c9cb0555ccb96e70f3c50b5c92a39f422ec8d41899dbdb51c96644006008973975ddedb2
+  checksum: 10/09e5c3fd6419fbbfc9cae1fe76b6efeee19255082c4adacd2f56c452966e2e2d6d8ca01bb3ce5e58fa2127c4386cbe0860e9c183eba7e0f8027cdbb52b44f066
   languageName: node
   linkType: hard
 
@@ -11803,7 +11824,7 @@ __metadata:
   resolution: "appstatus-sanity-config@workspace:packages/appstatus-sanity-config"
   dependencies:
     "@sanity/eslint-config-studio": "npm:5.0.1"
-    "@sanity/vision": "npm:3.68.3"
+    "@sanity/vision": "npm:3.69.0"
     "@types/react": "npm:19.0.2"
     dayjs: "npm:1.11.13"
     eslint: "npm:9.17.0"
@@ -17498,6 +17519,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"framer-motion@npm:^11.16.0":
+  version: 11.16.3
+  resolution: "framer-motion@npm:11.16.3"
+  dependencies:
+    motion-dom: "npm:^11.16.3"
+    motion-utils: "npm:^11.16.0"
+    tslib: "npm:^2.4.0"
+  peerDependencies:
+    "@emotion/is-prop-valid": "*"
+    react: ^18.0.0 || ^19.0.0
+    react-dom: ^18.0.0 || ^19.0.0
+  peerDependenciesMeta:
+    "@emotion/is-prop-valid":
+      optional: true
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 10/fb46e8f7c6e00864ae309013d46c5d55caea4c0d0ebd622e43545c160d323e1cde818386ec97d7c55477996ea29e2f3a19397df5b7ef9b5762949b677990a73a
+  languageName: node
+  linkType: hard
+
 "fresh@npm:0.5.2":
   version: 0.5.2
   resolution: "fresh@npm:0.5.2"
@@ -21880,10 +21923,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"motion-dom@npm:^11.16.3":
+  version: 11.16.3
+  resolution: "motion-dom@npm:11.16.3"
+  dependencies:
+    motion-utils: "npm:^11.16.0"
+  checksum: 10/92e415d05635d171ac3881f84d120c960a59560c668eefab042501ebec6c0978c3f6144922ba955228d9f2718a25c50745ed5f72994401cd5365a146cb242445
+  languageName: node
+  linkType: hard
+
 "motion-utils@npm:^11.14.3":
   version: 11.14.3
   resolution: "motion-utils@npm:11.14.3"
   checksum: 10/594b69d60a4cabea823a7ebf0f1e2fa13df9128ee2db9c6385ab23c6d1224dcd0d09fab67c361000d8f0288d75c56cb94d00c431023d22c052c5496a4757c5e5
+  languageName: node
+  linkType: hard
+
+"motion-utils@npm:^11.16.0":
+  version: 11.16.0
+  resolution: "motion-utils@npm:11.16.0"
+  checksum: 10/b15bbba72e2a7ff4e83032e47aa50c1ec28ad3a9655681fd2e173fd49b0e864bac0bd3eea5c1d7a2dca09bbf789ff41c25c0d4cff3280b079e5a7f05ba6a6862
   languageName: node
   linkType: hard
 
