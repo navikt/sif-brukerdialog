@@ -16,22 +16,33 @@ const nb = {
     ...validateApiDataMessages.nb,
 
     'application.title': 'Søknad om ekstra omsorgsdager ved aleneomsorg',
-
     'step.omOmsorgenForBarn.stepTitle': 'Om aleneomsorg for barn',
     'step.tidspunktForAleneomsorg.stepTitle': 'Tidspunkt for aleneomsorg',
     'step.oppsummering.stepTitle': 'Oppsummering',
-
     'initialLoadError.pageTitle': 'Det oppstod en feil',
     'initialLoadError.text.1': 'Det oppstod en feil under oppstarten av søknaden. Vennligst prøv igjen senere.',
-
     'resetMellomlagring.text.1': 'Dersom feilen vedvarer, kan du prøve å starte på nytt med et tom skjema.',
     'resetMellomlagring.startPåNytt': 'Start på nytt',
-
     'validation.harForståttRettigheterOgPlikter.notChecked': 'Du må bekrefte at du har lest og forstått dine plikter.',
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    ...nb,
+    ...velkommenPageMessages.nn,
+    ...omOmsorgenForBarnMessages.nn,
+    ...annetBarnMessages.nn,
+    ...tidspunktForAleneomsorgMessages.nn,
+    ...oppsummeringMessages.nn,
+    ...kvitteringMessages.nn,
+    ...validateApiDataMessages.nn,
+    'application.title': 'Søknad om ekstra omsorgsdager ved aleneomsorg',
+    'step.omOmsorgenForBarn.stepTitle': 'Om aleneomsorg for barn',
+    'step.tidspunktForAleneomsorg.stepTitle': 'Tidspunkt for aleneomsorg',
+    'step.oppsummering.stepTitle': 'Oppsummering',
+    'initialLoadError.pageTitle': 'Det oppstod en feil',
+    'initialLoadError.text.1': 'Det oppstod en feil under oppstarten av søknaden. Vennligst prøv igjen senere.',
+    'resetMellomlagring.text.1': 'Dersom feilen vedvarer, kan du prøve å starte på nytt med et tom skjema.',
+    'resetMellomlagring.startPåNytt': 'Start på nytt',
+    'validation.harForståttRettigheterOgPlikter.notChecked': 'Du må bekrefte at du har lest og forstått dine plikter.',
 };
 
 export const appMessages = { nb, nn };
