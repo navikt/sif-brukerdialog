@@ -1,7 +1,6 @@
 const nb = {
     'page.velkommen.sidetittel':
         'Søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
-    'page.velkommen.guide.tittel': 'Hei, {navn}',
     'page.velkommen.guide.ingress':
         'Velkommen til søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning.',
     'page.velkommen.guide.tekst.1':
@@ -42,7 +41,6 @@ const nb = {
 const nn: Record<keyof typeof nb, string> = {
     'page.velkommen.sidetittel':
         'Søknad om ekstra omsorgsdagar for barn som har kronisk/langvarig sjukdom eller funksjonshemming',
-    'page.velkommen.guide.tittel': 'Hei, {namn}',
     'page.velkommen.guide.ingress':
         'Velkommen til søknad om ekstra omsorgsdagar for barn som har kronisk/langvarig sjukdom eller funksjonshemming.',
     'page.velkommen.guide.tekst.1':
