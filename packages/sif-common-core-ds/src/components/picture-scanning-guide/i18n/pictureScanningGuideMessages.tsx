@@ -33,7 +33,7 @@ const nb = {
 
 const nn: Record<keyof typeof nb, string> = {
     '@core.psg.expandable.tittel': 'Tips til deg som skal ta bilete av dokumentet',
-    '@core.psg.tittel': 'Noen tips når du skal ta bilete av dokumentet',
+    '@core.psg.tittel': 'Nokre tips når du skal ta bilete av dokumentet',
     '@core.psg.section1.tittel': 'Trygg bruk når du tek bilete',
     '@core.psg.section1.liste.1':
         'Bruk kamerafunksjonen på mobilen din til å ta biletet, ikkje bruk Snapchat eller andre appar.',

@@ -10,7 +10,7 @@ const nb = {
 const nn: Record<keyof typeof nb, string> = {
     '@soknad.fortsettSøknadSenereDialog.avbrytSøknadLabel': 'Ja, fortsett seinare.',
     '@soknad.fortsettSøknadSenereDialog.intro':
-        'Me lagrar utkastet ditt for deg i 72 timar. Du finn det igjen på Min side.',
+        'Vi lagrar utkastet ditt for deg i 72 timar. Du finn det igjen på Min side.',
     '@soknad.fortsettSøknadSenereDialog.spørsmål': 'Vil du avslutte no og fortsette seinare?',
     '@soknad.fortsettSøknadSenereDialog.tittel': 'Fortsett seinere',
     '@soknad.fortsettSøknadSenereDialog.fortsettSøknadLabel': 'Nei',

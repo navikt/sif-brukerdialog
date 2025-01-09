@@ -45,17 +45,17 @@ const nb = {
 const nn: Record<keyof typeof nb, string> = {
     'page.velkommen.sidetittel': 'Søknad om ekstra omsorgsdagar',
     'page.velkommen.guide.tittel': 'Hei {navn}',
-    'page.velkommen.guide.ingress': 'Velkomen til søknad om ekstra omsorgsdagar ved aleineomsorg.',
+    'page.velkommen.guide.ingress': 'Velkomen til søknad om ekstra omsorgsdagar ved åleineomsorg.',
     'page.velkommen.guide.tekst.1.1':
-        'Når det gjeld omsorgsdagar er du aleine om omsorga når barnet bur fast hos deg, og du ikkje bur saman med den andre forelderen. Det kan for eksempel vere',
+        'Når det gjeld omsorgsdagar er du åleine om omsorga når barnet bur fast hos deg, og du ikkje bur saman med den andre forelderen. Det kan for eksempel vere',
     'page.velkommen.guide.tekst.1.1.a': 'på grunn av samlivsbrot',
-    'page.velkommen.guide.tekst.1.1.b': 'at du har aleineomsorg for eit donorbarn',
+    'page.velkommen.guide.tekst.1.1.b': 'at du har åleineomsorg for eit donorbarn',
     'page.velkommen.guide.tekst.1.1.c': 'den andre forelderen er død',
     'page.velkommen.guide.tekst.1.2.tittel': 'Når skal du ikkje bruke denne søknaden?',
     'page.velkommen.guide.tekst.1.2':
         'Om de vanlegvis bur saman, men den andre forelderen ikkje kan passe barnet, skal du bruke <Lenke>Søknad om ekstra omsorgsdagar når den andre forelderen ikkje kan passe barn</Lenke>',
     'page.velkommen.guide.tekst.2':
-        'Om de har avtalt delt fast bustad for barnet har begge foreldre rett på omsorgsdagar, og ingen av dykk skal søke om ekstra omsorgsdagar på grunn av aleineomsorg.',
+        'Om de har avtalt delt fast bustad for barnet har begge foreldre rett på omsorgsdagar, og ingen av dykk skal søke om ekstra omsorgsdagar på grunn av åleineomsorg.',
     'page.velkommen.guide.tekst.3':
         'Du treng ikkje å søke fleire gonger for same barn, om du tidlegare har fått godkjend søknad.',
     'page.velkommen.omSøknaden.tittel': 'Om søknaden',

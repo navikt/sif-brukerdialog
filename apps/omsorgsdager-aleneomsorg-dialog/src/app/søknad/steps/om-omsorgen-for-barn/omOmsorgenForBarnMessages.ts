@@ -54,23 +54,23 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.omOmsorgenForBarn.formLeggTilBarn.aldersGrenseInfo':
         '(Du kan ikkje legge til barn som er 19 år i år eller eldre)',
 
-    'steg.omOmsorgenForBarn.aleneomsorg.seksjonsTittel': 'Aleineomsorg',
-    'steg.omOmsorgenForBarn.form.spm.hvilkeAvBarnaAleneomsorg': 'Kryss av for barn du er aleine om omsorga for:',
+    'steg.omOmsorgenForBarn.aleneomsorg.seksjonsTittel': 'åleineomsorg',
+    'steg.omOmsorgenForBarn.form.spm.hvilkeAvBarnaAleneomsorg': 'Kryss av for barn du er åleine om omsorga for:',
 
     'steg.omOmsorgenForBarn.deltBosted.seksjonsTittel': 'Delt fast bustad',
     'steg.omOmsorgenForBarn.deltBosted.spm': 'Har du avtale om delt fast bustad for barnet?',
     'steg.omOmsorgenForBarn.deltBosted.flereBarn.spm': 'Har du avtale om delt fast bustad for nokre av barna?',
     'steg.omOmsorgenForBarn.deltBosted.description.tittel': 'Kva er avtale om delt fast bustad?',
     'steg.omOmsorgenForBarn.deltBosted.description':
-        'Avtale om delt fast bustad er ein juridisk avtale i samsvar med barnelova §36 og betyr at barnet har fast bustad hos begge foreldra. Om det er avtalt delt fast bustad er ingen av foreldra aleine om omsorga for barnet, men begge har rett til ordinære omsorgsdagar.',
+        'Avtale om delt fast bustad er ein juridisk avtale i samsvar med barnelova §36 og betyr at barnet har fast bustad hos begge foreldra. Om det er avtalt delt fast bustad er ingen av foreldra åleine om omsorga for barnet, men begge har rett til ordinære omsorgsdagar.',
     'steg.omOmsorgenForBarna.deltBosted.velgMinstEttBarnMedDeltBostedAdvarsel':
-        'Du må ha aleineomsorg for minst eitt barn for å kunne svare på kva barn ein har avtale om delt fast bustad for.',
+        'Du må ha åleineomsorg for minst eitt barn for å kunne svare på kva barn ein har avtale om delt fast bustad for.',
 
     'steg.omOmsorgenForBarn.form.født': 'Fødd {dato}',
     'steg.omOmsorgenForBarn.form.fødtNavn': 'Fødd {dato} {navn}',
 
     'steg.omOmsorgenForBarn.alleBarnMedDeltBosted':
-        'Du kan berre søke for barn du er aleine med omsorga for, og ikkje har avtale om delt fast bustad for. Om du og den andre forelderen har ei avtale om delt fast bustad, bur barnet fast hos dykk begge. I desse tilfella kan ingen av dykk få ekstra dagar på grunn av aleineomsorg, men de har begge rett til ordinære omsorgsdagar.',
+        'Du kan berre søke for barn du er åleine med omsorga for, og ikkje har avtale om delt fast bustad for. Om du og den andre forelderen har ei avtale om delt fast bustad, bur barnet fast hos dykk begge. I desse tilfella kan ingen av dykk få ekstra dagar på grunn av åleineomsorg, men de har begge rett til ordinære omsorgsdagar.',
     'steg.omOmsorgenForBarn.ingenbarn': 'Du må ha minst eitt barn for å kunne gå vidare.',
     'steg.omOmsorgenForBarn.nextButtonLabel': 'Fortsett',
 
@@ -78,7 +78,7 @@ const nn: Record<keyof typeof nb, string> = {
         'Du må svare ja eller nei på om du har avtale om delt fast bustad.',
     'validation.harAvtaleOmDeltBostedFor.listIsEmpty':
         'Du må krysse av for barn du har delt fast bustad for eller svare «Nei» på spørsmålet ovanfor.',
-    'validation.harAleneomsorgFor.listIsEmpty': 'Du må krysse av for barn du er aleine om omsorga for.',
+    'validation.harAleneomsorgFor.listIsEmpty': 'Du må krysse av for barn du er åleine om omsorga for.',
 };
 
 export const omOmsorgenForBarnMessages = { nb, nn };
