@@ -1,5 +1,11 @@
 # @navikt/sif-common-ui
 
+## 0.9.1
+
+### Patch Changes
+
+- Korrigering i intl-tekster som hadde feil nøkkelref til values
+
 ## 0.9.0
 
 ### Minor Changes
