@@ -1,8 +1,5 @@
 import { Preview } from '@storybook/react';
-import { initialize, mswLoader } from 'msw-storybook-addon';
 import '@navikt/ds-css';
-
-initialize();
 
 const preview: Preview = {
     globalTypes: {
@@ -19,7 +16,6 @@ const preview: Preview = {
             },
         },
     },
-    loaders: [mswLoader],
     parameters: {
         actions: { argTypesRegex: '^on[A-Z].*' },
         options: {

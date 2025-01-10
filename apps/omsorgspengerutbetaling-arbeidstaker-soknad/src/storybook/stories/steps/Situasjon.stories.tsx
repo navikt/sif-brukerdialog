@@ -9,7 +9,6 @@ import { withStepFormValuesContext } from '../../decorators/withStepFormValuesCo
 import { withSøknadContextProvider } from '../../decorators/withSøknadContext';
 import { søknadsdataMock } from '../../mock-data/søknadsdataMock';
 import { arbeidsgivereStorybookMock } from '../../mock-data';
-import { http, HttpResponse } from 'msw';
 
 export default {
     title: 'Steps/SituasjonStep',
@@ -23,13 +22,14 @@ export default {
         (Story) => withSøknadContextProvider(Story, { søknadsdata: søknadsdataMock }),
     ],
     parameters: {
-        msw: {
-            handlers: [
-                http.get('**arbeidsgiver**', () => {
-                    return HttpResponse.json(arbeidsgivereStorybookMock);
-                }),
-            ],
-        },
+        mockData: [
+            {
+                url: '/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker/api/oppslag/arbeidsgiver?fra_og_med=2024-01-01&til_og_med=2024-04-30',
+                method: 'GET',
+                status: 200,
+                response: arbeidsgivereStorybookMock,
+            },
+        ],
     },
 } as Meta<typeof SituasjonStep>;
 
