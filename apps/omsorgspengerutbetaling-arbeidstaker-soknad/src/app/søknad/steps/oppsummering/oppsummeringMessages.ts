@@ -160,7 +160,7 @@ const nn: Record<keyof typeof nb, string> = {
     'step.oppsummering.bekrefterOpplysninger.ikkeBekreftet': 'Du må stadfeste opplysningane',
 
     'step.oppsummering.dineBarn.tittel': 'Dine barn',
-    'step.oppsummering.dineBarn.registrerteBarn': 'Barn vi har funne på deg i folkeregisteret',
+    'step.oppsummering.dineBarn.registrerteBarn': 'Barn me har funne på deg i folkeregisteret',
     'step.oppsummering.dineBarn.andreBarn': 'Andre barn du har lagt til her',
     'step.oppsummering.dineBarn.født': 'Fødselsdato: {dato}',
     'step.oppsummering.dineBarn.id': 'Fødselsnummer/id: {identitetsnummer}',

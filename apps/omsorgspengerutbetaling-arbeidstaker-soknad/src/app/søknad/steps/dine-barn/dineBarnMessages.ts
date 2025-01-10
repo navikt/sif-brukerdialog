@@ -26,11 +26,11 @@ const nb = {
 const nn: Record<keyof typeof nb, string> = {
     'step.dineBarn.nextButtonLabel': 'Fortset',
     'step.dineBarn.intro.tekst':
-        'Vi må vite kor mange barn du har, for å vurdere kor mange omsorgsdagar du har rett til.',
+        'Me må vite kor mange barn du har, for å vurdere kor mange omsorgsdagar du har rett til.',
 
     'step.dineBarn.seksjonsTittel': 'Dine barn',
 
-    'step.dineBarn.registrerteBarn.ingenFunnet': 'Vi fann ikkje nokon barn registrert på deg.',
+    'step.dineBarn.registrerteBarn.ingenFunnet': 'Me fann ikkje nokon barn registrert på deg.',
     'step.dineBarn.født': 'Fødd {dato}',
 
     'step.dineBarn.andreBarn.heading': 'Andre barn',

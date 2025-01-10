@@ -45,15 +45,15 @@ const nn: Record<keyof typeof nb, string> = {
     'page.velkommen.guide.tekst.1':
         'Vanlegvis skal arbeidsgjevar utbetale omsorgspengar for omsorgsdagar du har brukt som arbeidstakar. Dersom du ikkje har rett til omsorgspengar frå arbeidsgjevar, eller det er andre grunnar til at arbeidsgjevar ikkje utbetaler, kan du ha rett til utbetaling frå Nav.',
     'page.velkommen.guide.tekst.2':
-        'I tillegg til å søkje må du be arbeidsgjevar om å sende inntektsmelding til oss så snart du har sendt søknaden. Vi må ha den for å kunne behandle søknaden din.',
+        'I tillegg til å søkje må du be arbeidsgjevar om å sende inntektsmelding til oss så snart du har sendt søknaden. Me må ha den for å kunne behandle søknaden din.',
 
     'page.velkommen.omSøknaden.tittel': 'Om søknaden',
     'page.velkommen.omSøknaden.1': 'Du får rettleiing undervegs i søknaden om kva du skal fylle ut, og korleis.',
     'page.velkommen.omSøknaden.2':
-        'Vi tek vare på svara dine i 72 timar. Dersom du i løpet av den tida til dømes vil ta ein pause eller blir automatisk logga ut, kan du halde fram der du var når du kjem tilbake.',
+        'Me tek vare på svara dine i 72 timar. Dersom du i løpet av den tida til dømes vil ta ein pause eller blir automatisk logga ut, kan du halde fram der du var når du kjem tilbake.',
     'page.velkommen.omSøknaden.3':
         'Du må svare på alle spørsmåla for å kunne gå vidare. Dersom du manglar etterspurt dokumentasjon, kan du ettersende det så snart du kan.',
-    'page.velkommen.omSøknaden.4': 'Om korleis vi hentar opplysningar om deg',
+    'page.velkommen.omSøknaden.4': 'Om korleis me hentar opplysningar om deg',
     'page.velkommen.form.bekreftLabel': 'Eg stadfestar at eg har forstått mitt ansvar som søkjar',
     'page.velkommen.form.ansvar.tittel': 'Ditt ansvar som søkjar',
     'page.velkommen.form.ansvar.list.1':
@@ -65,16 +65,16 @@ const nn: Record<keyof typeof nb, string> = {
     'personopplysninger.dialogtittel': 'Om behandling av personopplysningar',
     'personopplysninger.1': 'Slik behandlar Nav personopplysningane dine',
     'personopplysninger.2':
-        'Vi hentar inn og mottar opplysningar om deg for å behandle saka di. Det er nødvendig for at du skal få rett teneste. Deler av saka di blir behandla automatisk.',
-    'personopplysninger.3': 'Kva opplysningar hentar vi inn?',
-    'personopplysninger.4': 'Opplysningane vi hentar kjem anten frå deg eller frå offentlege register:',
+        'Me hentar inn og mottar opplysningar om deg for å behandle saka di. Det er nødvendig for at du skal få rett teneste. Deler av saka di blir behandla automatisk.',
+    'personopplysninger.3': 'Kva opplysningar hentar me inn?',
+    'personopplysninger.4': 'Opplysningane me hentar kjem anten frå deg eller frå offentlege register:',
     'personopplysninger.4.1': 'kva barn du er registrert som forelder til',
     'personopplysninger.4.2': 'opplysningar om barnet sin helse',
     'personopplysninger.4.3': 'arbeidsforholda dine og inntekta di',
     'personopplysninger.4.4': 'ytingar du mottar frå Nav',
     'personopplysninger.4.5': 'tilknytinga di til Noreg',
     'personopplysninger.4.6':
-        'trygdeordningar du kan ha rett til i andre land. Vi kan også sende opplysningar om deg til trygdemyndigheiter i andre land',
+        'trygdeordningar du kan ha rett til i andre land. Me kan også sende opplysningar om deg til trygdemyndigheiter i andre land',
     'personopplysninger.5':
         'Du har rett til innsyn i saka di. Vil du vite meir om korleis Nav behandlar personopplysningar? Sjå <Lenke>nav.no/personvern</Lenke>.',
 };

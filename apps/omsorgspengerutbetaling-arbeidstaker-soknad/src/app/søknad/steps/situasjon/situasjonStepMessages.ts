@@ -44,7 +44,7 @@ const nn: Record<keyof typeof nb, string> = {
     'step.situasjon.stepIndicatorLabel': 'Kva er din arbeidssituasjon?',
     'step.situasjon.nextButtonLabel': 'Fortset',
     'step.situasjon.arbeidsforhold.aktivtArbeidsforhold.info.del1':
-        'Her er arbeidsgjevarane vi har funne registrert på deg.',
+        'Her er arbeidsgjevarane me har funne registrert på deg.',
     'step.situasjon.arbeidsforhold.aktivtArbeidsforhold.info.del2':
         'Dersom det manglar ein arbeidsgjevar her, må du be arbeidsgjevar sende ei ny A-melding. Dette gjerast anten via eige lønns- og personalsystem, eller via Altinn.',
     'step.situasjon.arbeidsforhold.harHattFravær.spm':
@@ -76,7 +76,7 @@ const nn: Record<keyof typeof nb, string> = {
     'step.situasjon.arbeidsforhold.årsakMinde4Uker.annet': 'Anna',
     'step.situasjon.arbeidsforhold.harUtbetalingLønn.alertstripe':
         'Nav utbetalar ikkje for omsorgsdagar som arbeidsgjevar allereie har utbetalt for.',
-    'step.situasjon.arbeidsforhold.ingen.info.text': 'Vi finn ingen registrerte arbeidsgjevarar.',
+    'step.situasjon.arbeidsforhold.ingen.info.text': 'Me finn ingen registrerte arbeidsgjevarar.',
     'step.situasjon.arbeidsforhold.ingenGjeldende.info.text.nei':
         'Du må ha hatt fråvær frå minst éin arbeidsgjevar for å gå vidare i søknaden.',
     'step.situasjon.vedleggsliste.ingenDokumenterLastetOpp': 'Ingen dokument er lasta opp',

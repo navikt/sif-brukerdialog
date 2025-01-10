@@ -36,18 +36,18 @@ const nb = {
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    'page.confirmation.sidetittel': 'Vi har mottatt søknaden din',
-    'page.confirmation.tittel': 'Vi har mottatt søknad om utbetaling av omsorgspengar',
+    'page.confirmation.sidetittel': 'Me har mottatt søknaden din',
+    'page.confirmation.tittel': 'Me har mottatt søknad om utbetaling av omsorgspengar',
     'page.confirmation.undertittel': 'Kva skjer vidare no?',
     'page.conformation.alert.infoForsvinner':
         'Obs! Denne informasjonen forsvinn når du lukkar den. Det er derfor viktig at du les gjennom før du går vidare.',
     'page.conformation.alert.infoPrint':
         'Du kan skrive ut denne informasjonssida og gje utskrifta til arbeidsgivaren din.',
     'page.conformation.alert.info.1':
-        'Dette er ei stadfesting på at vi har mottatt søknaden din. Når søknaden din er ferdigbehandla, får du eit svar frå oss.',
+        'Dette er ei stadfesting på at me har mottatt søknaden din. Når søknaden din er ferdigbehandla, får du eit svar frå oss.',
     'page.conformation.alert.info.2':
         'Du må be arbeidsgivar om å sende inntektsmelding til oss. Det er viktig at arbeidsgivar kryssar av for at inntektsmeldinga gjeld omsorgspengar.',
-    'page.conformation.alert.info.3': 'Vi kontaktar deg dersom vi treng fleire opplysningar.',
+    'page.conformation.alert.info.3': 'Me kontaktar deg dersom me treng fleire opplysningar.',
     'page.conformation.alert.info.4':
         'Du kan skrive ut denne informasjonssida og gje utskrifta til arbeidsgivaren din. Dersom du er registrert med fleire arbeidsgivarar, får du ein utskrift til kvar av dei.',
     'page.conformation.skrivUtKnapp': 'Skriv ut denne sida no',
@@ -57,7 +57,7 @@ const nn: Record<keyof typeof nb, string> = {
     'page.conformation.tilArbeidsgiverDokument.1': '{søkersNavn} er tilsett hos {arbeidsgiversNavn}',
     'page.conformation.tilArbeidsgiverDokument.2': '{søkersNavn} søkjer om {søknadNavn} for periodane:',
     'page.conformation.tilArbeidsgiverDokument.alert.1':
-        'For at arbeidstakar skal få raskt svar på søknaden sin, ber vi om at inntektsmeldinga blir sendt til oss så snart som mogleg.',
+        'For at arbeidstakar skal få raskt svar på søknaden sin, ber me om at inntektsmeldinga blir sendt til oss så snart som mogleg.',
     'page.conformation.tilArbeidsgiverDokument.alert.2':
         'Det er viktig at du kryssar av for at inntektsmeldinga gjeld {søknadNavn}.',
     'page.conformation.tilArbeidsgiverDokument.alert.3':

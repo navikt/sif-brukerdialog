@@ -166,8 +166,8 @@ const nn: Record<keyof typeof nb, string> = {
     'step.oppsummering.pageTitle': 'Omsorgspengesøknad - oppsummering',
     'step.oppsummering.stepTitle': 'Oppsummering',
 
-    'page.confirmation.sidetittel': 'Vi har mottatt søknaden din',
-    'page.confirmation.tittel': 'Vi har mottatt søknad om utbetaling av omsorgspengar',
+    'page.confirmation.sidetittel': 'Me har mottatt søknaden din',
+    'page.confirmation.tittel': 'Me har mottatt søknad om utbetaling av omsorgspengar',
 
     'validation.periode_ingenDagerEllerPerioder': 'Du må spesifisere minst éin periode for arbeidsforholdet.',
     'validation.fraværDagIkkeSammeÅrstall':
