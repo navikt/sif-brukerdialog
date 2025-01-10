@@ -38,6 +38,7 @@ const handleResetSoknad = async () => {
     relocateToWelcomePage();
 };
 
+console.log(appEnv);
 const App = () => (
     <SoknadApplication
         appVersion={APP_VERSION}
@@ -45,6 +46,7 @@ const App = () => (
         appName={OmsorgspengerutbetalingArbeidstakerApp.navn}
         appTitle={OmsorgspengerutbetalingArbeidstakerApp.tittel.nb}
         intlMessages={applicationIntlMessages}
+        useLanguageSelector={appEnv.SIF_PUBLIC_FEATURE_NYNORSK === 'on'}
         onResetSoknad={handleResetSoknad}
         appStatus={{
             sanityConfig: {

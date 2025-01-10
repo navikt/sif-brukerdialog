@@ -1,8 +1,8 @@
+import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { Søker } from '../../app/types/Søker';
+import { Utbetalingsårsak, ÅrsakNyoppstartet } from '../../app/types/ArbeidsforholdTypes';
 import { ArbeidsgiverResponse } from '../../app/types/Arbeidsgiver';
 import { ApiAktivitet, ArbeidsgiverDetaljer } from '../../app/types/søknadApiData/SøknadApiData';
-import { Utbetalingsårsak, ÅrsakNyoppstartet } from '../../app/types/ArbeidsforholdTypes';
 
 export const søkerStorybookMock: Søker = {
     fødselsnummer: '30086421581',
@@ -11,6 +11,22 @@ export const søkerStorybookMock: Søker = {
     fødselsdato: ISODateToDate('1990-01-01'),
     etternavn: 'KRONJUVEL',
 };
+
+export const registrerteBarnMock: RegistrertBarn[] = [
+    {
+        fødselsdato: ISODateToDate('1990-01-01'),
+        fornavn: 'Barn',
+        mellomnavn: 'Barne',
+        etternavn: 'Barnesen',
+        aktørId: '1',
+    },
+    {
+        fødselsdato: ISODateToDate('1990-01-02'),
+        fornavn: 'Mock',
+        etternavn: 'Mocknes',
+        aktørId: '2',
+    },
+];
 
 export const arbeidsgivereStorybookMock: ArbeidsgiverResponse = {
     organisasjoner: [

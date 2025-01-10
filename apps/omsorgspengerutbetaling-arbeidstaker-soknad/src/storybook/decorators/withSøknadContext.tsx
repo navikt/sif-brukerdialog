@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SøknadContextProvider } from '../../app/søknad/context/SøknadContext';
 import { SøknadContextState } from '../../app/types/SøknadContextState';
-import { søkerStorybookMock } from '../mock-data';
+import { registrerteBarnMock, søkerStorybookMock } from '../mock-data';
 
 export const mockInitialSøknadContextState: SøknadContextState = {
     versjon: '1.0.0',
@@ -9,6 +9,7 @@ export const mockInitialSøknadContextState: SøknadContextState = {
     søknadsdata: {
         id: '1',
     },
+    registrerteBarn: registrerteBarnMock,
     søknadRoute: undefined,
     søknadSendt: false,
     børMellomlagres: false,
