@@ -31,7 +31,7 @@
         "formik": "2.4.6",
         "html-react-parser": "5.2.2",
         "http-status-codes": "2.3.0",
-        "jsdom": "25.0.1",
+        "jsdom": "26.0.0",
         "lodash.groupby": "4.6.0",
         "mockdate": "3.0.5",
         "react": "19.0.0",
