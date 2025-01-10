@@ -33,7 +33,7 @@ const App = () => (
         appTitle={OmsorgsdagerAnnenForelderIkkeTilsynApp.tittel.nb}
         intlMessages={applicationIntlMessages}
         publicPath={PUBLIC_PATH}
-        useLanguageSelector={false}
+        useLanguageSelector={appEnv.SIF_PUBLIC_FEATURE_NYNORSK === 'on'}
         useAmplitude={SIF_PUBLIC_USE_AMPLITUDE ? SIF_PUBLIC_USE_AMPLITUDE === 'true' : isProd()}
         amplitudeApiKey={SIF_PUBLIC_AMPLITUDE_API_KEY}
         appStatus={{
