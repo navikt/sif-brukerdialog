@@ -45,17 +45,17 @@ const nn: Record<MessageKeys, string> = {
     '@core.formikFileUpload.file-upload.error.fileType':
         'Filformatet er ikkje støtta. Filformater du kan laste opp er JPG, JPEG, PNG og PDF.',
     '@core.formikFileUpload.file-upload.error.fileSize': 'Fila er større enn ${MAX_SIZE_MB} MB.',
-    '@core.formikFileUpload.file-upload.error.retry': 'Det oppstod ein feil under opplastinga..',
-    '@core.formikFileUpload.file-upload.error.unknown': 'Det oppstod en feil under opplastingen ({reason})',
+    '@core.formikFileUpload.file-upload.error.retry': 'Det oppstod ein feil under opplastinga.',
+    '@core.formikFileUpload.file-upload.error.unknown': 'Det oppstod en feil under opplastinga ({reason})',
     '@core.vedleggSummaryList.ingenVedlegg': 'Ingen dokument er lasta opp',
     '@core.formikVedleggList.validation.noVedleggUploaded': 'Ingen dokument er lasta opp',
     '@core.formikVedleggList.validation.tooManyVedlegg': 'For mange dokument er lasta opp',
     '@core.formikVedleggList.validation.maxTotalSizeExceeded':
         'Total samla storleik for dokumenta du har lasta opp overstig grensa på 24 MB.',
     '@core.formik-vedlegg-form.alert.totalSize':
-        'Du har lastet opp meir enn grensa på 24 MB. Det betyr at du må fjerne noko av det du har lastet opp. Om det betyr at du ikkje får plass til alt du vil sende no, kan du <Lenke>ettersende fleire dokument</Lenke>.',
+        'Du har totalt lasta opp meir enn grensa på 24 MB. Det betyr at du må fjerne noko av det du har lasta opp. Om det betyr at du ikkje får plass til alt du vil sende no, kan du <Lenke>ettersende fleire dokument</Lenke>.',
     '@core.formik-vedlegg-form.alert.totalSize.noLink':
-        'Du har totalt lastet opp meir enn grensa på 24 MB. Det betyr at du må fjerne noko av det du har lastet opp.',
+        'Du har totalt lasta opp meir enn grensa på 24 MB. Det betyr at du må fjerne noko av det du har lasta opp.',
 
     ...pictureScanningGuideMessages.nn,
 };

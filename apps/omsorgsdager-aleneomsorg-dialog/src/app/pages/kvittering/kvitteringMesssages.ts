@@ -7,7 +7,14 @@ const nb = {
         'Når søknaden er ferdigbehandlet, får du et svar fra oss på «Min side». <Lenke>Du kan sjekke saksbehandlingstiden her</Lenke>.',
 };
 
-const nn: Record<keyof typeof nb, string> = { ...nb };
+const nn: Record<keyof typeof nb, string> = {
+    'kvittering.tittel': 'Me har mottatt søknad om ekstra omsorgsdagar',
+    'kvittering.info.tittel': 'Kva skjer vidare no?',
+    'kvittering.info.1': 'Me behandlar søknaden din.',
+    'kvittering.info.2': 'Me kontaktar deg dersom me treng fleire opplysningar.',
+    'kvittering.info.3':
+        'Når søknaden er ferdigbehandla, får du eit svar frå oss på «Mi side». <Lenke>Du kan sjå saksbehandlingstida her</Lenke>.',
+};
 
 export const kvitteringMessages = {
     nb,
