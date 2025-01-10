@@ -20,7 +20,7 @@ const nb = {
 
 const nn: Record<keyof typeof nb, string> = {
     'step.tidspunktForAleneomsorg.stepIntro':
-        'No treng vi å vite når du vart åleine om omsorga for barn. Om du vart åleine om omsorga tidlegare enn i fjor, treng vi ikkje å vite konkret dato.',
+        'No treng me å vite når du vart åleine om omsorga for barn. Om du vart åleine om omsorga tidlegare enn i fjor, treng me ikkje å vite konkret dato.',
     'step.tidspunktForAleneomsorg.info': 'Oppgi tidspunkt for når du vart åleine om omsorga',
     'step.tidspunktForAleneomsorg.spm': 'Kva år vart du åleine om omsorga for {navn}?',
     'step.tidspunktForAleneomsorg.radioPanelGroupLabel.siste2årene': 'I {yearAgo} eller {yearNow}',

@@ -101,7 +101,7 @@ const nn: Record<OmBarnetMessageKeys, string> = {
     'steg.omBarnet.spm.høyereRisikoForFravær.label':
         'Har du auka risiko for å vera borte frå jobb på grunn av barnet sin sjukdom eller funksjonshemming?',
     'steg.omBarnet.spm.høyereRisikoForFraværBeskrivelse.label':
-        'No treng vi ei skildring frå deg på korleis sjukdommen eller funksjonshemminga til barnet gjer at du har markert høgare risiko for å vera borte frå jobb:',
+        'No treng me ei skildring frå deg på korleis sjukdommen eller funksjonshemminga til barnet gjer at du har markert høgare risiko for å vera borte frå jobb:',
     'steg.omBarnet.relasjonTilBarnet.mor': 'Mor',
     'steg.omBarnet.relasjonTilBarnet.far': 'Far',
     'steg.omBarnet.relasjonTilBarnet.adoptivforelder': 'Adoptivforelder',

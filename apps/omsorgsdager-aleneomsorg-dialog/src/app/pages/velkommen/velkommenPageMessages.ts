@@ -61,23 +61,23 @@ const nn: Record<keyof typeof nb, string> = {
     'page.velkommen.omSøknaden.tittel': 'Om søknaden',
     'page.velkommen.omSøknaden.1': 'Du får rettleiing undervegs i søknaden om kva du skal fylle ut, og korleis.',
     'page.velkommen.omSøknaden.2':
-        'Vi tar vare på svara dine i 72 timar. Om du innanfor den tida for eksempel vil ta ein pause eller blir automatisk logga ut, held du fram der du var når du kjem tilbake.',
+        'Me tar vare på svara dine i 72 timar. Om du innanfor den tida for eksempel vil ta ein pause eller blir automatisk logga ut, held du fram der du var når du kjem tilbake.',
     'page.velkommen.omSøknaden.3':
         'Du må svare på alle spørsmåla for å kunne gå vidare. Om du manglar etterspurt dokumentasjon, kan du ettersende det så snart du kan.',
-    'page.velkommen.omSøknaden.4': 'Om korleis vi hentar opplysningar om deg',
+    'page.velkommen.omSøknaden.4': 'Om korleis me hentar opplysningar om deg',
     'page.velkommen.harForståttRettigheterOgPlikter.notChecked': 'Du må velje at du har forstått ditt ansvar som søkar',
     'page.velkommen.personopplysninger.dialogtittel': 'Om behandling av personopplysningar',
     'page.velkommen.personopplysninger.1': 'Slik behandlar Nav personopplysningane dine',
     'page.velkommen.personopplysninger.2':
-        'Vi hentar og mottek opplysningar om deg når vi skal behandle saka di. Det er naudsynt for at du skal få riktig teneste. Saka di kan behandlast automatisk.',
-    'page.velkommen.personopplysninger.3': 'Kva opplysningar hentar vi?',
-    'page.velkommen.personopplysninger.4': 'Opplysningane vi hentar kjem anten frå deg eller frå offentlege register:',
+        'Me hentar og mottek opplysningar om deg når me skal behandle saka di. Det er naudsynt for at du skal få riktig teneste. Saka di kan behandlast automatisk.',
+    'page.velkommen.personopplysninger.3': 'Kva opplysningar hentar me?',
+    'page.velkommen.personopplysninger.4': 'Opplysningane me hentar kjem anten frå deg eller frå offentlege register:',
     'page.velkommen.personopplysninger.4.1': 'kva barn du er registrert som forelder til.',
     'page.velkommen.personopplysninger.4.2':
         'kven den andre forelderen er, og om de er busett på same folkeregistrerte adresse.',
     'page.velkommen.personopplysninger.4.3': 'tilknytinga di til Noreg.',
     'page.velkommen.personopplysninger.4.4':
-        'trygdeordningar du kan ha rett til i andre land. Vi kan også sende opplysningar om deg til trygdemyndigheiter i andre land.',
+        'trygdeordningar du kan ha rett til i andre land. Me kan også sende opplysningar om deg til trygdemyndigheiter i andre land.',
     'page.velkommen.personopplysninger.5':
         'Du har rett til innsyn i saka di. Vil du vite meir om korleis Nav behandlar personopplysningar? Sjå <Lenke>nav.no/personvern</Lenke>.',
 };
