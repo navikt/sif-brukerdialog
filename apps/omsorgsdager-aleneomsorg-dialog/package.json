@@ -1,9 +1,14 @@
 {
-    "author": "NAV",
+    "author": {
+        "name": "NAV"
+    },
     "description": "Søknad om ekstra omsorgsdager ved aleneomsorg for barn",
     "license": "MIT",
     "name": "@navikt/omsorgsdager-aleneomsorg-dialog",
-    "repository": "https://github.com/navikt/sif-brukerdialog",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/navikt/sif-brukerdialog.git"
+    },
     "version": "2.25.0",
     "private": true,
     "type": "module",
@@ -20,7 +25,8 @@
         "playwright-test": "playwright test",
         "start-e2e-server": "node ./e2e/server/server.cjs",
         "storybook": "storybook dev -p 6006",
-        "build-storybook": "storybook build"
+        "build-storybook": "storybook build",
+        "chromatic": "npx chromatic --project-token="
     },
     "dependencies": {
         "@navikt/ds-css": "7.9.0",
@@ -77,6 +83,7 @@
         "@types/react-router-dom": "5.3.3",
         "@vitejs/plugin-react": "4.3.4",
         "babel-polyfill": "6.26.0",
+        "chromatic": "^11.22.2",
         "compression": "1.7.5",
         "cors": "2.8.5",
         "cross-env": "7.0.3",
@@ -91,5 +98,9 @@
         "typescript": "5.7.2",
         "vite": "6.0.7",
         "vite-plugin-checker": "0.8.0"
-    }
+    },
+    "bugs": {
+        "url": "https://github.com/navikt/sif-brukerdialog/issues"
+    },
+    "homepage": "https://github.com/navikt/sif-brukerdialog#readme"
 }
