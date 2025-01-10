@@ -36,15 +36,15 @@ const nb = {
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    'page.confirmation.sidetittel': 'Me har mottatt søknaden din',
-    'page.confirmation.tittel': 'Me har mottatt søknad om utbetaling av omsorgspengar',
+    'page.confirmation.sidetittel': 'Me har motteke søknaden din',
+    'page.confirmation.tittel': 'Me har motteke søknad om utbetaling av omsorgspengar',
     'page.confirmation.undertittel': 'Kva skjer vidare no?',
     'page.conformation.alert.infoForsvinner':
         'Obs! Denne informasjonen forsvinn når du lukkar den. Det er derfor viktig at du les gjennom før du går vidare.',
     'page.conformation.alert.infoPrint':
         'Du kan skrive ut denne informasjonssida og gje utskrifta til arbeidsgivaren din.',
     'page.conformation.alert.info.1':
-        'Dette er ei stadfesting på at me har mottatt søknaden din. Når søknaden din er ferdigbehandla, får du eit svar frå oss.',
+        'Dette er ei stadfesting på at me har motteke søknaden din. Når søknaden din er ferdigbehandla, får du eit svar frå oss.',
     'page.conformation.alert.info.2':
         'Du må be arbeidsgivar om å sende inntektsmelding til oss. Det er viktig at arbeidsgivar kryssar av for at inntektsmeldinga gjeld omsorgspengar.',
     'page.conformation.alert.info.3': 'Me kontaktar deg dersom me treng fleire opplysningar.',
@@ -53,7 +53,7 @@ const nn: Record<keyof typeof nb, string> = {
     'page.conformation.skrivUtKnapp': 'Skriv ut denne sida no',
     'page.conformation.skrivUt.info':
         'Dersom du ikkje kan skrive ut denne informasjonssida, kan du ta bilete av den. Hugs også å ta bilete av informasjonen som kjem under, som du kan gje til arbeidsgivar.',
-    'page.conformation.tilArbeidsgiverDokument.tittel': 'Nav har mottatt følgjande opplysningar:',
+    'page.conformation.tilArbeidsgiverDokument.tittel': 'Nav har motteke følgjande opplysningar:',
     'page.conformation.tilArbeidsgiverDokument.1': '{søkersNavn} er tilsett hos {arbeidsgiversNavn}',
     'page.conformation.tilArbeidsgiverDokument.2': '{søkersNavn} søkjer om {søknadNavn} for periodane:',
     'page.conformation.tilArbeidsgiverDokument.alert.1':
