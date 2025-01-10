@@ -9,6 +9,7 @@ import { withStepFormValuesContext } from '../../decorators/withStepFormValuesCo
 import { withSøknadContextProvider } from '../../decorators/withSøknadContext';
 import { søknadsdataMock } from '../../mock-data/søknadsdataMock';
 import { arbeidsgivereStorybookMock } from '../../mock-data';
+import { http, HttpResponse } from 'msw';
 
 export default {
     title: 'Steps/SituasjonStep',
@@ -22,14 +23,13 @@ export default {
         (Story) => withSøknadContextProvider(Story, { søknadsdata: søknadsdataMock }),
     ],
     parameters: {
-        mockData: [
-            {
-                url: 'http://localhost:8089/oppslag/arbeidsgiver?fra_og_med=2024-01-01&til_og_med=2024-04-30',
-                method: 'GET',
-                status: 200,
-                response: arbeidsgivereStorybookMock,
-            },
-        ],
+        msw: {
+            handlers: [
+                http.get('**arbeidsgiver**', () => {
+                    return HttpResponse.json(arbeidsgivereStorybookMock);
+                }),
+            ],
+        },
     },
 } as Meta<typeof SituasjonStep>;
 

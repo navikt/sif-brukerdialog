@@ -4513,6 +4513,7 @@ __metadata:
     axios: "npm:1.7.9"
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
+    chromatic: "npm:^11.22.2"
     compression: "npm:1.7.5"
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.0.0"
@@ -4526,6 +4527,8 @@ __metadata:
     http-proxy-middleware: "npm:3.0.3"
     jsdom: "npm:25.0.1"
     mockdate: "npm:3.0.5"
+    msw: "npm:^2.7.0"
+    msw-storybook-addon: "npm:^2.0.4"
     mustache-express: "npm:1.3.2"
     object-hash: "npm:3.0.0"
     postcss: "npm:8.4.49"
@@ -21937,7 +21940,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw-storybook-addon@npm:2.0.4":
+"msw-storybook-addon@npm:2.0.4, msw-storybook-addon@npm:^2.0.4":
   version: 2.0.4
   resolution: "msw-storybook-addon@npm:2.0.4"
   dependencies:
@@ -21948,7 +21951,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw@npm:2.7.0":
+"msw@npm:2.7.0, msw@npm:^2.7.0":
   version: 2.7.0
   resolution: "msw@npm:2.7.0"
   dependencies:
