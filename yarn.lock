@@ -4602,6 +4602,7 @@ __metadata:
     axios: "npm:1.7.9"
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
+    chromatic: "npm:^11.22.2"
     compression: "npm:1.7.5"
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.0.0"
