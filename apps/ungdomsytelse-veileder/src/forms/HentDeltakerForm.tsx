@@ -10,7 +10,7 @@ import {
     TextField,
     VStack,
 } from '@navikt/ds-react';
-import { useState } from 'react';
+import { ReactElement, useState } from 'react';
 import { getFødselsnummerValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { isAxiosError } from 'axios';
@@ -31,7 +31,7 @@ const fnrValidator = getFødselsnummerValidator({ required: true, allowHnr: true
 
 const HentDeltakerForm = ({ onDeltakerFetched, onDeltakelseRegistrert }: Props) => {
     const [validationError, setValidationError] = useState<string | undefined>(undefined);
-    const [error, setError] = useState<string | JSX.Element | undefined>(undefined);
+    const [error, setError] = useState<string | ReactElement | undefined>(undefined);
     const [fnrValue, setFnrValue] = useState<string | undefined>();
     const [pending, setPending] = useState<boolean>(false);
     const [nyDeltaker, setNyDeltaker] = useState<NyDeltaker | undefined>();

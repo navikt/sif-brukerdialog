@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { useAppIntl } from '@i18n/index';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
-import { DurationText } from '@navikt/sif-common-ui';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { DateRange, getTypedFormComponents, InputTime } from '@navikt/sif-common-formik-ds/src';
 import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
+import { DurationText } from '@navikt/sif-common-ui';
 import {
     DateDurationMap,
     dateFormatter,
@@ -23,6 +23,7 @@ import {
 import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
 import ResponsivePanel from '../../../components/responsive-panel/ResponsivePanel';
+import { AppText } from '../../../i18n';
 import {
     getDagerMedNyTid,
     getDateRangeWithinDateRange,
@@ -30,7 +31,6 @@ import {
     trimDateRangeToWeekdays,
 } from './utils/tidEnkeltdagUtils';
 import { getTidEnkeltdagFormTidValidator } from './utils/tidEnkeltdagValidation';
-import { AppText } from '../../../i18n';
 
 dayjs.extend(minMax);
 
@@ -137,7 +137,7 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
         p?: { fra: string; til: string },
         values?: any,
         // TODO - fikse nøkkel
-    ): JSX.Element => <AppText id={`tidEnkeltdagForm.gjentagelse.${key}` as any} values={{ ...values, ...p }} />;
+    ): ReactElement => <AppText id={`tidEnkeltdagForm.gjentagelse.${key}` as any} values={{ ...values, ...p }} />;
 
     return (
         <FormComponents.FormikWrapper

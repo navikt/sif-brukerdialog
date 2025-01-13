@@ -1,12 +1,12 @@
 import { Heading } from '@navikt/ds-react';
-import React from 'react';
+import React, { ReactElement } from 'react';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import ResponsivePanel from '../../../../components/responsive-panel/ResponsivePanel';
 import './arbeidssituasjonPanel.less';
 
 interface Props {
     title: string;
-    description?: JSX.Element;
+    description?: ReactElement;
     titleIcon?: React.ReactNode;
     children: React.ReactNode;
 }

@@ -1,3 +1,4 @@
+import { ReactElement } from 'react';
 import { useIntl } from 'react-intl';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { ErrorPage, LastAvailableStepInfo, SoknadErrorMessages, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
@@ -6,17 +7,17 @@ import { APPLICATION_SENDT_PAGE } from '../config/routeConfig';
 import KvitteringPage from '../pages/kvittering-page/KvitteringPage';
 import VelkommenPage from '../pages/velkommen-page/VelkommenPage';
 import { Person } from '../types/Person';
+import { RegistrertBarn } from '../types/RegistrertBarn';
 import { SoknadFormData, SoknadFormField } from '../types/SoknadFormData';
 import { Søknadstype } from '../types/Søknadstype';
 import { getAvailableSteps } from '../utils/routeUtils';
 import BeskrivelseStep from './beskrivelse-step/BeskrivelseStep';
+import DokumentTypeStep from './dokument-type-step/DokumentTypeStep';
 import DokumenterStep from './dokumenter-step/DokumenterStep';
 import OppsummeringStep from './oppsummering-step/OppsummeringStep';
 import { useSoknadContext } from './SoknadContext';
 import { StepID } from './soknadStepsConfig';
 import ValgOmsTypeStep from './valgOmsType-step/ValgOmsTypeStep';
-import DokumentTypeStep from './dokument-type-step/DokumentTypeStep';
-import { RegistrertBarn } from '../types/RegistrertBarn';
 
 interface Props {
     søker: Person;
@@ -63,7 +64,7 @@ const SoknadRouter = ({ søker, barn, søknadstype, soknadId }: Props) => {
                         path="*"
                         element={
                             <ErrorPage
-                                contentRenderer={(): JSX.Element => {
+                                contentRenderer={(): ReactElement => {
                                     const availableSteps = getAvailableSteps(values, søknadstype);
                                     const lastAvailableStep = availableSteps.slice(-1)[0];
                                     const lastAvailableStepInfo: LastAvailableStepInfo | undefined = lastAvailableStep

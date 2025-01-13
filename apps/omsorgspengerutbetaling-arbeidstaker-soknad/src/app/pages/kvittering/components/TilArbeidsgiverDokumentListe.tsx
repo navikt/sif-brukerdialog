@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { ReactElement } from 'react';
 import { Søker } from '@navikt/sif-common-api';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
@@ -10,7 +10,7 @@ interface Props {
     arbeidsgivere: ArbeidsgiverDetaljer[];
 }
 
-const TilArbeidsgiverDokumentListe: React.FC<Props> = ({ søker, arbeidsgivere }: Props): JSX.Element => {
+const TilArbeidsgiverDokumentListe: React.FC<Props> = ({ søker, arbeidsgivere }: Props): ReactElement => {
     const { fornavn, mellomnavn, etternavn } = søker;
     const søkersNavn: string | undefined =
         fornavn && etternavn ? formatName(fornavn, etternavn, mellomnavn || undefined) : 'UKJENT BRUKER';

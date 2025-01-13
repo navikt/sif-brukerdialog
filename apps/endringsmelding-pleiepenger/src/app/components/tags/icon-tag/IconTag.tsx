@@ -1,9 +1,9 @@
 import { Tag, TagProps } from '@navikt/ds-react';
-import React from 'react';
+import React, { ReactElement } from 'react';
 import './iconTag.scss';
 
 interface Props extends TagProps {
-    icon?: JSX.Element;
+    icon?: ReactElement;
 }
 
 const IconTag: React.FunctionComponent<Props> = ({ className, icon, size = 'small', children, ...rest }) => (

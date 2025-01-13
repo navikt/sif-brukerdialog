@@ -1,19 +1,19 @@
-import { Deltakelse } from '../../api/types';
-import { useState } from 'react';
-import { FormikDatepicker, TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { Alert, BodyShort, Button, Heading, HStack, VStack } from '@navikt/ds-react';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { ReactElement, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { FormikDatepicker, TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
+import FormikCheckboxGroup from '@navikt/sif-common-formik-ds/src/components/formik-checkbox-group/FormikCheckboxGroup';
+import ConfirmationDialog from '@navikt/sif-common-formik-ds/src/components/helpers/confirmation-dialog/ConfirmationDialog';
 import {
     DateValidationOptions,
     getCheckedValidator,
     getDateValidator,
 } from '@navikt/sif-common-formik-ds/src/validation';
-import { veilederService } from '../../api/services/veilederService';
-import dayjs from 'dayjs';
-import FormikCheckboxGroup from '@navikt/sif-common-formik-ds/src/components/formik-checkbox-group/FormikCheckboxGroup';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { isAxiosError } from 'axios';
-import ConfirmationDialog from '@navikt/sif-common-formik-ds/src/components/helpers/confirmation-dialog/ConfirmationDialog';
+import dayjs from 'dayjs';
+import { veilederService } from '../../api/services/veilederService';
+import { Deltakelse } from '../../api/types';
 
 interface Props {
     deltakelse: Deltakelse;
@@ -29,7 +29,7 @@ interface FormValues {
 const AvsluttDeltakelseForm = ({ deltakelse, onDeltakelseAvsluttet, onCancel }: Props) => {
     const [confirmationDialogVisible, setConfirmationDialogVisible] = useState(false);
     const [submitPending, setSubmitPending] = useState(false);
-    const [error, setError] = useState<string | JSX.Element | undefined>(undefined);
+    const [error, setError] = useState<string | ReactElement | undefined>(undefined);
     const intl = useIntl();
 
     const avsluttDeltakelse = async (values: Partial<FormValues>) => {
