@@ -51,6 +51,8 @@ const nb = {
     'steg.tidsrom.hvilketTidsrom.fom': 'Fra og med',
     'steg.tidsrom.hvilketTidsrom.tom': 'Til og med',
 
+    'steg.tidsrom.dagerMedPleie.spm': 'Hvilke dager skal du være hjemme fra jobb for å gi pleie?',
+
     'dagerMedPleie.info.1':
         'Velg i kalenderen hvilke dager du er borte fra jobben for å gi pleie. Du kan velge hele uker ved å klikke på ukenummer.',
 };
@@ -108,6 +110,7 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.tidsrom.hvilketTidsrom.fom': 'Frå og med',
     'steg.tidsrom.hvilketTidsrom.tom': 'Til og med',
 
+    'steg.tidsrom.dagerMedPleie.spm': 'Kva dagar skal du vere heime frå jobb for å gi pleie',
     'dagerMedPleie.info.1':
         'Vel i kalenderen kva dagar du er borte frå jobben for å gi pleie. Du kan velje heile veker ved å klikke på veketalet.',
 };
