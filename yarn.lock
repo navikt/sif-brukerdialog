@@ -4205,7 +4205,7 @@ __metadata:
     "@types/react-router-dom": "npm:5.3.3"
     axios: "npm:1.7.9"
     babel-polyfill: "npm:6.26.0"
-    chromatic: "npm:^11.22.2"
+    chromatic: "npm:11.22.2"
     compression: "npm:1.7.5"
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.0.0"
@@ -4406,7 +4406,7 @@ __metadata:
     "@vitejs/plugin-react": "npm:4.3.4"
     axios: "npm:1.7.9"
     babel-polyfill: "npm:6.26.0"
-    chromatic: "npm:^11.22.2"
+    chromatic: "npm:11.22.2"
     compression: "npm:1.7.5"
     cors: "npm:2.8.5"
     cross-env: "npm:7.0.3"
@@ -4524,7 +4524,7 @@ __metadata:
     axios: "npm:1.7.9"
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
-    chromatic: "npm:^11.22.2"
+    chromatic: "npm:11.22.2"
     compression: "npm:1.7.5"
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.0.0"
@@ -4604,7 +4604,7 @@ __metadata:
     axios: "npm:1.7.9"
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
-    chromatic: "npm:^11.22.2"
+    chromatic: "npm:11.22.2"
     compression: "npm:1.7.5"
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.0.0"
@@ -13123,7 +13123,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromatic@npm:11.22.2, chromatic@npm:^11.22.2":
+"chromatic@npm:11.22.2":
   version: 11.22.2
   resolution: "chromatic@npm:11.22.2"
   peerDependencies:
