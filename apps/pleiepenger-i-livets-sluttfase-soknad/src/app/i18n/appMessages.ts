@@ -217,7 +217,7 @@ const nn: Record<keyof typeof nb, string> = {
     'resetMellomlagring.text.1': 'Om feilen vedvarer, kan du prøve å starte på nytt med eit tomt skjema.',
     'resetMellomlagring.startPåNytt': 'Start på nytt',
 
-    hvaBetyrDette: 'Kva tyder dette?',
+    hvaBetyrDette: 'Kva betyr dette?',
     fødselsnummer: 'Fødselsnummer:',
 
     'dagerMedTid.uke': 'Veke {uke}',
@@ -232,13 +232,13 @@ const nn: Record<keyof typeof nb, string> = {
     'frilanser.jobberNormaltTimer.avsluttet.spm':
         'Kor mange timar jobba du normalt per veke som frilansar då du ikkje hadde fråvær?',
 
-    'frilanser.hjelpetekst.spm': 'Kva tyder det å vere frilansar?',
+    'frilanser.hjelpetekst.spm': 'Kva betyr det å vere frilansar?',
     'frilanser.hjelpetekst':
         'Du er frilansar når du mottek løn for enkeltståande oppdrag utan å vere fast eller mellombels tilsett hos den du utfører oppdraget for. Om du er usikker på om du er frilansar må du sjekke om oppdraga dine er registrerte som frilansoppdrag på',
     'frilanser.hjelpetekst.skatteetatenLenke': 'skatteetaten sine nettsider.',
 
     'selvstendig.harDuHattInntekt.spm': 'Er du sjølvstendig næringsdrivande i perioden du søker for?',
-    'selvstendig.harDuHattInntekt.hjelpetekst.tittel': 'Kva tyder det å vere sjølvstendig næringsdrivande?',
+    'selvstendig.harDuHattInntekt.hjelpetekst.tittel': 'Kva betyr det å vere sjølvstendig næringsdrivande?',
     'selvstendig.harDuHattInntekt.hjelpetekst':
         'Du er sjølvstendig næringsdrivande når du enten har eit enkeltpersonføretak (ENK), eit ansvarleg selskap (ANS), eller eit ansvarleg selskap med delt ansvar (DA).',
     'selvstendig.harDuHattInntekt.hjelpetekst.snSkatteetatenLenke':
