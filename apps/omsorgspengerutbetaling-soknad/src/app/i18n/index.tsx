@@ -22,6 +22,7 @@ export const libMessages = {
         ...fraværMessages.nb,
         ...virksomhetMessages.nb,
         ...medlemskapFormMessages.nb,
+        ...uiMessages.nb,
     },
     nn: {
         ...commonMessages.nn,
@@ -31,7 +32,8 @@ export const libMessages = {
         ...bostedUtlandMessages.nn,
         ...fraværMessages.nn,
         ...virksomhetMessages.nn,
-        ...medlemskapFormMessages.nb,
+        ...medlemskapFormMessages.nn,
+        ...uiMessages.nn,
     },
 };
 

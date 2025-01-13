@@ -4,6 +4,7 @@ import * as z from 'zod';
 export const appEnvSchema = commonEnvSchema;
 
 export const appDevEnvSchema = appEnvSchema.extend({
+    SIF_PUBLIC_FEATURE_NYNORSK: z.enum(['on', 'off']),
     MOCK_DATE: z.string().optional(),
     USE_MOCK_DATE: z.string().optional(),
 });

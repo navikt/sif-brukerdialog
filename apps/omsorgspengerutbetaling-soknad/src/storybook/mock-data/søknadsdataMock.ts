@@ -38,6 +38,7 @@ export const søknadsdataMock: Søknadsdata = {
         perioder_harVærtIUtlandet: true,
         perioder_utenlandsopphold: [
             {
+                type: 'enkel',
                 id: 'd1b6db4d-fc66-4910-8ec4-61568911e652',
                 fom: ISODateToDate('2024-04-08'),
                 tom: ISODateToDate('2024-04-10'),
@@ -107,6 +108,7 @@ export const søknadsdataMock: Søknadsdata = {
         harBoddUtenforNorgeSiste12Mnd: true,
         utenlandsoppholdSiste12Mnd: [
             {
+                type: 'enkel',
                 id: '4ffe9887-000f-496a-bc38-a5428dcc259b',
                 fom: ISODateToDate('2023-11-06'),
                 tom: ISODateToDate('2024-04-13'),

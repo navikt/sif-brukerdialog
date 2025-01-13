@@ -1,9 +1,14 @@
 {
-    "author": "NAV",
+    "author": {
+        "name": "NAV"
+    },
     "description": "Søknad om utbetaling av omsorgsdager for selvstendige og frilansere",
     "license": "MIT",
     "name": "@navikt/omsorgspengerutbetaling-soknad",
-    "repository": "https://github.com/navikt/sif-brukerdialog",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/navikt/sif-brukerdialog.git"
+    },
     "version": "1.23.0",
     "private": true,
     "type": "module",
@@ -62,6 +67,7 @@
         "@vitejs/plugin-react": "4.3.4",
         "babel-polyfill": "6.26.0",
         "busboy": "1.6.0",
+        "chromatic": "^11.22.2",
         "compression": "1.7.5",
         "cross-env": "7.0.3",
         "dotenv": "16.4.7",
@@ -93,7 +99,8 @@
         "playwright-test": "playwright test",
         "start-e2e-server": "node ./e2e/server/server.cjs",
         "storybook": "storybook dev -p 6006",
-        "test": "vitest run"
+        "test": "vitest run",
+        "chromatic": "npx chromatic --project-token="
     },
     "eslintConfig": {
         "overrides": [
@@ -106,5 +113,9 @@
                 }
             }
         ]
-    }
+    },
+    "bugs": {
+        "url": "https://github.com/navikt/sif-brukerdialog/issues"
+    },
+    "homepage": "https://github.com/navikt/sif-brukerdialog#readme"
 }
