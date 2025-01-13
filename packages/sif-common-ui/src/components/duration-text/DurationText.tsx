@@ -1,6 +1,7 @@
+import { ReactElement } from 'react';
 import { IntlShape, useIntl } from 'react-intl';
-import { Duration, durationToDecimalDuration, ensureDuration } from '@navikt/sif-common-utils';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { Duration, durationToDecimalDuration, ensureDuration } from '@navikt/sif-common-utils';
 import { durationTextMessages } from './durationText.messages';
 
 interface DurationTextProps {
@@ -60,7 +61,7 @@ export const getDurationString = (
     return intlHelper(intl, key, { hours, minutes });
 };
 
-const DurationText = (props: DurationTextProps): JSX.Element => {
+const DurationText = (props: DurationTextProps): ReactElement => {
     const { duration, hideEmptyValues = false, type, fullText } = props;
 
     const hours = duration.hours || '0';

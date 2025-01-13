@@ -1,5 +1,5 @@
 import { FormSummary } from '@navikt/ds-react';
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { SummaryList } from '@navikt/sif-common-ui';
 import { iso8601DurationToTime, ISODateToDate, prettifyDate, Time, timeToDecimalTime } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
@@ -64,7 +64,7 @@ const getFraværAktivitetString = (aktivitetFravær: ApiAktivitet[], { text }: A
           });
 };
 
-const renderEnkeltdagElement = (date: Date): JSX.Element => (
+const renderEnkeltdagElement = (date: Date): ReactElement => (
     <div>
         <span style={{ textTransform: 'capitalize' }}>{dayjs(date).format('dddd')}</span> {prettifyDate(date)}
     </div>
@@ -74,13 +74,13 @@ const renderFraværAktivitetElement = (
     aktivitet: ApiAktivitet[],
     visAktivitet: boolean,
     appIntl: AppIntlShape,
-): JSX.Element | null => (visAktivitet ? <div>{getFraværAktivitetString(aktivitet, appIntl)}</div> : null);
+): ReactElement | null => (visAktivitet ? <div>{getFraværAktivitetString(aktivitet, appIntl)}</div> : null);
 
 export const renderUtbetalingsperiodeDag = (
     dag: UtbetalingsperiodeDag,
     visAktivitet: boolean,
     appIntl: AppIntlShape,
-): JSX.Element => {
+): ReactElement => {
     const antallTimerSkulleJobbet = `${timeToDecimalTime(dag.antallTimerPlanlagt)} ${timeText(
         `${timeToDecimalTime(dag.antallTimerPlanlagt)}`,
         appIntl,
@@ -102,7 +102,7 @@ const renderUtbetalingsperiode = (
     periode: UtbetalingsperiodeApi,
     visAktivitet: boolean,
     appIntl: AppIntlShape,
-): JSX.Element => {
+): ReactElement => {
     const fom = ISODateToDate(periode.fraOgMed);
     const tom = ISODateToDate(periode.tilOgMed);
 

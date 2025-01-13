@@ -1,3 +1,4 @@
+import { ReactElement } from 'react';
 import FormikCheckboxGroup, { FormikCheckboxGroupProps } from './formik-checkbox-group/FormikCheckboxGroup';
 import FormikCheckbox, { FormikCheckboxProps } from './formik-checkbox/FormikCheckbox';
 import FormikConfirmationCheckbox, {
@@ -7,10 +8,10 @@ import FormikCountrySelect, { FormikCountrySelectProps } from './formik-country-
 import FormikDateRangePicker, { FormikDateRangePickerProps } from './formik-date-range-picker/FormikDateRangePicker';
 import FormikDatepicker, { FormikDatepickerProps } from './formik-datepicker/FormikDatepicker';
 import FormikInputGroup, { FormikInputGroupProps } from './formik-input-group/FormikInputGroup';
+import FormikNumberInput, { FormikNumberInputProps } from './formik-number-input/FormikNumberInput';
 import FormikRadioGroup, { FormikRadioGroupProps } from './formik-radio-group/FormikRadioGroup';
 import FormikSelect, { FormikSelectProps } from './formik-select/FormikSelect';
 import FormikTextField, { FormikTextFieldProps } from './formik-text-field/FormikTextField';
-import FormikNumberInput, { FormikNumberInputProps } from './formik-number-input/FormikNumberInput';
 import FormikTextarea, { FormikTextareaProps } from './formik-textarea/FormikTextarea';
 import FormikTimeInput, { FormikTimeInputProps } from './formik-time-input/FormikTimeInput';
 import FormikYesOrNoQuestion, { FormikYesOrNoQuestionProps } from './formik-yes-or-no-question/FormikYesOrNoQuestion';
@@ -18,22 +19,22 @@ import TypedFormikForm, { TypedFormikFormProps } from './typed-formik-form/Typed
 import TypedFormikWrapper, { TypedFormikWrapperProps } from './typed-formik-wrapper/TypedFormikWrapper';
 
 export interface TypedFormComponents<FieldName, FormValues, ErrorType> {
-    Checkbox: (props: FormikCheckboxProps<FieldName, ErrorType>) => JSX.Element;
-    CheckboxGroup: (props: FormikCheckboxGroupProps<FieldName, ErrorType>) => JSX.Element;
-    ConfirmationCheckbox: (props: FormikConfirmationCheckboxProps<FieldName, ErrorType>) => JSX.Element;
-    CountrySelect: (props: FormikCountrySelectProps<FieldName, ErrorType>) => JSX.Element;
-    DatePicker: (props: FormikDatepickerProps<FieldName, ErrorType>) => JSX.Element;
-    DateRangePicker: (props: FormikDateRangePickerProps<FieldName, ErrorType>) => JSX.Element;
-    Form: (props: TypedFormikFormProps<FormValues, ErrorType>) => JSX.Element;
-    FormikWrapper: (props: TypedFormikWrapperProps<FormValues>) => JSX.Element;
-    TextField: (props: FormikTextFieldProps<FieldName, ErrorType>) => JSX.Element;
-    NumberInput: (props: FormikNumberInputProps<FieldName, ErrorType>) => JSX.Element;
-    InputGroup: (props: FormikInputGroupProps<ErrorType, FieldName>) => JSX.Element;
-    RadioGroup: (props: FormikRadioGroupProps<FieldName, ErrorType>) => JSX.Element;
-    Select: (props: FormikSelectProps<FieldName, ErrorType>) => JSX.Element;
-    Textarea: (props: FormikTextareaProps<FieldName, ErrorType>) => JSX.Element;
-    TimeInput: (props: FormikTimeInputProps<FieldName, ErrorType>) => JSX.Element;
-    YesOrNoQuestion: (props: FormikYesOrNoQuestionProps<FieldName, ErrorType>) => JSX.Element;
+    Checkbox: (props: FormikCheckboxProps<FieldName, ErrorType>) => ReactElement;
+    CheckboxGroup: (props: FormikCheckboxGroupProps<FieldName, ErrorType>) => ReactElement;
+    ConfirmationCheckbox: (props: FormikConfirmationCheckboxProps<FieldName, ErrorType>) => ReactElement;
+    CountrySelect: (props: FormikCountrySelectProps<FieldName, ErrorType>) => ReactElement;
+    DatePicker: (props: FormikDatepickerProps<FieldName, ErrorType>) => ReactElement;
+    DateRangePicker: (props: FormikDateRangePickerProps<FieldName, ErrorType>) => ReactElement;
+    Form: (props: TypedFormikFormProps<FormValues, ErrorType>) => ReactElement;
+    FormikWrapper: (props: TypedFormikWrapperProps<FormValues>) => ReactElement;
+    TextField: (props: FormikTextFieldProps<FieldName, ErrorType>) => ReactElement;
+    NumberInput: (props: FormikNumberInputProps<FieldName, ErrorType>) => ReactElement;
+    InputGroup: (props: FormikInputGroupProps<ErrorType, FieldName>) => ReactElement;
+    RadioGroup: (props: FormikRadioGroupProps<FieldName, ErrorType>) => ReactElement;
+    Select: (props: FormikSelectProps<FieldName, ErrorType>) => ReactElement;
+    Textarea: (props: FormikTextareaProps<FieldName, ErrorType>) => ReactElement;
+    TimeInput: (props: FormikTimeInputProps<FieldName, ErrorType>) => ReactElement;
+    YesOrNoQuestion: (props: FormikYesOrNoQuestionProps<FieldName, ErrorType>) => ReactElement;
 }
 
 export function getTypedFormComponents<FieldName, FormValues, ErrorType = string>(): TypedFormComponents<

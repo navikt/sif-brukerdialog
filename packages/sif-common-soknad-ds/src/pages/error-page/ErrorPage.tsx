@@ -1,3 +1,4 @@
+import { ReactElement } from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SoknadErrorMessages from '../../components/soknad-error-messages/SoknadErrorMessages';
@@ -7,7 +8,7 @@ import { useSoknadIntl } from '../../hooks/useSoknadIntl';
 interface Props {
     pageTitle?: string;
     bannerTitle?: string;
-    contentRenderer?: () => JSX.Element;
+    contentRenderer?: () => ReactElement;
 }
 const ErrorPage = ({ contentRenderer, pageTitle, bannerTitle }: Props) => {
     const { text } = useSoknadIntl();

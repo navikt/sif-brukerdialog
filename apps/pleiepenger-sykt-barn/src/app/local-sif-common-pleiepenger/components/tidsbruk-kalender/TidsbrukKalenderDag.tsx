@@ -1,12 +1,12 @@
 import { BodyShort } from '@navikt/ds-react';
-import React from 'react';
-import { DurationText } from '@navikt/sif-common-ui';
+import React, { ReactElement } from 'react';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
+import { DurationText } from '@navikt/sif-common-ui';
 import { Duration, durationsAreEqual, ensureDuration } from '@navikt/sif-common-utils';
 import { TidRenderer } from './TidsbrukKalender';
 import './tidsbrukKalenderDag.less';
 
-export type TidsbrukKalenderDagFooterRenderer = (dato: Date) => JSX.Element | undefined;
+export type TidsbrukKalenderDagFooterRenderer = (dato: Date) => ReactElement | undefined;
 
 interface Props {
     dato: Date;
