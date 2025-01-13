@@ -25,9 +25,9 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "@navikt/ds-css": "7.9.0",
-        "@navikt/ds-react": "7.9.0",
-        "@navikt/ds-tailwind": "7.9.0",
+        "@navikt/ds-css": "7.9.1",
+        "@navikt/ds-react": "7.9.1",
+        "@navikt/ds-tailwind": "7.9.1",
         "@navikt/sif-app-register": "*",
         "@navikt/sif-common-amplitude": "*",
         "@navikt/sif-common-core-ds": "*",
@@ -66,8 +66,8 @@
         "@testing-library/dom": "10.4.0",
         "@testing-library/react": "16.1.0",
         "@types/object-hash": "3.0.6",
-        "@types/react": "19.0.2",
-        "@types/react-dom": "19.0.2",
+        "@types/react": "19.0.6",
+        "@types/react-dom": "19.0.3",
         "@types/react-router-dom": "5.3.3",
         "babel-polyfill": "6.26.0",
         "compression": "1.7.5",
@@ -80,7 +80,7 @@
         "playwright-core": "1.49.1",
         "rimraf": "6.0.1",
         "storybook": "8.4.7",
-        "typescript": "5.7.2",
+        "typescript": "5.7.3",
         "vite": "6.0.7",
         "vite-plugin-checker": "0.8.0",
         "vitest": "2.1.8"
