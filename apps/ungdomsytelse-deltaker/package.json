@@ -34,7 +34,7 @@
         "dayjs": "1.11.13",
         "html-react-parser": "5.2.2",
         "jsdom": "25.0.1",
-        "postcss": "8.4.49",
+        "postcss": "8.5.0",
         "react": "19.0.0",
         "react-dom": "19.0.0",
         "react-hook-form": "7.54.2",
