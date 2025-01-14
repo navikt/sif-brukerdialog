@@ -1,9 +1,8 @@
-import { Box, FormSummary, List, VStack } from '@navikt/ds-react';
+import { FormSummary, List } from '@navikt/ds-react';
 import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
 import { AppText, useAppIntl } from '../../../../i18n';
 import { FerieuttakIPeriodenApiData, KursApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { dateFormatter, dateRangeFormatter, ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils';
-import { Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 
 interface Props {
     kurs: KursApiData;
@@ -41,15 +40,16 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden }: Props) => {
                                         ISODateRangeToDateRange(periode.kursperiode),
                                         locale,
                                     );
-                                    const kursperiode = ISODateRangeToDateRange(periode.kursperiode);
-                                    const avreise = periode.avreise ? ISODateToDate(periode.avreise) : kursperiode.from;
-                                    const hjemkomst = periode.hjemkomst
-                                        ? ISODateToDate(periode.hjemkomst)
-                                        : kursperiode.to;
+                                    // const kursperiode = ISODateRangeToDateRange(periode.kursperiode);
+                                    // const avreise = periode.avreise ? ISODateToDate(periode.avreise) : kursperiode.from;
+                                    // const hjemkomst = periode.hjemkomst
+                                    //     ? ISODateToDate(periode.hjemkomst)
+                                    //     : kursperiode.to;
 
                                     return (
-                                        <List.Item title={periodeString} key={periodeString}>
-                                            <VStack gap="1">
+                                        <List.Item key={periodeString}>
+                                            {periodeString}
+                                            {/* <VStack gap="1">
                                                 {periode.harTaptArbeidstid ? (
                                                     <>
                                                         <Box>
@@ -88,7 +88,7 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden }: Props) => {
                                                         <AppText id="oppsummering.kurs.kursperiode.harIkkeTaptArbeidsinntekt" />
                                                     </Box>
                                                 )}
-                                            </VStack>
+                                            </VStack> */}
                                         </List.Item>
                                     );
                                 })}

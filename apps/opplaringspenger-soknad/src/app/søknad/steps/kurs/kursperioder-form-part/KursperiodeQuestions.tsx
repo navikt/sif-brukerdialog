@@ -1,37 +1,31 @@
-import { Box, Button } from '@navikt/ds-react';
-import { getTypedFormComponents, ISOStringToDate, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
+import { Box, Button, VStack } from '@navikt/ds-react';
+import { getTypedFormComponents, ISOStringToDate, ValidationError } from '@navikt/sif-common-formik-ds';
 import { ISODate } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '../../../../i18n';
-import {
-    getDateRangeValidator,
-    getDateValidator,
-    getStringValidator,
-    getYesOrNoValidator,
-} from '@navikt/sif-common-formik-ds/src/validation';
+import { getDateRangeValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import { getTillattSøknadsperiode } from '../../../../utils/søknadsperiodeUtils';
 import { useFormikContext } from 'formik';
 import { KursFormFields } from '../KursStep';
 import { Delete } from '@navikt/ds-icons';
-import kursperiodeUtils, { getPerioderFromKursperiodeFormValue } from '../kursperiodeUtils';
+import { getPerioderFromKursperiodeFormValue } from '../kursperiodeUtils';
 import { handleDateRangeValidationError } from '@navikt/sif-common-forms-ds/src/utils';
-import { FormLayout } from '@navikt/sif-common-ui';
 
 export enum KursperiodeFormFields {
     tom = 'tom',
     fom = 'fom',
-    harTaptArbeidstid = 'harTaptArbeidstid',
-    avreise = 'avreise',
-    hjemkomst = 'hjemkomst',
-    beskrivelseReisetid = 'beskrivelseReisetid',
+    // harTaptArbeidstid = 'harTaptArbeidstid',
+    // avreise = 'avreise',
+    // hjemkomst = 'hjemkomst',
+    // beskrivelseReisetid = 'beskrivelseReisetid',
 }
 
 export interface KursperiodeFormValues {
     [KursperiodeFormFields.fom]: ISODate;
     [KursperiodeFormFields.tom]: ISODate;
-    [KursperiodeFormFields.harTaptArbeidstid]: YesOrNo;
-    [KursperiodeFormFields.avreise]?: ISODate;
-    [KursperiodeFormFields.hjemkomst]?: string;
-    [KursperiodeFormFields.beskrivelseReisetid]?: string;
+    // [KursperiodeFormFields.harTaptArbeidstid]: YesOrNo;
+    // [KursperiodeFormFields.avreise]?: ISODate;
+    // [KursperiodeFormFields.hjemkomst]?: string;
+    // [KursperiodeFormFields.beskrivelseReisetid]?: string;
 }
 const Form = getTypedFormComponents<KursperiodeFormFields, KursperiodeFormValues, ValidationError>();
 
@@ -60,15 +54,14 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, allePerioder, o
         .filter((p) => p !== values)
         .map(getPerioderFromKursperiodeFormValue)
         .filter((p) => p !== undefined)
-        .map((periode) => periode.periodeMedReise);
+        .map((p) => p.periode);
 
     const startdato = ISOStringToDate(values[KursperiodeFormFields.fom]);
     const sluttdato = ISOStringToDate(values[KursperiodeFormFields.tom]);
-    const harTaptArbeidstid = values[KursperiodeFormFields.harTaptArbeidstid] === YesOrNo.YES;
     const periodeNr = index + 1;
 
     return (
-        <FormLayout.Questions>
+        <VStack gap="4">
             <Form.DateRangePicker
                 legend={text('kursperiode.form.periode.label', { periodeNr })}
                 hideLegend={harFlerePerioder === false}
@@ -140,7 +133,7 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, allePerioder, o
                     },
                 }}
             />
-            <Form.YesOrNoQuestion
+            {/* <Form.YesOrNoQuestion
                 name={getFieldName(KursperiodeFormFields.harTaptArbeidstid)}
                 legend={text('kursperiode.form.harTaptArbeidstid.label')}
                 validate={(value) => {
@@ -212,7 +205,7 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, allePerioder, o
                         />
                     )}
                 </>
-            ) : null}
+            ) : null} */}
             {harFlerePerioder && onRemove && (
                 <Box>
                     <Button
@@ -226,7 +219,7 @@ const KursperiodeQuestions = ({ values, index, harFlerePerioder, allePerioder, o
                     </Button>
                 </Box>
             )}
-        </FormLayout.Questions>
+        </VStack>
     );
 };
 

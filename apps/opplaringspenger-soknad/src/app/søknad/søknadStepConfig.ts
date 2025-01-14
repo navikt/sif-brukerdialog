@@ -3,23 +3,16 @@ import { StepId } from '../types/StepId';
 import { getSøknadStepRoute } from '../utils/søknadRoutesUtils';
 import { ArbeidssituasjonSøknadsdata, Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 
-const getSøknadSteps = (søknadsdata: Søknadsdata): StepId[] => {
+const getSøknadSteps = (_søknadsdata: Søknadsdata): StepId[] => {
     return [
         StepId.OM_BARNET,
         StepId.KURS,
         StepId.ARBEIDSSITUASJON,
-        ...(skalArbeidstidStegBesvares(søknadsdata) ? [StepId.ARBEIDSTID] : []),
+        StepId.ARBEIDSTID,
         StepId.MEDLEMSKAP,
         StepId.LEGEERKLÆRING,
         StepId.OPPSUMMERING,
     ];
-};
-
-const skalArbeidstidStegBesvares = (søknadsdata: Søknadsdata): boolean => {
-    return (
-        søknadsdata.kurs?.arbeiderIKursperiode === true &&
-        erAnsattFrilanserEllerSelvstendigNæringsdrivende(søknadsdata.arbeidssituasjon)
-    );
 };
 
 export const getSøknadStepConfig = (søknadsdata: Søknadsdata): SoknadStepsConfig<StepId> =>

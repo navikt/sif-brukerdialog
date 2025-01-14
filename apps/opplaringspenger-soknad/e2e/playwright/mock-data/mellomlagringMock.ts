@@ -48,7 +48,7 @@ export const mellomlagringMock = {
                     beskrivelseReisetid: 'kombinerer med ferie',
                 },
             ],
-            arbeiderIKursperiode: true,
+
             ferieuttakIPerioden: {
                 type: 'skalTaUtFerieSøknadsdata',
                 skalTaUtFerieIPerioden: true,

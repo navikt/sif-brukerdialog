@@ -26,10 +26,8 @@ export const getFlereSokereApiData = (flereSokereSvar: YesOrNoDontKnow): FlereSo
     }
 };
 
-export const getDataBruktTilUtledningApiData = (kurs: KursSøknadsdata): DataBruktTilUtledning => {
-    return {
-        arbeiderIKursperiode: kurs.arbeiderIKursperiode,
-    };
+export const getDataBruktTilUtledningApiData = (_kurs: KursSøknadsdata): DataBruktTilUtledning => {
+    return {};
 };
 
 export const getApiDataFromSøknadsdata = (
@@ -68,21 +66,18 @@ export const getApiDataFromSøknadsdata = (
         arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(
             søknadsperiode,
             valgteDatoer,
-            kurs.arbeiderIKursperiode,
             arbeidsgivere,
             arbeidstid?.arbeidsgivere,
         ),
         frilans: getFrilansApiDataFromSøknadsdata({
             søknadsperiode,
             dagerMedOpplæring: valgteDatoer,
-            skalJobbeIPerioden: kurs.arbeiderIKursperiode,
             frilans,
             arbeidIPeriode: arbeidstid?.frilans,
         }),
         selvstendigNæringsdrivende: getSelvstendigApiDataFromSøknadsdata({
             søknadsperiode,
             dagerMedOpplæring: valgteDatoer,
-            skalJobbeIPerioden: kurs.arbeiderIKursperiode,
             selvstendig,
             arbeidIperiode: arbeidstid?.selvstendig,
         }),

@@ -31,7 +31,7 @@ import { dateRangeUtils, ISODateToDate } from '@navikt/sif-common-utils';
 export enum KursFormFields {
     opplæringsinstitusjon = 'opplæringsinstitusjon',
     kursperioder = 'kursperioder',
-    arbeiderIKursperiode = 'arbeiderIKursperiode',
+    reiserUtenforKursdager = 'reiserUtenforKursdager',
     skalTaUtFerieIPerioden = 'skalTaUtFerieIPerioden',
     ferieuttak = 'ferieuttak',
 }
@@ -39,7 +39,6 @@ export enum KursFormFields {
 export interface KursFormValues {
     [KursFormFields.opplæringsinstitusjon]?: string;
     [KursFormFields.kursperioder]: Partial<KursperiodeFormValues>[];
-    [KursFormFields.arbeiderIKursperiode]?: YesOrNo;
     [KursFormFields.skalTaUtFerieIPerioden]?: YesOrNo;
     [KursFormFields.ferieuttak]?: Ferieuttak[];
 }
@@ -92,6 +91,7 @@ const KursStep = () => {
                 onSubmit={handleSubmit}
                 renderForm={({ values }) => {
                     const søknadsperiode = getSøknadsperiodeFromKursperioderFormValues(values.kursperioder);
+                    const reiserUtenforKursdager = values[KursFormFields.reiserUtenforKursdager] === YesOrNo.YES;
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -154,10 +154,27 @@ const KursStep = () => {
                                     </FormikInputGroup>
 
                                     <YesOrNoQuestion
-                                        name={KursFormFields.arbeiderIKursperiode}
-                                        legend={text('steg.kurs.arbeiderIKursperiode.label')}
+                                        name={KursFormFields.reiserUtenforKursdager}
+                                        legend={text('steg.kurs.reiserUtenforKursdager.label')}
                                         validate={getYesOrNoValidator()}
                                     />
+                                    {reiserUtenforKursdager ? (
+                                        <FormLayout.QuestionBleedTop>
+                                            <FormLayout.Panel>
+                                                <FerieuttakListAndDialog
+                                                    labels={{
+                                                        addLabel: text('steg.kurs.ferie.addLabel'),
+                                                        modalTitle: text('steg.kurs.ferie.modalTitle'),
+                                                        listTitle: text('steg.kurs.ferie.listTitle'),
+                                                    }}
+                                                    name={KursFormFields.ferieuttak}
+                                                    minDate={søknadsperiode?.from || gyldigSøknadsperiode.from}
+                                                    maxDate={søknadsperiode?.to || gyldigSøknadsperiode.to}
+                                                    validate={getListValidator({ required: true })}
+                                                />
+                                            </FormLayout.Panel>
+                                        </FormLayout.QuestionBleedTop>
+                                    ) : null}
 
                                     <YesOrNoQuestion
                                         name={KursFormFields.skalTaUtFerieIPerioden}
