@@ -16,17 +16,17 @@
         "@navikt/ds-css": "7.9.1",
         "@navikt/ds-react": "7.9.1",
         "@sif/eslint-config": "*",
-        "@types/node": "22.10.5",
-        "@types/react": "19.0.6",
+        "@types/node": "22.10.6",
+        "@types/react": "19.0.7",
         "@types/react-dom": "19.0.3",
         "config": "*",
         "copyfiles": "2.4.1",
-        "postcss": "8.4.49",
+        "postcss": "8.5.1",
         "prop-types": "15.8.1",
         "react": "19.0.0",
         "react-dom": "19.0.0",
         "rimraf": "6.0.1",
-        "sass": "1.83.1"
+        "sass": "1.83.4"
     },
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
