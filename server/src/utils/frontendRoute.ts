@@ -32,6 +32,8 @@ export const setupAndServeHtml = async (app: Express) => {
     }
 
     const renderedHtml = html.replaceAll('{{{APP_SETTINGS}}}', JSON.stringify(envs.data));
+    console.log(JSON.stringify(config.app.publicEnvVariables));
+    console.log(JSON.stringify(envs.data));
 
     app.get(/^\/(?!.*dist).*$/, async (_request, response) => {
         return response.send(renderedHtml);
