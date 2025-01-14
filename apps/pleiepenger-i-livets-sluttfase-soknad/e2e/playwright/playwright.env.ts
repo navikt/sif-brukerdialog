@@ -10,6 +10,7 @@ export const playwrightEnv: AppEnv = {
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
     SIF_PUBLIC_USE_AMPLITUDE: 'false',
     SIF_PUBLIC_DEKORATOR_URL: 'https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&',
+    SIF_PUBLIC_FEATURE_NYNORSK: 'on',
     SIF_PUBLIC_LOGIN_URL:
         'ttp://localhost:8089/auth-mock/cookie?subject=mockSubject&redirect_location=http://localhost:8080',
     SIF_PUBLIC_MINSIDE_URL: 'https://www.intern.dev.nav.no/minside',

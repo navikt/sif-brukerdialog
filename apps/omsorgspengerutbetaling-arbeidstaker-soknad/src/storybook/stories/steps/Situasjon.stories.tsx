@@ -24,7 +24,7 @@ export default {
     parameters: {
         mockData: [
             {
-                url: 'http://localhost:8089/oppslag/arbeidsgiver?fra_og_med=2024-01-01&til_og_med=2024-04-30',
+                url: '/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker/api/oppslag/arbeidsgiver?fra_og_med=2024-01-01&til_og_med=2024-04-30',
                 method: 'GET',
                 status: 200,
                 response: arbeidsgivereStorybookMock,

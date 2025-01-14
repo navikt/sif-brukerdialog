@@ -1,10 +1,15 @@
 {
-    "author": "NAV",
+    "author": {
+        "name": "NAV"
+    },
     "description": "Søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn",
     "license": "MIT",
     "name": "@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",
     "version": "1.32.0",
-    "repository": "https://github.com/navikt/sif-brukerdialog",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/navikt/sif-brukerdialog.git"
+    },
     "private": true,
     "type": "module",
     "scripts": {
@@ -22,12 +27,14 @@
         "start-e2e-server": "node ./e2e/server/server.cjs",
         "start-express": "node ./server.cjs",
         "storybook": "storybook dev -p 6006",
-        "test": "vitest run"
+        "build-storybook": "storybook build",
+        "test": "vitest run",
+        "chromatic": "npx chromatic --project-token=chpt_7e1abb37d98312a"
     },
     "dependencies": {
-        "@navikt/ds-css": "7.8.0",
-        "@navikt/ds-react": "7.8.0",
-        "@navikt/ds-tailwind": "7.8.0",
+        "@navikt/ds-css": "7.9.1",
+        "@navikt/ds-react": "7.9.1",
+        "@navikt/ds-tailwind": "7.9.1",
         "@navikt/sif-app-register": "*",
         "@navikt/sif-common-amplitude": "*",
         "@navikt/sif-common-core-ds": "*",
@@ -44,14 +51,14 @@
         "csp-header": "6.0.0",
         "dayjs": "1.11.13",
         "formik": "2.4.6",
-        "html-react-parser": "5.2.1",
+        "html-react-parser": "5.2.2",
         "jsdom": "25.0.1",
         "object-hash": "3.0.0",
         "react": "19.0.0",
         "react-dom": "19.0.0",
         "react-fast-compare": "3.2.2",
-        "react-intl": "7.0.4",
-        "react-router-dom": "7.0.2"
+        "react-intl": "7.1.0",
+        "react-router-dom": "7.1.1"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.10.1",
@@ -66,10 +73,11 @@
         "@testing-library/dom": "10.4.0",
         "@testing-library/react": "16.1.0",
         "@types/object-hash": "3.0.6",
-        "@types/react": "19.0.1",
-        "@types/react-dom": "19.0.2",
+        "@types/react": "19.0.6",
+        "@types/react-dom": "19.0.3",
         "@types/react-router-dom": "5.3.3",
         "babel-polyfill": "6.26.0",
+        "chromatic": "11.22.2",
         "compression": "1.7.5",
         "cross-env": "7.0.3",
         "dotenv": "16.4.7",
@@ -80,8 +88,8 @@
         "playwright-core": "1.49.1",
         "rimraf": "6.0.1",
         "storybook": "8.4.7",
-        "typescript": "5.7.2",
-        "vite": "6.0.3",
+        "typescript": "5.7.3",
+        "vite": "6.0.7",
         "vite-plugin-checker": "0.8.0",
         "vitest": "2.1.8"
     },
@@ -96,5 +104,9 @@
                 }
             }
         ]
-    }
+    },
+    "bugs": {
+        "url": "https://github.com/navikt/sif-brukerdialog/issues"
+    },
+    "homepage": "https://github.com/navikt/sif-brukerdialog#readme"
 }

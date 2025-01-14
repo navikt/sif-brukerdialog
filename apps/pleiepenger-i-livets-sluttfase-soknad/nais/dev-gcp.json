@@ -25,7 +25,7 @@
         "SIF_PUBLIC_AMPLITUDE_API_KEY": "default",
         "SIF_PUBLIC_USE_AMPLITUDE": "false",
         "SIF_PUBLIC_APPSTATUS_DATASET": "staging",
-
+        "SIF_PUBLIC_FEATURE_NYNORSK": "on",
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
         "SIF_PUBLIC_DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://pleiepenger-i-livets-sluttfase.intern.dev.nav.no/oauth2/logout",
         "SIF_PUBLIC_LOGIN_URL": "https://pleiepenger-i-livets-sluttfase.intern.dev.nav.no/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/soknad",

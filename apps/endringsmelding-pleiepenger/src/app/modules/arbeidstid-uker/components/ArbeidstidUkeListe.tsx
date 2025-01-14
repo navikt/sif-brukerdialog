@@ -1,20 +1,20 @@
 import { BodyShort, Heading } from '@navikt/ds-react';
-import React from 'react';
+import React, { ReactElement } from 'react';
 import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { SelectableListType } from '../../../hooks/useSelectableList';
+import { AppText } from '../../../i18n';
 import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
 import ArbeidstidUkeInfoListe from './ArbeidstidUkeInfoListe';
 import UkeTags from './UkeTags';
 import VelgArbeidsukeItem from './VelgArbeidsukeItem';
-import { AppText } from '../../../i18n';
 
 interface Props {
     uker: ArbeidstidUkerItem[];
     selectableList: SelectableListType<ArbeidstidUkerItem>;
     visEndringSomOpprinnelig?: boolean;
-    renderEditButton: (uke: ArbeidstidUkerItem, ukenummer: number, renderLabel: boolean) => JSX.Element | undefined;
+    renderEditButton: (uke: ArbeidstidUkerItem, ukenummer: number, renderLabel: boolean) => ReactElement | undefined;
 }
 
 const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({

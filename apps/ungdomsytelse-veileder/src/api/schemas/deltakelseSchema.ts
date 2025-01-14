@@ -1,6 +1,27 @@
 import { z } from 'zod';
 import { parseMaybeDateStringToDate } from '@navikt/sif-common-api/src/utils/jsonParseUtils';
-import { dateRangeUtils } from '@navikt/sif-common-utils';
+import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
+import { isBefore } from 'date-fns';
+
+const erDeltakelseAktiv = (harSøkt: boolean, fraOgMed: Date, tilOgMed: Date | undefined): boolean => {
+    if (!harSøkt) {
+        return false;
+    }
+    if (tilOgMed) {
+        return dateRangeUtils.isDateInDateRange(new Date(), { from: fraOgMed, to: tilOgMed });
+    }
+    return isBefore(fraOgMed, new Date());
+};
+
+const erDeltakelseAvsluttet = (harSøkt: boolean, tilOgMed: Date | undefined): boolean => {
+    if (!harSøkt) {
+        return false;
+    }
+    if (!tilOgMed) {
+        return false;
+    }
+    return isBefore(tilOgMed, new Date());
+};
 
 export const deltakelseSchema = z
     .object({
@@ -23,7 +44,12 @@ export const deltakelseSchema = z
     })
     .transform((data) => ({
         ...data,
-        erAktiv: !data.tilOgMed
-            ? true
-            : dateRangeUtils.isDateInDateRange(new Date(), { from: data.fraOgMed, to: data.tilOgMed }),
+        erAktiv: erDeltakelseAktiv(data.harSøkt, data.fraOgMed, data.tilOgMed),
+        erAvsluttet: erDeltakelseAvsluttet(data.harSøkt, data.tilOgMed),
+        periode: data.tilOgMed
+            ? ({
+                  from: data.fraOgMed,
+                  to: data.tilOgMed,
+              } as DateRange)
+            : undefined,
     }));

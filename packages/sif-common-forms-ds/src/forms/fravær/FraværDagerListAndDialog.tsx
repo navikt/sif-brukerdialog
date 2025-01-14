@@ -1,3 +1,4 @@
+import { ReactElement } from 'react';
 import {
     FormikModalFormAndList,
     ModalFormAndListLabels,
@@ -13,9 +14,9 @@ interface Props<FieldNames> extends TypedFormInputValidationProps<FieldNames, Va
     name: FieldNames;
     minDate: Date;
     maxDate: Date;
-    dagDescription?: JSX.Element;
+    dagDescription?: ReactElement;
     labels: ModalFormAndListLabels;
-    formHeaderContent?: JSX.Element;
+    formHeaderContent?: ReactElement;
     dateRangesToDisable?: DateRange[];
     helgedagerIkkeTillatt?: boolean;
     maksArbeidstidPerDag?: number;

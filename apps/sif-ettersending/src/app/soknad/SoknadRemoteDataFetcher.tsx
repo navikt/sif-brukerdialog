@@ -1,3 +1,4 @@
+import { ReactElement } from 'react';
 import { useParams } from 'react-router-dom';
 import { ErrorPage, LoadingPage, SoknadErrorMessages } from '@navikt/sif-common-soknad-ds';
 import useSoknadEssentials from '../hooks/useSoknadEssentials';
@@ -29,7 +30,7 @@ const getSøknadstypeFromUrlParam = (param?: string): Søknadstype | undefined =
     return undefined;
 };
 
-const SoknadRemoteDataFetcher = (): JSX.Element => {
+const SoknadRemoteDataFetcher = (): ReactElement => {
     const { text } = useAppIntl();
     const { soknadstype } = useParams();
     const søknadstype = getSøknadstypeFromUrlParam(soknadstype);
@@ -51,7 +52,7 @@ const SoknadRemoteDataFetcher = (): JSX.Element => {
         return (
             <ErrorPage
                 bannerTitle={text(`application.title.${søknadstype}`)}
-                contentRenderer={(): JSX.Element => (
+                contentRenderer={(): ReactElement => (
                     <>
                         <SoknadErrorMessages.GeneralApplicationError />
                     </>
