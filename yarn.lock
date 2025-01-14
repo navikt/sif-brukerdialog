@@ -5630,7 +5630,7 @@ __metadata:
     "@storybook/react-vite": "npm:8.4.7"
     "@storybook/test": "npm:8.4.7"
     "@types/node": "npm:22.10.5"
-    "@types/object-hash": "npm:^3"
+    "@types/object-hash": "npm:3.0.6"
     "@types/react": "npm:19.0.6"
     "@types/react-dom": "npm:19.0.3"
     "@typescript-eslint/parser": "npm:8.19.1"
@@ -5665,7 +5665,7 @@ __metadata:
     react-router-dom: "npm:7.1.1"
     storybook: "npm:8.4.7"
     stylelint: "npm:16.13.0"
-    swr: "npm:^2.2.5"
+    swr: "npm:2.2.5"
     tailwindcss: "npm:3.4.17"
     typescript: "npm:5.7.3"
     typescript-eslint: "npm:8.19.1"
@@ -10463,7 +10463,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/object-hash@npm:3.0.6, @types/object-hash@npm:^3":
+"@types/object-hash@npm:3.0.6":
   version: 3.0.6
   resolution: "@types/object-hash@npm:3.0.6"
   checksum: 10/2c7979d4e540af817b99c09fb4c2fed1c0b0e14342df474d8dcde4165a82c440b038341fd66fe998d9f86acdd5cccc65ba8092315e39e7c2114f945fa70aaa56
@@ -27333,6 +27333,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"swr@npm:2.2.5":
+  version: 2.2.5
+  resolution: "swr@npm:2.2.5"
+  dependencies:
+    client-only: "npm:^0.0.1"
+    use-sync-external-store: "npm:^1.2.0"
+  peerDependencies:
+    react: ^16.11.0 || ^17.0.0 || ^18.0.0
+  checksum: 10/f02b3bd5a198a0f62f9a53d7c0528c4a58aa61a43310bea169614b6e873dadb52599e856ef0775405b6aa7409835343da0cf328948aa892aa309bf4b7e7d6902
+  languageName: node
+  linkType: hard
+
 "swr@npm:2.3.0":
   version: 2.3.0
   resolution: "swr@npm:2.3.0"
@@ -27342,18 +27354,6 @@ __metadata:
   peerDependencies:
     react: ^16.11.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
   checksum: 10/9f09a68a0dcd354915c7098b000197190aa5faa39c6caec7b91c3b9b682de79173abd5b733cd07cc3e79ee8a1eb294f7d2162716c515d1e4d7c1283d4342fda8
-  languageName: node
-  linkType: hard
-
-"swr@npm:^2.2.5":
-  version: 2.2.5
-  resolution: "swr@npm:2.2.5"
-  dependencies:
-    client-only: "npm:^0.0.1"
-    use-sync-external-store: "npm:^1.2.0"
-  peerDependencies:
-    react: ^16.11.0 || ^17.0.0 || ^18.0.0
-  checksum: 10/f02b3bd5a198a0f62f9a53d7c0528c4a58aa61a43310bea169614b6e873dadb52599e856ef0775405b6aa7409835343da0cf328948aa892aa309bf4b7e7d6902
   languageName: node
   linkType: hard
 

@@ -61,17 +61,6 @@ const deltakelse1 = {
     harSøkt: true,
 };
 const deltakelse2 = {
-    id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab0-2',
-    deltakerIdent: '03867198392',
-    deltaker: {
-        id: 'd-r',
-        deltakerIdent: '03867198392',
-    },
-    fraOgMed: '2024-09-01',
-    tilOgMed: '2025-01-01',
-    harSøkt: true,
-};
-const deltakelse2 = {
     id: '3ebb8cb3-a2eb-45a5-aeee-22a2766aaab2',
     deltakerIdent: '03867198392',
     deltaker: {
