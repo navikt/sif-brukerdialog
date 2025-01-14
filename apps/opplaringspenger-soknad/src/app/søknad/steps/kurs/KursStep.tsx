@@ -26,12 +26,15 @@ import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/src/forms/ferie
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/src';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { KursperiodeFormValues } from './kursperioder-form-part/KursperiodeQuestions';
-import { dateRangeUtils, ISODateToDate } from '@navikt/sif-common-utils';
+import { dateRangeUtils, ISODate, ISODateToDate } from '@navikt/sif-common-utils';
+import ReisedagerFormPart from './kursperioder-form-part/ReisedagerFormPart';
 
 export enum KursFormFields {
     opplæringsinstitusjon = 'opplæringsinstitusjon',
     kursperioder = 'kursperioder',
     reiserUtenforKursdager = 'reiserUtenforKursdager',
+    reisedager = 'reisedager',
+    reisedagerBeskrivelse = 'reisedagerBeskrivelse',
     skalTaUtFerieIPerioden = 'skalTaUtFerieIPerioden',
     ferieuttak = 'ferieuttak',
 }
@@ -39,6 +42,8 @@ export enum KursFormFields {
 export interface KursFormValues {
     [KursFormFields.opplæringsinstitusjon]?: string;
     [KursFormFields.kursperioder]: Partial<KursperiodeFormValues>[];
+    [KursFormFields.reisedager]?: ISODate[];
+    [KursFormFields.reisedagerBeskrivelse]?: string;
     [KursFormFields.skalTaUtFerieIPerioden]?: YesOrNo;
     [KursFormFields.ferieuttak]?: Ferieuttak[];
 }
@@ -160,19 +165,7 @@ const KursStep = () => {
                                     />
                                     {reiserUtenforKursdager ? (
                                         <FormLayout.QuestionBleedTop>
-                                            <FormLayout.Panel>
-                                                <FerieuttakListAndDialog
-                                                    labels={{
-                                                        addLabel: text('steg.kurs.ferie.addLabel'),
-                                                        modalTitle: text('steg.kurs.ferie.modalTitle'),
-                                                        listTitle: text('steg.kurs.ferie.listTitle'),
-                                                    }}
-                                                    name={KursFormFields.ferieuttak}
-                                                    minDate={søknadsperiode?.from || gyldigSøknadsperiode.from}
-                                                    maxDate={søknadsperiode?.to || gyldigSøknadsperiode.to}
-                                                    validate={getListValidator({ required: true })}
-                                                />
-                                            </FormLayout.Panel>
+                                            <ReisedagerFormPart />
                                         </FormLayout.QuestionBleedTop>
                                     ) : null}
 
