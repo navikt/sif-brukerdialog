@@ -2,6 +2,8 @@ export const arbeidstidMessages = {
     nb: {
         'arbeidIPeriode.StepInfo.1':
             'Du har fortalt oss at du skal jobbe noe de dagene du skal gi pleie. Så, nå må du legge inn i kalenderen hvor mye du skal jobbe.',
+        'arbeidIPeriode.arbeidstaker.kontaktArbeidsgiver.info':
+            'Vi kontakter arbeidsgiveren din hvis vi trenger inntektsmelding for å behandle søknaden.',
         'arbeidIPeriode.FrilansLabel': 'Frilans',
         'arbeidIPeriode.SNLabel': 'Selvstendig næringsdrivende',
         'arbeidIPeriode.jobberIPerioden.spm': 'I dagene du søker for, hvilken situasjon gjelder for deg {hvor}?',
