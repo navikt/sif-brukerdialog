@@ -33,7 +33,7 @@
         "globals": "15.14.0",
         "intl": "1.2.5",
         "less": "4.2.1",
-        "postcss": "8.4.49",
+        "postcss": "8.5.0",
         "react": "19.0.0",
         "react-dom": "19.0.0",
         "react-intl": "7.1.0",

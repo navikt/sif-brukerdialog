@@ -52,7 +52,7 @@
         "formik": "2.4.6",
         "msw": "2.7.0",
         "msw-storybook-addon": "2.0.4",
-        "postcss": "8.4.49",
+        "postcss": "8.5.0",
         "prop-types": "15.8.1",
         "react": "19.0.0",
         "react-day-picker": "8.10.1",
