@@ -71,7 +71,6 @@ const getPublicEnvVariables = () => {
         if (key.startsWith('SIF_PUBLIC_')) {
             publicEnv[key] = value || '';
         }
-        console.log('envKeys', key);
     }
     return publicEnv;
 };
