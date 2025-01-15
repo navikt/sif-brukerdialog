@@ -35,6 +35,8 @@ const nb = {
 const nn: Record<keyof typeof nb, string> = {
     'arbeidIPeriode.StepInfo.1':
         'Du har fortalt oss at du skal jobbe noko dei dagane du skal gi pleie. No må du leggje inn i kalenderen kor mykje du skal jobbe.',
+    'arbeidIPeriode.arbeidstaker.kontaktArbeidsgiver.info':
+        'Vi kontaktar arbeidsgivaren din viss vi treng inntektsmelding for å handsame søknaden.',
     'arbeidIPeriode.FrilansLabel': 'Frilans',
     'arbeidIPeriode.SNLabel': 'Sjølvstendig næringsdrivande',
     'arbeidIPeriode.jobberIPerioden.spm': 'I dagane du søkjer for, kva situasjon gjeld for deg {hvor}?',
