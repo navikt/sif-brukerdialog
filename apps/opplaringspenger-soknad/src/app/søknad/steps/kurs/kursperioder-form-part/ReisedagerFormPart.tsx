@@ -47,7 +47,6 @@ const ReisedagerFormPart = ({ kursperioder, søknadsperiode }: Props) => {
                         required: true,
                         maxLength: 250,
                         minLength: 5,
-                        disallowUnicodeCharacters: true,
                     })}
                     description="Fordi du reiser på andre dager enn du har kurs eller opplæring, må du beskrive hvorfor."
                 />

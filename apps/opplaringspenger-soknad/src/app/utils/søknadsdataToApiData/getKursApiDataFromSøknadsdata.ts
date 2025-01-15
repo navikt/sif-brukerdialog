@@ -1,10 +1,11 @@
-import { dateRangeToISODateRange } from '@navikt/sif-common-utils';
+import { dateRangeToISODateRange, dateToISODate } from '@navikt/sif-common-utils';
 import { KursApiData, KursperiodeApiData } from '../../types/søknadApiData/SøknadApiData';
 import { KursSøknadsdata } from '../../types/søknadsdata/KursSøknadsdata';
 
 export const getKursApiDataFromSøknadsdata = ({
-    kursholder: kursholder,
+    kursholder,
     kursperioder,
+    reisedager,
 }: KursSøknadsdata): KursApiData => {
     const apiData: KursApiData = {
         kursholder,
@@ -18,6 +19,14 @@ export const getKursApiDataFromSøknadsdata = ({
                     // beskrivelseReisetid: p.beskrivelseReisetid,
                 },
         ),
+        reisedager:
+            reisedager.reiserUtenforKursdager === true
+                ? {
+                      reiserUtenforKursdager: true,
+                      reisedager: reisedager.reisedager.map((d) => dateToISODate(d.dato)),
+                      reisedagerBeskrivelse: reisedager.reisedagerBeskrivelse,
+                  }
+                : { reiserUtenforKursdager: false },
     };
     return apiData;
 };

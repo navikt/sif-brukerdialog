@@ -8,14 +8,17 @@ export * from './OmBarnetApiData';
 
 export interface KursperiodeApiData {
     kursperiode: ISODateRange;
-    // harTaptArbeidstid: boolean;
-    // avreise: ISODate;
-    // hjemkomst: ISODate;
-    // beskrivelseReisetid?: string;
 }
 
 export interface KursApiData {
     kursholder: string;
+    reisedager:
+        | {
+              reiserUtenforKursdager: true;
+              reisedager: ISODate[];
+              reisedagerBeskrivelse?: string;
+          }
+        | { reiserUtenforKursdager: false };
     perioder: KursperiodeApiData[];
 }
 

@@ -100,15 +100,9 @@ const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
         });
     }
 
-    const aktiveArbeidsforhold = alleArbeidsforhold.filter((a) => a.erAktivIPeriode);
-
-    if (aktiveArbeidsforhold.length === 0) {
-        return null;
-    }
-
     return (
         <>
-            {aktiveArbeidsforhold.length > 0 && (
+            {alleArbeidsforhold.length > 0 && (
                 <FormSummary>
                     <FormSummary.Header>
                         <FormSummary.Heading level="2">
@@ -117,7 +111,7 @@ const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
                         {onEdit && <EditStepLink onEdit={onEdit} />}
                     </FormSummary.Header>
                     <FormSummary.Answers>
-                        {aktiveArbeidsforhold.map((forhold) => (
+                        {alleArbeidsforhold.map((forhold) => (
                             <FormSummary.Answer key={forhold.tittel}>
                                 {forhold.arbeidIPeriode ? (
                                     <>
@@ -128,7 +122,6 @@ const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
                                         </FormSummary.Label>
                                         <FormSummary.Value>
                                             <ArbeidIPeriodeSummaryItem
-                                                harFlereArbeidsforhold={aktiveArbeidsforhold.length > 1}
                                                 periode={søknadsperiode}
                                                 valgteDatoer={valgteDatoer}
                                                 arbeidIPeriode={forhold.arbeidIPeriode}

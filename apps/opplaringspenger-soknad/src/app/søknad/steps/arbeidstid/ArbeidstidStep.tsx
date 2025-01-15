@@ -237,7 +237,7 @@ const ArbeidstidStep = () => {
                                                                 onArbeidstidEnkeltdagRegistrert={
                                                                     logArbeidEnkeltdagRegistrert
                                                                 }
-                                                                skjulJobberNormaltValg={antallArbeidsforhold === 1}
+                                                                skjulJobberNormaltValg={false}
                                                             />
                                                         </Block>
                                                     </FormBlock>

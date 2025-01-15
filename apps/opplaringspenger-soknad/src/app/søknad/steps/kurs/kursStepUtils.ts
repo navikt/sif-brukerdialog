@@ -159,7 +159,7 @@ export const extractReisedagerSøknadsdata = (values: KursFormValues): Reisedage
         }
         return {
             reiserUtenforKursdager: true,
-            reisedager,
+            reisedager: reisedager,
             reisedagerBeskrivelse,
         };
     }

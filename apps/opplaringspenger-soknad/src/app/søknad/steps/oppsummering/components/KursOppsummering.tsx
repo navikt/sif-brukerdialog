@@ -1,8 +1,15 @@
-import { FormSummary, List } from '@navikt/ds-react';
+import { FormSummary, List, VStack } from '@navikt/ds-react';
 import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
 import { AppText, useAppIntl } from '../../../../i18n';
 import { FerieuttakIPeriodenApiData, KursApiData } from '../../../../types/søknadApiData/SøknadApiData';
-import { dateFormatter, dateRangeFormatter, ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils';
+import {
+    capsFirstCharacter,
+    dateFormatter,
+    dateRangeFormatter,
+    ISODateRangeToDateRange,
+    ISODateToDate,
+} from '@navikt/sif-common-utils';
+import { Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 
 interface Props {
     kurs: KursApiData;
@@ -31,7 +38,7 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden }: Props) => {
                     </FormSummary.Answer>
                     <FormSummary.Answer>
                         <FormSummary.Label>
-                            <AppText id="oppsummering.kurs.perioder" values={{ perioder: perioder.length }} />
+                            <AppText id="oppsummering.kurs.perioder" />
                         </FormSummary.Label>
                         <FormSummary.Value>
                             <List>
@@ -40,61 +47,48 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden }: Props) => {
                                         ISODateRangeToDateRange(periode.kursperiode),
                                         locale,
                                     );
-                                    // const kursperiode = ISODateRangeToDateRange(periode.kursperiode);
-                                    // const avreise = periode.avreise ? ISODateToDate(periode.avreise) : kursperiode.from;
-                                    // const hjemkomst = periode.hjemkomst
-                                    //     ? ISODateToDate(periode.hjemkomst)
-                                    //     : kursperiode.to;
-
-                                    return (
-                                        <List.Item key={periodeString}>
-                                            {periodeString}
-                                            {/* <VStack gap="1">
-                                                {periode.harTaptArbeidstid ? (
-                                                    <>
-                                                        <Box>
-                                                            <AppText id="oppsummering.kurs.kursperiode.harTaptArbeidsinntekt" />
-                                                        </Box>
-                                                        <Box>
-                                                            <AppText
-                                                                id="oppsummering.kurs.kursperiode.avreise"
-                                                                values={{ dato: dateFormatter.compact(avreise) }}
-                                                            />
-                                                        </Box>
-                                                        <Box>
-                                                            <AppText
-                                                                id="oppsummering.kurs.kursperiode.hjemkomst"
-                                                                values={{ dato: dateFormatter.compact(hjemkomst) }}
-                                                            />
-                                                        </Box>
-                                                        <Box>
-                                                            {periode.beskrivelseReisetid ? (
-                                                                <>
-                                                                    <Box>
-                                                                        <AppText id="oppsummering.kurs.kursperiode.årsakReisetid" />
-                                                                    </Box>
-                                                                    <Sitat>
-                                                                        <TextareaSvar
-                                                                            text={periode.beskrivelseReisetid}
-                                                                            spacing={false}
-                                                                        />
-                                                                    </Sitat>
-                                                                </>
-                                                            ) : null}
-                                                        </Box>
-                                                    </>
-                                                ) : (
-                                                    <Box>
-                                                        <AppText id="oppsummering.kurs.kursperiode.harIkkeTaptArbeidsinntekt" />
-                                                    </Box>
-                                                )}
-                                            </VStack> */}
-                                        </List.Item>
-                                    );
+                                    return <List.Item key={periodeString}>{periodeString}</List.Item>;
                                 })}
                             </List>
                         </FormSummary.Value>
                     </FormSummary.Answer>
+                    {kurs.reisedager.reiserUtenforKursdager ? (
+                        <FormSummary.Answer>
+                            <FormSummary.Label>
+                                Reisedager du søker opplæringspenger for, som er dager utenfor kurs eller opplæring
+                            </FormSummary.Label>
+                            <FormSummary.Value>
+                                {kurs.reisedager.reiserUtenforKursdager ? (
+                                    <VStack>
+                                        <List>
+                                            {kurs.reisedager.reisedager.map((reisedag) => {
+                                                return (
+                                                    <List.Item key={reisedag}>
+                                                        {capsFirstCharacter(
+                                                            dateFormatter.dayCompactDate(ISODateToDate(reisedag)),
+                                                        )}
+                                                    </List.Item>
+                                                );
+                                            })}
+                                        </List>
+                                        <Sitat>
+                                            <TextareaSvar text={kurs.reisedager.reisedagerBeskrivelse} />
+                                        </Sitat>
+                                    </VStack>
+                                ) : (
+                                    <>Har ikke reisedager som er utenfor </>
+                                )}
+                            </FormSummary.Value>
+                        </FormSummary.Answer>
+                    ) : (
+                        <FormSummary.Answer>
+                            <FormSummary.Label>
+                                <AppText id="oppsummering.kurs.reisedager" />
+                            </FormSummary.Label>
+                            <FormSummary.Value>Nei, reiser ikke utenfor</FormSummary.Value>
+                        </FormSummary.Answer>
+                    )}
+
                     {ferieuttakIPerioden && (
                         <>
                             <FormSummary.Answer>

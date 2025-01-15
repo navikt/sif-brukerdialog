@@ -18,14 +18,8 @@ const nb = {
 
     'oppsummering.kurs.header': 'Om opplæringen',
     'oppsummering.kurs.institusjon': 'Hvor foregår opplæringen?',
-    'oppsummering.kurs.perioder': 'Hvilke dager er opplæringen?',
-    'oppsummering.kurs.kursperiode.harTaptArbeidsinntekt':
-        'Er borte fra jobb på grunn av reise til eller fra opplæringstedet: Ja',
-    'oppsummering.kurs.kursperiode.harIkkeTaptArbeidsinntekt':
-        'Er borte fra jobb på grunn av reise til eller fra opplæringstedet: Nei',
-    'oppsummering.kurs.kursperiode.årsakReisetid': 'Beskrivelse av reisetid:',
-    'oppsummering.kurs.kursperiode.avreise': 'Avreise: {dato}',
-    'oppsummering.kurs.kursperiode.hjemkomst': 'Hjemkomst: {dato}',
+    'oppsummering.kurs.perioder': 'Hvilke dager søker du opplæringspenger?',
+    'oppsummering.kurs.reisedager': 'Reiser du på dager du ikke har kurs eller opplæring?',
 
     'oppsummering.kurs.ferieuttakIPerioden.header': 'Skal du ta ut ferie i perioden?',
     'oppsummering.kurs.ferieuttakIPerioden.listTitle': 'Ferie i perioden',
