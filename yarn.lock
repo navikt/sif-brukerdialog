@@ -8455,6 +8455,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sanity/ui@npm:^2.11.2":
+  version: 2.11.2
+  resolution: "@sanity/ui@npm:2.11.2"
+  dependencies:
+    "@floating-ui/react-dom": "npm:^2.1.2"
+    "@sanity/color": "npm:^3.0.6"
+    "@sanity/icons": "npm:^3.5.7"
+    csstype: "npm:^3.1.3"
+    framer-motion: "npm:^11.16.0"
+    react-compiler-runtime: "npm:19.0.0-beta-55955c9-20241229"
+    react-refractor: "npm:^2.2.0"
+    use-effect-event: "npm:^1.0.2"
+  peerDependencies:
+    react: ^18 || >=19.0.0-0
+    react-dom: ^18 || >=19.0.0-0
+    react-is: ^18 || >=19.0.0-0
+    styled-components: ^5.2 || ^6
+  checksum: 10/c6456087d13236ef024584333a8facb97d091d0f0aa93e9ee4be23ac6c280866cff775a9b279897718528cb2dadc8fdd813711ae5002c0be2548f434dc8933c8
+  languageName: node
+  linkType: hard
+
 "@sanity/util@npm:3.68.3":
   version: 3.68.3
   resolution: "@sanity/util@npm:3.68.3"
@@ -8491,9 +8512,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/vision@npm:3.69.0":
-  version: 3.69.0
-  resolution: "@sanity/vision@npm:3.69.0"
+"@sanity/vision@npm:3.70.0":
+  version: 3.70.0
+  resolution: "@sanity/vision@npm:3.70.0"
   dependencies:
     "@codemirror/autocomplete": "npm:^6.1.0"
     "@codemirror/commands": "npm:^6.0.1"
@@ -8508,7 +8529,7 @@ __metadata:
     "@rexxars/react-split-pane": "npm:^1.0.0"
     "@sanity/color": "npm:^3.0.0"
     "@sanity/icons": "npm:^3.5.7"
-    "@sanity/ui": "npm:^2.11.1"
+    "@sanity/ui": "npm:^2.11.2"
     "@uiw/react-codemirror": "npm:^4.11.4"
     is-hotkey-esm: "npm:^1.0.0"
     json-2-csv: "npm:^5.5.1"
@@ -8519,7 +8540,7 @@ __metadata:
   peerDependencies:
     react: ^18 || ^19.0.0
     styled-components: ^6.1
-  checksum: 10/09e5c3fd6419fbbfc9cae1fe76b6efeee19255082c4adacd2f56c452966e2e2d6d8ca01bb3ce5e58fa2127c4386cbe0860e9c183eba7e0f8027cdbb52b44f066
+  checksum: 10/6ac3a902c087f37bf36015b5fbd1a0b8cf0e437182d499bf2ff576dc497316e2c548c76bbf161494afcd21fe2eda1a1dadea1f241682dec7321256233c67cd7e
   languageName: node
   linkType: hard
 
@@ -11852,7 +11873,7 @@ __metadata:
   resolution: "appstatus-sanity-config@workspace:packages/appstatus-sanity-config"
   dependencies:
     "@sanity/eslint-config-studio": "npm:5.0.1"
-    "@sanity/vision": "npm:3.69.0"
+    "@sanity/vision": "npm:3.70.0"
     "@types/react": "npm:19.0.7"
     dayjs: "npm:1.11.13"
     eslint: "npm:9.18.0"
