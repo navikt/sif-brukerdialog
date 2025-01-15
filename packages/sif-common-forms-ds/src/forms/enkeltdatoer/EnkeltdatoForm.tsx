@@ -9,7 +9,7 @@ import { Enkeltdato, EnkeltdatoFormValues } from './types';
 import { EnkeltdatoMessageKeys, useEnkeltdatoIntl } from './enkeltdatoMessages';
 import { DateRange } from '@navikt/sif-common-utils';
 
-export interface TidsperiodeFormLabels {
+export interface EnkeltdatoerFormLabels {
     enkeltdato: string;
     okButton: string;
     cancelButton: string;
@@ -21,7 +21,7 @@ interface Props {
     enkeltdato?: Enkeltdato;
     alleEnkeltdatoer?: Enkeltdato[];
     disabledDateRanges?: DateRange[];
-    formLabels?: Partial<TidsperiodeFormLabels>;
+    formLabels?: Partial<EnkeltdatoerFormLabels>;
     onSubmit: (values: Enkeltdato) => void;
     onCancel: () => void;
 }
@@ -63,13 +63,13 @@ const EnkeltdatoForm = ({
         }
     };
 
-    const defaultLabels: TidsperiodeFormLabels = {
+    const defaultLabels: EnkeltdatoerFormLabels = {
         enkeltdato: text('@forms.enkeltdato.form.dato.label'),
         okButton: text('@forms.enkeltdato.form.okButton'),
         cancelButton: text('@forms.enkeltdato.form.cancelButton'),
     };
 
-    const inlineLabels: TidsperiodeFormLabels = { ...defaultLabels, ...formLabels };
+    const inlineLabels: EnkeltdatoerFormLabels = { ...defaultLabels, ...formLabels };
 
     return (
         <>

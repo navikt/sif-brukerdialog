@@ -28,7 +28,7 @@ const nb = {
     'steg.kurs.validation.kursperioder.listIsEmpty': 'Du må legge til minst én kursperiode.',
     'steg.kurs.validation.kursperioder.kursperioderOverlapper':
         'Noen av periodene du har lagt til overlapper hverandre. Se over fra og til datoene og korriger. Hvis periodene overlapper, må du slå disse periodene sammen til én.',
-    'steg.kurs.skalTaUtFerieIPerioden.label': 'Skal du ha ferie i løpet av søknadsperioden??',
+    'steg.kurs.skalTaUtFerieIPerioden.label': 'Skal du ha ferie i løpet av søknadsperioden?',
     'steg.kurs.validation.skalTaUtFerieIPerioden.yesOrNoIsUnanswered':
         'Du må svare på om du skal ha ferie i søknadsperioden.',
     'steg.kurs.ferie.addLabel': 'Legg til ferie',

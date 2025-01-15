@@ -11,6 +11,7 @@ import {
 } from '@navikt/sif-common-forms-ds';
 import { soknadMessages } from '@navikt/sif-common-soknad-ds';
 import { uiMessages } from '@navikt/sif-common-ui';
+import { enkeltdatoMessages } from '@navikt/sif-common-forms-ds/src/forms/enkeltdatoer/enkeltdatoMessages';
 import { arbeidstidMessages } from '../søknad/steps/arbeidstid/arbeidstidMessages';
 import { arbeidstidPeriodeMessages } from '../søknad/steps/arbeidstid/arbeidstidPeriodeMessages';
 import { appMessages } from './appMessages';
@@ -19,6 +20,7 @@ import { kursperiodeMessages } from '../søknad/steps/kurs/kursperioder-form-par
 export const libMessages = {
     nb: {
         ...commonMessages.nb,
+        ...enkeltdatoMessages.nb,
         ...uiMessages.nb,
         ...soknadMessages.nb,
         ...bostedUtlandMessages.nb,

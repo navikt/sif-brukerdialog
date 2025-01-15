@@ -26,6 +26,7 @@ export interface DatePickerBaseProps<FieldName, ErrorType>
     onChange?: (date: ISODateString) => void;
     defaultMonth?: Date;
     inputDisabled?: boolean;
+    variant?: 'input' | 'standalone';
 }
 
 interface OwnProps<FieldName, ErrorType> extends DatePickerBaseProps<FieldName, ErrorType> {

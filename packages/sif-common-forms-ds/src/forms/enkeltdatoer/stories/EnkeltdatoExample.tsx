@@ -6,7 +6,14 @@ import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-d
 import { getListValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/src/validation/types';
-import { getDate1YearAgo, getDate1YearFromNow } from '@navikt/sif-common-utils';
+import {
+    DateRange,
+    getDate1YearAgo,
+    getDate1YearFromNow,
+    getDateRangesBetweenDateRangesWithinDateRange,
+    ISODateRangeToDateRange,
+    ISODateToDate,
+} from '@navikt/sif-common-utils';
 import { flatten } from 'flat';
 import StoryFormWrapper from '../../../../storybook/components/story-form-wrapper/StoryFormWrapper';
 import SubmitPreview from '../../../../storybook/components/submit-preview/SubmitPreview';
@@ -24,6 +31,15 @@ interface FormValues {
     [FormField.enkeltdato]: Enkeltdato[];
 }
 const initialValues: FormValues = { enkeltdato: [] };
+
+const minDate = ISODateToDate('2025-01-01');
+const maxDate = ISODateToDate('2025-01-27');
+const range1: DateRange = ISODateRangeToDateRange('2025-01-01/2025-01-05');
+const range2: DateRange = ISODateRangeToDateRange('2025-01-10/2025-01-15');
+const range3: DateRange = ISODateRangeToDateRange('2025-01-27/2025-01-27');
+const selectedRanges = [range1, range2, range3];
+
+const disabledDateRanges = getDateRangesBetweenDateRangesWithinDateRange(minDate, maxDate, selectedRanges);
 
 const EnkeltdatoExample = () => {
     const [singleFormValues, setSingleFormValues] = useState<Partial<Enkeltdato> | undefined>(undefined);
@@ -50,9 +66,10 @@ const EnkeltdatoExample = () => {
                                     formErrorHandler={getFormErrorHandler(intl)}>
                                     <EnkeltdatoListAndDialog<FormField>
                                         name={FormField.enkeltdato}
-                                        minDate={getDate1YearAgo()}
-                                        maxDate={getDate1YearFromNow()}
+                                        minDate={minDate}
+                                        maxDate={maxDate}
                                         validate={getListValidator({ required: true })}
+                                        disabledDateRanges={disabledDateRanges}
                                         labels={{
                                             addLabel: 'Legg til dato',
                                             listTitle: 'Registrerte datoer',

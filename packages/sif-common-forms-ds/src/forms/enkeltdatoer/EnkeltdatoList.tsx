@@ -6,15 +6,16 @@ import { Enkeltdato } from './types';
 
 interface Props {
     enkeltdatoer: Enkeltdato[];
+    labelRenderer?: (dato: Enkeltdato) => string;
     onEdit?: (dato: Enkeltdato) => void;
     onDelete?: (Enkeltdato: Enkeltdato) => void;
 }
 
-const EnkeltdatoList = ({ enkeltdatoer = [], onDelete, onEdit }: Props) => {
+const EnkeltdatoList = ({ enkeltdatoer = [], labelRenderer, onDelete, onEdit }: Props) => {
     const getDateTitleString = (enkeltdato: Enkeltdato) => `${prettifyDateExtended(enkeltdato.dato)}`;
 
-    const renderTidsperiodeLabel = (enkeltdato: Enkeltdato): React.ReactNode => {
-        const title = getDateTitleString(enkeltdato);
+    const renderEnkeltdatoLabel = (enkeltdato: Enkeltdato): React.ReactNode => {
+        const title = labelRenderer ? labelRenderer(enkeltdato) : getDateTitleString(enkeltdato);
         return (
             <>
                 {onEdit && <ActionLink onClick={() => onEdit(enkeltdato)}>{title}</ActionLink>}
@@ -29,7 +30,7 @@ const EnkeltdatoList = ({ enkeltdatoer = [], onDelete, onEdit }: Props) => {
             getItemTitle={(uttak) => getDateTitleString(uttak)}
             onDelete={onDelete}
             onEdit={onEdit}
-            labelRenderer={renderTidsperiodeLabel}
+            labelRenderer={renderEnkeltdatoLabel}
             items={enkeltdatoer.filter((enkeltdato) => enkeltdato.id !== undefined)}
         />
     );

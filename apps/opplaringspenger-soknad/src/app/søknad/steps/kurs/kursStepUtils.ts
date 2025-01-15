@@ -6,12 +6,13 @@ import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { KursSøknadsdata } from '../../../types/søknadsdata/KursSøknadsdata';
-import { KursFormValues } from './KursStep';
+import { KursFormFields, KursFormValues } from './KursStep';
 import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 import { Kursperiode } from '../../../types/Kursperiode';
 import kursperiodeUtils from './kursperiodeUtils';
 import { KursperiodeFormValues } from './kursperioder-form-part/KursperiodeQuestions';
 import { FerieuttakIPeriodenSøknadsdata } from '../../../types/søknadsdata/FerieuttakIPeriodenSøknadsdata';
+import { ReisedagerSøknadsdata } from '../../../types/søknadsdata/ReisedagerSøknadsdata';
 
 dayjs.extend(isoWeek);
 
@@ -48,12 +49,8 @@ const sortKursperiode = (a: Kursperiode, b: Kursperiode) => {
     return dayjs(a.periode.from).isBefore(dayjs(b.periode.from)) ? -1 : 1;
 };
 
-export const getKursSøknadsdataFromFormValues = ({
-    opplæringsinstitusjon,
-    kursperioder: kursperioderValues,
-    ferieuttak,
-    skalTaUtFerieIPerioden,
-}: KursFormValues): KursSøknadsdata | undefined => {
+export const getKursSøknadsdataFromFormValues = (values: KursFormValues): KursSøknadsdata | undefined => {
+    const { opplæringsinstitusjon, kursperioder: kursperioderValues, ferieuttak, skalTaUtFerieIPerioden } = values;
     if (!opplæringsinstitusjon || !kursperioderValues) {
         throw 'Opplæringsinstitusjon eller kursperioder er ikke definert';
     }
@@ -61,11 +58,10 @@ export const getKursSøknadsdataFromFormValues = ({
         kursperiodeUtils.mapFormValuesToKursperiode(periode as KursperiodeFormValues, `${index}`),
     );
 
-    const søknadsperiode = dateRangeUtils.getDateRangeFromDateRanges(kursperioder.map((p) => p.periode));
-
     return {
-        søknadsperiode,
+        søknadsperiode: dateRangeUtils.getDateRangeFromDateRanges(kursperioder.map((p) => p.periode)),
         søknadsdatoer: getDatoerIKursperioder(kursperioder),
+        reisedager: extractReisedagerSøknadsdata(values),
         kursholder: opplæringsinstitusjon,
         kursperioder: kursperioder.sort(sortKursperiode),
         ferieuttakIPerioden: extractFerieuttakIPeriodenSøknadsdata({ skalTaUtFerieIPerioden, ferieuttak }),
@@ -90,6 +86,15 @@ export const getKursStepInitialValues = (søknadsdata: Søknadsdata, formValues?
             opplæringsinstitusjon: kurs.kursholder,
             kursperioder: kurs.kursperioder.map((periode) => kursperiodeUtils.mapKursperiodeToFormValues(periode)),
             skalTaUtFerieIPerioden: getYesOrNoFromBoolean(kurs.ferieuttakIPerioden?.skalTaUtFerieIPerioden),
+            ...(kurs.reisedager.reiserUtenforKursdager === true
+                ? {
+                      reisedager: kurs.reisedager.reisedager,
+                      reisedagerBeskrivelse: kurs.reisedager.reisedagerBeskrivelse,
+                      reiserUtenforKursdager: YesOrNo.YES,
+                  }
+                : {
+                      reiserUtenforKursdager: YesOrNo.NO,
+                  }),
             ferieuttak:
                 kurs.ferieuttakIPerioden?.type === 'skalTaUtFerieSøknadsdata'
                     ? kurs.ferieuttakIPerioden.ferieuttak
@@ -140,6 +145,27 @@ export const extractFerieuttakIPeriodenSøknadsdata = ({
     }
 
     return undefined;
+};
+
+export const extractReisedagerSøknadsdata = (values: KursFormValues): ReisedagerSøknadsdata => {
+    if (values.reiserUtenforKursdager === YesOrNo.YES) {
+        const reisedagerBeskrivelse = values[KursFormFields.reisedagerBeskrivelse];
+        const reisedager = values[KursFormFields.reisedager] || [];
+        if (reisedager.length === 0) {
+            throw 'Reisedager er ikke definert';
+        }
+        if (reisedagerBeskrivelse === undefined) {
+            throw 'Reisedager er ikke definert';
+        }
+        return {
+            reiserUtenforKursdager: true,
+            reisedager,
+            reisedagerBeskrivelse,
+        };
+    }
+    return {
+        reiserUtenforKursdager: false,
+    };
 };
 
 export const getDateRangesFromKursperiodeFormValues = (

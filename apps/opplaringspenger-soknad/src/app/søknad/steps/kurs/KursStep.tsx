@@ -16,6 +16,7 @@ import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import {
+    getDateRangesFromKursperiodeFormValues,
     getKursStepInitialValues,
     getKursSøknadsdataFromFormValues,
     getSøknadsperiodeFromKursperioderFormValues,
@@ -23,10 +24,10 @@ import {
 import { getTillattSøknadsperiode } from '../../../utils/søknadsperiodeUtils';
 import KursperioderFormPart from './kursperioder-form-part/KursperioderFormPart';
 import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/FerieuttakListAndDialog';
-import { Ferieuttak } from '@navikt/sif-common-forms-ds/src';
+import { Enkeltdato, Ferieuttak } from '@navikt/sif-common-forms-ds/src';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { KursperiodeFormValues } from './kursperioder-form-part/KursperiodeQuestions';
-import { dateRangeUtils, ISODate, ISODateToDate } from '@navikt/sif-common-utils';
+import { dateRangeUtils, ISODateToDate } from '@navikt/sif-common-utils';
 import ReisedagerFormPart from './kursperioder-form-part/ReisedagerFormPart';
 
 export enum KursFormFields {
@@ -42,10 +43,11 @@ export enum KursFormFields {
 export interface KursFormValues {
     [KursFormFields.opplæringsinstitusjon]?: string;
     [KursFormFields.kursperioder]: Partial<KursperiodeFormValues>[];
-    [KursFormFields.reisedager]?: ISODate[];
+    [KursFormFields.reisedager]?: Enkeltdato[];
     [KursFormFields.reisedagerBeskrivelse]?: string;
     [KursFormFields.skalTaUtFerieIPerioden]?: YesOrNo;
     [KursFormFields.ferieuttak]?: Ferieuttak[];
+    [KursFormFields.reiserUtenforKursdager]?: YesOrNo;
 }
 
 const { FormikWrapper, Form, TextField, YesOrNoQuestion } = getTypedFormComponents<
@@ -96,6 +98,7 @@ const KursStep = () => {
                 onSubmit={handleSubmit}
                 renderForm={({ values }) => {
                     const søknadsperiode = getSøknadsperiodeFromKursperioderFormValues(values.kursperioder);
+                    const kursperioder = getDateRangesFromKursperiodeFormValues(values.kursperioder);
                     const reiserUtenforKursdager = values[KursFormFields.reiserUtenforKursdager] === YesOrNo.YES;
                     return (
                         <>
@@ -163,9 +166,12 @@ const KursStep = () => {
                                         legend={text('steg.kurs.reiserUtenforKursdager.label')}
                                         validate={getYesOrNoValidator()}
                                     />
-                                    {reiserUtenforKursdager ? (
+                                    {reiserUtenforKursdager && søknadsperiode ? (
                                         <FormLayout.QuestionBleedTop>
-                                            <ReisedagerFormPart />
+                                            <ReisedagerFormPart
+                                                kursperioder={kursperioder}
+                                                søknadsperiode={søknadsperiode}
+                                            />
                                         </FormLayout.QuestionBleedTop>
                                     ) : null}
 

@@ -149,6 +149,7 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
                 legend={labels.listTitle}
                 error={error}
                 tabIndex={-1}
+                description={labels.description}
                 className="modalFormAndListFieldset">
                 {items.length > 0 && (
                     <div className="modalFormAndList__listWrapper">

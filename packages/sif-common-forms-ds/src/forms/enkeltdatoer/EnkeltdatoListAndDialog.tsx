@@ -14,6 +14,7 @@ interface Props<FieldNames> extends TypedFormInputValidationProps<FieldNames, Va
     labels: ModalFormAndListLabels;
     minDate: Date;
     maxDate: Date;
+    labelRenderer?: (dato: Enkeltdato) => string;
     disabledDateRanges?: DateRange[];
 }
 
@@ -23,6 +24,7 @@ function EnkeltdatoListAndDialog<FieldNames>({
     maxDate,
     disabledDateRanges = [],
     validate,
+    labelRenderer,
     labels,
 }: Props<FieldNames>) {
     return (
@@ -45,7 +47,14 @@ function EnkeltdatoListAndDialog<FieldNames>({
                     />
                 )}
                 listRenderer={({ items, onEdit, onDelete }) => {
-                    return <EnkeltdatoList enkeltdatoer={items} onEdit={onEdit} onDelete={onDelete} />;
+                    return (
+                        <EnkeltdatoList
+                            labelRenderer={labelRenderer}
+                            enkeltdatoer={items}
+                            onEdit={onEdit}
+                            onDelete={onDelete}
+                        />
+                    );
                 }}
             />
         </>

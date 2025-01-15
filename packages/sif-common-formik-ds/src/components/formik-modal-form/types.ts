@@ -1,3 +1,5 @@
+import { ReactElement } from 'react';
+
 export interface ModalFormAndListListItemBase {
     id?: string;
 }
@@ -7,6 +9,7 @@ export interface ModalFormAndListLabels {
     listTitle?: string;
     emptyListText?: string;
     addLabel: string;
+    description?: ReactElement | string;
 }
 
 export interface ModalFormAndInfoLabels {
