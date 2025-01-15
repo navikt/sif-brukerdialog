@@ -4248,7 +4248,7 @@ __metadata:
     "@types/react-router-dom": "npm:5.3.3"
     axios: "npm:1.7.9"
     babel-polyfill: "npm:6.26.0"
-    chromatic: "npm:11.23.0"
+    chromatic: "npm:11.24.0"
     compression: "npm:1.7.5"
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.0.0"
@@ -4449,7 +4449,7 @@ __metadata:
     "@vitejs/plugin-react": "npm:4.3.4"
     axios: "npm:1.7.9"
     babel-polyfill: "npm:6.26.0"
-    chromatic: "npm:11.23.0"
+    chromatic: "npm:11.24.0"
     compression: "npm:1.7.5"
     cors: "npm:2.8.5"
     cross-env: "npm:7.0.3"
@@ -4567,7 +4567,7 @@ __metadata:
     axios: "npm:1.7.9"
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
-    chromatic: "npm:11.23.0"
+    chromatic: "npm:11.24.0"
     compression: "npm:1.7.5"
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.0.0"
@@ -4647,7 +4647,7 @@ __metadata:
     axios: "npm:1.7.9"
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
-    chromatic: "npm:11.23.0"
+    chromatic: "npm:11.24.0"
     compression: "npm:1.7.5"
     cross-env: "npm:7.0.3"
     csp-header: "npm:6.0.0"
@@ -4725,7 +4725,7 @@ __metadata:
     axios: "npm:1.7.9"
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
-    chromatic: "npm:11.23.0"
+    chromatic: "npm:11.24.0"
     compression: "npm:1.7.5"
     cors: "npm:2.8.5"
     cross-env: "npm:7.0.3"
@@ -4801,7 +4801,7 @@ __metadata:
     axios: "npm:1.7.9"
     babel-polyfill: "npm:6.26.0"
     busboy: "npm:1.6.0"
-    chromatic: "npm:11.23.0"
+    chromatic: "npm:11.24.0"
     compression: "npm:1.7.5"
     cookie-parser: "npm:1.4.7"
     cross-env: "npm:7.0.3"
@@ -13166,9 +13166,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromatic@npm:11.23.0":
-  version: 11.23.0
-  resolution: "chromatic@npm:11.23.0"
+"chromatic@npm:11.24.0":
+  version: 11.24.0
+  resolution: "chromatic@npm:11.24.0"
   peerDependencies:
     "@chromatic-com/cypress": ^0.*.* || ^1.0.0
     "@chromatic-com/playwright": ^0.*.* || ^1.0.0
@@ -13181,7 +13181,7 @@ __metadata:
     chroma: dist/bin.js
     chromatic: dist/bin.js
     chromatic-cli: dist/bin.js
-  checksum: 10/c7d5e54911e3836d63416cc4d74ace07b440602047867adb3f1f147e32cb0a66dd670c6a228056b824e9382d95d60530fbe88c82d63965b17aefc543b8143638
+  checksum: 10/aeab0c5658a66402e1f198c353b4213cb0f74d1107276f82f949d16fdffed05e141a27ff3eced361c25d04e259067358a9efc8b24148d0bfe5305aa385c8b5f4
   languageName: node
   linkType: hard
 
