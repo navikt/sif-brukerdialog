@@ -9,7 +9,7 @@ import {
     ISODateRangeToDateRange,
     ISODateToDate,
 } from '@navikt/sif-common-utils';
-import { Sitat, TextareaSvar } from '@navikt/sif-common-ui';
+import { JaNeiSvar, Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 
 interface Props {
     kurs: KursApiData;
@@ -52,13 +52,20 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden }: Props) => {
                             </List>
                         </FormSummary.Value>
                     </FormSummary.Answer>
+                    <FormSummary.Answer>
+                        <FormSummary.Label>
+                            Reiser du på dager du søker om hvor du ikke har kurs eller opplæring?
+                        </FormSummary.Label>
+                        <FormSummary.Value>
+                            <JaNeiSvar harSvartJa={kurs.reisedager.reiserUtenforKursdager} />
+                        </FormSummary.Value>
+                    </FormSummary.Answer>
+
                     {kurs.reisedager.reiserUtenforKursdager ? (
-                        <FormSummary.Answer>
-                            <FormSummary.Label>
-                                Reisedager du søker opplæringspenger for, som er dager utenfor kurs eller opplæring
-                            </FormSummary.Label>
-                            <FormSummary.Value>
-                                {kurs.reisedager.reiserUtenforKursdager ? (
+                        <>
+                            <FormSummary.Answer>
+                                <FormSummary.Label>Reisedager uten kurs eller opplæring</FormSummary.Label>
+                                <FormSummary.Value>
                                     <VStack>
                                         <List>
                                             {kurs.reisedager.reisedager.map((reisedag) => {
@@ -71,23 +78,19 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden }: Props) => {
                                                 );
                                             })}
                                         </List>
-                                        <Sitat>
-                                            <TextareaSvar text={kurs.reisedager.reisedagerBeskrivelse} />
-                                        </Sitat>
                                     </VStack>
-                                ) : (
-                                    <>Har ikke reisedager som er utenfor </>
-                                )}
-                            </FormSummary.Value>
-                        </FormSummary.Answer>
-                    ) : (
-                        <FormSummary.Answer>
-                            <FormSummary.Label>
-                                <AppText id="oppsummering.kurs.reisedager" />
-                            </FormSummary.Label>
-                            <FormSummary.Value>Nei, reiser ikke utenfor</FormSummary.Value>
-                        </FormSummary.Answer>
-                    )}
+                                </FormSummary.Value>
+                            </FormSummary.Answer>
+                            <FormSummary.Answer>
+                                <FormSummary.Label>Årsak til reisetid</FormSummary.Label>
+                                <FormSummary.Value>
+                                    <Sitat>
+                                        <TextareaSvar text={kurs.reisedager.reisedagerBeskrivelse} />
+                                    </Sitat>
+                                </FormSummary.Value>
+                            </FormSummary.Answer>
+                        </>
+                    ) : null}
 
                     {ferieuttakIPerioden && (
                         <>

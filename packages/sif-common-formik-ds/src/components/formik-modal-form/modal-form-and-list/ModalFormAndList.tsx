@@ -1,5 +1,5 @@
 /* eslint-disable  */
-import { Alert, Button, Modal } from '@navikt/ds-react';
+import { Alert, BodyLong, Button, Modal, VStack } from '@navikt/ds-react';
 import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { v4 as uuid } from 'uuid';
@@ -135,12 +135,15 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
                         heading: labels.modalTitle,
                     }}>
                     <Modal.Body>
-                        {formRenderer({
-                            onSubmit: handleOnSubmit,
-                            onCancel: resetModal,
-                            item: modalState.selectedItem,
-                            allItems: items,
-                        })}
+                        <VStack gap="4">
+                            {labels.modalDescription ? <BodyLong as="div">{labels.modalDescription}</BodyLong> : null}
+                            {formRenderer({
+                                onSubmit: handleOnSubmit,
+                                onCancel: resetModal,
+                                item: modalState.selectedItem,
+                                allItems: items,
+                            })}
+                        </VStack>
                     </Modal.Body>
                 </Modal>
             ) : null}

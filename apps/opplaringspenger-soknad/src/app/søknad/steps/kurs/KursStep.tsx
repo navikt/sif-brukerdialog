@@ -1,4 +1,4 @@
-import { Alert, VStack } from '@navikt/ds-react';
+import { Alert, Box, VStack } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { FormikInputGroup, getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { getListValidator, getStringValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
@@ -6,7 +6,7 @@ import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/src';
 import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/FerieuttakListAndDialog';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { dateRangeUtils, ISODateToDate } from '@navikt/sif-common-utils';
+import { dateRangeUtils, getDateRangesBetweenDateRangesWithinDateRange, ISODateToDate } from '@navikt/sif-common-utils';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -103,6 +103,14 @@ const KursStep = () => {
                     const søknadsperiode = getSøknadsperiodeFromKursperioderFormValues(values.kursperioder);
                     const kursperioder = getDateRangesFromKursperiodeFormValues(values.kursperioder);
                     const reiserUtenforKursdager = values[KursFormFields.reiserUtenforKursdager] === YesOrNo.YES;
+                    const disabledDateRanges = søknadsperiode
+                        ? getDateRangesBetweenDateRangesWithinDateRange(
+                              søknadsperiode.from,
+                              søknadsperiode.to,
+                              kursperioder,
+                          )
+                        : [];
+
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -179,7 +187,7 @@ const KursStep = () => {
                                         <FormLayout.QuestionBleedTop>
                                             {søknadsperiode ? (
                                                 <ReisedagerFormPart
-                                                    kursperioder={kursperioder}
+                                                    disabledDateRanges={disabledDateRanges}
                                                     søknadsperiode={søknadsperiode}
                                                 />
                                             ) : (
@@ -204,10 +212,23 @@ const KursStep = () => {
                                                         addLabel: text('steg.kurs.ferie.addLabel'),
                                                         modalTitle: text('steg.kurs.ferie.modalTitle'),
                                                         listTitle: text('steg.kurs.ferie.listTitle'),
+                                                        modalDescription: (
+                                                            <>
+                                                                <Box>
+                                                                    Du kan kun velge dager som du har søkt om
+                                                                    opplæringspenger for.
+                                                                </Box>
+                                                                <Box>
+                                                                    Feriedager utenfor søknadsperioden trenger du ikke
+                                                                    legge til.
+                                                                </Box>
+                                                            </>
+                                                        ),
                                                     }}
                                                     name={KursFormFields.ferieuttak}
                                                     minDate={søknadsperiode?.from || gyldigSøknadsperiode.from}
                                                     maxDate={søknadsperiode?.to || gyldigSøknadsperiode.to}
+                                                    disabledDateRanges={disabledDateRanges}
                                                     validate={getListValidator({ required: true })}
                                                 />
                                             </FormLayout.Panel>

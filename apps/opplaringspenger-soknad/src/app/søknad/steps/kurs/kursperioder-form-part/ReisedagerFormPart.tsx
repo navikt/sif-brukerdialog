@@ -3,25 +3,18 @@ import { FormLayout } from '@navikt/sif-common-ui';
 import { FormikTextarea } from '@navikt/sif-common-formik-ds';
 import { getListValidator, getStringValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import EnkeltdatoListAndDialog from '@navikt/sif-common-forms-ds/src/forms/enkeltdatoer/EnkeltdatoListAndDialog';
-import {
-    capsFirstCharacter,
-    dateFormatter,
-    DateRange,
-    getDateRangesBetweenDateRangesWithinDateRange,
-} from '@navikt/sif-common-utils';
+import { capsFirstCharacter, dateFormatter, DateRange } from '@navikt/sif-common-utils';
 import { Enkeltdato } from '@navikt/sif-common-forms-ds/src';
+import { Box } from '@navikt/ds-react';
 
 interface Props {
-    kursperioder: DateRange[];
     søknadsperiode: DateRange;
+    disabledDateRanges: DateRange[];
 }
 
-const ReisedagerFormPart = ({ kursperioder, søknadsperiode }: Props) => {
-    const disabledDateRanges = getDateRangesBetweenDateRangesWithinDateRange(
-        søknadsperiode.from,
-        søknadsperiode.to,
-        kursperioder,
-    );
+const maksTegnBeskrivelse = 250;
+
+const ReisedagerFormPart = ({ søknadsperiode, disabledDateRanges }: Props) => {
     return (
         <FormLayout.Panel>
             <FormLayout.Questions>
@@ -31,6 +24,12 @@ const ReisedagerFormPart = ({ kursperioder, søknadsperiode }: Props) => {
                         addLabel: 'Legg til reisedag',
                         modalTitle: 'Reisedager',
                         listTitle: 'Reisedager uten kurs eller opplæring',
+                        modalDescription: (
+                            <>
+                                <Box>Du kan kun velge dager som du har søkt om opplæringspenger for.</Box>
+                                <Box>Dager med reise utenfor søknadsperioden trenger du ikke legge til.</Box>
+                            </>
+                        ),
                     }}
                     minDate={søknadsperiode.from}
                     maxDate={søknadsperiode.to}
@@ -41,12 +40,22 @@ const ReisedagerFormPart = ({ kursperioder, søknadsperiode }: Props) => {
                 <FormikTextarea
                     name={KursFormFields.reisedagerBeskrivelse}
                     label="Årsak for reisetid"
-                    maxLength={250}
-                    validate={getStringValidator({
-                        required: true,
-                        maxLength: 250,
-                        minLength: 5,
-                    })}
+                    maxLength={maksTegnBeskrivelse}
+                    validate={(value: any) => {
+                        const error = getStringValidator({
+                            required: true,
+                            maxLength: maksTegnBeskrivelse,
+                            minLength: 5,
+                        })(value);
+                        return error
+                            ? {
+                                  key: error,
+                                  values: {
+                                      antall: maksTegnBeskrivelse,
+                                  },
+                              }
+                            : undefined;
+                    }}
                     description="Fordi du reiser på andre dager enn du har kurs eller opplæring, må du beskrive hvorfor."
                 />
             </FormLayout.Questions>
