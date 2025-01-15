@@ -30,7 +30,7 @@ const nb = {
     'steg.kurs.validation.reisedager.listIsEmpty':
         'Du har krysset av for at du reiser på dager du ikke har kurs eller opplæring, da må du legge til minst én ferie.',
     'steg.kurs.validation.reisedagerBeskrivelse.stringHasNoValue':
-        'Du må beskrive hvorfor du søker om opplæringspenger for reisedager hvor du ikke har kurs eller opplæring.',
+        'Du må beskrive hvorfor du reiser på andre dager enn du har kurs eller opplæring.',
     'steg.kurs.validation.opplæringsinstitusjon.stringHasNoValue': 'Du må fylle ut hvor opplæringen foregår.',
     'steg.kurs.validation.kursperioder.listIsEmpty': 'Du må legge til minst én kursperiode.',
     'steg.kurs.validation.kursperioder.kursperioderOverlapper':

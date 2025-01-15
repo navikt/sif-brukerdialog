@@ -23,7 +23,7 @@ test.describe('Opplæring-steg', () => {
     test('Opplæring med én periode', async ({ page }) => {
         await fyllUtOpplæringEnPeriode(page);
         await page.getByTestId('typedFormikForm-submitButton').click();
-        await page.getByRole('heading', { name: 'Arbeidssituasjon' }).isVisible();
+        await page.getByRole('heading', { name: 'Din arbeidssituasjon' }).isVisible();
     });
     test('Opplæring med flere perioder', async ({ page }) => {
         await fyllUtOpplæringToPerioder(page);

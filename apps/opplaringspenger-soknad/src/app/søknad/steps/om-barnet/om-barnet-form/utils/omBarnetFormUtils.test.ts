@@ -94,7 +94,7 @@ const testdata: Record<Variant, { formValues: OmBarnetFormValues; søknadsdata: 
         søknadsdata: {
             type: 'annetBarnUtenFnr',
             fødselsattest: [],
-            barnetsFødselsdato: '2020-01-01',
+            barnetsFødselsdato: ISODateToDate('2020-01-01'),
             barnetsNavn: 'Navn',
             relasjonTilBarnet: RelasjonTilBarnet.MEDMOR,
             årsakManglerIdentitetsnummer: ÅrsakBarnetManglerIdentitetsnummer.NYFØDT,
@@ -111,7 +111,7 @@ const testdata: Record<Variant, { formValues: OmBarnetFormValues; søknadsdata: 
         søknadsdata: {
             type: 'annetBarnUtenFnr',
             fødselsattest: [{} as any],
-            barnetsFødselsdato: '2020-01-01',
+            barnetsFødselsdato: ISODateToDate('2020-01-01'),
             barnetsNavn: 'Navn',
             relasjonTilBarnet: RelasjonTilBarnet.ANNET,
             relasjonTilBarnetBeskrivelse: 'Beskrivelse',
@@ -127,7 +127,7 @@ const testdata: Record<Variant, { formValues: OmBarnetFormValues; søknadsdata: 
         søknadsdata: {
             type: 'annetBarnUtenFnr',
             fødselsattest: [],
-            barnetsFødselsdato: '2020-01-01',
+            barnetsFødselsdato: ISODateToDate('2020-01-01'),
             barnetsNavn: 'Navn',
             relasjonTilBarnet: RelasjonTilBarnet.ANNET,
             relasjonTilBarnetBeskrivelse: 'Beskrivelse',

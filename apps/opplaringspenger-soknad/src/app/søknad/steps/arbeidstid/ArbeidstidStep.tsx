@@ -4,7 +4,7 @@ import Block from '@navikt/sif-common-core-ds/src/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import ConfirmationDialog from '@navikt/sif-common-core-ds/src/components/dialogs/confirmation-dialog/ConfirmationDialog';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { ValidationError } from '@navikt/sif-common-formik-ds';
+import { ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/src/components/getTypedFormComponents';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
@@ -33,6 +33,7 @@ import { ArbeidIPeriode } from './ArbeidstidTypes';
 import ArbeidIPeriodeSpørsmål from './form-parts/arbeid-i-periode-spørsmål/ArbeidIPeriodeSpørsmål';
 import { harFraværIPerioden } from './form-parts/arbeidstidUtils';
 import { ArbeidsforholdType } from './form-parts/types';
+import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/src/validation';
 
 export enum ArbeidsaktivitetType {
     arbeidstaker = 'arbeidstaker',
@@ -54,18 +55,24 @@ export interface FrilansSNArbeidstid {
 }
 
 export enum ArbeidstidFormFields {
+    skalJobbe = 'skalJobbe',
     ansattArbeidstid = 'ansattArbeidstid',
     frilansArbeidstid = 'frilansArbeidstid',
     selvstendigArbeidstid = 'selvstendigArbeidstid',
 }
 
 export interface ArbeidstidFormValues {
+    [ArbeidstidFormFields.skalJobbe]?: YesOrNo;
     [ArbeidstidFormFields.ansattArbeidstid]?: AnsattArbeidstid[];
     [ArbeidstidFormFields.frilansArbeidstid]?: FrilansSNArbeidstid;
     [ArbeidstidFormFields.selvstendigArbeidstid]?: FrilansSNArbeidstid;
 }
 
-const { FormikWrapper, Form } = getTypedFormComponents<ArbeidstidFormFields, ArbeidstidFormValues, ValidationError>();
+const { FormikWrapper, Form, YesOrNoQuestion } = getTypedFormComponents<
+    ArbeidstidFormFields,
+    ArbeidstidFormValues,
+    ValidationError
+>();
 
 const ArbeidstidStep = () => {
     const appIntl = useAppIntl();
@@ -80,7 +87,7 @@ const ArbeidstidStep = () => {
         useLogSøknadInfo();
 
     const stepId = StepId.ARBEIDSTID;
-    const step = getSøknadStepConfigForStep(søknadsdata, stepId);
+    const step = getSøknadStepConfigForStep(stepId);
 
     const { goBack } = useStepNavigation(step);
 
@@ -167,7 +174,7 @@ const ArbeidstidStep = () => {
                         handleSubmit(values);
                     }
                 }}
-                renderForm={({ values: { ansattArbeidstid, frilansArbeidstid, selvstendigArbeidstid } }) => {
+                renderForm={({ values: { skalJobbe, ansattArbeidstid, frilansArbeidstid, selvstendigArbeidstid } }) => {
                     if (!ansattArbeidstid && !frilansArbeidstid && !selvstendigArbeidstid) {
                         return undefined;
                     }
@@ -188,6 +195,8 @@ const ArbeidstidStep = () => {
                             : undefined;
                     const oppdatereArbeidstid = () =>
                         handleArbeidstidChanged({ ansattArbeidstid, frilansArbeidstid, selvstendigArbeidstid });
+
+                    const visArbeidstid = skalJobbe === YesOrNo.YES;
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -215,23 +224,100 @@ const ArbeidstidStep = () => {
                                         </p>
                                     </SifGuidePanel>
 
-                                    {ansattArbeidstid && (
-                                        <FormBlock>
-                                            {ansattArbeidstid.map((arbeidsforhold, index) => {
-                                                return (
-                                                    <FormBlock key={arbeidsforhold.organisasjonsnummer}>
+                                    <FormBlock>
+                                        <YesOrNoQuestion
+                                            name={ArbeidstidFormFields.skalJobbe}
+                                            legend={text('arbeidIPeriode.skalJobbe.spm')}
+                                            required={true}
+                                            validate={getRequiredFieldValidator()}
+                                        />
+                                    </FormBlock>
+
+                                    {visArbeidstid && (
+                                        <>
+                                            {ansattArbeidstid && (
+                                                <FormBlock>
+                                                    {ansattArbeidstid.map((arbeidsforhold, index) => {
+                                                        return (
+                                                            <FormBlock key={arbeidsforhold.organisasjonsnummer}>
+                                                                <Heading level="2" size="medium">
+                                                                    {arbeidsforhold.navn}
+                                                                </Heading>
+                                                                <Block>
+                                                                    <ArbeidIPeriodeSpørsmål
+                                                                        arbeidsstedNavn={arbeidsforhold.navn}
+                                                                        arbeidsforholdType={ArbeidsforholdType.ANSATT}
+                                                                        arbeidIPeriode={arbeidsforhold.arbeidIPeriode}
+                                                                        jobberNormaltTimer={
+                                                                            arbeidsforhold.jobberNormaltTimer
+                                                                        }
+                                                                        valgteDatoer={valgteDatoer}
+                                                                        periode={søknadsperiode}
+                                                                        parentFieldName={`${ArbeidstidFormFields.ansattArbeidstid}.${index}`}
+                                                                        onArbeidstidVariertChange={oppdatereArbeidstid}
+                                                                        onArbeidPeriodeRegistrert={
+                                                                            logArbeidPeriodeRegistrert
+                                                                        }
+                                                                        onArbeidstidEnkeltdagRegistrert={
+                                                                            logArbeidEnkeltdagRegistrert
+                                                                        }
+                                                                    />
+                                                                </Block>
+                                                            </FormBlock>
+                                                        );
+                                                    })}
+                                                </FormBlock>
+                                            )}
+
+                                            {frilansArbeidstid && periodeSomFrilanserISøknadsperiode && (
+                                                <FormBlock>
+                                                    <Heading level="2" size="medium">
+                                                        <AppText id="arbeidIPeriode.FrilansLabel" />
+                                                    </Heading>
+                                                    <Block>
+                                                        <ArbeidIPeriodeSpørsmål
+                                                            arbeidsstedNavn={text(
+                                                                'arbeidIPeriode.arbeidstidSted.frilansoppdrag',
+                                                            )}
+                                                            arbeidsforholdType={ArbeidsforholdType.FRILANSER}
+                                                            arbeidIPeriode={frilansArbeidstid.arbeidIPeriode}
+                                                            jobberNormaltTimer={frilansArbeidstid.jobberNormaltTimer}
+                                                            periode={periodeSomFrilanserISøknadsperiode}
+                                                            valgteDatoer={valgteDatoer}
+                                                            parentFieldName={ArbeidstidFormFields.frilansArbeidstid}
+                                                            onArbeidstidVariertChange={oppdatereArbeidstid}
+                                                            onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
+                                                            onArbeidstidEnkeltdagRegistrert={
+                                                                logArbeidEnkeltdagRegistrert
+                                                            }
+                                                            skjulJobberNormaltValg={antallArbeidsforhold === 1}
+                                                        />
+                                                    </Block>
+                                                </FormBlock>
+                                            )}
+
+                                            {selvstendigArbeidstid &&
+                                                søknadsperiode &&
+                                                periodeSomSelvstendigISøknadsperiode && (
+                                                    <FormBlock>
                                                         <Heading level="2" size="medium">
-                                                            {arbeidsforhold.navn}
+                                                            <AppText id="arbeidIPeriode.SNLabel" />
                                                         </Heading>
                                                         <Block>
                                                             <ArbeidIPeriodeSpørsmål
-                                                                arbeidsstedNavn={arbeidsforhold.navn}
-                                                                arbeidsforholdType={ArbeidsforholdType.ANSATT}
-                                                                arbeidIPeriode={arbeidsforhold.arbeidIPeriode}
-                                                                jobberNormaltTimer={arbeidsforhold.jobberNormaltTimer}
+                                                                arbeidsstedNavn={text(
+                                                                    'arbeidIPeriode.arbeidstidSted.sn',
+                                                                )}
+                                                                arbeidsforholdType={ArbeidsforholdType.SELVSTENDIG}
+                                                                jobberNormaltTimer={
+                                                                    selvstendigArbeidstid.jobberNormaltTimer
+                                                                }
+                                                                arbeidIPeriode={selvstendigArbeidstid.arbeidIPeriode}
+                                                                periode={periodeSomSelvstendigISøknadsperiode}
                                                                 valgteDatoer={valgteDatoer}
-                                                                periode={søknadsperiode}
-                                                                parentFieldName={`${ArbeidstidFormFields.ansattArbeidstid}.${index}`}
+                                                                parentFieldName={
+                                                                    ArbeidstidFormFields.selvstendigArbeidstid
+                                                                }
                                                                 onArbeidstidVariertChange={oppdatereArbeidstid}
                                                                 onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
                                                                 onArbeidstidEnkeltdagRegistrert={
@@ -241,60 +327,9 @@ const ArbeidstidStep = () => {
                                                             />
                                                         </Block>
                                                     </FormBlock>
-                                                );
-                                            })}
-                                        </FormBlock>
+                                                )}
+                                        </>
                                     )}
-
-                                    {frilansArbeidstid && periodeSomFrilanserISøknadsperiode && (
-                                        <FormBlock>
-                                            <Heading level="2" size="medium">
-                                                <AppText id="arbeidIPeriode.FrilansLabel" />
-                                            </Heading>
-                                            <Block>
-                                                <ArbeidIPeriodeSpørsmål
-                                                    arbeidsstedNavn={text(
-                                                        'arbeidIPeriode.arbeidstidSted.frilansoppdrag',
-                                                    )}
-                                                    arbeidsforholdType={ArbeidsforholdType.FRILANSER}
-                                                    arbeidIPeriode={frilansArbeidstid.arbeidIPeriode}
-                                                    jobberNormaltTimer={frilansArbeidstid.jobberNormaltTimer}
-                                                    periode={periodeSomFrilanserISøknadsperiode}
-                                                    valgteDatoer={valgteDatoer}
-                                                    parentFieldName={ArbeidstidFormFields.frilansArbeidstid}
-                                                    onArbeidstidVariertChange={oppdatereArbeidstid}
-                                                    onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
-                                                    onArbeidstidEnkeltdagRegistrert={logArbeidEnkeltdagRegistrert}
-                                                    skjulJobberNormaltValg={antallArbeidsforhold === 1}
-                                                />
-                                            </Block>
-                                        </FormBlock>
-                                    )}
-
-                                    {selvstendigArbeidstid &&
-                                        søknadsperiode &&
-                                        periodeSomSelvstendigISøknadsperiode && (
-                                            <FormBlock>
-                                                <Heading level="2" size="medium">
-                                                    <AppText id="arbeidIPeriode.SNLabel" />
-                                                </Heading>
-                                                <Block>
-                                                    <ArbeidIPeriodeSpørsmål
-                                                        arbeidsstedNavn={text('arbeidIPeriode.arbeidstidSted.sn')}
-                                                        arbeidsforholdType={ArbeidsforholdType.SELVSTENDIG}
-                                                        jobberNormaltTimer={selvstendigArbeidstid.jobberNormaltTimer}
-                                                        arbeidIPeriode={selvstendigArbeidstid.arbeidIPeriode}
-                                                        periode={periodeSomSelvstendigISøknadsperiode}
-                                                        valgteDatoer={valgteDatoer}
-                                                        parentFieldName={ArbeidstidFormFields.selvstendigArbeidstid}
-                                                        onArbeidstidVariertChange={oppdatereArbeidstid}
-                                                        onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
-                                                        onArbeidstidEnkeltdagRegistrert={logArbeidEnkeltdagRegistrert}
-                                                        skjulJobberNormaltValg={antallArbeidsforhold === 1}
-                                                    />
-                                                </Block>
-                                            </FormBlock>
-                                        )}
                                 </FormBlock>
                             </Form>
                         </>

@@ -3,6 +3,10 @@ import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-p
 import { FormikInputGroup, getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { getListValidator, getStringValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/src/validation/intlFormErrorHandler';
+import { Ferieuttak } from '@navikt/sif-common-forms-ds/src';
+import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/FerieuttakListAndDialog';
+import { FormLayout } from '@navikt/sif-common-ui';
+import { dateRangeUtils, ISODateToDate } from '@navikt/sif-common-utils';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -10,24 +14,21 @@ import { AppText, useAppIntl } from '../../../i18n';
 import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import { getBarnetsFødselsdato, getTillattSøknadsperiode } from '../../../utils/søknadsperiodeUtils';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
+import { KursperiodeFormValues } from './kursperioder-form-part/KursperiodeQuestions';
+import KursperioderFormPart from './kursperioder-form-part/KursperioderFormPart';
 import {
     getDateRangesFromKursperiodeFormValues,
     getKursStepInitialValues,
     getKursSøknadsdataFromFormValues,
     getSøknadsperiodeFromKursperioderFormValues,
 } from './kursStepUtils';
-import { getTillattSøknadsperiode } from '../../../utils/søknadsperiodeUtils';
-import KursperioderFormPart from './kursperioder-form-part/KursperioderFormPart';
-import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/FerieuttakListAndDialog';
-import { Enkeltdato, Ferieuttak } from '@navikt/sif-common-forms-ds/src';
-import { FormLayout } from '@navikt/sif-common-ui';
-import { KursperiodeFormValues } from './kursperioder-form-part/KursperiodeQuestions';
-import { dateRangeUtils, ISODateToDate } from '@navikt/sif-common-utils';
+import { Enkeltdato } from '@navikt/sif-common-forms-ds/src';
 import ReisedagerFormPart from './kursperioder-form-part/ReisedagerFormPart';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 
@@ -65,8 +66,7 @@ const KursStep = () => {
     } = useSøknadContext();
 
     const stepId = StepId.KURS;
-    const step = getSøknadStepConfigForStep(søknadsdata, stepId);
-    const gyldigSøknadsperiode = getTillattSøknadsperiode();
+    const step = getSøknadStepConfigForStep(stepId);
 
     const { goBack } = useStepNavigation(step);
 
@@ -91,6 +91,8 @@ const KursStep = () => {
             return lagreSøknadState({ ...state });
         },
     );
+
+    const gyldigSøknadsperiode = getTillattSøknadsperiode(getBarnetsFødselsdato(søknadsdata.omBarnet));
 
     return (
         <SøknadStep stepId={stepId}>
@@ -159,7 +161,7 @@ const KursStep = () => {
                                                 ? 'kursperioderOverlapper'
                                                 : undefined;
                                         }}>
-                                        <KursperioderFormPart />
+                                        <KursperioderFormPart gyldigSøknadsperiode={gyldigSøknadsperiode} />
                                     </FormikInputGroup>
 
                                     <YesOrNoQuestion
