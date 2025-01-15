@@ -1,5 +1,4 @@
-import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
-import { DateRange, YesOrNo } from '@navikt/sif-common-formik-ds';
+import { DateRange } from '@navikt/sif-common-formik-ds';
 import { DateDurationMap, dateToISODate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
@@ -66,7 +65,6 @@ export const getArbeidstidStepInitialValues = (
     );
 
     return {
-        skalJobbe: getYesOrNoFromBoolean(søknadsdata.arbeidstid?.skalJobbe),
         ansattArbeidstid: arbeidsgivereDefaultValues,
         frilansArbeidstid: frilansDefaultValues,
         selvstendigArbeidstid: selvstendivDefaultValues,
@@ -192,7 +190,6 @@ export const getArbeidstidSøknadsdataFromFormValues = (
 
     return {
         arbeidsgivere,
-        skalJobbe: arbeidstidFormValues.skalJobbe === YesOrNo.YES,
         frilans,
         selvstendig,
     };
