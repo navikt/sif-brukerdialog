@@ -1,7 +1,7 @@
 import { KursFormFields } from '../KursStep';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { FormikTextarea } from '@navikt/sif-common-formik-ds';
-import { getStringValidator } from '@navikt/sif-common-formik-ds/src/validation';
+import { getListValidator, getStringValidator } from '@navikt/sif-common-formik-ds/src/validation';
 import EnkeltdatoListAndDialog from '@navikt/sif-common-forms-ds/src/forms/enkeltdatoer/EnkeltdatoListAndDialog';
 import {
     capsFirstCharacter,
@@ -31,13 +31,12 @@ const ReisedagerFormPart = ({ kursperioder, søknadsperiode }: Props) => {
                         addLabel: 'Legg til reisedag',
                         modalTitle: 'Reisedager',
                         listTitle: 'Reisedager uten kurs eller opplæring',
-                        // description:
-                        //     'Legg til dager hvor du reiser til eller fra opplæringen, og som ikke er en dag med opplæring eller kurs.',
                     }}
                     minDate={søknadsperiode.from}
                     maxDate={søknadsperiode.to}
                     labelRenderer={(dato: Enkeltdato) => capsFirstCharacter(dateFormatter.dayCompactDate(dato.dato))}
                     disabledDateRanges={disabledDateRanges}
+                    validate={getListValidator({ required: true })}
                 />
                 <FormikTextarea
                     name={KursFormFields.reisedagerBeskrivelse}

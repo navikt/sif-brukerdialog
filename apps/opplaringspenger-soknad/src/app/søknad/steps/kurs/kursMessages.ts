@@ -18,12 +18,19 @@ const nb = {
     'steg.kurs.kursperiode.modalTitle': 'Legg til kursperiode',
     'steg.kurs.kursperiode.listTitle': 'Kursperioder',
 
-    'steg.kurs.reiserUtenforKursdager.label': 'Reiser du på dager du ikke har kurs eller opplæring?',
+    'steg.kurs.reiserUtenforKursdager.label': 'Reiser du på dager du søker om hvor du ikke har kurs eller opplæring?',
+    'steg.kurs.reiserUtenforKursdager.info.tittel': 'Hva betyr dette?',
+    'steg.kurs.reiserUtenforKursdager.info.tekst':
+        'Du kan ha rett til opplæringspenger for reisedager til og fra opplæringen. Eksempel: [TODO]',
 
     'steg.kurs.validation.opplæringsinstitusjon.stringIsTooShort':
         'Du må beskrive hvor opplæringen foregår med minst 2 tegn.',
     'steg.kurs.validation.reiserUtenforKursdager.yesOrNoIsUnanswered':
         'Du må svare på om du reiser på dager du ikke har kurs eller opplæring.',
+    'steg.kurs.validation.reisedager.listIsEmpty':
+        'Du har krysset av for at du reiser på dager du ikke har kurs eller opplæring, da må du legge til minst én ferie.',
+    'steg.kurs.validation.reisedagerBeskrivelse.stringHasNoValue':
+        'Du må beskrive hvorfor du søker om opplæringspenger for reisedager hvor du ikke har kurs eller opplæring.',
     'steg.kurs.validation.opplæringsinstitusjon.stringHasNoValue': 'Du må fylle ut hvor opplæringen foregår.',
     'steg.kurs.validation.kursperioder.listIsEmpty': 'Du må legge til minst én kursperiode.',
     'steg.kurs.validation.kursperioder.kursperioderOverlapper':

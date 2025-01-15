@@ -1,4 +1,4 @@
-import { VStack } from '@navikt/ds-react';
+import { Alert, VStack } from '@navikt/ds-react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { FormikInputGroup, getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { getListValidator, getStringValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/src/validation';
@@ -29,6 +29,7 @@ import { FormLayout } from '@navikt/sif-common-ui';
 import { KursperiodeFormValues } from './kursperioder-form-part/KursperiodeQuestions';
 import { dateRangeUtils, ISODateToDate } from '@navikt/sif-common-utils';
 import ReisedagerFormPart from './kursperioder-form-part/ReisedagerFormPart';
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 
 export enum KursFormFields {
     opplæringsinstitusjon = 'opplæringsinstitusjon',
@@ -165,13 +166,25 @@ const KursStep = () => {
                                         name={KursFormFields.reiserUtenforKursdager}
                                         legend={text('steg.kurs.reiserUtenforKursdager.label')}
                                         validate={getYesOrNoValidator()}
+                                        description={
+                                            <ExpandableInfo
+                                                title={text('steg.kurs.reiserUtenforKursdager.info.tittel')}>
+                                                <AppText id="steg.kurs.reiserUtenforKursdager.info.tekst" />
+                                            </ExpandableInfo>
+                                        }
                                     />
-                                    {reiserUtenforKursdager && søknadsperiode ? (
+                                    {reiserUtenforKursdager ? (
                                         <FormLayout.QuestionBleedTop>
-                                            <ReisedagerFormPart
-                                                kursperioder={kursperioder}
-                                                søknadsperiode={søknadsperiode}
-                                            />
+                                            {søknadsperiode ? (
+                                                <ReisedagerFormPart
+                                                    kursperioder={kursperioder}
+                                                    søknadsperiode={søknadsperiode}
+                                                />
+                                            ) : (
+                                                <Alert variant="info">
+                                                    Du må legge inn en søknadsperiode før du kan legge til reisedager.
+                                                </Alert>
+                                            )}
                                         </FormLayout.QuestionBleedTop>
                                     ) : null}
 
