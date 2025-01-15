@@ -13,7 +13,7 @@ export const validateApiDataMessages = {
         'apiDataValidation.omsorgsavtaleMangler': 'Det mangler avtale om delt bosted. ',
     },
     nn: {
-        'apiDataValidation.undefined': 'Det oppstod en feil ved visningen av siden.',
+        'apiDataValidation.undefined': 'Det oppstod en feil ved visningen av sida.',
         'apiDataValidation.omsorgsavtaleMangler': 'Det mangler avtale om delt bosted. ',
     },
 };

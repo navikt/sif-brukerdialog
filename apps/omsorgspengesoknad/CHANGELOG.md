@@ -1,5 +1,13 @@
 # @navikt/omsorgspengesoknad
 
+## 1.37.1
+
+### Patch Changes
+
+- Korrigering i intl-tekster som hadde feil nøkkelref til values
+- Updated dependencies
+    - @navikt/sif-common-ui@0.9.1
+
 ## 1.37.0
 
 ### Minor Changes

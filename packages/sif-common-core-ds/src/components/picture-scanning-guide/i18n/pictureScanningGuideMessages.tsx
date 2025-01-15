@@ -24,7 +24,7 @@ const nb = {
     '@core.psg.good': 'Bra',
     '@core.psg.bad': 'Dårlig',
     '@core.psg.icon.label.good': 'Dokumentet fyller hele bildet',
-    '@core.psg.icon.label.keystone': 'Bildet er ikke tatt ovenfra',
+    '@core.psg.icon.label.keystone': 'Bildet er ikke tatt rett ovenfra',
     '@core.psg.icon.label.horizontal': 'Bildet har ikke riktig retning',
     '@core.psg.icon.label.shadow': 'Bildet har skygge på dokumentet',
     '@core.psg.lenkepanel.url': 'https://www.nav.no/brukerstotte#sende-soknad-pa-nett',
@@ -33,7 +33,7 @@ const nb = {
 
 const nn: Record<keyof typeof nb, string> = {
     '@core.psg.expandable.tittel': 'Tips til deg som skal ta bilete av dokumentet',
-    '@core.psg.tittel': 'Noen tips når du skal ta bilete av dokumentet',
+    '@core.psg.tittel': 'Nokre tips når du skal ta bilete av dokumentet',
     '@core.psg.section1.tittel': 'Trygg bruk når du tek bilete',
     '@core.psg.section1.liste.1':
         'Bruk kamerafunksjonen på mobilen din til å ta biletet, ikkje bruk Snapchat eller andre appar.',
@@ -54,7 +54,7 @@ const nn: Record<keyof typeof nb, string> = {
     '@core.psg.good': 'Bra',
     '@core.psg.bad': 'Dårleg',
     '@core.psg.icon.label.good': 'Dokumentet fyller heile biletet',
-    '@core.psg.icon.label.keystone': 'Biletet er ikkje teke ovanfrå.',
+    '@core.psg.icon.label.keystone': 'Biletet er ikkje teke rett ovanfrå.',
     '@core.psg.icon.label.horizontal': 'Biletet har ikkje rett retning',
     '@core.psg.icon.label.shadow': 'Biletet har skugge oppå dokumentet',
     '@core.psg.lenkepanel.url': 'https://www.nav.no/brukerstotte#sende-soknad-pa-nett',

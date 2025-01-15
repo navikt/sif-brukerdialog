@@ -7,8 +7,8 @@ const nb = {
 
 const nn: Record<keyof typeof nb, string> = {
     '@ui.daySelector.antallValgteDager': 'Talet på valgte dagar:',
-    '@ui.daySelector.plural.dag': '{dager, plural, one {dag} other {dagar}}',
-    '@ui.daySelector.valgteDager': '{dager} {dager, plural, one {dag} other {dagar}} valgt',
+    '@ui.daySelector.plural.dag': '{dager, plural, one {dag} other {dager}}',
+    '@ui.daySelector.valgteDager': '{dager} {dager, plural, one {dag} other {dager}} valgt',
     '@ui.daySelector.ingenDagerValgt': 'Ingen dagar valgt',
 };
 

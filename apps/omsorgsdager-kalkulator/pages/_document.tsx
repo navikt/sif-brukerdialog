@@ -1,4 +1,5 @@
-import { DecoratorComponentsReact, fetchDecoratorReact, DecoratorEnvProps } from '@navikt/nav-dekoratoren-moduler/ssr';
+import { ReactElement } from 'react';
+import { DecoratorComponentsReact, DecoratorEnvProps, fetchDecoratorReact } from '@navikt/nav-dekoratoren-moduler/ssr';
 import Document, { DocumentContext, DocumentInitialProps, Head, Html, Main, NextScript } from 'next/document';
 import 'node-fetch';
 
@@ -35,7 +36,7 @@ class MyDocument extends Document<Props> {
         return { ...initialProps, Decorator, language };
     }
 
-    render(): JSX.Element {
+    render(): ReactElement {
         const { Decorator, language } = this.props;
         const showDecorator = true;
         return (

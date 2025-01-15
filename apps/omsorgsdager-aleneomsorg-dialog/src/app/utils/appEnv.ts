@@ -4,6 +4,7 @@ import { AppEnv } from '../../../env.schema';
 const getAppEnv = (): AppEnv => ({
     ...getCommonEnv(),
     SIF_PUBLIC_USE_FARO: getRequiredEnv('SIF_PUBLIC_USE_FARO') as 'true' | 'false',
+    SIF_PUBLIC_FEATURE_NYNORSK: getRequiredEnv('SIF_PUBLIC_FEATURE_NYNORSK') === 'on' ? 'on' : 'off',
     SIF_PUBLIC_OMS_IKKE_TILSYN_URL: getRequiredEnv('SIF_PUBLIC_OMS_IKKE_TILSYN_URL'),
 });
 

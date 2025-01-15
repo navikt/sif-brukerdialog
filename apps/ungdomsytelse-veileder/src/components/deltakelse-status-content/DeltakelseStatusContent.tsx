@@ -28,14 +28,10 @@ const DeltakelseStatusContent = ({ deltakelse }: Props) => {
                         </Box>
                     </VStack>
                 </List.Item>
-                {/* <List.Item title="Status">
-                    <DeltakelseStatusTag deltakelse={deltakelse} />
-                </List.Item> */}
                 <List.Item title="Startdato">{dateFormatter.compact(deltakelse.fraOgMed)}</List.Item>
                 <List.Item title="Sluttdato">
                     {deltakelse.tilOgMed ? dateFormatter.compact(deltakelse.tilOgMed) : '-'}
                 </List.Item>
-                <List.Item title="Antall dager brukt av ytelsen">0</List.Item>
             </List>
         </Box>
     );
